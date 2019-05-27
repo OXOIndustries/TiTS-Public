@@ -134,6 +134,12 @@ public function cockCanFitCockBox(cIdx:int = 0):Boolean
 }
 
 //Use the Cock Box!
+public function installedDickBoxBonus(btnSlot:int = 0):void
+{
+	output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
+	
+	addButton(btnSlot,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
+}
 public function useInstalledDickBox():void
 {
 	clearOutput();

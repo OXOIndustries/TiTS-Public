@@ -685,13 +685,18 @@ package classes.Resources.Busts
 		public var Bust_ORRYX:Class;
 		
 		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
 		public var Bounds_PENNY_BIMBO_HORSE:Rectangle = new Rectangle(55,2,132,70);
 		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr.png", mimeType = "image/png")]

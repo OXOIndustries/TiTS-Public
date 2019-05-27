@@ -135,7 +135,7 @@
 			meleeWeapon.attackVerb = "bite";
 			meleeWeapon.attackNoun = "bite";
 			meleeWeapon.baseDamage.drug.damageValue = 2;
-			output("The slamwulfe, following its owner’s example, retracts its deadly teeth. Dripping, aphrodisiac-tipped needles pop out to replace them. <i>“NONLETHAL SUBROUTINES ENGAGED.”</i>”");
+			output("The slamwulfe, following its owner’s example, retracts its deadly teeth. Dripping, aphrodisiac-tipped needles pop out to replace them. <i>“NONLETHAL SUBROUTINES ENGAGED.”</i>");
 			long = "This quadrupedal, canine-style defense drone is decked out in armor plating. It’s maw is packed with an assortment of needle-shaped injectors, prepped to subdue you with a mix of illegal aphrodisiacs.";
 		}
 	}

@@ -1388,6 +1388,16 @@ public function riyaSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Riya Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Riya Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

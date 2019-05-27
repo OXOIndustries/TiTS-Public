@@ -270,9 +270,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_ANEMONE);
 			pc.cocks[0].cLengthRaw = 12;
-			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			pc.balls = 0;
 			pc.clitLength = 0.7;
 			bonusTexts = "You’ve always been a big-dicked, dragon-like hermaphrodite.";

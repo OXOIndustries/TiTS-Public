@@ -559,7 +559,8 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[x].bonusCapacity));
 						output2("\n<b>* Capacity, Effective:</b> " + prettifyVolume(pc.vaginalCapacity(x)));
 					}
-					output2("\n<b>* Looseness Level:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[x].minLooseness, 3));
 					output2("\n<b>* Wetness Level:</b> " + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0)
@@ -1052,6 +1053,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(roomFlagFlags[i]);
 			}
 		}
+		//var medRoomID:String = nearestMedicalCenter("", false);
+		//if(medRoomID != "") output2("\n<b>* Nearest Care Area:</b> " + StringUtil.toDisplayCase((rooms[medRoomID].roomName.replace("\n", " ")).toLowerCase()));
 		
 		// Ship Location
 		output2("\n<b><u>Current Ship Details</u></b>");
@@ -2735,6 +2738,7 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2(" Asked Penny, Accepted, Penny recruited, Completed");
 				}
+				if(flags["ONZIA_GOT_PQUEST_LOOT"] != undefined) output2("\n<b>* Onzia:</b> Helped her, Split rewards with her");
 				if(flags["PQUEST_ZILTRAP_RESULTS"] != undefined || flags["PQUEST_PENNY_PODDED"] != undefined)
 				{
 					output2("\n<b>* Ziltraps:</b> Seen them");
@@ -5591,7 +5595,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				//Kase the pyrite kittyboi 
 				if(flags["KASE_INTRO"] != undefined)
 				{
-					output2("\n<b>* Kase:</b> Met him" + (flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined ? ", Left Mhen’ga" : "") + (flags["KASE_CREW"] != undefined ? ", Joined crew" : "") + (flags["KASE_HEALED"] == 1 ? ", Arm healed" : ""));
+					output2("\n<b>* Kase:</b> Met him");
+					if(flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined) output2(", Left Mhen’ga");
+					if(kaseIsRecruited())
+					{
+						output2(", Crew member");
+						if(kaseIsCrew()) output2(" (Onboard Ship)");
+						else output2(" (At Tavros Station)");
+					}
+					if(flags["KASE_HEALED"] == 1) output2(", Arm healed");
 					if(flags["KASE_SEXED"] != undefined) output2("\n<b>* Kase, Times Sexed:</b> " + flags["KASE_SEXED"]);
 					if(flags["KASE_3SUM_ANNO"] != undefined) output2("\n<b>* Kase, Times had threesome with Anno:</b> " + flags["KASE_3SUM_ANNO"]);
 				}

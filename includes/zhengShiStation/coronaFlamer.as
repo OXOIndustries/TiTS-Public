@@ -586,7 +586,7 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 	output(". <i>“I’ll show [pc.daddy] I’m a good girl!”</i>");
 	output("\n\nThat’s more like it. The huskar bitch throws herself into pleasing you, restraining her own desires for your benefit.");
 	
-	if (rand(2) == 0 || !pc.hasVagina())
+	if (!pc.hasVagina() || rand(2) == 0)
 	{
 		var cawk:int = pc.biggestCockIndex();
 		output(" She sucks your [pc.cockBiggest] like an experienced whore, licking at your [pc.cockHeadBiggest] before rubbing it against the warm inside of her cheek, lovingly running her tongue along its underside. Her glittering green eyes hold your gaze as she swallows you, all but begging for your approval as you grip her flowing hair.");
@@ -602,7 +602,7 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		if (pc.hasCockFlag(GLOBAL.FLAG_FLARED, cawk)) output(", your bloated flare slowly flowering in her throat as she gags on it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_TAPERED, cawk)) output(", your tapered tip drooling precum into her throat while she gags around the rest of it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_NUBBY, cawk)) output(", experiencing a form of uncommon pleasure watching her loudly gag on your barbed cock");
-		else if (pc.cocks[cawk].cType == GLOBAL.TYPE_SIREN && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
+		else if (pc.cockCanSting(cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
 		output(". Reaching up to your [pc.ass], she grabs your cheeks and pulls you into her, skewering herself on your pulsating prick.");
 		output("\n\nThat does it. With a strained, jaw-clenching groan you explode down her throat, [pc.cum]");
 		var cumQ:Number = pc.cumQ();
@@ -685,6 +685,8 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		output("\n\nThat’s all the praise she’s going to get for you. Standing");
 		if (pc.isCrotchGarbed()) output(" and getting re-dressed");
 		output(", you make to leave as she lies on her back, moaning happily.");
+		
+		enemy.girlCumInMouth(pc);
 	}
 
 	pc.orgasm();

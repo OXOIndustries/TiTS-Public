@@ -151,7 +151,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
-		public var Bounds_PENNY:Rectangle = new Rectangle(40,0,121,79);
+		public var Bounds_PENNY:Rectangle = new Rectangle(40,0,81,79);
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
 		public function get Bounds_PENNY_NUDE():Rectangle { return Bounds_PENNY; }

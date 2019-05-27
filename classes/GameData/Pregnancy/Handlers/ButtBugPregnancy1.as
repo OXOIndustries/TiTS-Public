@@ -99,7 +99,12 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.eventQueue.push(tEventCall);
 			}
 			// Set OPBBE to [OPBBE + 1]
-			else buttBugAddEggs1(mother, pregSlot, 1);
+			else
+			{
+				buttBugAddEggs1(mother, pregSlot, 1);
+				// Reset incubation speed mod in case it was ever changed
+				if(!mother.hasPerk("Butt Bug Symbiosis")) pData.pregnancyIncubationMulti = 1;
+			}
 		}
 		
 		public static function buttBugAddEggs1(mother:Creature, pregSlot:int, eggs:int = 1):void

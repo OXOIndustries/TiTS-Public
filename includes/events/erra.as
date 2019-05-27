@@ -96,7 +96,7 @@ public function approachErra(back:Boolean = false):void
 		else output("<i>“I’ll say.”</i>");
 
 		output("\n\nThe ausar laughs while you finish ordering your drink, extending a hand and smiling. <i>“Erra.”</i>");
-		output("\n\nGuessing that must be her name, you reach a [pc.hand] out to meet hers and tell her: <i>“[pc.name].”</i> She takes hold of your hand and gives it a surprisingly firm shake; the bitch has got one hell of a grip, that’s for sure.");
+		output("\n\nGuessing that must be her name, you reach " + indefiniteArticle(pc.hand()) + " out to meet hers and tell her: <i>“[pc.name].”</i> She takes hold of your hand and gives it a surprisingly firm shake; the bitch has got one hell of a grip, that’s for sure.");
 		output("\n\nYour hand comes free of her grasp, giving you a moment to stretch your strangled digits as your drink finally arrives. Erra takes a big swig of whatever she’s drinking and turns to you with a smirk. <i>“All right, [pc.name], do you always walk up to pretty ausar girls flashing you dirty looks or just me?”</i>");
 		output("\n\nFinishing a gulp of your own drink, you give her a grin, returning her smugness in kind, ");
 		if(pc.isMischievous() || pc.isAss()) output("<i>“Only ones that look like a good lay.”</i>");

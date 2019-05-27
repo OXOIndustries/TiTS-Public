@@ -1354,7 +1354,7 @@ public function fedQuestOfficerVictory():void
 	author("Savin");
 	
 	processTime(15+rand(6));
-	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under a [pc.foot]. Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
+	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under " + indefiniteArticle(pc.foot()) + ". Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
 	output("\n\n<i>“M-mother won’t fall so easily,”</i> she groans. <i>“And even if you defeat us, the spirit of freedom will live on!”</i>");
 	output("\n\nWhatever. You throw her primitive weapons out the window, and think of what to do with her...");
 	output("\n\n<b>You found the Queen’s keys</b>");
@@ -2469,7 +2469,7 @@ public function fedQuestResolutionEscaped():void
 	
 	output("Lieve looks like she wants to say something, but instead bites her lip and guides you back outside. It’s a silent walk right up until you reach the gates leading back into town. There, Lieve finally lets a grunt and lets the tension out of her shoulders. ");
 	output("\n\n<i>“I’m sorry about... everything. The marshal was right: we needed Estallia. Badly. But I know me and my girls wouldn’t have made it out of that deathtrap without you. So thanks. I mean it.”</i>");
-	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
+	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. <i>“I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
 	else output("\n\nShe gives you a clap on the shoulder. <i>“We’ll get her someday... though probably without your help. I was afraid Sellera was going to try and have you thrown in the brig. No matter how badly we messed up... that would have been a mistake. I’m glad reason won out, because there’s nobody who could have stopped her if she’d decided to commit suicide by alien. Anyway! I’m gonna go check in on my wives, tell ‘em I’m okay. Come see me over at the gatehouse when you get a chance, okay?”</i>");
 	processTime(10+rand(5));
 	if(flags["FEDERATION_QUEST"] >= 7) flags["FEDERATION_QUEST_EVAC_TIMER"] = GetGameTimestamp();

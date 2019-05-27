@@ -4383,7 +4383,8 @@ public function noPennyLetsNotStart():void
 	output("You hesitate, and tell Penny that you’re just reminding her that you haven’t forgotten; you just need a few more hours of prep time.");
 	output("\n\nPenny’s expression sours into a frown, and she plops herself back onto her chair, returning to her professional demeanor and busying herself with her paperwork. <i>“Well, I won’t ever be going anywhere until you are,”</i> she says. And that’s the end of the conversation.");
 	//Normal Menu
-	this.addButton(0,"Next",approachGirlfriendPenny);
+	clearMenu();
+	addButton(0,"Next",approachGirlfriendPenny);
 }
 
 
@@ -4667,7 +4668,7 @@ public function freeThoseCapturedSmuggleBros():void
 	output("\n\nThe pod’s surface explodes almost too fast to follow. First, a crease at the top unfolds into two contorted arms with membranous sheets hanging below. One backhands Penny into the wall. Her knife cartwheels through the air to embed itself in the opposite wall. A seam down the middle reveals itself, then gapes open, dumping a wave of fragrant, sex-and-flower-scented juice across the cave floor - and the captive smuggler: an ausar.");
 	output("\n\nWith him out of the way, you can finally see what you’re dealing with - a red-eyed plant-woman of startling beauty, humanoid from the genitals to the top of her head. The supporting stalks grow from the nape of her neck and just beneath her curvaceous buttocks. A dangling, tubular organ connects her loins to the ausar’s crotch all the way away on the ground. The tentacle squelches around his girth while ripples flow upward in esophageal contractions, but she continues to glare at you, hands balled into fists.");
 	output("\n\nYou make ready to fight, but the cock-bound ausar is the first to act. He leaps up onto his feet, and with a look of surprising rage, screams, <i>“Leave me alone! I need... need to fuck!”</i> He climbs upward, feet landing in supporting dimples in the membrane, then wraps himself around her waist.");
-	output("\n\nThe ziltrap, somewhat placated by this, slowly enfolds him in her arms once more, but when she shapes this pod, she forms it into more compact dimensions to for her to peak out over the top. Those red orbs follow you warily.");
+	output("\n\nThe ziltrap, somewhat placated by this, slowly enfolds him in her arms once more, but when she shapes this pod, she forms it into more compact dimensions in order for her to peak out over the top. Those red orbs follow you warily.");
 	output("\n\nPenny stumbles back with a thunderous glower and a bit of blood at the corner of her mouth. <i>“She’s stronger than she looks... but,”</i> she wipes her face against her coat’s collar, <i>“there’s no point in fighting her just to knock him out, much as it pains me to say it. Fuck him and fuck her.”</i> She pauses thoughtfully. <i>“Actually, don’t fuck her. And don’t fuck any of the rest of them. Just fuck them up.”</i> Penny barks out a manic laugh. <i>“Fuck, I’m almost getting as crazy as you, crazy. Let’s just get this done.”</i>");
 	output("\n\nYou suppose you can’t save those who don’t want to be saved.");
 	processTime(5);
@@ -5195,8 +5196,8 @@ public function druggedPennyLovesThatHypercock():void
 	output("\n\nUnable to control yourself, you let your hips jerk forwards - just once. You catch yourself after, but the damage is done. Your shaft plows right between Penny’s " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "sweat":"ziltrap") + "-drenched tits, sending shockwaves through the fox’s pillowy melons and absolutely shaming them for size. She could never properly tit-fuck you, not without a crash course in breast-enlarging drugs, but her sweet little sweater-kits can still feel wonderful as they slide through the fox-girl’s slobber. The tips of her oh-so-rigid nipples are two points blissful contact in the middle of a sea of slick-furred delight.");
 	output("\n\nPenny meets your thrust by leaning into it. She moves her hands to the top half of your mast and pulls it harder against her chest. You can feel her heartbeat thumping into your [pc.cock], fluttering in the throes of passion. She’s so slick that when she wraps her arms tight, you can glide through the middle, using her hug as a silk-furred vice. Her clenched biceps are like the muscles in the sides of a virginal pussy, begging you to dump the thickest, most virile cum-shot possible into its womb, and Penny’s dopey, wide-open maw is that womb.");
 	output("\n\nYou drool an appetizer of potent pre onto her waiting tongue, and the fox nearly cums on the spot. Her eyes cross to watch it roll out, and her pulse quickens. She slurps it down with a merry hum of enjoyment, then rolls her feisty oral organ back against your [pc.cockHead] to beg for more. <i>“Please,”</i> she slurs, barely able to speak with the central groove of her tongue welded to your bulging, leaking urethra. <i>“Please. Cum.”</i> She writhes her belly against you. Her arms pump up and down, dragging her tits with them." + (flags["PQUEST_PENNY_PODDED"] != undefined ? " Milk dribbles freely out of her nipples, probably another effect of the ziltrap’s drugs.":"") + " <i>“I’m so fucking close! I just need... I just need to make you cum.”</i> She whines in delirious arousal. <i>“<b>Please!</b> Don’t worry about where it hits me. Just do it. Put it in my mouth or on my face or in my hair or my sl-sl-slutty little cum-dump pussy! [pc.name], cum! Cum!”</i>");
-	output("\n\nYou boil over with pleasure - not just from your writhing, ecstatic lover but from the raw lusty depravity of her words. Penny’s voice feels like it’s " + (pc.balls > 1 ? "in your [pc.balls], stirring the bubbling cum-factories to brew more jism than they could ever hold":"in your body, coaxing you to produce more jism that you could ever hold") + ". A [pc.cumGem] droplet appears at your apex as you");
-	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("r flare doubles in side, soaked in sweat and so plump with blood and pheromones that you get a whiff of your own bestial scent.");
+	output("\n\nYou boil over with pleasure - not just from your writhing, ecstatic lover but from the raw lusty depravity of her words. Penny’s voice feels like it’s " + (pc.balls > 1 ? "in your [pc.balls], stirring the bubbling cum-factories to brew more jism than they could ever hold":"in your body, coaxing you to produce more jism that you could ever hold") + ". " + StringUtil.capitalize(indefiniteArticle(pc.cumGem())) + " droplet appears at your apex as you");
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("r flare doubles in size, soaked in sweat and so plump with blood and pheromones that you get a whiff of your own bestial scent.");
 	else if(pc.hasKnot(x)) output("r [pc.knot] inflates obscenely. Penny’s legs automatically scissor around it in a tight squeeze, giving the bestial endowment exactly what it needs to spew its entire bitch-impregnating load.");
 	else output(" swell to absolute biggest and hardest, your mammoth organ doing its best to keep any seed from escaping a phantom lover’s oh-so-impregnable pussy.");
 	output(" The first spurt flies out, and Penny is there to catch");
@@ -5207,7 +5208,7 @@ public function druggedPennyLovesThatHypercock():void
 	output(". She revels in your [pc.cumNoun].");
 	output("\n\nThe fox-woman pulls you tight a sympathetic climax rips through her. She wriggles and squirms, tits jiggling from how the bulges racing up your urethra slap past them. Each ejaculation is married to a muffled moan of delight and hurried attempts to drink down as much of the fragrant seed as possible." + (penny.hasCock() ? " Her cum splashes along your [pc.belly] and [pc.chest] as she wantonly frots the side of your bigger tool.":""));
 	if(!penny.hasCock()) output((!penny.isSquirter() ? " The vixen’s cunt dribbles, its convulsions making it feel like her cunt is stroking your [pc.thigh] with raw eagerness to be filled.":" The vixen’s cunt drenches your [pc.thigh] in a torrent of pussy-juice so thick and so forceful that for a moment you wonder how such a thing is even possible. Then she cums again, squirting just as hard. With each fresh pulse of cum, the fox-girl achieves a new climax of her own. Her body is a clutching, spunk-drenched rag-doll that just can’t seem to stop cumming no matter how far back her eyes roll or thoughtless her gurgles."));
-	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (cumQ < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
+	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (cumQ < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but in thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
 	output("\n\nYou stumble back onto your [pc.butt]. Your [pc.cock] pulsates in powerful approval, refusing to soft quite yet, perhaps approving of what you’ve done to your mate.");
 	output("\n\n<i>“[pc.name],”</i> Penny whimpers, <i>“you " + pc.mf("stud","goddess") + "... you fucking...”</i> She rolls over, slowly crawling into your lap to snuggle a cum-stained cheek against your [pc.cockNoun]. <i>“Love you.”</i> She pats your thigh and smiles, tongue lapping a bit of juice from her nose. <i>“Want you to knock me up sometime... after the rush.”</i> Her eyes drift closed. <i>“Make me have lots of kits sometime, okay?”</i>");
 	output("\n\nYou’re both snoring soon after.");
@@ -5405,7 +5406,7 @@ public function finalPennyQuestRoomproc():Boolean
 		output("\n\n<i>“Whoah! Hey... no need to be hostile. I’m just surveying the area for my queen. Let’s just... ah fuck it.”</i> The golden girl yanks a heavy-caliber burst rifle off her back at levels it at the metal menaces. <i>“Come at me, fuck-faces!”</i>");
 		output("\n\nIf this soldier-myr clears off the robots before you, she could claim the resources for her queen! You suppose you’ll have assist her, if only to prove to Penny that you’re a reliable sort of Rusher.");
 		clearMenu();
-		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		addButton(0, "Attack", startPennyMiningBotFightStuff);
 		return true;
 	}
 	//else
@@ -5413,7 +5414,7 @@ public function finalPennyQuestRoomproc():Boolean
 	{
 		output("\n\nThat makes sense. Since you haven’t been spotted, you have plenty of time to prepare for the confrontation.");
 		clearMenu();
-		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		addButton(0, "Attack", startPennyMiningBotFightStuff);
 		return false;
 	}
 }
@@ -5423,6 +5424,7 @@ public function startPennyMiningBotFightStuff():void
 	penny.HP(penny.HPMax());
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc, penny);
+	if(myrOnMhenga()) CombatManager.setFriendlyActors(pc, penny, new Onzia());
 	var enemies:Array = [new MiningRobot(),new MiningRobot(),new MiningRobot()];
 	enemies[0].pennyQuestPrep();
 	enemies[0].long = "This dinged-up mining robot has seen better days, but its drills are still sharp and its servos strong.";
@@ -5435,7 +5437,6 @@ public function startPennyMiningBotFightStuff():void
 	CombatManager.victoryScene(defeatMiningBotsWithPenpen);
 	CombatManager.lossScene(loseToMiningBotsWithPen);
 	CombatManager.displayLocation("MINING BOTS");
-	if(myrOnMhenga()) CombatManager.setFriendlyActors(pc, penny, new Onzia());
 	CombatManager.beginCombat();
 }
 

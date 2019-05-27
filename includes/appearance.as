@@ -467,7 +467,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(".");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of " + indefiniteArticle(target.skinTone) + " hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -2484,7 +2484,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target.tailCount == 1 ? "A [target.tail] sits" : "[target.Tails] sit") + " just above your [target.ass], covered from base to tip in [target.skinFurScalesColor] metal scales.");
 			if (target.hasTailFlag(GLOBAL.FLAG_SHORT)) outputRouter(" Though quite short, and very plump, " + (target == pc ? "you still use":"[target.heShe] still uses") + (target.tailCount == 1 ? "it" : "them") + " for some semblance of balance - " + (target.isBimbo() || target.exhibitionism() > 50 ? "the extra looks drawn to each bounce with every step is just a bonus." : "even if every step causes an eye-catching bounce and waggle."));
 			else if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" It sways in time with " + (target == pc ? "your":"[target.hisHer]") + " steps, helping " + (target == pc ? "you":"[target.himHer]") + " maintain balance.");
-			outputRouter(" The soft underside reveals a [target.skinColor] hide.");
+			outputRouter(" The soft underside reveals " + indefiniteArticle(target.skinTone) + " hide.");
 			break;
 	}
 	//Tail cunts
@@ -4203,9 +4203,11 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		case GLOBAL.TYPE_SIREN:
 			if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) outputRouter(" From the slit of " + (target == pc ? "your":"[target.hisHer]") + " foreskin pokes out a bundle of");
 			else outputRouter(" The crown is surrounded by");
-			outputRouter(" tiny tentacles with a venomous, aphrodisiac payload. At its base a number of similar, longer tentacles have formed, ");
-			if(target.hasSheath(x)) outputRouter("the sheath forcing them to coil around " + (target == pc ? "your":"[target.hisHer]") + " shaft, ");
-			outputRouter("guaranteeing that pleasure will be forced upon " + (target == pc ? "your":"[target.hisHer]") + " partners.");
+			outputRouter(" tiny tentacles with a venomous");
+			if(target.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) outputRouter(", aphrodisiac");
+			outputRouter(" payload. At its base a number of similar, longer tentacles have formed");
+			if(target.hasSheath(x) && !target.hasFullSheaths()) outputRouter(" the sheath forcing them to coil around " + (target == pc ? "your":"[target.hisHer]") + " shaft");
+			outputRouter(", guaranteeing that pleasure will be forced upon " + (target == pc ? "your":"[target.hisHer]") + " partners.");
 			break;
 		//Kangawang flavor
 		case GLOBAL.TYPE_KANGAROO:
@@ -4308,12 +4310,19 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		outputRouter(", soft and rounded enough to massage any passage into which it is inserted.");
 	}
 	//Sheaths
-	if(target.hasSheath(x) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN))
+	if(target.hasSheath(x) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN]))
 	{
 		if(target.cockTotal() == 1 || (target.cockTotal() > 1 && !target.hasFullSheaths())) outputRouter(" The shaft of " + (target == pc ? "your":"[target.hisHer]") + " manhood naturally retracts into an animalistic sheath when completely flaccid.");
 	}
+	//Stinger-base
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE]))
+	{
+		outputRouter(" At its base a number of similar, longer tentacles have formed");
+		if(target.hasSheath(x) && !target.hasFullSheaths()) outputRouter(" the sheath forcing them to coil around " + (target == pc ? "your":"[target.hisHer]") + " shaft");
+		outputRouter(", guaranteeing that pleasure will be forced upon " + (target == pc ? "your":"[target.hisHer]") + " partners.");
+	}
 	//Lube
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_JANERIA))
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_JANERIA]))
 	{
 		outputRouter(" Its surface is slick and slippery, covered in an abundant amount of moist lubrication.");
 	}
@@ -4340,6 +4349,15 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	{
 		outputRouter(" The head of " + (target == pc ? "your":"[target.hisHer]") + " alien-looking cock consists of bulbous twin glans, ready to double the sensation of penetration.");
 	}
+	//Stinger-tip
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE]))
+	{
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) outputRouter(" From the slit of " + (target == pc ? "your":"[target.hisHer]") + " foreskin pokes out a bundle of");
+		else outputRouter(" The crown is surrounded by");
+		outputRouter(" tiny tentacles with a venomous");
+		if(target.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) outputRouter(", aphrodisiac");
+		outputRouter(" payload.");
+	}
 	//Demon cock flavor
 	if(target.cocks[x].cType == GLOBAL.TYPE_DEMONIC)
 	{
@@ -4351,7 +4369,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		outputRouter("as " + (target == pc ? "you get":"[target.heShe] gets") + " more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic influences.");
 	}
 	//Foreskins
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_BEE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_DEMONIC))
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_BEE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_DEMONIC]))
 	{
 		outputRouter(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
@@ -4511,9 +4529,10 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			outputRouter(".");
 			break;
 		//Siren flavor
+		case GLOBAL.TYPE_ANEMONE:
 		case GLOBAL.TYPE_SIREN:
-			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with aphrodisiac-laced cilia.");
-			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with aphrodisiac-laced cilia.");
+			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
+			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
 			break;
 		//Goblin flavor
 		case GLOBAL.TYPE_GABILANI:
@@ -4579,21 +4598,27 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			}
 			break;
 	}
-	//Tongue
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_TONGUE))
-	{
-		if(!eachOne) outputRouter(" The interior also hosts a thick erogenous tongue.");
-		else outputRouter(" Their interiors each house a thick erogenous tongue.");
+	//Outer-Tentacles
+	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) {
+		if(!eachOne) outputRouter(" Writhing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around its lips.");
+		else outputRouter("\nWrithing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around their lips.");
 	}
-	//Nubby
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
-		if(!eachOne) outputRouter(" The lips and insides are covered in numerous nub-like protrusions.");
-		else outputRouter(" Their lips and insides are covered in numerous nub-like protrusions.");
+	//Nubby or Inner-Tentacles
+	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) || target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SHARK])) {
+		if(!eachOne) outputRouter(" The lips and insides are covered in numerous " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) ? "nub" : "tentacle") + "-like " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) ? "stingers" : "protrusions") + ".");
+		else outputRouter(" Their lips and insides are covered in numerous " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) ? "nub" : "tentacle") + "-like " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) ? "stingers" : "protrusions") + ".");
 	}
+	//Ribbed
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_RIBBED) && target.vaginas[x].type != GLOBAL.TYPE_SAURMORIAN)
 	{
 		if(!eachOne) outputRouter(" The insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");
 		else outputRouter(" Their insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");
+	}
+	//Tongue
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_TONGUE))
+	{
+		if(!eachOne) outputRouter(" The interior also hosts a thick, erogenous tongue.");
+		else outputRouter(" Their interiors each house a thick, erogenous tongue.");
 	}
 	//Pumped
 	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");

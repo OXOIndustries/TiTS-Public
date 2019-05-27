@@ -20,8 +20,8 @@ package classes.Characters
 	
 	public class CoronaFlamer extends Creature
 	{
-        public function CoronaFlamer()
-        {
+		public function CoronaFlamer()
+		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
@@ -31,8 +31,8 @@ package classes.Characters
 			this.originalRace = "huskar";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Dressed in nothing but her shoulder and waist-mounted coolant rigs she's a saucy sight, but her otherwise pretty features are twisted into the cruel grin of a pyromaniac. This woman is wild, unrestrained by things like morality; she just wants to watch everything burn as the flames dance in the reflection of her glittering eyes, and she's got the ammunition to do it. Strapped to the backs of her shoulders are tanks of fuel, ready to be slammed home into her heavy flamer.";
-			this.long += "\n\nHer heavy breasts are barely constrained by a tight strap running around her chest, just obscuring her nipples beneath it. That's all she's wearing aside from the combat visor and the straps around her body, the purpose of which are either to hold ammunition or draw well-deserved attention to her incredibly fine physique, you're not sure which.";
+			this.long = "Dressed in nothing but her shoulder and waist-mounted coolant rigs she’s a saucy sight, but her otherwise pretty features are twisted into the cruel grin of a pyromaniac. This woman is wild, unrestrained by things like morality; she just wants to watch everything burn as the flames dance in the reflection of her glittering eyes, and she’s got the ammunition to do it. Strapped to the backs of her shoulders are tanks of fuel, ready to be slammed home into her heavy flamer.";
+			this.long += "\n\nHer heavy breasts are barely constrained by a tight strap running around her chest, just obscuring her nipples beneath it. That’s all she’s wearing aside from the combat visor and the straps around her body, the purpose of which are either to hold ammunition or draw well-deserved attention to her incredibly fine physique, you’re not sure which.";
 			this.customBlock = "She easily avoids your attack.";
 			this.customDodge = "She easily avoids your attack.";
 			this.isPlural = false;
@@ -95,7 +95,7 @@ package classes.Characters
 			this.eyeColor = "green";
 			this.earType = GLOBAL.TYPE_CANINE;
 			this.earFlags = [GLOBAL.FLAG_TAPERED, GLOBAL.FLAG_FURRED];
-			createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "You have an impressive mane bordering your neck.");
+			createPerk("Regal Mane", GLOBAL.FLAG_FURRED, 0, 0, 0, "");
 			this.earPiercing = new SilverRingPiercings();
 			this.nosePiercing = new SilverStudPiercing();
 
@@ -115,6 +115,8 @@ package classes.Characters
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 
+			createStatusEffect("Disarm Immune");
+			
 			createPerk("Appearance Enabled");
 
 			setDefaultSexualPreferences();
@@ -123,7 +125,6 @@ package classes.Characters
 
 		override public function get bustDisplay():String
 		{
-			//return "ANNO_HUSKAR";
 			return "FIREPUP";
 		}
 
@@ -174,14 +175,14 @@ package classes.Characters
 				}
 				else
 				{
-					if (target.shields() > 0) output("\n\n" + (target is PlayerCharacter ? "Your" : "[target.CombatName]'s") + " shields take the brunt of the heat, crackling against the flames.");
+					if (target.shields() > 0) output("\n\n" + (target is PlayerCharacter ? "Your" : "[target.CombatName]’s") + " shields take the brunt of the heat, crackling against the flames.");
 					else output("\n\nShit! Without shields, these flames <i>really</i> hurt" + (target is PlayerCharacter ? "!" : " [target.combatName]!"));
 					applyDamage(damageRand(dmg, 25), this, target, "minimal");
 					hits++;
 				}
 			}
 			
-			if (hits > 0) output("\n\n<i>\"Hahahaha!\"</i> the Flamer screams through the smoke. <i>\"Burn, mother" + (hits > 1 ? "fuckers" : "fucker") + "!\"</i>");
+			if (hits > 0) output("\n\n<i>“Hahahaha!”</i> the Flamer screams through the smoke. <i>“Burn, mother" + (hits > 1 ? "fuckers" : "fucker") + "!”</i>");
 		}
 
 		//doesn't crit. Has a few turns cooldown (3?).
@@ -208,7 +209,7 @@ package classes.Characters
 		private function doggoThrowsYouAnExplosiveBone(target:Creature):void
 		{
 			kGAMECLASS.setTarget(target);
-			output("The Flamer draws a metallic orb from behind her, spinning it in her hand until she's got a good grip and hefts it in " + (target is PlayerCharacter ? "your" : "[target.combatName]'s") + " direction -- and she does <i>not</i> throw like a girl. It lands in front of [target.combatHimHer] and [target.combatHeShe] " + (target is PlayerCharacter ? "have" : "has") + " just enough time to register the Reaper logo on the front; it's an incendiary grenade!");
+			output("The Flamer draws a metallic orb from behind her, spinning it in her hand until she’s got a good grip and hefts it in " + (target is PlayerCharacter ? "your" : "[target.combatName]’s") + " direction -- and she does <i>not</i> throw like a girl. It lands in front of [target.combatHimHer] and [target.combatHeShe] " + (target is PlayerCharacter ? "have" : "has") + " just enough time to register the Reaper logo on the front; it’s an incendiary grenade!");
 			if ((rand(target.reflexes() / 3) + target.reflexes() / 2) >= 30) output("\n\n[target.CombatHeShe] " + (target is PlayerCharacter ? "leap" : "leaps") + " back just in time to avoid the ball of scorching white plasma, catching the heat radiating from it. That was close!");
 			else
 			{
@@ -220,9 +221,9 @@ package classes.Characters
 		private function fireBitchGoesOffEarly(target:Creature):void
 		{
 			kGAMECLASS.setTarget(target);
-			output("The huskar woman reaches back and grabs a shiny orb, spinning it in her hand until she's got a good grip and hefts it into the air. She tracks its descent as it approaches [target.combatName], aiming her flamethrower in its arcing path and hitting the falling projectile in midair.");
+			output("The huskar woman reaches back and grabs a shiny orb, spinning it in her hand until she’s got a good grip and hefts it into the air. She tracks its descent as it approaches [target.combatName], aiming her flamethrower in its arcing path and hitting the falling projectile in midair.");
 			output("\n\nIt immediately explodes into a ball of fire; there must have been something highly volatile inside!");
-			if  ((rand(target.reflexes() / 3) + target.reflexes() / 2) >= 40) output(" [target.CombatHeShe] narrowly " + (target is PlayerCharacter ? "avoid" : "avoids") + " having it burn [target.combatHisHer] face off, leaping back to avoid both the explosion and the flaming ground it leaves behind.");
+			if ((rand(target.reflexes() / 3) + target.reflexes() / 2) >= 40) output(" [target.CombatHeShe] narrowly " + (target is PlayerCharacter ? "avoid" : "avoids") + " having it burn [target.combatHisHer] face off, leaping back to avoid both the explosion and the flaming ground it leaves behind.");
 			else
 			{
 				output(" Unable to avoid the explosion, [target.combatHeShe] " + (target is PlayerCharacter ? "find yourself" : "finds [target.combatHimHer]self") + " leaping back to avoid the flaming ground!");

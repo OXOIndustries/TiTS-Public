@@ -54,6 +54,12 @@ public function sleepFapneaReset():void
 	flags["SLEEP_FAPNEA_DREAMCATCHER"] = undefined;
 }
 
+public function installedSleepFapneaBonus(btnSlot:int = 0):void
+{
+	output("\n\nNext to your bed is the Sleep Fapnea device, where you can modify your dreams for when you sleep.");
+	
+	addButton(btnSlot, "SleepFap.", sleepFapneaApproach, undefined, "Sleep Fapnea Device", "Change your sleep settings.");
+}
 public function sleepFapneaApproach():void
 {
 	clearOutput();

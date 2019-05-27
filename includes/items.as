@@ -307,7 +307,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,(pc.vaginas[x].clits == 1 ? "clit" : "clits"),x]);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
 	else addButton(button++,"Cancel",itemScreen);
@@ -465,7 +465,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 		else if(item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[x].fitsSmallCocksock()) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot fit that cockwear.");
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyWearCocksock,[item,x]);
 	}
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
 	else addButton(button++,"Cancel",itemScreen);
@@ -1623,7 +1623,7 @@ public function removeAPiercingMenu():void
 		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["clit", x]);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
 	else addButton(button++,"Cancel",unequipMenu,false);
@@ -1749,7 +1749,7 @@ public function removeACocksockMenu():void
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyRemoveACocksock,x);
 	}
 	
-	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	while((button < 60) && ((button + 1) % 15 != 0)) { button++; }
 	
 	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
 	else addButton(button++,"Cancel",unequipMenu,false);
@@ -2718,26 +2718,34 @@ public function shipStorageMenuRoot():void
 	}
 	else addDisabledButton(4, "Toys");
 	
+	// Installed devices
 	var btnSlot:int = 5;
+	var installedDevices:Array = [];
 	
-	if (flags["DONG_DESIGNER_INSTALLED"] == 1)
+	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
+	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
+	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
+	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
+	
+	for(var d:int = 0; d < installedDevices.length; d++)
 	{
-		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
-		addButton(btnSlot++,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
+		if(btnSlot >= 60) break;
+		installedDevices[d](btnSlot);
+		btnSlot++;
+		if((btnSlot + 5) % 15 == 0)
+		{
+			btnSlot += 4;
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
 	}
-	if(flags["EGG_TRAINER_INSTALLED"] == 1) 
+	if(btnSlot > 14 && btnSlot < 60)
 	{
-		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
-		//if PC has a belly full of eggs:
-		if(pc.hasPregnancyOfType("EggTrainerCarryTraining")) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
-		//if PC has a faux-preg egg: 
-		else if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
-		addButton(btnSlot++,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
-	}
-	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) 
-	{
-		output("\n\nNext to your bed is the Sleep Fapnea device, where you can modify your dreams for when you sleep.");
-		addButton(btnSlot++, "SleepFap.", sleepFapneaApproach, undefined, "Sleep Fapnea Device", "Change your sleep settings.");
+		while(btnSlot < 60 && (btnSlot + 1) % 15 != 0)
+		{
+			btnSlot++;
+		}
+		addButton(btnSlot, "Back", mainGameMenu);
 	}
 	
 	addButton(14, "Back", mainGameMenu);

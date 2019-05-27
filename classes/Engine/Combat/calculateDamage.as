@@ -157,7 +157,7 @@ package classes.Engine.Combat
 				}
 				
 				// Sneak Attack (AKA Aimed Shot)
-				if (!attacker.isBlind() && (target.hasStatusEffect("Stunned") || target.isBlind()) && attacker.hasPerk("Aimed Shot")) 
+				if (baseHPDamage.getTotal() > 0 && !attacker.isBlind() && (target.hasStatusEffect("Stunned") || target.isBlind()) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
 					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);

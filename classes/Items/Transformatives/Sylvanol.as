@@ -322,8 +322,8 @@
 			//Transparo hair
 			if(pc.hairType != GLOBAL.HAIR_TYPE_TRANSPARENT && pc.hairLength > 0)
 			{
-				highEventsArgs.push(fuckinShadowHairTF);
-				highEventsArgs.push(undefined);
+				highEvents.push(fuckinShadowHairTF);
+				highEventsArgs.push(pc);
 			}
 			//Mid:
 			//Change hair color to black, violet, or glowing violet.

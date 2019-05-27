@@ -210,6 +210,14 @@
 		true);
 
 	inputManager.AddBindableControl(
+		"Force Default Treatment",
+		"Force next Treatment to give expected results.",
+		function():void {
+			Cheats.TryTreatmentHaxDefault();
+		},
+		true);
+
+	inputManager.AddBindableControl(
 		"Force Amazon Treatment",
 		"Force next Treatment use to make the user an Amazon.",
 		function():void {
@@ -314,6 +322,13 @@
 			Cheats.YakuzaUnlock();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Nym-Foe Targets TiTS",
+		"Toggle whether or not Nym-Foe will target the breasts when she injects silicone.",
+		function():void {
+			Cheats.BoobSiliconePlease();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -322,6 +337,7 @@
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
+	inputManager.BindCheatSequence("Force Default Treatment", "treatment");
 	inputManager.BindCheatSequence("Force Amazon Treatment", "amazon");
 	inputManager.BindCheatSequence("Force Cum-Cow Treatment", "cumcow");
 	inputManager.BindCheatSequence("Force Bull Treatment", "bull");
@@ -332,6 +348,7 @@
 	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
+	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
