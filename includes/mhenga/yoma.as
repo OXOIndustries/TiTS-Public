@@ -21,9 +21,9 @@
  * 							1 = choose "later" on first date
  * 							2 = finished first date, unlocks anal/tribbing sex scenes
  * 							3 = choose "later" on second date
- * 							4 = finished second date
+ * 							4 = finished second date, unlocks fingering sex scene
  * 							5 = choose "later" on third date
- * 							6 = finished third date, unlocks fingering sex scene
+ * 							6 = finished third date
  * YOMA_DATE_ELEVATOR_SEX	1 = had sex in the Uveto elevator
  * YOMA_RELATIONSHIP		0 = fuckbuddy, 1 = lover
  * YOMA_TIMES_ANAL
@@ -222,8 +222,7 @@ public function yomaFirstDateProceedIV(wantCream:Boolean = true):void
 	author("GothPastel");
 
 	if (wantCream) output("Yoma snickers "+(flags["ILERIA_GLAZED"] != undefined ? "and you smirk right back at him, letting him know that yes - you’re perfectly aware of what that entails - " : "")+"and leads you to sit towards the back of the establishment.");
-	else output("Yoma looks disappointed "+(flags["ILERIA_GLAZED"] != undefined ? "and you smirk at him, letting him know that you already knew about the special ‘sauce’ " : "for some reason")+", but he leads you to sit towards the back of the establishment. ");
-
+	else output("Yoma looks disappointed "+(flags["ILERIA_GLAZED"] != undefined ? "and you smirk at him, letting him know that you already knew about the special ‘sauce’ " : "for some reason")+", but he leads you to sit towards the back of the establishment.");
 	output("\n\nIs it true that he really can’t taste?");
 	output("\n\n<i>“Mhmm - standard practice really. What would the point of the extra programming be? I am not designated to a cooking task, after all. You cannot miss something you never experienced.”</i> The statement is pretty matter of fact.");
 	if (flags["YOMA_TIMES_TAILFUCKED"] != undefined)
@@ -236,8 +235,9 @@ public function yomaFirstDateProceedIV(wantCream:Boolean = true):void
 	output("\n\nAt first you wave him off, trying to pass it off as nothing too interesting - your character is really forming now, on the Rush - but he insists, and you soon find yourself ");
 	switch(flags["PC_UPBRINGING"])
 	{
-		case GLOBAL.UPBRINGING_AUSTERE:
+	case GLOBAL.UPBRINGING_AUSTERE:
 		output("describing how despite your late father’s affluence, you still worked for everything you have");
+		break;
 	case GLOBAL.UPBRINGING_PAMPERED:
 		output("admitting that you were probably more than a little spoiled, thanks to your late father’s affluence");
 		break;
@@ -501,8 +501,6 @@ public function yomaSecondDateProceedVI():void
 	output("\n\nYou hear gunshots as "+ (flags["MET_CAMERON"] != undefined ? "Cameron" : "the farmhand") +" takes potshots at the varmint chasing you, and the sigh of relief as it scarpers.");
 	output("\n\nYoma sits up before you, crying a desperately relieved thanks to anybody who will listen, before you stagger to your feet.");
 	output("\n\nStumbling back through customs, and onto your ship seems to take eons, but the moment you’ve set a course back for Mhen’ga the almost deadly encounter begins to take its toll, and you can do nothing else but press a clumsy kiss to your android lover’s lips as he leads you back to your quarters.");
-
-//[Next]{Go to Get fingered}
 
 	clearMenu();
 	addButton(0,"Next",yomaSexGetFingered,true);
@@ -893,7 +891,7 @@ public function yomaThirdDateOutro():void
 }
 
 
-public function yomaSexTribbing(onboardPCsShip:Boolean=false):void
+public function yomaSexTribbing(onADate:Boolean=false):void
 {
 	clearOutput();
 	showYoma(true);
@@ -901,30 +899,50 @@ public function yomaSexTribbing(onboardPCsShip:Boolean=false):void
 
 	var vIdx:int = pc.biggestVaginaIndex();
 
-	output("One of Yoma’s hands pushes against your [pc.vagina " + vIdx +"], a long finger pushing its way gently into your already wet entrance as the others tease your [pc.clits] out of "+ (pc.totalClits() > 1 ? "their hoods." : "its hood."));
+	if (!onADate) {
+		output("You coo in appreciation as Yoma allows his shorts to slip off, looking on in delight as he bends over to lay it and his shirt carefully across the ground as a makeshift sheet, unintentionally (or maybe intentionally) giving you a glimpse of wetness trickling down his inner thigh from his hot pink cunt as his tail swishes ever so slightly to the side. You soon"+ (pc.isNude() ? "" : " strip and") +" join him, shifting so you’re lying on your back, the android’s dextrous digits exploring your form.");
+		output("\n\n");
+	}
+	output("One of Yoma’s hands ");
+	if (pc.hasCock()) output("ignores your "+ (pc.hasCocks() ? "[pc.multiCocks]" : "[pc.cockNounComplex]") +"entirely and ");
+	output("pushes against your [pc.vagina " + vIdx +"], a long finger pushing its way gently into your already wet entrance as the others tease your [pc.clits] out of "+ (pc.totalClits() > 1 ? "their hoods." : "its hood."));
 	output("\n\nOh - that gives you an <i>idea</i>.");
 	output("\n\nYou pull away from his hands, laughing breathily as his ears twitch in slight confusion, before sitting back and threading your legs with his so as to press your wet [pc.vaginaNoun " + vIdx +"] against his. Getting the hint, the android pushes himself up until he’s sitting propped up with his hands just behind you. Your [pc.oneClit] pushes against his own, and he lets out a quiet, pleasured moan.");
 	output("\n\nTaking the lead, you begin to shift, sliding your cunt over his in a gentle, humping motion. He’s a little clumsy at first, clearly not used to an action such as this - but his designation as a companion droid seems to aid him along and he soons takes to it.");
 	output("\n\nDespite his mechanical composition, Yoma’s flesh is delightfully soft against your own, your passage over each other smooth, soon lubricated by both your mixed juices and the sweat trickling down your inner thighs. The two of you lose yourselves easily to the rhythm, thrusting to the frantic pace of your thundering heartbeat.");
-	output("\n\nYou feel yourself peaking towards a climax soon, all too soon, but a single, terrible second before you can manage, Yoma pulls back. The android leans over you, catching both your wrists lightly in one of his hands and smiling that <i>grin</i> of his at you in a way that just confirms it - he’s intentionally edging you. A few moments later and your whining is completely out of your control as he closes back in gently, you’ve calmed down just a little, and the cycle begins anew.");
+	output("\n\nYou feel yourself peaking towards a climax soon, all too soon, ");
+	if (pc.hasCock()) output("even your neglected [pc.cocks] standing to attention, pre gathering on "+ (pc.hasCocks() ? "their" : "its") +" [pc.cockHeadsNoun] ");
+	output("but a single, terrible second before you can manage, Yoma pulls back. The android leans over you, catching both your wrists lightly in one of his hands and smiling that <i> grin </i> of his at you in a way that just confirms it - he’s intentionally edging you. A few moments later and your whining is completely out of your control as he closes back in gently, you’ve calmed down just a little, and the cycle begins anew.");
 	output("\n\nHe brings you to the edge, over and over, each time more torturous to the last until the both of you can take it no more and he pushes hard against you. His clit catches on yours once more, his own soft cry of pleasure completely drowned out under your own <i>scream</i> of delight as finally, finally you tumble over that peak, your [pc.girlcum] ");
 	if (pc.vaginas[vIdx].wetness() < 3) output("dribbling");
 	else if (pc.vaginas[vIdx].wetness() < 5) output("pouring");
 	else output("flooding");
-	output(" from your [pc.vaginas]. The relief - oh the <i>relief</i> is so long coming that you barely catch a moment of overglow before passing out entirely.");
+	output(" from your [pc.vaginas]. ");
+	if (pc.hasCock()) output("A fraction of a second later your "+ (pc.hasCocks() ? "cocks spurt their" : "cock spurts its") +" payload in an arc, coating you both with yet more sex juices. ");
+	output("The relief - oh the <i>relief</i> is so long coming that you barely catch a moment of overglow before passing out entirely.");
 	output("\n\nIt takes you a few minutes to come back to your senses, but when you do, you’re laying a pool of your mixed juices, cuddled into Yoma’s flat chest.");
 	output("\n\n<i>“I think I rather overdid that, [pc.Name]. I do hope - are you quite alright now?”</i> he speaks, tone a little hushed, worried almost.");
 	output("\n\nYou assure him you’re feeling fine, you were just overstimulated for a moment, but you’ve recovered now. The companion droid relaxes, releasing you after pressing a light kiss to your forehead.");
-	output("\n\n<i>“We have made something "+ (pc.vaginas[vIdx].wetness() > 5 ? "- more than something, if we are being honest - " : "") +"of a mess, [pc.Name]. Feel free to return to piloting, I may join you once I have refreshed your sheets.”</i>");
-	output("\n\nHis tone allows no argument that’d let you stay and help "+ (pc.isAss() ? "- not that you would’ve - " : "") +"and"+ (pc.isNude() ? "" : ", once you’ve redressed,") +" you leave him to it, heading back to the cockpit.");
+	output("\n\n<i>“We have made something ");
+	if (pc.vaginas[vIdx].wetness() > 5 || pc.cumQ() >= 1000) output("- more than something, if we are being honest - ");
+	output("of a mess, [pc.Name]. ");
+	if (onADate) {
+		output("Feel free to return to piloting, I may join you once I have refreshed your sheets.”</i>");
+		output("\n\nHis tone allows no argument that’d let you stay and help " + (pc.isAss() ? "- not that you would’ve - " : "") +"and" + (pc.isNude() ? "" : ", once you’ve redressed,") +" you leave him to it, heading back to the cockpit.");
+	}
+	else {
+		output("Now would be an opportune moment to find some sort of river to clean up in.”</i>");
+		output("\n\nHis tone allows no argument to the contrary, and the two of you soon clean yourselves up before parting ways again.");
+	}
 
 	IncrementFlag("YOMA_TIMES_SCISSORED");
 
 	clearMenu();
-	if (onboardPCsShip) addButton(0,"Next",yomaFirstDateOutro);
+	if (onADate) addButton(0,"Next",yomaFirstDateOutro);
+	else addButton(0,"Next",mainGameMenu);
 }
 
-public function yomaSexAnal(onboardPCsShip:Boolean=false):void
+public function yomaSexAnal(onADate:Boolean=false):void
 {
 	clearOutput();
 	showYoma(true);
@@ -932,12 +950,25 @@ public function yomaSexAnal(onboardPCsShip:Boolean=false):void
 
 	var cIdx:int = pc.smallestCockIndex();
 
-	output("One of Yoma’s hands ");
+	if (!onADate) {
+		output("Yoma spreads his quickly dropped shorts on the ground, shirt joining it soon after, before gently pushing you down"+ (pc.isNude() ? "" : " - after you’ve stripped off -") +" onto the makeshift cover from the hard ground.");
+		output("\n\nHe joins you, leaning over, and one");
+	}
+	else output("One");
+ 	output(" of Yoma’s hands ");
 	if (pc.hasCock()) output("ghosts over your [pc.cock " + cIdx + "] and he hums, pulling");
 	else output("finds the controls for your hardlight equipped [pc.lowerUndergarment] and he hums briefly, before flicking it on, stroking the virtual cock gently as it grows to its full size. He");
 	output(" back enough to look you in the eyes, trademark grin perhaps a little shyer than usual.");
-	output("\n\n<i>“[pc.Name]...”</i> He practically purrs out, <i>“I do not believe I have let you penetrate me anally before.”</i>");
-	output("\n\nHuh, he’s right. You smirk, fumbling about for some lubricant that your partner soon hands you, and go to coat your fingers. Yoma stops you though, explaining. <i>“I am an android, [pc.Name]. Your willingness to spend time on fingering is admirable, but also entirely unnecessary - I can easily adjust to accommodate without pain."+ (pc.hasCock() ? "”</i>" : " Besides, hardlight implements are not designed to be... Hard to take.”</i>"));
+	output("\n\n<i>“[pc.Name]...”</i> He practically purrs out, ");
+	if (flags["YOMA_TIMES_ANAL"] == undefined) {
+		output("<i>“I do not believe I have let you penetrate me anally before.”</i>");
+		output("\n\nHuh, he’s right. ");
+	}
+	else {
+		output("<i>“Shall we have a repeat performance?”</i>");
+		output("\n\n");
+	}
+	output("You smirk, fumbling about for some lubricant that your partner soon hands you, and go to coat your fingers. Yoma stops you though, explaining. <i>“I am an android, [pc.Name]. Your willingness to spend time on fingering is admirable, but also entirely unnecessary - I can easily adjust to accommodate without pain."+ (pc.hasCock() ? "”</i>" : " Besides, hardlight implements are not designed to be... Hard to take.”</i>"));
 	output("\n\nYou flush, embarrassed, and the robot snickers, amused, before taking the lube back from you to pour a decent amount over your ");
 	if (pc.hasCock()) {
 		output("[pc.cock " + cIdx + "]");
@@ -963,26 +994,40 @@ public function yomaSexAnal(onboardPCsShip:Boolean=false):void
 	if (pc.hasKnot(cIdx)) output(" and your knot deflates enough");
 	else if (!pc.hasCock()) output(" and removed your spoiled underclothes");
 	output(", Yoma gently pulls off to flop beside you, cuddling into you briefly before he sits up again, planting a kiss on your forehead.");
-	output("\n\n<i>“We will have to do that again, [pc.Name].”</i> He murmurs. You nod, completely in agreement, before Yoma offers a hand to pull you back up. <i>“You do need to fly us home, unfortunately. Now go, I may join you once I have refreshed your sheets.”</i>");
+	output("\n\n<i>“We will have to do that again, [pc.Name].”</i> He murmurs. You nod, completely in agreement, before Yoma offers a hand to pull you back up. ");
+	if (onADate) {
+		output("<i>“You do need to fly us home, unfortunately. Now go, I may join you once I have refreshed your sheets.”</i>");
 	output("\n\nHis tone allows no argument that’d let you stay and help "+ (pc.isAss() ? "- not that you would’ve - " : "") +"and" + (pc.isNude() ? "" : ", once you’ve redressed,") +" you leave him to it, heading back to the cockpit.");
+	}
+	else {
+		output("<i>“Unfortunately, I do believe you have places to be.”</i>");
+		output("\n\nYou agree reluctantly, and"+ (pc.isNude() ? " he redresses" : " you and he redress") +", the two of you soon parting ways.");
+	}
 
 	IncrementFlag("YOMA_TIMES_ANAL");
 
 	clearMenu();
-	if (onboardPCsShip) addButton(0,"Next",yomaFirstDateOutro);
+	if (onADate) addButton(0, "Next", yomaFirstDateOutro);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 
-public function yomaSexGetFingered(onboardPCsShip:Boolean=false):void
+public function yomaSexGetFingered(onADate:Boolean=false):void
 {
 	clearOutput();
 	showYoma(true);
 	author("GothPastel");
 
+	if (!onADate) {
+		output("You suggest a repeat of New Texas… Without the nearly dying bit. Your companion doesn’t need to think twice about the comment, visibly amused at that.");
+		output("\n\n“I always appreciate not dying. Race you?” He barely has the final syllable out before he’s off, sprinting ahead of you."+ (pc.RQ() > 80 ? " You easily outstrip him though, regardless of the advantage he has." : ""));
+		output("\n\nBefore you know it, you’re");
+	}
+	else output("You’re");
 	output("You’re sweating like some kind of animal, pinned against the wall of your shower as Yoma fumbles for the controls with his spare hand. You gasp and pant as he breaks the messy, adrenaline-comedown inspired liplock you’re sharing.");
-	output("\n\n<i>“I am waterproof - this is fine. I will not accidentally electrocute you "+ (pc.hasPerk("Akane's Painslut") ? "though something tells me you might enjoy that.”</i>" : ".”</i>"));
+	output("\n\n<i>“"+ (flags["YOMA_TIMES_FINGERED"] != undefined ? "As you know, " : "") +"I am waterproof - this is fine. I will not accidentally electrocute you "+ (pc.hasPerk("Akane's Painslut") ? "though something tells me you might enjoy that" : "")+ ".”</i>");
 	output("\n\nYou laugh breathily, kissing him again to shut him up. He takes the hint, flicking the shower on"+ (PCShipManufacturer() == "Casstech" ? " - snickering at the way you jump as the water comes out freezing cold, though it soon warms up" : "") +". You can feel your sweat being wicked away by the steaming flow, and Yoma begins helping, lathering his hands up with soap and humming gently as he begins cleaning you off.");
-	output("\n\nOf course, he’s not subtle about your shared desire for physical intimacy after your near miss earlier. His hands are hot and heavy, lingering far longer on your [pc.chest], ");
+	output("\n\nOf course, he’s not subtle about your shared desire for physical intimacy"+ (onADate ? " after your near miss earlier" : "") +". His hands are hot and heavy, lingering far longer on your [pc.chest], ");
 	if (pc.isHerm()) output("[pc.cocks], [pc.vaginas]");
 	else if (pc.hasVagina()) output("[pc.vaginas]");
 	else output("[pc.cocks]");
@@ -1028,122 +1073,14 @@ public function yomaSexGetFingered(onboardPCsShip:Boolean=false):void
 	}
 	output("\n\nIt’s not long before you’re crying Yoma’s name to the heavens - or at least the ceiling - cumming hard enough that your vision goes blank as your eyes roll back into your head. It doesn’t stop your robotic companion, of course, as he continues to finger your "+ (pc.hasVagina() ? "cunt" : "backdoor") +" all the way through your orgasm.");
 	output("\n\nThe steady flow of water has cleared away all evidence of the tryst by the time your vision returns to you, Yoma’s fingers sliding out of you gently.");
-	output("\n\nIt doesn’t take long for you to gather your equipment back together" + (pc.isNude() ? "" : " and redress") +", soon plotting a course back to Mhen’ga.");
+	output("\n\nIt doesn’t take long for you to gather your equipment back together"+ (pc.isNude() ? "" : " and redress") +", soon "+ (onADate ? "plotting a course back to Mhen’ga." : "parting ways."));
 
 	IncrementFlag("YOMA_TIMES_FINGERED");
 
 	clearMenu();
-	if (onboardPCsShip) addButton(0,"Next",yomaSecondDateOutro);
+	if (onADate) addButton(0,"Next",yomaSecondDateOutro);
+	else addButton(0,"Next",mainGameMenu);
 }
-
-/*
-Sex scenes {Off ship variants}
-{Each pair of scenes unlocks in the menu after their respective dates}{before this display tooltip <i>“Yoma doesn’t think he knows you well enough for that.”</i>}
-Tribbing
-{requires vagina}
-
-You coo in appreciation as Yoma allows his shorts to slip off, looking on in delight as he bends over to lay it and his shirt carefully across the ground as a makeshift sheet, unintentionally (or maybe intentionally) giving you a glimpse of wetness trickling down his inner thigh from his hot pink cunt as his tail swishes ever so slightly to the side. You soon{PC not nude: strip and} join him, shifting so you’re lying on your back, the android’s dextrous digits exploring your form.
-One of Yoma’s hands{PC has cock(s): ignores your dick{s} entirely and} pushes against your "+ pc.vaginaNounDescript(pc.biggestVaginaIndex()) +", a long finger pushing its way gently into your already wet entrance as the others tease your [pc.clits] out of {its/their} {hood/hoods}.
-Oh - that gives you an <i>idea</i>.
-You pull away from his hands, laughing breathily as his ears twitch in slight confusion, before sitting back and threading your legs with his so as to press your wet "+ pc.vaginaNounDescript(pc.biggestVaginaIndex()) +" against his. Getting the hint, the android pushes himself up until he’s sitting propped up with his hands just behind you. Your [pc.oneClit] pushes against his own, and he lets out a quiet, pleasured moan.
-Taking the lead, you begin to shift, sliding your cunt over his in a gentle, humping motion. He’s a little clumsy at first, clearly not used to an action such as this - but his designation as a companion droid seems to aid him along and he soons takes to it.
-Despite his mechanical composition, Yoma’s flesh is delightfully soft against your own, your passage over each other smooth, soon lubricated by both your mixed juices and the sweat trickling down your inner thighs. The two of you lose yourselves easily to the rhythm, thrusting to the frantic pace of your thundering heartbeat.
-You feel yourself peaking towards a climax soon, all too soon,{PC has cock(s): even your neglected [pc.cocks] standing to attention, pre gathering on {its/their} crown{s},} but a single, terrible second before you can manage, Yoma pulls back. The android leans over you, catching both your wrists lightly in one of his hands and smiling that <i>grin</i> of his at you in a way that just confirms it - he’s intentionally edging you. A few moments later and your whining is completely out of your control as he closes back in gently, you’ve calmed down just a little, and the cycle begins anew.
-He brings you to the edge, over and over, each time more torturous to the last until the both of you can take it no more and he pushes hard against you. His clit catches on yours once more, his own soft cry of pleasure completely drowned out under your own <i>scream</i> of delight as finally, finally you tumble over that peak, your [pc.girlcum]{low wetness: dribbling/mid wetness: pouring/high wetness: flooding} from your [pc.vaginas].{PC has cock(s): A fraction of a second later your cock{s} spurt {its/their} payload in an arc, coating you both with yet more sex juices.} The relief - oh the <i>relief</i> is so long coming that you barely catch a moment of overglow before passing out entirely.
-It takes you a few minutes to come back to your senses, but when you do, you’re laying a pool of your mixed juices, cuddled into Yoma’s flat chest.
-<i>“I think I rather overdid that, [pc.Name]. I do hope - are you quite alright now?”</i> He speaks, tone a little hushed, worried almost.
-You assure him you’re feeling fine, you were just overstimulated for a moment, but you’ve recovered now. The companion droid relaxes, releasing you after pressing a light kiss to your forehead.
-<i>“We have made something{high wetness and/or cum volume: - more than something, if we are being honest -} of a mess, [pc.Name]. Now would be an opportune moment to find some sort of river to clean up in.”</i>
-His tone allows no argument to the contrary, and the two of you soon clean yourselves up before parting ways again.
-
-[Next]{back to the jungle, lads}
-
-Anal
-{if PC has cock: Yoma spreads his quickly dropped shorts on the ground, shirt joining it soon after, before gently pushing you down{pc not nude: - after you’ve stripped off -} onto the makeshift cover from the hard ground.
-He joins you, leaning over, and one of his hands ghosts over your [pc.oneCock] and he hums, pulling back enough to look you in the eyes, trademark grin perhaps a little shyer than usual.
-<i>“[pc.Name]...”</i> He practically purrs out,{first: <i>“I do not believe I have let you penetrate me anally before.”</i>//else: <i>“Shall we have a repeat performance?”</i>}
-{first: Huh, he’s right.} You smirk, fumbling about for some lubricant that your partner soon hands you, and go to coat your fingers. Yoma stops you though, explaining. <i>“I am an android, [pc.Name]. Your willingness to spend time on fingering is admirable, but also entirely unnecessary - I can easily adjust to accommodate without pain.”</i> 
-You flush, embarrassed, and the robot snickers, amused, before taking the lube back from you to pour a decent amount over your [pc.cockSmallest]{, giving the other{s} a sympathetic pat that lets you know that{silly: the author doesn’t want to write//else: he’s not interested in} double penetration today}. He wraps a hand around it and you groan, erection straining further as he ensures an even coating - his grip so masterful that you{high willpower: almost} whimper at the loss of his touch when he releases you.
-Of course, you’re not left disappointed for long. Yoma shuffles to straddle your waist, hovering over your groin, and you take your [pc.cockSmallest] in one hand, helping him line it up until it presses perfectly against his pucker.{silly mode: You sigh, knowing that a certain someone is smiling over a successful use of alliteration.} His complexion flushes just a little darker for a moment, cautious, before he begins to ever-so-slowly lower himself down your shaft.
-<i>Fuck<i>, that’s good. Whilst his tightness and warmth is certainly enough to provide intense feeling by themselves, you’re instantly made aware of a subtle ribbing to his passage, stimulating your [pc.cockSmallest] in ways an organic partner never could.{Silly mode: Your fave could never!}
-You can barely wait for him to sink all the way down to your base at his own pace, jerking your hips upwards to impale him fully, smirking at his gasp. 
-<i>“[pc.Name]!”</i> He whines out, pouting at you. Noticing the amused glint in his eyes though, you just laugh, twitching your hips up again. The noise he makes is almost a mewl, and he leans forwards, bracing his hands on the bed either side of your shoulders.
-Once he’s recovered sufficiently though, you lose all hope of retaining your dominance over the situation. 
-<i>“Now then, how about you settle down - just a little. I am not used to this particular action.”</i> He states, pulling back up off your cock. You can’t stop yourself from jerking your hips up again as he sinks down, but to your horror, he just grins before pulling back up before you can bottom out. <i>“No, we really cannot have that, [pc.Name]! This happens by my pace, or not at all.”</i>
-Grumbling, you agree to double your efforts to stay still and the android pats your head affectionately{pc has animal(eg: Ausar/Kaithrit/any top mounted) ears: making sure to scratch behind your ears in a way that never fails to make you relax}. <i>“Much better.”</i>
-The next attempt goes better than the prior, Yoma actually manages to settle into a rhythm fast enough to get your heart racing and shaft throbbing, but it doesn’t last - the pleasure from the subtle ribbing wears away at your self restraint until you just can’t help it, thrusting in as far as you can manage. Despite your protests, he pulls up again, shaking his head in amusement at you.
-<i>“Let us try that again.”</i>
-And try the two of you do. It takes several attempts, each more frustrating than the last, until finally, finally you cum{pc has vagina: - soaking the ground with [pc.girlCum] to add to the mess your cock is unloading}, your partner sinking down to your base and orgasming in sympathy at the feeling of being filled with hot [pc.cumType].
-Once you’ve settled{pc has knot: and your knot deflates enough}, Yoma gently pulls off to flop beside you, cuddling into you briefly before he sits up again, planting a kiss on your forehead.
-<i>“We will have to do that again, [pc.Name].”</i> He murmurs. You nod, completely in agreement, before Yoma offers a hand to pull you back up. <i>“Unfortunately, I do believe you have places to be.”</i>
-You agree reluctantly, and{pc not nude: you and} he redress{pc nude:es}, the two of you soon parting ways.
-
-//
-
-{if PC has hardlight strapon equipped: Yoma spreads his quickly dropped shorts on the ground, shirt joining it soon after, before gently pushing you down{pc not nude: - after you’ve stripped off -} onto the makeshift cover from the hard ground.
-One of his hands finds the controls for your hardlight equipped [pc.lowerUndergarment] and he hums briefly, before flicking it on, stroking the virtual cock gently as it grows to its full size. He pulls back enough to look you in the eyes, trademark grin perhaps a little shyer than usual.
-<i>“[pc.Name]...”</i> He practically purrs out,{first: <i>“I do not believe I have let you penetrate me anally before.”</i>//else: <i>“Shall we have a repeat performance?”</i>}
-{first: Huh, he’s right.} You smirk, fumbling about for some lubricant that your partner soon hands you, and go to coat your fingers. Yoma stops you though, explaining. <i>“I am an android, [pc.Name]. Your willingness to spend time on fingering is admirable, but also entirely unnecessary - I can easily adjust to accommodate without pain. Besides, hardlight implements are not designed to be... Hard to take.”</i> 
-You flush, embarrassed, and the robot snickers, amused, before taking the lube back from you to pour a decent amount over your strapon. He wraps a hand around it and you groan, synthetic erection straining as he ensures an even coating - his grip so masterful that you{high willpower: almost} whimper at the loss of his touch when he releases you, your brain already successfully registering the toy like it would a normal cock.
-Of course, you’re not left disappointed for long. Yoma shuffles to straddle your waist, hovering over your groin, and you take your false cock in one hand, helping him line it up until it presses perfectly against his pucker.{silly mode: You sigh, knowing that a certain someone is smiling over a successful use of alliteration.} His complexion flushes just a little darker for a moment, cautious, before he begins to ever-so-slowly lower himself down the shaft.
-<i>Fuck<i>, that’s good. Whilst his tightness and warmth is certainly enough to provide intense feeling by themselves, you’re instantly made aware of a subtle ribbing to his passage, stimulating your addition in ways an organic partner never could.{Silly mode: Your fave could never!} Void, you almost want a real cock to fuck him with.
-You can barely wait for him to sink all the way down to your base at his own pace, jerking your hips upwards to impale him fully, smirking at his gasp. 
-<i>“[pc.Name]!”</i> He whines out, pouting at you. Noticing the amused glint in his eyes though, you just laugh, twitching your hips up again. The noise he makes is almost a mewl, and he leans forwards, bracing his hands on the bed either side of your shoulders.
-Once he’s recovered sufficiently though, you lose all hope of retaining your dominance over the situation. 
-<i>“Now then, how about you settle down - just a little. I am not used to this particular action.”</i> He states, pulling back up off your hardlight cock. You can’t stop yourself from jerking your hips up again as he sinks down, but to your horror, he just grins before pulling back up before you can bottom out. <i>“No, we really cannot have that, [pc.Name]! This happens by my pace, or not at all.”</i>
-Grumbling, you agree to double your efforts to stay still and the android pats your head affectionately{pc has animal(eg: Ausar/Kaithrit/any top mounted) ears: making sure to scratch behind your ears in a way that never fails to make you relax}. <i>“Much better.”</i>
-The next attempt goes better than the prior, Yoma actually manages to settle into a rhythm fast enough to get your heart racing, but it doesn’t last - the pleasure from the subtle ribbing wears away at your self restraint until you just can’t help it, thrusting in as far as you can manage. Despite your protests, he pulls up again, shaking his head in amusement at you.
-<i>“Let us try that again.”</i>
-And try the two of you do. It takes several attempts, each more frustrating than the last, until finally, finally you cum{pc has vagina: - soaking your [pc.underwear] with [pc.girlCum//else: - empty nether regions flushing with intense heat}, your partner sinking down to your base and orgasming in sympathy.
-Once you’ve settled and removed your spoiled underclothes, Yoma gently pulls off to flop beside you, cuddling into you briefly before he sits up again, planting a kiss on your forehead.
-<i>“We will have to do that again, [pc.Name].”</i> He murmurs. You nod, completely in agreement, before Yoma offers a hand to pull you back up. <i>“Unfortunately, I do believe you have places to be.”</i>
-You agree reluctantly, and{pc not nude: you and} he redress{pc nude:es}, the two of you soon parting ways.}
-
-[Next]
-
-Get fingered
-You suggest a repeat of New Texas... Without the nearly dying bit.
-Your companion doesn’t need to think twice about the comment, visibly amused at that.
-<i>“I always appreciate not dying. Race you?”</i> 
-He barely has the final syllable out before he’s off, sprinting ahead of you. {High reflexes: You easily outstrip him though, regardless of the advantage he has.}
-Before you know it, you’re sweating like some kind of animal, pinned against the wall of your shower as Yoma fumbles for the controls with his spare hand. You gasp and pant as he breaks the messy, adrenaline-comedown inspired liplock you’re sharing.
-<i>“As you know, I am waterproof - this is fine. I will not accidentally electrocute you{painslut: though something tells me you might enjoy that}.”</i>
-You laugh breathily, kissing him again to shut him up. He takes the hint, flicking the shower on{ship=Casstech: - snickering at the way you jump as the water comes out freezing cold, though it soon warms up}. You can feel your sweat being wicked away by the steaming flow, and Yoma begins helping, lathering his hands up with soap and humming gently as he begins cleaning you off.
-Of course, he’s not subtle about your shared desire for physical intimacy. His hands are hot and heavy, lingering far longer on your [pc.chest], {[pc.cocks]//[pc.vaginas]//[pc.cocks],[pc.vaginas]} and [pc.butt] to have any hope of appearing chaste.
-Naturally, you return the favour. Synthetic skin with its lack of sweat doesn’t require nearly as much care as your own, but this gives you an opportunity to explore, your hands roaming freely. You find that, if you press just a little harder than you should, you can just about feel the metal, inhuman skeleton - but then Yoma’s fingers press against{pc has multiple vaginas: one of} your{pc has vagina: wet entrance{s}//else: anus} and any other thoughts go blank.
-{[Split this here, lads]
-
-PC has vagina:
-He doesn’t waste any time, his hands already more than slick enough from the water and aided by your {Low girlcum output: trickling//mid to high girlcum output: gushing} natural wetness, curling up into your passage. 
-Long, slim fingers are best for this type of work, easily questing about{ despite your tightness} and finding your most sensitive spots. You pull him back in to another sloppy kiss, moaning into him as he finds that perfect spot within you, deft digits working you - no - <i>playing</i> you like a void-damned fiddle.
-He doesn’t stay focused on it for long though, taking an opportunity to explore your passage{low capacity:, but being careful not to stretch you too far}, probing your depths. Hell, he gets deep enough into you to grind the heel of his palm against your [pc.oneClit], an action that causes you to break your kiss again, keening loudly.
-You try reaching down to touch him back, but he slaps your hands away lightly with his unoccupied one, clearly intending for this to be solely about you, and your pleasure. Instead, you find your hands{Cup size<1: scrabbling at the slick shower wall behind you//else: playing with your [pc.breasts] and{PC has lipples/fuckable nipples: fingers slipping into your breasts’ hidden cavities//else: tweaking your [pc.nipples]}}, just to find something to occupy them with.
-You’re completely at his mercy and he knows it. Frenzied kissing turns into almost <i>harsh</i> nips at your neck and shoulders,{painslut: only spurring your arousal on further//else: though you’re too far gone to mind,} as he picks up his pace, moving back to that one spot inside you and thrusting against it roughly.
-The other hand finds your [pc.oneClit], giving it a more personal touch than the heel of the other was,{Clit size more than 1 inch,less than 4 inches: stroking it like the miniature cock it resembles//Clit size equals or more than 4 inches: jerking it off like the proud psuedopenis it is//else: pushing back the hood easily to stimulate the sensitive flesh even better}.{PC has cock{s}: Much as your [PC.cocks] go{es} ignored, {it/they} leak{s} pre like a fountain, making every action slipperier and wetter than you ever thought possible.}
-It’s not long before you’re crying Yoma’s name to the heavens - or at least the ceiling - cumming hard enough that your vision goes blank as your eyes roll back into your head. It doesn’t stop your robotic companion, of course, as he continues to frig your cunt all the way through your orgasm.
-The steady flow of water has cleared away all evidence of the tryst by the time your vision returns to you, Yoma’s fingers sliding out of you gently.
-It doesn’t take long for you to gather your equipment back together{PC not nude: and redress}, soon parting ways.
-
-[Next]{aaaaaand back to ship menu lads}
-
-PC does not have vagina:
-He doesn’t waste any time, his hands already more than slick enough from the water to{PC has lubricated asshole:, aided by your unnatural wetness,} curl up into your passage. 
-Long, slim fingers are best for this type of work, easily questing about{ despite your tightness} and finding your most sensitive spots. You pull him back in to another sloppy kiss, moaning into him as he finds that perfect spot within you, deft digits working you - no - <i>playing</i> you like a void-damned fiddle.
-He doesn’t stay focused on it for long though, taking an opportunity to explore your passage{low capacity:, but being careful not to stretch you too far}, probing your depths. Hell, he gets deep enough into you to grind the heel of his palm against your perineum, an action that causes you to break your kiss again, keening loudly as your prostate is stimulated once more.
-You try reaching down to touch him back, but he slaps your hands away lightly with his unoccupied one, clearly intending for this to be solely about you, and your pleasure. Instead, you find your hands{Cup size<1: scrabbling at the slick shower wall behind you//else: playing with your [pc.breasts] and{PC has lipples/fuckable nipples: fingers slipping into your breasts’ hidden cavities//else: tweaking your [pc.nipples]}}, just to find something to occupy them with.
-You’re completely at his mercy and he knows it. Frenzied kissing turns into almost <i>harsh</i> nips at your neck and shoulders,{painslut: only spurring your arousal on further//else: though you’re too far gone to mind,} as he picks up his pace, moving back to that one spot inside you and thrusting against it roughly.
-The other hand finds your [pc.oneCock], giving it a slippier and wetter handjob than you ever thought possible, pre {trickling/streaming} from your tip{s}.
-It’s not long before you’re crying Yoma’s name to the heavens - or at least the ceiling - cumming hard enough that your vision goes blank as your eyes roll back into your head. It doesn’t stop your robotic companion, of course, as he continues to finger your backdoor all the way through your orgasm.
-The steady flow of water has cleared away all evidence of the tryst by the time your vision returns to you, Yoma’s fingers sliding out of you gently.
-It doesn’t take long for you to gather your equipment back together{PC not nude: and redress}, soon parting ways.
-
-[Next]{Back to ship menu}
-
-
-*/
-
-
-
 
 
 
@@ -1579,9 +1516,18 @@ public function yomaSexMenu():void
 		else addButton(2, "Vaginal", yomaSexVaginal);
 		if (pc.hasCockTail()) addButton(3, "Cocktail", yomaSexCocktail);
 		else addDisabledButton(3,"Cocktail","Cocktail", "You need a tail-mounted, parasitic penis for this.");
-		addButton(4, "Anal", yomaSexAnal);
-		addButton(5, "Tribbing", yomaSexTribbing);
-		addButton(6, "Get fingered", yomaSexGetFingered);
+		//xpak scenes!
+		if (flags["YOMA_DATE_PROGRESS"] < 2) addDisabledButton(4,"Locked","Locked", "Spend more time with him, get more sex.");
+		else if (pc.hasHardLightEquipped() || pc.hasCock()) addButton(4, "Anal", yomaSexAnal);
+		else addDisabledButton(4,"Anal","Anal", "You need a penis or a hardlight strap-on for this.");
+
+		if (flags["YOMA_DATE_PROGRESS"] < 2) addDisabledButton(5,"Locked","Locked", "Spend more time with him, get more sex.");
+		else if (pc.hasGenitals()) addButton(5, "Tribbing", yomaSexTribbing);
+		else addDisabledButton(5,"Tribbing","Tribbing", "You need a vagina for this scene.");
+
+		if (flags["YOMA_DATE_PROGRESS"] < 4) addDisabledButton(6,"Locked","Locked", "Spend more time with him, get more sex.");
+		else if (pc.hasGenitals()) addButton(6, "Get fingered", yomaSexGetFingered);
+		else addDisabledButton(6,"Get fingered","Get fingered", "You need genitals for this scene.");
 		addButton(14,"Back",yomaSexBack);
 	}
 	else {
@@ -1643,7 +1589,7 @@ public function yomaSexGetOral():void
 		output(". This combined with fingers once again pressed up against your G-spot");
 		if (pc.balls > 0) output(" while his other hand cups your [pc.ballsNoun]");
 		output(", causes you to cum, your feminine fluids spraying the jungle floor as your [pc.cum] ");
-		if (pc.cumQ() <= 500) output("trickles");
+		if (pc.cumQ() < 500) output("trickles");
 		else output("floods");
 		output(" down Yoma’s throat.");
 		output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
@@ -1675,7 +1621,7 @@ public function yomaSexGetOral():void
 		output(". This");
 		if (pc.balls > 0) output(", combined with his hands caressing your [pc.ballsNoun],");
 		output(" pushes you to orgasm, your [pc.cum] ");
-		if (pc.cumQ() <= 500) output("trickling");
+		if (pc.cumQ() < 500) output("trickling");
 		else output("flooding");
 		output(" down Yoma’s throat.");
 		output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
