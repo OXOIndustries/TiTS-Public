@@ -172,12 +172,12 @@ public function bigTiddyGothGFHerself():void
 public function bigTiddyGothGFHerselfMenu():void
 {
 	clearMenu();
-	addButton(0, "Her Deal", bigTiddyGothGFHerselfHerDeal, undefined, "What's Her Deal", "Figure out why she's so weird");
+	addButton(0, "Her Deal", bigTiddyGothGFHerselfHerDeal, undefined, "What’s Her Deal", "Figure out why she’s so weird");
 	addButton(1, "History", bigTiddyGothGFHerselfHistory, undefined, "Her History", "Ask about her roots.");
 	addButton(2, "Family?", bigTiddyGothGFHerselfFamily, undefined, "Family?", "Ask if she has any family.");
-	addButton(3, "Real Name", bigTiddyGothGFHerselfRealName, undefined, "Real Name", "Why 'The Servant'?");
-	if (flags["BIGTIDDYGOTHGF_NAKED"] != undefined) addButton(4, "Tattoos", bigTiddyGothGFHerselfTats, undefined, "Tattoos", "She's got some serious ink...");
-	else addDisabledButton(4, "Tattoos", "Tattos", "You'd need to have seen most of her tats before you'd know to ask about them!");
+	addButton(3, "Real Name", bigTiddyGothGFHerselfRealName, undefined, "Real Name", "Why ‘The Servant’?");
+	if (flags["BIGTIDDYGOTHGF_NAKED"] != undefined) addButton(4, "Tattoos", bigTiddyGothGFHerselfTats, undefined, "Tattoos", "She’s got some serious ink...");
+	else addDisabledButton(4, "Tattoos", "Tattos", "You’d need to have seen most of her tats before you’d know to ask about them!");
 
 	addButton(14, "Back", bigTiddyGothGFMenu);
 }
@@ -425,10 +425,10 @@ public function bigTiddyGothGFNecklaceMenu():void
 	if (flags["BIGTIDDYGOTHGF_REDSTONE"] != undefined) addButton(1, "Origins", bigTiddyGothGFNecklaceOrigins, undefined, "Origins", "Ask where it came from.");
 	else addDisabledButton(1, "Origins", "Origins", "You need a little more foundation before you push for more details...");
 
-	 if (flags["BIGTIDDYGOTHGF_ORIGINS"] != undefined) addButton(2, "Her", bigTiddyGothGFNecklaceHer, undefined, "Her", "What's her role in all this?");
-	 else addDisabledButton(2, "Her", "Her", "You need a little more foundation before you push for more details...");
+	if (flags["BIGTIDDYGOTHGF_ORIGINS"] != undefined) addButton(2, "Her", bigTiddyGothGFNecklaceHer, undefined, "Her", "What’s her role in all this?");
+	else addDisabledButton(2, "Her", "Her", "You need a little more foundation before you push for more details...");
 
-	 addButton(14, "Back", bigTiddyGothGFMenu);
+	addButton(14, "Back", bigTiddyGothGFMenu);
 }
 
 public function bigTiddyGothGFNecklaceRedStone():void
@@ -706,7 +706,7 @@ public function bigTiddyGFUnderTableMouth():void
 		
 		output("\n\nA soft moan escapes your quivering lips, your now fully erect cock throbbing contently, brought on by The Servant’s teasing lick. She delivers a second, slightly more powerful lick, her mouth opening wider as her supple lips move down over your pulsing cockhead. A quiver runs up your spine as she starts to take you into her heavenly mouth, locking your jaw for a moment as the rush hits your face. Licking the whole time, she continues to work her way downward, lowering her hand on your shaft to the very base of your [pc.cockShape "+cockIdx+"] meat.");
 		
-		output("\n\nHer lips, seemingly built for blowjobs, tighten around your veiny girth, sealing your cock away in her perfectly shaped mouth. Before you can further enjoy her oral skills, something hard presses against your sensitive [pc.cockHead "+cockIdx+"]. Her tongue stud glides around the crown of your flared tip, pressing into you with surprising pressure. The sensation makes you twitch and gasp aloud, a subtle mix of discomfort and pleasure. Trailing further down your length, you feel her working her tongue along the rest of your meaty shaft, the warm feeling and  hard metal teasing you the whole way.");
+		output("\n\nHer lips, seemingly built for blowjobs, tighten around your veiny girth, sealing your cock away in her perfectly shaped mouth. Before you can further enjoy her oral skills, something hard presses against your sensitive [pc.cockHead "+cockIdx+"]. Her tongue stud glides around the crown of your flared tip, pressing into you with surprising pressure. The sensation makes you twitch and gasp aloud, a subtle mix of discomfort and pleasure. Trailing further down your length, you feel her working her tongue along the rest of your meaty shaft, the warm feeling and hard metal teasing you the whole way.");
 		
 		output("\n\nYour thick meat throbs in approval. Between her soft lips, you feel yourself start to ache for more, the teasing of her tongue no longer enough to satisfy your now boiling lust. Seemingly sensing your needs, The Servant starts to bob her head slowly, no longer just teasing you with licks. Your eyes flutter for a moment as she starts to suck you off good and proper, the perfect cock sucking lips of the woman now being fully utilized. You let your head fall back as blissfully sinful sensations start to roll through your body. The Servant starts to bob faster and deeper, increasing her pace slowly but surely. Wet sucking sounds start to fill the air, warm wetness from her mouth starting to ooze down the length of your pulsating member.");
 		
@@ -1016,7 +1016,7 @@ public function bigTiddyGothGFFuckNecklace():void
 	
 	output("\n\nYou look at the necklace hanging from her throat. It’s psionic, and you’ve felt first hand what it can do. You can’t help shake the feeling if you were to let it loose, something very interesting might happen.");
 	
-	output("\n\nThe Servant face cracks into a chaotic smile.  <i>“Very well then. So, which of us should wear it?”</i> She giggles under her breath. <i>“I promise you, both options are very enlightening.”</i>");
+	output("\n\nThe Servant face cracks into a chaotic smile. <i>“Very well then. So, which of us should wear it?”</i> She giggles under her breath. <i>“I promise you, both options are very enlightening.”</i>");
 	
 	output("\n\nYou look at the necklace once more, thinking it over...");
 
@@ -1066,7 +1066,7 @@ public function bigTiddyGothGFSexNecklaceYou():void
 	else output(" cum spurting out of your cockhead");
 	output(". You didn’t even realize you orgasmed, so mixed up are your senses. Every one of your muscles twists and tightens, threatening to break. Then, your back explodes. No, not explodes. Opens. Something has erupted from your back. Many somethings. Your body jerks and twists, and your vision goes black.");
 
-	output("\n\nFor what feels like an eternity, you see nothing, you sense nothing.          ");
+	output("\n\nFor what feels like an eternity, you see nothing, you sense nothing.");
 	
 	output("\n\nThen suddenly your vision returns. You feel calm.");
 	
@@ -1219,7 +1219,7 @@ public function bigTiddyGothGFSexNecklaceHer():void
 	output("\n\nEvery muscle in your body is alive, tingling with sinful ecstasy. The embrace of the pale shape is beyond any pleasure this world has to offer, and you willingly let yourself drown in it. You feel all tendrils, slick and powerful, fucking and loving you. Caring for you. Warm fluids start to leak from them, something akin to precum you imagine.");
 	if (cockIdx >= 0) output(" Your cock throbs wildly, on the brink of exploding.");
 	if (pc.hasVagina()) output(" The monster cock between your legs continues to fuck you, bringing you right to the edge.");
-	output(" Deep in your ass, you feel the pulsating monster start to throb uncontrollably, getting ready to burst. A shiver runs up your spine, and your eyes rolls back as you finally succumb.  ");
+	output(" Deep in your ass, you feel the pulsating monster start to throb uncontrollably, getting ready to burst. A shiver runs up your spine, and your eyes rolls back as you finally succumb.");
 
 	output("\n\nYou feel them explode inside of you, in your ass");
 	if (pc.hasVagina()) output(", cunt,");
