@@ -210,7 +210,7 @@ package classes.Items.Transformatives
 				// [pc.skinFurScalesColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
 				var suulaScaleColors:Array = ["blue", "red", "green", "purple", "gold", "silver"];
 				// Options: blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped
-				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
+				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (!InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
 				{
 					var newScaleColor:String = RandomInCollection(suulaScaleColors);
 					var design:int = (rand(2) == 0 ? 1 : 3); // stripes or blotch

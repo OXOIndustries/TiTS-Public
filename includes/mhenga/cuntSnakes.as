@@ -864,6 +864,9 @@ public function feedCuntSnake(cumFrom:Creature = null):void
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
 	var preg:Boolean = true;
+	// Birthcontrol prevents impregnating non-parasitic snek
+	if(pc.hasBirthControl() && !pc.hasParasiteTail()) preg = false;
+	// Exceptions
 	if(cumFrom is Flahne) preg = false;
 	
 	if(preg && rand(5) == 0) fertilizeCuntSnake();

@@ -19209,7 +19209,7 @@
 			{
 				cumQualityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Firing Blanks"))
 			{
 				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
 			}
@@ -19256,7 +19256,7 @@
 			{
 				fertilityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			var bonus:Number = 0;
 			bonus += perkv1("Fertility");
 			bonus += statusEffectv1("Heat");
@@ -19272,6 +19272,12 @@
 			if(hasPerk("Incubator")) bonus += perkv1("Incubator");
 			if(hasPerk("Breed Hungry")) bonus += 1;
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
+		}
+		
+		public function hasBirthControl():Boolean
+		{
+			if(hasStatusEffect("Infertile")) return true;
+			return false;
 		}
 		
 		public var bellyRatingRaw:Number = 0;
