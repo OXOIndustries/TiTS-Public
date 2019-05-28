@@ -5243,13 +5243,13 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			if(!pc.hasPerk("Lusty Afterglow") || !pc.hasPerk("Cum Highs")) // safety check
 			{
 				AddLogEvent("You’ve been feeling awfully hungry as of late, but it’s not just any kind of hunger: you lust to be", "passive", (treatedHours - startHours) * 60);
-				if(pc.statusEffectv1("Anally-Filled") > 0 || pc.statusEffectv1("Vaginally-Filled") > 0 || pc.statusEffectv1("Orally-Filled") > 0) ExtendLogEvent(" even more");
+				if(pc.cumFlationAmount() > 0) ExtendLogEvent(" even more");
 				ExtendLogEvent(" filled with cum and <i>stay</i> that way for hours on end. Doesn’t matter if it’s in your belly, your butt... as long as it’s inside your body and not, say, some greedy parasite tail. The other things you dig are still awesome, but for some reason you’ve been having this particular urge a lot lately, to the point you’ve even caught yourself fantasizing about that annoyingly hot jock from college cumming in your mouth with a throaty <i>‘Ahhh’</i> and that smug grin of his. <i>Yummy</i>. You mean, <i>Eww</i>.");
 				ExtendLogEvent("\n\n<b>You have no idea why, but intuition tells you it’s the Treatment asking something of you. And maybe you should listen to it, if you want to get the full benefits.</b> (But a corner of your brain warns that giving in to your lust can lead you down a dangerous path. The choice is yours.)");
 			}
 		}
 		// Cum Highs perk gain (starts the cumslut route)
-		if(treatedHours >= 125 && !pc.hasPerk("Cum Highs") && (pc.statusEffectv1("Anally-Filled") > 0 || pc.statusEffectv1("Vaginally-Filled") > 0 || pc.statusEffectv1("Orally-Filled") > 0))
+		if(treatedHours >= 125 && !pc.hasPerk("Cum Highs") && pc.cumFlationAmount() > 0)
 		{
 			AddLogEvent("<i>Uhhh... maybe you’ve been taking in too much cum lately</i>, a part of your brain chimes in. Your vision doubles momentarily. <i>Nah, there can never be such a thing as too much cum</i>, another part argues. <i>Wait, being filled with cum gets us high?</i> You ask your imaginary friends. The answer should be no, but somehow you’re pretty sure it does now. Well, you don’t have a headache or anything, so at least your body seems to be handling this whole situation pretty well. <i>Whoohoo! Cum’s the best drink in the stars!</i> You raise a victorious fist and yell all of a sudden, looking up at... you don’t know what you were expecting. Your cheeks flush with embarrassment. Dang, you’ve become such a cumslut!", "passive", (treatedHours - startHours) * 60);
 			ExtendLogEvent("\n\n(<b>Gained Perk: Cum Highs</b> - You can get high on cum!)");
@@ -5269,7 +5269,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else pc.exhibitionism(1);
 		}
 		// Lusty Afterglow perk gain (crowns the cumslut route)
-		if(treatedHours >= 145 && !pc.hasPerk("Lusty Afterglow") && pc.hasPerk("Cum Highs") && (pc.statusEffectv1("Anally-Filled") > 0 || pc.statusEffectv1("Vaginally-Filled") > 0 || pc.statusEffectv1("Orally-Filled") > 0))
+		if(treatedHours >= 145 && !pc.hasPerk("Lusty Afterglow") && pc.hasPerk("Cum Highs") && pc.cumFlationAmount() > 0)
 		{
 			var fauxFilledHoles:int = 0;
 			if(pc.statusEffectv1("Anally-Filled") > 0) fauxFilledHoles++;
@@ -5285,7 +5285,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent("Presently, you find yourself enthralled by your own image on the screen of your Codex. Setting it to record mode, you smile unguardedly, bat your eyelashes twice and slowly start to purse your lips in the promise of a kiss.", "passive", (165 - startHours) * 60);
 			ExtendLogEvent("\n\nBefore the picture is complete, you raise a reluctant hand to your mouth and bite lightly on your thumb while diverting your eyes with a chaste, self-conscious expression, making sure to cast your gaze down at a thirty-degree angle. A blush comes to your cheeks of its own accord to complete the act, and you take it as a cue to return your gaze to its original position, glancing back at your imaginary partner with innocent, shy eyes, thumb still on your lips.");
 			ExtendLogEvent("\n\nYou stop recording and re-watch the the performance in awe – a face like that could melt anyone’s heart! If you did this for real, they might fall for you on the spot...");
-			ExtendLogEvent("\n\n(<b>Gained Perk: Innocent Allure</b> - Boosts your sexiness. After a successful tease, enemies are slightly less likely to hit you for the rest of the battle.");
+			ExtendLogEvent("\n\n(<b>Gained Perk: Innocent Allure</b> - Boosts your sexiness. After a successful tease, enemies may become slightly distracted and staggered for a brief amount time.");
 			// storing the sexiness boost in v1 and the hit-chance penalty in v2, but those numbers should probably be hard-coded, instead of stored in a flag
 			pc.createPerk("Innocent Allure",5,10,0,0,"Boosts your sexiness. After a successful tease, enemies may become slightly distracted and staggered for a brief amount time.");
 			if(pc.exhibitionismRaw < 100)
