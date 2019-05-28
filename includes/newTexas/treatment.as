@@ -5925,7 +5925,7 @@ public function cumHighUpdate(cumQ:Number = 0, addLog:Boolean = true):void
 public function lustyAfterglowUpdate(cumQ:Number = 0):void
 {
 	// every time you get cumfilled, you regain random 3~9 energy.
-	var bonus = 0;
+	var bonus:int = 0;
 	if(cumQ >= 1500) bonus++;
 	if(cumQ >= 3000) bonus++;
 	if(cumQ >= 6000) bonus++;
