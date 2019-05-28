@@ -13,6 +13,8 @@ public function knockOnBigTiddyGFDoor():void
 
 	if (flags["BIGTIDDYGOTHGF_FIRSTVISIT"] == undefined)
 	{
+		flags["BIGTIDDYGOTHGF_FIRSTVISIT"] = 1;
+		
 		output("You knock on the mysterious door, not exactly sure what to expect. The faint sound of footsteps on the other side tells you the occupant is both home and coming to the door. When it slides open, you’re met with a familiar face.");
 		output("\n\nThe crazy woman from ExtraMeet.");
 		output("\n\nMiranda you think her name was, is standing in the doorway. No that’s not right, you remember while fighting off the urge to frown. She wanted you to call her ‘The Servant.’");

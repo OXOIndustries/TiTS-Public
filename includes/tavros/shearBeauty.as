@@ -1336,8 +1336,8 @@ public function getOralFromCeria():void
 
 		output("\n\n<i>“Oh, " + pc.mf("hunk","cutie") + ", you really know how to make a girl’s ears feel like heaven. I’m glad I took my pants off first.”</i>");
 		if(pc.wetness() >= 3) output(" Ceria wipes her face down with her hands, licking them clean of your [pc.girlCumNoun]. <i>“Could’ve warned me you were such a faucet down here, though... well, not that I mind with a pussy as [pc.girlCumFlavor] as yours.”</i>");
-			
-		chars["CERIA"].girlcumInMouth(pc);
+		
+		chars["CERIA"].girlCumInMouth(pc);
 	}
 	output("\n\nYou help Ceria clean up the mess the two of you have made and retrieve your gear before she ushers you out to clean herself off. A minute later she returns to the salon counter, a fresh piece of bubblegum in her mouth and a very satisfied look on her face.");
 	processTime(24);
