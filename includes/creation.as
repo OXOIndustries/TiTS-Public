@@ -41,6 +41,7 @@ public function hasIllegalInput(sText:String = ""):Boolean
 			case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
 			case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
 			case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
+			case "fauxcow": cheatFunc = Cheats.TryTreatmentHaxFauxCow; break;
 		}
 		if(cheatFunc != null && eventQueue.indexOf(cheatFunc) == -1)
 		{

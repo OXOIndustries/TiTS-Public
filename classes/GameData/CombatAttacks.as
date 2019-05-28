@@ -791,7 +791,7 @@ package classes.GameData
 			{
 				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
 			}
-			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			if(attacker.hasPerk("Lunge") && !target.isStaggered() && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
@@ -1501,7 +1501,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
-			if (attacker.hasPerk("Rending Attacks") && !target.hasStatusEffect("Staggered") && !target.isPlanted())
+			if (attacker.hasPerk("Rending Attacks") && !target.isStaggered() && !target.isPlanted())
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
