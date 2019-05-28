@@ -2,7 +2,7 @@
 
 //Notes
 //Run by Cyber Punks? Some cyber dealie to keep ‘em pacified maybe,
-//Nominal credit charge for occupants (maybe one with their price tweaked to ‘free’ for extra degredation) or buy a <i>“Puss Pass”</i> key item to skip the payment prompt.
+//Nominal credit charge for occupants (maybe one with their price tweaked to ‘free’ for extra degredation) or buy a “Puss Pass” key item to skip the payment prompt.
 //holo pics of the occupants on each stall
 //If enough stalls are added, put an ‘availability’ time span on them, where somebody else is using the stall. Possibly add opportunities where you can interact with a pirate who is using one of the stalls during this ‘down time’.
 //
@@ -82,7 +82,7 @@ public function cherryTapHallBonerBonus():Boolean
 	//Repeat:
 	else
 	{
-		if(pc.hasStatusEffect("Cherry_In_Room")) output("(Debug text: Ordinarily, Molli would be running the store while Cherry is in her room... but Molli isn't done yet. So enjoy Cherry!)\n\n");
+		if(pc.hasStatusEffect("Cherry_In_Room")) output("(Debug text: Ordinarily, Molli would be running the store while Cherry is in her room... but Molli isn’t done yet. So enjoy Cherry!)\n\n");
 		output("The cloying scent of Cherry’s bio-chemical perfume wafts around you as the throbbing, subliminal vibrations of the Cyber Punks’ lust generators fill you once more. Your libido kicks into overdrive just by walking the length of the Tap-Hall. The wall of public use sluts is as popular as ever, but there are still plenty of unoccupied stalls.");
 		//is lust is not at least 30, set lust to 30
 		pc.lust(75);
@@ -172,7 +172,7 @@ public function cherryMenu():void
 		if(pc.lust() < 33) addDisabledButton(4,"Fuck","You are not aroused enough for this.");
 		else addButton(4,"Fuck",bubbledBitchesNeedBoounced,undefined,"Fuck","With Cherry still cum-fattened from your previous feeding, she should be safely fuckable.");
 	}
-	else addDisabledButton(4,"Fuck","Fuck","Cherry's not really safe to touch, let alone fuck.");
+	else addDisabledButton(4,"Fuck","Fuck","Cherry’s not really safe to touch, let alone fuck.");
 	addButton(14,"Leave",pickWallSlutMenu);
 }
 
@@ -1182,7 +1182,7 @@ public function cumBubblesOptionsForCherry():void
 		//player does not have a dick
 		if(!pc.hasCock())
 		{
-			output("You'd have to be a real tease to hand her cum without the ability to make any more...");
+			output("You’d have to be a real tease to hand her cum without the ability to make any more...");
 		}
 		else if(!pc.hasItemByClass(SmallCumBubble) && !pc.hasItemByClass(MediumCumBubble) && !pc.hasItemByClass(LargeCumBubble) && !pc.hasItemByClass(HugeCumBubble))
 		{
@@ -1206,13 +1206,13 @@ public function giveCherryCummiesMenu():void
 	if(!checkToyDrawer(BubbleBuddy)) addButton(0,"NeedABuddy",iNeedABuddyCherry,undefined,"NeedABuddy","You’d love to help her out, but you’re going to need a Bubble Buddy first.");
 	else addDisabledButton(0,"NeedABuddy","NeedABuddy","You already own a bubble buddy.");
 	if(pc.hasItemByClass(SmallCumBubble)) addButton(1,"S.Bubble",smallBubbleGiftForCherry,undefined,"Small Bubble","Give away a small bubble of cum.");
-	else addDisabledButton(1,"S.Bubble","Small Bubble","You don't have any small cum bubbles to give away.");
+	else addDisabledButton(1,"S.Bubble","Small Bubble","You don’t have any small cum bubbles to give away.");
 	if(pc.hasItemByClass(MediumCumBubble)) addButton(2,"M.Bubble",mediumBubbleGiftForCherry,undefined,"Medium Bubble","Give away a medium bubble of cum.");
-	else addDisabledButton(2,"M.Bubble","Medium Bubble","You don't have any medium cum bubbles to give away.");
+	else addDisabledButton(2,"M.Bubble","Medium Bubble","You don’t have any medium cum bubbles to give away.");
 	if(pc.hasItemByClass(LargeCumBubble)) addButton(3,"L.Bubble",largeBubbleGiftForCherry,undefined,"Large Bubble","Give away a large bubble of cum.");
-	else addDisabledButton(3,"L.Bubble","Large Bubble","You don't have any large cum bubbles to give away.");
+	else addDisabledButton(3,"L.Bubble","Large Bubble","You don’t have any large cum bubbles to give away.");
 	if(pc.hasItemByClass(HugeCumBubble)) addButton(4,"H.Bubble",hugeBubbleGiftForCherry,undefined,"Huge Bubble","Give away a huge bubble of cum.");
-	else addDisabledButton(4,"H.Bubble","Huge Bubble","You don't have any huge cum bubbles to give away.");
+	else addDisabledButton(4,"H.Bubble","Huge Bubble","You don’t have any huge cum bubbles to give away.");
 	addButton(14,"Back",goForCherryStuff);
 }
 
@@ -1243,7 +1243,7 @@ public function iNeedABuddyCherry():void
 			quickLoot(new BubbleBuddy());
 		});
 	}
-	else addDisabledButton(0,"Buy","Buy","You can't afford the " + cost + " credit cost.");
+	else addDisabledButton(0,"Buy","Buy","You can’t afford the " + cost + " credit cost.");
 	addButton(1,"No Thanks",cumBubblesOptionsForCherry);
 }
 
