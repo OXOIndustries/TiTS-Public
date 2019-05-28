@@ -348,7 +348,7 @@ package classes.GameData
 				
 				if (!h.hasStatusEffect("Free Chief"))
 				{
-					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered") || h.hasStatusEffect("Paralyzed"))
+					if (h.isBlind() || h.isStaggered() || h.isImmobilized())
 					{
 						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
 					}

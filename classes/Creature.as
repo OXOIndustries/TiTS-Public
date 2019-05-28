@@ -4599,7 +4599,7 @@
 		}
 		public function isFauxCow():Boolean
 		{
-			return (isTreated() && 9999 == 0);
+			return (isTreated() && hasStatusEffect("Treated Faux Cow"));
 		}
 		public function hasPheromones():Boolean
 		{
@@ -5802,6 +5802,7 @@
 			}*/
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
+			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
@@ -7439,6 +7440,9 @@
 		}
 		public function isImmobilized(): Boolean {
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled() || hasStatusEffect("Endowment Immobilized"));
+		}
+		public function isStaggered(): Boolean {
+			return (hasStatusEffect("Staggered"));
 		}
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled"));
@@ -12377,7 +12381,7 @@
 		public function removeCocksUnlocked():Boolean 
 		{
 			if (hasStatusEffect("Mimbrane Cock")) return false;
-			if(isCumCow() && cocks.length == 1) return false;
+			if((isCumCow() || isFauxCow()) && cocks.length == 1) return false;
 			return true;
 		}
 		public function removeCocksLockedMessage():String 
@@ -12402,7 +12406,7 @@
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (arraySpot == 0 && totalRemoved >= 1 && hasStatusEffect("Mimbrane Cock")) return false;
-			if(isCumCow() && cocks.length == 1) return false;
+			if((isCumCow() || isFauxCow()) && cocks.length == 1) return false;
 			return true;
 		}
 		public function removeCockLockedMessage():String
@@ -19137,7 +19141,7 @@
 				return;
 			}
 			
-			var effectDesc:String = ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".");
+			var effectDesc:String = (this is PlayerCharacter ? ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".") : "Leftovers from a recent lover.");
 			
 			if(hole >= 0 && hole < 3)
 			{
@@ -19173,7 +19177,7 @@
 					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
 				}
 			}
-			else
+			else if(hole == 4)
 			{
 				if(fluidVolume <= 0) return;
 				
@@ -19205,7 +19209,7 @@
 			{
 				cumQualityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Firing Blanks"))
 			{
 				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
 			}
@@ -19252,7 +19256,7 @@
 			{
 				fertilityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			var bonus:Number = 0;
 			bonus += perkv1("Fertility");
 			bonus += statusEffectv1("Heat");
@@ -19268,6 +19272,12 @@
 			if(hasPerk("Incubator")) bonus += perkv1("Incubator");
 			if(hasPerk("Breed Hungry")) bonus += 1;
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
+		}
+		
+		public function hasBirthControl():Boolean
+		{
+			if(hasStatusEffect("Infertile")) return true;
+			return false;
 		}
 		
 		public var bellyRatingRaw:Number = 0;
@@ -21613,6 +21623,7 @@
 				
 				var prodFactor:Number = 100 / (1920) * ((libido() * 3 + 100) / 100);
 				if (hasPerk("Extra Ardor")) prodFactor *= 2;
+				if (hasPerk("Lusty Afterglow") && isCumflated()) prodFactor *= 2;
 				if (hasStatusEffect("Ludicrously Endowed")) prodFactor *= 1.5;
 				if (hasStatusEffect("Overwhelmingly Endowed")) prodFactor *= 2;
 				if (hasStatusEffect("Red Myr Venom")) prodFactor *= 1.5;
