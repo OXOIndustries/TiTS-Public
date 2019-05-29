@@ -2114,7 +2114,7 @@ public function secOpMaleTitfuck(response:String = "intro"):void
 		case "stop":
 			output("You just wait for the right moment as you resume pleasuring him, pretending you have no idea what he’s doing, despite the fact that you’re ready. He prepares to sink the syringes into you, aimed right at your [pc.tits]. As they come down your hands move off your chest to catch his wrists, gripping them tightly. You look at him right in the face with a smug smile while you hold his arms in place.");
 			output("\n\n");
-			if(pc.siliconeRating("tits") <= 0) output("<i>“What’s the matter, are a pair of [pc.cupSize] tits too small for you?”</i> you ask");
+			if(pc.siliconeRating("tits") <= 0) output("<i>“What’s the matter, are a pair of [pc.breastCupSize] tits too small for you?”</i> you ask");
 			else output("<i>“I’ve already got enough silicone in my girls; I don’t need more,”</i> you say");
 			output(", still tightly holding his arms up.");
 			output("\n\nHe blushes as he speaks, saying, <i>“I just thought that... it could be a bit more fun... if they were a bit bigger?”</i> He’s nervous, clearly, and plenty of factors contribute to that.");

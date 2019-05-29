@@ -2628,6 +2628,8 @@
 				case "breastDry":
 					buffer = breastNoun(arg2, true);
 					break;
+				case "cupSize":
+				case "breastCup":
 				case "breastCupSize":
 					buffer = breastCup(arg2);
 					break;
