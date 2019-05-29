@@ -24,12 +24,46 @@ CHERRY_MEDIUM_BUBS				Medium bubbles gifted
 CHERRY_LARGE_BUBS				Large cum bubbles gifted
 CHERRY_HUGE_BUBS				Huge cum bubble gifts
 CHERRY_TOTAL_BUBBLE_GIFTS		Total number of bubbles gifted
+CHERRY_LAST_BUBBLE_GIFT			0 = small, 1 = med, 2 = large, 3 = yuge.
 
 STATUS:
 Cherry_In_Room					Denotes that Cherry is in her room, masturbating or something and
 								Molli is running the shop.
-
+Cherry_Internal_Cum				Tracks the size of the biggest cumload Cherry has had in the past
+									24 hours. New cumshots can refresh the duration.
+									NOTE: You cannot cumflate by repeated small blasts. Need 1 big
+									huge one due to the way she's set up.
 *========================================================*/
+
+
+public function feedCherry(arg:Number = -1):void
+{
+	if(arg == -1) arg = pc.cumQ();
+	//If doesn't exist yet, set it uuuuup.
+	if(!pc.hasStatusEffect("Cherry_Internal_Cum")) 
+	{
+		pc.createStatusEffect("Cherry_Internal_Cum",arg);
+		pc.setStatusMinutes("Cherry_Internal_Cum",24*60);
+	}
+	//Add and math if she's already got cummies.
+	else
+	{
+		//Big cumshots last 24 hours.
+		if(arg >= 10000) pc.setStatusMinutes("Cherry_Internal_Cum",24*60);
+		//Non ginormous cumshots last proportionally.
+		{
+			//Get a % of the threshold for cumflation and convert that to extra minutes
+			var newMinutes:Number = 60*24 * arg/10000;
+			var oldMinutes:Number = pc.getStatusMinutes("Cherry_Internal_Cum");
+			//Add newminutes + current minutes. If over max, set max. If under, set.
+			if(newMinutes + oldMinutes >= 60*24) pc.setStatusMinutes("Cherry_Internal_Cum",24*60);
+			else pc.setStatusMinutes("Cherry_Internal_Cum",(oldMinutes+newMinutes));
+		}
+		//Jizz isn't actually added - we're just comparing the biggest individual loads. No cumflating via lots of tiny shots (to match Adj's text).
+		//So instead we just track the biggest cummies.
+		if(pc.statusEffectv1("Cherry_Internal_Cum") < arg) arg = pc.statusEffectv1("Cherry_Internal_Cum");
+	}
+}
 
 public function showCherry(nude:Boolean = false):void
 {
@@ -46,12 +80,16 @@ public function molliBustString():String
 }
 public function cherryCumflated():Boolean
 {
-	return false;
+	return (pc.statusEffectv1("Cherry_Internal_Cum") >= 10000);
 }
 public function sendCherryToHerRoom():void
 {
 	if(!pc.hasStatusEffect("Cherry_In_Room")) pc.createStatusEffect("Cherry_In_Room");
 	pc.setStatusMinutes("Cherry_In_Room",4*60);
+}
+public function cherryCapacity():Number
+{
+	return 3000;
 }
 
 //Cherry’s Tap-Hall
@@ -1267,14 +1305,16 @@ public function gaveCumflatedCherryABubble(bubbleSize:Number):void
 	output("\n\nThe Tap-Hall’s owner gives a cursory glance around to make sure everything’s running as intended before inclining her head toward her quarters. <i>“No good deed goes unpunished. You up for a little Cherry-Cream Pie?”</i>");
 	processTime(5);
 
-	feedCherryABubble(bubbleSize);
+	giveCherryABubble(bubbleSize);
+	//Cherry didn't keep this one!
+	flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
 	//[Not Now] [Her Place]
 	clearMenu();
 	addButton(0,"Not Now",noCummiesNowForChubbyGoo);
 	addButton(1,"Her Place",goToCherrysQuartersForBanging);
 }
 
-public function feedCherryABubble(bubbleSize:Number):void
+public function giveCherryABubble(bubbleSize:Number):void
 {
 	if(bubbleSize == 0) 
 	{
@@ -1296,6 +1336,7 @@ public function feedCherryABubble(bubbleSize:Number):void
 		IncrementFlag("CHERRY_HUGE_BUBS");
 		pc.destroyItemByClass(HugeCumBubble);
 	}
+	flags["CHERRY_LAST_BUBBLE_GIFT"] = bubbleSize;
 	IncrementFlag("CHERRY_TOTAL_BUBBLE_GIFTS");
 }
 
@@ -1346,7 +1387,7 @@ public function smallBubbleGiftForCherry():void
 	output("\n\nShe certainly seemed to appreciate the gift, though you suspect a single load is more a snack than a true meal to the ruby rahn.");
 	processTime(5);
 	pc.lust(2);
-	feedCherryABubble(0);
+	giveCherryABubble(0);
 	clearMenu();
 	addButton(0,"Next",cumBubblesOptionsForCherry);
 }
@@ -1390,7 +1431,7 @@ public function mediumBubbleGiftForCherry2():void
 	output("\n\nThe bloated weight of your esophagus-stuffing ball is pulled against the straining, creaking choker bands so energetically, you’re not sure which will give first: the leather or the latex. Just as you’re sure you’re going to hear a pop, Cherry manages to drag the grapefruit sized ball past the restraining collar and sucks it down in a single, final gulp.");
 	output("\n\nThe customers caught up in the display cheer and clap, but Cherry’s rosey, unguarded gaze is turned only to you. She smiles weakly, chest heaving as she fingers her neckband.");
 
-	feedCherryABubble(1);
+	giveCherryABubble(1);
 
 	//first time:
 	if(flags["CHERRY_MEDIUM_BUBS"] == 1)
@@ -1499,7 +1540,7 @@ public function largeBubbleGiftForCherry():void
 	}
 	processTime(5);
 	pc.lust(2);
-	feedCherryABubble(2);
+	giveCherryABubble(2);
 	clearMenu();
 	addButton(0,"Not Now",largeBubHerPlaceNotNow);
 	addButton(1,"Her Place",largeBubHerPlace);
@@ -1600,7 +1641,7 @@ public function hugeBubbleGiftForCherry():void
 		addButton(0,"Not Now",hugeBubHerPlaceNotNow);
 		addButton(1,"Her Place",hugeBubHerPlace);
 	}
-	feedCherryABubble(3);
+	giveCherryABubble(3);
 }
 
 public function firstTimeHugeBubCherrysPlace():void
@@ -1686,5 +1727,6 @@ public function goToCherrysQuarters():void
 public function leaveCherrysPlace():void
 {
 	moveTo("WALL SLUTS");
+	sendCherryToHerRoom();
 	mainGameMenu();
 }
