@@ -558,6 +558,19 @@ package classes.Resources.Busts
 		public var Bust_LOLA_SUIT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lola_nude.png", mimeType = "image/png")]
 		public var Bust_LOLA_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei.png", mimeType = "image/png")]
+		public var Bust_MINUET:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei_dress.png", mimeType = "image/png")]
+		public var Bust_LORELEI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei_nude.png", mimeType = "image/png")]
+		public var Bust_LORELEI_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei_terran.png", mimeType = "image/png")]
+		public var Bust_LORELEI_TERRAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei_canine.png", mimeType = "image/png")]
+		public var Bust_LORELEI_CANINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lorelei_equine.png", mimeType = "image/png")]
+		public var Bust_LORELEI_EQUINE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/luca.png", mimeType = "image/png")]
 		public var Bust_LUCA:Class;
@@ -1649,6 +1662,19 @@ package classes.Resources.Busts
 			public var Full_LOLA_SUIT:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lola_nude.png", mimeType = "image/png")]
 			public var Full_LOLA_NUDE:Class;
+		
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei.png", mimeType = "image/png")]
+			public var Full_MINUET:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei_dress.png", mimeType = "image/png")]
+			public var Full_LORELEI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei_nude.png", mimeType = "image/png")]
+			public var Full_LORELEI_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei_terran.png", mimeType = "image/png")]
+			public var Full_LORELEI_TERRAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei_canine.png", mimeType = "image/png")]
+			public var Full_LORELEI_CANINE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lorelei_equine.png", mimeType = "image/png")]
+			public var Full_LORELEI_EQUINE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/luca.png", mimeType = "image/png")]
 			public var Full_LUCA:Class;
