@@ -100,7 +100,7 @@ package classes.Characters
 
 		override public function get bustDisplay():String
 		{
-			return "";
+			return short.toUpperCase();
 		}
 
 		public static function encounterText():String
