@@ -455,7 +455,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 	output("Which cock would you like to wear " + item.description + " on?");
 	
 	var button:Number = 0;
-	for(x = 0; x < pc.cockTotal(); x++)
+	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
 		output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
 		if(!(pc.cocks[x].cocksock is EmptySlot)) output(" - <b>Wearing:</b> " + StringUtil.toDisplayCase(pc.cocks[x].cocksock.longName));
@@ -2251,7 +2251,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		SiegwulfeEquip();
 	}
 	// Power armor req
-	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	else if(!InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
 		output("You are not strong enough to equip your " + arg.longName + "!");
 		removedItem = arg;

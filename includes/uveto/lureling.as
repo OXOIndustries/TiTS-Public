@@ -447,7 +447,7 @@ public function marionsDenSexFuckMarion(x:int):void
 		output("as deep as you can go");
 		if (x >= 0) output(", even if your "+ pc.cockDescript(x) +" could use a little more length");
 	}
-	output(". Her breath comes ins shuddering clouds of mist that form a fog around her head until all you can clearly make out is her azure eyes and the wolfish grin on her slender lips.");
+	output(". Her breath comes in shuddering clouds of mist that form a fog around her head until all you can clearly make out is her azure eyes and the wolfish grin on her slender lips.");
 
 	output("\n\nOnce she’s settled in your lap, the icy vixen contracts her muscles, rhythmically squeezing your "+ pc.cockOrStrapon(x) +" while she gets herself comfortable. It isn’t long, though, before she’s shaking her hips and wiggling her myriad of tails for you, panting with pleasure. It’s an odd sensation to make love with someone who doesn’t speak; sound still comes out of her of course, but still. The deep, shudder-laden moan of pleasure that comes out of her when you roll your hips would usually be accompanied by some visceral declaration of pleasure. Instead you just have to infer it from the way her [marion.eyes] drink you in with open adoration at the way she’s stirred up.");
 

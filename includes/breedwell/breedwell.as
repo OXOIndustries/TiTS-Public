@@ -2022,7 +2022,7 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 		output("\n\nWarm, gooey hands grab you and roughly pull you backwards out of the wailing, smoking machine. You huff in surprise, shaken out of your sticky, orgasmic reverie, and your [pc.cock " + cIdx + "] flexes its next load straight up into the air, spattering both you and the three stern-looking rahn aides surrounding you.");
 		output("\n\n");
 		// PC is kui-tan OR has nuki nuts perk OR is male Treated:
-		if(pc.raceShort() == "kui-tan" || pc.hasPerk("'Nuki Nuts") || pc.isTreatedMale())
+		if(pc.raceShort() == "kui-tan" || pc.hasPerk("'Nuki Nuts") || pc.isTreatedBull())
 		{
 			output("<i>“I warned them!”</i> snaps the most senior-looking one. <i>“You let fucking");
 			if(pc.raceShort() == "kui-tan") output(" kui-tan");

@@ -4580,11 +4580,17 @@
 		}
 		public function isTreatedCow():Boolean
 		{
-			return (isTreated() && hasPerk("Treated Milk"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Treated Milk") || hasPerk("Ditz Speech"));
 		}
 		public function isTreatedBull():Boolean
 		{
-			return (isTreated() && hasPerk("Pheromone Cloud"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Pheromone Cloud") || hasPerk("Brute Speech"));
 		}
 		public function isAmazon(treatedOnly:Boolean = true):Boolean
 		{

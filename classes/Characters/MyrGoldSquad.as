@@ -259,15 +259,15 @@ package classes.Characters
 		
 		private function myrSquadCharge(target:Creature):void
 		{
-			output("<i>“Charge!”</i> one of the myr screams, before hurling herself at you brandishing a quartet of axes. Several of the others follow suit, lunges with long knives, hatchets, and any other sharp implement at hand. ");
+			output("<i>“Charge!”</i> one of the myr screams, before hurling herself at you brandishing a quartet of axes. Several of the others follow suit, lunges with long knives, hatchets, and any other sharp implement at hand.");
 			
 			if (combatMiss(this, target))
 			{
-				output("You dodge past the first myr’s bull-rush, grab another and shove her back into her fellows, barreling the lof of them over and ending their charge.");
+				output(" You dodge past the first myr’s bull-rush, grab another and shove her back into her fellows, barreling the lot of them over and ending their charge.");
 			}
 			else
 			{
-				output("The sheer press of golden-plated bodies overwhelms your defenses, and you’re battered down by dozens of strikes and slashes!");
+				output(" The sheer press of golden-plated bodies overwhelms your defenses, and you’re battered down by dozens of strikes and slashes!");
 				
 				var damage:TypeCollection = meleeDamage().multiply(1.2);
 				if(target.hasStatusEffect("Tripped")) damage.multiply(2.5);

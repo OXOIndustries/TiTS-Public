@@ -132,7 +132,7 @@ public function orderUpOneTurkeySlut():void
 	if (pc.isBiped()) output(" pull up a chair");
 	else output(" seat yourself on your animalistic lower body");
 	output(", patting your thigh for the cow to sit on your lap. She crawls on happily, blushing furiously as you play a hand across one of her heavy-laden breasts. You cup the huge teat, watching your fingers sink into her soft flesh, utterly disappearing into a sea of welcoming boobflesh. The tiniest little squeeze causes a bead of moisture to form on the tip of her nipple, a dark splotch of viscous amber. The smell hits you instantly, the sweet scent of sugar-saturated maple that floods your mind with memories of childhood, pancakes, and the rich taste of syrup. If you hadn’t been sure about suckling from the cow before, you are now - you couldn’t help yourself if you tried.");
-	if (pc.isTreatedMale()) output(" Not that you would. A pair of tits like that is too good to pass up.");
+	if (pc.isTreatedBull()) output(" Not that you would. A pair of tits like that is too good to pass up.");
 	
 	output("\n\nYou heft her tit up to your mouth and latch on, using your [pc.tongue] to lap up the dollop of syrup cresting her stiff point. The sheer sweetness almost makes you wince, and you suck in a sharp breath as the sugary droplet bursts over the tip of your tongue. So sugary that it’s sweet as candy, and hotter than you would have expected - perfect to be spread over a plate of pancakes. If only... Still, you lean back");
 	if (pc.isBiped()) output(" in your chair");
