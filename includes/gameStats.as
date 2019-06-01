@@ -3093,7 +3093,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
-				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE"] >= 2) output2(", Defeated her");
 				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
 				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
 				if(flags["NYM-FOE_ACTIVATED"] != undefined) output2(", On patrol");

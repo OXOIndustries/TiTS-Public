@@ -4198,7 +4198,7 @@ public function taurKellyDPCumInside(x:int):void
 	//FEED DA TAIL!
 	if(tailginad) 
 	{
-		feedCuntSnake();
+		feedCuntSnake(chars["KELLY"]);
 	}
 	flags["KELLY_HAD_SPECIAL_TAUR_DP"] = 1;
 	pc.shower();
@@ -4256,7 +4256,7 @@ public function getCummedOnByKellyDuringTaurDPs(x:int):void
 	//FEED DA TAIL!
 	if(tailginad) 
 	{
-		feedCuntSnake();
+		feedCuntSnake(chars["KELLY"]);
 	}
 	pc.orgasm();
 	pc.shower();
