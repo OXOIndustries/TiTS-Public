@@ -2567,7 +2567,7 @@ public function boredJumperHeatSexII():void
 
 	output("\n\nGosh, she must be in pain from how much blood has flowed to her nethers. She’s so <i>hot</i>, so <i>tasty</i>... The raw musk in her lubricant alone squeezes copious amounts of fem slime from your [pc.vagina]");
 	if(pc.hasCock()) output(", even stimulating your [pc.cocks] to add their own to the air");
-	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an inch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
+	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an itch only your hands can tend. You brazenly finger yourself, a task made all too easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
 	output("\n\n<i>“D-damn...”</i> The laquine grabs your head. <i>“I feel so hard I bet my dick could replace the mining bots down here..! Just what do you think I’m gonna do to you for this?”</i> She half-taunts. In all honesty, you can’t quite tell where her tone of voice is, all that matters is that she’s going to ravish, no, <b>ruin</b> you with her gorgeous [enemy.cock], that she’s going to do her very best to impregnate you with every ounce of cum churning in her fuzzy nuts.");
 	output("\n\nShe yanks you down all the way on her cock so hard that tears form at the edges of your [pc.eyes], but you aren’t in pain. No, you understand, this is where you <i>need</i> to be right now, taking care of this studly specimen, your rightful mate. She uses your mouth like an onahole, and you’re all too happy to reciprocate, squeezing your cheeks around her shaft and lashing her mast with your [pc.tongue]. You coil around her [enemy.cockHead] and suck at her cumslit directly, hoping you’ll get a fresh batch before too long.");
 	output("\n\nFor once, hope was not a step on the road to disappointment, and you moan in whorish glee as her dick throbs in your mouth. Her legs thump against the ground and her balls smack into your chin. One of many climaxes to come is precluded by the hypnotic rhythms of her pounding heart, its beating rapid, working in harmony with the rest of her body. Your eyes shut as you gag on the puddles of virile cum she fires straight into your gurgling gut. If only you could taste it...");
@@ -2581,7 +2581,7 @@ public function boredJumperHeatSexII():void
 	output(". Every drop of fluid, sweat, cum, pre... whatever the tip of your tongue laps up is another drop of fuel for the fire burning within you. Submissive, libidinous warmth suffuses your entire being just being able to worship her manhood, to prostrate yourself beneath what will quench the thirst that threatens to drain you of life. You groan into her sack, exhaling hotly, <i>“Pleeasee...”</i>");
 	output("\n\nThat word was all you could muster in your oversexed stupor. To your joy, she pulls off your face and pushes you down, falling on top of you. Belly up, your legs are locked to either side of the roiled rabbit’s curvy hips, squirming and grinding against her for any kind of stimulation or release. Her [enemy.cock] flops on your crotch");
 	if(!pc.hasCock()) output(", dragging against your abdomen");
-	else output("rubbing against your [pc.cockBiggest]");
+	else output(", rubbing against your [pc.cockBiggest]");
 	output(". The jumper’s cute nose twitches just before she inhales sharply. Her exhalation is a husky groan that brings a smile to your lips.");
 	output("\n\n<i>“That smell... Daaamn... I can’t wait to play in your garden, babe. Shame you can’t give me a call, I’d love to hear you begging for it.”</i> The horny humper snerks, a few drops of sizzling sweat plummeting on to your [pc.skinFurScales] from her head.");
 	if(silly) output(" <i>“We’re gonna build a house of fire and I’m gonna walk right through your door of desire!”</i>");
@@ -2630,7 +2630,7 @@ public function boredJumperHeatSexIII():void
 		flags["BJUMPER_HEAT_SEX"] = 1;
 		pc.loadInCunt(enemy,2);	
 	}
-	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit] Is she...? Oh no...");
+	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
 	processTime(30);
 	pc.orgasm();
 	flags["BJUMPER_HEAT_SEX"] = 1;

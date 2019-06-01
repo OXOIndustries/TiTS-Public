@@ -4326,11 +4326,11 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						{
 							ExtendLogEvent(" <b>your lines have become slightly softer</b>, though they’re not getting anywhere near the ultra-feminine look you see on most cows and amazons.");
 							pc.femininity += 5 + rand(11);
-							if(pc.femininity > 50) pc.femininity = 40; // safety net
+							if(pc.femininity > 50) pc.femininity = 50; // safety net
 						}
 						else
 						{
-							ExtendLogEvent(" <b>your jawline has become slightly more visible</b>, thought it’s not getting anywhere near a rugged bull.");
+							ExtendLogEvent(" <b>your jawline has become slightly more visible</b>, though it’s not getting anywhere near a rugged bull.");
 							pc.femininity -= 5 + rand(11);
 							if(pc.femininity < 40) pc.femininity = 40; // safety net
 						}
