@@ -3540,7 +3540,7 @@ public function variableRoomUpdateCheck():void
 		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 	//Handle badger closure
-	if(drBadgerAtBimbotorium())
+	if(!drBadgerAtBimbotorium())
 	{
 		rooms["304"].removeFlag(GLOBAL.NPC);
 		//rooms["209"].northExit = "";
