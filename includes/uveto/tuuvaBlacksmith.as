@@ -1570,7 +1570,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		output(", easily gliding through you thanks to the massive amount of pheromone-laced girl juice she slathered both of you in");
 		if(x >= 0) pc.cuntChange(x,tuuva.cockVolume(0));
 		else pc.buttChange(tuuva.cockVolume(0));
-		output("\n\n<i>“Mhmm, nice!”</i>.");
+		output("\n\n<i>“Mhmm, nice!”</i>");
 	}
 	else
 	{

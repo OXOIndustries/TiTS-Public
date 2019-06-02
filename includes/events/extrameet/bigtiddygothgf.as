@@ -128,7 +128,7 @@ public function bigTiddyGothGFAppearance():void
 	clearOutput();
 	bigTiddyGothGFBust();
 
-	output("Now that you have a moment, you decide to give The Servant a decent look over. You estimate she stands at around 5’4, but her tall, platformed boots put her closer to 5’8. Her skin is pale and fair, and you suspect she hasn’t been in natural light for quite some time. Long and straight pitch black hair reaches down to her lower back, with two long locks of it resting on both of her shoulders and running down her front. Around her eyes she wears heavy eye shadow, a stark contrast against her large and piercing blue orbs.");
+	output("Now that you have a moment, you decide to give The Servant a decent look over. You estimate she stands at around 5\' 4\", but her tall, platformed boots put her closer to 5\' 8\". Her skin is pale and fair, and you suspect she hasn’t been in natural light for quite some time. Long and straight pitch black hair reaches down to her lower back, with two long locks of it resting on both of her shoulders and running down her front. Around her eyes she wears heavy eye shadow, a stark contrast against her large and piercing blue orbs.");
 	
 	output("\n\nHer lips are large and puffy, painted dark, but with slight red tinting. In her ears you count a number of piercings, two holes in each lobe, and another few studs and rings along the sides. Despite her ears being so decorated, her face remains unpierced, save for a tongue ring you sometimes catch sight of when she speaks. On her fingers she wears a number of interesting rings, with each of her long fingernails painted black. ");
 	
@@ -404,7 +404,7 @@ public function bigTiddyGothGFNecklace():void
 		
 		output("\n\nThis is getting out of hand. You need to do something.");
 		
-		output("\n\nBefore you can act, she lets out a deep gasp, deflating in her chair and dropping her hand from her chest, the red stone dimming once more. <i>“It... it’s fine. If you have questions... ask. I will answer...”</i>}");
+		output("\n\nBefore you can act, she lets out a deep gasp, deflating in her chair and dropping her hand from her chest, the red stone dimming once more. <i>“It... it’s fine. If you have questions... ask. I will answer...”</i>");
 	}
 	else
 	{
@@ -480,7 +480,10 @@ public function bigTiddyGothGFNecklaceOrigins():void
 	
 	output("\n\nThe Servant’s smile cracks, and you can’t help but notice her ringed fingers clench shut. Something about the question seems to have thrown her off, clearly taking her by surprise that you asked. <i>“Ah, yes well...”</i> she shifts in her chair, seemingly trying to conjure an answer from thin air. <i>“Well, around a year ago I made a breakthrough in my research and attempted to... well, it’s complicated.”</i>");
 	
-	output("\n\nYou lean back in your chair, crossing your arms over your [pc.chest]. <i>“Humor me and explain it anyways.{if pc intelligence below 25: Just don’t use to many big words and try to lose me.}{if pc intelligence 25 or above: I’m sure I’ll be able to follow along just fine.}”</i>");
+	output("\n\nYou lean back in your chair, crossing your arms over your [pc.chest]. <i>“Humor me and explain it anyways.");
+	if(pc.IQ() < 25 || pc.isBimbo() || pc.isBro()) output(" Just don’t use to many big words and try to lose me.");
+	else output(" I’m sure I’ll be able to follow along just fine.");
+	output("”</i>");
 	
 	output("\n\nThe Servant snorts, seemingly not liking your response. <i>“Fine. I fashioned the necklace out of a ceremonial stone that was part of a ritual I was trying to recreate. Academically of course...”</i> she lifts her hand to her temple, scratching just above her studded ear. <i>“The ritual’s origins are... well, difficult to grasp. Many species throughout the galaxy, independent of each other mind you, have some version of it. I was attempting to fuse them together, focusing on the shared aspects while trimming the fat,”</i> she taps the necklace around her throat. <i>“This was unintended, but not an unwelcome result.”</i>");
 	

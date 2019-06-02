@@ -11405,8 +11405,8 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
-				if(hasVagina(GLOBAL.TYPE_ANEMONE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_ANEMONE)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11421,8 +11421,8 @@
 			if(isTreated() && hasVagina()) return true;
 			if(idx < 0)
 			{
-				if(hasVagina(GLOBAL.TYPE_GABILANI)) return true;
-				if(hasVagina(GLOBAL.TYPE_MOUTHGINA)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_GABILANI)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_MOUTHGINA)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11436,9 +11436,9 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_NUBBY)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
-				if(hasVagina(GLOBAL.TYPE_VANAE)) return true;
-				if(hasVagina(GLOBAL.TYPE_SHARK)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_VANAE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SHARK)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -13057,7 +13057,7 @@
 			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function korgonneScore(): int {
@@ -13357,8 +13357,14 @@
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			//if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
-			if (counter > 1 && hasCock(GLOBAL.TYPE_EQUINE)) counter++;
-			if (counter > 1 && hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+			if (counter > 1 && hasCock()) {
+				if(hasCock(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			if (counter > 1 && hasVagina()) {
+				if(hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
 			//if (counter > 0 && hasFur()) counter++;
 			if (counter > 0 && !hasFur()) counter--;
 			if (!hasGenitals()) counter = 0;
@@ -15965,6 +15971,7 @@
 				{
 					if(adjectiveCount > 0) desc += ", ";
 					desc += RandomInCollection(collection);
+					adjectiveCount++;
 				}
 			}
 			//NOUN TIME

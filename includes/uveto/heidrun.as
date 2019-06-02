@@ -187,7 +187,7 @@ public function sexWithHeidrun():void
 		if(pc.blockedVaginas() > 0) addDisabledButton(2,"Get Boned","Get Boned","You’ll want to take care of the blockage below before receiving any sort of sex like this...");
 		else addButton(2,"Get Boned",getBonedByHeidrun,undefined,"Get Boned","Maybe the shopkeeper has something to help you out.");
 	}
-	else if(pc.hasCock()) addDisabledButton(2,"Get Boned","Get Boned","She has no interest in substites while you’re packing the real deal.");
+	else if(pc.hasCock()) addDisabledButton(2,"Get Boned","Get Boned","She has no interest in substitutes while you’re packing the real deal.");
 	else addDisabledButton(2,"Get Boned","Get Boned","You’ll need to only have a vagina for this.");
 	addButton(14,"Leave",approachHeidrun);
 }
