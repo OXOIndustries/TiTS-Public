@@ -2979,7 +2979,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			// Fatty -> Curvy Cowgal
 			else
 			{
-				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got plush curves that just beg to be squeezed and handled. It’s just that noone with half a brain would call you fat now, though the term curvy might be apt.", "passive", (65 - startHours) * 60);
+				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got plush curves that just beg to be squeezed and handled. It’s just that no one with half a brain would call you fat now, though the term curvy might be apt.", "passive", (65 - startHours) * 60);
 				// Thickness to 60
 				pc.thickness = 60;
 			}
@@ -6162,7 +6162,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 					else ExtendLogEvent("them");
 					ExtendLogEvent(" out.");
 					ExtendLogEvent("\n\nAs expected, you’re as rigid as a titanium girder, but that doesn’t entirely explain your predicament. You’re longer too, by at least an inch, and proportionally thicker. In disbelief over your good fortune, you slowly stroke " + pc.oneCock() + ", feeling it firm and plump up even bigger in your palm. The " + pc.cockHead() + " slips past your fingers and abruptly ejaculates, growing all the while. You furiously beat your meat throughout, not stopping until you’re standing in a puddle of your own goo");
-					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) ExtendLogEvent(" and trying to play it off nonchalantly. Hopefully noone will care");
+					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) ExtendLogEvent(" and trying to play it off nonchalantly. Hopefully no one will care");
 					ExtendLogEvent(".");
 					
 					ExtendLogEvent("\n\nYour prong");

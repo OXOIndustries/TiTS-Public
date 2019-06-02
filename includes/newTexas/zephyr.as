@@ -2528,7 +2528,7 @@ public function picsWithZephKids():void
 	{
 		output("\n\nYou’re about to try and very carefully extricate the children from her arms so you can snap some funny pictures, but she awakens the moment you touch them. With a sheepish smile, you confess your idea and she gives you a proud grin.");
 
-		output("\n\n<i>“Ain’t noone putting their hands on the kids without my knowledge, not even you, [pc.name]!”</i> Zephyr declares before realizing she should be more quiet. <i>“Oops.”</i>");
+		output("\n\n<i>“Ain’t no one putting their hands on the kids without my knowledge, not even you, [pc.name]!”</i> Zephyr declares before realizing she should be more quiet. <i>“Oops.”</i>");
 
 		output("\n\nSince you’re both awake and present anyway, you take some pictures of the happy family.");
 	}

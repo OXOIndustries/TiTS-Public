@@ -2677,6 +2677,7 @@
 				case "buttsDescript":
 				case "buttcheeks":
 				case "asscheeks":
+				case "cheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
@@ -13355,8 +13356,12 @@
 			if (faceType == GLOBAL.TYPE_LAPINE && hasMuzzle()) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
-			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			//if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			if (counter > 1 && hasCock(GLOBAL.TYPE_EQUINE)) counter++;
+			if (counter > 1 && hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+			//if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
+			if (!hasGenitals()) counter = 0;
 			return counter;
 		}
 		public function lizanScore():int
