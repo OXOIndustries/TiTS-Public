@@ -227,7 +227,7 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 			else
 			{
 				output(" With your" + pc.cockAndVagina(" [pc.cocks]", " [pc.pussies]") + " to the air you’re sure you can conjure up enough lewd imagery to achieve satisfaction hands-free");
-				if (silly) output(" and guaranteed by Milly Bays");
+				if (silly) output(" and guaranteed by Milly Bayes");
 				output(".");
 			}
 		}
