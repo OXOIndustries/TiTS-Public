@@ -13,11 +13,11 @@ import classes.Characters.PlayerCharacter;
 public function setLocationStorage(idx:int=-1):Boolean
 {
 	if (idx < 0) return false;
-	if (flags["LOCATION_STORAGE_WARDROBE"][idx] == undefined) flags["LOCATION_STORAGE_WARDROBE"][idx] = 10;
-	if (flags["LOCATION_STORAGE_EQUIPMENT"][idx] == undefined) flags["LOCATION_STORAGE_EQUIPMENT"][idx] = 10;
-	if (flags["LOCATION_STORAGE_CONSUMABLES"][idx] == undefined) flags["LOCATION_STORAGE_CONSUMABLES"][idx] = 10;
-	if (flags["LOCATION_STORAGE_VALUABLES"][idx] == undefined) flags["LOCATION_STORAGE_VALUABLES"][idx] = 10;
-	if (flags["LOCATION_STORAGE_TOYS"][idx] == undefined) flags["LOCATION_STORAGE_TOYS"][idx] = 10;
+	if (flags["LOCATION_STORAGE_WARDROBE"][idx] == undefined) flags["LOCATION_STORAGE_WARDROBE"][idx] = 30;
+	if (flags["LOCATION_STORAGE_EQUIPMENT"][idx] == undefined) flags["LOCATION_STORAGE_EQUIPMENT"][idx] = 30;
+	if (flags["LOCATION_STORAGE_CONSUMABLES"][idx] == undefined) flags["LOCATION_STORAGE_CONSUMABLES"][idx] = 30;
+	if (flags["LOCATION_STORAGE_VALUABLES"][idx] == undefined) flags["LOCATION_STORAGE_VALUABLES"][idx] = 30;
+	if (flags["LOCATION_STORAGE_TOYS"][idx] == undefined) flags["LOCATION_STORAGE_TOYS"][idx] = 30;
 	
 	return true;
 }
