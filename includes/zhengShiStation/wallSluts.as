@@ -72,7 +72,8 @@ public function showCherry(nude:Boolean = false):void
 }
 public function cherryBustString(nude:Boolean = false):String 
 {
-	return (cherryCumflated() ? "CHERRY_PREG":"CHERRY") + (nude ? "_NUDE":"");
+	if(cherryCumflated()) return "CHERRY_CUMFLATED";
+	return ("CHERRY" + (nude ? "_NUDE":""));
 }
 public function molliBustString():String 
 {
@@ -120,7 +121,7 @@ public function cherryTapHallBonerBonus():Boolean
 	//Repeat:
 	else
 	{
-		if(pc.hasStatusEffect("Cherry_In_Room")) output("(Debug text: Ordinarily, Molli would be running the store while Cherry is in her room... but Molli isn’t done yet. So enjoy Cherry!)\n\n");
+		if(pc.hasStatusEffect("Cherry_In_Room")) output("(<b>Debug text:</b> Ordinarily, Molli would be running the store while Cherry is in her room... but Molli isn’t done yet. So enjoy Cherry!)\n\n");
 		output("The cloying scent of Cherry’s bio-chemical perfume wafts around you as the throbbing, subliminal vibrations of the Cyber Punks’ lust generators fill you once more. Your libido kicks into overdrive just by walking the length of the Tap-Hall. The wall of public use sluts is as popular as ever, but there are still plenty of unoccupied stalls.");
 		//is lust is not at least 30, set lust to 30
 		pc.lust(75);
