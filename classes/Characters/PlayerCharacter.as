@@ -364,6 +364,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		public var LocationStorageInventory:Array = [];
 		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
