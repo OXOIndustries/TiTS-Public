@@ -116,9 +116,17 @@
 										}
 									}
 									//insert code for non ISaveable values
-									else trace("Potential serialization issue with multidimensional array non-ISaveable property: " + prop.@name);
+									else
+									{
+										dataObject[prop.@name] = this[prop.@name];
+										trace("Potential serialization issue with multidimensional array non-ISaveable property: " + prop.@name);
+									}
 								}
-								else trace("Potential serialization issue with multidimensional array property: " + prop.@name);
+								else
+								{
+									dataObject[prop.@name] = this[prop.@name];
+									trace("Potential serialization issue with multidimensional array property: " + prop.@name);
+								}
 							}
 							else
 							{
