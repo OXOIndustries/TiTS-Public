@@ -18284,6 +18284,12 @@
 		{
 			return (lowerUndergarment.hardLightEquipped);
 		}
+		// PC wears underwear with HL support and nothing else
+		public function hasOnlyHLUndiesEquipped():Boolean
+		{
+			if (!hasArmor() && !hasUpperGarment() && hasHardLightEquipped()) return true;
+			return false;
+		}
 		public function hasHardLightUpgraded():Boolean
 		{
 			return (hasKeyItem("Hardlight Strap-on Upgrades"));
