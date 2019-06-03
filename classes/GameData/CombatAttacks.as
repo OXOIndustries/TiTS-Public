@@ -1100,7 +1100,7 @@ package classes.GameData
 			
 			if(target.hasFlightEffects())
 			{
-				output((attacker is PlayerCharacter ? kGAMECLASS.chars["WULFE"].short : ownerName + "’s Siegwulfe") + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+				output((attacker is PlayerCharacter ? (kGAMECLASS.chars["WULFE"].short) : (ownerName + "’s Siegwulfe")) + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
 			}
 			
@@ -1114,7 +1114,7 @@ package classes.GameData
 				{
 					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
 					// More lust than dmg
-					if (!target.isLustImmune && (100*(target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax())) >= 100 - target.lustQ())
+					if (!target.isLustImmune && (100*((target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax()))) >= (100 - target.lustQ()))
 					{
 						output(RandomInCollection([
 							"[wulfe.name] pushes her chest out, smirking while she runs her hands over her gigantic, jutting breasts and moans. <i>“Look at what you’re missing out on...”</i>",
