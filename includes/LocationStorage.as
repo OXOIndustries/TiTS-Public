@@ -1,4 +1,8 @@
 import classes.Characters.PlayerCharacter;
+/**
+	 * ...
+	 * @author DrunkZombie
+	 */
 //flags
 //["LOCATION_STORAGE_WARDROBE"] array for location max storage
 //["LOCATION_STORAGE_EQUIPMENT"] array for location max storage
