@@ -1,7 +1,14 @@
-public function showLorelei(nude:Boolean = false):void
+public function showLorelei(nude:Boolean = false, futa:Boolean = false):void
 {
-	if (nude) showBust(lorelei.bustDisplay + "_NUDE");
+	if (futa)
+	{
+		if (lorelei.cLength() < 12) showBust("LORELEI_TERRAN");
+		else if (lorelei.cLength() < 24) showBust("LORELEI_CANINE");
+		else showBust("LORELEI_EQUINE");
+	}
+	else if (nude) showBust("LORELEI_NUDE");
 	else showBust(lorelei.bustDisplay);
+
 	if (flags["MET_LORELEI"] == undefined) showName("\nTHIEF");
 	else showName("\n" + lorelei.short.toUpperCase());
 }
@@ -12,9 +19,10 @@ public function loreleiHeader(nude:Boolean = false, auth:Boolean = true):void
 	if (auth) author("B");
 }
 // Update this function when there are futalei busts
-public function loreleiFutaHeader():void
+public function loreleiFutaHeader(auth:Boolean = true):void
 {
-	loreleiHeader(true);
+	showLorelei(true, true);
+	if (auth) author("B");
 }
 
 public function rollForLorelei():Boolean
@@ -1838,7 +1846,7 @@ public function loreleiAndTheGreatAdjustableWang():void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	output("You ask Lorelei if she’d be willing to use that Synth Sheath you had gotten her on yourself. You’d like to... explore her, under different circumstances.");
 	output("\n\nLorelei smiles at the request, and at the way you’ve phrased it. <i>“Of course, darling,”</i> she says as she opens her legs wholly and totally to you, exposing her puffy vagina to the air between you two. <i>“After all the effort you went to find me one, I wouldn’t dream of keeping that sort of</i> pleasure <i>from you. All you need is to ask.”</i>");
@@ -1855,7 +1863,7 @@ public function loreleisSpeciatedWang(wangType:int):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	output("You tell Lorelei that you’re interested in seeing her with " + indefiniteArticle(GLOBAL.TYPE_NAMES[wangType].toLowerCase()) + " cock.");
 	output("\n\nLorelei hums in delight at your choice, and her eyes glance to the shifting black mass between her legs, but no cock emerges from it just yet. <i>“Second question,”</i> she asks, <i>“just how... mmm...</i> big <i>and</i> juicy <i>do you want me?”</i> She humps her hips toward you, and the black mass jiggles and bounces underneath its own weight with the motion. <i>“I’m not going to go lower than seven inches, mind. In a universe filled with ‘enhancements,’ that ought to be a nice, pleasurable average for us both.”</i>");
@@ -1869,7 +1877,7 @@ public function loreleisWangGrowsWhenSlutsTellLies(big:Boolean):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	output("You tell Lorelei that");
 	if (big) output(" you want her to have something <i>bigger.</i> Something that’ll break you if you aren’t careful. You want her to be nice and <i>thick</i> for you.");
@@ -1898,7 +1906,7 @@ public function loreleiHasNoRopeButSheDoesHaveKnots(knotCount:int):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	// hyper
 	if (knotCount < 0)
@@ -1953,7 +1961,7 @@ public function loreleiWangButtons(question:int, showText:Boolean = true):void
 	{
 		clearMenu();
 		clearOutput();
-		loreleiHeader();
+		loreleiFutaHeader();
 		output("Actually, could you go back to that last question? You think you have a better idea in mind.");
 		output("\n\n<i>“Of course,”</i> Lorelei says. <i>“Whatever you like, darling. My body is the clay for you to sculpt.”</i>");
 	}
