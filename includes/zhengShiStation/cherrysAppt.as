@@ -1044,6 +1044,7 @@ public function bubbleBuddyInsideCherry(x:int):void
 		processTime(5);
 		pc.orgasm();
 		feedCherry(cummies);
+		showCherry(true);
 		//feed bubble probably
 		//return to Cherry’s Quarters menu
 		clearMenu();
@@ -1063,6 +1064,7 @@ public function bubbleBuddyInsideCherry(x:int):void
 		pc.orgasm();
 		//Not using actual cummies value because I wanna guarantee cumflation to match text.
 		feedCherry(70000);
+		showCherry(true);
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -1141,6 +1143,7 @@ public function bubbleCummiesOnCherry(x:int):void
 		//if already cumflated, refresh cumflation status
 		processTime(5);
 		feedCherry(cummies);
+		showCherry(true);
 		pc.orgasm();
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1164,6 +1167,7 @@ public function bubbleCummiesOnCherry(x:int):void
 		//[End]
 		//return to Cherry’s Quarters menu
 		feedCherry(cummies);
+		showCherry(true);
 		processTime(5);
 		pc.orgasm();
 		clearMenu();
@@ -1196,6 +1200,7 @@ public function bubbleCummiesOnCherry(x:int):void
 		processTime(5);
 		pc.applyCumSoaked();
 		feedCherry(cummies);
+		showCherry(true);
 		pc.orgasm();
 		//set Cherry to cumflated or refresh her status for 24 hours
 		//return PC to Tap-Hall
