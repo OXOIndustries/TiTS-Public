@@ -115,6 +115,7 @@
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
+		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
