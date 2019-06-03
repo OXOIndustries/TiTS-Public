@@ -88,9 +88,10 @@ package classes.Items.Miscellaneous
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				//Faux-cow repeat use
-				else if(pc.isBimbo() && pc.isFauxCow() && pc.isTreated())
+				else if(pc.isFauxCow() && pc.isTreated())
 				{
-					output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn’t take away your dick. The warnings say it won’t do anything if you’ve already taken one, but maybe you can find someone cute to get to take it. Then you’ll have someone to help keep your balls from getting so painfully full!");
+					//output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn’t take away your dick. The warnings say it won’t do anything if you’ve already taken one, but maybe you can find someone cute to get to take it. Then you’ll have someone to help keep your balls from getting so painfully full!");
+					output("You cautiously eye the pen in your palm. The one you took made you all boyish and cute, which turned out to be much better than you had expected. The warnings say it won’t do anything if you’ve already taken one, but maybe you can find someone strong to get to take it, so they can take care of your burning needs...");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
 				//Bimbo repeat use
@@ -164,10 +165,12 @@ package classes.Items.Miscellaneous
 					* 0 - girl mode
 					* 1 - dude mode
 					* 2 - "cum-cow" - female bimbo mods + autofellatio sluuuut
-					3 - herm/neuter doublemode - all male and female procs.
+					? 3 - herm/neuter doublemode - all male and female procs.
 					* 4 - herm/neuter amazon - male perks + boob/lactation boosts.
-					5 - herm girlmode + double dick/cum boosts.
-					6 - herm girlmode + dick shrinking to almost nothing.
+					? 5 - herm girlmode + double dick/cum boosts.
+					? 6 - herm girlmode + dick shrinking to almost nothing.
+					* 7 - faux-cow
+					
 					v2 special variants
 					v3 hour counter
 
@@ -194,16 +197,24 @@ package classes.Items.Miscellaneous
 						//Set values for dudes
 						else if(pc.hasCock() && !pc.hasVagina())
 						{
+							//10% faux cow
+							if(rand(10) == 0) setTreatmentMode(pc,7);
+							//33% re-chance of faux cow if androgynous
+							else if(pc.femininity >= 40 && pc.femininity <= 60 && rand(3) == 0) setTreatmentMode(pc,7);
 							//20% cumcow for shemales/traps
-							if((pc.hasBreasts() || pc.femininity >= 60) && rand(5) == 0) setTreatmentMode(pc,2);
+							else if((pc.hasBreasts() || pc.femininity >= 60) && rand(5) == 0) setTreatmentMode(pc,2);
 							//Normies!
 							else setTreatmentMode(pc,1);
 						}
 						//Herms/neuters
 						else
 						{
+							//10% faux cow if has cock *FC
+							if(pc.hasCock() && rand(10) == 0) setTreatmentMode(pc,7);
+							//33% re-chance of faux cow if androgynous and has cock
+							else if(pc.hasCock() && pc.femininity >= 40 && pc.femininity <= 60 && rand(3) == 0) setTreatmentMode(pc,7);
 							//50% cumcow
-							if(rand(2) == 0) setTreatmentMode(pc,2);
+							else if(rand(2) == 0) setTreatmentMode(pc,2);
 							//75% odds of Amazon if super butch
 							else if((pc.tone >= 70 || pc.femininity < 60) && rand(4) <= 2) setTreatmentMode(pc,4);
 							//50% odds otherwise
@@ -242,91 +253,95 @@ package classes.Items.Miscellaneous
 		private function setTreatmentMode(pc:Creature,arg:int = 0):void
 		{
 			trace("TREATMENT MODE SET: " + arg);
-			//Cumcow
-
-			//slamazon
-			if(arg == 4)
+			pc.setStatusValue("The Treatment", 1, arg);
+			switch(arg)
 			{
-				//Set mode to amazon mode
-				pc.setStatusValue("The Treatment",1,4);
-
-				//v1 = boobs 14 to 23 (Max HHH-Cup)
-				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,23);
-				else pc.setStatusValue("Treated",1,14 + rand(10));
-				//v2 = horn size
-				pc.setStatusValue("Treated",2,5 + rand(4));
-				//v3 cock bonus - if 0, don't grow a cock. 33% odds at time of this coding!
-				if(!pc.hasCock())
-				{
-					if(rand(3) == 0) pc.setStatusValue("Treated",3,2 + rand(5));
-					else pc.setStatusValue("Treated",3,0);
-				}
-				else pc.setStatusValue("Treated",3,2 + rand(5));
-				//v4 = is whether or not the amazon is milky - 50/50 odds.
-				pc.setStatusValue("Treated",4,rand(2));
-				//Set "Treated Amazon" to remember that the PC got a special proccy!
-				pc.createStatusEffect("Treated Amazon");
-			}
-			//chicks
-			else if(arg == 0)
-			{
-				//v1 = boobs 9 to 30
-				//v2 = horn size
-				//v3 lip bonus
-				//v4 = unused
-
-				//Sin gets max boobs
-				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
-				//Boobs from EE to JJ
-				else pc.setStatusValue("Treated",1,9 + rand(22));
-				//Horn size result - 1 to 3"
-				pc.setStatusValue("Treated",2,1 + rand(3));
-				//Lip Bonus 0-2
-				pc.setStatusValue("Treated",3,0 + rand(3));
-				//No balls.
-				pc.setStatusValue("Treated",4,0);
-				//Set mode to lady mode
-				pc.setStatusValue("The Treatment",1,0);
-				//Set rare proc to 0.
-				pc.setStatusValue("The Treatment",2,0);
-			}
-			//hermy autofellatio moos
-			else if(arg == 2)
-			{
-				//v1 = boobs 9 to 30
-				//v2 = horn size
-				//v3 lip bonus
-				//v4 = unused
-
-				//Sin gets max boobs
-				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
-				//Boobs from EE to JJ
-				else pc.setStatusValue("Treated",1,23 + rand(8));
-				//Horn size result - 1 to 3"
-				pc.setStatusValue("Treated",2,1 + rand(3));
-				//Lip Bonus 0-2
-				pc.setStatusValue("Treated",3,0 + rand(3));
-				//No balls.
-				pc.setStatusValue("Treated",4,0);
-				//Set mode to lady mode
-				pc.setStatusValue("The Treatment",1,2);
-				//Set rare proc to 0.
-				pc.setStatusValue("The Treatment",2,0);
-
-				pc.createStatusEffect("Cum-Cow");
-			}
-			else if(arg == 1)
-			{
-				//Set mode to man mode
-				pc.setStatusValue("The Treatment",1,1);
-				//Horn size result - 5 to 8"
-				pc.setStatusValue("Treated",2,5 + rand(4));
-				//9.4-12.5 ballRating (3-4").
-				pc.setStatusValue("Treated",4,9.4+(rand(32)/10));
-				//Cock Bonus 2-8
-				pc.setStatusValue("Treated",3,2 + rand(7));
-				if(pc.biggestCockLength() < 7) pc.setStatusValue("Treated",3,6);
-				if(pc.hasPerk("Hung")) pc.setStatusValue("Treated",3,8);
+				// Chicks
+				case 0:
+					// v1 = boobs 9 to 30
+					// Sin gets max boobs
+					if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
+					// Boobs from EE to JJ
+					else pc.setStatusValue("Treated",1,9 + rand(22));
+					// v2 = horn size
+					// Horn size result - 1 to 3"
+					pc.setStatusValue("Treated",2,1 + rand(3));
+					// v3 = lip bonus
+					// Lip Bonus 0-2
+					pc.setStatusValue("Treated",3,0 + rand(3));
+					// v4 = unused
+					// No balls.
+					pc.setStatusValue("Treated",4,0);
+					// Set rare proc to 0.
+					pc.setStatusValue("The Treatment",2,0);
+					break;
+				// Bulls
+				case 1:
+					// v1 = unused
+					pc.setStatusValue("Treated",1,0);
+					// v2 = Horn size result - 5 to 8"
+					pc.setStatusValue("Treated",2,5 + rand(4));
+					// v3 = Cock Bonus 2-8
+					pc.setStatusValue("Treated",3,2 + rand(7));
+					if(pc.biggestCockLength() < 7 && pc.statusEffectv3("Treated") < 6) pc.setStatusValue("Treated",3,6);
+					if(pc.hasPerk("Hung") && pc.statusEffectv3("Treated") < 8) pc.setStatusValue("Treated",3,8);
+					// v4 = 9.4-12.5 ballRating (3-4").
+					pc.setStatusValue("Treated",4,9.4+(rand(32)/10));
+					break;
+				// Cum-Cow - hermy autofellatio moos
+				case 2:
+					// v1 = boobs 9 to 30
+					// Sin gets max boobs
+					if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
+					// Boobs from EE to JJ
+					else pc.setStatusValue("Treated",1,23 + rand(8));
+					// v2 = horn size
+					// Horn size result - 1 to 3"
+					pc.setStatusValue("Treated",2,1 + rand(3));
+					// v3 = lip bonus
+					// Lip Bonus 0-2
+					pc.setStatusValue("Treated",3,0 + rand(3));
+					// v4 = unused
+					pc.setStatusValue("Treated",4,0);
+					// Set rare proc to 0.
+					pc.setStatusValue("The Treatment",2,0);
+					// Mark as Cum-cowed
+					pc.createStatusEffect("Cum-Cow");
+					break;
+				// Slamazon
+				case 4:
+					// v1 = boobs 14 to 23 (Max HHH-Cup)
+					if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,23);
+					else pc.setStatusValue("Treated",1,14 + rand(10));
+					// v2 = horn size
+					pc.setStatusValue("Treated",2,5 + rand(4));
+					// v3 = cock bonus - if 0, don't grow a cock. 33% odds at time of this coding!
+					if(!pc.hasCock())
+					{
+						if(rand(3) == 0) pc.setStatusValue("Treated",3,2 + rand(5));
+						else pc.setStatusValue("Treated",3,0);
+					}
+					else pc.setStatusValue("Treated",3,2 + rand(5));
+					// v4 = is whether or not the amazon is milky - 50/50 odds.
+					pc.setStatusValue("Treated",4,rand(2));
+					// Set "Treated Amazon" to remember that the PC got a special proccy!
+					pc.createStatusEffect("Treated Amazon");
+					break;
+				// Faux-Cow
+				case 7:
+					// v1 = Tallness max procs
+					pc.setStatusValue("Treated",1, 3 + rand(4)); // procs up to 6 times if below max tallness (70")
+					// v2 = Horn size result
+					pc.setStatusValue("Treated",2, 3 + rand(3)); // 3" to 5" horns
+					// v3 = Cock max procs
+					if(pc.hasPerk("Mini")) pc.setStatusValue("Treated",3, 6); // procs 6 times, or until no cock is more than 4"
+					else pc.setStatusValue("Treated",3, 3 + rand(4)); // procs up to 6 times, no size limit
+					// v4 = Ball size result
+					if(pc.hasPerk("Bulgy"))	pc.setStatusValue("Treated",4, 6 + rand(67)/10); // max 12.6 (4")
+					else pc.setStatusValue("Treated",4, 2 + rand(44)/10); // max 6.3 (2")
+					// Create status effect for possible future use
+					pc.createStatusEffect("Treated Faux Cow");
+					break;
 			}
 		}
 	}

@@ -455,7 +455,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 	output("Which cock would you like to wear " + item.description + " on?");
 	
 	var button:Number = 0;
-	for(x = 0; x < pc.cockTotal(); x++)
+	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
 		output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
 		if(!(pc.cocks[x].cocksock is EmptySlot)) output(" - <b>Wearing:</b> " + StringUtil.toDisplayCase(pc.cocks[x].cocksock.longName));
@@ -2155,7 +2155,8 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			if(pc.armor is GooArmor) gooArmorCheck();
 			if(pc.armor is Omnisuit) 
 			{
-				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
+				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.");
+				output("\n\n");
 				unequippedItems.push(new OmnisuitCollar());
 				pc.removeStatusEffect("Rubber Wrapped");
 			}
@@ -2178,6 +2179,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 			if(pc.accessory is SiegwulfeItem)
 			{
 				SiegwulfeUnequip();
+				output("\n\n");
 			}
 			unequippedItems.push(pc.accessory);
 			pc.accessory = new EmptySlot();
@@ -2251,7 +2253,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		SiegwulfeEquip();
 	}
 	// Power armor req
-	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	else if(!InCollection(arg.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
 		output("You are not strong enough to equip your " + arg.longName + "!");
 		removedItem = arg;

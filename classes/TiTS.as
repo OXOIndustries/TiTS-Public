@@ -157,6 +157,7 @@
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
+		include "../includes/follower/paigeGropazoo.as";
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeShower.as";
@@ -448,6 +449,7 @@
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/cherrysAppt.as";
 		include "../includes/zhengShiStation/coronaFlamer.as";
 		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
@@ -650,7 +652,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.280";
+			version = "0.7.281";
 
 			//temporary nonsense variables.
 			temp = 0;

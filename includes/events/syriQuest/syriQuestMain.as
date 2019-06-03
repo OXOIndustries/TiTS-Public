@@ -797,7 +797,7 @@ public function syriQuestHovercraftHangar():void {
 	output("\n\nA particularly muscular, bearded huskar is snapping orders between glances at a dataslate in his gold-furred hands. Must be the supervisor you were told about... and who you need to avoid for Syri’s half-baked plan to work.");
 	output("\n\nWondering how you let yourself be talked into this (and not for the first time), you duck out from behind Syri and into the shadows behind one of the containers waiting to go aboard.");
 	output("\n\nWhile you make yourself scarce, Syri saunters up to her super with a smile and a wag of her tail. <i>“Hey boss! What’s the good word?”</i>");
-	output("\n\n<i>“Syri, glad you could join us,”</i> the blonde huskar says, clapping her shoulder. <i>“Where’s our newest recruit? I though [pc.heShe]’d be joining us.”</i>");
+	output("\n\n<i>“Syri, glad you could join us,”</i> the blonde huskar says, clapping her shoulder. <i>“Where’s our newest recruit? I thought [pc.heShe]’d be joining us.”</i>");
 	output("\n\n<i>“Nah,”</i> Syri lies. <i>“[pc.HeShe]’s just taking a look around the facility before heading home. I think [pc.heShe] said [pc.heShe]’d like to start working at week’s start. Keep things simple on the payroll.”</i>");
 	output("\n\nThe supervisor laughs heartily. <i>“I like [pc.himHer] already! Alright, go help Auder move that fabricator aboard, eh?”</i>");
 	output("\n\nThe two move off towards the other side of the hangar, giving you a few moments with nobody looking to decide what you’re going to do about disappearing...");

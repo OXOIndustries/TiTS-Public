@@ -82,6 +82,8 @@ public function winVsZil():void {
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay);
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	//*Tailcock Peg Him
 	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);

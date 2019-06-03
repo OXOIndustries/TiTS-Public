@@ -66,6 +66,7 @@ package classes.Engine.Combat
 			if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
 		}*/
 		
+		// Failed/Miss
 		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
 		{
 			if(target is HandSoBot)
@@ -129,6 +130,7 @@ package classes.Engine.Combat
 				teaseSkillUp(teaseType);
 			}
 		}
+		// Success
 		else
 		{
 			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
@@ -221,12 +223,30 @@ package classes.Engine.Combat
 			
 			teaseSkillUp(teaseType);
 			
+			// Followups
 			if(target is MyrInfectedFemale && damage >= 10)
 			{
 				//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 				var stunDur:int = 1 + rand(2);
 				CombatAttacks.applyStun(target, stunDur);
 				CombatAttacks.applyLustStun(target, stunDur);
+			}
+			// if you successfully tease an enemy, they suffer a -10% hit-chance penalty for the rest of the battle.
+			if (attacker.hasPerk("Innocent Allure") && !target.isStaggered() && !target.isPlanted() && !target.isBlind())
+			{
+				if(attacker is PlayerCharacter)
+				{
+					if(rand(2) == 0) output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become a bit distracted after your display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
+					else output("\n\nYour display appears to have shaken the " + possessive(target.getCombatName()) + " resolve and impaired " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " aim; you can sense some hesitation in " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " very stance.");
+				}
+				else {
+					output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become distracted after " + possessive(attacker.getCombatName()) + " display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
+				}
+				
+				CombatAttacks.applyStagger(target, 3);
+				
+				if(target is PlayerCharacter) output(" <b>You are staggered by the tease!</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by the tease!</b>");
 			}
 		}
 		

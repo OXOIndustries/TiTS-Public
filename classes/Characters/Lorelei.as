@@ -91,8 +91,9 @@ package classes.Characters
 
 			this.createPerk("Riposte");
 			this.createPerk("Iron Will");
-			this.createPerk("Appearance Enabled");
 			this.createPerk("Custom Appearance");
+			this.createPerk("Appearance Enabled");
+			this.createStatusEffect("Disarm Immune");
 
 			this._isLoading = false;
 		}

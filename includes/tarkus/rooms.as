@@ -1644,7 +1644,6 @@ public function initTarkusRooms():void
 	rooms["364"] = new RoomClass(this);
 	rooms["364"].roomName = "CORE\nPLATFORM";
 	rooms["364"].description = "";
-	rooms["364"].runOnEnter = undefined;
 	rooms["364"].eastExit = "363";
 	rooms["364"].northExit = "356";
 	rooms["364"].planet = "PLANET: TARKUS";

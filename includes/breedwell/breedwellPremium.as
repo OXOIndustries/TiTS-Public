@@ -937,7 +937,7 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	pc.loadInMouth(ppRandom);
 	if (breedwellPremiumCanOrgasmGivingBJ()) pc.orgasm();
 	
-	if (pc.isTreatedFemale()) 
+	if (pc.isTreatedCow()) 
 	{
 		output("\n\n<i>“Actually, um, I am,”</i> you feel compelled to say. It’s the first thing you’ve said in many hours, and it’s responded to with more peals of laughter.");
 		output("\n\n<i>“These rahn ladies know who’s good for what job, at least!”</i>");

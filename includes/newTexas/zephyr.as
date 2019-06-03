@@ -273,25 +273,26 @@ public function mutualHandJobsWithZephyr():void
 	output("\n\nZephyr’s cheeks color, and not just from arousal. <i>“Yes,”</i> she hisses, suddenly jacking you off twice as fast, milking your dick with her palm.");
 	output("\n\nEven if you weren’t on the edge, you’d end up blowing soon with this kind of treatment. Worse yet, Zephyr obviously isn’t wearing a bra, and all the motion has her tits quaking so violently that you can’t help but watch. Her coat sprouts two dark stains where little tents have risen up, the only evidence of her nipples. You gasp, unable to withstand the erotic sight and high-powered handjob.");
 
+	var cumQ:Number = pc.cumQ();
 	//No cum
-	if(pc.cumQ() < 5)
+	if(cumQ < 5)
 	{
 		output("\n\nA few drops rolling onto the amazon’s fingers are all the evidence of your ecstasy that your body provides. Maybe you should give yourself a reset and build up some more.");
 	}
 	//Normal cum
-	else if(pc.cumQ() < 20)
+	else if(cumQ < 20)
 	{
 		output("\n\nYou squirt [pc.cum] ");
 		if(pc.isTaur()) output("all over her knees and the floor. Zephyr moans, tugging faster and harder, tugging you like intends to release every drop from its imprisonment in your [pc.balls].");
 		else output("up into the air fat bullets, raining them down across her still-stroking fingers. The [pc.cumColor] release is soon mixed up with frothing spit-and-pre lube. Your [pc.cock " + x + "] shines with the stuff.");
 	}
 	//Centaur big cum
-	else if(pc.cumQ() < 400 && pc.isTaur())
+	else if(cumQ < 400 && pc.isTaur())
 	{
 		output("\n\nYour [pc.cock " + x + "] gives a mightly lurch, dribbling fat bullets of [pc.cum] before erupting a thick rope of orgasmic relief. Again and again, your tauric shoots the [pc.cumVisc] goo over Zephyr’s knees as well as the floor. A puddle of your evidence collects between her feet, but she doesn’t seem to mind, tugging you until only the barest trickles of [pc.cum] remain.");
 	}
 	//Human big cum
-	else if(pc.cumQ() < 400) output("\n\nYour [pc.cock " + x + "] lurches in Zephyr’s grip, launching a rope of [pc.cum] so long that it’s still shooting out when the front spills across her knuckles. You buck against her, repeating the process again, thoroughly sliming her hands with your copious seed. She keeps going, mixing your [pc.cumNoun] in with the spit-and-pre until your [pc.cock " + x + "] shines with it. Neither of you pays much attention to the growing puddle beneath you.");
+	else if(cumQ < 400) output("\n\nYour [pc.cock " + x + "] lurches in Zephyr’s grip, launching a rope of [pc.cum] so long that it’s still shooting out when the front spills across her knuckles. You buck against her, repeating the process again, thoroughly sliming her hands with your copious seed. She keeps going, mixing your [pc.cumNoun] in with the spit-and-pre until your [pc.cock " + x + "] shines with it. Neither of you pays much attention to the growing puddle beneath you.");
 	//Centaur Huge cum
 	else if(pc.isTaur()) output("\n\nZephyr nearly lets go when she feels your urethra bulge between her fingers. To her credit, she holds on, giving herself a front-row seat to an incredibly messy climax. She gasps when the first rope shoots out, long and thick enough to fill a glass in seconds. The amazon recovers while your first lance splatters against the floor, grabbing your [pc.cock " + x + "] in both hands and milking it for all she’s worth, too excited to care that you’re splattering her knees or threatening to overwhelm the drain in the floor.");
 	//Human huge cum
@@ -299,17 +300,17 @@ public function mutualHandJobsWithZephyr():void
 	
 	//Merge
 	output("\n\nThe bright red phallus in your hand ");
-	if(pc.cumQ() < 40) output("easily outshines your meager attempt");
+	if(cumQ < 40) output("easily outshines your meager attempt");
 	else output("follows your example");
 	output(". Growing larger by the second, the amazon’s knot balloons up to its full size, almost three times as thick as her shaft. She spurts cum as soon as the bulge stops swelling. Her pearly streams emerge with surprisingly little force behind them, pouring over your hand like a waterfall of sexual release.");
 	output("\n\nIt’s difficult to maintain the rhythm while your own orgasm is winding down, but you do your best to give her knot affectionate squeezes, ensuring she’s pouring seed until her legs are dripping with it. Even the chair has gained white spots. It’d fit right in with the cow-girls here. And the floor? The drain gurgles noisily under ");
-	if(pc.cumQ() >= 20) output("your combined liquid loads");
+	if(cumQ >= 20) output("your combined liquid loads");
 	else output("the liquid load");
 	output(".");
 	
 	output("\n\nSpent, you both sag back, [pc.cumNoun]-soaked palms slipping from wilting genitals.");
 	output("\n\nZephyr wipes her hand clean with a rag");
-	if(!pc.isTaur() && pc.cumQ() >= 20) output(", turning to her carelessly creamed desk");
+	if(!pc.isTaur() && cumQ >= 20) output(", turning to her carelessly creamed desk");
 	output(". She seems a little irritated by the mess, but satisfied all the same.");
 	output("\n\n<i>“Not bad. Now get out. Thanks to you I have a bunch of cleaning to do before I can get any real work done.”</i> Zephyr gathers a dab of [pc.cumNoun] from your thigh and sucks it into her mouth, humming. <i>“You’re welcome to come back for more if you like.”</i>");
 	output("\n\nYou might have to do that.");
@@ -337,7 +338,7 @@ public function overDeskButtCatch():void
 	var fits:Boolean = false;
 	if(x < 0) { if(pc.analCapacity() >= 600) fits = true; }
 	else { if(pc.vaginalCapacity(x) >= 600) fits = true; }
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var cow:Boolean = (pc.isTreatedCow() || pc.isCumCow() || pc.isFauxCow() || pc.race().indexOf("cow") != -1);
 	var capacity:Number = (x >= 0 ? pc.vaginalCapacity() : pc.analCapacity());
 
 	output("You mention that she could bend you over the desk and take you right here.");
@@ -482,10 +483,10 @@ public function getFuckedByZephyrII(args:Array):void
 	else
 	{
 		output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation.");
-		if(pc.isTreated() && pc.isBro()) output(" How bulls like you wound up running this planet, I’ll never understand.");
-		else if(cow) output(" Cows like you really got the short end of the Treatment stick.");
-		else if(pc.isTreated() && pc.hasCock() && pc.femininity > 50 && !pc.isBro()) output(" You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
-		else if(pc.isTreated() && pc.femininity > 50 && !pc.isBimbo()) output(" You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
+		if(pc.isTreatedBull()) output(" How bulls like you wound up running this planet, I’ll never understand.");
+		else if(pc.isTreatedCow()) output(" Cows like you really got the short end of the Treatment stick.");
+		else if(pc.isFauxCow()) output(" You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
+		else if(pc.isAmazon(true)) output(" You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
 		else output(" Tourists like you just aren’t built for a proper Texan breeding.");
 		output(" Just take it and moan. No sense straining yourself.”</i>");
 	}
@@ -580,9 +581,10 @@ public function getFuckedByZephyrIV(args:Array):void
 	if(x >= 0 && pc.isSquirter()) output(" [pc.GirlCum] splatters her legs and the floor, squirting everywhere.");
 	if(pc.hasCock()) 
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" [pc.EachCock] jerks and shoots wildly");
-		if(pc.cumQ() >= 25) output(", painting this side of the desk with long, [pc.cumColor] ropes");
-		if(pc.cumQ() >= 300) output(". You even manage to make a decent-sized pool on the floor - something a well-placed drain is struggling to handle");
+		if(cumQ >= 25) output(", painting this side of the desk with long, [pc.cumColor] ropes");
+		if(cumQ >= 300) output(". You even manage to make a decent-sized pool on the floor - something a well-placed drain is struggling to handle");
 		output(".");
 	}
 	output("\n\nShe obliges you in spades, but not before her knot swells. It puffs up with astonishing rapidity, stretching your [pc.vagOrAss] until it seems that the whole of your being is pulled taut around it, little more than a cum-hungry condom for the cow-girl.");
@@ -1065,19 +1067,20 @@ public function getTailFuckedByZephyrSauce():void
 	if(pc.willpower()/2 + rand(20) + 1 >= 15)
 	{
 		output("\n\nUnfortunately, her harsh ministrations have the opposite effect on your sensitive body. As soon as she lets go to shove you out the door, you fall to your knees, moaning in the throes of a desperate orgasm.");
+		var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 		if(pc.hasCock() && !pc.isCrotchExposed())
 		{
 			output(" [pc.EachCock] ");
-			if(pc.cumQ() < 10) output("spurts a small load");
-			else if(pc.cumQ() < 500) output("fires a heavy load");
+			if(cumQ < 10) output("spurts a small load");
+			else if(cumQ < 500) output("fires a heavy load");
 			else output("unleashes a torrent of cum");
 			output(" beneath your garments as you shudder in ashamed delight, it dribbles out of your [pc.lowerGarments] and onto the thick, fur rug.");
 		}
 		else if(pc.hasCock())
 		{
 			output(" [pc.EachCock] ");
-			if(pc.cumQ() < 10) output("spurts a small load");
-			else if(pc.cumQ() < 500) output("fires a heavy load");
+			if(cumQ < 10) output("spurts a small load");
+			else if(cumQ < 500) output("fires a heavy load");
 			else output("unleashes a torrent of cum");
 			output(" up through the air as you shudder in ashamed delight. It spatters down onto the thick, fur rug.");
 		}
@@ -2249,7 +2252,7 @@ public function zephyrDoubleBetLoss():void
 	
 	output("\n\n<i>“Shut up,”</i> she hisses, staring red-faced and panting right into your wide-eyed visage. <i>“Nnngh! Spread those fucking thighs and keep that pussy tight!”</i>");
 	
-	output("\n\nThe way she talks down to you, <i>commands</i> you with her giant cock crammed all the way up your [pc.pussy " + vIdx + "]... you’re intoxicated. Drunk off watching this dominant shemale amazon plow you with the eagerness of an impassioned lover. Some dimly lit corner of your mind informs you that you’re cumming, but you don’t even really care - you just want <i>her</i> to cum, to see <i>her</i> to spread her lips in an O of pleasure. That would just be the absolute best. That doesn’t stop you from making the delighted, high-pitched moans of a slutty bitch being bred from behind Zephyr’s fingers, though.");
+	output("\n\nThe way she talks down to you, <i>commands</i> you with her giant cock crammed all the way up your [pc.pussy " + vIdx + "]... you’re intoxicated. Drunk off watching this dominant shemale amazon plow you with the eagerness of an impassioned lover. Some dimly lit corner of your mind informs you that you’re cumming, but you don’t even really care - you just want <i>her</i> to cum, to see <i>her</i> to spread her lips in an ‘O’ of pleasure. That would just be the absolute best. That doesn’t stop you from making the delighted, high-pitched moans of a slutty bitch being bred from behind Zephyr’s fingers, though.");
 	
 	output("\n\nSlowly, gradually, you come to realize your body has been acting alone while your mind was busy with watching Zephyr’s distractingly beautiful face. Your calves are securely wrapped around her lower back, accomplishing naught but letting her know you’re completely at her whim while she pounds your squirting pussy with reckless abandon. Your arms aren’t doing much what with the way she’s holding you down so she can get the best angle, but at the very least you’re free to marvel at the feel of her muscular forearms.");
 	
@@ -2784,7 +2787,7 @@ public function zephNurseryBJ():void
 	else output("\n\nY");
 	output("ou focus intently on what makes her groan the loudest, pressing at her lightly with your fingers even as you let your tongue loll from your mouth while she’s halfway down your throat, licking the underside of her cock and enjoying the feeling of her cumvein flexing against the contact. It feels almost as good for you as it does for her, just watching her facial expression every time you find a new spot to ply your tongue’s trade, until eventually you bring her to orgasm.");
 
-	output("\n\nWith a hand on her thigh, you can feel first hand how she flexes and makes tiny thrusts upwards as she groans in orgasm, the vast majority of her cum spilling from your lips down your [pc.breasts]. Zephyr’s so <i>erotic</i>, you think, feeling her fat, swollen cock throbbing between your lips even as you look at up her O face. Just watching her cum is enough to drive you crazy, your thighs wet with desire without ever being touched. You swallow down some cheek-swelling loads just to get some of her spunk inside you, and by the end of it she’s still standing proudly erect, a testament to her amazing virility.");
+	output("\n\nWith a hand on her thigh, you can feel first hand how she flexes and makes tiny thrusts upwards as she groans in orgasm, the vast majority of her cum spilling from your lips down your [pc.breasts]. Zephyr’s so <i>erotic</i>, you think, feeling her fat, swollen cock throbbing between your lips even as you look at up her ‘O’ face. Just watching her cum is enough to drive you crazy, your thighs wet with desire without ever being touched. You swallow down some cheek-swelling loads just to get some of her spunk inside you, and by the end of it she’s still standing proudly erect, a testament to her amazing virility.");
 
 	output("\n\n<i>“Mmmm, keep going,”</i> Zephyr sighs, smiling lovingly down at you. <i>“I haven’t had anywhere near enough of that pretty little mouth of yours, [pc.name].”</i>");
 

@@ -60,20 +60,8 @@ public function drBadgerMenu():void
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
 	
-	if(flags["NYM-FOE"] >= 3 && flags["NYM-FOE_DISASSEMBLED"] != undefined)
-	{
-		if(flags["NYM-FOE_REPAIR_QUEST"] == 1)
-		{
-			if(pc.hasItemByClass(SexbotChip, 6)) addButton(3,"Fix NymFoe",drBadgerLabNymFoe,"badger chip","Fix Nym-Foe","Turn in the sexbot VI chips to repair the Nym-Foe.");
-			else addDisabledButton(3,"Fix NymFoe","Fix Nym-Foe","You need at least 6 sexbot VI chips in order to repair the Nym-Foe.");
-		}
-		else addButton(3,"Fix NymFoe?",drBadgerLabNymFoe,"badger fix","Fix Nym-Foe?","Ask Doctor Badger about repairing the Nym-Foe.");
-	}
-	if(silly && flags["NYM-FOE"] >= 3 && (flags["NYM-FOE_SILICONE_BOOSTS"] != undefined || flags["NYM-FOE_ACTIVATED"] != undefined || flags["NYM-FOE_FUCKED"] != undefined))
-	{
-		if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == undefined) addButton(8,"Buy NymFoe?",drBadgerLabNymFoe,"badger buy","Buy Nym-Foe?","Request to buy the modded nurse bot.");
-		else if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == 0) addButton(8,"Take Pillow",drBadgerLabNymFoe,"pillow take","Take the Nym-Foe Body Pillow","Procure the perverted pillow.");
-	}
+	drBadgerFixNymFoeButton(3);
+	drBadgerBuyNymFoeButton(8);
 	
 	if(flags["MET_DR_BADGER"] != undefined)
 	{

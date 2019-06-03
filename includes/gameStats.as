@@ -2643,10 +2643,11 @@ public function displayQuestLog(showID:String = "All"):void
 						case 0: output2(" Cow"); break;
 						case 1: output2(" Stud"); break;
 						case 2: output2(" Cum-Cow"); break;
-						case 3: output2(" Faux-Cow"); break;
+						case 3: output2(" Cow Stud"); break;
 						case 4: output2(" Cow-mazon"); break;
 						case 5: output2(" Double Stud"); break;
 						case 6: output2(" Undersized"); break;
+						case 7: output2(" Faux-Cow"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					// Timer stuff
@@ -3092,7 +3093,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
-				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE"] >= 2) output2(", Defeated her");
 				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
 				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
 				if(flags["NYM-FOE_ACTIVATED"] != undefined) output2(", On patrol");

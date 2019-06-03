@@ -115,7 +115,7 @@ package classes.Characters
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 
-			createStatusEffect("Disarm Immune");
+			//createStatusEffect("Disarm Immune");
 			
 			createPerk("Appearance Enabled");
 
@@ -144,7 +144,7 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
-			if (rand(6) == 0) doggoThrowsYouAnExplosiveBone(target);
+			if (rand(6) == 0 || hasStatusEffect("Disarmed")) doggoThrowsYouAnExplosiveBone(target);
 			else if (rand(5) == 0) fireBitchGoesOffEarly(target);
 			else if (rand(2) == 0 && !hasStatusEffect("Blue Fire Cooldown")) theBlueFlamesAreLuckier(target);
 			else setSomeBitchesOnFire(hostileCreatures);
