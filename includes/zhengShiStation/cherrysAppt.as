@@ -320,7 +320,7 @@ public function fuckCherryExclamationPointo():void
 
 	var fits:Boolean = (pc.cockThatFits(cherryCapacity()) >= 0);
 	//[Lift] [Row] [Bench]
-	if(pc.physique() < 20) 
+	if(pc.physique() >= 20) 
 	{
 		if(fits) addButton(0,"Lift&Fuck",cockSelect,[liftFuckDatRedgoo,cherryCapacity(),false,0],"Lift & Fuck","Hold Cherry in your arms and fuck her pussy. Requires moderate strength.");
 		else addDisabledButton(0,"Lift&Fuck","Lift & Fuck","Stretchy as she is, even Cherry has limits to how much phallus she can survive.");
