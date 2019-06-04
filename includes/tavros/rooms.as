@@ -702,6 +702,7 @@ public function initTavrosRooms():void
 	rooms["RES DECK BIG TIDDY GOTH GF"].northExit = "RESIDENTIAL DECK 11";
 	rooms["RES DECK BIG TIDDY GOTH GF"].moveMinutes = 1;
 	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.INDOOR);
+	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.NPC);
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);

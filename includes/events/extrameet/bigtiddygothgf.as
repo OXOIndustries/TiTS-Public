@@ -864,6 +864,7 @@ public function bigTiddyGothGFFuckHer():void
 
 	currentLocation = "RESIDENTIAL DECK 11";
 	flags["BIGTIDDYGOTHGF_LOCKOUT"] = GetGameTimestamp() + 480;
+	IncrementFlag("BIGTIDDYGOTHGF_SEX");
 	IncrementFlag("BIGTIDDYGOTHGF_CUNTFUCKED");
 
 	clearMenu();
@@ -940,6 +941,8 @@ public function bigTiddyGothGFEatHerOut():void
 
 	currentLocation = "RESIDENTIAL DECK 11";
 	flags["BIGTIDDYGOTHGF_LOCKOUT"] = GetGameTimestamp() + 480;
+	IncrementFlag("BIGTIDDYGOTHGF_ATECUNT");
+	IncrementFlag("BIGTIDDYGOTHGF_SEX");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1004,6 +1007,7 @@ public function bigTiddyGothGFAssFuck():void
 
 	currentLocation = "RESIDENTIAL DECK 11";
 	flags["BIGTIDDYGOTHGF_LOCKOUT"] = GetGameTimestamp() + 480;
+	IncrementFlag("BIGTIDDYGOTHGF_SEX");
 	IncrementFlag("BIGTIDDYGOTHGF_ASSFUCKED");
 
 	clearMenu();
@@ -1139,6 +1143,7 @@ public function bigTiddyGothGFSexNecklaceYou():void
 	processTime(1440);
 	pc.orgasm();
 	pc.applyCumSoaked();
+	IncrementFlag("BIGTIDDYGOTHGF_SEX");
 
 	pc.taint(5);
 	pc.libido(2);
@@ -1246,6 +1251,7 @@ public function bigTiddyGothGFSexNecklaceHer():void
 	processTime(1440);
 	pc.orgasm();
 	pc.applyCumSoaked();
+	IncrementFlag("BIGTIDDYGOTHGF_SEX");
 
 	pc.taint(5);
 	pc.libido(2);

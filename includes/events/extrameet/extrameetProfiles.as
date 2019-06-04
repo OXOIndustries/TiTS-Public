@@ -68,7 +68,7 @@ public function extrameetBigTiddyGothGFDateOutro():void
 	output("\n\nA sudden sensation rocks you, a feeling like you were traveling a hundred miles an hour and just stopped on a dime, rattling your brain.");
 	output("\n\n<i>“Are you fucking serious?!”</i> The Servant stands up with a start, nearly knocking her chair over. <i>“We fucking went over this shit. No. Fucking. Date rape. Fuck.”</i>");
 	output("\n\nCollecting yourself, you barely register the woman’s words. Is she talking to you? Instinctively, you look around. A few patrons are staring at the two of you, more than a few whispering among themselves.");
-	output("\n\nThe Servant seems to notice this as well, cursing loudly. <i>“Fucking, damn it.”</i> She looks down at you, her hand still clamped over her chest. <i>“I’m sorry. I thought I could control...”</i> she trials off, glancing back around the room. <i>“I have an apartment up on the residential deck. Come by and I promise it’ll be worth your while.”</i>");
+	output("\n\nThe Servant seems to notice this as well, cursing loudly. <i>“Fucking, damn it.”</i> She looks down at you, her hand still clamped over her chest. <i>“I’m sorry. I thought I could control...”</i> she trials off, glancing back around the room. <i>“I have an apartment up on the residential deck, over on the east side. Come by and I promise it’ll be worth your while.”</i>");
 	output("\n\nBefore you can stop her, she turns on her heel and power walks away, cursing under her breath at somebody unseen.");
 	output("\n\nGasping for air, you try to settle down, feeling as if you’re halfway to cumming right there and then. What the fuck was that all about?");
 

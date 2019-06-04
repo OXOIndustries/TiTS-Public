@@ -87,6 +87,7 @@ public function playFynsDoorScene():Boolean
 		if (flags["BIGTIDDYGOTHGF_LOCKOUT"] != undefined && flags["BIGTIDDYGOTHGF_LOCKOUT"] > GetGameTimestamp())
 		{
 			output("\n\nYou are standing next to The Servant’s apartment. She’s surely home, and almost certainly awake but something is stilling your hand from knocking on her door... maybe tomorrow.");
+			addDisabledButton(1, "S. Knock", "South Door Knock", "Something is stilling your hand from knocking on her door... maybe tomorrow.");
 		}
 		else
 		{
@@ -1775,4 +1776,4 @@ public function leaveChristmasBehind():void
 	output("\n\nYou feel his eyes rove appreciatively over your backside.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-}
+}
