@@ -277,6 +277,7 @@
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
 		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/bizzy.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";

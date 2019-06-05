@@ -133,7 +133,7 @@ public function bizzyApartmentHandler(btnSlot:int):void
 	}
 	else if (GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
 	{
-		output(" Bizzy's probably a bit busy still in the wake of your entrepreneurship.").
+		output(" Bizzy's probably a bit busy still in the wake of your entrepreneurship.");
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
 		return;
 	}
@@ -228,7 +228,7 @@ public function bizzySexMenu():void
 	var btnSlot:int = 0;
 
 	if (pc.lust() >= 33 && pc.hasCock()) addButton(btnSlot, "Vaginal", bizzySexVaginal, undefined, "Vaginal", "Bend her over the couch.");
-	else if (pc.lust() < 33) addButton(btnSlot, "Vaginal", "Vaginal", "You're not turned on enough for this.")
+	else if (pc.lust() < 33) addDisabledButton(btnSlot, "Vaginal", "Vaginal", "You're not turned on enough for this.")
 	else addDisabledButton(btnSlot, "Vaginal", "Vaginal", "You need a cock to give her a good seeing to.");
 
 	btnSlot++;
@@ -273,7 +273,8 @@ public function bizzySexMenu():void
 	{
 		if (pc.hasCock() && pc.lust() >= 33) addButton(btnSlot, "Titfuck", bizzyTittyFuck, undefined, "Tittyfuck", "Use her new anatomy in the best way possible.");
 		else if (pc.lust() < 33) addDisabledButton(btnSlot, "Titfuck", "Tittyfuck", "You're not turned on enough for this.");
-		else addDisabledButton(btnSlot, "Titfuck", "Tittyfuck", "You need a cock to slide between her succulent tits.")
+		else addDisabledButton(btnSlot, "Titfuck", "Tittyfuck", "You need a cock to slide between her succulent tits.");
+	}
 
 	addButton(14, "Back", bizzyMenu);
 }
@@ -499,7 +500,7 @@ public function bizzyBoobyRubs():void
 	}
 	else 
 	{
-		if ((flags["BIZZY_PORN_STUDIO"] == 3)
+		if (flags["BIZZY_PORN_STUDIO"] == 3)
 		{
 			if (pc.biggestTitSize() < 5)
 			{
@@ -937,10 +938,12 @@ public function bizzyStage4Menu():void
 	addButton(3, "Breasts", bizzyStage4Breasts, undefined, "Breasts", "The most important subject of all.");
 	addButton(4, "Sex", bizzySexMenu);
 
+	/*
 	if (flags["BIZZY_SHOW_PLAN"] != undefined && flags["BIZZY_SHOW_PLAN"] == 1)
 	{
 		addButton(5, "Plan?", bizzyStage4TalkPlan, undefined "Plan?", "She seems to have ideas about how to make her show even more popular. Ambitious ones.");
 	}
+	*/
 }
 
 public function bizzyStage4TalkPlan():void
@@ -1038,11 +1041,11 @@ public function bizzyStage4PlanYeahIII():void
 	addButton(0, "Next", bizzyStage4PlanYeahIV);
 }
 
-public function bizzyStage4PleanYeahIV():void
+public function bizzyStage4PlanYeahIV():void
 {
 	if (userInterface.textInput.text == "")
 	{
-		bizzyStage4PleanYeahIII();
+		bizzyStage4PlanYeahIII();
 		output("<b>You must input a name.</b>");
 		return;
 	}
@@ -1219,7 +1222,6 @@ public function bizzyStage4Appearance():void
 	addDisabledButton(0, "Appearance");
 }
 
-/* Stage 3 */
 public function bizzyStage3():void
 {
 	clearOutput();
@@ -1337,10 +1339,10 @@ public function bizzyStage3GiveItem():void
 	pc.destroyItemByClass(Tittyblossom, 3);
 
 	clearMenu();
-	addButton(0, "Next", bizzyStage3GiveItem)
+	addButton(0, "Next", bizzyStage3GiveItemGo)
 }
 
-public function bizzyStage3GiveItem():void
+public function bizzyStage3GiveItemGo():void
 {
 	clearOutput();
 	showBizzyBust(true);
@@ -1445,7 +1447,6 @@ public function bizzyStage3Appearance():void
 	addDisabledButton(0, "Appearance");
 }
 
-/* Stage 2 */
 public function bizzyStage2():void
 {
 	clearOutput();
@@ -1641,7 +1642,6 @@ public function bizzyStage2Apperance():void
 	bizzyStage2Menu();
 }
 
-/* Stage 1 */
 public function bizzyStage1():void
 {
 	clearOutput();
@@ -1722,7 +1722,7 @@ public function bizzyStage1Breasts():void
 
 	addButton(0, "Fondle", bizzyStage1Fondle, undefined, "Fondle", "It's your property, after all.");
 
-	var PotentialMods:Array = [NaleenNip, ZilRation, Amazona, Bovinium, Gush, HuskarTreats, AusarTreats, Pandaneen, PandaPro, SirensBounty, UthraPlus, Clippex, Foxfire, OvirAce, GoldPill, OrangePill, Capraphorm, Catnip, DracoGuard, Holstaria, Illumorphene];
+	var potentialMods:Array = [NaleenNip, ZilRation, Amazona, Bovinium, Gush, HuskarTreats, AusarTreats, Pandaneen, PandaPro, SirensBounty, UthraPlus, Clippex, Foxfire, OvirAce, GoldPill, OrangePill, Capraphorm, Catnip, DracoGuard, Holstaria, Illumorphene];
 
 	var foundItem:Class = null;
 
@@ -1732,11 +1732,11 @@ public function bizzyStage1Breasts():void
 	}
 	else
 	{
-		for (var i:int = 0; i < PotentialMods.length; i++)
+		for (var i:int = 0; i < potentialMods.length; i++)
 		{
-			if (pc.hasItemByClass(PotentialMods[i]))
+			if (pc.hasItemByClass(potentialMods[i]))
 			{
-				foundItem = PotentialMods[i];
+				foundItem = potentialMods[i];
 				i = potentialMods.length; // Abort loop, already know we found a thing
 			}
 		}
@@ -1789,7 +1789,7 @@ public function bizzyBreastsGiveItemStage1(foundItem:Class):void
 		pc.lust(33);
 
 		clearMenu();
-		addButton(0, "Next", bizzyBreastsGiveItemII);
+		addButton(0, "Next", bizzyBreastsGiveItemStage1II);
 
 	}
 	else
@@ -1870,7 +1870,6 @@ public function bizzyStage1Fondle():void
 	addDisabledButton(0, "Fondle");
 }
 
-/* Meeting Bizzy for the first time */
 public function bizzyFirstTimeMeeting():void
 {
 	clearOutput();
@@ -1883,10 +1882,10 @@ public function bizzyFirstTimeMeeting():void
 	processTime(2);
 
 	clearMenu();
-	addButton(0, "Next", bizzyFirstTimeII);
+	addButton(0, "Next", bizzyFirstTimeMeetingII);
 }
 
-public function bizzyFirstTimeMeeting():void
+public function bizzyFirstTimeMeetingII():void
 {
 	clearOutput();
 	showBizzyBust();
@@ -1959,7 +1958,7 @@ public function bizzyFirstTimeMenu(opts:Object = null):void
 	if (opts == null) opts = new Object();
 
 	clearMenu();
-	addButton(0, "Appearance", bizzyFirstTimeAppearance, opts);
+	addButton(0, "Appearance", bizzyAppearance, opts);
 	addButton(1, "How Much", bizzyHowMuchDebt, opts, "How Much?", "How much debt does she have?");
 	addButton(2, "Talent", bizzyTalent, opts, "Talent", "There’s more to being a camwhore than having giant knockers. Is this stuttering, nervous little thing really cut out for it?");
 
@@ -1975,7 +1974,7 @@ public function bizzyFirstTimeMenu(opts:Object = null):void
 
 	if (opts.showPleaseMe != undefined)
 	{
-		if (opts.hidePleaseMe != undefined) addButton(3, "Please Me", "Please Me", "She's already given you a good showing of her talents!");
+		if (opts.hidePleaseMe != undefined) addDisabledButton(3, "Please Me", "Please Me", "She's already given you a good showing of her talents!");
 		else addButton(3, "Please Me", bizzyFirstTimePleaseMe, opts, "Please Me", "Call it a job interview.");
 	}
 }
@@ -2001,7 +2000,7 @@ public function bizzyAppearance(opts:Object = null):void
 	}
 	else
 	{
-		bizzyMainMenu();
+		bizzyMenu();
 	}
 }
 
@@ -2036,7 +2035,7 @@ public function bizzyDebtJustPay(opts:Object):void
 	processTime(3);
 
 	opts.hideJustPay = true;
-	bizzyFirstTimeMenu(payOpt);
+	bizzyFirstTimeMenu(opts);
 }
 
 public function bizzyTalent(opts:Object):void
