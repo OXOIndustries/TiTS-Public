@@ -347,7 +347,7 @@ public function buskySex(): void {
 
 	//guys, or masculine chars	
 	} else {
-		output("<i>“Oh so you wanna take me out for a ride, eh? What do you have in mind,”</i> he leans over the counter, beginning to list off sexual exploits. <i>“I’d be more than happy to pump you full of cum, of course I could always get on my knees and go from there. Or maybe you’d like to stuff me up like a cow. Honestly, I’m down for everything.”</i>");
+		output("<i>“Oh, so you wanna take me out for a ride, eh? What do you have in mind,”</i> he leans over the counter, beginning to list off sexual exploits. <i>“I’d be more than happy to pump you full of cum, of course I could always get on my knees and go from there. Or maybe you’d like to stuff me up like a cow. Honestly, I’m down for everything.”</i>");
 		output("\n\nYour head swims with thoughts of what to do...");
 		
 		buskySexNavigation();

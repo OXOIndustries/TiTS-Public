@@ -698,6 +698,7 @@ public function applyHairColor(arg:String = "black"):void {
 public function applyGryvainColor(col:String = "black"):void
 {
 	pc.hairColor = col;
+	pc.furColor = col;
 	pc.scaleColor = col;
 	if (pc.cocks.length > 0) pc.cocks[0].cockColor = col;
 	if (pc.vaginas.length > 0) pc.vaginas[0].vaginaColor = col;
