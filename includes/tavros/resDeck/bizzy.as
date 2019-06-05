@@ -1002,7 +1002,7 @@ public function bizzyStage4TalkPlan():void
 	processTime(5+rand(5));
 
 	clearMenu();
-	if (pc.credits < 200000) addDisabledButton(0, "Hell Yeah", "Hellh Yeah", "You’ll need 200,000 credits in order to take this step.");
+	if (pc.credits < 200000) addDisabledButton(0, "Hell Yeah", "Hell Yeah", "You’ll need 200,000 credits in order to take this step.");
 	else addButton(0, "Hell Yeah", bizzyStage4PlanYeah, undefined, "Hell Yeah", "Your own porn studio starring your pet camwhore? This is the stuff dreams are made of!");
 	addButton(1, "Think First", bizzyStage4PlanThink, undefined, "Think About it First", "200K bones is a lot. Enough to maybe step back and think about this before committing.");
 }
@@ -1693,6 +1693,7 @@ public function bizzyStage2Apperance():void
 	}
 
 	bizzyStage2Menu();
+	addDisabledButton(0, "Appearance");
 }
 
 public function bizzyStage1():void
@@ -2066,6 +2067,7 @@ public function bizzyAppearance(opts:Object = null):void
 	else
 	{
 		bizzyMenu();
+		addDisabledButton(0, "Appearance");
 	}
 }
 

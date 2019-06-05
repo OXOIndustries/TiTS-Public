@@ -790,7 +790,7 @@ public function siegwulfeExpansionIntro():void
 	output("\n\nWhatever Dr. Badger’s going to do, you have a feeling [wulfe.name] will return to you completely different...");
 	output("\n\n<b>Warning: This will be an irreversible change. Save your game first and revisit her if you want to go through with it.</b>");
 	flags["DR_BADGER_APPROACHES_TILL_WULFE"] = 2;
-	addButton(0, "Do it", siegwulfeInstallDonger);
+	addButton(0, "Do It", siegwulfeInstallDonger);
 	addButton(1, "No", function ():void
 	{
 		clearMenu();
