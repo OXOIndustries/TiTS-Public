@@ -122,16 +122,25 @@ public function bizzyApartmentHandler(btnSlot:int):void
 		return;
 	}
 
-	if (flags["BIZZY_PORN_STUDIO"] == undefined)
+	if (pc.credits < 40000 && flags["BIZZY_FIRST_TIME_MEET"] == undefined)
 	{
-		output(" You could go see how Bizzy’s doing.");
+		output(" You get the impression whoever sent the message assumed you had plenty of cash ready to go. Perhaps it would be wise to return when that was actually the case...");
+		
+		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
+		return;
+	}
+	
+	if (flags["BIZZY_FIRST_TIME_MEET"] == undefined)
+	{
+		output(" You could go see about what this 'Bizzy' has in mind.");
 	}
 	else if (flags["BIZZY_PORN_STUDIO"] == -1)
 	{
 		output(" You should probably avoid Bizzy after turning her down.");
+		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You should probably avoid Bizzy after turning her down.");
 		return;
 	}
-	else if (GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+	else if ((flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] < 5) && GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
 	{
 		output(" Bizzy's probably a bit busy still in the wake of your entrepreneurship.");
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
@@ -161,11 +170,7 @@ public function bizzyApartmentHandler(btnSlot:int):void
 		output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
 	}
 
-	if (pc.credits < 40000 && flags["BIZZY_PORN_STUDIO"] == undefined)
-	{
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
-		return;
-	}
+
 
 	addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Knock on Bizzy's door.");
 }
@@ -1880,6 +1885,7 @@ public function bizzyFirstTimeMeeting():void
 	output("\n\n<i>“Hello-? Oh. Oh my word.”</i> The petite kaithrit that answers the door actually starts slightly when she sees you. She stares with wide green eyes for a long, awestruck moment. <i>“I really didn’t think you’d answer that email. Nobody else I sent even... uh... I’m Bezeneria. But please don’t call me that. It’s Bizzy. What am I doing? P-please come inside, [pc.Mr] Steele.”</i>");
 
 	processTime(2);
+	flags["BIZZY_FIRST_TIME_MEET"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", bizzyFirstTimeMeetingII);
