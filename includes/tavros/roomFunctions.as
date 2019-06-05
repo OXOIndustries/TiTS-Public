@@ -311,8 +311,9 @@ public function northEastPlazaBonus():void
 
 public function northWalkwayBonus():void
 {
+	bizzyApartmentHandler(1);
 	fisiannaApartmentHandler(0);
-	kaseApartmentHandler(1);
+	kaseApartmentHandler(2);
 }
 public function resDeck17Func():void
 {

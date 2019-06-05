@@ -4035,6 +4035,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processBoredJumperPregEvents(deltaT, doOut, totalDays);
 		processCasinoEvents();
 		processRoxyPregEvents(deltaT, doOut, totalDays);
+		processBizzyCamgirlPayments(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
@@ -4063,6 +4064,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
+		{
+			goMailGet("bizzy_camgirl_initiate");
+		}
+
+		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
+		{
+			goMailGet("bizzy_camgirl_profits");
+		}
+
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{
