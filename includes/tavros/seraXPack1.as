@@ -3171,7 +3171,7 @@ public function seraMilkings(arg:Array):void
 					// Lust reset, Milk reset
 					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 					else pc.loadInAss(chars["SERA"]);
-					pc.milked();
+					pc.milked(100);
 					for(cums = 0; cums < 5; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					
@@ -3192,7 +3192,7 @@ public function seraMilkings(arg:Array):void
 					// Lust reset, Milk reset
 					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 					else pc.loadInAss(chars["SERA"]);
-					pc.milked();
+					pc.milked(100);
 					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					
@@ -3226,7 +3226,7 @@ public function seraMilkings(arg:Array):void
 					// Lust reset, Milk reset
 					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 					else pc.loadInAss(chars["SERA"]);
-					pc.milked();
+					pc.milked(100);
 					for(cums = 0; cums < 12; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					
@@ -3279,7 +3279,7 @@ public function seraMilkings(arg:Array):void
 					// Lust reset, Milk reset
 					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 					else pc.loadInAss(chars["SERA"]);
-					pc.milked();
+					pc.milked(100);
 					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					

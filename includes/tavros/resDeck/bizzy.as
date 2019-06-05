@@ -486,7 +486,7 @@ public function bizzyBoobyRubs():void
 		output("\n\n<i>“Maybe I’ll rub some of my magic into you, hmm?”</i> you say, in a sultry voice. Mmm... pleasure is spreading over your boobies, warmth that blooms deep into your softness");
 		if (pc.canLactate())
 		{
-			output(" and makes you drip[pc.milk] from your teats, moistening Bizzy’s own front, letting you spread the [pc.milkColor] across her with the paintbrush of your [pc.skin]");
+			output(" and makes you drip [pc.milk] from your teats, moistening Bizzy’s own front, letting you spread the [pc.milkColor] across her with the paintbrush of your [pc.skin]");
 		}
 		output(". <i>“Maybe if you’re really good, and want it hard enough... and be extra slutty on camera for Momma Steele... you’ll grow breasts that are even bigger.”</i>");
 		
@@ -554,7 +554,7 @@ public function bizzyBoobyRubs():void
 		output("\n\nHer confidence, and sexuality, has ballooned in step with her breasts; you can hardly believe the shy kaithrit waif you once knew is this buxom strumpet beneath you, doing her best to tease and provoke you.");
 		
 		output("\n\nStill, you can get inside her head. Your response is to smile knowingly and move your [pc.chest] over hers, spreading tactile pleasure over your boobies, warmth that blooms deep into your softness");
-		if (pc.isLactating()) output(" and makes you drip[pc.milk] from your teats, moistening Bizzy’s own front, letting you spread the [pc.milkColor] across her with the paintbrush of your [pc.skin]");
+		if (pc.isLactating()) output(" and makes you drip [pc.milk] from your teats, moistening Bizzy’s own front, letting you spread the [pc.milkColor] across her with the paintbrush of your [pc.skin]");
 		output(".");
 		
 		output("\n\nBizzy’s pupils dilate as you do it, her lush lips parting. Her tits are so sensitive despite their largeness, and you know how much she enjoys you pleasuring them. You finger her as your [pc.nipples] pass over her own large, thick teats, miring your fingers deep into her soaked tunnel, and you murmur that you love hearing her meow, but she must always remember who owns her ass, and who gave her those wonderful big titties, and how important it is she’s good and obedient and works hard. Good, obedient sluts get treats, like... this.");
@@ -587,13 +587,13 @@ public function bizzySexOral(isVag:Boolean):void
 		output("\n\n<i>“I’m good at a lot of things, [pc.Mr]. Steele,”</i> the kaithrit murmurs, emerald eyes flicking down to your crotch. <i>“You’re gonna have to be more specific.”</i>");
 		
 		output("\n\nAbout thirty seconds later you’re leaning back into the couch");
-		if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened,");
+		if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened,");
 		output(" a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
 		
-		output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and ‘mmm’s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
-		if (pc.biggestCockLength() <= 12 || flags["BIZZY_PORN_STUDIO"] >= 4) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot,veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
+		output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
+		if (pc.biggestCockLength() >= 12 || flags["BIZZY_PORN_STUDIO"] >= 4) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot, veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
 		
-		output("\n\nShe takes you nice and deep, little ‘ulp’ sounds leaving her opened lips as");
+		output("\n\nShe takes you nice and deep, little <i>‘ulp’</i> sounds leaving her opened lips as");
 		if (pc.biggestCockLength() <= 12) output(" all");
 		else output(" a good portion");
 		output(" of your [pc.cock] is kneaded by hot, silky mouth.");
@@ -628,7 +628,7 @@ public function bizzySexOral(isVag:Boolean):void
 		if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened,");
 		output(" a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
 		
-		output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and ‘mmm’s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
+		output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 		if (pc.totalClits() > 1) output(" She doesn’t seem fazed by your exotic arrangement of pleasure buds, and gives plenty of wet, lapping attention to all of them, sending sheerest ecstasy throbbing through your groin.");
 		
 		output("\n\nShe goes into your tunnel nice and deep, pretty lips mashing against your soaked labia as she laps and flicks at your inner walls with her flat, rough tongue. Good girl! It seems completely natural to reward her with a scritch behind one of those pointy ears, which sends a purr trembling right through you.");
@@ -849,7 +849,7 @@ public function bizzyStage5Camshow():void
 	
 	output("\n\n<i>“I just came in you see and Bizzy - being the kind of girl she is - couldn’t help herself. Could you, girl?”</i>");
 	
-	output("\n\nThere’s a slurp and a ‘mmm’. The camera crests over Bizzy’s big, pale backside, in the air");
+	output("\n\nThere’s a slurp and a <i>‘mmm’</i>. The camera crests over Bizzy’s big, pale backside, in the air");
 	if (bizzySlaveTat()) output(" with your tattoo wonderfully prominent");
 	output(", her white-haired head bobbing busily over Kanette’s crotch.");
 	
@@ -1420,7 +1420,7 @@ public function bizzyStage3Leave():void
 	
 	output("\n\nThe transformation you have wrought are clearly not just confined to her body. This is an entirely different kaithrit talking to the one that once opened her door to you and practically wet herself. You find yourself shaking your head in bemusement as you make your way back out of Bizzy’s apartment.");
 
-	currentLocation = "RESIDENTIAL DECK 13"
+	currentLocation = "RESIDENTIAL DECK 13";
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1627,7 +1627,7 @@ public function bizzyBreastsGiveItemStage2Leave():void
 
 	processTime(3+rand(3));
 
-	currentLocation = "RESIDENTIAL DECK 13"
+	currentLocation = "RESIDENTIAL DECK 13";
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1909,7 +1909,7 @@ public function bizzyStage1GiveLeave():void
 
 	processTime(3+rand(3));
 
-	currentLocation = "RESIDENTIAL DECK 13"
+	currentLocation = "RESIDENTIAL DECK 13";
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2039,6 +2039,7 @@ public function bizzyFirstTimeMenu(opts:Object = null):void
 	if (opts.showPleaseMe != undefined)
 	{
 		if (opts.hidePleaseMe != undefined) addDisabledButton(3, "Please Me", "Please Me", "She’s already given you a good showing of her talents!");
+		else if (!pc.hasGenitals()) addDisabledButton(3, "Please Me", "Please Me", "You require genitals for this!");
 		else addButton(3, "Please Me", bizzyFirstTimePleaseMe, opts, "Please Me", "Call it a job interview.");
 	}
 }
@@ -2109,7 +2110,7 @@ public function bizzyTalent(opts:Object):void
 
 	if (pc.isNice() || pc.isMisc()) output("As kindly as possible, you");
 	else output("Time for some hard truths. You");
-	output(" tell her you aren’t convinced this is a worthwhile endeavour. How do you know she’s cut out for porn?");
+	output(" tell her you aren’t convinced this is a worthwhile endeavor. How do you know she’s cut out for porn?");
 
 	output("\n\n<i>“Ok. So - first of all -”</i> Bizzy gets to her feet, points her thumbs behind her. <i>“Great ass. There’s no denying that, is there?”</i>");
 
@@ -2132,7 +2133,7 @@ public function bizzyFirstTimePleaseMe(opts:Object):void
 	clearOutput();
 	showBizzyBust();
 
-	output("\n\nWatching the cat-girl bounce around, and talk frankly about her subbiness, has sent plenty of juice pulsing down to your [pc.groin]. With a rakish smile and a slight shift of your [pc.thighs], you say that’s all well and good, but how much experience does she have with");
+	output("Watching the cat-girl bounce around, and talk frankly about her subbiness, has sent plenty of juice pulsing down to your [pc.groin]. With a rakish smile and a slight shift of your [pc.thighs], you say that’s all well and good, but how much experience does she have with");
 	if (pc.hasCock()) output(" handling dick");
 	else output(" eating muff");
 	output("?");
@@ -2155,7 +2156,7 @@ public function bizzyFirstTimePleaseMeVag(opts:Object):void
 	if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened, ");
 	output(" a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
 
-	output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and ‘mmm’s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
+	output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 	if (pc.totalClits() > 1) output(" She doesn’t seem fazed by your exotic arrangement of pleasure buds, and gives plenty of wet, lapping attention to all of them, sending sheerest ecstasy throbbing through your groin.");
 
 	output("\n\nShe goes into your tunnel nice and deep, pretty lips mashing against your soaked labia as she laps and flicks at your inner walls with her flat, rough tongue. Good girl! It seems completely natural to reward her with a scritch behind one of those pointy ears, which sends a purr trembling right through you.");
@@ -2170,6 +2171,7 @@ public function bizzyFirstTimePleaseMeVag(opts:Object):void
 
 	processTime(10+rand(3));
 	pc.orgasm();
+	IncrementFlag("BIZZY_ATE_PUSSY");
 
 	opts.hidePleaseMe = true;
 	bizzyFirstTimeMenu(opts);
@@ -2180,14 +2182,14 @@ public function bizzyFirstTimePleaseCock(opts:Object):void
 	clearOutput();
 	showBizzyBust();
 	
-	output("nAbout thirty seconds later you’re leaning back into the couch");
-	if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened,");
+	output("About thirty seconds later you’re leaning back into the couch");
+	if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened,");
 	output(" a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
 
-	output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and ‘mmm’s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
-	if (pc.biggestCockLength() >= 12) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot,veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
+	output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
+	if (pc.biggestCockLength() >= 12) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot, veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
 
-	output("\n\nShe takes you nice and deep, little ‘ulp’ sounds leaving her opened lips as");
+	output("\n\nShe takes you nice and deep, little <i>‘ulp’</i> sounds leaving her opened lips as");
 	if (pc.biggestCockLength() <= 16) output(" all");
 	else output(" a good portion");
 	output(" of your [pc.cock] is kneaded by hot, silky mouth.");
@@ -2208,6 +2210,7 @@ public function bizzyFirstTimePleaseCock(opts:Object):void
 
 	processTime(10+rand(3));
 	pc.orgasm();
+	IncrementFlag("BIZZY_SUCKED_COCK");
 
 	opts.hidePleaseMe = true;
 	bizzyFirstTimeMenu(opts);
@@ -2245,11 +2248,11 @@ public function bizzyAcceptTheDeal(opts:Object):void
 	clearOutput();
 	showBizzyBust();
 
-	output("Sure, why not? You have the money, you’d be helping this girl out in the way she wants, and despite that the deal is heavily weighted in your favour.");
+	output("Sure, why not? You have the money, you’d be helping this girl out in the way she wants, and despite that the deal is heavily weighted in your favor.");
 
 	output("\n\nBizzy’s white ears prick up when you say you’d be happy to indenture her, as long as she understands the risks.");
 
-	output("\n\n<i>“Yeesssss!”</i> she cheers. She freezes and colors when a neighbour bangs angrily on the wall. <i>“Uh... don’t worry about that. I-I’ve got soundproofing. Oh [pc.Mr]. Steele, I can’t tell you how happy you’ve made me! And - and don’t worry. I’m gonna make this work. I have all the gear, you can see, and - any gene-mods you give me will go straight onto my contract. See?”</i>");
+	output("\n\n<i>“Yeesssss!”</i> she cheers. She freezes and colors when a neighbor bangs angrily on the wall. <i>“Uh... don’t worry about that. I-I’ve got soundproofing. Oh [pc.Mr]. Steele, I can’t tell you how happy you’ve made me! And - and don’t worry. I’m gonna make this work. I have all the gear, you can see, and - any gene-mods you give me will go straight onto my contract. See?”</i>");
 
 	output("\n\nYou give the Sentient Acquisitions holo-contract she hands you a careful read. It seems to be exactly as she’s laid out to you: For 40k credits, you will own her");
 	if (seraRecruited() || reahaRecruited())
@@ -2283,6 +2286,8 @@ public function bizzyAcceptTheDeal(opts:Object):void
 	flags["BIZZY_PORN_STUDIO"] = 1;
 	flags["BIZZY_PORN_STUDIO_TIMER"] = GetGameTimestamp() + 1440;
 
+	currentLocation = "RESIDENTIAL DECK 13";
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

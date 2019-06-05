@@ -736,7 +736,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 13"].runOnEnter = northWalkwayBonus;
 
 	rooms["BIZZY STUDIO ROOM"] = new RoomClass(this);
-	rooms["BIZZY STUDIO ROOM"].roomName = "BIZZY & CO STUDIOS";
+	rooms["BIZZY STUDIO ROOM"].roomName = "BIZZY & CO\nSTUDIOS";
 	rooms["BIZZY STUDIO ROOM"].description = "BIZZYS BIG PORN HOUSE";
 	rooms["BIZZY STUDIO ROOM"].planet = "TAVROS STATION";
 	rooms["BIZZY STUDIO ROOM"].system = "SYSTEM: KALAS";

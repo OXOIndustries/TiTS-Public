@@ -319,8 +319,8 @@ public function resDeck11Func():Boolean
 
 public function northWalkwayBonus():void
 {
-	bizzyApartmentHandler(0);
-	fisiannaApartmentHandler(1);
+	bizzyApartmentHandler(1);
+	fisiannaApartmentHandler(0);
 	kaseApartmentHandler(2);
 }
 public function resDeck17Func():void
