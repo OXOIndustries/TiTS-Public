@@ -1,6 +1,7 @@
 package classes.UIComponents.SideBarComponents 
 {
 	import classes.Creature;
+	import classes.ShittyShip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -131,12 +132,34 @@ package classes.UIComponents.SideBarComponents
 		
 		public function showStatsForCreature(char:Creature, asInit:Boolean = false):void
 		{
-			_physiqueBar.updateBar(char.physique(), char.physiqueMax(), asInit);
-			_reflexesBar.updateBar(char.reflexes(), char.reflexesMax(), asInit);
-			_aimBar.updateBar(char.aim(), char.aimMax(), asInit);
-			_intelligenceBar.updateBar(char.intelligence(), char.intelligenceMax(), asInit);
-			_willpowerBar.updateBar(char.willpower(), char.willpowerMax(), asInit);
-			_libidoBar.updateBar(char.libido(), char.libidoMax(), asInit);
+			if(char != null && char is ShittyShip)
+			{
+				_coreStatsHeaderText.visible = false;
+				_coreStatsHeaderUnderline.visible = false;
+				_physiqueBar.visible = false;
+				_reflexesBar.visible = false;
+				_intelligenceBar.visible = false;
+				_aimBar.visible = false;
+				_willpowerBar.visible = false;
+				_libidoBar.visible = false;
+			}
+			else 
+			{
+				_coreStatsHeaderText.visible = true;
+				_coreStatsHeaderUnderline.visible = true;
+				_physiqueBar.visible = true;
+				_reflexesBar.visible = true;
+				_intelligenceBar.visible = true;
+				_aimBar.visible = true;
+				_willpowerBar.visible = true;
+				_libidoBar.visible = true;
+				_physiqueBar.updateBar(char.physique(), char.physiqueMax(), asInit);
+				_reflexesBar.updateBar(char.reflexes(), char.reflexesMax(), asInit);
+				_aimBar.updateBar(char.aim(), char.aimMax(), asInit);
+				_intelligenceBar.updateBar(char.intelligence(), char.intelligenceMax(), asInit);
+				_willpowerBar.updateBar(char.willpower(), char.willpowerMax(), asInit);
+				_libidoBar.updateBar(char.libido(), char.libidoMax(), asInit);
+			}
 			
 		}
 	}

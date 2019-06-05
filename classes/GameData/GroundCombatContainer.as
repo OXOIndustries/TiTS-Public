@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
 	import classes.Items.Accessories.BimboleumDefenseSystem;
@@ -1425,6 +1426,13 @@ package classes.GameData
 		private function generateCombatMenu(fromMenu:Boolean = false):void
 		{
 			clearMenu();
+
+			//Fenoxo's Janky Ship Combat Hooks here.
+			if (hasFriendlyOfClass(ShittyShip))
+			{
+				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				return;
+			}
 			if (hasEnemyOfClass(Celise))
 			{
 				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, { func: CombatAttacks.MeleeAttack });
@@ -4602,11 +4610,10 @@ package classes.GameData
 		
 		private function displayFriendlyStatus(target:Creature):void
 		{
-			if (target is PlayerCharacter)
+			if (target is PlayerCharacter || target is ShittyShip)
 			{
 				return;
 			}
-				
 			if (target.HP() <= 0)
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is down and out for the count!</b>");
@@ -4634,12 +4641,12 @@ package classes.GameData
 		
 		private function showPlayerStatus():void
 		{
-			if (pc.lust() >= pc.lustMax())
+			if (pc.lust() >= pc.lustMax() && hasFriendlyOfClass(PlayerCharacter))
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
 				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has knocked you off your " + pc.feet() + "</b>");
 			}
-			else if (pc.HP() <= 0)
+			else if (pc.HP() <= 0 && hasFriendlyOfClass(PlayerCharacter))
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
@@ -4650,35 +4657,53 @@ package classes.GameData
 			}
 			else
 			{
-				// TODO Some decent player status output
-				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
-				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
-				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
-				else if(hasEnemyOfClass(RatsRaider)) output("You’re fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang ‘Rat’s Raiders’");
+				//No PC in friendly? Must be a ship fite.
+				if(!hasFriendlyOfClass(PlayerCharacter) && hasFriendlyOfClass(ShittyShip))
+				{
+					if (_friendlies[0].lust() >= _friendlies[0].lustMax()) output("<b>Debilitating amounts of unchecked lust render your ship into little more than a mobile masturbation station.</b>");
+					else if (_friendlies[0].isDefeated()) output("<b>Your enem" + ((enemiesAlive() > 1 || _hostiles[0].isPlural) ? "ies have":"y has") + " have pounded your ship to a floating, barely-habitable pulp.</b>");
+					else
+					{
+						if (_hostiles.length == 1 && _friendlies.length == 1) output("<b>You’re fighting " + _hostiles[0].getCombatName() + ".</b>");
+						else if(_friendlies.length == 2) output("You sit at the helm of your ship, prepared to do battle. A friendly " + _friendlies[1].getCombatName() + " flies nearby.");
+						else if(_friendlies.length > 2) output("You sit at the helm of your ship, prepared to battle with the help of your allies.");
+						else output("You sit at the helm of your ship, prepared to battle.");
+					}
+				}
 				else
 				{
-					output("You perch behind cover wherever you can find it,");
-					if(pc.hasStatusEffect("Disarmed"))
+					// TODO Some decent player status output
+					if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
+					else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
+					else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+					else if(hasEnemyOfClass(RatsRaider)) output("You’re fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang ‘Rat’s Raiders’");
+					else
 					{
-						if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
-						else output(" readying yourself");
+						output("You perch behind cover wherever you can find it,");
+						if(pc.hasStatusEffect("Disarmed"))
+						{
+							if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
+							else output(" readying yourself");
+						}
+						else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
+						else if(pc.hasRangedWeapon()) output(" ready to return fire");
+						else if(pc.hasMeleeWeapon()) output(" ready to strike back");
+						else output(" ready to throw down");
 					}
-					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
-					else if(pc.hasRangedWeapon()) output(" ready to return fire");
-					else if(pc.hasMeleeWeapon()) output(" ready to strike back");
-					else output(" ready to throw down");
+					if (_friendlies.length > 1)
+					{
+						output(", side-by-side with your");
+						if (_friendlies.length > 2) output(" allies");
+						else output(" companion");
+					}
+					output(".");
 				}
-				if (_friendlies.length > 1)
-				{
-					output(", side-by-side with your");
-					if (_friendlies.length > 2) output(" allies");
-					else output(" companion");
-				}
-				output(".");
 			}
-			
-			kGAMECLASS.mutinousMimbranesCombat();
-			kGAMECLASS.neglectedMimbranesCombat();
+			if(hasFriendlyOfClass(PlayerCharacter))
+			{
+				kGAMECLASS.mutinousMimbranesCombat();
+				kGAMECLASS.neglectedMimbranesCombat();
+			}
 		}
 		
 		private function showMonsterArousalFlavor(target:Creature):void

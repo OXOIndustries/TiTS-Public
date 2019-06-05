@@ -36,12 +36,7 @@
 	import classes.Engine.Interfaces.*;
 
 	public class ShittyShip extends Creature {
-
-		protected var _neverSerialize: Boolean = false;
-		public function get neverSerialize(): Boolean {
-			return _neverSerialize;
-		}
-		
+	
 		//Constructor
 		public function ShittyShip() {
 			_ignoredFields.push(
@@ -81,6 +76,10 @@
 				pregnancyData.push(new PregnancyData());
 			}
 		}
+
+		public var captainDisplay:String = "UNKNOWN";
+		public var modelDisplay:String = "UNKNOWN";
+		public var factionDisplay:String = "UNKNOWN";
 
 		//================================================================
 		//
@@ -155,16 +154,26 @@
 			var fortification:Number = 0;
 			var shields:Number = 0;
 
+			//Inventory additions
 			for(var i:int = 0; i < inventory.length; i++)
 			{
 				evasion += inventory[i].evasion;
-				accuracy += inventory[i].accuracy;
+				accuracy += inventory[i].attack;
 				defense += inventory[i].defense;
 				shieldDefense += inventory[i].shieldDefense;
 				fortification += inventory[i].fortification;
 				shields = inventory[i].shields;
 			}
+			//Locked in equipment additions:
+			evasion += meleeWeapon.evasion + rangedWeapon.evasion + armor.evasion + shield.evasion + accessory.evasion;
+			accuracy += meleeWeapon.attack + rangedWeapon.attack + armor.attack + shield.attack + accessory.attack;
 
+			defense += meleeWeapon.defense + rangedWeapon.defense + armor.defense + shield.defense + accessory.defense;
+			fortification += meleeWeapon.fortification + rangedWeapon.fortification + armor.fortification + shield.fortification + accessory.fortification;
+
+			shields += meleeWeapon.shields + rangedWeapon.shields + armor.shields + shield.shields + accessory.shields;
+			shieldDefense += meleeWeapon.shieldDefense + rangedWeapon.shieldDefense + armor.shieldDefense + shield.shieldDefense + accessory.shieldDefense;
+			
 			if(type == 0) return evasion;
 			else if(type == 1) return accuracy;
 			else if(type == 2) return defense;
@@ -172,6 +181,17 @@
 			else if(type == 4) return fortification;
 			else if(type == 5) return shields;
 			else return -1;
+		}
+		public function listShipWeapons():Array
+		{
+			var weaps:Array = [];
+			if(meleeWeapon.type == GLOBAL.RANGED_WEAPON) weaps.push(meleeWeapon);
+			if(rangedWeapon.type == GLOBAL.RANGED_WEAPON) weaps.push(rangedWeapon);
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].type == GLOBAL.RANGED_WEAPON) weaps.push(inventory[i]);
+			}
+			return weaps;
 		}
 	}
 }

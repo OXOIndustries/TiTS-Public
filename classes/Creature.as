@@ -73,6 +73,7 @@
 				"btnTargetText",
 				"alreadyDefeated",
 				"shieldDisplayName",
+				"hpDisplayName",
 				"skipIntercept",
 				"skipTurn",
 				"_skipRound",
@@ -20818,6 +20819,7 @@
 		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
 		public var alreadyDefeated:Boolean = false; // Transient
 		public var shieldDisplayName:String = "SHIELDS"; // Transient
+		public var hpDisplayName:String = "HP";
 		
 		/**
 		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially
@@ -22669,98 +22671,6 @@
 		public function hasSilicone(sType:String = "all"):Boolean
 		{
 			return (siliconeRating(sType) > 0);
-		}
-
-		//================================================================
-		//
-		//				Fenoxo's Hacky Ship Bullship.
-		//					Seriously, this is garbage. Will
-		//					probably be cut later. Sorry.
-		//
-		//================================================================
-		//Base Stats
-		//Agility (mapped to reflexes)
-		public function shipAgility():Number
-		{
-			return reflexesRaw;
-		}
-		//Speed (mapped to physique)
-		public function shipSpeed():Number
-		{
-			return physiqueRaw;
-		}
-		//Power Generation (mapped to willpower)
-		public function shipPowerGen():Number
-		{
-			return willpowerRaw;
-		}
-		//Sensors (Mapped to Aim)
-		public function shipSensors():Number
-		{
-			return aimRaw;
-		}
-		//Systems (Mapped to Intelligence)
-		public function shipSystems():Number
-		{
-			return intelligenceRaw;
-		}
-		//Probably set via perk.
-		public function shipCapacity():Number
-		{
-			return 3;
-		}
-		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
-		public function shipEvasion():Number
-		{
-			return shipStatBonusTotal(0);
-		}
-		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
-		public function shipAccuracy():Number
-		{
-			return shipStatBonusTotal(1);
-		}
-		public function shipShieldDef():Number
-		{
-			return shipStatBonusTotal(3);
-		}
-		public function shipDefense():Number
-		{
-			return shipStatBonusTotal(2);
-		}
-		//0 - evasion
-		//1 - accuracy
-		//2 - defense
-		//3 - shielddef
-		//4 - fortification
-		//5 - shields
-		//? - More to cum as needed, probs
-		public function shipStatBonusTotal(type:Number = 0):Number
-		{
-			//I cant think of an easy way to map the argument to the actual sub variables we need to pull, so I'll just total everything, and then pass out whichever one is needed. Is this dumb? Probably.
-			var evasion:Number = 0;
-			var accuracy:Number = 0;
-			var defense:Number = 0;
-			var shieldDefense:Number = 0;
-			var fortification:Number = 0;
-			var shields:Number = 0;
-
-			for(var i:int = 0; i < inventory.length; i++)
-			{
-				evasion += inventory[i].evasion;
-				accuracy += inventory[i].accuracy;
-				defense += inventory[i].defense;
-				shieldDefense += inventory[i].shieldDefense;
-				fortification += inventory[i].fortification;
-				shields = inventory[i].shields;
-			}
-
-			if(type == 0) return evasion;
-			else if(type == 1) return accuracy;
-			else if(type == 2) return defense;
-			else if(type == 3) return shieldDefense;
-			else if(type == 4) return fortification;
-			else if(type == 5) return shields;
-			else return -1;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package classes.UIComponents.SideBarComponents 
 {
 	import classes.Creature;
+	import classes.ShittyShip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -151,6 +152,14 @@ package classes.UIComponents.SideBarComponents
 			{
 				_shieldBar.caption = "SHIELDS";
 			}
+			if (_hpBar != null && char != null)
+			{
+				_hpBar.caption = char.hpDisplayName;
+			}
+			else if (_hpBar != null && char == null)
+			{
+				_hpBar.caption = "HP";
+			}		
 			
 			_shieldBar.updateBar(char.shields(), char.shieldsMax(), asInit);
 			_hpBar.updateBar(char.HP(), char.HPMax(), asInit);

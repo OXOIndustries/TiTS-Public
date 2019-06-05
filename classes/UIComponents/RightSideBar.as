@@ -89,7 +89,7 @@ package classes.UIComponents
 					}
 				}
 				
-				_advancementBlock.showStatsForCreature(pc);
+				if(pc != null) _advancementBlock.showStatsForCreature(pc);
 			}
 		}
 		

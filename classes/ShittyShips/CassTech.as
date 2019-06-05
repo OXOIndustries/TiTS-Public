@@ -1,6 +1,7 @@
-﻿package classes.Characters
+﻿package classes.ShittyShips
 {
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.GLOBAL;
 	import classes.Items.Protection.NovaShield;
 	import classes.kGAMECLASS;
@@ -12,7 +13,7 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
-	public class Casstech extends Creature
+	public class Casstech extends ShittyShip
 	{
 		//constructor
 		public function Casstech()
@@ -23,8 +24,14 @@
 			
 			this.short = "Casstech Z14";
 			this.originalRace = "ship";
-			this.a = "";
-			this.capitalA = "";
+			this.shieldDisplayName = "SHIELDS2";
+			this.hpDisplayName = "ARMOR";
+			this.captainDisplay = "THRALL";
+			this.modelDisplay = "Z14";
+			this.factionDisplay = "T.HORDE";
+
+			this.a = "a ";
+			this.capitalA = "A ";
 			this.long = "It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.";
 			this.customBlock = "He easily avoids your attack.";
 			this.customDodge = "He easily avoids your attack.";
@@ -51,7 +58,7 @@
 			this.libidoRaw = 50;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 45;
+			this.lustRaw = 0;
 
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.tease.damageValue = 25.0;
@@ -64,130 +71,17 @@
 			this.HPMod = 550;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
-
-			this.femininity = 0;
-			this.eyeType = GLOBAL.TYPE_HUMAN;
-			this.eyeColor = "red";
-			this.tallness = 8*12+8;
-			this.thickness = 75;
-			this.tone = 90;
-			this.hairColor = "black";
-			this.hairType = GLOBAL.TYPE_HUMAN;
-			this.scaleColor = "unknown";
-			this.furColor = "unknown";
-			this.hairLength = 3;
 			
-			this.beardLength = 1;
-			this.beardStyle = 0;
-			this.skinType = GLOBAL.TYPE_HUMAN;
-			this.skinTone = "green";
-			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
-			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_HUMAN;
-			this.lipMod = 0;
-			this.earType = 0;
-			this.antennae = 0;
-			this.antennaeType = GLOBAL.TYPE_HUMAN;
-			this.horns = 0;
-			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_HUMAN;
-			this.gills = false;
-			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
-			//0 - Waist
-			//1 - Middle of a long tail. Defaults to waist on bipeds.
-			//2 - Between last legs or at end of long tail.
-			//3 - On underside of a tail, used for driders and the like, maybe?
-			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_HUMAN;
-			this.tailCount = 0;
-			this.tailFlags = new Array();
-			//Used to set cunt or dick type for cunt/dick tails!
-			this.tailGenitalArg = 0;
-			//tailGenital:
-			//0 - none.
-			//1 - cock
-			//2 - vagina
-			this.tailGenital = 0;
-			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
-			this.tailVenom = 0;
-			//Tail recharge determines how fast venom/webs comes back per hour.
-			this.tailRecharge = 5;
-			//hipRating
-			//0 - boyish
-			//2 - slender
-			//4 - average
-			//6 - noticable/ample
-			//10 - curvy//flaring
-			//15 - child-bearing/fertile
-			//20 - inhumanly wide
-			this.hipRatingRaw = 2;
-			//buttRating
-			//0 - buttless
-			//2 - tight
-			//4 - average
-			//6 - noticable
-			//8 - large
-			//10 - jiggly
-			//13 - expansive
-			//16 - huge
-			//20 - inconceivably large/big/huge etc
-			this.buttRatingRaw = 2;
-			//No dicks here!
-			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLengthRaw = 28;
-			this.cocks[0].cockColor = "green";
-			this.cocks[0].cType == GLOBAL.TYPE_THRAGGEN;
 			/*
-			this.createVagina();
-			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
-			this.vaginalVirgin = false;
-			this.vaginas[0].loosenessRaw = 2;
-			this.vaginas[0].wetnessRaw = 5;
-			this.vaginas[0].bonusCapacity = 55;*/
-			//balls
-			this.balls = 2;
-			this.cumMultiplierRaw = 20;
-			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 15;
-			this.ballFullness = 100;
-			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 60;
-			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 3;
-			this.minutesSinceCum = 875;
-			this.timesCum = 4401;
-
-			this.elasticity = 1.0;
-			//Fertility is a % out of 100. 
-			this.fertilityRaw = 5;
-			this.clitLength = .5;
-			this.pregnancyMultiplierRaw = 1;
-			//Savin wasn't around so I just threw a # in.
-			this.breastRows[0].breastRatingRaw = 0;
-			this.nippleColor = "dark green";
-			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.FLUID_TYPE_MILK;
-			//The rate at which you produce milk. Scales from 0 to INFINITY.
-			this.milkRate = 0;
-			this.ass.wetnessRaw = 0;
-			this.ass.bonusCapacity += 100;
-			
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createPerk("Tough 2",0,0,0,0);
 			this.createPerk("Juggernaut",0,0,0,0);
 			this.createPerk("Iron Will",0,0,0,0);
 			this.createPerk("Single Minded",0,0,0,0);
-			this.createPerk("Riposte",0,0,0,0);
+			this.createPerk("Riposte",0,0,0,0);*/
 			isUniqueInFight = true;
-			btnTargetText = "Agrosh";
-			setDefaultSexualPreferences();
+			btnTargetText = "CT.Z14";
+			//setDefaultSexualPreferences();
 			//sexualPreferences.setRandomPrefs(3 + rand(3));
 			//Giant tiddies
 			//Softythicc
@@ -202,26 +96,9 @@
 			this._isLoading = false;
 		}
 
-		override public function setDefaultSexualPreferences():void
-		{
-			//Likes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_WIDE_HIPS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,				GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,				GLOBAL.KINDA_LIKES_SEXPREF);
-
-			//Dislikes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,			GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SCALIES,				GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,					GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY,				GLOBAL.REALLY_DISLIKES_SEXPREF);
-		}
-		
 		override public function get bustDisplay():String
 		{
-			return "AGROSH";
+			return "Z14";
 		}
 
 		//Combat Abilities

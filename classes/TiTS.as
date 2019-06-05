@@ -467,6 +467,8 @@
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		include "../includes/zhengShiStation/wallSluts.as";
+
+		include "../includes/zhengShiStation/shipTesting.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
