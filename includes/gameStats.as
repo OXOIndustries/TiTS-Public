@@ -4508,7 +4508,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Merch Deck
-			if(flags["MET_GIL"] != undefined || flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
+			if(flags["MET_GIL"] != undefined || flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined || flags["VELTA_MET"] != undefined)
 			{
 				output2("\n<b><u>Merchant Deck</u></b>");
 				if(flags["MET_GIL"] != undefined)
@@ -4530,6 +4530,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["RIYA_FUCKED_YA"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Ass:</b> " + flags["RIYA_FUCKED_YA"]);
 					if(flags["RIYA_CUNTPOUNDED_YOU"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Vagina:</b> " + flags["RIYA_CUNTPOUNDED_YOU"]);
 					if(flags["RIYA_GOT_BLOWN"] != undefined) output2("\n<b>* Riya, Times You Sucked Her Cock:</b> " + flags["RIYA_GOT_BLOWN"]);
+				}
+				if(flags["VELTA_MET"] != undefined)
+				{
+					output2("\n<b>* Velta:</b> Met her");
+					if(flags["VELTA_FUCK_VAG"] != undefined) output2("\n<b>* Velta, Times You Fucked Her Vagina:</b> " + flags["VELTA_FUCK_VAG"]);
+					if(flags["VELTA_FUCK_ANAL"] != undefined) output2("\n<b>* Velta, Times You Fucked Her Ass:</b> " + flags["VELTA_FUCK_ANAL"]);
 				}
 				variousCount++;
 			}
@@ -4936,7 +4942,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined || flags["BIZZY_PORN_STUDIO"] != undefined)
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -4961,7 +4967,39 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["AINA_TOTAL_KIDS"] != undefined && flags["AINA_TOTAL_KIDS"] > 0) output2("\n<b>* Aina, Total Kids:</b> " + flags["AINA_TOTAL_KIDS"]);
 					}
 				}
-				//Fisianna
+				// Bizzy
+				if(flags["BIZZY_PORN_STUDIO"] != undefined)
+				{
+					output2("\n<b>* Bizzy:</b> Met her");
+					if(bizzySlaveBoth()) output2(", Has collar and tattoo");
+					else if(bizzySlaveCollar()) output2(", Wearing collar");
+					else if(bizzySlaveTat()) output2(", Has tattoo");
+					if(flags["BIZZY_PORN_STUDIO"] >= 1)
+					{
+						output2("\n<b>* Bizzy, Body, Breast Size:</b> ");
+						if(flags["BIZZY_PORN_STUDIO"] <= 1) output2("Flat chest");
+						else if(flags["BIZZY_PORN_STUDIO"] <= 2) output2("C-cups");
+						else if(flags["BIZZY_PORN_STUDIO"] <= 3) output2("DD-cups");
+						else output2("J-cups");
+					}
+					output2("\n<b>* Bizzy, Camgirl Status:</b>");
+					if(flags["BIZZY_PORN_STUDIO"] <= -1) output2(" Refused to fund");
+					else if(flags["BIZZY_PORN_STUDIO"] >= 1)
+					{
+						output2(" Funded stage " + flags["BIZZY_PORN_STUDIO"]);
+						if(flags["BIZZY_PORN_STUDIO"] <= 1) output2(", Beginner");
+						else if(flags["BIZZY_PORN_STUDIO"] <= 2) output2(", Camwhore");
+						else if(flags["BIZZY_PORN_STUDIO"] <= 3) output2(", Streamslut");
+						else if(flags["BIZZY_PORN_STUDIO"] <= 4) output2(", Sexpert performer");
+						else output2(", Professional porn studio, Completed");
+					}
+					if(flags["BIZZY_VAG_FUCKED"] != undefined) output2("\n<b>* Bizzy, Times Fucked Her Vagina:</b> " + flags["BIZZY_VAG_FUCKED"]);
+					if(flags["BIZZY_BOOBY_RUBBED"] != undefined) output2("\n<b>* Bizzy, Times Rubbed Boobs:</b> " + flags["BIZZY_BOOBY_RUBBED"]);
+					if(flags["BIZZY_SUCKED_COCK"] != undefined) output2("\n<b>* Bizzy, Times She Sucked Your Cock:</b> " + flags["BIZZY_SUCKED_COCK"]);
+					if(flags["BIZZY_ATE_PUSSY"] != undefined) output2("\n<b>* Bizzy, Times She Ate Your Pussy:</b> " + flags["BIZZY_ATE_PUSSY"]);
+					if(flags["BIZZY_TITTYFUCKED"] != undefined) output2("\n<b>* Bizzy, Times Titfucked:</b> " + flags["BIZZY_TITTYFUCKED"]);
+				}
+				// Fisianna
 				if(flags["FISI_MET"] != undefined)
 				{
 					output2("\n<b>* Fisianna:</b> Met her, ");

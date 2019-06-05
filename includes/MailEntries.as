@@ -252,7 +252,7 @@ public function configureMails():void
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
 
 	// Bizzy the Camgirl
-	MailManager.addMailEntry("bizzy_camgirl_initiate", bizzyCamgirlInitialMail, "Proposition?", "B d'Alyso", "izzybizzy12@MegMess.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("bizzy_camgirl_initiate", bizzyCamgirlInitialMail, "Proposition?", "B d’Alyso", "izzybizzy12@MegMess.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("bizzy_camgirl_profits", bizzyCamgirlPaymentMail, "Hey :3", "B d’Alyso", "izzybizzy12@MegMess.org", quickPCTo, quickPCToAddress);
 	
 	//Stubs so that the mail entries show up on a load - this is basically for emails that are repeatable and also have dynamic content

@@ -6,6 +6,33 @@ public function bigTiddyGothGFBust():void
 	author("Fr0sty");
 }
 
+public function bigTiddyGFDoor(btnSlot:int = 1):void
+{
+	if (flags["EXTRAMEET_BIGTIDDYGOTHGF"] != undefined && flags["EXTRAMEET_BIGTIDDYGOTHGF"] >= 1)
+	{
+		if (flags["BIGTIDDYGOTHGF_LOCKOUT"] != undefined && flags["BIGTIDDYGOTHGF_LOCKOUT"] > GetGameTimestamp())
+		{
+			output("\n\nYou are standing next to The Servant’s apartment. She’s surely home, and almost certainly awake but something is stilling your hand from knocking on her door... maybe tomorrow.");
+			addDisabledButton(btnSlot, "S. Knock", "South Door Knock", "Something is stilling your hand from knocking on her door... maybe tomorrow.");
+		}
+		else
+		{
+			if (flags["BIGTIDDYGOTHGF_FIRSTVISIT"] == undefined)
+			{
+				output("\n\nYou notice a familiar door, although you know you’ve never been on the other side. Still... The door seems to call to you...");
+			}
+			else
+			{
+				output("\n\nYou are standing next to The Servant’s apartment. She’s surely home, and almost certainly awake.");
+			}
+
+			addButton(btnSlot, "S. Knock", knockOnBigTiddyGFDoor, undefined, "South Door Knock", "Something keeps drawing you to knock on the door...");
+		}
+	}
+	
+	setNavDisabled(NAV_SOUTH_DISABLE);
+}
+
 public function knockOnBigTiddyGFDoor():void
 {
 	clearOutput();
