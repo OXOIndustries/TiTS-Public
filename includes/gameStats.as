@@ -1717,18 +1717,18 @@ public function commandCodexInputConfirm():void
 {
 	var sText:String = userInterface.textInput.text;
 	
-	if (sText == "")
+	if(sText == "")
 	{
 		commandCodexInput();
 		output2("<b>You must input something.</b>");
 		return;
 	}
-	if (InCollection(sText, ["return","back","exit","quit","qqq"]))
+	if(InCollection(sText, ["return","back","exit","quit","qqq"]))
 	{
 		commandCodexInputBack(sText == "qqq" ? true : false);
 		return;
 	}
-	if (!hasCheatInput(sText))
+	if(!hasCheatInput(sText))
 	{
 		commandCodexInput();
 		output2("Command not recognized. <b>Please try again.</b>");
@@ -2549,7 +2549,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Zhèng Shi Station</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(9999 == 0)
+			if(flags["ZHENG_SHI_PROBED"] != undefined)
 			{
 				output2(" Coordinates received");
 				if(9999 == 0) output2(", Reclaimed probe");
@@ -2563,6 +2563,8 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ZHENG_SHI_PASSWORDED"] >= 1) output2(" Access granted");
 				else output2(" <i>Unknown</i>, Access denied");
 			}
+			if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Jumper’s Suit:</b> Taken");
+			if(flags["ZHENG_SHI_GALOMAX"] == undefined) output2("\n<b>* <i>Sidewinder</i>, Loot, Galomax:</b> Taken");
 			if(flags["FERUZE_ZHENG_OUTCOME"] != undefined)
 			{
 				// Rival
@@ -7339,9 +7341,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MAIKE_HELMET_TAKEN"] != undefined) output2("\n<b>* Spacesuit Helmet:</b> Taken");
 				variousCount++;
 			}
-			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["MINING_ROBOT_ENCOUNTERS"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined || flags["MET_SLAVEBREAKERS"] != undefined)
+			if(flags["MET_LORELEI"] != undefined || flags["BORED_JUMPER_JUMPED"] != undefined || flags["MINING_ROBOT_ENCOUNTERS"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined || flags["MET_SLAVEBREAKERS"] != undefined)
 			{
 				output2("\n<b><u>Mineshaft</u></b>");
+				// Lorelei
+				if(flags["MET_LORELEI"] != undefined)
+				{
+					var loreleiName:String = chars["LORELEI"].short;
+					output2("\n<b>* " + loreleiName + ":</b> Met her");
+					if(flags["LORELEI_FOUGHT"] != undefined) output2(", Fought her");
+					if(flags["LORELEI_BEATEN"] != undefined) output2(", Defeated her");
+					if(flags["LORELEI_SEXED"] != undefined) output2("\n<b>* " + loreleiName + ", Times Sexed:</b> " + flags["LORELEI_SEXED"]);
+				}
 				// Jumper
 				if(flags["BORED_JUMPER_JUMPED"] != undefined)
 				{
