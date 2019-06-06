@@ -309,6 +309,14 @@ public function northEastPlazaBonus():void
 	fisiAtResDeckAddendum(0);
 }
 
+public function resDeck11Func():Boolean
+{
+	playFynsDoorScene(0);
+	bigTiddyGFDoor(1);
+	
+	return false;
+}
+
 public function northWalkwayBonus():void
 {
 	bizzyApartmentHandler(1);

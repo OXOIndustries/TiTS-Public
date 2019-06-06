@@ -1481,6 +1481,32 @@ public function subTunerExhibRouter():void
 	moveTo("UVS B9");
 	options[rand(options.length)]();
 }
+public function subTunerExhibEnd():void
+{
+	clearOutput();
+	author("HugsAlright");
+	showBelle();
+	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used hole");
+	if(pc.hasVagina()) output("s");
+	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
+	if(pc.hasCock()) output("handjob");
+	else output("fingering");
+	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
+	output("\n\nOnce you’re good and clean, Belle ");
+	if(!pc.isNude()) output("gives you back all your clothes and ");
+	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
+	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
+	output("\n\nYeah, that sounds like a good idea right about now.");
+
+	processTime(15);
+	pc.shower();
+	IncrementFlag("SUBTUNER_EXHIBITIONISM");
+	pc.exhibitionism(2);
+	
+	// [Next] Returns the PC outside Belle’s lab.
+	clearMenu();
+	addButton(0,"Next",leaveAccuPitchLabs);
+}
 
 //Rival
 //This can happen for any PC atm.
@@ -1613,7 +1639,6 @@ public function subTunerRivalBullshit():void
 	clearMenu();
 	addButton(0,"Next",aftermathOfRivalIncestYaCunts);
 }
-
 public function aftermathOfRivalIncestYaCunts():void
 {
 	clearOutput();
@@ -1632,35 +1657,10 @@ public function aftermathOfRivalIncestYaCunts():void
 	clearMenu();
 	addButton(0,"Next",cleanupOfRivalSluttery);
 }
-
 public function cleanupOfRivalSluttery():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-
-	output("\n\nYeah, that sounds like a good idea right about now.");
-	processTime(15);
-	pc.shower();
-
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
+	subTunerExhibEnd();
 	IncrementFlag("SUBTUNER_COUSINCESTED");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
 }
 
 //Anno
@@ -1689,7 +1689,6 @@ public function subTunerAnnoExhib():void
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib2);
 }
-
 public function subTunerAnnoExhib2():void
 {
 	clearOutput();
@@ -1772,7 +1771,6 @@ public function subTunerAnnoExhib2():void
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib3);
 }
-
 public function subTunerAnnoExhib3():void
 {
 	clearOutput();
@@ -1790,34 +1788,10 @@ public function subTunerAnnoExhib3():void
 	clearMenu();
 	addButton(0,"Next",subTunerAnnoExhib4);
 }
-
 public function subTunerAnnoExhib4():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-	output("\n\nYeah, that sounds like a good idea right about now.");
-
-	processTime(15);
-	pc.shower();
-
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
+	subTunerExhibEnd();
+	IncrementFlag("SUBTUNER_ANNOED");
 }
 
 //Syri
@@ -1900,7 +1874,6 @@ public function syriExhibStuff():void
 	clearMenu();
 	addButton(0,"Next",syriExhibStuff2);
 }
-
 public function syriExhibStuff2():void
 {
 	clearOutput();
@@ -1917,32 +1890,10 @@ public function syriExhibStuff2():void
 	clearMenu();
 	addButton(0,"Next",syriExhibStuff3);
 }
-
 public function syriExhibStuff3():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-
-	output("\n\nYeah, that sounds like a good idea right about now.");
-	processTime(15);
-	pc.shower();
+	subTunerExhibEnd();
 	IncrementFlag("SUBTUNER_SYRIED");
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
 }
 
 
@@ -1998,7 +1949,6 @@ public function subTunerKiroExhib():void
 	clearMenu();
 	addButton(0,"Next",subTunerKiroExhib2);
 }
-
 public function subTunerKiroExhib2():void
 {
 	clearOutput();
@@ -2015,34 +1965,10 @@ public function subTunerKiroExhib2():void
 	clearMenu();
 	addButton(0,"Next",subTunerKiroExhib3);
 }
-
 public function subTunerKiroExhib3():void
 {
-	clearOutput();
-	author("HugsAlright");
-	showBelle();
-	output("Belle takes good care of you, stripping you of your soiled suit and removing all her toys from your nipples and sodden, well-used holes");
-	if(pc.hasVagina()) output("s");
-	output(" before she gives you a nice warm bath to clean all those sexual fluids off you. She’s even kind enough to give you a little reward ");
-	if(pc.hasCock()) output("handjob");
-	else output("fingering");
-	output(" while you’re getting clean because you did such a good job, your master reminding you of what a good pet you are all the while.");
-
-	output("\n\nOnce you’re good and clean, Belle ");
-	if(!pc.isNude()) output("gives you back all your clothes and ");
-	output("takes you back out to her lab. Then she extends a single finger, and turns your collar off.");
-
-	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
-	output("\n\nYeah, that sounds like a good idea right about now.");
-
-	//[Next] //Returns the PC outside Belle’s lab.
-	processTime(15);
-	pc.shower();
-	IncrementFlag("SUBTUNER_EXHIBITIONISM");
-	pc.exhibitionism(2);
-	clearMenu();
-	addButton(0,"Next",leaveAccuPitchLabs);
-	//[Next] //Returns the PC outside Belle’s lab.
+	subTunerExhibEnd();
+	IncrementFlag("SUBTUNER_KIROED");
 }
 
 //Hypnotism
@@ -2126,7 +2052,7 @@ public function sayYesToHypnoShit2():void
 	output("\n\nThough, your pet-like feelings don’t so much as fade this time, quite enjoying the feeling of being Belle’s pet, still smiling at her with your heart fluttering. After a few more moments of silence though, your master speaks up: <i>“Well, I suppose you should be on your way then, my pet.”</i>");
 	output("\n\nYeah, that sounds like a good idea right about now.");
 
-	//[Next] Exits the lab tile and adds a <i>“Belle Hypnosis”</i> flag that can trigger any of the following scenes while the PC still has it.
+	//[Next] Exits the lab tile and adds a “Belle Hypnosis” flag that can trigger any of the following scenes while the PC still has it.
 	processTime(60);
 	IncrementFlag("SUBTUNER_HYPNOED");
 	if(!pc.hasStatusEffect("Belle Hypno")) pc.createStatusEffect("Belle Hypno");
@@ -2865,7 +2791,7 @@ public function peerReviewParty2():void
 	clearOutput();
 	showBelle();
 	author("HugsAlright");
-	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with <i>“similar interests”</i> Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
+	output("Sure enough, the guests come: a lot of well-dressed scientists and investors, as well as those friends with “similar interests” Belle was speaking of, people with their own pets on leashes moving around the party. There’s not many people, a small get-together if you’ve ever seen one, groups of three or four people talking over glasses of wine that you and your master drift between. Yes, you stay close to the lovely lady holding your leash the whole time as she leads you to different guests. The more scientifically-minded seem to simply inspect your appearance, analyzing the collar around your neck while Belle demonstrates some simple commands for you to follow with her colleagues. The more deviant minded, on the other hand, seem to be more interested in your simple ability to follow your master’s orders... and that tight, tight attire of yours. A few try to get a bit grabby with you, but Belle keeps them at bay.");
 	output("\n\nEventually, you come across another fellow scientist who seems to be of <i>both</i> minds. She gives your master a hearty greeting as she walks over to the both of you. <i>“Doctor Baslocvicz!”</i> she calls, out getting close enough that you can get a good look at her, <i>“I’m surprised I haven’t bumped into the heart of the party yet.”</i>");
 	output("\n\nThe woman appear to be a rahn, a bright blue one at that. She’s quite a bit shorter than Belle, her gel molded into cyan hair and looking at her with similarly colored eyes.");
 	output("\n\n<i>“Doctor Lara, good to see you again,”</i> your master says, extending an arm for Lara to shake at.");
@@ -2888,7 +2814,7 @@ public function peerReviewParty2():void
 
 	output("\n\nWith that, she’s gone, leaving you and Belle relatively alone in the middle of the room. A moment later you feel ");
 	if(ausarKaithrit()) output("fingers scritching between your ears");
-	else output("a hand patting your hand");
+	else output("a hand patting your head");
 	output(" accompanied by Belle’s voice.");
 
 	output("\n\n<i>“Good job with that, [pc.boyGirl],”</i> she coos, giving you one last good ");
@@ -2911,7 +2837,7 @@ public function peerReviewParty3():void
 	clearOutput();
 	showBelle(true);
 	author("HugsAlright");
-	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of <i>“Stay.”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
+	output("It doesn’t take long for Belle to find a nice, comfy looking chair on the opposite end of the room, and she quickly lead you over to it. She gives you a command of, <i>“Stay,”</i> as you reach the seat, and, <i>like the good puppy you are</i>, you wait there on your knees while your master sits down.");
 
 	output("\n\nOnce she’s gotten herself settled, the lady scientist seems to forget you’re at a party and lifts her dress up and spreads her legs, allowing her two stiffening cocks and hefty balls to flop free. Your eyes go wide at the sight of Belle’s package, a wonderful musk already filling your nostrils and clouding your senses. It’s hard to resist throwing yourself onto her dicks right then and there, <i>but you wait for your orders because you’re a good puppy</i>.");
 

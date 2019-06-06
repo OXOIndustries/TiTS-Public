@@ -976,7 +976,7 @@ public function ramisCockFuck(arg:Array):void
 			break;
 		// Sneak Out (Trap)
 		case "trap sneak out":
-			output("Carefully, oh so carefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. She’ll be disappointed when she wakes up - on the other hand, given how she treats her bed-mates, she shouldn’t be surprised either.");
+			output("Carefully, oh-so-carefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. She’ll be disappointed when she wakes up - on the other hand, given how she treats her bed-mates, she shouldn’t be surprised either.");
 			
 			processTime(3);
 			

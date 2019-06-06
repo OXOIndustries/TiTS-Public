@@ -21,35 +21,43 @@ public function hasIllegalInput(sText:String = ""):Boolean
 	// Cheat codes check
 	if(chars["PC"].short.length >= 1)
 	{
-		var cheatFunc:Function = null;
-		switch(sText)
-		{
-			// Gameplay/Debug
-			case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
-			case "idclev": cheatFunc = Cheats.RoomTeleport; break;
-			case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
-			case "motherlode": cheatFunc = Cheats.XPToLevel; break;
-			case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
-			case "88mph": cheatFunc = Cheats.TimeSkip; break;
-			case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
-			case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
-			case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
-			
-			// Treatment
-			case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
-			case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;
-			case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
-			case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
-			case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
-			case "fauxcow": cheatFunc = Cheats.TryTreatmentHaxFauxCow; break;
-		}
-		if(cheatFunc != null && eventQueue.indexOf(cheatFunc) == -1)
-		{
-			eventQueue.push(cheatFunc);
-		}
+		hasCheatInput(sText);
 	}
 	
 	//return r.test(sText);
+	return false;
+}
+public function hasCheatInput(sText:String = ""):Boolean
+{
+	var cheatFunc:Function = null;
+	switch(sText)
+	{
+		// Gameplay/Debug
+		case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
+		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
+		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
+		case "88mph": cheatFunc = Cheats.TimeSkip; break;
+		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
+		case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
+		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
+		
+		// Treatment
+		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
+		case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;
+		case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
+		case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
+		case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
+		case "fauxcow": cheatFunc = Cheats.TryTreatmentHaxFauxCow; break;
+	}
+	if(cheatFunc != null)
+	{
+		//if(eventQueue.indexOf(cheatFunc) == -1)
+		eventQueue.push(cheatFunc);
+		return true;
+	}
+	
 	return false;
 }
 
@@ -698,6 +706,7 @@ public function applyHairColor(arg:String = "black"):void {
 public function applyGryvainColor(col:String = "black"):void
 {
 	pc.hairColor = col;
+	pc.furColor = col;
 	pc.scaleColor = col;
 	if (pc.cocks.length > 0) pc.cocks[0].cockColor = col;
 	if (pc.vaginas.length > 0) pc.vaginas[0].vaginaColor = col;

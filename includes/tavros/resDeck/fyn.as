@@ -70,7 +70,7 @@ public function finsApartmentBonus():Boolean
 	return false;
 }
 
-public function playFynsDoorScene():Boolean
+public function playFynsDoorScene(btnSlot:int = 0):void
 {
 	//only render knock button if player didn't yet enter Fyn's apartment yet
 	if(flags["FYN_APARTMENT_ENTERED"] != true)
@@ -79,34 +79,8 @@ public function playFynsDoorScene():Boolean
 	
 		processTime(1);
 		
-		addButton(0, "N. Knock", knockOnFynsDoor, undefined, "North Door Knock", "Why not? You’re kind of curious to see who lives inside... you only live once, right?");
+		addButton(btnSlot, "N. Knock", knockOnFynsDoor, undefined, "North Door Knock", "Why not? You’re kind of curious to see who lives inside... you only live once, right?");
 	}
-
-	if (flags["EXTRAMEET_BIGTIDDYGOTHGF"] != undefined && flags["EXTRAMEET_BIGTIDDYGOTHGF"] >= 1)
-	{
-		if (flags["BIGTIDDYGOTHGF_LOCKOUT"] != undefined && flags["BIGTIDDYGOTHGF_LOCKOUT"] > GetGameTimestamp())
-		{
-			output("\n\nYou are standing next to The Servant’s apartment. She’s surely home, and almost certainly awake but something is stilling your hand from knocking on her door... maybe tomorrow.");
-			addDisabledButton(1, "S. Knock", "South Door Knock", "Something is stilling your hand from knocking on her door... maybe tomorrow.");
-		}
-		else
-		{
-			if (flags["BIGTIDDYGOTHGF_FIRSTVISIT"] == undefined)
-			{
-				output("\n\nYou notice a familiar door, although you know you’ve never been on the other side. Still... The door seems to call to you...");
-			}
-			else
-			{
-				output("\n\nYou are standing next to The Servant’s apartment. She’s surely home, and almost certainly awake.");
-			}
-
-			addButton(1, "S. Knock", knockOnBigTiddyGFDoor, undefined, "South Door Knock", "Something keeps drawing you to knock on the door...");
-		}
-	}
-	
-	setNavDisabled(NAV_SOUTH_DISABLE);
-
-	return false;
 }
 
 /*Cut do to reworking intro bits
@@ -1443,7 +1417,7 @@ public function fynTransformSex():void
 	}
 	else 
 	{
-		addDisabledButton(2,"Get Reamed","Get Reamed","This act requires you to have both sexes' genitals.");
+		addDisabledButton(2,"Get Reamed","Get Reamed","This act requires you to have both sexes’ genitals.");
 		addDisabledButton(3,"SuckMyCane","Suck My Cane","Fyn would prefer you to have a vagina and penis to play with for this.");
 	}
 	addButton(14,"Leave",leaveChristmasBehind);

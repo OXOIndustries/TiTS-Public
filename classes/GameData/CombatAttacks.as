@@ -1025,8 +1025,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1047,8 +1048,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1075,8 +1077,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1098,15 +1101,11 @@ package classes.GameData
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
 			
-			if(target.hasFlightEffects())
-			{
-				output((attacker is PlayerCharacter ? (kGAMECLASS.chars["WULFE"].short) : (ownerName + "’s Siegwulfe")) + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
-				return;
-			}
-			
 			var d:Number = attacker.untypedDroneDamage() + 1 + rand(2);
 			var dmg:TypeCollection;
 			var damageResult:DamageResult;
+			
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
 			if(attacker is PlayerCharacter)
 			{
@@ -1132,6 +1131,11 @@ package classes.GameData
 					//More dmg than lust
 					else
 					{
+						if(missed)
+						{
+							output(kGAMECLASS.chars["WULFE"].short + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+							return;
+						}
 						output(RandomInCollection([
 							"[wulfe.name] jumps into the fray, slashing with her extendable claws!",
 							"[wulfe.name] spins around and kicks at the opponent with her powerful hindlegs!",
@@ -1154,6 +1158,11 @@ package classes.GameData
 				}
 				else
 				{
+					if(missed)
+					{
+						output(kGAMECLASS.chars["WULFE"].short + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+						return;
+					}
 					output(kGAMECLASS.chars["WULFE"].short + " brandishes her hardlight claws, putting herself between you and " + target.getCombatName() + ". <i>“Don’t worry, " + attacker.mf("master", "mistress") + ", I’ll protect you!”</i> She lunges forward, sweeping her blades across her target.");
 					
 					dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
@@ -1162,6 +1171,11 @@ package classes.GameData
 			}
 			else
 			{
+				if(missed)
+				{
+					output(ownerName + "’s Siegwulfe is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+					return;
+				}
 				output(ownerName + "’s Siegwulfe brandishes its hardlight claws and lunges forward, sweeping its blades at " + ((target is PlayerCharacter) ? "you!" : (target.getCombatName() + ".")));
 				
 				dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
