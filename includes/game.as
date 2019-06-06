@@ -29,13 +29,9 @@ import classes.StringUtil;
 
 public function get canSaveAtCurrentLocation():Boolean
 {
-	if(inCombat()) 
-		return false;
-
-	if (inSceneBlockSaving)
-		return false;
-
-	return rooms[currentLocation].canSaveInRoom
+	if (inCombat()) return false;
+	if (inSceneBlockSaving) return false;
+	return rooms[currentLocation].canSaveInRoom;
 }
 
 public function infiniteItems():Boolean
@@ -532,7 +528,13 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
 	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
-	addGhostButton(4, "Back", backToPrimaryOutput, true);
+	addGhostButton(4, "Back", exitCodex);
+}
+public function exitCodex():void
+{
+	backToPrimaryOutput(true);
+	// trigger event if queued
+	if(eventQueue.length > 0) mainGameMenu();
 }
 public function showCodexExtra():void
 {

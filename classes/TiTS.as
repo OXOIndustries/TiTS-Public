@@ -905,8 +905,8 @@
 			{
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					updatePCStats();
 					updateDisplays();
+					updatePCStats();
 				}
 			}
 			

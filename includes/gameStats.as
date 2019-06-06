@@ -1647,6 +1647,8 @@ public function displayCodexOptions():void
 	addGhostButton(1, "Volume", toggleCodexOption, "volume", "Toggle Volume Units", "Change units for volume (cubic length).");
 	addGhostButton(2, "Liquid", toggleCodexOption, "liquid", "Toggle Liquid Units", "Change units for volume (liquid).");
 	addGhostButton(3, "Weight", toggleCodexOption, "weight", "Toggle Weight Units", "Change units for weight.");
+	if(!canSaveAtCurrentLocation) addDisabledGhostButton(4, "Console", "Command Console Input", "You cannot use this at the moment.");
+	else addGhostButton(4, "Console", commandCodexInput, undefined, "Command Console Input", "Test console commands using the input function.");
 	addGhostButton(14, "Back", showCodex);
 }
 public function toggleCodexOption(option:String = ""):void
@@ -1688,6 +1690,64 @@ public function toggleCodexOption(option:String = ""):void
 			break;
 	}
 	displayCodexOptions();
+}
+public function commandCodexInput():void
+{
+	clearOutput2();
+	output2("This is the exprimental console command interface.");
+	
+	output2("\n\nPlease enter a command code to execute:\n");
+	
+	displayInput();
+	output2("\n\n\n");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Execute", commandCodexInputConfirm);
+	addGhostButton(4, "Exit", commandCodexInputBack, true);
+	addGhostButton(14, "Back", commandCodexInputBack);
+}
+public function commandCodexInputBack(toMainMenu:Boolean = false):void
+{
+	removeInput();
+	
+	if(toMainMenu) exitCodex();
+	else displayCodexOptions();
+}
+public function commandCodexInputConfirm():void
+{
+	var sText:String = userInterface.textInput.text;
+	
+	if (sText == "")
+	{
+		commandCodexInput();
+		output2("<b>You must input something.</b>");
+		return;
+	}
+	if (InCollection(sText, ["return","back","exit","quit","qqq"]))
+	{
+		commandCodexInputBack(sText == "qqq" ? true : false);
+		return;
+	}
+	if (!hasCheatInput(sText))
+	{
+		commandCodexInput();
+		output2("Command not recognized. <b>Please try again.</b>");
+		return;
+	}
+	
+	removeInput();
+	
+	clearOutput2();
+	output2("<b>Command ‘" + sText + "’ recognized!</b>");
+	output2("\n\nYou can choose to exit the console or try another command code:\n");
+	
+	displayInput();
+	output2("\n\n\n");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Execute", commandCodexInputConfirm, undefined, "Next Input", "Add another input into the command console.");
+	addGhostButton(4, "Exit", commandCodexInputBack, true);
+	addGhostButton(14, "Back", commandCodexInputBack);
 }
 
 // Genetic Marker Weighting
