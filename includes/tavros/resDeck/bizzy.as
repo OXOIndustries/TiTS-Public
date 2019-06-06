@@ -837,7 +837,7 @@ public function bizzyStage5Menu():void
 	addDisabledButton(2, "Talk");
 	addButton(3, "Breasts", bizzyStage5Breasts, undefined, "Breasts", "The most important subject of all.");
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisableButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
+	else addDisabledButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
 	addButton(14, "Leave", bizzyStage3Leave);
 }
 
@@ -975,7 +975,7 @@ public function bizzyStage4Menu():void
 	addButton(3, "Breasts", bizzyStage4Breasts, undefined, "Breasts", "The most important subject of all.");
 	
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisableButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
+	else addDisabledButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
 
 	if (flags["BIZZY_SHOW_PLAN"] != undefined && flags["BIZZY_SHOW_PLAN"] == 1)
 	{
@@ -1289,7 +1289,7 @@ public function bizzyStage3Menu():void
 	addButton(3, "Breasts", bizzyStage3Breasts, undefined, "Her Breasts", "The most important subject of all.");
 	
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisableButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
+	else addDisabledButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
 	
 	addButton(14, "Leave", bizzyStage3Leave);
 }
@@ -1527,7 +1527,7 @@ public function bizzyStage2Menu():void
 	addButton(3, "Breasts", bizzyStage2Breasts, undefined, "Breasts", "The most important subject of all.");
 	
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisableButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
+	else addDisabledButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal big titty kitty.");
 	
 	addButton(14, "Leave", bizzyStage2Leave);
 }
@@ -1743,7 +1743,7 @@ public function bizzyStage1Menu():void
 	addButton(3, "Breasts", bizzyStage1Breasts, undefined, "Breasts", "The most important subject of all.");
 	
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
-	else addDisableButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal titty kitty.");
+	else addDisabledButton(4, "Sex", "Sex", "You're not turned on enough to really get the most out of your personal titty kitty.");
 	
 	addButton(14, "Leave", bizzyStage1Leave);
 }
