@@ -33,7 +33,7 @@ public function bizzyCamgirlInitialMail():String
 public function bizzyCamgirlPaymentMail():String
 {
 	var ret:String = "You should be getting some money from me every month now. You own all the rights to the stuff I do so the ad rev etc goes to you.";
-	ret += "\n\nThx so much for supporting me, [pc.Mr] Steele. This has been a dream come true so far. I cant wait to see you again so I can thank you in person, if you get what I mean.";
+	ret += "\n\nThx so much for supporting me, [pc.Mr]. Steele. This has been a dream come true so far. I cant wait to see you again so I can thank you in person, if you get what I mean.";
 	ret += "\n\nSee you soon.";
 
 	ret += "\n\nBizzy <3";
@@ -245,7 +245,24 @@ public function bizzyMenu():void
 	}
 }
 
-public function bizzySexMenu():void
+public function bizzyGoLeave():void
+{
+	switch (flags["BIZZY_PORN_STUDIO"])
+	{
+		default:
+		case undefined:
+		case 0:
+			throw new Error("This shouldn't ever be called!");
+			break;
+		case 1: bizzyStage1Leave(); break;
+		case 2: bizzyStage2Leave(); break;
+		case 3: bizzyStage3Leave(); break;
+		case 4: bizzyStage3Leave(); break;
+		case 5: bizzyStage3Leave(); break;
+	}
+}
+
+public function bizzySexMenu(fromItem:Boolean = false):void
 {
 	clearOutput();
 	showBizzyBust();
@@ -257,13 +274,13 @@ public function bizzySexMenu():void
 	
 	var btnSlot:int = 0;
 
-	if (pc.lust() >= 33 && pc.hasCock()) addButton(btnSlot, "Vaginal", bizzySexVaginal, undefined, "Vaginal", "Bend her over the couch.");
+	if (pc.lust() >= 33 && pc.hasCock()) addButton(btnSlot, "Vaginal", bizzySexVaginal, fromItem, "Vaginal", "Bend her over the couch.");
 	else if (pc.lust() < 33) addDisabledButton(btnSlot, "Vaginal", "Vaginal", "You’re not turned on enough for this.")
 	else addDisabledButton(btnSlot, "Vaginal", "Vaginal", "You need a cock to give her a good seeing to.");
 
 	btnSlot++;
 
-	if (pc.biggestTitSize() >= 3 && pc.lust() >= 33) addButton(btnSlot, "BoobyRubs", bizzyBoobyRubs, undefined, "Booby Rubs", "Aren’t boobs nice? Compare yours with hers.");
+	if (pc.biggestTitSize() >= 3 && pc.lust() >= 33) addButton(btnSlot, "BoobyRubs", bizzyBoobyRubs, fromItem, "Booby Rubs", "Aren’t boobs nice? Compare yours with hers.");
 	else if (pc.lust() < 33) addDisabledButton(btnSlot, "BoobyRubs", "Booby Rubs", "You’re not turned on enough for this.");
 	else addDisabledButton(btnSlot, "BoobyRubs", "Booby Rubs", "You need to be rockin’ a rack of your own to get down with some fat tiddy pillow squishing.");
 
@@ -272,14 +289,14 @@ public function bizzySexMenu():void
 	if (pc.hasCock() && !pc.hasVagina())
 	{
 		if (pc.lust() < 33) addDisabledButton(btnSlot, "Oral", "Oral", "You’re not turned on enough for this.");
-		else addButton(btnSlot, "Oral", bizzySexOral, false, "Oral", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
+		else addButton(btnSlot, "Oral", bizzySexOral, [false, fromItem], "Oral", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
 
 		btnSlot++;
 	}
 	else if (pc.hasVagina() && !pc.hasCock())
 	{
 		if (pc.lust() < 33) addDisabledButton(btnSlot, "Oral", "Oral", "You’re not turned on enough for this.");
-		else addButton(btnSlot, "Oral", bizzySexOral, true, "Oral", "Cat’s are good at licking.");
+		else addButton(btnSlot, "Oral", bizzySexOral, [true, fromItem], "Oral", "Cat’s are good at licking.");
 
 		btnSlot++;
 	}
@@ -292,8 +309,8 @@ public function bizzySexMenu():void
 		}
 		else
 		{
-			addButton(btnSlot, "Oral (M)", bizzySexOral, false, "Oral (Cock)", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
-			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, true, "Oral (Vag)", "Cat’s are good at licking.");
+			addButton(btnSlot, "Oral (M)", bizzySexOral, [false, fromItem], "Oral (Cock)", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
+			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, [true, fromItem], "Oral (Vag)", "Cat’s are good at licking.");
 		}
 
 		btnSlot += 2;
@@ -301,15 +318,22 @@ public function bizzySexMenu():void
 
 	if (flags["BIZZY_PORN_STUDIO"] >= 2)
 	{
-		if (pc.hasCock() && pc.lust() >= 33) addButton(btnSlot, "Titfuck", bizzyTittyFuck, undefined, "Tittyfuck", "Use her new anatomy in the best way possible.");
+		if (pc.hasCock() && pc.lust() >= 33) addButton(btnSlot, "Titfuck", bizzyTittyFuck, fromItem, "Tittyfuck", "Use her new anatomy in the best way possible.");
 		else if (pc.lust() < 33) addDisabledButton(btnSlot, "Titfuck", "Tittyfuck", "You’re not turned on enough for this.");
 		else addDisabledButton(btnSlot, "Titfuck", "Tittyfuck", "You need a cock to slide between her succulent tits.");
 	}
 
-	addButton(14, "Back", bizzyMenu);
+	if (fromItem)
+	{
+		addButton(14, "Leave", bizzyGoLeave);
+	}
+	else
+	{
+		addButton(14, "Back", bizzyMenu);
+	}
 }
 
-public function bizzyTittyFuck():void
+public function bizzyTittyFuck(fromItem:Boolean = false):void
 {
 	clearOutput();
 	showBizzyBust(true);
@@ -455,10 +479,18 @@ public function bizzyTittyFuck():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", bizzyMenu);
+	
+	if (!fromItem)
+	{
+		addButton(0, "Next", bizzyMenu);
+	}
+	else
+	{
+		addButton(0, "Next", bizzyGoLeave);
+	}
 }
 
-public function bizzyBoobyRubs():void
+public function bizzyBoobyRubs(fromItem:Boolean = false):void
 {
 	clearOutput();
 	showBizzyBust(true);
@@ -577,11 +609,22 @@ public function bizzyBoobyRubs():void
 	IncrementFlag("BIZZY_BOOBY_RUBBED");
 
 	clearMenu();
-	addButton(0, "Next", bizzyMenu);
+	
+	if (!fromItem)
+	{
+		addButton(0, "Next", bizzyMenu);
+	}
+	else
+	{
+		addButton(0, "Next", bizzyGoLeave);
+	}
 }
 
-public function bizzySexOral(isVag:Boolean):void
+public function bizzySexOral(opts:Array):void
 {
+	var isVag:Boolean = opts[0];
+	var fromItem:Boolean = opts[1];
+	
 	clearOutput();
 	showBizzyBust(true);
 
@@ -663,10 +706,18 @@ public function bizzySexOral(isVag:Boolean):void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", bizzyMenu);
+	
+	if (!fromItem)
+	{
+		addButton(0, "Next", bizzyMenu);
+	}
+	else
+	{
+		addButton(0, "Next", bizzyGoLeave);
+	}
 }
 
-public function bizzySexVaginal():void
+public function bizzySexVaginal(fromItem:Boolean = false):void
 {
 	clearOutput();
 	showBizzyBust(true);
@@ -782,7 +833,15 @@ public function bizzySexVaginal():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", bizzyMenu);
+	
+	if (!fromItem)
+	{
+		addButton(0, "Next", bizzyMenu);
+	}
+	else
+	{
+		addButton(0, "Next", bizzyGoLeave);
+	}
 }
 
 /* Stage 5 */
@@ -793,7 +852,7 @@ public function bizzyStage5():void
 
 	if (flags["BIZZY_CONSTRUCTION_COMPLETE"] == undefined)
 	{
-		output("\n\nThe construction work is finished. Apartment 156 looks pretty much the same as it always did - except its synth plastic frontage, as well as the two on the other side, have been given a clean and polish. Once you head up there, you find there’s also plaque above the door that reads ‘[pornStudioName]’. DO NOT DISTURB. Inquiries to extrasite’.");
+		output("The construction work is finished. Apartment 156 looks pretty much the same as it always did - except its synth plastic frontage, as well as the two on the other side, have been given a clean and polish. Once you head up there, you find there’s also plaque above the door that reads ‘[pornStudioName]’. DO NOT DISTURB. Inquiries to extrasite’.");
 		
 		output("\n\nTwo claw-tipped hands grab hold of your arm and haul you inside as soon as you press the bell.");
 		
@@ -825,6 +884,8 @@ public function bizzyStage5():void
 		
 		output("\n\n<i>“Getting ideas?”</i> she smiles mischievously, turning the screen off when she sees you standing there. <i>“Is that what’s brought you down to [pornStudioName] today, [pc.Mr]. Steele?”</i>");
 	}
+	
+	moveTo("BIZZY STUDIO ROOM");
 
 	bizzyStage5Menu();
 }
@@ -960,6 +1021,8 @@ public function bizzyStage4():void
 	output("\n\nThe bedroom is now a professional set. No more bedsheets - Bizzy has purchased actual screens, and VI-controlled lamps that can swoop around and provide the best lighting at their own behest. The drones have been upgraded, sleek, tiny things that capture the best angles in definition that makes the eye ache. There’s a small studio built into one corner, four different screens all equipped for state-of-the-art editing. And there’s entire glass-fronted cabinet’s worth of sex toys now, lurid little parades of dildos, vibes, oils and exotic toys waiting to be used. It’s a very cramped space, with a clear need for more room.");
 	
 	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She lays herself down on the couch opposite, leisured, happy cat in the presence of her owner.");
+	
+	moveTo("BIZZY STUDIO ROOM");
 
 	processTime(10+rand(5));
 
@@ -1096,9 +1159,9 @@ public function bizzyStage4PlanYeahIV():void
 	clearOutput();
 	showBizzyBust();
 
-	output("\n\n<i>“"+pornStudioName+" it is! Very imaginative.”</i>");
+	output("<i>“"+pornStudioName+" it is! Very imaginative.”</i>");
 
-	output("Teron takes away the form and directs your attention to Bizzy, who’s happily messaging an alert to her fans, hinting at big news.");
+	output("\n\nTeron takes away the form and directs your attention to Bizzy, who’s happily messaging an alert to her fans, hinting at big news.");
 
 	output("\n\n<i>“Onto considering some painless extras for your freshly re-indentured property. She is now an asset of the newly minted [pornStudioName]. Might I suggest a tattoo of the company’s logo on her buttock? An excellent reminder to viewers of whom they should be grateful to for such first class entertainment. And perhaps a steel collar? Nothing too heavyweight, slim and pretty without any add-ons. But it’s always good to keep high profile entertainers reminded of who they belong to. And...”</i> he chuckles urbanely. <i>“Steel, you see?”</i>");
 
@@ -1276,6 +1339,8 @@ public function bizzyStage3():void
 	output("\n\nThe bedroom remains much the same. With careful application of sheets and light sources, Bizzy has made it into an intimate, well-lit space with an atmosphere of quiet potential, centred around her laptop and crimson-sheeted double bed. A little row of sex toys stand to attention on a bedside table. You notice she’s added a selection of body paints, aphros and other little sexual treats behind them. On one wall is a little collection of photos - scenes from her greatest hits, as well as specific shout-outs to her most generous patrons.");
 	
 	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She lays herself down on the couch opposite, leisured cat in the presence of her owner.");
+	
+	moveTo("BIZZY STUDIO ROOM");
 
 	bizzyStage3Menu();
 }
@@ -1306,7 +1371,7 @@ public function bizzyStage3Breasts():void
 	addButton(0, "Fondle", bizzyStage3Fondle, undefined, "Fondle", "It’s your property after all.");
 
 	// I'm not doing a selectable menu for this, just pushing toward right or not automatically because there is only one "right" answer, there isn't much of a choice to be had.
-	if (!pc.hasItemByClass(Tittyblossom), 3) addDisabledButton(1, "Give", "Give Item", "She’s gonna need a <b>big</b> dose this time.");
+	if (!pc.hasItemByClass(Tittyblossom, 3)) addDisabledButton(1, "Give", "Give Item", "She’s gonna need a <b>big</b> dose this time.");
 	else addButton(1, "Give", bizzyStage3GiveItem, undefined, "Give Item", "Give her the big dose of Tittyblossom she’s requested");
 
 	addButton(14, "Back", bizzyStage3Menu);
@@ -1368,6 +1433,7 @@ public function bizzyStage3GiveItem():void
 	pc.destroyItemByClass(Tittyblossom, 3);
 	flags["BIZZY_PORN_STUDIO"] = 4;
 	
+	clearMenu();
 	addButton(0, "Next", bizzyStage3GiveItemNext);
 }
 
@@ -1418,7 +1484,7 @@ public function bizzyStage3GiveItemGo():void
 	flags["BIZZY_PORN_STUDIO_TIMER"] = GetGameTimestamp() + 1440;
 
 	clearMenu();
-	addButton(0, "Sex", bizzySexMenu);
+	addButton(0, "Sex", bizzySexMenu, true);
 	addButton(1, "Leave", bizzyStage3Leave, undefined, "Leave", "You have to go.");
 }
 
@@ -1514,8 +1580,10 @@ public function bizzyStage2():void
 	output("\n\nThe living room and kitchenette are as sparse and shabby as always. However, as the kaithrit shows you, she’s transformed her bedroom: With careful application of sheets and light sources, she’s made it into an intimate, well-lit space with an atmosphere of quiet potential, centred around her laptop and crimson-sheeted double bed. A little row of sex toys stand to attention on a bedside table. You notice she’s added a selection of body paints, aphros and other little sexual treats behind them. It’s reasonably impressive, given she’s working with very little.");
 	
 	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
+	
+	moveTo("BIZZY STUDIO ROOM");
 
-	//[Appearance] [Camshow] [Talk] [Breasts] [Sex]
+	bizzyStage2Menu();
 }
 
 public function bizzyStage2Menu():void
@@ -1545,6 +1613,8 @@ public function bizzyStage2Breasts():void
 	// I'm not doing a selectable menu for this, just pushing toward right or not automatically because there is only one "right" answer, there isn't much of a choice to be had.
 	if (!pc.hasItemByClass(Tittyblossom)) addDisabledButton(1, "Give", "Give Item", "You need something appropriate to try and give her in your inventory!");
 	else addButton(1, "Give", bizzyBreastsGiveItemStage2, undefined, "Give Item", "Give her a boob-expanding TF.");
+	
+	addButton(14, "Back", bizzyStage2Menu);
 }
 
 public function bizzyBreastsGiveItemStage2():void
@@ -1582,6 +1652,7 @@ public function bizzyBreastsGiveItemStage2():void
 	pc.destroyItemByClass(Tittyblossom);
 	flags["BIZZY_PORN_STUDIO"] = 3;
 	
+	clearMenu();
 	addButton(0, "Next", bizzyBreastsGiveItemStage2Next);
 }
 
@@ -1599,9 +1670,6 @@ public function bizzyBreastsGiveItemStage2Next():void
 	output("\n\nThey are jugs. No other word does them justice. Melon-sized pear-shapes, they swell way out in front of her, each tipped by a thick, fat nipple swaddled in faun areola, begging to be licked and nibbled. Void, it makes your mouth water just looking at those hanging off your pretty kitty cat, as you’re sure it does for every one of the 130k people currently gazing at her, as she squeezes them, bounces them, plays with her nipples, sighing with delight. The difference is, of course, <i>you</i> have the right to fondle and play with them whenever you wish.");
 	
 	output("\n\n<i>“Titty kitty.”</i> She reads the most frequently used phrase in the chat log, and laughs. <i>“Yeah... I guess I am, aren’t I? A titty kitty.”</i> She strokes her DD-cups, with a bite of her lip. <i>“But they could be bigger, couldn’t they? Why should we stop here? I am what I am... a titty kitty. And it feels so gooooood...”</i> she tails off into a croon, her twin tails curling as she pinches her nipples, making them stand out like cherries. <i>“...well, we’ll see. If I keep doing the business for my owner. If I keep getting subscribers. Until next time, guys... you’ve been watching the Business with Bizzy.”</i>");
-
-	pc.lust(25);
-	processTime(10);
 
 	pc.lust(50);
 	processTime(15);
@@ -1630,7 +1698,7 @@ public function bizzyBreastsGiveItemStage2II():void
 	flags["BIZZY_PORN_STUDIO_TIMER"] = GetGameTimestamp() + 1440;
 
 	clearMenu();
-	addButton(0, "Sex", bizzySexMenu);
+	addButton(0, "Sex", bizzySexMenu, true);
 	addButton(1, "Leave", bizzyStage2Leave, undefined, "Leave", "You have to go.");
 }
 
@@ -1729,6 +1797,7 @@ public function bizzyStage1():void
 
 	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
 
+	moveTo("BIZZY STUDIO ROOM");
 	bizzyStage1Menu();
 }
 
@@ -1866,6 +1935,8 @@ public function bizzyBreastsGiveItemStage1(foundItem:Class):void
 
 		processTime(15);
 		pc.lust(33);
+		
+		pc.destroyItemByClass(Tittyblossom);
 
 		clearMenu();
 		addButton(0, "Next", bizzyBreastsGiveItemStage1Next);
@@ -1906,6 +1977,8 @@ public function bizzyBreastsGiveItemStage1Next():void
 	processTime(10);
 	pc.lust(25);
 	
+	flags["BIZZY_PORN_STUDIO"] = 2;
+	
 	addButton(0, "Next", bizzyBreastsGiveItemStage1II);
 }
 
@@ -1932,7 +2005,7 @@ public function bizzyBreastsGiveItemStage1II():void
 
 	//[Sex] [Leave]
 	clearMenu();
-	addButton(0, "Sex", bizzySexMenu);
+	addButton(0, "Sex", bizzySexMenu, true);
 	addButton(1, "Leave", bizzyStage1Leave, undefined, "Leave", "You have to go.");
 }
 
