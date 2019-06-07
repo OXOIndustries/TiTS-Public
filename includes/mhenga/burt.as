@@ -36,7 +36,8 @@ public function burtsBarFunc():Boolean {
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
 
-	if (hours >= 12 && hours < 17 && pc.hasGenitals() && yomaAtBurts()) yomaAtBurtsAddendum(10);
+	// yoma can appear either by chance (if the PC fullfills the conditions) or will allways appear if told to wait
+	if (pc.hasGenitals() && (yomaWaitingAtBurts() || (hours >= 12 && hours < 17  && yomaCanAppearAtBurts()))) yomaAtBurtsAddendum(10);
 
 	return false;
 }

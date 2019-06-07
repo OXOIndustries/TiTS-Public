@@ -363,7 +363,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 			}
 		}
 		if(!hostileOnly && !pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
-		if(!hostileOnly && !pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras")) choices.push(yomaJungleEncounter);
+		if(!hostileOnly && yomaExploringTheJungle() && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras")) choices.push(yomaJungleEncounter);
 		if(!hostileOnly && flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
@@ -436,7 +436,7 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -544,7 +544,7 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -640,7 +640,7 @@ public function mhengaVanaeCombatZone():Boolean
 		var YOMA:int = 4;
 		
 		var choices:Array = [MAIDEN, MAIDEN, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, MIMBRANE];
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Vanae")) choices.push(YOMA);
+		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Vanae")) choices.push(YOMA);
 		var selected:int = RandomInCollection(choices);
 	
 		if (selected == MAIDEN)
