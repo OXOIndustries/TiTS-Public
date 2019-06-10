@@ -543,6 +543,7 @@
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
+		include "../includes/uveto/xotchiExpansion.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";

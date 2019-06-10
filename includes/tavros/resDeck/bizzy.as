@@ -63,7 +63,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 
 		flags["BIZZY_MAIL_PAYMENT_DAY"] = days + totalDays;
 
-		var payAmounts:Array = [300, 2000];
+		var payAmounts:Array = [300, 2000, 2000]; // This should handle the payments not working, I forgot we go up to stage 5 at the very end without touching the payments
 
 		// The player should never be able to change the stage (and thus per month payout level)
 		// Whilst also passing more than 1 payment period so we can just assume payouts across
@@ -257,8 +257,8 @@ public function bizzyGoLeave():void
 		case 1: bizzyStage1Leave(); break;
 		case 2: bizzyStage2Leave(); break;
 		case 3: bizzyStage3Leave(); break;
-		case 4: bizzyStage3Leave(); break;
-		case 5: bizzyStage3Leave(); break;
+		case 4: bizzyStage4Leave(); break;
+		case 5: bizzyStage4Leave(); break;
 	}
 }
 
@@ -1700,6 +1700,23 @@ public function bizzyBreastsGiveItemStage2II():void
 	clearMenu();
 	addButton(0, "Sex", bizzySexMenu, true);
 	addButton(1, "Leave", bizzyStage2Leave, undefined, "Leave", "You have to go.");
+}
+
+public function bizzyStage4Leave():void
+{
+	clearOutput();
+	showBizzyBust();
+
+	output("\n\nWith some reluctance, you tear yourself away from Bizzy and head for the door.");
+
+	output("\n\n<i>“Aww. But you’ll come back soon, won’t you?”</i> She twists her high-heeled toe in the carpet as she sees you out. <i>“There’s always some more business for you to be taking care of here... <i>“");
+
+	processTime(3+rand(3));
+
+	currentLocation = "RESIDENTIAL DECK 13";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function bizzyStage2Leave():void

@@ -19,6 +19,12 @@ public function showXotchi(nude:Boolean = false):void
 //Office of the Camarilla 
 public function officeOfTheCamarillaButtsBonus():Boolean
 {
+	if (timeForXotchiOverride())
+	{
+		xotchiOfficeSpecialTime();
+		return true;
+	}
+
 	showBust("TLAKO");
 	author("Frogapus");
 	
@@ -136,7 +142,7 @@ public function xotchiTzallMeeting():void
 {
 	clearOutput();
 	showXotchi();
-	output("You ask to meet with Sub-Madam Xotchi Tzall, and Tlako’s face goes blank for a moment. ");
+	output("You ask to meet with Sub-Madam Xotchi Tzall, and Tlako’s face goes blank for a moment.");
 	//[If player has not yet met Xotchi Tzall:
 	if(flags["MET_XOTCHI"] == undefined)
 	{
@@ -150,15 +156,26 @@ public function xotchiTzallMeeting():void
 		output("\n\n<i>“Regardless,”</i> she says with another smile, <i>“I hope your trip here is a profitable one! I encourage you make generous use of the various stores aboard Uveto Station.”</i>");
 		output("\n\nShe bids you farewell, and leaves, shooting a poisonous glance at Tlako on her way out.");
 		output("\n\n<i>“The... the Sub-Madam w-will see you now...”</i> says Tlako weakly.");
+		
 		processTime(5);
 		
 		flags["MET_XOTCHI"] = 1;
 	}
 	else
 	{
-		output("Tlako pulls a out her small digital compact and look at it, scrolling through it.");
-		output("\n\n<i>“I’m so sorry,”</i> she says with visible relief. <i>“Sub-Madam Xotchi Tzall is unavailable for the rest of the day. She won’t be able to meet with you.”</i>");
-		processTime(1);
+		output("\n\n<i>“You want to speak to the Sub-madam?”</i> gulps Tlako. <i>“I d-don’t think she’s available, but l-let me see if she’s in ...”</i> The little, pink tove taps her clipboard, and a familiar voice squawks something unintelligible through a speaker.");
+		
+		output("\n\n<i>“Oh no-I mean-oh good, she’s available!”</i> says Tlako, glancing nervously around the room. <i>“She’s on her way. I’ll just go ... retriculate some agendocuments ...”</i> she says. In a flurry of scattered papers, she gathers up her stack of forms and dashes out through one of the floor-level shutters.");
+		
+		output("\n\nBarely a minute or two has passed when another door whooshes open and [xotchiName] stalks into the room. The two-foot-tall tove is dressed in her usual black corset, and holding her folding-tablet fan. Her blood-orange feathers bristle, and she glares at the scattered papers on the floor, snatching one up in a scaled talon.");
+		
+		output("\n\n<i>“And [/i]there’s[i] the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
+		
+		output("\n\nYou clear your throat, and she looks up at you.");
+
+		xotchiApproachMerge();
+
+		return;
 	}
 	tlakoMenu(xotchiTzallMeeting);
 }
