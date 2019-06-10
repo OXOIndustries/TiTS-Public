@@ -177,8 +177,9 @@
 		{
 			target.tailType = GLOBAL.TYPE_BOVINE;
 			target.tailCount = newTailCount;
-			target.tailFlags = [];
+			target.clearTailFlags();
 			target.addTailFlag(GLOBAL.FLAG_LONG);
+			target.addTailFlag(GLOBAL.FLAG_FURRED);
 			target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		}
 		private function hornTF(target:Creature, newHorns:Number = 2, newHornLength:Number = 1):void

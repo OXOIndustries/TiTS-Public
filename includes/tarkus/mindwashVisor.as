@@ -2966,13 +2966,13 @@ public function useMindwashOnShekka():void
 		if(pc.IQ() <= 65 && pc.characterClass != GLOBAL.CLASS_ENGINEER) 
 		{
 			output("\n\nYou stutter. Uh, yes! You tell her that it’s exactly what she’s thinking, and that that would have been your first guess, as well. Great minds think alike!");
-			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone</i> else’s <i>dream, and you’re living it out.”</i>");
+			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone </i>else’s<i> dream, and you’re living it out.”</i>");
 			output("\n\nYou collect yourself and answer more appropriately.");
 		}
 		else 
 		{
 			output("\n\nYou reply that that’s exactly correct: this device, you’re told, can rewrite memories, and place new ones in the wearer’s mind.");
-			output("\n\n<i>“Well, not</i> exactly,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone</i> else’s <i>dream.");
+			output("\n\n<i>“Well, not </i>exactly<i>,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone </i>else’s<i> dream.”</i>");
 			output("\n\nYou hum to yourself as you consider your answer and her own.");
 		}
 		output(" Yes, as a matter of fact, that’s what this device does. You wanted to call Shekka here because you thought she would appreciate a piece of modern engineering like this one.");

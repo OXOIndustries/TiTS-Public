@@ -1719,7 +1719,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) outputRouter(" A coat of " + target.furColor + " fur covers " + (target == pc ? "your":"[target.hisHer]") + " arms, giving them a distinctly animalistic bent.");
 			if(target.hasArmFlag(GLOBAL.FLAG_PAWS)) outputRouter(" Soft pads rest on the tips of each of " + (target == pc ? "your":"[target.hisHer]") + " fingers. ");
 			if(target.armType == GLOBAL.TYPE_LUPINE) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " fingers are tipped with thick, canine claws as well");
-			else outputRouter(" " + (target == pc ? "your":"[target.HisHer]") + " fingers are tipped with short, canine claws as well");
+			else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " fingers are tipped with short, canine claws as well");
 			if(target.armType == GLOBAL.TYPE_CANINE && !target.hasArmFlag(GLOBAL.FLAG_PAWS)) outputRouter(", just like one of the ausar");
 			outputRouter(".");
 			break;

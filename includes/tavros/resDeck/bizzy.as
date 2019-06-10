@@ -33,7 +33,7 @@ public function bizzyCamgirlInitialMail():String
 public function bizzyCamgirlPaymentMail():String
 {
 	var ret:String = "You should be getting some money from me every month now. You own all the rights to the stuff I do so the ad rev etc goes to you.";
-	ret += "\n\nThx so much for supporting me, [pc.Mr]. Steele. This has been a dream come true so far. I cant wait to see you again so I can thank you in person, if you get what I mean.";
+	ret += "\n\nThx so much for supporting me, [pc.Mr] Steele. This has been a dream come true so far. I cant wait to see you again so I can thank you in person, if you get what I mean.";
 	ret += "\n\nSee you soon.";
 
 	ret += "\n\nBizzy <3";
@@ -59,7 +59,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 	// Also check for the first day so we can push a payment through along with the mail
 	if (days == flags["BIZZY_MAIL_PAYMENT_DAY"] || days == (flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays) >= 30)
 	{
-		var numPays:int = Math.max(1, (flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays - days) / 30);
+		var numPays:int = Math.max(1, ((flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays - days) / 30));
 
 		flags["BIZZY_MAIL_PAYMENT_DAY"] = days + totalDays;
 
@@ -68,7 +68,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 		// The player should never be able to change the stage (and thus per month payout level)
 		// Whilst also passing more than 1 payment period so we can just assume payouts across
 		// 2 or more periods (if it ever happens) will have to be at the current stage.
-		var actualPay:int = (payAmounts[flags["BIZZY_PORN_STUDIO"] - 3] * numPays);
+		var actualPay:int = (payAmounts[Math.min(flags["BIZZY_PORN_STUDIO"] - 3, 1)] * numPays);
 		pc.credits += actualPay;
 
 		AddLogEvent("<b>Your codex makes a chiming sound, informing you that you have received " + actualPay + " credits. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".</b>", "good", deltaT);
@@ -392,7 +392,7 @@ public function bizzyTittyFuck(fromItem:Boolean = false):void
 		
 		output("\n\n<i>“Do you like that?”</i> she asks, big grin on her face as you begin to pump yourself between her tits, using the tender, plump friction to harden yourself up and then thrust yourself between those two pretty little boobs with greater and greater gusto. You groan as she squeezes them together, tightness that makes you leak pre onto her white skin in appreciation.");
 		
-		output("\n\n<i>“You should do. You got them for me, you weighed me down with all this sluttiness, all this softness, that my viewers can’t get enough of...”</i> Bizzy emphasizes her words with a lovely jiggle, her erect nipples swinging to and fro. <i>“ ...they belong to you. You should use them as much as you can!”</i>");
+		output("\n\n<i>“You should. You got them for me, you weighed me down with all this sluttiness, all this softness, that my viewers can’t get enough of...”</i> Bizzy emphasizes her words with a lovely jiggle, her erect nipples swinging to and fro. <i>“ ...they belong to you. You should use them as much as you can!”</i>");
 		
 		output("\n\n");
 		if (pc.biggestCockLength() >= 10)
@@ -420,7 +420,7 @@ public function bizzyTittyFuck(fromItem:Boolean = false):void
 	else
 	{
 		output("Void, those tits... those huge, luscious melons you’ve grown out on your kept camwhore. Their bounce, their give, their plump nipples rubbing at the material of her top captivate envious, drooling thousands every single night, and they’re yours to do with as you wish. To fondle, to grab... to fuck. The thought already has you uncomfortably hard, your [pc.cock] throbbing");
-		if (pc.isCrotchGarbed()) output(" in your [pc.lowerUndergarments] and straining for release, ");
+		if (pc.isCrotchGarbed()) output(" in your [pc.lowerGarment] and straining for release, ");
 		else output("and ");
 		output("demanding action.");
 		
@@ -465,7 +465,7 @@ public function bizzyTittyFuck(fromItem:Boolean = false):void
 			output(" slut: the way it should be.");
 		}
 
-		output("\n\n<i>“Mmm...”</i> Bizzy trails a finger through the mess you’ve left all over her breasts, sucking it clean with a pop of her lips. <i>“I love seeing to [pc.Mr] Steele’s");
+		output("\n\n<i>“Mmm...”</i> Bizzy trails a finger through the mess you’ve left all over her breasts, sucking it clean with a pop of her lips. <i>“I love seeing to [pc.Mr]. Steele’s");
 		if (pc.biggestCockLength() < 12) output(" little");
 		else output(" big");
 		output("... throbbing... problems. Makes me think it’s the main reason [pc.he] visits me... the main reason [pc.he] gave me these.”</i> She sinks her hands into the endless give of her J cups.");
@@ -496,14 +496,8 @@ public function bizzyBoobyRubs(fromItem:Boolean = false):void
 	showBizzyBust(true);
 
 	output("Bizzy watches, green marble eyes shifting from your face to your [pc.chest], as you ");
-	if (pc.isChestCovered())
-	{
-		output(" take off your [pc.upperGarments] with deliberate slowness, giving your jumper bunnies ample opportunity to shift and heave and finally come loose");
-	}
-	else
-	{
-		output(" shift your hands up to your bare breasts, cupping them with a happy sigh.");
-	}
+	if (pc.isChestCovered()) output(" take off your [pc.upperGarments] with deliberate slowness, giving your jumper bunnies ample opportunity to shift and heave and finally come loose.");
+	else output(" shift your hands up to your bare breasts, cupping them with a happy sigh.");
 
 	output("\n\nThe kaithrit");
 	if (flags["BIZZY_PORN_STUDIO"] <= 2) output(" bites her lip");
@@ -532,7 +526,7 @@ public function bizzyBoobyRubs(fromItem:Boolean = false):void
 		
 			output("\n\nYou play with the kaithrit for a little while longer, enjoying the subspace spell you’ve set on her with the hypnotic power of your [pc.chest], murmuring how important it is that she’s obedient and works her ass hard for you, all the treats that will be hers if she does. A probing hand downstairs reveals she’s extremely wet. You finger her a little as you continue to pleasure your breasts on top of her.");
 		
-		output("\n\n<i>“Ohh...”</i> she moans, an ecstatic squirm making her start a little out of her trance. Her hands find your [pc.chest], squeeze you enviously. <i>“You’ll get me some boob enhancers soon right, [pc.Mr] Steele? I want... I want to be just like you!”</i>");
+		output("\n\n<i>“Ohh...”</i> she moans, an ecstatic squirm making her start a little out of her trance. Her hands find your [pc.chest], squeeze you enviously. <i>“You’ll get me some boob enhancers soon right, [pc.Mr]. Steele? I want... I want to be just like you!”</i>");
 		
 		output("\n\nYou bring your damp fingers up, make her lick her own excitement off them, before releasing her from your suffocating softness. Maybe. If she’s <i>good</i>.");
 	}
@@ -553,7 +547,7 @@ public function bizzyBoobyRubs(fromItem:Boolean = false):void
 		
 		output("\n\nYou play with the kaithrit for a little while longer, enjoying the subspace you’ve put her into with the hypnotic power of your [pc.chest], murmuring how important it is that she’s obedient and works hard for you, all the treats that will be hers if she does. A probing hand downstairs reveals she’s extremely wet. You finger her a little as you continue to pleasure your breasts on top of her.");
 		
-		output("\n\n<i>“Ohh...”</i> she moans, a spasm of ecstasy making her start a little out of her trance. Her hands find your [pc.chest], squeeze you enviously. <i>“You’ll get me some more boob enhancers soon right, [pc.Mr] Steele? I want... I want to be");
+		output("\n\n<i>“Ohh...”</i> she moans, a spasm of ecstasy making her start a little out of her trance. Her hands find your [pc.chest], squeeze you enviously. <i>“You’ll get me some more boob enhancers soon right, [pc.Mr]. Steele? I want... I want to be");
 		if (pc.biggestTitSize() > 7) output(" just like you");
 		else output(" sooo much bigger");
 		output("!”</i>");
@@ -635,8 +629,8 @@ public function bizzySexOral(opts:Array):void
 		output("\n\n<i>“I’m good at a lot of things, [pc.Mr]. Steele,”</i> the kaithrit murmurs, emerald eyes flicking down to your crotch. <i>“You’re gonna have to be more specific.”</i>");
 		
 		output("\n\nAbout thirty seconds later you’re leaning back into the couch");
-		if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened,");
-		output(" a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
+		if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened");
+		output(", a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
 		
 		output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 		if (pc.biggestCockLength() >= 12 || flags["BIZZY_PORN_STUDIO"] >= 4) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot, veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
@@ -673,8 +667,8 @@ public function bizzySexOral(opts:Array):void
 		output("\n\n<i>“I think I might have, [pc.Mr]. Steele,”</i> she answers coquettishly. <i>“Mind if I go down there and check?”</i>");
 		
 		output("\n\nAbout thirty seconds later you’re leaning back into the couch");
-		if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened,");
-		output(" a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
+		if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened");
+		output(", a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
 		
 		output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 		if (pc.totalClits() > 1) output(" She doesn’t seem fazed by your exotic arrangement of pleasure buds, and gives plenty of wet, lapping attention to all of them, sending sheerest ecstasy throbbing through your groin.");
@@ -692,7 +686,7 @@ public function bizzySexOral(opts:Array):void
 		}
 		else
 		{
-			output(" She’s trained for your juiced-up anatomy, these days. She lets the first massive gush of [pc.femcum] warm her face, marking her with your scent, before she fastens herself back onto your throbbing cunt and drinks the cascade of [pc.femcumFlavor] down, throat working gallantly. She’s not going to need any tea for a while, that’s for damn sure.");
+			output(" She’s trained for your juiced-up anatomy, these days. She lets the first massive gush of [pc.femcum] warm her face, marking her with your scent, before she fastens herself back onto your throbbing cunt and drinks the cascade of [pc.femCumFlavor] down, throat working gallantly. She’s not going to need any tea for a while, that’s for damn sure.");
 		}
 		
 		output("\n\n<i>“More of the business delivered by Bizzy,”</i> she says at last, with a winning, [pc.femcum]-smeared smile up at you. <i>“Did you like that, [pc.Mr]. Steele?”</i>");
@@ -722,6 +716,8 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 	clearOutput();
 	showBizzyBust(true);
 
+	var cumQ:Number = pc.cumQ();
+	
 	if (flags["BIZZY_PORN_STUDIO"] <= 2)
 	{
 		output("You let her see the devilish fire in your face before you grab her, molding your hand into a denim-clad buttock and laying your [pc.lips] on her pale neck.");
@@ -751,7 +747,6 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		else output(" [pc.legs]");
 		output(" as you become lost in the sumptuous rhythm of it, slapping your [pc.thighs] against the pale, gently shaking butt of your pet camwhore. Lust fizzes up your [pc.cockNoun] as you make her orgasm, arching her slim back and meowing your name, the name of her owner as her cunt trembles and juices itself around you.");
 
-		var cumQ:Number = pc.cumQ();
 		output("\n\nYou seize the jubilance of the moment to bull rush orgasm yourself, your");
 		if (pc.balls > 0) output(" [pc.balls]");
 		else output(" [pc.cock]");
@@ -765,7 +760,7 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		output(".");
 
 		output("\n\n<i>“I - I love it when you do me like that, [pc.Mr]. Steele,”</i> she says, turning dilated, bedroom eyes on you as she shifts herself around. <i>“So </i>forceful<i>.”</i>");
-		if (pc.cumQ() > 1500) output(" You share a laugh as a tide of [pc.cum] oozes out of her creamed pussy. <i>“I knew it was a good idea to get furniture that was easy wipe.”</i>");
+		if (cumQ > 1500) output(" You share a laugh as a tide of [pc.cum] oozes out of her creamed pussy. <i>“I knew it was a good idea to get furniture that was easy wipe.”</i>");
 	}
 	else
 	{
@@ -814,7 +809,8 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		else output(" [pc.cock]");
 		output(" seizing up, filling her up with [pc.cumColor] seed with one ardent thrust of your [pc.hips] after another.");
 		
-		output("\n\nEven now Bizzy gives back expertly, milking your [pc.cockNoun] with perfect little jounces of her hip, craning her pussy back along your throbbing shaft. {She keeps doing it even when her belly is swollen out with your massive load, raining out from her thoroughly packed cunt all over the couch.}");
+		output("\n\nEven now Bizzy gives back expertly, milking your [pc.cockNoun] with perfect little jounces of her hip, craning her pussy back along your throbbing shaft.");
+		if(cumQ > 1500) output(" She keeps doing it even when her belly is swollen out with your massive load, raining out from her thoroughly packed cunt all over the couch.");
 		
 		output("\n\nYou relax against her when you’re done, feeling gently steamed, stroking her silky hair and fondling her");
 		if (flags["BIZZY_PORN_STUDIO"] < 4) output(" double Ds");
@@ -822,7 +818,7 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		output(".");
 		
 		output("\n\n<i>“Aren’t I good, [pc.Mr]. Steele?”</i> she purrs, dilated, bedroom eyes on you as she fondles you back. <i>“So good you can barely think of anything but doing me, when I’m around.”</i> She bites her lip");
-		if (pc.cumQ() > 1500) output(", and sighs huskily as [pc.cum] oozes heavily out of her utterly stuffed pussy");
+		if (cumQ > 1500) output(", and sighs huskily as [pc.cum] oozes heavily out of her utterly stuffed pussy");
 		output(". <i>“Just the way I want it.”</i>");
 	}
 	
@@ -1364,7 +1360,7 @@ public function bizzyStage3Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hove into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular.<i>”</i>");
+	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular.<i>”</i>");
 
 	//[Fondle] [Give] [Back]
 	clearMenu();
@@ -1471,11 +1467,11 @@ public function bizzyStage3GiveItemGo():void
 
 	output("A few seconds later Bizzy is back into the living room. Face lively with excitement, she tries to give you a hug - and winds up socking you in the face with her blimp-like breasts. She giggles, embarrassed. Good One, in the flesh they somehow seem even bigger.");
 	
-	output("\n\n<i>“That was amazing,”</i> she enthuses. She seizes her breasts, squeezes and jiggles them for you. The fact they seriously impede her movement and block her view downwards doesn’t seem to trouble her at all. In fact, she seems to delight in their bustle and ponderousness. <i>“THESE are amazing. I can’t get over good it feels when the gene-mod takes over... how happy and warm it feels... and all of those eyes on me when I do it!”</i>");
+	output("\n\n<i>“That was amazing,”</i> she enthuses. She seizes her breasts, squeezes and jiggles them for you. The fact they seriously impede her movement and block her view downwards doesn’t seem to trouble her at all. In fact, she seems to delight in their bustle and ponderousness. <i>“THESE are amazing. I can’t get over how good it feels when the gene-mod takes over... how happy and warm it feels... and all of those eyes on me when I do it!”</i>");
 	
 	output("\n\nShe again seems to lose herself in an erotic reverie, transported by her own tactile glory and exhibitionism. When she opens her eyes again, they are shot through with heat and need.");
 	
-	output("\n\n<i>“You’re going to take your pet kitty titty for a test ride now, right?”</i> She clambers onto the couch and turns, laughs as she sees for the first time how her backside has grown, fuller and rounder. Modest, in comparison to what’s happened to her chest, but still mouthwatering.");
+	output("\n\n<i>“You’re going to take your pet titty kitty for a test ride now, right?”</i> She clambers onto the couch and turns, laughs as she sees for the first time how her backside has grown, fuller and rounder. Modest, in comparison to what’s happened to her chest, but still mouthwatering.");
 	
 	output("\n\n<i>“You see that?”</i> she purrs, raising her tails and arching her back. <i>“See what you’ve done to your good little pet, [pc.Mr]. Steele? Don’t you want to taste it, feel for yourself the lovely body you’ve made her grow... make her meow and say your name...”<i>");
 
@@ -1605,7 +1601,7 @@ public function bizzyStage2Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hove into view, when you bring the subject up.");
+	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up.");
 
 	clearMenu();
 	addButton(0, "Fondle", bizzyStage2Fondle, undefined, "Fondle", "It’s your property, after all.");
@@ -1667,7 +1663,7 @@ public function bizzyBreastsGiveItemStage2Next():void
 	
 	output("\n\n<i>“Ohh my word,”</i> she groans woozily, gazing down when she’s finally sucking slivers off the stick. <i>“Look at me!”</i>");
 	
-	output("\n\nThey are jugs. No other word does them justice. Melon-sized pear-shapes, they swell way out in front of her, each tipped by a thick, fat nipple swaddled in faun areola, begging to be licked and nibbled. Void, it makes your mouth water just looking at those hanging off your pretty kitty cat, as you’re sure it does for every one of the 130k people currently gazing at her, as she squeezes them, bounces them, plays with her nipples, sighing with delight. The difference is, of course, <i>you</i> have the right to fondle and play with them whenever you wish.");
+	output("\n\nThey are jugs. No other word does them justice. Melon-sized pear-shapes, they swell way out in front of her, each tipped by a thick, fat nipple swaddled in fawn areola, begging to be licked and nibbled. Void, it makes your mouth water just looking at those hanging off your pretty kitty cat, as you’re sure it does for every one of the 130k people currently gazing at her, as she squeezes them, bounces them, plays with her nipples, sighing with delight. The difference is, of course, <i>you</i> have the right to fondle and play with them whenever you wish.");
 	
 	output("\n\n<i>“Titty kitty.”</i> She reads the most frequently used phrase in the chat log, and laughs. <i>“Yeah... I guess I am, aren’t I? A titty kitty.”</i> She strokes her DD-cups, with a bite of her lip. <i>“But they could be bigger, couldn’t they? Why should we stop here? I am what I am... a titty kitty. And it feels so gooooood...”</i> she tails off into a croon, her twin tails curling as she pinches her nipples, making them stand out like cherries. <i>“...well, we’ll see. If I keep doing the business for my owner. If I keep getting subscribers. Until next time, guys... you’ve been watching the Business with Bizzy.”</i>");
 
@@ -1880,7 +1876,7 @@ public function bizzyStage1Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you have some boob expanders?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hove into view when you bring the subject up.");
+	output("<i>“Do you have some boob expanders?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view when you bring the subject up.");
 
 	clearMenu();
 
@@ -1926,7 +1922,7 @@ public function bizzyBreastsGiveItemStage1(foundItem:Class):void
 		
 		output("\n\n<i>“I’m gonna do a live stream of me taking it,”</i> she explains, handing you a holo device. <i>“This’ll give you an exclusive feed. Wish me luck!”</i>");
 		
-		output("\n\nYou make yourself another cup of tea and then settle yourself down to watch with the device.");
+		output("\n\nYou make yourself another cup of tea and then settle down to watch with the device.");
 		
 		output("\n\n<i>“Heeeeyyyy everyone,”</i> purrs the cute, white-haired cat-girl on the screen. Her languorous screen persona is back in place, but her excitement is clear to see, cheeks glowing naturally. <i>“It’s Bizzy back with all of her business again. I’ve got a great treat for you guys today. If you’ve been following me, you might know what it is...”</i> she giggles, twisting hair around her finger. <i>“...and maybe, just maybe, if we get, ooh let’s say 10,000 viewers, I’ll get it out.”</i> She sighs. The camera zooms in on her pert lips as they form the next words. <i>“I reeeaaaally want you to make me get it out.”</i>");
 		
@@ -1936,22 +1932,6 @@ public function bizzyBreastsGiveItemStage1(foundItem:Class):void
 
 		processTime(5);
 		pc.lust(10);
-		
-		output("\n\nShe takes off her top slowly, revealing her soft, pale, flat chest, small nipples hard with excitement and nervousness. Then she closes her eyes and opens her lips with the blunt popsicle, sliding it sensuously into her mouth, cheeks hollowing around it, sliding it back and forth. You know every single person with a dick watching will be thinking about how much they wish that was them - and you feel a vicarious, prideful thrill that that action’s yours, any time you wish.");
-		
-		output("\n\n<i>“Mmm,”</i> she slurps, licking her lips. <i>“So sweet... so...”</i> she trails off in a little moan. For a moment you think you’re kidding yourself, but no: her chest is swelling before your very eyes, plumpness like rising bread. The camera drone swings slowly around, giving a side angle of pale softness expanding, taking on a lovely, round shapeliness.");
-		
-		output("\n\n<i>“It feels soooo good,”</i> Bizzy moans, lips stark red from the cold of the treat. It doesn’t look like she’s putting it on; she genuinely looks entranced with the feeling of flesh burgeoning on her chest. The views and subscribe continue to escalate as she begins to face-fuck herself with the remaining Tittyblossom greedily, purple juices dribbling down her chin, whilst her breasts burgeon and swell, her nipples thickening with the growth. It’s an utterly entrancing display of eroticism, and you find yourself");
-		if (pc.hasCock()) output(" jacking your [pc.cock]");
-		else output(" fingering your [pc.vagina");
-		output(" almost reactively to what you’re watching.");
-
-		output("\n\nBy the time Bizzy has finished slurping down the popsicle, she has a lovely, perky set of breasts, maybe C cups, perfect for her frame. Her enthusiasm for them is genuine and affecting: She plays with them, bounces them up and down, cheering with delight, never seeming to tire of feeling their soft weight in her hands.");
-
-		output("\n\n<i>“I have boobies, you guys!”</i> she exclaims, one last time. She grins slyly. <i>“They could be a lil bigger though, don’t you think?”</i> She laughs at the explosion of comments in the feed this precipitates. <i>“Maybe I’ll put on another, even better show, sometime soon. I’ll need to get more subscribers if that’s gonna happen... prove to my owner it’s worth the effort. Well... see you guys. Thanks so much for watching. I’ve gotta go report to my owner. [pc.He]’s gonna want to, you know...”</i> she giggles, massaging her tits. <i>“...try me out.”</i>");
-
-		processTime(15);
-		pc.lust(33);
 		
 		pc.destroyItemByClass(Tittyblossom);
 
@@ -2008,7 +1988,7 @@ public function bizzyBreastsGiveItemStage1II():void
 
 	output("\n\n<i>“Thank you so much for doing this, [pc.Mr]. Steele,”</i> she exclaims. <i>“I feel so good! So many people were watching and saying how good I looked! It feels like a weight’s fallen off me... or - or the opposite, I guess,”</i> she giggles, her natural meekness stealing back. <i>“It was good, right? You enjoyed watching? Do I - do I look good?”</i>");
 
-	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her nipples little splashes of faun with small, nubby nipples. She flushes with pleasure when you tell her she looks great.");
+	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her nipples little splashes of fawn with small, nubby nipples. She flushes with pleasure when you tell her she looks great.");
 
 	output("\n\n<i>“Thank you,”</i> she mumbles. Deeper arousal colors her expression. <i>“I wasn’t joking about doing it again, you know. Did you see how the figures spiked when we did the transformation? I want to make them bigger... become THE, um, booby expansion lady on there. That could be my thing! You’ll bring more Tittyblossom, right? I- if you want to, I mean.”</i>");
 
@@ -2285,8 +2265,8 @@ public function bizzyFirstTimePleaseMeVag(opts:Object):void
 	showBizzyBust();
 
 	output("About thirty seconds later you’re leaning back into the couch");
-	if (pc.isCrotchGarbed()) output(",[pc.lowerGarments] loosened, ");
-	output(" a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
+	if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened");
+	output(", a pair of arms wrapped around your [pc.thighs] and a lovely, wet, rough tongue hard at work between them.");
 
 	output("\n\nBizzy’s fluffy white head bobs slightly as she licks your [pc.vagina] and flicks at your [pc.clit] until it’s bulging excitedly, with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 	if (pc.totalClits() > 1) output(" She doesn’t seem fazed by your exotic arrangement of pleasure buds, and gives plenty of wet, lapping attention to all of them, sending sheerest ecstasy throbbing through your groin.");
@@ -2315,8 +2295,8 @@ public function bizzyFirstTimePleaseCock(opts:Object):void
 	showBizzyBust();
 	
 	output("About thirty seconds later you’re leaning back into the couch");
-	if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened,");
-	output(" a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
+	if (pc.isCrotchGarbed()) output(", [pc.lowerGarments] loosened");
+	output(", a warm hand wrapped around the base of your [pc.cock] and a lovely, warm, wet mouth around the top.");
 
 	output("\n\nBizzy’s fluffy white head bobs up and down as she sucks you with plenty of succulent noises and <i>‘mmm’</i>s, her wide green eyes drinking in your expression. When you groan your enjoyment, her tails curl upwards in clear delight.");
 	if (pc.biggestCockLength() >= 12) output(" She doesn’t seem fazed by the size of you, her mouth stretched wide open around your hot, veiny girth and taking it to the tonsils like a champ, clearly determined to please you.");
@@ -2403,8 +2383,8 @@ public function bizzyAcceptTheDeal(opts:Object):void
 	{
 		output(" The fact she’s still");
 		if (pc.hasCock()) output(" festooned in [pc.cum]");
-		else output(" smeared with [pc.femcum] is mildly comical");
-		output(".");
+		else output(" smeared with [pc.femcum]");
+		output(" is mildly comical.");
 	}
 	output(" She squeezes your arm passionately. <i>“You won’t regret this, [pc.Mr]. Steele. I - really want to make this work. You’ll, uh - you’ll bring over some boob expanders soon, right?”</i> Her face flushes a little a thought, an eager smile climbing onto her face. <i>“I can’t wait to get the kind of rack that’ll really draw the paying punters in.”</i>");
 
