@@ -53,8 +53,8 @@ public function cherryRoomMenu():void
 	}
 	else 
 	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't turned on enough for this.");
-		addDisabledButton(2,"Blow Bubble","Blow Bubble","You aren't turned on enough for this.");
+		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t turned on enough for this.");
+		addDisabledButton(2,"Blow Bubble","Blow Bubble","You aren’t turned on enough for this.");
 	}
 
 	addButton(14,"Leave",leaveCherrysPlace);
@@ -325,11 +325,11 @@ public function fuckCherryExclamationPointo():void
 		if(fits) addButton(0,"Lift&Fuck",cockSelect,[liftFuckDatRedgoo,cherryCapacity(),false,0],"Lift & Fuck","Hold Cherry in your arms and fuck her pussy. Requires moderate strength.");
 		else addDisabledButton(0,"Lift&Fuck","Lift & Fuck","Stretchy as she is, even Cherry has limits to how much phallus she can survive.");
 	}
-	else addDisabledButton(0,"Lift&Fuck","Lift & Fuck","You aren't strong enough for this. Try building up your physique. Maybe hit the gym or beat up some aliens somewhere...");
+	else addDisabledButton(0,"Lift&Fuck","Lift & Fuck","You aren’t strong enough for this. Try building up your physique. Maybe hit the gym or beat up some aliens somewhere...");
 	
 	addButton(1,"Titfuck",rowFuckCherry,undefined,"Titfuck","Lay Cherry on the bed and titfuck her.");
 	
-	if(pc.isTaur()) addDisabledButton(2,"Cowgirl","Cowgirl","You cannot participate in the \"Cowgirl\" position with your current body type.");
+	if(pc.isTaur()) addDisabledButton(2,"Cowgirl","Cowgirl","You cannot participate in the “Cowgirl” position with your current body type.");
 	else
 	{
 		if(fits) addButton(2,"Cowgirl",cockSelect,[benchFuckCherry,cherryCapacity(),false,0],"Cowgirl","Lift Cherry onto your dick and fill her pussy from below.");
@@ -394,21 +394,22 @@ public function liftFuckDatRedgoo(x:int = 0):void
 	output("\n\nFar be it from you to betray those expectations. With a grunt you lift her up by the hips and slam her into your groin, her entire body squishing and compressing with the force of your penetration. Sweat breaks out on your body as you ravage the wildly moaning rahn, each upward thrust etching the pleasure into her jiggling form until she’s crying out in ecstatic orgasm every time her ass bounces.");
 	output("\n\nHer pussy clamps down and coils around you, inner walls shuddering in bliss, massaging your pumping cock in search of Cherry’s true desire. Your cock flexes and pulses, " + (pc.balls > 0 ? "your [pc.balls] drawing taut":"your stomach tightening") + " as [pc.skinFurScales] slaps against bright red goo, ringing out in her room.");
 	output("\n\nIt all comes to a crashing crescendo as you groan in pleasure, pressing Cherry into the wall and rolling your hips up to grind into her clenching slit. She lets out a hoarse scream of carnal bliss into your chest as ");
-	if(pc.cumQ() < 4000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 4000) 
 	{
 		output("[pc.cum] pumps up into her suckling womb, gooey lips wrapping around the head of your cock to draw it all out. It feels so good your [pc.legOrLegs] shake" + (pc.legCount == 1 ? "s":"") + ", and you have to lean against Cherry just to stay standing as you finish ejaculating deep inside her pussy.");
 		output("\n\nShe’s so out of it by the time you’re done you have to carefully place her back down on her squeaking rubber bed, the woman completely incapable of handling it herself. Cherry looks up at you with a drunken smile, her cheeks a darker hue than usual.");
 		output("\n\n<i>“You... are great,”</i> she puffs, spreading her arms and reclining backwards, her ponytail limply flopping to the side. <i>“Hhooo... gonna take a while for me to come down from this one. But hey, if you wanna go again,”</i> she says, a grin spreading across her face as she rubs her stomach and gazes lovingly at your dick, <i>“I’ve always got room for more of <b>you</b>.”</i>");
 		output("\n\nYou can’t say you’re surprised.");
 	}
-	else if(pc.cumQ() < 10000) 
+	else if(cumQ < 10000) 
 	{
 		output("a deluge of [pc.cum] pours upwards into her suckling womb, gooey lips wrapping around the head of your cock to eagerly swallow it all inside her. The force of suction draws stream after stream of [pc.cumVisc] spunk from your throbbing dick, your [pc.legOrLegs] shaking with the effort of staying standing as you ejaculate deep into her pussy, over and over.");
 		output("\n\nNot a single drop of your enormous load escapes her, Cherry’s stomach swelling outwards to contain your essence until she’s limply draped over you in your arms, panting and moaning in post-coital excitement. Even her ponytail has the fight taken out of it, swinging freely behind her, fine motor control forgotten in favor of appreciating the cum swimming inside her body. You have to carry her to the bed and gingerly place her down, making sure you don’t pop the squeaky rubber beneath her.");
 		output("\n\n<i>“You are <b>such</b> a fucking stud,”</i> Cherry laughs tiredly, looking up at you from the bed as she reclines. <i>“Oh, stars... the first thing I want to do after that is do it a second time.”</i>");
 		output("\n\nYou can’t say you’re too surprised.");
 	}
-	else if(pc.cumQ() < 70000)
+	else if(cumQ < 70000)
 	{
 		output("a geyser of [pc.cum] jets up into her hungry womb, swelling her stomach outwards in a matter of seconds. Rivers of [pc.cumVisc] spunk surge into her burgeoning body as she pants in delighted lust, your [pc.legOrLegs] shaking as you strain to stay standing amidst the unbridled pleasure. Her clenching pussy is so intent on getting every last drop out of you that her sensitive inner walls are all but massaging your throbbing, spurting length, seeking out what she loves most.");
 		output("\n\nShe’s so passionate about getting all of you inside her you can hardly resist, groaning deeply as stream after stream of [pc.cumColor] jizz swells her overfull womb outwards. The zel’rahn cum-addict is still panting and moaning in ecstasy by the time you lay her down on the bed and grunt atop her, thrusting deeply into her wobbling gooflesh to ensure she feels it as hard as possible. When you finally withdraw she’s got a glutton’s midriff, the liquid load protruding so far outwards she looks to be incredibly pregnant.");
@@ -426,7 +427,7 @@ public function liftFuckDatRedgoo(x:int = 0):void
 	}
 	processTime(30);
 	new Cherry().loadInCunt(pc,0);
-	feedCherry(pc.cumQ());
+	feedCherry(cumQ);
 	sendCherryToHerRoom();
 	pc.orgasm();
 	clearMenu();
@@ -500,7 +501,7 @@ public function rowFuckCherry2(x:int):void
 	{
 		output("\n\nThe kindling inner flames build with every shaft-stuffing moment until her membrane reaches a glowing, trembling fever. Head perfectly aligned with your [pc.balls], the zel’rahn presses her jet black lips to the surface of your hanging pouch, kissing the churning sac with the passion of a lover. <i>“Ah, the the taste of you,”</i> she sighs, rolling her face across your supple swell and showering you with epicurean kisses.");
 
-		output("\n\nHer lips stretch to a broad 'O' against your [pc.balls], her panting desire hot on your [pc.skinFurScales].");
+		output("\n\nHer lips stretch to a broad ‘O’ against your [pc.balls], her panting desire hot on your [pc.skinFurScales].");
 		if(pc.ballDiameter() < 3) output(" Cherry’s tongue snakes out to coil around your teste" + (pc.balls > 1 ? "s":"") + ", dragging the whole pouch into her mouth. The wet, sucking pressure of her cheeks alongside the thirsty winding of her oral organ is nearly enough to knock you on your ass. All too soon, however, she lets your nuts slip back out with an impassioned gurgle, her tongue still playing across their girth.");
 		else if(pc.ballDiameter() < 6) output(" The suction of Cherry’s mouth closes around your ballsack, thirsty zeal melting your endurance. The gel’s vacuuming kiss manages to hoist " + (pc.balls > 1 ? "one of ":"") + "your hefty ball" + (pc.balls > 1 ? "s":"") + " into her maw, her cheeks bloating with the girth of your spunk factory. She noisily sloshes the churning mouthful before her trembling lips let it slip from the moist embrace.");
 		else output(" Cherry’s long tongue makes as much of a circuit as it can around the incredible girth of your spunk factor" + (pc.balls == 1 ? "y":"ies") + " as she squeezes her pillowy lips against orbs larger than her head. Suck as she might, however, the ambitious rahn’s mouth is simply not large enough to swallow your nut" + (pc.balls > 1 ? "s":"") + " whole. As if recognizing the supremacy of your girth, she turns her suckling pucker to the task of total ball worship. With the single mindedness of a prayer, she covers every inch she can reach with a wet whisper of drooling desire, consecrating her face with your churning heat while bathing your " + pc.mf("kingly","queenly") + " nuts in her slavish submission.");
@@ -517,9 +518,10 @@ public function rowFuckCherry2(x:int):void
 	output("\n\nIt’s too much. With Cherry’s silky-smooth cushions around your [pc.cock " + x + "], every impulse in your body ignites with the dizzying crescendo of rutting release. Shameless, bestial need floods your [pc.chest] with carnal heat. Overcome by a lustful haze, your liquid passion bursts free, pouring from you in [pc.cumColor] gouts on the ruby rahn’s obscenely bloated body. You buck deeply into her tits, dragging your [pc.cockHead " + x + "] through her pillowy peaks, mixing the delicious ache of your orgasmic bliss with the soothing embrace of her jelly breasts.");
 	output("\n\nThe streaming rush running between the pirate’s nippleless udders apparently feels as euphoric to her as it does to you. Caught once more in the exhilaration of organic rapture, the amorph squirts the thin, pink goo of her helpless bliss between her plump trunks. As you pump your load into the girl’s bountiful bosom, she drenches the interiors of her rounded stumps with an equal volume of glistening femme cum. <i>“F- fuuuuuuuuuck,”</i> she moans out of the side of her mouth, unable to articulate anything more complicated through the undulating ecstasy of having her tits fucked full of [pc.cumGem] spunk.");
 
+	var cumQ:Number = pc.cumQ();
 	//if 10,000 – 70,000mL output:
-	if(pc.cumQ() < 10000) {}
-	else if(pc.cumQ() < 70000)
+	if(cumQ < 10000) {}
+	else if(cumQ < 70000)
 	{
 		output("\n\nAll too quickly, the deep vale of the girl’s bosom fills to overflowing with your spunk, stray gouts of [pc.cumVisc] goo spurting free. Thick ropes of [pc.cum] arc up over her curvy frame, splattering across the peaks of her breasts and out, over her arched abdomen. Jism builds against the girl’s gravid belly, flowing in liquid curtains around the obtrusive swell and pooling around her bulk-broadened hips. Your steadily gushing seed unloads in fountaining spurts across the girl. Deep sheets of spoo bathe her with drenching layers of fat, dripping jizz like an oil derrick, pumping out of all control.");
 	}
@@ -530,7 +532,7 @@ public function rowFuckCherry2(x:int):void
 		output("\n\nA shimmering curtain of thick cum paints the far wall of the pirate girl’s quarters with a sopping, [pc.cumColor] backdrop. Stray globs slap against Cherry’s docked metal legs, hot seed polishing the alabaster cybernetics and pooling in the recesses meant for her stumpy thighs. Some of the torrential issue even manages to arc across her tall shelf of latex collectables, gooey webs of dripping bliss messily heaped atop rare trinkets and toys. The vast majority of the teeming deluge finds its way onto the gel girl herself, either bathing her curves in flowing waves of thick nut or streaming down to pool in the waterbed’s rahn-filled furrow, excess overflowing around your [pc.footOrFeet].");
 	}
 	//merge
-	output("\n\nBy the time you’ve run dry, the ruby rahn is a sticky mess. If nothing else, you can appreciate her choice in rubber bedsheets. Lazily rubbing the softening length of your [pc.cock " + x + "] between her gooped breasts, Cherry runs her tongue across your [pc.knotBallsHilt " + x + "] to gather up a mouthful of your seeping excess." + (pc.cumQ() >= 70000 ? " <i>“I’ll have to send Molli in here for cleanup,”</i> she notes between gooey gulps.":"") + " <i>“With this kind of mess, you’d think I was filling in for one of my employees!”</i>");
+	output("\n\nBy the time you’ve run dry, the ruby rahn is a sticky mess. If nothing else, you can appreciate her choice in rubber bedsheets. Lazily rubbing the softening length of your [pc.cock " + x + "] between her gooped breasts, Cherry runs her tongue across your [pc.knotBallsHilt " + x + "] to gather up a mouthful of your seeping excess." + (cumQ >= 70000 ? " <i>“I’ll have to send Molli in here for cleanup,”</i> she notes between gooey gulps.":"") + " <i>“With this kind of mess, you’d think I was filling in for one of my employees!”</i>");
 
 	output("\n\n");
 	if(pc.isNice()) output("<i>“If that was anything to go by, I can see why you’re the boss,”</i> you pant in spent satisfaction. You pull back enough to slip free from the gel girl’s cleavage but before you can disentangle yourself, she starts to slurp straight from the drooling slit of your [pc.cockHead " + x + "], thirsty for your seed even now.");
@@ -617,8 +619,9 @@ public function benchFuckCherry2(x:int):void
 	else output("body");
 	output(" reacts to the desperate plea with a breeder’s exuberance. The heat from Cherry’s spunk-stuffed stomach seems to flow with each slapping impact back into your body. Tendrils of tingling tightness wrap across your [pc.chest] as a cascade of sweet release hits you. Surging through your [pc.hips] and up your [pc.cock " + x + "], the redoubled lust pours into the bloated pirate squirming in your lap with all the restraint of a burst dam.");
 
+	var cumQ:Number = pc.cumQ();
 	// <4,000 mL cum
-	if(pc.cumQ() < 4000)
+	if(cumQ < 4000)
 	{
 		output("\n\nThrobbing, bliss-tender flesh spurts lances of ecstasy into the red girl. Voracious and insatiable depths drink in your load like a siphon, splashing the [pc.cumGem] plunder across her feminine nadir like the spoils of rich campaign. Vibrating coils of inner muscle - drunk with trembling orgasm from the fresh, [pc.cumVisc] seed - speak to the rahn’s indulgent relish.");
 		output("\n\nStroke by gushing stroke pump, you loose your heat into her, expanding a belly already at the limits of her biology. Cherry’s hands paw at your [pc.chest], drooling and insensate in her bliss. The girl’s vibrating interior draws a breathless tension from your frame, pleasure rising like a cresting tsunami until your deep, rahn-shaking impacts descend into rapid, shallow slaps.");
@@ -629,12 +632,12 @@ public function benchFuckCherry2(x:int):void
 		//boot player to Tap-Hall
 		//return Cherry to Tap-Hall after 4 hours
 		processTime(35);
-		feedCherry(pc.cumQ());
+		feedCherry(cumQ);
 		new Cherry().loadInCunt(pc,0);
 		pc.orgasm();
 	}
 	// 4,000-70,000 mL cum
-	else if(pc.cumQ() < 70000)
+	else if(cumQ < 70000)
 	{
 		output("\n\nThrobbing, bliss-tender flesh spurts lances of ecstasy into the red girl. Voracious and insatiable depths drink in your load like a siphon, splashing the [pc.cumGem] plunder across her feminine nadir like the spoils of rich campaign. Vibrating coils of inner muscle - drunk with trembling orgasm from the fresh, [pc.cumVisc] seed - speak to the rahn’s indulgent relish.");
 		output("\n\nStroke by gushing stroke pump, you loose your heat into her, expanding a belly already at the limits of her biology. Cherry’s hands paw at your [pc.chest], drooling and insensate in her bliss. The girl’s vibrating interior draws a breathless tension from your frame, pleasure rising like a cresting tsunami until your deep, rahn-shaking impacts descend into rapid, shallow slaps.");
@@ -648,7 +651,7 @@ public function benchFuckCherry2(x:int):void
 		//reset Cherry’s 24 hour cumflated tag
 		//return Cherry to Tap-Hall after 4 hours
 		processTime(35);
-		feedCherry(pc.cumQ());
+		feedCherry(cumQ);
 		new Cherry().loadInCunt(pc,0);
 		pc.orgasm();
 	}
@@ -673,7 +676,7 @@ public function benchFuckCherry2(x:int):void
 		//player gains cum-soaked
 		//return Cherry to Tap-Hall after 4 hours
 		processTime(35);
-		feedCherry(pc.cumQ());
+		feedCherry(cumQ);
 		new Cherry().loadInCunt(pc,0);
 		pc.orgasm();
 		pc.applyCumSoaked();
@@ -784,7 +787,7 @@ public function feedCherryABubble():void
 		pc.lust(8);
 		clearMenu();
 		if(pc.physique() >= 20) addButton(0,"Keg Stand",cherrykegStandLetsGOOOOOO,undefined,"Keg Stand","Hold Cherry over the bubble and have her drink right from the tap.");
-		else addDisabledButton(0,"Keg Stand","Keg Stand","You aren't strong enough to hold her up for this.");
+		else addDisabledButton(0,"Keg Stand","Keg Stand","You aren’t strong enough to hold her up for this.");
 		addButton(1,"Ass Pound",cherryAssPoundInflationGOOOO,undefined,"Ass Pound","Jam the tap into Cherry’s booty and thrust the packaged cum into her.");
 	}
 }
@@ -1016,7 +1019,7 @@ public function cherryBlowBubbleScene2(x:int):void
 	if(!cherryCumflated()) output("massive tits and taut tummy,");
 	else output("bloated belly,");
 	output(" wrapping one " + (!cherryCumflated() ? "gloved ":"") + "hand under her ponytail. With her head tilted upwards and her esophagus straightened, you find the gel’s mouth even more apt a cocksucking machine. Long, deep strokes take your [pc.cockheadBiggest] from the moist brim of her jet black lips all the way through the embedded Bubby Buddy and back again. Each impact sends rippling pulses through the jelly girl, her undulating body transmitting the force of your face-fucking into waves on her waterbed.");
-	output("\n\nCherry seems to sense the rapidly building climax inside you. Twisting her hips and flipping onto her back, the girl pulls a 180 around your spearing length. Her titantic tits " + (cherryCumflated() ? "and cum-swollen belly ":"") + "wobble and sway from the effort which, along with the bed’s oscillations, give her body a pendulus, swinging motion. The girl’s " + (cherryCumflated() ? "amplified ":"") + "body, borne by the waterbed’s waves, thrusts back against your [pc.cockBiggest], her fluid physics meeting your rapid, throat-swabbing pace beat for beat. To brace yourself, you put one " + (!cherryCumflated()  ? "gloved ":"") + "palm on her forehead and hook the other around her jaw, fingers pressing down on the pistoning penetration ballooning her neck.");
+	output("\n\nCherry seems to sense the rapidly building climax inside you. Twisting her hips and flipping onto her back, the girl pulls a 180 around your spearing length. Her titantic tits " + (cherryCumflated() ? "and cum-swollen belly ":"") + "wobble and sway from the effort which, along with the bed’s oscillations, give her body a pendulus, swinging motion. The girl’s " + (cherryCumflated() ? "amplified ":"") + "body, borne by the waterbed’s waves, thrusts back against your [pc.cockBiggest], her fluid physics meeting your rapid, throat-swabbing pace beat for beat. To brace yourself, you put one " + (!cherryCumflated() ? "gloved ":"") + "palm on her forehead and hook the other around her jaw, fingers pressing down on the pistoning penetration ballooning her neck.");
 	output("\n\nHot strokes of sweet release belt through your [pc.groin] and tingle at the back of your spine. Breathlessly bucking into Cherry’s " + (!cherryCumflated() ? "already cum-bloated ":"") + "frame, your peak builds with gasping intensity. With rapid, shallow pumps, you ride the culminating orgasmic satisfaction into the rahn’s stuffed face again and again, rocking her hard one minute before slowing to enjoy the coiling embrace of her unseen tongue. The heat inside you flows like liquid passion, primed to gush into the scarlet girl with all the fervent need of a rutting animal.");
 	output("\n\nLike a cool breeze on a sweltering day, a thought floats across your lust-addled mind: should you fill the bubble while it’s still inside her gullet or pull back and inflate it on top of her face?");
 	processTime(15);

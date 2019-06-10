@@ -410,7 +410,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// MIND STUFF IS DONZO
 		// FACIAL PRETTIES~
 		// ========================
-		if(pc.femininity < pc.femininityMax() && startHours < 48 && treatedHours >= 48)
+		if(pc.femininity < pc.femininityMax() && treatedHours >= 48 && startHours < 168)
 		{
 			// I'm not 100% sure this is exactly accurate as in the past, but it should be close as a start
 			// Excel experimenting seems to agree that its pretty close tho
@@ -771,6 +771,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent("Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It’s already slick with need, its clitoris jutting free from its hood. <b>You’ve grown an extra-wet ", "passive", (treatedHours - startHours) * 60);
 			
 			pc.createVagina();
+			pc.setNewVaginaValues(0);
 			// cunt select!
 			if(pc.horseScore() >= 3 && pc.horseScore() > pc.canineScore())
 			{
@@ -1170,7 +1171,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 112 && treatedHours >= 112 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -1179,7 +1180,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -1195,7 +1196,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -2851,7 +2852,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 97 && treatedHours >= 97 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -2860,7 +2861,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -2876,7 +2877,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -3936,7 +3937,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 98 && treatedHours >= 98 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a gnarly little poof on the end, just like a cow’s."), "passive", (98 - startHours) * 60);
 				pc.tailCount = 1;
@@ -3945,7 +3946,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (98 - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -3961,7 +3962,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (98 - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -5387,7 +5388,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 118 && treatedHours >= 118 && rand(10) < 9)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -5396,7 +5397,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -5412,7 +5413,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
