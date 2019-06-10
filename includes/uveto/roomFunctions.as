@@ -1081,6 +1081,16 @@ public function uvetoStationLoungeFunc():Boolean
 public function uvetoExecLobbyBonus():Boolean
 {
 	vendingMachineButton(1, "J'ejune");
+
+	// Determine what mode we need to be in for Tlako & Xotchi here...
+	if (timeForXotchiOverride())
+	{
+		flags["XOTCHI_ROOM_MODE"] = 1;
+	}
+	else
+	{
+		flags["XOTCHI_ROOM_MODE"] = 0;
+	}
 	
 	//setNavDisabled(NAV_EAST_DISABLE);
 	

@@ -17,7 +17,7 @@ public function get xotchiPCName():String
 
 public function xotchiIsMistress():Boolean
 {
-	return false;
+	return flags["XOTCHI_STAGE"] == 4;
 }
 
 public function xotchiOfficeSpecialTime():void
@@ -34,7 +34,7 @@ public function xotchiOfficeSpecialTime():void
 
 	output("\n\nThe tove’s gaze is fixed on her desk, her sideways pupils flickering from screen to screen. Her blood-orange feathers are bristled, poofing out of the top of her black lace corset. Her fan sits open on the desk next to her, display screen flashing nonstop updates. As you step in, her outermost eyes glance up and she raises a single talon as her other three hands tap across the desk, presumably closing several windows.");
 
-	if (flags["MET_XOTCHI_SOLO"] == undefined)
+	if (flags["MET_XOTCHI"] == undefined)
 	{
 		output("\n\nYou hesitate. You were expecting Tlako, and you’re unsure of how to deal with the sub-madam.");
 		
@@ -42,7 +42,7 @@ public function xotchiOfficeSpecialTime():void
 		
 		output("\n\n<i>“Unfortunately for me, she’s the only other tove on this ship with her Custommunication License. Mome knows how a bimbuoy like her managed </i>that<i>,”</i> she continues. <i>“So that means I lose several hours of </i>my<i> day running the lobbeach,”</i> she pauses, the smile returning to her face. <i>“Still... I suppose it’s worth it to frost the little ditz.”</i> Her ears flip back and a forth for a moment, and she appears lost in thought.");
 
-		flags["MET_XOTCHI_SOLO"] = 1;
+		flags["MET_XOTCHI"] = 1;
 	}
 
 	processTime(5+rand(5));
@@ -116,7 +116,7 @@ public function xotchiLeave():void
 	processTime(1);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }
 
 public function xotchiBlowOffSteam():void
@@ -157,7 +157,7 @@ public function xotchiBlowOffSteamS1Nope():void
 	processTime(1);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }
 
 public function xotchiContract():void
@@ -1191,7 +1191,7 @@ public function xotchiSteamStage4III():void
 	pc.orgasm();
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }
 
 public function xotchiSteamStage3Enough():void
@@ -1241,7 +1241,7 @@ public function xotchiSteamStage3Enough():void
 	processTime(15+rand(5));
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }
 
 public function xotchiSteamStage2Enough():void
@@ -1292,7 +1292,7 @@ public function xotchiSteamStage2Enough():void
 	processTime(15+rand(5));
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }
 
 public function xotchiSteamStage1Enough():void
@@ -1408,5 +1408,5 @@ public function xotchiSteamStage1EnoughIII():void
 	processTime(15+rand(5));
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", move, rooms[currentLocation].westExit);
 }

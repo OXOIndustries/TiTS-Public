@@ -19,7 +19,7 @@ public function showXotchi(nude:Boolean = false):void
 //Office of the Camarilla 
 public function officeOfTheCamarillaButtsBonus():Boolean
 {
-	if (timeForXotchiOverride())
+	if (flags["XOTCHI_ROOM_MODE"] == 1)
 	{
 		xotchiOfficeSpecialTime();
 		return true;
@@ -143,7 +143,7 @@ public function xotchiTzallMeeting():void
 	clearOutput();
 	showXotchi();
 	output("You ask to meet with Sub-Madam Xotchi Tzall, and Tlako’s face goes blank for a moment.");
-	//[If player has not yet met Xotchi Tzall:
+
 	if(flags["MET_XOTCHI"] == undefined)
 	{
 		output("<i>“Y-yes, of course,”</i> she says, sounding nervous. She reaches into the top of her white bustier and pulls out a small, white disk. Holding it in one hand, her three other hands dance across its surface, scrolling in three different directions at once.");
@@ -155,11 +155,14 @@ public function xotchiTzallMeeting():void
 		output("\n\n<i>“Please know that while the Camarilla maintains the workings of Uveto station, Anyxine Rhenesunne, the Vice President of RhenWorld Stellar Excavations, is the standing station manager.”</i> Her smile is sweeter than aspartame, but there’s an edge to her tone. <i>“As a Sub-Madam, I manage my people aboard this ship, but do not actually captain any of the residents.”</i> If there was an edge to her voice before, it’s a razor now.");
 		output("\n\n<i>“Regardless,”</i> she says with another smile, <i>“I hope your trip here is a profitable one! I encourage you make generous use of the various stores aboard Uveto Station.”</i>");
 		output("\n\nShe bids you farewell, and leaves, shooting a poisonous glance at Tlako on her way out.");
-		output("\n\n<i>“The... the Sub-Madam w-will see you now...”</i> says Tlako weakly.");
+
+		// This doesn't make sense as-is with the expansion content, so I'm just gonna comment this out and dump you back to the interaction menu
+		//output("\n\n<i>“The... the Sub-Madam w-will see you now...”</i> says Tlako weakly.");
 		
 		processTime(5);
 		
 		flags["MET_XOTCHI"] = 1;
+		tlakoMenu(xotchiTzallMeeting);
 	}
 	else
 	{
@@ -169,7 +172,7 @@ public function xotchiTzallMeeting():void
 		
 		output("\n\nBarely a minute or two has passed when another door whooshes open and [xotchiName] stalks into the room. The two-foot-tall tove is dressed in her usual black corset, and holding her folding-tablet fan. Her blood-orange feathers bristle, and she glares at the scattered papers on the floor, snatching one up in a scaled talon.");
 		
-		output("\n\n<i>“And [/i]there’s[i] the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
+		output("\n\n<i>“And <i>there’s<i> the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
 		
 		output("\n\nYou clear your throat, and she looks up at you.");
 
@@ -177,7 +180,6 @@ public function xotchiTzallMeeting():void
 
 		return;
 	}
-	tlakoMenu(xotchiTzallMeeting);
 }
 
 //Buy a Welcome Basket
