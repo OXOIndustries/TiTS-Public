@@ -172,7 +172,7 @@ public function xotchiTzallMeeting():void
 		
 		output("\n\nBarely a minute or two has passed when another door whooshes open and [xotchiName] stalks into the room. The two-foot-tall tove is dressed in her usual black corset, and holding her folding-tablet fan. Her blood-orange feathers bristle, and she glares at the scattered papers on the floor, snatching one up in a scaled talon.");
 		
-		output("\n\n<i>“And <i>there’s<i> the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
+		output("\n\n<i>“And </i>there’s<i> the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
 		
 		output("\n\nYou clear your throat, and she looks up at you.");
 

@@ -142,8 +142,9 @@ public function xotchiBlowOffSteam():void
 	{
 		output("You tell [xotchiName] that you’d like to join her for a session. Her face lights up as she snaps her fan shut.");
 
-		processTime(1);
+		xotchiBlowOffSteamGo(true);
 
+		processTime(1);
 	}
 }
 
@@ -563,10 +564,17 @@ public function xotchiContractGoV():void
 	badEnd();
 }
 
-public function xotchiBlowOffSteamGo():void
+public function xotchiBlowOffSteamGo(extendScene:Boolean = false):void
 {
-	clearOutput();
-	showXotchi();
+	if (extendScene == false)
+	{
+		clearOutput();
+		showXotchi();
+	}
+	else
+	{
+		output("\n\n");
+	}
 
 	output("<i>“Follow me, then,”</i> says [xotchiName], turning toward the gaudy back wall. At her approach a panel WOOSH-es up.");
 	if (pc.tallness > 48) output(" You duck down a little to follow her.");
@@ -908,7 +916,7 @@ public function xotchiSteamStage2():void
 	processTime(20+rand(5));
 
 	clearMenu();
-	addButton(0, "Enough", xotchiSteamStage2Enough);
+	addButton(0, "Enough!", xotchiSteamStage2Enough);
 	addButton(1, "More!", xotchiSteamStage3);
 }
 
