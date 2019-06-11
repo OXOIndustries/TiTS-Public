@@ -25,7 +25,7 @@ public function xotchiOfficeSpecialTime():void
 	clearOutput();
 	showXotchi();
 
-	output("The doors to the Camarilla office ‘woosh’ open, revealing the usual flood of garish colors.  Holoscreens display purple-sand beaches and some kind of translucent-green grass. Beyond the shore is a sparkling blue-green sea. Fish-like creatures soar in the distant skies. Balmy heat and tinny tropical music complete the scene, and you wonder briefly if this is supposed to be the tove homeworld.");
+	output("The doors to the Camarilla office ‘woosh’ open, revealing the usual flood of garish colors. Holoscreens display purple-sand beaches and some kind of translucent-green grass. Beyond the shore is a sparkling blue-green sea. Fish-like creatures soar in the distant skies. Balmy heat and tinny tropical music complete the scene, and you wonder briefly if this is supposed to be the tove homeworld.");
 
 	output("\n\nRather than the usual, excitable form of Tlako ready to greet you, another figure crouches behind a desk in the center of the room. The gregarious pink puff ball’s absence is made all the more prominent by the almost palpable impatience radiating off of the orange-and-black form of");
 	if (flags["XOTCHI_STAGE"] < 4) output(" Sub-Madam Xotchi Tzall");
@@ -85,7 +85,7 @@ public function xotchiApproachMerge():void
 		output("\n\n<i>“Painslut,”</i> she says, simply. The title is an accusation and an enticement, clinical evaluation and shameful condemnation. It promises a world of pleasure and pain, and you tremble, feeling both anticipation and fear coursing through you. You’re ready to drop to your knees in front of her, but that’s not how it works, and you know it.");
 
 		if (pc.isPregnant()) addDisabledButton(2, "Contract", "Permanent Contract", "Probably wise not to get that deep into things whilst pregnant...");
-		else addButton(2, "Contract", xotchiContract, undefined, "Permanent Contract", "Maybe it's time to make this a little more long-term.")
+		else addButton(2, "Contract", xotchiContract, undefined, "Permanent Contract", "Maybe it’s time to make this a little more long-term.")
 	}
 
 	processTime(5);
@@ -130,13 +130,13 @@ public function xotchiBlowOffSteam():void
 		
 		output("\n\nShe opens her beak, no doubt to issue some scathing retort, but stops short, her four eyes running up and down you.");
 		
-		output("\n\n<i>“Possibly,”</i> she says, a curious tone in her voice. <i>“I have a ... let’s say a ‘routine,’ that helps me to relieve stress. It does involve two people, and </i>would<i> involve a significant amount of pain on your end, and pleasure on my part,”</i> she says with a smile.");
+		output("\n\n<i>“Possibly,”</i> she says, a curious tone in her voice. <i>“I have a .. let’s say a ‘routine,’ that helps me to relieve stress. It does involve two people, and </i>would<i> involve a significant amount of pain on your end, and pleasure on my part,”</i> she says with a smile.");
 
 		processTime(2);
 
 		clearMenu();
 		addButton(0, "Bow Out", xotchiBlowOffSteamS1Nope, undefined, "Bow Out", "Change your mind.");
-		addButton(1, "I'm Down", xotchiBlowOffSteamGo, undefined, "I'm Down", "Most intriguing...");
+		addButton(1, "I’m Down", xotchiBlowOffSteamGo, undefined, "I’m Down", "Most intriguing...");
 	}
 	else
 	{
@@ -351,7 +351,7 @@ public function xotchiContractGoII():void
 	output("\n\nWhen Mistress floats in front of you, you can only gaze up at her in adoration, an expression of pure, wanton abandon on your face.");
 	output("\n\nShe smiles down at you, and it feels as good as another strike from her flogger.");
 	
-	output("\n\nThe thing is in her hand-it’s something ... has a name-collar. She holds the collar towards your mouth, all glittery with sparks. <i>“Show me how much you want it,”</i> she orders.");
+	output("\n\nThe thing is in her hand-it’s something... has a name-collar. She holds the collar towards your mouth, all glittery with sparks. <i>“Show me how much you want it,”</i> she orders.");
 	
 	output("\n\nYou lean forward, fighting the exhaustion in your body, reaching your mouth to the collar, kissing it. Electricity ripples out from it across your lips, a storm of pinpricks that draw involuntary whimpers from you.");
 	
@@ -468,7 +468,7 @@ public function xotchiContractGoV():void
 
 	output("\n\n<i>“And if you’ve spent anywhere near what I have, then you have to be wondering if it’s going to be worth it,”</i> says Mistress in a wheedling tone.");
 
-	output("\n\n<i>“Let’s say I have,”</i> says your cousin, leaning forward, [rival.hisHer] arms on [rival.hisHer] knees. <i>“</i>You’re</i> still going after it, and if a tove wants something that bad, then there’s gotta be a ton of  money.”</i>");
+	output("\n\n<i>“Let’s say I have,”</i> says your cousin, leaning forward, [rival.hisHer] arms on [rival.hisHer] knees. <i>“</i>You’re</i> still going after it, and if a tove wants something that bad, then there’s gotta be a ton of money.”</i>");
 
 	output("\n\n<i>“Not always,”</i> murmurs Mistress, almost inaudibly, her fingers sliding down to the back of your neck, and tugging absently on your collar. The rising sense of anxiety melts away at her words and her touch.");
 
@@ -502,7 +502,7 @@ public function xotchiContractGoV():void
 
 	output("\n\n<i>“I think I might be,”</i> says Mistress, smiling. She tugs your collar, pulling you up into the chair with her. <i>“And don’t flatter yourself, [rival.name]-this wasn’t for you.”</i> Her arms wrap tight around you and squeeze.");
 
-	output("\n\n[rival.name]’s eyes widen as [rival.hisHer] eyes snap back and forth between the two of you. <i>“This-this ... this is fucking BULLSHIT!”</i> [rival.heShe] screams.");
+	output("\n\n[rival.name]’s eyes widen as [rival.hisHer] eyes snap back and forth between the two of you. <i>“This-this... this is fucking BULLSHIT!”</i> [rival.heShe] screams.");
 
 	output("\n\n<i>“No, it’s simple,”</i> says Mistress, petting you as she speaks, <i>“You sign a contract renouncing any claim to the Steele fortune and then you get to walk away with 4.2 trillion.”</i>");
 
@@ -552,7 +552,7 @@ public function xotchiContractGoV():void
 
 	output("\n\n<i>“What if it’s not enough?”</i> you ask. <i>“I mean, it can’t be as much as four trillion credits.”</i>");
 
-	output("\n\n<i>“I think ... I actually think that would be okay,”</i> Mistress says, her eyes focusing on you. She laughs suddenly, wrapping her feathered tail around you. You’re suddenly reminded of the long-ago aftercare sessions the two of you spent back on Uveto VII.");
+	output("\n\n<i>“I think... I actually think that would be okay,”</i> Mistress says, her eyes focusing on you. She laughs suddenly, wrapping her feathered tail around you. You’re suddenly reminded of the long-ago aftercare sessions the two of you spent back on Uveto VII.");
 
 	output("\n\n<i>“Oh my goodness, painslut!”</i> she chortles. <i>“I’ve spent so much time breaking you over and over, that I didn’t notice when you broke </i>me<i>. Can you believe it? I honestly don’t care about the money.”</i>");
 
@@ -642,7 +642,7 @@ public function xotchiSteamStage1(extendingScene:Boolean = false):void
 	output("[xotchiName] chirps instructions to you, then busies herself, punching in complex commands into her fan. You [pc.move] into the blue ring on the floor, and raise your hands above your head. A loud humming saturates the air as the blue ring glows with a dim, insistent light. You glance down, curious, as the ring rises up out of the floor, rising up to");
 	if (pc.hasFeet()) output(" your ankles");
 	else output(" halfway up your tail");
-	output(". The ring stops, rotating slowly just as a flare of light above your head heralds another ring descending from the ceiling.  It slides down around your wrists, spinning counter-motion to the one below you.");
+	output(". The ring stops, rotating slowly just as a flare of light above your head heralds another ring descending from the ceiling. It slides down around your wrists, spinning counter-motion to the one below you.");
 
 	output("\n\nBemused, you try to drop your arms, wondering if the ring will follow your wrists. With a start, you realize that your hands are locked in place above your head. You look down, attempting to shift your [pc.feet], only to find that they’re not moving either. A tingle down your back and a sudden lurch in your gut announces something else as of yet unseen.");
 
@@ -684,7 +684,7 @@ public function xotchiSteamStage1(extendingScene:Boolean = false):void
 
 	output("\n\n");
 	if (pc.isNice()) output("You squeal in shock, surprised by both the pain and the apparently joy Xotchi takes in delivering it.");
-	else if (pc.isMisc()) output("You tried to rattle off a <i>bon mot</i> but the words scatter away, as if she's shocked your brain directly.")
+	else if (pc.isMisc()) output("You tried to rattle off a <i>bon mot</i> but the words scatter away, as if she’s shocked your brain directly.")
 	else output("You strain against the bindings, gritting your teeth and writhing.");
 
 	output("\n\n<i>“Nnnnnnnnnf,”</i> [xotchiName] purrs, twin tongues licking along opposite sides of her beak, as she watches you recover from the shock.");
@@ -725,7 +725,7 @@ public function xotchiSteamStage1(extendingScene:Boolean = false):void
 
 	output("\n\n<i>“Power and pleasure, [xotchiPCName],”</i> she trills, moving to pet you, and clucking in amusement as you reflexively flinch away. <i>“In this moment, I have all of the power over your helpless body, and that gives </i>me<i> a great deal of pleasure.”</i> She drifts in a lazy loop around you.");
 
-output("\n\n<i>“Others, though,”</i> she chirps, her feathery coat rippling, propelling her through the air, <i>“others enjoy surrendering their power, their control, to someone else.”</i> The tip of her tail flicks against your back, and you yelp, flinching from the electric SNAP.");
+	output("\n\n<i>“Others, though,”</i> she chirps, her feathery coat rippling, propelling her through the air, <i>“others enjoy surrendering their power, their control, to someone else.”</i> The tip of her tail flicks against your back, and you yelp, flinching from the electric SNAP.");
 
 	output("\n\nWith a complex twist, she stops herself dead in the air, hovering just a few inches in front of you. <i>“Do you enjoy being under my control, [xotchiPCName]? Being my toy to torment?”</i>");
 
@@ -772,7 +772,7 @@ public function xotchiSteamStage2():void
 
 	output("\n\n<i>“Good [pc.boyGirl],”</i> she says simply, seemingly unaware of your discomfort. <i>“See how much easier things are when you listen to [xotchiName]?”</i> Her three free hands fly across the surface of her cradled battery, tapping panels and turning dials. The metal shell lets out three giant sparks, each the size of a walnut, followed by three more, hanging in the air in front of the tove.");
 	
-	output("\n\nYou flinch reflexively, the action not lost on [xotchiName]. She smirks, turning a dial on the device slowly. The battery extends filaments, connecting to the sparks by cords of light, making them look like a crackling, purple bouquet. Nine hardlight tails trail from the  battery: a medieval lash remade with Camarilla tech.");
+	output("\n\nYou flinch reflexively, the action not lost on [xotchiName]. She smirks, turning a dial on the device slowly. The battery extends filaments, connecting to the sparks by cords of light, making them look like a crackling, purple bouquet. Nine hardlight tails trail from the battery: a medieval lash remade with Camarilla tech.");
 
 	output("\n\n<i>“And you </i>want<i> to listen to [xotchiName], don’t you?”</i> She asks sweetly, holding up the battery as a grip for a <i>lash</i> of purple electricity. Your eyes widen at the sight, your body tensing and your breath quickening. If the sparks coming off of her claws were enough to make you writhe in pain you can’t imagine what sort of medieval torments she could inflict with <i>that</i> thing.");
 
@@ -831,7 +831,7 @@ public function xotchiSteamStage2():void
 	
 	output("\n\nAnd, again, relief come rushing in after. Even as you convulse, echoes of torment reverberating through you, cool pleasure trickles through. You didn’t know you could feel pain and pleasure at the same time, and the sensation is intoxicating.");
 	
-	output("\n\n[xotchiName] raises her arm again, and you whimper in protest. You’re not sure you can stand it again, and yet ... more pain means more pleasure, doesn’t it? With the agony comes this new, unsettling euphoria that leaves you light-headed and trembling.");
+	output("\n\n[xotchiName] raises her arm again, and you whimper in protest. You’re not sure you can stand it again, and yet... more pain means more pleasure, doesn’t it? With the agony comes this new, unsettling euphoria that leaves you light-headed and trembling.");
 
 	output("\n\nShe smiles, as if reading your mind, and you feel oddly embarrassed. The sensation is short-lived, drowned in the flash of dread and anticipation as the lash descends.");
 
@@ -896,7 +896,7 @@ public function xotchiSteamStage2():void
 	if (pc.isNice()) output("You can’t help it-a sob escapes from your throat and you can feel tears pooling in your eyes. You’re not entirely broken, but your body feels like it’s been pushed further than it’s ever gone, and the powerful, conflicting sensations have been overwhelming.");
 	else if (pc.isMisc())
 	{
-		output("You grin, ignoring the soreness of your mouth and wink, trying to shrug off the echoes of agony making your muscles twitch. <i>“Maybe. Are you sure you've got that thing turned on?”</i> you ask cheekily.");
+		output("You grin, ignoring the soreness of your mouth and wink, trying to shrug off the echoes of agony making your muscles twitch. <i>“Maybe. Are you sure you’ve got that thing turned on?”</i> you ask cheekily.");
 
 		output("\n\n[xotchiName] raises her eyebrows, then snaps the lash up in the air again. You flinch involuntarily, and she smirks.");
 	}
@@ -939,7 +939,7 @@ public function xotchiSteamStage3():void
 	else output(" lower half");
 	output(" have likewise come undone. Like [xotchiName], you’re now adrift in the zero-gravity room. As good as it feels to stretch out your limbs, you’re a little disappointed at no longer being restrained.");
 
-	output("\n\nWhile [xotchiName] is peering intently at the battery, two of her eyes are on your face, and clearly reading your expression. <i>“Don’t worry, [xotchiPCName], you’ll be nice and restrained in a moment. I just need to make some ... adjustments. Be a good [pc.boyGirl] and use this time to shake out your wrists. The hardlight bands shouldn’t affect your circulation, but better safe than sorry.”</i>");
+	output("\n\nWhile [xotchiName] is peering intently at the battery, two of her eyes are on your face, and clearly reading your expression. <i>“Don’t worry, [xotchiPCName], you’ll be nice and restrained in a moment. I just need to make some... adjustments. Be a good [pc.boyGirl] and use this time to shake out your wrists. The hardlight bands shouldn’t affect your circulation, but better safe than sorry.”</i>");
 
 	output("\n\nYou’re a bit confused by her split attention, but take her advice, taking the time to glance at the room around you. You massage your wrists, taking in the seascape as you drift in the small room. Despite the real dimensions of the room the projectors and screens convey a convincing illusion that you’re floating on the seafloor of some alien planet. In the shimmering, green light distant forests of kelp sway, and small, flickering puffballs dart this way and that, just out of reach. Overhead massive shadows pass, and underfoot purple sand swirls in a synthesized current.");
 
@@ -1014,7 +1014,7 @@ public function xotchiSteamStage4():void
 	clearOutput();
 	showXotchi();
 
-	output("<i>“Good,”</i> she says, a trill of birdsong at the back of her throat. <i>“It’s important for everyone to be aware of their limits in a session like this.”</i>  She twists the dial at the bottom of her lash, and the electric humming grows louder. <i>“Let’s find yours, [xotchiPCName].”</i>");
+	output("<i>“Good,”</i> she says, a trill of birdsong at the back of her throat. <i>“It’s important for everyone to be aware of their limits in a session like this.”</i> She twists the dial at the bottom of her lash, and the electric humming grows louder. <i>“Let’s find yours, [xotchiPCName].”</i>");
 	
 	output("\n\nShe kicks upwards and disappears from view. You feel several sharp tracings down your back, the drag of [xotchiName]’s electrified talons as she slips behind you.");
 	
@@ -1050,7 +1050,7 @@ public function xotchiSteamStage4():void
 	
 	output("\n\nTrussed up by holographic tentacles, brain awash in a storm of hedonistic torment, with [xotchiName]’s claws carving electric trails down your back, it takes times to sort out words enough to respond.");
 	
-	output("\n\n<i>“I ... I need it,”</i> you finally moan. <i>“Please, I need more,”</i> you whimper, already aware that your shuddering limbs can barely hold you up.  It’s true, though-with the rush of pain leaving, and the aching pleasure bubbling up in you, you’re already craving more.");
+	output("\n\n<i>“I... I need it,”</i> you finally moan. <i>“Please, I need more,”</i> you whimper, already aware that your shuddering limbs can barely hold you up. It’s true, though-with the rush of pain leaving, and the aching pleasure bubbling up in you, you’re already craving more.");
 
 	output("\n\n<i>“Please, </i>Mistress,<i>,”</i> she corrects.");
 
@@ -1178,7 +1178,7 @@ public function xotchiSteamStage4III():void
 
 	output("\n\n<i>“You did wonderfully, painslut,”</i> Mistress coos, nuzzling against the top of your head. For all of her small stature, she’s wrapped around you, pulling you tight against her warm, feathered body. You feel safe and secure, rocked by the waves, held in her arms.");
 	
-	output("\n\nOverhead, alien shapes drift in the current, blinking lazy colors against the midnight background. Mistress nuzzles you softly, making small noises of approval.  Gradually those noises merge into one another into strings of music. You realize that she’s singing to you, wordlessly, her voice a combination of whale song and nightingale, as you curl up in her arms beneath an alien sea.");
+	output("\n\nOverhead, alien shapes drift in the current, blinking lazy colors against the midnight background. Mistress nuzzles you softly, making small noises of approval. Gradually those noises merge into one another into strings of music. You realize that she’s singing to you, wordlessly, her voice a combination of whale song and nightingale, as you curl up in her arms beneath an alien sea.");
 	
 	output("\n\n<i>“My lovely little painslut...”</i> She coos, her voice like thoughts inside a dream.");
 
@@ -1209,7 +1209,7 @@ public function xotchiSteamStage3Enough():void
 
 	output("That was too much. You didn’t realize how much it would hurt, and how far it would push you. You ask for an end to the session.");
 
-	output("\n\n<i>“Understandable,”</i> says [xotchiName], twisting the base of her lash. The faint, electric hum of it fades, and the lashes retract into the top of the device.  <i>“Play like this can be overwhelming on both ends of the situation,”</i> she says softly, far more gently than it had been a moment ago. She taps a few commands into the device. <i>“It’s important that everyone know their limits.”</i>");
+	output("\n\n<i>“Understandable,”</i> says [xotchiName], twisting the base of her lash. The faint, electric hum of it fades, and the lashes retract into the top of the device. <i>“Play like this can be overwhelming on both ends of the situation,”</i> she says softly, far more gently than it had been a moment ago. She taps a few commands into the device. <i>“It’s important that everyone know their limits.”</i>");
 	
 	output("\n\nThe sea beast beneath you fades, dissolving into holographic afterimages, and the seascape around you brightens, shifting back to the lavender sand and shallow waters from the beginning of your session. You let out a massive sigh of relief as the bindings around your arms release you, and you settle down onto a simulated bed of sand.");
 	
@@ -1221,7 +1221,7 @@ public function xotchiSteamStage3Enough():void
 	if (pc.isGoo()) output(" The coldness spreads, absorbing slowly into your biomass, softening your stiff, achy sections.");
 	output(" <i>“It helps to numb and regenerate tissue.”</i> You lean back on the lavender sands, twitching involuntarily as [xotchiName] drifts overhead, running the orb up and down your body. You don’t recall drifting off, and in truth, you don’t-not really anyway-slipping instead into a happy doze, lulled by the artificial tug of waves and the hissing sound of sand rolling underwater.");
 	
-	output("\n\nThe touch of her feet on your [pc.belly] nudges you from your revere. Your eyes open to watch her trail up your body, the softness of her feathers shockingly gently after all the pain’s she’s inflicted. She slithers up and around you, like a living feather boa, lifting your head gently and curling beneath it, holding you against her stomach. Her tail slips and  remains over your shoulder, brushing gently back and forth across your chest.");
+	output("\n\nThe touch of her feet on your [pc.belly] nudges you from your revere. Your eyes open to watch her trail up your body, the softness of her feathers shockingly gently after all the pain’s she’s inflicted. She slithers up and around you, like a living feather boa, lifting your head gently and curling beneath it, holding you against her stomach. Her tail slips and remains over your shoulder, brushing gently back and forth across your chest.");
 	
 	output("\n\n<i>“You did very well, [xotchiPCName],”</i> she says, her orange feathers drifting around her in the false current. <i>“You made an excellent painslut.”</i>");
 	
@@ -1234,7 +1234,7 @@ public function xotchiSteamStage3Enough():void
 	
 	output("\n\n<i>“It’s beautiful this time of year,”</i> she notes. You have to agree-between the pale lavender sands, the shimmering green water, and the kelp-trees, it’s like something out of a vacation advert.");
 	
-	output("\n\n<i>“It’s a popular tourist spot on Mome,”</i> she says. <i>“Of course, we set up deflectorial fields to keep out the shantaks-they’re a sort of ... moray eel, I suppose would be the Earth analogue-except they fly.”</i>");
+	output("\n\n<i>“It’s a popular tourist spot on Mome,”</i> she says. <i>“Of course, we set up deflectorial fields to keep out the shantaks-they’re a sort of... moray eel, I suppose would be the Earth analogue-except they fly.”</i>");
 	
 	output("\n\nShe doesn’t seem to expect much from you in the conversation, which is fine-you’re more than a little exhausted from your session with her. She goes on and on, her usually-harsh voice softening as she recounts childhood memories of her home planet, taking you across the sea of years, holding you close to her. At various points, she holds a small silver pouch to your lips, encouraging you to sip from its nozzle.");
 	
@@ -1324,13 +1324,13 @@ public function xotchiSteamStage1Enough():void
 	
 	output("\n\n<i>“People today ...”</i> she mumbles, tapping her headset and speaking into it. <i>“I told you to never interrupt me during a session!”</i> she snaps.");
 	
-	output("\n\nAs she converses, you take the time to stretch out your limbs. You weren’t restrained for very long, and  your arms aren’t particularly stiff. It takes only a few zero-g exercises to get yourself feeling back to normal.");
+	output("\n\nAs she converses, you take the time to stretch out your limbs. You weren’t restrained for very long, and your arms aren’t particularly stiff. It takes only a few zero-g exercises to get yourself feeling back to normal.");
 	
 	output("\n\n<i>“[xotchiPCName],”</i> she says, tapping her headset off. <i>“It’s terribly poor manners, but I’m going to have to leave without providing you any aftercare for our session. We’ve got a ‘dignitary’ visiting the station, and I need to greet him.”</i> She uses all four hands for her finger quotes, doubling the amount of sarcasm that should be possible.");
 	
-	output("\n\n<i>“Even short sessions necessitate aftercare, though,”</i> she says. <i>“Recuperation time,”</i> she  explains, <i>“care for your body and brain so that it can reset after experiencing a significantly altered state. I’ll send in someone you’re familiar with so that you’ll be comfortable adjusting.”</i> Her explanation picks up speed as she goes. By the time she snaps her corset and accessories into place, her tone has taken on its usual irritated rasp.");
+	output("\n\n<i>“Even short sessions necessitate aftercare, though,”</i> she says. <i>“Recuperation time,”</i> she explains, <i>“care for your body and brain so that it can reset after experiencing a significantly altered state. I’ll send in someone you’re familiar with so that you’ll be comfortable adjusting.”</i> Her explanation picks up speed as she goes. By the time she snaps her corset and accessories into place, her tone has taken on its usual irritated rasp.");
 	
-	output("\n\n<i>“Sincerest apologies again, [xotchiPCName],”</i> she says, darting out of the entry port. As she leaves you can hear her voice echoing behind her. <i>“Fucking Scrote! If he mentions paying for his Dyson Sphere again, I’m going to peck out his eyes ... !”</i>");
+	output("\n\n<i>“Sincerest apologies again, [xotchiPCName],”</i> she says, darting out of the entry port. As she leaves you can hear her voice echoing behind her. <i>“Fucking Scrote! If he mentions paying for his Dyson Sphere again, I’m going to peck out his eyes...!”</i>");
 	
 	
 	output("\n\nA second later, the entry port to the room snaps open, and a familiar pink form darts in, undulating through the air.");
@@ -1389,7 +1389,7 @@ public function xotchiSteamStage1EnoughIII():void
 	
 	output("\n\nCold hardening? Does she mean freezing?");
 	
-	output("\n\n<i>“Similarish!”</i> she chirps. <i>“Cold is really bad for toves. It makes it hard to breathe, because our feathers start to tighten up,”</i> she says, lifting a dripping arm from the water and running her hand across her pink feathers. She continues babbling, apparently VERY energetic now that she’s warm again. <i>“Stiff feathers mean no breathing. I guess they’re more like leaves then, or maybe fronds ... frondthers ... feathonds ... freathers ...”</i> She laughs. She splashes water at you and you respond in kind. Tlako giggles and dives underwater again, surfacing with another happy spray of mist.");
+	output("\n\n<i>“Similarish!”</i> she chirps. <i>“Cold is really bad for toves. It makes it hard to breathe, because our feathers start to tighten up,”</i> she says, lifting a dripping arm from the water and running her hand across her pink feathers. She continues babbling, apparently VERY energetic now that she’s warm again. <i>“Stiff feathers mean no breathing. I guess they’re more like leaves then, or maybe fronds... frondthers... feathonds... freathers...”</i> She laughs. She splashes water at you and you respond in kind. Tlako giggles and dives underwater again, surfacing with another happy spray of mist.");
 
 	output("\n\nYou ask her why she was out in the cold if it’s so bad for toves.");
 

@@ -375,8 +375,9 @@ public function florkDatFuckinMuppet():void
 	output("\n\n<i>“I’m gonna... gonna...”</i> you gasp.");
 	output("\n\n<i>“Oooh! Y-youou’re g-onna c-um, ri-ight?”</i> she pants, her words broken by her bouncing ride. <i>“Cu-um inside me! I wanna see-ee what tha-at feels luh-like! Please cum insi-ide me! Ple-ee-ease!”</i>");
 	output("\n\nHer pleading and her tightness are enough to send you over the edge. You slam her down as far she’ll go and fire ");
-	if(pc.cumQ() >= 1000) output("a torrent of jizz into her. Her fuckhole isn’t meant to store such a massive quantity of [pc.cum], it seems, and most of it spurts out around your cock, spattering against your thighs and across her pink, feathered rump.");
-	else if(pc.cumQ() >= 50) output("jet after jet of [pc.cum] inside her, a dribble of it oozing out around your dick. It looks like her fuckhole wasn’t built for storage.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) output("a torrent of jizz into her. Her fuckhole isn’t meant to store such a massive quantity of [pc.cum], it seems, and most of it spurts out around your cock, spattering against your thighs and across her pink, feathered rump.");
+	else if(cumQ >= 50) output("jet after jet of [pc.cum] inside her, a dribble of it oozing out around your dick. It looks like her fuckhole wasn’t built for storage.");
 	else output("a spurt of [pc.cum] into her fuckhole. It seems that even her graft can handle such a small amount, and you barely feel it surge around your own dick.");
 	output("\n\n<i>“Ohhhhhh...”</i> she says, looking shocked as you unload your seed deep inside her fuckhole.");
 	output("\n\n<i>“That’s... really warm...”</i> she says, still looking surprised. You gasp, your dick still buried inside the Tlako.");

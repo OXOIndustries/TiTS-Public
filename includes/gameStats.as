@@ -7722,6 +7722,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_XOTCHI"] != undefined)
 				{
 					output2("\n<b>* Xotchi Tzall:</b> Met her");
+					if(xotchiIsMistress()) output2(", Mistress");
 				}
 				variousCount++;
 			}
@@ -9191,7 +9192,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" " + flags["WULFE_PURCHASED"] + " times");
 				if(hasSiegwulfe())
 				{
-					if(siegwulfeIsDom()) output2(", Your mistress");
+					if(siegwulfeIsDom()) output2(", Mistress");
 					else if(chars["WULFE"].isBimbo()) output2(", Tease drone");
 					else output2(", Combat drone");
 					output2(", Crew member");
