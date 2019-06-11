@@ -895,7 +895,7 @@ public function bizzyStage5Menu():void
 	addButton(3, "Breasts", bizzyStage5Breasts, undefined, "Breasts", "The most important subject of all.");
 	if (pc.lust() >= 33) addButton(4, "Sex", bizzySexMenu);
 	else addDisabledButton(4, "Sex", "Sex", "You’re not turned on enough to really get the most out of your personal big titty kitty.");
-	addButton(14, "Leave", bizzyStage3Leave);
+	addButton(14, "Leave", bizzyStage4Leave);
 }
 
 public function bizzyStage5Camshow():void
@@ -1041,7 +1041,7 @@ public function bizzyStage4Menu():void
 		addButton(5, "Plan?", bizzyStage4TalkPlan, undefined, "Plan?", "She seems to have ideas about how to make her show even more popular. Ambitious ones.");
 	}
 	
-	addButton(14, "Leave", bizzyStage3Leave);
+	addButton(14, "Leave", bizzyStage4Leave);
 }
 
 public function bizzyStage4TalkPlan():void
@@ -2403,4 +2403,4 @@ public function bizzyAcceptTheDeal(opts:Object):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
+}
