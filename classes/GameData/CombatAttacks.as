@@ -1366,6 +1366,11 @@ package classes.GameData
 			if(apply) target.setStatusValue("Hobbled", 1, intensity);
 			else target.addStatusValue("Hobbled",1 , intensity);
 		}
+		public static function applyLustStagger(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Lust Staggered",0,0,0,0,true,"","",true);
+			applyStagger(target, turns, apply, tooltip);
+		}
 		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Lust Stunned", 0, 0, 0, 0, true, "Stun", "Cannot take action!", true, 0, 0xFF0000);

@@ -68,7 +68,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 		// The player should never be able to change the stage (and thus per month payout level)
 		// Whilst also passing more than 1 payment period so we can just assume payouts across
 		// 2 or more periods (if it ever happens) will have to be at the current stage.
-		var actualPay:int = (payAmounts[Math.min(flags["BIZZY_PORN_STUDIO"] - 3, 1)] * numPays);
+		var actualPay:int = (payAmounts[Math.min(flags["BIZZY_PORN_STUDIO"] - 3, 2)] * numPays);
 		pc.credits += actualPay;
 
 		AddLogEvent("<b>Your codex makes a chiming sound, informing you that you have received " + actualPay + " credits. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".</b>", "good", deltaT);
@@ -252,7 +252,7 @@ public function bizzyGoLeave():void
 		default:
 		case undefined:
 		case 0:
-			throw new Error("This shouldn't ever be called!");
+			throw new Error("This shouldn’t ever be called!");
 			break;
 		case 1: bizzyStage1Leave(); break;
 		case 2: bizzyStage2Leave(); break;
@@ -1360,7 +1360,7 @@ public function bizzyStage3Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular.<i>”</i>");
+	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular<i>.”</i>");
 
 	//[Fondle] [Give] [Back]
 	clearMenu();
@@ -1859,7 +1859,7 @@ public function bizzyStage1Camshow():void
 	
 	output("\n\n<i>“As - as I said, my - my problem kinda hurts me there,”</i> she says, when she sees where you’re looking. You take a look at the chat logs, further into her stream. As you’d expect, there’s plenty of pricks with nothing better to do in there relentlessly mocking her flat chest, reporting her as underage, throwing bytes at her to go scrunch up some toilet paper and such. Admirably though, she rolls with it.");
 
-	output("\n\n<i>“What do you think?”</i> she asks, kneeling on the bed and pushing up her paper-stuffed bra. <i>“Better? You knooowwww... my owner’s promised that [pc.he]’ll get me some boob expanders, if I really work it hard and you guys give me a lot of support. I would livestream me taking them...<i>” She turns and waggles her lovely, round bum at the camera. Her view-count spikes, right there.");
+	output("\n\n<i>“What do you think?”</i> she asks, kneeling on the bed and pushing up her paper-stuffed bra. <i>“Better? You knooowwww... my owner’s promised that [pc.he]’ll get me some boob expanders, if I really work it hard and you guys give me a lot of support. I would livestream me taking them...”</i> She turns and waggles her lovely, round bum at the camera. Her view-count spikes, right there.");
 
 	output("\n\n<i>“What do you think?”</i> Bizzy in the real world asks breathlessly, when you click out. <i>“Basic, right? It is basic, I- I know. But you gotta start somewhere, and I’ve got lots of plans, if it takes off.”</i>");
 

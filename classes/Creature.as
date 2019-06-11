@@ -5011,7 +5011,7 @@
 			currReflexes += statusEffectv1("Plumpkin");
 			currReflexes += statusEffectv1("Peprika");
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
-			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
+			if (isStaggered()) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
@@ -5051,7 +5051,7 @@
 
 			var currAim:int = aimRaw + aimMod + bonus;
 			
-			if (hasStatusEffect("Staggered")) currAim *= 0.8;
+			if (isStaggered()) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
 
@@ -20222,10 +20222,10 @@
 			var currentTolerance:Number = statusEffectv1("Tolerance");
 			if(arg != 0) 
 			{
-				addStatusValue("Tolerance",1,arg);
 				//Bounds check
 				if(currentTolerance + arg < 0) setStatusValue("Tolerance",1,0);
 				else if(currentTolerance + arg > 100) setStatusValue("Tolerance",1,100);
+				else addStatusValue("Tolerance",1,arg);
 			}
 			return statusEffectv1("Tolerance");
 		}
