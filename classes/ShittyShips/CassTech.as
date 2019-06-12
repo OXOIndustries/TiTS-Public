@@ -23,7 +23,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Casstech Z14";
 			this.originalRace = "ship";

@@ -121,6 +121,10 @@
 		{
 			return 3;
 		}
+		public function shipCrewCapacity():Number
+		{
+			return (shipCapacity() - this.inventory.length + 1);
+		}
 		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
 		public function shipEvasion():Number
 		{
