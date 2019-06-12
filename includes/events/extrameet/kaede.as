@@ -10,6 +10,11 @@ public function extrameetKaedeDate():void
 	}
 }
 
+public function extrameetKaedeRepeat():void
+{
+	
+}
+
 public function extrameetKaedeFirstTime():void
 {
 	showKaede();
@@ -155,7 +160,7 @@ public function kaedeDataIlariaOrder(order:String):void
 	
 	output("\n\nNonsense. It’s not often you get the chance to just sit back and relax with her, after all. Kaede laughs and wags her fluffy tail, staring into her empty soda glass for a moment before saying, <i>“You know, I could go for a stiffer drink... and my appartment’s a little closer than Anon’s. Care to, um... join me?”</i>");
 
-	processTime(55+rand(11);
+	processTime(55+rand(11));
 
 	setOrderTFAndDeets(order);
 

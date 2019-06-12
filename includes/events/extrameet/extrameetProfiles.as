@@ -19,7 +19,7 @@ public function extrameetKaedeProfile():void
 	output("\nSocially awkward half-ausar looking for friends and ~more~ on her home station who don’t mind helping an introvert out of her shell. Tavros born and raised! Own my own business as a professional pilot. Love games of all kinds. Not looking for anything monogamous, sorry.");
 }
 
-public function extrameetKaedeCheckMatch():void
+public function extrameetKaedeCheckMatch():Boolean
 {
 	return (pc.hasCock() || pc.hasVagina());
 }
@@ -3353,4 +3353,4 @@ public function extrameetBigDickRickProfile():void
 	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
-}
+}

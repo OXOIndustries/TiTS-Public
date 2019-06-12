@@ -370,7 +370,7 @@ public function extrameetDisplayProfile(prof:String):void
 		else if (prof == "EXTRAMEET_MOONLESSNIGHTS") extrameetMoonlessNightsProfile();
 		else if (prof == "EXTRAMEET_ALPHAWOLF") extrameetAlphaWolfProfile();
 		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") extrameetBigTiddyGothGFProfile();
-		else if (prof == "EXTRAMEET_KAEDE") extrameetKadeProfile();
+		else if (prof == "EXTRAMEET_KAEDE") extrameetKaedeProfile();
 		else output("Profile not found!");
 	}
 	else if (loc == "mhen'ga")
@@ -506,7 +506,7 @@ public function extrameetCheckMatch(prof:String):Boolean
 		else if (prof == "EXTRAMEET_MOONLESSNIGHTS") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_ALPHAWOLF") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") match = extrameetBigTiddyGothGFCheckMatch();
-		else if (prof == "EXTRAMEET_KAEDE") match = extrameetKaedeMatch();
+		else if (prof == "EXTRAMEET_KAEDE") match = extrameetKaedeCheckMatch();
 	}
 	else if (loc == "mhen'ga")
 	{
@@ -636,7 +636,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_REDD") extrameetReddDate();
 		else if (prof == "EXTRAMEET_HAWTSTUFF") extrameetHawtstuffDate();
 		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") extrameetBigTiddyGothGFDate();
-		else if (prof == "EXTRAMEET_KAEDE")
+		else if (prof == "EXTRAMEET_KAEDE") extrameetKaedeDate();
 		else
 		{
 			output("\n\nError finding date");
