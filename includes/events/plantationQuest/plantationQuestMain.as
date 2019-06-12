@@ -2777,7 +2777,7 @@ public function goUpZeWaterfall():void
 		else if(pc.hasWings()) output(" open your [pc.wings]");
 		else output(" prepare for flight");
 		output(" and leap into the air. You find a warm air current and allow that to do most of the hard work, the waterfall revealing more and more of its grandeur as you climb. Male zil hover threateningly near the top, but they disappear once they see it’s you. You drop out of the sky at the outskirts of the village");
-		if(pc.hasWings()) output(", tucking your wings away as you do");
+		if(!pc.hasJetpack() && pc.hasWings()) output(", tucking your wings away as you do");
 		output(".");
 		processTime(10);
 		pc.energy(-5);

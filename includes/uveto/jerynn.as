@@ -942,7 +942,7 @@ public function jerynnUnderslungOffer():void
 			output("\n\nYou can barely wait for the chance to wrap yourself around her cock again, and the thought of a");
 			if (!pc.hasVagina()) output(" belly");
 			else output(" womb");
-			output(" full of hot dragonic spunk swilling around and heating you from the inside sounds simply <i>divine</i>.");
+			output(" full of hot draconic spunk swilling around and heating you from the inside sounds simply <i>divine</i>.");
 		}
 
 		processTime(10);
@@ -1402,7 +1402,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	}
 	output("ight blasts your face as she lowers the zipper of her smart jacket, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. Things are still fuzzy, but you can just about make out a mirror with your still half-dazed face in front of you as the blue-scaled tail of the taur hooks its tip through the opening made in the jacket so far, tugging it open further.");
 
-	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty from so long tucked into the confines of the garment.");
+	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty, from so long tucked into the confines of the garment.");
 	if (pc.hasFur() || pc.hasHair())
 	{
 		output(" Your");
@@ -1625,7 +1625,7 @@ public function jerynnPetstuffSleepingOver():void
 	clearOutput();
 	showJerynn(true, true);
 
-	output("Finally clean and dry, "+ (jerynnIsMistress() ? "Mistress" : "") +" Jerynn grabs the leash and wraps it tightly around her hand, keeping you close to her side. She leads you out of the bathroom and back into the main room of her apartment, everything in here sized appropriately for a near nine foot tall dragonic-taur. The middle of the room sports a giant, sunken pit, stuffed full of pillows and blankets. Its bottom is a giant mattress filling the entire recess as the taur steps down into it, the fabric puffing out around her foot paw as she does. You feel tiny by comparison, a sense that only grows stronger when you hop down into the pillow-stuffed pit.");
+	output("Finally clean and dry, "+ (jerynnIsMistress() ? "Mistress" : "") +" Jerynn grabs the leash and wraps it tightly around her hand, keeping you close to her side. She leads you out of the bathroom and back into the main room of her apartment, everything in here sized appropriately for a near nine foot tall draconic-taur. The middle of the room sports a giant, sunken pit, stuffed full of pillows and blankets. Its bottom is a giant mattress filling the entire recess as the taur steps down into it, the fabric puffing out around her foot paw as she does. You feel tiny by comparison, a sense that only grows stronger when you hop down into the pillow-stuffed pit.");
 
 	output("\n\nJerynn props her upper body up in one of the corners, easily tall enough to lean on the outside edge of it. She pats the mattress in front of her and you take that as an order, struggling to get your limbs under you on the soft surface; you make it, with something of a struggle that the taur finds hilarious, laughing to herself at your misfortune.");
 
@@ -2015,7 +2015,7 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 		output("\n\nWarm wetness spreads over your [pc.asscheek], soon followed by a tell-tale firm poke, Jerynn looking down at you with a knowing smirk. Well, some morning fun <i>does</i> sound enticing! With some difficulty you manage to heft your [pc.ass] up and over the growing spire of her cock, trapping it between the scales of her underbelly and your wriggling frame in the process. The angled tip gives it the ideal shape to tunnel a perfect space for itself between");
 		if (pc.biggestTitSize() <= 1) output(" your bodies");
 		else output(" your [pc.breasts]");
-		output(", every pump of the dragonic taur’s heart sending another surge of cock onward.");
+		output(", every pump of the draconic taur’s heart sending another surge of cock onward.");
 		
 		output("\n\nHer tail urges you to move up her body, a somewhat troublesome task without the proper use of your limbs or ground to seek purchase against. Instead you take to worming your way along her body, squeezing around the dragon dick stuffed under you in the process- a body-sized handjob jumps out as the most appropriate way to describe the process as every inch wriggled along its length leaves a similarly sized trail of wetness on your [pc.skinFurScales] in kind.");
 		
@@ -2378,7 +2378,7 @@ public function jerynnPetstuffNightWithJerome():void
 	else output(" Jerynn’s");
 	output(" apartment door closing. She all but orders Jerome to make himself comfortable as light begins to creep back inside your woolen prison, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. The taur shucks it free with a wiggle, jostling you around as you hang laden with countless loads of cum below her.");
 	
-	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh so perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
+	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh-so-perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
 	
 	output("\n\n<i>“Go on </i>pet<i>, get him ready,”</i>");
 	if (jerynnIsMistress()) output(" Mistress");
@@ -2525,7 +2525,7 @@ public function jerynnPetstuffBadEnd():void
 	output("Your");
 	if (!hasVagina) output(" [pc.ass]");
 	else output(" [pc.pussy]");
-	output(" convulses around her spire of dragonic cock in response to the question. Even aware of exactly what her ‘improvements’ might entail, exactly what it means for <i>you</i>, there’s just something deep in your mind, some seed Jerynn has planted that refuses to turn her offer down.");
+	output(" convulses around her spire of draconic cock in response to the question. Even aware of exactly what her ‘improvements’ might entail, exactly what it means for <i>you</i>, there’s just something deep in your mind, some seed Jerynn has planted that refuses to turn her offer down.");
 	
 	output("\n\nShe takes your lack of refusal as tacit acceptance of the way things will be between the two of you from here on out; she, the Mistress and Owner, you, the slutty fuckpuppet kept for another’s entertainment. With no negative forthcoming Jerynn breaks into a much faster jog than the trip back, heading deep into the bowels of Irestead with you no longer in a position to steer her from the path she’s now set upon. The familiar sounds of intermingling into the background din of the outpost are soon lost behind a closed door. The queasy shifting of your");
 	if (!hasVagina) output(" gut");

@@ -289,7 +289,7 @@ public function insideMarionsDen():void
 	}
 	output(".");
 
-	output("\n\nWhen you finally emerge from the tunnel’s end, you’re greeted by a welcome sight indeed: a hemispherical chamber has been dug out of the hillside, with smooth packed-in walls and a floor of perfect ice, covered with plush fur rugs that surround a circle of obsidian stones and wood. Apparently the ring is a fire pit - one that your companion is already lighting, allowing much-needed warmth to spread through the chamber. A chill still hangs in the air here, but it’s nothing like the seeping, gut-clenching freeze of the outside world. What’s left inside is a calm, almost relaxing chill - just enough to make you thankful for the heat of the fire"+ (pc.hasHeatBelt() ? "and your heat-belt" : "") +". You approach the fire, extending your hands to warm yourself up. The furry hide of some creature shifts beneath your [pc.feet], drawing your attention to the strangely homey accoutrements around you: pillows, fur blankets, and rugs adorn the cave. This must be the ");
+	output("\n\nWhen you finally emerge from the tunnel’s end, you’re greeted by a welcome sight indeed: a hemispherical chamber has been dug out of the hillside, with smooth packed-in walls and a floor of perfect ice, covered with plush fur rugs that surround a circle of obsidian stones and wood. Apparently the ring is a fire pit - one that your companion is already lighting, allowing much-needed warmth to spread through the chamber. A chill still hangs in the air here, but it’s nothing like the seeping, gut-clenching freeze of the outside world. What’s left inside is a calm, almost relaxing chill - just enough to make you thankful for the heat of the fire"+ (pc.hasHeatBelt() ? " and your heat-belt" : "") +". You approach the fire, extending your hands to warm yourself up. The furry hide of some creature shifts beneath your [pc.feet], drawing your attention to the strangely homey accoutrements around you: pillows, fur blankets, and rugs adorn the cave. This must be the ");
 	if (flags["MET_LURELING"] == 2) output("product of the lureling below you’s efforts, meant to give you and its marion a nice and comfortable place to carry out your business. How thoughtful.");
 	else output("essyra girl’s home.");
 
@@ -447,7 +447,7 @@ public function marionsDenSexFuckMarion(x:int):void
 		output("as deep as you can go");
 		if (x >= 0) output(", even if your "+ pc.cockDescript(x) +" could use a little more length");
 	}
-	output(". Her breath comes ins shuddering clouds of mist that form a fog around her head until all you can clearly make out is her azure eyes and the wolfish grin on her slender lips.");
+	output(". Her breath comes in shuddering clouds of mist that form a fog around her head until all you can clearly make out is her azure eyes and the wolfish grin on her slender lips.");
 
 	output("\n\nOnce she’s settled in your lap, the icy vixen contracts her muscles, rhythmically squeezing your "+ pc.cockOrStrapon(x) +" while she gets herself comfortable. It isn’t long, though, before she’s shaking her hips and wiggling her myriad of tails for you, panting with pleasure. It’s an odd sensation to make love with someone who doesn’t speak; sound still comes out of her of course, but still. The deep, shudder-laden moan of pleasure that comes out of her when you roll your hips would usually be accompanied by some visceral declaration of pleasure. Instead you just have to infer it from the way her [marion.eyes] drink you in with open adoration at the way she’s stirred up.");
 

@@ -580,6 +580,16 @@ public function seraSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Sera Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Sera Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
@@ -1045,7 +1055,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	// Otherwise
 	else
 	{
-		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worst things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
+		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worse things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
 	}
 	// merge
 	if(!fromSera)

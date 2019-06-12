@@ -211,14 +211,17 @@
 			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
 			(this.cocks[0] as CockClass).virgin = false;
 			this.cockVirgin = false;
+			
 			createStatusEffect("Force Fem Gender");
+			
 			createPerk("Fixed CumQ",20000,0,0,0);
 			createPerk("Inhuman Desire",25,0,0,0);
 			createPerk("Agility",0,0,0,0);
 			createPerk("Improved Agility",0,0,0,0);
 			createPerk("Juggernaut",0,0,0,0);
-			//impregnationType = "RoyalEggPregnancy";
-			this.createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			
+			createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
+			createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Maike";
@@ -324,6 +327,8 @@
 			else if(this.lust() >= 60 && rand(2) == 0) juicySquirtAttacks(target);
 			else if(rand(2) == 0) flybyWhipAttack(target);
 			else longDrLash(target);
+			
+			updateMaikeLong();
 		}
 		/*)
 		output("\n\nYou Call Those Nades?");

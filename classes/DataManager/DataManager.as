@@ -1795,35 +1795,31 @@
 					failure = true;
 				}
 			}
-			for (prop in obj.shittyShips)
+			
+			if (obj.hasOwnProperty("shittyShips"))
 			{
-				try
+				for (prop in obj.shittyShips)
 				{
-					if (!obj.shittyShips[prop].hasOwnProperty("classInstance"))
-					{
-						kGAMECLASS.shits[prop] = new (getDefinitionByName(getQualifiedClassName(obj.shittyShips[prop])) as Class)();
-						kGAMECLASS.shits[prop].loadSaveObject(obj.shittyShips[prop]);
-					}
-					else
+					try
 					{
 						kGAMECLASS.shits[prop] = new (getDefinitionByName(obj.shittyShips[prop].classInstance) as Class)();
-						kGAMECLASS.shits[prop].loadSaveObject(obj.characters[prop]);
+						kGAMECLASS.shits[prop].loadSaveObject(obj.shittyShips[prop]);
 					}
-				}
-				catch (e:ReferenceError)
-				{
-					// If the classDefintion doesn't exist, we'll get a ReferenceError exception
-					trace(e.message)
-					
-					if (failure == false)
+					catch (e:ReferenceError)
 					{
-						kGAMECLASS.output2("Load error(s) detected: \n\n");
+						// If the classDefintion doesn't exist, we'll get a ReferenceError exception
+						trace(e.message)
+						
+						if (failure == false)
+						{
+							kGAMECLASS.output2("Load error(s) detected: \n\n");
+						}
+						
+						kGAMECLASS.output2(e.message);
+						kGAMECLASS.output2("\n");
+						
+						failure = true;
 					}
-					
-					kGAMECLASS.output2(e.message);
-					kGAMECLASS.output2("\n");
-					
-					failure = true;
 				}
 			}
 			

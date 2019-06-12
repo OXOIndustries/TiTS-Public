@@ -704,7 +704,8 @@ public function seraBitchImpregnateBedWake():void
 			else output("Obediently she goes back in sumptuously deep, writhing that python of a tongue of hers within your tunnel until the waves of ecstasy crashing through your core are redoubled.");
 			output(" You clamp your [pc.thighs] around her head as you orgasm, writhing your body around that wonderful wet, prehensile mouth-tentacle of hers" + (pc.isSquirter(vIdx) ? ", completely icing her face in the copious amounts of juices you spurt around it with each ecstatic clench" : "") + ".");
 			output("\n\nWet flesh slides over your tingling");
-			if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_TENDRIL)) output(" cilia");
+			if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" nubs");
+			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_STINGER_BASED)) output(" cilia");
 			else if(pc.vaginas[vIdx].type == GLOBAL.TYPE_FLOWER) output(" petals");
 			else output(" walls");
 			output(" as Sera slowly withdraws. She maintains eye contact, eerily yellow slits as she continues to lap at you, this time concentrating on [pc.eachClit]. She makes out with " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + ", surrounding the sensitive bud" + (pc.vaginas[vIdx].clits == 1 ? "" : "s") + " with her lips and pulling at " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + " with wet smooches, a different but almost equally intense rhythm she inundated your innards with. Sera doesn’t stop until " + (pc.vaginas[vIdx].clits == 1 ? "it is" : "they are") + " bulging so hard " + (pc.vaginas[vIdx].clits == 1 ? "it feels like it’s" : "they feel like they’re") + " going to explode, and then actually seems to, bursting with joy, flexing up repeatedly to her suckling and licking. You moan and harshly huff your approval, once again making sure that well-trained mouth of hers goes nowhere by tightening your hips around her head hard, silky hair shifting against your [pc.skinFurScales].");

@@ -131,7 +131,7 @@ public function randomKorgSavingProcChances():void
 			case 5:
 				addBust("MAJA");
 				//Majas wargii hold rescue
-				output("\n\nYou can see maja behind the milodan. Her knees and elbows are tied to the ring of savivicte on her top, effectively leaving her in a forced fetal position. Her tail wags enthusiastically as she watches you fight, but a gag prevents her from cheering you on.");
+				output("\n\nYou can see Maja behind the milodan. Her knees and elbows are tied to the ring of Savicite on her top, effectively leaving her in a forced fetal position. Her tail wags enthusiastically as she watches you fight, but a gag prevents her from cheering you on.");
 				break;
 			default:
 				break;
@@ -334,7 +334,7 @@ public function majaTamelingFreething():void
 	output("\n\nYou hear a scuffling noise from the pen room, and another milodan rushes into the office area. Her attention is trained entirely on Maja, so she doesn’t notice when you kick one of the barrels. The tumbling container knocks her legs out from under her. She falls on her face, scrambling to regain her bearings. Unfortunately, she stays down just long enough for Maja to " + (silly ? "give her the kind of tiddy drop that would get a gorillion upvotes on the extranet":"smack her on the head with her length of post") + ".");
 	output("\n\nNo more sound comes from the animal pens barring the curious cooing and grunting of the animals themselves, but the two of you still edge carefully into the back area. The food storage and extra bedding are ransacked, but you can’t see any other milodan in the area. Some of the kor’diiak paw excitedly at the fence when they see Maja round the corner. She drops her club, scooting over to the gate as quickly as she can and comforting the animals. You walk up to the nog’wich pen, petting a few of the younger cat-horse’s who are curious enough to investigate. You turn in time to see Maja undoing the lock on the kor’diiak cage.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "Maja send kor’diiak to help with fighting. Many strongs, bigger than milodan. Maybe think twice about weapons. If kor’diiak di- get hurt, they take up space in passage, block way for intruders. Kor’diiak much smart though, know not to run into shootings. Maja will stay with these milodan, Keep them from getting into trouble. Maybe give taste of own medicine,":"I’ll send out some of the kor’diiak to help with the fighting. The milodan might think twice about kil- about shooting them if their bodies will block important passageways. They’re smart though, and they should know well enough to not run into the line of fire if they can’t attack first. I’ll stay here with these two, make sure they don’t get into trouble. Maybe i’ll give them a taste of their own medicine if they’re up for it,") + "”</i> she gives you a half-hearted smile.");
-	output("\n\n<i>“I’m sure they’ll be fine. I’ll help get this sorted out soon,”</i> You step to the side to give some kor’diiaks the space to step through the doorway. They squeeze past, lumbering towards the sounds of fighting. You duck out after they’re through, moving toward the throne room.");
+	output("\n\n<i>“I’m sure they’ll be fine. I’ll help get this sorted out soon.”</i> You step to the side to give some kor’diiaks the space to step through the doorway. They squeeze past, lumbering towards the sounds of fighting. You duck out after they’re through, moving toward the throne room.");
 	flags["WARGII_MAJA_SAVED"] = 2;
 	processTime(3);
 	clearMenu();

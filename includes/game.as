@@ -29,13 +29,9 @@ import classes.StringUtil;
 
 public function get canSaveAtCurrentLocation():Boolean
 {
-	if(inCombat()) 
-		return false;
-
-	if (inSceneBlockSaving)
-		return false;
-
-	return rooms[currentLocation].canSaveInRoom
+	if (inCombat()) return false;
+	if (inSceneBlockSaving) return false;
+	return rooms[currentLocation].canSaveInRoom;
 }
 
 public function infiniteItems():Boolean
@@ -194,10 +190,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Bank the most recent for playing, then strip it out in case of recursive bullshit
-		var tempFunc:Function  = eventQueue[0];
+		var tempFunc:Function = eventQueue[0];
 		eventQueue.splice(0,1);
 		//Do the most recent:
-		tempFunc();		
+		tempFunc();
 		return;
 	}
 	
@@ -532,7 +528,13 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
 	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
-	addGhostButton(4, "Back", backToPrimaryOutput, true);
+	addGhostButton(4, "Back", exitCodex);
+}
+public function exitCodex():void
+{
+	backToPrimaryOutput(true);
+	// trigger event if queued
+	if(eventQueue.length > 0) mainGameMenu();
 }
 public function showCodexExtra():void
 {
@@ -2492,34 +2494,83 @@ public function landingEventCheck(arg:String = ""):Boolean
 	return false;
 }
 
-public function nearestMedicalCenter():String
+public function nearestMedicalCenter(altLoc:String = "", onlyMed:Boolean = true):String
 {
-	var roomID:String = currentLocation;
+	var roomID:String = (altLoc != "" ? altLoc : currentLocation);
 	var planetName:String = getPlanetName();
 	
 	switch(planetName)
 	{
-		//case "Tavros Station": roomID = "NURSERYG4"; break;
+		case "Tavros Station":
+			if(!onlyMed)
+			{
+				if(flags["BRIGET_MET"] != undefined) roomID = "NURSERYG4"; // Nursery room
+			}
+			break;
 		case "Mhen'ga": roomID = "ESBETH MEDICAL OFFICE"; break;
-		//case "Tarkus": roomID = ""; break;
+		case "Tarkus":
+			if(!onlyMed)
+			{
+				if(flags["MET_DR_BADGER"] != undefined && flags["DR_BADGER_BIMBOED_PC"] != undefined && drBadgerAtBimbotorium()) roomID = "304"; // Bimbotorium
+				else if(flags["MET_DR_LASH"] != undefined) roomID = "LASH OFFICE"; // Lash office
+				//else roomID = "207"; // Corridor
+			}
+			break;
 		case "Myrellion":
-			var myrLoc:int = int(currentLocation);
+			var myrLoc:int = parseInt(currentLocation);
 			if
 			(	currentLocation == "GMEREHOSPITAL"
 			||	currentLocation == "GENES MODS"
 			||	currentLocation == "ENTITE"
-			||	(myrLoc >= 700 && myrLoc < 800)
+			||	InCollection(currentLocation, ["1J38", "1J36", "1J34", "1H34", "1H32", "1J32", "1F32"])
+			||	(!isNaN(myrLoc) && myrLoc >= 700 && myrLoc < 800)
 			) roomID = "GMEREHOSPITAL";
 			else if
 			(	currentLocation == "KRESSIA MEDICAL"
 			||	currentLocation == "LIEVE BUNKER"
 			||	currentLocation == "FAZIAN_RESCUE_ROOM"
-			||	(myrLoc >= 800 && myrLoc < 900)
+			||	InCollection(currentLocation, ["1H6", "1H8", "1J8", "1L8", "1N8", "1N10", "1N12", "1P12", "1J10", "1J12", "1H12", "1F12"])
+			||	(!isNaN(myrLoc) && myrLoc >= 800 && myrLoc < 900)
 			) roomID = "KRESSIA MEDICAL";
 			else roomID = (rand(2) == 0 ? "GMEREHOSPITAL" : "KRESSIA MEDICAL");
 			break;
-		//case "New Texas": roomID = ""; break;
-		//case "Uveto": roomID = "UVI R32"; break;
+		case "Zheng Shi Station":
+			if(!onlyMed)
+			{
+				roomID = "ZS H40"; // Slave pen
+			}
+			break;
+		case "New Texas":
+			if(!onlyMed)
+			{
+				if(flags["MET_ELLIE"] != undefined) roomID = "527"; // Ellie's shop
+			}
+			break;
+		//case "Poe A": roomID = ""; break;
+		case "Uveto Station":
+			if(!onlyMed)
+			{
+				roomID = "UVS B7"; // Spacer's lounge
+			}
+			break;
+		case "Uveto":
+			if(!onlyMed)
+			{
+				roomID = "UVI R32"; // Freezer fireplace
+			}
+			break;
+		case "Canadia Station":
+			if(!onlyMed)
+			{
+				roomID = "CANADA9"; // Guest room
+			}
+			break;
+		case "Gastigoth Station":
+			if(!onlyMed)
+			{
+				roomID = "G14_LOBBY"; // Lobby
+			}
+			break;
 		case "Kashima": roomID = "KI-H16"; break;
 	}
 	
@@ -3280,7 +3331,17 @@ public function variableRoomUpdateCheck():void
 	else rooms["110"].removeFlag(GLOBAL.NPC);
 	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) rooms["9013"].addFlag(GLOBAL.NPC);
 	else rooms["9013"].removeFlag(GLOBAL.NPC);
-	
+	//Velta
+	if (veltaIsJogging())
+	{
+		rooms["9006"].addFlag(GLOBAL.NPC);
+		rooms["RESIDENTIAL DECK VELTA"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.NPC);
+		rooms["9006"].removeFlag(GLOBAL.NPC);
+	}
 	/* MHENGA */
 	
 	//Bounties
@@ -3481,7 +3542,7 @@ public function variableRoomUpdateCheck():void
 		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 	//Handle badger closure
-	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	if(!drBadgerAtBimbotorium())
 	{
 		rooms["304"].removeFlag(GLOBAL.NPC);
 		//rooms["209"].northExit = "";
@@ -3976,6 +4037,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processBoredJumperPregEvents(deltaT, doOut, totalDays);
 		processCasinoEvents();
 		processRoxyPregEvents(deltaT, doOut, totalDays);
+		processBizzyCamgirlPayments(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
@@ -4004,6 +4066,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
+		{
+			goMailGet("bizzy_camgirl_initiate");
+		}
+
+		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
+		{
+			goMailGet("bizzy_camgirl_profits");
+		}
+
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{

@@ -360,9 +360,9 @@ public function rideDaWarlionCawwwwk(x:int):void
 	output("\n\n");
 	if(loosineeeeeee < 3) 
 	{
-		output("You can barely stifle a scream, having bitten off far more than you can chew with what feels like a foot-long iron rod in your " + (x < 0 ? "ass":"pussy") + ". The pain of having your abused " + (x < 0 ? "asshole":"cunt") + " stretched around the base of his massive, throbbing cock makes you reflexively squeeze him as hard as you possibly can, biting your lip and trying not to let your eyes water. It takes a little while for you to properly relax, still desperately squeezing every so often when your body remembers to try and defend itself, but you eventually overcome the impulse");
-	 	if(pc.isTaur()) output(". Even with your tauric hind half, this guy is really something else.");
-	 	else output("You don’t bother resisting the impulse to moan like a whore as you slide down his rock-hard rod, your pliable " + (x < 0 ? "asshole":"cunt") + " stretching around him just enough that it’s a nice, snug fit. You give him a few cursory squeezes on the way down just to let him know his services are appreciated, your eyes hooded as you bite your lip in pleasure. You’re going to fuck this guy’s brains out.");
+		output("You can barely stifle a scream, having bitten off far more than you can chew with what feels like a foot-long iron rod in your " + (x < 0 ? "ass":"pussy") + ". The pain of having your abused " + (x < 0 ? "asshole":"cunt") + " stretched around the base of his massive, throbbing cock makes you reflexively squeeze him as hard as you possibly can, biting your lip and trying not to let your eyes water. It takes a little while for you to properly relax, still desperately squeezing every so often when your body remembers to try and defend itself, but you eventually overcome the impulse.");
+	 	if(pc.isTaur()) output(" Even with your tauric hind half, this guy is really something else.");
+	 	else output(" You don’t bother resisting the impulse to moan like a whore as you slide down his rock-hard rod, your pliable " + (x < 0 ? "asshole":"cunt") + " stretching around him just enough that it’s a nice, snug fit. You give him a few cursory squeezes on the way down just to let him know his services are appreciated, your eyes hooded as you bite your lip in pleasure. You’re going to fuck this guy’s brains out.");
 	}
 	if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
 	else pc.buttChange(enemy.cockVolume(0));

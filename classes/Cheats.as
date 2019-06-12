@@ -50,6 +50,7 @@
 				return;
 			}
 			Cheats.OutputStuff(true);
+			kGAMECLASS.output("\n<b>Mitzi has been unlocked!</b>");
 			kGAMECLASS.flags["MITZI_RESCUED"] = (kGAMECLASS.GetGameTimestamp() - (60*24*8));
 			//if(kGAMECLASS.flags["MITZI_RESCUED"] < 0) kGAMECLASS.flags["MITZI_RESCUED"] = 0;
 		}
@@ -59,11 +60,30 @@
 			{
 				return;
 			}
-			Cheats.OutputStuff(false);
+			Cheats.OutputStuff(true);
+			kGAMECLASS.output("\n<b>Shukuchi encounter has been unlocked!</b>");
 			kGAMECLASS.flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1; 
 			kGAMECLASS.flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_EMAIL_TIMER"] = (kGAMECLASS.GetGameTimestamp() - (60 * 24 * 7));
+		}
+		public static function BoobSiliconePlease():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			if(!kGAMECLASS.pc.hasStatusEffect("Boob Silicone Please"))
+			{
+				kGAMECLASS.pc.createStatusEffect("Boob Silicone Please");
+				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will now be the target</b>!");
+			}
+			else
+			{
+				kGAMECLASS.pc.removeStatusEffect("Boob Silicone Please");
+				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will no longer be the target</b>!");
+			}
 		}
 		public static function XPToLevel():void
 		{
@@ -305,13 +325,15 @@
 		}
 		
 		// Treatment Haxxx
+		public static function TryTreatmentHaxDefault():void { TryTreatmentHax(); }
 		public static function TryTreatmentHaxCowGirl():void { TryTreatmentHax(0); }
 		public static function TryTreatmentHaxBull():void { TryTreatmentHax(1); }
 		public static function TryTreatmentHaxCumCow():void { TryTreatmentHax(2); }
-		public static function TryTreatmentHaxFauxCow():void { TryTreatmentHax(3); }
+		public static function TryTreatmentHaxCowStud():void { TryTreatmentHax(3); }
 		public static function TryTreatmentHaxAmazon():void { TryTreatmentHax(4); }
 		public static function TryTreatmentHaxDouble():void { TryTreatmentHax(5); }
 		public static function TryTreatmentHaxMini():void { TryTreatmentHax(6); }
+		public static function TryTreatmentHaxFauxCow():void { TryTreatmentHax(7); }
 		private static function TryTreatmentHax(variant:int = -1):void
 		{
 			if(variant >= 0)
@@ -323,10 +345,11 @@
 					case 0: msg += "Cow-Girl"; break;
 					case 1: msg += "Bull"; break;
 					case 2: msg += "Cum-Cow"; break;
-					case 3: msg += "Faux-Cow"; break;
+					case 3: msg += "Cow Stud"; break;
 					case 4: msg += "Amazon"; break;
 					case 5: msg += "Double Stud"; break;
 					case 6: msg += "Undersized"; break;
+					case 7: msg += "Faux-Cow"; break;
 				}
 				msg += "!";
 				
@@ -334,6 +357,13 @@
 				
 				Cheats.OutputStuff();
 				kGAMECLASS.output(msg);
+			}
+			else if(kGAMECLASS.flags["TREATMENT_HAX"] != undefined)
+			{
+				kGAMECLASS.flags["TREATMENT_HAX"] = undefined;
+				
+				Cheats.OutputStuff();
+				kGAMECLASS.output("\nThe next Treatment dose will no longer be forced and should perform as expected.");
 			}
 		}
 		

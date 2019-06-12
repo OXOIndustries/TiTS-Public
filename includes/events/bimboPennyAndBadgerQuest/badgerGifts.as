@@ -1576,17 +1576,7 @@ public function doctorBimboBadgerMenu():void
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
 	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	
-	if(flags["NYM-FOE"] >= 3 && flags["NYM-FOE_DISASSEMBLED"] != undefined)
-	{
-		// Nym-Foe cannot be fixed if both parties are too stupid to figure out how; hence why there’s no bimbo badger and bimbo player variant.
-		if(pc.isBimbo()) addDisabledButton(3,"Fix NymFoe","Fix Nym-Foe","Umm... like, why would you need to think about this again?");
-		else if(flags["NYM-FOE_REPAIR_QUEST"] == 1)
-		{
-			if(pc.hasItemByClass(SexbotChip, 6)) addButton(3,"Fix NymFoe",drBadgerLabNymFoe,"badger chip","Fix Nym-Foe","Turn in the sexbot VI chips to repair the Nym-Foe.");
-			else addDisabledButton(3,"Fix NymFoe","Fix Nym-Foe","You need at least 6 sexbot VI chips in order to repair the Nym-Foe.");
-		}
-		else addButton(3,"Fix NymFoe?",drBadgerLabNymFoe,"badger fix","Fix Nym-Foe?","Ask Doctor Badger about repairing the Nym-Foe.");
-	}
+	drBadgerFixNymFoeButton(3);
 	
 	addButton(14,"Leave",mainGameMenu);
 }

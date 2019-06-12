@@ -863,8 +863,14 @@ public function feedCuntSnake(cumFrom:Creature = null):void
 	IncrementFlag("TIMES_FED_CUNT_SNAKE");
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
+	if(cumFrom == null) return;
+	
 	var preg:Boolean = true;
+	// Non-parasitic snek cannot preg if host cannot
+	if(!pc.hasParasiteTail() && pc.fertility() <= 0) preg = false;
+	// Only virile sources work
 	if(cumFrom is Flahne) preg = false;
+	if(cumFrom.virility() <= 0) preg = false;
 	
 	if(preg && rand(5) == 0) fertilizeCuntSnake();
 }

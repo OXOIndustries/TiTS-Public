@@ -65,6 +65,9 @@ public function paigeJumpToSexFlowchart(args:Array):void
 
 public function paigePostCuddles(args:Array):Boolean
 {
+	// Vanilla scene omission
+	if(InCollection("SSVI", args)) return false;
+	// Wake up
 	if (InCollection("PCSE3", args)
 		|| InCollection("PCSE4", args)
 		|| InCollection("PCSES", args)

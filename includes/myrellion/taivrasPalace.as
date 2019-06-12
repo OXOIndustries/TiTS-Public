@@ -457,9 +457,10 @@ public function queensChambersBonus():Boolean
 		if(pc.hasCock())
 		{
 			if(pc.lust() >= 33) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
-			else addDisabledButton(0,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
+			else addDisabledButton(1,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
 		}
-		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don’t have the equipment to do that.");
+		else addDisabledButton(1, "Gloryhole", "Use Gloryhole", "You don’t have the equipment to do that.");
+		addButton(2, "Storage", locationStorageMenuRoot, "nyrean");
 	}
 	//Play <i>“Incubator Goo”</i> encounter on first entry.
 	else if(flags["CRYSTAL_GOO_DEFEAT"] == undefined)
@@ -793,9 +794,10 @@ public function useDatGloryhole():void
 	output("\n\nEggs? Well, it looks like your cover’s going to get blown about the same time as your nut. And the way she’s handling you, that’s going to be damn soon! You grit your teeth and try and hold back as long as you can against her slimy caresses, but this gloryhole goo is a supremely talented cocksucker who’s using her whole body to pleasure your [pc.cock]. You’d love to get a look at her blissed-out face about now, but have to content yourself with listening to her sultry, wet sounds echoing through the little tunnel.");
 	output("\n\nA few minutes of the goo-girl’s tender caresses later, and you’re ready to blow - and she knows it! <i>“Gonna fill me with eggs now?”</i> she coos excitedly, wiggling wetly all over your length. <i>“C’mon, queenie, I’m practically empty!”</i>");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nWell, you can’t fill her up with cock-eggs, but you’ve got something else to fill her up with! You grunt and dig your fingers into the stone wall, announcing your impending orgasm with a feral growl of pleasure. The goo squeals as the first spurt of your [pc.cum] squirts into her, ");
-	if(pc.cumQ() < 40) output("though her voice breaks into a cry of surprise as she realizes the cloud of [pc.cumColor] floating in her green belly isn’t exactly a clutch of nyrean eggs!");
-	else if(pc.cumQ() <= 550) output("bloating her gooey body with a massive dose of [pc.cum]! She moans happily, jiggling up and down your shaft as you pump her full of cum. A normal girl would be drooling your spunk out around your cock, but a goo... she just drinks it all up!");
+	if(cumQ < 40) output("though her voice breaks into a cry of surprise as she realizes the cloud of [pc.cumColor] floating in her green belly isn’t exactly a clutch of nyrean eggs!");
+	else if(cumQ <= 550) output("bloating her gooey body with a massive dose of [pc.cum]! She moans happily, jiggling up and down your shaft as you pump her full of cum. A normal girl would be drooling your spunk out around your cock, but a goo... she just drinks it all up!");
 	//if hugecum: 
 	else output("and again and again until the goo must be absolutely bloated with spooge - and you keep on going! She yelps and squirms around as you pump her with cum, enough to have made a normal girl look pregnant; as a goo, though, you imagine she’s just swelling up with all the extra fluid!");
 
@@ -811,8 +813,8 @@ public function useDatGloryhole():void
 		CodexManager.unlockEntry("Ganrael");
 	}
 	output(" She’s adopted a relatively humanoid form, probably based off of a gooey interpretation of the nyrea she’s living besides: she’s got two arms, a human-like head with big elfin ears, and a curvaceous body with big tits and hips that fold down into a solid base of goo instead of legs. Her crystals, though, are what tip you off to what you’re really dealing with here: a thick dome of emerald crystal has formed around her belly, shielding a massively pregnant gut filled to the brim with what looks like hundreds of fist-sized eggs! Her middle is hugely bloated, swollen with eggs and plated with as much crystal as the goo could possibly churn out, protecting her charges rather than herself. Beneath the gemstone shield, though, you see a ");
-	if(pc.cumQ() < 40) output("small");
-	else if(pc.cumQ() <= 550) output("big");
+	if(cumQ < 40) output("small");
+	else if(cumQ <= 550) output("big");
 	else output("huge");
 	output(" cloud of [pc.cumColor] swirling around inside her, coating the eggs as her goo wiggles around.");
 
@@ -2649,9 +2651,11 @@ public function useRepeatGloryhole():void
 
 	output("\n\nThe way she’s handling you, that’s going to be damn soon! You grit your teeth and try and hold back as long as you can against her slimy caresses, but this gloryhole goo is a supremely talented cocksucker who’s using her whole body to pleasure your [pc.cock]. You’d love to get a look at her blissed-out face about now, but have to content yourself with listening to her sultry, wet sounds echoing through the little tunnel.");
 	output("\n\nA few minutes of the goo-girl’s tender caresses later, and you’re ready to blow - and she knows it! <i>“Gonna fill me with [pc.cum] now?”</i> she coos excitedly, wiggling wetly all over your length. <i>“C’mon, I’m soooo ready for it!”</i>");
+	
 	output("\n\nWell, if she’s going to ask so nicely... you might as well give the squirming goo-girl what she wants! You grunt and dig your fingers into the stone wall, announcing your impending orgasm with a feral growl of pleasure. The goo squeals as the first spurt of your [pc.cum] squirts into her, ");
-	if(pc.cumQ() < 50) output("leavig a little cloud of spooge billowing through her liquid-like body");
-	else if(pc.cumQ() <= 1000) output("bloating her gooey body with a massive dose of [pc.cum]! She moans happily, jiggling up and down your shaft as you pump her full of cum. A normal girl would be drooling your spunk out around your cock, but a goo... she just drinks it all up!");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 50) output("leaving a little cloud of spooge billowing through her liquid-like body");
+	else if(cumQ <= 1000) output("bloating her gooey body with a massive dose of [pc.cum]! She moans happily, jiggling up and down your shaft as you pump her full of cum. A normal girl would be drooling your spunk out around your cock, but a goo... she just drinks it all up!");
 	//if hugecum: 
 	else output("and again and again until the goo must be absolutely bloated with spooge - and you keep on going! She yelps and squirms around as you pump her with cum, enough to have made a normal girl look pregnant; as a goo, though, you imagine she’s just swelling up with all the extra fluid!");
 
@@ -3048,23 +3052,24 @@ public function gloryFuckTaivra():void
 	output(", and lets loose a bestial roar that reverberates off the smooth stone walls and through your bones. Her asshole clenches like a fist around your shaft, and you suddenly feel a massive pressure near the [pc.cockHead " + x + "] of your prick - even through the lust hazing your mind, you realize you’re feeling <i>eggs</i> pumping out of her belly and through her thick ovipositor. The voice through the gloryhole squeals happily as the queen pumps her full of her tiny spawn, and Taivra herself keeps growling and grunting like an animal as she orgasm... and draws you over the edge with her.");
 
 	output("\n\n");
+	var cumQ:Number = pc.cumQ();
 	//if xboxheug cumvol:
-	if(pc.cumQ() >= 2000) 
+	if(cumQ >= 2000) 
 	{
 		output("Your overactive [pc.balls] ensure");
 		if(pc.balls <= 1) output("s");
 		output(" that you bloat the queen’s stomach until she looks absolutely pregnant with your cum. Taivra goes limp in your arms, slumping forward with her arms around her gut as your inhuman orgasm bloats her like a water balloon.");
 	}
 	//Moderate cumvol: 
-	else if(pc.cumQ() >= 200) output("Your [pc.cock " + x + "] blasts a huge, thick wad of cum into the queen’s thoroughly-abused asshole. Taivra’s eyes roll back, and her arms clutch at her bloated belly now churning with hot, sticky seed.");
+	else if(cumQ >= 200) output("Your [pc.cock " + x + "] blasts a huge, thick wad of cum into the queen’s thoroughly-abused asshole. Taivra’s eyes roll back, and her arms clutch at her bloated belly now churning with hot, sticky seed.");
 	//elseif low cum:
 	else output("Your [pc.cock " + x + "] discharges a nice, hot wad of [pc.cumNoun] into the queen’s well-fucked ass, milked out by pleasurable contractions and sliding pressure as the queen thrusts limply into the gloryhole, trying to get as much pleasure as she can as she blows her eggs deep into the goo on the other side.");
 
 	output("\n\nWith a heavy sigh");
 	if(pc.hasKnot(x)) output(", you wait for your [pc.knot] to deflate before");
 	output(" you slowly pull out of Taivra. When your crown finally wiggles free, you’re treated to the truly glorious sight of a ");
-	if(pc.cumQ() >= 2000) output("torrent");
-	else if(pc.cumQ() >= 200) output("stream");
+	if(cumQ >= 2000) output("torrent");
+	else if(cumQ >= 200) output("stream");
 	else output("trickle");
 	output(" of [pc.cumColor] pouring out of her ass and down her thighs, forming a little puddle between her legs. Without you to support her, Taivra slumps forward like her legs are about to give out on her, and her softening ovi-cock flops out of the wall with a spurt of purple juices.");
 	output("\n\n<i>“Ugh,”</i> she groans, reaching back to rub her battered, sperm-coated ass. <i>“I suppose this must be what one of my betas feel like...”</i>");
@@ -3105,8 +3110,9 @@ public function dockingBonerIntensifies():void
 	output(". Taivra’s hand clamp down on your [pc.butt], long nails digging painfully into your [pc.skinFurScales] as she bellows her pleasure for the whole palace to hear. You feel her tits bounce against your thrusting rump, and her ovi-dick squeezing down like a lurid sleeve around your [pc.cock " + x + "] as if it were trying to milk you for every drop.");
 
 	output("\n\nAnd by now, you’re more than happy to let her succeed. Still thrusting as fast and hard as you can, you let the queen’s orgasming cock-sleeve milk you until you join her in climax, blasting a ");
-	if(pc.cumQ() < 6) output("thin, wispy rope of [pc.cumNoun] down her sodden egg-tube, adding to the deluge flooding her prick.");
-	else if(pc.cumQ() < 500) output("nice, thick wad of [pc.cumNoun] right down Taivra’s soaked ovi-prick, flooding her womb with seed.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 6) output("thin, wispy rope of [pc.cumNoun] down her sodden egg-tube, adding to the deluge flooding her prick.");
+	else if(cumQ < 500) output("nice, thick wad of [pc.cumNoun] right down Taivra’s soaked ovi-prick, flooding her womb with seed.");
 	else output("torrent of [pc.cumNoun] down Taivra’s ovipositor, flooding her already-soaked slit with seed until her womb is bloated with your cum. She cries out as her belly swells with seed, utterly soaking her eager womb.");
 
 	output("\n\nYou sigh and lean forward, catching your breath as the last twitching drops of cum drool out of your [pc.cock " + x + "]. Underneath you, Taivra flops back, all the energy suddenly gone out of her; her hands caress her full belly and breasts, enjoying the feeling of her body in the afterglow. Slowly, you pull yourself out of her, letting loose a small flood of mixed fluids onto her belly and your thighs before you flop down beside her.");
@@ -4106,10 +4112,11 @@ public function buttFuckPrincessWhileSheFucks():void
 	if(pc.balls > 1) output("Your [pc.balls] twitch and tighten against your loins as your climax nears");
 	else output("[pc.EachCock] twitches and jumps with pleasant convulsions as your climax nears");
 	output(". Slowing down would seem the obvious way to prolong your pleasure, but you’ve no time for that. Instead, you redouble the pace until the whole room seems to echo with the sound of meaty slaps of crotch on ass. You can feel the princess clamp down as she cums again, and this time, you’re too close to do anything but unload inside her, giving her squeeze-toy of a rectum the [pc.cumVisc] treat it deserves.");
+	var cumQ:Number = pc.cumQ();
 	//Lil/nocum
-	if(pc.cumQ() < 5) output("\n\nThough it feels like you must have squirted out gallons, when you pull out, there’s exactly zero evidence of your orgasm. Maybe you’d better give your [pc.balls] a chance to brew up some fresh [pc.cumNoun]?");
+	if(cumQ < 5) output("\n\nThough it feels like you must have squirted out gallons, when you pull out, there’s exactly zero evidence of your orgasm. Maybe you’d better give your [pc.balls] a chance to brew up some fresh [pc.cumNoun]?");
 	//Normal cum to 100ml
-	else if(pc.cumQ() < 100) 
+	else if(cumQ < 100) 
 	{
 		output("\n\nRhythmic convulsions of your internal muscles work to push out squirt after squirt of [pc.cumNoun], layering ropes of [pc.cumColor] in neat little lines across the nyrea’s intestines. At last, ");
 		if(!pc.hasKnot(x)) output("your body’s frenzied ejaculation pauses");
@@ -4117,7 +4124,7 @@ public function buttFuckPrincessWhileSheFucks():void
 		output(", and you’re able to pull yourself out to admire your handiwork. A small trail of [pc.cum] leaks out of her asshole to slide down the princess’s leg.");
 	}
 	//High cum - 100ml to 500 ml
-	else if(pc.cumQ() < 500)
+	else if(cumQ < 500)
 	{
 		output("\n\nPowerful contractions of your internal muscles wring out huge ropes of [pc.cumNoun], pouring out enough reproductive gunk to paint the majority of your butt-loving nyrea’s anal cavity. When ");
 		if(!pc.hasKnot(x)) output("you finally stop adding to the [pc.cumColor] flood and ");
@@ -4125,7 +4132,7 @@ public function buttFuckPrincessWhileSheFucks():void
 		output("pull out, you’re treated to the sight of a half-dozen streams of [pc.cum] rushing from the recently-violated asshole. Most dribble down her legs, but at least one trickles down the underside of her cock and into her squirming pet.");
 	}
 	//Very High cum! 501 to 2L
-	else if(pc.cumQ() < 2000)
+	else if(cumQ < 2000)
 	{
 		output("\n\nEruptions have more in common with your climax than most orgasms. Powerful contractions push out ropes of [pc.cumNoun] so thick that they seem more like waves, rolling in a biological tide across every fold of the princess’s cock-loving intestines. Your body doesn’t let up, not even when you can hear a sloshing and gurgling from deep inside her gut. By the time you pull out");
 		if(pc.hasKnot(x)) output(" with a knotty ‘pop,’");
@@ -4235,14 +4242,15 @@ public function haremPolishjob():void
 	output("\n\n<i>“Are you ready for a bath, princess?”</i> you ask by way of warning. The question is purely rhetorical of course; you’re going to bathe her in [pc.cum] regardless. You just wanted to make sure the slaves knew what was coming. They have to keep you aimed and on target, after all.");
 	output("\n\nWhen she yanks her head back, still connected to your [pc.cockHead " + x + "] by a web of excessively copious pre-cum, and answers, <i>“YES!”</i> you go off.");
 	//No new PG!
+	var cumQ:Number = pc.cumQ();
 	//No cum
-	if(pc.cumQ() < 5) output("\n\nYou’re both somewhat surprised when your bucking bronco of a cock only manages to expel a few drops into her still-open mouth. You had hoped for more, but perhaps you should’ve given your body a chance to brew up a fresh batch.");
+	if(cumQ < 5) output("\n\nYou’re both somewhat surprised when your bucking bronco of a cock only manages to expel a few drops into her still-open mouth. You had hoped for more, but perhaps you should’ve given your body a chance to brew up a fresh batch.");
 	//Normalish cum 7-50
-	else if(pc.cumQ() < 50) output("\n\nThe first strand of [pc.cumNoun] lands square in her still-open mouth, connecting her uppermost teeth to her wet tongue with a [pc.cumColor] rope. She closes her maw instinctively, which is fine by you. It makes it easier to paint the next few squirts across her cheeks, nose, and forehead. You even manage to place a drop on her citrine crown, spoiling it as effectively as you have her.");
+	else if(cumQ < 50) output("\n\nThe first strand of [pc.cumNoun] lands square in her still-open mouth, connecting her uppermost teeth to her wet tongue with a [pc.cumColor] rope. She closes her maw instinctively, which is fine by you. It makes it easier to paint the next few squirts across her cheeks, nose, and forehead. You even manage to place a drop on her citrine crown, spoiling it as effectively as you have her.");
 	//High cum 50-250
-	else if(pc.cumQ() < 250) output("\n\nThe first voluminous strand of [pc.cumNoun] splatters into her still-open mouth, flooding it beneath a wave of [pc.cumColor]. Her mouth closes instinctively, perhaps surprised to be suddenly full of reproductive melange, but that’s fine by you. It makes it easier to aim the rest of the shots from your cannon of a cock, splattering tsunamis of [pc.cumFlavor] spooge across her cheeks, nose, and forehead. You even manage to bury her alien hair and crown in a web of [pc.cum], spoiling any evidence of her royalty as effectively as you have the rest of her.");
+	else if(cumQ < 250) output("\n\nThe first voluminous strand of [pc.cumNoun] splatters into her still-open mouth, flooding it beneath a wave of [pc.cumColor]. Her mouth closes instinctively, perhaps surprised to be suddenly full of reproductive melange, but that’s fine by you. It makes it easier to aim the rest of the shots from your cannon of a cock, splattering tsunamis of [pc.cumFlavor] spooge across her cheeks, nose, and forehead. You even manage to bury her alien hair and crown in a web of [pc.cum], spoiling any evidence of her royalty as effectively as you have the rest of her.");
 	//Megacum 251-2000
-	else if(pc.cumQ() < 2000)
+	else if(cumQ < 2000)
 	{
 		output("\n\nThe first cannon-like shot from your [pc.cock " + x + "] hits the princess square in her still-open mouth, filling the open orifice from tonsils to lips with a heady reward for her efforts. There’s enough extra to roll down the sides of her cheeks when she instinctively tries to close her stuffed palate, forcing her to try and swallow the [pc.cumFlavor] payload. It’s quite a sight to see. A shame you bury the entire thing in a mask of [pc.cumColor] a second later.");
 		output("\n\nEjaculations pour out of your dickslit like water from a hose, washing away each previous squirt with a whole new wave of [pc.cum]. The excess puddles around her hair, and the citrine of her crown is completely hidden, as thoroughly debauched as the princess herself. You spend yourself fully on the bukkaked royalty, pulling back to glaze the rest of her form as thoroughly as her face.");

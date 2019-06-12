@@ -922,7 +922,7 @@ public function consensualGangBang():void
 	}
 	pc.orgasm();
 	pc.orgasm();
-	if(pc.hasCuntTail()) feedCuntSnake();
+	if(pc.hasCuntTail()) feedCuntSnake(enemy);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 	

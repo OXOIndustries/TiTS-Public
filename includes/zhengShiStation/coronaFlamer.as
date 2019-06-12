@@ -191,7 +191,7 @@ public function coronaFlamerFuckedLikeTheBitchInHeatSheIs(cockIdx:int):void
 	}
 	else
 	{
-		output(" a torrent of [pc.cum] that splatters loudly into the subservient little bitch’s womb, filling her past capacity immediately. Her stomach blooms outwards as your seed swells her, drowning her fallopian tubes in your jizz while her womb stretches to contain your immense loads.The seconds go by as you grunt and strain, her eyes bulging as complete awe overwrites the expression on her face, some of the excess squirting back out of her cock-plugged cunt to spatter her shaking thighs.");
+		output(" a torrent of [pc.cum] that splatters loudly into the subservient little bitch’s womb, filling her past capacity immediately. Her stomach blooms outwards as your seed swells her, drowning her fallopian tubes in your jizz while her womb stretches to contain your immense loads. The seconds go by as you grunt and strain, her eyes bulging as complete awe overwrites the expression on her face, some of the excess squirting back out of her cock-plugged cunt to spatter her shaking thighs.");
 		output("\n\nHer hands drop from your back to her bulging, cum-pumped tummy as she lets out a whore’s moan, tilting her head back to expose her neck to you in the ultimate display of submission. This bitch is yours now.");
 		output("\n\nYou pull out and a torrent of your seed immediately gushes from her well-fucked slit, splattering the ground between her quivering thighs while she moans loudly. It looks like she’s cumming all on her own this time, so spurred on by your essence flowing down her thighs is she. That baby bump isn’t going away any time soon, either. She’s going to be walking around dripping cum and looking like she’s carrying your kids when she gets back to patrolling.");
 	}
@@ -586,7 +586,7 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 	output(". <i>“I’ll show [pc.daddy] I’m a good girl!”</i>");
 	output("\n\nThat’s more like it. The huskar bitch throws herself into pleasing you, restraining her own desires for your benefit.");
 	
-	if (rand(2) == 0 || !pc.hasVagina())
+	if (!pc.hasVagina() || rand(2) == 0)
 	{
 		var cawk:int = pc.biggestCockIndex();
 		output(" She sucks your [pc.cockBiggest] like an experienced whore, licking at your [pc.cockHeadBiggest] before rubbing it against the warm inside of her cheek, lovingly running her tongue along its underside. Her glittering green eyes hold your gaze as she swallows you, all but begging for your approval as you grip her flowing hair.");
@@ -602,7 +602,7 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		if (pc.hasCockFlag(GLOBAL.FLAG_FLARED, cawk)) output(", your bloated flare slowly flowering in her throat as she gags on it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_TAPERED, cawk)) output(", your tapered tip drooling precum into her throat while she gags around the rest of it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_NUBBY, cawk)) output(", experiencing a form of uncommon pleasure watching her loudly gag on your barbed cock");
-		else if (pc.cocks[cawk].cType == GLOBAL.TYPE_SIREN && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
+		else if (pc.cockCanSting(cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
 		output(". Reaching up to your [pc.ass], she grabs your cheeks and pulls you into her, skewering herself on your pulsating prick.");
 		output("\n\nThat does it. With a strained, jaw-clenching groan you explode down her throat, [pc.cum]");
 		var cumQ:Number = pc.cumQ();
@@ -685,6 +685,8 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		output("\n\nThat’s all the praise she’s going to get for you. Standing");
 		if (pc.isCrotchGarbed()) output(" and getting re-dressed");
 		output(", you make to leave as she lies on her back, moaning happily.");
+		
+		enemy.girlCumInMouth(pc);
 	}
 
 	pc.orgasm();
@@ -1061,7 +1063,8 @@ public function fireBitchBeingANicePuppyForOnce(order:int):Boolean
 				if (cumQ < 1000) output(" dripping with your essence, marked as your bitch");
 				else if (cumQ < 3000) output(" with seed streaming down her thighs and her belly slightly swollen");
 				else if (cumQ < 6000) output(" belly swollen outward with your cum and the excess flooding down her weakened thighs");
-				else output(" with her womb utterly full and stretched, her belly absurdly swollen as the excess gushes from her sloppy cunt}, and push her off the end of your prick to her knees. She immediately turns around and leans in, closing her eyes as she sucks you completely clean.");
+				else output(" with her womb utterly full and stretched, her belly absurdly swollen as the excess gushes from her sloppy cunt");
+				output(", and push her off the end of your prick to her knees. She immediately turns around and leans in, closing her eyes as she sucks you completely clean.");
 			}
 			else output("\n\nYou grunt in orgasmic release as recognition flashes across her ecstasy-contorted face and she lets it all go, cumming all over your groin while you throb inside her cunny again and again. You leave her almost crying in relief and bliss and push her off the end of your hardlight to her knees. She immediately turns around and leans in, closing her eyes as she sucks the sensitive tool completely clean.");
 			output("\n\nThe moment she’s done you");

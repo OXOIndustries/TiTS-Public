@@ -299,9 +299,9 @@ public function ulaFirstTimeRemeet():void
 	output("The familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
 	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
 	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
-	if(pc.tallness < 70) output(", tackling you to the ground");
-	else output(", smacking into you. You hold her there for a moment before letting her weight carry you to the ground.");
-	output(" Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
+	if(pc.tallness < 70) output(", tackling");
+	else output(", smacking into you. You hold her there for a moment before letting her weight carry");
+	output(" you to the ground. Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
 
 	//Fucked
 	if(flags["ULA_SEXED"] != undefined)
@@ -1263,7 +1263,7 @@ public function ulaMiningTalk():void
 
 	output("\n\nUla’s eyes drift closed, and her tongue slips out unthinkingly. <i>“");
 	if(!korgiTranslate()) output("Sparkle-crusts. Tools. Crafty-korg trade for rocks, then make use. Rest dropped under ice. Under ocean. No signs for alien or fang-kitties to tracking.");
-	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don’t leave any signs for alien miners of fang-kitties to track.");
+	else output("Jewelry. Tools. Craftskorg will trade for the useful gems. The rest get tossed under the ice, deep in the ocean. We don’t leave any signs for alien miners or fang-kitties to track.");
 	output("”</i> She purrs against you. <i>“");
 	if(!korgiTranslate()) output("Korg smart. Live in Uveto’s bones. Invisibiling to fang-cats. Unbreakable. No attacking... till aliens come.");
 	else output("We korg are smart. In Uveto’s bones, we’re invisible to the fang-cats. Our home was unbreakable. Impenetrable... until the aliens came.");
@@ -1388,7 +1388,7 @@ public function otherTribesTalkarydooda():void
 	output("<i>“How many other tribes does Uveto have?”</i>");
 	output("\n\nUla shrugs. <i>“");
 	if(!korgiTranslate()) output("How many stars in sky? Too many for one to know. Many. Uveto bigger than pregnant korg appetite, though less now than was.");
-	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto’s bigger than a pregnant korg’s appetite, though there are less clans now than there was.");
+	else output("How many stars are in the sky? Too many for any one person to know. Very many. Uveto’s bigger than a pregnant korg’s appetite, though there are less clans now than there were.");
 	output("”</i> She taps her palm. <i>“");
 	if(!korgiTranslate()) output("Some milodan-killed. Some driven to snow by sparkle-mining.");
 	else output("Some were milodan-killed. Some were driven to the snows by mining.");
@@ -1541,8 +1541,8 @@ public function talkAboutSavicite():void
 	output("”</i>");
 	output("\n\nYou nod.");
 	output("\n\nUla looks at you cautiously. <i>“");
-	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You’re not hear to steal some, are you?")
-	else output("Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here here to steal?");
+	if(korgiTranslate()) output("We know your people want it. We know they offered credits for them. Core silliness. [pc.name]. You’re not here to steal some, are you?")
+	else output("Know aliens want. Knowing cretids offered for. Kedrits? Core silliness. [pc.name] not here to steal?");
 	output("”</i>");
 	output("\n\nYou assure her that you aren’t here to steal from her tribe");
 	if(pc.isAss()) output(", however tempting the idea may be");

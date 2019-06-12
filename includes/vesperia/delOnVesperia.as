@@ -487,7 +487,7 @@ public function fuckDelsAss():void
 	output("\n\nFinally, the cock-craving whore makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood and ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("spreading her knees to giver her hands access to her throbbing equine hardon. She’s well and truly used to everyone in the bar oggling her horsecock, just like they do to her mistress, so she shows no shame in wrapping both hands around her member and stroking it from flare to medial ring.");
 	else output("blatantly spreading her legs, one hand fully disappearing under her skirt and up her wanton hole in preparation, teasing her tiny masculinity from behind and making it jump in response. The surge of her erection wholly throws back the hem of her skirt, leaving her cock for all to see");
-	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh so wonderfully. Gods, she was born for this! You stifle a little moan as she ");
+	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh-so-wonderfully. Gods, she was born for this! You stifle a little moan as she ");
 	if(pc.cocks[x].cLength() < 12) output("takes you to the hilt, your [pc.cock " + x + "] vanishing down her throat");
 	else output("sucks up every inch she can manage, choking down more than a foot of cockmeat before finally giving in, her throat utterly bulging with your massive girth stretching her pussy-like gullet wide.");
 

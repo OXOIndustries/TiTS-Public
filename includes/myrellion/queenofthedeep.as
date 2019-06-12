@@ -697,7 +697,7 @@ public function queenOfTheDeepCloacaFuck():void
 
 	output("\n\nEnough of that, you command her. She tried and failed, and now it’s your turn to call the shots. She groans, but doesn’t resist your invective; the woman merely busies herself with your prick, stroking you from tip to base with growing speed using the endless warm water around you as lube. A moan of pleasure soon escapes your [pc.lips], and you find yourself drawn to the big, cyan breasts hanging heavily from the creature’s chest. Your fingers sink into them, all but vanishing into cool flesh that quivers and jiggles in the most alluring ways. You can feel just how full each tit is, how laden with her alien milk.");
 
-	if (pc.isTreatedMale() || pc.isBro()) output("\n\nYou tell her just how awesome a pair of cock-cozies she’s rocking.");
+	if (pc.isTreatedBull() || pc.isBro()) output("\n\nYou tell her just how awesome a pair of cock-cozies she’s rocking.");
 	else output("\n\nGrinning, you tell the woman-creature that you’d like to see those big tits of her wrapped around your cock.");
 
 	output("\n\n<i>“Is that so?”</i> she coos, slipping a little lower on her behemoth body, aligning her pendulous chest with your [pc.cock]. You run a hand along one of her milk-laden udders, grasping at the four-nippled teat until a squirt of amber milk runs into your palm, which you smear into her cleavage until her blue flesh glistens with it. The captive creature moans as you milk her, chewing on a dark lip and cupping the bottom of her rack, hefting it up and surrounding your shaft.");
@@ -1195,7 +1195,16 @@ public function queenPregnancyEnds():void
 	author("Savin");
 	
 	var se:StorageClass = pc.getStatusEffect("Queen Pregnancy End");
-
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Queen Pregnancy End' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var buttPreggers:Boolean = (se.value3 > 0);
 	var cuntPreggers:Boolean = (se.value4 > 0);
 	var numCuntPreggers:Number = se.value4;

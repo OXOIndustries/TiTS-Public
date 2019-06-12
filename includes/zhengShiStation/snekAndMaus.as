@@ -227,7 +227,7 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 			else
 			{
 				output(" With your" + pc.cockAndVagina(" [pc.cocks]", " [pc.pussies]") + " to the air you’re sure you can conjure up enough lewd imagery to achieve satisfaction hands-free");
-				if (silly) output(" and guaranteed by Milly Bays");
+				if (silly) output(" and guaranteed by Milly Bayes");
 				output(".");
 			}
 		}
@@ -571,7 +571,7 @@ public function sharingASnekWithAMausLikeTotalBros():void
 		output("\n\nThe slavebreaker’s throat was built to take deep dickings. She’s drawn so tight around you that your erection is outlined by her squeezing cheeks and hollowing neck. Muscles contort and flex, and the cock-socket of a snake is moaning lurid numbers that bid you cry out. You’ve slid so deep that you feel like you could go further... like you’re getting bigger...");
 		output("\n\nAnd then there’s a slight pinch. You gasp and look down, finding her face nestled deep into your crotch. An instant of pain came and went at the [pc.base " + cawkIdx + "] of your dick, and a racy laugh floats from the corners of her mouth. Hot feel-good currents weave through your crotch, hooking into every vein and artery so that they might spread this radiant effect through the rest of you. Spit and <i>venom</i> leak " + (pc.balls > 0 ? "to the top of your clenching [pc.ballsNoun]." : "to the floor."));
 		// Suula or Stinger Flagged Cock
-		if (pc.cocks[cawkIdx].cType == GLOBAL.TYPE_SIREN || pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, cawkIdx)) output("\n\nNot content with receiving, your alien member gives the slyveren a taste of her own medicine. All the tendrils around the tip and base of your cock lash out at the pristine woman’s palate, offloading ruinous amounts of chemical arousal. To your shock, it doesn’t upset her performance in the slightest, but you know she’s drooling up a storm in there.");
+		if (pc.cockCanSting(cawkIdx)) output("\n\nNot content with receiving, your alien member gives the slyveren a taste of her own medicine. All the tendrils around the tip and base of your cock lash out at the pristine woman’s palate, offloading ruinous amounts of chemical arousal. To your shock, it doesn’t upset her performance in the slightest, but you know she’s drooling up a storm in there.");
 		output("\n\nYour mouth opens as if to cry out, but muted contentment interdicts your outburst. You blush from the crotch outward in a seizing blossom of heat, melting into a submissive pile. Your strength goes on vacation with ecstasy substituting for it. Staring into her " + (snake.lipColor == "black" ? "golden" : "teal-streaked") + " eyes with your [pc.cockBiggestNoun] sheathed in the wildly pleasurable embrace of her prodigiously puffy pillows, [pc.cumColor] cream dribbles ever-more freely.");
 	}
 	// PC has pussy

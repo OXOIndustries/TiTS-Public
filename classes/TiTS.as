@@ -115,6 +115,7 @@
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
+		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
@@ -157,6 +158,7 @@
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
+		include "../includes/follower/paigeGropazoo.as";
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeShower.as";
@@ -202,6 +204,8 @@
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/extrameet/bigtiddygothgf.as";
+		include "../includes/events/extrameet/kaede.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
@@ -270,10 +274,12 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+		include "../includes/tavros/velta.as";
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
 		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/bizzy.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -446,6 +452,7 @@
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/cherrysAppt.as";
 		include "../includes/zhengShiStation/coronaFlamer.as";
 		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
@@ -539,6 +546,7 @@
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
+		include "../includes/uveto/xotchiExpansion.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
@@ -652,7 +660,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.280";
+			version = "0.7.284";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -904,8 +912,8 @@
 			{
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					updatePCStats();
 					updateDisplays();
+					updatePCStats();
 				}
 			}
 			
