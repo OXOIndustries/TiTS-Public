@@ -368,24 +368,11 @@
 					
 					// {player loses their balls, lust resets to 0, energy drops to 1. They are moved to the nearest nursedroid or, if a droid is not on the current world, back to their ship.}
 					
-					pc.balls = 0;
+					pc.removeBalls();
 					pc.lust(0, true);
 					if(pc.energy() > 1) pc.energy(-(pc.energy() - 1));
 					
-					var currentPlanet:String = getPlanetName();
-					var nurseLocation:Array = [];
-					
-					if(currentPlanet == "Mhen'ga") nurseLocation.push("ESBETH MEDICAL OFFICE");
-					else if(currentPlanet == "Tarkus") nurseLocation.push("SHIP INTERIOR");
-					else if(currentPlanet == "Myrellion")
-					{
-						if(pc.hasKeyItem("Gildenmere Pass")) nurseLocation.push("GMEREHOSPITAL");
-						if(pc.hasKeyItem("Kressia Pass")) nurseLocation.push("KRESSIA MEDICAL");
-					}
-					
-					if(nurseLocation.length > 0) kGAMECLASS.currentLocation = nurseLocation[rand(nurseLocation.length)];
-					else kGAMECLASS.currentLocation = "SHIP INTERIOR";
-					
+					kGAMECLASS.currentLocation = kGAMECLASS.nearestMedicalCenter("SHIP INTERIOR");
 					kGAMECLASS.generateMap();
 					
 					clearMenu();

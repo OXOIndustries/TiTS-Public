@@ -1209,6 +1209,15 @@ public function zaaltPregnancyEnds():void
 	
 	var se:StorageClass = pc.getStatusEffect("Zaalt Pregnancy Ends");
 	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Zaalt Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

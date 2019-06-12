@@ -490,12 +490,13 @@ public function tailFuck():void
 	output(". The feeling of warmth pressing at <i>something</i> overwhelms you, like lava lapping at a dam strained to bursting.");
 
 	output("\n\nWith a cry of relief, you make a meager thrust, unable to put any real distance into it yet unable to prevent your instincts from driving you to plow forward all the same. The wet squish of genitals clapping together fills the air as you throw your head back and groan with relief, rutting against the Queen’s well-practiced breeding hole. She whimpers in pleasure, watching your face contort");
-	if(pc.cumQ() <= 5) output(" as you squirt your little dribs and drabs inside her. You might consider taking a break before your next tryst.");
-	else if(pc.cumQ() <= 30) output(" as you squirt your [pc.cum] deep into her tunnel.");
-	else if(pc.cumQ() <= 1000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 5) output(" as you squirt your little dribs and drabs inside her. You might consider taking a break before your next tryst.");
+	else if(cumQ <= 30) output(" as you squirt your [pc.cum] deep into her tunnel.");
+	else if(cumQ <= 1000) 
 	{
 		output(" as you hose thick streams of [pc.cum] deep inside her tunnel");
-		if(pc.cumQ() >= 600) output(", each longer than the last");
+		if(cumQ >= 600) output(", each longer than the last");
 		output(".");
 	}
 	else
@@ -505,23 +506,23 @@ public function tailFuck():void
 		else output(" A few trickles of [pc.cumColor] spill out around your [pc.sheath " + x + "] to run off the chair and puddle on the floor.");
 	}
 	//Bonus Super high cum, no knot:
-	if(!pc.hasKnot(x) && pc.cumQ() >= 5000) 
+	if(!pc.hasKnot(x) && cumQ >= 5000) 
 	{
 		output(" At least, it starts as a puddle. The longer you spend cumming, the more flooded the room becomes.");
-		if(pc.cumQ() >= 10000) 
+		if(cumQ >= 10000) 
 		{
 			output(" At some point, the queen’s chamber is filled with ");
-			if(pc.cumQ() < 12000) output("an inch");
-			else if(pc.cumQ() < 15000) output("two inches");
+			if(cumQ < 12000) output("an inch");
+			else if(cumQ < 15000) output("two inches");
 			else output("a few inches");
 			output(" of backed-up [pc.cum], enough to impress even her.");
 		}
 	}
 	output("\n\nIrellia is sighing in delight when you recover");
-	if(pc.cumQ() > 1000) output(" and rubbing at her significantly expanded abdomen");
+	if(cumQ > 1000) output(" and rubbing at her significantly expanded abdomen");
 	output(". <i>“");
-	if(pc.cumQ() < 10) output("That was fun, but I thought that you’d... you know, have more to give. No offense. It was still a wonderful distraction from the drudgery of my duties.");
-	else if(pc.cumQ() <= 1000)
+	if(cumQ < 10) output("That was fun, but I thought that you’d... you know, have more to give. No offense. It was still a wonderful distraction from the drudgery of my duties.");
+	else if(cumQ <= 1000)
 	{
 		output("Mmmm, not too bad, star-walker. You came like a true myr. I wonder if any of my children will wind up having your ");
 		if(pc.eyeColor == "black") output("look");
@@ -536,7 +537,7 @@ public function tailFuck():void
 		output("\n\nShe lets you slip free with a wanton-sounding sigh");
 		if(pc.hasKnot(x)) output(", able to pass your knot without much effort");
 		output(" and directs you to a nearby shower, indicating that her attendants will take care of her cleaning. It doesn’t take long to wash up, and as promised, she’s clean as a whistle by the time you come back");
-		if(pc.cumQ() >= 500) output(", if still dribbling [pc.cumNoun]");
+		if(cumQ >= 500) output(", if still dribbling [pc.cumNoun]");
 		output(".");
 	}
 	//knot is bigger than 11”</i>
@@ -698,20 +699,21 @@ public function cumInsideIrellia(x:int):void
 	output("\n\nWhimpering, the matriarch’s eyes flutter the whole way closed. She wraps her other three arms around you in a kind of half-embrace, half-stroke, petting you with the kind of nervous, half-conscious motions that indicate a complete lack of guidance by conscious thought. Her slick tunnel clamps down, and her finger jerks, punching into your prostate once more, wringing more pleasure from it than the tiny organ has any business giving.");
 	output("\n\nBetween her vaginal massage, the fiery bliss racing up your spine, and the sight of the sexpot of a queen squirming below, you have no hope of holding out. Your muscles lock, and your back arches from the mounting excitement. [pc.EachCock] swells mightily at the behest of involuntary muscle contractions. Just as you’re about to finally let loose, you hear a liquid splattering behind you.");
 	output("\n\nYou aren’t in any state of mind to turn around and examine the lurid squelches, nor is it easy to hear them over Queen Irellia’s vocalizations of pleasure. You aren’t in any state of mind at all. Your mind is awash in ecstasy, your body driving on autopilot, following genetic commands so simple that you couldn’t screw it up if you tried.");
-	if(pc.cumQ() <= 5) output(" Unfortunately, there’s almost nothing left for you to spurt. You manage to deposit a few drips inside the monarch and little else.");
-	else if(pc.cumQ() < 100) output(" Not that the queen is doing much better. Her rippling cunt devours every ounce of [pc.cum] you can offer, the perfect receptacle for your load.");
-	else if(pc.cumQ() < 1000) output(" Not that the queen is doing much better. Her rippling cunt devours the first tremendous spurts of [pc.cum] with ease, the perfect receptacle for a load. It keeps up with you through most of your climax, leaving only a thin layer of [pc.cumColor] on the queen’s golden lips as evidence of your virility.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 5) output(" Unfortunately, there’s almost nothing left for you to spurt. You manage to deposit a few drips inside the monarch and little else.");
+	else if(cumQ < 100) output(" Not that the queen is doing much better. Her rippling cunt devours every ounce of [pc.cum] you can offer, the perfect receptacle for your load.");
+	else if(cumQ < 1000) output(" Not that the queen is doing much better. Her rippling cunt devours the first tremendous spurts of [pc.cum] with ease, the perfect receptacle for a load. It keeps up with you through most of your climax, leaving only a thin layer of [pc.cumColor] on the queen’s golden lips as evidence of your virility.");
 	else output(" Not that the queen is doing much better. Her rippling cunt does its best to devour the gigantic spurts of [pc.cum] shooting from your [pc.cock " + x+ "], but even a queen is no match for your seemingly endless ejaculations. Her abdomen swells from the volume of liquid being shunted into it. Sperm-filled squirts sometimes shoot out around your crotch from the back pressure. It’s impossible not to revel in it, not to enjoy flooding a genetically gifted matriarch with so much DNA that even she can’t handle it. It’s cascading out of her packed slit now, and you just keep on spraying until it feels like you’re fucking a cum-fountain.");
 	output("\n\nWhen you slump down, you discover Irellia’s slackened form. She’s barely moving and probably unconscious. Hand-maidens pull you from her");
 	if(pc.hasKnot(x)) output(" after waiting for your troublesome knot to deflate. Boy, if looks could kill!");
 	else output(".");
 	output(" It’s at this point that you identify the source of that squelching you heard just before you orgasmed - Irellia was laying eggs.");
-	if(pc.cumQ() < 100) output(" It must have been very stimulating.");
+	if(cumQ < 100) output(" It must have been very stimulating.");
 	else 
 	{
 		output(" A lot of eggs.");
-		if(pc.cumQ() >= 4000) output(" Almost every developed egg inside her must have pushed out into the padded basket below. No wonder she came so hard!");
-		if(pc.cumQ() >= 8000) output(" And they’re all covered in a sheen of your [pc.cum]. Strings of it are still dripping from her other end.");
+		if(cumQ >= 4000) output(" Almost every developed egg inside her must have pushed out into the padded basket below. No wonder she came so hard!");
+		if(cumQ >= 8000) output(" And they’re all covered in a sheen of your [pc.cum]. Strings of it are still dripping from her other end.");
 	}
 	output("\n\nThe servile ants force you into the shower. They won’t take no for an answer, and you don’t really have the energy to protest after that. So what other choice do you have? You lather up and enjoy these primitives’ luxuries, coming out feeling at least a little rested.");
 	output("\n\nIrellia is awake once more, and her egg basket has been replaced with a fresh one. She’s beaming and gently rubbing her abdomen with one of her hands. The others give you a tired but friendly wave, the kind of wave you might have gotten from a girl in the hallways of your school after fucking her bareback in her parent’s house the night before. You grin and wave back.");
@@ -769,8 +771,9 @@ public function cumOntopOfIrellia(x:int):void
 	if(pc.cockTotal() == 1) output("s");
 	output(" wildly in your grip when it hits, but you keep pumping, keep stroking, feeding your need to maximize your pleasure - to shoot out every single [pc.cumVisc] drop inside you.");
 
+	var cumQ:Number = pc.cumQ();
 	//No cum!
-	if(pc.cumQ() <= 5)
+	if(cumQ <= 5)
 	{
 		output("\n\nA few, feeble droplets spill from your [pc.cocks] onto the myr matriarch’s buxom chest, the last few dregs of an exhausted reproductive system. Perhaps you should rest a little between encounters... or seek out some kind of treatment to enhance your virility.\n\nIrellia actually looks disappointed - disappointed enough that she stops pleasuring herself and asks, <i>“Really? That’s it? After all this, I expected more from you, [pc.name].”</i> She scoffs and sets you on the ground beside her. <i>“If you were one of my drones, I’d have to release you from my service for a performance like that. Not only did you disobey an order, but you didn’t even manage to bring me off!”</i> She sighs and waves to the door. <i>“Come back when you’ve a little more to offer!”</i>");
 		output("\n\nYou skulk away");
@@ -789,12 +792,12 @@ public function cumOntopOfIrellia(x:int):void
 		return;
 	}
 	//Normal cum
-	else if(pc.cumQ() < 400)
+	else if(cumQ < 400)
 	{
 		output("\n\nA few good-sized ropes of [pc.cum] spray across the myr matriarch’s buxom chest, splattering off one breast after another, mixing your [pc.cumColor] seed in with her amber lactation. The sight of it staining her golden boobs keeps you shooting for longer than you might have otherwise, certainly long enough for you to feel drained and utterly satiated by the time it’s all over. The last few shots are comparatively feeble, but enough to leave her tits as spotted some ausar’s fur.");
 	}
 	//Big cum (Glass full!)
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nA few ropes thick enough to put reinforced ship cable to shame spray across the myr matriarch’s buxom chest, drenching one breast after another, striking with enough force to make them wobble and squirt nectar from the impact alone. Still jacking, you aim your [pc.cocks] to try and evenly coat her entire bosom, but in your overeagerness, you wind up catching her in the mouth and chin as well. [pc.Cum] dribbles down her chin while the royal ant-girl swallows with a pleased smile.");
 		output("\n\nWhen she opens back up, you can’t help but feed the last dregs of your liquid pleasure into her mouth. Who are you to deny the lady?");
@@ -806,10 +809,10 @@ public function cumOntopOfIrellia(x:int):void
 		output("\n\nYour [pc.cum] washes over her like a tidal wave, flooding her mouth, plastering back her hair, and nearly gluing her glasses in place. She closes her mouth and swallows, gasping for air after while strings of the stuff hang from her face. Chitinous fingers reach between her breasts and begin to massage your [pc.cumNoun] into them while you launch wave after wave of the stuff onto her.");
 		output("\n\nMore than once Irellia gathers some into one of her lower hands and surreptitiously sneaks it into her dripping slit. Every time, you punish her for it by blasting the next geyser-like eruption into her face and mouth. She doesn’t seem to mind, and for that matter, you’re hard pressed to actually care when you’re spraying DNA like a firehouse.");
 		//Append to 2+ liter if lots more
-		if(pc.cumQ() >= 4000) 
+		if(cumQ >= 4000) 
 		{
 			output("\n\nBy the time your violently virile orgasm begins to ebb, you’ve drenched the matriarch’s entire upper body in your [pc.cum]. Waterfalls of it are cascading down her sides at this very moment into a puddle");
-			if(pc.cumQ() >= 20000) output(" deep enough to take a bath in");
+			if(cumQ >= 20000) output(" deep enough to take a bath in");
 			output(". Irellia’s attendants are scrambling for cleaning supplies in the background, but you merely guide your [pc.cock " + x + "] between the Queen’s lips so that she can sample the last few pearls of condensed love.");
 		}
 		//Append if not lots more
@@ -819,7 +822,7 @@ public function cumOntopOfIrellia(x:int):void
 	output("\n\nBeneath you, the libinous royal quietly trembles, smearing your [pc.cum] across her form while one set of fingers furiously fuck her honeyed quim. Her eyes close, and rumbling purr escapes her throat, culminating in a sudden eruption of honey from her teats. All four of which spray like sprinklers, producing a rain of amber sweetness over both your bodies.");
 	output("\n\nPanting, you flop down into her cleavage.");
 	output("\n\nShe idly strokes your [pc.hair], remarking, <i>“Normally I’d have to punish your disobedience, star-walker, but I think you’ve earned yourself a pardon... this time.”</i> She grins. <i>“Now get off me. I’ve got duties to attend to and drones to summon for a proper insemination - the council would have my head if they thought I was trying to create half-breeds.”</i>");
-	output("\n\nA handmaiden offers you a towel and a shower once you climb down. You take both. By the time you leave, noone would guess you had fucked a myr queen... unless they smelled the faint, lingering scent of sweetness on you.");
+	output("\n\nA handmaiden offers you a towel and a shower once you climb down. You take both. By the time you leave, no one would guess you had fucked a myr queen... unless they smelled the faint, lingering scent of sweetness on you.");
 	//IT’S OVER!
 	processTime(9);
 	pc.exhibitionism(1);
@@ -960,13 +963,14 @@ public function ladyTimeSixtyNinesByFenbroxicoTheDestroyer():void
 		if(pc.cockTotal() > 1) output("them, they leap");
 		else output("it leaps");
 		output(" to the forefront of your mind, so hard and eager, filled full to bursting by sympathetic ardor. One fingertip rubs just beneath [pc.oneCockHead], hitting a sensitive bundle of nerves. Her palms, made slick by [pc.girlCum] easily glide across the rest of the flesh.");
+		var cumQ:Number = pc.cumQ();
 		output("\n\nYou go off like a ");
 		if(pc.cockTotal() > 1) output("line of ");
 		output("cannon");
 		if(pc.cockTotal() > 1) output("s");
 		output(", a simultaneous barrage of bliss sprays over Irellia’s tits while your [pc.vagina " + x + "] melts on her tongue.");
-		if(pc.cumQ() >= 50) output(" [pc.Cum] trickles down between your bodies, flowing all the way down until you can taste it alongside the ant queen’s flavorful slit.");
-		if(pc.cumQ() >= 200) output(" Small streams roll off either side of her supine form. You can hear them splattering into a puddle below.");
+		if(cumQ >= 50) output(" [pc.Cum] trickles down between your bodies, flowing all the way down until you can taste it alongside the ant queen’s flavorful slit.");
+		if(cumQ >= 200) output(" Small streams roll off either side of her supine form. You can hear them splattering into a puddle below.");
 		output(" It’s too much, cumming from both sets of organs at once. Your mind was never meant to endure such pleasure, and you black out on the cusp of your second orgasm.");
 		//Only 2 cums! AH AH AH! /thecount
 		processTime(22);
@@ -1100,21 +1104,22 @@ public function quadTitfuckPartDues():void
 	}
 	output(".");
 	
+	var cumQ:Number = pc.cumQ();
 	//Few drops
-	if(pc.cumQ() <= 5) output("\n\nTrembling wildly, you erupt... or at least it feels like you do. A single droplet of [pc.cum] rolls into the expanse of cleavage to vanish amongst a sea of honeyed liquid.");
+	if(cumQ <= 5) output("\n\nTrembling wildly, you erupt... or at least it feels like you do. A single droplet of [pc.cum] rolls into the expanse of cleavage to vanish amongst a sea of honeyed liquid.");
 	//Normal
-	else if(pc.cumQ() < 20) output("\n\nTrembling wildly, you erupt, flinging ropes of [pc.cum] across the expanse of cleavage again and again, then pressing your dribbling [pc.cockHeadBiggest] against her wide-open lips. She greedily laps at your sweetened, pulsating rod.");
+	else if(cumQ < 20) output("\n\nTrembling wildly, you erupt, flinging ropes of [pc.cum] across the expanse of cleavage again and again, then pressing your dribbling [pc.cockHeadBiggest] against her wide-open lips. She greedily laps at your sweetened, pulsating rod.");
 	//Big load (doublish size?)
-	else if(pc.cumQ() < 150) output("\n\nTrembling wildly, you erupt, flinging thick ropes of [pc.cum] across the expanse of cleavage again and again, each one easily long enough to lay a line from the bottom of the lower row to the top. The second hits her from neck to forehead, and by the time the third launches out, you’re pressing your [pc.cockHeadBiggest] against against her lips. The queen swallows with relish.");
+	else if(cumQ < 150) output("\n\nTrembling wildly, you erupt, flinging thick ropes of [pc.cum] across the expanse of cleavage again and again, each one easily long enough to lay a line from the bottom of the lower row to the top. The second hits her from neck to forehead, and by the time the third launches out, you’re pressing your [pc.cockHeadBiggest] against against her lips. The queen swallows with relish.");
 	//Really big load (think a big cupfull)
-	else if(pc.cumQ() < 1000) 
+	else if(cumQ < 1000) 
 	{
 		output("\n\nTrembling wildly, you feel you the [pc.cum] snaking through your urethra, distending it with its volume alone. It launches out in globules big enough to coat the entirety of a queenly breast individually, only you’re pumping half onto her face in hair, covering her blue-painted lips in [pc.cumColor]");
 		if(pc.cumColor() == "blue") output(", which doesn’t look all that different, really");
 		output(". Once the flow ebbs, you press it the [pc.cockHeadBiggest] against her lips. For her part, she simply licks and swallows, humming in pleasure all the while, seemingly unbothered by the unexpected facial.");
 	}
 	//Huge Load (2 liter)
-	else if(pc.cumQ() < 3000)
+	else if(cumQ < 3000)
 	{
 		output("\n\nWildly clenching, you unload a rope of [pc.cum] heavy enough to send a ripple across the royal breasts and drench her cleavage in [pc.cumColor].");
 		if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY || pc.cumType == GLOBAL.FLUID_TYPE_NECTAR) output(" Of course it all just blends into a thickened, sweet morass.");
@@ -1129,10 +1134,10 @@ public function quadTitfuckPartDues():void
 	}
 	//Merge
 	//Came lots
-	if(pc.cumQ() >= 20) 
+	if(cumQ >= 20) 
 	{
 		output("\n\nLifting you with surprising ease, Queen Irellia places you alongside her, back on your feet. She licks her fingers clean, one after another, winking at you while her handmaidens scowl");
-		if(pc.cumQ() >= 1000) output(" and gather their cleaning supplies");
+		if(cumQ >= 1000) output(" and gather their cleaning supplies");
 		output(". One of them gathers the eggs she expelled while another offers you a towel.");
 	}
 	output("\n\n<i>“Not bad, [pc.name].");
@@ -1462,9 +1467,10 @@ public function partThreeOfAntOnPCOnAntAction(partner:String = ""):void
 	if(pc.hasCock())
 	{
 		output("shoot ");
-		if(pc.cumQ() < 5) output("miniscule amounts");
-		else if(pc.cumQ() < 200) output("arching loads");
-		else if(pc.cumQ() < 2000) output("liberal loads");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 5) output("miniscule amounts");
+		else if(cumQ < 200) output("arching loads");
+		else if(cumQ < 2000) output("liberal loads");
 		else output("gallons of");
 		output(" [pc.cum] all over your [pc.belly] and all over the floor.");
 	}

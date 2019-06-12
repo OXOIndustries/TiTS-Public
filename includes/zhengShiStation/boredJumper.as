@@ -1978,7 +1978,7 @@ public function vaginallyFilledByJumperWiNSceneByWilliam(hole:int):void
 	output("\n\n<i>“You got it!”</i> The bunny quips, and her [enemy.cockType] rod rams into your pussy with the speed of runner who just heard the starting gunshot. She batters the entrance to your womb in that sprinting thrust, already hilted in you before you can figure out what just happened. So shocked by the simultaneous ease and force of her skewering penetration, your [pc.vagina " + x + "] constricts around her invading member and floods her thick tool with fresh [pc.girlCum]. You, on the other hand, lose control of your [pc.legOrLegs] and howl emptily into the air as she watches your shaking body with an indulging expression.");
 
 	//if suula/aphrodisiac cunt
-	if (pc.vaginas[x].type == GLOBAL.TYPE_SIREN || pc.vaginas[x].type == GLOBAL.TYPE_ANEMONE) output("\n\nHaving lost control of your alien biology in the aftershock, the tentacles and venom-laced cilia in your vagina sting the jumper’s cock, making her keel over with a surprised look on her face. <i>“Oh gosh, you’ve got <i>that</i> kind of pussy, huh? Bet I know why, you just want the hardest dick imaginable in ‘ya !”</i> She smiles, righting herself with a ragged groan.");
+	if (pc.hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, x)) output("\n\nHaving lost control of your alien biology in the aftershock, the tentacles and venom-laced cilia in your vagina sting the jumper’s cock, making her keel over with a surprised look on her face. <i>“Oh gosh, you’ve got <i>that</i> kind of pussy, huh? Bet I know why, you just want the hardest dick imaginable in ‘ya !”</i> She smiles, righting herself with a ragged groan.");
 	// PC Looseness 1-2
 	else if(pc.vaginas[x].looseness() <= 2) output("\n\n<i>“Nice and tight, but that’ll change. I’m gonna make your pussy a cock sock just for me!”</i> The jumper declares, gripping your hips.");
 	// PC Looseness 3-5
@@ -2280,7 +2280,7 @@ public function boredJumperCowgirlWinByWilliam():void
 
 	output("\n\nYou’re sure you’ve heard a few people passing by down the passages, and you’re definitely sure they can hear the sounds of your dominant lovemaking. The jumper on your cock, if anything, is doing what she can to make sure the sounds of tongue and throat against dick are heard for as far as they’ll carry. For how she acted earlier, it makes you wonder why you even had to fight her. She must enjoy taking as much as giving, the slut!");
 	//suula cock
-	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nThe alien tentacles lining the head and shaft of your cock brush against the horny jumper’s throat and lips. You decide to let your venomous biology have its way there, stinging her sensitive face in and out with a healthy dose of chemical lust. She mewls and groans all around your [pc.cockNounSimple " + x + "], spittle flowing like a river from her maw. Guess she appreciated the gesture!");
+	if (pc.cockCanSting(x)) output("\n\nThe alien tentacles lining the head and shaft of your cock brush against the horny jumper’s throat and lips. You decide to let your venomous biology have its way there, stinging her sensitive face in and out with a healthy dose of chemical lust. She mewls and groans all around your [pc.cockNounSimple " + x + "], spittle flowing like a river from her maw. Guess she appreciated the gesture!");
 	output("\n\nBending your knees and leaning over the laquine’s head, you let out a hot, tickling breath on her ears. You grab onto those floppy appendages of hers, bending them a bit to keep your grip in the swamp. You’re not even sure she would feel you scratching her ears! In response to your fondling, the cock-hungry pirate gives ");
 	if(pc.hasVagina()) output("your [pc.vagina] a little teasing, pinching " + (pc.totalClits() == 1 ? "your erect [pc.clitNoun]" : "[pc.oneClit]") + ".");
 	else if(pc.balls > 0) output("your [pc.balls] a little attention, squeezing the weighty orb" + (pc.balls > 1 ? "s":"") + " with a unique tenderness.");
@@ -2366,7 +2366,7 @@ public function boredJumperCowgirlWinByWilliamII():void
 	output(", masturbating furiously as shriek-like moans escape her mouth. While her hands pump, her strong legs carry her athletic body up and down like a piston, and both of you are soon washed well away down the rivers of lust.");
 	pc.cockChange();
 	//suula cock
-	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYou can’t hold back your venomous payload - the tentacles protruding from your alien dick sting at the jumper’s horse cunt, forcing her to struggle with a fierce chemical rush the likes of which she was hardly prepared for. <i>“Holy ffffuck!”</i> she croaks. <i>“You’ve got that kind of dick? I need to get one of those, the machine doesn’t output something like that!”</i>");
+	if (pc.cockCanSting(x)) output("\n\nYou can’t hold back your venomous payload - the tentacles protruding from your alien dick sting at the jumper’s horse cunt, forcing her to struggle with a fierce chemical rush the likes of which she was hardly prepared for. <i>“Holy ffffuck!”</i> she croaks. <i>“You’ve got that kind of dick? I need to get one of those, the machine doesn’t output something like that!”</i>");
 	output("\n\nHer tongue lolling now, she uses your stomach as support for her thumping crotch, slamming into you with uncontained sexual aggression. <i>“Fuckmefuckme yessss!”</i> she moans, ");
 	if(pc.cocks[x].cLength() <= 12) output("your dick giving her wonderfully tight pocket the spreading it needs.");
 	else output("your dick bulging noticeably through her abdomen just above her twirling [enemy.cock].");
@@ -2567,7 +2567,7 @@ public function boredJumperHeatSexII():void
 
 	output("\n\nGosh, she must be in pain from how much blood has flowed to her nethers. She’s so <i>hot</i>, so <i>tasty</i>... The raw musk in her lubricant alone squeezes copious amounts of fem slime from your [pc.vagina]");
 	if(pc.hasCock()) output(", even stimulating your [pc.cocks] to add their own to the air");
-	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an inch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
+	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an itch only your hands can tend. You brazenly finger yourself, a task made all too easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
 	output("\n\n<i>“D-damn...”</i> The laquine grabs your head. <i>“I feel so hard I bet my dick could replace the mining bots down here..! Just what do you think I’m gonna do to you for this?”</i> She half-taunts. In all honesty, you can’t quite tell where her tone of voice is, all that matters is that she’s going to ravish, no, <b>ruin</b> you with her gorgeous [enemy.cock], that she’s going to do her very best to impregnate you with every ounce of cum churning in her fuzzy nuts.");
 	output("\n\nShe yanks you down all the way on her cock so hard that tears form at the edges of your [pc.eyes], but you aren’t in pain. No, you understand, this is where you <i>need</i> to be right now, taking care of this studly specimen, your rightful mate. She uses your mouth like an onahole, and you’re all too happy to reciprocate, squeezing your cheeks around her shaft and lashing her mast with your [pc.tongue]. You coil around her [enemy.cockHead] and suck at her cumslit directly, hoping you’ll get a fresh batch before too long.");
 	output("\n\nFor once, hope was not a step on the road to disappointment, and you moan in whorish glee as her dick throbs in your mouth. Her legs thump against the ground and her balls smack into your chin. One of many climaxes to come is precluded by the hypnotic rhythms of her pounding heart, its beating rapid, working in harmony with the rest of her body. Your eyes shut as you gag on the puddles of virile cum she fires straight into your gurgling gut. If only you could taste it...");
@@ -2581,7 +2581,7 @@ public function boredJumperHeatSexII():void
 	output(". Every drop of fluid, sweat, cum, pre... whatever the tip of your tongue laps up is another drop of fuel for the fire burning within you. Submissive, libidinous warmth suffuses your entire being just being able to worship her manhood, to prostrate yourself beneath what will quench the thirst that threatens to drain you of life. You groan into her sack, exhaling hotly, <i>“Pleeasee...”</i>");
 	output("\n\nThat word was all you could muster in your oversexed stupor. To your joy, she pulls off your face and pushes you down, falling on top of you. Belly up, your legs are locked to either side of the roiled rabbit’s curvy hips, squirming and grinding against her for any kind of stimulation or release. Her [enemy.cock] flops on your crotch");
 	if(!pc.hasCock()) output(", dragging against your abdomen");
-	else output("rubbing against your [pc.cockBiggest]");
+	else output(", rubbing against your [pc.cockBiggest]");
 	output(". The jumper’s cute nose twitches just before she inhales sharply. Her exhalation is a husky groan that brings a smile to your lips.");
 	output("\n\n<i>“That smell... Daaamn... I can’t wait to play in your garden, babe. Shame you can’t give me a call, I’d love to hear you begging for it.”</i> The horny humper snerks, a few drops of sizzling sweat plummeting on to your [pc.skinFurScales] from her head.");
 	if(silly) output(" <i>“We’re gonna build a house of fire and I’m gonna walk right through your door of desire!”</i>");
@@ -2630,7 +2630,7 @@ public function boredJumperHeatSexIII():void
 		flags["BJUMPER_HEAT_SEX"] = 1;
 		pc.loadInCunt(enemy,2);	
 	}
-	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit] Is she...? Oh no...");
+	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
 	processTime(30);
 	pc.orgasm();
 	flags["BJUMPER_HEAT_SEX"] = 1;

@@ -165,7 +165,7 @@ public function jeromePeggingII():void
 		output(" as you");
 		if (pc.isTaur()) output(" struggle to reach back");
 		else output(" reach down");
-		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh so graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
+		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh-so-graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
 	}
 	else
 	{

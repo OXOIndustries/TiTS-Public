@@ -149,7 +149,7 @@ public function cockvineSeedlingJoin(sCockType:int = 0):void
 	output("You tap your chin as you consider the thick, lithe end of the cowering plant creature musingly. Yes, there’s definitely... possibilities there. Juicy possibilities.");
 	if (!pc.isNude()) output(" You smile as you undo your [pc.lowerGarments] and let them drop to the ground.");
 
-	if (pc.isBro() || pc.isTreatedMale())
+	if (pc.isBro() || pc.isTreatedBull())
 	{
 		output("\n\n<i>“C’mon lil’ bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
 	}

@@ -41,8 +41,7 @@
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
-			//Uncomment for reptilum
-			//inventory.push(new Reptilum());
+			inventory.push(new Reptilum());
 			
 			typesBought = [];
 			
@@ -57,12 +56,6 @@
 			cumMultiplierRaw = 30;
 			ballEfficiency = 90;
 		}
-		
-		//Uncomment for reptilum
-		/*public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.inventory.push(new Reptilum().getSaveObject());
-		}*/
 		
 		override public function onLeaveBuyMenu():void
 		{

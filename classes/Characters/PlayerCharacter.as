@@ -70,16 +70,22 @@ package classes.Characters
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -105,6 +111,8 @@ package classes.Characters
 		}
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("ass");
 			// Butt bug load
 			kGAMECLASS.loadInButtBug(this, cumFrom);
@@ -112,14 +120,14 @@ package classes.Characters
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			// Buttslut heal
 			if(hasPerk("Buttslut"))
 			{
 				HP(level);
-				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
+				if(cumFrom != null) HP(Math.round(cumQ/1000));
 			}
 			// Anal Heat dampen
 			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
@@ -128,7 +136,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -149,12 +161,14 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, milkFrom.lactationQ(), "milk");
+			var lactationQ:Number = (milkFrom != null ? milkFrom.lactationQ() : 0);
+			
+			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, lactationQ, "milk");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(milkFrom != null) addBiomass(milkFrom.lactationQ());
+				if(milkFrom != null) addBiomass(lactationQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -162,9 +176,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(milkFrom != null)
 				{
-					if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(milkFrom != null) sstdChecks(milkFrom,"mouth");
@@ -173,12 +187,14 @@ package classes.Characters
 		
 		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, cumFrom.girlCumQ(), "girl-cum");
+			var girlCumQ:Number = (cumFrom != null ? cumFrom.girlCumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, girlCumQ, "girl-cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
+				if(cumFrom != null) addBiomass(girlCumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -186,9 +202,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
@@ -197,13 +213,15 @@ package classes.Characters
 		
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumFrom.cumQ(), "cum");
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumQ, "cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -211,14 +229,18 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -231,15 +253,21 @@ package classes.Characters
 		// *shrug*
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
@@ -248,10 +276,16 @@ package classes.Characters
 		
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -330,6 +364,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		public var LocationStorageInventory:Array = [];
 		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{

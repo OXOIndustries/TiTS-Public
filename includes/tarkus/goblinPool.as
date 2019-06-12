@@ -1277,7 +1277,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 1);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 1);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// PC is female, D cup or above, is not pregnant, is wearing something
@@ -1289,7 +1289,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 0);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 0);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// Otherwise

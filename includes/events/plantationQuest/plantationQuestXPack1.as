@@ -251,10 +251,10 @@ public function lahPrisonSex(response:String):void
 			output(" into the insensate ex-terrorist. For you, that instant orgasm of his is a boon - a generous load of lubricant which allows you to easily impale yourself right down on his girth, so that his bulging knot is bumping against your entrance and [pc.eachClit]. For Lah, though, it must be fairly agonizing. His dick must ache like a sore thumb, at the same time as pleasure and arousal inundate his senses, every time you bend it in your soaking depths.");
 			output("\n\n<i>“How can you even think of cumming without getting your knot inside me?”</i> you husk, seizing his hair, intense arousal pulsing through you as you clutch the back of the chair hard and really ride him, [pc.ass] bouncing up and down in his tawny lap. <i>“What kind of stud are you?”</i>");
 			output("\n\n<i>“One... damn...”</i> he groans, head thrown back, skin glowing with sweat underneath the harsh strip lighting. That hard, tough ball of heat sits stuck to the entrance of your sopping, leaking cunt, stretching it wide... and then in a small explosion sensation it’s inside, stopping it like a cork, and immediately Lah cums again, his hips jackhammering into you reactively, spilling another hot load of cum out into your [pc.vagina " + vIdx + "]. The giddy dual feeling sends you over the edge, ecstatic contractions practically ordering you to ride that dick for all you’re worth, clenching up around it so you can knead every last fertile drop out of your conquest.");
-			if(pc.isTreated() || InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA]))
+			if(pc.vaginaCanSuck(vIdx) || pc.vaginaHasFeelers(vIdx))
 			{
 				output(" The");
-				if(InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN]))
+				if(pc.vaginaHasFeelers(vIdx))
 				{
 					output(" wonderful cilia");
 				}
@@ -357,6 +357,15 @@ public function lahPregnancyEnds(babyList:Array):void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Lah Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Lah Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
 	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
@@ -2195,7 +2204,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			}
 			else output(" sashay over to the bed, letting your bare rump bounce ever-so-gently");
 			output(".");
-			output("\n\nYou join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.");
+			output("\n\nYou join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh-so-slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.");
 			output("\n\n<i>“Yes, my good, loyal, warriors,”</i> she sighs, <i>“all of this is yours... for the entire night. Your Quinn is bountiful. Your Quinn is generous.”</i> She points languidly at the smallest. <i>“Come here, my little one. You two... there is the starwalker champion.”</i> Her hand dips between your [pc.thighs], warm finger sliding between the lips of your [pc.vagina " + vIdx + "], holding them up to the flickering light. <i>“See how ready [pc.he] is? Waste no more time.”</i>");
 			output("\n\nThe shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face (you’re put in mind of Able), stumbles onto the bed in a kind of a trance. His groin-plate comes loose with a click and a gasp, his stubby, foreskinned erection no longer willing to be caged, as he watches his ruler prowl forwards, tenderly caressing his arms and chin... and then your view is blocked out by slim, athletic, jet-black hips, and strong, insectile hands grasp you by the waist.");
 			output("\n\nThe two bigger males pull you onto your hands and [pc.knees], made feverish by their arousal, their curious hands questing over your alien flesh, stroking your [pc.skinFurScales] and gripping your [pc.thighs] and " + (pc.hasTail() ? "[pc.tail]" : "[pc.butt]") + ", searching for anchorage and your most erogenous of zones. The groin-plate of the one in front flicks away like a beetle’s carapace, and instantly the air is fogged with sexual sugar, the smell of the thick, glossy, six-inch zil cock that flops out arrowing into your body like a hyperderm of Dumbfuck. [pc.EachVagina] " + (!pc.isSquirter() ? "drips" : "drools") + " [pc.femcum] in response, wet with anticipation, and your whole body feels incredibly sensitized, desperate to be touched, stroked, grasped.");

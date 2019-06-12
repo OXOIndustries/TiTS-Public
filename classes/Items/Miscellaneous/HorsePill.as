@@ -907,7 +907,7 @@
 							else msg += "they split";
 							msg += " into hundreds of tiny filaments, transforming into a horsetail.";
 						}
-						msg += " <b>You now have a horse-tail.</b>", false;
+						msg += " <b>You now have a horse-tail.</b>";
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_LONG);
 						target.addTailFlag(GLOBAL.FLAG_FLOPPY);

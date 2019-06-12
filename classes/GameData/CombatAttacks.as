@@ -854,7 +854,7 @@ package classes.GameData
 			{
 				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
 			}
-			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			if(attacker.hasPerk("Lunge") && !target.isStaggered() && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
@@ -1119,8 +1119,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1141,8 +1142,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1169,8 +1171,9 @@ package classes.GameData
 		{
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
-			if(target.hasFlightEffects())
+			if(missed)
 			{
 				output((attacker is PlayerCharacter ? "Your" : ownerName + "’s") + " Tam-wolf is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
@@ -1192,15 +1195,11 @@ package classes.GameData
 			var ownerName:String = attacker.getCombatName();
 			if(attacker is PlayerCharacter) ownerName = attacker.short;
 			
-			if(target.hasFlightEffects())
-			{
-				output((attacker is PlayerCharacter ? kGAMECLASS.chars["WULFE"].short : ownerName + "’s Siegwulfe") + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
-				return;
-			}
-			
 			var d:Number = attacker.untypedDroneDamage() + 1 + rand(2);
 			var dmg:TypeCollection;
 			var damageResult:DamageResult;
+			
+			var missed:Boolean = (target.hasFlightEffects() ? (rand(2) == 0) : false);
 			
 			if(attacker is PlayerCharacter)
 			{
@@ -1208,7 +1207,7 @@ package classes.GameData
 				{
 					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
 					// More lust than dmg
-					if (!target.isLustImmune && (100*(target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax())) >= 100 - target.lustQ())
+					if (!target.isLustImmune && (100*((target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax()))) >= (100 - target.lustQ()))
 					{
 						output(RandomInCollection([
 							"[wulfe.name] pushes her chest out, smirking while she runs her hands over her gigantic, jutting breasts and moans. <i>“Look at what you’re missing out on...”</i>",
@@ -1226,6 +1225,11 @@ package classes.GameData
 					//More dmg than lust
 					else
 					{
+						if(missed)
+						{
+							output(kGAMECLASS.chars["WULFE"].short + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+							return;
+						}
 						output(RandomInCollection([
 							"[wulfe.name] jumps into the fray, slashing with her extendable claws!",
 							"[wulfe.name] spins around and kicks at the opponent with her powerful hindlegs!",
@@ -1248,6 +1252,11 @@ package classes.GameData
 				}
 				else
 				{
+					if(missed)
+					{
+						output(kGAMECLASS.chars["WULFE"].short + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+						return;
+					}
 					output(kGAMECLASS.chars["WULFE"].short + " brandishes her hardlight claws, putting herself between you and " + target.getCombatName() + ". <i>“Don’t worry, " + attacker.mf("master", "mistress") + ", I’ll protect you!”</i> She lunges forward, sweeping her blades across her target.");
 					
 					dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
@@ -1256,6 +1265,11 @@ package classes.GameData
 			}
 			else
 			{
+				if(missed)
+				{
+					output(ownerName + "’s Siegwulfe is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+					return;
+				}
 				output(ownerName + "’s Siegwulfe brandishes its hardlight claws and lunges forward, sweeping its blades at " + ((target is PlayerCharacter) ? "you!" : (target.getCombatName() + ".")));
 				
 				dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
@@ -1446,6 +1460,11 @@ package classes.GameData
 			if(apply) target.setStatusValue("Hobbled", 1, intensity);
 			else target.addStatusValue("Hobbled",1 , intensity);
 		}
+		public static function applyLustStagger(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Lust Staggered",0,0,0,0,true,"","",true);
+			applyStagger(target, turns, apply, tooltip);
+		}
 		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Lust Stunned", 0, 0, 0, 0, true, "Stun", "Cannot take action!", true, 0, 0xFF0000);
@@ -1564,7 +1583,7 @@ package classes.GameData
 
 				if (target is CyberPunkSecOp)
 				{
-					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + "noggin. You’ll have to try something else!");
+					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + " noggin. You’ll have to try something else!");
 				}
 				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
@@ -1595,7 +1614,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
-			if (attacker.hasPerk("Rending Attacks") && !target.hasStatusEffect("Staggered") && !target.isPlanted())
+			if (attacker.hasPerk("Rending Attacks") && !target.isStaggered() && !target.isPlanted())
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");

@@ -840,7 +840,7 @@ public function cuntailOnDudeleen():void {
 
 	output("\n\nYou moan in ecstasy as you idly hump his greedy mouth, letting the last of your load slip down his throat and into his ");
 	if(pc.cumQ() >= 2500) output("bloated ");
-	output("belly. You feel oh so deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen’s lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
+	output("belly. You feel oh-so-deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen’s lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
 
 	output("\n\nWith blissful laziness, you pull your cock free of the naleen’s mouth and slide off of his midriff, tail curling back around for you to inspect it. The perverse lips at its end are drooling thick gobbets of naleen seed, the scent of sex wafting from it with each twitch. Naughty boy, he got you so very messy....");
 

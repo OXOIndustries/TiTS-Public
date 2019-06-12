@@ -557,7 +557,7 @@ public function ratsShutUpAndTakeMyMoney():void
 	else
 	{
 		output((pc.isAss() ? "You clench your fists so hard that the bones and muscles in your fingers crack and bulge. As your digits uncurl, y" : "Y") + "ou sigh heavily and raise one hand to keep the gang back whilst you dig through your bag. They can’t help but try to jump or stand on their toes to see what’s inside. They’re unable to stifle their happy squeaks when you load a credit chit with the desired amount. ");
-		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it you guide their unblinking eyes around by their greedy and beady eyes.");
+		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it, you guide their greedy, beady eyes around with the promise of payday.");
 		output("\n\nYou might as well get some entertainment out of this. With a devilish smirk, you fling the chit over your shoulder and watch the avaricious trio all go scrambling for it with impatient squeals. They dive to the ground in a frenzy, scrounging for it wherever it landed.");
 		output("\n\nJust out of ear shot, you hear the little bandits laughing triumphantly.");
 	}

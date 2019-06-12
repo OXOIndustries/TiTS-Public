@@ -1579,7 +1579,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			pc.cuntChange(vIdx, enemy.cockVolume(0));
 			
 			output("\n\nSphere after sphere disappears inside you, making the");
-			if(pc.vaginas[vIdx].type == GLOBAL.TYPE_SIREN) output(" tentacle-lined");
+			if(pc.vaginaHasFeelers(vIdx)) output(" tentacle-lined");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" nubby");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_RIBBED)) output(" ribbed");
 			else output(" smooth");

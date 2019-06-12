@@ -44,7 +44,7 @@ public function encounterRegularTentaclePitcherYouGay():void {
 		flags["TIMES_MET_VENUS_PITCHER"]++;
 		if(rand(2) == 0) output("\n\nA lovely green woman is here, clad in a simple vine and leaf bikini, her lower half concealed behind a bush. She notices you and calls out to you, begging for you to come to her with exaggerated shakes of her upper body that make her bosom quake in a most delightful manner. You sneeze as you watch the light glitter off her soft, pouty lower lip, nearly stumbling forward of your own volition before you realize that this must be another venus pitcher!");
 		else {
-			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh so pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
+			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh-so-pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
 			output("\n\n<i>“Hey there, good lookin’. You say hi to all the girls that way?”</i> a musically sweet voice playfully teases. The boob you’re currently palming presses harder into your digits, allowing them to sink deeply into the sizeable mammary. <i>“Enjoy it, sugar. Just come around front here so I can properly show my appreciation.”</i>");
 			output("\n\nYou recoil with surprising dexterity, gaping almost slack-jawed at the lewd, pale green beauty eyeing you. Her gaze is extraordinarily predatory, though you are unsure if it’s the lewd and salacious kind or something far more dangerous. She’s clearly a venus pitcher. Getting closer to her would undoubtedly be a goo--no... bad idea.");
 			output("\n\nYou sneeze again and weigh your options.");
@@ -1750,7 +1750,7 @@ public function venusPitcherBadEnd6():void
 	//Cunt
 	if(pc.hasVagina())
 	{
-		output("\n\nTwo tentacles slam into your [pc.vagina] in unison, the narrow lengths curling around one another to give your insatiable box the fucking it oh so clearly needs. You can hardly contain the joy they stir up in your loins. Were it not for the nipple in your mouth, you’d be screaming in heedless joy, ripping your voicebox ragged in an attempt to let the universe know just how completely you’re controlled by the pleasure ");
+		output("\n\nTwo tentacles slam into your [pc.vagina] in unison, the narrow lengths curling around one another to give your insatiable box the fucking it oh-so-clearly needs. You can hardly contain the joy they stir up in your loins. Were it not for the nipple in your mouth, you’d be screaming in heedless joy, ripping your voicebox ragged in an attempt to let the universe know just how completely you’re controlled by the pleasure ");
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("driving deep beneath your [pc.leg]");
 		output(".");

@@ -1635,7 +1635,7 @@ public function quaelleBirth(birthTimestamp:int = -1):void
 	if (flags["QUAELLE_TOTAL_KIDS"] == undefined) flags["QUAELLE_TOTAL_KIDS"] = 0;
 	flags["QUAELLE_BIRTHSCENE_KIDS"] = 0;
 	
-	//both births can trigger if within 2 days of eachother
+	//both births can trigger if within 2 days of each other
 	if (flags["QUAELLE_INCUBATION_TIMER_F"] != undefined && flags["QUAELLE_INCUBATION_TIMER_F"] > quaelleIncubationDays() - 2)
 	{
 		//cycle through kids and increment gender stats
@@ -1903,6 +1903,16 @@ public function quaellePregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Quaelle Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Quaelle Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

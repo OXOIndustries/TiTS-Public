@@ -349,7 +349,7 @@ package classes.GameData
 				
 				if (!h.hasStatusEffect("Free Chief"))
 				{
-					if (h.hasStatusEffect("Blinded") || h.hasStatusEffect("Stunned") || h.hasStatusEffect("Staggered") || h.hasStatusEffect("Paralyzed"))
+					if (h.isBlind() || h.isStaggered() || h.isImmobilized())
 					{
 						addButton(10, "Free Chief", h.freeChief, undefined, "Free Chief", "Get Chief Neykkar out of there! She might be able to lend a helping hand!");
 					}
@@ -736,25 +736,27 @@ package classes.GameData
 		
 			if (target.hasStatusEffect("Staggered"))
 			{
-				if (target.statusEffectv1("Staggered"))
+				var lustStagger:Boolean = target.hasStatusEffect("Lust Staggered");
+				if (target.statusEffectv1("Staggered") > 0)
 				{
 					target.addStatusValue("Staggered", 1, -1);
-					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You’re still " + (!lustStagger ? "reeling from the force of the blows" : "recovering from the lust-inflicted stagger") + " to which you’ve been subjected.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still " + (!lustStagger ? "reeling from the force of the blows" : "recovering from the lust-inflicted stagger") + " to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
 				}
 				else
 				{
 					target.removeStatusEffect("Staggered");
+					target.removeStatusEffect("Lust Staggered");
 					if (target is PlayerCharacter)
 					{
-						output("\n\n<b>You finally shake away the stars from your vision");
+						output("\n\n<b>You finally shake away the " + (!lustStagger ? "stars" : "hearts") + " from your vision");
 						if(target.hasFlightEffects()) output(" and reorient yourself in the air");
-						else output(", your [pc.feet] firmly planted on the floor once again");
+						else output(", your " + target.feet() + " firmly planted on the floor once again");
 						output(".</b>");
 					}
 					else
 					{
-						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the cobwebs");
+						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the " + (!lustStagger ? "cobwebs" : "haze of arousal"));
 						if(target.hasFlightEffects()) output(" and return" + (!target.isPlural ? "s" : "") + " to the air");
 						else output(", " + target.getCombatPronoun("hisher") + " " + target.feet() + " planted firmly on the floor once again");
 						output(".</b>");
