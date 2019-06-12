@@ -5055,6 +5055,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						else if(flags["BIZZY_PORN_STUDIO"] <= 4) output2(", Sexpert performer");
 						else output2(", Professional porn studio, Completed");
 					}
+					if(flags["BIZZY_MAIL_PAYMENT_DAY"] != undefined) output2("\n<b>* Bizzy, Days Since Last Salary Payment:</b> " + (days - flags["BIZZY_MAIL_PAYMENT_DAY"]));
 					if(flags["BIZZY_VAG_FUCKED"] != undefined) output2("\n<b>* Bizzy, Times Fucked Her Vagina:</b> " + flags["BIZZY_VAG_FUCKED"]);
 					if(flags["BIZZY_BOOBY_RUBBED"] != undefined) output2("\n<b>* Bizzy, Times Rubbed Boobs:</b> " + flags["BIZZY_BOOBY_RUBBED"]);
 					if(flags["BIZZY_SUCKED_COCK"] != undefined) output2("\n<b>* Bizzy, Times She Sucked Your Cock:</b> " + flags["BIZZY_SUCKED_COCK"]);

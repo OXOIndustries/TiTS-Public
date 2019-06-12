@@ -59,9 +59,9 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 	}
 
 	// Also check for the first day so we can push a payment through along with the mail
-	if (bizzyMailPay || (flags["BIZZY_MAIL_PAYMENT_DAY"] != undefined && (flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays - days) >= 30))
+	if (bizzyMailPay || (flags["BIZZY_MAIL_PAYMENT_DAY"] != undefined && ((days - flags["BIZZY_MAIL_PAYMENT_DAY"]) + totalDays) >= 30))
 	{
-		var numPays:int = Math.max(1, ((flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays - days) / 30));
+		var numPays:int = Math.max(1, (((days - flags["BIZZY_MAIL_PAYMENT_DAY"]) + totalDays) / 30));
 
 		flags["BIZZY_MAIL_PAYMENT_DAY"] = (days + totalDays);
 
@@ -73,7 +73,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 		var actualPay:int = (payAmounts[Math.min(flags["BIZZY_PORN_STUDIO"] - 3, 2)] * numPays);
 		pc.credits += actualPay;
 
-		AddLogEvent("<b>Your codex makes a chiming sound, informing you that you have received " + actualPay + " credits. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".</b>", "good", deltaT);
+		AddLogEvent("Your codex makes a chiming sound, <b>informing you that you have received " + actualPay + " credits</b>. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".", "good", deltaT);
 	}
 }
 
