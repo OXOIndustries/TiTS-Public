@@ -29,7 +29,10 @@
 
 			this.femininity = 85;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "KAZRA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

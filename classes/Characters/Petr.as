@@ -33,7 +33,10 @@ package classes.Characters
 
 			femininity = 10;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "PETR";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

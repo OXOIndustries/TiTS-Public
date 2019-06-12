@@ -168,7 +168,11 @@
 			this.version = _latestVersion;
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "BURT";
+		}
+
 		// V1->V2, readd "broken" flags
 		public function UpgradeVersion1(dataObject:Object):void
 		{

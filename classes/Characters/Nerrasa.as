@@ -49,7 +49,10 @@
 			sellMarkup = 1.2;
 			buyMarkdown = .8;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "NERRASA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.uvetoNerrasaMenu();

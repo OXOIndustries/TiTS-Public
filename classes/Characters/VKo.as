@@ -185,6 +185,10 @@
 			
 			this.createStatusEffect("Disarm Immune");
 		}
+		override public function get bustDisplay():String
+		{
+			return "VKO";
+		}
 		
 		override public function onLeaveBuyMenu():void
 		{

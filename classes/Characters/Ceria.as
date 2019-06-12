@@ -84,7 +84,10 @@
 			this.buyMarkdown = .5;
 
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "CERIA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.ceriaMenu();
