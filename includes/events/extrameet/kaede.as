@@ -10,6 +10,11 @@ public function extrameetKaedeDate():void
 	}
 }
 
+public function extrameetKaedeRepeat():void
+{
+
+}
+
 public function extrameetKaedeFirstTime():void
 {
 	showKaede();
@@ -97,9 +102,13 @@ public function extrameetKaedeFirstTimeII():void
 		output("\n\nYour date blushes fiercely while the bunny girl laughs. <i>“Oh, I’m awful. So what’ll hit the spot, you two?”</i>");
 	}
 
+	processTime(20+rand(5));
+
 	//Display Ilaria's shop menu. No escape clause. Hit the player with the effect of their chosen dish, but combine whatever they choose into the following scene UNLESS they choose the Sinabunny and they've already had sex with Ilaria. That gets the "Kaede Surprise" scene...
 
 	// Me: :catstare:
+
+	kaedeDataIlariaMenu();
 }
 
 public function kaedeDataIlariaMenu():void
@@ -229,17 +238,24 @@ public function extrameetKaedeBlowNBounce():void
 	
 	output("\n\nA wicked idea crosses your mind, and you pull yourself back up her shaft so that the latter half of her explosive orgasm ends up caught across your [pc.tongue]. You roll the thick, salty spooge around between your cheeks, gently sucking on her tip until every drop’s been spilled. When it’s done, you pull yourself off her knob and back onto the couch, straddling Kaede’s little hips to kiss her. The moment her lips open to accept your tongue, you feed her her own jizz. She gasps and squirms, but getting a mouthful of cum is basically her natural state, and her resistance fades into desperate horniness moments later. Her dick doesn’t bother softening, like it knows all the cum and drool clinging to it is only lube for what’s to come.");
 	
-	output("\n\nYou shed what’s left of your gear and lean down in Kaede’s lap, never breaking the kiss even as her spunk-slathered shaft slides into your [pc.vagOrAss]. The dog-girl swallows hard as you spear yourself on her cock, draining all that creamy cum you so generously gave her back with a ragged moan. By the time your [pc.butt] comes to rest on her thighs, her knot is throbbing {between the lips of your quim / in the ring of your ass}, threatening to sink inside if you don’t raise yourself back on your [pc.knees] and start riding that dick.");
+	output("\n\nYou shed what’s left of your gear and lean down in Kaede’s lap, never breaking the kiss even as her spunk-slathered shaft slides into your [pc.vagOrAss]. The dog-girl swallows hard as you spear yourself on her cock, draining all that creamy cum you so generously gave her back with a ragged moan. By the time your [pc.butt] comes to rest on her thighs, her knot is throbbing");
+	if (pc.hasVagina()) output(" between the lips of your quim");
+	else output(" in the ring of your ass");
+	output(", threatening to sink inside if you don’t raise yourself back on your [pc.knees] and start riding that dick.");
 	
 	output("\n\n<i>“A-aah,”</i> Kaede moans, grabbing at your hips. <i>“You’re such a bully!”</i>");
 	
 	output("\n\nMaybe, but she loves having her dick bullied, doesn’t she?");
 	
-	output("\n\nThe ginger halfbreed blushes fiercely, but she can’t deny the charge with her rock-hard cock buried inside you. Instead, you guide her hands to your [pc.hips], getting her to help steady you while you start to ride that sweet shaft of hers. She’s so wet that it’s effortless to slide up and down her length, bouncing off her knot with every nadir. {PC has a cock: Your own [pc.cock] slaps against her stomach, smearing the space between her perky tits with your own pre.} Kaede’s sweet little moans echo through the spartan apartment, mixing with the wet slaps of flesh against flesh to form a lurid chorus.");
+	output("\n\nThe ginger halfbreed blushes fiercely, but she can’t deny the charge with her rock-hard cock buried inside you. Instead, you guide her hands to your [pc.hips], getting her to help steady you while you start to ride that sweet shaft of hers. She’s so wet that it’s effortless to slide up and down her length, bouncing off her knot with every nadir.");
+	if (pc.hasCock()) output(" Your own [pc.cock] slaps against her stomach, smearing the space between her perky tits with your own pre.");
+	output(" Kaede’s sweet little moans echo through the spartan apartment, mixing with the wet slaps of flesh against flesh to form a lurid chorus.");
 	
 	output("\n\nYou play your hands up across Kaede’s chest, running your thumbs over her stiff teats; just a touch is enough to make her tremble, and her breasts perfectly fill your hands when you go to grope and squeeze them. Oh, they’re nice and tender, aren’t they? Perfect targets for your [pc.lips] to suckle and kiss.");
 	
-	output("\n\nWith just a little pressure on her chest, Kaede collapses back into the couch, taking you with her. Your bodies press together{, grinding against your [pc.cocks]}, and her thighs wrap around your waist. You just keep riding her, moaning into her tits every time her knot batters your [pc.vagOrAss]. It’s so hard to resist taking that incredible stretch... and why should you? Kaede’s already riding her edge again, and all you’d need to join her is to feel that bitchbreaker lodge itself inside your [pc.vagOrAss].");
+	output("\n\nWith just a little pressure on her chest, Kaede collapses back into the couch, taking you with her. Your bodies press together");
+	if (pc.hasCock()) output(", grinding against your [pc.cocks]");
+	output(", and her thighs wrap around your waist. You just keep riding her, moaning into her tits every time her knot batters your [pc.vagOrAss]. It’s so hard to resist taking that incredible stretch... and why should you? Kaede’s already riding her edge again, and all you’d need to join her is to feel that bitchbreaker lodge itself inside your [pc.vagOrAss].");
 	
 	output("\n\nGrinning down at the panting pup, you raise yourself up as high as you can go without entirely drawing her all the way out of you. She has just enough time to blink at you before you drop yourself straight back down her throbbing red rocket. Her fist-sized knot punches straight through {your pussy’s lips // the ring of your ass}, forcing a scream of orgasmic pleasure from your [pc.lips]. Her dick immediately erupts, swelling within your walls as alabaster seed shoots up her rod and into your waiting {womb / gut}. {PC has cock: Your [pc.cock] gives her a shower in return, squirting all over her tits and face as you grind on her knot. She giggles as ropes of [pc.cumColor] slap her cheeks, licking it off her lips as it rains down on her. //else: Your [pc.vagOrAss] hugs her throbbing erection tighter with ever spurt, letting the lightning-bolts of ecstacy plow through your body to the beat of her ejaculation.");
 	
