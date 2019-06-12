@@ -4118,16 +4118,14 @@ public function kellyDPForTaursThatWannaGetDPed():void
 		else
 		{
 			tailginad = true;
-			output(" You give in to the snake’s wants and ");
-			if(pc.hasCock()) output("quickly pull it out of Kelly’s grasp down to your own [pc.cockNounComplex], where it begins to sate itself on you, coiling around your dick in a way that seems both wrong and so very right. Its slippery textures almost seem made to pleasure you.");
+			output(" You give in to the snake’s wants");
+			if(pc.hasCock()) output(" and quickly pull it out of Kelly’s grasp down to your own [pc.cockNounComplex], where it begins to sate itself on you, coiling around your dick in a way that seems both wrong and so very right. Its slippery textures almost seem made to pleasure you");
 			else 
 			{
-				output(" You pull forwards and practically beg Kelly to fill up your tail with one of her cocks. You tell her, in so many ways, you need her to fill your tail with her seed. Kelly smiles knowingly.");
-				output("\n\n<i>“<i>Honey, if you can’t control that thing, maybe you should head to the nurseroid. But don’t worry about that for now, I’ll make sure that your tail gets nice and full.</i>”</i> She takes the tail and spears it on her cock before returning to her ministrations, using the tail instead of ");
-				if(y >= 0) output("your [pc.vagina " + y + "].");
-				else output("your [pc.asshole]");
-				output(".");
+				output(". You pull forwards and practically beg Kelly to fill up your tail with one of her cocks. You tell her, in so many ways, you need her to fill your tail with her seed. Kelly smiles knowingly.");
+				output("\n\n<i>“<i>Honey, if you can’t control that thing, maybe you should head to the nurseroid. But don’t worry about that for now, I’ll make sure that your tail gets nice and full.</i>”</i> She takes the tail and spears it on her cock before returning to her ministrations, using the tail instead of your " + (y >= 0 ? "[pc.vagina " + y + "]" : "[pc.asshole]"));
 			}
+			output(".");
 		}
 	}
 	pc.cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);

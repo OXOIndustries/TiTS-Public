@@ -1055,7 +1055,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	// Otherwise
 	else
 	{
-		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worst things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
+		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worse things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
 	}
 	// merge
 	if(!fromSera)

@@ -278,6 +278,7 @@
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
 		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/bizzy.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -542,6 +543,7 @@
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
+		include "../includes/uveto/xotchiExpansion.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
@@ -653,7 +655,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.281";
+			version = "0.7.284";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -905,8 +907,8 @@
 			{
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					updatePCStats();
 					updateDisplays();
+					updatePCStats();
 				}
 			}
 			

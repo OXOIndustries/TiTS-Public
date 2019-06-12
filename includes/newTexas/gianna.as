@@ -2710,7 +2710,7 @@ public function giannasCockSuckingLipsSuckCocks():void
 	{
 		output("\n\nGianna purses her plus-sized pillows. <i>“Oh, well it’s too bad you didn’t just come out and ask for that something else, whatever it is.”</i> She circles you, almost predatory, licking her lips and wrapping her arms around your neck so that you’re face to face. <i>“I’ll just have to talk you to death with these big, luscious lips, letting you gaze at their glistening softness as they bend and bow around my words. I’m sure whatever you were thinking of was more fun, but I guess talking will have to be it.”</i>");
 		output("\n\n<i>“Come </i>on<i>.... You know what I mean.”</i>");
-		output("\n\nThe mischievous android licks her lips once more for good measure, making her curvaceous lips gleam under the light. Their corners twist up as they draw your complete attention. <i>“I think I do too, but it’s more fun to hear you openly ask for it. Come on, say it. Tell me you want these puffy lips to wrap your dick in their tender embrace, to watch them sliiiiide down your length an inch at a time, to feel them seal around your base and suckle oh so gently. Go on. Ask me to suck your cock with these cock-sucking lips. Say it.”</i> She presses a thigh to your crotch, rubbing against your ");
+		output("\n\nThe mischievous android licks her lips once more for good measure, making her curvaceous lips gleam under the light. Their corners twist up as they draw your complete attention. <i>“I think I do too, but it’s more fun to hear you openly ask for it. Come on, say it. Tell me you want these puffy lips to wrap your dick in their tender embrace, to watch them sliiiiide down your length an inch at a time, to feel them seal around your base and suckle oh-so-gently. Go on. Ask me to suck your cock with these cock-sucking lips. Say it.”</i> She presses a thigh to your crotch, rubbing against your ");
 		if(pc.lust() < 80)
 		{
 			output("captive length");
@@ -3423,7 +3423,7 @@ public function coochFuckThreeMaybeFourInOne():void
 			output(" to full erection with almost painful rapidity, straining as ");
 			if(pc.cockTotal() > 1) output("they bob");
 			else output("it bobs");
-			output(" in the empty air, begging for a hot, wet cunt to fill. You pant hungrily, aware of just how close that goal is.} Gianna watches and smiles coquettishly back at you. Her sable nipples are jutting out in your direction, and she oh so slowly slides her tongue across the surface of her equally onyx lips, making them shine in the light. She wants it.");
+			output(" in the empty air, begging for a hot, wet cunt to fill. You pant hungrily, aware of just how close that goal is.} Gianna watches and smiles coquettishly back at you. Her sable nipples are jutting out in your direction, and she oh-so-slowly slides her tongue across the surface of her equally onyx lips, making them shine in the light. She wants it.");
 		}
 		//Subby Gianna - Dog-E
 		if(giannaPersonality() < 30)

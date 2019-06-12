@@ -410,8 +410,9 @@ package classes.Items.Transformatives
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [];
+					target.clearTailFlags();
 					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
@@ -433,8 +434,9 @@ package classes.Items.Transformatives
 					}
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [];
+					target.clearTailFlags();
 					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}

@@ -652,7 +652,7 @@ output("\n\nYou hold up a hand to try and stop her rambling. <i>“I just asked 
 
 output("\n\nKirila looks at you for a beat before answering. <i>“Well... no, not right now.”</i>");
 
-output("\n\n<i>“Well then, if I’m not too alien to you, perhaps you and I could get to know eachother better.”</i>");
+output("\n\n<i>“Well then, if I’m not too alien to you, perhaps you and I could get to know each other better.”</i>");
 
 output("\n\nShe seems to think it over for a moment before shrugging. <i>“Well, I’m not against the idea. People do seem to be rather open about relationships these days. Sooo... why not?”</i>");
 

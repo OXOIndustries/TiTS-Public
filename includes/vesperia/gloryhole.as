@@ -135,6 +135,8 @@ public function stickDickThroughGloryhole(arg:int):void
 		if(pc.isGoo() && pc.balls > 1) output("Your [pc.balls] ooze in through the hole after, courtesy of your amorphous nature. ");
 		output("It takes but a moment for the occupant to notice the lusty intruder.");
 
+		var cumQ:Number = pc.cumQ();
+		
 		//Kitty
 		if(occupant == 2)
 		{
@@ -157,8 +159,8 @@ public function stickDickThroughGloryhole(arg:int):void
 			if(pc.cLength(arg) <= 5) output(", devouring most of the undersized length");
 			else output(", though only the first few inches");
 			output(". Those lips feel too luscious, too plush to be real - likely a side-effect of your limited senses. Their surface is as smooth as silk and as slick as oiled latex. They provide a perfect, vacuum seal. You revel in it, grinding your [pc.hips] against the crudely carved hole, pushing as hard as possible to expose more of yourself to the lovely fellatrix. Your prick obligingly throbs inside her mouth");
-			if(pc.cumQ() >= 400) output(", leaking pre");
-			if(pc.cumQ() >= 10000) output(" like a broken faucet");
+			if(cumQ >= 400) output(", leaking pre");
+			if(cumQ >= 10000) output(" like a broken faucet");
 			output(".");
 			output("\n\nWet-sounding smacks fill the air when she bobs her head back and forth.");
 			if(pc.isGoo() && pc.balls > 1) output(" Her second hand drifts down to your [pc.sack], to cradle your balls. Fingertips casually caress the swollen orbs, almost worshipful in their attentions.");
@@ -185,16 +187,16 @@ public function stickDickThroughGloryhole(arg:int):void
 			output("\n\nYou’ve tipped over the precipice now. Even if she stopped and pulled off, you’d hose a load into the mystery gal’s face. You’d fucking paint her. But she isn’t pulling off. Her purr is getting louder, and with it, the vibrations intensify. Your [pc.cock " + arg + "] surges against her dancing tongue. Her purr reaches a fevered pitch.");
 			output("\n\nYou erupt. The [pc.cum] squirts deep in the horny girl’s mouth, but it doesn’t stop her purr. Far from it. She purrs louder. Her cheeks and tongue are like vibrators cranked to their highest settings, blasting climax-sensitized nerves into the stratosphere. Rhythmic, ecstatic clenches seize your middle as your body’s instincts take over, trying their damnedest to knock up the talented cock-sucker’s mouth.");
 			//None to normal
-			if(pc.cumQ() < 250) output("\n\nYou spend what feels like a minute in non-stop ecstasy, though common sense tells you it couldn’t have been more than fifteen seconds. Nonetheless, the purr slowly dies down, the better for your orgasm-pulverized nerves to endure. Then, the lips release. Your [pc.cockColor " + arg + "] skin feels cold in the empty air.");
+			if(cumQ < 250) output("\n\nYou spend what feels like a minute in non-stop ecstasy, though common sense tells you it couldn’t have been more than fifteen seconds. Nonetheless, the purr slowly dies down, the better for your orgasm-pulverized nerves to endure. Then, the lips release. Your [pc.cockColor " + arg + "] skin feels cold in the empty air.");
 			//250mL to 1L
-			else if(pc.cumQ() < 1000)
+			else if(cumQ < 1000)
 			{
 				output("\n\nYou writhe in non-stop ecstasy as you are relentlessly milked for every drop of [pc.cum]. Spurt after spurt is spent straight into the tart’s rapacious maw. You can even hear her gulping, taking big swallows of seed just to keep you from overflowing her mouth. She bobs her head when the flow slows, encouraging you to keep going.");
 				if(pc.balls > 1 && pc.isGoo()) output(" She even gently squeezes your [pc.balls] to beg for more.");
 				output(" Sadly, no amount of bliss can overcome biology. The lips release a few seconds after you go dry. Your [pc.cockColor " + arg + "] skin feels cold in the empty air.");
 			}
 			//1L to 10L
-			else if(pc.cumQ() < 10000)
+			else if(cumQ < 10000)
 			{
 				output("\n\nThe first tremendous squirt pumps so much seed into the tart’s stuffed maw that you lose all contact with her cheeks. You can feel your own [pc.cumNoun] churning around as you pump more in, and the vibrations through it, but her cheeks must be bulging with your load.");
 				if(pc.balls > 1 && pc.isGoo()) output(" Wetness trickles down your [pc.sack] once you completely overload her, but the image of a hapless girl with a waterfall of [pc.cumGem] fluid spilling from her lips only makes you nut harder.");
@@ -211,7 +213,7 @@ public function stickDickThroughGloryhole(arg:int):void
 				pc.setStatusTooltip("Gloryhole Shift Activated", pc.fluidColorSimple(pc.cumType));
 			}
 			//No fatflare or fatknot but massive cumload
-			if(pc.cumQ() >= 1000 && !fatKnot(arg) && !fatFlare(arg))
+			if(cumQ >= 1000 && !fatKnot(arg) && !fatFlare(arg))
 			{
 				output("\n\n<i>“Ah... ahhh... uh... wow.”</i> The sound of smacking lips is unmistakable. <i>“I think I’ve... had enough for today.”</i> Sharp claws push on the tip of your [pc.cock " + arg + "], forcing you to pull out of the hole. <i>“Urp.”</i> A giggle follows the burp. <i>“I’m gonna taste you for hours!”</i>");
 				output("\n\nIt would seem she’s not entirely displeased by the results. You step out of the stall with a spring in your step");
@@ -261,9 +263,9 @@ public function stickDickThroughGloryhole(arg:int):void
 				if(pc.libido() >= 75)
 				{
 					output("\n\nPredictably, you rise to the occasion in short order. Again, she blows you, though this time it is no teasing, gentle affair. She works your dick over. She milks it with businesslike efficiency, hitting you with her trademark purring vibrations so fast that you’re spilling a second load of seed in record time. This time, she doesn’t tease you, at least not with her body. <i>“Pull out before you get hard again, or I’m going to wind up with a sore jaw.”</i> She burps, then giggles. <i>“");
-					if(pc.cumQ() < 250) output("Still, it was a lovely appetizer...");
-					else if(pc.cumQ() < 1000) output("Though that did hit the spot.");
-					else if(pc.cumQ() < 10000) output("Leave a girl a little room for dessert, will ya?");
+					if(cumQ < 250) output("Still, it was a lovely appetizer...");
+					else if(cumQ < 1000) output("Though that did hit the spot.");
+					else if(cumQ < 10000) output("Leave a girl a little room for dessert, will ya?");
 					else output("Oof, I must look pregnant.");
 					output("”</i>");
 					output("\n\nYou pull out and leave after the ten minutes or so it takes for you to get small enough to escape.");
@@ -377,15 +379,15 @@ public function stickDickThroughGloryhole(arg:int):void
 			output("\n\nAn answering gurgle ripples over your dick. Did she try to talk with her mouth full? Regardless, it felt <i>good</i>. The mystery mouth doesn’t try again. Instead, it launches into a rapid, back-and-forth motion. It’s fast enough to make lewd-sounding ‘schlorp’s and ‘slurck’s, and it only gets faster. Her technique is inexpert but eager, the frenzied attempt of a newcomer to claim her prize with raw athleticism over skill.");
 			output("\n\nIt’s working.");
 			output("\n\nYour body responds to her urgent urgings, tightening the muscles in your middle until you feel like a cock-tipped spring. Her mouth clamps down when you start throbbing inside");
-			if(pc.cumQ() >= 1000) output(", and she whimpers in choked delight when you fill her mouth with a flood of fresh pre-cum");
-			else if(pc.cumQ() >= 40) output(", and she whimpers with excitement when your pre-cum splashes off her tongue");
+			if(cumQ >= 1000) output(", and she whimpers in choked delight when you fill her mouth with a flood of fresh pre-cum");
+			else if(cumQ >= 40) output(", and she whimpers with excitement when your pre-cum splashes off her tongue");
 			else output(", though she seems disappointed when no pre leaks out");
 			output(". Pressure mounts higher, then higher still. You feel like you’re about to pop.");
 			output("\n\nAnd you finally do.");
 			output("\n\nSurprisingly, she pulls off the moment the first jet of [pc.cumNoun] hits her tonsils.");
 			//No new PGs
 			//Low/No cum
-			if(pc.cumQ() < 20) 
+			if(cumQ < 20) 
 			{
 				output("\n\nThe few drops you manage beyond that sprinkle on her face, hidden from view, but she keeps working you with both hands, wringing you for every drop.");
 				output("\n\n<i>“...Is that it?”</i> a quiet voice wonders. You’re tugged twice more, to no avail. <i>“I thought there would be more.”</i>");
@@ -400,7 +402,7 @@ public function stickDickThroughGloryhole(arg:int):void
 				}
 			}
 			//Above average to 150mLs
-			else if(pc.cumQ() < 150)
+			else if(cumQ < 150)
 			{
 				output("\n\nIt doesn’t stop you from erupting like a geyser. Ropes of [pc.cum] unload from your [pc.cock " + arg + "], guided by the pair of hands that wind themselves around your [pc.knot " + arg + "]. They stroke and pump, encouraging you even after you stop spending your passion, milking a last few dribbles of liquid delight onto an unseen face.");
 				output("\n\n<i>“Ahhh, it’s... nice,”</i> a quiet voice muses aloud. <i>“So much hotter... than I imagined.”</i> You hear squishing sounds as your [pc.cumNoun] is smeared around inside the stall. A happy peck lands upon your ");
@@ -421,7 +423,7 @@ public function stickDickThroughGloryhole(arg:int):void
 				output(".");
 			}
 			//150mLs to 2L - body/face paint
-			else if(pc.cumQ() < 2000)
+			else if(cumQ < 2000)
 			{
 				output("\n\nA good thing too, because you spray your voluminous load with enough force to gag an inexperienced cock-sucker like her. Guiding you with both hands, she strokes you as you climax, burbling excitedly from underneath a thickening mask of [pc.cumNoun]. [pc.CumVisc] goo splashes audibly. Between it and the whimpers of your sperm-loving partner, you have more than enough auditory encouragement to squeeze out a few spurts thick enough to satisfy the lustiest cum-queen.");
 				output("\n\n<i>“S-so wet!”</i> the gloryhole occupant’s voice cheers. <i>“And you’ve still got more, don’t you?”</i> She milks you, palms sliding against iron-hard flesh, wringing you for a few last lurid dribbles. <i>“Mmmm, that’s nice.”</i> She giggles. <i>“You can’t see it, but you drenched me. My head is completely [pc.cumColor]!”</i> She kisses your [pc.cockHead " + arg + "], and you feel your own warm spoo dripping over your rod. <i>“Whoopsie!”</i>");
@@ -539,7 +541,7 @@ public function gloryholeWait():void
 	{
 		clearOutput();
 		showName("\nWAITING");
-		output("You want and wait, but after an hour, noone comes.");
+		output("You want and wait, but after an hour, no one comes.");
 		if(silly) output(" Literally.");
 		processTime(60);
 		clearMenu();

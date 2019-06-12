@@ -1402,7 +1402,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	}
 	output("ight blasts your face as she lowers the zipper of her smart jacket, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. Things are still fuzzy, but you can just about make out a mirror with your still half-dazed face in front of you as the blue-scaled tail of the taur hooks its tip through the opening made in the jacket so far, tugging it open further.");
 
-	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty from so long tucked into the confines of the garment.");
+	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty, from so long tucked into the confines of the garment.");
 	if (pc.hasFur() || pc.hasHair())
 	{
 		output(" Your");
@@ -2378,7 +2378,7 @@ public function jerynnPetstuffNightWithJerome():void
 	else output(" Jerynn’s");
 	output(" apartment door closing. She all but orders Jerome to make himself comfortable as light begins to creep back inside your woolen prison, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. The taur shucks it free with a wiggle, jostling you around as you hang laden with countless loads of cum below her.");
 	
-	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh so perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
+	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh-so-perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
 	
 	output("\n\n<i>“Go on </i>pet<i>, get him ready,”</i>");
 	if (jerynnIsMistress()) output(" Mistress");

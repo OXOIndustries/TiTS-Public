@@ -1,7 +1,14 @@
-public function showLorelei(nude:Boolean = false):void
+public function showLorelei(nude:Boolean = false, futa:Boolean = false):void
 {
-	if (nude) showBust(lorelei.bustDisplay + "_NUDE");
+	if (futa)
+	{
+		if (lorelei.cLength() < 12) showBust("LORELEI_TERRAN");
+		else if (lorelei.cLength() < 24) showBust("LORELEI_CANINE");
+		else showBust("LORELEI_EQUINE");
+	}
+	else if (nude) showBust("LORELEI_NUDE");
 	else showBust(lorelei.bustDisplay);
+
 	if (flags["MET_LORELEI"] == undefined) showName("\nTHIEF");
 	else showName("\n" + lorelei.short.toUpperCase());
 }
@@ -12,9 +19,10 @@ public function loreleiHeader(nude:Boolean = false, auth:Boolean = true):void
 	if (auth) author("B");
 }
 // Update this function when there are futalei busts
-public function loreleiFutaHeader():void
+public function loreleiFutaHeader(auth:Boolean = true):void
 {
-	loreleiHeader(true);
+	showLorelei(true, true);
+	if (auth) author("B");
 }
 
 public function rollForLorelei():Boolean
@@ -174,9 +182,9 @@ public function loreleiIntroducesHerselfToSlowPCs():void
 		output("\n\nA few responses come to mind, but every time you think you’re about to say something, her needle keeps you in check. Noting the risk, you take the less-risky option and ask whom you’re speaking with.");
 		output("\n\n<i>“You’ll forgive me if we’re not quite on a first-name basis yet, cutie,”</i> she teases. <i>“You can call me Minuet for now. Just for now, hun.”</i>");
 		output("\n\nYou try and flex a bit, to turn and see Minuet, but she keeps you held fast, and her needle grazes against you. <i>“Ah ah,”</i> she trills playfully. <i>“I prefer you where you are, right here.”</i> Seems you’ll need her permission before you can get a look at her.");
-		output("\n\n<i>“It’s not every day you get to meet the " + pc.mf("heir", "heiress") + " to a throne as gilded as Steele Tech’s head position,”</i> she says. You feel her body press into you, and her chin resting against the thick of your shoulder, as she appreciates you and your form. This visit may be as much pleasure for her as it is business.");
-		if (flags["ZHENG_SHI_PROBED"] == 1) output(" <i>“You came here for daddy’s probe, right? Heaven knows why you’ve stuck around.");
-		else output(" <i>“You’re here for daddy’s – what, third, fourth probe, if I’m right?");
+		output("\n\n<i>“It’s not every day you get to meet the " + pc.mf("heir", "heiress") + " to a throne as gilded as Steele Tech’s head position,”</i> she says. You feel her body press into you, and her chin resting against the thick of your shoulder, as she appreciates you and your form. This visit may be as much pleasure for her as it is business. <i>“");
+		if (flags["ZHENG_SHI_PROBED"] == 1) output("You came here for daddy’s probe, right? Heaven knows why you’ve stuck around.");
+		else output("You’re here for daddy’s – what, third, fourth probe, if I’m right?");
 		output(" Ah, but you’ll forgive me if we skip the pleasantries.”</i>");
 		output("\n\nYou ask her what");
 		if (!pc.isNice()) output(" the fuck");
@@ -318,9 +326,9 @@ public function loreleiMakesAnOfferYouProbablyDontWantToRefuse():void
 	output(", it wasn’t difficult to connect the dots from there. I just didn’t think you were foolish enough to come in and try and steal it from a base full of thieves. It was clear, shortly after our first little liaison together, that you weren’t here as part of any of the local gangs, or that you were a pirate yourself.”</i>");
 	output("\n\nHer needle returns, drawing slight, circular patterns into your neck, as she speaks. Her performance with something so small, light, and deadly, is truly impressive. <i>“I got to thinking that, if you were the type to submit to myself so easily, then you would be little more than fresh meat for the other pirates. It wouldn’t do if you were inducted into their ranks. No, it wouldn’t do at all, [pc.name]! I can’t allow someone as precious as yourself to succumb to those brutes.”</i>");
 	output("\n\nShe jabs her foot harshly");
-	if (pc.isNaga()) output(" into the base of your spine, where your body meets your [pc.tail]");
-	output(" into the back of your [pc.knee], bringing you down to one side. Understanding the notion, you bring your other knee down with it");
-	output(", bringing you down into a kneeling position.");
+	if (pc.isNaga() || !pc.hasKnees() || !pc.isBiped()) output(" into the base of your spine, where your body meets your [pc.lowerBody]");
+	else output(" into the back of your [pc.knee], bringing you down to one side. Understanding the notion, you shift your other knee down with it");
+	output(", dropping you down into a kneeling position.");
 	output("\n\n<i>“Everyone on Zheng Shi, apart from yourself, is either a pirate of some factor among their ranks... or, they’re a slave.”</i>");
 	output("\n\nFor the first time, she steps around you, towards your front. It’s too dark for you to make out her details, however, and, not helping things, her suit is pitch black all over. The most you can make out is her silhouette: she’s a shapely woman, with a matronly hourglass figure, but you can’t make out her sizes or her facial features in this light.");
 	output("\n\n<i>“And I know you. I know you better than I’m sure you’d find comfortable, " + pc.mf("handsome", "beautiful") + ". You’re not a slave");
@@ -349,7 +357,7 @@ public function loreleiClaimsHerselfAPrizeRusher():void
 	else output(" you’re not really one to turn down a good time.");
 	output("\n\nYou tell Minuet that you’re in.");
 	output("\n\nShe takes a deep breath through her nose, hardly able to contain her excitement. <i>“I’ll make sure you don’t regret it,”</i> she says, and, with a flick of her wrist, she produces a large, thin, silver ring, with glowing green jewels inlaid along its outside circumference, spelling out a word. <i>“Hold still,”</i> she instructs, before quickly whacking it against your neck.");
-	if (hasWornCollar()) output("\n\nThe collar, like some kind of magnet, snaps directly around " + collarOwnerName() + ", already fastened to your neck, and conforms to its shape snugly. Minuet’s collar sits on top of " + collarOwnerName() + "’s, ‘overwriting’ it with itself and preventing anyone from seeing who else you belong to; it seems as though your new mistress isn’t a fan of sharing.");
+	if (hasWornCollar()) output("\n\nThe collar, like some kind of magnet, snaps directly around " + collarOwnerName() + "’s, already fastened to your neck, and conforms to its shape snugly. Minuet’s collar sits on top of " + collarOwnerName() + "’s, ‘overwriting’ it with itself and preventing anyone from seeing who else you belong to; it seems as though your new mistress isn’t a fan of sharing.");
 	else output("\n\nThe collar slaps around your neck like a handcuff, snapping around you and latching itself into place snugly. It’s large enough to not feel uncomfortable or restrict your range of movement with your neck, but tight enough that you’re not going to slip free of it anytime soon. You give it an experimental tug – it doesn’t quite feel like metal. In fact, it feels kind of cushiony against you.");
 	output("\n\n<i>“I’m not usually the type to label my belongings, but here in Zheng Shi, you need to look the part,”</i> she says, examining the collar and running a loving, appreciative finger along its glossy edge. <i>“If it helps, you look positively radiant in it, darling.”</i>");
 	output("\n\nYou sit, waiting for Minuet to make good on her half of the offer. <i>“And I do believe I promised you something in return,”</i> she says, her voice lilting sensually. She pivots around, her back to you, trusting her new property to not try anything untoward.");
@@ -1194,7 +1202,7 @@ public function loreleiSexMenu(fromMenu:Boolean = false):void
 	if (!pc.hasGenitals()) addDisabledButton(3, "Lapdance", "Lapdance", "Requires Genitals");
 	else addButton(3, "Lapdance", hermRouter, [loreleiTheDancingQueen, [pc.biggestCockVolume()+1, false], [0, 0, 0]], "Lapdance", (isLoreleisBitch() ? "Tell Lorelei that you’d like to be closer to her. You have a nice, wide open lap that could use its mistress’s company. Maybe, if you can get her permission, her lapdance could be a little more hands-on..." : "Assure Lorelei that your lap is a far warmer, and far more comfortable, seat in the room than any bed or barstool. Of course, this being a private room, any lapdance you get would be very hands-on..."));
 
-	if (lorelei.hasCock()) addButton(4, "Futa", loreleiAndTheGreatAdjustableWang, undefined, "Futa", "You went through all that trouble to get Lorelei that Synth Sheath, like she asked... now, it’s time to ask if she’d be willing to put it to use on you.");
+	if (lorelei.hasCock()) addButton(4, "Futa", loreleiAndTheGreatAdjustableWang, undefined, "Futa", "You went through all that trouble to get Lorelei that SynthSheath, like she asked... now, it’s time to ask if she’d be willing to put it to use on you.");
 
 	if (fromMenu) addDisabledButton(14, "Leave", "Leave", "You didn’t get Lorelei naked just so you’d leave her horny, cold, and alone, would you? Fuck this woman, already!");
 	else addButton(14, "Leave", loreleiHasHadEnoughBanging, undefined, "Leave", "As fun as it’s been, you can’t stay with Lorelei and fuck her forever – as much as you may want to.");
@@ -1284,6 +1292,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 	output("\n\n<i>“I am too,”</i> she pants, her tongue wetly slipping out to lick at her lips. <i>“Cum with me, [pc.name]. " + (isLoreleisBitch() ? "Show me how much I mean to you" :"You have my permission to cum with your mistress") + ".”</i>");
 	output("\n\nJust a few thrusts and grinds later, and you cum, just as " + (isLoreleisBitch() ? "your mistress" : "Lorelei") + " had asked:");
 
+	var cumQ:Number = (!vag ? pc.cumQ() : 0);
 	if (vag)
 	{
 		output("\n\nYour body seizes, a thundering orgasm ripping up through you, starting at your overworked [pc.vagina " + genIdx + "] and straight up to your scalp and back. You bite into your lip and try and stifle shouting out Lorelei’s name. Every contraction your pussy makes against her, you clench into her quilts harder until your knuckles turn white, and you can’t help but start drooling in listless pleasure.");
@@ -1292,7 +1301,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 	else if (tooBig)
 	{
 		output("\n\nYou’re confused as to which direction you should pump your hips – Lorelei is on top of you, but your [pc.cockHead " + genIdx + "] is pointed at your chest. When the times comes, it doesn’t matter:");
-		if (pc.cumQ() < 6000)
+		if (cumQ < 6000)
 		{
 			output(" your [pc.cum] shoots up your shaft, bloating your meat from [pc.base " + genIdx + "] to your tip, and launches onto your chest, right between your [pc.chest]. You clench and groan as your cock bathes you with yourself; it soaks you as high up as your chin and dribbles down as far as your stomach.");
 			output("\n\nLorelei watches the whole thing with a mix between lust and fascination. She grinds her body against your shaft all the while, urging more of your cum to come forth and splash into your face with every shuddering, orgasmic pump of her own hips on your cock; she can’t help but slide her fingers down her belly, until they frig at her diamond-studded clit, rocking another orgasm through her body.");
@@ -1309,12 +1318,12 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 		if (pc.balls > 0) output(", your [pc.balls] clapping against her soft ass");
 		if (pc.hasKnot(genIdx)) output(", and, after a tense push, you tie her to you with your [pc.knot " + genIdx + "], ensuring that every drop makes it safe and sound inside her");
 		output(". You feel your cum jet upward, into her warm, tight body, giving her everything she had asked for.");
-		if (pc.cumQ() < 6000)
+		if (cumQ < 6000)
 		{
 			output(" Your [pc.cum] spurts inside of her, coating her walls with your seed, filling her every crease and crevice, just as she wanted. Lorelei hisses in pleasure and nibbles her bottom lip; her hand can’t help but rub at her lower belly, feeling every warm drop seep deeper into her canal.");
 			output("\n\nHer pussy clenches down on you, and her body shakes in delight, her own orgasm ripping through her from her crotch to her scalp. You never <i>did</i> ask if she was on any contraceptive...");
 		}
-		else if (pc.cumQ() < 12000)
+		else if (cumQ < 12000)
 		{
 			output(" Your jizz quite a bit, even for you, your body reacting to and spurred forward by the domineering beauty demanding your [pc.cum] for herself. You feel her body clench in time with every powerful blast of semen inside her; you can hear her canal ‘gulp’ your sticky gouts of cum into itself, until she can hold no more, and your cum splashes back against you");
 			if (pc.hasKnot(genIdx)) output(" through leaky driblets around your skintight seal}, coating you from the [pc.belly] down.");
@@ -1333,10 +1342,10 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 
 	output("\n\nIt’s a short eternity before your senses return to you; you had crossed your eyes and your vision went black for a moment, overtaken by yourself and your sensations, and it isn’t until you hear Lorelei moan that you remember where you are and what you’re doing. You look up at, still sitting on your lap and grinding out what must be her fifth orgasm by now; she’s barely sensate enough to feel it, but she wants it all the same.");
 	output("\n\n<i>“Haah,”</i> she sighs, enjoying her afterglow and her position above you. She runs her hands through her hair and hefts her breasts in front of you; with her eyes on you, she");
-	if (pc.cumQ() >= 6000) output(" brings her hand down between you both, scooping a bit of your [pc.cum], and then she");
+	if (cumQ >= 6000) output(" brings her hand down between you both, scooping a bit of your [pc.cum], and then she");
 	output(" brings her finger to her mouth, sucking it clean.");
-	output("\n\n<i>“Mmmm,”</i> she moans, <i>“</i>very <i>well done, [pc.name].”</i> Her hair is dishevelled; her face is flushed; and she’s out of breath, but that coy, devious, sly little smirk of hers hasn’t left her face.");
-	if (pc.hasKnot(genIdx)) output(" With a tug, she tests your connection to her; you must have been out longer than you realized, because you’re small enough to dislodge yourself from her.");
+	output("\n\n<i>“Mmmm,”</i> she moans, <i>“</i>very<i> well done, [pc.name].”</i> Her hair is dishevelled; her face is flushed; and she’s out of breath, but that coy, devious, sly little smirk of hers hasn’t left her face.");
+	if (!vag && pc.hasKnot(genIdx)) output(" With a tug, she tests your connection to her; you must have been out longer than you realized, because you’re small enough to dislodge yourself from her.");
 	output("\n\nShe flops onto the bed beside you, lying flat on her back. She closes her eyes and smiles to herself.");
 	
 	if (flags["LORELEI_SEX_COUNTER"] == undefined)
@@ -1432,6 +1441,7 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 	output("\n\nHeeding your wish, she starts again, but with an earnestness – a borderline <i>thirst</i> - that she didn’t have before. She’s pulling out the same tricks on the same spots, but faster, more frequently, and with more pressure. She wants you to cum, and she wants to taste you.");
 	output("\n\nYou, like a proper partner (as she has taught you), do not disappoint her: with only a few more helpless thrusts of your " + (vag ? "[pc.vagina " + genIdx + "] against" : "[pc.cock " + genIdx + "] into") + " her mouth, your body shakes, then tenses, and you’re brought over that edge, releasing yourself into her mouth. Lorelei suddenly goes still, her tongue " + (vag ? "speared into your body, paralyzed inside your squeezing tunnel and curled to funnel your juices into her mouth." : "flat against your [pc.cockHead " + genIdx + "], reading to catch your every drop."));
 
+	var cumQ:Number = (!vag ? pc.cumQ() : 0);
 	output("\n\nYour breath catches in your throat, and you cum,");
 	if (vag) output(" your body clenching down on her tongue, just as she wanted. You can feel your [pc.girlCum] " + (pc.isSquirter() ? "squirt into" : "drench") + " her mouth, coating her tongue and her teeth, and Lorelei thrashes her tongue inside you, eager for more. Your every sound and your every unintentional buck or squirm against her body is art to her eyes and music to her ears. You can’t help but squirm and writhe as she masterfully coaxes one orgasm out of you after another, soaking her face from her nose to her chin in your juices, and she demands more and more from you, until you damn near pass out and collapse from exhaustion.");
 	else if (pc.cLength(genIdx) < 15)
@@ -1439,18 +1449,18 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 		output(" your [pc.cock " + genIdx + "] tightening inside her");
 		if (pc.cLength(genIdx) >= 10) output(", and your shaft bloats inside her cleavage");
 		output(", your [pc.cum] jetting up your cock and into her mouth.");
-		if (pc.cumQ() < 3000) output(" Lorelei patiently milks you for your every drop, her tongue curled just beneath the crown of your cock’s head and slithering down your shaft to help coax out every drop she can. Her eyes are lidded and on yours the entire time; she doesn’t attempt to pull away, and you can see her cheeks hollow occasionally as she takes in your gouts of creamy seed. When she’s confident you’ve finished, she gulps loudly, then opens her mouth to you, showing you that she’s swallowed it all.");
-		else if (pc.cumQ() < 6000) output(" Lorelei gurgles once in surprise, her eyes widening and her pupils dilating for just a moment, before she catches herself. You can feel her tongue coiling around your shaft, just beneath the crown of your head, instinctually ready to milk you for your seed, but considering the mouthful-after-mouthful you’re pumping into her – cheeks bloating, then hollowing with a loud gulp – it’s clearly unnecessary. Her eyes remain steadfastly on yours as she expertly handles the full-course meal you’re pumping down your throat, and she even moans, clearly enjoying the treatment.");
+		if (cumQ < 3000) output(" Lorelei patiently milks you for your every drop, her tongue curled just beneath the crown of your cock’s head and slithering down your shaft to help coax out every drop she can. Her eyes are lidded and on yours the entire time; she doesn’t attempt to pull away, and you can see her cheeks hollow occasionally as she takes in your gouts of creamy seed. When she’s confident you’ve finished, she gulps loudly, then opens her mouth to you, showing you that she’s swallowed it all.");
+		else if (cumQ < 6000) output(" Lorelei gurgles once in surprise, her eyes widening and her pupils dilating for just a moment, before she catches herself. You can feel her tongue coiling around your shaft, just beneath the crown of your head, instinctually ready to milk you for your seed, but considering the mouthful-after-mouthful you’re pumping into her – cheeks bloating, then hollowing with a loud gulp – it’s clearly unnecessary. Her eyes remain steadfastly on yours as she expertly handles the full-course meal you’re pumping down your throat, and she even moans, clearly enjoying the treatment.");
 		else output(" At first, Lorelei doesn’t move, confident that she can handle your output, but she clearly underestimated you: just one gout in the mouth, and she’s forced to withdraw, coughing through a surprised throat-full of your [pc.cumFlavor] cum. Her eyes widen, almost in wonderment, as you continue to cum and cum, even when she’s not doing anything more to stimulate you or coax more out: your [pc.cum] fountains from you, straight up, and then straight back down, all across her face" + (pc.cLength(genIdx) >= 10 ? ", her breasts," : ",") + " her hands, and all over your body. She mouths the word <i>wow</i> to herself, unable to take her eyes off the spectacle of a performance in front of her – she wanted a show, and she got one.");
 	}
 	else
 	{
 		output(" your [pc.cock " + genIdx + "] thickening against her tight, warm breasts as your jizz bloats your shaft on its way up to your spout.");
-		if (pc.cumQ() < 3000) output(" Lorelei watches with amused satisfaction as your [pc.cumColor] jizz spurts in hardly-restrained gouts, falling back down and sliding down your shaft towards her face and her tight boobs. She lets it pool across her fingers and seep into the valley of her chest – even going so far as to use it as lube to let you fuck her chest some more, squirting out more delicious cum for her. When one particular rivulet passes right in front of her, she leans forward, her eyes on you, and licks it right off your shaft.");
+		if (cumQ < 3000) output(" Lorelei watches with amused satisfaction as your [pc.cumColor] jizz spurts in hardly-restrained gouts, falling back down and sliding down your shaft towards her face and her tight boobs. She lets it pool across her fingers and seep into the valley of her chest – even going so far as to use it as lube to let you fuck her chest some more, squirting out more delicious cum for her. When one particular rivulet passes right in front of her, she leans forward, her eyes on you, and licks it right off your shaft.");
 		else output(" Lorelei watches with some surprise as your [pc.cumColor] jizz erupts from you, almost like a literal waterspout, and it rains back down onto you and your [pc.chest], and onto her and hers. Your shaft bloats and expands inside her chest in an effort to mitigate the water pressure, fighting against Lorelei’s hands to keep the girls together. Your [pc.cum] gets everywhere: her hands disappear beneath the thick veneer of your cum, and it pools in the valley of her chest, soaking her and lubing her tits for you to better thrust between them. Lorelei is fixated on it all; you can see her mouth the word <i>wow</i> to herself as you go.");
 	}
 
-	output("\n\nLorelei takes a moment to collect herself, " + (vag || pc.cumQ() >= 6000 ? "wiping away your excess from her mouth with the back of her hand" : "giving your tip once last kiss, her lips pulling away from you with an audible ‘pop’") + ", before settling in a more natural sitting position, her butt against her ankles and her knees on the floor. When your eyes meet, her tongue snakes from her lips and licks at them, and she moans.");
+	output("\n\nLorelei takes a moment to collect herself, " + (vag || cumQ >= 6000 ? "wiping away your excess from her mouth with the back of her hand" : "giving your tip once last kiss, her lips pulling away from you with an audible ‘pop’") + ", before settling in a more natural sitting position, her butt against her ankles and her knees on the floor. When your eyes meet, her tongue snakes from her lips and licks at them, and she moans.");
 	output("\n\n<i>“I see you’re no stranger to ‘performance art’ either, [pc.name],”</i> she giggles. <i>“It was quite the sexy show, from where I’m sitting.”</i>");
 	output("\n\nYou’re not sure whether to thank her for going down on you, or to thank her for the compliment, or to say nothing.");
 
@@ -1476,7 +1486,7 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 	pc.lust(30+pc.libido()/20);
 	IncrementFlag("LORELEI_SEXED");
 	IncrementFlag("LORELEI_SEX_COUNTER");
-	if (!vag && pc.cumQ() >= 6000) pc.applyCumSoaked();
+	if (!vag && cumQ >= 6000) pc.applyCumSoaked();
 
 	loreleiSexMenu();
 }
@@ -1681,13 +1691,14 @@ public function loreleiTheDancingQueen(genIdx:int, vag:Boolean):void
 	if (pc.hasLongTongue()) output(", and coiling it around one boob, giving it a squeeze with your extra-long tongue");
 	output(". She rests her cheek against your scalp and moans into your ear without breaking her pace at all.");
 
-	output("\n\n<i>“Keep going.”</i> You swap to the other boob, rubbing your nose against her ribs, as deep into her cleavage as you can be. When you start sucking at the skin of her right tit, her hands shakily claw at your [pc.skinFurScales], raking at your [pc.wings] up to your shoulders. You can feel her heartbeat – in fact, you can <i>hear</i> it, this close to her chest – and, from the way she’s panting, and the way she’s shaking, and the way she’s moaning, and the way her heart rate is sky-high....");
+	output("\n\n<i>“Keep going.”</i> You swap to the other boob, rubbing your nose against her ribs, as deep into her cleavage as you can be. When you start sucking at the skin of her right tit, her hands shakily claw at your [pc.skinFurScales], raking at your " + (pc.hasWings() ? "[pc.wings]" : "back") + " up to your shoulders. You can feel her heartbeat – in fact, you can <i>hear</i> it, this close to her chest – and, from the way she’s panting, and the way she’s shaking, and the way she’s moaning, and the way her heart rate is sky-high....");
 	output("\n\nLorelei clenches her body against you, and she stops her humping and her squirming, but her body is far from still: she vibrates like a machine against you, and she’s doing her best to repress a squeal of sexual delight through tightly-pursed lips, while she cums and cums against you, " + (vag ? "her fluids spraying against your own overworked vulva, encouraging you to cross that threshold with her and meet her halfway, to reciprocate the sensation" : "her juices coating the underside of your rigid [pc.cock " + genIdx + "] " + (pc.cLength(genIdx) < 12 ? "from its tip" : "from its shaft") + " to its [pc.knot " + genIdx + "]") + ". <i>“Ccccc,”</i> she tries to say, and you know that she’s " + (isLoreleisBitch() ? "demanding" : "imploring") + " you cum with her, even when she can’t get the first syllable out of her strained throat.");
 	output("\n\nFar be it from you to disappoint her. Her " + (isLoreleisBitch() ? "command" : "invitation") + " is all you need. You follow suit with her, clenching your body to her, tensing, letting your orgasm teeter over that sensitive edge, and then–");
 
+	var cumQ:Number = (!vag ? pc.cumQ() : 0);
 	if (vag) output("\n\nYour [pc.vagina " + genIdx + "] clenches in sympathy to Lorelei’s, and your [pc.girlCum] " + (pc.isSquirter() ? "jets" : "soaks") + " against hers, adding your salty essence to the growing broth between you. You and Lorelei can’t help but continue to hump and bump into each other, and every little motion sets every nerve in your poor, overworked cunts into overdrive, demanding another, fresh wave of orgasms for you both. Your [pc.clit " + genIdx + "] is erect as could be, and your button continuously presses into hers; it’s a perfect storm of pleasure that you’re unsure when it’ll end, or if you want it to.");
-	if (pc.cLength(genIdx) < 24) output("\n\nYour cock stiffens, bloated with your load, and it surges forth, " + (pc.cumQ() < 3000 ? "painting Lorelei’s flat stomach [pc.cumColor]" :"shooting up so high that it splatters into the underside of her tits, soaking them [pc.cumColor]") + ". Lorelei’s pussy hotdogs against you, and is so hot and warm, it’s almost gripping you just like her fingers did; she’s milking you for your every drop, and every time she feels a warm splash of your semen against her bare skin, she shudders and cums again, loving how your fluids feel against her. You thrust and hump against her body, and occasionally your mind blanks to the concept of her own pleasure, just as you’re sure hers does about yours: all you want is to frot this hot, slick cunt and keep jizzing.");
-	else output("\n\nAs close to yourself as you are, you’re acutely aware of everything that’s happening to your [pc.cockHead " + genIdx + "] as your jizz surges up your shaft: it gets warm; the texture of your cock’s skin gets very slightly coarse; it inflates; and it drools your pre, before your face, and Lorelei’s cleavage, is soaked in your [pc.cum]. " + (pc.cumQ() < 3000 ? "It drips along your nose and across your [pc.lips], before dribbling back out and down along both your cock’s enormous-and-still-bloated shaft, and down Lorelei’s abs" : "It blasts you in the nose, drenching you and coating the inside of Lorelei’s breasts; soon, there’s just too much to contain in her cleavage, and it sprays back down along your shaft, your abs, and her own – and some of it even fountains up through the top of her chest, getting her in the chin") + ". You don’t exactly have your eyes on Lorelei and her expression, but judging from the continued convulsions through her pussy and against your [pc.base " + genIdx + "], she’s loving every single drop you give her.");
+	else if (pc.cLength(genIdx) < 24) output("\n\nYour cock stiffens, bloated with your load, and it surges forth, " + (cumQ < 3000 ? "painting Lorelei’s flat stomach [pc.cumColor]" :"shooting up so high that it splatters into the underside of her tits, soaking them [pc.cumColor]") + ". Lorelei’s pussy hotdogs against you, and is so hot and warm, it’s almost gripping you just like her fingers did; she’s milking you for your every drop, and every time she feels a warm splash of your semen against her bare skin, she shudders and cums again, loving how your fluids feel against her. You thrust and hump against her body, and occasionally your mind blanks to the concept of her own pleasure, just as you’re sure hers does about yours: all you want is to frot this hot, slick cunt and keep jizzing.");
+	else output("\n\nAs close to yourself as you are, you’re acutely aware of everything that’s happening to your [pc.cockHead " + genIdx + "] as your jizz surges up your shaft: it gets warm; the texture of your cock’s skin gets very slightly coarse; it inflates; and it drools your pre, before your face, and Lorelei’s cleavage, is soaked in your [pc.cum]. " + (cumQ < 3000 ? "It drips along your nose and across your [pc.lips], before dribbling back out and down along both your cock’s enormous-and-still-bloated shaft, and down Lorelei’s abs" : "It blasts you in the nose, drenching you and coating the inside of Lorelei’s breasts; soon, there’s just too much to contain in her cleavage, and it sprays back down along your shaft, your abs, and her own – and some of it even fountains up through the top of her chest, getting her in the chin") + ". You don’t exactly have your eyes on Lorelei and her expression, but judging from the continued convulsions through her pussy and against your [pc.base " + genIdx + "], she’s loving every single drop you give her.");
 	
 	output("\n\nYou and Lorelei remain as you are, shuddering through the aftershocks of pleasure, and errantly moving against one-another, trying to get another orgasm for yourselves. You both pant in exertion; the sweat drips from " + (InCollection(pc.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_BARK, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) ? "you both" :"her against you") + ", and every move you two make against each other is slippery and slick – you’re both practically lubed enough to get started right now, if you wanted.");
 	output("\n\n<i>“Mmmm,”</i> Lorelei moans, pulling back enough to give you a kiss on the forehead. <i>“You did so well, honey. " + (isLoreleisBitch() ? "You were so well behaved. Mmm, maybe you deserve a reward" : "I couldn’t expect less from [pc.name] Steele [pc.himHer]self") + ".”</i>");
@@ -1721,7 +1732,7 @@ public function loreleiTheDancingQueen(genIdx:int, vag:Boolean):void
 	IncrementFlag("LORELEI_SEX_COUNTER");
 	pc.orgasm();
 	pc.lust(30+pc.libido()/20);
-	if (!vag && pc.cumQ() >= 3000) pc.applyCumSoaked();
+	if (!vag && cumQ >= 3000) pc.applyCumSoaked();
 
 	loreleiSexMenu();
 }
@@ -1735,7 +1746,7 @@ public function loreleiGetsTheDButSheKeepsIt():void
 	if (flags["LORELEI_TALKED_FUTA"] == undefined)
 	{
 		output("Your eyes trail from Lorelei’s, down her body, and to the floor. You idly rim your wine glass as you struggle with what you want to say to Lorelei. How do you just <i>tell</i> a lady that you want her to grow a penis?");
-		if (isLoreleisBitch()) output("\n\n<i>“Collar:Speak,”</i> she commands. <i>“I would like to know what’s bothering you.”</i>");
+		if (isLoreleisBitch()) output("\n\n<i>“Collar: Speak,”</i> she commands. <i>“I would like to know what’s bothering you.”</i>");
 		else output("\n\n<i>“What’s on your mind?”</i> she asks, noticing your askance glance. <i>“It’s you and me in here, darling. There’s no need to be shy.”</i>");
 		output("\n\nAt her insistence, you start by telling her not to take this the wrong way, but... has she ever considered... ‘personal additions?’ To her body?");
 		output("\n\n<i>“Ah,”</i> she says, wetting her suddenly-dry mouth with her wine, <i>“you’re asking if I had ever considered growing a penis, right?”</i>");
@@ -1748,7 +1759,7 @@ public function loreleiGetsTheDButSheKeepsIt():void
 		output("\n\nBut, as suddenly as it starts, she pulls away, resuming her earlier posture in her seat as if nothing at all had happened between you two.");
 		output("\n\n<i>“Like I said, I had never considered growing a penis of my own,”</i> she continues, swirling her wine, her mischievous half-lidded eyes on your every reaction and response. <i>“And I refuse to make such a permanent change to my body. But,”</i> she says, her tongue licking the rim of her wine glass before taking a sip, <i>“there</i> is <i>an alternative.”</i>");
 		output("\n\nYou sit up, hanging on her every word.");
-		output("\n\n<i>“Are you familiar with a Xenogen Biotech product called a ‘Synth Sheath?’”</i>");
+		output("\n\n<i>“Are you familiar with a Xenogen Biotech product called a ‘SynthSheath?’”</i>");
 		output("\n\nYou tell her that you ");
 		if (flags["SYNTHSHEATH_ACQUIRED"] != undefined) output("are. <i>“Good. ");
 		else
@@ -1756,7 +1767,7 @@ public function loreleiGetsTheDButSheKeepsIt():void
 			output("aren’t. <i>“Xenogen Biotech specializes in technology that can be used to heal or augment a person’s body. One of their most infamous products is, as you might have guessed, a strap-on dildo in the shape of a horse’s penis, completely with a set of giant,”</i> she says, her tongue snaking out to lick her lips, <i>“heavy testicles. Once it’s worn, it attaches itself to the host’s body, becoming a bonafide</i> part <i>of them.”</i>");
 			output("\n\nYou thought she said she didn’t want to make any modifications to her body. <i>“");
 		}
-		output("Bring me a Synth Sheath, darling, and I’ll show you the rest.”</i>");
+		output("Bring me a SynthSheath, darling, and I’ll show you the rest.”</i>");
 
 		flags["LORELEI_TALKED_FUTA"] = 1;
 
@@ -1778,7 +1789,7 @@ public function loreleiGetsTheDButSheKeepsIt():void
 		processTime(1+rand(2));
 		output("You ask Lorelei if she remembers you asking her if she could consider growing a penis for you both to enjoy.");
 		output("\n\n<i>“I remember saying I wasn’t in the market to</i> grow <i>one,”</i> she says, swirling her wine, <i>“but I also remember giving you a second option. Do you need a reminder?”</i>");
-		output("\n\nNo, you remember: she asked you to find a Synth Sheath.");
+		output("\n\nNo, you remember: she asked you to find a SynthSheath.");
 
 		if (pc.hasItemByClass(HorseCock))
 		{
@@ -1801,7 +1812,7 @@ public function loreleiIsDeniedEntryIntoTheColtCockClub():void
 	clearMenu();
 	clearOutput();
 	loreleiHeader();
-	output("You decide on holding off the fact that you’re holding onto a Synth Sheath for now. You’ll give it to her when you’re ready.");
+	output("You decide on holding off the fact that you’re holding onto a SynthSheath for now. You’ll give it to her when you’re ready.");
 	loreleiTalkButtons();
 	addDisabledButton(4, "Go Futa");
 }
@@ -1815,18 +1826,18 @@ public function loreleiDoesntNeedARubberCauseHerCockIsRubber(firstTry:Boolean):v
 	if (firstTry) output("You tell her that, actually, you happen to have one on you right now. <i>“Very good,”</i> she says, setting down her wine glass and clapping her hands once. <i>“You’re a very resourceful person, [pc.name]. I like that.”</i>");
 	else output("... you happen to have one on you now. You were lucky to come across one in your travels. <i>“Very good,”</i> she says, setting down her wine glass and clapping her hands once. <i>“You’re a very resourceful person, [pc.name]. I like that.”</i>");
 	output("\n\nYou reach into your pack and withdraw the promised item: a large, leathery, floppy, currently-recessed horsecock dildo, completely with massive, heavy testicles. You give it to her gingerly, afraid that if you slip, it might just land on her crotch before she’s ready, or something.");
-	output("\n\n<i>“Watch this,”</i> she says, keeping both of her gloved hands on the dildo. Before your eyes, the black of her suit crawls along her arms in thin tendrils, before swarming over the Synth Sheath, from its recessed head to its bloated testicles. They cover the dildo like a flurry of frenzied ants over their prey, until no single part of the Synth Sheath is visible beneath the undulating black mass.");
-	output("\n\n<i>“The technology of my suit, and the microsurgeons in this Synth Sheath, have a... shall we say, a ‘common ancestor,’”</i> she explains, her eyes staying on the dildo. <i>“My suit’s a little more advanced, obviously, but it’s also backwards compatible, for lack of a better term. I can take this Synth Sheath’s micromachines and,”</i> she explains, watching her nanomachines work the Synth Sheath over, <i>“add them to my own.”</i>");
-	output("\n\nA moment passes with the nanomachines of her suit wrapping around the Synth Sheath, and then, as suddenly as it started, the black tendrils return to Lorelei down her arm, leaving the dildo alone in her hand. <i>“I won’t tarnish my body by growing a penis of my own, or by slapping this one onto me. But, if I take this Synth Sheath’s microsurgeons for myself....”</i>");
+	output("\n\n<i>“Watch this,”</i> she says, keeping both of her gloved hands on the dildo. Before your eyes, the black of her suit crawls along her arms in thin tendrils, before swarming over the SynthSheath, from its recessed head to its bloated testicles. They cover the dildo like a flurry of frenzied ants over their prey, until no single part of the SynthSheath is visible beneath the undulating black mass.");
+	output("\n\n<i>“The technology of my suit, and the microsurgeons in this SynthSheath, have a... shall we say, a ‘common ancestor,’”</i> she explains, her eyes staying on the dildo. <i>“My suit’s a little more advanced, obviously, but it’s also backwards compatible, for lack of a better term. I can take this SynthSheath’s micromachines and,”</i> she explains, watching her nanomachines work the SynthSheath over, <i>“add them to my own.”</i>");
+	output("\n\nA moment passes with the nanomachines of her suit wrapping around the SynthSheath, and then, as suddenly as it started, the black tendrils return to Lorelei down her arm, leaving the dildo alone in her hand. <i>“I won’t tarnish my body by growing a penis of my own, or by slapping this one onto me. But, if I take this SynthSheath’s microsurgeons for myself....”</i>");
 	output("\n\nThe tendrils bulge as more material is taken from her dress and added to them, until two massive, bulbous, inky-black pustules rise along her forearms, undulating their way across her body with some ‘effort.’ The massive sacks of black nanomachines slide down her ribs, and then meet on her stomach, before drooping down to between her legs.");
-	output("\n\nAnd from there, as you watch, a brand new Synth Sheath forms, even as the old one still rests in her hand. Lorelei spreads her legs, giving her suit space to work: they form her huge, bloated testicles first, swinging freely beneath the stool, before conjuring up a spongy, fleshy sheathe, presumably with the horsecock inside fully formed somewhere. To match her suit, the entire package is black as could be.");
-	output("\n\n<i>“I could have just made a penis and some balls from the material of my suit, but they wouldn’t be any more sensitive than the rest of my body, and,”</i> she laughs, <i>“I wouldn’t be able to make those big, creamy loads that Synth Sheaths are capable of making. With this, I’ll feel and produce absolutely</i> everything, <i>darling, just as if I had worn it. But,”</i> she continues – and, just like that, the Synth Sheath between her legs dissipates and disperses again, leaving her crotch as bare and bulge-less as it was before.");
+	output("\n\nAnd from there, as you watch, a brand new SynthSheath forms, even as the old one still rests in her hand. Lorelei spreads her legs, giving her suit space to work: they form her huge, bloated testicles first, swinging freely beneath the stool, before conjuring up a spongy, fleshy sheathe, presumably with the horsecock inside fully formed somewhere. To match her suit, the entire package is black as could be.");
+	output("\n\n<i>“I could have just made a penis and some balls from the material of my suit, but they wouldn’t be any more sensitive than the rest of my body, and,”</i> she laughs, <i>“I wouldn’t be able to make those big, creamy loads that SynthSheaths are capable of making. With this, I’ll feel and produce absolutely</i> everything, <i>darling, just as if I had worn it. But,”</i> she continues – and, just like that, the SynthSheath between her legs dissipates and disperses again, leaving her crotch as bare and bulge-less as it was before.");
 	output("\n\n<i>“This way, I get all the carnal pleasures of having such a big, meaty cock, like you wanted, without tarnishing the canvas that is my body.”</i> She licks her lips excitedly. <i>“It’s the best of both worlds, honey.”</i>");
-	output("\n\nShe hands you back the Synth Sheath in her hand, and when you hold it, you notice that it’s noticeably lighter and limp – she had stolen the Synth Sheath’s microsurgeons, leaving you with a flaccid chunk of rubber. It’s pretty useless as it is now; you make a note to discard it as soon as you can.");
-	output("\n\nYou’re kind of shocked at the display – but, if nothing else, you are now satisfied that <b>Lorelei has a Synth Sheath</b>, and you only need to ask for her to use it on you.");
+	output("\n\nShe hands you back the SynthSheath in her hand, and when you hold it, you notice that it’s noticeably lighter and limp – she had stolen the SynthSheath’s microsurgeons, leaving you with a flaccid chunk of rubber. It’s pretty useless as it is now; you make a note to discard it as soon as you can.");
+	output("\n\nYou’re kind of shocked at the display – but, if nothing else, you are now satisfied that <b>Lorelei has a SynthSheath</b>, and you only need to ask for her to use it on you.");
 	output("\n\n<i>“Now,”</i> she whispers, lightly chewing on the nail of her pinkie finger, <i>“what do you say about... giving it a test spin?”</i>");
 
-	lorelei.createCock();
+	if(!lorelei.hasCock()) lorelei.createCock();
 	lorelei.createPerk("Fixed CumQ", 100);
 	pc.destroyItemByClass(HorseCock);
 
@@ -1838,9 +1849,9 @@ public function loreleiAndTheGreatAdjustableWang():void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
-	output("You ask Lorelei if she’d be willing to use that Synth Sheath you had gotten her on yourself. You’d like to... explore her, under different circumstances.");
+	output("You ask Lorelei if she’d be willing to use that SynthSheath you had gotten her on yourself. You’d like to... explore her, under different circumstances.");
 	output("\n\nLorelei smiles at the request, and at the way you’ve phrased it. <i>“Of course, darling,”</i> she says as she opens her legs wholly and totally to you, exposing her puffy vagina to the air between you two. <i>“After all the effort you went to find me one, I wouldn’t dream of keeping that sort of</i> pleasure <i>from you. All you need is to ask.”</i>");
 	output("\n\nHer crotch is completely bare, and, notably, does not have a horse-shaped phallus attached to it. But, at the end of her sentence, black tendrils of nanomachines emerge from behind her neck, crawling in guided streams down her ribs, across her tummy, and building into a ball on top of her pussy, until it’s replaced with a black, formless, undulating sphere of micro-machines.");
 	output("\n\n<i>“Let me just ask you a few questions, first, darling. So I can better please you.”</i>");
@@ -1855,7 +1866,7 @@ public function loreleisSpeciatedWang(wangType:int):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	output("You tell Lorelei that you’re interested in seeing her with " + indefiniteArticle(GLOBAL.TYPE_NAMES[wangType].toLowerCase()) + " cock.");
 	output("\n\nLorelei hums in delight at your choice, and her eyes glance to the shifting black mass between her legs, but no cock emerges from it just yet. <i>“Second question,”</i> she asks, <i>“just how... mmm...</i> big <i>and</i> juicy <i>do you want me?”</i> She humps her hips toward you, and the black mass jiggles and bounces underneath its own weight with the motion. <i>“I’m not going to go lower than seven inches, mind. In a universe filled with ‘enhancements,’ that ought to be a nice, pleasurable average for us both.”</i>");
@@ -1869,7 +1880,7 @@ public function loreleisWangGrowsWhenSlutsTellLies(big:Boolean):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	output("You tell Lorelei that");
 	if (big) output(" you want her to have something <i>bigger.</i> Something that’ll break you if you aren’t careful. You want her to be nice and <i>thick</i> for you.");
@@ -1898,7 +1909,7 @@ public function loreleiHasNoRopeButSheDoesHaveKnots(knotCount:int):void
 {
 	clearMenu();
 	clearOutput();
-	loreleiHeader();
+	loreleiFutaHeader();
 
 	// hyper
 	if (knotCount < 0)
@@ -1953,7 +1964,7 @@ public function loreleiWangButtons(question:int, showText:Boolean = true):void
 	{
 		clearMenu();
 		clearOutput();
-		loreleiHeader();
+		loreleiFutaHeader();
 		output("Actually, could you go back to that last question? You think you have a better idea in mind.");
 		output("\n\n<i>“Of course,”</i> Lorelei says. <i>“Whatever you like, darling. My body is the clay for you to sculpt.”</i>");
 	}
@@ -2255,7 +2266,7 @@ public function loreleiHasAGoAtStealingYourVirginity(holeIdx:int):void
 	output("\n\n<i>“It’d almost be a shame to fuck this body,”</i> she says through gritted teeth. Lorelei normally isn’t the type to be so vulgar; you must be having a serious effect on her. <i>“I almost don’t want to mold it around the shape of this cock you’ve given me.”</i> She pulls back");
 	if (lorelei.cLength() > 24) output(" – quite a distance, until you can’t feel her hands on you anymore");
 	output(", and realigns herself until you can feel the hot, beading [lorelei.cockHead] tip against your [pc.vagOrAss " + holeIdx + "]. You feel another warm " + (lorelei.cLength() < 24 ? "spurt" : "blast") + " of pre against your entrance, followed by some pressure as she pushes forward. <i>“Almost.”</i>");
-	output("\n\nYou shiver and clench your hands (careful not to clench your lower body, of course) as she splits you apart and enters you, rewarding your diligence and patience, from finding and giving her the Synth Sheath to preparing and soaking her properly, with giving you exactly what you wanted from the start: to be face down on her bed, hunched over");
+	output("\n\nYou shiver and clench your hands (careful not to clench your lower body, of course) as she splits you apart and enters you, rewarding your diligence and patience, from finding and giving her the SynthSheath to preparing and soaking her properly, with giving you exactly what you wanted from the start: to be face down on her bed, hunched over");
 	if (pc.isBiped()) output(", legs spread");
 	output(", while she fucks you with her synthetic cock.");
 	output("\n\nLorelei takes a deep breath through her nose at the sensation of having her head speared into you. You’re a tight, warm hole for her to make herself acquainted with, and she still isn’t used to the sensation of not only owning a cock, but using it to its truest potential. She’s slow and sensual: she knows how vulnerable you feel, having someone else inside you, and she gives you both a moment to adjust every time she pushes forward just a bit.");

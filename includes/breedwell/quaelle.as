@@ -1635,7 +1635,7 @@ public function quaelleBirth(birthTimestamp:int = -1):void
 	if (flags["QUAELLE_TOTAL_KIDS"] == undefined) flags["QUAELLE_TOTAL_KIDS"] = 0;
 	flags["QUAELLE_BIRTHSCENE_KIDS"] = 0;
 	
-	//both births can trigger if within 2 days of eachother
+	//both births can trigger if within 2 days of each other
 	if (flags["QUAELLE_INCUBATION_TIMER_F"] != undefined && flags["QUAELLE_INCUBATION_TIMER_F"] > quaelleIncubationDays() - 2)
 	{
 		//cycle through kids and increment gender stats

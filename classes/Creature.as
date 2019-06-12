@@ -2677,6 +2677,7 @@
 				case "buttsDescript":
 				case "buttcheeks":
 				case "asscheeks":
+				case "cheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
@@ -5010,7 +5011,7 @@
 			currReflexes += statusEffectv1("Plumpkin");
 			currReflexes += statusEffectv1("Peprika");
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
-			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
+			if (isStaggered()) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
@@ -5050,7 +5051,7 @@
 
 			var currAim:int = aimRaw + aimMod + bonus;
 			
-			if (hasStatusEffect("Staggered")) currAim *= 0.8;
+			if (isStaggered()) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
 
@@ -11404,8 +11405,8 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
-				if(hasVagina(GLOBAL.TYPE_ANEMONE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_ANEMONE)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11420,8 +11421,8 @@
 			if(isTreated() && hasVagina()) return true;
 			if(idx < 0)
 			{
-				if(hasVagina(GLOBAL.TYPE_GABILANI)) return true;
-				if(hasVagina(GLOBAL.TYPE_MOUTHGINA)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_GABILANI)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_MOUTHGINA)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11435,9 +11436,9 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_NUBBY)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
-				if(hasVagina(GLOBAL.TYPE_VANAE)) return true;
-				if(hasVagina(GLOBAL.TYPE_SHARK)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_VANAE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SHARK)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -12774,7 +12775,6 @@
 		{
 			if (legType == GLOBAL.TYPE_FELINE && hasBeak()) return "griffin";
 			if (legType == GLOBAL.TYPE_EQUINE && hasBeak()) return "hippogriff";
-			if (isNaga() && hasFeathers()) return "quetzalcoatl";
 			if (hasFeathers() && (furColor == Foxfire.fireColorNormal || furColor == Foxfire.fireColorArctic)) return "phoenix-morph";
 			if (legType == GLOBAL.TYPE_VULPINE && hasBeak()) return "vulpogryph";
 			if (InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE))
@@ -12795,8 +12795,9 @@
 		}
 		public function nagaRace():String
 		{
-			if (naleenScore() >= 5) return "naleen";
+			if (avianScore() >= 4 && hasFeathers()) return "quetzalcoatl";
 			if (legType == GLOBAL.TYPE_SHARK) return "leviathan naga";
+			if (naleenScore() >= 5) return "naleen";
 			return "naga";
 		}
 		public function plantRace():String
@@ -13056,7 +13057,7 @@
 			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function korgonneScore(): int {
@@ -13355,8 +13356,18 @@
 			if (faceType == GLOBAL.TYPE_LAPINE && hasMuzzle()) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
-			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			//if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			if (counter > 1 && hasCock()) {
+				if(hasCock(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			if (counter > 1 && hasVagina()) {
+				if(hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			//if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
+			if (!hasGenitals()) counter = 0;
 			return counter;
 		}
 		public function lizanScore():int
@@ -15960,6 +15971,7 @@
 				{
 					if(adjectiveCount > 0) desc += ", ";
 					desc += RandomInCollection(collection);
+					adjectiveCount++;
 				}
 			}
 			//NOUN TIME
@@ -20210,10 +20222,10 @@
 			var currentTolerance:Number = statusEffectv1("Tolerance");
 			if(arg != 0) 
 			{
-				addStatusValue("Tolerance",1,arg);
 				//Bounds check
 				if(currentTolerance + arg < 0) setStatusValue("Tolerance",1,0);
 				else if(currentTolerance + arg > 100) setStatusValue("Tolerance",1,100);
+				else addStatusValue("Tolerance",1,arg);
 			}
 			return statusEffectv1("Tolerance");
 		}

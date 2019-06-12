@@ -161,9 +161,10 @@ public function firstTimeOmniSuitOn():void
 		output(".");
 		pc.orgasm();
 		output("\n\nWithout much thought, you reach down and stroke, immediately moaning. Your fingers squeak loudly as they slide along the exotic second skin, but it doesn’t diminish the intensity of the answering pleasure. If anything, it heightens it. You pump your sloppy, drooling cock faster and faster, driving yourself to an orgasm that seems a few strokes away. That peak is easier than ever to climb. You’re bucking and spurting in no time, firing [pc.cum] ");
-		if(pc.cumQ() < 8) output("out in weak bursts. It would seem this strange suit does nothing for your virility.");
-		else if(pc.cumQ() < 150) output("out in long lines, painting the ground and your fingers.");
-		else if(pc.cumQ() < 5000) output("out in thick streams, creating nice big puddles of wasted jism.");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 8) output("out in weak bursts. It would seem this strange suit does nothing for your virility.");
+		else if(cumQ < 150) output("out in long lines, painting the ground and your fingers.");
+		else if(cumQ < 5000) output("out in thick streams, creating nice big puddles of wasted jism.");
 		else output("out in huge, seemingly endless streams, flooding the immediate area in a liquid declaration of bliss.");
 		output(" You feel the excess rolling over your knuckles, and even that feels like a lover’s tongue.");
 		pc.orgasm();
@@ -373,7 +374,7 @@ public function putOnDaOmniSuitFirstTime2():void
 		if(pc.hasCock()) output("[pc.cocks], ");
 		if(pc.balls > 0) output("[pc.balls], ");
 		if(pc.hasVagina()) output("[pc.vaginas], ");
-		output("and [pc.asshole]. They’re still coated in a thin veneer of inky blackness, but that’s a bonus, right? Every inch of shrinkwrapped flesh is enticingly, distractingly sensitive. If you aren’t careful, you’re going to waste the whole day away masturbating.");
+		output("and [pc.asshole]. They’re still coated in a thin veneer of inky blackness, but that’s a bonus, right? Every inch of shrink-wrapped flesh is enticingly, distractingly sensitive. If you aren’t careful, you’re going to waste the whole day away masturbating.");
 	}
 	else if(pc.libido() < 66)
 	{

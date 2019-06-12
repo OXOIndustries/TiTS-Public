@@ -410,7 +410,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// MIND STUFF IS DONZO
 		// FACIAL PRETTIES~
 		// ========================
-		if(pc.femininity < pc.femininityMax() && startHours < 48 && treatedHours >= 48)
+		if(pc.femininity < pc.femininityMax() && treatedHours >= 48 && startHours < 168)
 		{
 			// I'm not 100% sure this is exactly accurate as in the past, but it should be close as a start
 			// Excel experimenting seems to agree that its pretty close tho
@@ -527,7 +527,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						// clothed
 						if(!pc.isChestExposed())
 						{
-							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown breasts!</b> They’re still A-cups, really - barely breasts at all, but there’s no way they’re going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?"), "passive", (i * 3) * 60);
+							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It has moved your center of gravity just far enough forward to shift your posture, and it makes your [pc.nipples] rub oh-so-noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown breasts!</b> They’re still A-cups, really - barely breasts at all, but there’s no way they’re going to stay that small. How big will they get? Will they be big, overly sexualized melons or a pair of impressive mounds, clearing space ahead of you wherever you go?"), "passive", (i * 3) * 60);
 							if(pc.bRows() > 1)
 							{
 								ExtendLogEvent(" The extra row");
@@ -771,6 +771,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent("Oooh, you feel hot! A warm flush is running through your body, circulating between your head and toes before finally pooling in your loins. You whimper, pressing a finger to your crotch only to discover a nice, damp patch. You press on, whether due to fearlessness or desire, and discover a wanton cleft nestled firmly into your crotch. It’s already slick with need, its clitoris jutting free from its hood. <b>You’ve grown an extra-wet ", "passive", (treatedHours - startHours) * 60);
 			
 			pc.createVagina();
+			pc.setNewVaginaValues(0);
 			// cunt select!
 			if(pc.horseScore() >= 3 && pc.horseScore() > pc.canineScore())
 			{
@@ -1170,7 +1171,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 112 && treatedHours >= 112 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -1179,7 +1180,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -1195,7 +1196,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -2221,7 +2222,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						// clothed
 						if(pc.isChestGarbed())
 						{
-							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It’s moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh so noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown boobs.</b> They’re still [pc.breastCupSize]s, really - barely tits at all. Of course they won’t stay that way for long. How big are your new boobs gonna get?"), "passive", (i * 3) * 60);
+							AddLogEvent(ParseText("You’re noticing more and more that there’s a little something extra in your [pc.upperGarment]. It’s moved your center of gravity just far enough forward to make you feel a little awkward, and it makes your [pc.nipples] rub oh-so-noticeably against your gear. You pull your top open for a better look and gasp. <b>You’ve grown boobs.</b> They’re still [pc.breastCupSize]s, really - barely tits at all. Of course they won’t stay that way for long. How big are your new boobs gonna get?"), "passive", (i * 3) * 60);
 						}
 						// Nakers
 						else
@@ -2851,7 +2852,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 97 && treatedHours >= 97 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -2860,7 +2861,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -2876,7 +2877,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -2979,7 +2980,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			// Fatty -> Curvy Cowgal
 			else
 			{
-				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got plush curves that just beg to be squeezed and handled. It’s just that noone with half a brain would call you fat now, though the term curvy might be apt.", "passive", (65 - startHours) * 60);
+				AddLogEvent("All the excess weight you’ve carried around has been melting off hour by hour. You aren’t exactly a little stick of a girl - not by a longshot. You’ve still got plush curves that just beg to be squeezed and handled. It’s just that no one with half a brain would call you fat now, though the term curvy might be apt.", "passive", (65 - startHours) * 60);
 				// Thickness to 60
 				pc.thickness = 60;
 			}
@@ -3936,7 +3937,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 98 && treatedHours >= 98 && rand(10) != 0)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours, and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a gnarly little poof on the end, just like a cow’s."), "passive", (98 - startHours) * 60);
 				pc.tailCount = 1;
@@ -3945,7 +3946,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (98 - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -3961,7 +3962,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (98 - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -4021,6 +4022,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 	// * Full documentation: https://docs.google.com/document/d/1cgDCTnJeAKri99u-KibLhuDlSKXJuUjnW8jejQt28YI/edit?usp=sharing
 	else if(effect.value1 == 7)
 	{
+		var fauxIdx:int = -1;
+		
 		// If dick is ever lost, regrow dick!
 		if(!pc.hasCock() && treatedHours >= 3)
 		{
@@ -4292,14 +4295,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxFemTimes:Array = [50, 60, 70, 90, 100, 123, 143]; // array for storing all trigger times of this transformation
 			var fauxFemIndex:int = 0; // this is used to determine where we are in the tf track, as well as to log the times
 			var fauxFemCount:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxFemTimes.length; x++)
 			{
 				if (startHours < fauxFemTimes[x] && treatedHours >= fauxFemTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxFemCount++;
 				}
 			}
-			for (fauxFemIndex = 0; fauxFemIndex <= fauxFemCount; fauxFemIndex++)
+			for (fauxFemIndex = fauxIdx; fauxFemIndex <= fauxFemCount; fauxFemIndex++)
 			{
 				// 1st time
 				if(fauxFemIndex == 1)
@@ -4372,14 +4377,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxHipsChanged:int = 0;
 			var fauxToneChanged:int = 0;
 			var fauxThicknessChanged:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxToneTimes.length; x++)
 			{
 				if(startHours < fauxToneTimes[x] && treatedHours >= fauxToneTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxToneCount++;
 				}
 			}
-			for (fauxToneIndex = 0; fauxToneIndex <= fauxToneCount; fauxToneIndex++)
+			for (fauxToneIndex = fauxIdx; fauxToneIndex <= fauxToneCount; fauxToneIndex++)
 			{
 				// make changes and record
 				if(pc.hipRatingRaw > 4)
@@ -4460,14 +4467,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		var fauxChestTimes:Array = [53, 58, 73, 78, 93, 98, 113];
 		var fauxChestIndex:int = 0;
 		var fauxChestCount:int = 0;
+		fauxIdx = -1;
 		for (x = 0; x <= fauxChestTimes.length; x++)
 		{
 			if (startHours < fauxChestTimes[x] && treatedHours >= fauxChestTimes[x])
 			{
+				if(fauxIdx == -1) fauxIdx = x;
 				fauxChestCount++;
 			}
 		}
-		for (fauxChestIndex = 0; fauxChestIndex <= fauxChestCount; fauxChestIndex++)
+		for (fauxChestIndex = fauxIdx; fauxChestIndex <= fauxChestCount; fauxChestIndex++)
 		{
 			// 1st variation
 			if(fauxChestIndex == 1 || fauxChestIndex == 3 || fauxChestIndex == 5 || fauxChestIndex == 7)
@@ -4543,14 +4552,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxAssTimes:Array = [95, 105, 110, 115, 130, 135];
 			var fauxAssIndex:int = 0;
 			var fauxAssCount:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxAssTimes.length; x++)
 			{
 				if (startHours < fauxAssTimes[x] && treatedHours >= fauxAssTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxAssCount++;
 				}
 			}
-			for (fauxAssIndex = 0; fauxAssIndex <= fauxAssCount; fauxAssIndex++)
+			for (fauxAssIndex = fauxIdx; fauxAssIndex <= fauxAssCount; fauxAssIndex++)
 			{
 				// 1st time
 				if(fauxAssIndex == 1)
@@ -4622,14 +4633,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxTallnessTimes:Array = [88, 108, 128, 148, 167];
 			var fauxTallnessIndex:int = 0;
 			var fauxTallnessCount:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxTallnessTimes.length; x++)
 			{
 				if (startHours < fauxTallnessTimes[x] && treatedHours >= fauxTallnessTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxTallnessCount++;
 				}
 			}
-			for (fauxTallnessIndex = 0; fauxTallnessIndex <= fauxTallnessCount; fauxTallnessIndex++)
+			for (fauxTallnessIndex = fauxIdx; fauxTallnessIndex <= fauxTallnessCount; fauxTallnessIndex++)
 			{
 				if(fauxTallnessIndex >= 1)
 				{
@@ -4700,14 +4713,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxCockTimes:Array = [63, 80, 103, 120, 140, 150];
 			var fauxCockIndex:int = 0;
 			var fauxCockCount:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxCockTimes.length; x++)
 			{
 				if (startHours < fauxCockTimes[x] && treatedHours >= fauxCockTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxCockCount++;
 				}
 			}
-			for (fauxCockIndex = 0; fauxCockIndex <= fauxCockCount; fauxCockIndex++)
+			for (fauxCockIndex = fauxIdx; fauxCockIndex <= fauxCockCount; fauxCockIndex++)
 			{
 				// 1st scene
 				if(fauxCockIndex == 1)
@@ -4959,14 +4974,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		var fauxBallTimes:Array = [68, 88, 108, 128, 148, 163];
 		var fauxBallIndex:int = 0;
 		var fauxBallCount:int = 0;
+		fauxIdx = -1;
 		for (x = 0; x <= fauxBallTimes.length; x++)
 		{
 			if (startHours < fauxBallTimes[x] && treatedHours >= fauxBallTimes[x])
 			{
+				if(fauxIdx == -1) fauxIdx = x;
 				fauxBallCount++;
 			}
 		}
-		for (fauxBallIndex = 0; fauxBallIndex <= fauxBallCount; fauxBallIndex++)
+		for (fauxBallIndex = fauxIdx; fauxBallIndex <= fauxBallCount; fauxBallIndex++)
 		{
 			// ball growth scenes
 			if(pc.ballSizeRaw < pc.statusEffectv4("Treated"))
@@ -5038,14 +5055,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			var fauxCumCount:int = 0;
 			var fauxRefractoryChanged:int = 0;
 			var fauxStorageChanged:int = 0;
+			fauxIdx = -1;
 			for (x = 0; x <= fauxCumTimes.length; x++)
 			{
 				if (startHours < fauxCumTimes[x] && treatedHours >= fauxCumTimes[x])
 				{
+					if(fauxIdx == -1) fauxIdx = x;
 					fauxCumCount++;
 				}
 			}
-			for (fauxCumIndex = 0; fauxCumIndex <= fauxCumCount; fauxCumIndex++)
+			for (fauxCumIndex = fauxIdx; fauxCumIndex <= fauxCumCount; fauxCumIndex++)
 			{
 				// 1st variation
 				if(fauxCumIndex == 1 || fauxCumIndex == 3 || fauxCumIndex == 5)
@@ -5249,6 +5268,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent("<i>Uhhh... maybe you’ve been taking in too much cum lately</i>, a part of your brain chimes in. Your vision doubles momentarily. <i>Nah, there can never be such a thing as too much cum</i>, another part argues. <i>Wait, being filled with cum gets us high?</i> You ask your imaginary friends. The answer should be no, but somehow you’re pretty sure it does now. Well, you don’t have a headache or anything, so at least your body seems to be handling this whole situation pretty well. <i>Whoohoo! Cum’s the best drink in the stars!</i> You raise a victorious fist and yell all of a sudden, looking up at... you don’t know what you were expecting. Your cheeks flush with embarrassment. Dang, you’ve become such a cumslut!", "passive", (treatedHours - startHours) * 60);
 			ExtendLogEvent("\n\n(<b>Gained Perk: Cum Highs</b> - You can get high on cum!)");
 			pc.createPerk("Cum Highs",0,0,0,0,"You can get high on cum.");
+			// Raise your alcohol tolerance by 40
+			pc.tolerance(40);
 		}
 		// Easy perk gain (only in the cumslut route)
 		if(treatedHours >= 133 && pc.hasPerk("Cum Highs") && !pc.hasPerk("Easy"))
@@ -5387,7 +5408,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(!pc.hasCuntTail() && !pc.hasCockTail() && pc.tailType != GLOBAL.TYPE_BOVINE && startHours < 118 && treatedHours >= 118 && rand(10) < 9)
 		{
 			// No tail
-			if(pc.tailCount == 0)
+			if(pc.tailCount <= 0)
 			{
 				AddLogEvent(ParseText("You go to scratch at a spot above your [pc.butt] that’s been bothering you for a few hours and jerk when you hit something that wasn’t there before - something rounded and fluffy. Pressing back carefully, you ease your fingers around the growth, discovering its furred texture and cords of muscle. The oddest part is feeling the fingers pressing on you through the fur. There’s no doubt about it - <b>you have a tail.</b>\n\nIt’s a fairly long tail with a cute little poof on the end, just like a cow’s."), "passive", (treatedHours - startHours) * 60);
 				pc.tailCount = 1;
@@ -5396,7 +5417,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			else if(pc.tailCount > 1)
 			{
 				// Multi - short
-				if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+				if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 				{
 					AddLogEvent(ParseText("Your [pc.tails] brush against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had [pc.tails], now you’ve got gently-swaying, bovine tails, complete with fuzzy puffs at the tips."), "passive", (treatedHours - startHours) * 60);
 					if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers each one."));
@@ -5412,7 +5433,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				}
 			}
 			// Single - short
-			else if(pc.tailCount == 1 && !pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			else if(!pc.hasTailFlag(GLOBAL.FLAG_LONG))
 			{
 				AddLogEvent(ParseText("Your tail brushes against your [pc.leg] as you walk. Wait - your [pc.leg]? When did.... You twist around, staring down in shock. Where once you had a [pc.tail], now you’ve got a gently-swaying, bovine tail, complete with a fuzzy puff at the tip."), "passive", (treatedHours - startHours) * 60);
 				if(!pc.hasTailFlag(GLOBAL.FLAG_FLUFFY)) ExtendLogEvent(ParseText(" A fine layer of [pc.furColor] fur covers the whole thing."));
@@ -5471,318 +5492,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// Had to edit some descriptions that clashed *strongly* with the faux cow flavor
 		if( pc.hasCock() && startHours < 131 && treatedHours >= 131 && rand(2) == 0 )
 		{
-			var chosenDickType:int = rand(5);
-			switch(chosenDickType)
-			{
-				case 0:
-				case 1:
-					chosenDickType = GLOBAL.TYPE_EQUINE;
-					break;
-				case 2:
-				case 3:
-					chosenDickType = GLOBAL.TYPE_FELINE;
-					break;
-				case 4:
-					chosenDickType = GLOBAL.TYPE_CANINE;
-					break;
-			}
-			var changeAllDicks:Boolean = false;
-			
-			// Points to the chosen cock.
-			var targetDick:int = 0;
-
-			// This will go true if everything is already the appropriate type.
-			var unchanged:Boolean = false;
-
-			// Set the dick that's getting TFed.
-			if(pc.cockTotal() == 1) targetDick = 0;
-			else
-			{
-				targetDick = -1;
-				// Loop through
-				for(x = 0; x < pc.cockTotal(); x++)
-				{
-					// First appropriate dick gets picked.
-					if(targetDick == -1 && chosenDickType != pc.cocks[x].cType) targetDick = x;
-					// Turn on alldickTF if more than 1 need 50% of the time.
-					if(x != targetDick && targetDick >= 0 && chosenDickType != pc.cocks[x].cType && rand(2) == 0) changeAllDicks = true;
-				}
-				// If failed, set target to 0. Will get caught in cleanup and "unchanged" set to true to disable TF
-				if(targetDick == -1) targetDick = 0;
-			}
-			// DISABLE IF EVERYTHING IS ALREADY THE RIGHT TYPE
-			if(pc.cocks[targetDick].cType == chosenDickType) unchanged = true;
-			if(!unchanged)
-			{
-				// Hoarse Cawk
-				if(chosenDickType == GLOBAL.TYPE_EQUINE)
-				{
-					// Single cock transform!
-					if(!changeAllDicks)
-					{
-						AddLogEvent("Feeling a little light-headed, you find yourself a seat just in time to notice", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						if(!pc.hasSheath(targetDick))
-						{
-							ExtendLogEvent(" an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you");
-							if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("remove your [pc.lowerGarments] for a better look"));
-							else ExtendLogEvent(" take a look");
-							ExtendLogEvent(". Something weird is happening - right around the base, the " + pc.cocks[targetDick].cockColor + " skin is bunching up into folds");
-							if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent(" and darkening to an almost glossy tone");
-							ExtendLogEvent(". There’s little to no pain, but your prick does seem to be slowly vanishing into the thickly folded skin with every passing second. Never mind that it’s thickening as it withdraws, your cock is vanishing into some kind of musky-smelling sheath!\n\n");
-						}
-						else 
-						{
-							ExtendLogEvent(" your " + pc.cockDescript(targetDick) + " vanishing entirely into your");
-							if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent(" rapidly darkening");
-							ExtendLogEvent(" sheath!");
-						}
-						ExtendLogEvent(" You probe the still-sensitive bundle of flesh with a fingertip and nearly moan in delight when you come in contact with a");
-						if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_BLUNT)) ExtendLogEvent(" newly-");
-						ExtendLogEvent(" blunted and extraordinarily sensitive head. The");
-						var tempColor:String = "mottled";
-						if(rand(2) == 0) tempColor = "black";
-						ExtendLogEvent(" " + tempColor + " length reacts by lurching out, surging into your fingers like an animal seeking attention, and it feels too good not to indulge it. You wrap your hand around the equine length and stroke, feeling it expand in the palm of your hand.");
-						var nubbed:Boolean = false;
-						if(rand(4) == 0) nubbed = true;
-						if(nubbed) ExtendLogEvent(" Sensitive nubs cover the whole of it, but you don’t have time to consider the strange mutation or how good it feels.");
-						ExtendLogEvent(ParseText(" Droplets of your [pc.cum] roll out of your flaring head one after another, filling the air with the telltale scent of your own ecstasy."));
-						
-						ExtendLogEvent(ParseText("\n\nLooking down, you realize you’re holding a rigid, cum-drooling horse-cock that’s bigger than your old dick ever was in your hand and cum, finally shooting the long lances of [pc.cumNoun] that you’ve felt coming since your oddly powerful erection."));
-						var knotted:Boolean = false;
-						if(rand(4) == 0) knotted = true;
-						if(knotted) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
-						ExtendLogEvent(ParseText(" You fall back, splattering yourself with your [pc.cumColor] love again and again. Your cockhead has flared cartoonishly wide; you battle with an urge to whinny in delight as the eruptions coat your [pc.chest]."));
-						ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
-						if(knotted) ExtendLogEvent(" The knot doesn’t shrink down for at least five minutes after. Had you been balls-deep in an amazon, she would’ve had to sit there and let you fill her.");
-						ExtendLogEvent(" <b>You’ll need to get used to having a");
-						if(knotted) ExtendLogEvent(" knotted");
-						if(knotted && nubbed) ExtendLogEvent(" and");
-						if(nubbed) ExtendLogEvent(" nubby");
-						ExtendLogEvent(" horse-cock.</b>");
-
-						// +5 inches. increase cum volume and such slightly.
-						pc.cocks[targetDick].cLength(5);
-						pc.shiftCock(targetDick, chosenDickType);
-						if(tempColor != "mottled")
-						{
-							if(rand(2) == 0) pc.cocks[targetDick].cockColor = "black";
-							else pc.cocks[targetDick].cockColor = "pink";
-						}
-						else pc.cocks[targetDick].cockColor = "mottled pink and black";
-						if(knotted) 
-						{
-							pc.cocks[targetDick].addFlag(GLOBAL.FLAG_KNOTTED);
-							pc.cocks[targetDick].knotMultiplier = 1.5;
-						}
-						if(nubbed) pc.cocks[targetDick].addFlag(GLOBAL.FLAG_NUBBY);
-						// Cum
-						pc.orgasm();
-						pc.boostCum(3);
-					}
-					// Dubstep+ cawk transform!
-					else
-					{
-						AddLogEvent(ParseText("Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do"), "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						if(pc.legCount == 1) ExtendLogEvent("es");
-						ExtendLogEvent(". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You");
-						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" pull your [pc.lowerGarments] down for a look"));
-						else ExtendLogEvent(" look down");
-						ExtendLogEvent(", discovering with some shock that your phalli are withdrawing");
-						if(pc.hasSheath(targetDick) && pc.totalSheaths() > 1) ExtendLogEvent(" completely into their sheaths until you can’t even make out their " + pc.cockHeads() + ".");
-						else 
-						{
-							ExtendLogEvent(" into themselves, leaving the " + pc.cocks[targetDick].cockColor + " skin to bunch up around their bases. As you watch, the flesh darkens to a glistening black. You can practically taste the muskiness pouring off the mutating dickskin. No matter when you do, they vanish into what can only be described as rather equine-looking sheaths.");
-						}
-						ExtendLogEvent("\n\nYou can’t just sit here watching and waiting, and without a degree of unearned confidence, you gingerly probe your fingers around the cockholes, eventually sticking your pinky into the biggest one. It hits what feels like a flat, blunt-tipped member, shooting lightning bolts of pleasure up your spine. Between the sensitive, hidden meat and the fact that your sheaths themselves are still very responsive, you find your heartbeat speeding and something shifting within you.");
-						ExtendLogEvent("\n\n" + StringUtil.upperCase(pc.eachCock()) + " surges out of its sheath in unison with its identically");
-						var tempColor2:String = "mottled";
-						if(rand(2) == 0) tempColor = "black";
-						ExtendLogEvent(" " + tempColor2 + " brothers, getting thicker, longer, and veinier by the minute. You can almost taste the pheromones pouring off your lengthened rods, and while you enjoy it, you bet it would have the cow-girls mewling in delight. You grab hold of the swelling dicks, one in each hand, and stroke, feeling the extra inches pour out of your sheaths.");
-						var nubby:Boolean = false;
-						if(rand(4) == 0) nubby = true;
-						if(nubby) ExtendLogEvent(" Strangely, you feel sensitive bumps welling up under your fingertips, but they feel too good to worry about, regardless of how out of place they are on your equine rods.");
-						ExtendLogEvent(" You’re getting longer and harder than you were before, and the pleasure mounts and mounts, threatening to send you past a precipice that has your flaring tips nearly doubling in size.");
-						ExtendLogEvent("\n\nThere’s no containing the rampant, almost feral pleasure that overwhelms you. All you can do is lie back and hump at your own hands, suddenly erupting");
-						if(pc.cockTotal() == 2) ExtendLogEvent(" twin");
-						else ExtendLogEvent(" into a multitude of");
-						ExtendLogEvent(ParseText(" fountains of [pc.cumNoun]. Lances of the [pc.cumVisc] thrust through the air before splattering all over your [pc.chest] and body."));
-						var knotty:Boolean = false;
-						if(rand(4) == 0) knotty = true;
-						if(knotty) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
-						else ExtendLogEvent(" The goo falls thicker and thicker while you heedlessly pump, all the while fighting with an urge to whinny in delight.");
-						ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
-						if(knotty) ExtendLogEvent(" The knots don’t shrink down for at least five minutes after. Had you been balls-deep in an amazon, she would’ve had to sit there and let you fill her.");
-						ExtendLogEvent(" <b>You’ll need to get used to having a");
-						if(knotty) ExtendLogEvent(" knotted");
-						if(knotty && nubby) ExtendLogEvent(",");
-						if(nubby) ExtendLogEvent(" nubby");
-						ExtendLogEvent(" horse-cock.</b>");
-
-						// +5 inches. increase cum volume and such slightly.
-						for(x = 0; x < pc.cockTotal(); x++)
-						{
-							// TFable dick!
-							if(pc.cocks[x].cType != chosenDickType)
-							{
-								// +5 inches. increase cum volume and such slightly.
-								pc.cocks[x].cLength(5);
-								pc.shiftCock(x, chosenDickType);
-								if(tempColor2 != "mottled")
-								{
-									if(rand(2) == 0) pc.cocks[x].cockColor = "black";
-									else pc.cocks[x].cockColor = "pink";
-								}
-								else pc.cocks[x].cockColor = "mottled pink and black";
-								if(knotty) 
-								{
-									pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
-									pc.cocks[x].knotMultiplier = 1.5;
-								}
-								if(nubby) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
-							}
-						}
-						// Cum
-						pc.orgasm();
-						pc.boostCum(3);
-					}
-				}
-				// Dawg Cawk
-				else if(chosenDickType == GLOBAL.TYPE_CANINE)
-				{
-					// Single
-					if(!changeAllDicks)
-					{
-						AddLogEvent("Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						if(pc.isCrotchGarbed()) ExtendLogEvent(" even while you pull your equipment off for a better look");
-						else ExtendLogEvent(" even while you peer down for a better look");
-						ExtendLogEvent(". It doesn’t feel like it’s shrinking, but it is");
-						if(pc.hasSheath(targetDick)) ExtendLogEvent(" pulling further and further into its sheath. Eventually, it vanishes entirely, hidden from view.");
-						else ExtendLogEvent(" pulling into your crotch somehow, leaving your " + pc.cocks[targetDick].cockColor + " skin to bunch up around the base. Fur breaks out over the strange pubic mound, taking the place of the hair that once dwelt there. Meanwhile, your " + pc.cockDescript(targetDick) + " continues its vanishing game, eventually disappearing entirely into what can only be a fuzzy sheath.");
-						ExtendLogEvent("\n\nYou feel strangely warm all over from the odd change sweeping through your body, but the heat is primarily concentrated in your loins, where <i>something</i> is happening to your dick. You can’t just sit here and wait. You’ve got to figure out what’s happening to you, even if it means sticking a finger in after. Here goes....");
-						ExtendLogEvent("\n\nYour probing digit slips right in, finding the interior to be warmer than you expected, almost hot. It’s a little slick too, like the whole of it is covered in a thin sheen of sweat. You feel around in there, breathing faster and faster from the inexpert stimulation, until you hit the pointed tip of what can only be your prick.");
-						if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_TAPERED)) ExtendLogEvent(" Wait... pointed tip? Your cock wasn’t <i>that</i> angular.");
-						ExtendLogEvent(" The sensation of friction between your finger and genital is almost more than you can bear. You fall back, panting noisily and rubbing all the harder.");
-						ExtendLogEvent("\n\nYou can’t keep it up, though. Your bright red length is pushing your naughty digit out of your sheath, revealing its new shape to you in all its glory. <b>You have a bright red, pointed dog-dick, complete with a slight bulge at the base from your uninflated knot.</b> The sensation of the air blowing across it is almost too much to bear. Your hand wraps around it, at first to shield it from errant breezes, and then to stroke it, pumping furiously, feeding more and more pleasure to your expanding puppy cock.");
-						ExtendLogEvent(ParseText("\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]"));
-						if(pc.cocks[targetDick].cLength() < 18) ExtendLogEvent(ParseText(" and [pc.belly]"));
-						else ExtendLogEvent(ParseText(" and [pc.face]"));
-						ExtendLogEvent(". The climax drags on and on. Even when you go dry, you’re still pulsating in your grip, your rock-solid knot satisfying an imaginary master or mistress while they reward you.");
-						ExtendLogEvent(" The orgasm eventually ends, leaving you with a slowly-receding dick that would look at home on");
-						if(pc.originalRace != "half-ausar") ExtendLogEvent(" a big dog");
-						else ExtendLogEvent(" an ausar");
-						ExtendLogEvent(".");
-						// orgasm
-						pc.orgasm();
-						pc.shiftCock(targetDick, chosenDickType);
-						pc.boostCum(3);
-					}
-					// Multi!
-					else
-					{
-						AddLogEvent("You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						ExtendLogEvent(", you stagger back");
-						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", reaching into your [pc.lowerGarment] with shaking hands"));
-						else ExtendLogEvent(", looking down with probing eyes");
-						ExtendLogEvent(".");
-						if(pc.totalSheaths() <= 1) ExtendLogEvent(" The strangest thing is happening. Your " + pc.cocksDescript() + " are each shrinking... and yet not. They feel more like they’re pulling back into your body, and the skin is bunching up around the base of each one, sprouting a fine layer of fur as it thickens. You gasp. Your dicks aren’t getting smaller - they’re retracting into sheaths! Canine cocksheaths!");
-						else ExtendLogEvent(ParseText(" Thankfully, your members are merely retracting into their sheaths, pulling back until they’ve almost entirely vanished. More importantly, the sheaths themselves are covered in a layer of rich, [pc.furColor] fur, appearing canine in nature."));
-						ExtendLogEvent("\n\nWith this new development firmly in your mind, you sink to the ground, sitting");
-						if(!pc.isTaur()) ExtendLogEvent(ParseText(" on your [pc.butt]"));
-						else ExtendLogEvent(" on your haunches");
-						ExtendLogEvent(" to watch the developing drama down south. It actually feels kind of... good. There’s a kind of sensual warmth to it. A whole-body flush spreads through your form while your " + pc.cocksDescript() + " finish their descent into hiding. You groan and slide your hands down to your sheaths, rubbing them affectionately, enjoying the sensation of playing with new nerves. You realize something is happening within you: your " + pc.cocksDescript() + " are changing into something else. They bulge against the inside of your sensitive folds in the most pleasant way. Just what are they changing into?");
-						ExtendLogEvent("\n\nThey answer your question a moment later by thrusting up out of your sheaths, bright-red and pointed, narrow tips visibly quivering as more sensitive dickflesh emerges. You whimper; it sounds almost like a pant to your ears. They feel so good, and they’re so slick and hot. They almost glow to your eyes, bundles of red erotic energy just waiting to be touched, squeezed, and explosively released. Your hands are trembling and sweating, barely controlled. You aren’t sure that you could stop yourself from jacking off if you wanted to.");
-						ExtendLogEvent("\n\nThe decision is taken out of your hands when, with violent lurches and soft-sounding pops, glistening knots emerge. The rounded bulges are trembling with unchecked need. They grow by the second, surging with the intensity of their building load.");
-						var nubtacular:Boolean = false;
-						if(rand(4) == 0) nubtacular = true;
-						if(nubtacular) ExtendLogEvent(" Small nubs grow out of the surfaces of your " + pc.cocksDescript() + " before your eyes, but the ever-increasing pressure keeps your attention focused on your impending eruption over any concerns about the shapes of your new features. ");
-						ExtendLogEvent("You feel so pent up, like you haven’t cum in days. The knots grow ever larger, and you whine, humping the air. That pressure is almost overwhelming, blasting every thought out of your head except for one: how badly you need to release.");
-						ExtendLogEvent(ParseText("\n\nAlmost doubling in size, your knots expand once more, the sensation so hellishly pleasurable that you lose all control. Your muscles quiver. Your hips lock. Arching your back, you erupt like a geyser, spewing ropes of [pc.cum] into the air with such force that they look like a [pc.cumColor] web. A moment later, they fall down across you, but you’re already launching more up to replace them, painting yourself with layer after layer of glistening [pc.cumNoun], cumming to the feeling of your knots being so swollen. You can only imagine how good they would feel trapped in tight channels."));
-						ExtendLogEvent(ParseText("\n\nThe comedown happens an indeterminate amount of time later. You have memories of seemingly unending pleasure, and you’re panting like you’ve just run a marathon. Also, you’re lying in the biggest puddle of [pc.cum] you’ve ever produced. A look at the Codex tells you that you’ve been here for the better part of a half-hour. Doing your best to clean yourself off, you find yourself smiling all the same, happy with your puppy cocks"));
-						if(nubtacular) ExtendLogEvent(", extra nubs or not");
-						ExtendLogEvent(".");
-
-						for(x = 0; x < pc.cockTotal(); x++)
-						{
-							// TFable dick!
-							if(pc.cocks[x].cType != chosenDickType)
-							{
-								pc.shiftCock(x, chosenDickType);
-								if(nubtacular) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
-							}
-						}
-						// Cum
-						pc.orgasm();
-						pc.boostCum(3);
-					}
-				}
-				// Cat Cawk
-				else
-				{
-					// Single Catcock TF
-					if(!changeAllDicks)
-					{
-						AddLogEvent("Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it"));
-						else ExtendLogEvent(", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing");
-						ExtendLogEvent(". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.");
-						// Not yet spined
-						if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
-						{
-							ExtendLogEvent("\n\nThe pent-up pressure fades, leaving heat, lust, and cosmetic additions to your cock. Tiny bumps are rising up out of your sensitive, " + pc.cocks[targetDick].cockColor + " flesh. At first, they’re small enough that you wouldn’t have noticed them without holding your member in your hand. But as your heart beats and the overwhelming tightness recedes, they grow bigger, transforming into fleshy, texture-rich nodules. Just feeling your fingertips playing across them has you swooning and leaking from the tip. You can only imagine what they’ll do to a pussy or a butthole. It’ll be a sensory overload they won’t soon forget.");
-						}
-						// Already spined
-						else ExtendLogEvent("\n\nThe pent-up pressure fades as quickly as it appeared, bringing with it waves of lust and a strange quivering from the nubs that cover your " + pc.cockDescript(targetDick) + ". They wiggle, pulsating bigger for a moment before receding. You don’t have time to question the odd development as the rising tide of desire compels you to wrap a hand around the quivering length and tug, stroking the sensitive haft until droplets of pre-cum are spilling from the tip almost nonstop.");
-						// CHANGE PLACES... errr shapes
-						ExtendLogEvent("\n\nYou jaw opens, and you release a throaty roar of satisfaction, pumping your transforming prick for all you’re worth. It changes inside your palm. The shape twists. The veins vanish. The only constant is the all-consuming enjoyment that it provides - the way it makes your synapses dance in ecstasy. The tip fattens and then narrows between your fingertips, coming to something approximating a tip. Luckily, those wonderful nubs hang on through it all, even when your dick’s transformation seems to be coming to a close, bringing with it final surges of electric, dazzling pleasure.");
-						ExtendLogEvent(ParseText("\n\nGrunting, you thrust into your palm. Those grunts transform into feral, powerful roars of need, and orgasm washes through you, transforming your body to a fiery volcano. Ropes of licentious release erupt from you, chased by even bigger geysers of your seed. You pump widely, clenching powerful internal muscles to drive yet more [pc.cum] from your undoubtedly feline member. You are overwhelmed by an urge to clamp your jaw around your mate’s shoulder, or to drive your nails over their back while they fuck you! The thought sends fresh squirts of [pc.cumColor] out to fall on the ground, and your eyelids roll back, your mind overloaded."));
-						ExtendLogEvent("\n\nComing down, you find yourself still stroking your softening cat-cock. Having a big, fat animal-dick like this makes you feel like some kind of alpha male. You pat the shrinking thing affectionately, and resolve to live up to the savage image it conjures in your mind. You don’t want to be like a mewling cow, you want to be in a pride! The stars can be your savanna.");
-						pc.orgasm();
-						pc.shiftCock(targetDick, chosenDickType);
-						pc.boostCum(3);
-					}
-					// Multicock!
-					else
-					{
-						AddLogEvent("In an instant, your " + pc.cocksDescript() + " become distressingly hard", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it"));
-						else ExtendLogEvent(", jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off");
-						ExtendLogEvent(". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up until they burst, overwhelmed by some kind of incredible, internal pressure.");
-						// No spines
-						if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
-						{
-							ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrived, replaced by a rampant, unrestrained heat. The change from discomfort to a balmy arousal is almost instantaneous, and with it comes another unfamiliar sensation: little nubs pressing against your palm. You aren’t sure when you grabbed hold of " + pc.oneCock() + " and started stroking, but you can feel the surface of your shaft morphing beneath your fingertips, sprouting tiny, textured nubs across its entire surface. You wouldn’t have noticed if you weren’t squeezing yourself so, at least not at first. Those little nubs are getting more prominent. After a few pumps, they’re big enough to be seen with the naked eye. You ooze pre-cum, imagining the way your newly-textured cock will overwhelm your mates with ecstasy. Wait... mates?");
-						}
-						// Spined already
-						else ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrives. The nubs that cover your cocks wiggle, twitching wildly, even swelling up for a few short moments. Luckily, they return to their normal size a moment later. You sigh with relief, unsure what you would have done had they gotten any larger. Now that the discomfort is gone, you’re aware of another sensation emanating from your genitalia: lust. Not just normal lust either. The kind of lust that compels you to wrap both hands around your lengths and stroke. The kind of lust you couldn’t say no to even if you had an iron will and a lifetime of self-discipline to call upon. Pre dribbles out of your tips in thin streams already. Just how horny are you?");
-						// Lets TF this bitch
-						ExtendLogEvent("\n\nYou jack of harder, stroking two handed, each palm sliding across a pre-cum lubricated length. Releasing a throaty roar of satisfaction, you thrust your hips forward, burying the");
-						if(pc.cockTotal() > 2) ExtendLogEvent(" lucky");
-						ExtendLogEvent(" twin lengths into your hands. At the same time, you become aware of something else.... They’re changing in your very grips, twisting and reshaping against your slickened palms. The nubs don’t change, but just about everything else does. One second, your shafts feel like they’re swelling up like balloons. The next, your " + pc.cockHeads() + " are fat and prominent, a little squishy and almost spongy. Then, they’re narrowing to tapered points. Your pricks are transforming by the second, and you can do naught but continue to stroke them, compelled by infinitely erotic, transformative energies.");
-						ExtendLogEvent("\n\nThere’s no stopping you now. The pleasure rises higher and higher, taking you further and further away from the mundane world. Your head is in the clouds even as your hands are bound to the pulsating, slowly-solidifying lengths below. Your cocks are almost finished changing, and releasing larger and larger waves of bliss to push you beyond conscious thought. Their tips are narrow and pointed, the shafts thick, each nub jolting your ecstatic mind with red-hot, rutting desire.");
-						if(pc.balls > 1) ExtendLogEvent(" Your " + pc.ballsDescript() + " clench, and y");
-						else ExtendLogEvent(" Y");
-						ExtendLogEvent("our rods thicken, urethras flooding with soon to be expelled goo. One thought surfaces a moment before you explode: you have thick, kitty dicks, like a graceful tiger.");
-						ExtendLogEvent(ParseText("\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of"));
-						if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) ExtendLogEvent(" leonine jism");
-						else ExtendLogEvent(" relief");
-						ExtendLogEvent(ParseText(" into a puddle on the ground. The pleasure is incandescent, burning away any worry or concern, leaving only deep-seated satisfaction in its wake. The ribbons of [pc.cum] seem almost unending, the continuous bliss beyond your capacity to endure. Your eyes roll back, and consciousness fades to the feeling of your hands stroking one quivering tool after another."));
-						ExtendLogEvent("\n\nWhen you awake, you’re still standing there with both your hands wrapped around your softening dicks, somehow. You let go and stretch, totally sated for once. But, just when you’re planning to");
-						if(pc.isCrotchGarbed()) ExtendLogEvent(" pull your gear back up and");
-						ExtendLogEvent(" get back to business as usual, you give your tiger-like phalli an appraising look and remember your desire to be in a harem... no, a pride. You’ll have to find a few playmates soon, maybe even some that’ll love the feel of you biting at their shoulder or driving your nails over their back.");
-						for(x = 0; x < pc.cockTotal(); x++)
-						{
-							// TFable dick!
-							if(pc.cocks[x].cType != chosenDickType)
-							{
-								pc.shiftCock(x, chosenDickType);
-							}
-						}
-						// Cum
-						pc.orgasm();
-						pc.boostCum(3);
-					}
-				}
-			}
+			treatmentCockTF(treatedHours, startHours);
 		} // end of animal dicks
 		
 	} // End of the Faux Cow section
@@ -5924,7 +5634,7 @@ public function lustyAfterglowUpdate(target:Creature, cumQ:Number = 0):void
 	if(target == null) return;
 	
 	// every time you get cumfilled, you regain random 3~9 energy.
-	target.energy(Math.max(Math.round(cumQ/1000), (3 + rand(7))));
+	target.energy(5 + Math.max(Math.round(cumQ/1000), (3 + rand(7))));
 }
 
 // if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock())
@@ -6081,6 +5791,8 @@ public function autoCocknosisDistraction():void
 
 public function standardTreatmentDickStuff(treatedHours:Number, startHours:Number):void
 {
+	var x:int = 0;
+	
 	// Bigger Dick (+2 to 8 inches normally)
 	// At least one expansion regardless of max. EVERYBODY gets a bigger dick.
 	
@@ -6162,7 +5874,7 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 					else ExtendLogEvent("them");
 					ExtendLogEvent(" out.");
 					ExtendLogEvent("\n\nAs expected, you’re as rigid as a titanium girder, but that doesn’t entirely explain your predicament. You’re longer too, by at least an inch, and proportionally thicker. In disbelief over your good fortune, you slowly stroke " + pc.oneCock() + ", feeling it firm and plump up even bigger in your palm. The " + pc.cockHead() + " slips past your fingers and abruptly ejaculates, growing all the while. You furiously beat your meat throughout, not stopping until you’re standing in a puddle of your own goo");
-					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) ExtendLogEvent(" and trying to play it off nonchalantly. Hopefully noone will care");
+					if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) ExtendLogEvent(" and trying to play it off nonchalantly. Hopefully no one will care");
 					ExtendLogEvent(".");
 					
 					ExtendLogEvent("\n\nYour prong");
@@ -6347,341 +6059,376 @@ public function standardTreatmentDickStuff(treatedHours:Number, startHours:Numbe
 	
 	// Animal Dicks: Horse, Dog, Cat, maybe one with multiple type qualities
 	// 80% chance of animal type conversion. Of that 80%, 50% of the time it’s forced on all members.
-	if((!pc.isAmazon() && pc.hasCock() && startHours < 105 && treatedHours >= 105 && rand(10) <= 7) ||
-		(pc.isAmazon() && pc.hasCock() && startHours < 159 && treatedHours >= 159 && rand(2) == 0))
+	if(pc.hasCock() && (
+		(!pc.isAmazon() && startHours < 105 && treatedHours >= 105 && rand(10) <= 7) ||
+		(pc.isAmazon() && startHours < 159 && treatedHours >= 159 && rand(2) == 0)
+	))
 	{
-		// Pick type to change to.
-		var chosenDickType:int = rand(5);
-		// Convert to proper values
-		switch(chosenDickType)
+		treatmentCockTF(treatedHours, startHours);
+	}
+}
+public function treatmentCockTF(treatedHours:Number, startHours:Number):void
+{
+	var x:int = 0;
+	
+	// Pick type to change to.
+	var chosenDickType:int = rand(5);
+	// Convert to proper values
+	switch(chosenDickType)
+	{
+		case 0:
+		case 1:
+			chosenDickType = GLOBAL.TYPE_EQUINE;
+			break;
+		case 2:
+		case 3:
+			chosenDickType = GLOBAL.TYPE_CANINE;
+			break;
+		case 4:
+			chosenDickType = GLOBAL.TYPE_FELINE;
+			break;
+	}
+	var changeAllDicks:Boolean = false;
+	
+	// Points to the chosen cock.
+	var targetDick:int = 0;
+
+	// This will go true if everything is already the appropriate type.
+	var unchanged:Boolean = false;
+
+	// Set the dick that's getting TFed.
+	if(pc.cockTotal() == 1) targetDick = 0;
+	else
+	{
+		targetDick = -1;
+		// Loop through
+		for(x = 0; x < pc.cockTotal(); x++)
 		{
-			case 0:
-			case 1:
-				chosenDickType = GLOBAL.TYPE_EQUINE;
-				break;
-			case 2:
-			case 3:
-				chosenDickType = GLOBAL.TYPE_CANINE;
-				break;
-			case 4:
-				chosenDickType = GLOBAL.TYPE_FELINE;
-				break;
+			// First appropriate dick gets picked.
+			if(targetDick == -1 && chosenDickType != pc.cocks[x].cType) targetDick = x;
+			// Turn on alldickTF if more than 1 need 50% of the time.
+			if(x != targetDick && targetDick >= 0 && chosenDickType != pc.cocks[x].cType) changeAllDicks = (rand(2) == 0 ? true : false);
 		}
-		var changeAllDicks:Boolean = false;
-		
-		// Points to the chosen cock.
-		var targetDick:int = 0;
-
-		// This will go true if everything is already the appropriate type.
-		var unchanged:Boolean = false;
-
-		// Set the dick that's getting TFed.
-		if(pc.cockTotal() == 1) targetDick = 0;
-		else
+		// If failed, set target to 0. Will get caught in cleanup and "unchanged" set to true to disable TF
+		if(targetDick == -1) targetDick = 0;
+	}
+	// DISABLE IF EVERYTHING IS ALREADY THE RIGHT TYPE
+	if(pc.cocks[targetDick].cType == chosenDickType) unchanged = true;
+	
+	var isAmazon:Boolean = pc.isAmazon();
+	var isFauxCow:Boolean = pc.isFauxCow();
+	
+	if(!unchanged)
+	{
+		// Hoarse Cawk
+		if(chosenDickType == GLOBAL.TYPE_EQUINE)
 		{
-			targetDick = -1;
-			// Loop through
-			for(x = 0; x < pc.cockTotal(); x++)
+			// Single cock transform!
+			if(!changeAllDicks)
 			{
-				// First appropriate dick gets picked.
-				if(targetDick == -1 && chosenDickType != pc.cocks[x].cType) targetDick = x;
-				// Turn on alldickTF if more than 1 need 50% of the time.
-				if(x != targetDick && targetDick >= 0 && chosenDickType != pc.cocks[x].cType && rand(2) == 0) changeAllDicks = true;
+				AddLogEvent("Feeling a little light-headed, you find yourself a seat just in time to notice", "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(!pc.hasSheath(targetDick))
+				{
+					ExtendLogEvent(" an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you");
+					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" remove your [pc.lowerGarments] for a better look"));
+					else ExtendLogEvent(" take a look");
+					ExtendLogEvent(". Something weird is happening - right around the base, the " + pc.cocks[targetDick].cockColor + " skin is bunching up into folds");
+					if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent(" and darkening to an almost glossy " + (!isFauxCow ? "black" : "tone"));
+					ExtendLogEvent(". There’s little to no pain, but your prick does seem to be slowly vanishing into the thickly folded skin with every passing second. Never mind that it’s thickening as it withdraws, your cock is vanishing into some kind of musky-smelling sheath!\n\n");
+				}
+				else 
+				{
+					ExtendLogEvent(" your " + pc.cockDescript(targetDick) + " vanishing entirely into your");
+					if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent(" rapidly darkening");
+					ExtendLogEvent(" sheath!");
+				}
+				ExtendLogEvent(" You probe the still-sensitive bundle of flesh with a fingertip and nearly moan in delight when you come in contact with a ");
+				if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_BLUNT)) ExtendLogEvent("newly-");
+				ExtendLogEvent("blunted and extraordinarily sensitive head. The");
+				var tempColor:String = "mottled";
+				if(rand(2) == 0) tempColor = "black";
+				ExtendLogEvent(" " + tempColor + " length reacts by lurching out, surging into your fingers like an animal seeking attention, and it feels too good not to indulge it. You wrap your hand around the equine length and stroke, feeling it expand in the palm of your hand.");
+				var nubbed:Boolean = false;
+				if(rand(4) == 0) nubbed = true;
+				if(nubbed) ExtendLogEvent(" Sensitive nubs cover the whole of it, but you don’t have time to consider the strange mutation or how good it feels.");
+				ExtendLogEvent(ParseText(" Droplets of your [pc.cum] roll out of your flaring head one after another, filling the air with the telltale scent of your own ecstasy."));
+				ExtendLogEvent(ParseText("\n\nLooking down, you realize you’re holding a rigid, cum-drooling horse-cock that’s bigger than your old dick ever was in your hand and cum, finally shooting the long lances of [pc.cumNoun] that you’ve felt coming since your oddly powerful erection."));
+				var knotted:Boolean = false;
+				if(rand(4) == 0) knotted = true;
+				if(knotted) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
+				ExtendLogEvent(ParseText(" You fall back, splattering yourself with your [pc.cumColor] love again and again. Your cockhead has flared cartoonishly wide; you battle with an urge to whinny in delight as the eruptions coat your [pc.chest]."));
+				ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
+				if(knotted) 
+				{
+					ExtendLogEvent(" The knot doesn’t shrink down for at least five minutes after. Had you been balls-deep in a");
+					if(isFauxCow) ExtendLogEvent("n amazon, she would’ve had to sit there and let you fill her.");
+					else if(isAmazon) ExtendLogEvent(" faux-cow, he would’ve had to sit there and let you fill him.");
+					else ExtendLogEvent(" bitch, she would’ve had to sit there and let you fill her.");
+				}
+				ExtendLogEvent(" <b>You’ll need to get used to having a ");
+				if(knotted) ExtendLogEvent("knotted ");
+				if(knotted && nubbed) ExtendLogEvent("and ");
+				if(nubbed) ExtendLogEvent("nubby ");
+				ExtendLogEvent("horse-cock.</b>");
+				
+				
+				ExtendLogEvent(" <b>You’ll need to get used to having a");
+				if(knotted) ExtendLogEvent(" knotted");
+				if(knotted && nubbed) ExtendLogEvent(" and");
+				if(nubbed) ExtendLogEvent(" nubby");
+				ExtendLogEvent(" horse-cock.</b>");
+
+				// +5 inches. increase cum volume and such slightly.
+				pc.cocks[targetDick].cLength(5);
+				pc.shiftCock(targetDick, chosenDickType);
+				if(tempColor != "mottled")
+				{
+					if(rand(2) == 0) pc.cocks[targetDick].cockColor = "black";
+					else pc.cocks[targetDick].cockColor = "pink";
+				}
+				else pc.cocks[targetDick].cockColor = "mottled pink and black";
+				if(knotted) 
+				{
+					pc.cocks[targetDick].addFlag(GLOBAL.FLAG_KNOTTED);
+					pc.cocks[targetDick].knotMultiplier = 1.5;
+				}
+				if(nubbed) pc.cocks[targetDick].addFlag(GLOBAL.FLAG_NUBBY);
+				// Cum
+				pc.orgasm();
+				pc.boostCum(3);
 			}
-			// If failed, set target to 0. Will get caught in cleanup and "unchanged" set to true to disable TF
-			if(targetDick == -1) targetDick = 0;
-		}
-		// DISABLE IF EVERYTHING IS ALREADY THE RIGHT TYPE
-		if(pc.cocks[targetDick].cType == chosenDickType) unchanged = true;
-		if(!unchanged)
-		{
-			// Hoarse Cawk
-			if(chosenDickType == GLOBAL.TYPE_EQUINE)
-			{
-				// Single cock transform!
-				if(!changeAllDicks)
-				{
-					AddLogEvent("Feeling a little light-headed, you find yourself a seat just in time to notice ", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(!pc.hasSheath(targetDick))
-					{
-						ExtendLogEvent("an odd pinching feeling coming from your " + pc.cockDescript(targetDick) + ". Obviously concerned, you ");
-						if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("remove your [pc.lowerGarments] for a better look"));
-						else ExtendLogEvent("take a look");
-						ExtendLogEvent(". Something weird is happening - right around the base, the " + pc.cocks[targetDick].cockColor + " skin is bunching up into folds");
-						if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent(" and darkening to an almost glossy black");
-						ExtendLogEvent(". There’s little to no pain, but your prick does seem to be slowly vanishing into the thickly folded skin with every passing second. Never mind that it’s thickening as it withdraws, your cock is vanishing into some kind of musky-smelling sheath!\n\n");
-					}
-					else 
-					{
-						ExtendLogEvent("your " + pc.cockDescript(targetDick) + " vanishing entirely into your ");
-						if(pc.cocks[targetDick].cockColor != "black") ExtendLogEvent("rapidly darkening ");
-						ExtendLogEvent("sheath! ");
-					}
-					ExtendLogEvent("You probe the still-sensitive bundle of flesh with a fingertip and nearly moan in delight when you come in contact with a ");
-					if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_BLUNT)) ExtendLogEvent("newly-");
-					ExtendLogEvent("blunted and extraordinarily sensitive head. The ");
-					var tempColor:String = "mottled";
-					if(rand(2) == 0) tempColor = "black";
-					ExtendLogEvent(tempColor + " length reacts by lurching out, surging into your fingers like an animal seeking attention, and it feels too good not to indulge it. You wrap your hand around the equine length and stroke, feeling it expand in the palm of your hand.");
-					var nubbed:Boolean = false;
-					if(rand(4) == 0) nubbed = true;
-					if(nubbed) ExtendLogEvent(" Sensitive nubs cover the whole of it, but you don’t have time to consider the strange mutation or how good it feels.");
-					ExtendLogEvent(ParseText(" Droplets of your [pc.cum] roll out of your flaring head one after another, filling the air with the telltale scent of your own ecstasy."));
-
-					ExtendLogEvent(ParseText("\n\nLooking down, you realize you’re holding a rigid, cum-drooling horse-cock that’s bigger than your old dick ever was in your hand and cum, finally shooting the long lances of [pc.cumNoun] that you’ve felt coming since your oddly powerful erection."));
-					var knotted:Boolean = false;
-					if(rand(4) == 0) knotted = true;
-					if(knotted) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
-					ExtendLogEvent(ParseText(" You fall back, splattering yourself with your [pc.cumColor] love again and again. Your cockhead has flared cartoonishly wide; you battle with an urge to whinny in delight as the eruptions coat your [pc.chest]."));
-					ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
-					if(knotted) 
-					{
-						ExtendLogEvent(" The knot doesn’t shrink down for at least five minutes after. Had you been balls-deep in a ");
-						if(pc.isAmazon()) ExtendLogEvent("faux-cow, he would’ve had to sit there and let you fill him.");
-						else ExtendLogEvent("bitch, she would’ve had to sit there and let you fill her.");
-					}
-					ExtendLogEvent(" <b>You’ll need to get used to having a ");
-					if(knotted) ExtendLogEvent("knotted ");
-					if(knotted && nubbed) ExtendLogEvent("and ");
-					if(nubbed) ExtendLogEvent("nubby ");
-					ExtendLogEvent("horse-cock.</b>");
-
-					// +5 inches. increase cum volume and such slightly.
-					pc.cocks[targetDick].cLength(5);
-					pc.shiftCock(targetDick, chosenDickType);
-					if(tempColor != "mottled")
-					{
-						if(rand(2) == 0) pc.cocks[targetDick].cockColor = "black";
-						else pc.cocks[targetDick].cockColor = "pink";
-					}
-					else pc.cocks[targetDick].cockColor = "mottled pink and black";
-					if(knotted) 
-					{
-						pc.cocks[targetDick].addFlag(GLOBAL.FLAG_KNOTTED);
-						pc.cocks[targetDick].knotMultiplier = 1.5;
-					}
-					if(nubbed) pc.cocks[targetDick].addFlag(GLOBAL.FLAG_NUBBY);
-					// Cum
-					pc.orgasm();
-					pc.boostCum(3);
-				}
-				// Dubstep+ cawk transform!
-				else
-				{
-					AddLogEvent(ParseText("Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do"), "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(pc.legCount == 1) ExtendLogEvent("es");
-					ExtendLogEvent(". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You ");
-					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("pull your [pc.lowerGarments] down for a look"));
-					else ExtendLogEvent("look down");
-					ExtendLogEvent(", discovering with some shock that your phalli are withdrawing ");
-					if(pc.hasSheath(targetDick) && pc.totalSheaths() > 1) ExtendLogEvent("completely into their sheaths until you can’t even make out their " + pc.cockHeads() + ".");
-					else 
-					{
-						ExtendLogEvent("into themselves, leaving the " + pc.cocks[targetDick].cockColor + " skin to bunch up around their bases. As you watch, the flesh darkens to a glistening black. You can practically taste the muskiness pouring off the mutating dickskin. No matter when you do, they vanish into what can only be described as rather equine-looking sheaths.");
-					}
-					ExtendLogEvent("\n\nYou can’t just sit here watching and waiting, and without a degree of unearned confidence, you gingerly probe your fingers around the cockholes, eventually sticking your pinky into the biggest one. It hits what feels like a flat, blunt-tipped member, shooting lightning bolts of pleasure up your spine. Between the sensitive, hidden meat and the fact that your sheaths themselves are still very responsive, you find your heartbeat speeding and something shifting within you.");
-					ExtendLogEvent("\n\n" + StringUtil.upperCase(pc.eachCock()) + " surges out of its sheath in unison with its identically ");
-					var tempColor2:String = "mottled";
-					if(rand(2) == 0) tempColor = "black";
-					ExtendLogEvent(tempColor2 + " brothers, getting thicker, longer, and veinier by the minute. You can almost taste the pheromones pouring off your lengthened rods, and while you enjoy it, you bet it would have the cow-girls mewling in delight. You grab hold of the swelling dicks, one in each hand, and stroke, feeling the extra inches pour out of your sheaths. ");
-					var nubby:Boolean = false;
-					if(rand(4) == 0) nubby = true;
-					if(nubby) ExtendLogEvent("Strangely, you feel sensitive bumps welling up under your fingertips, but they feel too good to worry about, regardless of how out of place they are on your equine rods. ");
-					ExtendLogEvent("You’re getting longer and harder than you were before, and the pleasure mounts and mounts, threatening to send you past a precipice that has your flaring tips nearly doubling in size.");
-					ExtendLogEvent("\n\nThere’s no containing the rampant, almost feral pleasure that overwhelms you. All you can do is lie back and hump at your own hands, suddenly erupting ");
-					if(pc.cockTotal() == 2) ExtendLogEvent("twin");
-					else ExtendLogEvent("into a multitude of");
-					ExtendLogEvent(ParseText(" fountains of [pc.cumNoun]. Lances of the [pc.cumVisc] thrust through the air before splattering all over your [pc.chest] and body."));
-					var knotty:Boolean = false;
-					if(rand(4) == 0) knotty = true;
-					if(knotty) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
-					else ExtendLogEvent(" The goo falls thicker and thicker while you heedlessly pump, all the while fighting with an urge to whinny in delight.");
-					ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
-					if(knotty) 
-					{
-						if(!pc.isAmazon()) ExtendLogEvent(" The knots don’t shrink down for at least five minutes after. Had you been balls-deep in a bitch, she would’ve had to sit there and let you fill her.");
-						else ExtendLogEvent(" The knots don’t shrink down for at least five minutes after. Had you been balls-deep in a faux-cow, he would’ve had to sit there and let you fill him.");
-					}
-					ExtendLogEvent(" <b>You’ll need to get used to having a ");
-					if(knotty) ExtendLogEvent("knotted");
-					if(knotty && nubby) ExtendLogEvent(", ");
-					else if(knotty) ExtendLogEvent(" ");
-					if(nubby) ExtendLogEvent("nubby ");
-					ExtendLogEvent("horse-cock.</b>");
-
-					// +5 inches. increase cum volume and such slightly.
-					for(x = 0; x < pc.cockTotal(); x++)
-					{
-						// TFable dick!
-						if(pc.cocks[x].cType != chosenDickType)
-						{
-							// +5 inches. increase cum volume and such slightly.
-							pc.cocks[x].cLength(5);
-							pc.shiftCock(x, chosenDickType);
-							if(tempColor2 != "mottled")
-							{
-								if(rand(2) == 0) pc.cocks[x].cockColor = "black";
-								else pc.cocks[x].cockColor = "pink";
-							}
-							else pc.cocks[x].cockColor = "mottled pink and black";
-							if(knotty) 
-							{
-								pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
-								pc.cocks[x].knotMultiplier = 1.5;
-							}
-							if(nubby) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
-						}
-					}
-					// Cum
-					pc.orgasm();
-					pc.boostCum(3);
-				}
-			}
-			// Dawg Cawk
-			else if(chosenDickType == GLOBAL.TYPE_CANINE)
-			{
-				// Single
-				if(!changeAllDicks)
-				{
-					AddLogEvent("Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change, wondering if something has gone wrong, fearing that you’ll wind up as ", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(!pc.isAmazon()) ExtendLogEvent("one of the effeminate faux-cows");
-					else ExtendLogEvent("some kind of tiny-dicked freak");
-					if(pc.isCrotchGarbed()) ExtendLogEvent(" even while you pull your equipment off for a better look");
-					else ExtendLogEvent(" even while you peer down for a better look");
-					ExtendLogEvent(". It doesn’t feel like it’s shrinking, but it is ");
-					if(pc.hasSheath(targetDick)) ExtendLogEvent("pulling further and further into its sheath. Eventually, it vanishes entirely, hidden from view.");
-					else ExtendLogEvent("pulling into your crotch somehow, leaving your " + pc.cocks[targetDick].cockColor + " skin to bunch up around the base. Fur breaks out over the strange pubic mound, taking the place of the hair that once dwelt there. Meanwhile, your " + pc.cockDescript(targetDick) + " continues its vanishing game, eventually disappearing entirely into what can only be a fuzzy sheath.");
-
-					ExtendLogEvent("\n\nYou feel strangely warm all over from the odd change sweeping through your body, but the heat is primarily concentrated in your loins, where <i>something</i> is happening to your dick. You can’t just sit here and wait. You’ve got to figure out what’s happening to you, even if it means sticking a finger in after. Here goes....");
-
-					ExtendLogEvent("\n\nYour probing digit slips right in, finding the interior to be warmer than you expected, almost hot. It’s a little slick too, like the whole of it is covered in a thin sheen of sweat. You feel around in there, breathing faster and faster from the inexpert stimulation, until you hit the pointed tip of what can only be your prick.");
-					if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_TAPERED)) ExtendLogEvent(" Wait... pointed tip? Your cock wasn’t <i>that</i> angular.");
-					ExtendLogEvent(" The sensation of friction between your finger and genital is almost more than you can bear. You fall back, panting noisily and rubbing all the harder.");
-
-					ExtendLogEvent("\n\nYou can’t keep it up, though. Your bright red length is pushing your naughty digit out of your sheath, revealing its new shape to you in all its glory. <b>You have a bright red, pointed dog-dick, complete with a slight bulge at the base from your uninflated knot.</b> The sensation of the air blowing across it is almost too much to bear. Your hand wraps around it, at first to shield it from errant breezes, and then to stroke it, pumping furiously, feeding more and more pleasure to your expanding bitch-breaker.");
-					ExtendLogEvent(ParseText("\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]"));
-					if(pc.cocks[targetDick].cLength() < 18) ExtendLogEvent(ParseText(" and [pc.belly]"));
-					else ExtendLogEvent(ParseText(" and [pc.face]"));
-					ExtendLogEvent(". The climax drags on and on. Even when you go dry, you’re still pulsating in your grip, your rock-solid knot holding an imaginary cow-girl in place while she fountains milk along with you.");
-					ExtendLogEvent("The orgasm eventually ends, leaving you with a slowly-receding dick that would look at home on ");
-					if(pc.originalRace != "half-ausar") ExtendLogEvent("a big dog");
-					else ExtendLogEvent("an ausar");
-					ExtendLogEvent(".");
-					// orgasm
-					pc.orgasm();
-					pc.shiftCock(targetDick, chosenDickType);
-					pc.boostCum(3);
-				}
-				// Multi!
-				else
-				{
-					AddLogEvent("You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong - that you might be shrinking ", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(!pc.isAmazon()) ExtendLogEvent("and turning into a faux-cow");
-					else ExtendLogEvent("into some sort of tiny-dicked freak");
-					ExtendLogEvent(", you stagger back");
-					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", reaching into your [pc.lowerGarment] with shaking hands"));
-					else ExtendLogEvent(", looking down with probing eyes");
-					ExtendLogEvent(". ");
-					if(pc.totalSheaths() <= 1) ExtendLogEvent("The strangest thing is happening. Your " + pc.cocksDescript() + " are each shrinking... and yet not. They feel more like they’re pulling back into your body, and the skin is bunching up around the base of each one, sprouting a fine layer of fur as it thickens. You gasp. Your dicks aren’t getting smaller - they’re retracting into sheaths! Canine cocksheaths!");
-					else ExtendLogEvent(ParseText("Thankfully, your members are merely retracting into their sheaths, pulling back until they’ve almost entirely vanished. More importantly, the sheaths themselves are covered in a layer of rich, [pc.furColor] fur, appearing canine in nature."));
-
-					ExtendLogEvent("\n\nWith this new development firmly in your mind, you sink to the ground, sitting ");
-					if(!pc.isTaur()) ExtendLogEvent(ParseText("on your [pc.butt]"));
-					else ExtendLogEvent("on your haunches");
-					ExtendLogEvent(" to watch the developing drama down south. It actually feels kind of... good. There’s a kind of sensual warmth to it. A whole-body flush spreads through your form while your " + pc.cocksDescript() + " finish their descent into hiding. You groan and slide your hands down to your sheaths, rubbing them affectionately, enjoying the sensation of playing with new nerves. You realize something is happening within you: your " + pc.cocksDescript() + " are changing into something else. They bulge against the inside of your sensitive folds in the most pleasant way. Just what are they changing into?");
-					ExtendLogEvent("\n\nThey answer your question a moment later by thrusting up out of your sheaths, bright-red and pointed, narrow tips visibly quivering as more sensitive dickflesh emerges. You whimper; it sounds almost like a pant to your ears. They feel so good, and they’re so slick and hot. They almost glow to your eyes, bundles of red erotic energy just waiting to be touched, squeezed, and explosively released. Your hands are trembling and sweating, barely controlled. You aren’t sure that you could stop yourself from jacking off if you wanted to.");
-					ExtendLogEvent("\n\nThe decision is taken out of your hands when, with violent lurches and soft-sounding pops, glistening knots emerge. The rounded bulges are trembling with unchecked need. They grow by the second, surging with the intensity of their building load. ");
-					var nubtacular:Boolean = false;
-					if(rand(4) == 0) nubtacular = true;
-					if(nubtacular) ExtendLogEvent("Small nubs grow out of the surfaces of your " + pc.cocksDescript() + " before your eyes, but the ever-increasing pressure keeps your attention focused on your impending eruption over any concerns about the shapes of your new features. ");
-					ExtendLogEvent("You feel so pent up, like you haven’t cum in days. The knots grow ever larger, and you whine, humping the air. That pressure is almost overwhelming, blasting every thought out of your head except for one: how badly you need to release.");
-					ExtendLogEvent(ParseText("\n\nAlmost doubling in size, your knots expand once more, the sensation so hellishly pleasurable that you lose all control. Your muscles quiver. Your hips lock. Arching your back, you erupt like a geyser, spewing ropes of [pc.cum] into the air with such force that they look like a [pc.cumColor] web. A moment later, they fall down across you, but you’re already launching more up to replace them, painting yourself with layer after layer of glistening [pc.cumNoun], cumming to the feeling of your knots being so swollen. You can only imagine how good they would feel trapped in tight channels, pouring your virile energy into them with womb-filling fury."));
-					ExtendLogEvent(ParseText("\n\nThe comedown happens an indeterminate amount of time later. You have memories of seemingly unending pleasure, and you’re panting like you’ve just run a marathon. Also, you’re lying in the biggest puddle of [pc.cum] you’ve ever produced. A look at the Codex tells you that you’ve been here for the better part of a half-hour. Doing your best to clean yourself off, you find yourself smiling all the same. Tools like this are going to be extra effective at breeding bitches"));
-					if(nubtacular) ExtendLogEvent(", extra nubs or not");
-					ExtendLogEvent(".");
-
-					for(x = 0; x < pc.cockTotal(); x++)
-					{
-						// TFable dick!
-						if(pc.cocks[x].cType != chosenDickType)
-						{
-							pc.shiftCock(x, chosenDickType);
-							if(nubtacular) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
-						}
-					}
-					// Cum
-					pc.orgasm();
-					pc.boostCum(3);
-				}
-			}
-			// Cat Cawk - Fuck this, not doing it nau
+			// Dubstep+ cawk transform!
 			else
 			{
-				// Single Catcock TF
-				if(!changeAllDicks)
+				AddLogEvent(ParseText("Feeling more than a little light-headed, you drop to the ground before your [pc.legOrLegs] do"), "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(pc.legCount == 1) ExtendLogEvent("es");
+				ExtendLogEvent(". A strange pinching feeling is overwhelming your " + pc.cocksDescript() + ". You");
+				if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" pull your [pc.lowerGarments] down for a look"));
+				else ExtendLogEvent(" look down");
+				ExtendLogEvent(", discovering with some shock that your phalli are withdrawing");
+				if(pc.hasSheath(targetDick) && pc.totalSheaths() > 1) ExtendLogEvent(" completely into their sheaths until you can’t even make out their " + pc.cockHeads() + ".");
+				else 
 				{
-					AddLogEvent("Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it"));
-					else ExtendLogEvent(", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing");
-					ExtendLogEvent(". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.");
-					// Not yet spined
-					if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
-					{
-						ExtendLogEvent("\n\nThe pent-up pressure fades, leaving heat, lust, and cosmetic additions to your cock. Tiny bumps are rising up out of your sensitive, " + pc.cocks[targetDick].cockColor + " flesh. At first, they’re small enough that you wouldn’t have noticed them without holding your member in your hand. But as your heart beats and the overwhelming tightness recedes, they grow bigger, transforming into fleshy, texture-rich nodules. Just feeling your fingertips playing across them has you swooning and leaking from the tip. You can only imagine what they’ll do to a pussy or an asshole. It’ll be a sensory overload they won’t soon forget.");
-					}
-					// Already spined
-					else ExtendLogEvent("\n\nThe pent-up pressure fades as quickly as it appeared, bringing with it waves of lust and a strange quivering from the nubs that cover your " + pc.cockDescript(targetDick) + ". They wiggle, pulsating bigger for a moment before receding. You don’t have time to question the odd development as the rising tide of desire compels you to wrap a hand around the quivering length and tug, stroking the sensitive haft until droplets of pre-cum are spilling from the tip almost nonstop.");
-					// CHANGE PLACES... errr shapes
-					ExtendLogEvent("\n\nYou jaw opens, and you release a throaty roar of satisfaction, pumping your transforming prick for all you’re worth. It changes inside your palm. The shape twists. The veins vanish. The only constant is the all-consuming enjoyment that it provides - the way it makes your synapses dance in ecstasy. The tip fattens and then narrows between your fingertips, coming to something approximating a tip. Luckily, those wonderful nubs hang on through it all, even when your dick’s transformation seems to be coming to a close, bringing with it final surges of electric, dazzling pleasure.");
-					ExtendLogEvent(ParseText("\n\nGrunting, you thrust into your palm. Those grunts transform into feral, powerful roars of triumph, and orgasm washes through you, transforming your body to a fiery volcano. Ropes of licentious release erupt from you, chased by even bigger geysers of your seed. You pump widely, clenching powerful internal muscles to drive yet more [pc.cum] from your undoubtedly feline member. The urge to clamp your jaw around your mate’s neck overwhelms you - if only you had a female here, impaled on your spurting cat-cock! The thought sends fresh squirts of [pc.cumColor] out to fall on the ground, and your eyelids roll back, your mind overloaded."));
-					ExtendLogEvent("\n\nComing down, you find yourself still stroking your softening cat-cock. Having a big, fat animal-dick like this makes you feel like some kind of alpha male. You pat the shrinking thing affectionately, and resolve to live up to the predatory image it conjures in your mind. You don’t want a harem of mewling cow-girls. You want a pride. The stars can be your savanna, and you’ll be its ");
-					if(!pc.isAmazon()) ExtendLogEvent("lord.");
-					else ExtendLogEvent("amazon queen.");
-					pc.orgasm();
-					pc.shiftCock(targetDick, chosenDickType);
-					pc.boostCum(3);
+					ExtendLogEvent(" into themselves, leaving the " + pc.cocks[targetDick].cockColor + " skin to bunch up around their bases. As you watch, the flesh darkens to a glistening black. You can practically taste the muskiness pouring off the mutating dickskin. No matter when you do, they vanish into what can only be described as rather equine-looking sheaths.");
 				}
-				// Multicock!
-				else
+				ExtendLogEvent("\n\nYou can’t just sit here watching and waiting, and without a degree of unearned confidence, you gingerly probe your fingers around the cockholes, eventually sticking your pinky into the biggest one. It hits what feels like a flat, blunt-tipped member, shooting lightning bolts of pleasure up your spine. Between the sensitive, hidden meat and the fact that your sheaths themselves are still very responsive, you find your heartbeat speeding and something shifting within you.");
+				ExtendLogEvent("\n\n" + StringUtil.upperCase(pc.eachCock()) + " surges out of its sheath in unison with its identically");
+				var tempColor2:String = "mottled";
+				if(rand(2) == 0) tempColor2 = "black";
+				ExtendLogEvent(" " + tempColor2 + " brothers, getting thicker, longer, and veinier by the minute. You can almost taste the pheromones pouring off your lengthened rods, and while you enjoy it, you bet it would have the cow-girls mewling in delight. You grab hold of the swelling dicks, one in each hand, and stroke, feeling the extra inches pour out of your sheaths.");
+				var nubby:Boolean = false;
+				if(rand(4) == 0) nubby = true;
+				if(nubby) ExtendLogEvent(" Strangely, you feel sensitive bumps welling up under your fingertips, but they feel too good to worry about, regardless of how out of place they are on your equine rods.");
+				ExtendLogEvent(" You’re getting longer and harder than you were before, and the pleasure mounts and mounts, threatening to send you past a precipice that has your flaring tips nearly doubling in size.");
+				ExtendLogEvent("\n\nThere’s no containing the rampant, almost feral pleasure that overwhelms you. All you can do is lie back and hump at your own hands, suddenly erupting");
+				if(pc.cockTotal() == 2) ExtendLogEvent(" twin");
+				else ExtendLogEvent(" into a multitude of");
+				ExtendLogEvent(ParseText(" fountains of [pc.cumNoun]. Lances of the [pc.cumVisc] thrust through the air before splattering all over your [pc.chest] and body."));
+				var knotty:Boolean = false;
+				if(rand(4) == 0) knotty = true;
+				if(knotty) ExtendLogEvent(" Each spurt comes bigger and thicker than the one behind it, and when your hand slides down to squeeze a newly-formed, canine knot, your mind buckles.");
+				else ExtendLogEvent(" The goo falls thicker and thicker while you heedlessly pump, all the while fighting with an urge to whinny in delight.");
+				ExtendLogEvent(ParseText("\n\nThe orgasm does eventually end, leaving a residual euphoria and a thorough layer of [pc.cum] in its wake."));
+				if(knotty) 
 				{
-					AddLogEvent("In an instant, your " + pc.cocksDescript() + " become distressingly hard, ", "passive", (((pc.isAmazon() ? 159 : 105) - startHours) * 60));
-					if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText("threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it"));
-					else ExtendLogEvent("jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off");
-					ExtendLogEvent(". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up until they burst, overwhelmed by some kind of incredible, internal pressure.");
-					// No spines
-					if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
+					ExtendLogEvent(" The knots don’t shrink down for at least five minutes after. Had you been balls-deep in a");
+					if(isFauxCow) ExtendLogEvent("n amazon, she would’ve had to sit there and let you fill her.");
+					else if(isAmazon) ExtendLogEvent(" faux-cow, he would’ve had to sit there and let you fill him.");
+					else ExtendLogEvent(" bitch, she would’ve had to sit there and let you fill her.");
+				}
+				ExtendLogEvent(" <b>You’ll need to get used to having a");
+				if(knotty) ExtendLogEvent(" knotted");
+				if(knotty && nubby) ExtendLogEvent(",");
+				if(nubby) ExtendLogEvent(" nubby");
+				ExtendLogEvent(" horse-cock.</b>");
+
+				// +5 inches. increase cum volume and such slightly.
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					// TFable dick!
+					if(pc.cocks[x].cType != chosenDickType)
 					{
-						ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrived, replaced by a rampant, unrestrained heat. The change from discomfort to a balmy arousal is almost instantaneous, and with it comes another unfamiliar sensation: little nubs pressing against your palm. You aren’t sure when you grabbed hold of " + pc.oneCock() + " and started stroking, but you can feel the surface of your shaft morphing beneath your fingertips, sprouting tiny, textured nubs across its entire surface. You wouldn’t have noticed if you weren’t squeezing yourself so, at least not at first. Those little nubs are getting more prominent. After a few pumps, they’re big enough to be seen with the naked eye. You ooze pre-cum, imagining the way your newly-textured cock will overwhelm your mates with ecstasy. Wait... mates?");
-					}
-					// Spined already
-					else ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrives. The nubs that cover your cocks wiggle, twitching wildly, even swelling up for a few short moments. Luckily, they return to their normal size a moment later. You sigh with relief, unsure what you would have done had they gotten any larger. Now that the discomfort is gone, you’re aware of another sensation emanating from your genitalia: lust. Not just normal lust either. The kind of lust that compels you to wrap both hands around your lengths and stroke. The kind of lust you couldn’t say no to even if you had an iron will and a lifetime of self-discipline to call upon. Pre dribbles out of your tips in thin streams already. Just how horny are you?");
-					// Lets TF this bitch
-					ExtendLogEvent("\n\nYou jack of harder, stroking two handed, each palm sliding across a pre-cum lubricated length. Releasing a throaty roar of satisfaction, you thrust your hips forward, burying the ");
-					if(pc.cockTotal() > 2) ExtendLogEvent("lucky ");
-					ExtendLogEvent("twin lengths into your hands. At the same time, you become aware of something else.... They’re changing in your very grips, twisting and reshaping against your slickened palms. The nubs don’t change, but just about everything else does. One second, your shafts feel like they’re swelling up like balloons. The next, your " + pc.cockHeads() + " are fat and prominent, a little squishy and almost spongy. Then, they’re narrowing to tapered points. Your pricks are transforming by the second, and you can do naught but continue to stroke them, compelled by infinitely erotic, transformative energies.");
-					ExtendLogEvent("\n\nThere’s no stopping you now. The pleasure rises higher and higher, taking you further and further away from the mundane world. Your head is in the clouds even as your hands are bound to the pulsating, slowly-solidifying lengths below. Your cocks are almost finished changing, and releasing larger and larger waves of bliss to push you beyond conscious thought. Their tips are narrow and pointed, the shafts thick, each nub jolting your ecstatic mind with red-hot, rutting desire.");
-					if(pc.balls > 1) ExtendLogEvent(" Your " + pc.ballsDescript() + " clench, and y");
-					else ExtendLogEvent(" Y");
-					ExtendLogEvent("our rods thicken, urethras flooding with soon to be expelled goo. One thought surfaces a moment before you explode: you have thick, feline dicks, like an immense, powerful lion.");
-					ExtendLogEvent(ParseText("\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of "));
-					if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) ExtendLogEvent("leonine jism");
-					else ExtendLogEvent("relief");
-					ExtendLogEvent(ParseText(" into a puddle on the ground. The pleasure is incandescent, burning away any worry or concern, leaving only deep-seated satisfaction in its wake and the desire to find a group of willing females to sate your rut again and again. The ribbons of [pc.cum] seem almost unending, the continuous bliss beyond your capacity to endure. Your eyes roll back, and consciousness fades to the feeling of your hands stroking one quivering tool after another."));
-					ExtendLogEvent("\n\nWhen you awake, you’re still standing there with both your hands wrapped around your softening dicks, somehow. You let go and stretch, totally sated for once. But, just when you’re planning to");
-					if(pc.isCrotchGarbed()) ExtendLogEvent(" pull your gear back up and");
-					ExtendLogEvent(" get back to business as usual, you give your lion-like phalli an appraising look and remember your desire for a harem... no, a pride. You’ll have to find a few cuties to sate you soon, maybe even some that’ll love the feel of you biting at their neck while you take them.");
-					for(x = 0; x < pc.cockTotal(); x++)
-					{
-						// TFable dick!
-						if(pc.cocks[x].cType != chosenDickType)
+						// +5 inches. increase cum volume and such slightly.
+						pc.cocks[x].cLength(5);
+						pc.shiftCock(x, chosenDickType);
+						if(tempColor2 != "mottled")
 						{
-							pc.shiftCock(x, chosenDickType);
+							if(rand(2) == 0) pc.cocks[x].cockColor = "black";
+							else pc.cocks[x].cockColor = "pink";
 						}
+						else pc.cocks[x].cockColor = "mottled pink and black";
+						if(knotty) 
+						{
+							pc.cocks[x].addFlag(GLOBAL.FLAG_KNOTTED);
+							pc.cocks[x].knotMultiplier = 1.5;
+						}
+						if(nubby) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
 					}
-					// Cum
-					pc.orgasm();
-					pc.boostCum(3);
 				}
+				// Cum
+				pc.orgasm();
+				pc.boostCum(3);
+			}
+		}
+		// Dawg Cawk
+		else if(chosenDickType == GLOBAL.TYPE_CANINE)
+		{
+			// Single
+			if(!changeAllDicks)
+			{
+				AddLogEvent("Your " + pc.cockDescript(targetDick) + " shifts, pulling up against your crotch. You wince at the abrupt change", "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(isFauxCow) {}
+				else if(isAmazon) ExtendLogEvent(", wondering if something has gone wrong, fearing that you’ll wind up as some kind of tiny-dicked freak");
+				else ExtendLogEvent(", wondering if something has gone wrong, fearing that you’ll wind up as one of the effeminate faux-cows");
+				if(pc.isCrotchGarbed()) ExtendLogEvent(" even while you pull your equipment off for a better look");
+				else ExtendLogEvent(" even while you peer down for a better look");
+				ExtendLogEvent(". It doesn’t feel like it’s shrinking, but it is");
+				if(pc.hasSheath(targetDick)) ExtendLogEvent(" pulling further and further into its sheath. Eventually, it vanishes entirely, hidden from view.");
+				else ExtendLogEvent(" pulling into your crotch somehow, leaving your " + pc.cocks[targetDick].cockColor + " skin to bunch up around the base. Fur breaks out over the strange pubic mound, taking the place of the hair that once dwelt there. Meanwhile, your " + pc.cockDescript(targetDick) + " continues its vanishing game, eventually disappearing entirely into what can only be a fuzzy sheath.");
+				ExtendLogEvent("\n\nYou feel strangely warm all over from the odd change sweeping through your body, but the heat is primarily concentrated in your loins, where <i>something</i> is happening to your dick. You can’t just sit here and wait. You’ve got to figure out what’s happening to you, even if it means sticking a finger in after. Here goes....");
+				ExtendLogEvent("\n\nYour probing digit slips right in, finding the interior to be warmer than you expected, almost hot. It’s a little slick too, like the whole of it is covered in a thin sheen of sweat. You feel around in there, breathing faster and faster from the inexpert stimulation, until you hit the pointed tip of what can only be your prick.");
+				if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_TAPERED)) ExtendLogEvent(" Wait... pointed tip? Your cock wasn’t <i>that</i> angular.");
+				ExtendLogEvent(" The sensation of friction between your finger and genital is almost more than you can bear. You fall back, panting noisily and rubbing all the harder.");
+				ExtendLogEvent("\n\nYou can’t keep it up, though. Your bright red length is pushing your naughty digit out of your sheath, revealing its new shape to you in all its glory. <b>You have a bright red, pointed dog-dick, complete with a slight bulge at the base from your uninflated knot.</b> The sensation of the air blowing across it is almost too much to bear. Your hand wraps around it, at first to shield it from errant breezes, and then to stroke it, pumping furiously, feeding more and more pleasure to your expanding " + (isFauxCow ? "puppy cock" : "bitch-breaker") + ".");
+				ExtendLogEvent(ParseText("\n\nYou howl, a blissful, wonderful sound of triumph, announcing that you’ve hit your peak even before it. The bulge at the base of your canine prick expands, and you just <i>have</i> to wrap your hand around it, to feel something warm squeeze against it. It’s all too much. The pulsing, animalistic bliss overwhelms you, and you abruptly erupt, launching rope after rope of [pc.cum] across your [pc.chest]"));
+				if(pc.cocks[targetDick].cLength() < 18) ExtendLogEvent(ParseText(" and [pc.belly]"));
+				else ExtendLogEvent(ParseText(" and [pc.face]"));
+				ExtendLogEvent(". The climax drags on and on. Even when you go dry, you’re still pulsating in your grip, your rock-solid knot");
+				if(isFauxCow) ExtendLogEvent(" satisfying an imaginary master or mistress while they reward you.");
+				else ExtendLogEvent(" holding an imaginary cow-girl in place while she fountains milk along with you.");
+				ExtendLogEvent(" The orgasm eventually ends, leaving you with a slowly-receding dick that would look at home on");
+				if(pc.originalRace != "half-ausar") ExtendLogEvent(" a big dog");
+				else ExtendLogEvent(" an ausar");
+				ExtendLogEvent(".");
+				pc.shiftCock(targetDick, chosenDickType);
+				// orgasm
+				pc.orgasm();
+				pc.boostCum(3);
+			}
+			// Multi!
+			else
+			{
+				AddLogEvent("You double over a feeling that can only be described as... diminishment traverses your crotch from one side to the other, centered over your " + pc.cocksDescript() + ". Terrified that something might have gone wrong", "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(isFauxCow) {}
+				else if(isAmazon) ExtendLogEvent(" - that you might be shrinking into some sort of tiny-dicked freak");
+				else ExtendLogEvent(" - that you might be shrinking and turning into a faux-cow");
+				ExtendLogEvent(", you stagger back");
+				if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", reaching into your [pc.lowerGarment] with shaking hands"));
+				else ExtendLogEvent(", looking down with probing eyes");
+				ExtendLogEvent(".");
+				if(pc.totalSheaths() <= 1) ExtendLogEvent(" The strangest thing is happening. Your " + pc.cocksDescript() + " are each shrinking... and yet not. They feel more like they’re pulling back into your body, and the skin is bunching up around the base of each one, sprouting a fine layer of fur as it thickens. You gasp. Your dicks aren’t getting smaller - they’re retracting into sheaths! Canine cocksheaths!");
+				else ExtendLogEvent(ParseText(" Thankfully, your members are merely retracting into their sheaths, pulling back until they’ve almost entirely vanished. More importantly, the sheaths themselves are covered in a layer of rich, [pc.furColor] fur, appearing canine in nature."));
+				ExtendLogEvent("\n\nWith this new development firmly in your mind, you sink to the ground, sitting");
+				if(!pc.isTaur()) ExtendLogEvent(ParseText(" on your [pc.butt]"));
+				else ExtendLogEvent(" on your haunches");
+				ExtendLogEvent(" to watch the developing drama down south. It actually feels kind of... good. There’s a kind of sensual warmth to it. A whole-body flush spreads through your form while your " + pc.cocksDescript() + " finish their descent into hiding. You groan and slide your hands down to your sheaths, rubbing them affectionately, enjoying the sensation of playing with new nerves. You realize something is happening within you: your " + pc.cocksDescript() + " are changing into something else. They bulge against the inside of your sensitive folds in the most pleasant way. Just what are they changing into?");
+				ExtendLogEvent("\n\nThey answer your question a moment later by thrusting up out of your sheaths, bright-red and pointed, narrow tips visibly quivering as more sensitive dickflesh emerges. You whimper; it sounds almost like a pant to your ears. They feel so good, and they’re so slick and hot. They almost glow to your eyes, bundles of red erotic energy just waiting to be touched, squeezed, and explosively released. Your hands are trembling and sweating, barely controlled. You aren’t sure that you could stop yourself from jacking off if you wanted to.");
+				ExtendLogEvent("\n\nThe decision is taken out of your hands when, with violent lurches and soft-sounding pops, glistening knots emerge. The rounded bulges are trembling with unchecked need. They grow by the second, surging with the intensity of their building load.");
+				var nubtacular:Boolean = false;
+				if(rand(4) == 0) nubtacular = true;
+				if(nubtacular) ExtendLogEvent(" Small nubs grow out of the surfaces of your " + pc.cocksDescript() + " before your eyes, but the ever-increasing pressure keeps your attention focused on your impending eruption over any concerns about the shapes of your new features.");
+				ExtendLogEvent(" You feel so pent up, like you haven’t cum in days. The knots grow ever larger, and you whine, humping the air. That pressure is almost overwhelming, blasting every thought out of your head except for one: how badly you need to release.");
+				ExtendLogEvent(ParseText("\n\nAlmost doubling in size, your knots expand once more, the sensation so hellishly pleasurable that you lose all control. Your muscles quiver. Your hips lock. Arching your back, you erupt like a geyser, spewing ropes of [pc.cum] into the air with such force that they look like a [pc.cumColor] web. A moment later, they fall down across you, but you’re already launching more up to replace them, painting yourself with layer after layer of glistening [pc.cumNoun], cumming to the feeling of your knots being so swollen. You can only imagine how good they would feel trapped in tight channels"));
+				if(!isFauxCow) ExtendLogEvent(", pouring your virile energy into them with womb-filling fury");
+				ExtendLogEvent(".");
+				ExtendLogEvent(ParseText("\n\nThe comedown happens an indeterminate amount of time later. You have memories of seemingly unending pleasure, and you’re panting like you’ve just run a marathon. Also, you’re lying in the biggest puddle of [pc.cum] you’ve ever produced. A look at the Codex tells you that you’ve been here for the better part of a half-hour. Doing your best to clean yourself off, you find yourself smiling all the same"));
+				if(isFauxCow) ExtendLogEvent(", you find yourself smiling all the same, happy with your puppy cocks");
+				else ExtendLogEvent(". Tools like this are going to be extra effective at breeding bitches");
+				if(nubtacular) ExtendLogEvent(", extra nubs or not");
+				ExtendLogEvent(".");
+
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					// TFable dick!
+					if(pc.cocks[x].cType != chosenDickType)
+					{
+						pc.shiftCock(x, chosenDickType);
+						if(nubtacular) pc.cocks[x].addFlag(GLOBAL.FLAG_NUBBY);
+					}
+				}
+				// Cum
+				pc.orgasm();
+				pc.boostCum(3);
+			}
+		}
+		// Cat Cawk - Fuck this, not doing it nau
+		else
+		{
+			// Single Catcock TF
+			if(!changeAllDicks)
+			{
+				AddLogEvent("Your " + pc.cockDescript(targetDick) + " becomes distressingly hard in an instant", "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with an ill-fitting titanium bar in your pants. You pull the offending equipment out of the way, and the relief is so palpable you could swim in it"));
+				else ExtendLogEvent(", jutting out from your crotch like some kind of rigid, cybernetically attached lever. You aren’t sure you’d be able to stand having an erection this strong trapped within any kind of clothing");
+				ExtendLogEvent(". It grows harder by the second. A small part of you wonders if you’re somehow going to explode.");
+				// Not yet spined
+				if(!pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
+				{
+					ExtendLogEvent("\n\nThe pent-up pressure fades, leaving heat, lust, and cosmetic additions to your cock. Tiny bumps are rising up out of your sensitive, " + pc.cocks[targetDick].cockColor + " flesh. At first, they’re small enough that you wouldn’t have noticed them without holding your member in your hand. But as your heart beats and the overwhelming tightness recedes, they grow bigger, transforming into fleshy, texture-rich nodules. Just feeling your fingertips playing across them has you swooning and leaking from the tip. You can only imagine what they’ll do to a pussy or an asshole. It’ll be a sensory overload they won’t soon forget.");
+				}
+				// Already spined
+				else ExtendLogEvent("\n\nThe pent-up pressure fades as quickly as it appeared, bringing with it waves of lust and a strange quivering from the nubs that cover your " + pc.cockDescript(targetDick) + ". They wiggle, pulsating bigger for a moment before receding. You don’t have time to question the odd development as the rising tide of desire compels you to wrap a hand around the quivering length and tug, stroking the sensitive haft until droplets of pre-cum are spilling from the tip almost nonstop.");
+				// CHANGE PLACES... errr shapes
+				ExtendLogEvent("\n\nYour jaw opens, and you release a throaty roar of satisfaction, pumping your transforming prick for all you’re worth. It changes inside your palm. The shape twists. The veins vanish. The only constant is the all-consuming enjoyment that it provides - the way it makes your synapses dance in ecstasy. The tip fattens and then narrows between your fingertips, coming to something approximating a tip. Luckily, those wonderful nubs hang on through it all, even when your dick’s transformation seems to be coming to a close, bringing with it final surges of electric, dazzling pleasure.");
+				ExtendLogEvent(ParseText("\n\nGrunting, you thrust into your palm. Those grunts transform into feral, powerful roars of " + (isFauxCow ? "need" : "triumph") + ", and orgasm washes through you, transforming your body to a fiery volcano. Ropes of licentious release erupt from you, chased by even bigger geysers of your seed. You pump widely, clenching powerful internal muscles to drive yet more [pc.cum] from your undoubtedly feline member."));
+				if(isFauxCow) ExtendLogEvent(" You are overwhelmed by an urge to clamp your jaw around your mate’s shoulder, or to drive your nails over their back while they fuck you!");
+				else ExtendLogEvent(" The urge to clamp your jaw around your mate’s neck overwhelms you - if only you had a female here, impaled on your spurting cat-cock!");
+				ExtendLogEvent(ParseText(" The thought sends fresh squirts of [pc.cumColor] out to fall on the ground, and your eyelids roll back, your mind overloaded."));
+				
+				ExtendLogEvent("\n\nComing down, you find yourself still stroking your softening cat-cock. Having a big, fat animal-dick like this makes you feel like some kind of alpha male. You pat the shrinking thing affectionately, and resolve to live up to the " + (isFauxCow ? "savage" : "predatory") + " image it conjures in your mind.");
+				if(isFauxCow) ExtendLogEvent(" You don’t want to be like a mewling cow, you want to be in a pride! The stars can be your savanna.");
+				else if(isAmazon) ExtendLogEvent(" You don’t want a harem of mewling cow-girls. You want a pride. The stars can be your savanna, and you’ll be its amazon queen.");
+				else ExtendLogEvent(" You don’t want a harem of mewling cow-girls. You want a pride. The stars can be your savanna, and you’ll be its lord.");
+				pc.shiftCock(targetDick, chosenDickType);
+				pc.orgasm();
+				pc.boostCum(3);
+			}
+			// Multicock!
+			else
+			{
+				AddLogEvent("In an instant, your " + pc.cocksDescript() + " become distressingly hard", "passive", (((isAmazon ? 159 : 105) - startHours) * 60));
+				if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(", threatening to shred your [pc.lowerGarments] no matter how sturdy the construction. It’s like walking around with ill-fitting titanium bars stuffed into your pants. You pull the offending equipment out of the way, and the relief is so palpable that you could fill a pool with it"));
+				else ExtendLogEvent(", jutting out from your crotch like levers from a perverse control panel. You aren’t sure you’d be able to stand having erections like this trapped within any kind of clothing. For once, nudity pays off");
+				ExtendLogEvent(". They’re getting harder by the second, still. A part of you wonders if they’re going to pump up until they burst, overwhelmed by some kind of incredible, internal pressure.");
+				// No spines
+				if(pc.cocks[targetDick].hasFlag(GLOBAL.FLAG_NUBBY))
+				{
+					ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrived, replaced by a rampant, unrestrained heat. The change from discomfort to a balmy arousal is almost instantaneous, and with it comes another unfamiliar sensation: little nubs pressing against your palm. You aren’t sure when you grabbed hold of " + pc.oneCock() + " and started stroking, but you can feel the surface of your shaft morphing beneath your fingertips, sprouting tiny, textured nubs across its entire surface. You wouldn’t have noticed if you weren’t squeezing yourself so, at least not at first. Those little nubs are getting more prominent. After a few pumps, they’re big enough to be seen with the naked eye. You ooze pre-cum, imagining the way your newly-textured cock will overwhelm your mates with ecstasy. Wait... mates?");
+				}
+				// Spined already
+				else ExtendLogEvent("\n\nStrangely, the strain begins to fade almost as soon as it arrives. The nubs that cover your cocks wiggle, twitching wildly, even swelling up for a few short moments. Luckily, they return to their normal size a moment later. You sigh with relief, unsure what you would have done had they gotten any larger. Now that the discomfort is gone, you’re aware of another sensation emanating from your genitalia: lust. Not just normal lust either. The kind of lust that compels you to wrap both hands around your lengths and stroke. The kind of lust you couldn’t say no to even if you had an iron will and a lifetime of self-discipline to call upon. Pre dribbles out of your tips in thin streams already. Just how horny are you?");
+				// Lets TF this bitch
+				ExtendLogEvent("\n\nYou jack of harder, stroking two handed, each palm sliding across a pre-cum lubricated length. Releasing a throaty roar of satisfaction, you thrust your hips forward, burying the");
+				if(pc.cockTotal() > 2) ExtendLogEvent(" lucky");
+				ExtendLogEvent(" twin lengths into your hands. At the same time, you become aware of something else.... They’re changing in your very grips, twisting and reshaping against your slickened palms. The nubs don’t change, but just about everything else does. One second, your shafts feel like they’re swelling up like balloons. The next, your " + pc.cockHeads() + " are fat and prominent, a little squishy and almost spongy. Then, they’re narrowing to tapered points. Your pricks are transforming by the second, and you can do naught but continue to stroke them, compelled by infinitely erotic, transformative energies.");
+				ExtendLogEvent("\n\nThere’s no stopping you now. The pleasure rises higher and higher, taking you further and further away from the mundane world. Your head is in the clouds even as your hands are bound to the pulsating, slowly-solidifying lengths below. Your cocks are almost finished changing, and releasing larger and larger waves of bliss to push you beyond conscious thought. Their tips are narrow and pointed, the shafts thick, each nub jolting your ecstatic mind with red-hot, rutting desire.");
+				if(pc.balls > 1) ExtendLogEvent(" Your " + pc.ballsDescript() + " clench, and y");
+				else ExtendLogEvent(" Y");
+				ExtendLogEvent("our rods thicken, urethras flooding with soon to be expelled goo. One thought surfaces a moment before you explode: you have thick");
+				if(isFauxCow) ExtendLogEvent(", kitty dicks, like a graceful tiger.");
+				else ExtendLogEvent(", feline dicks, like an immense, powerful lion.");
+				ExtendLogEvent(ParseText("\n\n[pc.Cum] surges, obliterating any attempt at reason, leaving you roaring and spurting, erupting long lances of"));
+				if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) ExtendLogEvent(" leonine jism");
+				else ExtendLogEvent(" relief");
+				ExtendLogEvent(" into a puddle on the ground. The pleasure is incandescent, burning away any worry or concern, leaving only deep-seated satisfaction in its wake");
+				if(!isFauxCow) ExtendLogEvent(" and the desire to find a group of willing females to sate your rut again and again");
+				ExtendLogEvent(ParseText(". The ribbons of [pc.cum] seem almost unending, the continuous bliss beyond your capacity to endure. Your eyes roll back, and consciousness fades to the feeling of your hands stroking one quivering tool after another."));
+				ExtendLogEvent("\n\nWhen you awake, you’re still standing there with both your hands wrapped around your softening dicks, somehow. You let go and stretch, totally sated for once. But, just when you’re planning to");
+				if(pc.isCrotchGarbed()) ExtendLogEvent(" pull your gear back up and");
+				ExtendLogEvent(" get back to business as usual, you give your");
+				if(isFauxCow) ExtendLogEvent(" tiger-like phalli an appraising look and remember your desire to be in a harem... no, a pride. You’ll have to find a few playmates soon, maybe even some that’ll love the feel of you biting at their shoulder or driving your nails over their back.");
+				else ExtendLogEvent(" lion-like phalli an appraising look and remember your desire for a harem... no, a pride. You’ll have to find a few cuties to sate you soon, maybe even some that’ll love the feel of you biting at their neck while you take them.");
+				for(x = 0; x < pc.cockTotal(); x++)
+				{
+					// TFable dick!
+					if(pc.cocks[x].cType != chosenDickType)
+					{
+						pc.shiftCock(x, chosenDickType);
+					}
+				}
+				// Cum
+				pc.orgasm();
+				pc.boostCum(3);
 			}
 		}
 	}

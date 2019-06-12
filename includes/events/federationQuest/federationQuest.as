@@ -863,7 +863,7 @@ public function fedQuestVents():void
 	output("Well, this should keep the guards out of your hair for a good long while while they fuck themselves senseless. You pull the Lustoxin vial from your pack and look around for somewhere to use it. Ah, there we go: you spy a vent above the door, hanging on with a simple metal latch. It comes undone with a thumb’s push" + (pc.tallness < 5*12 ? " once you scramble up onto a chair from a nearby office" : "") + ", letting you peer into a series of connecting metal shafts built into the wall. This’ll spread the gas all over!");
 	processTime(5+rand(4));
 	
-	addButton(0, "Do it", fedQuestGasTheGoldsRaceWarNow, undefined, "Do it", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
+	addButton(0, "Do It", fedQuestGasTheGoldsRaceWarNow, undefined, "Do It", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
 	addButton(1, "Don’t", mainGameMenu, undefined, "Don’t", "Maybe not...");
 }
 
