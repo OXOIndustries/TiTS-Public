@@ -3714,7 +3714,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		}
 		
 		// Refractory Megaboost & Cum Quality
-		if(pc.hasCock() && pc.refractoryRate < 50 && treatedHours >= 69 && startHours < 69)
+		if(pc.hasCock() && pc.refractoryRate < 30 && treatedHours >= 69 && startHours < 159)
 		{
 			var numRefGains:int = 0;
 			var refGainStarts:Array = [69, 77, 157];
