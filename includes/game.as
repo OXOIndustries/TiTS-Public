@@ -3793,6 +3793,13 @@ public function variableRoomUpdateCheck():void
 	// Lorelei
 	if (flags["LORELEI_BEATEN"] != undefined || isLoreleisBitch()) rooms["ZSR LORELEI"].addFlag(GLOBAL.NPC);
 	else rooms["ZSR LORELEI"].removeFlag(GLOBAL.NPC);
+	
+	// Olympia
+	if(!pirateResearchVesselStolen()) rooms["ZSF AB20"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF AB20"].removeFlag(GLOBAL.NPC);
+	// Dr. Teyaal
+	if(flags["TEYAAL_DEFEATED"] == 2) rooms["ZSF AD20"].removeFlag(GLOBAL.NPC);
+	else rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
 
 	/* UVETO */
 	

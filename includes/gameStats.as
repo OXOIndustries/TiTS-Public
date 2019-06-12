@@ -3729,7 +3729,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
-						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
+						output2("\n<b>* Pirate Base, Dr. Khan:</b> Met him, Defeated him");
 						if(flags["KQ2_FUCKED_KHAN"] != undefined) output2(", Sexed him with Kara");
 						if(flags["KQ2_KHAN_LOOTED"] != undefined)
 						{
@@ -4014,7 +4014,7 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["SYRIQUEST_STATE"] >= 8)
 				{
-					output2("\n<b>* Dr.Calnor:</b> Met him");
+					output2("\n<b>* Dr. Calnor:</b> Met him");
 				}
 				if(flags["SYRIQUEST_STATE"] >= 10)
 				{
@@ -7609,12 +7609,23 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 			}
-			if(flags["MET_OLYMPIA"] != undefined)
+			if(flags["MET_OLYMPIA"] != undefined || flags["TEYAAL_DEFEATED"] != undefined)
 			{
 				output2("\n<b><u>Research & Development Lab</u></b>");
+				output2("\n<b>* Ship Status:</b> " + (pirateResearchVesselStolen() ? "Stolen" : "Docked"));
 				// Olympia
-				output2("\n<b>* Olympia:</b> Met her");
-				if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
+				if(flags["MET_OLYMPIA"] != undefined)
+				{
+					output2("\n<b>* Olympia:</b> Met her");
+					if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
+				}
+				// Dr. Teyaal
+				if(flags["TEYAAL_DEFEATED"] != undefined)
+				{
+					output2("\n<b>* Dr. Teyaal:</b> Met her");
+					if(flags["TEYAAL_DEFEATED"] >= 1) output2(", Defeated her");
+					if(flags["TEYAAL_DEFEATED"] >= 2) output2(", She escaped");
+				}
 				variousCount++;
 			}
 			if(flags["SHOCK_HOPPER_DEFEATED"] != undefined)
