@@ -7,6 +7,23 @@
 
 //tavros
 
+public function extrameetKaedeProfile():void
+{
+	output("The profile picture on your screen is unmistakably familiar: a ginger half-ausar girl in a leather pilot’s blazer smiling nervously at the camera. Kaede’s ears are flat against her scalp, and her bushy tail is wrapped three times around a leg, but the poor thing’s trying her best. There’s a shadow behind her from the cameraman... considering the perky wolf-ears you can make out, it’s probably Anno.");
+	output("\n\nUsername: Crimson_Rockette_28");
+	output("\nSex: Trans");
+	output("\nAge: 25 Years");
+	output("\nRace : Half-ausar");
+	output("\nPlanet: Tavros");
+	output("\n\nBio:");
+	output("\nSocially awkward half-ausar looking for friends and ~more~ on her home station who don’t mind helping an introvert out of her shell. Tavros born and raised! Own my own business as a professional pilot. Love games of all kinds. Not looking for anything monogamous, sorry.");
+}
+
+public function extrameetKaedeCheckMatch():void
+{
+	return (pc.hasCock() || pc.hasVagina());
+}
+
 public function extrameetBigTiddyGothGFProfile():void
 {
 	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smokey black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
