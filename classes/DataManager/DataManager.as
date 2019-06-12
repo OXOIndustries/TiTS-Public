@@ -1803,7 +1803,7 @@
 					try
 					{
 						kGAMECLASS.shits[prop] = new (getDefinitionByName(obj.shittyShips[prop].classInstance) as Class)();
-						kGAMECLASS.shits[prop].loadSaveObject(obj.characters[prop]);
+						kGAMECLASS.shits[prop].loadSaveObject(obj.shittyShips[prop]);
 					}
 					catch (e:ReferenceError)
 					{
