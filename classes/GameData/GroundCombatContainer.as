@@ -4966,7 +4966,7 @@ package classes.GameData
 					var energyGen:Number = (target as ShittyShip).shipPowerGen();
 					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
 					target.energy(energyGen);
-					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (+" + energyGen + ").");
+					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (+<b><span class='hp'>" + energyGen + "</span></b>).");
 					continue;
 				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.

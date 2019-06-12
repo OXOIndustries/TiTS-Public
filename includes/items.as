@@ -1,6 +1,7 @@
 ﻿import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.ShittyShip;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
 import classes.GameData.CombatManager;
@@ -690,6 +691,50 @@ public function shop(keeper:Creature):void {
 	if(keeper.typesBought.length > 0) 
 		addButton(1,"Sell Item",sellItem);
 	addButton(14,"Back",mainGameMenu);
+}
+
+public function buyShipFitItem():void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	output("Buying a module will result in it being immediately installed on your ship. They're too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length) + "\n<b>Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
+	output("<b><u>Modules For Sale & Fit:</u></b>");
+	for(var i:int = 0; i < ship.inventory.length; i++)
+	{
+		output("\[[[Modular\]]] " + ship.inventory[i].longName + ", <b>sell value:</b> " + Math.floor(ship.inventory[i].basePrice/2));
+		addButton(i,ship.inventory[i].shortName,unfitShipItemForReal,i,ship.inventory[i].longName,ship.inventory[i].tooltip);
+	}
+
+
+}
+public function unfitShipItem():void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you'll have to sell it.\n\n");
+	output("<b><u>Currently Fitted Modules:</u></b>");
+	if(!(ship.rangedWeapon is EmptySlot)) output("\n\[[[<b>Integrated:</b>\]]] " + ship.rangedWeapon.longName);
+	if(!(ship.meleeWeapon is EmptySlot)) output("\n\[[[<b>Integrated</b>\]]] " + ship.meleeWeapon.longName);
+	if(!(ship.accessory is EmptySlot)) output("\n\[[[<b>Integrated</b>\]]] " + ship.accessory.longName);
+	for(var i:int = 0; i < ship.inventory.length; i++)
+	{
+		output("\[[[Modular\]]] " + ship.inventory[i].longName + ", <b>sell value:</b> " + Math.floor(ship.inventory[i].basePrice/2));
+		addButton(i,ship.inventory[i].shortName,unfitShipItemForReal,i,ship.inventory[i].longName,ship.inventory[i].tooltip);
+	}
+	addButton(14, "Back", shop, shopkeep);
+
+}
+
+public function unfitShipItemForReal(i:Number):void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	clearOutput();
+	output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crewmember, weapon system, or upgrade. (+" + Math.floor(ship.inventory[i].basePrice/2) + " credits.)");
+	pc.credits += Math.floor(ship.inventory[i].basePrice/2);
+	//Remove one item
+	ship.inventory.splice(i,1);
+	processTime(60);
+	clearMenu();
+	addButton(0,"Next",unfitShipItem);
 }
 
 public function buyItem():void {

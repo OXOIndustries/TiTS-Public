@@ -49,7 +49,7 @@ public function startAShipfite(dubble:Boolean = false):void
 
 	var tEnemy:ShittyShip = new Casstech();
 	var pcShip:ShittyShip = shits["SHIP"];
-	pcShip.createPerk("PCs");
+	if(!pcShip.hasPerk("PCs")) pcShip.createPerk("PCs");
 	pcShip.inventory.push(new EMCannon());
 	tEnemy.rangedWeapon = new EmptySlot();
 	tEnemy.inventory = [new EMCannon()];
