@@ -129,49 +129,54 @@ public function shekkaCrewMenu():void
 	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven’t found any special salvage to sell.");
 	
-	//9999 addButton(13, "Leave Crew", shekkaBootFromCrew, undefined, "Leave Crew", "Ask Shekka to move off the ship. You’ll be able to pick her up again later.");
+	addButton(13, "Leave Crew", shekkaBootFromCrew, undefined, "Leave Crew", "Ask Shekka to move off the ship. You’ll be able to pick her up again later.");
 	
 	addButton(14,"Back",crew);
 }
 
-// 9999
 public function shekkaBootFromCrew():void
 {
 	clearOutput();
 	showShekka();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
-	
+	output("You let Shekka know that you need to do some reorganizing of your current crew and ship layout, which means sending her away for the time being.");
+	output("\n\n<i>“Oh,”</i> Shekka mouths, momentarily crestfallen. <i>“Hopefully the old shop didn’t burn down or nuttin’.”</i> She turns away, scooping tools and parts off the floor in heavy armloads. <i>“You know where to find me when you change your mind.”</i> An avalanch of clanks, clangs, and sharp pings assaults your ears as she upends her collection into a box.");
+	output("\n\nThe raskvel mechanic brushes by you slowly, tail cradling your thigh. <i>“And if for some reason you don’t - thanks, [pc.name]. Thanks for everything.”</i> Shekka chews her lip, nods once, and departs.");
 	processTime(20);
 	
 	flags["SHEKKA_ONBOARD"] = undefined;
 	if(InCollection(flags["CREWMEMBER_SLEEP_WITH"], ["SHEKKA", "SHEKKA AND ANNO"])) flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Shekka is no longer on your crew. You can find her again on Tarkus.</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
 public function shekkaRejoinCrew():void
 {
 	clearOutput();
 	showShekka();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
-	
-	processTime(20);
+	output("You ask Shekka if she’d like to rejoin your crew.");
+
+	output("\n\n<i>“You sure you have room?”</i> Shekka teases. <i>“You know us raskvel, taking up all kinds of room in those tight quarters, requesting 20 foot ceilings, and eating six times our weight in a day. I’d be a tremendous burden.”</i>");
+	output("\n\nYou answer by raising an eyebrow.");
+	output("\n\n<i>“Okay, okay, if you insist, but don’t come running to me when the ship’s protein stores run low.”</i> {Shekka glances down and flushes./Shekka winks.} <i>“I patch holes in the hull and make your engines run like new, but I can’t be held responsible if you knowingly overencumber your ship again!”</i>");
+	output("\n\nWhile you’re reassuring the wide-hipped mechanic that you do in fact, have room, she’s tossing tools and equipment together for the walk back to the hangar. In fact, she doesn’t even pay attention to you until she’s gathered her things together by the door.");
+	output("\n\n<i>“Hey, [pc.name].”</i> Shekka crooks a finger.");
+	output("\n\nYou lean closer. <i>“What?”</i>");
+	output("\n\nShe kisses you on the lips, long and slow. She doesn’t quite using her tongue, choosing to show her affection with the fierce press of mouth to mouth and the soft embrace of scaled arms around the back of your neck. Her eyes slowly drift closed as every ounce of tension leaves her body. Pulling back at last, Shekka’s eyes twinkle. <i>“Thanks.”</i>");
+	output("\n\nYour petite mechanic saunters out the door without another word, toting her body weight in tools.");
+
+	processTime(10);
 	
 	//currentLocation = "SHIP INTERIOR";
 	flags["SHEKKA_ONBOARD"] = 1;
 
 	output("\n\n(<b>Shekka has rejoined your crew!</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
