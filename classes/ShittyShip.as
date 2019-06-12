@@ -1,4 +1,4 @@
-﻿package classes {
+	package classes {
 	import classes.Characters.*;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -33,6 +33,8 @@
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.*;
 
 	public class ShittyShip extends Creature {
@@ -160,7 +162,7 @@
 				evasion += inventory[i].evasion;
 				accuracy += inventory[i].attack;
 				defense += inventory[i].defense;
-				shieldDefense += inventory[i].shieldDefense;
+				if(inventory[i].type != GLOBAL.RANGED_WEAPON) shieldDefense += inventory[i].shieldDefense;
 				fortification += inventory[i].fortification;
 				shields = inventory[i].shields;
 			}
@@ -172,8 +174,11 @@
 			fortification += meleeWeapon.fortification + rangedWeapon.fortification + armor.fortification + shield.fortification + accessory.fortification;
 
 			shields += meleeWeapon.shields + rangedWeapon.shields + armor.shields + shield.shields + accessory.shields;
-			shieldDefense += meleeWeapon.shieldDefense + rangedWeapon.shieldDefense + armor.shieldDefense + shield.shieldDefense + accessory.shieldDefense;
-			
+			if(meleeWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += meleeWeapon.shieldDefense;
+			if(rangedWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += rangedWeapon.shieldDefense;
+			if(armor.type != GLOBAL.RANGED_WEAPON) shieldDefense += armor.shieldDefense;
+			if(shield.type != GLOBAL.RANGED_WEAPON) shieldDefense += shield.shieldDefense;
+			if(accessory.type != GLOBAL.RANGED_WEAPON) shieldDefense += accessory.shieldDefense;			
 			if(type == 0) return evasion;
 			else if(type == 1) return accuracy;
 			else if(type == 2) return defense;
@@ -192,6 +197,50 @@
 				if(inventory[i].type == GLOBAL.RANGED_WEAPON) weaps.push(inventory[i]);
 			}
 			return weaps;
+		}
+		public function shipWeaponDamage(weapon:ItemSlotClass):TypeCollection
+		{
+			var modifiedDamage:TypeCollection;
+			
+			modifiedDamage = weapon.baseDamage.makeCopy();
+				
+			// Easiest way I can think of conveying base damage - might be better to add this as a flat bonus some other way.
+			// Only add bonus if the weapons already doing SOME HP damage		
+			
+			return modifiedDamage;
+		}
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			var shots:Number = 0;
+			//Fire built-in weapons
+			if(meleeWeapon.type == GLOBAL.RANGED_WEAPON && !meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(shots++ > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(this, target,meleeWeapon, false, "ranged");
+			}
+			if(rangedWeapon.type == GLOBAL.RANGED_WEAPON && !rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(shots++ > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(this, target, rangedWeapon, false, "ranged");
+			}
+			if(accessory.type == GLOBAL.RANGED_WEAPON && !accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(shots++ > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(this, target, accessory, false, "ranged");
+			}
+			//Fire "inventory" weapons that are turned on.
+			for(var x:int = 0; x < this.inventory.length; x++)
+			{
+				if(inventory[x].type == GLOBAL.RANGED_WEAPON && !inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF))
+				{
+					if(shots++ > 0) output("\n");
+					CombatAttacks.SingleRangedShipAttackImpl(this, target, inventory[x], false, "ranged");
+				}
+			}
+			//RECOVER POWER
+			this.energy(this.shipPowerGen());
+			if (target == null) return;
 		}
 	}
 }

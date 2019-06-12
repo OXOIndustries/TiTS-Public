@@ -550,6 +550,8 @@
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
+		public var shits:Object;
+		public var shitDict:Dictionary;
 
 		public var days:int;
 		public var hours:int;

@@ -1,4 +1,5 @@
 import classes.ShittyShips.Casstech;
+import classes.ShittyShips.ShittyShipGear.EMCannon;
 
 public function SCT():void
 {
@@ -47,12 +48,18 @@ public function startAShipfite(dubble:Boolean = false):void
 	addButton(0,"Next",CombatManager.beginCombat);*/
 
 	var tEnemy:ShittyShip = new Casstech();
-	var pcShip:ShittyShip = new Casstech();
+	var pcShip:ShittyShip = shits["SHIP"];
+	pcShip.createPerk("PCs");
+	pcShip.inventory.push(new EMCannon());
+	tEnemy.rangedWeapon = new EmptySlot();
+	tEnemy.inventory = [new EMCannon()];
 	CombatManager.newGroundCombat();
 	if(dubble)
 	{
-		CombatManager.setHostileActors(tEnemy,tEnemy);	
-		CombatManager.setFriendlyActors(pcShip,pcShip);
+		var tEnemy2:ShittyShip = new Casstech();
+		var allyShip:ShittyShip = new Casstech();
+		CombatManager.setHostileActors(tEnemy,tEnemy2);	
+		CombatManager.setFriendlyActors(pcShip,allyShip);
 	}
 	else
 	{

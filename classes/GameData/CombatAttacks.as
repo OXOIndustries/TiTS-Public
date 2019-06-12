@@ -27,11 +27,13 @@ package classes.GameData
 	import classes.Items.Guns.HardlightBow;
 	import classes.Items.Melee.SaurmorianHammer;
 	import classes.Items.Miscellaneous.GrayMicrobots;
+	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.ShittyShip;
 	import classes.StringUtil;
 	import classes.Util.RandomInCollection;
 	
@@ -680,6 +682,67 @@ package classes.GameData
 			
 			return true;
 		}
+		public static function SingleRangedShipAttackImpl(attacker:Creature, target:Creature, weapon:ItemSlotClass, asFlurry:Boolean = false, special:String = "ranged"):Boolean
+		{
+			var PCAttacker:Boolean = attacker.hasPerk("PCs");
+			var PCTarget:Boolean = target.hasPerk("PCs");
+			//Check for miss. Much more variable than the old "rangedCombatMiss"
+			if(attacker.energy() - weapon.shieldDefense < 0)
+			{
+				if(PCAttacker) output("You would like to " + weapon.attackVerb + " your " + weapon.longName + ", but lack the power to do so.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + weapon.longName + ", but not enough to fire.");
+				return false;
+			}
+			//We can afford the energy, now spend it.
+			attacker.energy(-weapon.shieldDefense);
+
+			//Do we miss
+			if(rand(100) + 1 + (attacker as ShittyShip).shipAccuracy() < (target as ShittyShip).shipEvasion())
+			{
+				if (target.customDodge.length > 0)
+				{
+					if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+				}
+				else if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but it goes wide.");
+				else if (PCTarget) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
+				else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
+				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
+				return false;
+			}
+			/*
+			if (blindMiss(attacker, target, false))
+			{
+				if (attacker is PlayerCharacter) output("Your blind-fired shot doesn’t manage to connect.");
+				else output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " blind " + attacker.rangedWeapon.attackNoun + " fails to connect!");
+				return false;
+			}*/
+			
+			//Flurry miss!
+			if (asFlurry && rand(100) <= 45 && !target.isImmobilized() && !weapon.hasFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS))
+			{
+				if (target.customDodge.length > 0)
+				{
+					if (PCAttacker) output("You take " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+				}
+				else if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but just can’t connect.");
+				else if (PCTarget) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
+				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage" + (target.isPlural ? "" : "s") + " to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
+				return false;
+			}
+			// We made it here, the attack landed
+			
+			if (PCAttacker) output("You land a hit on " + target.getCombatName() + " with your " + weapon.longName + "!");
+			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " connect with their " + plural(weapon.longName) + "!");
+			else if (PCTarget) output(StringUtil.capitalize(attacker.getCombatName(), false) + " hits you with its " + weapon.longName + "!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " strikes " + target.getCombatName() + " with its " + weapon.longName + "!");
+			
+			var damage:TypeCollection = (attacker as ShittyShip).shipWeaponDamage(weapon);
+			damageRand(damage, 15);
+			applyDamage(damage, attacker, target, "minimal");	
+			return true;
+		}
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
@@ -882,7 +945,38 @@ package classes.GameData
 			
 			kGAMECLASS.playerMimbraneCloudAttack();
 		}
-		
+		public static function ShipAttack(attacker:Creature, target:Creature):void
+		{
+			var attacks:Number = 0;
+			if(attacker.meleeWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(attacks > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(attacker, target,attacker.meleeWeapon, false, "ranged");
+				attacks++;
+			}
+			if(attacker.rangedWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(attacks > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.rangedWeapon, false, "ranged");
+				attacks++;
+			}
+			if(attacker.accessory.type == GLOBAL.RANGED_WEAPON && !attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			{
+				if(attacks > 0) output("\n");
+				CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.accessory, false, "ranged");
+				attacks++;
+			}
+			//Fire "inventory" weapons that are turned on.
+			for(var x:int = 0; x < attacker.inventory.length; x++)
+			{
+				if(attacker.inventory[x].type == GLOBAL.RANGED_WEAPON && !attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF))
+				{
+					if(attacks > 0) output("\n");
+					CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.inventory[x], false, "ranged");
+					attacks++;
+				}
+			}
+		}
 		public static function MeleeAttack(attacker:Creature, target:Creature):void
 		{
 			if (target is Celise)

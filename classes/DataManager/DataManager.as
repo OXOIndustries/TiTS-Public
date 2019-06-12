@@ -24,6 +24,7 @@
 	import flash.utils.getQualifiedClassName;
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.GameData.CodexManager;
 	import classes.GameData.StatTracking;
 	import classes.GameData.MailManager;
@@ -1585,6 +1586,16 @@
 				}
 			}
 			
+			//SHIPS!
+			dataFile.shittyShips = new Object();
+			for (prop in kGAMECLASS.shits)
+			{
+				if ((kGAMECLASS.shits[prop] as ShittyShip).neverSerialize == false)
+				{
+					dataFile.shittyShips[prop] = (kGAMECLASS.shits[prop] as ShittyShip).getSaveObject();
+				}
+			}
+			
 			dataFile.flags = new Object();
 			for (prop in kGAMECLASS.flags)
 			{
@@ -1766,6 +1777,37 @@
 					{
 						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)();
 						kGAMECLASS.chars[prop].loadSaveObject(obj.characters[prop]);
+					}
+				}
+				catch (e:ReferenceError)
+				{
+					// If the classDefintion doesn't exist, we'll get a ReferenceError exception
+					trace(e.message)
+					
+					if (failure == false)
+					{
+						kGAMECLASS.output2("Load error(s) detected: \n\n");
+					}
+					
+					kGAMECLASS.output2(e.message);
+					kGAMECLASS.output2("\n");
+					
+					failure = true;
+				}
+			}
+			for (prop in obj.shittyShips)
+			{
+				try
+				{
+					if (!obj.shittyShips[prop].hasOwnProperty("classInstance"))
+					{
+						kGAMECLASS.shits[prop] = new (getDefinitionByName(getQualifiedClassName(obj.shittyShips[prop])) as Class)();
+						kGAMECLASS.shits[prop].loadSaveObject(obj.shittyShips[prop]);
+					}
+					else
+					{
+						kGAMECLASS.shits[prop] = new (getDefinitionByName(obj.shittyShips[prop].classInstance) as Class)();
+						kGAMECLASS.shits[prop].loadSaveObject(obj.characters[prop]);
 					}
 				}
 				catch (e:ReferenceError)

@@ -1430,7 +1430,19 @@ package classes.GameData
 			//Fenoxo's Janky Ship Combat Hooks here.
 			if (hasFriendlyOfClass(ShittyShip))
 			{
-				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				if((_friendlies[0] as ShittyShip).listShipWeapons().length == 0) addDisabledButton(0,"Weapons","Weapons","Your ship has no weapons equipped.");
+				else if(_friendlies[0].hasStatusEffect("Disarmed")) addDisabledButton(0,"Weapons","Weapons","Your ships weapon systems have been disabled.");
+				else addButton(0,"Weapons",manageWeapons,_friendlies[0],"Weapons","Manage which weapons will be firing during this engagement.");
+
+				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
+
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape", runAway, undefined, "Escape", "Now that you've charged your light drive, you can escape with the flip of a switch!");
+				else if(_friendlies[0].energy() >= Math.floor(_friendlies[0].energyMax()/2)) 
+				{
+					addButton(14, "Escape", runAway, undefined, "Escape", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				}
+				else addDisabledButton(14,"Escape","Escape","You don't have enough energy to charge your light drive.\n\n<b>Energy Required:</b> " + Math.floor(_friendlies[0].energyMax()/2));
+
 				return;
 			}
 			if (hasEnemyOfClass(Celise))
@@ -1626,6 +1638,42 @@ package classes.GameData
 			// default entries
 			additionalCombatMenuEntries();
 		}
+		public function manageWeapons(arg:Creature):void
+		{
+			clearOutput();
+			clearMenu();
+			var weapons:Array = (arg as ShittyShip).listShipWeapons();
+			output("<b>Currently Fitted Weapons</b>\n<u>Energy | Name</u>");
+			var energyCost:Number = 0;
+			for(var i:int = 0; i < weapons.length; i++)
+			{
+				if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+				{
+					output("\n<b>OFF</b>\t|  " + StringUtil.upperCase(weapons[i].longName));
+					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Enable this weapon.");
+				}
+				else 
+				{
+					output("\n" + weapons[i].shieldDefense + "\t|  " + StringUtil.upperCase(weapons[i].longName));
+					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
+					energyCost += weapons[i].shieldDefense;
+				}
+			}
+			var energyChange:Number = (arg as ShittyShip).shipPowerGen() - energyCost;
+			output("\n\nProjected Energy Use: " + energyCost + "\nProjected Energy Generation: " + (arg as ShittyShip).shipPowerGen() + "\n<b>Projected Energy Change:</b> " + (energyChange >= 0 ? "+":"") + energyChange + "\n");
+			if(arg.energy() + energyChange < 0) output("\n\n<b>Warning: INSUFFICIENT POWER TO FIRE ONLINE WEAPON SYSTEMS.</b>");
+			output("\n\nSelect equipped weapons to toggle on/off below, or choose back to return to main combat menu.");
+			addButton(14, "Back", generateCombatMenu, true);
+		}
+		//Flip the flags, then back to manage weapons!
+		public function toggleWeapon(args:Array):void
+		{
+			var gun:ItemSlotClass = args[1];
+			var ship:Creature = args[0];
+			if(gun.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) gun.deleteFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
+			else gun.addFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
+			manageWeapons(ship);
+		}
 		public function combatAppearance():void
 		{
 			clearMenu();
@@ -1798,6 +1846,24 @@ package classes.GameData
 		private function runAway():void
 		{
 			clearOutput();
+			//Shipstuff works differently.
+			if(_friendlies[0] is ShittyShip)
+			{
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive"))
+				{
+					output("With your light drive spun up, you pull the activation lever and streak away like an errant photon....")
+					CombatManager.abortCombat();
+					return;
+				}
+				else
+				{
+					_friendlies[0].createStatusEffect("Charging Light Drive",0,0,0,0,false,"Icon_Rotate","Your light drive is charging up! So long as you can avoid any electrical strikes to your armor, you can run next turn!",true);
+					output("You reroute power into your light drive. So long as you don't take any electrical damage to your hull, you'll be ready to escape next round!");
+					_friendlies[0].energy(-Math.floor(_friendlies[0].energyMax()/2));
+					processCombat();
+					return;
+				}
+			}
 			if (pc.inRut() && hasDickedEnemy())
 			{
 				//Attempt to flee vs enemy with cock.
@@ -2713,7 +2779,12 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
+			//We in a ship fite? Do shit different:
+			if(_friendlies[0] is ShittyShip) 
+			{
+				opts.func(_friendlies[0], opts.tar);
+			}
+			else if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
 			}
@@ -4889,6 +4960,15 @@ package classes.GameData
 				var target:Creature = _friendlies[i];
 				
 				if (target is PlayerCharacter) continue;
+				//In shipfites (only ships have this perk), make sure the PC gets to recover energy.
+				if (target.hasPerk("PCs")) 
+				{
+					var energyGen:Number = (target as ShittyShip).shipPowerGen();
+					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
+					target.energy(energyGen);
+					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (+" + energyGen + ").");
+					continue;
+				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))

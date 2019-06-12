@@ -1221,6 +1221,7 @@
 		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
 		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
+		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1263,7 +1264,8 @@
 			"Pistol",
 			"Shotgun",
 			"Thrower",
-			"Launcher"
+			"Launcher",
+			"ToggledOff"
 		];
 		
 		/**
