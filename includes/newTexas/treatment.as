@@ -1952,7 +1952,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			
 			// 73 hours:
 			// Ball Growth
-			if(startHours < 72 && treatedHours >= 73 && pc.balls > 0)
+			if(startHours < 73 && treatedHours >= 73 && pc.balls > 0)
 			{
 				AddLogEvent(ParseText("Your musings are interrupted by a sudden swaying from your [pc.balls]. ") + (pc.balls == 1 ? "It wobbles" : "They wobble") + " so heavily that you can’t possibly ignore it, and when you reach down to shift " + (pc.balls == 1 ? "it" : "them") + ", you discover that " + (pc.balls == 1 ? "it’s" : "they’ve") + " grown bigger over the last half day or so. You gently squeeze and moan, feeling a little pre-cum ooze out from the tip", "passive", (72 - startHours) * 60);
 				if(pc.cockTotal() > 1) ExtendLogEvent("s");
