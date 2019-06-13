@@ -499,6 +499,8 @@ public function extrameetKaedeSurprise(order:String):void
 
 	processTime(20);
 	setOrderTFAndDeets(order, true);
+	pc.credits -= getOrderPrice(order);
+	if (pc.credits < 0) pc.credits = 0;
 
 	clearMenu();
 	addButton(0, "Next", extrameetKaedeSurpriseII);
@@ -729,6 +731,9 @@ public function kaedeDataIlariaOrder(order:String):void
 	output("\n\n<i>“God, how long have I been rambling on?”</i> she gasps, looking past you at the changing street lights outside. <i>“You should have stopped me half an hour ago!”</i>");
 	
 	output("\n\nNonsense. It’s not often you get the chance to just sit back and relax with her, after all. Kaede laughs and wags her fluffy tail, staring into her empty soda glass for a moment before saying, <i>“You know, I could go for a stiffer drink... and my appartment’s a little closer than Anon’s. Care to, um... join me?”</i>");
+
+	pc.credits -= getOrderPrice(order);
+	if (pc.credits < 0) pc.credits = 0;
 
 	processTime(55+rand(11));
 
