@@ -1222,6 +1222,9 @@
 		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
+		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
+		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1265,7 +1268,10 @@
 			"Shotgun",
 			"Thrower",
 			"Launcher",
-			"ToggledOff"
+			"ToggledOff",
+			"Double Shot",
+			"Burst Fire",
+			"Full-Auto Fire"
 		];
 		
 		/**

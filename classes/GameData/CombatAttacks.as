@@ -565,6 +565,13 @@ package classes.GameData
 			TripAttack = new SingleCombatAttack();
 			TripAttack.IsMeleeBased = true;
 			TripAttack.Implementor = TripAttackImpl;
+
+			//ANYBODY ATTACKS
+			Evasion = new SingleCombatAttack();
+			Evasion.RequiresTarget = false;
+			Evasion.TooltipTitle = "Evade!";
+			Evasion.TooltipBody = "Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)";
+			Evasion.Implementor = EvasionImpl;
 		}
 		
 		/**
@@ -686,23 +693,27 @@ package classes.GameData
 		{
 			var PCAttacker:Boolean = attacker.hasPerk("PCs");
 			var PCTarget:Boolean = target.hasPerk("PCs");
-			//Check for miss. Much more variable than the old "rangedCombatMiss"
-			if(attacker.energy() - weapon.shieldDefense < 0)
+
+			//Power stuff
+			if(special != "free")
 			{
-				if(PCAttacker) output("You would like to " + weapon.attackVerb + " your " + weapon.longName + ", but lack the power to do so.");
-				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + weapon.longName + ", but not enough to fire.");
-				return false;
+				if(attacker.energy() - weapon.shieldDefense < 0)
+				{
+					if(PCAttacker) output("You would like to " + weapon.attackVerb + " your " + weapon.longName + ", but lack the power to do so.");
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + weapon.longName + ", but not enough to fire.");
+					return false; 
+				}
+				//We can afford the energy, now spend it.
+				attacker.energy(-weapon.shieldDefense);
 			}
-			//We can afford the energy, now spend it.
-			attacker.energy(-weapon.shieldDefense);
 
 			//Do we miss
 			if(rand(100) + 1 + (attacker as ShittyShip).shipAccuracy() < (target as ShittyShip).shipEvasion())
 			{
-				if (target.customDodge.length > 0)
+				if (target.customDodge.length > 0 && !PCTarget)
 				{
 					if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
-					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " " + weapon.attackVerb + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.longName) + " at " + target.getCombatName() + ". " + target.customDodge);
 				}
 				else if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but it goes wide.");
 				else if (PCTarget) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
@@ -945,25 +956,55 @@ package classes.GameData
 			
 			kGAMECLASS.playerMimbraneCloudAttack();
 		}
+		public static function performShipWeaponAttack(attacker:Creature, target:Creature, gun:ItemSlotClass):void
+		{
+			var attacks:Number = 1;
+			var PCAttacker:Boolean = attacker.hasPerk("PCs");
+
+			//Multi Attacks!
+			if(gun.hasFlag(GLOBAL.ITEM_FLAG_TWINSHOT)) attacks = 2;
+			else if(gun.hasFlag(GLOBAL.ITEM_FLAG_BURSTSHOT)) attacks = 3;
+			else if(gun.hasFlag(GLOBAL.ITEM_FLAG_QUADSHOT)) attacks = 4;
+
+			//Abort if no power
+			if(attacker.energy() - gun.shieldDefense < 0)
+			{
+				if(PCAttacker) output("You would like to " + gun.attackVerb + " your " + gun.longName + ", but lack the power to do so.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + gun.longName + ", but not enough to fire.");
+				return;
+			}
+
+			//Actually fire all attacks
+			for(var i:int = 0; i < attacks; i++)
+			{	
+				if(i > 0) 
+				{
+					output("\n");
+					CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "free");
+				}
+				else CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "ranged");
+			}
+		}
+
 		public static function ShipAttack(attacker:Creature, target:Creature):void
 		{
 			var attacks:Number = 0;
 			if(attacker.meleeWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 			{
 				if(attacks > 0) output("\n");
-				CombatAttacks.SingleRangedShipAttackImpl(attacker, target,attacker.meleeWeapon, false, "ranged");
+				performShipWeaponAttack(attacker,target,attacker.meleeWeapon);
 				attacks++;
 			}
 			if(attacker.rangedWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 			{
 				if(attacks > 0) output("\n");
-				CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.rangedWeapon, false, "ranged");
+				performShipWeaponAttack(attacker,target,attacker.rangedWeapon);
 				attacks++;
 			}
 			if(attacker.accessory.type == GLOBAL.RANGED_WEAPON && !attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 			{
 				if(attacks > 0) output("\n");
-				CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.accessory, false, "ranged");
+				performShipWeaponAttack(attacker,target,attacker.accessory);
 				attacks++;
 			}
 			//Fire "inventory" weapons that are turned on.
@@ -972,9 +1013,14 @@ package classes.GameData
 				if(attacker.inventory[x].type == GLOBAL.RANGED_WEAPON && !attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF))
 				{
 					if(attacks > 0) output("\n");
-					CombatAttacks.SingleRangedShipAttackImpl(attacker, target, attacker.inventory[x], false, "ranged");
+					performShipWeaponAttack(attacker,target,attacker.inventory[x]);
 					attacks++;
 				}
+			}
+			if(attacks == 0)
+			{
+				output("Playing it cool, you keep your power load low to allow your reactor to recharge faster...");
+				if(!attacker.hasStatusEffect("CHARGING_POWER")) attacker.createStatusEffect("CHARGING_POWER",0,0,0,0,true,"","",true);
 			}
 		}
 		public static function MeleeAttack(attacker:Creature, target:Creature):void
@@ -2864,6 +2910,14 @@ package classes.GameData
 				}
 			}
 			return false;
+		}
+		//SHIP SPECIAL ATTACKS!
+		public static var Evasion:SingleCombatAttack;
+		public static function EvasionImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if(attacker.hasPerk("PCs")) output("You close off the weapon relays and put both hands on the stick. Time to fly for your life!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " begins to dodge like crazy, trying its hardest to evade incoming fire!");
+			if(!attacker.hasStatusEffect("Evading!")) attacker.createStatusEffect("Evading!",0,0,0,0,false,"Icon_DefUp","+50 evasion for one round.",true);
 		}
 	}
 

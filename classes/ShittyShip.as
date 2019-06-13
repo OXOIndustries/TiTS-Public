@@ -83,6 +83,13 @@
 		public var modelDisplay:String = "UNKNOWN";
 		public var factionDisplay:String = "UNKNOWN";
 
+		public var wardrobeSize:Number = 10;
+		public var equipmentSize:Number = 10;
+		public var consumableSize:Number = 10;
+		public var valuablesSize:Number = 10;
+		public var toysSize:Number = 10;
+
+
 		//================================================================
 		//
 		//				Fenoxo's Hacky Ship Bullship.
@@ -128,12 +135,17 @@
 		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
 		public function shipEvasion():Number
 		{
-			return shipStatBonusTotal(0);
+			var bonus:Number = 0;
+			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.reflexes()/4;
+			if(hasStatusEffect("Evading!")) bonus += 50;
+			return bonus + shipStatBonusTotal(0);
 		}
 		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
 		public function shipAccuracy():Number
 		{
-			return shipStatBonusTotal(1);
+			var bonus:Number = 0;
+			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.aim()/4;
+			return bonus + shipStatBonusTotal(1);
 		}
 		public function shipShieldDef():Number
 		{
@@ -207,11 +219,32 @@
 			var modifiedDamage:TypeCollection;
 			
 			modifiedDamage = weapon.baseDamage.makeCopy();
-				
-			// Easiest way I can think of conveying base damage - might be better to add this as a flat bonus some other way.
-			// Only add bonus if the weapons already doing SOME HP damage		
+			if(hasPerk("PCs")) modifiedDamage.add(kGAMECLASS.pc.aim()/2);
 			
 			return modifiedDamage;
+		}
+		override public function HPMax():Number
+		{
+			var bonus:int = 0;
+			bonus = fortification();
+			var hitPoints:Number = 15 + HPMod + bonus;
+			//Boost by up to 10% based on physique.
+			if(hasPerk("PCs")) hitPoints = Math.ceil(hitPoints + (hitPoints * (kGAMECLASS.pc.physique() / (kGAMECLASS.pc.level * 50))));
+			return hitPoints;
+		}
+		override public function shieldsMax(): Number {
+			//No proper shield generator? NO SHIELD!
+			if(hasShields() && !hasShieldGenerator(true)) return 0;
+			
+			var temp: int = 0;
+			temp += meleeWeapon.shields;
+			temp += rangedWeapon.shields;
+			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
+			
+			if(hasPerk("PCs")) temp = Math.ceil(temp + (temp * (kGAMECLASS.pc.willpower() / (kGAMECLASS.pc.level * 5 * 4))));
+
+			if (temp < 0) temp = 0;
+			return temp;
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{

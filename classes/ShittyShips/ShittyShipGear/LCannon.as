@@ -33,14 +33,14 @@ package classes.ShittyShips.ShittyShipGear
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "TBD";
 			this.attackVerb = "shoot";
-			attackNoun = "beam";
+			attackNoun = "laser beam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
 			this.basePrice = 1300;
 					
-			baseDamage.burning.damageValue = 240;
+			baseDamage.burning.damageValue = 350;
 			//baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			baseDamage.addFlag(DamageFlag.LASER);

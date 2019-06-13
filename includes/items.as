@@ -2767,6 +2767,15 @@ public function hasShipStorage():Boolean
 	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
 	if (flags["SHIP_STORAGE_VALUABLES"] == undefined) flags["SHIP_STORAGE_VALUABLES"] = 10;
 	if (flags["SHIP_STORAGE_TOYS"] == undefined) flags["SHIP_STORAGE_TOYS"] = 10;
+
+	if(shits["SHIP"] != null)
+	{
+		flags["SHIP_STORAGE_WARDROBE"] = shits["SHIP"].wardrobeSize;
+		flags["SHIP_STORAGE_EQUIPMENT"] = shits["SHIP"].equipmentSize;
+		flags["SHIP_STORAGE_CONSUMABLES"] = shits["SHIP"].consumableSize;
+		flags["SHIP_STORAGE_VALUABLES"] = shits["SHIP"].valuablesSize;
+		flags["SHIP_STORAGE_TOYS"] = shits["SHIP"].toysSize;
+	}
 	
 	return true;
 }

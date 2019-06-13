@@ -7,6 +7,8 @@
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.ShittyShips.ShittyShipGear.MGun;
 	import classes.ShittyShips.ShittyShipGear.LCannon;
+	import classes.ShittyShips.ShittyShipGear.ShipArmor;
+	import classes.ShittyShips.ShittyShipGear.ShipShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -27,11 +29,17 @@
 			
 			this.short = "Casstech Z14";
 			this.originalRace = "ship";
-			this.shieldDisplayName = "SHIELDS2";
+			this.shieldDisplayName = "SHIELDS";
 			this.hpDisplayName = "ARMOR";
-			this.captainDisplay = "THRALL";
+			this.captainDisplay = "UNKNOWN";
 			this.modelDisplay = "Z14";
-			this.factionDisplay = "T.HORDE";
+			this.factionDisplay = "UNKNOWN";
+
+			wardrobeSize = 10;
+			equipmentSize = 2;
+			consumableSize = 10;
+			valuablesSize = 10;
+			toysSize = 10;
 
 			this.a = "a ";
 			this.capitalA = "A ";
@@ -42,16 +50,19 @@
 
 			//this.meleeWeapon.attack = 2;
 			this.meleeWeapon = new EmptySlot();
-			
-			this.armor.longName = "hull plating";
-			this.armor.description = "hull plates";
-			this.armor.defense = 20;
+			this.rangedWeapon = new MGun();
+
+			this.armor = new ShipArmor();
+			this.armor.defense = 30;
 			this.armor.hasRandomProperties = true;
 
-			this.inventory.push(new MGun());
 			this.inventory.push(new LCannon());
+			//this.inventory.push(new LCannon());
 			
-			this.shield = new NovaShield();
+			this.shield = new ShipShield();
+			this.shield.shieldDefense = 20;
+			this.shield.shields = 3000;
+			this.shield.hasRandomProperties = true;
 
 			//SPEED / THRUST
 			this.physiqueRaw = 33;
@@ -62,7 +73,7 @@
 			//SYSTEMS
 			this.intelligenceRaw = 25;
 			//POWER GEN
-			this.willpowerRaw = 20;
+			this.willpowerRaw = 25;
 
 			//UNUSED
 			this.libidoRaw = 50;
@@ -72,13 +83,8 @@
 			this.energyRaw = 100;
 			this.lustRaw = 0;
 
-			baseHPResistances = new TypeCollection();
-			baseHPResistances.burning.damageValue = 35;
-			baseHPResistances.kinetic.damageValue = -25;
-
-			/*baseHPResistances.tease.damageValue = 25.0;
-			baseHPResistances.drug.damageValue = 50.0;
-			baseHPResistances.burning.damageValue = 50.0;*/
+			//(Handled via armor)
+			//baseHPResistances = new TypeCollection();
 			
 			this.level = 0;
 			this.XPRaw = bossXP();

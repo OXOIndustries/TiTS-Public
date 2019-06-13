@@ -40,13 +40,14 @@ package classes.ShittyShips.ShittyShipGear
 			//Information
 			this.basePrice = 1300;
 					
-			baseDamage.electric.damageValue = 50;
+			baseDamage.electric.damageValue = 125;
 			baseDamage.kinetic.damageValue = 10;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_TWINSHOT);
 			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			
