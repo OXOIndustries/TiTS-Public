@@ -68,7 +68,7 @@
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.XPRaw = bossXP();
+			this.XPRaw = normalXP(); //bossXP();
 			
 			this.credits = 10000;
 			

@@ -1851,10 +1851,14 @@ public function frostwyrmGoodGodImHurt(vIdx:int = -1):void
 	output("You hear the pleasured, satisfying purring of your mate from her body; the rumbling in her throat reverberates off the walls and plays you a symphony of just how well you’ve done your job as her mate.");
 	if (pc.hasCock() && !pc.hasVagina()) output("\n\n[frostwyrm.name] turns about, approaching the elevated ice shelf you’re standing on, and hoists herself onto it.");
 	else output("\n\n[frostwyrm.name] steps away from you, then gently nudges you towards the elevated ice shelf that is her resting place. When you groggily hoist yourself onto it (with [frostwyrm.name]’s help), she joins you, gently stepping around you.");
-	output(" <i>I had reservations that, as you are not of my kind, you would not meet my requirements in a mate. I am wrong in few areas, [pc.name], and I was wrong in this one,</i> she says to you, nudging at your [pc.chest] lovingly. The warmth from the orgasm that permeated your body is still there, but changes to something else: something that makes your heart race and your muscles relax, but does not make y");
-	if (pc.hasCock()) output("our [pc.cock] rise");
-	if (pc.isHerm()) output(" or y");
-	if (pc.isHerm()) output("our [pc.vagina] wet");
+	output(" <i>I had reservations that, as you are not of my kind, you would not meet my requirements in a mate. I am wrong in few areas, [pc.name], and I was wrong in this one,</i> she says to you, nudging at your [pc.chest] lovingly. The warmth from the orgasm that permeated your body is still there, but changes to something else: something that makes your heart race and your muscles relax");
+	if(pc.hasGenitals())
+	{
+		output(", but does not make");
+		if (pc.hasCock()) output(" your [pc.cock] rise");
+		if (pc.isHerm()) output(" or");
+		if (pc.hasVagina()) output(" your [pc.vagina] wet");
+	}
 	output(". It’s something more wholesome; something that... reminds you of home.");
 	output("\n\n<i>It is time for the final ritual of our coupling,</i> she says as she circles your body, wrapping her elongated, serpentine form around you. When she settles and lays down, she wraps her six legs around you and presses you gently against her belly, sharing her warmth with you. <i>We may rest.</i>");
 	output("\n\nYou reach out and grab one of her legs, pulling it closer to you as you nestle against [frostwyrm.name]’s belly, feeling her enormous heart beat around you and her rhythmic breathing soothe you.");

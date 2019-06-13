@@ -3729,7 +3729,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 					if(flags["KQ2_DEFEATED_KHAN"] != undefined)
 					{
-						output2("\n<b>* Pirate Base, Dr.Khan:</b> Met him, Defeated him");
+						output2("\n<b>* Pirate Base, Dr. Khan:</b> Met him, Defeated him");
 						if(flags["KQ2_FUCKED_KHAN"] != undefined) output2(", Sexed him with Kara");
 						if(flags["KQ2_KHAN_LOOTED"] != undefined)
 						{
@@ -4014,7 +4014,7 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["SYRIQUEST_STATE"] >= 8)
 				{
-					output2("\n<b>* Dr.Calnor:</b> Met him");
+					output2("\n<b>* Dr. Calnor:</b> Met him");
 				}
 				if(flags["SYRIQUEST_STATE"] >= 10)
 				{
@@ -5055,6 +5055,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						else if(flags["BIZZY_PORN_STUDIO"] <= 4) output2(", Sexpert performer");
 						else output2(", Professional porn studio, Completed");
 					}
+					if(flags["BIZZY_MAIL_PAYMENT_DAY"] != undefined) output2("\n<b>* Bizzy, Days Since Last Salary Payment:</b> " + (days - flags["BIZZY_MAIL_PAYMENT_DAY"]));
 					if(flags["BIZZY_VAG_FUCKED"] != undefined) output2("\n<b>* Bizzy, Times Fucked Her Vagina:</b> " + flags["BIZZY_VAG_FUCKED"]);
 					if(flags["BIZZY_BOOBY_RUBBED"] != undefined) output2("\n<b>* Bizzy, Times Rubbed Boobs:</b> " + flags["BIZZY_BOOBY_RUBBED"]);
 					if(flags["BIZZY_SUCKED_COCK"] != undefined) output2("\n<b>* Bizzy, Times She Sucked Your Cock:</b> " + flags["BIZZY_SUCKED_COCK"]);
@@ -7608,12 +7609,23 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 			}
-			if(flags["MET_OLYMPIA"] != undefined)
+			if(flags["MET_OLYMPIA"] != undefined || flags["TEYAAL_DEFEATED"] != undefined)
 			{
 				output2("\n<b><u>Research & Development Lab</u></b>");
+				output2("\n<b>* Ship Status:</b> " + (pirateResearchVesselStolen() ? "Stolen" : "Docked"));
 				// Olympia
-				output2("\n<b>* Olympia:</b> Met her");
-				if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
+				if(flags["MET_OLYMPIA"] != undefined)
+				{
+					output2("\n<b>* Olympia:</b> Met her");
+					if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
+				}
+				// Dr. Teyaal
+				if(flags["TEYAAL_DEFEATED"] != undefined)
+				{
+					output2("\n<b>* Dr. Teyaal:</b> Met her");
+					if(flags["TEYAAL_DEFEATED"] >= 1) output2(", Defeated her");
+					if(flags["TEYAAL_DEFEATED"] >= 2) output2(", She escaped");
+				}
 				variousCount++;
 			}
 			if(flags["SHOCK_HOPPER_DEFEATED"] != undefined)
