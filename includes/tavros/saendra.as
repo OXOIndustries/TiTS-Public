@@ -195,7 +195,7 @@ public function saenAtTheBarFirstTimeEvent():void
 	clearMenu();
 	//[Let’s do it!] [Not right now]
 	addButton(0, "Let’s do it!", takeTheRewardYouSlut, undefined, "Take the reward", "Accept Saen’s reward.");
-	addButton(1, "Not right now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not right now", "Turn the reward down.")
+	addButton(1, "Not Right Now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not right now", "Turn the reward down.")
 }
 
 public function dontTakeTheRewardWhaddaYouGayOrSomething():void
