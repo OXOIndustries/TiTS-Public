@@ -5,6 +5,10 @@ package classes.Resources
 		public static var ImageRequestT:Class = null;
 		
 		CONFIG::IMAGEPACK {
+			//AMBER
+			[Embed(source = "../../assets/images/imagepack/amber/jojocite_amber_nude.png", mimeType = "image/png")]
+			public static const AmberNakkers:Class;
+
 			//ANNO
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
 			public static const AnnoMaid:Class;
