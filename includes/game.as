@@ -3356,6 +3356,7 @@ public function variableRoomUpdateCheck():void
 		rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
 		// Pyrite Satellite Quest
 		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
+		else if(pennyRecruited() && !pennyIsCrew()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things
