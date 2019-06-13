@@ -4300,7 +4300,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if (startHours < fauxFemTimes[x] && treatedHours >= fauxFemTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxFemCount++;
 				}
 			}
@@ -4382,7 +4382,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if(startHours < fauxToneTimes[x] && treatedHours >= fauxToneTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxToneCount++;
 				}
 			}
@@ -4472,7 +4472,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			if (startHours < fauxChestTimes[x] && treatedHours >= fauxChestTimes[x])
 			{
-				if(fauxIdx == -1) fauxIdx = x;
+				if(fauxIdx == -1) fauxIdx = (x + 1);
 				fauxChestCount++;
 			}
 		}
@@ -4557,7 +4557,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if (startHours < fauxAssTimes[x] && treatedHours >= fauxAssTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxAssCount++;
 				}
 			}
@@ -4638,7 +4638,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if (startHours < fauxTallnessTimes[x] && treatedHours >= fauxTallnessTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxTallnessCount++;
 				}
 			}
@@ -4718,7 +4718,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if (startHours < fauxCockTimes[x] && treatedHours >= fauxCockTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxCockCount++;
 				}
 			}
@@ -4979,7 +4979,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			if (startHours < fauxBallTimes[x] && treatedHours >= fauxBallTimes[x])
 			{
-				if(fauxIdx == -1) fauxIdx = x;
+				if(fauxIdx == -1) fauxIdx = (x + 1);
 				fauxBallCount++;
 			}
 		}
@@ -5060,7 +5060,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				if (startHours < fauxCumTimes[x] && treatedHours >= fauxCumTimes[x])
 				{
-					if(fauxIdx == -1) fauxIdx = x;
+					if(fauxIdx == -1) fauxIdx = (x + 1);
 					fauxCumCount++;
 				}
 			}

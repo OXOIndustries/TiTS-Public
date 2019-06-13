@@ -198,7 +198,6 @@ public function initZhengRooms():void
 	rooms["ZS J42"].runOnEnter = maikesOfficeBonus;
 	rooms["ZS J42"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS J42"].addFlag(GLOBAL.BED);
-	rooms["ZS J42"].addFlag(GLOBAL.NPC);
 
 	rooms["ZS H40"] = new RoomClass(this);
 	rooms["ZS H40"].roomName = "SLAVE\nPEN";
