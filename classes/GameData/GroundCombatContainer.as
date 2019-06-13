@@ -128,6 +128,18 @@ package classes.GameData
 		 */ 
 		private function postHostileTurnActions():Boolean
 		{
+			//SHIPPIES!
+			if (_friendlies[0].hasPerk("PCs"))
+			{
+				for(var ii:int = 0; ii < _friendlies.length; ii++)
+				{
+					_friendlies[ii].removeStatusEffect("Evading!");
+				}
+				for(ii = 0; ii < _hostiles.length; ii++)
+				{
+					_hostiles[ii].removeStatusEffect("Evading!");	
+				}
+			}
 			if (pc.hasStatusEffect("leithanUnloading"))
 			{
 				var f:ForgeHound = _hostiles[0];
@@ -1435,13 +1447,15 @@ package classes.GameData
 				if((_friendlies[0] as ShittyShip).listShipWeapons().length == 0) addDisabledButton(0,"Weapons","Weapons","Your ship has no weapons equipped.");
 				else if(_friendlies[0].hasStatusEffect("Disarmed")) addDisabledButton(0,"Weapons","Weapons","Your ships weapon systems have been disabled.");
 				else addButton(0,"Weapons",manageWeapons,_friendlies[0],"Weapons","Manage which weapons will be firing during this engagement.");
-
+				addButton(3,"Evade!",evadeWithYoShip,undefined,"Evade!","Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)");
 				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
+				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)");
+
 
 				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape", runAway, undefined, "Escape", "Now that you've charged your light drive, you can escape with the flip of a switch!");
 				else if(_friendlies[0].energy() >= Math.floor(_friendlies[0].energyMax()/2)) 
 				{
-					addButton(14, "Escape", runAway, undefined, "Escape", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+					addButton(14, "Escape!", runAway, undefined, "Escape!", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 				}
 				else addDisabledButton(14,"Escape","Escape","You don't have enough energy to charge your light drive.\n\n<b>Energy Required:</b> " + Math.floor(_friendlies[0].energyMax()/2));
 
@@ -2088,7 +2102,20 @@ package classes.GameData
 				return;
 			}
 		}
-		
+
+		public function rechargeYoShipBoooost(pc:Creature):void
+		{
+			clearOutput();
+			output("Playing it cool, you keep your power load low to allow your reactor to recharge faster...");
+			if(!pc.hasStatusEffect("CHARGING_POWER")) pc.createStatusEffect("CHARGING_POWER",0,0,0,0,true,"","",true);
+			processCombat();
+		}
+		public function evadeWithYoShip():void
+		{
+			clearOutput();
+			CombatAttacks.EvasionImpl(_friendlies, _hostiles, _friendlies[0], _hostiles[0]);
+			processCombat();
+		}
 		private function doStaticBurst():void
 		{
 			clearOutput();
@@ -4966,9 +4993,14 @@ package classes.GameData
 				if (target.hasPerk("PCs")) 
 				{
 					var energyGen:Number = (target as ShittyShip).shipPowerGen();
+					if(target.hasStatusEffect("CHARGING_POWER")) 
+					{
+						energyGen *= 2;
+						target.removeStatusEffect("CHARGING_POWER");
+					}
 					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
 					target.energy(energyGen);
-					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (+<b><span class='hp'>" + energyGen + "</span></b>).");
+					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (<b>E:</b> +<b><span class='hp'>" + energyGen + "</span></b>).");
 					continue;
 				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
