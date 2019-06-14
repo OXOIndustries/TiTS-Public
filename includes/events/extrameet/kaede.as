@@ -341,6 +341,7 @@ public function extrameetKaedeFirstTime():void
 
 public function extrameetKaedeFirstTimeII():void
 {
+	clearOutput();
 	showKaede();
 	showName("KAEDE\n& ILARIA");
 	showBust("KAEDE", "ILARIA");
@@ -941,5 +942,5 @@ public function extrameetKaedeDateMerge(gotKnotted:Boolean = false):void
 	//Next, put PC next to Ilaria's bakery.
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", moveTo, "RESIDENTIAL DECK 17");
+	addButton(0, "Next", move, "RESIDENTIAL DECK 17");
 }
