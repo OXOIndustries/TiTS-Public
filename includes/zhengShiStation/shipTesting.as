@@ -1,9 +1,10 @@
 import classes.ShittyShips.Casstech;
-import classes.ShittyShips.ShittyShipGear.EMCannon;
+import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
 
 public function SCT():void
 {
 	clearOutput();
+	shits["SHIP"] = new Casstech();
 	showName("SHIPFITE\nTESTER");
 	output("Start a fite?");
 	clearMenu();

@@ -1,4 +1,4 @@
-package classes.ShittyShips.ShittyShipGear
+package classes.ShittyShips.ShittyShipGear.Guns
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -7,11 +7,11 @@ package classes.ShittyShips.ShittyShipGear
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class LCannon extends ItemSlotClass
+	public class EMCannon extends ItemSlotClass
 	{
 		//Level 1 (Common) ship weapon
 		//constructor
-		public function LCannon()
+		public function EMCannon()
 		{
 			this._latestVersion = 1;
 
@@ -20,39 +20,41 @@ package classes.ShittyShips.ShittyShipGear
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "L.Cannon";
+			this.shortName = "EM.Cannon";
 			
 			//Regular name
-			this.longName = "laser cannon"
+			this.longName = "EM cannon"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a laser cannon";
+			this.description = "an EM cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TBD";
+			this.tooltip = "Despite its name, the EM Cannon does not fire bolts of electromagnetic energy across the nonconductive void of space. It relies on the same types of primitive chemical propulsion that have flung lead across battlefields for generations. The difference is in the payloads: EM shells are always fired in pairs, one containing a positive charge and the other negative. Contact with anything, even a shield, is sufficient to create damaging electrical surges.";
 			this.attackVerb = "shoot";
-			attackNoun = "laser beam";
+			attackNoun = "beam";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
 			this.basePrice = 1300;
 					
-			baseDamage.burning.damageValue = 350;
-			//baseDamage.addFlag(DamageFlag.BULLET);
+			baseDamage.electric.damageValue = 125;
+			baseDamage.kinetic.damageValue = 10;
+			baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			baseDamage.addFlag(DamageFlag.LASER);
+			//baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			addFlag(GLOBAL.ITEM_FLAG_TWINSHOT);
 			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			
 			//this.addFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON);
 			this.attack = 0;
 			this.defense = 0;
-			this.shieldDefense = 60;
+			this.shieldDefense = 46;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;

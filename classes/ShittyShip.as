@@ -122,10 +122,11 @@
 		{
 			return intelligenceRaw;
 		}
+		public var shipCapacityRaw:Number = 3;
 		//Probably set via perk.
 		public function shipCapacity():Number
 		{
-			return 3;
+			return shipCapacityRaw;
 		}
 		public function shipCrewCapacity():Number
 		{

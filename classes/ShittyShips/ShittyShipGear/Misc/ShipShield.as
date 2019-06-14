@@ -1,4 +1,4 @@
-package classes.ShittyShips.ShittyShipGear
+package classes.ShittyShips.ShittyShipGear.Misc
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;

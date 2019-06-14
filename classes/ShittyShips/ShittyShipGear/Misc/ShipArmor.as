@@ -1,4 +1,4 @@
-package classes.ShittyShips.ShittyShipGear
+package classes.ShittyShips.ShittyShipGear.Misc
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -7,28 +7,28 @@ package classes.ShittyShips.ShittyShipGear
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class MGun extends ItemSlotClass
+	public class ShipArmor extends ItemSlotClass
 	{
 		//Level 1 (Common) ship weapon
 		//constructor
-		public function MGun()
+		public function ShipArmor()
 		{
 			this._latestVersion = 1;
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.RANGED_WEAPON;
+			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
-			this.shortName = "MGun";
+			this.shortName = "Armor";
 			
 			//Regular name
-			this.longName = "machine gun"
+			this.longName = "armor plating"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a machine gun";
+			this.description = "an armor plate";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "TBD";
@@ -38,26 +38,23 @@ package classes.ShittyShips.ShittyShipGear
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
-					
-			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 95;
-			baseDamage.addFlag(DamageFlag.BULLET);
-			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
-			addFlag(GLOBAL.ITEM_FLAG_QUADSHOT);
+			this.basePrice = 5000;		
 			
-			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			
-			//this.addFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON);
-			this.attack = -5;
-			this.defense = 0;
-			this.shieldDefense = 25;
+			this.attack = 0;
+			this.defense = 25;
+			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-
+			
+			resistances = new TypeCollection();
+			//resistances.kinetic.resistanceValue = 50.0;
+			resistances.corrosive.resistanceValue = -50.0;
+			resistances.burning.resistanceValue = 25.0;
+			resistances.electric.resistanceValue = 25.0;
+			
 			this.version = _latestVersion;
 		}
 	}

@@ -5,10 +5,10 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.NovaShield;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.ShittyShips.ShittyShipGear.MGun;
-	import classes.ShittyShips.ShittyShipGear.LCannon;
-	import classes.ShittyShips.ShittyShipGear.ShipArmor;
-	import classes.ShittyShips.ShittyShipGear.ShipShield;
+	import classes.ShittyShips.ShittyShipGear.Guns.MGun;
+	import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+	import classes.ShittyShips.ShittyShipGear.Misc.ShipArmor;
+	import classes.ShittyShips.ShittyShipGear.Misc.ShipShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -40,6 +40,7 @@
 			consumableSizeRaw = 10;
 			valuablesSizeRaw = 10;
 			toysSizeRaw = 10;
+			shipCapacityRaw = 3;
 
 			this.a = "a ";
 			this.capitalA = "A ";
@@ -59,7 +60,7 @@
 			this.inventory.push(new LCannon());
 			//this.inventory.push(new LCannon());
 			
-			this.shield = new ShipShield();
+			//this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
 			this.shield.shields = 3000;
 			this.shield.hasRandomProperties = true;

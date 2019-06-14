@@ -1,6 +1,6 @@
-﻿import classes.ShittyShips.ShittyShipGear.MGun;
-import classes.ShittyShips.ShittyShipGear.LCannon;
-import classes.ShittyShips.ShittyShipGear.EMCannon;
+﻿import classes.ShittyShips.ShittyShipGear.Guns.MGun;
+import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
 import classes.Characters.Vahn;
 
 //Vahn, Your Friendly Ship Mechanic
