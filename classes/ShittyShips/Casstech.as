@@ -35,11 +35,11 @@
 			this.modelDisplay = "Z14";
 			this.factionDisplay = "UNKNOWN";
 
-			wardrobeSize = 10;
-			equipmentSize = 2;
-			consumableSize = 10;
-			valuablesSize = 10;
-			toysSize = 10;
+			wardrobeSizeRaw = 10;
+			equipmentSizeRaw = 2;
+			consumableSizeRaw = 10;
+			valuablesSizeRaw = 10;
+			toysSizeRaw = 10;
 
 			this.a = "a ";
 			this.capitalA = "A ";

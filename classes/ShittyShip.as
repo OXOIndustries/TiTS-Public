@@ -83,12 +83,11 @@
 		public var modelDisplay:String = "UNKNOWN";
 		public var factionDisplay:String = "UNKNOWN";
 
-		public var wardrobeSize:Number = 10;
-		public var equipmentSize:Number = 10;
-		public var consumableSize:Number = 10;
-		public var valuablesSize:Number = 10;
-		public var toysSize:Number = 10;
-
+		public var wardrobeSizeRaw:Number = 10;
+		public var equipmentSizeRaw:Number = 10;
+		public var consumableSizeRaw:Number = 10;
+		public var valuablesSizeRaw:Number = 10;
+		public var toysSizeRaw:Number = 10;
 
 		//================================================================
 		//
@@ -132,6 +131,29 @@
 		{
 			return (shipCapacity() - this.inventory.length + 1);
 		}
+		//STORAGE SIZES!
+		public function wardrobeSize():Number
+		{
+			return wardrobeSizeRaw;
+		}
+		public function equipmentSize():Number
+		{
+			return equipmentSizeRaw;
+		}
+		public function consumableSize():Number
+		{
+			return consumableSizeRaw;
+		}
+		public function valuablesSize():Number
+		{
+			return valuablesSizeRaw;
+		}
+		public function toysSize():Number
+		{
+			return toysSizeRaw;
+		}
+
+		//MORE ADVANCED BS
 		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
 		public function shipEvasion():Number
 		{

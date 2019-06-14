@@ -2770,11 +2770,11 @@ public function hasShipStorage():Boolean
 
 	if(shits["SHIP"] != null)
 	{
-		flags["SHIP_STORAGE_WARDROBE"] = shits["SHIP"].wardrobeSize;
-		flags["SHIP_STORAGE_EQUIPMENT"] = shits["SHIP"].equipmentSize;
-		flags["SHIP_STORAGE_CONSUMABLES"] = shits["SHIP"].consumableSize;
-		flags["SHIP_STORAGE_VALUABLES"] = shits["SHIP"].valuablesSize;
-		flags["SHIP_STORAGE_TOYS"] = shits["SHIP"].toysSize;
+		flags["SHIP_STORAGE_WARDROBE"] = shits["SHIP"].wardrobeSize();
+		flags["SHIP_STORAGE_EQUIPMENT"] = shits["SHIP"].equipmentSize();
+		flags["SHIP_STORAGE_CONSUMABLES"] = shits["SHIP"].consumableSize();
+		flags["SHIP_STORAGE_VALUABLES"] = shits["SHIP"].valuablesSize();
+		flags["SHIP_STORAGE_TOYS"] = shits["SHIP"].toysSize();
 	}
 	
 	return true;
