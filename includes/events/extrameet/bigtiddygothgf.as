@@ -393,7 +393,7 @@ public function bigTiddyGothGFHerselfTats():void
 	flags["BIGTIDDYGOTHGF_TATEXPLAIN"] = 1;
 	processTime(10+rand(5));
 	bigTiddyGothGFHerselfMenu();
-	addDisabledButton(3, "Tattoos");
+	addDisabledButton(4, "Tattoos");
 }
 
 public function bigTiddyGothGFNecklace():void
@@ -580,7 +580,7 @@ public function bigTiddyGothGFNecklaceHer():void
 	flags["BIGTIDDYGOTHGF_NECKHER"] = 1;
 
 	bigTiddyGothGFNecklaceMenu();
-	addDisabledButton(1, "Origins");
+	addDisabledButton(2, "Her");
 }
 
 public function bigTiddyGothGFFlirt():void
