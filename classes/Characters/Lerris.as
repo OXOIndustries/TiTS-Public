@@ -187,7 +187,6 @@
 			
 			return str;
 		}
-		
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.lerrisMenu();

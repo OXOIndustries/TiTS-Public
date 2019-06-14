@@ -56,7 +56,10 @@
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "HEIDRUN";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachHeidrun();

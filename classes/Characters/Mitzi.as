@@ -184,6 +184,10 @@
 			
 			this._isLoading = false;
 		}
+		override public function get bustDisplay():String
+		{
+			return kGAMECLASS.mitziBustString();
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.breastRows[0].breastRatingRaw = 15;

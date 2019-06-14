@@ -52,5 +52,9 @@
 		{
 			kGAMECLASS.repeatSeifynMeeting();
 		}
+		override public function get bustDisplay():String
+		{
+			return "SEIFYN";
+		}
 	}
 }

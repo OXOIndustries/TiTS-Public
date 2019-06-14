@@ -1,6 +1,8 @@
 ﻿import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
+import classes.Characters.Vahn;
 import classes.Creature;
+import classes.ShittyShip;
 import classes.DataManager.Errors.VersionUpgraderError;
 import classes.DataManager.Serialization.ItemSaveable;
 import classes.GameData.CombatManager;
@@ -692,8 +694,91 @@ public function shop(keeper:Creature):void {
 	addButton(14,"Back",mainGameMenu);
 }
 
+public function buyShipFitItem():void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	output("Buying a module will result in it being immediately installed on your ship. They're too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length) + "\n<b>Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
+	output("<b><u>Modules For Sale & Fit:</u></b>");
+	var temp:Number = 0;
+	var canBuy:Boolean = (ship.shipCapacity()-ship.inventory.length > 0)
+	clearMenu();
+	for(var i:int = 0; i < shopkeep.inventory.length; i++)
+	{
+		temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+		if(temp > pc.credits) output("\n<b>(Too Expensive)</b> ");
+		else if(!canBuy) output("\n<b>(No Room)</b> ");
+		else output("\n");
+		output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
+		if(temp <= pc.credits) 
+		{
+			if(canBuy) addItemButton(i, shopkeep.inventory[i], buyShipFitItemForReal, shopkeep.inventory[i], null, null, shopkeep, pc);
+			else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+		}
+		else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+	}
+	addButton(14, "Back", shop, shopkeep);
+}
+
+public function buyShipFitItemForReal(arg:ItemSlotClass):void
+{
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+		
+	output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + shits["SHIP"].short + " within the hour.");
+	pc.credits -= price;
+	
+	//So much easier than PC looting, lol.
+	shits["SHIP"].inventory.push(arg.makeCopy());
+
+	output("\n\n");
+
+	clearMenu();
+	addButton(0, "Next", buyShipFitItem);
+}
+
+public function unfitShipItem():void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you'll have to sell it.\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length) + "\n<b>Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
+	output("<b><u>Currently Fitted Modules:</u></b>");
+	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated:</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
+	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
+	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
+	clearMenu();
+	for(var i:int = 0; i < ship.inventory.length; i++)
+	{
+		output("\n\\\[Modular\\\] " + StringUtil.upperCase(ship.inventory[i].longName) + " (" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits)");
+
+		addItemButton(i, ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
+	}
+	if(ship.inventory.length == 0) output("\nNo modules fitted.");
+	addButton(14, "Back", shop, shopkeep);
+}
+
+public function unfitShipItemForReal(i:Number):void
+{
+	var ship:ShittyShip = shits["SHIP"];
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
+	output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crewmember, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
+	pc.credits += getSellPrice(shopkeep,ship.inventory[i].basePrice);
+	//Remove one item
+	ship.inventory.splice(i,1);
+	processTime(60);
+	clearMenu();
+	addButton(0,"Next",unfitShipItem);
+}
+
 public function buyItem():void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	output(shopkeep.keeperBuy);
 	if(shopkeep.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 
@@ -778,6 +863,9 @@ public function buyItemOK(arg:ItemSlotClass):void
 {
 	clearOutput();
 	clearMenu();
+
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	var hasCoupon:Boolean = false;
@@ -808,6 +896,8 @@ public function buyItemOK(arg:ItemSlotClass):void
 
 public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	
 	//Special Vendor/Item Overrides
@@ -941,6 +1031,9 @@ public function sellItem():void
 	}
 	
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
 	output(shopkeep.keeperSell);
 	if(pc.inventory.length > 10) output("\n" + multiButtonPageNote() + "\n");
 	
@@ -989,6 +1082,8 @@ public function sellItemQuantity(arg:ItemSlotClass):void
 {
 	clearOutput();
 	clearMenu();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	
@@ -1024,6 +1119,8 @@ public function sellItemMultiCustom(arg:ItemSlotClass):void
 {
 	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	output("How many of your " + arg.longName + " do you want to sell? (x" + arg.quantity + " maximum.)");
 	output("\n");
@@ -1067,6 +1164,8 @@ public function sellItemMultiCustomGo(arg:Array):void
 public function sellItemMultiOK(arg:Array):void
 {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var soldItem:ItemSlotClass = arg[0];
 	var soldNumber:int = arg[1];
@@ -1081,6 +1180,8 @@ public function sellItemMultiOK(arg:Array):void
 public function sellItemMulti(arg:Array):void
 {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
 	
 	var soldItem:ItemSlotClass = arg[0];
 	var soldNumber:int = arg[1];
@@ -1108,6 +1209,9 @@ public function sellItemMulti(arg:Array):void
 
 public function sellItemGo(arg:ItemSlotClass):void {
 	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
 	
 	sellItemBonus(arg, price);
@@ -2663,6 +2767,15 @@ public function hasShipStorage():Boolean
 	if (flags["SHIP_STORAGE_CONSUMABLES"] == undefined) flags["SHIP_STORAGE_CONSUMABLES"] = 10;
 	if (flags["SHIP_STORAGE_VALUABLES"] == undefined) flags["SHIP_STORAGE_VALUABLES"] = 10;
 	if (flags["SHIP_STORAGE_TOYS"] == undefined) flags["SHIP_STORAGE_TOYS"] = 10;
+
+	if(shits["SHIP"] != null)
+	{
+		flags["SHIP_STORAGE_WARDROBE"] = shits["SHIP"].wardrobeSize;
+		flags["SHIP_STORAGE_EQUIPMENT"] = shits["SHIP"].equipmentSize;
+		flags["SHIP_STORAGE_CONSUMABLES"] = shits["SHIP"].consumableSize;
+		flags["SHIP_STORAGE_VALUABLES"] = shits["SHIP"].valuablesSize;
+		flags["SHIP_STORAGE_TOYS"] = shits["SHIP"].toysSize;
+	}
 	
 	return true;
 }

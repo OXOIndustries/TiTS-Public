@@ -15,6 +15,7 @@ public function extrameetKaedeRepeat():void
 	clearOutput();
 	showKaede();
 
+
 	output("A few minutes after you tap Kaede’s profile and send a request through it, you receive your reply in the form of a smiley-face and an address on-station. It looks like Kaede’s around and ready to have some fun! You do a quick search for where the ginger puppyslut’s sending you and set off in search of your date...");
 
 	switch(rand(5))

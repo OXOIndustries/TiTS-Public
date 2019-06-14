@@ -124,7 +124,10 @@
 			
 			createStatusEffect("Force Fem Gender");
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "LIRIEL";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.lirielBackMenu(1);

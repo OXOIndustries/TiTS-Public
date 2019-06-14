@@ -40,7 +40,10 @@
 
 			this.keeperSell = "";
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "NENNE";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachNenne(true);

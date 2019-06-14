@@ -636,7 +636,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_REDD") extrameetReddDate();
 		else if (prof == "EXTRAMEET_HAWTSTUFF") extrameetHawtstuffDate();
 		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") extrameetBigTiddyGothGFDate();
-		else if (prof == "EXTRAMEET_KAEDE") extrameetKaedeProfile();
+		else if (prof == "EXTRAMEET_KAEDE") extrameetKaedeDate();
 		else
 		{
 			output("\n\nError finding date");

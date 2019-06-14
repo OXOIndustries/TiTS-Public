@@ -6,6 +6,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars = new Object();
 		charDict = new Dictionary();
+		shits = new Object();
+		shitDict = new Dictionary();
 		
 		var nPC:PlayerCharacter = new PlayerCharacter();
 		chars["PC"] = nPC;
@@ -191,6 +193,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "ROXY", Roxy);
 	prepChar(justUpdate, "LORELEI", Lorelei);
 	prepChar(justUpdate, "VELTA", Velta);
+	prepShip(justUpdate, "SHIP", Casstech);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
@@ -213,5 +216,14 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 		var objInst:Object = new classT();
 		chars[index] = objInst;
 		charDict[objInst] = index;
+	}
+}
+public function prepShip(justUpdate:Boolean, index:String, classT:Class):void
+{
+	if (!justUpdate || (justUpdate && shits[index] == undefined))
+	{
+		var objInst:Object = new classT();
+		shits[index] = objInst;
+		shitDict[objInst] = index;
 	}
 }

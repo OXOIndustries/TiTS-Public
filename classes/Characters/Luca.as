@@ -39,7 +39,10 @@
 
 			this.createPerk("Fixed CumQ", 500);
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "LUCA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.lucaBusinessMenu();

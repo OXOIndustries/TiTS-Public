@@ -2100,7 +2100,12 @@ public function shipMenu():Boolean
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
-		if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
+		/*if(shits["SHIP"].shipCrewCapacity() < crew(true,false)) 
+		{
+			output("\n\nYour ship is <b>overloaded</b>. Send some crewmembers home before you attempt to fly.");
+			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
+		}
+		else 9999*/if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
 		if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
 		{
@@ -3351,6 +3356,7 @@ public function variableRoomUpdateCheck():void
 		rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
 		// Pyrite Satellite Quest
 		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
+		else if(pennyRecruited() && !pennyIsCrew()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things

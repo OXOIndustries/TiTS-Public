@@ -181,7 +181,10 @@
 			
 			this.createStatusEffect("Disarm Immune");
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "KELLY";
+		}
 		public function UpgradeVersion1(d:Object):void
 		{
 			delete d.armor;

@@ -797,6 +797,7 @@ public function nurserySpareApptIsOccupied():Boolean
 {
 	if (flags["SERA_CREWMEMBER"] == 0) return true;
 	if (roxyIsInTempHousing()) return true;
+	if (amberRecruited() && !amberIsCrew()) return true;
 	return false;
 }
 public function nurserySpareApptBonus():Boolean
@@ -806,6 +807,7 @@ public function nurserySpareApptBonus():Boolean
 	// For followers or grown kids and stuff.
 	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
 	if (roxyIsInNursery()) output(roxyInSpareAptBonus(btnSlot++));
+	if(amberRecruited() && !amberIsCrew()) amberApartmentBonus(btnSlot++);
 	return false;
 }
 

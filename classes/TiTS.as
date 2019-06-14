@@ -474,6 +474,8 @@
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		include "../includes/zhengShiStation/wallSluts.as";
+
+		include "../includes/zhengShiStation/shipTesting.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -556,6 +558,8 @@
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
+		public var shits:Object;
+		public var shitDict:Dictionary;
 
 		public var days:int;
 		public var hours:int;
@@ -970,7 +974,8 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if (item.type == GLOBAL.RANGED_WEAPON)
+			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareItem = new EmptySlot();
+			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;
 			}

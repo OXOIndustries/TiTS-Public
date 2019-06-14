@@ -214,6 +214,10 @@
 		{
 			kGAMECLASS.approachRenvra();
 		}
+		override public function get bustDisplay():String
+		{
+			return "RENVRA";
+		}
 		
 	}
 

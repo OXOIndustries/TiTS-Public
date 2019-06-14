@@ -89,6 +89,19 @@ package classes.UIComponents.SideBarComponents
 			else bustVisible = false;
 			
 			_statBars.shield.labelText = char.shieldDisplayName;
+			if (_statBars.hp != null && char != null)
+			{
+				_statBars.hp.labelText = char.hpDisplayName;
+			}
+			else if (_statBars.hp != null && char == null)
+			{
+				_statBars.hp.labelText = "HP";
+			}
+			//I suppose this is where I'd hook in a proper indicator for a defeated enemy... but I am potato programmer. -Fenoxo 1337
+			if(char != null && char.isDefeated())
+			{
+
+			}
 		}
 		
 		private function ResetBarValues():void
