@@ -2439,7 +2439,7 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
 		{
-			addButton(button,"Tessa’s",jackOffWithLadyPantiesYouSicko,"Tessa","Tessa’s Panties","Use Tessa’s lacy thong for a little self-pleasure.");
+			addButton(button,"Tessa’s",jackOffWithLadyPantiesYouSicko,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
 			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,1,"Random Panties","Select a random pair of panties to fap to.");
@@ -2570,7 +2570,7 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
 		{
-			addButton(button,"Tessa’s",pureLadyWaifuPussyRubFap,"Tessa","Tessa’s Panties","Use Tessa’s lacy thong for a little self-pleasure.");
+			addButton(button,"Tessa’s",pureLadyWaifuPussyRubFap,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
 			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,0,"Random Panties","Select a random pair of panties to schlick to.");
