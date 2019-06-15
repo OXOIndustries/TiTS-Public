@@ -666,6 +666,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "BoredJumperPregnancy": output2(" Laquine"); break;
 						case "LaquinePregnancy": output2(" Laquine"); break;
 						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
+						case "MirrinPregnancy": output2(" Mirrin"); if (rand(4) == 0) output(", (Torri?)"); else if (rand(3) == 0) output(", (Einar?)"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -5034,6 +5035,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Semith:</b> Met him");
 					if(flags["SEMITH_SEXED"] > 0) output2("\n<b>* Semith, Times Sexed:</b> " + flags["SEMITH_SEXED"]);
 				}
+				if(flags["MET_MIRRIN"] != undefined && MailManager.isEntryUnlocked("mirrin_tavros")) writeMirrinLogEntry(); // see newTexas/mirrinPregpack.as
 				variousCount++;
 			}
 			// Ilaria Bunnybutts
@@ -5498,13 +5500,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TTGYM_LOLA_SIMONE_PUSSY_SCUN"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Licked Your Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_SCUN"]);					
 					if(flags["TTGYM_LOLA_SIMONE_PUSSY_HL"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Fucked You With a Hardlight:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_HL"]);
 				}
-				if(flags["MET_MIRRIN"] != undefined)
-				{
-					output2("\n<b>* Mirrin:</b> Met her");
-					if(flags["MIRRIN_CONFIDENTED"] != undefined) output2(", You boosted her confidence");
-					if(flags["MIRRIN_TRAINED"] != undefined) output2("\n<b>* Mirrin, Times Trained with Her:</b> " + flags["MIRRIN_TRAINED"]);
-					if(flags["SEXED_MIRRIN"] != undefined) output2("\n<b>* Mirrin, Times Sexed:</b> " + flags["SEXED_MIRRIN"]);
-				}
+				if(flags["MET_MIRRIN"] != undefined && !MailManager.isEntryUnlocked("mirrin_tavros")) writeMirrinLogEntry(); // see newTexas/mirrinPregpack.as
 				if(flags["MET_SIMONE"] != undefined)
 				{
 					output2("\n<b>* Simone:</b> Met her");

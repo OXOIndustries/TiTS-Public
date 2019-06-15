@@ -102,7 +102,14 @@ public function playFynsDoorScene():Boolean
 			addButton(1, "S. Knock", knockOnBigTiddyGFDoor, undefined, "South Door Knock", "Something keeps drawing you to knock on the door...");
 		}
 	}
-	
+
+	if (MailManager.isEntryUnlocked("mirrin_tavros"))
+	{
+		output("\n\nAt the very end of the hall is a set of automatic sliding doors with a simple neon-white sign overhead: <i>SterkurHús</i>.");
+		if (MailManager.isEntryViewed("mirrin_tavros")) output("\n\nMirrin’s new place of course!");
+		if (!MailManager.isEntryViewed("mirrin_tavros") || pc.hasStatusEffect("MIRRIN_DISABLED") || mirrinWiffKiddos()) setNavDisabled(NAV_EAST_DISABLE);
+	}
+
 	setNavDisabled(NAV_SOUTH_DISABLE);
 
 	return false;

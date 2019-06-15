@@ -121,6 +121,8 @@ public function nurseryFoyerFunc():Boolean
 	else if (!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
 	
 	if (roxyNurseryRandomEvents("foyer")) return true;
+
+	if (jentaBorn() && flags["MIRRIN_JENTA_MET"] == undefined) return jentaHatchingBegins();
 	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
@@ -628,6 +630,7 @@ public function nurseryKidsDormsFunc():Boolean
 	tamtamBabyBlurbs();
 	ainaBabyBlurbs();
 	nurseryLaquineBlurbs();
+	mirrinBabyBlurbs();
 	var button:Number = 0;
 	button = zilBabyBonus(button);
 	button = milodanPlayOptions(button);
@@ -635,6 +638,7 @@ public function nurseryKidsDormsFunc():Boolean
 	button = samBabiesVisitOptions(button);
 	button = zephyrKidsOption(button);
 	button = nurseryLaquineOptions(button);
+	button = mirrinKidsOptions(button);
 
 	return false;
 }
@@ -1620,7 +1624,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
-				else output("<i>Unknown Sex</i>");
+				else output(" <i>Unknown Sex</i>");
 				
 				var desc:Array = [];
 				if(baby.skinTone != "NOT SET") desc.push(" " + baby.skinTone + " skin");

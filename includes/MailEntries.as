@@ -315,6 +315,23 @@ public function configureMails():void
 	//breedwell premium
 	MailManager.addMailEntry("breedwell_premium_invite", breedwellPremiumInviteEmail, "Hey There, Eager Breeder...", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_premium_earnings", breedwellPremiumEarningsEmail, "Your Earnings", "TamaniCorp", "BCounter@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//mirrin nonpreg email
+	MailManager.addMailEntry("mirrin_notpreg", mirrinNotPregEmail, "Doctors in, please come", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_tavros", mirrinMovingEmail, "All set up!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_sugarmommy", mirrinSugarMommyEmail, "Feeling good, other updates", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_sendnudes", mirrinSendNudesEmail, "Feeling bad, progress", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_royalties", mirrinRoyaltiesEmail, "Article’s up, pics! Also…", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_jenta", "STEELE YOU GOTTA SEE HER YOU GOTTA SEEEEEEEEEEEE\n\nAHHHHHH\n\nGET HERE NOW OR I’LL CRUSH YOUR HEAD WITH MY HOOF\n\n<i>Ohhh, it seems your daughter has been born! <b>You better go visit the Tavros nursery ASAP.</b></i>", "Jenta’s hatched! Come see!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+
+	MailManager.addMailEntry("tessa_wedding",
+	function ():String
+	{
+		var msg:String = "[pc.Name],";
+		msg += "\n\nI’ve got something I want to ask you about the next time to come around. Just a small favor. Remind me in case I forget. Or don’t. If you’re a little bitch.";
+		msg += "\n\n-Tessa";
+		return ParseText(msg);
+	}
+	, "Favor to ask.", "Tessa", "Tessa_da_besta@cmail.com", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

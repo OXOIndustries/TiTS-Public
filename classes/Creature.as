@@ -2338,6 +2338,10 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksIsAre":
+				case "dicksIsAre":
+					buffer = (hasCocks() ? cocksDescript() + " are" : cockDescript(arg2) + " is");
+					break;
 				case "cocksLightIsAre":
 				case "dicksLightIsAre":
 					buffer = (hasCocks() ? cocksDescriptLight() + " are" : simpleCockNoun(arg2) + " is");
@@ -5338,6 +5342,7 @@
 			bonus += statusEffectv2("Fried Cunt Snake");
 
 			//Venom brings minimum up to 35.
+			if (bonus < 10 && statusEffectv1("MirrinPregStage") > 0) bonus = 10;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
 			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;

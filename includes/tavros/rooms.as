@@ -1239,4 +1239,17 @@ public function initTavrosRooms():void
 	rooms["RIYAPARTY"].moveMinutes = 2;
 	rooms["RIYAPARTY"].runOnEnter = undefined;
 	rooms["RIYAPARTY"].addFlag(GLOBAL.INDOOR);
+	
+	//1011 East Walkway 2
+	rooms["RESIDENTIAL MIRRIN"] = new RoomClass(this);
+	rooms["RESIDENTIAL MIRRIN"].roomName = "\nSTERKURHÚS";
+	rooms["RESIDENTIAL MIRRIN"].description = "";
+	rooms["RESIDENTIAL MIRRIN"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL MIRRIN"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL MIRRIN"].westExit = "RESIDENTIAL DECK 11";
+	rooms["RESIDENTIAL MIRRIN"].moveMinutes = 1;
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL MIRRIN"].runOnEnter = mirrinSterkurHusBonus;
 }

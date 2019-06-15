@@ -438,6 +438,10 @@ public function shipHangarShips(dock:String = ""):Array
 	{
 		if(flags["FALL OF THE PHOENIX STATUS"] == 1) ships.push(["The Phoenix", thePhoenixShipBonus]);
 	}
+	if(dock == "201")
+	{
+		if(flags["TESSA_TALKED_MAIL"] == 2 && flags["TESSA_WED_ENDING"] == undefined) ships.push(["Tessa Ship", tessaHangarBonus]);
+	}
 	if(InCollection(dock, publicHangars))
 	{
 		if(flags["SHIZZY_MET"] != undefined && majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
@@ -3265,6 +3269,14 @@ public function variableRoomUpdateCheck():void
 		if(zilCallgirlAvailable()) rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.OBJECTIVE);
 		else rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	//Mirrin moves in
+	if (MailManager.isEntryUnlocked("mirrin_tavros"))
+	{
+		if (MailManager.isEntryViewed("mirrin_tavros") && !pc.hasStatusEffect("MIRRIN_DISABLED") && !mirrinWiffKiddos()) rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.NPC);
+		else rooms["RESIDENTIAL MIRRIN"].removeFlag(GLOBAL.NPC)
+		rooms["RESIDENTIAL DECK 11"].eastExit = "RESIDENTIAL MIRRIN";
+	}
+	else rooms["RESIDENTIAL DECK 11"].eastExit = "";
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16)) rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
 	else rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
@@ -4006,6 +4018,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processAinaPregEvents(deltaT, doOut, totalDays);
 	processLucaTimeStuff(deltaT, doOut, totalDays);
 	processBreedwellPremiumBreederEvents(deltaT, doOut, totalDays);
+	processMirrinPregnancy(deltaT, nextTimestamp);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -4231,7 +4244,25 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		
 		//breedwell premium
 		if (breedwellPremiumIsQualified() && !MailManager.isEntryUnlocked("breedwell_premium_invite")) goMailGet("breedwell_premium_invite");
-		
+
+		//Mirrin did not get preg. Soz.
+		var mirrinMail:Object = {	MIRRIN_PREGMAIL_TIMESTAMP:"mirrin_notpreg",
+									MIRRIN_TAVROSMAIL_TIMESTAMP:"mirrin_tavros",
+									MIRRIN_SUGARMOMMY:"mirrin_sugarmommy",
+									MIRRIN_SENDNUDES:"mirrin_sendnudes",
+									MIRRIN_JENTA_HATCHING_STAMP:"mirrin_jenta",
+									MIRRIN_TOOK_PICS_TIMESTAMP:"mirrin_royalties"};
+		for (var flagName:String in mirrinMail)
+		{
+			if (nextTimestamp > flags[flagName] && !MailManager.isEntryUnlocked(mirrinMail[flagName]))
+			{
+				goMailGet(mirrinMail[flagName], flags[flagName]);
+				flags[flagName] = undefined;
+			}
+		}
+
+		if ((flags["TESSA_BREASTPLAY"] != undefined || flags["TESSA_SHOWER"] != undefined) && !MailManager.isEntryUnlocked("tessa_wedding") && rand(100) >= 100*Math.pow(.8,totalHours)) goMailGet("tessa_wedding", nextTimestamp - rand(deltaT));
+
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}

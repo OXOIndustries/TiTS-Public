@@ -289,6 +289,35 @@ public function whiteWomanTessa():void
 		//Buttons
 		addButton(0,"Next",mainGameMenu);	
 	}
+	else if (flags["TESSA_WED_REVIEW"] == 0 && GetGameTimestamp() > flags["TESSA_WED_TIMESTAMP"] + 5*24*60)
+	{
+		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
+		output("\n\nAfter the normal moment of silence, she looks up and you and sighs. <i>“So, I heard from Karen today.”</i>");
+		output("\n\n<i>“Oh…”</i> You think back on the night of the wedding. Things didn't exactly work out that well…");
+		output("\n\n<i>“Yeah…”</i> Tessa takes a swig from her drink and rubs her temple. <i>“Well. You certainly made an impression. Not a perfect impression mind you, but…”</i> She takes a deep breath and braces herself, struggling to say the next words. <i>“Good job.”</i>");
+		output("\n\n<i>“What?”</i> You sit a moment in silence, letting her words skin in. <i>“But the night kinda went-”</i>");
+		output("\n\n<i>“Like shit, yeah.”</i> She rubs her brow and sighs, staring into her drink and fighting off the urge to chug it. <i>“But they think that… well, they all think what I wanted them to think. That I’m dating the rich kid on the block and doing well for myself so… Yeah, mission accomplished I guess.”</i> ");
+		output("\n\n<i>“Huh.”</i> You think about it a moment, and do remember that was the point of the whole charade. ");
+		output("\n\n<i>“Look, Steele.”</i> Tessa pushes her drink to the side and leans in, looking you straight in the eye. <i>“You did me a huge favor. Sure things went… Well, you know how they fucking went, but what I mean to say is…. Thanks.”</i> She leans back in her chair and sighs, rubbing her face again. ");
+		output("\n\nAfter a moment, Tessa speaks again, her hand still over her face. <i>“Ah, fuck it.”</i> She drops her hand and stares at you hard, her red eyes fixed on you like a predator. <i>“Next time we’re on my ship, you, me, my room. Got it?”</i> Before you can speak, she cuts you off. <i>“Good.”</i> She reaches down and grabs her drink, taking a long hard pull from it before slamming it down on the table. <i>“Now, what do you want to talk about?”</i>");
+
+		processTime(9);
+		flags["TESSA_WED_REVIEW"] = 1;
+		
+		//Buttons
+		addButton(0,"Appearance",lookAtDatSexyTessa,undefined,"Appearance","Get a good look at her.");
+		addButton(1,"Talk",talkWifDatLizTessa,undefined,"Talk","Engage with her.");
+		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined && pc.lust() >=33)
+		{
+			addButton(2,"Flirt",flirtWithTessa,undefined,"Flirt","See where this goes.");
+		}
+		else
+		{
+			addDisabledButton(2,"Flirt","Flirt","Probably not a good idea.");
+		}
+		
+		addButton(14,"Leave",lonelyLizardTessa);
+	}
 	else
 	{
 		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
@@ -365,6 +394,11 @@ public function talkWifDatLizTessa():void
 	if (flags["TESSA_SPECIES"]!= undefined)	addButton(2,"Alone?",whySoLonelyTessa,undefined,"Alone?","Ask why she always drinks alone.");
 	if (flags["TESSA_SENSEPLAY"]!= undefined && flags["TESSA_ALONE"]!= undefined) addButton(3,"Her Sex",didYouJustAssumeTessaGender,undefined,"Her Sex","Ask her what her “deal”</i> is.");
 	if (tessaTrust() >= 60) addButton(4, "Profession", whatSexyTessaDo, undefined, "Profession", "Wait, what did you do again?");
+	if (MailManager.isEntryViewed("tessa_wedding"))
+	{
+		if (flags["TESSA_TALKED_MAIL"] == undefined) addButton(5, "Email", heyLittleTessaWhatIsItYouWant);
+		else if (flags["TESSA_TALKED_MAIL"] == 1) addButton(5, "Agree To Help", whenYoureRightThereWithHerMailDontCallTessaToTellHerShesAlone);
+	}
 	addButton(14,"Back",whiteWomanTessa);
 }
 
@@ -750,7 +784,8 @@ public function flirtWithTessa():void
 			addButton(7,"Take a Shower",showerTimeIntroTessa,undefined,"Take a Shower","Get clean and dirty together.");
 			flags["TESSA_SHOWER_BREAST"] = 1;
 		}
-		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Breast Play","Breast Play","You need genitalia and must be a biped.");
+		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Take a Shower","Take a Shower","You need genitalia and must be a biped.");
+		if (flags["TESSA_WED_REVIEW"] == 1) addButton(8, "Bedroom", tessaBedroomIntro);
 		
 		addButton(14,"Leave",tessaLeaveShip,undefined,"Leave","You’ve changed your mind.");
 		currentLocation = shipLocation;

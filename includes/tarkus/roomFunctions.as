@@ -31,7 +31,7 @@ public function landOnTarkus():void
 }
 public function novahomeHangerBonus():Boolean
 {
-	
+
 	if(flags["CHAURMINE_LOVER"] == undefined && chaurmineRelationship() >= 50 && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3)) novahomeChaurmineGoodbyeBonus(0);
 	return false;
 }
