@@ -8442,7 +8442,10 @@
 			removeStorage(statusEffects);
 		}
 		public function clearCombatStatuses(): void {
-			
+			if(this is ShittyShip)
+			{
+				(this as ShittyShip).resetEquipment();
+			}
 			//trace("Removing combat statuses.");
 			if (hasStatusEffect("Sensor Link"))
 			{

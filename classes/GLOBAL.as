@@ -1268,7 +1268,7 @@
 			"Shotgun",
 			"Thrower",
 			"Launcher",
-			"ToggledOff",
+			"Disabled",
 			"Double Shot",
 			"Burst Fire",
 			"Full-Auto Fire"

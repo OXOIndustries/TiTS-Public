@@ -1,22 +1,8 @@
 	package classes {
-	import classes.Characters.*;
 	import classes.CockClass;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.GameData.SingleCombatAttack;
-	import classes.Items.Accessories.*;
-	import classes.Items.Apparel.SavicitePanties;
-	import classes.Items.Armor.*;
-	import classes.Items.Armor.Unique.Omnisuit;
-	import classes.Items.Guns.*;
-	import classes.Items.Melee.*;
-	import classes.Items.Miscellaneous.*;
-	import classes.Items.Piercings.OpalRingPiercing;
-	import classes.Items.Transformatives.*;
-	import classes.Items.Treasures.Savicite;
-	import classes.Ships.IOwner;
-	import classes.Ships.Modules.ShipModule;
-	import classes.VaginaClass;
-	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
 	import classes.DataManager.Serialization.*;
@@ -36,6 +22,7 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.*;
+	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
 
 	public class ShittyShip extends Creature {
 	
@@ -120,6 +107,8 @@
 		//Systems (Mapped to Intelligence)
 		public function shipSystems():Number
 		{
+			var bonus:Number = 0;
+			bonus += equippedItemCountByClass(ShieldDisruptor) * 5;
 			return intelligenceRaw;
 		}
 		public var shipCapacityRaw:Number = 3;
@@ -178,6 +167,7 @@
 		{
 			return shipStatBonusTotal(2);
 		}
+		
 		//0 - evasion
 		//1 - accuracy
 		//2 - defense
@@ -226,6 +216,62 @@
 			else if(type == 5) return shields;
 			else return -1;
 		}
+		public function gadgetCount():int
+		{
+			var count:int = 0;
+
+			if(meleeWeapon.type == GLOBAL.GADGET) count++;
+			if(rangedWeapon.type == GLOBAL.GADGET) count++;
+			if(accessory.type == GLOBAL.GADGET) count++;
+			if(lowerUndergarment.type == GLOBAL.GADGET) count++;
+			if(upperUndergarment.type == GLOBAL.GADGET) count++;
+			if(armor.type == GLOBAL.GADGET) count++;
+			if(shield.type == GLOBAL.GADGET) count++;
+
+			if(inventory.length == 0) return count;
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if (inventory[i].type == GLOBAL.GADGET) count ++;
+			}
+			return count;
+		}
+		public function equippedItemCountByClass(arg:Class):int
+		{
+			if(arg == null) return 0;
+			var count:int = 0;
+
+			if(meleeWeapon is arg) count++;
+			if(rangedWeapon is arg) count++;
+			if(accessory is arg) count++;
+			if(lowerUndergarment is arg) count++;
+			if(upperUndergarment is arg) count++;
+			if(armor is arg) count++;
+			if(shield is arg) count++;
+
+			if(inventory.length == 0) return count;
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if (inventory[i] is arg) count ++;
+			}
+			return count;
+		}
+		public function listShipEquipment(all:Boolean = false):Array
+		{
+			var equipment:Array = [];
+			if(!(meleeWeapon is EmptySlot)) equipment.push(meleeWeapon);
+			if(!(rangedWeapon is EmptySlot)) equipment.push(rangedWeapon);
+			if(!(accessory is EmptySlot)) equipment.push(accessory);
+			if(!(lowerUndergarment is EmptySlot)) equipment.push(lowerUndergarment);
+			if(!(upperUndergarment is EmptySlot)) equipment.push(upperUndergarment);
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				equipment.push(inventory[i]);
+			}
+			//Shields/Armor are stock and dont really need this, but futureproof
+			if(all && !(shield is EmptySlot)) equipment.push(shield);
+			if(all && !(armor is EmptySlot)) equipment.push(armor);
+			return equipment;
+		}
 		public function listShipWeapons():Array
 		{
 			var weaps:Array = [];
@@ -236,6 +282,22 @@
 				if(inventory[i].type == GLOBAL.RANGED_WEAPON) weaps.push(inventory[i]);
 			}
 			return weaps;
+		}
+		public function listShipGadgets():Array
+		{
+			var gadgets:Array = [];
+			if(meleeWeapon.type == GLOBAL.GADGET) gadgets.push(meleeWeapon);
+			if(rangedWeapon.type == GLOBAL.GADGET) gadgets.push(rangedWeapon);
+			if(accessory.type == GLOBAL.GADGET) gadgets.push(accessory);
+			if(shield.type == GLOBAL.GADGET) gadgets.push(shield);
+			if(armor.type == GLOBAL.GADGET) gadgets.push(armor);
+			if(lowerUndergarment.type == GLOBAL.GADGET) gadgets.push(lowerUndergarment);
+			if(upperUndergarment.type == GLOBAL.GADGET) gadgets.push(upperUndergarment);
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].type == GLOBAL.GADGET) gadgets.push(inventory[i]);
+			}
+			return gadgets;
 		}
 		public function shipWeaponDamage(weapon:ItemSlotClass):TypeCollection
 		{
@@ -268,6 +330,14 @@
 
 			if (temp < 0) temp = 0;
 			return temp;
+		}
+		public function resetEquipment():void
+		{
+			var equipment:Array = listShipEquipment();
+			for(var i:int = 0; i < equipment.length; i++)
+			{
+				if(equipment[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) equipment[i].deleteFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
+			}
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{

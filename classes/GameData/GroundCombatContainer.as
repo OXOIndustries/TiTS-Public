@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.Characters.Vahn;
 	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
@@ -1447,12 +1448,16 @@ package classes.GameData
 				if((_friendlies[0] as ShittyShip).listShipWeapons().length == 0) addDisabledButton(0,"Weapons","Weapons","Your ship has no weapons equipped.");
 				else if(_friendlies[0].hasStatusEffect("Disarmed")) addDisabledButton(0,"Weapons","Weapons","Your ships weapon systems have been disabled.");
 				else addButton(0,"Weapons",manageWeapons,_friendlies[0],"Weapons","Manage which weapons will be firing during this engagement.");
+				if((_friendlies[0] as ShittyShip).gadgetCount() > 0) addButton(1,"Gadgets",shipGadgetMenu,undefined,"Gadgets","Look over your equipped gadgetry for a device that might swing the battle in your favor.");
+				else addDisabledButton(1,"Gadgets","Gadgets","You have no gadgets equipped.");
+
+
 				addButton(3,"Evade!",evadeWithYoShip,undefined,"Evade!","Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)");
 				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
 				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)");
 
 
-				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape", runAway, undefined, "Escape", "Now that you've charged your light drive, you can escape with the flip of a switch!");
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape!", runAway, undefined, "Escape!", "Now that you've charged your light drive, you can escape with the flip of a switch!");
 				else if(_friendlies[0].energy() >= Math.floor(_friendlies[0].energyMax()/2)) 
 				{
 					addButton(14, "Escape!", runAway, undefined, "Escape!", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
@@ -2102,7 +2107,28 @@ package classes.GameData
 				return;
 			}
 		}
+		private function shipGadgetMenu():void
+		{
+			clearMenu();
+			var gadgets:Array = (_friendlies[0] as ShittyShip).listShipGadgets();
+			//This is the hackiest thing I've ever written, but I need the addItemButton button to work properly for ships stats....
+			kGAMECLASS.shopkeep = new Vahn();
 
+			for(var i:int = 0; i < gadgets.length; i++)
+			{
+				if(gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) addItemDisabledButton(i, gadgets[i]);
+				else if(_friendlies[0].energy() < gadgets[i].shieldDefense) addItemDisabledButton(i, gadgets[i]);
+				else kGAMECLASS.addItemButton(i,gadgets[i],combatUseItemShipWrapper,[gadgets[i],null,_friendlies[0]]);
+			}
+			addButton(14, "Back", generateCombatMenu, true);
+		}
+		public function combatUseItemShipWrapper(args:Array):void
+		{
+			var item:ItemSlotClass = args[0];
+			var targetCreature:Creature = args[1];
+			var usingCreature:Creature = args[2];
+			kGAMECLASS.combatUseItem(item,targetCreature,usingCreature);
+		}
 		public function rechargeYoShipBoooost(pc:Creature):void
 		{
 			clearOutput();
@@ -2116,6 +2142,7 @@ package classes.GameData
 			CombatAttacks.EvasionImpl(_friendlies, _hostiles, _friendlies[0], _hostiles[0]);
 			processCombat();
 		}
+
 		private function doStaticBurst():void
 		{
 			clearOutput();
@@ -2522,7 +2549,6 @@ package classes.GameData
 			if (bOff == 13) bOff++;
 			return ++bOff;
 		}
-		
 		private function generateSpecialsMenu():void
 		{
 			clearMenu();

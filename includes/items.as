@@ -584,7 +584,8 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		{
 			if (item.targetsSelf == true && item.requiresTarget == false)
 			{
-				targetCreature = pc;
+				if(usingCreature.hasPerk("PCs")) targetCreature = usingCreature;
+				else targetCreature = pc;
 			}
 			else if (item.requiresTarget == false)
 			{
@@ -628,7 +629,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 								{
 									combatUseItem(t_item, t_target, t_user);
 								}
-							}(item, targets[i], pc));
+							}(item, targets[i], usingCreature));
 						}
 					}
 					
@@ -650,7 +651,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		}
 	}
 	
-	if (usingCreature is PlayerCharacter) backToCombatInventory(item);
+	if (usingCreature is PlayerCharacter || usingCreature.hasPerk("PCs")) backToCombatInventory(item);
 }
 
 public function backToCombatInventory(item:ItemSlotClass):void

@@ -9,6 +9,9 @@
 	import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipArmor;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipShield;
+	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
+	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldBooster;
+	import classes.ShittyShips.ShittyShipGear.Gadgets.RepairModule;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -58,9 +61,12 @@
 			this.armor.hasRandomProperties = true;
 
 			this.inventory.push(new LCannon());
-			//this.inventory.push(new LCannon());
+			this.inventory.push(new ShieldDisruptor());
+			this.inventory.push(new ShieldDisruptor());
+			this.inventory.push(new RepairModule());
+			this.inventory.push(new ShieldBooster());
 			
-			//this.shield = new ShipShield();
+			this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
 			this.shield.shields = 3000;
 			this.shield.hasRandomProperties = true;
