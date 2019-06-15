@@ -6175,7 +6175,8 @@
 				if(silicone > 0 && rand(2) == 0) {
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
-					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(lips >= 3) adjectives.push("perfectly rounded");
 					if(result != "") result += ", ";
 					result += adjectives[rand(adjectives.length)];
 				}
@@ -14295,7 +14296,8 @@
 			if(silicone > 0 && rand(2) == 0) {
 				adjectives.length = 0;
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(hips >= 6) adjectives.push("perfectly rounded");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -14645,7 +14647,8 @@
 				adjectives.length = 0;
 				if(silicone >= 2) adjectives.push("gravity defying");
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(butt >= 6) adjectives.push("perfectly rounded", "globular");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -18778,7 +18781,8 @@
 
 			var descript: String = "";
 			var milkied:Boolean = false;
-			if (breastRows[rowNum].breastRating() < 1) {
+			var bRowRating:Number = breastRows[rowNum].breastRating();
+			if (bRowRating < 1) {
 				if(rand(2) == 0)
 				{
 					if (tone < 30) return RandomInCollection([mf("pecs", "flat tits", true), mf("pectoral muscles", "flat breasts", true)]);
@@ -18787,7 +18791,7 @@
 				return "flat, almost non-existent breasts";
 			}
 			//33% of the time size-descript them
-			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
+			if (rand(3) == 0) descript += breastSize(bRowRating);
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;
@@ -18867,7 +18871,7 @@
 				milkied = true;			
 			}
 			// A-cups
-			if(breastRows[rowNum].breastRating() == 1) {
+			if(bRowRating == 1) {
 				if(descript != "") descript += ", ";
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
@@ -18880,7 +18884,8 @@
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
 					if(silicone >= 5) adjectives.push("ridiculously perky");
-					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(bRowRating >= 4) adjectives.push("perfectly rounded", "globular");
 					if(descript != "") descript += ", ";
 					descript += adjectives[rand(adjectives.length)];
 				}
@@ -18894,29 +18899,30 @@
 		{
 			if(rowNum < 0 || rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
+			var bRowRating:Number = breastRows[rowNum].breastRating();
 			var silicone:Number = siliconeRating("tits");
 			if (isLactating())
 			{
 				if(!milkied)
 				{
-					if(breastRows[0].breastRating() >= 5)
+					if(bRowRating >= 5)
 					{
-						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melon","honey-melon");
+						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && bRowRating >= 2) nouns.push("sugar-melon","honey-melon");
 						nouns.push("milk-tank","milk-jug");
 					}
 					else nouns.push("milker","milker");
 				}
-				if(breastRows[0].breastRating() >= 2) nouns.push("udder", "udder", "udder", "udder");
+				if(bRowRating >= 2) nouns.push("udder", "udder", "udder", "udder");
 			}
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
 			nouns.push("tit", "tit", "tit");
-			if (breastRows[rowNum].breastRating() > 6) nouns.push("tit");
+			if(bRowRating > 6) nouns.push("tit");
 			if(silicone > 0) {
 				nouns.push("balloon");
 				if(silicone >= 2) nouns.push("balloon");
 				if(silicone >= 5) nouns.push("balloon");
 				if(silicone >= 10) nouns.push("balloon");
-				nouns.push("bolt-on");
+				//nouns.push("bolt-on");
 			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");
@@ -19971,12 +19977,12 @@
 				stretched = true;
 			}
 			//If within top 10% of capacity, 50% stretch
-			else if(volume >= .9 * capacity && rand(2) == 0) {
+			else if(volume >= (.9 * capacity) && rand(2) == 0) {
 				holePointer.looseness(1);
 				stretched = true;
 			}
 			//if within 75th to 90th percentile, 25% stretch
-			else if(volume >= .75 * capacity && rand(4) == 0) {
+			else if(volume >= (.75 * capacity) && rand(4) == 0) {
 				holePointer.looseness(1);
 				stretched = true;
 			}
@@ -20036,7 +20042,7 @@
 				}
 			}
 			//Delay anti-stretching
-			if(volume >= .35 * capacity) {
+			if(volume >= (.35 * capacity)) {
 				if(hole >= 0) {
 					holePointer.shrinkCounter = 0;
 				}

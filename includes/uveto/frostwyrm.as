@@ -544,7 +544,7 @@ public function frostwyrmPickMeUpBaby():void
 	output("You concentrate on your psionic link with the Frostwyrm; you reach out to her, telling her that you’re on the Uveto ocean coastline, and you’d like to see her.");
 	output("\n\n<i>At once, my Qal,</i> you hear her familiar voice thrum inside your skull. The flight between the coast and her lair is a fair distance, and you prepare to settle in, pacing and hugging yourself to keep warm, as you wait for her.");
 	output("\n\nDespite that, she’s by your side much sooner than you anticipated; she must have been out hunting when you called for her. Within minutes, you see her imposing form in the distance, and you hear her roar vibrate the very air around you. She spots you as soon as you spot her, and she dives, the air splitting around her wings as she comes in for a quick landing.");
-	output("\n\nShe rights herself with practiced grace before landing, two sets of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
+	output("\n\nShe rights herself with practiced grace before landing, a pair of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
 	output("\n\nYou don’t waste much time before asking her to take you back to her lair. <i>Of course,</i> she replies gladly, lowering her body to the ice so that you can climb onto her. <i>I look forward to you warming my lair once more.</i>");
 	
 	// Allow Xmas events once a year
@@ -672,7 +672,7 @@ public function nameThatFrostwyrm1():void
 	if(pc.hasGenitals()) {
 		output(",");
 		if (pc.hasCock()) output(" hardening [pc.eachCock] not to full, hard-as-rock mast, but damn close to it");
-		if (pc.isHerm()) output(" just south, you feel");
+		if (pc.isHerm()) output(". Just south, you feel");
 		if (pc.hasVagina()) output(" your [pc.vaginas] moistening and clenching, eager for the first willing dick you lay your eyes on");
 	}
 	output(".");
@@ -697,7 +697,7 @@ public function frostwyrmJesusWeFinallyLanded():void
 	output("Finally, after a punishing hour-long flight, you spot land. It isn’t another continent or beach; instead, it’s an island, several miles in diameter. It’s featureless – as the rest of the frozen wastes of Uveto are – save for a single spire on one edge of the island with a lazy slope leaning towards the island’s center. At the base of the mountain is a massive mouth, leading into a deep, underground cave.");
 	output("\n\n<i>Grab tight,</i> [frostwyrm.name] instructs, and you do so as she slowly descends. The drop is much gentler than the rise was, though you come hurtling towards the ground much faster than you appreciated, having grown accustomed to the height. [frostwyrm.name] pulls up just before you land; she flaps her wings several times, adjusting her body to the land, before finally settling down.");
 	output("\n\nYou hop off your Frostwyrm, walking the paltry remaining distance to the cave, allowing her to show you the way. <i>Welcome to my lair,</i> she says, peering over her haunch to make sure you’re following. <i>Watch your first step. The incline is quite sharp.</i>");
-	output("\n\nShe wasn’t kidding: the cave only goes for a few feet forward before it curves into the island rather than deeper into the mountain, and the first drop is almost ten feet deep. [frostwyrm.name] hops down with practiced grace, twisting her draconian body into its lair, and you follow behind, leaping after her.");
+	output("\n\nShe wasn’t kidding: the cave only goes for a few feet forward before it curves into the island rather than deeper into the mountain, and the first drop is almost ten feet deep. [frostwyrm.name] hops down with practiced grace, twisting her draconian body into her lair, and you follow behind, leaping after her.");
 	output("\n\nShe leads you further in wordlessly; the light of Uveto’s star refracts off the icy walls repeatedly, illuminating your path far deeper into the lair than you would have thought it would. After another drop, you’re opened into a massive, underground dome, easily a hundred feet across and forty-or-more feet straight up. The ground is packed very tight, likely from [frostwyrm.name] pacing over it endlessly. Stalactites glimmer around the ceiling of the dome, shooting light every which way and providing a show similar to a chandelier. In the far corner of the dome is an elevated platform of flat ice – likely a bed or resting place for [frostwyrm.name].");
 	
 	clearMenu();
@@ -1211,7 +1211,7 @@ public function frostwyrmVaginalRepeat():void
 	author("B");
 	
 	var vIdx:int = -1;
-	if(pc.hasVagina() && pc.fertility() > 0 && pc.blockedVaginas() == 0){
+	if(pc.hasVagina() && pc.fertility() > 0 && pc.blockedVaginas() == 0) {
 		vIdx = pc.findEmptyPregnancySlot(1);
 		//if(vIdx < 0) vIdx = rand(pc.totalVaginas());
 	}
@@ -1710,10 +1710,14 @@ public function frostwyrmSteeleIsADirtyGirl():void
 		output("\n\n<i>I have been thinking,</i> [frostwyrm.name] says. <i>Perhaps it is my kind that is poorer for not appreciating hygiene the way your kind do. There is no harm in obtaining pleasure from your mate, even from an act as innocuous as a bath.</i> She gives you a long, exaggerated lick across your entire body. <i>Your kind are certainly creative with sharing pleasure.</i>");
 	}
 	output("\n\nShe withdraws her tongue suddenly and nudges you with her snout, wordlessly directing you to flip over. You do so, exposing your backside to her, and she resumes, again starting at your [pc.legs], her thick tongue worming against your crotch, and making a long, slow drag up your spine.");
-	output("\n\nHer tongue molds itself against your [pc.ass], the spongy flesh worming in between your cheeks and hitting everything from your ");
-	if (pc.balls > 0) output("[pc.balls]");
-	if (pc.isHerm()) output(", to your");
-	if (pc.hasVagina()) output("[pc.vagina]");
+	output("\n\nHer tongue molds itself against your [pc.ass], the spongy flesh worming in between your cheeks");
+	if(pc.balls > 0 || pc.hasVagina())
+	{
+		output(" and hitting everything from your");
+		if (pc.balls > 0) output(" [pc.balls]");
+		if (pc.balls > 0 && pc.hasVagina()) output(", to your");
+		if (pc.hasVagina()) output(" [pc.vagina]");
+	}
 	output(", to your taint, and finally against the rim of your [pc.asshole]. She is gentle, knowing how tender the flesh can be on you, yet insistent, making sure your nerves all light up in just the right ways. You moan and melt against her belly, and if that weren’t enough, the sensations you’re broadcasting over your psionic link to her would surely tell her everything she needs.");
 	output("\n\nHer tongue covers you like a wet blanket every time she draws it up from your pelvis to the back of your neck. You continue to hump against her, ass first now; she lifts your [pc.lowerbody] off the ice just slightly with each new lick, taking exaggerated care to get between your [pc.legs].");
 	output("\n\nYou’re getting very close to your climax, and [frostwyrm.name] is aware without you saying a word. Her tongue starts dipping lower and deeper with each new pass: the flat of her tongue lays over your backside");
@@ -2554,7 +2558,7 @@ public function frostwyrmlingAppearance():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" – each daughter has a different hair color, but your eldest inherited your [baby.hairColor] from birth");
 	output(".");
 	output("\n\nGrowing from her shoulderblades are two massive wings, with a combined wingspan of twenty feet. When they’re folded behind her, they still reach behind her by about three additional feet, and they have a vertical reach of about eight, extending well past her head. Though they’re large and intimidating, she moves with them comfortably enough, and their thick, leathery musculature easily provides more than enough lift to give her flight.");
-	output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need at know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
+	output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need to know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
 	
 	
 	processTime(5);
@@ -2863,7 +2867,7 @@ public function frostwyrmXMasMenu():void
 	else addButton(3,"Caroling!",frostwyrmXMasCaroling,undefined,"Caroling!","Song is one of the languages of the universe. You’re sure [frostwyrm.name] has a wonderful singing voice!");
 	if (flags["FROSTWYRM_XMAS_SNOWMEN"] == 1 && flags["FROSTWYRM_XMAS_SNOWANGELS"] == 1 && flags["FROSTWYRM_XMAS_GIFTGIVING"] == 1 && flags["FROSTWYRM_XMAS_CAROLING"] == 1 ) {
 		output("\n\nNow that she mentions it, you’ve gone through the whole list. There’s really only one thing left to do.");
-		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors!  You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
+		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors! You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
 	}
 	else addDisabledButton(4,"Decorate!","Decorate!","You should leave this for later!");
 }
