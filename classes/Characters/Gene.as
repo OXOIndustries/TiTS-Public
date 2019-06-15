@@ -56,7 +56,10 @@
 			cumMultiplierRaw = 30;
 			ballEfficiency = 90;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "GENE";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.genesModsGenericScene();

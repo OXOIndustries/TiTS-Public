@@ -2,6 +2,8 @@ package classes.GameData
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.Characters.Vahn;
+	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
 	import classes.Items.Accessories.BimboleumDefenseSystem;
@@ -127,6 +129,18 @@ package classes.GameData
 		 */ 
 		private function postHostileTurnActions():Boolean
 		{
+			//SHIPPIES!
+			if (_friendlies[0].hasPerk("PCs"))
+			{
+				for(var ii:int = 0; ii < _friendlies.length; ii++)
+				{
+					_friendlies[ii].removeStatusEffect("Evading!");
+				}
+				for(ii = 0; ii < _hostiles.length; ii++)
+				{
+					_hostiles[ii].removeStatusEffect("Evading!");	
+				}
+			}
 			if (pc.hasStatusEffect("leithanUnloading"))
 			{
 				var f:ForgeHound = _hostiles[0];
@@ -735,25 +749,27 @@ package classes.GameData
 		
 			if (target.hasStatusEffect("Staggered"))
 			{
-				if (target.statusEffectv1("Staggered"))
+				var lustStagger:Boolean = target.hasStatusEffect("Lust Staggered");
+				if (target.statusEffectv1("Staggered") > 0)
 				{
 					target.addStatusValue("Staggered", 1, -1);
-					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You’re still " + (!lustStagger ? "reeling from the force of the blows" : "recovering from the lust-inflicted stagger") + " to which you’ve been subjected.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still " + (!lustStagger ? "reeling from the force of the blows" : "recovering from the lust-inflicted stagger") + " to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
 				}
 				else
 				{
 					target.removeStatusEffect("Staggered");
+					target.removeStatusEffect("Lust Staggered");
 					if (target is PlayerCharacter)
 					{
-						output("\n\n<b>You finally shake away the stars from your vision");
+						output("\n\n<b>You finally shake away the " + (!lustStagger ? "stars" : "hearts") + " from your vision");
 						if(target.hasFlightEffects()) output(" and reorient yourself in the air");
-						else output(", your [pc.feet] firmly planted on the floor once again");
+						else output(", your " + target.feet() + " firmly planted on the floor once again");
 						output(".</b>");
 					}
 					else
 					{
-						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the cobwebs");
+						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the " + (!lustStagger ? "cobwebs" : "haze of arousal"));
 						if(target.hasFlightEffects()) output(" and return" + (!target.isPlural ? "s" : "") + " to the air");
 						else output(", " + target.getCombatPronoun("hisher") + " " + target.feet() + " planted firmly on the floor once again");
 						output(".</b>");
@@ -1425,6 +1441,31 @@ package classes.GameData
 		private function generateCombatMenu(fromMenu:Boolean = false):void
 		{
 			clearMenu();
+
+			//Fenoxo's Janky Ship Combat Hooks here.
+			if (hasFriendlyOfClass(ShittyShip))
+			{
+				if((_friendlies[0] as ShittyShip).listShipWeapons().length == 0) addDisabledButton(0,"Weapons","Weapons","Your ship has no weapons equipped.");
+				else if(_friendlies[0].hasStatusEffect("Disarmed")) addDisabledButton(0,"Weapons","Weapons","Your ships weapon systems have been disabled.");
+				else addButton(0,"Weapons",manageWeapons,_friendlies[0],"Weapons","Manage which weapons will be firing during this engagement.");
+				if((_friendlies[0] as ShittyShip).gadgetCount() > 0) addButton(1,"Gadgets",shipGadgetMenu,undefined,"Gadgets","Look over your equipped gadgetry for a device that might swing the battle in your favor.");
+				else addDisabledButton(1,"Gadgets","Gadgets","You have no gadgets equipped.");
+
+
+				addButton(3,"Evade!",evadeWithYoShip,undefined,"Evade!","Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)");
+				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
+				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)");
+
+
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape!", runAway, undefined, "Escape!", "Now that you've charged your light drive, you can escape with the flip of a switch!");
+				else if(_friendlies[0].energy() >= Math.floor(_friendlies[0].energyMax()/2)) 
+				{
+					addButton(14, "Escape!", runAway, undefined, "Escape!", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+				}
+				else addDisabledButton(14,"Escape","Escape","You don't have enough energy to charge your light drive.\n\n<b>Energy Required:</b> " + Math.floor(_friendlies[0].energyMax()/2));
+
+				return;
+			}
 			if (hasEnemyOfClass(Celise))
 			{
 				if (roundCounter == 1) addButton(0, "Attack", selectSimpleAttack, { func: CombatAttacks.MeleeAttack });
@@ -1618,6 +1659,42 @@ package classes.GameData
 			// default entries
 			additionalCombatMenuEntries();
 		}
+		public function manageWeapons(arg:Creature):void
+		{
+			clearOutput();
+			clearMenu();
+			var weapons:Array = (arg as ShittyShip).listShipWeapons();
+			output("<b>Currently Fitted Weapons</b>\n<u>Energy | Name</u>");
+			var energyCost:Number = 0;
+			for(var i:int = 0; i < weapons.length; i++)
+			{
+				if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+				{
+					output("\n<b>OFF</b>\t|  " + StringUtil.upperCase(weapons[i].longName));
+					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Enable this weapon.");
+				}
+				else 
+				{
+					output("\n" + weapons[i].shieldDefense + "\t|  " + StringUtil.upperCase(weapons[i].longName));
+					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
+					energyCost += weapons[i].shieldDefense;
+				}
+			}
+			var energyChange:Number = (arg as ShittyShip).shipPowerGen() - energyCost;
+			output("\n\nProjected Energy Use: " + energyCost + "\nProjected Energy Generation: " + (arg as ShittyShip).shipPowerGen() + "\n<b>Projected Energy Change:</b> " + (energyChange >= 0 ? "+":"") + energyChange + "\n");
+			if(arg.energy() + energyChange < 0) output("\n\n<b>Warning: INSUFFICIENT POWER TO FIRE ONLINE WEAPON SYSTEMS.</b>");
+			output("\n\nSelect equipped weapons to toggle on/off below, or choose back to return to main combat menu.");
+			addButton(14, "Back", generateCombatMenu, true);
+		}
+		//Flip the flags, then back to manage weapons!
+		public function toggleWeapon(args:Array):void
+		{
+			var gun:ItemSlotClass = args[1];
+			var ship:Creature = args[0];
+			if(gun.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) gun.deleteFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
+			else gun.addFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
+			manageWeapons(ship);
+		}
 		public function combatAppearance():void
 		{
 			clearMenu();
@@ -1790,6 +1867,24 @@ package classes.GameData
 		private function runAway():void
 		{
 			clearOutput();
+			//Shipstuff works differently.
+			if(_friendlies[0] is ShittyShip)
+			{
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive"))
+				{
+					output("With your light drive spun up, you pull the activation lever and streak away like an errant photon....")
+					CombatManager.abortCombat();
+					return;
+				}
+				else
+				{
+					_friendlies[0].createStatusEffect("Charging Light Drive",0,0,0,0,false,"Icon_Rotate","Your light drive is charging up! So long as you can avoid any electrical strikes to your armor, you can run next turn!",true);
+					output("You reroute power into your light drive. So long as you don't take any electrical damage to your hull, you'll be ready to escape next round!");
+					_friendlies[0].energy(-Math.floor(_friendlies[0].energyMax()/2));
+					processCombat();
+					return;
+				}
+			}
 			if (pc.inRut() && hasDickedEnemy())
 			{
 				//Attempt to flee vs enemy with cock.
@@ -2012,7 +2107,42 @@ package classes.GameData
 				return;
 			}
 		}
-		
+		private function shipGadgetMenu():void
+		{
+			clearMenu();
+			var gadgets:Array = (_friendlies[0] as ShittyShip).listShipGadgets();
+			//This is the hackiest thing I've ever written, but I need the addItemButton button to work properly for ships stats....
+			kGAMECLASS.shopkeep = new Vahn();
+
+			for(var i:int = 0; i < gadgets.length; i++)
+			{
+				if(gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) addItemDisabledButton(i, gadgets[i]);
+				else if(_friendlies[0].energy() < gadgets[i].shieldDefense) addItemDisabledButton(i, gadgets[i]);
+				else kGAMECLASS.addItemButton(i,gadgets[i],combatUseItemShipWrapper,[gadgets[i],null,_friendlies[0]]);
+			}
+			addButton(14, "Back", generateCombatMenu, true);
+		}
+		public function combatUseItemShipWrapper(args:Array):void
+		{
+			var item:ItemSlotClass = args[0];
+			var targetCreature:Creature = args[1];
+			var usingCreature:Creature = args[2];
+			kGAMECLASS.combatUseItem(item,targetCreature,usingCreature);
+		}
+		public function rechargeYoShipBoooost(pc:Creature):void
+		{
+			clearOutput();
+			output("Playing it cool, you keep your power load low to allow your reactor to recharge faster...");
+			if(!pc.hasStatusEffect("CHARGING_POWER")) pc.createStatusEffect("CHARGING_POWER",0,0,0,0,true,"","",true);
+			processCombat();
+		}
+		public function evadeWithYoShip():void
+		{
+			clearOutput();
+			CombatAttacks.EvasionImpl(_friendlies, _hostiles, _friendlies[0], _hostiles[0]);
+			processCombat();
+		}
+
 		private function doStaticBurst():void
 		{
 			clearOutput();
@@ -2419,7 +2549,6 @@ package classes.GameData
 			if (bOff == 13) bOff++;
 			return ++bOff;
 		}
-		
 		private function generateSpecialsMenu():void
 		{
 			clearMenu();
@@ -2705,7 +2834,12 @@ package classes.GameData
 			kGAMECLASS.setAttacker(pc);
 			kGAMECLASS.setEnemy(opts.tar);
 			
-			if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
+			//We in a ship fite? Do shit different:
+			if(_friendlies[0] is ShittyShip) 
+			{
+				opts.func(_friendlies[0], opts.tar);
+			}
+			else if (opts.func != generateTeaseMenu && opts.tar is CrystalGooT1 && (opts.tar as CrystalGooT1).ShouldIntercept(opts))
 			{
 				(opts.tar as CrystalGooT1).SneakSqueezeAttackReaction(opts);
 			}
@@ -4602,11 +4736,10 @@ package classes.GameData
 		
 		private function displayFriendlyStatus(target:Creature):void
 		{
-			if (target is PlayerCharacter)
+			if (target is PlayerCharacter || target is ShittyShip)
 			{
 				return;
 			}
-				
 			if (target.HP() <= 0)
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is down and out for the count!</b>");
@@ -4634,12 +4767,12 @@ package classes.GameData
 		
 		private function showPlayerStatus():void
 		{
-			if (pc.lust() >= pc.lustMax())
+			if (pc.lust() >= pc.lustMax() && hasFriendlyOfClass(PlayerCharacter))
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>");
 				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has knocked you off your " + pc.feet() + "</b>");
 			}
-			else if (pc.HP() <= 0)
+			else if (pc.HP() <= 0 && hasFriendlyOfClass(PlayerCharacter))
 			{
 				if (enemiesAlive() > 1 || _hostiles[0].isPlural) output("<b>Your enemies have turned you on too much to keep fighting. You give in....</b>");
 				else output("<b>" + StringUtil.capitalize(_hostiles[0].getCombatName(), false) + " has turned you on too much to keep fighting. You give in....</b>"); // TODO should be able to pick out a defined 'leader'
@@ -4650,35 +4783,53 @@ package classes.GameData
 			}
 			else
 			{
-				// TODO Some decent player status output
-				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
-				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
-				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
-				else if(hasEnemyOfClass(RatsRaider)) output("You’re fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang ‘Rat’s Raiders’");
+				//No PC in friendly? Must be a ship fite.
+				if(!hasFriendlyOfClass(PlayerCharacter) && hasFriendlyOfClass(ShittyShip))
+				{
+					if (_friendlies[0].lust() >= _friendlies[0].lustMax()) output("<b>Debilitating amounts of unchecked lust render your ship into little more than a mobile masturbation station.</b>");
+					else if (_friendlies[0].isDefeated()) output("<b>Your enem" + ((enemiesAlive() > 1 || _hostiles[0].isPlural) ? "ies have":"y has") + " have pounded your ship to a floating, barely-habitable pulp.</b>");
+					else
+					{
+						if (_hostiles.length == 1 && _friendlies.length == 1) output("<b>You’re fighting " + _hostiles[0].getCombatName() + ".</b>");
+						else if(_friendlies.length == 2) output("You sit at the helm of your ship, prepared to do battle. A friendly " + _friendlies[1].getCombatName() + " flies nearby.");
+						else if(_friendlies.length > 2) output("You sit at the helm of your ship, prepared to battle with the help of your allies.");
+						else output("You sit at the helm of your ship, prepared to battle.");
+					}
+				}
 				else
 				{
-					output("You perch behind cover wherever you can find it,");
-					if(pc.hasStatusEffect("Disarmed"))
+					// TODO Some decent player status output
+					if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
+					else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
+					else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+					else if(hasEnemyOfClass(RatsRaider)) output("You’re fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang ‘Rat’s Raiders’");
+					else
 					{
-						if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
-						else output(" readying yourself");
+						output("You perch behind cover wherever you can find it,");
+						if(pc.hasStatusEffect("Disarmed"))
+						{
+							if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
+							else output(" readying yourself");
+						}
+						else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
+						else if(pc.hasRangedWeapon()) output(" ready to return fire");
+						else if(pc.hasMeleeWeapon()) output(" ready to strike back");
+						else output(" ready to throw down");
 					}
-					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
-					else if(pc.hasRangedWeapon()) output(" ready to return fire");
-					else if(pc.hasMeleeWeapon()) output(" ready to strike back");
-					else output(" ready to throw down");
+					if (_friendlies.length > 1)
+					{
+						output(", side-by-side with your");
+						if (_friendlies.length > 2) output(" allies");
+						else output(" companion");
+					}
+					output(".");
 				}
-				if (_friendlies.length > 1)
-				{
-					output(", side-by-side with your");
-					if (_friendlies.length > 2) output(" allies");
-					else output(" companion");
-				}
-				output(".");
 			}
-			
-			kGAMECLASS.mutinousMimbranesCombat();
-			kGAMECLASS.neglectedMimbranesCombat();
+			if(hasFriendlyOfClass(PlayerCharacter))
+			{
+				kGAMECLASS.mutinousMimbranesCombat();
+				kGAMECLASS.neglectedMimbranesCombat();
+			}
 		}
 		
 		private function showMonsterArousalFlavor(target:Creature):void
@@ -4864,6 +5015,20 @@ package classes.GameData
 				var target:Creature = _friendlies[i];
 				
 				if (target is PlayerCharacter) continue;
+				//In shipfites (only ships have this perk), make sure the PC gets to recover energy.
+				if (target.hasPerk("PCs")) 
+				{
+					var energyGen:Number = (target as ShittyShip).shipPowerGen();
+					if(target.hasStatusEffect("CHARGING_POWER")) 
+					{
+						energyGen *= 2;
+						target.removeStatusEffect("CHARGING_POWER");
+					}
+					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
+					target.energy(energyGen);
+					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (<b>E:</b> +<b><span class='hp'>" + energyGen + "</span></b>).");
+					continue;
+				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))

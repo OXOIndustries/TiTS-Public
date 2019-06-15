@@ -666,7 +666,7 @@ public function uvetoFallToColdDamage():void
 		output("\n\nGroggily, you open your eyes, long enough to see that you’re in the back of a vehicle, bumping along the snowy outskirts of the plains. Ice has formed on the windows, but you can just make out Irestead in the distance, growing closer by the moment. Glancing at the front of the vehicle, you see metal bars separating you from the driver’s cabin, and an old slug shotgun bolted to the cage. A pair of cute little chibi ausar tokens hang from the rear view mirror, both dressed in too-tight Peacekeeper blouses and pointing finger guns at you.");
 		
 		if(silly) output("\n\n<i>“Hey, you. You’re finally ");
-		else output("\n\n<i>“You're ");
+		else output("\n\n<i>“You’re ");
 		output("awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
 		if (flags["UVETO_LUNA_RESCUES"] == undefined)
 		{
@@ -1081,6 +1081,16 @@ public function uvetoStationLoungeFunc():Boolean
 public function uvetoExecLobbyBonus():Boolean
 {
 	vendingMachineButton(1, "J'ejune");
+
+	// Determine what mode we need to be in for Tlako & Xotchi here...
+	if (timeForXotchiOverride())
+	{
+		flags["XOTCHI_ROOM_MODE"] = 1;
+	}
+	else
+	{
+		flags["XOTCHI_ROOM_MODE"] = 0;
+	}
 	
 	//setNavDisabled(NAV_EAST_DISABLE);
 	
@@ -1767,7 +1777,7 @@ public function korgiiThroneRoomBonus():Boolean
 	if(!ulaChief()) output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.");
 	else 
 	{
-		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula's rise to power, and she's even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there's paperwork to be done.");
+		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula’s rise to power, and she’s even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there’s paperwork to be done.");
 		return ulaRoomBonusFunc();
 	}
 	return false;

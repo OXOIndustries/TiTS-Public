@@ -444,8 +444,9 @@ public function helpJumpStartZePexibutt():void
 		output("\n\nBadger cums first, her ebony shaft trembling against your own as it gushes with heavy cream. The pexiga lets out gasping burble as cum and drool bubbles up at her lips. Her throat ripples and bloats as she swallows hard, sucking down the doctor’s jizz before too much can escape her slime-starved maw. Badger winces with a fierce joy, grabbing the girl’s shoulder as she pours out her seed with reckless abandon, her own tongue draped down the side of her panting muzzle.");
 		output("\n\nYour climax comes hot on her heels, and while the furry scientist slows her hot release, your [pc.cumVisc] goo gushes past her restrained jaw and into her spunk-stuffed mouth. Her eyes bulge and a small curtain of cum spills past her lips as you buck your meat against her with impatient need. The hot, [pc.cumGem] spoo bubbles and froths in her bloated cheeks before she remembers to start swallowing again, sucking your load down with ecstatic gluttony. A round deformation in her taut tummy tells you she’s going to be enjoying her meal for breakfast, lunch, and dinner!");
 
-		if(pc.cumQ() >= 2000) output("\n\nYet, even at the pace she’s swallowing, the pexiga can’t possibly hope to keep up with your virility. [pc.CumColor] spurts escape the silver girl’s vacuuming gullet, fat dollops rushing past the throbbing, face-stuffing flesh of both dicks. Your excess runs down her long, long tongue in a sticky curtain of [pc.cumVisc] seed, painting the pink organ a fresh coat of [pc.cumColor]. The tasting tendril drinks in the flavor of your pearlescent shower with savoring satisfaction that sends orgasmic tremors through her body. Your pet’s belly bulges under the hot cascade, plumping and expanding with each fattening load. She’s definitely going to need help walking away from this one!");
-		else if(pc.cumQ() >= 10000) 
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 2000) output("\n\nYet, even at the pace she’s swallowing, the pexiga can’t possibly hope to keep up with your virility. [pc.CumColor] spurts escape the silver girl’s vacuuming gullet, fat dollops rushing past the throbbing, face-stuffing flesh of both dicks. Your excess runs down her long, long tongue in a sticky curtain of [pc.cumVisc] seed, painting the pink organ a fresh coat of [pc.cumColor]. The tasting tendril drinks in the flavor of your pearlescent shower with savoring satisfaction that sends orgasmic tremors through her body. Your pet’s belly bulges under the hot cascade, plumping and expanding with each fattening load. She’s definitely going to need help walking away from this one!");
+		else if(cumQ >= 10000) 
 		{
 			output("\n\nStill, your cumming release strengthens. Your body feels as if it’s using every last cell available as an outlet for your spunk torrent. Your body clenches as fresh loads pour from your ");
 			if(pc.balls > 0)
@@ -989,10 +990,16 @@ public function stayForBimboBadgersWork():void
 	if(!pc.isBimbo() && pc.hasCock())
 	{
 		output("\n\nHeaviness sinks in your gut like a cold pit, and you look for help. All you find, however, is the bimbo badger sinking to her knees in front of you. Eagerly, she wraps her thick, whorish pucker around your [pc.cockBiggest], the exhaustion of your draining descent snaping back like a rubber band. In this state, just the touch of her lips is enough to bring you to climax, the full, liquid weight of your hot load erupting in her mouth with impatient, pressurized bliss.");
-		if(pc.cumQ() < 250) output(" Thick beads of [pc.cumGem] spurt into the vacuum-like suction of her hungry maw, swallowed greedily by the spunk-suckling scientist.");
-		else output(" Gouts of [pc.cumVisc] [pc.cumNoun] race down the back of her throat, spurt from the sides of her mouth, and even gush up out of her nostrils in [pc.cumColor] globs.");
-		if(pc.cumQ() < 250) output("\n\nSucking and swirling her thick tongue around your girth, the doctor slurps up everything you’ve got and keeps going, searching for more. She pulls back to lap at the tip of your [pc.cockheadBiggest], with relentless thirst.");
-		else output("\n\nThe bimbo grins at the sopping mess you’ve made of her face and pulls back to add some inane commentary to the climax, but your body needs more.");
+		if(pc.cumQ() < 250)
+		{
+			output(" Thick beads of [pc.cumGem] spurt into the vacuum-like suction of her hungry maw, swallowed greedily by the spunk-suckling scientist.");
+			output("\n\nSucking and swirling her thick tongue around your girth, the doctor slurps up everything you’ve got and keeps going, searching for more. She pulls back to lap at the tip of your [pc.cockheadBiggest], with relentless thirst.");
+		}
+		else
+		{
+			output(" Gouts of [pc.cumVisc] [pc.cumNoun] race down the back of her throat, spurt from the sides of her mouth, and even gush up out of her nostrils in [pc.cumColor] globs.");
+			output("\n\nThe bimbo grins at the sopping mess you’ve made of her face and pulls back to add some inane commentary to the climax, but your body needs more.");
+		}
 		output(" Instinctively, you seize the back of her head with your free hand and jam her muzzle right back down onto your cock. Her eyes go wider as your meat twitches and releases a second orgasm moments later. Even larger than the first, a fresh river of cream rushes into her mouth faster than she can swallow. She gurgles and hacks, frothy curtains of spunk dripping down her chin and soaking her ample cleavage.");
 		if(pc.biggestCockLength() <= 5) output(" You thrust again, her jaw ratcheted open by your [pc.cockBiggest], using her face like a custom-built cock milker");
 		else output(" You thrust again, her opened throat easily permitting the full length of your [pc.cockBiggest] into its velvet tautness.");
@@ -2989,6 +2996,30 @@ public function drBadgerLaboratoryBonus():Boolean
 	return false;
 }
 
+public function drBadgerFixNymFoeButton(btnSlot:int = 3):void
+{
+	if(flags["NYM-FOE"] >= 3 && flags["NYM-FOE_DISASSEMBLED"] != undefined)
+	{
+		// Nym-Foe cannot be fixed if both parties are too stupid to figure out how; hence why there’s no bimbo badger and bimbo player variant.
+		if(chars["DRBADGER"].isBimbo() && pc.isBimbo()) addDisabledButton(btnSlot,"Fix NymFoe","Fix Nym-Foe","Umm... like, why would you need to think about this again?");
+		else if(flags["NYM-FOE_REPAIR_QUEST"] == 2 && pc.hasItemByClass(DamagedVIChip)) addDisabledButton(btnSlot,"Fix NymFoe","Fix Nym-Foe","Go ahead, find Nym-Foe and insert the new chip!");
+		else if(flags["NYM-FOE_REPAIR_QUEST"] == 1)
+		{
+			if(pc.hasItemByClass(SexbotChip, 6)) addButton(btnSlot,"Fix NymFoe",drBadgerLabNymFoe,"badger chip","Fix Nym-Foe","Turn in the 6 sexbot VI chips to repair the Nym-Foe.");
+			else addDisabledButton(btnSlot,"Fix NymFoe","Fix Nym-Foe","You need at least 6 sexbot VI chips in order to repair the Nym-Foe.");
+		}
+		else addButton(btnSlot,"Fix NymFoe?",drBadgerLabNymFoe,"badger fix","Fix Nym-Foe?","Ask Doctor Badger about repairing the Nym-Foe.");
+	}
+}
+public function drBadgerBuyNymFoeButton(btnSlot:int = 8):void
+{
+	if(silly && flags["NYM-FOE"] >= 3 && (flags["NYM-FOE_SILICONE_BOOSTS"] != undefined || flags["NYM-FOE_ACTIVATED"] != undefined || flags["NYM-FOE_FUCKED"] != undefined))
+	{
+		if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == undefined) addButton(btnSlot,"Buy NymFoe?",drBadgerLabNymFoe,"badger buy","Buy Nym-Foe?","Request to buy the modded nurse bot.");
+		else if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == 0) addButton(btnSlot,"Take Pillow",drBadgerLabNymFoe,"pillow take","Take the Nym-Foe Body Pillow","Procure the perverted pillow.");
+	}
+}
+
 public function drBadgerLabNymFoe(response:String = "menu"):void
 {
 	clearOutput();
@@ -3180,7 +3211,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			
 			output("You reach down to Nym-Foe, unwrapping the rag on her eyes before plugging in the tube to her back. Her body plumps up with silicone, and she starts to stand, looking at you with a lighthearted smile. <i>“Thank you for unbinding me. What service do you require?”</i> She has a loving tone. Her tail begins to wave in front of you, stealing your attention away from her other movements.");
 			if(!pc.isBimbo()) output("\n\n<i>“Actually...”</i> you start to admit. <i>“I’d like you to upgrade me as you feel necessary. I’m your willing patient and you know best for me.”</i> You smile a little, your heart racing while you look up at the nursedroid.");
-			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff, I would love having some huge boobies,”</i> you say, smiling while looking at the nursedroid.");
+			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff. I would love having some huge boobies,”</i> you say, smiling while looking at the nursedroid.");
 			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit,”</i> she explains. You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
 			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> you say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> you say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance. ");
 			output("\n\nHeat radiates from the injection site, right in your [pc.hips]. The semi solid goop slides through your body effortlessly to settle in your [pc.thighs] and [pc.hips]. It takes very little time before they begin to swell. Since you aren’t exactly struggling, the nurse continues her work on you. You sigh gently, enjoying this peculiar feeling of growth.");

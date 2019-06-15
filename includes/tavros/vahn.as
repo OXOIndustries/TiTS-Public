@@ -1,4 +1,9 @@
-﻿//Vahn, Your Friendly Ship Mechanic
+﻿import classes.ShittyShips.ShittyShipGear.Guns.MGun;
+import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
+import classes.Characters.Vahn;
+
+//Vahn, Your Friendly Ship Mechanic
 //By JimT
 
 //Concept
@@ -80,7 +85,29 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship's upgrade slots.");
+	//addButton(6,"Ship Mods",);
+	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
+	//addButton(9,"Buy Ship",);
 	addButton(14,"Leave",mainGameMenu);
+}
+
+public function vahnShipGunsShop():void
+{
+	clearOutput();
+	showVahn();
+	shopkeep = new Vahn();
+	shopkeep.inventory.push(new MGun());
+	shopkeep.inventory.push(new LCannon());
+	shopkeep.inventory.push(new EMCannon());
+	buyShipFitItem();
+}
+public function vahnShipUninstall():void
+{
+	clearOutput();
+	showVahn();
+	shopkeep = new Vahn();
+	unfitShipItem();
 }
 
 //Appearance

@@ -29,13 +29,9 @@ import classes.StringUtil;
 
 public function get canSaveAtCurrentLocation():Boolean
 {
-	if(inCombat()) 
-		return false;
-
-	if (inSceneBlockSaving)
-		return false;
-
-	return rooms[currentLocation].canSaveInRoom
+	if (inCombat()) return false;
+	if (inSceneBlockSaving) return false;
+	return rooms[currentLocation].canSaveInRoom;
 }
 
 public function infiniteItems():Boolean
@@ -536,7 +532,13 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
 	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
-	addGhostButton(4, "Back", backToPrimaryOutput, true);
+	addGhostButton(4, "Back", exitCodex);
+}
+public function exitCodex():void
+{
+	backToPrimaryOutput(true);
+	// trigger event if queued
+	if(eventQueue.length > 0) mainGameMenu();
 }
 public function showCodexExtra():void
 {
@@ -2102,7 +2104,12 @@ public function shipMenu():Boolean
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
-		if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
+		/*if(shits["SHIP"].shipCrewCapacity() < crew(true,false)) 
+		{
+			output("\n\nYour ship is <b>overloaded</b>. Send some crewmembers home before you attempt to fly.");
+			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
+		}
+		else 9999*/if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
 		if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
 		{
@@ -3331,8 +3338,8 @@ public function variableRoomUpdateCheck():void
 		else rooms["9008"].removeFlag(GLOBAL.NPC);
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
 	}
-	if(flags["KASE_CREW"] == 0 && !rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
-	else if(flags["KASE_CREW"] != 0 && rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
+	if(flags["KASE_CREW"] == 0) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
+	else rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
 	// Temp housing
 	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
@@ -3361,6 +3368,7 @@ public function variableRoomUpdateCheck():void
 		rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
 		// Pyrite Satellite Quest
 		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
+		else if(pennyRecruited() && !pennyIsCrew()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things
@@ -3552,7 +3560,7 @@ public function variableRoomUpdateCheck():void
 		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 	//Handle badger closure
-	if(drBadgerAtBimbotorium())
+	if(!drBadgerAtBimbotorium())
 	{
 		rooms["304"].removeFlag(GLOBAL.NPC);
 		//rooms["209"].northExit = "";
@@ -3776,33 +3784,38 @@ public function variableRoomUpdateCheck():void
 	
 	/* ZHENG SHI */
 
-	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
-	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
-
-	if(rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] != undefined) 
-	{
-		if(!rooms["ZSF V22"].hasFlag(GLOBAL.SHIPHANGAR)) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
-		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined) {
+		rooms["ZSM U2"].removeFlag(GLOBAL.NPC); // Maike, The Pit
+		rooms["ZS J42"].removeFlag(GLOBAL.NPC); // Tivf, Maike's office
 	}
-	else if(!rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] == undefined) 
-	{
-		if(rooms["ZSF V22"].hasFlag(GLOBAL.SHIPHANGAR)) rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
-		rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+	else {
+		rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+		rooms["ZS J42"].addFlag(GLOBAL.NPC);
 	}
 
-	if(rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
-	else if(!rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] == undefined) rooms["ZSF I8"].addFlag(GLOBAL.NPC);
+	if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
+	else rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+
+	if(flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
+	else rooms["ZSF I8"].addFlag(GLOBAL.NPC);
 
 	//Boss room :3
-	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined && !rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].addFlag(GLOBAL.NPC);
-	else if(flags["SHOCK_HOPPER_DEFEATED"] != undefined && rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].removeFlag(GLOBAL.NPC);
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined) rooms["ZSF V18"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF V18"].removeFlag(GLOBAL.NPC);
 	//Cargohold
-	if(flags["ZHENG_SHI_PROBED"] == undefined && !rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].addFlag(GLOBAL.OBJECTIVE);
-	else if(flags["ZHENG_SHI_PROBED"] != undefined && rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].removeFlag(GLOBAL.OBJECTIVE);
+	if(flags["ZHENG_SHI_PROBED"] == undefined) rooms["ZSF V14"].addFlag(GLOBAL.OBJECTIVE);
+	else rooms["ZSF V14"].removeFlag(GLOBAL.OBJECTIVE);
 
 	// Lorelei
 	if (flags["LORELEI_BEATEN"] != undefined || isLoreleisBitch()) rooms["ZSR LORELEI"].addFlag(GLOBAL.NPC);
 	else rooms["ZSR LORELEI"].removeFlag(GLOBAL.NPC);
+	
+	// Olympia
+	if(!pirateResearchVesselStolen()) rooms["ZSF AB20"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF AB20"].removeFlag(GLOBAL.NPC);
+	// Dr. Teyaal
+	if(flags["TEYAAL_DEFEATED"] == 2) rooms["ZSF AD20"].removeFlag(GLOBAL.NPC);
+	else rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
 
 	/* UVETO */
 	
@@ -3875,21 +3888,17 @@ public function variableRoomUpdateCheck():void
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-	if(flags["LUND_FUCKED_OFF"] == undefined && !rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].addFlag(GLOBAL.NPC);
-	else if(flags["LUND_FUCKED_OFF"] != undefined && rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].removeFlag(GLOBAL.NPC);
+	if(flags["LUND_FUCKED_OFF"] == undefined) rooms["KORGII F8"].addFlag(GLOBAL.NPC);
+	else rooms["KORGII F8"].removeFlag(GLOBAL.NPC);
 	//Myrna
-	if(isChristmas())
-	{
-		if(flags["MET_MYRNA"] != undefined && !rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].addFlag(GLOBAL.OBJECTIVE);
-	}
+	if(isChristmas() && flags["MET_MYRNA"] != undefined) rooms["UVIP T44"].addFlag(GLOBAL.OBJECTIVE);
 	//Remove marker after xmas
-	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
+	else rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
 	//Vark's cave and stuff
 	rooms[varkCaveRoom].removeFlag(GLOBAL.NPC);
 	rooms[varkCaveRoom].removeFlag(GLOBAL.OBJECTIVE);
 	rooms["UVIP T44"].southExit = varkCaveRoom;
-	if (pc.isTaur() || !pc.hasGenitals())
-		rooms["UVIP T44"].southExit = undefined;
+	if (pc.isTaur() || !pc.hasGenitals()) rooms["UVIP T44"].southExit = undefined;
 	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
 	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
 	else rooms["UVIP T44"].southExit = undefined;
@@ -4048,6 +4057,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processBoredJumperPregEvents(deltaT, doOut, totalDays);
 		processCasinoEvents();
 		processRoxyPregEvents(deltaT, doOut, totalDays);
+		processBizzyCamgirlPayments(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
@@ -4076,6 +4086,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
+		{
+			goMailGet("bizzy_camgirl_initiate");
+		}
+
+		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
+		{
+			goMailGet("bizzy_camgirl_profits");
+		}
+
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{
@@ -4807,11 +4827,14 @@ public function processCarryTrainingEvents(deltaT:uint, doOut:Boolean):void
 			else ExtendLogEvent("close to a hundred");
 			ExtendLogEvent(" eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ");
 
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) ExtendLogEvent("ignoring the curious looks from passersby.");
-			else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) 
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 			{
-				ExtendLogEvent("more than a little aroused by the way people are looking at you.");
-				pc.lust(5);
+				if(pc.exhibitionism() < 33) ExtendLogEvent("ignoring the curious looks from passersby.");
+				else 
+				{
+					ExtendLogEvent("more than a little aroused by the way people are looking at you.");
+					pc.lust(5);
+				}
 			}
 			else ExtendLogEvent("thankful that you’re all alone.");
 			ExtendLogEvent("\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ");

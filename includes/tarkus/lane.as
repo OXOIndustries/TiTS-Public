@@ -486,12 +486,12 @@ public function laneHandleCredits(totalDays:uint):void
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
 		pc.credits += (200 * totalDays);
-		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it’s a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it’s a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; <b>Lane has paid you a total of " + String(200 * totalDays) + " credits</b>, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 	}
 	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
 	{
 		pc.credits -= (500 * totalDays);
-		AddLogEvent(ParseText("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, you recognize it as an automatic payment that you’ve setup to [lane.master] Lane."), "bad", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		AddLogEvent(ParseText("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, you recognize it as an automatic payment that you’ve setup to [lane.master] Lane. <b>You are down " + String(500 * totalDays) + " credits.</b>"), "bad", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 	}
 }
 

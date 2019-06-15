@@ -243,7 +243,7 @@ package classes.Engine.Combat
 					output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become distracted after " + possessive(attacker.getCombatName()) + " display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
 				}
 				
-				CombatAttacks.applyStagger(target, 3);
+				CombatAttacks.applyLustStagger(target, 3);
 				
 				if(target is PlayerCharacter) output(" <b>You are staggered by the tease!</b>");
 				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by the tease!</b>");

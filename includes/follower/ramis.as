@@ -254,7 +254,7 @@ public function ramisRecruitDealShip():void
 
 	moveTo("TAVROS HANGAR");
 	
-	if (9999 /* Z14 Z-14 casstech */)
+	if (shits["SHIP"] is Casstech)
 	{
 		output("Her face falls, her ears droop, when she beholds your trusty, humble Casstech in the hangar.");
 		output("\n\n<i>“I would’ve thought a rich playboy’s sprog would have a cool as fuck ride,”</i> she mumbles, <i>“not a piece of junk from the 29th century.");
@@ -278,36 +278,36 @@ public function ramisRecruitDealShip():void
 	
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
 public function ramisBootFromCrew():void
 {
 	clearOutput();
 	showRamis();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
-	
+	output("You tell Ramis that you need her off the ship for the time being.");
+
+	output("\n\n<i>“Huh.”</i> Ramis shrugs. <i>“And here I thought you kept me around cuz of my sterling personality.”</i> She slaps your back. <i>“I’ll see you around.”</i> Barely a second passes before she’s on her way out the door.");
+		
 	processTime(20);
 	
 	flags["RAMIS_ONBOARD"] = undefined;
 	if (flags["CREWMEMBER_SLEEP_WITH"] == "RAMIS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Ramis is no longer on your crew. You can find her again in Tavros Station.</b>)");
-	output("\n\n");
-	
+		
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
 public function ramisRejoinCrew():void
 {
 	clearOutput();
 	showRamis();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
+	output("You invite Ramis back onboard.");
+	output("\n\n<i>“Just like that?”</i> Ramis rolls her shoulders. <i>“Guess I’m game. Hopefully you made some upgrades since my last foray over there. See you onboard, Captain.”</i>");
 	
 	processTime(20);
 	
@@ -315,7 +315,6 @@ public function ramisRejoinCrew():void
 	flags["RAMIS_ONBOARD"] = 1;
 
 	output("\n\n(<b>Ramis has rejoined your crew!</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -421,14 +420,13 @@ public function ramisCrewApproach():void
 
 	addButton(10, "Appearance", ramisAppearance, 10);
 	
-	//9999 addButton(13, "Leave Crew", ramisBootFromCrew, undefined, "Leave Crew", "Tell Ramis to spend some time off of ship. You’ll probably be able to pick her up again later.");
+	addButton(13, "Leave Crew", ramisBootFromCrew, undefined, "Leave Crew", "Tell Ramis to spend some time off of ship. You’ll probably be able to pick her up again later.");
 	
 	addButton(14, "Back", crew);
 }
 
 
 //[Talk]
-
 public function ramisLetsDrinkInTheShip():void
 {
 	clearOutput();
@@ -2130,7 +2128,7 @@ public function ramisFuckinBois():void
 	var shagType:String = RandomInCollection(possibleShags);
 	
 	output("Once you’re ensconced in a large, plush suite in Ramis’s favourite fully-automated love hotel");
-	if (9999 /* also casstech */) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
+	if (shits["SHIP"] is Casstech) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
 	output(", some champagne is ordered out of the synthesizer and the conversation turns yet wilder and lewder, led on by your utterly incorrigible, lusty gunnery officer.");
 	output("\n\nShe encourages Kroy to get on the table and give you a strip tease, and you all watch as he twists this way and that, teasing his stripy thigh-high socks, the little gap of brown flesh between them and his silky red undies underneath his flouncy skirt, cock-bulge prominent against the silk; then he slowly takes off his top strap by strap, revealing his soft, lean chest, his tiny, pointy nipples and achingly flat belly.");
 	output("\n\nLust and heat coalesces in your [pc.groin] as you watch this, particularly as Vanesse’s stockinged foot has climbed its way between your [pc.thighs],");

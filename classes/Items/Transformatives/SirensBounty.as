@@ -511,10 +511,10 @@ package classes.Items.Transformatives
 						
 						pc.femininity += 10;
 						
-						if(pc.femininity >= 100)
+						if(pc.femininity >= pc.femininityMax())
 						{
 							output("\n\nA tingle comes to your face, but it disappears as quickly as it came. You guess you can’t get any more feminine than you already are.");
-							pc.femininity = 100;
+							pc.femininity = pc.femininityMax();
 						}
 					}
 					else output("\n\n" + pc.femininityLockedMessage());

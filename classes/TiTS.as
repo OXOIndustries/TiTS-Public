@@ -115,6 +115,7 @@
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
+		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
@@ -204,6 +205,7 @@
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
 		include "../includes/events/extrameet/bigtiddygothgf.as";
+		include "../includes/events/extrameet/kaede.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
@@ -278,6 +280,7 @@
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
 		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/bizzy.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -474,6 +477,8 @@
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		include "../includes/zhengShiStation/wallSluts.as";
+
+		include "../includes/zhengShiStation/shipTesting.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -544,6 +549,7 @@
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
+		include "../includes/uveto/xotchiExpansion.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
@@ -555,6 +561,8 @@
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
+		public var shits:Object;
+		public var shitDict:Dictionary;
 
 		public var days:int;
 		public var hours:int;
@@ -655,7 +663,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.281";
+			version = "0.7.284";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -907,8 +915,8 @@
 			{
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					updatePCStats();
 					updateDisplays();
+					updatePCStats();
 				}
 			}
 			
@@ -969,7 +977,8 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if (item.type == GLOBAL.RANGED_WEAPON)
+			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareItem = new EmptySlot();
+			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;
 			}

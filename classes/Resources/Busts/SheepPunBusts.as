@@ -10,12 +10,14 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/aina.png", mimeType = "image/png")]
 		public var Bust_AINA:Class;
+		public function get Bust_AINA_NUDE():Class { return Bust_AINA; }
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/erra.png", mimeType = "image/png")]
 		public var Bust_ERRA:Class;
+		public function get Bust_ERRA_NUDE():Class { return Bust_ERRA; }
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/heidrun.png", mimeType = "image/png")]
 		public var Bust_HEIDRUN:Class;
@@ -24,6 +26,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
+		public function get Bust_KELLY_NUDE():Class { return Bust_KELLY; }
+		public function get Bust_KELLY_HYPER_NUDE():Class { return Bust_KELLY_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/maja.png", mimeType = "image/png")]
 		public var Bust_MAJA:Class;
@@ -33,14 +37,18 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/sheeppun/naleen_female.png", mimeType = "image/png")]
 		public var Bust_NALEEN:Class;
 
+		public function get Bust_NENNE():Class { return Bust_NENNE_NUDE; }
 		[Embed(source = "../../../assets/images/npcs/sheeppun/nenne.png", mimeType = "image/png")]
 		public var Bust_NENNE_NUDE:Class;
 
+		public function get Bust_TUUVA():Class { return Bust_TUUVA_NUDE; }
 		[Embed(source = "../../../assets/images/npcs/sheeppun/tuuva_dog.png", mimeType = "image/png")]
 		public var Bust_TUUVA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/sheeppun/tuuva_equine.png", mimeType = "image/png")]
 		public var Bust_TUUVA_HORSE_NUDE:Class;
 
+		public function get Bust_ULA():Class { return Bust_ULA_NUDE; }
+		public function get Bust_ULA_PREG():Class { return Bust_ULA_NUDE; }
 		[Embed(source = "../../../assets/images/npcs/sheeppun/ula.png", mimeType = "image/png")]
 		public var Bust_ULA_NUDE:Class;
 		

@@ -81,11 +81,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate(cumQ);
+				kGAMECLASS.cumHighUpdate(this, cumQ);
 			}
 			if(hasPerk("Lusty Afterglow"))
 			{
-				kGAMECLASS.lustyAfterglowUpdate(cumQ);
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -136,11 +136,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate(cumQ);
+				kGAMECLASS.cumHighUpdate(this, cumQ);
 			}
 			if(hasPerk("Lusty Afterglow"))
 			{
-				kGAMECLASS.lustyAfterglowUpdate(cumQ);
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -236,11 +236,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate(cumQ);
+				kGAMECLASS.cumHighUpdate(this, cumQ);
 			}
 			if(hasPerk("Lusty Afterglow"))
 			{
-				kGAMECLASS.lustyAfterglowUpdate(cumQ);
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -263,11 +263,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate(cumQ);
+				kGAMECLASS.cumHighUpdate(this, cumQ);
 			}
 			if(hasPerk("Lusty Afterglow"))
 			{
-				kGAMECLASS.lustyAfterglowUpdate(cumQ);
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
@@ -281,11 +281,11 @@ package classes.Characters
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate(cumQ);
+				kGAMECLASS.cumHighUpdate(this, cumQ);
 			}
 			if(hasPerk("Lusty Afterglow"))
 			{
-				kGAMECLASS.lustyAfterglowUpdate(cumQ);
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -364,6 +364,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		public var LocationStorageInventory:Array = [];
 		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{

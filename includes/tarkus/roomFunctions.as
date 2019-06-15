@@ -167,6 +167,7 @@ public function synthSheathMax():int
 {
 	var horseCocksTotal:int = 4;
 	if(flags["RIYA_PARTIED_YEAR"] != undefined) horseCocksTotal++;
+	if(flags["LORELEI_TALKED_FUTA"] != undefined) horseCocksTotal++;
 	return horseCocksTotal;
 }
 
@@ -185,6 +186,7 @@ public function synthSheathsUsed():int
 	if(sylvieHasCock()) synthUsed++;
 	if(chars["TUUVA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	if(chars["ARDIA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["LORELEI"].hasCock()) synthUsed++;
 	
 	return synthUsed;
 }

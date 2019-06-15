@@ -40,7 +40,7 @@ public function teyaalIsMaaaaad():void
 	clearOutput();
 	showTeyaal();
 	author("Savin");
-	output("You step up to the door labeled <i>“Chief Engineer Teyaal,”</i> reaching for the handle.");
+	output("You step up to the door labeled “Chief Engineer Teyaal,” reaching for the handle.");
 	output("\n\n<i>“Careful,”</i> Olympia says from behind you. <i>“My owner isn’t fond of unexpected guests. Especially when we’re so close to our deadline... I don’t know how she’ll react.”</i>");
 	output("\n\nYou nod and pull the hatch open, stepping through and into a small office - no more than 5 yards to a side, and yet luxuriously adorned with draped silks and cushions all across the floor, surrounding a central work terminal. There’s no chair at it: the room’s sole occupant seems more than happy to lounge on the lacey pillows while she works like some elegant harem-girl. Indeed, the whole room seems like it’s a sultan’s fuck-palace more than a scientist’s office. Guess that’s what the room outside is for.");
 	output("\n\nThe woman in question is a gryvain, remarkably similar in appearance to Olympia outside, save for the quartet of sprawling wings laid out behind her, and the blue hue of her scales and hair. A white rubber lab coat is wrapped around her shoulders, though that appears to be all she’s wearing, and even that’s only been buttoned once around the midriff, giving you an eyeful of dragon-tits, strung together by a silver chain and studded rings, and the blue cock hanging out between her legs.");

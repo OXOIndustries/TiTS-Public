@@ -225,6 +225,10 @@
 			dataObject.inventory.push(new RogueRags().getSaveObject());
 			dataObject.inventory.push(new ScrapShield().getSaveObject());			
 		}
+		override public function get bustDisplay():String
+		{
+			return "SHEKKA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

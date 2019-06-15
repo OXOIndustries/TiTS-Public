@@ -7,6 +7,23 @@
 
 //tavros
 
+public function extrameetKaedeProfile():void
+{
+	output("The profile picture on your screen is unmistakably familiar: a ginger half-ausar girl in a leather pilot’s blazer smiling nervously at the camera. Kaede’s ears are flat against her scalp, and her bushy tail is wrapped three times around a leg, but the poor thing’s trying her best. There’s a shadow behind her from the cameraman... considering the perky wolf-ears you can make out, it’s probably Anno.");
+	output("\n\nUsername: Crimson_Rockette_28");
+	output("\nSex: Trans");
+	output("\nAge: 25 Years");
+	output("\nRace : Half-ausar");
+	output("\nPlanet: Tavros");
+	output("\n\nBio:");
+	output("\nSocially awkward half-ausar looking for friends and ~more~ on her home station who don’t mind helping an introvert out of her shell. Tavros born and raised! Own my own business as a professional pilot. Love games of all kinds. Not looking for anything monogamous, sorry.");
+}
+
+public function extrameetKaedeCheckMatch():Boolean
+{
+	return (pc.hasCock() || pc.hasVagina());
+}
+
 public function extrameetBigTiddyGothGFProfile():void
 {
 	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smokey black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
@@ -68,7 +85,7 @@ public function extrameetBigTiddyGothGFDateOutro():void
 	output("\n\nA sudden sensation rocks you, a feeling like you were traveling a hundred miles an hour and just stopped on a dime, rattling your brain.");
 	output("\n\n<i>“Are you fucking serious?!”</i> The Servant stands up with a start, nearly knocking her chair over. <i>“We fucking went over this shit. No. Fucking. Date rape. Fuck.”</i>");
 	output("\n\nCollecting yourself, you barely register the woman’s words. Is she talking to you? Instinctively, you look around. A few patrons are staring at the two of you, more than a few whispering among themselves.");
-	output("\n\nThe Servant seems to notice this as well, cursing loudly. <i>“Fucking, damn it.”</i> She looks down at you, her hand still clamped over her chest. <i>“I’m sorry. I thought I could control...”</i> she trials off, glancing back around the room. <i>“I have an apartment up on the residential deck. Come by and I promise it’ll be worth your while.”</i>");
+	output("\n\nThe Servant seems to notice this as well, cursing loudly. <i>“Fucking, damn it.”</i> She looks down at you, her hand still clamped over her chest. <i>“I’m sorry. I thought I could control...”</i> she trials off, glancing back around the room. <i>“I have an apartment up on the residential deck, over on the east side. Come by and I promise it’ll be worth your while.”</i>");
 	output("\n\nBefore you can stop her, she turns on her heel and power walks away, cursing under her breath at somebody unseen.");
 	output("\n\nGasping for air, you try to settle down, feeling as if you’re halfway to cumming right there and then. What the fuck was that all about?");
 
@@ -3336,4 +3353,4 @@ public function extrameetBigDickRickProfile():void
 	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
-}
+}

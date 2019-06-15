@@ -692,7 +692,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
+	rooms["RESIDENTIAL DECK 11"].runOnEnter = resDeck11Func;
 
 	rooms["RES DECK BIG TIDDY GOTH GF"] = new RoomClass(this);
 	rooms["RES DECK BIG TIDDY GOTH GF"].roomName = "EAST\nWALKWAY";
@@ -702,6 +702,7 @@ public function initTavrosRooms():void
 	rooms["RES DECK BIG TIDDY GOTH GF"].northExit = "RESIDENTIAL DECK 11";
 	rooms["RES DECK BIG TIDDY GOTH GF"].moveMinutes = 1;
 	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.INDOOR);
+	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.NPC);
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
@@ -721,17 +722,27 @@ public function initTavrosRooms():void
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 13"].roomName = "NORTH\nWALKWAY";
-	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. There’s a large steel wall to the north. It seems that part of the station is still under construction.";
+	rooms["RESIDENTIAL DECK 13"].description = "This largely unlived in part of the deck is almost achingly quiet, each footstep echoing down the incredibly tall and long walkway. Each room has ridiculously cheap pricing on it. There are also a few advertising boards up, mostly displaying the latest movies and soft-drink products.\n\nSouth leads towards the central plaza. To the north, there’s a big block of cheap apartments, grav shafts enabling access to the identikit steel boxes further up.";
 	rooms["RESIDENTIAL DECK 13"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
 	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].eastExit = "RESIDENTIAL DECK KASES APARTMENT";
+	rooms["RESIDENTIAL DECK 13"].northExit = "BIZZY STUDIO ROOM";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 13"].runOnEnter = northWalkwayBonus;
+
+	rooms["BIZZY STUDIO ROOM"] = new RoomClass(this);
+	rooms["BIZZY STUDIO ROOM"].roomName = "BIZZY & CO\nSTUDIOS";
+	rooms["BIZZY STUDIO ROOM"].description = "BIZZYS BIG PORN HOUSE";
+	rooms["BIZZY STUDIO ROOM"].planet = "TAVROS STATION";
+	rooms["BIZZY STUDIO ROOM"].system = "SYSTEM: KALAS";
+	rooms["BIZZY STUDIO ROOM"].southExit = "RESIDENTIAL DECK 13";
+	rooms["BIZZY STUDIO ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["BIZZY STUDIO ROOM"].runOnEnter = null;
 	
 	//Fisianna's Apartment - Doesn't do much for now.
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);

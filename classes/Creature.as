@@ -73,6 +73,7 @@
 				"btnTargetText",
 				"alreadyDefeated",
 				"shieldDisplayName",
+				"hpDisplayName",
 				"skipIntercept",
 				"skipTurn",
 				"_skipRound",
@@ -2681,6 +2682,7 @@
 				case "buttsDescript":
 				case "buttcheeks":
 				case "asscheeks":
+				case "cheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
@@ -4584,11 +4586,17 @@
 		}
 		public function isTreatedCow():Boolean
 		{
-			return (isTreated() && hasPerk("Treated Milk"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Treated Milk") || hasPerk("Ditz Speech"));
 		}
 		public function isTreatedBull():Boolean
 		{
-			return (isTreated() && hasPerk("Pheromone Cloud"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Pheromone Cloud") || hasPerk("Brute Speech"));
 		}
 		public function isAmazon(treatedOnly:Boolean = true):Boolean
 		{
@@ -5008,7 +5016,7 @@
 			currReflexes += statusEffectv1("Plumpkin");
 			currReflexes += statusEffectv1("Peprika");
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
-			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
+			if (isStaggered()) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
@@ -5048,7 +5056,7 @@
 
 			var currAim:int = aimRaw + aimMod + bonus;
 			
-			if (hasStatusEffect("Staggered")) currAim *= 0.8;
+			if (isStaggered()) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
 
@@ -6172,7 +6180,8 @@
 				if(silicone > 0 && rand(2) == 0) {
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
-					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(lips >= 3) adjectives.push("perfectly rounded");
 					if(result != "") result += ", ";
 					result += adjectives[rand(adjectives.length)];
 				}
@@ -8439,7 +8448,10 @@
 			removeStorage(statusEffects);
 		}
 		public function clearCombatStatuses(): void {
-			
+			if(this is ShittyShip)
+			{
+				(this as ShittyShip).resetEquipment();
+			}
 			//trace("Removing combat statuses.");
 			if (hasStatusEffect("Sensor Link"))
 			{
@@ -11403,8 +11415,8 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
-				if(hasVagina(GLOBAL.TYPE_ANEMONE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_ANEMONE)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11419,8 +11431,8 @@
 			if(isTreated() && hasVagina()) return true;
 			if(idx < 0)
 			{
-				if(hasVagina(GLOBAL.TYPE_GABILANI)) return true;
-				if(hasVagina(GLOBAL.TYPE_MOUTHGINA)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_GABILANI)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_MOUTHGINA)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -11434,9 +11446,9 @@
 			{
 				if(hasAVaginaFlag(GLOBAL.FLAG_NUBBY)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
-				if(hasVagina(GLOBAL.TYPE_VANAE)) return true;
-				if(hasVagina(GLOBAL.TYPE_SHARK)) return true;
-				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_VANAE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SHARK)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
@@ -12773,7 +12785,6 @@
 		{
 			if (legType == GLOBAL.TYPE_FELINE && hasBeak()) return "griffin";
 			if (legType == GLOBAL.TYPE_EQUINE && hasBeak()) return "hippogriff";
-			if (isNaga() && hasFeathers()) return "quetzalcoatl";
 			if (hasFeathers() && (furColor == Foxfire.fireColorNormal || furColor == Foxfire.fireColorArctic)) return "phoenix-morph";
 			if (legType == GLOBAL.TYPE_VULPINE && hasBeak()) return "vulpogryph";
 			if (InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE))
@@ -12794,8 +12805,9 @@
 		}
 		public function nagaRace():String
 		{
-			if (naleenScore() >= 5) return "naleen";
+			if (avianScore() >= 4 && hasFeathers()) return "quetzalcoatl";
 			if (legType == GLOBAL.TYPE_SHARK) return "leviathan naga";
+			if (naleenScore() >= 5) return "naleen";
 			return "naga";
 		}
 		public function plantRace():String
@@ -13055,7 +13067,7 @@
 			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function korgonneScore(): int {
@@ -13354,8 +13366,18 @@
 			if (faceType == GLOBAL.TYPE_LAPINE && hasMuzzle()) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
-			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			//if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			if (counter > 1 && hasCock()) {
+				if(hasCock(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			if (counter > 1 && hasVagina()) {
+				if(hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			//if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
+			if (!hasGenitals()) counter = 0;
 			return counter;
 		}
 		public function lizanScore():int
@@ -14279,7 +14301,8 @@
 			if(silicone > 0 && rand(2) == 0) {
 				adjectives.length = 0;
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(hips >= 6) adjectives.push("perfectly rounded");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -14629,7 +14652,8 @@
 				adjectives.length = 0;
 				if(silicone >= 2) adjectives.push("gravity defying");
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(butt >= 6) adjectives.push("perfectly rounded", "globular");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -15959,6 +15983,7 @@
 				{
 					if(adjectiveCount > 0) desc += ", ";
 					desc += RandomInCollection(collection);
+					adjectiveCount++;
 				}
 			}
 			//NOUN TIME
@@ -18761,7 +18786,8 @@
 
 			var descript: String = "";
 			var milkied:Boolean = false;
-			if (breastRows[rowNum].breastRating() < 1) {
+			var bRowRating:Number = breastRows[rowNum].breastRating();
+			if (bRowRating < 1) {
 				if(rand(2) == 0)
 				{
 					if (tone < 30) return RandomInCollection([mf("pecs", "flat tits", true), mf("pectoral muscles", "flat breasts", true)]);
@@ -18770,7 +18796,7 @@
 				return "flat, almost non-existent breasts";
 			}
 			//33% of the time size-descript them
-			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
+			if (rand(3) == 0) descript += breastSize(bRowRating);
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;
@@ -18850,7 +18876,7 @@
 				milkied = true;			
 			}
 			// A-cups
-			if(breastRows[rowNum].breastRating() == 1) {
+			if(bRowRating == 1) {
 				if(descript != "") descript += ", ";
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
@@ -18863,7 +18889,8 @@
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
 					if(silicone >= 5) adjectives.push("ridiculously perky");
-					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(bRowRating >= 4) adjectives.push("perfectly rounded", "globular");
 					if(descript != "") descript += ", ";
 					descript += adjectives[rand(adjectives.length)];
 				}
@@ -18877,29 +18904,30 @@
 		{
 			if(rowNum < 0 || rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
+			var bRowRating:Number = breastRows[rowNum].breastRating();
 			var silicone:Number = siliconeRating("tits");
 			if (isLactating())
 			{
 				if(!milkied)
 				{
-					if(breastRows[0].breastRating() >= 5)
+					if(bRowRating >= 5)
 					{
-						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melon","honey-melon");
+						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && bRowRating >= 2) nouns.push("sugar-melon","honey-melon");
 						nouns.push("milk-tank","milk-jug");
 					}
 					else nouns.push("milker","milker");
 				}
-				if(breastRows[0].breastRating() >= 2) nouns.push("udder", "udder", "udder", "udder");
+				if(bRowRating >= 2) nouns.push("udder", "udder", "udder", "udder");
 			}
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
 			nouns.push("tit", "tit", "tit");
-			if (breastRows[rowNum].breastRating() > 6) nouns.push("tit");
+			if(bRowRating > 6) nouns.push("tit");
 			if(silicone > 0) {
 				nouns.push("balloon");
 				if(silicone >= 2) nouns.push("balloon");
 				if(silicone >= 5) nouns.push("balloon");
 				if(silicone >= 10) nouns.push("balloon");
-				nouns.push("bolt-on");
+				//nouns.push("bolt-on");
 			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");
@@ -19954,12 +19982,12 @@
 				stretched = true;
 			}
 			//If within top 10% of capacity, 50% stretch
-			else if(volume >= .9 * capacity && rand(2) == 0) {
+			else if(volume >= (.9 * capacity) && rand(2) == 0) {
 				holePointer.looseness(1);
 				stretched = true;
 			}
 			//if within 75th to 90th percentile, 25% stretch
-			else if(volume >= .75 * capacity && rand(4) == 0) {
+			else if(volume >= (.75 * capacity) && rand(4) == 0) {
 				holePointer.looseness(1);
 				stretched = true;
 			}
@@ -20019,7 +20047,7 @@
 				}
 			}
 			//Delay anti-stretching
-			if(volume >= .35 * capacity) {
+			if(volume >= (.35 * capacity)) {
 				if(hole >= 0) {
 					holePointer.shrinkCounter = 0;
 				}
@@ -20209,10 +20237,10 @@
 			var currentTolerance:Number = statusEffectv1("Tolerance");
 			if(arg != 0) 
 			{
-				addStatusValue("Tolerance",1,arg);
 				//Bounds check
 				if(currentTolerance + arg < 0) setStatusValue("Tolerance",1,0);
 				else if(currentTolerance + arg > 100) setStatusValue("Tolerance",1,100);
+				else addStatusValue("Tolerance",1,arg);
 			}
 			return statusEffectv1("Tolerance");
 		}
@@ -20946,6 +20974,7 @@
 		public function get flags():Dictionary { return kGAMECLASS.flags; } // Transient
 		public var alreadyDefeated:Boolean = false; // Transient
 		public var shieldDisplayName:String = "SHIELDS"; // Transient
+		public var hpDisplayName:String = "HP";
 		
 		/**
 		 * Return the name for the bust this character should display. This'll be used during combat, but also potentially
@@ -22804,98 +22833,6 @@
 		public function hasSilicone(sType:String = "all"):Boolean
 		{
 			return (siliconeRating(sType) > 0);
-		}
-
-		//================================================================
-		//
-		//				Fenoxo's Hacky Ship Bullship.
-		//					Seriously, this is garbage. Will
-		//					probably be cut later. Sorry.
-		//
-		//================================================================
-		//Base Stats
-		//Agility (mapped to reflexes)
-		public function shipAgility():Number
-		{
-			return reflexesRaw;
-		}
-		//Speed (mapped to physique)
-		public function shipSpeed():Number
-		{
-			return physiqueRaw;
-		}
-		//Power Generation (mapped to willpower)
-		public function shipPowerGen():Number
-		{
-			return willpowerRaw;
-		}
-		//Sensors (Mapped to Aim)
-		public function shipSensors():Number
-		{
-			return aimRaw;
-		}
-		//Systems (Mapped to Intelligence)
-		public function shipSystems():Number
-		{
-			return intelligenceRaw;
-		}
-		//Probably set via perk.
-		public function shipCapacity():Number
-		{
-			return 3;
-		}
-		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
-		public function shipEvasion():Number
-		{
-			return shipStatBonusTotal(0);
-		}
-		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
-		public function shipAccuracy():Number
-		{
-			return shipStatBonusTotal(1);
-		}
-		public function shipShieldDef():Number
-		{
-			return shipStatBonusTotal(3);
-		}
-		public function shipDefense():Number
-		{
-			return shipStatBonusTotal(2);
-		}
-		//0 - evasion
-		//1 - accuracy
-		//2 - defense
-		//3 - shielddef
-		//4 - fortification
-		//5 - shields
-		//? - More to cum as needed, probs
-		public function shipStatBonusTotal(type:Number = 0):Number
-		{
-			//I cant think of an easy way to map the argument to the actual sub variables we need to pull, so I'll just total everything, and then pass out whichever one is needed. Is this dumb? Probably.
-			var evasion:Number = 0;
-			var accuracy:Number = 0;
-			var defense:Number = 0;
-			var shieldDefense:Number = 0;
-			var fortification:Number = 0;
-			var shields:Number = 0;
-
-			for(var i:int = 0; i < inventory.length; i++)
-			{
-				evasion += inventory[i].evasion;
-				accuracy += inventory[i].accuracy;
-				defense += inventory[i].defense;
-				shieldDefense += inventory[i].shieldDefense;
-				fortification += inventory[i].fortification;
-				shields = inventory[i].shields;
-			}
-
-			if(type == 0) return evasion;
-			else if(type == 1) return accuracy;
-			else if(type == 2) return defense;
-			else if(type == 3) return shieldDefense;
-			else if(type == 4) return fortification;
-			else if(type == 5) return shields;
-			else return -1;
 		}
 	}
 }

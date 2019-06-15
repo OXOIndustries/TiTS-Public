@@ -130,5 +130,9 @@ package classes.Characters
 		{
 			return (kGAMECLASS.flags["AINA_PREG_TIMER"] != undefined);
 		}
+		override public function get bustDisplay():String
+		{
+			return "AINA";
+		}
 	}
 }			

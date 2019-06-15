@@ -775,6 +775,7 @@ public function nurseryPlayerApptFunc():Boolean
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	addButton(2, "Storage", locationStorageMenuRoot, "nursery");
 	
 	// Belly size hotfix
 	if (!pc.isPregnant() && pc.bellyRatingMod != 0) addButton(4, "Fix Belly", nurseryFixBelly, undefined, "Fix Belly", "It seems your belly size is off...");
@@ -800,6 +801,7 @@ public function nurserySpareApptIsOccupied():Boolean
 {
 	if (flags["SERA_CREWMEMBER"] == 0) return true;
 	if (roxyIsInTempHousing()) return true;
+	if (amberRecruited() && !amberIsCrew()) return true;
 	return false;
 }
 public function nurserySpareApptBonus():Boolean
@@ -809,6 +811,7 @@ public function nurserySpareApptBonus():Boolean
 	// For followers or grown kids and stuff.
 	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
 	if (roxyIsInNursery()) output(roxyInSpareAptBonus(btnSlot++));
+	if(amberRecruited() && !amberIsCrew()) amberApartmentBonus(btnSlot++);
 	return false;
 }
 

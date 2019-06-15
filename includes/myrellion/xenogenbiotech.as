@@ -911,7 +911,7 @@ public function mcallisterMyrGirlsCocky():void
 	
 	output("\n\nThe red grunts and reaches back to plunge a couple of plated fingers into her tragically vacant gash. <i>“Speak for yourself. This is </i>amazing<i>! Sex has never felt like this before!”</i>");
 	
-	if (pc.isBro() || pc.isTreatedMale()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
+	if (pc.isBro() || pc.isTreatedBull()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
 	
 	output("\n\nSounds like an invitation to switch back to railing her, but before you can transition from gold to red, you hear McAllister grunt and buck his hips against the red’s lips. She grunts and gasps, and you see her throat bulging with a sudden influx of the doctor’s spunk; the red ends up gagging and coughing some of it up, and earns herself the last couple of squirts right on her cheeks when McAllister staggers back, pulling out of her spasming maw.");
 	
@@ -1122,7 +1122,7 @@ public function mcallisterMyrHybrids():void
 	output("\n\n<i>“More importantly, though, you’d have problems of distribution and education.”</i> McAllister says, an almost venomous hiss on the last word. He glances in the direction of the Federation embassy, and adds, <i>“Most myr wouldn’t take it just </i>because<i>, you know. They’ve had seven years to entrench themselves in racial jingoism, especially the reds. Even if you convinced enough myr to take the therapy, you’d actually have to distribute it, and neither of us have the resources to mass produce and distribute expensive gene mods on our own dime.”</i>");
 	
 	output("\n\nNot on your dime, no... <i>“I introduced myself as Steele, right?”</i> you say");
-	if (pc.isTreatedFemale() || pc.isBimbo()) output(" with a playful giggle");
+	if (pc.isTreatedCow() || pc.isBimbo()) output(" with a playful giggle");
 	else output(" with a grin");
 	output(". <i>“I might be able to handle that.”</i>");
 	

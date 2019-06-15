@@ -332,7 +332,7 @@ public function naleenTitFuck():void {
 	
 	output("\n\n<i>“It’s so nice to be able to do this once in a while,”</i> she says, gently squeezing the two mounds together. You stifle a shudder as the downy fur envelopes your [pc.cockBiggest], sheathing your prick in her warm, soft embrace. <i>“Naleen males and Zil boys are always so fuck-crazy, always wanting to shove it in this hole or that. Breed, breed, breed. Never any time for the simpler pleasures.”</i>");
 	
-	output("\n\nSimpler pleasures, indeed. As she speaks, the naleen’s slender fingers wrap around her tits, gently moving them up along the length of your dick; the feeling of her soft fur stroking your [pc.cockBiggest] is heavenly: completely enveloped in a cocoon of soft, warm, squishy cat-tits that oh so gently caresses your tender cockflesh with short strokes that soon have you as hard as diamonds. She grins up at you as she moves her breasts, her slitted eyes gleaming with lust. Looks like she’s enjoying herself too...");
+	output("\n\nSimpler pleasures, indeed. As she speaks, the naleen’s slender fingers wrap around her tits, gently moving them up along the length of your dick; the feeling of her soft fur stroking your [pc.cockBiggest] is heavenly: completely enveloped in a cocoon of soft, warm, squishy cat-tits that oh-so-gently caresses your tender cockflesh with short strokes that soon have you as hard as diamonds. She grins up at you as she moves her breasts, her slitted eyes gleaming with lust. Looks like she’s enjoying herself too...");
 	
 	output("\n\nYou lean back, letting the kitty’s big breasts caress your tender cockflesh. She squeezes them together as tightly as she can, steadily starting to stroking you faster, though never too fast. With her velveteen fur, it’s all about the gentle, constant envelopment of your [pc.cockBiggest], brushing from your base to the [pc.cockHeadBiggest], never letting your tip escape her grasp for a moment. The pleasure is almost mind-numbing, her eager breast-strokes encouraging you to lay back and forget your troubles, to just let the alien cat-naga tit-fuck you to orgasm again and again. Idly, your hands drift onto hers, fingers clasping around her slender digits. The naleen looks at you with surprise, but in the blink of an eye has her lusty countenance back again, and slips her hands out, letting you squeeze her tits for yourself, giving you control.");
 	
@@ -750,7 +750,7 @@ public function yesSnuggleWifZatNaleen():void {
 		output("\n\n<i>“Better?”</i> she teases, clenching her muscles around your prick");
 		output(", massaging ");
 		output("it");
-		output(" oh so sweetly inside herself.");
+		output(" oh-so-sweetly inside herself.");
 		
 		output("\n\n<i>“Much,”</i> you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You’ve never felt warmer.");
 		pc.cockChange();

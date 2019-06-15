@@ -242,7 +242,6 @@ public function SiegwulfeEquip():void
 	output("You call [wulfe.name] to you side and command her to enter guard mode.");
 	output("\n\n<i>“Of course, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ",”</i> she says with a slim smile. <i>“" + (chars["WULFE"].isBimbo() ? "I’ll, like, take super good care of you! Don’t you worry about a thing!" : "I live to serve.") + "”</i>");
 	output("\n\nShe trots around you, rolling her shoulders and lowering her combat visor. Looks like she’s ready to go!");
-	output("\n\n");
 }
 // Unequip
 public function SiegwulfeUnequip():void
@@ -250,7 +249,6 @@ public function SiegwulfeUnequip():void
 	output("You put a hand on [wulfe.name]’s shoulder and tell her to stand down for now -- to go into passive mode.");
 	output("\n\n<i>“Are you sure, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + "?”</i> she asks, trotting up and circling you. <i>“" + (chars["WULFE"].isBimbo() ? "I can’t, like, keep you safe and stuff if I’m in pa... pass... idle mode!" : "My purpose is to protect you, after all.") + "”</i>");
 	output("\n\nYou tell her that you’re sure. Just follow along quietly until you reactivate her. She sighs and nods, falling into step behind you.");
-	output("\n\n");
 }
 
 // Disabled
@@ -792,7 +790,7 @@ public function siegwulfeExpansionIntro():void
 	output("\n\nWhatever Dr. Badger’s going to do, you have a feeling [wulfe.name] will return to you completely different...");
 	output("\n\n<b>Warning: This will be an irreversible change. Save your game first and revisit her if you want to go through with it.</b>");
 	flags["DR_BADGER_APPROACHES_TILL_WULFE"] = 2;
-	addButton(0, "Do it", siegwulfeInstallDonger);
+	addButton(0, "Do It", siegwulfeInstallDonger);
 	addButton(1, "No", function ():void
 	{
 		clearMenu();

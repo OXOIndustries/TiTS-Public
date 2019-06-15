@@ -55,7 +55,10 @@
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "VI";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachVi();

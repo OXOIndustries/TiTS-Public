@@ -138,20 +138,30 @@ public function pennyCrewMenu():void
 		else addDisabledButton(6,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
 	}
 	
-	//9999 addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
+	addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
 	
 	addButton(14,"Back",crew);
 }
 
-// 9999
 public function pennyBootFromCrew():void
 {
 	clearOutput();
 	showPenny();
 	author("");
 	
-	output("");
-	output("\n\n");
+	output("You tell Penny that you need the space on your ship back. She’ll have to crash somewhere else in the meantime.");
+	if(pennyIsCumSlut() || penny.isBimbo())
+	{
+		
+		output("\n\nInstead of the expected sadness, Penny reacts with apparent delight, even going so far as to stroke her [penny.cockNounSimple] with greater enthusiasm. The corners of her mouth climb into a delighted smile as she declares, <i>“This is the perfect excuse to go visit Flahne!”</i> Her tong lolls into a wanton pant, slurring her words. <i>“She’s so fucking hot...”</i>");
+		output("\n\nThat was easy...");
+	}
+	else
+	{
+		output("\n\nPenny steps back, not quite beleiving what she’s hearing. The sharp points of her ears sag beneath the weight of the news. Glancing down, the the former fox-cop huffs in disappointment. <i>“I guess I’ll need to bunk with Flahne for a little while. It might even be fun, I guess.”</i> Penny’s whole body straightens. <i>“Yeah! Don’t leave me waiting too long, [pc.name].”</i>");
+		output("\n\nYou nod and give her time to collect her things.");
+
+	}
 	
 	processTime(20);
 	
@@ -159,20 +169,32 @@ public function pennyBootFromCrew():void
 	if(flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Penny is no longer on your crew. You can find her again on Mhen’ga.</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
+public function pennyOffCrewKickedOff(arg:Number):void
+{
+	showBust(pennyBustDisplay());
+	output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
+	addButton(arg,"Recruit",pennyRejoinCrew,undefined,"Recruit","Bring Penny back onboard.");
+}
+
 public function pennyRejoinCrew():void
 {
 	clearOutput();
 	showPenny();
-	author("");
 	
-	output("");
-	output("\n\n");
+	if(pennyIsCumSlut() || penny.isBimbo())
+	{
+		output("Getting Penny back on board is a snap. All it takes is promising that she can be the cummiest cam-whore in the galaxy.");
+	}
+	else
+	{
+		output("You invite Penny back.");
+		output("\n\nThe fox-girl smiles fiercely. <i>“See? I knew you’d need your badass, ex-cop of a girlfriend to help tame that frontier.”</i> She snags a duffel full of clothing. <i>“I’ll see you on the ship, mate.”</i>");
+	}
 	
 	processTime(20);
 	
@@ -180,7 +202,6 @@ public function pennyRejoinCrew():void
 	flags["PENNY_ONBOARD"] = 1;
 
 	output("\n\n(<b>Penny has rejoined your crew!</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1282,7 +1303,7 @@ public function fuckedPennyMorningEpilogue():void
 		// (scene: Fucked Penny, subsequent times)
  		output("Penny stirs, her arms tucking her pillow closer to her. She wriggles her body against you, subconsciously knowing what you’ve done and trying to eke out just a little bit more pleasure for itself before it’s over. <i>If</i> it’s subconscious; Penny’s proven that she’s not the type to sleep through these things.");
  		output("\n\n<i>“Mmmm,”</i> she purrs, her head lifting off the pillow. She flexes her jaw, resetting it after sleeping on it through all the night, and then she turns to you. You keep still. You’re not trying to hide what you’ve just done – Penny’s told you that she’s okay with your sleep sex – but you don’t want to disturb her. And besides, you’re still coming off your orgasmic high from busting your own " + (pc.mf("","girl-")) + "nut.");
- 		output("\n\nPenny’s eyes wander the room, unfocused in the dim light, but eventually they settle on your own. <i>“[pc.name],”</i> she says, chewing her jaw a few more times to work the stiffness out of it. She licks her lips sensually at you, and she jostles her hips back and forth, enjoying the sensations she’s getting from doing it. <i>“Mmmm, feels like... we might have had a fun night last night.”</i>");
+ 		output("\n\nPenny’s eyes wander the room, unfocused in the dim light, but eventually they settle on your own. <i>“[pc.name],”</i> she says, chewing her jaw a few more times to work the stiffness out of it. She licks her lips sensually at you, and she jostles her hips back and forth, enjoying the sensations she’s getting from doing it. <i>“Mmmm, feels like... we might’ve had a fun evening last night.”</i>");
  		output("\n\nYou ask her if she had any pleasant dreams.");
  		output("\n\n<i>“Yeah, just the one,”</i> she says, leaning in and touching her nose to yours. <i>“I dreamt that " + (pc.cockThatFits(penny.vaginalCapacity(0)) >= 0 ? "I was getting some of the best dick in my life. Rrrrrrailed,”</i> she trills, <i>“slow and heavy on some thick meat until it filled me up with some hot, thick, creamy jizz.":"my pussy was getting some grade A attention from a [pc.manWoman] that knows how to treat a cunt right.”</i> She rubs her nose against yours. <i>“And I don’t know too many [pc.manWoman] that know how to treat a woman’s pussy to such a good time.") + " Any idea why I might have had a dream like that, mate?”</i>");
  		output("\n\nYou tell her plainly: it’s because you had your way with her in her sleep. You certainly enjoyed it, and you ask her if she did.");

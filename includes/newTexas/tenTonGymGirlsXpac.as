@@ -26,7 +26,7 @@ TTGYM_SIMONE_ORAL_GIVE //time you gave simone oral
 TTGYM_SIMONE_DP_GYM //time you fucked simone's pussy and ass at the gym
 TTGYM_SIMONE_FUCKED_PUSSY //time you fucked simone's pussy at her home
 TTGYM_SIMONE_DP_HOME //time you fucked simone's pussy and ass at her home
-TTGYM_SIMONE_MUTUAL_FAP //time you and simone dildoed eachother
+TTGYM_SIMONE_MUTUAL_FAP //time you and simone dildoed each other
 TTGYM_BETSY_VICTORIA_NEVER //undefined/0 = meet ok, 1 = disable encounters
 TTGYM_BETSY_VICTORIA_SEXSWING //Times had sex with betsy and victoria using the sex swing
 TTGYM_LOLA_SIMONE_L_CUN //times licked lola's pussy during threesome

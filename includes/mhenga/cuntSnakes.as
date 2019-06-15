@@ -863,7 +863,7 @@ public function feedCuntSnake(cumFrom:Creature = null):void
 	IncrementFlag("TIMES_FED_CUNT_SNAKE");
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
-	if(cumFrom is null) return;
+	if(cumFrom == null) return;
 	
 	var preg:Boolean = true;
 	// Non-parasitic snek cannot preg if host cannot

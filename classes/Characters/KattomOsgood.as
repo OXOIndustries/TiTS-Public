@@ -43,7 +43,10 @@
 
 			this.femininity = 15;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "KATTOM";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachKattom(true);
