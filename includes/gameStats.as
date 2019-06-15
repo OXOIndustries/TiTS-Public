@@ -4937,7 +4937,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined || MailManager.isEntryUnlocked("mirrin_tavros"))
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -5035,7 +5035,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Semith:</b> Met him");
 					if(flags["SEMITH_SEXED"] > 0) output2("\n<b>* Semith, Times Sexed:</b> " + flags["SEMITH_SEXED"]);
 				}
-				if(flags["MET_MIRRIN"] != undefined && MailManager.isEntryUnlocked("mirrin_tavros")) writeMirrinLogEntry(); // see newTexas/mirrinPregpack.as
+				if(MailManager.isEntryUnlocked("mirrin_tavros")) writeMirrinLogEntry(); // see newTexas/mirrinPregpack.as
 				variousCount++;
 			}
 			// Ilaria Bunnybutts
