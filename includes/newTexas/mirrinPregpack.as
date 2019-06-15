@@ -1682,6 +1682,7 @@ public function wakeUpDoodUHaveMirrinBabiesToDeliver():void
 	output("\n\nA heavy hand massages your left shoulder, to which you feel the urge to rest your head on it. There there, ya big lug, everything’s fine!");
 
 	moveTo("NURSERYG4");
+	if (pc.hasStatusEffect("Disarmed")) pc.removeStatusEffect("Disarmed"); //fek it
 	// Ripped from flyTo. Has to be a better way.
 	shipLocation = "TAVROS HANGAR";
 	processTime(4*60+34);
@@ -1820,11 +1821,12 @@ public function mirrinIsLayingEggu():void
 
 	//Moves PC to Briget’s tile in the Tavros nursery. If PC is on Tavros, 30 minutes in-game time passes. If PC was not on Tavros, 12 hours of in-game time pass.
 	moveTo("NURSERYE14");
+	if (pc.hasStatusEffect("Disarmed")) pc.removeStatusEffect("Disarmed"); //fek it
 	// Ripped from flyTo. Has to be a better way.
 	shipLocation = "TAVROS HANGAR";
 	flags["MIRRIN_PREG_TIME_LEFT"] = undefined;
 	flags["MIRRIN_PREG_DURATION"] = undefined;
-	if (getPlanetName() == "Tavros") processTime(30);
+	if (getPlanetName() == "Tavros Station") processTime(30);
 	else processTime(12*60);
 
 	clearMenu();
@@ -2106,7 +2108,7 @@ public function mirrinSterkurHusBonus():Boolean
 		addButton(0,"Hell Yes",yeMirrinLetsTryOutDemNooDicks);
 		return true;
 	}
-	else if (flags["MIRRIN_PREG_TIME_LEFT"] != undefined && flags["MIRRIN_TOOK_PICS_TIMESTAMP"] == undefined && !MailManager.isEntryUnlocked("mirrin_sendnudes") && flags["MIRRIN_SENDNUDES"] == undefined)
+	else if (flags["MIRRIN_PREG_TIME_LEFT"] != undefined && flags["MIRRIN_PREG_DURATION"] != undefined && flags["MIRRIN_PREG_TIME_LEFT"]/flags["MIRRIN_PREG_DURATION"] < .4 && flags["MIRRIN_TOOK_PICS_TIMESTAMP"] == undefined && !MailManager.isEntryUnlocked("mirrin_royalties"))
 	{
 		output("As you enter the bright foyer of SterkurHús, Mirrin is already idling by the entrance with a communicator in hand, a small headset across her ear and a human photographer with a camera standing a few feet away. He’s already got his tripod and backdrop set up and Mirrin stands in front of the cocoa brown backdrop, her loose tank top rolled up over the motherly bump that’s taken over her once rock-solid midriff.");
 		output("\n\nWhen the sliding doors close behind you, she turns away from her digital distractions and trots to you with a spring in her step.");
