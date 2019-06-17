@@ -974,7 +974,7 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareItem = new EmptySlot();
+			if(shopkeep != null && shopkeep.hasPerk("SHIP VENDOR")) compareItem = new EmptySlot();
 			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;

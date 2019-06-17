@@ -189,8 +189,10 @@
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
-			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
-			else compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
+			if(kGAMECLASS.shopkeep != null && kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR"))
+				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
+			else
+				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
