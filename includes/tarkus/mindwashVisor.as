@@ -227,17 +227,25 @@ public function installTheMindwashVisor():void
 }
 
 // [Mindwash]
-public function mindwashMeShipVers():void
+public function installedMindwashBonus(btnSlot:int = 0):void
+{
+	output("\n\nThe Mindwash Visor you purchased from Doctor Badger is placed close by, currently on idle mode.");
+	
+	addButton(btnSlot, "Mindwash", mindwashMeShipVers, false, "Mindwash Visor", "Doctor Badger’s hypnosis-inducing holovisor that has been dialed down to be used safely.");
+}
+public function mindwashMeShipVers(fromMasturbate:Boolean = true):void
 {
 	clearOutput();
 	showName("\nMINDWASH!");
 	author("Adjatha");
-	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
+	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, it induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
 	
 	processTime(3);
 	clearMenu();
 	
 	output("\n\nWill you plug in");
+	
+	var backFunc:Function = (fromMasturbate ? masturbateMenu : shipStorageMenuRoot);
 	
 	//Add Yammi and Pexiga scenes if there is demand for it
 	//Maybe get other folks to write a scene or two for Anno & Reaha trying out the Visor?
@@ -261,7 +269,7 @@ public function mindwashMeShipVers():void
 		{
 			if((btnSlot + 1) % 15 == 0)
 			{
-				addButton(btnSlot,"Back",masturbateMenu);
+				addButton(btnSlot, "Back", backFunc);
 				btnSlot++;
 			}
 			switch(eligibleCrew[i])
@@ -277,14 +285,14 @@ public function mindwashMeShipVers():void
 		if(btnSlot > 14)
 		{
 			while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
-			addButton(btnSlot, "Back", masturbateMenu);
+			addButton(btnSlot, "Back", backFunc);
 		}
 	}
-	else addButton(0,"Use",useShipMindwashMeee);
+	else addButton(0, "Use", useShipMindwashMeee);
 	
 	output("?");
 	
-	addButton(14,"Back",masturbateMenu);
+	addButton(14, "Back", backFunc);
 }
 
 // [Me]

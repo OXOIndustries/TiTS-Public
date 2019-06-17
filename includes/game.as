@@ -534,7 +534,7 @@ public function exitCodex():void
 {
 	backToPrimaryOutput(true);
 	// trigger event if queued
-	if(eventQueue.length > 0) mainGameMenu();
+	if(eventQueue.length > 0 && !gameOverEvent) mainGameMenu();
 }
 public function showCodexExtra():void
 {

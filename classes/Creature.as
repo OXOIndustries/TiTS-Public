@@ -745,7 +745,7 @@
 		public function lipModMin():Number
 		{
 			var rating:Number = 0;
-			if(hasStatusEffect("Mimbrane Face") && rating < statusEffectv3("Mimbrane Face")) rating = statusEffectv3("Mimbrane Face");
+			rating += statusEffectv3("Mimbrane Face");
 			return rating;
 		}
 		public function lipModUnlocked(newLipMod:Number):Boolean
@@ -1138,7 +1138,7 @@
 		public function buttRatingModMin():Number
 		{
 			var rating:Number = 0;
-			if(hasStatusEffect("Mimbrane Ass") && rating < statusEffectv3("Mimbrane Ass")) rating = statusEffectv3("Mimbrane Ass");
+			rating += statusEffectv3("Mimbrane Ass");
 			return rating;
 		}
 		
@@ -1458,7 +1458,7 @@
 		public function ballSizeModMin():Number
 		{
 			var rating:Number = 0;
-			if(hasStatusEffect("Mimbrane Balls") && rating < statusEffectv3("Mimbrane Balls")) rating = statusEffectv3("Mimbrane Balls");
+			rating += statusEffectv3("Mimbrane Balls");
 			return rating;
 		}
 		
@@ -5303,7 +5303,7 @@
 			//Check to see if the PC is acquiring the "Corrupted" Perk
 			if(currTaint >= 100 && !hasPerk("Corrupted") && this is PlayerCharacter)
 			{
-				AddLogEvent("Your Codex blares warnings, but you run your hands over your oh-so-fuckable form. You’re past caring about fucking up your genes. You just want to <i>fuck</i>, get fucked, and maybe become a multi-trillionaire in the process.\n\n(<b>Gained Perk: Corrupted</b> - Your libido maximum is raised to 200 - but you are irrevocably tainted!)","passive");
+				AddLogEvent("Your Codex blares warnings, but you run your hands over your oh-so-fuckable form. You’re past caring about fucking up your genes. You just want to <i>fuck</i>, get fucked, and maybe become a multi-trillionaire in the process.\n\n(<b>Perk Gained: Corrupted</b> - Your libido maximum is raised to 200 - but you are irrevocably tainted!)","passive");
 				createPerk("Corrupted",0,0,0,0,"Increases your maximum libido but prevents the loss of taint.");
 			}
 
@@ -7205,6 +7205,10 @@
 		{
 			return (hasFaceFlag(GLOBAL.FLAG_BEAK));
 		}
+		public function hasSkin():Boolean
+		{
+			return (InCollection(skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_LATEX, GLOBAL.SKIN_TYPE_PLANT]));
+		}
 		public function hasFur():Boolean
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_FUR);
@@ -7217,8 +7221,9 @@
 		{
 			return (skinType == GLOBAL.SKIN_TYPE_CHITIN);
 		}
-		public function hasGooSkin():Boolean
+		public function hasGooSkin(semiSolid:Boolean = false):Boolean
 		{
+			if(semiSolid && skinType == GLOBAL.SKIN_TYPE_GEL) return true;
 			return (skinType == GLOBAL.SKIN_TYPE_GOO);
 		}
 		public function hasFeathers():Boolean
@@ -8448,55 +8453,45 @@
 				(this as ShittyShip).resetEquipment();
 			}
 			//trace("Removing combat statuses.");
-			if (hasStatusEffect("Sensor Link"))
-			{
-				aimMod -= 5;
-				removeStatusEffect("Sensor Link");
-			}
-			if (hasStatusEffect("Gassed"))
-			{
-				aimMod += 5;
-				reflexesMod += 5;
-				removeStatusEffect("Gassed");
-			}
-			if (hasStatusEffect("Reduced Goo"))
-			{
-				armor.defense += statusEffectv1("Reduced Goo");
-				removeStatusEffect("Reduced Goo");
-			}
-			if (hasStatusEffect("IQ B-Gone"))
-			{
-				intelligenceMod += statusEffectv1("IQ B-Gone");
-			}
-			if (hasStatusEffect("Brainmelt Lamps"))
-			{
-				willpowerMod += statusEffectv1("Brainmelt Lamps");
-			}
-			if (hasStatusEffect("Mindwashed"))
-			{
-				aimMod += statusEffectv1("Mindwashed");
-			}
-			if (hasStatusEffect("Latex Sprayed"))
-			{
-				reflexesMod += statusEffectv1("Latex Sprayed");
-			}
-			if (hasStatusEffect("Bimboleum"))
-			{
-				physiqueMod += statusEffectv1("Bimboleum");
-			}
-			if (hasStatusEffect("Psychic Miasma"))
-			{
-				aimMod += 5;
-				reflexesMod += 5;
-			}
-			if (hasStatusEffect("Toxic Trickery"))
-			{
-				physiqueMod += 4;
-				aimMod += 4;
-			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{
+					switch(statusEffects[x].storageName)
+					{
+						case "Sensor Link":
+							aimMod -= 5;
+							break;
+						case "Gassed":
+							aimMod += 5;
+							reflexesMod += 5;
+							break;
+						case "Reduced Goo":
+							armor.defense += statusEffects[x].value1;
+							break;
+						case "IQ B-Gone":
+							intelligenceMod += statusEffects[x].value1;
+							break;
+						case "Brainmelt Lamps":
+							willpowerMod += statusEffects[x].value1;
+							break;
+						case "Mindwashed":
+							aimMod += statusEffects[x].value1;
+							break;
+						case "Latex Sprayed":
+							reflexesMod += statusEffects[x].value1;
+							break;
+						case "Bimboleum":
+							physiqueMod += statusEffects[x].value1;
+							break;
+						case "Psychic Miasma":
+							aimMod += 5;
+							reflexesMod += 5;
+							break;
+						case "Toxic Trickery":
+							physiqueMod += 4;
+							aimMod += 4;
+							break;
+					}
 					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
 					statusEffects.splice(x,1);
 				}
@@ -9141,7 +9136,7 @@
 			if(arg >= bRows()) return 0;
 			
 			var rating:Number = 0;
-			if(arg == 0 && hasStatusEffect("Mimbrane Boobs") && rating < statusEffectv3("Mimbrane Boobs")) rating = statusEffectv3("Mimbrane Boobs");
+			if(arg == 0) rating += statusEffectv3("Mimbrane Boobs");
 			return rating;
 		}
 		public function totalNipples(): Number {
@@ -12351,10 +12346,20 @@
 			if (breastRows.length >= 10) return false;
 			var newBreastRow:BreastRowClass = new BreastRowClass();
 			
-			// Auto-insert silicone
-			if((this is PlayerCharacter) && statusEffectv3("Nym-Foe Injections") != 0) kGAMECLASS.autoFillNymFoeBoobjection(breastRows.length - 1);
-			
 			breastRows.push(newBreastRow);
+			
+			// For dynamic mod values, auto-add here to prevent mismatch.
+			var modBonus:Number = 0;
+			
+			if(statusEffectv3("Mimbrane Boobs") != 0 && (breastRows.length - 1) == 0) modBonus += statusEffectv3("Mimbrane Boobs");
+			// Auto-insert silicone
+			if(statusEffectv3("Nym-Foe Injections") != 0) {
+				if(this is PlayerCharacter) kGAMECLASS.autoFillNymFoeBoobjection(breastRows.length - 1);
+				else modBonus += statusEffectv3("Nym-Foe Injections");
+			}
+			
+			if(modBonus != 0) breastRows[breastRows.length - 1].breastRatingMod += modBonus;
+			
 			return true;
 		}
 		public function createBreastRowUnlocked(numRows:int = 1):Boolean
@@ -14003,20 +14008,21 @@
 			//size!
 			if (ballSize() > 1 && (rand(3) <= 1 || forceSize)) {
 				if (descripted > 0) desc += ", ";
-				if (ballDiameter() <= 1) {}
-				else if (ballDiameter() < 2) desc += "large";
-				else if (ballDiameter() < 3) desc += "baseball-sized";
-				else if (ballDiameter() < 4) desc += "apple-sized";
-				else if (ballDiameter() < 5) desc += "grapefruit-sized";
-				else if (ballDiameter() < 7) desc += "cantaloupe-sized";
-				else if (ballDiameter() < 9) desc += "soccerball-sized";
-				else if (ballDiameter() < 12) desc += "basketball-sized";
-				else if (ballDiameter() < 15) desc += "watermelon-sized";
-				else if (ballDiameter() < 25) desc += "beachball-sized";
-				else if (ballDiameter() < 40) desc += "barrel-sized";
-				else if (ballDiameter() < 60) desc += "person-sized";
+				var diameter:Number = ballDiameter();
+				if (diameter <= 1) {}
+				else if (diameter < 2) desc += "large";
+				else if (diameter < 3) desc += "baseball-sized";
+				else if (diameter < 4) desc += "apple-sized";
+				else if (diameter < 5) desc += "grapefruit-sized";
+				else if (diameter < 7) desc += "cantaloupe-sized";
+				else if (diameter < 9) desc += "soccerball-sized";
+				else if (diameter < 12) desc += "basketball-sized";
+				else if (diameter < 15) desc += "watermelon-sized";
+				else if (diameter < 25) desc += "beachball-sized";
+				else if (diameter < 40) desc += "barrel-sized";
+				else if (diameter < 60) desc += "person-sized";
 				else desc += "hideously swollen and oversized";
-				if (ballDiameter() > 1) descripted++;
+				if (diameter > 1) descripted++;
 			}
 			//Uniball
 			if (hasStatusEffect("Uniball") && rand(3) == 0) {

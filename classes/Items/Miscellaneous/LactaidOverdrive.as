@@ -109,7 +109,7 @@ package classes.Items.Miscellaneous
 				if (target.biggestTitSize() > 6) output(" huge");
 				output(" milk tanks aren’t slowing down anytime soon.");
 
-				output("\n\n<b>Gained perk: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
+				output("\n\n<b>Perk Gained: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
 				target.createPerk("Hypermilky", 0, 0, 0, 0, "Lactation will not decrease from disuse or overfilling.");
 			}
 			
