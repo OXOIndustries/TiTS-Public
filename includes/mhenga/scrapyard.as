@@ -52,8 +52,8 @@ public function buyFromGeoff():void {
 	{
 		if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined || pc.isTaur() || pc.isNaga())
 		{
-			addDisabledButton(3,"Sex","Sex","You aren't feminine enough for sex with Geoff.");
-			output("\n\nGeoff doesn't seem interested in sex with the way you look right now...");
+			addDisabledButton(3,"Sex","Sex","You aren’t feminine enough for sex with Geoff.");
+			output("\n\nGeoff doesn’t seem interested in sex with the way you look right now...");
 		}
 
 		if (pc.lust() >= 33)
@@ -66,8 +66,8 @@ public function buyFromGeoff():void {
 		}
 		else
 		{
-			addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
-			output("\n\nYou aren't aroused enough for sex.");
+			addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for sex.");
+			output("\n\nYou aren’t aroused enough for sex.");
 		}
 	}
 
@@ -420,7 +420,7 @@ public function flirtMoreWithGeoff():void
 	flags["SEXED_GEOFF_MASC"] = 1;
 
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff's virgin ass.");
+	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff’s virgin ass.");
 	else addDisabledButton(0, "Top", "Top", "If you had a cock you could probably take the initiative and fuck Geoff in the ass.")
 	if (flags["SEXED_GEOFF"] == undefined) addButton(1, "Bottom", flirtWithGeoff, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
 	else addButton(1, "Bottom", GeoffRepeatFuck, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
@@ -604,8 +604,6 @@ public function dudesTopGeoffRepeat():void
 			
 			output("\n\n<i>“Oh... yeah... right.”</i> He says as he rushes towards the back door.");
 		}
-
-		output("\n\n");
 	}
 	
 	output("\n\nGeoff leads you out of the shop and to the usual spot where the garage is shielded from the worst of the hot sun by an old metal roof. Once the two of you are there Geoff takes the initiative and wraps his long arms around your waist, pulling you into a kiss. As your [pc.lips] move against his his hands begin to explore your body, growing more bold as the two of you continue to make out. He makes sure to rub your [pc.ass], silently expressing his preference for the position you’ll be taking this bout.");

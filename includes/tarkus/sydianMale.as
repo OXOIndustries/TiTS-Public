@@ -158,7 +158,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	}
 	//Merge
 	output(" The captive sydian watches with a slow, sly smile of his own. Perhaps he secretly hoped it would come to this if he lost. It’s certainly better than the more violent alternatives, that’s for sure. Giving yourself a few firming pumps, you advance on the supine creature, your eyes tracing the sculpted curvature of his muscular frame down to his narrow hips and tight-looking ass.");
-	output("\n\nYou point at him, and looks back, confused");
+	output("\n\nYou point at him, and he looks back, confused");
 	if(enemy.lust() >= enemy.lustMax()) output(" but erect and drooling his silvery pre-cum");
 	else output(" but rapidly stiffening in response to the sight of your body");
 	output(". Sighing, you make a circular gesture with your fingertip - surely he can figure out that you want him on his hands and knees. How else would you vent the lusts he excited in your body? He seems to get it after a moment of consideration and climbs up, presenting his taut, armored ass for your inspection, a single crimson star visible in the shadow of his tail.");

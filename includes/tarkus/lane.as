@@ -1618,7 +1618,13 @@ public function lanePostApplyEffect(selectedService:String):void
 	{
 		output("\n\nYou’re happy that Lane, righteous and generous as [lane.heShe] is, kept up [lane.hisHer] end of the bargain and gave you what you paid for. But another part of you is ecstatic about what’s going to happen next. You thank [lane.himHer] for [lane.hisHer] continued excellence, and that, if [lane.heShe]’s ready, you’re prepared to pay [lane.himHer] your ‘taxes’ for the privilege of being [lane.hisHers] to own.");
 
-		output("\n\n[lane.HeShe] smiles and stands. You stand with [lane.himHer], and with a deft, swift hand, [lane.heShe] grabs you by the collar of your [pc.armor] and pulls you in for an aggressive, dominant kiss. You melt into [lane.himHer], opening your mouth and inviting your [lane.master]’s tongue to play with your own. [lane.HeShe]’s grabbing at you roughly and possessively as [lane.heShe] suffocates you with [lane.hisHer] lips and [lane.hisHer] tongue, guiding you across the desk and to the curtains hiding the second half of the room.");
+		output("\n\n[lane.HeShe] smiles and stands. You stand with [lane.himHer], and with a deft, swift hand, [lane.heShe] grabs you");
+		if(pc.hasArmor() || pc.hasUpperGarment())
+		{
+			output(" by the collar");
+			if(pc.hasArmor()) output(" of your [pc.armor]");
+		}
+		output(" and pulls you in for an aggressive, dominant kiss. You melt into [lane.himHer], opening your mouth and inviting your [lane.master]’s tongue to play with your own. [lane.HeShe]’s grabbing at you roughly and possessively as [lane.heShe] suffocates you with [lane.hisHer] lips and [lane.hisHer] tongue, guiding you across the desk and to the curtains hiding the second half of the room.");
 
 		output("\n\n[lane.HeShe] finally lets you go as [lane.heShe] opens [lane.hisHer] eyes and [lane.hisHer] tassels wide at you, letting you fall into [lane.himHer] a second time. Your body sinks");
 		if (pc.hasCock() && !pc.hasVagina()) output(" but [pc.eachCock] rises");
@@ -1629,7 +1635,7 @@ public function lanePostApplyEffect(selectedService:String):void
 
 		output("\n\n[lane.HeShe] leads you to [lane.hisHer] bedroom, across from [lane.hisHer] hypnosis room, and as soon as [lane.heShe] shuts the door behind you, [lane.heShe]’s stripped of both [lane.hisHer] airy shirt and [lane.hisHer] flowing pants, leaving [lane.himHer] with only [lane.hisHer] underwear. " + lane.mf("The unmistakable bulge of his delicious, virile Daynarian cock pushes against the stubborn fabric, outlining the trail of his meat from his tip to his base, and it only gets more pronounced with each heartbeat.", "A small damp patch is clearly visible between the cleavage of her legs, but more than that, the musky scent of her needy, demanding sex penetrates the air, and your nostrils, with ease.") + " Your fingers fidget as you imagine just how Lane is going to use you today.");
 
-		output("\n\n<i>“Strip naked,”</i> [lane.heShe] commands, and you do so with ease and without any flair, eager to just get right to servicing your " + lane.mf("master", "mistress") + " once more. Soon, your [pc.armor] is discarded to a pile in the corner, and you’re left as naked as Lane is, once [lane.heShe] removes [lane.hisHer] undergarment, bearing all of [lane.himHer]self to you once more.");
+		output("\n\n<i>“Strip naked,”</i> [lane.heShe] commands, and you do so with ease and without any flair, eager to just get right to servicing your " + lane.mf("master", "mistress") + " once more. Soon, your " + (pc.hasArmor() ? "[pc.armor]" : "gear") + " is discarded to a pile in the corner, and you’re left as naked as Lane is, once [lane.heShe] removes [lane.hisHer] undergarment, bearing all of [lane.himHer]self to you once more.");
 
 		output("\n\nAnd to think, you used to hate doing your taxes.");
 		// Go to Randomized sex
@@ -2010,7 +2016,9 @@ public function fuckedByMaleLane():void
 
 	output("\n\nHe turns to one of the dressers on the side of the room, and pulls out a fresh, complete set of the same airy clothes he always wears. <i>“But for now, I’m afraid we both have work to do. I can’t make fucking my living unless I fuck everybody, and I only have one special slut in my life.”</i> He winks at you, and you practically melt on the spot. He laughs light-heartedly. <i>“Put on your clothes, [pc.name], and get back out there. You have some money to make.”</i>");
 
-	output("\n\nAnd then he leaves you alone in his room. You lay there for another minute, reflecting on what he just said, about how you were special to him. You smile to yourself, but you know he’s right in that you still have things to do. With some effort, you peel away from his bed and reach for your [pc.armor], scattered across his floor.");
+	output("\n\nAnd then he leaves you alone in his room. You lay there for another minute, reflecting on what he just said, about how you were special to him. You smile to yourself, but you know he’s right in that you still have things to do. With some effort, you peel away from his bed");
+	if(pc.hasArmor()) output(" and reach for your [pc.armor]");
+	output(", scattered across his floor.");
 
 	output("\n\nAnother minute or two later, you’re presentable again, and you leave his hut, energized.");
 
@@ -2447,7 +2455,7 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\nYour eyes focus solely on [lane.himHer], and... something comes over you. Your breathing quickens, your heart races, and your head becomes light, likely from all the blood rushing from it to your loins. A sort of dissatisfaction washes over you, and you crave something, something from Lane. You see hundreds of images in your mind in quick succession – some of them are panicky, trying to get you to get up and run from [lane.himHer], but everything else sees you on your [pc.knees], pleasuring Lane with your mouth, or on a bed," + lane.mf(" [pc.legOrLegs] in the air", " on your back") + " as [lane.heShe] pounds you – fucks you - <i>claims</i> you and <i>owns</i> you for [lane.himHer]self. Your imagination soars blissfully with the idea of giving yourself to [lane.himHer] and [lane.hisHer] pleasure, of letting [lane.himHer] control your wants and your actions and your life.");
 	if (pc.hasCock()) output(" [pc.EachCock] is raging hard in your pants, already nearly at full mast, more than eager for the pleasures it knows Lane would bestow upon you for your obedience.");
-	else if (pc.hasVagina()) output(" [pc.EachVagina] throbs, oozing your girlcum into the fabric of your [pc.armor] and further influencing your mind into following through with your perverted fantasies.");
+	else if (pc.hasVagina()) output(" [pc.EachVagina] throbs, oozing your girlcum " + (!pc.isCrotchExposed() ? "into the fabric of your [pc.crotchCoverUnder]" : "between your [pc.thighs]") + " and further influencing your mind into following through with your perverted fantasies.");
 
 	output("\n\nYour body makes your decision before your mind does, and you leap from the chair, practically vaulting over the open end of Lane’s desk to place yourself at [lane.hisHer] feet. [lane.HeShe] turns in [lane.hisHer] chair, smiling wickedly, and opens [lane.hisHer] legs, letting you nestle yourself between them. You begin to rub your [pc.face] against the fabric of [lane.hisHer] pants, your cheeks against [lane.hisHer] thighs and your nose ever so close to [lane.hisHer] crotch – [lane.hisHer] musk wafts from [lane.himHer], filling your nose and your mind with more perverted images. " + lane.mf(" His bulge is very well defined and pronounced, and thoughts of his wonderful, delicious cock filling your mouth make you salivate.", " The scent of her moist, hungry cunt is overpowering, and you see her juices beginning to seep through her fabrics. Thoughts of her using it to dominate you make you ache for her even more."));
 
@@ -2469,7 +2477,13 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\n<i>“There’s one last thing. One last thing, and then I’ll give you,”</i> [lane.heShe] says, using [lane.hisHer] hands to frame [lane.hisHer] crotch, <i>“what you want.”</i> You don’t dare move or speak, listening rapturously for whatever else [lane.heShe] has in mind for you. <i>“From now on, I want you to call me your " + lane.mf("master", "mistress") + ". You will no longer address me as Lane, or as " + lane.mf("mister", "missus") + " anything. I own you now, [pc.name], and I demand respect from my pets.”</i>");
 
-	output("\n\nYou beg and plead with your " + lane.mf("master", "mistress") + ", asking them to give you what you need, to douse the fire in your loins, to physically claim you as " + lane.mf("his and his", "hers and hers") + " alone for the rest of your life. Wordlessly, [lane.heShe] grabs you by the collar of your [pc.armor], lifting you up. You feel some anxiety, pulled from [lane.himHer] as roughly as you are, but your fear turns to curiosity as [lane.heShe] leads you behind the curtain splitting the room in half once more. Instead of turning towards the hypnosis room, [lane.heShe] turns to [lane.hisHer] left, and shows you through the second door.");
+	output("\n\nYou beg and plead with your " + lane.mf("master", "mistress") + ", asking them to give you what you need, to douse the fire in your loins, to physically claim you as " + lane.mf("his and his", "hers and hers") + " alone for the rest of your life. Wordlessly, [lane.heShe] grabs you");
+	if(pc.hasArmor() || pc.hasUpperGarment())
+	{
+		output(" by the collar");
+		if(pc.hasArmor()) output(" of your [pc.armor]");
+	}
+	output(", lifting you up. You feel some anxiety, pulled from [lane.himHer] as roughly as you are, but your fear turns to curiosity as [lane.heShe] leads you behind the curtain splitting the room in half once more. Instead of turning towards the hypnosis room, [lane.heShe] turns to [lane.hisHer] left, and shows you through the second door.");
 
 	output("\n\nIt leads to what looks to be Lane’s bedroom. It’s a modest place, all told: there are two dressers leaning against both the left and right walls, and a small nightstand sitting in the corner with a large lamp on top of it. Pressed against the far wall is a queen-sized bed with a thick, fluffy, plain white quilt atop of it. Rather than windows on the walls, there’s a large skylight above the bed with a thick pane of glass set in it. Everything is kept quite clean and tidy, but the room is very plain and without much personality.");
 
@@ -2619,7 +2633,7 @@ public function firstTimeLaneMPCM():void
 	}
 	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving singularity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
-	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the");
+	output("\n\nStill, you do what you’re told. In just minutes, your " + (pc.hasArmor() ? "[pc.armor]" : "gear") + " is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the");
 	//output(" caves of Venar");
 	output(" wastes of Tarkus");
 	output(".");
@@ -2771,7 +2785,7 @@ public function firstTimeLaneMPCFH():void
 	}
 	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving singularity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
-	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the");
+	output("\n\nStill, you do what you’re told. In just minutes, your " + (pc.hasArmor() ? "[pc.armor]" : "gear") + " is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the");
 	//output(" caves of Venar");
 	output(" wilds of Tarkus");
 	output(".");
@@ -3011,7 +3025,7 @@ public function firstTimeLaneFPCMH():void
 
 	output("\n\n<i>“You’re a good pet,”</i> Lane tells you, <i>“but I’m afraid fucking you doesn’t pay my bills. That’s not the sort of business I run, unfortunately. Get dressed, and get out there and make me some money.”</i> And then she just leaves you alone in her room, her clothes still in her arms. That was a little cold, the way she talked to you like a tool, but that’s just one of the many things you like about Lane – she’s focused on what she wants, and when she doesn’t want money for her business, she wants you. Thinking of her as a sort of predator, sexual or otherwise, makes your [pc.cock] stiffen all the more.");
 
-	output("\n\nYou take a few more minutes to yourself to calm your newly rising erection. When you’re ready, you move to put your [pc.armor] back on, and when you’re presentable again, you leave her room. Lane is nowhere to be found – the ‘busy’ sign is still on her desk, untouched. You have no idea where she goes to bathe.");
+	output("\n\nYou take a few more minutes to yourself to calm your newly rising erection. When you’re ready, you move to put your " + (pc.hasArmor() ? "[pc.armor]" : "gear") + " back on, and when you’re presentable again, you leave her room. Lane is nowhere to be found – the ‘busy’ sign is still on her desk, untouched. You have no idea where she goes to bathe.");
 
 	output("\n\nWith nothing (and nobody) else to do in the hut, you leave for the");
 	//output(" caves of Venar");

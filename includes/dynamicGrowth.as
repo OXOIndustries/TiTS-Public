@@ -471,7 +471,7 @@ public function nutStatusCleanup():void
 public function canShrinkNuts():Boolean
 {
 	//Can fap it away!
-	if(pc.perkv1("'Nuki Nuts") > 0 && pc.canMasturbate())
+	if(pc.perkv1("'Nuki Nuts") > 0 && pc.hasCock() && pc.canMasturbate())
 	{
 		//NO FAPS!
 		if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP)) return false;
@@ -484,40 +484,47 @@ public function canShrinkNuts():Boolean
 public function bigBallNoBadEnd():void { bigBallBadEnd(false); }
 public function bigBallBadEnd(bBadEnd:Boolean = true):void
 {
-	clearOutput();
-	author("Fenoxo");
 	//Dangerous area, can’t unswell:
 	if(bBadEnd && rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
 	{
-		output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
-		
-		days += 40 + rand(6);
-		hours = rand(24);
-		processTime(rand(60));
-		
-		for(var i:int = 0; i < 12; i++)
+		if(disableExploreEvents())
 		{
-			pc.orgasm();
+			bigBallNativesBadEnd();
+			return;
 		}
 		
-		badEnd();
+		clearOutput();
+		showBust("");
+		showName("\nIMMOBILIZED!");
+		author("Jacques00");
+		
+		output("Welp, it looks like you are stuck out in the wilderness with a sack you cannot hide. Do you want to use your codex to call for help or stay and see what happens?");
+		
+		clearMenu();
+		addButton(0, "Stay...", bigBallBadEndCont, "stay");
+		addButton(1, "Help!", bigBallBadEndCont, "help");
 	}
 	//Not a dangerous area:
 	else 
 	{
-		output("Eventually, you manage to get someone to pick you up and take you in for treatment. It isn’t cheap either. ");
+		clearOutput();
+		showBust("");
+		showName("MEDICAL\nEMERGENCY!");
+		author("Fenoxo");
+		
+		output("Eventually, you manage to get someone to pick you up and take you in for treatment. It isn’t cheap either.");
 		if(pc.credits >= 10000)
 		{
 			pc.credits -= 10000;
-			output("Your finances are ");
-			if(pc.credits < 1000) output("completely ");
-			output("drained by your own libidinous foolishness, but at least you can move around normally again!");
+			output(" Your finances are");
+			if(pc.credits < 1000) output(" completely");
+			output(" drained by your own libidinous foolishness, but at least you can move around normally again!");
 		}
 		else
 		{
 			pc.credits = 0;
-			output("Your finances aren’t capable of footing the bill, but at least the medical experimentation that pays for it all isn’t too bad.");
-			if(pc.biggestTitSize() >= 1 && rand(2) == 0 && pc.breastRows[0].breasts < 3) 
+			output(" Your finances aren’t capable of footing the bill, but at least the medical experimentation that pays for it all isn’t too bad.");
+			if(pc.biggestTitSize() >= 1 && pc.breastRows[0].breasts < 3 && rand(2) == 0)
 			{
 				output(" A third breast is a small price to pay, after all.");
 				pc.breastRows[0].breasts = 3;
@@ -552,6 +559,210 @@ public function bigBallBadEnd(bBadEnd:Boolean = true):void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
+}
+public function bigBallBadEndCont(response:String = "help"):void
+{
+	clearOutput();
+	author("Jacques00");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "help":
+		case "back":
+			showBust("");
+			showName("WHO YOU\nGONNA CALL?");
+			
+			if(response == "back") output("Who else do you call?");
+			else
+			{
+				output("You decide it would be a better idea to ask for help and so you flip open your Codex and attempt to access your phone-a-friend speed dial list.");
+				output("\n\nWho do you call?");
+			}
+			output("\n\n");
+			
+			var i:int = 0;
+			var btnSlot:int = 0;
+			var lifeline:Array = getCrewOnShipNames(false, true);
+			lifeline.unshift("Steele Tech");
+			lifeline.push("Unknown");
+			
+			for(i = 0; i < lifeline.length; i++)
+			{
+				addButton(btnSlot, lifeline[i], bigBallBadEndCont, lifeline[i]);
+				btnSlot++;
+				if(btnSlot >= 59) break;
+				if((btnSlot + 1) % 15 == 0)
+				{
+					addButton(btnSlot, "Nevermind", bigBallBadEndCont, "stay");
+					btnSlot++;
+				}
+			}
+			if(btnSlot > 14)
+			{
+				while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+				addButton(btnSlot, "Nevermind", bigBallBadEndCont, "stay");
+			}
+			
+			addButton(14, "Nevermind", bigBallBadEndCont, "stay");
+			break;
+		case "Steele Tech":
+			showBust("MILLY");
+			showName("CALL\nSTEELE TECH");
+			
+			output("It might be too embarrassing to call emergency services, so you try the next best thing and dial Steele Tech property retrieval");
+			if(silly) output(" (because of course you would do such a thing)");
+			output(" and wait... Beep.");
+			output("\n\n<i>“Oh! Uh, um... Steele Tech pick-up crew, how may we be of service, " + pc.mf("Mr.","Ms.") + " Steele,”</i> a semi-nervous voice answers through audio... and after the video feed picks up, obviously female. You are greeted by her violet eyes and maroon lips on a chocolate-toned face, wearing a surprised expression.");
+			if(flags["MHENGA_PROBE_CASH_GOT"] != undefined) output(" It’s Milly, and upon recognizing you, she flashes a bright smile and her two-finger salute.");
+			output(" The " + (CodexManager.entryUnlocked("Dzaan") ? "dzaan" : "alien") + " girl adjusts her platinum, micro-braided ponytail and draps it over one shoulder, straightening her posture in attention. <i>“So, do you need us to send over a draggin’ wagon to tow a probe back to base?”</i>");
+			output("\n\nYou smirk. <i>“Well, now that you mention it, I have " + (pc.balls == 1 ? "one big Steele Tech probe" : (num2Text(pc.balls) + " big Steele Tech probes")) + " I need help with...”</i> You try to pan and zoom your camera to reveal your [pc.ballsack] as much as possible. <i>“Do you think that is doable?”</i>");
+			output("\n\nTaking in what she just saw, the girl is stunned. <i>“Oh, dear...”</i> is her response, too shocked to follow up with another word.");
+			if(flags["MILLY_FUCKED"] != undefined) output(" Is... is that drool streaming down of the side of her mouth?");
+			output("\n\nOut of the corner of the video feed, you spot a youthful, kaithrit male in the back, carelessy spinning by on his rolling chair. When his eyes meet the camera, you see him flinch and then, <i>“By the One--!”</i> His chair somehow flips from under him and CRASH! He is on the ground instantly.");
+			output("\n\nThe noise breaks the girl’s trance and she reflexively hops out of her seat, her hair whipping to the motion, so she can quickly tend to her co-worker. <i>“A--are you okay, Ringo?”</i>");
+			output("\n\n<i>“Yeah, yeah. I’m okay, I’m okay. Thanks,”</i> he groans, defeatedly.");
+			output("\n\nConcluding that the accident wasn’t anything severe, but still too flustered by the sudden mix of emotions, the girl darts back up toward the camera, one hand covering her eyes as if to be polite and splurting out a string of apologies with the blindly-aligned camera looking up at her chin. <i>“S-sorry. I’ll call a team nearby to give you a lift!”</i> The camera reangles itself again from being hand held and you are left with an image of her tight, cocoa-colored cleavage, and then a big silhouette of her hand blocks the view before tapping a button and finally the video and audio feed cuts out... Beep.");
+			output("\n\nAs innocent as she is, she" + (flags["MHENGA_PROBE_CASH_GOT"] != undefined ? "’s" : " seems to be") + " a good kid. Hopefully everything is okay over there. Anyway, it’s settled, you can now get out of your predicament.... somehow.");
+			output("\n\n");
+			
+			processTime(8);
+			
+			addButton(0, "Next", bigBallBadEndCont, "success");
+			break;
+		case "Unknown":
+			showBust("");
+			showName("\n???");
+			
+			output("An unkown number? You don’t remember having this saved on your list... Oh well, no harm if it’s the wrong contact. You dial it and wait... Beep.");
+			output("\n\n<i>“[pc.name], be careful!”</i> a masked voice answers without a greeting, the video feed appears all black for you. <i>“There are Playmore Dongs around there.”</i> What? <i>“Use a Dong Detector!”</i>");
+			output("\n\n<i>“Wh...who are you?”</i> you respond.");
+			output("\n\n<i>“Just call me... ‘DEEPTHROAT.’”</i>");
+			output("\n\n<i>“Deepthroat?”</i> You are not sure if this is a joke, so you better make your situation clear. <i>“Listen, I just need help with my situation...”</i>");
+			output("\n\nJust before you provide video proof, the voice answers, <i>“Already done.”</i> You could hear an audible grin.");
+			output("\n\n<i>“What do you want in return?”</i>");
+			output("\n\n<i>“I’ve waited a long time for this day. Now I want to enjoy the moment.”</i> The audio and video then cut off... Beep.");
+			output("\n\nWhat’s with that guy? Well, Let’s hope they are true to their word....");
+			output("\n\n");
+			
+			processTime(3);
+			
+			addButton(0, "Next", bigBallBadEndCont, "success");
+			break;
+		case "Celise":
+			showBust(celiseBustDisplay());
+			showName("CALL\nCELISE");
+			
+			output("Well, this is a crapshoot, but it’s an option at least... You dial for Celise and wait... Beep.");
+			output("\n\n... Beep.");
+			output("\n\n... Beep.");
+			output("\n\nBeep. Beep.");
+			output("\n\n.....");
+			output("\n\n<i>“HELLOOOooo...!”</i> is the greeting, with some irritable crackling from exceeding the microphone’s audio levels. The video feed engages and all you see is a translucent green with the occasional bubbling.");
+			output("\n\n<i>“Uh, Celise...?”</i> you ask.");
+			output("\n\n<i>“Oh, hey, [pc.name]!”</i> she answers. The emerald begins to shuffle away from the camera lense and a familiar face emerges.");
+			if(hasGooArmorOnSelf())
+			{
+				output("\n\n[goo.name] pokes her head out and adds, <i>“Like, heeey, Celise!”</i>");
+				output("\n\n<i>“Hiya, [goo.name]!”</i> Celise responds, waving excitedly.");
+			}
+			output(" <i>“Do ya need something?”</i>");
+			output("\n\n<i>“Well...”</i> You try your best to pan and zoom the camera to capture the immensity of your [pc.balls]. <i>“I need some help");
+			if(pc.hasCock()) output(" emptying " + (pc.balls == 1 ? "this" : "these") + "--or at least");
+			output(" getting " + (pc.balls == 1 ? "it" : "them") + " to a more manageable size.”</i>");
+			output("\n\nThe green goo girl lets out an exaggerated gasp. <i>“Wow! I wish I was there so I could drink it all myself!”</i>");
+			if(hasGooArmorOnSelf())
+			{
+				output("\n\n<i>“Ooo! Me too! Me too!”</i> [goo.name] adds.");
+				output("\n\nCelise giggles, <i>“Of course, we can share!”</i>");
+			}
+			output("\n\nYou audibly clear your throat.");
+			output("\n\nCelise’s face crinkles in deep concentration. <i>“Okay, I will send out the call!”</i>");
+			output("\n\nWhat?");
+			output("\n\nYou see her vigorously tapping and typing on the keys on the screen, supposedly, at least in her mind, putting together a team of experts to come and rescue you. However, in reality, the video display switches between color, grayscale, sepia tone, and fire and snow effects, while the sounds alternates between hyper girly, robot destroyer, auto-tune, and high-pitched and low-pitched. Basically, she’s just randomly changing the video and audio filters in her button mashing rampage.");
+			output("\n\nYou are about to suggest something but the audio and video feed suddenly cut off with a static cue and then... Beep. The call has ended.");
+			output("\n\nUh... perhaps you should try another contact....");
+			output("\n\n");
+			
+			processTime(7);
+			
+			addButton(0, "Next", bigBallBadEndCont, "back");
+			break;
+		case "Reaha":
+			showBust(reahaBustDisplay());
+			showName("CALL\nREAHA");
+			
+			output("Maybe you should give your homely cowgirl a call? You dial for Reaha and wait... Beep.");
+			output("\n\n<i>“Hello,”</i> the bovine beauty’s voice answers.");
+			output("\n\nYou reply, <i>“He--”</i>");
+			output("\n\n<i>“...You’ve reached the voice box of Reaha Hayes. I’m not here right now but if you leave your name and number after the ‘moo’, I will try to get back to you as soon as I can. Thank you!”</i>");
+			output("\n\nGreat, well, she’s probably busy at the mo--");
+			output("\n\n<i>“Moo!”</i>")
+			output("\n\nGuess you better try another contact....");
+			output("\n\n");
+			
+			processTime(5);
+			
+			addButton(0, "Next", bigBallBadEndCont, "back");
+			break;
+		case "success":
+			showBust("");
+			showName("\nWAITING...");
+			
+			output("Now to wait...");
+			output("\n\nAnd wait...");
+			output("\n\n...And wait.");
+			output("\n\n");
+			
+			processTime(64);
+			
+			addButton(0, "Next", bigBallNoBadEnd);
+			break;
+		case "stay":
+			showBust("");
+			showName("\nWAITING...");
+			
+			output("You decide to stay and let fate decide for you....");
+			output("\n\n");
+			
+			processTime(1);
+			
+			addButton(0, "Next", bigBallNativesBadEnd);
+			break;
+		default:
+			showBust("");
+			showName("\nNO RESPONSE");
+			
+			output("A ring... ring... aaaaaand no answer.");
+			output("\n\nPerhaps you should try a different number?");
+			output("\n\n");
+			
+			processTime(2);
+			
+			addButton(0, "Next", bigBallBadEndCont, "back");
+			break;
+	}
+}
+public function bigBallNativesBadEnd():void
+{
+	clearOutput();
+	showBust("");
+	showName("ALL OUT\nBALLS OUT");
+	
+	author("Fenoxo");
+	
+	output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
+	
+	days += 40 + rand(6);
+	hours = rand(24);
+	processTime(rand(60));
+	
+	for(var i:int = 0; i < 12; i++)
+	{
+		pc.orgasm();
+	}
+	
+	badEnd();
 }
 
 /* Boobs stuff! */
