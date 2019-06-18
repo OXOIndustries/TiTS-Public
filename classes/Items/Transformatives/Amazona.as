@@ -1017,7 +1017,7 @@
 				
 				// 1/4 chance to gain 1-3 energy per sexual encounter. Guaranteed at >95 libido
 				// Lost if libido goes below 40
-				output("\n\n(<b>Gained Perk: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
+				output("\n\n(<b>Perk Gained: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
 				target.createPerk((kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido"), 0, 0, 0, 0, "Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.");
 			}
 			

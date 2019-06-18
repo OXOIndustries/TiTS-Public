@@ -2914,7 +2914,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			if(pc.credits < 9000) pc.credits = 9000 + rand(2000);
 			
 			if(pc.refractoryRate < 900) pc.refractoryRate = 900;
-			if(pc.cumMultiplierRaw < 1000) pc.refractoryRate = 1000;
+			if(pc.cumMultiplierRaw < 1000) pc.cumMultiplierRaw = 1000;
 			pc.boostCum(9000);
 			
 			days += 1215 + rand(31);

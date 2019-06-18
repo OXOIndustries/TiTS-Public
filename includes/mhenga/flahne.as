@@ -226,7 +226,7 @@ public function flahnePostPQZilTalk():void
 	clearOutput();
 	showFlahne();
 	output("You ask if any zil have been in town recently.");
-	output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. " + (!pennyIsCrew() ? "A Peacekeeper officer" : "Officer Penny") + " brought them up here, and once we got the air conditioning on full blast, we had a long talk with them. How did you know about that, [pc.name]?”</i>");
+	output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. " + (pennyIsCrew() ? "A Peacekeeper officer" : "Officer Penny") + " brought them up here, and once we got the air conditioning on full blast, we had a long talk with them. How did you know about that, [pc.name]?”</i>");
 	output("\n\nYou briefly describe your confrontation with Quinn’s tribe, how you talked them out of terrorizing Thare Plantation and persuaded them to talk to the people of Esbeth instead. ");
 	if(pc.isBimbo()) output("Your account is heavy on the <i>smell</i> and the <i>cuteness</i> of zil boys and oh Void you just wanna eat them up, though that doesn’t seem to turn Flahne off much.");
 	else if(pc.isBro()) output("Your account is heavy on how superfine the zil honeys were and just how many of them you laid, though that doesn’t seem to turn Flahne off much.");

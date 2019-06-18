@@ -2623,14 +2623,14 @@ public function mitziBimbosYouEpilogue():void
 		output("You wake up giggling and happy, worry-free. Mitzi’s on the floor next to you with her tail lodged in her cunt and pussy-juice all of her face. Yours by the smell of it. She wouldn’t stop you if you woke her by sitting down her face and demanding another session with her tongue, but there’s so many other hotties in the universe. You should probably like, go look for those probes or whatever. There’ll be all sorts of hotties to bang on the way.");
 		if(!pc.hasPerk("Ditz Speech"))
 		{
-			output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+			output("\n\n(<b>Bimbo Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialog in certain scenes.");
 			flags["MITZI_BIMBOED_PC"] = 1;
 		}
 		//Gain weak willed
 		if(!pc.hasPerk("Weak Mind"))
 		{
-			output("\n\n(<b>Gained Bimbo Perk: Weak Mind</b> - You lose willpower twice as fast.)");
+			output("\n\n(<b>Bimbo Perk Gained: Weak Mind</b> - You lose willpower twice as fast.)");
 			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 		}
 	}

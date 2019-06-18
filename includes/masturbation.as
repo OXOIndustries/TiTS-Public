@@ -503,7 +503,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap = new FapCommandContainer();
 		fap.text = "Mindwash";
 		fap.ttHeader = "Mindwash Visor";
-		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
+		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, it induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
 		fap.func = mindwashMeShipVers;
 		faps.push(fap);
 	}

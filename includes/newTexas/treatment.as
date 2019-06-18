@@ -1642,7 +1642,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("Talking isn’t quite as easy as it used to be. There’s so many different words and concepts and ways to arrange them that by the time you get halfway through a sentence you’ve forgotten what you were trying to talk about. It’s way easier to just start talking with whatever words come to mind. Yeah, that’ll work!", "passive", (44 - startHours) * 60);
 			// Ditz Speech
-			ExtendLogEvent("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 		
@@ -1665,7 +1665,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("Is the Treatment done messing with your head yet? It’s gotta be, you figure. You’re having way more fun and thinking about cocks and stuff. Willpower is way down though. And book smarts? They’re kinda gross. All the stuff you read is still there, but it’s way easier not to think about. Besides, if you ever need to learn something you can just get a guy to explain it to you while you suck his cock!", "passive", (48 - startHours) * 60);
 			// Weak Mind - Intelligence and Will losses doubled.
-			ExtendLogEvent("\n\n(<b>Gained Perk: Weak Mind</b> - All intelligence and willpower losses are doubled.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Weak Mind</b> - All intelligence and willpower losses are doubled.)");
 			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 		}
 		
@@ -1691,7 +1691,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				
 				if(!pc.hasPerk("Treated Readiness"))
 				{
-					ExtendLogEvent("\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you’re always ready to go.)");
+					ExtendLogEvent("\n\n(<b>Perk Gained: Treated Readiness</b> - Increases minimum lust to 33, ensuring you’re always ready to go.)");
 					pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you’re always ready to go.");
 				}
 				
@@ -1734,7 +1734,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				AddLogEvent("A strange, relaxing sensation emanates from your cum stuffed hole" + (filledHoles == 1 ? "" : "s") + ". You giggle uncontrollably, as your concerns dissipate and get replaced by happy thoughts. You can worry about your quest later. What matters is the now and how much you get to enjoy it.", "passive", (160 - startHours) * 60);
 				ExtendLogEvent("\n\nDid you... just get high... on cum...? Awesome!");
 				
-				ExtendLogEvent("\n\n(<b>Gained Perk: Cum Highs</b> - You get high on the cum inside you!)");
+				ExtendLogEvent("\n\n(<b>Perk Gained: Cum Highs</b> - You get high on the cum inside you!)");
 				pc.createPerk("Cum Highs",0,0,0,0,"You can get high on cum.");
 				
 				cumHighUpdate(pc, pc.cumFlationAmount(), false);
@@ -1936,7 +1936,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				// MIN LUST BOOOOST
 				if(!pc.hasPerk("Treated Readiness"))
 				{
-					ExtendLogEvent("\n\n(<b>Gained Perk: Treated Readiness</b> - Increases minimum lust to 33, ensuring you’re always ready to go.)");
+					ExtendLogEvent("\n\n(<b>Perk Gained: Treated Readiness</b> - Increases minimum lust to 33, ensuring you’re always ready to go.)");
 					pc.createPerk("Treated Readiness",0,0,0,0,"Increases minimum lust to 33, ensuring you’re always ready to go.");
 				}
 				pc.orgasm();
@@ -2035,7 +2035,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				ExtendLogEvent(ParseText(" You stumble up on your [pc.feet], feeling a little drained, a little confused, and unsure of just why <b>you’re able to cum when panicked.</b>"));
 				ExtendLogEvent("\n\nMaybe there’s a use for such a talent you haven’t considered, aside from sexual relief at inappropriate times.");
 				// Gain Panic Ejaculation! WEEE
-				ExtendLogEvent("\n\n(<b>Gained Perk: Panic Ejaculation</b> - Allows you to squirt out a little cum while grappled, easing your escape!)");
+				ExtendLogEvent("\n\n(<b>Perk Gained: Panic Ejaculation</b> - Allows you to squirt out a little cum while grappled, easing your escape!)");
 				pc.createPerk("Panic Ejaculation",0,0,0,0,"Allows you to squirt out a little cum while grappled, easing your escape!");
 			}
 			
@@ -2109,7 +2109,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				pc.energy(20);
 				if(!pc.hasPerk("Autofellatio Queen"))
 				{
-					ExtendLogEvent("\n\n(<b>Gained Perk: Autofellatio Queen</b> - Allows you to recover energy by drinking your own seed.)");
+					ExtendLogEvent("\n\n(<b>Perk Gained: Autofellatio Queen</b> - Allows you to recover energy by drinking your own seed.)");
 					pc.createPerk("Autofellatio Queen",0,0,0,0,"Allows you to recover energy by drinking your own seed.");
 				}
 			}
@@ -2172,7 +2172,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				else ExtendLogEvent("rubbing your leaking chest");
 				ExtendLogEvent(ParseText(". You didn’t even have to grab them and tug, the [pc.milk] just started coming out on its own, like your teats can drip and drool every bit as eagerly as your [pc.cocks]. The Treatment isn’t just making you a cow, or a cum-cow; it’s making every part of you drip and leak at the slightest arousal. <b>You’ll probably squirt when you cum now, too.</b> Maybe not all the time, but you bet it happens super easily. Your tits wouldn’t even need to be full or anything."));
 				// Milk Fountain~
-				ExtendLogEvent("\n\n(<b>Gained Perk: Milk Fountain</b> - Allows you to squirt milk with the greatest of ease.)");
+				ExtendLogEvent("\n\n(<b>Perk Gained: Milk Fountain</b> - Allows you to squirt milk with the greatest of ease.)");
 				pc.createPerk("Milk Fountain",0,0,0,0,"Allows you to squirt milk with the greatest of ease.");
 			}
 			
@@ -3316,7 +3316,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent(ParseText("You catch yourself using fewer and fewer words to communicate as the days go by, not because using them is hard or anything, but because they seem pointless. Can’t they see how you feel from the set of your jaw or the tenseness of your shoulders? Can’t they read arousal in the flush of your [pc.skin] or the smell of your pheromones? There’s no point getting fancy with it when you can just state what you mean plainly and simply."), "passive", (46 - startHours) * 60);
 			ExtendLogEvent("\n\nAll the big words are just a distraction.");
 			// Brute Speech Unlock!
-			ExtendLogEvent("\n\n(<b>Gained Perk: Brute Speech</b> - You will now sound like more like a reticent brute in scenes that support it.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Brute Speech</b> - You will now sound like more like a reticent brute in scenes that support it.)");
 			pc.createPerk("Brute Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 
 		}
@@ -5266,7 +5266,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		if(treatedHours >= 125 && !pc.hasPerk("Cum Highs") && pc.cumFlationAmount() > 0)
 		{
 			AddLogEvent("<i>Uhhh... maybe you’ve been taking in too much cum lately</i>, a part of your brain chimes in. Your vision doubles momentarily. <i>Nah, there can never be such a thing as too much cum</i>, another part argues. <i>Wait, being filled with cum gets us high?</i> You ask your imaginary friends. The answer should be no, but somehow you’re pretty sure it does now. Well, you don’t have a headache or anything, so at least your body seems to be handling this whole situation pretty well. <i>Whoohoo! Cum’s the best drink in the stars!</i> You raise a victorious fist and yell all of a sudden, looking up at... you don’t know what you were expecting. Your cheeks flush with embarrassment. Dang, you’ve become such a cumslut!", "passive", (treatedHours - startHours) * 60);
-			ExtendLogEvent("\n\n(<b>Gained Perk: Cum Highs</b> - You can get high on cum!)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Cum Highs</b> - You can get high on cum!)");
 			pc.createPerk("Cum Highs",0,0,0,0,"You can get high on cum.");
 			// Raise your alcohol tolerance by 40
 			pc.tolerance(40);
@@ -5292,7 +5292,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			if(pc.statusEffectv1("Vaginally-Filled") > 0) fauxFilledHoles++;
 			if(pc.statusEffectv1("Orally-Filled") > 0) fauxFilledHoles++;
 			AddLogEvent("A wonderful satisfaction spreads throughout your entire body, radiating from the hole" + (fauxFilledHoles == 1 ? " " : "s ") + "you’ve recently cumfilled. How long has this been going on? You can’t be bothered to remember, and honestly it doesn’t matter, all that matters now is the gentle afterglow you’re basking in. This soothing, invigorating sensation could become the focus of your entire life, and you would probably consider yourself fulfilled. After you’ve put your cousin in their place and acquired your inheritance, that is.", "passive", (treatedHours - startHours) * 60);
-			ExtendLogEvent("\n\n(<b>Gained Perk: Lusty Afterglow</b> - Every time fluids are shot inside of you, you recover some energy, and you gain lust over time twice as fast while cumfilled.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Lusty Afterglow</b> - Every time fluids are shot inside of you, you recover some energy, and you gain lust over time twice as fast while cumfilled.)");
 			pc.createPerk("Lusty Afterglow",0,0,0,0,"Every time fluids are shot inside of you, you recover some energy, and you gain lust over time twice as fast while cumfilled.");
 		}
 		// Innocent Allure perk gain (any route)
@@ -5301,7 +5301,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			AddLogEvent("Presently, you find yourself enthralled by your own image on the screen of your Codex. Setting it to record mode, you smile unguardedly, bat your eyelashes twice and slowly start to purse your lips in the promise of a kiss.", "passive", (165 - startHours) * 60);
 			ExtendLogEvent("\n\nBefore the picture is complete, you raise a reluctant hand to your mouth and bite lightly on your thumb while diverting your eyes with a chaste, self-conscious expression, making sure to cast your gaze down at a thirty-degree angle. A blush comes to your cheeks of its own accord to complete the act, and you take it as a cue to return your gaze to its original position, glancing back at your imaginary partner with innocent, shy eyes, thumb still on your lips.");
 			ExtendLogEvent("\n\nYou stop recording and re-watch the the performance in awe – a face like that could melt anyone’s heart! If you did this for real, they might fall for you on the spot...");
-			ExtendLogEvent("\n\n(<b>Gained Perk: Innocent Allure</b> - Boosts your sexiness. After a successful tease, enemies may become slightly distracted and staggered for a brief amount time.)");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Innocent Allure</b> - Boosts your sexiness. After a successful tease, enemies may become slightly distracted and staggered for a brief amount time.)");
 			// storing the sexiness boost in v1 and the hit-chance penalty in v2, but those numbers should probably be hard-coded, instead of stored in a flag
 			pc.createPerk("Innocent Allure",5,10,0,0,"Boosts your sexiness. After a successful tease, enemies may become slightly distracted and staggered for a few rounds.");
 			if(pc.exhibitionismRaw < 100)
@@ -5678,7 +5678,7 @@ public function autoautofellatioNotice():void
 	AddLogEvent(ParseText("It’s super weird that you would just suck yourself off without thinking about it, but then again, looking at your dick or even thinking about it too much makes your head feel sort of fuzzy and silly, like your dick is so awesome it can hypnotize you just by being there. You spend a few minutes imagining it bobbing back and forth to your heartbeat, then shake your head and smile, savoring the residual taste of [pc.cum] on your tonsils."), "passive");
 	if(pc.perkv1("Auto-Autofellatio") == 0)
 	{
-		ExtendLogEvent(ParseText("\n\n(<b>Gained Perk: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)"));
+		ExtendLogEvent(ParseText("\n\n(<b>Perk Gained: Auto-Autofellatio</b> - Makes it difficult to avoid fellating yourself.)"));
 		if(!pc.hasPerk("Auto-Autofellatio")) pc.createPerk("Auto-Autofellatio",0,0,0,0,"You’re so enamored with yourself that you can’t resist a little self-love.");
 	}
 }
@@ -5763,7 +5763,7 @@ public function dumb4CumUpdate(totalHours:int):void
 	// Ditz Speech Add-on
 	if(tics >= 40 && !pc.hasPerk("Ditz Speech"))
 	{
-		ExtendLogEvent("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+		ExtendLogEvent("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 		pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 	}
 }

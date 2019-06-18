@@ -1066,7 +1066,7 @@ public function sellItem():void
 			addButton(btnSlot+14, "Back", shop, shopkeep);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		//If slot has something in it.
 		if(pc.inventory[i].quantity > 0) {
@@ -1300,7 +1300,7 @@ public function dropItem():void {
 			addButton(btnSlot+14, "Back", inventory);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		if(!pc.inventory[i].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
 			output("\n");
@@ -2072,7 +2072,7 @@ public function generalInventoryMenu():void
 			addButton(btnSlot+14, "Back", mainGameMenu);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
 		btnSlot++;
@@ -2163,7 +2163,7 @@ public function combatInventoryMenu():void
 			addButton(btnSlot+14, "Back", CombatManager.showCombatMenu);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		var tItem:ItemSlotClass = pc.inventory[i];
 		if (InCollection(tItem.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]) || tItem.combatUsable == true)
@@ -2683,7 +2683,7 @@ public function replaceItemPicker(lootList:Array):void {
 			}(lootList)), undefined);
 		}
 		
-		if (i == pc.inventory.length) break;
+		if (i == pc.inventory.length || pc.inventory[i] == null) break;
 		
 		if(pc.inventory[i].shortName != "")
 		{
@@ -2856,6 +2856,7 @@ public function shipStorageMenuRoot():void
 	
 	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
+	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
 	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
 	

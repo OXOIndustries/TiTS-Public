@@ -2096,7 +2096,7 @@ package classes.GameData
 					output(" the ground as you fly away, leaving the fight behind.");
 				}
 				else output("You manage to leave the fight behind you.")
-				kGAMECLASS.processTime(8);
+				//kGAMECLASS.processTime(8);
 				//Track fleeing for Wargii Hold
 				if(kGAMECLASS.flags["WARGII_PROGRESS"] == 2) IncrementFlag("WARGII_FIGHTS_RAN");
 				
