@@ -247,6 +247,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fadil.as";
 		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
