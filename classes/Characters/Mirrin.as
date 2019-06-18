@@ -51,5 +51,15 @@
 						
 			this._isLoading = false;
 		}
+
+		public function upgradeCawks():void
+		{
+			cocks[0].cLength(22, true);
+			cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
+			cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			cocks[1].cLength(17, true);
+			cocks[1].addFlag(GLOBAL.FLAG_RIBBED);
+			cocks[1].addFlag(GLOBAL.FLAG_KNOTTED);
+		}
 	}
 }

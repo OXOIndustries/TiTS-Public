@@ -2307,6 +2307,12 @@ public function goddamnitJimTAndYourExhibitionism():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function fapIncreaseButton(button:int):int
+{
+	if (button > 11 && button < 15) return 15;
+	return button + 1;
+}
+
 //Futa Babe Pantyfaps
 //Add [PantyFap] to masturbation menu. PC must have a dick + waifu panties. Open sub-menu to select which waifu's panties to jerk it into. 
 public function futaBabePantyfapsRouter():void
@@ -2332,6 +2338,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) jackOffWithLadyPantiesYouSicko("Claes");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) jackOffWithLadyPantiesYouSicko("Ramis");
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) jackOffWithLadyPantiesYouSicko("Roo");
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) jackOffWithLadyPantiesYouSicko("Tessa");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2343,92 +2350,97 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
 			addButton(button,"Anno’s",jackOffWithLadyPantiesYouSicko,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
 		{
 			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
 			addButton(button,"Briha’s",jackOffWithLadyPantiesYouSicko,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties."))
 		{
 			addButton(button,"Claes’s",jackOffWithLadyPantiesYouSicko,"Claes","Claes’s Panties","Use Claes’s silky white panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
 			addButton(button,embry.short + "’s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
 		{
 			addButton(button,"Emmy’s",futaBabePantyfaps,"Emmy","Emmy’s Panties","Use Emmy’s cum-stained, purple panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
 		{
 			addButton(button,"Erra’s",jackOffWithLadyPantiesYouSicko,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
 		{
 			addButton(button,"Fisianna’s",jackOffWithLadyPantiesYouSicko,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaBabePantyfaps,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
 			addButton(button,"Myrna’s",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaBabePantyfaps,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick fap.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies."))
 		{
 			addButton(button,"Ramis’s",jackOffWithLadyPantiesYouSicko,"Ramis","Ramis’s Panties","Use Ramis’s tight, black panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
 		{
 			addButton(button,"Roo’s",jackOffWithLadyPantiesYouSicko,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaBabePantyfaps,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
 			addButton(button,"Syri’s",futaBabePantyfaps,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
+		{
+			addButton(button,"Tessa’s",jackOffWithLadyPantiesYouSicko,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,1,"Random Panties","Select a random pair of panties to fap to.");
 		addButton(14,"Back",masturbateMenu);
@@ -2457,6 +2469,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) pureLadyWaifuPussyRubFap("Fisianna");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) pureLadyWaifuPussyRubFap("Ramis");
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) pureLadyWaifuPussyRubFap("Roo");
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) pureLadyWaifuPussyRubFap("Tessa");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2468,92 +2481,97 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
 			addButton(button,"Anno’s",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
 		{
 			addButton(button,flags["BEA_TITLE"]+"’s",pureLadyWaifuPussyRubFap,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
 			addButton(button,"Briha’s",pureLadyWaifuPussyRubFap,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) 
 		{
 			addButton(button,"Claes’s",pureLadyWaifuPussyRubFap,"Claes","Claes’s Panties","Use Claes’s silky white panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
 			addButton(button,embry.short + "’s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
 		{
 			addButton(button,"Emmy’s",futaPantiesFapInPussy,"Emmy","Emmy’s Panties","Use Emmy’s purple, cummy panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
 		{
 			addButton(button,"Erra’s",pureLadyWaifuPussyRubFap,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
 		{
 			addButton(button,"Fisianna’s",pureLadyWaifuPussyRubFap,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaPantiesFapInPussy,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
 			addButton(button,"Myrna’s",pureLadyWaifuPussyRubFap,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaPantiesFapInPussy,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick bit of self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies."))
 		{
 			addButton(button,"Ramis’s",futaPantiesFapInPussy,"Ramis","Ramis’s Panties","Use Ramis’s tight, pink panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
 		{
 			addButton(button,"Roo’s",futaPantiesFapInPussy,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaPantiesFapInPussy,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
 			addButton(button,"Syri’s",futaPantiesFapInPussy,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
+		{
+			addButton(button,"Tessa’s",pureLadyWaifuPussyRubFap,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,0,"Random Panties","Select a random pair of panties to schlick to.");
 		addButton(14,"Back",masturbateMenu);
@@ -2580,6 +2598,7 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) panties.push("Claes");
 	if(total || pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) panties.push("Ramis");
 	if(total || pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) panties.push("Roo");
+	if(total || pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) panties.push("Tessa");
 	return panties;
 }
 
@@ -2700,6 +2719,7 @@ public function getPantyColor(waifu:String = ""):String
 		case "Fisianna": pantyColor = "white"; break;
 		case "Ramis": pantyColor = "black"; break;
 		case "Roo": pantyColor = "bright red"; break;
+		case "Tessa": pantyColor = "black"; break;
 	}
 	return pantyColor;
 }
@@ -2729,6 +2749,7 @@ public function getPantyTexture(waifu:String = ""):String
 		case "Fisianna": pantyTexture = "lace"; break;
 		case "Ramis": pantyTexture = "frictionless spandex"; break;
 		case "Roo": pantyTexture = "satiny"; break;
+		case "Tessa": pantyTexture = "satiny"; break;
 	}
 	return pantyTexture;
 }

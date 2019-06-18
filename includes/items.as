@@ -108,6 +108,8 @@ public function useItem(item:ItemSlotClass):Boolean
 		//If has a special global function set
 		if (item.useFunction != null)
 		{
+			// mirrin preg likes food
+			if (pc.statusEffectv1("MirrinPregStage") > 1 && item.type == GLOBAL.FOOD) pc.lust(5);
 			//if item use returns false, set up a menu.
 			if (!item.useFunction(chars["PC"])) 
 			{

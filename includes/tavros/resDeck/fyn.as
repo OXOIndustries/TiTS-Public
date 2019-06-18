@@ -81,6 +81,13 @@ public function playFynsDoorScene(btnSlot:int = 0):void
 		
 		addButton(btnSlot, "N. Knock", knockOnFynsDoor, undefined, "North Door Knock", "Why not? You’re kind of curious to see who lives inside... you only live once, right?");
 	}
+
+	if (MailManager.isEntryUnlocked("mirrin_tavros"))
+	{
+		output("\n\nAt the very end of the hall is a set of automatic sliding doors with a simple neon-white sign overhead: <i>SterkurHús</i>.");
+		if (MailManager.isEntryViewed("mirrin_tavros")) output("\n\nMirrin’s new place of course!");
+		if (!MailManager.isEntryViewed("mirrin_tavros") || pc.hasStatusEffect("MIRRIN_DISABLED") || mirrinWiffKiddos()) setNavDisabled(NAV_EAST_DISABLE);
+	}
 }
 
 /*Cut do to reworking intro bits

@@ -221,6 +221,7 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/tessaWedding.as";
 		include "../includes/events/wargiiHold/druggedKorg.as";
 		include "../includes/events/wargiiHold/druggedKorgMale.as";
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
@@ -246,6 +247,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fadil.as";
 		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
@@ -364,6 +366,7 @@
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
+		include "../includes/tarkus/tessaBedroomGame.as";
 		include "../includes/tarkus/verusha.as";
 		include "../includes/tarkus/zea.as";
 		
@@ -383,6 +386,7 @@
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
 		include "../includes/newTexas/mirrin.as";
+		include "../includes/newTexas/mirrinPregpack.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
