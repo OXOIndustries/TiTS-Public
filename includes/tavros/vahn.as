@@ -362,7 +362,8 @@ public function shipCompareString(newShip:ShittyShip):String
 {
 	var shipTooltip:String = "";
 	//Appearance compare. Might need cut.
-	shipTooltip += "<b>New Ship:</b> " + newShip.long;
+	if(newShip != shits["SHIP"]) shipTooltip += "<b>New Ship:</b> " + newShip.long;
+	else shipTooltip += "<b>Your Ship:</b> " + newShip.long;
 	//shipTooltip += "\n\n<b>Old Ship:</b>" + shits["SHIP"].long;
 
 	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());

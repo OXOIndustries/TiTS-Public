@@ -3009,6 +3009,21 @@ public function getNumberOfStoredType(from:Array, type:String):int
 	return getListOfType(from, type).length;
 }
 
+public function shipOverEncumberedByStorage():Boolean
+{
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "WARDROBE") > flags["SHIP_STORAGE_WARDROBE"]) 
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "EQUIPMENT") > flags["SHIP_STORAGE_EQUIPMENT"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "CONSUMABLES") > flags["SHIP_STORAGE_CONSUMABLES"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "VALUABLES") > flags["SHIP_STORAGE_VALUABLES"])
+		return true;
+	if(getNumberOfStoredType(pc.ShipStorageInventory, "TOYS") > flags["SHIP_STORAGE_TOYS"])
+		return true;
+	return false;
+}
+
 public function outputStorageListForType(type:String):Array
 {
 	var items:Array = getListOfType(pc.ShipStorageInventory, type);
@@ -3028,7 +3043,10 @@ public function outputStorageListForType(type:String):Array
 		}
 	}
 	
-	output("\n\n<b>You have " + String(Math.max(0, flags["SHIP_STORAGE_" + type] - items.length)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+	output("\n\n<b>You have " + String(flags["SHIP_STORAGE_" + type] - items.length) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+
+	if(flags["SHIP_STORAGE_" + type] - items.length < 0) output("\n<b>You cannot fly with this many items!</b>");
+
 	if (items.length > 10) output("\n\n" + multiButtonPageNote());
 
 	return items;
@@ -3065,7 +3083,6 @@ public function storeItem(args:Array):void
 			}
 		}
 	}
-	
 	// If we're this far in, we couldn't fit everything into an existing stack.
 	// See if we can place a new stack in the inventory
 	if (getNumberOfStoredType(pc.ShipStorageInventory, type) < flags["SHIP_STORAGE_" + type] && item.quantity > 0)

@@ -2073,7 +2073,11 @@ public function insideShipEvents():Boolean
 
 public function shipMenu():Boolean
 {
-	if(shits["SHIP"] != undefined) showBust(shits["SHIP"].bustDisplay);
+	if(shits["SHIP"] == undefined) shits["SHIP"] = new Casstech();
+	showBust(shits["SHIP"].bustDisplay);
+	
+	if(shits["SHIP"] is Casstech) output("The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.");
+	else output(shits["SHIP"].long);
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
@@ -2116,6 +2120,7 @@ public function shipMenu():Boolean
 			return true;
 		}
 		
+		addButton(0,"Ship Stats",shipStatistics,undefined,"Ship Stats","Look over your ship and its equipped modules.");
 		if (crew(true, true) > 0) addButton(2, "Crew", crew);
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
@@ -2128,8 +2133,13 @@ public function shipMenu():Boolean
 
 		if(shits["SHIP"].shipCrewCapacity() < crewCounter) 
 		{
-			output("\n\nYour ship is <b>overloaded</b>. Send some crewmembers home before you attempt to fly.");
+			output("\n\nYour ship is <b>overloaded</b>. Send " + (crewCounter - shits["SHIP"].shipCrewCapacity()) + " crewmember" + (crewCounter-shits["SHIP"].shipCrewCapacity() > 1 ? "s":"") + " home before you attempt to fly.");
 			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
+		}
+		else if(shipOverEncumberedByStorage())
+		{
+			output("\n\nYour ship is <b>overloaded</b>. Clear out some space in your ship's storage before attempting to fly.");
+			addDisabledButton(5,"Fly","Fly","Your ship is overflowing with stored items. Please thin out your storage before attempting to fly.");
 		}
 		else if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
@@ -2141,6 +2151,36 @@ public function shipMenu():Boolean
 	}
 	
 	return false;
+}
+
+public function shipStatistics():void
+{
+	clearOutput();
+	showBust(shits["SHIP"].bustDisplay);
+	output(shipCompareString(shits["SHIP"]));
+	clearMenu();
+	var shippy:ShittyShip = shits["SHIP"];
+	var button:Number = 0;
+	shopkeep = new Vahn();
+	if(!(shippy.shield is EmptySlot)) addItemButton(button++, shippy.shield, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.armor is EmptySlot)) addItemButton(button++, shippy.armor, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.meleeWeapon is EmptySlot)) addItemButton(button++, shippy.meleeWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.rangedWeapon is EmptySlot)) addItemButton(button++, shippy.rangedWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.accessory is EmptySlot)) addItemButton(button++, shippy.accessory, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.lowerUndergarment is EmptySlot)) addItemButton(button++, shippy.lowerUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
+	if(!(shippy.upperUndergarment is EmptySlot)) addItemButton(button++, shippy.upperUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
+
+	for(var i:int = 0; i < shippy.inventory.length; i++)
+	{
+		if(button == 14) button++;
+		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
+	}
+	while(button > 0) 
+	{ 
+		button--;
+		setButtonDisabled(button); 
+	}
+	addButton(14,"Back",mainGameMenu);
 }
 
 public function flyMenu():void

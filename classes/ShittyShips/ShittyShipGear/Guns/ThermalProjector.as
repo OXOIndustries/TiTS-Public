@@ -41,7 +41,6 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.basePrice = 2000;
 					
 			baseDamage.burning.damageValue = 350;
-			baseDamage.addFlag(DamageFlag.BULLET);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
