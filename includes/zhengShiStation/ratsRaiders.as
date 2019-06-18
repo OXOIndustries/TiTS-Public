@@ -206,6 +206,9 @@ public function ratsSetupGroup(ratGroup:int = -1):void
 		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
 		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
 	}
+	rat0.inventory = rat0.inventory.concat(rat1.inventory).concat(rat2.inventory);
+	rat1.inventory = new Array();
+	rat2.inventory = new Array();
 }
 
 // [RAT BEGIN]
