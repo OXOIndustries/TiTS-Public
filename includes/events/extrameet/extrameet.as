@@ -173,7 +173,9 @@ public function extrameetReview():void
 			user = extrameetGetUserName(pospro[i]);
 			output("<b>" + user + "</b>\n");
 			extrameetDisplayProfile(pospro[i]);
-			addButton(i, user, extrameetSetMeet, pospro[i], user, "Set up a date with " + user);
+			//special menu for shekka
+			if (user == "GadgetGirl") addButton(i, user, extrameetShekkaDate, undefined, "Ask", "Ask Shekka about the profile. Some teasing might be in order.");
+			else addButton(i, user, extrameetSetMeet, pospro[i], user, "Set up a date with " + user);
 		}
 	}
 	else
@@ -199,7 +201,9 @@ public function extrameetSwipeRight(prof:String):void
 		output("\n\nYou and " + extrameetGetUserName(prof) + " have formed a connection!");
 		output("\n\nWant to set a Meet?");
 		
-		addButton(1,"Set a Meet",extrameetSetMeet,prof,"Set a Meet","Codex and chill");
+		//special logic for shekka profile
+		if (extrameetGetUserName(prof) == "GadgetGirl") addButton(1, "Ask", extrameetShekkaDate, undefined, "Ask", "Ask Shekka about the profile. Some teasing might be in order.");
+		else addButton(1,"Set a Meet",extrameetSetMeet,prof,"Set a Meet","Codex and chill");
 		addButton(0,"Keep Swiping",extrameetStartSwipe,undefined,"Keep Swiping","Look at some more profiles");
 	}
 	else
@@ -280,6 +284,7 @@ public function extrameetGetProfiles(num:int):Array
 			if (extrameetProfileStatus("EXTRAMEET_TWISTED") == num) pospro.push("EXTRAMEET_TWISTED");
 			if (extrameetProfileStatus("EXTRAMEET_SLAVEBOI") == num) pospro.push("EXTRAMEET_SLAVEBOI");
 			if (extrameetProfileStatus("EXTRAMEET_HAWTSHOT") == num) pospro.push("EXTRAMEET_HAWTSHOT");
+			if (extrameetProfileStatus("EXTRAMEET_GADGETGIRL") == num && shekkaIsCrew()) pospro.push("EXTRAMEET_GADGETGIRL");
 			break;
 		case "myrellion":
 			// Surface not glassed!
@@ -410,6 +415,7 @@ public function extrameetDisplayProfile(prof:String):void
 		else if (prof == "EXTRAMEET_TWISTED") extrameetTwistedProfile();
 		else if (prof == "EXTRAMEET_SLAVEBOI") extrameetSlaveBoiProfile();
 		else if (prof == "EXTRAMEET_HAWTSHOT") extrameetHawtShotProfile();
+		else if (prof == "EXTRAMEET_GADGETGIRL") extrameetShekkaProfile();
 		else output("Profile not found!");
 		
 	}
@@ -433,7 +439,7 @@ public function extrameetDisplayProfile(prof:String):void
 		else output("Profile not found!");
 		
 	}
-	else if (loc == "uveto station")
+	else if (loc == "uveto station" || loc == "uveto vii")
 	{
 		if (prof == "EXTRAMEET_THEPROFESSOR") extrameetTheProfessorProfile();
 		else if (prof == "EXTRAMEET_FUKA") extrameetFukaProfile();
@@ -544,6 +550,7 @@ public function extrameetCheckMatch(prof:String):Boolean
 		else if (prof == "EXTRAMEET_TWISTED") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_SLAVEBOI") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_HAWTSHOT") match = extrameetFlavorCheckMatch();
+		else if (prof == "EXTRAMEET_GADGETGIRL") match = extrameetShekkaCheckMatch();
 	}
 	else if (loc == "myrellion")
 	{
@@ -564,7 +571,7 @@ public function extrameetCheckMatch(prof:String):Boolean
 		else if (prof == "EXTRAMEET_LEMMESMASH") match = extrameetFlavorCheckMatch();
 		
 	}
-	else if (loc == "uveto station")
+	else if (loc == "uveto station" || loc == "uveto vii")
 	{
 		if (prof == "EXTRAMEET_THEPROFESSOR") match = extrameetTheProfessorCheckMatch();
 		else if (prof == "EXTRAMEET_FUKA") match = extrameetFukaCheckMatch();
@@ -658,6 +665,7 @@ public function extrameetSetMeet(prof:String):void
 	}
 	else if (loc == "tarkus")
 	{
+		//note extrameetShekkaDate is not used here as is normal, it is called directly in extrameetReview and extrameetSwipeRight
 		if (prof == "EXTRAMEET_WANTSUMJUNK") extrameetWantSumJunkDate();
 		else if (prof == "EXTRAMEET_XXTHRASHERCATXX") extrameetXxThrasherCatxXDate();
 		else if (prof == "EXTRAMEET_SWEETNLOW") extrameetSweetNLowDate();
@@ -684,7 +692,7 @@ public function extrameetSetMeet(prof:String):void
 		}
 		
 	}
-	else if (loc == "uveto station")
+	else if (loc == "uveto station" || loc == "uveto vii")
 	{
 		if (prof == "EXTRAMEET_THEPROFESSOR") extrameetTheProfessorDate();
 		else if (prof == "EXTRAMEET_FUKA") extrameetFukaDate();
@@ -758,7 +766,7 @@ public function extrameetGetUserName(prof:String):String
 		if (prof == "EXTRAMEET_SWEETNLOW") return "Sweet_N’_Low";
 		if (prof == "EXTRAMEET_MIDNIGHTXROSE") return "MidnightXRose";
 		if (prof == "EXTRAMEET_TRUEPOWER69") return "True_Power69";
-		
+		if (prof == "EXTRAMEET_GADGETGIRL") return "GadgetGirl";		
 	}
 	else if (loc == "myrellion")
 	{
@@ -769,7 +777,7 @@ public function extrameetGetUserName(prof:String):String
 		if (prof == "EXTRAMEET_REBEL23") return "Rebel23";
 		
 	}
-	else if (loc == "uveto station")
+	else if (loc == "uveto station" || loc == "uveto vii")
 	{
 		if (prof == "EXTRAMEET_THEPROFESSOR") return "TheProfessor";
 		if (prof == "EXTRAMEET_FUKA") return "Fuka";
@@ -875,6 +883,7 @@ public function extrameetCheckReset():void
 			flags["EXTRAMEET_TWISTED"] = 0;
 			flags["EXTRAMEET_SLAVEBOI"] = 0;
 			flags["EXTRAMEET_HAWTSHOT"] = 0;
+			flags["EXTRAMEET_GADGETGIRL"] = 0;
 		}
 	}
 	else if (loc == "myrellion")
@@ -901,7 +910,7 @@ public function extrameetCheckReset():void
 			flags["EXTRAMEET_LEMMESMASH"] = 0;
 		}
 	}
-	else if (loc == "uveto station")
+	else if (loc == "uveto station" || loc == "uveto vii")
 	{
 		if (flags["EXTRAMEET_UVETO"] == undefined) flags["EXTRAMEET_UVETO"] = GetGameTimestamp();
 		

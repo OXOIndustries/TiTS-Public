@@ -6,7 +6,6 @@
  */
 
 //tavros
-
 public function extrameetKaedeProfile():void
 {
 	output("The profile picture on your screen is unmistakably familiar: a ginger half-ausar girl in a leather pilot’s blazer smiling nervously at the camera. Kaede’s ears are flat against her scalp, and her bushy tail is wrapped three times around a leg, but the poor thing’s trying her best. There’s a shadow behind her from the cameraman... considering the perky wolf-ears you can make out, it’s probably Anno.");
@@ -1791,8 +1790,7 @@ public function extrameetXxThrasherCatxXProfile():void
 	output("\nRace: Kaithrit");
 	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
-	output("\nOn planet for a few days. Looking to party. Hard.\nDrugs <i>\{heart emoji\}\n</i>Booze <i>\{2 heart emojies\}\n</i>Dick <i>\{3 heart emojies\}</i>");
-	//output("\nOn planet for a few days. Looking to party. Hard. Drugs <3 Booze <33 Dick <333");
+	output("\nOn planet for a few days. Looking to party. Hard.\nDrugs &lt;3\nBooze &lt;3 &lt;3\nDick &lt;3 &lt;3 &lt;3");
 }
 public function extrameetXxThrasherCatxXCheckMatch():Boolean
 {
@@ -2168,6 +2166,92 @@ public function extrameetTruePower69Sex():void
 	IncrementFlag("EXTRAMEET_SEX");
 	IncrementFlag("EXTRAMEET_CUNT_GIVE");
 	addButton(0,"Next",mainGameMenu);
+}
+//[EXTRAMEET_GADGETGIRL] Shekka
+public function extrameetShekkaProfile():void
+{
+	output("Swiping through the connections for Tarkus, you come across a familiar face. Shekka stares at you from the screen, her rich red eyes focused and attentive. Her jumpsuit is zipped enough to reveal a hint of crimson scaled cleavage. She must have put this up and forgotten about it!");
+	output("\n\nUsername: GadgetGirl");
+	output("\nSex: Female");
+	output("\nAge: Undisclosed");
+	output("\nRace: Raskvel");
+	output("\nPlanet: Tarkus");
+	output("\n\nBio:");
+	output("\nLooking for more than a quick hookup. If that's all you want, keep swiping. The wastes are full of girls who are <b>begging</b> to be bred.");
+}
+public function extrameetShekkaCheckMatch():Boolean
+{
+	return true;
+}
+//note this is not used in extrameetSetMeet function as is normal, it is called directly in extrameetReview and extrameetSwipeRight
+//so don't use this as a template for date scenes as it is set up a little different
+public function extrameetShekkaDate():void
+{
+	clearOutput();
+	clearMenu();
+	showName("GADGETGIRL\nAKA SHEKKA");
+	showBust("SHEKKA_NUDE");
+	author("Gerbilfronk");
+	
+	moveTo("SHIP INTERIOR");
+	
+	output("You transfer the open profile to your codex, heading for the engine room with a smug grin already itching to twist your lips up. You look around to make sure Shekka isn’t out and about, but are pleased to find her tinkering with a broken projector at her workbench. One ear flips back at your approach, and you can see the tip of her tail flit about as she works.");
+	output("\n\n<i>“Hey [pc.name]. What can I do you for?”</i> she asks, turning slightly to regard you out of the corner of her eye while staying focused on her project. You continue forward, circling your arms around under her shoulders in a loose embrace. Fluffy pink feathers tickle your nose as you brush against the back of her head, coming out of the downy plume with your chin resting on one shoulder. You bring the codex screen up in front of her face.");
+	output("\n\n<i>“There might be something. I’m thinking about matching with this gorgeous raskvel I found on this dating app. Being a raskvel yourself I thought you might have some tips. What do you think? Do I have a shot?”</i> You ask, a shit-eating grin plastered on your face. She hardly skips a beat before answering.");
+	output("\n\n<i>“Hmmm, I dunno. She looks like the type who’s already been swept away by one of those corporate heir types. The kind who’ll take her to see planets she never even dreamed of, and is her perfect match in every way. She probably forgot to shut down her profile. I don’t know if you can compete to be honest,”</i> Her smile matches yours to a tee. You manage to sneak one kiss on her glittering teeth before she recovers enough to kiss back, coiling her tongue around yours.");
+	output("\n\n<i>“We’ll see about that.");
+	if (pc.isNice()) output(" I think I’ve got my match right here,");
+	else if (pc.isMischievous()) output(" I always prefered name brand over generic ‘corporate heirs’,");
+	else output(" I’m pretty confident in my ability to surpass your dreams,");	
+	output("</i> you croon, thumbing around her jumpsuit covered nipples in soft circles. The peppy mechanic melts in your arms, her project forgotten as she lets you spin her around till she faces you. You " + (pc.hasKnees() ? "fall to your knees" : "lower yourself") + " in front of the amorous raskvel, parting her thighs and taking the suits zipper between your thumb and forefinger. Her scaly skin is hot on your lips as you trail from her neck to her chest alongside the peeling garment, smooching each inch of bared flesh as it appears." + (pc.hasStatusEffect("Red Myr Venom") ? " A deep purple flush follows swiftly behind, and you hear the rapid beat of her heart as her breaths quicken." : ""));
+	output("\n\nShekka pulls you against her chest as you continue unzipping all the way down to her crotch. You don’t get to leave the transient prison of reptilian cleavage for a few moments, enough time for a few kisses to be planted on <i>your</i> head. Working in the engine room leaves a slippery sheen of sweat on the tinkerer’s body, but she still smells wonderfully appetizing. Even moreso when a final tug draws the opening of her jumpsuit over " + (shekka.hasCock() ? "her musky horsecock." : "dripping dual-clitted pussy."));
+	output("\n\nYou’re giving a front row seat to her skyrocketing heartbeat as you transition to " + (shekka.hasCock() ? "fondling her hefty horseballs." : "teasing the first of her feminine love buzzers.") + " A squeak of surprise escapes her lips, followed by a brief moan as you fight against her confining cleavage, nibbling and kissing her smooth scales with practiced care. Slipping free of her grasping hands, you kiss down her belly in an inexorable march to her waiting sex.");
+	
+	pc.lust(30);
+	if (shekka.hasCock())
+	{
+		output("\n\nIn the sweltering heat of the engine room, the musky scent of shekka’s equine member permeates your every sense. It was still mostly soft when you slid the zipper open, but with each passing second it grows larger and harder. The choice between the first kiss going to her head or her balls is an agonizing decision, one the weighty testes lose. You plant a kiss directly on the tip of her bulbous flare, still small and puffy for now.");
+		output("\n\n<i>“Look at you, all hot and boiling from a little kissing,”</i> you say, half grinning up at the randy raskvel. Her eyebrows furrow, and she starts a comeback that cuts into a squeaky moan as you suction your lips around her cockhead, pulling back with a slick pop. You repeat the motion till the thick ring around her glans broadens wide as your cheeks. Her throbbing length bounces before your eyes, begging for the sweet caress of your [pc.lips].");
+		output("\n\n<i>“Come on, [pc.name]. Just, just get to it already,”</i> Shekka squirms in her seat, her thighs rubbing together in a ceaseless dance of lust that rubs against her firm balls. You ignore her mewling complaints. The pillar of feminine fuckmeat before you seems perfectly happy with the current string of events, and swells gratefully when you give it a stroke. Your free hand snakes between her shifting legs, rubbing a thumb through her soaked slit from clit to throbbing clit. Her legs jump open at the touch, and her hips thrust forward, trying to plunge her dick into a nonexistent pussy and present her own to you, all at once. Ever the gracious lover, you accept her double offering.");
+		output("\n\n<i>“Oh, ohh stars! Steele!”</i> The crimson cutie screams your name over the hum of the engines. For a second you think she might cum on the spot as you drop a wet kiss at the base of her sheath and swirl your thumb around her hungry entrance. Constrained noises catch in her throat, subsumed by moans before they can coalesce into coherent words. Continuing with unabashed purpose, you seal your lips atop her medial ring and suck on the thick bulge of flesh. All the while your fingers dip inside her dripping love tunnel.");
+		output("\n\nYou kiss higher, fuck deeper, relishing the sweet music of your lover’s voice as she tries to beg for more. By the time you reach her tip, the flare is bulging obscenely, leaving splotches of salty pre as it rubs against her belly and breasts. You hover above it for just a handful of seconds and... continue upwards to nibble on one of the raunchy raskvel’s rosey nipples. A sorrowful moan breaks her lips as you ignore the throbbing cock in favor of her shimmering tits. She’s too focused on her cock to feel your fingers slip deeper inside her.");
+		output("\n\n<i>“N-noooo, don’t just leave it there. I want it i-innn innn inggghh!”</i> Shekka tries unsuccessfully to finish her sentence as the electric thoughtpulses of her brain are all redirected to a singular goal. <b>Cum</b>. Her pleasure drunk brain was too distracted to notice your fingers exploring, searching ceaselessly till they found their prey. Just before she finished talking, you whorled three fingers around the bulb of her prostate. The effect is immediate and continues. Even as she struggles to speak, ropes of pearly cum jet out from her flaring horsecock. Errant splatters coat her tits, your chin, and plaster her face as she sputters for words.");
+		output("\n\nCaught in a visceral loop of pleasure, the rose scaled slut cant stop cumming any more than she can stop trying uselessly to voice her desires. In an effort to relieve her of one of the two tortures, you lock your lips to hers. Instinctually, she ceases her babbling, mashing her face against yours as her long tongue flits hungrily about your mouth. Her arms fly around your head, pulling you tighter and rubbing and brushing " + (pc.hasHair() ? "over your scalp." : "through your hair."));
+		output("\n\nThe orgasmic clenching of her insides renders you incapable of removing your fingers from her cum-button. Each sucking contraction rubs your paired digits around and around, and you watch your lover’s eyes cross with mind melting bliss with each full rotation. She has no cum left in her reserves, but that doesn’t stop her cock from pulsing angrily, firing off shockwaves of lust straight into your partner’s brain. Thoughts visibly struggle to coalesce under the mounting mental tidal wave.");
+		output("\n\nThat’s when you strike. You pull back from your kiss, teasing the knobby ring of her equine cockhead with your teeth. A sad spurt of cream squirts onto your nose, all her abused prostate can muster in the wake of your assault. Thoughtful partner that you are, you apply a salve of saliva to cool her rampaging lusts, but all it seems to do is fan the fire of horniness, and elicit even throatier moans from your captivated crewmate.");
+		output("\n\nBy the time you manage to wrest your hand from her fleshy fuckprison, Shekka’s all but passed out. You lovingly massage her sensitive balls as her horse-like member retracts into its sheath. The scaley beauty coos and sighs as your other hand ruffles the feathery plumage on her head, rubbing the base of her ears with soothing motions. Her myriad piercings jingle as she stretches in place, growing more relaxed as she comes to her senses.");
+		pc.applyCumSoaked();
+		pc.loadInMouth(shekka);
+		if (pc.lust() >= 75 || pc.canDeepthroat()) pc.orgasm();
+	}
+	else
+	{
+		output("\n\nEven with the engine rooms sweltering heat, it’s easy to tell where the sweat ends and the sticky feminine excitement begins. The choice between which of her twin purple clitties to kiss first is agonizing, so why choose! You dive in with gusto, your lips closing around her rear clit while your nose brushes back and forth over the front end. Meaty thighs close around your ears as Shekka’s legs lock around your head.");
+		output("\n\nMuffled words from the rowdy reptile barely manage to reach your ears. Whatever she wants, it can’t be more important than her pleasure, so you ignore her in favor of taking hold of her hips and pulling yourself deeper into delicious raskvel pussy. Just like you thought, the words transform into melodic moans as you lap up her sweet juices. Her insides clamp tight around your [pc.tongue], refusing to let you do any less than your best in your oral assault.");
+		output("\n\nShekka’s stacked frame is short enough for your hands to rove over her body from where you are. Kneading her firm ass and breeders thighs is enough to start with, but you yearn for more. Reaching out, you slide along the sweat slicked angles under her arms, give her perky B-cups a squeeze, and rub the soft inner flesh of her long ears with both thumbs. You feel the lusty lady’s muscles relax, her legs growing limp around your ears as she succumbs to entropic bliss.");
+		output("\n\n<i>“Stars Steele, my hips are going numb!”</i> Free from your warm earmuffs, you can finally hear your lover’s shouts and moans with no interference. Plump thigh-flesh quivers around your ears, and sexual squelches emanate from her sopping sex. You wordlessly transition from tongue to fingers, slipping three digits into her eager slit and taking a thumb to her rear clit. You take hold of her vibe tipped tail with your free hand as you rise up, tugging the dextrous appendage into place and rubbing in deep, love buzzer to love buzzer.");
+		output("\n\nIn a sudden burst of speed, you leap up and take the minute raskvel’s lips in a rough kiss. Her eyes shoot wide, and then roll back as her legs splay out to each side. You feel the vibrator in her tail go wild, only fueling her lust and locking her into a rapid fire string of orgasms. Her hips buck wildly, but not enough to dislodge your pistoning fingers. She returns your kiss with mindless fervor, her claws scratching at your back as her hands cling to you. She pulls and tugs, desperate to stay as close as possible to the source of her rapture.");
+		output("\n\n<i>“Fuck! F-uhh uhhhh,”</i> Shekka’s back arches, pushing her entire body off her bench as her seemingly endless orgasm reaches a climax. You quickly reach a hand under her feathered head to make sure she doesn’t hurt herself, holding her there until she collapses all at once into an exhausted puddle of beautiful genius. Leaving her room to breath, you kiss her once on the neck, then the cheek, and lastly on her forehead before settling into a gentle massage of her ears while she recovers. Her pierced ears jingle as she stretches up and down, cooing her satisfaction as she returns to her senses.");
+		pc.applyPussyDrenched();
+		pc.girlCumInMouth(shekka);
+	}
+	
+	output("\n\n<i>“It’s just not fair. How can you be a hot, dashing adventurer </i>and<i> the perfect person to settle down with. Just boggles my mind,”</i> She whispers lovingly, her throat raw from moaning. Her slitted eyes gaze warmly into yours, and her tail wraps lovingly around your arm, making you feel all the closer. The dim light of the engine room provides a literal afterglow on her shiny scales, drawing your eyes to every curve of her body.");
+	output("\n\n<i>“It’s perfectly fair. And we have all the time we need to keep exploring just how fair it can be,”</i> You smile, scooping the exhausted mechanic up in your arms and carrying her the short distance to her makeshift bed. You plop down atop the comfortable cushions, lying with your lover till the two of you nod off for a short nap.");
+	output("\n\nYou awaken to find a still half naked Shekka lying on your stomach, chin in her hands and smiling whimsically.");
+	output("\n\n<i>“Mmm. I was trying to catch you with a stupid look on your face, but noooo. You look just as stupidly " + pc.mf("handsome","beautiful") + " when you’re asleep,”</i> she muses, rolling her eyes. You break out into a laugh that throws her off balance, and pull her into a kiss when she tries to steady herself. She pulls away, still grinning as she zips her jumpsuit back up to the chest. She sashays over to her bench, shaking her butt at you as she sits down to resume her work.");
+	output("\n\n<i>“Come back any time, Steele. If I can’t make time, just pick me up or something,”</i> she says with a wink, leaving you to do as you will.");
+	
+	shekka.orgasm();
+	fuckedShekka();
+	//technically it is an extrameet hookup...
+	flags["EXTRAMEET_GADGETGIRL"] = 1;
+	IncrementFlag("EXTRAMEET_DATE");
+	IncrementFlag("EXTRAMEET_SEX");
+	IncrementFlag("EXTRAMEET_ORAL_GIVE");
+	processTime(120);
+	restHeal();
+	addButton(0, "Next", mainGameMenu);
 }
 //tarkus flavor	
 
