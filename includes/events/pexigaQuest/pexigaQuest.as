@@ -62,6 +62,12 @@ public function showDollmaker():void
 	else showName("\nDOLL MAKER");
 }
 
+public function showBrainwashingBall():void
+{
+	showBust("BRAINWASHINGBALL");
+	showName("BRAINWASHING\nBALL");
+}
+
 public function pexigaShipBonusText():String
 {
 	var msg:String = "";
@@ -240,6 +246,21 @@ public function bringBadgerPexibork():void
 {
 	clearOutput();
 	showPexiga();
+	
+	if(hasDollMakerEffect(pc))
+	{
+		showName("\nSTOP!");
+		
+		output("Unfortunately, you cannot do this while under the Doll Maker’s effects. <b>It is too dangerous!</b>");
+		output("\n\nPerhaps you should try again after the effects wear off?");
+		output("\n\n");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		
+		return;
+	} 
+	
 	author("Adjatha");
 	showName("\nWALKIES");
 	
@@ -316,7 +337,7 @@ public function afterDollmakerFight():void
 	if(!pc.isBimbo()) output("\n\nYou ask if all this is really necessary. It kind of seems like she’s going a little over the top with all these theatrics. Isn’t there just some ray gun she could zap the blue girl with? She glances at you, her mouth pursed in thought. <i>“We really should’ve started with you. Your friend doesn’t ask stupid questions all the time,”</i> she complains, rolling her eyes.");
 	else output("\n\nYou reach out to touch one of the leads, but Badger slaps your hand away. <i>“Those are live,”</i> she cautions, wiggling her thick, rubber-shod fingers in your face. You stare in amazement. The machine is alive? That makes so much sense!");
 
-	output("\n\nWith the last clamp attached, the mad scientist pulls off her thick, protective gloves, one finger at a time. <i>“Not that you’ll understand any of this,”</i> she brags, <i>“but this baby is actually quite a little beauty. See, bimboleum (patent pending) functions off of synaptic supremacy enzyme emission, reprioritizing conventional thought processes into more preferential arrangements. It doesn’t work, however, if you’ve got less mental activity than an avocado.”</i>");
+	output("\n\nWith the last clamp attached, the mad scientist pulls off her thick, protective gloves, one finger at a time. <i>“Not that you’ll understand any of this,”</i> she brags, <i>“but this baby is actually quite a little beauty. See, Bimboleum (patent pending) functions off of synaptic supremacy enzyme emission, reprioritizing conventional thought processes into more preferential arrangements. It doesn’t work, however, if you’ve got less mental activity than an avocado.”</i>");
 	output("\n\nShe raises her eyebrows and jerks a thumb at the glass sphere. <i>“This sucker however: it builds the brain from the ground up. It doesn’t matter who I put in it: from the galaxy’s smartest scientist to the government’s dullest drone, they all get rewritten into perfect little sluts.”</i> She tosses her gloves aside and retrieves an identical pair. <i>“At least that’s the theory. Let’s see if it works!”</i>");
 	output("\n\nShe raps on the side of the sphere and a buzzing hum erupts from the smooth orb. As the white noise builds, the device begins to glow with an internal luminance. Waves of color cascade over the orb’s surface, flashing ripples of chromatic rings that start at the back of the sphere and collapse at a pin point right at the center of the pexiga’s vision. Green, blue, and yellow alternate in hypnotic swirls as the clamps attached to the blue girl vibrate with the crackling intensity of their bioelectric output. Gradually, the vacant expression of the pexiga shifts to one of complete concentration and focus.");
 	output("\n\n<i>“Well, no smoke coming out of her ears yet. That’s an encouraging sign,”</i> Badger remarks, ticking a box off on a clipboard. Lowering her opaque goggles and keeping her vision trained on the pexiga, she makes several more notations before speaking again. <i>“So, how’s it feel?”</i>");
@@ -976,7 +997,7 @@ public function stayForBimboBadgersWork():void
 		{
 			pc.cocks[x].cLengthRaw += 2;
 			if(pc.hasPerk("Hung")) pc.cocks[x].cLengthRaw += 2;
-			else if(pc.hasPerk("Mini")) pc.cocks[x].cLengthRaw -= 1;
+			if(pc.hasPerk("Mini")) pc.cocks[x].cLengthRaw -= 1;
 		}
 	}
 	if(pc.biggestTitSize() >= 1)
@@ -1311,7 +1332,7 @@ public function mergeAbsenteeBadgerScrap():void
 	if(pc.isBimbo()) output("\n\nWhat a pretty ball! You feel like you could just stare at it forever, but a spark from one of the outlets leaps to zap you, shaking you out of your trace. What a rude interruption! You’ll have to do something about that so you can watch in peace! Glancing at the pexiga, you notice that she seems to have focused entirely on the orb too. Oh goody! Maybe you found something she likes!");
 	if(!pc.isBimbo()) output("\n\nYou can feel yourself sinking into the depths of the orb’s washing color cascade and manage to jerk your gaze away before you’re lost for good. You glance at the blue scaled pexiga at your side and are startled to see her normally vacant gaze seems wholly trained on the ball. Maybe this is what you were looking for. If you could get those leads working, you could train the device’s full mesmeric power on the mindless girl.");
 	output("\n\nWith a little searching, you manage to scrounge up the caps that connect to the sphere’s loose wires and with some effort, manage to attach them all to the gently humming machine. Each tendril-like bundle of wires has been outfitted with a pinching clasp, presumably to be hooked onto the subject in question.");
-	output("\n\nKnowing Doctor Badger, it’s not hard to guess where the clamps are intended to be attached. You put one on each of the pexiga’s nipples, on on the tips of each of her ears, another between her legs, and the last one on her hanging tongue. She shivers slightly with each lead and when the last goes on, her eyes widen. With the blue girl locked into the machine both visually and physically, you sit and watch Badger’s machine go to work.");
+	output("\n\nKnowing Doctor Badger, it’s not hard to guess where the clamps are intended to be attached. You put one on each of the pexiga’s nipples, one on the tips of each of her ears, another between her legs, and the last one on her hanging tongue. She shivers slightly with each lead and when the last goes on, her eyes widen. With the blue girl locked into the machine both visually and physically, you sit and watch Badger’s machine go to work.");
 	output("\n\nThe empty azure of her eyes well with moisture as the biological straightjacket nature put on her is gradually swept aside by the bimbo reprogramming of the hypnotic sphere. ");
 	if(pc.isBimbo()) output("It seems weird that Badger would make a ‘get smarter’ machine, but maybe she never expected something as dumb as the pexiga? It’s like dividing by zero or something. You dunno!");
 	else output("The doctor may have intended this machine to diminish one’s intellect, but it seems like it’s working off of a baseline - just as anything above gets lowered, anything below gets raised!");
@@ -1510,48 +1531,49 @@ v1 - hips
 v2 - ass
 v3 - breasts
 v4 - lips*/
-public function nymFoeInjection(target:int = 0, amount:Number = 0, override:Boolean = false):void
+public function nymFoeInjection(target:Creature = null, value:int = 0, amount:Number = 0, override:Boolean = false):void
 {
-	pc.createStatusEffect("Nym-Foe Injections");
-	if(target < 1 || target > 4) return;
+	if(target == null) return;
+	target.createStatusEffect("Nym-Foe Injections");
+	if(value < 1 || value > 4) return;
 	// For subtracting values, determine limit.
 	if(amount < 0)
 	{
 		var subLimit:Number = 0;
-		switch(target) {
-			case 1: subLimit = (0 - pc.statusEffectv1("Nym-Foe Injections")); break;
-			case 2: subLimit = (0 - pc.statusEffectv2("Nym-Foe Injections")); break;
-			case 3: subLimit = (0 - pc.statusEffectv3("Nym-Foe Injections")); break;
-			case 4: subLimit = (0 - pc.statusEffectv4("Nym-Foe Injections")); break;
+		switch(value) {
+			case 1: subLimit = (0 - target.statusEffectv1("Nym-Foe Injections")); break;
+			case 2: subLimit = (0 - target.statusEffectv2("Nym-Foe Injections")); break;
+			case 3: subLimit = (0 - target.statusEffectv3("Nym-Foe Injections")); break;
+			case 4: subLimit = (0 - target.statusEffectv4("Nym-Foe Injections")); break;
 		}
 		if(amount < subLimit) amount = subLimit;
 	}
 	// Add amount to mod values.
-	switch(target)
+	switch(value)
 	{
 		case 1:
-			pc.hipRatingMod += amount;
+			target.hipRatingMod += amount;
 			break;
 		case 2:
-			pc.buttRatingMod += amount;
+			target.buttRatingMod += amount;
 			break;
 		case 3:
-			for(var i:int = 0; i < pc.breastRows.length; i++)
+			for(var i:int = 0; i < target.breastRows.length; i++)
 			{
-				if(amount >= 0 || pc.breastRows[i].breastRatingMod >= amount) pc.breastRows[i].breastRatingMod += amount;
+				target.breastRows[i].breastRatingMod += amount;
 			}
 			break;
 		case 4:
 			//Softcap dat shit at 5.
-			if(!override && pc.lipMod < 5 && amount > 0) 
+			if(!override && target.lipMod < 5 && amount > 0) 
 			{
-				if(pc.lipMod + amount > 5) amount = 5 - pc.lipMod;
+				if(target.lipMod + amount > 5) amount = 5 - target.lipMod;
 			}
-			pc.lipMod += amount;
+			target.lipMod += amount;
 			break;
 	}
 	//Track how much was added to later suck out!
-	pc.addStatusValue("Nym-Foe Injections", target, amount);
+	target.addStatusValue("Nym-Foe Injections", value, amount);
 }
 public function autoFillNymFoeBoobjection(bRow:int = 0):void
 {
@@ -1579,36 +1601,38 @@ public function autoFillNymFoeBoobjection(bRow:int = 0):void
 	})(bRow);
 	eventQueue.push(tEventCall);
 }
-public function nymFoeUninjection():void
+public function nymFoeUninjection(target:Creature = null):void
 {
-	if(pc.hasStatusEffect("Nym-Foe Injections"))
+	if(target == null) return;
+	if(target.hasStatusEffect("Nym-Foe Injections"))
 	{
-		pc.hipRatingMod -= pc.statusEffectv1("Nym-Foe Injections");
-		pc.buttRatingMod -= pc.statusEffectv2("Nym-Foe Injections");
-		for(var i:int = 0; i < pc.breastRows.length; i++)
+		target.hipRatingMod -= target.statusEffectv1("Nym-Foe Injections");
+		target.buttRatingMod -= target.statusEffectv2("Nym-Foe Injections");
+		for(var i:int = 0; i < target.breastRows.length; i++)
 		{
-			if(pc.breastRows[i].breastRatingMod >= pc.statusEffectv3("Nym-Foe Injections")) pc.breastRows[i].breastRatingMod -= pc.statusEffectv3("Nym-Foe Injections");
+			target.breastRows[i].breastRatingMod -= target.statusEffectv3("Nym-Foe Injections");
 		}
-		pc.lipMod -= pc.statusEffectv4("Nym-Foe Injections");
+		target.lipMod -= target.statusEffectv4("Nym-Foe Injections");
 	}
-	pc.removeStatusEffect("Nym-Foe Injections");
+	target.removeStatusEffect("Nym-Foe Injections");
 	// Perk regens silicone implants!
-	if(pc.hasPerk("Implant-tastic")) pc.createStatusEffect("Nym-Foe Injections");
+	if(target.hasPerk("Implant-tastic")) target.createStatusEffect("Nym-Foe Injections");
 }
-public function nymFoeMaxInjection(hips:Number = 0, butt:Number = 0, boob:Number = 0, lips:Number = 0):void
+public function nymFoeMaxInjection(target:Creature = null, hips:Number = 0, butt:Number = 0, boob:Number = 0, lips:Number = 0):void
 {
-	pc.createStatusEffect("Nym-Foe Injections");
-	var silicone:StorageClass = pc.getStatusEffect("Nym-Foe Injections");
+	if(target == null) return;
+	target.createStatusEffect("Nym-Foe Injections");
+	var silicone:StorageClass = target.getStatusEffect("Nym-Foe Injections");
 	
 	var maxHips:Number = Math.max((hips - silicone.value1), 0);
 	var maxButt:Number = Math.max((butt - silicone.value2), 0);
 	var maxBoob:Number = Math.max((boob - silicone.value3), 0);
 	var maxLips:Number = Math.max((lips - silicone.value4), 0);
 	
-	nymFoeInjection(1, maxHips, true);
-	nymFoeInjection(2, maxButt, true);
-	nymFoeInjection(3, maxBoob, true);
-	nymFoeInjection(4, maxLips, true);
+	nymFoeInjection(target, 1, maxHips, true);
+	nymFoeInjection(target, 2, maxButt, true);
+	nymFoeInjection(target, 3, maxBoob, true);
+	nymFoeInjection(target, 4, maxLips, true);
 }
 
 //[Leave]
@@ -1670,10 +1694,10 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		if(pc.femininity < 50) pc.femininity = 50;
 		else pc.modFem(15);
 		
-		nymFoeInjection(1,3);
-		nymFoeInjection(2,3);
-		nymFoeInjection(3,3);
-		nymFoeInjection(4,1);
+		nymFoeInjection(pc,1,3);
+		nymFoeInjection(pc,2,3);
+		nymFoeInjection(pc,3,3);
+		nymFoeInjection(pc,4,1);
 
 		if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 		pc.milkStorageMultiplier++;
@@ -1703,7 +1727,7 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		}
 		//player’s ass increases 3 steps
 		//[Next]
-		nymFoeInjection(2,3);
+		nymFoeInjection(pc,2,3);
 
 		processTime(10);
 		clearMenu();
@@ -1724,7 +1748,7 @@ public function loseToNymFoeViaHPStep2(pexiga:Boolean = true):void
 	output("When you wake, you find yourself " + (pexiga ? "in Doctor Badger’s back room, just where you started. Your pexiga is sitting right where you left her, staring absently at a wall" : "just outside Doctor Badger’s lab, completely out of the complex") + ". There is no sign of Nym-Foe, however. Perhaps she left to go make ‘improvements’ on other unwilling patients.");
 	output("\n\nYou groan, your whole body aching with an inner heat that won’t seem to go away. You take a moment to take stock of your freshly inflated proportions. The first and most obvious change seems to be your ballooned chest. [pc.Breasts] hang from you with gravity-defying weight, your [pc.nipples] dribbling with quite a bit of fresh [pc.milkNoun].");
 	output("\n\nBut, of course, that’s not the end to your troubles. Your hips seem to have gotten thicker, as has your ass. With [pc.hips] and " + indefiniteArticle(pc.buttDescript()) + " like these, you’re liable to be mistaken for a holo-vid smut star. Touching your face, you can feel the feminine softness continues here as well. Your [pc.lips] are so sensitive that even just touching them brings you to the verge of climax.");
-	output("\n\nPanting and trying to calm yourself down, you steel your resolve. Things may not have gone well here, but you’re not about to give up. Afterall, " + (pexiga ? "how many more traps could Doctor Badger have?" : "you’ll need to be able to defeat Nym-Foe with ease if you are to face some of the most lust inducing foes out there.") + " You struggle back into your [pc.gear] before noticing that the nurse left a lollipop for you.");
+	output("\n\nPanting and trying to calm yourself down, you steel your resolve. Things may not have gone well here, but you’re not about to give up. After all, " + (pexiga ? "how many more traps could Doctor Badger have?" : "you’ll need to be able to defeat Nym-Foe with ease if you are to face some of the most lust inducing foes out there.") + " You struggle back into your [pc.gear] before noticing that the nurse left a lollipop for you.");
 	
 	processTime(100+rand(10));
 	//[player gains 1x ClearYu]
@@ -1740,8 +1764,8 @@ public function loseToNymFoeViaHPBimboStep2(pexiga:Boolean = true):void
 	author("Adjatha");
 	output("Just as your bubble-like cheeks seem to reach their limit, the expanding goo spreads down into your [pc.hips], giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen.");
 	//player’s hips and thighs increase 3 steps
-	nymFoeInjection(1,3);
-	nymFoeInjection(2,3);
+	nymFoeInjection(pc,1,3);
+	nymFoeInjection(pc,2,3);
 
 	processTime(3);
 	clearMenu();
@@ -1775,7 +1799,7 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 	}
 	output("The steel tail keeps pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
 	//player’s breasts increase by 3 cup sizes
-	nymFoeInjection(3,3);
+	nymFoeInjection(pc,3,3);
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep4,pexiga);
@@ -1789,7 +1813,7 @@ public function loseToNymFoeViaHPBimboStep4(pexiga:Boolean = true):void
 	output("In no time at all, your chest now sports [pc.breasts], wobbling with their overstuffed expansion but just as sensitive as before. You tremble with the bliss of your added weight, and can’t help but to rub your [pc.nipples] a little bit. <i>“And, for the cherry on top...”</i> Nym-Foe adds, tweaking your nose playfully. The silicone rushes across your face, settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
 	//player’s lips increase 3 steps, Libido increases by 15
 	pc.modFem(20);
-	nymFoeInjection(4,1);
+	nymFoeInjection(pc,4,1);
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep5,pexiga);
@@ -2134,7 +2158,7 @@ public function suckOutDatInjectionGoop():void
 	output("\n\nWith that taken care of, you should be good to go. Unless there was something else you needed to do with Nym-Foe?");
 	output("\n\n");
 	processTime(4);
-	nymFoeUninjection();
+	nymFoeUninjection(pc);
 	
 	pcVictoryVsNymFoeMenu();
 }
@@ -2166,6 +2190,10 @@ public function salvageNymFoe():void
 	if(flags["NYM-FOE_DISASSEMBLED"] == undefined) {
 		processTime(4);
 		flags["NYM-FOE_DISASSEMBLED"] = 1;
+	}
+	if(combat && flags["PEXIGA_TREATMENT"] == 0)
+	{
+		output("\n\n(If you choose not to pick up certain items, you may have another chance to reclaim the things you haven’t dismantled--assuming you are able to have access Doctor Badger’s laboratory again.)");
 	}
 	
 	salvageNymFoeMenu();
@@ -2314,7 +2342,10 @@ public function volunteerForDollificationFight():void
 	clearOutput();
 	showDollmaker();
 	author("Adjatha");
-	output("It could be fun, you guess. Sure! Why not? <i>“What?”</i> the machine asks, in disbelief. <i>“Are you teasing me, Fuck Toy? You would actually like to be Dolled?”</i> The voice seems overjoyed, or at least as happy as a faceless machine can be, anyway. <i>“Affirmative. Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well.”</i>");
+	
+	if(!pc.isBimbo()) output("Either you are incredibly daring or incredibly stupid, you decide to volunteer yourself to the special service.");
+	else output("It could be fun, you guess. Sure! Why not?");
+	output("\n\n<i>“What?”</i> the machine asks, in disbelief. <i>“Are you teasing me, Fuck Toy? You would actually like to be Dolled?”</i> The voice seems overjoyed, or at least as happy as a faceless machine can be, anyway. <i>“Affirmative. Initiating reconstruction protocols.”</i> The limbs around you turn in slow orbit to show off their strange array of tools and pincers. <i>“I appreciate this, Cum Rag. I hope you enjoy it as well. Let’s get started, shall we?”</i>");
 	
 	flags["DOLLMAKER_STATUS"] = 3;
 	
@@ -2328,16 +2359,55 @@ public function fightTheDollmaker():void
 {
 	clearOutput();
 	showDollmaker();
-	output("You pull out your weapons and get ready for a fight!");
+	
+	var dollMaker:Dollmaker = new Dollmaker();
+	
+	if(flags["PEXIGA_TREATMENT"] == 0)
+	{
+		output("You pull out your weapons and get ready for a fight!");
+		
+		dollMaker.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+	}
+	else
+	{
+		output("You’re up for a fight, and the Doll Maker seems like a fun challenge. After looking through the parts on the machine, you look for the spot to activate the core to enable the entire set. Finally, you enable it, and the whole thing comes to life with a loud whirr.");
+		if(flags["DOLLMAKER_STATUS"] == -1)
+		{
+			output("\n\n<i>“I’m back! Are you going to be my new doll, Jizz Basket?”</i>");
+			output("\n\nJust as rude as you remember it.");
+		}
+		output("\n\n<b>It’s a fight!</b>");
+		
+		// Player can run if they have not been hit by the cuffs
+		flags["DOLLMAKER_ACTIVATED"] = 1;
+	}
+	output("\n\n");
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(new Dollmaker());
+	CombatManager.setHostileActors(dollMaker);
 	CombatManager.victoryScene(playerBeatUpDollmaker);
 	CombatManager.lossScene(gitcherAssKickedByDollymakah);
 	CombatManager.displayLocation("DOLL MAKER");
 	
 	clearMenu();
 	addButton(0,"Next", CombatManager.beginCombat);
+}
+
+// Doll Maker is active after running away
+public function fleeToPostQuestDollmaker():void
+{
+	clearOutput();
+
+	output("<i>“You know, Semen Rag, you’re quite lucky I can’t move from here. But one thing is for sure, I’m keeping Nym-Foe to myself!”</i> The machine seems to hold Nym-Foe’s");
+	if(flags["NYM-FOE_ACTIVATED"] == undefined) output(" lifeless");
+	output(" body near its center. Though, the silicone tank is still free to use.");
+	output("\n\n");
+	
+	// Player cannot access Nym-Foe, but can use the silicone tank.
+	flags["DOLLMAKER_PROTECC_NYM-FOE"] = 1;
+
+	CombatManager.abortCombat();
 }
 
 //Combat Results
@@ -2365,14 +2435,33 @@ public function playerBeatUpDollmaker():void
 	clearOutput();
 	showDollmaker();
 	author("Adjatha");
+	
 	output("The elaborate rig of weaponized limbs above you jerks, spitting sparks and cursing in a scratchy, electronic voice. <i>“Fuck-damned cocksucker! Cum-guzzling gutterslut! I just try to make you a little more attractive and this is the thanks I get? Well suck my sockets, you jizz-drenched analwhore. I hope you get dick-slapped so hard, the spunk you call brains flies out of your ears!”</i> Foul mouthed to the end, it seems.");
-	output("\n\nAs it gathers itself for one last, spiteful assault, a spasming surge shoots through the damaged Doll Maker and its arms go limp, no longer posing any threat. <i>“Fuuuuuuuuuuck youuuuuuuuu...”</i> it rasps, its voice finally clicking off. You give one an experimental push and when you find it unresponsive, you step out from under the mechanical canopy. You should probably salvage this thing now, so you don’t have to come back down here again!");
+	output("\n\nAs it gathers itself for one last, spiteful assault, a spasming surge shoots through the damaged Doll Maker and its arms go limp, no longer posing any threat. <i>“Fuuuuuuuuuuck youuuuuuuuu...”</i> it rasps, its voice finally clicking off. You give one an experimental push and when you find it unresponsive, you step out from under the mechanical canopy.");
+	if(flags["PEXIGA_TREATMENT"] == 0)
+	{
+		output(" You should probably salvage this thing now, so you don’t have to come back down here again!");
+		output("\n\n(If you choose not to pick up certain items, you may have another chance to reclaim the things you haven’t dismantled--assuming you are able to have access Doctor Badger’s laboratory again.)");
+		
+		if(flags["DOLLMAKER_DISASSEMBLED"] == undefined) flags["DOLLMAKER_DISASSEMBLED"] = 1;
+		
+		dollmakerSalvageMenu();
+	}
+	else
+	{
+		output(" You have no hope of salvaging the machine after Badger’s upgrades, not to mention that it’s going to go through self repairs soon.");
+		
+		flags["DOLLMAKER_ACTIVATED"] = undefined;
+		flags["DOLLMAKER_PROTECC_NYM-FOE"] = undefined;
+		pc.createStatusEffect("Doll Maker Repair Timer", 0, 0, 0, 0, true, "", "", false, 1440);
+		
+		clearMenu();
+		addButton(14, "Next", CombatManager.genericVictory);
+	}
 	
 	flags["DOLLMAKER_STATUS"] = -1;
 	
 	processTime(3);
-
-	dollmakerSalvageMenu();
 }
 
 public function dollmakerSalvage(item:ItemSlotClass):void
@@ -2957,8 +3046,12 @@ public function drBadgerLaboratoryBonus():Boolean
 	}
 	else if(flags["NYM-FOE"] >= 2 || flags["DOLLMAKER_STATUS"] == -1)
 	{
-		output(" You could have a look at " + ((flags["NYM-FOE"] >= 2 && flags["DOLLMAKER_STATUS"] == -1) ? "them" : "it") + " if you so desired, but there may be better things to observe in a lab like this. Such as the practically towering piles of junk lying about, their purposes unknown... well, sort of unknown. It doesn’t take a rocket scientist to guess what Doctor Badger would use this sort of stuff for.");
+		output(" You could have a look at " + ((flags["NYM-FOE"] >= 2 && flags["DOLLMAKER_STATUS"] == -1) ? "them" : "it") + " if you so desired");
+		if(flags["DOLLMAKER_PROTECC_NYM-FOE"] != undefined) output("--that is, if the Doll Maker wasn’t so protective of the nursedroid at the moment--");
+		else output(", ");
+		output("but there may be better things to observe in a lab like this. Such as the practically towering piles of junk lying about, their purposes unknown... well, sort of unknown. It doesn’t take a rocket scientist to guess what Doctor Badger would use this sort of stuff for.");
 	}
+	if(pc.hasStatusEffect("Doll Maker Repair Timer")) output("\n\n<i>The Doll Maker machine is currently repairing itself.</i>");
 	// Note: Items can only be salvaged during the combat sequence.
 	//output(" You could salvage their items if you haven’t already.");
 	output("\n\nThere’s also a huge tank of silicone off to the side");
@@ -2971,21 +3064,28 @@ public function drBadgerLaboratoryBonus():Boolean
 	// Leaving just puts you back into navigation at Badger’s front
 	if(flags["NYM-FOE"] != undefined)
 	{
-		if(flags["NYM-FOE_ACTIVATED"] != undefined) addButton(0, "Fight", fightTheNymfoe, undefined, "Fight Nym-Foe", "Challenge the nurse sex-bot!");
+		if(flags["NYM-FOE_ACTIVATED"] != undefined) addButton(0, "Fight NymF.", fightTheNymfoe, undefined, "Fight Nym-Foe", "Challenge the nurse sex-bot!");
+		else if(flags["DOLLMAKER_PROTECC_NYM-FOE"] != undefined) addDisabledButton(0, "Nym-Foe", "Nym-Foe", "You cannot interact with the nurse at the moment while the Doll Maker is on guard.");
 		else if(flags["NYM-FOE_DISABLED"] == undefined) addButton(0, "Nym-Foe", drBadgerLabNymFoe, undefined, "Nym-Foe", "Have a look at the big-titted nurse droid.");
 		else addDisabledButton(0, "Nym-Foe", "Nym-Foe", "You cannot interact with this at the moment.");
 	}
 	if(flags["DOLLMAKER_STATUS"] != undefined)
 	{
 		if(flags["NYM-FOE_ACTIVATED"] != undefined) addDisabledButton(1, "Doll Maker", "Doll Maker", "It might not be a good idea to use this while the nurse-bot is on guard...");
-		else if(9999 == 0) addButton(1, "Doll Maker", null, undefined, "Doll Maker", "Have a look at the Doll Maker.");
+		else if(pc.hasStatusEffect("Doll Maker Repair Timer")) addDisabledButton(1, "Doll Maker", "Doll Maker", "The Doll Maker is making repairs--better leave it alone for now.");
+		else if(flags["DOLLMAKER_ACTIVATED"] != undefined)
+		{
+			if(hasDollMakerEffect(pc)) addDisabledButton(1, "Fight DollM.", "Fight Doll Maker", "You cannot fight the Doll Maker while currently under its side-effects.");
+			else addButton(1, "Fight DollM.", fightTheDollmaker, undefined, "Fight Doll Maker", "Fight the Doll Maker.");
+		}
+		else if(flags["DOLLMAKER_DISABLED"] == undefined) addButton(1, "Doll Maker", drBadgerLabDollMaker, undefined, "Doll Maker", "Have a look at the Doll Maker.");
 		else addDisabledButton(1, "Doll Maker", "Doll Maker", "You cannot interact with this at the moment.");
 	}
 	if(pexigaRecruited())
 	{
-		if(flags["NYM-FOE_ACTIVATED"] != undefined) addDisabledButton(2, "Strange Ball", "Strange Ball", "It might not be a good idea to use this while the nurse-bot is on guard...");
-		else if(9999 == 0) addButton(2, "Strange Ball", null, undefined, "Strange Ball", "Isn’t that the thing Badger used to bimbofy the pexiga?");
-		else addDisabledButton(2, "Strange Ball", "Strange Ball", "You cannot interact with this at the moment.");
+		if(flags["NYM-FOE_ACTIVATED"] != undefined) addDisabledButton(2, "Strange Ball", "Brainwashing Ball", "It might not be a good idea to use this while the nurse-bot is on guard...");
+		else if(flags["BRAINWASHINGBALL_DISABLED"] == undefined) addButton(2, "Strange Ball", drBadgerLabStrangeBall, undefined, "Brainwashing Ball", "Isn’t that the thing Badger used to bimbofy the pexiga?");
+		else addDisabledButton(2, "Strange Ball", "Brainwashing Ball", "You cannot interact with this at the moment.");
 	}
 	if(flags["NYM-FOE"] >= 2)
 	{
@@ -2998,6 +3098,7 @@ public function drBadgerLaboratoryBonus():Boolean
 
 public function drBadgerFixNymFoeButton(btnSlot:int = 3):void
 {
+	if(pexigaQuestDocChatsAvailable()) return;
 	if(flags["NYM-FOE"] >= 3 && flags["NYM-FOE_DISASSEMBLED"] != undefined)
 	{
 		// Nym-Foe cannot be fixed if both parties are too stupid to figure out how; hence why there’s no bimbo badger and bimbo player variant.
@@ -3017,6 +3118,25 @@ public function drBadgerBuyNymFoeButton(btnSlot:int = 8):void
 	{
 		if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == undefined) addButton(btnSlot,"Buy NymFoe?",drBadgerLabNymFoe,"badger buy","Buy Nym-Foe?","Request to buy the modded nurse bot.");
 		else if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == 0) addButton(btnSlot,"Take Pillow",drBadgerLabNymFoe,"pillow take","Take the Nym-Foe Body Pillow","Procure the perverted pillow.");
+	}
+}
+
+public function drBadgerFixDollMakerButton(btnSlot:int = 4):void
+{
+	if(flags["DOLLMAKER_DISASSEMBLED"] != undefined)
+	{
+		if(chars["DRBADGER"].isBimbo()) addDisabledButton(btnSlot,"Fix DollM.","Fix Doll Maker","Doctor Badger does not have enough smarts to do this.");
+		else if(flags["DOLLMAKER_DISASSEMBLED"] >= 4) addButton(btnSlot,"Fix DollM.",drBadgerLabDollMaker,"badger fix","Fix Doll Maker","Check with Doctor Badger on the progress of repairing the Doll Maker.");
+		else addButton(btnSlot,"Fix DollM.?",drBadgerLabDollMaker,"badger fix","Fix Doll Maker?","Ask Doctor Badger about repairing the Doll Maker.");
+	}
+}
+
+public function drBadgerBuyTankButton(btnSlot:int = 9):void
+{
+	if(flags["BADGER_SILICONE_TANK_INSTALLED"] != 1 && flags["BADGER_SILICONE_TANK_USES"] > 0)
+	{
+		if(flags["BADGER_SILICONE_TANK_INSTALLED"] == undefined) addButton(btnSlot,"BuyS.Tank?",drBadgerSiliconeTankBuy,["intro"],"Buy Sillicone Tank?","Request to buy Doctor Badger’s silicone tank.");
+		else if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 0) addButton(btnSlot,"BuyS.Tank",drBadgerSiliconeTankBuy,["intro"],"Buy Sillicone Tank","Buy a silicone tank from Doctor Badger.");
 	}
 }
 
@@ -3048,7 +3168,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 					// [Insert VI chip] [Loot] [Back]
 					if(pc.hasItemByClass(DamagedVIChip)) addButton(0, "Insert Chip", drBadgerLabNymFoe, "insert chip", "Insert V.I. Chip", "Slot the VI chip into the nurse droid.");
 					else addDisabledButton(0, "Insert Chip", "Insert V.I. Chip", "You do not have this item!");
-					addButton(1, "Loot", salvageNymFoe, undefined, "Loot", "Salvage some parts from the sex-bot.");
+					addButton(1, "Loot", salvageNymFoe, undefined, "Loot Nym-Foe", "Salvage some parts from the sex-bot.");
 					addButton(14, "Back", mainGameMenu);
 					
 					// A new option is added to Badger’s menu: [FixNym-Foe?]
@@ -3066,8 +3186,8 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 					
 					processTime(1);
 					
-					addButton(0, "Fix", drBadgerLabNymFoe, "fix", "Fix", "Attempt to repair the nurse droid.");
-					addButton(1, "Loot", salvageNymFoe, undefined, "Loot", "Salvage some parts from the sex-bot.");
+					addButton(0, "Fix", drBadgerLabNymFoe, "fix", "Fix Nym-Foe", "Attempt to repair the nurse droid.");
+					addButton(1, "Loot", salvageNymFoe, undefined, "Loot Nym-Foe", "Salvage some parts from the sex-bot.");
 					addButton(14, "Back", mainGameMenu);
 				}
 			}
@@ -3081,8 +3201,8 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 				
 				// [Fight] [Upgrade] [Back]
 				// Seeing as how Nym-Foe doesn’t have an upward limit when inflating the player during combat, they can get an ‘upgrade’ regardless of how much silicone is in them. Yay for infinity!
-				addButton(0, "Fight", drBadgerLabNymFoe, "fight", "Fight", "Battle the refurbished nurse droid.");
-				addButton(1, "Upgrade", drBadgerLabNymFoe, "upgrade", "Upgrade", "Submit to Nym-Foe and let her fill you with as much silicone as she deems necessary.");
+				addButton(0, "Fight", drBadgerLabNymFoe, "fight", "Fight Nym-Foe", "Battle the refurbished nurse droid.");
+				addButton(1, "Upgrade", drBadgerLabNymFoe, "upgrade", "Get an Upgrade", "Submit to Nym-Foe and let her fill you with as much silicone as she deems necessary.");
 				addButton(14, "Back", mainGameMenu);
 			}
 			break;
@@ -3211,18 +3331,20 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			
 			output("You reach down to Nym-Foe, unwrapping the rag on her eyes before plugging in the tube to her back. Her body plumps up with silicone, and she starts to stand, looking at you with a lighthearted smile. <i>“Thank you for unbinding me. What service do you require?”</i> She has a loving tone. Her tail begins to wave in front of you, stealing your attention away from her other movements.");
 			if(!pc.isBimbo()) output("\n\n<i>“Actually...”</i> you start to admit. <i>“I’d like you to upgrade me as you feel necessary. I’m your willing patient and you know best for me.”</i> You smile a little, your heart racing while you look up at the nursedroid.");
-			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff. I would love having some huge boobies,”</i> you say, smiling while looking at the nursedroid.");
-			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit,”</i> she explains. You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
-			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> you say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> you say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance. ");
+			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff. I would love having some huge boobies,”</i> you say, smiling at the nursedroid.");
+			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit.”</i> You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
+			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> you say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> you say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance.");
 			output("\n\nHeat radiates from the injection site, right in your [pc.hips]. The semi solid goop slides through your body effortlessly to settle in your [pc.thighs] and [pc.hips]. It takes very little time before they begin to swell. Since you aren’t exactly struggling, the nurse continues her work on you. You sigh gently, enjoying this peculiar feeling of growth.");
-			if(pc.isBimbo()) output("\n\n<i>“More! More please, Miss Nym-Foe!”</i> you giddily say, grabbing the closest boob of the happy nurseroid. She happily obliges, rubbing your shoulder gently while more bulges of silicone enter you. You smile while you gently wiggle your hips, loving how wide they feel.");
-			output("\n\nIt doesn’t exactly stop there, either. The plastic fluid passes across you to deposit itself into your [pc.ass], allowing your cheeks to inflate like bubbles. Really, really big bubbles. Slowly, your butt expands so much that you raise in your seat. It continues for just over a minute before your cheeks are full.");
+			if(pc.isBimbo()) output("\n\n<i>“More! More please, Miss Nym-Foe!”</i> you giddily say, grabbing the closest boob of the happy nurseroid. She happily obliges, rubbing your shoulder gently while more bulges of silicone enter you. You smile while gently wiggling your hips, loving how wide they feel.");
+			output("\n\nIt doesn’t exactly stop there, either. The plastic fluid passes across you to deposit itself into your [pc.ass], allowing your cheeks to inflate like bubbles. Really, really big bubbles. Slowly, your butt expands so much that you rise in your seat. It continues for just over a minute before your cheeks are full.");
 			if(pc.isBimbo()) output("\n\n<i>“Oh, oh! Can I get a way bigger ass?”</i> you beg quickly, putting your face near the nurse’s. <i>“Please?”</i> you add, making your best sad puppy face. The alabaster nurse only responds by putting more pressure into her tail, plumping you up faster. You giggle at the feeling, reaching down to give your booty a squeeze.");
-			output("\n\nThe next place that the bio-silicone travels to is exactly where you’d expect: your [pc.chest]. You feel weight increasing on your [pc.boobs], and looking down at them explains why. Light blue veins quickly become visible across them as they grow and inflate from the inside. They feel... heavy. After all, you <i>are</i> blowing through probably a cup size every few seconds. You gently place your hands under them, hefting them while they become fuller and more juicy. No one would mind fake boobs that look this good anyway.");
+			output("\n\nThe next place that the bio-silicone travels to is exactly where you’d expect: your [pc.chest]. You feel weight increasing on your [pc.boobs], and looking down at them explains why.");
+			if(pc.hasSkin()) output(" Light blue veins quickly become visible across them as they grow and inflate from the inside.");
+			output(" They feel... heavy. After all, you <i>are</i> blowing through probably a cup size every few seconds. You gently place your hands under them, hefting them while they become fuller and more juicy. No one would mind fake boobs that look this good anyway.");
 			if(pc.isBimbo()) output("\n\nBut, you could always get more! <i>“Nurse! Nurse! Can you make my boobies really, REALLY big, too?”</i> you ask with enthusiasm, grabbing your nipples and pinching them slightly. Nym-Foe smiles and lets out an artificial breath. She seems pleased at such a willing patient, and makes sure to overfill your boobs with the implants. You smile as you lift them and jiggle them around in your hands.");
-			output("\n\nThe last place the silicone travels to is your [pc.lips]. You let your mouth hang open somewhat as your oral entrance becomes bigger and thicker. Your lips just keep swelling, and you smile slightly at the feeling. They must be so sexy. You can almost see them at the bottom of your vision, bulged outwards and wobbling lightly. You smile and lean into the nursedroid.");
+			output("\n\nThe last place the silicone travels to is your [pc.lips]. You let your mouth hang open somewhat as your oral entrance becomes bigger and thicker. Your lips just keep swelling, and you grin at the feeling. They must be so sexy. You can almost see them at the bottom of your vision, bulged outwards and wobbling lightly. You beam and lean into the nursedroid.");
 			if(pc.isBimbo()) output("\n\n<i>“Can you make my lips really big, too?”</i> you whisper, puckering them at the nurse. Suddenly, you feel your lips getting even larger with the silicone. The nurse is so nice!");
-			output("\n\nShe turns slightly to face you, her tail slowly pulling out of you, not even leaving a wound. She offers you one of her leaking nipples, squeezing it lightly between two gloved fingers. You slowly pull it into your mouth, between your expanded lips, sucking down the questionable juice. It must be some sort of sedative because you’re feeling tired, but it can’t be just that, because you also begin to feel your nipples leaking");
+			output("\n\nFinishing up, Nym-Foe turns slightly to face you, her tail slowly pulling out of you, not even leaving a wound. She offers you one of her leaking nipples, squeezing it lightly between two gloved fingers. You slowly pull it into your mouth, between your expanded lips, sucking down the questionable juice. It must be some sort of sedative because you’re feeling tired, but it can’t be just that, because you also begin to feel your nipples leaking");
 			if(pc.isLactating()) output(" more than usual");
 			output(".");
 			output("\n\nNot many more thoughts pass through your head as you slowly drift to sleep.");
@@ -3239,19 +3361,19 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			
 			// Increase boob silicone rating by 9, ass silicone by 12, hip by 9, and lip by 3. (basically the normal injections but times 3, other than ass) And induce lactation, or boost it.
 			// If the player is a bimbo, increase boob size by 14, ass by 18, hip by 12, lip by 5
-			nymFoeInjection(1, (!pc.isBimbo() ? 9 : 12), true);
-			nymFoeInjection(2, (!pc.isBimbo() ? 12 : 18), true);
-			nymFoeInjection(3, (!pc.isBimbo() ? 9 : 14), true);
-			nymFoeInjection(4, (!pc.isBimbo() ? 3 : 5), true);
+			nymFoeInjection(pc, 1, (!pc.isBimbo() ? 9 : 12), true);
+			nymFoeInjection(pc, 2, (!pc.isBimbo() ? 12 : 18), true);
+			nymFoeInjection(pc, 3, (!pc.isBimbo() ? 9 : 14), true);
+			nymFoeInjection(pc, 4, (!pc.isBimbo() ? 3 : 5), true);
 			
 			if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 			pc.milkStorageMultiplier++;
 			
 			output("You wake up some time later, now laying down with your head in Nym-Foe’s lap. You slowly sit up, a strange taste stuck in the back of your throat. Nym-Foe looks at you with a friendly smile. You smile back, your [pc.lips] practically wobbling just from the slight movement.");
-			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from having another.”</i> She says, smiling. She pulls a lollipop from her mountains of boobage, handing it to you. <i>“That’s for being such a good patient.”</i> She closes her eyes and makes a little cutesy pose with her head before standing up.");
-			output("\n\n<i>“Hey...”</i> you start as you begin to stand up. <i>“Can I put you back against the wall? So, y’know, I’ll know where to find you if I want another treatment?”</i> you ask, struggling into your [pc.gear]. Your new assets make it quite difficult. Porn stars would be jealous... or laughing.");
-			output("\n\n<i>“Sure!”</i> she says. You rest her back against the wall in her usual position, and disconnect her from the silicone tank, as well as carefully wrap the rag over her eyes again. You give her a little kiss on the forehead as a thank you for her free gift. Her eyes slowly shut off.");
-			output("\n\nYou take a moment to look down at yourself. She didn’t hold back with the silicone, as shown by your almost doll-like structure. You can see your [pc.lips] at the bottom of your vision, which wobble with every tiny movement. Down a bit farther, your [pc.boobs] are quite massive now, and leaking with [pc.milk]. They must be at least [pc.breastCupSize " + pc.biggestTitRow() + "]s. You’re not sure whether most of the weight in them is plastic or [pc.milk]. Regardless, you look down further. Your [pc.thighs] and [pc.hips] are much thicker, as is your [pc.ass]. You give your rear end a light smack, and it wobbles like crazy.");
+			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from coming back another time,”</i> she says, encouragingly. She pulls a lollipop from her mountains of boobage and hands it to you. <i>“That’s for being such a good patient.”</i> She closes her eyes and makes a little cutesy pose with her head before standing up.");
+			output("\n\n<i>“Hey...”</i> you start as you begin to rise. <i>“Can I put you back against the wall? So, y’know, I’ll know where to find you if I want another treatment?”</i> you ask, struggling into your [pc.gear]. Your new assets make it quite difficult. Porn stars would be jealous... or laughing.");
+			output("\n\n<i>“Sure!”</i> she says. You rest her back against the wall in her usual position, and disconnect her from the silicone tank. Carefully wrapping the rag over her eyes again, you give her a little kiss on the forehead as a thank you for her free gift. Her eyes slowly shut off.");
+			output("\n\nYou take a moment to look down at yourself. She didn’t hold back with the silicone, as shown by your almost doll-like structure. You can see your [pc.lips] at the bottom of your vision, which wobble with every tiny movement. Down a bit farther, your [pc.boobs] are quite massive now, and leaking with [pc.milk]. They must be at least [pc.breastCupSize " + pc.biggestTitRow() + "]s. You’re not sure whether most of the weight in them is plastic or [pc.milk]. Regardless, you look down further. Your [pc.thighs] and [pc.hips] are much thicker, as is your [pc.ass]. You give your rear end a light smack, and it jiggles like crazy.");
 			output("\n\nWell, if you feel like removing any of the silicone, you could use the tank and suck it all out. Otherwise... you can expect a lot more wobble in your step, and every other movement you perform.");
 			output("\n\n");
 			
@@ -3458,6 +3580,1446 @@ public function badgerNymFoeDakimakuraSleep():void
 	addButton(0, "Next", useItemFunction);
 }
 
+public function salvageDollmaker():void
+{
+	clearOutput();
+	showDollmaker();
+	author("Natetheman223");
+	
+	var combat:Boolean = inCombat();
+	
+	if(flags["DOLLMAKER_LOOT_IQBGONE"] != undefined && flags["DOLLMAKER_LOOT_LAMP"] != undefined && (flags["DOLLMAKER_LOOT_EMITTER"] != undefined || (!combat && flags["DOLLMAKER_LOOT_VISOR"] != undefined)))
+	{
+		output("It seems you have looted all the machine’s detachable belongings.");
+	}
+	else
+	{
+		output("Waste not, want not, right?");
+		if(flags["NYM-FOE_DISASSEMBLED"] == undefined) output(" You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior.");
+		output(" Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
+		if((combat && !enemy.hasItemByClass(Silicone,4)) || flags["NYM-FOE_LOOT_SILICONE"] == undefined) output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
+		if((combat && !enemy.hasItemByClass(Gush,5)) || flags["NYM-FOE_LOOT_GUSH"] == undefined) output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
+		if((combat && !enemy.hasItemByClass(DamagedVIChip)) || (!combat && flags["NYM-FOE_LOOT_CHIP"] == undefined && flags["NYM-FOE_CHIP_RETURN"] == undefined)) output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+	}
+	output("\n\n");
+	
+	if(flags["DOLLMAKER_DISASSEMBLED"] == undefined) flags["DOLLMAKER_DISASSEMBLED"] = 1;
+	
+	dollmakerSalvageMenu();
+}
+public function hasDollMakerEffect(target:Creature = null):Boolean
+{
+	if(target == null) return false;
+	
+	if(target.hasStatusEffect("IQ B-Gone")) return true;
+	if(target.hasStatusEffect("Brainmelt Lamps")) return true;
+	if(target.hasStatusEffect("Mindwashed")) return true;
+	if(target.hasStatusEffect("Latex Sprayed")) return true;
+	if(target.hasStatusEffect("Bimboleum")) return true;
+	return false;
+}
+public function createDollMakerStatusEffect(target:Creature = null, sName:String = "", nValue1:Number = 0, nValue2:Number = 0, nValue3:Number = 0, nValue4:Number = 0, bCombatOnly:Boolean = true, iTime:int = 0):Boolean
+{
+	if(target != null)
+	{
+		target.createStatusEffect(sName, 0, 0, 0, 0, false, "","", bCombatOnly, 0);
+		updateDollMakerStatusEffect(target, sName, nValue1, nValue2, nValue3, nValue4, iTime);
+	}
+	return false;
+}
+public function updateDollMakerStatusEffect(target:Creature = null, sName:String = "", nValue1:Number = -1, nValue2:Number = -1, nValue3:Number = -1, nValue4:Number = -1, iTime:int = -1):Boolean
+{
+	if(target == null) return false;
+	
+	var effect:StorageClass = target.getStatusEffect(sName);
+	
+	if(effect == null) return false;
+	
+	if(iTime >= 0) effect.minutesLeft = iTime;
+	
+	var b:int = 0;
+	
+	switch(effect.storageName)
+	{
+		case "IQ B-Gone":
+			if(nValue1 > 0)
+			{
+				effect.value1 += nValue1;
+				target.intelligenceMod -= nValue1;
+			}
+			if(nValue2 > 0)
+			{
+				effect.value2 += nValue2;
+				target.libidoMod += nValue2;
+			}
+			effect.iconName = "Icon_Lips_Lick";
+			effect.tooltip = (target is PlayerCharacter ? "It’s like, harder to think and stuff! Hopefully it’ll be tempor... temp... short!" : "Thinking is limited.") + "\n\n<b>-" + effect.value1 + " Intelligence</b>";
+			break;
+		case "Brainmelt Lamps":
+			if(nValue1 > 0)
+			{
+				effect.value1 += nValue1;
+				target.willpowerMod -= nValue1;
+			}
+			effect.iconName = "Icon_DizzyDrunk";
+			effect.tooltip = (target is PlayerCharacter ? "It’s hard to focus." : "Difficulty focusing.") + "\n\n<b>-" + effect.value1 + " Willpower</b>";
+			break;
+		case "Mindwashed":
+			if(nValue1 > 0)
+			{
+				effect.value1 += nValue1;
+				target.aimMod -= nValue1;
+			}
+			effect.iconName = "Icon_MindcontrolledMindbroke";
+			effect.tooltip = (target is PlayerCharacter ? "You’re dizzy from having so much smut stuffed into your brain!" : "Dizziness affects accuracy.") + "\n\n<b>-" + effect.value1 + " Aim</b>";
+			break;
+		case "Latex Sprayed":
+			if(nValue1 > 0)
+			{
+				effect.value1 += nValue1;
+				target.reflexesMod -= nValue1;
+			}
+			effect.iconName = "Icon_Perfume";
+			effect.tooltip = (target is PlayerCharacter ? "You feel slower with all this latex on you!" : "Latex slows movement.") + "\n\n<b>-" + effect.value1 + " Reflexes</b>";
+			break;
+		case "Bimboleum":
+			if(nValue1 > 0)
+			{
+				effect.value1 += nValue1;
+				target.physiqueMod -= nValue1;
+			}
+			if(nValue2 > 0)
+			{
+				effect.value2 += nValue2;
+				for(b = 0; b < target.breastRows.length; b++)
+				{
+					target.breastRows[b].breastRatingMod += nValue2;
+				}
+			}
+			if(nValue3 > 0)
+			{
+				effect.value3 += nValue3;
+				target.hipRatingMod += nValue3;
+			}
+			if(nValue4 > 0)
+			{
+				effect.value4 += nValue4;
+				target.buttRatingMod += nValue4;
+			}
+			effect.iconName = "Icon_Drug_Pill_Heart";
+			effect.tooltip = (target is PlayerCharacter ? "Your body is weird and squishy, the muscles too plush with pleasure to flex properly." : "Too plush to move muscles.") + "\n\n<b>-" + effect.value1 + " Physique</b>";
+			break;
+	}
+	
+	return true;
+}
+public function doDollMakerStatusEffects(target:Creature = null, effect:StorageClass = null, initDuration:uint = 0, requiresRemoval:Boolean = false):void
+{
+	if(target == null || effect == null) return;
+	
+	var i:int = 0;
+	var b:int = 0;
+	var deltaShift:uint = Math.max((initDuration - effect.minutesLeft), 0);
+	var effectDose:int = 0;
+	var maxCycle:int = 0;
+	
+	switch(effect.storageName)
+	{
+		case "IQ B-Gone": maxCycle = 40; break;
+		case "Brainmelt Lamps": maxCycle = 15; break;
+		case "Mindwashed": maxCycle = 10; break;
+		case "Latex Sprayed": maxCycle = 15; break;
+		case "Bimboleum": maxCycle = 15; break;
+	}
+	// First hour of cycle should not deduct, but removal should take care of refunds.
+	for(i = (maxCycle - 1); i >= 0; i -= 1)
+	{
+		var min:int = (i * 60);
+		if(initDuration >= min && effect.minutesLeft < min)
+		{
+			switch(effect.storageName)
+			{
+				case "IQ B-Gone":
+					if(effect.value1 > 0)
+					{
+						effect.value1 -= 1;
+						target.intelligenceMod += 1;
+					}
+					if(effect.value2 > 0)
+					{
+						effect.value2 -= 1;
+						target.libidoMod -= 1;
+					}
+					break;
+				case "Brainmelt Lamps":
+					if(effect.value1 > 0)
+					{
+						effect.value1 -= 1;
+						target.willpowerMod += 1;
+					}
+					break;
+				case "Mindwashed":
+					if(effect.value1 > 0)
+					{
+						effect.value1 -= 1;
+						target.aimMod += 1;
+					}
+					break;
+				case "Latex Sprayed":
+					if(effect.value1 > 0)
+					{
+						effect.value1 -= 1;
+						target.reflexesMod += 1;
+					}
+					break;
+				case "Bimboleum":
+					if(effect.value1 > 0)
+					{
+						effect.value1 -= 1;
+						target.physiqueMod += 1;
+					}
+					if(effect.value2 > 0)
+					{
+						effect.value2 -= 1;
+						for(b = 0; b < target.breastRows.length; b++)
+						{
+							target.breastRows[b].breastRatingMod -= 1;
+						}
+					}
+					if(effect.value3 > 0)
+					{
+						effect.value3 -= 1;
+						target.hipRatingMod -= 1;
+					}
+					if(effect.value4 > 0)
+					{
+						effect.value4 -= 1;
+						target.buttRatingMod -= 1;
+					}
+					break;
+			}
+			
+			updateDollMakerStatusEffect(target, effect.storageName);
+			
+			effectDose++;
+		}
+	}
+	
+	if(requiresRemoval)
+	{
+		var msg:String = "";
+		switch(effect.storageName)
+		{
+			case "IQ B-Gone":
+				target.intelligenceMod += effect.value1;
+				target.libidoMod -= effect.value2;
+				if(target is PlayerCharacter) msg += "You pause for a minute to rub your forehead. What the hell just happened? It looks like the IQ-B-GONE wore off, but... wow. That was an interesting experience.";
+				target.slowStatGain("intelligence", 1);
+				if(target.hasPerk("Ditz Speech"))
+				{
+					if(target is PlayerCharacter && !canRemoveDitzSpeech()) msg += "\n\nYou should totally do it again.";
+					else
+					{
+						if(target is PlayerCharacter) msg += "\n\n(<b>Perk Lost: Ditz Speech</b>)";
+						target.removePerk("Ditz Speech");
+					}
+				}
+				break;
+			case "Brainmelt Lamps":
+				target.willpowerMod += effect.value1;
+				if(target is PlayerCharacter) msg += "You feel... better, oddly enough. After the recent encounter with that Brainmelt lamp, you’re sure the effects of it have worn off, and your willpower is back to normal, if not better.";
+				target.slowStatGain("willpower", 1);
+				break;
+			case "Mindwashed":
+				target.aimMod += effect.value1;
+				if(target is PlayerCharacter) msg += "With all the porn you just had stuffed into your head, you were sure you’d never be back to normal. Though, now that a couple hours have passed, you feel like you could shoot a target with 100% accuracy. Maybe 110%.";
+				target.slowStatGain("aim", 1);
+				break;
+			case "Latex Sprayed":
+				target.reflexesMod += effect.value1;
+				if(target is PlayerCharacter) msg += "You take a second to look over yourself. The latex you sprayed on your body has nearly completely chipped away, small shards of plastic hitting the ground as you move about. Fighting with your body to move while rigid has made you stronger, and you feel more flexible than ever. You’re back to normal, now just quicker.";
+				target.slowStatGain("reflexes", 1);
+				// Revert colors and type
+				if(target is PlayerCharacter && flags["DOLLMAKER_LATEX_SKIN"] != undefined)
+				{
+					target.skinType = flags["DOLLMAKER_LATEX_SKIN"][0];
+					target.skinFlags = flags["DOLLMAKER_LATEX_SKIN"][1];
+					target.skinTone = flags["DOLLMAKER_LATEX_SKIN"][2];
+					
+					flags["DOLLMAKER_LATEX_SKIN"] = undefined;
+				}
+				break;
+			case "Bimboleum":
+				target.physiqueMod += effect.value1;
+				for(b = 0; b < target.breastRows.length; b++)
+				{
+					target.breastRows[b].breastRatingMod -= effect.value2;
+				}
+				target.hipRatingMod -= effect.value3;
+				target.buttRatingMod -= effect.value4;
+				if(target is PlayerCharacter) msg += "You take a second to realize that the Bimboleum’s effect on you is now gone. Your body has returned to its normal proportions, more or less, and your muscles look like they naturally do. Perhaps you feel a little stronger too. Fighting with your body while you were weakened and then getting your power back makes you feel oddly tough.";
+				target.slowStatGain("physique", 1);
+				break;
+		}
+		if(msg != "") AddLogEvent(msg, "passive", deltaShift);
+	}
+}
+public function drBadgerLabDollMaker(response:String = "menu"):void
+{
+	clearOutput();
+	author("Natetheman223");
+	clearMenu();
+	
+	var i:int = 0;
+	var nMult:Number = 0;
+	
+	switch(response)
+	{
+		case "menu":
+		case "back":
+			showDollmaker();
+			
+			// Doll Maker, damaged
+			// Remember how when you were little, you’d say: <i>‘I’d rather have a girl who’s ugly and smart than a girl who’s pretty and dumb?’</i> Oh boy, how wrong we all were.
+			// And since the Doll Maker is directly linked to a smart Badger, it can’t be fixed if Badger is a bimbo.
+			if(flags["DOLLMAKER_STATUS"] == -1 && (flags["DOLLMAKER_DISASSEMBLED"] != undefined || flags["DOLLMAKER_FIXED"] == undefined))
+			{
+				if(response != "back") output("You carefully walk up to the Doll Maker. It may be dormant, but you still make sure to be on your guard in case it decides your IQ needs to be lower, like most of Badger’s toys. Upon closer inspection, it seems one or more pieces have been taken, or are just damaged significantly. You knock on some of the parts, but it seems they have no intention of turning on. All except the small pack of bullet vibrators, which are trapped in their box with no escape.");
+				else output("What else do you decide to do with Doctor Badger’s inactive machine?");
+				output("\n\n");
+				
+				processTime(1);
+				
+				// [Fix] [Loot] [Back]
+				addButton(0, "Fix", drBadgerLabDollMaker, "fix", "Fix Doll Maker", "Attempt to fix the machine.");
+				addButton(1, "Loot", salvageDollmaker, undefined, "Loot Doll Maker", "Salvage some parts from the machine.");
+				addButton(14, "Back", mainGameMenu);
+				
+				// Loot replaces the buttons with ‘Syringe’, ‘lamp’, ‘gun’, and ‘visor’, and a back button.
+				// A new button appears in Badger’s menu: “Fix DollM.?”
+				
+				if(flags["DOLLMAKER_DISASSEMBLED"] == undefined || flags["DOLLMAKER_DISASSEMBLED"] < 2) flags["DOLLMAKER_DISASSEMBLED"] = 2;
+			}
+			// Confirmation warning, appears the first time the player tries to interact with the Doll Maker
+			else if(flags["DOLLMAKER_FIXED"] < 2)
+			{
+				output("You stop yourself before you reach the perverted robot. You just need a second to think about everything this robot has done, and what it might do to you. It could give you giant tits, make your brain melt out of your ears (maybe), give you latex skin, and that’s not even the half of it.");
+				if(silly) output(" If you have a permanent ruin kink, this is for you.");
+				output("\n\n<b>Going any further could result in some serious brain drain and/or bodily changes. Are you sure you want to continue?</b>");
+				output("\n\n");
+				
+				// [Yes] [No]
+				// Yes puts player in Doll Maker screen, No puts them in lab screen
+				addButton(0, "Yes", drBadgerLabDollMaker, "warn yes", "Yes", "Accept the consequences.");
+				addButton(1, "No", drBadgerLabDollMaker, "warn no", "No", "Back out now.");
+			}
+			// Doll Maker, undamaged
+			// Back in action, baby!
+			// May want to add a small note after beating Nym-Foe and Dolly for the first time about how you can revisit them later, and to not worry about not being able to pick up all their items.
+			else
+			{
+				if(response != "back")
+				{
+					output("You approach the");
+					if(flags["DOLLMAKER_FIXED"] != undefined) output(" now fixed");
+					output(" Doll Maker. Its imposing figure and several parts make you worried just to come closer, even though it’s off. You take a deep breath and stand in the center of it all, looking around at the many limbs surrounding you. You feel oddly... helpless in here");
+					if(flags["DOLLMAKER_FIXED"] != undefined) output(", especially knowing that Badger reinforced most of the parts");
+					output(".");
+					output("\n\nSo what now? You could have some fun with certain bits");
+					if(!pc.isBimbo()) output(", turn on the machine as a whole if you want to fight it,");
+					output(" or get turned into a fresh, brainless, sex doll.");
+				}
+				else output("What else do you decide to do with Doctor Badger’s " + (!pc.isBimbo() ? "imposing" : "<i>fun</i>") + " machine?");
+				output("\n\n");
+				
+				processTime(1);
+				
+				// [Play] [Fight] [Doll] [Back]
+				addButton(0, "Play", drBadgerLabDollMaker, "play", "Play with Doll Maker", "Use a part on yourself.");
+				if(pc.isBimbo()) addDisabledButton(1, "Fight", "Fight Doll Maker", "Why would you fight a good friend?");
+				else if(hasDollMakerEffect(pc)) addDisabledButton(1, "Fight", "Fight Doll Maker", "You cannot fight the Doll Maker while currently under its side-effects.");
+				else addButton(1, "Fight", fightTheDollmaker, undefined, "Fight Doll Maker", "Fight the Doll Maker.");
+				// Literally display the usual loss scene for the Doll Maker.
+				addButton(2, "Doll", volunteerForDollificationFight, undefined, "Get Dolled Up!", "Who needs brains anyway?");
+				addButton(14, "Back", mainGameMenu);
+			}
+			break;
+		case "warn yes":
+			showDollmaker();
+			
+			output("You will accept the consequences of your actions and continue on.");
+			output("\n\n");
+			
+			flags["DOLLMAKER_FIXED"] = 2;
+			
+			addButton(14, "Next", drBadgerLabDollMaker, "menu");
+			break;
+		case "warn no":
+			showDollmaker();
+			
+			output("You figure it would be safer to keep your distance. You can always come back if you change your mind.");
+			output("\n\n");
+			
+			addButton(14, "Next", mainGameMenu);
+			break;
+		case "fix":
+			showDollmaker();
+			
+			output("If you still have any parts left, you could try to reinsert them. It could save you time later.");
+			
+			// Doll maker cannot be fixed if Badger is a bimbo
+			if(chars["DRBADGER"].isBimbo())
+			{
+				output("\n\nThough, it would be pointless to put any damaged pieces back on if Badger is too stupid to fix it completely...");
+			}
+			else
+			{
+				// [Syringe] [Lamp] [Gun] [Visor] [Back]
+				if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You have already installed this!");
+				else if(!pc.hasItemByClass(IQBGone)) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You need the syringe full of IQ B-Gone.");
+				else addButton(0, "Syringe", drBadgerLabDollMaker, "fix iqbgone", "Install IQ B-Gone", "Install the syringe full of IQ B-Gone.");
+				
+				if(flags["DOLLMAKER_FIX_LAMP"] != undefined) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You have already installed this!");
+				else if(!pc.hasItemByClass(BrokenBrainmeltLamp)) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You need the broken Brainmelt Lamp.");
+				else addButton(1, "Lamp", drBadgerLabDollMaker, "fix lamp", "Install Brainmelt Lamp", "Install the broken Brainmelt Lamp.");
+				
+				if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You have already installed this!");
+				else if(!pc.hasItemByClass(BimboleumEmitter)) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You need the Bimboleum emitter.");
+				else addButton(2, "Gun", drBadgerLabDollMaker, "fix emitter", "Install Bimboleum Emitter", "Install the Bimboleum emitter.");
+				
+				if(flags["DOLLMAKER_FIX_VISOR"] != undefined) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You have already installed this!");
+				else if(!pc.hasItemByClass(MindwashVisor)) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You need the Mindwash visor.");
+				else addButton(3, "Visor", drBadgerLabDollMaker, "fix visor", "Install Mindwash Visor", "Install the Mindwash visor.");
+				
+				addButton(14, "Back", drBadgerLabDollMaker, "fix done");
+			}
+			break;
+		case "fix iqbgone":
+		case "fix lamp":
+		case "fix emitter":
+		case "fix visor":
+			showDollmaker();
+			
+			if(response == "fix iqbgone")
+			{
+				output("You manage to reattach the syringe, making sure not to prick yourself with it by accident.");
+				
+				pc.destroyItemByClass(IQBGone);
+				flags["DOLLMAKER_FIX_IQBGONE"] = 1;
+			}
+			if(response == "fix lamp")
+			{
+				output("After taking out the Brainmelt lamp, you hook it back onto the machine. Despite being on, it’s still broken. Not much you can do about that now.");
+				
+				pc.destroyItemByClass(BrokenBrainmeltLamp);
+				flags["DOLLMAKER_FIX_LAMP"] = 1;
+			}
+			if(response == "fix emitter")
+			{
+				output("You reconnect the Bimboleum emitter to a hanging piece. It clicks into place.");
+				
+				pc.destroyItemByClass(BimboleumEmitter);
+				flags["DOLLMAKER_FIX_EMITTER"] = 1;
+			}
+			if(response == "fix visor")
+			{
+				output("You hook up the Mindwash visor, plugging it in. The Doll Maker as a whole is powerless, however.");
+				
+				pc.destroyItemByClass(MindwashVisor);
+				flags["DOLLMAKER_FIX_VISOR"] = 1;
+			}
+			output("\n\n");
+			
+			processTime(2);
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "fix");
+			break;
+		case "fix done":
+			showDollmaker();
+			
+			var numSlotted:int = 0;
+			if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) numSlotted++;
+			if(flags["DOLLMAKER_FIX_LAMP"] != undefined) numSlotted++;
+			if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) numSlotted++;
+			if(flags["DOLLMAKER_FIX_VISOR"] != undefined) numSlotted++;
+			
+			if(numSlotted > 0)
+			{
+				output("Despite having");
+				if(numSlotted <= 1) output(" one");
+				else if(numSlotted <= 2) output(" a couple");
+				else if(numSlotted <= 3) output(" a few");
+				else output(" all");
+				output(" the salvaged parts reconnected, the Doll Maker as a whole is too damaged to turn on. Though, you’re wondering if you’d even want to turn it on.");
+			}
+			else output("Having no available parts to install, the Doll Maker looks inoperable at the moment.");
+			if(numSlotted >= 4) output(" Regardless, you need to talk to Badger if you want it up and running again.");
+			output("\n\n");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "back");
+			break;
+		case "badger fix":
+			showDrBadger();
+			
+			var numTaken:int = 0;
+			if(flags["DOLLMAKER_LOOT_IQBGONE"] != undefined && flags["DOLLMAKER_FIX_IQBGONE"] == undefined) numTaken++;
+			if(flags["DOLLMAKER_LOOT_LAMP"] != undefined && flags["DOLLMAKER_FIX_LAMP"] == undefined) numTaken++;
+			if(flags["DOLLMAKER_LOOT_EMITTER"] != undefined && flags["DOLLMAKER_FIX_EMITTER"] == undefined) numTaken++;
+			if(flags["DOLLMAKER_LOOT_VISOR"] != undefined && flags["DOLLMAKER_FIX_VISOR"] == undefined) numTaken++;
+			
+			if(flags["DOLLMAKER_DISASSEMBLED"] == undefined || flags["DOLLMAKER_DISASSEMBLED"] < 3)
+			{
+				if(!pc.isAss()) output("The good samaritan in you");
+				else output("The small shred of goodness in you");
+				output(" tells you to fix Badger’s toy that you broke (but then again, you were only defending yourself), even if they’re going to be used for... probably something that a normal person would question. The only other thing that crosses your mind is: <i>‘let’s just get this over with’</i>.");
+				output("\n\nYou speak up to catch the doctor’s attention. <i>“Hey, Badger. I noticed the Doll Maker is still broken down there. Did you want it fixed?”</i> You ask neutrally. This is a pretty morally ambiguous situation, you feel it’s a better idea not to show emotion here.");
+				output("\n\n<i>“Actually, yes, [pc.name]. Would you be a </i>doll<i> and fix it?”</i> Badger jokes, before turning a little more serious. <i>“I can fix most of it by myself, but didn’t you take some of the important parts when you were done with it?”</i>");
+				if(numTaken <= 0) output("\n\n<i>“Nope. Everything should be there,”</i> you reply. <i>“Even if they are broken.”</i>");
+				else output("\n\n<i>“Yes. I might still have something laying around. That, or I sold it.”</i>");
+				output("\n\n<i>“Regardless, I need to get back there and fix the other parts that you broke. Thanks for that, by the way.”</i> Badger says, turning to you from the pile of junk. <i>“Eh, let’s just head back now and have a look. Then we’ll see what errands you can do for me.”</i>");
+				
+				currentLocation = "BIMBOTORIUM LAB";
+				generateMap();
+				
+				output("\n\nYou reluctantly head to the back of the lab with Badger. You pass by a shelf of increasingly big dildoes (the largest one being bigger than a bazooka), before approaching the spindly collection of limbs. Badger looks at the components of the device.");
+				output("\n\n<i>“Well, first things first, the whole thing is damaged. Even with the few lost pieces, I’m going to need to fix some of the core parts. Let’s see what’s missing, though.”</i> Badger starts to pull down pieces of the machine to look at them.");
+				if(flags["DOLLMAKER_LOOT_IQBGONE"] != undefined && flags["DOLLMAKER_FIX_IQBGONE"] == undefined) output("\n\n<i>“The IQ-B-GONE is... well, gone,”</i> Badger says, looking at a spot where a syringe would clearly fit.");
+				if(flags["DOLLMAKER_LOOT_LAMP"] != undefined && flags["DOLLMAKER_FIX_LAMP"] == undefined) output("\n\n<i>“Huh, looks like the lamp is missing,”</i> Badger states, holding a flat piece where the Brainmelt lamp goes.");
+				if(flags["DOLLMAKER_LOOT_EMITTER"] != undefined && flags["DOLLMAKER_FIX_EMITTER"] == undefined) output("\n\n<i>“Damn. The Bimboleum emitter isn’t here,”</i> Badger states, holding the broken limb.");
+				if(flags["DOLLMAKER_LOOT_VISOR"] != undefined && flags["DOLLMAKER_FIX_VISOR"] == undefined) output("\n\n<i>“The Mindwash visor disappeared, unfortunately,”</i> she says, looking at the bland, hanging piece.");
+				if(numTaken <= 0) output("\n\n<i>“Looks like everything is here. Nice. Now it just needs some basic repairs, and it’ll be up and running.”</i> Badger smiles deviously.");
+				output("\n\n");
+				
+				processTime(11);
+				
+				// After viewing this scene, the “fix doll m.” button brings up a submenu that displays all four parts. If a piece isn’t fixed, clicking on it will output one of the following scenes to explain how to fix it. If the criteria is met to fix the item, the scene of Badger fixing it will be used. If the item is fixed, the button is grayed out.
+				flags["DOLLMAKER_DISASSEMBLED"] = 3;
+				
+				addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			}
+			// Next, 1 or more things are missing
+			else if(numTaken > 0)
+			{
+				// From previous
+				if(flags["DOLLMAKER_DISASSEMBLED"] < 4)
+				{
+					output("<i>“Well, now we know what we need before I can get this bad boy going again. It’s been fun exploring other methods to... help out my patients, but there are other projects that require my full attention,”</i> Badger explains before leading you back to the front of her lab. You get a clue where she is going with this.");
+					
+					currentLocation = "304";
+					generateMap();
+					
+					output("\n\n<i>“So I just need to find the missing parts?”</i> you ask.");
+					output("\n\n<i>“Yes. But you can’t exactly buy them anywhere. However, maybe if you ask nicely, I’ll tell you what I need to rebuild them.”</i>");
+					
+					processTime(5);
+					flags["DOLLMAKER_DISASSEMBLED"] = 4;
+				}
+				// Repeats
+				else
+				{
+					output("<i>“Anything else?”</i> Badger asks, an eyebrow cocked behind her goggles and a grin forming across her face.");
+				}
+				output("\n\n");
+				
+				// [Syringe] [Lamp] [Gun] [Visor] [Next]
+				// Any pieces that are already attached are grayed out.
+				if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) addDisabledButton(0, "Syringe", "Fix IQ B-Gone", "You have already installed this!");
+				else addButton(0, "Syringe", drBadgerLabDollMaker, "fix? iqbgone", "Fix IQ B-Gone", "Ask Doctor Badger about syringe full of IQ B-Gone.");
+				
+				if(flags["DOLLMAKER_FIX_LAMP"] != undefined) addDisabledButton(1, "Lamp", "Fix Brainmelt Lamp", "You have already installed this!");
+				else addButton(1, "Lamp", drBadgerLabDollMaker, "fix? lamp", "Fix Brainmelt Lamp", "Ask Doctor Badger about the broken Brainmelt Lamp.");
+				
+				if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) addDisabledButton(2, "Gun", "Fix Bimboleum Emitter", "You have already installed this!");
+				else addButton(2, "Gun", drBadgerLabDollMaker, "fix? emitter", "Fix Bimboleum Emitter", "Ask Doctor Badger about the Bimboleum emitter.");
+				
+				if(flags["DOLLMAKER_FIX_VISOR"] != undefined) addDisabledButton(3, "Visor", "Fix Mindwash Visor", "You have already installed this!");
+				else addButton(3, "Visor", drBadgerLabDollMaker, "fix? visor", "Fix Mindwash Visor", "Ask Doctor Badger about the Mindwash visor.");
+				
+				addButton(14, "Back", drBadgerLabDollMaker, mainGameMenu);
+			}
+			// All pieces added, will proc when entering Badger’s square, and also if all pieces were added by the player, or none taken at all
+			else
+			{
+				output("Badger stops you in your tracks as you walk about. <i>“Well, Steele, we’ve got all the pieces. I’ll handle the rest of the fixing. And this time, I’m reinforcing all of them so if you break any, it can repair itself over time.”</i>");
+				output("\n\n<i>“Happy to help... or something. How long is it going to take until it’s fixed?”</i> You ask, nonchalantly.");
+				output("\n\n<i>“Probably a few days. Why, are you eager to play with it?”</i> Badger teases. <i>“Either way, I’m back in business, thanks to you. Even though it was you who put me out of business...”</i> The doctor chuckles and goes back to her ‘work’, leaving you alone for now.");
+				output("\n\n<b>The Doll Maker will be available to interact with shortly.</b>");
+				output("\n\n");
+				
+				processTime(2);
+				
+				// Activate 48 hour timer, doll maker is available when it ends
+				pc.createStatusEffect("Doll Maker Repair Timer", 0, 0, 0, 0, true, "", "", false, (48 * 60));
+				flags["DOLLMAKER_DISASSEMBLED"] = undefined;
+				if(flags["DOLLMAKER_FIXED"] == undefined) flags["DOLLMAKER_FIXED"] = 1;
+				
+				addButton(14, "Back", drBadgerLabDollMaker, mainGameMenu);
+			}
+			break;
+		case "fix? iqbgone":
+			showDrBadger();
+			
+			output("<i>“So how would I go about getting some IQ-B-GONE?”</i> you ask. <i>“It’s pretty serious stuff, I wouldn’t be surprised if I needed a million ingredients to--”</i> You stop talking as Badger holds out a green syringe and shows it to you.");
+			output("\n\n<i>“Luckily for you, I have plenty of this stuff already. Give it to the police and I’ll torture you. I’ll skip the bimbofication part and just hurt you.”</i> Badger explains with a frightening coldness. You take a step back before she starts talking again. <i>“Nah, I’m just fucking with you. But I would definitely turn you into the dumbest bimbo ever. Don’t. Get. Involved. With. The. Police.”</i>");
+			output("\n\nPoint taken.");
+			output("\n\n");
+			
+			processTime(2);
+			
+			flags["DOLLMAKER_ASK_IQBGONE"] = 1;
+			// IQ-B-GONE is added to the doll maker
+			flags["DOLLMAKER_FIX_IQBGONE"] = 2;
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? lamp":
+			showDrBadger();
+			
+			output("<i>“So what would you need for making a new Brainmelt lamp?”</i> you ask plainly.");
+			output("\n\n<i>“Well, y’see, I need the parts from some sort of electro gun. I already have the part that reduces brain cell count, I just need the part that distributes that power.");
+			if(flags["TARKUS_DESTROYED"] == undefined || pc.hasItemByClass(Electrogun))
+			{
+				output(" Im pretty sure you can find something not far from here, maybe one of the shops off to the west has something.");
+				if(flags["DOLLMAKER_ASK_LAMP"] != undefined) output(" In fact, I’m pretty sure that bat kid has something we could use.");
+				
+				flags["DOLLMAKER_ASK_LAMP"] = 1;
+				
+				// Player is required to purchase an electrogun from the bat kid, Aurora
+				if(pc.hasItemByClass(Electrogun)) addButton(0, "Give Gun", drBadgerLabDollMaker, "fix? lamp fix", "Give Electrogun", "Give Doctor Badger your electrogun.");
+				else addDisabledButton(0, "Give Item", "Give Item", "You do not have the right item on you to give to Doctor Badger!");
+			}
+			else
+			{
+				if(flags["DOLLMAKER_ASK_LAMP"] == undefined || flags["DOLLMAKER_ASK_LAMP"] == 1) output(" Actually, I think I can order it, I just need the legal tender to do it... Are you willing to part with <b>3,000 credits</b> for it?");
+				else output(" To order it, I’ll need that <b>3,000 credits</b>.");
+				
+				flags["DOLLMAKER_ASK_LAMP"] = 2;
+				
+				if(pc.credits >= 3000) addButton(0, "Pay Creds", drBadgerLabDollMaker, "fix? lamp pay", "Pay Credits", "Pay Doctor Badger the 3,000 credits.");
+				else addDisabledButton(0, "Pay Creds", "Pay Credits", "You do not have enough credits to pay Doctor Badger with!");
+			}
+			output("”</i>");
+			output("\n\n");
+			
+			processTime(2);
+			
+			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? lamp fix":
+			showDrBadger();
+			
+			output("<i>“Hey Badger, how would this work as a part for the Brainmelt lamp?”</i> you ask, pulling out an electrogun, bought from Aurora. Though it’s not exactly amazing, you assume it’ll do the trick. Badger quickly pulls the gun from your hand, looking at it with a determined expression before setting it on her desk. She disassembles it with speed, before putting on a rubber glove and pulling out the electric core. She holds it up, the make-shift lamp glowing with sinister intensity in front of both of you.");
+			output("\n\n<i>“Hmm. I’d say it could work, though I’ll have to make some adjustments so it doesn’t break. Consider the Brainmelt lamp fixed,”</i> Badger says. She grins before setting the core in a small jar and removing her glove. <i>“I’m going down to put something together. Don’t do anything stupid while I’m gone.”</i>");
+			output("\n\nYou find a place to sit for the time being until she proudly comes back. <i>“The bad boy is closer and closer to being done every day. Can’t wait to use it again.”</i>");
+			output("\n\n");
+			
+			processTime(7);
+			
+			// The brainmelt lamp is automatically added to the doll maker
+			pc.destroyItemByClass(Electrogun);
+			flags["DOLLMAKER_FIX_LAMP"] = 2;
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? lamp pay":
+			showDrBadger();
+			
+			output("What’s a sinkhole in your accounts, right? You agree to pay Badger’s criminally insane price. She quickly swipes a credits scanner across your Codex and it confirms the payment with a beep.");
+			output("\n\n<i>“Thanks. Pleasure doing business with you.”</i> Doctor Badger grins, fingers tapping rhythmically along her desk top and drawing your attention to some spare mechanical parts, already spread out in full display, next to a carefully dismantled electrogun. It becomes painfully obvious to you that the money wasn’t necessary to order the parts, but more for her own personal amusement...");
+			output("\n\n");
+			
+			processTime(3);
+			
+			pc.credits -= 3000;
+			flags["DOLLMAKER_FIX_LAMP"] = 3;
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? emitter":
+			showDrBadger();
+			
+			output("<i>“Badger, what would you need for making a Bimboleum emitter?”</i>");
+			output("\n\n<i>“Well, let’s start with the basics. To make some more Bimboleum, I’ll have to get a dose of Tittyblossom and Semen’s Friend. Both are somewhat common, you could probably get them at a gene mod store. Not too expensive either,”</i> Badger explains.");
+			if(!pc.isBimbo())
+			{
+				output("\n\n<i>“Really? Only two ingredients?”</i> you ask. <i>“To permanently alter someone’s mind and body?”</i>");
+				output("\n\n<i>“Good one, smartass, but there’s more ingredients I can handle myself, and I’m pretty sure you couldn’t get your hands on them even if you tried.”</i> You roll your eyes while she continues. <i>“And even if you could, you wouldn’t know how to sustain them.”</i>");
+				output("\n\n<i>“Fine, fine, I’ll get your damn mods. Relax.”</i>");
+				if(pc.isAss()) output("\n\nYou quietly mutter <i>“fucking bitch”</i> on your way out.");
+			}
+			else
+			{
+				output("\n\n<i>“Like, only two things? I’ll have that in no time!”</i> you shout with glee.");
+				output("\n\n<i>“Only two things that you need to worry about, anyway. Just get them, come back, and maybe have fun with some locals on the way. Enjoy yourself out there,”</i> Badger suggests with a bit of enthusiasm. She’s so cool.");
+			}
+			output("\n\n");
+			
+			processTime(2);
+			
+			flags["DOLLMAKER_ASK_EMITTER"] = 1;
+			
+			if(pc.hasItemByClass(Tittyblossom) && pc.hasItemByClass(SemensFriend)) addButton(0, "GiveItems", drBadgerLabDollMaker, "fix? emitter fix", "Give Items", "Give Doctor Badger a Tittyblossom popsicle and a Semen’s Friend candy.");
+			else addDisabledButton(0, "GiveItems", "Give Items", "You need Tittyblosson and Semen’s Friend to give to Doctor Badger!");
+			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? emitter fix":
+			showDrBadger();
+			
+			output("<i>“Badger, I got the stuff,”</i> you pipe up. <i>“Tittyblossom and Semen’s Friend, right? I got them, right here.”</i> You begin to ready the items, taking a cold wrapped popsicle and boxed pill from your inventory.");
+			output("\n\nBadger turns her attention to you. <i>“Oh, really? Good, because I’m ready to make another Bimboleum emitter.”</i> You hand the transformatives to Badger, or rather, she snatches them from your hand. You dismiss the rude gesture and just watch her work. She seems to dissolve both things into a vial, before mixing several other ingredients into it. Before long, she dumps the mixture into an open gun with a satellite shaped front. She closes the gun and shakes it up some, mixing the questionable concoction within. She then aims the emitter at you.");
+			if(!pc.isBimbo())
+			{
+				output("\n\n<i>“Woah, woah, easy there.”</i> You put your arms up, defensively. Badger smiles before twirling the gun around her finger like a holo-movie gunslinger of sorts.");
+				output("\n\n<i>“Calm down, scaredy cat. The power is off; I haven’t even charged the module yet.”</i> She demonstrates by clicking the trigger a few times before just detaching it. <i>“I’ll get this installed as soon as possible, where it WILL work.”</i> The doctor says, smirking. She then clicks the gun onto her belt.");
+			}
+			else
+			{
+				output("\n\n<i>“Yeah Badger, give me bigger boobies!”</i> you shout. Badger pauses, staring at you before putting the gun down. You tilt your head and frown a little. <i>“Aw...”</i>");
+				output("\n\n<i>“It doesn’t even work without power, y’know.”</i> She clicks the trigger on it a few times, to no effect. She simply detaches the trigger before putting the gun on her belt. <i>“I’ll install this as soon as possible, where it WILL work... and you’ll be able to have all the fun you want with it.”</i> Badger smiles, going back to her work.");
+			}
+			output("\n\n");
+			
+			processTime(9);
+			
+			// Bimboleum emitter is added to the doll maker
+			pc.destroyItemByClass(Tittyblossom);
+			pc.destroyItemByClass(SemensFriend);
+			flags["DOLLMAKER_FIX_EMITTER"] = 2;
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? visor":
+			showDrBadger();
+			
+			output("<i>“Badger. The visor?”</i> you simply ask. <i>“For the Doll Maker, I mean. Let me guess, I need to fetch a few items for you and you’ll make another?”</i>");
+			output("\n\n<i>“Actually, how about you </i>fetch<i> your wallet and make out a chip worth about <b>seven thousand, eight hundred seventy-five credits</b>?”</i> You raise your brow at the requirement. <i>“That’s right. The only way to get one of these is to buy it off me.”</i>");
+			output("\n\n<i>“It’s </i>your<i> Doll Maker, why aren’t you paying it?”</i> you insist.");
+			output("\n\n<i>“Because you broke it, Steele. Remember?”</i> She’s got you there: you straight-up smashed it the moment it tried to wipe your past. <i>“You paying up or are we going to leave it broken?”</i>");
+			output("\n\n");
+			
+			processTime(2);
+			
+			// Pay up: Pay 7875 credits to buy another mindwash visor.
+			// Not now: Another time.
+			// Not now puts the player in the normal lab screen
+			flags["DOLLMAKER_ASK_VISOR"] = 1;
+			
+			// [Pay up] [Not now]
+			if(pc.credits >= 7875) addButton(0, "Pay Up", drBadgerLabDollMaker, "fix? visor fix", "Pay Credits", "Pay Doctor Badger the 7,875 credits.");
+			else addDisabledButton(0, "Pay Up", "Pay Credits", "You do not have enough credits to pay Doctor Badger with!");
+			addButton(1, "Not Now", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "fix? visor fix":
+			showDrBadger();
+			
+			output("Annoyed, you sigh and prepare a credit chip, inserting 7,875 credits onto it before forking it over to the mad doctor. She takes it from your hand, a small smile appearing across her lips before she pockets it. Badger then looks through her things, preparing a shiny, new Mindwash visor. She’s about to hand it to you, but then pulls back.");
+			output("\n\n<i>“Oh right, that money’s for the replacement of the visor. I think I’ll put this one in; be a dear and don’t smash it to pieces this time.”</i> She sets the visor on her desk, taking her attention away from you and moving it to her work. <i>“I’ll put it on shortly.”</i>");
+			output("\n\n");
+			
+			processTime(3);
+			
+			// Mindwash visor is added to the doll maker
+			pc.credits -= 7875;
+			flags["DOLLMAKER_FIX_VISOR"] = 2;
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "badger fix");
+			break;
+		case "play":
+		case "play back":
+			showDollmaker();
+			
+			if(response == "play") output("You look over the several parts of the machine. Now that you’re not fighting it, you don’t have to worry about anything being suddenly forced upon you. If you want to get seriously fucked up, it’ll be by your own accord. Even then, you could use each tool just a little bit if you just want to test it. It seems each part is capable of running individually without the need for the entire thing to be on, so you don’t have to worry about the robot suddenly calling you a jizz basket and blowing your body up like a balloon.");
+			else output("What else do you want to do with the machine?");
+			if(!pc.hasStatusEffect("Bimboleum"))
+			{
+				output("\n\nYou could use the Bimboleum emitter to make your chest");
+				if(pc.hasCock()) output(" and cock");
+				output(" bigger, though it may make you weaker.");
+			}
+			if(!pc.hasStatusEffect("Latex Sprayed")) output("\n\nYou could use the spray to cover your skin in latex, your choice of color, though it may make your movements more rigid. Who knows? Maybe thick, latex skin could be cool to have.");
+			if(!pc.hasStatusEffect("Mindwashed")) output("\n\nYou could use the Mindwash visor to watch free porn, but it might make you all dizzy when you’re done.");
+			if(!pc.hasStatusEffect("IQ B-Gone")) output("\n\nYou could use the IQ-B-GONE to... well, it could be fun, but you’ll definitely be knocked down a few pegs in the intelligence region.");
+			if(!pc.hasStatusEffect("Brainmelt Lamps")) output("\n\nYou could use the Brainmelt lamps for... again, it could be fun.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [B. Emitter] [Spray] [MW Visor] [IQ-B-GONE] [Brainmelt L.] [Back]
+			addButton(0, "B.Emitter", drBadgerLabDollMaker, "use emitter", "Bimboleum Emitter", "Trade out some physique for bigger tits and/or a bigger dick.");
+			addButton(1, "Ltx.Spray", drBadgerLabDollMaker, "use spray", "Latex Sprayer", "Trade out reflexes to change your skin color.");
+			addButton(2, "MW Visor", drBadgerLabDollMaker, "use visor", "Mindwash Visor", "Trade out some aim for free porn.");
+			addButton(3, "IQBGone", drBadgerLabDollMaker, "use iqbgone", "IQ B-Gone", "Trade out intelligence for sheer libido.");
+			addButton(4, "B.B.Melt", drBadgerLabDollMaker, "use lamp", "Brainmelt Lamp", "Temporarily drain willpower to gain more when it wears off... or just fuck yourself up for fun. Who doesn’t love having their brain melted?");
+			
+			addButton(14, "Back", drBadgerLabDollMaker, "back");
+			
+			// Taking a big dose of anything will have permanent adverse effects. Taking a small dose will result in a temporary huge stat loss, but it will come back at about 1 point an hour, and gives an extra point back when the effects are done. Taking two small doses just adds them together (i.e. the stat just doubles). What doesn’t kill you makes you stronger, right?
+			break;
+		case "use emitter":
+			showDollmaker();
+			
+			output("You grab the limb holding the Bimboleum emitter, studying it. You pull it down, the joints of the arm straightening out while you do so. Eventually, you have full access to the black limb, the Bimboleum emitter on the end a little brighter than the rest of the arm.");
+			output("\n\nThis singular piece of machinery could blow you up like a balloon if you let it. Or you could just take a minor dose, for temporary effects.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Big dose] [Small dose] [Back]
+			if(pc.hasStatusEffect("Bimboleum"))
+			{
+				addDisabledButton(0, "Small Dose", "Small Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+				addDisabledButton(1, "Big Dose", "Big Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+			}
+			else
+			{
+				addButton(0, "Small Dose", drBadgerLabDollMaker, "min emitter", "Small Dose", "Temporarily trade out some physique for bigger assets.");
+				addButton(1, "Big Dose", drBadgerLabDollMaker, "max emitter", "Big Dose", "Trade out lots of physique for bigger assets.");
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "play back");
+			break;
+		case "min emitter":
+			showDollmaker();
+			
+			output("You take the Bimboleum emitter, raising it up slowly before pointing it outward. You make sure to be careful, as you wouldn’t want to turn it on now, or have any lasting effects... just a quick high is all, right?");
+			output("\n\nYour fingers shake a little as you set up the limb and move to stand in front of it. You’re just so nervous; what if you can’t get away in time? Then what, you’re a giant balloon with no muscle mass? You sigh deeply as you think about all the potential dangerous things that could happen.");
+			output("\n\nFinally, it’s time for the big event. Your click the small ‘on’ switch and prepare yourself. A thick pink haze coats the area in front of you, drifting about to surround you. The changes start with your [pc.breasts]. They swell outwards while muscle mass from the rest of your body seemingly softens, your boobs blowing through cup sizes quickly. Even your butt is affected, each cheek inflating " + (silly ? "bigly" : "considerably") + " while your [pc.skin] drinks in the aura. It feels so good. Good enough that you want more....");
+			output("\n\nWait, no! You can’t have more!");
+			if(pc.isBimbo()) output(" Even if giant titties would be fun... this is getting dangerous!");
+			output(" You quickly break away from the aura, slapping down on the gun’s off switch. Within seconds, the pink haze disappears as if it had never existed at all. Your body remains changed though, your proportions inflated significantly. Your muscles are smaller as well, but you’re sure you’ll be back to normal soon enough.");
+			output("\n\n");
+			
+			processTime(8);
+			
+			// Gain status effect: Bimboleum
+			// It’s the same status effect as you get in the doll maker fight, though somewhat changed. It’s minus 15 physique, but 1 point comes back every hour. Additionally, the player’s breasts, hip, and butt size are increased by 15 and decrease 1 per hour. When the effect ends, the player gets 1 bonus point to physique
+			nMult = 15;
+			createDollMakerStatusEffect(pc, "Bimboleum", (1 * nMult), (1 * nMult), (1 * nMult), (1 * nMult), false, (60 * nMult));
+			pc.lust(35);
+			
+			IncrementFlag("DOLLMAKER_USE_EMITTER");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "max emitter":
+			showDollmaker();
+			
+			output("Big boobs");
+			if(pc.hasCock()) output(", a bigger dick,");
+			output(" and a bigger butt? Count you in! Who cares if you lose some muscle; having huge assets are where it’s at!");
+			output("\n\nYou ready the limb, activating it from the base without enabling the whole machine. You happily stand in front of the Bimboleum emitter as it prepares itself. Holding your [pc.chest] out high, you tightly close your eyes and take a deep breath when the gun whirrs. A pink glow travels out from the gun, bending the air around it while it drifts toward you. When it touches you, your whole body is bathed in a toxic cloud.");
+			if(flags["DOLLMAKER_USE_EMITTER"] != undefined) output(" The lovely feeling of your body expanding is similar to the first time you’ve experienced it. The process is a lot less stressful when you just let it happen, especially when it’s not being forced on you.");
+			output("\n\nYou’re getting turned on while your muscles quickly soften... as soft as the fat from a pair of big, juicy tits. An almost silent sigh escapes your lips while weight builds on your [pc.chest], swelling in size as they absorb the pink aura surrounding you.");
+			if(pc.biggestTitSize() >= 5) output(" Even with your big boobs, you can notice the rapid changes happening within.");
+			else output(" Thanks to the fact that your boobs aren’t exactly big, you immediately notice the rapid expansion happening within.");
+			output(" It just feels so good; you can’t control yourself while your body expands, your hands struggling to grip your inflating assets.");
+			output("\n\nYour lower half isn’t neglected either, as your [pc.asscheeks] bubble up quickly. Your waist only gets thinner while your [pc.hips] grow outwards, your proportions becoming more and more ridiculous by the second. The only thing left to do is stand there and enjoy it for a few more minutes.");
+			output("\n\nYour muscles have gotten much smaller; a significant amount of definition has been exchanged for more mass to occupy your tits and ass.");
+			if(pc.hasCock())
+			{
+				output("\n\nOf course, there’s one last part that’s affected: your [pc.cock]. Blood pumps through every vein on your shaft, the [pc.cockColor] cockflesh stretching as it gains inches. Your erection grows harder than ever, and bigger than ever.");
+				if(pc.balls > 0) output(" The [pc.sack] swinging beneath grows as well, " + (pc.balls == 1 ? "your" : "each") + " testicle rapidly filling up with [pc.cum]. Before you know it, they’re seemingly overflowing while dollops of pre drip from your [pc.cockHead].");
+				output(" Everything down there is just so swollen that you might want to handle yourself after this.");
+			}
+			output("\n\nYou eventually step out of the haze, breathing heavy with how aroused you suddenly are. You turn off the machine, loosely groping your newly blown up assets. It proves much harder to stand now, but you’re evidently more sexy than you were before.");
+			output("\n\n");
+			
+			processTime(15);
+			
+			// Boob size increases by 7, butt by 8, and hip by 8. Cock size grows by up to 4 inches if they have one, balls diameter increases by up to 3 inches. Cum capacity is maxed, refractory rate increases by 200%.
+			// Decrease tone by 20, decrease thickness by 10
+			// Increase taint by 2 and max out lust
+			// Physique is decreased by 5-10
+			// Player is put in normal doll maker lab screen
+			pc.physique(-5);
+			pc.modTone(-20, false);
+			pc.modThickness(-10, false);
+			for(i = 0; i < pc.breastRows.length; i++)
+			{
+				pc.breastRows[i].breastRatingRaw += 7;
+			}
+			pc.hipRatingRaw += 8;
+			pc.buttRatingRaw += 8;
+			if(pc.hasCock())
+			{
+				for(i = 0; i < pc.cocks.length; i++)
+				{
+					pc.cocks[i].cLengthRaw += 4;
+					if(pc.hasPerk("Hung")) pc.cocks[i].cLengthRaw += 2;
+					if(pc.hasPerk("Mini")) pc.cocks[i].cLengthRaw -= 2;
+				}
+				if(pc.balls > 0)
+				{
+					pc.ballSizeRaw += 3;
+					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1.5;
+				}
+				if(pc.ballFullness < 100) pc.ballFullness = 100;
+				if(pc.refractoryRate < 30) pc.refractoryRate += 2;
+			}
+			pc.taint(2);
+			pc.maxOutLust();
+			
+			IncrementFlag("DOLLMAKER_USE_EMITTER");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "use spray":
+			showDollmaker();
+			
+			output("You take the sprayer arm down from the Doll Maker, accessing the limb easily. You hold it out in front of you, looking at the color variants. It seems arm can’t switch the colors on its own, but requires the help of an operator. In this case, you.");
+			output("\n\nThere are a number of colors available to choose from and the color canister could easily be switched out for another if you so desire. If you’re feeling up to it, you could also give yourself a nice, new coat of color--though it’ll be a latex coating to be precise.");
+			output("\n\nIf you take a big dose, you’ll permanently change your skin. If you take less, the colored coat could peel off over time.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			if(pc.hasStatusEffect("Latex Sprayed"))
+			{
+				addDisabledButton(0, "Small Dose", "Small Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+				addDisabledButton(1, "Big Dose", "Big Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+			}
+			else
+			{
+				addButton(0, "Small Dose", drBadgerLabDollMaker, "min spray", "Small Dose", "Temporarily trade out some reflexes for latex skin.");
+				addButton(1, "Big Dose", drBadgerLabDollMaker, "max spray", "Big Dose", "Trade out lots of reflexes for latex skin.");
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "play back");
+			break;
+		case "min spray":
+		case "max spray":
+			showDollmaker();
+			
+			output("You’ve decided that you want to use the latex spray gun. What color do you use?");
+			output("\n\n");
+			
+			var sprayColors:Array = [];
+			
+			sprayColors.push(["Red", "red"]);
+			sprayColors.push(["Orange", "orange"]);
+			sprayColors.push(["Yellow", "yellow"]);
+			sprayColors.push(["Green", "green"]);
+			sprayColors.push(["Blue", "blue"]);
+			
+			sprayColors.push(["Purple", "purple"]);
+			sprayColors.push(["Pink", "pink"]);
+			sprayColors.push(["Cyan", "cyan"]);
+			sprayColors.push(["Black", "black"]);
+			sprayColors.push(["White", "white"]);
+			
+			sprayColors.push(["Silver", "silver"]);
+			sprayColors.push(["Gold", "gold"]);
+			sprayColors.push(["Platinum", "platinum"]);
+			sprayColors.push(["Iridescent", "iridescent"]);
+			
+			for(i = 0; i < sprayColors.length; i++)
+			{
+				addButton(i, sprayColors[i][0], drBadgerLabDollMakerSprayRouter, [pc, response, sprayColors[i][1]], StringUtil.toDisplayCase(sprayColors[i][1]), ("Spray paint your skin to " + sprayColors[i][1] + "."));
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "use spray");
+			break;
+		case "min spray go":
+			showDollmaker();
+			
+			var latexColorMin:String = (flags["DOLLMAKER_LATEX_SKIN"] != undefined ? flags["DOLLMAKER_LATEX_SKIN"][3] : "black");
+			
+			output("Sure, latex skin is fun and all, but maybe not permanently. You decide you’ll only spray yourself with some " + latexColorMin + ", and not so much that won’t come off.");
+			output("\n\nYou prepare the device, setting up the spray, replacing the can with the chosen color, and pointing the nozzle towards yourself. Nervousness sits in your frame as you continue, your fingers shaking slightly when you get ready to click the button.");
+			output("\n\nYou turn the device on and stand there as the " + latexColorMin + " latex goo bursts out, hitting you and crawling along your skin. It’s warm while it coats you up and down. You quickly move out of the way once you are completely wrapped in the stuff and decide you’ve got plenty of it. As expected, it makes your movements rigid, but eventually, you know it will chip off. For the time being, <b>you now have " + latexColorMin + " latex skin.</b>");
+			output("\n\n");
+			
+			processTime(8);
+			
+			// Player gets status effect: Latex Sprayed
+			// Almost the same thing as during the fight; the player loses 15 reflexes, 1 point coming back every hour. Once it’s over, their skin goes back to whatever it was, and they get a bonus point of reflexes
+			nMult = 15;
+			createDollMakerStatusEffect(pc, "Latex Sprayed", (1 * nMult), 0, 0, 0, false, (60 * nMult));
+			pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
+			pc.clearSkinFlags();
+			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+			pc.skinTone = latexColorMin;
+			pc.lust(15);
+			
+			IncrementFlag("DOLLMAKER_USE_SPRAY");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "max spray go":
+			showDollmaker();
+			
+			var latexColorMax:String = (flags["DOLLMAKER_LATEX_SKIN"] != undefined ? flags["DOLLMAKER_LATEX_SKIN"][3] : "black");
+			
+			output("Surely there’s nothing wrong with a fresh coat of latex skin, right?");
+			output("\n\nYou carefully unclip the tank of paint from the device, then clip on the " + latexColorMax + " you want. Once it’s attached, you stand in front of the limb, positioning the spout in your direction. Your fingers explore along the machine until you find the spray button. You back up and prepare yourself.");
+			output("\n\nYou click the button.");
+			output("\n\nA warm jet of " + latexColorMax + " latex goo fizzes out of the lead nozzle, directly toward you. You slowly turn in place to make sure it covers you in your entirety. It seems you didn’t need to though, as the latex paint seems to crawl across your body, tickling you as it sets in and wraps you from top to bottom. Your arms and legs become rigid quickly, but that’s just a small sacrifice for such beauty.");
+			
+			processTime(15);
+			
+			// Convert skin over
+			pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
+			pc.clearSkinFlags();
+			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+			pc.skinTone = latexColorMin;
+			// Gloss level
+			pc.createStatusEffect("Latex Skin", 0, 0, 0, 0);
+			if(pc.statusEffectv1("Latex Skin") < 3) pc.addStatusValue("Latex Skin",1,1);
+			// Player gets black latex perk on first time, with no side effects.
+			if(!pc.hasPerk("Black Latex"))
+			{
+				output("\n\nOnce the paint is completely set in, you look at yourself. Your " + latexColorMax + " arms and " + (pc.hasLegs() ? "legs" : "lower body") + ", as well as your doll-like skin, have a plastic, rubbery look. You’re so pretty.");
+				if(latexColorMax != "black") output(" Suddenly, the entire color starts becoming darker, flashing to solid black within seconds before gradually returning back to your chosen color.... Strange.");
+				output(" Your skin quickly absorbs the paint you just sprayed on yourself, the rigidity disappearing seconds later.");
+				output("\n\n(<b>Perk Gained: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
+				pc.createPerk("Black Latex", 0, 0, 0, 0, "Gives you delightful latex skin, but keeps you slightly more aroused at all times.");
+			}
+			// Second and beyond, PC loses 5-10 reflex, and gains 1 taint
+			else
+			{
+				output("\n\nThe paint completely sets in and <b>you now have " + latexColorMax + ", latex skin!</b>");
+				pc.reflexes(-5);
+				pc.taint(1);
+			}
+			output("\n\n");
+			pc.lust(35);
+			
+			flags["DOLLMAKER_LATEX_SKIN"] = undefined;
+			
+			IncrementFlag("DOLLMAKER_USE_SPRAY");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "use visor":
+			showDollmaker();
+			
+			output("You pull down the Mindwash visor from the collection of disabled limbs. It sits as two plates, each one presumably belonging on a user’s ears. Once on, a holoscreen would appear and project imagery right in front of the user’s face... a very certain kind of imagery, knowing Badger.");
+			output("\n\nYou could use it if you want, but this Mindwash visor doesn’t seem to have a ‘low’ function. This could result in some strange effects. Of course, you could just pull it off if things get too intense... or just indulge without caring.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Minutes] [Hours]
+			if(pc.hasStatusEffect("Mindwashed"))
+			{
+				addDisabledButton(0, "Quickie", "Quickie", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+				addDisabledButton(1, "Immerse", "Immerse", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+			}
+			else
+			{
+				addButton(0, "Quickie", drBadgerLabDollMaker, "min visor", "Quickie", "Use the visor for a little bit.");
+				addButton(1, "Immerse", drBadgerLabDollMakerVisorHours, undefined, "Immerse", "Use the visor for as long as you want.");
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "play back");
+			break;
+		case "min visor":
+			showDollmaker();
+			
+			output("Some porn couldn’t hurt, right? You take each plate like a pair of headphones, and place them on the sides of your head. You search the ear pieces with your fingers before you find the ‘on’ switch. A sigh exits your lips as you prepare yourself.");
+			output("\n\nYou press the button.");
+			output("\n\nSuddenly, a purple holoscreen flashes right in front of your eyes, somewhat transparent before images and videos begin to appear. Chicks with giant tits bursting out of their clothes, dudes swinging dicks big enough to break someone in half, femboys, snake girls, and much more are stuffed into your mind. You can think about nothing more than sex right now, your hands idly groping yourself while ideas of hardcore porn float through your head. Your brain is like a sponge to all this, sucking up every last drop... but of course, sponges can overflow. Who cares about the training you went through to defend yourself? You could just fuck every enemy until they’re screaming your name.... It’s like all the real memories of learning to fight are squeezed out to make more room for all the absurdly hot characters fucking their way into your head.");
+			output("\n\nWait, no!");
+			output("\n\nYou quickly take your hands from your [pc.groin] and grab the plates of the visor, ripping them off and turning the device off. Panting while you think of the " + (silly ? "sexcapade" : "sexual escapade") + " you just experienced, you realize how risky that just was. You hold up your hands in front of you... you DO remember how to fight, right? Of course you do. You just need a refresher is all.");
+			output("\n\n");
+			
+			processTime(8);
+			
+			// +60 lust
+			// Gain status effect: Mindwashed
+			// -10 aim, 1 point coming back every hour
+			nMult = 10;
+			createDollMakerStatusEffect(pc, "Mindwashed", (1 * nMult), 0, 0, 0, false, (60 * nMult));
+			pc.lust(65);
+			
+			IncrementFlag("DOLLMAKER_USE_VISOR");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "use iqbgone":
+			showDollmaker();
+			
+			output("You grab toward the base of the arm that houses one of the most dangerous drugs on the planet... <b>IQ-B-GONE</b>. A syringe filled with ominous green fluid rests at the tip of the limb as you pull it down. You look at the needle... how evil could someone be that they want to reduce the IQ of someone else?");
+			if(silly) output(" Clearly a-fucking-lot of people are this evil, seeing how many bimbos you’ve met.");
+			output("\n\nWell... you could use it on yourself if you want. It could be incredibly fun to be dumb, but it’s hard to say. You could take a small dose if you wanted to just test it, or just say “fuck it” and inject the whole syringe into yourself. Or avoid all risks and simply don’t take it.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Small dose] [Big dose] [Back]
+			if(pc.hasStatusEffect("IQ B-Gone"))
+			{
+				addDisabledButton(0, "Small Dose", "Small Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+				addDisabledButton(1, "Big Dose", "Big Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+			}
+			else
+			{
+				addButton(0, "Small Dose", drBadgerLabDollMaker, "min iqbgone", "Small Dose", "Temporarily trade out some intelligence for a boost in libido.");
+				addButton(1, "Big Dose", drBadgerLabDollMaker, "max iqbgone", "Big Dose", "Trade out lots of intelligence for a boost in libido.");
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "play");
+			break;
+		case "min iqbgone":
+			showDollmaker();
+			
+			output("Being knocked down a few pegs couldn’t be all that bad, right? Even then, you’ll just take a small dose so it’ll (hopefully) be temporary.");
+			output("\n\nYou examine the needle, applying a little pressure at the base to cause a tiny dollop of the poison-like substance to escape. The drip hits the floor silently. Your hands are a bit shaky as you prepare to inject a small bit of it.");
+			output("\n\nYou calm your hands enough to hold the needle tip still and solid. Slowly and carefully, the tip pierces your " + (silly ? "wagina" : "inner elbow") + ", and the automatic dispensing system activates, gradually sending the green liquid into your veins. After about a quarter of the syringe has entered you, you pull your arm back. The pressure-sensitive needle automatically stops dispensing and you prepare yourself for the imminent changes: the drug siphoning your brain power away.");
+			output("\n\nJust seconds later, you feel different. IQ points seem to disappear quickly as you are looking down at your body.");
+			if(pc.biggestTitSize() >= 5 && pc.biggestCockLength() >= 8) output(" Wow, you’ve got a lot going for you. Tits and a dick, perfectly complimenting each other.");
+			else if(pc.biggestCockLength() >= 8) output(" Wow, what a great dick, you think to yourself.");
+			else if(pc.biggestTitSize() >= 5) output(" Wow, those are some nice tits, you think to yourself.");
+			else output(" It’s so mesmerizing to just look at yourself.");
+			output("\n\nThinking is getting harder while your carnal desires are becoming much more prominent. It’s like, fucking is totally easier than fighting, and who needs to fight when you’re this hot? Literally all you’d have to do to win a battle is to twerk your ass or suck the enemy’s dick. Even if it’s not a technical win, it’s still a win for you because you get to pleasure someone else... and maybe they’ll even return the favor.");
+			output("\n\nYou know the drug you just took is temporary, but stumbling around only thinking about sex is so much more fun!");
+			
+			processTime(8);
+			
+			// Gain either low intelligence speak perk based on gender score
+			// +40 Libido, -40 intelligence. Each stat decreases and increases respectively by 1 every hour
+			// Dumb speaking perks go away once the IQ-B-GONE effect ends
+			nMult = 40;
+			createDollMakerStatusEffect(pc, "IQ B-Gone", (1 * nMult), (1 * nMult), 0, 0, false, (60 * nMult));
+			pc.lust(65);
+			if(!pc.hasPerk("Ditz Speech"))
+			{
+				output("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+				pc.createPerk("Ditz Speech", 0, 0, 0, 0, "Alters dialogue in certain scenes.");
+			}
+			
+			IncrementFlag("DOLLMAKER_USE_IQBEGONE");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "max iqbgone":
+			showDollmaker();
+			
+			output("With the needle so close to you, there’s only one thing you can think about: <i>“I am going to get so fucked up, and I’m going to have a great time doing it.”</i>");
+			output("\n\nWhy hold back at this point? You have the opportunity to party right there, in that syringe. You take hold of it and, with a deep breath, plunge it into your arm, closing your eyes while the needle gradually dispenses its payload into you.");
+			output("\n\nYour heart begins racing as you open your eyes again, looking back at a now-empty needle. You pull yourself away from it, watching the clear tube of the syringe begin to automatically refill itself with its bubbly, green brew; meanwhile, that same liquid concoction begins to do some work on your system. Your skin feels all tingly and you develop goosebumps, your IQ rapidly draining from you while the drug activates.");
+			output("\n\nYour hands seem to move on their own, groping you relentlessly while your [pc.groin] burns with lust. Everything is so pretty, mainly you. Why even bother with being smart? It’s so much easier to let other people handle things while you masturbate. Just leave the hard stuff for people who were trained for it.");
+			output("\n\nAfter a few minutes, it seems the content of the needle has fully circulated through your body’s system. You’re dumber, that’s absolutely certain, and you’re feeling like you could fuck a whole brothel dry and then some.");
+			output("\n\n");
+			
+			processTime(15);
+			
+			// Gain a random perk of the following: Easy, Fuck sense, weak minded, ditz speech, breed hungry
+			// -5 to 15 intelligence
+			var iqPerkList:Array = [];
+			
+			if(!pc.hasPerk("Easy")) iqPerkList.push("Easy");
+			if(!pc.hasPerk("Inhuman Desire")) iqPerkList.push("Inhuman Desire");
+			if(!pc.hasPerk("Breed Hungry")) iqPerkList.push("Breed Hungry");
+			if(!pc.hasPerk("Ditz Speech")) iqPerkList.push("Ditz Speech");
+			if(!pc.hasPerk("Drug Fucked")) iqPerkList.push("Drug Fucked");
+			if(!pc.hasPerk("Fuck Sense")) iqPerkList.push("Fuck Sense");
+			if(!pc.hasPerk("Weak Mind")) iqPerkList.push("Weak Mind");
+			
+			if(iqPerkList.length > 0)
+			{
+				var iqPerk:String = RandomInCollection(iqPerkList);
+				switch(iqPerk)
+				{
+					case "Easy":
+						output("\n\n(<b>Perk Gained: Easy</b> - gain 20% more lust from combat sources.)");
+						pc.createPerk("Easy", 20, 0, 0, 0, "Gain 20% more lust from combat sources.");
+						break;
+					case "Inhuman Desire":
+						output("\n\n(<b>Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 15.)");
+						pc.createPerk("Inhuman Desire", 15, 0, 0, 0, "Increases maximum lust by 15.");
+						break;
+					case "Breed Hungry":
+						output("\n\n(<b>Perk Gained: Breed Hungry</b> - Your balls refill much faster than normal and your pregnancies are more likely and faster.)");
+						pc.createPerk("Breed Hungry", 15, 0, 0, 0, "Increases speed that semen is created at and the pregnancy speed.");
+						break;
+					case "Ditz Speech":
+						output("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+						pc.createPerk("Ditz Speech", 0, 0, 0, 0, "Alters dialogue in certain scenes.");
+						break;
+					case "Drug Fucked":
+						output("\n\n(<b>Perk Gained: Drug Fucked</b> - minimum libido raised to 40, minimum lust rating increased by 10, future libido gains doubled, future intelligence gains halved.)");
+						pc.createPerk("Drug Fucked", 0, 0, 0, 0, "Grants: +40 to minimum libido, +10 to minimum lust, halved intelligence gains, and doubled libido gains.");
+						break;
+					case "Fuck Sense":
+						output("\n\n(<b>Perk Gained: Fuck Sense</b> - The Sense ability now relies on your libido rather than intelligence.)");
+						pc.createPerk("Fuck Sense", 15, 0, 0, 0, "Allows your sense ability to base success off your libido instead of intelligence.");
+						break;
+					case "Weak Mind":
+						output("\n\n(<b>Perk Gained: Weak Mind</b> - You lose willpower twice as fast.)");
+						pc.createPerk("Weak Mind", 0, 0, 0, 0, "Intelligence and willpower losses doubled.");
+						break;
+				}
+			}
+			pc.intelligence(-5);
+			pc.taint(2);
+			
+			IncrementFlag("DOLLMAKER_USE_IQBEGONE");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "use lamp":
+			showDollmaker();
+			
+			output("You take the swirly pink lamp and pull it down some, observing the way it’s set up. It’s like a surgical lamp, and would only light up a small circle wherever it was aimed - though, instead of normal light, this lamp would probably melt whatever’s in your head with radiation (assuming the name is accurate, that is).");
+			output("\n\nThough it’s undoubtedly dangerous--not surprising, most of Badger’s devices are. It’s also worth noting that they’ll all induce a pretty good time for the right sort of person. If you’re fine with the risks and rewards, this is definitely for you.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Small dose] [Big dose]
+			if(pc.hasStatusEffect("Brainmelt Lamps"))
+			{
+				addDisabledButton(0, "Small Dose", "Small Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+				addDisabledButton(1, "Big Dose", "Big Dose", "It would be too dangerous to try this again while you are already under the influence of this effect.");
+			}
+			else
+			{
+				addButton(0, "Small Dose", drBadgerLabDollMaker, "min lamp", "Small Dose", "Temporarily trade out some willpower for a shot of lust waves.");
+				addButton(1, "Big Dose", drBadgerLabDollMaker, "max lamp", "Big Dose", "Trade out lots of willpower for a shot of lust waves.");
+			}
+			addButton(14, "Back", drBadgerLabDollMaker, "play back");
+			break;
+		case "min lamp":
+			showDollmaker();
+			
+			output("Why not live a little? It could be quite fun to goof off from time to time, though you admit that using Badger’s stuff for too long could be genuinely dangerous. So that’s why you’ll only take a light dosing of this lamp’s radiation.");
+			output("\n\nWith the lamp in hand, you aim it at your head and search the back of it for the ‘on’ switch. Once your finger has found it, you click it down and prepare yourself.");
+			output("\n\nYour [pc.eyes] begin rolling back slightly as the pink light is absorbed into your head, your focus disappearing on the spot while the lamp works its magic. Drool begins to drip from your open mouth. So pretty...");
+			output("\n\nIn a fit, you shake your head rapidly and let the lamp slip from your hands, dangling harmlessly whilst aiming at the floor. What the hell just happened? And why is that question not even rhetorical? Your palm wipes the sweat from your forehead, practically dripping when you pull it away. Everything is so hot in your head... maybe a nice, cold shower out to fix this.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// Get status effect “brainmelt lamps”
+			// The usual: -15 willpower, 1 point coming back every hour, and an extra point when the effect ends
+			nMult = 15;
+			createDollMakerStatusEffect(pc, "Brainmelt Lamps", (1 * nMult), 0, 0, 0, false, (60 * nMult));
+			pc.lust(65);
+			
+			IncrementFlag("DOLLMAKER_USE_LAMP");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		case "max lamp":
+			showDollmaker();
+			
+			output("You already know just how serious Badger’s toys can be, from her silicone stuffing robot, to that weird ball with bimbofication powers, to the Doll Maker and its ability to, well, turn people into dolls. But this, this is probably the most messed up thing she has: a lamp that could melt your mind to mush. And you already know damn well you’re going to use it to have a great time.");
+			output("\n\nLamp in hand and already aimed at your face, you turn it on, accepting the questionable effects that are absolutely going to happen.");
+			output("\n\nStraight from the start, you can feel the radiation burning into your mind, cooking your brain in an oddly pleasant way. Hell, you might as well not even think about the negative effects of this strange machine - not that you remember them, anyway. You’re too busy indulging in the awesome feeling of staring into this pretty, hypno, swirly lamp. Your eyes are crossing slowly while you’re gradually dumbed down, with no intention of stopping, even as drool drips from your [pc.lips] down onto your [pc.chest].");
+			if(silly) output("\n\nYour fingers drag lightly across your forehead before going along the side of your head before coming to your [pc.ear]. What is this mush getting on your hand? You look at it, observing the melted pink material. It’s probably nothing.");
+			output("\n\nYour conscious is fading, along with your mind and will. Simply bathing your brain in this pink light is wonderful, and you just simply don’t want to stop. It’s just so good! Not to mention that groping yourself only amplifies the pleasure...");
+			output("\n\n");
+			
+			processTime(1);
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "max lamp next");
+			break;
+		case "max lamp next":
+			showDollmaker();
+			
+			output("Giggling as you slowly wake up, you see that you’re now on the floor while the lamp hangs down harmlessly. Extreme ardor fills the air - or, actually, maybe it’s just you that’s experiencing it, especially with how long you let the lamp have its way with you. It’s only been a few minutes, but it feels like you sucked up enough radiation, so much so that you’re surprised you didn’t grow an extra arm.");
+			output("\n\nYou feel... different, somehow. Less self control, and a much stronger urge to just do whatever the hell you want.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// -20 willpower
+			// -5 to 10 intelligence
+			// +15 libido
+			// Give perk “weak willed”
+			pc.willpower(-20);
+			pc.intelligence(-5);
+			pc.libido(15);
+			if(!pc.hasPerk("Weak Mind"))
+			{
+				output("\n\n(<b>Perk Gained: Weak Mind</b> - You lose willpower twice as fast.)");
+				pc.createPerk("Weak Mind", 0, 0, 0, 0, "Intelligence and willpower losses doubled.");
+			}
+			pc.taint(2);
+			
+			IncrementFlag("DOLLMAKER_USE_LAMP");
+			
+			addButton(0, "Next", drBadgerLabDollMaker, "play back");
+			break;
+		default:
+			showBust("");
+			
+			output("ERROR!");
+			output("\n\n");
+			
+			processTime(1);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function drBadgerLabDollMakerSprayRouter(arg:Array):void
+{
+	var target:Creature = (arg.length > 0 ? arg[0] : null);
+	var sScene:String = (arg.length > 1 ? arg[1] : "error");
+	var sColor:String = (arg.length > 2 ? arg[2] : "black");
+	
+	if(target == null) return;
+	
+	// Store skin values
+	if(target is PlayerCharacter)
+	{
+		flags["DOLLMAKER_LATEX_SKIN"] = [
+			target.skinType,
+			target.skinFlags,
+			target.skinTone,
+			sColor,
+		];
+		return drBadgerLabDollMaker(sScene + " go");
+	}
+}
+public function drBadgerLabDollMakerVisorHours():void
+{
+	eventQueue.push(drBadgerLabDollMakerVisorEnd);
+	
+	// Player gets access to usual mindwash visor scenes.
+	return useShipMindwashMeee();
+}
+public function drBadgerLabDollMakerVisorEnd():void
+{
+	clearOutput();
+	showDollmaker();
+	author("Jacques00");
+	
+	output("You still feel a bit lightheaded when leaving the seat and reclaiming your gear but you are otherwise intact, more or less. If you were of the right mind, you’d suspect Doctor Badger to have slipped a little something extra in the device to enhance the experience.");
+	output("\n\nSuddenly,");
+	if(pc.lust() < pc.lustMax()) output(" your lust spikes up and");
+	output(" your Codex beeps, and, sure enough, your suspicions are proven correct. You should trust to never make it out of anything untainted by her....");
+	output("\n\n");
+	
+	processTime(2);
+	
+	// Player gains 8% taint and max lust at the end. That’s it.
+	pc.taint(8);
+	pc.maxOutLust();
+	
+	IncrementFlag("DOLLMAKER_USE_VISOR");
+	
+	clearMenu();
+	addButton(0, "Next", drBadgerLabDollMaker, "play back");
+}
+
+// Strange ball
+// Repeatable scene that can either bimbo the player or partially debimbo the player. Puts player’s tits at F cups, butt at size 12, hip at size 8, and intelligence at 60% while draining some willpower. Therefore, if they’re extremely stupid, they gain a significant amount of intelligence.
+public function drBadgerLabStrangeBall(response:String = "menu"):void
+{
+	clearOutput();
+	author("Natetheman223");
+	clearMenu();
+	
+	var i:int = 0;
+	var nIQ:Number = pc.IQ();
+	var isDummy:Boolean = ((pc.isBimbo() && nIQ == 60) || nIQ < 60);
+	
+	switch(response)
+	{
+		case "menu":
+		case "back":
+			showBrainwashingBall();
+			
+			output("You walk up to the dark ball, observing it and even touching it once. It’s completely turned off, sitting atop a pedestal with a few wires hanging from the bottom. This must be what Badger used to bimbofy the pexiga - which is weird, because usually bimbofication makes the person dumber.");
+			output("\n\n");
+			if(isDummy) output("Though... you’re kinda dumb, too... maybe you could use it in a similar fashion?");
+			else output("With your current level of intelligence, you’re pretty sure this would just make you dumber.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Use] [Nevermind]
+			addButton(0, "Use", drBadgerLabStrangeBall, "use", "Use Brainwashing Ball", "Attempt to fix the machine.");
+			addButton(1, "Nevermind", mainGameMenu);
+			break;
+		case "use":
+			showBrainwashingBall();
+			
+			output("Seeing as how the pexiga had a ton of fun with this, surely you can as well - without help from Badger. You look at the disabled ball, sitting high and mighty. How did Badger turn it on, you wonder?");
+			output("\n\nThe pedestal has a switch on the side. That should be it. You compose yourself as you press it, watching the ball light up the entire lab, swirling with hypno greens, blues, and yellows. It’s actually somewhat enticing now that you’re right here... scratch that, it’s <i>really</i> enticing. Your hands just guide themselves up without your permission, landing on the pretty ball. Swirling colors overtake your sight as you become blinded - literally <i>and</i> metaphorically.");
+			output("\n\nYour tongue lolls out while brain power seems to just pour free, your mind becoming much more open and empty while IQ points disappear. Thinking is becoming harder, not that it matters when you feel this good.");
+			if(pc.hasCock())
+			{
+				output(" Your [pc.cocks] develop" + (pc.cocks.length == 1 ? "s" : "") + " rapidly, swelling and hanging lower in no time,");
+				if(pc.balls > 0) output(" not to mention your [pc.balls] expanding from the newly added [pc.cum] plumping them up.");
+				else output(" having grown at least a couple inches longer.");
+			}
+			if(pc.biggestTitSize() >= 1 && pc.biggestTitSize() < 11) output(" [pc.Boobs] bloat on your chest, perky, round and proud, as if mental capacity was traded out to fill them. Didn’t Badger say F cups were the max that this could give you? That sucks, because letting your tits blow up like this feels awesome!");
+			if(!isDummy)
+			{
+				output("\n\nYour brain-related abilities dwindle rapidly, but you’re beyond the point of caring; it just feels so good to give up your body and mind to something, free to modify you as it pleases. And it does,");
+				if(pc.isFeminine()) output(" your lower half filling out as your cheeks swell and grow perfectly, fuckable by anyone who passes by and has a dick.");
+				else output(" your male attributes disappearing in favor of making your butt nice and plump.");
+			}
+			output("\n\nIt’s just like, so awesome to let this weird ball thing change your body. You’ve completely submitted to an inanimate object that only has the intention of making people dumb and blowing up their bodies, which is totally cool because you love being modified at someone (or something) else’s discret- disc- you love when other people change you, is a good way to put it.");
+			if(isDummy)
+			{
+				output("\n\nSomething... weird is going on. You swear you can feel a machine turning over inside your head, because something’s about to kickstart! Still holding the ball, a switch clicks. What... did... did the ball just make you smarter?! No way... really? This must be what happened to the pexiga when she used this. You’re not exactly a genius now, but you definitely got a bit smarter - at least a little.");
+			}
+			output("\n\nThe effects slowly come to a stop, and the swirly colors of the ball begin to dim as you break away. You’ve changed a fair bit thanks to this strange orb, but it was fun the entire way through. After taking a few steps away, the ball completely shuts off, and you’re on your merry way - with sexier thoughts, of course.");
+			output("\n\n");
+			
+			processTime(12);
+			
+			// Intelligence turns 60% no matter what
+			// -20% or so willpower
+			// Get “ditz speech” if they don’t have it already
+			// Butt size changes to 12 and hip to 8, unless the player is bigger, then no change
+			// Tits turn to F cups unless player had a flat chest or is bigger, then no change
+			// Increase dick length by up to 10 inches if they have one
+			// Increase ball size by a LOT if player has them
+			
+			pc.intelligenceRaw = Math.round(0.60 * pc.intelligenceMax());
+			pc.willpower(-20);
+			
+			if(!pc.hasPerk("Ditz Speech"))
+			{
+				output("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+				pc.createPerk("Ditz Speech", 0, 0, 0, 0, "Alters dialogue in certain scenes.");
+			}
+			
+			if(pc.biggestTitSize() >= 1)
+			{
+				for(i = 0; i < pc.breastRows.length; i++)
+				{
+					if(pc.breastRows[i].breastRatingRaw < 11) pc.breastRows[i].breastRatingRaw = 11;
+				}
+			}
+			if(pc.hipRatingRaw < 8) pc.hipRatingRaw = 8;
+			if(pc.buttRatingRaw < 12) pc.buttRatingRaw = 12;
+			if(pc.hasCock())
+			{
+				for(i = 0; i < pc.cocks.length; i++)
+				{
+					if(pc.cocks[i].cLengthRaw < 10)
+					{
+						pc.cocks[i].cLengthRaw = 10;
+						if(pc.hasPerk("Hung")) pc.cocks[i].cLengthRaw += 5;
+					}
+				}
+				if(pc.balls > 0)
+				{
+					pc.ballSizeRaw += 8;
+					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 4;
+				}
+				if(pc.ballFullness < 100) pc.ballFullness = 100;
+			}
+			
+			IncrementFlag("BRAINWASHINGBALL_USES");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			showBust("");
+			
+			output("ERROR!");
+			output("\n\n");
+			
+			processTime(1);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
 /*
 
 As a side note, there are some new blurbs when outputting anything breast, ass, hip, or lip related. These will appear when the player’s boob, lip, ass, or hip size is 60% or more silicone.
@@ -3528,6 +5090,7 @@ public function drBadgerSiliconeMiniTankBonus(btnSlot:int = 0):void
 	if(pexigaIsCrew()) siliconeTankBlurbs.push("Some drool leaks down the side of the tank.");
 	if(gooArmorIsCrew()) siliconeTankBlurbs.push("A splatter or gray microbots sticks to the side of the tank.");
 	if(azraIsCrew()) siliconeTankBlurbs.push("A singular rose hangs off the side of the tank, held on by a tiny piece of tape.");
+	if(pennyIsCrew()) siliconeTankBlurbs.push("A small U.G.C. sticker is on the side.");
 	if(siliconeTankBlurbs.length > 0) output(" " + siliconeTankBlurbs[rand(siliconeTankBlurbs.length)]);
 	
 	addButton(btnSlot, "SiliconeTank", drBadgerSiliconeMiniTank, undefined, "Silicone Tank", "Have a look at the installed silicone tanks.");
@@ -3592,14 +5155,14 @@ public function drBadgerSiliconeTankMenu():void
 	if(silicone == null && flags["BADGER_SILICONE_TANK_USES"] <= 0) { /* Use it at least once! */ }
 	else if(silicone == null || silicone.value1 < maxHips || silicone.value2 < maxButt || silicone.value3 < maxBoob || silicone.value4 < maxLips)
 	{
-		var drBadgerCanAppear:Boolean = (flags["DR_BADGER_TURNED_IN"] == undefined && !chars["DRBADGER"].isBimbo());
+		var drBadgerCanAppear:Boolean = (flags["DR_BADGER_TURNED_IN"] == undefined);
 		
-		if(!inShip && pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump silicone into your body.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
+		if(!inShip && pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump as much silicone into your body as you can.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
 		else addButton(4, (!inShip ? "Go Crazy" : "Full Inject"), drBadgerSiliconeTankUse, "go crazy", (!inShip ? "Go Crazy" : "Full Inject"), "Pump as much silicone into your body as you can.");
 	}
 	else addDisabledButton(4, (!inShip ? "Go Crazy" : "Full Inject"), (!inShip ? "Go Crazy" : "Full Inject"), "All your body parts are filled to the max with silicone!");
 	
-	if(silicone != null) addButton(9, "Total Suck", drBadgerSiliconeTankUse, "total suck", "Total Suck", "Pump silicone out of your body.");
+	if(silicone != null && (silicone.value1 + silicone.value2 + silicone.value3 + silicone.value4) > 0) addButton(9, "Total Suck", drBadgerSiliconeTankUse, "total suck", "Total Suck", "Pump silicone out of your body.");
 	else addDisabledButton(9, "Total Suck", "Total Suck", "You don’t have any silicone to pump out!");
 	
 	if(!inShip)
@@ -3633,7 +5196,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Breast size increases by a single cup size, for all rows
-			nymFoeInjection(3, 1);
+			nymFoeInjection(pc, 3, 1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3646,7 +5209,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Breast size decreases by a cup size, for all rows
-			nymFoeInjection(3, -1);
+			nymFoeInjection(pc, 3, -1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3659,7 +5222,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Ass size increases by 1
-			nymFoeInjection(2, 1);
+			nymFoeInjection(pc, 2, 1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3672,7 +5235,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Ass size decreases by 1
-			nymFoeInjection(2, -1);
+			nymFoeInjection(pc, 2, -1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3685,7 +5248,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Hip size increases by 1
-			nymFoeInjection(1, 1);
+			nymFoeInjection(pc, 1, 1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3698,7 +5261,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(2);
 			
 			// Hip size decreases by 1
-			nymFoeInjection(1, -1);
+			nymFoeInjection(pc, 1, -1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3711,7 +5274,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(1);
 			
 			// Lip size increases by 1
-			nymFoeInjection(4, 1);
+			nymFoeInjection(pc, 4, 1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3724,7 +5287,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(1);
 			
 			// Lip size decreases by 1
-			nymFoeInjection(4, -1);
+			nymFoeInjection(pc, 4, -1);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3738,7 +5301,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			
 			// Cup, hip and butt size increase by 10
 			// Lip size increases by 3
-			nymFoeMaxInjection(siliconeMaxHips(inShip), siliconeMaxButt(inShip), siliconeMaxBoob(inShip), siliconeMaxLips(inShip));
+			nymFoeMaxInjection(pc, siliconeMaxHips(inShip), siliconeMaxButt(inShip), siliconeMaxBoob(inShip), siliconeMaxLips(inShip));
 			
 			if(!inShip && flags["BADGER_SILICONE_GO_CRAZY"] >= 3 && !pc.hasPerk("Implant-tastic"))
 			{
@@ -3768,7 +5331,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			processTime(4);
 			
 			// All silicone is removed
-			nymFoeUninjection();
+			nymFoeUninjection(pc);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
 			drBadgerSiliconeTankMenu();
@@ -3828,11 +5391,13 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			author("Kirorororo");
 			
 			output("You take the needle, happily shoving it into your waist before slamming the ‘blow’ button. Being stuffed with bio-silicone feels right, how it travels under your skin, tickling you and leaving a feeling of bliss behind, but even you know that you should stop eventually... maybe another minute or two. You press the blow button again to stop the incoming flow, but it just starts blowing silicone into you faster, you must’ve broken the button! Ooh! The sensation amplifies itself, buzzing under your skin, making you even more sensitive as every drop of the biomaterial starts changing your nervous connections.");
-			output("\n\nYour body inflates and bloats rapidly as the huge silicone tank spills itself into you. Your chest swells wildly until you topple over forward, your ass and hips");
-			if(!pc.isNude()) output(" stretching your [pc.gear], your lips surging by waves, rapidly taking up half your face and quickly even more... you could, like suck the biggest dick in the universe with fuckpillows like these. Your outfit suddenly rips into shreds, leaving your expanding body vulnerable to the cold air of the lab, your [pc.nippleCocks] expanding to ridiculous sizes. It doesn’t really matter, because you didn’t like wearing anything anyway.");
-			else output(" expanding with no resistance, your lips surging by waves, rapidly taking up half your face and quickly even more... you could, like suck the biggest dick in the universe with fuckpillows like these.");
+			output("\n\nYour body inflates and bloats rapidly as the huge silicone tank spills itself into you. Your chest swells wildly until you topple forward, your ass and hips");
+			if(!pc.isNude()) output(" stretching your [pc.gear]");
+			else output(" expanding with no resistance");
+			output(", your lips surging by waves, rapidly taking up half your face and quickly even more... you could, like, suck the biggest dick in the universe with fuckpillows like these.");
+			if(!pc.isNude()) output(" Your outfit suddenly rips into shreds, leaving your expanding body vulnerable to the cold air of the lab, your [pc.nippleCocks] expanding to ridiculous sizes. It doesn’t really matter, because you didn’t like wearing anything anyway.");
 			
-			nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+			nymFoeMaxInjection(pc, siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
 			
 			processTime(14);
 			
@@ -3911,7 +5476,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			showName("\nWAKE UP!");
 			author("Jacques00");
 			
-			nymFoeMaxInjection(30, 30, 100, 10);
+			nymFoeMaxInjection(pc, 30, 30, 100, 10);
 			
 			output("Your mind ticks and you try to focus on the voice.");
 			output("\n\n<i>LIKE, WAKE UP!</i>");
@@ -3979,12 +5544,22 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			author("Kirorororo");
 			
 			// Boob size increases to hyper ZZZ cups, lip size increases to 40, butt and hip size increase to 70
-			nymFoeMaxInjection(60, 60, 190, 20);
+			nymFoeMaxInjection(pc, 60, 60, 190, 20);
 			
-			output("You wake up to Doctor Badger grabbing your flesh and testing its bounciness, the arousal seems to have awaken you.");
-			output("\n\nShe sees she has your attention, <i>“Well, well, honey. You used up a lot of silicone, I had to tear your hand away from the button before it got impossible to reach,”</i> you’re not sure if she’s annoyed or proud of you judging by her tone. <i>“Why would anyone press the ‘blow’ button again instead of just letting it go? You did this on purpose, didn’t you?”</i> she asks.");
-			output("\n\nYou didn’t mean to do it, but you didn’t regret any second of it either, you would do it again in a heartb- in a sec- like, you would do it again. You nod.");
-			output("\n\nBadger sighs, tsk-ing a few times. <i>“Well, I’ve got to cover the price of all that silicone now, don’t I?”</i> You feel guilty, looking down, slightly ashamed. <i>“I have a great idea darling, why don’t I help you get to the front and you can try out those new lips, I’m sure with the tips you’ll pay me back in no time right?”</i> You nod vigorously, your lips wobbling a little before settling into a smile. Maybe you could start to repay Doctor Badger right now?");
+			output("You wake up to Doctor Badger grabbing your flesh and testing its bounciness, the arousal seems to have woken you up.");
+			if(!chars["DRBADGER"].isBimbo())
+			{
+				output("\n\nShe sees she has your attention, <i>“Well, well, honey. You used up a lot of silicone, I had to tear your hand away from the button before it got impossible to reach.”</i> You’re not sure if she’s annoyed or proud of you, judging by her tone. <i>“Why would anyone press the blow button again instead of just letting it go? You did this on purpose, didn’t you?”</i> she asks.");
+				output("\n\nYou didn’t mean to do it, but you didn’t regret any second of it either, you would do it again in a heartb- in a sec- like, you would do it again. You nod.");
+				output("\n\nBadger sighs, tsk-ing a few times. <i>“Well, I’ve got to cover the price of all that silicone now, don’t I?”</i>");
+			}
+			else
+			{
+				output("\n\nShe sees she has your attention, <i>“Well, babe, you used up like, a ton of silicone, I had to pull your hand away from the button before you popped!”</i> She’s so proud of you, judging by her pleased tone. <i>“I thought about joining you! We could’ve like, been balloons together! But I have work ‘n’ stuff to do, so I can’t be mega huge all the time...”</i>");
+				output("\n\nYou didn’t mean to do it, but you didn’t regret any second of it either, you would do it again in a heartb- in a sec- like, you would do it again.");
+				output("\n\nBadger sighs once, <i>“You look, like, super sexy, but I need more money to replace the silicone.”</i>");
+			}
+			output(" You feel guilty, looking down, slightly ashamed. <i>“I have a great idea, darling, why don’t I help you get to the front and you can try out those new lips, I’m sure with the tips you’ll pay me back in no time right?”</i> You nod vigorously, your lips wobbling a little before settling into a smile. Maybe you could start to repay Badger right now?");
 			output("\n\n");
 			
 			processTime(93);
@@ -4025,13 +5600,13 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			
 			var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
 			
-			output("It’s only been a minute that you can already see a crowd gathering around. Raskvels cheering gleefully and gabilani observing you discreetly as they pass through until finally a short raskvel trap walks up to you. You can see a few others excitedly encourage him, <i>“Put it in!”</i>");
-			output("\n\nHe groans, <i>“F-fine,”</i> he says taking a step closer, now within your reach. He’s such a cutie! And his balls are so big! With arms stretched and minimal effort, you manage to reach his hips and position him in between your bosom. You skillfully remove his loincloth as his raskvel dick grows out of his boy pussy sheath, the tip oozing with precious semen.");
-			output("\n\nYou extend your puckered lips and... <i>what is this?!</i> The moment your [pc.lips] touch his member, your entire body is electrified.");
+			output("It’s only been a minute and you can already see a crowd gathering around. Raskvels cheering gleefully and gabilani observing you discreetly as they pass through. Eventually, a short raskvel trap walks up to you. You can see a few others excitedly encourage him, jeering and whispering, <i>“Put it in!”</i>");
+			output("\n\nHe groans. <i>“F-fine,”</i> he says taking a step closer. Now into your reach, you can appreciate how much of a cutie he is! And his balls are so big! With a little effort, you manage to reach his hips with your arms stretched out in between your buxom bosom. You skillfully remove his loincloth, the raskvel’s dick growing out of his boy pussy sheath. The tip oozes precious semen.");
+			output("\n\nYou extend puckered your lips and... <i>what is this...?!</i> The moment your [pc.lips] touch his member, your entire body is electrified.");
 			if(vIdx >= 0 || pc.isLactating())
 			{
 				output(" Y");
-				if(vIdx >= 0) output("ou splash a great amount of [pc.girlCumNoun] all over the wall and the floor behind you");
+				if(vIdx >= 0) output("ou splash a deluge of [pc.girlCumNoun] all over the wall and the floor behind you");
 				if(vIdx >= 0 && pc.isLactating()) output(", y");
 				if(pc.isLactating()) output("our [pc.breasts] shoot [pc.milkNoun] over the crowd like hoses");
 			}
@@ -4045,7 +5620,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			if(vIdx >= 0) pc.cuntChange(vIdx, ppTankKannon.cockVolume(0));
 			else pc.buttChange(ppTankKannon.cockVolume(0));
 			
-			output("\n\nThe penetration fills you entirely, the cock in your mouth ejaculates its hot sauce, filling your stomach to the brim. You continue suckling the rask boy’s shaft for what feels like hours, even after it’s gotten purple from your ruthless milking. Eventually, the pounding inside you makes your vision blur again and you know that this is, from now on, a way better reason to live and the only occupation that will satisfy you.");
+			output("\n\nThe penetration fills you entirely. The cock in your mouth ejaculates its hot sauce, filling your stomach to the brim. You continue suckling the rask boy’s shaft for what feels like hours, even after it’s gotten purple from your ruthless milking. Eventually, the pounding inside you makes your vision blur again and you know that this is, from now on, a way better reason to live and the only occupation that will satisfy you.");
 			if(silly) output("\n\nDoctor Badger got her money back that day, and some more thousand credits every day after that.");
 			
 			processTime(74);
@@ -4081,7 +5656,7 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, hips, and lips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
 	pc.createPerk("Implant-tastic", 0, 0, 0, 0, "Your body will convert most of the mass in your breasts, butt cheeks, hips and lips into silicone.");
 	
-	nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+	nymFoeMaxInjection(pc, siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
 	implantasticSiliconeConversion(pc);
 	flags["BADGER_SILICONE_TANK_USES"]++;
 	
@@ -4177,6 +5752,358 @@ public function implantasticSiliconeConversion(target:Creature):String
 	return msg;
 }
 
+// Buy a silicone tank
+// The following button requires that the player has viewed the silicone tank. It’s available when in Badger’s lab, as long as badger is not a bimbo.
+public function drBadgerSiliconeTankBuy(arg:Array):void
+{
+	clearOutput();
+	author("Natetheman223");
+	clearMenu();
+	
+	var response:String = (arg.length > 0 ? arg[0] : "intro");
+	var cost:int = (arg.length > 1 ? arg[1] : 0);
+	
+	switch(response)
+	{
+		case "intro":
+			showDrBadger();
+			
+			cost = 1000000;
+			if(flags["NYM-FOE_FIXED"] != undefined) cost -= 250000;
+			if(flags["DOLLMAKER_FIXED"] != undefined) cost -= 250000;
+			
+			output("Owning a personal silicone tank would be nice. You’d be able to inflate or deflate yourself at any time. Not to mention that it could be useful if an enemy manages to somehow pump some bio-silicone into you");
+			if(silly) output("--even though they probably wouldn’t, because artificial enhancements are a fairly niche kink, but you never know...");
+			output(".");
+			output("\n\n<i>“Hey Badger, have you ever considered selling one of your silicone tanks?”</i> you ask.");
+			output("\n\nThe mad doctor turns away from her junk pile");
+			if(silly) output(" (seriously, what the hell is she actually working on?)");
+			output(", and looks to you. <i>“My silicone pumps? While I’m very proud of them, I do admit... you’re probably the only person who ever actually uses them... willingly, that is. Not everyone is fine with big, fake titties... even then, you’re one of " + (pcBimboedByBadger() ? "my only subjects" : "the only people") + " who goes into my lab... again, </i>willingly<i>.”</i> Badger smirks to herself and pauses for a minute, then pulls up her goggles. She keeps her green eyes focused on your body, looking you over before trailing back up to your face.");
+			output("\n\n<i>“I do have smaller versions in storage however. I’ll give you one for say... ");
+			if(cost == 1000000) output("<b>");
+			output("a million credits");
+			if(cost == 1000000) output("</b>");
+			output(". Chances are, a big one wouldn’t even fit on your ship, unless you’ve got space made for cargo...”</i> The black furred badger decides.");
+			output("\n\n<i>“A million credits?!”</i> you shout. That’s a lot of money...");
+			output("\n\n");
+			if(cost == 750000) output("<i>“Well, you fixed one of my favorite toys. Tell you what, I’ll knock it down to <b>seven hundred, fifty thousand credits</b>.”</i> Badger decides. ");
+			else if(cost == 500000) output("<i>“Well, you fixed both my favorite toys in the lab, so... I’d be willing to knock it down to a <b>half-million credits</b>.”</i> Badger decides. ");
+			output("<i>“That’s my final offer. Just think about it... huge tits at any time, and you can have a hell of a party with your friends.”</i>");
+			output("\n\nWell?");
+			output("\n\n");
+			
+			processTime(3);
+			
+			if(flags["BADGER_SILICONE_TANK_INSTALLED"] == undefined) flags["BADGER_SILICONE_TANK_INSTALLED"] = 0;
+			
+			// [Yay] [Nay] [Other pay?]
+			// 1,000,000 creds if all her stuff is broken
+			// 750,000 creds if one thing is broken
+			// 500,000 creds if nothing is broken
+			if(pc.credits < cost) addDisabledButton(0, "Yay", "Accept", ("You cannot afford this! Badger is asking for " + cost + " credits."));
+			else addButton(0, "Yay", drBadgerSiliconeTankBuy, ["yay", cost], "Accept", ("Pay Doctor Badger the " + cost + " credits."));
+			addButton(1, "Nay", drBadgerSiliconeTankBuy, ["nay"], "Refuse", "Maybe some other time....");
+			addButton(2, "Other Pay?", drBadgerSiliconeTankBuy, ["other"], "Alternate Payment?", (!silly ? "Does Badger have a different way for you to pay?" : "Does Badger take Visa or Paypal?"));
+			break;
+		case "nay":
+			showDrBadger();
+			
+			output("<i>“Actually...”</i> you start, <i>“I think that the price is a bit too steep for me.”</i>");
+			output("\n\n<i>“Fair enough. If you happen to want it later, the offer still stands.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Next]
+			// Normal lab screen.
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "yay":
+			showDrBadger();
+			
+			output("You prepare a credit chit for the desired amount before handing it to Badger. She smiles and pockets it. The jumpsuited herm begins walking off to the lab, gesturing for you to follow. You catch up easily.");
+			output("\n\n<i>“So, I guess this tank isn’t portable enough to carry?”</i> You ask, walking with the doctor.");
+			output("\n\n<i>“No. It’s pretty heavy so I’ll send one of my drones to transport it to your ship. Besides, I don’t want you or any of your little employees rummaging through my stuff. Got it?”</i> You nod as you both reach the lab.");
+			output("\n\n");
+			
+			pc.credits -= cost;
+			
+			processTime(2);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["yay next"]);
+			break;
+		case "yay next":
+			currentLocation = "BIMBOTORIUM LAB";
+			generateMap();
+			
+			showDrBadger();
+			
+			output("The lab’s silicone tanks in front of you get measurement estimates forming in your head. Each one is about eight feet tall, maybe three feet wide...");
+			if(!pc.isBimbo()) output(" just one probably houses over five hundred gallons of silicone. That’s, what, maybe four thousand pounds, then?");
+			else output(" just one probably has enough silicone to give you some enormous boobs!");
+			output(" That’s a lot of silicone.... The whole tank is stainless steel, with a large glass line going down the side of it, allowing you to see the gelatin-like material inside. How the hell would any of these fit in your ship?");
+			output("\n\nFrom the back of the room, Badger seems to be preparing a different tank, about a quarter of the size of the ones you’re looking at. It’s maybe a bit larger than a nightstand, with a similar build compared to the other tanks. Basically a mini version of the ones you are familiar with, but still housing plenty of bio-silicone. You watch as the doctor pulls out and attaches a cargo bot, which lifts the tank up with relative ease, and hovers itself, payload and all, near you using anti-grav thrusters, tractor beams and sensors. A small ‘ding’ comes from your Codex, informing you that the drone is now tethered to your device, ready for you to guide. You then activate your Codex and manipulate the cargo bot to follow.");
+			output("\n\n<i>“The droid will automatically return after the drop-off. Can I trust it will be in good hands by then?”</i> Badger asks, crossing her arms as she watches you. You nod while you practice moving the silicone tank around with the bot, finding it rather easy. <i>“Good. I’ve got some stuff to work on in the meantime.”</i> She smiles. <i>“Oh, and don’t crash it into anything--especially cops. If you do, it’s programmed to self destruct. The last thing I want is the law tracking it back to me.”</i>");
+			output("\n\nWith that send-off, you set out.");
+			output("\n\n");
+			
+			processTime(7);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["yay install"]);
+			break;
+		case "yay install":
+			currentLocation = "SHIP INTERIOR";
+			generateMap();
+			
+			showBust("");
+			showName("TANK\nINSTALLED!");
+			
+			output("Controlling the bot with your Codex, you lead the way out of Badger’s lab and onto Novahome proper. With your eyes constantly changing their focus between the tank and the path ahead, you work your way up to the hangar and to your ship.");
+			if(silly) output(" You only bump the tank into a couple raskvel heads on your short journey.");
+			output("\n\nYou open up your ship’s airlock door and tow the tank inside, moving it to your storage and placing it in the corner. After releasing the cargo bot’s control from the tank, you lead it outside before it beeps in confirmation, disconnects from your link, and begins its return to sender. It flies back in the direction of Badger’s lab, going out of sight after a few seconds.");
+			output("\n\nClosing the hatch as you come back in, you head to the silicone tank to set it up. Once everything is plugged in, you try out the tube. Your light squeeze produces tiny droplets of bio-silicone to spill from the needle-tip. It’s ready.");
+			output("\n\n<b>You now have a silicone tank in your storage. It can be used at any time when in your ship.</b>");
+			output("\n\n");
+			
+			processTime(17);
+			
+			flags["BADGER_SILICONE_TANK_INSTALLED"] = 1;
+			
+			// [Next]
+			// SiliconeTank is now an option in the player’s storage.
+			// Player is put in ship main screen
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "other":
+			showDrBadger();
+			
+			if(!pc.isBimbo()) output("As cautious as you are of the idea, Badger may have a different way for you to pay.");
+			else output("Badger probably also has a totally fun way for you to pay! Maybe you should see what it is?");
+			output("\n\n<i>“Do you have a different way you’d like me to pay...?”</i> you ask, a bit shyly.");
+			output("\n\nBadger smiles almost deviously while she looks at you. <i>“You know me all too well... I could probably think of a fun way for you to pay.”</i> She places her goggles back on which makes you worry a little. <i>“How would you feel about carrying all the bio-silicone from the tank, in your body for... about a week or so? You’d look like the perfect woman. Then afterwards, you can have the tank. Sound good?”</i>");
+			output("\n\n");
+			
+			processTime(2);
+			
+			// [Sure] [No]
+			addButton(0, "Sure", drBadgerSiliconeTankBuy, ["other sure"], "Accept", "Carry a gigantic amount of silicone in your body for a week and get the silicone tank afterwards.");
+			addButton(1, "No", drBadgerSiliconeTankBuy, ["other no"], "Refuse", "You’d rather not carry so much silicone that your body pops.");
+			break;
+		case "other no":
+			showDrBadger();
+			
+			output("<i>“Uh... I think I’m going to have to decline that offer...”</i> you say, thinking about how cumbersome it would be to be some hyper-sized, silicone-inflated monster.");
+			output("\n\n<i>“Fair enough. You’ve already got two options to pay so I’m not going to be more generous than I already am. If you change your mind, swing by. The tank’ll still be here.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "other sure":
+			showDrBadger();
+			
+			output("<i>“I think I could do that,”</i> you say. <i>“Just a week of being hyper-sized, how bad could it be?”</i>");
+			output("\n\n<i>“That’s the spirit!”</i> Badger smiles a toothy grin, patting you on the shoulder. <i>“Let’s go get you looking pretty.”</i>");
+			output("\n\nBadger leads you down to her lab, all the way to the silicone tanks.");
+			output("\n\n");
+			
+			processTime(2);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["other sure next"]);
+			break;
+		case "other sure next":
+			currentLocation = "BIMBOTORIUM LAB";
+			generateMap();
+			
+			showDrBadger();
+			
+			output("The lab’s silicone tanks in front of you get measurement estimates forming in your head. Each one is about eight feet tall, maybe three feet wide...");
+			if(!pc.isBimbo()) output(" just one probably houses over five hundred gallons of silicone. That’s, what, maybe four thousand pounds, then?");
+			else output(" just one probably has enough silicone to give you some enormous boobs!");
+			output(" That’s a lot of silicone.... The whole tank is stainless steel, with a large glass line going down the side of it, allowing you to see the gelatin-like material inside. How the hell would any of these fit in your ship?");
+			output("\n\nFrom the back of the room, Badger seems to be preparing a different tank, about a quarter of the size of the ones you’re looking at. It’s maybe a bit larger than a nightstand, with a similar build compared to the other tanks. Basically a mini version of the ones you are familiar with, but still housing plenty of bio-silicone. She sets the smaller tank in front of you and leaves you with its tube in your hand. She unfolds an old lawn chair, places it down, and plops her large body right into it, her excess curves bouncing within the tight confines of her nanoweave utilisuit. A wide smile forms across her lips while she watches you intently.");
+			output("\n\n<i>“Well? I’m waiting.”</i>");
+			output("\n\nIt feels like you’re being interrogated by her invasive eyes despite the fact that she’s just simply looking at you. It could be because those green eyes are so intensely focused on your body or because you are trapped in her lab, teetering on the line between being a willing test subject to a chaotic mad scientist and being a victim to a nefarious sex pervert. You hold the tube up and wobble it around before placing your grip closer to the tip. It’s now or never, right?");
+			output("\n\nYou carefully pierce your waist with the needle");
+			if(silly) output(", praying it doesn’t have some kind of SSTD on it,");
+			output(" and look at the buttons on the tank’s control panel. The options are ‘suck’ and ‘inject’ and neither are crossed off this time around. A sigh escapes your mouth just before you guide your hand to the activation button. It’s just bio-silicone--you already like it enough to want to own a tank of it. Just carry the entirety of the load inside yourself and you’ll literally get the pump for free.");
+			output("\n\nYou press and hold the button, your breathing intensifies as the clear gelatin enters your body rapidly, finding its way straight to your assets. What were once merely [pc.breastsNoun] are blowing up like balloons, not even mentioning your other bits swelling so fast that you’re almost worried about your [pc.gear] staying on. Everything feels so tight, but also so pleasant. Your [pc.skin] stretches to being filled with the extra mass, but it doesn’t hurt at all. Badger watches, all the while her hand sneaks between her legs to reach for her breeder-tier dick. She’s enjoying this more than you are, clearly, and you’re under the impression that she has no regrets about this being your method of payment. With the way she licks her lips and rubs her jumpsuit-encased shaft, she is likely using the moment as her personal edging session.");
+			output("\n\nThe silicone level in the tank slowly gets lower and lower, visible through the glass line on the side. You’re not sure if you’re relieved or feeling empty once the goop stops coming. Even then, your body is now much, MUCH thicker than it was before. Doctor Badger, with a raging hard-on, slowly stands up and walks over to you, looking as if she’s about to molest you.");
+			if(silly) output(" Though technically, you don’t even need the silicone in your body for her to do that.");
+			output(" You take a step back, feeling miles more jiggle than usual reverberate across your form.");
+			output("\n\n<i>“Well, you did it. And you didn’t even pop. I have to say, I’m quite impressed with you after this.”</i> Desire is in her eyes and you can tell she’d love to just take you, right here, right now, but instead she gives you a loud slap on your over-inflated rear end. <i>“I’ll get a timer set for <b>a week</b>. After that, swing by to pick up the tank. I think I’ll spend a little bit more time down here. You know the way out.”</i>");
+			output("\n\nYou do.");
+			output("\n\n");
+			
+			processTime(18);
+			
+			// +50 boob silicone size, +20 hip and butt size, +10 lip size
+			nymFoeInjection(pc, 1, 20, true);
+			nymFoeInjection(pc, 2, 20, true);
+			nymFoeInjection(pc, 3, 50, true);
+			nymFoeInjection(pc, 4, 10, true);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["other sure leave"]);
+			break;
+		case "other sure leave":
+			//currentLocation = "304";
+			currentLocation = "209";
+			generateMap();
+			
+			showBust("");
+			showName("\n");
+			
+			output("Leaving is a cakewalk - as in, your ‘cake’ wobbles while you walk, more so than you can possibly imagine. You’re out of there in no time.");
+			output("\n\nYou can hear the door audibly lock behind you.");
+			output("\n\n<b>It looks like you are unable to enter the Bimbotorium until Doctor Badger’s request has been met. You have to return in one week!</b>");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// Player is removed from the bimbotorium
+			// Activate 84 hour timer, and display it under Badger’s text anytime the PC is in Badger’s main screen, ex: 28:36 remaining until you can take the silicone tank
+			// Player cannot enter back lab
+			
+			flags["BADGER_SILICONE_TANK_INSTALLED"] = 2;
+			pc.createStatusEffect("Badger Silicone Carry Timer", 0, 0, 0, 0, true, "", "", false, (60 * 84));
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		// This next scene appears when the PC enters the bimbotorium when the timer is over
+		case "times up":
+			showBust(drBadgerBustDisplay());
+			showName("\nTIME’S UP!");
+			
+			output("You take a short gander at your Codex, checking the time as you enter Badger’s Bimbotorium. It’s definitely been a week since you got - you grope your titantic tits - <i>these</i>.");
+			output("\n\nAs usual, Doctor Badger is busily working on something. You approach her and start, <i>“Hey Badger, do you know what time it is?”</i>");
+			output("\n\nShe turns from her things to face you, then looks up at one if the broken clocks hanging on the wall. <i>“Twelve fifty-seven. Why?”</i>");
+			output("\n\n<i>“You know exactly why I’m here.”</i> you say, a little more seriously. To highlight your point, you grope one of your silicone-stuffed jugs, each about the size of an exercise ball and just as perky. <i>“These?”</i>");
+			output("\n\nThe mad doctor reaches over and gives the tit a firm slap, the entire thing wobbling so much that you nearly topple over. <i>“Yep, they’re boobs. What about them?”</i> She maintains a light smile... she’s absolutely fucking with you. No doubt about it.");
+			output("\n\n<i>“Do you have the tank ready for me to pick up?”</i>");
+			output("\n\n<i>“You’re no fun... but yes, it is ready in all of its glory. I’ll get a cargo bot ready to ship it. After all, you did what I said, so... I guess I have to hold up my end of the bargain too.”</i> She rubs her palms together, like a typical villain before continuing, <i>“I can only imagine how your adventures were a bit different with all that extra mass.”</i>");
+			output("\n\n");
+			
+			processTime(3);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["times up next"]);
+			break;
+		case "times up next":
+			currentLocation = "BIMBOTORIUM LAB";
+			generateMap();
+			
+			showBust("");
+			showName("TANK\nOBTAINED!");
+			
+			output("You leave Badger and head towards her lab to claim your pump.");
+			if(pc.isAss()) output(" And really? ‘You’re no fun?’ Well, maybe it’s because you’ve been carrying a hundred fucking gallons of silicone in your body for a week, but you’re a little tilted about that.");
+			output("\n\nApproaching the silicone tank, you notice it’s already unplugged and ready for you to take. With your [pc.breasts] obscuring your view, you realize why: of course, Badger had no intentions of removing the bio-silicone inside you... that would just be too easy wouldn’t it?");
+			output("\n\nA cargo bot zooms into view and lifts the tank up with relative ease. It hovers itself, payload and all, near you using anti-grav thrusters, tractor beams and sensors. A small ‘ding’ comes from your Codex, informing you that the drone is now tethered to your device, ready for you to guide. You then activate your Codex and manipulate the cargo bot to follow. You start flying it out, walking alongside it to make sure it doesn’t get tangled in any of the exposed cords and hanging wires strewn about the room.");
+			output("\n\nSoon enough, you pass Badger, who immediately slaps your titanic ass on the way out, producing a loud SMACK! You yelp in surprise as the impact causes a mountainous ripple effect throughout your jiggly form which results in extra wobbles to your step when you exit.");
+			output("\n\n");
+			
+			processTime(7);
+			
+			addButton(0, "Next", drBadgerSiliconeTankBuy, ["times up install"]);
+			break;
+		case "times up install":
+			currentLocation = "SHIP INTERIOR";
+			generateMap();
+			
+			showBust("");
+			showName("TANK\nINSTALLED!");
+			
+			output("Controlling the bot with your Codex, you leave Badger’s lab and walk through Novahome proper with relative ease, if not for you appearing like a moving plate of gelatin. With the goods ahead of you, you work your way up to the hangar and to your ship.");
+			output("\n\nYou open up your ship’s airlock door and tow the tank inside, moving it to your storage and placing it in the corner. After releasing the cargo bot’s control from the tank, you lead it outside before it beeps in confirmation, disconnects from your link, and begins its return to sender. It flies back in the direction of Badger’s lab, going out of sight after a few seconds.");
+			output("\n\nClosing the hatch as you come back in, you head to the silicone tank to set it up. Once everything is plugged in, you try out the tube. Your light squeeze produces tiny droplets of bio-silicone to spill from the needle-tip. It’s ready.");
+			output("\n\n<b>You now have a silicone tank in your storage. It can be used at any time when in your ship.</b>");
+			output("\n\n");
+			
+			processTime(17);
+			
+			flags["BADGER_SILICONE_TANK_INSTALLED"] = 1;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			showBust("");
+			showName("");
+			
+			output("ERROR!");
+			output("\n\n");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
+// “True Doll” perk
+// The player gets black latex and implant-tastic at the same time. Their entire body, inside and out, becomes rubbery and plastic permanently. They gain a special line in their description. All of their holes are extremely elastic, and they don’t get stretched out anymore. Tease damage is increased to some foes.
+// This scene appears after acquiring both perks.
+public function gainTrueDollPerk(target:Creature = null, deltaT:uint = 0):void
+{
+	if(target == null) return;
+	
+	if(target is PlayerCharacter)
+	{
+		var msg:String = "";
+		
+		msg += "Woah, after that last change, you are feeling funny.... Your latex skin and bio-silicone implants seem to be interacting strangely with your microsurgeons. You find your hands sensually roaming your body, trying to search for something that isn’t there. Your insides change rapidly, but you can’t tell what exactly. You flip out your Codex and activate a personal scan. The incoming results say that everything in your body: organs, muscle, fat... has been coverted into some sort of material, biologically adjacent to rubber or plastic.";
+		msg += "\n\nTaking in the strange discovery, you prod yourself all over, unsure of the ramifications brought on by your new transformation, but also... not really minding the change. It certainly makes you <i>feel</i> sexier... and it’s definitely going to be interesting living like this.";
+		
+		msg += "\n\n(<b>Perk Gained: True Doll</b> - Pretty much the entirety of your body is comprised of some sort of silicone or plastic and will stay that way forever, not to mention your incredibly elastic holes. Some foes may find you more attractive.)";
+		
+		if(msg != "") AddLogEvent(msg, "passive", deltaT);
+	}
+	// Increase all hole elasticity to what might as well be infinity
+	// Skin type is permanently latex and assets are permanently silicone
+	// +5 sexiness permanently
+	
+	// Perk: True Doll
+	// v1: Max elasticity limit - Reach this elasticity value to be considered immune to stretching.
+	// v2: Sexiness bonus
+	// v3: Penetration marker - checked daily to see if penetrated. if so, do elasticity change.
+	// v4: Elasticity auto-leveling check toggle. 0 for disabled, 1 for enabled
+	target.createPerk("True Doll", 5, 5, 0, 1, "Your body is composed of silicone, rubber and plastic, boosting your sexiness and upgrading your elasticity.");
+	// Add elasticity--the other elasticity levels can be gained through hole stretch training, I guess.
+	if(target.elasticity < 5) target.elasticity += 0.25;
+}
 /*
+Description change:
+{You have a humanoid upper body, with the usual torso, arms, hands and fingers.} -> {Your entire body, through and through, is some kind of plastic. Luckily, you still have a fairly normal upper body, with the usual torso, arms, hands, and fingers.}
 */
+public function trueDollPerkElasticityUpdate(target:Creature = null):String
+{
+	if(target == null) return "";
+	if(target.perkv3("True Doll") == 0) return "";
+	if(target.perkv4("True Doll") == 0) return "";
+	
+	var msg:String = "";
+	var nMax:Number = target.perkv1("True Doll");
+	if(target.elasticity < nMax)
+	{
+		// Gain 0.125 to 1 elasticity depending on how many times penetrated for that day.
+		var addVal:Number = (0.125 * Math.min(target.perkv3("True Doll"), 8));
+		if((target.elasticity + addVal) > nMax) addVal = (nMax - target.elasticity);
+		target.elasticity += addVal;
+		
+		if(target is PlayerCharacter)
+		{
+			if(target.elasticity >= 1)
+			{
+				msg += "Recovering from being penetrated has left its mark on your plastic body. The act of tugging and stretching your holes and having them revert back to a natural level of tightness becomes";
+				if(addVal <= 0.25) msg += " a bit";
+				if(addVal >= 0.75) msg += " a lot";
+				msg += " easier to you now. <b>Your elasticity has";
+				if(addVal <= 0.25) msg += " slightly";
+				if(addVal >= 0.75) msg += " greatly";
+				msg += " increased!</b>";
+				if(target.elasticity >= nMax) msg += "\n\nThe elasticity of your holes is now at a point where capacity is no longer an issue and stretching becomes a trivial effort. Any attempts to do so will have you snap back like a rubber band, preventing you from ever becoming gaped. <b>Your holes have become immune to being gaped from stretching!</b>";
+			}
+		}
+		// Reset penetration marker
+		target.setPerkValue("True Doll", 3, 0);
+	}
+	return msg;
+}
 

@@ -3179,6 +3179,8 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
+				if(flags["DOLLMAKER_FIXED"] != undefined) output2(", Fixed it");
+				if(flags["DOLLMAKER_ACTIVATED"] != undefined) output2(", On guard");
 				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone) || flags["DOLLMAKER_LOOT_IQBGONE"] != undefined)
 				{
 					output2("\n<b>* IQ B-Gone:</b> Looted");
@@ -3190,6 +3192,19 @@ public function displayQuestLog(showID:String = "All"):void
 					else if(pc.hasItemByClass(IQBGone)) output2(", In possession");
 				}
 				
+				sideCount++;
+			}
+			// Doll Maker Repair
+			if(flags["DOLLMAKER_DISASSEMBLED"] >= 4)
+			{
+				output2("\n<b><u>Fixing the Doll Maker</u></b>");
+				output2("\n<b>* Status:</b> Accepted");
+				if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) output2(", Fixed IQ B-Gone");
+				if(flags["DOLLMAKER_FIX_LAMP"] != undefined) output2(", Fixed Brainmelt Lamp");
+				if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) output2(", Fixed Bimboleum Emitter");
+				if(flags["DOLLMAKER_FIX_VISOR"] != undefined) output2(", Fixed Mindwash Visor");
+				if(flags["DOLLMAKER_FIXED"]) output2(", Fully fixed, Completed");
+				if(pc.hasStatusEffect("Doll Maker Repair Timer")) output2("\n<b>* Doll Maker, Time Until Active:</b> " + prettifyMinutes(pc.getStatusMinutes("Doll Maker Repair Timer")));
 				sideCount++;
 			}
 			// Nym-Foe Repair
@@ -8963,7 +8978,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["PURCHASED_AMAZONA"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined || flags["OMEGA_OILED"] != undefined || flags["MINDWASH_VISOR_INSTALLED"] != undefined || (flags["STRANGE_EGG_SOLD"] != undefined || pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg) || pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0))
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["PURCHASED_AMAZONA"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined || flags["OMEGA_OILED"] != undefined || flags["MINDWASH_VISOR_INSTALLED"] != undefined || flags["BADGER_SILICONE_TANK_INSTALLED"] != undefined || (flags["STRANGE_EGG_SOLD"] != undefined || pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg) || pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0))
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
@@ -9059,6 +9074,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Mindwash Visor:</b> Installed");
 				if(flags["BADGER_MINDWASH"] != undefined) output2("\n<b>* Mindwash Visor, Times Used:</b> " + flags["BADGER_MINDWASH"]);
 				if(flags["CELISE_MINDWASHED"] != undefined) output2("\n<b>* Mindwash Visor, Times Used By Celise:</b> " + flags["CELISE_MINDWASHED"]);
+				if(flags["SHEKKA_MINDWASHED"] != undefined) output2("\n<b>* Mindwash Visor, Times Used By Shekka:</b> " + flags["SHEKKA_MINDWASHED"]);
+			}
+			// Silicone Tank
+			if(flags["BADGER_SILICONE_TANK_INSTALLED"] != undefined)
+			{
+				output2("\n<b>* Silicone Tank:</b>");
+				if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) output2(" Purchased from Doctor Badger, Installed");
+				else if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 2)
+				{
+					output2(" Purchased from Doctor Badger");
+					if(pc.hasStatusEffect("Badger Silicone Carry Timer"))
+					{
+						output2(", <i>Pending...</i>");
+						output2("\n<b>* Silicone Tank, Time Left:</b> " + prettifyMinutes(pc.getStatusMinutes("Badger Silicone Carry Timer")));
+					}
+					else output2(", <i>Ready for pick-up!</i>");
+				}
+				else output2(" Know about it, Purchase available from Doctor Badger");
 			}
 			// Psychic Tentacle Beast
 			if(flags["STRANGE_EGG_SOLD"] != undefined || pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg) || pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)

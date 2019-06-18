@@ -591,7 +591,7 @@ public function bigBallBadEndCont(response:String = "help"):void
 			{
 				addButton(btnSlot, lifeline[i], bigBallBadEndCont, lifeline[i]);
 				btnSlot++;
-				if(btnSlot >= 59) break;
+				if(btnSlot >= 59 || (i == (lifeline.length - 1))) break;
 				if((btnSlot + 1) % 15 == 0)
 				{
 					addButton(btnSlot, "Nevermind", bigBallBadEndCont, "stay");

@@ -1368,7 +1368,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	}
 	
 	//BODY PG HERE
-	if(target == pc) outputRouter("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
+	if(target == pc)
+	{
+		outputRouter("\n\nYou have a");
+		if(target.hasPerk("True Doll")) outputRouter(" plastic");
+		outputRouter(" humanoid upper body with the usual torso, arms, hands, and fingers");
+	}
 	else outputRouter("\n\nFrom the waist up, [target.name] has your typical humanoid upper body: torso, arms, hands, and fingers");
 	
 	switch(target.skinType)

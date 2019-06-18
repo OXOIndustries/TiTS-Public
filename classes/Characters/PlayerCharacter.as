@@ -923,6 +923,10 @@ package classes.Characters
 				{
 					implantasticSiliconeConversion(totalDays);
 				}
+				if(hasPerk("True Doll"))
+				{
+					trueDollPerkElasticityUpdate(totalDays);
+				}
 				
 				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
@@ -1284,6 +1288,12 @@ package classes.Characters
 			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		
+		private function trueDollPerkElasticityUpdate(totalDays:int):void
+		{
+			var msg:String = kGAMECLASS.trueDollPerkElasticityUpdate(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
 		private function maneHairGrow(totalDays:uint):void
 		{
 			var lengthMin:Number = 3;
@@ -1477,6 +1487,10 @@ package classes.Characters
 
 		private function racialPerkUpdateCheck(deltaT:uint, doOut:Boolean):void
 		{
+			if(!hasPerk("True Doll") && hasPerk("Black Latex") && hasPerk("Implant-tastic"))
+			{
+				if(skinType == GLOBAL.SKIN_TYPE_LATEX && siliconeRating() >= 10) kGAMECLASS.gainTrueDollPerk(this, deltaT);
+			}
 			if(hasPerk("'Nuki Nuts"))
 			{
 				if(balls <= 0 && perkv1("'Nuki Nuts") != 0)

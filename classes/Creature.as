@@ -619,7 +619,7 @@
 		public var skinType: Number = 0;
 		public function skinTypeUnlocked(newSkinType:Number):Boolean
 		{
-			if(hasPerk("Black Latex")) return false;
+			if(hasPerk("Black Latex") && newSkinType != GLOBAL.SKIN_TYPE_LATEX) return false;
 			return true;
 		}
 		public function skinTypeLockedMessage():String
@@ -1079,6 +1079,7 @@
 		public function hipRatingModMin():Number
 		{
 			var rating:Number = 0;
+			rating += statusEffectv3("Bimboleum");
 			return rating;
 		}
 		
@@ -1139,6 +1140,7 @@
 		{
 			var rating:Number = 0;
 			rating += statusEffectv3("Mimbrane Ass");
+			rating += statusEffectv4("Bimboleum");
 			return rating;
 		}
 		
@@ -5813,6 +5815,7 @@
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
+			if (hasPerk("True Doll")) temp += perkv2("True Doll");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
@@ -9143,6 +9146,7 @@
 			
 			var rating:Number = 0;
 			if(arg == 0) rating += statusEffectv3("Mimbrane Boobs");
+			rating += statusEffectv2("Bimboleum");
 			return rating;
 		}
 		public function totalNipples(): Number {
@@ -12354,17 +12358,20 @@
 			
 			breastRows.push(newBreastRow);
 			
+			// Newly grown row
+			var bIdx:int = (breastRows.length - 1);
 			// For dynamic mod values, auto-add here to prevent mismatch.
 			var modBonus:Number = 0;
 			
-			if(statusEffectv3("Mimbrane Boobs") != 0 && (breastRows.length - 1) == 0) modBonus += statusEffectv3("Mimbrane Boobs");
+			if(statusEffectv3("Mimbrane Boobs") != 0 && bIdx == 0) modBonus += statusEffectv3("Mimbrane Boobs");
+			if(statusEffectv2("Bimboleum") != 0) modBonus += statusEffectv2("Bimboleum");
 			// Auto-insert silicone
 			if(statusEffectv3("Nym-Foe Injections") != 0) {
-				if(this is PlayerCharacter) kGAMECLASS.autoFillNymFoeBoobjection(breastRows.length - 1);
+				if(this is PlayerCharacter) kGAMECLASS.autoFillNymFoeBoobjection(bIdx);
 				else modBonus += statusEffectv3("Nym-Foe Injections");
 			}
 			
-			if(modBonus != 0) breastRows[breastRows.length - 1].breastRatingMod += modBonus;
+			if(modBonus != 0) breastRows[bIdx].breastRatingMod += modBonus;
 			
 			return true;
 		}
@@ -19929,6 +19936,7 @@
 			return holeChange(-1,volume,display,spacingsF,spacingsB);
 		}
 		
+		// Cock penetrates vagina/ass
 		public function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false, display:Boolean = true):Boolean 
 		{
 			if (cockVirgin && hasCock())
@@ -19959,7 +19967,17 @@
 			}
 			return false;
 		}
-		
+		// Cock being penetrated
+		public function cockHoleChange(hole:int = -1, volume:Number = 0, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
+		{
+			if(hole > cocks.length - 1) return false;
+			
+			// True Doll penetration marker
+			if(hasPerk("True Doll")) addPerkValue("True Doll", 3, 1);
+			
+			return true;
+		}
+		// Vagina/Ass being penetrated
 		public function holeChange(hole:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
 			var stretched:Boolean = false;
@@ -19978,6 +19996,10 @@
 					holePointer = vaginas[hole];
 				}
 			}
+			
+			// True Doll penetration marker
+			if(hasPerk("True Doll")) addPerkValue("True Doll", 3, 1);
+			
 			// ignore stretching!
 			if(isStretchImmune()) {
 				stretched = false;
@@ -20117,7 +20139,7 @@
 		
 		public function isStretchImmune():Boolean
 		{
-			if(hasPerk("True Doll")) return true;
+			if(hasPerk("True Doll") && elasticity >= perkv1("True Doll")) return true;
 			return false;
 		}
 		
@@ -21591,7 +21613,7 @@
 					if (tightnessChange)
 					{
 						if (tv.loosenessRaw < tv.minLooseness) tv.loosenessRaw = tv.minLooseness;
-						if(this is PlayerCharacter) AddLogEvent("<b>Your" + (vaginas.length > 1 ? " " + num2Ordinal(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>", "passive", deltaT);
+						if(this is PlayerCharacter) AddLogEvent(("<b>Your" + (vaginas.length > 1 ? " " + num2Ordinal(i + 1) : "") + " " + vaginaDescript(i) + " has recovered from its ordeals, tightening up a bit.</b>"), "passive", deltaT);
 					}
 				}
 			}
@@ -21601,6 +21623,10 @@
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var bonusMult:int = 1;
+			
+			// Speed modifiers
+			if(hasPerk("True Doll")) bonusMult *= 24;
+			
 			if (totalHours >= 1)
 			{
 				if (ass.loosenessRaw > ass.minLooseness)
@@ -21646,8 +21672,8 @@
 					
 					if (this is PlayerCharacter)
 					{
-						if (origTightness <= 4) AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
-						else AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>", "passive", deltaT);
+						if (origTightness <= 4) AddLogEvent(("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>"), "passive", deltaT);
+						else AddLogEvent(("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>"), "passive", deltaT);
 					}
 				}
 			}
@@ -21866,6 +21892,16 @@
 						break;
 					case "STELLA_PREGNANT":
 						if (this is PlayerCharacter && requiresRemoval) kGAMECLASS.flags["STELLA_PREGNANCY_NOTIFIER"] = thisStatus.value1;
+						break;
+					case "IQ B-Gone":
+					case "Brainmelt Lamps":
+					case "Mindwashed":
+					case "Latex Sprayed":
+					case "Bimboleum":
+						if (!thisStatus.combatOnly)
+						{
+							kGAMECLASS.doDollMakerStatusEffects(this, thisStatus, startEffectLength, requiresRemoval);
+						}
 						break;
 					case "Massaging":
 					case "Slow Fucking":
