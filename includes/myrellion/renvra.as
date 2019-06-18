@@ -615,16 +615,17 @@ public function buttFuckRenvra():void
 	else output("knotted");
 	output(" inside her.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\n");
 	if(pc.hasKnot(0)) output("You’ve not much choice but to stay there while she cleans up while your [pc.knot] slowly deflates. By the time you’re able to extricate yourself from Renvra’s tight ass, she’s as clean as she’s liable to get without a shower - you can still see a few errant traces of pink spooge clinging to her pale skin, and beads of nectar still stand at the tips of her crimson teats. Even so, she gives you a surprisingly playful push off and picks up her shirt, starting to button it up.");
 	else 
 	{
 		output("You slip yourself out of Renvra’s ass, nice and slow.");
-		if(pc.cumQ() < 20) output(" You enjoy the sight of her hole gaped in your wake, though your [pc.cum] isn’t the least bit visible.");
-		else if(pc.cumQ() < 75) output(" The moment you part, though, you’re treated to the sight of her [pc.cum]-glazed rectum, gleaming in the light.");
-		else if(pc.cumQ() < 150) output(" The moment you part, though, you’re treated to the sight of a stream of your [pc.cum] running down her leg, her insides thoroughly coated in it.");
-		else if(pc.cumQ() < 500) output(" The moment you part, though, you’re treated to the sight of a few streams of [pc.cum] pouring down her legs, the rest of it puddled in her gaped-out hole.")
-		else if(pc.cumQ() < 1000) output(" The moment you part, though, you’re treated to a veritable waterfull of your seed racing out after you, splattering onto the floor.");
+		if(cumQ < 20) output(" You enjoy the sight of her hole gaped in your wake, though your [pc.cum] isn’t the least bit visible.");
+		else if(cumQ < 75) output(" The moment you part, though, you’re treated to the sight of her [pc.cum]-glazed rectum, gleaming in the light.");
+		else if(cumQ < 150) output(" The moment you part, though, you’re treated to the sight of a stream of your [pc.cum] running down her leg, her insides thoroughly coated in it.");
+		else if(cumQ < 500) output(" The moment you part, though, you’re treated to the sight of a few streams of [pc.cum] pouring down her legs, the rest of it puddled in her gaped-out hole.")
+		else if(cumQ < 1000) output(" The moment you part, though, you’re treated to a veritable waterfull of your seed racing out after you, splattering onto the floor.");
 		output("\n\n<i>“Ugh,”</i> Renvra groans, finishing with her own load before flicking the towel down between her legs to clean up your mess as well. When she’s done, she tosses the towel into a waste basket with a contemptuous grunt and picks up her shirt, careful to avoid the puddle of spunk you’ve left on the floor. As she gets dressed, you hear her muttering about getting her trench wives to clean it up later.");
 	}
 	// Combine
@@ -1114,6 +1115,9 @@ public function fuckRenvrasUrethra():void
 		if(pc.isTaur()) output("press your chest to hers, smushing her F-cups while you try blindly to line up your cocks. She reaches down and holds her knotted tool in place for you with a superior smirk.");
 		else output("steady her fat shaft and prepare to penetrate with [pc.oneCock].");
 		output(" Her attitude doesn’t last much longer than it takes to slide your [pc.cockHead " + x + "] into her; after a few inches of your hot flesh scraping along her pre-slicked urethra, her knees buckle and she falls onto her ass. You almost do the same from the aphrodisiac heat of her myr cum but manage to stay upright, acutely aware that you’ll lose control of the fuck the moment you show weakness.");
+		
+		renvra.cockHoleChange();
+		
 		output("\n\n<i>“Oh fabulous fortune,”</i> she groans. <i>“It feels like I’m knotting and the egg won’t come out.”</i> You wonder what that experience is like for a nyrea, and if she means that she’s enjoying it. The latter question, at least, is answered quickly. <i>“More!”</i> she demands, pawing feebly at your [pc.hips].");
 		output("\n\nObliging with a grin, you slide the final few inches into her. ");
 		if(!pc.isTaur()) output("Gripping her wide-stretched flare in two hands, y");
@@ -1151,8 +1155,10 @@ public function fuckRenvrasUrethra():void
 			output("she feels your [pc.sack] tighten against her flare and ");
 		}
 		output("your first squirt of [pc.cum] bubbles from your [pc.cockHead " + x + "].");
+		
+		var cumQ:Number = pc.cumQ();
 		//(li’l and med cum)
-		if(pc.cumQ() < 200) output(" It’s hardly enough to turn the tide of Renvra’s ejaculation, and you can only imagine your poor spunk swirling and mixing with hers inside her throbbing cock.");
+		if(cumQ < 200) output(" It’s hardly enough to turn the tide of Renvra’s ejaculation, and you can only imagine your poor spunk swirling and mixing with hers inside her throbbing cock.");
 		//(big cum)
 		else 
 		{
@@ -1163,14 +1169,14 @@ public function fuckRenvrasUrethra():void
 		}
 		output(" Spent, you lower yourself onto Renvra’s cushy breasts for a rest.");
 		output("\n\n<i>“Shit, spacer,”</i> she says");
-		if(pc.cumQ() >= 400) output(", prodding at her swollen, sloshing purse");
+		if(cumQ >= 400) output(", prodding at her swollen, sloshing purse");
 		output(". <i>“If you don’t come back and let me lay this monster load in you, I’m sending a bounty hunter to </i>bring<i> you back.”</i>");
 
 		output("\n\nYou rest a few minutes more and then get up, sliding your [pc.cockNoun " + x + "] free with a ‘sllluck’. A river of mixed sperm runs from the end of her dick.");
 		if(pc.isNice()) output(" <i>“Sure,”</i>");
 		else output("<i>“We’ll see,”</i>");
 		output(" you say, winking playfully. Renvra flushes red, and you leave her there");
-		if(pc.cumQ() >= 10000) output(", pinned to the floor by a sack full of your spunk");
+		if(cumQ >= 10000) output(", pinned to the floor by a sack full of your spunk");
 		output(".");
 
 		//end, large lib/sens increase for taurs, minute lib/sens increase for others, adjust lust and time
@@ -1190,6 +1196,9 @@ public function fuckRenvrasUrethra():void
 		if(dildo == 1) output("\n\nYou display your underwear sensually, hanging the garment in front of your crotch and wiggling the fake penis with a shake from your hips. Sporting a grin, you ");
 		else output("\n\nYou grin and ");
 		output("plug Renvra’s drooling egg-gash with the toy, making sure to angle it just a little wrongly so the tip scrapes against her ovipositor’s insides. She groans as inch after inch invades her shaft, and a flood of pink, pearly pre-cum erupts from the tip - for a moment, you think she may have ejaculated from the penetration alone, but the volume is not enough.");
+		
+		renvra.cockHoleChange(0);
+		
 		output("\n\n<i>“More...”</i> she sighs breathlessly, wrapping her hands around her fat tool and starting to thrust through her fists. You figured on having to do the work yourself, but Renvra’s enthusiasm for the lewd sounding surprises you; you settle for holding the dildo in place for her to engulf with her monstrous, veiny almost-horsecock, watching closely and trying different angles each thrust to find one that hits the sweet spot, while half-interestedly ");
 		if(!pc.isTaur() && pc.hasVagina()) output("frigging [pc.oneVagina]");
 		else if(!pc.isTaur() && pc.hasVagina()) output("stroking [pc.oneCock]");

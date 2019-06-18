@@ -2171,7 +2171,7 @@ public function secOpMaleTitfuck(response:String = "intro"):void
 			processTime(7);
 			// +6 breast silicone normally
 			// +12 breast silicone if >70 libido or PC is a bimbo
-			nymFoeInjection(3, (!bigPumps ? 6 : 12));
+			nymFoeInjection(pc, 3, (!bigPumps ? 6 : 12));
 			// Max out lust
 			pc.maxOutLust();
 			

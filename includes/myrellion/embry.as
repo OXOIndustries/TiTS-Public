@@ -778,7 +778,7 @@ public function talkToEmbryAbootHerSpecies():void
 	output("\n\n<i>“The simii? We mostly live on frontier worlds. Um... we’ve got big ears, and flexible tails, but so do a lot of species.”</i> she curls her pink tail about, showing it off to you.");
 	output("\n\nYou mention the similarities between the simii and terran primates, and [embry.name] nods.");
 	output("\n\n<i>“Oh, yeah--! We’re originally descended from them. Well, kind of. Humans took a bunch of human-like animals - primates - and experimented on them to make my ancestors. Then they, my ancestors, were launched into space to colonize new worlds.”</i> [embry.name] sounds a little uncertain. <i>“...I mean, that’s what I was taught in school, anyway.”</i>");
-	output("\n\n<i>“We’re independent now, of course, and humans rarely set foot on on simii worlds. There were some wars for independence way before I was born. We have big parades every so often to celebrate them, and sometimes war reenactments.”</i>");
+	output("\n\n<i>“We’re independent now, of course, and humans rarely set foot on simii worlds. There were some wars for independence way before I was born. We have big parades every so often to celebrate them, and sometimes war reenactments.”</i>");
 	output("\n\nYou ask if [embry.name] participated in any, and she flushed. <i>“...Uh, no. I think... they’re kind of dorky. I mean, my dad liked them, but it just wasn’t my thing.”</i>");
 	processTime(4);
 	clearMenu();
@@ -2665,6 +2665,7 @@ public function embryAnalSex():void
 	if(!pc.hasCock()) output("purple ");
 	output("prick slides into her [embry.asshole].");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	// if PC.hasCock:
 	if(pc.hasCock())
 	{
@@ -2681,15 +2682,15 @@ public function embryAnalSex():void
 		else output("[embry.ass]");
 		output(". Your senses are burned white as you unleash your pulsing life inside of her. Your [pc.cock] convulses, and you gloriously spill your seed deep inside of her rump.");
 		output("\n\n[embry.name] cries out with delight as you ");
-		if(pc.cumQ() <= 3) output("shoot blanks into her butt - maybe rest a while and refill.");
+		if(cumQ <= 3) output("shoot blanks into her butt - maybe rest a while and refill.");
 		else output("liberally fill her with your [pc.cum]");
 		output(". She shudders uncontrollably, her [embry.asshole] clenching your [pc.cockNounSimple], and she trembles in ecstasy.");
 		//PCLIKESPEEN & embry.hasCock:
 		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [embry.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		else if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
 		output("\n\nWhen you pull your [pc.cock] out from her ass, there is a plopping noise from her [embry.asshole], and ");
-		if(pc.cumQ() <= 10) output("tiny drips");
-		else if(pc.cumQ() < 35)
+		if(cumQ <= 10) output("tiny drips");
+		else if(cumQ < 35)
 		{
 			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
 			else output("blob-like ");
@@ -2770,7 +2771,7 @@ public function embryAnalSex():void
 
 	output("\n\n<i>“T-that was amazing.”</i> [embry.name] dreamily sighs, then adds, <i>“Um, I’m not sure if I can walk---? My legs feel a bit shaky.”</i>");
 	output("\n\nYou guide [embry.name] to the bed, helping her with her shaky legs, and then slide in with her. She wraps her arms around your waist, and nuzzles into you.");
-	if(pc.hasCock() && pc.cumQ() >= 5) output(" Your [pc.cum] drools out from her [embry.butt], coating her rump with your seed.");
+	if(pc.hasCock() && cumQ >= 5) output(" Your [pc.cum] drools out from her [embry.butt], coating her rump with your seed.");
 
 	// if first time
 	if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] == undefined)

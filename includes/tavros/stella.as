@@ -901,7 +901,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) output("blunt");
 			else output("swollen");
 			output(" top to bulging bottom, Stella begins passionately planting long, noisy kisses on the base of your dick and all over your groin.");
-			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on on for as long as she wants.");
+			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on for as long as she wants.");
 		}
 		output("By the time she’s done");
 		if(pc.balls > 1) output(" with your nuts");

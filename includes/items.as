@@ -2862,9 +2862,9 @@ public function shipStorageMenuRoot():void
 	
 	for(var d:int = 0; d < installedDevices.length; d++)
 	{
-		if(btnSlot >= 60) break;
 		installedDevices[d](btnSlot);
 		btnSlot++;
+		if(btnSlot >= 59 || (d == (installedDevices.length - 1))) break;
 		if((btnSlot + 5) % 15 == 0)
 		{
 			btnSlot += 4;
@@ -2872,15 +2872,11 @@ public function shipStorageMenuRoot():void
 			btnSlot++;
 		}
 	}
-	if(btnSlot > 14 && btnSlot < 60)
+	if(btnSlot > 14)
 	{
-		while(btnSlot < 60 && (btnSlot + 1) % 15 != 0)
-		{
-			btnSlot++;
-		}
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
 		addButton(btnSlot, "Back", mainGameMenu);
 	}
-	
 	addButton(14, "Back", mainGameMenu);
 }
 

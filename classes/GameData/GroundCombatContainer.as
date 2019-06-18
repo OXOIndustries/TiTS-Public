@@ -2090,6 +2090,12 @@ package classes.GameData
 					CombatManager.abortCombat();
 					return;
 				}
+				if (hasEnemyOfClass(Dollmaker) && flags["PEXIGA_TREATMENT"] != 0)
+				{
+					kGAMECLASS.fleeToPostQuestDollmaker();
+					CombatManager.abortCombat();
+					return;
+				}
 				if (pc.canFly()) 
 				{
 					if (pc.legCount == 1) output("Your [pc.foot] leaves");
@@ -2318,7 +2324,8 @@ package classes.GameData
 				}
 				else if(target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
 				{
-					if(target.reflexes() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus + escapeArtistBonus > 24) {
+					if((target.reflexes() + rand(20) + 1 + latexBonus + panicBonus + (target.statusEffectv1("Naleen Coiled") * 5) + slipperyBonus + escapeArtistBonus) > 24)
+					{
 						if(target is PlayerCharacter) output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
 						else output(target.getCombatName() + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the coils to freedom.");
 						if(panicJack)
@@ -2514,7 +2521,6 @@ package classes.GameData
 					}
 				}
 
-				
 				// Failure to escape grapple
 				if(target.hasStatusEffect("Grappled"))
 				{
