@@ -2135,7 +2135,7 @@ public function shipMenu():Boolean
 		if(celiseIsCrew()) crewCounter--;
 		//if(bessIsCrew()) crewCounter--;
 
-		if(shits["SHIP"].shipCrewCapacity() < crewCounter) 
+		if(shits["SHIP"].shipCrewCapacity() < crewCounter && flags["INFINITE_CREW"] == undefined) 
 		{
 			output("\n\nYour ship is <b>overloaded</b>. Send " + (crewCounter - shits["SHIP"].shipCrewCapacity()) + " crewmember" + (crewCounter-shits["SHIP"].shipCrewCapacity() > 1 ? "s":"") + " home before you attempt to fly.");
 			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");

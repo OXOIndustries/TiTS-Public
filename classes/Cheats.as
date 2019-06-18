@@ -96,7 +96,25 @@
 			kGAMECLASS.output("\n\nGiving XP to next level!");
 			(kGAMECLASS.pc as PlayerCharacter).XPRaw = (kGAMECLASS.pc as PlayerCharacter).XPMax();
 		}
-		
+		public static function infiniteCrewSpace():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["INFINITE_CREW"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>You can now fly with any amount of crew members.");
+				kGAMECLASS.flags["INFINITE_CREW"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>You can no longer fly with any amount of crew members.");
+				kGAMECLASS.flags["INFINITE_CREW"] = undefined;
+			}
+		}
 		public static function infiniteItemUse():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)

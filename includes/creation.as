@@ -33,6 +33,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 	switch(sText)
 	{
 		// Gameplay/Debug
+		case "clowncar": cheatFunc = Cheats.infiniteCrewSpace; break;
 		case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
