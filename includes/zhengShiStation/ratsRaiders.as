@@ -1723,7 +1723,6 @@ public function ratPostFightAdjustments(pcWon:Boolean):RatsRaider
 
 	//Find thievish rat
 	var thiefRat:RatsRaider = (CombatManager.getHostileActors().length == 2 ? (rat1.hasStatusEffect("Plunder over Pillage!") ? rat1 : rat2) : thiefRat = RatsRaider.getThiefRat());
-	output("<b>Robbed by: " + (thiefRat ? thiefRat.bustDisplay : "NOONE") + "</b>\n\n");
 	//handle rat, if found
 	if (thiefRat)
 	{
