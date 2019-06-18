@@ -1454,6 +1454,7 @@ package classes.GameData
 
 				addButton(3,"Evade!",evadeWithYoShip,undefined,"Evade!","Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)");
 				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
+				addButton(6, "Scan", selectSimpleAttack, { func: generateScanMenu }, "Scan", "Attempts to identify the enemy vessel's equipment and elemental resistances.");
 				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)");
 
 
@@ -4026,6 +4027,47 @@ package classes.GameData
 		{
 			output("You grab the sides of your [pc.breasts]. With a single squeeze, you squirt a stream of [pc.milk] at your opponent!");
 			pc.milked(25);
+		}
+		private function generateScanMenu(attacker:Creature, target:Creature):void
+		{
+			clearOutput();
+			output("Your ship makes a sensor sweep across " + target.getCombatName());
+			var tarC:TypeCollection = target.shields() > 0 ? target.getShieldResistances() : target.getHPResistances();
+			var damIdx:uint = 0;
+			var tarShields:TypeCollection = target.getShieldResistances();
+			var tarHPs:TypeCollection = target.getHPResistances();
+			output("\n\n<b>Shield Defense: </b>" + target.shield.shieldDefense);
+			output("\n<b>Shield Resistances:</b>");
+			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
+			{
+				damIdx = DamageType.HPDamageTypes[i];
+				output("\n* <b>" + tarShields.getType(damIdx).longName + " Resistance:</b> ");
+				
+				if (rand(20) + 1 + (attacker as ShittyShip).shipSensors()/2 >= (target as ShittyShip).shipSystems() + 10)
+				{
+					output(String(Math.round(tarShields.getType(damIdx).damageValue * 100) / 100) + " %");
+				}
+				else
+				{
+					output("Readings inconclusive.");
+				}
+			}
+			output("\n\n<b>Armor Defense: </b>" + target.defense());
+			output("\n<b>Armor Resistances:</b>");
+			for (i = 0; i < DamageType.HPDamageTypes.length - 1; i++)
+			{
+				damIdx = DamageType.HPDamageTypes[i];
+				output("\n* <b>" + tarHPs.getType(damIdx).longName + " Resistance:</b> ");
+				
+				if (rand(20) + 1 + (attacker as ShittyShip).shipSensors()/2 >= (target as ShittyShip).shipSystems() + 10)
+				{
+					output(String(Math.round(tarHPs.getType(damIdx).damageValue * 100) / 100) + " %");
+				}
+				else
+				{
+					output("Readings inconclusive.");
+				}
+			}
 		}
 		
 		private function generateSenseMenu(attacker:Creature, target:Creature):void
