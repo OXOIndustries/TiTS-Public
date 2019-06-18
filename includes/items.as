@@ -695,11 +695,19 @@ public function shop(keeper:Creature):void {
 	addButton(14,"Back",mainGameMenu);
 }
 
-public function buyShipFitItem():void
+public function buyShipFitItem(newScreen:Boolean = false):void
 {
+	if(newScreen)
+	{
+		clearOutput();
+		showBust(shopkeep.bustDisplay);
+		showName("\n"+shopkeep.short.toUpperCase());
+	}
 	var ship:ShittyShip = shits["SHIP"];
 	output("Buying a module will result in it being immediately installed on your ship. They're too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
-	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length) + "\n<b>Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
+	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
 	output("<b><u>Modules For Sale & Fit:</u></b>");
 	var temp:Number = 0;
 	var canBuy:Boolean = (ship.shipCapacity()-ship.inventory.length > 0)
@@ -737,16 +745,24 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	output("\n\n");
 
 	clearMenu();
-	addButton(0, "Next", buyShipFitItem);
+	addButton(0, "Next", buyShipFitItem,true);
 }
 
-public function unfitShipItem():void
+public function unfitShipItem(newScreen:Boolean = false):void
 {
+	if(newScreen)
+	{
+		clearOutput();
+		showBust(shopkeep.bustDisplay);
+		showName("\n"+shopkeep.short.toUpperCase());
+	}
 	var ship:ShittyShip = shits["SHIP"];
 	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you'll have to sell it.\n\n");
-	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length) + "\n<b>Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
+	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
+	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
 	output("<b><u>Currently Fitted Modules:</u></b>");
-	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated:</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
+	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
 	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
 	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
 	clearMenu();
@@ -773,7 +789,7 @@ public function unfitShipItemForReal(i:Number):void
 	ship.inventory.splice(i,1);
 	processTime(60);
 	clearMenu();
-	addButton(0,"Next",unfitShipItem);
+	addButton(0,"Next",unfitShipItem,true);
 }
 
 public function buyItem():void {

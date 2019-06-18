@@ -7,11 +7,11 @@ package classes.ShittyShips.ShittyShipGear.Guns
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class LCannon extends ItemSlotClass
+	public class ThermalProjector extends ItemSlotClass
 	{
 		//Level 1 (Common) ship weapon
 		//constructor
-		public function LCannon()
+		public function ThermalProjector()
 		{
 			this._latestVersion = 1;
 
@@ -20,41 +20,40 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "L.Cannon";
+			this.shortName = "T.Projector";
 			
 			//Regular name
-			this.longName = "laser cannon"
+			this.longName = "thermal cannon"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a laser cannon";
+			this.description = "a thermal projector cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Laser weapons have been popular weapons for spacecraft ever since the solar system was first explored. Laser weapons do not require the expendure of mass for ammunition, and in the void of space, their focused beams can travel extreme distances in a flash. Of course, like all pure-energy weapons, lasers require a high amount of energy to fire.";
+			this.tooltip = "Thermal projectors rely on intense bursts of short-range radiation to literally melt away the target's armor. Due to how rapidly such energies dissipate into the vastness of space, thermal projectors must be fired at or near point blank range, making them unpopular choice of weapon for all but the most aggressive of pilots.";
 			this.attackVerb = "shoot";
-			attackNoun = "laser beam";
+			attackNoun = "thermal radiation";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 2200;
+			this.basePrice = 2000;
 					
 			baseDamage.burning.damageValue = 350;
-			
-			baseDamage.addFlag(DamageFlag.LASER);
+			baseDamage.addFlag(DamageFlag.BULLET);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT);
-					
 			
-			this.attack = 0;
+			this.attack = -10;
 			this.defense = 0;
-			this.shieldDefense = 60;
+			this.shieldDefense = 50;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = -5;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

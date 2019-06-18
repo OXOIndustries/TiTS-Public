@@ -339,6 +339,7 @@
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
+		include "../includes/tarkus/coronaLordShipEncounter.as";
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
@@ -974,7 +975,7 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareItem = new EmptySlot();
+			if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) compareItem = new EmptySlot();
 			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;

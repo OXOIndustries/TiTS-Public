@@ -572,6 +572,12 @@ package classes.GameData
 			Evasion.TooltipTitle = "Evade!";
 			Evasion.TooltipBody = "Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)";
 			Evasion.Implementor = EvasionImpl;
+
+			Recharge = new SingleCombatAttack();
+			Recharge.RequiresTarget = false;
+			Recharge.TooltipTitle = "Recharge!";
+			Recharge.TooltipBody = "Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)";
+			Recharge.Implementor = RechargeImpl;
 		}
 		
 		/**
@@ -2918,6 +2924,18 @@ package classes.GameData
 			if(attacker.hasPerk("PCs")) output("You close off the weapon relays and put both hands on the stick. Time to fly for your life!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " begins to dodge like crazy, trying its hardest to evade incoming fire!");
 			if(!attacker.hasStatusEffect("Evading!")) attacker.createStatusEffect("Evading!",0,0,0,0,false,"Icon_DefUp","+50 evasion for one round.",true);
+		}
+		public static var Recharge:SingleCombatAttack;
+		public static function RechargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if(attacker.hasPerk("PCs")) 
+			{
+				clearOutput();
+				output("Playing it cool, you keep your power load low to allow your reactor to recharge faster...");
+			}
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " minimizes its power load, presumably attempting to recharge its capacitor banks.");
+			if(!attacker.hasStatusEffect("CHARGING_POWER")) attacker.createStatusEffect("CHARGING_POWER",0,0,0,0,true,"","",true);
+			attacker.energy((attacker as ShittyShip).shipPowerGen());
 		}
 	}
 

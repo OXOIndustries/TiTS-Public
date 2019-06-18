@@ -84,7 +84,7 @@ public function creationHeader(sName:String = ""):void
 public function startCharacterCreation(e:Event = null):void 
 {
 	initializeNPCs();
-	
+	shits["SHIP"] = new Casstech();
 	pc.short = "uncreated";
 	pc.level = 1;
 	pc.shield = new classes.Items.Protection.BasicShield();

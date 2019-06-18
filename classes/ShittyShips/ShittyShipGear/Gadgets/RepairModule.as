@@ -67,6 +67,7 @@
 			this.targetsSelf = true;
 			this.requiresTarget = false;
 			this.addFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT);
+			this.addFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT);
 
 			this.version = _latestVersion;
 		}	

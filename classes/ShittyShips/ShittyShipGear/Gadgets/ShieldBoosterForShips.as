@@ -26,9 +26,9 @@
 	 * ...
 	 * @author Fenoxo, heavily referencing Gedan's grenades
 	 */
-	public class ShieldBooster extends ItemSlotClass
+	public class ShieldBoosterForShips extends ItemSlotClass
 	{
-		public function ShieldBooster() 
+		public function ShieldBoosterForShips() 
 		{
 			this._latestVersion = 1;
 
@@ -67,6 +67,7 @@
 			this.targetsSelf = true;
 			this.requiresTarget = false;
 			this.addFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT);
+			this.addFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT);
 
 			this.version = _latestVersion;
 		}	

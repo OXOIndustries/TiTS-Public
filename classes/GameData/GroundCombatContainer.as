@@ -1671,12 +1671,14 @@ package classes.GameData
 				if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 				{
 					output("\n<b>OFF</b>\t|  " + StringUtil.upperCase(weapons[i].longName));
-					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Enable this weapon.");
+					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Enable this weapon.");
+					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
 				}
 				else 
 				{
 					output("\n" + weapons[i].shieldDefense + "\t|  " + StringUtil.upperCase(weapons[i].longName));
-					addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
+					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
+					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
 					energyCost += weapons[i].shieldDefense;
 				}
 			}
@@ -4231,23 +4233,29 @@ package classes.GameData
 				clearMenu();
 				addButton(0, "Victory", function(t_enemy:Creature, t_victoryFunctor:Function):Function {
 					return function():void {
-						clearOutput();
-						//Special texts for this :3
-						if (t_enemy.hasStatusEffect("PEACEFUL_WIN")) {}
-						else if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
-						else if (t_enemy.lust() >= 100) 
+						if(t_enemy is ShittyShip)
 						{
-							var msg:String = "";
-							msg = "<b>" + t_enemy.capitalA + t_enemy.short;
-							if(t_enemy.isPlural) msg += " are";
-							else msg += " is";
-							msg += " too turned on to fight.</b>\n\n";
-							output(msg);
+							t_victoryFunctor();
 						}
-						
-						kGAMECLASS.setEnemy(t_enemy);
-						CombatManager.showCombatUI();
-						t_victoryFunctor();
+						else
+						{
+							clearOutput();
+							//Special texts for this :3
+							if (t_enemy.hasStatusEffect("PEACEFUL_WIN")) {}
+							else if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
+							else if (t_enemy.lust() >= 100) 
+							{
+								var msg:String = "";
+								msg = "<b>" + t_enemy.capitalA + t_enemy.short;
+								if(t_enemy.isPlural) msg += " are";
+								else msg += " is";
+								msg += " too turned on to fight.</b>\n\n";
+								output(msg);
+							}
+							CombatManager.showCombatUI();
+							kGAMECLASS.setEnemy(t_enemy);
+							t_victoryFunctor();
+						}
 					}
 				}(tEnemy, _victoryFunction));
 				return true;
@@ -5085,7 +5093,19 @@ package classes.GameData
 			
 			for (var i:int = 0; i < _friendlies.length; i++)
 			{
-				if ((_friendlies[i] as Creature).isDefeated() && _friendlies[i].alreadyDefeated == false)
+				//Shitty shipfite code by Fen. Sorry, world.
+				if (_friendlies[0] is ShittyShip)
+				{
+					if ((_friendlies[i] as Creature).isDefeated() && _friendlies[i].alreadyDefeated == false)
+					{
+						if (_friendlies[i].hasPerk("PCs")) output("\n\nYou drift in space");
+						else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " drifts in space");
+						if (_friendlies[i].HP() <= 0) output(", momentarily disabled.");
+						else output(", virtually pilotless thanks to the rampant lust dominating " + (_friendlies[i].hasPerk("PCs") ? "its crew's":"your") + " thoughts.");
+					}
+				}
+				//Non ship-fite
+				else if ((_friendlies[i] as Creature).isDefeated() && _friendlies[i].alreadyDefeated == false)
 				{
 					if(_friendlies[i].hasFlightEffects()) _friendlies[i].clearFlightEffects();
 					_friendlies[i].alreadyDefeated = true;
@@ -5395,65 +5415,74 @@ package classes.GameData
 			{
 				var t:Creature = _hostiles[i];
 				sumXP += t.XP();
-				sumCredits += t.credits;
-				
-				for (var ii:int = 0; ii < t.inventory.length; ii++)
+				//Looting is handled differently on ShittyShips
+				if(!(t is ShittyShip))
 				{
-					var tt:ItemSlotClass = t.inventory[ii];
-					
-					if (tt.quantity > 0)
+					sumCredits += t.credits;
+					for (var ii:int = 0; ii < t.inventory.length; ii++)
 					{
-						loot.push(tt.makeCopy());
+						var tt:ItemSlotClass = t.inventory[ii];
+						
+						if (tt.quantity > 0)
+						{
+							loot.push(tt.makeCopy());
+						}
+					}
+					if (enemyNames[t.short] == undefined)
+					{
+						enemyNames[t.short] = 1;
+						article[t.short] = t.a;
+						numDistinct++;
+					}
+					else
+					{
+						enemyNames[t.short]++;
 					}
 				}
-				
-				if (enemyNames[t.short] == undefined)
-				{
-					enemyNames[t.short] = 1;
-					article[t.short] = t.a;
-					numDistinct++;
-				}
-				else
-				{
-					enemyNames[t.short]++;
-				}
 			}
-			
-			pc.credits += sumCredits;
-
-			//Making your dom horny is a prize, yes?
-			if (pc.accessory is SiegwulfeItem && kGAMECLASS.chars["WULFE"] != undefined && kGAMECLASS.siegwulfeIsDom()) kGAMECLASS.chars["WULFE"].lust(3);
-
-			// Emit some shit to state what the player got/did
-			output("You defeated ");
-			for (var key:String in enemyNames)
+			if(!(t is ShittyShip))
 			{
-				// This needs reworking to handle the/a/etc pulled from the creatures base data in the correct instances.
-				if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
-				else output(article[key] + key);
+				pc.credits += sumCredits;
+
+				//Making your dom horny is a prize, yes?
+				if (pc.accessory is SiegwulfeItem && kGAMECLASS.chars["WULFE"] != undefined && kGAMECLASS.siegwulfeIsDom()) kGAMECLASS.chars["WULFE"].lust(3);
+
+				// Emit some shit to state what the player got/did
+				output("You defeated ");
+				for (var key:String in enemyNames)
+				{
+					// This needs reworking to handle the/a/etc pulled from the creatures base data in the correct instances.
+					if (enemyNames[key] > 1) output(String(enemyNames[key]) + "x " + plural(key));
+					else output(article[key] + key);
+					
+					numDistinct--;
+					
+					if (numDistinct > 1) output(", ");
+					if (numDistinct == 1) output(" and ");
+				}
+				output("!");
+			
+				kGAMECLASS.earnXP(sumXP, false);
+			
+				//Monies!
+				if (sumCredits > 0) 
+				{
+					output("\n");
+					if(CombatManager.multipleEnemies()) output("They had ");
+					else output(StringUtil.capitalize(_hostiles[0].getCombatPronoun("heshe")) + " had ");
+					output(String(sumCredits) + " credit");
+					if(sumCredits > 1) output("s");
+					output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
+				}
 				
-				numDistinct--;
-				
-				if (numDistinct > 1) output(", ");
-				if (numDistinct == 1) output(" and ");
+				//Rare loot chance 2.0
+				loot = kGAMECLASS.genericRareDrops(loot);
 			}
-			output("!");
-			
-			kGAMECLASS.earnXP(sumXP, false);
-			
-			//Monies!
-			if (sumCredits > 0) 
+			//Winning shipfite just gets XP:
+			else
 			{
-				output("\n");
-				if(CombatManager.multipleEnemies()) output("They had ");
-				else output(StringUtil.capitalize(_hostiles[0].getCombatPronoun("heshe")) + " had ");
-				output(String(sumCredits) + " credit");
-				if(sumCredits > 1) output("s");
-				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
+				kGAMECLASS.earnXP(sumXP, false);
 			}
-			
-			//Rare loot chance 2.0
-			loot = kGAMECLASS.genericRareDrops(loot);
 
 			if (loot.length > 0)
 			{

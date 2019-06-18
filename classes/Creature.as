@@ -8446,6 +8446,12 @@
 			if(this is ShittyShip)
 			{
 				(this as ShittyShip).resetEquipment();
+				if(this.hasPerk("PCs"))
+				{
+					this.shields(this.shieldsMax());
+					if(this.HP() < 1) this.HPRaw = 1;
+					this.energy(this.energyMax());
+				}
 			}
 			//trace("Removing combat statuses.");
 			if (hasStatusEffect("Sensor Link"))

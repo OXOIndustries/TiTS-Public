@@ -33,21 +33,21 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Despite its name, the EM Cannon does not fire bolts of electromagnetic energy across the nonconductive void of space. It relies on the same types of primitive chemical propulsion that have flung lead across battlefields for generations. The difference is in the payloads: EM shells are always fired in pairs, one containing a positive charge and the other negative. Contact with anything, even a shield, is sufficient to create damaging electrical surges.";
 			this.attackVerb = "shoot";
-			attackNoun = "beam";
+			attackNoun = "electromag warhead";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1300;
+			this.basePrice = 1800;
 					
-			baseDamage.electric.damageValue = 125;
-			baseDamage.kinetic.damageValue = 10;
+			baseDamage.electric.damageValue = 130;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_TWINSHOT);
+			this.addFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT);
 			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			

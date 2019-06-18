@@ -168,6 +168,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);
 	}
+	if(shits["SHIP"] == undefined) shits["SHIP"] = new Casstech();
 	if(baby.originalRace == "NOT SET")
 	{
 		if(eventQueue.indexOf(setBabyValuesOptions) == -1) eventQueue.push(setBabyValuesOptions);
@@ -2072,6 +2073,7 @@ public function insideShipEvents():Boolean
 
 public function shipMenu():Boolean
 {
+	if(shits["SHIP"] != undefined) showBust(shits["SHIP"].bustDisplay);
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
@@ -2083,6 +2085,24 @@ public function shipMenu():Boolean
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
 	
+	//HP/Repair notices:
+	output("\n");
+	var shipHP:Number = shits["SHIP"].HP();
+	var shipHPMax:Number = shits["SHIP"].HPMax();
+	var HPPercent:Number = Math.round(shipHP/shipHPMax*100);
+	if(HPPercent < 5) output("\n<b>Alert!</b> Ship is <b>massively damaged</b>!!! Travel with care.");
+	else if(HPPercent < 25) output("\n<b>Alert!</b> Ship is <b>heavily damaged</b>!!! Travel with care.");
+	else if(HPPercent < 50) output("\n<b>Alert!</b> Ship is <b>very damaged</b>. Travel with care.");
+	else if(HPPercent < 100) output("\n<b>Alert!</b> Ship is <b>damaged</b>. Travel with care.");
+	
+	output("\n<b>Ship Armor:</b> " + shipHP + " / " + shipHPMax);
+	if(HPPercent < 100)
+	{
+		if(shekkaIsCrew()) output(" (Shekka is hard at work patching it up.)");
+		else if(shipLocation == "TAVROS HANGAR") output(" (Vahn will have it repaired in time.)");
+		else output(" (Park the ship in Tavros Station to allow Vahn to repair it.)");
+	}
+
 	// Main ship interior buttons
 	if(currentLocation == "SHIP INTERIOR")
 	{
@@ -2100,12 +2120,18 @@ public function shipMenu():Boolean
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
-		/*if(shits["SHIP"].shipCrewCapacity() < crew(true,false)) 
+
+		var crewCounter:Number = crew(true,false);
+		//Celise doesnt count.
+		if(celiseIsCrew()) crewCounter--;
+		//if(bessIsCrew()) crewCounter--;
+
+		if(shits["SHIP"].shipCrewCapacity() < crewCounter) 
 		{
 			output("\n\nYour ship is <b>overloaded</b>. Send some crewmembers home before you attempt to fly.");
 			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
 		}
-		else 9999*/if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
+		else if(shipLocation == "K16_DOCK") addButton(5,"Take Off",leaveZePrison);
 		else addButton(5, "Fly", flyMenu);
 		if(pc.hasStatusEffect("PAIGE_COMA_CD")) 
 		{
@@ -2312,6 +2338,25 @@ public function flyTo(arg:String):void
 				return;
 			}
 		}
+		//Combat Encounters:
+		//First time shipfite
+		if(arg == "Tarkus" && flags["PYROTECH_ATTACKS"] == undefined)
+		{
+			prepShipfite();
+			//Next flight is guaranteed good:
+			flags["SUPRESS TRAVEL EVENTS"] = 1;
+			encounterPyrotechZ7();
+			return;
+		}
+		//Generic Enemy encounters!
+		else if(InCollection(arg,["Tarkus","Myrellion","MyrellionDeepCaves","Mhen'ga","ZhengShi","Uveto"]) && rand(10) == 0)
+		{
+			prepShipfite();
+			flags["SUPRESS TRAVEL EVENTS"] = 1;
+			encounterPyrotechZ7();
+			return;
+		}
+		
 		//Normal message events.
 		var tEvent:Function = tryProcTravelEvent(arg);
 		if (tEvent != null)
@@ -2319,6 +2364,8 @@ public function flyTo(arg:String):void
 			incomingMessage(tEvent, arg);
 			return;
 		}
+		
+
 	}
 	
 	var shortTravel:Boolean = false;
@@ -2450,6 +2497,12 @@ public function flyTo(arg:String):void
 	
 	//Leaving the victim to sort his own shit out when starting the SpaceYakuza questline
 	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1;
+}
+
+public function prepShipfite():void
+{
+	setNavDisabled(NAV_OUT_DISABLE);
+	shipLocation = "SPACE";
 }
 
 public function leaveShipOK():Boolean
@@ -4255,6 +4308,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
+
+	processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
@@ -4296,6 +4351,47 @@ public function processTimeToClock(h:int = 0, m:int = 0):void
 	processTime(numMin);
 }
 
+public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	//Ship Repair
+	if(shits["SHIP"].HP() < shits["SHIP"].HPMax())
+	{
+		var recoveryModifier:Number = 0;
+		var mechanics:Array = [];
+		if(shekkaIsCrew()) 
+		{
+			mechanics.push("Shekka");
+			recoveryModifier += 0.5;
+		}
+		else if(shipLocation == "TAVROS HANGAR") 
+		{
+			if(flags["MET_VAHN"] == undefined) mechanics.push("your mechanic");
+			else mechanics.push("Vahn");
+			recoveryModifier += 1;
+		}
+		shits["SHIP"].HP(Math.round(deltaT * recoveryModifier));
+		
+		//Hit max HP and report on it.
+		if(shits["SHIP"].HP() >= shits["SHIP"].HPMax()) 
+		{
+			if(mechanics.length == 0) AddLogEvent(ParseText("<b>Your ship has been fully repaired.</b>"), "hp", deltaT);
+			else
+			{
+				var mechanicsList:String = "";
+				for(var ii:int = 0; ii < mechanics.length; ii++)
+				{
+					if(ii > 0)
+					{
+						if(mechanics.length >= 2 && ii == mechanics.length-1) mechanicsList += " and ";
+						else if(mechanics.length > 2) mechanicsList += ", ";
+					}
+					mechanicsList += mechanics[ii];
+				}
+				AddLogEvent(ParseText(StringUtil.upperCase(mechanicsList) + " send" + (mechanics.length == 1 ? "s":"") + " notice that <b>your ship has been fully repaired.</b>"), "hp", deltaT);
+			}
+		}
+	}
+}
 public function processHolidayoweenEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] == undefined && (isHalloweenish() || rand(100) <= totalDays - 1))

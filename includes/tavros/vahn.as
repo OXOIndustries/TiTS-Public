@@ -1,6 +1,8 @@
-﻿import classes.ShittyShips.ShittyShipGear.Guns.MGun;
-import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
-import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
+﻿import classes.ShittyShips.ShittyShipGear.Guns.*;
+import classes.ShittyShips.ShittyShipGear.Gadgets.*;
+import classes.ShittyShips.KihaCorpSpearheadSS;
+import classes.ShittyShips.ColtXLR;
+import classes.ShittyShips.OvaLEK;
 import classes.Characters.Vahn;
 
 //Vahn, Your Friendly Ship Mechanic
@@ -45,12 +47,20 @@ public function getVahnPregContainer():PregnancyPlaceholder
 public function vahnTavrosBonus(btnSlot:int = 0):void 
 {
 	if(flags["MET_VAHN"] == undefined) {
-		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
+		if(shits["SHIP"].HP() < shits["SHIP"].HPMax())
+		{
+			output("\n\nThe blonde, half-ausar technician lets you know that <b>he'll get to work fixing the damage to your ship's armor</b>.");
+		}
+		else output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
 		addButton(btnSlot, "Tech", VahnTheMechanic);
 	}
 	else
 	{
-		output("\n\nVahn’s around here somewhere, if you want to look for him.");
+		if(shits["SHIP"].HP() < shits["SHIP"].HPMax())
+		{
+			output("\n\nVahn lets you know that <b>he'll get to work fixing the damage to your ship's armor</b>.");
+		}
+		else output("\n\nVahn’s around here somewhere, if you want to look for him.");
 		addButton(btnSlot, "Vahn", VahnTheMechanic);
 	}
 }
@@ -58,6 +68,7 @@ public function VahnTheMechanic():void
 {
 	clearOutput();
 	showVahn();
+	shopkeep = new Vahn();
 	//First Time:
 	if(flags["MET_VAHN"] == undefined)
 	{
@@ -85,11 +96,68 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
-	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship's upgrade slots.");
-	//addButton(6,"Ship Mods",);
+	if(shits["SHIP"].shipGunCapacity() > shits["SHIP"].listShipWeapons().length) addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship's upgrade slots.");
+	else addDisabledButton(5,"Ship Guns","Ship Guns","Your ship has no more hardpoints to equip weapons to.");
+	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
-	//addButton(9,"Buy Ship",);
+	addButton(10,"Buy Ship",vahnSellsShips,undefined,"Buy Ship","Buy a ship the local selection.");
+	if(shipStorageRoom() < 5) addButton(11,"Stored Ships",swapShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
+	else addDisabledButton(11,"Stored Ships","Stored Ships","You have no ships in storage right now.");
+	addButton(12,"Sell A Ship",sellAShipToVahn,undefined,"Sell A Ship","Sell a ship to Vahn.");
 	addButton(14,"Leave",mainGameMenu);
+}
+
+public function sellAShipToVahn():void
+{
+	clearOutput();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+	output("What ship would you like to sell?\n\n");
+	output("\n\\\[Cannot Sell\\\] " + shits["SHIP"].short);
+	
+	clearMenu();
+	addDisabledButton(0,shits["SHIP"].short,shits["SHIP"].short,"You can't sell your ship without first lining up a replacement.");
+	buildVahnsSellButtonsAndText(1,"SHIP_2");
+	buildVahnsSellButtonsAndText(2,"SHIP_3");
+	buildVahnsSellButtonsAndText(3,"SHIP_4");
+	buildVahnsSellButtonsAndText(4,"SHIP_5");
+	buildVahnsSellButtonsAndText(5,"SHIP_6");
+
+	addButton(14,"Back",VahnTheMechanic)
+}
+public function buildVahnsSellButtonsAndText(button:int,arg:String):void
+{
+	if(shits[arg] == undefined) 
+	{
+		output("\n\\\[0 Credits\\\] Empty Storage - 0");
+		addDisabledButton(button,"Empty","Empty","You need something here to sell.");
+	}
+	else if(shits[arg] is Casstech)
+	{
+		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
+		addDisabledButton(button,shits[arg].short,shits[arg].short,"You can't sell Dad's old Casstech!");
+	}
+	else
+	{
+		output("\n\\\[" + Math.round(shits[arg].shipCost()/2) + " Credits\\\] " + shits[arg].short);
+		addButton(button,shits[arg].short,sellAShipToVahnGo,arg,shits[arg].short,"Sell this ship for " + Math.round(shits[arg].shipCost()/2) + ".");
+	}
+}
+
+public function sellAShipToVahnGo(slot:String):void
+{
+	clearOutput();
+	//showBust(shopkeep.bustDisplay);
+	//showName("\n"+shopkeep.short.toUpperCase());
+
+	showBust(shits[slot].bustDisplay);
+	showName("\n"+shits[slot].short.toUpperCase());
+
+	output("You sell your " + shits[slot].short + " for " + Math.round(shits[slot].shipCost()/2) + ".");
+	pc.credits += Math.round(shits[slot].shipCost()/2);
+	shits[slot] = undefined;
+	clearMenu();
+	addButton(0,"Next",sellAShipToVahn);
 }
 
 public function vahnShipGunsShop():void
@@ -98,8 +166,19 @@ public function vahnShipGunsShop():void
 	showVahn();
 	shopkeep = new Vahn();
 	shopkeep.inventory.push(new MGun());
-	shopkeep.inventory.push(new LCannon());
 	shopkeep.inventory.push(new EMCannon());
+	shopkeep.inventory.push(new LCannon());
+	shopkeep.inventory.push(new ThermalProjector());
+	buyShipFitItem();
+}
+public function vahnShipGadgetShop():void
+{
+	clearOutput();
+	showVahn();
+	shopkeep = new Vahn();
+	shopkeep.inventory.push(new RepairModule());
+	shopkeep.inventory.push(new ShieldBoosterForShips());
+	shopkeep.inventory.push(new ShieldDisruptor());
 	buyShipFitItem();
 }
 public function vahnShipUninstall():void
@@ -108,6 +187,264 @@ public function vahnShipUninstall():void
 	showVahn();
 	shopkeep = new Vahn();
 	unfitShipItem();
+}
+
+public function vahnSellsShips():void
+{
+	clearOutput();
+	showVahn();
+	shopkeep = new Vahn();
+	author("Fenoxo");
+	if(flags["VAHN_SHIP_SALES"] == undefined)
+	{
+		output("You ask Vahn if he can sell you a whole new ship.");
+
+		output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
+		output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
+		output("\n\nVahn taps a few buttons, and your Codex springs to life, displaying a catalog of local spacecraft. <i>“Take your pick.”</i>");
+	}
+	else
+	{
+		output("You tell Vahn you’d like to go ship-shopping again.");
+		output("\n\n<i>“Not a problem,”</i> the mechanic says, stretching out to tap a few buttons and transmit the local catelog to your Codex. <i>“Take your pick.”</i>");
+	}
+	clearMenu();
+	//Initialize all ships, pass to tooltip generating func.
+	var spearhead:ShittyShip = new KihaCorpSpearheadSS();
+	var coltXLR:ShittyShip = new ColtXLR();
+	var ova:ShittyShip = new OvaLEK();
+	addButton(0,"Ova'LEK",shipBuyScreen,ova,"Ova'LEK",shipCompareString(ova));
+	addButton(1,"Colt XLR",shipBuyScreen,coltXLR,"Colt XLR",shipCompareString(coltXLR));
+	addButton(2,"Spearhead SS",shipBuyScreen,spearhead,"Spearhead SS",shipCompareString(spearhead));
+	addButton(14,"Back",VahnTheMechanic);
+}
+
+public function shipBuyScreen(arg:ShittyShip):void
+{
+	clearOutput();
+	showBust(arg.bustDisplay);
+	showName("\n"+arg.short.toUpperCase());
+
+	output("Your Codex prompts you to review the information on this ship thoroughly before attempting a selection.\n\n" + shipCompareString(arg));
+	clearMenu();
+	if(pc.credits >= arg.shipCost()) 
+	{
+		if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
+		else addDisabledButton(0,"Buy","Buy","You don't have room to place your current ship in storage. You'll have to sell one of your stored ships (or trade this one in with the purchase).");
+	}
+	else addDisabledButton(0,"Buy","Buy","You can't afford that!");
+	if(shits["SHIP"] is Casstech) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won't take it.");
+	else if(pc.credits >= (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2))) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy+Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Price:</u></b> " + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)));
+	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can't afford the ship this way.");
+
+	//else addButton(1,"Buy+Trade",);
+	addButton(4,"Back",vahnSellsShips);
+}
+
+public function buyAShipAndTradeIn(arg:ShittyShip):void
+{
+	clearOutput();
+	showBust(arg.bustDisplay);
+	showName("\n"+arg.short.toUpperCase());
+	output("Once you fully commit, " + shopkeep.short + " informs you that your stored personal items will be moved to the new ship. Installed upgrades will not, though their value will be counted into your trade-in.");
+	output("\n\n<b>New Ship Cost: </b>" + arg.shipCost() + "\n<b>Old Ship Value: </b>" + Math.round(shits["SHIP"].shipCost()/2) + "\n<b>Total Cost: </b>" + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)) +"\n\nDo you trade it in? (<b>Warning:</b> This cannot be reversed.)");
+	clearMenu();
+	addButton(0,"Trade In",buyAShipAndTradeInGo,arg,"Trade In","Get you a new ship!");
+	addButton(4,"Back",shipBuyScreen,arg);
+}
+public function buyAShipAndTradeInGo(arg:ShittyShip):void
+{
+	clearOutput();
+	showBust(arg.bustDisplay);
+	showName("\n"+arg.short.toUpperCase());
+	var cost:Number = (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
+	if(cost < 0) output("<b>You make a profit of " + Math.abs(cost) + " off of the trade-in, receiving a new " + arg.short + ".");
+	else if(cost == 0) output("<b>You pay nothing for your new ship</b>, covering the cost by trading in your old vessel.");
+	else output("<b>You pay " + cost + " credits for " + arg.a + arg.short + "</b> after selling your " + shits["SHIP"].a + shits["SHIP"].short + "!");
+	pc.credits -= cost;
+	shits["SHIP"] = arg;
+	arg.HP(arg.HPMax());
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",VahnTheMechanic);
+}
+
+public function buyAShipYouGo(arg:ShittyShip):void
+{
+	clearOutput();
+	showBust(arg.bustDisplay);
+	showName("\n"+arg.short.toUpperCase());
+	output("Once you fully commit, Vahn informs you that it’s station policy to ensure that inactivated ships have their storage completely emptied out. Ever since the entire deck got infested with grubthakks a few years back, it’s been something of a sore spot. <i>“Don’t worry too hard about it. Bolted-in upgrades are fine, and I’ll have your smaller things delivered to the new ship.”</i>");
+	output("\n\n<b>You pay " + arg.shipCost() + " credits for " + arg.a + arg.short + "!</b>");
+	pc.credits -= arg.shipCost();
+	storeYourShip();
+	shits["SHIP"] = arg;
+	arg.HP(arg.HPMax());
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",VahnTheMechanic);
+}
+
+public function swapShipsMenu():void
+{
+	clearOutput();
+	shopkeep = new Vahn();
+	showBust(shopkeep.bustDisplay);
+	showName("\n"+shopkeep.short.toUpperCase());
+	showName("SHIP\nSTORAGE");
+	output("<b>Available Storage: </b>" + shipStorageRoom() + " / 5.\n\n<b><u>Stored Vessels:</u> </b>");
+	clearMenu();
+	if(shits["SHIP_2"] != undefined)
+	{
+		output("\n" + shits["SHIP_2"].short);
+		addButton(0,shits["SHIP_2"].short,swapShips,"SHIP_2",shits["SHIP_2"].short,shipCompareString(shits["SHIP_2"]));
+	}
+	if(shits["SHIP_3"] != undefined)
+	{
+		output("\n" + shits["SHIP_3"].short);
+		addButton(1,shits["SHIP_3"].short,swapShips,"SHIP_3",shits["SHIP_3"].short,shipCompareString(shits["SHIP_3"]));
+	}
+	if(shits["SHIP_4"] != undefined)
+	{
+		output("\n" + shits["SHIP_4"].short);
+		addButton(2,shits["SHIP_4"].short,swapShips,"SHIP_4",shits["SHIP_4"].short,shipCompareString(shits["SHIP_4"]));
+	}
+	if(shits["SHIP_5"] != undefined)
+	{
+		output("\n" + shits["SHIP_5"].short);
+		addButton(3,shits["SHIP_5"].short,swapShips,"SHIP_5",shits["SHIP_5"].short,shipCompareString(shits["SHIP_5"]));
+	}
+	if(shits["SHIP_6"] != undefined)
+	{
+		output("\n" + shits["SHIP_6"].short);
+		addButton(4,shits["SHIP_6"].short,swapShips,"SHIP_6",shits["SHIP_6"].short,shipCompareString(shits["SHIP_6"]));
+	}
+	addButton(14,"Back",VahnTheMechanic);
+}
+public function swapShips(arg:String = ""):void
+{
+	clearOutput();
+	showBust(shits[arg].bustDisplay);
+	showName("\n"+shits[arg].short.toUpperCase());
+	output("You swap your " + shits["SHIP"].short + " for " + indefiniteArticle(shits[arg].short) + ".");
+	var tempShip:ShittyShip = shits[arg];
+	shits[arg] = shits["SHIP"];
+	shits["SHIP"] = tempShip;
+	clearMenu();
+	addButton(0,"Next",VahnTheMechanic);
+}
+
+public function storeYourShip():void
+{
+	var dictString:String = "";
+	if(shits["SHIP_2"] == undefined) dictString = "_2";
+	else if(shits["SHIP_3"] == undefined) dictString = "_3";
+	else if(shits["SHIP_4"] == undefined) dictString = "_4";
+	else if(shits["SHIP_5"] == undefined) dictString = "_5";
+	else if(shits["SHIP_6"] == undefined) dictString = "_6";
+	var tempShip:ShittyShip = shits["SHIP"];
+	output("\n\nYour old vessel, " + indefiniteArticle(tempShip.short) + ", is placed into storage.");
+	shits["SHIP"+dictString] = tempShip;
+}
+public function shipStorageRoom():Number
+{
+	var count:Number = 0;
+	if(shits["SHIP_2"] == undefined) count++;
+	if(shits["SHIP_3"] == undefined) count++;
+	if(shits["SHIP_4"] == undefined) count++;
+	if(shits["SHIP_5"] == undefined) count++;
+	if(shits["SHIP_6"] == undefined) count++;
+	return (count);
+}
+
+
+public function shipCompareString(newShip:ShittyShip):String
+{
+	var shipTooltip:String = "";
+	//Appearance compare. Might need cut.
+	shipTooltip += "<b>New Ship:</b> " + newShip.long;
+	//shipTooltip += "\n\n<b>Old Ship:</b>" + shits["SHIP"].long;
+
+	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());
+	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shield.shieldDefense, shits["SHIP"].shield.shieldDefense);
+	shipTooltip += "\n<b>Armor: </b>" + shipStatCompare(newShip.HPMax(), shits["SHIP"].HPMax());
+	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.armor.defense, shits["SHIP"].armor.defense);
+	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
+	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
+	
+	//Agility
+	shipTooltip += "\n\n<b>Agility: </b>" + shipStatCompare(newShip.shipAgility(), shits["SHIP"].shipAgility());
+	//Sensors
+	shipTooltip += "\n<b>Sensors: </b>" + shipStatCompare(newShip.shipSensors(), shits["SHIP"].shipSensors());
+	//Systems
+	shipTooltip += "\n<b>Systems: </b>" + shipStatCompare(newShip.shipSystems(), shits["SHIP"].shipSystems());
+	//Thrust
+	shipTooltip += "\n<b>Thrust: </b>" + shipStatCompare(newShip.shipThrust(), shits["SHIP"].shipThrust());
+
+	//Upgrades/Crew: shipCapacityRaw
+	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), shits["SHIP"].shipCapacity());
+	//Upgrades Installed
+	shipTooltip += "\n<b>Weapon Capacity: </b>" + shipStatCompare(newShip.shipGunCapacity(), shits["SHIP"].shipGunCapacity());
+	shipTooltip += "\n\n<b>Modules Installed: </b>";
+
+	for(var i:int = 0; i < newShip.inventory.length; i++)
+	{
+		if(i > 0) shipTooltip += ", ";
+		shipTooltip += newShip.inventory[i].longName;
+	}
+	
+	if(newShip.inventory.length == 0) shipTooltip += "None.";
+	else shipTooltip += ".";
+
+	shipTooltip += "\n(<b>Old Ship:</b> ";
+	for(i = 0; i < shits["SHIP"].inventory.length; i++)
+	{
+		if(i > 0) shipTooltip += ", ";
+		shipTooltip += shits["SHIP"].inventory[i].longName;
+	}
+	if(shits["SHIP"].inventory.length == 0) shipTooltip += "None.)";
+	else shipTooltip += ".)";
+
+	//Fixed Equipment
+	shipTooltip += "\n\n<b>Fixed Equipment: </b>";
+	var equipment:Array = newShip.getFixedEquipment();
+	for(i = 0; i < equipment.length; i++)
+	{
+		if(i > 0) shipTooltip += ", ";
+		shipTooltip += equipment[i].longName;
+	}
+	if(equipment.length == 0) shipTooltip += "None.";
+	else shipTooltip += ".";
+	
+	equipment = shits["SHIP"].getFixedEquipment();
+	shipTooltip += "\n(<b>Old Ship:</b> ";
+	for(i = 0; i < equipment.length; i++)
+	{
+		if(i > 0) shipTooltip += ", ";
+		shipTooltip += equipment[i].longName;
+	}
+	if(equipment.length == 0) shipTooltip += "None.)";
+	else shipTooltip += ".)";
+	
+	shipTooltip += "\n\n<b><u>Purchase Cost: </u></b>" + shipStatCompare(newShip.shipCost(), shits["SHIP"].shipCost());
+	shipTooltip += "\n<b><u>w/Trade In: </u></b>" + (newShip.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
+	return shipTooltip;
+}
+
+public function shipStatCompare(newVal:Number,old:Number,lowGood:Boolean = false):String
+{
+	var texty:String = "";
+	texty += newVal;
+	texty += " (";
+	if(newVal - old >= 0)
+	{
+		texty += "+<b><span class='hp'>" + String(Math.abs(newVal - old)) + "</span></b>)";
+	}
+	else 
+	{
+		texty += "-<b><span class='lust'>" + String(Math.abs(newVal - old)) + "</span></b>)";
+	}
+	return texty;
 }
 
 //Appearance

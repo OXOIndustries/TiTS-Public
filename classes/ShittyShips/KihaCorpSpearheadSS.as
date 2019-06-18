@@ -5,11 +5,12 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.NovaShield;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.ShittyShips.ShittyShipGear.Guns.MGun;
 	import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+	import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipArmor;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipShield;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
+	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldBoosterForShips;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.RepairModule;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -20,66 +21,66 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
-	public class Casstech extends ShittyShip
+	public class KihaCorpSpearheadSS extends ShittyShip
 	{
 		//constructor
-		public function Casstech()
+		public function KihaCorpSpearheadSS()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
-			this.short = "Casstech Z14";
+			this.short = "Spearhead SS";
 			this.originalRace = "ship";
 			this.shieldDisplayName = "SHIELDS";
 			this.hpDisplayName = "ARMOR";
 			this.captainDisplay = "UNKNOWN";
-			this.modelDisplay = "CT.Z14";
+			this.modelDisplay = "KIHACORP";
 			this.factionDisplay = "UNKNOWN";
 
-			wardrobeSizeRaw = 10;
-			equipmentSizeRaw = 10;
-			consumableSizeRaw = 10;
-			valuablesSizeRaw = 10;
-			toysSizeRaw = 10;
-			
-			shipCapacityRaw = 4;
-			shipGunCapacityRaw = 2;
+			wardrobeSizeRaw = 20;
+			equipmentSizeRaw = 20;
+			consumableSizeRaw = 20;
+			valuablesSizeRaw = 20;
+			toysSizeRaw = 20;
+
+			shipCapacityRaw = 6;
+			shipGunCapacityRaw = 4;
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.";
+			this.long = "The KihaCorp Spearhead is a Terran-designed ship intended for planetary exploration and scout missions. The Spearhead houses four large but powerful XFold engines whose unique design allows for unparalleled maneuverability both in space and in atmosphere. Modern XFolds have low fuel consumption and run quieter than any other engines in their class.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It's too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;
-			this.meleeWeapon = new EmptySlot();
-			this.rangedWeapon = new MGun();
+			this.meleeWeapon = new LCannon();
+			this.rangedWeapon = new EMCannon();
 
 			this.armor = new ShipArmor();
-			this.armor.defense = 30;
+			this.armor.defense = 15;
 			this.armor.hasRandomProperties = true;
 
-			this.inventory.push(new LCannon());
+			this.inventory.push();
 						
 			this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
 			this.shield.shields = 3000;
 			this.shield.hasRandomProperties = true;
 
-			this.HPMod = 2000;
+			this.HPMod = 1500;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 33;
+			this.physiqueRaw = 35;
 			//AGILITY:
-			this.reflexesRaw = 20;
+			this.reflexesRaw = 35;
 			//SENSORS
-			this.aimRaw = 14;
+			this.aimRaw = 25;
 			//SYSTEMS
-			this.intelligenceRaw = 25;
+			this.intelligenceRaw = 35;
 			//POWER GEN
-			this.willpowerRaw = 25;
+			this.willpowerRaw = 20;
 
 			//UNUSED
 			this.libidoRaw = 50;
@@ -94,7 +95,7 @@
 			
 			this.level = 0;
 			this.XPRaw = bossXP();
-			this.credits = 25000;
+			this.credits = 44999;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = this.energyMax();
@@ -106,21 +107,21 @@
 			this.createPerk("Iron Will",0,0,0,0);
 			this.createPerk("Single Minded",0,0,0,0);
 			*/
-			this.createPerk("TACTICAL_AI",0,0,0,0);
+			this.createPerk("PCs",0,0,0,0);
 
 			isUniqueInFight = true;
-			btnTargetText = "CT.Z14";
+			btnTargetText = "S.SS";
 			
 
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
 		override public function energyMax(): Number {
-			return 200;
+			return 250;
 		}
 		override public function get bustDisplay():String
 		{
-			return "Z14";
+			return "SPEARHEAD_SS";
 		}
 	}
 }

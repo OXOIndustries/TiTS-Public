@@ -31,9 +31,9 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.description = "a machine gun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TBD";
+			this.tooltip = "While colloquially known as a machine gun, this ship-mounted monstrosity would be a rapid-firing anti-tank weapon on the ground, but in the vastness of space, its punishing shells may as well be .22 bullets.";
 			this.attackVerb = "shoot";
-			attackNoun = "shot";
+			attackNoun = "bullet";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -43,12 +43,10 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 95;
 			baseDamage.addFlag(DamageFlag.BULLET);
-			//addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+
 			addFlag(GLOBAL.ITEM_FLAG_QUADSHOT);
+			addFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT);
 			
-			//baseDamage.addFlag(DamageFlag.NO_CRIT);
-			
-			//this.addFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON);
 			this.attack = -5;
 			this.defense = 0;
 			this.shieldDefense = 25;

@@ -189,7 +189,7 @@
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
-			if(kGAMECLASS.shopkeep.hasPerk("SHIP VENDOR")) compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
+			if(this.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
 			else compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
 			

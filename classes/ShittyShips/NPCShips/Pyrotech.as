@@ -1,4 +1,4 @@
-﻿package classes.ShittyShips
+﻿package classes.ShittyShips.NPCShips
 {
 	import classes.Creature;
 	import classes.ShittyShip;
@@ -6,10 +6,9 @@
 	import classes.Items.Protection.NovaShield;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.ShittyShips.ShittyShipGear.Guns.MGun;
-	import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+	import classes.ShittyShips.ShittyShipGear.Guns.ThermalProjector;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipArmor;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipShield;
-	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.RepairModule;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -20,35 +19,33 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
-	public class Casstech extends ShittyShip
+	public class Pyrotech extends ShittyShip
 	{
 		//constructor
-		public function Casstech()
+		public function Pyrotech()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
-			this.short = "Casstech Z14";
+			this.short = "modified Z7";
 			this.originalRace = "ship";
 			this.shieldDisplayName = "SHIELDS";
 			this.hpDisplayName = "ARMOR";
-			this.captainDisplay = "UNKNOWN";
-			this.modelDisplay = "CT.Z14";
-			this.factionDisplay = "UNKNOWN";
+			this.captainDisplay = "S1CKM0V3S";
+			this.modelDisplay = "CT.Z7";
+			this.factionDisplay = "C.LORDS";
 
 			wardrobeSizeRaw = 10;
-			equipmentSizeRaw = 10;
+			equipmentSizeRaw = 2;
 			consumableSizeRaw = 10;
 			valuablesSizeRaw = 10;
 			toysSizeRaw = 10;
-			
-			shipCapacityRaw = 4;
-			shipGunCapacityRaw = 2;
+			shipCapacityRaw = 3;
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.";
+			this.long = "This tiny, ancient Casstech Z7 makes Dad's old Z14 look like a pleasure yacht, but what it lacks in size, it makes up for in thrust. Brand new engines shine with glossy, factory finishes, ready to run down vulnerable Rushers in a heartbeat. Once it catches its prey, it's ready to unload with standard-issue machine gun and some kind of short ranged energy weapon.\n\nA flashy insignia on the side proudly declares it to be a member of the \"Corona Lords.\"";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It's too evasive!";
 			this.isPlural = false;
@@ -58,28 +55,30 @@
 			this.rangedWeapon = new MGun();
 
 			this.armor = new ShipArmor();
-			this.armor.defense = 30;
+			this.armor.defense = 20;
 			this.armor.hasRandomProperties = true;
 
-			this.inventory.push(new LCannon());
-						
+			this.inventory.push(new ThermalProjector());
+			this.inventory.push(new RepairModule());
+			//this.inventory.push(new ShieldBooster());
+			
 			this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
-			this.shield.shields = 3000;
+			this.shield.shields = 500;
 			this.shield.hasRandomProperties = true;
 
-			this.HPMod = 2000;
+			this.HPMod = 3500;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 33;
+			this.physiqueRaw = 40;
 			//AGILITY:
-			this.reflexesRaw = 20;
+			this.reflexesRaw = 40;
 			//SENSORS
-			this.aimRaw = 14;
+			this.aimRaw = 20;
 			//SYSTEMS
-			this.intelligenceRaw = 25;
+			this.intelligenceRaw = 15;
 			//POWER GEN
-			this.willpowerRaw = 25;
+			this.willpowerRaw = 30;
 
 			//UNUSED
 			this.libidoRaw = 50;
@@ -92,12 +91,16 @@
 			//(Handled via armor)
 			//baseHPResistances = new TypeCollection();
 			
-			this.level = 0;
-			this.XPRaw = bossXP();
-			this.credits = 25000;
+			this.level = 2;
+			this.XPRaw = normalXP();
+			this.credits = 1500+rand(100);
+			
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = this.energyMax();
+
+			this.createPerk("AGGRESSIVE_AI");
+			this.createPerk("PIRATE");
 
 			/*
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
@@ -105,22 +108,20 @@
 			this.createPerk("Juggernaut",0,0,0,0);
 			this.createPerk("Iron Will",0,0,0,0);
 			this.createPerk("Single Minded",0,0,0,0);
-			*/
-			this.createPerk("TACTICAL_AI",0,0,0,0);
-
+			this.createPerk("Riposte",0,0,0,0);*/
 			isUniqueInFight = true;
-			btnTargetText = "CT.Z14";
+			btnTargetText = "";
 			
 
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
 		override public function energyMax(): Number {
-			return 200;
+			return 150;
 		}
 		override public function get bustDisplay():String
 		{
-			return "Z14";
+			return "Z7";
 		}
 	}
 }
