@@ -169,6 +169,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if(eventQueue.indexOf(fixPcUpbringing) == -1) eventQueue.push(fixPcUpbringing);
 	}
 	if(shits["SHIP"] == undefined) shits["SHIP"] = new Casstech();
+	if(!shits["SHIP"].hasPerk("PCs")) shits["SHIP"].createPerk("PCs");
 	if(baby.originalRace == "NOT SET")
 	{
 		if(eventQueue.indexOf(setBabyValuesOptions) == -1) eventQueue.push(setBabyValuesOptions);
