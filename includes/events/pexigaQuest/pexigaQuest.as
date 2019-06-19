@@ -68,15 +68,6 @@ public function showBrainwashingBall():void
 	showName("BRAINWASHING\nBALL");
 }
 
-public function pexigaShipBonusText():String
-{
-	var msg:String = "";
-	
-	msg += "The bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to " + (yammiIsCrew() ? "follow Yammi around like a little lost puppy, helping out any way she can" : "scurry around like a little lost puppy") + ". Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger " + (yammiIsCrew() ? "Yammi" : "-- the type that food") + " can’t satisfy.";
-	
-	return msg;
-}
-
 //Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
 //Talking with Yammi
 // Add [Pet Talk] to Yammi’s menu after opening the [Pexiga] milk & pet options
@@ -4558,7 +4549,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
 			pc.clearSkinFlags();
 			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-			pc.skinTone = latexColorMin;
+			pc.skinTone = latexColorMax;
 			// Gloss level
 			pc.createStatusEffect("Latex Skin", 0, 0, 0, 0);
 			if(pc.statusEffectv1("Latex Skin") < 3) pc.addStatusValue("Latex Skin",1,1);

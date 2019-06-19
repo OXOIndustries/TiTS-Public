@@ -51,7 +51,7 @@
 			this.capitalA = "The ";
 			this.long = "A relatively old model by current standards, the <b>Pyrite Heavy Industries</b> Colt XLR is nevertheless a prized addition to any construction or cargo-hauling company. The pickup truck of starships, it offers a good combination of armor protection, cargo space, and raw physical power thanks to its mighty engines. It is, however, known for being relatively lightly shielded, much of its power better used to operate the engines on evasive dodges rather than trying to overclock the basic navigational shield installed.\n\nStill, any trucker or terraformer who uses the XLR swears by its reliability and durability.";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;

@@ -706,7 +706,7 @@ public function buyShipFitItem(newScreen:Boolean = false):void
 		showName("\n"+shopkeep.short.toUpperCase());
 	}
 	var ship:ShittyShip = shits["SHIP"];
-	output("Buying a module will result in it being immediately installed on your ship. They're too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
+	output("Buying a module will result in it being immediately installed on your ship. They’re too large to carry or transport in any other way. The cost of installation is included in the price.\n\n");
 	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
 	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
@@ -759,7 +759,7 @@ public function unfitShipItem(newScreen:Boolean = false):void
 		showName("\n"+shopkeep.short.toUpperCase());
 	}
 	var ship:ShittyShip = shits["SHIP"];
-	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you'll have to sell it.\n\n");
+	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you’ll have to sell it.\n\n");
 	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
 	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");

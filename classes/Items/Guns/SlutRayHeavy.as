@@ -11,37 +11,29 @@ package classes.Items.Guns
 	{
 		//Level 10 (Rare). Balance 2.0
 		//10% drop chance on SlyverenSlavebreaker.
-		//constructor
 		public function SlutRayHeavy()
 		{
-			this._latestVersion = 1;
+			_latestVersion = 1;
 
-			this.quantity = 1;
-			this.stackSize = 1;
-			this.type = GLOBAL.RANGED_WEAPON;
+			quantity = 1;
+			stackSize = 1;
+			type = GLOBAL.RANGED_WEAPON;
 			
-			//Used on inventory buttons
-			this.shortName = "H.SlutRay";
+			shortName = "H.SlutRay";
+			longName = "heavy slut ray";
 			
-			//Regular name
-			this.longName = "heavy slut ray";
+			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			description = "a heavy ‘slut ray’ gun";
+			tooltip = "This bulky variant of the ‘slut ray’ was designed for power rather than concealment. Instead of being used for covert brainwashing, it is intended for use in less-than-lethal combat, though the strength of its effects make it equally well-suited to the former. When fired, brilliant pink beams of psychicly-attuned energy fly through the air. Victims of this weapon report experiencing vivid sexual fantasies, often of the wielder, that linger for many hours after exposure.";
 			
-			//Longass shit, not sure what used for yet.
-			this.description = "a heavy ‘slut ray’ gun";
+			TooltipManager.addTooltip(shortName, tooltip);
 			
-			//Displayed on tooltips during mouseovers
-			this.tooltip = "This bulky variant of the ‘slut ray’ was designed for power rather than concealment. Instead of being used for covert brainwashing, it is intended for use in less-than-lethal combat, though the strength of its effects make it equally well-suited to the former. When fired, brilliant pink beams of psychicly-attuned energy fly through the air. Victims of this weapon report experiencing vivid sexual fantasies, often of the wielder, that linger for many hours after exposure.";
-			
-			TooltipManager.addTooltip(this.shortName, this.tooltip);
-			
-			this.attackVerb = "shoot";
+			attackVerb = "shoot";
 			attackNoun = "beam of psychic, erotic energies";
 			
-			//Information
-			this.basePrice = 25000;
-			this.attack = 0;
+			basePrice = 25000;
+			
 			baseDamage.tease.damageValue = 8;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
@@ -49,15 +41,16 @@ package classes.Items.Guns
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			
-			this.defense = 0;
-			this.shieldDefense = 0;
-			this.shields = 0;
-			this.sexiness = 0;
-			this.critBonus = 4;
-			this.evasion = 0;
-			this.fortification = 0;
+			attack = 0;
+			defense = 0;
+			shieldDefense = 0;
+			shields = 0;
+			sexiness = 0;
+			critBonus = 4;
+			evasion = 0;
+			fortification = 0;
 
-			this.version = _latestVersion;
+			version = _latestVersion;
 			
 			attackImplementor = CombatAttacks.SlutRayAttackImpl;
 		}

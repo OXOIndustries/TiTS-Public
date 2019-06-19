@@ -2273,7 +2273,7 @@ public function ratsLossSex():void
 			output("Although no attempt was made to turn you on, you are debilitatingly aroused and can think of nothing but getting off. Your body slackens and you fall to your knees, eyes crossing amid the muted jeers of your would-be robbers. It takes you by surprise when you’re sandwiched between their bodies, duplicitous hands and paws roaming all over your body");
 			if (!pc.isNude()) output(" and clothes");
 			output(".");
-			output("\n\nYou're sure you must be dripping. You feel unpleasantly hot and usable");
+			output("\n\nYou’re sure you must be dripping. You feel unpleasantly hot and usable");
 			if (pc.hasGenitals()) output(", to say nothing of the twitchiness in your crotch");
 			output(". It’s not long before you’re forced on your back and kept there, lamely trying to masturbate amid the cacophony.");
 			output("\n\nThe rats join you in the gropefest");

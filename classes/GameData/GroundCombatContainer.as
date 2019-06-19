@@ -1454,16 +1454,16 @@ package classes.GameData
 
 				addButton(3,"Evade!",evadeWithYoShip,undefined,"Evade!","Focus on evasion rather than firing any weapon systems. Dodge, duck, dip, dive, and aileron roll!\n\n(+50 evasion.)");
 				addButton(4,"Battle!",selectSimpleAttack, { func: CombatAttacks.ShipAttack },"Battle!","Fight with your presently powered weapons!");
-				addButton(6, "Scan", selectSimpleAttack, { func: generateScanMenu }, "Scan", "Attempts to identify the enemy vessel's equipment and elemental resistances.");
-				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)");
+				addButton(6, "Scan", selectSimpleAttack, { func: generateScanMenu }, "Scan", "Attempts to identify the enemy vessel’s equipment and elemental resistances.");
+				addButton(9,"Recharge!",rechargeYoShipBoooost,_friendlies[0],"Recharge!","Focus on recharging your ship’s capacitors instead of fighting back. Note that this happens automatically if you select “Battle!” without any weapons enabled.\n\n(Double energy gain.)");
 
 
-				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape!", runAway, undefined, "Escape!", "Now that you've charged your light drive, you can escape with the flip of a switch!");
+				if(_friendlies[0].hasStatusEffect("Charging Light Drive")) addButton(14, "Escape!", runAway, undefined, "Escape!", "Now that you’ve charged your light drive, you can escape with the flip of a switch!");
 				else if(_friendlies[0].energy() >= Math.floor(_friendlies[0].energyMax()/2)) 
 				{
 					addButton(14, "Escape!", runAway, undefined, "Escape!", "Attempt to escape from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 				}
-				else addDisabledButton(14,"Escape","Escape","You don't have enough energy to charge your light drive.\n\n<b>Energy Required:</b> " + Math.floor(_friendlies[0].energyMax()/2));
+				else addDisabledButton(14,"Escape","Escape","You don’t have enough energy to charge your light drive.\n\n<b>Energy Required:</b> " + Math.floor(_friendlies[0].energyMax()/2));
 
 				return;
 			}
@@ -1671,13 +1671,13 @@ package classes.GameData
 			{
 				if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 				{
-					output("\n<b>OFF</b>\t|  " + StringUtil.upperCase(weapons[i].longName));
+					output("\n<b>OFF</b>\t| " + StringUtil.upperCase(weapons[i].longName));
 					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Enable this weapon.");
 					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
 				}
 				else 
 				{
-					output("\n" + weapons[i].shieldDefense + "\t|  " + StringUtil.upperCase(weapons[i].longName));
+					output("\n" + weapons[i].shieldDefense + "\t| " + StringUtil.upperCase(weapons[i].longName));
 					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
 					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
 					energyCost += weapons[i].shieldDefense;
@@ -1882,7 +1882,7 @@ package classes.GameData
 				else
 				{
 					_friendlies[0].createStatusEffect("Charging Light Drive",0,0,0,0,false,"Icon_Rotate","Your light drive is charging up! So long as you can avoid any electrical strikes to your armor, you can run next turn!",true);
-					output("You reroute power into your light drive. So long as you don't take any electrical damage to your hull, you'll be ready to escape next round!");
+					output("You reroute power into your light drive. So long as you don’t take any electrical damage to your hull, you’ll be ready to escape next round!");
 					_friendlies[0].energy(-Math.floor(_friendlies[0].energyMax()/2));
 					processCombat();
 					return;
@@ -2441,7 +2441,7 @@ package classes.GameData
 					if(panicJack)
 					{
 						output(" The [pc.cumNoun] you squirt helps a little too.");
-						if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
+						if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 						pc.lust(-10);
 					}
 					target.removeStatusEffect("Grappled");
@@ -4942,6 +4942,12 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
+			// Ship drones, maybe?
+			if(_friendlies[0] is ShittyShip)
+			{
+				return;
+			}
+			
 			if(droneUser == pc && pc.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] != undefined)
 			{
 				if(!pc.hasStatusEffect("Varmint Buddy")) return;
@@ -5082,7 +5088,7 @@ package classes.GameData
 					}
 					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
 					target.energy(energyGen);
-					if(energyGen > 0) output("\n\nYour ship's reactor generated more energy (<b>E:</b> +<b><span class='hp'>" + energyGen + "</span></b>).");
+					if(energyGen > 0) output("\n\nYour ship’s reactor generated more energy (<b>E:</b> +<b><span class='hp'>" + energyGen + "</span></b>).");
 					continue;
 				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
@@ -5149,7 +5155,7 @@ package classes.GameData
 						if (_friendlies[i].hasPerk("PCs")) output("\n\nYou drift in space");
 						else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " drifts in space");
 						if (_friendlies[i].HP() <= 0) output(", momentarily disabled.");
-						else output(", virtually pilotless thanks to the rampant lust dominating " + (_friendlies[i].hasPerk("PCs") ? "its crew's":"your") + " thoughts.");
+						else output(", virtually pilotless thanks to the rampant lust dominating " + (_friendlies[i].hasPerk("PCs") ? "its crew’s":"your") + " thoughts.");
 					}
 				}
 				//Non ship-fite

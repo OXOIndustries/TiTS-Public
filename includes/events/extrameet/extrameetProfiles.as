@@ -43,7 +43,6 @@ public function extrameetBigTiddyGothGFDate():void
 	showName("\nDARK&DESPERATE");
 	author("Fr0sty");
 	moveTo("ANON'S BAR AND BOARD");
-
 	output("You arrive at Anon’s Bar and Board and take a quick look around. You spot your date sitting at the very back of the bar in a lonely corner. As you make your way over, something about her strikes you as off. <i>Really off</i>. She seems to be twitching, and from where you are it looks like she’s talking to herself. Just before you reach the table, your codex starts to beep. Examining it quickly, you find it’s flashing an alert.");
 	output("\n\n<b>Warning: Unknown psionic energies detected.</b>");
 	output("\n\n<i>“Huh.”</i> You’ve never seen that one before. You silence the alert, and when you look up from your codex you nearly jump out of your [pc.skinFurScales]. Your date is standing inches away from you, smiling widely.");
@@ -2177,7 +2176,7 @@ public function extrameetShekkaProfile():void
 	output("\nRace: Raskvel");
 	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
-	output("\nLooking for more than a quick hookup. If that's all you want, keep swiping. The wastes are full of girls who are <b>begging</b> to be bred.");
+	output("\nLooking for more than a quick hookup. If that’s all you want, keep swiping. The wastes are full of girls who are <b>begging</b> to be bred.");
 }
 public function extrameetShekkaCheckMatch():Boolean
 {

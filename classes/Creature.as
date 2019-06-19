@@ -1886,9 +1886,6 @@
 				case "clothes":
 					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 					break;
-				case "ship":
-					buffer = "Casstech Z14";
-					break;
 				case "short":
 				case "name":
 					buffer = nameDisplay();
@@ -13335,7 +13332,7 @@
 			var counter:int = 0;
 			if (skinType != GLOBAL.SKIN_TYPE_SKIN) counter--;
 			if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) counter++;
-			if (skinTone.indexOf("blue") > 0 || skinTone.indexOf("green") > 0) counter++;
+			if (skinTone.indexOf("blue") != -1 || skinTone.indexOf("green") != -1) counter++;
 			if (eyeType == GLOBAL.TYPE_JANERIA) counter++;
 			if (tongueType == GLOBAL.TYPE_FROSTWYRM) counter++;
 			if (legType == GLOBAL.TYPE_JANERIA) counter++;

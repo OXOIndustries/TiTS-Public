@@ -526,23 +526,27 @@ public function amberComeWithSleep():void
 }
 
 //crew activity blurb for ship 
-public function amberShipBonusText():String
+public function amberShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
-	var desc:String;
+	var desc:String = "";
 	
 	if(pc.hasStatusEffect("Amber Disabled")) 
 	{
-		desc = "Amber is not available at the moment.";
+		desc += "\n\nAmber is not available at the moment.";
 		if(mitziIsCrew()) desc += " She’s probably getting into trouble with Mitzi somewhere...";
 	}
 	else
 	{
-		desc = "Amber is likely relaxing down in the hold";
+		desc += "\n\nAmber is likely relaxing down in the hold";
 		if (crew(true) > 0) desc += " or hanging out with a crew member";
 		desc += ".";
 	}
 	
-	return desc;
+	if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+	else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber’s busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
+	else addButton(btnSlot, "Amber", amberInTheHold);
+	
+	return (showBlurb ? desc : "");
 }
 
 //interact with amber in the hold

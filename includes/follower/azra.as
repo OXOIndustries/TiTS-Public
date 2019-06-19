@@ -283,28 +283,28 @@ public function azraInShipGreeting():void
 
 //Azra as a Follower
 //Random crew blurbs
-public function azraCrewBlurbs(button:Number):String
+public function azraCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var buffer:String = "";
 	
 	if(pc.hasStatusEffect("Azra Plant CD")) 
 	{
 		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
-		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
+		addDisabledButton(btnSlot,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
-	else if(pc.hasStatusEffect("Azra CD"))
+	if(pc.hasStatusEffect("Azra CD"))
 	{
 		buffer += "\n\nAzra isn’t available at the moment. You’ll have to come back later.";
-		addDisabledButton(button,"Azra","Azra","Azra isn’t available. Come back later.");
+		addDisabledButton(btnSlot,"Azra","Azra","Azra isn’t available. Come back later.");
 		return buffer;
 	}
 	//Post Coital Relationship Talk
 	//Approach text:
-	else if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
+	if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
 	{
 		buffer += "\n\nAzra is fidgeting in her lab. The plants are secure, but something else must have her bothered. Perhaps if you talked to her, she might explain.";
-		addButton(button,"Azra",azraPostCoitalTalk);
+		addButton(btnSlot,"Azra",azraPostCoitalTalk);
 		return buffer;
 	}
 	switch(rand(10))
@@ -320,8 +320,8 @@ public function azraCrewBlurbs(button:Number):String
 		case 1:
 		case 0: buffer += "\n\nAzra is packing away a tube filled with exotic plant samples. Her portable workstation still displays a visualization of its genetic structure."; break;
 	}
-	addButton(button,"Azra",approachCrewAzra);
-	return buffer;
+	addButton(btnSlot,"Azra",approachCrewAzra);
+	return (showBlurb ? buffer : "");
 }
 
 //Azra Crew Approach

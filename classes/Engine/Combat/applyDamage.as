@@ -265,7 +265,7 @@ package classes.Engine.Combat
 			attacker.HP(Math.round(damageResult.hpDamage * .9));
 		}
 		// Stun Special
-		if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
+		if ((damageResult.hpDamage + damageResult.lustDamage) > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
 		{
 			if(displayBonusTexts) 
 			{

@@ -2558,15 +2558,15 @@ public function nurseryLaquineBlurbs():void
 		{
 			if (rand(2) == 0) 
 			{
-				output("\n\nIn the nursery's living space you're not surprised to see your infant laquines resting peacefully in the provided cribs and cradles. Doting staff see to their needs at all times, the milk never too far behind when one starts crying for food.");
-				if (boredJumperBreastFeedOK()) output(" You could probably help with that! Carrying this load of [pc.milkNoun] is hard enough, and there's no better place to put it!");					
+				output("\n\nIn the nursery’s living space you’re not surprised to see your infant laquines resting peacefully in the provided cribs and cradles. Doting staff see to their needs at all times, the milk never too far behind when one starts crying for food.");
+				if (boredJumperBreastFeedOK()) output(" You could probably help with that! Carrying this load of [pc.milkNoun] is hard enough, and there’s no better place to put it!");					
 			}
 			else
 			{
 				output("\n\nBriget is usually found in this room attending");
 				if (ChildManager.numChildrenAtNursery() > ttl) output(" to other children");
 				else output(" to daily errands");
-				output(", but right now she's supervising the staff on the care of your infant laquines. They're raised from the cribs and given their meal, patted down until they obligingly burp.");
+				output(", but right now she’s supervising the staff on the care of your infant laquines. They’re raised from the cribs and given their meal, patted down until they obligingly burp.");
 				if (boredJumperBreastFeedOK()) output(" Considering how full of [pc.milkNoun] you are, you could give your kids some warm cream right from the source!");	
 			}
 		}
@@ -2576,7 +2576,7 @@ public function nurseryLaquineBlurbs():void
 		}
 		else if (babyCnt == 0 && kidCnt > 0)
 		{
-			output("\n\nWhen they're not horsing around, the eldest among your laquine children spend a lot of time here. You can only surmise because it's a quiet place, and they have ample opportunity to help the staff. Part of you wonders if they're just trying to curry favor so the adults'll look the other way when they start tearing the place up all over again.");
+			output("\n\nWhen they’re not horsing around, the eldest among your laquine children spend a lot of time here. You can only surmise because it’s a quiet place, and they have ample opportunity to help the staff. Part of you wonders if they’re just trying to curry favor so the adults’ll look the other way when they start tearing the place up all over again.");
 		}
 	}		
 }
@@ -2660,7 +2660,7 @@ public function nurseryAgeCounts(kidType:Number,babyAge:int=1,kidAge:int=18):Arr
 		{
 			var c:Child = children[i] as Child;
 			if (c.Years < babyAge) babyCnt += c.Quantity;
-			else if  (c.Years <= kidAge)
+			else if (c.Years <= kidAge)
 			{
 				kidCnt += c.Quantity;
 				if (c.NumMale > 0) maleKids += c.NumMale;

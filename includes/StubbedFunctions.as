@@ -20,6 +20,9 @@ public function kiroIsCrew():Boolean
 public function PCShipName(customName:Boolean = true):String
 {
 	// 9999 if(customName) return ActivePlayerShip.Name;
+	
+	if(shits["SHIP"] != undefined) return (customName ? shits["SHIP"].short : shits["SHIP"].short);
+	
 	return (PCShipManufacturer() + " " + PCShipModel());
 }
 public function PCShipManufacturer():String
@@ -30,6 +33,9 @@ public function PCShipManufacturer():String
 public function PCShipModel():String
 {
 	// 9999 return ActivePlayerShip.Model;
+	
+	if(shits["SHIP"] != undefined) return shits["SHIP"].modelDisplay;
+	
 	return "Z14";
 }
 

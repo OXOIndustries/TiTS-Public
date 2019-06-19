@@ -263,7 +263,7 @@ public function ramisRecruitDealShip():void
 	}
 	else
 	{
-		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [pc.ship] up.");
+		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [PCShipName] up.");
 		output("\n\n<i>“Think I saw you comen in on a real piece of junk a couple of times, and I was kind’ve worried you were still floaten around in that.”</i> She tuts and hums as she walks around it, taking in the armaments. <i>“Yeeeaaahhh, but see, these are all calibrated wrong. They produce ‘em like this cuz they’re dead easy to bolt on factory-fresh to a ship like this, you know, but you’re wasten energy and not getten the full ay oh eff when they’re configured like that.”</i> She snaps the straps of her sports bra resolutely. <i>“Plenty to be getten on with! I’ll go and pick my stuff up from the lockers and get to it. I’ll be on board by the time you’re ready to leave... captain.”</i>");
 	}
 	
@@ -360,26 +360,38 @@ public var ramisCrewBasicBlurbs:Array = [
 	"It seems to be Ramis’s downtime. On the monitors, you can see she’s at her desk with a flask of whiskey and her lappy holo-device, idly scrolling and tapping away at various social media and vid sites. Kait-Pop is blaring through the speakers. She’s nodding away happily to the nightmarishly manic, screechy racket.",
 ];
 
-public function ramisCrewBlurb():String
+public function ramisCrewBlurb(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
-	var blurb:String;
-
-	if (flags["RAMIS_ACTIVITY"] is int) return ramisCrewBasicBlurbs[flags["RAMIS_ACTIVITY"]];
-	switch (flags["RAMIS_ACTIVITY"])
+	var blurb:String = "";
+	
+	if (!pc.hasStatusEffect("Partying Ramis"))
 	{
-		case "HORNY":
-			blurb = "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
-			break;
-		case "PARTY":
-			blurb = "A medley of trance and hip-hop blares at full blast from Ramis’s room.";
-			if (flags["RAMIS_PARTIED"] == undefined) blurb += " Slightly more bearable than the Kait-Pop she so adores, but does she have to have it on so loud? Perhaps you should go check on her.";
-			else blurb += " It’s her going-out mix. Clearly she’s excited to have landed back on Tavros again!";
-			break;
-		case "ERROR":
-		default:
-			blurb = "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
-			break;
+		if (showBlurb)
+		{
+			blurb += "\n\n";
+			if (flags["RAMIS_ACTIVITY"] is int) blurb += ramisCrewBasicBlurbs[flags["RAMIS_ACTIVITY"]];
+			else
+			{
+				switch (flags["RAMIS_ACTIVITY"])
+				{
+					case "HORNY":
+						blurb += "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
+						break;
+					case "PARTY":
+						blurb += "A medley of trance and hip-hop blares at full blast from Ramis’s room.";
+						if (flags["RAMIS_PARTIED"] == undefined) blurb += " Slightly more bearable than the Kait-Pop she so adores, but does she have to have it on so loud? Perhaps you should go check on her.";
+						else blurb += " It’s her going-out mix. Clearly she’s excited to have landed back on Tavros again!";
+						break;
+					case "ERROR":
+					default:
+						blurb += "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
+						break;
+				}
+			}
+		}
+		addButton(btnSlot, "Ramis", ramisCrewApproach);
 	}
+	else addDisabledButton(btnSlot, "Ramis", "Ramis", "The female kaithrit is out in Tavros, pulverizing the station’s drinking holes no doubt.\n\nShe’ll be back tomorrow.");
 	
 	return blurb;
 }

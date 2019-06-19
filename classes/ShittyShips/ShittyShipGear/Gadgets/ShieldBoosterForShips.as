@@ -48,7 +48,7 @@
 			this.description = "a shield booster";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Shield boosters are one of the most popular modifications employed by rushers. Using a dedicated capacitor bank, this device can dump an absurd amount of power into the ship's shield emitters nearly instantly, allowing for the rapid restoration of defensive energy screens.\n\n(~2000 shields)\n(1x/fight)";
+			this.tooltip = "Shield boosters are one of the most popular modifications employed by rushers. Using a dedicated capacitor bank, this device can dump an absurd amount of power into the ship’s shield emitters nearly instantly, allowing for the rapid restoration of defensive energy screens.\n\n(~2000 shields)\n(1x/fight)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -95,7 +95,7 @@
 				if(usingCreature.hasPerk("PCs")) 
 				{
 					clearOutput();
-					output("The deck seems to hum beneath your [pc.footOrFeet] as your shield booster dumps a city block's worth of electricity into your defensive screen all at once.");
+					output("The deck seems to hum beneath your [pc.footOrFeet] as your shield booster dumps a city block’s worth of electricity into your defensive screen all at once.");
 				}
 				else
 				{

@@ -342,27 +342,27 @@ public function repeatMirrinApproach():void
 		//[Hmm...]
 		clearMenu();
 		addButton(0,"Hmm...",mirrinFirstTImeOneOffSex,undefined,"Hm...","You wonder where this is heading...");
-		addButton(1,"Actually...",mirrinLetsJustBeFriends,undefined,"Actually...","You like her but you enjoy just doing friendly stuff. She'll understand");
+		addButton(1,"Actually...",mirrinLetsJustBeFriends,undefined,"Actually...","You like her but you enjoy just doing friendly stuff. She’ll understand");
 	}
 	//Time to get preg with mystical dragon babees
 	//This scene triggers after having sexed Mirrin 6 times, is not taur, hyper or already pregnant in any capacity, not under the effects of sterilex, has a cock, a vagina or both. One time scene. Overrides normal interactions with Mirrin. 
 	else if (flags["SEXED_MIRRIN"] != undefined && flags["SEXED_MIRRIN"] > 5 && !pc.hasBirthControl() && pc.biggestCockVolume() < 9999 && !pc.isPregnant() && pc.hasGenitals() && (flags["MIRRIN_PREGSTAGE"] == undefined || flags["MIRRIN_PREGSTAGE"] < 1))
 	{
-		output("As you walk over to the hulking beast, you can see that she’s not doing her usual routine. Rather, she seems to be having a conversation with herself in the mirror in her idiosyncratic dialect. It’s not spoken loud enough for your translator to pick up fully, leaving only fragments of her speech with Standard English and… what even is that, Swedish? Faroese…?");
+		output("As you walk over to the hulking beast, you can see that she’s not doing her usual routine. Rather, she seems to be having a conversation with herself in the mirror in her idiosyncratic dialect. It’s not spoken loud enough for your translator to pick up fully, leaving only fragments of her speech with Standard English and... what even is that, Swedish? Faroese...?");
 		output("\n\nShe spots you in the mirror and her face lights up a little, with her swiveling her head then body around to meet you midway. The she-dragon plods with reserved hoofsteps towards you, fidgeting with her wrists and claws.");
-		output("\n\n<i>“Steele! [pc.name]... I don’t want to get heavy at the moment but uhhh, there’s a little bit of a… thing I need to talk with you about,”</i> she begins nervously, her usual, confident tone replaced with one of worry.");
-		if (flags["MIRRIN_PREGSTAGE"] == undefined) output("\n\n<i>“Actually… wait. Okay, okay, before we ride into hell on this, do you have any umm, you know, sexually transmitted infections or a history of infertility or any sort of hidden genetic defect? Ooor ignore the last one actually but still.”</i>");
-		else output("\n\n<i>“Ohh but did you, you know… get that ‘problem’ sorted first? Not like it’s a secret now what I am asking you b-but, ehhh… yah. So… wait, are the problems still there or?”</i>");
-		output("\n\nOh, uhhh…");
+		output("\n\n<i>“Steele! [pc.name]... I don’t want to get heavy at the moment but uhhh, there’s a little bit of a... thing I need to talk with you about,”</i> she begins nervously, her usual, confident tone replaced with one of worry.");
+		if (flags["MIRRIN_PREGSTAGE"] == undefined) output("\n\n<i>“Actually... wait. Okay, okay, before we ride into hell on this, do you have any umm, you know, sexually transmitted infections or a history of infertility or any sort of hidden genetic defect? Ooor ignore the last one actually but still.”</i>");
+		else output("\n\n<i>“Ohh but did you, you know... get that ‘problem’ sorted first? Not like it’s a secret now what I am asking you b-but, ehhh... yah. So... wait, are the problems still there or?”</i>");
+		output("\n\nOh, uhhh...");
 
 		processTime(2);
 		clearMenu();
-		addButton(0,"Yes…",mirrinFindsOutYoureACrappyBreeder,undefined,"Yes...","Ohhh, well… hmmm.");
-		if (pc.fertility() > 0 && !pc.hasSSTD()) addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh… well, presumably do some breeding…???");
+		addButton(0,"Yes...",mirrinFindsOutYoureACrappyBreeder,undefined,"Yes...","Ohhh, well... hmmm.");
+		if (pc.fertility() > 0 && !pc.hasSSTD()) addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh... well, presumably do some breeding...???");
 	}
 	else if (flags["MIRRIN_PREGSTAGE"] == 3 || flags["MIRRIN_PREGSTAGE"] == 4)
 	{
-		output("You find Mirrin at her usual spot once again, " + (flags["MIRRIN_PREGSTAGE"] == 4 ? "flustered again like she was before." : "apparently nursing a leg injury…?") + " She’s gripping her right knee and huffing air rather slowly.");
+		output("You find Mirrin at her usual spot once again, " + (flags["MIRRIN_PREGSTAGE"] == 4 ? "flustered again like she was before." : "apparently nursing a leg injury...?") + " She’s gripping her right knee and huffing air rather slowly.");
 		output("\n\nYou call out to her and approach, the incapacitated she-dragon wincing as she waves back.");
 		output("\n\n<i>“Hhheeey, uhhh don’t worry about all this, I’m pretty <b>unngggg</b>... pretty ok,”</i> she whines, very much not okay.");
 		output("\n\nYou try asking her what the problem is, what kind of pain she’s in.");
@@ -372,7 +372,7 @@ public function repeatMirrinApproach():void
 
 		processTime(1);
 		clearMenu();
-		if (!pc.hasVagina() && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can't make babies without proper equipment, m8.");
+		if (!pc.hasVagina() && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can’t make babies without proper equipment, m8.");
 		else addButton(0,"Yeah",finallyMakeMirrinBabusForRealThisTimeTotally,undefined,"Yeah","Time to make babies!");
 		addButton(1,"No",function ():void
 		{
@@ -380,11 +380,11 @@ public function repeatMirrinApproach():void
 			showMirrin();
 			author("SoAndSo");
 			output("You say you’re not quite ready yet, just wanted to see how she was holding up.");
-			output("\n\n<i>“Fuuuck, I’m fucking fine. Ehhh, whenever you’re ready of course. Bjáni, I’m so dumb, fuck,”</i> she complains, digging her claws into her thighs. She’s <i>really</i> worked up for some reason…");
+			output("\n\n<i>“Fuuuck, I’m fucking fine. Ehhh, whenever you’re ready of course. Bjáni, I’m so dumb, fuck,”</i> she complains, digging her claws into her thighs. She’s <i>really</i> worked up for some reason...");
 			output("\n\nSeeing as she’s acting stubborn and silly, you leave to think her proposition over some more. ");
 			clearMenu();
 			addButton(0,"Next",goToFrontOfGym);
-		},undefined,"No","You're still not quite ready for this...");
+		},undefined,"No","You’re still not quite ready for this...");
 	}
 	else
 	{
@@ -425,7 +425,7 @@ public function mirrinMenu():void
 	else if(flags["MIRRIN_CONFIDENTED"] == undefined) addDisabledButton(3,"Her Place","Her Place","Maybe talk to her about last time, give her some <i>confidence</i>.");
 	else addButton(3,"Her Place",visitMirrinsPlace,undefined,"Her Place","Into the dragon’s lair...");
 
-	if (flags["FRIENDED_MIRRIN"] != undefined && flags["SEXED_MIRRIN"] == undefined && pc.biggestCockVolume() < 9999 && pc.tallness <= 126 && !pc.isPregnant()) addButton(4,"About Us",mirrinWeNeedToTalk,undefined,"About Us","Maybe you’re looking to be more than friends…");
+	if (flags["FRIENDED_MIRRIN"] != undefined && flags["SEXED_MIRRIN"] == undefined && pc.biggestCockVolume() < 9999 && pc.tallness <= 126 && !pc.isPregnant()) addButton(4,"About Us",mirrinWeNeedToTalk,undefined,"About Us","Maybe you’re looking to be more than friends...");
 
 	addButton(14,"Leave",goToFrontOfGym);
 }
@@ -799,7 +799,7 @@ public function repeatableMirrinTraining():void
 	{
 		output("<i>“Heeey Mirrin, can we do some training?”</i> You ask your dragon trainer.");
 		output("\n\n<i>“Always, Steele,”</i> she replies, eyeing your body all over. <i>“Let’s get you doing the whole works, yes?”</i>");
-		output("\n\nShe sets her own weights down and points to the stretching mats. Getting into that familiar stance, you attempt to synchronize with your dragonic trainer down to the detail with success. She adapts her speeds and positions for workouts that are comfortable for your bodyshape, spending extra time on working your thighs and glutes…");
+		output("\n\nShe sets her own weights down and points to the stretching mats. Getting into that familiar stance, you attempt to synchronize with your dragonic trainer down to the detail with success. She adapts her speeds and positions for workouts that are comfortable for your bodyshape, spending extra time on working your thighs and glutes...");
 		output("\n\nThen to weights: various types of squats, presses and deadlifts that work both of your upper bodies and midsections. Mirrin gives you extra support when tackling the last few sets, getting a little bit frisky with her hands and fingers on your sweating body. It’s quickly passed off as thorough posture inspection.");
 		output("\n\nFinally, some general cardio and more stretches: A few laps, a few kilometres on the treadmill, with Mirrin’s voice and direction guiding you all the way.");
 		output("\n\nYou’re pretty tired out after a few hours of this repeated cycle. You’ve definitely worked up a proper sweat as well!");
@@ -829,7 +829,7 @@ public function repeatableMirrinTraining():void
 			output("\n\n<i>“Anyway, know what I fancy?”</i> she asks in a neutral tone.");
 			output("\n\n<i>“What?”</i>");
 			output("\n\n<i>“Oh you know, food!");
-			if (flags["SEXED_MIRRIN"] != undefined) output(" Orrr… maybe a piece of you, if you’ll let me,");
+			if (flags["SEXED_MIRRIN"] != undefined) output(" Orrr... maybe a piece of you, if you’ll let me,");
 			output("”</i> she purrs with a hungry need in her eyes.");
 
 			addButton(0,"Chow Time!",foodWithMirrin,undefined,"Chow Time!","GET FOOD, WOO.");
@@ -1098,11 +1098,11 @@ public function foodWithMirrin():void
 	else
 	{
 		output("Food it is!");
-		output("\n\nYou both head out towards the Barbecue Pit as per usual, discussing the day's session and areas of improvement along the way. ");
+		output("\n\nYou both head out towards the Barbecue Pit as per usual, discussing the day’s session and areas of improvement along the way. ");
 		if (pc.tone > 75)
 		{
-			output("\n\n<i>“You’re doing pretty great, you know! I think now you should work on keeping yourself sculpted and… yeah, just as trim and uh… you know,”</i> she opines, getting distracted by some random thought. <i>“That word I was thinking of, uhhh, sexy, that was it.”</i>");
-			output("\n\n<i>Oh…</i> " + (flags["MIRRIN_SEXED"] != undefined ? "what a tease!" : "well, that was big a hint as any."));
+			output("\n\n<i>“You’re doing pretty great, you know! I think now you should work on keeping yourself sculpted and... yeah, just as trim and uh... you know,”</i> she opines, getting distracted by some random thought. <i>“That word I was thinking of, uhhh, sexy, that was it.”</i>");
+			output("\n\n<i>Oh...</i> " + (flags["MIRRIN_SEXED"] != undefined ? "what a tease!" : "well, that was big a hint as any."));
 		}
 		else
 		{
@@ -1208,7 +1208,7 @@ public function mirrinTalkMenu():void
 		else addDisabledButton(6,"Confidence","Confidence","Now’s not a good time...");
 
 		if (flags["MIRRIN_PREGSTAGE"] == 1) addButton(7,"Pregnancy",mirrinLetsTalkBabies,undefined,"Pregnancy","Time for ‘the talk’. No, not <i>that</i> talk, you ninny.");
-		else if (flags["MIRRIN_PREGSTAGE"] == 2) addButton(7,"About Preg",talkAboutBabiesAgain,undefined,"About Pregnancy","You’ve thought it over, you’re at ease with the conditions she set out. Now it’s time to put a baby in… someone.");
+		else if (flags["MIRRIN_PREGSTAGE"] == 2) addButton(7,"About Preg",talkAboutBabiesAgain,undefined,"About Pregnancy","You’ve thought it over, you’re at ease with the conditions she set out. Now it’s time to put a baby in... someone.");
 	}
 	addButton(14,"Back",repeatMirrinApproach);
 }
@@ -2442,7 +2442,7 @@ public function yeahAnalStuff():void
 	else if(pc.hasVagina()) output("Your poor [pc.pussies] - in a burning heat of need");
 	output(" - won’t be getting relieved any time soon...");
 
-	output("\n\nTaking a pleasure in your whines and scrunched up face, the dragoness slows her thrusts but refocuses on trying to bottom out inside you. You and your poor sluthole are completely at her mercy. <i>“Holy <i>shit</i> guys, this is *</i>unffff...<i>* the best thing in the world. Don’t you guys just”</i> - she pauses, shunting her meatspear harshly into you - <i>“wish you had this ass right now, huh? Yeeeah, I see you in the chat you </i>dogs<i>,”</i> she murmurs with a sensuous voice into her dataslate. Hot pre-cum fills out what little space is left, some of it spreading all the way round Mirrin's meatpole for added lube... and encouragement. The heat is enough to bring out a timid whine from your stuffed mouth which in turn makes Mirrin giggle maliciously at your feeble form. The claw gripping your [pc.butt] grips just a little bit harder...");
+	output("\n\nTaking a pleasure in your whines and scrunched up face, the dragoness slows her thrusts but refocuses on trying to bottom out inside you. You and your poor sluthole are completely at her mercy. <i>“Holy <i>shit</i> guys, this is *</i>unffff...<i>* the best thing in the world. Don’t you guys just”</i> - she pauses, shunting her meatspear harshly into you - <i>“wish you had this ass right now, huh? Yeeeah, I see you in the chat you </i>dogs<i>,”</i> she murmurs with a sensuous voice into her dataslate. Hot pre-cum fills out what little space is left, some of it spreading all the way round Mirrin’s meatpole for added lube... and encouragement. The heat is enough to bring out a timid whine from your stuffed mouth which in turn makes Mirrin giggle maliciously at your feeble form. The claw gripping your [pc.butt] grips just a little bit harder...");
 
 	pc.buttChange(mirrin.cockVolume(0));
 

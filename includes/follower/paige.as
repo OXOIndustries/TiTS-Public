@@ -2414,6 +2414,16 @@ public function firstTimePaigeCrewHiHi():void
 }
 
 
+public function paigeShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	desc += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
+	
+	addButton(btnSlot,"Paige",paigeCrewApproach);
+	
+	return (showBlurb ? desc : "");
+}
 // The PC talks to Paige on their ship between the hours of 09:00 and 17:00
 // (scene: Crewmate Paige: Class Hours)
 public function paigeCrewApproach():void
