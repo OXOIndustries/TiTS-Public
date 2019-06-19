@@ -11,6 +11,8 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jassbefrold/pyrite_colt_xlr.png", mimeType = "image/png")]
 		public var Bust_COLT_XLR:Class;
+		[Embed(source = "../../../assets/images/npcs/jassbefrold/gabilani_moondast_gruss.png", mimeType = "image/png")]
+		public var Bust_MOONDAST_GRUSS:Class;
 		[Embed(source = "../../../assets/images/npcs/jassbefrold/ovalek.png", mimeType = "image/png")]
 		public var Bust_OVALEK:Class;
 		[Embed(source = "../../../assets/images/npcs/jassbefrold/kihacorp_spearhead_ss.png", mimeType = "image/png")]
@@ -25,6 +27,8 @@ package classes.Resources.Busts
 		{
 			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/pyrite_colt_xlr.png", mimeType = "image/png")]
 			public var Full_COLT_XLR:Class;
+			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/gabilani_moondast_gruss.png", mimeType = "image/png")]
+			public var Full_MOONDAST_GRUSS:Class;
 			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/ovalek.png", mimeType = "image/png")]
 			public var Full_OVALEK:Class;
 			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/kihacorp_spearhead_ss.png", mimeType = "image/png")]

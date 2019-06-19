@@ -713,17 +713,23 @@ public function buyShipFitItem(newScreen:Boolean = false):void
 	output("<b><u>Modules For Sale & Fit:</u></b>");
 	var temp:Number = 0;
 	var canBuy:Boolean = (ship.shipCapacity()-ship.inventory.length > 0)
+	var hasGunRoom:Boolean = (ship.shipWeaponCapacity() > ship.listShipWeapons().length);
 	clearMenu();
 	for(var i:int = 0; i < shopkeep.inventory.length; i++)
 	{
 		temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
 		if(temp > pc.credits) output("\n<b>(Too Expensive)</b> ");
 		else if(!canBuy) output("\n<b>(No Room)</b> ");
+		else if(shopkeep.inventory[i].type == GLOBAL.RANGED_WEAPON && !hasGunRoom) output("\n<b>(Weapons Full)</b> ");
 		else output("\n");
 		output(StringUtil.upperCase(shopkeep.inventory[i].description, false) + " - " + temp + " credits.");
 		if(temp <= pc.credits) 
 		{
-			if(canBuy) addItemButton(i, shopkeep.inventory[i], buyShipFitItemForReal, shopkeep.inventory[i], null, null, shopkeep, pc);
+			if(canBuy) 
+			{
+				if(shopkeep.inventory[i].type == GLOBAL.RANGED_WEAPON && !hasGunRoom) addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
+				else addItemButton(i, shopkeep.inventory[i], buyShipFitItemForReal, shopkeep.inventory[i], null, null, shopkeep, pc);
+			}
 			else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
 		}
 		else addItemDisabledButton(i, shopkeep.inventory[i], null, null, shopkeep, pc);
@@ -737,8 +743,19 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
-		
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + shits["SHIP"].short + " within the hour.");
+	
+	if(shopkeep is Dockmaster)
+	{
+		output("The dockmaster looks over her worklist before giving you an easy smile.");
+		output("\n\n<i>“Take a seat, I can have this all fitted in about half an hour.”</i> She waves you towards a stack of boxes, fetching some more modestly-sized tools instead of the ship-breaking beast rest in her muscular arm.");
+		output("\n\nYou’re left watching a violet blur get to work, and at some point a little pink-scaled raskvel mech-head handed you a plastic mug full of tea. By the time you’re finished, so is the dockmaster. She gives you an easy grin and a swat on the ass on the way past, mechanical tail clicking around her idly.");
+		processTime(30);
+	}
+	else
+	{
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + shits["SHIP"].short + " within the hour.");
+		processTime(60);
+	}
 	pc.credits -= price;
 	
 	//So much easier than PC looting, lol.
@@ -785,11 +802,20 @@ public function unfitShipItemForReal(i:Number):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 
-	output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crewmember, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
+	if(shopkeep is Dockmaster)
+	{
+		output("The dockmaster gives you a satisfied nod, hefting her mighty wrench with one muscular arm and stalking toward your ship. <i>“It’ll be about half an hour. Have a drink, sit and relax!”</i> Comes the call over her shoulder.");
+		output("\n\nYou find a set of boxes to perch on, and a little pink-scaled raskvel brings you a cup of tea. You’re just barely finishing it by the time she’s finished, hefting herself out from beneath your baby and wiping oil from her hands. She pauses only to check that no oil marrs her shiny, chrome legs before nodding with satisfaction. <i>“Done! Quick as you like. And might I suggest getting some parts fitted? Unless you were strapped for cash, empty space is just waste.”</i>");
+		processTime(30);
+	}
+	else
+	{
+		output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crewmember, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
+		processTime(60);
+	}
 	pc.credits += getSellPrice(shopkeep,ship.inventory[i].basePrice);
 	//Remove one item
 	ship.inventory.splice(i,1);
-	processTime(60);
 	clearMenu();
 	addButton(0,"Next",unfitShipItem,true);
 }

@@ -106,7 +106,8 @@
 			this.createPerk("Iron Will",0,0,0,0);
 			this.createPerk("Single Minded",0,0,0,0);
 			*/
-			this.createPerk("TACTICAL_AI",0,0,0,0);
+			this.createPerk("PCs",0,0,0,0);
+			//this.createPerk("TACTICAL_AI",0,0,0,0);
 
 			isUniqueInFight = true;
 			btnTargetText = "CT.Z14";

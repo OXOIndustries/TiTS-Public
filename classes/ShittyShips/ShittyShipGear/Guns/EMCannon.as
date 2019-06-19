@@ -40,7 +40,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			//Information
 			this.basePrice = 1800;
 					
-			baseDamage.electric.damageValue = 130;
+			baseDamage.electric.damageValue = 150;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//baseDamage.addFlag(DamageFlag.LASER);

@@ -40,7 +40,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			//Information
 			this.basePrice = 2000;
 					
-			baseDamage.burning.damageValue = 350;
+			baseDamage.burning.damageValue = 365;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -48,7 +48,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			
 			this.attack = -10;
 			this.defense = 0;
-			this.shieldDefense = 50;
+			this.shieldDefense = 45;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;

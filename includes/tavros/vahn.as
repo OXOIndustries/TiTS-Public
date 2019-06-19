@@ -3,6 +3,7 @@ import classes.ShittyShips.ShittyShipGear.Gadgets.*;
 import classes.ShittyShips.KihaCorpSpearheadSS;
 import classes.ShittyShips.ColtXLR;
 import classes.ShittyShips.OvaLEK;
+import classes.ShittyShips.MoondastGruss;
 import classes.Characters.Vahn;
 
 //Vahn, Your Friendly Ship Mechanic
@@ -229,16 +230,18 @@ public function shipBuyScreen(arg:ShittyShip):void
 	clearMenu();
 	if(pc.credits >= arg.shipCost()) 
 	{
-		if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
+		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
+		else if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
 		else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
 	}
 	else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
-	if(shits["SHIP"] is Casstech) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won’t take it.");
+	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won’t take it.");
 	else if(pc.credits >= (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2))) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy+Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Price:</u></b> " + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)));
 	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can’t afford the ship this way.");
 
 	//else addButton(1,"Buy+Trade",);
-	addButton(4,"Back",vahnSellsShips);
+	if(shopkeep is Vahn) addButton(4,"Back",vahnSellsShips);
+	else if(shopkeep is Dockmaster) addButton(4,"Back",buyAShipFromTrashRat);
 }
 
 public function buyAShipAndTradeIn(arg:ShittyShip):void
@@ -266,7 +269,8 @@ public function buyAShipAndTradeInGo(arg:ShittyShip):void
 	arg.HP(arg.HPMax());
 	processTime(25);
 	clearMenu();
-	addButton(0,"Next",VahnTheMechanic);
+	if(shopkeep is Dockmaster) addButton(0,"Next",raskvelDockmaster,true);
+	else addButton(0,"Next",VahnTheMechanic);
 }
 
 public function buyAShipYouGo(arg:ShittyShip):void
@@ -371,7 +375,7 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Armor: </b>" + shipStatCompare(newShip.HPMax(), shits["SHIP"].HPMax());
 	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.armor.defense, shits["SHIP"].armor.defense);
 	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
-	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
+	shipTooltip += "\n<b>Power Generation: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
 	
 	//Agility
 	shipTooltip += "\n\n<b>Agility: </b>" + shipStatCompare(newShip.shipAgility(), shits["SHIP"].shipAgility());
@@ -427,8 +431,8 @@ public function shipCompareString(newShip:ShittyShip):String
 	if(equipment.length == 0) shipTooltip += "None.)";
 	else shipTooltip += ".)";
 	
-	shipTooltip += "\n\n<b><u>Purchase Cost: </u></b>" + shipStatCompare(newShip.shipCost(), shits["SHIP"].shipCost());
-	shipTooltip += "\n<b><u>w/Trade In: </u></b>" + (newShip.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
+	shipTooltip += "\n\n<b><u>Purchase Cost:</u></b> " + shipStatCompare(newShip.shipCost(), shits["SHIP"].shipCost());
+	shipTooltip += "\n<b><u>w/Trade In:</u></b> " + (newShip.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
 	return shipTooltip;
 }
 

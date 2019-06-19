@@ -342,6 +342,7 @@
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
 		include "../includes/tarkus/coronaLordShipEncounter.as";
+		include "../includes/tarkus/dockMaster.as";
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
@@ -665,7 +666,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.285";
+			version = "0.7.286";
 
 			//temporary nonsense variables.
 			temp = 0;
