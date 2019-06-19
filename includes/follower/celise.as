@@ -23,12 +23,23 @@ public function celiseBustDisplay():String
 	return "CELISE";
 }
 
-
 //Celise In Tavros
 public function celiseTavrosBonus(btnSlot:int = 1):void 
 {
 	output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
 	addButton(btnSlot, "Celise", approachNonCrewCelise);
+}
+
+public function celiseShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) desc += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
+	else desc += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+	
+	addButton(btnSlot, "Celise", celiseFollowerInteractions);
+	
+	return (showBlurb ? desc : "");
 }
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {

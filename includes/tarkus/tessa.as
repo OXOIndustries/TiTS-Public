@@ -293,12 +293,12 @@ public function whiteWomanTessa():void
 	{
 		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
 		output("\n\nAfter the normal moment of silence, she looks up and you and sighs. <i>“So, I heard from Karen today.”</i>");
-		output("\n\n<i>“Oh…”</i> You think back on the night of the wedding. Things didn't exactly work out that well…");
-		output("\n\n<i>“Yeah…”</i> Tessa takes a swig from her drink and rubs her temple. <i>“Well. You certainly made an impression. Not a perfect impression mind you, but…”</i> She takes a deep breath and braces herself, struggling to say the next words. <i>“Good job.”</i>");
+		output("\n\n<i>“Oh...”</i> You think back on the night of the wedding. Things didn’t exactly work out that well...");
+		output("\n\n<i>“Yeah...”</i> Tessa takes a swig from her drink and rubs her temple. <i>“Well. You certainly made an impression. Not a perfect impression mind you, but...”</i> She takes a deep breath and braces herself, struggling to say the next words. <i>“Good job.”</i>");
 		output("\n\n<i>“What?”</i> You sit a moment in silence, letting her words skin in. <i>“But the night kinda went-”</i>");
-		output("\n\n<i>“Like shit, yeah.”</i> She rubs her brow and sighs, staring into her drink and fighting off the urge to chug it. <i>“But they think that… well, they all think what I wanted them to think. That I’m dating the rich kid on the block and doing well for myself so… Yeah, mission accomplished I guess.”</i> ");
+		output("\n\n<i>“Like shit, yeah.”</i> She rubs her brow and sighs, staring into her drink and fighting off the urge to chug it. <i>“But they think that... well, they all think what I wanted them to think. That I’m dating the rich kid on the block and doing well for myself so... Yeah, mission accomplished I guess.”</i> ");
 		output("\n\n<i>“Huh.”</i> You think about it a moment, and do remember that was the point of the whole charade. ");
-		output("\n\n<i>“Look, Steele.”</i> Tessa pushes her drink to the side and leans in, looking you straight in the eye. <i>“You did me a huge favor. Sure things went… Well, you know how they fucking went, but what I mean to say is…. Thanks.”</i> She leans back in her chair and sighs, rubbing her face again. ");
+		output("\n\n<i>“Look, Steele.”</i> Tessa pushes her drink to the side and leans in, looking you straight in the eye. <i>“You did me a huge favor. Sure things went... Well, you know how they fucking went, but what I mean to say is.... Thanks.”</i> She leans back in her chair and sighs, rubbing her face again. ");
 		output("\n\nAfter a moment, Tessa speaks again, her hand still over her face. <i>“Ah, fuck it.”</i> She drops her hand and stares at you hard, her red eyes fixed on you like a predator. <i>“Next time we’re on my ship, you, me, my room. Got it?”</i> Before you can speak, she cuts you off. <i>“Good.”</i> She reaches down and grabs her drink, taking a long hard pull from it before slamming it down on the table. <i>“Now, what do you want to talk about?”</i>");
 
 		processTime(9);

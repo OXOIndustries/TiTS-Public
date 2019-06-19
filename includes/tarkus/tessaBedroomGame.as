@@ -14,7 +14,7 @@ public function tessaBedroomIntro():void
 	{
 		processTime(1);
 		output("\n\nRealizing it’s your first time in Tessa’s bedroom, you take a look around. The first thing you notice is the amount of pink, which really doesn’t surprise you after seeing how she decorated her bathroom. Her bed, pillows, rugs and lamps are all some shade of pink. Everything else in the room either a soft colour or white. Your attention focuses on the centerpiece of the room, examining her bed for a moment. It’s quite large with decorated headboard, and looks soft enough you suspect if sat on you’d sink in. The room almost feels like it belongs to a pre-teen girl, not the quarters of an alcoholic space assassin. After a moment a few adult things in the room do catch your trained eye however.");
-		output("\n\nBeer cans and bottles are present on almost every flat surface in the room. While they all look empty, clearly Tessa isn't one for recycling. Some of them even appear to have a thin layer of dust on them...");
+		output("\n\nBeer cans and bottles are present on almost every flat surface in the room. While they all look empty, clearly Tessa isn’t one for recycling. Some of them even appear to have a thin layer of dust on them...");
 		output("\n\nOn the headboard you notice two sets of holes on either end, with some scratching around them. Putting two and two together, you suspect a pair or two of handcuffs are stashed in a drawer somewhere nearby.");
 		output("\n\nYou also take note of something in Tessa’s half open nightstand. While you can’t get a good look from where you’re standing, it appears to be some sort of long pink object. It seems her love for pink extends into her toy selection as well.");
 	}
@@ -32,8 +32,8 @@ public function tessaBedroomIntro():void
 	//PC must have a cock or a vagina
 	//PC must be a non-taur and a biped
 	if (flags["TESSA_BED_SOFT"] == undefined || flags["TESSA_BED_HARD"] == undefined) { }
-	else if (!pc.isBiped() || !pc.hasGenitals()) addDisabledButton(1, "Tessa's Turn", "Tessa's Turn", "You must be biped and have genitals.");
-	else addButton(1, "Tessa's Turn", tessaBedroomTurnaroundPartOne);
+	else if (!pc.isBiped() || !pc.hasGenitals()) addDisabledButton(1, "Tessa’s Turn", "Tessa’s Turn", "You must be biped and have genitals.");
+	else addButton(1, "Tessa’s Turn", tessaBedroomTurnaroundPartOne);
 	//Plays Leave
 	addButton(14, "Leave", function():void
 	{
@@ -42,7 +42,7 @@ public function tessaBedroomIntro():void
 		showTessa(true);
 		processTime(6+rand(3));
 		output("Giving it a second thought, you opt to leave instead.");
-		output("\n\nAs you walk out the door you hear Tessa yelling after you. <i>“The fuck, Steele? Well FINE! I’m just going to fuck somebody else. I’m hot as shit, I don’t need you!”</i> After a moment's pause and a few paces, you hear her curse under her breath and sound of a drawer opening.");
+		output("\n\nAs you walk out the door you hear Tessa yelling after you. <i>“The fuck, Steele? Well FINE! I’m just going to fuck somebody else. I’m hot as shit, I don’t need you!”</i> After a moment’s pause and a few paces, you hear her curse under her breath and sound of a drawer opening.");
 		output("\n\nAs you leave the ship, you hear a faint buzzing sound echoing from Tessa’s room.");
 		addButton(0, "Leave", move, shipLocation);
 	});
@@ -152,7 +152,7 @@ public function tessaBedroomPartFour(args:Array):void
 		{
 			output("Tessa’s hands start to wander, moving down your body slowly, her claws tracing a lazy path down. They come to a halt down between her legs, her fingers running over the folds of your misted womanhood. A single smooth scaled thumb moves forward, pressing against your clit and rotating in small circles against it..");
 			output("\n\nA soft sigh escapes your lips, your pale partner’s thumb tracing faster around your eager button.");
-			if (askedSoftInStage[1]) output(" Your grip on Tessa's hips tightens, your hands wanting to wander and explore her more thoroughly.");
+			if (askedSoftInStage[1]) output(" Your grip on Tessa’s hips tightens, your hands wanting to wander and explore her more thoroughly.");
 			else output(" You tug against your plush prison, reminded you are bound to the headboard.");
 			output(" Slowly, you feel the rest of Tessa’s fingers start to press against you.");
 			output("\n\nHer smooth fingers part your pliable folds, exposing your wet and quivering pussy. A single long digit slips inside of you, sending a shock of pleasure up your spine and out of your mouth in the form of a depraved grasp. Her finger slides deep inside, curling upward and locating your hidden G-spot with sinful precision.");
@@ -161,7 +161,7 @@ public function tessaBedroomPartFour(args:Array):void
 		{
 			output("Tessa gives you a squeeze with her thighs, reminding you how powerful they are, as she seems to try and trap you between them. With a chuckle, the devious woman reaches down between her legs, her hand dragging down over the folds of your womanhood. Her palm pressed firmly against your clit, the pale ovir starts to jerk her hand up and down against you roughly.");
 			output("\n\nA gasping moan escapes your lips as the pale woman tortures your quivering cunt roughly massaging your button with the heel of her hand.");
-			if (askedSoftInStage[1]) output(" Your grip on Tessa's hips tightens, your fingers locking up from the power of her attack.");
+			if (askedSoftInStage[1]) output(" Your grip on Tessa’s hips tightens, your fingers locking up from the power of her attack.");
 			else output(" You tug against your restraints, reminded you are bound to the headboard and helpless to act.");
 			output(" After a moment Tessa eases her rough teasing, and you feel her fingers start to move.");
 			output("\n\nHer smooth fingers press against you, pushing between the folds of your wet and quivering pussy. Two long digits push their way inside of you, sending a shock of pleasure up your spine and out of your mouth in the form of a depraved grasp. Her fingers plunge deep inside of you, then start to work in and out of your cunt as the white temptress roughly finger fucks you.");
@@ -205,7 +205,7 @@ public function tessaBedroomPartFive(args:Array):void
 			if (askedSoftInStage[1]) output(" Letting you hands wander, you reach around and take hold of the ovir’s round rump, giving it a hard squeeze and drawing a moan from the thick woman.");
 			else output(" You strain against your binds, your urge to engage your hands thwarted. Pleasure trembles along your outstretched arms, the teasing bite of the cuffs mingling torturously with it.");
 			output(" Your cock throbs as Tessa rides it, her hot cunt’s embrace tight against your sensitive flesh. At this rate you don’t think you can last much longer.");
-			output("\n\n<i>“Hnn, fuck yeah. Don’t cum yet, bitch. I’m not done... ”</i> Tessa’s breath is heavy, the exhausted woman panting over her own words. You feel her thighs on either side of you clench once more, her ovir cunt seems to tighten  as well. The raw sounds of sex fill the air, as her wet cunt drools it’s appreciation over your lap. You feel sore from her rough riding, the power behind her egg bearing hips on full display. Tessa throws her head back and lets out a husky moan, her long studded tongue falling from her mouth while her chest heaves.");
+			output("\n\n<i>“Hnn, fuck yeah. Don’t cum yet, bitch. I’m not done... ”</i> Tessa’s breath is heavy, the exhausted woman panting over her own words. You feel her thighs on either side of you clench once more, her ovir cunt seems to tighten as well. The raw sounds of sex fill the air, as her wet cunt drools it’s appreciation over your lap. You feel sore from her rough riding, the power behind her egg bearing hips on full display. Tessa throws her head back and lets out a husky moan, her long studded tongue falling from her mouth while her chest heaves.");
 			output("\n\nTessa’s face tilts down, her red eyes locking on to you, still panting like a bitch in heat. <i>“Soft.”</i> Her eyes narrow in deviously. <i>“Or hard?”</i>");
 		}
 	}
@@ -249,7 +249,7 @@ public function tessaBedroomPartSix(args:Array):void
 	{
 		if (askedSoftInStage[4])
 		{
-			output("Tessa throws back her head and moans, riding you like an animal. Your cock throbs and aches, your [pc.balls] on the verge of exploding. The ravenous ovir doesn't slow down, her chest heaving as she starts to tremble. Her hands explore her body, and you watch her rub her sides and tease her tits in a lewd display.");
+			output("Tessa throws back her head and moans, riding you like an animal. Your cock throbs and aches, your [pc.balls] on the verge of exploding. The ravenous ovir doesn’t slow down, her chest heaving as she starts to tremble. Her hands explore her body, and you watch her rub her sides and tease her tits in a lewd display.");
 			if (askedSoftInStage[1]) output(" You reach up and grab at her impressive chest, feeling their softness between your fingers. Tessa laces her fingers between yours, squeezing herself along with you in shared depravity.");
 			output(" Her eyes start to flutter, and you watch her jaw twitch as her tongue starts to slowly unfurl from her mouth. You feel her already soaking cunt ooze even more, hot wetness pouring from her womanhood onto your lap. The heat in your loins turns into a fiery explosion, and you feel your [pc.balls] churn as your orgasm begins.");
 		}
@@ -263,7 +263,7 @@ public function tessaBedroomPartSix(args:Array):void
 	{
 		if (askedSoftInStage[4])
 		{
-			output("Tessa starts to kiss your neck, her soft lips feeling heavenly against you. Her kisses trail off to behind your ear, whispering  to you, <i>“Let’s finish together. Cum with me.”</i> Her chest presses tightly against you, massive white tits squashing on your [pc.chest].");
+			output("Tessa starts to kiss your neck, her soft lips feeling heavenly against you. Her kisses trail off to behind your ear, whispering to you, <i>“Let’s finish together. Cum with me.”</i> Her chest presses tightly against you, massive white tits squashing on your [pc.chest].");
 			if (askedSoftInStage[3]) output(" The toy buried in your cunt buzzes and moves, dragging you closer and closer to climax, each passing second blissfully agonizing.");
 			else output(" The tail in your cunt wiggles and thrusts, dragging you to closer and closer to climax, each passing second agonizingly blissful.");
 			output(" On top of you, Tessa start to shake and quiver, " + (askedSoftInStage[3] ? "the fingers" : "the toy") + " working away at her cunt seemingly bringing her to the edge as well. You hear her panting into your ear, the ovir’s heated breath against your neck making your [pc.skinFurScales] tingle. Her thighs squeeze against you as she starts to moan and shudder, the lusty cry of the ovir timed near perfectly with an explosion of ecstasy of your own.");
@@ -301,18 +301,18 @@ public function tessaBedroomFunOver():void
 		output("A few minutes pass and Tessa’s eyes flutter open and she looks over at you. Registering you for a moment, her eyes suddenly grow wide and she releases you, pulling her leg away and releasing your arm. Scrambling away from you, she accidentally falls out of the bed and onto the floor with a loud thump. <i>“FUCK!”</i>");
 		output("\n\nYou lift yourself up and peer over the side of the bed, looking down at the fallen woman laying on the floor. She glares up at you, her face a mix of embarrassment and anger. <i>“What the fuck are you still doing here, shit stain?”</i> She sits upright and faces you. <i>“What the fuck were you doing to me?”</i>");
 		output("\n\nYou explain to her that she was the one cuddling you, using no uncertain terms.");
-		output("\n\nTessa stares at you a moment, her left eye twitching. <i>“If you tell anybody, I swear to fucking god…”</i> She presses her lips together tightly, and points to the door. <i>“Go. Just fucking go before I say something stupid.”</i>");
+		output("\n\nTessa stares at you a moment, her left eye twitching. <i>“If you tell anybody, I swear to fucking god...”</i> She presses her lips together tightly, and points to the door. <i>“Go. Just fucking go before I say something stupid.”</i>");
 		output("\n\nChuckling, you pull yourself out of Tessa’s bed, a task which takes more effort than it should due to how soft it is. As you collect your gear, Tessa stays seated on the floor, eyes fixed on you. Making your way to the exit, you hear her call to you from the floor.");
-		output("\n\n<i>“Hey, I didn't… Say anything while I was… Um.. Laying there did I?”</i>");
+		output("\n\n<i>“Hey, I didn’t... Say anything while I was... Um.. Laying there did I?”</i>");
 		output("\n\nYou think for a moment, then shake your head no.");
 		output("\n\n<i>“Ah.”</i> Tessa seems surprisingly relieved by that. <i>“Well. Good.”</i> She crosses her arms over her chest and turns her head away from you, signaling she’s done with this conversation.");
 		output("\n\nLeaving the prideful woman on the floor, you roll your eyes and disembark.");
 	}
 	else
 	{
-		output("A few minutes pass and Tessa’s eyes flutter open and she looks over at you. Registering you for a moment she frowns, pulling her leg off of you and releasing your arm. Rolling over, she turns away from you in a huff. <i>“Again? For fucks sake…”</i>");
+		output("A few minutes pass and Tessa’s eyes flutter open and she looks over at you. Registering you for a moment she frowns, pulling her leg off of you and releasing your arm. Rolling over, she turns away from you in a huff. <i>“Again? For fucks sake...”</i>");
 		output("\n\nChuckling, you pull yourself out of Tessa’s bed, escaping its soft confines still takes more effort than it should. As you collect your gear, Tessa remains on the bed, feigning sleep. Making your way to the door, you hear her call to you.");
-		output("\n\n<i>“I didn't say anything did I? I know you said I didn't last time…”</i>");
+		output("\n\n<i>“I didn’t say anything did I? I know you said I didn’t last time...”</i>");
 		output("\n\nYou think for a moment, then shake your head no once more.");
 		output("\n\n<i>“Ah.”</i> Tessa shifts on the bed, seemingly getting comfy. <i>“Good. Nice to know I don’t talk in my sleep.”</i>");
 		output("\n\nYou stare at her in silence for a moment before you clue in the conversation is over.");
@@ -338,7 +338,7 @@ public function tessaBedroomTurnaroundPartOne():void
 	output("Having a better idea, you ditch your gear and stand next to bed, telling Tessa to get on instead.");
 	if (flags["TESSA_BEDSWITCH"] == undefined)
 	{
-		output("\n\n<i>“Uh, no. This isn't how it works. My ship. My room. My rules.”</i> Tessa crosses her arms over her chest defiantly. ");
+		output("\n\n<i>“Uh, no. This isn’t how it works. My ship. My room. My rules.”</i> Tessa crosses her arms over her chest defiantly. ");
 		output("\n\nYou give the woman a soft chuckle. <i>“What, are you scared?”</i> You get the feeling teasing her is just the kind of motivation she needs. ");
 		output("\n\nTessa glares at you a moment then rolls her eyes and sighs. <i>“Fucking fine. I’ll get on the damn bed.”</i> She turns and places her hands on the soft mattress, but glances back and glares. <i>“But if you try anything funny I’ll strangle you, got it?”</i>");
 		output("\n\nYou get it.");
@@ -347,13 +347,13 @@ public function tessaBedroomTurnaroundPartOne():void
 	}
 	else
 	{
-		output("\n\n<i>“Ah.”</i> Tessa shifts slightly, rubbing the back of her neck. <i>“My turn… Okay. Fine. Just remember the rules okay?”</i>");
+		output("\n\n<i>“Ah.”</i> Tessa shifts slightly, rubbing the back of her neck. <i>“My turn... Okay. Fine. Just remember the rules okay?”</i>");
 		output("\n\nYou tell her you do.");
 		output("\n\nThe pale ovir clears her throat turns to the bed, placing her hands on the mattress. <i>“Alright. Let’s do this.”</i> ");
 	}
 	output("\n\nOn her hands and knees, Tessa climbs onto the bed. She crawls along the mattress a moment, then stops to turn to you, she gives you a devious smile and shakes her perfectly round ass in your direction. ");
 	output("\n\nYou smile and ask the first question of the game <i>“Soft or Hard?”</i>");
-	output("\n\nTessa doesn't even think about it, answering immediately.");
+	output("\n\nTessa doesn’t even think about it, answering immediately.");
 	output("\n\n<i>“Hard.”</i>");
 
 	IncrementFlag("TESSA_BEDSWITCH");
@@ -373,7 +373,7 @@ public function tessaBedroomTurnaroundPartTwo(spankedButt:Boolean):void
 
 	if (spankedButt)
 	{
-		output("With a devious smile of your own, you reach out and give Tessa’s rear a powerful smack. She lets out a howling crying as your hand connects against her supple backside, an odd mix of pain and pleasure ringing in the air. You feel her tense at your smack, but she doesn't seem to object or retaliate. She turns back to look at you, a concerned look on her face.");
+		output("With a devious smile of your own, you reach out and give Tessa’s rear a powerful smack. She lets out a howling crying as your hand connects against her supple backside, an odd mix of pain and pleasure ringing in the air. You feel her tense at your smack, but she doesn’t seem to object or retaliate. She turns back to look at you, a concerned look on her face.");
 		output("\n\n<i>“Holy fuck. I know I’m a bitch, but you don’t need to take it out on my poor ass. Damn.”</i>");
 	}
 	else
@@ -382,7 +382,7 @@ public function tessaBedroomTurnaroundPartTwo(spankedButt:Boolean):void
 		output("\n\n<i>“That all? Fucking tease.”</i>");
 	}
 	output("\n\nTessa continues to crawl across the bed, coming to a stop at the headboard where she flips over. Now on her back, she leans her back against her headboard, her ample chest on full display before you. She lifts a leg and moves it to the side, exposing her ovir slit. From what you can see she’s already wet and ready down there. <i>“Something you want to ask me, Steele?”</i> She runs her hand along the inside of her thigh, teasing you to come closer.");
-	output("\n\nInstead of her cunt, you focus in on her clawed hands for a moment. If you really want to have your way with the her, taking care of those first would be a good place to start… You ask the question a second time. <i>“Soft or Hard?”</i>");
+	output("\n\nInstead of her cunt, you focus in on her clawed hands for a moment. If you really want to have your way with the her, taking care of those first would be a good place to start... You ask the question a second time. <i>“Soft or Hard?”</i>");
 	output("\n\nTessa stays silent a moment, contemplating.");
 
 	//Plays Part 3
@@ -422,16 +422,16 @@ public function tessaBedroomTurnaroundPartThree(args:Array):void
 	else
 	{
 		output("You decide your next course of action, and stalk over to the pale woman’s nightstand. Her red orbs follow as you stride over, widening slightly as you pull open the drawer.");
-		if (annoyed) output(" <i>“You’ve got a funny definition of ‘Soft’, Steele…”</i>");
-		else output(" <i>“Oh… Well, I guess I asked for it.”</i>");
+		if (annoyed) output(" <i>“You’ve got a funny definition of ‘Soft’, Steele...”</i>");
+		else output(" <i>“Oh... Well, I guess I asked for it.”</i>");
 		output(" Tessa lifts her hands and offers you her wrists, giving you no resistance.");
 		output("\n\nYou fasten the cuffs to her headboard, then lock in the pale woman’s wrists. You ensure the cuffs are a shade on the tighter side, just to make sure Tessa is truly restrained. The ovir gives the cuffs a tug, wiggling her wrists around as you make your way back to the foot of the bed. <i>“Well. Looks like you’ve got me right where you want me.”</i> Tessa gives you a playful smirk. <i>“Now what?”</i>");
 	}
-	output("\n\nYou eyes return to Tessa exposed twat, her sex dripping wet and looking positively tasty. Shifting your gaze back  to your bedmate, you ask her the question again. <i>“Soft or Hard?”</i>");
+	output("\n\nYou eyes return to Tessa exposed twat, her sex dripping wet and looking positively tasty. Shifting your gaze back to your bedmate, you ask her the question again. <i>“Soft or Hard?”</i>");
 
 	if (gaveSoftInStage[1])
 	{
-		output("\n\nTessa doesn't even think about the question. ");
+		output("\n\nTessa doesn’t even think about the question. ");
 		output("\n\n<i>“Hard.”</i>");
 		addButton(1, "Be Rough", tessaBedroomTurnaroundPartFour, [gaveSoftInStage, false, annoyed]);
 	}
@@ -456,7 +456,7 @@ public function tessaBedroomTurnaroundPartThree(args:Array):void
 	}
 
 	//Plays Part 4
-	addButton(0, "Be Gentle", tessaBedroomTurnaroundPartFour,  [gaveSoftInStage, true, annoyed]);
+	addButton(0, "Be Gentle", tessaBedroomTurnaroundPartFour, [gaveSoftInStage, true, annoyed]);
 }
 
 // Tessa's Turn Part 4
@@ -491,7 +491,7 @@ public function tessaBedroomTurnaroundPartFour(args:Array):void
 		output("\n\n<i>“Oh fuck, you’re in so deep. Eat me. Eat my fucking pussy.”</i> Tessa begs, whining like a bitch in heat as you feast on her. You feel your face grow flushed and your");
 		if (pc.hasCock()) output((pc.hasCocks() ? " cocks" : " cock") + " throb.");
 		else output((pc.hasVaginas() ? " pussies" : " pussy") + " quiver.");
-		output(" Freeing a hand, you reach for your crotch and  feel just how " + (pc.hasCock() ? "hard" : "wet") + " you’ve already become. Tessa’s moans become near screams, and you feel her cunt ooze out more of its sweet juices. You think it’s time to turn it up a notch.");
+		output(" Freeing a hand, you reach for your crotch and feel just how " + (pc.hasCock() ? "hard" : "wet") + " you’ve already become. Tessa’s moans become near screams, and you feel her cunt ooze out more of its sweet juices. You think it’s time to turn it up a notch.");
 	}
 	output("\n\nYou pull your face of the white woman’s cunt and smile. <i>“Soft or Hard?”</i>");
 	output("\n\nTessa looks at you, her red eyes filled with lust and wanting. She takes a few heavy breaths, then answers.");
@@ -563,7 +563,7 @@ public function tessaBedroomTurnaroundPartFive(args:Array):void
 		}
 	}
 	output("\n\nIt’s time to finish her off. <i>“Soft or Hard?”</i>");
-	output("\n\nTessa doesn't answer at first. After asking a second time you hear her gasp out her answer. ");
+	output("\n\nTessa doesn’t answer at first. After asking a second time you hear her gasp out her answer. ");
 	if (annoyed || gaveSoftInStage[3]) output("\n\n<i>“Hard”</i>");
 	else output("\n\n<i>“FUCK ME!”</i>");
 
@@ -619,8 +619,8 @@ public function tessaBedroomTurnaroundEndProperly():void
 	if (!pc.hasKeyItem(tessaPanties))
 	{
 		output("\n\n<i>“Hey Steele.”</i> You turn to face Tessa, the pale woman hopping off of the bed and moving towards her dresser. <i>“I got something for ya.”</i>");
-		output("\n\nYou watch Tessa fish around for a moment, looking for something while muttering under her breathing. <i>“Where the fuck…”</i> In a huff, she slams the drawer closed and starts to sniff the air, sticking her tongue out and wiggling it slightly. The pale ovir moves around the room, swishing away at the air with her metal studded tongue. Her head jerks towards the bed, and she drags in a big exaggerated sniff. Curiously, she drops down to her hands and knees and crawls towards the bed, sticking her head completely underneath of it. You watch her move until half her body is under the bed, the white woman’s ass and tail wiggling in the air in front of you in a ridiculous display. From under the bed you hear her exclaim. <i>“Aha!”</i>");
-		output("\n\nTessa pops out and stands in front of you, holding in her hand a familiar black pair of panties. <i>“Here, for the collection. In case you haven't noticed, I tend to go commando anyways.”</i> She holds them out, offering you the fistful of fabric. <i>“You’ve earned it.”</i>");
+		output("\n\nYou watch Tessa fish around for a moment, looking for something while muttering under her breathing. <i>“Where the fuck...”</i> In a huff, she slams the drawer closed and starts to sniff the air, sticking her tongue out and wiggling it slightly. The pale ovir moves around the room, swishing away at the air with her metal studded tongue. Her head jerks towards the bed, and she drags in a big exaggerated sniff. Curiously, she drops down to her hands and knees and crawls towards the bed, sticking her head completely underneath of it. You watch her move until half her body is under the bed, the white woman’s ass and tail wiggling in the air in front of you in a ridiculous display. From under the bed you hear her exclaim. <i>“Aha!”</i>");
+		output("\n\nTessa pops out and stands in front of you, holding in her hand a familiar black pair of panties. <i>“Here, for the collection. In case you haven’t noticed, I tend to go commando anyways.”</i> She holds them out, offering you the fistful of fabric. <i>“You’ve earned it.”</i>");
 		output("\n\nYou take it from her and unfold them, confirming they are indeed the black pair she wore to the wedding. The sleek black thong is soft between your fingers, and as you examine them a familiar scent wafts up to your nose. Lifting them up to your face, your give the panties a sniff, the smell of Tessa’s sweet smelling girlcum soaked deep into its fabric. You feel your mouth start to wetten ever so slightly, the aroma reminding you of the ovir’s addictive taste.");
 		output("\n\n<i>“Really?”</i> Your attention snaps up to Tessa, who’s giving you an unimpressed frown. <i>“For fuck’s sake. At least wait until you’re out of the room before you start sniffing it. Fuck.”</i> Tessa turns and returns to the bed, sitting on the edge of it. You clear your throat and stuff away the underwear.");
 		output("\n\n<b> You have acquired Tessa’s Panties </b>");
@@ -641,10 +641,10 @@ public function tessaBedroomTurnaroundEndEarly():void
 	showTessa(true);
 	processTime(1);
 
-	output("Ignoring her, you take one too many liberties… ");
+	output("Ignoring her, you take one too many liberties... ");
 	output("\n\nIn a flash, Tessa’s tail wraps around your neck, catching you by surprise and cutting off your breathing. <i>“STEELE, WHAT THE FUCK?!”</i> The white woman’s powerful tail yanks you down, leaving you gasping for air.");
 	output("\n\nAfter a moment Tessa releases you, and a few minutes later you two are sitting on the edge of her bed.");
-	output("\n\nTessa sighs, rubbing her eyes. <i>“What the fuck was that about? I mean, I know I’m a fucking bitch, but you can’t just do shit like that. When we’re in bed trust is everything, ya know? If I can’t trust you when we’re fucking…”</i> Tessa’s hand drops from her face and she turns to look at you. <i>“Fuck. Sorry I choked you.”</i>");
+	output("\n\nTessa sighs, rubbing her eyes. <i>“What the fuck was that about? I mean, I know I’m a fucking bitch, but you can’t just do shit like that. When we’re in bed trust is everything, ya know? If I can’t trust you when we’re fucking...”</i> Tessa’s hand drops from her face and she turns to look at you. <i>“Fuck. Sorry I choked you.”</i>");
 	output("\n\nYou rub your neck, and accept her apology. You in then offer one of your own for overstepping.");
 	output("\n\n<i>“Right, well don’t let it happen again.”</i> Tessa falls backwards, laying on her bed. <i>“Alright. That killed my buzz.”</i> She turns her head to face you. <i>“Now get outta here before I come to my senses and choke you more.”</i>");
 	output("\n\nYou’re not sure if she’s joking or not, and knowing Tessa it can go either way. You pull yourself up and start to gather your things, pulling your gear back on and exiting her bedroom and ship.");

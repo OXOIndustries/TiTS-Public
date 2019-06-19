@@ -31,7 +31,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.description = "a coil cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Using magnetic fields, the fearsome coil cannon delivers massive punches of kinetic damage at space-faring ranges with ease. Unfortunately, the sheer size of the weapon requires shifting armor mounts around, negatively impacting the vessel's durability.";
+			this.tooltip = "Using magnetic fields, the fearsome coil cannon delivers massive punches of kinetic damage at space-faring ranges with ease. Unfortunately, the sheer size of the weapon requires shifting armor mounts around, negatively impacting the vessel’s durability.";
 			this.attackVerb = "shoot";
 			attackNoun = "coilshot";
 			

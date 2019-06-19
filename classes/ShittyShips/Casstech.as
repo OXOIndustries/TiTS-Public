@@ -50,7 +50,7 @@
 			this.capitalA = "The ";
 			this.long = "It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;
@@ -62,7 +62,7 @@
 			this.armor.hasRandomProperties = true;
 
 			this.inventory.push(new LCannon());
-						
+			
 			this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
 			this.shield.shields = 3000;

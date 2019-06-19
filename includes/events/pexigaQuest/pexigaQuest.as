@@ -68,15 +68,6 @@ public function showBrainwashingBall():void
 	showName("BRAINWASHING\nBALL");
 }
 
-public function pexigaShipBonusText():String
-{
-	var msg:String = "";
-	
-	msg += "The bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to " + (yammiIsCrew() ? "follow Yammi around like a little lost puppy, helping out any way she can" : "scurry around like a little lost puppy") + ". Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger " + (yammiIsCrew() ? "Yammi" : "-- the type that food") + " can’t satisfy.";
-	
-	return msg;
-}
-
 //Pexiga Uplift, aka Bimbo Quest II: The Search For More Bimbos
 //Talking with Yammi
 // Add [Pet Talk] to Yammi’s menu after opening the [Pexiga] milk & pet options
@@ -4558,7 +4549,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
 			pc.clearSkinFlags();
 			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-			pc.skinTone = latexColorMin;
+			pc.skinTone = latexColorMax;
 			// Gloss level
 			pc.createStatusEffect("Latex Skin", 0, 0, 0, 0);
 			if(pc.statusEffectv1("Latex Skin") < 3) pc.addStatusValue("Latex Skin",1,1);
@@ -5037,8 +5028,10 @@ And a cheat, just because. Typing in “beshineforever” will make all Nym-Foe�
 */
 
 // Silicone Tank
-public function drBadgerSiliconeTank():void
+public function drBadgerSiliconeTank(bBack:Boolean = false):void
 {
+	if(InShipInterior(pc)) return drBadgerSiliconeMiniTank(bBack);
+	
 	clearOutput();
 	showBust("");
 	showName("SILICONE\nTANKS");
@@ -5066,7 +5059,8 @@ public function drBadgerSiliconeTank():void
 	}
 	
 	// Use It
-	output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject... except ‘inject’ is crossed off, and it says ‘blow’. Definitely something Doctor Badger would do.");
+	if(!bBack) output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject... except ‘inject’ is crossed off, and it says ‘blow’. Definitely something Doctor Badger would do.");
+	else output("The silicone tank and its metal tentacle is prepped and ready for use.");
 	output("\n\nWhat are you going to do?");
 	if(!pc.getStatusEffect("Nym-Foe Injections") || drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal())
 	{
@@ -5095,7 +5089,7 @@ public function drBadgerSiliconeMiniTankBonus(btnSlot:int = 0):void
 	
 	addButton(btnSlot, "SiliconeTank", drBadgerSiliconeMiniTank, undefined, "Silicone Tank", "Have a look at the installed silicone tanks.");
 }
-public function drBadgerSiliconeMiniTank():void
+public function drBadgerSiliconeMiniTank(bBack:Boolean = false):void
 {
 	clearOutput();
 	showBust("");
@@ -5104,7 +5098,8 @@ public function drBadgerSiliconeMiniTank():void
 	
 	processTime(1);
 	
-	output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject.");
+	if(!bBack) output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject.");
+	else output("The silicone tank and its metal tentacle is prepped and ready for use.");
 	output("\n\nWhat are you going to do?");
 	if(!pc.getStatusEffect("Nym-Foe Injections")) output(" You could easily pump yourself full of silicone.");
 	
@@ -5303,6 +5298,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			// Lip size increases by 3
 			nymFoeMaxInjection(pc, siliconeMaxHips(inShip), siliconeMaxButt(inShip), siliconeMaxBoob(inShip), siliconeMaxLips(inShip));
 			
+			clearMenu();
 			if(!inShip && flags["BADGER_SILICONE_GO_CRAZY"] >= 3 && !pc.hasPerk("Implant-tastic"))
 			{
 				output("\n\nAside from the sensation of being completely plumped with plastic, something inside you clicks and you have a strange feeling all of a sudden....");
@@ -5317,7 +5313,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 				flags["BADGER_SILICONE_TANK_USES"]++;
 				if(!inShip) IncrementFlag("BADGER_SILICONE_GO_CRAZY");
 				
-				drBadgerSiliconeTankMenu();
+				addButton(0, "Next", drBadgerSiliconeTank, true);
 			}
 			break;
 		case "total suck":
@@ -5334,7 +5330,8 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			nymFoeUninjection(pc);
 			flags["BADGER_SILICONE_TANK_USES"]++;
 			
-			drBadgerSiliconeTankMenu();
+			clearMenu();
+			addButton(0, "Next", drBadgerSiliconeTank, true);
 			break;
 		case "use bag":
 			showName("FILL\nBAG");
@@ -5367,6 +5364,15 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			output("You set the tube on the floor exactly as you found it, walking away.");
 			output("\n\n");
 			// Player is put back in lab menu
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			showName("");
+			
+			output("ERROR!");
+			output("\n\n");
+			
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 			break;
@@ -5662,7 +5668,8 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	
 	IncrementFlag("BADGER_SILICONE_GO_CRAZY");
 	
-	drBadgerSiliconeTankMenu();
+	clearMenu();
+	addButton(0, "Next", drBadgerSiliconeTank, true);
 }
 public function implantasticSiliconeConversion(target:Creature):String
 {
@@ -5942,7 +5949,7 @@ public function drBadgerSiliconeTankBuy(arg:Array):void
 			nymFoeInjection(pc, 1, 20, true);
 			nymFoeInjection(pc, 2, 20, true);
 			nymFoeInjection(pc, 3, 50, true);
-			nymFoeInjection(pc, 4, 10, true);
+			nymFoeInjection(pc, 4, 5, true);
 			
 			addButton(0, "Next", drBadgerSiliconeTankBuy, ["other sure leave"]);
 			break;

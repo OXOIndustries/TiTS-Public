@@ -324,7 +324,7 @@ public function configureMails():void
 	MailManager.addMailEntry("mirrin_tavros", mirrinMovingEmail, "All set up!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("mirrin_sugarmommy", mirrinSugarMommyEmail, "Feeling good, other updates", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("mirrin_sendnudes", mirrinSendNudesEmail, "Feeling bad, progress", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
-	MailManager.addMailEntry("mirrin_royalties", mirrinRoyaltiesEmail, "Article’s up, pics! Also…", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_royalties", mirrinRoyaltiesEmail, "Article’s up, pics! Also...", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("mirrin_jenta", "STEELE YOU GOTTA SEE HER YOU GOTTA SEEEEEEEEEEEE\n\nAHHHHHH\n\nGET HERE NOW OR I’LL CRUSH YOUR HEAD WITH MY HOOF\n\n<i>Ohhh, it seems your daughter has been born! <b>You better go visit the Tavros nursery ASAP.</b></i>", "Jenta’s hatched! Come see!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("tessa_wedding",

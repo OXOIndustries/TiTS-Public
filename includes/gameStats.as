@@ -666,7 +666,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "BoredJumperPregnancy": output2(" Laquine"); break;
 						case "LaquinePregnancy": output2(" Laquine"); break;
 						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
-						case "MirrinPregnancy": output2(" Mirrin"); if (rand(4) == 0) output(", (Torri?)"); else if (rand(3) == 0) output(", (Einar?)"); break;
+						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1060,8 +1060,33 @@ public function statisticsScreen(showID:String = "All"):void
 		// Ship Location
 		output2("\n<b><u>Current Ship Details</u></b>");
 		output2("\n<b>* Name:</b> " + PCShipName(true));
-		output2("\n<b>* Manufacturer:</b> " + PCShipManufacturer());
-		output2("\n<b>* Model:</b> " + PCShipModel());
+		//output2("\n<b>* Manufacturer:</b> " + PCShipManufacturer());
+		//output2("\n<b>* Model:</b> " + PCShipModel());
+		output2("\n<b>* Manufacturer/Model:</b> " + PCShipModel());
+		// Temp ship stuff!
+		if(shits["SHIP"] != undefined)
+		{
+			var pcShip:ShittyShip = shits["SHIP"];
+			var pcCrew:int = crew(true, false);
+			output2("\n<b>* Base Value:</b> " + pcShip.shipCost() + " Credits");
+			output2("\n<b>* Shields:</b> " + pcShip.shieldsQ() + " %, " + "0/" + formatFloat(pcShip.shields(), 3) + "/" + formatFloat(pcShip.shieldsMax(), 3));
+			if(pcShip.hasShields() && !pcShip.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
+			output2("\n<b>* Armor:</b> " + pcShip.HPQ() + " %, " + "0/" + formatFloat(pcShip.HP(), 3) + "/" + formatFloat(pcShip.HPMax(), 3));
+			output2("\n<b>* Energy:</b> " + pcShip.energyQ() + " %, " + formatFloat(pcShip.energyMin(), 3) + "/" + formatFloat(pcShip.energy(), 3) + "/" + formatFloat(pcShip.energyMax(), 3));
+			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shield.shieldDefense, 3));
+			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.armor.defense, 3));
+			output2("\n<b>* Power Generation:</b> " + formatFloat(pcShip.shipPowerGen(), 3));
+			output2("\n<b>* Agility:</b> " + formatFloat(pcShip.shipAgility(), 3));
+			output2("\n<b>* Sensors:</b> " + formatFloat(pcShip.shipSensors(), 3));
+			output2("\n<b>* Systems:</b> " + formatFloat(pcShip.shipSystems(), 3));
+			output2("\n<b>* Thrust:</b> " + formatFloat(pcShip.shipThrust(), 3));
+			output2("\n<b>* Modules, Total Capacity:</b> " + pcShip.shipCapacity());
+			output2("\n<b>* Modules, Installed:</b> " + pcShip.inventory.length);
+			output2("\n<b>* Modules, Crew:</b> " + Math.min(pcCrew, pcShip.shipCrewCapacity()));
+			if(pcCrew > pcShip.shipCrewCapacity()) output2(" (" + pcCrew + ")");
+			output2("\n<b>* Weapons, Total:</b> " + pcShip.listShipWeapons().length + "/" + pcShip.shipGunCapacity());
+			output2("\n<b>* Gadgets, Total:</b> " + pcShip.listShipGadgets().length);
+		}
 		if(!inShip)
 		{
 			output2("\n<b><u>Ship Location</u></b>");
@@ -1176,7 +1201,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/laquine births") > 0)
 					output2("\n<b>* Births, Laquine Children (generic):</b> " + StatTracking.getStat("pregnancy/laquine births"));	
 				if(StatTracking.getStat("pregnancy/l. d. c. births") > 0)
-					output2("\n<b>* Births, L.D.C.'s Children:</b> " + StatTracking.getStat("pregnancy/l. d. c. births"));	
+					output2("\n<b>* Births, L.D.C.’s Children:</b> " + StatTracking.getStat("pregnancy/l. d. c. births"));	
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
 					output2("\n<b>* Births, Milodan Young:</b> " + StatTracking.getStat("pregnancy/milodan births"));
 				var nyreanEggs:Number = 0;
@@ -1220,7 +1245,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/shekka kids") > 0)
 					output2("\n<b>* Births, Shekka’s Children:</b> " + StatTracking.getStat("pregnancy/shekka kids"));
 				if(StatTracking.getStat("pregnancy/shock hopper births") > 0)
-					output2("\n<b>* Births, Shock Hopper's Children:</b> " + StatTracking.getStat("pregnancy/shock hopper births"));	
+					output2("\n<b>* Births, Shock Hopper’s Children:</b> " + StatTracking.getStat("pregnancy/shock hopper births"));	
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
 					output2("\n<b>* Births, Sydian Young:</b> " + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -7986,8 +8011,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ROXY_TOTAL_KIDS"] != undefined) output2("\n<b>* Roxy, Total Kids:</b> " + flags["ROXY_TOTAL_KIDS"]);
 					if(flags["ROXY_DOGGY_VAG"] != undefined) output2("\n<b>* Roxy, Times You Fucked Her Pussy Doggystyle:</b> " + flags["ROXY_DOGGY_VAG"]);
 					if(flags["ROXY_DOGGY_ANAL"] != undefined) output2("\n<b>* Roxy, Times You Fucked Her Ass Doggystyle:</b> " + flags["ROXY_DOGGY_ANAL"]);
-					if(flags["ROXY_DOGGY_DP"] != undefined) output2("\n<b>* Roxy, Times You DP'd Her Doggystyle:</b> " + flags["ROXY_DOGGY_DP"]);
-					if(flags["ROXY_MISSIONARY"] != undefined) output2("\n<b>* Roxy, Times Had 'Roxy Style' Missionary:</b> " + flags["ROXY_MISSIONARY"]);
+					if(flags["ROXY_DOGGY_DP"] != undefined) output2("\n<b>* Roxy, Times You DP’d Her Doggystyle:</b> " + flags["ROXY_DOGGY_DP"]);
+					if(flags["ROXY_MISSIONARY"] != undefined) output2("\n<b>* Roxy, Times Had ‘Roxy Style’ Missionary:</b> " + flags["ROXY_MISSIONARY"]);
 					if(flags["ROXY_COWGIRL_FIRST"] != undefined) output2("\n<b>* Roxy, Times You Came First During Cowgirl:</b> " + flags["ROXY_COWGIRL_FIRST"]);
 					if(flags["ROXY_COWGIRL_HOLD"] != undefined) output2("\n<b>* Roxy, Times She Came First During Cowgirl:</b> " + flags["ROXY_COWGIRL_HOLD"]);
 					if(flags["ROXY_BJ"] != undefined) output2("\n<b>* Roxy, Times She Gave You A BJ:</b> " + flags["ROXY_BJ"]);

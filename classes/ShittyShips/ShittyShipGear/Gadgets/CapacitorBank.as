@@ -48,7 +48,7 @@
 			this.description = "a bank of capacitors";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Capacitor banks are a favorite upgrade for captains who prefer energy-guzzling weapons like plasma cannons, laser weapons, and railguns. These banks of high-density energy stores can be tapped in a pinch to completely refill a vessel's energy stores once per encounter.";
+			this.tooltip = "Capacitor banks are a favorite upgrade for captains who prefer energy-guzzling weapons like plasma cannons, laser weapons, and railguns. These banks of high-density energy stores can be tapped in a pinch to completely refill a vessel’s energy stores once per encounter.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -95,7 +95,7 @@
 				if(usingCreature.hasPerk("PCs")) 
 				{
 					clearOutput();
-					output("The relay between your capacitor bank and your vessel's power conduits flips open, flooding every circuit with all the energy it could ever need.");
+					output("The relay between your capacitor bank and your vessel’s power conduits flips open, flooding every circuit with all the energy it could ever need.");
 				}
 				else
 				{

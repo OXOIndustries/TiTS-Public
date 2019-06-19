@@ -581,7 +581,7 @@ public function mods4UChrysalisSaendra():void
 
 // Talks and Intros
 // Crew blurb
-public function seraOnShipBonus(btnSlot:int = 0):String
+public function seraOnShipBonus(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var bonusText:String = "";
 	
@@ -600,7 +600,7 @@ public function seraOnShipBonus(btnSlot:int = 0):String
 		addButton(btnSlot, "Sera", approachServantSera, true, "Sera", "Visit the demoness.");
 	}
 	
-	return bonusText;
+	return (showBlurb ? bonusText : "");
 }
 
 // Sera Salary hotfix

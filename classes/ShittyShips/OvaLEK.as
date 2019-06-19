@@ -49,9 +49,9 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The Ova'LEK was a joint project developed by the ovir and the U.G.C. The ovir, new to the galactic community as a whole, needed a ship that suited their needs. Not ones to be front line fighters even on their home planet, the ovir excelled in other areas: stealth and speed. New ovir engineers proved themselves to the galaxy's best by designing new, more efficient stealth modules and more powerful maneuvering engines. The ovir, it seemed, understood the concepts of stealth in and out of space to a degree not seen by humans before. The Ova'LEK clearly outclassed other U.G.C. stealth ships after its deployment.";
+			this.long = "The Ova’LEK was a joint project developed by the ovir and the U.G.C. The ovir, new to the galactic community as a whole, needed a ship that suited their needs. Not ones to be front line fighters even on their home planet, the ovir excelled in other areas: stealth and speed. New ovir engineers proved themselves to the galaxy’s best by designing new, more efficient stealth modules and more powerful maneuvering engines. The ovir, it seemed, understood the concepts of stealth in and out of space to a degree not seen by humans before. The Ova’LEK clearly outclassed other U.G.C. stealth ships after its deployment.";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;

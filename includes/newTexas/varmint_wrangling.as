@@ -630,7 +630,7 @@ public function hasVarmintLeash():Boolean
 }
 
 // Crew Menu Text
-public function varmintOnShipBonus(btnSlot:int = 0):String
+public function varmintOnShipBonus(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	// No varmints!
 	if(flags["VARMINT_IS_CREW"] == undefined) return "";
@@ -666,7 +666,7 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 		
 		addButton(btnSlot, (!varmintRenamend() ? "Varmint" : varmintPetName()), approachPetVarmint, true, (!varmintRenamend() ? "Varmint Companion" : varmintPetName()), btnText);
 	}
-	return bonusText;
+	return (showBlurb ? bonusText : "");
 }
 
 // Get a Pet Varmint

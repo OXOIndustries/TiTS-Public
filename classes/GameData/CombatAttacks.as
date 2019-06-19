@@ -576,7 +576,7 @@ package classes.GameData
 			Recharge = new SingleCombatAttack();
 			Recharge.RequiresTarget = false;
 			Recharge.TooltipTitle = "Recharge!";
-			Recharge.TooltipBody = "Focus on recharging your ship's capacitors instead of fighting back. Note that this happens automatically if you select \"Battle!\" without any weapons enabled.\n\n(Double energy gain.)";
+			Recharge.TooltipBody = "Focus on recharging your ship’s capacitors instead of fighting back. Note that this happens automatically if you select “Battle!” without any weapons enabled.\n\n(Double energy gain.)";
 			Recharge.Implementor = RechargeImpl;
 		}
 		
@@ -1482,7 +1482,7 @@ package classes.GameData
 		}
 		public static function applyBurrow(target:Creature, tooltip:String = ""):void
 		{
-			target.createStatusEffect("Burrowed",0,0,0,0,false,"Icon_DefUp",StringUtil.capitalize(target.uniqueName) + (target.isPlural  ? " have " : " has") + " burrowed beneath the ground. You can see some faint trembling through the dirt, but there's no other sign of it.",true);
+			target.createStatusEffect("Burrowed",0,0,0,0,false,"Icon_DefUp",StringUtil.capitalize(target.uniqueName) + (target.isPlural ? " have " : " has") + " burrowed beneath the ground. You can see some faint trembling through the dirt, but there’s no other sign of it.",true);
 			if(tooltip != "") target.setStatusTooltip("Burrowed", tooltip);
 		}
 		public static function applyDisarm(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void

@@ -45,9 +45,9 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This tiny, ancient Casstech Z7 makes Dad's old Z14 look like a pleasure yacht, but what it lacks in size, it makes up for in thrust. Brand new engines shine with glossy, factory finishes, ready to run down vulnerable Rushers in a heartbeat. Once it catches its prey, it's ready to unload with standard-issue machine gun and some kind of short ranged energy weapon.\n\nA flashy insignia on the side proudly declares it to be a member of the \"Corona Lords.\"";
+			this.long = "This tiny, ancient Casstech Z7 makes Dad’s old Z14 look like a pleasure yacht, but what it lacks in size, it makes up for in thrust. Brand new engines shine with glossy, factory finishes, ready to run down vulnerable Rushers in a heartbeat. Once it catches its prey, it’s ready to unload with standard-issue machine gun and some kind of short ranged energy weapon.\n\nA flashy insignia on the side proudly declares it to be a member of the “Corona Lords.”";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;

@@ -22,6 +22,17 @@ public function pexigaBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
+public function pexigaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var msg:String = "";
+	
+	msg += "\n\nThe bimbo pexiga girl seems perfectly content in her admittedly small quarters. Either from habit or her awkwardly over-endowed body, [pexiga.name] seems to prefer staying on all fours. When not tasting everything around her, she tends to " + (yammiIsCrew() ? "follow Yammi around like a little lost puppy, helping out any way she can" : "scurry around like a little lost puppy") + ". Despite her innocent demeanor, you catch her giving you an occasional glance full of a hunger " + (yammiIsCrew() ? "Yammi" : "-- the type that food") + " can’t satisfy.";
+	
+	addButton(btnSlot, pexigaName(), approachPexigaCrew);
+	
+	return (showBlurb ? msg : "");
+}
+
 //[Pexiga]
 //Once she’s been fixed, the bimbo pexiga is added to your crew menu. Her scenes are disabled on Yammi’s menu and the player gains a seperate follower option, used to talk, fuck, milk, and pet her. Yammi can join in on some three-ways
 

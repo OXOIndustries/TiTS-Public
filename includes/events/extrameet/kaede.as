@@ -422,7 +422,7 @@ public function kaedeDataIlariaMenu():void
 	// Savin never accounted for the player having not enough credits, so I'm just
 	// gonna swing this as a wink-nudge from Ilaria giving you the cheapy thing
 	if (flags["FUCKED_ILARIA"] == undefined) addButton(0,"Sin-a-Bunny",kaedeDataIlariaOrder,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
-	else addButton(0, "Sin-a-Bunny", extrameetKaedeSurprise, "Sin-a-bunny", "Sin-a-Bunny", "Order one of Ilaria's infamous ‘special sauce’ sinabunnies. Let's be honest: Kaede would eat that sauce by the gallon anyway.")
+	else addButton(0, "Sin-a-Bunny", extrameetKaedeSurprise, "Sin-a-bunny", "Sin-a-Bunny", "Order one of Ilaria’s infamous ‘special sauce’ sinabunnies. Let’s be honest: Kaede would eat that sauce by the gallon anyway.")
 	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits) addButton(1,"Vanilla Ice C.",kaedeDataIlariaOrder,"Vanilla Iced Teats","Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
 	else addDisabledButton(1,"Vanilla Iced Teats","Vanilla Iced Teats","You can’t afford this.");
 	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits) addButton(2,"Kaithrit Cake",kaedeDataIlariaOrder,"Kaithrit Kittycake","Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");

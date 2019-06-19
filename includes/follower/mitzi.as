@@ -704,7 +704,7 @@ public function mitziPCDropOutfit(arg:Array):void
 }
 
 //Mitzi crew bonus and approach screen is clothing dependant:
-public function mitziCrewBonus():String
+public function mitziCrewBonus(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var dress:ItemSlotClass = mitziCurrentDress();
 	var buff:String = "";
@@ -791,7 +791,11 @@ public function mitziCrewBonus():String
 		}
 	}
 	
-	return buff;
+	if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
+	else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi’s not around at the moment." + (amberIsCrew() ? " She’s probably getting into trouble with Amber.":""));
+	else addButton(btnSlot,"Mitzi",approachCrewMitzi);
+	
+	return (showBlurb ? buff : "");
 }
 
 public function approachCrewMitzi(back:Boolean = false):void

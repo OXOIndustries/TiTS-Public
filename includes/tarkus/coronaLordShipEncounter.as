@@ -37,7 +37,7 @@ public function genericShipFiteWin():void
 	clearMenu();
 	addButton(0,"Extort",extortSomeMuns,undefined,"Extort","Get reimbursed for the trouble.");
 	if(enemy.hasPerk("PIRATE")) addButton(1,"Peacekeepers",turnInPirateFiteToCops,undefined,"Peacekeepers","Call in the peacekeepers on this villain.");
-	else addDisabledButton(1,"Peacekeepers","Peacekeepers","It's probably not worth it to get the cops involved, since your foe wasn't some kind of flag-waving pirate.");
+	else addDisabledButton(1,"Peacekeepers","Peacekeepers","It’s probably not worth it to get the cops involved, since your foe wasn’t some kind of flag-waving pirate.");
 	addButton(14,"Leave",leaveShipfiteAfterVictory);
 }
 public function leaveShipfiteAfterVictory():void
@@ -56,7 +56,7 @@ public function extortSomeMuns():void
 	else if(pc.isNice()) output("<i>“I believe you intended to subject me to an unkind fate, but turnabout is fair play, as they say. I’ll be needing a credit deposit to ensure your continued safety.”</i>");
 	else if(pc.isMischievous()) output("<i>“Your money or your life... or your wife?”</i> You pause for a moment. <i>“On second thought, just your money. I don’t give a shit about your life or your wife.”</i>");
 	else output("<i>“You better pay up for the trouble you caused me.”</i> You pause long enough for the threat to breathe. <i>“Now.”</i>");
-	output("\n\nRight on cue, a peer-to-peer credit transfer arrives through the comms. You're " + enemy.credits + " credits richer!");
+	output("\n\nRight on cue, a peer-to-peer credit transfer arrives through the comms. You’re " + enemy.credits + " credits richer!");
 	pc.credits += enemy.credits;
 	enemy.createStatusEffect("Extorted");
 	if(pc.isNice()) 
@@ -70,7 +70,7 @@ public function extortSomeMuns():void
 public function turnInPirateFiteToCops():void
 {
 	clearOutput();
-	output("You radio in an anonymous report to the nearest UGC Peacekeeper station before making yourself scarce. You don't need to deal with that kind of paperwork.\n\n");
+	output("You radio in an anonymous report to the nearest UGC Peacekeeper station before making yourself scarce. You don’t need to deal with that kind of paperwork.\n\n");
 	if(enemy.hasStatusEffect("Extorted")) pc.addHard(4);
 	CombatManager.genericVictory();
 }
@@ -86,7 +86,7 @@ public function encounterPyrotechZ7():void
 	output("You drop out of light drive and into orbit, activating your scanners in search of anything nearby. You’re surprised to find there <i>is</i> something close - a dinky ship bearing nothing but weapons and a pirate’s insignia, and it’s closing fast now that it’s spotted you!");
 	if(flags["PYROTECH_ATTACKS"] == undefined)
 	{
-		output("\n\n<b>Pirate attacks are common on the frontier.</b>\n\nAssuming you survive this encounter, you'll need to be prepared for the worst when travelling between planets.");
+		output("\n\n<b>Pirate attacks are common on the frontier.</b>\n\nAssuming you survive this encounter, you’ll need to be prepared for the worst when travelling between planets.");
 	}
 	else output("\n\nAgain?");
 	output("\n\n<b>It’s a fight!</b>");
@@ -159,13 +159,13 @@ public function pyroPupBoardingFun():void
 	processTime(2);
 	//[Money] [Offer Sex] [Sister?]
 	clearMenu();
-	if(pc.credits < 3000) addButton(0,"Money?",giveHerYourMoney,undefined,"Money?","You don't have much in the way of credits to give her, but try anyway.");
+	if(pc.credits < 3000) addButton(0,"Money?",giveHerYourMoney,undefined,"Money?","You don’t have much in the way of credits to give her, but try anyway.");
 	else addButton(0,"Money",giveHerYourMoney,undefined,"Money","Lose the money, keep your life. Seems a fair enough trade.");
 
 	addButton(1,"Offer Sex",offerPyroPupperSex,undefined,"Offer Sex","Some negotiation might pay off here...");
 
 	if(flags["FIREPUP_ENCOUNTERS"] != undefined) addButton(2,"Sister?",sisterTalkWithPyrotech,undefined,"Sister","She looks <i>very</i> familiar...");
-	else addDisabledButton(2,"Locked","Locked","You'll have to meet another NPC during your journeys before you can unlock this option. Perhaps the Corona Lords have a presence elsewhere in the galaxy?");
+	else addDisabledButton(2,"Locked","Locked","You’ll have to meet another NPC during your journeys before you can unlock this option. Perhaps the Corona Lords have a presence elsewhere in the galaxy?");
 }
 
 //tooltip:Lose the money, keep your life. Seems a fair enough trade.
@@ -451,7 +451,7 @@ public function pyroPup2GenericSex2():void
 		output(" Grunting, you thrust your [pc.cock " + x + "] into her so hard she squirts all over your groin, panting breathlessly as you fuck the orgasm from her shaking body.");
 		output("\n\n<i>“You needed this bad, huh?”</i> you huff. <i>“Shoulda just asked.”</i>");
 		output("\n\n<i>“Oh, god, don’t <b>stop</b>,”</i> she groans, jiggling breasts bouncing beneath her while you pound her out. <i>“Keep fucking going until you cum!”</i>");
-		if(pc.cockVolume(x) > 400) output("\n\nYou desperately wish you could thrust far enough to truly hilt yourself, to feel your " + (pc.balls > 0 ? "[pc.balls]":"crotch") + " really smacking home against her sodden nethers, but anatomy is a cruel bitch when it comes to giant-sized cocks. Still, there's something to be said for stretching a girl out. You smile");
+		if(pc.cockVolume(x) > 400) output("\n\nYou desperately wish you could thrust far enough to truly hilt yourself, to feel your " + (pc.balls > 0 ? "[pc.balls]":"crotch") + " really smacking home against her sodden nethers, but anatomy is a cruel bitch when it comes to giant-sized cocks. Still, there’s something to be said for stretching a girl out. You smile");
 		else if(pc.balls > 0) output("\n\nYour [pc.balls] slap" + (pc.balls == 1 ? "s":"") + " against her sensitive clit");
 		else output("Your groin smacks against her bouncy ass");
 
@@ -649,7 +649,7 @@ public function fuckYesHugeDickPyroPupLetsGo():void
 	}
 	else
 	{
-		output(" She doesn’t even make a noise as hot, [pc.cumVisc] seed splatters into her womb and fills her to the brim in one go, her lips stretching in a silent 'O' of pleasure as she looks down at you in awe.");
+		output(" She doesn’t even make a noise as hot, [pc.cumVisc] seed splatters into her womb and fills her to the brim in one go, her lips stretching in a silent ‘O’ of pleasure as she looks down at you in awe.");
 		output("\n\nHolding her waist you hump her full of your everflowing jizz, each massive load swelling her stomach out as her womb swells impossibly large to hold you. You’re using her like a condom and she <i>knows</i> it, staring at you with eyes wide and not even daring to breathe as load after load sloshes inside her and settles into her deepest recesses. When you’re finally spent and the remainder begins to trickle out of her, she seems to swing back into consciousness and remembers to take a long, grateful breath.");
 		output("\n\n<i>“G- god- damn, kid,”</i> the huskar stutters, looking down at herself. Her stomach has swollen to such an immense size she’s going to have some serious mobility issues. <i>“F-fuck, I don’t know if I can even walk...”</i>");
 	}

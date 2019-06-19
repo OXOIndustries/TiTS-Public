@@ -44,15 +44,15 @@ package classes.GameData.Pregnancy.Handlers
 			_onDurationEnd = mirrinOnDurationEnd;
 			
 			addStageProgression(_basePregnancyIncubationTime - (20 * 24 * 60), function():void {
-				var logText:String = "Your moods and emotions have grown irregular, things feel a little bit floatier than normal. Sometimes you’ll be going about your business and feel unusually angry, aroused or even distressed from a thought or incident. Hormones, right…?";
-				if (StatTracking.getStat("pregnancy/total births") > 0) logText += " Doesn’t feel quite as normal as you’ve experienced with pregnancy before… things seem ‘hotter’ on the inside. Nothing you can’t handle though.";
-				logText += "\n\nThere’s a nagging need that plays with your thoughts intermittently: " + (kGAMECLASS.silly ? "<i>where does the poop go…</i>" : "<i>ice cream…</i>");
+				var logText:String = "Your moods and emotions have grown irregular, things feel a little bit floatier than normal. Sometimes you’ll be going about your business and feel unusually angry, aroused or even distressed from a thought or incident. Hormones, right...?";
+				if (StatTracking.getStat("pregnancy/total births") > 0) logText += " Doesn’t feel quite as normal as you’ve experienced with pregnancy before... things seem ‘hotter’ on the inside. Nothing you can’t handle though.";
+				logText += "\n\nThere’s a nagging need that plays with your thoughts intermittently: " + (kGAMECLASS.silly ? "<i>where does the poop go...</i>" : "<i>ice cream...</i>");
 
 				AddLogEvent(ParseText(logText), "passive");
 			});
 			
 			addStageProgression(_basePregnancyIncubationTime - (40 * 24 * 60), function():void {
-				AddLogEvent(ParseText("You find yourself smiling at odd things at odd times, usually to the bemusement of those around you. Often it comes with a very nice change in mood, another reason to pat and caress your [pc.belly]. There’s no sign of a bump yet but you definitely feel a little bit sluggish when getting yourself up from something.\n\nPlus, you’re feeling just a tad more sensitive than usual, a little more susceptible to feeling naturally horny…"), "passive");
+				AddLogEvent(ParseText("You find yourself smiling at odd things at odd times, usually to the bemusement of those around you. Often it comes with a very nice change in mood, another reason to pat and caress your [pc.belly]. There’s no sign of a bump yet but you definitely feel a little bit sluggish when getting yourself up from something.\n\nPlus, you’re feeling just a tad more sensitive than usual, a little more susceptible to feeling naturally horny..."), "passive");
 				kGAMECLASS.pc.createStatusEffect("MirrinPregStage",1);
 			});
 			
@@ -70,9 +70,9 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (80 * 24 * 60), function(pregSlot:int):void {
-				var logText:String = "That baby bulge has become more of a natural baby bump, the egg-shape of your abdomen protruding a little tiny bit every week. You can’t quite get over the effect it has on the rest of you though: restless nights, difficulty getting comfy, the urge to vomit in the morning…";
+				var logText:String = "That baby bulge has become more of a natural baby bump, the egg-shape of your abdomen protruding a little tiny bit every week. You can’t quite get over the effect it has on the rest of you though: restless nights, difficulty getting comfy, the urge to vomit in the morning...";
 				if (kGAMECLASS.pc.willpower() >= 35) logText += " luckily, you’ve enough nerves of " + (kGAMECLASS.silly ? "Steele, LOL" : "steel") + " to prevent the worst of it through sheer mental power.";
-				logText += "\n\nStill, you can’t help but feel happy during the interim periods. You’ve certainly gained more of an appetite, the feel and taste of food having never felt more real. Almost arousingly so…";
+				logText += "\n\nStill, you can’t help but feel happy during the interim periods. You’ve certainly gained more of an appetite, the feel and taste of food having never felt more real. Almost arousingly so...";
 
 				kGAMECLASS.pc.addStatusValue("MirrinPregStage",1,1);
 				AddLogEvent(ParseText(logText), "passive");
@@ -82,12 +82,12 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (100 * 24 * 60), function(pregSlot:int):void {
-				var logText:String = "Mmm, you can’t help but stop and just rub. Rub, rub, rub. Your [pc.belly] feels eternally warm, eternally comforted and drenched in a haze of hormones. It now juts about 6 inches forward, the [pc.skinFurScales] of your [pc.belly] adapting " + (kGAMECLASS.pc.tone >= 75 ? "with a little resistance" : "well") + " to the new life within you. The healthy ‘glow’ you’ve been developing makes your [pc.skinFurScales] mildly flushed and tender, sometimes making you lost in curiosity when you stroke your neck or rub your [pc.chest]. Oo, that feels nice…";
-				logText += "\n\nOo, a little too nice…?";
+				var logText:String = "Mmm, you can’t help but stop and just rub. Rub, rub, rub. Your [pc.belly] feels eternally warm, eternally comforted and drenched in a haze of hormones. It now juts about 6 inches forward, the [pc.skinFurScales] of your [pc.belly] adapting " + (kGAMECLASS.pc.tone >= 75 ? "with a little resistance" : "well") + " to the new life within you. The healthy ‘glow’ you’ve been developing makes your [pc.skinFurScales] mildly flushed and tender, sometimes making you lost in curiosity when you stroke your neck or rub your [pc.chest]. Oo, that feels nice...";
+				logText += "\n\nOo, a little too nice...?";
 				if (kGAMECLASS.pc.isLactating()) logText += "\n\nYour [pc.breasts] feel fuller than usual, [pc.milk] now pooling in ever greater amounts. Your milky chest is already prepared for babies!";
 				else if (kGAMECLASS.pc.hasBreasts()) logText += "\n\nYour [pc.breasts] feel heavy and pliant, brimming with [pc.milk]. You squeeze a [pc.nipple] to test and a small spurt of [pc.milkColor] dribbles out. <b>You’re now lactating!</b>";
 				else logText += "\n\nYour [pc.chest] feels kinda tender, almost sensitive. You’re pretty sure that if you had proper breasts, you’d be lactating.";
-				logText += "\n\nOn top of that, your [pc.nipples] are now irritatingly sensitive. Anything other than a pair of deft hands now making you lust for a loving dragon's touch…";
+				logText += "\n\nOn top of that, your [pc.nipples] are now irritatingly sensitive. Anything other than a pair of deft hands now making you lust for a loving dragon’s touch...";
 
 				kGAMECLASS.pc.energy(-kGAMECLASS.pc.energyMax());
 				AddLogEvent(ParseText(logText), "passive");
@@ -98,7 +98,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			addStageProgression(_basePregnancyIncubationTime - (120 * 24 * 60), function(pregSlot:int):void {
 				var logText:String = "That bump of yours is getting pretty big! You’d give an estimate at 8 inches and you’re pretty certain that you’ve felt something moving around inside. Not much but enough to make your inner mother jump around like a rabbit on a caffeine drip.";
-				logText += "\n\nYou still feel the same as you have done since this whole pregnancy began but a little more spontaneous, hungry… and maybe just a bit more horny.";
+				logText += "\n\nYou still feel the same as you have done since this whole pregnancy began but a little more spontaneous, hungry... and maybe just a bit more horny.";
 
 				kGAMECLASS.pc.lust(30);
 				AddLogEvent(ParseText(logText), "passive");
@@ -108,10 +108,10 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (140 * 24 * 60), function(pregSlot:int):void {
-				var logText:String = "Your belly has grown pretty exponential in size over the last few weeks, now gravid and bulbous. Moving around is a bit of a challenge and you find yourself gaining extra mass and tissue as your body prepares. Damn hunger pains…! You’ve definitely felt the urge to gorge on five course meal on more than several occasions; the only thing stopping you is the voice of reason.";
-				logText += "\n\nHowever, you can’t help but still feel happy about the situation: just look at it! So full of life. Little Torri…";
-				if (kGAMECLASS.flags["MIRRIN_PREGSTAGE"] != 10) logText += " or is it Einar? What if it’s another girl…? It all seems up in the air.";
-				logText += "\n\nThat being said, you could really murder a primitive furry lifeform for its edible biomass right about now…";
+				var logText:String = "Your belly has grown pretty exponential in size over the last few weeks, now gravid and bulbous. Moving around is a bit of a challenge and you find yourself gaining extra mass and tissue as your body prepares. Damn hunger pains...! You’ve definitely felt the urge to gorge on five course meal on more than several occasions; the only thing stopping you is the voice of reason.";
+				logText += "\n\nHowever, you can’t help but still feel happy about the situation: just look at it! So full of life. Little Torri...";
+				if (kGAMECLASS.flags["MIRRIN_PREGSTAGE"] != 10) logText += " or is it Einar? What if it’s another girl...? It all seems up in the air.";
+				logText += "\n\nThat being said, you could really murder a primitive furry lifeform for its edible biomass right about now...";
 
 				kGAMECLASS.pc.energy(-kGAMECLASS.pc.energyMax());
 				AddLogEvent(ParseText(logText), "passive");

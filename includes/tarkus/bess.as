@@ -1147,6 +1147,16 @@ public function verifyBessModelFinish():void
 	addButton(0, "Next", bessFollowerMenu);
 }
 
+public function bessShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if (showBlurb) desc += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
+	
+	addButton(btnSlot, bess.short, approachFollowerBess);
+	
+	return desc;
+}
 //Greeting Dialogues
 public function approachFollowerBess():void
 {

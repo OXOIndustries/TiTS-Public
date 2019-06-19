@@ -48,7 +48,7 @@
 			this.description = "a shield disruptor";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This module houses a cornucopia of electronic warfare tools capable of sabotaging enemy shield generators. Whether by use of firmware-crashing cryptoworms or projector-confusing magnetic fields, this shield disruptor provides a once-per-combat attempt to play havoc with your enemy's defenses, after which its one-use, burst-transmitting system will need maintenance to fire again.\n\n(1x/fight)\n(+5 Systems)";
+			this.tooltip = "This module houses a cornucopia of electronic warfare tools capable of sabotaging enemy shield generators. Whether by use of firmware-crashing cryptoworms or projector-confusing magnetic fields, this shield disruptor provides a once-per-combat attempt to play havoc with your enemy’s defenses, after which its one-use, burst-transmitting system will need maintenance to fire again.\n\n(1x/fight)\n(+5 Systems)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -79,7 +79,7 @@
 				if(usingCreature.hasPerk("PCs")) 
 				{
 					clearOutput();
-					output("You can't use this module on something without shields!");
+					output("You can’t use this module on something without shields!");
 				}
 				else output("For some reason, " + usingCreature.getCombatName() + " tries to hack shields that no longer exist. What a waste!");
 			}
@@ -95,7 +95,7 @@
 					if(usingCreature.hasPerk("PCs")) 
 					{
 						clearOutput();
-						output("Visible ripples in space appear around " + targetCreature.getCombatName() + " as your shield disruptor tricks your foe's shield into tearing itself apart!");
+						output("Visible ripples in space appear around " + targetCreature.getCombatName() + " as your shield disruptor tricks your foe’s shield into tearing itself apart!");
 					}
 					else if(targetCreature.hasPerk("PCs")) output("Your view ripples and shudders as your shield tears itself apart at the behest of " + usingCreature.getCombatName() + "!");
 					else output(possessive(targetCreature.capitalA + usingCreature.short) + " shield ripples and tears itself apart at the behest of " + possessive(usingCreature.getCombatName()) + " shield disruptor!");
@@ -107,7 +107,7 @@
 					if(usingCreature.hasPerk("PCs")) 
 					{
 						clearOutput();
-						output("Despite your best efforts, the shield disruptor can't seem to sabotage " + possessive(targetCreature.getCombatName()) + " systems.");
+						output("Despite your best efforts, the shield disruptor can’t seem to sabotage " + possessive(targetCreature.getCombatName()) + " systems.");
 					}
 					else if(targetCreature.hasPerk("PCs")) output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, your systems are too robust to be sabotaged by a shield disruptor.");
 					else output("Despite " + possessive(usingCreature.getCombatName()) + " best efforts, " + possessive(targetCreature.getCombatName()) + " systems are too robust to be sabotaged by a shield disruptor.");

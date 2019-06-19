@@ -50,18 +50,24 @@ public function kaseIsCrew():Boolean
 	return (flags["KASE_CREW"] > 0);
 }
 
-public function kaseCrewBlurbs(btnSlot:int):String
-{	
-	switch(rand(3)+1)
+public function kaseCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	if (showBlurb && flags["RAMIS_ACTIVITY"] != "KASE")
 	{
-		case 1:	addButton(btnSlot, "Kase", kaseApproachCrew, 1, "", "");
-				return "\n\nKase is in his quarters, tapping away at a holopad and running calculations. Whether for work or for fun, though, you can’t quite say.";
-		case 2: addButton(btnSlot, "Kase", kaseApproachCrew, 2, "", "");
-				return "\n\nYou can see Kase in his quarters, head bobbing back and forth happily with headphones pumping music into his ear while he works away on his terminal.";
-		case 3: addButton(btnSlot, "Kase", kaseApproachCrew, 3, "", "");
-				return "\n\nKase seems to be taking a little break in his quarters, drifting off into a catnap on his bunk, tails swaying sleepily.";
-		default:return "\n\n<b>!KASE CREW BLURB SWITCH BORKED!</b>";
+		switch(rand(3)+1)
+		{
+			case 1:	addButton(btnSlot, "Kase", kaseApproachCrew, 1, "", "");
+					return "\n\nKase is in his quarters, tapping away at a holopad and running calculations. Whether for work or for fun, though, you can’t quite say.";
+			case 2: addButton(btnSlot, "Kase", kaseApproachCrew, 2, "", "");
+					return "\n\nYou can see Kase in his quarters, head bobbing back and forth happily with headphones pumping music into his ear while he works away on his terminal.";
+			case 3: addButton(btnSlot, "Kase", kaseApproachCrew, 3, "", "");
+					return "\n\nKase seems to be taking a little break in his quarters, drifting off into a catnap on his bunk, tails swaying sleepily.";
+			default:return "\n\n<b>!KASE CREW BLURB SWITCH BORKED!</b>";
+		}
 	}
+	else addButton(btnSlot, "Kase", kaseApproachCrew, 1);
+	
+	return "";
 }
 
 public function kaseCrewGreeting():void

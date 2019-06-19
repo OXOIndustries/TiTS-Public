@@ -1267,7 +1267,7 @@ public function initTavrosRooms():void
 
 	rooms["ANON'S BACK END"] = new RoomClass(this);
 	rooms["ANON'S BACK END"].roomName = "ANON’S\nBACK END";
-	rooms["ANON'S BACK END"].description = "You find yourself in the back room of Anon's bar. The crowds filling the entrance thin out around here, but the smells of booze and debauchery are still unmistakable. It would seem this part of the bar is destined for patrons interested in a more peaceful environment than the hustle and bustle that characterizes the rest of the place. To the west is the way to the entrance, where you came from.";
+	rooms["ANON'S BACK END"].description = "You find yourself in the back room of Anon’s bar. The crowds filling the entrance thin out around here, but the smells of booze and debauchery are still unmistakable. It would seem this part of the bar is destined for patrons interested in a more peaceful environment than the hustle and bustle that characterizes the rest of the place. To the west is the way to the entrance, where you came from.";
 	rooms["ANON'S BACK END"].planet = "TAVROS STATION";
 	rooms["ANON'S BACK END"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BACK END"].westExit = "ANON'S BAR AND BOARD";

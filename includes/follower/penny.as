@@ -3,29 +3,34 @@ public function pennyCrewSharing():Boolean
 	return ((pennyIsCumSlut() && flags["PENNY_CUMSLUT_OTHER_CREW"] != undefined) || flags["PENNY_OTHER_CREW_TALKED"] != undefined || penny.isBimbo());
 }
 
-public function pennyCrewDesc():String {
+public function pennyCrewDesc(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
 	var buffer:String = "";
+	
 	//Badgurquest raygun handoff 
 	if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
 	{
-		buffer += "<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>";
+		buffer += "\n\n<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>";
 		//addButton(0,"Penny",turnTheTablesOnBadger);
 	}
 	//Girlfriend penny
 	else {
 		if(flags["PENNY_IS_A_CUMSLUT"] != undefined || penny.isBimbo())
 		{
-			buffer += "Penny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
+			buffer += "\n\nPenny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
 		}
 		//Non-Futa
 		//Appearance blurb: 
-		else if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
+		else if(!penny.hasCock()) buffer += "\n\nPenny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
 		//FUTA!
 		//Appearance Blurb: 
 		else 
-		buffer += "Penny keeps herself busy on your ship, though when she sees you, it’s when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she’s packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can’t quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
+		buffer += "\n\nPenny keeps herself busy on your ship, though when she sees you, it’s when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she’s packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can’t quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
 	}
-	return "\n\n" + buffer;
+	
+	addButton(btnSlot,"Penny",approachCrewPenny);
+	
+	return (showBlurb ? buffer : "");
 }
 
 public function approachCrewPenny(back:Boolean = false):void

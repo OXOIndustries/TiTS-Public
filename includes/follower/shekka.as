@@ -48,6 +48,40 @@ public function shekkaSpitAddicted():Boolean
 }
 
 //Post-Crew Menu
+public function shekkaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if (showBlurb && flags["RAMIS_ACTIVITY"] != "SHEKKA")
+	{
+		if(pc.hasStatusEffect("Shekka_Cum_Playing"))
+		{
+			desc += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
+			addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
+		}
+		else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
+		{
+			desc += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
+			addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
+		}
+		else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
+		{
+			desc += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
+			addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
+		}
+		else 
+		{
+			desc += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
+			addButton(btnSlot,"Shekka",approachCrewShekka);
+		}
+	}
+	else
+	{
+		addButton(btnSlot,"Shekka",approachCrewShekka);
+	}
+	
+	return desc;
+}
 //Clicking on Shekka’s name when you’re selecting Ship Followers gives you the current description.
 public function approachCrewShekka(back:Boolean = false):void
 {

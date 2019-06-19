@@ -50,7 +50,7 @@ public function vahnTavrosBonus(btnSlot:int = 0):void
 	if(flags["MET_VAHN"] == undefined) {
 		if(shits["SHIP"].HP() < shits["SHIP"].HPMax())
 		{
-			output("\n\nThe blonde, half-ausar technician lets you know that <b>he'll get to work fixing the damage to your ship's armor</b>.");
+			output("\n\nThe blonde, half-ausar technician lets you know that <b>he’ll get to work fixing the damage to your ship’s armor</b>.");
 		}
 		else output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
 		addButton(btnSlot, "Tech", VahnTheMechanic);
@@ -59,7 +59,7 @@ public function vahnTavrosBonus(btnSlot:int = 0):void
 	{
 		if(shits["SHIP"].HP() < shits["SHIP"].HPMax())
 		{
-			output("\n\nVahn lets you know that <b>he'll get to work fixing the damage to your ship's armor</b>.");
+			output("\n\nVahn lets you know that <b>he’ll get to work fixing the damage to your ship’s armor</b>.");
 		}
 		else output("\n\nVahn’s around here somewhere, if you want to look for him.");
 		addButton(btnSlot, "Vahn", VahnTheMechanic);
@@ -97,7 +97,7 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
-	if(shits["SHIP"].shipGunCapacity() > shits["SHIP"].listShipWeapons().length) addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship's upgrade slots.");
+	if(shits["SHIP"].shipGunCapacity() > shits["SHIP"].listShipWeapons().length) addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	else addDisabledButton(5,"Ship Guns","Ship Guns","Your ship has no more hardpoints to equip weapons to.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
@@ -118,7 +118,7 @@ public function sellAShipToVahn():void
 	output("\n\\\[Cannot Sell\\\] " + shits["SHIP"].short);
 	
 	clearMenu();
-	addDisabledButton(0,shits["SHIP"].short,shits["SHIP"].short,"You can't sell your ship without first lining up a replacement.");
+	addDisabledButton(0,shits["SHIP"].short,shits["SHIP"].short,"You can’t sell your ship without first lining up a replacement.");
 	buildVahnsSellButtonsAndText(1,"SHIP_2");
 	buildVahnsSellButtonsAndText(2,"SHIP_3");
 	buildVahnsSellButtonsAndText(3,"SHIP_4");
@@ -137,7 +137,7 @@ public function buildVahnsSellButtonsAndText(button:int,arg:String):void
 	else if(shits[arg] is Casstech)
 	{
 		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
-		addDisabledButton(button,shits[arg].short,shits[arg].short,"You can't sell Dad's old Casstech!");
+		addDisabledButton(button,shits[arg].short,shits[arg].short,"You can’t sell Dad’s old Casstech!");
 	}
 	else
 	{
@@ -254,7 +254,7 @@ public function vahnSellsShips():void
 	var spearhead:ShittyShip = new KihaCorpSpearheadSS();
 	var coltXLR:ShittyShip = new ColtXLR();
 	var ova:ShittyShip = new OvaLEK();
-	addButton(0,"Ova'LEK",shipBuyScreen,ova,"Ova'LEK",shipCompareString(ova));
+	addButton(0,"Ova’LEK",shipBuyScreen,ova,"Ova’LEK",shipCompareString(ova));
 	addButton(1,"Colt XLR",shipBuyScreen,coltXLR,"Colt XLR",shipCompareString(coltXLR));
 	addButton(2,"Spearhead SS",shipBuyScreen,spearhead,"Spearhead SS",shipCompareString(spearhead));
 	addButton(14,"Back",VahnTheMechanic);
@@ -270,18 +270,18 @@ public function shipBuyScreen(arg:ShittyShip):void
 	clearMenu();
 	if(pc.credits >= arg.shipCost()) 
 	{
-		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn't any storage available for your ships in Novahome, you'll have to make your purchase with a trade-in.");
+		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
 		else if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
-		else addDisabledButton(0,"Buy","Buy","You don't have room to place your current ship in storage. You'll have to sell one of your stored ships (or trade this one in with the purchase).");
+		else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
 	}
-	else addDisabledButton(0,"Buy","Buy","You can't afford that!");
-	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won't take it.");
+	else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
+	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won’t take it.");
 	else if(pc.credits >= (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2))) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy+Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Price:</u></b> " + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)));
-	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can't afford the ship this way.");
+	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can’t afford the ship this way.");
 
 	//else addButton(1,"Buy+Trade",);
-	if(shopkeep is Vahn) addButton(4,"Back",vahnSellsShips);
-	else if(shopkeep is Dockmaster) addButton(4,"Back",buyAShipFromTrashRat);
+	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
+	else if(shopkeep is Dockmaster) addButton(14,"Back",buyAShipFromTrashRat);
 }
 
 public function buyAShipAndTradeIn(arg:ShittyShip):void
@@ -293,7 +293,7 @@ public function buyAShipAndTradeIn(arg:ShittyShip):void
 	output("\n\n<b>New Ship Cost: </b>" + arg.shipCost() + "\n<b>Old Ship Value: </b>" + Math.round(shits["SHIP"].shipCost()/2) + "\n<b>Total Cost: </b>" + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)) +"\n\nDo you trade it in? (<b>Warning:</b> This cannot be reversed.)");
 	clearMenu();
 	addButton(0,"Trade In",buyAShipAndTradeInGo,arg,"Trade In","Get you a new ship!");
-	addButton(4,"Back",shipBuyScreen,arg);
+	addButton(14,"Back",shipBuyScreen,arg);
 }
 public function buyAShipAndTradeInGo(arg:ShittyShip):void
 {
@@ -406,9 +406,9 @@ public function shipCompareString(newShip:ShittyShip):String
 {
 	var shipTooltip:String = "";
 	//Appearance compare. Might need cut.
-	if(newShip != shits["SHIP"]) shipTooltip += "<b>New Ship:</b> " + newShip.long;
-	else shipTooltip += "<b>Your Ship:</b> " + newShip.long;
-	//shipTooltip += "\n\n<b>Old Ship:</b>" + shits["SHIP"].long;
+	if(newShip != shits["SHIP"]) shipTooltip += "<b>New Ship:</b> " + newShip.short + "\n" + newShip.long;
+	else shipTooltip += "<b>Your Ship:</b> " + newShip.short + "\n" + newShip.long;
+	//shipTooltip += "\n\n<b>Old Ship:</b> " + newShip.short + "\n" + newShip.long;
 
 	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());
 	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shield.shieldDefense, shits["SHIP"].shield.shieldDefense);
@@ -651,7 +651,7 @@ public function giveVahnABJ():void
 	else output("to the ground");
 	output(", you soak in every little detail. His musky, manly scent makes your head spin and your mouth");
 	if(pc.hasVagina()) output(" - not to mention your [pc.pussies] -");
-	output(" wetten. Inching forward, you press your nose against his canine bulge and run it up the underside of his glorious erection, greedily inhaling his dreamy scent.  It truly is a top-notch cock!");
+	output(" wetten. Inching forward, you press your nose against his canine bulge and run it up the underside of his glorious erection, greedily inhaling his dreamy scent. It truly is a top-notch cock!");
 	if(pc.hasTail() && pc.tailType == GLOBAL.TYPE_CANINE) 
 	{
 		output(" Your ");
@@ -667,7 +667,7 @@ public function giveVahnABJ():void
 		output(" side to side - you feel like you’re in heat!");
 	}
 
-	output("\n\n<i>“Like my scent, do you?”</i> Vahn grinds his cock against your nose and [pc.lips]. You shiver with delight as his firm heat presses forcefully against your [pc.face]. An electric shiver runs down your spine.  You’re just giving a blowjob. Why does it feel like so much <i>more</i>?");
+	output("\n\n<i>“Like my scent, do you?”</i> Vahn grinds his cock against your nose and [pc.lips]. You shiver with delight as his firm heat presses forcefully against your [pc.face]. An electric shiver runs down your spine. You’re just giving a blowjob. Why does it feel like so much <i>more</i>?");
 	output("\n\nWith shivering fingers, you reach out and stroke his muscular thighs, as if to steady yourself. Right. Sucking his cock! You start with a long lick, letting your tastebuds roll over his throbbing dick. There’s a hint of salt and sweat, but it’s definitely not unpleasant. The longer you lick it, the tastier it is, until you’re suckling happily on his knob. Mmmm!");
 	output("\n\nYou hear Vahn groaning and there’s a splash of warm slickness against your tongue. It drools down, bathing your palate with his gooey spunk. It’s zesty and delicious! Every thought is clouded, bar one - the desire to have more of his cock cream!");
 	output("\n\nWith increased zeal, you take his throbbing man-meat wholly into your mouth. His swollen glans presses and rubs against the back of your tongue, feeling so much <i>bigger</i> than it looked. At the same time, his knotted base plushly presses against your [pc.lips]. Rather than try to strain your jaw around his girth, you wetly lash the underside of his cock with your [pc.tongue], running your tip along the wonderfully distinct grooves of his undercarriage.");
@@ -778,7 +778,7 @@ public function giveVahnAnal():void
 	if(flags["FUCKED_VAHNS_ASS"] == undefined)
 	{
 		output("\n\n<i>“W-what-?”</i> He breathily asks. You pull back until only your [pc.cockHead " + x + "] remains inside of him, awaiting his answer. His parted pucker longingly wrings your glans. He’s clearly missing your [pc.cockNounSimple " + x + "] inside of him! <i>“W-why’d you pull out-? Come onnn...”</i>");
-		output("\n\n<i>“Not until you tell me who your ass belongs to,”</i> you insist, rubbing your [pc.cockHead " + x + "] teasingly against his prostate.  His taut thighs and bushy tail quiver with pent-up pleasure and he lets out a low, howling whine.");
+		output("\n\n<i>“Not until you tell me who your ass belongs to,”</i> you insist, rubbing your [pc.cockHead " + x + "] teasingly against his prostate. His taut thighs and bushy tail quiver with pent-up pleasure and he lets out a low, howling whine.");
 		output("\n\n<i>“...Y-you... my ass... it’s definitely yours. Please, fuck my naughty ass!”</i> The dirty talk is <i>really</i> turning him on, his half-doggie dick straining and slapping against his belly. His own pre-cum is dribbling down his shaft and balls. When you re-sheathe yourself inside of his ass, the river of spunk flows faster, puddling between his spread legs.");
 	}
 	//Else notFirstTimeAnal:
@@ -786,7 +786,7 @@ public function giveVahnAnal():void
 	{
 		output("\n\n<i>“Y-you, my ass belongs to you-!”</i> Vahn lustily moans. The dirty talk really turns him on, his half-doggie dick straining and slapping against his belly. His own pre-cum dribbles down his shaft and balls, a river of spunk that gushes as you pound his perfectly defined ass.");
 	}
-	output("\n\nThe air is filled with the lewd sound of your slapping thighs and your shared moans. You fuck him hot and hard against the crate, passionately pressing forward to meet his every backwards thrust.  As you feverishly fuck his backside, Vahn groans and needily clenches your [pc.cockNounSimple " + x + "], the half ausar quickly reaching his limit...");
+	output("\n\nThe air is filled with the lewd sound of your slapping thighs and your shared moans. You fuck him hot and hard against the crate, passionately pressing forward to meet his every backwards thrust. As you feverishly fuck his backside, Vahn groans and needily clenches your [pc.cockNounSimple " + x + "], the half ausar quickly reaching his limit...");
 	output("\n\nBoth of you reach that fiery crescendo within moments of each other, letting out sweet, uninhibited cries. As his insides clench and convulse, you grab his hips and bury yourself to the hilt inside of his ass. Climaxing in unison, his butt and insides tremble and he spurts his spunk all over his belly, while you shoot your [pc.cumVisc] hot [pc.cumNoun] inside of the ausar boy’s butt. His tail trembles from tip to base and his pucker deliciously squeezes your base for every last [pc.cumColor] drop.");
 
 	//Pc.hasAKnot:
@@ -843,7 +843,7 @@ public function catchVahnCowgirl():void
 	
 	output("\n\nWhen you get to the door to your quarters, you insist that he go first. There’s a glimmer of curiosity in his eyes as he opens the door and walks inside. As he turns to face you, you give his athletic chest a little shove, pushing him back onto the bed. The half-ausar lets out a surprised cry as he <i>whumps</i> down on the sheets. With a mischievous grin, you ");
 	if (pc.isNude()) output("straddle his waist.");
-	else  output("swiftly strip off and then straddle his waist.");
+	else output("swiftly strip off and then straddle his waist.");
 	
 	output("\n\n<i>“Taking charge, I take it?”</i> Vahn asks, sucking in a breath as your hands slide over his strapping upper half. You stroke his hard pectorals and feel a pleasurable flutter in your belly: he really is a work of art. The carnal admiration is mutual; you can feel his wide green eyes ogling your ");
 	if(pc.biggestTitSize() >= 2) output("naked breasts.");

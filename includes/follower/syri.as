@@ -7,6 +7,18 @@ public function syrisPussAvailable():Boolean
 	return false;
 }
 
+public function syriShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if (showBlurb)
+	{
+		desc += "";
+	}
+	addButton(btnSlot, "Syri", syriFollowerApproach);
+	
+	return desc;
+}
 public function syriFollowerApproach():void
 {
 	if (flags["PENNY_SYRIVAG_WATCHED"] == 1 && (rand(20) == 0 || pc.hasStatusEffect("Syri Pennybating")))

@@ -31,7 +31,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.description = "a thermal projector cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Thermal projectors rely on intense bursts of short-range radiation to literally melt away the target's armor. Due to how rapidly such energies dissipate into the vastness of space, thermal projectors must be fired at or near point blank range, making them unpopular choice of weapon for all but the most aggressive of pilots.";
+			this.tooltip = "Thermal projectors rely on intense bursts of short-range radiation to literally melt away the target’s armor. Due to how rapidly such energies dissipate into the vastness of space, thermal projectors must be fired at or near point blank range, making them unpopular choice of weapon for all but the most aggressive of pilots.";
 			this.attackVerb = "shoot";
 			attackNoun = "thermal radiation";
 			

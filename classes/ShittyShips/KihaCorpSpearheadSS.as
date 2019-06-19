@@ -51,7 +51,7 @@
 			this.capitalA = "The ";
 			this.long = "The KihaCorp Spearhead is a Terran-designed ship intended for planetary exploration and scout missions. The Spearhead houses four large but powerful XFold engines whose unique design allows for unparalleled maneuverability both in space and in atmosphere. Modern XFolds have low fuel consumption and run quieter than any other engines in their class.";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;
