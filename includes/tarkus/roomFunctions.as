@@ -63,6 +63,8 @@ public function firstTimeOnTarkusBonus():Boolean
 	}
 	
 	if (returnToShipAfterRecruitingAnno()) return true;
+
+	if(dockmasterBonus()) return true;
 	
 	return false;
 }

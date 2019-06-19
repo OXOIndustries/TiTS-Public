@@ -394,6 +394,7 @@ package classes {
 			var gadgets:Array = listShipGadgets();
 			var HPPercent:Number = this.HP()/this.HPMax();
 			var shieldPercent:Number = this.shields() / this.shieldsMax();
+
 			var i:int = 0;
 
 			//Shield healing prioritized
@@ -440,6 +441,35 @@ package classes {
 					for(i = 0; i < gadgets.length; i++)
 					{
 						if(gadgets[i] is RepairModule && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
+						{
+							gadgets[i].useFunction(this,this);
+							return true;
+						}
+					}
+				}
+			}
+			var energyPercent:Number = energy() / energyMax();
+			if(energy() < energyMax())
+			{
+				var energyMe:Boolean = false;
+				if(this.hasPerk("DEFENSIVE_AI"))
+				{
+					if(energyPercent < 0.25) energyMe = true;
+				}
+				else if(this.hasPerk("AGGRESSIVE_AI"))
+				{
+					if(energyPercent < 0.5) energyMe = true;
+				}
+				else if(this.hasPerk("TACTICAL_AI"))
+				{
+					if(energyPercent <= 0.5) energyMe = true;
+				}
+				else if(rand(3) == 0) energyMe = true;
+				if(energyMe)
+				{
+					for(i = 0; i < gadgets.length; i++)
+					{
+						if(gadgets[i] is CapacitorBank && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
 						{
 							gadgets[i].useFunction(this,this);
 							return true;

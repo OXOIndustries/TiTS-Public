@@ -5,11 +5,9 @@
 	import classes.GLOBAL;
 	import classes.Items.Protection.NovaShield;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.ShittyShips.ShittyShipGear.Guns.MGun;
-	import classes.ShittyShips.ShittyShipGear.Guns.LCannon;
+	import classes.ShittyShips.ShittyShipGear.Guns.CoilCannon;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipArmor;
 	import classes.ShittyShips.ShittyShipGear.Misc.ShipShield;
-	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.RepairModule;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -20,66 +18,66 @@
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	
-	public class Casstech extends ShittyShip
+	public class MoondastGruss extends ShittyShip
 	{
 		//constructor
-		public function Casstech()
+		public function MoondastGruss()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
-			this.short = "Casstech Z14";
+			this.short = "Moondast Gruss";
 			this.originalRace = "ship";
 			this.shieldDisplayName = "SHIELDS";
 			this.hpDisplayName = "ARMOR";
 			this.captainDisplay = "UNKNOWN";
-			this.modelDisplay = "CT.Z14";
+			this.modelDisplay = "PYRITE";
 			this.factionDisplay = "UNKNOWN";
 
-			wardrobeSizeRaw = 10;
-			equipmentSizeRaw = 10;
-			consumableSizeRaw = 10;
-			valuablesSizeRaw = 10;
-			toysSizeRaw = 10;
-			
+			wardrobeSizeRaw = 5;
+			equipmentSizeRaw = 5;
+			consumableSizeRaw = 5;
+			valuablesSizeRaw = 5;
+			toysSizeRaw = 5;
+
 			shipCapacityRaw = 4;
-			shipGunCapacityRaw = 2;
+			shipGunCapacityRaw = 3;
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.";
+			this.long = "A ship hailing from the junkyard wasteland of Tarkus, the Moodast Gruss isn't a single specification of ship design, but rather a class of junker built by the technologically advanced local groups before First Contact with the U.G.C. The Moodast Gruss is little more than a gunboat, several hull pieces patched together from available technology around a heavy cannon. Surprisingly, all that firepower and armor leave it able to stand up to the best UGC civilian vessels. Decent engines and a complete lack of storage space round it out its status as a Rush-world bruiser without compare.";
 			this.customBlock = "<b>Placeholder</b>.";
-			this.customDodge = "It's too evasive!";
+			this.customDodge = "It lumbers aside!";
 			this.isPlural = false;
 
 			//this.meleeWeapon.attack = 2;
 			this.meleeWeapon = new EmptySlot();
-			this.rangedWeapon = new MGun();
+			this.rangedWeapon = new CoilCannon();
+			this.accessory = new RepairModule();
 
 			this.armor = new ShipArmor();
-			this.armor.defense = 30;
+			this.HPMod = 7000;
+			this.armor.defense = 60;
 			this.armor.hasRandomProperties = true;
 
-			this.inventory.push(new LCannon());
+			this.inventory.push();
 						
-			this.shield = new ShipShield();
-			this.shield.shieldDefense = 20;
-			this.shield.shields = 3000;
-			this.shield.hasRandomProperties = true;
-
-			this.HPMod = 2000;
+			this.shield = new EmptySlot();
+			//this.shield.shieldDefense = 10;
+			//this.shield.shields = 1000;
+			//this.shield.hasRandomProperties = true;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 33;
+			this.physiqueRaw = 45;
 			//AGILITY:
-			this.reflexesRaw = 20;
+			this.reflexesRaw = 10;
 			//SENSORS
-			this.aimRaw = 14;
+			this.aimRaw = 20;
 			//SYSTEMS
-			this.intelligenceRaw = 25;
+			this.intelligenceRaw = 20;
 			//POWER GEN
-			this.willpowerRaw = 25;
+			this.willpowerRaw = 38;
 
 			//UNUSED
 			this.libidoRaw = 50;
@@ -94,7 +92,7 @@
 			
 			this.level = 0;
 			this.XPRaw = bossXP();
-			this.credits = 25000;
+			this.credits = 50000;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			this.energyRaw = this.energyMax();
@@ -107,21 +105,19 @@
 			this.createPerk("Single Minded",0,0,0,0);
 			*/
 			this.createPerk("PCs",0,0,0,0);
-			//this.createPerk("TACTICAL_AI",0,0,0,0);
 
 			isUniqueInFight = true;
-			btnTargetText = "CT.Z14";
-			
+			btnTargetText = "M.Gruss";
 
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
 		override public function energyMax(): Number {
-			return 200;
+			return 300;
 		}
 		override public function get bustDisplay():String
 		{
-			return "Z14";
+			return "MOONDAST_GRUSS";
 		}
 	}
 }

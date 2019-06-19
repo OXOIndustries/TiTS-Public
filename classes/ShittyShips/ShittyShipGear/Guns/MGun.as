@@ -41,7 +41,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.basePrice = 1300;
 					
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 95;
+			baseDamage.kinetic.damageValue = 100;
 			baseDamage.addFlag(DamageFlag.BULLET);
 
 			addFlag(GLOBAL.ITEM_FLAG_QUADSHOT);
