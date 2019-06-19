@@ -357,6 +357,11 @@ package classes {
 			if (temp < 0) temp = 0;
 			return temp;
 		}
+		override public function getCombatName():String
+		{
+			if (isUniqueInFight) return (a + "<i>" + uniqueName + "</i>");
+			else return ("<i>" + uniqueName + "</i>");
+		}
 		public function resetEquipment(gunsOnly:Boolean = false):void
 		{
 			var equipment:Array = listShipEquipment();
@@ -694,15 +699,15 @@ package classes {
 				//Healing is A#1 priority!
 				if(shipHealGadgetAI(alliedCreatures, target)) acted = true;
 				if(offensiveGadgetAI(alliedCreatures, target)) acted = true;
-				
+				var energyCost2:Number = 0;
 				var randomGuns:Array = [];
 				for(i = 0; i < guns.length; i++)
 				{
 					//Build a random firing order for maximum random.
-					if(guns[i].shieldDefense + energyCost < this.energy())
+					if(guns[i].shieldDefense + energyCost2 < this.energy())
 					{
 						randomGuns.insertAt(rand(randomGuns.length),guns[i]);
-						energyCost += guns[i].shieldDefense;
+						energyCost2 += guns[i].shieldDefense;
 					}
 				}
 				if(randomGuns.length > 0 && !acted)

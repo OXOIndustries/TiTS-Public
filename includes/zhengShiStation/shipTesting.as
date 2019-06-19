@@ -4,7 +4,7 @@ import classes.ShittyShips.ShittyShipGear.Guns.EMCannon;
 public function SCT():void
 {
 	clearOutput();
-	shits["SHIP"] = new Casstech();
+	//shits["SHIP"] = new Casstech();
 	showName("SHIPFITE\nTESTER");
 	output("Start a fite?");
 	clearMenu();
@@ -51,6 +51,15 @@ public function startAShipfite(dubble:Boolean = false):void
 	var tEnemy:ShittyShip = new Casstech();
 	var pcShip:ShittyShip = shits["SHIP"];
 	if(!pcShip.hasPerk("PCs")) pcShip.createPerk("PCs");
+	if(rand(31) == 0) tEnemy.createPerk("AGGRESSIVE_AI");
+	else if(rand(21) == 0) tEnemy.createPerk("DEFENSIVE_AI");
+	else if(rand(12) == 0) tEnemy.createPerk("TACTICAL_AI");
+	else 
+	{
+		tEnemy.long = "RANDOM";
+		tEnemy.createPerk("RANDOM_AI");
+	}
+	tEnemy.removePerk("PCs");
 	//pcShip.inventory.push(new EMCannon());
 	
 	CombatManager.newGroundCombat();
