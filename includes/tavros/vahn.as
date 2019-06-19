@@ -240,8 +240,8 @@ public function shipBuyScreen(arg:ShittyShip):void
 	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can’t afford the ship this way.");
 
 	//else addButton(1,"Buy+Trade",);
-	if(shopkeep is Vahn) addButton(4,"Back",vahnSellsShips);
-	else if(shopkeep is Dockmaster) addButton(4,"Back",buyAShipFromTrashRat);
+	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
+	else if(shopkeep is Dockmaster) addButton(14,"Back",buyAShipFromTrashRat);
 }
 
 public function buyAShipAndTradeIn(arg:ShittyShip):void
@@ -253,7 +253,7 @@ public function buyAShipAndTradeIn(arg:ShittyShip):void
 	output("\n\n<b>New Ship Cost: </b>" + arg.shipCost() + "\n<b>Old Ship Value: </b>" + Math.round(shits["SHIP"].shipCost()/2) + "\n<b>Total Cost: </b>" + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)) +"\n\nDo you trade it in? (<b>Warning:</b> This cannot be reversed.)");
 	clearMenu();
 	addButton(0,"Trade In",buyAShipAndTradeInGo,arg,"Trade In","Get you a new ship!");
-	addButton(4,"Back",shipBuyScreen,arg);
+	addButton(14,"Back",shipBuyScreen,arg);
 }
 public function buyAShipAndTradeInGo(arg:ShittyShip):void
 {
