@@ -666,7 +666,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "BoredJumperPregnancy": output2(" Laquine"); break;
 						case "LaquinePregnancy": output2(" Laquine"); break;
 						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
-						case "MirrinPregnancy": output2(" Mirrin"); if (rand(4) == 0) output(", (Torri?)"); else if (rand(3) == 0) output(", (Einar?)"); break;
+						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1063,7 +1063,30 @@ public function statisticsScreen(showID:String = "All"):void
 		//output2("\n<b>* Manufacturer:</b> " + PCShipManufacturer());
 		//output2("\n<b>* Model:</b> " + PCShipModel());
 		output2("\n<b>* Manufacturer/Model:</b> " + PCShipModel());
-		output2("\n<b>* Crew Space Occupied:</b> " + crew(true, false) + "/" + PCShipCrewCapacity());
+		// Temp ship stuff!
+		if(shits["SHIP"] != undefined)
+		{
+			var pcShip:ShittyShip = shits["SHIP"];
+			var pcCrew:int = crew(true, false);
+			output2("\n<b>* Base Value:</b> " + pcShip.shipCost() + " Credits");
+			output2("\n<b>* Shields:</b> " + pcShip.shieldsQ() + " %, " + "0/" + formatFloat(pcShip.shields(), 3) + "/" + formatFloat(pcShip.shieldsMax(), 3));
+			if(pcShip.hasShields() && !pcShip.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
+			output2("\n<b>* Armor:</b> " + pcShip.HPQ() + " %, " + "0/" + formatFloat(pcShip.HP(), 3) + "/" + formatFloat(pcShip.HPMax(), 3));
+			output2("\n<b>* Energy:</b> " + pcShip.energyQ() + " %, " + formatFloat(pcShip.energyMin(), 3) + "/" + formatFloat(pcShip.energy(), 3) + "/" + formatFloat(pcShip.energyMax(), 3));
+			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shield.shieldDefense, 3));
+			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.armor.defense, 3));
+			output2("\n<b>* Power Generation:</b> " + formatFloat(pcShip.shipPowerGen(), 3));
+			output2("\n<b>* Agility:</b> " + formatFloat(pcShip.shipAgility(), 3));
+			output2("\n<b>* Sensors:</b> " + formatFloat(pcShip.shipSensors(), 3));
+			output2("\n<b>* Systems:</b> " + formatFloat(pcShip.shipSystems(), 3));
+			output2("\n<b>* Thrust:</b> " + formatFloat(pcShip.shipThrust(), 3));
+			output2("\n<b>* Modules, Total Capacity:</b> " + pcShip.shipCapacity());
+			output2("\n<b>* Modules, Installed:</b> " + pcShip.inventory.length);
+			output2("\n<b>* Modules, Crew:</b> " + Math.min(pcCrew, pcShip.shipCrewCapacity()));
+			if(pcCrew > pcShip.shipCrewCapacity()) output2(" (" + pcCrew + ")");
+			output2("\n<b>* Weapons, Total:</b> " + pcShip.listShipWeapons().length + "/" + pcShip.shipGunCapacity());
+			output2("\n<b>* Gadgets, Total:</b> " + pcShip.listShipGadgets().length);
+		}
 		if(!inShip)
 		{
 			output2("\n<b><u>Ship Location</u></b>");

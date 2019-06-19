@@ -62,7 +62,7 @@
 			this.armor.hasRandomProperties = true;
 
 			this.inventory.push(new LCannon());
-						
+			
 			this.shield = new ShipShield();
 			this.shield.shieldDefense = 20;
 			this.shield.shields = 3000;
