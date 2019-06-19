@@ -38,6 +38,12 @@ public function PCShipModel():String
 	
 	return "Z14";
 }
+public function PCShipCrewCapacity():int
+{
+	if(shits["SHIP"] != undefined) return shits["SHIP"].shipCrewCapacity();
+	
+	return 3;
+}
 
 public function hasCapitalShip():Boolean
 {

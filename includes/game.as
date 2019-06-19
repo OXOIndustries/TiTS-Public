@@ -2062,13 +2062,20 @@ public function shipMenu():Boolean
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
 
+		var crewTotal:Number = crew(true,true);
 		var crewCounter:Number = crew(true,false);
+		var crewCapacity:Number = PCShipCrewCapacity();
+		// Crew note
+		if(crewTotal > 0)
+		{
+			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew,");
+			if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
+			output(" residing in " + (crewCapacity) + " of your available ship space" + (crewCapacity == 1 ? "" : "s") + ".");
+		}
 		
-		var crewCapacity:Number = shits["SHIP"].shipCrewCapacity();
-
 		if(crewCapacity < crewCounter && flags["INFINITE_CREW"] == undefined) 
 		{
-			output("\n\nYour ship is <b>overloaded</b>. Send " + (crewCounter - crewCapacity) + " crewmember" + ((crewCounter - crewCapacity) == 1 ? "":"s") + " home before you attempt to fly.");
+			output("\n\nYour ship is <b>overloaded</b>. Send " + (crewCounter - crewCapacity) + " crew member" + ((crewCounter - crewCapacity) == 1 ? "":"s") + " home before you attempt to fly.");
 			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
 		}
 		else if(shipOverEncumberedByStorage())

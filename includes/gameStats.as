@@ -1063,6 +1063,7 @@ public function statisticsScreen(showID:String = "All"):void
 		//output2("\n<b>* Manufacturer:</b> " + PCShipManufacturer());
 		//output2("\n<b>* Model:</b> " + PCShipModel());
 		output2("\n<b>* Manufacturer/Model:</b> " + PCShipModel());
+		output2("\n<b>* Crew Space Occupied:</b> " + crew(true, false) + "/" + PCShipCrewCapacity());
 		if(!inShip)
 		{
 			output2("\n<b><u>Ship Location</u></b>");

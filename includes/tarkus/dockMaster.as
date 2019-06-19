@@ -33,7 +33,7 @@ public function raskvelDockmaster(back:Boolean = false):void
 	//First Time
 	else if(flags["MET_DOCKMISTRESS"] == undefined)
 	{		
-		output("The dockmaster, who is clearly a 'she,' now that you're getting a closer look at her, lets out a withering sigh, slapping her cheeks in an idle attempt to get her business-face fixed in place. You’re treated to an " + (silly ? "ass-toundingly":"astoundingly") + " curvaceous rask. Her skin is a deep purple that goes a long way to helping with standing out from most of the horny mini-lizards you’ve spotted so far, but by far the most eye-catching of her features is all of the chrome.");
+		output("The dockmaster, who is clearly a ‘she,’ now that you’re getting a closer look at her, lets out a withering sigh, slapping her cheeks in an idle attempt to get her business-face fixed in place. You’re treated to an " + (silly ? "ass-toundingly":"astoundingly") + " curvaceous rask. Her skin is a deep purple that goes a long way to helping with standing out from most of the horny mini-lizards you’ve spotted so far, but by far the most eye-catching of her features is all of the chrome.");
 		output("\n\nLimbs laden with silver and gold catch the reflections of far-off arc-welders and sparks, and despite the oil stains that mark her apron, they’re positively spotless. She looks like she’s about to speak up before noticing the eye-fucking you’re giving her, instead opting for giving you a casual turn-around.");
 		output("\n\nThis woman has a spectacular ass. From behind you can tell that she’s wearing nothing but her apron and a deep black thong, and with a frame of silver and gold there’s nothing to see but two shiny purple asscheeks larger than your torso. Silvery metal makes its way down her spine where a long segmented mechanical tail is mounted, and her large sweeping ears are similarly capped in chrome. There’s the occasional glowing light on her body, bleeping or chirping in response to some kind of feedback you can only guess the source of.");
 		output("\n\n<i>“Like what you see?”</i> she eventually asks with a smirk, leaning on her monstrous wrench. She hefts it without a hint of effort, which is surprising considering her arms seem to be the only parts of her body not modified. <i>“I should hope so! Limbs are easy, and when it comes to the craft, I’m an artisan...”</i>");
@@ -44,7 +44,7 @@ public function raskvelDockmaster(back:Boolean = false):void
 	//Repeat
 	else
 	{
-		output("Once you’re close enough to get the dockmaster's attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
+		output("Once you’re close enough to get the dockmaster’s attention, she looks you up and down with an easy smile before hopping to her metal feet with a soft clickedy-click. You take the chance to drink her imposing assets while she closes those last few steps.");
 		processTime(2);
 	}
 	//First Time
@@ -74,7 +74,7 @@ public function dockmasterAppearance():void
 	clearOutput();
 	showDockmistress();
 	author("SomeKindofWizard");
-	output("The dockmaster is a violet-skinned beauty with mechanically-augmented limbs of silver and gold that far outshine the murky gunmetals of everything else in the dock. A chrome mount runs down her spine and holds up a segmented techno-tail, and glowing metal caps are locked firmly around the tips of her long flapping ears. She's a muscular lady with plenty of curve, and – especially when you consider her compared to most other rasks you’ve seen – happens blessed with a pair of plush jiggly E-cups that fight to escape an oil-stained apron. Her ass is a thing of broad beauty that puts the term ‘heart-shaped’ to shame, especially since it’s framed by silver and gold like all works of art deserve.");
+	output("The dockmaster is a violet-skinned beauty with mechanically-augmented limbs of silver and gold that far outshine the murky gunmetals of everything else in the dock. A chrome mount runs down her spine and holds up a segmented techno-tail, and glowing metal caps are locked firmly around the tips of her long flapping ears. She’s a muscular lady with plenty of curve, and – especially when you consider her compared to most other rasks you’ve seen – happens blessed with a pair of plush jiggly E-cups that fight to escape an oil-stained apron. Her ass is a thing of broad beauty that puts the term ‘heart-shaped’ to shame, especially since it’s framed by silver and gold like all works of art deserve.");
 	output("\n\nOnly a little dark makeup accentuates her features, but they’re mostly obscured by the natural bright and flowing feathers of her hair.");
 	processTime(1);
 	clearMenu();
@@ -239,7 +239,7 @@ public function raskvelDockmasterMenu():void
 	clearMenu();
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
-	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you're comfortable paying.");
+	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
 	else addDisabledButton(5,"Repair","Repair","Your ship is not damaged.");
 	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase weapons and upgrade modules for your ship.");
 	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you longer wish to keep.");
