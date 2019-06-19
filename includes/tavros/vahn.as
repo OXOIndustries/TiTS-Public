@@ -101,6 +101,7 @@ public function VahnTheMechanic():void
 	else addDisabledButton(5,"Ship Guns","Ship Guns","Your ship has no more hardpoints to equip weapons to.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
+	addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
 	addButton(10,"Buy Ship",vahnSellsShips,undefined,"Buy Ship","Buy a ship the local selection.");
 	if(shipStorageRoom() < 5) addButton(11,"Stored Ships",swapShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
 	else addDisabledButton(11,"Stored Ships","Stored Ships","You have no ships in storage right now.");
@@ -188,6 +189,45 @@ public function vahnShipUninstall():void
 	showVahn();
 	shopkeep = new Vahn();
 	unfitShipItem();
+}
+
+public function vahnNamesShips():void
+{
+	clearOutput();
+	showVahn();
+	output("You ask Vahn if he can register a custom ship name for you.");
+	output("\n\nVahn swings up his codex and nods. <i>“You bet. There’s a 300 credit registration fee, but if you can afford that, you can call whatever your heart desires, and everyone else will have to too.”</i>");
+	displayInput();
+	userInterface.textInput.text = String(shits["SHIP"].short);
+	clearMenu();
+	if(pc.credits >= 300) addButton(0,"Rename",renameYourShip,undefined,"Rename","Rename your ship\n\n300 credit cost.");
+	else addDisabledButton(0,"Rename","Rename","You can't afford that.");
+	addButton(4,"Back",backToVahnFromNaming);
+}
+public function backToVahnFromNaming():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	VahnTheMechanic();
+}
+
+public function renameYourShip():void
+{
+	clearOutput();
+	showVahn();
+	if(userInterface.textInput.text == "")
+	{
+		output("<b>You must enter <i>something</i>.</b>");
+
+		displayInput();
+		userInterface.textInput.text = String(shits["SHIP"].short);
+		return;
+	}
+	output("After transferring the neccessary 300 credits to Vahn, the ausar mechanic fiddles with his Codex and registers your vessel’s new name.");
+	shits["SHIP"].short = userInterface.textInput.text;
+	if(stage.contains(userInterface.textInput)) removeInput();
+	pc.credits -= 300;
+	clearMenu();
+	addButton(0,"Next",VahnTheMechanic);
 }
 
 public function vahnSellsShips():void
