@@ -2637,11 +2637,6 @@ public function showerMenu(special:String = "ship"):void
 	addButton(0, "Shower", showerOptions, [0, special], "Shower", "Take a shower and wash off any sweat or grime you might have.");
 	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, [1, special], "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
 	if (showerInShip && pc.lust() >= 33 && crew(true, false) > 0) addButton(2, "Sex", showerOptions, [2, special], "Sex", "Have some shower sex with a crew member.");
-	if (showerInShip && !pc.isTaur() && paigeInTheShower())
-	{
-		if (pc.isTaur()) addDisabledButton(3, "Paige");
-		else addButton(3, "Paige", paigeDoItInTheShower);
-	}
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -2675,6 +2670,7 @@ public function showerOptions(arg:Array):void
 	clearOutput();
 	clearMenu();
 	var showerSex:int = 0;
+	var btnSlot:int = 0;
 
 	// Regular showers
 	if (option == 0)
@@ -2805,8 +2801,6 @@ public function showerOptions(arg:Array):void
 	{
 		output("You open the medicine cabinet and find a small collection of body hygiene and toiletry supplies.");
 		
-		var btnSlot:int = 0;
-		
 		if(pc.hasBeard()) addButton(btnSlot++, "Beard", showerCabinet, ["beard", special], "Beard", "Do something with your [pc.beardNoun].");
 		if(pc.isBimbo()) addButton(btnSlot++, "Cosmétique", showerCabinet, ["cosmetique", special], "Cosmétique Magazine", "Like, read up on the latest beauty trends!");
 		
@@ -2815,15 +2809,25 @@ public function showerOptions(arg:Array):void
 	// Shower sex options
 	else if (option == 2)
 	{
-		if (annoIsCrew() && pc.hasGenitals())
+		if (annoIsCrew())
 		{
-			addButton(showerSex, "Anno", annoFollowerShowerSex);
-			showerSex++;
+			if (!pc.hasGenitals()) addDisabledButton(btnSlot, "Anno", "Anno", "You require genitals for this.");
+			else { addButton(btnSlot, "Anno", annoFollowerShowerSex); showerSex++; }
+			btnSlot++;
 		}
-		if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEXED_SHIP"] != undefined)
+		if (paigeIsCrew())
 		{
-			addButton(showerSex, "Ramis", ramisBathingCats, "shower");
-			showerSex++;
+			if (!paigeInTheShower()) addDisabledButton(btnSlot, "Paige", "Paige", "Maybe could try this when she is already in the shower...");
+			else if (pc.isTaur()) addDisabledButton(btnSlot, "Paige", "Paige", "This is not possible as a taur.");
+			else { addButton(btnSlot, "Paige", paigeDoItInTheShower); showerSex++; }
+			btnSlot++;
+		}
+		if (ramisIsCrew())
+		{
+			if (flags["RAMIS_SEXED_SHIP"] == undefined) addDisabledButton(btnSlot, "Ramis", "Ramis", "You need to have sexed her on the ship at least once before.");
+			else if (looksFemaleToRamis()) addDisabledButton(btnSlot, "Ramis", "Ramis", "You appear too feminine for Ramis to be interested in at the moment.");
+			else { addButton(showerSex, "Ramis", ramisBathingCats, "shower"); showerSex++; }
+			btnSlot++;
 		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
 		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
@@ -2834,11 +2838,9 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 {
 	if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(0, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 	else if (!pc.canMasturbate()) addDisabledButton(0, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-	else
-	{
-		showerSex = shipShowerFaps(true);
-	}
-	addButton(showerSex, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
+	else shipShowerFaps(true);
+	
+	addButton(14, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
 }
 public function showerCabinet(arg:Array):void
 {

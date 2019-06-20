@@ -22717,7 +22717,7 @@
 			if(hasPerk("STD Immune") || hasStatusEffect("STD Immunity")) return true;
 			return false;
 		}
-		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
+		public function sstdChecks(cumFrom:Creature, location:String):void
 		{
 			if(isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
 			
@@ -22731,7 +22731,7 @@
 				sstdCatch(this, cumFrom, location);
 			}
 		}
-		public function sstdCatch(cumFrom:Creature = null, victim:Creature = null, location:String = "ass"):void
+		public function sstdCatch(cumFrom:Creature, victim:Creature, location:String):void
 		{
 			var catchSSTD:String = cumFrom.getRandomSSTD();
 			//output(catchSSTD);
@@ -22755,7 +22755,6 @@
 					if(victim.hasSSTD("Cooties", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Cooties", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Cooties infection!", false, 4320, 0xFF69B4);
 					break;
-
 			}
 		}
 		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void

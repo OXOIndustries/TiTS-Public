@@ -9048,6 +9048,8 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Omega Oil™, Times Used:</b> " + flags["OMEGA_OILED"]);
 			}
+			// SnakeByte
+			if(flags["USED_SNAKEBYTE"] != undefined) output2("\n<b>* SnakeByte:</b> Used");
 			// Big like Cock-Box!
 			if(flags["LOOTED_COCKBOX"] != undefined)
 			{

@@ -2544,7 +2544,7 @@ package classes.GameData
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
 					{
-						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.");
 						pc.lust(-10);
 					}
 					target.addStatusValue("Grappled",1,1);
@@ -5041,9 +5041,9 @@ package classes.GameData
 					if(_hostiles[i].hasFlightEffects())
 					{
 						_hostiles[i].clearFlightEffects();
-						output(" falls to");
+						output(" fall" + (_hostiles[i].isPlural ? "":"s") + " to");
 					}
-					else output(" lies on");
+					else output(" l" + (_hostiles[i].isPlural ? "ay":"ies") + " on");
 					output(" the ground, defeated.");
 				}
 			}

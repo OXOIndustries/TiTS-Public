@@ -2037,7 +2037,7 @@ public function jentaIsHatchedAndInitialized():void
 
 	flags["MIRRIN_JENTA_MET"] = 1;
 	var jenta:MirrinUniqueChild = new MirrinUniqueChild();
-				
+	
 	jenta.RaceType = GLOBAL.TYPE_GRYVAIN;
 
 	jenta.Name = "Jenta";
@@ -2077,7 +2077,7 @@ public function mirrinSterkurHusBonus():Boolean
 
 		flags["MIRRIN_SEEN_STERKURHUS"] = 1;
 	}
-	else if (GetGameTimestamp() > flags["MIRRIN_COCKSTAMP"])
+	else if (flags["MIRRIN_COCKSTAMP"]!= undefined && GetGameTimestamp() > flags["MIRRIN_COCKSTAMP"])
 	{
 		output("You’re on the lookout for your qilin lover, fully expecting her in her usual coaching spot. Yet, as you look around, she’s nowhere to be seen...");
 		output("\n\nThere’s still clientele on the treadmills and weights, more random faces you don’t really recognize but still no big red giant lady. You think about calling out for her, but hey, it’s just her apartment really. She must be in the back!");

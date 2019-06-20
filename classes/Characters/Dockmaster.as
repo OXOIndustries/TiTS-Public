@@ -2,7 +2,6 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-
 	import classes.kGAMECLASS;
 	
 	public class Dockmaster extends Creature

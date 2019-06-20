@@ -2732,7 +2732,7 @@ public function shizzyImNotATurkey(mode:int = -1):void
 		if (flags["SHIZZY_STUFFED"] == undefined) 
 		{
 			output(" Shizuya looks almost scared at how you’re acting, though her huge horse cocks throb heavily as you ogle them. <i>“Cap, you okay? You don’t look so good, maybe we should stop.”</i>");
-			output("\n\nStop? NO, you need her now! You throw off your [pc.gear] and rush her down, pressing youself against her and pleading that she promised to fuck you! She gives in fairly quickly when she realizes that you’re really all-in on this, letting out a worried, but lust-laced, sigh.");
+			output("\n\nStop? NO, you need her now! You throw off your [pc.gear] and rush her down, pressing yourself against her and pleading that she promised to fuck you! She gives in fairly quickly when she realizes that you’re really all-in on this, letting out a worried, but lust-laced, sigh.");
 		}
 		else
 		{

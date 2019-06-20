@@ -7,9 +7,6 @@
 	
 	public class Mirrin extends Creature
 	{
-		
-		
-		//constructor
 		public function Mirrin()
 		{
 			this._latestVersion = 1;
@@ -48,7 +45,7 @@
 			this.cockVirgin = false;
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
-						
+			
 			this._isLoading = false;
 		}
 
