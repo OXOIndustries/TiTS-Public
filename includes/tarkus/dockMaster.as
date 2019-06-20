@@ -183,7 +183,7 @@ public function raskvelRepair2():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
-	else addDisabledButton(2,"Flirt","Flirt","You aren't horny enough for this.");
+	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
 	//[Leave] //Back to business [Flirt] //She *does* look all sweaty and sexy right now.
 }
 
@@ -226,7 +226,7 @@ public function raskvelRepair2Intense():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
-	else addDisabledButton(2,"Flirt","Flirt","You aren't horny enough for this.");
+	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
 	//output("\n\n[Leave] //Space awaits [Flirt] //She *does* look all sweaty and sexy right now.");
 }
 
@@ -265,8 +265,8 @@ public function raskvelDockmasterMenu():void
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
 	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She does look like she could use a break from all the hard work...");
-	else addDisabledButton(2,"Flirt","Flirt","You aren't horny enough for this.");
-	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you're comfortable paying.");
+	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
+	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
 	else addDisabledButton(5,"Repair","Repair","Your ship is not damaged.");
 	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase weapons and upgrade modules for your ship.");
 	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you longer wish to keep.");
@@ -322,7 +322,7 @@ public function flirtWivRaskDock(repaired:Boolean = false):void
 		return;
 	}
 	//Big Dommes with Dicks
-	if(pc.tallness >= 6*12 && pc.cocks[x].cLength() >= 12)
+	if(x >= 0 && pc.tallness >= 6*12 && pc.cocks[x].cLength() >= 12)
 	{
 		//Repaired Ship
 		if(repaired)
@@ -384,6 +384,7 @@ public function matingPressAndPinfuckTheDockmastah():void
 	showDockmistress(true);
 	author("SomeKindofWizard");
 	var x:int = pc.cockThatFits(800);
+	if(x < 0) x = pc.smallestCockIndex();
 	output("This horny, curvy, bottom-heavy shortstack seems utterly thrilled that you can haul her around like luggage. Her hands scrabble at your gear in a desperate attempt to undress you before you reach the threshold, but you’ve got her basically at your mercy.");
 	output("\n\nShe lets out an uncharacteristically high-pitched yelp when you throw her onto the bed, before rolling onto her front for you. She tugs off her apron while you’re getting yourself appropriately nude and treats you to a most delightful sight. Her nipples are broad, hard nubs of a deeper purple than the rest of her flushed violet flesh. The dockmaster’s eyes immediately snap to your [pc.cock " + x + "], drinking you in like she’s dying of thirst.");
 	output("\n\nThere’s a dark black thong that’s doing little to hide her soaking twat, and your bedroom immediately smells like fertile breed-slut. When she shivers and flicks a little button, the dark fabric all but flies off towards you. You catch the sodden material and grind it against your cock until it’s the perfect blend of musk and pussy, stalking towards your shivering prize. <i>“Oh damn, Spacer. Look at you. You’re perfect. Bloody perfect...”</i> She gawps in open admiration, squeezing her own tits so hard you can actually see moisture beading on her nips.");
@@ -405,10 +406,11 @@ public function matingPressAndPinfuckTheDockmastah():void
 	output("\n\nThe dockmaster trails off, eyes rolling back into her head and tongue lolling out far enough to taste her own pool of milk. Her orgasming cunt assaults your length with squeezes and teases completely out of rhythm with your thrusts, adding a boobgasm to her list of bacchanal delights. You’re treating her like a breedslut, crushing her into the bed and wringing every drop of milk and girl-cum out of her that you can. She only rides out the rough treatment harder, practically blossoming around your dick in anticipation of a womb full of baby-batter.");
 	output("\n\nFurther adding to your domination of this curvaceous breed-slut, you bite down on the base of one flapping ear and give her one final brutal thrust. Her whole body goes stiff – but for the lashing of her mechanical tail – before turning limp. Your prostate feels like a thick weight full of molten iron, tightening up in you while every muscle works in tandem to fire away.");
 	output("\n\nAnd fire away you; the first thick rope of cum to come blasting out of your [pc.cockHead " + x + "] is hard enough to actually sting, immediately filling her up. ");
+	var cumQ:Number = pc.cumQ();
 	//Small cummies:
-	if(pc.cumQ() < 1000) output("That first vigorous rush of seed just about wipes you out, but you make sure to remain hilted in her now that she’s got a nice [pc.cumColor] womb-plastering.");
+	if(cumQ < 1000) output("That first vigorous rush of seed just about wipes you out, but you make sure to remain hilted in her now that she’s got a nice [pc.cumColor] womb-plastering.");
 	//medium cummies:
-	else if(pc.cumQ() < 3000) output("You don’t stop there either; her stomach visibly swells after the next few loads jet out, going beyond filling her and causing a backlash of your own [pc.cumFlavor] seed to squirt out around a deluge of her own raskvel girlcum.");
+	else if(cumQ < 3000) output("You don’t stop there either; her stomach visibly swells after the next few loads jet out, going beyond filling her and causing a backlash of your own [pc.cumFlavor] seed to squirt out around a deluge of her own raskvel girlcum.");
 	//big or hyper cummies: 
 	else output("Of course, you’re a [pc.manWoman] of prodigious production. You don’t just stop at filling her up. No, you’ve got her trapped under you, and there’s so much seed passing through your cock that it’s swelling her stomach up until she already looks thoroughly eggnant. Cum pools out in thick waves around the seal of your cock – thick, despite being thinned out by raskvel girlcum – but you don’t unhilt until you’re properly finished.");
 	output("\n\nOnce you finally pull out, the dockmaster is whimpering and moaning. She pulls your hands off of her drained tits and kisses them in admiration, looking over her shoulder with eyes full of worship for your titanic, dominant form. <i>“So good. Gonna egg so hard. Soooo hard...”</i>");
@@ -432,6 +434,7 @@ public function getFuckedWivADick():void
 	showDockmistress(true);
 	moveTo("SHIP INTERIOR");
 	var x:int = pc.cockThatFits(800);
+	if(x < 0) x = pc.smallestCockIndex();
 	output("Your journey back up to your ship – and more importantly your bedroom – is made difficult by liberty of the strong hand gripping and squeezing your ass. Her tail clicks noisily against the floor and walls; if not for the fact that it’s thrashing around in anticipation, you would have guessed she was sounding out your corridor for faults.");
 	output("\n\nYou barely get through the threshold before she’s shoving you onto the bed and helping tear you out of your equipment, grinning wickedly at what she reveals. ");
 	if(pc.cocks[x].cLength() < 6) output("A cute little [pc.cockType " + x + "] cock, already aching with need and drooling a line of precum.");
@@ -465,12 +468,13 @@ public function getFuckedWivADick():void
 	output("\n\nYour groan of complaint falls on deaf ears – really deaf considering the size of them – and it turns briefly into a pained gasp when she gives you one hell of a thigh squeeze. She takes the chance to cram them back in your maw and return to her violent ride. Her tail swats your own thighs in time with each bottoming-out, and she grunts at you when you dare to slow down in milking her tits like a breed-steed.");
 	output("\n\nThe question of who comes first is answered, surprisingly, with a tie. It’s impossible to hear her cries of ecstasy with the sound of your own beating heart drowning it out, but you can definitely feel the way her channel spasms and squirts around you. At the same time you all but explode, cumming hard enough to feel a stinging pain in your depths. A boobgasm follows on the heels of you both, apparently draining her dry with two last, incredibly thick gouts of milk that spray in wild directions between the pinching of your fingers.");
 	output("\n\nShe stays locked to you moments later, thoroughly bottomed out – albeit thankfully supporting her own deadly weight – while you do your best to meet her need to breed. ");
-	if(pc.cumQ() < 150) output("Unfortunately despite the hard work she’s put you through, you taper off after a decent creampie. You have no doubt that her eggs are bathing in [pc.cumColor] goodness, but she’s definitely pouting when the flow of scalding-hot jizz comes to a stop.");
-	else if(pc.cumQ() < 5000) output("Her mouth opens with another, longer groan as rope after rope of your potent [pc.cumColor] " + (silly ? "goo":"cum") + " paints her walls. She’s a quivering wreck atop you, holding herself up on metallic knees with one hand behind her so that she can pinch both of her clits at once. By the time you’re finished there’s a little paunch to her otherwise flat tummy from the prodigious load she’s milked right out of you.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 150) output("Unfortunately despite the hard work she’s put you through, you taper off after a decent creampie. You have no doubt that her eggs are bathing in [pc.cumColor] goodness, but she’s definitely pouting when the flow of scalding-hot jizz comes to a stop.");
+	else if(cumQ < 5000) output("Her mouth opens with another, longer groan as rope after rope of your potent [pc.cumColor] " + (silly ? "goo":"cum") + " paints her walls. She’s a quivering wreck atop you, holding herself up on metallic knees with one hand behind her so that she can pinch both of her clits at once. By the time you’re finished there’s a little paunch to her otherwise flat tummy from the prodigious load she’s milked right out of you.");
 	else output("Her sweaty body cavorts atop you, and she has to hold herself up on her metallic knees in order to hold her growing tummy aloft with one hand and finger-fan her clit with the other. She swells more and more with every potent rope of [pc.cumFlavor]-flavored deliciousness, enough that it’s squirting out around your dick despite the force with which she clamps down on your bone. To her credit she waits until you’re completely finished before letting your cock escape and a few litres of cum with it... there’s still more than enough to have her eggnant to an unbelievable degree.");
 	output("\n\nYou’d like to say you barely notice when she gets off of you, but that weight removing itself from your crotch and abdomen is a raw relief that you’re sure is going to be pronounced by some bruising tomorrow. A trail of cum puddles on the floor at the foot of your bed, which she quickly plugs up with the thick tip of her own tail. <i>“Oooh... yeah. Okay. I’m good now. You’d better believe I’m going to be pushing out so many big thick spacer-eggs later...”</i> You spit out her underwear and she snatches it from the air with a smirk, not even bothering to unwad them.");
 	output("\n\n");
-	if(pc.cumQ() < 150) output("She pauses, looking you over afterwards and giving her now-emptier breasts an idle squeeze. <i>“Although next time you’re coming to me for a slam-down, try to pack a bigger load, yeah Spacer?”</i>");
+	if(cumQ < 150) output("She pauses, looking you over afterwards and giving her now-emptier breasts an idle squeeze. <i>“Although next time you’re coming to me for a slam-down, try to pack a bigger load, yeah Spacer?”</i>");
 	else output("She’s crouching very carefully to keep her tail from slipping out thanks to the sheer load of cum being held back. When she gets her apron on it’s with a satisfied sigh. <i>“You’re an absolute cum-cannon for a tiny little sex-pet. We should do this again when you’re all loaded up.”</i>");
 	output("\n\nThe dockmaster treats you to a wicked grin before leaving – well, waddling out of – your room. Rolling onto your side only proves just how drenched your bedding is with girl-cum and milk." + (celiseIsCrew() ? " Luckily you’ve got the perfect gooey-green-jizz-janitor to clean up after you.":""));
 
@@ -502,7 +506,7 @@ public function dicklessTakingTail():void
 	output("\n\nYour bedroom is temporarily upside-down when she flips you over, only gaining rightness when she hikes your ass up in the air. A silent thanks begins to form on your lips when you remember that her hands are flesh and blood when she spanks you, but that moment is quickly spent when you realize she’s muscular enough to bruise you with a bare hand. Apparently you make a good show of bouncing for her, considering she lays into your other cheek too until you’re all but gasping for mercy.");
 	output("\n\nShe still has your ass in the air when you feel her stand up and straddle it, planting the weight of her great crushing thighs on your stinging buttocks. Even despite that, you can feel hot moisture trickling between your crack and down towards your own moist cunny. This dockmaster slut is so juicy it’s literally dripping into you, and whenever her thighs sandwich your ass together it feels connected by the sticky strands for a few moments. There’s not too much strain yet to keep your ass in the air, but you’re not exactly certain you’ll last if she starts pounding down on you for real.");
 	output("\n\nAny musings are brought short though when she plants her hands on your shoulder and grinds her cunt down against you, and the mechanical click-clack of her tail is the only warning you get before the first thick segment – the tip – is parting the gates to your gooey center. Thankfully it’s not cold metal, whatever it’s made of. Especially when she sinks that first segment into you until you’re gripping the bedsheets and curling up beneath her, unable to drop your head with the grip on your shoulders. Her ears flap noisily to either side of you when she leans down a little, working to get a better angle to tail-fuck you with. <i>“You’re not going to collapse on me now, are you Spacer?”</i>");
-	x = rand(pc.totalVaginas());
+	var x:int = rand(pc.totalVaginas());
 	
 	output("\n\nYou hadn’t even noticed there’s already a tremble in your [pc.legOrLegs], but you grind yourself back against her tail and insist that’s just a shake of pleasure. The dockmaster doesn’t seem entirely convinced, shifting some of her weight to the tips of her metallic toesies. If she seems concerned about bending her tail to an improbable angle it doesn’t show... not that you’d be able to see her while she’s riding your ass.");
 	output("\n\nAnd then her tail sinks into you deeper; another rigid segment of tech-tail spreads you wider until your sodden folds are clinging to the smooth metal. Now that there’s at least one joint inside you, the tip can start exploring your depths properly.");

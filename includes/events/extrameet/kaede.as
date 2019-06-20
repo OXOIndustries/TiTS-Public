@@ -15,7 +15,6 @@ public function extrameetKaedeRepeat():void
 	clearOutput();
 	showKaede();
 
-
 	output("A few minutes after you tap Kaede’s profile and send a request through it, you receive your reply in the form of a smiley-face and an address on-station. It looks like Kaede’s around and ready to have some fun! You do a quick search for where the ginger puppyslut’s sending you and set off in search of your date...");
 
 	switch(rand(5))
@@ -28,9 +27,10 @@ public function extrameetKaedeRepeat():void
 
 			output("\n\nYou get a quick intro to the retra spell-’em-up <i>Tower of the Mummy Witch</i> while Kaede straps you in and hooks a holographic projector to your wrist. All you gotta do is match the arcane symbols on screen before the mummy witch’s goons get to you, wave after wave. And every time you fail, you gotta put more credits in. Simple enough.");
 
-			if (pc.AQ() >= 90) output("\n\nYou easily weave your wand across the screen as hordes of anubians and undead assault your scantily-clad sorceress-slash-archaeologist, blasting foes to kingdom come with ease. By the time you reach the final level and shove your staff up the mummy’s ass, Kaede’s jaw is practically on the floor and your name is forever etched on the high score board.");
-			else if (pc.AQ() >= 65) output("\n\nYou make it look easy, weaving your wand across the screen as hordes of anubians and undead assault your scantily-clad sorceress-slash-archaeologist. You miss a few sigils here and there, but it only burns a few of your credits before you manage to beat the titular witch.");
-			else if (pc.AQ() >= 35) output("\n\nYou gotta say, this game’s pretty hard! Your wand doesn’t want to really respond the way you want, and your scantily-clad sorceress-slash-archaeologist gets herself mauled by golden anubians and undead monsters left and right. By the time you give up, Kaede’s grinning - she’s still got a higher score than you, at least.");
+			var aimQ:Number = pc.AQ();
+			if (aimQ >= 90) output("\n\nYou easily weave your wand across the screen as hordes of anubians and undead assault your scantily-clad sorceress-slash-archaeologist, blasting foes to kingdom come with ease. By the time you reach the final level and shove your staff up the mummy’s ass, Kaede’s jaw is practically on the floor and your name is forever etched on the high score board.");
+			else if (aimQ >= 65) output("\n\nYou make it look easy, weaving your wand across the screen as hordes of anubians and undead assault your scantily-clad sorceress-slash-archaeologist. You miss a few sigils here and there, but it only burns a few of your credits before you manage to beat the titular witch.");
+			else if (aimQ >= 35) output("\n\nYou gotta say, this game’s pretty hard! Your wand doesn’t want to really respond the way you want, and your scantily-clad sorceress-slash-archaeologist gets herself mauled by golden anubians and undead monsters left and right. By the time you give up, Kaede’s grinning - she’s still got a higher score than you, at least.");
 			else output(" At least, you think so. What the fuck’s with this game, though? You keep waving your wand like it tells you, but it barely registers your input at all. No wonder this never got a sequel! You’re forced to watch with a huff as your scantily-clad sorceress-slash-archaeologist gets herself mauled by golden anubians and undead monsters left and right. By the time you give up, Kaede’s snickering beside you as a huge falcon-man rips the mage’s face off with a shriek. <i>“Oh, wow, you suck!”</i>");
 
 			output("\n\nAfter it’s all said and done, Kaede’s all grins as she takes her turn on another few games, each more esoteric than the last, which she’s happy to nerd out about in great detail. You’re happy to follow her around and try the sampling, squeezing through the narrow paths between machines. Everything’s delightfully retro, from the Ausaril thrash-metal music to the holo-projector cabinets, and every new game you get to keeps Kaede’s tail wagging hard behind her... and every time you agree to play something, Kaede’s arms wrap around you, and you feel her slender little body pressed against yours as she watches over your shoulder.");
@@ -366,7 +366,7 @@ public function extrameetKaedeFirstTimeII():void
 		
 		output("\n\n<i>“Y-your mate?”</i> Kaede blinks, gulping.");
 		
-		output("\n\nIlaria giggles and leans down to plant a smooch on your cheek, right where Kaede did a moment ago. <i>“Yup. [pc.name] here’s my baby {daddy/mommy}. Don’t you worry, I’m not the jealous type. Well, maybe a little jealous of [pc.name] getting hands-on with you before I ever did.”</i>");
+		output("\n\nIlaria giggles and leans down to plant a smooch on your cheek, right where Kaede did a moment ago. <i>“Yup. [pc.name] here’s my baby " + pc.mf("daddy", "mommy") + ". Don’t you worry, I’m not the jealous type. Well, maybe a little jealous of [pc.name] getting hands-on with you before I ever did.”</i>");
 		
 		output("\n\nSo you take it these two know each other.");
 		
@@ -605,7 +605,10 @@ public function extrameetKaedeSurpriseIII():void
 	
 	output("\n\nIlaria giggles, shaking her hips in such a way that her grapefruit-sized gonads slap heavily against Kaede’s little pouch. The ginger shemale moans into you, and you’re able to watch her own puppy-cock wobble beneath her, drooling pre as Ilaria drives right for her anal g-spot.");
 
-	output("\n\nYou tell Kaede she’s a good girl and stroke her hair, gently pushing her down {on your cock // into your pussy}. Her tongue goes to work sure enough, and she’s quick to kiss and lick her way all over your sex while Ilaria starts really fucking her ass, pounding hard away at the shemale’s tight hole. Kaede squeals and bucks her hips back against her, making her dick swing forward and back like a pendulum. A pendulum that’s leaking profusely now, turgid at the knot and ready to burst at the slightest provocation.");
+	output("\n\nYou tell Kaede she’s a good girl and stroke her hair, gently pushing her down");
+	if (pc.hasCock()) output(" on your cock");
+	else output(" into your pussy");
+	output(". Her tongue goes to work sure enough, and she’s quick to kiss and lick her way all over your sex while Ilaria starts really fucking her ass, pounding hard away at the shemale’s tight hole. Kaede squeals and bucks her hips back against her, making her dick swing forward and back like a pendulum. A pendulum that’s leaking profusely now, turgid at the knot and ready to burst at the slightest provocation.");
 	
 	output("\n\nBefore Kaede can reach her orgasm, you");
 	if (pc.hasCock())
@@ -666,7 +669,7 @@ public function extrameetKaedeSurpriseIV():void
 	
 	output("\n\nYou grin, putting an arm around Kaede’s slender shoulders and holding her close.");
 	if (silly || pc.isMisc()) output(" First date? Guess you’re so good that you fuck <i>before</i> the first date!");
-	else output(" Huh, she’s right: this is technically your first real date, isn’t it?}");
+	else output(" Huh, she’s right: this is technically your first real date, isn’t it?");
 	
 	output("\n\nKaede giggles, nuzzling into your arm. <i>“As long as it’s not the last.”</i>");
 	

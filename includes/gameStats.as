@@ -6092,6 +6092,15 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Tarkus" || showID == "All")
 		{
+			// Hangar
+			if(flags["MET_DOCKMISTRESS"] != undefined)
+			{
+				output2("\n<b><u>Hangar Bay</u></b>");
+				output2("\n<b>* Dockmaster:</b> Met her");
+				if(flags["DOCKMASTER_PREGNANT"] != undefined) output2("\n<b>* Dockmaster, Days Pregnant:</b> " + flags["DOCKMASTER_PREGNANT"]);
+				if(flags["DOCKMASTER_EGGOES"] != undefined) output2("\n<b>* Dockmaster, Times She Laid Eggs:</b> " + flags["DOCKMASTER_EGGOES"]);
+				variousCount++;
+			}
 			// Arbetz Travel Agency
 			if(flags["ARBETZ_ENTERED"] != undefined)
 			{
