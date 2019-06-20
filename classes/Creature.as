@@ -1887,7 +1887,8 @@
 					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 					break;
 				case "ship":
-					buffer = kGAMECLASS.shits["SHIP"].short;
+					if(this is PlayerCharacter) buffer = (kGAMECLASS.shits["SHIP"] != undefined ? kGAMECLASS.shits["SHIP"].short : "Casstech Z14");
+					else buffer = "ship";
 					break;
 				case "short":
 				case "name":

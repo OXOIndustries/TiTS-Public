@@ -201,7 +201,7 @@ public function vahnNamesShips():void
 	userInterface.textInput.text = String(shits["SHIP"].short);
 	clearMenu();
 	if(pc.credits >= 300) addButton(0,"Rename",renameYourShip,undefined,"Rename","Rename your ship\n\n300 credit cost.");
-	else addDisabledButton(0,"Rename","Rename","You can't afford that.");
+	else addDisabledButton(0,"Rename","Rename","You can’t afford that.");
 	addButton(4,"Back",backToVahnFromNaming);
 }
 public function backToVahnFromNaming():void
