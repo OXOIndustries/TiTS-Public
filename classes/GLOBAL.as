@@ -1226,6 +1226,7 @@
 		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
+		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1273,7 +1274,8 @@
 			"Double Shot",
 			"Burst Fire",
 			"Full-Auto Fire",
-			"Ship Equipment"
+			"Ship Equipment",
+			"Crewed Turret"
 		];
 		
 		/**

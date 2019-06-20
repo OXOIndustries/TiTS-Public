@@ -995,20 +995,24 @@ package classes.GameData
 		public static function ShipAttack(attacker:Creature, target:Creature):void
 		{
 			var attacks:Number = 0;
-			if(attacker.meleeWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			var freeCrew:Number = kGAMECLASS.crew(true,false);
+			if(attacker.meleeWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
 			{
+				if(attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
 				if(attacks > 0) output("\n");
 				performShipWeaponAttack(attacker,target,attacker.meleeWeapon);
 				attacks++;
 			}
-			if(attacker.rangedWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			if(attacker.rangedWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
 			{
+				if(attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
 				if(attacks > 0) output("\n");
 				performShipWeaponAttack(attacker,target,attacker.rangedWeapon);
 				attacks++;
 			}
-			if(attacker.accessory.type == GLOBAL.RANGED_WEAPON && !attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
+			if(attacker.accessory.type == GLOBAL.RANGED_WEAPON && !attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
 			{
+				if(attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
 				if(attacks > 0) output("\n");
 				performShipWeaponAttack(attacker,target,attacker.accessory);
 				attacks++;
@@ -1016,8 +1020,9 @@ package classes.GameData
 			//Fire "inventory" weapons that are turned on.
 			for(var x:int = 0; x < attacker.inventory.length; x++)
 			{
-				if(attacker.inventory[x].type == GLOBAL.RANGED_WEAPON && !attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF))
+				if(attacker.inventory[x].type == GLOBAL.RANGED_WEAPON && !attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
 				{
+					if(attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
 					if(attacks > 0) output("\n");
 					performShipWeaponAttack(attacker,target,attacker.inventory[x]);
 					attacks++;

@@ -1,4 +1,5 @@
-﻿public function showDockmistress(nude:Boolean = false):void
+﻿import classes.ShittyShips.ShittyShipGear.GunTurrets.*;
+public function showDockmistress(nude:Boolean = false):void
 {
 	showBust("RASKVEL_DOCKMASTER" + (nude ? "_NUDE":""));
 	showName("\nDOCKMASTER");
@@ -17,7 +18,6 @@ public function dockmasterBonus():Boolean
 	addButton(0, "Dockmaster", raskvelDockmaster);
 	return false;
 }
-
 
 public function raskvelDockmaster(back:Boolean = false):void
 {
@@ -241,8 +241,12 @@ public function dockmasterAddonsShop():void
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CapacitorBank());
 	shopkeep.inventory.push(new MGun());
+	shopkeep.inventory.push(new MTurret());
 	shopkeep.inventory.push(new MissileBay());
+	shopkeep.inventory.push(new MissileTurret());
 	shopkeep.inventory.push(new CoilCannon());
+	shopkeep.inventory.push(new EMTurret());
+	shopkeep.inventory.push(new LTurret());
 	//shopkeep.inventory.push(new LCannon());
 	//shopkeep.inventory.push(new ThermalProjector());
 	buyShipFitItem();
