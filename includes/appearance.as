@@ -469,6 +469,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of " + indefiniteArticle(target.skinTone) + " hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
+		case GLOBAL.TYPE_HYENA:
+			if (target.hasPartFur("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena's face with a perpetual grin and bone-crushing jaw filled with sharp teeth. " + (target == pc ? "Your":"[target.HisHer]") + " [target.furColor] hides the [target.skinColor] beneath, leaving you with quite the animalistic visage.");
+			else if (target.hasPartScales("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena's face with a small perpetual grin, overlaid with [target.skinFurScales], and bone-crushing jaws filled with sharp teeth.");
+			else if (target.hasPartGoo("face")) outputRouter("[target.combatHeShe] [target.hasHave] a hyena's face with a small perpetual grin and bone-crushing jaws filled with sharp teeth.");
+			else outputRouter("[target.combatHeShe] [target.hasHave] a hyena's face with a small perpetual grin and bone-crushing jaws filled with sharp teeth. The odd visage is hairless and covered with [target.skinFurScales].");
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
 	{
@@ -893,6 +899,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_SAURMORIAN:
 				outputRouter(" A pair of small openings on the sides of " + (target == pc ? "your":"[target.hisHer]") + " head, each partially obscured by a protective scale, serve as " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
+			case GLOBAL.TYPE_HYENA:
+				outputRouter(" A pair of pointed hyena-like ears protrude from [target.combatHisHer] [target.headNoun].");
+				break;
 			default:
 				outputRouter(" There is nothing notable to mention about " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -1071,6 +1080,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				break;
 			case GLOBAL.TYPE_FROSTWYRM:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a trio of sharp, fin-like scales adorn either side of " + (target == pc ? "your":"[target.hisHer]") + " head, looking almost like exotic headphones and concealing " + (target == pc ? "your":"[target.hisHer]") + " ears within their protective armor.");
+				break;
+			case GLOBAL.TYPE_HYENA:
+				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of pointed hyena-like ears.");
 				break;
 			default:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head hides non-descript ears.");
@@ -1875,6 +1887,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if (target.hasArmFlag(GLOBAL.FLAG_SCALED) && !target.hasScales()) outputRouter(" they are covered with scales up to the shoulder and");
 			outputRouter(" " + (target == pc ? "your":"[target.hisHer]") + " fingers are tipped with claws instead of fingernails.");
 			break;
+		case GLOBAL.TYPE_HYENA:
+			if (target.hasPartFur("arm")) outputRouter(" [target.CombatHisHer] arms are covered by a coat of [target.furColor] fur. The [target.furColor] runs down the full length till just before the wrists where it changes to a darker shade which flows down over [target.combatHisHer] hands.");
+			else if (target.hasPartScales("arm")) outputRouter(" [target.CombatHisHer] hyena-like arms are covered by a thick hide of [pc.scaleColor] scales. Due to the scaly hide enveloping them they lack most of their distinguishing features. But rough pads still rest on the palms of [target.combatHisHer] hands and the tips of each of [target.combatHisHer] fingers, which are tipped with small blunt claws.");
+			else if (target.hasPartGoo("arm")) outputRouter(" [target.CombatHisHer] gooey [target.skinColor] arms retain their hyena-like appearance.");
+			else output(" [target.CombatHisHer] arms retain their hyena-like shape and claws despite being covered in [target.skinFurScalesNounSimple].");
+			if (target.hasClawedHands() && !target.hasPartScales("arm")) outputRouter(" Each finger is tipped with blunt claws.");
+			break;
 		// Catch all
 		default:
 			if(target.hasArmFlag(GLOBAL.FLAG_FURRED))
@@ -1979,6 +1998,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" lizard"); break;
 			case GLOBAL.TYPE_SHARK:
 				outputRouter(" shark"); break;
+			case GLOBAL.TYPE_HYENA:
+				outputRouter(" hyena"); break;
 			default:
 				outputRouter(" horse"); break;
 		}
@@ -2491,6 +2512,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" It sways in time with " + (target == pc ? "your":"[target.hisHer]") + " steps, helping " + (target == pc ? "you":"[target.himHer]") + " maintain balance.");
 			outputRouter(" The soft underside reveals " + indefiniteArticle(target.skinTone) + " hide.");
 			break;
+		case GLOBAL.TYPE_HYENA:
+			outputRouter(" " + (target.tailCount == 1 ? "A" : StringUtil.capitalize(num2Text(target.tailCount))));
+			if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" long");
+			else if (target.hasPartGoo("tail")) outputRouter(" gooey");
+			else outputRouter(" bushy");
+			outputRouter(" [target.furColor] " + (target.tailCount == 1 ? "tail sprouts" : "tails sprout") + " above your [target.butt] " + (target.hasPartGoo("tail") ? "resembling a wet paintbrush that had been dipped in black paint." : "resembling a paintbrush in appearance and ending in a coarse black tip."));
+			break;
 	}
 	//Tail cunts
 	if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
@@ -2870,7 +2898,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are mostly humanoid in structure, but " + (target == pc ? "your":"[target.hisHer]") + " feet are distinctly alien with only three toes at their front, and a single toe sprouting from their heel.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter("Two human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [target.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
+			outputRouter(" " + num2Text(target.legCount) + " human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [target.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
+			break;
+		case GLOBAL.TYPE_HYENA:
+			outputRouter(" [target.CombatHisHer] legs are crooked into high knees with hocks and fairly long digitigrade feet like those of a hyena, each ending with thick padded paws and toes tipped with blunt claws.");
 			break;
 		// Catch all
 		default:

@@ -3200,6 +3200,17 @@
 				case "combatHerHers":
 					buffer = getCombatPronoun("pp");
 					break;
+				case "combatHimself":
+				case "combatHerself":
+				case "combatYourself":
+				case "combatHimselfHerself":
+					buffer = getCombatPronoun("sl");
+					break;
+				case "has":
+				case "have":
+				case "hasHave":
+					buffer = (this is PlayerCharacter || isPlural ? "have" : "has");
+					break;
 				case "barkMeow":
 					buffer = catDog("meow", "bark", true);
 					break;
@@ -6259,7 +6270,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -6419,6 +6430,9 @@
 					break;
 				case GLOBAL.TYPE_MOTHRINE:
 					adjectives = ["mothrine", "round", "unassuming"];
+					break;
+				case GLOBAL.TYPE_HYENA:
+					adjectives = ["pointed", "large", "broad"];
 					break;
 			}
 			if (hasLongEars()) 
@@ -7616,9 +7630,11 @@
 					adjectives = ["chunky", "stumpy"];
 					if (hasTailFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scale topped");
 					break;
-
 				case GLOBAL.TYPE_SAURMORIAN:
 					adjectives = ["armored", "gilded", "plated"];
+					break;
+				case GLOBAL.TYPE_HYENA:
+					adjectives = ["short", "coarse", "bushy"];
 					break;
 			}
 			// Flags
@@ -7871,7 +7887,7 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN, GLOBAL.TYPE_HYENA);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
@@ -7963,6 +7979,7 @@
 						case GLOBAL.TYPE_MOUSE: adjectives = ["mouse-like", "agile", "mousey", "limber"]; break;
 						case GLOBAL.TYPE_XHELARFOG: adjectives = ["mostly humanoid"]; break;
 						case GLOBAL.TYPE_SAURMORIAN: adjectives = ["armored", "gilded", "plated", "reptile-like", "reptilian"]; break;
+						case GLOBAL.TYPE_HYENA: adjectives = ["hyena", "hyena-like", "hyaenidae", "thin"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -8168,7 +8185,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_SAURMORIAN)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_SAURMORIAN, GLOBAL.TYPE_HYENA)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -12193,7 +12210,7 @@
 			var raceSimple:String = stripRace(race);
 			
 			// Type changes
-			if(InCollection(raceSimple, ["ausar", "huskar", "canine", "lupine"]))
+			if(InCollection(raceSimple, ["ausar", "huskar", "canine", "lupine", "hyena"]))
 			{
 				shiftCock(arg,GLOBAL.TYPE_CANINE);
 				if(InCollection(raceSimple, ["ausar", "huskar"])) cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
@@ -12284,13 +12301,13 @@
 			// Type changes
 			if(InCollection(raceSimple, ["equine", "pony", "laquine", "centaur"])) shiftVagina(arg, GLOBAL.TYPE_EQUINE);
 			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl", "slyveren"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
+			else if(InCollection(raceSimple, "canine", "hyena")) shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "zil") shiftVagina(arg, GLOBAL.TYPE_BEE);
 			else if(raceSimple == "leithan") shiftVagina(arg, GLOBAL.TYPE_LEITHAN);
 			else if(raceSimple == "vanae") shiftVagina(arg, GLOBAL.TYPE_VANAE);
 			else if(raceSimple == "kui-tan") shiftVagina(arg, GLOBAL.TYPE_KUITAN);
 			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
-			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
 			else if(raceSimple == "reptile") shiftVagina(arg, GLOBAL.TYPE_LIZAN);
@@ -12573,6 +12590,7 @@
 				if (huskarScore() < 3) race = "ausar";
 				else race = "huskar";
 			}
+			if (hyenaScore() >= 5) race = "hyena-morph";
 			if (goatScore() >= 4) race = goatRace();
 			if (demonScore() >= 5) race = "demon-morph";
 			if (dragonScore() >= 5) race = "dragon-morph";
@@ -13312,6 +13330,25 @@
 			if (counter > 2 && cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 2 && vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			if (counter > 3 && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasPerk("Mane")) counter++;
+			return counter;
+		}
+		public function hyenaScore():int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_HYENA) counter++;
+			if (legType == GLOBAL.TYPE_HYENA) counter++;
+			if (armType == GLOBAL.TYPE_HYENA) counter++;
+			if (faceType == GLOBAL.TYPE_HYENA) counter++;
+			if (tailType == GLOBAL.TYPE_HYENA && tailCount > 0) counter++;
+			if (tongueType == GLOBAL.TYPE_CANINE) counter++;
+			if (cockTotal(GLOBAL.TYPE_CANINE) > 0) counter++;
+			if (vaginaTotal(GLOBAL.TYPE_CANINE) > 0 && clitLength >= 4) counter++;
+			if (hasFur()) counter++;
+			if (hasStatusEffect("Hyena Fur")) counter++;
+			if (hasScales()) counter--;
+			if (hasWings()) counter--;
+			if (hasHorns()) counter--;
+			if (legCount%2 == 1) counter--;
 			return counter;
 		}
 		public function hradScore():int
@@ -21532,11 +21569,13 @@
 				if (type == "o" || type == "himher") return "them";
 				if (type == "pa" || type == "hisher") return "their";
 				if (type == "pp" || type == "hishers") return "theirs";
+				if (type == "sl" || type == "himselfherself") return "themselves";
 			}
 			if (type == "s" || type == "heshe") return (this is PlayerCharacter ? "you" : mfn("he", "she", "it"));
 			if (type == "o" || type == "himher") return (this is PlayerCharacter ? "you" : mfn("him", "her", "it"));
 			if (type == "pa" || type == "hisher") return (this is PlayerCharacter ? "your" : mfn("his", "her", "its"));
 			if (type == "pp" || type == "hishers") return (this is PlayerCharacter ? "yours" : mfn("his", "hers", "its"));
+			if (type == "sl" || type == "himselfherself") return (this is PlayerCharacter ? "yourself" : mfn("himself", "herself", "itself"));
 			
 			return "ERROR: <b>Unknown pronoun specifier.</b>";
 		}

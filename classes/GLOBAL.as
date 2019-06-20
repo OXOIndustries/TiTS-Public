@@ -245,6 +245,7 @@
 		public static const TYPE_ROEHM:int									= 86;
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
+		public static const TYPE_HYENA:int									= 89;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -336,6 +337,7 @@
 			"Roehm",
 			"Xhelarfog",
 			"Saurmorian",
+			"Hyena",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -369,6 +371,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -468,6 +471,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -494,6 +498,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -548,6 +553,7 @@
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -660,6 +666,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
