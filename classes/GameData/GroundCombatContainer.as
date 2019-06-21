@@ -816,7 +816,7 @@ package classes.GameData
 					target.removeStatusEffect("Blinded");
 					if (target is PlayerCharacter)
 					{
-						if (CombatManager.hasEnemyOfClass(DrCalnor)) output("\n\nYou finally blink out the rest of the stars swimming in your vision, regaining your sight!");
+						if (hasEnemyOfClass(DrCalnor)) output("\n\nYou finally blink out the rest of the stars swimming in your vision, regaining your sight!");
 						else output("\n\n<b>You can see again!</b>");
 					}
 					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer blinded!</b>");
@@ -1639,7 +1639,7 @@ package classes.GameData
 					else if (pc.energy() >= 5) addButton(3, "StaticBurst", doStaticBurst);
 					else addDisabledButton(3, "StaticBurst");
 				}
-				addButton(14, "Struggle", kGAMECLASS.adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
+				addButton(14, "Struggle", kGAMECLASS.adultCockvineStruggleOverride, pc, "Struggle", "Struggle free of the Cockvines crushing grip.");
 			}
 			else if (pc.hasStatusEffect("Tripped"))
 			{
@@ -2270,7 +2270,7 @@ package classes.GameData
 					else output(StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " still too paralyzed to move!");
 				}
 			}
-	
+			
 			if (target is PlayerCharacter) processCombat();
 		}
 		
@@ -2282,204 +2282,88 @@ package classes.GameData
 			var slipperyBonus:int = 0;
 			var escapeArtistBonus:int = 0;
 			if(panicJack) panicBonus = 5;
-			if (target.hasStatusEffect("Oil Slicked")) slipperyBonus = 5;
+			if(target.hasStatusEffect("Oil Slicked")) slipperyBonus = 5;
 			if(target.hasPerk("Black Latex")) latexBonus = 2;
 			if(target.hasPerk("Escape Artist")) escapeArtistBonus = 0;
+			
 			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
 			else if (target is Anno)
 			{
-				(target as Anno).grappleStruggle();
+				if(hasEnemyOfClass(GrayPrime) && (target as Anno).grappleStruggle("gray prime")) return;
 			}
 			
-			//Track if struggled for Maike
-			if(hasEnemyOfClass(Maike)) pc.createStatusEffect("MaikeStruggled", 0, 0, 0, 0, true, "", "", true);
-
-			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
+			// Cockvine struggle
+			if (target is PlayerCharacter && hasEnemyOfClass(Cockvine))
 			{
 				// TODO pull this in!
-				kGAMECLASS.adultCockvineStruggleOverride();
+				kGAMECLASS.adultCockvineStruggleOverride(target);
 				return;
 			}
 			// Bothrioc Quadomme - PC struggles
-			else if (hasEnemyOfClass(BothriocQuadomme) && target is PlayerCharacter)
+			if (target is PlayerCharacter && hasEnemyOfClass(BothriocQuadomme))
 			{
 				var quadomme:BothriocQuadomme = _hostiles[0];
 				quadomme.webStruggle(target);
 				return;
 			}
-			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB))
+			
+			//Track if struggled for Maike
+			if(target is PlayerCharacter && hasEnemyOfClass(Maike)) target.createStatusEffect("MaikeStruggled", 0, 0, 0, 0, true, "", "", true);
+			
+			// Grapple texts
+			var grappleLevel:int = 0;
+			var grappleEscapeLvl:int = 0;
+			var removeGrapple:Boolean = false;
+			if(target.hasStatusEffect("Naleen Coiled")) { grappleLevel = target.statusEffectv1("Naleen Coiled"); grappleEscapeLvl = 24; }
+			if(target.hasStatusEffect("Mimbrane Smother")) { grappleLevel = target.statusEffectv1("Mimbrane Smother"); grappleEscapeLvl = 0; }
+			if(target.hasStatusEffect("Grappled")) { grappleLevel = target.statusEffectv1("Grappled"); grappleEscapeLvl = 24; }
+			
+			// Limber confers a 20% escape chance.
+			if(target.hasPerk("Limber") && rand(10) <= 1)
 			{
-				//Limber confers a 20% escape chance.
-				if(target.hasPerk("Limber") && rand(10) <= 1)
-				{
-					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
-					if(panicJack)
-					{
-						output(" The [pc.cumNoun] you squirt helps a little too.");
-						pc.lust(-10);
-					}
-					target.removeStatusEffect("Naleen Coiled");
-				}
-				else if(target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
-				{
-					if((target.reflexes() + rand(20) + 1 + latexBonus + panicBonus + (target.statusEffectv1("Naleen Coiled") * 5) + slipperyBonus + escapeArtistBonus) > 24)
-					{
-						if(target is PlayerCharacter) output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
-						else output(target.getCombatName() + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the coils to freedom.");
-						if(panicJack)
-						{
-							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
-							else output("... with some extra lewd lube, too.");
-							target.lust(-10);
-						}
-						target.removeStatusEffect("Naleen Coiled");
-					}
-				}
-				else
-				{
-					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus + escapeArtistBonus > 24) {
-						if(target is PlayerCharacter) output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
-						else output("With a heave, " + target.getCombatName() + " tear" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("s") + " way out of the coils and adopt" + (!target.isPlural ? "s" : "") + " a fighting stance.");
-						if(panicJack)
-						{
-							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
-							else output("... with some extra lewd lube, too.");
-							target.lust(-10);
-						}
-						target.removeStatusEffect("Naleen Coiled");
-					}
-				}
-				//Fail to escape: 
-				if(target.hasStatusEffect("Naleen Coiled"))
+				if(target is PlayerCharacter) output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+				else output(StringUtil.capitalize(target.getCombatName(), false) + " expertly contort" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " body to escape!");
+				removeGrapple = true;
+			}
+			else if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
+			{
+				if ((target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + (grappleLevel * 5) + slipperyBonus + escapeArtistBonus) > grappleEscapeLvl)
 				{
 					if(target is PlayerCharacter)
 					{
-						if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
-						else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
-						else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
-					}
-					else output(target.getCombatName() + " groan" + (!target.isPlural ? "s" : "") + " in pain, struggling madly to escape the brutal confines of the naleen’s coils, but to no avail...");
-					target.addStatusValue("Naleen Coiled",1,1);
-					if(panicJack)
-					{
-						if(target is PlayerCharacter) output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
-						else output(" Not even the extra lewd lube squirted can help the matter...");
-						target.lust(-10);
-					}
-				}
-			}
-			// Mimbrane grapplestruggle
-			else if (hasEnemyOfClass(Mimbrane))
-			{
-				//Limber confers a 20% escape chance.
-				if(target.hasPerk("Limber") && rand(10) <= 1)
-				{
-					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
-					if(panicJack)
-					{
-						output(" The [pc.cumNoun] you squirt helps a little too.");
-						pc.lust(-10);
-					}
-					target.removeStatusEffect("Naleen Coiled");
-				}
-				else if(target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
-				{
-					if (target.reflexes() + rand(10) + latexBonus + escapeArtistBonus > target.statusEffectv1("Mimbrane Smother") * 5)
-					{
-						output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to pry it away from you.");
-						target.removeStatusEffect("Mimbrane Smother");
-					}
-				}
-				else
-				{
-					if (target.physique() + rand(10) + latexBonus + escapeArtistBonus > target.statusEffectv1("Mimbrane Smother") * 5)
-					{
-						output("You manage to force your fingers under the edge of the Mimbrane smothering you, and forcefully tear it away from your face.");
-						target.removeStatusEffect("Mimbrane Smother");
-					}
-				}
-				
-				// Failure to escape
-				if (target.hasStatusEffect("Mimbrane Smother"))
-				{
-					target.lust(10 + target.libido()/10);
-
-					// fail to escape 1
-					if (target.statusEffectv1("Mimbrane Smother") == 0)
-					{
-						output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
-						target.setStatusValue("Mimbrane Smother", 1, 1);
-					}
-					// fail to escape 2
-					else if (target.statusEffectv1("Mimbrane Smother") == 1)
-					{
-						output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.")
-						target.setStatusValue("Mimbrane Smother", 1, 2);
-					}
-					// defeated
-					else if (target.statusEffectv1("Mimbrane Smother") == 2)
-					{
-						output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
-						target.lust(target.lustMax(), true);
-					}
-					if(panicJack)
-					{
-						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
-						if(pc.lust() < pc.lustMax()) pc.lust(-10);
-					}
-				}
-			}
-			// Standard grapple text
-			else
-			{
-				//Limber confers a 20% escape chance.
-				if(target.hasPerk("Limber") && rand(10) <= 1)
-				{
-					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
-					if(panicJack)
-					{
-						output(" The [pc.cumNoun] you squirt helps a little too.");
-						if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
-						pc.lust(-10);
-					}
-					target.removeStatusEffect("Grappled");
-				}
-				else if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
-				{
-					if (target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 + slipperyBonus + escapeArtistBonus > target.statusEffectv2("Grappled"))
-					{
-						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+						if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						else if (hasEnemyOfClass(Mimbrane)) output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to pry it away from you.");
+						else if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
-						else if (hasEnemyOfClass(BothriocPidemme) || hasEnemyOfClass(BothriocQuadomme))
-						{
-							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
-						}
+						else if (hasEnemyOfClass(BothriocPidemme) || hasEnemyOfClass(BothriocQuadomme)) output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						else if (hasEnemyOfClass(RatsRaider)) output("You take a deep breath and focus. You aren’t breaking through on raw physique, so you wait for an opening. Liquid movements too graceful for even the rats to catch have your arms free in short order; you push the rodent on your face up then push against the ground, sliding out by the limber strength of your [pc.leg] muscles, contorting and twisting to stand and gain some distance all at once. Your motions were so precise that the merry " + (RatsRaider.ratCount() == 2 ? "duo" : "trio") + " are left confused and nervous. You can’t help but crack a smile.");
 						else if (hasEnemyOfClass(Lorelei)) output("You attempt to break free from Minuet’s grasp!\n\nWith a sudden movement, and a burst of speed, you manage to wrench yourself away from Minuet; her grip is still on your wrist, but all it takes now is a twist, and you’re both at a neutral position. Rather than attempt to fight you at arm’s length, Minuet lets you go, and returns to her earlier stance, ready to try again.");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
-						if(panicJack)
-						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
-							pc.lust(-10);
-						}
-						target.removeStatusEffect("Grappled");
 					}
-				}
-
-				else
-				{
-					if(target.physique() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 + slipperyBonus + escapeArtistBonus > target.statusEffectv2("Grappled"))
+					else
 					{
-						// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
-						// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
-						// allowing us to extract this information
-						// The same will also be said of the grapler in instances where grapples can happen with multiple
-						// enemies- we'll need to know which one, specifically, is out of action for other attacks
-						
-						if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+						if(hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output(StringUtil.capitalize(target.getCombatName(), false) + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the coils to freedom.");
+						else output(StringUtil.capitalize(target.getCombatName(), false) + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the grapple to freedom.");
+					}
+					removeGrapple = true;
+				}
+			}
+			else
+			{
+				if((target.physique() + rand(20) + 6 + latexBonus + panicBonus + (grappleLevel * 5) + slipperyBonus + escapeArtistBonus) > grappleEscapeLvl)
+				{
+					// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
+					// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
+					// allowing us to extract this information
+					// The same will also be said of the grapler in instances where grapples can happen with multiple
+					// enemies- we'll need to know which one, specifically, is out of action for other attacks
+					
+					if(target is PlayerCharacter)
+					{
+						if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						else if (hasEnemyOfClass(Mimbrane)) output("You manage to force your fingers under the edge of the Mimbrane smothering you, and forcefully tear it away from your face.");
+						else if (hasEnemyOfClass(SexBot)) output("You almost tear a muscle doing it, but, you manage to heave apart the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple();
 						else if (hasEnemyOfClass(GrayPrime) && target is PlayerCharacter) kGAMECLASS.grayPrimeEscapeGrapple();
 						else if (hasEnemyOfClass(NyreaAlpha) || hasEnemyOfClass(NyreaBeta)) output("You pull and heave at the thick, knotted ropes of the nyrea’s net, finally managing to pry a gap large enough for you to squeeze your frame through!");
@@ -2511,20 +2395,34 @@ package classes.GameData
 						else if (hasEnemyOfClass(Johr)) output("You break free of the zil, narrowly dodging another heavy blow from Johr as you regain your feet and rejoin the fight. The zil circle around you, snarling.");
 						else if (hasEnemyOfClass(Lorelei)) output("You attempt to break free from Minuet’s grasp!\n\nWith a sudden movement, and a burst of strength, you manage to wrench yourself away from Minuet; her grip is still on your wrist, but all it takes now is a twist, and you’re both at a neutral position. Rather than attempt to fight you at arm’s length, Minuet lets you go, and returns to her earlier stance, ready to try again.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
-						if(panicJack)
-						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
-							pc.lust(-10);
-						}
-						target.removeStatusEffect("Grappled");
 					}
+					else
+					{
+						if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("With a heave, " + target.getCombatName() + " tear" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("s") + " way out of the coils and adopt" + (!target.isPlural ? "s" : "") + " a fighting stance.");
+						else output("With a heave, " + target.getCombatName() + " tear" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("s") + " way out of the grapple and adopt" + (!target.isPlural ? "s" : "") + " a fighting stance.");
+					}
+					removeGrapple = true;
 				}
-
-				// Failure to escape grapple
-				if(target.hasStatusEffect("Grappled"))
+			}
+			// Failure to escape grapple
+			if(!removeGrapple)
+			{
+				if(target is PlayerCharacter)
 				{
-					if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
+					if (hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+					else if (hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
+					else if (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					else if (hasEnemyOfClass(Mimbrane))
+					{
+						target.lust(10 + target.libido()/10);
+						// fail to escape 1
+						if (grappleLevel == 0) output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
+						// fail to escape 2
+						else if (grappleLevel == 1) output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.");
+						// defeated
+						else if (grappleLevel == 2) output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+					}
+					else if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
 					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs();
 					else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 					else if (hasEnemyOfClass(GrayPrime) && target is PlayerCharacter) kGAMECLASS.grayPrimeFailEscape();
@@ -2542,13 +2440,51 @@ package classes.GameData
 					else if (hasEnemyOfClass(Lorelei)) getEnemyOfClass(Lorelei).struggleFailReaction(target);
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
-					if(panicJack)
-					{
-						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.");
-						pc.lust(-10);
-					}
-					target.addStatusValue("Grappled",1,1);
 				}
+				else
+				{
+					if(hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output(target.getCombatName() + " groan" + (!target.isPlural ? "s" : "") + " in pain, struggling madly to escape the brutal confines of the naleen’s coils, but to no avail...");
+					else output("Putting on a struggle, " + target.getCombatName() + " attempt" + (!target.isPlural ? "s" : "") + " to break free from the grapple but fail" + (!target.isPlural ? "s" : "") + ", loosening the grip a little.");
+				}
+			}
+			// Panic Ejaculation blurb
+			if(panicJack)
+			{
+				if(removeGrapple)
+				{
+					if(target is PlayerCharacter)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						if(RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
+					}
+					else output(" The extra lewd lube that " + target.getCombatPronoun("s") + " squirt" + (!target.isPlural ? "s" : "") + " helps, too.");
+				}
+				else
+				{
+					if(target is PlayerCharacter) output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.");
+					else output(" Not even the extra lewd lube squirted can help the matter...");
+					target.lust(-10);
+				}
+				target.lust(-10);
+			}
+			// Remove grapple
+			if(removeGrapple)
+			{
+				target.removeStatusEffect("Naleen Coiled");
+				target.removeStatusEffect("Mimbrane Smother");
+				target.removeStatusEffect("Grappled");
+			}
+			// Or do the turns
+			else
+			{
+				if(target.hasStatusEffect("Naleen Coiled")) target.addStatusValue("Naleen Coiled",1,1);
+				if(target.hasStatusEffect("Mimbrane Smother"))
+				{
+					if (grappleLevel == 0) target.setStatusValue("Mimbrane Smother", 1, 1);
+					else if (grappleLevel == 1) target.setStatusValue("Mimbrane Smother", 1, 2);
+					else if (grappleLevel == 2) target.lust(target.lustMax(), true);
+				}
+				if(target.hasStatusEffect("Grappled")) target.addStatusValue("Grappled",1,1);
 			}
 			if (target is PlayerCharacter) processCombat();
 		}

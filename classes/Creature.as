@@ -3197,7 +3197,7 @@
 				case "combatHisHer":
 					buffer = getCombatPronoun("pa");
 					break;
-				case "combatHerHers":
+				case "combatHisHers":
 					buffer = getCombatPronoun("pp");
 					break;
 				case "barkMeow":
@@ -7470,7 +7470,7 @@
 			return (hasStatusEffect("Staggered"));
 		}
 		public function isGrappled(): Boolean {
-			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled"));
+			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Mimbrane Smother"));
 		}
 		public function isBlind(): Boolean {
 			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));

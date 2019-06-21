@@ -337,9 +337,9 @@
 			else annoNoAction();
 		}
 		
-		public function grappleStruggle():void
+		public function grappleStruggle(sEnemy:String):Boolean
 		{
-			if (CombatManager.hasEnemyOfClass(GrayPrime))
+			if (sEnemy == "gray prime" && CombatManager.hasEnemyOfClass(GrayPrime))
 			{
 				var chance:int = statusEffectv1("Grappled");
 				
@@ -359,8 +359,10 @@
 				{
 					addStatusValue("Grappled", 1, 1);
 				}
-				output("\n");
+				//output("\n");
+				return true;
 			}
+			return false;
 		}
 		
 		private function sensorLinkBuff(target:Creature, pc:Creature):void
