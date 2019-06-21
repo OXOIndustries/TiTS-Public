@@ -695,7 +695,7 @@ package classes.GameData
 			
 			return true;
 		}
-		public static function SingleRangedShipAttackImpl(attacker:Creature, target:Creature, weapon:ItemSlotClass, asFlurry:Boolean = false, special:String = "ranged"):Boolean
+		public static function SingleRangedShipAttackImpl(attacker:Creature, target:Creature, weapon:ItemSlotClass, asFlurry:Boolean = false, special:String = "ranged", npcShooter:String = ""):Boolean
 		{
 			var PCAttacker:Boolean = attacker.hasPerk("PCs");
 			var PCTarget:Boolean = target.hasPerk("PCs");
@@ -705,7 +705,11 @@ package classes.GameData
 			{
 				if(attacker.energy() - weapon.shieldDefense < 0)
 				{
-					if(PCAttacker) output("You would like to " + weapon.attackVerb + " your " + weapon.longName + ", but lack the power to do so.");
+					if(PCAttacker) 
+					{
+						if(npcShooter == "") output("You would like to " + weapon.attackVerb + " your " + weapon.longName + ", but lack the power to do so.");
+						else output(StringUtil.capitalize(npcShooter, false) + " lacks the power to " + weapon.attackVerb + " " + weapon.description + ".");
+					}
 					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + weapon.longName + ", but not enough to fire.");
 					return false; 
 				}
@@ -718,10 +722,18 @@ package classes.GameData
 			{
 				if (target.customDodge.length > 0 && !PCTarget)
 				{
-					if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
+					if (PCAttacker) 
+					{
+						if(npcShooter == "") output("You " + weapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
+						else output(StringUtil.capitalize(npcShooter, false) + " fires " + weapon.description + ". " + target.customDodge);
+					}
 					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " " + weapon.attackVerb + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.longName) + " at " + target.getCombatName() + ". " + target.customDodge);
 				}
-				else if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but it goes wide.");
+				else if (PCAttacker) 
+				{
+					if(npcShooter == "") output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but it goes wide.");
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " misses " + target.getCombatName() + " with " + weapon.description);
+				}
 				else if (PCTarget) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
 				else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
@@ -740,8 +752,12 @@ package classes.GameData
 			{
 				if (target.customDodge.length > 0)
 				{
-					if (PCAttacker) output("You take " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
-					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+					if (PCAttacker) 
+					{
+						if(npcShooter == "") output("You " + weapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
+						else output(StringUtil.capitalize(npcShooter, false) + " fires " + weapon.description + ". " + target.customDodge);
+					}
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " " + weapon.attackVerb + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(weapon.longName) + " at " + target.getCombatName() + ". " + target.customDodge);
 				}
 				else if (PCAttacker) output("You " + weapon.attackVerb + " at " + target.getCombatName() + " with your " + weapon.longName + ", but just can’t connect.");
 				else if (PCTarget) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + weapon.attackNoun + ".");
@@ -749,8 +765,11 @@ package classes.GameData
 				return false;
 			}
 			// We made it here, the attack landed
-			
-			if (PCAttacker) output("You land a hit on " + target.getCombatName() + " with your " + weapon.longName + "!");
+			if (PCAttacker) 
+			{
+				if(npcShooter == "") output("You " + weapon.attackVerb + " your " + weapon.longName + " and hit " + target.getCombatName() + "!");
+				else output(StringUtil.capitalize(npcShooter, false) + " " + weapon.attackVerb + "s" + " " + target.getCombatName() + " with " + weapon.description + "!");
+			}
 			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " connect with their " + plural(weapon.longName) + "!");
 			else if (PCTarget) output(StringUtil.capitalize(attacker.getCombatName(), false) + " hits you with its " + weapon.longName + "!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " strikes " + target.getCombatName() + " with its " + weapon.longName + "!");
@@ -962,7 +981,7 @@ package classes.GameData
 			
 			kGAMECLASS.playerMimbraneCloudAttack();
 		}
-		public static function performShipWeaponAttack(attacker:Creature, target:Creature, gun:ItemSlotClass):void
+		public static function performShipWeaponAttack(attacker:Creature, target:Creature, gun:ItemSlotClass,firingNPC:String = ""):void
 		{
 			var attacks:Number = 1;
 			var PCAttacker:Boolean = attacker.hasPerk("PCs");
@@ -975,7 +994,11 @@ package classes.GameData
 			//Abort if no power
 			if(attacker.energy() - gun.shieldDefense < 0)
 			{
-				if(PCAttacker) output("You would like to " + gun.attackVerb + " your " + gun.longName + ", but lack the power to do so.");
+				if(PCAttacker) 
+				{
+					if(firingNPC == "") output("You would like to " + gun.attackVerb + " your " + gun.longName + ", but lack the power to do so.");
+					else output(StringUtil.capitalize(firingNPC) + " doesn't have enough power to fire " + gun.description + ".");
+				}
 				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + gun.longName + ", but not enough to fire.");
 				return;
 			}
@@ -986,46 +1009,47 @@ package classes.GameData
 				if(i > 0) 
 				{
 					output("\n");
-					CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "free");
+					CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "free", firingNPC);
 				}
-				else CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "ranged");
+				else CombatAttacks.SingleRangedShipAttackImpl(attacker, target, gun, false, "ranged", firingNPC);
 			}
 		}
-
+		public static function pickCrewman(arg:Array):String
+		{
+			if(arg.length == 0) return "ERROR";
+			var i:int = rand(arg.length);
+			var crewman:String = arg[i];
+			arg.splice(i,1);
+			return crewman;
+		}
 		public static function ShipAttack(attacker:Creature, target:Creature):void
 		{
+			var item:ItemSlotClass = attacker.rangedWeapon;
 			var attacks:Number = 0;
-			var freeCrew:Number = kGAMECLASS.crew(true,false);
-			if(attacker.meleeWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
+
+			var crews:Array = kGAMECLASS.getCrewOnShipNames();
+			var crewString:String = "";
+			//var freeCrew:Number = crews.length;
+			
+			for(var i:int = 0; i < (attacker.inventory.length+3); i++)
 			{
-				if(attacker.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
-				if(attacks > 0) output("\n");
-				performShipWeaponAttack(attacker,target,attacker.meleeWeapon);
-				attacks++;
-			}
-			if(attacker.rangedWeapon.type == GLOBAL.RANGED_WEAPON && !attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
-			{
-				if(attacker.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
-				if(attacks > 0) output("\n");
-				performShipWeaponAttack(attacker,target,attacker.rangedWeapon);
-				attacks++;
-			}
-			if(attacker.accessory.type == GLOBAL.RANGED_WEAPON && !attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
-			{
-				if(attacker.accessory.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
-				if(attacks > 0) output("\n");
-				performShipWeaponAttack(attacker,target,attacker.accessory);
-				attacks++;
-			}
-			//Fire "inventory" weapons that are turned on.
-			for(var x:int = 0; x < attacker.inventory.length; x++)
-			{
-				if(attacker.inventory[x].type == GLOBAL.RANGED_WEAPON && !attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && (!attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET) || (attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET) && freeCrew > 0))) 
+				if(i == attacker.inventory.length) item = attacker.meleeWeapon;
+				else if(i == (attacker.inventory.length+1)) item = attacker.rangedWeapon;
+				else if(i == (attacker.inventory.length+2)) item = attacker.accessory;
+				else item = attacker.inventory[i];
+				if(item.type == GLOBAL.RANGED_WEAPON && !item.hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
 				{
-					if(attacker.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_TURRET)) freeCrew--;
-					if(attacks > 0) output("\n");
-					performShipWeaponAttack(attacker,target,attacker.inventory[x]);
-					attacks++;
+					if(item.hasFlag(GLOBAL.ITEM_FLAG_TURRET)) 
+					{
+						crewString = pickCrewman(crews);
+						//Get the crewman's name from the array and mention them shooting it.
+						//No crew string? No fire!
+						if(crewString == "ERROR") continue;
+					}
+					else crewString = "";
+					if(attacks++ > 0) output("\n");
+					//if(crewString != output(crewString + " mans the turret!\n");
+					performShipWeaponAttack(attacker,target,item,crewString);
 				}
 			}
 			if(attacks == 0)
