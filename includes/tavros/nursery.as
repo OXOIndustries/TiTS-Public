@@ -632,15 +632,21 @@ public function nurseryKidsDormsFunc():Boolean
 	nurseryLaquineBlurbs();
 	mirrinBabyBlurbs();
 	var button:Number = 0;
-	button = zilBabyBonus(button);
-	button = milodanPlayOptions(button);
-	button = ellieKidVisits(button);
-	button = samBabiesVisitOptions(button);
-	button = zephyrKidsOption(button);
-	button = nurseryLaquineOptions(button);
-	button = mirrinKidsOptions(button);
+	button = nurseryKidsDormsButtonAdjustment(zilBabyBonus(button));
+	button = nurseryKidsDormsButtonAdjustment(milodanPlayOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(ellieKidVisits(button));
+	button = nurseryKidsDormsButtonAdjustment(samBabiesVisitOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(zephyrKidsOption(button));
+	button = nurseryKidsDormsButtonAdjustment(nurseryLaquineOptions(button));
+	button = nurseryKidsDormsButtonAdjustment(mirrinKidsOptions(button));
 
 	return false;
+}
+public function nurseryKidsDormsButtonAdjustment(button:Number):Number
+{
+	if(button == 5) return (button + 10);
+	
+	return button;
 }
 
 public function nurserySpecialistRooms():Boolean
@@ -2453,6 +2459,9 @@ public function pregAverageLoadSizes():void
 	output("\n\n<b><u>MilodanPregnancy</u></b>: " + (new MilodanPregnancyHandler()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Milodan Male:</b> " + (new MilodanMale()).cumQ() + " mLs");
 	output("\n* <b>Milodan Male (Group):</b> " + (new MilodanMaleGroup()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>MirrinPregnancy</u></b>: " + (new MirrinPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Mirrin:</b> " + chars["MIRRIN"].cumQ() + " mLs");
 	
 	output("\n\n<b><u>RenvraEggPregnancy</u></b>: " + (new RenvraEggPregnancy()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");

@@ -588,10 +588,11 @@ public function mirrinBabesAllOverThePlace():void
 	output("\n\nWith a throaty, loud groan, the hot seed within your [pc.balls] surges through your [pc.eachCock]! Anticipating this, Mirrin slams her body down as before, pinning you down to the bed with her pussy and hips!");
 	output("\n\nWith the [pc.cockHead " + cockIdx + "] lodged firmly against her cervix, the rising wave of [pc.cum] can only go one way! [pc.cumVisc] seed shoots almost directly into her awaiting womb, forced in even further by the locking of her inner muscles around your [pc.cock " + cockIdx + "]!");
 	output("\n\n<i>“Mmmmfuuu...fuuck! Fill me, fill me!”</i> wails the insensate qilin as she grabs her belly, her powerful thighs on the verge of crushing your [pc.hips] to dust.");
-	if (pc.cumQ() > 10000) output("\n\nYou can hear her chant for more and more of your seed as she grips at her midriff. At this rate, she’ll gain a faux-bump just like you! It continues until warm seed breaks the seal of your shaft and her well-fucked pussy, a gooey [pc.cumColor] mess forming all over your lap and the bed.");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ > 10000) output("\n\nYou can hear her chant for more and more of your seed as she grips at her midriff. At this rate, she’ll gain a faux-bump just like you! It continues until warm seed breaks the seal of your shaft and her well-fucked pussy, a gooey [pc.cumColor] mess forming all over your lap and the bed.");
 	else output("\n\nYou can hear her chant for more and more of your seed as she grips at her midriff. Your shaft does its best to output as much as it can and you can feel it leak a little around your [pc.cockHead " + cockIdx + "]. She’ll be just as well bred as you by the end of this, quantity aside.");
 	output("\n\nAs your orgasm dies down, the euphoric qilin slovenly slips off of your lap, leaving your [pc.eachCock] to soften in the cool air of the room. A little [pc.cumColor] trail of fluid drips from Mirrin’s well-bred, gaping pussy.");
-	if (pc.cumQ() > 10000) output(" You’re surprised by how little there is considering just how much you pumped into her! She’s looking positively gravid to boot, as if already in the final stage of pregnancy.");
+	if (cumQ > 10000) output(" You’re surprised by how little there is considering just how much you pumped into her! She’s looking positively gravid to boot, as if already in the final stage of pregnancy.");
 	output("\n\nShe lays on her side with her eyes level to yours.");
 	output("\n\n<i>“Mmhmm, how wonderful,”</i> she whispers, trailing a claw over your bloated womb. <i>“I feel like I could...”</i>");
 	output("\n\nShe giggles, pecking you light on the cheek while slowly dragging you into her arms.");
@@ -889,7 +890,8 @@ public function mirrinGetsPreggoWithEggoEggoEggo(cockIdx:int):void
 	output("\n\nUsing the last of your hip-strength, you hammer one last time into her spasming, wettening cunt, burying your [pc.cock " + cockIdx + "] right up to the [pc.knot " + cockIdx + "]!");
 	if (pc.hasKnot(cockIdx)) output("\n\nIn the same motion, you force your [pc.knot " + cockIdx + "] inside, the thick flesh bulging to full size!");
 	output("\n\nWith a pained, euphoric grunt, your [pc.balls] unleash " + (pc.balls > 1 ? "their" : "its") + " contents straight into the awaiting womb of the dragoness,");
-	if (pc.cumQ() > 10000) output(" a thick, hot torrent of [pc.cum] that already starts forming an impressive bulge under her abs!");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ > 10000) output(" a thick, hot torrent of [pc.cum] that already starts forming an impressive bulge under her abs!");
 	else output(" a nice shot of [pc.cum] that fills out her pussy with warmth!");
 	output("\n\nHer legs pull you in as close as you can possibly be, [pc.hips] locking to her femcum drenched pelvis!");
 	output("\n\n<i>“R-right there...yeah...!”</i> moans the quivering qilin, her words devolving into gasps and wails as you fulfill her dream of getting bred...");
@@ -897,7 +899,7 @@ public function mirrinGetsPreggoWithEggoEggoEggo(cockIdx:int):void
 	output("\n\n<i>“Shhh, shh...”</i> she whispers, nuzzling your neck.");
 	output("\n\nIt takes a little while to soften from within her: some part of your body doesn’t want to stop breeding!");
 	if (pc.hasKnot(cockIdx)) output(" Your [pc.knot " + cockIdx + "] is even more reluctant, taking several minutes to properly deflate.");
-	output(" As you try gently pulling out, much to your qilin lover’s approval , a " + (pc.cumQ() > 10000 ? "thick stream" : "thin trickle") + " of [pc.cumColor] fluid leaks onto the bed, some still hanging off of your [pc.cockHead " + cockIdx + "].");
+	output(" As you try gently pulling out, much to your qilin lover’s approval , a " + (cumQ > 10000 ? "thick stream" : "thin trickle") + " of [pc.cumColor] fluid leaks onto the bed, some still hanging off of your [pc.cockHead " + cockIdx + "].");
 
 	//Orgasm event/reduce PC lust to zero. PC gains ‘Sore’ status effect. 
 	processTime(90);
@@ -1042,12 +1044,13 @@ public function moreMirrinMoreBabus():void
 	output("\n\nIt’s little extra effort for Mirrin now she’s so energized and breed-hungry from the potent chemical concoction. With her hands once again locking on your [pc.hip] and [pc.cock " + cockIdx + "], her deep and fluid-rich breeding of your womb progresses into a grunting, animalistic conquest.");
 	output("\n\nAs it progresses, you can only grip onto the bed covers for stability while your body is used as both a cum-pump <i>and</i> cum-dump!");
 	output("\n\nWith another unified cry, a fresh exchange of potent seed erupts within the both of you with as much density as before. Your overflowing womb and [pc.cunt " + vagIdx + "] can barely handle more fluid, your belly reaching the size of a 9-month pregnancy with twins. The seal formed by her stallion beast-member and your [pc.pussy " + vagIdx + "] can’t contain the excess fluid and it spills onto the bed in thick, audible splatters.");
-	if (pc.cumQ() > 10000) output("\n\nMirrin’s own breeding hole seeps with [pc.cumColor] baby juice, the two blends of your and her breeding fluids making a pale mess all over your lower bodies.");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ > 10000) output("\n\nMirrin’s own breeding hole seeps with [pc.cumColor] baby juice, the two blends of your and her breeding fluids making a pale mess all over your lower bodies.");
 	else output("\n\nThe amount of [pc.cum] that you’re outputting is now giving her a mild bulge of her own! You can feel it form an extra layer of fluid inside her tight hole and the divine squeeze of her inner muscles chokes as much of it out of you as they can.");
 	output("\n\nOnce the second round of exceedingly messy orgasms has passed, you’re beginning to feel light headed. There’s a moment for a breather.");
 	output("\n\n<i>“Mir...mirnnn... I-I think that’s all I can take...”</i> you half-whisper, your enervated hands trying to clutch at her.");
 	output("\n\nThe hulking she-dragon holds you in place still, her heavy, audible breathing through her flared nostrils tinged with what sounds like notes of discomfort. " + (pc.isNaga() ? "She very slowly, very delicately tries pushing herself up from the entwined configuration of meatsticks and pussyholes" : "She very slowly lets you down onto the bed by your [pc.hips]") + ", audibly groaning as her sensitive flare struggles to exit your [pc.pussy " + vagIdx + "]. With a grotesque dollop of white dragon cream splattering from the urethra, the thick stallion pick is pulled free while your [pc.cock " + cockIdx + "] recedes from the warm confines of her tight cunt.");
-	output("\n\nHer brace of horse members seem to wilt slightly, not quite used up but certainly used <i>enough</i>. Mirrin tries to stand herself up, clutching at her " + (pc.cumQ() > 10000 ? "pregnant-looking" : "seed-filled") + " womb with a slightly pained expression on her puffed up face.");
+	output("\n\nHer brace of horse members seem to wilt slightly, not quite used up but certainly used <i>enough</i>. Mirrin tries to stand herself up, clutching at her " + (cumQ > 10000 ? "pregnant-looking" : "seed-filled") + " womb with a slightly pained expression on her puffed up face.");
 	output("\n\nBut her legs quickly give way and she slumps with her back to the bed, her tree-trunk arms splayed to her sides.");
 	output("\n\nYou feel the bounce shake you around unnervingly and it rolls you over... right into her grasp. Your [pc.face] ends up buried into her heaving chest, the soft pillows providing a lazy cushion for your breathless self. You can feel her hot and heavy breath against the top of your head, still punctuated with notes and gasps of discomfort. You can hear her whispering something in her native language, faint enough that you can’t tell make out the words.");
 	output("\n\nA rough palm finds itself squeezing you against the heaving dragoness body, the usual, familiar heat blending with a radiant, sexual glow. You gently place a palm on her fluid-stuffed womb, the palm that’s squeezing you now moving to your [pc.belly] to do the same.");
@@ -1346,9 +1349,10 @@ public function hugThatDragonMommy():void
 	author("SoAndSo");
 
 	output("With the two of you now thoroughly drained, the huffing dragoness holds you and pulls you up to the top of the bed, away from the splatter-zones. Buried instincts blossom within her as she wraps an arm around you from underneath, side-by-side with your exhausted form. Using her other hand, she guides your head to rest just above her heaving chest" + (pc.hasHorns() ? ", making sure to accommodate your [pc.horns]." : "."));
+	var cumQ:Number = pc.cumQ();
 	if (flags["MIRRIN_PREGSTAGE"] == 8)
 	{
-		if (pc.cumQ() > 10000)
+		if (cumQ > 10000)
 		{
 			output("\n\nYou lay your hand on her protruding abs, caressing the substantial under-bulge that you bred her with.");
 			output("\n\n<i>“Mmhmm, feels odd being the one so full up. Always with the surprises...”</i> she whispers into your ear, kissing the top of your head.");
@@ -1361,7 +1365,7 @@ public function hugThatDragonMommy():void
 	}
 	else if (flags["MIRRIN_PREGSTAGE"] != 10)
 	{
-		if (pc.cumQ() > 10000) output("\n\n<i>“You know what? Feels rrrrreally fokkin’ dirty to have matching bulges,”</i> she whispers into your ear, squeezing you closer.");
+		if (cumQ > 10000) output("\n\n<i>“You know what? Feels rrrrreally fokkin’ dirty to have matching bulges,”</i> she whispers into your ear, squeezing you closer.");
 		else
 		{
 			output("\n\nYou lay your hand on her taut abs, caressing the skin of her womb with tender care.");
@@ -1384,7 +1388,7 @@ public function hugThatDragonMommy():void
 	if (flags["MIRRIN_PREGSTAGE"] != 10)
 	{
 		output("\n\nYou tend to her belly in time, marvelling at how her powerful musculature holds your seed in perfect place.");
-		if (pc.cumQ() > 10000) output(" How is she gonna deflate all that later...?! Her body might even work against her, unwilling to let go of your [pc.cum]! Who knows at this point?");
+		if (cumQ > 10000) output(" How is she gonna deflate all that later...?! Her body might even work against her, unwilling to let go of your [pc.cum]! Who knows at this point?");
 		output(" She joins you while you rub her abdomen, one hand on top of yours.");
 		output("\n\n<i>“Yyyeah... right there, elskan...”</i> she coos, her voice calm yet hoarse.");
 	}
@@ -2744,8 +2748,9 @@ public function doanMirranUpTheBum(cockIdx:int):void
 	output("\n\n<i>“Mhrmm! Grmrmcmmm! Mmrrhhh!”</i> whines your tamed beastie. Her tailhole flexes and tenses with every hump in some attempt to squeeze as much out of your rod as possible, her ass pushing back with more and more insistence for every smack of your [pc.hips]. You can’t help but lose yourself in this primal headspace, thinking of nothing but just how much this whorish hole needs your <b>hard</b>-earned blessing. Your heart thumps in your head, your fists clench the straps like there’s nothing else that matters, sweat flies from your brow... all is right in this moment.");
 	output("\n\n<i>“Crmrmmmmnngggg! NNNGGG!”</i>");
 	output("\n\nYou can’t even focus on your lover’s strained, impassioned whines. The more noises she makes, the deeper it hits, the more it builds, the more it <b>burns</b> as your hips grow sore and used. You’re so close, just a little more, lil’ more! The lust builds and builds until you can’t hold it in!");
+	var cumQ:Number = pc.cumQ();
 	if (cockIdx < 0) output("\n\nYour lower body shudders and shakes as hot euphoria floods your body. With joyous cries, you ride the precious, orgasmic moment to its fullest by humping that red mountain of ass as hard as you can. You keep going, grunting and humping until your hips give out completely.");
-	else if (pc.cumQ() < 1000)
+	else if (cumQ < 1000)
 	{
 		output("\n\nYour lower body jitters and shakes as a surge of your seed forces its way out of your [pc.cock " + cockIdx + "]. You ride the moment as hard as you can, humping away as your spasming shaft unloads the built-up [pc.cumNoun] from your [pc.balls]. Streak after streak builds into a hotter, wetter hole but it comes to a painful halt as your hips give out completely.");
 		if (pc.hasKnot(cockIdx)) output(" With one final hump, you hilt your [pc.knot " + cockIdx + "] into Mirrin’s well-fucked asshole, and your orgasm flows free.");
@@ -2757,7 +2762,7 @@ public function doanMirranUpTheBum(cockIdx:int):void
 	}
 	output("\n\nIt’s too much effort to hold yourself up... but luckily, you’ve a nice red warm mattress underneath. You slump forward with your head landing neatly in the mess of Mirrin’s silver mane. Your hands fall around her middle and the ‘bit’ - or what remains of a chewed jock - falls to the side. The world seems muted and numbed as you simply rest on top of your qilin lover, but there’s just so much <i>warmth</i> coming from her...");
 	output("\n\nYou loosely hold your hands around her middle and squeeze the top of her abs.");
-	if (cockIdx >= 0 && pc.cumQ() > 1000) output(" Even without feeling it, you can tell her toned belly is that much more rounded from all the seed you put in her.");
+	if (cockIdx >= 0 && cumQ > 1000) output(" Even without feeling it, you can tell her toned belly is that much more rounded from all the seed you put in her.");
 	output(" A bigger, rougher hand lightly squeezes your joined together fingers and massages them with calloused motions. In turn, you rub the belly of the great beast and murmur your content for your lover.");
 
 	processTime(40+rand(26));
@@ -2873,13 +2878,14 @@ public function gonnaComeInMirrinBrahNais(cockIdx:int):void
 	author("SoAndSo");
 
 	output("It’s no use: you’re gonna explode.");
+	var cumQ:Number = pc.cumQ();
 	if (cockIdx < 0)
 	{
 		output("\n\nAs another glug of milk spills out of your mouth, that constant, needy ache in your [pc.cockOrStrapon " + cockIdx + "] spreads to your loins. A blissful rush of adrenaline wracks your body as the faux-cock does its work, driving your body into an orgasmic state from all that tight buildup.");
 		output("\n\nYou whine and wail with a mouth full of nipples muffling your calls as the tight seal of fleshy muscle keeps going and going, your lover trying to extend your orgiastic joy as long as physically possible.");
 		output("\n\nMirrin bites her lower lip as you take pleasure from her needy hole, pulling her chest from your milk-wet mouth and giving your [pc.face] one last jowl-juggle with her mammoth mammaries.");
 	}
-	else if (pc.cumQ() < 1000)
+	else if (cumQ < 1000)
 	{
 		output("\n\nAs another glug of milk spills out of your mouth, that constant, needy ache in your [pc.cock " + cockIdx + "] spreads to your loins. Adrenaline pumps up your heart and your mind fogs over as a twinge starts at that [pc.knot " + cockIdx + "], only to surge up the length in the most blissful of ways.");
 		output("\n\nYou groan and wail with two thick areola muffling your calls as your [pc.cumVisc] erupts inside Mirrin’s tightened cunt. String after hot string spools and leaks out of the muscular seal just so, as if your shaft were melting wax inside that fuck-furnace of a pussy.");
@@ -2895,12 +2901,12 @@ public function gonnaComeInMirrinBrahNais(cockIdx:int):void
 	if (pc.hasCock()) output(" and ‘flows’");
 	output(" of your gently induced orgasm give way to peace, inner warmth and an awareness of your milk-filled gut. Breathing and grinning is all you can do as Mirrin leans herself forward to let your [pc.cockOrStrapon " + cockIdx + "] slop out of her now-<i>super</i> loose pussy. With her palms planted on your cheeks, your qilin lover plants her lips to yours and takes advantage of your drained state.");
 	output("\n\nIt’s strange: everything seems slowed. A frantic, rough ride broken by endlessness and a gentle touch. You can barely keep your eyes open through the kiss and all your senses are raw. What little flavor is left in your mouth is just milk. Sweetened, warm milk. Your frame aches with warmth and numbness in equal measure. Your ears throb with nothing but the sound of two heartbeats. Sweats and fluids mingle and meld all over, coating the both of you in dirty, intoxicating scents.");
-	if (cockIdx >= 0 && pc.cumQ() >= 1000) output(" Much of it is from the mess made after your tool slopped out of your lovers snatch: a pleasing, familiar waft from the spilled mess of [pc.cum]. Judging from how ‘wet’ everything feels, you’ve been a messy [pc.boyGirl]...");
+	if (cockIdx >= 0 && cumQ >= 1000) output(" Much of it is from the mess made after your tool slopped out of your lovers snatch: a pleasing, familiar waft from the spilled mess of [pc.cum]. Judging from how ‘wet’ everything feels, you’ve been a messy [pc.boyGirl]...");
 	output("\n\nWith a satisfied exhale, the mountainous Mirrin rolls over to the left and the whole bed creaks with her. You make a noise between a yelp and a gasp as you’re bounced neatly into the red giantesses arms, your [pc.face] nestled between a soft, " + (jentaBorn() || flags["MIRRIN_JENTA_HATCHING_STAMP"] != undefined ? "MILF-y" : "squishy") + " set of tits.");
 	output("\n\n<i>“Well hello there. Fancy seeing you,”</i> croons your qilin lover as she plants a peck on your forehead. You simply smile as the warmth of it all - the sex, the bodies rubbing together, the guarding arms of an amazon - works it’s sleepy magic on your worn out frame. Just a... lil’ snooze...");
 
 	//Orgasm event, PC gains ....milk covered? Status effect? (is there a milk covered status effect) and Cum Covered status effect if PC cumoutput>1000.
-	if (pc.cumQ() >= 1000) pc.applyCumSoaked();
+	if (cumQ >= 1000) pc.applyCumSoaked();
 	pc.orgasm();
 	processTime(55);
 	mirranEndTheSexing(doinMirranWhereFewHaveGoneBefore);
