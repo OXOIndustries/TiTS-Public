@@ -768,7 +768,11 @@ package classes.GameData
 			if (PCAttacker) 
 			{
 				if(npcShooter == "") output("You " + weapon.attackVerb + " your " + weapon.longName + " and hit " + target.getCombatName() + "!");
-				else output(StringUtil.capitalize(npcShooter, false) + " " + weapon.attackVerb + "s" + " " + target.getCombatName() + " with " + weapon.description + "!");
+				else 
+				{
+					if(npcShooter == "Mitzi") output("Mitzi creams herself from the vibrations caused by unloading " + weapon.description + " into " + target.getCombatName() + "!");
+					else output(StringUtil.capitalize(npcShooter, false) + " " + weapon.attackVerb + "s" + " " + target.getCombatName() + " with " + weapon.description + "!");
+				}
 			}
 			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " connect with their " + plural(weapon.longName) + "!");
 			else if (PCTarget) output(StringUtil.capitalize(attacker.getCombatName(), false) + " hits you with its " + weapon.longName + "!");
@@ -1027,7 +1031,7 @@ package classes.GameData
 			var item:ItemSlotClass = attacker.rangedWeapon;
 			var attacks:Number = 0;
 
-			var crews:Array = kGAMECLASS.getCrewOnShipNames();
+			var crews:Array = kGAMECLASS.getGunnersOnShipNames();
 			var crewString:String = "";
 			//var freeCrew:Number = crews.length;
 			

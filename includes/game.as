@@ -959,6 +959,33 @@ public function getCrewOnShip():Array
 	return c;
 }
 
+public function getGunnersOnShipNames():Array
+{
+	var crewMembers:Array = [];
+	
+	//if (amberIsCrew()) crewMembers.push("Amber");
+	if (annoIsCrew()) crewMembers.push("Anno");
+	//if (azraIsCrew()) crewMembers.push("Azra");
+	//if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
+	//if (celiseIsCrew()) crewMembers.push("Celise");
+	if (daneIsCrew()) crewMembers.push("Dane");
+	if (kaseIsCrew()) crewMembers.push("Kase");
+	if (kiroIsCrew()) crewMembers.push("Kiro");
+	if (mitziIsCrew()) crewMembers.push("Mitzi");
+	//if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+	if (paigeIsCrew()) crewMembers.push("Paige");
+	if (pennyIsCrew()) crewMembers.push("Penny");
+	//if (pippaOnShip()) crewMembers.push("Pippa");
+	if (ramisIsCrew()) crewMembers.push("Ramis");
+	if (reahaIsCrew()) crewMembers.push("Reaha");
+	//if (seraIsCrew()) crewMembers.push("Sera");
+	if (shekkaIsCrew()) crewMembers.push("Shekka");
+	if (syriIsCrew()) crewMembers.push("Syri");
+	//if (yammiIsCrew()) crewMembers.push("Yammi");
+	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
+	return crewMembers;
+}
+
 public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean = true):Array
 {
 	var crewMembers:Array = [];

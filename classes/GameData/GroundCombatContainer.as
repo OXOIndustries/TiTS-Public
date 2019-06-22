@@ -1665,8 +1665,11 @@ package classes.GameData
 			clearOutput();
 			clearMenu();
 			var weapons:Array = (arg as ShittyShip).listShipWeapons();
-			output("<b>Currently Fitted Weapons</b>\n<u>Energy | Name</u>");
+			var crews:Array = kGAMECLASS.getGunnersOnShipNames();
+			var turrets:Number = 0;
 			var energyCost:Number = 0;
+			output("<b>Currently Fitted Weapons</b>\n<u>Energy | Name</u>");
+			
 			for(var i:int = 0; i < weapons.length; i++)
 			{
 				if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF)) 
@@ -1678,6 +1681,12 @@ package classes.GameData
 				else 
 				{
 					output("\n" + weapons[i].shieldDefense + "\t| " + StringUtil.upperCase(weapons[i].longName));
+					if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TURRET)) 
+					{
+						turrets++;
+						if(turrets > crews.length) output(" (<b>Insufficient crew</b> to man turret.)");
+						else output(" (Crewed.)");
+					}
 					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
 					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
 					energyCost += weapons[i].shieldDefense;
