@@ -1260,9 +1260,9 @@ public function shekkaCrewSexMenu(inBed:Boolean = false):void
 }
 public function shekkaBlowButton(button:Number,firsty:Boolean = false):void
 {
-	if(shekka.hasCock(GLOBAL.TYPE_EQUINE)) addButton(button,"Blow Her",shekkaBJsByWillIAm,firsty,"Blow Her","Shekka's " + (firsty ? "new ":"") + "tool is a mouthwatering " + (firsty ? "addition to":"part of") + " her arsenal. Give it a" + (flags["SHEKKA_BLOWN"] != undefined ? "nother":"") + " taste!");
+	if(shekka.hasCock(GLOBAL.TYPE_EQUINE)) addButton(button,"Blow Her",shekkaBJsByWillIAm,firsty,"Blow Her","Shekka’s " + (firsty ? "new ":"") + "tool is a mouthwatering " + (firsty ? "addition to":"part of") + " her arsenal. Give it a" + (flags["SHEKKA_BLOWN"] != undefined ? "nother":"") + " taste!");
 	else if(shekka.hasCock()) addDisabledButton(button,"???","???","Shekka would need some kind of giant horse-cock for this scene!");
-	else addDisabledButton(button,"???","???","Shekka doesn't have the right anatomy for this.");
+	else addDisabledButton(button,"???","???","Shekka doesn’t have the right anatomy for this.");
 }
 
 //Talk Menu Sex

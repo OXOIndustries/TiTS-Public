@@ -966,13 +966,13 @@ public function getGunnersOnShipNames():Array
 	//if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
 	//if (azraIsCrew()) crewMembers.push("Azra");
-	//if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
+	//if (bessIsCrew()) crewMembers.push(chars["BESS"].short);
 	//if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
-	//if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+	//if (gooArmorIsCrew()) crewMembers.push(chars["GOO"].short);
 	if (paigeIsCrew()) crewMembers.push("Paige");
 	if (pennyIsCrew()) crewMembers.push("Penny");
 	//if (pippaOnShip()) crewMembers.push("Pippa");
