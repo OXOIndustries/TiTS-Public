@@ -498,12 +498,16 @@ public function hungryhungryTailginasThirst():void
 		output(" to sway around your body and into your hand");
 		if(pc.tailCount > 1) output("s");
 		if(pc.tailCount > 2) output(", as the excess spread around you an obscene, eager halo");
-		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is, never mind the worry in the back of your mind that ");
-		if(pc.tailCount == 1) output("it");
-		else output("they");
-		output(" might be ");
-		if(pc.tailCount == 1) output("a parasite");
-		else output("parasites");
+		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is");
+		if(pc.hasParasiteTail())
+		{
+			output(", never mind the worry in the back of your mind that ");
+			if(pc.tailCount == 1) output("it");
+			else output("they");
+			output(" might be ");
+			if(pc.tailCount == 1) output("a parasite");
+			else output("parasites");
+		}
 		output(". ");
 		if(enemy.HP() < 1) output("His flagging erection stiffens in two rapid pulsations at the sight of such slick, promising depths, and an eager, almost too eager, smile crosses his face at the same time.");
 		else output("His immensely tumescent length twitches back and forth at the sight, and an eager, almost too eager, smile crosses his features at the same time.");

@@ -1290,9 +1290,14 @@ public function useTailOnZilWhenUWin():void
 	showName("MALE\nZIL");
 	author("Frogapus");
 	output("You grin as you flex your supernumerary tail muscles, flexing your tail up to your side. It curls up just under your hand as you look down hungrily at your anthophile opponent. He pushes himself up weakly to his hands, looking up at you with glossy black eyes, and you trace a finger along the finely scaled top of your symbiotic tail.");
-	output("\n\nThe shiver of pleasure runs up through your shared nervous systems, making the [pc.tailCunt] drip viscid ropes of arousal down to the forest floor. You grin broadly, and the zil at your feet buzzes in alarm.");
-	output("\n\n<i>“That’s-that’s a cunt znake!”</i> he exclaims, trying to push himself up to a sitting position. <i>“You’re infected!”</i>");
-	output("\n\n<i>“That’s right,”</i> you " + pc.mf("chuckle","purr") + ". <i>“And it feels so good.”</i>");
+	output("\n\nThe shiver of pleasure runs up through your shared nervous systems, making the [pc.tailCunt] drip viscid ropes of arousal down to the forest floor. You grin broadly");
+	if(pc.hasCuntSnake())
+	{
+		output(", and the zil at your feet buzzes in alarm.");
+		output("\n\n<i>“That’s-that’s a cunt znake!”</i> he exclaims, trying to push himself up to a sitting position. <i>“You’re infected!”</i>");
+		output("\n\n<i>“That’s right,”</i> you " + pc.mf("chuckle","purr") + ". <i>“And it feels so good.”</i>");
+	}
+	else output(".");
 	output("\n\nThe nubile zil manages to scramble to a sitting position, but before he can say any more, you feel the folds of your tail-mounted pussy part, exposing your slobbering interior. The slight breeze in the forest, warm and humid normally, feels cool against your shared lips. You initially wonder what your tail is doing, but then catch sight of the zil.");
 	output("\n\nHis blank eyes appear locked on your cunt tail’s dewey opening. As you watch, his expression softens slowly, turning from horror to hunger as your tail sways slowly back and forth. The zil makes a soft, buzzing noise as he slides his hand down to his groin, his chitin retracting, his onyx cock swelling up between his amber fingers.");
 	output("\n\n<i>“You want it, don’t you?”</i> you ask, watching in amusement as the zil begins to stroke himself to the sight of your swaying tail cunt.");

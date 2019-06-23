@@ -653,7 +653,7 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		}
 	}
 	
-	if (usingCreature is PlayerCharacter || usingCreature.hasPerk("PCs")) backToCombatInventory(item);
+	if (usingCreature != null && (usingCreature is PlayerCharacter || usingCreature.hasPerk("PCs"))) backToCombatInventory(item);
 }
 
 public function backToCombatInventory(item:ItemSlotClass):void

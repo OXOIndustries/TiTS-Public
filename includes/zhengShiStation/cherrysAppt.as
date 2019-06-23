@@ -42,7 +42,7 @@ public function cherryRoomMenu():void
 	
 	if(pc.lust() >= 33)
 	{
-		//{Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
+		// {Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
 		if(flags["CHERRY_SEX_INTRO"] == undefined) addButton(0,"Fuck Her",fuckCherryYo,undefined,"Fuck Her","Try your luck, and maybe get all up in that gel...");
 		else if(!cherryCumflated()) addButton(0,"Fuck Her?",fuckCherryAnywayYo,undefined,"Fuck Her?","Damn the consequences, you’re hungry for a big slice of Cherry pie.");
 		else addButton(0,"Fuck Her!",fuckCherryExclamationPointo,undefined,"Fuck Her","With Cherry nice and bloated, she’ll be safe to the touch for a while.");
@@ -698,8 +698,8 @@ public function feedCherryABubble():void
 	clearOutput();
 	showCherry(true);
 	author("Adjatha");
-	//{Medium}
-	//pc gave Cherry a Medium Bubble to get in
+	// {Medium}
+	// pc gave Cherry a Medium Bubble to get in
 	if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 1)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
@@ -726,8 +726,8 @@ public function feedCherryABubble():void
 		clearMenu();
 		addButton(0,"Next",feedCherryMediumBubs2);
 	}
-	//{Large}
-	//pc gave Cherry a Large Bubble to get in
+	// {Large}
+	// pc gave Cherry a Large Bubble to get in
 	else if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 2)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
@@ -752,9 +752,9 @@ public function feedCherryABubble():void
 		clearMenu();
 		addButton(0,"Next",feedCherryALargeBubble2);
 	}
-	//{Huge}
-	//pc gave Cherry a Huge Bubble to get in
-	//Not available on the first Huge Bubble - she keeps it as a pillow/trophy
+	// {Huge}
+	// pc gave Cherry a Huge Bubble to get in
+	// Not available on the first Huge Bubble - she keeps it as a pillow/trophy
 	else if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 3)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;

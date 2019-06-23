@@ -1518,8 +1518,10 @@ public function breedwellPremiumRenewPremium():void
 	}
 	else
 	{	
-		//if (conCnt == 2)
-		//{
+		/*
+		if (conCnt == 2)
+		{
+		*/
 			if (dohrahn)
 			{
 				output("You ask about your Premium Breeder status, barely able to restrain your eagerness to get back to spreading them for lovely, sexy gel ladies. Your contract has expired, you remember that from the last email - is it possible to renew it?");
@@ -1547,11 +1549,12 @@ public function breedwellPremiumRenewPremium():void
 			clearMenu();
 			addButton(0, "Sign", breedwellPremiumRenewLifetimeYes);
 			addButton(1, "Don’t", breedwellPremiumRenewLifetimeNo);	
-		//}
-		//else
-		//{
-
-		//}		
+		/*
+		}
+		else
+		{
+		}
+		*/
 	}
 
 }
