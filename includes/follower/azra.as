@@ -1039,7 +1039,7 @@ public function talkToAzraAboutAge():void
 	else if(pc.isBro()) output("How old are you?");
 	else if(pc.isNice() || pc.isMischievous()) output("How old are you? Not that old, I wager. You don’t look a day over twenty.");
 	else output("Just how old are you?");
-	output("”</i> You peer closer at your suula crewmember, daring her face to give you a clue.");
+	output("”</i> You peer closer at your suula crew member, daring her face to give you a clue.");
 
 	output("\n\nAzra leans close to you, close enough for to get a good look at the texture of her inky lips as she replies, <i>“Old enough to be your mother and a little more. Old enough one of my daughters could have babysat you.”</i> She ");
 	if(pc.hasHair()) output("ruffles your [pc.hair] affectionately");
@@ -1381,7 +1381,7 @@ public function azraHyperDocking(x:int):void
 		output("\n\nYou whimper in quiet ecstasy. She’s almost to the tendrils.");
 		output("\n\n<i>“I can’t help but wonder how it would feel to be in-mmf! ...your situation.”</i> The angelic dick-girl runs her fingers up and down your dick. <i>“Would I insist my ");
 		if(flags["AZRA_BOYFRIEND"] == 1) output("girlfriend");
-		else output("sexy suula crewmember");
+		else output("sexy suula crew member");
 		output(" push herself inside and try to knock up my balls.”</i> Your veins bulge powerfully from a sudden increase in blood flow. <i>“I bet I would, judging from the sounds you’re making,”</i> Azra muses, watching you carefully. Four of her fingers come together to caress the sensitive, inflating bulge below. <i>“I’d be begging her to fuck it.”</i>");
 		output("\n\nYou whine, high-pitched and needy. <i>“Fuck me already!”</i>");
 		output("\n\nStraightening, the winged shark-girl smiles. <i>“Of course, dear.”</i> She grabs hold of the head in preparation. <i>“I’ll fuck your dick every time we make love, if that’s what you want. Because you would do it for me, if I needed it like you needed it. I know you would, sweet lover. You’d fuck me so good.”</i> She pauses, breathing deep. <i>“Now let me.”</i>");

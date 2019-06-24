@@ -810,7 +810,7 @@ public function unfitShipItemForReal(i:Number):void
 	}
 	else
 	{
-		output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crewmember, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
+		output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
 		processTime(60);
 	}
 	pc.credits += getSellPrice(shopkeep,ship.inventory[i].basePrice);

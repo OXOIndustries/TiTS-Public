@@ -11198,7 +11198,7 @@ public function bessAtTavrosYes():void
 	
 	output("\n\n(<b>[bess.name] has now returned to the ship as a follower!</b>)");
 
-	flags["BESS_AFFECTION"] = 10;
+	if (flags["BESS_AFFECTION"] == undefined || flags["BESS_AFFECTION"] < 10) flags["BESS_AFFECTION"] = 10;
 	flags["BESS_LOCATION"] = BESS_ON_CREW;
 
 	clearMenu();

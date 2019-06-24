@@ -1478,6 +1478,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Sheep:</b> " + prettifyGeneticMarker(pc.sheepScore(), 5, 9));
 		if(CodexManager.entryUnlocked("Simii") && pc.simiiScore() > 0)
 			output2("\n<b>* Simii:</b> " + prettifyGeneticMarker(pc.simiiScore(), 4, 5));
+		if(pc.spiderScore() > 0)
+			output2("\n<b>* Spider:</b> " + prettifyGeneticMarker(pc.spiderScore(), 4, 6));
 		if(CodexManager.entryUnlocked("Suulas") && pc.suulaScore() > 0)
 			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 6, 10));
 		if(pc.tentacleScore() > 0)

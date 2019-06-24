@@ -3061,7 +3061,7 @@ package classes.GameData
 				else if(pc.legCount > 1) output(", carefully tucking your [pc.cocks] between your legs");
 				output(".");
 				//PC has a trap-pouch:
-				if(pc.hasStatusEffect("Uniball")) output(" You carefully arrange your [pc.sack] to look like a feminine crease");
+				if(pc.balls > 0 && pc.hasStatusEffect("Uniball")) output(" You discreetly arrange your [pc.sack] to look like a feminine crease");
 				else if(pc.balls == 0) output(" You feel a rush of pleasure");
 				output(" as you shake your ass, letting out a girly giggle. You don’t give your foe time to tell what");
 				if(pc.legCount > 1) output("’s really between your [pc.legs]");

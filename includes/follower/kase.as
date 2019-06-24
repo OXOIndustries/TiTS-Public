@@ -167,7 +167,7 @@ public function kaseTryPrivate(beenCrew:Boolean = false):void
 	output("You point out a nearby room for him to change in, much to Anno’s disappointment.");
 	output("\n\n<i>“Awww,”</i> she whines as Kase nods and walks off to try on his new suit, <i>“You’re no fun.”</i>");
 	output("\n\nYou chuckle and shake your head at the ausar and tell her " + (pc.isAss() ? "she’s right, leading her to pout a bit" : "she’s welcome to try and get Kase to strip for her on her own, to which she sticks her tongue out") + ".");
-	output("\n\nAfter a few moments of patient waiting, your new kaithrit crewmember appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
+	output("\n\nAfter a few moments of patient waiting, your new kaithrit crew member appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
 	output("\n\n<i>“Does it fit well?”</i> he asks, looking himself over and checking to make sure he got his tails through his new outfit okay.");
 	if (pc.isBimbo()) output("\n\n Both you and Anno erupt into a call of “Sooooooo cuuuuuuute!”");
 	else output("\n\nYou tell him it seems just right for him, but Anno interrupts with a call of “Sooooooo cuuuuuuute!”");

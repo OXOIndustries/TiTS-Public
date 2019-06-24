@@ -468,7 +468,7 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Stay
 		case "stay":
-			output("You ask [wulfe.name] to stay on your ship as a crewmember.");
+			output("You ask [wulfe.name] to stay on your ship as a crew member.");
 			output("\n\nThe droid looks at you and nods. <i>“Yes, [pc.master].”</i>");
 			output("\n\n(<b>[wulfe.name] has joined your crew!</b>)");
 			output("\n\n");

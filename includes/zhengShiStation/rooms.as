@@ -2339,7 +2339,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSF X16"] = new RoomClass(this);
 	rooms["ZSF X16"].roomName = "ACCESS\nCORRIDOR";
-	rooms["ZSF X16"].description = "The corridor stretches north and south past quite a few rooms for crewmembers, every single one of them locked down for the time being. You suppose that once a proper crew manifest is loaded into the console, you’d be able to get inside, but right now, you have bigger fish to fry. The used condom on the floor gives one suggestion as to why these chambers were sealed off while the ship is in drydock, not that the pirates on this station seem to give one whit about finding somewhere private to bang.";
+	rooms["ZSF X16"].description = "The corridor stretches north and south past quite a few rooms for crew members, every single one of them locked down for the time being. You suppose that once a proper crew manifest is loaded into the console, you’d be able to get inside, but right now, you have bigger fish to fry. The used condom on the floor gives one suggestion as to why these chambers were sealed off while the ship is in drydock, not that the pirates on this station seem to give one whit about finding somewhere private to bang.";
 	rooms["ZSF X16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X16"].northExit = "ZSF X14";
