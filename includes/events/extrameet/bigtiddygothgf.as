@@ -1,8 +1,9 @@
 // EXTRAMEET_BIGTIDDYGOTHGF
 
-public function bigTiddyGothGFBust():void
+public function bigTiddyGothGFBust(nude:Boolean = false):void
 {
 	showName("THE\nSERVANT");
+	showBust("SERVANT" + (nude ? "_NUDE":""));
 	author("Fr0sty");
 }
 
@@ -172,6 +173,7 @@ public function bigTiddyGothGFAppearance():void
 	output("\n\n");
 	if (flags["BIGTIDDYGOTHGF_NAKED"] != undefined)
 	{
+		bigTiddyGothGFBust(true);
 		output("You also know that under her clothes, The Servant has a few tattoos decorating her body, the most prominent of which is a mural that takes up the whole of her back. The tattoo is difficult to understand, and uncomfortable to look at,");
 		if (flags["BIGTIDDYGOTHGF_TATEXPLAIN"] != undefined) output(" and is a depiction of something she calls a god");
 		else output(" and you’ve no idea what it’s a representation of");
@@ -781,7 +783,7 @@ public function bigTiddyGFUnderTableMouth():void
 public function bigTiddyGothGFStripHer():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 	output("<i>“As you wish, [pc.name].”</i>");
 	
@@ -842,7 +844,7 @@ public function bigTiddyGothGFStripHer():void
 public function bigTiddyGothGFFuckHer():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 	var cockIdx:int = pc.cockThatFits(16, "length");
 
@@ -901,7 +903,7 @@ public function bigTiddyGothGFFuckHer():void
 public function bigTiddyGothGFEatHerOut():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 	output("The Servant stares at you, her mouth agape. <i>“Oh...”</i> The Servant closes her mouth, pressing her lips together and slightly taken aback by your request. <i>“I didn’t expect that... well, whatever you want.”</i> The dark woman turns back towards the table and reaches out, taking hold of the candles on top. She collects and moves them away, placing them around the room in different locations, keeping the illumination of the room consistent. As she does so, she turns over her shoulder and looks at you. <i>“Even so. You should remove your equipment. Just in case.”</i>");
 	
@@ -978,7 +980,7 @@ public function bigTiddyGothGFEatHerOut():void
 public function bigTiddyGothGFAssFuck():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 
 	var cockIdx:int = pc.cockThatFits(16, "length");
@@ -1044,7 +1046,7 @@ public function bigTiddyGothGFAssFuck():void
 public function bigTiddyGothGFFuckNecklace():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 	output("The Servant’s stares at you a moment, her expression deadpan. <i>“I beg your pardon... but do you know what you’re asking?”</i> Her blue eyes seem to twitch, and you notice her quivering.");
 	
@@ -1070,6 +1072,7 @@ public function bigTiddyGothGFSexNecklaceYou():void
 {
 	clearOutput();
 	bigTiddyGothGFBust();
+	showBust("SERVANT_NOCRYSTAL_NUDE");
 
 	var cockIdx:int = pc.hasCock() ? pc.cockThatFits(16, "length") : -1;
 
@@ -1183,6 +1186,7 @@ public function bigTiddyGothGFSexNecklaceHer():void
 {
 	clearOutput();
 	bigTiddyGothGFBust();
+	showBust("SERVANT_MASTER");
 
 	output("You tell The Servant you want her to wear it.");
 	
@@ -1290,7 +1294,7 @@ public function bigTiddyGothGFSexNecklaceHer():void
 public function bigTiddyGothGFSexNecklaceOutro():void
 {
 	clearOutput();
-	bigTiddyGothGFBust();
+	bigTiddyGothGFBust(true);
 
 	output("You awaken.");
 	

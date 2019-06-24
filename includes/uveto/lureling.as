@@ -18,7 +18,15 @@
 public function showMarion(nude:Boolean = false):void
 {
 	showName("\n"+ marionName().toUpperCase());
-	if(nude) showBust("MARION_NUDE");
+	if(nude)
+	{
+		var cockStr:String = "";
+		if(!marion.hasCock()) {}
+		else if(marion.hasCock(GLOBAL.TYPE_CANINE)) cockStr = "_DOG";
+		else if(marion.hasCock(GLOBAL.TYPE_TENTACLE)) cockStr = "_TENT";
+		else cockStr = "_TENTS";
+		showBust("MARION" + cockStr + "_NUDE");
+	}
 	else showBust("MARION");
 }
 
