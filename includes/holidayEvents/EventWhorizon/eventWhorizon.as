@@ -161,7 +161,7 @@ public function actuallyStartEventWhorizon():void
 		
 		if (names.length != 1)
 		{
-			output("\n\nERROR: Invalid number of available crewmembers.");
+			output("\n\nERROR: Invalid number of available crew members.");
 		}
 
 		output("\n\nYou tell "+ names[0] +" that you’re going outside to investigate this brave new world you’ve landed in.");
@@ -1219,7 +1219,7 @@ private function ewDemonSyriLoss():void
 
 		if (names.length != 1)
 		{
-			output("\n\nERROR: Invalid number of available crewmembers.");
+			output("\n\nERROR: Invalid number of available crew members.");
 		}
 
 		output(" You barely even notice when a group of demons come into the throne, bearing a cum-soaked "+ names[0] +" between them.");

@@ -1506,7 +1506,7 @@ public function gooArmorCrewOption(arg:Array):void
 		case "stay":
 			showGrayGooArmor();
 			
-			txt += "You ask [goo.name] to stay on your ship as a crewmember.";
+			txt += "You ask [goo.name] to stay on your ship as a crew member.";
 			if(pc.armor is GooArmor)
 			{
 				txt += "\n\nThe goo-girl looks at you in the eyes, sliding her bottom half around your [pc.lowerBody] a bit. <i>“Aww, really?”</i>";

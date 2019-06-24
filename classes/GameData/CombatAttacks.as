@@ -1001,7 +1001,7 @@ package classes.GameData
 				if(PCAttacker) 
 				{
 					if(firingNPC == "") output("You would like to " + gun.attackVerb + " your " + gun.longName + ", but lack the power to do so.");
-					else output(StringUtil.capitalize(firingNPC) + " doesn't have enough power to fire " + gun.description + ".");
+					else output(StringUtil.capitalize(firingNPC) + " doesn’t have enough power to fire " + gun.description + ".");
 				}
 				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " cycles a flicker of power through its " + gun.longName + ", but not enough to fire.");
 				return;

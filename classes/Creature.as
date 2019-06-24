@@ -12574,6 +12574,7 @@
 				else race = "huskar";
 			}
 			if (goatScore() >= 4) race = goatRace();
+			if (spiderScore() >= 4) race = "spider-morph";
 			if (demonScore() >= 5) race = "demon-morph";
 			if (dragonScore() >= 5) race = "dragon-morph";
 			if (frostyScore() >= 5) race = "frostwyrm";
@@ -12618,6 +12619,8 @@
 			else if (isTaur()) race = taurRace(race); // Other taurs
 			// Naga-morphs
 			if (isNaga()) race = nagaRace();
+			// Drider-morphs
+			if (isDrider()) race = driderRace();
 			// Slime-morphs
 			if (xhelScore() >= 6) race = "xhelarfog";
 			if (gooScore() >= 6) race = "goo-morph";
@@ -12813,6 +12816,10 @@
 			}
 			return "avian-morph";
 		}
+		public function driderRace():String
+		{
+			return "drider";
+		}
 		public function goatRace():String
 		{
 			if(hasHorns() && horns >= 2 && hornType == GLOBAL.TYPE_GOAT && legType == GLOBAL.TYPE_GOAT)
@@ -12878,6 +12885,7 @@
 		}
 		public function taurRace(sRace:String = ""):String
 		{
+			if (isDrider() || sRace.indexOf("spider") != -1) return driderRace();
 			if (sRace.indexOf("leithan") != -1 || sRace.indexOf("chakat") != -1 || sRace.indexOf("taur") != -1) return sRace;
 			if (sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
 			if (sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
@@ -13334,11 +13342,7 @@
 		public function janeriaScore():int
 		{
 			var counter:int = 0;
-			if (skinType != GLOBAL.SKIN_TYPE_SKIN) counter--;
-			if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) counter++;
-			if (skinTone.indexOf("blue") != -1 || skinTone.indexOf("green") != -1) counter++;
 			if (eyeType == GLOBAL.TYPE_JANERIA) counter++;
-			if (tongueType == GLOBAL.TYPE_FROSTWYRM) counter++;
 			if (legType == GLOBAL.TYPE_JANERIA) counter++;
 			if (wingType == GLOBAL.TYPE_JANERIA)
 			{
@@ -13350,7 +13354,14 @@
 				counter++;
 				if (hasStatusEffect("Genital Slit")) counter++;
 			}
-			if (hasVaginaType(GLOBAL.TYPE_SNAKE)) counter++;
+			if (counter > 0 && tongueType == GLOBAL.TYPE_FROSTWYRM) counter++;
+			if (counter > 0 && hasVaginaType(GLOBAL.TYPE_SNAKE)) counter++;
+			if (skinType != GLOBAL.SKIN_TYPE_SKIN) counter--;
+			else if(counter > 0)
+			{
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) counter++;
+				if (skinTone.indexOf("blue") != -1 || skinTone.indexOf("green") != -1) counter++;
+			}
 			return counter;
 		}
 		public function kitsuneScore():int
@@ -13705,6 +13716,17 @@
 			if (hasTail(GLOBAL.TYPE_SIMII)) counter++;
 			if (armType == GLOBAL.TYPE_SIMII) counter++;
 			if (legType == GLOBAL.TYPE_SIMII && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
+			return counter;
+		}
+		public function spiderScore(): int {
+			var counter: int = 0;
+			if (eyeType == GLOBAL.TYPE_ARACHNID) counter++;
+			if (armType == GLOBAL.TYPE_ARACHNID) counter++;
+			if (legType == GLOBAL.TYPE_ARACHNID) counter++;
+			if (hasTail(GLOBAL.TYPE_ARACHNID)) counter++;
+			if (counter > 2 && hasCock(GLOBAL.TYPE_ARACHNID)) counter++;
+			if (counter > 2 && hasVaginaType(GLOBAL.TYPE_ARACHNID)) counter++;
+			if (!hasChitin() && !hasFur()) counter--;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -14313,7 +14335,7 @@
 				if (tone >= 70) adjectives.push("muscular");
 				else if (tone >= 30) adjectives.push("lean muscled");
 				if (thickness >= 30) adjectives.push("broad");
-				else adjectives.push((mf("m","f", true) == "m" ? "mannishly" : "") + "slender");
+				else adjectives.push((mf("m","f", true) == "m" ? "mannishly " : "") + "slender");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			// Silicone

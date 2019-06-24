@@ -966,13 +966,13 @@ public function getGunnersOnShipNames():Array
 	//if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
 	//if (azraIsCrew()) crewMembers.push("Azra");
-	//if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
+	//if (bessIsCrew()) crewMembers.push(chars["BESS"].short);
 	//if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
-	//if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+	//if (gooArmorIsCrew()) crewMembers.push(chars["GOO"].short);
 	if (paigeIsCrew()) crewMembers.push("Paige");
 	if (pennyIsCrew()) crewMembers.push("Penny");
 	//if (pippaOnShip()) crewMembers.push("Pippa");
@@ -2037,6 +2037,8 @@ public function insideShipEvents():Boolean
 
 public function shipMenu():Boolean
 {
+	if(flags["INFINITE_CREW"] != undefined) output("<b>\\\[ <span class='lust'>UNLIMITED CREW MEMBER SPACE IS ON</span> \\\]</b>\n\n");
+	
 	if(shits["SHIP"] == undefined) shits["SHIP"] = new Casstech();
 	showBust(shits["SHIP"].bustDisplay);
 	
@@ -4427,6 +4429,12 @@ public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):v
 					mechanicsList += mechanics[ii];
 				}
 				AddLogEvent(ParseText(StringUtil.upperCase(mechanicsList) + " send" + (mechanics.length == 1 ? "s":"") + " notice that <b>your ship has been fully repaired.</b>"), "hp", deltaT);
+			}
+			// Max out shields?
+			if(shits["SHIP"].shieldsRaw < shits["SHIP"].shieldsMax())
+			{
+				shits["SHIP"].shieldsRaw = shits["SHIP"].shieldsMax();
+				ExtendLogEvent(" Your ship’s shields have also been replenished.");
 			}
 		}
 	}

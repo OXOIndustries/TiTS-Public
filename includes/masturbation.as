@@ -196,7 +196,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
-			fap.func = cumCowAutoFellatio;
+			fap.func = cumCowAutoFellatioCheck;
 			fap.ttHeader = "Autofellatio";
 			fap.ttBody = "Suck your own dick.";
 			faps.push(fap);
@@ -205,7 +205,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
-			fap.func = autofellatioForNormies;
+			fap.func = autofellatioForNormiesCheck;
 			fap.ttHeader = "Autofellatio";
 			fap.ttBody = "Suck your own dick.";
 			faps.push(fap);
@@ -3933,6 +3933,39 @@ public function shipShowerFappening(scene:String):void
 	
 	clearMenu();
 	addButton(0, "Next", showerExit);
+}
+
+// Autofellatio checks
+public function autofellatioImmobilizationStop(func:Function):void
+{
+	clearOutput();
+	showName("\nWARNING!");
+	
+	output("Choosing to opt for autofellatio while you are immobilized is probably a bad idea as you will be emptying the contents of your [pc.balls] into your [pc.belly]. Perhaps you should try an alternate form of masturbation?");
+	output("\n\n");
+	
+	clearMenu();
+	masturbateButton(0);
+	if(!canShrinkNuts()) addButton(1, "Help!", bigBallBadEnd, undefined, "Look for Help!", (rooms[currentLocation].hasFlag(GLOBAL.HAZARD) ? "Try to call for some help." : "Get some help from nearby."));
+	addButton(4, "Do It!", func, undefined, "Do It Anyway!", "Damn the consequences!");
+}
+public function cumCowAutoFellatioCheck(special:Boolean = false, timeStuff:Number = 110):void
+{
+	if(!special && pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		autofellatioImmobilizationStop(cumCowAutoFellatio);
+		return;
+	}
+	return cumCowAutoFellatio(special, timeStuff);
+}
+public function autofellatioForNormiesCheck():void
+{
+	if(pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		autofellatioImmobilizationStop(autofellatioForNormies);
+		return;
+	}
+	return autofellatioForNormies();
 }
 
 //CumCow Autofellatio w/Optional Cocknosis intro

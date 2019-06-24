@@ -132,7 +132,7 @@ public function yogaIntro():Boolean
 	}
 	if(paigeIsCrew())
 	{
-		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you recall that Paige is unable to hold her seminars while she is employed as a crewmember of your ship!");
+		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you recall that Paige is unable to hold her seminars while she is employed as a crew member of your ship!");
 		if(hours >= 17 || (hours < 17 && flags["SEXED_PAIGE"] != undefined && hours < 9)) output(" You may be able to find her taking a break at her house, however.");
 		return false;
 	}

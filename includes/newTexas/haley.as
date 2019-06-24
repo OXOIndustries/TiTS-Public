@@ -607,7 +607,7 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 		}
 		else output("from your crotch and quietly make your escape.");
 	}
-	//!PC.hasCock() && PC.hasVagina()
+	// !PC.hasCock() && PC.hasVagina()
 	else if(!pc.hasCock() && pc.hasVagina())
 	{
 		output("Fuck it, this needs tending to <i>now</i> and you’re not going to pass up the opportunity to use a sexy leithan girl as masturbation fodder. You sneakily ");

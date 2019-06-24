@@ -868,7 +868,13 @@ public function getTailUsedBySera():void
 	if(pc.hasParasiteTail()) output(" parasitic hind-limb");
 	else output(" [pc.tail]");
 	output(" with disgust or revulsion, Sera simply smiles and extends her arm, letting the sinuously undulating length of vagina-capped flesh curl about her arm. She pets it while cooing affectionately, much as someone might do to a pet, a happy smile on her pierced face.");
-	output("\n\n<i>“You’ve got a little tagalong, huh?”</i> the demoness purrs, slipping a finger into the moist entrance at its tip. Shudders of pleasure ripple up the tubular organ and into your spine where they diffuse through your body. A half-whimper, half-sigh slips out of your lips. Muscles clamp down about the invading digit automatically, pulling it deeper with noisy, squelching suckles, every rippling twist rubbing new, sensitive nerves against her. <i>“I never understood the prohibitions against these little girls. All they want to do is get stuffed full of cum and make you feel good for it, right?”</i>");
+	output("\n\n<i>“");
+	if(pc.hasParasiteTail()) output("You’ve got a little tagalong, huh?");
+	else output("Hmm, nice feature you have here--what mods did you use to get it?");
+	output("”</i> the demoness purrs, slipping a finger into the moist entrance at its tip. Shudders of pleasure ripple up the tubular organ and into your spine where they diffuse through your body. A half-whimper, half-sigh slips out of your lips. Muscles clamp down about the invading digit automatically, pulling it deeper with noisy, squelching suckles, every rippling twist rubbing new, sensitive nerves against her. <i>“");
+	if(pc.hasParasiteTail()) output("I never understood the prohibitions against these little girls.");
+	else output("I love teasing girls like these until they reveal their true desires.");
+	output(" All they want to do is get stuffed full of cum and make you feel good for it, right?”</i>");
 	output("\n\nYou try to summon up some kind of response to her statement, but she slides her middle finger in next to her pointer, silencing you with a gag of feminine bliss.");
 	output("\n\n<i>“Don’t bother talking, slut. I’m just here to use your body. Today, you’ve lucked out. I’m gonna drill this little cocksucker full until you’re lying on the ground unconscious while it feasts on jizz.”</i> Sera pauses to add a third finger. It feels too good for words. Your head is spinning, awash with pleasure. You bite your lip almost hard enough to draw blood, and when your jaw relaxes, a reedy exultation of desire is all that emerges. You grind your body against Sera, eager for more");
 	if(!pc.isNude()) output(", even though the both of you are clothed.");
@@ -905,7 +911,7 @@ public function getTailUsedBySera():void
 	output("\n\nJuices rush to fill your mouth while your eyes roll back. Your [pc.legOrLegs] spasm");
 	if(pc.legCount == 1) output("s");
 	if(pc.hasVagina()) output(", soaked with juices");
-	if(pc.hasCock()) output(", your cocks unload into the open air");
+	if(pc.hasCock()) output(", your cock" + (pc.cocks.length == 1 ? " unloads" : "s unload") + " into the open air");
 	output(", your [pc.tailgina] ripples on your [pc.tongue], milking it, and you sag deeper into Sera’s grip, letting her hold you upright while what feels like gallons of [pc.girlCum] pour into your mouth. It’s the kind of orgasm that would normally knock you prone and gasping, well-fucked and unlikely to do anything but cuddle your way to a well-fucked sleep.");
 	output("\n\nYou’re still trembling when Sera eases you down to the floor, aware of two things at that exact moment: how good you feel and just how hungry for sperm your well-used [pc.tailgina] is. Lucky for it, the shopkeeper is still horny.");
 	output("\n\nYou feel fingers extract your [pc.tongue] from the soaked, prehensile length, the sound of its squelching departure making you shudder. Sera’s got a good grip on your oozing tail, and she lifts it up without much consideration for your state. She doesn’t stop until she’s got it held against the underside of her pre-drizzling member, letting the outflow tease you. It’s so close to feeding your hunger and yet so far away. You try to rise, but Sera’s heels press down on your [pc.chest].");

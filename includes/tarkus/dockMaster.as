@@ -182,7 +182,7 @@ public function raskvelRepair2():void
 	processTime(59);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
+	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,true,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
 	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
 	//[Leave] //Back to business [Flirt] //She *does* look all sweaty and sexy right now.
 }
@@ -225,7 +225,7 @@ public function raskvelRepair2Intense():void
 	processTime(165);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
+	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,true,"Flirt","She <b>does</b> look all sweaty and sexy right now.");
 	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
 	//output("\n\n[Leave] //Space awaits [Flirt] //She *does* look all sweaty and sexy right now.");
 }
@@ -264,7 +264,7 @@ public function raskvelDockmasterMenu():void
 	clearMenu();
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
-	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,undefined,"Flirt","She does look like she could use a break from all the hard work...");
+	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,false,"Flirt","She does look like she could use a break from all the hard work...");
 	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
 	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
 	else addDisabledButton(5,"Repair","Repair","Your ship is not damaged.");

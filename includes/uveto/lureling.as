@@ -307,7 +307,7 @@ public function insideMarionsDen():void
 
 	clearMenu();
 	addButton(0, "Nope!", refuseMarionsAdvances, undefined, "Nope!", "This isn’t what you bargained for!");
-	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0) || marion.hasCock()) addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
+	if (pc.hasGenitals() || marion.hasCock()) addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
 	else addDisabledButton(1, "Fuck Her", "Fuck Her", "You will need to be female or have a cock that fits in order to do this!");
 }
 
@@ -409,14 +409,12 @@ public function marionsDenSexMenu():void
 
 	clearMenu();
 	// only allow FuckVag for PCs with a) dicks and NO hardlight or b) cunts AND hardlight. Scene doesnt make sense otherwise
-	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra’s pretty blue pussy and let her ride you.");
-	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra’s pretty blue pussy and let her ride you.");
-	else if (pc.hasGenitals()) addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis or a vagina and a hardlight dildo for this.");
-	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need genitals for this.");
+	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(0),false,0], "Fuck Vag", "Stick your cock in the essyra’s pretty blue pussy and let her ride you.");
+	else if (pc.hasVagina() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your hardlight strap-on in the essyra’s pretty blue pussy and let her ride you.");
+	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis that fits or a vagina and a hardlight dildo for this.");
 	// if PC has either a pussy & no cock or a cock thats to large
-	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
-	else if (pc.hasGenitals()) addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
-	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need genitals for this.");
+	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == -1)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
+	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
 	// if essray has at least 1 cock, else hide the button
 	if (marion.hasCock()) addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "Let the "+ marionName() +" use her [marion.multiCocks] on your [pc.vagOrAss].");
 }
