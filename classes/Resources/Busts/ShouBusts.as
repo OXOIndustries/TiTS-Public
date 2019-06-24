@@ -261,6 +261,11 @@
 		//[Embed(source = "../../../assets/images/npcs/shou_puppy/fix_nude.png", mimeType = "image/png")]
 		//public var Bust_FIX_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/forgehound.png", mimeType = "image/png")]
+		public var Bust_FORGEHOUND:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/forgehound_nude.png", mimeType = "image/png")]
+		public var Bust_FORGEHOUND_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_1.png", mimeType = "image/png")]
 		public var Bust_FROG_1:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/frog_2.png", mimeType = "image/png")]
@@ -681,6 +686,10 @@
 		public var Bust_USHAMEE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_nude_preg.png", mimeType = "image/png")]
 		public var Bust_USHAMEE_NUDE_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_civ.png", mimeType = "image/png")]
+		public var Bust_USHAMEE_CIV:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_civ_nude.png", mimeType = "image/png")]
+		public var Bust_USHAMEE_CIV_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/uveto_taxi_vendor.png", mimeType = "image/png")]
 		public var Bust_UVETO_TAXI_VENDOR:Class;
@@ -688,9 +697,19 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/vark.png", mimeType = "image/png")]
+		public var Bust_VARK:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/vark_nude.png", mimeType = "image/png")]
+		public var Bust_VARK_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_grunt.png", mimeType = "image/png")]
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/waralpha.png", mimeType = "image/png")]
+		public var Bust_WAR_ALPHA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/waralpha_nude.png", mimeType = "image/png")]
+		public var Bust_WAR_ALPHA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion.png", mimeType = "image/png")]
 		public var Bust_WAR_LION:Class;
@@ -988,6 +1007,11 @@
 			public var Full_FIX:Class;
 			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fix_nude.png", mimeType = "image/png")]
 			//public var Full_FIX_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/forgehound.png", mimeType = "image/png")]
+			public var Full_FORGEHOUND:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/forgehound_nude.png", mimeType = "image/png")]
+			public var Full_FORGEHOUND_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_1.png", mimeType = "image/png")]
 			public var Full_FROG_1:Class;
@@ -1386,6 +1410,10 @@
 			public var Full_USHAMEE_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee_nude_preg.png", mimeType = "image/png")]
 			public var Full_USHAMEE_NUDE_PREG:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee_civ.png", mimeType = "image/png")]
+			public var Full_USHAMEE_CIV:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee_civ_nude.png", mimeType = "image/png")]
+			public var Full_USHAMEE_CIV_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/uveto_taxi_vendor.png", mimeType = "image/png")]
 			public var Full_UVETO_TAXI_VENDOR:Class;
@@ -1393,8 +1421,18 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/valeria.png", mimeType = "image/png")]
 			public var Full_VALERIA:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/vark.png", mimeType = "image/png")]
+			public var Full_VARK:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/vark_nude.png", mimeType = "image/png")]
+			public var Full_VARK_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/black_void_grunt.png", mimeType = "image/png")]
 			public var Full_VOIDPIRATE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/waralpha.png", mimeType = "image/png")]
+			public var Full_WAR_ALPHA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/waralpha_nude.png", mimeType = "image/png")]
+			public var Full_WAR_ALPHA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/warlion.png", mimeType = "image/png")]
 			public var Full_WAR_LION:Class;
