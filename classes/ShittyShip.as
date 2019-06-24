@@ -166,11 +166,11 @@ package classes {
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.aim()/4;
 			return bonus + shipStatBonusTotal(1);
 		}
-		public function shipShieldDef():Number
+		override public function shieldDefense(): Number 
 		{
 			return shipStatBonusTotal(3);
 		}
-		public function shipDefense():Number
+		override public function defense():Number
 		{
 			return shipStatBonusTotal(2);
 		}
@@ -198,7 +198,7 @@ package classes {
 				evasion += inventory[i].evasion;
 				accuracy += inventory[i].attack;
 				defense += inventory[i].defense;
-				if(inventory[i].type != GLOBAL.RANGED_WEAPON) shieldDefense += inventory[i].shieldDefense;
+				if(inventory[i].type != GLOBAL.RANGED_WEAPON && inventory[i].type != GLOBAL.GADGET) shieldDefense += inventory[i].shieldDefense;
 				fortification += inventory[i].fortification;
 				shields = inventory[i].shields;
 			}
@@ -209,12 +209,16 @@ package classes {
 			defense += meleeWeapon.defense + rangedWeapon.defense + armor.defense + shield.defense + accessory.defense;
 			fortification += meleeWeapon.fortification + rangedWeapon.fortification + armor.fortification + shield.fortification + accessory.fortification;
 
+			//Shields
 			shields += meleeWeapon.shields + rangedWeapon.shields + armor.shields + shield.shields + accessory.shields;
-			if(meleeWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += meleeWeapon.shieldDefense;
-			if(rangedWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += rangedWeapon.shieldDefense;
-			if(armor.type != GLOBAL.RANGED_WEAPON) shieldDefense += armor.shieldDefense;
-			if(shield.type != GLOBAL.RANGED_WEAPON) shieldDefense += shield.shieldDefense;
-			if(accessory.type != GLOBAL.RANGED_WEAPON) shieldDefense += accessory.shieldDefense;			
+			//ShieldDef
+			if(meleeWeapon.type != GLOBAL.RANGED_WEAPON && meleeWeapon.type != GLOBAL.GADGET) shieldDefense += meleeWeapon.shieldDefense;
+			if(rangedWeapon.type != GLOBAL.RANGED_WEAPON && rangedWeapon.type != GLOBAL.GADGET) shieldDefense += rangedWeapon.shieldDefense;
+			if(armor.type != GLOBAL.RANGED_WEAPON && armor.type != GLOBAL.GADGET) shieldDefense += armor.shieldDefense;
+			if(shield.type != GLOBAL.RANGED_WEAPON && shield.type != GLOBAL.GADGET) shieldDefense += shield.shieldDefense;
+			if(accessory.type != GLOBAL.RANGED_WEAPON && accessory.type != GLOBAL.GADGET) shieldDefense += accessory.shieldDefense;			
+
+			//Output the variable.
 			if(type == 0) return evasion;
 			else if(type == 1) return accuracy;
 			else if(type == 2) return defense;

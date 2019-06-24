@@ -411,9 +411,9 @@ public function shipCompareString(newShip:ShittyShip):String
 	//shipTooltip += "\n\n<b>Old Ship:</b> " + newShip.short + "\n" + newShip.long;
 
 	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());
-	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shield.shieldDefense, shits["SHIP"].shield.shieldDefense);
+	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shieldDefense(), shits["SHIP"].shieldDefense());
 	shipTooltip += "\n<b>Armor: </b>" + shipStatCompare(newShip.HPMax(), shits["SHIP"].HPMax());
-	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.armor.defense, shits["SHIP"].armor.defense);
+	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.defense(), shits["SHIP"].defense());
 	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
 	shipTooltip += "\n<b>Power Generation: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
 	
