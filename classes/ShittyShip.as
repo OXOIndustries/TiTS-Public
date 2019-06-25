@@ -23,6 +23,7 @@ package classes {
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.*;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.*;
+	import classes.ShittyShips.ShittyShipGear.Upgrades.*;
 
 	public class ShittyShip extends Creature {
 	
@@ -98,11 +99,12 @@ package classes {
 		//Power Generation (mapped to willpower)
 		public function shipPowerGen():Number
 		{
-			return willpowerRaw;
+			return willpowerRaw + (equippedItemCountByClass(PowerCoreTuner)*15);
 		}
 		//Sensors (Mapped to Aim)
 		public function shipSensors():Number
 		{
+			var bonus:Number = (equippedItemCountByClass(SensorSuite) * 25);
 			return aimRaw;
 		}
 		//Systems (Mapped to Intelligence)
@@ -110,7 +112,8 @@ package classes {
 		{
 			var bonus:Number = 0;
 			bonus += equippedItemCountByClass(ShieldDisruptor) * 5;
-			return intelligenceRaw;
+			bonus += equippedItemCountByClass(HardenedSystems) * 5;
+			return intelligenceRaw + bonus;
 		}
 		public var shipGunCapacityRaw:Number = 2;
 		public var shipCapacityRaw:Number = 3;
@@ -157,14 +160,14 @@ package classes {
 			var bonus:Number = 0;
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.reflexes()/4;
 			if(hasStatusEffect("Evading!")) bonus += 50;
-			return bonus + shipStatBonusTotal(0);
+			return bonus + shipThrust()/2 + shipAgility() + shipStatBonusTotal(0);
 		}
 		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
 		public function shipAccuracy():Number
 		{
 			var bonus:Number = 0;
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.aim()/4;
-			return bonus + shipStatBonusTotal(1);
+			return bonus + shipSystems()/2 + shipSensors() + shipStatBonusTotal(1);
 		}
 		override public function shieldDefense(): Number 
 		{
@@ -351,11 +354,7 @@ package classes {
 			//No proper shield generator? NO SHIELD!
 			if(hasShields() && !hasShieldGenerator(true)) return 0;
 			
-			var temp: int = 0;
-			temp += meleeWeapon.shields;
-			temp += rangedWeapon.shields;
-			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
-			
+			var temp: int = shipStatBonusTotal(5);			
 			if(hasPerk("PCs")) temp = Math.ceil(temp + (temp * (kGAMECLASS.pc.willpower() / (kGAMECLASS.pc.level * 5 * 4))));
 
 			if (temp < 0) temp = 0;
