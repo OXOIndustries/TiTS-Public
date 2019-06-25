@@ -3802,10 +3802,11 @@
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
 			removeStatusEffect("Roehm Slimed");
-			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Body Paint"))
+			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Painted Tits") || hasStatusEffect("Body Paint"))
 			{
 				if(this is PlayerCharacter) AddLogEvent("Washing yourself has cleaned off any and all paint that had been covering your body.");
 				if(hasStatusEffect("Painted Penis")) clearPaintedPenisEffect();
+				if(hasStatusEffect("Painted Tits")) clearPaintedTitsEffect();
 				removeStatusEffect("Body Paint");
 			}
 			if(pluggedVaginas() > 0 || isPlugged(-1))
@@ -8574,6 +8575,11 @@
 			libidoMod -= statusEffectv4("Painted Penis");
 			removeStatusEffect("Painted Penis");
 		}
+		public function clearPaintedTitsEffect():void
+		{
+			libidoMod -= statusEffectv4("Painted Tits");
+			removeStatusEffect("Painted Tits");
+		}
 		//CHECKING IF HAS A SPECIFIC STORAGE ITEM
 		//Status
 		public function hasStatusEffect(statusName: String, ignoreHidden:Boolean = false): Boolean {
@@ -12512,6 +12518,7 @@
 				if(this is PlayerCharacter) AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
 				removeStatusEffect("Boobswell Pads");
 			}
+			if(hasStatusEffect("Painted Tits") && arraySpot == statusEffectv1("Painted Tits")) clearPaintedTitsEffect();
 			removeJunk(breastRows, arraySpot, totalRemoved);
 		}
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -18199,7 +18206,7 @@
 				case "white":
 					return RandomInCollection("pearl", "opal");
 				case "pink":
-					return "rose quartz";
+					return RandomInCollection("rose quartz", "pink diamond");
 				case "red":
 					return RandomInCollection("ruby", "garnet");
 				case "brown":
@@ -18279,8 +18286,10 @@
 			switch(arg)
 			{
 				case GLOBAL.FLUID_TYPE_MILK:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
 					collection.push("milk");
-					if(rand(10) == 0) collection.push("cream");
+					//if(arg == GLOBAL.FLUID_TYPE_MILK && rand(10) == 0) collection.push("cream");
 					if(kGAMECLASS.silly && cowScore() >= 4 && rand(5) == 0) collection.push("moo juice");
 					break;
 				case GLOBAL.FLUID_TYPE_CUM:
@@ -18313,8 +18322,6 @@
 				case GLOBAL.FLUID_TYPE_CUMSAP:
 					collection.push("cum-sap", "cum-sap", "botanical spunk", "floral jism");
 					break;
-				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
-				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
 				case GLOBAL.FLUID_TYPE_VANILLA:
 				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
 				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
@@ -18369,6 +18376,7 @@
 			return fluidDescript(milkType);
 		}
 		public function cumDescript(): String {
+			if(kGAMECLASS.silly && cumType == GLOBAL.FLUID_TYPE_HONEY && rand(3) == 0) return ((rand(3) == 0 ? (fluidColor(cumType) + " ") : "") + "honey nut");
 			return fluidDescript(cumType);
 		}
 		public function girlCumDescript(): String {
@@ -18761,7 +18769,7 @@
 				if (tone < 30 && rand(4) == 0) {
 					if(thickness < 30 && rand(2) == 0) return "flat chest";
 					return "unremarkable chest muscles";
-			}
+				}
 				return RandomInCollection(["chest", "pectorals", (mf("manly", "boyish", true) + " chest")]);
 			}
 			if (breastRows.length == 2) {
@@ -22018,6 +22026,13 @@
 						if(requiresRemoval)
 						{
 							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>", "passive", maxEffectLength);
+						}
+						break;
+					case "Painted Tits":
+						if(requiresRemoval)
+						{
+							if(this is PlayerCharacter) AddLogEvent("The paint on your chest has dissolved away, taking the extra libidinous tingling with it.", "passive", maxEffectLength);
+							libidoMod -= thisStatus.value4;
 						}
 						break;
 					case "Body Paint":
