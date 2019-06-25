@@ -1901,7 +1901,10 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 	{
 		if(mother.hasStatusEffect("Butt Bug (Female)"))
 		{
-			if(mother.pregnancyData[3].pregnancyType.indexOf("ButtBugPregnancy") != -1) mother.addStatusValue("Butt Bug (Female)", 2, 1);
+			// Overproductive female can only be fertilized by male butt bug.
+			if(	(father.impregnationType == "ButtBugPregnancy" && mother.pregnancyData[3].pregnancyType == "ButtBugPregnancy1")
+			||	(InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList) && mother.pregnancyData[3].pregnancyType != "ButtBugPregnancy1")
+			) mother.addStatusValue("Butt Bug (Female)", 2, 1);
 		}
 		return;
 	}

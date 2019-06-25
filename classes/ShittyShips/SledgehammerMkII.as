@@ -48,7 +48,7 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The Sledgehammer Mark II is one of the most powerful, combat-ready ships on the market. Produced by Reaper Armaments for the 14th Planet Rush, this space-faring bludgeon is fully capable of rendering most pirates down to floating scrap and even standing up to similarly-sized military vessels for a time. Remember, when you're flying a Sledgehammer, every problem's just another nail.";
+			this.long = "The Sledgehammer Mark II is one of the most powerful, combat-ready ships on the market. Produced by Reaper Armaments for the 14th Planet Rush, this space-faring bludgeon is fully capable of rendering most pirates down to floating scrap and even standing up to similarly-sized military vessels for a time. Remember, when you’re flying a Sledgehammer, every problem’s just another nail.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It rolls aside!";
 			this.isPlural = false;

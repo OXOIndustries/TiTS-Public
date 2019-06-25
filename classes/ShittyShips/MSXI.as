@@ -49,7 +49,7 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The Aegis MS-XI has strong shielding and firepower, putting it near the top of its class in terms of combat ability - though the secondary systems and high crew capacity necessitates that some compromise was made in the ship's impact armor, which is fairly light. Still, the ship has more than enough kick to blast through most threats, and enough shielding to allow the crew to escape even with the MS-XI's slower speed - another product of its large size.";
+			this.long = "The Aegis MS-XI has strong shielding and firepower, putting it near the top of its class in terms of combat ability - though the secondary systems and high crew capacity necessitates that some compromise was made in the ship’s impact armor, which is fairly light. Still, the ship has more than enough kick to blast through most threats, and enough shielding to allow the crew to escape even with the MS-XI’s slower speed - another product of its large size.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;

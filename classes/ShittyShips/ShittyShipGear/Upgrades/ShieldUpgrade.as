@@ -41,7 +41,7 @@
 			this.description = "a shield upgrade";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Redundant projectors, additional capacitors, and backup power delivery system all come together to increase your ship's ability to take a beating in vacuum.\n\n(+1000 shields)";
+			this.tooltip = "Redundant projectors, additional capacitors, and backup power delivery system all come together to increase your ship’s ability to take a beating in vacuum.\n\n(+1000 shields)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
