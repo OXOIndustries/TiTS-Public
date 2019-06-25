@@ -2100,7 +2100,7 @@ public function shipMenu():Boolean
 		{
 			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew,");
 			if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
-			output(" residing in " + (crewCapacity) + " of your available ship space" + (crewCapacity == 1 ? "" : "s") + ".");
+			output(" residing in " + (crewCapacity) + " of your available crew space" + (crewCapacity == 1 ? "" : "s") + ".");
 		}
 		
 		if(crewCapacity < crewCounter && flags["INFINITE_CREW"] == undefined) 

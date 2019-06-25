@@ -785,11 +785,13 @@ public function unfitShipItem(newScreen:Boolean = false):void
 	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
 	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
 	clearMenu();
+	var buttonMod:Number = 0;
 	for(var i:int = 0; i < ship.inventory.length; i++)
 	{
+		if(i == 14) buttonMod++;
 		output("\n\\\[Modular\\\] " + StringUtil.upperCase(ship.inventory[i].longName) + " (" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits)");
 
-		addItemButton(i, ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
+		addItemButton((i+buttonMod), ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
 	}
 	if(ship.inventory.length == 0) output("\nNo modules fitted.");
 	addButton(14, "Back", shop, shopkeep);
