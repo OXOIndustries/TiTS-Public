@@ -1,4 +1,5 @@
 ﻿import classes.ShittyShips.ShittyShipGear.GunTurrets.*;
+import classes.ShittyShips.ShittyShipGear.Upgrades.*;
 public function showDockmistress(nude:Boolean = false):void
 {
 	showBust("RASKVEL_DOCKMASTER" + (nude ? "_NUDE":""));
@@ -240,15 +241,32 @@ public function dockmasterAddonsShop():void
 	shopkeep = new Dockmaster();
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CapacitorBank());
+	shopkeep.inventory.push(new ShieldUpgrade());
+	shopkeep.inventory.push(new TunedEmitters());
+	shopkeep.inventory.push(new RedundantPlating());
+	shopkeep.inventory.push(new HeavyArmor());
+	shopkeep.inventory.push(new SensorSuite());
+	shopkeep.inventory.push(new HardenedSystems());
+	shopkeep.inventory.push(new PowerCoreTuner());
+
+	//shopkeep.inventory.push(new LCannon());
+	//shopkeep.inventory.push(new ThermalProjector());
+	buyShipFitItem();
+}
+
+public function dockmasterWeaponShop():void
+{
+	clearOutput();
+	showDockmistress();
+	shopkeep = new Dockmaster();
+	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
+	shopkeep.inventory.push(new CoilCannon());
+	shopkeep.inventory.push(new EMTurret());
 	shopkeep.inventory.push(new MGun());
 	shopkeep.inventory.push(new MTurret());
 	shopkeep.inventory.push(new MissileBay());
 	shopkeep.inventory.push(new MissileTurret());
-	shopkeep.inventory.push(new CoilCannon());
-	shopkeep.inventory.push(new EMTurret());
 	shopkeep.inventory.push(new LTurret());
-	//shopkeep.inventory.push(new LCannon());
-	//shopkeep.inventory.push(new ThermalProjector());
 	buyShipFitItem();
 }
 
@@ -266,9 +284,10 @@ public function raskvelDockmasterMenu():void
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
 	if(pc.lust() >= 33) addButton(2,"Flirt",flirtWivRaskDock,false,"Flirt","She does look like she could use a break from all the hard work...");
 	else addDisabledButton(2,"Flirt","Flirt","You aren’t horny enough for this.");
-	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(5,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
-	else addDisabledButton(5,"Repair","Repair","Your ship is not damaged.");
-	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase weapons and upgrade modules for your ship.");
+	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairMePleaseDockMistress,undefined,"Repair","Inquire about having your ship repaired. The mechanic back on Tavros Station might do it for free, but the raskvel will do it fast - if you’re comfortable paying.");
+	else addDisabledButton(4,"Repair","Repair","Your ship is not damaged.");
+	addButton(5,"Ship Weapons",dockmasterWeaponShop,undefined,"Ship Weapons","Purchase weapons for your ship.");
+	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase upgrade modules for your ship.");
 	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you longer wish to keep.");
 	addButton(10,"Buy A Ship",buyAShipFromTrashRat,undefined,"Buy A Ship","See what the raskvel have for sale.");
 	addButton(14,"Leave",mainGameMenu);
