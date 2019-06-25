@@ -3111,7 +3111,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		{
 			outputRouter("\n\n<b>You can zip or unzip the zippers on your slavesuit at will.</b>.. Or you could just check and see how you have it set up right now.");
 			addGhostButton(btnIndex++,"Slavesuit",slavesuitOptionsDisplay,undefined,"Slavesuit","Check the status of you slave uniform.");
-		}	
+		}
 		// Immobilization help
 		if (immobilizationList().length > 0) addGhostButton(btnIndex++, "ImmobileHelp", immobilizationHelp, undefined, "Immobilization Help", "You can’t move--Call for help to fix your immobilized state!");
 	}
@@ -3499,7 +3499,7 @@ public function boobStuff(forTarget:Creature = null):void
 				}
 				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
 					outputRouter(" " + (target == pc ? "You":"[target.HeShe]") + " can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the normal-looking areolae.");
-				}		
+				}
 			}
 			//Inverted type
 			else {
@@ -3514,7 +3514,7 @@ public function boobStuff(forTarget:Creature = null):void
 					outputRouter(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " ");
 					if(target.breastRows[temp].breastRating() < 1) outputRouter("on each side.");
 					else outputRouter("each.");
-				}				
+				}
 				switch(target.breastRows[temp].nippleType)
 				{
 					case GLOBAL.NIPPLE_TYPE_FUCKABLE:
@@ -3567,6 +3567,23 @@ public function boobStuff(forTarget:Creature = null):void
 		}
 	}
 	
+	// Painted Titties
+	if(target.hasStatusEffect("Painted Tits"))
+	{
+		outputRouter("\n\nAccentuating " + (target == pc ? "your":"[target.hisHer]"));
+		if(target.breastRows.length != 1) outputRouter(" " + num2Ordinal(target.statusEffectv1("Painted Tits")) + " row of");
+		outputRouter(" " + target.breastDescript(target.statusEffectv1("Painted Tits")) + " like a lewd mural, an eye-catching design has been painted on the surface.");
+		/*
+		switch(flags["BOOB_PAINTED_DESIGN"])
+		{
+			case 1: outputRouter(" "); break;
+			case 2: outputRouter(" "); break;
+			case 3: outputRouter(" "); break;
+			case 4: outputRouter(" "); break;
+			default: outputRouter(" "); break;
+		}
+		*/
+	}
 	// Lund piercing
 	if(target.breastRows[0].piercing is LundsRings && target == pc) outputRouter("\n\nYour [pc.nipples] are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.");
 	
@@ -4409,9 +4426,9 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if(target.hasStatusEffect("Painted Penis") && target.statusEffectv1("Painted Penis") == x)
 	{
 		outputRouter(" Like some kind of perverse canvas, ");
-		if(target.cockTotal() == 1) output((target == pc ? "your":"[target.hisHer]"));
-		else output("the");
-		output(" cock is painted");
+		if(target.cockTotal() == 1) outputRouter((target == pc ? "your":"[target.hisHer]"));
+		else outputRouter("the");
+		outputRouter(" cock is painted");
 		switch(flags["COCK_PAINTED_DESIGN"])
 		{
 			case 1: outputRouter(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length. Lines travel across its form, leading to text that reads, “fuck me” at the root."); break;
@@ -4424,9 +4441,9 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	//Candy colored cocks
 	else if(target.cocks[x].cockColor == "red and white") {
 		outputRouter(" Like a candy cane, ");
-		if(target.cockTotal() == 1) output(target == pc ? "your":"[target.hisHer]");
-		else output("the");
-		output(" cock is striped red and white.");
+		if(target.cockTotal() == 1) outputRouter(target == pc ? "your":"[target.hisHer]");
+		else outputRouter("the");
+		outputRouter(" cock is striped red and white.");
 	}
 	
 	// Mimbranes
@@ -4506,7 +4523,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			else {
 				if(!eachOne) outputRouter(" The exterior mound is almost heart-shaped, full and thick near the top and narrower further down.");
 				else outputRouter("\nEach vagina’s exterior mound is almost heart-shaped, full and thick near the top and narrow at the bottom.");
-			}	
+			}
 			break;
 		//Doggie flavor
 		case GLOBAL.TYPE_CANINE:
