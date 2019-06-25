@@ -24,6 +24,7 @@ package classes {
 	import classes.Engine.Interfaces.*;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.*;
 	import classes.ShittyShips.ShittyShipGear.Upgrades.*;
+	import classes.ShittyShips.ClydesdaleK7;
 
 	public class ShittyShip extends Creature {
 	
@@ -127,9 +128,15 @@ package classes {
 		{
 			return shipGunCapacityRaw;
 		}
+		public function bonusCrewCapacity():Number
+		{
+			var bonus:Number = 0;
+			if(this is ClydesdaleK7) bonus += 2;
+			return bonus;
+		}
 		public function shipCrewCapacity():Number
 		{
-			return (shipCapacity() - this.inventory.length);
+			return ((shipCapacity() + bonusCrewCapacity()) - this.inventory.length);
 		}
 		//STORAGE SIZES!
 		public function wardrobeSize():Number
