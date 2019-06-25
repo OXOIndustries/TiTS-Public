@@ -54,6 +54,7 @@ public function initializeMyrellionRooms():void
 	rooms["601"].runOnEnter = airFieldCentralBonus;
 	rooms["601"].addFlag(GLOBAL.OUTDOOR);
 	rooms["601"].addFlag(GLOBAL.PUBLIC);
+	rooms["601"].addFlag(GLOBAL.COMMERCE);
 
 	//602 Airfield North
 	rooms["602"] = new RoomClass(this);

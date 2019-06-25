@@ -429,6 +429,7 @@
 		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
+		include "../includes/myrellion/meonTheShipTove.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";

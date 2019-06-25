@@ -9,6 +9,8 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_Z14; }
 		
+		[Embed(source = "../../../assets/images/npcs/jassbefrold/aegis_ms_xi.png", mimeType = "image/png")]
+		public var Bust_MSXI:Class;
 		[Embed(source = "../../../assets/images/npcs/jassbefrold/pyrite_colt_xlr.png", mimeType = "image/png")]
 		public var Bust_COLT_XLR:Class;
 		[Embed(source = "../../../assets/images/npcs/jassbefrold/gabilani_moondast_gruss.png", mimeType = "image/png")]
@@ -25,6 +27,8 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/aegis_ms_xi.png", mimeType = "image/png")]
+			public var Full_MSXI:Class;
 			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/pyrite_colt_xlr.png", mimeType = "image/png")]
 			public var Full_COLT_XLR:Class;
 			[Embed(source = "../../../assets/images/npcs/jassbefrold/HR/gabilani_moondast_gruss.png", mimeType = "image/png")]
