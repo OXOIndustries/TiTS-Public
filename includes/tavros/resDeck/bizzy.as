@@ -50,18 +50,20 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 		return;
 	}
 
+	var bizzyMailPay:Boolean = false;
 	// Init the day offset we use from the first time update after the mail is read
 	if (flags["BIZZY_MAIL_PAYMENT_DAY"] == undefined && MailManager.isEntryViewed("bizzy_camgirl_profits"))
 	{
 		flags["BIZZY_MAIL_PAYMENT_DAY"] = days;
+		bizzyMailPay = true;
 	}
 
 	// Also check for the first day so we can push a payment through along with the mail
-	if (days == flags["BIZZY_MAIL_PAYMENT_DAY"] || days == (flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays) >= 30)
+	if (bizzyMailPay || (flags["BIZZY_MAIL_PAYMENT_DAY"] != undefined && ((days - flags["BIZZY_MAIL_PAYMENT_DAY"]) + totalDays) >= 30))
 	{
-		var numPays:int = Math.max(1, ((flags["BIZZY_MAIL_PAYMENT_DAY"] + totalDays - days) / 30));
+		var numPays:int = Math.max(1, (((days - flags["BIZZY_MAIL_PAYMENT_DAY"]) + totalDays) / 30));
 
-		flags["BIZZY_MAIL_PAYMENT_DAY"] = days + totalDays;
+		flags["BIZZY_MAIL_PAYMENT_DAY"] = (days + totalDays);
 
 		var payAmounts:Array = [300, 2000, 2000]; // This should handle the payments not working, I forgot we go up to stage 5 at the very end without touching the payments
 
@@ -71,7 +73,7 @@ public function processBizzyCamgirlPayments(deltaT:int, doOut:Boolean, totalDays
 		var actualPay:int = (payAmounts[Math.min(flags["BIZZY_PORN_STUDIO"] - 3, 2)] * numPays);
 		pc.credits += actualPay;
 
-		AddLogEvent("<b>Your codex makes a chiming sound, informing you that you have received " + actualPay + " credits. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".</b>", "good", deltaT);
+		AddLogEvent("Your codex makes a chiming sound, <b>informing you that you have received " + actualPay + " credits</b>. That’ll be what Bizzy has earned for you " + (numPays == 1 ? "this month" : "the last few months") +".", "good", deltaT);
 	}
 }
 
@@ -97,8 +99,8 @@ public function bizzyBustDisplay(isNude:Boolean = false):String
 	// Stage 5: J cups, optional collar
 	else {
 		sBust += "_4";
-		if(bizzySlaveBoth() || bizzySlaveCollar()) sBust += "_COLLAR"; // neck
-		//if(bizzySlaveBoth() || bizzySlaveTat()) sBust += "_TATTOO"; // butt
+		if(bizzySlaveCollar()) sBust += "_COLLAR"; // neck
+		//if(bizzySlaveTat()) sBust += "_TATTOO"; // butt
 	}
 	*/
 	
@@ -114,24 +116,24 @@ public function get pornStudioName():String
 
 public function bizzySlaveCollar():Boolean
 {
+	if(bizzySlaveNeither()) return false;
+	if(bizzySlaveBoth()) return true;
 	return flags["BIZZY_SLAVER_CHOICE"] == 2;
 }
-
 public function bizzySlaveTat():Boolean
 {
+	if(bizzySlaveNeither()) return false;
+	if(bizzySlaveBoth()) return true;
 	return flags["BIZZY_SLAVER_CHOICE"] == 1;
 }
-
 public function bizzySlaveBoth():Boolean
 {
 	return flags["BIZZY_SLAVER_CHOICE"] == 3;
 }
-
 public function bizzySlaveEither():Boolean
 {
-	return flags["BIZZ_SLAVER_CHOICE"] >= 1;
+	return flags["BIZZY_SLAVER_CHOICE"] >= 1;
 }
-
 public function bizzySlaveNeither():Boolean
 {
 	return flags["BIZZY_SLAVER_CHOICE"] == 0;

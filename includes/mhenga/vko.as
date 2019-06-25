@@ -838,6 +838,8 @@ public function agreeToElectroStim():void
 			if(pc.cockTotal() > 2) output("s");
 			output(".");
 		}
+		
+		pc.cockHoleChange();
 	}
 	output("\n\nShe lifts what looks like an inflatable butt-plug and applies a liberal amount of lube to it, then walks towards you and does the same to your [pc.asshole].");
 	output("\n\nHissing as the cold gel touches your sensitive rosebud, you force yourself to relax so she can insert the plug. It spreads you slightly as it enters you. No doubt it’ll do much more stretching once she’s actually turned it on. Anticipation courses throughout your body, heating you up as you watch her go back to the case.");

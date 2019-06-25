@@ -2255,7 +2255,7 @@ public function loreleiHasAGoAtStealingYourVirginity(holeIdx:int):void
 	if (lorelei.cLength() < 24)
 	{
 		output(" hands are already on you and your [pc.butt], groping at the meat she finds there. You can feel her [lorelei.cockShape] dick saw in between your cheeks, its heat radiating against your [pc.vagOrAss " + holeIdx + "]. A thick dollop of her pre lands squarely on");
-		//{pc.tailBase}
+		// {pc.tailBase}
 		if (pc.hasTail()) output(" the base of your [pc.tails]");
 		else output(" the small of your back");
 		if (lorelei.hasKnot()) output(", especially when she leans far enough forward that her " + (flags["LORELEI_KNOTS"] == 2 ? "first knot" : "knot") + " bumps into the meat of your butt");

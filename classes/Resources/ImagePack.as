@@ -5,6 +5,10 @@ package classes.Resources
 		public static var ImageRequestT:Class = null;
 		
 		CONFIG::IMAGEPACK {
+			//AMBER
+			[Embed(source = "../../assets/images/imagepack/amber/jojocite_amber_nude.png", mimeType = "image/png")]
+			public static const AmberNakkers:Class;
+
 			//ANNO
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
 			public static const AnnoMaid:Class;
@@ -109,6 +113,10 @@ package classes.Resources
 			public static const MillieGreetingNude:Class;
 			/*No scene. [Embed(source = "../../assets/images/imagepack/millie/4334wh.png", mimeType = "image/png")]
 			public static const MillieCockSuck:Class;*/
+
+			//MIRRIN
+			[Embed(source = "../../assets/images/imagepack/mirrin/Rattlepool_SoAndSoCommed_Young_Mirrin.jpg", mimeType = "image/jpg")]
+			public static const MirrinYoung:Class;
 
 			//MITZI
 			[Embed(source = "../../assets/images/imagepack/mitzi/jojocite_mitzi_ahegao_goblin_cum_tongue_bimbo.jpg", mimeType = "image/png")]

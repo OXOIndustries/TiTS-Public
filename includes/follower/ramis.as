@@ -254,7 +254,7 @@ public function ramisRecruitDealShip():void
 
 	moveTo("TAVROS HANGAR");
 	
-	if (9999 /* Z14 Z-14 casstech */)
+	if (shits["SHIP"] is Casstech)
 	{
 		output("Her face falls, her ears droop, when she beholds your trusty, humble Casstech in the hangar.");
 		output("\n\n<i>“I would’ve thought a rich playboy’s sprog would have a cool as fuck ride,”</i> she mumbles, <i>“not a piece of junk from the 29th century.");
@@ -263,7 +263,7 @@ public function ramisRecruitDealShip():void
 	}
 	else
 	{
-		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [pc.ship] up.");
+		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [PCShipName] up.");
 		output("\n\n<i>“Think I saw you comen in on a real piece of junk a couple of times, and I was kind’ve worried you were still floaten around in that.”</i> She tuts and hums as she walks around it, taking in the armaments. <i>“Yeeeaaahhh, but see, these are all calibrated wrong. They produce ‘em like this cuz they’re dead easy to bolt on factory-fresh to a ship like this, you know, but you’re wasten energy and not getten the full ay oh eff when they’re configured like that.”</i> She snaps the straps of her sports bra resolutely. <i>“Plenty to be getten on with! I’ll go and pick my stuff up from the lockers and get to it. I’ll be on board by the time you’re ready to leave... captain.”</i>");
 	}
 	
@@ -278,36 +278,36 @@ public function ramisRecruitDealShip():void
 	
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
 public function ramisBootFromCrew():void
 {
 	clearOutput();
 	showRamis();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
-	
+	output("You tell Ramis that you need her off the ship for the time being.");
+
+	output("\n\n<i>“Huh.”</i> Ramis shrugs. <i>“And here I thought you kept me around cuz of my sterling personality.”</i> She slaps your back. <i>“I’ll see you around.”</i> Barely a second passes before she’s on her way out the door.");
+		
 	processTime(20);
 	
 	flags["RAMIS_ONBOARD"] = undefined;
 	if (flags["CREWMEMBER_SLEEP_WITH"] == "RAMIS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Ramis is no longer on your crew. You can find her again in Tavros Station.</b>)");
-	output("\n\n");
-	
+		
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
 public function ramisRejoinCrew():void
 {
 	clearOutput();
 	showRamis();
-	author("");
+	author("Fenoxo");
 	
-	output("");
-	output("\n\n");
+	output("You invite Ramis back onboard.");
+	output("\n\n<i>“Just like that?”</i> Ramis rolls her shoulders. <i>“Guess I’m game. Hopefully you made some upgrades since my last foray over there. See you onboard, Captain.”</i>");
 	
 	processTime(20);
 	
@@ -315,7 +315,6 @@ public function ramisRejoinCrew():void
 	flags["RAMIS_ONBOARD"] = 1;
 
 	output("\n\n(<b>Ramis has rejoined your crew!</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -361,26 +360,38 @@ public var ramisCrewBasicBlurbs:Array = [
 	"It seems to be Ramis’s downtime. On the monitors, you can see she’s at her desk with a flask of whiskey and her lappy holo-device, idly scrolling and tapping away at various social media and vid sites. Kait-Pop is blaring through the speakers. She’s nodding away happily to the nightmarishly manic, screechy racket.",
 ];
 
-public function ramisCrewBlurb():String
+public function ramisCrewBlurb(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
-	var blurb:String;
-
-	if (flags["RAMIS_ACTIVITY"] is int) return ramisCrewBasicBlurbs[flags["RAMIS_ACTIVITY"]];
-	switch (flags["RAMIS_ACTIVITY"])
+	var blurb:String = "";
+	
+	if (!pc.hasStatusEffect("Partying Ramis"))
 	{
-		case "HORNY":
-			blurb = "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
-			break;
-		case "PARTY":
-			blurb = "A medley of trance and hip-hop blares at full blast from Ramis’s room.";
-			if (flags["RAMIS_PARTIED"] == undefined) blurb += " Slightly more bearable than the Kait-Pop she so adores, but does she have to have it on so loud? Perhaps you should go check on her.";
-			else blurb += " It’s her going-out mix. Clearly she’s excited to have landed back on Tavros again!";
-			break;
-		case "ERROR":
-		default:
-			blurb = "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
-			break;
+		if (showBlurb)
+		{
+			blurb += "\n\n";
+			if (flags["RAMIS_ACTIVITY"] is int) blurb += ramisCrewBasicBlurbs[flags["RAMIS_ACTIVITY"]];
+			else
+			{
+				switch (flags["RAMIS_ACTIVITY"])
+				{
+					case "HORNY":
+						blurb += "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
+						break;
+					case "PARTY":
+						blurb += "A medley of trance and hip-hop blares at full blast from Ramis’s room.";
+						if (flags["RAMIS_PARTIED"] == undefined) blurb += " Slightly more bearable than the Kait-Pop she so adores, but does she have to have it on so loud? Perhaps you should go check on her.";
+						else blurb += " It’s her going-out mix. Clearly she’s excited to have landed back on Tavros again!";
+						break;
+					case "ERROR":
+					default:
+						blurb += "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
+						break;
+				}
+			}
+		}
+		addButton(btnSlot, "Ramis", ramisCrewApproach);
 	}
+	else addDisabledButton(btnSlot, "Ramis", "Ramis", "The female kaithrit is out in Tavros, pulverizing the station’s drinking holes no doubt.\n\nShe’ll be back tomorrow.");
 	
 	return blurb;
 }
@@ -421,14 +432,13 @@ public function ramisCrewApproach():void
 
 	addButton(10, "Appearance", ramisAppearance, 10);
 	
-	//9999 addButton(13, "Leave Crew", ramisBootFromCrew, undefined, "Leave Crew", "Tell Ramis to spend some time off of ship. You’ll probably be able to pick her up again later.");
+	addButton(13, "Leave Crew", ramisBootFromCrew, undefined, "Leave Crew", "Tell Ramis to spend some time off of ship. You’ll probably be able to pick her up again later.");
 	
 	addButton(14, "Back", crew);
 }
 
 
 //[Talk]
-
 public function ramisLetsDrinkInTheShip():void
 {
 	clearOutput();
@@ -2130,7 +2140,7 @@ public function ramisFuckinBois():void
 	var shagType:String = RandomInCollection(possibleShags);
 	
 	output("Once you’re ensconced in a large, plush suite in Ramis’s favourite fully-automated love hotel");
-	if (9999 /* also casstech */) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
+	if (shits["SHIP"] is Casstech) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
 	output(", some champagne is ordered out of the synthesizer and the conversation turns yet wilder and lewder, led on by your utterly incorrigible, lusty gunnery officer.");
 	output("\n\nShe encourages Kroy to get on the table and give you a strip tease, and you all watch as he twists this way and that, teasing his stripy thigh-high socks, the little gap of brown flesh between them and his silky red undies underneath his flouncy skirt, cock-bulge prominent against the silk; then he slowly takes off his top strap by strap, revealing his soft, lean chest, his tiny, pointy nipples and achingly flat belly.");
 	output("\n\nLust and heat coalesces in your [pc.groin] as you watch this, particularly as Vanesse’s stockinged foot has climbed its way between your [pc.thighs],");

@@ -18,7 +18,15 @@
 public function showMarion(nude:Boolean = false):void
 {
 	showName("\n"+ marionName().toUpperCase());
-	if(nude) showBust("MARION_NUDE");
+	if(nude)
+	{
+		var cockStr:String = "";
+		if(!marion.hasCock()) {}
+		else if(marion.hasCock(GLOBAL.TYPE_CANINE)) cockStr = "_DOG";
+		else if(marion.hasCock(GLOBAL.TYPE_TENTACLE)) cockStr = "_TENT";
+		else cockStr = "_TENTS";
+		showBust("MARION" + cockStr + "_NUDE");
+	}
 	else showBust("MARION");
 }
 
@@ -146,7 +154,7 @@ public function marionEncounter():void
 
 			output("\n\nThe essyra giggles, tossing her pink hair to one side and regarding you with a blue-lipped smile. You’re not sure if you’re making progress - you get no word of reply - but she does extend her arms to you, grabbing your hands in hers. Her hands are bare, with cream-pale flesh ending in tiny, sharp little claws. They rake gently against your "+ (pc.isNude() ? "[pc.skinFurScales]" : "[pc.clothes]") +", and when you fail to flinch away, the woman gives you a gentle pull towards the south. Does she want you to come with her somewhere?");
 
-			output("\n\nWhen you don’t instantly follow, trying to puzzle out what she’s up to, the woman smiles again and steps closer - right into your personal space, pressing the curvaceous front of her furry outfit against your [pc.chest], gripping your hands firmly. She glances "+ (pc.tallness > 80 ? "up" : "down") +" into your eyes and chews on her lower lip, almost like she’s nervous about something. Another gentle tug cements her desires you your mind, and this time she puts her whole body into it, leaning back with an inviting motion of her head that indicates a half-hidden path through the snow.");
+			output("\n\nWhen you don’t instantly follow, trying to puzzle out what she’s up to, the woman smiles again and steps closer - right into your personal space, pressing the curvaceous front of her furry outfit against your [pc.chest], gripping your hands firmly. She glances "+ (pc.tallness > 80 ? "up" : "down") +" into your eyes and chews on her lower lip, almost like she’s nervous about something. Another gentle tug cements her desires into your mind, and this time she puts her whole body into it, leaning back with an inviting motion of her head that indicates a half-hidden path through the snow.");
 
 			output("\n\nIt looks like this strange, silent essyra is trying to take you somewhere. Do you let her?");
 
@@ -307,7 +315,7 @@ public function insideMarionsDen():void
 
 	clearMenu();
 	addButton(0, "Nope!", refuseMarionsAdvances, undefined, "Nope!", "This isn’t what you bargained for!");
-	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0) || marion.hasCock()) addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
+	if (pc.hasGenitals() || marion.hasCock()) addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
 	else addDisabledButton(1, "Fuck Her", "Fuck Her", "You will need to be female or have a cock that fits in order to do this!");
 }
 
@@ -409,14 +417,12 @@ public function marionsDenSexMenu():void
 
 	clearMenu();
 	// only allow FuckVag for PCs with a) dicks and NO hardlight or b) cunts AND hardlight. Scene doesnt make sense otherwise
-	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra’s pretty blue pussy and let her ride you.");
-	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra’s pretty blue pussy and let her ride you.");
-	else if (pc.hasGenitals()) addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis or a vagina and a hardlight dildo for this.");
-	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need genitals for this.");
+	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(0),false,0], "Fuck Vag", "Stick your cock in the essyra’s pretty blue pussy and let her ride you.");
+	else if (pc.hasVagina() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your hardlight strap-on in the essyra’s pretty blue pussy and let her ride you.");
+	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis that fits or a vagina and a hardlight dildo for this.");
 	// if PC has either a pussy & no cock or a cock thats to large
-	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
-	else if (pc.hasGenitals()) addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
-	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need genitals for this.");
+	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == -1)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
+	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
 	// if essray has at least 1 cock, else hide the button
 	if (marion.hasCock()) addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "Let the "+ marionName() +" use her [marion.multiCocks] on your [pc.vagOrAss].");
 }
@@ -539,49 +545,48 @@ public function marionsDenSexMutualMasturbation():void
 	author("Savin");
 	showMarion(true);
 
-	if (pc.hasCock()) output("It looks like if you tried to cram your mammoth [pc.cocktype] into this bubblegum cutie you’d probably break her.");
+	var cIdx:int = pc.cockThatFits(marion.vaginalCapacity());
+	
+	if (cIdx >= 0) output("It looks like if you tried to cram your mammoth [pc.cocktype " + cIdx + "] into this bubblegum cutie you’d probably break her.");
 	else output("Sadly without a prick to fuck her with you’re a bit out of luck.");
 	output(" Still, it wouldn’t do to leave this lady wanting. Considering the heat coursing through your loins a simple “oh well then” isn’t going to cut it. Luckily the "+ marionName() +" seems to have a pretty good idea of what to do next.");
 
-	output("\n\nShe guides you back towards the fire and nudges you towards a comfortable set of furs before the loss of her body-heat can afford time to give you chill, and you settle your "+ (pc.isTaur() ? "tauric body" : "[pc.butt]") +" down before watching eagerly as the foxy minx makes her move. Her tails shift like a dancer’s veil, revealing and obscuring her nude form in equal measure as she settles to her knees. Her ass looks more heart-shaped than ever when she rolls onto all-fours and presents herself... for a moment you’re worried that she expects you to "+ (pc.hasCock() ? "break her with your ogre-length member" : "fuck her without a cock") +", but she drops down onto her cushiony tits and sinks her face into a fluffy animal rug before sneaking a dainty finger up to her slit. Catching on, you position yourself a little better so that she can see you past her shoulder as you begin to please yourself in tandem.");
+	output("\n\nShe guides you back towards the fire and nudges you towards a comfortable set of furs before the loss of her body-heat can afford time to give you chill, and you settle your "+ (pc.isTaur() ? "tauric body" : "[pc.butt]") +" down before watching eagerly as the foxy minx makes her move. Her tails shift like a dancer’s veil, revealing and obscuring her nude form in equal measure as she settles to her knees. Her ass looks more heart-shaped than ever when she rolls onto all-fours and presents herself... for a moment you’re worried that she expects you to "+ (cIdx >= 0 ? "break her with your ogre-length member" : "fuck her without a cock") +", but she drops down onto her cushiony tits and sinks her face into a fluffy animal rug before sneaking a dainty finger up to her slit. Catching on, you position yourself a little better so that she can see you past her shoulder as you begin to please yourself in tandem.");
 
-	output("\n\nHer moans and coos are sweet little sounds, and she wiggles her bum from side-to-side while questing digits hunt out the cute little nub of her clit. Increasing slickness wets the insides of soft thighs and a gentle aroma wafts in your direction each time her tails swish enticingly. The pounding of your chest heralds a fresh twitch from your "+ (pc.hasCock() ? pc.cockDescript(x) : "[pc.pussy]") +" until "+ (pc.hasCock() ? "pre" : "juices") +" drip to the soft fur beneath you. She purrs at the sight and spreads her pussy wide with two fingers while her middle diddles her [marion.clit] teasingly, showing off her cunt’s winking depths like a lurid come-hither kiss straight to the womb.");
+	output("\n\nHer moans and coos are sweet little sounds, and she wiggles her bum from side-to-side while questing digits hunt out the cute little nub of her clit. Increasing slickness wets the insides of soft thighs and a gentle aroma wafts in your direction each time her tails swish enticingly. The pounding of your chest heralds a fresh twitch from your "+ (cIdx >= 0 ? pc.cockDescript(cIdx) : "[pc.pussy]") +" until "+ (cIdx >= 0 ? "pre" : "juices") +" drip to the soft fur beneath you. She purrs at the sight and spreads her pussy wide with two fingers while her middle diddles her [marion.clit] teasingly, showing off her cunt’s winking depths like a lurid come-hither kiss straight to the womb.");
 
 	output("\n\nChewing on your lip, your own explorations intensify as her show grows ever more erotic. Your [pc.hands] ");
-	if (pc.hasCock()) output("trawl the length of your [pc.cockComplex], fingering out every bump and vein it can find"+ (pc.hasSheath() ? "and stretching at its sheath" : ""));
+	if (cIdx >= 0) output("trawl the length of your [pc.cockComplex " + cIdx + "], fingering out every bump and vein it can find"+ (pc.hasSheath() ? " and stretching at its sheath" : ""));
 	else output("grind their way down your body and towards your [pc.pussy], allowing you to sink a few questing digits into the warm waiting folds");
 	output(". The Essyra purrs in approval as you join in the show, reaching around with her other hand and helping to spread her cute blue pussy wide to add an extra finger to her waiting cunt. The sounds of her self-pleasuring are loud in the cave compared to the sound of the crackling fire pit and your own pounding heartbeat.");
 
-	output("\n\nHer whimpers join into the exhalations of pleasure and she starts to bounce on her knees, adding the subtle quiver of her ass-cheeks to the masturbatory show. Considering she seems a lot further along than you, your own pace picks up until "+ (pc.hasCock() ? "your [pc.hands] are glazed with [pc.cumFlavor] pre" : "the rug beneath your [pc.pussy] is drenched with [pc.girlCumFlavor] juices") +". It’s a little strange that she remains effectively wordless, but the erotic noises leaking from her with every twitch of the knuckles buried into her cunt is more than enough to keep you going. "+ (flags["MET_LURELING"] == 2 ? "No doubt the beast that lurks below the ice is getting off plenty... an even stranger thought, now that you give it a moment. " : "" ) +"The scent draws you closer, and you find your body shifting towards her with a few errant hip-jerks, until she’s nearly close enough to touch.");
+	output("\n\nHer whimpers join into the exhalations of pleasure and she starts to bounce on her knees, adding the subtle quiver of her ass-cheeks to the masturbatory show. Considering she seems a lot further along than you, your own pace picks up until "+ (cIdx >= 0 ? "your [pc.hands] are glazed with [pc.cumFlavor] pre" : "the rug beneath your [pc.pussy] is drenched with [pc.girlCumFlavor] juices") +". It’s a little strange that she remains effectively wordless, but the erotic noises leaking from her with every twitch of the knuckles buried into her cunt is more than enough to keep you going. "+ (flags["MET_LURELING"] == 2 ? "No doubt the beast that lurks below the ice is getting off plenty... an even stranger thought, now that you give it a moment. " : "" ) +"The scent draws you closer, and you find your body shifting towards her with a few errant hip-jerks, until she’s nearly close enough to touch.");
 
 	output("\n\nThere’s something to be said for being at the very limits of contact while the both of you masturbate your way to orgasmic frenzy, especially in a secluded cave with nothing but the sounds of squishy genitalia being dug into. ");
 	if (marion.hasCock()) output("The Essyra transitions from simply plumbing her cunt however, taking the fingers previously spreading her [marion.pussy] in order to jerk "+ (marion.hasCocks() ? "a" : "her") +" cock from base-to-tip until "+ (marion.hasCocks() ? "they shine" : "it shines") +". ");
-	output("Your own ardor is so utterly stoked that every "+ (pc.hasCock() ? "squeeze and stroke of your [pc.cockSimple]" : "plumbing of your fingers into your [pc.cuntSimple]") +" sends heat rocketing into the very core of your body.");
+	output("Your own ardor is so utterly stoked that every "+ (cIdx >= 0 ? "squeeze and stroke of your [pc.cockSimple " + cIdx + "]" : "plumbing of your fingers into your [pc.cuntSimple]") +" sends heat rocketing into the very core of your body.");
 
 	output("\n\nAbruptly her erotic display pauses, and she looks over her hips towards you with glistening eyes full of need. It takes a few heartbeats to realize that she’s asking for permission.");
 
 	output("\n\n");
 	if (pc.isTaur()) {
-		output("It’s a rather awkward effort to heft your entire tauric body towards her, and you have to turn around and watch over your shoulder to catch the rest of the show as you urge her onwards further. The cute squishy bubblegum fox chews on her lip as you "+ (pc.hasCock() ?"slap your [pc.cock] backwards towards her so that rich pre flies towards her and leaves connecting strands of near-orgasmic heat" : "spread your own [pc.pussy] to its limits until she can practically see into your womb") +". Your bodies are so close that just the heat of her flushed sex radiates against your ");
-		if (pc.hasVagina()) output("own.");
-		else if (pc.hasBalls()) output("[pc.ballsNoun].")
-		else output("taint.");
+		output("It’s a rather awkward effort to heft your entire tauric body towards her, and you have to turn around and watch over your shoulder to catch the rest of the show as you urge her onwards further. The cute squishy bubblegum fox chews on her lip as you "+ (cIdx >= 0 ?"slap your [pc.cock " + cIdx + "] backwards towards her so that rich pre flies towards her and leaves connecting strands of near-orgasmic heat" : "spread your own [pc.pussy] to its limits until she can practically see into your womb") +". Your bodies are so close that just the heat of her flushed sex radiates against your");
+		if (pc.hasVagina()) output(" own");
+		else if (pc.hasBalls()) output(" [pc.ballsNoun]")
+		else output(" taint");
+		output(".");
 	}
 	else {
-		output("She tries not to giggle as you scooch your body closer to hers, although neither of you halt in your masturbatory efforts. Her pussy practically sloshes every time she pumps herself to the knuckles in sensitive cuntflesh, and her thumb never stops its efforts in torturously grinding over the rock-hardness of her clit. By the time you’re close enough to nearly be touching, her heart-shaped ass bounces above your crotch precariously, dripping juices onto your ");
-		if (pc.hasVagina()) output("[pc.pussy]");
-		if (pc.isHerm()) output(" and ");
-		if (pc.hasCock()) output("[pc.cocks].");
+		output("She tries not to giggle as you scooch your body closer to hers, although neither of you halt in your masturbatory efforts. Her pussy practically sloshes every time she pumps herself to the knuckles in sensitive cuntflesh, and her thumb never stops its efforts in torturously grinding over the rock-hardness of her clit. By the time you’re close enough to nearly be touching, her heart-shaped ass bounces above your crotch precariously, dripping juices onto your");
+		if (pc.hasVagina()) output(" [pc.pussies]");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasCock()) output(" [pc.cocks]");
 		output(".");
 	}
 
-	output("\n\nYou work the Essyra’s fountainous juices into your tender flesh while your muscles clamp "+ (pc.hasCock() ? "with tightening intensity onto your prostate" : "around your fingers") +" and drive you to the ragged borders of orgasm. For the first time however she lets out a proper cry of ecstasy. So much so that her voice is like a sweet peal of pleasure that reverberates from every icy wall of the cave. That final ringing peal of finishing is enough to send you over the edge — or it nearly is, at least. You don’t actually reach completion until you can feel the nearly scalding-hot juices of the bubblegum foxgirl’s orgasm splashing onto your [pc.genitals].");
-//	if (pc.hasVagina()) output("[pc.pussy]");
-//	if (pc.isHerm()) output(" and ");
-//	if (pc.hasCock()) output("[pc.cocks].");
-//	output(".");
+	output("\n\nYou work the Essyra’s fountainous juices into your tender flesh while your muscles clamp "+ (cIdx >= 0 ? "with tightening intensity onto your prostate" : "around your fingers") +" and drive you to the ragged borders of orgasm. For the first time however she lets out a proper cry of ecstasy. So much so that her voice is like a sweet peal of pleasure that reverberates from every icy wall of the cave. That final ringing peal of finishing is enough to send you over the edge — or it nearly is, at least. You don’t actually reach completion until you can feel the nearly scalding-hot juices of the bubblegum foxgirl’s orgasm splashing onto your [pc.genitals].");
 
-	output("\n\nWhen you finally cum yourself, it’s accompanied by your own "+ (pc.hasCock() ? "deep guttural groan" : "high-pitched whimper") +". Her sticky-sweet girlcum makes for the perfect lube to "+ (pc.hasCock() ? "jack" : "jill") +" yourself to completion, and you actually manage to spray those beautiful ass-cheeks with "+ (pc.hasCock() ? "[pc.cum]" : "[pc.girlcum]") +". Her breath catches in her throat, and her tails fwip around wildly as she soaks in the sensation of you coating her rear. After a few more nerveless twitches she drops onto her side, eyes wide and mouth hanging loosely open. Your own arm is cramping a little at the effort, and you let it drop to your side as you flop over yourself.");
+	output("\n\nWhen you finally cum yourself, it’s accompanied by your own "+ (cIdx >= 0 ? "deep guttural groan" : "high-pitched whimper") +". Her sticky-sweet girlcum makes for the perfect lube to "+ (cIdx >= 0 ? "jack" : "jill") +" yourself to completion, and you actually manage to spray those beautiful ass-cheeks with "+ (cIdx >= 0 ? "[pc.cum]" : "[pc.girlcum]") +". Her breath catches in her throat, and her tails fwip around wildly as she soaks in the sensation of you coating her rear. After a few more nerveless twitches she drops onto her side, eyes wide and mouth hanging loosely open. Your own arm is cramping a little at the effort, and you let it drop to your side as you flop over yourself.");
 
 	output("\n\nThe Essyra pushes herself along the floor until her body is pressing up against your own "+ (pc.isTaur() ? "— admittedly broad and tauric — yet " : "") +"warm flesh. While she gulps down breaths, soaking in the scent of your mixed orgasms until sleep tries to claim the both of you.");
 

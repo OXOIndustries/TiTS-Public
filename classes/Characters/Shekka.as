@@ -225,6 +225,18 @@
 			dataObject.inventory.push(new RogueRags().getSaveObject());
 			dataObject.inventory.push(new ScrapShield().getSaveObject());			
 		}
+		override public function cumQ():Number
+		{
+			if(this.hasStatusEffect("Fixed CumQ"))
+			{
+				return statusEffectv1("Fixed CumQ");
+			}
+			return 950;
+		}
+		override public function get bustDisplay():String
+		{
+			return "SHEKKA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

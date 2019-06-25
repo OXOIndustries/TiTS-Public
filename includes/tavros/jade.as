@@ -190,13 +190,6 @@ public function jadeAdvancedStoreSetup():void
 	buyItem();
 }
 
-
-public function getAmberSeed():void 
-{
-	output("\n\n");
-	itemCollect([new Ovilium()]);
-}
-
 //Appearance
 public function jadeAppearance():void 
 {

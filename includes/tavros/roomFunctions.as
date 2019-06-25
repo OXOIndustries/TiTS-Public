@@ -327,3 +327,10 @@ public function resDeck17Func():void
 {
 	veltaAptBonus();
 }
+
+public function anonBackEndBonus():Boolean
+{
+	var btnSlot:int = 0;
+	btnSlot = fadilBonus(btnSlot);
+	return false;
+}

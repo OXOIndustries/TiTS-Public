@@ -79,11 +79,12 @@ public function initTavrosRooms():void
 	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
 	rooms["ANON'S BAR AND BOARD"].roomName = "ANON’S BAR\nAND BOARD";
-	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You’ve already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
+	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of this establishment. You’ve already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare. To the east is a quieter back room.";
 	rooms["ANON'S BAR AND BOARD"].planet = "TAVROS STATION";
 	rooms["ANON'S BAR AND BOARD"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
+	rooms["ANON'S BAR AND BOARD"].eastExit = "ANON'S BACK END";
 	rooms["ANON'S BAR AND BOARD"].runOnEnter = anonsBarAddendums;
 	rooms["ANON'S BAR AND BOARD"].moveMinutes = 1;
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
@@ -1250,4 +1251,30 @@ public function initTavrosRooms():void
 	rooms["RIYAPARTY"].moveMinutes = 2;
 	rooms["RIYAPARTY"].runOnEnter = undefined;
 	rooms["RIYAPARTY"].addFlag(GLOBAL.INDOOR);
+	
+	//1011 East Walkway 2
+	rooms["RESIDENTIAL MIRRIN"] = new RoomClass(this);
+	rooms["RESIDENTIAL MIRRIN"].roomName = "\nSTERKURHÚS";
+	rooms["RESIDENTIAL MIRRIN"].description = "";
+	rooms["RESIDENTIAL MIRRIN"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL MIRRIN"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL MIRRIN"].westExit = "RESIDENTIAL DECK 11";
+	rooms["RESIDENTIAL MIRRIN"].moveMinutes = 1;
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.PUBLIC);
+	rooms["RESIDENTIAL MIRRIN"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL MIRRIN"].runOnEnter = mirrinSterkurHusBonus;
+
+	rooms["ANON'S BACK END"] = new RoomClass(this);
+	rooms["ANON'S BACK END"].roomName = "ANON’S\nBACK END";
+	rooms["ANON'S BACK END"].description = "You find yourself in the back room of Anon’s bar. The crowds filling the entrance thin out around here, but the smells of booze and debauchery are still unmistakable. It would seem this part of the bar is destined for patrons interested in a more peaceful environment than the hustle and bustle that characterizes the rest of the place. To the west is the way to the entrance, where you came from.";
+	rooms["ANON'S BACK END"].planet = "TAVROS STATION";
+	rooms["ANON'S BACK END"].system = "SYSTEM: KALAS";
+	rooms["ANON'S BACK END"].westExit = "ANON'S BAR AND BOARD";
+	rooms["ANON'S BACK END"].runOnEnter = anonBackEndBonus;
+	rooms["ANON'S BACK END"].moveMinutes = 1;
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.INDOOR);
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.BAR);
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.PUBLIC);
+	rooms["ANON'S BACK END"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 }

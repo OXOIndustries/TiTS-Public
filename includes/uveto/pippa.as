@@ -1221,8 +1221,7 @@ public function pippaMainMenu(arg:Array = null):void
 	
 	if (pippaOnShip())
 	{
-		if (shipLocation == "UVS F15") addButton(13, "Evict", pippaAskToLeave, undefined, "Evict", "Potentially kick Pippa off your ship for the time being.");
-		else addDisabledButton(13, "Evict", "Evict", "Travel to Uveto before kicking Pippa off the ship.");
+		addButton(13, "Evict", pippaAskToLeave, undefined, "Evict", "Potentially kick Pippa off your ship for the time being.");
 		addButton(14, "Back", crew);
 	}
 	else addButton(14, "Leave", mainGameMenu);

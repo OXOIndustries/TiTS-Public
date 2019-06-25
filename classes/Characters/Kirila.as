@@ -43,7 +43,10 @@
 
 			this.femininity = 85;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "KIRILA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.backFromShop();

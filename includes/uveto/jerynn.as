@@ -1245,11 +1245,12 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	output("\n\nIt isn’t much longer before you feel the body pressed to your back begin to shudder, her cock perceptibly thickening as her massive, heavy balls pull tight to your [pc.legs]. A far hotter jet of liquid warmth spews into you, and another... and another. The undulations of her orgasm being delivered directly to your core swells her knot in pulses, smashing it against your most sensitive places and eking an orgasm out of you, too.");
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" Her knot grinding into your prostate firmly sets your cock off, too,");
-		if (pc.cumQ() <= 500) output(" weak");
+		if (cumQ <= 500) output(" weak");
 		else output(" thick");
 		output(" ropes of your [pc.cumColor] cum");
-		if (pc.cumQ() <= 500) output(" oozing");
+		if (cumQ <= 500) output(" oozing");
 		else output(" splattering");
 		output(" against the coat.");
 	}
@@ -2249,7 +2250,7 @@ public function jerynnPetstuffBar():void
 
 	output("She sets back off with definitive purpose, a certain sway to her swagger that you can’t help but deem intentional; you swing around more than the you did during the trip back to Irestead and it feels almost a little disorientating. No time to get used to it though, as the sounds of your surroundings change again. It almost sounds as though a fire is roaring away somewhere off in the distance, an overlay of various, chattering voices around the place holding a dozen different conversations.");
 
-	output("\n\nJerynn takes a few more steps before she sits back on on her rear legs, and what you think is her tail wraps under you and coils all over the bulge you’ve formed in her coat possessively. She sits, quietly, the background titters of people talking continue unabated, her tail lightly rubbing at you through the thick padding keeping you hidden from their eyes.");
+	output("\n\nJerynn takes a few more steps before she sits back on her rear legs, and what you think is her tail wraps under you and coils all over the bulge you’ve formed in her coat possessively. She sits, quietly, the background titters of people talking continue unabated, her tail lightly rubbing at you through the thick padding keeping you hidden from their eyes.");
 
 	if (jerynnPetstuffLevel() < 5)
 	{

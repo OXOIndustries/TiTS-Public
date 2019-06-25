@@ -207,7 +207,7 @@
 			//"Hard" level preferences.
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
 			//Bigdick replaces normal dick love
-			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] != undefined)
+			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] == undefined)
 			{
 				sexualPreferences.removePref(GLOBAL.SEXPREF_COCKS);
 				sexualPreferences.removePref(GLOBAL.SEXPREF_HYPER);

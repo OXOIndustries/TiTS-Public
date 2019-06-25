@@ -140,6 +140,7 @@
 		public var Bust_KELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kelly_Nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_NUDE:Class;
+		public function get Bust_KELLY_HYPER_NUDE():Class { return Bust_KELLY_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/Kaska.png", mimeType = "image/png")]
 		public var Bust_KASKA:Class;

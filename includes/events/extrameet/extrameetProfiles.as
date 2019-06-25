@@ -6,6 +6,23 @@
  */
 
 //tavros
+public function extrameetKaedeProfile():void
+{
+	output("The profile picture on your screen is unmistakably familiar: a ginger half-ausar girl in a leather pilot’s blazer smiling nervously at the camera. Kaede’s ears are flat against her scalp, and her bushy tail is wrapped three times around a leg, but the poor thing’s trying her best. There’s a shadow behind her from the cameraman... considering the perky wolf-ears you can make out, it’s probably Anno.");
+	output("\n\nUsername: Crimson_Rockette_28");
+	output("\nSex: Trans");
+	output("\nAge: 25 Years");
+	output("\nRace : Half-ausar");
+	output("\nPlanet: Tavros");
+	output("\n\nBio:");
+	output("\nSocially awkward half-ausar looking for friends and ~more~ on her home station who don’t mind helping an introvert out of her shell. Tavros born and raised! Own my own business as a professional pilot. Love games of all kinds. Not looking for anything monogamous, sorry.");
+}
+
+public function extrameetKaedeCheckMatch():Boolean
+{
+	return (pc.hasCock() || pc.hasVagina());
+}
+
 public function extrameetBigTiddyGothGFProfile():void
 {
 	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smokey black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
@@ -26,7 +43,6 @@ public function extrameetBigTiddyGothGFDate():void
 	showName("\nDARK&DESPERATE");
 	author("Fr0sty");
 	moveTo("ANON'S BAR AND BOARD");
-
 	output("You arrive at Anon’s Bar and Board and take a quick look around. You spot your date sitting at the very back of the bar in a lonely corner. As you make your way over, something about her strikes you as off. <i>Really off</i>. She seems to be twitching, and from where you are it looks like she’s talking to herself. Just before you reach the table, your codex starts to beep. Examining it quickly, you find it’s flashing an alert.");
 	output("\n\n<b>Warning: Unknown psionic energies detected.</b>");
 	output("\n\n<i>“Huh.”</i> You’ve never seen that one before. You silence the alert, and when you look up from your codex you nearly jump out of your [pc.skinFurScales]. Your date is standing inches away from you, smiling widely.");
@@ -2160,7 +2176,7 @@ public function extrameetShekkaProfile():void
 	output("\nRace: Raskvel");
 	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
-	output("\nLooking for more than a quick hookup. If that's all you want, keep swiping. The wastes are full of girls who are <b>begging</b> to be bred.");
+	output("\nLooking for more than a quick hookup. If that’s all you want, keep swiping. The wastes are full of girls who are <b>begging</b> to be bred.");
 }
 public function extrameetShekkaCheckMatch():Boolean
 {
@@ -3420,4 +3436,4 @@ public function extrameetBigDickRickProfile():void
 	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
-}
+}

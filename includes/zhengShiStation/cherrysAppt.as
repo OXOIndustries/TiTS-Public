@@ -42,7 +42,7 @@ public function cherryRoomMenu():void
 	
 	if(pc.lust() >= 33)
 	{
-		//{Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
+		// {Fuck her/Fuck Her?/Fuck Her!} [Feed Bubble] [Blow Bubble] [Leave]
 		if(flags["CHERRY_SEX_INTRO"] == undefined) addButton(0,"Fuck Her",fuckCherryYo,undefined,"Fuck Her","Try your luck, and maybe get all up in that gel...");
 		else if(!cherryCumflated()) addButton(0,"Fuck Her?",fuckCherryAnywayYo,undefined,"Fuck Her?","Damn the consequences, you’re hungry for a big slice of Cherry pie.");
 		else addButton(0,"Fuck Her!",fuckCherryExclamationPointo,undefined,"Fuck Her","With Cherry nice and bloated, she’ll be safe to the touch for a while.");
@@ -698,8 +698,8 @@ public function feedCherryABubble():void
 	clearOutput();
 	showCherry(true);
 	author("Adjatha");
-	//{Medium}
-	//pc gave Cherry a Medium Bubble to get in
+	// {Medium}
+	// pc gave Cherry a Medium Bubble to get in
 	if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 1)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
@@ -726,8 +726,8 @@ public function feedCherryABubble():void
 		clearMenu();
 		addButton(0,"Next",feedCherryMediumBubs2);
 	}
-	//{Large}
-	//pc gave Cherry a Large Bubble to get in
+	// {Large}
+	// pc gave Cherry a Large Bubble to get in
 	else if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 2)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
@@ -752,9 +752,9 @@ public function feedCherryABubble():void
 		clearMenu();
 		addButton(0,"Next",feedCherryALargeBubble2);
 	}
-	//{Huge}
-	//pc gave Cherry a Huge Bubble to get in
-	//Not available on the first Huge Bubble - she keeps it as a pillow/trophy
+	// {Huge}
+	// pc gave Cherry a Huge Bubble to get in
+	// Not available on the first Huge Bubble - she keeps it as a pillow/trophy
 	else if(flags["CHERRY_LAST_BUBBLE_GIFT"] == 3)
 	{
 		flags["CHERRY_LAST_BUBBLE_GIFT"] = undefined;
@@ -1077,7 +1077,7 @@ public function bubbleBuddyInsideCherry(x:int):void
 		output("It’s far too difficult to pull free from the pirate’s throat at this point, so there’s no point in trying. Gripping her head, top and bottom, you slam your abdomen against her " + (cherryCumflated() ? "flushed face":"lust-swollen lips") + " with a cresting delight. The slapping sounds of heavy, wet impacts mix with the gelatinous girl’s moist, gurgling in an obscene, squelching duet. Cherry’s exposed throat, stretched to pale pink, twitches outward with your pumping spasm as [pc.cum] spurts into the slime. Wrapped as tightly around your face-fucking shaft as she is, the convex shape of your bubble-filling load is very nearly visible through her coral skin.");
 		output("\n\nWhere others might exhaust themselves on a single discharge, you’ve so much more to give. Leaning way forward to close your " + (!cherryCumflated() ? "gloved ":"") + "palms on the gel’s E-cups, you brace yourself and squeeze her sensitive, jelly tits. As you spurt [pc.cum] past ebony lips, you match the clutching tension of the pirate’s cock-stuffed mouth with your hands, fingers pressing into the supple orbs tight enough to make her hips buck and her ponytail slap the rubber bedding.");
 		output("\n\nYour hot seed pumps into Cherry’s ever-expanding throat-bulge while she gulps and swallows at the rubbery reservoir, dragging it ever deeper down her collared nape. Body trembling with each bloating gout, you can feel the TamaniCorp toy tensing around your [pc.cockHeadBiggest]. Pulled by the pirate’s gluttonous gullet, the expanding cum bubble is drawn out into an esophagus-fattening tube. The girl’s expert tongue twists the toy in her mouth around, letting the filled condom yank free with a muted snap. The self-sealing bubble fills the full length of the rahn’s band-tightened throat for a moment before vanishing into her gullet with a noisy gulp. The Bubble Buddy’s freshly emptied peak constricts around your pumping peak just long enough for your next load to gush into the elastic reservoir. Your face-humping spurts balloon the gel’s neck bit by bit, beginning the cycle anew.");
-		output("\n\n" + (cherryCapacity() ? "With her midsection already bloated like a beachball with your seed, it doesn’t take long before":"Long, condom-swallowing gulps punctuate a gushing eternity of climactic release before") + " the jaw-clenching volume of your [pc.cum] proves too much for the rahn. Stomach stretched to its absolute limits, the waterbed creaks ominously under the jelly’s fluid weight. Even her titantic E-cup tits are dwarfed by the sheer mass of her spunk-fattened gut. Beads of pinkish sweat run down a broodmother-sized belly that can’t help but wobble with your every movement.");
+		output("\n\n" + (cherryCumflated() ? "With her midsection already bloated like a beachball with your seed, it doesn’t take long before":"Long, condom-swallowing gulps punctuate a gushing eternity of climactic release before") + " the jaw-clenching volume of your [pc.cum] proves too much for the rahn. Stomach stretched to its absolute limits, the waterbed creaks ominously under the jelly’s fluid weight. Even her titantic E-cup tits are dwarfed by the sheer mass of her spunk-fattened gut. Beads of pinkish sweat run down a broodmother-sized belly that can’t help but wobble with your every movement.");
 		output("\n\nFilled to the brim with [pc.cum], Cherry’s instinctive swallowing serves little purpose but to polish the taut latex around your tender peak with her throat. Unable to fit even one more load into her stomach, the backed-up jizz bubble balloons in the rahn’s mouth, filling her cheeks to shiny apples. Your gelatinous cum dump groans in ecstatic contentment, stuffed with a surplus that would suffocate nearly any other race.");
 		output("\n\nThe hip-tingling gouts of [pc.cumVisc] pressure build around your [pc.cockBiggest], excess seeping up past the Bubble Buddy’s length to drool down onto Cherry’s goo-giddy face. You move back, pulling the rubbery onahole with you to make a little more room for cum to fill her condom-crammed kiss. Eventually, even the pirate’s mouth proves insufficient to the task of containing the last bubble. Your final spouts inflate the supple, purple sac just past the brim of the girl’s lips, plugging her mouth like an impossibly huge ball gag. She tries swallowing a few times - fruitlessly - before contenting herself with the oral plug, sucking and slurping at the face-filling finale in a seed-stuffed languor.");
 		output("\n\nShe might be out of it for some time. Will you stick around, or head out and leave the zel’rahn to recover at her own pace?");

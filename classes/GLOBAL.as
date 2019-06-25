@@ -1221,6 +1221,12 @@
 		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
 		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
+		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
+		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
+		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
+		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
+		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1263,7 +1269,13 @@
 			"Pistol",
 			"Shotgun",
 			"Thrower",
-			"Launcher"
+			"Launcher",
+			"Disabled",
+			"Double Shot",
+			"Burst Fire",
+			"Full-Auto Fire",
+			"Ship Equipment",
+			"Crewed Turret"
 		];
 		
 		/**
@@ -1409,6 +1421,7 @@
 			"GATSOLD",
 			"JACQUES",
 			"JAMESAB",
+			"JASSBEFROLD",
 			"JAYECHO",
 			"JLIKESTODRAW",
 			"LAPINBEAU",
@@ -1449,6 +1462,7 @@
 			"Old Gats",
 			"Jacques00",
 			"James AB",
+			"Jass Befrold",
 			"Jay Echo",
 			"J-Likes-To-Draw",
 			"Lapinbeau",

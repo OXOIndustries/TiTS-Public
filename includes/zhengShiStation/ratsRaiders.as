@@ -206,6 +206,9 @@ public function ratsSetupGroup(ratGroup:int = -1):void
 		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
 		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
 	}
+	rat0.inventory = rat0.inventory.concat(rat1.inventory).concat(rat2.inventory);
+	rat1.inventory = new Array();
+	rat2.inventory = new Array();
 }
 
 // [RAT BEGIN]
@@ -1720,7 +1723,6 @@ public function ratPostFightAdjustments(pcWon:Boolean):RatsRaider
 
 	//Find thievish rat
 	var thiefRat:RatsRaider = (CombatManager.getHostileActors().length == 2 ? (rat1.hasStatusEffect("Plunder over Pillage!") ? rat1 : rat2) : thiefRat = RatsRaider.getThiefRat());
-	output("<b>Robbed by: " + (thiefRat ? thiefRat.bustDisplay : "NOONE") + "</b>\n\n");
 	//handle rat, if found
 	if (thiefRat)
 	{
@@ -2271,7 +2273,7 @@ public function ratsLossSex():void
 			output("Although no attempt was made to turn you on, you are debilitatingly aroused and can think of nothing but getting off. Your body slackens and you fall to your knees, eyes crossing amid the muted jeers of your would-be robbers. It takes you by surprise when you’re sandwiched between their bodies, duplicitous hands and paws roaming all over your body");
 			if (!pc.isNude()) output(" and clothes");
 			output(".");
-			output("\n\nYou're sure you must be dripping. You feel unpleasantly hot and usable");
+			output("\n\nYou’re sure you must be dripping. You feel unpleasantly hot and usable");
 			if (pc.hasGenitals()) output(", to say nothing of the twitchiness in your crotch");
 			output(". It’s not long before you’re forced on your back and kept there, lamely trying to masturbate amid the cacophony.");
 			output("\n\nThe rats join you in the gropefest");

@@ -989,7 +989,7 @@ public function roxyTalkStadium():void
 	else if (pc.libido() >= 33) output(" and you’re already thinking of how best to use that information.");
 	else output(" and your eyebrow is already curiously quirked.");
 	
-	output("\n\n<i>“That all said, you gotta find the place pretty impressive, right? I mean, this massive stadium on such a nowhere moon like Uveto, ‘and’ it has <b>great</b> heating!”</i>");
+	output("\n\n<i>“That all said, you gotta find the place pretty impressive, right? I mean, this massive stadium on such a nowhere moon like Uveto, </i>and<i> it has <b>great</b> heating!”</i>");
 	output("\n\nOh yeah, on that you’re in complete agreeance.");
 	
 	processTime(10);

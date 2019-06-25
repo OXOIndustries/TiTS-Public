@@ -507,7 +507,7 @@
 		//Procs if Stunned/Staggered. Once only.
 		public function berserk(target:Creature):void
 		{
-			output("<b>The " + getCombatName() + " is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
+			output("<b>" + StringUtil.toTitleCase(getCombatName()) + " is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
 			this.removeStatusEffect("Stunned");
 			this.removeStatusEffect("Staggered");
 			if(this.HP() < this.HPMax())
@@ -523,7 +523,7 @@
 		}
 		public function scentOfThePrey(target:Creature):void
 		{
-			output("Flaring his nostrils, the " + StringUtil.toTitleCase(getCombatName()) + " drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
+			output("Flaring his nostrils, " + getCombatName() + " drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
 			this.removeStatusEffect("Blind");
 			this.removeStatusEffect("Blindness");
 			this.removeStatusEffect("Blinded");

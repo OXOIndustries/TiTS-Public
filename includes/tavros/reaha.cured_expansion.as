@@ -1338,16 +1338,17 @@ public function goddamnSavinsAsslust(x:int):void
 
 	output("\n\nIf ever she wanted proof positive she doesn’t need those damn patches, this is it: watching her cream herself, tits squirting and body clamping down around you with wild, mindless pleasure. Your hips move faster, cock spearing her [reaha.asshole] again and again until her voice is a cracking cacophony of screams and moans of pleasure.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYou give her another swat on the ass, sending her big cheeks jiggling - and that’s enough to send her over. Reaha’s voice breaks into an unintelligible moo as she cums again, cunt spasming");
 	//output(" around her fingers");
 	output(" and ass squeezing so tight you’re afraid your cock’ll burst. Her tits stream out even more than before, visibly diminishing as she orgasms hard enough to nearly drain herself, coating your hands and the bed beneath you with what seems like gallons of [reaha.milk]. Her anal squeezing nearly pushes you over the edge, her muscles writhing and spasming wildly as the cow-slut cums and cums; you grit your teeth, trying to hold back, but to no avail. With a primal roar you join her in orgasm, [pc.cockOrStrapon " + x + "] ");
 	if(x < 0) output("throbbing with an overload of sensation");
 	else output("unleashing a torrent of seed deep into Reaha’s bowels");
-	if(pc.cumQ() >= 10000 && x >= 0) output(", making her belly bulge with each spurt until she looks massively pregnant");
+	if(x >= 0 && cumQ >= 10000) output(", making her belly bulge with each spurt until she looks massively pregnant");
 	output("!");
 
 	output("\n\nWith a sated sigh, you withdraw from the cum-drooling cow");
-	if(x >= 0 && pc.cumQ() > 10) output(", leaving her with a nice trickle of seed pouring from her behind");
+	if(x >= 0 && cumQ > 10) output(", leaving her with a nice trickle of seed pouring from her behind");
 	output(" as she sways listlessly in her bonds, chest heaving as the last of her [reaha.milk] dribbles from her teats. <i>“Aww,”</i> you laugh, letting her down to flop into the sea of her own lactation. She groans weakly as you remind her to clean up after herself, leaving her with a nice pat on her well-abused rump. Her tattoo jiggles obscenely as you grab your kit and leave.");
 	processTime(20);
 	pc.orgasm();

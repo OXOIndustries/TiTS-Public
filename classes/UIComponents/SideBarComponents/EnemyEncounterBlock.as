@@ -3,6 +3,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.Characters.NyreaAlpha;
 	import classes.Characters.NyreaBeta;
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -104,6 +105,14 @@ package classes.UIComponents.SideBarComponents
 			{
 				_statBlock.shieldBar.caption = "SHIELD";
 			}
+			if (_statBlock.hpBar != null && char != null)
+			{
+				_statBlock.hpBar.caption = char.hpDisplayName;
+			}
+			else if (_statBlock.hpBar != null && char == null)
+			{
+				_statBlock.hpBar.caption = "HP";
+			}
 			
 			_statBlock.shieldBar.updateBar(char.shields(), char.shieldsMax(), asInit);
 			_statBlock.hpBar.updateBar(char.HP(), char.HPMax(), asInit);
@@ -125,6 +134,23 @@ package classes.UIComponents.SideBarComponents
 			_sexDisplay.updateBar(genderText);
 			
 			_statusEffects.statusDisplay.updateDisplay(char.statusEffects);
+
+			if(char != null && char is ShittyShip)
+			{
+				_levelDisplay.caption = "CAPTAIN";
+				_levelDisplay.updateBar((char as ShittyShip).captainDisplay);
+				_sexDisplay.caption = "FACTION";
+				_sexDisplay.updateBar((char as ShittyShip).factionDisplay);
+				_raceDisplay.caption = "MODEL";
+				_raceDisplay.updateBar((char as ShittyShip).modelDisplay);
+				//_statBlock.energyBar.caption = "CAPACITOR";
+			}
+			else 
+			{
+				_levelDisplay.caption = "LEVEL";
+				_sexDisplay.caption = "SEX";
+				_raceDisplay.caption = "RACE";
+			}
 		}
 	}
 }

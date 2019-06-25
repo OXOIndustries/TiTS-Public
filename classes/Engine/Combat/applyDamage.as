@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageType;
@@ -219,6 +220,16 @@ package classes.Engine.Combat
 		if (damageResult.hpDamage > 0 && damageResult.shieldDamage > 0)
 		{
 			if(displayBonusTexts) output(" The attack continues on to connect with " + target.getCombatName() + "!");
+			//Special snowflake ship stuff.
+			if(damageResult.typedHPDamage.electric.damageValue > 0 && target is ShittyShip)
+			{
+				if(target.hasStatusEffect("Charging Light Drive"))
+				{
+					if(target.hasPerk("PCs")) output(" The surge of electricity disrupts your electronics, <b>preventing your light drive from charging</b>! You'll have to try again.");
+					else output(" The surge of errant electricity plays havoc with its attempts to charge its light drive. <b>It can't escape like this!</b>");
+					target.removeStatusEffect("Charging Light Drive");
+				}
+			}
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
@@ -254,7 +265,7 @@ package classes.Engine.Combat
 			attacker.HP(Math.round(damageResult.hpDamage * .9));
 		}
 		// Stun Special
-		if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
+		if ((damageResult.hpDamage + damageResult.lustDamage) > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
 		{
 			if(displayBonusTexts) 
 			{

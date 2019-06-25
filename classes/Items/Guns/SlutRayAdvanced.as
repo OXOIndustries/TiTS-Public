@@ -19,13 +19,11 @@ package classes.Items.Guns
 			type = GLOBAL.RANGED_WEAPON;
 			
 			shortName = "A.SlutRay";
-			
 			longName = "advanced slut ray";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a silvery ‘slut ray’ gun";
-			
 			tooltip = "An advanced slut ray model, designed to project sexual fantasies into the mind of a target. Incredibly similar to the original model, except this one boasts higher intensity settings and a wider database of fantasies to draw upon.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -34,12 +32,13 @@ package classes.Items.Guns
 			attackNoun = "sexual fantasy";
 			
 			basePrice = 2500;
-			attack = 0;
+			
 			baseDamage.tease.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
+			attack = 0;
 			defense = 0;
 			shieldDefense = 0;
 			shields = 0;

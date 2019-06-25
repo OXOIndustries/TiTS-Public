@@ -71,6 +71,43 @@ public function reahaFree():Boolean
 }
 
 //1. FOLLOWER STUFF
+public function reahaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
+	if(!reahaAddicted())
+	{
+		//Slave Reaha, random choice: 
+		if(curedReahaInDebt()) 
+		{
+			desc += RandomInCollection([
+				"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+				"\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.",
+				"\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...",
+			]);
+		}
+		//Freed Reaha, random choice: 
+		else
+		{
+			desc += RandomInCollection([
+				"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+				"\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.",
+				"\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.",
+				"\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.",
+			]);
+		}
+		addButton(btnSlot, "Reaha", curedReahaApproach);
+	}
+	//Normal Reaha
+	else 
+	{
+		desc += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
+		addButton(btnSlot, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+	}
+	
+	return (showBlurb ? desc : "");
+}
 //Reaha (Approach Shipboard)
 public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday(doOutput:Boolean = true):void {
 	if (doOutput)

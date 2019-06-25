@@ -180,6 +180,10 @@
 			
 			this._isLoading = false;
 		}
+		override public function get bustDisplay():String
+		{
+			return "GEOFF";
+		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{

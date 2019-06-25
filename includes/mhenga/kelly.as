@@ -2622,7 +2622,7 @@ public function kellyHyperBlowDoubleYiss():void
 	clearMenu();
 	addButton(0, "Take One", blowThatHyperKellyDick, undefined, "Take One", "Suck one of her big, beautiful horsecocks and jack the other off as best you can.");
 	if (flags["USED_SNAKEBYTE"] == undefined) addDisabledButton(1, "Take Both", "Take Both", "You’re going to need some SnakeByte if you want any hope of throating two of these bitch-breakers.");
-	addButton(1, "Take Both", inForKellysHyperCockInForBoth, undefined, "Take Both", "Suck <i>both</i> of those beautiful cocks at once. You’re a big [pc.boyGirl], you can handle it.");
+	else addButton(1, "Take Both", inForKellysHyperCockInForBoth, undefined, "Take Both", "Suck <i>both</i> of those beautiful cocks at once. You’re a big [pc.boyGirl], you can handle it.");
 }
 
 public function blowThatHyperKellyDick():void

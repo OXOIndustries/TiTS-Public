@@ -211,20 +211,17 @@ public function adultCockvineSenseOverride():void
 	output("You doubt you could show off your moves very well down here, even if this creature <i>had</i> eyes.");
 }
 
-public function adultCockvineStruggleOverride():void
+public function adultCockvineStruggleOverride(target:Creature):void
 {
 	//PC struggle 
 	//Replaces run if at stage 1 or higher
 	clearOutput();
 	output("Instead of attacking the cockvine directly you work at grimly extricating yourself from its grasping tentacles, peeling the coiling, writhing appendages off you and clambering out of this hellish pit.");
 
-	var chance:Number;
-
-	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
-	else chance = pc.RQ();
+	var chance:Number = ((target.PQ() > target.RQ()) ? target.PQ() : target.RQ());
 	
 	//Limber confers a 20% escape chance.
-	if(pc.hasPerk("Limber")) chance += 20;
+	if(target.hasPerk("Limber")) chance += 20;
 
 	if (rand(100) > chance)
 	{
@@ -233,11 +230,11 @@ public function adultCockvineStruggleOverride():void
 	else
 	{
 		output(" You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.");
-		pc.addStatusValue("Cockvine Grip", 1, -1);
-		if (pc.hasStatusEffect("Grappled")) pc.removeStatusEffect("Grappled");
+		target.addStatusValue("Cockvine Grip", 1, -1);
+		target.removeStatusEffect("Grappled");
 	}
 	
-	pc.setStatusValue("Cockvine Grip", 2, 1);
+	target.setStatusValue("Cockvine Grip", 2, 1);
 	
 	CombatManager.processCombat();
 }

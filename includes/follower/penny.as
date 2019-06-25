@@ -3,29 +3,34 @@ public function pennyCrewSharing():Boolean
 	return ((pennyIsCumSlut() && flags["PENNY_CUMSLUT_OTHER_CREW"] != undefined) || flags["PENNY_OTHER_CREW_TALKED"] != undefined || penny.isBimbo());
 }
 
-public function pennyCrewDesc():String {
+public function pennyCrewDesc(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
 	var buffer:String = "";
+	
 	//Badgurquest raygun handoff 
 	if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
 	{
-		buffer += "<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>";
+		buffer += "\n\n<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>";
 		//addButton(0,"Penny",turnTheTablesOnBadger);
 	}
 	//Girlfriend penny
 	else {
 		if(flags["PENNY_IS_A_CUMSLUT"] != undefined || penny.isBimbo())
 		{
-			buffer += "Penny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
+			buffer += "\n\nPenny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
 		}
 		//Non-Futa
 		//Appearance blurb: 
-		else if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
+		else if(!penny.hasCock()) buffer += "\n\nPenny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
 		//FUTA!
 		//Appearance Blurb: 
 		else 
-		buffer += "Penny keeps herself busy on your ship, though when she sees you, it’s when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she’s packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can’t quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
+		buffer += "\n\nPenny keeps herself busy on your ship, though when she sees you, it’s when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she’s packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can’t quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
 	}
-	return "\n\n" + buffer;
+	
+	addButton(btnSlot,"Penny",approachCrewPenny);
+	
+	return (showBlurb ? buffer : "");
 }
 
 public function approachCrewPenny(back:Boolean = false):void
@@ -138,20 +143,30 @@ public function pennyCrewMenu():void
 		else addDisabledButton(6,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
 	}
 	
-	//9999 addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
+	addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
 	
 	addButton(14,"Back",crew);
 }
 
-// 9999
 public function pennyBootFromCrew():void
 {
 	clearOutput();
 	showPenny();
 	author("");
 	
-	output("");
-	output("\n\n");
+	output("You tell Penny that you need the space on your ship back. She’ll have to crash somewhere else in the meantime.");
+	if(pennyIsCumSlut() || penny.isBimbo())
+	{
+		
+		output("\n\nInstead of the expected sadness, Penny reacts with apparent delight, even going so far as to stroke her [penny.cockNounSimple] with greater enthusiasm. The corners of her mouth climb into a delighted smile as she declares, <i>“This is the perfect excuse to go visit Flahne!”</i> Her tong lolls into a wanton pant, slurring her words. <i>“She’s so fucking hot...”</i>");
+		output("\n\nThat was easy...");
+	}
+	else
+	{
+		output("\n\nPenny steps back, not quite beleiving what she’s hearing. The sharp points of her ears sag beneath the weight of the news. Glancing down, the the former fox-cop huffs in disappointment. <i>“I guess I’ll need to bunk with Flahne for a little while. It might even be fun, I guess.”</i> Penny’s whole body straightens. <i>“Yeah! Don’t leave me waiting too long, [pc.name].”</i>");
+		output("\n\nYou nod and give her time to collect her things.");
+
+	}
 	
 	processTime(20);
 	
@@ -159,20 +174,32 @@ public function pennyBootFromCrew():void
 	if(flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Penny is no longer on your crew. You can find her again on Mhen’ga.</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
+
+public function pennyOffCrewKickedOff(arg:Number):void
+{
+	showBust(pennyBustDisplay());
+	output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
+	addButton(arg,"Recruit",pennyRejoinCrew,undefined,"Recruit","Bring Penny back onboard.");
+}
+
 public function pennyRejoinCrew():void
 {
 	clearOutput();
 	showPenny();
-	author("");
 	
-	output("");
-	output("\n\n");
+	if(pennyIsCumSlut() || penny.isBimbo())
+	{
+		output("Getting Penny back on board is a snap. All it takes is promising that she can be the cummiest cam-whore in the galaxy.");
+	}
+	else
+	{
+		output("You invite Penny back.");
+		output("\n\nThe fox-girl smiles fiercely. <i>“See? I knew you’d need your badass, ex-cop of a girlfriend to help tame that frontier.”</i> She snags a duffel full of clothing. <i>“I’ll see you on the ship, mate.”</i>");
+	}
 	
 	processTime(20);
 	
@@ -180,7 +207,6 @@ public function pennyRejoinCrew():void
 	flags["PENNY_ONBOARD"] = 1;
 
 	output("\n\n(<b>Penny has rejoined your crew!</b>)");
-	output("\n\n");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

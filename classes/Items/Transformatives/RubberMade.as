@@ -128,7 +128,7 @@
 					if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) output("\n\nThe sudden feeling of shocked and lustful eyes on you rouses you from your reverie. Slowly rising from the ground, you try to maintain as much dignity as you can muster. As you move on, you realize that a moaning squeak accompanies your every step. You don’t have a mirror close at hand, but you realize that with the fresh lacquer, you must look like a black rubber fuckdoll. Putting an embarrassed urgency in your steps, you find a little privacy and try to clean up as best you can.");
 					// Gives player "Black Latex" condition, increasing minimum lust by 10 but making their attempts to escape grapples or constricts far more successful
 					pc.createPerk("Black Latex",0,0,0,0,"Gives you delightful latex skin, but keeps you slightly more aroused at all times.");
-					output("\n\n(<b>Gained Perk: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
+					output("\n\n(<b>Perk Gained: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
 					pc.skinTone = "black";
 					if(pc.hasCock())
 					{

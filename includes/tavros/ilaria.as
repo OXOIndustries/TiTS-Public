@@ -483,7 +483,7 @@ public function ilariaCumSlurp():void
 	clearOutput();
 	showIlaria(true);
 	author("Wsan");
-	[Blowjob]
+	// [Blowjob]
 	//tooltip: Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.
 	output("<i>“Nuh uh,”</i> you say, shaking your head. Ilaria moans in disappointment as you take the milker off her from behind, but quickly recovers as you bend down to lick her between the legs.");
 	output("\n\n<i>“Oh!”</i> she gasps, reaching back to " + (pc.hasHair() ? "stroke your [pc.hair]":"place her palm on your head") + ". <i>“I guess you wanna do things the hard way" + (flags["ILARIA_CUMSUCKED_URETHRAL"] != undefined ? " again":"") + ", huh?”</i>");
@@ -496,6 +496,9 @@ public function ilariaCumSlurp():void
 	output("\n\nYou reach for the controller to her vibrators and grin around her prick as she gasps, her very cock shaking in your mouth as shudders run throughout her entire body. Her thighs tighten and her hips begin to flick back and forth as she gives into the irresistible instinct of pure, animal pleasure. Grabbing handfuls of her curvy asscheeks, you let her start battering your face against her taut stomach, panting all the while.");
 	output("\n\n<i>“Gonna cum,”</i> Ilaria whines needily, spittle flying from your lips as you’re rocked back and forth over the entire length of her throbbing dick. <i>“Oh fuck oh fuck oh fuck gonna cum gonna cum nnnh-!”</i>");
 	output("\n\nRight on cue you switch the vibes to max and she suddenly doubles over, breath catching in her throat while her eyes go wide. The pause affords you the precious seconds you need to gently slide the straw you procured from a container earlier right down the first few inches of her shaft before she blows. She doesn’t even notice the intrusion, and in a flash you have your lips wrapped around the straw and suck <i>hard</i>.");
+	
+	chars["ILARIA"].cockHoleChange(0);
+	
 	output("\n\nYour effort almost makes you choke on her seed. Her cum doesn’t even come in loads, it just jets into your mouth as a high-pressure stream of hot, thick cream that you’re forced to chug lest it spill from your lips. Even so, you don’t let up on sucking it straight out of her churning balls for even a second. Her voice comes out in desperate, breathless utterances and wordless moans, the vibrators inside her keeping her trapped in endless orgasm.");
 	output("\n\nThe flood of cum gushing into your mouth and down your overworked throat certainly <i>feels</i> endless, your stomach swelling with the sheer amount of her seed you’re swallowing down. It seems like she’ll never stop, and you’re not sure either of you want her to. You can feel her ass flexing in your grip, straining and squeezing down on the buzzing vibe set against her overactive prostate.");
 	output("\n\n<i>“Cuh- can’t, stop,”</i> Ilaria pants. <i>“Nnnnnnngh!”</i>");

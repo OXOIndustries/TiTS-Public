@@ -205,6 +205,7 @@
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
 		include "../includes/events/extrameet/bigtiddygothgf.as";
+		include "../includes/events/extrameet/kaede.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
@@ -220,6 +221,7 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/tessaWedding.as";
 		include "../includes/events/wargiiHold/druggedKorg.as";
 		include "../includes/events/wargiiHold/druggedKorgMale.as";
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
@@ -245,6 +247,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fadil.as";
 		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
@@ -338,6 +341,8 @@
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
+		include "../includes/tarkus/coronaLordShipEncounter.as";
+		include "../includes/tarkus/dockMaster.as";
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
@@ -362,6 +367,7 @@
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
+		include "../includes/tarkus/tessaBedroomGame.as";
 		include "../includes/tarkus/verusha.as";
 		include "../includes/tarkus/zea.as";
 		
@@ -381,6 +387,7 @@
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
 		include "../includes/newTexas/mirrin.as";
+		include "../includes/newTexas/mirrinPregpack.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
@@ -473,6 +480,8 @@
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		include "../includes/zhengShiStation/wallSluts.as";
+
+		include "../includes/zhengShiStation/shipTesting.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -555,6 +564,8 @@
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
+		public var shits:Object;
+		public var shitDict:Dictionary;
 
 		public var days:int;
 		public var hours:int;
@@ -655,7 +666,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.284";
+			version = "0.7.288";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -969,7 +980,8 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if (item.type == GLOBAL.RANGED_WEAPON)
+			if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) compareItem = new EmptySlot();
+			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;
 			}
