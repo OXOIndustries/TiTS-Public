@@ -4965,31 +4965,63 @@ package classes.GameData
 			// cannot act during the next hostile group update
 			for (var i:int = 0; i < _hostiles.length; i++)
 			{
-				if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
+				//Shitty shipfite code by Fen. Sorry, world.
+				if (_hostiles[i] is ShittyShip)
 				{
-					_hostiles[i].alreadyDefeated = true;
-					if (_hostiles[i] is RatsRaider) (_hostiles[i] as RatsRaider).setLastFallenRat();
-					
-					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
-					if (_hostiles.length > 1)
+					if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
 					{
-						if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
-						
-						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " fall" + (_hostiles[i].isPlural ? "":"s") + " to the ground,");
-						if (_hostiles[i].HP() <= 0) output(" defeated.");
-						else output(" stricken with lust.");
+						_hostiles[i].alreadyDefeated = true;
+						// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
+						if (_hostiles.length > 1)
+						{
+							output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " go" + (_hostiles[i].isPlural ? "":"es") + " dark,");
+							if (_hostiles[i].HP() <= 0) output(" defeated.");
+							else output(" " + (_hostiles[i].isPlural ? "their crews":"its crew") + " disabled by lust.");
+						}
+					}
+					else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
+					{
+						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false));
+						if(_hostiles[i].physiqueRaw > 0)
+						{
+							output(" float" + (_hostiles[i].isPlural ? "":"s") + " in");
+							output(" space, defeated.");
+						}
+						else 
+						{
+							output(" sit" + (_hostiles[i].isPlural ? "":"s") + " stationary and dark.");
+						}
 					}
 				}
-				else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
+				//Nonship:
+				else
 				{
-					output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false));
-					if(_hostiles[i].hasFlightEffects())
+					if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
 					{
-						_hostiles[i].clearFlightEffects();
-						output(" fall" + (_hostiles[i].isPlural ? "":"s") + " to");
+						_hostiles[i].alreadyDefeated = true;
+						if (_hostiles[i] is RatsRaider) (_hostiles[i] as RatsRaider).setLastFallenRat();
+						
+						// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
+						if (_hostiles.length > 1)
+						{
+							if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
+							
+							output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " fall" + (_hostiles[i].isPlural ? "":"s") + " to the ground,");
+							if (_hostiles[i].HP() <= 0) output(" defeated.");
+							else output(" stricken with lust.");
+						}
 					}
-					else output(" l" + (_hostiles[i].isPlural ? "ay":"ies") + " on");
-					output(" the ground, defeated.");
+					else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
+					{
+						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false));
+						if(_hostiles[i].hasFlightEffects())
+						{
+							_hostiles[i].clearFlightEffects();
+							output(" fall" + (_hostiles[i].isPlural ? "":"s") + " to");
+						}
+						else output(" l" + (_hostiles[i].isPlural ? "ay":"ies") + " on");
+						output(" the ground, defeated.");
+					}
 				}
 			}
 			
