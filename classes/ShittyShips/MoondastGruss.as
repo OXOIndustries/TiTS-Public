@@ -117,6 +117,7 @@
 		}
 		override public function get bustDisplay():String
 		{
+			if(hasPerk("PIRATE_GUN")) return "TAMTURRETS";
 			return "MOONDAST_GRUSS";
 		}
 	}

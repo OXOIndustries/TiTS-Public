@@ -891,11 +891,9 @@ public function submitThePiratePassword():void
 	//Submit, Wrong Password
 	if(!pwordOkay)
 	{
-		output("<i>“Yeah, nice try,”</i> the voice says over the radio, suddenly with a dangerous edge. <i>“Only gate you’re crashing is the afterlife’s!”</i>");
+		output("<i>“Yeah, nice try,”</i> the voice says over the radio, suddenly with a dangerous edge. <i>“Only gate you’re crashing is the afterlife’s!”</i>\n\nShips buzz out of Zheng Shi's hangar like bees from a hive you just accidentally kicked... Shit.");
 		//gib spess battle
-		//9999
-		output("\n\n(There was meant to be a space battle here, so placeholder bad-end for now!)");
-		badEnd();
+		zhengSpaceBatturu();
 	}
 	//Submit, Answer: Fuck You
 	else
@@ -908,6 +906,72 @@ public function submitThePiratePassword():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+}
+
+public function zhengSpaceBatturu():void
+{
+	var pcShip:ShittyShip = shits["SHIP"];
+
+	var tEnemy:ShittyShip = new Pyrotech();
+	tEnemy.captainDisplay = "GASMASK";
+	tEnemy.isUniqueInFight = false;
+	var tEnemy2:ShittyShip = new Pyrotech();
+	tEnemy2.captainDisplay = "BURNIE";
+	tEnemy2.isUniqueInFight = false;
+	var tEnemy3:ShittyShip = new MoondastGruss();
+	tEnemy3.removePerk("PCs");
+	tEnemy3.captainDisplay = "FERRUS";
+	tEnemy3.factionDisplay = "C.PUNKS";
+	tEnemy3.createPerk("AGGRESSIVE_AI");
+	tEnemy3.meleeWeapon = new EMCannon();
+	tEnemy3.rangedWeapon = new EmptySlot();
+	tEnemy3.accessory = new EmptySlot();
+	tEnemy3.createPerk("PIRATE_GUN");
+	tEnemy3.short = "EM Turrets";
+	tEnemy3.isPlural = true;
+	tEnemy3.isUniqueInFight = true;
+	tEnemy3.btnTargetText = "Turrets";
+	tEnemy3.long = "Zheng Shi houses numerous EM turrets across its rocky surface, perfect for gunning down anybody who wanders too close. It'll be hard to escape while they're still online.";
+	tEnemy3.HPMod = 1200;
+	tEnemy3.physiqueRaw = 0;
+	tEnemy3.reflexesRaw = 0;
+	tEnemy3.willpowerRaw = 100;
+	tEnemy3.inventory = [];
+	
+
+	CombatManager.newGroundCombat();
+	
+	CombatManager.setHostileActors(tEnemy,tEnemy2,tEnemy3);	
+	CombatManager.setFriendlyActors(pcShip);
+	//CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tEnemy);
+	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pcShip);
+	CombatManager.victoryScene(winZhengSpaceBattle);
+	CombatManager.lossScene(loseZhengSpaceBattle);
+	CombatManager.displayLocation("PIRATES");
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function loseZhengSpaceBattle():void
+{
+	clearOutput();
+	showName("\nDEFEAT...");
+	author("Fenoxo");
+	output("While core system after core system fails, the bombardment continues. Simply disabling your ship isn’t enough for these pirates. Alarms blare as thunderous vibrations rattle through the deck beneath your [pc.legOrLegs]. You close your eyes, awaiting the inevitab-");
+	badEnd(); 
+}
+
+public function winZhengSpaceBattle():void
+{
+	clearOutput();
+	showName("\nVICTORY!");
+	author("Fen & Savin");
+	output("The comm crackles to life. <i>“Huh. I guess you got what it takes to hang in Zheng Shi after all. Here, since you freed up some hangar space down on Cargo Deck, I’ve allocated you a parking slot. To the victor go the spoils and all that rot. Oh, and for future reference, when pirates ask you for a password, you ask them to fuck off. Nobody uses passcodes but corp-sluts and peacekeeper corp-sluts.”</i> The girl on the other side of the line cuts it before you can reply.");
+	output("\n\nThe target locks from the asteroid subside, and you’re able to bring your ship forward into the bay unmolested. You pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
+	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding <i>thud</i>, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
+	flags["ZHENG_SHI_PASSWORDED"] = 2;
+	output("\n\n");
+	CombatManager.genericVictory();
 }
 
 public function foundryLounge2Bonus():Boolean
