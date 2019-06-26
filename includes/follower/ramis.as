@@ -2847,7 +2847,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			addButton(0, "Next", ramisFaceSittingJackOffScene, [1, cIdx, cLength, ppRamis]);
 			break;
 		case 1:
-			output("She pushes forward suddenly, the oozing fruit of her sex smushing you in the face, pushing you back onto the floor in a muddle. [pc.chest] heaving, you gaze upwards as the kaithrit purposefully stands astride you, turning around and then kneeling about your shoulders, her gently dripping pussy descending towards your face as she fumbles with your " + (pc.isCrotchExposed() ? "[pc.groin]" : "[pc.lowerGarments]") + ".");
+			output("She pushes forward suddenly, the oozing fruit of her sex smushing you in the face, pushing you back onto the floor in a muddle. [pc.ChestNoun] heaving, you gaze upwards as the kaithrit purposefully stands astride you, turning around and then kneeling about your shoulders, her gently dripping pussy descending towards your face as she fumbles with your " + (pc.isCrotchExposed() ? "[pc.groin]" : "[pc.lowerGarments]") + ".");
 			output("\n\n<i>“Keep doin’ what you do, " + (pc.isFemboy() ? "knickers" : "boyo") + ",”</i> she growls down to your shoulder, impetuous lust livid on her features. You gasp as she");
 			if(!pc.isCrotchExposedByLowerUndergarment()) output(" rips off your [pc.lowerUndergarment] and");
 			output(" takes a firm hold of your [pc.cock " + cIdx + "]. <i>“I’m just looken to give you some incentive.”</i>");

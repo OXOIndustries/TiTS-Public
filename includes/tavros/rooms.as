@@ -1274,7 +1274,7 @@ public function initTavrosRooms():void
 	rooms["ANON'S BACK END"].runOnEnter = anonBackEndBonus;
 	rooms["ANON'S BACK END"].moveMinutes = 1;
 	rooms["ANON'S BACK END"].addFlag(GLOBAL.INDOOR);
-	rooms["ANON'S BACK END"].addFlag(GLOBAL.BAR);
+	//rooms["ANON'S BACK END"].addFlag(GLOBAL.BAR);
 	rooms["ANON'S BACK END"].addFlag(GLOBAL.PUBLIC);
 	rooms["ANON'S BACK END"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 }

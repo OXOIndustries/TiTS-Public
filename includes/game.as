@@ -4828,6 +4828,8 @@ public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
 
 public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
+	if(!reahaIsCrew()) return;
+	
 	var totalHours:int = ((minutes + deltaT) / 60);
 	if (!disableExploreEvents() && totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 	{
@@ -4835,7 +4837,7 @@ public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):v
 		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
 	}
 	
-	if (totalDays >= 1 && reahaIsCrew() && curedReahaInDebt() && !reahaAddicted() && ((days + totalDays) % 7 == 0 || totalDays >= 7) && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
+	if (totalDays >= 1 && curedReahaInDebt() && !reahaAddicted() && ((days + totalDays) % 7 == 0 || totalDays >= 7) && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
 }
 
 public function processGobblesEvents(deltaT:uint, doOut:Boolean):void

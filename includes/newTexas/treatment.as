@@ -4027,7 +4027,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// If dick is ever lost, regrow dick!
 		if(!pc.hasCock() && treatedHours >= 3)
 		{
-			AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is, like, totally cute.", "passive", (treatedHours - startHours) * 60);
+			AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is pretty cute.", "passive", (treatedHours - startHours) * 60);
 			pc.createCock();
 			pc.setNewCockValues(0);
 		}

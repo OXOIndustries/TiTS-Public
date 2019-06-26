@@ -124,8 +124,8 @@ public function attachButtBugFemale(variant:int = -1):void
 {
 	// Status Effect: "Butt Bug (Female)"
 	// v1: occupied female variant
-	// v2: fertilization toggle
-	// v3: 
+	// v2: fertilization count
+	// v3: non-fertilization count
 	// v4: number of offspring produced
 	pc.createStatusEffect("Butt Bug (Female)", -1, 0, 0, 0, true, "Icon_Donut", "Currently infected by a female butt bug.", false, 0);
 	pc.setStatusValue("Butt Bug (Female)", 1, variant);
@@ -150,6 +150,7 @@ public function resetButtBugEggCycle():void
 {
 	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
 	pc.setStatusValue("Butt Bug Egg Cycle", 2, 0);
+	pc.setStatusValue("Butt Bug Egg Cycle", 3, 0);
 	pc.setStatusValue("Butt Bug Egg Cycle", 4, 0);
 	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
 }
@@ -1793,7 +1794,7 @@ public function processButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 			
 			// Immobilization eject
 			if(	target.pregnancyData[3].pregnancyQuantity >= 30 && target.hasStatusEffect("Endowment Immobilized")
-			&&	target.statusEffectv2("Butt Bug (Female)") != 1
+			&&	target.statusEffectv2("Butt Bug (Female)") <= 0
 			&&	eventQueue.indexOf(expelButtBugEggImmobile) == -1
 			) eventQueue.push(expelButtBugEggImmobile);
 		}
@@ -1901,7 +1902,11 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 	{
 		if(mother.hasStatusEffect("Butt Bug (Female)"))
 		{
-			if(mother.pregnancyData[3].pregnancyType.indexOf("ButtBugPregnancy") != -1) mother.addStatusValue("Butt Bug (Female)", 2, 1);
+			// Overproductive female can only be fertilized by male butt bug.
+			// Other females will be fertilized if male is virile.
+			if(father.impregnationType == "ButtBugPregnancy" || (InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList) && mother.pregnancyData[3].pregnancyType != "ButtBugPregnancy1" && father.virility() > 0)) mother.addStatusValue("Butt Bug (Female)", 2, 1);
+			// Count unfertilized loads just in case.
+			else mother.addStatusValue("Butt Bug (Female)", 3, 1);
 		}
 		return;
 	}
