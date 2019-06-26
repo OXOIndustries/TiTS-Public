@@ -210,7 +210,7 @@ package classes {
 				defense += inventory[i].defense;
 				if(inventory[i].type != GLOBAL.RANGED_WEAPON && inventory[i].type != GLOBAL.GADGET) shieldDefense += inventory[i].shieldDefense;
 				fortification += inventory[i].fortification;
-				shields = inventory[i].shields;
+				shields += inventory[i].shields;
 			}
 			//Locked in equipment additions:
 			evasion += meleeWeapon.evasion + rangedWeapon.evasion + armor.evasion + shield.evasion + accessory.evasion;
