@@ -150,6 +150,7 @@ public function resetButtBugEggCycle():void
 {
 	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
 	pc.setStatusValue("Butt Bug Egg Cycle", 2, 0);
+	pc.setStatusValue("Butt Bug Egg Cycle", 3, 0);
 	pc.setStatusValue("Butt Bug Egg Cycle", 4, 0);
 	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
 }
@@ -1793,7 +1794,7 @@ public function processButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 			
 			// Immobilization eject
 			if(	target.pregnancyData[3].pregnancyQuantity >= 30 && target.hasStatusEffect("Endowment Immobilized")
-			&&	target.statusEffectv2("Butt Bug (Female)") != 1
+			&&	target.statusEffectv2("Butt Bug (Female)") <= 0
 			&&	eventQueue.indexOf(expelButtBugEggImmobile) == -1
 			) eventQueue.push(expelButtBugEggImmobile);
 		}

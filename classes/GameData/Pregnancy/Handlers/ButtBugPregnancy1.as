@@ -101,14 +101,7 @@ package classes.GameData.Pregnancy.Handlers
 			// Set OPBBE to [OPBBE + 1]
 			else
 			{
-				var eggs:int = 1;
-				// Add extra eggs from other loads
-				if(mother.statusEffectv3("Butt Bug (Female)") > 0)
-				{
-					eggs += mother.statusEffectv3("Butt Bug (Female)");
-					mother.setStatusValue("Butt Bug (Female)", 3, 0);
-				}
-				buttBugAddEggs1(mother, pregSlot, eggs);
+				buttBugAddEggs1(mother, pregSlot, 1);
 				// Reset incubation speed mod in case it was ever changed
 				if(!mother.hasPerk("Butt Bug Symbiosis")) pData.pregnancyIncubationMulti = 1;
 			}
@@ -116,6 +109,13 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function buttBugAddEggs1(mother:Creature, pregSlot:int, eggs:int = 1):void
 		{
+			// Add extra eggs from other loads
+			if(mother.statusEffectv3("Butt Bug (Female)") > 0)
+			{
+				eggs += mother.statusEffectv3("Butt Bug (Female)");
+				mother.setStatusValue("Butt Bug (Female)", 3, 0);
+			}
+			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
 			pData.pregnancyQuantity += eggs;
