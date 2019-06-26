@@ -519,7 +519,7 @@ public function chooseHeight():void {
 	output("<i> child, then? Very well. How tall should [pc.heShe] grow up to be? Please, give it in Imperial inches.”</i>");
 	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i>");
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i>");
-	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
+	output("\n\n<b>Please give your character’s height in inches. For reference, 72 inches is about six feet tall or 182 centimeters.</b>");
 	
 	displayInput();
 	userInterface.textInput.text = String(averageHeight());
