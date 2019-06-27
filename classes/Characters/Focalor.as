@@ -4,15 +4,15 @@
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	
-	public class Meon extends Creature
+	public class Focalor extends Creature
 	{
-		public function Meon()
+		public function Focalor()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "Meon";
+			this.short = "Focalor";
 			this.originalRace = "Tove";
 			this.a = "";
 			this.capitalA = "";
@@ -32,13 +32,13 @@
 		}
 		override public function get bustDisplay():String
 		{
-			var str:String = "MEON";
+			var str:String = "FOCALOR";
 			
 			return str;
 		}
 		override public function onLeaveBuyMenu():void
 		{
-			kGAMECLASS.leaveMeon();
+			kGAMECLASS.leaveFocalor();
 		}
 	}
 }

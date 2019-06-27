@@ -2070,6 +2070,7 @@ public function shipMenu():Boolean
 	{
 		if(shekkaIsCrew()) output(" (Shekka is hard at work patching it up.)");
 		else if(shipLocation == "TAVROS HANGAR") output(" (Vahn will have it repaired in time.)");
+		else if(shipLocation == "UVS F15" && flags["MET_SYNPHIA"] != undefined) output(" (Synphia will have it repaired in time.)");
 		else output(" (Park the ship in Tavros Station to allow Vahn to repair it.)");
 	}
 
@@ -2144,7 +2145,8 @@ public function shipStatistics():void
 
 	for(var i:int = 0; i < shippy.inventory.length; i++)
 	{
-		if(button == 14) button++;
+		//used to be button++; but hacky fix for a crash.
+		if (button >= 14) break;
 		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
 	}
 	while(button > 0) 
@@ -4409,6 +4411,11 @@ public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):v
 			if(flags["MET_VAHN"] == undefined) mechanics.push("your mechanic");
 			else mechanics.push("Vahn");
 			recoveryModifier += 1;
+		}
+		else if(shipLocation == "UVS F15" && flags["MET_SYNPHIA"] != undefined)
+		{
+			mechanics.push("Synphia");
+			recoveryModifier += 2;
 		}
 		shits["SHIP"].HP(Math.round(deltaT * recoveryModifier));
 		

@@ -429,7 +429,7 @@
 		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
-		include "../includes/myrellion/meonTheShipTove.as";
+		include "../includes/myrellion/focalorTheShipTove.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
@@ -543,6 +543,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/synphia.as";
 		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";

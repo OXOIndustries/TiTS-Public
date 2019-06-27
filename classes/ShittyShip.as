@@ -89,13 +89,15 @@ package classes {
 		//Agility (mapped to reflexes)
 		public function shipAgility():Number
 		{
-			return reflexesRaw;
+			var bonus:Number = (equippedItemCountByClass(ThrustVectoringSystem)*20);
+			return (reflexesRaw+bonus);
 		}
 		//Speed (mapped to physique)
 		public function shipThrust():Number { return shipSpeed(); }
 		public function shipSpeed():Number
 		{
-			return physiqueRaw;
+			var bonus:Number = (equippedItemCountByClass(AuxiliaryThrusters) * 25);
+			return (physiqueRaw + bonus);
 		}
 		//Power Generation (mapped to willpower)
 		public function shipPowerGen():Number
@@ -106,7 +108,7 @@ package classes {
 		public function shipSensors():Number
 		{
 			var bonus:Number = (equippedItemCountByClass(SensorSuite) * 25);
-			return aimRaw;
+			return (aimRaw + bonus);
 		}
 		//Systems (Mapped to Intelligence)
 		public function shipSystems():Number
@@ -132,6 +134,7 @@ package classes {
 		{
 			var bonus:Number = 0;
 			if(this is ClydesdaleK7) bonus += 2;
+			bonus += equippedItemCountByClass(AdvancedQuarters)*2;
 			return bonus;
 		}
 		public function shipCrewCapacity():Number

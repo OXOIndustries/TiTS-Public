@@ -271,7 +271,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	if(pc.credits >= arg.shipCost()) 
 	{
 		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
-		if(shopkeep is Meon) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
+		if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
 		else if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
 		else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
 	}
@@ -282,7 +282,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 
 	//else addButton(1,"Buy+Trade",);
 	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
-	else if(shopkeep is Meon) addButton(14,"Back",meonApproach);
+	else if(shopkeep is Focalor) addButton(14,"Back",focalorApproach);
 	else if(shopkeep is Dockmaster) addButton(14,"Back",buyAShipFromTrashRat);
 }
 
@@ -312,7 +312,7 @@ public function buyAShipAndTradeInGo(arg:ShittyShip):void
 	processTime(25);
 	clearMenu();
 	if(shopkeep is Dockmaster) addButton(0,"Next",raskvelDockmaster,true);
-	else if(shopkeep is Meon) addButton(14,"Back",meonApproach);
+	else if(shopkeep is Focalor) addButton(14,"Back",focalorApproach);
 	else addButton(0,"Next",VahnTheMechanic);
 }
 

@@ -142,11 +142,12 @@ public function uvetoShipDock():Boolean
 	
 	var btnSlot:int = 0;
 	
+	synphiaBonus(btnSlot++);
+
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
 		chaurmineUvetoStationBonus(btnSlot++);
 	}
-
 	return false;
 }
 public function uvetoDockingBonus():Boolean
