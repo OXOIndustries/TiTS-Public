@@ -914,7 +914,7 @@ public function firstTimePennyShowerSex():void {
 		else if(cumQ < 2000) output(" Her belly rounds slightly from all you put into her, but the way her eyes are rolling back, you’re sure she doesn’t mind the added weight.");
 		else
 		{
-			output("Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
+			output(" Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
 			if(cumQ >= 5000)
 			{
 				output(" Of course, after that the pressure becomes to great, and your [pc.cum] runs out in a wave, ");

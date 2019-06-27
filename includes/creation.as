@@ -545,25 +545,22 @@ public function averageHeight():Number
 }
 
 public function applyHeight():void {
+	clearOutput();
 	var fail:Boolean = false;
 	if(isNaN(Number(userInterface.textInput.text))) {
-		clearOutput();
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) < 48) {
-		clearOutput();
-		output("Choose a height above 48 inches tall, please.");
+		output("Choose a height at or above 48 inches tall, please.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
-		clearOutput();
-		output("Choose a height below 84 inches tall, please.");
+		output("Choose a height at or below 84 inches tall, please.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
-		clearOutput();
-		output("Choose a height below 108 inches tall, please.");
+		output("Choose a height at or below 108 inches tall, please.");
 		fail = true;
 	}
 	if(fail) {
@@ -575,6 +572,44 @@ public function applyHeight():void {
 		addButton(14,"Back",startCharacterCreation);
 		return;
 	}
+	
+	var stringInput:String = userInterface.textInput.text;
+	var newTallness:Number = Number(stringInput);
+	var newFeet:Number = Math.floor(newTallness/12);
+	var newInches:Number = (Math.round((newTallness - (newFeet * 12)) * 1000)/1000);
+	var newCentimeters:Number = (newTallness * 2.54);
+	var newMeters:Number = (newCentimeters)/100;
+	
+	output("You chose " + newTallness + " inch" + (newTallness == 1 ? "" : "es"));
+	if(newTallness >= 12)
+	{
+		output(" (");
+		if(newFeet > 0)
+		{
+			output(newFeet + " f" + (newFeet == 1 ? "oo" : "ee") + "t");
+			if(newInches > 0) output(" and ");
+		}
+		if(newInches > 0) output(newInches + " inch" + (newInches == 1 ? "" : "es"));
+		output(")");
+	}
+	if(newCentimeters >= 0)
+	{
+		output(", or " + (Math.round(newCentimeters * 1000)/1000) + " centimeters");
+		if(newMeters >= 0)
+		{
+			output(" (" + (Math.round(newMeters * 1000)/1000) + " meters)");
+		}
+	}
+	output(". Is this correct? If not, input a new value to retry.");
+	
+	displayInput();
+	userInterface.textInput.text = stringInput;
+	output("\n\n\n");
+	clearMenu();
+	addButton(0,"Confirm",applyHeightConfirm);
+	addButton(1,"Retry",applyHeight);
+}
+public function applyHeightConfirm():void {
 	pc.tallness = Number(userInterface.textInput.text);
 	if(stage.contains(userInterface.textInput)) 
 		removeInput();

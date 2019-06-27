@@ -124,7 +124,7 @@ public function synphiaMenu():void
 	clearMenu();
 	addButton(5,"Gadgets",buyGadgetsFromSynphia,undefined,"Gadgets","Purchase gadgets for your [pc.ship] from Synphia.");
 	addButton(6,"Upgrades",buyUpgradesFromSynphia,undefined,"Upgrades","Purchase upgrades for your [pc.ship] from Synphia.");
-	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairsWithSynphia,undefined,"Repair","Ask about getting your ship repaired. You know it's free on station, but it pays to touch base.");
+	if(shits["SHIP"].HP() < shits["SHIP"].HPMax()) addButton(4,"Repair",repairsWithSynphia,undefined,"Repair","Ask about getting your ship repaired. You know it’s free on station, but it pays to touch base.");
 	else addDisabledButton(4,"Repair","Repair","Your ship is not damaged.");
 	addButton(7,"Unfit",unfitSynphia,undefined,"Unfit","See about having an installed upgrade removed.");
 	addButton(14,"Leave",leaveSynphia);

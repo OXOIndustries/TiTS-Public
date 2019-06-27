@@ -11126,8 +11126,8 @@
 			}
 			else
 			{
-				tempGirlCumMultiplier += vaginas[0].wetness();
-				if (isSquirter(0)) squirterBonus += vaginas[0].wetness();
+				tempGirlCumMultiplier += vaginas[arg].wetness();
+				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 				girlCumAmount++;
 			}
 			// Scale values.

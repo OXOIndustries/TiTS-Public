@@ -48,7 +48,7 @@
 			this.description = "a shield vampire";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Utilizing the latest in wireless energy transmission devices, the shield vampire system effectively leaches enemy defense screens in order to fortify the user's own shields.\n\n(1x/fight)";
+			this.tooltip = "Utilizing the latest in wireless energy transmission devices, the shield vampire system effectively leaches enemy defense screens in order to fortify the user’s own shields.\n\n(1x/fight)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
