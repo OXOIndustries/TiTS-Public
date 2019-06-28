@@ -5515,7 +5515,7 @@ public function aboutBess1():void
 	clearOutput();
 	bessHeader();
 
-	output("You question [bess.name] about [bess.hisHer] past before you discovered her, though your query seems to confuse [bess.himHer].");
+	output("You question [bess.name] about [bess.hisHer] past before you discovered [bess.himHer], though your query seems to confuse [bess.himHer].");
 	
 	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the first memories I have.”</i>");
 	

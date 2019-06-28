@@ -1276,7 +1276,7 @@ public function multiCockFap():void {
 	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength()/pc.tallness >= 1/6) 
 		choices[choices.length] = 1;
 	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;
-	if(pc.canAutoFellate(x)) 
+	if(pc.canAutoFellate(x) && !pc.hasStatusEffect("Endowment Immobilized")) 
 		choices[choices.length] = 3;
 	if(pc.biggestTitSize() >= 5) choices[choices.length] = 4;
 	if(choices.length == 0) choices[choices.length] = 0;
@@ -4082,6 +4082,16 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 		output(" [pc.Milk] stains your body from the waist down. You could definitely use a shower... or someone else’s tongue.");
 		pc.applyMilkBathed();
 	}
+	processTime(timeStuff);
+	restHeal();
+	pc.loadInMouth(pc);
+	pc.orgasm();
+	cumCowAutoFellatioCooldown(special);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function cumCowAutoFellatioCooldown(special:Boolean = false):void
+{
 	//First time post-script addendum
 	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Voluntary Beej gives 1 week cooldown
@@ -4090,12 +4100,6 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	else pc.setPerkValue("Auto-Autofellatio",2,3);
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
-	processTime(timeStuff);
-	restHeal();
-	pc.loadInMouth(pc);
-	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Normal Autofellate
@@ -4616,6 +4620,7 @@ public function cumCowCockvineSuck():void
 	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
 	pc.loadInMouth(pp);
 	pc.orgasm();
+	if(pc.perkv1("Auto-Autofellatio") > 0) cumCowAutoFellatioCooldown();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

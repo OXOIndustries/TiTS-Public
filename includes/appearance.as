@@ -4608,9 +4608,9 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			else outputRouter("\nInstead of the usual inner and outer labia, " + (target == pc ? "your":"[target.hisHer]") + " vaginal openings are shaped like mouths, each with " + mouthSize + " lips, frozen in a permanent seductive expression.");
 			if(target.vaginas[x].clits >= 1)
 			{
-				if(target.vaginas[x].clits == 1) outputRouter(" A single metallic-colored, polished clit adorns " + (target == pc ? "your":"[target.hisHer]") + " muff,");
-				if(target.vaginas[x].clits == 2) outputRouter(" A couple of metallic-colored, polished clits adorn " + (target == pc ? "your":"[target.hisHer]") + " muff,");
-				if(target.vaginas[x].clits > 2) outputRouter(" Several metallic-colored, polished clits adorn " + (target == pc ? "your":"[target.hisHer]") + " muff,");
+				if(target.vaginas[x].clits == 1) outputRouter(" A single polished, metallic-colored clit adorns " + (target == pc ? "your":"[target.hisHer]") + " muff,");
+				if(target.vaginas[x].clits == 2) outputRouter(" A couple of polished, metallic-colored clits adorn " + (target == pc ? "your":"[target.hisHer]") + " muff,");
+				if(target.vaginas[x].clits > 2) outputRouter(" Several polished, metallic-colored clits adorn " + (target == pc ? "your":"[target.hisHer]") + " muff,");
 				if(target.isBimbo()) outputRouter(" looking totally adorable and");
 				else if(target.vaginas[x].clits > 2) outputRouter(" giving it a punk-ish look and");
 				outputRouter(" drawing all the attention - or wandering hands - to ");
@@ -4619,11 +4619,34 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 				outputRouter(".");
 			}
 			break;
+		default:
+			if(!eachOne) outputRouter(" The exterior lips are normal and feminine for the most part.");
+			else outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " feminine vaginas each match the other in both appearance and features.");
+			break;
+	}
+	//Pumped
+	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
+	var omitPumped:Boolean = false; //(target.vaginas[x].type == GLOBAL.TYPE_MOUTHGINA);
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !omitPumped)
+	{
+		if(!eachOne) outputRouter(" The whole thing is freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding that colossal beachball of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+		else outputRouter(" Each vagina is freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding those colossal beachballs of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+	}
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !omitPumped)
+	{
+		if(!eachOne) outputRouter(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
+		else outputRouter(" Each vagina is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");
+	}
+	//Slightly pumped
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !omitPumped)
+	{
+		if(!eachOne) outputRouter(" The whole thing puffs out slightly, seemingly constantly engorged" + (wasPumped ? " ever since " + (target == pc ? "your":"[target.hisHer]") + " play with a pussy pump" : " with girl flesh") + ".");
+		else outputRouter(" Each vagina is puffed out slightly, seemingly constantly engorged" + (wasPumped ? " ever since " + (target == pc ? "your":"[target.hisHer]") + " play with a pussy pump" : " with girl flesh") + ".");
 	}
 	//Outer-Tentacles
 	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) {
 		if(!eachOne) outputRouter(" Writhing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around its lips.");
-		else outputRouter("\nWrithing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around their lips.");
+		else outputRouter(" Writhing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around their lips.");
 	}
 	//Nubby or Inner-Tentacles
 	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) || target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SHARK])) {
@@ -4641,24 +4664,6 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	{
 		if(!eachOne) outputRouter(" The interior also hosts a thick, erogenous tongue.");
 		else outputRouter(" Their interiors each house a thick, erogenous tongue.");
-	}
-	//Pumped
-	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
-	{
-		if(!eachOne) outputRouter(" The whole thing is freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding that colossal beachball of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
-		else outputRouter(" They’re freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding those colossal beachballs of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
-	}
-	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
-	{
-		if(!eachOne) outputRouter(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
-		else outputRouter(" They’re ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");
-	}
-	//Slightly pumped
-	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
-	{
-		if(!eachOne) outputRouter(" The whole thing puffs out slightly, seemingly constantly engorged" + (wasPumped ? " ever since " + (target == pc ? "your":"[target.hisHer]") + " play with a pussy pump" : " with girl flesh") + ".");
-		else outputRouter(" They’re puffed out slightly, seemingly constantly engorged" + (wasPumped ? " ever since " + (target == pc ? "your":"[target.hisHer]") + " play with a pussy pump" : " with girl flesh") + ".");
 	}
 	//Ovipositor
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))

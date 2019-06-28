@@ -1497,7 +1497,6 @@ public function rest(deltaT:int = -1):void {
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
-
 			else if(rand(20) == 0)
 			{
 				autoCocknosisDistraction();

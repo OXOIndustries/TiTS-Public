@@ -6103,7 +6103,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Hangar Bay</u></b>");
 				output2("\n<b>* Dockmaster:</b> Met her");
-				if(flags["DOCKMASTER_PREGNANT"] != undefined) output2("\n<b>* Dockmaster, Days Pregnant:</b> " + flags["DOCKMASTER_PREGNANT"]);
+				if(flags["DOCKMASTER_PREGNANT"] != undefined) output2("\n<b>* Dockmaster, Days Pregnant:</b> " + Math.floor((GetGameTimestamp() - flags["DOCKMASTER_PREGNANT"])/(60*24)));
 				if(flags["DOCKMASTER_EGGOES"] != undefined) output2("\n<b>* Dockmaster, Times She Laid Eggs:</b> " + flags["DOCKMASTER_EGGOES"]);
 				variousCount++;
 			}
