@@ -1,5 +1,3 @@
-import classes.Items.Treasures.MiniatureGiantBabyKordiiak;
-
 public function showMaja(nude:Boolean = false):void
 {
 	var nudeS:String = "";

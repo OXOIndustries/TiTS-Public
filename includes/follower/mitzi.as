@@ -2,7 +2,6 @@ import flash.utils.getDefinitionByName;
 import flash.utils.getQualifiedClassName;
 import classes.Items.Apparel.SavicitePanties;
 import classes.Items.Combat.RuttingPerfume;
-import classes.Items.Piercings.OpalRingPiercing;
 import classes.Items.Toys.MitziBionaHole;
 
 /*

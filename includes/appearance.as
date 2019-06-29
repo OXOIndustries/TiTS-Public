@@ -2,7 +2,6 @@
 import classes.Creature;
 import classes.StorageClass;
 import classes.GameData.Pregnancy.PregnancyManager;
-import classes.Items.Piercings.LundsRings;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (pc.short.length == 0) return;

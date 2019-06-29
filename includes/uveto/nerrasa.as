@@ -1,5 +1,3 @@
-import classes.Items.Upgrades.ExpandedBackpackII;
-
 public function uvetoApproachNerrasaFirstTime():void
 {
 	clearOutput();

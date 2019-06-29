@@ -14,10 +14,6 @@
 //					~Special~
 //					10- Follow up to 8, PC succesfully took the rebels to Mhenga themselves
 
-import classes.Items.Guns.RudimentaryRevolver;
-import classes.Items.Treasures.QueenlyNecklace;
-import classes.Items.Miscellaneous.GemSatchel;
-
 //Sellera Quest Intro
 public function selleraHelp():void
 {
