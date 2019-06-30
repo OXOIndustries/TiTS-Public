@@ -2092,15 +2092,22 @@ public function shipMenu():Boolean
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
 
-		var crewTotal:Number = crew(true,true);
-		var crewCounter:Number = crew(true,false);
-		var crewCapacity:Number = PCShipCrewCapacity();
+		var crewTotal:int = crew(true,true);
+		var crewCounter:int = crew(true,false);
+		var crewCapacity:int = PCShipCrewCapacity();
+		var crewOccuppied:int = Math.min(crewCapacity, crewCounter);
 		// Crew note
 		if(crewTotal > 0)
 		{
-			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew,");
-			if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
-			output(" residing in " + (crewCapacity) + " of your available crew space" + (crewCapacity == 1 ? "" : "s") + ".");
+			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew");
+			if(crewCounter > 0)
+			{
+				output(",");
+				if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
+				output(" residing in " + (crewOccuppied) + " of your " + (crewCapacity) + " available crew space" + (crewCapacity == 1 ? "" : "s"));
+			}
+			else output(" with " + (crewCapacity) + " vacant crew space" + (crewCapacity == 1 ? "" : "s") + " available");
+			output(".");
 		}
 		
 		if(crewCapacity < crewCounter && flags["INFINITE_CREW"] == undefined) 
@@ -3464,7 +3471,7 @@ public function variableRoomUpdateCheck():void
 		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
-	if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17))
+	if(hungryFlahneWithBimboPenny())
 	{
 		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
 	}

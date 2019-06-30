@@ -113,7 +113,7 @@ public function showPennyBust(nude:Boolean = false):void
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		if(pennyIsCrew()) showBust(pennyBustDisplay(true));
-		else if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
+		else if(hungryFlahneWithBimboPenny()) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
 		else showBust(pennyBustDisplay(true));
 	}
 	else showBust(pennyBustDisplay(nude));

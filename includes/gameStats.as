@@ -1866,7 +1866,7 @@ public function mLs(amount:Number, printMeters:int = 1):String
 	if(printMeters > -1)
 	{
 		if(printMeters == 0) retStr += " (";
-		retStr += formatFloat(amount , 3) + " mLs";
+		retStr += formatFloat(amount, 3) + " mLs";
 		if(printMeters == 0) retStr += ")";
 	}
 	return retStr;

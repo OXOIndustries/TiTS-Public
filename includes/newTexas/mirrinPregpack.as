@@ -899,7 +899,7 @@ public function mirrinGetsPreggoWithEggoEggoEggo(cockIdx:int):void
 	output("\n\n<i>“Shhh, shh...”</i> she whispers, nuzzling your neck.");
 	output("\n\nIt takes a little while to soften from within her: some part of your body doesn’t want to stop breeding!");
 	if (pc.hasKnot(cockIdx)) output(" Your [pc.knot " + cockIdx + "] is even more reluctant, taking several minutes to properly deflate.");
-	output(" As you try gently pulling out, much to your qilin lover’s approval , a " + (cumQ > 10000 ? "thick stream" : "thin trickle") + " of [pc.cumColor] fluid leaks onto the bed, some still hanging off of your [pc.cockHead " + cockIdx + "].");
+	output(" As you try gently pulling out, much to your qilin lover’s approval, a " + (cumQ > 10000 ? "thick stream" : "thin trickle") + " of [pc.cumColor] fluid leaks onto the bed, some still hanging off of your [pc.cockHead " + cockIdx + "].");
 
 	//Orgasm event/reduce PC lust to zero. PC gains ‘Sore’ status effect. 
 	processTime(90);

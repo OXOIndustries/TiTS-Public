@@ -438,7 +438,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is shark-like in shape, with a snout and an upper jaw that pushes past " + (target == pc ? "your":"[target.hisHer]") + " lower one, and at the very tip, there are two nasal holes.");
 			if((target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) outputRouter(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" The surface is covered in fine scales.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" The surface is covered with " + faceFurScales + " , making " + (target == pc ? "you":"[target.himHer]") + " look like a rather odd hybrid.");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" The surface is covered with " + faceFurScales + ", making " + (target == pc ? "you":"[target.himHer]") + " look like a rather odd hybrid.");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter(" Hard" + faceFurScales + " covers the surface, giving " + (target == pc ? "you":"[target.himHer]") + " a tough, hydrodynamic look.");
 			else outputRouter(" Even without scales, the surface is smooth and hairless, perfect for underwater exploration.");
 			outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " mouth and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a slightly menacing appearance.");
@@ -1603,7 +1603,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			fluidLayers += target.statusEffectv1("Cum Soaked");
 			fluidLayer = Math.ceil(target.statusEffectv1("Cum Soaked"));
 			if(fluidLayer > 3) fluidLayer = 3;
-			fluidVisc = ["cum", "spooge", "gooey semen" , "goopey spunk"];
+			fluidVisc = ["cum", "spooge", "gooey semen", "goopey spunk"];
 			fluidList.push(fluidVisc[fluidLayer]);
 		}
 		if(target.hasStatusEffect("Pussy Drenched"))
@@ -4172,7 +4172,7 @@ public function setWingPref(position:int):void
 		pc.createStatusEffect("Wing Position");
 	}
 	
-	pc.setStatusValue("Wing Position", 1 , position);
+	pc.setStatusValue("Wing Position", 1, position);
 	
 	selectWingPref();
 }

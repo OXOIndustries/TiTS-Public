@@ -1,4 +1,8 @@
-﻿//Post bimbo Penny reactions/repeat greetings (incl reaction from Flahne)
+﻿public function hungryFlahneWithBimboPenny():Boolean
+{
+	return (flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17));
+}
+//Post bimbo Penny reactions/repeat greetings (incl reaction from Flahne)
 //Approach Text
 //[replace text for Approach after Penny has been bimbo’d]
 public function approachBimboPenny():void
@@ -123,7 +127,7 @@ public function bimboPennySexMenu():void
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis to fuck her.");
 
 	addButton(1,"Get Fucked",getFuckedByBimboPenny,undefined,"Get Fucked","Take advantage of bimbo Penny’s rather sizeable tool.");
-	addButton(2,"Get Oral",getOralFromBimboPenny,undefined,"Get Oral","Have your bimbo slut give you a nice oral servicing");
+	addButton(2,"Get Oral",getOralFromBimboPenny,undefined,"Get Oral","Have your bimbo slut give you a nice oral servicing.");
 	if(pennyIsCrew())
 	{
 		addButton(3,"Cum Bath",givePennyACumBath,undefined,"Cum Bath","Penny sure seems very... productive, maybe you could take advantage of that, if you want?");
@@ -135,7 +139,7 @@ public function bimboPennySexMenu():void
 	}
 	else 
 	{
-		addDisabledButton(3,"Cum Bath","Cum Bath","Come back when Flahne isn’t around so Penny has had more time to build up her production");
+		addDisabledButton(3,"Cum Bath","Cum Bath","Come back when Flahne isn’t around so Penny has had more time to build up her production.");
 		addButton(4,"Flahne Play",playWithFlahne,undefined,"Play With Flahne","Flahne’s had a lot of time to absorb Penny’s cum, surely that would make for some interesting flavors and opportunities?");
 	}
 	if(pennyIsCrew()) addButton(14,"Back",approachCrewPenny,true);

@@ -882,7 +882,7 @@ public function fedQuestGasTheGoldsRaceWarNow():void
 		if(pc.lust(100) >= pc.lustMax())
 		{
 			output("\n\nYou groan and start clawing at your [pc.gear], groping at yourself and helping the myr girl’s wandering hands find your loins. The desperation of your chemical desires drives you forward, grabbing the gold by the arm and pulling her back into the room: one myr alone can’t possibly satisfy you!");
-			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();} , undefined, "", "");
+			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();}, undefined, "", "");
 			return;
 		}
 	}

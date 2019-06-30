@@ -181,8 +181,10 @@ public function pennyBootFromCrew():void
 
 public function pennyOffCrewKickedOff(arg:Number):void
 {
-	showBust(pennyBustDisplay());
-	output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
+	showPenny();
+	if(hungryFlahneWithBimboPenny()) output("\n\nOutside of Flahne’s office, you see the vixen heavily flirting with the bubbly rahn. You could ask Penny to return to your crew if you like.");
+	else output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
+	
 	addButton(arg,"Recruit",pennyRejoinCrew,undefined,"Recruit","Bring Penny back onboard.");
 }
 
@@ -193,7 +195,11 @@ public function pennyRejoinCrew():void
 	
 	if(pennyIsCumSlut() || penny.isBimbo())
 	{
-		output("Getting Penny back on board is a snap. All it takes is promising that she can be the cummiest cam-whore in the galaxy.");
+		output("Getting Penny back on board is a snap");
+		if(hungryFlahneWithBimboPenny()) output("--well, almost. Having to peel a lust-hungry Flahne off her is a struggle, but you manage by");
+		else output(". All it takes is");
+		output(" promising that she can be the cummiest cam-whore in the galaxy.");
+		if(hungryFlahneWithBimboPenny()) output("\n\n<i>“Aww... Don’t forget to come by and visit me again, okay sugar?”</i> Flahne says before walking off to the nearest restroom to freshen up.");
 	}
 	else
 	{

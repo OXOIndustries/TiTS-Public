@@ -3069,9 +3069,9 @@ public function outputStorageListForType(type:String):Array
 		}
 	}
 	
-	output("\n\n<b>You have " + String(flags["SHIP_STORAGE_" + type] - items.length) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+	output("\n\n<b>You have " + String(Math.max((flags["SHIP_STORAGE_" + type] - items.length), 0)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
 
-	if(flags["SHIP_STORAGE_" + type] - items.length < 0) output("\n<b>You cannot fly with this many items!</b>");
+	if(items.length > flags["SHIP_STORAGE_" + type]) output("\n<b>You cannot fly with this many items!</b> Please remove at least " + ((items.length - flags["SHIP_STORAGE_" + type]) == 1 ? "one item" : (String(items.length - flags["SHIP_STORAGE_" + type]) + " items")) +  " from your storage.");
 
 	if (items.length > 10) output("\n\n" + multiButtonPageNote());
 

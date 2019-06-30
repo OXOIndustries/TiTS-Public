@@ -4626,7 +4626,7 @@ public function cumCowCockvineSuck():void
 }
 
 //Cockwing Orgy
-//* Can auto-proc if PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+//* Can auto-proc if PC is cumcow or if Willpower < 25%, Libido > 50% and Lust > 70
 //* Otherwise a masturbation option.
 //Voluntary Masturbation
 //[Tentacles]
@@ -4756,7 +4756,7 @@ public function cockwingOrgySluts():void
 }
 
 //Involuntary
-//Requirement: Vag, Cockwings, PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+//Requirement: Vag, Cockwings, PC is cumcow or if Willpower < 25%, Libido > 50% and Lust > 70
 public function involuntarilyCockwangYourself():void
 {
 	clearOutput();

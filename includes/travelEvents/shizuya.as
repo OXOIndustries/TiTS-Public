@@ -492,8 +492,8 @@ public function shizzyIntroductionPartEinsEpilogue(args:Array):void
 
 	output("About an hour passes, very uneventfully. The only thing keeping you busy has been small bouts of inconsequential chatter between you and Shizuya; You learned that she likes to cook, that she’s married and her wife recently gave birth to twins, and many less wholesome things about how much she loves bondage. Hot.");
 	output("\n\nEventually the lights start to flicker back to life. You check your codex and see that system power is at 40%. It’s not enough to get the ship back moving, but enough for the main systems to kick back in.");
-	if (annoIsCrew()) output(" They’ve been at this for a while , maybe you should check up on them?");
-	else output( "She’s been at this for a while , maybe you should check up on her?");
+	if (annoIsCrew()) output(" They’ve been at this for a while, maybe you should check up on them?");
+	else output( "She’s been at this for a while, maybe you should check up on her?");
 	
 	//PC in tittays
 	if (choice >= 2)
@@ -547,7 +547,7 @@ public function shizzyIntroductionPartII(destination:String):void
 		output("\n\n<i>“A little pushy, but yeah, she’s alright.”</i> She closes in on you and starts to whisper. <i>“She’s cute as fuck too. Have you seen " + (silly ? "dat" : "her") + " ass? Mhmm!”</i> She gives an okay sign for emphasis. <i>“So, what’s been happening with you?”</i> You explain all the things that Shizuya told you. <i>“A wife and kids? That woman works fast, doesn’t she? Never took her for a charmer, but I guess she’s had some ‘changes’ since then.”</i> She bites her lip a bit at that. <i>“Say, wanna help me talk these girls into some ‘dessert’?”</i>");
 		output("\n\n<i>“I’m not deaf, you know.”</i> Mika interrupts before you can answer, hoping out of the wall. <i>“What’s there to talk into? You wanna fuck, I’m down to fuck.");
 		if (pc.femininity <= 40) output(" Weeeell, maybe [pc.he]’ll need to do some talking.");
-		output(" But, we got a job to do , sex comes later.”</i> Anno feigns a huff as Mika picks up her toolbox and starts walking over to the next point of repair. The pale pup is almost shameless in ogling her ass as she walks. You can’t blame her, even in the baggy cargo pants Mika is wearing, her ass manages to make a noticeable indent, and jiggles like two perfectly molded gelatin domes.");
+		output(" But, we got a job to do, sex comes later.”</i> Anno feigns a huff as Mika picks up her toolbox and starts walking over to the next point of repair. The pale pup is almost shameless in ogling her ass as she walks. You can’t blame her, even in the baggy cargo pants Mika is wearing, her ass manages to make a noticeable indent, and jiggles like two perfectly molded gelatin domes.");
 		output("\n\nYou’re both so captivated that you don’t even notice when she looks back at you.");
 		if (pc.isNice()) output(" You and Anno both go red, a slight look of shame coming over your faces, though you’re pretty sure Anno is faking it.");
 		else if (pc.isMisch()) output(" You and Anno immediately look away, pretending like you weren’t looking.");

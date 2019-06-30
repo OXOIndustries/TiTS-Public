@@ -3407,7 +3407,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				// To 5
 				else if(pc.ballSizeRaw < 5)
 				{
-					AddLogEvent("A pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your " + pc.ballsDescript() + ". " , "passive", (ballSizeGains[firstBallSizeGain + i] - startHours) * 60);
+					AddLogEvent("A pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your " + pc.ballsDescript() + ". ", "passive", (ballSizeGains[firstBallSizeGain + i] - startHours) * 60);
 					if(pc.balls == 1) ExtendLogEvent("It’s ");
 					else ExtendLogEvent("They’re ");
 					ExtendLogEvent("warm and so pleasantly sensitive. You can almost swear you feel ");
