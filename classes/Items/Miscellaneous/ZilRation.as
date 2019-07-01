@@ -190,13 +190,15 @@
 				}
 				//JCUP ANTENNAE/TONGUE INSERT
 				//Antennae
-				if(target.antennaeUnlocked(2) && target.antennae == 0 && changes < changeLimit && rand(2) == 0) {
-					kGAMECLASS.output("\n\nA tingling sensation on your head catches your attention. As you run your fingers across your forehead, you feel two distinct nubs growing out of your [pc.skinFurScales]. They continue to grow, elongating into <b>a pair of bee-like antennae</b>. They make you look more insectile as you move them around experimentally.");
+				if(!target.hasAntennae(GLOBAL.TYPE_BEE) && target.antennaeTypeUnlocked(GLOBAL.TYPE_BEE) && changes < changeLimit && rand(2) == 0) {
+					kGAMECLASS.output("\n\nA tingling sensation on your head catches your attention.");
+					if(target.hasAntennae()) kGAMECLASS.output(" Before you can examine yourself, you see remnants of your [pc.antennae] flake away into dust, replaced by other protrusions...");
+					kGAMECLASS.output(" As you run your fingers across your forehead, you feel two distinct nubs growing out of your [pc.skinFurScales]. They continue to grow, elongating into <b>a pair of bee-like antennae</b>. They make you look more insectile as you move them around experimentally.");
 					target.antennae = 2;
 					target.antennaeType = GLOBAL.TYPE_BEE;
 					changes++;
 				}
-				else if (!target.antennaeUnlocked(2))
+				else if (!target.antennaeTypeUnlocked(GLOBAL.TYPE_BEE))
 				{
 					kGAMECLASS.output("\n\n" + target.antennaeLockedMessage());
 				}
