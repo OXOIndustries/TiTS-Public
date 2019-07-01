@@ -111,7 +111,7 @@
 				}
 				//Gender Neutral TFs
 				//Human-style face
-				if(target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN) && target.skinType != GLOBAL.SKIN_TYPE_FUR && target.faceType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0) {
+				if(target.faceTypeUnlocked(GLOBAL.TYPE_HUMAN) && target.faceType != GLOBAL.TYPE_HUMAN && changes < changeLimit && rand(4) == 0) {
 					//Has muzzle
 					if(target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
 						kGAMECLASS.output("\n\nYour snout compresses, your bones flowing like butter, reforming your jaw into a much more compact package. Surprisingly, it doesn’t really hurt. It’s more disconcerting than anything, making you dizzy as the change completes. You use the camera on your codex to check on the results and discover <b>you have a face shaped much like a human’s!</b>");
@@ -175,8 +175,8 @@
 				}
 				
 				//Removal of fur
-				if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && target.skinType == GLOBAL.SKIN_TYPE_FUR && changes < changeLimit && rand(3) == 0) {
-					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there’s a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There’s no relief from the itch until you’ve scrubbed every bit of hair from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
+				if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && target.skinType != GLOBAL.SKIN_TYPE_SKIN && changes < changeLimit && rand(3) == 0) {
+					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there’s a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There’s no relief from the itch until you’ve scrubbed every bit of [pc.skinFurScalesNoun] from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
 					target.skinType = GLOBAL.SKIN_TYPE_SKIN;
 					target.clearSkinFlags();
 					kGAMECLASS.output("[pc.skin].")
