@@ -669,7 +669,7 @@ package classes.Items.Transformatives
 					var newColor:String = Foxfire.colorsMatching(target) ? target.lipColor : target.skinTone;
 					var prevSize:Number = target.biggestTitSize();
 					
-					if (target.nippleColorUnlocked(target.skinTone)) target.nippleColor = target.skinTone;
+					if (target.nippleColorUnlocked(newColor)) target.nippleColor = newColor;
 					if (target.nippleLengthRatioUnlocked(1) && target.nippleLengthRatio > 1) target.nippleLengthRatio = 1;
 					if (target.nipplesPerBreastUnlocked(1) && target.nipplesPerBreast > 1) target.nipplesPerBreast = 1;
 					target.breastRows = [new BreastRowClass()];
