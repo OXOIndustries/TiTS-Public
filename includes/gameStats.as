@@ -1076,12 +1076,12 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shieldDefense(), 3));
 			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.defense(), 3));
 			output2("\n<b>* Power Generation:</b> " + formatFloat(pcShip.shipPowerGen(), 3));
-			output2("\n<b>* Accuracy:</b> " + formatFloat(pcShip.shipAccuracy(), 3));
 			output2("\n<b>* Agility:</b> " + formatFloat(pcShip.shipAgility(), 3));
-			output2("\n<b>* Evasion:</b> " + formatFloat(pcShip.shipEvasion(), 3));
 			output2("\n<b>* Sensors:</b> " + formatFloat(pcShip.shipSensors(), 3));
 			output2("\n<b>* Systems:</b> " + formatFloat(pcShip.shipSystems(), 3));
 			output2("\n<b>* Thrust:</b> " + formatFloat(pcShip.shipThrust(), 3));
+			output2("\n<b>* Accuracy:</b> " + formatFloat(pcShip.shipAccuracy(), 3));
+			output2("\n<b>* Evasion:</b> " + formatFloat(pcShip.shipEvasion(), 3));
 			output2("\n<b>* Modules, Total Capacity:</b> " + pcShip.shipCapacity());
 			output2("\n<b>* Modules, Installed:</b> " + pcShip.inventory.length);
 			output2("\n<b>* Modules, Crew:</b> " + Math.min(pcCrew, pcShip.shipCrewCapacity()));

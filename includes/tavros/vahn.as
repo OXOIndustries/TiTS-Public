@@ -420,18 +420,19 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
 	shipTooltip += "\n<b>Power Generation: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
 	
-	//Accuracy
-	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
 	//Agility
 	shipTooltip += "\n\n<b>Agility: </b>" + shipStatCompare(newShip.shipAgility(), shits["SHIP"].shipAgility());
-	//Evasion
-	shipTooltip += "\n\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
 	//Sensors
 	shipTooltip += "\n<b>Sensors: </b>" + shipStatCompare(newShip.shipSensors(), shits["SHIP"].shipSensors());
 	//Systems
 	shipTooltip += "\n<b>Systems: </b>" + shipStatCompare(newShip.shipSystems(), shits["SHIP"].shipSystems());
 	//Thrust
 	shipTooltip += "\n<b>Thrust: </b>" + shipStatCompare(newShip.shipThrust(), shits["SHIP"].shipThrust());
+	
+	//Accuracy
+	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
+	//Evasion
+	shipTooltip += "\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
 
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), shits["SHIP"].shipCapacity());
