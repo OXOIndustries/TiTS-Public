@@ -694,7 +694,7 @@ public function fuckTheStormguardsButt():void
 
 		output("\n\n");
 		if(flags["MET_GEL_ZON"] != undefined) output("Gel Zon’s");
-		else output("the storm lancer’s");
+		else output("The storm lancer’s");
 		output(" breath is coming as hot and heavy as your own, you notice. You let your hand swing beneath his thick thighs, give his heavy, ridge-encrusted cock a teasing stroke, and find that it’s bulgingly erect, becoming hard as knotted oak when you shove yourself inwards to your fullest extent. Your huge dick pressing into his inner sex, and his own self-denial, are evidently having an effect.");
 		output("\n\n<i>“You enjoying that, boy?”</i> you " + pc.mf("husk","purr") + ", coiling his dick with flicks of the wrist. <i>“Are you?”</i> You receive nothing but a rumbling, catching groan in response. You exult in your conquest, this vainglorious beast you’ve tamed with your own hand, increasing the fervency with which you pound his big, tough backside. You could have a say over whether he cums his brains out here or not...");
 

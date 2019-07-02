@@ -316,6 +316,8 @@ package classes.Items.Transformatives
 						if (target.legType == GLOBAL.TYPE_FELINE) output(" <b>You now have feline ears!</b>");
 						if (target.legType == GLOBAL.TYPE_EQUINE) output(" <b>You now have equine ears!</b>");
 						target.earType = target.legType;
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 					} else {
 						if (!target.earTypeUnlocked(GLOBAL.TYPE_AVIAN)) {
 							output("\n\n" + target.earTypeLockedMessage());

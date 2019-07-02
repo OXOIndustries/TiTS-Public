@@ -883,7 +883,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (!isTightFit)
 		{
 			output("\n\n<i>“Oh, stop making a meal out of it,”</i> you " + pc.mf("chuckle", "giggle") + ", closing your eyes to the pleasure of easily sliding in inch after inch of your");
-			if ((pc.cockVolume(y) * 1.5) <= pp.analCapacity()) output(" cute");
+			if (pc.cLength(y) < 6) output(" cute");
 			else output(" decently-sized");
 			output(", sensitive cock past his clenching ring. <i>“Imagine if your mistress had made you go with a REAL monster.”</i>");
 		}

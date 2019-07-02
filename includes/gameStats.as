@@ -1073,13 +1073,15 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pcShip.hasShields() && !pcShip.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
 			output2("\n<b>* Armor:</b> " + pcShip.HPQ() + " %, " + "0/" + formatFloat(pcShip.HP(), 3) + "/" + formatFloat(pcShip.HPMax(), 3));
 			output2("\n<b>* Energy:</b> " + pcShip.energyQ() + " %, " + formatFloat(pcShip.energyMin(), 3) + "/" + formatFloat(pcShip.energy(), 3) + "/" + formatFloat(pcShip.energyMax(), 3));
-			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shield.shieldDefense, 3));
-			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.armor.defense, 3));
+			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shieldDefense(), 3));
+			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.defense(), 3));
 			output2("\n<b>* Power Generation:</b> " + formatFloat(pcShip.shipPowerGen(), 3));
 			output2("\n<b>* Agility:</b> " + formatFloat(pcShip.shipAgility(), 3));
 			output2("\n<b>* Sensors:</b> " + formatFloat(pcShip.shipSensors(), 3));
 			output2("\n<b>* Systems:</b> " + formatFloat(pcShip.shipSystems(), 3));
 			output2("\n<b>* Thrust:</b> " + formatFloat(pcShip.shipThrust(), 3));
+			output2("\n<b>* Accuracy:</b> " + formatFloat(pcShip.shipAccuracy(), 3));
+			output2("\n<b>* Evasion:</b> " + formatFloat(pcShip.shipEvasion(), 3));
 			output2("\n<b>* Modules, Total Capacity:</b> " + pcShip.shipCapacity());
 			output2("\n<b>* Modules, Installed:</b> " + pcShip.inventory.length);
 			output2("\n<b>* Modules, Crew:</b> " + Math.min(pcCrew, pcShip.shipCrewCapacity()));

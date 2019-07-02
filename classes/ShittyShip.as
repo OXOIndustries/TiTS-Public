@@ -115,7 +115,7 @@ package classes {
 		{
 			var bonus:Number = 0;
 			bonus += equippedItemCountByClass(ShieldDisruptor) * 5;
-			bonus += equippedItemCountByClass(HardenedSystems) * 5;
+			bonus += equippedItemCountByClass(HardenedSystems) * 25;
 			return intelligenceRaw + bonus;
 		}
 		public var shipGunCapacityRaw:Number = 2;

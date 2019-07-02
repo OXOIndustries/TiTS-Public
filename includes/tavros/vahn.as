@@ -428,6 +428,11 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Systems: </b>" + shipStatCompare(newShip.shipSystems(), shits["SHIP"].shipSystems());
 	//Thrust
 	shipTooltip += "\n<b>Thrust: </b>" + shipStatCompare(newShip.shipThrust(), shits["SHIP"].shipThrust());
+	
+	//Accuracy
+	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
+	//Evasion
+	shipTooltip += "\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
 
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), shits["SHIP"].shipCapacity());
