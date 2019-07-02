@@ -30,18 +30,18 @@
 			this.type = GLOBAL.ACCESSORY;
 			
 			//Used on inventory buttons
-			this.shortName = "Hvy.Armor";
+			this.shortName = "R.Plate";
 			
 			//Regular name
-			this.longName = "heavy armor";
+			this.longName = "redundant plating";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a heavy armor";
+			this.description = "redundant plating";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Building additional, secondary layers of armor into the superstructure of a ship is a proven way to enhance durability at the cost of interior space.";
+			this.tooltip = "Stacking redudant layers of armor is one way to increase a vessel's durability.\n\n(+1000 Armor)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

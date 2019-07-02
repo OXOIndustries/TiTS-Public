@@ -351,6 +351,17 @@ package classes {
 			
 			return modifiedDamage;
 		}
+		override public function fortification(): Number {
+			var temp: int = 0;
+			temp += meleeWeapon.fortification;
+			temp += rangedWeapon.fortification;
+			temp += armor.fortification + upperUndergarment.fortification + lowerUndergarment.fortification + accessory.fortification + shield.fortification;
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				temp += inventory[i].fortification;
+			}
+			return temp;
+		}
 		override public function HPMax():Number
 		{
 			var bonus:int = 0;
