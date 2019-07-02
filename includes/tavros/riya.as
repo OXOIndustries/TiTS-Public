@@ -41,6 +41,12 @@ public function getRiyaPregContainer():PregnancyPlaceholder
 	return pp;
 }
 
+//Yeah, I added this here in case the worst needs to happen. -Fen
+public function riyaEnabled():Boolean
+{
+	return true;
+}
+
 public function riyaAppearance():void
 {
 	clearOutput();
@@ -64,6 +70,9 @@ public function riyaOnCanada():Boolean
 
 public function riyaBonus():Boolean
 {
+	//Yep, see earlier note above the function def -Fen
+	if(!riyaEnabled()) return false;
+
 	if((riyaOnCanada() && getPlanetName().toLowerCase() == "canadia station") || (!riyaOnCanada() && getPlanetName().toLowerCase() == "tavros station"))
 	{
 		if(flags["MET_RIYA"] != undefined && pc.hasStatusEffect("RIYA_CANADIA_CD"))
