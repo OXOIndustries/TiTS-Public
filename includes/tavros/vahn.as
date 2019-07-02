@@ -420,8 +420,12 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
 	shipTooltip += "\n<b>Power Generation: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
 	
+	//Accuracy
+	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
 	//Agility
 	shipTooltip += "\n\n<b>Agility: </b>" + shipStatCompare(newShip.shipAgility(), shits["SHIP"].shipAgility());
+	//Evasion
+	shipTooltip += "\n\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
 	//Sensors
 	shipTooltip += "\n<b>Sensors: </b>" + shipStatCompare(newShip.shipSensors(), shits["SHIP"].shipSensors());
 	//Systems

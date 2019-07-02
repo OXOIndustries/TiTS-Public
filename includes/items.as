@@ -743,6 +743,7 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var ship:ShittyShip = shits["SHIP"];
 	
 	if(shopkeep is Dockmaster)
 	{
@@ -753,14 +754,16 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	}
 	else
 	{
-		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + shits["SHIP"].short + " within the hour.");
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + ship.short + " within the hour.");
 		processTime(60);
 	}
 	pc.credits -= price;
 	
 	//So much easier than PC looting, lol.
-	shits["SHIP"].inventory.push(arg.makeCopy());
-
+	ship.inventory.push(arg.makeCopy());
+	// Max out shields?
+	if(!inCombat() && arg.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
+	
 	output("\n\n");
 
 	clearMenu();
@@ -804,6 +807,7 @@ public function unfitShipItemForReal(i:Number):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 
+	var item:ItemSlotClass = ship.inventory[i];
 	if(shopkeep is Dockmaster)
 	{
 		output("The dockmaster gives you a satisfied nod, hefting her mighty wrench with one muscular arm and stalking toward your ship. <i>“It’ll be about half an hour. Have a drink, sit and relax!”</i> Comes the call over her shoulder.");
@@ -812,12 +816,15 @@ public function unfitShipItemForReal(i:Number):void
 	}
 	else
 	{
-		output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
+		output("The " + item.longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,item.basePrice) + " credits.)");
 		processTime(60);
 	}
-	pc.credits += getSellPrice(shopkeep,ship.inventory[i].basePrice);
+	pc.credits += getSellPrice(shopkeep,item.basePrice);
 	//Remove one item
 	ship.inventory.splice(i,1);
+	// Max out shields?
+	if(!inCombat() && item.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
+	
 	clearMenu();
 	addButton(0,"Next",unfitShipItem,true);
 }

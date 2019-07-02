@@ -554,8 +554,9 @@ public function shizzyIntroductionPartII(destination:String):void
 		else output(" Anno looks away, but you keep looking, even giving her a thumbs up on that delicious rump.");
 		output(" She looks mad, but the way she starts swaying her hips says that she’s actually enjoying the attention.");
 		output("\n\n<i>“Better get moving, lot of stuff left to fix. Hey, if you don’t have anything else to do, why don’t you come with? We could use the help.”</i> Why not? You help Anno finish up here before moving on. On the way there, you decide to finally ask Anno how she knows Shizuya.");
-		if (flags["SHIZZY_ANNO_MENTIONED_AKKADI"] != undefined) output("\n\n<i>“Remember when I told you I got my own team for the warp gate project at Akkadi? She was one of them.”</i>");
-		else output("\n\n<i>“It’s a long story, but the gist of it is; back at Akkadi I got on a project to upgrade the tech used in warp gates, got my own team and everything. She was one of the people who got assigned to my team.");
+		output("\n\n<i>“");
+		if (flags["SHIZZY_ANNO_MENTIONED_AKKADI"] != undefined) output("Remember when I told you I got my own team for the warp gate project at Akkadi? She was one of them.");
+		else output("It’s a long story, but the gist of it is; back at Akkadi I got on a project to upgrade the tech used in warp gates, got my own team and everything. She was one of the people who got assigned to my team.");
 		output(" She was a lot different back then, I’d say she was just a bit taller than Mika, skinny as a rail too. Not much to really say; she was nice, fun, knew what she was doing, could hold her drinks like a machine. Stars, I remember this time we were out celebrating a big find in our research, and this nine or ten-foot Treated guy was harassing us. She challenged him to a drinking contest, and she drank him so far under the table that he could barely speak. The look on his face was priceless!”</i>");
 		output("\n\n<i>“Sounds like you had fun, what happened?”</i>");
 		output("\n\nShe sulks a bit at your question.");

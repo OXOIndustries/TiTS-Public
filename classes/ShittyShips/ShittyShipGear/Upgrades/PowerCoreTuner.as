@@ -41,7 +41,7 @@
 			this.description = "a power core tuner";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The energy produced by a power core is the lifeblood of any space-faring vessel, so it's no surprise that one of the most common modifications installed by risk-chasing pilots is a system for tuning and optimizing power generation. This bulky equipment is known to negatively effect the vessel's center of gravity, resulting in a slight decrease in evasive ability.\n\n(+15 power generation)";
+			this.tooltip = "The energy produced by a power core is the lifeblood of any space-faring vessel, so it’s no surprise that one of the most common modifications installed by risk-chasing pilots is a system for tuning and optimizing power generation. This bulky equipment is known to negatively effect the vessel’s center of gravity, resulting in a slight decrease in evasive ability.\n\n(+15 power generation)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
