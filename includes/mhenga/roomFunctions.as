@@ -70,8 +70,8 @@ public function bountyBoardExtra():Boolean
 	var btnSlot:int = 0;
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
 	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
-
 	if(pennyRecruited() && !pennyIsCrew()) pennyOffCrewKickedOff(btnSlot++);
+	
 	return false;
 }
 public function checkOutBountyBoard():void

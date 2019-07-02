@@ -765,7 +765,7 @@ public function zilTwinsFuckTetra():void
 	output(" Sheathing your " + (cIdx2 >= 0 ? "[pc.cocks]" : "[pc.cock " + cIdx + "]") + " inside her a second time feels even better with Tetra now adjusted to your length and girth, gliding in easily thanks to her outpour of natural lubricants.");
 
 	output("\n\nWith the dommy twin’s guidance, you repeat the same motion again, and again, and again until you’ve built up a steady rhythm that has your insectile lover moaning quietly and gushing her sweet fluids all over.");
-	output(" All the while , Tetra keeps an eye on her brother, making sure the dejected bee boy isn’t touching himself, even with his zil cock throbbing and leaking honey-pre onto the table.");
+	output(" All the while, Tetra keeps an eye on her brother, making sure the dejected bee boy isn’t touching himself, even with his zil cock throbbing and leaking honey-pre onto the table.");
 	output(" When his sibling’s made sure he isn’t jerking off to this lovely scene, Tetra turns her gaze back to you, watching your lust-hazed, pheromone-addled face with a smile before placing a hand on the back of your head, and pushing you down to her chest.");
 	output(" You don’t protest and groan happily as your face comes to rest in the bee girl’s cleavage, feeling warm boobflesh on your cheeks.");
 	output(" For better or for worse, though, you don’t get to stay there long, because Tetra guides you out from between her C-cups and to one of her pert black nipples, with beads of honey already forming on her stiff teats.");
@@ -924,7 +924,7 @@ public function zilTwinsFuckThemAll(arg:Array):void
 	output(" Just when you’re on the brink of pushing your own hips back to get all that cock inside you again, the femboy slams his sides forward, sinking his honey-rod into you again, causing you to cry out with bliss.");
 
 	output("\n\nMica gradually speeds himself up to a steady, but vigorous thrusting, keeping you both locked in constant pleasure as you’re filled with the zil boy’s thick alien member and your [pc.vagOrAss] hugs at his tool.");
-	output(" All the while , your face is buried between Tetra’s legs, tongue-fucking her honey-cunt until she’s like a bottle of honey that just doesn’t empty, her sweet sticky stuff filling your mouth and coating your cheeks until you feel like you’re about to go into a sugar-coma.");
+	output(" All the while, your face is buried between Tetra’s legs, tongue-fucking her honey-cunt until she’s like a bottle of honey that just doesn’t empty, her sweet sticky stuff filling your mouth and coating your cheeks until you feel like you’re about to go into a sugar-coma.");
 	output(" You have the zil moaning aloud, her legs and pussy clenching every now and then when you hit a particular <i>“sweet”</i> spot, letting you know you’re doing a good job.");
 	output("\n\nWith the oral affections you’re giving her and the show her brother’s putting on it’s no surprise the dommy wasp is close to her climax. She throws her legs around your shoulders, keeping you in place as her voice breaks into a short, high-pitched cry of pleasure.");
 	output(" All of her muscles seem to tighten at once, pulling you deeper into Tetra’s slit as it clamps down around your [pc.tongue]. Muffled whimpers fill your ears as an overabundance of the zil’s sweet honey-cum floods your mouth.");

@@ -551,7 +551,7 @@ public function coronaFlamerGetsAChanceToShowOff():void
 	if (pc.hasLegs()) output(" from between your legs");
 	output(".");
 
-	applyDamage(new TypeCollection({ tease: 40 }) , enemy, pc, "suppress");
+	applyDamage(new TypeCollection({ tease: 40 }), enemy, pc, "suppress");
 
 	addButton(0, "Sure", coronaFlamerAboutToGitFukt, true, "Sure", "This woman is fucking crazy but she has the figure of a goddess and" + (flags["FIREPUP_SEXED"] == undefined ? " probably" : "") + " fucks like she fights, which is to say with utter abandon and joy mixed with violence.");
 	addButton(1, "Nah", coronaFlamerIsntAGoodEnoughCockSuckerSlashRugmuncher, undefined, "Nah", "Not good enough.");

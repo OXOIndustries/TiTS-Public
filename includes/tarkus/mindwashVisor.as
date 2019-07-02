@@ -2377,9 +2377,9 @@ public function roxanneDrinkingScene():void
 		output(" Roxanne cries out ecstatically and shoots large globules of fluid into your rectum. Muffled, wet squishes and audible liquid churning can be heard from your guts, but you’re pretty certain it’s still only pre-cum.");
 		output("\n\nYou’re openly moaning and gasping, your face pressed into the mattress by the hard-fucking lizan. She pounds you faster and faster, breathily exulting in the pleasure each time she bottoms out against your gigantic backside. You can’t help but clench and squeeze either - your body is being battered relentlessly. Your sphincter convulses around the thick cock, and when you can’t take any more, you cum, babbling drunkenly and submissively.");
 		output("\n\nRoxanne moans, <i>“Here... it... coooomes!”</i> and thrusts herself into you hilt-deep and hard enough for her balls to leave a mark on your cushiony butt. Eruptions of gooey spunk go off inside you, slowly enlarging the visible bulge in your belly from tip to base, culminating in a spray of spooge from around the edges of Roxanne’s still-squirting cock. Jizz drips down your mounds of goo, pooling on the ground. At the same time, your bloated belly is starting to look fairly pregnant. It slowly balloons out, leaving your poor tummy totally, utterly filled. You get so used to the sensation that when Roxanne finally slows, you’re roused from your post-orgasmic haze");
-		if(hasCock) output(" , dimly aware of the mess you’ve made of Roxanne’s bedsheets");
+		if(hasCock) output(", dimly aware of the mess you’ve made of Roxanne’s bedsheets");
 		output(". Roxanne pulls out unceremoniously, releasing a torrent of white from your abused back-door.");
-		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess , falling asleep in your own spooge.");
+		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess, falling asleep in your own spooge.");
 		processTime(30);
 		var cumNum2:Number = pc.cumQ();
 		pc.orgasm();

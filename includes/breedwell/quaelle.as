@@ -320,7 +320,7 @@ public function quaelleTalkHitOn():void
 		{
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that to feel discomfited by it.");
 			output("\n\n<i>“Oh, vibrulent Steele! You know you shouldn’t be making such kind, shiverous offers,”</i> she says, antennae wriggling fitfully. <i>“Your womb should be being stuffed full of rahn eggs as much as possible");
-			if (pc.hasPregnancyOfType("RahnPregnancyBreedwell")) output(" , as it is now");			
+			if (pc.hasPregnancyOfType("RahnPregnancyBreedwell")) output(", as it is now");			
 			output(". But...”</i> She giggles, gazing at you more coyly now. Hmm. Hmm. <i>“Hearing you say that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. Of course I would like to share intimacy with you.”</i>");
 			
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");

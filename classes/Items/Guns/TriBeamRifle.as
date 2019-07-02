@@ -57,6 +57,7 @@ package classes.Items.Guns
 			this.baseDamage.electric.damageValue = 10;
 			this.baseDamage.burning.damageValue = 10;
 			this.baseDamage.freezing.damageValue = 10;
+			this.baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.baseDamage.addFlag(DamageFlag.LASER);
 			this.addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

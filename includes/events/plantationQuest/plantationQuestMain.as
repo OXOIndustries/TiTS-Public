@@ -1,4 +1,3 @@
-import classes.Items.Treasures.AmberIdol;
 /*
 Plantation Quest
 by Nonesuch, the such of none. Whatever that means. I’m just stalling for time.

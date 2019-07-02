@@ -11126,8 +11126,8 @@
 			}
 			else
 			{
-				tempGirlCumMultiplier += vaginas[0].wetness();
-				if (isSquirter(0)) squirterBonus += vaginas[0].wetness();
+				tempGirlCumMultiplier += vaginas[arg].wetness();
+				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 				girlCumAmount++;
 			}
 			// Scale values.
@@ -22206,12 +22206,7 @@
 					case "Latex Regrow":
 						if (requiresRemoval)
 						{
-							if(skinType != GLOBAL.SKIN_TYPE_LATEX)
-							{
-								if(this is PlayerCharacter) AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
-								if (skinType == GLOBAL.SKIN_TYPE_GOO && !hasSkinFlag(GLOBAL.FLAG_GOOEY)) addSkinFlag(GLOBAL.FLAG_GOOEY);
-								skinType = GLOBAL.SKIN_TYPE_LATEX;
-							}
+							RubberMade.latexRegrow(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 					case "The Mango":

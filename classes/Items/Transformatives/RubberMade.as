@@ -5,10 +5,13 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Util.InCollection;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	public class RubberMade extends ItemSlotClass
 	{
@@ -355,6 +358,25 @@
 			
 			//BAD END.
 			kGAMECLASS.badEnd();
+		}
+		
+		// Latex Regrow
+		public static function latexRegrow(maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_LATEX)
+			{
+				var oldSkinType:Number = target.skinType;
+				var oldSkinFlags:Array = target.skinFlags;
+				
+				if(target is PlayerCharacter) AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (target.isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (target.isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
+				
+				target.skinType = GLOBAL.SKIN_TYPE_LATEX;
+				target.clearSkinFlags();
+				target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+				if(InCollection(GLOBAL.FLAG_THICK, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_THICK);
+				if(InCollection(GLOBAL.FLAG_LUBRICATED, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+				if(oldSkinType == GLOBAL.SKIN_TYPE_GOO || InCollection(GLOBAL.FLAG_GOOEY, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_GOOEY);
+			}
 		}
 	}
 }

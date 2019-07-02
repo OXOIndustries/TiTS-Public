@@ -16,7 +16,7 @@ Dryad xpac written by Wsan.
   AMBER_CREWMEMBER 0/undefined = not recruited and not on ship, 1 = recruited and on ship, 2 = recruited but not on ship
   AMBER_CREWMEMBER_INITIALSCENE undefined = not played, game timestamp = when initial scene happened
   AMBER_VISIT_HOLD 0/undef = unvisited, 1 = visited her in hold
-  AMBER_RECRUIT_FUCK 0/undefined = not recruited , 1 = you fucked her during recruitment scene, 2 = she fucked you
+  AMBER_RECRUIT_FUCK 0/undefined = not recruited, 1 = you fucked her during recruitment scene, 2 = she fucked you
   AMBER_LASTCUM gametimestamp of last time she came
   AMBER_BRUSHED gametimestamp of last time she was brushed
   AMBER_SHIPSEX_TALK 0/undef no talk yet, 1 = had talk
@@ -252,11 +252,11 @@ public function amberComeWithTalkGetFucked(hole:int):void
 	output("\n\nYou cry out underneath her in a mixture of surprise");
 	if (hole < 0)
 	{
-		if(pc.ass.wetness() < 3) output(" , pain,");
+		if(pc.ass.wetness() < 3) output(", pain,");
 	}
 	else
 	{
-		if(pc.vaginas[hole].wetness() < 3)output(" , pain,");
+		if(pc.vaginas[hole].wetness() < 3)output(", pain,");
 	}
 	output(" and pleasure.");
 	if (pc.isTaur()) output(" Her ragged, desperate breathing is hot against your ear, bestial grunts of satisfaction issuing forth from her throat.");

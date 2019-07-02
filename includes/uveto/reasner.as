@@ -1,6 +1,3 @@
-import classes.Items.Treasures.Savicite;
-import classes.Items.Accessories.BeatricesScarf;
-
 /**** Flags ****
 MET_BEA_HUBBY		1 when ya meet 'im
 BEA_GIFT			bea_gift

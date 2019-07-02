@@ -636,7 +636,7 @@ package classes.Items.Transformatives
 					// v1: Timestamp!
 					// v2: Number of transformations per tick
 					// v3: Overdose levels
-					target.createStatusEffect("Cerespirin", timerStamp, 1, 0, 0, false, "Icon_DrugVial", "Your have injected yourself with an experimental drug...", false, timerStamp, 0xB793C4);
+					target.createStatusEffect("Cerespirin", timerStamp, 1, 0, 0, false, "Icon_DrugVial", "You have injected yourself with an experimental drug...", false, timerStamp, 0xB793C4);
 				}
 			}
 			//Not the player!

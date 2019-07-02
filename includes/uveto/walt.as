@@ -165,7 +165,7 @@ public function getWaltPregContainer():PregnancyPlaceholder
 public function waltCockVolume():Number
 {
 	var ppWalt:PregnancyPlaceholder = getWaltPregContainer();
-	return Math.max(ppWalt.cockVolume(0) , 300);
+	return Math.max(ppWalt.cockVolume(0), 300);
 }
 
 public function waltSex(arg:Array = null):void

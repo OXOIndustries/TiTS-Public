@@ -891,7 +891,7 @@ public function submitThePiratePassword():void
 	//Submit, Wrong Password
 	if(!pwordOkay)
 	{
-		output("<i>“Yeah, nice try,”</i> the voice says over the radio, suddenly with a dangerous edge. <i>“Only gate you’re crashing is the afterlife’s!”</i>\n\nShips buzz out of Zheng Shi's hangar like bees from a hive you just accidentally kicked... Shit.");
+		output("<i>“Yeah, nice try,”</i> the voice says over the radio, suddenly with a dangerous edge. <i>“Only gate you’re crashing is the afterlife’s!”</i>\n\nShips buzz out of Zheng Shi’s hangar like bees from a hive you just accidentally kicked... Shit.");
 		//gib spess battle
 		zhengSpaceBatturu();
 	}
@@ -931,7 +931,7 @@ public function zhengSpaceBatturu():void
 	tEnemy3.isPlural = true;
 	tEnemy3.isUniqueInFight = true;
 	tEnemy3.btnTargetText = "Turrets";
-	tEnemy3.long = "Zheng Shi houses numerous EM turrets across its rocky surface, perfect for gunning down anybody who wanders too close. It'll be hard to escape while they're still online.";
+	tEnemy3.long = "Zheng Shi houses numerous EM turrets across its rocky surface, perfect for gunning down anybody who wanders too close. It’ll be hard to escape while they’re still online.";
 	tEnemy3.HPMod = 1200;
 	tEnemy3.physiqueRaw = 0;
 	tEnemy3.reflexesRaw = 0;

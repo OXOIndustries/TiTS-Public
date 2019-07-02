@@ -808,8 +808,11 @@ public function kaneWrestlingStart():void
 	{
 		output(" You don’t notice any other signs of zil activity; this must be a place only Kane visits.");
 		output("\n\n<i>“Take your things off, put them to one side,”</i> he growls, loosening his muscles with a wriggle of his shoulders. <i>“No invincible shields, no captive zpirits helping. Just me and you.”</i>");
-		output("\n\nYou undo your [pc.gear], baring your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
-		if (!pc.isNude()) output(", until you’re standing there in only your [pc.underGarments]");
+		output("\n\nYou");
+		if (pc.hasArmor()) output(" undo your [pc.armor], baring");
+		else output(" bare");
+		output(" your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
+		if (pc.hasLowerGarment()) output(", until you’re standing there in only your [pc.lowerUndergarment]");
 		output(". You do feel undeniably vulnerable without the comforting presence of the codex on your wrist. Perhaps Kane senses this: he is grinning, clapping his hands together and striding around the glade, whatever anger he expressed at your insolence ripening into fierce excitement.");
 	}
 	else
@@ -818,8 +821,10 @@ public function kaneWrestlingStart():void
 		if (flags["KANE_WRESTLED"] == 1) output("; the tale of a frantic, angry dance");
 		else output("s; the tale of a series of frantic, angry dances");
 		output(", written into the dirt.");
-		output("\n\nYou don’t need any instructions to undo your [pc.gear], bare your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
-		if (!pc.isNude()) output(", until you’re standing there in only your [pc.underGarments]");
+		output("\n\nYou");
+		if (pc.hasArmor()) output(" don’t need any instructions to undo your [pc.armor],");
+		output(" bare your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
+		if (pc.hasLowerGarment()) output(", until you’re standing there in only your [pc.lowerUndergarment]");
 		output(". Kane watches you, loosening his muscles with liquid movements of his upper body and impatient stamps of his shiny black boot-feet. Whatever anger he might have felt about making him do this has, once again, reconfigured into fierce excitement.");
 	}
 	

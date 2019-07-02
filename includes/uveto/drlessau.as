@@ -101,6 +101,11 @@ public function drLessauShop():void
 		if(!chars["DRLESSAU"].hasItemByClass(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
 	}
 	else chars["DRLESSAU"].destroyItemByClass(OrangePill, -1);
+	if (flags["FROSTWYRM_TF_UNLOCKED"] != undefined)
+	{
+		if(!chars["DRLESSAU"].hasItemByClass(FrostwyrmIchor)) chars["DRLESSAU"].inventory.push(new FrostwyrmIchor());
+	}
+	else chars["DRLESSAU"].destroyItemByClass(FrostwyrmIchor, -1);
 	
 	shopkeep = chars["DRLESSAU"];
 	buyItem();

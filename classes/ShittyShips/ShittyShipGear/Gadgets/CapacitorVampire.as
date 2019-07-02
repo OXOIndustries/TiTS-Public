@@ -48,7 +48,7 @@
 			this.description = "a capacitor vampire";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Utilizing the latest in wireless energy transmission devices, the capacitor vampire system effectively leaches the enemy's stored electrical energy directly into your own stockpile!\n\n(1x/fight)";
+			this.tooltip = "Utilizing the latest in wireless energy transmission devices, the capacitor vampire system effectively leaches the enemy’s stored electrical energy directly into your own stockpile!\n\n(1x/fight)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

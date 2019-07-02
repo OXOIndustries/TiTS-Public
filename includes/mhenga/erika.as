@@ -905,7 +905,7 @@ public function erikaPublicSexThreesomeAusarMouth(cIdx:int = 0):void
 		if (pc.cumQ() > 1000) output(" At the end of your cleanup her shirt is a sperm-laden mess, soaked in your [pc.cum].");
 	}
 	else output("You take a detour to the bathroom to clean yourself up, and in short order you are clean and refreshed again.");
-	output("\n\nThe hunky ausar leans back in his seat, caressing Erikas hips and cum filled belly. <i>“You sure you want to hang around? The knot ain’t going down anytime soon.”</i> He bucks his hips, demonstrating that Erika is stuck fast to his knot.");
+	output("\n\nThe hunky ausar leans back in his seat, caressing Erika’s hips and cum filled belly. <i>“You sure you don’t want to hang around? The knot ain’t going down anytime soon.”</i> He bucks his hips, demonstrating that Erika is stuck fast to his knot.");
 	output("\n\nShrugging you pick up your [pc.gear] and walk back to the bar proper. Burt chuckles about the show you three put up.");
 
 	flags["ERIKA_SEEN_NAKED"] = 1;
@@ -1031,7 +1031,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 		output("\n\nSuspecting that she’s going to go pick up her little box of toys you leave her to it and return back to your own ship.");
 		output("\n\nYou lounge around for awhile in your ship, waiting for her. You start to wonder how far away she lives, Mhen’ga isn’t a large settlement after all.");
 		if (pc.isAss()) output(" Maybe you could find some porn on the extranet to deal with the boredom.");
-		output("\n\The consoles light up, informing you that Erika was able to find your ship. Opening the airlock, you see Erika standing there with the large sex toy filled box. You wonder what’s important enough to go out of her way to get. Moving aside you let her in.");
+		output("\n\nThe consoles light up, informing you that Erika was able to find your ship. Opening the airlock, you see Erika standing there with the large sex toy filled box. You wonder what’s important enough to go out of her way to get. Moving aside you let her in.");
 		output("\n\n")
 	}
 	output("If you wanted to play around with the box full of lewdness, she’d most likely be down for it.");

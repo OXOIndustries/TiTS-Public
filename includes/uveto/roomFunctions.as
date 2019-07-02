@@ -3,8 +3,6 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
-import classes.Items.Accessories.LeithaCharm;
-import classes.Items.Treasures.Savicite;
 import classes.RoomClass;
 
 public function TundraEncounterBonus():Boolean

@@ -404,7 +404,7 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYour legs tingle strangely, and you sit down, ready to wait out whatever happens without falling over.");
 				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" They seem to be (somewhat painfully) stretching and straightening themselves into a plantigrade configuration.");
-				output(" The tingling soon moves down to your feet, and you watch as three of your toes lengthen out, becoming flexible and nimble as the other two shrink, vanishing back into the main boy of your feet. Your heel too, seems to tingle, and before you know it, you’ve grown an additional, back mounted toe. Weird!");
+				output(" The tingling soon moves down to your feet, and you watch as three of your toes lengthen out, becoming flexible and nimble as the other two shrink, vanishing back into the main body of your feet. Your heel too, seems to tingle, and before you know it, you’ve grown an additional, back mounted toe. Weird!");
 				output("\n\n...You’re going to need new shoes.");
 				if (kGAMECLASS.silly) output(" Though now that you think about it, it’s never really been confirmed if any of your outfits include shoes to begin with. You don’t have a slot for them or anything. Void, what is this madness?!");
 

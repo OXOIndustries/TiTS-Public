@@ -2865,7 +2865,7 @@ public function talkToBessAboutStomach():void
 	clearOutput();
 	bessHeader();
 
-	output("<i>“My stomach, huh? Well, I can change that fairly easily. What size were you thinking, , "+ bessPCName() +"?”</i>");
+	output("<i>“My stomach, huh? Well, I can change that fairly easily. What size were you thinking, "+ bessPCName() +"?”</i>");
 
 	clearMenu();
 	if (bess.bellyRatingRaw == 0) addDisabledButton(0, "Normal");
@@ -5515,7 +5515,7 @@ public function aboutBess1():void
 	clearOutput();
 	bessHeader();
 
-	output("You question [bess.name] about [bess.hisHer] past before you discovered her, though your query seems to confuse [bess.himHer].");
+	output("You question [bess.name] about [bess.hisHer] past before you discovered [bess.himHer], though your query seems to confuse [bess.himHer].");
 	
 	output("\n\n<i>“Before you activated me I was built at a JoyCo factory on Panara, "+bessPCName()+". Unplugging the power coupling and seeing you are the first memories I have.”</i>");
 	
@@ -9503,7 +9503,7 @@ public function bessEvent21Kiss():void
 	clearOutput();
 	bessHeader();
 
-	output("Much like a fairytale prince"+ bess.mf("", "ss") +", you bring your lips to [bess.hisHers] and kiss [bess.himHer] awake. As soon as your lips touch [bess.hisHers] , [bess.heShe] presses against you, instinctively seeking out your mouth despite being half asleep. <i>“...Mmm... "+ bessPCName() +"...”</i>");
+	output("Much like a fairytale prince"+ bess.mf("", "ss") +", you bring your lips to [bess.hisHers] and kiss [bess.himHer] awake. As soon as your lips touch [bess.hisHers], [bess.heShe] presses against you, instinctively seeking out your mouth despite being half asleep. <i>“...Mmm... "+ bessPCName() +"...”</i>");
 	
 	output("\n\nBefore you know it, [bess.hisHer] arms are wrapping around your neck and pulling you down into a proper kiss. You have no idea if [bess.heShe]’s woken up yet or not, but does it really matter? You kiss [bess.himHer] back just as enthusiastically. It really is a fantastic way to start your morning.");
 	

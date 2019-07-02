@@ -2,7 +2,6 @@ import flash.utils.getDefinitionByName;
 import flash.utils.getQualifiedClassName;
 import classes.Items.Apparel.SavicitePanties;
 import classes.Items.Combat.RuttingPerfume;
-import classes.Items.Piercings.OpalRingPiercing;
 import classes.Items.Toys.MitziBionaHole;
 
 /*
@@ -2504,7 +2503,7 @@ public function mitziMakesYouABimboIV():void
 	showMitzi(true);
 	output("<i>“Whoah, cumming like, totally knocks loose a few brain cells, doesn’t it?”</i> Mitzi purrs as she climbs up onto you.");
 	output("\n\nFuzzy-headed from orgasm and ready for more, you say, <i>“Mmm-hmmm...”</i>");
-	output("\n\n<i>“Course you probably got way more to lose. Climax like that was musta been so hot it took all those boring math facts and melted them right out of you.”</i> The giggling goblin stuffs two fingers in your twat and pulls out stream of [pc.girlCumNoun]. <i>“Bet this was like, some advanced trig-uh... mathanomity!”</i>");
+	output("\n\n<i>“Course you probably got way more to lose. Climax like that was musta been so hot it took all those boring math facts and melted them right out of you.”</i> The giggling goblin stuffs two fingers in your twat and pulls out a stream of [pc.girlCumNoun]. <i>“Bet this was like, some advanced trig-uh... mathanomity!”</i>");
 
 	var statSwap:Number = 0;
 	//First tier!
@@ -2524,7 +2523,7 @@ public function mitziMakesYouABimboIV():void
 		output(", her other vanishing between her own. <i>“Guess your pussy wanted you to be a horny, easy piece of ass like Mitzi! It was probably real dumb to have Mitzi do this, you know?”</i>");
 		output("\n\nYeah, it’s really dumb, but it makes you <i>so wet</i>. That delicious soakingly fuckable feeling grows in your cunt’s heart.");
 		output("\n\n<i>“You’ll might try to be a normal Rusher after this, but your pussy’ll know better. You’ll get wet like, all the time. You’ll see an alien and your first thought will be ‘how can I fuck it?’ instead of whatever you normally think. Mitzi doesn’t really know because she’s basically a walking pussy with pigtails, and if you keep this up, you will be too. Silly slut!”</i>");
-		output("\n\nYou cum again to the knowledge that Mitzi is right. In your core - <i>your hot, wet, sex-starved core</i> - you know that something magical happened today. Your pussy took up residence in part of your brain, and that part of you is always going to be slippery and sticky and happy to wiggle and giggle if gets you laid.");
+		output("\n\nYou cum again to the knowledge that Mitzi is right. In your core - <i>your hot, wet, sex-starved core</i> - you know that something magical happened today. Your pussy took up residence in part of your brain, and that part of you is always going to be slippery and sticky and happy to wiggle and giggle if it gets you laid.");
 		output("\n\n<i>“Edging’s super good when you’re a dumb bimbo though.”</i> The tone of Mitzi’s voice indicates she’s riding the peak. <i>“Like you get so good at being a turned-on piece fuck-meat that you’re better at it than anybody else. Look at Mitzi’s pussy!”</i>");
 		output("\n\nYou stare at the goblin’s emerald cunt through bleary eyes, watching it flex and squeeze around the bimbo’s fingers. Rivers of slick lubricant pour out around them. Her clit is obscenely swollen and actually shakes to the beat of the bimbo’s sex-focused heart. <i>“Anybody else woulda cum already, but Mitzi’s holding it back. You can do it too, ya know.”</i>");
 		output("\n\nPleasure pumps through your slut-brain, making you drool and shudder. You could cum, if you wanted to. Right now. It’d be easy, but sure enough, you realize you can wait too. You sit on the edge while Mitzi’s fingers take you higher, and higher, and higher. You giggle-gasp-moan. Your eyes cross and ");
@@ -2624,7 +2623,7 @@ public function mitziBimbosYouEpilogue():void
 	}
 	else
 	{
-		output("You wake up giggling and happy, worry-free. Mitzi’s on the floor next to you with her tail lodged in her cunt and pussy-juice all of her face. Yours by the smell of it. She wouldn’t stop you if you woke her by sitting down her face and demanding another session with her tongue, but there’s so many other hotties in the universe. You should probably like, go look for those probes or whatever. There’ll be all sorts of hotties to bang on the way.");
+		output("You wake up giggling and happy, worry-free. Mitzi’s on the floor next to you with her tail lodged in her cunt and pussy-juice all over her face. Yours by the smell of it. She wouldn’t stop you if you woke her by sitting down her face and demanding another session with her tongue, but there’s so many other hotties in the universe. You should probably like, go look for those probes or whatever. There’ll be all sorts of hotties to bang on the way.");
 		if(!pc.hasPerk("Ditz Speech"))
 		{
 			output("\n\n(<b>Bimbo Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
@@ -2727,7 +2726,7 @@ public function breederCunt():void
 		output("\n\nSweat drips from your brow as you pant for breath, staring into nothing. Hallucinations of cocks of every shape and size swirl in fractic, jizz-bearing patterns through your increasingly feverish vision.");
 		output("\n\n<i>Why aren’t they inside you?</i>");
 		output("\n\nA mirthful voice sing-songs, <i>“[pc.Name] has cock on the brain! [pc.Name] has cock on the brain!”</i> Mitzi wiggles <i>dick-shaped</i> fingers in front of your mouth.");
-		output("\n\nThe taste like cunt and skin, exactly like <i>cock should</i>.");
+		output("\n\nThey taste like cunt and skin, exactly like <i>cock should</i>.");
 		output("\n\nThere’s more kisses on your steaming quim as knuckles rub against your [pc.lips], then a cheery voice telling you how useless you are for anything but breeding, how your body was made to pour out pheromones and eggs");
 		if(pc.legCount > 1) output(", then spread its [pc.legs]");
 		output(". Streamers of [pc.girlCum] slide out of you. You aren’t cumming yet. How could you, without a creamy load to extinguish the fires in your [pc.wombs]? Nevertheless, you’re squirting like a unrepentant slut, smearing everything in the immediate area with proof of your willingness to bear young - including Mitzi.");
@@ -2845,7 +2844,7 @@ public function mitziLesboCuntnosis():void
 	else if(wetness < 5) output("streams");
 	else output("outpourings");
 	output(". A flash of thought warns that you shouldn’t react so strongly to your pet goblin’s sexual displays, but the beginnings of a smile tugs at the corners of those purple pillows, melting the intellectual rebellion into a wash of hot, horny pussy-juice.");
-	output("\n\n<i>“Omigawsh you mush be </i>such a slut for girls<i> to get turned on so easy. All Mitzi did was make a couple cute faces, and you’re already to cum like, super hard, aren’t you?”</i> The grinning goblin lazily fondles your [pc.vagina] while she talks. <i>“Probably because this cunt is going crazy with pussy-hornies. It just wants to get pinned down and rubbed on by some juicy little slit, to feel a hard clit slipping and sliding through the mixed juices. It’s like, the hottest, sexiest thing a cunt-for-brains like you can think of.”</i>");
+	output("\n\n<i>“Omigawsh you mush be </i>such a slut for girls<i> to get turned on so easy. All Mitzi did was make a couple cute faces, and you’re all ready to cum like, super hard, aren’t you?”</i> The grinning goblin lazily fondles your [pc.vagina] while she talks. <i>“Probably because this cunt is going crazy with pussy-hornies. It just wants to get pinned down and rubbed on by some juicy little slit, to feel a hard clit slipping and sliding through the mixed juices. It’s like, the hottest, sexiest thing a cunt-for-brains like you can think of.”</i>");
 	output("\n\nYou shudder at the suggestion. Whatever you were going to say, whatever you were thinking... Mitzi’s fingers milk it out of you. Cogent thoughts split apart to reveal oozy, aroused vaginas. Words melt down into fragrant, tangy pussy-juice. Mitzi’s cunt invades your mind’s eye. The gleaming emerald box parts open invitingly, its lips wet with lusty dew. The nub of her clit juts forward, begging you to touch it. You open your eyes but see the smiling goblin’s most tender regions superimposed upon your suggestion-hijacked retinas.");
 	output("\n\n<i>“Lay down, [pc.Master],”</i> a beautiful siren’s voice calls. It dances through your cunt-brain’s synapses, making you wish you could fuck it. <i>“It’s easier to eat a girl out on the ground, and you really, really want to eat pussy, doncha?”</i> Slick fingers squeeze at your crotch, and your liquid arousal spatters the deck below. <i>“You wanna smell pussy. You wanna taste pussy. You wanna wake up in the morning and gargle pussy. You’re that much of a slut for girls.”</i>");
 	output("\n\n<i>“Hnnng-yessssss...”</i> you hiss, slowly slumping onto your back. Your pelvis thrusts upward, bouncing your [pc.butt] on the deck.");

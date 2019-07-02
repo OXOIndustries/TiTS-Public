@@ -1624,7 +1624,7 @@ public function lucaLetsYouHaveACuntfulOfHerDick(x:int):void
 	output("\n\n<i>“Let’s get you on the bed now. On all fours.”</i>");
 	output("\n\nYour soon-to-be cocktoy nods and climbs atop her bed. Following after her");
 	if (pc.hasKnees()) output(" on your knees");
-	output(" , you knead her well rounded ass as she moves, watching with delight as she squirms in your hands, her cock firming and her pussy oozing in anticipation. She moans at your touch as you continue to tease the areas around her wanton sex.");
+	output(", you knead her well rounded ass as she moves, watching with delight as she squirms in your hands, her cock firming and her pussy oozing in anticipation. She moans at your touch as you continue to tease the areas around her wanton sex.");
 	if (flags["LUCA_SWITCHED"] == 0) output(" An idea strikes you when you see her ass gape oh-so-slightly.");
 	output("\n\nYou release Luca and reach out for the box of supplies she provided. <i>“Lie down on your back and put your hands above your head,”</i> you command. She does as you say, turning to face you then lowering herself until she’s flat. With her hands against the headboard, you take a leather strap and bind her wrists together - not to tight, just enough to keep them in place. Then you take a second strap and tie the binding to the headboard.");
 	output("\n\nWith her hands now bound, you return to teasing your horny Dzaan. This time you give her a bit more and grasp and rub her bulging penis. She moans through her gag and tries to thrust into your hands. You slap her thigh and reach back into the box. <i>“Tsk. Tsk. You will wait, slut,”</i> you bark.");
