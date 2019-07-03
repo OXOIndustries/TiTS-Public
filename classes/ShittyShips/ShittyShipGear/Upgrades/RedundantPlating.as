@@ -41,7 +41,7 @@
 			this.description = "redundant plating";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Stacking redudant layers of armor is one way to increase a vessel's durability.\n\n(+1000 Armor)";
+			this.tooltip = "Stacking redudant layers of armor is one way to increase a vessel’s durability.\n\n(+1000 Armor)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
