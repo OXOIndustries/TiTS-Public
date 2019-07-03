@@ -142,8 +142,8 @@ public function kaneSubmit(flirty:Boolean = false):void
 		if (kaneDominance() < 51) output(" <i>“You are in charge. Sir.”</i>");
 		else output(" <i>“You can be the dominant, for now. Sir.”</i>");
 	}
-	else if (kaneDominance() == -1) output("<i>“Ok,”</i> you say, haltingly. Blood rushes to your face, and you look away from his eyes, down his lean, powerful body. <i>“ ...Sir.”</i>");
-	else output("<i>“You can be in charge,”</i> you say, haltingly. Blood rushes to your face, and you look away from his eyes, down his lean, powerful body. <i>“ ...Sir.”</i>");
+	else if (kaneDominance() == -1) output("<i>“Ok,”</i> you say, haltingly. Blood rushes to your face, and you look away from his eyes, down his lean, powerful body. <i>“...Sir.”</i>");
+	else output("<i>“You can be in charge,”</i> you say, haltingly. Blood rushes to your face, and you look away from his eyes, down his lean, powerful body. <i>“...Sir.”</i>");
 	
 	if (kaneDominance() != -1) output("\n\nAfter a momentary pause, Kane falls from his tree, landing easily and stepping into you.");
 	
@@ -491,7 +491,7 @@ public function kaneTalkFuture():void
 		if (kaneDominance() > 50) output(" That is why I make you get on your knees for me. There are no lies between us, because I am in charge, I control what is and isn’t said.");
 		output(" So no, I don’t believe any rosy friendship with these settlers will last. Eventually they will want what we cannot give, and then the white stings will come out again.”</i>");
 		output("\n\nIs he planning on doing something about it?");
-		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, if she will not see sense on this... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
+		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, if she will not see sense on this... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
 	}
 	else
 	{
@@ -504,7 +504,7 @@ public function kaneTalkFuture():void
 		else output(" once Quinn has the child she so desires");
 		output(" she will no longer have the ability to instill discipline.”</i>");
 		output("\n\nIs he planning on doing something about it?");
-		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, I think eventually... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
+		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, I think eventually... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
 	}
 	
 	kaneTalkMenu(3);
@@ -573,7 +573,7 @@ public function kaneHellYeahBeeBlowjob():void
 		output("”</i>\n\nHe’s silent for a time, mouth slightly ajar and eyes half-lidded, luxuriating in the bliss you’re bathing his delicious prick in, the beading head butting against your tonsils. You draw back repeatedly so you can greedily suckle at it; honey seed oozes over your [pc.tongue], dripping down your throat, and each time it does the warm, summery euphoria beams a little brighter, heat swamping your [pc.groin], neediness and happiness burning together, pushing you on to knead that black fuck-stick holding your mouth open ever more intently.");
 		output("\n\n<i>“You aren’t properly trained yet,”</i> your dominant says, intense lust edging his tones now. Insectile fingers touch yours, clutched around the stem of his cock. <i>“You will learn to do this without using your hands. They should be kneading my balls");
 		if (pc.hasBreasts()) output(", or presenting your tits,");
-		output(" or placed politely on your thighs whilst I face fuck you. But...”</i> he trails off in a groan, reactively bucking his long, powerful hips into you, as you curl your [pc.tongue] around his smooth head. <i>“ ...zpirits yeah. What a fine trophy in the making...”</i>");
+		output(" or placed politely on your thighs whilst I face fuck you. But...”</i> he trails off in a groan, reactively bucking his long, powerful hips into you, as you curl your [pc.tongue] around his smooth head. <i>“...zpirits yeah. What a fine trophy in the making...”</i>");
 		output("\n\nYou keep your [pc.lips] and cheeks clamped as intently around him as you can as it thickens, tightening towards an orgasm heralded by Kane’s increasingly delighted exclamations and growls. You want that sweet, sweet honey seed, all of your pheromonally addled senses cry out for it, and when it comes, it’s no let down. You shiver as he hilts himself in your face, his tight jet balls pressing themselves against your chin, and a great gout of syrupy cum is deposited all across the back of your mouth. Your tastebuds tingle, and horny warmth blooms in your [pc.belly] when you instinctively swallow, and you practically moan at how <i>good</i> it all feels. ");
 		if (pc.hasVagina()) output(StringUtil.capitalize(pc.eachVagina()) + " " + (pc.wettestVaginalWetness() > 3 ? "drool" : "drip") + (pc.hasVaginas() ? "" : "s") + " excitement, practically begging for a filling");
 		if (pc.hasCock()) output((pc.hasVagina() ? " and [pc.eachCock]" : StringUtil.capitalize(pc.eachCock())) + (pc.hasCocks() ? " bat" : " bats") + " against your gut, they’re that erect, without even a hint of manual stimulation");

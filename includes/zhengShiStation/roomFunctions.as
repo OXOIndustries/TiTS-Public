@@ -1317,7 +1317,7 @@ public function sidewinderCargohold():void
 	//Galomax not collected
 	if(flags["ZHENG_SHI_GALOMAX"] == undefined)
 	{
-		output(" Lastly, you spot an expensive looking case on a fold-out table. It’s labelled as Galomax.");
+		output(" Lastly, you spot an expensive looking case on a fold-out table. It’s labeled as Galomax.");
 		addButton(1,"Galomax",takeZhengShiGalomax);
 	}
 	//Galo or jumper suit here no new PG.

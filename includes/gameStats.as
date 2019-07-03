@@ -929,6 +929,10 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Resistance, Tease:</b> " + formatFloat(lustResistance.tease.resistanceValue, 3) + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
+		output2("\n<b>* Sexiness, Attire, Total:</b> " + formatFloat(pc.outfitSexiness(), 3));
+		if(pc.hasArmor()) output2("\n<b>* Sexiness, Attire, Outfit:</b> " + formatFloat(pc.itemSexiness(pc.armor), 3) + (pc.wornItemIsTransparent(pc.armor) ? ", Transparent" : ""));
+		if(pc.hasUpperGarment()) output2("\n<b>* Sexiness, Attire, Upper Undergarment:</b> " + formatFloat(pc.itemSexiness(pc.upperUndergarment), 3) + (pc.wornItemIsTransparent(pc.upperUndergarment) ? ", Transparent" : ""));
+		if(pc.hasLowerGarment()) output2("\n<b>* Sexiness, Attire, Lower Undergarment:</b> " + formatFloat(pc.itemSexiness(pc.lowerUndergarment), 3) + (pc.wornItemIsTransparent(pc.lowerUndergarment) ? ", Transparent" : ""));
 		var teases:Array = [-1, -1, -1, -1, -1];
 		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = Math.min(flags["TIMES_BUTT_TEASED"], 100);
 		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = Math.min(flags["TIMES_CHEST_TEASED"], 100);

@@ -216,7 +216,7 @@ public function intoStationDisarmCheck():Boolean
 	if (flags["MET_BRANDT"] != undefined)
 	{
 		//Descriptive text for the room
-		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labelled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
+		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labeled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
 		return false;
 	}
 	return false;
