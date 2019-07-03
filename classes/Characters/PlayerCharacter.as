@@ -1737,6 +1737,7 @@ package classes.Characters
 					addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				}
 			}
+			if(hasStatusEffect("Hyena Fur") && (skinType != GLOBAL.SKIN_TYPE_FUR || furColor != "black")) removeStatusEffect("Hyena Fur");
 		}
 		
 		// Mimbrane jazz.

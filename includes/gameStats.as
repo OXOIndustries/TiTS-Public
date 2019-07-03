@@ -1438,6 +1438,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Gryvain:</b> " + prettifyGeneticMarker(pc.gryvainScore(), 9, 11));
 		if(pc.horseScore() > 0)
 			output2("\n<b>* Horse:</b> " + prettifyGeneticMarker(pc.horseScore(), 5, 8));
+		if(pc.hyenaScore() > 0)
+			output2("\n<b>* Hyena:</b> " + prettifyGeneticMarker(pc.hyenaScore(), 5, 10));
 		if(flags["LIRIEL_MET"] != undefined && pc.hradScore() > 0)
 			output2("\n<b>* Hrad:</b> " + prettifyGeneticMarker(pc.hradScore(), 4, 8));
 		if(false && pc.janeriaScore() > 0)
