@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a simple looking brown wrapper adorned with a picture of an anthropomorphic hyena eating a chocolate bar";
-			tooltip = "An old Xenogen transformative under the guise of a chocolate bar filled with crisped rice. It's a rather simple transformative meant to give the consumer hyena-like features. During Cackler's development there were several budget cuts related to the lawsuits concerning Canine Poppers. Due to this, Cacklers transformative effects were cut back somewhat, leaving it incapable of removing certain extremities. Thankfully, this only applies to wings and horns.\n\nThe front of the wrapper has the name spelled out in big, blocky letters with a cartoon hyena girl throwing the product into her mouth. On the back, alongside the nutritional facts, there is a small label that reads:\n\n<i>The effects of this transformative are <b>NOT</b> meant to be a 100% accurate representation of Terran Hyenas!</i>";
+			tooltip = "An old Xenogen transformative under the guise of a chocolate bar filled with crisped rice. It’s a rather simple transformative meant to give the consumer hyena-like features. During Cackler’s development there were several budget cuts related to the lawsuits concerning Canine Poppers. Due to this, Cacklers transformative effects were cut back somewhat, leaving it incapable of removing certain extremities. Thankfully, this only applies to wings and horns.\n\nThe front of the wrapper has the name spelled out in big, blocky letters with a cartoon hyena girl throwing the product into her mouth. On the back, alongside the nutritional facts, there is a small label that reads:\n\n<i>The effects of this transformative are <b>NOT</b> meant to be a 100% accurate representation of Terran Hyenas!</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -154,7 +154,7 @@ package classes.Items.Transformatives
 			ShuffleArray(availableTFs);
 			ShuffleArray(lockedTFs);
 
-			output("You quickly tear off the wrapper and take a bite of the chocolate bar, savoring the flavor for a moment before finishing it off. It's a tasty treat, but you didn't buy it for the snack. Now to sit back and see what happens.");
+			output("You quickly tear off the wrapper and take a bite of the chocolate bar, savoring the flavor for a moment before finishing it off. It’s a tasty treat, but you didn’t buy it for the snack. Now to sit back and see what happens.");
 
 			var changes:int = 0;
 			while (availableTFs.length > 0 || lockedTFs.length > 0)
@@ -169,7 +169,7 @@ package classes.Items.Transformatives
 			if (changes == 0)
 			{
 				kGAMECLASS.processTime(2+rand(6));
-				output("\n\nYou spend quite some time waiting for, well, anything to happen. Unfortunately, the minutes fly by and nothing changes… Damn, guess that was a waste of time and money.");
+				output("\n\nYou spend quite some time waiting for, well, anything to happen. Unfortunately, the minutes fly by and nothing changes... Damn, guess that was a waste of time and money.");
 				output("\n\nAt least you had a tasty snack!");
 				if (kGAMECLASS.silly) output(" <b>(+5 happiness!)</b>");
 			}
@@ -182,7 +182,7 @@ package classes.Items.Transformatives
 		{
 			output("\n\nSuddenly, your ears begin to itch, and before you know it, you can feel them start to change! You quickly lift up your codex, watching as they");
 			if (!target.hasEmoteEars()) output(" move up to the top of your head, then");
-			output(" enlarge, eventually coming to pointed tips. As a thin layer of fur begins to settle in, you look into your reflection and realize <b>you've grown a pair of furred hyena ears!</b>");
+			output(" enlarge, eventually coming to pointed tips. As a thin layer of fur begins to settle in, you look into your reflection and realize <b>you’ve grown a pair of furred hyena ears!</b>");
 			target.earType = GLOBAL.TYPE_HYENA;
 		}
 
@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 			}
 			if (!target.hasStatusEffect("Hyena Fur")) target.createStatusEffect("Hyena Fur");
 			target.setStatusTooltip("Hyena Fur", (rand(2) == 0 ? "brown striped" : "gray spotted"));
-			output(" The burning itch subsides and you're left with <b>black and " + target.getStatusTooltip("Hyena Fur") + " fur!</b>");
+			output(" The burning itch subsides and you’re left with <b>black and " + target.getStatusTooltip("Hyena Fur") + " fur!</b>");
 			target.skinType = GLOBAL.SKIN_TYPE_FUR;
 			target.clearSkinFlags();
 			target.furColor = "black";
@@ -214,14 +214,14 @@ package classes.Items.Transformatives
 		//Thickness reduction, maybe 1-3% per a proc:
 		private function hyenaThinness(target:Creature):void
 		{
-			output("\n\nYour stomach grumbles for a moment as the microsurgeons begin their work. You look down, watching as your [pc.belly] and other parts of your body begin to shift. Over a few seconds, you witness some of the extra pudginess you've built up on your adventures starts to fade away. Soon, you’re left with a slightly more defined form, <b>your " + (kGAMECLASS.silly ? "<I>THICC</i>ness" : "thickness") + " has decreased!</b>");
+			output("\n\nYour stomach grumbles for a moment as the microsurgeons begin their work. You look down, watching as your [pc.belly] and other parts of your body begin to shift. Over a few seconds, you witness some of the extra pudginess you’ve built up on your adventures starts to fade away. Soon, you’re left with a slightly more defined form, <b>your " + (kGAMECLASS.silly ? "<I>THICC</i>ness" : "thickness") + " has decreased!</b>");
 			target.thickness -= 1 + rand(3);
 		}
 
 		//Nipples change to black and increase lust slightly when proc'd:
 		private function nippleMorph(target:Creature):void
 		{
-			output("\n\nYou feel a pleasurable sensation overtaking your [pc.nippleColor] peaks! Instinctively, you bring a hand to your chest, idly playing with one of the sensitive nubs. As you do, you can't help but let out a quiet, pleasured moan. Sadly, it’s a short-lived experience. When the pleasant feeling in your chest fades, you take a look " + (target.isChestExposed() ? "at your bare [pc.chest]" : "under your [pc.chestCover]") + ", and realize they've changed to <b>black [pc.nipples]!</b>");
+			output("\n\nYou feel a pleasurable sensation overtaking your [pc.nippleColor] peaks! Instinctively, you bring a hand to your chest, idly playing with one of the sensitive nubs. As you do, you can’t help but let out a quiet, pleasured moan. Sadly, it’s a short-lived experience. When the pleasant feeling in your chest fades, you take a look " + (target.isChestExposed() ? "at your bare [pc.chest]" : "under your [pc.chestCover]") + ", and realize they’ve changed to <b>black [pc.nipples]!</b>");
 			target.nippleColor = "black";
 		}
 
@@ -230,7 +230,7 @@ package classes.Items.Transformatives
 		{
 			var growth:int = 2+rand(2);
 			if (!target.tallnessUnlocked(target.tallness+growth)) growth = 5-growth;
-			output("\n\nYou stumble forward slightly as the ground seems to inch ever further away from you. Once everything settles into place, you notice the world around you seems a tad bit smaller than before, or rather you've gotten bigger. Deciding to check your codex to confirm, you soon discover that, sure enough, <b>you've grown " + num2Text(growth) + " inches!</b>");
+			output("\n\nYou stumble forward slightly as the ground seems to inch ever further away from you. Once everything settles into place, you notice the world around you seems a tad bit smaller than before, or rather you’ve gotten bigger. Deciding to check your codex to confirm, you soon discover that, sure enough, <b>you’ve grown " + num2Text(growth) + " inches!</b>");
 			target.tallness += growth;
 		}
 
@@ -240,7 +240,7 @@ package classes.Items.Transformatives
 			//if PC doesn't have a tail:
 			if (target.tailCount == 0 || target.tailType == GLOBAL.TYPE_HUMAN)
 			{
-				output("\n\nThere's a strange feeling at the base of your spine, right above your [pc.butt]. You bring a hand to the spot and discover an odd bump. It's overly sensitive but not painfully so. Rather, it's an almost pleasurable, tingly feeling. Before you can investigate further, the bump sprouts forth with surprising force, soon forming into a short tail. After a short while, a thick layer of fur begins to cover the length and you slowly let <b>your new short, bushy hyena tail settle in!</b>");
+				output("\n\nThere’s a strange feeling at the base of your spine, right above your [pc.butt]. You bring a hand to the spot and discover an odd bump. It’s overly sensitive but not painfully so. Rather, it’s an almost pleasurable, tingly feeling. Before you can investigate further, the bump sprouts forth with surprising force, soon forming into a short tail. After a short while, a thick layer of fur begins to cover the length and you slowly let <b>your new short, bushy hyena tail settle in!</b>");
 				target.tailCount = 1;
 			}
 			//if PC does have a tail:
@@ -274,7 +274,7 @@ package classes.Items.Transformatives
 				output(" your single [pc.leg] seems to split down the center, leaving you with two copies of the original.");
 				if (!target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" Each begins to shift as bones manifest with the help of your microsurgeons, rearranging itself into a digitigrade form.");
 				if (target.hasPartFur("leg")) output(" You feel a tingle in your legs as your fur begins to change to a more hyena-like pattern, soon leaving you with");
-				else output(" Fur begins to sprout all over them in patches, and you're soon left with");
+				else output(" Fur begins to sprout all over them in patches, and you’re soon left with");
 				target.legCount = 2;
 			}
 			else if (target.legCount == 2)
@@ -283,11 +283,11 @@ package classes.Items.Transformatives
 				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 				{
 					if (target.hasPartFur("leg")) output(" Thankfully, your legs mostly remain the same but a layer of fur begins to grow in patches, quickly leaving you with");
-					else output(" Bones crack and new ones settle in to give your legs a digitigrade shape. Thankfully you can't feel a thing. Afterward, patches of fur begin to grow all over, leaving you with what looks like");
+					else output(" Bones crack and new ones settle in to give your legs a digitigrade shape. Thankfully you can’t feel a thing. Afterward, patches of fur begin to grow all over, leaving you with what looks like");
 				}
 				else
 				{
-					if (target.hasPartFur("leg")) output("  Bones crack and new ones settle in to give your legs a digitigrade shape. Thankfully you can't feel a thing. Afterward, your existing fur takes on a hyena-like pattern, leaving you resting on");
+					if (target.hasPartFur("leg")) output(" Bones crack and new ones settle in to give your legs a digitigrade shape. Thankfully you can’t feel a thing. Afterward, your existing fur takes on a hyena-like pattern, leaving you resting on");
 					else output(" Luckily the only major change is the pattern of your furry legs: the fur of your paws and ankles shifts to a dark black, soon leaving behind");
 				}
 			}
@@ -310,13 +310,14 @@ package classes.Items.Transformatives
 				}
 				else output(". Your legs follow suit, becoming");
 				/*{if not digitigrade: Each leg begins to shift as bones manifest with the help of your microsurgeons, soon rearranging themselves and settling into a digitigrade form.}
-				{if no furred legs: Fur begins to sprout all over your lower body and legs in patches and you're soon left with /Else: You feel a tingle in your legs as your fur begins to change to a more hyena-like pattern, soon leaving you with}*/
+				{if no furred legs: Fur begins to sprout all over your lower body and legs in patches and you’re soon left with /Else: You feel a tingle in your legs as your fur begins to change to a more hyena-like pattern, soon leaving you with}*/
 			}
 			output(" <b>furred hyena legs with padded feet!</b>");
 			target.legType = GLOBAL.TYPE_HYENA;
 			target.clearLegFlags();
 			target.addLegFlag(GLOBAL.FLAG_FURRED);
 			target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			if(target.legCount == 2 && target.genitalSpot != 0) target.genitalSpot = 0;
 		}
 
 		//Gain Furred and Pawed Hyena Arms
@@ -351,7 +352,7 @@ package classes.Items.Transformatives
 		//Change lips to black; if lip mod above 1, lower by 1 point:
 		private function lipsMorph(target:Creature):void
 		{
-			output("\n\nA strange sensation takes over your [pc.lipsChaste], almost as if they've been put under anesthetic… It's even got that damn funny taste in the back of your mouth! After a moment, the numbness subsides and you raise your codex to see what has transpired, quickly noticing");
+			output("\n\nA strange sensation takes over your [pc.lipsChaste], almost as if they’ve been put under anesthetic... It’s even got that damn funny taste in the back of your mouth! After a moment, the numbness subsides and you raise your codex to see what has transpired, quickly noticing");
 			if (target.lipColor != "black") output(" <b>you now have black lips!</b>");
 			if (target.lipMod > 1 && target.lipModUnlocked(target.lipMod - 1))
 			{
@@ -367,7 +368,7 @@ package classes.Items.Transformatives
 		//If pc tongue is not Canine change tongue to Canine:
 		private function tongueMorph(target:Creature):void
 		{
-			output("\n\nYour taste buds seem to short out as your tongue goes limp. Before you know what's happening, it feels like your mouth is filling with a growing mass, making it somewhat harder to breathe. Thankfully, after a few moments the swelling recedes, and you can inhale with ease once more. Feeling and taste returns with somewhat increased sensitivity. You take a look into your codex and stick out your tongue, discovering it has changed to a <b>fairly long canine tongue!</b>");
+			output("\n\nYour taste buds seem to short out as your tongue goes limp. Before you know what’s happening, it feels like your mouth is filling with a growing mass, making it somewhat harder to breathe. Thankfully, after a few moments the swelling recedes, and you can inhale with ease once more. Feeling and taste returns with somewhat increased sensitivity. You take a look into your codex and stick out your tongue, discovering it has changed to a <b>fairly long canine tongue!</b>");
 			target.tongueType = GLOBAL.TYPE_CANINE;
 			target.clearTongueFlags();
 			target.addTongueFlag(GLOBAL.FLAG_LONG);
@@ -402,7 +403,7 @@ package classes.Items.Transformatives
 				output(" knot bunches up, forming a sheath perfect for holding your new animalistic member.");
 			}
 			if (target.cocks[cockIdx].cockColor != "black") output(" The color darkens from [pc.cockColor " + cockIdx + "] to a dark pitch black color.");
-			output(" Once the microsurgeons finish their changes, <b>you're left with a sheathed and knotted black canine dick with a tapered head!</b>");
+			output(" Once the microsurgeons finish their changes, <b>you’re left with a sheathed and knotted black canine dick with a tapered head!</b>");
 			target.shiftCock(cockIdx, GLOBAL.TYPE_CANINE);
 			target.cocks[cockIdx].cockColor = "black";
 			target.lust(20+target.libido()/4);
@@ -459,7 +460,7 @@ package classes.Items.Transformatives
 			else output(" slicks down your " + (target.isNaga() ? "snake-like underbelly, covering it" : "thighs, covering them") + " in a film of womanly release.");
 			output(" After your orgasm, you feel your [pc.vaginaNoun " + vagIdx + "] shift and change.");
 			if (target.vaginas.vaginaColor != "black") output(" The color also starts to darken from [pc.cuntColor " + vagIdx + "] to a dark, pitch-black color.");
-			output(" Once everything settles down, you use your codex to take a look and discover that <b>you've gained a black, dripping-wet, canine pussy!</b>");
+			output(" Once everything settles down, you use your codex to take a look and discover that <b>you’ve gained a black, dripping-wet, canine pussy!</b>");
 			target.shiftVagina(vagIdx, GLOBAL.TYPE_CANINE);
 			target.vaginas[vagIdx].vaginaColor = "black";
 			target.vaginas[vagIdx].wetnessRaw = 4;

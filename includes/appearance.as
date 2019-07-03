@@ -469,10 +469,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of " + indefiniteArticle(target.skinTone) + " hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
 		case GLOBAL.TYPE_HYENA:
-			if (target.hasPartFur("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena's face with a perpetual grin and bone-crushing jaw filled with sharp teeth. " + (target == pc ? "Your":"[target.HisHer]") + " [target.furColor] hides the [target.skinColor] beneath, leaving you with quite the animalistic visage.");
-			else if (target.hasPartScales("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena's face with a small perpetual grin, overlaid with [target.skinFurScales], and bone-crushing jaws filled with sharp teeth.");
-			else if (target.hasPartGoo("face")) outputRouter("[target.combatHeShe] [target.hasHave] a hyena's face with a small perpetual grin and bone-crushing jaws filled with sharp teeth.");
-			else outputRouter("[target.combatHeShe] [target.hasHave] a hyena's face with a small perpetual grin and bone-crushing jaws filled with sharp teeth. The odd visage is hairless and covered with [target.skinFurScales].");
+			if (target.hasPartFur("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena’s face with a perpetual grin and bone-crushing jaw filled with sharp teeth. " + (target == pc ? "Your":"[target.HisHer]") + " [target.furColor] hides the [target.skinColor] beneath, leaving you with quite the animalistic visage.");
+			else if (target.hasPartScales("face")) outputRouter((target == pc ? "You have":"[target.Name] has") + " a hyena’s face with a small perpetual grin, overlaid with [target.skinFurScales], and bone-crushing jaws filled with sharp teeth.");
+			else if (target.hasPartGoo("face")) outputRouter("[target.combatHeShe] [target.hasHave] a hyena’s face with a small perpetual grin and bone-crushing jaws filled with sharp teeth.");
+			else outputRouter("[target.combatHeShe] [target.hasHave] a hyena’s face with a small perpetual grin and bone-crushing jaws filled with sharp teeth. The odd visage is hairless and covered with [target.skinFurScales].");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -1373,7 +1373,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		outputRouter(" A bright red loop of collar-tenderized skin is visible on your neck");
 		if (target.hasFur()) outputRouter(" below your fur");
-		outputRouter(", proof of Roxy's lasting");
+		outputRouter(", proof of Roxy’s lasting");
 		if (silly) outputRouter(" snu-snu.");
 		else outputRouter(" domination.");
 	}
