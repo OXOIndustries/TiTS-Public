@@ -1550,7 +1550,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	if (apologizing) output(", and you hear a loud ‘clink’ as she slams down her now-empty wine glass");
 	output(". She moans through pursed lips and she can’t help but buck her hips against your face, especially when your lapping tongue reaches some new, hidden fold or surface inside her and teasing another forbidden part of her.");
 	output("\n\nHer legs clench, her thighs hardening around your head");
-	if (pc.hasPerk("Akane's Painslut")) output(", and she finally relinquishes control of herself, wrapping her legs tightly and securely around your head and <i>squeezing,</i> surrounding you on all sides with her smooth, flawless body. It hurts, but that’s what makes it so wonderful: that you’re giving her so much pleasure that she can’t <i>help</i> but squeeze you like an orange makes it all the more better for you.");
+	if (pcIsPainslut()) output(", and she finally relinquishes control of herself, wrapping her legs tightly and securely around your head and <i>squeezing,</i> surrounding you on all sides with her smooth, flawless body. It hurts, but that’s what makes it so wonderful: that you’re giving her so much pleasure that she can’t <i>help</i> but squeeze you like an orange makes it all the more better for you.");
 	else output(", and eventually, she crosses her legs behind your head, locking you in place to her pussy. You’re not going anywhere until she’s done with you, and there’s little telling when that’ll be.");
 	output("\n\nYou think to touch yourself");
 	if (pc.hasGenitals()) output(" – your " + pc.cockAndVagina("[pc.cock] is standing rigid and at attention, waiting patiently for your tongue to get tired and for it to have its turn", "[pc.vagina] is clenching and dripping, struggling to dam up your [pc.girlCum] and eager to get some attention of its own", ", while your "));
@@ -1562,7 +1562,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	else output(" reach upward, grasping onto her other boob, squeezing and pulling it and palming at her nipple, working your hand and tongue to an off-rhythm beat.");
 	output(" You lean upward slightly and take her studded clit into your mouth, sucking on it and flicking it with the tip of your tongue, before releasing and diving back in, sucking down her pussy juice voraciously.");
 	output("\n\nLorelei huffs through her nose again, her hips humping into your face, eager to get as much pleasure out of you as she can.");
-	if (pc.hasPerk("Akane's Painslut")) output(" You’re locked so tightly to her that you can’t move your head at all, but her body eager meeting your mouth is all the confirmation of a good job you need.");
+	if (pcIsPainslut()) output(" You’re locked so tightly to her that you can’t move your head at all, but her body eager meeting your mouth is all the confirmation of a good job you need.");
 	else output(" You twist your head, spiralling your tongue into her box, searching for that ever-elusive G-spot. Maybe it’s in a little deeper....");
 	output("\n\n<i>“Fffff,”</i> she starts, catching herself before she said anything <i>unladylike</i>. <i>“Yes, [pc.name],”</i> she continues.");
 	if (isLoreleisBitch()) output(" <i>“Keep it u-uuuup, [pc.name]. With skills like yours, I’m tempted to keep you right where you are....”</i> She bucks her hips into you, twisting her hips from side to side to try and nestle you as deep against her as she can. <i>“How’s that sound? Every – oooomph,</i> every <i>day, we put you right back here, and get you started all over again....”</i>");
@@ -1572,7 +1572,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	output("\n\nLorelei suddenly clenches and makes a high-pitched squeak. A gout of her sexual fluid quenches your thirst for her, coating your mouth, from your [pc.tongue] to the inside of your cheeks, with her flavor. And she’s not done: with what sounds like a hiccup, she adds to her mouthful of lady-jizz with another, equally-generous blast.");
 	if (isLoreleisBitch()) output("\n\n<i>“Taste me,”</i> she demands, her hips weakly bucking into you as she seeks a third, and then a fourth, orgasm from your overworked mouth. <i>“Get used to it....”</i>");
 	output("\n\nShe groans wordlessly, not making any effort to say anything as she comes down from her elongated climax. Her body slowly starts to relax, but she’s jolted with a third, and then a fourth, smaller orgasm, as she winds down from the excitement.");
-	output("\n\nFinally, she relents, untangling her legs from around your head and " + (apologizing ? "letting you crawl back out from underneath the foils of her dress" : "disengaging from you") + ". You pull away, still feeling her heat and her tight grip on either side of your head " + (pc.hasPerk("Akane's Painslut") ? ", and you idly wish she’d put you right back in." : "."));
+	output("\n\nFinally, she relents, untangling her legs from around your head and " + (apologizing ? "letting you crawl back out from underneath the foils of her dress" : "disengaging from you") + ". You pull away, still feeling her heat and her tight grip on either side of your head " + (pcIsPainslut() ? ", and you idly wish she’d put you right back in." : "."));
 
 	IncrementFlag("LORELEI_SEXED");
 

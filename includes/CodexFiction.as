@@ -1370,7 +1370,7 @@ public function eightClicksStory():void
 
 	outputCodex("\n\nShe felt so lustful because she was made that way.");
 
-	outputCodex("\n\nA smokey hiss turned into soft clicks. Four...six...eight clicks slid out in one breath.");
+	outputCodex("\n\nA smoky hiss turned into soft clicks. Four...six...eight clicks slid out in one breath.");
 
 	outputCodex("\n\nShe had been so worried about herself just a moment ago, but now that she knew the truth, she felt a pleasant emptiness. Or, more precisely, she didn’t feel it. There was no self to feel pleasant.");
 
@@ -1689,7 +1689,7 @@ public function bxbiChapter2Story():void
 
 	outputCodex("\n\n<i>“Pink for my lips, and like, light pink, too. And I guess dark and heavy for the other stuff? I’m like, not great with makeup,”</i> she said.");
 
-	outputCodex("\n\nChris watched Erica in the mirror while she worked. Just like reading the magazine, everything she saw her do was sticking to her brain. She could see her reflection in the mirror, too, so she got to watch the makeup slowly come together. First, the lipstick, giving her lips a bright sheen, then some blush in a similar pink, to bring out her cheeks since she was so tan. The silvery-blue eyeshadow looked more like silver-gray when it was brushed out along her skin. With the thick, dark eyeliner and the heavy mascara added on, the makeup brought out her eyes and thickened her lashes. It gave her just the smokey, sexy look she’d wanted but couldn’t quite put into words thanks to her bimboifying vocabulary.");
+	outputCodex("\n\nChris watched Erica in the mirror while she worked. Just like reading the magazine, everything she saw her do was sticking to her brain. She could see her reflection in the mirror, too, so she got to watch the makeup slowly come together. First, the lipstick, giving her lips a bright sheen, then some blush in a similar pink, to bring out her cheeks since she was so tan. The silvery-blue eyeshadow looked more like silver-gray when it was brushed out along her skin. With the thick, dark eyeliner and the heavy mascara added on, the makeup brought out her eyes and thickened her lashes. It gave her just the smoky, sexy look she’d wanted but couldn’t quite put into words thanks to her bimboifying vocabulary.");
 
 	outputCodex("\n\nChris’s lips had puffed up tighter and thicker, and had outgrown her first coat of lipstick, showing a bit of naturally pink lip behind the artificially bright pink gloss.");
 

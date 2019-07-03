@@ -656,7 +656,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nWith a little bit of hesitation and a big distraction dangling around your face, you plow on through with your last set. You swear you can see right into her urethra the entire time...");
 		output("\n\nWith one final, blessed beep, you haul the hateful barbell onto its handles. Mirrin walks around to your side and only then do you exhale fully, trying to come down from your energetic high. All this time, the gym goers appear to have gravitated ever so slightly towards you and Mirrin... True to the spirit of New Texas, there’s enough catcalling, wolf whistling and genital jostling to drown out a sports crowd.");
 		output("\n\n<i>“Ugh... give me a few minutes,”</i> Mirrin says in response. She clops off to the changing rooms, ignoring the crowd around her. You yourself slowly sit up, stretching out your [pc.arms] and [pc.legs]. There’s still a vague hint of musk floating around your [pc.face].");
-		if(pc.isTreated()) output(" It’s enough to keep you flushed and horny for a good while. So much smokey dragon flavor...");
+		if(pc.isTreated()) output(" It’s enough to keep you flushed and horny for a good while. So much smoky dragon flavor...");
 		output("\n\nAlmost as quickly as she left, Mirrin is back and covered up. She’s changed to a rather unremarkable white bikini top with white short shorts. However, she doesn’t seem to have <i>quite</i> got her full package to fit properly... they’re still inside her shorts but almost wrap round her hips, forming two snakelike bulges.");
 		output("\n\n<i>“I could do with some grill, what do you say to food, Steele?”</i>");
 		//PC gains +6 tone, +2 Physique and +1 Willpower. Gains ‘Sore’ and ‘Sweaty’ status effects.
@@ -1525,7 +1525,7 @@ public function mirrinFirstTImeOneOffSex():void
 	output("\n\n<i>“Uhhh”</i> you begin, but then she presses her lips to your open mouth, locking you both into a kiss. <i>Mmmhmm</i>.");
 	if(pc.isTreated() && pc.hasGenitals()) 
 	{
-		output("\n\nThat aroma is back: smokey, throat tickling, warm musk... you feel your");
+		output("\n\nThat aroma is back: smoky, throat tickling, warm musk... you feel your");
 		//PC has both:
 		if(pc.isHerm()) output(" [pc.cocks] rise and your [pc.biggestVagina] wetten");
 		else if(pc.hasCock()) output(" [pc.cocks] rise");
@@ -1764,7 +1764,7 @@ public function mirrinFirstTimev3Part2():void
 	showMirrin(true);
 	author("SoAndSo");
 	output("You wake up.");
-	output("\n\nIt can’t have been more than thirty seconds. Your throat and mouth feel absolutely stuffed with still-hot qilin cum, it’s flavor overpowering and smokey. You splutter before opening your eyes, the first instinct being to <i>breeeathe</i>.");
+	output("\n\nIt can’t have been more than thirty seconds. Your throat and mouth feel absolutely stuffed with still-hot qilin cum, it’s flavor overpowering and smoky. You splutter before opening your eyes, the first instinct being to <i>breeeathe</i>.");
 	output("\n\nThe first thing you see is Mirrin standing over the end of the bed, her brace of mammoth cocks not even soft after her load dump. Is she taking a picture?!");
 	output("\n\n<i>“Hey-”</i> you weakly begin before coughing up yet more dragon cream onto your chest. Looking around your head, it’s as if someone threw an entire tin of paint of your upper body. Just how much cum can she make...?!");
 	output("\n\n<i>“Hoooold still,”</i> she says, a photo shutter sound playing shortly afterwards. <i>“Perfect...”</i>");

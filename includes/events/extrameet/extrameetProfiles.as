@@ -25,7 +25,7 @@ public function extrameetKaedeCheckMatch():Boolean
 
 public function extrameetBigTiddyGothGFProfile():void
 {
-	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smokey black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
+	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smoky black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
 	output("\n\nUsername: Dark&Desperate");
 	output("\nSex: Female");
 	output("\nAge: 22 Years");
