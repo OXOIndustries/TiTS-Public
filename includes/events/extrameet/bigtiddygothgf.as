@@ -572,7 +572,7 @@ public function bigTiddyGothGFNecklaceHer():void
 	
 	output("\n\nThe world spins and twists, and your vision returns to the now and the table. The Servant is looking at you once more, her expression now somber. <i>“What did my master show you, Steele?”</i>");
 	
-	output("\n\nYou hesitate for a moment, but decide to tell her what you saw. As you speak, you notice her twitch slightly, clearly not pleased with what you saw. She manages to keep it together, and you notice tears starting to build in the corners of her smokey eyes. As you finish recounting your vision, you ask The Servant what exactly was it that you were shown.");
+	output("\n\nYou hesitate for a moment, but decide to tell her what you saw. As you speak, you notice her twitch slightly, clearly not pleased with what you saw. She manages to keep it together, and you notice tears starting to build in the corners of her smoky eyes. As you finish recounting your vision, you ask The Servant what exactly was it that you were shown.");
 	
 	output("\n\nShe twitches again, staying silent for a moment, leaving question hanging in the air between you. <i>“My master spared me that night. I was drowning in it. That lust... that bliss. Flesh is weak, [pc.name]. No one is meant to taste that kind of pleasure, because no one can survive it.”</i> Turning her head away from you, she crossed her arms over her chest and sighs, seemingly not wanting to speak anymore about the memory.");
 	
