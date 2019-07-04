@@ -3,6 +3,9 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
+import classes.Items.Accessories.LeithaCharm;
+import classes.Items.Treasures.Savicite;
+import classes.Items.Treasures.Lucinite;
 import classes.RoomClass;
 
 public function TundraEncounterBonus():Boolean
@@ -112,6 +115,7 @@ public function GlacialRiftEncounterBonus():Boolean
 	if (tuuvaExpeditionRescueChance()) return true;
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
+	if (tryEncounterLucinite(flags["TUNDRA_STEP"],false)) return true;
 	return false;
 }
 
@@ -140,12 +144,11 @@ public function uvetoShipDock():Boolean
 	
 	var btnSlot:int = 0;
 	
-	synphiaBonus(btnSlot++);
-
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
 		chaurmineUvetoStationBonus(btnSlot++);
 	}
+
 	return false;
 }
 public function uvetoDockingBonus():Boolean
@@ -1599,7 +1602,69 @@ public function encounterSavicite(choice:String = "encounter"):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
+// Lucinite Chunk
+public function tryEncounterLucinite(nStep:int = 0,frostwyrm:Boolean=false):Boolean
+{
+	var getChance:int = 225;
+	if (pc.accessory is NogwichLeash && frostwyrm) getChance = 65;
+	else if (pc.accessory is NogwichLeash || frostwyrm) getChance = 120;
 
+	if (nStep != 0 && rand(getChance) <= 1)
+	{
+		encounterLucinite();
+		return true;
+	}
+	return false;
+}
+public function encounterLucinite(choice:String = "encounter"):void
+{
+	if(choice == "encounter")
+	{
+		clearOutput();
+		showName("A CHUNK OF\nLUCINITE!");
+		
+		if(pc.accessory is NogwichLeash) output("Your nog’wich suddenly rears back and mewls softly, ruffling its round ears. It looks like it found a small, oddly-colored protrusion sticking out from the ground.");
+		else output("You notice a small, oddly-colored protrusion sticking out from the ground out of the corner of your eye.");
+		output(" Curiosity getting the better of you, you stop in your tracks and");
+		if (pc.isRidingMount()) output(" hop off from your mount");
+		else output(" carefully walk over to it");
+		output(" to investigate.");
+		if (flags["FOUND_LUCINITE"] == 1)
+		{
+			output("\n\nAnother piece of teal rock lays in the snow by your footprints. Your codex chirps, confirming what you already know: the rock is a piece of lucinite, a psionically charged material capable of heat absorption. Keeping it in your inventory would leave you to be more vulnerable to the harsh environs of the Uvetian moon, though this will still fetch a pretty credit because of how rare it is.");
+		}
+		else
+		{
+			output("\n\nA teal-colored rock the size of your hand sticks up slightly just about the start of the skidmark. When you bend down to pick it up, a dreadful chill surges through your fingers. It is somehow much colder to the touch than the already frigid surroundings. Before your fingers wind up frostbitten, you hurriedly drop the metallic rock back onto the snow.");
+			output("\n\nYour codex chirps immediately afterwards, identifying the strange ore as lucinite, one of several known psionically-charged materials. It also warns that it has heat siphoning powers, and that without proper handling and protection, prolonged exposure with this ore will run the risk of hypothermia. Great. As if the already freezing conditions weren't enough to worry about! On the plus side, this is also a very valuable material considering how rare it is.");
+		}
+
+		output("\n\nDo you want to risk taking it with you?");
+		
+		processTime(1);
+		flags["FOUND_LUCINITE"] = 1;
+		
+		clearMenu();
+		addButton(0, "Take It", encounterLucinite, "take it");
+		addButton(1, "Nope", encounterLucinite, "leave it");
+	}
+	else if(choice == "take it")
+	{
+		clearOutput();
+		output("Gingerly, you pick the lucinite ore up and throw it hurriedly into your inventory before it can affect you too much. You can still feel its heat-siphoning effects through your bag...");
+		output("\n\n");
+		
+		quickLoot(new Lucinite());
+	}
+	else if(choice == "leave it")
+	{
+		clearOutput();
+		output("You decide to leave the ore where it is. After few more moments, the Uvetian winds completely cover it in a thin layer of snow.");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+}
 public function korgiiHoldExteriorBonus():Boolean
 {
 	//If been to irestead since turning down, RIP Korgii
