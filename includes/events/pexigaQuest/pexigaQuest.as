@@ -3957,33 +3957,27 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			showDollmaker();
 			
 			output("If you still have any parts left, you could try to reinsert them. It could save you time later.");
-			
 			// Doll maker cannot be fixed if Badger is a bimbo
-			if(chars["DRBADGER"].isBimbo())
-			{
-				output("\n\nThough, it would be pointless to put any damaged pieces back on if Badger is too stupid to fix it completely...");
-			}
-			else
-			{
-				// [Syringe] [Lamp] [Gun] [Visor] [Back]
-				if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You have already installed this!");
-				else if(!pc.hasItemByClass(IQBGone)) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You need the syringe full of IQ B-Gone.");
-				else addButton(0, "Syringe", drBadgerLabDollMaker, "fix iqbgone", "Install IQ B-Gone", "Install the syringe full of IQ B-Gone.");
-				
-				if(flags["DOLLMAKER_FIX_LAMP"] != undefined) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You have already installed this!");
-				else if(!pc.hasItemByClass(BrokenBrainmeltLamp)) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You need the broken Brainmelt Lamp.");
-				else addButton(1, "Lamp", drBadgerLabDollMaker, "fix lamp", "Install Brainmelt Lamp", "Install the broken Brainmelt Lamp.");
-				
-				if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You have already installed this!");
-				else if(!pc.hasItemByClass(BimboleumEmitter)) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You need the Bimboleum emitter.");
-				else addButton(2, "Gun", drBadgerLabDollMaker, "fix emitter", "Install Bimboleum Emitter", "Install the Bimboleum emitter.");
-				
-				if(flags["DOLLMAKER_FIX_VISOR"] != undefined) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You have already installed this!");
-				else if(!pc.hasItemByClass(MindwashVisor)) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You need the Mindwash visor.");
-				else addButton(3, "Visor", drBadgerLabDollMaker, "fix visor", "Install Mindwash Visor", "Install the Mindwash visor.");
-				
-				addButton(14, "Back", drBadgerLabDollMaker, "fix done");
-			}
+			if(chars["DRBADGER"].isBimbo()) output("\n\nThough, it would be pointless to put any damaged pieces back on if Badger is too stupid to fix it completely...");
+			
+			// [Syringe] [Lamp] [Gun] [Visor] [Back]
+			if(flags["DOLLMAKER_FIX_IQBGONE"] != undefined) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You have already installed this!");
+			else if(!pc.hasItemByClass(IQBGone)) addDisabledButton(0, "Syringe", "Install IQ B-Gone", "You need the syringe full of IQ B-Gone.");
+			else addButton(0, "Syringe", drBadgerLabDollMaker, "fix iqbgone", "Install IQ B-Gone", "Install the syringe full of IQ B-Gone.");
+			
+			if(flags["DOLLMAKER_FIX_LAMP"] != undefined) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You have already installed this!");
+			else if(!pc.hasItemByClass(BrokenBrainmeltLamp)) addDisabledButton(1, "Lamp", "Install Brainmelt Lamp", "You need the broken Brainmelt Lamp.");
+			else addButton(1, "Lamp", drBadgerLabDollMaker, "fix lamp", "Install Brainmelt Lamp", "Install the broken Brainmelt Lamp.");
+			
+			if(flags["DOLLMAKER_FIX_EMITTER"] != undefined) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You have already installed this!");
+			else if(!pc.hasItemByClass(BimboleumEmitter)) addDisabledButton(2, "Gun", "Install Bimboleum Emitter", "You need the Bimboleum emitter.");
+			else addButton(2, "Gun", drBadgerLabDollMaker, "fix emitter", "Install Bimboleum Emitter", "Install the Bimboleum emitter.");
+			
+			if(flags["DOLLMAKER_FIX_VISOR"] != undefined) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You have already installed this!");
+			else if(!pc.hasItemByClass(MindwashVisor)) addDisabledButton(3, "Visor", "Install Mindwash Visor", "You need the Mindwash visor.");
+			else addButton(3, "Visor", drBadgerLabDollMaker, "fix visor", "Install Mindwash Visor", "Install the Mindwash visor.");
+			
+			addButton(14, "Back", drBadgerLabDollMaker, "fix done");
 			break;
 		case "fix iqbgone":
 		case "fix lamp":

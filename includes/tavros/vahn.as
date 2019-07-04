@@ -240,7 +240,7 @@ public function vahnSellsShips():void
 	{
 		output("You ask Vahn if he can sell you a whole new ship.");
 
-		output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
+		output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird in storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
 		output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
 		output("\n\nVahn taps a few buttons, and your Codex springs to life, displaying a catalog of local spacecraft. <i>“Take your pick.”</i>");
 	}
@@ -268,14 +268,16 @@ public function shipBuyScreen(arg:ShittyShip):void
 
 	output("Your Codex prompts you to review the information on this ship thoroughly before attempting a selection.\n\n" + shipCompareString(arg));
 	clearMenu();
-	if(pc.credits >= arg.shipCost()) 
+	
+	if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
+	else if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
+	else if(shipStorageRoom() > 0)
 	{
-		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
-		if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
-		else if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
-		else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
+		if(pc.credits >= arg.shipCost()) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
+		else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
 	}
-	else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
+	else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
+	
 	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy + Trade","You cannot trade in your Casstech. Vahn won’t take it.");
 	else if(pc.credits >= (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2))) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy+Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Price:</u></b> " + (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2)));
 	else addDisabledButton(1,"Buy+Trade","Buy+Trade","You still can’t afford the ship this way.");
@@ -284,6 +286,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
 	else if(shopkeep is Focalor) addButton(14,"Back",focalorApproach);
 	else if(shopkeep is Dockmaster) addButton(14,"Back",buyAShipFromTrashRat);
+	else addButton(14,"Back",mainGameMenu);
 }
 
 public function buyAShipAndTradeIn(arg:ShittyShip):void

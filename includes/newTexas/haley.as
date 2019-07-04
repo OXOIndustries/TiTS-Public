@@ -705,7 +705,6 @@ public function enteringHaleysStallRepeat():void
 	}
 	else if (flags["MET_ELLIE"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "If only you knew a sexy taurgirl who’d be up for a threesome with Haley. Gotta be one of those on New Texas...");
 	else if (flags["BEAT_HALEY"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "You have to beat Haley in the competition for this.");
-	else if (!pc.hasCock() || !pc.hasVagina()) addDisabledButton(3, "Threesome", "Threesome", "You currently have to be a herm for this.");
 	if(flags["MET_HALEY"] == undefined) addDisabledButton(4,"Offer Self","Offer Self","Talk to her a bit more first.");
 	else addButton(4,"Offer Self",offerSelfToHaley,undefined,"Offer Self","Offer to take the place of Haley’s milker for a day as a nice present for the pent-up taurgirl.");
 	if (pc.hasStatusEffect("Haley Bet In Progress")) { }
@@ -1295,7 +1294,7 @@ public function haleyEllieThreesome():void
 	
 	output("Haley slumps over the milker with a resigned sigh as you approach, then looks up when she notices your presence.");
 	output("\n\n<i>“Heya, [pc.name]. Don’t s’pose you’ve come by to help me out with my problem?”</i> she asks hopefully.");
-	if (pc.isBimbo())
+	if (pc.isBimbo() && pc.isHerm())
 	{
 		output("\n\n<i>“Hi Hales! I actually came by because I have a super good idea!”</i>");
 		output("\n\n<i>“Uh huh,”</i> she says, bemused. <i>“Go on, tell me your super good idea.”</i>");
@@ -1410,7 +1409,7 @@ public function haleyEllieThreesome():void
 	if (pc.isTaur()) output(" mount her to");
 	if (subCockIdx >= 0) output(" align your [pc.cock " + mainCockIdx + "] with her drooling pussy and your [pc.cock " + subCockIdx + "] with her raised, puffy asshole. After all... you didn’t specify <i>which</i> holes of hers you were going to fuck.");
 	else output(" align your [pc.cock " + mainCockIdx + "] with her delectable pussy - it’s drooling all over her heavy balls, her wetness dripping to the floor.");
-	output("\n\nWith your [pc.cockHeadBiggest] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
+	output("\n\nWith your [pc.cockHead " + mainCockIdx + "] pressed against the wetness of Haley’s pussy, you start to push in - but it’s fucking <i>hard</i>! The amazonian taurgirl is not only ridiculously tight, but every time she fucks Ellie her passage flexes, another bead of pearlescent girlcum slipping down her flanks. Not to be deterred, you patiently wait until Haley is on her outstroke and then thrust into her with all your might.");
 	output("\n\n<i>“Oh, </i>fuck<i>!”</i> she gasps, reflexively clamping down on you. Her back half begins to shudder, one of her hindlegs lifting off the ground, and you hear Ellie start to moan from under her.");
 	if (pc.isBimbo())
 	{
@@ -1690,7 +1689,7 @@ public function beHaleysMilker():void
 		if(pc.hasVagina()) pc.cuntChange(0,1500);
 		else pc.buttChange(1500);
 		output("\n\n<i>“Fuck!”</i> Haley pants, grunting in pleasure as her emissions become notably thicker and fiercer. <i>“G-gonna fuckin’... ugh! Nnnnggrrgh!”</i>");
-		output("\n\nShe lets out a dirty, feral groan of ecstasy as she staggers forward, sinking her gigantic horsecock to the hilt within you as what feels like a gallon of her spunk graces your " + (pc.hasVagina() && !pc.isPregnant(0) ? "[pc.womb].":"warm insides.") + " You cum on the spot, already so wound up from the experience of being penetrated by such an impossibly large studcock that you just can’t help yourself. The squeezing motion of your fuckhole milks not only an enormous amount of seed from her flexing flare but a few appreciative moans from the woman herself, her hands" + (pc.isTaur() ? " caressing your [pc.chest] while she empties her balls.":" out against the wall with fingers splayed and knuckles white."));
+		output("\n\nShe lets out a dirty, feral groan of ecstasy as she staggers forward, sinking her gigantic horsecock to the hilt within you as what feels like a gallon of her spunk graces your " + (pc.hasVagina() && !pc.isPregnant(0) ? "[pc.womb]":"warm insides") + ". You cum on the spot, already so wound up from the experience of being penetrated by such an impossibly large studcock that you just can’t help yourself. The squeezing motion of your fuckhole milks not only an enormous amount of seed from her flexing flare but a few appreciative moans from the woman herself, her hands" + (pc.isTaur() ? " caressing your [pc.chest] while she empties her balls.":" out against the wall with fingers splayed and knuckles white."));
 		output("\n\n<i>“Uuuhhh,”</i> Haley groans, lost to animal pleasure. <i>“Fuuuck...”</i>");
 		output("\n\nA torrential gush of equine jizz accompanies her lilting voice, her throbbing cock pumping you well past your original capacity. By the time she’s finished cumming and pulls herself free with a satisfied grunt you’ve got a sloshing paunch to your tummy, a nice visual reminder of your new role for the day. You moan in joy.");
 	}

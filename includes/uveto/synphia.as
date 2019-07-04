@@ -561,7 +561,7 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 		case 0: output("Thank you."); break;
 		case 1: output("Mmm, thanks for coming back."); break;
 		case 2: output("I’m so glad you fell into my mouth again."); break;
-		case 3: output("You the best dick on the station, you know."); break;
+		case 3: output("You have the best dick on the station, you know."); break;
 		case 4: output("Mmm, I love this cock."); break;
 		case 5: output("Mmm, you’re gonna get me addicted to this cock."); break;
 		default: output("Oh, thank you so much, [pc.name]. I missed this dick. I missed it so much, and it tastes so goood..."); break;
@@ -594,7 +594,7 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 	output(" It’s exactly what you need after working so hard for so long. You don’t even find yourself shuddering or twitching overmuch, like your [pc.cockNoun " + x + "] knows that it’s being brought to orgasm and doesn’t need to do a thing.");
 	output("\n\n<i>“That’s right, baby,”</i> Synphia’s voice coos inside your head, blushing her horns once more. <i>“" + (!venomBool ? "You don’t have to do anything but let me please you.":"Just enjoy what me and my venom can do. You’re going to love being sucked dry...") + "”</i> Her psi-amplifying horns swap back to blue, and she speeds up her strokes. Her spit-slicked palms slide fast enough to make the saliva bubble around her knuckles, then a fingertip rides your urethral vein from base to tip, squeezing out the most recent bit of " + (!venomBool ? "pre-":"drugged-") + "sperm to collect there.");
 	output("\n\nEyes crossed, you smile " + (venomBool ? "dizzily":"broadly") + ", unaware that you’ve forgotten about Synphia’s tongue.");
-	output("\n\nThat reptilian cock-polisher makes announces its presence but slithering between the slyveren’s cheek and your [pc.cockHead " + x + "], curling up to wrap around the top and back down the other side. It burrows deeper, under your pulsating, drooling cock-tip before making at play to slip past her " + (pc.cocks[x].thickness() >= 5 ? "taut":"pillowy") + " lower lip. Once there, the whole thing begins to slowly rotate, drowning your prickhead in pleasure while Synphia drools. Spit splatters the floor wetly, but your every drop is perfectly devoured, sucked deep into the mechanic’s thirsty maw. The excess saliva is just lube for her hands.");
+	output("\n\nThat reptilian cock-polisher makes its presence known but slithering between the slyveren’s cheek and your [pc.cockHead " + x + "], curling up to wrap around the top and back down the other side. It burrows deeper, under your pulsating, drooling cock-tip before making at play to slip past her " + (pc.cocks[x].thickness() >= 5 ? "taut":"pillowy") + " lower lip. Once there, the whole thing begins to slowly rotate, drowning your prickhead in pleasure while Synphia drools. Spit splatters the floor wetly, but your every drop is perfectly devoured, sucked deep into the mechanic’s thirsty maw. The excess saliva is just lube for her hands.");
 	//Venomed
 	if(venomBool) 
 	{
@@ -726,7 +726,9 @@ public function synphiaEpilogue(args:Array):void
 	//Came
 	if(synCum) 
 	{
-		output("\n\nYou smile broadly and indicate the waist-high damp patch. Marinating your garment’s interior lining in one’s own pussyjuice can’t be good for it.");
+		output("\n\nYou smile broadly");
+		if(!pc.isCrotchExposedByLowerUndergarment()) output(" and indicate the waist-high damp patch. Marinating your garment’s interior lining in one’s own pussyjuice can’t be good for it");
+		output(".");
 		//First cum
 		if(flags["SYNPHIA_DICKGASMS"] == undefined || flags["SYNPHIA_DICKGASMS"] <= 1) output("\n\n<i>“Hey!”</i> Synphia slaps your shoulder. <i>“It’s not like I wanted to cum. I was just getting a meal. You were the one who had to make it all... sexy.”</i> She licks her lips and squirms. <i>“Besides, everything’s covered up. I’ll be fine.”</i> A tug at the constricting fabric does little to fix how much of her camel-toe is on display. <i>“And umm... I guess if you ever feel... backed-up again, don’t hesitate to ask. This was fun.”</i>");
 		//Second Cum

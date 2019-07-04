@@ -702,7 +702,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	if(!target.hasHair())
 	{
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) outputRouter(" " + (target == pc ? "You have":"[target.Name] has") + " no hair, only a" + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? "" : " thin") + " layer of " + target.skinNoun(false,true) + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
-		else outputRouter(" " + (target == pc ? "You have":"[target.Name] has") + " have no hair, showing only shiny " + target.skinFurScales() + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
+		else outputRouter(" " + (target == pc ? "You have":"[target.Name] has") + " no hair, showing only shiny " + target.skinFurScales() + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
 		
 		var headNoun:String = "head";
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) headNoun = "furred head";
