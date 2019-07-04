@@ -351,7 +351,7 @@ package classes.Items.Transformatives
 			output("\n\nYour ears stiffen with the cold, elongating and mutating into a set of almost fin-like ridges. They almost look more like a headdress than ears, but it’s just as easy as ever to hear out of <b>your new frostwyrm ears</b>.");
 			
 			pc.earType = GLOBAL.TYPE_FROSTWYRM;
-			target.clearEarFlags();
+			pc.clearEarFlags();
 		}
 		
 		//Face: 

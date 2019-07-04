@@ -604,7 +604,7 @@ public function stellaPussyFuck():void
 	}
 	output("\n\n<i>“Nnnnhh,”</i> you grunt, stretching out in front of the prostrate girl. <i>“Wanna clean me up?”</i>");
 	if(cumQ >= 5000) output("\n\nDespite her condition, s");
-	else output("S");
+	else output(" S");
 	output("he’s only too eager to get on her hands and knees and suck your cock completely clean. Stella licks you up and down, clearly savoring the experience, not all that dissimilar from how she might treat a lollipop. By the time she’s done your cock glistens with her saliva, a strand almost dripping from the end before she catches it with her tongue.");
 	output("\n\n<i>“Oops,”</i> she says, fluttering her eyelashes. <i>“Can’t have you walking out all </i>drippy<i>.”</i>");
 	output("\n\nAt this rate you’re likely to keep her between your legs for a few hours if you don’t get out now. In fact...");

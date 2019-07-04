@@ -3407,7 +3407,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				// To 5
 				else if(pc.ballSizeRaw < 5)
 				{
-					AddLogEvent("A pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your " + pc.ballsDescript() + ". " , "passive", (ballSizeGains[firstBallSizeGain + i] - startHours) * 60);
+					AddLogEvent("A pleasant, swaying weightiness accompanies your every stride, a potent reminder of your masculinity just a few inches below your crotch. And you think it’s getting heavier. Pausing with a grin the size of old Texas on your face, you reach down and cradle your " + pc.ballsDescript() + ". ", "passive", (ballSizeGains[firstBallSizeGain + i] - startHours) * 60);
 					if(pc.balls == 1) ExtendLogEvent("It’s ");
 					else ExtendLogEvent("They’re ");
 					ExtendLogEvent("warm and so pleasantly sensitive. You can almost swear you feel ");
@@ -4027,7 +4027,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// If dick is ever lost, regrow dick!
 		if(!pc.hasCock() && treatedHours >= 3)
 		{
-			AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is, like, totally cute.", "passive", (treatedHours - startHours) * 60);
+			AddLogEvent("A new penis springs out of your crotch new and fully formed. The Treatment seems determined to give you a dick. At least this one is pretty cute.", "passive", (treatedHours - startHours) * 60);
 			pc.createCock();
 			pc.setNewCockValues(0);
 		}

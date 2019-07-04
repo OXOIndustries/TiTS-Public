@@ -394,7 +394,7 @@ public function bizzyTittyFuck(fromItem:Boolean = false):void
 		
 		output("\n\n<i>“Do you like that?”</i> she asks, big grin on her face as you begin to pump yourself between her tits, using the tender, plump friction to harden yourself up and then thrust yourself between those two pretty little boobs with greater and greater gusto. You groan as she squeezes them together, tightness that makes you leak pre onto her white skin in appreciation.");
 		
-		output("\n\n<i>“You should. You got them for me, you weighed me down with all this sluttiness, all this softness, that my viewers can’t get enough of...”</i> Bizzy emphasizes her words with a lovely jiggle, her erect nipples swinging to and fro. <i>“ ...they belong to you. You should use them as much as you can!”</i>");
+		output("\n\n<i>“You should. You got them for me, you weighed me down with all this sluttiness, all this softness, that my viewers can’t get enough of...”</i> Bizzy emphasizes her words with a lovely jiggle, her erect nipples swinging to and fro. <i>“...they belong to you. You should use them as much as you can!”</i>");
 		
 		output("\n\n");
 		if (pc.biggestCockLength() >= 10)
@@ -1018,7 +1018,7 @@ public function bizzyStage4():void
 	
 	output("\n\nThe bedroom is now a professional set. No more bedsheets - Bizzy has purchased actual screens, and VI-controlled lamps that can swoop around and provide the best lighting at their own behest. The drones have been upgraded, sleek, tiny things that capture the best angles in definition that makes the eye ache. There’s a small studio built into one corner, four different screens all equipped for state-of-the-art editing. And there’s entire glass-fronted cabinet’s worth of sex toys now, lurid little parades of dildos, vibes, oils and exotic toys waiting to be used. It’s a very cramped space, with a clear need for more room.");
 	
-	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She lays herself down on the couch opposite, leisured, happy cat in the presence of her owner.");
+	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smoky and mildly stimulating. She lays herself down on the couch opposite, leisured, happy cat in the presence of her owner.");
 	
 	moveTo("BIZZY STUDIO ROOM");
 
@@ -1336,7 +1336,7 @@ public function bizzyStage3():void
 	
 	output("\n\nThe bedroom remains much the same. With careful application of sheets and light sources, Bizzy has made it into an intimate, well-lit space with an atmosphere of quiet potential, centred around her laptop and crimson-sheeted double bed. A little row of sex toys stand to attention on a bedside table. You notice she’s added a selection of body paints, aphros and other little sexual treats behind them. On one wall is a little collection of photos - scenes from her greatest hits, as well as specific shout-outs to her most generous patrons.");
 	
-	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She lays herself down on the couch opposite, leisured cat in the presence of her owner.");
+	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smoky and mildly stimulating. She lays herself down on the couch opposite, leisured cat in the presence of her owner.");
 	
 	moveTo("BIZZY STUDIO ROOM");
 
@@ -1577,7 +1577,7 @@ public function bizzyStage2():void
 	
 	output("\n\nThe living room and kitchenette are as sparse and shabby as always. However, as the kaithrit shows you, she’s transformed her bedroom: With careful application of sheets and light sources, she’s made it into an intimate, well-lit space with an atmosphere of quiet potential, centred around her laptop and crimson-sheeted double bed. A little row of sex toys stand to attention on a bedside table. You notice she’s added a selection of body paints, aphros and other little sexual treats behind them. It’s reasonably impressive, given she’s working with very little.");
 	
-	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
+	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smoky and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
 	
 	moveTo("BIZZY STUDIO ROOM");
 
@@ -1810,7 +1810,7 @@ public function bizzyStage1():void
 
 	output("\n\nThe living room and kitchenette are as sparse and shabby as always. However, as the kaithrit shows you, she’s transformed her bedroom: With careful application of sheets and light sources, she’s made it into an intimate, well-lit space with an atmosphere of quiet potential, centred around her laptop and crimson-sheeted double bed. A little row of sex toys stand to attention on a bedside table. It’s reasonably impressive, given she’s working with almost nothing.");
 
-	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smokey and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
+	output("\n\nBizzy sits you back down in her living room with a cup of Roshan tea, smoky and mildly stimulating. She sits opposite with her green eyes glued to you, wringing her hands, awaiting her owner’s instructions.");
 
 	moveTo("BIZZY STUDIO ROOM");
 	bizzyStage1Menu();

@@ -186,7 +186,7 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD K21"] = new RoomClass(this);
 	rooms["AKD K21"].roomName = "RESEARCH HALL\nOFFICES";
-	rooms["AKD K21"].description = "You’re walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building’s interior. They look like offices, each with a different ausar name printed beside it. They’re all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes east to west here. More importantly, there’s a door labelled ‘HELIPAD’ in bold ausari characters on the north wall. Like most of the facility, it’s locked down.";
+	rooms["AKD K21"].description = "You’re walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building’s interior. They look like offices, each with a different ausar name printed beside it. They’re all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes east to west here. More importantly, there’s a door labeled ‘HELIPAD’ in bold ausari characters on the north wall. Like most of the facility, it’s locked down.";
 	rooms["AKD K21"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K21"].planet = planetName;
 	rooms["AKD K21"].system = systemName;
@@ -265,7 +265,7 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD E13"] = new RoomClass(this);
 	rooms["AKD E13"].roomName = "STAFF\nQUARTERS";
-	rooms["AKD E13"].description = "You’re standing in a long, wide hallway that’s flanked by dozens of doors on each side. Each of them has a small name plate on the outside, suggesting these are living quarters. They’re all magnetically sealed, though, thanks to the continuing lockdown in the facility. The hall goes back east, towards the elevator, and culminates here in a large open area with couches and holoscreens and a coffee table with several boxes of half-eaten Roshan takeout.\n\nTo the north is another door labelled ‘Staff Room.’";
+	rooms["AKD E13"].description = "You’re standing in a long, wide hallway that’s flanked by dozens of doors on each side. Each of them has a small name plate on the outside, suggesting these are living quarters. They’re all magnetically sealed, though, thanks to the continuing lockdown in the facility. The hall goes back east, towards the elevator, and culminates here in a large open area with couches and holoscreens and a coffee table with several boxes of half-eaten Roshan takeout.\n\nTo the north is another door labeled ‘Staff Room.’";
 	rooms["AKD E13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD E13"].planet = planetName;
 	rooms["AKD E13"].system = systemName;
@@ -382,7 +382,7 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD O15"] = new RoomClass(this);
 	rooms["AKD O15"].roomName = "BIOMED\nLAB";
-	rooms["AKD O15"].description = "You’re inside the Bio-Medical laboratory, a section of the facility dedicated to Akkadi’s research into genetic manipulation, cloning, and all the other fun things a mega-corporation doesn’t want the Confederate government to know about.\n\nYou see computer banks displaying all sorts of scientific data, jars and containers filled with unidentifiable liquid that suspends strange organic-looking parts within them. You can see skin-grafts stretched out across holographic pillars, huge vats of organic goop that gives the room a faintly sour smell... the list goes on.\n\nAt the far end of the laboratory, you see a secure sample case labelled ‘Genetic Artifacts.’";
+	rooms["AKD O15"].description = "You’re inside the Bio-Medical laboratory, a section of the facility dedicated to Akkadi’s research into genetic manipulation, cloning, and all the other fun things a mega-corporation doesn’t want the Confederate government to know about.\n\nYou see computer banks displaying all sorts of scientific data, jars and containers filled with unidentifiable liquid that suspends strange organic-looking parts within them. You can see skin-grafts stretched out across holographic pillars, huge vats of organic goop that gives the room a faintly sour smell... the list goes on.\n\nAt the far end of the laboratory, you see a secure sample case labeled ‘Genetic Artifacts.’";
 	rooms["AKD O15"].runOnEnter = function():void{
 		author("Savin")
 		if (flags["SYRIQUEST_SYRI_ONAHOLE"] == undefined) addButton(0, "Artifacts?", syriQuestAkkadiBaseBioMedLabArtifacts, undefined, "Artifacts?", "Genetic artifacts, you say? That sounds lootable.");

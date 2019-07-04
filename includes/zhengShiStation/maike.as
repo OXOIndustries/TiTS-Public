@@ -1,5 +1,3 @@
-import classes.Items.Treasures.SpacesuitHelmet;
-import classes.Items.Apparel.Slavesuit;
 //Running into Maike in the mines
 //By SoAndSo
 //Mostly coded by Fenoxo Fenbutte

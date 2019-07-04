@@ -1254,7 +1254,7 @@ public function priapismBlurbs():void
 			// Mhenga - sexed Flahne - not in her office
 			if(flags["FLAHNE_SEXED"] != undefined)
 			{
-				if(flags["SEEN_BIMBO_PENNY"] == undefined || (hours >= 8 && hours < 17)) { /* In office */ }
+				if(flahneInOffice()) { /* In office */ }
 				else msgList.push("Flahne whistles at you and waves on her way by. <i>“Looking good, sugar!”</i>");
 			}
 			// Mhenga Penny Cumslut Public

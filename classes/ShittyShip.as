@@ -23,6 +23,8 @@ package classes {
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.*;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.*;
+	import classes.ShittyShips.ShittyShipGear.Upgrades.*;
+	import classes.ShittyShips.ClydesdaleK7;
 
 	public class ShittyShip extends Creature {
 	
@@ -87,30 +89,34 @@ package classes {
 		//Agility (mapped to reflexes)
 		public function shipAgility():Number
 		{
-			return reflexesRaw;
+			var bonus:Number = (equippedItemCountByClass(ThrustVectoringSystem)*20);
+			return (reflexesRaw+bonus);
 		}
 		//Speed (mapped to physique)
 		public function shipThrust():Number { return shipSpeed(); }
 		public function shipSpeed():Number
 		{
-			return physiqueRaw;
+			var bonus:Number = (equippedItemCountByClass(AuxiliaryThrusters) * 25);
+			return (physiqueRaw + bonus);
 		}
 		//Power Generation (mapped to willpower)
 		public function shipPowerGen():Number
 		{
-			return willpowerRaw;
+			return willpowerRaw + (equippedItemCountByClass(PowerCoreTuner)*15);
 		}
 		//Sensors (Mapped to Aim)
 		public function shipSensors():Number
 		{
-			return aimRaw;
+			var bonus:Number = (equippedItemCountByClass(SensorSuite) * 25);
+			return (aimRaw + bonus);
 		}
 		//Systems (Mapped to Intelligence)
 		public function shipSystems():Number
 		{
 			var bonus:Number = 0;
 			bonus += equippedItemCountByClass(ShieldDisruptor) * 5;
-			return intelligenceRaw;
+			bonus += equippedItemCountByClass(HardenedSystems) * 25;
+			return intelligenceRaw + bonus;
 		}
 		public var shipGunCapacityRaw:Number = 2;
 		public var shipCapacityRaw:Number = 3;
@@ -124,9 +130,16 @@ package classes {
 		{
 			return shipGunCapacityRaw;
 		}
+		public function bonusCrewCapacity():Number
+		{
+			var bonus:Number = 0;
+			if(this is ClydesdaleK7) bonus += 2;
+			bonus += equippedItemCountByClass(AdvancedQuarters)*2;
+			return bonus;
+		}
 		public function shipCrewCapacity():Number
 		{
-			return (shipCapacity() - this.inventory.length);
+			return ((shipCapacity() + bonusCrewCapacity()) - this.inventory.length);
 		}
 		//STORAGE SIZES!
 		public function wardrobeSize():Number
@@ -157,20 +170,20 @@ package classes {
 			var bonus:Number = 0;
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.reflexes()/4;
 			if(hasStatusEffect("Evading!")) bonus += 50;
-			return bonus + shipStatBonusTotal(0);
+			return bonus + shipThrust()/2 + shipAgility() + shipStatBonusTotal(0);
 		}
 		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
 		public function shipAccuracy():Number
 		{
 			var bonus:Number = 0;
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.aim()/4;
-			return bonus + shipStatBonusTotal(1);
+			return bonus + shipSystems()/2 + shipSensors() + shipStatBonusTotal(1);
 		}
-		public function shipShieldDef():Number
+		override public function shieldDefense(): Number 
 		{
 			return shipStatBonusTotal(3);
 		}
-		public function shipDefense():Number
+		override public function defense():Number
 		{
 			return shipStatBonusTotal(2);
 		}
@@ -198,9 +211,9 @@ package classes {
 				evasion += inventory[i].evasion;
 				accuracy += inventory[i].attack;
 				defense += inventory[i].defense;
-				if(inventory[i].type != GLOBAL.RANGED_WEAPON) shieldDefense += inventory[i].shieldDefense;
+				if(inventory[i].type != GLOBAL.RANGED_WEAPON && inventory[i].type != GLOBAL.GADGET) shieldDefense += inventory[i].shieldDefense;
 				fortification += inventory[i].fortification;
-				shields = inventory[i].shields;
+				shields += inventory[i].shields;
 			}
 			//Locked in equipment additions:
 			evasion += meleeWeapon.evasion + rangedWeapon.evasion + armor.evasion + shield.evasion + accessory.evasion;
@@ -209,12 +222,16 @@ package classes {
 			defense += meleeWeapon.defense + rangedWeapon.defense + armor.defense + shield.defense + accessory.defense;
 			fortification += meleeWeapon.fortification + rangedWeapon.fortification + armor.fortification + shield.fortification + accessory.fortification;
 
+			//Shields
 			shields += meleeWeapon.shields + rangedWeapon.shields + armor.shields + shield.shields + accessory.shields;
-			if(meleeWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += meleeWeapon.shieldDefense;
-			if(rangedWeapon.type != GLOBAL.RANGED_WEAPON) shieldDefense += rangedWeapon.shieldDefense;
-			if(armor.type != GLOBAL.RANGED_WEAPON) shieldDefense += armor.shieldDefense;
-			if(shield.type != GLOBAL.RANGED_WEAPON) shieldDefense += shield.shieldDefense;
-			if(accessory.type != GLOBAL.RANGED_WEAPON) shieldDefense += accessory.shieldDefense;			
+			//ShieldDef
+			if(meleeWeapon.type != GLOBAL.RANGED_WEAPON && meleeWeapon.type != GLOBAL.GADGET) shieldDefense += meleeWeapon.shieldDefense;
+			if(rangedWeapon.type != GLOBAL.RANGED_WEAPON && rangedWeapon.type != GLOBAL.GADGET) shieldDefense += rangedWeapon.shieldDefense;
+			if(armor.type != GLOBAL.RANGED_WEAPON && armor.type != GLOBAL.GADGET) shieldDefense += armor.shieldDefense;
+			if(shield.type != GLOBAL.RANGED_WEAPON && shield.type != GLOBAL.GADGET) shieldDefense += shield.shieldDefense;
+			if(accessory.type != GLOBAL.RANGED_WEAPON && accessory.type != GLOBAL.GADGET) shieldDefense += accessory.shieldDefense;			
+
+			//Output the variable.
 			if(type == 0) return evasion;
 			else if(type == 1) return accuracy;
 			else if(type == 2) return defense;
@@ -334,6 +351,17 @@ package classes {
 			
 			return modifiedDamage;
 		}
+		override public function fortification(): Number {
+			var temp: int = 0;
+			temp += meleeWeapon.fortification;
+			temp += rangedWeapon.fortification;
+			temp += armor.fortification + upperUndergarment.fortification + lowerUndergarment.fortification + accessory.fortification + shield.fortification;
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				temp += inventory[i].fortification;
+			}
+			return temp;
+		}
 		override public function HPMax():Number
 		{
 			var bonus:int = 0;
@@ -347,11 +375,7 @@ package classes {
 			//No proper shield generator? NO SHIELD!
 			if(hasShields() && !hasShieldGenerator(true)) return 0;
 			
-			var temp: int = 0;
-			temp += meleeWeapon.shields;
-			temp += rangedWeapon.shields;
-			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
-			
+			var temp: int = shipStatBonusTotal(5);			
 			if(hasPerk("PCs")) temp = Math.ceil(temp + (temp * (kGAMECLASS.pc.willpower() / (kGAMECLASS.pc.level * 5 * 4))));
 
 			if (temp < 0) temp = 0;

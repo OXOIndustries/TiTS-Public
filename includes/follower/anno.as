@@ -1985,7 +1985,7 @@ public function annoFollowerShowerSex():void
 		{
 			output("Anno looks up and shoots you a grin before wrapping her lips around your cockhead");
 			if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_FELINE) output(", brushing her tongue across the bumps and ridges of your feline member");
-			else if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output(" , her jaw straining to encompass your flared equine girth");
+			else if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output(", her jaw straining to encompass your flared equine girth");
 			output(". One of your hands settles atop Anno’s head, stroking the mat of wet hair between her perky ears as she teases your crown, gently urging her onwards.");
 		}
 		else

@@ -45,8 +45,10 @@
 			baseDamage = new TypeCollection();
 			baseDamage.burning.damageValue = 17;
 			baseDamage.kinetic.damageValue = 4;
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.attack = 0;
 			this.defense = 0;

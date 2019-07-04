@@ -1704,7 +1704,7 @@ public function pippaGetSatOn():void
 	
 	output("\n\nYour senses are completely overwhelmed with Pippa. Her jiggling body fills your field of vision. You feel nothing but her warmth and wetness. All you hear are her moans. Her ");
 	
-	if (silly) output("smokey");
+	if (silly) output("smoky");
 	else output("sweet");
 	
 	output(", intoxicating scent and taste flood your nose and mouth.");

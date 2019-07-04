@@ -3,8 +3,6 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
-import classes.Items.Accessories.LeithaCharm;
-import classes.Items.Treasures.Savicite;
 import classes.RoomClass;
 
 public function TundraEncounterBonus():Boolean
@@ -142,11 +140,12 @@ public function uvetoShipDock():Boolean
 	
 	var btnSlot:int = 0;
 	
+	synphiaBonus(btnSlot++);
+
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
 		chaurmineUvetoStationBonus(btnSlot++);
 	}
-
 	return false;
 }
 public function uvetoDockingBonus():Boolean

@@ -139,6 +139,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			mother.setStatusValue("Butt Bug (Female)", 2, 0);
+			mother.setStatusValue("Butt Bug (Female)", 3, 0);
 			
 			pData.reset();
 		}

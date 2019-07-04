@@ -271,6 +271,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	if(pc.credits >= arg.shipCost()) 
 	{
 		if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
+		if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
 		else if(shipStorageRoom() > 0) addButton(0,"Buy",buyAShipYouGo,arg,arg.short,shipCompareString(arg));
 		else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
 	}
@@ -281,6 +282,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 
 	//else addButton(1,"Buy+Trade",);
 	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
+	else if(shopkeep is Focalor) addButton(14,"Back",focalorApproach);
 	else if(shopkeep is Dockmaster) addButton(14,"Back",buyAShipFromTrashRat);
 }
 
@@ -310,6 +312,7 @@ public function buyAShipAndTradeInGo(arg:ShittyShip):void
 	processTime(25);
 	clearMenu();
 	if(shopkeep is Dockmaster) addButton(0,"Next",raskvelDockmaster,true);
+	else if(shopkeep is Focalor) addButton(14,"Back",focalorApproach);
 	else addButton(0,"Next",VahnTheMechanic);
 }
 
@@ -411,9 +414,9 @@ public function shipCompareString(newShip:ShittyShip):String
 	//shipTooltip += "\n\n<b>Old Ship:</b> " + newShip.short + "\n" + newShip.long;
 
 	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());
-	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shield.shieldDefense, shits["SHIP"].shield.shieldDefense);
+	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shieldDefense(), shits["SHIP"].shieldDefense());
 	shipTooltip += "\n<b>Armor: </b>" + shipStatCompare(newShip.HPMax(), shits["SHIP"].HPMax());
-	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.armor.defense, shits["SHIP"].armor.defense);
+	shipTooltip += "\n<b>Armor Def: </b>" + shipStatCompare(newShip.defense(), shits["SHIP"].defense());
 	shipTooltip += "\n<b>Max Energy: </b>" + shipStatCompare(newShip.energyMax(), shits["SHIP"].energyMax());
 	shipTooltip += "\n<b>Power Generation: </b>" + shipStatCompare(newShip.shipPowerGen(), shits["SHIP"].shipPowerGen());
 	
@@ -425,9 +428,16 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Systems: </b>" + shipStatCompare(newShip.shipSystems(), shits["SHIP"].shipSystems());
 	//Thrust
 	shipTooltip += "\n<b>Thrust: </b>" + shipStatCompare(newShip.shipThrust(), shits["SHIP"].shipThrust());
+	
+	//Accuracy
+	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
+	//Evasion
+	shipTooltip += "\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
 
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), shits["SHIP"].shipCapacity());
+	if(newShip.bonusCrewCapacity() > 0 || shits["SHIP"].bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(), shits["SHIP"].bonusCrewCapacity());
+
 	//Upgrades Installed
 	shipTooltip += "\n<b>Weapon Capacity: </b>" + shipStatCompare(newShip.shipGunCapacity(), shits["SHIP"].shipGunCapacity());
 	shipTooltip += "\n\n<b>Modules Installed: </b>";
@@ -435,7 +445,7 @@ public function shipCompareString(newShip:ShittyShip):String
 	for(var i:int = 0; i < newShip.inventory.length; i++)
 	{
 		if(i > 0) shipTooltip += ", ";
-		shipTooltip += newShip.inventory[i].longName;
+		shipTooltip += StringUtil.toTitleCase(newShip.inventory[i].longName);
 	}
 	
 	if(newShip.inventory.length == 0) shipTooltip += "None.";
@@ -445,7 +455,7 @@ public function shipCompareString(newShip:ShittyShip):String
 	for(i = 0; i < shits["SHIP"].inventory.length; i++)
 	{
 		if(i > 0) shipTooltip += ", ";
-		shipTooltip += shits["SHIP"].inventory[i].longName;
+		shipTooltip += StringUtil.toTitleCase(shits["SHIP"].inventory[i].longName);
 	}
 	if(shits["SHIP"].inventory.length == 0) shipTooltip += "None.)";
 	else shipTooltip += ".)";
@@ -453,20 +463,22 @@ public function shipCompareString(newShip:ShittyShip):String
 	//Fixed Equipment
 	shipTooltip += "\n\n<b>Fixed Equipment: </b>";
 	var equipment:Array = newShip.getFixedEquipment();
+	equipment = removeEmptySlotItems(equipment);
 	for(i = 0; i < equipment.length; i++)
 	{
 		if(i > 0) shipTooltip += ", ";
-		shipTooltip += equipment[i].longName;
+		shipTooltip += StringUtil.toTitleCase(equipment[i].longName);
 	}
 	if(equipment.length == 0) shipTooltip += "None.";
 	else shipTooltip += ".";
 	
 	equipment = shits["SHIP"].getFixedEquipment();
+	equipment = removeEmptySlotItems(equipment);
 	shipTooltip += "\n(<b>Old Ship:</b> ";
 	for(i = 0; i < equipment.length; i++)
 	{
 		if(i > 0) shipTooltip += ", ";
-		shipTooltip += equipment[i].longName;
+		shipTooltip += StringUtil.toTitleCase(equipment[i].longName);
 	}
 	if(equipment.length == 0) shipTooltip += "None.)";
 	else shipTooltip += ".)";
@@ -474,6 +486,15 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n\n<b><u>Purchase Cost:</u></b> " + shipStatCompare(newShip.shipCost(), shits["SHIP"].shipCost());
 	shipTooltip += "\n<b><u>w/Trade In:</u></b> " + (newShip.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
 	return shipTooltip;
+}
+
+public function removeEmptySlotItems(arg:Array):Array
+{
+	for(var i:int = arg.length-1; i >= 0; i--)
+	{
+		if(arg[i] is EmptySlot) arg.splice(i,1);
+	}
+	return arg;
 }
 
 public function shipStatCompare(newVal:Number,old:Number,lowGood:Boolean = false):String

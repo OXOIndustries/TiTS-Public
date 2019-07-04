@@ -48,7 +48,7 @@
 			this.description = "a repair module";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This bank of repairbots waits securely inside the hull the order to scuttle out and repair damage damage to the ship’s armor in the blink of eye. After use, they require roughly ten minutes to recharge their batteries and gather more material to patch gaps.\n\n(~1500 armor)\n(1x/fight)";
+			this.tooltip = "This bank of repairbots waits securely inside the hull the order to scuttle out and repair damage damage to the ship’s armor in the blink of eye. After use, they require roughly ten minutes to recharge their batteries and gather more material to patch gaps.\n\n(~3500 armor)\n(1x/fight)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -88,7 +88,7 @@
 				//Combat-only status for tracking it
 				this.addFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF);
 
-				var healing:Number = 1400 + rand(200);
+				var healing:Number = 3400 + rand(200);
 				usingCreature.HP(healing);
 				
 				if(usingCreature.hasPerk("PCs")) 

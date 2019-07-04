@@ -893,6 +893,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/schora_nude.png", mimeType = "image/png")]
 		public var Bust_SCHORA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/servant.png", mimeType = "image/png")]
+		public var Bust_SERVANT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/servant_nude.png", mimeType = "image/png")]
+		public var Bust_SERVANT_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/servant_nocrystal_nude.png", mimeType = "image/png")]
+		public var Bust_SERVANT_NOCRYSTAL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/servant_master.png", mimeType = "image/png")]
+		public var Bust_SERVANT_MASTER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly.png", mimeType = "image/png")]
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_nude.png", mimeType = "image/png")]
@@ -1945,6 +1954,15 @@ package classes.Resources.Busts
 			public var Full_SCHORA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/schora_nude.png", mimeType = "image/png")]
 			public var Full_SCHORA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/servant.png", mimeType = "image/png")]
+			public var Full_SERVANT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/servant_nude.png", mimeType = "image/png")]
+			public var Full_SERVANT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/servant_nocrystal_nude.png", mimeType = "image/png")]
+			public var Full_SERVANT_NOCRYSTAL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/servant_master.png", mimeType = "image/png")]
+			public var Full_SERVANT_MASTER:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shelly.png", mimeType = "image/png")]
 			public var Full_SHELLY:Class;

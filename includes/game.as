@@ -1497,7 +1497,6 @@ public function rest(deltaT:int = -1):void {
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
-
 			else if(rand(20) == 0)
 			{
 				autoCocknosisDistraction();
@@ -2070,6 +2069,7 @@ public function shipMenu():Boolean
 	{
 		if(shekkaIsCrew()) output(" (Shekka is hard at work patching it up.)");
 		else if(shipLocation == "TAVROS HANGAR") output(" (Vahn will have it repaired in time.)");
+		else if(shipLocation == "UVS F15" && flags["MET_SYNPHIA"] != undefined) output(" (Synphia will have it repaired in time.)");
 		else output(" (Park the ship in Tavros Station to allow Vahn to repair it.)");
 	}
 
@@ -2092,15 +2092,22 @@ public function shipMenu():Boolean
 		else addDisabledButton(3, "Storage");
 		addButton(4, "Shower", showerMenu);
 
-		var crewTotal:Number = crew(true,true);
-		var crewCounter:Number = crew(true,false);
-		var crewCapacity:Number = PCShipCrewCapacity();
+		var crewTotal:int = crew(true,true);
+		var crewCounter:int = crew(true,false);
+		var crewCapacity:int = PCShipCrewCapacity();
+		var crewOccuppied:int = Math.min(crewCapacity, crewCounter);
 		// Crew note
 		if(crewTotal > 0)
 		{
-			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew,");
-			if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
-			output(" residing in " + (crewCapacity) + " of your available ship space" + (crewCapacity == 1 ? "" : "s") + ".");
+			output("\n\nCurrently, you have " + (crewTotal) + " member" + (crewTotal == 1 ? "" : "s") + " as part of your crew");
+			if(crewCounter > 0)
+			{
+				output(",");
+				if(crewTotal > crewCounter) output(" " + (crewCounter) + " of which " + (crewCounter == 1 ? "is" : "are"));
+				output(" residing in " + (crewOccuppied) + " of your " + (crewCapacity) + " available crew space" + (crewCapacity == 1 ? "" : "s"));
+			}
+			else output(" with " + (crewCapacity) + " vacant crew space" + (crewCapacity == 1 ? "" : "s") + " available");
+			output(".");
 		}
 		
 		if(crewCapacity < crewCounter && flags["INFINITE_CREW"] == undefined) 
@@ -2144,7 +2151,8 @@ public function shipStatistics():void
 
 	for(var i:int = 0; i < shippy.inventory.length; i++)
 	{
-		if(button == 14) button++;
+		//used to be button++; but hacky fix for a crash.
+		if (button >= 14) break;
 		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
 	}
 	while(button > 0) 
@@ -3463,7 +3471,7 @@ public function variableRoomUpdateCheck():void
 		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
-	if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17))
+	if(hungryFlahneWithBimboPenny())
 	{
 		rooms["CUSTOMS OFFICE"].removeFlag(GLOBAL.NPC);
 	}
@@ -4410,6 +4418,11 @@ public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):v
 			else mechanics.push("Vahn");
 			recoveryModifier += 1;
 		}
+		else if(shipLocation == "UVS F15" && flags["MET_SYNPHIA"] != undefined)
+		{
+			mechanics.push("Synphia");
+			recoveryModifier += 2;
+		}
 		shits["SHIP"].HP(Math.round(deltaT * recoveryModifier));
 		
 		//Hit max HP and report on it.
@@ -4828,6 +4841,8 @@ public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
 
 public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
+	if(!reahaIsCrew()) return;
+	
 	var totalHours:int = ((minutes + deltaT) / 60);
 	if (!disableExploreEvents() && totalHours >= 1 && flags["REAHA_PAY_Q"] == 1 && currentLocation == "SHIP INTERIOR")
 	{
@@ -4835,7 +4850,7 @@ public function processReahaEvents(deltaT:uint, doOut:Boolean, totalDays:uint):v
 		if(eventQueue.indexOf(reahaPaybackEvent) == -1) eventQueue.push(reahaPaybackEvent);
 	}
 	
-	if (totalDays >= 1 && reahaIsCrew() && curedReahaInDebt() && !reahaAddicted() && ((days + totalDays) % 7 == 0 || totalDays >= 7) && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
+	if (totalDays >= 1 && curedReahaInDebt() && !reahaAddicted() && ((days + totalDays) % 7 == 0 || totalDays >= 7) && flags["REAHA_PAY_Q"] == undefined) flags["REAHA_PAY_Q"] = 1;
 }
 
 public function processGobblesEvents(deltaT:uint, doOut:Boolean):void

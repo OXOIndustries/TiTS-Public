@@ -107,6 +107,7 @@
 			var sv30:SaveVersionUpgrader30;
 			var sv31:SaveVersionUpgrader31;
 			var sv32:SaveVersionUpgrader32;
+			var sv33:SaveVersionUpgrader33;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;

@@ -1,25 +1,4 @@
-﻿import classes.Items.Stories.BXBIOne;
-import classes.Items.Stories.BXBITwo;
-import classes.Items.Stories.CowStuff;
-import classes.Items.Stories.EightClicks;
-import classes.Items.Stories.BecomingOneOfTheGirls;
-import classes.Items.Stories.FuckTheSystem;
-import classes.Items.Stories.SatyrSlave;
-import classes.Items.Stories.CapturedByTheDemons;
-import classes.Items.Stories.TentaclesAndTanukis;
-import classes.Items.Stories.TowerOfTrials;
-import classes.Items.Stories.StolenGoods;
-import classes.Items.Piercings.GeddaniumRingPiercing;
-import classes.Items.Piercings.UrtaniumRingPiercing;
-import classes.Items.Piercings.SilverRingPiercing;
-import classes.Items.Piercings.SilverRingPiercings;
-import classes.Items.Piercings.SilverStudPiercing;
-import classes.Items.Piercings.SilverStudPiercings;
-import classes.Items.Piercings.GoldRingPiercing;
-import classes.Items.Piercings.GoldRingPiercings;
-import classes.Items.Piercings.GoldStudPiercing;
-import classes.Items.Piercings.GoldStudPiercings;
-import classes.Items.Treasures.Savicite;
+﻿import classes.Items.Stories.*;
 
 
 public function genericRareDrops(loot:Array):Array

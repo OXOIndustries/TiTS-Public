@@ -345,7 +345,7 @@ public function uvetoKaedeUveto():void
 	
 	if (pc.isMisch())
 	{
-		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
+		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance, you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
 	
 		output("\n\nShe scoffs, <i>“Don’t change the subject. People and planets are totally different things. Besides, even all-natural me was pretty damn handsome!”</i>");
 	}

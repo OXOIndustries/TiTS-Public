@@ -57,15 +57,16 @@
 
 	// Items
 	import classes.Items.Armor.*;
-	import classes.Items.Protection.*
-	import classes.Items.Guns.*
-	import classes.Items.Melee.*
-	import classes.Items.Apparel.*
-	import classes.Items.Miscellaneous.*
-	import classes.Items.Accessories.*
+	import classes.Items.Protection.*;
+	import classes.Items.Guns.*;
+	import classes.Items.Melee.*;
+	import classes.Items.Apparel.*;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Accessories.*;
 	import classes.Items.Transformatives.*;
-	//Change SilkyCockBell to * when it's time -lighterfluid
-	import classes.Items.Piercings.SilkyCockBell;
+	import classes.Items.Piercings.*;
+	import classes.Items.Treasures.*;
+	import classes.Items.Upgrades.*;
 
 	import classes.Parser.ParseEngine;
 
@@ -429,6 +430,7 @@
 		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
+		include "../includes/myrellion/focalorTheShipTove.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
@@ -542,6 +544,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/synphia.as";
 		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
@@ -666,7 +669,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.288";
+			version = "0.8.001";
 
 			//temporary nonsense variables.
 			temp = 0;

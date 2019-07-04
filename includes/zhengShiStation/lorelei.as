@@ -1173,12 +1173,16 @@ public function loreleiEngagesInADifferentTypeOfIllicitAct():void
 	}
 
 	output("\n\nShe leads you to the bed, and sits. As she does, her black dress begins to melt away from her body, piece by piece; chunks of her clothing disappears in seemingly random spots all over herself, showing you more and more of her tanned body beneath it.");
-	if (pc.isNude()) output("\n\n<i>“I don’t share your nudist tendencies, but in a way, I sort of envy them,”</i> she says, smiling at you. <i>“If I did, and I were half as beautiful as you, I’d have no qualms bearing my all to the universe.”</i>");
+	if (pc.isNude())
+	{
+		output("\n\n<i>“I don’t share your nudist tendencies, but in a way, I sort of envy them,”</i> she says, smiling at you. <i>“If I did, and I were half as beautiful as you, I’d have no qualms bearing my all to the universe.”</i>");
+		flags["LORELEI_SEEN_YOU_NUDE"] = 1;
+	}
 	else
 	{
 		output("\n\n<i>“" + (isLoreleisBitch() ? "Remove your gear" : "Undress for me") + ",”</i> she says, and you do as you’re told, removing your [pc.gear] for her in probably less of a sexy fashion than she was hoping for, but, all the same, you’re as bare as you could be, giving Lorelei a full view of everything you have and everything you are.");
 		output("\n\nYou tell Lorelei that she has all the radiant beauty she needs to turn as many heads as she likes, no matter what she’s wearing.");
-		if (isLoreleisBitch()) output(" <i>“I appreciate the compliment, darling, but we’re past the pleasantries.”</i>");
+		if (flags["LORELEI_SEEN_YOU_NUDE"] == undefined) output(" <i>“I appreciate the compliment, darling, but we’re past the pleasantries.”</i>");
 		else output(" <i>“Oh, I</i> know <i>I’m beautiful enough to pull it off. I said if I was half as beautiful as</i> you, <i>not half as beautiful as I am now.”</i>");
 		output("\n\nIn time, you’re both as naked as they day you were both born. Lorelei sits on the edge of the bed, her legs spread, giving you a good, unimpeded look at her most valuable jewel of them all.");
 	}
@@ -1231,7 +1235,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 		output("\n\n<i>“Hmm,”</i> she hums – not in indecision, but in delight at your words. <i>“The feeling’s mutual, darling. I’d want me, too.”</i> She giggles to herself. <i>“But seriously. I’m right here, [pc.name].”</i> She lifts her right hand and crooks her finger at you. <i>“Come and have me.”</i>");
 	}
 
-	output("\n\nYou raise, leaning into Lorelei, putting your hands on either side of her. Then, before you can react, her legs lock around your waist, tightly pinching you between her svelte thighs – they’re stronger than they look. She hooks her hands underneath your armpits and, with a rough twist, sends you hurtling onto her bed, on your beck, with her and her naked, flawless body grinding on top of you.");
+	output("\n\nYou raise, leaning into Lorelei, putting your hands on either side of her. Then, before you can react, her legs lock around your waist, tightly pinching you between her svelte thighs – they’re stronger than they look. She hooks her hands underneath your armpits and, with a rough twist, sends you hurtling onto her bed, on your back, with her and her naked, flawless body grinding on top of you.");
 	output("\n\nLorelei grins down at you and licks her lips, wetly and loudly, before lunging forward, burying her tongue deep into your mouth. She excitedly twists and rubs her flat tongue against yours, tasting and feeling you, wrapping you both into a ribbon and feeling every bud on each other’s tongues. You feel her hands circle around your shoulders for leverage, and she humps and frots her body against yours, her smooth skin grinding against your [pc.skinFurScales].");
 	output("\n\n" + (isLoreleisBitch() ? "You hesitate at first, then start moving your body with her; when she doesn’t object or scold you, you grow bolder" : "You eagerly match her movements") + ", humping against her with your whole body. Your [pc.chest] rubs against her firm D-cups,");
 	// Cs or lower
@@ -1247,7 +1251,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 	output("\n\nShe licks you, from your neck to the back of your ear, slowly; she moans right into your ear as she goes.");
 	if (isLoreleisBitch()) output(" <i>“Like I told you before... sometimes, after a particularly good heist... I like to touch myself with my gains.”</i> She bites onto your ear again, her tongue lashing out to rub at the spot she just bit. <i>“And you, my darling... mmmm, you are my greatest heist of them all.”</i> She presses her lips right up against your ear, whispering like she were about to share her darkest secret. <i>“I am going to</i> fuck <i>you....”</i>");
 	else output(" <i>“Sometimes,”</i> she whispers, her lips pressing against your ear, making sure her dirty little secret is only between you two, <i>“after a particularly good heist... I like to touch myself with my gains.”</i> She kisses you, then rims your ear with her tongue. <i>“I wonder what that makes you, then, hmm...?”</i>");
-	output("\n\nMaking good on her promise, she sits up, straddling your hips with her own. Her hot, naked sex – waxed to silky-smooth perfection, you notice – presses into your pelvis, leaving a damp spot on your body. " + (vag ? "Your [pc.vagina " + genIdx + "] sits just a few inches away, beneath her heaving body;" : "Your [pc.cock " + genIdx + "] stands rigid just behind her, nestled into the valley of her ass;") + " with just a little adjustment, you’ll be united with her " + (isLoreleisBitch() ? ", and you’ll truly belong to her." : ", and you’ll know what heaven is like."));
+	output("\n\nMaking good on her promise, she sits up, straddling your hips with her own. Her hot, naked sex – waxed to silky-smooth perfection, you notice – presses into your pelvis, leaving a damp spot on your body. " + (vag ? "Your [pc.vagina " + genIdx + "] sits just a few inches away, beneath her heaving body;" : "Your [pc.cock " + genIdx + "] stands rigid just behind her, nestled into the valley of her ass;") + " with just a little adjustment, you’ll be united with her, and you’ll " + (isLoreleisBitch() ? "truly belong to her" : "know what heaven is like") + ".");
 
 	// Continue here if PC’s dick is too big
 	if (tooBig)
@@ -1276,7 +1280,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 	else output(" how her cunt seems to squeeze you from the bottom up, massaging out your [pc.cum].");
 	output("\n\nLorelei takes deep, shuddering breaths through her nose and out her mouth with her every motion against you. <i>“Feel me,”</i> she says, and you’re all too eager to " + (isLoreleisBitch() ? "obey" : "comply") + ", bringing your hands to her glutes and grasping onto the meat of her ass firmly");
 	if (!vag && !tooBig) output("; she feels somehow firmer, knowing that you’re inside her");
-	output(". She, in turn, cranes her back, wrapping her arms around your head and pulling you against her sweaty, heaving breasts. <i>“This is what a</i>" + (isLoreleisBitch() ? "mistress" : "woman") + " <i>feels like.”</i>");
+	output(". She, in turn, cranes her back, wrapping her arms around your head and pulling you against her sweaty, heaving breasts. <i>“This is what a</i> " + (isLoreleisBitch() ? "mistress" : "woman") + " <i>feels like.”</i>");
 	output("\n\nYou open your mouth and take a swollen nipple in between your [pc.lips], grasping her flailing titty between them and lavishing it with your [pc.tongue]. She coos in appreciation, her hips bucking harsher against your");
 	if (vag) output(" cunt, angling the diamond stud of her clit to batter against yours, knowing that every successful strike makes you shudder in weakness beneath her.");
 	else if (tooBig) output(" shaft, careful to not scratch your delicate skin with the diamond stud in her clit while rubbing out as much pleasure as she can for you both.");
@@ -1289,7 +1293,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 	output(" Her movements are getting less nuanced and more ‘direct’ the longer she goes – she’s getting close, and she knows you are, too.");
 	output("\n\nShe pulls back, putting herself into a sitting position, her hips atop of yours. Her face is flushed, and she’s got a coy, sinful little smirk. <i>“I want to see the look " + (isLoreleisBitch() ? "on your face" : "in your eyes") + ",”</i> she pants, her body bounding against you faster and faster, <i>“" + (isLoreleisBitch() ? "when you submit to me. That look of... total... belonging" : "when you cum for me. And I want you to look into mine") + ".”</i>");
 	output("\n\nShe won’t have to wait much longer: your hands go from her ass to the bed, clenching onto her quilts, and you scrunch your stomach, your body reacting to your incoming orgasm. Through clenched teeth, you tell Lorelei that you’re close.");
-	output("\n\n<i>“I am too,”</i> she pants, her tongue wetly slipping out to lick at her lips. <i>“Cum with me, [pc.name]. " + (isLoreleisBitch() ? "Show me how much I mean to you" :"You have my permission to cum with your mistress") + ".”</i>");
+	output("\n\n<i>“I am too,”</i> she pants, her tongue wetly slipping out to lick at her lips. <i>“Cum with me, [pc.name]. " + (!isLoreleisBitch() ? "Show me how much I mean to you" :"You have my permission to cum with your mistress") + ".”</i>");
 	output("\n\nJust a few thrusts and grinds later, and you cum, just as " + (isLoreleisBitch() ? "your mistress" : "Lorelei") + " had asked:");
 
 	var cumQ:Number = (!vag ? pc.cumQ() : 0);
@@ -1325,8 +1329,9 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 		}
 		else if (cumQ < 12000)
 		{
-			output(" Your jizz quite a bit, even for you, your body reacting to and spurred forward by the domineering beauty demanding your [pc.cum] for herself. You feel her body clench in time with every powerful blast of semen inside her; you can hear her canal ‘gulp’ your sticky gouts of cum into itself, until she can hold no more, and your cum splashes back against you");
-			if (pc.hasKnot(genIdx)) output(" through leaky driblets around your skintight seal}, coating you from the [pc.belly] down.");
+			output(" You jizz quite a bit, even for you, your body reacting to and spurred forward by the domineering beauty demanding your [pc.cum] for herself. You feel her body clench in time with every powerful blast of semen inside her; you can hear her canal ‘gulp’ your sticky gouts of cum into itself, until she can hold no more, and your cum splashes back against you");
+			if (pc.hasKnot(genIdx)) output(" through leaky driblets around your skintight seal");
+			output(", coating you from the [pc.belly] down.");
 			output("\n\nLorelei moans in pleasure, her hand rubbing at her own stomach, as she feels you spurt more and more into herself; she can’t help but run her fingers over the diamond stud in her clit, eking out orgasm after shaking, eye-crossing orgasm on top of you, while her body greedily sups on your offering. If she isn’t on any contraceptives, it’s easy to imagine that it might take...");
 		}
 		else
@@ -1340,7 +1345,7 @@ public function loreleiHasStolenYourGenitaliaOhNo(genIdx:int, vag:Boolean):void
 		lorelei.loadInCunt(pc);
 	}
 
-	output("\n\nIt’s a short eternity before your senses return to you; you had crossed your eyes and your vision went black for a moment, overtaken by yourself and your sensations, and it isn’t until you hear Lorelei moan that you remember where you are and what you’re doing. You look up at, still sitting on your lap and grinding out what must be her fifth orgasm by now; she’s barely sensate enough to feel it, but she wants it all the same.");
+	output("\n\nIt’s a short eternity before your senses return to you; you had crossed your eyes and your vision went black for a moment, overtaken by yourself and your sensations, and it isn’t until you hear Lorelei moan that you remember where you are and what you’re doing. You look up at her, still sitting on your lap and grinding out what must be her fifth orgasm by now; she’s barely sensate enough to feel it, but she wants it all the same.");
 	output("\n\n<i>“Haah,”</i> she sighs, enjoying her afterglow and her position above you. She runs her hands through her hair and hefts her breasts in front of you; with her eyes on you, she");
 	if (cumQ >= 6000) output(" brings her hand down between you both, scooping a bit of your [pc.cum], and then she");
 	output(" brings her finger to her mouth, sucking it clean.");
@@ -1550,7 +1555,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	if (apologizing) output(", and you hear a loud ‘clink’ as she slams down her now-empty wine glass");
 	output(". She moans through pursed lips and she can’t help but buck her hips against your face, especially when your lapping tongue reaches some new, hidden fold or surface inside her and teasing another forbidden part of her.");
 	output("\n\nHer legs clench, her thighs hardening around your head");
-	if (pc.hasPerk("Akane's Painslut")) output(", and she finally relinquishes control of herself, wrapping her legs tightly and securely around your head and <i>squeezing,</i> surrounding you on all sides with her smooth, flawless body. It hurts, but that’s what makes it so wonderful: that you’re giving her so much pleasure that she can’t <i>help</i> but squeeze you like an orange makes it all the more better for you.");
+	if (pcIsPainslut()) output(", and she finally relinquishes control of herself, wrapping her legs tightly and securely around your head and <i>squeezing,</i> surrounding you on all sides with her smooth, flawless body. It hurts, but that’s what makes it so wonderful: that you’re giving her so much pleasure that she can’t <i>help</i> but squeeze you like an orange makes it all the more better for you.");
 	else output(", and eventually, she crosses her legs behind your head, locking you in place to her pussy. You’re not going anywhere until she’s done with you, and there’s little telling when that’ll be.");
 	output("\n\nYou think to touch yourself");
 	if (pc.hasGenitals()) output(" – your " + pc.cockAndVagina("[pc.cock] is standing rigid and at attention, waiting patiently for your tongue to get tired and for it to have its turn", "[pc.vagina] is clenching and dripping, struggling to dam up your [pc.girlCum] and eager to get some attention of its own", ", while your "));
@@ -1562,7 +1567,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	else output(" reach upward, grasping onto her other boob, squeezing and pulling it and palming at her nipple, working your hand and tongue to an off-rhythm beat.");
 	output(" You lean upward slightly and take her studded clit into your mouth, sucking on it and flicking it with the tip of your tongue, before releasing and diving back in, sucking down her pussy juice voraciously.");
 	output("\n\nLorelei huffs through her nose again, her hips humping into your face, eager to get as much pleasure out of you as she can.");
-	if (pc.hasPerk("Akane's Painslut")) output(" You’re locked so tightly to her that you can’t move your head at all, but her body eager meeting your mouth is all the confirmation of a good job you need.");
+	if (pcIsPainslut()) output(" You’re locked so tightly to her that you can’t move your head at all, but her body eager meeting your mouth is all the confirmation of a good job you need.");
 	else output(" You twist your head, spiralling your tongue into her box, searching for that ever-elusive G-spot. Maybe it’s in a little deeper....");
 	output("\n\n<i>“Fffff,”</i> she starts, catching herself before she said anything <i>unladylike</i>. <i>“Yes, [pc.name],”</i> she continues.");
 	if (isLoreleisBitch()) output(" <i>“Keep it u-uuuup, [pc.name]. With skills like yours, I’m tempted to keep you right where you are....”</i> She bucks her hips into you, twisting her hips from side to side to try and nestle you as deep against her as she can. <i>“How’s that sound? Every – oooomph,</i> every <i>day, we put you right back here, and get you started all over again....”</i>");
@@ -1572,7 +1577,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	output("\n\nLorelei suddenly clenches and makes a high-pitched squeak. A gout of her sexual fluid quenches your thirst for her, coating your mouth, from your [pc.tongue] to the inside of your cheeks, with her flavor. And she’s not done: with what sounds like a hiccup, she adds to her mouthful of lady-jizz with another, equally-generous blast.");
 	if (isLoreleisBitch()) output("\n\n<i>“Taste me,”</i> she demands, her hips weakly bucking into you as she seeks a third, and then a fourth, orgasm from your overworked mouth. <i>“Get used to it....”</i>");
 	output("\n\nShe groans wordlessly, not making any effort to say anything as she comes down from her elongated climax. Her body slowly starts to relax, but she’s jolted with a third, and then a fourth, smaller orgasm, as she winds down from the excitement.");
-	output("\n\nFinally, she relents, untangling her legs from around your head and " + (apologizing ? "letting you crawl back out from underneath the foils of her dress" : "disengaging from you") + ". You pull away, still feeling her heat and her tight grip on either side of your head " + (pc.hasPerk("Akane's Painslut") ? ", and you idly wish she’d put you right back in." : "."));
+	output("\n\nFinally, she relents, untangling her legs from around your head and " + (apologizing ? "letting you crawl back out from underneath the foils of her dress" : "disengaging from you") + ". You pull away, still feeling her heat and her tight grip on either side of your head " + (pcIsPainslut() ? ", and you idly wish she’d put you right back in." : "."));
 
 	IncrementFlag("LORELEI_SEXED");
 

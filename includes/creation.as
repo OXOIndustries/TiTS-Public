@@ -519,7 +519,7 @@ public function chooseHeight():void {
 	output("<i> child, then? Very well. How tall should [pc.heShe] grow up to be? Please, give it in Imperial inches.”</i>");
 	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i>");
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i>");
-	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
+	output("\n\n<b>Please give your character’s height in inches. For reference, 72 inches is about six feet tall or 182 centimeters.</b>");
 	
 	displayInput();
 	userInterface.textInput.text = String(averageHeight());
@@ -545,25 +545,22 @@ public function averageHeight():Number
 }
 
 public function applyHeight():void {
+	clearOutput();
 	var fail:Boolean = false;
 	if(isNaN(Number(userInterface.textInput.text))) {
-		clearOutput();
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) < 48) {
-		clearOutput();
-		output("Choose a height above 48 inches tall, please.");
+		output("Choose a height at or above 48 inches tall, please.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
-		clearOutput();
-		output("Choose a height below 84 inches tall, please.");
+		output("Choose a height at or below 84 inches tall, please.");
 		fail = true;
 	}
 	else if(Number(userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
-		clearOutput();
-		output("Choose a height below 108 inches tall, please.");
+		output("Choose a height at or below 108 inches tall, please.");
 		fail = true;
 	}
 	if(fail) {
@@ -575,6 +572,44 @@ public function applyHeight():void {
 		addButton(14,"Back",startCharacterCreation);
 		return;
 	}
+	
+	var stringInput:String = userInterface.textInput.text;
+	var newTallness:Number = Number(stringInput);
+	var newFeet:Number = Math.floor(newTallness/12);
+	var newInches:Number = (Math.round((newTallness - (newFeet * 12)) * 1000)/1000);
+	var newCentimeters:Number = (newTallness * 2.54);
+	var newMeters:Number = (newCentimeters)/100;
+	
+	output("You chose " + newTallness + " inch" + (newTallness == 1 ? "" : "es"));
+	if(newTallness >= 12)
+	{
+		output(" (");
+		if(newFeet > 0)
+		{
+			output(newFeet + " f" + (newFeet == 1 ? "oo" : "ee") + "t");
+			if(newInches > 0) output(" and ");
+		}
+		if(newInches > 0) output(newInches + " inch" + (newInches == 1 ? "" : "es"));
+		output(")");
+	}
+	if(newCentimeters >= 0)
+	{
+		output(", or " + (Math.round(newCentimeters * 1000)/1000) + " centimeters");
+		if(newMeters >= 0)
+		{
+			output(" (" + (Math.round(newMeters * 1000)/1000) + " meters)");
+		}
+	}
+	output(". Is this correct? If not, input a new value to retry.");
+	
+	displayInput();
+	userInterface.textInput.text = stringInput;
+	output("\n\n\n");
+	clearMenu();
+	addButton(0,"Confirm",applyHeightConfirm);
+	addButton(1,"Retry",applyHeight);
+}
+public function applyHeightConfirm():void {
 	pc.tallness = Number(userInterface.textInput.text);
 	if(stage.contains(userInterface.textInput)) 
 		removeInput();

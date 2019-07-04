@@ -207,23 +207,18 @@ public function shekkaShop(sell:Boolean = false):void
 		chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
 	}
 	
-	if(pc.level >= 7)
-	{
-		if(!chars["SHEKKA"].hasItemByClass(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
-	}
-	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem, -1);
+	chars["SHEKKA"].inventory = [];
 	
-	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath"))
-	{
-		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
-	}
-	else chars["SHEKKA"].destroyItemByClass(HorseCock, -1);
-	
-	if(shekkaIsCrew())
-	{
-		if(!chars["SHEKKA"].hasItemByClass(ShekkasCatsuit)) chars["SHEKKA"].inventory.push(new ShekkasCatsuit());
-	}
-	else chars["SHEKKA"].destroyItemByClass(ShekkasCatsuit, -1);
+	chars["SHEKKA"].inventory.push(new Cargobot());
+	if(pc.level >= 7) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
+	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath")) chars["SHEKKA"].inventory.push(new HorseCock());
+	chars["SHEKKA"].inventory.push(new Hoverboard());
+	chars["SHEKKA"].inventory.push(new RogueRags());
+	chars["SHEKKA"].inventory.push(new ScrapShield());	
+	if(shekkaIsCrew()) chars["SHEKKA"].inventory.push(new ShekkasCatsuit());
+	chars["SHEKKA"].inventory.push(new Smartclothes());
+	chars["SHEKKA"].inventory.push(new StrangeCollar());
+	chars["SHEKKA"].inventory.push(new ExpandedBackpackI());
 	
 	if(!sell) buyItem();
 	else sellItem();

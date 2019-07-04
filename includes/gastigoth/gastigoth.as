@@ -216,7 +216,7 @@ public function intoStationDisarmCheck():Boolean
 	if (flags["MET_BRANDT"] != undefined)
 	{
 		//Descriptive text for the room
-		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labelled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
+		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labeled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
 		return false;
 	}
 	return false;
@@ -617,7 +617,7 @@ public function disarmOrRearmLikeABoss():void
 	{
 		output("You approach Brandt and say that you’re ready to be disarmed.");
 		output("\n\n<i>“Good. Welcome aboard, captain,”</i> she says, pulling out a heavy-duty tub from under the station and pushing it towards you. The two armored goons with shock rifles eye you warily so that you make sure you go nice and slow, taking your time drawing your [pc.weapon]");
-		//laser:, ejecting the battery//bullet: , ejecting the magazine //rock: n/a // else: 
+		//laser:, ejecting the battery//bullet:, ejecting the magazine //rock: n/a // else: 
 		//Fen note: not all energy weaps use batteries. Gonna just go with the geneirc here:
 		output(", making sure it’s safe and setting it inside.");
 		output("\n\nBrandt watches you impassively until you indicate that you’re finished, at which point she picks up an electronic wand from under the station and waves you forward. You step up, just to arm’s reach before she plants one hand on your chest and sweeps the wand around your person. It makes a soft, ticking beep until Brandt gives a satisfied nod and tucks it away.");

@@ -2934,7 +2934,7 @@ public function sylvieTriesHerDongerOn3():void
 	clearOutput();
 	showSylvie(true);
 	author("Wsan");
-	output("<i>“Mmmmm... could you put some of this on my cock, please?”</i> Sylvie asks, tossing you a bottle labelled ‘elasticizing oil’. <i>“Just in case. I figure we both know the best method of application to your asshole. Just rub it right in there and I’ll get right to it,”</i> she says with a grin.");
+	output("<i>“Mmmmm... could you put some of this on my cock, please?”</i> Sylvie asks, tossing you a bottle labeled ‘elasticizing oil’. <i>“Just in case. I figure we both know the best method of application to your asshole. Just rub it right in there and I’ll get right to it,”</i> she says with a grin.");
 	output("\n\nYou do so methodically, albeit with perhaps a little more attention to detail than you really need. It’s just kind of fascinating to feel every single bump, vein, and crease in Sylvie’s equine penis with your hands, knowing it’s about to be buried in your ass. You give special treatment to her medial ring, much to her approval, ensuring it’s slathered in a nice coating of lube before continuing onto the base. Just for good measure, you grope those heavy balls of hers and give them a slight, encouraging squeeze before retreating back to your position at the head of the bed.");
 	output("\n\n<i>“You really know how to treat a girl, [pc.name],”</i> Sylvie says, biting her lip while she checks out your [pc.ass] pointed at her. <i>“Just looking at this... grr!”</i>");
 	output("\n\nBending down, she seizes an asscheek and pulls, aggressively shoving two of her fingers right into your [pc.asshole]. The surprise penetration makes you moan a little, and Sylvie begins to rub her fingers along your sensitive insides.");

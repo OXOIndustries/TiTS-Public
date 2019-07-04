@@ -189,7 +189,7 @@
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
-			if(this.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) 
+			if(this.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT) && (this.type == GLOBAL.GADGET || this.type == GLOBAL.RANGED_WEAPON)) 
 				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Energy Use", 	this, oldItem,false,true));
 			else
 				compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));

@@ -2764,7 +2764,7 @@ public function syriQuestSyriValdenDoubleStuffSyri(x:int):void
 	if(x >= 0) pc.cockChange();
 	
 	output("\n\nSyri’s tail beats against your [pc.face] as you wiggle your wang deeper into her, jockeying with Valden for position until you’re both wedged inside the panting ausar’s ass, feeling her chaotic clenching squeeze you so hard it almost hurts.");
-	output("\n\n<i>“Fuck , fuck <b>fuck!</b>”</i> Syri whines, clutching at Valden’s shoulders. Her whole body’s trembling, including the red rocket you can just see pressed against her friend’s belly, squirting ribbons of white across his hairy chest. She whimpers, shuddering as her balls empty from the massive pressure pushing down on her prostate. ");
+	output("\n\n<i>“Fuck, fuck <b>fuck!</b>”</i> Syri whines, clutching at Valden’s shoulders. Her whole body’s trembling, including the red rocket you can just see pressed against her friend’s belly, squirting ribbons of white across his hairy chest. She whimpers, shuddering as her balls empty from the massive pressure pushing down on her prostate. ");
 	output("\n\n<i>“When’d you turn into a quick shot, buddy?”</i> Valden grins, stroking Syri’s dick. <i>“I expected better!”</i>");
 	output("\n\n<i>“H-hey!”</i> Syri growls, clawing at his shoulders. <i>“You try holding in a nut with two dicks in your ass!”</i>");
 	output("\n\nValden chuckles, <i>“I’ll take your word for it!”</i>");

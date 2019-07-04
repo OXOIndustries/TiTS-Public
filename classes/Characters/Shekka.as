@@ -24,11 +24,14 @@
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
+			// Note: Shop inventory now handeled in shekkaShop();
+			/*
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
 			this.inventory.push(new Smartclothes());
 			this.inventory.push(new StrangeCollar());
 			this.inventory.push(new ExpandedBackpackI());
+			*/
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;

@@ -110,7 +110,7 @@
 			this.createPerk("Single Minded",0,0,0,0);
 			this.createPerk("Riposte",0,0,0,0);*/
 			isUniqueInFight = true;
-			btnTargetText = "";
+			btnTargetText = "Z7";
 			
 
 			//kGAMECLASS.tarkusSSTDChance(this);

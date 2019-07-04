@@ -475,7 +475,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 
 	if (pc.hasCock())
 	{
-		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers too pound you into the ground.");
+		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers to pound you into the ground.");
 	}
 	else
 	{

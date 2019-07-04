@@ -166,7 +166,7 @@ public function holidayCostumeMenu():void
 	
 	var costumes:Array = [];
 	
-	costumes.push(["GoblinSuit", goblinCostume , undefined, "Goblin", "You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits", 1000]);
+	costumes.push(["GoblinSuit", goblinCostume, undefined, "Goblin", "You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits", 1000]);
 	
 	costumes.push(["Helmet", metroidMaskParody, undefined, "Helmet", "This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits", 1000]);
 	

@@ -923,7 +923,7 @@ public function femSydianCallOthers():void
 			{
 				output(" Your [pc.vagina] climaxes in sympathy");
 				if (pc.isSquirter()) output(", coating your hand and the dry ground with a thick spray of [pc.girlCum].");
-				else output(" , milking your hand.");
+				else output(", milking your hand.");
 			}
 			
 			pc.orgasm();
