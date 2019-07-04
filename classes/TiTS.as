@@ -57,15 +57,15 @@
 
 	// Items
 	import classes.Items.Armor.*;
-	import classes.Items.Protection.*
-	import classes.Items.Guns.*
-	import classes.Items.Melee.*
-	import classes.Items.Apparel.*
-	import classes.Items.Miscellaneous.*
-	import classes.Items.Accessories.*
+	import classes.Items.Protection.*;
+	import classes.Items.Guns.*;
+	import classes.Items.Melee.*;
+	import classes.Items.Apparel.*;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Accessories.*;
 	import classes.Items.Transformatives.*;
 	//Change SilkyCockBell to * when it's time -lighterfluid
-	import classes.Items.Piercings.SilkyCockBell;
+	import classes.Items.Piercings.*;
 
 	import classes.Parser.ParseEngine;
 
