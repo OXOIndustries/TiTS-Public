@@ -667,6 +667,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "LaquinePregnancy": output2(" Laquine"); break;
 						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
 						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
+						case "SiegwulfeEggnancy": output2(" [wulfe.name], Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -4593,7 +4594,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			// Hangar stuff
 			if(flags["RECRUITED_CELISE"] > 0 || flags["MET_VAHN"] != undefined)
 			{
-				output2("\n<b><u>Tavros Station Hangar</u></b>");
+				output2("\n<b><u>Hangar Bay</u></b>");
 				// Slimeyface
 				if(flags["RECRUITED_CELISE"] > 0)
 				{
@@ -7723,6 +7724,21 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Uveto" || showID == "All")
 		{
+			if(flags["MET_SYNPHIA"] != undefined)
+			{
+				output2("\n<b><u>Hangar Bay</u></b>");
+				// Synphia
+				if(flags["MET_SYNPHIA"] != undefined)
+				{
+					output2("\n<b>* Synphia:</b> Met her");
+					if(flags["FUCKED_SYNPHIA"] != undefined) output2("\n<b>* Synphia, Times Sexed:</b> " + flags["FUCKED_SYNPHIA"]);
+					if(flags["SYNPHIA_VENOMS"] != undefined) output2("\n<b>* Synphia, Times She Used Her Venom On You:</b> " + flags["SYNPHIA_VENOMS"]);
+					if(flags["SYNPHIA_SUCKS"] != undefined) output2("\n<b>* Synphia, Times She Sucked Your Cock:</b> " + flags["SYNPHIA_SUCKS"]);
+					//if(flags["SYNPHIA_HEADPOLISHES"] != undefined) output2("\n<b>* Synphia, Times She Sucked Your Cock :</b> " + flags["SYNPHIA_HEADPOLISHES"]);
+					if(flags["SYNPHIA_DICKGASMS"] != undefined) output2("\n<b>* Synphia, Times She Orgasmed to Your Cock:</b> " + flags["SYNPHIA_DICKGASMS"]);
+				}
+				variousCount++;
+			}
 			// Uveto Station
 			if(flags["UVETO_HUSKAR_FOURSOME"] != undefined)
 			{

@@ -580,20 +580,40 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/luca_nude.png", mimeType = "image/png")]
 		public var Bust_LUCA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/lureling.png", mimeType = "image/png")]
+		public var Bust_LURELING:Class;
+		public var Bounds_LURELING:Rectangle = new Rectangle(33, 2, 115, 110);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys.png", mimeType = "image/png")]
 		public var Bust_LYS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
 		public var Bust_LYS_NUDE:Class;
-		
-		[Embed(source = "../../../assets/images/npcs/adjatha/maja.png", mimeType = "image/png")]
-		public var Bust_MAJA:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/maja_nude.png", mimeType = "image/png")]
-		public var Bust_MAJA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/maike.png", mimeType = "image/png")]
 		public var Bust_MAIKE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/maike_nude.png", mimeType = "image/png")]
 		public var Bust_MAIKE_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/maja.png", mimeType = "image/png")]
+		public var Bust_MAJA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/maja_nude.png", mimeType = "image/png")]
+		public var Bust_MAJA_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/marion.png", mimeType = "image/png")]
+		public var Bust_MARION:Class;
+		public var Bounds_MARION:Rectangle = new Rectangle(55, 0, 80, 75);
+		[Embed(source = "../../../assets/images/npcs/adjatha/marion_nude.png", mimeType = "image/png")]
+		public var Bust_MARION_NUDE:Class;
+		public function get Bounds_MARION_NUDE():Rectangle { return Bounds_MARION; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/marion_dog_nude.png", mimeType = "image/png")]
+		public var Bust_MARION_DOG_NUDE:Class;
+		public function get Bounds_MARION_DOG_NUDE():Rectangle { return Bounds_MARION; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/marion_tent_nude.png", mimeType = "image/png")]
+		public var Bust_MARION_TENT_NUDE:Class;
+		public function get Bounds_MARION_TENT_NUDE():Rectangle { return Bounds_MARION; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/marion_tents_nude.png", mimeType = "image/png")]
+		public var Bust_MARION_TENTS_NUDE:Class;
+		public function get Bounds_MARION_TENTS_NUDE():Rectangle { return Bounds_MARION; }
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/merc.png", mimeType = "image/png")]
 		public var Bust_MERCGUARD:Class;
@@ -701,18 +721,18 @@ package classes.Resources.Busts
 		public var Bust_ORRYX:Class;
 		
 		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY_BIMBO_HORSE; }
-		public function Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
+		public function get Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
-		public function Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
+		public function get Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
-		public function Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
+		public function get Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
 		public var Bounds_PENNY_BIMBO_HORSE:Rectangle = new Rectangle(55,2,132,70);
 		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
-		public function Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
+		public function get Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
-		public function Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
+		public function get Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr.png", mimeType = "image/png")]
@@ -1696,20 +1716,34 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/luca_nude.png", mimeType = "image/png")]
 			public var Full_LUCA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lureling.png", mimeType = "image/png")]
+			public var Full_LURELING:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lys.png", mimeType = "image/png")]
 			public var Full_LYS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lys_nude.png", mimeType = "image/png")]
 			public var Full_LYS_NUDE:Class;
-			
-			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja.png", mimeType = "image/png")]
-			public var Full_MAJA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja_nude.png", mimeType = "image/png")]
-			public var Full_MAJA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maike.png", mimeType = "image/png")]
 			public var Full_MAIKE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maike_nude.png", mimeType = "image/png")]
 			public var Full_MAIKE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja.png", mimeType = "image/png")]
+			public var Full_MAJA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja_nude.png", mimeType = "image/png")]
+			public var Full_MAJA_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/marion.png", mimeType = "image/png")]
+			public var Full_MARION:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/marion_nude.png", mimeType = "image/png")]
+			public var Full_MARION_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/marion_dog_nude.png", mimeType = "image/png")]
+			public var Full_MARION_DOG_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/marion_tent_nude.png", mimeType = "image/png")]
+			public var Full_MARION_TENT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/marion_tents_nude.png", mimeType = "image/png")]
+			public var Full_MARION_TENTS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/merc.png", mimeType = "image/png")]
 			public var Full_MERCGUARD:Class;

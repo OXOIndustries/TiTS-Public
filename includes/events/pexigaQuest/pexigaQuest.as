@@ -4126,7 +4126,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 				if(flags["DOLLMAKER_FIX_VISOR"] != undefined) addDisabledButton(3, "Visor", "Fix Mindwash Visor", "You have already installed this!");
 				else addButton(3, "Visor", drBadgerLabDollMaker, "fix? visor", "Fix Mindwash Visor", "Ask Doctor Badger about the Mindwash visor.");
 				
-				addButton(14, "Back", drBadgerLabDollMaker, mainGameMenu);
+				addButton(14, "Back", mainGameMenu);
 			}
 			// All pieces added, will proc when entering Badger’s square, and also if all pieces were added by the player, or none taken at all
 			else
@@ -4144,7 +4144,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 				flags["DOLLMAKER_DISASSEMBLED"] = undefined;
 				if(flags["DOLLMAKER_FIXED"] == undefined) flags["DOLLMAKER_FIXED"] = 1;
 				
-				addButton(14, "Back", drBadgerLabDollMaker, mainGameMenu);
+				addButton(14, "Back", mainGameMenu);
 			}
 			break;
 		case "fix? iqbgone":
@@ -5973,7 +5973,7 @@ public function drBadgerSiliconeTankBuy(arg:Array):void
 			// Player cannot enter back lab
 			
 			flags["BADGER_SILICONE_TANK_INSTALLED"] = 2;
-			pc.createStatusEffect("Badger Silicone Carry Timer", 0, 0, 0, 0, true, "", "", false, (60 * 84));
+			pc.createStatusEffect("Badger Silicone Carry Timer", 0, 0, 0, 0, true, "", "", false, (60 * 24 * 7));
 			
 			addButton(0, "Next", mainGameMenu);
 			break;

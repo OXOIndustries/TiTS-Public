@@ -33,8 +33,9 @@ public function showMarion(nude:Boolean = false):void
 public function showLureling(nude:Boolean = false):void
 {
 	showName("\nLURELING");
-	if(nude) showBust("LURELING_NUDE");
-	else showBust("LURELING");
+	/*if(nude) showBust("LURELING_NUDE");
+	else showBust("LURELING");*/
+	showBust("LURELING");
 }
 
 public function marionName():String
