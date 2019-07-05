@@ -1206,10 +1206,10 @@ public function seraSexXXXRouter():void
 		choices.push(seraMilkingsStart);
 	}
 	// Punishments
-	if(flags["SERA_PARTY_INVITE"] >= 3 && (flags["SERA_PARTY_DATE"] + (1 * 24 * 60)) > GetGameTimestamp())
+	if(flags["SERA_PARTY_INVITE"] >= 3 && (flags["SERA_PARTY_DATE"] + (1 * 24 * 60)) <= GetGameTimestamp())
 	{
-		if(flags["SERA_PUNISH_FIX"] == undefined || (flags["SERA_PUNISH_FIX_DAY"] == undefined || flags["SERA_PUNISH_FIX_DAY"] < days)) newScenes.push(seraPunishingFixStart);
-		choices.push(seraPunishingFixStart);
+		if(flags["SERA_PUNISH_FIX"] == undefined) newScenes.push(seraPunishingFixStart);
+		if(flags["SERA_PUNISH_FIX_DAY"] == undefined || flags["SERA_PUNISH_FIX_DAY"] < days) choices.push(seraPunishingFixStart);
 	}
 	
 	// Go go sexytimes

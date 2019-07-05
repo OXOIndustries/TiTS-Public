@@ -191,7 +191,7 @@ public function getButtfuckedByDudeleen():void
 	
 	if(pc.hasVagina())
 	{
-		if(pc.totalVaginas() > 1) output("\n\nYour untouched slits let out a dribble of [pc.girlCum], as if indignant that they’ve been ignored.");
+		if(pc.totalVaginas() > 1) output("\n\nYour untouched slits let out a dribble of [pc.girlCum], as if indignant that they’ve been ignored. ");
 		else output("\n\nYour untouched slit lets out a dribble of [pc.girlCum], as if indignant that it’s been ignored. ");
 		if(pc.genitalLocation() >= 2) output("Sadly, you can’t reach your [pc.cunts], having to settle for the buttfuck alone. Or so you think. While the naleen may have respected where you did or did not want his dick, he’s still a little eager to try out your feminine side. You giggle as you feel a few furred fingers slip into [pc.oneVagina], expertly teasing it. ");
 		else
@@ -1301,7 +1301,7 @@ public function maleNaleenSucksPCOff():void
 	if(pc.biggestTitSize() >= 2) output("\n\nYour [pc.fullChest] presses into the naleen’s toned front, and you can’t help but " + pc.mf("groan","moan") + " into the kiss as your rock hard [pc.nipples] grind against your lover.");
 	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both your own mammaries and the fur of the naga-kitty.");
 
-	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze.The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
+	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze. The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
 	output("\n\nWith a ");
 	if(pc.isBimbo()) output("delighted giggle");
 	else output("self-assured smile");

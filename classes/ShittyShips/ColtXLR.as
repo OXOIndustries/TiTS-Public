@@ -96,10 +96,7 @@
 			this.level = 0;
 			this.XPRaw = bossXP();
 			this.credits = 39999;
-			this.HPRaw = this.HPMax();
-			this.shieldsRaw = this.shieldsMax();
-			this.energyRaw = this.energyMax();
-
+			
 			/*
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createPerk("Tough 2",0,0,0,0);
@@ -108,6 +105,9 @@
 			this.createPerk("Single Minded",0,0,0,0);
 			*/
 			this.createPerk("PCs",0,0,0,0);
+			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
+			this.energyRaw = this.energyMax();
 
 			isUniqueInFight = true;
 			btnTargetText = "ColtXLR";
