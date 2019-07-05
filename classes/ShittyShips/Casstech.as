@@ -95,9 +95,6 @@
 			this.level = 0;
 			this.XPRaw = bossXP();
 			this.credits = 25000;
-			this.HPRaw = this.HPMax();
-			this.shieldsRaw = this.shieldsMax();
-			this.energyRaw = this.energyMax();
 
 			/*
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
@@ -111,8 +108,11 @@
 
 			isUniqueInFight = true;
 			btnTargetText = "CT.Z14";
-			
 
+			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
+			this.energyRaw = this.energyMax();
+		
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
