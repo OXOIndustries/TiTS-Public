@@ -3804,15 +3804,10 @@
 			desc += RandomInCollection(actions);
 			return desc;
 		}
-		public function shower():void
+		// Easy to wipe off
+		public function simpleClean():void
 		{
-			if(statusEffectv1("Shower Douche Toggle") == 1)
-			{
-				flushCumflation();
-				removeStatusEffect("Shower Douche Toggle");
-			}
 			removeStatusEffect("Sweaty");
-			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
 			removeStatusEffect("Milk Bathed");
@@ -3821,6 +3816,17 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+		}
+		// Requires running water
+		public function shower():void
+		{
+			if(statusEffectv1("Shower Douche Toggle") == 1)
+			{
+				flushCumflation();
+				removeStatusEffect("Shower Douche Toggle");
+			}
+			simpleClean();
+			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Roehm Slimed");
 			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Painted Tits") || hasStatusEffect("Body Paint"))
 			{

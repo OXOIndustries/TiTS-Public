@@ -273,7 +273,7 @@ public function xotchiContractGoII():void
 	output("\n\nYou bite your lip in anticipation and nod.");
 	
 	output("\n\nMistress somersaults in the null gravity, shedding her corset and accoutrements, then coiling around your body. Slowly, sensuously,");
-	if (!pc.isNude()) output(" she undoes your [PC.clothes], peeling away your layers until you float naked with her in the depths of the simulated sea.");
+	if (!pc.isNude()) output(" she undoes your [pc.clothes], peeling away your layers until you float naked with her in the depths of the simulated sea.");
 	else output(" she trails her claws up around your body in a lazy spiral, picking out just the rights spots to make you shiver and gasp.");
 	output(" Her corkscrew path ends with her face-to-face with you, brushing the curve of her beak against your lips. You open your mouth in an instinctive gasp, you eyes closing briefly.");
 	
@@ -703,7 +703,7 @@ public function xotchiSteamStage1(extendingScene:Boolean = false):void
 	
 	output("\n\nYou brace yourself, expecting a larger shock, surprised as you feel the lightest tickle against your [pc.skinFurScales].");
 	if (pc.hasFur()) output(" You glance down, watching the hairs of your arm rise up, flickering with purple-pink light as they reach for [xotchiName]’s palm.");
-	else output(" You glance down, watching a purple-pink forest of light flicker between your PC.skin and [xotchiName]’s palm.");
+	else output(" You glance down, watching a purple-pink forest of light flicker between your [pc.skin] and [xotchiName]’s palm.");
 	output(" Slowly, your muscles unclench, and you enjoy the almost feathery feel of light pinpricks of electricity playing across your [pc.skin].");
 
 	output("\n\n[xotchiName]’s four, squid-like eyes sweep over you, her center-most ones focusing on your face, while the other two follow her hands. <i>“Is it pleasurable for you, [xotchiPCName]?”</i> She twists through the air, her plumage undulating once more as she curves around you. Tiny rivulets of electricity run up and down the length of her body, giving her her own irregular glow in the dimness.");
@@ -868,7 +868,7 @@ public function xotchiSteamStage2():void
 
 	output("\n\n<i>“The harder the sun beats down on you, the sweeter the starlight feels, [xotchiPCName],”</i> she says sweetly. Too sweetly, it dawns on you, just as you realize that she’s sweeping the lash across your nipples.");
 
-	output("\n\nYou arch your back as hundreds of prickles dance across your [pc.chest], grounding themselves in your [pc.nips]. You throw your head back, drooling uncontrollably against the gag, your eyes rolling back. Back and forth, back and forth, she teases your nipples, making you whimper and writhe.");
+	output("\n\nYou arch your back as hundreds of prickles dance across your [pc.chest], grounding themselves in your [pc.nipples]. You throw your head back, drooling uncontrollably against the gag, your eyes rolling back. Back and forth, back and forth, she teases your nipples, making you whimper and writhe.");
 
 	output("\n\n<i>“Doesn’t it feel good, [xotchiPCName]?”</i> she purrs.");
 	
@@ -1172,7 +1172,7 @@ public function xotchiSteamStage4III():void
 	output("\n\nHands that had a few minutes ago viciously inflicted more pain than you’d thought possible now caress your head and your shoulders. One pair traces a short path back and forth from your shoulders up to your neck, every so often sliding forward to pull you back against her in a soft squeeze.");
 	
 	output("\n\nThe other pair of hands alights on your temples.");
-	if (pc.hasHair()) output(" Her claws run through your [PC.hair], tracing along your scalp, sometimes in tandem, sometimes alternating.");
+	if (pc.hasHair()) output(" Her claws run through your [pc.hair], tracing along your scalp, sometimes in tandem, sometimes alternating.");
 	else output(" Her claws trace across your scalp in meandering patterns.");
 	output(" The sensation is rhythmic, and when coupled with the gentle ministrations of her hands on your chest, you feel the sobs in your chest start to fade, your breathing shifting to become slow and regular.");
 
@@ -1226,7 +1226,7 @@ public function xotchiSteamStage3Enough():void
 	output("\n\n<i>“You did very well, [xotchiPCName],”</i> she says, her orange feathers drifting around her in the false current. <i>“You made an excellent painslut.”</i>");
 	
 	output("\n\nOne pair of hands gently caress your head and your shoulders, sliding back and forth in a gentle rhythm. The other pair");
-	if (pc.hasHair() && pc.hairLength >= 1) output(" runs through your [PC.hair], tracing along your scalp, sometimes in tandem, sometimes alternating.");
+	if (pc.hasHair() && pc.hairLength >= 1) output(" runs through your [pc.hair], tracing along your scalp, sometimes in tandem, sometimes alternating.");
 	else output(" traces across your scalp in meandering patterns.");
 	output(" Her hands are just as at ease soothing you as they were at tormenting you, and you lean back, enjoying the feeling of tender ministrations.");
 	
