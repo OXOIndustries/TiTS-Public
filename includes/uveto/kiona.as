@@ -954,13 +954,16 @@ public function kionaShop():void
 		addButton(4, "Sell", kionaShopSell, undefined,"Sell","Sell items for any credits she has or store credit if she doesn't have enough.");	
 		addButton(5, "Sell Svc", kionaSellSavicite, undefined, "Sell Savicite", "Sell Savicite for store credit. You will get much more than using the sell menu for credits.");	
 	}
-	if (korgiiCredits())
+	if (!firstTime)
 	{
-		if (flags["KIONA_ACCEPT_CREDITS"] == 1) addDisabledButton(6, "Credits", "Credits","You already talked about this!");
-		else addButton(6, "Credits", kionaTalkCredits, undefined);	
-	}
-	else addDisabledButton(6, "Credits", "Credits","You'll need to talk to Ula about this to get this shopkeeper to trade these for her shop.");
-	addButton(14, "Back", kionaKioskApproach, true);		
+		if (korgiiCredits())
+		{
+			if (flags["KIONA_ACCEPT_CREDITS"] == 1) addDisabledButton(6, "Credits", "Credits","You already talked about this!");
+			else addButton(6, "Credits", kionaTalkCredits, undefined);	
+		}
+		else addDisabledButton(6, "Credits", "Credits", "You'll need to talk to Ula about this to get this shopkeeper to trade these for her shop.");
+		addButton(14, "Back", kionaKioskApproach, true);
+	}		
 }
 //donate menu
 public function kionaDonate():void
