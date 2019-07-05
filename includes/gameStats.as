@@ -930,6 +930,10 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Resistance, Tease:</b> " + formatFloat(lustResistance.tease.resistanceValue, 3) + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
+		output2("\n<b>* Sexiness, Attire, Total:</b> " + formatFloat(pc.outfitSexiness(), 3));
+		if(pc.hasArmor()) output2("\n<b>* Sexiness, Attire, Outfit:</b> " + formatFloat(pc.itemSexiness(pc.armor), 3) + (pc.wornItemIsTransparent(pc.armor) ? ", Transparent" : ""));
+		if(pc.hasUpperGarment()) output2("\n<b>* Sexiness, Attire, Upper Undergarment:</b> " + formatFloat(pc.itemSexiness(pc.upperUndergarment), 3) + (pc.wornItemIsTransparent(pc.upperUndergarment) ? ", Transparent" : ""));
+		if(pc.hasLowerGarment()) output2("\n<b>* Sexiness, Attire, Lower Undergarment:</b> " + formatFloat(pc.itemSexiness(pc.lowerUndergarment), 3) + (pc.wornItemIsTransparent(pc.lowerUndergarment) ? ", Transparent" : ""));
 		var teases:Array = [-1, -1, -1, -1, -1];
 		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = Math.min(flags["TIMES_BUTT_TEASED"], 100);
 		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = Math.min(flags["TIMES_CHEST_TEASED"], 100);
@@ -1074,13 +1078,15 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pcShip.hasShields() && !pcShip.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
 			output2("\n<b>* Armor:</b> " + pcShip.HPQ() + " %, " + "0/" + formatFloat(pcShip.HP(), 3) + "/" + formatFloat(pcShip.HPMax(), 3));
 			output2("\n<b>* Energy:</b> " + pcShip.energyQ() + " %, " + formatFloat(pcShip.energyMin(), 3) + "/" + formatFloat(pcShip.energy(), 3) + "/" + formatFloat(pcShip.energyMax(), 3));
-			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shield.shieldDefense, 3));
-			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.armor.defense, 3));
+			output2("\n<b>* Defense, Shield:</b> " + formatFloat(pcShip.shieldDefense(), 3));
+			output2("\n<b>* Defense, Armor:</b> " + formatFloat(pcShip.defense(), 3));
 			output2("\n<b>* Power Generation:</b> " + formatFloat(pcShip.shipPowerGen(), 3));
 			output2("\n<b>* Agility:</b> " + formatFloat(pcShip.shipAgility(), 3));
 			output2("\n<b>* Sensors:</b> " + formatFloat(pcShip.shipSensors(), 3));
 			output2("\n<b>* Systems:</b> " + formatFloat(pcShip.shipSystems(), 3));
 			output2("\n<b>* Thrust:</b> " + formatFloat(pcShip.shipThrust(), 3));
+			output2("\n<b>* Accuracy:</b> " + formatFloat(pcShip.shipAccuracy(), 3));
+			output2("\n<b>* Evasion:</b> " + formatFloat(pcShip.shipEvasion(), 3));
 			output2("\n<b>* Modules, Total Capacity:</b> " + pcShip.shipCapacity());
 			output2("\n<b>* Modules, Installed:</b> " + pcShip.inventory.length);
 			output2("\n<b>* Modules, Crew:</b> " + Math.min(pcCrew, pcShip.shipCrewCapacity()));
@@ -1433,6 +1439,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Gryvain:</b> " + prettifyGeneticMarker(pc.gryvainScore(), 9, 11));
 		if(pc.horseScore() > 0)
 			output2("\n<b>* Horse:</b> " + prettifyGeneticMarker(pc.horseScore(), 5, 8));
+		if(pc.hyenaScore() > 0)
+			output2("\n<b>* Hyena:</b> " + prettifyGeneticMarker(pc.hyenaScore(), 5, 10));
 		if(flags["LIRIEL_MET"] != undefined && pc.hradScore() > 0)
 			output2("\n<b>* Hrad:</b> " + prettifyGeneticMarker(pc.hradScore(), 4, 8));
 		if(false && pc.janeriaScore() > 0)
@@ -1867,7 +1875,7 @@ public function mLs(amount:Number, printMeters:int = 1):String
 	if(printMeters > -1)
 	{
 		if(printMeters == 0) retStr += " (";
-		retStr += formatFloat(amount , 3) + " mLs";
+		retStr += formatFloat(amount, 3) + " mLs";
 		if(printMeters == 0) retStr += ")";
 	}
 	return retStr;
@@ -4120,7 +4128,6 @@ public function displayQuestLog(showID:String = "All"):void
 						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
 						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
 					}
-					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + (flags["KIONA_MET"] == undefined ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved Her");
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
@@ -4896,6 +4903,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times She Fucked Your Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
 					if(flags["SERA_TONGUE_FUCKED"] != undefined) output2("\n<b>* Sera, Times She Fucked You with Her Tongue:</b> " + flags["SERA_TONGUE_FUCKED"]);
 					if(flags["SERA_MILKINGS"] != undefined) output2("\n<b>* Sera, Times She Milked You:</b> " + flags["SERA_MILKINGS"]);
+					if(flags["SERA_PUNISH_FIX"] != undefined) output2("\n<b>* Sera, Times She Punished Fix:</b> " + flags["SERA_PUNISH_FIX"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
 					if(flags["SERA_BITCHENING_PUNISH_SPANK"] > 0) output2("\n<b>* Sera, Punish, Times You Spanked Her:</b> " + flags["SERA_BITCHENING_PUNISH_SPANK"]);
@@ -6105,7 +6113,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Hangar Bay</u></b>");
 				output2("\n<b>* Dockmaster:</b> Met her");
-				if(flags["DOCKMASTER_PREGNANT"] != undefined) output2("\n<b>* Dockmaster, Days Pregnant:</b> " + flags["DOCKMASTER_PREGNANT"]);
+				if(flags["DOCKMASTER_PREGNANT"] != undefined) output2("\n<b>* Dockmaster, Days Pregnant:</b> " + Math.floor((GetGameTimestamp() - flags["DOCKMASTER_PREGNANT"])/(60*24)));
 				if(flags["DOCKMASTER_EGGOES"] != undefined) output2("\n<b>* Dockmaster, Times She Laid Eggs:</b> " + flags["DOCKMASTER_EGGOES"]);
 				variousCount++;
 			}
@@ -8236,38 +8244,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));
 					output2("\n<b>* Tuuva, Times Sexed:</b> " + flags["SEXED_TUUVA"]);
 				}
-				variousCount++;
-			}
-			// kiona's kiosk
-			if(flags["KIONA_MET"] != undefined)
-			{
-				output2("\n<b><u>Kiona's Kiosk</u></b>");
-				output2("\n<b>* Kiona:</b> Met her");
-				if(!kionaLovers())
-				{
-					if(flags["WARGII_PROGRESS"] == 3) output2(", Close friends");
-					else if(kionaLuciniteQuestStage() >= 2) output2(", Friends");
-					else if(kionaPiercingsUnlocked()) output2(", Outsider");
-					else output2(", Distrusted Outsider");
-				}
-				else output2(", Lovers");
-				if(flags["KIONA_SEX"] != undefined)
-				{
-					output2("\n<b>* Kiona, Times Sexed:</b> " + flags["KIONA_SEX"]);
-				}
-				if (kionaLuciniteQuestStage() > 0)
-				{
-					if (kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
-					else if (kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
-					else if (kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
-				}
-				if(flags["KIONA_KIRKITE"] != undefined) output2("\n<b>* Kiona, Kirkite Donated:</b> " + flags["KIONA_KIRKITE"]);
-				if(flags["KIONA_LUCINITE"] != undefined) output2("\n<b>* Kiona, Lucinite Donated:</b> " + flags["KIONA_LUCINITE"]);
-				if(flags["KIONA_PICARDINE"] != undefined) output2("\n<b>* Kiona, Picardine Donated:</b> " + flags["KIONA_PICARDINE"]);
-				if(flags["KIONA_SATYRITE"] != undefined) output2("\n<b>* Kiona, Satyrite Donated:</b> " + flags["KIONA_SATYRITE"]);
-				if(flags["KIONA_SAVICITE"] != undefined) output2("\n<b>* Kiona, Savicite Donated:</b> " + flags["KIONA_SAVICITE"]);
-				if(flags["KIONA_CREDIT_AMOUNT"] != undefined) output2("\n<b>* Kiona, Store Credit:</b> " + flags["KIONA_CREDIT_AMOUNT"]);
-				if(flags["KIONA_CREDIT_ONHAND"] != undefined) output2("\n<b>* Kiona, Credits On-hand:</b> " + flags["KIONA_CREDIT_ONHAND"]);
 				variousCount++;
 			}
 			// Herbs & Happy

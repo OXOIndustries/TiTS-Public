@@ -11,17 +11,6 @@
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Upgrades.HardLightUpgrade;
 	import classes.Items.Transformatives.KorgonneSnacks;
-	import classes.Items.Piercings.CrudeSaviciteBarPiercing;
-	import classes.Items.Piercings.CrudeSaviciteBarPiercings;
-	import classes.Items.Piercings.CrudeSaviciteHoopPiercing;
-	import classes.Items.Piercings.CrudeSaviciteHoopPiercings;
-	import classes.Items.Piercings.CrudeSaviciteRingPiercing;
-	import classes.Items.Piercings.CrudeSaviciteRingPiercings;
-	import classes.Items.Piercings.CrudeSaviciteStudPiercing;
-	import classes.Items.Piercings.CrudeSaviciteStudPiercings;
-	import classes.Items.Treasures.CrudeSaviciteBand;
-	import classes.Items.Treasures.CrudeSaviciteBracelet;
-	import classes.Items.Treasures.CrudeSaviciteNecklace;
 
 
 	import classes.kGAMECLASS;
@@ -252,30 +241,7 @@
 			//5% chance of InsulatedCoat
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//Temporarily put on these snowbitches till I find a real home for it.
-			if (!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
-			//5% chance of crude savicite jewelry
-			var rn:int;
-			if (rand(20) == 0)
-			{
-				rn = rand(8);
-				if (rn == 0) inventory.push(new CrudeSaviciteBarPiercing);
-				else if (rn == 1) inventory.push(new CrudeSaviciteBarPiercings);
-				else if (rn == 2) inventory.push(new CrudeSaviciteHoopPiercing);
-				else if (rn == 3) inventory.push(new CrudeSaviciteHoopPiercings);
-				else if (rn == 4) inventory.push(new CrudeSaviciteRingPiercing);
-				else if (rn == 5) inventory.push(new CrudeSaviciteRingPiercings);
-				else if (rn == 6) inventory.push(new CrudeSaviciteStudPiercing);
-				else if (rn == 7) inventory.push(new CrudeSaviciteStudPiercings);
-
-			}
-			//20% chance of having one of these treasures
-			if (rand(5) == 0)
-			{
-				rn = rand(3);
-				if (rn == 0) inventory.push(new CrudeSaviciteBand);
-				else if (rn == 1) inventory.push(new CrudeSaviciteBracelet);
-				else if (rn == 2) inventory.push(new CrudeSaviciteNecklace);
-			}
+			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
 			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			/*
 			if (rand(10) == 0)
