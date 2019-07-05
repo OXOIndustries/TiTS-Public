@@ -4127,7 +4127,8 @@ public function displayQuestLog(showID:String = "All"):void
 					{
 						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
 						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
-					}
+					}					
+					if(flags["WARGII_KIONA_SAVED"] != undefined) output2("\n<b>* " + (flags["KIONA_MET"] == undefined ? "Korgonne Jeweler" : "Kiona") + ":</b> Saved Her");
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
@@ -8244,6 +8245,38 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Tuuva, Sex Organs:</b> " + listCharGenitals("TUUVA"));
 					output2("\n<b>* Tuuva, Times Sexed:</b> " + flags["SEXED_TUUVA"]);
 				}
+				variousCount++;
+			}			
+			// kiona's kiosk
+			if(flags["KIONA_MET"] != undefined)
+			{
+				output2("\n<b><u>Kiona's Kiosk</u></b>");
+				output2("\n<b>* Kiona:</b> Met her");
+				if(!kionaLovers())
+				{
+					if(flags["WARGII_PROGRESS"] == 3) output2(", Close friends");
+					else if(kionaLuciniteQuestStage() >= 2) output2(", Friends");
+					else if(kionaPiercingsUnlocked()) output2(", Outsider");
+					else output2(", Distrusted Outsider");
+				}
+				else output2(", Lovers");
+				if(flags["KIONA_SEX"] != undefined)
+				{
+					output2("\n<b>* Kiona, Times Sexed:</b> " + flags["KIONA_SEX"]);
+				}
+				if (kionaLuciniteQuestStage() > 0)
+				{
+					if (kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
+					else if (kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
+					else if (kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
+				}
+				if(flags["KIONA_KIRKITE"] != undefined) output2("\n<b>* Kiona, Kirkite Donated:</b> " + flags["KIONA_KIRKITE"]);
+				if(flags["KIONA_LUCINITE"] != undefined) output2("\n<b>* Kiona, Lucinite Donated:</b> " + flags["KIONA_LUCINITE"]);
+				if(flags["KIONA_PICARDINE"] != undefined) output2("\n<b>* Kiona, Picardine Donated:</b> " + flags["KIONA_PICARDINE"]);
+				if(flags["KIONA_SATYRITE"] != undefined) output2("\n<b>* Kiona, Satyrite Donated:</b> " + flags["KIONA_SATYRITE"]);
+				if(flags["KIONA_SAVICITE"] != undefined) output2("\n<b>* Kiona, Savicite Donated:</b> " + flags["KIONA_SAVICITE"]);
+				if(flags["KIONA_CREDIT_AMOUNT"] != undefined) output2("\n<b>* Kiona, Store Credit:</b> " + flags["KIONA_CREDIT_AMOUNT"]);
+				if(flags["KIONA_CREDIT_ONHAND"] != undefined) output2("\n<b>* Kiona, Credits On-hand:</b> " + flags["KIONA_CREDIT_ONHAND"]);
 				variousCount++;
 			}
 			// Herbs & Happy

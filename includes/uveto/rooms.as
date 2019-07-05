@@ -3537,7 +3537,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII V24"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V24"].moveMinutes = 2;
 	rooms["KORGII V24"].northExit = "KORGII V22";
-	rooms["KORGII V24"].eastExit = "";
+	rooms["KORGII V24"].eastExit = "KORGII X24";
 	rooms["KORGII V24"].southExit = "KORGII V26";
 	rooms["KORGII V24"].westExit = "KORGII T24";
 	rooms["KORGII V24"].outExit = "";
@@ -3546,6 +3546,26 @@ public function initUvetoRoomsII():void
 	rooms["KORGII V24"].inText = "Up";
 	rooms["KORGII V24"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII V24"].addFlag(GLOBAL.PUBLIC);
+	
+	//Kiona's Kiosk
+	rooms["KORGII X24"] = new RoomClass(this);
+	rooms["KORGII X24"].roomName = "KIONA'S\nKIOSK";
+	rooms["KORGII X24"].description = "";
+	rooms["KORGII X24"].planet = "PLANET: UVETO VII";
+	rooms["KORGII X24"].system = "SYSTEM: SIRETTA";
+	rooms["KORGII X24"].moveMinutes = 2;
+	rooms["KORGII X24"].northExit = "";
+	rooms["KORGII X24"].eastExit = "";
+	rooms["KORGII X24"].southExit = "";
+	rooms["KORGII X24"].westExit = "KORGII V24";
+	rooms["KORGII X24"].outExit = "";
+	rooms["KORGII X24"].outText = "Down";
+	rooms["KORGII X24"].inExit = "";
+	rooms["KORGII X24"].inText = "Up";
+	rooms["KORGII X24"].addFlag(GLOBAL.INDOOR);
+	rooms["KORGII X24"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII X24"].addFlag(GLOBAL.COMMERCE);
+	rooms["KORGII X24"].runOnEnter = kionaKioskBonus;
 	
 	//rooms["KORGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
 	rooms["KORGII V26"] = new RoomClass(this);

@@ -62,6 +62,7 @@ public function HereBeDragonBonus():Boolean
 	
 	if (tryUvetoWeatherEvent(flags["UVETOCOAST_STEP"])) return true;
 	if (tryEncounterSavicite(flags["UVETOCOAST_STEP"])) return true;
+	if (tryEncounterLucinite(flags["UVETOCOAST_STEP"],true)) return true;
 	
 	return false;
 }

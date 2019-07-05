@@ -22,6 +22,7 @@ import classes.Items.Recovery.PyriteIssuedStim;
 //flags["WARGII_HEIDRUN_SAVED"] 
 //flags["WARGII_LUND_SAVED"]
 //flags["WARGII_MAJA_SAVED"]
+//flags["WARGII_KIONA_SAVED"]
 //		1 = saved character
 
 //flags["WARGII_FIGHTS_RAN"] = #  of fights ran from.

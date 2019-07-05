@@ -819,7 +819,7 @@ public function initWargiiRooms():void
 	rooms["WARGII V24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V24"].moveMinutes = 2;
 	rooms["WARGII V24"].northExit = "WARGII V22";
-	rooms["WARGII V24"].eastExit = "";
+	rooms["WARGII V24"].eastExit = "WARGII X24";
 	rooms["WARGII V24"].southExit = "WARGII V26";
 	rooms["WARGII V24"].westExit = "WARGII T24";
 	rooms["WARGII V24"].outExit = "";
@@ -830,6 +830,27 @@ public function initWargiiRooms():void
 	//rooms["WARGII V24"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V24"].addFlag(GLOBAL.HAZARD);
 	rooms["WARGII V24"].runOnEnter = wargiiEncounterStuff;
+	
+	//Kiona's Kiosk
+	rooms["WARGII X24"] = new RoomClass(this);
+	rooms["WARGII X24"].roomName = "KIONA'S\nKIOSK";
+	rooms["WARGII X24"].description = kionaWargiiShopDesc();
+	rooms["WARGII X24"].planet = "PLANET: UVETO VII";
+	rooms["WARGII X24"].system = "SYSTEM: SIRETTA";
+	rooms["WARGII X24"].moveMinutes = 2;
+	rooms["WARGII X24"].northExit = "";
+	rooms["WARGII X24"].eastExit = "";
+	rooms["WARGII X24"].southExit = "";
+	rooms["WARGII X24"].westExit = "WARGII V24";
+	rooms["WARGII X24"].outExit = "";
+	rooms["WARGII X24"].outText = "Down";
+	rooms["WARGII X24"].inExit = "";
+	rooms["WARGII X24"].inText = "Up";
+	rooms["WARGII X24"].addFlag(GLOBAL.INDOOR);
+	//rooms["WARGII X24"].addFlag(GLOBAL.PUBLIC);
+	//rooms["WARGII X24"].addFlag(GLOBAL.COMMERCE);
+	rooms["WARGII X24"].addFlag(GLOBAL.HAZARD);
+	rooms["WARGII X24"].runOnEnter = wargiiEncounterStuff;
 	
 	//rooms["WARGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
 	rooms["WARGII V26"] = new RoomClass(this);
