@@ -64,9 +64,8 @@
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Accessories.*;
 	import classes.Items.Transformatives.*;
+	//Change SilkyCockBell to * when it's time -lighterfluid
 	import classes.Items.Piercings.*;
-	import classes.Items.Treasures.*;
-	import classes.Items.Upgrades.*;
 
 	import classes.Parser.ParseEngine;
 
@@ -430,7 +429,6 @@
 		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
-		include "../includes/myrellion/focalorTheShipTove.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
@@ -521,6 +519,7 @@
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kiona.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";

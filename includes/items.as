@@ -1,4 +1,5 @@
-﻿import classes.Characters.Lerris;
+﻿import classes.Characters.Kiona;
+import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.Vahn;
 import classes.Creature;
@@ -743,7 +744,6 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
-	var ship:ShittyShip = shits["SHIP"];
 	
 	if(shopkeep is Dockmaster)
 	{
@@ -754,16 +754,14 @@ public function buyShipFitItemForReal(arg:ItemSlotClass):void
 	}
 	else
 	{
-		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + ship.short + " within the hour.");
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits, and it is installed in your " + shits["SHIP"].short + " within the hour.");
 		processTime(60);
 	}
 	pc.credits -= price;
 	
 	//So much easier than PC looting, lol.
-	ship.inventory.push(arg.makeCopy());
-	// Max out shields?
-	if(!inCombat() && arg.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
-	
+	shits["SHIP"].inventory.push(arg.makeCopy());
+
 	output("\n\n");
 
 	clearMenu();
@@ -788,13 +786,11 @@ public function unfitShipItem(newScreen:Boolean = false):void
 	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
 	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));
 	clearMenu();
-	var buttonMod:Number = 0;
 	for(var i:int = 0; i < ship.inventory.length; i++)
 	{
-		if(i == 14) buttonMod++;
 		output("\n\\\[Modular\\\] " + StringUtil.upperCase(ship.inventory[i].longName) + " (" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits)");
 
-		addItemButton((i+buttonMod), ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
+		addItemButton(i, ship.inventory[i], unfitShipItemForReal, i, null, null, pc, shopkeep);
 	}
 	if(ship.inventory.length == 0) output("\nNo modules fitted.");
 	addButton(14, "Back", shop, shopkeep);
@@ -807,7 +803,6 @@ public function unfitShipItemForReal(i:Number):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 
-	var item:ItemSlotClass = ship.inventory[i];
 	if(shopkeep is Dockmaster)
 	{
 		output("The dockmaster gives you a satisfied nod, hefting her mighty wrench with one muscular arm and stalking toward your ship. <i>“It’ll be about half an hour. Have a drink, sit and relax!”</i> Comes the call over her shoulder.");
@@ -816,15 +811,12 @@ public function unfitShipItemForReal(i:Number):void
 	}
 	else
 	{
-		output("The " + item.longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,item.basePrice) + " credits.)");
+		output("The " + ship.inventory[i].longName + " is painstakingly removed over the course of an hour, leaving you with room for a crew member, weapon system, or upgrade. (+" + getSellPrice(shopkeep,ship.inventory[i].basePrice) + " credits.)");
 		processTime(60);
 	}
-	pc.credits += getSellPrice(shopkeep,item.basePrice);
+	pc.credits += getSellPrice(shopkeep,ship.inventory[i].basePrice);
 	//Remove one item
 	ship.inventory.splice(i,1);
-	// Max out shields?
-	if(!inCombat() && item.shields != 0 && ship.hasShields()) ship.shieldsRaw = ship.shieldsMax();
-	
 	clearMenu();
 	addButton(0,"Next",unfitShipItem,true);
 }
@@ -871,6 +863,11 @@ public function buyItem():void {
 			else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
+			}
+			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
+			{
+				temp -= kionaCreditOwed();
+				if (temp < 0) temp = 0;
 			}
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
@@ -1017,8 +1014,12 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
-	pc.credits -= price;
+	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg.description,price);
+	else
+	{
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
+		pc.credits -= price;
+	}
 	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
@@ -1243,9 +1244,13 @@ public function sellItemMulti(arg:Array):void
 	
 	sellItemBonus(soldItem, soldPrice);
 	
-	pc.credits += soldPrice;
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(soldItem.description,soldPrice,soldNumber);
+	else
+	{
+		pc.credits += soldPrice;
 	
-	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+		output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	}
 	
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
@@ -1270,8 +1275,12 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	
 	sellItemBonus(arg, price);
 	
-	pc.credits += price;
-	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(arg.description, price);
+	else
+	{
+		pc.credits += price;
+		output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	}
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
@@ -3076,9 +3085,9 @@ public function outputStorageListForType(type:String):Array
 		}
 	}
 	
-	output("\n\n<b>You have " + String(Math.max((flags["SHIP_STORAGE_" + type] - items.length), 0)) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
+	output("\n\n<b>You have " + String(flags["SHIP_STORAGE_" + type] - items.length) + " of " + flags["SHIP_STORAGE_" + type] + " storage slots free.</b>");
 
-	if(items.length > flags["SHIP_STORAGE_" + type]) output("\n<b>You cannot fly with this many items!</b> Please remove at least " + ((items.length - flags["SHIP_STORAGE_" + type]) == 1 ? "one item" : (String(items.length - flags["SHIP_STORAGE_" + type]) + " items")) +  " from your storage.");
+	if(flags["SHIP_STORAGE_" + type] - items.length < 0) output("\n<b>You cannot fly with this many items!</b>");
 
 	if (items.length > 10) output("\n\n" + multiButtonPageNote());
 

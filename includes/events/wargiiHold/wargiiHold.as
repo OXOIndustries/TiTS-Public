@@ -22,6 +22,7 @@ import classes.Items.Recovery.PyriteIssuedStim;
 //flags["WARGII_HEIDRUN_SAVED"] 
 //flags["WARGII_LUND_SAVED"]
 //flags["WARGII_MAJA_SAVED"]
+//flags["WARGII_KIONA_SAVED"]
 //		1 = saved character
 
 //flags["WARGII_FIGHTS_RAN"] = #  of fights ran from.
@@ -128,6 +129,7 @@ public function wargiiScore():Number
 	if(flags["WARGII_LUND_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_MAJA_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_MAJA_SAVED"] == 2) score += 5;
+	if(flags["WARGII_KIONA_SAVED"] != undefined) score += 10;
 
 	if(flags["WARGII_FIGHTS_RAN"] != undefined) score -= flags["WARGII_FIGHTS_RAN"] * 5;
 	if(flags["WARGII_FIGHTS_WON"] != undefined) score += flags["WARGII_FIGHTS_WON"] * 3;
