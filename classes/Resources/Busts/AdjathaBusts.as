@@ -638,6 +638,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/temptress_nude.png", mimeType = "image/png")]
 		public var Bust_MILO_TEMPTRESS_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/mining_robot.png", mimeType = "image/png")]
+		public var Bust_MINING_ROBOT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
@@ -1090,6 +1093,11 @@ package classes.Resources.Busts
 		public var Bust_ULA_PREG:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ula_nude.png", mimeType = "image/png")]
 		public var Bust_ULA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/una.png", mimeType = "image/png")]
+		public var Bust_UNA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/una_nude.png", mimeType = "image/png")]
+		public var Bust_UNA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande.png", mimeType = "image/png")]
 		public var Bust_VAANDE:Class;
@@ -1767,6 +1775,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/temptress_nude.png", mimeType = "image/png")]
 			public var Full_MILO_TEMPTRESS_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mining_robot.png", mimeType = "image/png")]
+			public var Full_MINING_ROBOT:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
 
@@ -2164,6 +2175,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ula_nude.png", mimeType = "image/png")]
 			public var Full_ULA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/una.png", mimeType = "image/png")]
+			public var Full_UNA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/una_nude.png", mimeType = "image/png")]
+			public var Full_UNA_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vaande.png", mimeType = "image/png")]
 			public var Full_VAANDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vaande_nude.png", mimeType = "image/png")]
