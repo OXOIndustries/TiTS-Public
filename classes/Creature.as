@@ -2711,10 +2711,19 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				//Complex Noun
+				case "vaginaNounComplex":
+				case "pussyNounComplex":
+					buffer = vaginaNounComplex(arg2);
+					break;
+				//Simple Noun
 				case "vaginaSimple":
 				case "pussySimple":
 				case "cuntSimple":
 				case "vaginaNounSimple":
+					buffer = vaginaNounSimple(arg2);
+					break;
+				//Generic cuntnoun
 				case "vaginaNoun":
 				case "pussyNoun":
 				case "cuntNoun":
@@ -15565,7 +15574,17 @@
 		public function vaginaNounDescript(vaginaNum: Number = 0):String
 		{
 			if(vaginaNum >= vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
-			return vaginaNoun2(vaginas[vaginaNum]);
+			return vaginaNoun2(vaginas[vaginaNum], (rand(2) == 0));
+		}
+		public function vaginaNounComplex(vaginaNum: Number = 0):String
+		{
+			if(vaginaNum >= vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
+			return vaginaNoun2(vaginas[vaginaNum], false);
+		}
+		public function vaginaNounSimple(vaginaNum: Number = 0):String
+		{
+			if(vaginaNum >= vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
+			return vaginaNoun2(vaginas[vaginaNum], true);
 		}
 		public function simpleVaginasNoun():String {
 			var output:String = "";
