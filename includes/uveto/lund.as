@@ -159,7 +159,7 @@ public function meetLund():void
 	output(",”</i> he says, poking you rudely in the chest. <i>“");
 	if(!korgiTranslate()) 
 	{
-		output("Think you bigshot? No. Prouncing around on your stupid ");
+		output("Think you bigshot? No. P"+ (pc.hasLegFlag(GLOBAL.FLAG_PAWS) ? "ou" : "ra") +"ncing around on your stupid ");
 		if(pc.hasHooves()) output("hoof-foots");
 		else if (pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("paws");
 		else if(pc.hasToeClaws()) output("clawfoots");
@@ -2356,7 +2356,7 @@ public function moreCookiesPleaseLund2():void
 	output("\n\nYour [pc.eyes] roll into your head as you drown in Lund’s display as your alpha and master. His every thrust is punctuated with another warm, wet splash of his cum spraying into you; he growls through his clenched mouth as he ruts you and claims you, inside and out. The jizz on your face, still fresh and dripping, flings to and fro with Lund’s fierce rocking into you. The only thing left to prove to you both that you’re well and truly his, is to take that knot into you.");
 
 	output("\n\nYou beg him like you did when you first submitted to him. You cry to him to tie you; to give you his Korgonne cock and to fill you. You’re nothing but a dumb, slutty alien for him, and you want to walk around the hold with his jizz leaking from your asshole. You want to be here, on his bed, every day, for another full stomach of his amazing cock.");
-	output("\n\nAppreciating your sentiment, and submission, Lund swallows the remainder of the cookie in his mouth, and he grants your request: with another three or four cookie-driven thrusts, his knot batters into your until it gives, and he ties himself to you. The action is met with a few more thick bursts of his cum into your ass, rounding out your [pc.belly] with his enormous load.");
+	output("\n\nAppreciating your sentiment, and submission, Lund swallows the remainder of the cookie in his mouth, and he grants your request: with another three or four cookie-driven thrusts, his knot batters into your [pc.asshole] until it gives, and he ties himself to you. The action is met with a few more thick bursts of his cum into your ass, rounding out your [pc.belly] with his enormous load.");
 	output("\n\nYou can’t help but orgasm yourself beneath him: you join him in sexual ecstasy and clench your [pc.ass] on his cock as your ");
 	if(pc.hasCock()) output("[pc.cock] sprays its load beneath you, soaking into his bed");
 	if(pc.isHerm()) output(", while your ");

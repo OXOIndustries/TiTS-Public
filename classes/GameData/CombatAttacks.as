@@ -791,7 +791,7 @@ package classes.GameData
 			{
 				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
 			}
-			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			if(attacker.hasPerk("Lunge") && !target.isStaggered() && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
@@ -1100,7 +1100,7 @@ package classes.GameData
 			
 			if(target.hasFlightEffects())
 			{
-				output((attacker is PlayerCharacter ? kGAMECLASS.chars["WULFE"].short : ownerName + "’s Siegwulfe") + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
+				output((attacker is PlayerCharacter ? (kGAMECLASS.chars["WULFE"].short) : (ownerName + "’s Siegwulfe")) + " is unable to attack " + (target is PlayerCharacter ? "you" : target.getCombatName()) + ".");
 				return;
 			}
 			
@@ -1114,7 +1114,7 @@ package classes.GameData
 				{
 					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
 					// More lust than dmg
-					if (!target.isLustImmune && (100*(target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax())) >= 100 - target.lustQ())
+					if (!target.isLustImmune && (100*((target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax()))) >= (100 - target.lustQ()))
 					{
 						output(RandomInCollection([
 							"[wulfe.name] pushes her chest out, smirking while she runs her hands over her gigantic, jutting breasts and moans. <i>“Look at what you’re missing out on...”</i>",
@@ -1470,7 +1470,7 @@ package classes.GameData
 
 				if (target is CyberPunkSecOp)
 				{
-					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + "noggin. You’ll have to try something else!");
+					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + " noggin. You’ll have to try something else!");
 				}
 				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
@@ -1501,7 +1501,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
-			if (attacker.hasPerk("Rending Attacks") && !target.hasStatusEffect("Staggered") && !target.isPlanted())
+			if (attacker.hasPerk("Rending Attacks") && !target.isStaggered() && !target.isPlanted())
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");

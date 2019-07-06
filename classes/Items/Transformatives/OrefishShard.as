@@ -647,7 +647,7 @@ package classes.Items.Transformatives
 			if (rand(100) >= 25) {}
 			else if (shortCockIdx >= 0)
 			{
-				var shortCockLen:int = target.cocks[shortCockIdx].cLengthRaw + (target.hasPerk("Hung") ? 0.5 : (2.0 + rand(4))/10);
+				var shortCockLen:Number = target.cocks[shortCockIdx].cLengthRaw + (target.hasPerk("Hung") ? 0.5 : (2.0 + rand(4))/10);
 				if (target.cockLengthUnlocked(shortCockIdx, shortCockLen))
 				validChanges.push(function (target:Creature):void
 				{

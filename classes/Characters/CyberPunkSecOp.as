@@ -293,7 +293,11 @@
 			else if(this.lust() >= 50)
 			{
 				//Weapon Hack - disable energy weapons
-				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10 && rand(3) == 0) CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10 && rand(3) == 0)
+				{
+					CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+					output("\n");
+				}
 				bouncingTease(target);
 			}
 			//Regular HP stuff

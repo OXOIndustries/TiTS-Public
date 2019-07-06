@@ -1425,7 +1425,7 @@ public function cumSplurgeForRedAntSloots():void
 
 	output("\n\nYou’re utterly blown away as she sucks [pc.oneCock] into her moist mouth. Her intoxicating saliva mixes with your [pc.cumVisc] [pc.cum] and pools around your [pc.cockHead]. It feels as intense as sex, if not <i>more</i> so!");
 
-	output("\n\nAs she sucks you off in her hot, spunk-filled mouth, you groan and arch your back, a thin stream of drool trickling down your cheek. Right now you’re nothing but a [pc.race] font of [pc.cumNoun] for her to suck upon and you don’t care. Letting out carnal cries and moans, you buck your hips against her chin, utterly lost in the utter pleasure of her druggy drool, giving over every drop you");
+	output("\n\nAs she sucks you off in her hot, spunk-filled mouth, you groan and arch your back, a thin stream of drool trickling down your cheek. Right now you’re nothing but [pc.aRace] font of [pc.cumNoun] for her to suck upon and you don’t care. Letting out carnal cries and moans, you buck your hips against her chin, utterly lost in the utter pleasure of her druggy drool, giving over every drop you");
 	if(pc.balls > 0) output("r [pc.balls]");
 	output(" have to give.");
 

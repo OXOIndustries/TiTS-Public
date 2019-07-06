@@ -70,16 +70,22 @@ package classes.Characters
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -105,6 +111,8 @@ package classes.Characters
 		}
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("ass");
 			// Butt bug load
 			kGAMECLASS.loadInButtBug(this, cumFrom);
@@ -112,14 +120,14 @@ package classes.Characters
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			// Buttslut heal
 			if(hasPerk("Buttslut"))
 			{
 				HP(level);
-				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
+				if(cumFrom != null) HP(Math.round(cumQ/1000));
 			}
 			// Anal Heat dampen
 			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
@@ -128,7 +136,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -149,12 +161,14 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, milkFrom.lactationQ(), "milk");
+			var lactationQ:Number = (milkFrom != null ? milkFrom.lactationQ() : 0);
+			
+			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, lactationQ, "milk");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(milkFrom != null) addBiomass(milkFrom.lactationQ());
+				if(milkFrom != null) addBiomass(lactationQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -162,9 +176,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(milkFrom != null)
 				{
-					if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(milkFrom != null) sstdChecks(milkFrom,"mouth");
@@ -173,12 +187,14 @@ package classes.Characters
 		
 		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, cumFrom.girlCumQ(), "girl-cum");
+			var girlCumQ:Number = (cumFrom != null ? cumFrom.girlCumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, girlCumQ, "girl-cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
+				if(cumFrom != null) addBiomass(girlCumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -186,9 +202,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
@@ -197,13 +213,15 @@ package classes.Characters
 		
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumFrom.cumQ(), "cum");
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumQ, "cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -211,14 +229,18 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -231,15 +253,21 @@ package classes.Characters
 		// *shrug*
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
@@ -248,10 +276,16 @@ package classes.Characters
 		
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -964,19 +998,67 @@ package classes.Characters
 		
 		public function novaCumSlurpUpdates(deltaT:uint, doOut:Boolean):void
 		{
-			if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
-			{
-				if(hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched") || hasStatusEffect("Milk Bathed"))
+			if(!(armor is GooArmor)) return;
+			
+			var fluidLevels:Number = 0;
+			var fluidType:int = -1;
+			var amountVented:Number = 0;
+			
+			if(flags["GOO_ARMOR_AUTOSUCK"] == 1)
+			{	
+				// Can't get through blocked holes
+				var cuntStatus:StorageClass = ((hasVagina() && blockedVaginas() < vaginaTotal()) ? getStatusEffect("Vaginally-Filled") : null);
+				var buttStatus:StorageClass = (!isBlocked(-1) ? getStatusEffect("Anally-Filled") : null);
+				var suckHole:String = "none";
+				
+				if(cuntStatus != null || buttStatus != null)
 				{
-					AddLogEvent(RandomInCollection([
-						"<i>“Oooh, you got <b>covered</b>, didn’t you!?”</i> [goo.name] giggles, wobbling excitedly all around you. <i>“Don’t worry, I’ll clean you aaaaall up.!”</i>\n\nShe vibrates rapidly all over your body, absorbing all the sexual effluvia that’s slathered you during your latest misadventures. Within the span of a few moments, she has you glistening in the light, as fresh and clean as the day you first departed on your quest. [goo.name] feels a bit heavier and thicker around you, but the weight soon settles in like a natural heavy coat. <i>“All done!”</i> she purrs, wiggling around your loins. <i>“Off to the next adventure!”</i>",
-						"You feel your armor vibrating excitedly all around you. <i>“Ohh, you really got <b>covered</b> didn’t ya? Don’t worry, I’ll clean up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Wow, what a smell! It’s soooo hot. Lemme slurp it all up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Oh wow, that’s a lotta juice. It’s like you got me a million presents!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“You’re so messy! What’d you... ohh, that smells good... lemme lick it up?”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Yaaaaay, " + ((hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched")) ? "cummies" : "milkies") + "!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Aww, somebody had some fun. Let me get you cleaned up for the next round!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-					]), "passive", deltaT);
+					amountVented = 0;
+					fluidType = -1;
+					
+					if(cuntStatus != null) {
+						if(buttStatus == null) { fluidType = cuntStatus.value3; suckHole = "cunt"; }
+						else suckHole = "both";
+						amountVented += cuntStatus.value1;
+					}
+					if(buttStatus != null) {
+						if(cuntStatus == null) { fluidType = buttStatus.value3; suckHole = "butt"; }
+						else suckHole = "both";
+						amountVented += buttStatus.value1;
+					}
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoSuckBlurb(suckHole, amountVented, fluidType), "passive", deltaT);
+					removeStatusEffect("Vaginally-Filled");
+					removeStatusEffect("Anally-Filled");
+				}
+			}
+			if(flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+			{
+				var cumStatus:StorageClass = getStatusEffect("Cum Soaked");
+				var girlcumStatus:StorageClass = getStatusEffect("Pussy Drenched");
+				var milkStatus:StorageClass = getStatusEffect("Milk Bathed");
+				
+				if(cumStatus != null || girlcumStatus != null || milkStatus != null)
+				{
+					fluidLevels = 0;
+					fluidType = -1;
+					
+					if(cumStatus != null) {
+						if(girlcumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_CUM;
+						fluidLevels += cumStatus.value1;
+					}
+					if(girlcumStatus != null) {
+						if(cumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_GIRLCUM;
+						fluidLevels += girlcumStatus.value1;
+					}
+					if(milkStatus != null) {
+						if(cumStatus == null && girlcumStatus == null) fluidType = GLOBAL.FLUID_TYPE_MILK;
+						fluidLevels += milkStatus.value1;
+					}
+					
+					amountVented = (500 * fluidLevels);
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoCleanBlurb("skin", amountVented, fluidType), "passive", deltaT);
 					removeStatusEffect("Cum Soaked");
 					removeStatusEffect("Pussy Drenched");
 					removeStatusEffect("Milk Bathed");

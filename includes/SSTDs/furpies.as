@@ -223,7 +223,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			//Furpies D
 			else
 			{
-				textBuff += ParseText("\n\nYour [pc.ears] begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have canine-style ears, like some kind of dog or wolf!</b>");
+				textBuff += ParseText("Your [pc.ears] begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have canine-style ears, like some kind of dog or wolf!</b>");
 				pc.earType = GLOBAL.TYPE_CANINE;
 				pc.clearEarFlags();
 				pc.addEarFlag(GLOBAL.FLAG_FURRED);

@@ -157,6 +157,7 @@
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
+		include "../includes/follower/paigeGropazoo.as";
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeShower.as";
@@ -202,6 +203,7 @@
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/extrameet/bigtiddygothgf.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
@@ -270,6 +272,7 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+		include "../includes/tavros/velta.as";
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
@@ -446,10 +449,12 @@
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/cherrysAppt.as";
 		include "../includes/zhengShiStation/coronaFlamer.as";
 		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
+		include "../includes/zhengShiStation/lorelei.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
@@ -471,6 +476,8 @@
 		include "../includes/breedwell/breedwell.as";
 		include "../includes/breedwell/rooms.as";
 		include "../includes/breedwell/quaelle.as";
+		include "../includes/breedwell/breedwellPremium.as";
+		include "../includes/breedwell/breedwellPremiumBootyCalls.as";
 		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
@@ -645,7 +652,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.279";
+			version = "0.7.282";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1760,6 +1767,11 @@
 			return chars["ROXY"];
 		}
 		
+		public function get lorelei():Lorelei
+		{
+			return chars["LORELEI"];
+		}
+
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

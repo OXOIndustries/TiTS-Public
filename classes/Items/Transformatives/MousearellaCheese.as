@@ -24,7 +24,7 @@
 			stackSize = 10;
 			type = GLOBAL.FOOD;
 			shortName = "MouseCh";
-			longName = "MousearrelaCheese";
+			longName = "Mousearrela Cheese";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

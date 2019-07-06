@@ -1914,7 +1914,7 @@ public function giveMitziACumBubble4Real(arg:Class):void
 			else if(pc.hasVagina()) output(", cheek pressed against your [pc.multiCunts].");
 		}
 		else if(pc.tallness >= 4*12+6) output(", cheek nuzzling into your [pc.belly].");
-		else output(", cheek nuzzling int o your [pc.chest].");
+		else output(", cheek nuzzling into your [pc.chest].");
 		output(" <i>“[pc.Master] is so perfect...”</i>");
 		processTime(10);
 		mitziSexMenu();

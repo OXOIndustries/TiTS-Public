@@ -84,7 +84,7 @@ public function zhengMinesEncounterBonus():Boolean
 	IncrementFlag("ZS_MINE_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_MINE_STEP"]-4 > rand(16))
+	if(flags["ZS_MINE_STEP"]-4 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_MINE_STEP"] = 0;
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
@@ -110,6 +110,7 @@ public function zhengMinesEncounterBonus():Boolean
 		}
 		
 		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
+		if (rollForLorelei()) encounters.push(loreleiRandomEncounter);
 		
 		var pregScene:int = boredJumperPregScene();
 		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
@@ -178,13 +179,13 @@ public function takeSnakeByte2():void
 	showName("\nSNAKEBYTE");
 	quickLoot(new SnakeByte());
 }
-
+	
 public function zhengFoundryF1EncounterBonus():Boolean
 {
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"]-4 > rand(16))
+	if(flags["ZS_FOUNDRY_STEP"]-4 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
@@ -201,6 +202,11 @@ public function zhengFoundryF1EncounterBonus():Boolean
 			//encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
+		}
+		if (rollForLorelei())
+		{
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
 		}
 		if (snekAndMausHavingFun())
 		{
@@ -222,6 +228,11 @@ public function zhengFoundryF1EncounterBonus():Boolean
 			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
 			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);
 		}
+		if (breedwellPremiumBootyCallCheck("zheng shi"))
+		{
+			encounters.push(breedwellPremiumBootyCallPing);
+			encounters.push(breedwellPremiumBootyCallPing);
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -235,7 +246,7 @@ public function zhengFoundryF2EncounterBonus():Boolean
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand(16))
+	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
@@ -259,6 +270,21 @@ public function zhengFoundryF2EncounterBonus():Boolean
 		encounters.push(coronaFlamerEncounter);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		if (ratsAvailable())
+		{
+			//encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+		}
+		if (rollForLorelei())
+		{
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+		}
 		var pregScene:int = boredJumperPregScene();
 		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
 		{
@@ -887,13 +913,13 @@ public function submitThePiratePassword():void
 public function foundryLounge2Bonus():Boolean
 {
 	output("With a couch and plenty of nearby cushions, it’s clear that this quiet corner of the break room provides the pirate officers with a quiet place to rest, relax, and cuddle with their pleasure-slave of choice. A squat box with an onahole-like entrance lends further credence to that theory. The stained nameplate labels it as a TamaniCorp Hora Series 69 Dong Designer.");
-	if(flags["LOOTED_COCKBOX"] != undefined) output(" You know all too well about such devices. Maybe you could give it a spin?");
+	if(flags["USED_DONG_DESIGNER"] != undefined) output(" You know all too well about such devices. Maybe you could give it a spin?");
 	else output(" A quick extranet search reveals that it does exactly what the name suggests. Just stick a penis inside, and the magic box will change it into any crazy alien dong your mind might dream up.");
 	output("\n\nUnfortunately it’s bolted to the floor");
-	if(flags["LOOTED_COCKBOX"] != undefined) output(", but nothing’s stopping you from snagging a copy of the updated firmware to install on your personal box. Custom pigmentation selection seems like quite the upgrade!");
+	if(flags["LOOTED_COCKBOX"] == 1 && flags["COCKBOX_UPGRADE"] == undefined) output(", but nothing’s stopping you from snagging a copy of the updated firmware to install on your own personal box. Custom pigmentation selection seems like quite the upgrade!");
 	else output(".");
+	
 	addButton(0,"DongDesigner",useInstalledDickBox,undefined,"Dong Designer","Take a closer look a this dick-customizing box!");
-	//Gunna need to update the dong designer
 	return false;
 }
 
@@ -1092,7 +1118,7 @@ public function mouseRobotTalk():void
 		output("\n\nThe mouse-woman rolls her eyes. <i>“Oh so now you want my help to keep your insides from being drilled into your outsides?”</i> She snorts disdainfully. <i>“Wise up before you get yourself killed. Here.”</i> She tosses a badge through the air.");
 	}
 	processTime(10);
-	output("\n\n<b>Do you keep the RFID badge? Doing so with permanently disable encounters with mining robots.</b>");
+	output("\n\n<b>Do you keep the RFID badge? Doing so will permanently disable encounters with mining robots.</b>");
 	clearMenu();
 	addButton(0,"Yes",keepTheBadge);
 	addButton(1,"No",dontKeepTheBadge);

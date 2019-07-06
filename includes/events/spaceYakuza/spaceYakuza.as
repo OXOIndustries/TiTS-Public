@@ -264,7 +264,7 @@ public function shukuchiMhengaVictory():void
 		flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 2;
 	}
 	
-	output("\n\nYou hold your weapon out all the same, figuring that he’d be smart enough to have a backup. At least you can threaten him for answers with the power of a [pc.weapon]! You’re within a half meters grasp of him, your hand outstretched to-");
+	output("\n\nYou hold your weapon out all the same, figuring that he’d be smart enough to have a backup. At least you can threaten him for answers with the power of " + indefiniteArticle(pc.getWeaponName(true)) + "! You’re within a half meters grasp of him, your hand outstretched to-");
 	
 	addButton(0, "Wuh?", shukuchiMhengaMerge);
 }

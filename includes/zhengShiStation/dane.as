@@ -526,7 +526,8 @@ public function repeatDaneFuckSceneRouter():void
 	}
 	//Populate the list of possible scenes. Real short now, I know.
 	choices.push(suckDaneOffYaWanker);
-	if(pc.hasVagina()) choices.push(daneCuntfucks);
+	if(pc.isTaur()) choices.push(daneTaurfukky);
+	else if(pc.hasVagina()) choices.push(daneCuntfucks);
 	//Roll dice on scene if needed
 	choices[rand(choices.length)]();
 }
@@ -824,9 +825,9 @@ public function daneTailFuckOutro():void
 		output("”</i> The placid bliss radiating from your tail makes it hard to be anything but happy about that course of events.");
 	}
 	//8+
-	else if(flags["DANE_TAILCUNTED"] == 7)
+	else if(flags["DANE_TAILCUNTED"] >= 7)
 	{
-		output("\n\nI love it!”</i> you proclaim wholeheartedly. <i>“Nothing makes me happier than draining your balls, Dane.”</i> You reach down to brazenly fondle him beneath the bar, smiling licentiously at the camera. <i>“You got me hooked on that thick, ausar dick.”</i> You thrill at how pleasant it feels to be openly cum-thirsty, and the narcotic thrill of pleasure leaves you to wonder when you can do this again...");
+		output("\n\n<i>“I love it!”</i> you proclaim wholeheartedly. <i>“Nothing makes me happier than draining your balls, Dane.”</i> You reach down to brazenly fondle him beneath the bar, smiling licentiously at the camera. <i>“You got me hooked on that thick, ausar dick.”</i> You thrill at how pleasant it feels to be openly cum-thirsty, and the narcotic thrill of pleasure leaves you to wonder when you can do this again...");
 	}
 	//Merge
 	output("\n\nWith his knot’s swelling finally going down, Dane is at last able to pry himself free from your rapacious parasite. The wet sucking sound it makes as it’s removed seems loud enough for the whole bar to hear it, even over the din of the slot machines casino patrons, but nobody spares you a second glance.");
@@ -1007,6 +1008,7 @@ public function daneCuntfucks():void
 	output("\n\nIf this is how Dane fucks, he must be leaving quite a trail of bastards across the galaxy. You cradle your middle, feeling it bulge slightly as Dane finishes flexing and sags back down to seated position, breathing heavily.");
 	output("\n\nThe mercenary doesn’t seem interested in cuddling, however. He scoots forward to the edge of his seat and gently pushes you down to the floor. Still joined to his crotch by the anchor of his knot, your [pc.butt] is lifted up into the air. You pant for breath");
 	if(pc.hasCock() && cumQ >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
+	else output(".");
 	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spin. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
 	if(pc.hasCock() && cumQ >= 500) output("smears through your [pc.cumNoun].");
 	else output("rubs on the ground.");
@@ -1028,6 +1030,145 @@ public function daneCuntfucks():void
 	IncrementFlag("DANE_SEXED");
 	//If PC got milking scene, empty tits
 	if(pc.biggestTitSize() >= 4 && !pc.hasDickNipples() && !pc.hasFuckableNipples() && pc.canLactate()) pc.milked();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Outline
+//Dane guides TaurPC into a booth for a fuck. It's cramped, and he has to push you roughly up against a wall to make room. Rough, hot, and sweaty mating ensues. Two intros; one is the default, the other accommodates for the PC asking for a repeat of their own accord later.
+//18" knotted horsecock
+
+//Taurfuck
+//Intro
+public function daneTaurfukky(volunteered:Boolean = false):void
+{
+	clearOutput();
+	showDane(true);
+	author("Wsan");
+	//Pick a hole at random. Sometimes, buttfucks. More often vag if vag.
+	var x:int = -1;
+	if(pc.hasVagina() && rand(3) > 0) 
+	{
+		x = pc.findEmptyPregnancySlot(1);
+		if(x == -1) x = rand(pc.totalVaginas());
+	}
+	if(!volunteered) 
+	{
+		output("Dane pushes and gropes you from behind as you enter the booth, his ");
+		if(pc.balls > 1) output("fingers lightly wrapping around your [pc.balls] and giving them a gentle squeeze that makes you gasp in delight.");
+		else if(x >= 0) output("thick fingers brushing up your winking, " + (pc.wetness(x) < 4 ? "dripping":"streaming") + " pussy and making you gasp in delight.");
+		else output("hand squeezing your hindquarters hard enough to make you gasp in delight at such possessiveness.");
+		output(" It’s like he thinks he owns you, and the thought of it");
+		if(pc.isHerm()) output("brings both your [pc.cocks] to full hardness and your [pc.pussies] to an anticipatory tightness you hadn’t thought possible.");
+		else if(pc.hasCock()) output(" brings your [pc.cocks] to full hardness with stunning rapidity.");
+		else if(pc.hasVagina()) output(" has your [pc.pussies] quivering in anticipation.");
+		else output("makes your [pc.asshole] clench in anticipation.");
+		output(" You want this. Wild, unbidden thoughts of the powerful ausar riding you, mounting you with that immense cock like it was <i>meant</i> to be, run through your mind as you glance back at him.");
+
+		if(x >= 0)
+		{
+			output("\n\n<i>“Very nice,”</i> Dane murmurs admiringly, his fingers tracing" + (pc.hasVaginas() ? " the inflamed lips of one of your pussies. You shudder in pleasure - seems like he’s picked out which one to use for himself.":" your inflamed pussylips."));
+			if(pc.looseness(x) < 2) output(" <i>“Looks tight as fuck, just how I like them. Been keeping yourself just for me this whole time, [pc.name]?”</i>");
+			else if(pc.looseness(x) < 4) output(" <i>“Looks tight enough to have your entire body wrapped around me, [pc.name]. I like it.”</i>");
+			else output(" <i>“I bet you’ve learned a lot about pleasing cocks since we first met, [pc.name]. I’m gonna enjoy this.”</i>");
+		}
+		else if(pc.hasCock())
+		{
+			output("\n\n");
+			if(pc.ass.looseness() < 2) output("<i>“Looks tight as a motherfucker,”</i>");
+			else if(pc.ass.looseness() < 4) output("<i>“Looks tight enough that I’m gonna have to do some work,”</i>");
+			else output("<i>“This is a whore’s hole,”</i>");
+			output(" Dane murmurs admiringly, his fingers tracing the outline of your asshole.");
+			//no anusoft:
+			if(pc.analPuffiness() == 0) output(" <i>“Gonna enjoy making it gape for me, [pc.name].”</i>");
+			//slight pump: 
+			else if(pc.analPuffiness() == 1) output(" <i>“Nice and puffy, too. You put a lot of thought into who’d be fucking your ass, huh? I appreciate the effort, [pc.name].”</i>");
+			//pumped
+			else if(pc.analPuffiness() == 2) output(" <i>“Puffy as fuck, too, you taurslut. Not hard to imagine what was going through your mind at the time, [pc.name]...”</i>");
+			else output(" <i>“So pumped and puffy, too, [pc.name]. You like winking at all the boys until they grab your rear and pound you?”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“Ha, no genitals, [pc.name]? That’s really cute,”</i> Dane murmurs admiringly. <i>“You usually only see that on the most <b>depraved</b> of sluts out here, the ones that know their true self-worth. That know their own pleasure is meaningless, and their owner is the only one who matters. Hell of a way of ingratiating yourself to me. But I like it.”</i>");
+		}
+		output("\n\n<i>“Now then,”</i> he growls in a low voice, his lower pair of arms grabbing your hindlegs and the upper your [pc.ass]. <i>“This booth is fucking cramped with the both of us in here.”</i> He’s right - it clearly wasn’t built with a coupling between an eight foot, quad-armed ausar and a ‘taur in mind. You’re already beginning to sweat in the enclosed space, your [pc.skinFurScales] damp with it. <i>“So let’s get inventive.”</i>");
+	}
+	else
+	{
+		if(pc.isBimbo()) 
+		{
+			output("<i>“That time you like, fucked me almost unconscious was totes hot as fuck,”</i> you say, curling your [pc.tongue] and grinning at Dane as you lean in closer. <i>“Can you take your lil’ cumdump ‘taur for another ride? Pretty please?”</i>");
+			output("\n\n<i>“Yeah, just for you, y’dumb slut,”</i> Dane grunts, rolling his eyes and nodding at a booth. <i>“Get in there and spread your legs.”</i>");
+			output("\n\nYou practically skip into the privacy of the booth, joyously laying your front against the wall, your [pc.nipples] hard already. Dane’s going to fuck you! That big, tasty, <i>bulging</i> horsecock and the fat, swollen knot too... you can hardly wait! By the time he steps inside the booth himself, his hands on your [pc.ass], ");
+			if(pc.isHerm()) output("both your [pc.cocks] and your [pc.pussies] are dripping with anticipation.");
+			else if(pc.hasCock()) output("your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " already hard and dripping with anticipation.");
+			else if(pc.hasVagina()) output("your [pc.pussies] " + (!pc.hasVaginas() ? "is":"are") + " already dripping with anticipation, gleaming and winking at him.");
+			else output("your [pc.asshole] is relaxed and winking at him, ready to get fucked.");
+		}
+		else
+		{
+			output("<i>“So, I might have <b>really</b> enjoyed you using me as your cumdump...”</i> you whisper to him, hand running up his bicep and stroking his upper arm. <i>“Any chance you’d like to take a booth and do that again?”</i>");
+			output("\n\n<i>“Get in there, you leggy cumrag,”</i> Dane grunts, nodding at a booth.");
+			output("\n\nYou happily sashay into the privacy of the booth, carefully laying your front against the wall, your [pc.nipples] already hardening. You can hardly wait to feel that thick, strong horsecock widening your fuckhole once more, pounding you like nothing else, and finishing you off with the enormous knot at its base. By the time he steps inside the booth himself, laying his hands on your [pc.ass], ");
+			
+			if(pc.isHerm()) output("both your [pc.cocks] and your [pc.pussies] are dripping with anticipation.");
+			else if(pc.hasCock()) output("your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " already hard and dripping with anticipation.");
+			else if(pc.hasVagina()) output("your [pc.pussies] " + (!pc.hasVaginas() ? "is":"are") + " already dripping with anticipation, gleaming and winking at him.");
+			else output("your [pc.asshole] is relaxed and winking at him, ready to get fucked.");
+		}
+	}
+	//merge
+	output("\n\nHe lifts your rear [pc.legsNoun] and pushes you roughly up against the wall, a squeak escaping your lungs as he drives himself forward and savagely shoves his swollen dick into your " + (x >= 0 ? "slavering cunt.":"squeezing asshole.") + " You scream in both surprise and bliss, <i>oh</i> so much bliss, taken from behind and roughly dominated. One of your rear legs held apart for easy access, the other three manhandle you until you don’t know which way is up and soon find you don’t even care - Dane could fuck you upside down if he wanted as long as he never stopped!");
+	output("\n\nIt’s rare enough that someone can " + (x >= 0 ? "bottom out in your rear-mounted pussy’s canal":"grant your tauric behind the sensation of fullness") + " but Dane fits into you so beautifully you can hardly resist a short, shuddering sigh of complete carnal satisfaction. It’s like his giant cock was made for your " + (x >= 0 ? "squelching, dripping pussy":"tight, clenching asshole") + ", sliding in with every rapid thrust of his hips. No, that’s not right - <i>your [pc.vagOrAss] was made to sheathe his cock</i>. That feels far better to think.");
+
+	if(x >= 0) pc.cuntChange(x,daneCockVolume());
+	else pc.buttChange(daneCockVolume());
+
+	output("\n\n<i>“You’re loving this, aren’t you, whore?”</i> Dane grunts, squeezing your ");
+	if(pc.hasFur()) output("furred ");
+	else output("scaled ");
+	output("flanks as he drives himself balls-deep. You let loose a scream of primal ecstasy by way of reply, a high-pitched moan following his withdrawal. Your usually-steady body is buffeted by his reinsertion, ass bouncing as his swollen nuts slap you hard between your legs. <i>“Tell me.”</i>");
+	output("\n\n<i>“It f- fuh! It feels- so good!”</i> you gasp, panting and moaning, your eyes squeezed shut in mounting bliss. You can feel your control over your body slipping further away with every thrust but it doesn’t matter, Dane is too strong to let you fall, and his stupendous cock is pumping your " + (x >= 0 ? "taurpussy":"stretched-out ring") + " so hard you couldn’t save yourself anyway. <i>“Oh, g-god! Stars! S-so hard!”</i>");
+	output("\n\n<i>“That’s right,”</i> Dane growls, pushing into you so deeply your eyes roll back in your head and your [pc.tongue] lolls from your lips. " + (flags["DANE_TAURFUKKS"] == undefined ? "You hadn’t even known how sensitive you were from that angle!":"Every time he pushes from that angle your entire body shivers and convulses!") + " <i>“Good little cumdump!”</i>");
+	output("\n\nBeing a taur it’s not often that you get called ‘little’ but fuck if it doesn’t feel right coming from Dane. That massive chiselled ausar body and the tremendous cock pumping into your " + (x >= 0 ? "spread-open slit":"lubed-up asshole") + " make you feel <i>right</i> where you belong. He’s barely finished his sentence before");
+	if(pc.isHerm() && x >= 0)
+	{
+		output(" your " + (!pc.hasCocks() ? "cock is":"cocks are") + " throbbing with need, pre-cum dripping and spurting from " + (!pc.hasCocks() ? "its tip":"their tips") + ". Not even a second goes by before you let out a massive groan and [pc.cum] jets out, splattering loudly against the ground and running down the drain while Dane continues to plow your sloppy pussy like a madman.");
+		output("\n\nHe’s stimulating your convulsing walls so violently you can’t seem to escape orgasm - crying out like the most depraved of whores, you empty your" + (pc.balls > 0 ? " [pc.balls]":"self") + " into the gurgling floordrains over and over while Dane grunts and growls, slamming you full of enormous equine cock. [pc.CumVisc] semen shoots from the end of your pulsing cock" + (pc.hasCocks() ? "s":"") + " until there’s nothing left to give, your slutty pussy clenching around him every time your aggressive ausar lover bottoms out inside you.");
+	}
+	else if(pc.hasCock()) 
+	{
+		output(" your " + (!pc.hasCocks() ? "cock is":"cocks are") + " throbbing with need, precum dripping and spurting from " + (!pc.hasCocks() ? "its tip":"their tips") + ". Not even a second goes by before you let out a massive groan and [pc.cum] jets out, splattering loudly against the ground and running down the drain while Dane continues to steadily plow you to bits.");
+		output("\n\nHe’s stimulating your prostate so violently you can’t seem to escape orgasm - crying out like the most depraved of whores, you empty your");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("self");
+		output(" into the gurgling floordrains over and over while Dane grunts and growls, slamming you full of enormous equine cock. [pc.CumVisc] semen shoots from the end of your pulsing cock" + (pc.hasCocks() ? "s":"") + " until there’s nothing left to give, your [pc.cockHeadBiggest] still throbbing with pleasure every time your aggressive ausar lover bottoms out inside you.");
+	}
+	else if(x >= 0)
+	{
+		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while [pc.girlCum] " + (pc.isSquirter() ? "squirts":"drips") + " down your shaking hindlegs. Dane doesn’t let up at all, slamming into your convulsing cunt and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the ");
+		//Nonfollower:
+		if(9999 == 9999) output("base");
+		else output("ship");
+		output(" can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
+		output("\n\nHe’s stimulating your oversensitive pussy so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
+	}
+	else
+	{
+		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while your hindlegs violently shake. Dane doesn’t let up at all, slamming into your slippery ass and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the " + (9999 == 9999 ? "base":"ship") + " can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
+		output("\n\nHe’s stimulating your oversensitive insides so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
+	}
+	output("\n\nYou’re slammed into the wall again and again, your " + (pc.biggestTitSize() >= 1 ? "[pc.breasts] squished up":"cheek pressed") + " against it while you scream in lust, begging him to cum inside you. Instead he swats you across the ass hard, your forelegs crumpling while he grunts and holds your rear half in the air to fuck. You’re too busy marvelling at his strength to notice the way his giant cock is throbbing until you feel his growing knot pressing at your " + (x >= 0 ? "swollen pussylips.":"gaped fuckhole."));
+	output("\n\n<i>“Knot me! Knot your slutty cumdump!”</i> you cry out, possessed by insatiable desire. You <i>need</i> that swollen, pulsing knot inside you, to feel him cum and cum and not let you go.");
+	output("\n\nDane obliges you in spades. Straining with the effort, veins stand out on his rippling biceps as he pulls you onto his engorged knot and roars in release. Your tightening orifice sucks and grasps at his pulsating cock, the gargantuan flare " + (x >= 0 ? "kissing your cervix":"deep in your bowels") + " as it flexes and unloads streams of thick, virile seed into your channel. You milk every last drop of him inside you, moaning like his slut all the while, and you love it.");
+	output("\n\nThe throbbing of his knot gives you one orgasm after another, stretching and stroking your insides until you’re soaked in sweat and gasping in bliss. By the time he’s done and gives you a hard spank across your [pc.ass] you’re almost delirious with the pleasure.");
+	output("\n\n<i>“Nice, [pc.name],”</i> he grunts, dropping you to the ground. <i>“As far as using a cumrag goes, you make it pretty easy. All the extra weight makes it simpler to keep you in place. See me again if you want to get taken for another ride.”</i>");
+	output("\n\nHe steps out of the booth and leaves you there, cum pouring from your abused " + (x >= 0 ? "cunt":"asshole") + ", running down your shaking hindlegs" + (pc.balls > 0 ? " and dripping from your balls":"") + ". It takes you a good while to shakily get back to your feet, using the wall to steady yourself. That was fucking <i>amazing</i>... you’ll have to see about getting another round of that. Cleaning yourself off, you step out of the booth.");
+	processTime(30);
+	IncrementFlag("DANE_TAURFUKKS");
+	IncrementFlag("DANE_SEXED");
+	if(x >= 0) pc.loadInCunt(chars["DANE"], x);
+	else pc.loadInAss(chars["DANE"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

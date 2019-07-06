@@ -55,7 +55,23 @@ public function showRoo():void
 }
 public function rooBustDisplay():String
 {
-	return ("ROO_" + flags["ROO_STRIP_LEVEL"]);
+	switch(flags["ROO_STRIP_LEVEL"])
+	{
+		case undefined:
+		case 0:
+			return "ROO";
+		case 1:
+			return "ROO_SKIRT";
+		case 2:
+			return "ROO_SHIRT";
+		case 3:
+			return "ROO_PANTIES";
+		case 4:
+			return "ROO_NUDE";
+		default:
+			return "ROO";
+			break;
+	}
 }
 public function roogasm():void
 {
@@ -749,8 +765,7 @@ public function rooStrips(amount:Number):void
 
 public function pcWinsVsRoocipher():void
 {
-	clearOutput();
-	showRoo();
+	clearOutput()
 	author("William");
 
 	var bet:Number = flags["BLACKJACK_BET"];
@@ -770,6 +785,7 @@ public function pcWinsVsRoocipher():void
 	// Player won hand! No stripping.
 	if((flags["ROO_STRIP_LEVEL"]+1) * 5000 > flags["ROO_CREDITS_DAILY"])
 	{
+		showRoo();
 		output("<i>“Congratulations!”</i> Roo chimes, gathering and shuffling the cards at inhuman speed, your side of the table exploding with monetary achievement. <i>“A deserved win" + (flags["MET_ROO"] == 2 ? ", [pc.name]":"") + "! Will you be playing again, sweetie? " + (RandomInCollection(["Luck is on your side, there’s no doubt!","Lady luck has her hand on your shoulder, of that I am certain!","It’s always worth it to capitalize on good fortune!"])) + "”</i>");
 		output("\n\nSo she says, but what seems like a potential windfall can just as easily be a short-lived fluke. Play again?\n");
 		winningsDisplay();
@@ -849,6 +865,7 @@ public function pcWinsVsRoocipher():void
 		processTime(4);
 		pc.lust(5);
 		rooStrips(1);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Skirt)]
@@ -904,7 +921,7 @@ public function pcWinsVsRoocipher():void
 			output("Staring into Roo’s flickering eyes strengthens a tightness in your chest. A fire burns warm behind her trembling pupils in her moistening irises. The second player departs with their final total, merely being your next step to seeing Roo uncovered.");
 			output("\n\nThe casino’s mercurial lighting neither enhances nor dims the indefatigable passion stoked by your repeated wins, but they have brought her emotions into focus. You enable her, and she in turn stirs your desire. You watch unflinchingly, not a soul nor sound able to turn you away from her glory as a heat swells in your cheeks, reddening you to her color.");
 			output("\n\nLike before she stands abruptly, barely containing her want for you, your happiness, your pleasure. In her lewd perambulations she does everything possible to sustain your interest in her, groping wildly at her body, biting her lip, pinching a painfully erect nipple through the fabric. Furry hands swim across a vast rump atop the skirt covering it, before digging angrily into it and tearing it off and dropping it to the side, exposing her shapely bottom to you in one quick motion.");
-			output("\n\nSaliva-sparkling lips form a moaning O shape; Roo leans over the table on the verge of crawling across, seating herself in your lap, and unleashing her suppressed cravings. Frisky white tails gyrate wildly, settling on wrapping around her whenever they feel the need to clench. She drags backwards, her yielding and malleable tits contouring to every obstacle in their way, so sensitive that she could be mistaken for a victim of Dumbfuck.");//nice~
+			output("\n\nSaliva-sparkling lips form a moaning ‘O’ shape; Roo leans over the table on the verge of crawling across, seating herself in your lap, and unleashing her suppressed cravings. Frisky white tails gyrate wildly, settling on wrapping around her whenever they feel the need to clench. She drags backwards, her yielding and malleable tits contouring to every obstacle in their way, so sensitive that she could be mistaken for a victim of Dumbfuck.");//nice~
 			output("\n\nHer once-professional mien has been replaced with covetous cupidity. Even when she turns her back to shake her ass, she is always locked to you, watching for the twinkles in your [pc.eyes], the slow blinks you give, the tiny shudders on your mouth. You stare enraptured at her panty-covered ass, counting the freckles on either side. The ripples fanning through her copious squish, over and around the ribboned side-ties of her panties, never fail to make your mouth water.");
 			output("\n\n<i>“Ahh, [pc.name],”</i> Roo hums, <i>“it’s never a bad day when you’re here. Luck in [pc.raceShort] form! Are we to play again?”</i> There’s a transient glower that passes across her face. Three words form on her pretty lips: <i>claim your prize.</i>");
 			pc.lust(3);
@@ -912,6 +929,7 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(2);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Shirt)]
@@ -971,6 +989,7 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(3);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Panties)]
@@ -1036,12 +1055,14 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(4);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo gamegasms!]
 	// PC will have intoxication added each time - getting VIP Drinks :3
 	else
 	{
+		showRoo();
 		// First Gamegasm
 		if(flags["ROO_GASMED"] == 0)
 		{
@@ -2040,7 +2061,7 @@ public function underTableRooEatsPuss(x:int = 0):void
 	output("\n\nLurching forward, [pc.thighs] clenching, you");
 	if(!pc.isTaur()) output(" grab Roo by the ears and hold tight");
 	else output(" shift all your weight onto Roo’s face");
-	output(", hyperventilating on the edge of a tectonic orgasm. The slut-cat whimpers but doesn’t resist, clearly enjoying a little rough treatment. You decide to set the pace, unwilling to be little more than a [pc.raceShort] cumming like crazy, helpless to those expansive, heavenly... lips...");
+	output(", hyperventilating on the edge of a tectonic orgasm. The slut-cat whimpers but doesn’t resist, clearly enjoying a little rough treatment. You decide to set the pace, unwilling to be little more than [pc.aRaceShort] cumming like crazy, helpless to those expansive, heavenly... lips...");
 	output("\n\nOh right...");
 	output("\n\nBefore Roo gets any ideas you seat her drooling and cum-splattered face deeper into your bliss-imbued [pc.pussyNoun " + x + "]. Your [pc.hips] rock against her head, taking pleasure directly from her. She obliges, allowing you to use her like a lop-eared dildo, suckling firmly on your labia and worshiping your clit with lurid, squelching echoes. The kitty-rabbit has yet to lose herself to wantonness: she just purrs away, faintly squeaking while filling you to capacity with tongue and lip.");
 	// PC gryvain pussy

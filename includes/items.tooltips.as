@@ -18,6 +18,11 @@ public function altTooltip(itemName:String = "none"):String
 			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
 			else tooltip += "150";
 			break;
+		case "RahnSuperIncubator":
+			tooltip += "The modification you received from Breedwell decreases the length of time rahn eggs need to incubate within you.";
+			//tooltip += " Cuts rahn pregnancy from 14 days to 10.";
+			tooltip += " Increases rahn pregnancy incubation speed modifier by 40%.";
+			break;
 		
 		// Weapons
 		case "HoldOutPistol":

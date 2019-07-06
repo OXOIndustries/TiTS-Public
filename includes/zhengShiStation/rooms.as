@@ -2666,7 +2666,7 @@ public function initZhengRooms():void
 	rooms["ZSR L31"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L31"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L31"].northExit = "ZSR L29";
-	rooms["ZSR L31"].eastExit = "";
+	rooms["ZSR L31"].eastExit = "ZSR N31";
 	rooms["ZSR L31"].southExit = "ZSR L33";
 	rooms["ZSR L31"].westExit = "";
 	rooms["ZSR L31"].moveMinutes = 3;
@@ -2773,6 +2773,20 @@ public function initZhengRooms():void
 	rooms["WALL SLUTS"].addFlag(GLOBAL.INDOOR);
 	rooms["WALL SLUTS"].addFlag(GLOBAL.NPC);
 
+	rooms["CHERRYSROOM"] = new RoomClass(this);
+	rooms["CHERRYSROOM"].roomName = "CHERRY’S\nROOM";
+	rooms["CHERRYSROOM"].description = "";
+	rooms["CHERRYSROOM"].planet = "ZHENG SHI STATION";
+	rooms["CHERRYSROOM"].system = "SYSTEM: HERISIOD";
+	rooms["CHERRYSROOM"].northExit = "";
+	rooms["CHERRYSROOM"].eastExit = "WALL SLUTS";
+	rooms["CHERRYSROOM"].southExit = "";
+	rooms["CHERRYSROOM"].westExit = "";
+	rooms["CHERRYSROOM"].moveMinutes = 1;
+	rooms["CHERRYSROOM"].runOnEnter = cherrysAptBonus;
+	rooms["CHERRYSROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["CHERRYSROOM"].addFlag(GLOBAL.NPC);
+
 	rooms["ZSR H31"] = new RoomClass(this);
 	rooms["ZSR H31"].roomName = "CASINO\nGATE";
 	rooms["ZSR H31"].description = "Before enmeshing yourself in <i>Treasure Nova’s</i> bewitching fluorescence, you check your weapons at the door and pass cleanly through a security forcefield. Hardlight walls flaunt patterns of scintillant richness in the shape of atmospheric auroras while gamblers and others flock to and from the massive bar. Zheng Shi’s premiere lap of luxury invites those with ample means to win their place in it.\n\nTo your north is a massive bar in the shape of a quasar. Everything about it is designed with hardlight functionality, but a contrasting word flashes atop caustic colors: <i>AQUARIUS.</i> To your east is a large space devoted to standard slot machines";
@@ -2873,4 +2887,14 @@ public function initZhengRooms():void
 	rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
 
+	rooms["ZSR LORELEI"] = new RoomClass(this);
+	rooms["ZSR LORELEI"].roomName = "\n";
+	rooms["ZSR LORELEI"].description = "";
+	rooms["ZSR LORELEI"].planet = "ZHENG SHI STATION";
+	rooms["ZSR LORELEI"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR LORELEI"].westExit = loreleiExit;
+	rooms["ZSR LORELEI"].moveMinutes = 1;
+	rooms["ZSR LORELEI"].runOnEnter = enterLoreleisHouse;
+	rooms["ZSR LORELEI"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N31"] = rooms["ZSR LORELEI"];
 }

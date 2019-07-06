@@ -416,6 +416,7 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
+				if(pc.ballSizeMod != 1) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.ballSizeMod, 3)) + ")");
 				if(pc.balls != 1) output2(", each");
 				output2("\n<b>* Testicle, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
 				if(pc.balls != 1) output2(", each");
@@ -558,7 +559,8 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[x].bonusCapacity));
 						output2("\n<b>* Capacity, Effective:</b> " + prettifyVolume(pc.vaginalCapacity(x)));
 					}
-					output2("\n<b>* Looseness Level:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[x].minLooseness, 3));
 					output2("\n<b>* Wetness Level:</b> " + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0)
@@ -1051,6 +1053,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(roomFlagFlags[i]);
 			}
 		}
+		//var medRoomID:String = nearestMedicalCenter("", false);
+		//if(medRoomID != "") output2("\n<b>* Nearest Care Area:</b> " + StringUtil.toDisplayCase((rooms[medRoomID].roomName.replace("\n", " ")).toLowerCase()));
 		
 		// Ship Location
 		output2("\n<b><u>Current Ship Details</u></b>");
@@ -2639,10 +2643,11 @@ public function displayQuestLog(showID:String = "All"):void
 						case 0: output2(" Cow"); break;
 						case 1: output2(" Stud"); break;
 						case 2: output2(" Cum-Cow"); break;
-						case 3: output2(" Faux-Cow"); break;
+						case 3: output2(" Cow Stud"); break;
 						case 4: output2(" Cow-mazon"); break;
 						case 5: output2(" Double Stud"); break;
 						case 6: output2(" Undersized"); break;
+						case 7: output2(" Faux-Cow"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					// Timer stuff
@@ -2734,6 +2739,7 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2(" Asked Penny, Accepted, Penny recruited, Completed");
 				}
+				if(flags["ONZIA_GOT_PQUEST_LOOT"] != undefined) output2("\n<b>* Onzia:</b> Helped her, Split rewards with her");
 				if(flags["PQUEST_ZILTRAP_RESULTS"] != undefined || flags["PQUEST_PENNY_PODDED"] != undefined)
 				{
 					output2("\n<b>* Ziltraps:</b> Seen them");
@@ -3087,7 +3093,7 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
-				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE"] >= 2) output2(", Defeated her");
 				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
 				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
 				if(flags["NYM-FOE_ACTIVATED"] != undefined) output2(", On patrol");
@@ -5509,7 +5515,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TTGYM_SIMONE_DP_GYM"] != undefined && flags["TTGYM_SIMONE_DP_GYM"] > 0) output2("\n<b>* Simone, Times You DP’d Her (Gym):</b> " + flags["TTGYM_SIMONE_DP_GYM"]);
 					if(flags["TTGYM_SIMONE_DP_HOME"] != undefined) output2("\n<b>* Simone, Times You DP’d Her (Home):</b> " + flags["TTGYM_SIMONE_DP_HOME"]);
 					if(flags["TTGYM_SIMONE_FUCKED_PUSSY"] != undefined) output2("\n<b>* Simone, Times You Fucked Her Pussy:</b> " + flags["TTGYM_SIMONE_FUCKED_PUSSY"]);
-					if(flags["TTGYM_SIMONE_MUTUAL_FAP"] != undefined) output2("\n<b>* Simone, Times You Dildoed Eachother:</b> " + flags["TTGYM_SIMONE_MUTUAL_FAP"]);
+					if(flags["TTGYM_SIMONE_MUTUAL_FAP"] != undefined) output2("\n<b>* Simone, Times You Dildoed Each Other:</b> " + flags["TTGYM_SIMONE_MUTUAL_FAP"]);
 				}
 				if(flags["WATCHED_LEE"] != undefined && flags["WATCHED_NICO"] != undefined) output2("\n<b>* Lee and Nico:</b> Watched them fuck");
 				variousCount++;
@@ -5590,7 +5596,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				//Kase the pyrite kittyboi 
 				if(flags["KASE_INTRO"] != undefined)
 				{
-					output2("\n<b>* Kase:</b> Met him" + (flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined ? ", Left Mhen’ga" : "") + (flags["KASE_CREW"] != undefined ? ", Joined crew" : "") + (flags["KASE_HEALED"] == 1 ? ", Arm healed" : ""));
+					output2("\n<b>* Kase:</b> Met him");
+					if(flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined) output2(", Left Mhen’ga");
+					if(kaseIsRecruited())
+					{
+						output2(", Crew member");
+						if(kaseIsCrew()) output2(" (Onboard Ship)");
+						else output2(" (At Tavros Station)");
+					}
+					if(flags["KASE_HEALED"] == 1) output2(", Arm healed");
 					if(flags["KASE_SEXED"] != undefined) output2("\n<b>* Kase, Times Sexed:</b> " + flags["KASE_SEXED"]);
 					if(flags["KASE_3SUM_ANNO"] != undefined) output2("\n<b>* Kase, Times had threesome with Anno:</b> " + flags["KASE_3SUM_ANNO"]);
 				}
@@ -8309,6 +8323,33 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			//breedwell premium contract info
+			if(breedwellPremiumContractCount() > 0 || flags["BREEDWELL_PREM_POD_BAN"] == 1)
+			{
+				output2("\n<b><u>Premium Breeder Contracts</u></b>");
+				if(flags["BREEDWELL_PREM_POD_BAN"] == 1) output2("\n<b>* Premium Breeder, Banned from Breeding Pods!</b>");
+				if(flags["BREEDWELL_PREM_CON_BAN"] == 1) output2("\n<b>* Premium Breeder, Banned from Premium Breeder Contracts!</b>");
+				output2("\n<b>* Premium Breeder, Number of Contracts Signed:</b> " + breedwellPremiumContractCount());
+				if(flags["BREEDWELL_PREM_MISS_QUOTA"] >= 1) output2("\n<b>* Premium Breeder, Punishment for Missing Quota Pending!</b>");
+				if(flags["BREEDWELL_PREM_BACKPAY"] >= 1) output2("\n<b>* Premium Breeder, Backpay Due:</b> " + flags["BREEDWELL_PREM_BACKPAY"]);
+				if(breedwellPremiumUnderContract())
+				{
+					if(breedwellPremiumContractCount() > 1) output2("\n<b>* Premium Breeder, Current Contract: 180 Days</b>");
+					else output2("\n<b>* Premium Breeder, Current Contract: 90 Days</b>");
+					if(flags["BREEDWELL_PREM_DAY"] != undefined) output2("\n<b>* Premium Breeder, Day of Contract:</b> " + flags["BREEDWELL_PREM_DAY"]);
+					if(flags["BREEDWELL_PREM_QUOTA"] != undefined) output2("\n<b>* Premium Breeder, Monthly Birth Quota:</b> " + flags["BREEDWELL_PREM_QUOTA"]);
+					if(flags["BREEDWELL_PREM_KID_CNT"] != undefined) output2("\n<b>* Premium Breeder, Births (Current Month):</b> " + flags["BREEDWELL_PREM_KID_CNT"]);
+					if(flags["BREEDWELL_PREM_SEX_CNT"] != undefined) output2("\n<b>* Premium Breeder, Subscribers Relieved (Current Month):</b> " + flags["BREEDWELL_PREM_SEX_CNT"]);
+					if(flags["BREEDWELL_PREM_KID_CNT_CON"] != undefined) output2("\n<b>* Premium Breeder, Births (Current Contract):</b> " + flags["BREEDWELL_PREM_KID_CNT_CON"]);
+					if(flags["BREEDWELL_PREM_SEX_CNT_CON"] != undefined) output2("\n<b>* Premium Breeder, Subscribers Relieved (Current Contract):</b> " + flags["BREEDWELL_PREM_SEX_CNT_CON"]);
+				}
+				if(flags["BREEDWELL_PREM_KID_CNT_TTL"] != undefined) output2("\n<b>* Premium Breeder, Births (Lifetime):</b> " + flags["BREEDWELL_PREM_KID_CNT_TTL"]);
+				if(flags["BREEDWELL_PREM_SEX_CNT_TTL"] != undefined) output2("\n<b>* Premium Breeder, Subscribers Relieved (Lifetime):</b> " + flags["BREEDWELL_PREM_SEX_CNT_TTL"]);
+				if(flags["BREEDWELL_PREM_TTL_PAY"] != undefined) output2("\n<b>* Premium Breeder, Earnings (Lifetime):</b> " + flags["BREEDWELL_PREM_TTL_PAY"]);
+				if(flags["BREEDWELL_PREM_PUNK_CNT"] != undefined) output2("\n<b>* Premium Breeder, Times Punished for Keeping Babies:</b> " + flags["BREEDWELL_PREM_PUNK_CNT"]);
+				if(flags["BREEDWELL_PREM_PUNQ_CNT"] != undefined) output2("\n<b>* Premium Breeder, Times Punished for Missing Quota:</b> " + flags["BREEDWELL_PREM_PUNQ_CNT"]);
+				variousCount++;
+			}
 			// Quaelle
 			if(flags["QUAELLE_MET"] != undefined)
 			{
@@ -8319,11 +8360,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(quaelleInSnit()) output2(", In a Snit");
 				if(quaelleHasLeft()) output2(", Has Left");
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
-				if(chars["QUAELLE"].hasCock() && chars["QUAELLE"].cumQ() > 0)
-				{
-					if(chars["QUAELLE"].virility() <= 0) output2("\n<b>* Quaelle, Virility:</b> Infertile");
-					else output2("\n<b>* Quaelle, Virility:</b> " + Math.round(chars["QUAELLE"].virility()*1000)/10 + " %");
-				}
+				if(chars["QUAELLE"].hasCock() && chars["QUAELLE"].cumQ() > 0) output2("\n<b>* Quaelle, Virility:</b> " + Math.max((Math.round(chars["QUAELLE"].virility()*1000)/10), 0) + " %");
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
 				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);
 				if(flags["QUAELLE_FUCK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Back Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_BACK"]);

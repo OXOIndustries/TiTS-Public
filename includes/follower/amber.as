@@ -524,6 +524,48 @@ public function amberComeWithSleep():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+// 9999
+public function amberBootFromCrew():void
+{
+	clearOutput();
+	amberHeader();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	flags["AMBER_CREWMEMBER"] = 2;
+	//if(flags["CREWMEMBER_SLEEP_WITH"] == "AMBER") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Amber is no longer on your crew. You can find her again on Mhen’ga.</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// 9999
+public function amberRejoinCrew():void
+{
+	clearOutput();
+	amberHeader();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	//currentLocation = "SHIP INTERIOR";
+	flags["AMBER_CREWMEMBER"] = 1;
+
+	output("\n\n(<b>Amber has rejoined your crew!</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
 //crew activity blurb for ship 
 public function amberShipBonusText():String
@@ -634,7 +676,9 @@ public function amberMainMenu():void
 	if (amberDumbfuckDoses() <= 2) addButton(3,"Brush Fur",amberOnshipBrushFur,undefined,"Brush Fur","Give Amber’s soft animal ears a nice fluffing and petting.");
 	else addDisabledButton(3,"Brush Fur","Brush Fur","You already know the only type of touch Amber’s keen on right now is a much more sensual one.");
 	addButton(4,"Sex",amberOnshipSex,undefined);
-
+	
+	//9999 addButton(13, "Leave Crew", amberBootFromCrew, undefined, "Leave Crew", "Ask Amber to move off the ship. You’ll be able to pick her up again later.");
+	
 	addButton(14,"Leave",crew);
 }
 //look at amber
@@ -1909,7 +1953,7 @@ public function amberOnshipSexSuckCock():void
 	
 	output("\n\n<i>“Cl-closer,”</i> Amber grunts, hardly managing speech between hilting herself in the cocksheath of your mouth. <i>“Get- getting closer!”</i>");
 	output("\n\nYou can feel it, too, her cock thickening inside your throat and the massive equine flare at the head of it swelling to what feels like three times the size it was when she started. It drags along the inside of your throat, easily filling the entire enclosed space and spitting precum everywhere, coating your insides with Amber’s juices. Her moans of pleasure get higher and louder until she’s almost screaming with every thrust, the ecstasy mounting until it’s just too much to resist.");
-	output("\n\n<i>“Oh fuck! Fuck! [pc.name]!”</i> Amber screams out loud, throwing her head back and shoving herself so deep inside you that you suddenly have your lips spread in an O around the thick base of her immense cock as it begins to throb inside your throat. <i>“Fuck! Fuck! Fuck!”</i>");
+	output("\n\n<i>“Oh fuck! Fuck! [pc.name]!”</i> Amber screams out loud, throwing her head back and shoving herself so deep inside you that you suddenly have your lips spread in an ‘O’ around the thick base of her immense cock as it begins to throb inside your throat. <i>“Fuck! Fuck! Fuck!”</i>");
 	output("\n\nShe lets out a long, groaning wail of blissful release as a stream of spunk travels down her shaft to jet into your stomach. Your neck bulges while you submissively suck load after hot load from the plump balls pressed against your chin, Amber beginning to thrust again while she cums. Each time she hilts herself she sings out in joy, another spurt of equine jism splattering into your tummy.");
 	output("\n\n<i>“Nnnnnnhhhh! Nnnnnnngggh... Hhhhnnn-!”</i> Amber strains, her underside quivering with the effort of cumming. <i>“Guh! Ffffuck! Nnngh!”</i>");
 	output("\n\nListening to her grunts and groans of animal pleasure, you can’t help yourself. You cum all over the floor, untouched and unprovoked save for the throbbing cock embedded in your throat. Eyes rolling back in your head from the lack of air and the submissive pleasure, you sit there limply with your vision swimming as Amber finishes draining her oversized balls into your stomach. Finally satisfied, she withdraws her length from your well-used fuckhole with a light moan, her flare popping free of your lips with a wet slap and a pop.");

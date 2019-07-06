@@ -124,7 +124,7 @@
 					if(target.hasVagina()) kGAMECLASS.output(" your womb");
 					kGAMECLASS.output(" as your body’s fertility is shut down completely.");
 					if(target.hasTailCock()) kGAMECLASS.output(" Even your tailcock feels like it’s now shooting blanks.");
-					else if(target.hasTailCunt()) kGAMECLASS.output(" Even your tailcunt feels like it’s gilded in protection.");
+					else if(target.hasTailCunt() && !target.hasParasiteTail()) kGAMECLASS.output(" Even your tailcunt feels like it’s gilded in protection.");
 					
 					target.createStatusEffect("Infertile",1,0,0,0, false, "Icon_DrugPill", "You are unable to make any pregnancies happen.", false, 1440,0xB793C4);
 					

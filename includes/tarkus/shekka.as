@@ -160,7 +160,7 @@ public function shekkaMainMenu():void
 	}
 	else if(flags["SHEKKA_ISSUES"] == 7 && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You’ll need to wait a while before you can get any more information on the cure.");
 	else if(flags["SHEKKA_ISSUES"] == 7 && MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) addDisabledButton(1,"Cure","Cure","You’ll need to wait a while before you can get any more information on the cure.");
-	else if(flags["SHEKKA_ISSUES"] == 8) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
+	else if(flags["SHEKKA_ISSUES"] == 8 && !shekkaRecruited()) addButton(1,"Join Crew",shekkaRepeatJoinCrew,undefined,"Join Crew","Invite Shekka to join your crew.");
 	else if(MailManager.isEntryViewed("shekkaFollowerIntroMail") && (flags["SHEKKA_ISSUES"] == undefined || flags["SHEKKA_ISSUES"] == 1)) addButton(1,"Talk",raskvelCureQuestShekkaTalk,undefined,"Talk","Talk with Shekka about the Raskvel.");
 	else addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
 	if(pc.lust() >= 33)
@@ -180,6 +180,9 @@ public function shekkaMainMenu():void
 	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven’t found any special salvage to sell.");
 	if(peacekeeperTalkAvailable()) addButton(9,"Peacekeepers",shekkaPeacekeeperTalk);
+	
+	if(shekkaRecruited()) addButton(13, "Join Crew", shekkaRejoinCrew, undefined, "Join Crew", "Ask Shekka to rejoin your crew and move back into your ship.");
+	
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -889,6 +892,9 @@ public function shekkaFlirtSexMenu():void
 public function shekkaSexMenu():void
 {
 	clearMenu();
+	
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
+	
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(chars["SHEKKA"].vaginalCapacity()) >= 0) addButton(0,"Fuck Her",bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang,undefined,"Fuck Her","Bend Shekka over her desk and fuck her while she tries to keep working.");
@@ -900,11 +906,11 @@ public function shekkaSexMenu():void
 	//Big Dick Ear Shenanigans
 	//big dick requirement in tandem with a minimum height requirement of around 5'6" (5-6 feet)
 	//Requires 500mLs fo cum
-	//trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + pc.cumQ());
-	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && pc.cumQ() >= 500) 
+	//trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + cumQ);
+	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && cumQ >= 500) 
 		addButton(2,"Big Dick",hugeEarShekkaFaps,undefined,"Big Dick Shenanigans","Use your oversized member on the small mechanic. She’s gotta have some way to please it, right?");
 	else if(pc.tallness < 60) addDisabledButton(2,"Big Dick","Big Dick Shenanigans","You aren’t tall enough for this.");
-	else if(pc.cumQ() < 500) addDisabledButton(2,"Big Dick","Big Dick Shenanigans","Your dick isn’t productive enough for this. You’ll need a bit more cum on tap!");
+	else if(cumQ < 500) addDisabledButton(2,"Big Dick","Big Dick Shenanigans","Your dick isn’t productive enough for this. You’ll need a bit more cum on tap!");
 	else addDisabledButton(2,"Big Dick","Big Dick Shenanigans","This scene requires a large dick, a height of above five feet, and large volume of cum.");
 
 	//MilkQ over 1000
@@ -2954,7 +2960,7 @@ public function shekkaJoinCrewOffer():void
 	showShekka();
 	author("SomeKindofWizard");
 	output("You step through the threshold into Shekka’s place, noticing a few differences. For one; her usually-cluttered bench is practically spotless, but for a picture-frame that continues to gently flicker through different pictures of young rasks of all shape and color. Perhaps some of the ‘first batch’ of kids.");
-	output("\n\nThere’s a clattering sound in the distance and a mutter of <i>“Why the fuck did I keep half of this crap?”</i>. You call out into the Widget Warehouse, and there’s an alarmed yelp accompanied by the sounds of a crunching box and falling metal. <i>“I’m okay!”</i>");
+	output("\n\nThere’s a clattering sound in the distance and a mutter of <i>“Why the fuck did I keep half of this crap?”</i> You call out into the Widget Warehouse, and there’s an alarmed yelp accompanied by the sounds of a crunching box and falling metal. <i>“I’m okay!”</i>");
 	output("\n\nShekka climbs into view, wiping some smeared oil off of her face with a muted ‘blech’. It takes a few moments, but she snaps back to reality. <i>“Oh! Right... you’re probably here to talk about... y’know...”</i> she takes a deep breath and folds her arms beneath a petite chest.");
 	output("\n\nShe takes a few more moments to steel herself before continuing, eyes big and earnest. <i>“You’ve been so damned wonderful, and done an amazing thing for my people. I’d like to join up with you... and spend more time with you. I’ll fix up your ship, keep you company... and keep you company.”</i> The extra emphasis on ‘company’ that second time gives you a pretty good idea of what that means.");
 	output("\n\n<i>“What do you think?”</i>");

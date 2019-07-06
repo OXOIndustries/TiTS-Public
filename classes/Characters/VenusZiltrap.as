@@ -180,6 +180,7 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			this.createStatusEffect("Disarm Immune");
 			//this.createStatusEffect("Stun Immune");
 			this.createStatusEffect("Blind Immune");
 			

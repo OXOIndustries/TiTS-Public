@@ -710,7 +710,7 @@ public function talkToTuuvaAboutDicks():void
 
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Boy parts grow in quick. Tuuva scared at first. Mostly want snu-snu, but also scared. Tuuva later live with it. Thought other korg not like Tuuva cause of it, but they no mind.");
-	else output("The dick and balls grew in really quick. I was scared shitless at first. I mean, I was mostly horny, but still scarred. I learned to live with it, though. I thought it would make me some kind of freak, but the others actually didn’t mind it that much.");
+	else output("The dick and balls grew in really quick. I was scared shitless at first. I mean, I was mostly horny, but still scared. I learned to live with it, though. I thought it would make me some kind of freak, but the others actually didn’t mind it that much.");
 	output("”</i>");
 
 	output("\n\n<i>“So, you’ve been fine with it?”</i>");
@@ -1261,7 +1261,7 @@ public function tuuvaDate3():void
 	output("\n\n<i>“Why ");
 	if(!korgiTranslate()) output("outsiders have so many shooties");
 	else output("do you people have so many guns");
-	output("?”</i> She whispers in your [pc.ear] For protection, you tell her. <i>“");
+	output("?”</i> She whispers in your [pc.ear]. For protection, you tell her. <i>“");
 	if(!korgiTranslate()) output("Outsiders need learn to be more sneaky, not just shooty everything!");
 	else output("You outsiders need to learn how to be more subtle, and not just put guns everywhere and shoot everything!");
 	output("”</i> She has a point, but that’s something for another day. For now, you’re at your ship.");
@@ -1270,7 +1270,7 @@ public function tuuvaDate3():void
 	if(crew(true) > 0) output(" You also introduce her your crew, mostly letting her hit it off, herself. ");
 	output("Finally, you take her to the cockpit, sitting her down while you prepare the launch sequence.");
 
-	output("\n\nShe sits and watches while you finish entering the sequence, an jumps a bit when she feels the ship lift off. She stares out in awe as you leave the planet’s atmosphere. She’s speechless as you completely exit the planet, face almost pressed against the glass of your view-screen.");
+	output("\n\nShe sits and watches while you finish entering the sequence, and jumps a bit when she feels the ship lift off. She stares out in awe as you leave the planet’s atmosphere. She’s speechless as you completely exit the planet, face almost pressed against the glass of your view-screen.");
 	output("\n\nIt’s at this point that you remember that you didn’t actually pick out a destination for this date! You flip through the extranet, looking for nearby events. Tuuva turns to you and notices what you’re doing.");
 	output("\n\n<i>“Something wrong?”</i>");
 	output("\n\n<i>“Um, no. Just getting the coordinates of where we’re going.”</i>");
@@ -1296,7 +1296,7 @@ public function tuuvaDate4():void
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("You like? Tuuva find it long time ago, save for special day");
 	else output("Do you like it? I found it a long time ago, in my scavenging days, and I’ve been saving it for a special day.");
-	output("”</i> You lean in and give her a big, long kiss, telling her that you love it, when your lips part. She smiles and goes back in for another kiss, and you spend the remainder of your wait time enjoying eachother.");
+	output("”</i> You lean in and give her a big, long kiss, telling her that you love it, when your lips part. She smiles and goes back in for another kiss, and you spend the remainder of your wait time enjoying each other.");
 
 	output("\n\nWhen you’re finally able to step off, you’re greeted by a pair of plant-like natives who shower you with flower petals. Verifore is just as much of a spectacle as you could have ever imagined. The warm sunlight bathes over miles of rainbow-colored plants, stretching far, wide, and tall. You could sit here and just look out into the horizon all day, but it seems like there’s a tour going on.");
 	output("\n\nThe guide comes up to you and gathers you into the group, leading you along the sparkling, silver path through the planet. The dryad-like woman takes you along a path that winds up and down the thick, lush plant-life, even going through several tunnels that, amazingly, are naturally made! Thick, knotted vines swirl around each other, creating a natural canopy that blooms with various, multi-colored flowers.");
@@ -1317,7 +1317,7 @@ public function tuuvaDate5():void
 	if(!korgiTranslate()) output("Tuuva never ever thought she’d do anything like this. Lover make Tuuva soooooooo happy!");
 	else output("I absolutely never thought I’d ever get to do anything this amazing. You make me so happy that I-I don’t even know what to say!");
 	output("”</i> You tell her that her being happy is all the thanks you need, causing her to burst out in tears of happiness.");
-	output("\n\nThe two of you cuddle together for the last few hours before you sleep, just enjoying eachother in this magical moment.");
+	output("\n\nThe two of you cuddle together for the last few hours before you sleep, just enjoying each other in this magical moment.");
 	processTime(4*60);
 	clearMenu();
 	addButton(0,"Next",tuuvaDate6);
@@ -1350,7 +1350,7 @@ public function fuckTuuva(x:int = 0):void
 	//If somehow shit is still fubar, set as no-go.
 	if(y == x) y = -1;
 	output("<i>“Roll over and show me that pussy!”</i>");
-	output("\n\nShe complies eagerly, flipping herself over, letting her [tuuva.cock] and [tuuva.balls] hang low as her fat little puppy pussy presents itself to you. Fat drops of fragrant cunt juice roll out of her slit, over her swolen, furless snatch, while her tail swings wildly above. Well, it’d be a waste to pass up such a juicy snack wouldn’t it? You grab onto her big, meaty sides and dig in.");
+	output("\n\nShe complies eagerly, flipping herself over, letting her [tuuva.cock] and [tuuva.balls] hang low as her fat little puppy pussy presents itself to you. Fat drops of fragrant cunt juice roll out of her slit, over her swollen, furless snatch, while her tail swings wildly above. Well, it’d be a waste to pass up such a juicy snack wouldn’t it? You grab onto her big, meaty sides and dig in.");
 	output("\n\n<i>“Ooooh, ");
 	if(!korgiTranslate())
 	{
@@ -1570,7 +1570,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		output(", easily gliding through you thanks to the massive amount of pheromone-laced girl juice she slathered both of you in");
 		if(x >= 0) pc.cuntChange(x,tuuva.cockVolume(0));
 		else pc.buttChange(tuuva.cockVolume(0));
-		output("\n\n<i>“Mhmm, nice!”</i>.");
+		output("\n\n<i>“Mhmm, nice!”</i>");
 	}
 	else
 	{
@@ -1688,7 +1688,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		else output("bowels");
 		output(" with what feels like gallons of seed. You see her big, black horsey balls pulse and throb heavily as the little doggo slut struggles to truly deal with the immense virility you gifted her with. Her face twists and contorts as she’s subjected to pleasures she was never meant to experience so intensely.");
 		output("\n\nYour body responds by bloating, your [pc.belly] filling out to pregnant proportions, each passing second seeming to add another month, and after that, a twin, then a triplet to your arbitrary, unborn-child-based measuring standard for cum inflation. It doesn’t stop there, and eventually her seed spills out around the seal her knot has made.");
-		output("\n\nYou feel like a [pc.race] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
+		output("\n\nYou feel like [pc.aRace] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
 		output("\n\nAt some point she stops cumming and collapses, leaving the both of you to bask in the afterglow.");
 	}
 

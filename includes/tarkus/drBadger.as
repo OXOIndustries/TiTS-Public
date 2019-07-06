@@ -13,6 +13,12 @@ public function drBadgerBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
+public function drBadgerAtBimbotorium():Boolean
+{
+	if(flags["DR_BADGER_TURNED_IN"] != undefined) return false;
+	return true;
+}
+
 public function bimbotoriumHallBonus():Boolean
 {
 	output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.");
@@ -39,6 +45,9 @@ public function bimbotoriumHallBonus():Boolean
 
 public function drBadgerMenu():void
 {
+	chars["DRBADGER"].keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
+	chars["DRBADGER"].keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
+	chars["DRBADGER"].keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
 	shopkeep = chars["DRBADGER"];
 	
 	clearMenu();
@@ -51,20 +60,8 @@ public function drBadgerMenu():void
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
 	
-	if(flags["NYM-FOE"] >= 3 && flags["NYM-FOE_DISASSEMBLED"] != undefined)
-	{
-		if(flags["NYM-FOE_REPAIR_QUEST"] == 1)
-		{
-			if(pc.hasItemByClass(SexbotChip, 6)) addButton(3,"Fix NymFoe",drBadgerLabNymFoe,"badger chip","Fix Nym-Foe","Turn in the sexbot VI chips to repair the Nym-Foe.");
-			else addDisabledButton(3,"Fix NymFoe","Fix Nym-Foe","You need at least 6 sexbot VI chips in order to repair the Nym-Foe.");
-		}
-		else addButton(3,"Fix NymFoe?",drBadgerLabNymFoe,"badger fix","Fix Nym-Foe?","Ask Doctor Badger about repairing the Nym-Foe.");
-	}
-	if(silly && flags["NYM-FOE"] >= 3 && (flags["NYM-FOE_SILICONE_BOOSTS"] != undefined || flags["NYM-FOE_ACTIVATED"] != undefined || flags["NYM-FOE_FUCKED"] != undefined))
-	{
-		if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == undefined) addButton(8,"Buy NymFoe?",drBadgerLabNymFoe,"badger buy","Buy Nym-Foe?","Request to buy the modded nurse bot.");
-		else if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == 0) addButton(8,"Take Pillow",drBadgerLabNymFoe,"pillow take","Take the Nym-Foe Body Pillow","Procure the perverted pillow.");
-	}
+	drBadgerFixNymFoeButton(3);
+	drBadgerBuyNymFoeButton(8);
 	
 	if(flags["MET_DR_BADGER"] != undefined)
 	{

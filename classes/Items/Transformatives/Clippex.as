@@ -1,6 +1,7 @@
 ﻿package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.rand;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -254,7 +255,7 @@
 						{
 							msg += "\n\n";
 						}
-						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
+						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is " + indefiniteArticle(target.nippleColor) + ", horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{

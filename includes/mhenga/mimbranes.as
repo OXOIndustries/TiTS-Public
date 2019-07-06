@@ -3824,7 +3824,7 @@ public function useDatMimbraneLikeACondom():void
 	} 
 	
 	if (pc.balls > 0) output(" More than a few heads would turn at the sight of your [pc.sack] clenching its damnedest, anxious for clemency.");
-	output(" A [pc.cumColor]");
+	output(" " + StringUtil.capitalize(indefiniteArticle(pc.cumColor())));
 	if (pc.cumQ() <= 100) output(" burst");
 	else if (pc.cumQ() <= 200) output(" fountain");
 	else if (pc.cumQ() <= 400) output(" downpour");

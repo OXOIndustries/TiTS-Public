@@ -1070,7 +1070,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{
-						AddLogEvent("Your facebones shifts as your muzzle take on an lean vulpine shape with a wet nose, much like that of a fox’s. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						AddLogEvent("Your facebones shift as your muzzle take on a lean vulpine shape with a wet nose, much like that of a fox’s. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					}
 				}
 				

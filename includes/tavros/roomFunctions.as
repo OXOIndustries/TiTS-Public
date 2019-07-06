@@ -186,15 +186,24 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():Boolean
 {
-	if(currentLocation == "9015")
+	if (currentLocation == "9015")
 	{
+		output("A neon sign displaying a pair of scissors sits next to a small store entrance with");
+		//disable nav to shear beauty if doing cum cleanup
+		if (ceriaHyperCumActive())
+		{
+			output(" a shut door and a closed sign displayed -- looks like Ceria’s still cleaning up the evidence of your passing!");
+			flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		}
+		else output(" its doors propped open to the east, allowing you a glimpse of the salon inside.");
+		output(" The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.");
 		vendingMachineButton(0, "J'ejune");
 	}
-	if(currentLocation == "9017")
+	else if(currentLocation == "9017")
 	{
 		repeatGilBonus();
 	}
-	if(currentLocation == "9018")
+	else if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
@@ -304,4 +313,8 @@ public function northWalkwayBonus():void
 {
 	fisiannaApartmentHandler(0);
 	kaseApartmentHandler(1);
+}
+public function resDeck17Func():void
+{
+	veltaAptBonus();
 }

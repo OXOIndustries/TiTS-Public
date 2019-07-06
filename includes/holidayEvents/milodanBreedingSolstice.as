@@ -211,12 +211,13 @@ public function celebrateSeasonsBreedings():void
 	output("\n\nYou barely pay attention to what she’s saying, other than the part about knocking her up. You’re way too busy plowing the breed-crazed virgin, reveling in her tight, spasming body as the tempo of your brutal fucking absolutely wrecks her. She’s a babbling, drooling mess by this point, barely able to do anything more than groan and twitch. It’s absolutely intoxicating to know that you’re able to do this to someone, Void, just the atmosphere of this place makes you feel like a beast!");
 	output("\n\nThat feeling grows even more intense as you start to taste something mixing in with the curvaceous MILF’s milk. It doesn’t even register until you feel a sudden shock in your [pc.balls]. Your jaw goes slack as it reverberates throughout your body. Your [pc.cock " + x + "] goes almost painfully rigid, and alien weight surges into your balls as you cum on the spot.");
 
-	if(pc.cumQ() < 8000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 8000) 
 	{
 		output("\n\nYou erupt inside her, pumping out far more than you ever thought you could. [pc.Cum] spills out of you in waves that make your previous orgasms look like trickles. By the time you’re done she has a noticeable cum belly that she rubs with reverence.");
 		output("\n\n<i>“T-thank y-you...”</i> She stammers before passing out.");
 	}
-	else if(pc.cumQ() < 40000)
+	else if(cumQ < 40000)
 	{
 		output("\n\nYour vision almost whites over as you violently erupt inside of her. The first shot bulges out her stomach, the second makes her look nine months pregnant. She does a damn good job keeping it all in up to that point, but your subsequent loads fill her beyond capacity and start to leak out. Her lusty stupor finally breaks as she looks down at her swelling stomach.");
 		output("\n\n<i>“S-shpirits! A-am I pregnant already?”</i> The girls around you laugh at her delirious statement as you continue to unload inside her. Your orgasm is longer and much messier than usual, and that’s saying something! By the time you’re done, you’re kneeling in a small pool of your own [pc.cumColor] fluids, the girl having long since passed out from exhaustion.");
@@ -234,7 +235,7 @@ public function celebrateSeasonsBreedings():void
 	output("\n\nThe ladies around you cry out in joy as you pull out of the well used girl. A few of them awww at your flagging erection, but the one you were suckling from quickly gets to work on that. Her mammaries are easily larger than her head, covering a good bit of her torso. They absolutely engulf your [pc.cock " + x + "] in such sublime warmth that it almost feels like you never pulled out of Valla!");
 
 	if(!pc.isTreated()) output("\n\nOf course, biology is a cruel mistress, and your refractory period is still kicking your butt. And with how many of them there are, you’re not sure how long you’ll hold out!");
-	else output("Of course, you’re hard again in seconds, thanks to your Treated libido. But with how many of them there are, and how riled up they seem to be, even you’re not sure how long you’ll last.");
+	else output("\n\nOf course, you’re hard again in seconds, thanks to your Treated libido. But with how many of them there are, and how riled up they seem to be, even you’re not sure how long you’ll last.");
 
 	output("\n\n<i>“I think our spacer might be feeling a little overwhelmed. Cybris, grab the Babymaker!”</i> The furry slut titfucking you yells out, causing the room to go suddenly quiet. Looking around, you see quite a few men looking around with a hint of fear, while others seem quite excited, and the women, at least the ones who aren’t insensate, are <i>very</i> excited. You’re confused, until Cybris comes back with the biggest chunk of Savicite you’ve ever seen!");
 	//Done Anno and Friends Foursome:
@@ -252,7 +253,7 @@ public function celebrateSeasonsBreedings():void
 	if(flags["UVETO_HUSKAR_FOURSOME"] != undefined) output(" It’s even stronger than the twin’s dildo!");
 
 	output("\n\n<i>“This treasure has been in our tribe for decades. A piece of savicite so large and pure as to be the envy of our neighbors. Said to contain the spirit of a mighty warrior chief, whose building lusts must be sated on each Solstice. Every year one lucky male");
-	if(pc.mf("","f") == "f") output(", or suitably equipped woman, in your case");
+	if(pc.mf("","f") == "f") output(", or suitably equipped woman in your case,");
 	output(" is selected to receive its gifts. You are the first outsider that’s been given the honor.”</i> She presses it harder. <i>“Lucky.”</i> You can feel the tip breaking through your pucker. <i>“You!”</i> She rams it in with all her might.");
 
 	pc.buttChange(900);
@@ -496,7 +497,7 @@ public function saintDickulousInYerPuss(girls:Boolean = false):void
 	output("You bend over and present your [pc.pussy] to the big beasty, spreading your lips wide to show off everything. The sack around her crotch immediately tents, the sound of seams tearing becoming audible throughout the room. She doesn’t take it off though, instead she simply approaches you and presents it. You know <i>exactly</i> what that means, and turn right back around.");
 	output("\n\nIt’s on surprisingly tight, and it’s a bit of a struggle to get it off. Your impatience grows as her scent wafts up into your nose. It’s strong and heady, even among the collective fragrance of the rest of the males. Your honeypot juices up and clenches in instinct, readying itself for the thorough breeding that’s to come. Your unraveling pulls turn into frustrated tugs and tears. You hope she doesn’t mind, but you need some dick!");
 	output("\n\nShe seems amused by your desperation, if the small chuckle she makes is any indication. She reaches down and pulls a string that you hadn’t noticed. The sack loosens and her dick is released, jutting up so fast that it smacks you on the tip of your nose, and tosses the bag several feet into the air. The momentary sting from the impact is quickly forgotten when you see her hermhood.");
-	if(flags["MET_KIRO"] == undefined) output("\n\nIt’s roughly the same size as Kiro’s, with huge balls that easily outclass the nuki’s, unless she’s <i>really</i> backed-up.");
+	if(flags["KIRO_BAR_MET"] != undefined) output("\n\nIt’s roughly the same size as Kiro’s, with huge balls that easily outclass the nuki’s, unless she’s <i>really</i> backed-up.");
 	else output("\n\nIt’s just shy of two feet, with balls easily bigger than a smaller person’s head.");
 	output(" It takes a second for the smell of it to hit you, but when it does you nearly fall to your knees. She must have been marinating her dick and balls in there for hours, the pheromone soup is so thick that you can see it steaming up in the cold air. The monstrous, milodan cock is already drooling a stream of heady pre that might as well be liquid ambrosia for you.");
 	output("\n\nYou dive onto her length, sucking her delicious juices straight from the tap before moving down to gather more of her sweet musk. Her whole shaft is like a pheromone lollipop, and you’re damned and determined to figure out how many licks it takes to get to the center!");

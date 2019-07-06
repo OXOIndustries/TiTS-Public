@@ -221,7 +221,7 @@ public function fedQuestRendevous():void
 	output("\n\nOne of the black-clad soldiers grunts, <i>“What the fuck? Is Command trying to get us killed?”</i>");
 	output("\n\n<i>“Just you, Marik,”</i> Lieve quips back, hefting herself up onto the hood of one of the armored trucks, facing the rest of the troops. <i>“Thankfully, Marshal Sellera’s managed to find us some backup. Everyone, meet [pc.name] Steele. You’ve all been briefed on how off-worlders fight: [pc.heShe] will be our walking tank. Let [pc.hisHer] shields take the hits, and we’ll sweep up after [pc.himHer].”</i>");
 	output("\n\n<i>“So how do we capture a queen that <b>wants</b> to fight?”</i> another of the troop asks. <i>“Dog-pile her?”</i>");
-	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
+	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat ass out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
 	output("\n\nGlancing between the troops, Lieve adds <i>“Yeah, I know. It’s gonna be rough, but we’ll manage. Always do. Any questions?”</i>");
 	
 	flags["MET_LIEVE"] = 1;
@@ -273,7 +273,7 @@ public function fedQuestTheQueen():void
 	output("<i>“So what do we know about the Queen?”</i>");
 	output("\n\nLieve shrugs. <i>“About as much as the Marshal probably told you, Steele. Estallia, aka the War Queen, is the only one of her kind to fight on the front lines. Led a battalion of her own daughters into combat, apparently quite effectively. Estallia and Sellera went head to head for most of the end of the war -- we all know how that turned out for her.”</i>");
 	output("\n\nThe rest of the troops laugh and cheer, tossing a few profanities about how they kicked the Queen’s ass in the war. And that they’ll do it again, too -- this time in person.");
-	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b<massive</b>. Crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
+	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b>massive</b> crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
 	output("\n\nLieve chuckles at herself. <i>“Not much more to say, really. Like I said, her troops are insanely loyal, so Fed Intel could never get close to her. Couldn’t even get the cypher for their comms out of prisoners, no matter how much venom we plied them with. Almost respectable.”</i>");
 	output("\n\n<i>“You would think that, gold-fucker!”</i> Marik says, flicking her tongue through a v-shaped cleft between two fingers. Some of the other troopers laugh, though a bit more hesitantly than before. Lieve takes something -- a bullet, maybe -- out of her vest pocket and flicks it at the bigger myr’s head, bouncing it off her red mohawk.");
 	
@@ -691,7 +691,7 @@ public function fedQuestAmbushVictory2():void
 	output("\n\n<i>“You give us all the fun jobs, boss,”</i> one of the commandos laughs.");
 	output("\n\nAnother adds, <i>“We’ll keep the bitches off you, captain. Just stick a boot up that queen’s tailpipe for the ones we lost.”</i>");
 	output("\n\n<i>“Settle down,”</i> Marik says. <i>“We’ve all got our jobs. Check weapons and ammo, get ready to move.”</i>");
-	output("\n\nThe commandos grunt a unified <i>“Yes, sergeant,”</i> and get to work shoving rounds into their rifles or passing out the remaining grenades.");
+	output("\n\nThe commandos grunt a unified, <i>“Yes, sergeant,”</i> and get to work shoving rounds into their rifles or passing out the remaining grenades.");
 	
 	processTime(10+rand(5));
 	
@@ -728,7 +728,7 @@ public function fedQuestAmbushVictorySupport():void
 	output("<i>“We’re gonna get help from the Federation now, right?”</i>");
 	output("\n\nMarik just laughs. <i>“No way. Nearest outpost is more than an hour out, and we can’t get artillery cover until we have the queen.”</i>");
 	output("\n\n<i>“[pc.HeShe] has a point, though,”</i> Lieve says, turning to one of the commandos with a trunk-sized primitive radio strapped to her back. <i>“Tell Sellera to get the 10th Armored out here on the double, or she’s going to be down a dozen pathfinders with no queen to show for it.”</i>");
-	output("\n\nThe radio-myr snaps a crisp salute and puts the reciver to her ear, starting to speak a rush of jargon that your translators can’t make heads or tails of.");
+	output("\n\nThe radio-myr snaps a crisp salute and puts the receiver to her ear, starting to speak a rush of jargon that your translators can’t make heads or tails of.");
 	output("\n\n<i>“Like Marik said, though, those tanks won’t be here for a while. We’re on our own for now.”</i>");
 	output("\n\nGreat.");
 	
@@ -745,7 +745,7 @@ public function fedQuestAmbushVictoryLeave():void
 	showBust("LIEVE", "RED_COMMANDO", "RED_HEAVY_WEAPONS");
 	showName("\nRENNEKE");
 	
-	output("You give Lieve a firm nod and turn towards the hallway, brushing past Marik as you do so. The big myr gives you a friendly clap on the shoulder, whispering <i>“Good luck." + (flags["MARIK_FLIRTED"] != undefined ? " Pull this off, and I’ll definitely show you what these muscles can do." : "") + "”</i>");
+	output("You give Lieve a firm nod and turn towards the hallway, brushing past Marik as you do so. The big myr gives you a friendly clap on the shoulder, whispering, <i>“Good luck." + (flags["MARIK_FLIRTED"] != undefined ? " Pull this off, and I’ll definitely show you what these muscles can do." : "") + "”</i>");
 	output("\n\n<i>“[pc.name],”</i> Lieve calls after you. She draws something from her belt -- a cannister about the size of her forearm, filled with a bubbling green liquid. <i>“Take this tranquilizer. It’s not enough to deal with the queen on its own, we don’t have enough left between us for that, but maybe you can get some use out of it. Slow her down, at least.”</i>");
 	output("\n\nYou take the vial and stow it in your pack.");
 	output("\n\n<i>“We’ll do what we can to keep the goldies off you,”</i> Lieve repeats. " + (hasFuckedLieveSolo() ? "She leans in, giving you a kiss on the cheek. The familiar warmth of residual venom burns where her lips touched you, making your heart go aflutter. <i>“Stay safe out there. I’m counting on you.”</i>" : "<i>“Stay safe.”</i>") + "");
@@ -1354,7 +1354,7 @@ public function fedQuestOfficerVictory():void
 	author("Savin");
 	
 	processTime(15+rand(6));
-	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under a [pc.foot]. Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
+	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under " + indefiniteArticle(pc.foot()) + ". Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
 	output("\n\n<i>“M-mother won’t fall so easily,”</i> she groans. <i>“And even if you defeat us, the spirit of freedom will live on!”</i>");
 	output("\n\nWhatever. You throw her primitive weapons out the window, and think of what to do with her...");
 	output("\n\n<b>You found the Queen’s keys</b>");
@@ -1531,7 +1531,7 @@ public function fedQuestRadioSet():void
 	else
 	{
 		output("\n\n<i>“Hello?”</i> you venture. <i>“This is [pc.name] Steele. Your daughter is unharmed... Queen Estallia.”</i>");
-		output("\n\nA moment’s silence passes. <i>“I’d heard there was a star-walked amongst this red filth. I thought your kind were supposed to be elevated, enlightened. Yet here you are, supporting the brutal war-mongers that have torn this planet apart.”</i>");
+		output("\n\nA moment’s silence passes. <i>“I’d heard there was a star-walker amongst this red filth. I thought your kind were supposed to be elevated, enlightened. Yet here you are, supporting the brutal war-mongers that have torn this planet apart.”</i>");
 		output("\n\n<i>“Seems to me like you’re the one keeping this war going,”</i> you answer back. <i>“We’re stopping you.”</i>");
 		output("\n\nYou hear a sharp breath, then a long sigh. <i>“I can’t allow that. I will reclaim my daughters, and you will be my prisoner. You must realize you are alone here. There is nobody left to stop me.”</i>");
 		output("\n\n<i>“We’ll see.”</i>");
@@ -2469,7 +2469,7 @@ public function fedQuestResolutionEscaped():void
 	
 	output("Lieve looks like she wants to say something, but instead bites her lip and guides you back outside. It’s a silent walk right up until you reach the gates leading back into town. There, Lieve finally lets a grunt and lets the tension out of her shoulders. ");
 	output("\n\n<i>“I’m sorry about... everything. The marshal was right: we needed Estallia. Badly. But I know me and my girls wouldn’t have made it out of that deathtrap without you. So thanks. I mean it.”</i>");
-	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
+	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. <i>“I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
 	else output("\n\nShe gives you a clap on the shoulder. <i>“We’ll get her someday... though probably without your help. I was afraid Sellera was going to try and have you thrown in the brig. No matter how badly we messed up... that would have been a mistake. I’m glad reason won out, because there’s nobody who could have stopped her if she’d decided to commit suicide by alien. Anyway! I’m gonna go check in on my wives, tell ‘em I’m okay. Come see me over at the gatehouse when you get a chance, okay?”</i>");
 	processTime(10+rand(5));
 	if(flags["FEDERATION_QUEST"] >= 7) flags["FEDERATION_QUEST_EVAC_TIMER"] = GetGameTimestamp();

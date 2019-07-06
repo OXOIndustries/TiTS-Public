@@ -422,7 +422,7 @@ public function yogaLesson3Cont():void
 	output("\n\nYou approach the modded Ausar non-threateningly. She doesn’t get a read on your body language at all. <i>“Good work again today, [pc.name],”</i> she tells you, smiling warmly. <i>“You’re making great progress, sweet thing. I’m looking forward to your next visit!”</i>");
 	output("\n\n<i>“Yeah, about that,”</i> you interrupt. Paige’s expression softens and her ears perk.");
 	output("\n\nYou ask her about the way she’s been conducting herself in her own classroom. Twice now, she’s shoved herself into your personal space and started touching you and pressing at you. The first time wasn’t quite so bad, and you chalked it up to her just trying to confirm good posture, but today, she was a little more... invasive than you appreciated");
-	if(pc.tone >= 50 && pc.tone <= 89) output("even if you kinda liked it");
+	if(pc.tone >= 50 && pc.tone <= 89) output(" even if you kinda liked it");
 	output(". Frankly, it wasn’t behavior you had come to expect from a professional.");
 
 	output("\n\n<i>“I’m just trying to make sure your form is correct, that’s all,”</i> she assures you, taking a submissive tone in her voice. <i>“Yoga is a very physical practice, and sometimes I need to take a more hands-on form of teaching to make sure my students don’t hurt themselves.”</i>");
@@ -866,7 +866,7 @@ public function paigeCrewToggle(recruit:Boolean = true):void
 		
 		flags["PAIGE_CREW"] = 0;
 		
-		output("\n\n(<b>Paige is no longer on your crew. You can find her again on Tavros Station.</b>)");
+		output("\n\n(<b>Paige is no longer on your crew. You can find her again in Tavros Station.</b>)");
 	}
 	
 	processTime(2);
@@ -1819,7 +1819,7 @@ public function leavePaige():void
 {
 	clearOutput();
 	showPaige();
-	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how a [pc.race] does it!”</i>");
+	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how [pc.aRace] does it!”</i>");
 	output("\n\nPaige follows you to the door of her unit.");
 	if(flags["SEXED_PAIGE"] != undefined) output(" Before you leave, she spins you around and gives you a quick kiss on your lips.");
 	output(" <i>“See you around,”</i> she giggles, then pushes you out.");

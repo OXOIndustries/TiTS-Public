@@ -3,10 +3,15 @@
 
 //Room Descriptions
 //Added to room on Tavros outside the salon
-
+/**
+	 * pitch doggy content coded by @author DrunkZombie
+	 */
 
 //output("\n\nA neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open, allowing you a glimpse of the salon inside. The sign above the door labels it as Shear Beauty.");
-
+/*
+ *  [CERIA_DOGGY] times you fucked her doggy style
+ *  [CERIA_HYPERCUM_TIMER] timestamp when shop was closed due to hyper cum
+ * */
 public function showCeria(nude:Boolean = false):void
 {
 	showName("\nCERIA");
@@ -51,7 +56,7 @@ public function shearBeautyBonusFunc():Boolean
 }
 
 //Meeting the Stylist
-public function approachCeria():void
+public function approachCeria(blurb:int=0):void
 {
 	clearOutput();
 	showCeria();
@@ -73,9 +78,23 @@ public function approachCeria():void
 	//Ceria Main
 	else
 	{
-		output("<i>“Hey, [pc.name]. Here for some styling, or buying some hair care products to take home?”</i>");
-		//PC has unlocked sex:
-		if(fuckedCeria()) output(" Ceria leans forward with a playful grin to show a little bit more cleavage. <i>“Maybe something more fun?”</i>");
+		if (blurb == 2)
+		{
+			output("Ehh, not this time. You just wanted to make her moan.");
+			output("\n\n<i>“Awhh, don’t tease me like that, [pc.name]!”</i> Ceria pouts. <i>“...But, I don’t mind... kinda beats the monotony...”</i>");
+			output("\n\nHer legs are grinding together really hard. Maybe you <i>should</i> help with that...");
+		}
+		else if (blurb == 1)
+		{
+			output("On second thought, you don’t have anything in mind.");
+			output("\n\nCeria pouts, <i>“Aw, don’t get a girl all turned on like that!”</i> Her brow sets in a supremely disappointed fashion before loosening up. <i>“Just let me know if we need to work something out, huh?”</i>");
+		}
+		else
+		{
+			output("<i>“Hey, [pc.name]. Here for some styling, or buying some hair care products to take home?”</i>");
+			//PC has unlocked sex:
+			if (fuckedCeria()) output(" Ceria leans forward with a playful grin to show a little bit more cleavage. <i>“Maybe something more fun?”</i>");
+		}
 		processTime(1);
 	}
 	ceriaMenu();
@@ -1050,7 +1069,7 @@ public function furColorApplicationGo(newColor:String):void
 
 //Chatting Up The Hairstylist
 //Ceria Talk
-public function ceriaTalk():void
+public function ceriaTalk(blurb:int=0):void
 {
 	clearOutput();
 	showCeria();
@@ -1067,9 +1086,18 @@ public function ceriaTalk():void
 	}
 	//PC’s used the store: 
 	else
-	{
-		output("<i>“I was thinking I might like to get to know you a little better.”</i> you say, prompting Ceria to lean over the counter just a little further.");
-		output("\n\n<i>“Oh? Well, I’ve always got time to talk to a " + pc.mf("hunk","cutie") + " like you. What do you want to know?”</i>");
+	{	
+		if (blurb == 1)
+		{
+			output("Ehh, not this time. You just wanted to make her moan.");
+			output("\n\n<i>“Awhh, don’t tease me like that, [pc.name]!”</i> Ceria pouts. <i>“...But, I don’t mind... kinda beats the monotony...”</i>");
+			output("\n\nHer legs are grinding together really hard. Maybe you <i>should</i> help with that...");
+		}
+		else 
+		{
+			output("<i>“I was thinking I might like to get to know you a little better.”</i> you say, prompting Ceria to lean over the counter just a little further.");
+			output("\n\n<i>“Oh? Well, I’ve always got time to talk to a " + pc.mf("hunk", "cutie") + " like you. What do you want to know?”</i>");
+		}
 		clearMenu();
 		//[Herself] Go to Herself
 		addButton(0,"Herself",ceriaTalkAboutHerself,undefined,"Herself","Ask her about herself");
@@ -1164,14 +1192,14 @@ public function touchPointyEars():void
 	pc.lust(12);
 	processTime(8);
 
-	ceriaSexMenu();
+	ceriaSexMenu(true);
 	//[Get Oral] Have Ceria give you some oral attention while you play with her ears. // Requires dick, vagina, or both.
 	//[Give Oral] Put your tongue to work on Ceria’s snatch. // No requirements.
 	//[Fuck Ceria] Take Ceria to the break room and give her pussy a pounding. // Requires dick.
 	//[Fairy Footjob] You wouldn’t mind finding out what those slipper feet feel like on your dick. // Requires dick.
 	//[Give-And-Take Earplay] Let Ceria show you just how sensitive elven ears can really be. // Requires PC to have elven ears of at least 2 inches in length and a dick, vagina, or both.
 	//[Back] Go to Ceria Talk
-	addButton(14,"Back",ceriaTalk);
+	addButton(14,"Back",ceriaTalk,1);
 }
 
 
@@ -1203,25 +1231,31 @@ public function ceriseSexApproach():void
 	ceriaSexMenu();
 }
 
-public function ceriaSexMenu():void
+public function ceriaSexMenu(earTouch:Boolean = false):void
 {
 	clearMenu();
 	showCeria();
+	var reject:int = 1;
+	if (earTouch) reject = 2;
 	//[Get Oral] Have Ceria give you some oral attention while you play with her ears. // Requires dick, vagina, or both.
 	if(pc.hasCock() || pc.hasVagina()) addButton(0,"Get Oral",getOralFromCeria,undefined,"Get Oral","Have Ceria give you some oral attention while you play with her ears.");
 	else addDisabledButton(0,"Get Oral","Get Oral","You need a penis or vagina in the normal place to do this.");
 	//[Give Oral] Put your tongue to work on Ceria’s snatch. // No requirements.
 	addButton(1,"Give Oral",giveDatElfSlootOral,undefined,"Give Oral","Put your tongue to work on Ceria’s snatch.");
 	//[Fuck Ceria] Take Ceria to the break room and give her pussy a pounding. // Requires dick.
-	if(pc.hasCock() && pc.cockThatFits(400) >= 0) addButton(2,"Fuck Ceria",fuckCeria,undefined,"Fuck Ceria","Take Ceria to the break room and give her pussy a pounding.");
+	if(pc.hasCock() && pc.cockThatFits(chars["CERIA"].vaginalCapacity(0)) >= 0) addButton(2,"Fuck Ceria",penisRouter,[fuckCeria,chars["CERIA"].vaginalCapacity(0),false,0],"Fuck Ceria","Take Ceria to the break room and give her pussy a pounding.");
 	else addDisabledButton(2,"Fuck Ceria","Fuck Ceria","You need a penis that’ll fit inside Ceria to fuck her.");
 	//[Fairy Footjob] You wouldn’t mind finding out what those slipper feet feel like on your dick. // Requires dick.
 	if(pc.hasCock()) addButton(3,"Footjob",fairyFootjob,undefined,"Fairy Footjob","You wouldn’t mind finding out what those slipper feet feel like on your dick.");
 	else addDisabledButton(3,"Footjob","Footjob","You need a dick to get a footjob.");
 	if(pc.hasVagina()) addButton(4,"Ear Fuck",earFuckWithCeria,undefined,"Ear Fuck","Since those ears are so sensitive, and of appropriate length... why not try putting one inside a vagina.");
-	else addDisabledButton(4,"Ear Fuck","Ear Fuck","You need a vagina if you want to put her ear inside one.");
+	else addDisabledButton(4, "Ear Fuck", "Ear Fuck", "You need a vagina if you want to put her ear inside one.");
+	if(!pc.isTaur() && pc.hasCock() && pc.cockThatFits(chars["CERIA"].vaginalCapacity(0)) >= 0 && flags["FUCKED_CERIA"] >= 2) addButton(5,"Pitch Doggy",fuckCeriaDoggy,earTouch,"Pitch Doggy","Use your " + (silly ? "cocksleeve" : "elf") + "’s mouth to lube up and then push her up against her counter... or maybe the window...?");
+	else if (pc.isTaur()) addDisabledButton(5, "Pitch Doggy", "Pitch Doggy", "You need to be on one or two limbs of locomotion to access this scene.");
+	else if (flags["FUCKED_CERIA"] == undefined || flags["FUCKED_CERIA"] < 2) addDisabledButton(5, "Pitch Doggy", "Pitch Doggy", "Warm her up to you a little; try her out before you really get invested in pounding her!");
+	else addDisabledButton(5,"Pitch Doggy","Pitch Doggy","You need a penis that’ll fit inside Ceria to fuck her.");
 	//[Back] Go to Ceria Main
-	addButton(14,"Back",approachCeria);
+	addButton(14,"Back",approachCeria,reject);
 }
 
 //Get Oral
@@ -1256,7 +1290,7 @@ public function getOralFromCeria():void
 	var x:int = -1;
 	if(dick) 
 	{
-		x = pc.cockThatFits(400);
+		x = pc.cockThatFits(chars["CERIA"].vaginalCapacity(0));
 		if(x < 0) x = pc.smallestCockIndex();
 		output("\n\nCeria starts off by wrapping a hand around your dick, letting you feel the cool softness of her glittering gloved hand. Despite the metallic appearance her fingers are flawlessly silky smooth, practically gliding across the [pc.cockColor " + x + "] surface of your cock.");
 		output("\n\n<i>“Nice, hm? I’m not enough of a fairy fanatic to want wings, but these? Totally worth losing being able to do my nails for.”</i> Ceria keeps stroking until the very first droplet of [pc.cumColor] pre begins to form at your [pc.cockHead " + x + "], at which point her handjob stops. You’re given just enough time to catch your breath before you finally feel those glittering lips brush your cock, as Ceria tips her head down to envelop the [pc.cockHead " + x + "] and the first inch of your dick with her mouth.");
@@ -1277,6 +1311,7 @@ public function getOralFromCeria():void
 			output("\n\nFinally you can’t hold your [pc.balls] back any longer, letting out a grunt as you fill Ceria’s mouth with your [pc.cumNoun]. Ceria puts up a valiant effort, but your torrential supply of seed is too much, and she’s forced to let go with a keening gasp, falling back against the coffee table behind her while you douse her face and those bouncy elf tits with your [pc.cumNoun]. Lucky for her she took her clothes off beforehand, or she’d be wearing a [pc.cumColor] shirt for the rest of the day.");
 			output("\n\nAs she comes to, Ceria surveys her sticky form with a groan. <i>“Oh geez, you </i>are<i> one of those " + pc.mf("guys","girls") + " who cums buckets! You could have warned me, [pc.name]!”</i> You point out that she hardly would have been able to remember while she was cumming, leading her to playfully bat at your thigh with one hand. <i>“And whose fault is that? You’re the one who was working magic on my ears the whole time.”</i>");
 		}
+		chars["CERIA"].loadInMouth(pc);
 	}
 	else
 	{
@@ -1301,6 +1336,8 @@ public function getOralFromCeria():void
 
 		output("\n\n<i>“Oh, " + pc.mf("hunk","cutie") + ", you really know how to make a girl’s ears feel like heaven. I’m glad I took my pants off first.”</i>");
 		if(pc.wetness() >= 3) output(" Ceria wipes her face down with her hands, licking them clean of your [pc.girlCumNoun]. <i>“Could’ve warned me you were such a faucet down here, though... well, not that I mind with a pussy as [pc.girlCumFlavor] as yours.”</i>");
+		
+		chars["CERIA"].girlCumInMouth(pc);
 	}
 	output("\n\nYou help Ceria clean up the mess the two of you have made and retrieve your gear before she ushers you out to clean herself off. A minute later she returns to the salon counter, a fresh piece of bubblegum in her mouth and a very satisfied look on her face.");
 	processTime(24);
@@ -1346,21 +1383,22 @@ public function giveDatElfSlootOral():void
 
 	//[Next] Exit conversation with Ceria.
 	processTime(24);
-	pc.lust(13+rand(10));
+	pc.lust(13 + rand(10));
+	pc.girlCumInMouth(chars["CERIA"]);
 	fuckedCeria(true);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Fuck Ceria
-public function fuckCeria():void
+public function fuckCeria(x:int=0):void
 {
 	clearOutput();
 	showCeria(true);
 	author("Couch");
-	var x:int = pc.cockThatFits(400);
-	var y:int = pc.cockThatFits2(400);
+	
 	if(x < 0) x = pc.smallestCockIndex();
+	var y:int = pc.cockThatFits(chars["CERIA"].analCapacity(),"volume",[x]);
 	output("You tell Ceria that you’d like to take her into the break room for some fun if she’s interested. She leans further over the counter, giving you an amused look. <i>“Oh, feeling forward, are you? Sure, I’ve got time for a break.”</i> The hairstylist disposes of her bubblegum before she escorts you into the back of the salon and into the break room.");
 	output("\n\nNo sooner is the door closed than you feel Ceria’s breasts press up against your [pc.chest] and her arms drape around your hips. You take the hint and kiss her, tasting the strawberry flavor of her metallic lips. Ceria pulls you closer and brings one hand up to your back");
 	if(pc.hasWings()) output(", her fingers brushing that sensitive spot right between your wings. Oh, yes, she definitely knows what she’s doing back there");
@@ -1484,7 +1522,9 @@ public function fuckCeria():void
 			output("\n\nIt’s quite a while before Ceria comes back out to the counter, looking back to normal. She shoots you an annoyed look, but you can’t help but notice she’s got a bit of a smile tugging at her cheeks... and she’s looking just a little less trim than usual.");
 		}
 	}
-	processTime(33+rand(10));
+	processTime(33 + rand(10));
+	chars["CERIA"].loadInCunt(pc, 0);
+	if (y >= 0) chars["CERIA"].loadInAss(pc);
 	pc.orgasm();
 	fuckedCeria(true);
 	clearMenu();
@@ -1527,11 +1567,12 @@ public function fairyFootjob():void
 	if(pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output("right on top of your medial ring, ");
 	output("where she plants the underside of her foot against your shaft and begins to stroke up and down. Her left foot continues to work your [pc.knot " + pc.biggestCockIndex() + "], retaining its perfect coolness even as you feel yourself heating up from the exotic footjob.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYou hardly notice that Ceria’s feet have angled your dick towards yourself until you cum, ");
-	if(pc.cumQ() < 250) output("sending [pc.cumNoun] splattering across your [pc.chest] to leave a [pc.cumColor] stain across your front.");
+	if(cumQ < 250) output("sending [pc.cumNoun] splattering across your [pc.chest] to leave a [pc.cumColor] stain across your front.");
 	else output("a fountain of [pc.cumColor] erupting from your cock to drench you in wave after wave of [pc.cumNoun].");
 	//PC has fucked or been blown by Ceria before and has excessive volume: 
-	if(pc.cumQ() >= 500 && flags["CERIA_MOUTH_FLOOD"] != undefined) output(" Ceria laughs as you wipe away some of the [pc.cumVisc] spunk from your face. <i>“Now you know what it feels like!”</i>");
+	if(cumQ >= 500 && flags["CERIA_MOUTH_FLOOD"] != undefined) output(" Ceria laughs as you wipe away some of the [pc.cumVisc] spunk from your face. <i>“Now you know what it feels like!”</i>");
 	output(" You’re left to stew in your own juices for a few seconds as she admires the view before finally handing you a towel to start cleaning up. While you do, you’re treated to the sight of Ceria cleaning off her feet with a much smaller towel, buffing them until they’re glistening flawlessly once more without a hint of [pc.cumColor].");
 	output("\n\nYou’re ushered out of the break room once you’ve cleaned yourself off, while Ceria lingers to set the room back in order. She comes back out to the front shortly after, giving you a wink.");
 
@@ -1639,8 +1680,522 @@ public function earFuckCeriaPart3():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+//Fuck Ceria Doggy
+public function fuckCeriaDoggy(earTouch:Boolean = false):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok:int = rand(pc.cockTotal());
+	var kok2:int = pc.cockThatFits(chars["CERIA"].analCapacity(), "volume", [kok]);
+	var firstTime:Boolean = true;
+	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
+	
+	if (earTouch) 
+	{
+		if (firstTime)
+		{
+			output("Oh, you’ll be taking responsibility alright. In the time it takes for her to slam dunk her used gum into a bin, you’ve");
+			if (pc.isCrotchExposed()) output(" already stroked your [pc.cocks] to a pliant, happily twitching state. The [pc.cockHeads] stare at her in expectation.");
+			else output(" already undone your clothing and stroked your [pc.cocks] to half-stiffness, the [pc.cockHeads] twitching happily.");
+			output("\n\n<i>“U - Uhmm... that was fast,”</i> she laughs, <i>“but let’s-”</i>");
+			
+			if (pc.isBimbo()) output("\n\n<i>“Nuh-uh, cutie!”</i> you smile winningly, <i>“gimme the key so’s I can get that door closed!”</i>");
+			else if (pc.isBro()) output("\n\n<i>“Give me the key to the salon and we’ll get started,”</i> you grin, pumping yourself up to another level of hardness.");
+			else if (pc.isNice()) output("\n\n<i>“Not just yet,”</i> you say. <i>“Give me your salon key and I’ll take good care of you.”</i>");
+			else if (pc.isMischievous()) output("\n\n<i>“Lemme stop you there,”</i> you raise a hand. <i>“Give me the front door key so I can dick your pretty ass right here.”</i>");
+			else output("\n\n<i>“No. Give me your key and I’ll bang your pussy.”</i>");
+	
+			output("\n\nCeria blinks twice, ears bobbing faster to a deepening blush. <i>“O-Okay, sure. The little green one,”</i> she replies, handing you a weighty keychain.");
+			output("\n\nWith your [pc.cocksLight] flapping in the breeze you [pc.walk] to the door, smile at all the people walking by unawares, and lock it up tight. After flipping the dangling card to ‘closed’, you look to the lascivious elf.");
+		}
+		else
+		{
+			output("No way indeed. You snatch her keychain and [pc.move] to the door. Once it’s closed and locked down tight, you turn back to the elfin stylist and");
+			if (pc.isCrotchExposed()) output(" stroke your [pc.cocks] into raw readiness.");
+			else output(" drop trou, stroking your [pc.cocks] into raw readiness.");
+			output("\n\n<i>“Mmmm,”</i> the lewd elf pulls down her top to expose one tit. <i>“Bring " + (pc.cockTotal() > 1 ? "those" : "that") + " over here already.”</i>");
+			output("\n\nNo need to ask twice.");			
+		}
+	}
+	else if (firstTime) 
+	{
+		output("Ceria pitches her gum to the waste bin and spreads her caramel legs apart. The fae stylist’s ears swivel provocatively and her body posture subtly changes to push her chest out. <i>“Sooo... break room, [pc.name]?”</i> she asks, slipping an azure hand past her denim pants.");
+		output("\n\nAs if to say <i>not this time,</i>");
+		if (pc.isCrotchExposed()) output(" you grab your [pc.cocks] and stroke them until blood points them straight at her lips.");
+		else output(" you fish out your [pc.cocks] and stroke them to half-erectness, the [pc.cockHeads] pointed right at her lips.");
+		output("\n\n<i>“U-Uhhmm...”</i> she murmurs, eyes fixated on your");
+		if (pc.isCrotchExposed()) output(" unsealed");
+		output(" package.");
+		
+		output("\n\nLooking to the door, you note that it’s rather chilly in here. Station filtration must be acting up, surely. With a");		
+		if (pc.isBimbo()) output(" broad smile");
+		else if (pc.isBro()) output("n impish smirk");
+		else if (pc.isNice()) output(" broad smile");
+		else if (pc.isMischievous()) output(" sly grin");
+		else output("n impish smirk");
+		output(" you tell her to give you the key to the salon.");
+		
+		output("\n\n<i>“W-wait, why?”</i> she stammers");
+		
+		if (pc.isBimbo()) output("\n\n<i>“‘Cuz the door’s open, silly!”</i> you casually point out.");
+		else if (pc.isBro()) output("\n\nYou stab a finger to the door. <i>“Don’t want anyone walking in on this, do we?”</i>");
+		else if (pc.isNice()) output("\n\n<i>“So I can close the door, of course,”</i> you reply noncommittally.");
+		else if (pc.isMischievous()) output("\n\n<i>“Don’t want anyone walking in while we’re busy!”</i> you laugh.");
+		else output("\n\n<i>“I’m taking you right here and now, that’s why,”</i> you glower.”</i>");
+		
+		output("\n\n<i>“O-oh, sure...”</i> she fidgets, throwing up a weighty keychain. <i>“The little green one.”</i>");
+		output("\n\nYou stride to the door and kick the stopper up before locking it tight, flipping the sign from ‘open’ to ‘closed’. Now, it’s time to get down to business.");		
+	}
+	else
+	{
+		
+		if (pc.isBimbo()) output("<i>“Gonna bend you over, of course!”</i> you declare, beaming.");
+		else if (pc.isBro()) output("<i>“Get those pants off and you’ll find out,”</i> you grin.");
+		else if (pc.isNice()) output("<i>“You.”</i> A blush spreads on your face. <i>“I like when you stick your butt out at me.”</i>");
+		else if (pc.isMischievous()) output("<i>“Got a lot in mind...”</i> you smirk. <i>“...Like where I’m going to pin you.”</i>");
+		else output("<i>“Bending you over,”</i> you reply.");
+	
+		output("\n\n<i>“I...”</i> Ceria stammers, her ears twitching. <i>“...I like the sound of that!”</i> She pitches her gum to the bin and hands you her keychain.");
+		output("\n\nYou [pc.walk] to the salon’s glass door and lock it up tight, flipping the dangling sign to ‘closed’. Looking to the lascivious elf,");
+		if (pc.isCrotchExposed()) output(" your [pc.cocks] swell" + (pc.cockTotal() > 1 ? "" : "s") + " another inch.");
+		else output(" it’s a simple matter to fiddle with your clothes until your [pc.cocks] spill out half-way hard.");		
+	}
 
+	if (firstTime)
+	{		
+		output("\n\nWhen you walk behind the counter Ceria’s already pulled her pants down to the legs of her chair, one thumb pushed an inch into her bimbo-pink slit. <i>“Right here, you said?”</i> she mewls from a touch to her button-like clit.");
+		if (pc.hasPheromones() || pc.inRut()) output(" When your libidinous scent overtakes the elf’s sense of smell her whole body quivers. <i>“G-Geez, anyone ever t-tell you... you smell really good?”</i>");
+		output("\n\nWhile you appreciate the view, you’ve got plans here. All it takes to open up her rosette mouth is a pinch to the ear, and your moan-muffling dick handles the rest.");
+	}
+	else
+	{		
+		output("\n\nCeria knows what you’re here for and she’s made herself ready. When you walk behind the counter she’s undressed completely and already masturbating in her chair. The sylvan beautician beckons you closer");
+		if (pc.hasPheromones() || pc.inRut()) output(" taking a long, healthy whiff of your arousing " + (pc.inRut() ? "rut-" : "") + "musk");
+		output(", staring at your prick with uncontained lust. <i>“C’mon, [pc.name], I’m all yours.”</i> Her rosette lips open wide, granting you passage.");
+	}
+	output("\n\nYou push past her gilded fuckpillows, flattening her tongue outside her mouth just before pressing the [pc.cockHead " + kok + "] to her throat and taking your rightful place. Her sapphire-blue eyes glaze over with instant cock-lust when you crane her head up and shove more of your thickening meat into her straining jaw. For all her mods you’re surprised she hasn’t gotten one for her tongue with how much she loves being on the end of a fat dick. A drooling, squeezing muscle jerking you on your esophageal plunge would go a long way.");
+	output("\n\nWhat she’s got now is good enough though, and it’s already doing an admirable job: massaging your cum-vein into dribbling the first [pc.cumVisc] rewards into her maw. You don’t deep-throat her straight away, content to flood her cheeks with pre. She takes an immediate liking to your [pc.cumFlavor] goo, working her muscles to smear as much of it as possible on your swelling shaft all while one hand goes to work on her enthusiastically gushing puss.");
+	output("\n\nIn the space of another three heartbeats her cheeks groan and expand to contain the copious amount of pumped pre. A river of slick stuff spills through the vacant inches between her lips and your [pc.cockNoun " + kok + "]. Glistening lubricant pours down your shaft as you thrust a little deeper, battering at the borders of her gag reflex. Cummy saliva pools at and dangles from your [pc.knotBallsHilt " + kok + "] in lofty strings, creating a fine glaze of [pc.cumNoun]-scented pole polish that you splatter into her face with each socketing lunge.");
+	output("\n\nYou brace yourself by grabbing onto her head, steadying your breathing. Ceria huffs, her tongue wiggling wildly and uncontrollably, desperate for a taste right from the bursting source. Her right hand goes half-limp, still finding the strength to work up the first of her orgasms, eyes fluttering appreciatively. The vibrating moan of her voice around your meaty bone signals her euphoric success. The air in the salon is already being saturated with the strawberry-scented aroma of a fertile slut, and that, for all intents and purposes, was just a flash in the pan.");
+	output("\n\nBut it is what compels you to piston against the entrance of the elf slut’s so-far welcoming mouth with greater force. Her untrained throat reacts as you’d expect, locking up and denying entrance to your aggressive intrusion.");
+	output("\n\nIt’s an obstacle you’re both chipping away at. Her resistance refreshes every time you pull back, always giving up another inch on the next stuffing. When she tweaks her clitty you gain two.");
+	if (pc.cockCanSting(kok)) output(" Having a bunch of stingers offload their ovulation-inducing lust-venom is making a huge difference as well.");
+	output(" Soon enough, your [pc.cockHead " + kok + "] is bulging against the front of her neck. Success cascades from there. Repeated pressure overcomes her gag reflex until it (and she) bends and breaks, and your victorious thrust takes you");
+	if (pc.cocks[kok].cLength() > 14) output(" nearly to her belly, some of your member’s [pc.dickSkin " + kok + "] left unholstered.");
+	else output(" [pc.knotBallsHilt " + kok + "]-deep.");
+	
+	if (pc.isBimbo()) output("\n\n<i>“Lookin’ good down there! How’s the taste?”</i> you sing");
+	else if (pc.isBro()) output("\n\n<i>“Yeah, you like that, don’t you babe?”</i> you grin");
+	else if (pc.isNice()) output("\n\n<i>“Hang in there, it’ll get easier,”</i> you smile");
+	else if (pc.isMischievous()) output("\n\n<i>“Remember to breathe, don’t want you passing out,”</i> you chuckle");
+	else output("\n\n<i>“Don’t worry, we’re just getting started,”</i> you laugh");	
+	output(", gazing at her dick gobbling face");
+	if (pc.isBimbo() || pc.isBro()) output("- of course she likes it!");
+	else output(".");	
+	output(" A heated moan gurgles out around your big, throbbing girth");
+	if (firstTime) output(" as you prepare to teach this elf-shaped cocksleeve what a real facefucking is.");
+	else output(" as you prepare to facefuck your elf-shaped cocksleeve into a cum-seeping mess.");
+	output("\n\nIn a single motion you withdraw and impale her throat on your [pc.cock " + kok + "], working yourself into a frenzy. Your [pc.hips] respond to the incessant hormonal signals spurring them to fuck the stylist’s lip-shaped twat, howling from the hypersensitive, rubbery texture sweeping along your mass. She’s gonna need to redo a lot of dyework when you’re through, because your [pc.cumColor] lacquer has already seeped into every crevice of her hard work.");
+	output("\n\nNow that you think about it, her ears haven’t been touched in a while. It’s a simple matter to free a hand and pinch a good spot in the middle of her seven-inch appendage. A different kind of aural whiplash strikes her brain, and you can see every synapse exploding seconds before her eyes roll back into complete delirium. She doesn’t have the strength to moan, only the wherewithal to breathe and lamely swallow.");
+	output("\n\nThe chair and even the counter begin to rock and wobble dangerously from the sheer force of your relentless fucking. It takes a hot minute to remember that you’re not trying to cum, only get yourself ready to bang her cunt into a million pieces.");
+	if (pc.cockTotal() > 1) output(" Not cumming is an impressive feat all told, what with " + (pc.cockTotal() > 2 ? num2Text(pc.cockTotal()-1) + " other dicks" : "your other dick") + " slapping her senseless and pouring out more and more hot spoo.");
+	output("\n\nHer neck is hugging so tightly that her eyes begin to water. Tears of conquered bliss roll down her cheeks while you claim her so assertively. Her head must be spinning; she’s not concerned with guzzling any of the cream, just happy to lean back and be taken by her favorite customer. You’re sliding in and out of her with so much passion that the outline of your [pc.cockHead " + kok + "] can be seen as it travels effortlessly through her subdued neck-muscles");
+	if (pc.cocks[kok].cLength() > 14) output(" drilling straight for her belly on every thrust");
+	output(".");
+	
+	if (kok2 >= 0) output("\n\nSpit-shining one dick isn’t enough, so you pull out and quickly shove " + (pc.cockTotal() > 2 ? "another in" : "the other in") + ", plowing her smooth throat in an equally lurid display. You wonder, while she gives your anal-destined dong the surface coating it needs, if there’s a camera recording this. Maybe you can download your homemade elf smut to keep you warm on your explorations of space later. Once you’re happy with its new slaver-coated look, you get your first back in there while making an even bigger mess of her DSL’s.");
 
+	output("\n\nPerhaps because she’s finally adjusting to her role, Ceria reaches up to brace herself on your [pc.thighs]");
+	if (pc.balls > 0) output(", wrapping a hand around your [pc.ballsNoun] and giving the sloshing, twitching sack a loving squeeze");
+	output(". She’s expecting you to cum any second, but when you feel the need churning just below and about to snap like a watchspring, you dive all the way in then yank yourself out so hard that she tumbles from the chair gagging and hacking.");
+	output("\n\nSpit and pre bubble out of her gap while she looks up to you on all fours. The entire floor is an expanding soup of combining DNA. The overhead fluorescent light is eclipsed by your length, which overshadows Ceria’s face.");
+	if (firstTime)
+	{
+		output(" <i>“Why are we stopping? You were so close, [pc.name]!”</i>");
+		output("\n\nBecause it’s time for her real reward. The question is, where does she get it?");
+	}
+	else
+	{
+		output(" <i>“P-Please, don’t make me wait! I’m so close to cumming, [pc.name]!”</i>");
+		output("\n\nYou’re very aware. But where are you propping her up?");
+	}
+	
+	processTime(5 + rand(10));
+	clearMenu();
+	addButton(0,"Countertop",penisRouter,[fuckCeriaDoggyCounter,chars["CERIA"].vaginalCapacity(0),false,0],"Countertop","Bend Ceria over her counter and fuck her. Very traditional, mm yes.");
+	addButton(1,"Window",penisRouter,[fuckCeriaDoggyWindow,chars["CERIA"].vaginalCapacity(0),false,0],"Window","Push Ceria up against the glass entrance so that everyone can see her boobs smushed against the door while she takes your [pc.cockNoun " + kok + "].");
+}
+
+//Fuck Ceria Doggy Counter
+public function fuckCeriaDoggyCounter(kok:int=0):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok2:int = pc.cockThatFits(chars["CERIA"].analCapacity(), "volume", [kok]);
+	var firstTime:Boolean = true;
+	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
+	var venomDicks:int = 0;
+	if (pc.cockCanSting(kok)) venomDicks += 1;
+	if (kok2 >= 0 && pc.cockCanSting(kok2))
+	var tentacleDicks:Number = pc.tentacleCockCount(true,[kok,kok2]);	
+	
+	output("Ahh... yes, that’ll do nicely. Her desk will take the brunt of your sex easily, considering it’s bolted to the floor.");
+	output("\n\nCeria hums when you pick her up and spin her around. She catches the desk, instantly assuming a position that bends her into an appealing L-shape. Her large, tan ass is stuck out, and the hot-pink cunt between her impressive thighs is already declaring its eagerness. The elf’s saccharine petal-perfect sex is a drooling, syrup-glazed nexus dripping uninterrupted before your eyes. Cords of girlslime run their course down her dewy vulva before sagging to the floor.");
+	output("\n\n<i>“Ready when you are!”</i> she says, wiggling her gropeable tush in your direction, batting more of her mouthwatering flavor your way.");
+	if (pc.tallness < 52) output("\n\nWith your small stature, you require a little boost. Fortunately, there’s a metal cabinet you can drag over as a handy platform to level your [pc.cocks] out with her slit. ");
+	else output("\n\n");
+	output("You grab Ceria’s wide waist, thoughts of fattening her curves with motherhood jetting out more wads of pre. She’s so wet and ready that you could hilt yourself in one go.");
+	output("\n\nBut why rush? You’ve got her where you want her, and you’d be a poor lover if you didn’t spend some time appreciating what’s on offer. The second you put your [pc.hand] to her pussy she rocks back and forth in a dangerous tremble; a sprinkle of girlcum drizzles out into your palm, denoting her status as a puddler, not a squirter.");
+	if (pc.cockTotal() > 1)
+	{
+		output(" Her winking anus shifts and contracts through climax, the loop of tight muscle relaxing in tempting invitation.");
+		if (kok2 >= 0) output(" It calls for your second cock like Juliet to Romeo.");
+		else output(" Sadly, your extra dong’s too big to fit. <b>Maybe you should pop some Condensol next time?</b>");
+	}
+	output("\n\n<i>“Needy, aren’t you?”</i> you quip, clasping her pussy-buzzer and earning another flow of finger-glazing juices from her sopping slot.");
+	output("\n\nCeria doesn’t respond, and for that, you squeeze one of the fae creature’s sweaty buttcheeks. The soft, warm flesh yields to your grip, ripples fanning out when her slender frame twists and writhes in panting need. Your fingers sink partway into her bubble-shaped ass when you clap circles of delight into the pillowy orbs. Fondling and rubbing, you bring your veiny [pc.cocksLight] to bear, guiding your");
+	if (pc.isHerm()) output(" herm-");
+	else output(pc.mf(" man-"," girl-"));
+	output("hood" + (pc.cockTotal() > 1 ? "s" : "") + " into her cleft, teasing both her anxious holes with the titanium boner" + (pc.cockTotal() > 1 ? "s" : "") + " you’ve popped.");
+	if (pc.cockTotal() >= 3) output(" You can’t resist having a little fun, mindlessly humping and thrusting against her plush derriere. Your [pc.multiCocks] slap across every cheek and fling your liquid arousal everywhere, letting the phallic-obsessive elf know just how much penile weight you’re packing for her.");
+	else if (pc.cockTotal() >= 2) output(" You swivel your waist up and down, slapping your [pc.cockHeads] into both open slots, smearing pre across her derriere.");
+	else output(" Your [pc.cockHead " + kok + "] glides across the sloppy surface of her labia, drenching itself in elf-juice before it settles at the cusp of her suckling gash.");
+	
+	output("\n\nThe elf spreads her legs when you put gradual pressure on her");
+	if (kok2 >= 0) output(" pussy and ass, entering into twin valleys");
+	else output(" pussy, entering into a valley");
+	output(" of taut, suckling muscle. Ceria’s lust-plumped pussy is a peach you intend to enjoy before the temptation to breed her overwhelms. She grips tight to the rim of her desk and grits her teeth, groaning out a crescendoing moan that the entire building could hear.");
+	if (kok2 >= 0) output(" Her ass is much the same, if a little more stubborn. The ring parts and you power in at first change, embedding your [pc.cockHeads] into their new homes.");
+	
+	output("\n\nYou drive into the sparkling elf with gusto, wasting no time in " + (firstTime ? "" : "re") + "discovering the limits of her silk-soft glove. Her thighs squeeze together, compressing your [pc.cock " + kok + "] tighter in her stuffed, drenched hole, more hot juices washing over your snatch-plugging staff like a welcoming gift. Her nerves register the presence of a virile paragon with nothing but the utmost excitement, bending and milking the [pc.cockColor " + kok + "] inches you push deeper towards her womb.");
+	if (pc.cocks[kok].cLength() >= 9) output(" Ceria’s gushing pussy can handle your girth, there’s no doubt, but her body isn’t built to take dicks your size [pc.knotBallsHilt " + kok + "]-deep. Her body thrashes bonelessly when your [pc.cockHead " + kok + "] slaps against her cervix, her abdomen surely bloating with the outline of you girthy pressure.");
+	else output(" Ceria’s vice takes the slap of your [pc.knotBallsHilt " + kok + "] to her butt happily, and when she coos in rapturous pleasure you pat her ass in approval.");
+		
+	if (kok2 >= 0) 
+	{
+		output("\n\nInner muscles clench around your second cock with virginal tension. Ceria’s back arches with both her holes being violated, breaking her brain with the dual pleasure of double penetration. Now that enough pre has flooded her cavern you can press on with heated relish. Despite the lubrication you make painfully little headway, only claiming a few inches past her peanut-colored ring. Seizing her wriggling thighs you slam yourself forward before the urgency crackling across your [pc.belly] stirs an early orgasm.");
+		if (pc.cocks[kok].cLength() >= 7) output(" Your girth proves too much a strain for her rear to properly house. Though you don’t make it all the way in, you satisfy yourself with the bulges in her sublime form.");
+		else output(" Conquering her ass slaps the full weight of your [pc.hips] to her cushiony ass, dominating her innards with your twin shafts.");
+		
+		if (pc.cockTotal() >= 3) output("\n\nWhile Ceria loses herself to the daze of repeating, penetrative orgasm, you make use of a third avenue of pleasure available only to someone with all this dick to offer. You bring your third dick down into the valley of her spread butt-cheeks, plenty of organic cleavage there for you to slide between while you spear her mind and body. All of the pressure you feel on your first backstroke is orgasm-worthy; if you’re not careful you’ll black out from sensory deprivation before even starting. The elf-sleeve’s clenching shudders (and the endless tides of girlspunk warming your groin) tell you she’s climaxing harder than her body’s used to. After a few rounds, though, she’ll get used to it.");
+	}
+	
+	pc.cockChange();
+	
+	output("\n\nCeria makes for a lovely fuck, and after the initial obstinacy vanishes, you’re pumping and spurting and clapping the sylvan stylist to your heart’s content. Again, again... again, you find yourself marveling most at the texture of her pussy and how it squeezes, how it doesn’t know what it’s like to <i>not</i> be creaming it’s biologically assigned mate every five seconds. The velveteen texture of her modded body is something special too, and you can’t resist leaning forward and getting a handful of tatted tit for your trouble.");
+	output("\n\nFilling the palm of your hand, her hefty boobies have the right amount of suppleness and jiggle that keeps you coming back for more. Your fingers clasp around the small, jutting nipples capping her manhandled swells, rolling them between your knuckles before pinching down and yanking as if to milk her. Nothing comes out except a few droplets of sweat and an ecstatic moan.");
+	output("\n\nCome to think of it, she hasn’t had much opportunity to speak. When you prompt her for something, all you get is a long <i>“Mooooooreeee!”</i>");
+	output("\n\nGood enough. She’s too weak to actively participate in the deep dicking" + (kok2 >= 0 ? "s" : "") + " you’re giving her - you’re railing her so hard the entire desk is vibrating, knocking over little knick knacks and edging the registry book closer to a loud tumble. Your frenzied state speaks volumes of the coarse desire for elf-" + (kok2 >= 0 ? "holes" : "cunt") + " running through your veins");
+	if (venomDicks > 0) output(" and all the lusty " + (pc.race() == "suula" ? "suula" : "alien") + "-venom your stinger-equipped dick" + (venomDicks > 1 ? "s have" : " has") + " dumped into her");
+	output(".");
+	
+	if (kok2 >= 0) output("\n\nTendrils of color streak across your vision, and you’re only vaguely aware of how much better you’re starting to feel pounding her ass into the perfect mold of your gemini girth. Her snug sphincter has loosened up to such a degree that it’s practically yawning in acceptance, and that can only be because of her dutiful effort to please you. The reward she gets is an open-hand spank on the ass that sets off a cataclysmic clenching throughout her body. It takes all your willpower not to spunk her then and there, but even if you did, you’d just keep fucking her through it.");
+	
+	output("\n\nAt this point you’re convinced that this elf’s body was made for you. The little bit of resistance you fought at the beginning of this was worth what came after, being able to sink your [pc.fingers] into her every erogenous zone, to savor the bucking of her cock-stuffed hips against your aggressive technique. She’s been fucked so silly that there’s little else for her in life but to hold on and beg for more dick, which you’re always happy to give.");
+	output("\n\nHer aching " + (kok2 >= 0 ? "holes have" : "cunt has") + " this way of clamping down on every lush thrust, hugging you out of loneliness. You see to that sensual agony, accelerating to an absolutely feverish, rump-thumping pace, fucking Ceria’s jutting orifice" + (kok2 >= 0 ? "s" : "") + " with every intention of draining your [pc.ballsNoun] into " + (kok2 >= 0 ? "them" : "it") + ". Sexual shockwaves clap in wide circles on her quaking ass, flexing every muscle in her slender torso; the thrill of being a suitable cocksheath winds around her spine like a rope of pure energy, stimulating her into acts of increasing indecency.");
+	output("\n\nSeeing as how her ears are the only things left to touch, you free your ass-petting hand to grip the elf’s pointy ear like a monkey bar, revving her engine with an almost savage curl. An ear-shattering screech erupts from her lungs when you do that and she ragdolls in your grip, nearly bucking you off from aural climax. You fuck her for a few dozen strokes more before repeating on the other ear. The state of her convinces you that she’s on the edge of her most explosive orgasm, and the only way to keep her under control is by grabbing that convenient ponytail.");
+	if (tentacleDicks > 0)
+	{
+		output("\n\nThis wouldn’t be a proper " + (silly ? "hentai" : "encounter") + " if your tentacles were left out, would it?");
+		output("\n\nWhich is why your tentacle is slithering up to her mouth, plugging her neck like the generous, verdant dildo it is. When you cum, she’s going to get it in every hole, and from the garbled squeals coming up her throat, she can’t wait to get filled so absolutely.");
+		if (tentacleDicks >= 2) output(" But why stop there? Her tits need some company while your hands are busy elsewhere. Tentacles are prehensile for a reason, able to ring the pert mounds of a needy slut, coiling and writhing with a serpent’s grip, ready to jizz all over her when the time comes.");
+		if (tentacleDicks >= 3) output(" And while you’re at it, she could probably handle another one in her mouth. The sap-flavored pre is already building an incredible heat in her body, and elves need their protein, dammit!");
+		if (tentacleDicks >= 4) output(" And her hands. If she wants something to hold on now, then she’s got <i>your tendrils!</i>");
+	}
+	
+	processTime(10 + rand(12));
+	clearMenu();
+	if (pc.inRut())
+	{
+		output("\n\nUp to this point there has been no conflicting desire in your mind. You’re here to <i>breed</i> this elf, not just leave her a gooey mess. Biting the inside of your cheek, you feel an electrical aura envelope your " + (pc.balls > 0 ? "[pc.ballsNoun]" : "waist") + ", supercharging your libido for an eye-blurring cycle of humps. You’re plowing her like a rabbit in short, rapid bursts, in a rhythm that would leave many envious. Reproductive urges wash from crown to root. You <i>cannot cum outside.</i> Your loads are already beginning to gush in the fertile fairy’s fuckhole, bringing with them the soothing rush of satisfied nature.");
+		addButton(0,"Next",fuckCeriaDoggyCounterInside,[kok,kok2,tentacleDicks],"Next","Fill the elf.");	
+	}
+	else
+	{
+		output("\n\nA throbbing beat multiplies across your waist" + (pc.balls > 0 ? ", ending at your [pc.ballsNoun]" : "") + ". You’ve screwed Ceria from climax to climax, and now yours is preparing for takeoff just as her greatest orgasm flings out between your [pc.thighs]. Pushing past all the tightness, one thought rides the geyser of spunk waiting to detonate. Are you going to cum inside or outside?");
+		addButton(0,"Inside",fuckCeriaDoggyCounterInside,[kok,kok2,tentacleDicks],"Inside","Fill the elf.");
+		addButton(1,"Outside",fuckCeriaDoggyCounterOutside,[kok,kok2,tentacleDicks],"Outside","Mark the elf.");		
+	}
+}
+//Fuck Ceria Doggy Counter cum inside
+public function fuckCeriaDoggyCounterInside(arg:Array):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok:int = arg[0];
+	var kok2:int = arg[1];
+	var tentacleDicks:Number = arg[2];
+	var mess:int = 1;
+	
+	output("Your [pc.cumVisc] bounty releases deep into Ceria’s body, pumping her womb" + (kok2 >=0 ? " and stomach" : "") + " full of [pc.cum] in spouting wads. She hums and huffs, pacified by the rush of proffered spunk into her nirvana-overwhelmed cunt. Hot gouts of spooge pour into her " + (kok2 >=0 ? "twin holes" : "searing pussy") + " even while you piston in a manic sire’s trance, never satisfied with the last thrust. Her ass flushes from the heated spunk you slam into her with delicious relish");
+	if (pc.balls > 0) output(", the greatest pleasure coming when you feel your own sack contracting rhythmically against her taint");
+	output(".");
+	if (tentacleDicks > 0)
+	{
+		output(" Your tentacles cum too, sending a rush of seed down from the top into her belly");
+		if (tentacleDicks >= 2) output(" and all across her sluttily jiggling tits");
+		output(".");
+		if (tentacleDicks >= 4) output(" Ropes of fresh excess throb out of your unslotted cock" + (tentacleDicks >= 5 ? "s" : "") + " too, giving the painted elf a few new tattoos that you think go great with the fantasy pink.");
+	}
+	if (pc.cumQ() >= 1000)
+	{
+		output("\n\nClimax continues to surge upward out of you, distending your [pc.cocks]" + (tentacleDicks >= 1 ? " and tentacles" : "") + " with vein-bulging volumes of [pc.cumNoun]. Ceria’s nut-stuffed gut groans and expands, ruining her lithe frame and bringing her closer to the ground to house your ceaseless orgasm. Still, you thrust, you’re slapping and twapping against her ass with lube-squelching thrusts and fleshy thwacks, draining all the renewing tension in your feral need to flood the elf until you go dry.");
+		if (tentacleDicks > 0) output(" She’s so full that she’s begun overflowing from the mouth and her holes, but you keep hammering in, making sure she looks like she just tripped and fell into a pool of [pc.cumColor] dye. Every beat of your heart is enough to pump out more than the last spurt, like a magical force is squeezing on your prostate and coaxing out bigger blobs from your cum-tank of a body.");
+	}
+	
+	processTime(5);
+	chars["CERIA"].loadInCunt(pc, 0);
+	if (kok2 >= 0) chars["CERIA"].loadInAss(pc);
+	if (tentacleDicks >= 1) chars["CERIA"].loadInMouth(pc);
+	if (tentacleDicks >= 3) chars["CERIA"].loadInMouth(pc);
+	pc.orgasm();
+	fuckCeriaDoggyCloseOut(mess);
+}
+//Fuck Ceria Doggy Counter cum outside
+public function fuckCeriaDoggyCounterOutside(arg:Array):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok:int = arg[0];
+	var kok2:int = arg[1];
+	var tentacleDicks:Number = arg[2];
+	var mess:int = 0;
+	var cumQ:Number = pc.cumQ();
+	
+	if (cumQ >= 1000)
+	{		
+		mess = 2;
+		output("Orgasm obliterates every other consideration like a brick to the head, and pulling out is a senseless ordeal. [pc.Cum] is rising up like an impending tide, forcing your [pc.cocksLight] into a jacking, uncontrollable bounce that sprays streamers of spooge through the room. Once you get it under control, you’re making an art show of Ceria’s body and her desk. [pc.CumGem] gouts of thick, slick orgasm plaster her shuddering body and get <i>everywhere.</i> You’re filling up anything that even remotely resembles a container, and building up a nice little pool while you’re at it. At some point you don’t even see the elf for the prodigious amount of spoo.");
+		if (cumQ >= 6000)
+		{
+			mess = 3;
+			output("\n\nSperm explodes out of you; you’re cumming and cumming, spurting like the endless press of a bellows. No matter how furiously you jack your [pc.cocksLight], you can’t stop yourself from stumbling and basting the ceiling, the walls, the front entrance... fuck, pretty much the entire salon is a gunked morass of cum, festooning the tattooed heavily-spunked elf and decorating her employer’s shop as a den of the utmost depravity. Hopefully they have a galotian or two in the back, otherwise she’s gonna need to hire some from Beth’s!");
+		}
+	}
+	else
+	{		
+		output("Yanking free from Ceria is the last full-cock sweep needed to vent your [pc.cum] on the caramelf slut. She sinks to the floor still clutching the desk, blobs of [pc.cumGem] seed fill all the divots and curves of her slender backside, overflowing down the tracts of panting fae. Your [pc.cocks] bulge with " + (pc.cockTotal() > 1 ? "their brimming loads" : "its brimming load") + ", wasting none of your [pc.cumVisc] pressure on the desk. She gets it hot right from the proverbial kitchen, shuddering ecstatically with your nut trickling down her flanks, jerking your shafts to express the most of your porn-worthy cumshot onto her well-fucked form.");
+		if (tentacleDicks > 1) output(" Overhead, your tentacles writhe and pulse.");
+		else if (tentacleDicks > 0) output(" Overhead, your tentacle writhes and pulses.");
+	}
+		
+	processTime(5);
+	pc.orgasm();
+	if (mess == 3) flags["CERIA_HYPERCUM_TIMER"] = GetGameTimestamp();
+	fuckCeriaDoggyCloseOut(mess);
+}
+//Fuck Ceria Doggy Window
+public function fuckCeriaDoggyWindow(kok:int=0):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok2:int = pc.cockThatFits(chars["CERIA"].analCapacity(), "volume", [kok]);
+	var firstTime:Boolean = true;
+	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
+	var venomDicks:int = 0;
+	if (pc.cockCanSting(kok)) venomDicks += 1;
+	if (kok2 >= 0 && pc.cockCanSting(kok2)) venomDicks += 1;
+	var tentacleDicks:Number = pc.tentacleCockCount(true,[kok,kok2]);	
+	
+	output("Glancing at the glass door, anxious energy pumps through your heart. Your heart rate spikes when you look to Ceria’s DD-swells. Bending her over the counter sounds good, but... pushing her up to the door? Where everyone can see her boobs smushed up against the glass?");
+	output("\n\nHell. Yes.");
+	output("\n\nThe beautician gasps when you pull her boneless body off the ground and haul her a few feet to the entrance. <i>“W-Woah, what are you doing, [pc.name]!?”</i> she cries.");
+	output("\n\nAnd, of course, you answer: by pinning her up against the door until her tits are pancaked against the square glass. Conveniently, her face is hidden by the closed sign, but anyone passing by will see those bubblegum buds greasing the entranceway with ardor. <i>“N-No wait, someone’s gonna see, my boss-”</i>");
+	output("\n\n<i>“You’ll be fine,”</i> you whisper, slapping her ass gleefully.");
+	if (pc.isBimbo()) output(" <i>“Just smile and moan, it’s what I do!”</i>");
+	else if (pc.isBro()) output(" <i>“Focus on moaning, you’ll get used to it.”</i>");
+	else if (pc.isNice()) output(" <i>“Keep your mind on how good you’re going to feel.”</i>");
+	else if (pc.isMischievous()) output(" <i>“Then your boss can join when she gets turned on.”</i>");
+	else output(" <i>“If she does show up, she can take take my next load.”</i>");
+
+	output("\n\nHer caramel cheeks ripple under your open-palmed onslaught. You bend your waist and put all your force into imprinting your [pc.hand] on both cheeks like a temporary tattoo of ownership. The effect this has on her pussy is incredible. Every hit knocks loose coronal arcs of dewy girljuice. The elf slut, for all her protestations, has only gotten hornier being exposed for any potential customer to see. A pinch and tweak to her clit and her syrupy, hot-pink cunt forms a fragrant, strawberry-scented puddle at her quivering ankles.");
+	output("\n\n<i>“O-Oh... okay, just don’t tease me, I need your dick" + (pc.cockTotal() > 1 ? "s" : "") + ", [pc.name]!”</i> Ceria cries, ears flickering under intense flashes of masochistic pleasure. Her wide ass thrusts out to your groin, maximizing your arousal.");
+	if (pc.tallness < 52) output("\n\nHowever, you’re a bit too small to seed the elf’s meadow. Fortunately, there’s a metal cabinet you can drag over as a handy platform to level your [pc.cocks] out with her slit. ");
+	else output("\n\n");
+	output("Ceria’s rear end juts out for you to take command of, gripping her curves and spouting more pre on her soaking wet box. She’s so ready that you could ram in all the way to her womb in one go.");
+	output("\n\nThat’s what you’re going to have to do. With the inelegant elf squirming around from the cold and attention she’s surely drawing, she’s downright uncontrollable. The most you get away with is a little more fingering and spreading of femslime. The moment she slows down you drag her body, by the rump, into position and guide your [pc.cocks] to the starting line. Her vaginal petals part easily for your [pc.cockHead " + kok + "], bracing her body for your breeder’s mass.");
+	if (pc.cockTotal() > 1)
+	{
+		output(" Her peanut-colored ring shifts and contracts, opening up when she holds her breath.");
+		if (kok2 >= 0) output(" It calls for your second cock like Juliet to Romeo.");
+		else output(" Sadly, your extra dong’s too big to fit. <b>Maybe you should pop some Condensol next time?</b>");
+	}
+	
+	pc.cockChange();
+		
+	output("\n\nCeria’s your personal spigot, soothing your [pc.cocksLight] with red-hot sprinkles of pussyjuice just from a pinch to her clit. You whisper into her knife-length ear how people are going to take pictures of her tattooed titties, how nobody could resist jerking off in public when they see how much she’s enjoying herself. Those lewd murmurs distract her from the insistent pressure pushing on her cunt" + (kok2 >= 0 ? " and ass" : "") + ".");
+	output("\n\nThe sparkling elf’s voice reaches its highest pitch when you sink into her pheromonal glove, " + (firstTime ? "" : "re") + "acclimating yourself to the limits of her cock-milking embrace. Her entire body clenches down on your girthy intruder and showers it in another spray of fruit-flavored knob-polish, making your trip a much more pleasurable one. Her cunt draws your virile mast deeper with folds of inner, suckling muscle that guide you toward her womb.");
+	if (pc.cocks[kok].cLength() >= 9) output(" All the lubrication in the galaxy won’t take you to places an elf’s biology isn’t suited for. Ceria’s body isn’t built to take dicks your size, leaving you with several unsheathed inches of [pc.dickSkin " + kok + "]. Her abdomen bloats with the outline of mammoth girth, and you satisfy yourself with the knowledge that you’ll be battering her womb in public.");
+	else output(" Ceria’s cinching cunny celebrates the clap of your [pc.knotBallsHilt " + kok + "] to her ass by squeezing so tight that a rope of [pc.cumNoun] nearly fires off.");
+	if (kok2 >= 0)
+	{
+		output("\n\nYour [pc.cockHead " + kok2 + "] pushes past the loop of anal muscle eager for its assigned mate, stretching into a widened doughnut of lube-squelching muscle that ‘pops’ around your tip when you make it inside. Every breath you take is deep and full of urgent, desirous heat, and she’s so, so tight. The only way you’re going to make it any further is to stuff the exhibited elf until you can go no further. With a groan of effort you plunge deeper into her sensitive butt.");
+		if (pc.cocks[kok].cLength() >= 7) output(" There’s no triumphant clap of your [pc.hips] to tan skin, nor a successful slap of" + (pc.balls > 0 ? "" : " proverbial") + " nuts to butts. You do jam your staff all the way into Ceria’s large intestine, but you can go no further. This will have to do.");
+		else output(" With a triumphant clap of [pc.skinFurScalesNoun] against skin, your [pc.knotBallsHilt " + kok2 + "] pounds into her tight ass and your [pc.cockHead " + kok2 + "] manages to trespass on her large intestine.");
+		if (pc.cockTotal() >= 3) output(" Pulling your hand up from the stylist’s quivering heiny you slap your other [pc.cocksLight] down to her rump. You can’t quite take advantage of her bubbly derriere-cleavage this way, but you can make sure that your tool" + (pc.cockTotal() >= 4 ? "s" : "") + " slap their full, pliant weight into her. The more pre you spurt on her, the better.");
+	}
+	output("\n\nPulling back is an extremely difficult thing to do. Not because she’s holding on for dear life, not because she’s contracting so hard around you... it’s the friction. The friction you feel is otherworldly, like rays of a sun made into a physical, fuckable tube, scoring your meat on its passage through the suckling draw of her whorish pussy. The only way to quench the molten pressure is to fuck hard and fuck faster than you are.");
+	output("\n\nDoesn’t take a genius to figure out why her fervor-flush walls are going haywire, pleasuring you with wild abandon. You manage to peer around the slack elf’s slender form to glance a random ausar watching in complete shock. Nobody pays him any mind and he quickly hurries off, your brazen tryst drawn upon the canvas of his mind. Will he be masturbating about this later? Did he take a picture? Is he a customer, a frequent one? You hope that Ceria is asking herself all those questions when another, a woman, happens to spot her and scurries off.");
+	output("\n\nWell, why hope when it’s obvious from every contraction and frenzied dribbling of girlmusk?");
+	output("\n\nCeria strains against your grip twice while you settle into fucking her like the lovely cocksleeve she is, pumping in and out in an unfaltering rhythm. You spank her ass a few times to relive the most glorious pressures");
+	if (pc.cockTotal() >= 3) output(", rubbing all your [pc.cumColor] pre into her upper and lower back -- stuff’s good for skin care");
+	output(". She isn’t trying to buck your hold, but you end up having to exert more strength and authority to hold her caramel cushion in place.");
+	output("\n\nShudders, gasps, and outright screams muffled by the storefront are heard in spirit by a duo who’ve stopped to watch how you claim the fuck-drunk fae’s sweltering honeypot, bulging her tummy with your [pc.cockNoun " + kok + "]. You decide to give them a good show by mauling her ears, clamping your hand around one seven-inch appendage and twisting like you’re revving an engine. An ear-shattering screech nearly powerful enough to crack the glass explodes out of Ceria, and her hole" + (kok2 >= 0 ? "s" : "") + " reflexively tighten" + (kok2 >= 0 ? "" : "s") + ".");
+	output("\n\nYou become very aware of the texture of her folds when they clamp down, aching with the endless need to cum, nearly losing yourself on the rapid slides in and out. Just one more mischievously play - you grab her other ear and do the same, well and truly turning the stylist into your ecstatic fuckpuppet. You can safely say the girl’s body was made to take dick, and not so safely say it was meant to take only yours.");
+	output("\n\nBut you can dream.");
+	if (venomDicks > 0) output(" Until then, you’ll make sure her pussy remembers yours from all the chemicals your venom-bearing tendrils force upon it.");
+	output("\n\nSpasming bundles of nerves erupt all around your lust-sore cockhead, which you now have to yank back and pound home just to maintain your boner. This has the dual effect of bouncing you off the ground and shaking the entire door frame when Ceria is slammed into it.");
+	if (kok2 >= 0) output(" Her ass isn’t doing much better, just as predicted, clenching hard enough to make you twitch and lurch from the [pc.legNoun] up. Everything’s holding so tight as if to keep you there, a sort of knotty imitation...");
+	if (tentacleDicks > 0)
+	{
+		output("\n\nThis wouldn’t be a proper " + (silly ? "hentai" : "encounter") + " if your tentacles were left out, would it?");
+		output("\n\nWhich is why your tentacle is slithering up to her mouth, plugging her neck like the generous, verdant dildo it is. When you cum, she’s going to get it in every hole, and from the garbled squeals coming up her throat, she can’t wait to get filled so absolutely.");
+		if (tentacleDicks >= 2) output(" But why stop there? Her tits need some company while your hands are busy elsewhere. Tentacles are prehensile for a reason, able to ring the pert mounds of a needy slut, coiling and writhing with a serpent’s grip, ready to jizz all over her when the time comes.");
+		if (tentacleDicks >= 3) output(" And while you’re at it, she could probably handle another one in her mouth. The sap-flavored pre is already building an incredible heat in her body, and elves need their protein, dammit!");
+		if (tentacleDicks >= 4) output(" And her hands. If she wants something to hold on now, then she’s got <i>your tendrils!</i>");
+	}
+	
+	output("\n\nBelatedly, you realize that she’s about to cum, and it’s going to be the one that splatters you in the gleaming proof of her sated desire. And then you realize you’re going to be right there with her. Your audience has come and gone, but there’s always one random passerby too curious. Fortunately, nobody calls over any peacekeeper, though, to be fair, you think you saw one pass by earlier.");
+	
+	processTime(10 + rand(12));
+	pc.exhibitionism(2);
+	clearMenu();
+	if (pc.inRut())
+	{
+		output("\n\nAnyone who’s watching this show is going to see how you breed your sluts. The thought of pulling out doesn’t cross your mind for a second, not when you have this needy, fertile, ripe, honey-dripping womb to seed. A magnetic field surrounds your " + (pc.balls > 0 ? "[pc.ballsNoun]" : "[pc.base]") + ", heightening your libido to the point you’re humping like a drug-addled rabbit. The irrefutable need to sire children in a pussy, regardless if it will bear any kids, is what drives you on. Your loads are already beginning to gush into the fae-fucksleeve’s fuckhole, soothing and exhilarating your tender meat at once.");
+		addButton(0,"Next",fuckCeriaDoggyWindowInside,[kok,kok2,tentacleDicks],"Next","Fill the elf.");
+	}
+	else
+	{
+		output("\n\nTrapping yourself [pc.knotBallsHilt " + kok + "]-deep in the elf-slut sounds like the best thing ever, but giving her a " + (kok2 > 0 ? "double" : "") + " creampie isn’t your only option. The tightening of building orgasm begins at your " + (pc.balls > 0 ? "[pc.ballsNoun]" : "waist") + " and spreads through your body. You only have a split second to decide where you want to spunk the modded hottie.");
+		addButton(0,"Inside",fuckCeriaDoggyWindowInside,[kok,kok2,tentacleDicks],"Inside","Fill the elf.");
+		addButton(1,"Outside",fuckCeriaDoggyWindowOutside,[kok,kok2,tentacleDicks],"Outside","Mark the elf.");				
+	}
+}
+//Fuck Ceria Doggy Window cum inside
+public function fuckCeriaDoggyWindowInside(arg:Array):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok:int = arg[0];
+	var kok2:int = arg[1];
+	var tentacleDicks:Number = arg[2];
+	var mess:int = 1;
+	
+	output("Right in front of Tavros you breed the fucked-silly elf, slamming your [pc.cum] all the way into her womb " + (kok2 >= 0 ? "and stomach both" : "") + ". Her fingers claw powerlessly against the door, fluttering things spasming and jerking with the raw might of your delicious release pouring into her spurt after spurt after spurt. The entrance to her womb dilates to accept the [pc.cumVisc] seed that the suckling walls of her pussy are guiding towards it. Not a drop is wasted outside");
+	if (pc.balls > 0) output(", your [pc.ballsNoun] working overtime to fill her gut with all the goo it can handle");
+	output(".");
+	if (tentacleDicks > 0)
+	{
+		output(" Only low groans make it up her spunked throat, your tentacles pumping her from the top");
+		if (tentacleDicks >= 2) output(" and spraying across her jiggly tits like a bunch of prehensile showerheads");
+		output(".");
+	}	
+	if (pc.cockTotal() >= 3) output(" The tattooed elf gets a few new fantasy markings when your extra equipment blows and bastes her quivering form with the spunk your body divided up for just that purpose.");
+	if (pc.cumQ() >= 1000) 
+	{
+		output("\n\nCeria slackens in your convulsing grip and you nearly trip just holding her in place. The shift in pressure and extra stimulation renews the tension in your [pc.cocksLight], which bulge with greater volumes of untapped [pc.cumNoun]. You thrust shallowly and work your hips, grinding against her ass in lurid-sounding thwaps. Feral need pumps more cum into your groin so your cocks can pump more out, making an even sloppier mess of her swelling tum. Her gut slurps up more [pc.cumVisc] nut than it can reasonably handle. [pc.CumGem] treacles of hot spoo pouring from her [pc.knotOrSheath " + kok + "]-sealed pussy, streaming down to the floor.");
+		output("\n\nCeria is incandescent with ecstasy, and you can’t imagine her looking any better than this.");
+	}
+	
+	chars["CERIA"].loadInCunt(pc, 0);
+	if (kok2 >= 0) chars["CERIA"].loadInAss(pc);
+	if (tentacleDicks >= 1) chars["CERIA"].loadInMouth(pc);
+	if (tentacleDicks >= 3) chars["CERIA"].loadInMouth(pc);
+	pc.orgasm();
+	fuckCeriaDoggyCloseOut(mess);
+}
+//Fuck Ceria Doggy Window cum outside
+public function fuckCeriaDoggyWindowOutside(arg:Array):void
+{
+	clearOutput();
+	showCeria(true);
+	author("William");
+	
+	var kok:int = arg[0];
+	var kok2:int = arg[1];
+	var tentacleDicks:Number = arg[2];
+	var mess:int = 0;
+	var cumQ:Number = pc.cumQ();
+	
+	if (cumQ >= 1000)
+	{
+		mess = 2;
+		output("Pulling out of Ceria takes more willpower than you care to admit, and it’s made difficult by her own orgasm. But, painting her takes priority, and soon your [pc.cum] is bursting out in raging ropes of surging relief, overflowing on the crumpling elf’s every curve and divot, pooling in her mouthwatering bends and pouring down the channel of her buttcheeks. You wonder if her pussy or butt catches any of the [pc.cumVisc] downpour, mindlessly jerking your [pc.cocksLight] to adorn her in your [pc.cumVisc] [pc.cumColor] issue. Each successive blast makes the last one look weaker, and there always seems to be more inside waiting to come out. When your waist starts jerking forward a sense of tension is renewed, and your rod" + (pc.cockTotal() > 1 ? "s" : "") + " throbs to its own beat, splattering the door, the wall, and her ears in overflowing spunk.");
+		if (cumQ >= 6000)
+		{
+			mess = 3;
+			output("\n\nNow you’re kind of worried: it’s still coming, and it’s crashing out in greater volume than before. You can’t thumb your rigid stiffness enough. [pc.EachCockIsAre] fountaining like " + (pc.cockTotal() > 1 ? "ruptured showerheads" : "a ruptured showerhead") + " over the elf. You stumble backward and fall to the ground, a prisoner in your own body as your cock cums and cums. " + (pc.cockTotal() > 1 ? "Geysers" : "A geyser") + " of [pc.cumNoun] spray up at the ceiling, twitching everywhere. It’s not long before you’ve left your [pc.cumFlavor] mark on every inch of the salon. Even the entire door is webbed over, giving Ceria her first taste of privacy. By the time you’re done, lakes of the stuff slosh from countertops, tables... and of course, the spooge-cocooned elf.");
+		}
+	}
+	else
+	{
+		output("It takes all your might to tug free from Ceria that when you do pull out she crumples bonelessly to the ground the the first shots of [pc.cum] sail right into her ponytail. While she pants and recovers from orgasm you’re focusing all your effort on splashing the elf-slut. Relief spurts from your lust-sore [pc.cockHeads] in rhythmic, throbbing bass beats, the relief of pressure soothing for you and wonderful for her. " + StringUtil.capitalize(indefiniteArticle(pc.cumGem())) + " lacquer coats her ass in a fine sheen of virility, though you have to wonder if her pussy manages to catch any of the trickle. When your [pc.cocksLight] finish bulging with their payloads, wasting none of it, you jerk your shafts to pump out the dregs into her back. Pools form in the creases and divots of her skin, dripping to the floor");
+		if (tentacleDicks > 0) output(" under the assault of not just your standard dicks, but of the tentacle-cocks letting loose from above");
+		output(".");	
+	}
+	
+	pc.orgasm();
+	if (mess == 3) flags["CERIA_HYPERCUM_TIMER"] = GetGameTimestamp();	
+	fuckCeriaDoggyCloseOut(mess);
+}
+//mess 0= outside low, 1 inside, 2 outside high, 3 outside hyper
+public function fuckCeriaDoggyCloseOut(mess:int=0):void
+{
+	var firstTime:Boolean = true;
+	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
+		
+	output("\n\nCeria sputters and groans to life, panting like a dog");
+	if (ceriaHyperCumActive()) output(" while she wipes herself of all the jism");
+	output(". The first thing she does is scramble up and lick your crotch clean. Whatever extra mess she causes just makes her work harder. When you’re nice and shiny, glistening with spit again, she falls back with a loud huff. <i>“Wow, [pc.name]...");
+	if (firstTime) output(" Didn’t know you could fuck that hard!");
+	else output(" Glad I could help you work off some steam!");
+	output("”</i> she giggles, looking immensely satisfied.");
+	output("\n\nYou wipe the rest into her hair, very glad you had a certain elf to help with it. Now, there’s the matter of getting presentable again...");
+	if (mess >= 2)
+	{
+		output("\n\n<i>“G-Geez, did you have to make a mess of the whole store?”</i> Ceria moans out. <i>“I’m gonna have to clean all this up before Nahri gets back! Man, I better go draw up a sign for some emergency galotian support or something!”</i>");
+		output("\n\nShe stands up shakily, not even caring that she’s worse off than most of the building. Every trudge she makes across the floor is comically obscene, tracking huge amounts of your sticky glaze. <i>“[pc.name], that was great and all, but damn, at least try not to make a mess! Better get going, don’t want anyone trying to hit you with some vandalism fine!”</i>");
+		output("\n\nSo you do, cleaning up with a towelette and leaving Ceria to her smut-stained shop. With a roll of the shoulders, you let out a long, content sigh, not one ounce of distracting lust in your system!");
+		output("\n\nBetter enjoy that while it lasts...");
+	}
+	else
+	{		
+		output("\n\n<i>“Gonna need to spot myself a quick wash after this, hehe,”</i> she stands shakily");
+		if (mess == 1) output(", rubbing her cum-filled belly adoringly");
+		output(". <i>“Thank goodness for sterilex, right?”</i>");
+		if (pc.inRut()) output("\n\nIn your breeding state, you feel a twinge of displeasure, anxiously wanting to fuck her harder all of a sudden...");
+		output("\n\nYou shrug your shoulders and get cleaned up, giving your elf a kiss and promising her another good time when you need your balls drained. With that, you unlock the door and step out of Shear Beauty, rolling your shoulders with the distraction of lust shucked. For now...");
+	}
+	if (silly) output("\n\nPassing you by, a disheveled, almost dead looking man in a halloween style skeleton costume hefts a large bottle of liquor and flashes you a thumbs-up before heading on. Odd.");
+	
+	IncrementFlag("CERIA_DOGGY");
+	fuckedCeria(true);	
+	processTime(4 + rand (4));
+	clearMenu();
+	addButton(0, "Next", move,"9015");
+}
+//shop is closed for 2 hours after hyper cum
+public function ceriaHyperCumActive():Boolean
+{
+	if (flags["CERIA_HYPERCUM_TIMER"] != undefined)
+	{
+		if (GetGameTimestamp() < (flags["CERIA_HYPERCUM_TIMER"] + (2 * 60))) return true;
+	}
+	return false;
+}
 //Appearance Adjustments
 //New Stat
 //[pc.hairstyle]

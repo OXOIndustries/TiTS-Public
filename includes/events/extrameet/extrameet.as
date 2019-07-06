@@ -244,6 +244,7 @@ public function extrameetGetProfiles(num:int):Array
 			if (extrameetProfileStatus("EXTRAMEET_ROCKHARDFORYOU") == num) pospro.push("EXTRAMEET_ROCKHARDFORYOU");
 			if (extrameetProfileStatus("EXTRAMEET_MOONLESSNIGHTS") == num) pospro.push("EXTRAMEET_MOONLESSNIGHTS");
 			if (extrameetProfileStatus("EXTRAMEET_ALPHAWOLF") == num) pospro.push("EXTRAMEET_ALPHAWOLF");
+			if (extrameetProfileStatus("EXTRAMEET_BIGTIDDYGOTHGF") == num) pospro.push("EXTRAMEET_BIGTIDDYGOTHGF");
 			break;
 		case "mhen'ga":
 			if (extrameetProfileStatus("EXTRAMEET_HUGGATREE") == num) pospro.push("EXTRAMEET_HUGGATREE");
@@ -367,6 +368,7 @@ public function extrameetDisplayProfile(prof:String):void
 		else if (prof == "EXTRAMEET_ROCKHARDFORYOU") extrameetRockhardforyouProfile();
 		else if (prof == "EXTRAMEET_MOONLESSNIGHTS") extrameetMoonlessNightsProfile();
 		else if (prof == "EXTRAMEET_ALPHAWOLF") extrameetAlphaWolfProfile();
+		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") extrameetBigTiddyGothGFProfile();
 		else output("Profile not found!");
 	}
 	else if (loc == "mhen'ga")
@@ -501,6 +503,7 @@ public function extrameetCheckMatch(prof:String):Boolean
 		else if (prof == "EXTRAMEET_ROCKHARDFORYOU") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_MOONLESSNIGHTS") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_ALPHAWOLF") match = extrameetFlavorCheckMatch();
+		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") match = extrameetBigTiddyGothGFCheckMatch();
 	}
 	else if (loc == "mhen'ga")
 	{
@@ -629,6 +632,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_LADYGLAMOR") extrameetLadyGlamorDate();
 		else if (prof == "EXTRAMEET_REDD") extrameetReddDate();
 		else if (prof == "EXTRAMEET_HAWTSTUFF") extrameetHawtstuffDate();
+		else if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") extrameetBigTiddyGothGFDate();
 		else
 		{
 			output("\n\nError finding date");
@@ -731,6 +735,7 @@ public function extrameetGetUserName(prof:String):String
 		if (prof == "EXTRAMEET_LADYGLAMOR") return "LadyGlamor";
 		if (prof == "EXTRAMEET_REDD") return "ReDD";
 		if (prof == "EXTRAMEET_HAWTSTUFF") return "Hawtstuff";
+		if (prof == "EXTRAMEET_BIGTIDDYGOTHGF") return "Dark&Desperate";
 	}
 	else if (loc == "mhen'ga")
 	{
@@ -815,6 +820,7 @@ public function extrameetCheckReset():void
 			flags["EXTRAMEET_ROCKHARDFORYOU"] = 0;
 			flags["EXTRAMEET_MOONLESSNIGHTS"] = 0;
 			flags["EXTRAMEET_ALPHAWOLF"] = 0;
+			//flags["EXTRAMEET_BIGTIDDYGOTHGF"] = 0 // Feels like we're unlocking a scene for use outside of Extrameet so resetting seems redundant
 		}
 	}
 	else if (loc == "mhen'ga")

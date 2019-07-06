@@ -374,6 +374,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 				choices.push(fZilPregEncounter);
 			}
 		}
+		if (!hostileOnly && breedwellPremiumBootyCallCheck("mhen'ga")) choices.push(breedwellPremiumBootyCallPing);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -1074,6 +1075,8 @@ public function defeatZilGuards():void
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil’s foreskin-clad cock.");
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
 	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");

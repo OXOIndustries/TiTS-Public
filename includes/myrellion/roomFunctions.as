@@ -115,7 +115,12 @@ public function airFieldNorthBonus():Boolean
 public function airFieldCentralBonus():Boolean
 {
 	if(dmzFanDickSigningBonus()) return true;
-	if(sluttyMcSlutOralBonus()) return true;
+	if (sluttyMcSlutOralBonus()) return true;
+	if (breedwellPremiumBootyCallCheck("myrellion") && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing();
+		return true;
+	}
 	return false;
 }
 

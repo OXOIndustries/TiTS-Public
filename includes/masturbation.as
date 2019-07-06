@@ -1185,7 +1185,7 @@ public function multiCockFap():void {
 		output("\n\nYour groin seems almost too bountiful, if such a thing is possible. There’s all these wonderfully erect phalluses aching to be touched and yet you only have two hands to tend to them with.");
 		if(pc.hasTailCunt() && pc.tailCount >= pc.cockTotal() - 2) {		
 			output(" Without a single thought from you, your ");
-			if(pc.cockTotal() > 3) output("tails snake around and cover");
+			if(pc.cockTotal() > 3) output("tail" + (pc.tailCount == 1 ? " snakes" : "s snake") + " around and cover" + (pc.tailCount == 1 ? "s" : ""));
 			else output("tail snakes around and covers");
 			output(" every single unclaimed cock with a tight, fleshy sleeve");
 			if(pc.biggestCockVolume() > pc.tailCuntCapacity()) output(", even though at least one of your members is far too thick for a tail to handle more than the head");
@@ -1218,9 +1218,9 @@ public function multiCockFap():void {
 		output(" to ensure that every single shaft has a thick coating of its glorious ooze. The nerves inside [pc.eachCock] alight with pleasure at these touches, and you find yourself milking bigger and bigger deposits of liquid lust with each stroke until your masturbation fills the air with sloppy-sounding schlicks.");
 		// tailcunt sucking going down
 		if(tailPussied) {
-			output("Of course, the pre-cum from your member");
+			output(" Of course, the pre-cum from your member");
 			if(pc.cockTotal() >= 4 && pc.tailCount >= 2) output("s");
-			output(" subsumed in tail-mounted pussy is quickly devoured by your symbiotic appendages, but ");
+			output(" subsumed in tail-mounted pussy is quickly devoured by your symbiotic appendage" + (pc.tailCount == 1 ? "" : "s") + ", but ");
 			if(pc.cockTotal() >= 4 && pc.tailCount >= 2) output("those dicks get");
 			else output("that dick gets");
 			output(" a coating of much slicker, more feminine fluids.");

@@ -342,7 +342,7 @@
 		{
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
-			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
+			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don’t\nplay this if exotic and strange fetishes disgust you. <b>You’ve been warned!</b>";
 			
 			(buttons[0] as MainMenuButton).buttonName = "New Game";
 			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
@@ -545,7 +545,7 @@
 			}
 			else
 			{
-				throw new Error("Couldn't find module \"" + module + "\"");
+				throw new Error("Couldn’t find module \"" + module + "\"");
 			}
 			
 			// Update some button states
@@ -770,7 +770,7 @@
 			}
 			else
 			{
-				throw new Error("Presently active display module doesn't support text input fields.");
+				throw new Error("Presently active display module doesn’t support text input fields.");
 			}
 			
 			return null;

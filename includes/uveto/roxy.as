@@ -1276,8 +1276,9 @@ public function roxyTalkChildren(loc:int=0):void
 		}
 		else if (sel [rn] == 4)
 		{
-			output("\n\n<i>“Hehe, our family’s grown a lot. " + num2Text(numLitters, true) + " pregnancies, " + num2Text(numLitters) + " litters... y");
+			output("\n\n<i>“Hehe, our family’s grown a lot. " + num2Text(numLitters, true) + " pregnancies, " + num2Text(numLitters) + " litters...");
 			if (flags["ROXY_PREG_TIMER"] != undefined) output(" and now a " + num2Ordinal(numLitters + 1) + " on the way! Y");
+			else output(" y");
 			output("ou have no idea how much I love that you love me.”</i> She tilts her head left and right, rattling her brain for something to respond with. <i>“For some reason they know how to organize in a big group like that. Don’t ask me how, but I swear they’re going to get more rebellious as they get older. I’m actually kinda scared, I don’t want any of them fighting. Sibling rivalry’s good and all - was for me anyway - but I hope they don’t come to step on each other or anything...”</i>");
 			output("\n\nYou’ll have to do your best to steer them away from such tendencies. For now, they’re just a bunch of tykes who like smiling and laughing! Best to focus on that rather than the future paranoias, right?");
 			output("\n\n<i>“Yeah... Well, all’s good otherwise. Was just feeling a bit nervous. You take care of yourself okay?”</i>");
@@ -1700,7 +1701,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Tryin’ to break every bitch you lay, [pc.name]?”</i> Roxy asks, inhaling more musk from your beefy, turgid tool. <i>“Mmf, big fat pony-mounter like this, can’t wait to see every vein standing out. You came well equipped for a laquine; no dick like horsedick!”</i>");
 	else if (pc.cocks[kok].cType == GLOBAL.TYPE_CANINE) output("\n\n<i>“Teasing knots is fun, makes them extra solid, keep all that cum inside. You’re gonna stand a better chance than most at breeding me, [pc.name]. How does that make you feel?”</i> You can’t quite answer when she drums her tongue against your cumslit before hold it in place, backing up some pre. <i>“Can’t wait to feel it!”</i>");
 	else if (pc.cocks[kok].cType == GLOBAL.TYPE_FELINE) output("\n\n<i>“Always had a soft spot for these kitty dicks. All these nice ‘n soft nubs rubbing off a clit...”</i> she brushes your sensitive barbs with her palm, <i>“frees up your hands for more important work. And the feel inside... Yeah, I’ll think of this as a gift, [pc.name]!”</i>");
-	else if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+	else if (pc.cockCanSting(kok))
 	{
 		if (venomDickFirst) output("\n\n<i>“What’s with the tendrils?”</i> She experimentally tugs one, but you manage to keep your venom in with monumental effort, wanting to save it for later. It’ll be a surprise! <i>“Huh, can’t hurt. Bet it feels fucking awesome when they’re pressing for space in there, too.”</i>");
 		else output("\n\n<i>“These bad boys are carrying a little more. I should be mad at you for not telling me...”</i> She strokes the stinger-lined base of your tool. <i>“But whatever it is they do inside, I love it. Don’t you dare hold back, [pc.name].”</i>");
@@ -1735,7 +1736,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 	if (pc.balls > 0) output(" your seed-laden nutsack sloshes inches from her jaw;");
 	output(" now it’s not just eagerness showing plainly in your eyes, but lustful vacancy.");
 	
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+	if (pc.cockCanSting(kok))
 	{
 		output("\n\nHolding back your venomous side is no longer a possibility.");
 		if (venomDickFirst) output(" Roxy didn’t know what your dick-tendrils were capable of, but she’s getting an intimate experience of it when they lash out at her palate. Her leporine face twists from the forceful injection of oversensitizing venom, like her cheeks were just victim to a syrupy piledriver, and she’s at a total loss for words when she realizes how much control it sends your way.");
@@ -1946,7 +1947,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyVag():void
 		output("\n\nYour musky horse-prick leaves its mark on its biologically assigned mate: a horse cock for a horse cunt. <i>“Damn, I just LOVE it when someone brings me your kinda dick! <b>No cock like horsecock,</b> and I’m not singing that ‘cuz I’m a laquine.”</i> Roxy’s slavish depths inhale the entirety of your turgid, bestial length; she squeaks ever so slightly when your big, juicy medial ring pops through her puffed out labia. It makes her wetter than usual, and she’s pouring out enough girljizz to substitute for a broken-down shower and enough pheromones to trash the filtration system.");
 		output("\n\nDamn. The thought that this place could permanently smell like you after you’re done was way hotter than you’d have given it credit for.");
 	}
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+	if (pc.cockCanSting(kok))
 	{
 		flags["ROXY_VENOMDICK"] = 1;
 		output("\n\nSpurred into action, your alien biology does its work: the tendrils lining your [pc.cock " + kok + "] latch to her sensitive innards, stinging Roxy’s horse-pussy with ample amounts of chemical lust. <i>“Oh g-g-geez,");
@@ -2181,7 +2182,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 		else output(" [pc.name], only thing saving your ass is the horse dick in mine!");
 		output("”</i> she growls out, the veins of your bestial mast bulging out against vulnerable nerves on each thrust. When your medial ring knocks at her anus, she clenches up harder than ever. It takes all your strength not to cum after forcing your fat cock-halo inside, but you <i>swear she did.</i>");
 	}
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+	if (pc.cockCanSting(kok))
 	{
 		flags["ROXY_VENOMDICK"] = 1;
 		output("\n\nYour phallic stingers lash perniciously at her anal walls, offloading potent loads of craze-inducing venom. Roxy");
@@ -2199,7 +2200,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 	
 	output("\n\nThe breed-hungry bun bites down on her cheek; your [pc.hips] are hauling and driving [pc.cockNoun " + kok + "] into her faster than before. With the way you’re mounted on her, groping one sweaty boob and pinch-snagging the other ardor-imbued nipple, there’s nothing for the nubile fuckbunny to feel but happiness.");
 	output("\n\nAll her body can do is accept the erect shaft of its fierce mate. For her, maybe it’s the wrong hole, but for you it’s the buzz of dominant assertion becoming a state of pure, breathy bliss, and while fucking Roxy is an exhausting task, the energies swirling around you in coital haze ensure there’s no stopping until the bunny’s been bred, regardless of what orifice you do it in.");
-	output("\n\nNervelessness gives way to a blossoming warmth in your crotch, your body acting on its own now. You’re certain she can feel it too - the voices she makes are unmistakably orgasmic. Her succulent lips open into a broad O shape that sparkles with pearlescent euphoria. When you look down past her thick leg you can see both of her paws at work on her cunt, viciously grappling with her mare-clit and jilling her drizzling fuckbox, dragging her further into incoherent ecstasy.");
+	output("\n\nNervelessness gives way to a blossoming warmth in your crotch, your body acting on its own now. You’re certain she can feel it too - the voices she makes are unmistakably orgasmic. Her succulent lips open into a broad ‘O’ shape that sparkles with pearlescent euphoria. When you look down past her thick leg you can see both of her paws at work on her cunt, viciously grappling with her mare-clit and jilling her drizzling fuckbox, dragging her further into incoherent ecstasy.");
 	output("\n\nNot that you could claim to be any better off. You’re screwing her sphincter harder and harder, fucking her with such reckless abandon");
 	if (pc.inRut()) output(" that you may satisfy your rut in her barren cavity.");
 	else output(" that you look - and sound - to be in rut.");
@@ -2375,7 +2376,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyDP():void
 	
 	output("\n\nHooked by her raw, inhuman vagina and tensing tailhole, you cannot go slow - <b>you will NOT be compelled by inferior urges.</b> Roxy rocks back and forth at the sudden uncaring pace you launch into. <i>“W-woah,”</i> she murmurs, sex-juices splattering against her butt and spraying in circular arcs from the force of your bunny-breeding plunges. You thumb her nipples, attached to her like a primitive animal, fulfilling every single one of her innate, base desires.");
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE && pc.cocks[kok2].cType == GLOBAL.TYPE_EQUINE) output("\n\nYour bestial horse-cocks drill in and out of Roxy’s holes hard enough that your medial rings push their way in, coming out gleaming with dick or pussy slime. Something tells you she appreciates nothing more than that now, that nothing else in the galaxy can quite compare to this moment for her, being double stuffed by two, fat, turgid stallion-pricks. Her pussy was made for no other dick. Her ass... well, she’s a laquine.");
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE || pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE)
+	if (pc.cockCanSting(kok) || pc.cockCanSting(kok2))
 	{
 		flags["ROXY_VENOMDICK"] = 1;
 		output("\n\nRoxy’s lavish interior is stung by the uncontrollable urges of your venom-bearing dick tendrils. An astonishing, lung-rending rush of liquid lust courses through her veins, being delivered to the most sensitive regions of her body. Her cock-gnashing bubble-butt yields unceremoniously to your weight now, her holes suckling in spectacular ecstasy.");
@@ -3308,7 +3309,7 @@ public function roxySexMissionaryNext(kok:int=0):void
 	else output("\n\nRoxy’s vagina spasms in rippling unison; her slick channel grinds against you with methodical pressure, yet to be broken down into peaking wildness.");
 	output(" Gyrating is almost impossible like this, and so your one-track mind devotes itself to the tentative pounding of your engorged crotch to hers, plumbing her taut, clenching depths, marvelling at the ecstatic strain arcing through your nervous system.");
 	
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output("\n\nThe tendrils lining your [pc.cock " + kok + "] thrash against the crushing interior, unloading copious amounts of chemical lust into Roxy’s groin. <i>“Aw fuck-KK!”</i> she glowers, a too-long groan pressing from her lungs. <i>“Don’t think... that’s gonna help...”</i> she winces, but her voice and the air she’s breathing have gotten heavier.");
+	if (pc.cockCanSting(kok)) output("\n\nThe tendrils lining your [pc.cock " + kok + "] thrash against the crushing interior, unloading copious amounts of chemical lust into Roxy’s groin. <i>“Aw fuck-KK!”</i> she glowers, a too-long groan pressing from her lungs. <i>“Don’t think... that’s gonna help...”</i> she winces, but her voice and the air she’s breathing have gotten heavier.");
 	
 	output("\n\nYou moan and swear, then moan again, voice fading to tiny gasps and sighs when her silken interior clamps down on you, contracting to pinpoint regions of your swollen member. Climax flickers in the back of your mind, bubbling up from your [pc.ballsNoun]... but it doesn’t come. While you hoped it’d be a male orgasm to end all others, the only thing that happens is you vibrate on the precipice, glittering beads of sweat dripping from your [pc.face]");
 	if (pc.hasHair()) output(" and hair tips");
@@ -3462,7 +3463,7 @@ public function roxySexMissionaryNext2(arg:Array):void
 		
 		output("\n\nTaking Roxy by the shoulders you withdraw, only for her to grab yours and thump her crotch against yours. <i>“AGAIN!”</i> she barks, bumping your forehead to hers with a sharp tug on the leash. <i>“Againagainagain!”</i> she giggles joyfully.");
 		output("\n\nRabbit femcum splashes over your");
-		if (kok2 >= 0) output(" [pc.cock" + kok2 + "] when you thrust your next prick in, cramming through your own sloppy mess.");
+		if (kok2 >= 0) output(" [pc.cock " + kok2 + "] when you thrust your next prick in, cramming through your own sloppy mess.");
 		else output(" [pc.cock " + kok + "] when you reluctantly push back into her cum-clogged hole.");
 		output(" Your pale, torpid hands sink into Roxy’s fur, a long whimper flowing from your [pc.lipColor] lips. It hurts at first, and none of her fresh heat or the extra lubrication of your minutes old seed makes this easier.");
 		output("\n\nUninterested in a slow pace, the power-bottom laquine wallops your pelvis. She teases you with mocking words, trying to build your boner back to full mast from its sore, tender, soft state. It occurs to you that her cunt never loosened, only tightened harder to keep all the cum in -- and your [pc.cocksLight] too. Lewd squishing sounds from her rewettening snatch shatter your sense of coherency after a minute or two of hot flashes.");
@@ -3541,7 +3542,7 @@ public function roxySexMissionaryAfter():void
 	output("You’re stuck in some half-aware state, not sure what your brain is telling you is real. One eye open and the other shut, the gentle little caresses to your temple coax you from what is an insufferable and uncertain state of mind. Swallowing is nearly an impossible task, your innards so dried up after being used as little more than");
 	if (pc.cockTotal() > 1) output(" dicks that just happen");
 	else output(" a dick that just happens");
-	output(" to have a [pc.raceShort] attached to them.");
+	output(" to have [pc.aRaceShort] attached to them.");
 	output("\n\n<i>“Hey, [pc.name], hey, c’mon, it’s over...”</i> Roxy whispers warmly into your [pc.ear], and for the first time since this all began you finally feel serenity. You pull your head from Roxy’s perky cleavage, meeting a rare and almost maternal smile. <i>“Shh, I know it kinda hurts, just... try to pull out slowly, okay?”</i>");
 	output("\n\nFuck, it does. Your mouth stretches into a wide expression. It feels like your dick, soft as it is, coated in ludicrous amounts of effluence, is pulling itself off your body. You remove yourself from Roxy with a loud, wet pop that makes your heart sink in some way. The rubs to your shoulder and the nuzzle to your cheek from makes it vanish quick as it came.");
 	output("\n\nOnly one question’s on your mind: <i>“Can I relax?”</i>");
@@ -3769,7 +3770,7 @@ public function roxySexCowgirlNext(kok:int=0):void
 	output("\n\nTongue lolling, Roxy groans, using your stomach for support as she thumps your crotch, slamming into you with all the leaper’s and breeder’s strength innate to her race. Belatedly, you realize that she’s been aiming your [pc.cock " + kok + "] at her G-spot the whole time, ignoring the rest of her hole in favor of that selfish, vivacious unity.");
 	output("\n\nNot keen on sitting back, you decide to fill out that plush pussy, jerking the sweaty, rippling bunny, destroying her rhythm with unfelt pleasure. <i>“Oohh.. Ooh, that’s nice!”</i> Roxy tilts her head, a uniquely maternal smile cresting her blissed out features. The shockwaves continue, spraying her sweet torrents in coronal arcs. One particularly concussive cycle of bunny-hips send a wad of femcum up to break apart on your [pc.face].");
 	output("\n\n<i>“HA! Suck it, [pc.name],”</i> Roxy howls in laughter. While you wipe your brow, one eye webbed shut by girlmusk, she’s slowly revealing that either she was holding back this whole time or she’s gotten pumped up by something else.");
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) 
+	if (pc.cockCanSting(kok)) 
 	{
 		flags["ROXY_VENOMDICK"] = 1;
 		if (venomDickFirst) output("\n\nThat’s not going unpunished!");
@@ -4006,7 +4007,7 @@ public function roxySexQuickie(kok:int = 0):void
 		}
 	}
 	output("\n\n<i>“Mmmmmh,”</i> the slut-bunny moans. She’s jacking you with hard, fast strokes, soaking your [pc.cocksLight] in [pc.cumFlavor] seepage. Your head swims from the warmth along your shiny schlong" + (pc.cockTotal() > 1 ? "s" : "") + ", and you only manage one dry-hump before she shoulder tackles you back into the wall again. <i>“Sit the fuck still!”</i> she growls, <i>“so I can suck your dick" + (pc.cockTotal() > 1 ? "s" : "") + " raw!”</i>");
-	output("\n\nHer predatory hands move past your [pc.knotOrSheath " + kok + "] to rest on your hips; she lines your flexing [pc.cock " + kok + "] to her dark lips. Roxy’s short muzzle puckers up, and when she pushes forward insistently, voraciously, your [pc.cockHead " + kok + "] parts her prick-pillows into a gloving O shape. The shuddering crown of your [pc.dickSkin " + kok + "] makes the pleasurably moist trip toward her throat, halting at the center of her maw for a few greedy laps.");
+	output("\n\nHer predatory hands move past your [pc.knotOrSheath " + kok + "] to rest on your hips; she lines your flexing [pc.cock " + kok + "] to her dark lips. Roxy’s short muzzle puckers up, and when she pushes forward insistently, voraciously, your [pc.cockHead " + kok + "] parts her prick-pillows into a gloving ‘O’ shape. The shuddering crown of your [pc.dickSkin " + kok + "] makes the pleasurably moist trip toward her throat, halting at the center of her maw for a few greedy laps.");
 	output("\n\nYour [pc.legOrLegs] shake and begin to buckle, but you brace your [pc.footOrFeet], nails digging into the wall propping you up. Roxy’s not even trying to keep you afloat, that’s all on you. If you happen to fall, she’d keep sucking. Leporine cheeks hollow down, coming close enough to hug your mast like a pair of pussy walls. Her lips seal down harder too, pulling you deeper. Now you’re getting used to it, she’s giving you time to adjust! The bunny-babe doesn’t gag-");
 	output("\n\n<i>You do.</i> Wait- ");
 	output("\n\nAir catches in your throat like lumps of food too large for your esophagus. Starbursts of sexual heat spark in your eyes, asserting with unmistakable authority on your retinas like a sudden shift in reality or a glitch in");
@@ -4033,7 +4034,7 @@ public function roxySexQuickie(kok:int = 0):void
 	
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_FELINE) output("\n\nYou’re not sure if she’s deriving more pleasure than you are right now, but the soft, bristling nubs lining your feline endowment deliver the most exquisitely pleasurable sensation when they rake her windpipe in short, shallow strokes. Stimulation comes from impossible angles, every single barb reacting to the constant swirl of her glossing tongue. Premature ejaculation seems an inevitability now, and you can’t keep your voice from whistling past your teeth in an embarrassing fashion. Roxy’s craning ears drink in that sound with glee.");
 	else if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\nOnly a master cocksucker could handle a horsecock the way Roxy is right now, pumping your stallion rod through her molded channel with innate ecstasy. She focuses solely on the flesh of your ferally musky meat, eyeing every vein in advance of tonguing them over when she slaps her nose to your [pc.belly]. The flare sealing her throat shut slows the passage of your girthy rod, but she doesn’t seem to mind. Really, you’re the one struggling; your voice floats between your teeth like the muffled wail of a banshee. Her upraised ears eagerly listen for those sounds.");
-	else if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+	else if (pc.cockCanSting(kok))
 	{
 		flags["ROXY_VENOMDICK"] = 1;
 		output("\n\nRoused by the oral ravishing, your venomous cock-tendrils reach out to sting at Roxy’s face, inside and outside. You expected the rush of a potent payload to have given you an advantage, to have slowed her merciless treatment.");
@@ -5204,7 +5205,7 @@ public function roxyBedSexSpoonHer(kok:int = 0):void
 	output("\n\n<i>“Hey, let me hold that,”</i> Roxy says, gripping her dexterous thigh unsteadily. By doing so, she enables you to take full possession of her fertility-fattened thighs while you drive your endowment into her yielding cunt one luscious pump at a time. Her tail’s contributions merely manifest as tiny twitches you feel around your waist where its long, flowing hairs have wrapped or clung to by virtue of sweat.");
 	output("\n\nKeeping yourself from going all in would be an impossible task, but it’s the knowledge that your children there, growing in her core, that maintains your rational pace. Mentally patting yourself on the back also helps. Either way, it allows you to experience the exquisite bliss of her [pc.cockNoun " + kok + "]-stuffed tightness... lets you shudder with her, mutually relishing the throbs and clenches in each other’s vitalities.");
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\nRoxy’s derriere smushes indulgently against your loins, but you know her simmering slit is doing more than basking in your equine prong. Ambrosial nectar is pouring from her infernal folds, her pussy kicked into overdrive by the bestial cock plunging in and out. There’s a pure blast of infatuation when your medial ring squelches through her chubby vulva on every thrust. Your horsecock, your fine piece of musky meat, is to her pussy what you are to her. It has a place as significant as the one you have in her heart.");
-	else if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output("\n\nIn the taut, ambrosial channel of Roxy’s, you give up control on the venom-bearing tendrils lining your alien dick. The pregnant bun is lashed mercilessly by your lust-infusing payload. Her eyes roll back, and every fluid-producing gland is hypercharged by the acute sensitivity it brings. You would love to rail her into this bed, but all you know, even as some of it bleeds karmically into your own system, is that what you’re doing now is good enough.");
+	else if (pc.cockCanSting(kok)) output("\n\nIn the taut, ambrosial channel of Roxy’s, you give up control on the venom-bearing tendrils lining your alien dick. The pregnant bun is lashed mercilessly by your lust-infusing payload. Her eyes roll back, and every fluid-producing gland is hypercharged by the acute sensitivity it brings. You would love to rail her into this bed, but all you know, even as some of it bleeds karmically into your own system, is that what you’re doing now is good enough.");
 	
 	output("\n\nSliding in and out is as easy moving your body through the galaxy around yourself. Roxy’s sex is so wide and stretched by her frequent lovemaking with you that it struggles restlessly to suck you inside and keep you there forever. The way it pleases you as its rightful mate, quite simply, doesn’t get old. It’s not supplication, it’s not surrender, it’s <i>respect.</i> Her child-bearing muff is gushing now, winding its penis-pounded nerves around your [pc.cockNoun " + kok + "] in the hopes of a [pc.cumVisc] gift before too long.");
 	output("\n\n<i>“[pc.name] I’m... I’m gonna cum really hard if you- hit that- too much!”</i>");
@@ -5429,10 +5430,10 @@ public function roxyBedSexRvsCowgirl(kok:int = 0):void
 	{
 		if (pc.cocks[kok2].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“I love that fat fucking horse cock you have, I just can’t... GET ENOUGH OF IT!”</i> Roxy yelps, declaring loudly and lewdly her appreciation for your musky member when the medial ring forces its way in. <i>“Like a fucking... good dick... it has a halo, too. Just a big, nice dick that knows how to please sluts like me!”</i> Your tip begins to flare at her commentary, and you know she feels that in her furthest depths.");
 	}
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output("\n\nA sultry sounding coo drifts out of Roxy’s maw when her interior is slapped by the stingers lining your alien rod. Her quailing voice crescendos to its highest pitch when lust-venom maximized her sensitivity and capitalizes on that newfound vulnerability. It suddenly becomes harder for the tongue-lolling bun to keep going. Her enhanced bosom bounces up and down when she jerks and spasms. You’d feel content, but then karma strikes, and a little bit of your payload seeps out into you as well.");
+	if (pc.cockCanSting(kok)) output("\n\nA sultry sounding coo drifts out of Roxy’s maw when her interior is slapped by the stingers lining your alien rod. Her quailing voice crescendos to its highest pitch when lust-venom maximized her sensitivity and capitalizes on that newfound vulnerability. It suddenly becomes harder for the tongue-lolling bun to keep going. Her enhanced bosom bounces up and down when she jerks and spasms. You’d feel content, but then karma strikes, and a little bit of your payload seeps out into you as well.");
 	else if (kok2 >= 0)
 	{
-		if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) output("\n\nA sultry sounding coo drifts out of Roxy’s maw when her interior is slapped by the stingers lining your alien rod. Her quailing voice crescendos to its highest pitch when lust-venom maximized her sensitivity and capitalizes on that newfound vulnerability. It suddenly becomes harder for the tongue-lolling bun to keep going. Her enhanced bosom bounces up and down when she jerks and spasms. You’d feel content, but then karma strikes, and a little bit of your payload seeps out into you as well.");
+		if (pc.cockCanSting(kok2)) output("\n\nA sultry sounding coo drifts out of Roxy’s maw when her interior is slapped by the stingers lining your alien rod. Her quailing voice crescendos to its highest pitch when lust-venom maximized her sensitivity and capitalizes on that newfound vulnerability. It suddenly becomes harder for the tongue-lolling bun to keep going. Her enhanced bosom bounces up and down when she jerks and spasms. You’d feel content, but then karma strikes, and a little bit of your payload seeps out into you as well.");
 	}
 	
 	output("\n\nNo matter how many deep breaths she takes, it’s abundantly clear that although she’s enjoying her tentative cycles, it’s causing her a kind of pain that you direly wish to heal; however, you opt to hold back. Roxy’s a tough bun. She plays contact sports for a living.");

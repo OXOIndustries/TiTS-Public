@@ -306,12 +306,15 @@ public function configureMails():void
 	//jumper birth email
 	MailManager.addMailEntry("jumper_birth", boredJumperPregBirthEmail, "Heyyy, where are yooouuu", "User-UNKNOWN", boredJumperPregBirthEmailSender(false) +"@J6.source", quickPCTo, quickPCToAddress);
 	//jumper send pic email
-	MailManager.addMailEntry("jumper_sendpic", boredJumperPregSendPicEmail, RandomInCollection(["Thaaaanks!", "Sooo cute!", "You're the best!"]), "User-UNKNOWN", boredJumperPregBirthEmailSender(true) +"@J6.source", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("jumper_sendpic", boredJumperPregSendPicEmail, RandomInCollection(["Thaaaanks!", "Sooo cute!", "You’re the best!"]), "User-UNKNOWN", boredJumperPregBirthEmailSender(true) +"@J6.source", quickPCTo, quickPCToAddress);
 	//roxy preg, move, birth, missed birth emails
 	MailManager.addMailEntry("roxy_preg", roxyPregEmail, roxyPregEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("roxy_move", roxyPregMoveEmail, roxyPregMoveEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("roxy_birth", roxyBirthEmail, roxyBirthEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("roxy_missedbirth", roxyMissedBirthEmail, "So I didnt die", "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
+	//breedwell premium
+	MailManager.addMailEntry("breedwell_premium_invite", breedwellPremiumInviteEmail, "Hey There, Eager Breeder...", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("breedwell_premium_earnings", breedwellPremiumEarningsEmail, "Your Earnings", "TamaniCorp", "BCounter@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

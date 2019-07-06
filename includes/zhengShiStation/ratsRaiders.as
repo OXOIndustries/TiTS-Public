@@ -557,7 +557,7 @@ public function ratsShutUpAndTakeMyMoney():void
 	else
 	{
 		output((pc.isAss() ? "You clench your fists so hard that the bones and muscles in your fingers crack and bulge. As your digits uncurl, y" : "Y") + "ou sigh heavily and raise one hand to keep the gang back whilst you dig through your bag. They can’t help but try to jump or stand on their toes to see what’s inside. They’re unable to stifle their happy squeaks when you load a credit chit with the desired amount. ");
-		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it you guide their unblinking eyes around by their greedy and beady eyes.");
+		output("\n\nHolding the stick up, you would laugh if you weren’t so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it, you guide their greedy, beady eyes around with the promise of payday.");
 		output("\n\nYou might as well get some entertainment out of this. With a devilish smirk, you fling the chit over your shoulder and watch the avaricious trio all go scrambling for it with impatient squeals. They dive to the ground in a frenzy, scrounging for it wherever it landed.");
 		output("\n\nJust out of ear shot, you hear the little bandits laughing triumphantly.");
 	}
@@ -820,7 +820,7 @@ public function ratsContinueService(offers:int):void
 	else output(" hungry");
 	output(" ministrations. You’re soon inches away from " + rat2.mf("an equally endowed terran dick.", "a puffy-lipped, moist pink pussy, glazed with the fertile and fragrant scent of a horny mouse-girl."));
 	output("\n\nYou let this odorus cocktail of days-old pheromones enter your body in one deep breath. Within seconds a salubrious heat blossom through your neck, your arms, your torso... " + (pc.hasGenitals() ? "and <i>especially</i> in your swampy nethers" : "up and down your spine multiple times") + "; you shudder as you bring your nose to the mouse-boy’s ballooning cock-head, inhaling right from the hormone-spurting source, each jet of pre steaming before it hits your [pc.face].");
-	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] " + (pc.hasVaginas() ? "clench" : "clenches") + " mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
+	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] clench mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
 	else if (pc.hasCock()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "jump" : "jumps") + " to attention" + (pc.hasLowerGarment() ? ", pressing against your [pc.lowerUndergarment]." : "."));
 	else if (pc.hasVagina()) output(" The muscles in [pc.eachVagina] ruefully clench against one another, reacting wantonly to the smell of raw dick in the air so much that you can feel your inner walls engaging in tribadism.");
 	
@@ -842,7 +842,7 @@ public function ratsContinueService(offers:int):void
 		// PC Med Libido (34-66)
 		else if (pc.libido() <= 66)
 		{
-			output(" Despite your initial reservation, you allow it to spread wings through every muscle.");
+			output(" Despite your initial reservation, you allow it to spread through every muscle.");
 			output("\n\nA sheen of pre that <i>sparkles</i> in the light coats the mouse-boy’s slightly-veiny cock. It points to his partner’s puffy pink pussy like an indomitable mast. They could go at it like a couple ‘a bunnies, but alas, you’re the one servicing them! You press the crown of his cock to your [pc.lips], moving slowly as you bring him to your tonsil... and then you jerk your neck until your nose is pressed to his stomach");
 			if (pc.canDeepthroat()) output(", writhing like a slut as your unresistant" + (flags["USED_SNAKEBYTE"] != undefined ? ", ribbed" : "") + " throat is pleasured.");
 			else output(", wincing and suppressing your gag reflex.");
@@ -2271,10 +2271,10 @@ public function ratsLossSex():void
 			output("Although no attempt was made to turn you on, you are debilitatingly aroused and can think of nothing but getting off. Your body slackens and you fall to your knees, eyes crossing amid the muted jeers of your would-be robbers. It takes you by surprise when you’re sandwiched between their bodies, duplicitous hands and paws roaming all over your body");
 			if (!pc.isNude()) output(" and clothes");
 			output(".");
-			output("\n\nYou’re sure you must be dripping, you feel unpleasantly hot and usable");
+			output("\n\nYou're sure you must be dripping. You feel unpleasantly hot and usable");
 			if (pc.hasGenitals()) output(", to say nothing of the twitchiness in your crotch");
 			output(". It’s not long before you’re forced on your back and kept there, lamely trying to masturbate amid the cacophony.");
-			output("\n\nThe rats join you in that gropefest");
+			output("\n\nThe rats join you in the gropefest");
 			if (!pc.isNude()) output(", pawing at the clothes still on your body");
 			output(". At least they seem interested in your pleasure...");
 		}
@@ -2505,10 +2505,10 @@ public function ratsTeasingACEO():void
 		
 		if (pc.isHerm())
 		{
-			output("\n\nHer hand ");
+			output("\n\nHer hand");
 			if (rat2.isFemale()) output(" and the halfbreed girl’s squeeze");	
 			else output(" squeezes");
-			output(" your throbbing [pc.cocksLight] just before ");
+			output(" your throbbing [pc.cocksLight] just before");
 			if (rat2.isFemale()) output(" they wind their tails");
 			else output(" she winds her tail");
 			output(" around your [pc.base]");
@@ -2598,7 +2598,7 @@ public function ratsTeasingACEO():void
 		output(" Tails grind " + (pc.isBiped() ? "between your [pc.thighs]" : "against your loins") + " in reckless euphoria");
 		if (pc.hasGenitals()) output(", making sure you are never pushed too far as to cum in spite of their control");
 		output(".");
-		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re a [pc.raceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
+		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re [pc.aRaceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
 		if (pc.hasVagina()) output(" It’s the worst feeling of all, however, when your own [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " tingling on the verge of climax, clenching down and getting ready for release, but the paw or tail pulls away every single time...");
 	}
 

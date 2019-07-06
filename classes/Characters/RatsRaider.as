@@ -54,7 +54,7 @@ package classes.Characters
 
 			this.a = "the ";
 			this.capitalA = "The ";
-						
+			
 			this.hipRatingRaw = 5;
 			this.buttRatingRaw = 5;
 			
@@ -80,7 +80,7 @@ package classes.Characters
 			this.shield = new SalamanderShield();
 			this.armor = new RattyArmor();
 			this.armor.evasion = 10;
-			this.baseHPResistances.burning.resistanceValue = 75.0;
+			this.baseHPResistances.burning.resistanceValue = 50.0;
 			this.baseHPResistances.electric.resistanceValue = 75.0;
 			
 			this.ass.bonusCapacity = ratCapacity - analCapacity();
@@ -157,8 +157,8 @@ package classes.Characters
 					intelligenceRaw = 36;
 					willpowerRaw = 16;
 					
-					shield.shields += 100;
-					HPMod = -11;
+					shield.shields += 90;
+					HPMod = -21;
 					
 					specialAttacks = ["flashbang", "stun gun"];
 					
@@ -187,8 +187,8 @@ package classes.Characters
 					intelligenceRaw = 16;
 					willpowerRaw = 24;
 					
-					shield.shields += 55;
-					HPMod = 74;
+					shield.shields += 45;
+					HPMod = 54;
 					
 					addFaceFlag(GLOBAL.FLAG_FRECKLED);
 					

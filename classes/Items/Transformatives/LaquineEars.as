@@ -324,8 +324,8 @@ package classes.Items.Transformatives
 					textBuff += " sack in depthless gaps. All you can tell at the moment is that they are building weight, but they’re not expanding individually. Upon closer inspection, you see why.";
 					textBuff += "\n\nHefting your virile seed-stash makes you bowl over into the nearest wall. Suddenly there’s an immensely pleasant pinch: your already strained ballsack is expanding noticeably to accommodate new occupants. <b>Two new balls grow in the confines of your cum factory, connecting rapidly with the rest of your internal plumbing.</b> When the low-burning pain comes to an end, you run a [pc.hand] across your testicular field, delighting in the luxuriously swollen and sumptuous flesh now present there. It’s like they were implanted there as reward for some legendary devotion to a fertility god.";
 					textBuff += "\n\nThere’s one last lurch and gurgle before your quartette settles down. This sublime circumstance pleases you beyond belief. They’re so massively engorged that your [pc.legOrLegs] shake" + (pc.legCount == 1 ? "s":"") + " when touching them, imagining multiple tongues slicking across their eye-catching diameters.";
-					if(pc.hasCocks()) textBuff += " With " + num2Text(pc.cockTotal()) + " cocks, you always felt that two balls just weren’t enough. <b>But now you have four,</b> and Y";
-					else textBuff += "y";
+					if(pc.hasCocks()) textBuff += " With " + num2Text(pc.cockTotal()) + " cocks, you always felt that two balls just weren’t enough. <b>But now you have four,</b> and y";
+					else textBuff += " Y";
 					textBuff += "ou can already feel them hard at work, churning up [pc.cumNoun]-shots so large and thick that you could impregnate fields of pussies with each body-rattling pulse.";
 					textBuff += "\n\nIt’s more than appropriate for a [pc.raceShort] like yourself.";
 					textBuff += "\n\nNow you’ll be filling your partner’s every holes twice as well... you’ve certainly got enough production to cast a [pc.cumVisc] blanket over someone too. All that’s left is to find that lucky partner...";

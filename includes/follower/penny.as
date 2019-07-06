@@ -69,8 +69,14 @@ public function approachCrewPenny(back:Boolean = false):void
 		if(penny.isSquirter())
 		{
 			if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA puck-shaped cleaning robot rests in its charging dock by the wall. Though there is no physical evidence of her messy climaxes, the room smells ever so faintly of Penny’s cunt. Judging by the charge level indicator, it has gotten quite a work-out.");
-			else output("\n\nThe fox-woman’s hamper is absolutely stuffed with towels. Not even the Odorguard seal it’s equipped with can completely nullify the scent of vaginal secretions. It would seem her encounter with the venus ziltrap left her wetter than ever before.")
+			else output("\n\nThe fox-woman’s hamper is absolutely stuffed with towels. Not even the Odorguard seal it’s equipped with can completely nullify the scent of vaginal secretions. It would seem her encounter with the venus ziltrap left her wetter than ever before.");
 		}
+	}
+	// Panties interject
+	else if(needPennyPanties())
+	{
+		acquireCumslootPennyPanties(true);
+		return;
 	}
 	//Actual Approach:
 	else
@@ -90,11 +96,11 @@ public function approachCrewPenny(back:Boolean = false):void
 			else if(penny.longestCockLength() >= 10) output(" A quiet, stifled groan starts in her throat after her admission, and she squeezes her crotch up to show you the nice, big bulge hidden in her pants. The groan turns into a whimper, and then you hear the zipper on her trousers lowering. Gasping with relief, the fennec makes love to you with her eyes and offers, <i>“Looking for a booty call?”</i>");
 			//Small size
 			else output(" There’s the quiet sound of a zipper opening. <i>“I’m up for some fun if you are...”</i>");
-			if(penny.isSquirter())
-			{
-				if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
-				else output("\n\nThere’s no hiding the hints of feminine scent that linger in Penny’s sheets or waft through the hamper’s supposed Odorguard seal. It would seem that in the wake of her encounter with a venus ziltrap, Penny’s become a very wet girl. And of course, there’s the heady musk of her other genitalia resting atop it all.");
-			}
+		}
+		if(penny.isSquirter())
+		{
+			if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
+			else output("\n\nThere’s no hiding the hints of feminine scent that linger in Penny’s sheets or waft through the hamper’s supposed Odorguard seal. It would seem that in the wake of her encounter with a venus ziltrap, Penny’s become a very wet girl. And of course, there’s the heady musk of her other genitalia resting atop it all.");
 		}
 	}
 	if(flags["BADGER_QUEST"] == 1)
@@ -131,7 +137,53 @@ public function pennyCrewMenu():void
 		}
 		else addDisabledButton(6,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
 	}
+	
+	//9999 addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
+	
 	addButton(14,"Back",crew);
+}
+
+// 9999
+public function pennyBootFromCrew():void
+{
+	clearOutput();
+	showPenny();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	flags["PENNY_ONBOARD"] = 0;
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Penny is no longer on your crew. You can find her again on Mhen’ga.</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// 9999
+public function pennyRejoinCrew():void
+{
+	clearOutput();
+	showPenny();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	//currentLocation = "SHIP INTERIOR";
+	flags["PENNY_ONBOARD"] = 1;
+
+	output("\n\n(<b>Penny has rejoined your crew!</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //[=Talk=]
@@ -598,30 +650,30 @@ public function pennyCrewSexApproach():void {
 
 public function pennyCrewSexMenu():void
 {
-	this.clearMenu();
+	clearMenu();
 	
 	// I don't THINK these scene is supposed to /require/ the player have a cock; it never once uses any logic or parse tags for the players cock, nor refer to it within the scene text OR the "exit" texts...
-	if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole,undefined,"Onahole","Jerk off Penny’s drug-grown cock with an onahole.");
-	else this.addDisabledButton(0, "Onahole Her","Onahole Her","Penny must be a futanari for this scene to work.");
+	if(penny.hasCock()) addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole,undefined,"Onahole","Jerk off Penny’s drug-grown cock with an onahole.");
+	else addDisabledButton(0, "Onahole Her","Onahole Her","Penny must be a futanari for this scene to work.");
 	
 	if (pc.hasCock())
 	{
-		//if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-		//else this.addDisabledButton(0,"Onahole Her");
+		//if(penny.hasCock()) addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+		//else addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
-		if (pc.cockThatFits(penny.vaginalCapacity(0)*1.5) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck,undefined,"OverDeskFuck","Bend Penny over the desk and go to town.");
-		else this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","You’re too big to bend her over the desk and fuck her.");
-		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage,undefined,"Frottage","Grind dicks with Penny.");
-		else this.addDisabledButton(2,"Frottage","Frottage","This scene requires Penny to have a dick.");
-		this.addButton(3,"Pawjob",penniliciousPawjob,undefined,"Pawjob","Get a fluffy footjob from Penny.");
-		this.addButton(4,"FaceFuckHer",faceFuckPenny,undefined,"FaceFuckHer","Fuck Penny’s face.");
+		if (pc.cockThatFits(penny.vaginalCapacity(0)*1.5) >= 0) addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck,undefined,"OverDeskFuck","Bend Penny over the desk and go to town.");
+		else addDisabledButton(1,"OverDeskFuck","OverDeskFuck","You’re too big to bend her over the desk and fuck her.");
+		if(penny.hasCock()) addButton(2,"Frottage",pennyFrottage,undefined,"Frottage","Grind dicks with Penny.");
+		else addDisabledButton(2,"Frottage","Frottage","This scene requires Penny to have a dick.");
+		addButton(3,"Pawjob",penniliciousPawjob,undefined,"Pawjob","Get a fluffy footjob from Penny.");
+		addButton(4,"FaceFuckHer",faceFuckPenny,undefined,"FaceFuckHer","Fuck Penny’s face.");
 	}
 	else 
 	{
-		this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","This scene requires you to have a penis.");
-		this.addDisabledButton(2,"Frottage","Frottage","This scene requires you to have a penis.");
-		this.addDisabledButton(3,"Pawjob","Pawjob","This scene requires you to have a penis.");
-		this.addDisabledButton(4,"FaceFuckHer","FackFuckHer","This scene requires you to have a penis.");
+		addDisabledButton(1,"OverDeskFuck","OverDeskFuck","This scene requires you to have a penis.");
+		addDisabledButton(2,"Frottage","Frottage","This scene requires you to have a penis.");
+		addDisabledButton(3,"Pawjob","Pawjob","This scene requires you to have a penis.");
+		addDisabledButton(4,"FaceFuckHer","FackFuckHer","This scene requires you to have a penis.");
 	}
 	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
 	if(penny.hasCock() && !pc.isTaur() && !pc.isNaga()) addButton(6,"U.Desk Suck",suckPennyUnderDesk,undefined,"Under Desk Suck","Suck Penny off under her desk.");
@@ -632,13 +684,13 @@ public function pennyCrewSexMenu():void
 	else addDisabledButton(7,"Roleplay","Roleplay","You need genitals to roleplay with Penny.");
 	
 
-	if(penny.hasCock()) this.addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
+	if(penny.hasCock()) addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(8,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	
 	
-	if(pennyIsCumSlut()) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	if(pennyIsCumSlut()) addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
 	else addDisabledButton(9,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
-	if(pennyIsCumSlut() && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	if(pennyIsCumSlut() && pc.hasCock()) addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
 	else addDisabledButton(10,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
 
 	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut() && shipLocation == "SHIP HANGAR") addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
@@ -649,7 +701,8 @@ public function pennyCrewSexMenu():void
 		else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","You can’t jerk off with Penny if you don’t have a dick.");
 	}
 	else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","Since Penny isn’t an extranet camwhore, there’s not point in doing this.");
-	this.addButton(14,"Back",approachCrewPenny,true);
+	
+	addButton(14,"Back",approachCrewPenny,true);
 }
 
 //[=Other Crew=]
@@ -1229,7 +1282,7 @@ public function fuckedPennyMorningEpilogue():void
 		// (scene: Fucked Penny, subsequent times)
  		output("Penny stirs, her arms tucking her pillow closer to her. She wriggles her body against you, subconsciously knowing what you’ve done and trying to eke out just a little bit more pleasure for itself before it’s over. <i>If</i> it’s subconscious; Penny’s proven that she’s not the type to sleep through these things.");
  		output("\n\n<i>“Mmmm,”</i> she purrs, her head lifting off the pillow. She flexes her jaw, resetting it after sleeping on it through all the night, and then she turns to you. You keep still. You’re not trying to hide what you’ve just done – Penny’s told you that she’s okay with your sleep sex – but you don’t want to disturb her. And besides, you’re still coming off your orgasmic high from busting your own " + (pc.mf("","girl-")) + "nut.");
- 		output("\n\nPenny’s eyes wander the room, unfocused in the dim light, but eventually they settle on your own. <i>“[pc.name],”</i> she says, chewing her jaw a few more times to work the stiffness out of it. She licks her lips sensually at you, and she jostles her hips back and forth, enjoying the sensations she’s getting from doing it. <i>“Mmmm, feels like... we might have had a fun night last night.”</i>");
+ 		output("\n\nPenny’s eyes wander the room, unfocused in the dim light, but eventually they settle on your own. <i>“[pc.name],”</i> she says, chewing her jaw a few more times to work the stiffness out of it. She licks her lips sensually at you, and she jostles her hips back and forth, enjoying the sensations she’s getting from doing it. <i>“Mmmm, feels like... we might’ve had a fun evening last night.”</i>");
  		output("\n\nYou ask her if she had any pleasant dreams.");
  		output("\n\n<i>“Yeah, just the one,”</i> she says, leaning in and touching her nose to yours. <i>“I dreamt that " + (pc.cockThatFits(penny.vaginalCapacity(0)) >= 0 ? "I was getting some of the best dick in my life. Rrrrrrailed,”</i> she trills, <i>“slow and heavy on some thick meat until it filled me up with some hot, thick, creamy jizz.":"my pussy was getting some grade A attention from a [pc.manWoman] that knows how to treat a cunt right.”</i> She rubs her nose against yours. <i>“And I don’t know too many [pc.manWoman] that know how to treat a woman’s pussy to such a good time.") + " Any idea why I might have had a dream like that, mate?”</i>");
  		output("\n\nYou tell her plainly: it’s because you had your way with her in her sleep. You certainly enjoyed it, and you ask her if she did.");

@@ -31,7 +31,12 @@ public function TundraEncounterBonus():Boolean
 		{
 			choices[choices.length] = stormguardIntro;
 		}
-		
+		//breedwell premium booty call
+		if (breedwellPremiumBootyCallCheck("uveto"))
+		{
+			choices[choices.length] = breedwellPremiumBootyCallPing;
+			choices[choices.length] = breedwellPremiumBootyCallPing;
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;

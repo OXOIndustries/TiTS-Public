@@ -3883,7 +3883,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	output("\n\n<i>“Sorry Kally, I’ve just got this thing about big ol’ horsey dicks ever since I got one of my own, and you had yours just hanging there.”</i>");
 	output("\n\n<i>“Only since you got one of your own?”</i> you chide.");
 	output("\n\n<i>“Well, more of a one than before.”</i> She trails off dreamily as her massive mare meat throbs against her underside. Kally’s stallion is equally straining, as if the two are having a competition to see which one can drain more blood from their owners.");
-	output("\n\nThe two have almost entirely lost focus as they ogle eachother’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
+	output("\n\nThe two have almost entirely lost focus as they ogle each other’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
 
 	//Kiro and Kally sitting in a tree F U C K I N G:
 	if(kiroKallyThreesomes() > 0) 

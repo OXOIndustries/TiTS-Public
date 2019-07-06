@@ -236,7 +236,7 @@ public function olympiaSexWheee():void
 	{
 		output("You lean against the holo-table in the middle of the room while Olympia meanders between her boards, watching her work for a minute. Specifically, watching that lush ass of hers sway and jiggle as her long legs carry her from one board to the other. Finally, you can’t help yourself but wonder aloud if a beautiful companion droid like herself has <i>completely</i> lost interest in sex.");
 		output("\n\n<i>“Lost interest?”</i> she echoes, momentarily pausing. <i>“No... no. I do have more important objectives, however. Prying myself away from my work while the </i>Sidewinder<i> is so close to being finished... I’m sorry, I simply don’t have the time right now.”</i>");
-		output("\n\nShe’s sorry. Well, it sounds like she’d <i>theoretically</i> be willing, at least.”</i>");
+		output("\n\nShe’s sorry. Well, it sounds like she’d <i>theoretically</i> be willing, at least.");
 		output("\n\nOlympia glances over her shoulder, a slight smile on her viridian lips, while her hands keep working. <i>“Oh, yes. You’re rather charming, not to mention the only person to bother talking to me here... and if you care enough to ask, you might actually be interested in <b>my</b> pleasure, too, unlike Doctor Teyaal. That would be a nice change of pace. Perhaps if you haven’t been apprehended by the time my ship is ready for launch...”</i>");
 		output("\n\nOr maybe you could find a way to mix pleasure <i>and</i> business.");
 		processTime(4);
@@ -364,7 +364,7 @@ public function tailRideOlympia(x:int):void
 	output("\n\nThe synthetic’s unexpected creampie is just the catalyst you need. You feel an instinctive clenching of the muscles, from thigh to belly and all through your [pc.vagOrAss " + x + "], and then pleasure comes as a wave of sweet release. Olympia’s tail-mounted dick is pushed straight out, too hard to yield to your muscles - the only way for it to go is out, amidst a deluge of steamy spunk that splatters onto the floor and her pearly ass.");
 	output("\n\n<i>“Ah!”</i> Olympia gasps, glancing over her shoulder as her tail fountains cum across her back. <i>“It seems you’ve made a mess of my workspace... and <b>me</b>. But the material and tactics you suggested were quick inspired. Not perfect, but you’ve brought me closer to my goals. Thank you.”</i>");
 	if(!pc.isAss() && !pc.isBro()) output("\n\n<i>“Thank <b>you</b>,”</i> you moan, slumping back against the nearest holoboard.");
-	else output("\n\n<i>“Yeah, anytime,”</i> you groan, looking around for something to wipe all the gynoid’s cum off with.”</i>");
+	else output("\n\n<i>“Yeah, anytime,”</i> you groan, looking around for something to wipe all the gynoid’s cum off with.");
 	output("\n\nYou catch a hint of a smile on Olympia’s lips, and then as if she wasn’t dripping spunk, she begins working on new material calculations.");
 	processTime(30);
 	IncrementFlag("OLYMPIA_SEXED");

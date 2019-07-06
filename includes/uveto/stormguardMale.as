@@ -1325,7 +1325,7 @@ public function lossToSGWithHeatPussy():void
 		else output("the storm lancer");
 		output("’s fingers further in with powerful contractions, seizing immediately upon the phallic intrusions with uncontrollable need. ");
 		//PC Treated Pussy: 
-		if(pc.isTreated() && pc.isTreatedCow()) 
+		if(pc.isTreatedCow()) 
 		{
 			output("Even this hulking male has trouble denying your tunnel’s crushing spasms. Your genetically-engineered miracle pussy milks hungrily at anything that penetrates it under most circumstances, but as your are now, in heat and edged for hours, your ");
 			if(silly) output("squish mitten");
@@ -1393,7 +1393,7 @@ public function lossToSGWithHeatPussy():void
 	else output("the storm lancer");
 	output(" finally slips the head of his cock down your taint and splits your [pc.cunt " + x + "] wide open with one bestial thrust.");
 
-	if(pc.isTreated() && pc.isTreatedCow()) output("\n\nThankfully, your Treated pussy was made for this sort of violent coupling. It accepts the sudden and massive penetration with no difficulty while still wrapping around it like a mould, working it from head to base with muscular contractions that demand as rapid an insemination as possible.");
+	if(pc.isTreatedCow()) output("\n\nThankfully, your Treated pussy was made for this sort of violent coupling. It accepts the sudden and massive penetration with no difficulty while still wrapping around it like a mould, working it from head to base with muscular contractions that demand as rapid an insemination as possible.");
 	else if(pc.vaginas[x].looseness() < 3) output("\n\nThough it would normally be an agonizingly slow process to take such a massive insertion, your heat has made your pussy more receptive than a dozen hours of foreplay could. You tremble and open your mouth in a mute shriek, already nearly creaming the cundarian’s club-like member as it deforms your tight walls into a reverse mirror of itself, complete with sinfully-stimulating ridges.");
 	//Loose: 
 	else output("\n\nFew cocks are ever a snug fit for your experienced pussy, but your heat has made your slutty hole not only yielding, but accommodating. It accepts the massive insertion easily while still giving it a little resistance, just enough for the both of you to enjoy the way the cundarian’s ridges stretch and scrape the loose walls of your slit.");
@@ -1444,7 +1444,7 @@ public function lossToSGWithHeatPussy():void
 	else if(pc.isTreated()) output("moo");
 	else output("howl");
 	output(" of ecstasy, and the tension in your body finally snaps. Overwhelming pleasure seizes your nerves, and you thrash like a trout on a line as your cunt throws itself fully into its true evolutionary purpose. The huge stud behind you hisses through his teeth as his breeding rod is assaulted by your love tunnel’s ");
-	if(pc.isTreated() && pc.isTreatedCow()) output("scientifically-engineered ");
+	if(pc.isTreatedCow()) output("scientifically-engineered ");
 	output("dick-draining ");
 	if(silly) output("cunt-traction");
 	else output("contractions");

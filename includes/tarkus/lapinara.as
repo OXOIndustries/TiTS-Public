@@ -1051,6 +1051,8 @@ public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 
 {
 	if(!(mother is PlayerCharacter)) return;
 	
+	var gainHeat:Boolean = (mother.fertility() > 0 && mother.hasVagina());
+	
 	// Post Effects
 	if(fromNursery)
 	{
@@ -1059,14 +1061,14 @@ public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 
 		if(vIdx >= 0) mother.cuntChange(vIdx, 1500, false);
 		else mother.buttChange(1500, false);
 		
-		AddLogEvent("With your lack of babies, you can already feel your subconscious beginning to scream for replacements. It’s as if your body has decided that because it can’t retain all it’s babies, it’ll have to make more right away. The shock of handing your young to the nursery so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the process is going to repeat again.", "passive", deltaTime);
+		if(gainHeat) AddLogEvent("With your lack of babies, you can already feel your subconscious beginning to scream for replacements. It’s as if your body has decided that because it can’t retain all it’s babies, it’ll have to make more right away. The shock of handing your young to the nursery so soon has put you into a <b>Deep Lapinara Heat.</b> You know that if you give in to these desires, the process is going to repeat again.", "passive", deltaTime);
 	}
 	
 	if(mother.fertilityRaw < 10) mother.fertilityRaw++;
 	if(mother.pregnancyIncubationBonusMotherRaw < lapiTrain()) mother.pregnancyIncubationBonusMotherRaw++;
 	
 	//Give Deep Lapinara Heat Status Effect
-	if(mother.fertility() <= 0) { /* Nada! */ }
+	if(!gainHeat) { /* Nada! */ }
 	else if(!mother.inHeat()) mother.createStatusEffect("Heat", 10, 35, 25, 5, false, "LustUp", "", false, 28800, 0xB793C4);
 	else if(!mother.inDeepHeat())
 	{

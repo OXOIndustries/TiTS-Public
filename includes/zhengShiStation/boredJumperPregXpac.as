@@ -1795,14 +1795,14 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	
 	if (pc.cockTotal() > 1)
 	{
-		if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE)
+		if (pc.cockCanSting(kok))
 		{
-			if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your dual-slotted [pc.cocksLight] lash out at every corner of the Jumper’s pussy- and ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+			if (pc.cockCanSting(kok2)) output("\n\nYour alien biology has a plan of its own. The stingers on your dual-slotted [pc.cocksLight] lash out at every corner of the Jumper’s pussy- and ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 			else output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 		}
-		else if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok2 + "] lash out at every corner of the Jumper’s ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+		else if (pc.cockCanSting(kok2)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok2 + "] lash out at every corner of the Jumper’s ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	}
-	else if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
+	else if (pc.cockCanSting(kok)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	
 	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
 	if (boredJumperKnowsSteelesName(jumperType)) output(" [pc.name],");
@@ -2148,7 +2148,7 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirlNext(arg:Array):void
 	else output(" Your empty womb craves the same filling that she’s enjoying right now.");
 	output(" Only the immense load of the laquine’s pent-up balls could hope to quench your thirst.");
 	
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output("\n\nAnd your unique alien biology will ensure that she performs at her best. The stingers lining your cilia-filled cunny sting the abundant flesh of her [enemy.cockNoun 0], depositing their venomous payloads into her ultra sensitive schlong. Her tone fluctuates on her passage through your tightening embrace; you swear that makes her male-half bigger, harder...");
+	if (pc.vaginaCanSting(hole)) output("\n\nAnd your unique alien biology will ensure that she performs at her best. The stingers lining your cilia-filled cunny sting the abundant flesh of her [enemy.cockNoun 0], depositing their venomous payloads into her ultra sensitive schlong. Her tone fluctuates on her passage through your tightening embrace; you swear that makes her male-half bigger, harder...");
 	
 	output("\n\n<i>Your body needs her to take charge.</i> It flexes and strains errantly around her shaft, expressing her huge cock until it reaches your");
 	if (sceneNum == 1) output(" gagging womb.");
@@ -2554,7 +2554,7 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext2(jumperType:int=0)
 	output(". Whiskers tickle your");
 	if (pc.vaginas[hole].type == GLOBAL.TYPE_EQUINE || pc.vaginalPuffiness(hole) >= 2) output(" puffed");
 	output(" vulva, knocking your muscles upwards to trap her face in your sodden box");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(", her intruding organ being stung by every tendril it disturbs until she’s as wet as your overaroused passage");
+	if (pc.vaginaCanSting(hole)) output(", her intruding organ being stung by every tendril it disturbs until she’s as wet as your overaroused passage");
 	output(".");
 	
 	if (pc.vaginas[hole].type == GLOBAL.TYPE_EQUINE || pc.vaginalPuffiness(hole) >= 2)
@@ -2649,10 +2649,10 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext3(arg:Array):void
 	output(" <i>“Wanna try giving me some lip again?”</i> The pulsing in her bitch-claiming cock is timed to your blinking.");
 	
 	output("\n\nAll you manage is a shake, the upper half of your body completely unresponsive beneath her pheromones and visage of traditional masculinity.");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(" A shake, and a tiny laugh when her overwhelmingly erect member is stung by your lust-bearing cilia.");
+	if (pc.vaginaCanSting(hole)) output(" A shake, and a tiny laugh when her overwhelmingly erect member is stung by your lust-bearing cilia.");
 	
 	output(" <i>“Reeaallly?”</i> The Jumper pulls back slightly");
-	if (pc.vaginas[hole].type == GLOBAL.TYPE_SIREN || pc.vaginas[hole].type == GLOBAL.TYPE_ANEMONE) output(", wincing,");
+	if (pc.vaginaCanSting(hole)) output(", wincing,");
 	output(" then drives forward, falling down face-first into your");
 	if (pc.tallness >= 73) output(" [pc.chest].");
 	else output(" neck.");
@@ -4344,7 +4344,7 @@ public function boredJumperPregPregnancyEnds():void
 		{
 			
 			output("\n\n<i>“Damn babe, you know I was just joking when I thought you’d have like thirty kids!”</i> the shameless rabbit quips. <i>“But looks like you might be carrying that much, just look at the size of you!”</i> She’s not wrong. Your body was designed by nature to bear creatures of similar size: large, powerful, and much bigger than the average humanoid rabbit.");
-			output("\n\nBut in this case, the horny laquine to your side is the one who claimed your womb <i>and</i> stuck you with a fertility drug. You’re bearing a bunny-slut’s kids, and you’re going to be pushing out <i>a lot</i> of them. The sheer weight of your bulked up belly is undeniable. <i>Only a litter of nearly three dozen rabbits could have been such a burden on you,</i> and only that many could impugn the balance of a [pc.raceShort].");
+			output("\n\nBut in this case, the horny laquine to your side is the one who claimed your womb <i>and</i> stuck you with a fertility drug. You’re bearing a bunny-slut’s kids, and you’re going to be pushing out <i>a lot</i> of them. The sheer weight of your bulked up belly is undeniable. <i>Only a litter of nearly three dozen rabbits could have been such a burden on you,</i> and only that many could impugn the balance of [pc.aRaceShort].");
 			output("\n\nStill, there’s a major advantage to this form, and this position, one that’s not going unnoticed. You can sit down! There’s feeling your [pc.legs]! Still, you must clutch tight to your human stomach, the churning births at your undercarriage forcing out a few gurgles and groans. That bloated womb works its inhabitants out into the galaxy, cervix softening and dilating, vaginal walls beginning to stretch, easily making room for a smaller creature.");
 			
 			output("\n\nRegardless of how");

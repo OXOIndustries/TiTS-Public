@@ -896,7 +896,7 @@ public function genesModsBlowjob():void
 		
 		output("\n\n<i>“Go on... ”</i> he sighs, poking his burningly erect tower of a cock at your lips. You look up at him coyly, poke your [pc.tongue] out and then lick the end, tantalizing his most sensitive spot with swirls of your tongue, pausing when slightly sweet spice tingles across your taste-buds. Wow, is that natural? You don’t get a chance to savour it though, because next moment Gene, agitated by your teasing, shoves forward and opens your mouth with his girthy, pre-slicked cock-head.");
 		output("\n\nAfter a moment of getting used to it you swiftly find a rhythm, moving your [pc.lips] and tongue over the hot, spicy meat, pumping the base with one hand, the other reaching further back to give his heavy quad a good fondle - and the occasional gentle squeeze, just to see him tense up again. After a few fervent, shallow thrusts he calms himself down and lets your head do the moving.");
-		if (pc.isTreatedFemale())
+		if (pc.isTreatedCow())
 		{
 			output(" All of your instincts tell you that this is where you most belong -");
 			if (pc.isBiped()) output(" on your knees");

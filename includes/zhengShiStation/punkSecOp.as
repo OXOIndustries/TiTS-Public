@@ -3,7 +3,7 @@ import classes.Characters.SlamwulfeDrone;
 //Punk SecOp Core Idea
 //Kaithrit, comes in female in male flavors. Shares several scenes with a few unique based on gender.
 //Girl has big knockers. Boi has A or B cups.
-//Wear’s <i>“augment weave armor”</i> that looks sorta like the crysis suit without a helmet
+//Wear’s “augment weave armor” that looks sorta like the crysis suit without a helmet
 //Ideal for interfacing with tech. Can be remote-opened by a hack or the SecOp’s radio implant.
 //Cybernetic implants have distinct seams
 //
@@ -12,7 +12,7 @@ import classes.Characters.SlamwulfeDrone;
 //Notes the PC isn’t supposed to be here (unless the PC has a jumper suit & bun ears or a rat armor and mouse ears).
 //PC is escorted back to the elevator
 //If PC resists, PC is subdued and dragged back to the elevator.
-//Has a pair of <i>“Slut Goggles”</i> for restraining defeated foes. Uses electromagnetic fields to hyperstimulate the pleasure centers of the brain while suppressing the parts responsible for discerning between fantasy/reality. At the same time, they play high-def VR porn.
+//Has a pair of “Slut Goggles” for restraining defeated foes. Uses electromagnetic fields to hyperstimulate the pleasure centers of the brain while suppressing the parts responsible for discerning between fantasy/reality. At the same time, they play high-def VR porn.
 //Allows for lewd loss scenes from enemies who might not be turned on.
 //Allows for more variety in loss scenes, ala Mindwash Visor.
 //Still have the option of doing normal loss scenes instead, maybe gated behind turning on the enemy?
@@ -22,8 +22,8 @@ import classes.Characters.SlamwulfeDrone;
 //Finger/Foot paw-pads replaced with rubberized grip assists
 //Holovisor projected over eyes for targeting assist. Projectors built into sides of head.
 //Antenna implant in right ear for always-on comms
-//Sphynx-grade artificial tendons for hyper-pounce jumping. (12’ vertical leaps!)
-//Male: 13”</i> robocock with rapid-brewing cum-tanks and throb-o-matic pulsator. (Latex/Rubbery in appearance.)
+//Sphynx-grade artificial tendons for hyper-pounce jumping. (12' vertical leaps!)
+//Male: 13" robocock with rapid-brewing cum-tanks and throb-o-matic pulsator. (Latex/Rubbery in appearance.)
 //Female: Artificial cunt with patented cock-control™ technology and optional expando-clit upgrade. Still soft and squishy but with a visible seam where it meets the organic parts of her. Sort of like this.
 //Aphrodisiac lactating cybernips?
 //Tongue is long and has a subdermal muscle augmentation that makes it very strong and very coordinated. Can curl into a helix and press out on every part of the PUSS.
@@ -447,14 +447,14 @@ public function SecOPFucksYourThroat():void
 	else if(pc.hasCock()) output("makes your [pc.cocks] spurt helplessly");
 	else output("makes you squirm helplessly");
 	output(". You lick at his fingers, his wrist, groaning in delight at this erotic thrill, wishing that he hadn’t cuffed you so that you might show your willingness a bit better.");
-	output("\n\n<i>“That’s the reaction I’d from a willing slave. Either you are one, or you’re naturally suited to be one,”</i> he says, entirely enthused. <i>“A cock-hungry trespasser all to myself,”</i> he blurts, his artificial dong throbbing in reaction, <i>“tell you what, work hard enough and maybe I’ll keep you. Then you’ll have as much of this as you want.”</i> He strokes his tumescent techno-meat, bringing that pulsing pillar of augmented masculinity closer. ");
+	output("\n\n<i>“That’s the reaction I’d expect from a willing slave. Either you are one, or you’re naturally suited to be one,”</i> he says, entirely enthused. <i>“A cock-hungry trespasser all to myself,”</i> he blurts, his artificial dong throbbing in reaction, <i>“tell you what, work hard enough and maybe I’ll keep you. Then you’ll have as much of this as you want.”</i> He strokes his tumescent techno-meat, bringing that pulsing pillar of augmented masculinity closer. ");
 	if(pc.libido() < 33) output("A spike of fear stings the back of your mind, puncturing the miasmal lust accumulating there for a second before it fills gain. You’re far too aroused to think about disagreeing.");
 	else if(pc.libido() < 66) output("You nod your head slowly. The movement is automatic. You want his dick, and you can’t wait for it to make you feel good.");
 	else output("You nod happily, spreading your lips as far as they’ll go to make room for his throbbing bluntness, looking like it desperately needs a hole to fuck.");
 	output("\n\nHe withdraws and grabs onto your head just before he shoves his jaw-straining dick straight into the purple-smattered hole " + (pc.libido() < 66 ? "he’s created":"you’ve created") + ". Tears well at the corners of your eyes");
 	if(!pc.canDeepthroat()) output(", but the pain is quickly replaced by the nerve-numbing cock-juice rinse beforehand");
-	else output(", but you’re in no pain" + (flags["USED_SNAKEBYTE"] != undefined ? "; your jaw even widens to an obscene degree to service his fat prick":""));
-	output(". The nerve-numbing cock-juice rinse and your powerfully erotic throat make this intensely pleasurable, it feels unspeakably good}. The squelching glide of his ultra-smooth mecha-cock across your [pc.lips] ignites all the arousal coursing in your veins, its majestic trip something you relish on a very deep level. The taste alone makes your head swim while the uniquely appealing musk of an alpha kaithrit affirms your sense of belonging beneath him.");
+	else output(", but you’re in no pain" + (flags["USED_SNAKEBYTE"] != undefined ? "; your jaw even widens to an obscene degree to service his fat prick":"") + ". The nerve-numbing cock-juice rinse and your powerfully erotic throat make this intensely pleasurable, it feels unspeakably good");
+	output(". The squelching glide of his ultra-smooth mecha-cock across your [pc.lips] ignites all the arousal coursing in your veins, its majestic trip something you relish on a very deep level. The taste alone makes your head swim while the uniquely appealing musk of an alpha kaithrit affirms your sense of belonging beneath him.");
 	output("\n\nYour [pc.tongue] is automatically pinned by his unyielding mechanical prong, preventing you from servicing him the way you want until he buries that robo-dick in your neck" + (!pc.canDeepthroat() ? ", your gag reflex stopping him halfway":", your lack of resistance allowing him to settle balls-deep") + ". The smooth and slimy head oozes arousing pre straight into your gut, the rivulets becoming a thin layer of faux-stomach acid.");
 	if(pc.canDeepthroat())
 	{
@@ -469,10 +469,11 @@ public function SecOPFucksYourThroat():void
 		else 
 		{
 			output("The sudden twitch of your [pc.cocks] and the clenching of your [pc.balls] is little warning before [pc.cumNoun] fires off in ");
-			if(pc.cumQ() < 10) output("small spurts");
-			else if(pc.cumQ() < 150) output("thick jets");
-			else if(pc.cumQ() < 2000) output("floor-drenching ropes");
-			else if(pc.cumQ() < 25000) output("puddling deluges");
+			var cumQ:Number = pc.cumQ();
+			if(cumQ < 10) output("small spurts");
+			else if(cumQ < 150) output("thick jets");
+			else if(cumQ < 2000) output("floor-drenching ropes");
+			else if(cumQ < 25000) output("puddling deluges");
 			else output("room-flooding waves");
 			output(" that pool under the self-assured pirate’s legs.");
 		}
@@ -509,7 +510,7 @@ public function SecOPFucksYourThroat():void
 	// PC modded throat
 	else
 	{
-		output("\n\nYou can barely view him as your enemy anymore, not when he starts purring, not when your own pleasure strengthens with his. He hilts himself in your neck, basking in the moistness of your " + (flags["USED_SNAKEBYTE"] != undefined ? "ribbed, ":"") + " precum-washed muscles clenching around him with such intensity and heat that a pussy is obsolete in comparison. <i>“There has to be some logical explanation for what you’ve got,”</i> the dick-wielding kitty husks, <i>“either someone misplaced the most valuable slave on frontier space, or you did this to yourself because you just love sucking cock that much!”</i> His words make you titter, a shameful wave of drug-fueled bliss washing over your heart. With a mouthful of dick, all you can do to answer is lick." + (pc.isTreated() || flags["USED_SNAKEBYTE"] != undefined ? "  Lick, and cum from only using your tongue and throat.":""));
+		output("\n\nYou can barely view him as your enemy anymore, not when he starts purring, not when your own pleasure strengthens with his. He hilts himself in your neck, basking in the moistness of your " + (flags["USED_SNAKEBYTE"] != undefined ? "ribbed, ":"") + " precum-washed muscles clenching around him with such intensity and heat that a pussy is obsolete in comparison. <i>“There has to be some logical explanation for what you’ve got,”</i> the dick-wielding kitty husks, <i>“either someone misplaced the most valuable slave on frontier space, or you did this to yourself because you just love sucking cock that much!”</i> His words make you titter, a shameful wave of drug-fueled bliss washing over your heart. With a mouthful of dick, all you can do to answer is lick." + (pc.isTreated() || flags["USED_SNAKEBYTE"] != undefined ? " Lick, and cum from only using your tongue and throat.":""));
 		if(flags["USED_SNAKEBYTE"] != undefined) output("\n\nHe opens his mouth again, but all that comes out is a supremely pleasured moan, feral and eminent in texture. Your ribbed throat-muscles grind and squirm around his techno-dick like a nubby gryvain cunt, but you are so much more. He strokes your head adoringly, barely moving his hips while your nose squirms against his belly" + (pc.tailCount > 0 ? ", wagging your [pc.tails] in sync with him":"") + ". Your segmented neck jerks his cock divinely, blinding him with the raw sensuality of your slutty throat, modified only to suck gloriously endowed dick and suck it better than anyone else. " + (CodexManager.entryUnlocked("Slyverens") ? "Even the Slyveren. ":"") + "You sense some remorse when the punky cat asserts again, dragging you off with a regretful whine.");
 		output("\n\n<i>“You can’t be some random merc for hire, not with eagerness like that,”</i> he " + (flags["USED_SNAKEBYTE"] == undefined ? "breathes":"pants") + ", <i>“but good slaves don’t set the pace unless told to. And you,”</i> he grins, <i>“weren’t given an order.”</i> He inhales and slams himself into your throat again, an act no less pleasurable than ");
 		if(pc.hasCock()) output("having [pc.oneCock] rubbed");
@@ -620,6 +621,10 @@ public function defeatASecop():void
 		else addDisabledButton(2,"Fuck Him","Fuck Him","You need a vagina to do this.");
 		if(pc.hasTailCunt() && pc.hasParasiteTail()) addButton(3,"Tailmilk",tailMilkTheMaleSecOp,undefined,"Tailmilk","Milk him with your parasitic tail.");
 		else addDisabledButton(3,"Tailmilk","Tailmilk","You need a parasitic cunt-tail for this.");
+		if(!pc.isTaur() && !pc.isNaga()) addButton(4,"Catch Anal",secOpMaleAnal,undefined,"Catch Anal","A little bit of foreplay before intense anal sex.");
+		else addDisabledButton(4,"Catch Anal","Catch Anal","You can’t be a taur or a naga for this.");
+		if(pc.biggestTitSize() >= 3) addButton(5,"Titfuck",secOpMaleTitfuck,undefined,"Titfuck","Let his kitty dick fuck your titty pit.");
+		else addDisabledButton(5,"Titfuck","Titfuck","You need to have breasts at C-cup or larger to try this!");
 	}
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
@@ -633,6 +638,9 @@ public function fuckHimSecOp(x:int):void
 	clearOutput();
 	showPunkSecOp(true);
 	author("Fenoxo");
+	
+	var cumQ:Number = 0;
+	
 	output("You prowl forward and push the security operative onto his back" + (pc.legCount > 1 ? ", straddling his supine form":", perching above his supine form") + ". <i>“Just because you lost doesn’t mean that you can’t have fun making it up to me, kitty-cat.”</i> You run your hands down the tightly coiled metal of his armor, admiring how it clings to the pert mounds of his A-cups. Circling lower, you caress his upper thighs, making slow laps around the " + (enemy.lust() < enemy.lustMax() ? "prominent bulge":"blatantly exposed length") + " of his maleness. <i>“How’s that sound?”</i>");
 	//Lust Win
 	if(enemy.lust() >= enemy.lustMax()) output("\n\nA whorish moan and staccato pumps of the kaithrit’s hips serve as all the answer you need. <i>“Please! Let me fuck you!”</i> His gleaming cyber-rod slaps against his belly, bouncing and dripping, slowly building a web of dribbling pre.");
@@ -642,23 +650,25 @@ public function fuckHimSecOp(x:int):void
 	output("\n\nYou" + (!pc.isCrotchExposed() ? " pull your [pc.crotchCovers] out of the way and":"") + " barely suppress a giggle. <i>“You’ve got it all wrong. I’m going to fuck </i>you<i>.”</i>");
 	output("\n\nSeizing his prick in one hand, you barely have time to admire its heft and girth before your [pc.hips] slide downward, kissing the chromed crown with your netherlips before plunging it inside, gratefully accepting inch after inch of sublimely hard cock. It’s <i>hot</i> - not just passionate and enticing in the way that a footlong dick can be but in its raw warmth. Just taking it in makes you sweat and drip, your [pc.vaginaNoun " + x + "] creaming itself in delight. You moan from the feeling of splitting yourself on such a magnificent dick.");
 	output("\n\nNo wonder this cute little kaithrit got himself augmented. This is a god-tier cock!");
+	
 	//Cuntchange
-	pc.cuntChange(x,enemy.cockVolume(0))
-	{
-		output("\n\nThe mewling feline’s eyes roll back from your [pc.vaginaNoun " + x + "]’s clutching embrace, and he makes a vain attempt to fuck you back. His hips surge upward, burying his cock in to the hilt, but he doesn’t have any leverage from this angle. Your bodyweight bears him right back down to the ground with a lurid squelch.");
-		if(pc.vaginas[x].wetness() < 3) {}
-		else if(pc.vaginas[x].wetness() < 5) output(" Dribbling pussy-juice trickles over his loins.");
-		else output(" Streamers of pussy-juice soak his loins.");
-		output(" Groaning in delight, the pirate grabs your [pc.thighs] and squeezes, too enamored by what you’re doing to him to speak, let alone think.");
-	}
+	pc.cuntChange(x,enemy.cockVolume(0));
+	
+	output("\n\nThe mewling feline’s eyes roll back from your [pc.vaginaNoun " + x + "]’s clutching embrace, and he makes a vain attempt to fuck you back. His hips surge upward, burying his cock in to the hilt, but he doesn’t have any leverage from this angle. Your bodyweight bears him right back down to the ground with a lurid squelch.");
+	if(pc.vaginas[x].wetness() < 3) {}
+	else if(pc.vaginas[x].wetness() < 5) output(" Dribbling pussy-juice trickles over his loins.");
+	else output(" Streamers of pussy-juice soak his loins.");
+	output(" Groaning in delight, the pirate grabs your [pc.thighs] and squeezes, too enamored by what you’re doing to him to speak, let alone think.");
+	
 	//Have cock
 	if(pc.hasCock()) 
 	{
 		output("\n\nYou grab him by the wrists and put his hands to work somewhere better: on your [pc.cocks]. Just like with your thighs, he sets to squeezing and stroking immediately, uncaring that it’s your phall" + (pc.cockTotal() == 1 ? "us":"i") + " that he’s tugging. His thumbs explore with slow strokes while his palms tighten up, hugging your veined length" + (pc.cockTotal() > 1 ? "s":"") + " firmly. You identify the exact moment he realizes what he’s doing by the sudden change in his strokes. A lifetime of jacking off his own dick has prepared him for this exact scenario, and rather than stopping, he shifts his grip and begins moving with purpose, wringing out a ");
-		if(pc.cumQ() < 20) output("bit");
-		else if(pc.cumQ() < 200) output("string");
-		else if(pc.cumQ() < 2000) output("stream");
-		else if(pc.cumQ() < 10000) output("spurt");
+		cumQ = pc.cumQ();
+		if(cumQ < 20) output("bit");
+		else if(cumQ < 200) output("string");
+		else if(cumQ < 2000) output("stream");
+		else if(cumQ < 10000) output("spurt");
 		else output("waterfall");
 		output(" of pre-cum with apparent glee.");
 	}
@@ -671,10 +681,10 @@ public function fuckHimSecOp(x:int):void
 	if(pc.hasCock())
 	{
 		output(" Ribbons of [pc.cumNoun] fly from your [pc.cocks] while he strokes.");
-		if(pc.cumQ() < 50) output(" They fall in sticky webs on his chest.");
-		else if(pc.cumQ() < 250) output(" They plaster his chest in a thick, dripping coat of masculine release.");
-		else if(pc.cumQ() < 1000) output("They splatter his face and cascade over his chest in a thick, dripping coat of masculine release.");
-		else if(pc.cumQ() < 5000) output("They drench him from head to belly in a puddling coat of exquisite, masculine release.");
+		if(cumQ < 50) output(" They fall in sticky webs on his chest.");
+		else if(cumQ < 250) output(" They plaster his chest in a thick, dripping coat of masculine release.");
+		else if(cumQ < 1000) output("They splatter his face and cascade over his chest in a thick, dripping coat of masculine release.");
+		else if(cumQ < 5000) output("They drench him from head to belly in a puddling coat of exquisite, masculine release.");
 		else output("They absolutely bury him in a wave of exquisite masculine release. Every inch of his body is covered in your cascading goo, anointing him in your pleasure.");
 	}
 	output(" You feel like a guitar’s string, like that magical cock is playing you, pulling you tight and twanging climax after shuddering climax from your taut form. Back arching, your [pc.chest] heaves as you try not to hyperventilate.");
@@ -698,10 +708,11 @@ public function rideDatKittyWithCock(x:int):void
 	//Cocks
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output("\n\nYour [pc.cocks] blast" + (pc.cockTotal() == 1 ? "s":"") + " out every drop of remaining [pc.cum] in your body.");
-		if(pc.cumQ() >= 20000) output(" It’s a titanic deluge of room-flooding sperminess that catches you both completely by surprise. The kaithrit can do little but throw his arm up in front of his face as you hose him down and slowly bury his body in an ever deepening pool of [pc.cumVisc] spunk.");
-		else if(pc.cumQ() >= 2000) output(" It’s a wonderfully thick wave of sperminess that takes you both by surprise. The kaithrit throws his arm up in front of his face, but it doesn’t stop you from painting him in a fresh layer of sloppy spunk, or producing a nice, thick pool of excess semen for him to bathe in.");
-		else if(pc.cumQ() >= 100) output(" Splattering gouts of sperminess batter his face like erotic missiles, bursting into explosions of erotic relief.");
+		if(cumQ >= 20000) output(" It’s a titanic deluge of room-flooding sperminess that catches you both completely by surprise. The kaithrit can do little but throw his arm up in front of his face as you hose him down and slowly bury his body in an ever deepening pool of [pc.cumVisc] spunk.");
+		else if(cumQ >= 2000) output(" It’s a wonderfully thick wave of sperminess that takes you both by surprise. The kaithrit throws his arm up in front of his face, but it doesn’t stop you from painting him in a fresh layer of sloppy spunk, or producing a nice, thick pool of excess semen for him to bathe in.");
+		else if(cumQ >= 100) output(" Splattering gouts of sperminess batter his face like erotic missiles, bursting into explosions of erotic relief.");
 		else output(" It isn’t all that much. Enough to paint a few lines of erotic relief on the cat-boy’s tummy.");
 	}
 	//merge
@@ -991,10 +1002,11 @@ public function drinkDatCatMilk(x:int):void
 		output("\n\nJust before climax, you slam your [pc.knot" + ((y >= 0 && pc.hasKnot(y)) ? "s" : (" " + x)) + "] into the kaithrit pirate, sealing her pussy" + (y >= 0 ? " and ass simultaneously":"") + ". The thought that your liquid virility isn’t going anywhere else is the last satisfying thought you need to cross the orgasmic line.");
 	}
 	else output("\n\nAs your [pc.balls] prepare the first surge of cum, you slam your hips into the kaithrit pirate’s, a feral roar preceding your effortless ejaculation.");
+	var cumQ:Number = pc.cumQ();
 	// PC low cum
-	if(pc.cumQ() < 1000) output("\n\nHer synth-pussy makes it all too easy to achieve release, and with closed eyes you are intimately aware of the pleasant travel each rope of spurting [pc.cum] makes up from your [pc.balls] through your programmatically massaged urethra... right into the pirate’s waiting womb" + (y >= 0 ? " and colon":"") + ". You gently rock against her body, your [pc.cocks] flexing and swelling with salty deluge." + (pc.cockTotal() > 3 ? " [pc.CumVisc] [pc.cumNoun] sprays from your other dicks, warming your bellies with a helping serving of [pc.cumFlavor]-flavored seed.":""));
+	if(cumQ < 1000) output("\n\nHer synth-pussy makes it all too easy to achieve release, and with closed eyes you are intimately aware of the pleasant travel each rope of spurting [pc.cum] makes up from your [pc.balls] through your programmatically massaged urethra... right into the pirate’s waiting womb" + (y >= 0 ? " and colon":"") + ". You gently rock against her body, your [pc.cocks] flexing and swelling with salty deluge." + (pc.cockTotal() > 3 ? " [pc.CumVisc] [pc.cumNoun] sprays from your other dicks, warming your bellies with a helping serving of [pc.cumFlavor]-flavored seed.":""));
 	// PC plenty of cum
-	else if(pc.cumQ() < 5000)
+	else if(cumQ < 5000)
 	{
 		output("\n\nHer synthetic pussy makes every attempt to suck your ");
 		if(pc.balls > 0) output("[pc.balls]");
@@ -1093,7 +1105,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	else output("\n\n<i>“G-geez... How can you walk around with something like that?”</i> The kitten’s hand glides across your massive [pc.cockNounSimple " + x + "]. <i>“Oh well, you carried it right to me. If you behave, I’ve got a few things you can do with that cock of yours...”</i>");
 	// Merge
 	output("\n\n<b>BEHAVE!?</b> Who is she kidding? You’re so hard that your [pc.cocks] could knock this station out of alignment with " + (pc.cockTotal() == 1 ? "its":"their") + " burning erection" + (pc.cockTotal() > 1 ? "s":"") + ", and " + (pc.cockTotal() == 1 ? "it feels like it’s":"they feel like they’re") + " growing <i>bigger and harder</i> as the seconds tick by.");
-	if(pc.balls > 0) output(" The enchanting handjob your [pc.balls] " + (pc.balls == 1 ? "receives":"receiving") + " makes matters worse. <i>Better</i>.");
+	if(pc.balls > 0) output(" The enchanting handjob your [pc.balls] " + (pc.balls == 1 ? "receives":"are receiving") + " makes matters worse... No, <i>better</i>.");
 	output(" Stars be damned, whatever she’s doing isn’t nearly enough to relieve you of the pressure building down there, making you feel as if you’re about to explode!");
 	if(pc.hasVagina()) output(" The effect it has on your [pc.pussy], or had, was felt in the " + (!pc.isSquirter() ? "body-rumbling feminine orgasm you just had":"projectile of [pc.girlCum] that just splattered the giggling pirate") + ".");
 
@@ -1136,7 +1148,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	if(y < 0 && pc.cockTotal() == 2 || y >= 0 && pc.cockTotal() == 3) output(" Your extra dick spurts a long rope of pre not unlike a thread of cum over her leg, your [pc.balls] finally liberated of chastity mode.");
 	else if(pc.cockTotal() > 2) output(" Your extra dicks spurt long ropes of pre not unlike cords of cum over her legs, your [pc.balls] finally liberated of chastity mode.");
 	output("\n\nSweat dripping from your entire body - you lean down to her twitching ear, and tell her that she now belongs to you.");
-	output("\n\n<i>“AwwAhaaaa!”</i> she cries ruefully, <i>“fine, fiiineeee! I give up I submit justfuckmealready!”</i>");
+	output("\n\n<i>“AwwAhaaaa!”</i> she cries ruefully, <i>“Fine, fiiineeee! I give up I submit justfuckmealready!”</i>");
 	output("\n\n<i>With <b>all</b> pleasure</i>. Time around you seems to hold its breath as you withdraw from her pussy, the universe waiting with bated breath as some horribly edged creature - you - overcomes its trial-by-pussy and <i>earns</i> this fuck. With your [pc.cockHeads " + x + "] just barely inside her now berserk cunny" + (y >= 0 ? " and stretched ass":"") + ", you laugh loudly as you conquer this cat, slamming your [pc.cocksLight] into her so hard that her cervix spreads and her whole body crashes to the ground. The confused synth-pussy you pound retains its vacuumous strength, vigorously sucking on your dick like a throat, its servos firing in all the right places to masterfully administer pleasure to your cock.");
 	output("\n\nThe floodgates broken, you froth at the mouth in your haze of rut as you mercilessly plow her, pulling on her arms as you do. She screams praises and encouragements, urging you on and on; conjuring up all the strength in your over-stimulated and aching muscles, you rise to the occasion and the pace of a jackhammer. Her cunt seals its red-hot muscles to block your pleasurable path, but you carry on without regard, your [pc.cockHead " + x + "] punching right through her clenching canals.");
 	output("\n\nThe antenna on her head and her super-tongue wobble, the babbling ‘punk’s fingers crimp. Glancing down, you see her tongue weaving around her hyper-engorged clit and wrapping taut and firm around your [pc.cocksLight] in an exotic and incredibly arousing display ");
@@ -1156,14 +1168,15 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 
 	var freecocks:Number = pc.cockTotal() - 1;
 	if(y >= 0) freecocks--;
+	var cumQ:Number = pc.cumQ();
 	// PC low cum
-	if(pc.cumQ() < 1000)
+	if(cumQ < 1000)
 	{
 		output("\n\n[pc.CumVisc] [pc.cumNoun] spurts. and spurts, and spurts into the cyber-kitty’s stretched womb, her synth-pussy programmatically ensuring maximum [pc.sack] draining efficiency. Your [pc.cum] is delivered to the door by your swollen cumslit, and every throbbing, pulsing ejaculation vibrates her body and yours." + (y >= 0 ? " Your second [pc.cockNounSimple " + x + "], lodged deep in her ass, squirms against your first through the nerves separating them.":""));
 		if(freecocks > 0) output("Your other " + (freecocks == 1 ? "member":"[pc.cocksLight]") + ", without " + (freecocks == 1 ? "a hole of its own, sadly paints":"holes of their own, sadly paint") + " part of your body or hers with [pc.cumColor] seed.");
 	}
 	// PC plenty of cum
-	else if(pc.cumQ() < 10000)
+	else if(cumQ < 10000)
 	{
 		output("\n\nThe kaithrit’s synth-pussy demonstrates its expertise at milking your " + (pc.balls > 0 ? "[pc.balls]":"body") + " of every drop of [pc.cumColor] spunk. As you fill her spread womb" + (y >= 0 ? " and spasming ass":"") + " with load after thick load of [pc.cumVisc] [pc.cumNoun], the indescribable sensation of a million gentle prods and palpations against your urethra make every tactile, voluminous ejaculation an exquisitely soft and memorable one. Her belly noticeably swells with the sheer amount your pour into her womb" + (y >= 0 ? " and colon both":"") + ".");
 		if(freecocks > 0) output("Your extra " + (freecocks == 1 ? "member":"[pc.cocksLight]") + ", limply hanging outside, pitifully shoot" + (freecocks == 1 ? "s":"") + " over her butt and your body.");
@@ -1180,8 +1193,8 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	if(!pc.inRut()) 
 	{
 		output("\n\nThe pirate cat falls on to your [pc.chest], ecstasy-ridden head landing to the side of yours. Her eyes rolled back some time ago, and now she simply lies splayed and panting in your embrace. Thankfully, the amorous tingle in the back of your head is gone. ");
-		if(pc.hasKnot(x)) output("So long as your " + (pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]") + " are inflated, you won’t be going anywhere, especially not as you’re still cumming a bit! You get your hands around her " + (pc.cumQ() >= 10000 ? "gravid ":"") + "belly and hold tight, hoping nobody else’ll stumble upon your tryst. Her gratified purring helps you catch some shut-eye in the meantime.");
-		else output("With a big, sexy cat girl on top of you and your [pc.cocksLight] deflating warmly inside her, you have little strength after your monumental orgasm. Wrapping your hands around her " + (pc.cumQ() >= 10000 ? "gravid ":"") + "belly, you snuggle up and catch some peaceful shut-eye.");
+		if(pc.hasKnot(x)) output("So long as your " + (pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]") + " are inflated, you won’t be going anywhere, especially not as you’re still cumming a bit! You get your hands around her " + (cumQ >= 10000 ? "gravid ":"") + "belly and hold tight, hoping nobody else’ll stumble upon your tryst. Her gratified purring helps you catch some shut-eye in the meantime.");
+		else output("With a big, sexy cat girl on top of you and your [pc.cocksLight] deflating warmly inside her, you have little strength after your monumental orgasm. Wrapping your hands around her " + (cumQ >= 10000 ? "gravid ":"") + "belly, you snuggle up and catch some peaceful shut-eye.");
 	}
 	// PC in rut
 	else
@@ -1352,6 +1365,7 @@ public function getLickedBySecop(x:int):void
 	processTime(25);
 	enemy.girlCumInMouth(pc);
 	pc.orgasm();
+	output("\n\n");
 	CombatManager.genericVictory();
 }
 
@@ -1394,7 +1408,7 @@ public function faceFuckDatPussy(x:int):void
 	}
 	//Merge
 	output("\n\nYou need no further invitation. Grabbing the security operative by the back of the head (and careful of [enemy.hisHer] implants) you tug [enemy.himHer] forward onto your [pc.cock " + x + "]. [enemy.HeShe] doesn’t struggle - anything but. [enemy.HisHer] mouth opens wide and [enemy.hisHer] tongue rolls out, offering you a slick red carpet to slide your [pc.cockHead " + x + "] across on its journey to adoring oral service. [enemy.HisHer] [enemy.lipsChaste] feel wonderful, closing just tight enough to form a spit-slick seal once you’ve pushed past them and [enemy.hisHer] tongue... oh stars!");
-	output("\n\nThe kaithrit’s tongue boils out of [enemy.hisHer] mouth like a living serpent, sliding out two inches for each one you add. This crossways motion assaults you with double the friction along your sensitive underside, like half your dick is slowly pumping in while the other half is midway through a real jack-hammering hummer. You gasp, then moan, then stop moving at all, content to revel in the sensation of that slick muscle spooling out - for now. You float on a curtain of undulating muscle, surrounded by the embrace of spit-slick lips.");
+	output("\n\nThe kaithrit’s tongue bolts out of [enemy.hisHer] mouth like a living serpent, sliding out two inches for each one you add. This crossways motion assaults you with double the friction along your sensitive underside, like half your dick is slowly pumping in while the other half is midway through a real jack-hammering hummer. You gasp, then moan, then stop moving at all, content to revel in the sensation of that slick flesh spooling out - for now. You float on a curtain of undulating muscle, surrounded by the embrace of spit-slick lips.");
 	//Nice
 	if(pc.isNice())
 	{
@@ -1409,7 +1423,7 @@ public function faceFuckDatPussy(x:int):void
 	//Hard
 	else output("\n\nLike a conquering warrior, you pause in the moment of your victory to savor it - until the kaithrit runs out of slobbering tongue to extend and settles for looping it around you in an organic snare.");
 	//Merge
-	output("\n\nYou fuck the punky security operative’s overlong muscle back into [enemy.hisHer] mouth with a single mighty push. Spit dribbles from [enemy.hisHer] cheeks in sudden surprise, and [enemy.heShe] lets out a single inarticulate gurgle. " + (pc.cocks[x].cLength() < 12 ? "Running your fingers through [enemy.hisHer] hair, you admire your prize. [enemy.HisHer] hot breath is washing over your [pc.thighs] and [pc.belly]. [enemy.HisHer] tongue squirms and wriggles beneath your [pc.knot " + x + "]. The longer you hold [enemy.himHer] there, the more comfortable [enemy.heShe] seems, and all too soon, the slut-cat’s cheeks are rhythmically hollowing with eager suckles.":"Running your fingers through [enemy.hisHer] hair, you admire your prize, impaled partway down your length. [enemy.HeShe] can’t take the whole thing. There’s simply too much [pc.cockNounSimple " + x + "] for [enemy.hisHer] untrained throat to handle, no matter how [enemy.heShe] tries. [enemy.HeShe] can grab at your [pc.butt] and strain, water streaming down [enemy.hisHer] eyes, but [enemy.heShe] only manages another inch or two at the most.\n\nGood for [enemy.himHer]. Maybe next time you bump into [enemy.himHer], he’ll be a little better at it."));
+	output("\n\nYou fuck the punky security operative’s overlong muscle back into [enemy.hisHer] mouth with a single mighty push. Spit dribbles from [enemy.hisHer] cheeks in sudden surprise, and [enemy.heShe] lets out a single inarticulate gurgle. " + (pc.cocks[x].cLength() < 12 ? "Running your fingers through [enemy.hisHer] hair, you admire your prize. [enemy.HisHer] hot breath is washing over your [pc.thighs] and [pc.belly]. [enemy.HisHer] tongue squirms and wriggles beneath your [pc.knot " + x + "]. The longer you hold [enemy.himHer] there, the more comfortable [enemy.heShe] seems, and all too soon, the slut-cat’s cheeks are rhythmically hollowing with eager suckles.":"Running your fingers through [enemy.hisHer] hair, you admire your prize, impaled partway down your length. [enemy.HeShe] can’t take the whole thing. There’s simply too much [pc.cockNounSimple " + x + "] for [enemy.hisHer] untrained throat to handle, no matter how [enemy.heShe] tries. [enemy.HeShe] can grab at your [pc.butt] and strain, water streaming down [enemy.hisHer] eyes, but [enemy.heShe] only manages another inch or two at the most.\n\nGood for [enemy.himHer]. Maybe next time you bump into [enemy.himHer], [enemy.heShe]’ll be a little better at it."));
 	//Low libido
 	if(pc.libido() < 50) output("\n\n[enemy.HisHer] tongue refuses to let you go. It loops around and around even as you draw back, muscle coiled into a helix of cock-milking pleasure such that you can’t even tug your [pc.cockHead " + x + "] the whole way out. You’re <i>forced</i> to thrust yourself back inside by the thirsty kaithrit. [enemy.HisHer] sloppy, silken maw demands it. Like a sexual tractor beam, it inexorably pulls you onward. It compels you to fuck [enemy.himHer] faster than you meant to. Harder.");
 	//High libido
@@ -1443,28 +1457,29 @@ public function faceFuckDatPussy(x:int):void
 	//Merge
 	output("\n\nYou’re so close!");
 	output("\n\nThe kaithrit’s tongue tightens up abruptly, leaving you no time to think or react - only to swell in exquisite ecstasy. You cum straight into the capable little cock-sucker’s mouth. Pumping hard, you pound [enemy.hisHer] face through your climax, exactly the way [enemy.heShe] so clearly wants it. Tears stream from [enemy.hisHer] eyes while [pc.cumVisc] goo ");
-	if(pc.cumQ() < 5) output("dribbles");
-	else if(pc.cumQ() < 30) output("spurts");
-	else if(pc.cumQ() < 300) output("pours");
-	else if(pc.cumQ() < 1000) output("erupts");
-	else if(pc.cumQ() < 5000) output("floods");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 5) output("dribbles");
+	else if(cumQ < 30) output("spurts");
+	else if(cumQ < 300) output("pours");
+	else if(cumQ < 1000) output("erupts");
+	else if(cumQ < 5000) output("floods");
 	else output("drowns");
 	output(" [enemy.hisHer] throat.");
-	if(pc.cumQ() >= 500)
+	if(cumQ >= 500)
 	{
 		output(" Watching [enemy.hisHer] cheeks bulge");
-		if(pc.cumQ() >= 5000) output(" before giving out and releasing [pc.cumColor] sprays from the corners of [enemy.hisHer] mouth");
+		if(cumQ >= 5000) output(" before giving out and releasing [pc.cumColor] sprays from the corners of [enemy.hisHer] mouth");
 		output(" is a delight.");
 	}
 	if(enemy.hasCock()) output(" Meanwhile, a puddle of ignored, kittenish semen spreads below, hardly noticed.");
 	//Second+ dick & 10+ mLs
-	if(pc.cockTotal() > 1 && pc.cumQ() >= 10)
+	if(pc.cockTotal() > 1 && cumQ >= 10)
 	{
 		output("\n\nYou grab hold of your extra dick" + (pc.cockTotal() > 2 ? "s":"") + " and make sure the rest of your orgasm goes exactly where it belongs: over [enemy.hisHer] ears and into [enemy.hisHer] hair");
-		if(pc.cumQ() >= 500) output(", across [enemy.hisHer] forehead and down the tip of [enemy.hisHer] flaring nose");
+		if(cumQ >= 500) output(", across [enemy.hisHer] forehead and down the tip of [enemy.hisHer] flaring nose");
 		output(".");
-		if(pc.cumQ() >= 1000) output(" Pretty much everywhere.");
-		if(pc.cumQ() >= 5000) output(" You paint the kitty-[enemy.boyGirl] with your load inside and out until [enemy.heShe] is completely, thoroughly basted in cock-juice.");
+		if(cumQ >= 1000) output(" Pretty much everywhere.");
+		if(cumQ >= 5000) output(" You paint the kitty-[enemy.boyGirl] with your load inside and out until [enemy.heShe] is completely, thoroughly basted in cock-juice.");
 	}
 	output("\n\nYou push the cock-addled kaithrit away after achieving satisfaction. [enemy.HeShe] looks up at you dimly, panting lustily, like swallowing all that cum forced [enemy.hisHer] obviously cybernetic brain to begin a very thorough rebooting process. All pride or resistance is gone.");
 	output("\n\nWhile you give [enemy.hisHer] possessions a quick search, you are confused by the satisfied expression on [enemy.hisHer] face as [enemy.heShe] simply licks [enemy.hisHer] lips and paws at [enemy.hisHer] lust-reddened genitals.");
@@ -1727,12 +1742,13 @@ public function tailMilkTheMaleSecOp():void
 	if(pc.hasCock()) 
 	{
 		output("\n\nErotic heat surges to your bare loins where it can be worked by the kaithrit’s violent pumps, shaped into the rising swell of potent ejaculation. You join him in moaning and ejaculating, every inch of dick straining and clenching. [pc.Cum] ");
-		if(pc.cumQ() < 10) output("dribbles from the tip as your meager release peaks and wanes. Not even getting stuffed by a liter of virile, kitty-seed can bring you to produce any more.");
-		else if(pc.cumQ() < 250) output("spurts in long ropes as your release peaks. With each eruption that’s shot inside you, you answer with your own, painting the kitten in [pc.cumColor] lines.");
-		else if(pc.cumQ() < 8000) output("volleys forth in tremendous, kitten-soaking sprays. Each is more than an average man could hope to produce on his best day, and you’re pumping them out, one after another.");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 10) output("dribbles from the tip as your meager release peaks and wanes. Not even getting stuffed by a liter of virile, kitty-seed can bring you to produce any more.");
+		else if(cumQ < 250) output("spurts in long ropes as your release peaks. With each eruption that’s shot inside you, you answer with your own, painting the kitten in [pc.cumColor] lines.");
+		else if(cumQ < 8000) output("volleys forth in tremendous, kitten-soaking sprays. Each is more than an average man could hope to produce on his best day, and you’re pumping them out, one after another.");
 		else
 		{
-			output("pours out in colossal eruptions, one after another. Each seed-filled tidal wave could impregnate a dozen women on its own, and you’re soaking the mewling kitten with all of them, splashing your [pc.cumFlavor] across his chin and face, drenching him in hot, liquid love." + (pc.cumQ() >= 15000 ? " A pool of it grows beneath him as you climax. There simply isn’t enough of him to hold it all, so you bathe him in it.":""));
+			output("pours out in colossal eruptions, one after another. Each seed-filled tidal wave could impregnate a dozen women on its own, and you’re soaking the mewling kitten with all of them, splashing your [pc.cumFlavor] across his chin and face, drenching him in hot, liquid love." + (cumQ >= 15000 ? " A pool of it grows beneath him as you climax. There simply isn’t enough of him to hold it all, so you bathe him in it.":""));
 		}
 	}
 	//Neither cock or squirter
@@ -1828,3 +1844,339 @@ public function moreBigTittyKittyTitfuck(x:int):void
 	processTime(25);
 	CombatManager.genericVictory();
 }
+
+public function secOpMaleAnal():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Shifty");
+
+	output("With a toothy grin, you ");
+	if (!pc.isAssExposed()) output("shed your [pc.assCovers], swiftly but artfully and seductively, breaking eye contact with the exasperated feline only when you have to. You take pride in your handiwork, drinking in the sight of the worked up outlaw before you. When the pile of obstructive interloping garb falls to the hot ground, you ");
+	output("slide yourself forward,");
+	if (pc.isNude()) output(" and without any pesky clothes to interfere with your performance, you");
+	output(" take a knee, and crawl into the woefully empty space between his gorgeous thighs. You glance up at the blushing face of the conquered Kaithrit, the red glow displaying more lust than embarrassment. His breath comes quickly from his heaving chest; a display of debauchery like no other, and damned if having this much shining synth cock before you doesn’t put you in the mood, but who are you kidding? You were ready to get plowed by this thing since the Cyberpunk plopped his ass down in defeat... But still, the more appetite before a meal, the better it tastes, and this thing looks just delicious.");
+
+	output("\n\nYou creep forward between his legs licking and kissing the metal mast of masculinity, throwing in a light nibble or two for good measure. Your victim restrains his arms by balling them up around the hot ground and braces his legs by clenching his toes and spreading his thighs wider in invitation.");
+
+	output("\n\nYou lay into the metal rod, letting your hand fly up and down the upper half of the shaft, bringing your face in close with his crotch. You reach out with your [pc.tongue] and lap at his synthetically augmented meat, making a real show of getting him ready for what’s coming. Suckling, moaning, and nibbling at his package, you let him really enjoy the feeling of your mouth before you even wrap your lips around it in earnest. You steal a glance up to assure yourself that he’s enjoying your tongue.");
+	output(" When you find him biting his lip in pleasure, mind awash with desire and longing, you drag that oral muscle from the base of his shaft to his pelvis, mischievously robbing him of that extra input of pleasure. You tease him with what he’s lost by tracing designs only you can make out onto his body, drinking in his expressions of arousal. His face is scrunched up with a pending bliss, ready to accept any and all sources of pleasure, but irritated at having lost your tongue, despite how brief the moments were that he had it. Your hand still aims to please, however, and does quite a good job of it. The sounds of it flying up and down his shaft turn lewder and lewder with each pass, going from an almost soundless, wet friction to the pre-drenched and noisy mess that it is now.");
+	output("\n\nYou smirk in satisfaction, knowing that the reigns are in your hands as you gaze into his frustrated but pliant eyes. You drop your tongue from his pelvis down to his balls, rewarding him for his obedience.");
+	output("\n\nAs your oral organ plays with his testes, gauging the load trapped within, his teeth grit harder and he bares his canines at you. It appears you’ve hit something of a sweet spot!");
+	output("\n\nYou moan into his flesh, making a world-class show of this foreplay and not breaking eye contact once since making it. You switch from lapping to suckling as you draw your tongue, and the Kaithrit’s ball, into your mouth, drawing a gasp of pleasure from your lover. You let your tongue continue its design work, letting an incomprehensible alphabet fall onto the pirate’s scrotom as you passionately trace each unique curve onto its skin with your tongue, every so often getting a groan, moan, gasp, or even a yelp while you make sweet love to each testicle before pulling away.")
+	output("\n\nThe absence of your mouth is deeply felt, it seems, as your lover whimpers with disappointment and switches from a pleasure-blanked expression to almost a scowl, only to take back unspoken words as you lay your mouth back onto his dick. That frown twists into a pleasured grimace as he bites back the moans forming in his chest.");
+	output("\n\nYou carry yourself up his chrome cock, still putting your tongue to work as you follow the rod up and up, savoring the sweet taste of pink-tinted aphro pre, until you finally arrive at the glans. You still stare deep into his eyes as you breathe deliberately onto his tip, letting the hot air tickle him.");
+	output(" This earns you a long moan of anticipation as he rolls his hips to get more of that wonderful sensation, his impatience oozing from his throbbing dick. It proves to be quite contagious. You plant your lips onto the very tip of the glans and let it sink down. The moan being wrenched out of the Kaithrit continues and raises in volume and pitch as you slowly let the battering ram of his member break down your oral gates. As soon as the glans fully enters your mouth, you find yourself rewarded with a powerful squirt of arousing precum. The taste is salty and sweet in all the right ways; so dirty and just so very right. You keep it in your mouth as you play with his tip, letting your tongue flick at the cum slit.");
+	output("\n\nYou admire the cute reactions of bliss the Kaithrit seems to be futilly fighting. The way his open mouth pants foggy breaths, the way his eyes seem to glass over more and more with pure lust, and above all, the way he looks at you, going from a hungry glare to a starving stare.");
+	output("\n\n<i>“Hahn...”</i> He moans through grit teeth. <i>“Mnh! Suck it, you beautiful thing!”</i> He pleads as he rolls his hips, trying to fuck your mouth in the most subtle way he can get away with.");
+	output("\n\nThe temptation to wrap your lips around his cock in earnest nags at you incessantly, but you’ve got better things planned. With a melancholic parting kiss, you wordlessly carry your attentions higher, [pc.tongue] listlessly trailing over his barely toned middle, stopping to trace each faded ab into memory with your oral organ. One, two, three, you trace over the soft musculature and memorize the dainty curves, peaks, and valleys.");
+	output("\n\n<i>“J-just let me fuck you!”</i> He whines, shifting his hips audaciously in an attempt to return his member to your mouth, growling with barely restrained frustration.");
+	output("\n\nFour, five, six pack. You move your [pc.legOrLegs] forward, shuffling and scooching closer before planting your [pc.hands] on the kitty’s spit-slickened torso to help balance yourself as you shift your attention to his pecs and the pierced pink pair of A-cup personalities. You envelope one of his nipples in your mouth with rather impressive speed, circling your tongue around the perky target’s bullseye.");
+	output("\n\n<i>“Mnh! Ahn! S-stop teasing meeeee!”</i> He moans and mewls with frustration and pleasure, the pre practically spilling from his cock and streaming between his thighs.");
+	output("\n\nYou pull the nipplering with a playful growl, making the security operative’s moans of sexual frustration pick up in pace. You twist it in your mouth, nibble lightly, and kiss it. Then, just as suddenly as you had stopped to clamp onto the ring, you let go of it, and the nipple altogether, the metal of it clicking quietly against your teeth as it flies out. The sudden slack sends his A-cups jiggling for a fleeting but arousing moment. You dart your face below the pecs and lick his sweaty underboob, lavishing his chest in your attentions.");
+	output("\n\nBut as fun as boob-play is, you must admit that even you are getting anxious for the main course, so you finally withdraw from the cleavage and the spit-shined reddening nipple before moving your body forward, [pc.legOrLegs] quickly overlapping the cyborg toy’s own while still dragging your tongue up and up, trailing along the fuckboy’s neck, under his jaw, and then flinging yourself into a fiery and passionate kiss.");
+	output("\n\nFully saddled on his lap, you can feel the full effects of his powerful throbbing and insistent humping. You wrestle with the powerful tongue in his mouth, earning approving sighs and groans. When you pull back, you are both left panting, wanting more.");
+	output("\n\n<i>“You want it?”</i> You ask with mischief in your tone, flashing a cheeky smirk as you raise your hips higher until it hovers directly over the object of your lusts. <i>“Come get it.”</i> You wiggle your exposed pucker over the feline’s metal dong with as much blatant intent as you can manage to lace the act with. <i>“Give me a fucking that’ll leave me numb for days.”</i> You order, leaving that line to play with his head and let the fantasies spill into it.");
+	
+	processTime(12);
+	clearMenu();
+	addButton(0,"Next",secOpMaleAnalPart2);
+}
+
+public function secOpMaleAnalPart2():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Shifty");
+
+	output("That proves to be the final straw.");
+	output("\n\nHis look instantly takes a more predatory hue, the frustrated and cute look with folded ears shed for a much more assertive aura as he bucks hard under you, instantly plunging his massive tool inside your [pc.asshole] and gritting his teeth violently. The sting of the sudden penetration and the raw pleasure that is fired through your nerves proves to be too much, overwhelming you with too many sensations to keep up with.");
+	if (pc.legCount == 1) output(" Your [pc.legOrLegs] shut ");
+	else output(" Your [pc.legOrLegs] shuts "); 
+	output("down, everything below the belt rapidly losing control and ignoring your orders. You fall forward, limp as a wet noodle, screaming with unabashed, shameless delight that could only be from a buttslut who is getting exactly what [pc.heShe] wants.");
+	output("\n\nLithe arms catch you and hold you close with synthetically augmented strength. Thirteen inches of raw, technologically enhanced <i>man</i> throbs and drools powerfully within your colon, enjoying the warmth of your newly rearranged anatomy as it shifts your insides to better pleasure the masculine rod.");
+	output("\n\nA few moments pass, moments you might say were quiet were it not for your labored moans and pants of breathless pleasure and pain. It takes a few moments for your eyes to uncross and for your tongue to find itself placed back in your gaping maw and your ");
+	if (silly) output("ahegao’d ");
+	else output("broken expression ");
+	output("reorganizes back to one of passive contentment. It takes even longer to realize that your lover has not been ravaging your [pc.asshole] while you recovered from the initial penetration.");
+	output("\n\nYou look up with a tentative glance to see a sharp and predatory grin leering down at you. He looks giddy to be in charge at last, but far from satisfied.");
+	output("\n\n<i>“Ready?”</i> He asks with no small amount of intimidating desire.");
+	output("\n\nYou’re honestly surprised beyond belief that he exercised the restraint required to prevent continued thrusting, especially after all that you’ve just put him through in preparation. You nod hesitantly, a blush falling on your cheeks as you realize just how vulnerable you’ve allowed yourself to become; embarrassed, but oddly unashamed.");
+	output("\n\n<i>“Get ready to regret teasing me, you sexy jerk.”</i> He smirks with a chuckle.");
+	output("\n\nHe pulls back his hips like a fist winding up for a haymaker. The ridges and troughs of his synth cock scraping along your anus has you gasping and panting with lust and need before the thrust even starts. And when it does? When the wind up is finally complete and the tip of his swollen pleasure rod is all that links your rump with his cock, no amount of mental bracing could prepare you for the massive riptide of tormenting pleasure that leaves you drowning.");
+	output("\n\nYour eyes lose focus and even just preventing them from crossing again is exercising all your willpower. Your [pc.tongue] has once again left its place in your mouth, lolling out and drooling spit like a braindead slut. The cock inside you burns hotter than even any star, you swear to yourself. It burns so good!");
+	if (pc.legCount == 1) output("\n\nYour [pc.legOrLegs] has ");
+	else output("\n\nYour [pc.legOrLegs] have "); 
+	output(" ceased all function, but who needs " + (pc.legCount == 1 ? "it" : "them") + " anyway? The catboy’s own will carry you on his dick, his hips slapping against your ass until he sates himself with your body. Echos fill the corridors of the mines of reciprocated moans and babbling gibberish that could only be from a bitch in heat; that could only be from you.");
+
+	if (pc.ass.looseness() < 2)
+	{
+		output("\n\n<i>“F-fuck! You’re tighter than- mnh! Any slave on this fucking ship!”</i> His face contorts with effort and pleasure as he ravages your tight ");
+		if (!pc.hasVagina() || !pc.hasBreasts()) output("boypussy");
+		else output("backdoor");
+		output(". <i>“Damn!”</i> He hisses. <i>“This ass is a fucking keeper!”</i> He declares in delight.");
+	}
+	else if (pc.ass.looseness() < 4)
+	{
+		output("\n\n<i>“N-not bad!”</i> He slams upwards under you, burying his mast. <i>“Not all that loose, for a slut like you.”</i> He debases you, twisting your expression with his dick and stinging you with his burning words, the belittlement only adding to your pleasure.");
+	}
+	else
+	{
+		output("\n\n<i>“Woah! You’re an absolute buttslut, aren’t you?!”</i> He expresses sheer surprise in his voice as he effortlessly plows your loose hole. <i>“Holy fuck, I haven’t bagged a bum this loose in forever!”</i> He continues sliding in and out with minimal effort to further emphasise his point. <i>“Hah! Good thing you’re still damn " + (pc.femininity > 40 ? "cute" : "hot") + ", cause watching my bitches make faces like the ones your making right now... It’s much better than having a hole squeeze my dick with bone-crushing pressure.”</i>");
+	}
+
+	output("\n\nThrusts stack on quickly, and you try to hold on to sanity by counting them; a futile effort, as you barely break the double digits before your brain goes as numb as your [pc.legOrLegs]. Each time he bottoms out, each time his hips meet your [pc.ass], your expression grows looser and looser. You glance down while you still have the control. Watching his cock disappear inside you like a magic wand into a top hat is hot as Hell! To further demonstrate just how deep he’s fucking you, just how wide he’s stretching you, you can see a pistoning, phallic bulge shifting up and down your belly.");
+	output("\n\n<i>“O-oooh! God!”</i> You moan with unadulterated lust and heat. <i>“Ffffu-ahn!”</i>");
+	output("\n\nYou twitch incessantly, the arms you have wrapped around the Kaithrit’s back spasm and your [pc.belly] flexes uncontrollably, no doubt to the 13 inch pussy-pounder’s pleasure.");
+	output("\n\nYou’re nearing your end. Orgasm approaches you with great haste.");
+	if (pc.hasCock())
+	{
+		output(" Your [pc.cock] throbs powerfully and forebodingly, swearing up and down that another second of this will have it spewing a wasted load of your semen all over yourself and your kitty-cat lover, that another punch to the prostate will have you creaming yourself unconscious.");
+		if (pc.hasVagina()) output("Your cock isn’t the only part of you about to burst, either.");
+	}
+	if (pc.hasVagina()){
+		output(" Your [pc.pussy] clenches around a phantom prick, milking a nonexistent load out of an imaginary cock. It’s coming, and fast; that desired high you’ve been careening towards with each thrust of the mecha dong is finally here.");
+	}
+
+	output("\n\nThe cyborg lover you’ve been pleasuring seems to take no end of satisfaction from watching your reaction to his every thrust and every movement; from the muscle spasms to the slack expression and glassed-over eyes. At least, if his leering grin is anything to judge. <i>“Hanging in there, hot stuff?”</i> he asks, teasingly. <i>“Cause I’m just getting started.”</i>");
+	output("\n\nYou might think for a moment that he’s just fucking with you, but one look at those hungry eyes, one glance at those pearly white teeth in that debauched smile, tells you he’s not kidding. Your heart would sink to your stomach if it weren’t so full of cock. You’re about to cum, and cum hard at that, while he’s just warming up?");
+	output("\n\nFuck it! Who cares? The pleasure you find yourself awash in is the kind that people would kill just to get a taste of, and you’re drowning in it. Who cares if he fucks you into your grave? This dick is the kind of thing that would make Anno green with envy. You let yourself go, content to enjoy the consequences that might come with this orgasm.");
+	output("\n\nYour [pc.legOrLegs] spring to life, tightening around the femboy’s hips, trying to keep the invader within you as you clench, spasm, and twitch in warning of your impending release. Your [pc.asshole] milks the phallic tool for all its worth, trying desperately to coax your lover into joining you in sexual bliss before too much proves to be too much for you. The friction, the lewd squelching, the moaning, and the closeness all unite to pluck apart your resolve. You lean forward into the Kaithrit’s embrace, panting and whimpering into his feline ear to display just how much he’s breaking apart your psyche. You don’t need to pull back to know that he’s grinning ear to pointed, feline ear at your debasement. With a final moan, you clench your teeth, close your eyes, and enjoy absolute bliss.");
+
+	if (pc.hasCock())
+	{
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 100)
+		{
+			output("\n\nThe meek puddle of your rejected seed swiftly pools between your bodies. The sensation of your [pc.cum] between your flesh has the Kaithrit panting, apparently turned on to no end by the presence of your blatantly inferior load. <i>“Hah! Aww!”</i> He jests through labored pants. <i>“Hehe... Cute little load for a cute little [pc.boyGirl].”</i> He flashes a superior, glaring smile.");
+		}
+		else if (cumQ < 1000)
+		{
+			output("\n\nBiting your lower lip with lust, you moan as the sensation of your [pc.cum] spreads between you and your lover, the sizeable load filling the valleys of the Kaithrit’s musculature before the excess dribbles onto the floor. <i>“Not... Hah... Bad...”</i> He remarks between horny breaths that seem to steam even in this hot environment.");
+		}
+		else
+		{
+			output("\n\nYou scream with unbridled and unrestrained need. Your voice echoes off the walls and must make the poor pirate’s ears ring due to your closeness, but it’s hard to care when your this fucking hot! Your flushed [pc.skin] could melt glaciers, and it only gets worse when your molten load of [pc.cum] fills what little empty space is between you two before falling onto the floor, wasted. The puddle swiftly turns to a pool, then a mire. Your lover looks down at your cum-cannon of a member in awe. <i>“Holy fuck!”</i> He cries with lust rich in his wavering voice. <i>“Hahn! An ardent buttslut, </i>and<i> a prize-winning stud... I scored a fucking lottery!”</i> He grins with malice, swiftly recovering from the initial shock.");
+		}
+	}
+	if (pc.hasVagina())
+	{
+		output("\n\nYour ignored [pc.vagina] " + (pc.hasCock() ? "also " : ""));
+		if (pc.isSquirter() >= 1000) output("sprays like a geyser beneath you, ingraining your feminine scent into the Kaithrit boy’s fair flesh");
+		else output("dribbles and squirts its feminine load onto the Kaithrit boy’s pelvis and belly");
+		output(", unabashedly getting off hard to the anal punishment you’ve been receiving so well. <i>“Hah! Nice!”</i> He says into your [pc.ear].");
+	}
+
+	output("\n\nYou collapse into your lover’s lithe and synthetically augmented arms, panting and moaning weakly as his still-erect cock throbs powerfully in your colon. The pre spilling into your gut would ordinarily tell you he’s not far off either, but he’s been painting your insides with the stuff since the initial penetration. You sigh heavily into his ear.");
+	output("\n\nHe chuckles darkly and shifts his weight, throwing you off balance entirely, forcing you to rely on his embrace for support as you feel completely paralyzed by exhaustion. For a moment, you think you’ve rolled off, but his arms are still inextricably wrapped around you. Your orgasm-burnt mind whirls to comprehend the situation before it becomes embarrassingly clear: he’s put himself on top, missionary style.");
+	output("\n\nYou look into his hungry- no, his starving eyes as they drink up your form and trace your contours, from your [pc.thighs] to your [pc.eyes]. His hips pivot slightly and forebodingly, teasing out subtle whimpers and mewls from your lips. <i>“Hey, what’s wrong? I told you I’m just getting started.”</i> He grins his predatory grin, canines showing in full form. <i>“Cross your fingers you can stay sane after I’m done with you... Of course, if you can’t, that’s fine too.”</i> One arm disentangles itself from the other in your tight and cum-slathered embrace to reach a hand to your face. He traces your jaw and cradles your chin sensually. <i>“" + (pc.femininity > 40 ? "cute" : "hot") + " face like this...”</i> His still embracing hand reaches down to cup one of your lower cheeks. <i>“This perfect [pc.ass] of yours... I’ve always got room upstairs for these.”</i> His grin stretches wider. <i>“So, think you can take all </i>this<i>?”</i> His metal rod twitches inside you powerfully.");
+
+	if (pc.libido() >= 70)
+	{
+		output("\n\nDespite having just finished, the way he talks, the way he prods, and the way he drinks up your body with his eyes seems to coax out your arousal, this heat caring little for for your prior orgasm. Your nethers begin to stir, [pc.genitals] growing hot");
+
+		if (pc.hasVagina() && pc.hasCock()) output(", wet and hard");
+		else if (pc.hasVagina()) output("and wet");
+		else if (pc.hasCock()) output("and hard");
+
+		output(". The corners of your mouth twitch into an open-mouthed smile, as you can’t find the strength to close your panting maw.");
+		output("\n\n<i>“F-fuck yes!”</i> You cry in glee. <i>“Give it to me! Fuck me like an animal, you kitty crook!”</i> You’d squeeze him with your [pc.legOrLegs], wrap him and hold him close and deep, but " + (pc.legCount == 1 ? "it" : "they") + " stopped listening a long time ago. So instead, you settle to begging for more and hoping it’ll be enough to keep him going.");
+		output("\n\nHe flares his brow, curious and intrigued, before grinning like a madman. <i>“You’re something special, all right! Let’s see who can hold on longer!”</i>");
+		output("\n\nHe giggles with utter glee as he begins his thrusts anew, the sounds of your moans and cries of ecstasy ricocheting off the cavern walls in between lust-maddened cries of <i>“More!”</i>");
+	}
+	else
+	{
+		output("\n\nYou gulp back your nervousness and fear, the lump in your throat preventing any objection. You can probably kiss your sanity goodbye at this point, because given the sheer rift in libido and stamina between the two of you, you’ve enlisted yourself to be passenger as soon as you sat down on his dick.");
+		output("\n\n<i>“Better find something to bite down on, because this might be a while.”</i> He ominously warns before suddenly resuming his thrusts, beating down your vocalizations into incoherent babble with the sheer force of his ravaging humps.");
+	}
+
+	pc.orgasm();
+	pc.buttChange(enemy.cockVolume(0));
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",secOpMaleAnalPart3);
+}
+
+public function secOpMaleAnalPart3():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Shifty");
+
+	if (pc.libido() >= 90)
+	{
+		output("You don’t remember when it happened, but somewhere along the way, you must have found yourself back on top, riding the Operative, because as your conscience grants a faint sliver of lucidity to your sex-burnt mind, you realize that your cheek is not on the hot rock floor, but on the heaving chest of your victim-turned-dominator-turned-partner as his hand absently strokes your hair");
+		if (pc.earType == GLOBAL.TYPE_FELINE || pc.earType == GLOBAL.TYPE_VULPINE || pc.earType == GLOBAL.TYPE_LUPINE)
+		{
+			output(", petting your cute [pc.ears] in a very pleasurable way that has you moaning and nuzzling into the electric touch");
+			if (pc.tailCount > 0) output(", and lazily wagging your [pc.tails] with listless content");
+		}
+		output(".\n\nYou yourself are quite breathless, you realize. You pant hot breaths of exhaustion over a pool of drool that has begun to grow on the Kaithrit’s chest. He seems to pay no mind, however, apparently just as worn out as you are.");
+		output("\n\n<i>“Holy... Shit...”</i> He remarks through his quick panting breaths. <i>“You’re amazing!”</i> he declares.");
+		output("\n\nYou’d reply to his complement, but you’re too busy chasing your breath and wrangling up the scattered pieces of your brain, so instead you’re content to remain cuddled with the cause of this glorious afterglow. A moment that passes within a few minutes as your lover carefully shuffles you off of himself.");
+		output("\n\n<i>“I’d love to stay for a while longer, especially with a sex machine like you, but I have stuff I gotta get to.”</i> He excuses as his augmented armor expands from the larger cybernetically enhanced parts of his body to encapsulate himself in the protective suit. <i>“Hope I catch you again, hot stuff.”</i> He winks provocatively before setting off, leaving you to slowly rise in place to shake off the remnants of the afterglow.");
+		output("\n\nMan, you should’ve asked him for a number!");
+		output("\n\nYou gather your equipment before setting off again, rather fiercely satisfied for the time being.");
+		pc.loadInAss(enemy);
+		processTime(20);
+	}
+	else
+	{
+		output("The hours tick away with blissful agony, or maybe they were minutes. It doesn’t matter at any rate. You run through positions faster than a warp gate jump between a planet and its moon before you settle into a final position: you, face down into the ground with your ass hiked into the air, arms limply fallen to the ground and wrists against your knees. Your eyes are rolled to the back of your head and your tongue lolled out, licking the abrasive, spit slathered ground with each thrust of the pirate’s powerful hips. Your body convulses and contracts with involuntary muscle spasms as yet another orgasm");
+		if (pc.hasVagina()) output(" coaxes out a spray of [pc.girlCumNoun] from your sore, untouched pussy to add to the pool spreading on the ground.");
+		else if (pc.hasCock()) output(" coaxes out yet another spray of semen from your sore, untouched member to add the the pool spreading on the ground."); 
+		else output(" wracks your broken body with another wave of pleasure.");
+
+		output("\n\nFrom behind you, the moans that had at first provided the small comfort that you are pleasuring your partner begin to pick up in intensity and even gathers a small measure of ferocity to them before the Kaithrit broadcasts his orgasm to the world. <i>“I’m cumming!”</i> he cries out. <i>“I’m gonna... Fill you up until you look nine months pregnant!”</i>");
+		output("\n\nHis announcements fall on deaf ears, only serving to playback the pirate’s fantasies to himself, as you are far gone, the rolled back eyes betraying no consciousness within the living cocksleeve that was your body.");
+		output("\n\nA few more powerful, ass-bruising thrusts cram his metal meat into your backdoor before one final, devastatingly powerful hump pushes you into the ground, your [pc.genitals] mashing painfully into the rocky floor. Now, with no position or technique remaining beyond you laying on your belly, he finally begins to finish.");
+		output("\n\nThe chrome coil within you throbs with foreboding power and you feel his testicles rising, brushing your thighs as they reach his pelvis before the throbs finally begin to yield his cum. But before he fills you up, the Kaithrit tenses up and pulls back, withdrawing from your used hole. You don’t need to turn your head to know he’s jacking off like the galaxy is about to end, the grunts and gratingly rapid squelches echoing off the walls as he admires your red, bruised ass and your total lack of awareness, taking pride in his work.");
+		output("\n\nThen you feel the utter torrent begin to coat you, his aim at first your back, then your legs, your [pc.genitals], before finally and tauntingly ending the one-man bukkake on your ass. It feels like a statement: that you weren’t worth finishing inside.");
+		
+		output("\n\n<i>“Ahh... Ahn! Hah. That was fun...”</i> He pants labored breaths, huffing over the sound of metal uncoiling and striking against more metal as his armor begins to encapsulate him. <i>“Thanks for the fuck. Hope it was good for you too, but err...”</i> You hear a shuffling behind you, growing louder and closer before a ");
+		if (pc.hasVagina()) output("femcum");
+		else output("cum");
+		output("-slathered hand presents itself before you, depositing a gift into you open panting maw. <i>“I’m pretty sure you did.”</i> He chuckles as you swallow the snack.");
+
+		output("\n\nYou hear something hit the ground before his footsteps finally fade away.");
+		output("\n\nWhen you finally begin to stir, it’s not without great fatigue and a particularly potent soreness in your ass and cheeks. You groan as the aftereffects of your bout hit you with full force; the consequences of over-extending yourself... But damned if it wasn’t worth it.");
+		output("\n\nYou gather your [pc.gear] before leaving the scene, leaving behind rather copious evidence of your escapades for perhaps some other pirate to find.");
+		
+		pc.applyCumSoaked();
+		sweatyDebuff(1);
+		soreDebuff(1);
+		processTime(45);
+	}
+	pc.orgasm();
+	pc.orgasm();
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+
+/*
+Player wins against Male punk SecOp. Player lets secop use player’s tits. SecOp (optionally) injects silicone into the player’s tits unless they refuse. Pleasure ensures either way.
+
+Requirements to start scene:
+C cups or bigger
+Not a taur
+Sufficient lust (33+)
+Biped with knees, apparently
+
+Also, I just realised that this will probably spark a million threads from newbie players about removing silicone from their body, because they’re the same type of players to just report Badger as soon as they meet her.
+*/
+
+public function secOpMaleTitfuck(response:String = "intro"):void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Natetheman223");
+	
+	switch(response)
+	{
+		case "intro":
+			output("Looking down at the kitty boy, you raise a brow while you consider what that body can do - other than fight.");
+			if(!pc.isChestExposed()) output(" You begin to work your [pc.upperGarments] off, freeing your [pc.tits].");
+			else output(" Your [pc.hands] idly climb up to your [pc.tits], thinking about what you’re going to do with them.");
+			output("\n\n");
+			if(enemy.HP() <= 1)
+			{
+				output("<i>“Hey, catboy. If you see me getting my clothes off, you should probably start getting your’s off, too,”</i> you suggest, " + ((pc.isBiped() && pc.hasKnees()) ? "crouching to your [pc.knees]" : "getting down") + " between the security operative’s legs. He nods quickly at that, seeming nervous yet subtly aroused. Your [pc.eyes] are drawn to the bulge in his cyber-suit, which disappears while said suit comes loose. He must’ve disabled his defenses.");
+			}
+			else
+			{
+				output("<i>“Nice to see you are already prepared for this,”</i> you remark, " + ((pc.isBiped() && pc.hasKnees()) ? "crouching to your [pc.knees]" : "getting down") + " between the security operative’s legs. He nods quickly at that, seeming nervous yet subtly aroused. Your [pc.eyes] are drawn to the naked package he is carrying below his belt.");
+			}
+			output(" You watch his cock spring up");
+			if(!pc.isBimbo() && pc.libido() < 30) output(" and a smile forms on your [pc.lips] as you prepare yourself");
+			else if(pc.isBimbo() || pc.libido() >= 70) output(" and a singular droplet of drool falls from your slightly opened mouth");
+			output(". You set his discarded armor to the side and take a good look at his sleek, nude body, your focus eventually coming right back down to the chrome cock shining in front of you.");
+			if(silly) output("\n\n<i>“Wow! Your penis is gigantic!" /*+ " Gigantic! Your penis is literally the biggest thing in the tri-state area! Your penis is bigger that a small elephant! It’s bigger than like, a tree! A big ol’ tree! Lots of branches on your penis! You must wake up every morning and thank the good Lord above! You’re truly blessed!"*/ + " Congrats!”</i> You exclaim" /*+ " the entire thing"*/ + ", barely holding a straight face.");
+			output("\n\nHe gasps as you place your hand on the base of his gleaming dick, gently stroking up the shaft, to the tip, and back down to his balls. You carefully cup the orbs, giving them a very light squeeze as you kiss the head of his member. A tiny line of saliva connects your [pc.lips] to his cock for a brief moment as you break away. You lean forward and look into his pretty blue eyes, grabbing your [pc.tits] and placing each of them on either side of his 13-inch prick. With your boobs in position, you start your journey towards making this kitty blow his load.");
+			output("\n\nBobbing up and down, you wobble your [pc.tits] against his penis, occasionally kissing the tip for encouragement. Although you’re moving quite slow now, it’s still enough to make the SecOp moan lightly with pleasure. He holds his arms submissively at his sides while you continue. The tiny droplets of aphro-laced pre-cum slipping from his cock-head show you how good of a job you’re doing, and you interpret it as a reason to speed up.");
+			output("\n\nSo you do.");
+			output("\n\nGrabbing the side of your tits harder, you squeeze them together on the catboy’s towering dick as your motions increase in speed. More little drops of drugged semen flow from his tip, sliding down his shaft to meet the breast flesh of your cleavage. It’s warm... so, so warm.");
+			if(pc.isBimbo() || pc.libido() >= 30) output(" You take a finger and slide it up your boob, cleaning off a small bit of the cum and licking it from your digit - all while continuing the titfuck. God, it’s so good.");
+			output(" The spunk serves as a lubricant of sorts; it’s perfectly wet and sloppy, more than enough to reduce the friction of the ongoing act.");
+			output("\n\nYour eyes gaze up to the catboy’s face again. He’s panting and moaning, his cheeks are red, and his tongue is lolling out.");
+			if(!silly) output(" He’s going to cum soon, that’s for sure. Just don’t stop.");
+			else output(" Don’t stop him now... don’t stop him now... cuz he’s having A GOOD TIME! HAVIN’ A GOOD TIME!");
+			output(" That’s not all, though. He’s reaching for his gear, dragging out several very large syringes full of... wait, is that... silicone in them? It’s a clear, gelatin like substance, but it’s somewhat hard to tell while you continue bouncing your [pc.tits] up and down on his dick. He manages to grab one in each hand. Is he going to do what you think he’s going to do with those? Now would be a good time to act, or just let him go for it.");
+			output("\n\n");
+			
+			processTime(9);
+			
+			// [Stop him] [LetItHappen]
+			clearMenu();
+			addButton(0, "Stop Him", secOpMaleTitfuck, "stop", "Stop Him", "There’s no way he’s going to inject that substance into you.");
+			addButton(1, "LetItHappen", secOpMaleTitfuck, "let it", "Let It Happen", "Silicone or not, whatever’s in those needles will increase the fun.");
+			break;
+		case "stop":
+			output("You just wait for the right moment as you resume pleasuring him, pretending you have no idea what he’s doing, despite the fact that you’re ready. He prepares to sink the syringes into you, aimed right at your [pc.tits]. As they come down your hands move off your chest to catch his wrists, gripping them tightly. You look at him right in the face with a smug smile while you hold his arms in place.");
+			output("\n\n");
+			if(pc.siliconeRating("tits") <= 0) output("<i>“What’s the matter, are a pair of [pc.breastCupSize] tits too small for you?”</i> you ask");
+			else output("<i>“I’ve already got enough silicone in my girls; I don’t need more,”</i> you say");
+			output(", still tightly holding his arms up.");
+			output("\n\nHe blushes as he speaks, saying, <i>“I just thought that... it could be a bit more fun... if they were a bit bigger?”</i> He’s nervous, clearly, and plenty of factors contribute to that.");
+			output("\n\nYou twist his wrists slightly, causing him to yelp and drop the syringes to the floor.");
+			if(!pc.isAss()) output(" You push them to the side, out of range of his reach.");
+			else output(" You grab them both and " + (!silly ? "throw" : "yeet") + " them off to the side, so hard that they shatter when they hit the floor, splashing silicone all over the ground.");
+			output(" <i>“Let me show you that they don’t need to be any bigger to make you have a good time. Now,");
+			if(pc.isNice()) output(" please, don’t");
+			else output(" you’d better not");
+			output(" try anything else.”</i>");
+			output("\n\nYou place your hands back on your tits, squishing them against his cock. It’s just as hard as ever, pre-cum still leaking from the tip. Except now, you’re more determined than before to show him what you’re capable of with your current chest. Moving your [pc.tits] up and down at " + (!silly ? "a higher speed" : "Mach 3") + " should show him. You continue where you left off, just much faster now, forcing your [pc.breastsNoun] up and down rapidly on his cock, all while his body hopelessly shakes and trembles with pleasure.");
+			output("\n\nThe <i>‘ah’</i>s coming from his mouth get higher and higher, his hips starting to buck upwards to send his dick between your [pc.breastsNoun] faster as he finally reaches his peak. A thick rope of aphro-laden semen explodes from his tip, shooting just past your face and up into the air. He moans loudly and girlishly as several weaker spurts blow from his tall dick. Eventually, the orgasm subsides and you slow you pace...");
+			if(pc.isBimbo() || pc.libido() >= 30) output(" but not before you make sure to lick up the lust-drugged cum from his cockhead. It’s just sooo good...");
+			output(" He breathes very heavily, his lips parted slightly while he begins to calm down.");
+			if(pc.isBimbo() || pc.isAss() || pc.libido() >= 70) output("\n\nA thought crosses your mind. Maybe you’re not done just yet. You take the kitty’s dick into your hand, suddenly squeezing it tightly. He winces as you jerk him off almost painfully. You bite your lip; you can practically see the masochistic tendencies on his face. After squeezing out a few more drops of semen, you decide to leave the security operative alone with an erection." + (!pc.isBimbo() ? " After all, after that little stunt he tried to pull, he deserves it." : ""));
+			output("\n\nAfter some time, you sit up and begin to wipe yourself off. The kitty watches you, also sitting up slowly, though by the time he actually gets ready, you’re already");
+			if(!pc.isChestExposed()) output(" clothed and");
+			output(" on your way.");
+			output("\n\n");
+			
+			processTime(5);
+			// +50 lust
+			pc.lust(50);
+			
+			CombatManager.genericVictory();
+			break;
+		case "let it":
+			var bigPumps:Boolean = (pc.isBimbo() || pc.libido() > 70);
+			
+			output("You decide not to act. Whatever he’s got in those syringes, silicone or other, will most certainly make this more fun. You just keep bouncing your tits on his dick, completely ignoring his actions and putting your focus on the member in front of you.");
+			output("\n\nWith your focus on the almost hypnotic, gleaming cock, you only see the needles for maybe a half second before they plunge into each of your boobs. You wince at the sudden poke only able to stop and watch as the kaithrit rapidly forces over half of the sloshing contents into your chest. Your breasts swell rapidly as the self-guided bio-silicone gelatin enters them, " + (pc.hasFeet() ? "your toes curling" : "your butt clenching tightly") + " while you blow through cup sizes. Now that the draining vessels are right in front of you, you can really see just how <i>huge</i> they are. The SecOp’s hands can’t even completely wrap around each one, and you’re forced to watch as his thumbs keep pushing the hammers down farther and farther, sending more and more silicone into you. He looks at you with a devious smile as he pulls the empty needles out.");
+			output("\n\n<i>“");
+			if(pc.siliconeRating("tits") <= 0) output("Just thought you could do a better job with bigger boobs...");
+			else output("I could tell you already had silicone in your boobs, I just thought you might want more...");
+			output("”</i> he says, looking at your now swollen breasts.");
+			if(bigPumps)
+			{
+				output("\n\nYou look down at your jugs. They’re way bigger than they were... but are they really big enough? Surely he’s got more he’d love to pump into you. <i>“More,”</i> you say simply.");
+				output("\n\n<i>“Wait, you’re not ma-”</i>");
+				output("\n\n<i>“More!”</i> you shout, squeezing your breasts tightly around his dick. He quickly grabs two more syringes from the messy pile spilling from his pack and proceeds to plunge them into your boobs again. Even more bio-silicone flows into you, and you wait patiently while biting your lip. Eventually, all the tit-swelling gel in the second set is inside your breasts. The kaithrit seems... intimidated by you, with the power move you just pulled. Your boobs are huge compared to what they were before. He then pulls the needles out.");
+			}
+			output("\n\nYou remain unfazed by the changes you just underwent, wobbling your freshly inflated boobs up and down on the metallic dick between them. You can literally feel the freshly injected implants under your hands, like all that’s separating you from grabbing them directly is a layer of [pc.skinFurScales]. Regardless of what’s inside your tits, the kaithrit obviously loves how they feel on his dick.");
+			output("\n\nMuch more pre-cum than before flows out from the tip of his cock, practically pouring out onto your blown-up balloons. You don’t mind a bit, using the drug-laced fluid as lubricant like you did earlier. He seems to be enjoying this <i>much</i> more than he was before he gave you the little ‘upgrade’. In fact, you’re fairly sure he’s going to cum soon!");
+			output("\n\nYou start moving faster, trying to get used to giving boobjobs with huge boobs. You can feel the security operative shaking as he bucks his hips harder into you, his shaft repeatedly poking from the top of your bust. It’s a very pleasant experience for both of you.");
+			output("\n\nThe <i>‘ah’</i>s escaping from his mouth get higher and higher, his hips bucking harder to bury his dick deeper into your tits as he finally reaches his peak. A thick rope of semen explodes from his tip, shooting just past your face and up into the air. He moans loudly and girlishly as several weaker spurts blow from his tall member. Eventually, the spurts subside and you slow down...");
+			if(pc.isBimbo() || pc.libido() >= 30) output(" but not before you make sure to lick up the lust-drugged cum from his cockhead. It’s just sooo good...");
+			output(" He breathes very heavily, his lips parted slightly while he begins to calm down.");
+			output("\n\nYou stand up while the SecOp recovers, looking at your new breasts. Bio-silicone is stuffed tightly within them.");
+			if(pc.siliconeRating("tits") <= 0) output(" The mass seems to act a lot like your natural boob-flesh normally would, though its bounce defies gravity and tends to form a perfectly rounded sphere within each of your boobs, making them distinctly shaped. You’ll have to get used to this.");
+			if(!pc.isChestExposed()) output(" Now stood up, you get dressed. Your chest feels pretty tight in your clothes, but it’s not exactly unpleasant.");
+			output("\n\nBy the time the catboy has fully recovered, you’re up and on your way.");
+			output("\n\n");
+			
+			processTime(7);
+			// +6 breast silicone normally
+			// +12 breast silicone if >70 libido or PC is a bimbo
+			nymFoeInjection(3, (!bigPumps ? 6 : 12));
+			// Max out lust
+			pc.maxOutLust();
+			
+			CombatManager.genericVictory();
+			break;
+	}
+}
+

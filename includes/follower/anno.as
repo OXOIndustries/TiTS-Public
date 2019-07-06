@@ -267,7 +267,6 @@ public function annoFollowerMenu():void
 	}
 	else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
-	
 	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you’ll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can’t bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
 
@@ -502,7 +501,7 @@ public function annoFollowerBootOff():void
 	output("\n\nYou nod, and watch as Anno hurriedly collects her belongings. You get the distinct sense she’s trying not to cry as she scurries off your ship.");
 
 	flags["ANNO_CREWMEMBER"] = 2;
-	if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	if(InCollection(flags["CREWMEMBER_SLEEP_WITH"], ["ANNO", "SHEKKA AND ANNO"])) flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Anno is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
