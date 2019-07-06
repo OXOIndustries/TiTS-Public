@@ -370,7 +370,7 @@ public function synphiaCockForeplay(x:int):void
 	//Other blunt
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && pc.cocks[x].cType != GLOBAL.TYPE_EQUINE) comments.push("Oh, these flat-tipped dicks always drive me wild, like it’s a column of pure, carnal cock designed to perfectly match my throat. I don’t have to open any more or less. Once it’s inside, I can focus on giving it all the suction and friction it needs for a good cum, and if I wanna focus on the taste, I just lay my tongue nice and flat to taste every inch on its way by.");
 	//Tentacle
-	if(pc.cocks[x].cType != GLOBAL.TYPE_TENTACLE) comments.push("You’re gonna keep these beast from getting too wiggly on me, right? I know </i>all<i> about tentacle dicks. I know how you can stretch them or pump them in and out without help from your hips, but if you’re gonna let me service you, I’m gonna need your delicious little wiggler to be a good boy and stay nice and straight until he pops.");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_TENTACLE) comments.push("You’re gonna keep this beast from getting too wiggly on me, right? I know </i>all<i> about tentacle dicks. I know how you can stretch them or pump them in and out without help from your hips, but if you’re gonna let me service you, I’m gonna need your delicious little wiggler to be a good boy and stay nice and straight until he pops.");
 	//Kitty nodules
 	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) comments.push("Oh, these little spines are so fun to play with! They look like they’d hurt but they’re just squishy little toys, rubbing every which way while they fuck a hole. Of course, for a slyveren like myself, the extra texture doesn’t matter. What does matter are all the lovely little flavor pockets under each one. I can slide my tongue in, one at a time, whenever I want a spark of concentrated </i>dick<i> to make me drool.");
 	//Purple
@@ -427,8 +427,7 @@ public function synphiaCockForeplay(x:int):void
 		processTime(6);
 		clearMenu();
 		addButton(0,"Suck&Jack",synphiaVenomRouter,[x,false]);
-		//addButton(1,"Deepsucks",9999);
-		addDisabledButton(1,"Deep Sucks","Deep Sucks","Coming soon.");
+		addButton(1,"Deepsucks",synphiaVenomRouter,[x,true]);
 	}
 }
 
@@ -522,6 +521,7 @@ public function synphiaDickSuckSceneRouter(args:Array):void
 	//[2] = venomBool
 	//[3] = cummies
 	if(!args[1]) strokeAndHeadPolishingBySynphia(args);
+	else longSucksWithSynphia(args);
 }
 
 //Stroke & Headpolish
@@ -533,6 +533,8 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 	var cummies:Number = pc.cumQ();
 	var x:int = args[0];
 	var venomBool:Boolean = args[2];
+	//Setting up cum tracking.
+	args.push(cummies);
 	//setting up synphia cummies
 	args.push(false);
 
@@ -676,10 +678,15 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 	pc.orgasm();
 	if(venomBool) pc.lust(25);
 	clearMenu();
-	args.push(cummies);
+	//Making sure accurate cummies :3
+	args[3] = cummies;
 	if(venomBool && pc.cumQ() >= 100) addButton(0,"Next",extraCumLeakingPostSynphia,args);
 	else addButton(0,"Next",synphiaEpilogue,args);
-}
+}	//[0] = x.
+	//[1] = deepthroatBool
+	//[2] = venomBool
+	//[3] = cummies
+	//[4] = synphia cummies
 
 //Venom’ed and still have cum left
 public function extraCumLeakingPostSynphia(args:Array):void
@@ -719,6 +726,7 @@ public function synphiaEpilogue(args:Array):void
 	var synCum:Boolean = args[4];
 	var throbhelp:Boolean = false;
 	var cummies:Number = args[3];
+	var deepthroat:Boolean = args[1];
 	//Messed jumpsuit fix
 	if(synCum) output("Synphia staggers back, dripping, and reaches for her toolbelt. Whatever she’s going for must be small; the spunked-up snake sure is having a tough time finding it. She gasps and straightens, letting a small hovering drone float of her hand. It spins about and begins the arduous process of somehow zapping away the collected mess, unearthing wide expanses of SteeleTech jumpsuit to shine like it’s brand new. <i>“There we go. All better,”</i> Synphia coos, turning this way and that to ensure every drop is evaporated.");
 	//Nonmess
@@ -782,8 +790,9 @@ public function synphiaEpilogue(args:Array):void
 
 	//Increment times sukked
 	IncrementFlag("SYNPHIA_SUCKS");
-	//Increment times headpolished
-	IncrementFlag("SYNPHIA_HEADPOLISHES");
+	//Increment times headpolished/throated
+	if(deepthroat) IncrementFlag("SYNPHIA_HEADPOLISHES");
+	else IncrementFlag("SYNPHIA_DEEPTHROATS");
 	//Increment times she came if she came
 	if(synCum) IncrementFlag("SYNPHIA_DICKGASMS");
 	//fully empty balls if venomed & slightly increase output.
@@ -805,76 +814,229 @@ public function synphiaEpilogue(args:Array):void
 	//[3] = cummies
 	//[4] = synphia cummies
 
-/*
-output("\n\nLong Sucks");
-output("\n\n//Reg size");
-output("\n\nIt takes no time at all for Synphia to properly affix herself to your [pc.cock]. Maybe it’s her reptilian biology, but she strikes forward like lightning, swallowing up inches of length in microseconds. She sheaths you like her mouth was made solely for this purpose: a perfect inverse mold of your dick cast from the universe’s softest, wettest, most fuckable substance. The slyveren devours you to the root{, smiling around your bulbous knot/, nosing into your sheath/, angling herself to comfortable guide your length into her throat}.{ It’s the perfect place for a venom-tenderized prick to be, swaddled up in slick friction and warm appreciation.}");
-output("\n\n//Upper limit size");
-output("\n\nSynphia takes her time swallowing you up, spreading her luscious lips into a wide ‘o’ before smashing them against your [pc.cockHead] and letting it stretch her maw the rest of the way. Swallowing your length is no easy feat, even for her. For every inch that vanishes into her maw, she gulps, distending her neck a little more, feeding you deeper into her throat.{ The venom makes it easy for your shaft to bend and flex, and it may be responsible for the halfhearted throbs that fling strands of pre into her tummy.} The snake-woman’s nose {burrows deep into your sheath, saturating her breaths with your phallic musk. She seems to revel in it, wiggling in an attempt to get deeper, huffing on your crotch./eclipses the bulbous surface of your knot, wrapping in the tight, wet, hot tunnel that is her mouth./boops into your loins a second before her suckling lips kiss your base.}");
-output("\n\n//Merge");
-output("\n\nYou are exactly where she wants you.");
-output("\n\nA mischievous little muscle announces itself by sliding against your [pc.cockNoun]: Synphia’s tongue. It’s long and thick on the edges - perfect for sandwiching between the bottom of her mouth and your curved underside, and when it does slide, it does so knowingly, tweaking tender spots that make your toes curl and you dick momentarily swell, stretching her maw further.{venom: Something thick and viscous and <i>pleasant</i> slides out of you when she does it. The venom has pried something open inside you, something that’s making your pre pour out with a bit of sperm mixed in. If the beginning of the blowjob feels like this, how good is going to feel to cum?/ There’s something so arousing about the situation, leaning here, looking down while you dribble pre-cum {right down the back of her throat/onto the central groove of her tongue}.}");
-output("\n\n//ball licking");
-output("\n\n<i>“More,”</i> Synphia’s voice flashes pink against your mind, and her tongue slides further, wiggling between your trembling dickflesh and the pouty pillow of her bottom lip to find your sack. It twirls and curls around the testicular pouch, tasting every inch. The snake-slut laps at your ballpouch like it’s her lollipop, and every lick drags the velveteen surface of her tongue along {the rest of your [pc.cockNounSimple]./the parts of your [pc.cockNounSimple] not yet devoured by throat.} <i>“Mmm, tasty{ little} cum-tanks you got here.”</i> It wraps around your [pc.sack] like some kind of prehensile tentacle, nearly tying up your ball{s}.");
-output("\n\n//Venomed suckbigger");
-output("\n\nNothing prepares you for Synphia’s suck. You thought the warm, sopping pleasure of her maw was incredible, yet it’s her suckling that blows your mind. Your envenomed [pc.cockNounSimple] swells so pleasantly in the presence of vacuum. It feels like it’s being stretched out, like when her wondrous suckles are helping you to fill every crack and crevice of her mouth. <i>“That’s it,”</i> Synphia’s voice whispers. <i>“So big and virile.”</i> Her horns flicker from pink back to blue, and she hollows her cheeks once more, puffing up your dick to the point that it feels heavy and swollen.");
-output("\n\n<i>“More.”</i> She sucks harder, and your flesh swells obediently. The glow from her horns shifts to green, but there’s too much pleasure in being sucked bigger to care. You can feel your [pc.cock] expanding, ballooning. It’s getting longer, growing to satisfy the insatiable alien, and you want to satisfy. [pc.CumColor] pre drips down her throat, pushed a little deeper every time. You could cum from this, you realize. Growth is its own kind of ecstasy, the expanded surface of your prong tingling from the sparking appearance of thousands of sensitive new nerves.");
-output("\n\nThe glow from the snake-woman’s horns fades to background levels, but the added size remains. Her eyes twinkle knowingly when she looks up, and her tongue rewards you with a slow, steady lick from throat to spit-slathered loins. The shape of your upgraded member shows clearly through Synphia’s scaled throat.");
-output("\n\n//novenom promises");
-output("\n\nNothing can prepare you for the sudden intrusion of her voice into your mind, projected with a pink glow from her horns. <i>“Imagine how much hotter this would be if you let me use my venom. I’d be sucking you so big and so hard.”</i> Her hands stroke your thighs while she promises you pleasure. <i>“I’d suck, and you’d swell, and I’d suck, and you’d get the fattest, drippiest boner - the kind of cock that really fills my throat. Wouldn’t that be lovely?”</i>");
-output("\n\nIt would be so lovely... or at least it seems that way until the pink light fades back to its normal blue.");
-output("\n\n//merge");
-output("\n\nLips assault you next. Gently pushing on your [pc.belly], Synphia slides her head back, gliding her plump cock-suckers back on a curtain of her own saliva. She only goes about halfway, leaning back just far enough for your [pc.cockHead] to rub against the bend in the back of her throat. Then she gobbles you back up, noisily swallowing down your dick until she can bounce her lips off your well-slobbered {sheath/abdominals} and do it all over again. Spit froths at the corners of her {greedy/stuffed/straining} maw as Synphia’s tempo increases. Audible claps sound when her dick-sucking pillows slap off your skin, and with all the churning, wet sounds from her throat, it sounds like you’re fucking her pussy, not her face.");
-output("\n\nSynphia looks up from above her mouthcunt and watches you for the signs of encroaching orgasm, not that she needs to. She can feel your pleasure in the way your [pc.cock] twitches on her tongue. She can sense how close you are by the ever-increasing creaminess of your pre. Slyveren senses are so keen when it comes to cum, so keen that she must know exactly how you feel when she’s sucking you to the root, batting her eyelashes at you innocently and asking with pink-flashed words, <i>“Are you ready to cum?”</i>");
-output("\n\nThe answer to a question like that doesn’t need spoken out loud, {but you do need to decide how you want to cum. Are you going to let her bring you off like this or grab her by the horns and take charge?/especially not when talking seems so hard, and it’s so much easier to lean back against the crates and moan for Synphia. She’s sucking you so well; she’s more than earned the load you’re about to feed her...}");
-output("\n\n//[Next] or menu for facefuck or let her. Next = Let Her");
-output("\n\n[WRITEME] //Facefuck [Cummies]");
-output("\n\nGrabbing the snake by the horns, you give her a little yank to stop her ceaseless writhing and take command of the situation.");
-output("\n\nSynphia does not issue so much as one single peep of protest. Folding her hands obediently into her own lap, she bats her eyelashes at you, giving you all the permission you need to hoist your [pc.hips] back and plow your [pc.cock] throat-deep once more. The potent suction and tight seal of slyveren lips fades slightly, just in time for you to do it again and again... and again. You rut the pillow-mouthed cum-junkie’s maw, pounding it like you could knock it up by force alone. Wisps of bluish fog rise from Synphia’s flashing horns as she taps whatever psionic power she has to endure you mouth-fucking her silly.");
-output("\n\nShe can’t quite meet your gaze through all the shaking and humping, but she can drool. She can drool enough spit to make her mouth feel wetter than a galotian’s cunt. She can drool enough to splash your [pc.skinFurScales] whenever you burrow bone deep. She can drool enough for stringy excess to dangle from her chin and slap into a tit.");
-output("\n\nThat’s what really sets you off: the sight of professional spooge-sucker barely hanging on, letting you use her face like your own personal fucktoy. She doesn’t seem like she cares how rough you get so long as your [pc.cockNounSimple] pops inside before you pop... and you do. You ram that bliss-infused tool so deep that Synphia’s lips bubble outward, pinned between the rest of her face and your ruinously aroused loins.");
-output("\n\n//<1000");
-output("\n\n[pc.Cum] injects itself directly into the snake-woman’s stomach. Each blissful clench is answered by a widening of Synphia’s eyes. {Her expression mellows with your consecutive shots until her eyes are closed with a patient sort of satisfaction. The rest of your climax is a calming, quiet sort, just the sound of your own heart hammering in your ears and the occasional contented gurgle from Synphia’s tummy. By the end, you realize that she’s working her lips again, squeezing them at your root and sucking the final virile droplets free./Her expression begins to mellow, then turns to disappointment as your load runs dry. She offers a vial of Throbb, not even bothering to pull back, but she offers it nonetheless. Her horns glow faint coral as her disembodied voice suggests, <i>“A few doses of Throbb might do you some good for next time."\n\nIt just might. You push her off a little harder than you meant to. Your [pc.cock] flies free, slinging old spit across Synphia’s snout. <i>“I’ll have to think about it."\n\nThe snake-girl nods, casually gathering the juices up with her tongue, and leaves with a carefree smile.}");
-output("\n\n//< 4000 - smolpaunch. Happysnek");
-output("\n\n[pc.Cum] injects itself into the snake-woman’s hungry stomach with audible burbles, yet she shows nothing but pleasure. When your second shot slides into place, so thick and virile that you feel a bit of it continuing to cling to your [pc.cockHead], Synphia closes her eyes and leans her shoulder against your [pc.leg] for support. Her primly folded hands make their way to her stomach, and as you continue to fill her, she excitedly strokes her rounding, cum-pregnant tummy.");
-output("\n\nIt isn’t a very ‘pregnant’ bulge - just enough to let the rest of the station know that she’s been fed and fed well. Synphia surprises you by starting to suck again, working her lips around your root to make sure every single virile droplet your body has produced makes its way into the soupy mixture in the bottom of her belly.");
-output("\n\n//< 15000 - medpaunch dopysnake");
-output("\n\n[pc.Cum] roars into the snake-woman’s stomach, hitting her mid-section with tummy-shaking force. Synphia’s eyes widen in alarm, but she doesn’t struggle. She grabs onto her middle two-handed and <i>feels</i> the cumflation for herself, like she doesn’t trust what the rest of her body is telling her. You shoot again, the alarmed look fades somewhat. Hands roam squeeze the puffed-out belly in awe, and Synphia’s lips suddenly ratchet tighter, forming a perfect seal. Her cheeks crinkle with a hint of a smile, and she closes her eyes to feel the rest of what’s to come.");
-output("\n\nGripping tighter, you let yourself unload the rest of your climax inside her. If she doesn’t mind turning into a cum-thickened chunker, so be it. You cry out in bliss and fill her. Scales creak beneath scrabbling fingertips, and Synphia’s throat gives you a healthy squeeze as if to say, <i>“More. Cum in me more.”</i> You do. You shoot until you’re panting and drained. The snake-woman’s could pass for pregnant, if she wanted to, though with how she wobbles and sloshes, the illusion wouldn’t last for long.");
-output("\n\n/else - huge paunch unconscious snek");
-output("\n\n[pc.Cum] erupts out of you like water from a fire extinguisher, only you have a snake-shaped balloon trapped on the end of the ‘hose.’ Synphia goes wide-eyed when the first sperm-thickened deluge completely fills her belly, gurgling and roiling. She reaches down in shock and confusion, prodding her flesh in disbelief, and the second shot hits. Your scale-covered condom whines through a throat full of dick and tightens down her lips. The pressure is maddening; you react by firing out enough seed to knock up a whole harem of ausar babes.");
-output("\n\nOnly, every drop is pouring into one girl. Synphia gets kind of chubby-looking. She’s stroking her belly and her cunt, even though you can’t see the sopping slit beneath the blossoming belly bloat. The sight makes you shoot hard enough to send rippling wobbles through the snake’s distended body, pumping her up further. She’s like a cummy balloon, rounding with each passing second. Squirming, the slyveren lashes her tail. It cracks ineffectively against the wall, and Synphia gulps against your spunk-distended cock, cumming her brains out.");
-output("\n\nGirljizz spatters the floor, ruining the crotch of Synphia’s jumpsuit, but she’s beyond caring. She’s a blissed-out cum-bucket on the verge of overflowing. Warm, spent spoo backs up high enough to bathe your [pc.cockHead], and you wisely decide to pull out you do her any serious harm.");
-output("\n\nSynphia doesn’t mind being tossed on the floor like a wet cum-rag if her moans are anything to go by. In fact, she pulls out her tits for you and begs you to keep going. You do. You paint her [pc.cumColor], then paint her again, then divert to give her face a nice thick mask of excess goo. She gurgles, coughing up a load worth of jism, then cums again, her every sense utterly infused with the scent and feeling of jism.");
-output("\n\nIt’s a surprise when, after your ropes have turned to dribbles and then to a single droplet, Synphia springs out of the puddled sexjuice to suck the last bits of thinner, runnier goo from your [pc.cockHead]. She hums and sighs, utterly content.");
+//Long Sucks
+public function longSucksWithSynphia(args:Array):void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
 
-output("\n\n//Let Her");
-output("\n\nLetting your head loll back, you manage to groan a warning. The lady did ask, after all.");
-output("\n\nSynphia seems to appreciate it too, hollowing her cheeks and suckling ravenously, her eyes smiling up with something that looks like a mixture of pride and possessiveness. She bobs slightly, maybe a half-inch at a time, driving you closer and closer to the precipice until you know you can’t hold it back any longer. Synphia sucks the lewdest sounding gasp from you, and then you’re cumming - cumming while you stare adoringly into her eyes. You’re cumming, and you doubt anything could be as sexy as the expression on Synphia’s face.");
-output("\n\n//2Low - quickie + complain");
-output("\n\nThat beautiful visage sours at the end of your brief climax. Scowling slightly, the disappointed mechanic slowly extracts your [pc.cock] from her spit-greased throat, smacking her lips for a moment. <i>“That’s it?”</i> She squints at your dick before rooting around in her toolbelt and coming up with a vial of Throbb. <i>“Here. Take this. From what I understand, it’s exactly the sort of thing you’re gonna need if you plan to feed slyverens.”</i>");
-output("\n\nShe saunters off, leaving you holding your own spent dick and a handful of drugs.");
-output("\n\n//< 1000 - Happy slyveren, easy sukk");
-output("\n\nCompared to face-fucking, your orgasm is almost silent. Without much motion, there’s not much noise, just the deeply muffled sound of your [pc.cum] shooting directly into Synphia’s waiting stomach. Rubbing her tummy, she nurses at your prick, utilizing her tongue to the fullest.{ It strangles your [pc.balls], trying to squeeze out more.} She closes her eyes to focus on the rhythmic throbbing. Inside her throat, the alien’s muscles contract and squeeze to milk out every drop.");
-output("\n\nYou’re giving Synphia exactly the [pc.cumNoun] she needs, and it feels so good.");
-output("\n\n//< 4000 - Very Happy slyveren. Slight paunch.");
-output("\n\nThat beautiful visage blossoms into a mask of ecstasy at the size of your first ejaculation. Synphia grabs your ass and pulls you tighter, seemingly forgetting that she has your [pc.cock] mated to her throat, so desperate for your plus-sized [pc.cumNoun]-shots that she’s squeezing you with her throat, milking that hot load into her stomach. The sultry mechanic all but purrs as you pump it out for her, and as your climax winds down, you watch her rubbing at the slight paunch you’ve produced on her belly in pleasure.");
-output("\n\n//< 15000 - Tummy bulging slyveren. Wet");
-output("\n\nThat beautiful visage contorts into surprise, then ecstasy, when your first ejaculation splashes into her hungry belly. Synphia grabs hold of your ass for support and gurgles at the second ejaculation, closing her eyes while her throat goes mad around your girth. Every inch of this girl demands you feed her as much cum as possible. She whimpers, a patch of darkness spreading around her crotch from the sheer eroticism of her own cum-guzzling, but it soon vanishes beneath the rounding bulk of her [pc.cumNoun]-inflated middle.");
-output("\n\n//< 60000 - Pregnant and cumming");
-output("\n\nThat beautiful visage screws up in sudden ecstasy when Synphia realizes just how unspeakably virile you are. Cradling her stomach in one hand, she pulls herself tighter against you with the other (and her tail). A river of [pc.cumVisc] [pc.cumNoun] seed flows through her throat, and it squeezes back, begging for more. You ruin her trim figure. A once taut belly is made to look soft and pudgy, and that’s just your first shot.");
-output("\n\nThe second ejaculation causes the suck-hungry slut to gurgle, and you hear a dribbling sound from below that could only come from the slyveren’s own orgasm. A clear puddle, half-hidden by her ballooning belly, provides plenty of evidence for her passion, and you respond to it the only way you know how: by continuing to cum until Synphia looks like pregnant with a whole litter worth of your kids. Dumbly, she cradles her obscene middle as it wobbles and sloshes with the final spurts of your monstrous load.");
-output("\n\n//yuge - Massive cumflake & bukkake");
-output("\n\nThat beautiful visage displays equal parts shock and lust as you unleash the monstrous torrent of your load. Your seed flows thickly enough to distend your cock and her shrink-wrapped throat with it. Synphia’s eyes flutter, then roll back while you listen to the torrential churning of roiling seed from within. She whimpers, but she can’t stop drinking, not while you’re plugged directly into her stomach. All she can do is try to hang on while you continue to inflate her.");
-output("\n\nA hot spatter soaks your [pc.footOrFeet] when the snake-girl violently orgasms at the end of your first shot. She cums again with the second, shaking like a leaf caught in fighter jet’s engine wash. By the third, Synphia is more or less limp. She’s attached to your [pc.cock] like an organic condom, inflating with each passing second. Her balloon-like tummy rounds well past the point of a twin pregnancy, then stretches beyond. Her suit becomes almost transparent around the middle, allowing you to watch her reaching the limits of her own alien biology: belly scales pull apart, no longer able to conceal the glossy skin beneath. She’s reached her limit.");
-output("\n\nYou step back, lest you hurt her, snaking all {x}-inches out of her throat in time for the last couple shots to web the slyveren to the wall. The [pc.cum] globs pile up thick enough to anonymous some of her features... at least until gravity begins to pull it down in bunched-up waves.{ You watch with pride, unable to stop dripping [pc.cum] thanks to her venom.}");
-output("\n\nShe comes to a little later.");
-//Should be able to merge into the [next] stuff for the other variants.
-	
-Ball Foreplay
+	var cummies:Number = pc.cumQ();
+	var x:int = args[0];
+	var venomBool:Boolean = args[2];
+	//Setting up cum tracking. Will probably rework anyway.
+	args.push(cummies);
+	//setting up synphia cummies
+	args.push(false);
+
+	//Reg size
+	if(pc.cocks[x].thickness() < 4)
+	{
+		output("It takes no time at all for Synphia to properly affix herself to your [pc.cock " + x + "]. Maybe it’s her reptilian biology, but she strikes forward like lightning, swallowing up inches of length in microseconds. She sheaths you like her mouth was made solely for this purpose: a perfect inverse mold of your dick cast from the universe’s softest, wettest, most fuckable substance. The slyveren devours you to the root");
+		if(pc.hasKnot(x)) output(", smiling around your bulbous knot");
+		else if(pc.hasSheath()) output(", nosing into your sheath");
+		else output(", angling herself to comfortably guide your length into her throat");
+		output("." + (venomBool ? " It’s the perfect place for a venom-tenderized prick to be, swaddled up in slick friction and warm appreciation.":""));
+	}
+	//Upper limit size
+	else
+	{
+		output("Synphia takes her time swallowing you up, spreading her luscious lips into a wide ‘o’ before smashing them against your [pc.cockHead " + x + "] and letting it stretch her maw the rest of the way. Swallowing your length is no easy feat, even for her. For every inch that vanishes into her maw, she gulps, distending her neck a little more, feeding you deeper into her throat." + (venomBool ? " The venom makes it easy for your shaft to bend and flex, and it may be responsible for the halfhearted throbs that fling strands of pre into her tummy.":"") + " The snake-woman’s nose ");
+		if(pc.hasSheath()) output("burrows deep into your sheath, saturating her breaths with your phallic musk. She seems to revel in it, wiggling in an attempt to get deeper, huffing on your crotch.");
+		else if(pc.hasKnot(x)) output("eclipses the bulbous surface of your knot, wrapping in the tight, wet, hot tunnel that is her mouth.");
+		else output("boops into your loins a second before her suckling lips kiss your base.");
+	}
+	//Merge
+	output("\n\nYou are exactly where she wants you.");
+	output("\n\nA mischievous little muscle announces itself by sliding against your [pc.cockNoun " + x + "]: Synphia’s tongue. It’s long and thick on the edges - perfect for sandwiching between the bottom of her mouth and your curved underside, and when it does slide, it does so knowingly, tweaking tender spots that make your toes curl and you dick momentarily swell, stretching her maw further.");
+	if(venomBool) output(" Something thick and viscous and <i>pleasant</i> slides out of you when she does it. The venom has pried something open inside you, something that’s making your pre pour out with a bit of sperm mixed in. If the beginning of the blowjob feels like this, how good is going to feel to cum?");
+	else output("There’s something so arousing about the situation, leaning here, looking down while you dribble pre-cum " + (pc.cocks[x].cLength() >= 10 ? "right down the back of her throat":"onto the central groove of her tongue") + ".");
+	//ball licking
+	if(pc.balls > 0)
+	{
+		output("\n\n<i>“More,”</i> Synphia’s voice flashes pink against your mind, and her tongue slides further, wiggling between your trembling dickflesh and the pouty pillow of her bottom lip to find your sack. It twirls and curls around the testicular pouch, tasting every inch. She laps at your ballbag like it’s her lollipop, and every lick drags the velveteen surface of her tongue along " + (pc.cocks[x].cLength() < 10 ? "the rest of your [pc.cockNounSimple " + x + "].":"the parts of your [pc.cockNounSimple " + x + "] not yet devoured by throat.") + " <i>“Mmm, tasty" + (pc.ballDiameter() < 2 ? " little":"") + " cum-tanks you got here.”</i> It wraps around your [pc.sack] like some kind of prehensile tentacle, nearly tying up your ball" + (pc.balls > 1 ? "s":"") + ".");
+	}
+	//Venomed suckbigger
+	if(venomBool)
+	{
+		output("\n\nNothing prepares you for Synphia’s suck. You thought the warm, sopping pleasure of her maw was incredible, yet it’s her suckling that blows your mind. Your envenomed [pc.cockNounSimple " + x + "] swells so pleasantly in the presence of vacuum. It feels like it’s being stretched out, like when her wondrous suckles are helping you to fill every crack and crevice of her mouth. <i>“That’s it,”</i> Synphia’s voice whispers. <i>“So big and virile.”</i> Her horns flicker from pink back to blue, and she hollows her cheeks once more, puffing up your dick to the point that it feels heavy and swollen.");
+		output("\n\n<i>“More.”</i> She sucks harder, and your flesh swells obediently. The glow from her horns shifts to green, but there’s too much pleasure in being sucked bigger to care about the serpentine rainbow. You can feel your [pc.cock " + x + "] expanding, ballooning. It’s getting longer, growing to satisfy the insatiable alien, and you want to satisfy. [pc.CumColor] pre drips down her throat, pushed a little deeper every time. You could cum from this, you realize. Growth is its own kind of ecstasy, the expanded surface of your prong tingling from the sparking appearance of thousands of sensitive new nerves.");
+		output("\n\nThe glow from the snake-woman’s horns fades to background levels, but the added size remains. Her eyes twinkle knowingly when she looks up, and her tongue rewards you with a slow, steady lick from throat to spit-slathered loins. The shape of your upgraded member shows clearly through Synphia’s scaled throat.");
+	}
+	//novenom promises
+	else
+	{
+		output("\n\nNothing can prepare you for the sudden intrusion of her voice into your mind, projected with a pink glow from her horns. <i>“Imagine how much hotter this would be if you let me use my venom. I’d be sucking you so big and so hard.”</i> Her hands stroke your thighs while she promises you pleasure. <i>“I’d suck, and you’d swell, and I’d suck, and you’d get the fattest, drippiest boner - the kind of cock that really fills my throat. Wouldn’t that be lovely?”</i>");
+		output("\n\nIt would be so lovely... or at least it seems that way until the pink light fades back to its normal blue.");
+	}
+	//merge
+	output("\n\nLips assault you next. Gently pushing on your [pc.belly], Synphia slides her head back, gliding her plump cock-suckers back on a curtain of her own saliva. She only goes about halfway, leaning back enough for your [pc.cockHead " + x + "] to rub against the bend in the back of her throat. Then she gobbles you back up, noisily swallowing down your dick until she can bounce her lips off your well-slobbered " + (pc.hasSheath() ? "sheath":"abdominals") + " and do it all over again. Spit froths at the corners of her ");
+	if(pc.cocks[x].cLength() < 10) output("greedy");
+	else if(pc.cocks[x].cLength() < 20) output("stuffed");
+	else output("straining");
+	output(" maw as Synphia’s tempo increases. Audible claps ring out when her dick-sucking pillows slap off your skin, and with all the churning, wet sounds from her throat, it sounds like you’re fucking her pussy, not her face.");
+	output("\n\nSynphia looks up from above her mouthcunt and watches you for the signs of encroaching orgasm, not that she needs to. She can feel your pleasure in the way your [pc.cock " + x + "] twitches on her tongue. She can sense how close you are by the ever-increasing creaminess of your pre. Slyveren senses are so keen when it comes to cum, so keen that she must know exactly how you feel when she’s sucking you to the root, batting her eyelashes at you innocently and asking with pink-flashed words, <i>“Are you ready to cum?”</i>");
+	output("\n\nThe answer to a question like that doesn’t need spoken out loud, ");
+	processTime(15);
+	pc.lust(70);
+	clearMenu();
+
+	if(!venomBool) 
+	{
+		output("but you do need to decide how you want to cum. Are you going to let her bring you off like this or grab her by the horns and take charge?");
+		addButton(0,"Let Her",letSynphiaDeepDrainYou,args);
+		addButton(1,"Handlebars",faceFuckDeepSnake,args);
+	}
+	else 
+	{
+		output("especially not when talking seems so hard, and it’s so much easier to lean back against the crates and moan for Synphia. She’s sucking you so well; she’s more than earned the load you’re about to feed her...");
+		addButton(0,"Next",letSynphiaDeepDrainYou,args);
+	}
+	//[Next] or menu for facefuck or let her. Next = Let Her
+}
+
+//Facefuck [Cummies]
+public function faceFuckDeepSnake(args:Array):void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
+
+	var x:int = args[0];
+	var venomBool:Boolean = args[2];
+	var cummies:Number = pc.cumQ();
+	if(venomBool) 
+	{
+		cummies *= 1.5;
+		cummies += 50;
+	}
+	args[3] = cummies;
+
+	output("Grabbing the snake by the horns, you give her a little yank to stop her ceaseless writhing and take command of the situation.");
+	output("\n\nSynphia does not issue so much as one single peep of protest. Folding her hands obediently into her own lap, she bats her eyelashes at you, giving you all the permission you need to hoist your [pc.hips] back and plow your [pc.cock " + x + "] throat-deep once more. The potent suction and tight seal of slyveren lips fades slightly, just in time for you to do it again and again... and again. You rut the pillow-mouthed cum-junkie’s maw, pounding it like you could knock it up by force alone. Wisps of bluish fog rise from Synphia’s flashing horns as she taps whatever psionic power she has to endure you mouth-fucking her silly.");
+	output("\n\nShe can’t quite meet your gaze through all the shaking and humping, but she can drool. She can drool enough spit to make her mouth feel wetter than a galotian’s cunt. She can drool enough to splash your [pc.skinFurScales] whenever you burrow bone deep. She can drool enough for stringy excess to dangle from her chin and slap into a tit.");
+	output("\n\nThat’s what really sets you off: the sight of professional spooge-sucker barely hanging on, letting you use her face like your own personal fucktoy. She doesn’t seem like she cares how rough you get so long as your [pc.cockNounSimple " + x + "] pops inside before you pop... and you do. You ram that bliss-infused tool so deep that Synphia’s lips bubble outward, pinned between the rest of her face and your ruinously aroused loins.");
+
+	//<1000
+	if(cummies < 1000)
+	{
+		output("\n\n[pc.Cum] injects itself directly into the snake-woman’s stomach. Each blissful clench is answered by a widening of Synphia’s eyes. ");
+		if(cummies >= 25) output("Her expression mellows with your consecutive shots until her eyes are closed with a patient sort of satisfaction. The rest of your climax is a calming, quiet sort, just the sound of your own heart hammering in your ears and the occasional contented gurgle from Synphia’s tummy. By the end, you realize that she’s working her lips again, squeezing them at your root and sucking the final virile droplets free.");
+		else 
+		{
+			output("Her expression begins to mellow, then turns to disappointment as your load runs dry.");
+			//" She offers a vial of Throbb, not even bothering to pull back, but she offers it nonetheless. Her horns glow faint coral as her disembodied voice suggests, <i>“A few doses of Throbb might do you some good for next time.”</i>\n\nIt just might. You push her off a little harder than you meant to. Your [pc.cock " + x + "] flies free, slinging old spit across Synphia’s snout. <i>“I’ll have to think about it.”</i>\n\nThe snake-girl nods, casually gathering the juices up with her tongue, and leaves with a carefree smile.");
+			//special outro
+			//Fen note: cut dis for main outro.
+		}
+	}
+	//< 4000 - smolpaunch. Happysnek
+	else if(cummies < 4000)
+	{
+		output("\n\n[pc.Cum] injects itself into the snake-woman’s hungry stomach with audible burbles, yet she shows nothing but pleasure. When your second shot slides into place, so thick and virile that you feel a bit of it continuing to cling to your [pc.cockHead " + x + "], Synphia closes her eyes and leans her shoulder against your [pc.leg] for support. Her primly folded hands make their way to her stomach, and as you continue to fill her, she excitedly strokes her rounding, cum-pregnant tummy.");
+		output("\n\nIt isn’t a very ‘pregnant’ bulge - just enough to let the rest of the station know that she’s been fed and fed well. Synphia surprises you by starting to suck again, working her lips around your root to make sure every single virile droplet your body has produced makes its way into the soupy mixture in the bottom of her belly.");
+	}
+	//< 15000 - medpaunch dopysnake
+	else if(cummies < 15000)
+	{
+		output("\n\n[pc.Cum] roars into the snake-woman’s stomach, hitting her mid-section with tummy-shaking force. Synphia’s eyes widen in alarm, but she doesn’t struggle. She grabs onto her middle two-handed and <i>feels</i> the cumflation for herself, like she doesn’t trust what the rest of her body is telling her. You shoot again, and the alarmed look fades somewhat. Hands squeeze the puffed-out belly in awe, and Synphia’s lips ratchet tighter, forming a perfect seal around your spraying tool. Her cheeks crinkle with a hint of a smile, and she closes her eyes to feel the rest of what’s to come.");
+		output("\n\nGripping tighter, you unload the rest of your climax inside her. If Synphia doesn’t mind turning into a cum-thickened chunker, so be it. You cry out in bliss and fill her. Scales creak beneath scrabbling fingertips, and Synphia’s throat gives you a healthy squeeze as if to say, <i>“More. Cum in me more.”</i> You do. You shoot until you’re panting and drained. The snake-woman could pass for pregnant if she wanted to, though with how she wobbles and sloshes, the illusion wouldn’t last for long.");
+	}
+	//else - huge paunch unconscious snek
+	else
+	{
+		output("\n\n[pc.Cum] erupts out of you like water from a fire extinguisher, only you have a snake-shaped balloon trapped on the end of the ‘hose.’ Synphia goes wide-eyed when the first sperm-thickened deluge completely fills her belly, gurgling and roiling. She reaches down in shock and confusion, prodding her flesh in disbelief, and the second shot hits. Your scale-covered condom whines through a throat full of dick and tightens down her lips. The pressure is maddening; you react by firing out enough seed to knock up a whole harem of ausar babes.");
+		output("\n\nOnly, every drop is pouring into one girl. Synphia gets kind of chubby-looking. She’s stroking her belly and her cunt even though you can’t see the sopping slit beneath the blossoming belly bloat. The sight makes you shoot hard enough to send rippling wobbles through the snake’s distended body, pumping her up further. She’s like a cummy balloon, rounding with each passing second. Squirming, the slyveren lashes her tail. It cracks ineffectively against the wall, and Synphia gulps against your spunk-distended cock, cumming her brains out.");
+		output("\n\nGirljizz spatters the floor, ruining the crotch of Synphia’s jumpsuit, but she’s beyond caring. She’s a blissed-out cum-bucket on the verge of overflowing. Warm, spent spoo backs up high enough to bathe your [pc.cockHead " + x + "], and you wisely decide to pull out before you do her any serious harm.");
+		output("\n\nSynphia doesn’t mind being tossed on the floor like a wet cum-rag if her moans are anything to go by. In fact, she pulls out her tits for you and begs you to keep going. You do. You paint her [pc.cumColor], then paint her again, then divert to give her face a nice thick mask of excess goo. She gurgles, coughing up a load worth of jism, then cums again, her every sense utterly infused with the scent and feeling of jism.");
+		output("\n\nIt’s a surprise when, after your ropes have turned to dribbles and then to a single droplet, Synphia springs out of the puddled sex-juice to suck the last bits of thinner, runnier goo from your [pc.cockHead " + x + "]. She hums and sighs, utterly content.");
+		args[4] = true;
+	}
+	processTime(10);
+	pc.orgasm();
+	if(venomBool) pc.lust(25);
+	clearMenu();
+	//Making sure accurate cummies :3
+	args[3] = cummies;
+	if(venomBool && pc.cumQ() >= 100) addButton(0,"Next",extraCumLeakingPostSynphia,args);
+	else addButton(0,"Next",synphiaEpilogue,args);
+}
+
+//Let Her
+public function letSynphiaDeepDrainYou(args:Array):void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
+	var x:int = args[0];
+	var venomBool:Boolean = args[2];
+	var cummies:Number = pc.cumQ();
+	if(venomBool) 
+	{
+		cummies *= 1.5;
+		cummies += 50;
+	}
+	args[3] = cummies;
+
+
+	output("Letting your head loll back, you manage to groan a warning. The lady did ask, after all.");
+	output("\n\nSynphia seems to appreciate it too, hollowing her cheeks and suckling ravenously, her eyes smiling up with something that looks like a mixture of pride and possessiveness. She bobs slightly, maybe a half-inch at a time, driving you closer and closer to the precipice until you know you can’t hold it back any longer. Synphia sucks the lewdest-sounding gasp from you, and then you’re cumming - cumming while you stare adoringly into her eyes. You’re cumming, and you doubt anything could be as sexy as the expression on Synphia’s face.");
+
+	//2Low - quickie + complain
+	if(cummies < 25)
+	{
+		output("\n\nThat beautiful visage sours at the end of your brief climax. Scowling slightly, the disappointed mechanic slowly extracts your [pc.cock " + x + "] from her spit-greased throat, smacking her lips for a moment. <i>“That’s it?”</i>");
+		//Fen note: cut dis so can feed into outro.
+		//" She squints at your dick before rooting around in her toolbelt and coming up with a vial of Throbb. <i>“Here. Take this. From what I understand, it’s exactly the sort of thing you’re gonna need if you plan to feed slyverens.”</i>");
+		//output("\n\nShe saunters off, leaving you holding your own spent dick and a handful of drugs.");
+		//throbb
+	}
+	//< 1000 - Happy slyveren, easy sukk
+	else if(cummies < 1000)
+	{
+		output("\n\nCompared to face-fucking, your orgasm is almost silent. Without much motion, there’s not much noise, just the deeply muffled sound of your [pc.cum] shooting directly into Synphia’s waiting stomach. Rubbing her tummy, she nurses at your prick, utilizing her tongue to the fullest." + (pc.balls > 0 ? " It strangles your [pc.balls], trying to squeeze out more.":"") + " She closes her eyes to focus on the rhythmic throbbing. Inside her throat, the alien’s muscles contract and squeeze to milk out every drop.");
+		output("\n\nYou’re giving Synphia exactly the [pc.cumNoun] she needs, and it feels so good.");
+	}
+	//< 4000 - Very Happy slyveren. Slight paunch.
+	else if(cummies < 4000)
+	{
+		output("\n\nThat beautiful visage blossoms into a mask of ecstasy at the size of your first ejaculation. Synphia grabs your ass and pulls you tighter, seemingly forgetting that she has your [pc.cock " + x + "] mated to her throat, so desperate for your plus-sized [pc.cumNoun]-shots that she’s squeezing you with her throat, milking that hot load into her stomach. The sultry mechanic all but purrs as you pump it out for her, and as your climax winds down, you watch her rubbing at the slight paunch you’ve produced on her belly in pleasure.");
+	}
+	//< 15000 - Tummy bulging slyveren. Wet
+	else if(cummies < 15000)
+	{
+		output("\n\nThat beautiful visage contorts into surprise, then ecstasy, when your first ejaculation splashes into her hungry belly. Synphia grabs hold of your ass for support and gurgles at the second ejaculation, closing her eyes while her throat goes mad around your girth. Every inch of this girl demands you feed her as much cum as possible. She whimpers, a patch of darkness spreading around her crotch from the sheer eroticism of her own cum-guzzling, but it soon vanishes beneath the rounding bulk of her [pc.cumNoun]-inflated middle.");
+	}
+	//< 60000 - Pregnant and cumming
+	else if(cummies < 60000)
+	{
+		output("\n\nThat beautiful visage screws up in sudden ecstasy when Synphia realizes just how unspeakably virile you are. Cradling her stomach in one hand, she pulls herself tighter against you with the other (and her tail). A river of [pc.cumVisc] [pc.cumNoun] seed flows through her throat, and it squeezes back, begging for more. You ruin her trim figure. A once taut belly is made to look soft and pudgy, and that’s just your first shot.");
+		output("\n\nThe second ejaculation causes the suck-hungry slut to gurgle, and you hear a dribbling sound from below that could only come from the slyveren’s own orgasm. A clear puddle, half-hidden by her ballooning belly, provides plenty of evidence of her passion, and you respond to it the only way you know how: by continuing to cum until Synphia looks like pregnant with a whole litter worth of your kids. Dumbly, she cradles her obscene middle as it wobbles and sloshes with the final spurts of your monstrous load.");
+		args[4] = true;
+	}
+	//yuge - Massive cumflake & bukkake
+	else
+	{
+		output("\n\nThat beautiful visage displays equal parts shock and lust as you unleash the monstrous torrent of your load. Your seed flows thickly enough to distend your cock and her shrink-wrapped throat with it. Synphia’s eyes flutter, then roll back while you listen to the torrential churning of roiling seed from within. She whimpers, but she can’t stop drinking, not while you’re plugged directly into her stomach. All she can do is try to hang on while you continue to inflate her.");
+		output("\n\nA hot spatter soaks your [pc.footOrFeet] when the snake-girl violently orgasms at the end of your first shot. She cums again with the second, shaking like a leaf caught in fighter jet’s engine wash. By the third, Synphia is more or less limp. She’s attached to your [pc.cock " + x + "] like an organic condom, inflating with each passing second. Her balloon-like tummy rounds well past the point of a twin pregnancy, then stretches beyond. Her suit becomes almost transparent around the middle, allowing you to watch her reaching the limits of her own alien biology: belly scales pull apart, no longer able to conceal the glossy skin beneath. She’s reached her limit.");
+		output("\n\nYou step back, lest you hurt her, snaking all " + num2Text(Math.floor(pc.cocks[x].cLength())) + " inches out of her throat in time for the last couple shots to web the slyveren to the wall. The [pc.cumVisc] globs pile up thick enough to anonymize some of her features... at least until gravity begins to pull it down in bunched-up waves." + (venomBool ? " You watch with pride, unable to stop dripping [pc.cum] thanks to her venom.":""));
+		output("\n\nShe comes to a little later.");
+		args[4] = true;
+	}
+	//Should be able to merge into the [next] stuff for the other variants.
+	processTime(10);
+	pc.orgasm();
+	if(venomBool) pc.lust(25);
+	clearMenu();
+	//Making sure accurate cummies :3
+	args[3] = cummies;
+	if(venomBool && pc.cumQ() >= 100) addButton(0,"Next",extraCumLeakingPostSynphia,args);
+	else addButton(0,"Next",synphiaEpilogue,args);
+}
+
+//Ball Foreplay
 //Alternate huge nut worship
 //Ends in choice between Psi Aug and Cock Foreplay(1)
 
-Psi Aug
+//Psi Aug
 //Perm/Temp options, then goes to cock foreplay
-*/
