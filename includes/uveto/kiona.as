@@ -31,7 +31,7 @@ KIONA_SATYRITE// number of satyrite donated
 KIONA_LUCINITE_QUEST// undef/0 = not accepted, 1 = accepted, 2 = complete, 3 = autocompleted
 KIONA_CLOSED_DAY// closed this day and she becomes unavailable until the next day 
 KIONA_JEWELED_OUTFIT // pc is owed a discounted outfit 0 -100 is percent of full price
-
+//add sex flags here
 */
 //show nude or preg bust
 public function showKiona(nude:Boolean = false,preg:Boolean = false):void
