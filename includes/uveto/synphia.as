@@ -788,6 +788,8 @@ public function synphiaEpilogue(args:Array):void
 	//Sukkcount merge, then use walk away text.
 	output("\n\nShe departs back to the hangar. You follow a moment later.");
 
+	//Feed her a load :3
+	new SlyverenSlavebreaker().loadInMouth(pc);
 	//Increment times sukked
 	IncrementFlag("SYNPHIA_SUCKS");
 	//Increment times headpolished/throated
