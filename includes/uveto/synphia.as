@@ -427,8 +427,7 @@ public function synphiaCockForeplay(x:int):void
 		processTime(6);
 		clearMenu();
 		addButton(0,"Suck&Jack",synphiaVenomRouter,[x,false]);
-		//addButton(1,"Deepsucks",synphiaVenomRouter,[x,true]);
-		addDisabledButton(1,"Deepsucks","Deepsucks","Coming soon.");
+		addButton(1,"Deepsucks",synphiaVenomRouter,[x,true]);
 	}
 }
 
