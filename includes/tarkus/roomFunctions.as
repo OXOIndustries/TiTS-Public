@@ -250,7 +250,7 @@ public function rustPlainsEncounters():Boolean {
 		
 		var e:Array = [];
 		
-		e.push( { v: encounterALapinara, w: pc.hasStatusEffect("Lapinara Prophylactic") ? 1 : 3 } );
+		if(flags["LAPLOVE"] != undefined) e.push( { v: encounterALapinara, w: pc.hasStatusEffect("Lapinara Prophylactic") ? 1 : 3 } );
 		e.push( { v: encounterHostileRaskvelFemale, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
 		e.push( { v: raskvelGangEncounter, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
 		//If not disabled.

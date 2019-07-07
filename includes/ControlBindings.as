@@ -340,6 +340,13 @@
 			Cheats.BoobSiliconePlease();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Classic Lapinara",
+		"Toggle whether the classic Lapinara on Tarkus will encounter you.",
+		function():void {
+			Cheats.ClassicLapinara();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -362,6 +369,7 @@
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
+	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
