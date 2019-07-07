@@ -2278,30 +2278,67 @@ public function grayGooCodex():void
 public function lapinaraCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("LAPINARA","LAPINARA_2");
-	outputCodex(header("Lapinara"));
-	outputCodex("<i>Be wary on frontier worlds of the parasitic laquines.</i>\n\n");
-	outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
-	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
-	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
-	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
-	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
-	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Features"));
-	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Environs Typically Inhabited"));
-	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving gabilani and raskvel, as well as any oblivious visitors.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic lapinara works as an anesthetic, preventing egg implantation from hurting the host.");
-	outputCodex("\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.");
-	outputCodex("\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
-	outputCodex("\n\n");
-	outputCodex(blockHeader("History"));
-	outputCodex("The epidemic of parasitic lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic lapinara, essentially neutering them. The removed ovaries are sold to TamaniCorp for research for the advancement of fertility-enhancing products.");
-	outputCodex("\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	if(flags["LAPLOVE"] == undefined)
+	{
+		showBust("LAPINARA_2","LAPINARA");
+		outputCodex(header("Lapinara"));
+		outputCodex("<i>Small, but not to be underestimated.</i>\n\n");
+		outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
+		outputCodex("\n<b>Genders:</b> Male and hermaphrodite. No gender is more common than the other.");
+		outputCodex("\n<b>Height:</b>.Typically 3-4 ft.");
+		outputCodex("\n<b>Weight:</b> About as much as a 10 year old human.");
+		outputCodex("\n<b>Hair:</b> Lapinara have normal, human-like hair on their heads, and a total lack of body hair otherwise.");
+		outputCodex("\n<b>Eyes:</b> Lapinara eyes are cloudy black, and possess keen night vision.");
+		outputCodex("\n<b>Ears:</b> Lapinara have rabbit-like ears, which can either come in perky or floppy varieties.");
+		outputCodex("\n<b>Tails:</b> Long and slender, with small poofs of fur at the end.\n\n");
+
+		outputCodex(blockHeader("Combat"));
+		outputCodex("Lapinara are small and relatively defenseless on their own merits. All members of the species have curling, devilish horns which they can use to deliver surprisingly painful headbutts, but these are useful mostly for stunning a predator so that they can escape. Like leithans, lapinara come from a world full of much larger, more dangerous life forms, and they have evolved to be dexterous and difficult to find more than physically powerful.");
+		outputCodex("\n\nLapinara off their homeworld typically become technical specialists, offsetting their stature with powerful energy weapons, drones, and heavy shields.\n\n");
+		outputCodex(blockHeader("Gender Differences"));
+		outputCodex("Lapinara have two natural genders: males and hermaphrodites. Male lapinara are much like males of other species, though they tend to be the same size as hermaphrodites and are equally as feminine in form. Hermaphrodites have small breasts that do not naturally lactate, and like males, have small human-shaped phalluses; unlike males, their testicles are by default small and wrinkled sacks containing their ovaries. These swell with eggs when the hermaphrodite is impregnated via vaginal sex, and their phallus acts as an ovipositor.");
+		outputCodex("\n\nWhen not pregnant, a hermaphrodite lapinara’s phallus acts the same way a male’s does, though it is sterile. Many uplifted lapinara choose to have this rectified through modern gene mods.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("Lapinara come from the large, heavily forested planet of T’klar, located in Rushspace 11. Their homeworld is roughly half again the size of Earth, and is considered a <i>“primordial”</i> world, with a dense atmosphere and extremely prolific foliage across all land masses. T’klar is inhabited by many strains of megafauna, with many species of titanic lizards ranging from dinosaur-like to draconic, which has caused the only sapient species on the planet, the lapinara, to evolve to be small and evasive. Upliftment has been a difficult process due to the scattered nature of the races, effectively reduced to a speed of one family or clan at a time. Uplifted lapinara are mostly concentrated on the space station and terraformed moon over their homeworld, but have slowly begun to stretch their legs across the rest of the galaxy. Especially with Rush 14 now in effect, many uplifted lapinara are finally venturing out to claim their fortunes.\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Lapinara have a relatively unique brand of reproduction that has only become more interesting since their upliftment during the 11th Planet Rush. Normally, a hermaphrodite lapinara will be inseminated by a partner, which causes her otherwise empty <i>“testicles”</i> which contain their ovaries to produce a load of fertilized eggs. This causes the scrotum to swell considerably, from an otherwise flaccid sack to taut over a pair of baseball-sized eggs. She must then oviposit these eggs into another partner to complete the reproductive cycle - among lapinara, the host for the parasitic young is usually their own father, or a close friend or family member of the mother.");
+		outputCodex("\n\nA lapinara’s eggs require roughly three months after implantation to be ready to lay, and typically come in pairs or in fours.");
+		outputCodex("\n\nThe most unique facet of lapinara reproduction, however, comes when they mate with non-lapinara. Eggs implanted into members of other species show their parasitic nature by hybridizing with the host’s DNA, imparting traits of the host onto the young. For example, a lapinara egg implanted into an ausar might gain furry limbs, a knotted phallus, and canid eyes, while one implanted into a leithan might gain chitin plates and even extra limbs. This hybridization can even cause new and unique sexual characteristics to appear, such as fully female lapinara or genetic males with breasts. No two alien-hybrid lapinara are necessarily alike, even from the same clutch.\n\n");
+		outputCodex(blockHeader("Society"));
+		outputCodex("Natural lapinara society is primarily made up of small clans and family units, trying to survive the depredations of their dangerous homeworld and its many species of megafauna. Some small permanent cities exist on the southern continent, where the forests are less dense and mountains provide a natural defense against predators, but otherwise the species has little in the way of a unified culture or society.\n\n");
+		outputCodex(blockHeader("Relationships"));
+		outputCodex("Lapinara are an outgoing and gregarious race, though naturally timid in times of danger. They have a strong instinct for cooperation, a useful trait given the dangers of their homeworld. First contact with the Lapinara came from a Gryvain Heartland Republic scientific vessel looking for potential colony worlds, and while the dense atmosphere of T’klar is enough to enable natural gryvain flight, it was decided to uplift the natives rather than attempt to dispatch the local megafauna. On a technical level, T’klar is now part of the Republic (itself part of the Confederacy), though this is largely a formality as the gryvain of the system have either settled on the planet’s largest moon or remain in the station overhead where they continue to uplift small groups of lapinara.\n\n");
+		outputCodex(blockHeader("Technology"));
+		outputCodex("Lapinara have no technology of their own beyond flint tools and spears, but over the last few hundred years of upliftment have taken relatively well to Confederate tech.");
+	}
+	else
+	{
+		showBust("LAPINARA_2","LAPINARA");
+		outputCodex(header("Lapinara"));
+		outputCodex("<i>Be wary on frontier worlds of the parasitic laquines.</i>\n\n");
+		outputCodex("<b>Name (Singular & Plural):</b> Lapinara");
+		outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
+		outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 feet for all genders.");
+		outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
+		outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of parasitic females is typically white, but can sometimes be silver or gray. All lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
+		outputCodex("\n<b>Eyes:</b> Large and rabbit-like; parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Features"));
+		outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, they have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Environs Typically Inhabited"));
+		outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving gabilani and raskvel, as well as any oblivious visitors.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("Reproduction"));
+		outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic lapinara works as an anesthetic, preventing egg implantation from hurting the host.");
+		outputCodex("\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.");
+		outputCodex("\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.");
+		outputCodex("\n\n");
+		outputCodex(blockHeader("History"));
+		outputCodex("The epidemic of parasitic lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic lapinara, essentially neutering them. The removed ovaries are sold to TamaniCorp for research for the advancement of fertility-enhancing products.");
+		outputCodex("\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	}
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Lapinara");
 }

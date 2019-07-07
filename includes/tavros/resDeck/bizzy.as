@@ -87,7 +87,7 @@ public function bizzyBustDisplay(isNude:Boolean = false):String
 {
 	var sBust:String = "BIZZY";
 	
-	/*
+	
 	// Stage 1: flat-chested
 	if(flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] <= 1) {}
 	// Stage 2: C-cup breasts
@@ -102,7 +102,6 @@ public function bizzyBustDisplay(isNude:Boolean = false):String
 		if(bizzySlaveCollar()) sBust += "_COLLAR"; // neck
 		//if(bizzySlaveTat()) sBust += "_TATTOO"; // butt
 	}
-	*/
 	
 	if(isNude) sBust += "_NUDE";
 	

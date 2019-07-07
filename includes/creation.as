@@ -43,6 +43,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 		case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
+		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
 		
 		// Treatment
 		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
