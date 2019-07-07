@@ -1234,6 +1234,8 @@
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
 		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
+		public static const ITEM_FLAG_PIERCING_BAR:int 					= 47; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1282,7 +1284,9 @@
 			"Burst Fire",
 			"Full-Auto Fire",
 			"Ship Equipment",
-			"Crewed Turret"
+			"Crewed Turret",
+			"Bar",
+			"Hoop"
 		];
 		
 		/**

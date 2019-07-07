@@ -10,9 +10,10 @@
 	import classes.Items.Guns.*;
 	import classes.Items.Melee.*;
 	import classes.Items.Miscellaneous.*;
-	import classes.Items.Piercings.OpalRingPiercing;
+	import classes.Items.Piercings.*;
 	import classes.Items.Transformatives.*;
 	import classes.Items.Treasures.Savicite;
+	import classes.Items.Treasures.Lucinite;
 	import classes.Ships.IOwner;
 	import classes.Ships.Modules.ShipModule;
 	import classes.VaginaClass;
@@ -387,6 +388,9 @@
 			}
 			
 			if (hasStatusEffect("Torra Lust Weakness")) r.tease.damageValue -= statusEffectv2("Torra Lust Weakness");
+			
+			//drop cold resist 10% for each chunk of lucinite carried
+			if (hasItemByClass(Lucinite)) r.freezing.resistanceValue -= (10 * numberOfItemByClass(Lucinite));
 			
 			return r;
 		}
@@ -1363,7 +1367,132 @@
 			return (sockType == null && !(cocks[idx].cocksock is EmptySlot))
 					|| (sockType != null && (cocks[idx].cocksock is sockType));
 		}
-
+		//return total lust gain from piercings that cause it
+		public function piercingLustGainTotal():Number
+		{
+			if (!hasPiercing()) return 0;
+			var lustGain:Number = 0;
+			
+			lustGain += piercingLustGainByClass(earPiercing);
+			lustGain += piercingLustGainByClass(eyebrowPiercing);
+			lustGain += piercingLustGainByClass(nosePiercing);
+			lustGain += piercingLustGainByClass(lipPiercing);
+			lustGain += piercingLustGainByClass(tonguePiercing);
+			lustGain += piercingLustGainByClass(bellyPiercing);
+			//Nipple.
+			var x:int = 0;
+			if(bRows() > 0)
+			{
+				for(x = 0; x < breastRows.length; x++)
+				{
+					lustGain += piercingLustGainByClass(breastRows[x].piercing);
+				}
+			}
+			//Vag.
+			if(vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					lustGain += piercingLustGainByClass(vaginas[x].piercing);
+				}
+			}
+			//Clit.
+			if(vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					lustGain += piercingLustGainByClass(vaginas[x].clitPiercing);
+				}
+			}
+			//Cock
+			if(cocks.length > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					lustGain += piercingLustGainByClass(cocks[x].piercing);
+				}
+			}
+			
+			return lustGain;
+		}
+		//lust gain for a specific piercing
+		public function piercingLustGainByClass(ref:ItemSlotClass=null):Number
+		{
+			if (ref == null) return 0;
+			if (ref is CrudeSaviciteBarPiercing) return .05;
+			if (ref is CrudeSaviciteBarPiercings) return .15;
+			if (ref is CrudeSaviciteHoopPiercing) return .05;
+			if (ref is CrudeSaviciteHoopPiercings) return .1;
+			if (ref is CrudeSaviciteRingPiercing) return .05;
+			if (ref is CrudeSaviciteRingPiercings) return .1;
+			if (ref is CrudeSaviciteStudPiercing) return .05;
+			if (ref is CrudeSaviciteStudPiercings) return .15;
+			
+			return 0;
+		}
+		//return total min lust from all worn piercings
+		public function piercingLustMinTotal():Number
+		{
+			if (!hasPiercing()) return 0;
+			var lustMin:Number = 0;
+			
+			lustMin += piercingLustMinByClass(earPiercing);
+			lustMin += piercingLustMinByClass(eyebrowPiercing);
+			lustMin += piercingLustMinByClass(nosePiercing);
+			lustMin += piercingLustMinByClass(lipPiercing);
+			lustMin += piercingLustMinByClass(tonguePiercing);
+			lustMin += piercingLustMinByClass(bellyPiercing);
+			//Nipple.
+			var x:int = 0;
+			if(bRows() > 0)
+			{
+				for(x = 0; x < breastRows.length; x++)
+				{
+					lustMin += piercingLustMinByClass(breastRows[x].piercing);
+				}
+			}
+			//Vag.
+			if(vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					lustMin += piercingLustMinByClass(vaginas[x].piercing);
+				}
+			}
+			//Clit.
+			if(vaginas.length > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					lustMin += piercingLustMinByClass(vaginas[x].clitPiercing);
+				}
+			}
+			//Cock
+			if(cocks.length > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					lustMin += piercingLustMinByClass(cocks[x].piercing);
+				}
+			}
+			
+			return lustMin;
+		}
+		//min lust gain per piercing
+		public function piercingLustMinByClass(ref:ItemSlotClass=null):Number
+		{
+			if (ref == null) return 0;
+			if (ref is SaviciteBarPiercing) return 2;
+			if (ref is SaviciteBarPiercings) return 6;
+			if (ref is SaviciteHoopPiercing) return 2;
+			if (ref is SaviciteHoopPiercings) return 4;
+			if (ref is SaviciteRingPiercing) return 2;
+			if (ref is SaviciteRingPiercings) return 4;
+			if (ref is SaviciteStudPiercing) return 2;
+			if (ref is SaviciteStudPiercings) return 6;
+			
+			return 0;
+		}
 		//Sexual Stuff
 		public var cocks:/*CockClass*/Array;
 		public function cockLengthUnlocked(cockIndex:int, newCockLength:Number):Boolean
@@ -5384,6 +5513,7 @@
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
 			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
+			if (bonus < 33 && hasSockedCocks(-1,SaviciteCockring)) bonus = 33;
 			if (bonus < 33 && hasPerk("Treated Readiness")) bonus = 33;
 			if (bonus < 33 && hasStatusEffect("Priapism")) bonus = 33;
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
@@ -5391,6 +5521,8 @@
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
+			//piercing lust min stacks with other lust min effects
+			if (hasPiercing()) bonus += piercingLustMinTotal();
 			return Math.min((0 + bonus), lustMax());
 		}
 		public function physiqueMax(raw:Boolean = false): Number {

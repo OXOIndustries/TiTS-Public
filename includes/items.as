@@ -1,4 +1,5 @@
-﻿import classes.Characters.Lerris;
+﻿import classes.Characters.Kiona;
+import classes.Characters.Lerris;
 import classes.Characters.PlayerCharacter;
 import classes.Characters.Vahn;
 import classes.Creature;
@@ -872,6 +873,11 @@ public function buyItem():void {
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
 			}
+			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
+			{
+				temp -= kionaCreditOwed();
+				if (temp < 0) temp = 0;
+			}
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
 			{
@@ -1017,8 +1023,12 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
-	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
-	pc.credits -= price;
+	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg.description,price);
+	else
+	{
+		output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
+		pc.credits -= price;
+	}
 	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
@@ -1243,9 +1253,12 @@ public function sellItemMulti(arg:Array):void
 	
 	sellItemBonus(soldItem, soldPrice);
 	
-	pc.credits += soldPrice;
-	
-	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(soldItem.description,soldPrice,soldNumber);
+	else
+	{
+		pc.credits += soldPrice;	
+		output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
+	}
 	
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
@@ -1270,8 +1283,12 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	
 	sellItemBonus(arg, price);
 	
-	pc.credits += price;
-	output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	if (shopkeep is Kiona) kionaSellUsingStoreCredit(arg.description, price);
+	else
+	{
+		pc.credits += price;
+		output("You sell " + arg.description + " for " + num2Text(price) + " credits.");
+	}
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));

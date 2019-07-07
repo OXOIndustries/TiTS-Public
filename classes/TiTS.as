@@ -521,6 +521,7 @@
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kiona.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
