@@ -151,7 +151,7 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/bizzy_4_collar.png", mimeType = "image/png")]
 		public var Bust_BIZZY_4_COLLAR:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/bizzy_4_collar_nude.png", mimeType = "image/png")]
-		public var Bust_BIZZY_4_NUDE:Class;
+		public var Bust_BIZZY_4_COLLAR_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/kat.png", mimeType = "image/png")]
 		public var Bust_BORING_MISTRESS:Class;
@@ -1342,7 +1342,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bizzy_4_collar.png", mimeType = "image/png")]
 			public var Full_BIZZY_4_COLLAR:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bizzy_4_collar_nude.png", mimeType = "image/png")]
-			public var Full_BIZZY_4_NUDE:Class;
+			public var Full_BIZZY_4_COLLAR_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kat.png", mimeType = "image/png")]
 			public var Full_BORING_MISTRESS:Class;
