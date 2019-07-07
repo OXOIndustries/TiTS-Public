@@ -53,6 +53,12 @@ public function colensoBuyMenu():void
 public function colensosRoomBonusFunction():Boolean
 {
 	shopkeep = chars["COLENSO"];
+	shopkeep.inventory = [];
+	shopkeep.inventory.push(new ProphylacticGoblin());
+	if(flags["LAPLOVE"] != undefined) shopkeep.inventory.push(new ProphylacticLapinara());
+	shopkeep.inventory.push(new ProphylacticRaskvel());
+	shopkeep.inventory.push(new ProphylacticSydian());
+
 	if(flags["SEXBOT_QUEST_STATUS"] == 3)
 	{
 		shopkeep.sellMarkup = 1.05;
