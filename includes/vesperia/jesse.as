@@ -493,7 +493,7 @@ public function jesseTalkMaleParts():void
 		if (silly) output(" Maybe even literally, AHOHO.");
 	}
 	else if (pc.isMischievous()) output("\n\n<i>“Is that your way of saying you’ve got a special butthole?”</i> You smirk, trying not to laugh.");
-	else output("\n\n<i>“What an amazing way of saying you’d enjoy a [pc.race] shaft in that cute butt of yours,”</i> you say, raising an eyebrow at her.");
+	else output("\n\n<i>“What an amazing way of saying you’d enjoy [pc.aRace] shaft in that cute butt of yours,”</i> you say, raising an eyebrow at her.");
 	output("\n\nImmediately, her eyelids clench and her face flushes once again. She’s still smiling, however.");
 	output("\n\n<i>“Y-yes... yes! I really shouldn’t beat myself up about it,”</i> she exclaims, having a mini-moment of epiphany.");
 	output("\n\n<i>“I-I love. Mmm.... big... veiny... throbby... dicks. There, I said it!”</i>");
@@ -1410,7 +1410,7 @@ public function jesseSexRoleReversalTakeOver():void
 	output("\n\nYou pull on the leash again so that her open lips are now pressed against your [pc.lips] and well, she can’t help herself. Her tongue and your [pc.tongue] enter a sloppy spiral of play, transferring coos of approval between you both.");
 	output("\n\nThe power bottomed Jesse begins rocking her hips back and forth again, picking up her steady and <i>deep</i> pace from before. She’s already much more into it, her pelvis gyrating as she pumps in and out of you. Every thrust tries to eek out more and more space inside but she always manages to hilt into your [pc.asshole]!");
 	output("\n\nOn the other side of things, her grip on your [pc.cockBiggest] is welcome but paltry so you put your free hand on top of hers to help you along. The strengthened combination of grips feels <i>amazingly</i> tight on your tender [pc.cockNoun], and the constant, smooth grinding of your prostate forces flecks of pre-cum to the very tip of the [pc.cockHeadBiggest].");
-	output("\n\nJesse speeds up a little, making shorter, shallow thrusts that tenderize your strained hole all the more. She lets go of the mouth lock to breath more easily and you ease back on the leash tension just enough for her to do so. Her face is only half a few inches from your [pc.face] and the poor girl just can’t take her eyes off of you: swirling, starry orbs detailed with glistening, black streams of ruined eye liner. You wrap your [pc.legs] right around her middle and use ");
+	output("\n\nJesse speeds up a little, making shorter, shallow thrusts that tenderize your strained hole all the more. She lets go of the mouth lock to breathe more easily and you ease back on the leash tension just enough for her to do so. Her face is only half a few inches from your [pc.face] and the poor girl just can’t take her eyes off of you: swirling, starry orbs detailed with glistening, black streams of ruined eye liner. You wrap your [pc.legs] right around her middle and use ");
 	if (pc.legCount > 1) output("them");
 	else output("it");
 	output(" to pull her just that bit closer, wishing for her to exceed.");

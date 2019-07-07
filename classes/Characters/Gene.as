@@ -11,6 +11,7 @@
 	import classes.Items.Transformatives.Circumscriber;
 	import classes.Items.Transformatives.Turtleneck;
 	import classes.Items.Transformatives.TauricoVenidae;
+	import classes.Items.Transformatives.Reptilum;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -40,6 +41,7 @@
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
+			inventory.push(new Reptilum());
 			
 			typesBought = [];
 			

@@ -193,6 +193,7 @@
 				{
 					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What’s going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you’re being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
 					pc.earType = GLOBAL.TYPE_VANAE;
+					target.clearEarFlags();
 					changes++;
 				}
 				//Femininity Increase, Masc Decrease, Lip Size Increase
@@ -238,7 +239,7 @@
 						pc.vaginas[x].hymen = true;
 					}
 					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>.");
-					pc.vaginas[x].type = GLOBAL.TYPE_VANAE;
+					pc.shiftVagina(x, GLOBAL.TYPE_VANAE);
 					pc.vaginas[x].vaginaColor = getVanaeAccentColor(pc);
 					changes++;
 				}
@@ -258,11 +259,9 @@
 					outputB("\n\nYou throw back your head and let out a shrill cry as glistening pussy petals emerge from your [pc.skinColor] mound. Your new womanhood blossoms like a flower, parting softly and exposing your slick wetness to the air. You feverishly fondle your warm, damp entrance, plunging your fingers inside and stirring about inside of your virgin pussy. It feels so good, is this what all women enjoy having...?\n\nWith a shrill cry, your [pc.hips] madly buck the air and you squirt a stream of [pc.girlCum] out from your new pussy, violently climaxing all over the place. A thin sheen of sweat coats your [pc.skinFurScales] as you fall, utterly spent, on the surface below you. That--that was something else. What would it feel like to have something in it, you wonder...?\n\nNow that you’ve settled down, you explore your new vanae pussy with your fingertips. You can feel the little feelers inside designed for stroking and teasing cocks. A little further in, and you feel a slight obstruction - you’ve definitely got a hymen - and it seems you’re a squirter to boot. Roaming a little higher, your digits brush two very sensitive clits. Oh--! Just brushing a finger between those sets your loins alight with pleasure. This is definitely going to be fun.");
 					outputB("\n\n<b>You now have a virgin, [pc.pussyColor] vanae pussy and two clits - you’re also a squirter!</b>");
 					pc.createVagina();
-					pc.vaginas[0].type = GLOBAL.TYPE_VANAE;
+					pc.shiftVagina(0, GLOBAL.TYPE_VANAE);
 					pc.vaginas[0].vaginaColor = getVanaeAccentColor(pc);
-					pc.vaginas[0].clits = 2;
 					pc.clitLength = 0.25;
-					pc.vaginas[0].wetnessRaw = 4;
 					changes++;
 				}
 				//Double Clit Gain 
@@ -426,8 +425,8 @@
 							outputB("<b>");
 							if(pc.balls == 1) outputB(" Your single [pc.ballNoun] has disappeared");
 							else outputB(" You no longer have [pc.ballsNoun]");
-							pc.balls = 0;
-							pc.ballSizeRaw = 0;
+							pc.removeBalls();
+							pc.resetCumProduction();
 						}
 						outputB("!");
 

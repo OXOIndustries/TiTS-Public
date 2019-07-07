@@ -442,7 +442,7 @@ public function sellSaviciteToBeatrice():void
 	else addDisabledButton(1,"5","5","You don’t have that much savicite.");
 	if(pc.hasItemByClass(Savicite,10)) addButton(2,"10",actuallySellSaviciteToBeatrice,10);
 	else addDisabledButton(2,"10","10","You don’t have that much savicite.");
-	addButton(14,"Nevermind",nevermindSaviciteBeatrice);
+	addButton(14,"Never Mind",nevermindSaviciteBeatrice);
 }
 
 //Any Amount
@@ -763,7 +763,7 @@ public function makeLoveToBeatrice():void
 		else addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
 	}
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
-	addButton(14,"Nevermind",nevermindLetsNotFuckBecauseImTerrible);
+	addButton(14,"Never Mind",nevermindLetsNotFuckBecauseImTerrible);
 }
 
 //Cowgirl

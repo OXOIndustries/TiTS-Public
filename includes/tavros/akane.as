@@ -726,7 +726,7 @@ public function akaneLookAtMafiaBoss():void
 	output("\n\nHer eyes dart around you from time to time, as if sizing you up every few minutes. They’re colored a plain shade of black and give little away.");
 	output("\n\nAside a light application of crimson lipstick, she wears no makeup.");
 	output("\n\nWhat draws your eyes more and more are her cybernetic augmentations. From elbow to fingertip and from knee to toe, sleek and seamless black replacements make up the rest of her limbs. They almost seem realistic, aside from the obvious joints and pivots. Instead of typical human feet and legs, her robo-limbs form pseudo-boots with angular arched heels about 4’’ high, giving her a stylish edge on top of pinpoint footing balance. When traversing, she moves with grace and precision; the added effect of the heels pushing her hips out with each step is just a small bonus.");
-	output("\n\nIn terms of outfit, Akane wears a short, sleeveless dress much like an ancient qipao. It’s made of thin silver fabric and patterned with pink and red dragonic designs. On top of that is a short, black leather jacket cut at the diaphragm, the sleeves only extending to her prosthetic elbows. The end effect would normally make one believe she was wearing long gloves.");
+	output("\n\nIn terms of outfit, Akane wears a short, sleeveless dress much like an ancient qipao. It’s made of thin silver fabric and patterned with pink and red draconic designs. On top of that is a short, black leather jacket cut at the diaphragm, the sleeves only extending to her prosthetic elbows. The end effect would normally make one believe she was wearing long gloves.");
 	output("\n\nUnderneath all this, her body is slender but not slim, detailed with muscle but built more like a gymnast or acrobat. A mild amount of ab detail shines through her thin dress, although little else does.");
 	output("\n\nHer chest barely seems to reach a B-cup and her jacket adds modesty. Although <i>some</i> natural curve exists on her, she is on the lanky side of things.");
 	output("\n\nYou have a glance over her folded legs, thinking about what feminine allurement lies in between... only to have her own gaze intercept yours with an unflinching and knowing stare.");
@@ -1439,9 +1439,8 @@ public function akaneOPIsASlowRideFoghat(usingDick:CockClass):void
 	pc.lust(pc.lustMax());
 	pc.applyPussyDrenched();
 	
-	if (false /*applicable*/)
-		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-			
+	if (usingDick) pc.applyBlueBalls();
+	
 	if (flags["AKANE_TIMES_RIDDEN"] == undefined)
 	{
 		output("<i>“Hmm, not in the mood to do painplay right now... how about something nicer, [pc.name]?”</i> she smirks, her thumb running " + (pc.isBald() ? "across" : "through") + " your [pc.hair]. You get the feeling that she means to be genuine, especially with her slower, considered movements.");

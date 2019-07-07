@@ -363,7 +363,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 			}
 		}
 		if(!hostileOnly && !pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
-		if(!hostileOnly && !pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras") && rand(2) == 0) choices.push(yomaJungleEncounter);
+		if(!hostileOnly && !pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras")) choices.push(yomaJungleEncounter);
 		if(!hostileOnly && flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
@@ -374,6 +374,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 				choices.push(fZilPregEncounter);
 			}
 		}
+		if (!hostileOnly && breedwellPremiumBootyCallCheck("mhen'ga")) choices.push(breedwellPremiumBootyCallPing);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -436,7 +437,7 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -544,7 +545,7 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -640,7 +641,7 @@ public function mhengaVanaeCombatZone():Boolean
 		var YOMA:int = 4;
 		
 		var choices:Array = [MAIDEN, MAIDEN, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, MIMBRANE];
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Vanae") && rand(3) == 0) choices.push(YOMA);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Vanae")) choices.push(YOMA);
 		var selected:int = RandomInCollection(choices);
 	
 		if (selected == MAIDEN)
@@ -1019,34 +1020,35 @@ public function pumpkingMainGateBonus():Boolean
 			output("\n\nThere are about a dozen zil workers here, using primitive tools and carts to lug building equipment around the work site. Looking up to see you, they drop their tools and flee while <b>the gate guards level their weapons at you.</b>");
 			//(PC should fight a mob of zil guards out here; maybe four to six? Shouldn’t be an impossible fight by any means, these are just your average zil, only armed with rifles and some basic shooting practice and physical training. What their weapons and armor are will have to be hashed out with Savin/Fen, but just some basic stuff should be fine. Again, not too hard of a fight.)
 			CodexManager.unlockEntry("Zil");
-			CombatManager.newGroundCombat();
-			CombatManager.setFriendlyActors(pc);
-			var enemies:Array = [new ZilMale(),new ZilMale(),new ZilMale(),new ZilFemale(),new ZilFemale()]
-			enemies[0].pumpkingIt();
-			enemies[1].pumpkingIt();
-			enemies[2].pumpkingIt();
-			enemies[3].pumpkingIt();
-			enemies[4].pumpkingIt();
-			//10 rations & 10 honey!
-			var loot:ItemSlotClass = new ZilRation();
-			loot.quantity = 10;
-			enemies[0].inventory.push(loot);
-			loot = new ZilHoney();
-			loot.quantity = 10;
-			enemies[0].inventory.push(loot);
-
-			CombatManager.setHostileActors(enemies[0],enemies[1],enemies[2],enemies[3],enemies[4]);
-			CombatManager.victoryScene(defeatZilGuards);
-			CombatManager.lossScene(loseToZilGuards);
-			CombatManager.displayLocation("ZIL GUARDS");
 			
-			clearMenu();
-			addButton(0,"Next",CombatManager.beginCombat);
+			pumpkingMainGateZilGuardFight();
 			return true;
 		}
 		else output("\n\nThe guards lie unconscious where you left them, in various uncomfortable positions in front of the gates. A small group of zil workers are carefully tending their wounds, but they run back into the jungle when they see you. Building tools lie scattered around the premises in random places, wherever the zil workers left them when they fled your initial approach.");
 	}
 	return false;
+}
+public function pumpkingMainGateZilGuardFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	var enemies:Array = [new ZilMale(),new ZilMale(),new ZilMale(),new ZilFemale(),new ZilFemale()];
+	for(var i:int = 0; i < enemies.length; i++) { enemies[i].pumpkingIt(); }
+	//10 rations & 10 honey!
+	var loot:ItemSlotClass = new ZilRation();
+	loot.quantity = 10;
+	enemies[0].inventory.push(loot);
+	loot = new ZilHoney();
+	loot.quantity = 10;
+	enemies[0].inventory.push(loot);
+
+	CombatManager.setHostileActors(enemies);
+	CombatManager.victoryScene(defeatZilGuards);
+	CombatManager.lossScene(loseToZilGuards);
+	CombatManager.displayLocation("ZIL GUARDS");
+	
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 public function defeatZilGuards():void
@@ -1073,6 +1075,8 @@ public function defeatZilGuards():void
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil’s foreskin-clad cock.");
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
 	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");

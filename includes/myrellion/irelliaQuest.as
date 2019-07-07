@@ -144,7 +144,7 @@ public function firstIrelliaApproach():void
 	//[Introduce - Introduce yourself. You just wanted to touch bases with the locals and see what their take on the war is.]
 	addButton(1,"Irellia",introduceYourselfToIrelliaOnly,undefined,"Irellia","Introduce yourself and explain that you came to seek audience with Irellia, not the other two.");
 	//[Irellia - Introduce yourself and explain that you came to seek audience with Irellia, not the other two.]
-	addButton(2,"Nevermind",nevermindIrelliaAndCo,undefined,"Nevermind","Introduce yourself, but tell them that you’ve been offended and will be leaving.");
+	addButton(2,"Never Mind",nevermindIrelliaAndCo,undefined,"Never Mind","Introduce yourself, but tell them that you’ve been offended and will be leaving.");
 	//[Nevermind - Introduce yourself, but tell them that you’ve been offended and will be leaving.]
 }
 

@@ -103,7 +103,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHWEST ESBETH"].northExit = "WEST ESBETH 2";
 	rooms["SOUTHWEST ESBETH"].eastExit = "SOUTH ESBETH 1";
 	rooms["SOUTHWEST ESBETH"].moveMinutes = 2;
-	rooms["SOUTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["SOUTHWEST ESBETH"].runOnEnter = function():Boolean {if (breedwellPremiumBootyCallCheck("mhen'ga",1)){ breedwellPremiumBootyCallPing(1); return true; }else{ return zilTwinsEsbethBonus()}};
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -117,7 +117,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 1"].eastExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 1"].southExit = "SCRAPYARD MAINTENANCE";
 	rooms["SOUTH ESBETH 1"].moveMinutes = 2;
-	rooms["SOUTH ESBETH 1"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["SOUTH ESBETH 1"].runOnEnter = function():Boolean {if (breedwellPremiumBootyCallCheck("mhen'ga",1)){ breedwellPremiumBootyCallPing(1); return true; }else{ return zilTwinsEsbethBonus()}};
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -131,7 +131,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].moveMinutes = 2;
-	rooms["SOUTH ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["SOUTH ESBETH 2"].runOnEnter = function():Boolean {if (breedwellPremiumBootyCallCheck("mhen'ga",1)){ breedwellPremiumBootyCallPing(1); return true; }else{ return zilTwinsEsbethBonus()}};
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
@@ -147,7 +147,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
 	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].moveMinutes = 2;
-	rooms["SOUTH ESBETH 3"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["SOUTH ESBETH 3"].runOnEnter = function():Boolean {if (breedwellPremiumBootyCallCheck("mhen'ga",1)){ breedwellPremiumBootyCallPing(1); return true; }else{ return zilTwinsEsbethBonus()}};
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.PUBLIC);
 
@@ -172,7 +172,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHEAST ESBETH"].northExit = "EAST ESBETH";
 	rooms["SOUTHEAST ESBETH"].westExit = "SOUTH ESBETH 3";
 	rooms["SOUTHEAST ESBETH"].moveMinutes = 2;
-	rooms["SOUTHEAST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["SOUTHEAST ESBETH"].runOnEnter = function():Boolean {if (breedwellPremiumBootyCallCheck("mhen'ga",1)){ breedwellPremiumBootyCallPing(1); return true; }else{ return zilTwinsEsbethBonus()}};
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -206,7 +206,7 @@ public function initMhengaRooms():void
 	//14. The Northeastern Corner of Esbeth
 	rooms["NORTHEAST ESBETH"] = new RoomClass(this);
 	rooms["NORTHEAST ESBETH"].roomName = "NORTHEAST\nESBETH";
-	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasionally other adventurers, like you, on their way, but they pay you no mind.";
+	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few places show signs of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasionally other adventurers, like you, on their way, but they pay you no mind.";
 	rooms["NORTHEAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["NORTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
@@ -2106,7 +2106,7 @@ public function initMhengaRooms():void
 
 	rooms["PQUEST_I6"] = new RoomClass(this);
 	rooms["PQUEST_I6"].roomName = "MINING\nOP";
-	rooms["PQUEST_I6"].description = "To the west the cave system opens into a colossal crater so wide that not even the planet's tremendous canopy can completely crowd it out. Jet wash spills out of an autonomous dropship as it comes to a gentle stop in the very center of the area, while three mining trundle robots around, putting their drills to work directly on the Oxonium deposits.";
+	rooms["PQUEST_I6"].description = "To the west the cave system opens into a colossal crater so wide that not even the planet’s tremendous canopy can completely crowd it out. Jet wash spills out of an autonomous dropship as it comes to a gentle stop in the very center of the area, while three mining robots trundle around, putting their drills to work directly on the Oxonium deposits.";
 	rooms["PQUEST_I6"].runOnEnter = finalPennyQuestRoomproc;
 	rooms["PQUEST_I6"].planet = "PLANET: MHEN'GA";
 	rooms["PQUEST_I6"].system = "SYSTEM: ARA ARA";

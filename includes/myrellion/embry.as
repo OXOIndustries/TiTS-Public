@@ -281,6 +281,10 @@ this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 */
 
+public function embryName():String
+{
+	return embry.short;
+}
 public function showEmbry(nude:Boolean = false):void
 {
 	showName("\n" + embry.short.toUpperCase());

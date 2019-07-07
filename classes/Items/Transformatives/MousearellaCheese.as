@@ -24,7 +24,7 @@
 			stackSize = 10;
 			type = GLOBAL.FOOD;
 			shortName = "MouseCh";
-			longName = "MousearrelaCheese";
+			longName = "Mousearrela Cheese";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
@@ -236,6 +236,8 @@
 					{
 						output("\n\nWith an odd... buzzing sensation, you feel the auricle of your ear growing larger by the second, and when it finally settles down <b>you find a large pair of [pc.skinColor], dish-like mouse ears in their place.</b>");
 						pc.earType = GLOBAL.TYPE_MOUSE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else output("\n\n"+pc.earTypeLockedMessage());

@@ -41,7 +41,7 @@
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 14000;
+			this.basePrice = 28000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -138,6 +138,7 @@
 						case GLOBAL.TYPE_FLOWER:
 							kGAMECLASS.output("You’ve got a beautiful, " + pc.vaginaColor(0) + " orchid pussy.");
 							break;
+						case GLOBAL.TYPE_ANEMONE:
 						case GLOBAL.TYPE_SIREN:
 							kGAMECLASS.output("You’ve got a tentacled, " + pc.vaginaColor(0) + " alien pussy.");
 							break;

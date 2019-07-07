@@ -13,6 +13,9 @@
 		//[Embed(source = "../../../assets/images/sig/shou.png", mimeType = "image/png")]
 		//public var SigEmbed:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/alvella.png", mimeType = "image/png")]
+		public var Bust_ALVELLA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma_nude.png", mimeType = "image/png")]
@@ -381,6 +384,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kirila_nude.png", mimeType = "image/png")]
 		public var Bust_KIRILA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief_silly.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF_SILLY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female_nude.png", mimeType = "image/png")]
@@ -467,6 +475,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
@@ -479,6 +492,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
 		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -664,12 +682,20 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_nude_preg.png", mimeType = "image/png")]
 		public var Bust_USHAMEE_NUDE_PREG:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/uveto_taxi_vendor.png", mimeType = "image/png")]
+		public var Bust_UVETO_TAXI_VENDOR:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_grunt.png", mimeType = "image/png")]
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion.png", mimeType = "image/png")]
+		public var Bust_WAR_LION:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion_nude.png", mimeType = "image/png")]
+		public var Bust_WAR_LION_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetra_hound.png", mimeType = "image/png")]
 		public var Bust_WETRAHOUND:Class;
@@ -708,676 +734,716 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr_nude.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gryvain_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/saeri_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_SAERI_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/human_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_HUMAN_ORGY_GIRL:Class;
+
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/alvella.png", mimeType = "image/png")]
+			public var Full_ALVELLA:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/amma.png", mimeType = "image/png")]
 			public var Full_AMMA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/amma_nude.png", mimeType = "image/png")]
 			public var Full_AMMA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/anarrie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/anarrie.png", mimeType = "image/png")]
 			public var Full_ANARRIE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/anarrie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/anarrie_nude.png", mimeType = "image/png")]
 			public var Full_ANARRIE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/antrias.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/antrias.png", mimeType = "image/png")]
 			public var Full_ANTRIAS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/asennia_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/asennia_1.png", mimeType = "image/png")]
 			public var Full_ASENNIA_1:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/asennia_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/asennia_2.png", mimeType = "image/png")]
 			public var Full_ASENNIA_2:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/asennia_3.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/asennia_3.png", mimeType = "image/png")]
 			public var Full_ASENNIA_3:Class;
 		
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/astra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/astra.png", mimeType = "image/png")]
 			public var Full_ASTRA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/astra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/astra_nude.png", mimeType = "image/png")]
 			public var Full_ASTRA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/attica.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/attica.png", mimeType = "image/png")]
 			public var Full_ATTICA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/attica_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/attica_nude.png", mimeType = "image/png")]
 			public var Full_ATTICA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/aurora.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/aurora.png", mimeType = "image/png")]
 			public var Full_AURORA:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/bigT.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/bigT.png", mimeType = "image/png")]
 			public var Full_BIGT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/bigT_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/bigT_nude.png", mimeType = "image/png")]
 			public var Full_BIGT_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/bothrioc_pidemme.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/bothrioc_pidemme.png", mimeType = "image/png")]
 			public var Full_BOTHRIOC_PIDEMME:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/brynn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/brynn.png", mimeType = "image/png")]
 			public var Full_BRYNN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/brynn_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/brynn_nude.png", mimeType = "image/png")]
 			public var Full_BRYNN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/byron.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/byron.png", mimeType = "image/png")]
 			public var Full_BYRON:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/byron_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/byron_nude.png", mimeType = "image/png")]
 			public var Full_BYRON_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cameron.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/cameron.png", mimeType = "image/png")]
 			public var Full_CAMERON:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cameron_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/cameron_nude.png", mimeType = "image/png")]
 			public var Full_CAMERON_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/canada.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/canada.png", mimeType = "image/png")]
 			public var Full_CANADA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/canada_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/canada_nude.png", mimeType = "image/png")]
 			public var Full_CANADA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/carrie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/carrie.png", mimeType = "image/png")]
 			public var Full_CARRIE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ceria.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ceria.png", mimeType = "image/png")]
 			public var Full_CERIA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ceria_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ceria_nude.png", mimeType = "image/png")]
 			public var Full_CERIA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chaurmine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/chaurmine.png", mimeType = "image/png")]
 			public var Full_CHAURMINE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chaurmine_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/chaurmine_nude.png", mimeType = "image/png")]
 			public var Full_CHAURMINE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/chrissy.png", mimeType = "image/png")]
 			public var Full_CHRISSY:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/chrissy_nude.png", mimeType = "image/png")]
 			public var Full_CHRISSY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cockvine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/cockvine.png", mimeType = "image/png")]
 			public var Full_ADULTCOCKVINE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cockvine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/cockvine.png", mimeType = "image/png")]
 			public var Full_COCKVINESEEDLING:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/connie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/connie.png", mimeType = "image/png")]
 			public var Full_CONNIE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/connie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/connie_nude.png", mimeType = "image/png")]
 			public var Full_CONNIE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cruff.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/cruff.png", mimeType = "image/png")]
 			public var Full_CRUFF:Class;
 			/*[Embed(source = "../../../assets/images/npcs/shou_puppy/cruff_nude.png", mimeType = "image/png")]
 			public var Bust_CRUFF_NUDE:Class;*/
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_blue.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_BLUE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_green.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_GREEN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_pink.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PINK:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_purple.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PURPLE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_red.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_RED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_yellow.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_YELLOW:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_blue_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_BLUE_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_blue_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_blue_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_BLUE_BRO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_green_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_GREEN_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_green_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_green_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_GREEN_BRO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_pink_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PINK_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_pink_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_pink_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PINK_BRO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_purple_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PURPLE_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_purple_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_purple_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_PURPLE_BRO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_red_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_RED_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_red_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_red_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_RED_BRO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_yellow_bimbo.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_YELLOW_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_0_yellow_bro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_0_yellow_bro.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_YELLOW_BRO:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_blue.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_blue.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_BLUE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_blue_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_blue_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_BLUE_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_green.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_green.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_GREEN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_green_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_green_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_GREEN_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_pink.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_pink.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_PINK:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_pink_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_pink_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_PINK_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_purple.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_purple.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_PURPLE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_purple_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_purple_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_PURPLE_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_red.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_red.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_RED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_red_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_red_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_RED_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_yellow.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_yellow.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_YELLOW:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_1_yellow_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_1_yellow_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T1_YELLOW_UNARMORED:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_blue.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_blue.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_BLUE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_blue_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_blue_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_BLUE_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_green.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_green.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_GREEN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_green_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_green_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_GREEN_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_pink.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_pink.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_PINK:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_pink_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_pink_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_PINK_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_purple.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_purple.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_PURPLE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_purple_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_purple_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_PURPLE_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_red.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_red.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_RED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_red_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_red_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_RED_UNARMORED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_yellow.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_yellow.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_YELLOW:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_YELLOW_UNARMORED:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/doctor_lash.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/doctor_lash.png", mimeType = "image/png")]
 			public var Full_DR_LASH:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lessau.png", mimeType = "image/png")]
 			public var Full_DR_LESSAU:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lessau_nude.png", mimeType = "image/png")]
 			public var Full_DR_LESSAU_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/droid_security.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/droid_security.png", mimeType = "image/png")]
 			public var Full_DROID_SECURITY:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dryad.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/edan.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/edan.png", mimeType = "image/png")]
 			public var Full_EDAN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/edan_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/edan_nude.png", mimeType = "image/png")]
 			public var Full_EDAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/elenora.png", mimeType = "image/png")]
 			public var Full_ELENORA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/elenora_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/elenora_nude.png", mimeType = "image/png")]
 			public var Full_ELENORA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ellie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ellie.png", mimeType = "image/png")]
 			public var Full_ELLIE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ellie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ellie_nude.png", mimeType = "image/png")]
 			public var Full_ELLIE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/emmy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/emmy.png", mimeType = "image/png")]
 			public var Full_EMMY:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/emmy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/emmy_nude.png", mimeType = "image/png")]
 			public var Full_EMMY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_0.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_0.png", mimeType = "image/png")]
 			public var Full_EMBRY_0:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_0_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_0_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_0_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_1.png", mimeType = "image/png")]
 			public var Full_EMBRY_1:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_1_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_2_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_3.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_3.png", mimeType = "image/png")]
 			public var Full_EMBRY_3:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/embry_3_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/embry_3_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_3_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fazian.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fazian.png", mimeType = "image/png")]
 			public var Full_FAZIAN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fazian_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fazian_1.png", mimeType = "image/png")]
 			public var Full_FAZIAN_1:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fazian_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fazian_2.png", mimeType = "image/png")]
 			public var Full_FAZIAN_2:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fix.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fix.png", mimeType = "image/png")]
 			public var Full_FIX:Class;
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fix_nude.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fix_nude.png", mimeType = "image/png")]
 			//public var Full_FIX_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_1.png", mimeType = "image/png")]
 			public var Full_FROG_1:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_2.png", mimeType = "image/png")]
 			public var Full_FROG_2:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_3.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_3.png", mimeType = "image/png")]
 			public var Full_FROG_3:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_4.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_4.png", mimeType = "image/png")]
 			public var Full_FROG_4:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_5.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_5.png", mimeType = "image/png")]
 			public var Full_FROG_5:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_6.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_6.png", mimeType = "image/png")]
 			public var Full_FROG_6:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_7.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_7.png", mimeType = "image/png")]
 			public var Full_FROG_7:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/frog_8.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/frog_8.png", mimeType = "image/png")]
 			public var Full_FROG_8:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/galina.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/galina.png", mimeType = "image/png")]
 			public var Full_GALINA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/galina_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/galina_nude.png", mimeType = "image/png")]
 			public var Full_GALINA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gianna.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gianna.png", mimeType = "image/png")]
 			public var Full_GIANNA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gianna_med.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gianna_med.png", mimeType = "image/png")]
 			public var Full_GIANNA_MEDIUM_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gianna_large.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gianna_large.png", mimeType = "image/png")]
 			public var Full_GIANNA_LARGE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gil.png", mimeType = "image/png")]
 			public var Full_GIL:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gil_nude.png", mimeType = "image/png")]
 			public var Full_GIL_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_worgears.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gil_worgears.png", mimeType = "image/png")]
 			public var Full_GIL_WORGEARS:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_worgears_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gil_worgears_nude.png", mimeType = "image/png")]
 			public var Full_GIL_WORGEARS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/goocubator.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/goocubator.png", mimeType = "image/png")]
 			public var Full_GOOCUBATOR:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/haley.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/haley.png", mimeType = "image/png")]
 			public var Full_HALEY:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/henderson.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/henderson.png", mimeType = "image/png")]
 			public var Full_HENDERSON:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hepane.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/hepane.png", mimeType = "image/png")]
 			public var Full_HEPANE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hepane_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/hepane_nude.png", mimeType = "image/png")]
 			public var Full_HEPANE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/herman.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/herman.png", mimeType = "image/png")]
 			public var Full_HERMAN:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/holmes.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/holmes.png", mimeType = "image/png")]
 			public var Full_HOLMES:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/honeypot.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/honeypot.png", mimeType = "image/png")]
 			public var Full_HONEYPOT:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/horace_decker.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/horace_decker.png", mimeType = "image/png")]
 			public var Full_HORACE_DECKER:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/horse_sheath.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/horse_sheath.png", mimeType = "image/png")]
 			public var Full_HORSECOCK:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hover_drone.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/hover_drone.png", mimeType = "image/png")]
 			public var Full_HOVER_DRONE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/hover_drone_silly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/hover_drone_silly.png", mimeType = "image/png")]
 			public var Full_HOVER_DRONE_SILLY:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerome.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerome.png", mimeType = "image/png")]
 			public var Full_JEROME:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerome_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerome_nude.png", mimeType = "image/png")]
 			public var Full_JEROME_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerynn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerynn.png", mimeType = "image/png")]
 			public var Full_JERYNN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerynn_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerynn_nude.png", mimeType = "image/png")]
 			public var Full_JERYNN_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerynn_dom.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerynn_dom.png", mimeType = "image/png")]
 			public var Full_JERYNN_DOM:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/jerynn_dom_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/jerynn_dom_nude.png", mimeType = "image/png")]
 			public var Full_JERYNN_DOM_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_juggernaut.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/black_void_juggernaut.png", mimeType = "image/png")]
 			public var Full_JUGGERNAUT:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/juro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/juro.png", mimeType = "image/png")]
 			public var Full_JURO:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/juro_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/juro_nude.png", mimeType = "image/png")]
 			public var Full_JURO_NUDE:Class;
 
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_old.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kaede_old.png", mimeType = "image/png")]
 			//public var Full_KAEDE_OLD:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kaede_nude.png", mimeType = "image/png")]
 			public var Full_KAEDE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kara.png", mimeType = "image/png")]
 			public var Full_KARA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kara_nude.png", mimeType = "image/png")]
 			public var Full_KARA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kattom.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kattom.png", mimeType = "image/png")]
 			public var Full_KATTOM_OSGOOD:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dr_khan.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/dr_khan.png", mimeType = "image/png")]
 			public var Full_KHAN:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kirila.png", mimeType = "image/png")]
 			public var Full_KIRILA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kirila_nude.png", mimeType = "image/png")]
 			public var Full_KIRILA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korg_chief.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korg_chief_silly.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF_SILLY:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_female.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_female_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_gray.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_gray.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_GRAY:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_gray_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_gray_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_GRAY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_tawny.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_tawny.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_TAWNY:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_tawny_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_tawny_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_TAWNY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_white.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_white.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_WHITE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_male_white_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/korgonne_male_white_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_MALE_WHITE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_engineer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/black_void_engineer.png", mimeType = "image/png")]
 			public var Full_KQ2ENGINEER:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kyris.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kyris.png", mimeType = "image/png")]
 			public var Full_KYRIS:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kyris_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/kyris_nude.png", mimeType = "image/png")]
 			public var Full_KYRIS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lane_f.png", mimeType = "image/png")]
 			public var Full_LANE_F:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_f_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lane_f_nude.png", mimeType = "image/png")]
 			public var Full_LANE_F_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_m.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lane_m.png", mimeType = "image/png")]
 			public var Full_LANE_M:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_m_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lane_m_nude.png", mimeType = "image/png")]
 			public var Full_LANE_M_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/liamme.png", mimeType = "image/png")]
 			public var Full_LIAMME:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme_skirt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/liamme_skirt.png", mimeType = "image/png")]
 			public var Full_LIAMME_SKIRT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/liamme_nude.png", mimeType = "image/png")]
 			public var Full_LIAMME_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lieve_nude.png", mimeType = "image/png")]
 			public var Full_LIEVE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/logan.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/logan.png", mimeType = "image/png")]
 			public var Full_LOGAN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/logan_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/logan_nude.png", mimeType = "image/png")]
 			public var Full_LOGAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/luna.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/luna.png", mimeType = "image/png")]
 			public var Full_LUNA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/luna_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/luna_nude.png", mimeType = "image/png")]
 			public var Full_LUNA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lund.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lund.png", mimeType = "image/png")]
 			public var Full_LUND:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lund_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lund_nude.png", mimeType = "image/png")]
 			public var Full_LUND_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_ausar.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lustomorph_ausar.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_AUSAR:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_gryvain.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lustomorph_gryvain.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_GRYVAIN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_raskvel.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/lustomorph_raskvel.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_RASKVEL:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/maki.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/maki.png", mimeType = "image/png")]
 			public var Full_MAKI:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/marina.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/marina.png", mimeType = "image/png")]
 			public var Full_MARINA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/marina_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/marina_nude.png", mimeType = "image/png")]
 			public var Full_MARINA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_infiltrator.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_infiltrator_nude.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_male.png", mimeType = "image/png")]
 			public var Full_MILODANMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_club.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_male_club.png", mimeType = "image/png")]
 			public var Full_MILODANMALE_CLUB:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_axe.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_male_axe.png", mimeType = "image/png")]
 			public var Full_MILODANMALE_AXE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_male_nude.png", mimeType = "image/png")]
 			public var Full_MILODANMALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_spores.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_temptress.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/milodan_temptress_nude.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fungal_myr_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;
-			/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr.png", mimeType = "image/png")]
+			/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fungal_myr.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;*/
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/myr_gold_bathers.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/myr_gold_bathers.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_BATHERS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_queen_spores.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/fungal_myr_queen_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_QUEEN:Class;
 
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/naleen_male.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/naleen_male.png", mimeType = "image/png")]
 			//public var Full_NALEEN_MALE:Class;
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/naleen_male_nude.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/naleen_male_nude.png", mimeType = "image/png")]
 			//public var Full_NALEEN_MALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna.png", mimeType = "image/png")]
 			public var Full_NAYNA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_soft_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna_soft_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SOFT_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna_suit.png", mimeType = "image/png")]
 			public var Full_NAYNA_SUIT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna_suit_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SUIT_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nayna_suit_soft_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nayna_suit_soft_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SUIT_SOFT_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nerrasa.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nerrasa.png", mimeType = "image/png")]
 			public var Full_NERRASA:Class;
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nerrasa_strapon_off.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nerrasa_strapon_off.png", mimeType = "image/png")]
 			//public var Full_NERRASA_STRAPON_0:Class;
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nerrasa_strapon_on.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nerrasa_strapon_on.png", mimeType = "image/png")]
 			//public var Full_NERRASA_STRAPON_1:Class;
-			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nerrasa_nude.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nerrasa_nude.png", mimeType = "image/png")]
 			//public var Full_NERRASA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nevrie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nevrie.png", mimeType = "image/png")]
 			public var Full_NEVRIE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nevrie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nevrie_nude.png", mimeType = "image/png")]
 			public var Full_NEVRIE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nyrea_beta.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nyrea_beta.png", mimeType = "image/png")]
 			public var Full_NYREA_BETA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/nyrea_alpha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/nyrea_alpha.png", mimeType = "image/png")]
 			public var Full_NYREA_ALPHA:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ogram.png", mimeType = "image/png")]
 			public var Full_OGRAM:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ogram_nude.png", mimeType = "image/png")]
 			public var Full_OGRAM_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_casual.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/paige_casual.png", mimeType = "image/png")]
 			public var Full_PAIGE_CASUAL:Class;
 			/*Fen note: not used:
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_underwear.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/paige_underwear.png", mimeType = "image/png")]
 			public var Full_PAIGE_UNDERWEAR:Class;*/
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_yoga.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/paige_yoga.png", mimeType = "image/png")]
 			public var Full_PAIGE_YOGA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/paige_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/paige_nude.png", mimeType = "image/png")]
 			public var Full_PAIGE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/pippa.png", mimeType = "image/png")]
 			public var Full_PIPPA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_oiled.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/pippa_oiled.png", mimeType = "image/png")]
 			public var Full_PIPPA_OILED:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/pippa_nude.png", mimeType = "image/png")]
 			public var Full_PIPPA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/praetorian.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/praetorian.png", mimeType = "image/png")]
 			public var Full_PRAETORIAN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/praetorian_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/praetorian_nude.png", mimeType = "image/png")]
 			public var Full_PRAETORIAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/prai.png", mimeType = "image/png")]
 			public var Full_PRAI:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai_dress.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/prai_dress.png", mimeType = "image/png")]
 			public var Full_PRAI_DRESS:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/prai_nude.png", mimeType = "image/png")]
 			public var Full_PRAI_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/princess.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/princess.png", mimeType = "image/png")]
 			public var Full_PRINCESS:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/princess_bandoleer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/princess_bandoleer.png", mimeType = "image/png")]
 			public var Full_PRINCESS_BANDOLEER:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/quaddomme.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/quaddomme.png", mimeType = "image/png")]
 			public var Full_BOTHRIOC_QUADOMME:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/queensguard.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/queensguard.png", mimeType = "image/png")]
 			public var Full_QUEENSGUARD:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/queensguard_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/queensguard_nude.png", mimeType = "image/png")]
 			public var Full_QUEENSGUARD_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/renvra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/renvra.png", mimeType = "image/png")]
 			public var Full_RENVRA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/renvra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/renvra_nude.png", mimeType = "image/png")]
 			public var Full_RENVRA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saendra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
 			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_NUDE():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_FUTA_NUDE():Class { return Full_SAENDRA; }
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/salire.png", mimeType = "image/png")]
 			public var Full_SALIRE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/salire_nude.png", mimeType = "image/png")]
 			public var Full_SALIRE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/sean.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/sean.png", mimeType = "image/png")]
 			public var Full_SEAN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/sean_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/sean_nude.png", mimeType = "image/png")]
 			public var Full_SEAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/seifyn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/seifyn.png", mimeType = "image/png")]
 			public var Full_SEIFYN:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/seifyn_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/seifyn_nude.png", mimeType = "image/png")]
 			public var Full_SEIFYN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade_old.png", mimeType = "image/png")]
 			public var Full_SHADE_COMBAT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade.png", mimeType = "image/png")]
 			public var Full_SHADE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade_nude.png", mimeType = "image/png")]
 			public var Full_SHADE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_sweater.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade_sweater.png", mimeType = "image/png")]
 			public var Full_SHADE_SWEATER:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_shirt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade_shirt.png", mimeType = "image/png")]
 			public var Full_SHADE_SHIRT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_jeans.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shade_jeans.png", mimeType = "image/png")]
 			public var Full_SHADE_JEANS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shiare.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shiare.png", mimeType = "image/png")]
 			public var Full_SHIARE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shiare_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shiare_nude.png", mimeType = "image/png")]
 			public var Full_SHIARE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/taivra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/taivra.png", mimeType = "image/png")]
 			public var Full_TAIVRA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/taivra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/taivra_nude.png", mimeType = "image/png")]
 			public var Full_TAIVRA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tanis.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tanis.png", mimeType = "image/png")]
 			public var Full_TANIS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch.png", mimeType = "image/png")]
 			public var Full_TARRATCH:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch_nude.png", mimeType = "image/png")]
 			public var Full_TARRATCH_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch_nude_erect.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch_nude_erect.png", mimeType = "image/png")]
 			public var Full_TARRATCH_NUDE_ERECT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch2.png", mimeType = "image/png")]
 			public var Full_TARRATCH2:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch2_nude.png", mimeType = "image/png")]
 			public var Full_TARRATCH2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/tarratch2_nude_erect.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/tarratch2_nude_erect.png", mimeType = "image/png")]
 			public var Full_TARRATCH2_NUDE_ERECT:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/teron.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/teron.png", mimeType = "image/png")]
 			public var Full_TERON:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/teron_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/teron_nude.png", mimeType = "image/png")]
 			public var Full_TERON_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/urbolg.png", mimeType = "image/png")]
 			public var Full_URBOLG:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/urbolg_nude.png", mimeType = "image/png")]
 			public var Full_URBOLG_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee.png", mimeType = "image/png")]
 			public var Full_USHAMEE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee_nude.png", mimeType = "image/png")]
 			public var Full_USHAMEE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee_nude_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ushamee_nude_preg.png", mimeType = "image/png")]
 			public var Full_USHAMEE_NUDE_PREG:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/valeria.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/uveto_taxi_vendor.png", mimeType = "image/png")]
+			public var Full_UVETO_TAXI_VENDOR:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/valeria.png", mimeType = "image/png")]
 			public var Full_VALERIA:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_grunt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/black_void_grunt.png", mimeType = "image/png")]
 			public var Full_VOIDPIRATE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetra_hound.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/warlion.png", mimeType = "image/png")]
+			public var Full_WAR_LION:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/warlion_nude.png", mimeType = "image/png")]
+			public var Full_WAR_LION_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/wetra_hound.png", mimeType = "image/png")]
 			public var Full_WETRAHOUND:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetraxxel.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/wetraxxel.png", mimeType = "image/png")]
 			public var Full_WETRAXXEL:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetraxxel_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/wetraxxel_nude.png", mimeType = "image/png")]
 			public var Full_WETRAXXEL_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/xanthe.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/xanthe.png", mimeType = "image/png")]
 			public var Full_XANTHE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/xanthe_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/xanthe_nude.png", mimeType = "image/png")]
 			public var Full_XANTHE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/xanthe_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/xanthe_1_nude.png", mimeType = "image/png")]
 			public var Full_XANTHE_1_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/yammi.png", mimeType = "image/png")]
 			public var Full_YAMMI:Class;
 			public function get Full_YAMMI_APRON():Class { return Full_YAMMI; }
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/yoma.png", mimeType = "image/png")]
 			public var Full_YOMA:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/yoma_nude.png", mimeType = "image/png")]
 			public var Full_YOMA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zephyr.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/zephyr.png", mimeType = "image/png")]
 			public var Full_ZEPHYR:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zephyr_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/zephyr_nude.png", mimeType = "image/png")]
 			public var Full_ZEPHYR_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/zaalt.png", mimeType = "image/png")]
 			public var Full_ZAALT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_alt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/zaalt_alt.png", mimeType = "image/png")]
 			public var Full_ZAALT_ALT:Class;
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/zaalt_nude.png", mimeType = "image/png")]
 			public var Full_ZAALT_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/gryvain_orgy_girl.png", mimeType = "image/png")]
+			public var Full_GRYVAIN_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/saeri_orgy_girl.png", mimeType = "image/png")]
+			public var Full_SAERI_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/human_orgy_girl.png", mimeType = "image/png")]
+			public var Full_HUMAN_ORGY_GIRL:Class;
 		}
 	}
 

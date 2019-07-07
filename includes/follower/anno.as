@@ -267,7 +267,6 @@ public function annoFollowerMenu():void
 	}
 	else addDisabledButton(7, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
-	
 	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, undefined, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you’ll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can’t bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
 
@@ -368,25 +367,27 @@ public function annoSleepToggleOff():void
 }
 
 public function annoSleepSexyTimes():void
-{
-	clearOutput();
-	annoFollowerHeader();
+{	
+	//25% chance to get dream sleep with instead of regular one if you qualify
+	if (pc.hasGenitals() && pc.hasTits() && !pc.isTaur() && !annoIsHuskar() && rand(4) == 0) annoBedtimeBoobDream();
+	else
+	{
+		clearOutput();
+		annoFollowerHeader();
+		output("Anno slips into your quarters just as you’re getting ready to hit the hay. She lets her bathrobe slip down from over her sheer nightie and onto the floor. She slides under the covers and props herself up on an elbow, watching you");
+		if (!pc.isNude()) output(" undress");
+		else output(" put the last of your [pc.gear]");
+		output(" away with interest until you join her.");
 
-	output("Anno slips into your quarters just as you’re getting ready to hit the hay. She lets her bathrobe slip down from over her sheer nightie and onto the floor. She slides under the covers and props herself up on an elbow, watching you");
-	if (!pc.isNude()) output(" undress");
-	else output(" put the last of your [pc.gear]");
-	output(" away with interest until you join her.");
+		output("\n\n<i>“Hey,”</i> she murmurs as you climb into bed beside her. ");
 
-	output("\n\n<i>“Hey,”</i> she murmurs as you climb into bed beside her. ");
-
-	output("\n\n<i>“Hey");
-	if (pc.isMischievous()) output(" yourself");
-	output(",”</i> you answer, slipping an arm around Anno’s shoulders and pulling her close. Her tail wiggles happily as she snuggles up, head resting on your [pc.chest]. You softly stroke your lover’s perky ears and long, silky smooth hair as she nuzzles up to you, settling in after a few playful minutes.");
-
+		output("\n\n<i>“Hey");
+		if (pc.isMischievous()) output(" yourself");
+		output(",”</i> you answer, slipping an arm around Anno’s shoulders and pulling her close. Her tail wiggles happily as she snuggles up, head resting on your [pc.chest]. You softly stroke your lover’s perky ears and long, silky smooth hair as she nuzzles up to you, settling in after a few playful minutes.");
+		
+		processTime(3);
+	}
 	flags["ANNO_SLEEPWITH_DOMORNING"] = 1;
-
-	processTime(3);
-
 	clearMenu();
 	sleep(false);
 }
@@ -500,7 +501,7 @@ public function annoFollowerBootOff():void
 	output("\n\nYou nod, and watch as Anno hurriedly collects her belongings. You get the distinct sense she’s trying not to cry as she scurries off your ship.");
 
 	flags["ANNO_CREWMEMBER"] = 2;
-	if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	if(InCollection(flags["CREWMEMBER_SLEEP_WITH"], ["ANNO", "SHEKKA AND ANNO"])) flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("\n\n(<b>Anno is no longer on your crew. You can find her again in Tavros Station.</b>)");
 
@@ -3927,9 +3928,9 @@ public function annoKaseBarEvent():void
 	showName("ANNO &\nKASE");
 	author("HugsAlright");
 
-	output("Walking towards the snowy pup, you notice she's not alone, but is sitting next to another one of you crewmates, Kase.");
-	output("\n\nThe catboy isn't dressed nearly as casually as his canine friend, making it seem like his decision to join Anno must have been a spontaneous one. Nonetheless, they both are sipping their own brightly coloured drinks. Judging by the amount of empty glasses by Anno and the single, half empty drink her kaithrit subordinate has, Kase isn't much of a drinker. Still, they both smile and laugh happily with each other, and what's more, it doesn't seem like your ausar companion is even flirting with the catboy, keeping a distance that has Kase looking very comfortable, despite his usual nervousness around Anno.");
-	output("\n\nThe whole thing is quite cute, and you figure you'll let the two enjoy each other's company.");
+	output("Walking towards the snowy pup, you notice she’s not alone, but is sitting next to another one of you crewmates, Kase.");
+	output("\n\nThe catboy isn’t dressed nearly as casually as his canine friend, making it seem like his decision to join Anno must have been a spontaneous one. Nonetheless, they both are sipping their own brightly coloured drinks. Judging by the amount of empty glasses by Anno and the single, half empty drink her kaithrit subordinate has, Kase isn’t much of a drinker. Still, they both smile and laugh happily with each other, and what’s more, it doesn’t seem like your ausar companion is even flirting with the catboy, keeping a distance that has Kase looking very comfortable, despite his usual nervousness around Anno.");
+	output("\n\nThe whole thing is quite cute, and you figure you’ll let the two enjoy each other’s company.");
 
 	processTime(5);
 	clearMenu();
@@ -4327,6 +4328,7 @@ public function annoFrenchMaid():void
 	author("HugsAlright");
 	clearMenu();
 	
+	showImage("AnnoMaid");
 	if(!annoIsHuskar()) output("You draw in a little closer to the ausar, her velvety white tail and barely covered behind swinging almost in sync as she works an old-fashioned feather duster on the nooks and crannies of your ship. The frilly black-and-white outfit looks good on her; more than good, you reconsider. The pure-white thighhighs around her shapely legs quickly draw attention to her nearly see-through-panty clad booty, which happily wiggles back and forth as she works. The frill-lined skirt of the outfit seems purposely short, barely doing anything to cover her. Upon closer inspection it seems that Anno isn’t wearing anything under the getup, making it hug her curves just right, and accentuating the swell of her big, soft breasts. An oversized white ribbon rests on the back of the outfit. It seems completely decorative, much like the headpiece sitting between her two perky wolf ears.");
 	else output("You draw in a little closer to the ausar, eyes transfixed by the lower half of her callipygian booty hanging out from under her skirts, jiggling and bouncing in sync with her brushing an old-fashioned feather duster on the nooks and crannies of your ship. The frilly black-and-white outfit looks good on her; more than good, you reconsider. The pure-white thighhighs hug her thick thighs and quickly draw attention to her big booty and the see-through panties barely holding it back, shaking happily back and forth as she works. Upon closer inspection it seems that Anno isn’t wearing anything else under the getup, making it hug her ample curves just right, and letting her stacked rack swing weightily as she moves. An oversized white ribbon rests on the back of the outfit. It seems completely decorative, much like the headpiece sitting between her two perky wolf ears.");
 	output("\n\nWhile managing to keep yourself from drooling at the sight of the skimpy Ausar you let your eyes take in their fill of the scene before a familiar voice breaks your focus.");
@@ -4768,7 +4770,7 @@ public function annoxErraIntro():void
 	{
 		output("\n\nAnno turns to you with a red, lust-ridden face and starts to talk, her chest heaving a bit between words. <i>“Woah! Hi, boss,”</i> she breathes, quickly sitting up on her knees and letting Erra’s leash slack, <i>“I uh, picked this cutie up at the bar, and we got to the ship, aaaaand... we’re in your room because... because...”</i>");
 		output("\n\nBefore the ausar can continue her explanation, her lover peeks out from behind her " + (!annoIsHuskar() ? "double-D’s" : "massive tits") + " to see the face of whoever’s interrupting their fun. It only takes one look at your face for a wide grin appears on Erra’s face, but she continues with her pet-like demeanor and simply waves at you, which catches Anno’s attention.");
-		output("\n\n<i>“Wait. You know [pc.name]?”</i> she questions, looking back down at the dusky pup. Erra’s quick to smile and nod in response, to which her new mistress cocks an eyebrow and asks <i>“Know [pc.hisHer] liiiiiike?”</i> Then, after another nod and a knowing smirk from Erra, your crewmate turns her attention towards you again. <i>“So it was </i>totally<i> Erra’s idea to do it in your room,”</i> she exclaims, her face seeming a little less red, <i>“But now that you’re here... wanna help me with this puppy I got?”</i>");
+		output("\n\n<i>“Wait. You know [pc.name]?”</i> she questions, looking back down at the dusky pup. Erra’s quick to smile and nod in response, to which her new mistress cocks an eyebrow and asks <i>“Know [pc.himHer] liiiiiike?”</i> Then, after another nod and a knowing smirk from Erra, your crewmate turns her attention towards you again. <i>“So it was </i>totally<i> Erra’s idea to do it in your room,”</i> she exclaims, her face seeming a little less red, <i>“But now that you’re here... wanna help me with this puppy I got?”</i>");
 	}
 	output("\n\nBest to not keep the ladies waiting...");
 
@@ -4854,7 +4856,7 @@ public function annoxErraJoin():void
 			if(pc.cockTotal() > 2) output("another");
 			else output("your other");
 			output(" stiff shaft into between her lips. Erra doesn’t even take a moment to catch her breath, pushing herself onto your rock-hard tool, her flat tongue sliding all over your cockflesh and wetting it with a coat of ausar spit.");
-			output("\n\nBefore too long you have two happy puppy’s enjoying their bones, bobbing up and down your cocks and polishing them with their tongues. They don’t seems to competitive about it either, simply enjoying the pleasures they’re giving their master, shivering at every pleased groan and shuddering breath you release.");
+			output("\n\nBefore too long you have two happy puppies enjoying their bones, bobbing up and down your cocks and polishing them with their tongues. They don’t seems to competitive about it either, simply enjoying the pleasures they’re giving their master, shivering at every pleased groan and shuddering breath you release.");
 		}
 		else
 		{
@@ -4902,7 +4904,7 @@ public function annoxErraJoin():void
 		output("\n\nYour hips buck forward in a series of instinct-driven movements, bouncing against Erra and Anno’s asses, while all of you cum your brains out. ");
 		if (pc.cumQ() >= 1000)
 		{
-			output("Your tremondous load swells your puppies tummies against each other to the point where it pours ");
+			output("Your tremendous load swells your puppies tummies against each other to the point where it pours ");
 			if(pc.hasKnot(cIdx)) output("slowly");
 			else output("steadily");
 			output(" from their clenching cock-holsters to relieve some pressure");
@@ -5179,6 +5181,7 @@ public function annoToNormalTF():void
 	chars["ANNO"].buttRatingRaw = 9;
 	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_PUMPED);
+	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
 	chars["ANNO"].vaginas[0].wetnessRaw = 6;
 	//chars["ANNO"].removeSkinFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].removeArmFlag(GLOBAL.FLAG_FLUFFY);
@@ -5256,7 +5259,7 @@ public function unhuskarizeAnno():void
 	output("\n\nShe places the baggie between you with an exaggerated huff. <i>“So what’s it gonna be? Thickness for life, or back to normal?”</i>");
 	processTime(4);
 	clearMenu();
-	addButton(0,"Nevermind",neverMindAnnoStayFat,undefined,"Nevermind","If that’s the way it’s gonna be, you’ll stick with husky Anno.");
+	addButton(0,"Never Mind",neverMindAnnoStayFat,undefined,"Never Mind","If that’s the way it’s gonna be, you’ll stick with husky Anno.");
 	addButton(1,"Confirm",goodbyeBestAnno,undefined,"Confirm","");
 }
 
@@ -5268,7 +5271,7 @@ public function neverMindAnnoStayFat():void
 	clearOutput();
 	showAnno();
 	author("Savin");
-	output("After a moment’s consideration, you shake your head and tell Anno to nevermind. If you have to choose permanently, you’ll stick with a huskar over a normal ausar.");
+	output("After a moment’s consideration, you shake your head and tell Anno to never mind. If you have to choose permanently, you’ll stick with a huskar over a normal ausar.");
 	output("\n\n<i>“Hey, I’m normal,”</i> Anno chides, scooping the ausar treats back into her desk. <i>“But I’m glad you can still stomach me like this. Had me worried there, boss... like I said, I’m really liking this whole huskar thing. I look damn good with a little extra heft, hmm?”</i>");
 	output("\n\nYou have to admit, she does. Though you might not think her current form is <i>perfect</i>, but between the two choices, you’re more than satisfied with your lover just as she is.");
 	processTime(3);
@@ -5300,4 +5303,58 @@ public function goodbyeBestAnno():void
 	processTime(3);
 	pc.lust(5);
 	annoFollowerSexMenu();
+}
+public function annoBedtimeBoobDream():void
+{
+	clearOutput();
+	annoFollowerHeader(true);
+	author("TW-Luna");
+	
+	var kok:int = pc.cockTotal();
+	var vag:int = pc.vaginaTotal();
+	
+	output("Steam rushes out around you as you [pc.walk] into your personal cabin from the bathroom.");
+	output("\n\n<i>“Nothing like a hot shower before bed,”</i> you say to yourself while dabbing off the last bit of water on your [pc.skinFurScalesNoun] with a towel. [pc.Walking] towards the bed, you hear a click from the cabin door as Anno slips into your room. Instead of slipping off her robe and sliding into bed, like she usually does, she drops her covering to reveal that she isn’t wearing her usual babydoll and is instead completely naked.");
+	output("\n\nFlashing you a set of bedroom eyes you couldn’t refuse if you wanted to, she whispers with a grin, <i>“Up for a little something extra tonight?”</i>");
+	output("\n\nA smirk and crooked finger is all your ausar lover needs from you before she giddily closes the distance between the both of you, throwing her arms around your neck and locking you in a kiss. Her tongue probes your mouth, searching for your own, her luscious DDs pressed against your own [pc.breasts]. You can’t help but give her tongue a gentle suck as your hands snake their way down to her");
+	output(" pert");	
+	output(" ass. She moans into your mouth as you give it a squeeze. When you begin to slide your hands up her sides and towards her pillowy tits, she gently bites on your lower lip and pushes you away, letting your lip slip from between her teeth.");
+	
+	output("\n\nShe moves an arm’s length away from you, leaving a single finger touching between your breasts. <i>“You wait right here. I want to show you just how wet you make me, babe.”</i>");
+	output("\n\nWith that, she turns and pads towards your bed, her tail swishing to and fro in the few steps between you and the bed. Bending over, she climbs onto the bed on all fours, her mouthwatering ass on display for you. She’s pulled her tail down over her needy cunt, but the scent of her lust is thick in the air.");
+	output("\n\nHolding her tail in place, you see her lower her shoulders towards the bed and reach back under herself with a hand. A moan escaping her is your only indication that she’s reached her nether lips, with the fluffy white obstruction still in the way. Your own hands have begun to roam and caress your body.");
+	if (pc.biggestTitSize() >= 5) output("\n\nOne of your hands comes to cup a [pc.breast], giving its [pc.nipple] a pinch, which causes you to suck air through your teeth.");
+	else output("\n\nOne of your hands comes to cup an unusually pillowy breast, giving its [pc.nipple] a pinch, which causes you to suck air through your teeth.");	
+	
+	output("\n\nAnno finally pulls her tail away to show you one of her fingers already buried inside her quim with her thumb rubbing her pleasure bud.");
+	output("\n\nDrawing her finger back out with a longing sigh, she rolls over, exposing everything to you now.  She’s now able to see the want in your eyes and it only seems to make her wetter. Biting her lower lip and throwing her head back, she takes her breast in a hand while bringing the other back down to her drooling vagina. With the first hand she begins caressing and kneading, showing special attention to her rock-hard nipple, and with her second she runs her fingers over her clit and folds. She slides two fingers in this time, reaching for all of her favorite places.");
+	
+	if (kok > 0 && vag > 0)
+	{
+		output("\n\nThis show is making your [pc.cocks] ache to be touched, a little bead of pre forming at the tip");
+		if (kok > 1) output("s");
+		output(" while your own [pc.vaginas] beg");
+		if (vag == 1) output("s");
+		output(" to be played with, a bead of feminine need beginning to trickle down your [pc.thigh].");
+	}
+	else if (kok > 0)
+	{
+		output("\n\nThis show is making your [pc.cocks] ache to be touched, a little bead of pre forming at the tip");
+		if (pc.cockTotal() > 1) output("s");
+	}
+	else if (vag > 0)
+	{
+		output("\n\nThis show is making your own [pc.vaginas] beg to be played with, a bead of feminine need beginning to trickle down your [pc.thigh].");
+	}
+	
+	if (pc.biggestTitSize() > 5) output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when a thought worms its way to the forefront of your mind: that your breasts are feeling especially small tonight. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away. You also begin to notice a gentle tapping on the side of your [pc.leg].");
+	else if (pc.biggestTitSize() < 5) output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when a thought worms its way to the forefront of your mind: that your breasts are feeling strangely large tonight. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away. You also begin to notice a gentle tapping on the side of your [pc.leg].");
+	else output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when you begin to notice a tapping sensation on your right leg. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away, the gentle patting continuing on your [pc.leg].");
+		
+	output("\n\n<i>What is...</i>");
+	output("\n\nAs you begin to look down to see what is causing the odd sensation, your mind swirls and consciousness comes flooding back into you. With a sharp intake, you awaken to find yourself laying on your side in bed. In the dark of your cabin, your sleep filled eyes make out a head full of snow-white hair on the pillow in front of you.");
+	output("\n\nA pleasurable sigh from the lover you’re spooning snaps your sleep addled mind to attention, bringing you to two quick realizations: that Anno’s fluffy tail was causing the offending sensation, gently tapping your [pc.leg] over and over, and that your hand isn’t holding your own breast.  <i>“Good morning, boss,”</i> she whispers, as she slides her furred digits over your own. <i>“I can think of all kinds of places to use this hand, but how about after a few more hours of sleep?”</i> She says, yawning.");
+	output("\n\nYou wouldn’t mind a bit more sleep yourself, and figure you and Anno can have some fun when you both get up. Relinquishing you lover’s breast, you wrap your arm around her stomach and pull her tight against you. You settle your head back into your pillow, thinking of all the things you and Anno can get up to tomorrow. Your mind swims with the possibilities as sleep once again overtakes you.");
+	
+	pc.lust(30);
 }

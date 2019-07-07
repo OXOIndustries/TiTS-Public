@@ -91,6 +91,8 @@
 			else output("remaining at");
 			output(" the sides of your head and changing shape to a form very much like a human’s save for the pointed tips. <b>You have elven ears!</b>");
 			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			
 			if(pc.earLength != 0)
 			{
@@ -320,8 +322,8 @@
 			//Transparo hair
 			if(pc.hairType != GLOBAL.HAIR_TYPE_TRANSPARENT && pc.hairLength > 0)
 			{
-				highEventsArgs.push(fuckinShadowHairTF);
-				highEventsArgs.push(undefined);
+				highEvents.push(fuckinShadowHairTF);
+				highEventsArgs.push(pc);
 			}
 			//Mid:
 			//Change hair color to black, violet, or glowing violet.

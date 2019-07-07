@@ -258,6 +258,7 @@ public function genitalRemovalShit():void
 		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don’t want to get rid of your pussy!");
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You’re not losing your junk.");
 		else if(pc.hasWombPregnancy()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
+		else if(pc.hasSilicone("tits")) addDisabledButton(0,"Pure Purge","Pure Purge","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don’t have any genitals!");
 		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
@@ -308,12 +309,15 @@ public function genitalRemovalShit():void
 		if(pc.credits >= 10000) addButton(5,"Vagina R.",lashTreatment,"vagina replacement","Vaginal Replacement","10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
 		else addDisabledButton(5,"Vagina R.","Vagina Replacement","You cannot afford this treatment.");
 	}
+	
 	if((pc.biggestTitSize() >= 1 || pc.bRows()))
 	{
-		if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+		if(pc.hasSilicone("tits")) addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
+		else if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
 		else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You cannot afford this treatment.");
 	}
 	else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You need a rack to remove in order to get this operation.");
+	
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -496,13 +500,10 @@ public function lashTreatment2(treatment:String):void
 	else if(treatment == "priaprism purge")
 	{
 		output("[pc.EachCock] has vanished");
-		if(pc.balls > 0) 
-		{
-			output(" along with your sack");
-			pc.removeBalls();
-		}
+		if(pc.balls > 0) output(" along with your sack");
 		output("!");
 		pc.removeCocks();
+		pc.removeBalls();
 		pc.resetCumProduction();
 	}
 	else if(treatment == "pure purge")
@@ -686,7 +687,7 @@ public function flirtWithDrLash():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Keep Flirtin’",keepFlirtingWithLash);
-	addButton(1,"Nevermind",walkUpToDocLashAgain);
+	addButton(1,"Never Mind",walkUpToDocLashAgain);
 }
 
 //Keep Flirting

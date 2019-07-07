@@ -1333,7 +1333,7 @@ public function hugSylvie():void
 	//Cocks
 	if(pc.hasCock()) 
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, nevermind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, never mind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
 		if(pc.cockTotal() > 1) output("s");
 		output(" that you can. She feels it too. There’s no way that she can’t, not while she’s basically grinding ");
 		if(pc.cockTotal() > 1) output("iron bars");
@@ -1349,7 +1349,7 @@ public function hugSylvie():void
 	//NoCoxButtCunts
 	else if(pc.hasVagina())
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, nevermind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, never mind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.lowerGarments]");
 		output(".");
 		if(pc.clitLength >= 3)
@@ -2050,7 +2050,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 10k
 	if(cumQ > 10000) output("\n\nThe policegirl must think the mess is getting out of hand, because she steps back to slide your [pc.cockHead " + x + "] back inside her tunnel, capturing wave after wave of virile bliss.");
 	//More than 20k - no new PG.
-	if(cumQ > 20000) output("Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
+	if(cumQ > 20000) output(" Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
 	//More than 30k - no new PG.
 	if(cumQ > 30000) 
 	{
@@ -2513,7 +2513,7 @@ public function redMyrSylvieFunz():void
 	output(" When you attempt to join them you feel the drunken moose-taur’s grip tighten around your shoulders.");
 
 	output("\n\n<i>“Noooooo. Don’ leave... More lick. I need you to lick more,”</i> she slurs, planting a sloppy smooch on your forehead and pulling you into her cleavage. Even incapacitated by aphrodisiac venom, her strength is far beyond the average woman. You resign yourself to the situation, what the hell. It’s not like you weren’t coming right back. The drunken pecks continue to dot your head, so you turn up to meet one, pushing back up and into her exposed mouth with your [pc.tongue].");
-	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breath in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
+	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breathe in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
 	output("\n\nFaintly twitching muscle alerts you to an oncoming orgasm before Sylvie can register what’s going on. This one feels much bigger than the barrage of smaller spasms that have come before it, and you make as inconspicuous an effort as possible to maneuver the moose-taur police-woman’s hands into a better position.");
 	if(silly) output(" An early obituary reading <i>“crushed to death by moose in the throes of lust”</i> is not on your desired list of accomplishments.");
 	else output(" A hug is one thing, a guillotine is another.");
@@ -3883,7 +3883,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	output("\n\n<i>“Sorry Kally, I’ve just got this thing about big ol’ horsey dicks ever since I got one of my own, and you had yours just hanging there.”</i>");
 	output("\n\n<i>“Only since you got one of your own?”</i> you chide.");
 	output("\n\n<i>“Well, more of a one than before.”</i> She trails off dreamily as her massive mare meat throbs against her underside. Kally’s stallion is equally straining, as if the two are having a competition to see which one can drain more blood from their owners.");
-	output("\n\nThe two have almost entirely lost focus as they ogle eachother’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
+	output("\n\nThe two have almost entirely lost focus as they ogle each other’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
 
 	//Kiro and Kally sitting in a tree F U C K I N G:
 	if(kiroKallyThreesomes() > 0) 
@@ -3932,7 +3932,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
 	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"Up the Ass","Let’s take this in a different direction.");
 	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
-	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Nevermind","You enjoy your organs far too much to do this.")
+	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Never Mind","You enjoy your organs far too much to do this.")
 }
 
 //Nope

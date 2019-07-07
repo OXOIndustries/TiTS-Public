@@ -341,7 +341,7 @@ public function vanaePCVictory():void
 			output("The busty huntress can’t take it any longer, letting out a sweet cry as she falls to the ground. All the while she’s stroking her [enemy.clits], gazing at you as she masturbates furiously.");
 
 			output("\n\n<i>“Oh sweet Sky Mother, I can’t take it any longer");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don’t care if you are a [pc.raceShort]");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don’t care if you are [pc.aRaceShort]");
 			output(". Please, just fuck me!”</i> she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [enemy.legs] just so you can see just how sopping wet she is.");
 		}
 		else
@@ -561,7 +561,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			if (enemy is HuntressVanae)
 			{
 				output("\n\n<i>“Y-you want to breed with me willingly, after I tried to attack you? Um... sure!”</i> Her cheeks flush. Suddenly she’s acting quite coy. <i>“...");
-				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You’re really strange, for a [pc.raceShort]. You’re quite different from others of your kind");
+				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You’re really strange, for [pc.aRaceShort]. You’re quite different from others of your kind");
 				else output(" You really aren’t from around here, are you? I’ve never met an off-worlder like you before");
 				output(".”</i>");
 			}
@@ -1526,7 +1526,7 @@ public function vanaeHuntressMilkBath():void
 		if (pc.hasCock()) output(" [pc.cum]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.girlcum]");
-		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like a [pc.raceShort]-shaped geyser until you are utterly spent.");
+		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like [pc.aRaceShort]-shaped geyser until you are utterly spent.");
 
 		output("\n\n<i>“Couldn’t hold out anymore? I understand, it’s pretty intense. But we’re nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(" , off-worlder");
@@ -1888,7 +1888,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 		if (pc.hasCock()) output(" [pc.cum]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.girlcum]");
-		output(" explode from your [pc.groin] and shoot all over the place. You continue to spasm spastically and unload like a [pc.raceShort]-shaped jism geyser until you are utterly spent. ");
+		output(" explode from your [pc.groin] and shoot all over the place. You continue to spasm spastically and unload like [pc.aRaceShort]-shaped jism geyser until you are utterly spent. ");
 
 		output("\n\n<i>“Couldn’t hold out anymore? I understand, it’s pretty intense. But we’re nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");

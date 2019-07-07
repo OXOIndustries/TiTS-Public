@@ -44,7 +44,8 @@
 			baseDamage = new TypeCollection();
 			baseDamage.freezing.damageValue = 8;
 			//baseDamage.addFlag(DamageFlag.BULLET);
-			
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
+
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

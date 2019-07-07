@@ -46,6 +46,7 @@ package classes.Items.Guns
 			this.baseDamage.electric.damageValue = 18;
 			this.baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.baseDamage.addFlag(DamageFlag.DRAINING);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.critBonus = 5;
 			

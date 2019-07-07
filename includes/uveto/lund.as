@@ -1,6 +1,6 @@
 //Name: Lund
 //Personality: Fluffy with a Napoleon complex. Wants to dominantly dick down bigger aliens
-//Physical: 5’4”</i>, muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
+//Physical: 5' 4", muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
 
 //Sex scenes
 //Get doggied
@@ -159,7 +159,7 @@ public function meetLund():void
 	output(",”</i> he says, poking you rudely in the chest. <i>“");
 	if(!korgiTranslate()) 
 	{
-		output("Think you bigshot? No. Prouncing around on your stupid ");
+		output("Think you bigshot? No. P"+ (pc.hasLegFlag(GLOBAL.FLAG_PAWS) ? "ou" : "ra") +"ncing around on your stupid ");
 		if(pc.hasHooves()) output("hoof-foots");
 		else if (pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output("paws");
 		else if(pc.hasToeClaws()) output("clawfoots");
@@ -2356,7 +2356,7 @@ public function moreCookiesPleaseLund2():void
 	output("\n\nYour [pc.eyes] roll into your head as you drown in Lund’s display as your alpha and master. His every thrust is punctuated with another warm, wet splash of his cum spraying into you; he growls through his clenched mouth as he ruts you and claims you, inside and out. The jizz on your face, still fresh and dripping, flings to and fro with Lund’s fierce rocking into you. The only thing left to prove to you both that you’re well and truly his, is to take that knot into you.");
 
 	output("\n\nYou beg him like you did when you first submitted to him. You cry to him to tie you; to give you his Korgonne cock and to fill you. You’re nothing but a dumb, slutty alien for him, and you want to walk around the hold with his jizz leaking from your asshole. You want to be here, on his bed, every day, for another full stomach of his amazing cock.");
-	output("\n\nAppreciating your sentiment, and submission, Lund swallows the remainder of the cookie in his mouth, and he grants your request: with another three or four cookie-driven thrusts, his knot batters into your until it gives, and he ties himself to you. The action is met with a few more thick bursts of his cum into your ass, rounding out your [pc.belly] with his enormous load.");
+	output("\n\nAppreciating your sentiment, and submission, Lund swallows the remainder of the cookie in his mouth, and he grants your request: with another three or four cookie-driven thrusts, his knot batters into your [pc.asshole] until it gives, and he ties himself to you. The action is met with a few more thick bursts of his cum into your ass, rounding out your [pc.belly] with his enormous load.");
 	output("\n\nYou can’t help but orgasm yourself beneath him: you join him in sexual ecstasy and clench your [pc.ass] on his cock as your ");
 	if(pc.hasCock()) output("[pc.cock] sprays its load beneath you, soaking into his bed");
 	if(pc.isHerm()) output(", while your ");
@@ -2754,7 +2754,7 @@ public function lundSubmissionThing():void
 		output("\n\n<i>“Nnnngh, good [pc.girlBoy],”</i> he grunts, keeping your face firmly planted right in his groin as his balls pump against your chin. At his declaration, you can’t help it. Trying to keep your hips from jerking too violently, you gurgle into his massive, swelling knot while your");
 		if(pc.hasVagina() && !pc.isHerm())
 		{
-			output("puss");
+			output(" puss");
 			if(pc.totalVaginas() == 1) output("y spasms");
 			else output("ies spasm");
 			output(",");
@@ -2764,7 +2764,7 @@ public function lundSubmissionThing():void
 		}
 		else if(pc.isHerm())
 		{
-			output("puss");
+			output(" puss");
 			if(pc.totalVaginas() == 1)
 			{
 				output("y");
@@ -2784,7 +2784,7 @@ public function lundSubmissionThing():void
 		}
 		else
 		{
-			output("cock");
+			output(" cock");
 			if(pc.cockTotal() > 1) output("s stiffen");
 			else output(" stiffens");
 			output(", bouncing and flexing while you spray seed between Lund’s legs");
@@ -2953,7 +2953,7 @@ public function lundSubmissionThing():void
 		output("\n\nLund doesn’t give you any time to dwell on the situation. You’re shy at first, trying to stifle your grunts and moans as he penetrates you so deeply you can feel the tip of his fat doggycock");
 		if(!pc.hasVagina()) output(" creating an outline on your stomach");
 		else output(" reaching your cervix, lightly brushing it and leaving precum behind as a marker");
-		output(". But in the seconds that pass, you find reassurance in your master’s presence, growing more and more horny and willing as roughly takes you, his thighs slapping against your ass. More importantly, you think <i>he</i> wants you to let go, to show everyone you’re well and truly his little bitch, and nothing could make you happier than to do so.");
+		output(". But in the seconds that pass, you find reassurance in your master’s presence, growing more and more horny and willing as he roughly takes you, his thighs slapping against your ass. More importantly, you think <i>he</i> wants you to let go, to show everyone you’re well and truly his little bitch, and nothing could make you happier than to do so.");
 		output("\n\n<i>“Oooohhhhh, god, Lund,”</i> you moan in pleasure, lifting your head to look directly at the crowd with your mouth hanging open, panting in need. <i>“Oh god, I’m cumming, I’m cumming, I’m nnnnnngh-!”</i>");
 		output("\n\nIn front of what must be close to a hundred korgonne, you cum your brains out, utterly debasing yourself while the pleasure washes throughout your body, scrubbing clean any thoughts of holding back or your own ego and pride. You wonder why you were ever nervous. It feels fucking <i>amazing</i> to be taken by your master in your slave outfit, more rewarding than constricting now, emphasizing all of your attributes as Lund fucks you silly in front of a crowd.");
 		output("\n\nThe reactions of the crowd are plain to see. Inspired, more and more korgonne turn to those next to them, indulging their own voracious sexual appetites while others cheer them on, still eating and drinking. The atmosphere is like that of a primal, sexual carnival, and glancing upwards you can see the couple from before against the wall. The girl is standing on one leg with the man supporting her, the other lifted high into the air so he can freely plunge his cock into her sopping wet pussy. Ecstasy is written all over her face as he grinds against her, and you find yourself wondering if that’s what you look like to others.");
@@ -3026,8 +3026,8 @@ public function lundSpecialSubmission2(sceneSelect:Number):void
 		else output("The males know not to mess with my property,");
 		output("”</i> he says. <i>“You just don’t.”</i>");
 		output("\n\nPulling on your leash, he jerks you closer until you’re standing next to him, a slave accompanying their master. The hierarchy is immediately obvious to anyone who looks, and in a way, that makes you feel good about yourself. It’s Lund’s decision if he wants to show you off, and having your place known by everyone removes the need for pretenses. You’re free to be yourself, and you choose to place that sense of self in Lund’s firm, dominant hands. You can feel them on your");
-		if(pc.isTaur()) output("[pc.breasts]");
-		else output("[pc.butt]");
+		if(pc.isTaur()) output(" [pc.breasts]");
+		else output(" [pc.butt]");
 		output(" right now, unable to stop yourself from moaning quietly as he roughly cops a feel of you in plain view.");
 		output("\n\n<i>“Mm,”</i> he grunts approvingly. <i>“");
 		if(!korgiTranslate()) output("Alien");
@@ -3798,7 +3798,7 @@ public function look4Lund():void
 	if(lundDommingPC()) 
 	{
 		output(" clap your hand over your mouth and gasp into it when you see what’s happening. Before you on the bed - facing away, luckily - is Lund plowing the fuck out of a female korgonne’s pussy doggystyle. If the loud, orgasmic moans are any indication, she’s having a great time getting pounded out by his canine cock. He has his hands dominantly wrapped around her hips, thrusting into her with a dominance that reminds you of... of, well, when he does this to <i>you</i>.");
-		output("\n\nSo that’s what it looks like to other people. Your cheeks flush red, burning hot while you watch the muscles on his back tighten with every push forward. The way he uses his hips to fuck her is masterful, his ass flexing as he grunts in pleasure. You can see his balls, hangin heavy with seed between his legs, slapping against her fat, jiggling ass with a sound like a whipcrack in the tiny room. Void... you were jealous at first, but now you’re just horny.");
+		output("\n\nSo that’s what it looks like to other people. Your cheeks flush red, burning hot while you watch the muscles on his back tighten with every push forward. The way he uses his hips to fuck her is masterful, his ass flexing as he grunts in pleasure. You can see his balls, hanging heavy with seed between his legs, slapping against her fat, jiggling ass with a sound like a whipcrack in the tiny room. Void... you were jealous at first, but now you’re just horny.");
 	}
 	else
 	{

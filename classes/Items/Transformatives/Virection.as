@@ -299,8 +299,8 @@ package classes.Items.Transformatives {
 				
 				//set thickness depending on perks
 				if (target.hasPerk("Hung")) target.cocks[randomCockIndex].cThicknessRatioRaw *= 1.15;
-				else if (target.hasPerk("Mini")) target.cocks[randomCockIndex].cThicknessRatioRaw *= 1.1;
-				else target.cocks[randomCockIndex].cThicknessRatioRaw *= 1.05;
+				else if (target.hasPerk("Mini")) target.cocks[randomCockIndex].cThicknessRatioRaw *= 1.05;
+				else target.cocks[randomCockIndex].cThicknessRatioRaw *= 1.1;
 				
 				target.orgasm();
 				
@@ -386,8 +386,8 @@ package classes.Items.Transformatives {
 			
 			//set a thickness adaping for hung and mini
 			if(target.hasPerk("Hung")) target.cocks[randomCockIndex].cThicknessRatioRaw += 0.15;
-			else if (target.hasPerk("Mini")) target.cocks[randomCockIndex].cThicknessRatioRaw += 0.1;
-			else target.cocks[randomCockIndex].cThicknessRatioRaw += 0.05;
+			else if (target.hasPerk("Mini")) target.cocks[randomCockIndex].cThicknessRatioRaw += 0.05;
+			else target.cocks[randomCockIndex].cThicknessRatioRaw += 0.1;
 			
 			output("\n\nA strange sensation surges through your [pc.cock " + randomCockIndex + "]. You");
 			if(target.legs.length == 1) output(" stretch out your [pc.leg]");

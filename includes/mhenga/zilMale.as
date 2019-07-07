@@ -82,6 +82,8 @@ public function winVsZil():void {
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay);
+	else if(pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already after losing in combat....");
+	else if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addDisabledButton(3,"Oral Play","Oral Play","You need genitals for this!");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	//*Tailcock Peg Him
 	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);
@@ -818,10 +820,10 @@ public function swallowDatZilCockCauseJooLost():void {
 	
 	output("\n\nA rope of honey-like cum splatters off your tongue and slides down your throat before you can react. Master’s balls twitch so perfectly, pumping their syrupy load through his lovely dick and into your waiting mouth. You collect as much as you can on your tongue, holding each successive squirt on your palate until your cheeks are puffed out almost comically. He groans and pulls out, stroking himself as he fires a series of long, wet ejaculations over your [pc.face] and [pc.hair]. You smile, still holding his load, and let him coat you with the ropes of goo.");
 	output("\n\n<i>“Swallow,”</i> your master’s voice buzzes in your ears. You open your mouth to show it to him, and then gulp noisily. It takes two big, long swallows to consume all his honey. Then, you open wide to show him what you’ve done.");
-	output("\n\nThe zil pats your head and chirps, <i>“Nice work. </i>");
-	if(!silly) output("<i>Perhaps we’ll meet again and I can bring you home.</i>");
-	else output("<i>Perhaps if we meet again you’ll get a little bee all your own.</i>");
-	output("<i>“</i>");
+	output("\n\nThe zil pats your head and chirps, <i>“Nice work.");
+	if(!silly) output(" Perhaps we’ll meet again and I can bring you home.");
+	else output(" Perhaps if we meet again you’ll get a little bee all your own.");
+	output("”</i>");
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	// Blah blah, combat texts.
 	pc.loadInMouth(enemy);
@@ -1169,10 +1171,10 @@ public function zilSticksItInYourBoot():void {
 	}
 	output(" you made, the zil spurting his last ropes across your [pc.legOrLegs], [pc.butt], and back.");
 	
-	output("\n\nHe lands a few feet away and admits, <i>“That was better than I thought it would be. I hope we’ll meet again. Maybe I’ll </i>");
-	if(rand(2) == 0) output("<i>even let you be on top!</i>");
-	else output("<i>fuck you so hard you don’t want to leave!</i>");
-	output("<i>“</i>");
+	output("\n\nHe lands a few feet away and admits, <i>“That was better than I thought it would be. I hope we’ll meet again. Maybe I’ll");
+	if(rand(2) == 0) output(" even let you be on top!");
+	else output(" fuck you so hard you don’t want to leave!");
+	output("”</i>");
 	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.\n\n");
 	processTime(25);
 	pc.orgasm();
@@ -1613,7 +1615,7 @@ public function maleZilPreggomonesEncounterNext(response:String = ""):void
 				output("\n\nDespite your attempts to delay your climax, it comes again, and even more powerful than the last. Your cock-filled pussy spasms, squirting [pc.girlcum] onto your lover’s crotch, your [pc.hips] grinding against his in a series of autonomous, lust-driven movement, rubbing your most sensitive parts against his shaft.");
 				if(pc.hasCock()) output(" What [pc.cum] you have left splatters you and your bee-boyfriend as your love-muscle convulses with the weight of your second orgasm.");
 				output(" All the while you scream with bliss, and luckily it doesn’t look like your mate is far behind you this time. Your nipple pops free of his lips as he pulls off it, letting out a howl of pleasure and burying his honey-stick inside you with one good thrust. The turgid shaft spasm inside you, coating your inner walls with honey-cum that soon dribbles out of your slit without a knot to hold it back, his hips bucking against yours.");
-				output("\n\nWith a few last jerky hip-thrusts and spurts of sweet, golden cum, you both come down from your peaks, left gazing happily into eachother’s eyes before your mate pulls out of your honey-dripping cunt. You whimper as his cockflesh rubs against your still-sensitive pussy one last time, and your lover rolls to your side. There, he’s able to wrap his arms around you and you’re able to rest your head on his chest. It seems like you’re both ready for sleep after that, and with your mate holding you tight, you’ll feel safe taking a nap in the jungle with him.");
+				output("\n\nWith a few last jerky hip-thrusts and spurts of sweet, golden cum, you both come down from your peaks, left gazing happily into each other’s eyes before your mate pulls out of your honey-dripping cunt. You whimper as his cockflesh rubs against your still-sensitive pussy one last time, and your lover rolls to your side. There, he’s able to wrap his arms around you and you’re able to rest your head on his chest. It seems like you’re both ready for sleep after that, and with your mate holding you tight, you’ll feel safe taking a nap in the jungle with him.");
 			}
 			// Taur Variant
 			else

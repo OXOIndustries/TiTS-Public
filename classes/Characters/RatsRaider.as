@@ -48,13 +48,13 @@ package classes.Characters
 		{
 			this.ratVariety = ratVariety;
 		
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 
 			this.a = "the ";
 			this.capitalA = "The ";
-						
+			
 			this.hipRatingRaw = 5;
 			this.buttRatingRaw = 5;
 			
@@ -80,7 +80,7 @@ package classes.Characters
 			this.shield = new SalamanderShield();
 			this.armor = new RattyArmor();
 			this.armor.evasion = 10;
-			this.baseHPResistances.burning.resistanceValue = 75.0;
+			this.baseHPResistances.burning.resistanceValue = 50.0;
 			this.baseHPResistances.electric.resistanceValue = 75.0;
 			
 			this.ass.bonusCapacity = ratCapacity - analCapacity();
@@ -157,8 +157,8 @@ package classes.Characters
 					intelligenceRaw = 36;
 					willpowerRaw = 16;
 					
-					shield.shields += 100;
-					HPMod = -11;
+					shield.shields += 90;
+					HPMod = -21;
 					
 					specialAttacks = ["flashbang", "stun gun"];
 					
@@ -187,8 +187,8 @@ package classes.Characters
 					intelligenceRaw = 16;
 					willpowerRaw = 24;
 					
-					shield.shields += 55;
-					HPMod = 74;
+					shield.shields += 45;
+					HPMod = 54;
 					
 					addFaceFlag(GLOBAL.FLAG_FRECKLED);
 					
@@ -204,7 +204,7 @@ package classes.Characters
 					tallness = 58;
 					skinTone = "peach";
 					furColor = "light pink";
-					eyeColor = "bright green";
+					eyeColor = "green";
 					hairColor = "blonde and purple";
 					nippleColor = "light pink";
 					break;
@@ -224,7 +224,7 @@ package classes.Characters
 					hairColor = "black";
 					break;
 				case FAIR_MOUSEBOY:
-					tallness = 66;
+					tallness = 61;
 					skinTone = "fair";
 					eyeColor = "brown";
 					hairColor = "light brown";
@@ -248,12 +248,12 @@ package classes.Characters
 					
 					break;
 				case HALF_BOY:
-					tallness = 65;
+					tallness = 60;
 					femininity = 40;
 					skinTone = "chocolate";
 					furColor = "black";
 					eyeColor = "violet";
-					hairColor = "light brown";
+					hairColor = "blonde";
 					
 					hipRatingRaw = 9;
 					buttRatingRaw = 8;

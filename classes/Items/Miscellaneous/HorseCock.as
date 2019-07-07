@@ -67,7 +67,7 @@
 				//<You no cock>
 				if(!pc.hasCock())
 				{
-					kGAMECLASS.output("You turn the sheath over in your hands, jiggling it around and chuckling as the large balls bounce around your hand. You absentmindedly stick the sheath to your naked groin, swinging your [pc.hips] around you briefly relinquish your grip on the toy only to find it remaining stuck to your crotch. You try to pull it away from your groin but are unable to do so. It must have some sort of suction device or something, you think.. You waggle your [pc.hips], and the fleshy tube sticking to your crotch sways back and forth, the apple-sized balls slapping into your thighs.");
+					kGAMECLASS.output("You turn the sheath over in your hands, jiggling it around and chuckling as the large balls bounce around your hand. You absentmindedly stick the sheath to your naked groin, swinging your [pc.hips] around you briefly relinquish your grip on the toy only to find it remaining stuck to your crotch. You try to pull it away from your groin but are unable to do so. It must have some sort of suction device or something, you think... You waggle your [pc.hips], and the fleshy tube sticking to your crotch sways back and forth, the apple-sized balls slapping into your thighs.");
 					kGAMECLASS.output("\n\nYou chuckle at the sight of yourself with the equine sheath attached to your formerly bare crotch and lose yourself momentarily in a day-dream of railing some busty alien with a massive horse-cock. A sharp pain in your stomach causes you to double over, and you nearly scream in pain as you accidentally squish one of the fake testicles between your legs. A white hot lance of agony shoots up from your groin, and you freeze in shock. You look down at your crotch in confusion as a warm tingling begins emanating from your genitals replacing the previous pain with pure pleasure.");
 					kGAMECLASS.output("\n\nYou moan at the alien sensations assaulting the pleasure centers of your brain, and idly note in your mild stupor that you can feel new and different parts of your anatomy that weren’t there before. Tentatively, you reach down with a trembling hand to touch the balls dangling heavily from your groin. You nearly pass out as you heft your new balls; you feel them rolling around in your hand and simultaneously enjoy the sensation of a warm palm cupping your sensitive spheres. You grit your teeth from involuntary, mounting arousal, large veins rising on the surface of the sheath from blood feeding into the dark depths of your fleshy tube. You gasp in amazement as a massive horsecock snakes from the entrance of your sheath.");
 					kGAMECLASS.output("\n\nInch after inch of horse meat pours from your crotch in what seems a never-ending march up your chest: six inches, eight inches, 12 inches.... Finally it tops out at a mind boggling 16 inches, hovering temptingly in front of your nose. A potent, musky scent pours from the tip of your new cock, and a slick, sweet and salty smelling fluid dribbles from your urethra before your big balls tense up to blow a load of " + (pc.cumType == GLOBAL.FLUID_TYPE_CUM ? "creamy white" : "[pc.cumColor]") + " equine seed across your face. You gasp in surprise before another huge load of cum fills your agape mouth. You continue painting yourself for another minute or so before, spent, your cock slithers back into its sheath to hang innocuously along your thigh.");
@@ -80,6 +80,7 @@
 					}
 					pc.createCock();
 					pc.shiftCock(0, GLOBAL.TYPE_EQUINE);
+					pc.cocks[0].cockColor = "mottled pink and black";
 					pc.cocks[0].cLengthRaw = 16;
 					pc.boostCum(50);
 					pc.refractoryRate++;
@@ -165,6 +166,11 @@
 						if(pc.balls > 2) kGAMECLASS.output(" You aren’t sure how you fit so many in space built for two.");
 					}
 				}
+				else
+				{
+					kGAMECLASS.output(" As you shift your weight, the two apple-sized balls slap against your [pc.thighs].");
+					pc.ballSizeRaw = 11;
+				}
 				pc.balls = 2;
 				kGAMECLASS.output("\n\nYou gasp at the tight feeling around your cock as you look at yourself in the mirror. The sheath has to be at least a foot long and a little wider than your cock. You admire the way your newly bestial genitals sway back and forth heavily and run your hands all over your groin. Suddenly, sharp pains along your cock pierce your reverie, and you look down at your sheath in mild shock. You can feel the skin of the sheath as though it were your own! You reach down and try to tug the fleshy toy from your crotch and find it firmly attached to your skin; you wince at the unusual sensation as if you’re pulling your cock out by the root.");
 				kGAMECLASS.output("\n\nYour body grows warmer and warmer until huge, throbbing veins rise on the surface of your sheath. You squeeze and massage your big balls instinctively. Your breath catches in your chest as your newly blunted prick emerges from its leathery cocoon in the form of an enormous, black and pink-mottled horse-cock. Inch after inch of snakes out with every beat of your pounding heart, the girthy length bouncing along to the increasingly frantic biological rhythm.");
@@ -181,6 +187,7 @@
 				}
 				kGAMECLASS.output(".");
 				pc.shiftCock(target, GLOBAL.TYPE_EQUINE);
+				if(pc.cocks[target].cLengthRaw < 16) pc.cocks[target].cLengthRaw = 16;
 				pc.cocks[target].cLengthRaw += 4;
 				pc.cocks[target].cockColor = "mottled pink and black";
 				pc.shower();
@@ -214,6 +221,11 @@
 						if(pc.balls > 2) kGAMECLASS.output(" You aren’t sure how you fit so many in space built for two.");
 					}
 				}
+				else
+				{
+					kGAMECLASS.output(" As you shift your weight, the two apple-sized balls slap against your [pc.thighs].");
+					pc.ballSizeRaw = 11;
+				}
 				pc.balls = 2;
 				kGAMECLASS.output("\n\nYou chuckle as you walk around the room, swishing your hips and savoring the feeling of the sheath and heavy balls tugging gently at your groin as they swing pendulously. A sharp pain coming from your cock breaks you out of your reverie. You try to tug the sheath off of your shaft and wince in pain as it feels like you’re trying to pull your cock out by the roots. You groan at a buzzing sensation in your crotch. It’s just like when your arm is waking up after having laid on it wrong.");
 				kGAMECLASS.output("\n\nSlumping to the floor, you look at your groin in amazement as large, thick veins rise on the surface of your sheath, blood visibly pumping into your crotch. Your breath catches in your chest as the thick head of a huge horse-cock emerges from the opening of the sheath.");
@@ -239,6 +251,7 @@
 					CodexManager.unlockEntry("SynthSheath");
 				}
 				pc.shiftCock(target, GLOBAL.TYPE_EQUINE);
+				if(pc.cocks[target].cLengthRaw < 16) pc.cocks[target].cLengthRaw = 16;
 				pc.cocks[target].cockColor = "mottled pink and black";
 			}
 			pc.boostCum(50);

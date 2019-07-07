@@ -27,8 +27,8 @@ public function initNewTexasRooms():void
 
 	rooms["501"] = new RoomClass(this);
 	rooms["501"].roomName = "CARGO\nTHOROUGHFARE";
-	rooms["501"].description = "Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld goods and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled “milk,” packaged in huge, temperature-controlled barrels. To the north, a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled “Customs”. Your ship is parked back to the east.";
-	rooms["501"].runOnEnter = undefined;
+	rooms["501"].description = "";
+	rooms["501"].runOnEnter = autoRearmNewTexas;
 	rooms["501"].eastExit = "500";
 	rooms["501"].northExit = "TEXAS CUSTOMS";
 	rooms["501"].moveMinutes = 2;
@@ -41,7 +41,7 @@ public function initNewTexasRooms():void
 	rooms["503"] = new RoomClass(this);
 	rooms["503"].roomName = "NEW\nTEXAS";
 	rooms["503"].description = "";
-	rooms["503"].runOnEnter = newTexasRoadFirstTime;
+	rooms["503"].runOnEnter = function():Boolean{newTexasRoadFirstTime(); return newTexasEncounterChances();}
 	rooms["503"].southExit = "TEXAS CUSTOMS";
 	rooms["503"].eastExit = "504";
 	rooms["503"].westExit = "531";
@@ -56,7 +56,7 @@ public function initNewTexasRooms():void
 	rooms["504"] = new RoomClass(this);
 	rooms["504"].roomName = "A DIRT\nROAD";
 	rooms["504"].description = "Just walking along this pockmarked road has you wishing that the locals would do a better job maintaining their infrastructure. They don’t seem to mind, though. All too often, you see guys walking by, escorting curvy, wiggly cow-girls with a well-placed, squeezing palm or casually groping fingers. Their vehicles, boxy-looking hovertrucks, occasionally zip by, undoubtedly on some errand. Wooden steps to the north lead up onto a white porch that makes up the facade of an impressive looking ranch house. Plenty of foot traffic is going in and out, and you’re pretty sure you can make out a doormat with “Welcome, Y’all” spelled out on it.";
-	rooms["504"].runOnEnter = undefined;
+	rooms["504"].runOnEnter = newTexasEncounterChances;
 	rooms["504"].westExit = "503";
 	rooms["504"].eastExit = "505";
 	rooms["504"].northExit = "525";
@@ -70,7 +70,7 @@ public function initNewTexasRooms():void
 	rooms["505"] = new RoomClass(this);
 	rooms["505"].roomName = "THE\nROAD";
 	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that’s been weatherworn into what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
-	//rooms["505"].runOnEnter = ;
+	rooms["505"].runOnEnter = newTexasEncounterChances;
 	rooms["505"].westExit = "504";
 	rooms["505"].eastExit = "505.5";
 	rooms["505"].planet = "PLANET: NEW TEXAS";
@@ -157,13 +157,13 @@ public function initNewTexasRooms():void
 	rooms["505.5"].system = "SYSTEM: NYE";
 	rooms["505.5"].addFlag(GLOBAL.OUTDOOR);
 	rooms["505.5"].addFlag(GLOBAL.PUBLIC);
-	rooms["505.5"].runOnEnter = approachBuckBronoBonus;
+	rooms["505.5"].runOnEnter = function():Boolean{approachBuckBronoBonus(); return newTexasEncounterChances();}
 
 	//505.75 The Road
 	rooms["505.75"] = new RoomClass(this);
 	rooms["505.75"].roomName = "THE\nROAD";
 	rooms["505.75"].description = "";
-	rooms["505.75"].runOnEnter = brandyBonusShiiiit;
+	rooms["505.75"].runOnEnter = function():Boolean{brandyBonusShiiiit(); return newTexasEncounterChances();}
 	rooms["505.75"].westExit = "505.5";
 	rooms["505.75"].eastExit = "506";
 	rooms["505.75"].planet = "PLANET: NEW TEXAS";
@@ -176,7 +176,7 @@ public function initNewTexasRooms():void
 	rooms["506"] = new RoomClass(this);
 	rooms["506"].roomName = "THE\nROAD";
 	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They’re at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It’s best to stay on the road for now. A gap to the southeast reveals a colorful structure.";
-	rooms["506"].runOnEnter = undefined;
+	rooms["506"].runOnEnter = newTexasEncounterChances;
 	rooms["506"].westExit = "505.75";
 	rooms["506"].eastExit = "507";
 	rooms["506"].planet = "PLANET: NEW TEXAS";
@@ -189,7 +189,7 @@ public function initNewTexasRooms():void
 	rooms["507"] = new RoomClass(this);
 	rooms["507"].roomName = "THE\nROAD";
 	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn’t far to the northeast, and an impressive ranch house stands off the road to the northwest.\n\nA one-story building with smooth tan walls sits to the north of the road, with a bright neon holographic sign across the front proclaiming it to be the “Ten Ton Gym”. The sign shows a cartoonish, overmuscled bull hefting a barbell the size of a small freighter over his head with one hand. Plate glass windows across the front give you a glimpse into a weight room filled with denizens of New Texas, cows and bulls alike lifting weights of varying sizes.\n\nAs you watch, the giant barbell on the sign changes to an actual cow, its eyes wide in surprise, then to a fit cowgirl with breasts the size of her head, raising two weights with her toned arms. The hard-bodied bull winks at you between the changes.";
-	rooms["507"].runOnEnter = icedTeatsExteriorBonusFunc;
+	rooms["507"].runOnEnter = function():Boolean{icedTeatsExteriorBonusFunc(); return newTexasEncounterChances();}
 	rooms["507"].westExit = "506";
 	rooms["507"].eastExit = "508";
 	rooms["507"].southExit = "540";
@@ -205,7 +205,7 @@ public function initNewTexasRooms():void
 	rooms["508"] = new RoomClass(this);
 	rooms["508"].roomName = "THE\nROAD";
 	rooms["508"].description = "A prairie breeze hits you as you walk, carrying the smell of straw and milk on an eastern breeze. Just to the northeast, you can see what is likely the source of the farmland scents: a red and white barn. You can vaguely hear the sound of mooing from within. The whole place has a fresh, wholesome air that’s entirely at odds with the message you received and the attitudes of the customs agents. Off to the southwest is a colorful-looking structure. A sweet dairy scent emanates from within.";
-	rooms["508"].runOnEnter = undefined;
+	rooms["508"].runOnEnter = newTexasEncounterChances;
 	rooms["508"].westExit = "507";
 	rooms["508"].eastExit = "509";
 	rooms["508"].southExit = "STRAPS";
@@ -235,7 +235,7 @@ public function initNewTexasRooms():void
 	rooms["509"] = new RoomClass(this);
 	rooms["509"].roomName = "THE\nROAD";
 	rooms["509"].description = "This close to the barn, you’re able to appreciate the work that went into its construction. Every beam is perfectly straight. The paint is smooth as if freshly washed. It’s even been patterned after the cows that undoubtedly lie within, with white spots interrupting its more normal, crimson exterior. Rather than having the typical cow-print shape, the spots’ edges follow the joints and braces of the wood, making the structure vaguely resemble some kind of blocky, strawberry cow. The doors in aren’t far to the east. You can also follow the road west towards the ranch house and landing barn.";
-	rooms["509"].runOnEnter = undefined;
+	rooms["509"].runOnEnter = newTexasEncounterChances;
 	rooms["509"].westExit = "508";
 	rooms["509"].eastExit = "510";
 	rooms["509"].moveMinutes = 2;
@@ -520,7 +520,7 @@ public function initNewTexasRooms():void
 	rooms["531"] = new RoomClass(this);
 	rooms["531"].roomName = "THE\nROAD";
 	rooms["531"].description = "You can’t go more than a few steps without hitting a divot or deeply sunken pothole in the road. The hovertrucks that trundle by don’t seem to have issue with the imperfect surface in the slightest, though they do kick up sizeable clouds of dust on their way. Thrumming ship engines sometimes emanate from the barn-turned-hangar to the southeast. The entrance is just a ways down the road. To the west, the road leads towards a field so big that it almost looks endless.";
-	rooms["531"].runOnEnter = miscreantManorBonus;
+	rooms["531"].runOnEnter = function():Boolean{miscreantManorBonus(); return newTexasEncounterChances();}
 	rooms["531"].westExit = "532";
 	rooms["531"].eastExit = "503";
 	rooms["531"].planet = "PLANET: NEW TEXAS";
@@ -532,7 +532,7 @@ public function initNewTexasRooms():void
 	rooms["532"] = new RoomClass(this);
 	rooms["532"].roomName = "THE\nROAD";
 	rooms["532"].description = "Fences tall enough to hold back an elephant block off the swaying grasses to the south, but the north side of the road is completely unguarded, perhaps thanks to some attempt at groundskeeping. The growth is kept to a well-trimmed patch. The bumpy surface of the road travels east and west away from here, leading back towards the buildings to the east or out into the fields to the west.";
-	rooms["532"].runOnEnter = undefined;
+	rooms["532"].runOnEnter = newTexasEncounterChances;
 	rooms["532"].eastExit = "531";
 	rooms["532"].westExit = "533";
 	rooms["532"].northExit = "535";
@@ -1194,4 +1194,15 @@ public function initNewTexasRooms():void
 	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.INDOOR);
 	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.PUBLIC);
 	rooms["NT BOTTLE PLANT SOUTH"].addFlag(GLOBAL.LIFTDOWN);
+	// Temp Room: Apartment of ten ton gym girl
+	rooms["NT TTGG APARTMENT"] = new RoomClass(this);
+	rooms["NT TTGG APARTMENT"].roomName = "\nAPARTMENT";
+	rooms["NT TTGG APARTMENT"].description = "";
+	rooms["NT TTGG APARTMENT"].runOnEnter = undefined;
+	rooms["NT TTGG APARTMENT"].moveMinutes = 1;
+	rooms["NT TTGG APARTMENT"].planet = "PLANET: NEW TEXAS";
+	rooms["NT TTGG APARTMENT"].system = "SYSTEM: NYE";
+	rooms["NT TTGG APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["NT TTGG APARTMENT"].addFlag(GLOBAL.PRIVATE);
+	rooms["NT TTGG APARTMENT"].addFlag(GLOBAL.NPC);
 }

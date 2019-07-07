@@ -453,7 +453,7 @@ public function approachTarkusCivilizedChaurmine():void
 		if(pc.isNaga()) output("you coil yourself upon the seat silently");
 		else output("you gingerly sit down");
 		output(". Figuring that it’d probably be best to follow this creature’s odd sense of etiquette, you wait for him to speak first. There’s a moment of silence as he looks you over thoroughly. Though if there’s any lust in his gaze, you don’t see it. You cough to get his attention, before the silence can get <i>too</i> awkward, and his eyes snap up to bore into yours once more.");
-		output("\n\n<i>“The stranger from the wastes,”</i> he rumbles, matter-of-factly, <i>“Come to louden my day once more...Thanks...”</i> Though said dryly, you can’t help but feel that there’s a little genuine gratitude in his words. You nod in affirmation, prompting him to give a nod of his own. <i>“Great. Name’s Chaurmine, by the way,”</i> he says calmly, <i>“And I know how naming goes with a [pc.race] like you, or whatever you are. So before you ask; my kind don’t have those second names the same way you do; for now I’m just Chaurmine”</i> He folds his arms conclusively, and with a snort motions for you to proceed.");
+		output("\n\n<i>“The stranger from the wastes,”</i> he rumbles, matter-of-factly, <i>“Come to louden my day once more...Thanks...”</i> Though said dryly, you can’t help but feel that there’s a little genuine gratitude in his words. You nod in affirmation, prompting him to give a nod of his own. <i>“Great. Name’s Chaurmine, by the way,”</i> he says calmly, <i>“And I know how naming goes " + (pc.saurmorianScore() >= 4 ? "in your culture" : "with [pc.aRace] like you, or whatever you are") + ". So before you ask; my kind don’t have those second names the same way you do; for now I’m just Chaurmine.”</i> He folds his arms conclusively, and with a snort motions for you to proceed.");
 		output("\n\nWaving off a skimpy waitress checking on your table, ");
 		if(pc.isNice()) output("you give Chaurmine a warm smile, <i>“Well, Chaurmine, it’s nice to meet you. I’m [pc.name] Steele.”</i>");
 		else if(pc.isMischievous()) output("you can’t help but smirk at his words, <i>“Awesome. Name’s Steele. [pc.name] Steele.”</i>");
@@ -953,7 +953,7 @@ public function intimateCatchChaurmine():void
 	if(pc.tallness < 60)
 	{
 		output("Chaurmine leans down, his warmth encompassing you as he caresses your sides; his heavy hands delicately exploring what he can reach. You sigh, starting to relax, only to tense up with a startled yelp when Chaurmine clutches your [pc.hips], lifting you off the ground");
-		if(!pc.hasWings()) output(", causing your [pc.wings] to flail in alarm");
+		if(pc.hasWings()) output(", causing your [pc.wings] to flail in alarm");
 		if(pc.tailCount > 0) 
 		{
 			output(" as your [pc.tails] whip");

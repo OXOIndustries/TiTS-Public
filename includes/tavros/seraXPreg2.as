@@ -647,6 +647,7 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\nEither you turned over or she cleverly changed position during the night, because now you’re face to face. The succubus has gotten your [pc.cock " + cIdx + "] fiercely erect, morning wood given passionate purpose, and she’s half-slid into her tight, silky pussy, the soft weight of her thigh clasping over your own, her prehensile tail wrapped around your [pc.leg]. Again you shift uncertainly - perhaps to pull away, perhaps to climb on top - and are almost paralysed by how <i>good</i> her cunt feels around you. You don’t want that to end, not when you’re feeling so relaxed and fuzzy in bed... Sera’s hushes, kisses and licks against your [pc.ears] push you even further back down.");
 			
 			pc.cockChange();
+			chars["SERA"].cuntChange(0, pc.cockVolume(cIdx));
 			
 			output("\n\n<i>“No, no, [pc.master], I’ll do everything. Doesn’t this feel good?”</i> She moves her hip back and forth, and you groan woozily as her pussy tightens... then loosens, tightens... then loosens around your eagerly erect prick. <i>“Isn’t that wonderful?”</i> she purrs, " + (pc.hasHair() ? "running her claws through your [pc.hair]" : "stroking your pate with her claws") + " before firmly pushing your " + (pc.tallness > (chars["SERA"].tallness + 6) ? "head over shoulder" : ("head into her big, soft, " + (chars["SERA"].skinTone!= "bright pink" ? "purple" : "pink") + " cleavage")) + ". <i>“I modded every part of my body to be in control. To make my every bitc... lover powerless against me. Because doesn’t it feel good? For me to be in control?”</i>");
 			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks</i> your [pc.cock " + cIdx + "] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
@@ -703,7 +704,8 @@ public function seraBitchImpregnateBedWake():void
 			else output("Obediently she goes back in sumptuously deep, writhing that python of a tongue of hers within your tunnel until the waves of ecstasy crashing through your core are redoubled.");
 			output(" You clamp your [pc.thighs] around her head as you orgasm, writhing your body around that wonderful wet, prehensile mouth-tentacle of hers" + (pc.isSquirter(vIdx) ? ", completely icing her face in the copious amounts of juices you spurt around it with each ecstatic clench" : "") + ".");
 			output("\n\nWet flesh slides over your tingling");
-			if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_TENDRIL)) output(" cilia");
+			if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" nubs");
+			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_STINGER_BASED)) output(" cilia");
 			else if(pc.vaginas[vIdx].type == GLOBAL.TYPE_FLOWER) output(" petals");
 			else output(" walls");
 			output(" as Sera slowly withdraws. She maintains eye contact, eerily yellow slits as she continues to lap at you, this time concentrating on [pc.eachClit]. She makes out with " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + ", surrounding the sensitive bud" + (pc.vaginas[vIdx].clits == 1 ? "" : "s") + " with her lips and pulling at " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + " with wet smooches, a different but almost equally intense rhythm she inundated your innards with. Sera doesn’t stop until " + (pc.vaginas[vIdx].clits == 1 ? "it is" : "they are") + " bulging so hard " + (pc.vaginas[vIdx].clits == 1 ? "it feels like it’s" : "they feel like they’re") + " going to explode, and then actually seems to, bursting with joy, flexing up repeatedly to her suckling and licking. You moan and harshly huff your approval, once again making sure that well-trained mouth of hers goes nowhere by tightening your hips around her head hard, silky hair shifting against your [pc.skinFurScales].");
@@ -723,6 +725,7 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\nSera is sat astride your prostrate body, back to you, big [sera.skinColor] butt firmly planted over your crotch. Its soft warmth shifts back and forth over your [pc.thighs] as she rides your [pc.cock " + cIdx + "], stretched deep into her wet, supple cunt. Sulphuric yellow orbs gaze at you over one shoulder.");
 			
 			pc.cockChange();
+			chars["SERA"].cuntChange(0, pc.cockVolume(cIdx));
 			
 			output("\n\n<i>“Wakey wakey,”</i> she coos. <i>“Welcome to another day of being a big dick harem owner! Here’s some slave pussy for breakfast.”</i>");
 			output("\n\nFor a little while you just lie back and revel in it, your morning glory kneaded back and forth within the succubus’s hot, unholy body, perfect curves");
@@ -1082,9 +1085,10 @@ public function seraPregMakeLove(kok:int=0):void
 	output(" of her belly. There’s no fakery in the love you do it with: you <i>do</i> have great affection for this raunchy pest you’ve made your own, and you show that to her with each little kiss.");
 	
 	output("\n\n<i>“What are you doing?”</i> she cries, pulling her face away and glaring at you with genuine alarm. <i>“Don’t do... that!”</i> She splits her thighs beneath you, baring her steaming pussy to you. <i>“Fuck me hard, like you should! Look, I swore!”</i> she exclaims with sudden inspiration. <i>“Now you have to punish me!”</i>");
-	output("\n\nYes... but punishment is almost what this is to her, isn’t it? You chuckle softly, and then draw her into a passionate kiss, lining yourself up as you do it sinking your [pc.cockHead " + kok + "] past her lips, slipping deep into her wonderfully supple innards. But you do it slowly... lovingly. Sliding your [pc.hip] upwards, marvelling at the smooth warmth of hers as you simply sit inside her, gently rocking back and forth, hand on the small of her back, drawing her into a tender embrace, [sera.SkinColor] boobies flattening against your [pc.chest].");
+	output("\n\nYes... but punishment is almost what this is to her, isn’t it? You chuckle softly, and then draw her into a passionate kiss, lining yourself up as you do it sinking your [pc.cockHead " + kok + "] past her lips, slipping deep into her wonderfully supple innards. But you do it slowly... lovingly. Sliding your [pc.hip] upwards, marvelling at the smooth warmth of hers as you simply sit inside her, gently rocking back and forth, hand on the small of her back, drawing her into a tender embrace, [sera.skinColor] boobies flattening against your [pc.chest].");
 	
 	pc.cockChange();
+	chars["SERA"].cuntChange(0, pc.cockVolume(kok));
 	
 	output("\n\nShe breathes heavily into your mouth and bucks against you frustratedly, pussy wetly stirring itself around your cock, then wrapping her wide hips around your waist and clinching you as hard as she can, doing her very best to will you on. Arousal throbs thickly up your [pc.cock]; it is an effort not to just do what she wants and go to pound-town on her. ");
 	output("\n\nBut no. You had to master your own desires in order to tame her, and you’re perfectly able to call upon that self-control now. You wait until she subsides, panting, and then go back to making love to her, laying kisses at the base of her horns, stroking them and her cerulean hair as you allow a gentle tide dictate your [pc.hips], slowly sliding in and out of her, enjoying every inch of her supple sex and body beneath you with leisurely movements.");
@@ -1108,7 +1112,7 @@ public function seraPregMakeLove(kok:int=0):void
 	knockUpSeraChance();
 	chars["SERA"].orgasm();
 	pc.orgasm();
-		
+	
 	IncrementFlag("SERA_BITCHENING_SEXED");
 	IncrementFlag("SERA_MADE_LOVE");
 	

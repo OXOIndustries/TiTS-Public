@@ -20,7 +20,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Kazra";
-			this.originalRace = "essrya";
+			this.originalRace = "essyra";
 
 			inventory.push(new HeatBelt(), new ThermalPack(), new PlasmaHawk(), new HideVestAndBreeches(), new EssyraGreatspear(), new RoastedZhorBeast());
 			

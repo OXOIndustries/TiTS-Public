@@ -8,10 +8,12 @@
 //		 0 = gave ride but no bang
 //		 1 = get fucked with throbb
 //		 2 = boobsucking gush stuff
-
+//		 3 = tied up stuff by third
 //	flags["KRISSY_YEAR"]
 //		This tracks the year you encountered Krissy. Could be used for enabling this 1x per year or adding on later.
-//
+//	flags["MET_KRISSY"]
+//		Obvious "have you met her" flag
+//	
 //============================================
 
 //Reindeer Party Girl looking to hitchhike to Canadia Station
@@ -87,7 +89,7 @@ public function sureLetsTakeARideDeerbutt():void
 	clearOutput();
 	showKrissy();
 	author("Fenoxo");
-	output("<i>“Sure.”</i> You wave her onto the ship. <i>“" + (canadiaUnlocked() ? "I’ve been there before. It won’t be a problem.":"I’ll need those coordinates if we want to get there in one piece.") + " This way.”</i> You ascend the boarding ramp yourself and lead her toward the cockpit to start the launch sequence.");
+	output("<i>“Sure.”</i> You wave her onto the ship. <i>“" + (canadiaUnlocked() ? ("I’ve " + (flags["CANADA_UNLOCKED"] >= 2 ? "been there before" : "already got the coordinates") + ". It won’t be a problem.") : "I’ll need those coordinates if we want to get there in one piece.") + " This way.”</i> You ascend the boarding ramp yourself and lead her toward the cockpit to start the launch sequence.");
 	output("\n\n<i>“I’m Krissy,”</i> the deer-woman announces. <i>“Figured you should know my name.”</i> She smiles winningly as she jingles on behind you.");
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Such a pretty name! I’m like, [pc.name]. We’re gonna be bestest buds!");
@@ -98,6 +100,7 @@ public function sureLetsTakeARideDeerbutt():void
 	output("\n\n<i>“Yep.”</i> You grin over your shoulder. <i>“You like her?”</i>");
 	output("\n\nThe deer-woman giggles gleefully. <i>“She’s beautiful.”</i> Her eyes flicking from the ship back to you. <i>“Both my saviors are.”</i>");
 	processTime(5);
+	flags["MET_KRISSY"] = 1;
 	clearMenu();
 	addButton(0,"Next",sureLetsTakeARideDeerbutt2);
 }
@@ -113,16 +116,18 @@ public function sureLetsTakeARideDeerbutt2():void
 		if(pc.isErect()) output("measuring the fully erect mass" + (pc.cockTotal() > 1 ? "es":"") + " of your bulge" + (pc.cockTotal() > 1 ? "s":""));
 		else output("measuring the growing mass" + (pc.cockTotal() > 1 ? "es":"") + " of your bulge" + (pc.cockTotal() > 1 ? "s":""));
 	}
-	else if(pc.ballDiameter() >= 4) output("apparently enjoying the feel if your capacious balls pushing back against her");
+	else if(pc.balls > 0 && pc.ballDiameter() >= 4) output("apparently enjoying the feel of your capacious balls" + (pc.balls == 1 ? "ack" : "") + " pushing back against her");
 	else output("warming your loins");
 	output(". <i>“Besides, the best way to spread Christmas cheer is by vigorously fucking sexy deer. And I don’t see any other deer ‘round here. Do you?”</i>");
 	output("\n\nYou don’t. You’re left with a choice: play some of her reindeer games or kick her out of your lap to make the trip in peace. Which will it be?");
 	processTime(15);
 	pc.lust(10);
 	clearMenu();
-	if(pc.hasVagina()) addButton(0,"Search4Cock",getBanguByKrissy,undefined,"Search4Cock","Surely she's packing a surprise under her skirt for you to unwrap - right?");
-	else addDisabledButton(0,"Search4Cock","Search4Cock","You need a vagina for this.");
-	addButton(1,"Tits.",gushyGushSantaShit,undefined,"Tits.","Krissy has a beautiful rack. Get in on that.");
+	if(pc.cockThatFits(250) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Wrap&Fuck",cockSelect,[krissyWrapUpByThird,250,true,0],"Wrap & Fuck","Wrap her up like a present and give her a gift of your own.");
+	else addDisabledButton(0,"Wrap&Fuck","Wrap&Fuck","Requires a cock that fits <b>or</b> a hardlight strapon.");
+	if(pc.hasVagina()) addButton(1,"Search4Cock",getBanguByKrissy,undefined,"Search For Cock","Surely she’s packing a surprise under her skirt for you to unwrap - right?");
+	else addDisabledButton(1,"Search4Cock","Search For Cock","You need a vagina for this.");
+	addButton(2,"Tits.",gushyGushSantaShit,undefined,"Tits.","Krissy has a beautiful rack. Get in on that.");
 	addButton(4,"No Thanks",noThanksKrissyButt);
 }
 
@@ -151,6 +156,7 @@ public function getBanguByKrissy():void
 {
 	clearOutput();
 	showKrissy(true);
+	showBust("KRISSY_NUDE_THROBB");
 	author("Fenoxo");
 	output("You glance past the deer-woman’s offered cleavage to the smooth satin finish of her high-hemmed skirt. It’s completely flat - nary a bulge to be found! <i>“I was really hoping you’d have a present for me, but I don’t see any surprises under this tree.”</i> You politely pat at her crotch and display your poutiest pout. <i>“I want a... big present to stuff my stocking.”</i>");
 	output("\n\nWith a spritely bounce onto her hooves, Krissy steps back to give you a serious look. Her eyes glint with dangerous intent. Did you offend her? You make ready to apologize - to explain that you assumed one of her party favors was Throbb - when she produces the very same chemical cocktail. It’s a huge injector vial, easily two or three times as thick around as what you’d expect and filled with faintly glowing blue fluid. <i>“You’re a smart one, [pc.misterMiss] [pc.name], guessing what kinds of surprises I was packing.”</i>");
@@ -167,6 +173,7 @@ public function getBanguByKrissy():void
 	output("\n\nYou lick your lips, knowing that this firming rod is going to slide inside you before long, wondering how big it will get. You stroke the deer-girl’s hair comfortingly, your other hand firm on her ass.");
 	output("\n\nKrissy snaps back to sudden awareness, hand pumping madly. Globules of pre-cum fling from the developing tool as it adds an inch to its length. She kisses you suddenly, breaking away just as fast. <i>“This is a dick.”</i> She jacks herself with firm, fast strokes. Her cock is soaked, and her cunt drips like a sieve. <i>“This is <b>my</b> dick.”</i> She kisses you again, too impassioned for technique. It’s artless and thrusting. Her tongue burrows deep, leaving you nearly as breathless as she when you’re given the opportunity to inhale once more. <i>“Gonna fuck you with my dick.”</i> Sixteen inches of pulsating, expanding reindeer meat slaps against your [pc.belly]. <i>“Gonna fuck you raw.”</i> She growls, pushing you back in the seat.");
 	processTime(20);
+	CodexManager.unlockEntry("Throbb");
 	clearMenu();
 	addButton(0,"Next",getDickedByKrissy2);
 }
@@ -176,6 +183,7 @@ public function getDickedByKrissy2():void
 	clearOutput();
 	showKrissy(true);
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_THROBB");
 	//Clothed
 	if(!pc.isCrotchExposed()) output("Squirming out of your [pc.crotchCovers] with a doped-up reindeer-girl practically dry-humping you is no easy feat. You push and shove, muscles flexing against sweat and fur. Krissy is voracious. She stays close, like she can’t bear to be more than an inch away from you at a time. The whole time, her cock is still growing, transforming from a porno-worthy prong to a into a true cunt-stuffer. Thick pre-cum soaks your clothing, nearly off-white with the cum she can’t help but dribble into it, and it’s that added slickless that lets you bare your [pc.vaginas] at last" + (pc.balls > 0 ? " - after lifting your [pc.balls]":"") + ".");
 	//Unclothed
@@ -222,6 +230,7 @@ public function moreGetFuckedByKrissy():void
 	clearOutput();
 	showKrissy(true);
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_THROBB");
 	pc.orgasm();
 	pc.orgasm();
 	output("Three explosive climaxes later, Krissy finally joins you in orgasm. She doesn’t scream or moan as one might expect. No, she just keeps kissing, sucking on your [pc.lip] while her hips saw in and out with mechanical precision, but she cums all the same. You feel her balls, swollen and so much heavier than they were at first, clench and contract. A split-second later the enormous, urethra-straining bulge stretches you wider and delivers its creamy payload to your deepest recesses.");
@@ -251,6 +260,7 @@ public function moreGetFuckedByKrissy2():void
 	clearOutput();
 	showKrissy(true);
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_THROBB");
 	output("Krissy claims your mouth in much the same manner as your [pc.vaginas]: passionately and insistently. " + (!pc.canDeepthroat() ? "Your gag reflex is little more than a plaything for her to overcome with repeated pressure, bowing and then breaking completely. Her balls clapping against your chin is an eye-watering victory. The tasty scent of her intensely virile musk floods your nose while you struggle to keep her down with repeated, cock-pleasing gulps.":"How fortunate that you have no problem taking every inch she has to offer! On a curtain of slick saliva and fountaining cock-drool, Krissy’s dick slides down your throat like it’s just another pussy for her to claim. When her delightfully musky crotch presses against your nose, your eyes roll back in delight. When her balls pulse on your chin, you cry tears of slutty joy, proud to service such a perfect example of sensuous vascularity."));
 	output("\n\nLoud gurgles inside you announce when she cums for the second time, bloating you with more of her fecund heat and moisture. Your tongue bows beneath the size of her ballooning urethra with each pulse, slurping messily back into place once it passes. And through it all, Krissy’s hands are on your head, holding for " + (silly ? "deer":"dear") + " life as she pumps in and out, six inches at a time, never drawing back far enough to give you a real taste.");
 	output("\n\nYou’re uncomfortably full and even more bloated by the time she deigns to pull out. Half-hearted lances of creamy deer-goo spatter your forehead and face" + (pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? ", clinging to your muzzle in thick webs":"") + ", each as big as a normal man’s entire cumshot. She smears it around, messy and leaking, painting you with the last dribbles of her load. Only after all that does she return her tip, still hard and juicy, to your mouth, so you can suck the last, cooling droplets straight from the source.");
@@ -267,6 +277,7 @@ public function moreGetFuckedByKrissy3():void
 	clearOutput();
 	showKrissy();
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_THROBB");
 	output("By the time you get shower together, clean up (most of) the mess, and finish wringing another two loads out of Krissy’s new cock, you’ve arrived at Vesperia, your navigational computer already beginning the automated landing sequence. You slide into the sticky seat to manually complete the task while Krissy jerks off behind you, slowly filling a condom.");
 	output("\n\n<i>“Ah! I’m uh... oh god my roommate is going to be sooo surprised.”</i> She whimpers when you stand up, shooting a thick wad into the thickening balloon at the sight of you. <i>“Mmm, might have to fuck her before I try to get back to work on my dissertation.”</i> She licks her lips. <i>“Might have to buy some toys... and more condoms too.”</i> The deer-girl kisses you once more, slipping a note with her contact information into your hand. <i>“Maybe we’ll get a chance to bump into each other again sometime, though I’ll probably have to get rid of this thing before long. So I can focus.”</i>");
 	output("\n\nThe condom is looking <i>very</i> heavy.");
@@ -288,6 +299,7 @@ public function gushyGushSantaShit():void
 	clearOutput();
 	showKrissy(true);
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_GUSH");
 	output("You hook a finger into the top of her dress and give it a meaningful tug - not hard enough to unwrap her handfuls of holiday joy but certainly enough to communicate exactly which of her presents you’d like to spend the evening unwrapping.");
 	output("\n\n<i>“Mmmm, you like those, huh?”</i> Krissy grabs the back of your head and pulls it deep into her the swells of her cushiony mounds, forcing you try to breathe through the lightly perfumed valley of her cleavage. Every inhalation is tinged with faint hints of cherry and her own natural scent: clean yet so clearly inhuman. She doesn’t need to hold you there, not when this is exactly what you wanted. You set to kissing and licking around in a gentle exploration of Krissy’s shapely anatomy. You’re in no hurry. Everything you need is right in front of you.");
 	output("\n\n<i>“Mmm, yeah. Look at you go, " + pc.mf("big boy","gorgeous") + ".”</i> There is a gasp, then a throaty giggle. <i>“Wow. You’re really going to like this then.”</i> Krissy leans back to leave you flush-faced and panting, her breasts just out of reach. In one hand, she has a Gush spraypen already uncapped and ready to go. <i>“Let me get the girls ready for you, hrmm?”</i> She mists the tops of her tits once, then a second time, then douses a long, slow spray into the space your face just vacated.");
@@ -340,6 +352,7 @@ public function gushyGushSantaShit():void
 	output(" You can’t see it happening. You can only feel - can only revel in feeling the deer-woman’s heartbeat through her enormous rack while she rewards you a toe-curling climax for your trouble. With your other senses robbed by Krissy’s glorious tits, every sensuous touch and clench and dribble feels one thousand times more acute.");
 	output("\n\nYou black out for a moment.");
 	processTime(40);
+	CodexManager.unlockEntry("Gush");
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.createPerk("Fixed MilkQ", 20000, 0, 0, 0);
 	pc.milkInMouth(pp);
@@ -353,6 +366,7 @@ public function takeKrissysMouthfulOfMilkYerDone():void
 	clearOutput();
 	showKrissy(true);
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_GUSH");
 	output("You come to with your chair on full recline. Krissy’s nipple is back in your mouth, drooling slowly. You realize you’ve been swallowing automatically, your belly full to bursting. Each of her breasts is easily bigger than her head. They’re weighty, obscene things that would look more at home in porno than in real life. Nevertheless, the Christmasy tart has fallen asleep in your lap. Her head nestles into your shoulder as she softly snores.");
 	output("\n\nYou close your eyes, take another swallow, and join her.");
 	processTime(60);
@@ -368,6 +382,7 @@ public function takeKrissysMouthfulOfMilkYerDone2():void
 	clearOutput();
 	showKrissy();
 	author("Fenoxo");
+	showBust("KRISSY_NUDE_GUSH");
 	output("When you wake, Krissy is nowhere to be seen, but the landing assist is already pinging and engaged, guiding you into Canadia Station. You flick it over to manual and handle the landing yourself, then set off to find the big boobed deer.");
 	output("\n\nThe Santa hat she put on your head so long ago bobs merrily behind you.");
 	output("\n\nKrissy isn’t in the mess, or the hold, or getting into mischief in the engine room. Nor is she in your bed, or messing with an airlock. No, it turns out she made use of your shower... and comes out of it absolutely stacked, the shimmery fabric of her dress strained to near breaking. Twin bumps damn near the size of ping pong balls mark the exact positions of her nipples as she jumps in surprise.");
@@ -381,6 +396,86 @@ public function takeKrissysMouthfulOfMilkYerDone2():void
 	shipLocation = "CANADA1";
 	currentLocation = "CANADA1";
 	flags["KRISSY_INTRO_RESULT"] = 2;
+	output("\n\n");
+	quickLoot(new SantaHat());
+}
+
+//Wrap her up like a present and give her a gift of your own
+//Requires a cock that fits OR a hardlight strapon
+public function krissyWrapUpByThird(x:int):void
+{
+	clearOutput();
+	showKrissy(true);
+	author("Thirdgames");
+	output("You look the deer-woman over with an appraising eye, appreciating the curve of her figure and the flattering, if rather skimpy, dress. Licking your lips at the possibilities you say, <i>“Party favors, huh? Anything in there for wrapping up delectable little presents such as yourself?”</i>");
+	output("\n\nA quick smile flashes over Krissy’s face as she bounces back onto her hooves, a movement that causes her breasts to jiggle so much they threaten to spill out at any moment. Sadly, they remain covered... at least for the time being. It takes the deer-girl only a moment to produce a spool of festive red silk ribbon, which she casually tosses in your direction. You barely catch it out of the air and she giggles, <i>“So how do you want me, " + pc.mf("handsome","gorgeous") + "?”</i>");
+	output("\n\n<i>“First,”</i> you respond, unspooling the ribbon, which feels both luxuriously smooth and incredibly tough in your hands, <i>“hands out.”</i> Krissy happily holds out both hands, her arms pressing her massive breasts together in a way that creates a beautiful valley of fur-lined cleavage. Feeling ");
+	if(pc.hasCock()) output("your prick" + (pc.hasCocks() ? "s":"") + " beginning to stiffen");
+	else output("the growing warmth in your loins");
+	output(" you take the ribbon, wrap it several times around the deer-girl’s wrists, and complete it with a nice little bow.");
+	output("\n\nKrissy half-heartedly struggles against the bindings, and to your surprise the ribbon lights up, like a series of Christmas lights were embedded into the fabric. The spool of extra fabric grows warm in your hand, and any part of your skin in contact with it seems to tingle. To you, it’s a minor curiosity, to your doe lover, however, it seems to be much more. Krissy’s eyes immediately widen, and a low, throaty moan escapes her lips before she silences herself with an equally seductive lip bite. When the deer-girl ceases her struggling, both the tingling sensation and the colored lights begin to fade. Interesting.");
+	output("\n\n<i>“Wow,”</i> your buxom little captive says breathlessly. She looks at you doe-eyed, though you definitely catch a mischievous glint. <i>“Didn’t know they did </i>that<i>. Not that I’m complaining, mind you. Maybe you should finish what you started?”</i>");
+	output("\n\nWell, you certainly don’t need any more convincing. Stepping closer to the deer-woman, you take hold of her festive dress and gently pull it down, slowly revealing a pair of dark brown teats. Her nipples jut out like small chocolate candies, just begging to be kissed, and who are you to deny fate? You lean in and take one into your mouth, ravishing the little morsel like you caught it beneath the mistletoe, and just to be fair you do the same to the other. Can’t have one going around feeling like it’s superior. Both nipples are a certified work of art.");
+	output("\n\nYou tug the dress a bit further and let it hit the ground, exposing the fact that she’s not wearing anything to protect her dark brown muff, which is already moist and glistening with <i>“holiday spirit.”</i> This time, however, you decide to pay it no mind. You’ll get there in due time. For now, you circle around Krissy and tenderly coax her onto your chair. She sits, a bit perplexed, but grinning nevertheless." + (silly ? " <i>“Look at me,”</i> she giggles, <i>“I am the captain now.”</i>":""));
+	output("\n\nThinking quick on the best way to restrain your cervine slut, you slip the ribbon between her legs and get to work... In short order you have her completely trussed up in the festive holiday ribbon. Her legs are bent and tied in such a way that they’re forced to spread, leaving her lascivious chocolate slit open and vulnerable. She looks rather like a Christmas turkey. One just waiting to be stuffed.");
+	output("\n\nDiscarding the remainder of the ribbon, you ");
+	if(x >= 0) { if(!pc.isCrotchExposed()) output("disrobe and "); }
+	else output((!pc.isCrotchExposedByArmor() ? "disrobe down to your underwear and ":"") + "promptly activate the <i>hardlight</i> option and ");
+	output("stand between her legs, stroking your [pc.cockOrStrapon " + x + "]. <i>“");
+	if(pc.isBimbo()) output("Like, before I unwrap you, I totally wanna give you a gift first. It’s totally my dick in your box!");
+	else output("Before I unwrap my present I should give you one of your own. I didn’t have time to wrap it, but oh look, here’s a box I can use,");
+	output("”</i> you " + (pc.isBimbo() ? "giggle":"laugh") + ", pressing the head of your cock against Krissy’s cocoa folds. Her slit is hot and moist with anticipation, which easily lubes up the tip of your [pc.cockOrStrapon " + x + "].");
+	output("\n\n<i>“Oh yeah?”</i> she says, wiggling her body enticingly. The movement triggers the ribbon, which lights up with colorful merriment, no doubt sending pleasurable shocks throughout the doe’s body. Krissy moans in response, her eyes rolling back in her head while she sinks further into the seat, and coincidentally right down onto the tip of your dick. Her hot folds envelop you, only serving to make her moan louder.");
+	output("\n\nThere’s no beating around the bush now, so instead you go all in... literally. Taking hold of both her trussed up legs, you slide your [pc.cockOrStrapon " + x + "] as deep as it’ll go, her sizzling sweet snatch pulsing and throbbing in all sorts of delightful ways.");
+	if(x >= 0) pc.cockChange();
+	output("\n\n<i>“Fuck me that’s good,”</i> she says breathlessly, trying to keep as still as possible, lest she activate the ribbon again.");
+	output("\n\nGrinding your hips into hers you respond, <i>“That’s the plan, babe.”</i>");
+	output("\n\nHer warm, slick tunnel grips your " + (x < 0 ? "faux-":"") + "cock tightly, like a child unwilling to relinquish their favorite toy, as you slowly pull out, your thick rod glistening with pussy juices. Without missing a beat, you thrust back in, enjoying the sight of Krissy struggle to keep still and failing miserably. The ribbon lights back up, sending waves of pleasure through her... and you apparently. As her needy cunt contracts around you, you receive a sudden shock of bliss, no doubt a watered down version of what she’s experiencing.");
+	output("\n\nWith that in mind, you redouble your efforts to make her squirm as much as possible. Changing your stance, you angle your dick to thrust upwards, slamming into the deer-woman’s g-spot with reckless abandon. She twists in place and lets out a little cry. The ribbons activate again, blasting Krissy’s body with near-orgasm inducing pleasure, which ebbs right into your [pc.cockOrStrapon " + x + "] in such a way your entire body shudders.");
+	output("\n\nYou pick up the pace of your thrusts, hammering the doe-slut’s drenched pussy, never allowing her a moment of respite, though she doesn’t seem to care. The more she struggles, the more intense the pulsing from the ribbon becomes. The sounds coming from her throat are barely intelligible beyond the occasional <i>“More!”</i> <i>“God!”</i> and <i>“Fuck!”</i>");
+	output("\n\nKrissy’s entire body shudders suddenly, and her vaginal walls tighten, nearly locking you in place as an orgasm rocks her body. Unfortunately, this causes some kind of feedback effect with the ribbon, which seems to constrict before your eyes. The cheery lights grow brighter, and a soft Christmas jingle reverberates around the cabin. The more she shudders, the more pleasure the ribbons give, which seems to send her over the edge into a second orgasm, and then a third.");
+	output("\n\nYou steel yourself against the constant onslaught of electric, pulsing pleasure and continue your trip to pound town, with your " + (pc.balls > 1 ? "balls slapping against the deer-girl’s ass":"hips grinding into the deer-girl’s cunt") + " with every thrust. With the Christmas music softly jingling through the room, you find a nice rhythm, battering her honeypot with every jingle, and pulling out in preparation for another thrust with every jangle.");
+	output("\n\nThe orgasm-wracked deer-girl convulses as she comes again and again, each time nearly sending you to the brink with her, until you can’t help but finally succumb. When she twists around in the seat, twisting the tip of your dick like a corkscrew, you give one last thrust. Your whole body tightens up, your dick stiffening and ");
+	if(x >= 0) 
+	{
+		output("abruptly unleashing jet after jet of [pc.cum] directly into Krissy’s waiting womb");
+		if(pc.cumQ() >= 10000) output(", causing her stomach to bulge lewdly outward due to the volume, jostling to and fro like a bowl full of jelly");
+		if(pc.cumQ() >= 1000) output(", causing her stomach to distend slightly due to the sheer volume");
+		output(".");
+	}
+	else output("sending a powerful pulse of orgasmic energy into you.");
+	output("\n\nKrissy shakes with yet another orgasm as <i>“Knotty or Nice”</i>, an Ausari Christmas classic, begins to play. You stumble back a step, admiring your handiwork as ");
+	if(x >= 0)
+	{
+		if(pc.cumQ() < 1000) output("your [pc.cum] dribbles out of her gaping slit");
+		else if(pc.cumQ() < 10000) output("your [pc.cum] runs out of her like a small waterfall, dribbling down onto the seat and floor beneath her");
+		else output("your [pc.cum] periodically jets out of her abused, gaping slit, as though another cock were nestled inside cumming endlessly. It drips down onto the chair and absolutely drenches the floor beneath her");
+	}
+	else output("her drooling cunt winks lewdly at you, with droplets of femcum dripping onto the chair and floor below");
+	output(".");
+	output("\n\nThings don’t seem to be over for her, however, as the ribbons seem to be sending her body into overdrive. Her eyes have rolled so far back you can only see white, her tongue is lolling out, and a trail of spit and drool leads from her chin down onto her bountiful breasts. It’s nice to just watch her for a minute as the ribbons send her into climax after climax, but eventually you find a pair of scissors and cut her free from the devious device. She breathes a sigh of relief when the holiday music ceases its incessant racket, and the pleasurable shocks come to an end.");
+	output("\n\n<i>“Wow, okay,”</i> she gasps out, regaining her composure, <i>“adding that to my list for next year too.”</i> You lift up the exhausted deer-woman and carry her back to your bed, figuring she’s earned a nice nap after all that.");
+	processTime(60);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",KrissyKringleEpilogueThird,x);
+}
+
+public function KrissyKringleEpilogueThird(x:int = 0):void
+{
+	clearOutput();
+	showKrissy(true);
+	author("Thirdgames");
+	output("When you awake, Krissy is just putting on her dress and getting her things together. Your ship alerts you that you’ve arrived at Canadia Station, so you head into the cockpit, flick the controls onto manual, and land the ship where you’re directed by the station.");
+	output("\n\n<i>“Thanks for the lift, [pc.name],”</i> she says, applying a fresh layer of chocolate-colored lipstick and giving you a big wet kiss on the lips. <i>“And everything that followed, of course. I’m glad it was you that picked me up. It certainly made the trip memorable.”</i>");
+	output("\n\nHah, you think to yourself, that’s an understatement. The sight of her being brought to one orgasm after another by a measly ribbon is not something you’re going to forget anytime soon.");
+	output("\n\n<i>“But I should get going. My roommate is going to be so worried about me. I think I’ll pick her up a roll of that ribbon too, I bet she’d enjoy it as much as I did.”</i> Krissy giggles, seeming to lose herself in the memory before snapping back to reality.");
+	output("\n\nShe gives you a big, full body hug and another kiss before passing you a napkin with her contact information on it. <i>“Maybe we can meet up again sometime? Make this a Christmas tradition?”</i>");
+	output("\n\nWith that, Krissy struts out of your ship... and you notice " + (x >= 0 ? "two things, first that there’s a small stream of suspiciously cum-colored fluid dripping down her leg, and second, ":"") + "she’s wearing a section of that bondage ribbon around her neck like a lace choker. It’s cute... and oddly the lights are on.");
+	flags["KRISSY_INTRO_RESULT"] = 3;
+	processTime(4*60);
+	shipLocation = "CANADA1";
+	currentLocation = "CANADA1";
 	output("\n\n");
 	quickLoot(new SantaHat());
 }

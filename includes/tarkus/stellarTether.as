@@ -2534,6 +2534,11 @@ public function fuckOffWithoutDisarmingTheBomb():void
 //Rival In Shekka's!
 public function roomOutsideShekkasBonus():Boolean
 {
+	if (breedwellPremiumBootyCallCheck("tarkus") && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing();
+		return true;
+	}
 	if(flags["TARKUS_DESTROYED"] == undefined) output("The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus’ surface. Before you can get to the windswept junkyards, you’ll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.");
 	else output("The section of deck upon which you now stand was undoubtedly the busiest place in all of Novahome back before the planet blew. Now, huge blast doors close off the way to the south, and while foot traffic is still high, the press of raskvel bodies is significantly abated. The massive, central corridor leads east and west from here.");
 	output(" A sign made of mismatched machine parts displays “Shekka’s Widget Warehouse” just above a cobbled-together, ware-house like building to the north.");

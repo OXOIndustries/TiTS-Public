@@ -40,7 +40,10 @@ public function showBothriocQuadomme():void
 // Quadomme encounter check
 public function tryEncounterBothriocQuadomme():Boolean
 {
-	if(pc.level < 7) return false;
+	if (pc.level < 7) return false;
+	
+	//set quaddomme to appear only when quest is active or completed
+	if (flags["BOTHRIOC_QUEST"] == undefined) return false;
 	
 	var quadommeTrap:Boolean = false;
 	switch(currentLocation)
@@ -132,7 +135,8 @@ public function encounterBothriocQuadomme():void
 	
 	var bMelee:Boolean = (pc.hasMeleeWeapon() && (pc.meleeWeapon.baseDamage.burning.damageValue > 0 || pc.meleeWeapon.baseDamage.corrosive.damageValue > 0));
 	var bRanged:Boolean = (pc.hasRangedWeapon() && (pc.rangedWeapon.baseDamage.burning.damageValue > 0 || pc.rangedWeapon.baseDamage.corrosive.damageValue > 0));
-	var success:Boolean = ( bMelee || bRanged || (pc.physique() + (rand(60) - 39) > 30) );
+	var bPerk:Boolean = (pc.hasPerk("Escape Artist"));
+	var success:Boolean = ( bMelee || bRanged || bPerk || (pc.physique() + (rand(60) - 39) > 30) );
 	
 	// First
 	if(flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] == undefined)
@@ -1575,7 +1579,7 @@ public function bothriocQuadommeSexScenes(arg:Array):void
 			pc.cuntChange(vIdx, enemy.cockVolume(0));
 			
 			output("\n\nSphere after sphere disappears inside you, making the");
-			if(pc.vaginas[vIdx].type == GLOBAL.TYPE_SIREN) output(" tentacle-lined");
+			if(pc.vaginaHasFeelers(vIdx)) output(" tentacle-lined");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_NUBBY)) output(" nubby");
 			else if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_RIBBED)) output(" ribbed");
 			else output(" smooth");

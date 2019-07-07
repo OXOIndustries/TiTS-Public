@@ -45,6 +45,7 @@
 			baseDamage.drug.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
+			addFlag(GLOBAL.ITEM_FLAG_THROWER_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

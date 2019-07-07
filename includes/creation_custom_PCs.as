@@ -35,6 +35,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.lowerUndergarment = new PlainBriefs();
 			pc.legCount = 2;
 			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.earLength = 2;
 			pc.tallness = 60;
 			pc.femininity = 40;
@@ -142,6 +144,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.eyeColor = "black";
 			pc.eyeType = GLOBAL.TYPE_BEE;
 			pc.earType = GLOBAL.TYPE_DRIDER;
+			pc.clearEarFlags();
 			pc.credits += 2000;
 			bonusTexts = "You were born a bit different than expected, but from differences come strength... and a very productive set of genitals.";
 			break;
@@ -156,6 +159,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairLength = pc.tallness/2;
 			pc.hairColor = "blue";
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.wingType = GLOBAL.TYPE_SHARK;
 			pc.wingCount = 1;
 			pc.hipRatingRaw = 7;
@@ -264,9 +270,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_ANEMONE);
 			pc.cocks[0].cLengthRaw = 12;
-			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			pc.balls = 0;
 			pc.clitLength = 0.7;
 			bonusTexts = "You’ve always been a big-dicked, dragon-like hermaphrodite.";
@@ -373,6 +376,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_SIMII;
 			pc.clearFaceFlags();
 			pc.earType = GLOBAL.TYPE_SIMII;
+			pc.clearEarFlags();
 			pc.armType = GLOBAL.TYPE_SIMII;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -498,6 +502,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_DRACONIC;
 			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
 			pc.tailType = GLOBAL.TYPE_DRACONIC;
 			pc.tailCount = 1;
@@ -666,6 +671,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_DRACONIC;
 			pc.femininity = 100;
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
@@ -738,6 +744,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!TF) break;
 			pc.femininity = 50;
 			pc.removeCocks();
+			pc.removeBalls();
 			pc.removeVaginas();
 			bonusTexts = "You’ve always been a neuter. Life’s easier that way.";
 			break;
@@ -765,6 +772,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.furColor = "black";
 			pc.skinTone = "light";
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.armType = GLOBAL.TYPE_CANINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -854,6 +864,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_SWINE;
 			pc.clearFaceFlags();
 			pc.earType = GLOBAL.TYPE_SWINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 			pc.legCount = 2;
 			pc.legType = GLOBAL.TYPE_SWINE;
 			pc.clearLegFlags();
@@ -944,6 +957,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.reflexes(5);
 			pc.aim(5);
 			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.earLength = 4+rand(5);
 			pc.tone = 30;
 			pc.skinTone = "fair";
@@ -959,6 +974,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		case "thanyl":
 			if(!TF) break;
 			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.faceType = GLOBAL.TYPE_FELINE;
 			pc.armType = GLOBAL.TYPE_FELINE;
 			pc.clearArmFlags();
@@ -1034,6 +1052,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairLength = 10;
 			pc.hairColor = "silver";
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.wingType = GLOBAL.TYPE_DRACONIC;
 			pc.wingCount = 2;
 			pc.hipRatingRaw = 9;
@@ -1117,6 +1136,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_DRACONIC);
 			pc.cocks[0].cLengthRaw = 12;
 			pc.earType = GLOBAL.TYPE_VULPINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_VULPINE;
 			pc.tailCount = 9;
 			pc.cocks[0].cLengthRaw = 8;
@@ -1191,6 +1213,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.faceType = GLOBAL.TYPE_CANINE;
 			pc.hairLength = 6;
 			pc.hairColor = "blonde";
@@ -1293,6 +1318,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_HUMAN;
 			pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);
 			pc.earType = GLOBAL.TYPE_DEMONIC;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.earLength = 6;
 			pc.tongueType = GLOBAL.TYPE_DEMONIC;
 			pc.clearTongueFlags();

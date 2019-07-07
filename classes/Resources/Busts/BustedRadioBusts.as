@@ -15,9 +15,9 @@ package classes.Resources.Busts
 				
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/bustedradio/hr/liamme.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/bustedradio/HR/liamme.png", mimeType = "image/png")]
 			public var Full_LIAMME:Class;
-			[Embed(source = "../../../assets/images/npcs/bustedradio/hr/liamme_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/bustedradio/HR/liamme_nude.png", mimeType = "image/png")]
 			public var Full_LIAMME_NUDE:Class;
 		}
 	}

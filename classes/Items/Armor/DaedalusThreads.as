@@ -37,7 +37,7 @@ package classes.Items.Armor
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
-			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			//itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
 			
 			version = _latestVersion;
 		}

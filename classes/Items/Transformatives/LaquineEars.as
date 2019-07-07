@@ -13,6 +13,7 @@ package classes.Items.Transformatives
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Map.InPublicSpace;
 	
 	
@@ -104,10 +105,14 @@ package classes.Items.Transformatives
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;
 
-			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
-			if(rand(10) < 2 + pc.laquineScore()) laquineEarsMinorTFsGO(pc,deltaShift);
-			else if(rand(10) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
-			else laquineEarsMajorTFsGo(pc,deltaShift);
+			//get minutes left. If <= 1, force major
+			var minutes:Number = pc.getStatusMinutes("Laquine Ears");
+			//20% chance, plus a forced change before expiry.
+			if(minutes <= 1 || rand(10) <= 1) laquineEarsMajorTFsGo(pc,deltaShift);
+			//Out of remaining 80%, 30% moderate TFs
+			else if(rand(8) <= 2) laquineEarsModerateTFsGo(pc,deltaShift);
+			//Remaining 50%:
+			else laquineEarsMinorTFsGO(pc,deltaShift);
 		}
 		private static function laquineEarsMajorTFsGo(pc:Creature,deltaShift:uint):void
 		{
@@ -115,6 +120,8 @@ package classes.Items.Transformatives
 			var i:int = 0;
 			var textBuff:String = "";
 			var choices:Array = [];
+			var inPublic:Boolean = InPublicSpace();
+			
 			if(pc.hasCock() && !pc.hasStatusEffect("Priapism"))
 			{
 				for(i = 0; i < pc.cockTotal(); i++)
@@ -132,8 +139,8 @@ package classes.Items.Transformatives
 				{
 					if(pc.cocks[i].cLength() < cMax && pc.cocks[i].cType == GLOBAL.TYPE_EQUINE) choices.push(2);
 				}
-			}
-			if(pc.hasCock() && pc.balls <= 0)
+			}*/
+			if(pc.hasCock() && pc.balls <= 1)
 			{
 				for(i = 0; i < pc.cockTotal(); i++)
 				{
@@ -147,14 +154,15 @@ package classes.Items.Transformatives
 					choices.push(4);
 				}
 			}
-			if(pc.hasCock() && !pc.hasPerk("Musky Pheromones"))
+			// If PC is sufficiently Laquine and has a big enough dick (20" according to Fen's) then the PC will permanently obtain the arousing musk of a space-bunny.
+			// Operates like all other pheromone effects. Can be referenced, etc.
+			if(pc.hasCock() && !pc.hasPerk("Musky Pheromones") && pc.laquineScore() >= 4)
 			{
 				for(i = 0; i < pc.cockTotal(); i++)
 				{
-					if(pc.cocks[i].cLength() >= 25) choices.push(5);
+					if(pc.cocks[i].cLength() >= 20) choices.push(5);
 				}
 			}
-			*/
 			if(pc.hasVagina())
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
@@ -162,14 +170,14 @@ package classes.Items.Transformatives
 					if(pc.vaginas[i].type != GLOBAL.TYPE_EQUINE) choices.push(6);
 				}
 			}
-			/*
 			if(pc.hasVagina())
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE && (!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800)) choices.push(7);
+					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
 				}
 			}
+			/*
 			if(pc.hasVagina() && pc.bRows() == 1)
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
@@ -177,13 +185,13 @@ package classes.Items.Transformatives
 					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE) choices.push(8);
 				}
 			}
+			*/
 			if(pc.legType != GLOBAL.TYPE_LAPINE) 
 			{
 				choices.push(9);
 				choices.push(9);
 				choices.push(9);
 			}
-			*/
 			
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
@@ -266,9 +274,36 @@ package classes.Items.Transformatives
 			{
 				if(pc.ballsUnlocked(2))
 				{
-					// 9999
-					
+					//[LE] [Balls]
+					// If PC doesn't have balls, grow balls. If PC has 2 or more cocks, grow quads.
+					// If PC has one ball, get two balls.
+					// PC has Penis but no Balls ; start testicles at 6 inches around
+					if(pc.balls <= 0)
+					{
+						textBuff += "A strange and much too hot pressure builds in your crotch. Your [pc.cocks] dribble" + (!pc.hasCocks() ? "s":"") + " wincingly-hot prejizz ";
+						if(!pc.isCrotchExposed()) textBuff += "within the tight boundary of your [pc.crotchCoverUnder]";
+						else textBuff += "down the shaft" + (pc.hasCocks() ? "s":"") + " and against your [pc.thighs]";
+						textBuff += ". It’s a bit painful, but then it suddenly becomes... heavenly" + (!pc.isCrotchExposed() ? ", and you pull down your [pc.crotchCovers] to get a better look":"") + ". More and more fluid flows with a supernatural ease, all the while your [pc.skinFurScales] extend" + (pc.skinType == GLOBAL.SKIN_TYPE_SCALES || pc.skinType == GLOBAL.SKIN_TYPE_FEATHERS ? "":"s") + " below your half-erected [pc.cocksLight] in a bulgy spherical shape.";
+						textBuff += "\n\nYou watch enamored, unable to resist stroking out a few more loads, squirting pre wherever it can reach. Reproductive tissue forms in the shadow of your breeding stick" + (pc.hasCocks() ? "s":"") + ", connecting to your masculine plumbing and attaching itself to your [pc.base] An internal ‘flop’ makes you bend the " + (!pc.hasKnees() ? "proverbial ":"") + "knee, and then there’s a second squeeze. When it’s over, your taut, ";
+						if(pc.hasFur()) textBuff += "fuzzy";
+						else if(pc.hasScales()) textBuff += "scaly";
+						else if(pc.hasChitin()) textBuff += "chitiny";
+						else textBuff += "smooth";
+						textBuff += " pouch dangles at the front of your [pc.legsNoun]. <b>You delicately take possession of your sensitive scrotum, noting that you have two, baseball-sized testicles sloshing inside!</b>";
+						textBuff += "\n\nYou’ve never had trouble with your [pc.cumNoun] output, but this is certainly a welcome change. While hefting one of your newly-formed spunk-bunkers, you remind yourself to be a bit more careful how you [pc.walk] and sit from now on. You also think jacking off right now would be fantastic.";
+						textBuff = ParseText(textBuff);
+						pc.ballSizeRaw = 6;
+					}
+					// PC has Penis and only One Ball";
+					else if(pc.balls == 1)
+					{
+						textBuff += "A weird, straining ‘knot’ forms in your spunk-sack that shifts your balance so hard you nearly fall on your face. Luckily you don’t add some other kind of agony on top of your spontaneous testicular torsion.";
+						textBuff += "\n\nWhatever’s going on is shunting blood towards your [pc.cocks], and they’re throwing out fat, simmering rods of pre-cum" + (!pc.isCrotchExposed() ? " into your [pc.crotchCoverUnder]":"") + ". There’s a ‘flop’ of sorts when the unnatural and oddly satisfying development finishes connecting to your prepped plumbing.";
+						textBuff += "\n\nWhen you peer down, you note that where there was once one, there are <b>now two #-sized testicles in your ballsack!</b> It’s the same exact size as its older twin, and it looks just as succulently plump, lickable, fondleable as the other. Already you can feel your [pc.cumVisc] load strengthening with this arousing addition, and you can’t wait to see if the laquine ears will make them both more productive before they run dry.";
+						textBuff = ParseText(textBuff);
+					}
 					pc.balls = 2;
+					pc.lust(30);
 				}
 				else textBuff += ParseText(pc.ballsLockedMessage());
 			}
@@ -277,19 +312,47 @@ package classes.Items.Transformatives
 			{
 				if(pc.ballsUnlocked(4))
 				{
-					// 9999
-					
+					//[Grow Quadballs]
+					// Original Doc states PC needs 2+ dicks and 2 balls for this to occur. 
+					// Let me know if you wanna work in a lower chance of this with just one dick.
+					textBuff += "Inordinately pleasurable heat throbs at your crotch. Exquisite temperatures swell your [pc.multiCocks] to full mast right away" + (!pc.isCrotchExposed() ? ", pushing your [pc.crotchCoverUnder] aside on their own":"") + ". Veins visibly swell and relax from [pc.cockHead] to [pc.knotBallsHilt].";
+					textBuff += "\n\nThere’s a powerful, unsubtle twist wreaking havoc in your churning scrotum, and the changes are fanning across your ";
+					if(pc.hasFur()) textBuff += "fuzzy";
+					else if(pc.hasScales()) textBuff += "scaly";
+					else if(pc.hasChitin()) textBuff += "chitiny";
+					else textBuff += "smooth";
+					textBuff += " sack in depthless gaps. All you can tell at the moment is that they are building weight, but they’re not expanding individually. Upon closer inspection, you see why.";
+					textBuff += "\n\nHefting your virile seed-stash makes you bowl over into the nearest wall. Suddenly there’s an immensely pleasant pinch: your already strained ballsack is expanding noticeably to accommodate new occupants. <b>Two new balls grow in the confines of your cum factory, connecting rapidly with the rest of your internal plumbing.</b> When the low-burning pain comes to an end, you run a [pc.hand] across your testicular field, delighting in the luxuriously swollen and sumptuous flesh now present there. It’s like they were implanted there as reward for some legendary devotion to a fertility god.";
+					textBuff += "\n\nThere’s one last lurch and gurgle before your quartette settles down. This sublime circumstance pleases you beyond belief. They’re so massively engorged that your [pc.legOrLegs] shake" + (pc.legCount == 1 ? "s":"") + " when touching them, imagining multiple tongues slicking across their eye-catching diameters.";
+					if(pc.hasCocks()) textBuff += " With " + num2Text(pc.cockTotal()) + " cocks, you always felt that two balls just weren’t enough. <b>But now you have four,</b> and y";
+					else textBuff += " Y";
+					textBuff += "ou can already feel them hard at work, churning up [pc.cumNoun]-shots so large and thick that you could impregnate fields of pussies with each body-rattling pulse.";
+					textBuff += "\n\nIt’s more than appropriate for a [pc.raceShort] like yourself.";
+					textBuff += "\n\nNow you’ll be filling your partner’s every holes twice as well... you’ve certainly got enough production to cast a [pc.cumVisc] blanket over someone too. All that’s left is to find that lucky partner...";
+					textBuff = ParseText(textBuff);
 					pc.balls = 4;
+					pc.lust(33);
 				}
 				else textBuff += ParseText(pc.ballsLockedMessage());
 			}
 			// (25"+ dicks) Musky Pheromones!
 			else if(select == 5)
 			{
-				// 9999
-				
-				textBuff += "\n\n(<b>Perk Gained: Musky Pheromones</b> - Pheromones boost tease attack and arousal.)";
-				pc.createPerk("Musky Pheromones", 0, 0, 0, 0, "Boosts tease attack and arousal.");
+				// If PC is sufficiently Laquine and has a big enough dick (25" according to Fen's doc) then the PC will permanently obtain the arousing musk of a space-bunny.
+				// Operates like all other pheromone effects. Can be referenced, etc.
+				textBuff += "<i>Wow.</i> For a brief moment, you felt relaxed. Even the word ‘relaxed’ doesn’t do justice to how <b>good</b> you randomly felt. A full body warmth blossomed and spread from your [pc.footOrFeet] to your [pc.fingers] out of the blue. For a brief instant you were spellbound by your environs, felt there was no evil, no great task, no boulder to push up a hill. You glance down, noticing your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " heavy" + (!pc.isCrotchExposed() ? ", bulging mightily behind your [pc.crotchCoverUnder]":"") + ".";
+				if(!pc.isErect()) 
+				{
+					if(!pc.hasCocks()) textBuff += " It isn’t that erect, but it’s an admirable schlong all the same.";
+					else textBuff += " They’re not that erect, but your schlongs are pretty nice to look at.";
+				}
+				textBuff += " Do laquine ears just come with the random ability to provide spontaneous orgasms? Then it hits you...";
+				textBuff += "\n\n...Something smells... <i>phenomenal</i>. Once you get more than a whiff, you identify the fragrance to be on some kind of all-natural spectrum. There’s a little salt - some sweat. There’s a wooden, earthy overlay to that. Beneath it all, there’s the weirdest scintillation of all, something that’s <i>spicy</i> but mildly suffocating. It’s the base of this clean and <b>thick</b> aroma. You can’t place it, but you are sure that it’s <b>musk.</b> Have you always smelled like this?";
+				textBuff += "\n\nYour body odor has changed. " + (inPublic ? "When you start to look around, you’re noticing a few tents pitching in the passerby’s crotches.":"The more you inhale, the harder you get.") + " The previous raw happiness returns when you begin stroking your unready slab" + (pc.hasCocks() ? "s":"") + ", <b>revealing that your signature has become laced with the same arousing musk of a laquine.</b> Your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " so swollen with laquine pride that " + (!pc.hasCocks() ? "it’s":"they’re") + " generating the strongest clouds of it, " + (inPublic ? "leaving":"sure to leave") + " everyone around you squirming from the overwhelming amounts of sexual signal boosting.";
+				textBuff += "\n\nNow that your body is adequately broadcasting its truest, basest intentions, you wonder how much easier it’ll be to pick up a few bar hopping hotties. Anyone that gets in your way from now on is going to have to fight the compulsion to spread their legs in front of you, too!";
+				textBuff += "\n\n(<b>Perk Gained: Musky Pheromones</b> - Pheromones grant a +5 musk bonus to tease attack and arousal.)";
+				pc.createPerk("Musky Pheromones", 0, 0, 0, 0, "Grants a +5 musk bonus to tease attacks.");
+				pc.lust(5);
 			}
 			// (Vag) Horsepussywhynot?
 			else if(select == 6)
@@ -327,43 +390,96 @@ package classes.Items.Transformatives
 				choices = [];
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE && (!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800))
+					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800)
 					{
 						choices.push(i);
 					}
-					if(!hasGlossy) hasGlossy = (pc.vaginas[i].vaginaColor == "glossy black");
 				}
-				if(choices.length > 0) x = choices[rand(choices.length)];
-				
-				goBlack = (pc.vaginas[x].vaginaColor != "glossy black" && (hasGlossy || rand(3) == 0));
-				
-				if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+				if(choices.length == 0) textBuff += "<b>Oopsie! Tried to puff vagina, but no adequate pussies found.</b>";
+				else
 				{
-					if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+					x = choices[rand(choices.length)];
+					var puffed:Boolean = false;
+					//START THE PUFFENING!
+					if(pc.vaginas[x].type != GLOBAL.TYPE_EQUINE)
 					{
-						// 9999
-						
-						// To slightly pumped
-						pc.inflateVagina(x);
-						// To pumped
-						pc.inflateVagina(x);
+						// PC has non-Equine Pussy - Increase to Slightly Pumped
+						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+						{
+							textBuff += "Your attentions are turned swiftly to [pc.oneVagina] when a sudden, head-tilting sensation runs from brain to crotch. " + (!pc.isCrotchExposed() ? "Just as you get your [pc.crotchCoverUnder] out of the way, w":"W") + "etness explodes out of your [pc.pussyNoun " + x + "]. Your sapphic slopes tingle from an inner, electrifying massage, no doubt brought on by the laquine ears’ microsurgeons. Crystalline beads of [pc.girlCumNoun] flow down the expanding, delicate skin, which swells into something decidedly indelicate.";
+							textBuff += "\n\nYou feel as though you’ve been submerged in water, the waves forcibly stroking you from several angles while your engorging pussylips dip and rise in the opposite directions.";
+							textBuff += "\n\nOnce the damp pussy-molding comes to an end, you realize that, for better or worse, <b>your [pc.vagina " + x + "] is slightly pumped!</b> When your thighs squirm around, you’re rubbing into more of that fertile flesh, sort of rubbery without being drenched. The sized-up lips obscure [pc.oneClit], meaning that it has more lovely friction to create on future emergences.";
+							textBuff = ParseText(textBuff);
+							pc.lust(8);
+							pc.inflateVagina(x);
+							puffed = true;
+						}
+						// PC has non-Equine Pussy - Increase to Fully Pumped
+						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+						{
+							textBuff += "A rubbing sensation stimulating enough to make you moan aloud grips you by the [pc.clit]; " + (!pc.isCrotchExposed() ? "you pull your [pc.crotchCoverUnder] aside in a hurry to see what’s going on":"you glance to your [pc.pussies] straight away") + ". Your dewy mound coats itself in a sudden gush of [pc.girlCumVisc] wetness. The already pumped-looking exterior begins to swell into greater glory, and it’s far more arousing than it has any right to be. ";
+							if(pc.clitLength < 1.5) textBuff += "You attribute that to the fact your [pc.clits] " + (pc.totalClits() == 1 ? "is":"are") + " struggling to maintain presence in the changing landscape, sort of like medieval fiefdoms.";
+							textBuff += "\n\nThe rubbery, hypersensitive lips spread into a chubbier shape than they were ever intended for. It’s taking up more space than it has a right to. But you don’t care about that. When you rub a finger across your beautifully soaked and bloated mound of [pc.vaginaColor " + x + "] twat, you can only think how good it’s going to feel smashing it in someone’s face. There’s just too much to worship down there. You think you could vanish anyone in <b>your fully pumped cunt.</b>";
+							textBuff = ParseText(textBuff);
+							pc.lust(10);
+							pc.inflateVagina(x);
+							puffed = true;
+						}
 					}
-					else if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+					// PC has Equine Pussy - Increase to Slightly Pumped
+					else
 					{
-						// 9999
-						
-						// To pumped
-						pc.inflateVagina(x);
+						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+						{
+							textBuff += "Pangs of pleasure bring you to a stop. Demanding throbs draw your eyes to your [pc.vagina " + x + "]" + (!pc.isCrotchExposed() ? ", forcing you to slip aside your [pc.crotchCoverUnder]":"") + ". Your horse-pussy is wettening and tingling, like you’ve just begun fingering yourself. [pc.GirlCumColor] droplets of fresh moisture glaze the [pc.vaginaColor " + x + "] exterior of your rubbery twat, and those fat lips are doing the impossible, spreading into a somehow wider shape. Redness explodes across your [pc.face], thoughts of this new and wonderful development rushing as quick as the transformation occurs.";
+							textBuff += "\n\nOnce it ends, it doesn’t take a genius to see <b>that your mare-cunt is fatter than it was before, the lips slightly pumped.</b> You already had plenty of pussy to worship... but damn, you could probably bury an entire face in there now, not to mention hug a big, fat cock tighter! Just touching it produces the lewdest squelch!";
+							textBuff = ParseText(textBuff);
+							pc.lust(10);
+							pc.inflateVagina(x);
+							puffed = true;
+						}
+						// PC has Equine Pussy - Increase to Fully Pumped";
+						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+						{
+							//ORGASM
+							textBuff += "A moist churning in your nethers forces a moan of pure pleasure from your lips. The way your legs are quivering makes sitting more than a polite suggestion. When you get your hands on the source of arousal" + (!pc.isCrotchExposed() ? " within your [pc.crotchCoverUnder]":"") + ", sprinklings of [pc.girlCumNoun] mixed with ladyjuice soak your fat cuntlips. The texture and detail of each droplet flowing down your latex-like exterior is orgasmic, and it brings you to sudden orgasm.";
+							textBuff += "\n\n[pc.OneClit] throbbing, your impressive pussylips begin to expand before your eyes, equally unnatural and exciting. Your equine cunny was big before, but now... you now understand what having a broodmother’s equipment is like. The gash is slightly bigger than a leithan’s, plumped out to an obscene degree, like a pheromonal mitten of ultrasensitive feminine flesh.";
+							textBuff += "\n\nFuck, it’s not just flesh, the hedonistic texture is totally alien, fully evolved for the purposes of enabling breeding across a currently unknown spectrum, <i>to say nothing of what ‘is’ known.</i> When the U.G.C. discovers new aliens with gigantic cocks, you’ll be the first one to be able to fuck them properly.";
+							textBuff += "\n\nYou don’t think there’s any dick that won’t be sealed in now. They won’t even need a knot to keep all the cum in at this point. Even better, you could probably drown someone in the sheer amount of pussy you have. All you’d have to do to subdue someone is flash this magnificent muff their way. If the scent doesn’t do ‘em in, then its shamelessly bloated lips will. If you could detach your own head and lock it between your [pc.thighs], you’d probably live out the rest of your days servicing that unconquerable slit.";
+							textBuff += "\n\n<i>There are mods to change flavors, right?</i>";
+							textBuff = ParseText(textBuff);
+							pc.orgasm();
+							pc.inflateVagina(x);
+							puffed = true;
+						}
+					}
+					// Vaginal Capacity (if under 800)
+					if(pc.vaginas[x].bonusCapacity < 800 && (!puffed || rand(2) == 0))
+					{
+						// low variant
+						if(pc.vaginas[x].bonusCapacity < 333)
+						{
+							textBuff += (puffed ? "\n\nAs an added bonus (though you’re not sure that a sudden hollowness is a normal feeling), t":"T") + "he tiny robots swarming through your genome are no doubt working some kind of biology-rebuilding magic in your vaginal tunnel. There are subtle differences in shape, like you’re expanding outwards. Warm tingles spread through your reproductive system, stretching the shape of your interior to account for greater insertions. <b>You’re able to slide more of your [pc.hand] in than before.</b> It brings an instant rush of arousal, especially when you realize it’s also going to help more kids make their trip into the galaxy.";
+							pc.lust(5);
+						}
+						// middling variant
+						else if(600)
+						{
+							textBuff += (puffed ? "\n\nThe changes don’t end with your expanded exterior. ":"") + "A twinge in your vaginal interior leads you to feel it’s become... stretchier. You feel <i>emptier.</i> <b>Why aren’t you mounted on a huge dick right now?</b> Laquines are known for a few things, and having big cocks and bigger cumshots are a few of those important facts. Why aren’t you bearing their kids, either? There’s <i>a lot</i> of room in there, more than silly things like <i>nature</i> would allow normally.";
+							textBuff += "\n\nYou shake your head, a blush spreading across your cheek. When you slide a [pc.finger] into your pussy, <b>you are much deeper than before. In fact, if you wanted to, your entire hand could slide in without an ounce of pain.</b>";
+							pc.lust(10);
+						}
+						// huge capacity variant
+						else
+						{
+							textBuff += (puffed ? "\n\nAn equally stark change comes on the back of the previous. ":"") + "A powerful rumble vibrates in your feminine canal. You think you’re developing a stomach ache, maybe you haven’t eaten. But that’s not it. A wave of arousal comes crashing down on you, girly jizz flowing as if you were being lavished with great amounts of attention. Your reproductive canal begins to stretch thanks to the biological rewriting of the tiny robots encouraging this unnatural growth.";
+							textBuff += "\n\nLow, bass-like ‘thumps’ vibrate through your waistline, ending at your curves. Your [pc.vaginaColor " + x + "] interior is flexing and getting stretchier, obscenely so, making you feel like little more than the most perfect cock holster. There’s no dick you wouldn’t be able to hilt yourself on now, save for the most extreme displays of grotesque masculinity. When you gingerly test the limits of your morphed biology, your [pc.pussyNoun " + x + "] is able to accept your entire hand <b>and keep going.</b> You pull back in a mixture of awe and trepidation.";
+							textBuff += "\n\nImagining the near-infinite depths someone can sink into you brings an instant rush of lust. And that’s before you realize just how many kids you could give birth to at once. Maybe you should put this newfound ability to use soon?";
+							pc.lust(20);
+						}
+						pc.vaginas[x].bonusCapacity += 75;
 					}
 				}
-				if(pc.vaginas[x].bonusCapacity < 800)
-				{
-					// 9999
-					
-					pc.vaginas[x].bonusCapacity = 800;
-				}
-				
-				if(goBlack) pc.vaginas[x].vaginaColor = "glossy black";
 			}
 			// (Vag + 1 rowboobs) Extra row of boobage
 			else if(select == 8)
@@ -385,38 +501,43 @@ package classes.Items.Transformatives
 			// (Other legs) BECOME BUNLEGS!
 			else if(select == 9)
 			{
-				if(pc.isNaga())
-				{
-					// 9999
-					
-					pc.legCount = 2;
-					pc.genitalSpot = 0;
-				}
-				else if(pc.isTaur())
-				{
-					// 9999
-					
-					
-				}
-				else if(pc.isDrider())
-				{
-					// 9999
-					
-					
-				}
-				else
-				{
-					// 9999
-					
-					pc.legCount = 2;
-					pc.genitalSpot = 0;
-				}
+				//Lapine Legs TF (From Naga, Taur, and regular legs) (Major Effect/10%)
+				//Start of William's Modifications to Laquine Ears
+			
+				// Lapine Legs already exist in code, they merely lack legitimate obtainment.
+				// FLAGS: Digitigrade, Furred, Paws
+				var bipedal:Boolean = true;
 				
-				pc.legType = GLOBAL.TYPE_LAPINE;
+				// Bipedal Lapine Legs ; I will not write for 'bunnytaurs' or the like.
+				if(bipedal)
+				{
+					//[From Naga]
+					if(pc.isNaga())
+					{
+						textBuff += "When you try to slither forward, a loss of movement and feeling is felt in your snake-like tail. Pain erupts after a full-body numbness sets in, dragging you to the ground while a silent scream writes itself on your face. Fear strikes you when you look over your shoulder, seeing the entire lower half of your body wildly shifting, tightening to an absurdly gut-wrenching detail. New limbs sprout in place of your shedding tail, covered in short, fibrous bunny-fur.";
+						textBuff += "\n\nYou bite your lower lip, the straining rigidity fading as quick as it came. When you look back again, your single coil has vanished, <b>transformed into two long lapine legs!</b> The new, digitigrade balance takes a few seconds to get used to, but you find that when you stand on your six padded bunny-toes, hopping is a lot easier than walking. In fact, your bouncier mobility <i>feels preferable!</i>";
+					}
+					//[From Taur]
+					else if(pc.isTaur())
+					{
+						textBuff += "Bowling over, a sudden and complete loss of feeling in your horse-half brings you to the ground yelping. Before you’ve hit the surface, your voice is lost in the unholy pain of a reshaping body structure. Your vision fades to black straight away, the numbness being overtaken with an immensely relieving warmth. Somehow, it feels like you’re getting smaller. But that’s not what these ears are supposed to do... right? Finally looking back, you see your entire lower-half disappearing and reshaping from the form of a " + (pc.tallness < 60 ? "pony":"steed") + "...";
+						textBuff += "\n\n...to the form of a bunny. You bite your lip hard enough to bleed, groaning from the torture. Your transmogrification does away with your many legs, reducing you to the level of a normal, bipedal creature. After clapping your hands to the ground and loosing one final yell, it ends as quick as it came. You look back in fear, noting that your waist <b>now thickens out with two furry lapine legs!</b>";
+						textBuff += "\n\nYou clutch the nearest wall when you stand, finding balance hard to discover anew on digitigrade rabbit’s feet. The thick pads at the bottom of your digitigrade limbs, along with the six toes, make hopping around much easier than walking. After a minute or so of experimenting, you determine that your newfound bounciness is <i>preferable!</i>";
+					}
+					//[From Other]
+					else
+					{
+						textBuff += "A painful numbness begins at your feet and rises to your waist, staunching blood flow and forcing you to the ground with a grimace on your face. The muscle-locked sensation is replaced with a rapidly growing warmth. When you look back to see the beginnings of transmogrification, your hips widen painfully to account for thickening thighs covered in short, fibrous bunny-fur. Further down, past the knee, your ankles bend into animalistic paws capped with three big toes.";
+						textBuff += "\n\nShifting skeletal structure pries your mouth open in a silent scream, but it lasts for only a moment. Warmth flexes out through your pores, and when you look back again, feeling returns to your limbs. Standing is easy, but you find yourself balancing on your toes. Experimental movements reveal hopping on your padded feet has become easier - and, curiously, <i>preferable</i> to walking. <b>Getting around on your new lapine legs is going to encourage a bouncier mode of mobility!</b>";
+					}
+					pc.legCount = 2;
+					pc.genitalSpot = 0;
+				}
 				pc.clearLegFlags();
-				pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+				pc.legType = GLOBAL.TYPE_LAPINE;
 				pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				pc.addLegFlag(GLOBAL.FLAG_PAWS);
+				pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			}
 			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Major Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
@@ -553,6 +674,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nWhen you climax, what feels like gallons upon gallons of musky horse-cream spurt from <b>your new horse-cock</b>. You aren’t sure what your cum counts as this point. Is it lapine? Equine? Or still some semblance of Terran? All you know is that <b>your dick got ";
 					if(pc.cocks[x].cLength() < 14) textBuff += "so much ";
 					textBuff += "bigger when it changed species.</b> The raw, bestial weight hangs heavy on your mind and your body, even as it retreats into its snug sheath. You have the feeling these new urges aren’t going to go away... that you’re going to be fantasizing about bunny buns for some time to come.";
+					textBuff = ParseText(textBuff);
 					//Horseween.
 					//slowStatGain +20 libido.
 					pc.slowStatGain("libido",20);
@@ -655,6 +777,7 @@ package classes.Items.Transformatives
 					else textBuff += "Dangling below your waist";
 					textBuff += " is a new-grown sack containing two testes,</b> further displaying your maleness for all to see.";
 					if(!pc.isCrotchExposed()) textBuff += ".. when you aren’t dressed.";
+					textBuff = ParseText(textBuff);
 					//+1 libido
 					pc.libido(2);
 					pc.balls = 2;
@@ -1615,7 +1738,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "You catch a whiff of a familiar smell... like pussy. Rich, fertile, hormonal pussy.";
 				if(inPublic) textBuff += " You cast your eyes around to look for the source. Perhaps a sly woman is having a little play with a hidden vibrator. That or there’s a soaking wet minx looking for dick around the corner.";
-				else textBuff += "You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
+				else textBuff += " You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
 				textBuff += " No, wait. You’re the one that smells like sex. You’re the one with a ";
 				if(pc.wettestVaginalWetness() >= 4) textBuff += "drooling";
 				else if(pc.wettestVaginalWetness() >= 3) textBuff += "sopping";
@@ -1960,7 +2083,7 @@ package classes.Items.Transformatives
 				clearOutput();
 				kGAMECLASS.showName("NEEDY\nLAQUINE");
 			}
-			textBuff += "One of your ears perks as you swear the hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
+			textBuff += "One of your ears perks as you swear you hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
 			textBuff += "\n\n<i>“...my sweet laquine lass ... tease me with that candied ass ... wetter’n ocean breeze blowin’ in.... bed her like breeding season...”</i>";
 			if(pc.laquineScore() >= 5) textBuff += "\n\nLaquine lass? Is he singing about you?";
 
@@ -2137,17 +2260,51 @@ package classes.Items.Transformatives
 			var textBuff:String = "";
 			if(pc.earTypeUnlocked(GLOBAL.TYPE_LAPINE))
 			{
+				//[LE] [Lapine Ears]
+				// PC can gain Lapine Ears at any time as normal, but this will contain adjectives for a new lapine ear type to be slotted in. Normal Lapine Ears don't adequately display lengthiness.
+				// Let me know if you want Quad Lop or something.
+				// adjectives = ["lop", "droopy", "floppy"];
 				if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
 				{
-					textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
-					
-					pc.earType = GLOBAL.TYPE_LAPINE;
-					pc.earLength = 6 + rand(7);
+					//Regular Ears
+					if(rand(2) == 0)
+					{
+						textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
+						
+						pc.earType = GLOBAL.TYPE_LAPINE;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
+						pc.earLength = 6 + rand(7);
+					}
+					//Loppy Bois
+					else
+					{
+						textBuff += "Drained of their microsurgeons, <b>your laquine ears crumble away.</b> However, a sudden warmth in your scalp spreads to your extant auricles and they twitch uncontrollably. An undefinable <i>itch</i> spreads from the root to the tip, and when you try to scratch it, you find that your ears are growing past your palms! The irritation forces your eyes shut for the duration of its dubious effect.";
+						textBuff += ("\n\nAfter the last-minute transformation, there’s an added weight on your head. When you whip out your codex, you discover that <b>you now have lop-rabbit ears</b>");
+						textBuff += "; the rounded tips are ";
+						pc.earLength = 12+rand(25);
+						if(pc.earLength >= pc.tallness) textBuff += "hanging low enough to drag on the ground like head-mounted tails";
+						else if(pc.earLength > pc.tallness/2) textBuff += "hanging around your [pc.thighs]"
+						else if(pc.earLength >= pc.tallness/2.5) textBuff += "hanging to your waist";
+						else if(pc.earLength >= pc.tallness/3) textBuff += "dangling just above your waist";
+						else if(pc.earLength >= pc.tallness/4) textBuff += "dangling down to your [pc.chestNoun]";
+						else textBuff += "hanging over your shoulders";
+						textBuff += ". Anytime you shift your neck, your floppy and very grabbable appendages whirl with your motions. They look rather adorable, actually." + (pc.isBimbo() || pc.libido() >= 66 ? " You can’t wait to find someone to take you doggystyle now, maybe bury your face in their crotch. As long as they’re holding you by those things!":"");
+						pc.earType = GLOBAL.TYPE_LAPINE;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
+						pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
+					}
 				}
 				else if(pc.earType != GLOBAL.TYPE_QUAD_LAPINE && kGAMECLASS.flags["LAQUINE_EAR_USES"] > 7 && rand(3) == 0)
 				{
 					textBuff += "<b>Your laquine ears expire</b>, but they do not crumble away as you might expect. Instead, they grow heavier, not with a payload of microsurgeons but with warm, pulsating flesh. There’s no ignoring it. The second pair of ears have grown onto you, and you can feel the new rabbit ears brushing back and forth against the old. <b>You have four bunny ears.</b> They look kind of nice, if you don’t mind appearing like you’ve suffered an obvious mutation.";
 					pc.earType = GLOBAL.TYPE_QUAD_LAPINE;
+					pc.clearEarFlags();
+					pc.addEarFlag(GLOBAL.FLAG_LONG);
+					pc.addEarFlag(GLOBAL.FLAG_FURRED);
 					if(pc.earLength < 6) pc.earLength = 6 + rand(7);
 				}
 				else

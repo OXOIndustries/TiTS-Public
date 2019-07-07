@@ -25,7 +25,7 @@
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 1100;
+			basePrice = 11000;
 			attack = 1;
 			defense = 4;
 			shieldDefense = 0;

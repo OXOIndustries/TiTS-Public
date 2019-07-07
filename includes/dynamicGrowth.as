@@ -457,7 +457,7 @@ public function nutSwellUpdates(deltaT:uint = 0):void
 		}
 		else if(!bigEndowments && pc.lowerUndergarment.sexiness > 3)
 		{
-			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breath--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive", deltaT);
+			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breathe--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive", deltaT);
 			pc.lowerUndergarment.onEquip(pc);
 		}
 	}
@@ -545,6 +545,7 @@ public function bigBallBadEnd(bBadEnd:Boolean = true):void
 		
 		pc.ballFullness = 0;
 		nutStatusCleanup();
+		pc.lustRaw = pc.lustMin();
 		
 		moveTo("SHIP INTERIOR");
 		
@@ -1414,6 +1415,112 @@ public function getFinedForPriapism(bMale:Boolean = false):void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+
+/* Clothing stuff */
+
+public function clothingSizeUpdates(deltaT:uint = 0):void
+{
+	// Special stretchy clothes changes!
+	stretchBonusSexinessCheck(pc, deltaT);
+}
+
+// For stretchy clothing on breasts/hips/butts
+public function stretchBonusSexinessCheck(target:Creature, deltaT:uint):void
+{
+	var msg: String = "";
+	
+	if(target.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY))
+	{
+		if(msg != "") msg += "\n\n";
+		msg += stretchBonusSexiness(target, target.lowerUndergarment, true, true);
+	}
+	if(target.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY))
+	{
+		if(msg != "") msg += "\n\n";
+		msg += stretchBonusSexiness(target, target.upperUndergarment, true, true);
+	}
+	if(target.armor.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY))
+	{
+		if(msg != "") msg += "\n\n";
+		msg += stretchBonusSexiness(target, target.armor, true, true);
+	}
+	
+	if(msg != "") AddLogEvent(msg, "passive", deltaT);
+}
+public function stretchBonusSexiness(target:Creature, item:ItemSlotClass, equipOn:Boolean = false, outputText:Boolean = false):String
+{
+	var msg: String = "";
+	var bonus:Number = 0;
+	var bigness:Number = 0;
+	
+	if(equipOn)
+	{
+		switch(item.type)
+		{
+			case GLOBAL.LOWER_UNDERGARMENT:
+				bigness = Math.max(target.hipRating(), target.buttRating());
+				break;
+			case GLOBAL.UPPER_UNDERGARMENT:
+				if(!item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) bigness = target.biggestTitSize();
+				break;
+			default:
+				bigness = Math.max(target.hipRating(), target.buttRating(), ((!item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) ? target.biggestTitSize() : 0));
+				break;
+		}
+		
+		if (bigness < 5) bonus += 0;
+		else if (bigness < 10) bonus += 1;
+		else if (bigness < 15) bonus += 2;
+		else if (bigness < 20) bonus += 3;
+		else bonus += 4;
+	}
+	
+	var baseSexiness:Number = 0; // Base sexiness of the item
+	var transparencyBonus:Number = 0; // The value of bonus before the item becomes transparent
+	// Library of base sexinesses here, please.
+	if(item is GabilaniPanties) { baseSexiness = 2; transparencyBonus = 3; }
+	
+	var oldSexiness:Number = item.sexiness;
+	var newSexiness:Number = (baseSexiness + bonus);
+	var wasTransparent:Boolean = item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
+	if(oldSexiness != newSexiness)
+	{
+		// Log changes
+		if(outputText)
+		{
+			if(target is PlayerCharacter)
+			{
+				// Just in case...
+				if(item is EmptySlot) { /* Nada */ }
+				// Generic change texts
+				else
+				{
+					// More sexy
+					if(oldSexiness < newSexiness)
+					{
+						msg += "The pliant material of your " + item.longName + " stretches, <b>";
+						if(transparencyBonus > 0 && bonus >= transparencyBonus && !wasTransparent) msg += "becoming transparent and ";
+						msg += "improving the clothing’s sexiness level!</b>";
+					}
+					// Less sexy
+					else
+					{
+						msg += "The elasticity of your " + item.longName + " relaxes, <b>";
+						if(transparencyBonus > 0 && bonus < transparencyBonus && wasTransparent) msg += "becoming opaque and ";
+						msg += "dropping the clothing’s sexiness level.</b>";
+					}
+				}
+			}
+		}
+		// Actual changes
+		target.createStatusEffect("Stretchy Sexiness", bonus);
+		item.onEquip(target);
+		target.removeStatusEffect("Stretchy Sexiness");
+	}
+	
+	return msg;
 }
 
 

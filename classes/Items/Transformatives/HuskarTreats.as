@@ -358,6 +358,9 @@
 				{
 					kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have an ausar’s wolf-ears!</b>");
 					pc.earType = GLOBAL.TYPE_CANINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_TAPERED);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				else kGAMECLASS.output("\n\n" + target.earTypeLockedMessage());
@@ -381,6 +384,9 @@
 					output(" gradually loosen. With a few twitches of your ear muscles, you find that your ears are capable of a lot more expression than before. You can make them perk up when alert, fold back when cautious, or droop down when at rest, and with much less effort now. Their shape rounds out slightly, losing the anubis-like triangle for a look that is less intimidating to strangers. <b>Your canine ears are now floppy dog ears!</b>");
 					
 					target.earType = GLOBAL.TYPE_DOGGIE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
+					target.addEarFlag(GLOBAL.FLAG_FLOPPY);
 					if(target.earLength <= 4) target.earLength = 3 + rand(2);
 					if(target.earLength > 12) target.earLength = 12;
 					changes++;
@@ -431,7 +437,7 @@
 			
 			if (target.thickness < 75 && target.thicknessUnlocked(target.thickness + 5) && changes < changeLimit && rand(2) == 0)
 			{
-				output("\n\nA certain heaviness sets into your limbs, a growing sense of slugishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realize. You give yourself a proper once-over and realize you’re a little... thicker all around!");
+				output("\n\nA certain heaviness sets into your limbs, a growing sense of sluggishness slowing your movements. Your [pc.gear] suddenly feels a little tighter too, you realize. You give yourself a proper once-over and realize you’re a little... thicker all around!");
 				
 				target.thickness += 5;
 				if (target.thickness > 75) target.thickness = 75;

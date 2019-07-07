@@ -10,6 +10,7 @@
 	import classes.Items.Armor.JumperJumpsuitSlutty;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
 	import classes.GameData.CodexManager;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
@@ -203,9 +204,10 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "ShockHop";
-			//this.impregnationType = "LapinaraPregnancy";
+			this.impregnationType = "LDCShockHopperPregnancy";
 			kGAMECLASS.zhengShiSSTDChance(this);
 			randomise();
+			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 			this.createPerk("Shield Tweaks");
@@ -253,7 +255,6 @@
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			updateDesc();
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
@@ -271,16 +272,30 @@
 				output("\n\n");
 			}
 
-			//Actual s tuff
+			//Actual stuff
+			if(hasStatusEffect("Roundhouse Kick CD"))
+			{
+				addStatusValue("Roundhouse Kick CD", 1, 1);
+				if(statusEffectv1("Roundhouse Kick CD") >= 5) removeStatusEffect("Roundhouse Kick CD");
+			}
 			if(this.lust() >= this.lustMax()) bustANutHoppy(target);
 			else if(!this.hasStatusEffect("GunOutBunsOut")) hopperLightningGunno(target);
-			else if(CombatManager.getRoundCount() % 5 == 0) roundhouseKickypoo(target);
-			else if(CombatManager.getRoundCount() == 6) haremCheerleadersGo(target);
-			else if(statusEffectv1("Busted") <= rand(6)) strokeItForDaddy(target);
-			else if(!hasStatusEffect("Evasion Boosted") && rand(4) == 0) bounceBoi(target);
-			else if(target.shields() <= 0 && rand(4) == 0) bootySlamminAttack(target);
-			else if(rand(4) == 0 && this.energy() >= 10 && !target.isBlind()) discoGrenade(target);
-			else hopperLightningGunno(target);
+			else if(CombatManager.getRoundCount() >= 6 && !hasStatusEffect("Cheered")) haremCheerleadersGo(target);
+			else
+			{
+				var enemyAttacks:Array = [];
+				enemyAttacks.push({ v: hopperLightningGunno, w: 30 });
+				if(!hasStatusEffect("Roundhouse Kick CD")) enemyAttacks.push({ v: roundhouseKickypoo, w: 20 });
+				if(lust() < lustMax()) enemyAttacks.push({ v: strokeItForDaddy, w: 20 });
+				if(energy() <= (energyMax() - 30) && !hasStatusEffect("Evasion Boosted")) enemyAttacks.push({ v: bounceBoi, w: 20 });
+				if(target.shields() <= 0) enemyAttacks.push({ v: bootySlamminAttack, w: 20 });
+				if(!target.isBlind() && energy() >= 10) enemyAttacks.push({ v: discoGrenade, w: 20 });
+				
+				var attack:Function = weightedRand(enemyAttacks);
+				attack(target);
+			}
+			
+			updateDesc();
 		}
 		//Lightning Gun
 		//Primary attack. Deals Electrical damage.
@@ -346,6 +361,7 @@
 					CombatAttacks.applyStun(target,1);
 				}
 			}
+			createStatusEffect("Roundhouse Kick CD", 1);
 		}
 		//Bounce Bounce!
 		//Increases her Evasion and status-resist for 3 turns. Usable 1/encounter.

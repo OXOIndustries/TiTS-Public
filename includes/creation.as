@@ -33,12 +33,15 @@ public function hasIllegalInput(sText:String = ""):Boolean
 			case "88mph": cheatFunc = Cheats.TimeSkip; break;
 			case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 			case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
+			case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
 			
 			// Treatment
+			case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;
 			case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;
 			case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
 			case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
 			case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
+			case "fauxcow": cheatFunc = Cheats.TryTreatmentHaxFauxCow; break;
 		}
 		if(cheatFunc != null && eventQueue.indexOf(cheatFunc) == -1)
 		{
@@ -231,6 +234,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-ausar":
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_CANINE;
 			pc.tailCount = 1;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -243,6 +249,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-kaithrit":
 			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_FELINE;
 			pc.tailCount = 2;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -265,6 +274,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.armType = GLOBAL.TYPE_LEITHAN;
 			//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 			pc.earType = GLOBAL.TYPE_LEITHAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
 			pc.earLength = 3;
 			//>Reptilian, forked tongues
 			pc.tongueType = GLOBAL.TYPE_LEITHAN;
@@ -283,6 +295,8 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half kui-tan":
 			pc.earType = GLOBAL.TYPE_KUITAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
 			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_KUITAN;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -307,6 +321,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_TAPERED);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.earType = GLOBAL.TYPE_GRYVAIN;
+			pc.clearEarFlags();
 			pc.earLength = 3;
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;
@@ -1674,6 +1689,8 @@ public function openDoorToTutorialCombat():void {
 	creationHeader("YOUR\nINHERITANCE");
 	
 	output("You open the doorway and step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
+	output("\n\n");
+	showImage("CeliseGreeting");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
 	output("\n\nWith her bust jiggling and wobbling in such a titanic manner that you feel it might separate from her chest, the gelatinous gal runs her hands over and through the new, bulgy boobs, giggling as your eyes follow her motions. She chirps, <i>“Hiya! You look like you taste pretty good! I think I’ll drain you dry...”</i>");
 	output("\n\nShe lurches forward, and for a second, you fear you’ll be engulfed before you can react. A blue flash interrupts her pell-mell undulations, and your Dad’s face appears between you, suspended in the air. He explains, <i>“Celise here is a fairly simple girl with simple needs. Unfortunately, she doesn’t respect anyone until she feels they’ve earned it. You’re going to have to fight her if you want to get the keys to your new ship.”</i>");
@@ -1785,7 +1802,12 @@ public function takeCelise():void {
 		output("\n\nIn a violent lunge, Celise stretches up to your shoulders, wrapping her arms around them to suspend herself there. Your hands and dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" slide through her body down into the sopping, lube-leaking flower perched atop the goo mound, and her squeezing ripples grow more powerful. The goo-girl whimpers, <i>“Please, cum in me. I need it sooo bad!”</i> before mashing her lips against your own, the ball-like support beneath her rolling back and forth to slap wetly against you.");
-		output("\n\nVacuum-like suction pulls on your dick");
+		output("\n\n");
+		if(pc.hasCock(GLOBAL.TYPE_EQUINE) || pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) showImage("CeliseFuckHorse");
+		else if(pc.hasCock(GLOBAL.TYPE_CANINE) || pc.hasAKnot()) showImage("CeliseFuckDog");
+		else if(pc.hasCock(GLOBAL.TYPE_FELINE)) showImage("CeliseFuckCat");
+		else showImage("CeliseFuckHuman");
+		output("Vacuum-like suction pulls on your dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" as she twists and twirls all around you, and you realize you can hold back no longer. Her tongue is sweet on yours, swirling around your mouth as you throw your head back and cum, pumping a thick batch of protein straight into her dick-suckling snatch. The quivering slit tugs harder on your boner");
 		if(pc.cockTotal() > 1) output("s");
@@ -1798,10 +1820,10 @@ public function takeCelise():void {
 	}
 	//Feed Celise [Female]
 	else {
-		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping your " + pc.skinFurScales() + " as you reveal yourself. When " + pc.eachVagina() + " is exposed, she visibly licks her lips and ceases her masturbation, using her jade secretions to oil her heavy tits, teasing tiny nubs that bloom into big, suckable nipples in a matter of moments. You sensually swivel your hips and ask, <i>“</i>");
-		if(pc.isNice()) output("<i>What’s the best way to feed you?</i>");
-		else if(pc.isMischievous()) output("<i>So, is this your first time or what?</i>");
-		else output("<i>Here’s my cunt. Why aren’t you licking it yet? I thought that’s what you wanted!</i>");
+		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping your " + pc.skinFurScales() + " as you reveal yourself. When " + pc.eachVagina() + " is exposed, she visibly licks her lips and ceases her masturbation, using her jade secretions to oil her heavy tits, teasing tiny nubs that bloom into big, suckable nipples in a matter of moments. You sensually swivel your hips and ask, <i>“");
+		if(pc.isNice()) output("What’s the best way to feed you?");
+		else if(pc.isMischievous()) output("So, is this your first time or what?");
+		else output("Here’s my cunt. Why aren’t you licking it yet? I thought that’s what you wanted!");
 		output("”</i>");
 		output("\n\nThe glittering, hungry slut composes herself enough to surge towards you, ignoring your question completely. Instead, she rolls at you like a wave, if a wave could be capped with bloating bimbo lips and a slithering tongue that could put a snake to shame. You let her crash into you, knowing that she doesn’t pose any real threat at this point, and simply enjoy the sensation of her warm body sliding around your " + pc.legOrLegs() + ". In a way, it’s like slipping into a nice bath, only the bath is a bit thicker and strokes you everywhere, like an army of phantasmal tongues, all worshipping you at once.");
 		output("\n\nThe real tongue comes into contact with " + pc.oneVagina() + " a moment before two plush pillows compress against your mons, smothering your labia in sloppy-wet kisses. The tongue slithers over the folded flesh, drawing gasps and moans from you as your pussy goes ten kinds of juicy. Your " + pc.clitDescript() + " engorges and peeks out from its hood in response, hard and sensitive against the slippery, gooey mouth. You grab hold of the shelf to try remain upright, briefly fearing that you’ll fall inside her and drown as the pleasure takes you, but the way Celise’s eyes look up at you while she tends to your " + pc.vaginaDescript() + " leaves no doubt in your mind: she’d never let that happen. She’s far too busy worshipping you orally, sucking down your juices even as hers turn your exterior genitalia into a swampy, green mess.");
@@ -2075,7 +2097,7 @@ public function fixPcUpbringing():void
 	
 	output("\n\n<i>FIX NOW?</i>");
 	
-	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
+	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, " + indefiniteArticle(pc.finger()) + " already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
 	if (!silly) output(" fix itself");
 	else output(" do the needful");
 	output(" before it’s vibrating away, demanding its masters dutiful attention again.");

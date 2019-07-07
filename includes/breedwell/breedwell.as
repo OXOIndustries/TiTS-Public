@@ -21,6 +21,10 @@ Plans/Ideas
 
 */
 
+public function breedwellCoordinatesUnlocked():Boolean
+{
+	return (MailManager.isEntryViewed("breedwell_unlock"));
+}
 // Ad from Tamani Corp
 // Received if PC has the rahn codex + has 2 or more kids in the Nursery OR has donated 500,000+ ml to the NT Cockmilker
 public function breedwellCheckBirth():Boolean
@@ -149,6 +153,8 @@ public function breedwellReceptionBonus():Boolean
 {
 	author("Nonesuch");
 	
+	if (breedwellPremiumNeedPunish()) return breedwellPremiumPunishScene();
+	
 	// Reception First
 	if(flags["QUAELLE_MET"] == undefined)
 	{
@@ -226,7 +232,11 @@ public function breedwellReceptionBonus():Boolean
 		
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	}
-	
+	if (flags["BREEDWELL_PREM_POD_BAN"] == 1)
+	{
+		output("\n\nTo the south is the Pod Lounge. You’re no longer welcome there, as a result of believing raising rahn kids yourself was better than serving the interests of Breedwell.");
+		if (!quaelleTriggerBirthScene()) flags["NAV_DISABLED"] |= NAV_SOUTH_DISABLE;
+	}
 	//stop move north unless quaelle is waiting or is immobile
 	if (!quaelleSexTimer(1, 6) && !quaelleIsImmobile()) flags["NAV_DISABLED"] |= NAV_NORTH_DISABLE;
 	
@@ -239,6 +249,9 @@ public function breedwellReceptionBonus():Boolean
 public function breedwellLoungeBonus():Boolean
 {
 	author("Nonesuch");
+	
+	//always disable for now, pc cant move into the mod area, only move out
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
 	
 	output("You are in the surrogate partition of the pod lounge. It’s a long room, clean and sparse, set with seating on one side, the pods on the other. Some of them are turned inwards, nothing but a blank expanse of wall and an OCCUPIED sign lit up above it. Most though are ready to go: empty, adjustable seats, rather like hairdresser seats backing into the wall, with various synthetic harnesses at arm and leg height.");
 	if(hours >= 23 || hours < 6) output(" It’s empty here right now.");
@@ -254,15 +267,16 @@ public function breedwellLoungeBonus():Boolean
 	if(flags["BREEDWELL_STATUS_BREEDER"] >= 2) output(" You can see your face and blurb prominent in the Premium section of the catalogues being bandied around closer to you, but your picture is currently darkened. There seems to be some disappointment about this.");
 	output("\n\nAcross the room from them are the doors which lead to the mating pods. Even as you watch, a numbered light appears above one, a rahn quickly strides over to it, and disappears inside.");
 	
-	if (!quaelleTriggerBirthScene()) flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	if (!quaelleTriggerBirthScene()) flags["NAV_DISABLED"] |= NAV_WEST_DISABLE;
 	
 	// [Pod]
 	if(flags["BREEDWELL_STATUS_BREEDER"] == undefined) addDisabledButton(0, "Pod", "Pod", "You are not familiar with this yet. You probably need to be properly introduced before using it.");
+	else if(flags["BREEDWELL_PREM_POD_BAN"] == 1) addDisabledButton(0, "Pod", "Pod", "You have been banned!");
 	else if(!pc.hasVagina()) addDisabledButton(0, "Pod", "Pod", "You require a vagina to try this.");
 	else if(!breedwellCheckBirth()) addDisabledButton(0, "Pod", "Pod", "Making babies? You don’t think you’re exprienced enough to try this yet...");
 	else if(pc.isFullyWombPregnant() && totalPregRahnEggs() >= (breedwellBreederLevel() * 2 * totalRahnPregnancies())) addDisabledButton(0, "Pod", "Pod", "You’re already too stuffed to do this.");
 	else if(pc.fertility() <= 0) addDisabledButton(0, "Pod", "Pod", "You’re not fertile enough to do this.");
-	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");
+	else addButton(0, "Pod", breedwellApproachPod, undefined, "Pod", "Harness yourself up and get ready for a breeding.");	
 	
 	return false;
 }
@@ -453,6 +467,7 @@ public function approachQuaelle():void
 public function quaelleMainMenu(fromIntro:Boolean = false):void
 {
 	clearMenu();
+	var desc:String;
 	if(!breedwellInductionCheck()) addButton(0, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? breedwellInductionRouter : breedwellInductionUpdate), undefined, "Induction", ((flags["BREEDWELL_STATUS_BREEDER"] == undefined && flags["BREEDWELL_STATUS_DONATOR"] == undefined) ? "Get the low-down on what this job offer really is." : "See what your other half might be in for."));
 	else if(flags["BREEDWELL_STATUS_BREEDER"] == undefined || flags["BREEDWELL_STATUS_DONATOR"] == undefined)
 	{
@@ -469,6 +484,20 @@ public function quaelleMainMenu(fromIntro:Boolean = false):void
 	{
 		if (quaelleIsRecovering(3)) addDisabledButton(3, "Sex", "Sex", "She is still recovering from giving birth.");
 		else addButton(3, "Sex", quaelleAskSex, undefined);
+	}
+	if (MailManager.isEntryViewed("breedwell_premium_invite"))
+	{
+		if (breedwellPremiumContractCount() > 0) desc = "Renewal";
+		else desc = "Premium";
+		if (breedwellPremiumIsQualified(true))
+		{
+			if (breedwellPremiumContractCount() > 0) addButton(4, desc, breedwellPremiumRenewPremium,undefined,desc,"Ask about your Premium Breeder contract. Is it possible to do another term?");
+			else addButton(4, desc, breedwellPremiumGetPremiumQuaelle,undefined,desc,"Ask about becoming a Premium Breeder.");
+		}
+		else if (flags["BREEDWELL_PREM_CON_BAN"] == 1) addDisabledButton(4, desc, desc, "You have been banned!");
+		else if (breedwellPremiumUnderContract()) addDisabledButton(4, desc, desc, "You are already under contract.");
+		else if (!pc.hasVagina()) addDisabledButton(4, desc, desc, "You have no wombs!");
+		else addDisabledButton(4, desc, desc, "Probably a bad idea to talk about this whilst you’re currently knocked up with something other than rahn.");
 	}
 	addButton(5, "Appearance", quaelleAppearance);
 	
@@ -1076,6 +1105,7 @@ public function eggBreederLevel(bWomb:Boolean = true):int
 		if(nFertility >= 2.5) level++;
 		if(nFertility >= 5) level++;
 		if(nFertility >= 10) level++;
+		if (flags["BREEDWELL_PREM_EGG_CAP_BONUS"] != undefined) level += flags["BREEDWELL_PREM_EGG_CAP_BONUS"];
 	}
 	
 	return level;
@@ -1308,7 +1338,7 @@ public function breedwellPodScenes(arg:Array):void
 			break;
 		case 4:
 			showBust("BREEDWELL_DOHRAHN_BUSINESS");
-			
+			if (flags["BREEDWELL_PREM_BADEND_LAVLEV"] == undefined) flags["BREEDWELL_PREM_BADEND_LAVLEV"] = 0;
 			output("<i>“You know, I find the whole ‘strapped down and helpless’ element unsavory,”</i> opines the business-suited doh’rahn that strides in, considering you through her gleaming holo-glasses. <i>“Implies unwillingness. Makes explicit the unfair power structures underpinning this supposedly valiant enterprise. Undoubtedly a turn-on for some, but not really for me.”</i> She unbuttons her shirt a little bit, breasts shifting underneath the thin fabric, and a bloom of musky, spice washes over you. Your mouth waters reactively, and your already-aroused pussy goes into overdrive, drooling [pc.femcum] and flexing up needily. <i>“It’s like they’re saying I couldn’t get anything I wanted from you, whenever I wanted, wherever.”</i>");
 			output("\n\nEver so slowly she takes off her clothes, revealing more and more of her top-heavy, purple body and intensifying the heavy smell of her pheromones in the cramped cubicle, carefully folding each of her expensive garments on the table. It’s clearly done to render you a quivering mess long before she slithers off her prim white panties and extends her tentacle-feeler lined ovipositor, and it’s mercilessly effective. You’re wriggling around, flexing against your obdurate bonds, practically panting,");
 			if(pc.hasCock()) output(" [pc.eachCock] thickly erect");
@@ -1992,7 +2022,7 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 		output("\n\nWarm, gooey hands grab you and roughly pull you backwards out of the wailing, smoking machine. You huff in surprise, shaken out of your sticky, orgasmic reverie, and your [pc.cock " + cIdx + "] flexes its next load straight up into the air, spattering both you and the three stern-looking rahn aides surrounding you.");
 		output("\n\n");
 		// PC is kui-tan OR has nuki nuts perk OR is male Treated:
-		if(pc.raceShort() == "kui-tan" || pc.hasPerk("'Nuki Nuts") || pc.isTreatedMale())
+		if(pc.raceShort() == "kui-tan" || pc.hasPerk("'Nuki Nuts") || pc.isTreatedBull())
 		{
 			output("<i>“I warned them!”</i> snaps the most senior-looking one. <i>“You let fucking");
 			if(pc.raceShort() == "kui-tan") output(" kui-tan");
@@ -2001,7 +2031,7 @@ public function breedwellCockmilkerOverLimit(arg:Array):void
 			output(" in, I said, and they’ll completely take the piss!");
 		}
 		else output("<i>“This is what happens when you set no goddamn limits!”</i> snaps the most senior-looking one. <i>“Fucking space drifters will mod themselves up and completely take the piss!");
-		output(" We’ve got enough seed out of you,”</i> she goes on through pursed lips, gesturing at the creaking, groaning cylinder you’ve filled to bursting, a [pc.cumColor] obelisk that looks like it’s going to crack at any moment. <i>“Now and forever. Collect your payment, and <b>never</b> come back here.”</i>");
+		output(" We’ve got enough seed out of you,”</i> she goes on through pursed lips, gesturing at the creaking, groaning cylinder you’ve filled to bursting, " + indefiniteArticle(pc.cumColor()) + " obelisk that looks like it’s going to crack at any moment. <i>“Now and forever. Collect your payment, and <b>never</b> come back here.”</i>");
 		output("\n\nYour [pc.cock " + cIdx + "] has been oozing a gentle river of [pc.cum] the whole time this has been going on, washing over everyone’s footwear, and the rahn leave in a disgusted hurry, shaking it off their heels. When, at last, you’ve stopped drooling enough that you can [pc.move], you stagger over to the screen to see how much you’ve earned. <b>The display is maxed out at " + Math.round(cumQ) + " mLs</b>.");
 		output("\n\n<i>“Hey,”</i> says the cartoon Tamani, lounging by the figure and grinning at you. <i>“I don’t care what anyone says, super stud: You’re MY kind of " + pc.mf("guy", "girl") + ". Let’s meet up sometime, k?”</i> She produces <b>a sack of cash with the number " + cumPrice + " written on it</b> and deposits it in front of you, departing with a blown kiss.");
 		
@@ -2114,14 +2144,19 @@ public function rahnBreedwellBirthTamani(numEggs:int = 2):void
 	output("\n\n<i>“Thank you so much, " + pc.mf("Mr.", "Ms.") + " Steele,”</i> trills the drone when the operation is done, rising into the air.");
 	if(numEggs <= 3) output(" One of the rahn looks down at you soulfully, placing her");
 	else output(" A few of the rahn look down at you soulfully, placing their");
-	output(" tiny hands on the glass. Oh c’mon, don’t do <i>that.</i> <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
-	output("\n\nThe Steele drone has already departed, in some robotic approximation of a snit. You’re left with your own thoughts - and a healthier bank account.");
-	
-	pc.credits += (600 * numEggs);
+	output(" tiny hands on the glass. Oh c’mon, don’t do <i>that.</i>");
+	if (breedwellPremiumUnderContract()) output(" <i>“Your contract quota has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
+	else output(" <i>“Your bank balance has been updated. We hope to see you at Breedwell Incubation Centre in the future!”</i>");
+	output("\n\nThe Steele drone has already departed, in some robotic approximation of a snit. You’re left with your own thoughts");
+	if (!breedwellPremiumUnderContract()) output(" - and a healthier bank account");
+	output(".");
 	
 	StatTracking.track("pregnancy/rahn eggs/birthed", numEggs);
 	StatTracking.track("pregnancy/rahn eggs/tamani", numEggs);
 	StatTracking.track("pregnancy/total births", numEggs);
+	
+	if (breedwellPremiumUnderContract()) breedwellPremiumRecordBirth(numEggs);
+	else pc.credits += (600 * numEggs);
 	
 	processTime(3);
 	
@@ -2153,6 +2188,8 @@ public function rahnBreedwellBirthSteele(numEggs:int = 2):void
 	StatTracking.track("pregnancy/rahn eggs/day care", numEggs);
 	StatTracking.track("pregnancy/total births", numEggs);
 	StatTracking.track("pregnancy/total day care", numEggs);
+		
+	flags["BREEDWELL_PREM_KEEP_KID"] = 1;
 	
 	processTime(3);
 	

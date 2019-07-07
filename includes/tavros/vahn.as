@@ -724,7 +724,7 @@ public function vahnDomsYourButt():void
 	if(!(pc.lowerUndergarment is EmptySlot)) output(" He delicately wraps his fingers around your [pc.lowerUndergarment] before tugging them down " + ((pc.legCount > 1 && pc.hasFeet()) ? "to rest between your ankles" : "and out of the way") + ".");
 	output(" He doesn’t waste time in getting you all lubed up. His tongue slurps wetly on your [pc.ass] as he prepares you for what’s to come.");
 	
-	output("\n\nSince you’re all properly lubed up and practically <i>begging</i> to get that knot tied inside you; Vahn begins to press his impressive nine inch canine cock against your [pc.ass]. The initial entry is a bit of a touch and go even with his saliva coating your entrance. Though, with a bit of effort he quickly begins to get into a rhythm of gently pounding into your ass which incites delicious moans from you.");
+	output("\n\nSince you’re all properly lubed up and practically <i>begging</i> to get that knot tied inside you; Vahn begins to press his impressive ten-inch canine cock against your [pc.ass]. The initial entry is a bit of a touch and go even with his saliva coating your entrance. Though, with a bit of effort he quickly begins to get into a rhythm of gently pounding into your ass which incites delicious moans from you.");
 	
 	pc.buttChange(ppVahn.cockVolume(0));
 	

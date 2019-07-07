@@ -66,7 +66,7 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_LOUNGE"].system = "SYSTEM: WISTRAL";
 	rooms["BREEDWELL_LOUNGE"].northExit = "BREEDWELL_RECEPTION";
 	//rooms["BREEDWELL_LOUNGE"].eastExit = "";
-	//rooms["BREEDWELL_LOUNGE"].southExit = "";
+	rooms["BREEDWELL_LOUNGE"].southExit = "BREEDWELL_MOD_BAY";
 	rooms["BREEDWELL_LOUNGE"].westExit = "BREEDWELL_NATAL_UNIT";
 	rooms["BREEDWELL_LOUNGE"].moveMinutes = 1;
 	rooms["BREEDWELL_LOUNGE"].runOnEnter = breedwellLoungeBonus;
@@ -118,5 +118,19 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_NATAL_UNIT"].addFlag(GLOBAL.INDOOR);
 	rooms["BREEDWELL_NATAL_UNIT"].addFlag(GLOBAL.PUBLIC);
 
+	/* Breedwell Modding Bay */
+	rooms["BREEDWELL_MOD_BAY"] = new RoomClass(this);
+	rooms["BREEDWELL_MOD_BAY"].roomName = "MODDING\nBAY";
+	rooms["BREEDWELL_MOD_BAY"].description = "";
+	rooms["BREEDWELL_MOD_BAY"].planet = "BREEDWELL CENTRE";
+	rooms["BREEDWELL_MOD_BAY"].system = "SYSTEM: WISTRAL";
+	rooms["BREEDWELL_MOD_BAY"].northExit = "BREEDWELL_LOUNGE";
+	//rooms["BREEDWELL_MOD_BAY"].eastExit = "";
+	//rooms["BREEDWELL_MOD_BAY"].southExit = "";
+	//rooms["BREEDWELL_MOD_BAY"].westExit = "";
+	rooms["BREEDWELL_MOD_BAY"].moveMinutes = 1;
+	//rooms["BREEDWELL_MOD_BAY"].runOnEnter = "";
+	rooms["BREEDWELL_MOD_BAY"].addFlag(GLOBAL.INDOOR);
+	rooms["BREEDWELL_MOD_BAY"].addFlag(GLOBAL.PUBLIC);
 }
 

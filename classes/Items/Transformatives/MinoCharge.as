@@ -262,11 +262,11 @@ package classes.Items.Transformatives
 							target.vaginas[i].wetness--;
 							if (target.vaginas[i].wetness < 0) target.vaginas[i].wetness == 0;
 						}
-						if (target.elasticity > 1)
-						{
-							target.elasticity--;
-							if (target.elasticity < 1) target.elasticity == 1;
-						}
+					}
+					if (target.elasticity > 1)
+					{
+						target.elasticity--;
+						if (target.elasticity < 1) target.elasticity == 1;
 					}
 					changes++;
 				}
@@ -579,6 +579,9 @@ package classes.Items.Transformatives
 				output("\n\nYou let out a startled yelp as your ears start to squirm and wiggle, making horrid jelly-like motions as the nanomachines in the Mino Charge rearrange your body shape. Your ears grow out from the side of your head, turning soft and velvety while the outward-facing sides are covered in a thin layer of fur. You pull your Codex out and flip it around, using it like a mirror to examine your newly-molded ears. <b>You now have distinctly bovine ears!</b>");
 
 				target.earType = GLOBAL.TYPE_BOVINE;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				changes++;
 			}
 			
@@ -746,7 +749,7 @@ package classes.Items.Transformatives
 				
 				if (target.hasCock()) 
 				{
-					output("You look down after a few moments, drawn from your thoughts by the");
+					output(" You look down after a few moments, drawn from your thoughts by the");
 					// cock 12 inches or more:
 					if (target.biggestCockLength() >= 12) output(" massive");
 					output(" bulge ");

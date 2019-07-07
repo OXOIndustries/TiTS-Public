@@ -52,7 +52,7 @@
 				
 				// Anus doesn’t have the Slightly Pumped flag or the Pumped flag:
 				// Anus gains the Slightly Pumped flag. Increase bonusCapacity towards 100.
-				if(!pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED))
+				if(!pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 				{
 					kGAMECLASS.output("\n\nYou feel your [pc.asshole] quiver, twitching as if being prodded with a vibrator. You can’t help but lick your lips in anticipation of what’s about to happen,");
 					if(pc.libido() < 33) kGAMECLASS.output(" stifling a quiet whimper");
@@ -76,7 +76,7 @@
 				}
 				// Anus has the Slightly Pumped flag but not the Pumped flag:
 				// Anus loses the Slightly Pumped flag and gains the Pumped flag. Increase bonusCapacity towards 100.
-				else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED))
+				else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 				{
 					kGAMECLASS.output("\n\nYou");
 					if(pc.libido() < 33) kGAMECLASS.output(" can’t help it; this time you");
@@ -89,7 +89,7 @@
 					if(pc.hasVagina())
 					{
 						kGAMECLASS.output(" It’s every bit as sensitive as [pc.eachCunt], maybe even more so");
-						if(pc.matchedVaginas() && pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) kGAMECLASS.output(" had you not juiced that up into a big puffy pleasure mound as well");
+						if(pc.matchedVaginas() && (pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[0].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))) kGAMECLASS.output(" had you not juiced that up into a big puffy pleasure mound as well");
 						kGAMECLASS.output(". The thought of taking a cock in each at once, of feeling this ecstasy in front and back at the same time, has [pc.girlCum] streaming down your thighs.");
 					}
 					else
@@ -107,7 +107,7 @@
 				}
 				// Anus has the Pumped flag, bonusCapacity is less than 100:
 				// Increase bonusCapacity.
-				else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && pc.ass.bonusCapacity < 500)
+				else if((pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) && pc.ass.bonusCapacity < 500)
 				{
 					kGAMECLASS.output("\n\nYou shiver as your [pc.asshole] softens further, getting even more stretchy but, you note with a touch of disappointment, no bigger. It looks like even modern medical science can’t make your pucker any plumper than it already is, but it can certainly make it even better at taking bigger cocks.");
 					

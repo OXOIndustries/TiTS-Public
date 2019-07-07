@@ -709,7 +709,9 @@ public function giannaAppearance():void
 	output("\n\nIn addition to her feminine wiles, she’s got a [gianna.asshole] nestled right between her [gianna.butts], where it belongs, only functioning as an auxiliary sexual input for interested partners. Another port sits not far above it, just at the base of her spine. This one is round and metal, designed to connect to some kind of cabling or hose.");
 	if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] != undefined) output(" You know from experience that she takes in more silicone there, distributing it through her body to improve her aesthetics.");
 	output("\n\nShe has knees and feet exactly as you would expect. There’s even ten carefully crafted, synth-skin covered artificial toes that wiggle when she walks. They lack nails, but pink-hued depressions conceal that from a distance, looking like painted polish.");
-
+	
+	pc.lust(5);
+	
 	clearMenu();
 	addButton(0,"Next",approachGianna,"back");
 }
@@ -2629,7 +2631,7 @@ public function giannaNormalTitTitfuck():void
 		output(".");
 		output("\n\nYou groan in disappointment.");
 		output("\n\nGianna smiles knowingly; there’s no hiding the near-crimson blush of her cheeks or the shining pinkness of her breasts. <i>“Do you want to cum now?”</i> She licks the exposed portion of your length once. A second taste follows after a brief pause, faster than the first. <i>“I know the longer I can make this last, the better it will feel for you.”</i> She pauses, tongue half out of her mouth but talking perfectly clearly all the same. <i>“You do seem on the cusp of a powerful orgasm. ");
-		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until [pc.he]’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give him.");
+		if(giannaPersonality() >= 70) output("I’m not sure if I should let you cum yet. My [pc.name] deserves to wait until [pc.he]’s achingly full and ready to explode. [pc.He] deserves the biggest, wettest climax I can give [pc.himHer].");
 		else if(giannaPersonality() >= 30) output("Do you want it now? Do you want to paint my tits and fill my mouth?");
 		else output("I’ll bring you off now, if that’s what you command, [pc.master] [pc.name].");
 		output("”</i>");
@@ -2786,7 +2788,10 @@ public function giannasCockSuckingLipsSuckCocks():void
 	output("\n\nShe proves her point by opening wide, those plush black lips spread into an outspread ‘o’, and leans down over your [pc.cockBiggest]");
 	if(pc.biggestCockThickness() >= 3) output(", displaying incredible elasticity as she takes in a jaw-breaking amount of your monstrous girth");
 	output(". Those slippery pillows glide across your [pc.cockHeadBiggest] with sensuous intent. She’s polishing you so intently that if she pulled off, your prick would shine, and all this before she’s taken more than the first inch.");
-	output("\n\nPausing, Gianna looks up at you, her eyes dancing with delight. You’re positive she’d be smiling it if it wasn’t for the meaty length plugging her gullet. Her tongue dances in lazy figure eights over your urethral slit, toying with your most sensitive places. Blood rushes to the suckled organ, expanding it in her mouth, and you whine in ecstatic discomfort. The feeling is just a little too intense, like taking a cold drink after eating a mint. You grip the chair and try to hold yourself still when the android’s searching tongue slips a little south, wagging back and forth across the spot just beneath the underside of your tip.");
+	output("\n\n");
+	if(pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) showImage("GiannaCockSuck");
+	else showImage("GiannaCockSuckHorse");
+	output("Pausing, Gianna looks up at you, her eyes dancing with delight. You’re positive she’d be smiling it if it wasn’t for the meaty length plugging her gullet. Her tongue dances in lazy figure eights over your urethral slit, toying with your most sensitive places. Blood rushes to the suckled organ, expanding it in her mouth, and you whine in ecstatic discomfort. The feeling is just a little too intense, like taking a cold drink after eating a mint. You grip the chair and try to hold yourself still when the android’s searching tongue slips a little south, wagging back and forth across the spot just beneath the underside of your tip.");
 	output("\n\nYour eyes cross, and your hands relax. You scoot forward in your seat, and the girl accepts your advances along your throbbing, [pc.cockColor] pole an inch at a time. The synthskin of her swollen lips is almost silken in texture, so smooth and effortless in the way it greedily suckles more and more of your length.");
 	if(pc.biggestCockLength() > 6) output(" You never really feel yourself hit the back of her throat either. It’s just one constant, sinfully sweet slide into a capacitative throat built to squeeze and rub you as efficiently as her bloated, bimbo-like lips.");
 	else output(" She doesn’t have any problem taking your entire tool. It’s just one constant, sinfully sweet slide into her bloated, bimbo-like lips.");
@@ -3527,7 +3532,9 @@ public function coochFuckThreeMaybeFourInOne():void
 			output("\n\nYou lean down and kiss the eager android right on one of her inky nipples, sliding your tongue in a circle over the areola before suckling gently upon the nub. Flicking it with your [pc.tongue], you work Gianna into a squirming, moaning mess. Only then, with your fingers soaked and your mouth full of tit, do you finally grab your [pc.cock " + x + "]");
 			if(pc.cockTotal() > 1) output(", selecting it as the lucky winner,");
 			output(" and press it against her lips. They part with almost buttery smoothness, gratefully accepting your length into their slippery depths.");
-			output("\n\nThe moment your [pc.cockHead " + x + "] is swallowed by her velvet curtains, the supine succubus smiles broadly and wraps her heels around your waist, curling her toes inward to press on the small of your back. She cocks her head and intently watches your expression while you slide on in. What could she be looking fo-ooooooh.... Her pussy is sucking on you, pulling you deeper even without the gentle pressure from her legs or your own thrusting. Gianna’s vagina easily devours your entire veiny package, taking it in to the [pc.sheath " + x + "]");
+			output("\n\n");
+			if(gianna.hasCock()) showImage("GiannaFutaGetsFucked");
+			output("The moment your [pc.cockHead " + x + "] is swallowed by her velvet curtains, the supine succubus smiles broadly and wraps her heels around your waist, curling her toes inward to press on the small of your back. She cocks her head and intently watches your expression while you slide on in. What could she be looking fo-ooooooh.... Her pussy is sucking on you, pulling you deeper even without the gentle pressure from her legs or your own thrusting. Gianna’s vagina easily devours your entire veiny package, taking it in to the [pc.sheath " + x + "]");
 			if(pc.cLength(x) >= 15) output(" despite the way it bulges her belly");
 			if(pc.cLength(x) >= 22) output(", so big that it’s clearly outlined on her middle");
 			output(".");
@@ -3795,7 +3802,10 @@ public function phatBootyHotdogging():void
 	else if(giannaPersonality() >= 30) output("Put it in! I’m completely, like, ready to feel you cumming all over my butt. I won’t even complain if you slip the tip inside and fill me from behind. Just cum wherever you like.");
 	else output("Please, [pc.Master]. I’m ready. I promise, I’ll make my butt feel as good as possible for you and earn every drop of seed you shoot out.");
 	output("”</i> Gianna flexes her ass, bouncing her cheeks.");
-	output("\n\nAs if you could wait any longer. ");
+	output("\n\n");
+	if(gianna.hasCock()) showImage("GiannaHotdogFuta");
+	else showImage("GiannaHotdog");
+	output("As if you could wait any longer. ");
 	if(pc.tallness <= 66) output("You get a nearby stool so that you’ll be able to reach her butt. Being small sure is a pain sometimes. ");
 	output("Wrapping a hand around yourself near the base, you slide your [pc.cockBiggest] into the crease between her plump cheeks. ");
 	if(pc.longestCockLength() >= 10) output("Your [pc.cockHeadBiggest] pops back out on the other side, still shining and slick. ");

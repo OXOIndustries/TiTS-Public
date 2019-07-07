@@ -277,7 +277,7 @@ public function kaseJoinCrew():void
 	else addDisabledButton(0, "BuyContract", "Buy Contract", "You don’t have the 5000 credits needed for the buy out.");
 	if (annoIsCrew()) addButton(1, "SteeleTech", kaseHireSteeleTech, undefined, "SteeleTech", "Ask him if he’s up for joining SteeleTech. Anno can probably help with all the paperwork and bureaucratic aspects.");
 	else addDisabledButton(1, "SteeleTech", "SteeleTech", "You probably don’t have the authority to hire for your dad’s company on your own.");
-	addButton(2, "Nevermind", kaseNevermind, undefined, "", "");
+	addButton(2, "Never Mind", kaseNevermind, undefined, "", "");
 }
 
 public function kaseBuyContract():void

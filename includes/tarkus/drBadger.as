@@ -5,12 +5,18 @@
 }
 public function drBadgerBustDisplay(nude:Boolean = false):String
 {
-	if(flags["BADGER_QUEST"] == -3) return "DR_BADGER_BIMBO";
+	if(chars["DRBADGER"].isBimbo()) return "DR_BADGER_BIMBO";
 	
 	var sBust:String = "DRBADGER";
 	if(nude) sBust += "_NUDE";
 	
 	return sBust;
+}
+
+public function drBadgerAtBimbotorium():Boolean
+{
+	if(flags["DR_BADGER_TURNED_IN"] != undefined) return false;
+	return true;
 }
 
 public function bimbotoriumHallBonus():Boolean
@@ -39,6 +45,9 @@ public function bimbotoriumHallBonus():Boolean
 
 public function drBadgerMenu():void
 {
+	chars["DRBADGER"].keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
+	chars["DRBADGER"].keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
+	chars["DRBADGER"].keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
 	shopkeep = chars["DRBADGER"];
 	
 	clearMenu();
@@ -50,7 +59,10 @@ public function drBadgerMenu():void
 	
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
-
+	
+	drBadgerFixNymFoeButton(3);
+	drBadgerBuyNymFoeButton(8);
+	
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
 		if(flags["BADGER_QUEST"] == -2) addButton(6,"Zap Her!",bimboZapDrBadger,undefined,"Zap Her!","Turn the tables on Dr. Badger, zapping her with your reprogrammed raygun and turning her into a bimbo instead of Penny.");
@@ -129,7 +141,7 @@ public function drBadgerBonusShit():Boolean
 	}
 	else
 	{
-		if(flags["BADGER_QUEST"] == -3)
+		if(chars["DRBADGER"].isBimbo())
 		{
 			bimboBadgerShopStuff();
 			drBadgerLookAroundButton(5);
@@ -158,6 +170,11 @@ public function drBadgerBonusShit():Boolean
 		
 		// Repeat vists
 		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+		if (siegwulfeIsDom() && !wulfe.isEggWulfe())
+		{
+			if (pc.hasItemByClass(Ovilium, 10)) addButton(1, "Ovilium", siegwulfeInstallEggs, undefined, "Give Ovilium", "Give Badger the bottles of Ovilium she needs.");
+			else addDisabledButton(1, "Ovilium", "Give Ovilium", "You need 10 bottles of Ovilium and to have [wulfe.name] with you for this.");
+		}
 		
 		drBadgerLookAroundButton(5);
 	}
@@ -169,8 +186,13 @@ public function repeatBadgerApproach():void
 	clearOutput();
 	showDrBadger();
 	author("Abe E. Seedy");
+	//Siegwulfe with PC
+	if (hasSiegwulfeOnSelf() && (flags["DR_BADGER_APPROACHES_TILL_WULFE"] == undefined || flags["DR_BADGER_APPROACHES_TILL_WULFE"]-- <= 0) && !siegwulfeIsDom())
+	{
+		return siegwulfeExpansionIntro();
+	}
 	//REPEAT GREETING NON-BIMBOIFIED
-	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
+	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
 	{
 		output("The Doctor looks up as you enter, currently busy pouring through another seemingly innocuous pile of mechanical trash. <i>“Well well, if it isn’t my only repeat customer!”</i> She pauses for a moment as she considers this. <i>“Wow, I have a really terrible business plan.”</i> For a moment, it looks like she might be genuinely concerned, but soon she shrugs and continues happily. <i>“Oh well. You gotta love what you do. So, here to do some more shopping? I’ve still got those little happy pills in stock. They can’t be beat if you want to live a little...”</i>");
 
@@ -186,7 +208,7 @@ public function repeatBadgerApproach():void
 	else
 	{
 		output("The Doctor looks up as you enter, her face sliding into a lecherous grin as she sees you. <i>“Well well”</i>, she says, <i>“if it isn’t my little bimbo pet. Back from slutting your way around the galaxy, are you? I hope you’ve been a good little bimbo and sucked some nice alien cock while you’ve been away, hmm</i>?”");
-		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
+		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor is enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
 		output("\n\nIn the end however, she simply sighs heartily without standing. <i>“Unfortunately, my supplies are a little low right now”</i>, she says, indicating her ramshackle surroundings with a lazy sweep of her arm, <i>“so I’m afraid I can’t offer you anything more... intense... right now. I do still have some of those happy pills if you want them though. How does that sound</i>?”");
 		applyDamage(new TypeCollection( { tease: 10 } ), chars["DRBADGER"], pc, "minimal");
 	}
@@ -242,7 +264,7 @@ public function heyDocImAHero():void
 	clearOutput();
 	showDrBadger();
 	author("Abe E. Seedy");
-	output("Doctor Badger grins widely, pressing you a little harder against the door as she moves one hand down to retrieve a remote control from some hidden pocket. <i>“Well, </i>hero”, she teases, <i>“let’s see just how heroic you are once I’ve had some fun with you...”</i>");
+	output("Doctor Badger grins widely, pressing you a little harder against the door as she moves one hand down to retrieve a remote control from some hidden pocket. <i>“Well, </i>hero<i>”</i>, she teases, <i>“let’s see just how heroic you are once I’ve had some fun with you...”</i>");
 	output("\n\nShe presses a prominent button on the remote, releasing you and stepping away to the side in one fluid motion. Before you can react you hear the machine in front of you whirr menacingly, and then a great white beam shoots out of it, bathing your head in a thick, hazy glow.");
 	output("\n\nIt feels... nice. Warm. You tense yourself for something dramatic to happen, but after several seconds you eventually re-open your eyes, and hesitantly wave a hand in front of your face. Several more seconds pass, and absolutely nothing continues to happen. Maybe it doesn’t work? Or maybe your protective enhancements were too powerful for it? Laughing, you strike a confident, heroic pose, turning to face Dr. Badger again now that you’ve defeated her nefarious plan, only to discover her bearing down on you while holding a large hypodermic needle filled with some brightly glowing substance.");
 	output("\n\nYou don’t have time to do anything more than stare before she jabs you with the needle, pressing the plunger down and pumping whatever’s inside it into your body. She doesn’t even bother to restrain you after that; simply pulling the needle out with shrug and explaining <i>“I’ve never been much of an engineer unfortunately, but I do have a soft spot for sneaking up and surprising people...”</i>");
@@ -251,11 +273,11 @@ public function heyDocImAHero():void
 	output("\n\nWith that she moves forward, and brings herself right against you. After your telling off earlier you keep still, allowing her to simply rub her soft cock against your [pc.face]. Her musk is overpowering; you feel her scent pouring through your nose, reaching up into your brain and absolutely dominating your thoughts. All you can think about is her cock - the way it feels against your [pc.skin], the way it looks as she slides it back and forth, but most importantly the rich, intoxicating scent of it that leaves you helplessly enthralled. You pant breathlessly, your eyes following every movement it makes as the Doctor looks down at you approvingly.");
 	output("\n\n<i>“You like my cock, don’t you?”</i>, she asks softly.");
 	output("\n\nYou can’t even bring yourself to respond. ‘Like’ isn’t a strong enough word, you <i>need</i> it, it’s like a drug you didn’t even know you were addicted to, and as much as you try to fight it it’s as though she’s just reached into your brain and flicked all the switches that leave you utterly fixated on it. In the end, you only respond with a nod because she moves herself up and down against you, and your head follows the movement into a nod unthinkingly.");
-	output("\n\n<i>“That’s good”</i>, she coos, and then suddenly she steps backwards, abruptly taking her wonderful cock away from you. You gasp for breath, not sure if you’re relieved or upset to be able to think a little more clearly for a moment. <i>“But </i>heroes”, she continues, putting a mocking emphasis on that word, <i>“don’t get to have fun with Doctor Badger’s cock.”</i>");
+	output("\n\n<i>“That’s good”</i>, she coos, and then suddenly she steps backwards, abruptly taking her wonderful cock away from you. You gasp for breath, not sure if you’re relieved or upset to be able to think a little more clearly for a moment. <i>“But </i>heroes<i>”</i>, she continues, putting a mocking emphasis on that word, <i>“don’t get to have fun with Doctor Badger’s cock.”</i>");
 	output("\n\nShe bends forward, putting her plump, perfect lips right next to your ear, whispering <i>“my cock is reserved for bimbos; slutty bimbo girls with big tits, a nice full ass and a wonderfully big cock of their own.”</i> She pulls back a little and winks, gesturing over her own voluptuous body. <i>“You might say I appreciate the look</i>.”");
 	output("\n\nFor your part, you’re still unable to respond. You <i>want</i> to say something, but she’s still so close to you that you can <i>feel</i> the musk pouring off her, and the scent of it is wrapped so fiercely around your brain that all you can do is drool wantonly.");
 	output("\n\nMercifully - or tragically, you’re still not sure which - she steps back again, turning away and walking over to the other side of the room. She flicks a switch there and a bright light comes on, revealing what seems to be a little metal stand about half the height of a person, like a speaker’s podium except instead of an open book or a microphone the top of it holds only a pair of leather straps. She moves up behind it and presses another button on her remote, at which point some concealed panel in the roof slides open. From there a long mechanical tendril stretches down slowly; only a few inches wide but long enough to reach all the way down to the floor and then some, and apparently dexterous enough to curl easily around the Doctor’s outstretched hand. The tip of it oozes with what looks to be the same brightly glowing substance you were injected with earlier, and she brings the tendril up to her mouth to give the liquid a light tasting lick, smacking her lips in appreciation.");
-	output("\n\n<i>“Mhmmm”</i>, she coos happily, before turning her eyes back to you. <i>“Now then, </i>hero”, she continues, <i>“may I present to you the solution to your little problem. This wonderful machine of mine will make you into the perfect bimbo; give you all the... assets and desires that a cute little bimbo could need. And I’ll tell you what - I’ll let you go afterwards. You can still be a hero, even! But you’ll be a hero with great heaving tits, a thick throbbing cock, and, I’m afraid, rather more difficulty in thinking about anything other than sex. So you’ll still be a hero, but you might find things a little... </i>harder<i> than before...”</i> She leans heavily on that word, and you can’t help but notice that she’s started stroking her own cock absently just in describing it all, and it’s rapidly putting its own emphasis on the word. <i>“So”</i>, she finishes with a grin, <i>“what do you say</i>?”");
+	output("\n\n<i>“Mhmmm”</i>, she coos happily, before turning her eyes back to you. <i>“Now then, </i>hero<i>”</i>, she continues, <i>“may I present to you the solution to your little problem. This wonderful machine of mine will make you into the perfect bimbo; give you all the... assets and desires that a cute little bimbo could need. And I’ll tell you what - I’ll let you go afterwards. You can still be a hero, even! But you’ll be a hero with great heaving tits, a thick throbbing cock, and, I’m afraid, rather more difficulty in thinking about anything other than sex. So you’ll still be a hero, but you might find things a little... </i>harder<i> than before...”</i> She leans heavily on that word, and you can’t help but notice that she’s started stroking her own cock absently just in describing it all, and it’s rapidly putting its own emphasis on the word. <i>“So”</i>, she finishes with a grin, <i>“what do you say</i>?”");
 	output("\n\nYou try to resist. You really do. But you can’t. You can’t stop yourself from moving over towards her, utterly mesmerized by her offer and, more importantly, the sight of her hardening cock. You <i>need</i> it, you have ever since she first pushed it into your face, and no matter how hard you screw up your eyes and try to turn away you still find yourself moving slowly but inevitably over. Eventually you’re beside her, eyes downcast as you offer yourself helplessly to her.");
 	output("\n\n<i>“Good girl”</i>, she purrs,");
 	if(pc.mf("him","her") != "her") output(" your gender apparently already being disregarded to match the one she’s designating for you,");
@@ -300,19 +322,19 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)
 	{
-		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts</b>!");
+		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts!</b>");
 		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 	}
 	//IF PC HAS SMALLER THAN VERY LARGE BREASTS
 	if(pc.biggestTitSize() < 8)
 	{
-		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large</b>!");
+		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large!</b>");
 		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 	}
 	//IF PC HAS MORE THAN ONE SET OF BREASTS
 	if(pc.bRows() > 1)
 	{
-		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts</b>!");
+		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts!</b>");
 		while(pc.bRows() > 1)
 		{
 			pc.removeBreastRow(1,1);
@@ -323,7 +345,7 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");
-		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock</b>!");
+		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock!</b>");
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 11;
 		pc.cocks[0].cockColor = "black";
@@ -333,7 +355,7 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");
-		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large</b>!");
+		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large!</b>");
 		pc.cocks[0].cLengthRaw = 11;
 	}
 	//IF PC HAS MORE THAN ONE NON-TAIL COCK
@@ -342,7 +364,7 @@ public function heyDocImAHero():void
 		output("\n\nYour extra cock");
 		if(pc.cockTotal() > 2) output("s flow ");
 		else output(" flows ");
-		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
+		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin!</b>");
 		
 		while(pc.cockTotal() > 1)
 		{
@@ -352,7 +374,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE BALLS
 	if(pc.balls == 0)
 	{
-		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
+		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls!</b>");
 		pc.balls = 2;
 		pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -361,8 +383,8 @@ public function heyDocImAHero():void
 	//IF PC HAS SMALLER THAN LARGE BALLS, OR HAS LESS THAN LARGE CUM PRODUCTION
 	if(pc.maxCum() < 500 && pc.balls > 0)
 	{
-		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
-		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive!</b>");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive!</b>");
 
 		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -371,7 +393,7 @@ public function heyDocImAHero():void
 	//IF PC HAS MORE THAN ONE SET OF BALLS
 	if(pc.balls > 2)
 	{
-		output("\n\nWith a sensation that makes your eyes roll back in your head you feel your extra sets of balls drain themselves into your main pair, sliding seamlessly into your flesh while your remaining balls slosh as they fill to overflowing with extra seed. <b>You now have only one set of balls</b>!");
+		output("\n\nWith a sensation that makes your eyes roll back in your head you feel your extra sets of balls drain themselves into your main pair, sliding seamlessly into your flesh while your remaining balls slosh as they fill to overflowing with extra seed. <b>You now have only one set of balls!</b>");
 		pc.balls = 2;
 		pc.ballSizeRaw += pc.ballSizeRaw/2;
 	}
@@ -381,7 +403,7 @@ public function heyDocImAHero():void
 		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening");
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 		else output(" at your crotch");
-		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina</b>!");
+		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina!</b>");
 		pc.createVagina();
 		pc.vaginas[0].wetnessRaw = 3;
 		pc.vaginas[0].loosenessRaw = 2;
@@ -393,7 +415,7 @@ public function heyDocImAHero():void
 	{
 		if(pc.vaginas[0].bonusCapacity < 20 || pc.vaginas[0].wetnessRaw < 3)
 		{
-			output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure in your vagina. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel your slit changing, and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>Your vagina is now capacious</b>!");
+			output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure in your vagina. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel your slit changing, and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>Your vagina is now capacious!</b>");
 			pc.vaginas[0].bonusCapacity = 20;
 			pc.vaginas[0].wetnessRaw = 3;
 		}
@@ -404,7 +426,7 @@ public function heyDocImAHero():void
 		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
 		if(pc.totalVaginas() > 2) output("s sealing themselves");
 		else output(" sealing itself");
-		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin</b>!");
+		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin!</b>");
 		while(pc.totalVaginas() > 1)
 		{
 			pc.removeVagina(1,1);
@@ -414,7 +436,7 @@ public function heyDocImAHero():void
 	//IF PC HAS A NON-LUBRICATING ASSHOLE
 	if(pc.ass.wetnessRaw < 2)
 	{
-		output("\n\nThe fluid moves to massage your sizeable rear, and you can’t help but moan as it almost feels like your ass somehow orgasms. With a shudder of pleasure you realize that your asshole is now slick and dripping just like your vagina, ready and eager to be filled by all-comers. <b>Your asshole is now self-lubricating</b>!");
+		output("\n\nThe fluid moves to massage your sizeable rear, and you can’t help but moan as it almost feels like your ass somehow orgasms. With a shudder of pleasure you realize that your asshole is now slick and dripping just like your vagina, ready and eager to be filled by all-comers. <b>Your asshole is now self-lubricating!</b>");
 		pc.ass.wetnessRaw = 2;
 	}
 	//IF PC HAS A NON-COCK/VAGINA TAIL
@@ -426,7 +448,7 @@ public function heyDocImAHero():void
 		output("in turn. ");
 		if(pc.tailCount == 1) output("It shifts up on itself");
 		else output("They shift up on themselves");
-		output(", bunching up into a little black tuft, perfectly imitating the Doctor’s own tail. <b>Your tail is now a badger tail</b>!");
+		output(", bunching up into a little black tuft, perfectly imitating the Doctor’s own tail. <b>Your tail is now a badger tail!</b>");
 		pc.tailCount = 1;
 		pc.tailType = GLOBAL.TYPE_BADGER;
 		pc.clearTailFlags();
@@ -436,7 +458,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE A TAIL
 	if(pc.tailCount == 0)
 	{
-		output("\n\nThere’s a sudden stretching sensation in your backside, and then a short sharp shock as you feel a small fluffy tail burst through your flesh. It twitches for a few moments before settling down, a perfect imitation of the Doctor’s own tail. <b>You now have a badger tail</b>!");
+		output("\n\nThere’s a sudden stretching sensation in your backside, and then a short sharp shock as you feel a small fluffy tail burst through your flesh. It twitches for a few moments before settling down, a perfect imitation of the Doctor’s own tail. <b>You now have a badger tail!</b>");
 		pc.tailCount = 1;
 		pc.tailType = GLOBAL.TYPE_BADGER;
 		pc.clearTailFlags();
@@ -446,7 +468,7 @@ public function heyDocImAHero():void
 	//IF PC DOES NOT HAVE FUR
 	if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
 	{
-		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur!</b>");
 		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_THICK);
@@ -456,12 +478,12 @@ public function heyDocImAHero():void
 	//IF PC HAS NON-BLACK FUR
 	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR && pc.furColor != "black")
 	{
-		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur!</b>");
 		pc.furColor = "black";
 	}
 	if(pc.legType != GLOBAL.TYPE_SUCCUBUS && pc.isBiped())
 	{
-		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels</b>!");
+		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels!</b>");
 		pc.legType = GLOBAL.TYPE_SUCCUBUS;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -469,7 +491,7 @@ public function heyDocImAHero():void
 	}
 	if(pc.armType != GLOBAL.TYPE_BADGER)
 	{
-		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands</b>!");
+		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands!</b>");
 		pc.armType = GLOBAL.TYPE_BADGER;
 		pc.clearArmFlags();
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -478,10 +500,19 @@ public function heyDocImAHero():void
 	output("\n\nYou barely register the tendril pulling itself out of your mouth, the only thought that provokes in you is one of mild discomfort as you’re no longer being filled from at least one end. You drool helplessly, your dripping tongue hanging from your lips");
 	if(pc.faceType != GLOBAL.TYPE_BADGER)
 	{
-		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle</b>!");
+		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle!</b>");
 		pc.faceType = GLOBAL.TYPE_BADGER;
 		pc.clearFaceFlags();
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+	}
+	else output(".");
+	if(pc.earType != GLOBAL.TYPE_BADGER)
+	{
+		output(" Your [pc.ears] tingle as they begin to morph and reshape themselves, sprouting fur, and finally turning into something more suited for a natural mustelid-morph. <b>You now have badger ears!</b>");
+		pc.earType = GLOBAL.TYPE_BADGER;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_FURRED);
+		pc.earLength = 1;
 	}
 	else output(".");
 	if(pc.femininity < 75) pc.femininity = 75;
@@ -793,21 +824,21 @@ public function removeDatCuntTail():void
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.breastRatingUnlocked(0, 8) && pc.biggestTitSize() < 1 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts</b>!");
+		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts!</b>");
 		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 		changes++;
 	}
 	//IF PC HAS SMALLER THAN VERY LARGE BREASTS
 	if(pc.breastRatingUnlocked(0, 8) && pc.biggestTitSize() < 8 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large</b>!");
+		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large!</b>");
 		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 		changes++;
 	}
 	//IF PC HAS MORE THAN ONE SET OF BREASTS
 	if(pc.removeBreastRowUnlocked(1, 1) && pc.bRows() > 1 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts</b>!");
+		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts!</b>");
 		while(pc.bRows() > 1)
 		{
 			pc.removeBreastRow(1,1);
@@ -819,18 +850,18 @@ public function removeDatCuntTail():void
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");
-		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock</b>!");
+		output(" beneath it. You find yourself gasping for breath, hurriedly taking in air in short, desperate bursts as you grasp at the top of the podium feverishly, until finally the unstoppable pressure within you releases in one great orgasmic rush. You feel an intense surge, and somehow you become aware that your body is responding along with it, a great thick shaft pressing out of your crotch. You pant as you feel the fluid work its way through it, molding it and filling it out all at the same time, until finally you feel your new, massive cock hanging heavily from your body, twitching and pulsing with the fluid that fills it so desperately. God, it feels so <i>good</i>, but you <i>need</i> to cum, and despite how good it felt you still somehow haven’t. <b>You now have a very large cock!</b>");
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 11;
 		pc.cocks[0].cockColor = "black";
 		changes++;
 	}
 	//IF PC HAS A SMALLER THAN VERY LARGE COCK
-	if(pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
+	if(pc.hasCock() && pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");
-		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large</b>!");
+		output(" beneath it. You can feel the fluid pumping into you, surge after surge flowing through your body and aiming directly for your cock, which soon shudders and responds to the massive increase in pressure. It presses out from you slowly, building outwards with every pulse and almost knocking your [pc.legOrLegs] out from under you at the sheer intensity of it, leaving you struggling to keep breathing as your cock fills absolutely with this new, surging fluid. You want to cum, you <i>need</i> to cum, but you can’t - all you can do is clutch desperately at the top of the podium while your shaft slowly grows to become large enough to almost match Dr. Badger herself. <b>Your cock is now very large!</b>");
 		pc.cocks[0].cLengthRaw = 11;
 		changes++;
 	}
@@ -840,7 +871,7 @@ public function removeDatCuntTail():void
 		output("\n\nYour extra cock");
 		if(pc.cockTotal() > 2) output("s flow ");
 		else output(" flows ");
-		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin</b>!");
+		output("together like they were liquid themselves, feeding their mass into your main cock, ensuring you’re more focused on receiving breeding than being able to breed others. <b>You now have only one very large cock on your groin!</b>");
 		
 		while(pc.cockTotal() > 1)
 		{
@@ -851,7 +882,7 @@ public function removeDatCuntTail():void
 	//IF PC DOES NOT HAVE BALLS
 	if(pc.ballsUnlocked(0) && pc.balls == 0 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
+		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focuses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls!</b>");
 		pc.balls = 2;
 		pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -861,8 +892,8 @@ public function removeDatCuntTail():void
 	//IF PC HAS SMALLER THAN LARGE BALLS, OR HAS LESS THAN LARGE CUM PRODUCTION
 	if(pc.ballSizeUnlocked(4) && pc.maxCum() < 500 && pc.balls > 0 && changes < 3 && rand(3) == 0)
 	{
-		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive</b>!");
-		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
+		if(pc.balls > 1) output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your balls. Here it simply builds unstoppably, dragging a groan from you as you feel them swell in response. The fluid focuses on them mercilessly, pumping them so achingly full that they grow dramatically. They feel like they’re overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your balls are now very productive!</b>");
+		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focuses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it’s overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive!</b>");
 
 		if(pc.ballSizeRaw < 4) pc.ballSizeRaw = 4;
 		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
@@ -872,7 +903,7 @@ public function removeDatCuntTail():void
 	//IF PC HAS MORE THAN ONE SET OF BALLS
 	if(pc.ballsUnlocked(2) && pc.balls > 2 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nWith a sensation that makes your eyes roll back in your head you feel your extra sets of balls drain themselves into your main pair, sliding seamlessly into your flesh while your remaining balls slosh as they fill to overflowing with extra seed. <b>You now have only one set of balls</b>!");
+		output("\n\nWith a sensation that makes your eyes roll back in your head you feel your extra sets of balls drain themselves into your main pair, sliding seamlessly into your flesh while your remaining balls slosh as they fill to overflowing with extra seed. <b>You now have only one set of balls!</b>");
 		pc.balls = 2;
 		pc.ballSizeRaw += pc.ballSizeRaw/2;
 		changes++;
@@ -883,7 +914,7 @@ public function removeDatCuntTail():void
 		output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure sinking into the very base of your crotch, below even your balls. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel a slit opening");
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 		else output(" at your crotch");
-		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina</b>!");
+		output(", and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>You now have a capacious vagina!</b>");
 		pc.createVagina();
 		pc.vaginas[0].wetnessRaw = 3;
 		pc.vaginas[0].loosenessRaw = 2;
@@ -896,7 +927,7 @@ public function removeDatCuntTail():void
 	{
 		if(pc.vaginas[0].bonusCapacity < 20 || pc.vaginas[0].wetnessRaw < 3)
 		{
-			output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure in your vagina. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel your slit changing, and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>Your vagina is now capacious</b>!");
+			output("\n\nThere’s a sudden shift inside you, and suddenly you feel a distinct pleasure in your vagina. The sensation is almost blissful; after all the straining fullness from the fluid earlier this response is enough to make your head sink happily down to one side, your tongue lolling out of your mouth in pleasure. With a shudder you feel your slit changing, and you can’t help but smile dopily as you feel it become wonderfully slick and deep; literally dripping with enough ready-made lubrication to leave you always available for use by almost any size of client. <b>Your vagina is now capacious!</b>");
 			pc.vaginas[0].bonusCapacity = 20;
 			pc.vaginas[0].wetnessRaw = 3;
 			changes++;
@@ -908,7 +939,7 @@ public function removeDatCuntTail():void
 		output("\n\nYour fingers clench involuntarily as you undergo the indescribable sensation of your superfluous vagina");
 		if(pc.totalVaginas() > 2) output("s sealing themselves");
 		else output(" sealing itself");
-		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin</b>!");
+		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin!</b>");
 		while(pc.totalVaginas() > 1)
 		{
 			pc.removeVagina(1,1);
@@ -918,7 +949,7 @@ public function removeDatCuntTail():void
 	//IF PC DOES NOT HAVE FUR
 	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR) && pc.skinType != GLOBAL.SKIN_TYPE_FUR && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your [pc.skin], sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur!</b>");
 		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_THICK);
@@ -929,13 +960,13 @@ public function removeDatCuntTail():void
 	//IF PC HAS NON-BLACK FUR
 	if(pc.furColorUnlocked("black") && pc.skinType == GLOBAL.SKIN_TYPE_FUR && pc.furColor != "black" && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
+		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur!</b>");
 		pc.furColor = "black";
 		changes++;
 	}
 	if(pc.legTypeUnlocked(GLOBAL.TYPE_SUCCUBUS) && pc.legType != GLOBAL.TYPE_SUCCUBUS && pc.isBiped() && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels</b>!");
+		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels!</b>");
 		pc.legType = GLOBAL.TYPE_SUCCUBUS;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -944,7 +975,7 @@ public function removeDatCuntTail():void
 	}
 	if(pc.armTypeUnlocked(GLOBAL.TYPE_BADGER) && pc.armType != GLOBAL.TYPE_BADGER && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands</b>!");
+		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands!</b>");
 		pc.armType = GLOBAL.TYPE_BADGER;
 		pc.clearArmFlags();
 		pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -953,10 +984,19 @@ public function removeDatCuntTail():void
 	if(pc.faceTypeUnlocked(GLOBAL.TYPE_BADGER) && pc.faceType != GLOBAL.TYPE_BADGER && changes < 3 && rand(3) == 0)
 	{
 		output("\n\nYou drool helplessly, your dripping tongue hanging from your lips");
-		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle</b>!");
+		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle!</b>");
 		pc.faceType = GLOBAL.TYPE_BADGER;
 		pc.clearFaceFlags();
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+		changes++;
+	}
+	if(pc.earTypeUnlocked(GLOBAL.TYPE_BADGER) && pc.earType != GLOBAL.TYPE_BADGER && changes < 3 && rand(3) == 0)
+	{
+		output("\n\nYour [pc.ears] tingle as they begin to morph and reshape themselves, sprouting fur, and finally turning into something more suited for a natural mustelid-morph. <b>You now have badger ears!</b>");
+		pc.earType = GLOBAL.TYPE_BADGER;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_FURRED);
+		pc.earLength = 1;
 		changes++;
 	}
 	//resume scene

@@ -230,7 +230,7 @@ public function pcLossToNyrea():void
 		else output(" across your bare scalp");
 		output(" and slowly pulling you toward the flared haft of her cock.");
 
-		if (pc.isTreatedFemale() || pc.isBimbo()) output(" It may not be a REAL cock per-se, but your spunk-craving brain’s primal instincts kick in all the same, and you practically leap onto the offered rod, wrapping your [pc.lips] eagerly around the thick crown.");
+		if (pc.isTreatedCow() || pc.isBimbo()) output(" It may not be a REAL cock per-se, but your spunk-craving brain’s primal instincts kick in all the same, and you practically leap onto the offered rod, wrapping your [pc.lips] eagerly around the thick crown.");
 		else
 		{
 			output(" You struggle against the nyrea’s grasp, but you’re far too");
@@ -244,7 +244,7 @@ public function pcLossToNyrea():void
 			output("\n\n<i>“That’s it, offworlder.... You do know how to pleasure a woman, don’t you? If only more of my harem sluts had your touch...”</i>");
 		
 		output("\n\nThe nyrea’s hands settle on the sides of your head, holding you steady against the jagged cavern wall. All you can do is try not to choke on the massive rod as she starts to piston into you, using her hips to pound away into your mouth. Tears well up in your eyes as the dull spines on her cockhead rake through your throat, not truly painful but intensely discomforting. The swell of her knot hammers against your [pc.lips], even thicker than the mighty shaft you’re being face-fucked with, and much too big to get your lips around");
-		if (pc.isTreatedFemale()) output(" no matter how much you may want to");
+		if (pc.isTreatedCow()) output(" no matter how much you may want to");
 		output(". The fleshy bitch-breaker only grows as your throat plays pussy for her cock, swelling to terrifying thickness in front of your eyes.");
 		
 		output("\n\nThe huntress sees where your eyes are going and grins down at you. <i>“Better prepare yourself. I need that inside you to release my eggs, after all.”</i>");

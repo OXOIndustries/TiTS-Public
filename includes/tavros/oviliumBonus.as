@@ -478,9 +478,12 @@ private function oviliumEggTF(effectTF:String = "none", nVal:Number = 0, eggSize
 		if (num > 0)
 		{
 			msg += "A thrilling spasm throbs at your cervix, nearly buckling your legs. Your codex informs you that the pregnanc";
-			if (num != 1)msg += "y";
+			if (num == 1) msg += "y";
 			else msg += "ies";
-			msg += " you’ve been expecting have been";
+			msg += " you’ve been expecting ha";
+			if (num == 1) msg += "s";
+			else msg += "ve";
+			msg += " been";
 			if (nVal < 0) msg += " expedited";
 			else msg += " delayed";
 			msg += ".";

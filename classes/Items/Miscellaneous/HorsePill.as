@@ -863,6 +863,9 @@
 						else msg += "Your ears change shape, morphing into teardrop-shaped horse ears!";
 						msg += "<b> You now have horse ears.</b>";
 						target.earType = GLOBAL.TYPE_EQUINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else
 					{
@@ -904,9 +907,10 @@
 							else msg += "they split";
 							msg += " into hundreds of tiny filaments, transforming into a horsetail.";
 						}
-						msg += " <b>You now have a horse-tail.</b>", false;
+						msg += " <b>You now have a horse-tail.</b>";
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_LONG);
+						target.addTailFlag(GLOBAL.FLAG_FLOPPY);
 						target.tailCount = 1;
 						target.tailType = GLOBAL.TYPE_EQUINE;
 					}

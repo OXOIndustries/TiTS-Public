@@ -689,10 +689,12 @@ public function majaSexyTimes():void
 
 public function majaSexMenu():void
 {
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	
 	clearMenu();
 	addButton(0,"WorshipDick",worshipMajasBitchBreakingBoner,undefined,"WorshipDick","Service maja with your mouth and hands. There’s a lot there to work with.");
 
-	if((pc.hasCock() && pc.cockThatFits(majaPlaceholder().vaginalCapacity(0)) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Pitch Dick",penisRouter,[pitchDickingToMaja,majaPlaceholder().vaginalCapacity(0),true],"Pitch Dick","Give her a good dicking.");
+	if((pc.hasCock() && pc.cockThatFits(ppMaja.vaginalCapacity(0)) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Pitch Dick",penisRouter,[pitchDickingToMaja,ppMaja.vaginalCapacity(0),true],"Pitch Dick","Give her a good dicking.");
 	else if(pc.hasCock()) addDisabledButton(1,"Pitch Dick","Pitch Dick","Your penis won’t fit in there.");
 	else addDisabledButton(1,"Pitch Dick","Pitch Dick","You need a penis that will fit inside Maja OR a hardlight strap-on to do this scene.");
 
@@ -718,6 +720,9 @@ public function worshipMajasBitchBreakingBoner():void
 	clearOutput();
 	showMaja(true);
 	author("Gardeford");
+	
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	
 	output("<i>“Scoot yourself up onto that table for me,”</i> You command. The brown-furred dog-girl complies immediately, hopping up to sit at the tables edge, her maleness bobbing in the open air. An adorable sense of anticipation paints her features, complemented by her rapidly wagging tail. You [pc.move] close enough to ");
 	if(pc.isNaga()) output("coil up");
 	else if(pc.hasKnees()) output("kneel");
@@ -793,10 +798,7 @@ public function worshipMajasBitchBreakingBoner():void
 			}
 			else 
 			{
-				output("thrusting into");
-				if(pc.hasVagina()) output("[pc.vaginas]");
-				else output("your [pc.asshole]");
-				output(" with as many fingers as your can manage");
+				output("thrusting into your " + (pc.hasVagina() ? "[pc.vaginas]" : "[pc.asshole]") + " with as many fingers as you can manage");
 			}
 			output(". The feeling just isn’t the same, but it assauges the need a little. Your actions still elicit a choked moan, and Maja shares it, shifting and pumping her hips. Another inch slides into your mouth, bringing you ever closer to her crotch.");
 		}
@@ -824,10 +826,10 @@ public function worshipMajasBitchBreakingBoner():void
 		output(" You rise, washing your face in a basin of water along the wall by the door, and gather your things.");
 
 		processTime(30);
-		pc.loadInMouth(majaPlaceholder());
-		pc.loadInMouth(majaPlaceholder());
-		pc.loadInMouth(majaPlaceholder());
-		if(pc.hasCock() && pc.hasTailCunt()) feedCuntSnake();
+		pc.loadInMouth(ppMaja);
+		pc.loadInMouth(ppMaja);
+		pc.loadInMouth(ppMaja);
+		if(pc.hasCock() && pc.hasTailCunt()) feedCuntSnake(ppMaja);
 		pc.orgasm();
 	}
 	//pc cant deepthroat
@@ -844,9 +846,9 @@ public function worshipMajasBitchBreakingBoner():void
 		else output("the source of your warmth");
 		output(". Instead, you find her knot shrunken to a more normal size, and her cock slipping steadily back into her sheath. You give it a few goodbye tugs, letting the last few jets of cum splatter onto your [pc.chest]. To your delight, a pool of minty juices spread over the table from underneath the exhausted korgonne’s hefty balls. After pushing yourself up, you gather your things and wash your face in a small basin by the door.");
 		processTime(30);
-		pc.loadInMouth(majaPlaceholder());
-		pc.loadInMouth(majaPlaceholder());
-		pc.loadInMouth(majaPlaceholder());
+		pc.loadInMouth(ppMaja);
+		pc.loadInMouth(ppMaja);
+		pc.loadInMouth(ppMaja);
 		
 	}
 	//merge
@@ -878,6 +880,9 @@ public function heatFuckMaja():void
 	clearOutput();
 	showMaja(true);
 	author("Gardeford");
+	
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	
 	output("You spin around as quickly as you can, all but falling ");
 	if(pc.isNaga()) output("into a jumble of coils");
 	else if(pc.isGoo()) output("into a puddle of goo");
@@ -890,7 +895,7 @@ public function heatFuckMaja():void
 		if(pc.isTaur()) output("haunches");
 		else output("lower back");
 		output(", but you feel her pointed tip slip into your [pc.asshole]. Before her rut rattled mind can register whats going on, a foot and a half of korgmeat slams into your [pc.butt]. The only thing stopping it is quick muscle action on your part and the greater size of her knot. Like hell will any of her thick, minty pup-seed end up anywhere except your womb. She seems to notice her error, but still gives a few instinctual thrusts before she can will herself to pull out and line up with the right hole.");
-		pc.buttChange(majaPlaceholder().cockVolume(0));
+		pc.buttChange(ppMaja.cockVolume(0));
 	}
 	else
 	{
@@ -910,7 +915,7 @@ public function heatFuckMaja():void
 	}
 	else if(pc.vaginas[x].looseness() <= 4) output("Her pointed tip easily penetrates your entrance, spreading your insides and molding them to her shape. Furry balls slap against your thighs as she pistons her hips, splashing wetly in the juices that flow from your [pc.pussy " + x + "]. Lances of pleasure spread through your body, alternating between filling every inch of you and leaving you empty.");
 	else output("The entirety of her slides into you, a key to unlock the door to your fertile womb. Buffeting waves of bliss flood through your mind as her knot pushes in and out of your [pc.pussy " + x + "]. You can hear her grunting with the effort of thrusting as you clench tight to keep her inside.");
-	pc.cuntChange(x,majaPlaceholder().cockVolume(0));
+	pc.cuntChange(x,ppMaja.cockVolume(0));
 
 	output("\n\nYou want to shout something, proclaim your dominance or submission, but it all jumbles in your throat, coming out in guttural moans. Maja answers with moans of her own, kneading your back with her paws. Her nipples rub against your [pc.skinFurScales] as she moves, gemstone nubs thicker than your thumb. Beneath the golden fur she’s feverishly warm, but in the blaze of your heat it feels like an icy reprieve.");
 
@@ -929,7 +934,7 @@ public function heatFuckMaja():void
 		output(" in a sloppy kiss.");
 	}
 	//tightness 2-5
-	else if(pc.vaginalCapacity(x) < majaPlaceholder().cockVolume(0))
+	else if(pc.vaginalCapacity(x) < ppMaja.cockVolume(0))
 	{
 		output("\n\nWarmth floods into you as she cums, seed coming in quick spurts as her knot slaps into your [pc.butt] and grinds against your hips. With her knot still outside, most of the liquid lust is pushed back. It runs down your [pc.hips] in creamy rivulets, pooling beneath you. The waste is agonizing, but Maja seems to have an endless supply to keep your womb full of puppy-cum. She licks ");
 		if(pc.isTaur() || pc.tallness >= 5*12) output("your back");
@@ -943,7 +948,7 @@ public function heatFuckMaja():void
 		if(pc.isTaur() || pc.tallness >= 5*12) output("your back, her legs hanging in the air as she pumps in place.");
 		else output("the back of your neck, clutching tightly to your waist.");
 		output(" It doesn’t seem like she’s going anywhere.");
-		pc.cuntChange(x,majaPlaceholder().cockVolume(0));
+		pc.cuntChange(x,ppMaja.cockVolume(0));
 	}
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Much good... Maja was good girl?");
@@ -952,19 +957,18 @@ public function heatFuckMaja():void
 	output("\n\n<i>“Yeah, good girl,”</i> you respond, reaching back to scratch the exhausted dog-girl behind the ears. Content for the moment, you let Maja rest atop your back while you get a little yourself. A few micro-orgasms jolt you from your relaxation as her sapphire fuckstick retracts into its sheath, inching out of your [pc.vagina " + x + "] with aching slowness.");
 
 	output("\n\nThe two of you wake at about the same time, separating from each other with a sticky squelch. You stretch, feeling stiff from sleeping on the cave floor. A bath would be nice right about now, or a hot shower. Maja plops down behind her desk, pulling on her clothes and looking utterly fulfilled. You smile, retrieving your [pc.gear] and shaking any last kinks from your muscles.");
-	if(!pc.isPregnant() && pc.vaginalCapacity(x) > majaPlaceholder().cockVolume(0)) output(" You rub your belly, musing at your semi-pregnant appearance.");
+	if(!pc.isPregnant() && pc.vaginalCapacity(x) > ppMaja.cockVolume(0)) output(" You rub your belly, musing at your semi-pregnant appearance.");
 
 	//(pass 45m)(if pc stretchy then stuffed)(return to maja menu)
 	processTime(45);
 	pc.orgasm();
 	pc.lust(5);
-	var majaPP:PregnancyPlaceholder = majaPlaceholder();
-	if(pc.vaginalCapacity(x) < majaPlaceholder().cockVolume(0))
+	if(pc.vaginalCapacity(x) < ppMaja.cockVolume(0))
 	{
-		majaPP.removePerk("Fixed CumQ");
-		majaPP.createPerk("Fixed CumQ",400,0,0,0);
+		ppMaja.removePerk("Fixed CumQ");
+		ppMaja.createPerk("Fixed CumQ",400,0,0,0);
 	}
-	pc.loadInCunt(majaPP,x);
+	pc.loadInCunt(ppMaja,x);
 	IncrementFlag("SEXED_MAJA");
 	clearMenu();
 	addButton(0,"Next",repeatMajaApproach,true);
@@ -1083,6 +1087,9 @@ public function pitchDickingToMaja(x:int):void
 	clearOutput();
 	showMaja(true);
 	author("Gardeford");
+	
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	
 	output("<i>“How about you hop up on the table and show me that cute butt of yours? I imagine your pussy’s feeling neglected after those huge balls moved in,”</i> you ask");
 	if(!pc.isCrotchExposed()) output(", already beginning to remove your [pc.crotchCover]");
 	output(". Maja gives you a brief smile, but her swiftly wagging tail betrays how excited she is. It almost knocks over a bowl of animal treats on one corner of the desk, but the dextrous korgonne manages to catch it in her cleavage before it can fall. Her massive mammaries jiggle enticingly as she replaces the bowl.");
@@ -1117,7 +1124,7 @@ public function pitchDickingToMaja(x:int):void
 
 	//pc has another dick smaller than the first that fits
 	var y:int = -1;
-	if(pc.cockTotal() > 1) y = pc.cockThatFits2(majaPlaceholder().vaginalCapacity(0));
+	if(pc.cockTotal() > 1) y = pc.cockThatFits2(ppMaja.vaginalCapacity(0));
 	if(pc.cockTotal() > 1 && y >= 0 && y != x)
 	{
 		output("\n\nYou pull her asscheeks aside, revealing the bright blue pucker of Maja’s asshole. Her tail begins to frantically shake as you line your second member up to her tight ring. The heat of it is astounding, even with only your tip touching her ass. You meet some resistance as you start to push forward, but once you clear the entrance you’re able to press easily into her depths.");
@@ -1192,8 +1199,11 @@ public function catchMajasCockYaSlut():void
 {
 	clearOutput();
 	showMaja(true);
-	var x:int = pc.smallestVaginaIndex();
 	author("Gardeford");
+	
+	var x:int = pc.smallestVaginaIndex();
+	var ppMaja:PregnancyPlaceholder = majaPlaceholder();
+	
 	output("<i>“Why don’t you show me what you can do with that bitch-breaker of yours,”</i> you say");
 	if(!pc.isCrotchExposed()) output(", removing your [pc.crotchCovers] into a pile on the desk");
 	output(". Once you’re undressed, you ");
@@ -1225,7 +1235,7 @@ public function catchMajasCockYaSlut():void
 	if(pc.vaginas[x].looseness() <= 2) output("hiss of air escapes your lips as the end of her cock works its way into your tight passage. She won’t be impaling you anytime soon, but the squishier apex of her manhood has no trouble squeezing its way inside.");
 	else if(pc.vaginas[x].looseness() < 5) output("pleased gasp escapes your lips as she pushes her way inside you. You clench tightly around her, feeling every inch of her as it fills you.");
 	else output("sigh of pleasure leaves your throat as her massive manhood slides into you. She almost slips as she thrusts her hips, meeting no resistance till her partially swollen knot bumps into your [pc.butt]. Only then do you let your muscles clench, trapping her in the warm embrace of your insides.");
-	pc.cuntChange(x,majaPlaceholder().cockVolume(0));
+	pc.cuntChange(x,ppMaja.cockVolume(0));
 
 	output("\n\nThe poor girl tries her best, humping away at you with as much force as she can muster. Unfortunately, she intermittently lapses in her efforts as preorgasmic shudders run through her body. It doesn’t take too much effort for you to get a good grip on Maja’s firm buttocks, guiding her through the motions till she’s back up to speed. You give one of her plush melons a squeeze with your free hand, delighting in the jiggle that runs through it with each of her thrusts. You wedge two fingers beneath the heavy leather strap, pinching one of her sapphire nipples to keep her aware.");
 
@@ -1262,13 +1272,12 @@ public function catchMajasCockYaSlut():void
 	pc.createStatusEffect("MAJA_FUCK_RECOVERY");
 	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",30);
 	pc.orgasm();
-	var majaPP:PregnancyPlaceholder = majaPlaceholder();
 	if(pc.vaginas[x].looseness() < 5)
 	{
-		majaPP.removePerk("Fixed CumQ");
-		majaPP.createPerk("Fixed CumQ",400,0,0,0);
+		ppMaja.removePerk("Fixed CumQ");
+		ppMaja.createPerk("Fixed CumQ",400,0,0,0);
 	}
-	pc.loadInCunt(majaPP,x);
+	pc.loadInCunt(ppMaja,x);
 	IncrementFlag("SEXED_MAJA");
 
 	clearMenu();

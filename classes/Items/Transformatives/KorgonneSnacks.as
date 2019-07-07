@@ -233,10 +233,10 @@ package classes.Items.Transformatives
 						kGAMECLASS.output(", your member’s flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
 						kGAMECLASS.output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your new puppy pecker and adjusting to the heft and weight of the knot.");
 						pc.lust(20+rand(20));
-						pc.cocks[x].cockColor = "pale blue";
 						pc.libido(2);
 						changes++;
 						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
+						pc.cocks[x].cockColor = "pale blue";
 					}
 					else
 					{
@@ -261,7 +261,7 @@ package classes.Items.Transformatives
 						if(pc.legCount > 1) output("between your [pc.legs]");
 						else output("between your thighs");
 						output(", burning like a furnace. You whimper and double over as the flesh there clenches down, your [pc.vagina " + x + "] going wild. You grow acutely aware of the emptiness inside you as the inferno dies down to a pleasant, lusty heat. Mutagenic quivers ripple through your feminine slit, rapid-fire. Each on changes it a little more.");
-						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) output(" Your mound quivers and plumps.");
+						if(!pc.hasPlumpPussy(x)) output(" Your mound quivers and plumps.");
 						if(pc.vaginas[x].vaginaColor != "pale blue") output(" Starting at the slit, creamy blue stains your skin, spreading until you have a cerulean cunt.");
 						if(pc.vaginas[x].clits > 2) output(" Clits vanish until you’re left with just the one at the top.");
 						if(pc.vaginas[x].clits > 1) output(" The extra clit vanishes to leave you with just the one in the usual place.");
@@ -340,6 +340,9 @@ package classes.Items.Transformatives
 					{
 						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of triangular, canine ears with rounded points. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have a korgonne’s fuzzy ears!</b>");
 						pc.earType = GLOBAL.TYPE_KORGONNE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + target.earTypeLockedMessage());
@@ -399,6 +402,31 @@ package classes.Items.Transformatives
 						{
 							output(" The change extends beyonds just your [pc.legs]. It reaches all the way up your lower body. <b>From the waist down, you’re built like a huge dog!</b>");
 						}
+						pc.legType = GLOBAL.TYPE_KORGONNE;
+						pc.clearLegFlags();
+						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
+						pc.addLegFlag(GLOBAL.FLAG_PAWS);
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
+				}
+				//Change leg type to bipedal?
+				if(pc.legType != GLOBAL.TYPE_KORGONNE && changes < changeLimit && pc.legCount != 2 && rand(3) == 0)
+				{
+					if (target.legTypeUnlocked(GLOBAL.TYPE_KORGONNE))
+					{
+						if(pc.legCount < 2)
+						{
+							kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you’re helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. Fur springs up all over them, and after a few seconds, you’re left with two fur-covered legs. <b>You have two korgonne legs!</b>");
+						}
+						//More than biped
+						else
+						{
+							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up all over the new limbs, and by the time it finishes, <b>you’ve grown korgonne-like legs.</b>");
+						}
+						pc.legCount = 2;
+						pc.genitalSpot = 0;
 						pc.legType = GLOBAL.TYPE_KORGONNE;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);

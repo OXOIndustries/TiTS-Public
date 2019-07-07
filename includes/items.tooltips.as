@@ -18,6 +18,11 @@ public function altTooltip(itemName:String = "none"):String
 			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
 			else tooltip += "150";
 			break;
+		case "RahnSuperIncubator":
+			tooltip += "The modification you received from Breedwell decreases the length of time rahn eggs need to incubate within you.";
+			//tooltip += " Cuts rahn pregnancy from 14 days to 10.";
+			tooltip += " Increases rahn pregnancy incubation speed modifier by 40%.";
+			break;
 		
 		// Weapons
 		case "HoldOutPistol":
@@ -104,6 +109,7 @@ public function altTooltip(itemName:String = "none"):String
 		case "ShelterDrone":
 			tooltip += "A Pyrite-designed drone, created to protect users from extreme weather. When activated, it will project an atmospheric bubble around the user, providing significant protection against environmental hazards. It is not self-powered, however, and will require a portion of your shield’s energy to function.";
 			tooltip += "\n\nSadly, there is no practical area to install weapon systems on this drone. You should probably use it alongside another, more combat-oriented drone.";
+			tooltip += "\n\n" + (inCombat() ? "<b>This item is not useful in combat!</b>" : "<i>This item’s effects are only applied when outside of combat.</i>") + "";
 			break;
 		case "Siegwulfe":
 			if(chars["WULFE"].isBimbo()) tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a curvaceous, sexy gynoid with a coating of sun-kissed synth-skin starting at her inhumanly-wide hips, up past a pair of gigantic breasts, and to a whorish face half-hidden under a polysteel visor.";

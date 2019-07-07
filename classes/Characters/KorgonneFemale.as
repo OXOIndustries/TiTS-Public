@@ -85,7 +85,7 @@
 			this.thickness = 65;
 			this.tone = 32;
 			this.hairColor = "dirty blonde";
-			this.hairType = GLOBAL.TYPE_RASKVEL;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.scaleColor = "blue";;
 			this.furColor = "tan";
 			this.hairLength = 14;
@@ -95,28 +95,28 @@
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "white";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_CANINE;
-			this.faceFlags = [GLOBAL.FLAG_MUZZLED];
+			this.faceType = GLOBAL.TYPE_KORGONNE;
+			this.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_FURRED];
 			this.tongueType = GLOBAL.TYPE_CANINE;
 			this.lipMod = 0;
-			this.earType = GLOBAL.TYPE_CANINE;
+			this.earType = GLOBAL.TYPE_KORGONNE;
 			this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_CANINE;
-			this.armFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
+			this.armType = GLOBAL.TYPE_KORGONNE;
+			this.armFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS, GLOBAL.FLAG_FURRED];
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_CANINE;
+			this.legType = GLOBAL.TYPE_KORGONNE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PAWS];
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PAWS, GLOBAL.FLAG_FURRED];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_CANINE;
+			this.tailType = GLOBAL.TYPE_KORGONNE;
 			this.tailCount = 1;
 			this.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!

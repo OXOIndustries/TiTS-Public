@@ -696,7 +696,9 @@ public function worshipZeBullCawk():void
 	author("Savin");
 	showName("OGGY &\nAMMA");
 	output("<i>“What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?”</i> Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
-	output("\n\nAmma’s fingers wrap around Og’s cock, holding the lengthy pole at full mast as she runs her nose across it from stem to crown. Her eyes all but roll up in her head, lids fluttering as she succumbs to the meaty, earthy musk of pheromones radiating off of Ogram’s manhood. ");
+	output("\n\n");
+	showImage("OggyAmmaBJScene");
+	output("Amma’s fingers wrap around Og’s cock, holding the lengthy pole at full mast as she runs her nose across it from stem to crown. Her eyes all but roll up in her head, lids fluttering as she succumbs to the meaty, earthy musk of pheromones radiating off of Ogram’s manhood. ");
 	//if PC is Treated-feminine:
 	if(pc.isTreated() && pc.isBimbo()) output("You smell them too, your heightened fuck-dar going on high alert as Amma starts to gently stroke Ogram’s cock. You nearly fall to your [pc.knees] as his virile scent, the scent of a breeder ready and eager to fuck, nearly overwhelms your lust-addled, Treated mind.");
 	else output("You can’t deny the odor, either: the air’s soon thick with it, now that Ogram’s cock is out and being gently caressed by the busty bimbo before him: an aroma that nearly makes your [pc.knees] wobble with mounting desire.");
@@ -736,7 +738,7 @@ public function worshipZeBullCawk():void
 	output("\n\n<i>“Fuck... that’s the stuff....”</i> Ogram breathes huskily as you and Amma almost kiss around his cock, his hands guiding each of you gently upwards when you part. You eagerly obey him, letting the bull guide you slowly along the long, fist-thick bovine member suspended between yourself and the bimbo cow opposite you. You can’t suppress a shudder as you finally get your first taste of Og’s cock, the thick, animalistic flavor sending ecstatic shivers through your eager body. It feels... it feels <i>right</i> to service this cock, to worship it.");
 	//???
 	if(!pc.isTreated() && !pc.isBimbo()) output(" Some part of your mind still rebels against this cow-like mentality, until you get another full, deep breath of Ogram’s potent musk, and happily simmer back into a puddle of fuck all too happy to spitshine the beautiful animalistic manhood at your lips.");
-	else output(" Your Treated mind revels in its new purpose, easily accepting your place of devotion to Ogram’s cock, simmering in the pheromone-induced puddle of fuck that you’ve become, all too eager to lick and kiss your way up his animalistic prick.");
+	else output(" Your " + (pc.isTreated() ? "Treated" : "lust-ditzed") + " mind revels in its new purpose, easily accepting your place of devotion to Ogram’s cock, simmering in the pheromone-induced puddle of fuck that you’ve become, all too eager to lick and kiss your way up his animalistic prick.");
 	output("\n\nYou mewl with desire as your [pc.lips] lock around the half-cock allotted to you, almost kissing Amma, so close that you can feel her breath hot on your lips... or maybe that’s just the heat welling off of Ogram’s member? You can’t tell anymore... and frankly, you’re not sure if you care. Your eyes flutter as your [pc.tongue] teases across the sweltering underside of the bull’s masculinity, drowning you in his salty, musky taste. You could almost cum just from his member on your lips, his thick pre on your tongue.");
 	//if not Treated:
 	if(!pc.isTreated() && !pc.isBimbo()) output(" Is this what it’s like to be Treated? God, you almost want to find out....");
@@ -1568,7 +1570,7 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 
 	output("\n\n<i>“Less lube?”</i> she ponders, <i>“No, wait - You want it deeper?”</i>");
 
-	output("\n\nYou strain to to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
+	output("\n\nYou strain to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
 
 	output("\n\n<i>“Oh, heavens to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
 
@@ -1981,10 +1983,7 @@ public function carrieBlowjobsGo():void
 			if(!pc.isCrotchExposed()) output("tracing the outline of your [pc.cock " + x + "] through your [pc.lowerUndergarment].");
 			else output("gently stroking your bare, swinging [pc.cock " + x + "].");
 
-			output("\n\n<i>“Not at this time of ");
-			if(hours > 6 && hours < 20) output("day ");
-			else output("night ");
-			output(", no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, making them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
+			output("\n\n<i>“Not at this time of day, no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, making them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
 		}
 		//Into the meat of the scene
 		//Big cock

@@ -741,7 +741,9 @@ public function cuntTailShadeFux():void
 
 	output("\n\nShade’s hips shift back ever so slightly, letting her wiggle out of her panties and toss them aside, keeping her tailcunt planted firmly around your [pc.cockHead " + x + "] until she’s done. As her black undergarments fall to the floor, Shade leans back and down, bringing her tight asscheeks to rest against the stiffening span of your [pc.cock " + x + "], trapping you between two eager cunts.");
 	output("\n\n<i>“Which of this pussy’s pussies do you want first?”</i> the cat-girl teases, grinding her hips and tail up and down your shaft, slathering you in warm wetness. One of her hands slips down between her spread legs, rubbing at the prominent mound of her clit. She doesn’t give you the chance to formulate a response to her question, moving faster until your mouth twists open in a groan of pleasure. Grinning at her obvious effect on you, Shade leans down, pressing her big, soft tits into your [pc.chest] and wrapping her lips around yours, letting her tongue slip into you, playing across your own [pc.tongue].");
-	output("\n\nHer tail coils up behind her, angling it’s cunt-like slit with your [pc.cockHead " + x + "] and delving down. You moan around Shade’s mouth as her tail swallows up your [pc.cock " + x + "], ");
+	output("\n\n");
+	showImage("ShadeTailfuck");
+	output("Her tail coils up behind her, angling it’s cunt-like slit with your [pc.cockHead " + x + "] and delving down. You moan around Shade’s mouth as her tail swallows up your [pc.cock " + x + "], ");
 	if(pc.cocks[x].thickness() >= 3) output("stretching its bulbous head to take your girth, straining to wrap around your massive shaft");
 	else output("wrapping your prick in tight, wriggling cuntflesh as tight as any normal pussy could ever be");
 	output(". Arching her back, Shade breaks the kiss and lets out a soft, surprisingly feminine moan, closing her eyes and enjoying the sensation of your cock filling her tail’s welcoming hole.");

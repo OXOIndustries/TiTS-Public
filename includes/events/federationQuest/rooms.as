@@ -162,7 +162,7 @@ public function fqInitRooms():void
 	
 	rooms["O19"] = new RoomClass(this);
 	rooms["O19"].roomName = "FACTORY\nFLOOR E.";
-	rooms["O19"].description = "The eastern section of the factory floor is where tanks start their journey towards completion, you guess: there’s a skeleton of one still sitting here, nothing but superstructure and treads awaiting its armor and weapons. Chains high above you,on level with some catwalks near the ceiling, are supporting a solid metal turret, complete with a heavy cannon.";
+	rooms["O19"].description = "The eastern section of the factory floor is where tanks start their journey towards completion, you guess: there’s a skeleton of one still sitting here, nothing but superstructure and treads awaiting its armor and weapons. Chains high above you, on level with some catwalks near the ceiling, are supporting a solid metal turret, complete with a heavy cannon.";
 	rooms["O19"].planet = "PLANET: MYRELLION";
 	rooms["O19"].system = "SYSTEM: SINDATHU";
 	rooms["O19"].northExit = "O17";

@@ -73,7 +73,7 @@
 			this.credits = 10000;
 			
 			this.femininity = 0;
-			this.eyeType = GLOBAL.TYPE_NAGA;
+			this.eyeType = GLOBAL.TYPE_SAURMORIAN;
 			this.eyeColor = "azure";
 			this.tallness = 102;
 			this.thickness = 100;
@@ -88,21 +88,21 @@
 			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			this.skinTone = "silver";
 			this.skinFlags = [GLOBAL.FLAG_THICK];
-			this.faceType = GLOBAL.TYPE_LIZAN;
+			this.faceType = GLOBAL.TYPE_SAURMORIAN;
 			this.faceFlags = [GLOBAL.FLAG_MUZZLED];
 			this.tongueType = GLOBAL.TYPE_CANINE;
 			this.addTongueFlag(GLOBAL.FLAG_LONG);
 			this.lipMod = 0;
 			this.lipColor = "amber";
-			this.earType = GLOBAL.TYPE_LIZAN;
+			this.earType = GLOBAL.TYPE_SAURMORIAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_LEITHAN;
+			this.armType = GLOBAL.TYPE_SAURMORIAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_GRYVAIN;
+			this.legType = GLOBAL.TYPE_SAURMORIAN;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
@@ -110,7 +110,7 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_LIZAN;
+			this.tailType = GLOBAL.TYPE_SAURMORIAN;
 			this.tailCount = 1;
 			this.tailFlags = [GLOBAL.FLAG_THICK];
 			//Used to set cunt or dick type for cunt/dick tails!
@@ -148,7 +148,7 @@
 			this.cocks = new Array;
 			this.createCock();
 			this.cocks[0].cockColor = "black"
-			this.cocks[0].cType = GLOBAL.TYPE_SAURIAN;
+			this.cocks[0].cType = GLOBAL.TYPE_SAURMORIAN;
 			this.cocks[0].cLengthRaw = 14;
 			this.cocks[0].cThicknessRatioRaw = 1.5;
 			this.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
@@ -193,6 +193,8 @@
 			//this.createStatusEffect("Stun Immune", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			
+			this.createPerk("Appearance Enabled");
 
 			isUniqueInFight = true;
 			btnTargetText = "Chaurmine";

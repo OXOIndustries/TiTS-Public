@@ -32,7 +32,10 @@ Guards are Nova Securities goons: dark orange and white full body armor, full fa
 //From: Regina Kasmiran (DoNotReply@FaangnisCorrections.corp)
 //To: [pc.Email]@SteeleTech.corp
 //Subject: [pc.name]: Exclusive Offer
-
+public function gastigothCoordinatesUnlocked():Boolean
+{
+	return (MailManager.isEntryViewed("gastigoth_unlock"));
+}
 //Start the stuff to unlock flying to space jail...
 public function processGastigothEvents():void
 {
@@ -95,7 +98,8 @@ public function showKaskaPrison(cum:Boolean = false):void
 public function gastigothEmailText():String 
 {
 	var blep:String = "Greetings, " + pc.mf("Mister","Miss") + " Steele,\n\nI am Warden Regina Kasmiran, controlling officer of the private correctional station <i>Gastigoth</i>. It is unlikely you have heard of us, but we have heard of you: and we have a proposition. You are responsible for the recent capture of ";
-	if(flags["GASTIGOTH_UNLOCKNUM"] == 1) blep += "one";
+	if(flags["GASTIGOTH_UNLOCKNUM"] < 1) blep += "<b>NONE</b>";
+	else if(flags["GASTIGOTH_UNLOCKNUM"] == 1) blep += "one";
 	else blep += "several";
 	blep += " of this station’s new inmates which, given the nature of the convicts we supervise here, means you are an individual of exceptional talent. And of exceptional means, if I am not mistaken. The unique realities of privatized correction allow me to make this offer, and do so with what I hope is blunt clarity:\n\n<i>Gastigoth</i> allows private citizens such as yourself to participate in the corrective process of our inmates, for a small fee. We offer several services on the backs of our inmates, as part of their long journey to clear their debt to galactic society. Or more accurately, most services conclude with the inmates <i>on</i> their backs, though we also support a highly successful breeding program and collared labor, among other more esoteric punishments. Should the fate of your prisoner, and the corrective measure to be applied to them, interest you, I encourage you to visit our establishment. Should you continue on your current course, I have little doubt we will be housing several more individuals you come into contact with throughout the course of the Rush.\n\nThe station coordinates are attached. I look forward to meeting you in person, Captain.\n\n\tRegina Kasmiran\n\tWarden-Commander,\n\tPenal Station <i>Gastigoth</i>";
 	blep += "\n\n<i>You note that, indeed, a set of stellar coordinates are included. The penal station is located on the fringe of Rush Space 13, not that far from Tavros in fact.</i>";
@@ -116,7 +120,7 @@ public function arrivalAtGastibooty():void
 		output("The trip through the Warp Gate network back into the safety of last generation’s Rush Space is relatively easy, as far as jumps go, though it takes a bit longer than you’d like. The network out here still isn’t as robust as back in the core proper, but there’s little risk of piracy or the like. For once, you can rest easy as you travel.");
 		output("\n\nSeveral hours pass before your ship’s computer alerts you to your arrival. You yawn and roll out of bed, stretching on your way up to the bridge and flop into your captain’s chair still blinking the sleep from your eyes. It doesn’t take long for your gaze to narrow and focus, though, as your auto-pilot sweeps you towards your destination.");
 		output("\n\n<i>Gastigoth</i> is a monster of a space station, a mammoth sphere of faceted metals ridged by communications arrays and bristling with weapons. It has no discernable top or bottom, or any other axis beyond a high tower coming from the center of the orb nearest you. Only as you approach this docking arm do you truly get a sense for the station’s scale: it is a behemoth structure that blots out the distant light of the system’s twin suns, and its docking ring alone is the size of a Terran super-carrier. In fact, you’re not convinced that isn’t exactly what it is: a long stretch of solid, flat steel which turns several batteries of rail cannon towards you as you approach, eyeing you dangerously with a hundred barrels of high-powered ship-reaping death before a beep passes over your communications array.");
-		output("\n\nYou answer quickly, not eager to to make whoever’s got that much firepower antsy.");
+		output("\n\nYou answer quickly, not eager to make whoever’s got that much firepower antsy.");
 		output("\n\nThe forward viewscreen blinks out and resolves into an interior camera view. Aboard the armored dock’s bridge, you imagine, if the dozens of holoscreens and fire solution displays flickering in the background are any indication. Unsubtly, several of them show your ship in the crossed sights of heavy cannons and missile racks.");
 		output("\n\nThe only actual person visible on screen is a young woman, pretty as far as primly-cut military types go, though she’s got an unpleasant, emotionless expression on her face. Her hands are clasped in front of her, folded in a way that shows small patches of colorful scales underneath her white-trimmed, dark orange uniform’s sleeves - coloration mirrored on her cheeks and neck, though her face is fleshy and human. Human-reptile crossbreed of some sort?");
 		output("\n\nShe fixes you with a pair of solid, bright blue eyes slitted like a cat’s. <i>“Attention [PCShipName], you have entered a Confederate-licensed security zone. You will power down all shields and weapons, and follow automatic docking trajectories into hanger...”</i> she glances aside. <i>“Hanger twenty-two alpha. Hmm, reserved for special guests. Regardless, any change in your weapons systems once you are within the point perimeter will be construed as an active threat and result in atomization. Understood?”</i>");
@@ -184,7 +188,8 @@ public function securityCheckpointBonus():void
 //PC tries to move into the station without being Disarmed:
 public function intoStationDisarmCheck():Boolean
 {
-	if(!pc.hasStatusEffect("Disarmed"))
+	if(!pc.hasStatusEffect("Disarmed") && flags["MET_BRANDT"] == undefined)
+	//Without talking to Brandt
 	{
 		clearOutput();
 		author("Savin");
@@ -198,26 +203,36 @@ public function intoStationDisarmCheck():Boolean
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
+	//After talking to Brandt
+	else if (!pc.hasStatusEffect("Disarmed"))
+	{
+		pc.takeMeleeWeapon();
+		pc.takeRangedWeapon();
+		pc.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.", false, 0, 0xFF0000);
+		output("You check your gear with Brandt and continue into the station.\n\n");
+		processTime(5);
+	}
+	
+	if (flags["MET_BRANDT"] != undefined)
+	{
+		//Descriptive text for the room
+		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labelled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
+		return false;
+	}
 	return false;
 }
 
 //PC tries to move off station while Disarmed:
 public function leaveStationDisarmCheck():Boolean
 {
-	if(pc.hasStatusEffect("Disarmed"))
+	if (pc.hasStatusEffect("Disarmed"))
 	{
-		clearOutput();
-		showBrandt();
-		author("Savin");
-		showName("FORGET\nSOMETHING?");
-		output("<i>“Captain Steele!”</i> Brandt calls after you, causing you to turn. <i>“Unless you’re making an unexpected donation to the station’s arsenal, perhaps you would like to take back your possessions?”</i>");
-		output("\n\nWhoopsie.");
-		moveTo("I16_SECURITY_CHECKPOINT");
-		processTime(1);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-		return true;
+		returnAllItems(true);
+		pc.removeStatusEffect("Disarmed");
+		output("You reclaim your gear from Brandt and proceed back to your ship.\n\n");
+		processTime(5);
 	}
+	output("Your ship is currently parked at the end of a short docking umbilical, connecting you to a sterile grey corridor that runs into the station. Your berth is one of many visible from the umbilical windows, all connected to different parts of the station. Supposedly, your berth is reserved for special guests - guess you’re important.");
 	return false;
 }
 
@@ -804,7 +819,7 @@ public function finishInsideHelia(x:int):void
 	showBrandt(true);
 	author("Savin");
 
-	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
+	output("You saunter forward, running your hands up along the full, firm cheeks of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
 	output("\n\n<i>“Don’t tease,”</i> Hélla chides, pushing her hips back and taking your [pc.cock " + x + "] to the first inch. <i>“This is for you, after all...”</i>");
 	output("\n\nYou sigh, more from pleasure than consternation, as Hélla’s sex envelops your dick. You mirror her push after a moment, thrusting into the sultry slit until your lover’s moaning, arching her back and pulling you in again with her tail. With her tail curled around your waist, pinning you against her butt, there’s nothing you can do but use your hips to piston back and forth, letting your lover’s ever-fierce grip milk you. It only takes a few moments of this treatment to draw you back to the edge, and then over it with a sharp grunt of pleasure. [pc.Cum] shoots deep, thick rivulets filling Hélla’s twat ");
 	if(pc.cumQ() >= 1500) output("until her stomach puffs out and globs of it run down her thighs, splattering on the deck below you.");
@@ -1147,7 +1162,7 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	}
 	*/
 	
-	addButton(14,"Nevermind",mainGameMenu);
+	addButton(14,"Never Mind",mainGameMenu);
 }
 
 public function prisonerStatline(prisonerName:String):void
@@ -1292,7 +1307,7 @@ public function prisonerTimes(prisonerName:String):void
 public function backOuttaPrisonVisit():void
 {
 	clearOutput();
-	showName("\nNEVERMIND");
+	showName("\nNEVER MIND");
 	output("You wave the prisoner away and leave. This just isn’t going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
 	pc.credits += 1000;
 	clearMenu();
@@ -1362,7 +1377,7 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 	//If PC has a dick bigger than Kaska’s:
 	if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * 1.5))
 	{
-		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
+		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Never mind, just keep doing it. Oh, that’s it... just like that...”</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she’s begging for respite. Tam’s belly is bulging with the sheer size of it, but that doesn’t deter her for a second. Man, kaithrit are built to take ‘em!");
 		output("\n\n<i>“Mmm, somebody’s been getting into the Throbb, huh? I looooove it,”</i> she moans, back arching as you start to slide the shaft out of her. <i>“You’re being so gentle though... oh, when’re you gonna get to the rough stuff, huh? I wanna see what you can do!”</i>");
 	}
@@ -1607,5 +1622,5 @@ public function kaskaSlammer():void
 		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
 		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
 	}
-	addButton(14,"Nevermind",backOuttaPrisonVisit);
+	addButton(14,"Never Mind",backOuttaPrisonVisit);
 }

@@ -126,6 +126,12 @@ public function winVsMilodanMale():void
 	else output("Defeated by your sensuous wiles, the barbarian gives up all pretense of fighting and drops to his knees, grunting in need. You walk over and casually kick his hands away from his loincloth, leaving him at your mercy.");
 	output("\n\n");
 	processTime(1);
+	
+	miloMaleWinMenu();
+}
+
+public function miloMaleWinMenu():void
+{
 	clearMenu();
 
 	if(pc.lust() >= 33)
@@ -333,6 +339,7 @@ public function yesGetTheMilodanOff(x:int):void
 
 	output("\n\nYou grit your teeth and groan in satisfaction as you finally let yourself go, your backed-up load spurting into the milodan’s ass and coating his insides in spunk. Giving him a few last lazy thrusts,");
 
+	var timeBonus:Number = 0;
 	//No knot:
 	if(!pc.hasKnot(x)) 
 	{
@@ -345,6 +352,7 @@ public function yesGetTheMilodanOff(x:int):void
 	//Knot:
 	else
 	{
+		timeBonus = 180;
 		output(" you hilt yourself inside him, relishing the prospect of what’s to come.");
 		//pc.cumVolume <50000:
 		if(pc.cumQ() < 50000)
@@ -370,7 +378,7 @@ public function yesGetTheMilodanOff(x:int):void
 		}
 	}
 	output("\n\n");
-	processTime(30);
+	processTime(30+timeBonus);
 	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
@@ -1039,6 +1047,15 @@ public function milodanPregnancyEnds():void
 	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Milodan Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
 	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;

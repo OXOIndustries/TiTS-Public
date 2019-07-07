@@ -1,4 +1,7 @@
-﻿
+﻿public function poeACoordinatesUnlocked():Boolean
+{
+	return (flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined);
+}
 public function showHoliday(arg:String = "normal"):void
 {
 	showName("\nHOLIDAY");
@@ -86,7 +89,7 @@ public function flyToPoeAConfirm():void
 	output("\n\n");
 	
 	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
-	addButton(14, "Nevermind", flyMenu);
+	addButton(14, "Never Mind", flyMenu);
 }
 public function flyToPoeA():void
 {
@@ -299,6 +302,8 @@ public function leaveLikeABitch():void
 	pc.hornType = GLOBAL.TYPE_DEMONIC;
 	
 	pc.earType = GLOBAL.TYPE_DEMONIC;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 	if(pc.earLength < 2) pc.earLength = 2;
 	if(pc.earLength > 6) pc.earLength = 6;
 	
@@ -362,7 +367,7 @@ public function goblinPartTwo():void
 	output("\n\nThe one who bumped you seems to be a kui-tan girl holding some kind of large diorama of a solar system. She’s hoisting a huge, yellow sun in a belt around her waist, with a variety of small planets bobbing around it. She mutters an apology, but your body has already told you what your mind is slowly working its way toward. You move in close again, pressing your palms against the sun and are rewarded with a soft, yielding pressure that sloshes with liquid weight.");
 	output("\n\n<i>“Hey, careful down there,”</i> she protests, a little embarrassed by being openly groped. <i>“It took me months to save up enough for this costume.”</i> You look up at the blushing futa girl, a slow smile spreading across your face. Frankly, her costume would look better as a supernova and you tell her as much. A few eavesdroppers nearby chuckle, but the kui-tan turns about, trying to make her way away from the aggressive olive woman.");
 	output("\n\nAs she turns her back, you sidestep her huge, bushy tail and wrap your arms around her waist, hands pushing under the sunny latex costume to grab for her fuzzy sheath. She lets out a gasp of surprise and pushes her hands down, to cover up your solar exploration. The pliant folds of her sheath roll and squish under your groping assault and in no time you’re rewarded with the sight of the nuki-girl’s crimson shaft peaking up from under the tawny covering. Squishing your breasts against the small of her back, you stroke the emerging shaft with both hands, coaxing her on with a husky voice that sounds very little like your own.");
-	output("\n\nMoaning and unable to resist your needful kneading, she sinks to her knees, the monumental sun resting with wobbling thickness on the ground. Pulling at the straps around your waist, you clear a path for your viridian cooch to breath free, puffy emerald lips swollen with your impatient yearning. You circle around, pulling her hands down to your dense hips and grin with hungry zest. No longer caring about the growing circle of onlookers around the two of you, the kui-tan girl lifts you easily into the air and positions you over the pulsing length of her twelve-inch shaft. Circling your pudgy [pc.legOrLegs] around her waist, you lean forward and nip at one of her nipples through the black fabric of her dress. With a small ‘Eek!’ she loses her grip, dumping your hungry cunt directly onto the girl’s swollen member.");
+	output("\n\nMoaning and unable to resist your needful kneading, she sinks to her knees, the monumental sun resting with wobbling thickness on the ground. Pulling at the straps around your waist, you clear a path for your viridian cooch to breathe free, puffy emerald lips swollen with your impatient yearning. You circle around, pulling her hands down to your dense hips and grin with hungry zest. No longer caring about the growing circle of onlookers around the two of you, the kui-tan girl lifts you easily into the air and positions you over the pulsing length of her twelve-inch shaft. Circling your pudgy [pc.legOrLegs] around her waist, you lean forward and nip at one of her nipples through the black fabric of her dress. With a small ‘Eek!’ she loses her grip, dumping your hungry cunt directly onto the girl’s swollen member.");
 	output("\n\nA swell of light and heat blinds you momentarily, the suit’s... no, your cunny squeezing down on the throbbing flesh that slid so perfectly into your gap, filling an emptiness you hadn’t realized you’d had before. With a whorish moan of rapture, you pump your hips up and down the shaft, fingers digging into the girl’s fur as you milk her for every ounce of her backed up load. It’s not just the electric pressure of her fat slut-fucker pounding your suckling pussy, nor even the churning heat of your own rolling orgasm alternately robbing you of muscle control and clenching your body in a tight knot of slattern ecstasy. No, the fervid hysteria driving your hips to a piston’s pace is entirely focused on the bloated ballsack beneath you, its fruitful bounty twisting your head into a tangled coil of desperate urgency. You flash the women around you dark looks that both threaten and gloat, your virile prey obediently thrusting womb-deep in your fertile depths.");
 	output("\n\nWhen at last her overstocked testicles discharge their torrid load, a geyser of exquisite seed surging into your taut tunnel like a gushing thermal spring, you bite your emerald lip hard enough to draw a trickle of blood, clenching down to hold on for every bucking spout of seething spunk. The kui-tan cries out in the throes of her climax, fingers digging into your breeder’s hips, the force of each contracting cum spurt pushing your upward while she does her best to pull you back down, knotted base inflating too late to keep the two of you locked together. Each spunk blast is more powerful than the last, your gut filling with her buttery spooge, abdomen swelling outward in fattened excess. Scrambling to remain mounted for every last ounce, you lock your ankles and loop your arms under hers, your swollen cunt greedily drinking in pressurized gallons.");
 	output("\n\nThe suppressed flow builds within you, cock-milk ballooning your belly until, muscles aching and body trembling from the endless orgasm, your concentration slips and the pressure breaks your embrace. Like a rocket, you launch off of the kui-tan’s supernova, arcing through the air in delirious bliss. The planet’s lower gravity takes you over the heads of the leering onlookers, who are immediately soaked in the splashing spunk of the explosive release. Those directly beneath you are coated in a thick glaze of pearl goo as you fly overhead, spasming slit unable to hold in the nectar bloating your body to spherical proportions.");
@@ -546,7 +551,9 @@ public function bountyHuntsPart2():void
 	output("\n\n<i>“No help for it now,”</i> Holiday mutters. <i>“Better just let nature take its course.”</i> Stepping up to you, she gently pushes your head down, lifting your [pc.ass] higher into the air. Ripply lets out a tiny roar and feeds more of his breeding shaft into your suit, its firm head finally locating the entrance to your [pc.asshole]. Liquid oozes from his member, greasing up your cheeks, the warm lube dripping down your [pc.thighs] and spreading his tingling heat through your whole lower body. You squirm in the latex bodysuit, tugging at the too-tight surface straining against your [pc.breasts] ");
 	if(pc.hasCock()) output("and your [pc.cocks]");
 	output(". You shake your head, hair spilling across your eyes in full, blonde tresses. Has your hair always been");
-	if(pc.hairLength < pc.tallness / 1.8)
+	
+	var newHairLength:Number = Math.ceil(pc.tallness / 1.8);
+	if(pc.hairLength < newHairLength)
 	{
 		output(" that long");
 		if(pc.hairColor != "blonde") output("? Or that golden");
@@ -557,7 +564,7 @@ public function bountyHuntsPart2():void
 	
 	//[pc.hair becomes blonde and grows to ass-length without outputting any text.]
 	pc.hairColor = "blonde";
-	if(pc.hairLength < pc.tallness / 1.8) pc.hairLength = pc.tallness / 1.8;
+	if(pc.hairLength < newHairLength) pc.hairLength = newHairLength;
 
 	output("\n\nAll worries vanish as Ripply’s swollen shaft pushes its way past your pucker and into your ass, inch by oh-so-thick inch. Biting your lower lip, you can’t help but marvel at the little guy’s determination! Claws buried in the yielding expanse of your hefty heinie, he pumps with single-minded determination, feeding a ribbed shaft longer than he is into your clenching rump. He lets out tiny roars from time to time, but your initial mirth quickly becomes delight as his rigid tool twists and flexes in vibrating segments. Your low moans at the filling pressure upgrade to ecstatic squeals as your body knots in a sudden and irresistible orgasm. As if Ripply had hit a release valve, you shudder and drop to");
 	if(pc.hasKnees()) output(" your knees");
@@ -1324,7 +1331,7 @@ public function taurBarAdventures(config:int = 1):void
 	if(config != 2) output("unprotected, moist slits, a smorgasbord of cunt awaiting impregnation");
 	else output("dozens of gift-wrapped, bulging dicks, a smorgasbord of cock waiting for your decision");
 	output(". You push your way through the crowd to the bar. All the dripping you’ve been doing has you parched, and you need refreshments before you show these people what a centaur can do.");
-	output("\n\nThe thought that you’re not really a centaur, just a [pc.raceShort] in a costume doesn’t even come to mind, ");
+	output("\n\nThe thought that you’re not really a centaur, just [pc.aRaceShort] in a costume doesn’t even come to mind, ");
 	if(config != 2) output("not when your bulging balls feel like they’re flooding with fresh, thick cum.");
 	else output("not when your cunt is promising you the world in exchange for a little penetration.");
 
@@ -1362,8 +1369,7 @@ public function taurTFs(arg:int = 1):void
 	pc.removeVaginas();
 	pc.removeStatusEffect("Genital Slit");
 	pc.removeStatusEffect("Uniball");
-	pc.balls = 0;
-	pc.ballSizeRaw = 3.4;
+	pc.removeBalls();
 	//Tallness boost to 6' if below.
 	if(pc.tallness < 72) pc.tallness = 72;
 	//Taurbody, ofcourse.
@@ -1381,7 +1387,9 @@ public function taurTFs(arg:int = 1):void
 	pc.removeTails();
 	pc.tailCount = 1;
 	pc.tailType = GLOBAL.TYPE_EQUINE;
+	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	pc.addTailFlag(GLOBAL.FLAG_FLOPPY);
 	if(arg == 1 || arg == 3)
 	{
 		//22" horsecock.
@@ -1536,7 +1544,7 @@ public function finalLadyTaurCostumeEpilogue():void
 	output(" centaur now.</b>");
 	pc.lust(50);
 	halloweenShipMove();
-	flags["TAURFUCKED_DANE"] = 1;
+	IncrementFlag("TAURFUCKED_DANE");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1961,6 +1969,8 @@ public function spiderCostumeOutro():void
 	output("\n\nOnce the video ends you’re left alone with your thoughts. From what you gathered Holiday’s ‘costumes’ are actually illegal mods. You should be mad, but honestly your new spider body feels like something you should have been born with. Maybe you should find Holiday and thank her for the new body. You’re sure she’d appreciate being bound up and subjected to your sexy ministrations again.");
 	if(pc.femininity < 75) pc.femininity = 75;
 	pc.earType = GLOBAL.TYPE_SYLVAN;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 	pc.earLength = 3;
 	pc.reflexes(2);
 	pc.intelligence(2);
@@ -1991,7 +2001,7 @@ public function spiderCostumeOutro():void
 	pc.addTongueFlag(GLOBAL.FLAG_LONG);
 	pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 	//No testes
-	pc.balls = 0;
+	pc.removeBalls();
 	//Set up new spidergina.
 	if(!pc.hasVagina()) pc.createVagina();
 	pc.vaginas[0].type = GLOBAL.TYPE_ARACHNID;
@@ -2092,23 +2102,24 @@ public function saurmorianTimes2():void
 		pc.hipRatingRaw = 4;
 		pc.buttRatingRaw = 4;
 		pc.hairLength = 0;
-		pc.hornType = GLOBAL.TYPE_DRACONIC;
+		pc.hornType = GLOBAL.TYPE_SAURMORIAN;
 		pc.horns = 4;
 		pc.hornLength = 18;
 		pc.skinFlags = [GLOBAL.FLAG_THICK];
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
-		pc.earType = GLOBAL.TYPE_LIZAN;
-		pc.eyeType = GLOBAL.TYPE_NAGA;
+		pc.earType = GLOBAL.TYPE_SAURMORIAN;
+		pc.clearEarFlags();
+		pc.eyeType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
-		pc.armType = GLOBAL.TYPE_LEITHAN;
+		pc.armType = GLOBAL.TYPE_SAURMORIAN;
 		pc.armFlags = [GLOBAL.FLAG_SCALED];
-		pc.faceType = GLOBAL.TYPE_LIZAN;
+		pc.faceType = GLOBAL.TYPE_SAURMORIAN;
 		pc.faceFlags = [GLOBAL.FLAG_MUZZLED];
-		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.legType = GLOBAL.TYPE_SAURMORIAN;
 		pc.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_SCALED];
-		pc.tailType = GLOBAL.TYPE_LIZAN;
+		pc.tailType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tailCount = 1;
 		pc.tailFlags = [GLOBAL.FLAG_THICK,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_LONG];
 		//pc gains Igneous Heart perk
@@ -2127,22 +2138,23 @@ public function saurmorianTimes2():void
 		pc.hipRatingRaw = 4;
 		pc.buttRatingRaw = 4;
 		pc.hairLength = 0;
-		pc.hornType = GLOBAL.TYPE_DRACONIC;
+		pc.hornType = GLOBAL.TYPE_SAURMORIAN;
 		pc.horns = 4;
 		pc.hornLength = 12;
 		pc.skinFlags = [GLOBAL.FLAG_SMOOTH];
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
-		pc.earType = GLOBAL.TYPE_LIZAN;
+		pc.earType = GLOBAL.TYPE_SAURMORIAN;
+		pc.clearEarFlags();
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
-		pc.armType = GLOBAL.TYPE_LEITHAN;
+		pc.armType = GLOBAL.TYPE_SAURMORIAN;
 		pc.armFlags = [GLOBAL.FLAG_SCALED,GLOBAL.FLAG_SMOOTH];
-		pc.faceType = GLOBAL.TYPE_LIZAN;
+		pc.faceType = GLOBAL.TYPE_SAURMORIAN;
 		pc.faceFlags = [GLOBAL.FLAG_MUZZLED,GLOBAL.FLAG_SMOOTH];
-		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.legType = GLOBAL.TYPE_SAURMORIAN;
 		pc.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_SMOOTH];
-		pc.tailType = GLOBAL.TYPE_LIZAN;
+		pc.tailType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tailCount = 1;
 		pc.tailFlags = [GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_LONG];
 		//pc gains Flexible perk
@@ -2180,7 +2192,7 @@ public function saurmorianCockBoi():void
 	pc.cocks = [];
 	pc.createCock();
 	(pc.cocks[0] as CockClass).cockColor = RandomInCollection(["dark red","dark blue","purple","black"]);
-	(pc.cocks[0] as CockClass).cType = GLOBAL.TYPE_SAURIAN;
+	(pc.cocks[0] as CockClass).cType = GLOBAL.TYPE_SAURMORIAN;
 	(pc.cocks[0] as CockClass).cLengthRaw = 10;
 	(pc.cocks[0] as CockClass).cThicknessRatioRaw = 1.5;
 	(pc.cocks[0] as CockClass).cockFlags = [GLOBAL.FLAG_BLUNT,GLOBAL.FLAG_SHEATHED,GLOBAL.FLAG_RIBBED];
@@ -2210,7 +2222,7 @@ public function saurmorianVaginaBoi():void
 	pc.createVagina();
 	(pc.vaginas[0] as VaginaClass).vaginaColor = pc.skinTone;
 	(pc.vaginas[0] as VaginaClass).clits = 1;
-	(pc.vaginas[0] as VaginaClass).type = GLOBAL.TYPE_HUMAN;
+	(pc.vaginas[0] as VaginaClass).type = GLOBAL.TYPE_SAURMORIAN;
 	(pc.vaginas[0] as VaginaClass).loosenessRaw = 0;
 	(pc.vaginas[0] as VaginaClass).wetnessRaw = 4;
 	(pc.vaginas[0] as VaginaClass).vagooFlags = [GLOBAL.FLAG_RIBBED,GLOBAL.FLAG_PUMPED]; //slightly pumped if not already, or fully if already slightly pumped
@@ -2220,7 +2232,7 @@ public function saurmorianVaginaBoi():void
 	if(pc.elasticity < 5) pc.elasticity = 5;
 	//remove any additional vaginas, and all cocks}
 	pc.removeCocks();
-	pc.balls = 0;
+	pc.removeBalls();
 
 	processTime(3);
 	clearMenu();
@@ -2760,6 +2772,8 @@ public function applyLongswordChanges():void
 	if(pc.earType != GLOBAL.TYPE_SYLVAN) 
 	{
 		pc.earType = GLOBAL.TYPE_SYLVAN;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 		pc.earLength = 2;
 	}
 	//If eyes are not blue
@@ -2806,6 +2820,8 @@ public function applyShortswordChanges():void
 	if(pc.earType != GLOBAL.TYPE_SYLVAN) 
 	{
 		pc.earType = GLOBAL.TYPE_SYLVAN;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 		pc.earLength = 2;
 	}
 	pc.eyeColor = "blue";
@@ -3104,6 +3120,9 @@ public function extraCatTFForCatCostume():void
 
 	//Player's ears become cat ears
 	pc.earType = GLOBAL.TYPE_FELINE;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_FURRED);
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 
 	//Player's hips, thighs, and butt increase by 2
 	if(pc.hipRating() < 25) pc.hipRating(2);

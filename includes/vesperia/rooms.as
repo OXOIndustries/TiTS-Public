@@ -200,4 +200,13 @@ public function initVesperiaRoom():void
 	rooms["SPUNKBUNKER"].addFlag(GLOBAL.INDOOR);
 	rooms["SPUNKBUNKER"].addFlag(GLOBAL.PRIVATE);
 	rooms["SPUNKBUNKER"].addFlag(GLOBAL.NPC);
+
+	rooms["USHADATE"] = new RoomClass(this);
+	rooms["USHADATE"].roomName = "";
+	rooms["USHADATE"].description = "";
+	rooms["USHADATE"].planet = "CANADIA STATION";
+	rooms["USHADATE"].system = "SYSTEM: LIBERTERIA";
+	rooms["USHADATE"].moveMinutes = 1;
+	rooms["USHADATE"].runOnEnter = undefined;
+	rooms["USHADATE"].addFlag(GLOBAL.INDOOR);
 }

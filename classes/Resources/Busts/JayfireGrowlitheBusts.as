@@ -16,9 +16,9 @@
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/hr/raskvel.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/HR/raskvel.png", mimeType = "image/png")]
 			public var Full_RASKVEL_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/hr/raskvel_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/jayfireGrowlithe/HR/raskvel_nude.png", mimeType = "image/png")]
 			public var Full_RASKVEL_FEMALE_NUDE:Class;
 		}
 	}

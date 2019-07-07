@@ -26,7 +26,7 @@ public function pennyIsCumSlut():Boolean
 }
 public function pcHasBadgerForm():Boolean
 {
-	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && ((pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER) || pc.hasCockTail() || pc.hasTailgina()) && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
+	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && ((pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER) || pc.hasCockTail() || pc.hasTailgina()) && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.earType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
 	{
 		return true;
 	}
@@ -38,26 +38,15 @@ public function resetDrBadgerBimboTF():void
 	if(pc.thickness < 75) 
 	{
 		pc.thickness = 75;
-		//IF PC DOES NOT HAVE TWO LEGS
-		if(pc.legCount != 2) 
-		{
-			pc.legCount = 2;
-			pc.genitalSpot = 0;
-			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-			pc.legType = GLOBAL.TYPE_HUMAN;
-		}
 	}
-	else
+	//IF PC DOES NOT HAVE TWO LEGS
+	if(pc.legCount != 2) 
 	{
-		if(pc.legCount != 2) 
-		{
-			pc.legCount = 2;
-			pc.genitalSpot = 0;
-			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-			pc.legType = GLOBAL.TYPE_HUMAN;
-		}
+		pc.legCount = 2;
+		pc.genitalSpot = 0;
+		pc.legType = GLOBAL.TYPE_HUMAN;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 	}
 	//IF PC HAS GOO-SKIN
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 
@@ -206,6 +195,13 @@ public function resetDrBadgerBimboTF():void
 		pc.faceType = GLOBAL.TYPE_BADGER;
 		pc.clearFaceFlags();
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+	}
+	if(pc.earType != GLOBAL.TYPE_BADGER)
+	{
+		pc.earType = GLOBAL.TYPE_BADGER;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_FURRED);
+		pc.earLength = 1;
 	}
 	if(pc.femininity < 75) pc.femininity = 75;
 	if(pc.lipMod < 1) pc.lipMod = 1;
@@ -1448,7 +1444,7 @@ public function fuckDoctorBadgersAss():void
 	output("\n\nWithout bothering to wait for any sort of response you step up to her, the fact that she never wears anything below the waist meaning you can slide your cock into her ass without hesitation. It feels like she’s already slick somehow - you’re not sure if that’s because of what you’ve done or if that was a feature she already had, but you definitely appreciate it. She’s clearly enjoying herself too, letting out a long low moan as she settles backwards against you.");
 	output("\n\n<i>“Good girl,”</i> you whisper. <i>“Doesn’t that feel good?”</i>");
 	output("\n\nShe gasps as you press yourself forwards again, then manages to pant out a response. <i>“Y... yes...”</i>");
-	output("\n\n<i>“You want this, to to be fucked into a nice, bimbo slut, don’t you?”</i>");
+	output("\n\n<i>“You want this, to be fucked into a nice, bimbo slut, don’t you?”</i>");
 	output("\n\n<i>“I...”</i> There’s a pause. She doesn’t stop moving in and out against you, but she can’t bring herself to say the words.");
 	output("\n\n");
 	if(pc.isBimbo()) output("<i>“Oh, don’t worry!”</i> you reassure her as you keep up your constant thrusting rhythm. <i>“Being a bimbo is the best! You get to... mhmmm... fuck all the time, you get to... ah-ahmmm! Be fucked over and over again. You get to- to! Suck cock, eat pussy, drink c-cum! All the time, every day, over a- ahhM! And over, you get to be treated as the... Slut! That it feels so... good! To... be! Ahhm! Oh, oh, you have to, have to give in, accept it, let yourself be a nice... bimbo! Slut! Please, it’s so... so good! Ahhmmm!”</i>");
@@ -1579,6 +1575,8 @@ public function doctorBimboBadgerMenu():void
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
 	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	
+	drBadgerFixNymFoeButton(3);
 	
 	addButton(14,"Leave",mainGameMenu);
 }

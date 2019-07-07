@@ -135,7 +135,15 @@ package classes.UIComponents.ContentModules
 				addGhostButton(2, "Custom Job", gastigothPregEmail2Custom, "Tam-Tam", "Custom Job", "Go all in with the editing, making " + (kGAMECLASS.flags["TAMTAM_NUM_BABIES"] > 1 ? "perfect children" : "a perfect child") + ".");
 				return;
 			}
-			
+			else if(key == "syri_onahole_video")
+			{
+				if (kGAMECLASS.flags["PENNY_SYRIVAG_WATCHED"] == undefined) addGhostButton(0, "Watch Vid", watchPennysSyriPorn, undefined, "Watch Vid", "Check out this video -- you’re curious as to what’s happening between these two.");
+				else
+				{
+					_mailText.htmlText += "\n\n<i>The vid has been downloaded to your smut menu.</i>";
+					kGAMECLASS.updateMailStatus();
+				}
+			}
 			
 			addGhostButton(4, "Back", kGAMECLASS.showMails);
 		}
@@ -214,6 +222,18 @@ package classes.UIComponents.ContentModules
 			clearGhostMenu();
 			addGhostButton(0, "Next", kGAMECLASS.showMails);
 		}
-		
+
+		public function watchPennysSyriPorn():void
+		{			
+			_mailText.htmlText = kGAMECLASS.pennySyriPornText();
+			kGAMECLASS.showBust(kGAMECLASS.pennyBustDisplay(true), kGAMECLASS.syriBustDisplay());
+			kGAMECLASS.showName("PENNY\n& SYRI VID");
+			kGAMECLASS.flags["PENNY_SYRIVAG_WATCHED"] = 1;
+			kGAMECLASS.updateMailStatus();
+			kGAMECLASS.processTime(20);
+			kGAMECLASS.pc.lust(75);
+			clearGhostMenu();
+			addGhostButton(0, "Next", kGAMECLASS.showMails);
+		}
 	}
 }

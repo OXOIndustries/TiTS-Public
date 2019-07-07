@@ -48,17 +48,8 @@ public function liftMove(destination:String):void
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
 	move(destination,false);
 	showLocationName();
-	if(destination == "GAME OVER")
-	{
-		showName("\nPARTY");
-		clearMenu();
-		addButton(0,"Next",party2018RiyaEntrance);
-	}
-	else
-	{
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function hangarFloors(bonus:Boolean = false):Array 
@@ -68,9 +59,9 @@ public function hangarFloors(bonus:Boolean = false):Array
 	floors.push(["Merchant", liftMove, "LIFT: MERCHANT DECK", "Merchant Deck", "the merchant deck"]);
 	floors.push(["Res. Deck", liftMove, "LIFT: RESIDENTIAL DECK", "Residential Deck", "the residential deck"]);
 	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
-	if(MailManager.isEntryUnlocked("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", liftMove, "GAME OVER", "Party, Deck 4", "the U.G.C. garrison party"]);
 	if(bonus)
 	{
+		if(MailManager.isEntryViewed("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", riyaPartyLiftGo, undefined, "Party, Deck 4", "the U.G.C. garrison party"]);
 		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 			floors.push(["Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Deck 92"]);
 	}
@@ -93,6 +84,11 @@ public function hangarBonus():Boolean
 		output("--whatever she contacted you about, it sounded pretty urgent.");
 		addButton(btnSlot++, "Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Go to Deck 92.");
 	}
+	// Azra encounter
+	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
+	{
+		if(azraBonusProc(btnSlot++)) return true;
+	}
 	
 	// Normal floors
 	var floors:Array = hangarFloors();
@@ -110,10 +106,6 @@ public function hangarBonus():Boolean
 				addButton(5, "Up", floors[i + 1][1], floors[i + 1][2], floors[i + 1][3], ("Go to " + floors[i + 1][4] + "."));
 			}
 		}
-	}
-	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
-	{
-		if(azraBonusProc(btnSlot++)) return true;
 	}
 	
 	return false;
@@ -194,15 +186,24 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():Boolean
 {
-	if(currentLocation == "9015")
+	if (currentLocation == "9015")
 	{
+		output("A neon sign displaying a pair of scissors sits next to a small store entrance with");
+		//disable nav to shear beauty if doing cum cleanup
+		if (ceriaHyperCumActive())
+		{
+			output(" a shut door and a closed sign displayed -- looks like Ceria’s still cleaning up the evidence of your passing!");
+			flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		}
+		else output(" its doors propped open to the east, allowing you a glimpse of the salon inside.");
+		output(" The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.");
 		vendingMachineButton(0, "J'ejune");
 	}
-	if(currentLocation == "9017")
+	else if(currentLocation == "9017")
 	{
 		repeatGilBonus();
 	}
-	if(currentLocation == "9018")
+	else if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
@@ -312,4 +313,8 @@ public function northWalkwayBonus():void
 {
 	fisiannaApartmentHandler(0);
 	kaseApartmentHandler(1);
+}
+public function resDeck17Func():void
+{
+	veltaAptBonus();
 }

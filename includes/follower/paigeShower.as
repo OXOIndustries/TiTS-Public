@@ -32,12 +32,12 @@ public function paigeDoItInTheShower():void
 
 	//[=Penetrate Her=]
 	if (!pc.hasCock()) addDisabledButton(0, "Penetrate Her", "Penetrate Her", "You need a dick for this.");
-	else if (pc.cockThatFits(65) < 0) addDisabledButton(0, "Penetrate Her", "Penetrate Her", "You’re too big.");
+	else if (pc.cockThatFits(paige.vaginalCapacity(0)) < 0) addDisabledButton(0, "Penetrate Her", "Penetrate Her", "You’re too big.");
 	else addButton(0, "Penetrate Her", penisRouter, [paigeTakesItLikeASqueakyCleanBitch, 65, false]);
 	//[=Anal=]
 	if (!pc.hasCock()) addDisabledButton(1, "Anal", "Anal", "You need a dick for this.");
 	else if (flags["PAIGE_ANAL"] == undefined) addDisabledButton(1, "Anal", "Anal", "You’re not sure how well Paige would react if you tried to fuck her butt, and a place as slippery as a shower stall isn’t the best for that sort of experimenting. Maybe try pitching anal with her in her quarters first.");
-	else if (pc.cockThatFits(50) < 0) addButton(1, "Anal", function():void
+	else if (pc.cockThatFits(paige.analCapacity()) < 0) addButton(1, "Anal", function():void
 	{
 		clearOutput();
 		output("Bluntly, you ask Paige what her opinion is on anal. <i>“What, with you?”</i> she asks, leaning her ass back and trapping your [pc.cock] between her asscheeks expertly. You moan with pleasure, but before you get the wrong idea, she hums disapprovingly. She was actually using her ass to measure you! <i>“Sorry, sweet thing, but maybe not this time. We just finished a yoga session, and working a beast like that into my ass would be a workout in of itself. I’m up for anything else, though.”</i>");
@@ -56,7 +56,7 @@ public function paigeDoItInTheShower():void
 	//[=Double-Dicked=]
 	if (!pc.hasCocks()) addDisabledButton(5, "Double-Dicked", "Double-Dicked", "You need two dicks for this.");
 	else if (flags["PAIGE_ANAL"] == undefined) addDisabledButton(5, "Double-Dicked", "Double-Dicked", "You’re not sure how well Paige would react if you tried to fuck her butt, and a place as slippery as a shower stall isn’t the best for that sort of experimenting. Maybe try pitching anal with her in her quarters first.");
-	else if (pc.cockThatFits2(50) < 0) addButton(5, "Double-Dicked", function():void
+	else if (pc.cockThatFits2(paige.analCapacity()) < 0) addButton(5, "Double-Dicked", function():void
 	{
 		clearOutput();
 		output("You hump against her, enjoying the warm, wet feel of her fur against your sensitive monsters. Paige moans out, enjoying the way you’re using her body, but freezes slightly when one of them begins to press and ply against her butthole. <i>“Sorry, sweet thing, but maybe not this time. Much as I’d love me some double-dickings, one of those things in my butt would be one too many. I’m down for something else, though.”</i>");
@@ -78,7 +78,7 @@ public function paigeTakesItLikeASqueakyCleanBitch(cock:int):void
 	pc.cockChange();
 	output("\n\nPaige leans forward and rests her arms on the stall, sighing in pleasure and backing her ass into your crotch. You thrust into her gently, getting yourself reacquainted with the unique feel of her tight pussy – she has such control over every one of her muscles, and she’s really using that to her advantage here. You grope along her shapely thighs, getting a good feel for her body once more, and tighten your fingers over whatever flesh yields to them. You start to rut her properly, fucking her at a casual pace, both of you still a little burnt from your yoga.");
 	output("\n\n<i>“Oh yeah,”</i> she moans, wrapping her tail as much around your torso as she can, matching your steady pace and humping back up against you. <i>“Nice and slow, baby, mmm... just like that.”</i> You reply by leaning into her, pressing your [pc.chest] against her back and kissing at her neck while you keep up your fucking.");
-	if (pc.hasCocks()) output(" Your [pc.cock  " + (cock == 1 ? 0 : 1) + "] rubs up and down the crack of her ass lamely, though the way she clenches against you with every inward thrust makes every sensation worth the effort.");
+	if (pc.hasCocks()) output(" Your [pc.cock " + (cock == 1 ? 0 : 1) + "] rubs up and down the crack of her ass lamely, though the way she clenches against you with every inward thrust makes every sensation worth the effort.");
 	if (pc.isHerm()) output(" Your [pc.vagina] pulses longingly, jealous of the attention you’re giving to Paige’s own, and hungers for something to suffocate the fire built inside it.");
 	output(" She moans appreciatively with you some more, loving the feel of your [pc.cock " + cock + "] in her.");
 	output("\n\n<i>“Grab my boobs again,”</i> she requests; far be it from you to turn her down. Your hands rise, sliding through her wet fur, past her strong lats and up to her breasts, spreading your fingers and clamping down on them as she asked. She coos in response, and you begin to knead and play with her tits, every little action getting a different response. With your left hand, you flick her nipple between each of your fingers, while you pinch and pull the other with your right, massaging her chest sensually. She lets go of the stall wall and leans fully into you, pressing her back into your [pc.chest], and giving you more room to play with.");
@@ -309,8 +309,8 @@ public function paigeCoopCocks():void
 	clearOutput();
 	showPaige(true);
 	
-	var buttCock:int = pc.cockThatFits(50);
-	var vagCock:int = pc.cockThatFits2(50);
+	var buttCock:int = pc.cockThatFits(paige.analCapacity());
+	var vagCock:int = pc.cockThatFits2(paige.analCapacity());
 
 	output("You don’t bother saying much and choose to just rub yourself against the wet, matted fur of her ass for a bit. [pc.EachCock] begins to rise and stiffen, thawed by the heat of her body and the friction between you two: your [pc.cock " + vagCock + "] drives itself sensually between her thighs and across her sex, while your [pc.cock " + buttCock + "] enjoys the warmth and coziness of her ass, rubbing across her taint and teasing her anal ring. You don’t make any attempts at either hole – that comes later.");
 	output("\n\nPaige giggles to herself, letting you jerk yourself off with her lower body. The [pc.cock " + vagCock + "] between her legs caresses and tickles against her pussy while [pc.cock " + buttCock + "] crawls devilishly up her butt and between her cheeks. She squeezes down on both, forcing you to rub a bit harder, which was just the reaction she was aiming for.");

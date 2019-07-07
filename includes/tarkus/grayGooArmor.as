@@ -687,9 +687,9 @@ public function gooArmorIsCrew():Boolean
 	if(flags["GOO_ARMOR_ON_SHIP"] != undefined) return flags["GOO_ARMOR_ON_SHIP"];
 	return false;
 }
-public function hasGooArmor():Boolean
+public function hasGooArmor(nearby:Boolean = false):Boolean
 {
-	if(InShipInterior() && (pc.hasItemInStorageByClass(GooArmor) || gooArmorIsCrew())) return true;
+	if(pc.hasItemInStorageByClass(GooArmor) || gooArmorIsCrew()) return (nearby ? InShipInterior(): true);
 	return hasGooArmorOnSelf();
 }
 public function hasGooArmorOnSelf():Boolean
@@ -1033,6 +1033,10 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
 	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
 	
+	if(pc.armor is GooArmor) gooArmorAddButton(fromCrew, 6, ("Clean: " + (flags["GOO_ARMOR_AUTOCLEAN"] != undefined ? "ON" : "OFF")), gooArmorCrewOption, ["clean", fromCrew], "Toggle Fluid Cleaning", ("[goo.name] will " + (flags["GOO_ARMOR_AUTOCLEAN"] != undefined ? "clean your body whenever you are covered in sexual fluids" : "ignore any sexual fluids your body may be covered in") + "."));
+	
+	if(pc.armor is GooArmor && pc.cumflationEnabled()) gooArmorAddButton(fromCrew, 7, "Cumflation", gooArmorCrewOption, ["cumflation", fromCrew], "Cumflation Options", "Adjust how you want [goo.name] to react when you are inflated with sexual fluids.");
+	
 	if(flags["GOO_ARMOR_ON_SHIP"] == undefined)
 	{
 		if(InShipInterior()) gooArmorAddButton(fromCrew, 4, "Stay", gooArmorCrewOption, ["stay", fromCrew], "Stay Here, " + chars["GOO"].short + ".", "Ask [goo.name] to stay on your ship.");
@@ -1260,7 +1264,7 @@ public function gooArmorCrewOption(arg:Array):void
 				if(varmintIsTame() && hasVarmintBuddy() && InRoomWithFlag(GLOBAL.OUTDOOR)) chats.push(msg);
 				
 				msg = " some wierd crime statistics.";
-				msg += "\n\n<i>“...really? I didn’t know you could go to jail for that!”</i> she comments. <i>“Well what if--”</i> [goo.name] quickly realizes where she is. <i>“Uh, nevermind!”</i>";
+				msg += "\n\n<i>“...really? I didn’t know you could go to jail for that!”</i> she comments. <i>“Well what if--”</i> [goo.name] quickly realizes where she is. <i>“Uh, never mind!”</i>";
 				msg += "\n\nYou poke fun at her concern and before you continue to expand on the details, she insists on changing the subject when she spots what could be a patrolling prison guard. What a silly girl!";
 				if(getPlanetName() == "Gastigoth Station" && !InShipInterior()) chats.push(msg);
 				
@@ -1420,8 +1424,84 @@ public function gooArmorCrewOption(arg:Array):void
 				gooArmorDefense(-2);
 				txt += "\n\nYou feel [goo.name]’s strength being sapped again. You should be careful not to over-do it...";
 			}
+			txt += "\n\n";
 			
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
+		case "clean":
+			showGrayGooArmor();
+			
+			if(flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
+			{
+				txt += "<i>“Now, now there [pc.mister]...”</i> [goo.name] berates you, <i>“you don’t want to be a dirty [pc.boy], do you?”</i>";
+				txt += "\n\n<b>[goo.name] will now resist the urge to clean your body of any sexual fluids you may be covered in";
+				if(pc.cumflationEnabled()) txt += " or leaking out";
+				txt += "!</b>";
+				
+				flags["GOO_ARMOR_AUTOCLEAN"] = undefined;
+			}
+			else
+			{
+				txt += "<i>“Service and a snack!”</i> [goo.name] exclaims. <i>“I will do my best to keep you squeaky clean, [pc.name]!”</i>";
+				txt += "\n\n<b>[goo.name] will now happily clean your body of any sexual fluids you may be covered in";
+				if(pc.cumflationEnabled()) txt += " or leaking out";
+				txt += "!</b>";
+				
+				flags["GOO_ARMOR_AUTOCLEAN"] = 1;
+			}
+			txt += "\n\n";
+			
+			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
+		case "cumflation":
+			showGrayGooArmor();
+			
+			txt += "How do you want [goo.name] to react when you are inflated with sexual fluids?";
+			txt += "\n\n<i>Note that this only applies to your";
+			if(pc.hasVagina()) txt += " vagina" + (pc.vaginas.length == 1 ? "" : "s") + " and";
+			txt += " ass.</i>";
+			txt += "\n\n";
+			
+			if(flags["GOO_ARMOR_AUTOSUCK"] == undefined) gooArmorAddDisabledButton(fromCrew, 0, "Normal", "Normal", "[goo.name] is allowing the fluids to leak from your orifices and only cleaning it up if she has to.");
+			else gooArmorAddButton(fromCrew, 0, "Normal", gooArmorCrewOption, ["cumflation 0", fromCrew], "Normal", "[goo.name] will allow the fluids to leak from your orifices.");
+			if(flags["GOO_ARMOR_AUTOSUCK"] == 1) gooArmorAddDisabledButton(fromCrew, 1, "Drink Up", "Drink Up", "[goo.name] is allowed to automatically feed from your orifices.");
+			else gooArmorAddButton(fromCrew, 1, "Drink Up", gooArmorCrewOption, ["cumflation 1", fromCrew], "Drink Up", "[goo.name] will go in and clean your orifices out.");
+			if(flags["GOO_ARMOR_AUTOSUCK"] == -1) gooArmorAddDisabledButton(fromCrew, 2, "No Leaks", "No Leaking", "[goo.name] is allowed to prevent leaking from your orifices.");
+			else gooArmorAddButton(fromCrew, 2, "No Leaks", gooArmorCrewOption, ["cumflation 2", fromCrew], "No Leaking", "[goo.name] will prevent normal leakage from your orifices.");
+			gooArmorAddButton(fromCrew, 14, "Back", approachGooArmorCrew, [false, fromCrew]);
+			break;
+		case "cumflation 0":
+			showGrayGooArmor();
+			
+			txt += "<i>“Aww... Okay,”</i> [goo.name] sighs. <i>“What comes in, must come out, right?”</i>";
+			txt += "\n\nWhenever you are filled with sexual fluids, <b>[goo.name] will allow it to leak out of you like normal</b>, only cleaning it up if she has to.";
+			txt += "\n\n";
+			
+			flags["GOO_ARMOR_AUTOSUCK"] = undefined;
+			
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["cumflation", fromCrew]);
+			break;
+		case "cumflation 1":
+			showGrayGooArmor();
+			
+			txt += "<i>“Ooh-ooh-ohh! Yay!”</i> [goo.name] yips with glee. <i>“Yummy cummies for my tummy!”</i>";
+			txt += "\n\nWhenever you are filled with sexual fluids, <b>[goo.name] will now automatically dive in and suck it up!</b>";
+			txt += "\n\n";
+			
+			flags["GOO_ARMOR_AUTOSUCK"] = 1;
+			
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["cumflation", fromCrew]);
+			break;
+		case "cumflation 2":
+			showGrayGooArmor();
+			
+			txt += "<i>“Ahhh, gonna save the cummies up for something special... maybe for me?”</i> [goo.name] asks hopefully.";
+			txt += "\n\nWhenever you are filled with sexual fluids, <b>[goo.name] will try to prevent any of it from leaking out!</b>";
+			txt += "\n\n";
+			
+			flags["GOO_ARMOR_AUTOSUCK"] = -1;
+			
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["cumflation", fromCrew]);
 			break;
 		case "stay":
 			showGrayGooArmor();
@@ -3203,4 +3283,76 @@ public function gooArmorChangeHelmet(arg:Array):void
 	
 	gooArmorChangeArmorMenu(fromCrew);
 }
+
+// Cleaning blurbs
+public function gooArmorAutoCleanBlurb(slurpArea:String = "skin", amountVented:Number = 0, fluidType:int = -1):String
+{
+	var txt:String = "";
+	var fluidNoun:String = (fluidType >= 0 ? pc.fluidNoun(fluidType) : "sexual effluvia");
+	
+	if(slurpArea == "skin" && amountVented >= 500 && !pc.hasStatusEffect("Goo Armor Auto-Clean Message"))
+	{
+		// Maybe a 2-day cooldown before playing again
+		pc.createStatusEffect("Goo Armor Auto-Clean Message", 0, 0, 0, 0, true, "", "", false, 2880);
+		
+		txt += "<i>“Oooh, you got <b>covered</b>, didn’t you!?”</i> [goo.name] giggles, wobbling excitedly all around you. <i>“Don’t worry, I’ll clean you aaaaall up.!”</i>";
+		txt += "\n\nShe vibrates rapidly all over your body, absorbing all the " + fluidNoun + " that’s slathered you during your latest misadventures. Within the span of a few moments, she has you glistening in the light, as fresh and clean as the day you first departed on your quest. [goo.name] feels a bit heavier and thicker around you, but the weight soon settles in like a natural heavy coat. <i>“All done!”</i> she purrs, wiggling around your loins. <i>“Off to the next adventure!”</i>";
+		
+		return ParseText(txt);
+	}
+	
+	var slurps:Array = [];
+	
+	for(var i:int = 0; i < 6; i++)
+	{
+		txt = "";
+		if(slurpArea == "cunt") txt += "Before a trickle flows from your [pc.vaginas], y";
+		else if(slurpArea == "butt") txt += "Before a drop exits your anus, y";
+		else txt += "Y";
+		txt += "ou feel your armor vibrating excitedly";
+		if(slurpArea == "cunt") txt += " near your vaginal area";
+		else if(slurpArea == "butt") txt += " between your [pc.butts]";
+		else txt += " all around you";
+		txt += ". <i>“";
+		switch(i) {
+			case 0: txt += "Ohh, you" + (slurpArea == "skin" ? " really got <b>covered</b> didn’t ya" : "’re really <b>dripping</b> aren’t ya") + "? Don’t worry, I’ll clean up!"; break;
+			case 1: txt += "Wow, " + (slurpArea == "skin" ? "what a smell" : "I sense something tasty") + "! It’s soooo hot. Lemme slurp it all up!"; break;
+			case 2: txt += "Oh wow, that’s a lotta juice. It’s like you got me a million presents!"; break;
+			case 3: txt += "You’re so messy! What’d you... ohh, that smells good... lemme lick it up?"; break;
+			case 4: txt += "Yaaaaay, " + ((fluidNoun.indexOf("cum") != -1 || fluidNoun.indexOf("milk") == -1) ? "cummies" : "milkies") + "!"; break;
+			case 5: txt += "Aww, somebody had some fun. Let me get you cleaned up for the next round!"; break;
+		}
+		txt += "”</i> <b>[goo.name] has cleaned you of";
+		if(slurpArea != "skin") txt += " some";
+		txt += " " + fluidNoun + ".</b>";
+		slurps.push(txt);
+	}
+	
+	return ParseText(RandomInCollection(slurps));
+}
+public function gooArmorAutoSuckBlurb(suckHole:String = "butt", amountVented:Number = 0, fluidType:int = -1):String
+{
+	var txt:String = "";
+	var fluidDesc:String = (fluidType >= 0 ? pc.fluidDescript(fluidType) : "sexual effluvia");
+	
+	txt += "Silver tendrils emit from your body and shoot up your";
+	if(suckHole == "both" || suckHole == "butt") txt += " [pc.asshole]";
+	if(suckHole == "both") txt += " and";
+	if(suckHole == "both" || suckHole == "cunt") txt += " [pc.vaginas]";
+	txt += " accompanied by an excited giggle from your [pc.belly].";
+	if(amountVented <= 500) txt += " Small";
+	else if(amountVented <= 2000) txt += " Sizeable";
+	else txt += " Large";
+	txt += " bulges form along the tentacles that pulse and flow across the mass, followed by " + (chars["GOO"].hairStyle == "ponytail" ? "dainty" : "loud") + " slurping noises. [goo.name] is sucking out the " + fluidDesc + " that fills your";
+	if(suckHole == "cunt") txt += " [pc.vaginasNoun]";
+	else if(suckHole == "butt") txt += " [pc.assholeNoun]";
+	else txt += " orifices";
+	txt += "!";
+	txt += "\n\nAfter she’s completed in drinking your hole";
+	if(suckHole == "both" || (suckHole == "cunt" && pc.vaginas.length != 1)) txt += "s";
+	txt += " dry, the silver body suit of goo retracts her satiated slime straws, gives a cute burp and sighs.";
+	
+	return ParseText(txt);
+}
+	
 

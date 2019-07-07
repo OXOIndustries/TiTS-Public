@@ -4,7 +4,7 @@
 //Gets to watch Riya and Grence get shitfaced and bang
 //Ain’t no partie like a UGC partie cause’ a UGC partie don’t stop
 
-//{PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
+// {PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
 //To: [pc.name] Steele<[pc.email]@SteeleTech.corp>
 //Subject: Christmas Party Invitation
 
@@ -14,6 +14,13 @@ public function riyaXmasPartyInviteText():String
 }
 
 //Entering party(Should be accessible as a destination(( [Party] )) on the Tavros elevator):
+public function riyaPartyLiftGo():void
+{
+	liftMove("RIYAPARTY");
+	
+	clearMenu();
+	addButton(0,"Next",party2018RiyaEntrance);
+}
 public function party2018RiyaEntrance():void
 {
 	clearOutput();
@@ -110,7 +117,7 @@ public function followRiyaPartyStuff():void
 public function riyaGrenceFuckaboo():void
 {
 	clearOutput();
-	showBust("RIYA","GRENCE");
+	showBust("RIYA_NUDE","GRENCE_NUDE");
 	showName("RIYA\n& GRENCE");
 	author("Franks");
 	output("Riya looks... intrigued, and tempted. If you had to guess, you’d say it’s been a while since someone has stepped to her like this, at least in an intimate setting... she’s clearly considering it, but Lorna doesn’t seem to be in a patient mood just this moment. She steadies herself, undoes her belt, and looks at the other officer coolly as she speaks. <i>“On your knees and get over here.”</i>");
@@ -155,16 +162,21 @@ public function stayAtPartyWhileGrenceAndRiyaBone():void
 	author("Franks");
 	output("It’s a pretty fun party. You spend some time watching the girls wrestling in the chocolate pool lose their tops, give up on the wrestling contest and start trading swigs of a bottle of vodka and making out (much to the dismay of everyone except for one Thraggen man who bet they’d start making out midway through the fight and just may have set the whole thing up). Then you make your way over to the gaming corner, where you win a few hundred credits in a Call of Valor tournament, only to lose it playing darts... which is completely the fault of whatever was in that punch, of course.");
 	output("\n\nIt’s a great time, and everyone is friendly... but you can’t shake the feeling you’re missing something. A feeling that’s confirmed when you see " + (flags["MET_RIYA"] != undefined ? "Riya":"the big human woman who was making an ass of herself earlier") + " and ‘Santa Grence’ stumbling out of one of the side hallways dripping with sweat, their clothes and hair disheveled and leaning heavily on each other. It’s pretty obvious what they were up to. And you missed it. Damn it all...");
-	output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo?... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
-	output("\n\nWell, at least you had a good time at the party. And this free dildo looks pretty fuckin’ sweet too. You’ll have to check it out later...");
+	//PC gains x1 Horse-cock
+	if(synthSheathAvailable())
+	{
+		output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo?... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
+		output("\n\nWell, at least you had a good time at the party. And this free dildo looks pretty fuckin’ sweet too. You’ll have to check it out later...");
+		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
+		quickLoot(new HorseCock());
+	}
+	else output("\n\nWell, at least you had a good time at the party.");
 
 	//PC gains ‘Drunk’
 	pc.imbibeAlcohol(100);
 	processTime(60);
 	output("\n\n");
 	currentLocation = "TAVROS LIFT";
-	quickLoot(new HorseCock());
-	//PC gains x1 Horse-cock
 }
 
 
@@ -288,8 +300,10 @@ public function bakeCookiesWithEmbizzle():void
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Cocoa&Cuddle",cocoaAndEmbryCuddles);
-	addButton(1,"Snowball",snowBallinWithEmbry);
-	addButton(2,"CandyOral",candyCaneOral);
+	if(pc.hasCock()) addButton(1,"Snowball",snowBallinWithEmbry);
+	else addDisabledButton(1,"Snowball","Snowball (and) Cookies","You need a penis for this!");
+	if(pc.hasCock() || pc.hasVagina()) addButton(2,"CandyOral",candyCaneOral);
+	else addDisabledButton(2,"CandyOral","Candy Cane Oral","You need a penis or vagina for this!");
 	addButton(4,"Leave",leaveEmrbyHoliday2018);
 }
 
@@ -1134,8 +1148,8 @@ public function gardefordsGwenmas2018():void
 	{
 		output("\n\nYou step up to the harness, running a hand through Gwen’s damp hair and trying to position yourself as best you can. As if reading your mind, the machine buzzes and whirs, shifting the suspended slut till her face lines up perfectly with your crotch. Well, that takes care of that. The confined cocktease tenses up as you get close enough, her tongue stretching out to try and touch your approaching cock. Her eyes are glued to your crotch, staring with an aphrodisiac intensity that sets your blood to boiling. When you finally reach her, you see her whole body tense as [pc.eachCock] rubs against her face.");
 		output("\n\n<i>“You’ve barely done anything, and she’s already cumming! Having a human around is the best! Don’t tell her I said that though, this is supposed to be a gift for her, not me, so get to it,”</i> Eimear winks, kneading the jiggly assflesh in front of her as she lubes up the bulbous dildo. You chuckle, but don’t actually have much left to ‘get to’ for now. Gwen is in the process of voraciously attempting to devour your ");
-		if(pc.cockTotal() > 3) output("garden of maleness");
-		else if(pc.cockTotal() > 2) output("duo of dicks");
+		if(pc.cockTotal() >= 3) output("garden of maleness");
+		else if(pc.cockTotal() == 2) output("duo of dicks");
 		else output("manhood");
 		output(".");
 		if(pc.cocks[x].cLength() < 6) output(" Her tongue alone completely covers your [pc.cock " + x + "], its fluted surface rubbing all the right places along your length.");

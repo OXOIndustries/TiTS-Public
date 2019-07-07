@@ -300,7 +300,7 @@ public function putItAway(item:ItemSlotClass):void
 {
 	clearOutput();
 	author("Adjatha");
-	showName("\nNEVERMIND...");
+	showName("\nNEVER MIND...");
 	output("You tuck the cum bubble back into your belongings for now. Surely there’s somebody out there who would love a fresh spunk delivery.");
 	clearMenu();
 	addButton(0,"Next",useItemFunction);
@@ -900,7 +900,7 @@ public function tittyFuckCelise():void
 
 	if(pc.hasVagina() && !pc.hasCock()) output("\n\n<i>“Oh my, you seem to have left your weapon at home. No fear, you’ll conquer that goo girl menace yet,”</i> Celise teases, her hand cupping the swell of your mons. A slight firmness presses into your [pc.vagina], as your galotian feeds a thick rod of semi-firm slime into your depths. A shuddering sigh escapes your lips and your fingers tighten against the pliant peaks of her augmented chest. Celise pulls her hand away and where it had been, a gooey shaft now remains. Celise has left a double-sided dildo halfway inside you, made of her own green goo! No telling how long its integrity will hold, so you’d best make use of it while you can.");
 	output("\n\nThe emerald girl pressing against you glances down at your [pc.groin] with a delighted eagerness. <i>“Oh no! It’s the neutronic lance! My one weakness! I can feel its gravity pulling me in,”</i> she wails, squishing herself against you so tightly that your hands sink into her breasts and end up grabbing the cum bubble implants floating within them. Experimentally, you give the rubbery orbs a squeeze. Celise lets out a high pitched shriek of delight, her body clenching down against you with an unfamiliar tightness.");
-	output("\n\n<i>“O-ooh! Sweet syrup, that was awesome!”</i> She reports back, her eyes wide and her mouth not quite able to choose between a huge smile and an O of shock. Her dark jade irises twinkle as she wraps her arms around the back of your neck, her abdomen slurping up the girth of your ‘star lance’ or whatever she was calling it. The heat of her body transmits all the way through your length and right into your spine, sending sharp strokes of tingling impatience through your nerves. <i>“Do it again,”</i> she begs with a little head bob that pokes her little green nose against yours.");
+	output("\n\n<i>“O-ooh! Sweet syrup, that was awesome!”</i> She reports back, her eyes wide and her mouth not quite able to choose between a huge smile and an ‘O’ of shock. Her dark jade irises twinkle as she wraps her arms around the back of your neck, her abdomen slurping up the girth of your ‘star lance’ or whatever she was calling it. The heat of her body transmits all the way through your length and right into your spine, sending sharp strokes of tingling impatience through your nerves. <i>“Do it again,”</i> she begs with a little head bob that pokes her little green nose against yours.");
 	output("\n\nYou give the girl’s orbs another squeeze and her body squeezes in sympathy. ");
 	if(pc.hasVagina() && !pc.hasCock()) output("The gooey dildo inside her is squished, making the end inside you inflate with a vibrating thickness that hugs every inner fold. ");
 	else output("The normally gelatinous interior of the goo girl manages a taut density that you didn’t think she was capable of. ");

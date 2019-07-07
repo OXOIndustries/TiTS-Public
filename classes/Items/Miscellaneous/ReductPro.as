@@ -234,7 +234,7 @@ package classes.Items.Miscellaneous
 			else
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
 			// 14 - Back
-			addButton(14, "Back", menuReductProQuit, undefined, "Nevermind", "Put the container back in your inventory.");
+			addButton(14, "Back", menuReductProQuit, undefined, "Never Mind", "Put the container back in your inventory.");
 			
 			return;
 		}
@@ -269,7 +269,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		
@@ -470,7 +470,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkNipples, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			
 			return;
 		}*/
@@ -604,7 +604,7 @@ package classes.Items.Miscellaneous
 						pc.deflateVagina(y);
 						if(!pumpReported)
 						{
-							if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
+							if(pc.hasPlumpPussy(y)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
 							else output(" <b>Your [pc.vaginaNoun " + y + "] is no longer so quite so plump</b>.");
 							pumpReported = true;
 						}
@@ -729,7 +729,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Cock " + (x + 1)), useReductProShrinkCock, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		//fen redux continue here
@@ -1348,23 +1348,21 @@ package classes.Items.Miscellaneous
 					pc.removeStatusEffect("Horn Bumps");
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
+				
+				kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
+				
+				// Done!
+				useReductProDone();
+				return;
 			}
 			else
 			{
 				output("\n\n" + pc.hornLengthLockedMessage());
 				output("\n\nRubbing your [pc.hornsNoun], you sigh in disappointment and throw out the empty container, washing your hands afterward.");
+				
+				useReductProDone(true);
+				return;
 			}
-			
-			kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
-			if (kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] == undefined)
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] = 1;
-			else
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"]++;
-			
-			clearMenu();
-			addButton(0, "Next", kGAMECLASS.mainGameMenu);
-			
-			return;
 		}
 		
 		private function useReductProDone(failed:Boolean = false):void

@@ -146,6 +146,8 @@ package classes.Items.Transformatives
 						output("\n\nYou feel the tips of your ears tingle with sensitivity before they begin to pull into some kind of point. Your face wrinkles as they seem to grow longer and longer before subsiding. You pull out your codex and take note of your <b>sail-like suula ears</b>!");
 						
 						pc.earType = GLOBAL.TYPE_SIREN;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
@@ -205,10 +207,10 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				// Change skin color
-				// [pc.skinFurScaleColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
+				// [pc.skinFurScalesColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
 				var suulaScaleColors:Array = ["blue", "red", "green", "purple", "gold", "silver"];
 				// Options: blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped
-				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
+				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (!InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
 				{
 					var newScaleColor:String = RandomInCollection(suulaScaleColors);
 					var design:int = (rand(2) == 0 ? 1 : 3); // stripes or blotch
@@ -229,7 +231,7 @@ package classes.Items.Transformatives
 					else if(design == 3) output(" blotch pattern across your belly and chest");
 					output("!</b> You’re definitely getting closer to become an alluring, sharky suula.");
 					
-					// Note: change is applied[pc.skinFurScaleColor]
+					// Note: change is applied[pc.skinFurScalesColor]
 					pc.skinTone = newScaleColor;
 					pc.scaleColor = newScaleColor;
 					pc.createStatusEffect("Body Markings", design, 0, 0, 0);
@@ -509,10 +511,10 @@ package classes.Items.Transformatives
 						
 						pc.femininity += 10;
 						
-						if(pc.femininity >= 100)
+						if(pc.femininity >= pc.femininityMax())
 						{
 							output("\n\nA tingle comes to your face, but it disappears as quickly as it came. You guess you can’t get any more feminine than you already are.");
-							pc.femininity = 100;
+							pc.femininity = pc.femininityMax();
 						}
 					}
 					else output("\n\n" + pc.femininityLockedMessage());
@@ -610,12 +612,14 @@ package classes.Items.Transformatives
 							output(" puffy");
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
 						}
 						output(" lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a suula vagina!</b>");
 						
 						pc.shiftVagina(vIdx, GLOBAL.TYPE_SIREN);
 						if(puffFlag == 1) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 						if(puffFlag == 2) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_PUMPED);
+						if(puffFlag == 3) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 						pc.lust(5);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());

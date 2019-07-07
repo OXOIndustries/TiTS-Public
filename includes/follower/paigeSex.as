@@ -49,6 +49,7 @@ public function paigeFirstTimeIntro():void
 	output("\n\nYou memorize her taste as her tongue coils over yours; you familiarize yourself with the smooth texture of the wriggling muscle in your mouth. Her whole body rubs against you; the static of her fur tickles and excites you. Your hands grip at nothing, dying to touch her.");
 	processTime(5);
 	pc.lust(10);
+	args.push("First Time");
 	//[=Embrace Her=][=Grab Her Ass=][=Do Nothing=]
 	// end scene (scene: First Time)
 	clearMenu();
@@ -1336,6 +1337,8 @@ public function sexWithPaige():void
 	addButton(4,"Down On Her",SSDH,undefined,"Down On Her","You wouldn’t mind going down on Paige this time. She’d probably love to hear you say that.");
 	if(paigeIsCrew()) addButton(5,"Reenact",SSR,undefined,"Reenact","Replay the night you and Paige first had sex. To the best of your memory, anyway...");
 	else addDisabledButton(5,"Locked","Locked","Paige’s relationship with you is not developed enough for this...");
+
+	addButton(6, "BodyWorship", studyHerPaigeByPaige, undefined, "Worship Her Body", "Paige has put a lot of effort into her body. You could make love to her, but that doesn’t seem like it’d be paying her efforts enough due diligence. Maybe spending some <i>quality time</i> with her will get the message across...");
 }
 
 //[=Vanilla=]
@@ -1360,6 +1363,7 @@ public function SSVI():void
 	var args:Array = [];
 	//[=Be Bottom=][=Be Top=]
 	// end scene (scene: SSVI)
+	args.push("SSVI");
 	processTime(5);
 	pc.lust(10);
 	clearMenu();
@@ -1910,25 +1914,24 @@ public function SSVAG(args:Array):void
 	//if {not SSVE5}
 	if(!InCollection("SSVE5", args)) output("<i>“You are just a treasure, aren’t you, [pc.name]?”</i> she asks.");
 	//if {SSVE5}
-	if(InCollection("SSVE5", args)) output("<i>“Stars, but being the bottom is fun sometimes,”</i> she pants exhaustively.");
-	output(" <i>“");
+	else output("<i>“Stars, but being the bottom is fun sometimes,”</i> she pants exhaustively.");
 	//if {SSVE1}
-	if(InCollection("SSVE1", args)) output("A perfect, attentive lover. Gentle and pliant. God, I could see myself fucking you for years.”</i> You laugh: it’s hardly the most romantic way for Paige to admit her feelings, but you leave it to her not wanting to admit them yet. She laughs too, knowing exactly what she said.");
+	if(InCollection("SSVE1", args)) output(" <i>“A perfect, attentive lover. Gentle and pliant. God, I could see myself fucking you for years.”</i> You laugh: it’s hardly the most romantic way for Paige to admit her feelings, but you leave it to her not wanting to admit them yet. She laughs too, knowing exactly what she said.");
 	//if {SSVE2, SSVE3 or SSVE4}
 	if(InCollection("SSVE2", args) || InCollection("SSVE3", args) || InCollection("SSVE4", args))
 	{
-		output("You know exactly when to take an opportunity when you see one. ");
+		output(" You know exactly when to take an opportunity when you see one.");
 		//if {SSVCh}
-		if(InCollection("SSVCh", args)) output("The girls are going to feel that in the morning – but they wouldn’t mind feeling it a whole lot more.”</i> You grin exaggeratingly, showing off your teeth and give them a quick gloss with your tongue. <i>“Not too rough, and just rough enough,”</i> she says, rubbing her tit with her free hand where you bit her. <i>“You have some really impressive control.”</i>");
+		if(InCollection("SSVCh", args)) output(" <i>“The girls are going to feel that in the morning – but they wouldn’t mind feeling it a whole lot more.”</i> You grin exaggeratingly, showing off your teeth and give them a quick gloss with your tongue. <i>“Not too rough, and just rough enough,”</i> she says, rubbing her tit with her free hand where you bit her. <i>“You have some really impressive control.”</i>");
 		//if {SSVAP}
-		if(InCollection("SSVAP", args)) output("I liked what you did at the end, too. Don’t be afraid to twist me around,”</i> she winks. <i>“All those years doing yoga, a weird position like that isn’t going to hurt me at all.”</i> Her hand reaches out to yours, interlocking your fingers again. <i>“If you’re the top, you do</i> whatever <i>you want. I’m all yours, sweet thing.”</i>");
+		if(InCollection("SSVAP", args)) output(" <i>“I liked what you did at the end, too. Don’t be afraid to twist me around,”</i> she winks. <i>“All those years doing yoga, a weird position like that isn’t going to hurt me at all.”</i> Her hand reaches out to yours, interlocking your fingers again. <i>“If you’re the top, you do</i> whatever <i>you want. I’m all yours, sweet thing.”</i>");
 		//if {SSVG}
-		if(InCollection("SSVG", args)) output("And I love the way you know when not to press too hard. Once you got me ass up, you turned into such a gentle" + pc.mf("","wo") + "man – I’d never been so dominated by someone so gentle. It was the whole package.”</i> She smiles lazily, her eyes drooping. <i>“Fuck,”</i> she whispers, her hand caressing her belly, <i>“thinking about it is making me horny for it all over again.”</i>");
+		if(InCollection("SSVG", args)) output(" <i>“And I love the way you know when not to press too hard. Once you got me ass up, you turned into such a gentle" + pc.mf("","wo") + "man – I’d never been so dominated by someone so gentle. It was the whole package.”</i> She smiles lazily, her eyes drooping. <i>“Fuck,”</i> she whispers, her hand caressing her belly, <i>“thinking about it is making me horny for it all over again.”</i>");
 		//if {SSVMH, SSVLnS, or SSVKHN}
-		if(InCollection("SSVMH", args) || InCollection("SSVLnS", args) || InCollection("SSVKHN", args)) output("Gentle and loving, but when there’s a chance to strike, you’re all over me like a rabid wolf.”</i> She grins predatorily, and her hand reaches over to you, trailing down your side and resting on your [pc.hip]. <i>“I like a lover that knows when to take what [pc.heShe] wants. And there’s gonna be more where that came from, sweet thing.”</i>");
+		if(InCollection("SSVMH", args) || InCollection("SSVLnS", args) || InCollection("SSVKHN", args)) output(" <i>“Gentle and loving, but when there’s a chance to strike, you’re all over me like a rabid wolf.”</i> She grins predatorily, and her hand reaches over to you, trailing down your side and resting on your [pc.hip]. <i>“I like a lover that knows when to take what [pc.heShe] wants. And there’s gonna be more where that came from, sweet thing.”</i>");
 	}
 	//if {SSVE5}
-	if(InCollection("SSVE5", args)) output("You’re not often that rabid, or domineering, or...</i> forceful,”</i> she says huskily. <i>“Once you got on top, there was no stopping you. I think we’ll need to explore this side of you more often.”</i> Her hand snakes out, raking the claws on her fingers across your [pc.skinFurScales] lustily. <i>“After seven years of not getting laid, I completely forgot how good it is to get fucked raw. I’d ask you to do it again if I didn’t know I’m already going to walk funny tomorrow.”</i>");
+	if(InCollection("SSVE5", args)) output(" <i>“You’re not often that rabid, or domineering, or... </i>forceful<i>,”</i> she says huskily. <i>“Once you got on top, there was no stopping you. I think we’ll need to explore this side of you more often.”</i> Her hand snakes out, raking the claws on her fingers across your [pc.skinFurScales] lustily. <i>“After seven years of not getting laid, I completely forgot how good it is to get fucked raw. I’d ask you to do it again if I didn’t know I’m already going to walk funny tomorrow.”</i>");
 	output("\n\n<i>“You got someplace you need to be?”</i> she asks suddenly, and you answer negatively. <i>“Good. Let’s just stay like this for a little while longer.”</i> Sounds like a plan to you: you two stay together in that position, long after your [pc.cock] softens and slips out of her");
 	if(pc.cumQ() >= 300) output(", spilling yet more seed that Paige couldn’t contain onto yourself");
 	output("; you gently tease each other and whisper a bunch of nothings as the time passes.");
@@ -1992,6 +1995,7 @@ public function SSAI():void
 
 	output("\n\nThat’s all you need to hear. You frig your prick between her globes another few times, your pre-cum beading down and slicking your shaft and her taint in preparation. You’re so close, a quick thrust would be all you need – but are you in that sort of rush? You could take things a little easier, if you’d rather.");
 
+	args.push("SSAI");
 	//[=Gently=][=Raw=][=Prep=]
 	// end scene (scene: SSAI)
 	processTime(5);
@@ -3987,7 +3991,7 @@ public function SSDYSH(args:Array):void
 		{
 			output("your [pc.cock 1] with your other. You grunt as she works you over, licking and sucking, playing with your [pc.cock] with her tongue; you bathe her tongue with pre-cum while your second cock shows its adoration by shooting its own into her hair and across her cheek, which she takes without resistance");
 			if(pc.cockTotal() >= 3) output(". The rest of your [pc.cocks] flop about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth");
-			else output(". You’re hard as nails, your [pc.hips] rocking into her mouth], signs of your impending orgasm just on the horizon");
+			else output(". You’re hard as nails, your [pc.hips] rocking into her mouth, signs of your impending orgasm just on the horizon");
 		}
 		output(".");
 
@@ -4235,6 +4239,7 @@ public function SSDYAG(args:Array):void
 
  	processTime(5);
  	pc.lust(10);
+	args.push("SSDH");
  	//[=Tease=][=Dive In=]
 	// end scene (scene: SSDH)
 	clearMenu();
@@ -4687,6 +4692,7 @@ public function SSR():void
 	output("\n\nShe leans into you and gives you a quick kiss on the lips. <i>“Corny as it sounds, every time with you is special to me. I’d love to.”</i> She licks her lips. <i>“And if I remember right, it started with....”</i>");
 	output("\n\nShe lunges forward, burying her tongue deep into your mouth, letting you memorize her taste and texture. You keep your hands to your sides, gripping at nothing and dying to touch her. Now, what is it you did next...?");
 
+	args.push("SSR");
 	//[=Embrace Her=][=Grab Her Ass=][=Do Nothing=]
 	// end scene (scene: SSR); continue along the First Time path
 	processTime(5);

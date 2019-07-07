@@ -63,7 +63,7 @@ public function approachMirrinFirstTime():void
 	output("\n\nGetting closer, her towering shape becomes more imposing and you notice that her corner of the large room seems relatively empty. She’s facing a large mirror, the reflection showing a calm, slightly grimaced face with eyes that dart all over. Her breathing is quite worked up, every exhale being a loud and deep gush of air through her flared nostrils.");
 	output("\n\nYou get a quick glance over her: clay-red skin, silvered hair and fierce, draconic features. A straining set of E-cup breasts fight against the black material of her sports shirt. Every squat pushes out her perked up ass, drawing the attention of some distanced onlookers. She doesn’t seem to have acknowledged you yet...");
 	output("\n\nSo you introduce yourself, starting with a simple greeting.");
-	output("\n\nShe stops mid squat - her butt low to the ground - saying with a strained voice <i>“Just a sec.”</i> Bending her back upwards to complete the squat movement, she breathes out a huff of hot air, her sweat-dripping mouth making a large O shape in the process. She relaxes her posture, reverses carefully to the nearby bar rack and then sets the weights in place with a double <i>clack</i> sound. Dusting her palms off against her shorts, she puts her hands on her hips in a power stance.");
+	output("\n\nShe stops mid squat - her butt low to the ground - saying with a strained voice <i>“Just a sec.”</i> Bending her back upwards to complete the squat movement, she breathes out a huff of hot air, her sweat-dripping mouth making a large ‘O’ shape in the process. She relaxes her posture, reverses carefully to the nearby bar rack and then sets the weights in place with a double <i>clack</i> sound. Dusting her palms off against her shorts, she puts her hands on her hips in a power stance.");
 
 	output("\n\n<i>“Hey, sorry for all that,”</i> she ventilates as she gestures vaguely towards the weights. <i>“What can I do for you?”</i>");
 	output("\n\nShe’s now got her bright red eyes on you, the stare of a businesswoman that never flinches away. Steele charm, don’t fail you now!");
@@ -1226,7 +1226,7 @@ public function laterMomsSpaghetti():void
 	if(pc.isNice()) output(" I enjoy this training so much, I’ll be back soon!”</i> You finish.");
 	else if(pc.isMischievous()) output(" I’ll be fittin’ this fitness in my business schedule,”</i> you finish with a wink and a grin.");
 	else output(" Might be back later,”</i> you say cooly, dusting yourself down.");
-	output("\n\nMirrin waves in response. <i>“Be a stranger! Or don’t be. Which? Nevermind,”</i> she fumbles, getting up to jump into more exercise.");
+	output("\n\nMirrin waves in response. <i>“Be a stranger! Or don’t be. Which? Never mind,”</i> she fumbles, getting up to jump into more exercise.");
 	processTime(2);
 	//[Next]
 	//PC returns to front of gym.
@@ -2028,7 +2028,7 @@ public function winAgainstMirrin():void
 	showMirrin(true);
 	author("SoAndSo");
 	output("You dust your naked self down, a comfortable warmth energizing you from the exertion. Mirrin has her head cowed, still smiling in defeat.");
-	output("\n\n<i>“Whelp, rules is rules or some such. What does " + pc.mf("Sir","Madame") + " Steele require of her uhhh, subordinate?”</i> She says, shuffling closer to you. It’s strange to find you in a higher position while she kneels before you. Still, you know what to do with her.");
+	output("\n\n<i>“Whelp, rules is rules or some such. What does " + pc.mf("Sir","Madame") + " Steele require of [pc.hisHer] uhhh, subordinate?”</i> She says, shuffling closer to you. It’s strange to find you in a higher position while she kneels before you. Still, you know what to do with her.");
 	output("\n\nYou draw a circle in the air around your pelvis and then point to her mouth.");
 	//PC is kind:
 	if(pc.isNice())

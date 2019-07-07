@@ -37,7 +37,7 @@
 		if(InCollection(sRace, ["amazoness", "amazonian", "amazon"])) sRace = "human";
 		if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
-		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
+		if(InCollection(sRace, ["hucow", "cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
 		if(InCollection(sRace, ["horse", "alicorn", "unicorn", "pegasus"])) sRace = "equine";
 		if(InCollection(sRace, ["dog", "doge", "doggo", "puppy", "pupper", "bitch", "hellhound", "husky"])) sRace = "canine";
 		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";

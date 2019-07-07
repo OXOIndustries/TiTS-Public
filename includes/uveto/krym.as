@@ -255,7 +255,7 @@ public function useUvetoBeaconMenu():void
 	addButton(0, "Irestead", uvetoTaxiShitGooo, "UVI P40");
 	if(flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
 	else addButton(1, "Probe", uvetoTaxiShitGooo, "UVIP R10");
-	if(hours >= 5 && hours < 19) addButton(14, "Nevermind", krymMenu);
+	if(hours >= 5 && hours < 19) addButton(14, "Never Mind", krymMenu);
 	else addButton(14, "Back", mainGameMenu);
 }
 
@@ -676,13 +676,14 @@ public function consensualKrymButtfuck():void
 	if(pc.balls >= 1) output("[pc.balls]");
 	else output("prostate");
 	output(" announces your approach to the edge– an edge you’re all too happy to go tumbling over. You wrap your lips around the sensitive little pleasure-buzzer of her clitty as you let go of your restraint.");
+	var cumQ:Number = pc.cumQ();
 	output("\n\nKrym is too distracted by the sensations of her clit being toyed with to do pull away. Moments later and you cum hard enough to cause her cheeks to bulge. She coughs in surprise, eyes widening. Instead of rise up though, she mashes her pussy harder into your face, and you can hear slow gulping as she drinks down your ");
-	if(pc.cumQ() < 1000) output("modest");
+	if(cumQ < 1000) output("modest");
 	else output("incredible load");
 	output(".");
 
 	//if you have nuki-balls:
-	if(pc.cumQ() >= 3000)
+	if(cumQ >= 3000)
 	{
 		output("\n\nDespite the gusto with which she tries to consume your liquid load, your endless reserves finally overwhelm her, and she has to sit up, gasping for air and holding a slightly-too-full-stomach.");
 	}
@@ -808,9 +809,12 @@ public function pitchVagimalKrym():void
 	else output("\n\nHer sucking skills are as practiced as her fighting, and she’s got you on the edge in seconds.");
 	if(x != -1) output(" Your dick grows tight in her lips, turgid with liquid seed, and erupts into her throat.");
 	if(x != -1 && pc.cumQ() >= 2000) output(" Cum immediately spurts back around your shaft, and even out of her nose, as the unsuspecting valkyrie is exposed to the monstrous volume of your load.");
-	else output(" Krym grins up at you around her mouthful of dick, or at least as much as she can");
-	if(x != -1) output(", while your throbbing dick deposits its load in her stomach");
-	output(".");
+	else
+	{
+		output(" Krym grins up at you around her mouthful of dick, or at least as much as she can");
+		if(x != -1) output(", while your throbbing dick deposits its load in her stomach");
+		output(".");
+	}
 	output("\n\n<i>“Oh, fuck!”</i> Krym laughs");
 	if(x != -1) output(", coughing up a glob of cum onto her tits and");
 	output(" pushing herself up onto her elbows. <i>“That was good. Real good! Gods, my heart is pounding still.”</i>");

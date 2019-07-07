@@ -251,6 +251,8 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYou feel a burning sensation in your [pc.ears], aching and straining and tearing. You clutch at your head, rubbing at your ears. The pill you swallowed works its scientific wonders, slowly starting to morph the shape of your ears. They become long and tapered, elfin in shape over the course of a few minutes.");
 						pc.earType = GLOBAL.TYPE_SYLVAN;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 						pc.earLength = 4+rand(5);
 						changes++;
 					}

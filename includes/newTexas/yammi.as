@@ -208,7 +208,7 @@ public function preparingToGetIceCream(servingType:String = "cone"):void
 	addButton(1,"Yokto",getYokto,servingType,"Yokto","Try some Yokto flavor.");
 	addButton(2,"Blitzaberry",blitzaberryCone,servingType,"Blitzaberry","Try some blitzaberry, a childhood favorite.");
 	addButton(3,"Strawberry",strawberryIcedCream,servingType,"Strawberry","Try some strawberry. Who doesn’t love strawberries?");
-	addButton(4,"Jumbijumbi",JumbijumbiCream,servingType,"Jumbijumbi","You hear it’s an acquired taste!");
+	addButton(4,"Jumbijumbi",jumbiJumbiCream,servingType,"Jumbijumbi","You hear it’s an acquired taste!");
 	addButton(5,"Darginut",darginutIcedCream,servingType,"Darginut","Try some darginut, a hearty favorite of U.G.C. troops.");
 	addButton(6,"Chocolate",chocolateIcedCream,servingType,"Chocolate","Who doesn’t love chocolate?");
 	addButton(7,"Flameberks",flameberksIcedCream,servingType,"Flameberks","Judging by the name alone, it has to be spicy.");
@@ -436,7 +436,7 @@ public function strawberryIcedCream(servingType:String = "cone"):void
 }
 
 //Jumbijumbi
-public function JumbijumbiCream(servingType:String = "cone"):void
+public function jumbiJumbiCream(servingType:String = "cone"):void
 {
 	clearOutput();
 	yammiShopDisplay();
@@ -450,7 +450,7 @@ public function JumbijumbiCream(servingType:String = "cone"):void
 			output("\n\nIn all honesty, it’s pretty horrible. It rakes your taste buds like razors, almost like you don’t have the proper equipment to taste it and your body is just guessing. To your astonishment, you soon find yourself popping the last of the cone into your mouth! How did you eat all that?!");
 		}
 		//Repeat Cone
-		else output("\n\nYou approach the bored Jumbijumbi dispensing woman again, deciding to risk it once more. You still don’t know how you ate all the last batch you got, so you determine to pay more attention this time. While you fill your cone the lady looks somewhat more well disposed to you, maybe because you didn’t make a horrible face last time? You walk away and lick your awful tasting cone, debating about how much pride she must take in her terrible ice cream and... Oh, blast it, you’re done again?! How do you keep eating it so fast?");
+		else output("You approach the bored Jumbijumbi dispensing woman again, deciding to risk it once more. You still don’t know how you ate all the last batch you got, so you determine to pay more attention this time. While you fill your cone the lady looks somewhat more well disposed to you, maybe because you didn’t make a horrible face last time? You walk away and lick your awful tasting cone, debating about how much pride she must take in her terrible ice cream and... Oh, blast it, you’re done again?! How do you keep eating it so fast?");
 	}
 	//Choose Bowl/Feast
 	else
@@ -462,7 +462,7 @@ public function JumbijumbiCream(servingType:String = "cone"):void
 			output("\n\nYou walk away and pop a spoonful in your mouth. It’s pretty gross, though you don’t know why. Maybe you just don’t have taste buds for this particular flavor of terrible? You debate just how they can turn a profit on such a godawful flavor. There must be some race that likes it, but... wait a second, where did it all go? You feel very full. Did you honestly eat all of that?");
 		}
 		//Repeat Bowl/Feast
-		else output("\n\nYou approach the Jumbijumbi machine again, still uncertain how you gulped down the last batch. Throwing caution to the wind, you set your bowl in place. Inside the machine, the insect eyed mauve woman looks pleased to see you again. She looks even more pleased as you pull the lever and the machinery sets to work on her. The ice cream is as dark and slow as it was before. You fill it up and take your gross tasting frozen snack, leaving her to her pleasures. Once again, the ice cream is virtually inedible. You can’t even imagine how you ate so much last time. It’s not an acquired taste, it’s an atrocity. How would anyone ever... Oh, for crying out loud, where did it all go? Again? How do you do that and not notice?! Is it just so awful your brain doesn’t record it somehow or what?");
+		else output("You approach the Jumbijumbi machine again, still uncertain how you gulped down the last batch. Throwing caution to the wind, you set your bowl in place. Inside the machine, the insect eyed mauve woman looks pleased to see you again. She looks even more pleased as you pull the lever and the machinery sets to work on her. The ice cream is as dark and slow as it was before. You fill it up and take your gross tasting frozen snack, leaving her to her pleasures. Once again, the ice cream is virtually inedible. You can’t even imagine how you ate so much last time. It’s not an acquired taste, it’s an atrocity. How would anyone ever... Oh, for crying out loud, where did it all go? Again? How do you do that and not notice?! Is it just so awful your brain doesn’t record it somehow or what?");
 	}
 	flags["HAD_JUMBIJUMBI"] = 1;
 	if(servingType == "cone") 

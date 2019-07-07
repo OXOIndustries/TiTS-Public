@@ -1,5 +1,9 @@
 ﻿import classes.Items.Miscellaneous.HorseCock;
 
+public function tarkusCoordinatesUnlocked():Boolean
+{
+	return (flags["UNLOCKED_JUNKYARD_PLANET"] != undefined);
+}
 //Landing on Tarkus (First Time)
 public function landOnTarkus():void
 {
@@ -34,6 +38,11 @@ public function novahomeHangerBonus():Boolean
 
 public function westNovahomeBonus():Boolean
 {
+	if (breedwellPremiumBootyCallCheck("tarkus",1) && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing(1);
+		return true;
+	}
 	if(flags["LASH_BOMB"] != undefined)
 	{
 		clearOutput();
@@ -67,6 +76,11 @@ public function BonusFunction210():Boolean
 
 public function bonusFunction213():Boolean
 {
+	if (breedwellPremiumBootyCallCheck("tarkus",1) && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing(1);
+		return true;
+	}
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
 	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red ‘X’ spraypainted across it.");
 	return false;
@@ -151,7 +165,9 @@ public function bonusTubeSteak():Boolean
 
 public function synthSheathMax():int
 {
-	return 4;
+	var horseCocksTotal:int = 4;
+	if(flags["RIYA_PARTIED_YEAR"] != undefined) horseCocksTotal++;
+	return horseCocksTotal;
 }
 
 public function synthSheathsOwned():int
@@ -271,7 +287,9 @@ public function rustCoastEncounters():Boolean {
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 		
-		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		if (encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		
+		if (breedwellPremiumBootyCallCheck("tarkus")) e.push( { v: breedwellPremiumBootyCallPing, w: 2 } );
 		
 		//Run the event
 		weightedRand(e)();
@@ -348,6 +366,16 @@ public function rustScytheGladeEncounters():Boolean {
 	return false;
 }
 
+public function tarkusMetalRavineBonus():Boolean
+{
+	var btnSlot:int = 0;
+	
+	if(cockBoxDiscoveryBlurb(btnSlot)) btnSlot++;
+	if(kimberQuestWormBonus(btnSlot)) btnSlot++;
+	
+	return rustRidgesEncounters();
+}
+
 //Yes:
 public function grabARubbahTube():void
 {
@@ -375,6 +403,9 @@ public function grabARubbahTube():void
 
 public function messSeatingBonus():Boolean
 {
+	var btnSlot:int = 0;
 	edanRoomDesc();
+	btnSlot++;
+	if (seatingZea(btnSlot)) btnSlot++;
 	return false;
 }

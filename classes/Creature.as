@@ -359,7 +359,7 @@
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
 			}
 			
-			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER))
+			if ((accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER)) && !inCombat())
 			{
 				r.kinetic.resistanceValue += 60;
 				r.electric.resistanceValue += 60;
@@ -453,6 +453,12 @@
 		public function eyeColorLockedMessage():String 
 		{
 			return "Your [pc.eye] twitches, resisting a change.";
+		}
+		public function eyeCount():int
+		{
+			if (eyeType == GLOBAL.TYPE_ARACHNID) return 4;
+			if (eyeType == GLOBAL.TYPE_XHELARFOG) return 3;
+			return 2;
 		}
 		//New piercing hotness:
 		public var eyebrowPiercing:ItemSlotClass = new EmptySlot();
@@ -735,6 +741,12 @@
 		public var tonguePiercing:ItemSlotClass = new EmptySlot();
 
 		public var lipMod:Number = 0;
+		public function lipModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Face") && rating < statusEffectv3("Mimbrane Face")) rating = statusEffectv3("Mimbrane Face");
+			return rating;
+		}
 		public function lipModUnlocked(newLipMod:Number):Boolean
 		{
 			if(hasBeak()) return false;
@@ -891,6 +903,16 @@
 		{
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
+
+		public var earFlags: Array = new Array();
+		public function earFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function earFlagsLockedMessage():String
+		{
+			return "Despite the heat in your [pc.ears], nothing changes.";
+		}
 		
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
 		public function cumTypeUnlocked(newCumType:Number):Boolean
@@ -920,6 +942,15 @@
 		public function genitalLocation(): Number {
 			if (genitalSpot == 1 && legCount == 2) return 0;
 			else if (genitalSpot == 3 && isDrider()) return 3;
+			return genitalSpot;
+		}
+		public function resetGenitalLocation(): Number
+		{
+			if(isDrider()) genitalSpot = 3;
+			else if(isTaur()) genitalSpot = 2;
+			else if(isNaga()) genitalSpot = 1;
+			else genitalSpot = 0;
+			
 			return genitalSpot;
 		}
 
@@ -1038,6 +1069,17 @@
 		//20 - inhumanly wide
 		public var hipRatingRaw:Number = 0;
 		public var hipRatingMod:Number = 0;
+		public function hipRatingRawMin():Number
+		{
+			var rating:Number = 0;
+			if(hasPerk("Hips Don't Lie") && rating < 18) rating = 18;
+			return rating;
+		}
+		public function hipRatingModMin():Number
+		{
+			var rating:Number = 0;
+			return rating;
+		}
 		
 		public function hipRating(arg:Number = 0, apply:Boolean = false):Number
 		{
@@ -1086,6 +1128,18 @@
 		//20 - inconceivably large/big/huge etc
 		public var buttRatingRaw:Number = 0;
 		public var buttRatingMod:Number = 0;
+		public function buttRatingRawMin():Number
+		{
+			var rating:Number = 0;
+			if(hasPerk("Buttslut") && rating < 18) rating = 18;
+			return rating;
+		}
+		public function buttRatingModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Ass") && rating < statusEffectv3("Mimbrane Ass")) rating = statusEffectv3("Mimbrane Ass");
+			return rating;
+		}
 		
 		public function buttRating(arg:Number = 0, apply:Boolean = false):Number
 		{
@@ -1372,6 +1426,13 @@
 
 		//balls
 		public var balls: Number = 0;
+		public function hasBalls(minBalls:Number = 0):Boolean
+		{
+			// Minimum number of testicles, like checking for plural (2 or more).
+			if(minBalls > 0) return (balls >= minBalls);
+			// At least one testicle.
+			return (balls > 0);
+		}
 		public function ballsUnlocked(newBalls:Number):Boolean
 		{
 			if (newBalls == 0 && hasStatusEffect("Mimbrane Balls")) return false;
@@ -1388,6 +1449,17 @@
 
 		public var ballSizeRaw:Number = 1;
 		public var ballSizeMod:Number = 1;
+		public function ballSizeRawMin():Number
+		{
+			var rating:Number = 0;
+			return rating;
+		}
+		public function ballSizeModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Balls") && rating < statusEffectv3("Mimbrane Balls")) rating = statusEffectv3("Mimbrane Balls");
+			return rating;
+		}
 		
 		public function ballDiameter():Number
 		{
@@ -1459,9 +1531,12 @@
 		{
 			balls = 0;
 			resetBallSize();
+			removeStatusEffect("Uniball");
 		}
 		public function resetBallSize(): void
 		{
+			// Revert 'Nuki Ball size changes first
+			if(hasPerk("'Nuki Nuts")) setPerkValue("'Nuki Nuts", 1, 0);
 			// Revert ball size to default value.
 			ballSizeRaw = 1;
 			ballSizeMod = 1;
@@ -1906,6 +1981,11 @@
 				case "weaponRanged":
 					buffer = rangedWeapon.longName;
 					break;
+				case "rangedNoun":
+				case "gunNoun":
+				case "bowNoun":
+					buffer = getRangedNoun();
+					break;
 				case "mainWeapon":
 				case "weaponMain":
 				case "weaponStat":
@@ -2209,6 +2289,9 @@
 				case "tails":
 					buffer = tailsDescript();
 					break;
+				case "tailsIsAre":
+					buffer = (hasTails() ? tailsDescript() + " are" : tailsDescript() + " is");
+					break;
 				case "crotch":
 				case "groin":
 				case "genitals":
@@ -2218,6 +2301,7 @@
 				case "cockBase":
 				case "sheath":
 				case "sheathDescript":
+				case "sheathOrBase":
 					buffer = sheathDescript(arg2);
 					break;
 				case "biggestSheath":
@@ -2239,6 +2323,9 @@
 				case "knotOrSheath":
 					buffer = knotOrSheath(arg2);
 					break;
+				case "knotBallsHilt":
+					buffer = knotBallsHilt(arg2);
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
@@ -2250,6 +2337,10 @@
 				case "cocksDescriptLight":
 				case "cocksLight":
 					buffer = cocksDescriptLight();
+					break;
+				case "cocksLightIsAre":
+				case "dicksLightIsAre":
+					buffer = (hasCocks() ? cocksDescriptLight() + " are" : simpleCockNoun(arg2) + " is");
 					break;
 				case "cocksSimple":
 				case "cocksShort":
@@ -2267,6 +2358,10 @@
 				case "cockShort":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
+					break;
+				case "dicksNounIsAre":
+				case "cocksNounIsAre":
+					buffer = (hasCocks() ? simpleCocksNoun() + " are" : simpleCockNoun(arg2) + " is");
 					break;
 				case "cockNounBiggest":
 					buffer = simpleCockNoun(biggestCockIndex());
@@ -2450,6 +2545,9 @@
 				case "eachCock":
 					buffer = eachCock();
 					break;
+				case "eachCockIsAre":
+					buffer = eachCock() + (hasCocks() ? " are" : " is");
+					break;
 				case "oneCock":
 					buffer = oneCock();
 					break;
@@ -2485,8 +2583,23 @@
 				case "ballNoun":
 					buffer = ballNoun(false);
 					break;
+				case "ballsNounSimple":
+					buffer = ballsNounSimple();
+					break;
+				case "ballNounSimple":
+					buffer = ballsNounSimple(true);
+					break;
+				case "ballsNounIsAre":
+					buffer = ballNoun(true) + " " + (balls == 1 ? "is" : "are");
+					break;
+				case "ballsNounSimpleIsAre":
+					buffer = ballsNounSimple() + " " + (balls == 1 ? "is" : "are");
+					break;
 				case "ball":
 					buffer = ballsDescript();
+					break;
+				case "ballsIsAre":
+					buffer = hasBalls() ? ballsDescript() + " are" : ballDescript() + " is";
 					break;
 				case "prostate":
 				case "sack":
@@ -2515,6 +2628,8 @@
 				case "breastDry":
 					buffer = breastNoun(arg2, true);
 					break;
+				case "cupSize":
+				case "breastCup":
 				case "breastCupSize":
 					buffer = breastCup(arg2);
 					break;
@@ -2562,6 +2677,7 @@
 				case "buttsDescript":
 				case "buttcheeks":
 				case "asscheeks":
+				case "cheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
@@ -2637,8 +2753,21 @@
 				case "biggestCunt":
 					buffer = vaginaDescript(biggestVaginaIndex());
 					break;
+				case "vaginasIsAre":
+				case "cuntsIsAre":
+				case "pussiesIsAre":
+					buffer = (hasVaginas() ? vaginasDescript() + " are" : vaginaDescript() + " is");
+					break;
+				case "vaginasLightIsAre":
+				case "cuntsLightIsAre":
+				case "pussiesLightIsAre":
+					buffer = simpleVaginasNoun() + (hasVaginas() ?" are" : " is");
+					break;	
 				case "vagOrAss":
 				case "vagOrAsshole":
+				case "vaginaOrAss":
+				case "vaginaOrAsshole":
+				case "pussyOrAss":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
 					break;
@@ -2842,6 +2971,9 @@
 				case "legsOrLeg":
 					buffer = legOrLegs();
 					break;
+				case "legOrLegsNoun":
+					buffer = (legCount == 1 ? legNoun() : legsNoun());
+					break;
 				case "legFurScales":
 					buffer = legFurScales();
 					break;
@@ -2929,6 +3061,40 @@
 				case "girl":
 				case "guyGirl":
 					buffer = mf("guy","girl");
+					break;
+				case "son":
+				case "daughter":
+				case "sonDaughter":
+				case "daughterSon":
+					buffer = mf("son", "daughter");
+					break;
+				case "daddy":
+				case "mommy":
+				case "daddyMommy":
+					buffer = mf("daddy", "mommy");
+					break;
+				case "son":
+				case "daughter":
+				case "sonDaughter":
+					buffer = mf("son", "daughter");
+					break;
+				case "brother":
+				case "sister":
+				case "brotherSister":
+				case "bro":
+				case "sis":
+				case "broSis":
+					buffer = mf("brother", "sister");
+					break;
+				case "uncle":
+				case "aunt":
+				case "uncleAunt":
+					buffer = mf("uncle", "aunt");
+					break;
+				case "nephew":
+				case "niece":
+				case "nephewNiece":
+					buffer = mf("nephew", "niece");
 					break;
 				case "cockShape":
 				case "cockshape":
@@ -3080,6 +3246,12 @@
 			slots += statusEffectv1("Backpack Upgrade");
 			return slots;
 		}
+		public function freeInventorySlots():int {
+			return (inventorySlots() - inventory.length);
+		}
+		public function hasFreeInventorySlot(slots:int = 1):Boolean {
+			return (freeInventorySlots() >= slots);
+		}
 		
 		/*
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
@@ -3130,6 +3302,10 @@
 			}
 			return amt;
 		}
+		public function numberOfItemByReference(item:ItemSlotClass):int
+		{
+			return numberOfItemByClass(getDefinitionByName(getQualifiedClassName(item)) as Class);
+		}
 		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
@@ -3145,6 +3321,15 @@
 			
 			var amt:int = numberOfItemType(arg);
 			
+			if (amt >= amount) return true;
+			return false;
+		}
+		public function hasItemByReference(item:ItemSlotClass, amount:int = 1):Boolean
+		{
+			if (item == null || inventory.length == 0  || amount == 0) return false;
+
+			var amt:int = numberOfItemByReference(item);
+
 			if (amt >= amount) return true;
 			return false;
 		}
@@ -3257,25 +3442,25 @@
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (inventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < inventory.length)
+				while (i >= 0)
 				{
 					if (inventory[i] is arg)
 					{
 						inventory[i].quantity = 0;
 						inventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < inventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (inventory[i] is arg)
@@ -3287,10 +3472,8 @@
 						{
 							inventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Inventory item quantity needed: " + amount + "!</b>");
 			}
@@ -3318,6 +3501,32 @@
 			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock) && ((meleeWeapon is EmptySlot) || (meleeWeapon is Rock))) return rangedWeapon.longName;
 			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock) && ((rangedWeapon is EmptySlot) || (rangedWeapon is Rock))) return meleeWeapon.longName;
 			return getWeaponName(true);
+		}
+
+		public function getRangedNoun():String
+		{
+			if(!(rangedWeapon is EmptySlot))
+			{
+				if (rangedWeapon is Rock) return "rock"
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return "bow";
+				var nouns:Array = ["gun"];
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON)) nouns.push("rifle");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON)) nouns.push("pistol");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON)) nouns.push("shotgun");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_THROWER_WEAPON)) nouns.push("thrower");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LAUNCHER_WEAPON)) nouns.push("launcher");
+				
+				//Basically checks if the last word in a weapons name is a number and if it isn't, adds that to the list of possible outputs.
+				//Makes for a far nicer pool, and covers some more details than just "rifle" and the like.
+				//Doesn't work with things like MK.IV, but the current ranged weapon convention has that at the front of the long range
+				
+				var gName:Array = rangedWeapon.longName.split(" ");
+				var nameDesc:String = gName[gName.length - 1];
+				if (isNaN(Number(nameDesc))) nouns.push(nameDesc);				
+
+				return RandomInCollection(nouns);
+			}
+			return "fists";
 		}
 		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
@@ -3569,7 +3778,7 @@
 		}
 		public function shower():void
 		{
-			if(hasStatusEffect("Shower Douche Toggle"))
+			if(statusEffectv1("Shower Douche Toggle") == 1)
 			{
 				flushCumflation();
 				removeStatusEffect("Shower Douche Toggle");
@@ -3714,6 +3923,12 @@
 				{
 					kGAMECLASS.amazonEnduranceNotice();
 					removeStatusEffect("Amazonian Endurance Report Needed", true);
+				}
+				//Luca Submission
+				if(hasStatusEffect("Denied By Luca"))
+				{
+					if (statusEffectv1("Denied By Luca") == 1) kGAMECLASS.lucaSubmission(-5);
+					removeStatusEffect("Denied By Luca");
 				}
 				StatTracking.track("sex/player/orgasms");
 			}
@@ -3967,25 +4182,25 @@
 		
 		public function isChestVisible(tight:Boolean = false): Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
 			{
-				return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
+				return (upperUndergarment is EmptySlot || wornItemIsTransparent(upperUndergarment) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 			}
 			return isChestExposed(tight);
 		}
 		public function isCrotchVisible(tight:Boolean = false): Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
 			{
-				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
+				return (lowerUndergarment is EmptySlot || wornItemIsTransparent(lowerUndergarment) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 			}
 			return isCrotchExposed(tight);
 		}
 		public function isAssVisible(tight:Boolean = false):Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 			{
-				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
+				return (lowerUndergarment is EmptySlot || wornItemIsTransparent(lowerUndergarment) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 			}
 			return isAssExposed(tight);
 		}
@@ -4277,6 +4492,16 @@
 		}
 		public function isCuntboy():Boolean
 		{
+			if(isFemale() && mfn("m", "f", "n", true) == "m" && !hasBreasts()) return true;
+			return false;
+		}
+		public function isFemmyMale():Boolean
+		{
+			if(isMale() && mfn("m", "f", "n", true) != "m") return true;
+			return false;
+		}
+		public function isManlyFemale():Boolean
+		{
 			if(isFemale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
@@ -4356,11 +4581,17 @@
 		}
 		public function isTreatedCow():Boolean
 		{
-			return (isTreated() && hasPerk("Treated Milk"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Treated Milk") || hasPerk("Ditz Speech"));
 		}
 		public function isTreatedBull():Boolean
 		{
-			return (isTreated() && hasPerk("Pheromone Cloud"));
+			if(!isTreated()) return false;
+			if(hasStatusEffect("Treated Amazon")) return false;
+			if(hasStatusEffect("Treated Faux Cow")) return false;
+			return (hasPerk("Pheromone Cloud") || hasPerk("Brute Speech"));
 		}
 		public function isAmazon(treatedOnly:Boolean = true):Boolean
 		{
@@ -4377,7 +4608,7 @@
 		}
 		public function isFauxCow():Boolean
 		{
-			return (isTreated() && 9999 == 0);
+			return (isTreated() && hasStatusEffect("Treated Faux Cow"));
 		}
 		public function hasPheromones():Boolean
 		{
@@ -4388,7 +4619,7 @@
 			var muskLevel:Number = 0;
 			
 			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
-			if(hasPerk("Musky Pheromones")) muskLevel += 4;
+			if(hasPerk("Musky Pheromones")) muskLevel += 5;
 			if(hasPerk("Alpha Scent")) muskLevel += 4;
 			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
 			if(hasPerk("Pheromone Sweat"))
@@ -4592,6 +4823,7 @@
 		public function autoXPRando(arg:Number):Number
 		{
 			var multi:Number = (85 + rand(31))/100;
+			if(kGAMECLASS.pc.hasStatusEffect("Cupid’s Kiss")) multi *= 2;
 			return Math.round(arg * multi);
 		}
 		//HP
@@ -4603,6 +4835,7 @@
 		public function HPMax(): Number {
 			var bonus:int = 0;
 			bonus = fortification();
+			if(accessory is SignetOfBravery) bonus += 25;
 			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod + bonus;
 			if (characterClass == GLOBAL.CLASS_MERCENARY)
 				hitPoints += level * 5;
@@ -4725,16 +4958,12 @@
 
 			currPhys += statusEffectv1("Dispassion Fruit");
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
-			if (hasStatusEffect("Crunched"))
-			{
-				var se:StorageClass = getStatusEffect("Crunched");
-				currPhys -= (8 * se.value1);
-			}
+			if (hasStatusEffect("Crunched")) currPhys -= (8 * statusEffectv1("Crunched"));
 			if (hasStatusEffect("Tranquilized")) currPhys *= 0.5;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
 			if (hasStatusEffect("Pumped!")) currPhys *= 1.15;
-
+			if (accessory is SignetOfBravery) currPhys += 5;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -4825,6 +5054,8 @@
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
+
+			if (accessory is SignetOfBravery) currAim += 5;
 			
 			if (currAim > aimMax())
 			{
@@ -5055,7 +5286,7 @@
 					if(!hasStatusEffect("Taint_CD")) createStatusEffect("Taint_CD",0,0,0,0);
 					setStatusMinutes("Taint_CD",72*60);
 					//Warning 1 - 5 taint
-					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
+					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent(("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>." + (CodexManager.entryViewed("Taint") ? "" : " Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.")),"passive");
 					//Warning "Corruptish" - 30 taint
 					else if(taintRaw - arg < 30 && taintRaw >= 30) AddLogEvent("A beep from your Codex informs you <b>that you have surpassed a 30% taint measurement</b>. Whoah! You guess you have been sort of strangely randy lately, but is that so bad?");
 					//Warning: Corrupt! - 50 taint
@@ -5124,7 +5355,7 @@
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
-			return (0 + bonus);
+			return Math.min((0 + bonus), lustMax());
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
@@ -5132,6 +5363,7 @@
 			if(!raw) {
 				if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
 			}
+			if (accessory is SignetOfBravery) bonuses += 5;
 			return ((level * 5) + bonuses);
 		}
 		public function reflexesMax(raw:Boolean = false): Number {
@@ -5150,6 +5382,7 @@
 		public function aimMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if (accessory is SignetOfBravery) bonuses += 5;
 			if(!raw) {
 				// Nothing yet!
 			}
@@ -5540,7 +5773,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false) && !hasCombatDrone(false, true)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
 			
 			//Debuffs!
@@ -5561,7 +5794,12 @@
 			// she grants a bonus to Sexiness equal to the same
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			/*Sweaty penalties!
@@ -5573,6 +5811,7 @@
 			}*/
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
+			if (hasPerk("Innocent Allure")) temp += perkv1("Innocent Allure");
 			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//You cannot handle the Mango!
 			temp += statusEffectv1("The Mango");
@@ -5597,7 +5836,7 @@
 			var bonus: int = item.sexiness;
 			
 			// Transparent sexiness adjustments
-			if(item.sexiness > 0 && item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
+			if(item.sexiness > 0 && wornItemIsTransparent(item))
 			{
 				var tmod:int = 1;
 				switch(item.type)
@@ -5620,6 +5859,10 @@
 			}
 			
 			return bonus;
+		}
+		public function wornItemIsTransparent(item:*): Boolean
+		{
+			return (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT));
 		}
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
@@ -5646,7 +5889,12 @@
 			// Evasion bonus equal to 10% of your Intelligence
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
@@ -5729,6 +5977,25 @@
 		}
 		public function clearFaceFlags(): void {
 			faceFlags = new Array();
+		}
+		public function hasEarFlag(arg:int): Boolean {
+			for (var temp: int = 0; temp < earFlags.length; temp++) {
+				if (earFlags[temp] == arg) return true;
+			}
+			return false;
+		}
+		public function removeEarFlag(arg:int):void
+		{
+			if (hasEarFlag(arg))
+			{
+				earFlags.splice(earFlags.indexOf(arg), 1);
+			}
+		}
+		public function addEarFlag(arg:int): void {
+			if (!hasEarFlag(arg)) earFlags[earFlags.length] = arg;
+		}
+		public function clearEarFlags(): void {
+			earFlags = new Array();
 		}
 		public function hasTailFlag(arg:int): Boolean {
 			for (var temp: int = 0; temp < tailFlags.length; temp++) {
@@ -5902,6 +6169,15 @@
 					adjectives.push("universe-distorting");
 				}
 				if(adjectives.length > 0) result += adjectives[rand(adjectives.length)];
+				// Silicone
+				var silicone:Number = siliconeRating("lips");
+				if(silicone > 0 && rand(2) == 0) {
+					adjectives.length = 0;
+					if(silicone >= 2) adjectives.push("gravity defying");
+					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					if(result != "") result += ", ";
+					result += adjectives[rand(adjectives.length)];
+				}
 			}
 			//Color!
 			if(rand(4) == 0 && lipColor != "peach")
@@ -5967,18 +6243,18 @@
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
 			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
-			return false;
+			return hasEarFlag(GLOBAL.FLAG_LONG);
 		}
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
 		{
 			// For ear types that are mostly flat, hidden or inset, like reptile/bird ears.
-			if(InCollection(earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, GLOBAL.TYPE_MOTHRINE)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_SAURMORIAN)) return true;
 			return false;
 		}
 		public function hasNonScritchEars(): Boolean
@@ -5993,7 +6269,7 @@
 			var nouns:Array = ["ear"];
 			var description:String = "";
 			var sRace:String = "";
-			var nonFurrySkin:Boolean = InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+			var nonFurrySkin:Boolean = (InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX) || hasPerk("Black Latex"));
 			
 			switch (earType)
 			{
@@ -6014,8 +6290,8 @@
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KORGONNE:
-					adjectives = ["cute","triangular","rounded","fuzzy","floppy","dog-like","korgonne-like","canine"];
-					if(!nonFurrySkin) adjectives.push("furry");
+					adjectives = ["cute","triangular","rounded","floppy","dog-like","korgonne-like","canine"];
+					if(!nonFurrySkin) adjectives.push("furry","fuzzy");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like", "inhuman"];
@@ -6031,13 +6307,14 @@
 					if(sRace.indexOf("kaithrit") != -1) adjectives.push("kaithrit");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
+				case GLOBAL.TYPE_SAURMORIAN:
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
 				case GLOBAL.TYPE_QUAD_LAPINE:
-					if(earLength >= tallness/2) adjectives.push("droopy");
-					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
+					if(hasEarFlag(GLOBAL.FLAG_FLOPPY)) adjectives = ["lop", "droopy", "floppy"];
+					adjectives = ["bunny", "rabbit-like", "lapine"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
@@ -6064,6 +6341,10 @@
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "egg-shaped", "rounded"];
 					if(!nonFurrySkin) adjectives.push("furry", "beastial");
+					break;
+				case GLOBAL.TYPE_BADGER:
+					adjectives = ["badger", "mustelid", "triangular", "rounded"];
+					if(!nonFurrySkin) adjectives.push("furry", "fuzzy");
 					break;
 				case GLOBAL.TYPE_MOUSE:
 					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
@@ -6129,10 +6410,15 @@
 					adjectives = ["mothrine", "round", "unassuming"];
 					break;
 			}
-			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (hasLongEars()) 
+			{
+				//adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+				adjectives.push("long");
+			}
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
-			//Pick an adjective about 75% of the time
-			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			if (hasPerk("Black Latex") && rand(4) == 0) adjectives.push("rubber", "latex", "latex");
+			//Pick an adjective about 40% of the time
+			if (rand(10) <= 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
@@ -6871,6 +7157,11 @@
 						if (skinType == GLOBAL.SKIN_TYPE_BARK && !skin) adjectives.push(RandomInCollection(["hard","knotted","rigid","wooden","wooden"]));
 						else adjectives.push(RandomInCollection(["smooth","plant-like","glossy","verdant","crisp","lush","verdurous"]));
 					}
+					if (skinType == GLOBAL.SKIN_TYPE_GEL)
+					{
+						if (hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)) adjectives.push(RandomInCollection(scaleColor+" scaled", "glimmering"));
+						adjectives.push(RandomInCollection("slightly sticky", "smooth", "spring", "gelatinous"));
+					}
 					if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasSkinFlag(GLOBAL.FLAG_THICK) || (!skin && hasFur() && perkv1("Wooly") >= 1)) adjectives.push("thick");
 					if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
@@ -6959,6 +7250,7 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
+			||	hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -7056,6 +7348,13 @@
 				if(skinType == GLOBAL.SKIN_TYPE_BARK && !skin) output += RandomInCollection(["armor","bark","skin","skin"]);
 				else output += RandomInCollection(["skin","skin","epidermis","plant skin","nymph skin"]);
 			}
+			else if (skinType == GLOBAL.SKIN_TYPE_GEL)
+			{
+				temp = rand(10);
+				if (appearance) output += "gel";
+				else if (temp <= 7) output += "skin";
+				else output += "membrane";
+			}
 			return output;
 		}
 		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false, appearance:Boolean = false): String {
@@ -7095,6 +7394,8 @@
 					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 					case GLOBAL.TYPE_GOAT: adjectives.push("caprine", "goat-like"); break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives.push("mothrine", "alien", "insectoid", "insect-like"); break;
+					case GLOBAL.TYPE_XHELARFOG: adjectives.push("noseless", "alien", "inhuman"); break;
+					case GLOBAL.TYPE_SAURMORIAN: adjectives.push("armored", "gilded", "plated", "reptile-like", "reptilian");
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -7122,7 +7423,7 @@
 		}
 		public function isNaga(): Boolean {
 			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK])) return true;
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
+			if (legType == GLOBAL.TYPE_GOOEY && (hasLegFlag(GLOBAL.FLAG_PREHENSILE) || hasLegFlag(GLOBAL.FLAG_TENDRIL))) return true;
 			return false;
 		}
 		public function isTaur(): Boolean {
@@ -7148,6 +7449,9 @@
 		}
 		public function isImmobilized(): Boolean {
 			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || isGrappled() || hasStatusEffect("Endowment Immobilized"));
+		}
+		public function isStaggered(): Boolean {
+			return (hasStatusEffect("Staggered"));
 		}
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled"));
@@ -7291,6 +7595,14 @@
 					break;
 				case GLOBAL.TYPE_SIMII:
 					adjectives = ["simii", "simian", "monkey", "monkey-like"];
+					break;
+				case GLOBAL.TYPE_XHELARFOG:
+					adjectives = ["chunky", "stumpy"];
+					if (hasTailFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scale topped");
+					break;
+
+				case GLOBAL.TYPE_SAURMORIAN:
+					adjectives = ["armored", "gilded", "plated"];
 					break;
 			}
 			// Flags
@@ -7472,6 +7784,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_LUBRICATED)) adjective.push("moist", "slippery", "slick");
 			if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big");
 			if (armType == GLOBAL.TYPE_SIREN) adjective.push("harpy-like");
+			if (armType == GLOBAL.TYPE_SAURMORIAN && hasArmFlag(GLOBAL.FLAG_SCALED)) adjective.push("armored", "gilded", "plated");
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
 			// Noun
@@ -7542,15 +7855,20 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
 			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA);
 		}
 		public function hasPaddedLegs(): Boolean {
-			//if (hasLegFlag(GLOBAL.FLAG_PAWS)) return true; // reptiles... not sure 'bout them
-			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_AVIAN);
+			if (hasLegFlag(GLOBAL.FLAG_PAWS))
+			{
+				// reptiles... not sure 'bout them
+				if(InCollection(legType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_SHARK)) return false;
+				return true;
+			}
+			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_LUPINE);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -7627,6 +7945,8 @@
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 						case GLOBAL.TYPE_MOTHRINE: adjectives = ["slender", "svelte", "graceful", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_MOUSE: adjectives = ["mouse-like", "agile", "mousey", "limber"]; break;
+						case GLOBAL.TYPE_XHELARFOG: adjectives = ["mostly humanoid"]; break;
+						case GLOBAL.TYPE_SAURMORIAN: adjectives = ["armored", "gilded", "plated", "reptile-like", "reptilian"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -7710,6 +8030,7 @@
 					case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat-like", "caprine", "bestial"]; break;
 					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_XHELARFOG: adjectives = ["anisodactyl", "four toed", "alien"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -7831,7 +8152,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_SAURMORIAN)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -8803,6 +9124,21 @@
 			if (arg >= bRows()) return 0;
 			return breastRows[arg].breastRatingRaw;
 		}
+		public function breastRatingRawMin(arg:int):Number
+		{
+			if(arg >= bRows()) return 0;
+			
+			var rating:Number = 0;
+			return rating;
+		}
+		public function breastRatingModMin(arg:int):Number
+		{
+			if(arg >= bRows()) return 0;
+			
+			var rating:Number = 0;
+			if(arg == 0 && hasStatusEffect("Mimbrane Boobs") && rating < statusEffectv3("Mimbrane Boobs")) rating = statusEffectv3("Mimbrane Boobs");
+			return rating;
+		}
 		public function totalNipples(): Number {
 			var counter: Number = breastRows.length;
 			var total: Number = 0;
@@ -9532,6 +9868,16 @@
 		protected function rand(max: Number): Number {
 			return int(Math.random() * max);
 		}
+		public function hasVaginaFlag(arg: int = 0, vagNum: int = 0): Boolean {
+			if (vagNum >= vaginas.length || vagNum < 0) return false;
+			return (vaginas[vagNum].hasFlag(arg));
+		}
+		public function hasAVaginaFlag(arg:int = 0): Boolean {
+			for (var x: int = 0; x < vaginas.length; x++) {
+				if (vaginas[x].hasFlag(arg)) return true;
+			}
+			return false;
+		}
 		public function wetness(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length <= 0 || arg >= vaginas.length) return 0;
@@ -9702,7 +10048,12 @@
 		public function inflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
@@ -9715,7 +10066,12 @@
 		public function deflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -9725,53 +10081,57 @@
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			}
 		}
-		public function vaginalPuffiness(arg: int = 0): Number {
-			if (vaginas.length <= 0) return 0;
+		public function vaginalPuffiness(arg: int = 0, flagOnly:Boolean = false): Number {
+			if(vaginas.length <= 0) return 0;
 			var puffScore:Number = 0;
-			if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+			if(!flagOnly)
 			{
-				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+				{
+					puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				}
+				if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
+				if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			}
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			
 			return puffScore;
 		}
-		public function puffiestVaginaIndex(): int {
+		public function puffiestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) < vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) < vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function flattestVaginaIndex(): int {
+		public function flattestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) > vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) > vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function puffiestVaginalPuffiness(): Number {
+		public function puffiestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore < vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore < vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}
-		public function flattestVaginalPuffiness(): Number {
+		public function flattestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore > vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore > vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}
@@ -9910,7 +10270,12 @@
 		}
 		public function inflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_PUMPED);
@@ -9922,7 +10287,12 @@
 		}
 		public function deflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -9932,12 +10302,16 @@
 				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			}
 		}
-		public function analPuffiness(): Number {
+		public function analPuffiness(flagOnly:Boolean = false): Number {
 			var puffScore:Number = 0;
-			if(this is PlayerCharacter && hasStatusEffect("Mimbrane Ass"))
+			if(!flagOnly)
 			{
-				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
+				if(this is PlayerCharacter && hasStatusEffect("Mimbrane Ass"))
+				{
+					puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
+				}
 			}
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			
@@ -10151,34 +10525,46 @@
 			//Great. Now figure out how much fullness that adds.
 			var fullnessDelta:Number = mLsGained / milkCapacity() * 100;
 			
-			//75% fullness notification
-			if(milkFullness < 75 && milkFullness + fullnessDelta >= 75) createStatusEffect("Pending Gain Milk Note: 75");
-			//100% notification!
-			if(milkFullness < 100 && milkFullness + fullnessDelta >= 100) createStatusEffect("Pending Gain Milk Note: 100");
+			milkFullnessAdd(fullnessDelta);
+			
+			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
+			return mLsGained;
+		}
+		public function milkFullnessAdd(fullnessDelta:Number = 0, bNote:Boolean = true): Number
+		{
+			// No change
+			if(fullnessDelta == 0) return milkFullness;
+			// Negative delta means milked!
+			if(fullnessDelta < 0) return milked(Math.abs(fullnessDelta), false);
+			
+			if(bNote && this is PlayerCharacter)
+			{
+				//75% fullness notification
+				if(milkFullness < 75 && (milkFullness + fullnessDelta >= 75)) createStatusEffect("Pending Gain Milk Note: 75");
+				//100% notification!
+				if(milkFullness < 100 && (milkFullness + fullnessDelta >= 100)) createStatusEffect("Pending Gain Milk Note: 100");
+			}
 
 			//If we're going above 100.
 			if(fullnessDelta + milkFullness > 100)
 			{
-				//Vanae milk just caps at 100.
-				if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) milkFullness = 100;
-				else
+				//If we start below 100, do that normally first
+				if(milkFullness < 100)
 				{
-					//If we start below 100, do that normally first
-					if(milkFullness < 100)
-					{
-						var subHundredFullness:Number = 100 - milkFullness;
-						milkFullness = 100;
-						fullnessDelta -= subHundredFullness;
-					}
-					//150%
-					if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
-					//200%
-					if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
-					//Grow at half rate since we're over 100
-					milkFullness += fullnessDelta/2;
+					var subHundredFullness:Number = 100 - milkFullness;
+					milkFullness = 100;
+					fullnessDelta -= subHundredFullness;
 				}
+				if(bNote && this is PlayerCharacter)
+				{
+					//150%
+					if(milkFullness < 150 && (milkFullness + (fullnessDelta/2) >= 150)) createStatusEffect("Pending Gain Milk Note: 150");
+					//200%
+					if(milkFullness < 200 && (milkFullness + (fullnessDelta/2) >= 200)) createStatusEffect("Pending Gain Milk Note: 200");
+				}
+				//Grow at half rate since we're over 100
+				milkFullness += (fullnessDelta/2);
 			}
-
 			//Not going above 100? Just add it
 			else milkFullness += fullnessDelta;
 
@@ -10188,8 +10574,23 @@
 				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = milkFullnessMin();
 			}
-			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
-			return mLsGained;
+			
+			return milkFullness;
+		}
+		public function milkFillToCapacity(fullnessDelta:Number = 0, fullnessMax:Number = 100, bNote:Boolean = true): Number
+		{
+			// fullnessDelta is the fullness percentage to be added.
+			// fullnessMax is the maximum capacity to fill to if addition is under.
+			// If wrong parameters.
+			if(fullnessMax <= 0) return milkFullnessAdd(fullnessMax, bNote);
+			if(fullnessDelta <= 0 || fullnessDelta >= fullnessMax) return milkFullnessAdd(fullnessMax, bNote);
+			
+			// Set minimum first.
+			if(milkFullness < milkFullnessMin()) milkFullness = milkFullnessMin();
+			
+			if((milkFullness + fullnessDelta) <= fullnessMax) fullnessDelta = (fullnessMax - milkFullness);
+			
+			return milkFullnessAdd(fullnessDelta, bNote);
 		}
 		public function milkCapacity(arg:int = -1):Number
 		{
@@ -10281,7 +10682,7 @@
 				}
 			}
 		}
-		public function boostLactation(amount:Number = 1):void
+		public function boostLactation(amount:Number = 1, bNote:Boolean = true):void
 		{
 			//Record this for tracking change
 			var originalMultiplier:Number = milkMultiplier;
@@ -10302,20 +10703,24 @@
 			//Milk multiplier is over 100... slow gro.
 			if(amount > 0)
 			{
-				if(milkMultiplier < 110) milkMultiplier += (amount/5);
-				else if(milkMultiplier < 125) milkMultiplier += (amount/10);
+				if(milkMultiplier < 110) milkMultiplier += (amount/2);
+				else if(milkMultiplier < 125) milkMultiplier += (amount/5);
+				else milkMultiplier += (amount/10);
 			}
 			//Queue threshold notes!
-			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
-			if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
-			if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
-			if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
-			if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
-			if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
-			if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
-			if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
-			if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
-			if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
+			if(bNote && this is PlayerCharacter)
+			{
+				if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
+				if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
+				if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
+				if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
+				if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
+				if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
+				if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
+				if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+				if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
+				if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
+			}
 		}
 		//PC has been milked for "amount" fullness.
 		public function milked(amount:Number = 50, mLs:Boolean = false):Number
@@ -10355,6 +10760,8 @@
 		public function milkFullnessMax(): Number
 		{
 			var bonus:int = 0;
+			// Vanae milk just caps at 100.
+			if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) return 100 + bonus;
 			return 200 + bonus;
 		}
 		public function setBoobSwelling():void
@@ -10791,7 +11198,7 @@
 				if (cocks[index].cType == type) return index;
 			}
 			trace("creature.findFirstOfcType ERROR - searched for cType: " + type + " and could not find it.");
-			return 0;
+			return -1;
 		}
 		//How many cocks?
 		//Expanded to use an argument and replace horseCocks(), dogCocks(), etc.
@@ -10957,6 +11364,90 @@
 			if (biggestVaginalCapacity() > 300) return biggestVaginalCapacity();
 			return 100;
 		}
+		public function tentacleCockCount(addWings:Boolean=false,excludedIndexes: Array = null):Number
+		{
+			var tentacleDicks:Number = 0;
+			var counter: Number = cocks.length;
+			//add back genitals to the count
+			if (addWings && hasBackGenitals()) tentacleDicks += wingCount;
+				
+			while (counter > 0) {
+				counter--;
+				//Check if this index location is excluded
+				if(excludedIndexes != null && excludedIndexes.indexOf(counter) != -1)
+				{
+					//skip
+				}
+				else if (cocks[counter].cType == GLOBAL.TYPE_TENTACLE) tentacleDicks++;
+			}	
+			return tentacleDicks;
+		}
+		public function cockCanSting(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasACockFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
+				if(hasACockFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
+				if(hasCock(GLOBAL.TYPE_SIREN)) return true;
+				if(hasCock(GLOBAL.TYPE_ANEMONE)) return true;
+			}
+			if(idx >= 0 && idx < cocks.length)
+			{
+				if(hasCockFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
+				if(hasCockFlag(GLOBAL.FLAG_STINGER_TIPPED, idx)) return true;
+				if(InCollection(cocks[idx].cType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) return true;
+			}
+			return false;
+		}
+		public function vaginaCanSting(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_ANEMONE)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED, idx)) return true;
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) return true;
+			}
+			return false;
+		}
+		public function vaginaCanSuck(idx:int = -1): Boolean
+		{
+			if(isTreated() && hasVagina()) return true;
+			if(idx < 0)
+			{
+				if(hasVaginaType(GLOBAL.TYPE_GABILANI)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_MOUTHGINA)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA])) return true;
+			}
+			return false;
+		}
+		public function vaginaHasFeelers(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasAVaginaFlag(GLOBAL.FLAG_NUBBY)) return true;
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_VANAE)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SHARK)) return true;
+				if(hasVaginaType(GLOBAL.TYPE_SIREN)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(hasVaginaFlag(GLOBAL.FLAG_NUBBY, idx)) return true;
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN])) return true;
+			}
+			return false;
+		}
 		public function isBald(): Boolean {
 			return (hairLength <= 0);
 		}
@@ -11060,6 +11551,11 @@
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "purple";
 					break;
+				case GLOBAL.TYPE_LIZAN:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = (hasScales() ? scaleColor : "purple");
+					if (vaginas[slot].bonusCapacity < 100) vaginas[slot].bonusCapacity = 100;
+					break;
 				case GLOBAL.TYPE_LEITHAN:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
@@ -11067,7 +11563,7 @@
 				case GLOBAL.TYPE_VANAE:
 					vaginas[slot].clits = 2;
 					vaginas[slot].vaginaColor = "luminous violet";
-					vaginas[slot].wetnessRaw = 4;
+					if(vaginas[slot].wetnessRaw < 4) vaginas[slot].wetnessRaw = 4;
 					break;
 				case GLOBAL.TYPE_KUITAN:
 					vaginas[slot].vaginaColor = "black";
@@ -11096,10 +11592,11 @@
 					vaginas[slot].wetnessRaw = 1;
 					vaginas[slot].minLooseness = 1;
 					break;
+				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_SIREN:
 					vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
-					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
-					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_GABILANI:
@@ -11149,7 +11646,8 @@
 					vaginas[slot].wetnessRaw = 1;
 					vaginas[slot].minLooseness = 1;
 					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_MOUTHGINA:
 					vaginas[slot].clits = 2;
@@ -11164,6 +11662,10 @@
 				case GLOBAL.TYPE_BOTHRIOC:
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					inflateVagina(slot);
+					vaginas[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
 			}
 		}
@@ -11217,6 +11719,8 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 					break;
+				case GLOBAL.TYPE_LIZAN:
+				case GLOBAL.TYPE_SNAKE:
 				case GLOBAL.TYPE_NAGA:
 					cocks[slot].cockColor = "purple";
 					cocks[slot].knotMultiplier = 1;
@@ -11249,8 +11753,9 @@
 				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_SIREN:
 					cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
-					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_KANGAROO:
 					cocks[slot].cockColor = RandomInCollection(["red", "pink"]);
@@ -11286,6 +11791,9 @@
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
 					if(cocks[slot].cThicknessRatioRaw < 1.5) cocks[slot].cThicknessRatioRaw = 1.5;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -11387,6 +11895,14 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					cocks[slot].cockColor = (findFirstOfcType(GLOBAL.TYPE_SAURMORIAN) < 0 ? RandomInCollection("black", "dark blue", "dark red", "purple") : cocks[findFirstOfcType(GLOBAL.TYPE_SAURMORIAN)].cockColor);
+					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = (hasPerk("Hung") ? 10 : (hasPerk("Mini") ? 6 : 8));
+					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cThicknessRatioRaw = 1.125;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
 			}
 		}
@@ -11716,6 +12232,8 @@
 			else if(raceSimple == "mothrine") shiftCock(arg, GLOBAL.TYPE_MOTHRINE);
 			else if(raceSimple == "janeria") shiftCock(arg, GLOBAL.TYPE_JANERIA);
 			else if(raceSimple == "frostwyrm") shiftCock(arg, GLOBAL.TYPE_FROSTWYRM);
+			else if(raceSimple == "saurmorian") shiftCock(arg, GLOBAL.TYPE_SAURMORIAN);
+			else if(raceSimple == "reptile") shiftCock(arg, GLOBAL.TYPE_NAGA);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -11758,6 +12276,8 @@
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
 			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
+			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
+			else if(raceSimple == "reptile") shiftVagina(arg, GLOBAL.TYPE_LIZAN);
 			//Janeria don't use their own vagina type
 			else if(raceSimple == "janeria")
 			{
@@ -11771,7 +12291,8 @@
 			else if(race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"])) shiftVagina(arg, GLOBAL.TYPE_FELINE);
 			else if(raceSimple == "gabilani") shiftVagina(arg, GLOBAL.TYPE_GABILANI);
 			else if(raceSimple == "plant") shiftVagina(arg, GLOBAL.TYPE_FLOWER);
-			else if(InCollection(raceSimple, ["suula", "anemone"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
+			else if(InCollection(raceSimple, ["anemone"])) shiftVagina(arg, GLOBAL.TYPE_ANEMONE);
+			else if(InCollection(raceSimple, ["suula"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
 			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftVagina(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
 			{
@@ -11869,7 +12390,7 @@
 		public function removeCocksUnlocked():Boolean 
 		{
 			if (hasStatusEffect("Mimbrane Cock")) return false;
-			if(isCumCow() && cocks.length == 1) return false;
+			if((isCumCow() || isFauxCow()) && cocks.length == 1) return false;
 			return true;
 		}
 		public function removeCocksLockedMessage():String 
@@ -11894,7 +12415,7 @@
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
 			if (arraySpot == 0 && totalRemoved >= 1 && hasStatusEffect("Mimbrane Cock")) return false;
-			if(isCumCow() && cocks.length == 1) return false;
+			if((isCumCow() || isFauxCow()) && cocks.length == 1) return false;
 			return true;
 		}
 		public function removeCockLockedMessage():String
@@ -12054,6 +12575,7 @@
 			if (sheepScore() >= 5) race = sheepRace();
 			if (plantScore() >= 5) race = plantRace();
 			if (laquineScore() >= 5) race = "laquine";
+			if (lizanScore() >= 7) race = "reptile-morph";
 			if (saurmorianScore() >= 6) race = "saurmorian";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
@@ -12068,6 +12590,7 @@
 			// Naga-morphs
 			if (isNaga()) race = nagaRace();
 			// Slime-morphs
+			if (xhelScore() >= 6) race = "xhelarfog";
 			if (gooScore() >= 6) race = "goo-morph";
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
@@ -12115,6 +12638,11 @@
 					case "kitsune":
 						sRaceShort = mf("fox", "vixen");
 						break;
+					case "lapine":
+					case "laquine":
+						if (kGAMECLASS.silly) sRaceShort = "bun";
+						else sRaceShort = mf("rabbit", "bunny");
+						break;
 					case "lupine":
 						sRaceShort = "wolf";
 						break;
@@ -12143,6 +12671,14 @@
 						break;
 					case "mothrine":
 						sRaceShort = "moth";
+						break;
+					case "reptile":
+						sRaceShort = "lizard";
+						break;
+					case "saurmorian":
+						if (rand(10) == 0 && kGAMECLASS.silly) sRaceShort = "space heater";
+						else if (rand(2) == 0) sRaceShort = "dino";
+						else sRaceShort = "lizard";
 						break;
 				}
 			}
@@ -12239,7 +12775,6 @@
 		{
 			if (legType == GLOBAL.TYPE_FELINE && hasBeak()) return "griffin";
 			if (legType == GLOBAL.TYPE_EQUINE && hasBeak()) return "hippogriff";
-			if (isNaga() && hasFeathers()) return "quetzalcoatl";
 			if (hasFeathers() && (furColor == Foxfire.fireColorNormal || furColor == Foxfire.fireColorArctic)) return "phoenix-morph";
 			if (legType == GLOBAL.TYPE_VULPINE && hasBeak()) return "vulpogryph";
 			if (InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE))
@@ -12260,8 +12795,9 @@
 		}
 		public function nagaRace():String
 		{
-			if (naleenScore() >= 5) return "naleen";
+			if (avianScore() >= 4 && hasFeathers()) return "quetzalcoatl";
 			if (legType == GLOBAL.TYPE_SHARK) return "leviathan naga";
+			if (naleenScore() >= 5) return "naleen";
 			return "naga";
 		}
 		public function plantRace():String
@@ -12509,6 +13045,7 @@
 			if (hasTail(GLOBAL.TYPE_BADGER)) counter++;
 			if (armType == GLOBAL.TYPE_BADGER) counter++;
 			if (faceType == GLOBAL.TYPE_BADGER) counter++;
+			if (earType == GLOBAL.TYPE_BADGER) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			return counter;
 		}
@@ -12520,7 +13057,7 @@
 			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function korgonneScore(): int {
@@ -12819,8 +13356,42 @@
 			if (faceType == GLOBAL.TYPE_LAPINE && hasMuzzle()) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
-			if (counter > 0 && hasFur()) counter++;
-			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			//if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			if (counter > 1 && hasCock()) {
+				if(hasCock(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			if (counter > 1 && hasVagina()) {
+				if(hasVaginaType(GLOBAL.TYPE_EQUINE)) counter++;
+				else counter--;
+			}
+			//if (counter > 0 && hasFur()) counter++;
+			if (counter > 0 && !hasFur()) counter--;
+			if (!hasGenitals()) counter = 0;
+			return counter;
+		}
+		public function lizanScore():int
+		{
+			var counter:int = 0;
+			if (hasFlatEars()) counter++;
+			if (earType == GLOBAL.TYPE_LIZAN) counter++;
+			if (faceType == GLOBAL.TYPE_LIZAN) counter++;
+			else if (tongueType == GLOBAL.TYPE_OVIR || hasMuzzle()) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			else counter -= 2;
+			if (hasArmFlag(GLOBAL.FLAG_SCALED)) counter++;
+			if (armType == GLOBAL.TYPE_LIZAN) counter++;
+			if (hasLegFlag(GLOBAL.FLAG_SCALED)) counter++;
+			if (legType == GLOBAL.TYPE_LIZAN) counter++;
+			if (eyeType == GLOBAL.TYPE_LIZAN) counter++;
+			if (hasTail() && tailType == GLOBAL.TYPE_LIZAN) counter++;
+			if (counter >= 6 && hasCock(GLOBAL.TYPE_NAGA)) counter++;
+			if (counter >= 6 && hasVaginaType(GLOBAL.TYPE_LIZAN)) counter++;
+			if (hasPerk("Oviposition")) counter++;
+			if (biggestTitSize() > 2) counter--;
+			if (hasHair() || hasBeard()) counter--;
+			if (legCount != 2 && !isNaga()) counter -= 2;
+			if (!hasTail()) counter -= 2;
 			return counter;
 		}
 		public function lupineScore(): int {
@@ -13034,31 +13605,34 @@
 		{
 			var score:Number = 0;
 			if(hasScales() && (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasSkinFlag(GLOBAL.FLAG_THICK)) && scaleColor == "silver") score += 2;
-			if(armType == GLOBAL.TYPE_LEITHAN && hasPartScales("arm")) 
+			if(InCollection(armType, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_SAURMORIAN) && hasPartScales("arm")) 
 			{
-				if(legCount > 1 && legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
+				if(legCount > 1 && InCollection(legType, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SAURMORIAN) && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
 			}
-			if(earType == GLOBAL.TYPE_LIZAN) score++;
+			if(InCollection(earType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score++;
+			if(faceType == GLOBAL.TYPE_SAURMORIAN && hasMuzzle())
+			{
+				if(tailType == GLOBAL.TYPE_SAURMORIAN && hasTailFlag(GLOBAL.FLAG_SCALED)) score += 2;
+			}
 			if(faceType == GLOBAL.TYPE_LIZAN && hasMuzzle())
 			{
 				if(tailType == GLOBAL.TYPE_LIZAN && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_SCALED)) score++;
 			}
-			if(eyeType == GLOBAL.TYPE_NAGA) score++;
-			if(hasTongueFlag(GLOBAL.FLAG_LONG) && tongueType == GLOBAL.TYPE_CANINE) score++;
-			if(score >= 4 && hasCock())
+			if(InCollection(eyeType, GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SAURMORIAN)) score++;
+			if(/*hasTongueFlag(GLOBAL.FLAG_LONG) && */hasTongueFlag(GLOBAL.FLAG_SQUISHY) && tongueType == GLOBAL.TYPE_CANINE) score++;
+			if(score >= 6 && cockTotal() == 1)
 			{
-				if(cocks[0].cType == GLOBAL.TYPE_SAURIAN && hasSheath(0)) score++;
+				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(GLOBAL.FLAG_RIBBED, 0)) score++;
 			}
-			if(score >= 4 && hasVagina())
+			if(score >= 6 && vaginaTotal() == 1)
 			{
-				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))) score++;
+				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && hasPlumpPussy(0) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
 			}
-			if(!hasMuzzle()) score--;
-			if(!faceType == GLOBAL.TYPE_LIZAN) score--;
+			if (!InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score -= 2;
 			if(hasHair()) score--;
-			if(antennae > 0) score--;
+			if(antennae > 0) score -= 2;
 			if(hasFur()) score-= 2;
-			if(hasCock() && hasKnot(0)) score--;
+			if(hasAKnot()) score--;
 			return score;
 		}
 		public function sharkScore(): int
@@ -13176,6 +13750,25 @@
 			if (counter > 0 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) + vaginaTotal(GLOBAL.TYPE_VULPINE) == vaginaTotal()) counter++;
 			if (breastRows.length > 1 && counter > 0) counter++;
 			if (hasFur() && counter > 0) counter++;
+			return counter;
+		}
+		public function xhelScore(): int
+		{
+			var counter: int = 0;
+			if (eyeType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (eyeCount() == 3) counter++;
+			else counter--;
+			if (tailType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (hornType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (hasHorns()) counter++;
+			if (legType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (faceType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_GEL) counter++;
+			if (earType == GLOBAL.TYPE_SYLVAN && counter > 4) counter++;
+			else counter -= 2;
+			if (hasBreasts()) counter--;
+			if (hasHair()) counter--;
+			if (tallness > 5*12+5) counter--;
 			return counter;
 		}
 		public function zilScore(): int
@@ -13387,11 +13980,11 @@
 				else desc += num2Text(balls) + " ";
 			}
 			//Not in appearance screen? Okay
-			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
+			else if (!hasStatusEffect("Uniball") && balls != 2 && rand(5) == 0 && !forceSingular) {
 				if (balls == 1) {
 					desc += RandomInCollection(["single ", "solitary ", "lone "]);
 				}
-				else if (balls == 2) {
+				else if (balls == 2) { //This one is basically cut but leaving here unless I change my mind.
 					desc += RandomInCollection(["pair of ", "two ", "two "]);
 				}
 				else if (balls == 3) {
@@ -13460,6 +14053,7 @@
 		}
 		public function ballNoun(asPlural:Boolean = true):String
 		{
+			if (balls == 0) return "prostate";
 			var rando:int = 0;
 			var desc:String = "";
 			rando = rand(11);
@@ -13472,9 +14066,23 @@
 			}
 			else if (rando <= 7) desc += "gonad";
 			else desc += "nut";
-			if (asPlural && balls != 1) desc = plural(desc);
+			if (asPlural && balls > 1) desc = plural(desc);
 			return desc;
 		}
+		public function ballsNounSimple(forceSingle:Boolean = false): String
+		{
+			if(balls < 1) return "prostate";
+			if(forceSingle || balls == 1) return RandomInCollection(["ball","ball","ball","nut"]);
+			else return RandomInCollection(["balls","balls","balls","nuts"]);
+		}
+		//[pc.knotBallsHilt] 4 Dubsan senpai
+		public function knotBallsHilt(x:int = 0):String
+		{
+			if(hasCock() && hasKnot(x)) return "knot";
+			else if(balls > 0) return ballsNounSimple();
+			else return "hilt";
+		}
+
 		public function assholeDescript(simple:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
@@ -13520,11 +14128,16 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(!simple && descripted == 0 && (analPuffiness() >= 1) && rand(2) == 0)
+			var puffScore:Number = analPuffiness();
+			if(!simple && descripted == 0 && (puffScore >= 1) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
-				if (analPuffiness() < 2) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
-				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
+				var donuts:Array = ["puffy", "plump", "fat", "crinkly", "soft", "spongy"];
+				if (puffScore >= 2) donuts.push("huge", "bloated", "pillowy");
+				if (puffScore >= 3) donuts.push("ample", "meaty", "generous");
+				if (puffScore >= 4) donuts.push("imposing", "massive", "enormous", "tremendous");
+				if (puffScore >= 5) donuts.push("monstrous", "freakish", "colossal", "hyper", "oversized");
+				desc += RandomInCollection(donuts);
 				descripted++;
 			}
 			if(!simple && descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
@@ -13561,118 +14174,128 @@
 			
 			if (hips <= 1) {
 				if (thickness > 70) {
-					adjectives.push("tiny ");
-					adjectives.push("narrow ");
-					if (firm < 30) adjectives.push("boyish ");
+					adjectives.push("slim");
+					adjectives.push("narrow");
+					if (firm < 30) adjectives.push("boyish");
 				}
 				//Normal
 				else if (thickness >= 30) {
-					if (firm < 30) adjectives.push("boyish ");
-					adjectives.push("tiny ");
+					if (firm < 30) adjectives.push("boyish");
+					adjectives.push("slim");
 				}
 				//Uberthin
 				else {
-					adjectives.push("tiny ");
-					adjectives.push("narrow ");
-					if (firm < 30) adjectives.push("boyish ");
+					adjectives.push("slim");
+					adjectives.push("narrow");
+					if (firm < 30) adjectives.push("boyish");
 				}
 			} else if (hips < 4) {
 				if (thickness < 30) {
-					adjectives.push("slightly-flared ");
-					adjectives.push("curved ");
+					adjectives.push("slightly-flared");
+					adjectives.push("curved");
 				}
 				else {
-					adjectives.push("slender ");
-					adjectives.push("narrow ");
-					adjectives.push("thin ");
+					adjectives.push("slender");
+					adjectives.push("narrow");
+					adjectives.push("thin");
 				}
 			} else if (hips < 6) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("curvy ");
+					adjectives.push("flared");
+					adjectives.push("curvy");
 				}
 				else {
-					adjectives.push("well-formed ");
-					adjectives.push("pleasant ");
+					adjectives.push("well-formed");
+					adjectives.push("pleasant");
 				}
 			} else if (hips < 10) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("waspish ");
+					adjectives.push("flared");
+					adjectives.push("waspish");
 				}
 				else {
-					adjectives.push("ample ");
-					adjectives.push("noticeable ");
-					adjectives.push("girly ");
+					adjectives.push("ample");
+					adjectives.push("noticeable");
+					adjectives.push("girly");
 				}
 			} else if (hips < 15) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("waspish ");
+					adjectives.push("flared");
+					adjectives.push("waspish");
 				}
 				else {
-					adjectives.push("flared ");
-					adjectives.push("curvy ");
-					adjectives.push("wide ");
+					adjectives.push("flared");
+					adjectives.push("curvy");
+					adjectives.push("wide");
 				}
 			} else if (hips < 20) {
 				if (thickness < 40) {
-					adjectives.push("flared, voluptuous ");
-					adjectives.push("waspish, voluptuous ");
+					adjectives.push("flared, voluptuous");
+					adjectives.push("waspish, voluptuous");
 				}
 				else {
-					adjectives.push("voluptuous ");
-					adjectives.push("voluptuous ");
+					adjectives.push("voluptuous");
+					adjectives.push("voluptuous");
 				}
 				if (femininity > 50 || hasVagina()) {
 					if (thickness < 40) {
-						adjectives.push("flared, fertile ");
-						adjectives.push("waspish, fertile ");
-						adjectives.push("flared, child-bearing ");
-						adjectives.push("waspish, child-bearing ");
+						adjectives.push("flared, fertile");
+						adjectives.push("waspish, fertile");
+						adjectives.push("flared, child-bearing");
+						adjectives.push("waspish, child-bearing");
 					}
 					else {
-						adjectives.push("fertile ");
-						adjectives.push("child-bearing ");
+						adjectives.push("fertile");
+						adjectives.push("child-bearing");
 					}
 				}
 			} else {
 				if (thickness < 40) {
-					adjectives.push("flaring, inhumanly-wide ");
-					adjectives.push("incredibly waspish, inhumanly-wide ");
-					adjectives.push("flaring, cow-like ");
-					adjectives.push("incredibly waspish, cow-like ");
+					adjectives.push("flaring, inhumanly-wide");
+					adjectives.push("incredibly waspish, inhumanly-wide");
+					adjectives.push("flaring, cow-like");
+					adjectives.push("incredibly waspish, cow-like");
 				}
 				else {
-					adjectives.push("inhumanly-wide ");
-					adjectives.push("cow-like ");
+					adjectives.push("inhumanly-wide");
+					adjectives.push("cow-like");
 				}
 				if (femininity > 50 || hasVagina()) {
 					if (thickness < 40) {
-						adjectives.push("flaring, broodmother-sized ");
-						adjectives.push("incredibly waspish, broodmother-sized ");
+						adjectives.push("flaring, broodmother-sized");
+						adjectives.push("incredibly waspish, broodmother-sized");
 					}
 					else {
-						adjectives.push("broodmother-sized ");
+						adjectives.push("broodmother-sized");
 					}
 				}
 				if (hips >= 30) {
-					adjectives.push("jutting ");
-					adjectives.push("broadly-sloped ");
-					adjectives.push("colossal ");
-					adjectives.push("immensely broad ");
-					adjectives.push("far-reaching ");
-					adjectives.push("gargantuanly splayed ");
+					adjectives.push("jutting");
+					adjectives.push("broadly-sloped");
+					adjectives.push("colossal");
+					adjectives.push("immensely broad");
+					adjectives.push("far-reaching");
+					adjectives.push("gargantuanly splayed");
 				}
 			}
 			if(firm >= 65) {
-				if(mf("m","f", true) == "m") adjectives.push("masculine ");
-				if (tone >= 70) adjectives.push("muscular ");
-				else if (tone >= 30) adjectives.push("lean muscled ");
-				if (thickness >= 30) adjectives.push("broad ");
-				else adjectives.push((mf("m","f", true) == "m" ? "mannishly " : "") + "slender ");
+				if(mf("m","f", true) == "m") adjectives.push("masculine");
+				if (tone >= 70) adjectives.push("muscular");
+				else if (tone >= 30) adjectives.push("lean muscled");
+				if (thickness >= 30) adjectives.push("broad");
+				else adjectives.push((mf("m","f", true) == "m" ? "mannishly" : "") + "slender");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
+			// Silicone
+			var silicone:Number = siliconeRating("hips");
+			if(silicone > 0 && rand(2) == 0) {
+				adjectives.length = 0;
+				if(silicone >= 5) adjectives.push("ridiculously perky");
+				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				if(desc != "") desc += ", ";
+				desc += adjectives[rand(adjectives.length)];
+			}
+			if(desc != "") desc += " ";
 			//Taurs
 			if (isTaur() && rand(3) == 0) {
 				desc += RandomInCollection(["flank", "flank", "flank", "haunch"]);
@@ -13731,71 +14354,70 @@
 			var butt: Number = buttRating();
 			var firm: Number = buttTone();
 			var desc: String = "";
+			var adjectives: Array = [];
 			var rando: Number = 0;
 			
 			if(hasPerk("Barcoded") && rand(7) == 0)
 			{
 				desc = RandomInCollection(["barcode-stamped","barcode-branded","barcoded","id-branded","barcode-tattooed","id-stamped","AccuPitch-claimed","barcode-stamped","barcode-bearing"]);
-				desc += " ";
 			}
 			else if(rand(2) == 0)
 			{
-				var adjectives: Array = [];
 				if (butt <= 1) {
-					if (firm >= 60) adjectives.push("incredibly tight, perky ");
+					if (firm >= 60) adjectives.push("incredibly tight, perky");
 					else {
 						//Soft PC's buns!
-						if (firm <= 30 && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
-						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
+						if (firm <= 30 && rand(3) == 0) adjectives.push("tiny yet soft", "tiny yet soft", "very small yet soft", "dainty yet soft");
+						else adjectives.push("tiny", "tiny", "very small", "dainty");
 					}
 				} else if (butt < 4) {
 					if (firm >= 65) {
-						adjectives.push("perky, muscular ");
-						adjectives.push("tight, toned ");
-						adjectives.push("firm ");
-						adjectives.push("compact, muscular ");
-						adjectives.push("tight ");
-						adjectives.push("muscular, toned ");
+						adjectives.push("perky, muscular");
+						adjectives.push("tight, toned");
+						adjectives.push("firm");
+						adjectives.push("compact, muscular");
+						adjectives.push("tight");
+						adjectives.push("muscular, toned");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("tight ");
-						adjectives.push("firm ");
-						adjectives.push("compact ");
-						adjectives.push("petite ");
+						adjectives.push("tight");
+						adjectives.push("firm");
+						adjectives.push("compact");
+						adjectives.push("petite");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("small, heart-shaped ");
-						adjectives.push("soft, compact ");
-						adjectives.push("soft, heart-shaped ");
-						adjectives.push("small, cushy ");
-						adjectives.push("small ");
-						adjectives.push("petite ");
-						adjectives.push("snug ");
+						adjectives.push("small, heart-shaped");
+						adjectives.push("soft, compact");
+						adjectives.push("soft, heart-shaped");
+						adjectives.push("small, cushy");
+						adjectives.push("small");
+						adjectives.push("petite");
+						adjectives.push("snug");
 					}
 				} else if (butt < 6) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("nicely muscled ");
-						adjectives.push("nice, toned ");
-						adjectives.push("muscly ");
-						adjectives.push("nice toned ");
-						adjectives.push("toned ");
-						adjectives.push("fair ");
+						adjectives.push("nicely muscled");
+						adjectives.push("nice, toned");
+						adjectives.push("muscly");
+						adjectives.push("nice toned");
+						adjectives.push("toned");
+						adjectives.push("fair");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("nice ");
-						adjectives.push("fair ");
+						adjectives.push("nice");
+						adjectives.push("fair");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("nice, cushiony ");
-						adjectives.push("soft ");
-						adjectives.push("nicely-rounded, heart-shaped ");
-						adjectives.push("cushy ");
-						adjectives.push("soft, squeezable ");
+						adjectives.push("nice, cushiony");
+						adjectives.push("soft");
+						adjectives.push("nicely-rounded, heart-shaped");
+						adjectives.push("cushy");
+						adjectives.push("soft, squeezable");
 					}
 				} else if (butt < 8) {
 					//TOIGHT LIKE A TIGER
@@ -13804,12 +14426,12 @@
 							if (asPlural) return "muscular, hand-filling ass cheeks";
 							return "muscly handful of ass";
 						}
-						adjectives.push("full, toned ");
-						adjectives.push("shapely, toned ");
-						adjectives.push("muscular, hand-filling ");
-						adjectives.push("shapely, chiseled ");
-						adjectives.push("full ");
-						adjectives.push("chiseled ");
+						adjectives.push("full, toned");
+						adjectives.push("shapely, toned");
+						adjectives.push("muscular, hand-filling");
+						adjectives.push("shapely, chiseled");
+						adjectives.push("full");
+						adjectives.push("chiseled");
 					}
 					//Nondescript
 					else if (firm >= 30) {
@@ -13817,9 +14439,9 @@
 							if (asPlural) return "hand-filling ass cheeks";
 							return "handful of ass";
 						}
-						adjectives.push("full ");
-						adjectives.push("shapely ");
-						adjectives.push("hand-filling ");
+						adjectives.push("full");
+						adjectives.push("shapely");
+						adjectives.push("hand-filling");
 					}
 					//FLABBAH
 					else {
@@ -13827,119 +14449,119 @@
 							if (asPlural) return "supple, hand-filling ass cheeks";
 							return "supple, handful of ass";
 						}
-						adjectives.push("somewhat jiggly ");
-						adjectives.push("soft, hand-filling ");
-						adjectives.push("cushiony, full ");
-						adjectives.push("plush, shapely ");
-						adjectives.push("full ");
-						adjectives.push("soft, shapely ");
-						adjectives.push("rounded, spongy ");
+						adjectives.push("somewhat jiggly");
+						adjectives.push("soft, hand-filling");
+						adjectives.push("cushiony, full");
+						adjectives.push("plush, shapely");
+						adjectives.push("full");
+						adjectives.push("soft, shapely");
+						adjectives.push("rounded, spongy");
 					}
 				} else if (butt < 10) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("large, muscular ");
-						adjectives.push("substantial, toned ");
-						adjectives.push("big-but-tight ");
-						adjectives.push("squeezable, toned ");
-						adjectives.push("large, brawny ");
-						adjectives.push("big-but-fit ");
-						adjectives.push("powerful, squeezable ");
-						adjectives.push("large ");
-						adjectives.push("callipygian ");
+						adjectives.push("large, muscular");
+						adjectives.push("substantial, toned");
+						adjectives.push("big-but-tight");
+						adjectives.push("squeezable, toned");
+						adjectives.push("large, brawny");
+						adjectives.push("big-but-fit");
+						adjectives.push("powerful, squeezable");
+						adjectives.push("large");
+						adjectives.push("callipygian");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("squeezable ");
-						adjectives.push("large ");
-						adjectives.push("substantial ");
-						adjectives.push("callipygian ");
+						adjectives.push("squeezable");
+						adjectives.push("large");
+						adjectives.push("substantial");
+						adjectives.push("callipygian");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("large, bouncy ");
-						adjectives.push("soft, eye-catching ");
-						adjectives.push("big, slappable ");
-						adjectives.push("soft, pinchable ");
-						adjectives.push("large, plush ");
-						adjectives.push("squeezable ");
-						adjectives.push("cushiony ");
-						adjectives.push("plush ");
-						adjectives.push("pleasantly plump ");
-						adjectives.push("callipygian ");
+						adjectives.push("large, bouncy");
+						adjectives.push("soft, eye-catching");
+						adjectives.push("big, slappable");
+						adjectives.push("soft, pinchable");
+						adjectives.push("large, plush");
+						adjectives.push("squeezable");
+						adjectives.push("cushiony");
+						adjectives.push("plush");
+						adjectives.push("pleasantly plump");
+						adjectives.push("callipygian");
 					}
 				} else if (butt < 13) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("thick, muscular ");
-						adjectives.push("big, burly ");
-						adjectives.push("heavy, powerful ");
-						adjectives.push("spacious, muscular ");
-						adjectives.push("toned, cloth-straining ");
-						adjectives.push("thick ");
-						adjectives.push("thick, strong ");
+						adjectives.push("thick, muscular");
+						adjectives.push("big, burly");
+						adjectives.push("heavy, powerful");
+						adjectives.push("spacious, muscular");
+						adjectives.push("toned, cloth-straining");
+						adjectives.push("thick");
+						adjectives.push("thick, strong");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("jiggling ");
-						adjectives.push("spacious ");
-						adjectives.push("heavy ");
-						adjectives.push("cloth-straining ");
+						adjectives.push("jiggling");
+						adjectives.push("spacious");
+						adjectives.push("heavy");
+						adjectives.push("cloth-straining");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("super-soft, jiggling ");
-						adjectives.push("spacious, cushy ");
-						adjectives.push("plush, cloth-straining ");
-						adjectives.push("squeezable, over-sized ");
-						adjectives.push("spacious ");
-						adjectives.push("heavy, cushiony ");
-						adjectives.push("slappable, thick ");
-						adjectives.push("jiggling ");
-						adjectives.push("spacious ");
-						adjectives.push("soft, plump ");
+						adjectives.push("super-soft, jiggling");
+						adjectives.push("spacious, cushy");
+						adjectives.push("plush, cloth-straining");
+						adjectives.push("squeezable, over-sized");
+						adjectives.push("spacious");
+						adjectives.push("heavy, cushiony");
+						adjectives.push("slappable, thick");
+						adjectives.push("jiggling");
+						adjectives.push("spacious");
+						adjectives.push("soft, plump");
 					}
 				} else if (butt < 16) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("expansive, muscled ");
-						adjectives.push("voluminous, rippling ");
-						adjectives.push("generous, powerful ");
-						adjectives.push("big, burly ");
-						adjectives.push("well-built, voluminous ");
-						adjectives.push("powerful ");
-						adjectives.push("muscular ");
-						adjectives.push("powerful, expansive ");
+						adjectives.push("expansive, muscled");
+						adjectives.push("voluminous, rippling");
+						adjectives.push("generous, powerful");
+						adjectives.push("big, burly");
+						adjectives.push("well-built, voluminous");
+						adjectives.push("powerful");
+						adjectives.push("muscular");
+						adjectives.push("powerful, expansive");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("expansive ");
-						adjectives.push("generous ");
-						adjectives.push("voluminous ");
-						adjectives.push("wide ");
+						adjectives.push("expansive");
+						adjectives.push("generous");
+						adjectives.push("voluminous");
+						adjectives.push("wide");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("pillow-like ");
-						adjectives.push("generous, cushiony ");
-						adjectives.push("wide, plush ");
-						adjectives.push("soft, generous ");
-						adjectives.push("expansive, squeezable ");
-						adjectives.push("slappable ");
-						adjectives.push("thickly-padded ");
-						adjectives.push("wide, jiggling ");
-						adjectives.push("wide ");
-						adjectives.push("voluminous ");
-						adjectives.push("soft, padded ");
+						adjectives.push("pillow-like");
+						adjectives.push("generous, cushiony");
+						adjectives.push("wide, plush");
+						adjectives.push("soft, generous");
+						adjectives.push("expansive, squeezable");
+						adjectives.push("slappable");
+						adjectives.push("thickly-padded");
+						adjectives.push("wide, jiggling");
+						adjectives.push("wide");
+						adjectives.push("voluminous");
+						adjectives.push("soft, padded");
 					}
 				} else if (butt < 20) {
 					if (firm >= 65) {
-						adjectives.push("huge, toned ");
-						adjectives.push("vast, muscular ");
-						adjectives.push("vast, well-built ");
-						adjectives.push("huge, muscular ");
-						adjectives.push("strong, immense ");
-						adjectives.push("muscle-bound ");
+						adjectives.push("huge, toned");
+						adjectives.push("vast, muscular");
+						adjectives.push("vast, well-built");
+						adjectives.push("huge, muscular");
+						adjectives.push("strong, immense");
+						adjectives.push("muscle-bound");
 					}
 					//Nondescript
 					else if (firm >= 30) {
@@ -13947,23 +14569,23 @@
 							if (asPlural) return RandomInCollection(["expansive, jiggling ass cheeks", "copious, fleshy ass cheeks"]);
 							return RandomInCollection(["jiggling expanse of ass", "copious ass-flesh"]);
 						}
-						adjectives.push("huge ");
-						adjectives.push("vast ");
-						adjectives.push("giant ");
+						adjectives.push("huge");
+						adjectives.push("vast");
+						adjectives.push("giant");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("vast, cushiony ");
-						adjectives.push("huge, plump ");
-						adjectives.push("expansive, jiggling ");
-						adjectives.push("huge, cushiony ");
-						adjectives.push("huge, slappable ");
-						adjectives.push("seam-bursting ");
-						adjectives.push("plush, vast ");
-						adjectives.push("giant, slappable ");
-						adjectives.push("giant ");
-						adjectives.push("huge ");
-						adjectives.push("swollen, pillow-like ");
+						adjectives.push("vast, cushiony");
+						adjectives.push("huge, plump");
+						adjectives.push("expansive, jiggling");
+						adjectives.push("huge, cushiony");
+						adjectives.push("huge, slappable");
+						adjectives.push("seam-bursting");
+						adjectives.push("plush, vast");
+						adjectives.push("giant, slappable");
+						adjectives.push("giant");
+						adjectives.push("huge");
+						adjectives.push("swollen, pillow-like");
 					}
 				} else {
 					if (firm >= 65) {
@@ -13971,51 +14593,64 @@
 							if (asPlural) return "colossal, muscly ass cheeks";
 							return "colossal, muscly ass";
 						}
-						adjectives.push("ginormous, muscle-bound ");
-						adjectives.push("colossal yet toned ");
-						adjectives.push("strong, tremdously large ");
-						adjectives.push("tremendous, muscled ");
-						adjectives.push("ginormous, toned ");
-						adjectives.push("colossal, well-defined ");
+						adjectives.push("ginormous, muscle-bound");
+						adjectives.push("colossal yet toned");
+						adjectives.push("strong, tremdously large");
+						adjectives.push("tremendous, muscled");
+						adjectives.push("ginormous, toned");
+						adjectives.push("colossal, well-defined");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("ginormous ");
-						adjectives.push("colossal ");
-						adjectives.push("tremendous ");
-						adjectives.push("gigantic ");
+						adjectives.push("ginormous");
+						adjectives.push("colossal");
+						adjectives.push("tremendous");
+						adjectives.push("gigantic");
 					}
 					//FLABBAH
 					else 
 					{
-						adjectives.push("ginormous, jiggly ");
-						adjectives.push("plush, ginormous ");
-						adjectives.push("seam-destroying ");
-						adjectives.push("tremendous, rounded ");
-						adjectives.push("bouncy, colossal ");
-						adjectives.push("thong-devouring ");
-						adjectives.push("tremendous, thickly padded ");
-						adjectives.push("ginormous, slappable ");
-						adjectives.push("gigantic, rippling ");
-						adjectives.push("gigantic ");
-						adjectives.push("ginormous ");
-						adjectives.push("colossal ");
-						adjectives.push("tremendous ");
+						adjectives.push("ginormous, jiggly");
+						adjectives.push("plush, ginormous");
+						adjectives.push("seam-destroying");
+						adjectives.push("tremendous, rounded");
+						adjectives.push("bouncy, colossal");
+						adjectives.push("thong-devouring");
+						adjectives.push("tremendous, thickly padded");
+						adjectives.push("ginormous, slappable");
+						adjectives.push("gigantic, rippling");
+						adjectives.push("gigantic");
+						adjectives.push("ginormous");
+						adjectives.push("colossal");
+						adjectives.push("tremendous");
 					}
 				}
 				if(firm >= 65) {
-					adjectives.push("chiseled ");
-					adjectives.push("statuesque ");
-					adjectives.push("shapely ");
-					adjectives.push("sculpted ");
-					if(mf("m","f") == "m") adjectives.push("manly ");
+					adjectives.push("chiseled");
+					adjectives.push("statuesque");
+					adjectives.push("shapely");
+					adjectives.push("sculpted");
+					if(mf("m","f") == "m") adjectives.push("manly");
 				}
+				if(desc != "") desc += ", ";
 				if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			}
-			rando = rand(21);
+			// Silicone
+			var silicone:Number = siliconeRating("butt");
+			if(silicone > 0 && rand(2) == 0) {
+				adjectives.length = 0;
+				if(silicone >= 2) adjectives.push("gravity defying");
+				if(silicone >= 5) adjectives.push("ridiculously perky");
+				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+				if(desc != "") desc += ", ";
+				desc += adjectives[rand(adjectives.length)];
+			}
+			if(desc != "") desc += " ";
 			if(!asPlural)
 			{
+				rando = rand(21);
 				if(onlyCheek) desc += RandomInCollection(["butt", "ass"]) + "cheek";
+				else if(silicone > 0 && rand(4) == 0) desc += "bubble";
 				else if (rando <= 4) desc += "butt";
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
@@ -14025,7 +14660,11 @@
 				}
 				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush", true), "rear end"]);
 			}
-			else desc += "cheeks";
+			else
+			{
+				if(silicone > 0 && rand(4) == 0) desc += "bubbles";
+				else desc += "cheeks";
+			}
 			return desc;
 		}
 		public function nipplesDescript(rowNum:int = 0, forceLactation:Boolean = false): String {
@@ -14305,7 +14944,6 @@
 		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
-			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength <= 0) {
 				if (hasFur()) {
@@ -14330,152 +14968,149 @@
 				descript += "head";
 				return descript;
 			}
-			//25% odds of adjectives
-			if ((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"])) {
-				if (hairLength < 1) {
-					if (rand(2) == 0) descript += "close-cropped";
-					else descript += "trim";
-				}
-				else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) {
-					if (rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
-					{
-						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
-						else descript += "medium-length";
-					}
-					else descript += "shaggy";
-				}
-				else if (hairLength < 10) {
-					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength < 8) descript += "neck-length";
-					else descript += "shoulder-length";
-				}
-				else if (hairLength < 16) {
-					descript += RandomInCollection(["long","lengthy"]);
-				}
-				//Relativistic hair
-				else if (hairLength < tallness / 2.5) {
-					descript += RandomInCollection(["very long", "back-length"]);
-				}
-				else if (hairLength < tallness / 1.6) {
-					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness / 1.7) descript += "ass-length";
-					else descript += "thigh-length";
-				}
-				else if (hairLength < tallness / 1.3) 
+			
+			// Length
+			if((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"]))
+			{
+				var adjLength:String = hairLengthDescript();
+				if (adjLength != "")
 				{
-					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
-					else descript += "delightfully long";
+					if(descript != "") descript += ", ";
+					descript += adjLength;
 				}
-				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees())
-					{
-						if(hairLength < tallness - 1) descript += "calf-length";
-						else descript += "ankle-length";
-					}
-					else descript += "exquisitely long";
-				}
-				else {
-					descript += RandomInCollection(["floor-length", "obscenely long", "floor-dragging"]);
-				}
-				descripted++;
 			}
-			// COLORS
-			if (forceColor || rand(2) == 0) {
-				if (descripted > 0) descript += ", ";
+			
+			// Shape
+			var adjShape:Array = [];
+			if (rand(4) == 0)
+			{
+				if (hasStatusEffect("frizzy hair")) adjShape.push("frizzy");
+			}
+			if (adjShape.length > 0)
+			{
+				if(descript != "") descript += ", ";
+				descript += RandomInCollection(adjShape);
+			}
+			
+			// Color
+			if (forceColor || rand(2) == 0)
+			{
+				if (descript != "") descript += ", ";
+				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT && hairColor.indexOf("transparent") == -1) descript += "transparent";
 				descript += hairColor;
-				descripted++;
 			}
-			//Latex!
-			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			
+			// Materials
+			var adjMaterial:Array = [];
+			var sMaterial:String = "";
+			if (rand(2) == 0) {
+				if (hasStatusEffect("Latex Hair")) adjMaterial.push("latex");
+			}
+			if (adjMaterial.length > 0) sMaterial = RandomInCollection(adjMaterial);
+			
+			// Nouns
+			if (descript != "") descript += " ";
+			// Mane special stuff.
+			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0)
 			{
-				if(descripted > 0) descript += ", ";
-				descript += "latex";
-				descripted++;
-			}
-			if (rand(4) == 0 && descripted <= 1 && hasStatusEffect("frizzy hair"))
-			{
-				if(descripted > 0) descript += ", ";
-				descript += "frizzy";
-				descripted++;
-			}
-			//Mane special stuff.
-			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
-				//Oddball shit
-				if (rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-						if (descripted > 0) descript += ", ";
-						descript += "transparent";
-						descripted++;
-					}
-				}
-				if (descripted > 0) descript += " ";
 				descript += "mane";
-				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
-				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO)
+				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " feathers";
+				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " quills";
+				else if (hairType == GLOBAL.HAIR_TYPE_GOO)
 				{
 					descript += " of goo";
+					if (sMaterial != "") descript += "ey " + sMaterial;
 					if (hairStyle == "tentacle") descript += "-tentacles";
+					else if (sMaterial != "") descript += " hair";
 				}
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
-				if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of leaves";
+				else if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " tentacles";
+				else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " leaves";
+				else if (sMaterial != "") descript += " of " + sMaterial + " hair";
 			}
 			//Not manes
-			else {
-				//Oddball shit
-				if (rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-						if (descripted > 0) descript += ", ";
-						descript += "transparent";
-						descripted++;
-					} else if (hairType == GLOBAL.HAIR_TYPE_GOO) {
-						if (descripted > 0) descript += ", ";
-						descript += "gooey";
-						descripted++;
-					}
-				}
-				if (descripted > 0) descript += " ";
+			else
+			{
+				var nouns:Array = [];
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle")
 				{
-					if (hairType == GLOBAL.HAIR_TYPE_GOO && descript.indexOf("goo") == -1) descript += "gooey ";
-					descript += "tentacle-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "tentacle-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
-					if(rand(2) == 0) descript += "plumage";
-					else descript += "feather-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "plumage");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "feather-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0)
 				{
-					if(rand(2) == 0) descript += "spiny-hair";
-					else descript += "quill-hair";
+					nouns.push("spiny-" + (sMaterial != "" ? (sMaterial + " ") : "") + "hair");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "quill-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_PLANT)
 				{
-					if(rand(2) == 0) descript += "garden";
-					else descript += "leaf-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "garden");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "leaf-hair");
 				}
 				else 
 				{
-					if(hairStyle == "ponytail") descript += "ponytail";
-					else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtailed hair";
-					else if(hairStyle == "curls") descript += "curled hair";
-					else if(hairStyle.indexOf("curls") != -1) descript += "curly hair";
-					else if(hairStyle == "braided") descript += "braid";
-					else if(hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braided hair";
-					else if(hairStyle == "afro") descript += "afro";
-					else if(hairStyle == "mohawk") descript += "mohawk";
-					else if(hairStyle == "spikes") descript += "spiked hair";
-					else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth hair";
-					else if(hairStyle.indexOf("layer") != -1) descript += "layered hair";
-					else if(hairStyle == "side part") descript += "side-parted hair";
-					else if(hairStyle.indexOf(" part") != -1) descript += "parted hair";
-					else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up hair";
-					else if(hairStyle == "twintails") descript += "twintailed hair";
-					else descript += "hair";
+					if(hairStyle == "ponytail") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "ponytail");
+					else if(hairStyle.indexOf("pigtail") != -1) nouns.push("pigtailed" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "curls") nouns.push("curled" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("curls") != -1) nouns.push("curly" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "braided") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "braid");
+					else if(hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) nouns.push("braided" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "afro") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "afro");
+					else if(hairStyle == "mohawk") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "mohawk");
+					else if(hairStyle == "spikes") nouns.push("spiked" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) nouns.push("smooth" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("layer") != -1) nouns.push("" + (sMaterial != "layered" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "side part") nouns.push("side-parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf(" part") != -1) nouns.push("parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("chignon") != -1) nouns.push("pinned-up" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "twintails") nouns.push("twintailed" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "hair");
+				}
+				descript += RandomInCollection(nouns);
+			}
+			return descript;
+		}
+		public function hairLengthDescript(): String {
+			var descript: String = "";
+			var adjLength:Array = [];
+			
+			if (hairLength < 1) adjLength.push("close-cropped", "trim");
+			else if (hairLength < 3) adjLength.push("short");
+			else if (hairLength < 6) {
+				adjLength.push("medium-length");
+				if(hairLength <= 4) adjLength.push("ear-length");
+				if(!InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) adjLength.push("shaggy");
+			}
+			else if (hairLength < 10) {
+				adjLength.push("moderately long");
+				if(hairLength < 8) adjLength.push("neck-length");
+				else adjLength.push("shoulder-length");
+			}
+			else if (hairLength < 16) adjLength.push("long","lengthy");
+			else if (hairLength < tallness / 2.5) adjLength.push("very long", "back-length");
+			else if (hairLength < tallness / 1.6) {
+				adjLength.push("cascading");
+				if(hairLength < tallness / 1.7) adjLength.push("ass-length");
+				else adjLength.push("thigh-length");
+			}
+			else if (hairLength < tallness / 1.3) {
+				adjLength.push("delightfully long");
+				if(hasKnees()) adjLength.push("knee-length");
+			}
+			else if(hairLength < tallness) {
+				adjLength.push("exquisitely long");
+				if(hasKnees())
+				{
+					if(hairLength < tallness - 1) adjLength.push("calf-length");
+					else adjLength.push("ankle-length");
 				}
 			}
+			else adjLength.push("floor-length", "obscenely long", "floor-dragging");
+			
+			if (adjLength.length > 0) descript += RandomInCollection(adjLength);
 			return descript;
 		}
 		public function hairNoun():String
@@ -14529,7 +15164,6 @@
 		}
 		public function hairsDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
-			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength <= 0) {
 				if (hasFur()) {
@@ -14554,98 +15188,71 @@
 				descript += "head";
 				return descript;
 			}
-			//50% odds of adjectives
-			if (forceLength || rand(2) == 0) {
-				if (hairLength < 1) {
-					if (rand(2) == 0) descript += "close-cropped";
-					else descript += "trim";
-				} else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) {
-					if(rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
-					{
-						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
-						else descript += "medium-length";
-					}
-					else descript += "shaggy";
-				}
-				else if (hairLength < 10) {
-					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength < 8) descript += "neck-length";
-					else descript += "shoulder-length";
-				}
-				else if (hairLength < 16) {
-					descript += RandomInCollection(["long","lengthy"]);
-				}
-				//Relativistic hair
-				else if (hairLength < tallness / 2.5) {
-					descript += RandomInCollection(["very long", "back-length"]);
-				}
-				else if (hairLength < tallness / 1.6) {
-					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness / 1.7) descript += "ass-length";
-					else descript += "thigh-length";
-				}
-				else if (hairLength < tallness / 1.3) 
-				{
-					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
-					else descript += "delightfully long";
-				}
-				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees())
-					{
-						if(hairLength < tallness - 1) descript += "calf-length";
-						else descript += "ankle-length";
-					}
-					else descript += "exquisitely long";
-				}
-				else {
-					descript += RandomInCollection(["floor-length", "obscenely long", "floor-dragging"]);
-				}
-				descripted++;
-			}
-			// COLORS
-			if (forceColor || rand(2) == 0) {
-				if (descripted > 0) descript += ", ";
-				descript += hairColor;
-				descripted++;
-			}
-			//Latex!
-			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			
+			// Length
+			if((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"]))
 			{
-				if(descripted > 0) descript += ", ";
-				descript += "latex";
-				descripted++;
-			}
-			//Oddball shit
-			if (rand(2) == 0 && descripted < 2) {
-				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-					if (descripted > 0) descript += ", ";
-					descript += "transparent";
-					descripted++;
+				var adjLength:String = hairLengthDescript();
+				if (adjLength != "")
+				{
+					if(descript != "") descript += ", ";
+					descript += adjLength;
 				}
 			}
-			if (descripted > 0) descript += " ";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
-			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += "leaves";
-			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
-			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) descript += "quills";
+			
+			// Shape
+			var adjShape:Array = [];
+			if (rand(4) == 0)
+			{
+				if (hasStatusEffect("frizzy hair")) adjShape.push("frizzy");
+			}
+			if (adjShape.length > 0)
+			{
+				if(descript != "") descript += ", ";
+				descript += RandomInCollection(adjShape);
+			}
+			
+			// Color
+			if (forceColor || rand(2) == 0)
+			{
+				if (descript != "") descript += ", ";
+				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT && hairColor.indexOf("transparent") == -1) descript += "transparent";
+				descript += hairColor;
+			}
+			
+			// Materials
+			var adjMaterial:Array = [];
+			var sMaterial:String = "";
+			if (rand(2) == 0) {
+				if (hasStatusEffect("Latex Hair")) adjMaterial.push("latex");
+			}
+			if (adjMaterial.length > 0) sMaterial = RandomInCollection(adjMaterial);
+			
+			// Nouns
+			var nouns:Array = [];
+			if (descript != "") descript += " ";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "tentacles");
+			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "leaves");
+			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "feathers");
+			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "quills");
 			else 
 			{
-				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
-				else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtails";
-				else if(hairStyle.indexOf("curls") != -1) descript += "curls";
-				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braid-bound locks";
-				else if(hairStyle == "afro") descript += "afro-puffed locks";
-				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
-				else if(hairStyle == "spikes") descript += "spiky locks";
-				else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth locks";
-				else if(hairStyle.indexOf("layer") != -1) descript += "layered locks";
-				else if(hairStyle == "side part") descript += "side-parted locks";
-				else if(hairStyle.indexOf(" part") != -1) descript += "parted locks";
-				else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up locks";
-				else if(hairStyle == "twintails") descript += "twintails";
-				else descript += "locks";
+				if(hairStyle == "ponytail") nouns.push("ponytail-bound" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("pigtail") != -1) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "pigtails");
+				else if(hairStyle.indexOf("curls") != -1) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "curls");
+				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) nouns.push("braid-bound" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "afro") nouns.push("afro-puffed" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "mohawk") nouns.push("mohawk-shaped" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "spikes") nouns.push("spiky" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) nouns.push("smooth" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("layer") != -1) nouns.push("layered" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "side part") nouns.push("side-parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf(" part") != -1) nouns.push("parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("chignon") != -1) nouns.push("pinned-up" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "twintails") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "twintails");
+				else descript += nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "locks");
 			}
+			descript += RandomInCollection(nouns);
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && rand(2) == 0) descript += " of goo";
 			return descript;
 		}
@@ -14889,7 +15496,8 @@
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
 				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "suula ";
+				else if (type == GLOBAL.TYPE_ANEMONE) desc += "sea anemone-";
+				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
 				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
@@ -14906,6 +15514,7 @@
 				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
 				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
 				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
+				else if (type == GLOBAL.TYPE_SAURMORIAN) desc += "saurmorian ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -14975,7 +15584,14 @@
 					else
 						desc += RandomInCollection(["bird-pussy", "bird-pussy", "avian-pussy", "bird-cunt", "bird-quim", "avian-twat", "bird-gina", "bird-vagina", "box"]);
 				}
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
+				else if (type == GLOBAL.TYPE_ANEMONE)
+				{
+					if (!simple)
+						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "anemone-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+					else
+						desc += RandomInCollection(["anemone-pussy", "venom-pussy", "anemone-pussy", "anemone-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
+				}
+				else if (type == GLOBAL.TYPE_SIREN)
 				{
 					if (!simple)
 						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
@@ -15083,6 +15699,11 @@
 					}
 				else
 						desc += RandomInCollection(["mouthgina","mouthgina","mouth-pussy","mouth-gina","mouth-muff", "maw"]);
+				}
+				else if (type == GLOBAL.TYPE_SAURMORIAN)
+				{
+					if (!simple) desc += RandomInCollection("glossy ", "bestial ", "savage ", "saurmorian ");
+					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 				}
 				else
 				{
@@ -15241,19 +15862,22 @@
 				if(puffScore <= 0) {}
 				else if(puffScore <= 1)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
 				else if(puffScore <= 2)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
 					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
 				}
 				else
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
@@ -15268,21 +15892,27 @@
 				}
 			}
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
-			else if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
+			else if(rand(2) == 0 && hasPlumpPussy(vaginaNum) && adjectiveCount == 0)
 			{
 				var pumpAdj:Array = [];
 				if (adjectiveCount > 0) desc += ", ";
-				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
-				{
-					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
-					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
-					else pumpAdj.push("slightly plump");
-				}
-				else
+				if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 				{
 					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
 					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
 					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
+				{
+					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else
+				{
+					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
+					else pumpAdj.push("slightly plump");
 				}
 				desc += RandomInCollection(pumpAdj);
 				adjectiveCount++;
@@ -15330,10 +15960,19 @@
 				adjectiveCount++;
 			}
 			bonus = 4;
-			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && vag.hasFlag(GLOBAL.FLAG_RIBBED) && rand(100) <= bonus)
+			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && rand(100) <= bonus)
 			{
-				if(adjectiveCount > 0) desc += ", ";
-				desc += RandomInCollection(["ribbed","ridged"]);
+				var collection:Array = [];
+				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged");
+				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if(collection.length > 0)
+				{
+					if(adjectiveCount > 0) desc += ", ";
+					desc += RandomInCollection(collection);
+					adjectiveCount++;
+				}
 			}
 			//NOUN TIME
 			if(adjectiveCount > 0)
@@ -15581,20 +16220,20 @@
 			return matchedVaginas();
 		}
 		public function matchedVaginas():Boolean {
-				//After the first cooch, see if they match against the previous.
+			//After the first cooch, see if they match against the previous.
 			for(var x:int = 1; x < vaginas.length; x++)
+			{
+				//Don't match? NOT MATCHED. GTFO.
+				if(vaginas[x].type != vaginas[x-1].type) return false;
+				//Flag check
+				if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
 				{
-					//Don't match? NOT MATCHED. GTFO.
-					if(vaginas[x].type != vaginas[x-1].type) return false;
-					//Flag check
-					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
 					{
-						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
-						{
-							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
-						}
+						if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 					}
 				}
+			}
 			return true;
 		}
 		public function wombsDescript():String
@@ -15747,21 +16386,29 @@
 			if(this is PlayerCharacter && (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy") > 0) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
 
 			//Pussy pump can show if ALL are at least pumped.
-			biggestSize = 2;
+			biggestSize = -1;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
 				//No descs if any aren't pumped!
-				if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) biggestSize = 0;
+				if(!hasPlumpPussy(i)) biggestSize = 0;
 				//Track if they're all bigpump or smolpump
-				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == 2) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && biggestSize == -1) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == -1) biggestSize = 2;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && biggestSize == -1) biggestSize = 3;
 			}
 			if(biggestSize > 0)
 			{
-				if(biggestSize == 1) 
+				if(biggestSize == 1)
 				{
 					adjectives.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
 					if(hasStatusEffect("Pussy Pumped")) adjectives.push("slightly pumped");
 					else adjectives.push("slightly plump");
+				}
+				else if(biggestSize == 2)
+				{
+					adjectives.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) adjectives.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else adjectives.push("permanently plump", "bloated", "fat");
 				}
 				else
 				{
@@ -16213,6 +16860,9 @@
 				case GLOBAL.TYPE_MOTHRINE:
 					collection = ["mothrine", "insectile", "alien", "curved"];
 					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					collection = ["dinosaur", "bestial", "savage", "saurmorian"];
+					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -16309,6 +16959,9 @@
 							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
 							desc += RandomInCollection(["anemone-cock","wiggle-cock","anemone-dick","anemone-prick","anemone-phallus","stinger","shaft","anemone-prong","anemone-tool","anemone-cock","anemone-dick"]);
 							break;
+						case GLOBAL.TYPE_SIREN:
+							desc += RandomInCollection(["suula-cock","wiggle-cock","suula-dick","suula-prick","suula-phallus","stinger","shaft","suula-prong","suula-tool","suula-cock","suula-dick"]);
+							break;
 						case GLOBAL.TYPE_KANGAROO:
 							//adjectives.push("pointed","marsupial","tapered","curved");
 							desc += RandomInCollection(["kangaroo-cock","kangaroo-dick","kanga-cock"]);
@@ -16332,6 +16985,7 @@
 							desc += RandomInCollection(["simii-dick","simii-cock","member","member","phallus","prick","tool","shaft"]);
 							break;
 						case GLOBAL.TYPE_SAURIAN:
+						case GLOBAL.TYPE_SAURMORIAN:
 							//adjectives.push("dinosaur", "saurian");
 							desc += RandomInCollection(["dino-cock","reptile-cock","dinosaur-cock","dino-dick","reptile-dick","dinosaur-prick","dinosaur-tool","member","cock"]);
 							break;
@@ -16407,7 +17061,7 @@
 							break;
 						case GLOBAL.TYPE_EQUINE:
 							//adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
-							desc += RandomInCollection(["flared horse-cock","blunted horse-cock","bestial cock","equine cock","musky cock","flared cock","musky horse-dick","animalistic dick","blunt-tipped dick","flared horse-dick","bestial member","musky member","equine shaft","animalistic shaft","equine horse-prick","flat-tipped horse-boner","bestial tool","equine phallus","equine tool"]);
+							desc += RandomInCollection(["flared horse-cock","blunted horse-cock","bestial cock","equine cock","musky cock","flared cock","musky horse-dick","animalistic dick","blunt-tipped dick","flared horse-dick","bestial member","musky member","equine shaft","animalistic shaft","equine member","horse-prick","flat-tipped horse-boner","bestial tool","equine phallus","equine tool"]);
 							break;
 						case GLOBAL.TYPE_DEMONIC:
 							//adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
@@ -16436,8 +17090,9 @@
 							desc += RandomInCollection(["reptilian cock","alien cock","raskvel cock","sleek cock","exotic rask-cock","exotic cock","reptilian dick","alien dick","smooth rask-dick","reptilian prick","alien phallus","exotic phallus","sleep prick","reptilian tool","alien tool"]);
 							break;
 						case GLOBAL.TYPE_ANEMONE:
+						case GLOBAL.TYPE_SIREN:
 							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
-							desc += RandomInCollection(["tentacle-ringed cock","pulsating cock","stinger-lined cock","squirming anemone-cock","exotic cock","stinger-laden dick","stinger-covered dick","tentacle-ringed dick","pulsating prick","tentacle-ringed prick","squirming prick","near-transparent phallus","stinger-laden phallus","tentacle-ringed tool","tentacle-lined tool"]);
+							desc += RandomInCollection(["tentacle-ringed cock","pulsating cock","stinger-lined cock",("squirming " + (type == GLOBAL.TYPE_SIREN ? "suula" : "anemone") + "-cock"),"exotic cock","stinger-laden dick","stinger-covered dick","tentacle-ringed dick","pulsating prick","tentacle-ringed prick","squirming prick","near-transparent phallus","stinger-laden phallus","tentacle-ringed tool","tentacle-lined tool"]);
 							break;
 						case GLOBAL.TYPE_KANGAROO:
 							//adjectives.push("pointed","marsupial","tapered","curved");
@@ -16466,6 +17121,10 @@
 							//adjectives.push("dinosaur", "saurian");
 							desc += RandomInCollection(["dinosaur cock","saurian cock","reptilian cock","prehistoric dino-cock","dinosaur dick","saurian shaft","dinosaur dick","reptilian member","saurian member","saurian tool","saurian prick","dinosaur prick","prehistoric dino-dick"]);
 							break;
+						case GLOBAL.TYPE_SAURMORIAN:
+							//adjectives.push("dinosaur", "saurian");
+							desc += RandomInCollection(["dinosaur cock","saurmorian cock","reptilian cock","dino-cock","dinosaur dick","saurmorian shaft","dinosaur dick","reptilian member","saurmorian member","saurmorian tool","saurmorian prick","dinosaur prick","dino-dick"]);
+							break;
 						case GLOBAL.TYPE_SYNTHETIC:
 							//adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
 							desc += RandomInCollection(["metallic member","metallic cock","metallic cock","metallic shaft","metallic dick","synthetic cock","synthetic dick","synthetic cock","synthetic tool","synthetic prick","robotic cock","robotic cock","robotic dick","robotic prick","robotic tool","sleek synth-cock","sleek robo-cock","sleek synth-dick","mechanical dick","mechanical cock","mechanical member"]);
@@ -16491,7 +17150,7 @@
 							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
 							break;
 						case GLOBAL.TYPE_SHARK:
-							desc += RandomInCollection(["tubular shark-dong", "finned pseudopenis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
+							desc += RandomInCollection(["tubular shark-dong", "finned piscine-penis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
 							break;
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);
@@ -17026,14 +17685,16 @@
 			}
 			//Hornyness 1/2
 			else if (lust() > 75 && rand(2) == 0) {
+				var lust:Number = lust();
+				var cumQ:Number = cumQ();
 				//Uber horny like a baws!
-				if (lust() > 90) {
+				if (lust > 90) {
 					//Weak as shit cum
-					if (cumQ() < 50) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["throbbing", "pulsating"]);
 					}
 					//lots of cum? drippy.
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["dribbling", "drooling", "leaking"]);
 					}
 					//Tons of cum
@@ -17042,12 +17703,12 @@
 					}
 				}
 				//A little less lusty, but still lusty.
-				else if (lust() > 75) {
-					if (cumQ() < 50) {
+				else if (lust > 75) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//A little drippy
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						if (rand(10) <= 3) descript += RandomInCollection(["fluid-beading", "slowly-oozing"]);
 						else descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
@@ -17147,14 +17808,16 @@
 			}
 			//Hornyness 1/2
 			else if (lust() > 75 && rand(2) == 0) {
+				var lust:Number = lust();
+				var cumQ:Number = cumQ();
 				//Uber horny like a baws!
-				if (lust() > 90) {
+				if (lust > 90) {
 					//Weak as shit cum
-					if (cumQ() < 50) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["throbbing", "pulsating"]);
 					}
 					//lots of cum? drippy.
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["dribbling", "drooling", "leaking"]);
 					}
 					//Tons of cum
@@ -17163,12 +17826,12 @@
 					}
 				}
 				//A little less lusty, but still lusty.
-				else if (lust() > 75) {
-					if (cumQ() < 50) {
+				else if (lust > 75) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//A little drippy
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager", "fluid-beading", "slowly-oozing"]);
 					}
 					//uber drippy
@@ -17562,7 +18225,9 @@
 			switch(arg)
 			{
 				case GLOBAL.FLUID_TYPE_MILK:
-					collection.push("milk", "cream");
+					collection.push("milk");
+					if(rand(10) == 0) collection.push("cream");
+					if(kGAMECLASS.silly && cowScore() >= 4 && rand(5) == 0) collection.push("moo juice");
 					break;
 				case GLOBAL.FLUID_TYPE_CUM:
 				case GLOBAL.FLUID_TYPE_CUNDARIAN_SEED:
@@ -17578,8 +18243,9 @@
 				case GLOBAL.FLUID_TYPE_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_NYREA_CUM:
-					collection.push("girl-cum");
+					collection.push("girl-cum","girl-cum","fem-cum");
 					if(isBimbo() || isBro()) collection.push("girl-cum", "girl-lube", "girl-lube", "girl-juice", "cunny-honey");
+					if(libido() >= 50) collection.push("girl-spunk","fem-spunk","fem-cum");
 					break;
 				case GLOBAL.FLUID_TYPE_HONEY:
 					collection.push("honey");
@@ -17633,41 +18299,26 @@
 			
 			return RandomInCollection(collection);
 		}
-		public function milkDescript(): String {
+		public function fluidDescript(fluidType:int = 0): String {
 			var temp: int = rand(10);
 			var desc: String = "";
 			var described: Boolean = false;
 			if (rand(3) == 0) {
-				desc += fluidColor(milkType);
+				desc += fluidColor(fluidType);
 				described = true;
 			}
 			if (described) desc += " ";
-			desc += fluidNoun(milkType);
+			desc += fluidNoun(fluidType);
 			return desc;
+		}
+		public function milkDescript(): String {
+			return fluidDescript(milkType);
 		}
 		public function cumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(cumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(cumType);
-			return desc;
+			return fluidDescript(cumType);
 		}
 		public function girlCumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(girlCumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(girlCumType);
-			return desc;
+			return fluidDescript(girlCumType);
 		}
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
@@ -17723,7 +18374,9 @@
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_NUBBY)) aAdjective.push("nubby", "nodule-covered");
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_RIBBED)) aAdjective.push("ribbed");
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) aAdjective.push("aphrodisiac-laced");
-			
+			//Colors - no more than 25% of the time. If no other adjectives, only push color adjective 50% of time for resulting 25% chance.
+			if(aAdjective.length > 0 || rand(2) == 0) aAdjective.push(cocks[arg2].cockColor);
+
 			if(aAdjective.length > 0 && rand(2) == 0) sDesc += aAdjective[rand(aAdjective.length)] + " ";
 			
 			sDesc += aNoun[rand(aNoun.length)];
@@ -18128,7 +18781,7 @@
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";
-				}
+			}
 			//33% of the time size-descript them
 			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
 			//Lactation notices are rare unless near-empty or full!
@@ -18212,10 +18865,21 @@
 			// A-cups
 			if(breastRows[rowNum].breastRating() == 1) {
 				if(descript != "") descript += ", ";
-				descript += RandomInCollection(["tiny ", "girly ", "waifish "]);
+				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
 			else {
+				var adjectives:Array = [];
+				// Silicone
+				var silicone:Number = siliconeRating("tits");
+				if(silicone > 0 && rand(2) == 0) {
+					adjectives.length = 0;
+					if(silicone >= 2) adjectives.push("gravity defying");
+					if(silicone >= 5) adjectives.push("ridiculously perky");
+					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
+					if(descript != "") descript += ", ";
+					descript += adjectives[rand(adjectives.length)];
+				}
 				if(descript != "") descript += " ";
 				descript += chestNoun(rowNum,milkied);
 			}
@@ -18226,6 +18890,7 @@
 		{
 			if(rowNum < 0 || rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
+			var silicone:Number = siliconeRating("tits");
 			if (isLactating())
 			{
 				if(!milkied)
@@ -18242,6 +18907,13 @@
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
 			nouns.push("tit", "tit", "tit");
 			if (breastRows[rowNum].breastRating() > 6) nouns.push("tit");
+			if(silicone > 0) {
+				nouns.push("balloon");
+				if(silicone >= 2) nouns.push("balloon");
+				if(silicone >= 5) nouns.push("balloon");
+				if(silicone >= 10) nouns.push("balloon");
+				nouns.push("bolt-on");
+			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");
 			nouns.push("boob");
@@ -18256,32 +18928,7 @@
 		{
 			if (rowNum < 0 || rowNum == 99) rowNum = 0;
 			if (breastRows[rowNum].breastRating() <= 0) return "chest";
-			
-			var nouns:Array = [];
-			if (isLactating())
-			{
-				if(!milkied)
-				{
-					if(breastRows[0].breastRating() >= 5)
-					{
-						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melons","honey-melons");
-						nouns.push("milk-tanks","milk-jugs");
-					}
-					else nouns.push("milkers","milkers");
-				}
-				if(breastRows[0].breastRating() >= 2) nouns.push("udders", "udders", "udders", "udders");
-			}
-			nouns.push("breasts", "breasts", "breasts", "breasts", "breasts", "breasts");
-			nouns.push("tits", "tits", "tits");
-			if (breastRows[rowNum].breastRating() > 6) nouns.push("tits");
-			nouns.push("jugs");
-			//Disabled due to "pillowy love-pillows" nouns.push("love-pillows");
-			nouns.push("boobs");
-			nouns.push("mammaries");
-			nouns.push("melons");
-			nouns.push("mounds");
-			
-			return nouns[rand(nouns.length)];
+			return plural(breastNoun(rowNum, milkied));
 		}
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));
@@ -18292,11 +18939,11 @@
 			return matchedCocks();
 		}
 		public function matchedCocks():Boolean {
-			//After the first cooch, see if they match against the previous.
+			//After the first cock, see if they match against the previous.
 			for(var x:int = 1; x < cocks.length; x++)
 			{
 				//Don't match? NOT MATCHED. GTFO.
-				if(cocks[x].type != cocks[x-1].type) return false;
+				if(cocks[x].cType != cocks[x-1].cType) return false;
 			}
 			return true;
 		}
@@ -18333,7 +18980,7 @@
 		{
 			if(cocks.length == 1) return cockHead(0).split(" ").pop();
 			if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
-				else return plural(cockHead(-1).split(" ").pop());
+			return plural(cockHead(-1).split(" ").pop());
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
@@ -18514,7 +19161,7 @@
 				return;
 			}
 			
-			var effectDesc:String = ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".");
+			var effectDesc:String = (this is PlayerCharacter ? ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".") : "Leftovers from a recent lover.");
 			
 			if(hole >= 0 && hole < 3)
 			{
@@ -18550,7 +19197,7 @@
 					if(statusEffectv1("Anally-Filled") > statusEffectv2("Anally-Filled")) setStatusValue("Anally-Filled",2,statusEffectv1("Anally-Filled"));
 				}
 			}
-			else
+			else if(hole == 4)
 			{
 				if(fluidVolume <= 0) return;
 				
@@ -18582,7 +19229,7 @@
 			{
 				cumQualityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Firing Blanks"))
 			{
 				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
 			}
@@ -18629,7 +19276,7 @@
 			{
 				fertilityRaw += arg;
 			}
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
+			if (hasBirthControl() || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			var bonus:Number = 0;
 			bonus += perkv1("Fertility");
 			bonus += statusEffectv1("Heat");
@@ -18645,6 +19292,12 @@
 			if(hasPerk("Incubator")) bonus += perkv1("Incubator");
 			if(hasPerk("Breed Hungry")) bonus += 1;
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod + bonus;
+		}
+		
+		public function hasBirthControl():Boolean
+		{
+			if(hasStatusEffect("Infertile")) return true;
+			return false;
 		}
 		
 		public var bellyRatingRaw:Number = 0;
@@ -18865,6 +19518,23 @@
 			if (type == PREGSLOT_ANY || type == PREGSLOT_ASS)
 			{
 				if ((pregnancyData[3] as PregnancyData).pregnancyType == "") return 3;
+			}
+			
+			return -1;
+		}
+		public function findUsedPregnancySlot(type:uint):int
+		{
+			if (type == PREGSLOT_ANY || type == PREGSLOT_VAG)
+			{
+				for (var i:int = 0; i < vaginas.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType != "") return i;
+				}
+			}
+			
+			if (type == PREGSLOT_ANY || type == PREGSLOT_ASS)
+			{
+				if ((pregnancyData[3] as PregnancyData).pregnancyType != "") return 3;
 			}
 			
 			return -1;
@@ -19286,8 +19956,12 @@
 					holePointer = vaginas[hole];
 				}
 			}
+			// ignore stretching!
+			if(isStretchImmune()) {
+				stretched = false;
+			}
 			//cArea > capacity = autostreeeeetch.
-			if(volume >= capacity) {
+			else if(volume >= capacity) {
 				if(holePointer.looseness() >= 5) {}
 				else holePointer.looseness(1);
 				stretched = true;
@@ -19418,6 +20092,36 @@
 			}
 			return (stretched || devirgined);
 		}
+		
+		public function isStretchImmune():Boolean
+		{
+			if(hasPerk("True Doll")) return true;
+			return false;
+		}
+		
+		public function instaBuzzed():String
+		{
+			var outputS:String = "";
+			//Imbibe some to keep party train going.
+			imbibeAlcohol(20);
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+		
+			if (thisStatus == null) return "";
+			
+			//Bump booze in blood up to buzzed level
+			if(thisStatus.value2 < 25) thisStatus.value2 = 25;
+			
+			// Alcohol is consumed at a rate of 1 unit per minute
+			if (!hasStatusEffect("Buzzed"))
+			{
+				createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				physiqueMod += 2;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				if(this is PlayerCharacter) outputS += "\n\nDamn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>";
+			}
+			return outputS;
+		}
 		public function instaDrunk():String
 		{
 			var outputS:String = "";
@@ -19428,7 +20132,7 @@
 			if (thisStatus == null) return "";
 			
 			//Bump booze in blood up to drunko level
-			if(thisStatus.value2 < 55) thisStatus.value2 = 55;
+			if(thisStatus.value2 < 50) thisStatus.value2 = 50;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
 			if (!hasStatusEffect("Buzzed"))
@@ -19461,7 +20165,7 @@
 			
 			if (thisStatus == null) return "";
 			
-			//Bump booze in blood up to drunko level
+			//Bump booze in blood up to smashed level
 			if(thisStatus.value2 < 75) thisStatus.value2 = 75;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
@@ -19490,7 +20194,6 @@
 				{
 					getStatusEffect("Drunk").hidden = true;
 				}
-				
 				physiqueMod += 1;
 				reflexesMod -= 1;
 				willpowerMod -= 1;
@@ -19660,6 +20363,9 @@
 				if (rand(3) == 0 && descripted < 2) {
 					switch (hornType)
 					{
+						case GLOBAL.TYPE_XHELARFOG:
+							types.push(hornColor+" gradated", "curved together");
+							break;
 						case GLOBAL.TYPE_FROSTWYRM:
 						case GLOBAL.TYPE_DRACONIC:
 							types.push("draconic");
@@ -19735,6 +20441,7 @@
 		public function hornColor():String 
 		{
 			var sColor:String = "";
+			if(hornType == GLOBAL.TYPE_SAURMORIAN) sColor = "silver";
 			if(hasStatusEffect("Horn Style")) sColor = getStatusTooltip("Horn Style");
 			
 			return (sColor != "" ? sColor : "naturally-colored");
@@ -20050,7 +20757,7 @@
 						weightFluid = fluidWeight((cumQ() * 0.5), cumType);
 						if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 						else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
-						if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
+						if(hasOvipositor() && hasStatusEffect("Nyrea Eggs")) weightFluid += (0.0125 * statusEffectv1("Nyrea Eggs"));
 						if(partNum > 0 && partNum <= num) weightFluid = (weightFluid / num);
 						weightTesticle += weightFluid;
 					}
@@ -20221,9 +20928,12 @@
 			return attack.EnergyCost;
 		}
 		
-		public function untypedDroneDamage():Number
+		public function untypedDroneDamage(calc:String = ""):Number
 		{
-			var dmg:Number = 1 + level + rand(Math.round((2 + level) / 2));
+			var dmg:Number = 1 + level;
+			var dmgMod:Number = (calc == "min" ? 0 : Math.round((2 + level) / 2));
+			if(calc == "") dmg += rand(dmgMod);
+			if(calc == "max") dmg += (dmgMod - 1);
 			var bonus:Number = 0;
 			
 			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
@@ -20232,9 +20942,9 @@
 			return dmg + bonus;
 		}
 		
-		public function droneDamage():TypeCollection
+		public function droneDamage(calc:String = ""):TypeCollection
 		{
-			var d:Number = untypedDroneDamage();
+			var d:Number = untypedDroneDamage(calc);
 			return new TypeCollection( { electric: d } );
 		}
 		public function hasTamWolf():Boolean
@@ -20302,7 +21012,7 @@
 			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
 			var amountStored:Number = 0;
 			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
-
+			
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
 			{
@@ -20327,6 +21037,9 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[z].value3;
+				// Plugged exceptions
+				if(pluggedVaginas() >= vaginaTotal()) cumDrain = false;
+				if(this is PlayerCharacter && armor is GooArmor && flags["GOO_ARMOR_AUTOSUCK"] == -1) cumDrain = false;
 				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
 				if(cumDrain && blockedVaginas() < vaginas.length && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
@@ -20344,7 +21057,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						if(amountVented >= 500 || statusEffects[z].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
@@ -20391,6 +21108,9 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[a].value3;
+				// Plugged exception
+				if(isPlugged(-1)) cumDrain = false;
+				if(this is PlayerCharacter && armor is GooArmor && flags["GOO_ARMOR_AUTOSUCK"] == -1) cumDrain = false;
 				if(cumDrain && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
@@ -20406,7 +21126,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						if(amountVented >= 500 || statusEffects[a].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
@@ -20543,6 +21267,7 @@
 
 		public function canCumCascade(): Boolean 
 		{
+			if(balls <= 0) return false;
 			if(!hasPerk("'Nuki Nuts")) return false;
 			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
 			if(hasPerk("Cum Cascade")) return true;
@@ -20551,6 +21276,8 @@
 		}
 		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
+			if(balls <= 0) return;
+			
 			// Give Cum Cascade effect
 			if (!hasStatusEffect("Cum Cascade"))
 			{
@@ -20784,6 +21511,11 @@
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			var bonusMult:int = 1;
+			
+			// Speed modifiers
+			if(hasPerk("True Doll")) bonusMult *= 24;
+			
 			if (vaginas.length > 0 && totalHours >= 1)
 			{
 				for (var i:int = 0; i < vaginas.length; i++)
@@ -20792,7 +21524,7 @@
 					
 					if (tv.loosenessRaw > tv.minLooseness)
 					{
-						tv.shrinkCounter += totalHours;
+						tv.shrinkCounter += (totalHours * bonusMult);
 					}
 					else
 					{
@@ -20845,11 +21577,12 @@
 		public function updateButtStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			var bonusMult:int = 1;
 			if (totalHours >= 1)
 			{
 				if (ass.loosenessRaw > ass.minLooseness)
 				{
-					ass.shrinkCounter += totalHours;
+					ass.shrinkCounter += (totalHours * bonusMult);
 				}
 				else
 				{
@@ -20910,6 +21643,7 @@
 				
 				var prodFactor:Number = 100 / (1920) * ((libido() * 3 + 100) / 100);
 				if (hasPerk("Extra Ardor")) prodFactor *= 2;
+				if (hasPerk("Lusty Afterglow") && isCumflated()) prodFactor *= 2;
 				if (hasStatusEffect("Ludicrously Endowed")) prodFactor *= 1.5;
 				if (hasStatusEffect("Overwhelmingly Endowed")) prodFactor *= 2;
 				if (hasStatusEffect("Red Myr Venom")) prodFactor *= 1.5;
@@ -21434,7 +22168,7 @@
 								if(hasCock()) infertileMsg += " virility";
 							}
 							else infertileMsg += " fertility and virility should you ever have the genitals for them";
-							infertileMsg += ". <b>Your ability to potentionally create life has been restored!</b>";
+							infertileMsg += ". <b>Your ability to potentially create life has been restored!</b>";
 							AddLogEvent(infertileMsg, "passive", maxEffectLength);
 						}
 						break;
@@ -21608,6 +22342,7 @@
 						{
 							thisStatus.value1 = (thisStatus.value1 != 0 ? 0 : 1);
 							thisStatus.value2 = 0;
+							thisStatus.value4 = 0;
 							thisStatus.minutesLeft = (7 * 24 * 60);
 							requiresRemoval = false;
 						}
@@ -21637,6 +22372,13 @@
 								kGAMECLASS.locofeverFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
 								requiresRemoval = false;
 							}
+						}
+						break;
+					case "Undetected Cooties":
+					case "Cooties":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.cootiesProcGoooo(deltaT, maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 					case "Undetected Sneezing Tits":
@@ -21823,19 +22565,19 @@
 		
 		public function hasPlumpAsshole():Boolean
 		{
-			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
+			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED) || ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 		}
 		public function hasPlumpPussy(arg:Number = -1):Boolean
 		{
 			if(vaginas.length <= 0) return false;
 			if(arg >= 0 && arg > vaginas.length-1) return false;
-			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED));
+			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 			//check em all, fam
 			else
 			{
 				for (var x:int = 0; x < vaginas.length; x++)
 				{
-					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) return true;
+					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) return true;
 				}
 			}
 
@@ -21944,6 +22686,11 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+				case "Undetected Cooties":
+					if(victim.hasSSTD("Cooties", true)) { /* Already have it! */ }
+					else victim.createStatusEffect("Undetected Cooties", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Cooties infection!", false, 4320, 0xFF69B4);
+					break;
+
 			}
 		}
 		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void
@@ -22039,7 +22786,7 @@
 		}
 		
 		// Silicone
-		public function siliconeRating(sType:String):Number
+		public function siliconeRating(sType:String = "all"):Number
 		{
 			var nRating:Number = 0;
 			
@@ -22057,10 +22804,111 @@
 				case "lips":
 					nRating += statusEffectv4("Nym-Foe Injections");
 					break;
+				case "all":
+					nRating += statusEffectv1("Nym-Foe Injections");
+					nRating += statusEffectv2("Nym-Foe Injections");
+					nRating += statusEffectv3("Nym-Foe Injections");
+					nRating += statusEffectv4("Nym-Foe Injections");
+					break;
 			}
 			
 			return nRating;
 		}
+		public function hasSilicone(sType:String = "all"):Boolean
+		{
+			return (siliconeRating(sType) > 0);
+		}
+
+		//================================================================
+		//
+		//				Fenoxo's Hacky Ship Bullship.
+		//					Seriously, this is garbage. Will
+		//					probably be cut later. Sorry.
+		//
+		//================================================================
+		//Base Stats
+		//Agility (mapped to reflexes)
+		public function shipAgility():Number
+		{
+			return reflexesRaw;
+		}
+		//Speed (mapped to physique)
+		public function shipSpeed():Number
+		{
+			return physiqueRaw;
+		}
+		//Power Generation (mapped to willpower)
+		public function shipPowerGen():Number
+		{
+			return willpowerRaw;
+		}
+		//Sensors (Mapped to Aim)
+		public function shipSensors():Number
+		{
+			return aimRaw;
+		}
+		//Systems (Mapped to Intelligence)
+		public function shipSystems():Number
+		{
+			return intelligenceRaw;
+		}
+		//Probably set via perk.
+		public function shipCapacity():Number
+		{
+			return 3;
+		}
+		//(Agility/Speed Combination, +equipment evasion stat, +pcreflexes) - a % chance of 
+		public function shipEvasion():Number
+		{
+			return shipStatBonusTotal(0);
+		}
+		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
+		public function shipAccuracy():Number
+		{
+			return shipStatBonusTotal(1);
+		}
+		public function shipShieldDef():Number
+		{
+			return shipStatBonusTotal(3);
+		}
+		public function shipDefense():Number
+		{
+			return shipStatBonusTotal(2);
+		}
+		//0 - evasion
+		//1 - accuracy
+		//2 - defense
+		//3 - shielddef
+		//4 - fortification
+		//5 - shields
+		//? - More to cum as needed, probs
+		public function shipStatBonusTotal(type:Number = 0):Number
+		{
+			//I cant think of an easy way to map the argument to the actual sub variables we need to pull, so I'll just total everything, and then pass out whichever one is needed. Is this dumb? Probably.
+			var evasion:Number = 0;
+			var accuracy:Number = 0;
+			var defense:Number = 0;
+			var shieldDefense:Number = 0;
+			var fortification:Number = 0;
+			var shields:Number = 0;
+
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				evasion += inventory[i].evasion;
+				accuracy += inventory[i].accuracy;
+				defense += inventory[i].defense;
+				shieldDefense += inventory[i].shieldDefense;
+				fortification += inventory[i].fortification;
+				shields = inventory[i].shields;
+			}
+
+			if(type == 0) return evasion;
+			else if(type == 1) return accuracy;
+			else if(type == 2) return defense;
+			else if(type == 3) return shieldDefense;
+			else if(type == 4) return fortification;
+			else if(type == 5) return shields;
+			else return -1;
+		}
 	}
 }
-

@@ -210,21 +210,19 @@
 		true);
 
 	inputManager.AddBindableControl(
-		"Force Amazon Treatment",
-		"Force next Treatment use to make the user an Amazon.",
+		"Force Default Treatment",
+		"Force next Treatment to give expected results.",
 		function():void {
-			Cheats.TryTreatmentHaxAmazon();
+			Cheats.TryTreatmentHaxDefault();
 		},
 		true);
-
 	inputManager.AddBindableControl(
-		"Force Cum-Cow Treatment",
-		"Force next Treatment use to make the user a Cum-Cow.",
+		"Force Cow-Girl Treatment",
+		"Force next Treatment use to make the user an Cow-Girl.",
 		function():void {
-			Cheats.TryTreatmentHaxCumCow();
+			Cheats.TryTreatmentHaxCowGirl();
 		},
 		true);
-
 	inputManager.AddBindableControl(
 		"Force Bull Treatment",
 		"Force next Treatment use to make the user a Bull.",
@@ -232,12 +230,25 @@
 			Cheats.TryTreatmentHaxBull();
 		},
 		true);
-
 	inputManager.AddBindableControl(
-		"Force Cow-Girl Treatment",
-		"Force next Treatment use to make the user an Cow-Girl.",
+		"Force Cum-Cow Treatment",
+		"Force next Treatment use to make the user a Cum-Cow.",
 		function():void {
-			Cheats.TryTreatmentHaxCowGirl();
+			Cheats.TryTreatmentHaxCumCow();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Force Amazon Treatment",
+		"Force next Treatment use to make the user an Amazon.",
+		function():void {
+			Cheats.TryTreatmentHaxAmazon();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Force Faux-Cow Treatment",
+		"Force next Treatment use to make the user a Faux-Cow.",
+		function():void {
+			Cheats.TryTreatmentHaxFauxCow();
 		},
 		true);
 
@@ -314,6 +325,13 @@
 			Cheats.YakuzaUnlock();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Nym-Foe Targets TiTS",
+		"Toggle whether or not Nym-Foe will target the breasts when she injects silicone.",
+		function():void {
+			Cheats.BoobSiliconePlease();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -322,16 +340,19 @@
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
-	inputManager.BindCheatSequence("Force Amazon Treatment", "amazon");
-	inputManager.BindCheatSequence("Force Cum-Cow Treatment", "cumcow");
-	inputManager.BindCheatSequence("Force Bull Treatment", "bull");
+	inputManager.BindCheatSequence("Force Default Treatment", "treatment");
 	inputManager.BindCheatSequence("Force Cow-Girl Treatment", "bimbo");
+	inputManager.BindCheatSequence("Force Bull Treatment", "bull");
+	inputManager.BindCheatSequence("Force Cum-Cow Treatment", "cumcow");
+	inputManager.BindCheatSequence("Force Amazon Treatment", "amazon");
+	inputManager.BindCheatSequence("Force Faux-Cow Treatment", "fauxcow");
 	inputManager.BindCheatSequence("Destinations Unlocked", "marcopolo");
 	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
 	inputManager.BindCheatSequence("Time Skip", 56, 56, 77, 80, 72);
 	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
+	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
