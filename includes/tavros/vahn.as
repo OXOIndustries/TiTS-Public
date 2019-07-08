@@ -266,7 +266,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	showBust(arg.bustDisplay);
 	showName("\n"+arg.short.toUpperCase());
 
-	output("Your Codex prompts you to review the information on this ship thoroughly before attempting a selection.\n\n" + shipCompareString(arg));
+	output("Your Codex prompts you to review the information on this ship thoroughly before attempting a selection.\n\n" + shipCompareString(arg, false));
 	clearMenu();
 	
 	if(shopkeep is Dockmaster) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Novahome, you’ll have to make your purchase with a trade-in.");
@@ -308,7 +308,7 @@ public function buyAShipAndTradeInGo(arg:ShittyShip):void
 	var cost:Number = (arg.shipCost()-Math.round(shits["SHIP"].shipCost()/2));
 	if(cost < 0) output("<b>You make a profit of " + Math.abs(cost) + " off of the trade-in, receiving a new " + arg.short + ".");
 	else if(cost == 0) output("<b>You pay nothing for your new ship</b>, covering the cost by trading in your old vessel.");
-	else output("<b>You pay " + cost + " credits for " + arg.a + arg.short + "</b> after selling your " + shits["SHIP"].a + shits["SHIP"].short + "!");
+	else output("<b>You pay " + cost + " credits for " + arg.a + arg.short + "</b> after selling your " + shits["SHIP"].short + "!");
 	pc.credits -= cost;
 	shits["SHIP"] = arg;
 	arg.HP(arg.HPMax());
@@ -347,29 +347,43 @@ public function swapShipsMenu():void
 	if(shits["SHIP_2"] != undefined)
 	{
 		output("\n" + shits["SHIP_2"].short);
-		addButton(0,shits["SHIP_2"].short,swapShips,"SHIP_2",shits["SHIP_2"].short,shipCompareString(shits["SHIP_2"]));
+		addButton(0,shits["SHIP_2"].short,swapShipsCheck,"SHIP_2",shits["SHIP_2"].short,shipCompareString(shits["SHIP_2"]));
 	}
 	if(shits["SHIP_3"] != undefined)
 	{
 		output("\n" + shits["SHIP_3"].short);
-		addButton(1,shits["SHIP_3"].short,swapShips,"SHIP_3",shits["SHIP_3"].short,shipCompareString(shits["SHIP_3"]));
+		addButton(1,shits["SHIP_3"].short,swapShipsCheck,"SHIP_3",shits["SHIP_3"].short,shipCompareString(shits["SHIP_3"]));
 	}
 	if(shits["SHIP_4"] != undefined)
 	{
 		output("\n" + shits["SHIP_4"].short);
-		addButton(2,shits["SHIP_4"].short,swapShips,"SHIP_4",shits["SHIP_4"].short,shipCompareString(shits["SHIP_4"]));
+		addButton(2,shits["SHIP_4"].short,swapShipsCheck,"SHIP_4",shits["SHIP_4"].short,shipCompareString(shits["SHIP_4"]));
 	}
 	if(shits["SHIP_5"] != undefined)
 	{
 		output("\n" + shits["SHIP_5"].short);
-		addButton(3,shits["SHIP_5"].short,swapShips,"SHIP_5",shits["SHIP_5"].short,shipCompareString(shits["SHIP_5"]));
+		addButton(3,shits["SHIP_5"].short,swapShipsCheck,"SHIP_5",shits["SHIP_5"].short,shipCompareString(shits["SHIP_5"]));
 	}
 	if(shits["SHIP_6"] != undefined)
 	{
 		output("\n" + shits["SHIP_6"].short);
-		addButton(4,shits["SHIP_6"].short,swapShips,"SHIP_6",shits["SHIP_6"].short,shipCompareString(shits["SHIP_6"]));
+		addButton(4,shits["SHIP_6"].short,swapShipsCheck,"SHIP_6",shits["SHIP_6"].short,shipCompareString(shits["SHIP_6"]));
 	}
 	addButton(14,"Back",VahnTheMechanic);
+}
+public function swapShipsCheck(arg:String = ""):void
+{
+	clearOutput();
+	showBust(shits[arg].bustDisplay);
+	showName("\n"+shits[arg].short.toUpperCase());
+	output("Are you sure you want to swap to this ship?");
+	
+	output("\n\n" + shipCompareString(shits[arg], false));
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0,"Yes",swapShips);
+	addButton(1,"No",swapShipsMenu);
 }
 public function swapShips(arg:String = ""):void
 {
@@ -408,13 +422,33 @@ public function shipStorageRoom():Number
 }
 
 
-public function shipCompareString(newShip:ShittyShip):String
+public function shipCompareString(newShip:ShittyShip, buttonTooltip:Boolean = true):String
 {
 	var shipTooltip:String = "";
+	var i:int = 0;
+	
 	//Appearance compare. Might need cut.
-	if(newShip != shits["SHIP"]) shipTooltip += "<b>New Ship:</b> " + newShip.short + "\n" + newShip.long;
-	else shipTooltip += "<b>Your Ship:</b> " + newShip.short + "\n" + newShip.long;
-	//shipTooltip += "\n\n<b>Old Ship:</b> " + newShip.short + "\n" + newShip.long;
+	if(!buttonTooltip)
+	{
+		if(newShip != shits["SHIP"]) shipTooltip += "<b>New Ship:</b> ";
+		else shipTooltip += "<b>Your Ship:</b> ";
+		shipTooltip += newShip.short;
+		shipTooltip += "\n" + newShip.long;
+	}
+	else
+	{
+		var charCount:int = 128;
+		for(i = 0; i < newShip.long.length; i++)
+		{
+			charCount--;
+			if(charCount <= 0 && InCollection(newShip.long.charAt(i), [" ",".",",",";","!","?"]))
+			{
+				if(i < newShip.long.length) shipTooltip += " \\\[...\\\]";
+				break;
+			}
+			shipTooltip += newShip.long.charAt(i);
+		}
+	}
 
 	shipTooltip += "\n\n<b>Shields: </b>" + shipStatCompare(newShip.shieldsMax(), shits["SHIP"].shieldsMax());
 	shipTooltip += "\n<b>Shield Def: </b>" + shipStatCompare(newShip.shieldDefense(), shits["SHIP"].shieldDefense());
@@ -432,11 +466,24 @@ public function shipCompareString(newShip:ShittyShip):String
 	//Thrust
 	shipTooltip += "\n<b>Thrust: </b>" + shipStatCompare(newShip.shipThrust(), shits["SHIP"].shipThrust());
 	
-	//Accuracy
-	shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
-	//Evasion
-	shipTooltip += "\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
-
+	if(!buttonTooltip)
+	{
+		//Accuracy
+		shipTooltip += "\n\n<b>Accuracy: </b>" + shipStatCompare(newShip.shipAccuracy(), shits["SHIP"].shipAccuracy());
+		//Evasion
+		shipTooltip += "\n<b>Evasion: </b>" + shipStatCompare(newShip.shipEvasion(), shits["SHIP"].shipEvasion());
+	}
+	
+	if(!buttonTooltip)
+	{
+		shipTooltip += "\n";
+		shipTooltip += "\n<b>Wardrobe Capacity: </b>" + shipStatCompare(newShip.wardrobeSizeRaw, shits["SHIP"].wardrobeSizeRaw);
+		shipTooltip += "\n<b>Equipment Capacity: </b>" + shipStatCompare(newShip.equipmentSizeRaw, shits["SHIP"].equipmentSizeRaw);
+		shipTooltip += "\n<b>Consumables Capacity: </b>" + shipStatCompare(newShip.consumableSizeRaw, shits["SHIP"].consumableSizeRaw);
+		shipTooltip += "\n<b>Valuables Capacity: </b>" + shipStatCompare(newShip.valuablesSizeRaw, shits["SHIP"].valuablesSizeRaw);
+		shipTooltip += "\n<b>Toys Capacity: </b>" + shipStatCompare(newShip.toysSizeRaw, shits["SHIP"].toysSizeRaw);
+	}
+	
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), shits["SHIP"].shipCapacity());
 	if(newShip.bonusCrewCapacity() > 0 || shits["SHIP"].bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(), shits["SHIP"].bonusCrewCapacity());
@@ -445,7 +492,7 @@ public function shipCompareString(newShip:ShittyShip):String
 	shipTooltip += "\n<b>Weapon Capacity: </b>" + shipStatCompare(newShip.shipGunCapacity(), shits["SHIP"].shipGunCapacity());
 	shipTooltip += "\n\n<b>Modules Installed: </b>";
 
-	for(var i:int = 0; i < newShip.inventory.length; i++)
+	for(i = 0; i < newShip.inventory.length; i++)
 	{
 		if(i > 0) shipTooltip += ", ";
 		shipTooltip += StringUtil.toTitleCase(newShip.inventory[i].longName);

@@ -7526,7 +7526,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["RATS_LOSS_SEXED"] != undefined) ratSex.push("Was Teased");
 						if(flags["RATS_GANGBANGED"] != undefined) ratSex.push("Gangbang");
 						if(flags["RATS_RIDDEN"] != undefined) ratSex.push("Was Abandoned With Jumper");
-						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
+						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was “Harvested”");
 						output2(ratSex.join(", "));
 					}
 					if(flags["RATS_SEXED_EAR"] != undefined)
