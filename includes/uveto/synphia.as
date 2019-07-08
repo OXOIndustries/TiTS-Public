@@ -6,11 +6,11 @@ Goggles
 Green scales, purple eyes, pink nips/slit?
 Ram/Geddy-like horns - cybernetic psychic amps, just like fentaur. USUALLY NEON GREEN.
 Black - Energy absorption, either as a means of defending against energy attacks or defeating foes by sucking the very heat from their flesh.
-Purple - Spatial manip. Can't make portals but can make small things seem +/-20% bigger for a few seconds.
+Purple - Spatial manip. Can’t make portals but can make small things seem +/-20% bigger for a few seconds.
 Blue - self-augmentation
 Green - Healing and bodily adjustment. Limited. Changing someone permanently exhausts her, and she needs cum.
-Yellow - Sensory enhancement. 10' clairvoyance.
-Orange - Limited Time Control - can only change her perception of time's flow to be longer/shorter.
+Yellow - Sensory enhancement. 10’ clairvoyance.
+Orange - Limited Time Control - can only change her perception of time’s flow to be longer/shorter.
 Red - Energy creation - Capable of making small electric shocks or powering an LED or lightbulb
 Pink - Weak Mind Control, mostly just altering sensory input slightly. Overpowering any resistance is supremely draining for her.
 White - Recharging/Cooldown. No powers save for touch-range telepathy. Vulnerable.
@@ -193,16 +193,16 @@ public function synphiaTalkScreen():void
 	addButton(1,"SteeleTech?",steeletechSynphiaTalk,undefined,"SteeleTech?","What does Synphia think about SteeleTech? She works for them, after all.");
 	if(flags["SYNPHIA_JOBTALK"] != undefined)
 	{
-		addButton(2,"Mods?",modTalkWithSynphia,undefined,"Mods","She mentioned mods but doesn't seem to have any aside from the horns...");
+		addButton(2,"Mods?",modTalkWithSynphia,undefined,"Mods","She mentioned mods but doesn’t seem to have any aside from the horns...");
 		addButton(3,"Psychic?",psychicTalkWithSynphia,undefined,"Psychic?","Ask her about her psychic abilities.");
 	}
 	else 
 	{
-		addDisabledButton(2,"Locked","Locked","You don't know her well enough for this.");
-		addDisabledButton(3,"Locked","Locked","You don't know her well enough for this.");
+		addDisabledButton(2,"Locked","Locked","You don’t know her well enough for this.");
+		addDisabledButton(3,"Locked","Locked","You don’t know her well enough for this.");
 	}
-	if(flags["SYNPHIA_STEELETECHTALK"] != undefined || flags["SYNPHIA_MODSTALK"] != undefined) addButton(4,"Sister?",synphiaSisterTalk,undefined,"Sister?","Get some more intel on that sister she's supporting.");
-	else addDisabledButton(4,"Locked","Locked","You don't know her well enough for this.");
+	if(flags["SYNPHIA_STEELETECHTALK"] != undefined || flags["SYNPHIA_MODSTALK"] != undefined) addButton(4,"Sister?",synphiaSisterTalk,undefined,"Sister?","Get some more intel on that sister she’s supporting.");
+	else addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
 	addButton(14,"Back",approachSynphia,true);
 }
 
