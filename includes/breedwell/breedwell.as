@@ -1585,7 +1585,7 @@ public function breedwellCockmilkerCockSelect():void
 	clearMenu();
 	for(var i:int = 0; i < pc.totalCocks(); i++)
 	{
-		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i) , 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
+		output("\n<b>#" + (i + 1) + ":</b> " + formatFloat(pc.cLength(i), 3) + " in long, " + pc.cocks[i].cockColor + " [pc.accurateCockName " + i + "]");
 		addButton(i,"#" + (i + 1), breedwellCockmilkerStart, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock","Get your [pc.cockNoun " + i + "] milked.");
 	}
 }

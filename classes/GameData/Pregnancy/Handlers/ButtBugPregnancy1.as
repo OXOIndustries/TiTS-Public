@@ -109,6 +109,13 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function buttBugAddEggs1(mother:Creature, pregSlot:int, eggs:int = 1):void
 		{
+			// Add extra eggs from other loads
+			if(mother.statusEffectv3("Butt Bug (Female)") > 0)
+			{
+				eggs += mother.statusEffectv3("Butt Bug (Female)");
+				mother.setStatusValue("Butt Bug (Female)", 3, 0);
+			}
+			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
 			pData.pregnancyQuantity += eggs;
@@ -180,6 +187,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			mother.setStatusValue("Butt Bug (Female)", 2, 0);
+			mother.setStatusValue("Butt Bug (Female)", 3, 0);
 			
 			pData.reset();
 		}

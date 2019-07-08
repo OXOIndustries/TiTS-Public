@@ -1494,7 +1494,7 @@ public function meetUpWithKaskaZeBossSloot():void
 	output("\n\nYour Codex beeps something about her being a “dzaan,” but you’re hard-pressed to pay attention.");
 	if(!CodexManager.entryUnlocked("Dzaan"))
 	{
-		output(" <b>(‘Dzaan’ Codex entry unlocked!)</b>");
+		output("\n\n<b>(‘Dzaan’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Dzaan");
 	}
 	output("\n\nThe hermaphrodite’s (you have to assume - it’s hard to see past that swollen pouch) height and distinctive posture keep your gaze from lingering too long on the rest of her impressive assets. The double-barreled gun she’s hefting one-handed is bigger than her leg, and by the looks of it, it’s a combination slug-gun and laser weapon. The bottom barrel has a small drum magazine, and power indicators along the top indicate that it’s fully charged.");

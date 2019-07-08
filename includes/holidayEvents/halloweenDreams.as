@@ -1096,7 +1096,7 @@ public function gothPastelSpookDream():void
 	output("\n\nThis isn’t your ship. Where are you?!");
 	output("\n\nYou spin around, trying to get a look around you to determine your location, but an ice cold, iron grip seals its way around your shoulder before you can get very far.");
 	output("\n\nBefore you can panic, soft yet freezing lips brush your neck, and a soothing voice echoes through the room. <i>“Pet, you wandered off again, didn’t you?”</i>");
-	output("\n\nThe silly thought about a ship is gone in an instant as your master’s fangs scrape across your neck - sudden, but oh so gently - and you mewl, pleasured.");
+	output("\n\nThe silly thought about a ship is gone in an instant as your master’s fangs scrape across your neck - sudden, but oh-so-gently - and you mewl, pleasured.");
 	output("\n\n<i>“Hm, I’m not hungry... And yet you need punished for wandering against permission.”</i>");
 	output("\n\nYou <i>know</i> he can feel how your pulse is thundering through every vessel in your body, and you wonder what he has in store for you.");
 	output("\n\nSlender hands slip from your shoulders, down your trembling form, but stop just short of your crotch and you whine, trying desperately for his touch. Wide but firm hips press against your ass, a sizable bulge along with them, and you quiet. Master will tend to you eventually.");

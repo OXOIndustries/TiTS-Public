@@ -227,17 +227,25 @@ public function installTheMindwashVisor():void
 }
 
 // [Mindwash]
-public function mindwashMeShipVers():void
+public function installedMindwashBonus(btnSlot:int = 0):void
+{
+	output("\n\nThe Mindwash Visor you purchased from Doctor Badger is placed close by, currently on idle mode.");
+	
+	addButton(btnSlot, "Mindwash", mindwashMeShipVers, false, "Mindwash Visor", "Doctor Badger’s hypnosis-inducing holovisor that has been dialed down to be used safely.");
+}
+public function mindwashMeShipVers(fromMasturbate:Boolean = true):void
 {
 	clearOutput();
 	showName("\nMINDWASH!");
 	author("Adjatha");
-	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
+	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, it induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
 	
 	processTime(3);
 	clearMenu();
 	
 	output("\n\nWill you plug in");
+	
+	var backFunc:Function = (fromMasturbate ? masturbateMenu : shipStorageMenuRoot);
 	
 	//Add Yammi and Pexiga scenes if there is demand for it
 	//Maybe get other folks to write a scene or two for Anno & Reaha trying out the Visor?
@@ -261,7 +269,7 @@ public function mindwashMeShipVers():void
 		{
 			if((btnSlot + 1) % 15 == 0)
 			{
-				addButton(btnSlot,"Back",masturbateMenu);
+				addButton(btnSlot, "Back", backFunc);
 				btnSlot++;
 			}
 			switch(eligibleCrew[i])
@@ -277,14 +285,14 @@ public function mindwashMeShipVers():void
 		if(btnSlot > 14)
 		{
 			while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
-			addButton(btnSlot, "Back", masturbateMenu);
+			addButton(btnSlot, "Back", backFunc);
 		}
 	}
-	else addButton(0,"Use",useShipMindwashMeee);
+	else addButton(0, "Use", useShipMindwashMeee);
 	
 	output("?");
 	
-	addButton(14,"Back",masturbateMenu);
+	addButton(14, "Back", backFunc);
 }
 
 // [Me]
@@ -2369,9 +2377,9 @@ public function roxanneDrinkingScene():void
 		output(" Roxanne cries out ecstatically and shoots large globules of fluid into your rectum. Muffled, wet squishes and audible liquid churning can be heard from your guts, but you’re pretty certain it’s still only pre-cum.");
 		output("\n\nYou’re openly moaning and gasping, your face pressed into the mattress by the hard-fucking lizan. She pounds you faster and faster, breathily exulting in the pleasure each time she bottoms out against your gigantic backside. You can’t help but clench and squeeze either - your body is being battered relentlessly. Your sphincter convulses around the thick cock, and when you can’t take any more, you cum, babbling drunkenly and submissively.");
 		output("\n\nRoxanne moans, <i>“Here... it... coooomes!”</i> and thrusts herself into you hilt-deep and hard enough for her balls to leave a mark on your cushiony butt. Eruptions of gooey spunk go off inside you, slowly enlarging the visible bulge in your belly from tip to base, culminating in a spray of spooge from around the edges of Roxanne’s still-squirting cock. Jizz drips down your mounds of goo, pooling on the ground. At the same time, your bloated belly is starting to look fairly pregnant. It slowly balloons out, leaving your poor tummy totally, utterly filled. You get so used to the sensation that when Roxanne finally slows, you’re roused from your post-orgasmic haze");
-		if(hasCock) output(" , dimly aware of the mess you’ve made of Roxanne’s bedsheets");
+		if(hasCock) output(", dimly aware of the mess you’ve made of Roxanne’s bedsheets");
 		output(". Roxanne pulls out unceremoniously, releasing a torrent of white from your abused back-door.");
-		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess , falling asleep in your own spooge.");
+		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess, falling asleep in your own spooge.");
 		processTime(30);
 		var cumNum2:Number = pc.cumQ();
 		pc.orgasm();
@@ -2966,13 +2974,13 @@ public function useMindwashOnShekka():void
 		if(pc.IQ() <= 65 && pc.characterClass != GLOBAL.CLASS_ENGINEER) 
 		{
 			output("\n\nYou stutter. Uh, yes! You tell her that it’s exactly what she’s thinking, and that that would have been your first guess, as well. Great minds think alike!");
-			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone</i> else’s <i>dream, and you’re living it out.”</i>");
+			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone </i>else’s<i> dream, and you’re living it out.”</i>");
 			output("\n\nYou collect yourself and answer more appropriately.");
 		}
 		else 
 		{
 			output("\n\nYou reply that that’s exactly correct: this device, you’re told, can rewrite memories, and place new ones in the wearer’s mind.");
-			output("\n\n<i>“Well, not</i> exactly,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone</i> else’s <i>dream.");
+			output("\n\n<i>“Well, not </i>exactly<i>,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone </i>else’s<i> dream.”</i>");
 			output("\n\nYou hum to yourself as you consider your answer and her own.");
 		}
 		output(" Yes, as a matter of fact, that’s what this device does. You wanted to call Shekka here because you thought she would appreciate a piece of modern engineering like this one.");

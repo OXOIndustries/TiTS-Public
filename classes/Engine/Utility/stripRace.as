@@ -43,6 +43,7 @@
 		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";
 		if(InCollection(sRace, ["wolf", "worg"])) sRace = "lupine";
 		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";
+		if(InCollection(sRace, ["drider", "spider", "arachnid"])) sRace = "spider";
 		if(InCollection(sRace, ["satyr"])) sRace = "goat";
 		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
 		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";

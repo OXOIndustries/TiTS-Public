@@ -474,7 +474,7 @@
 			output("You take a moment to carefully track your target, and then fire. ");
 			if(rangedCombatMiss(pc, this) || rangedCombatMiss(pc, this) || rand(3) == 0)
 			{
-				output("The shoot narrowly whiffs past his broad shoulder.");
+				output("The shot narrowly whiffs past his broad shoulder.");
 			}
 			else
 			{

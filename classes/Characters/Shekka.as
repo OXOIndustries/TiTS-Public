@@ -24,11 +24,14 @@
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
+			// Note: Shop inventory now handeled in shekkaShop();
+			/*
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
 			this.inventory.push(new Smartclothes());
 			this.inventory.push(new StrangeCollar());
 			this.inventory.push(new ExpandedBackpackI());
+			*/
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;
@@ -224,6 +227,18 @@
 		{
 			dataObject.inventory.push(new RogueRags().getSaveObject());
 			dataObject.inventory.push(new ScrapShield().getSaveObject());			
+		}
+		override public function cumQ():Number
+		{
+			if(this.hasStatusEffect("Fixed CumQ"))
+			{
+				return statusEffectv1("Fixed CumQ");
+			}
+			return 950;
+		}
+		override public function get bustDisplay():String
+		{
+			return "SHEKKA";
 		}
 		override public function onLeaveBuyMenu():void
 		{

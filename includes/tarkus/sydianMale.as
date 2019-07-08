@@ -158,7 +158,7 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	}
 	//Merge
 	output(" The captive sydian watches with a slow, sly smile of his own. Perhaps he secretly hoped it would come to this if he lost. It’s certainly better than the more violent alternatives, that’s for sure. Giving yourself a few firming pumps, you advance on the supine creature, your eyes tracing the sculpted curvature of his muscular frame down to his narrow hips and tight-looking ass.");
-	output("\n\nYou point at him, and looks back, confused");
+	output("\n\nYou point at him, and he looks back, confused");
 	if(enemy.lust() >= enemy.lustMax()) output(" but erect and drooling his silvery pre-cum");
 	else output(" but rapidly stiffening in response to the sight of your body");
 	output(". Sighing, you make a circular gesture with your fingertip - surely he can figure out that you want him on his hands and knees. How else would you vent the lusts he excited in your body? He seems to get it after a moment of consideration and climbs up, presenting his taut, armored ass for your inspection, a single crimson star visible in the shadow of his tail.");
@@ -498,12 +498,16 @@ public function hungryhungryTailginasThirst():void
 		output(" to sway around your body and into your hand");
 		if(pc.tailCount > 1) output("s");
 		if(pc.tailCount > 2) output(", as the excess spread around you an obscene, eager halo");
-		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is, never mind the worry in the back of your mind that ");
-		if(pc.tailCount == 1) output("it");
-		else output("they");
-		output(" might be ");
-		if(pc.tailCount == 1) output("a parasite");
-		else output("parasites");
+		output(". Your fingers slip inside the dusky, symbiotic genitalia to show the prone sydian just how wet and eager your body is");
+		if(pc.hasParasiteTail())
+		{
+			output(", never mind the worry in the back of your mind that ");
+			if(pc.tailCount == 1) output("it");
+			else output("they");
+			output(" might be ");
+			if(pc.tailCount == 1) output("a parasite");
+			else output("parasites");
+		}
 		output(". ");
 		if(enemy.HP() < 1) output("His flagging erection stiffens in two rapid pulsations at the sight of such slick, promising depths, and an eager, almost too eager, smile crosses his face at the same time.");
 		else output("His immensely tumescent length twitches back and forth at the sight, and an eager, almost too eager, smile crosses his features at the same time.");

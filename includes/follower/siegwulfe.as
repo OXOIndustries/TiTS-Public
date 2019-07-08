@@ -263,20 +263,20 @@ public function siegwulfeInteractBonus(btnSlot:int = 0):String
 {
 	return siegwulfeOnShipBonus(btnSlot, true);
 }
-public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):String
+public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false, showBlurb:Boolean = true):String
 {
 	// Bought, but not activated.
 	if(flags["WULFE_ON_SHIP"] == false)
 	{
 		addDisabledButton(btnSlot, "Siegwulfe", "Siegwulfe", "Check your storage!");
-		return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>";
+		return (showBlurb ? "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>" : "");
 	}
 	// No Siegwulfe!
 	if(!fromInv && !hasSiegwulfe()) return "";
 	if(pc.hasItemInStorageByClass(SiegwulfeItem))
 	{
 		addDisabledButton(btnSlot, (chars["WULFE"].short), (chars["WULFE"].short), "You can’t do anything with your Siegwulfe while she is in your ship’s storage.");
-		return "\n\nYour Siegwulfe is currently stored away in your ship’s storage.";
+		return (showBlurb ? "\n\nYour Siegwulfe is currently stored away in your ship’s storage." : "");
 	}
 	
 	var bonusText:String = "";
@@ -293,7 +293,7 @@ public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):S
 	}
 	
 	addButton(btnSlot, (chars["WULFE"].short), approachSiegwulfe, [true, fromInv], (chars["WULFE"].short), (siegwulfeIsDom() ? "Call for your bimbo-domme Mistress." : ("Check up on your loyal " + (chars["WULFE"].isBimbo() ? "bimbobot" : "Siegwulfe") + ".")));
-	return bonusText;
+	return (showBlurb ?  bonusText: "");
 }
 
 // Siegwulfe Interactions
@@ -468,7 +468,7 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Stay
 		case "stay":
-			output("You ask [wulfe.name] to stay on your ship as a crewmember.");
+			output("You ask [wulfe.name] to stay on your ship as a crew member.");
 			output("\n\nThe droid looks at you and nods. <i>“Yes, [pc.master].”</i>");
 			output("\n\n(<b>[wulfe.name] has joined your crew!</b>)");
 			output("\n\n");
@@ -790,7 +790,7 @@ public function siegwulfeExpansionIntro():void
 	output("\n\nWhatever Dr. Badger’s going to do, you have a feeling [wulfe.name] will return to you completely different...");
 	output("\n\n<b>Warning: This will be an irreversible change. Save your game first and revisit her if you want to go through with it.</b>");
 	flags["DR_BADGER_APPROACHES_TILL_WULFE"] = 2;
-	addButton(0, "Do it", siegwulfeInstallDonger);
+	addButton(0, "Do It", siegwulfeInstallDonger);
 	addButton(1, "No", function ():void
 	{
 		clearMenu();

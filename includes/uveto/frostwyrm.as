@@ -544,7 +544,7 @@ public function frostwyrmPickMeUpBaby():void
 	output("You concentrate on your psionic link with the Frostwyrm; you reach out to her, telling her that you’re on the Uveto ocean coastline, and you’d like to see her.");
 	output("\n\n<i>At once, my Qal,</i> you hear her familiar voice thrum inside your skull. The flight between the coast and her lair is a fair distance, and you prepare to settle in, pacing and hugging yourself to keep warm, as you wait for her.");
 	output("\n\nDespite that, she’s by your side much sooner than you anticipated; she must have been out hunting when you called for her. Within minutes, you see her imposing form in the distance, and you hear her roar vibrate the very air around you. She spots you as soon as you spot her, and she dives, the air splitting around her wings as she comes in for a quick landing.");
-	output("\n\nShe rights herself with practiced grace before landing, two sets of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
+	output("\n\nShe rights herself with practiced grace before landing, a pair of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
 	output("\n\nYou don’t waste much time before asking her to take you back to her lair. <i>Of course,</i> she replies gladly, lowering her body to the ice so that you can climb onto her. <i>I look forward to you warming my lair once more.</i>");
 	
 	// Allow Xmas events once a year
@@ -672,7 +672,7 @@ public function nameThatFrostwyrm1():void
 	if(pc.hasGenitals()) {
 		output(",");
 		if (pc.hasCock()) output(" hardening [pc.eachCock] not to full, hard-as-rock mast, but damn close to it");
-		if (pc.isHerm()) output(" just south, you feel");
+		if (pc.isHerm()) output(". Just south, you feel");
 		if (pc.hasVagina()) output(" your [pc.vaginas] moistening and clenching, eager for the first willing dick you lay your eyes on");
 	}
 	output(".");
@@ -697,7 +697,7 @@ public function frostwyrmJesusWeFinallyLanded():void
 	output("Finally, after a punishing hour-long flight, you spot land. It isn’t another continent or beach; instead, it’s an island, several miles in diameter. It’s featureless – as the rest of the frozen wastes of Uveto are – save for a single spire on one edge of the island with a lazy slope leaning towards the island’s center. At the base of the mountain is a massive mouth, leading into a deep, underground cave.");
 	output("\n\n<i>Grab tight,</i> [frostwyrm.name] instructs, and you do so as she slowly descends. The drop is much gentler than the rise was, though you come hurtling towards the ground much faster than you appreciated, having grown accustomed to the height. [frostwyrm.name] pulls up just before you land; she flaps her wings several times, adjusting her body to the land, before finally settling down.");
 	output("\n\nYou hop off your Frostwyrm, walking the paltry remaining distance to the cave, allowing her to show you the way. <i>Welcome to my lair,</i> she says, peering over her haunch to make sure you’re following. <i>Watch your first step. The incline is quite sharp.</i>");
-	output("\n\nShe wasn’t kidding: the cave only goes for a few feet forward before it curves into the island rather than deeper into the mountain, and the first drop is almost ten feet deep. [frostwyrm.name] hops down with practiced grace, twisting her draconian body into its lair, and you follow behind, leaping after her.");
+	output("\n\nShe wasn’t kidding: the cave only goes for a few feet forward before it curves into the island rather than deeper into the mountain, and the first drop is almost ten feet deep. [frostwyrm.name] hops down with practiced grace, twisting her draconian body into her lair, and you follow behind, leaping after her.");
 	output("\n\nShe leads you further in wordlessly; the light of Uveto’s star refracts off the icy walls repeatedly, illuminating your path far deeper into the lair than you would have thought it would. After another drop, you’re opened into a massive, underground dome, easily a hundred feet across and forty-or-more feet straight up. The ground is packed very tight, likely from [frostwyrm.name] pacing over it endlessly. Stalactites glimmer around the ceiling of the dome, shooting light every which way and providing a show similar to a chandelier. In the far corner of the dome is an elevated platform of flat ice – likely a bed or resting place for [frostwyrm.name].");
 	
 	clearMenu();
@@ -1211,7 +1211,7 @@ public function frostwyrmVaginalRepeat():void
 	author("B");
 	
 	var vIdx:int = -1;
-	if(pc.hasVagina() && pc.fertility() > 0 && pc.blockedVaginas() == 0){
+	if(pc.hasVagina() && pc.fertility() > 0 && pc.blockedVaginas() == 0) {
 		vIdx = pc.findEmptyPregnancySlot(1);
 		//if(vIdx < 0) vIdx = rand(pc.totalVaginas());
 	}
@@ -1710,10 +1710,14 @@ public function frostwyrmSteeleIsADirtyGirl():void
 		output("\n\n<i>I have been thinking,</i> [frostwyrm.name] says. <i>Perhaps it is my kind that is poorer for not appreciating hygiene the way your kind do. There is no harm in obtaining pleasure from your mate, even from an act as innocuous as a bath.</i> She gives you a long, exaggerated lick across your entire body. <i>Your kind are certainly creative with sharing pleasure.</i>");
 	}
 	output("\n\nShe withdraws her tongue suddenly and nudges you with her snout, wordlessly directing you to flip over. You do so, exposing your backside to her, and she resumes, again starting at your [pc.legs], her thick tongue worming against your crotch, and making a long, slow drag up your spine.");
-	output("\n\nHer tongue molds itself against your [pc.ass], the spongy flesh worming in between your cheeks and hitting everything from your ");
-	if (pc.balls > 0) output("[pc.balls]");
-	if (pc.isHerm()) output(", to your");
-	if (pc.hasVagina()) output("[pc.vagina]");
+	output("\n\nHer tongue molds itself against your [pc.ass], the spongy flesh worming in between your cheeks");
+	if(pc.balls > 0 || pc.hasVagina())
+	{
+		output(" and hitting everything from your");
+		if (pc.balls > 0) output(" [pc.balls]");
+		if (pc.balls > 0 && pc.hasVagina()) output(", to your");
+		if (pc.hasVagina()) output(" [pc.vagina]");
+	}
 	output(", to your taint, and finally against the rim of your [pc.asshole]. She is gentle, knowing how tender the flesh can be on you, yet insistent, making sure your nerves all light up in just the right ways. You moan and melt against her belly, and if that weren’t enough, the sensations you’re broadcasting over your psionic link to her would surely tell her everything she needs.");
 	output("\n\nHer tongue covers you like a wet blanket every time she draws it up from your pelvis to the back of your neck. You continue to hump against her, ass first now; she lifts your [pc.lowerbody] off the ice just slightly with each new lick, taking exaggerated care to get between your [pc.legs].");
 	output("\n\nYou’re getting very close to your climax, and [frostwyrm.name] is aware without you saying a word. Her tongue starts dipping lower and deeper with each new pass: the flat of her tongue lays over your backside");
@@ -1851,10 +1855,14 @@ public function frostwyrmGoodGodImHurt(vIdx:int = -1):void
 	output("You hear the pleasured, satisfying purring of your mate from her body; the rumbling in her throat reverberates off the walls and plays you a symphony of just how well you’ve done your job as her mate.");
 	if (pc.hasCock() && !pc.hasVagina()) output("\n\n[frostwyrm.name] turns about, approaching the elevated ice shelf you’re standing on, and hoists herself onto it.");
 	else output("\n\n[frostwyrm.name] steps away from you, then gently nudges you towards the elevated ice shelf that is her resting place. When you groggily hoist yourself onto it (with [frostwyrm.name]’s help), she joins you, gently stepping around you.");
-	output(" <i>I had reservations that, as you are not of my kind, you would not meet my requirements in a mate. I am wrong in few areas, [pc.name], and I was wrong in this one,</i> she says to you, nudging at your [pc.chest] lovingly. The warmth from the orgasm that permeated your body is still there, but changes to something else: something that makes your heart race and your muscles relax, but does not make y");
-	if (pc.hasCock()) output("our [pc.cock] rise");
-	if (pc.isHerm()) output(" or y");
-	if (pc.isHerm()) output("our [pc.vagina] wet");
+	output(" <i>I had reservations that, as you are not of my kind, you would not meet my requirements in a mate. I am wrong in few areas, [pc.name], and I was wrong in this one,</i> she says to you, nudging at your [pc.chest] lovingly. The warmth from the orgasm that permeated your body is still there, but changes to something else: something that makes your heart race and your muscles relax");
+	if(pc.hasGenitals())
+	{
+		output(", but does not make");
+		if (pc.hasCock()) output(" your [pc.cock] rise");
+		if (pc.isHerm()) output(" or");
+		if (pc.hasVagina()) output(" your [pc.vagina] wet");
+	}
 	output(". It’s something more wholesome; something that... reminds you of home.");
 	output("\n\n<i>It is time for the final ritual of our coupling,</i> she says as she circles your body, wrapping her elongated, serpentine form around you. When she settles and lays down, she wraps her six legs around you and presses you gently against her belly, sharing her warmth with you. <i>We may rest.</i>");
 	output("\n\nYou reach out and grab one of her legs, pulling it closer to you as you nestle against [frostwyrm.name]’s belly, feeling her enormous heart beat around you and her rhythmic breathing soothe you.");
@@ -2550,7 +2558,7 @@ public function frostwyrmlingAppearance():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" – each daughter has a different hair color, but your eldest inherited your [baby.hairColor] from birth");
 	output(".");
 	output("\n\nGrowing from her shoulderblades are two massive wings, with a combined wingspan of twenty feet. When they’re folded behind her, they still reach behind her by about three additional feet, and they have a vertical reach of about eight, extending well past her head. Though they’re large and intimidating, she moves with them comfortably enough, and their thick, leathery musculature easily provides more than enough lift to give her flight.");
-	output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need at know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
+	output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need to know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
 	
 	
 	processTime(5);
@@ -2592,7 +2600,7 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 	if(lewdToggle && (pc.hasGenitals() || pc.biggestTitSize() > 0)) {
 		output("\n\n<i>“So what other differences are there?”</i> she asks. One of her hands reaches for your [pc.crotch], fondling casually, almost innocently in her pursuit of knowledge, at your junk. <i>“");
 		if(pc.hasGenitals()) {
-			if (pc.isHerm()) output("You have a penis and a vagina, just like the Qim and I do , so that’s not any different");
+			if (pc.isHerm()) output("You have a penis and a vagina, just like the Qim and I do, so that’s not any different");
 			else if (pc.hasCock()) output("You have a penis, just like the Qim, but you don’t have a vagina");
 			else output("You have a vagina, just like the Qim, but you don’t have a penis");
 			output(". ");
@@ -2742,7 +2750,7 @@ public function frostwyrmItsMineAllMine2():void
 	output("\n\nEach and every member of your clutch was on board with the plan. If it meant their Qal would stay with them forever, and if it made their Qal happy, they were all for it, every single one of them. They were giddy and excited, yet attentive and serious when you briefed them on your strategies and plans. They wanted this to succeed as badly as you did, but none as much as [frostwyrm.name]; of everyone in the lair, the idea of retaking her world for her kind, with her Qal at the helm, was like a fantasy come true.");
 	output("\n\nThe day you began your strike – the day your Qim lovingly referred to as ‘Light’s Beginning’ – ");
 	if (pc.IQ() <= 32) output("was a diplomatic disaster. You wanted no bloodshed, but your coordination was nonexistent; your attack plan, if it could even be called that, was sloppy; and you couldn’t even find the stations you had mapped out to strike in order. Your attack was confused and haphazard, with little communication between you and the kips, and rather than try to subjugate Uveto through a bit of flexing and diplomacy, it ultimately devolved into violence. You aren’t sure who threw the first punch, but, when all was said and done, you sure as hell finished the fight");
-	if (pc.IQ() >= 32 && pc.IQ() <= 65) output("was executed with the occasional hiccup, and you can’t say it was completely bloodless. The clutch stayed together, and you took the planetoid one station at a time; some of them fell easily and without resistance, while others were a little more... animated, refusing their subjugation. When a station couldn’t be reasoned with , you had to make some demonstrations and examples. It wasn’t the fault of anyone in your clutch, but you couldn’t help but feel responsible for the few diplomatic losses you had to endure");
+	if (pc.IQ() >= 32 && pc.IQ() <= 65) output("was executed with the occasional hiccup, and you can’t say it was completely bloodless. The clutch stayed together, and you took the planetoid one station at a time; some of them fell easily and without resistance, while others were a little more... animated, refusing their subjugation. When a station couldn’t be reasoned with, you had to make some demonstrations and examples. It wasn’t the fault of anyone in your clutch, but you couldn’t help but feel responsible for the few diplomatic losses you had to endure");
 	if (pc.IQ() >= 66) output("was executed flawlessly. Your clutch struck with strength and precision, hitting each station in order exactly as you had planned, and you had subjugated them one after the other without so much as a hitch. Like you had surmised, most of the civilized life on the planetoid were humble scientists, and they generally didn’t need convincing. The few that did bent with just a little flex of the power of your Frostwyrms, and when all was said and done, each every station on Uveto was under your control, and not a drop of blood was spilled. You couldn’t have been prouder of your clutch and their discipline");
 	if (pc.isBimbo()) output("kinda went out the window as soon as an intrepid few from your clutch had a better idea: rather than flex some muscle or make some threats or try and talk your way into sub... subju... ruling all of Uveto, why not just fuck your way there? It was a simple trade: all those lonely, pent-up and frustrated scientists got all the sex they could have asked for from your Frostwyrmling hunnies, and all they had to do was promise to do what you said. Man or woman, gay or straight, it didn’t matter; each of your daughters had something for anyone. You dunno how long it took, but when all was said and done, there weren’t any more stations to take over. And although not a drop of blood was spilt, the same could not be said for a handful of other bodily fluids");
 	output(".");
@@ -2859,7 +2867,7 @@ public function frostwyrmXMasMenu():void
 	else addButton(3,"Caroling!",frostwyrmXMasCaroling,undefined,"Caroling!","Song is one of the languages of the universe. You’re sure [frostwyrm.name] has a wonderful singing voice!");
 	if (flags["FROSTWYRM_XMAS_SNOWMEN"] == 1 && flags["FROSTWYRM_XMAS_SNOWANGELS"] == 1 && flags["FROSTWYRM_XMAS_GIFTGIVING"] == 1 && flags["FROSTWYRM_XMAS_CAROLING"] == 1 ) {
 		output("\n\nNow that she mentions it, you’ve gone through the whole list. There’s really only one thing left to do.");
-		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors!  You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
+		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors! You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
 	}
 	else addDisabledButton(4,"Decorate!","Decorate!","You should leave this for later!");
 }
@@ -3085,7 +3093,7 @@ public function frostwyrmXMasCaroling():void
 	}
 	output("\n\nThe minutes tick by, and eventually, [frostwyrm.name]’s song ends, and your body is gently let off the cloud it’s been put on. You ask [frostwyrm.name] what she had just sang. <i>In terms you understand, it is what your kind would call a ‘lullaby.’ It is a song a Qim or Qal sing to each other, or to their clutch, particularly during times of plenty.</i>");
 	output("\n\nYou ask her if the song means anything. <i>I do not understand the question,</i> she says, and you clarify: you ask if there are any definitions to the noises she just made. Songs by your kind usually have words, or ‘lyrics,’ that accompany the music. <i>No, there is no ‘definition’ to what I had just done. My kind communicate via emotion, [pc.name], not by words, and our songs are no different.</i>");
-	output("\n\nYou suppose that makes sense. Frostwyrms don’t speak like you do , after all. <i>It is your turn,</i> [frostwyrm.name] says, craning her long neck towards you to playfully nudge you with her nose. <i>I have fulfilled my role in the tradition of your kind. You must now do the same.</i> ");
+	output("\n\nYou suppose that makes sense. Frostwyrms don’t speak like you do, after all. <i>It is your turn,</i> [frostwyrm.name] says, craning her long neck towards you to playfully nudge you with her nose. <i>I have fulfilled my role in the tradition of your kind. You must now do the same.</i> ");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters leap to their" : "daughter leaps to her") +" feet, eager to hear what song you have to sing. "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "They each begin" : "She begins") +" to badger you, telling you that it wouldn’t be fair to leave it up the Qim to do all the work. ");
 	output("Looks like you don’t have much of a say in the matter.");
 	output("\n\nYou don’t know a ton of holiday songs off the top of your head, so you default to something you learned back when you were a child. It’s a song about ");
@@ -3162,7 +3170,7 @@ public function frostwyrmXMasClimax(color:String):void
 	
 	output("You reach for the white pack. You already have a couple ideas on how to use it, but you hesitate on the green and red packs. Thinking for a moment, you come to a decision, and reach for the "+ color +" pack.");
 	output("\n\nYou look at the pink, pulsing spire of flesh before you and you visualize your creation in your mind. ");
-	if (color == "green") output("It’d be mostly green, from root to crown, with the occasional, wavy, horizontal lines of white. You’re hoping to make it look like a tree, and the white lines are accumulated snow on the tree’s layering branches. It wouldn’t end in a point, like the trees do , but hopefully the image would come through easily enough.");
+	if (color == "green") output("It’d be mostly green, from root to crown, with the occasional, wavy, horizontal lines of white. You’re hoping to make it look like a tree, and the white lines are accumulated snow on the tree’s layering branches. It wouldn’t end in a point, like the trees do, but hopefully the image would come through easily enough.");
 	else output("It’d be diagonal lines of red and white, going all the way down. You’re hoping to make it resemble a candy cane; the only thought you have is how thick you should make the lines. You’re sure whatever decision you make, it’s hardly going to come out with the familiar peppermint flavor of an actual candy cane, but you’re sure it’ll be delicious all the same.");
 	output("\n\nYou get to work, opening the packs. You dip your fingers into the "+ color +" back first, and get started.");
 	output("\n\nYou start at the base and make ");
@@ -3171,7 +3179,7 @@ public function frostwyrmXMasClimax(color:String):void
 	output("\n\nYou take your time. ");
 	if (color == "green") output("Your work isn’t exactly meticulous, or a science, but it <i> is </i> taking a little longer than you thought it would.");
 	else output("You get four, thick, rotating lines of red on four sides of her big dick, allowing you to finally start it all over with white.");
-	output(" [frostwyrm.name] grunts occasionally, and a large bead of her draconic precum bloats her dick and splashes onto the ice, a signal of how close she is. It only inspires you to continue your casual pace; whether [frostwyrm.name] finishes before you do , you’re enjoying your bonding time with your mate.");
+	output(" [frostwyrm.name] grunts occasionally, and a large bead of her draconic precum bloats her dick and splashes onto the ice, a signal of how close she is. It only inspires you to continue your casual pace; whether [frostwyrm.name] finishes before you do, you’re enjoying your bonding time with your mate.");
 	output("\n\nAfter some more time, you finally finish your artistic task. [frostwyrm.name] is almost shaking with pleasure, doing her level best to keep from erupting prematurely, and your ticklish fingers and pleasurable hands aren’t exactly helping. You lean back, to appreciate your work: her cock is ");
 	if (color == "green") output("coated in darker lines of green that slowly fade to white, before abruptly turning green again and starting over. It keeps going, all the way to the rim of her tip; it ends perfectly, with her rim lined with white. It’s not exactly a perfect tree, but it’s recognizable enough – and you’re sure it’s about to be the most delicious plant you’ve ever tasted.");
 	else output("lined with diagonal alternating lines of red and white, going all the way from base to tip. The lines are crooked; the colors bleed and blend into each other all the way down; some lines are thicker in parts than others; but, nobody would be able to look at it and say that it at least resembles a candy cane. Now, to find out if it tastes as good as one...");

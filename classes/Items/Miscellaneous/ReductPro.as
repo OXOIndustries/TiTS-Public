@@ -1232,9 +1232,8 @@ package classes.Items.Miscellaneous
 						if (pc.horns != 1)
 							output("es");
 						output(", leaving your head bare of bony protrusions!");
-						pc.hornLength = 0;
-						pc.horns = 0;
-						pc.hornType = 0;
+						
+						pc.removeHorns();
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEMONIC)
 					{
@@ -1251,10 +1250,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_BOVINE)
@@ -1273,10 +1270,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" Even with how tiny they are, the paste manages to make them shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_LIZAN)
@@ -1296,10 +1291,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" horns soften and vibrate quietly as the drug kicks in. The pair shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEER)
@@ -1342,10 +1335,8 @@ package classes.Items.Miscellaneous
 				else
 				{
 					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completely. <b>Your head is now bare of any horns!</b>");
-					pc.hornLength = 0;
-					pc.horns = 0;
-					pc.hornType = 0;
-					pc.removeStatusEffect("Horn Bumps");
+					
+					pc.removeHorns();
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
 				

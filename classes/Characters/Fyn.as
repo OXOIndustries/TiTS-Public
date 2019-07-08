@@ -162,5 +162,9 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._isLoading = false;
 		}//end constructor
+		override public function get bustDisplay():String
+		{
+			return "FYN";
+		}
 	}//end Fyn Class
 }

@@ -87,6 +87,47 @@
 									dataObject[prop.@name].push(this[prop.@name][i]);
 								}
 							}
+							//multidimensional array such as LocationStorageInventory in PlayerCharacter.as/LocationStorage.as
+							else if (this[prop.@name][0] is Array)
+							{
+								var hasValues:int = -1;								
+								//not all of the 1st level arrays may have values so we need to check all of them until we find one
+								for (var mi:int = 0; mi < this[prop.@name].length; mi++)
+								{
+									if (this[prop.@name][mi].length > 0)
+									{
+										hasValues = mi;
+										break;
+									}
+								}
+								if (hasValues >= 0)
+								{
+									if (this[prop.@name][hasValues][0] is ISaveable)
+									{
+										dataObject[prop.@name] = new Array();
+
+										for (mi = 0; mi < this[prop.@name].length; mi++)
+										{	
+											dataObject[prop.@name][mi] = [];
+											for (var j:int = 0; j < this[prop.@name][mi].length; j++)
+											{
+												dataObject[prop.@name][mi].push(this[prop.@name][mi][j].getSaveObject());
+											}
+										}
+									}
+									//insert code for non ISaveable values
+									else
+									{
+										dataObject[prop.@name] = this[prop.@name];
+										trace("Potential serialization issue with multidimensional array non-ISaveable property: " + prop.@name);
+									}
+								}
+								else
+								{
+									dataObject[prop.@name] = this[prop.@name];
+									trace("Potential serialization issue with multidimensional array property: " + prop.@name);
+								}
+							}
 							else
 							{
 								dataObject[prop.@name] = this[prop.@name];
@@ -205,6 +246,40 @@
 										itemT.loadSaveObject(dataObject[prop][i]);
 										this[prop].push(itemT);
 									}
+								}
+								//multidimensional array such as LocationStorageInventory in PlayerCharacter.as/LocationStorage.as
+								else if (dataObject[prop][0] is Array)
+								{
+									var hasValues:int = -1;								
+									//not all of the 1st level arrays may have values so we need to check all of them until we found one
+									for (var mi:int = 0; mi < dataObject[prop].length; mi++)
+									{
+										if (dataObject[prop][mi].length > 0)
+										{
+											hasValues = mi;
+											break;
+										}
+									}
+									
+									if (hasValues >= 0)
+									{
+										if (!(dataObject[prop][hasValues][0] is Number) && !(dataObject[prop][hasValues][0] is String) && dataObject[prop][hasValues][0]["classInstance"] !== undefined)
+										{
+											for (mi = 0; mi < dataObject[prop].length; mi++)
+											{		
+												this[prop][mi] = [];
+												for (var j:int = 0; j < dataObject[prop][mi].length; j++)
+												{
+													var itemDZ:ISaveable = new (getDefinitionByName(dataObject[prop][mi][j].classInstance) as Class)();
+													itemDZ.loadSaveObject(dataObject[prop][mi][j]);
+													this[prop][mi].push(itemDZ);
+												}
+											}
+										}
+										//placeholder for nonclass objects in a multidemensinal array, add in what you need
+										else this[prop] = dataObject[prop];
+									}
+									else this[prop] = dataObject[prop];
 								}
 								// Or possibly store basic data types
 								else

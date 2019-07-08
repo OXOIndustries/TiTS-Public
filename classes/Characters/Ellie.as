@@ -202,7 +202,10 @@
 			this.ass.loosenessRaw = 2;
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "ELLIE";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.ellieMenu();

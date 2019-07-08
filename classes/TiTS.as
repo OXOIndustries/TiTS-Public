@@ -57,15 +57,16 @@
 
 	// Items
 	import classes.Items.Armor.*;
-	import classes.Items.Protection.*
-	import classes.Items.Guns.*
-	import classes.Items.Melee.*
-	import classes.Items.Apparel.*
-	import classes.Items.Miscellaneous.*
-	import classes.Items.Accessories.*
+	import classes.Items.Protection.*;
+	import classes.Items.Guns.*;
+	import classes.Items.Melee.*;
+	import classes.Items.Apparel.*;
+	import classes.Items.Miscellaneous.*;
+	import classes.Items.Accessories.*;
 	import classes.Items.Transformatives.*;
-	//Change SilkyCockBell to * when it's time -lighterfluid
-	import classes.Items.Piercings.SilkyCockBell;
+	import classes.Items.Piercings.*;
+	import classes.Items.Treasures.*;
+	import classes.Items.Upgrades.*;
 
 	import classes.Parser.ParseEngine;
 
@@ -115,6 +116,7 @@
 		include "../includes/lightsOut.as";
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
+		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
@@ -204,6 +206,7 @@
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
 		include "../includes/events/extrameet/bigtiddygothgf.as";
+		include "../includes/events/extrameet/kaede.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
@@ -219,6 +222,7 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/tessaWedding.as";
 		include "../includes/events/wargiiHold/druggedKorg.as";
 		include "../includes/events/wargiiHold/druggedKorgMale.as";
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
@@ -244,6 +248,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fadil.as";
 		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
@@ -277,6 +282,7 @@
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
 		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/bizzy.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -336,6 +342,8 @@
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
+		include "../includes/tarkus/coronaLordShipEncounter.as";
+		include "../includes/tarkus/dockMaster.as";
 		include "../includes/tarkus/drBadger.as";
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
@@ -360,6 +368,7 @@
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
+		include "../includes/tarkus/tessaBedroomGame.as";
 		include "../includes/tarkus/verusha.as";
 		include "../includes/tarkus/zea.as";
 		
@@ -379,6 +388,7 @@
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
 		include "../includes/newTexas/mirrin.as";
+		include "../includes/newTexas/mirrinPregpack.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
@@ -420,6 +430,7 @@
 		include "../includes/myrellion/littleGreenMan.as";
 		include "../includes/myrellion/lyralla.as";
 		include "../includes/myrellion/manor.as";
+		include "../includes/myrellion/focalorTheShipTove.as";
 		include "../includes/myrellion/merchantQueen.as";
 		include "../includes/myrellion/myrDeserterIndividuals.as";
 		include "../includes/myrellion/nehzara.as";
@@ -471,6 +482,8 @@
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		include "../includes/zhengShiStation/wallSluts.as";
+
+		include "../includes/zhengShiStation/shipTesting.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -531,6 +544,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/synphia.as";
 		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
@@ -541,6 +555,7 @@
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
+		include "../includes/uveto/xotchiExpansion.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/cooties.as";
@@ -552,6 +567,8 @@
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
+		public var shits:Object;
+		public var shitDict:Dictionary;
 
 		public var days:int;
 		public var hours:int;
@@ -652,7 +669,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.282";
+			version = "0.8.003";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -904,8 +921,8 @@
 			{
 				if (pc != null && pc.short != "Uncreated" && pc.short != "uncreated" && pc.short != "")
 				{
-					updatePCStats();
 					updateDisplays();
+					updatePCStats();
 				}
 			}
 			
@@ -966,7 +983,8 @@
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
-			if (item.type == GLOBAL.RANGED_WEAPON)
+			if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) compareItem = new EmptySlot();
+			else if (item.type == GLOBAL.RANGED_WEAPON)
 			{
 				compareItem = (chars["PC"] as Creature).rangedWeapon;
 			}

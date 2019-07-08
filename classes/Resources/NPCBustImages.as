@@ -36,6 +36,7 @@
 		public static var GATSOLD:Object = new GatsOldBusts();
 		public static var JACQUES:Object = new JacquesBusts();
 		public static var JAMESAB:Object = new JamesABBusts();
+		public static var JASSBEFROLD:Object = new JassBefroldBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var JAYFIREGROWLITHE:Object = new JayfireGrowlitheBusts();
 		public static var JLIKESTODRAW:Object = new JLikesToDrawBusts();

@@ -225,6 +225,7 @@ public function sitOnTemptingKittyFace():void
 	if(flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined) output(" not to mention some of the curvy cats you’ve seen elsewhere on Uveto");
 	output(".");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	output("\n\nBlood flows south");
 	if(pc.isHerm())
 	{
@@ -240,8 +241,8 @@ public function sitOnTemptingKittyFace():void
 		if(!pc.isCrotchExposed()) output("stretch the limits of your [pc.crotchCoverUnder]");
 		else output("point like spears at your slutty prey");
 		output(", ");
-		if(pc.cumQ() < 300) output("beading");
-		else if(pc.cumQ() < 10000) output("spurting");
+		if(cumQ < 300) output("beading");
+		else if(cumQ < 10000) output("spurting");
 		else output("squirting");
 		output(" [pc.cumColor] pre-seed uncontrollably.");
 	}
@@ -522,6 +523,7 @@ public function sitOnTemptingKittyFace2():void
 	// Merge
 	output("\n\nBreaths shallow, your whole body tenses up. You grunt and clinch the milo invader’s muzzle, boiling arousal surging through your " + (pc.isHerm() ? "mixed sex":"loins") + ". The halting heave of orgasm slows you to a crawl and you grip tight to the woman below; orgasm mere moments away, you arch back and cry out.");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	// Hermgasm & Cockgasm
 	if(pc.hasCock())
 	{
@@ -531,8 +533,8 @@ public function sitOnTemptingKittyFace2():void
 			output("\n\nThe leopardess’ O-mouth is stretched just a bit wider on the onset of your ejaculation");
 			if(pc.balls > 0) output(", spurred on by the heavy twitching in your ball" + (pc.balls > 1 ? "s":""));
 			output(". ");
-			if(pc.cumQ() < 1000) output("An outpouring of [pc.cum] surges up through your holstered cock, spurting into the she-cat’s throat and certainly into her belly. Dizzied from lack of oxygen and from the musky seed launching into her gut, her eyes roll back.");
-			else if(pc.cumQ() < 3000) output("Your dick swells with a mighty load, stretching her neck wider to accept it all. You can feel it in your prostate, all of those belly-fattening loads churning into her one turgid eruption at a time.");
+			if(cumQ < 1000) output("An outpouring of [pc.cum] surges up through your holstered cock, spurting into the she-cat’s throat and certainly into her belly. Dizzied from lack of oxygen and from the musky seed launching into her gut, her eyes roll back.");
+			else if(cumQ < 3000) output("Your dick swells with a mighty load, stretching her neck wider to accept it all. You can feel it in your prostate, all of those belly-fattening loads churning into her one turgid eruption at a time.");
 			else output("You’re not sure even you were ready for the vein-straining load you’re pumping into the hapless cat. Her stomach swells to be as gravid as a third tit, visible, liquid bulges flowing down (up?) her throat into the gurgling space they belong.");
 			if(pc.hasCocks()) output(" What she’s not being force-fed is leaving beautiful [pc.cumColor] lines all across her chest, neck, and face, your extra dick" + (pc.cockTotal() > 2 ? "s":"") + " giving her a lovely reminder of your dominance.");
 			if(pc.hasVagina()) output("\n\nFeminine release comes crashing up seconds later, forcing you to withdraw from her maw and replace your dick with [pc.girlCumNoun]-oozing cunt." + (pc.isSquirter() ? " It doesn’t just ooze, it squirts, breaking against her face, nose... wherever.":"") + " You can’t really be sure of anything except sweet release, of your combined fluids leaving an indelible mark on the dommy kitty.");
@@ -541,10 +543,10 @@ public function sitOnTemptingKittyFace2():void
 		else if(pc.cocks[dick].cLength() < 35)
 		{
 			output("\n\nThe leopardess’ whole body quivers on your final thrust, jets of [pc.cumColor] goo sloughing in her gigantic breasts. Titflesh seems to cascade down thanks to her gratified clutching and squeezing, wanting more of that boiling-hot [pc.cumNoun] to splatter her soft mounds. ");
-			if(pc.cumQ() < 250) output("It’s almost like her breasts subsist on the stuff, because you can’t see any of it. Not one drop of [pc.cumNoun] leaks out from between her mammarian morass, making sure all of your [pc.cumVisc] load sloughs inside while you ride out this overpowering orgasm. The brief thought that you’re impregnating her tits is a powerful one.");
-			else if(pc.cumQ() < 3000) output("The musky odor of your [pc.cumNoun] fills your nostrils as well as the [pc.cumVisc] spooge fills the gap between her gigantic breasts. Pockets of seed develop at the seam, bursting out on your subsequent eruptions, covering her in a beautiful reminder of your dominance.");
+			if(cumQ < 250) output("It’s almost like her breasts subsist on the stuff, because you can’t see any of it. Not one drop of [pc.cumNoun] leaks out from between her mammarian morass, making sure all of your [pc.cumVisc] load sloughs inside while you ride out this overpowering orgasm. The brief thought that you’re impregnating her tits is a powerful one.");
+			else if(cumQ < 3000) output("The musky odor of your [pc.cumNoun] fills your nostrils as well as the [pc.cumVisc] spooge fills the gap between her gigantic breasts. Pockets of seed develop at the seam, bursting out on your subsequent eruptions, covering her in a beautiful reminder of your dominance.");
 			else output("Your prostate seems to quake as it churns out tit-glazing loads of [pc.cumNoun]. A funnel of seed-filled fluid encapsulates your [pc.cockNoun] before exploding outwards in a semi-circular tide of [pc.raceShort]-spunk, splattering the zipsuit-wearing milodan in a permanent reminder of her time as your bitch.");
-			if(pc.hasCocks() && pc.smallestCockLength() <= 8) output(" While you’re squirting most of your [pc.cum] into her breasts, your throat-holstered cock has been feeding the rest of your orgasm into her belly" + (pc.cumQ() < 10000 ? ", plumping it up quite nicely":", plumping it up to the point it could be a third boob") + ".");
+			if(pc.hasCocks() && pc.smallestCockLength() <= 8) output(" While you’re squirting most of your [pc.cum] into her breasts, your throat-holstered cock has been feeding the rest of your orgasm into her belly" + (cumQ < 10000 ? ", plumping it up quite nicely":", plumping it up to the point it could be a third boob") + ".");
 			if(pc.hasVagina()) 
 			{
 				output("\n\n[pc.EachPussy] share in the tit-based climax, the clenching of your [pc.thighs] " + (!pc.isSquirter() ? "smearing the milo-slut’s face with [pc.girlCumNoun]":"splattering the milo-slut’s face with [pc.girlCumNoun] in long"));
@@ -556,10 +558,10 @@ public function sitOnTemptingKittyFace2():void
 		else
 		{
 			output("\n\nThe stretch of your urethra upon orgasm is greater than what her heavenly tits caused. Your [pc.hips] slap into her breasts and your vision fades to black, eyes rolling back in wonderful orgasm aided by her rapidly jerking legs. The warmth of your thick, [pc.cumVisc] seed filling every nook and cranny of your [pc.cock " + dick + "] momentarily wrests reality away from you, leaving you think about how great cumming is, how great it is to be led around by this dick, to share in all of its virile climaxes. There’s no pain when your piping opens up, only the spikes of surging [pc.cumNoun].");
-			if(pc.cumQ() < 1000) output("\n\nIt’s a curious matter that with a size like yours, what you’re shooting doesn’t match up. Thin ropes of [pc.cum] shoot across the space you’re in, splatting wasted against the rocks. It only reduces to a rhythmic dribble from there.");
-			else if(pc.cumQ() < 3000) output("\n\nPowerful, thick, and nearly unbroken ropes of [pc.cumFlavor]-orgasm spill from your throbbing, hugged dong. Girthy arcs of spooge whirl through the air, painting primitive art along the walls, your bottom doing everything in her subdued power to saturate this place with your seed.");
+			if(cumQ < 1000) output("\n\nIt’s a curious matter that with a size like yours, what you’re shooting doesn’t match up. Thin ropes of [pc.cum] shoot across the space you’re in, splatting wasted against the rocks. It only reduces to a rhythmic dribble from there.");
+			else if(cumQ < 3000) output("\n\nPowerful, thick, and nearly unbroken ropes of [pc.cumFlavor]-orgasm spill from your throbbing, hugged dong. Girthy arcs of spooge whirl through the air, painting primitive art along the walls, your bottom doing everything in her subdued power to saturate this place with your seed.");
 			else output("\n\n[pc.Cum] geysers from your lust-thickened girth, spurting in loads so thick that you can’t stay still, bobbing upwards to the blissful throes of your cumming cock. [pc.CumVisc] jizz gets everywhere, painting primitive art on the walls, the ceiling, tracing boundaries of your tryst here with the possibility of permanence.");
-			if(pc.hasCocks() && pc.smallestCockLength() <= 8) output(" While your battleship blasts, your throat-holstered cock has been feeding the rest of your orgasm into her belly" + (pc.cumQ() < 10000 ? ", plumping it up quite nicely":", plumping it up to the point it could be a third boob") + ".");
+			if(pc.hasCocks() && pc.smallestCockLength() <= 8) output(" While your battleship blasts, your throat-holstered cock has been feeding the rest of your orgasm into her belly" + (cumQ < 10000 ? ", plumping it up quite nicely":", plumping it up to the point it could be a third boob") + ".");
 			if(pc.hasVagina()) 
 			{
 				output("\n\nNo longer able to keep your place, you stand and furiously jill yourself off while the burdensome [pc.cockNoun " + x + "] between your legs bounces, its [pc.cumVisc] deluge still flowing. Feminine release follows close on the heels of masculine relief, ");
@@ -587,7 +589,7 @@ public function sitOnTemptingKittyFace2():void
 	// Merge
 	output("\n\nYou sigh. It’s long and hot, and exceedingly pleasant. When you stand, the cold air assaults you all over again, but the incredible satisfaction of orgasm fights it off easily enough.");
 	output("\n\nThe milodan temptress lies there, tongue hanging lewdly from her mouth");
-	if((pc.hasVagina() && pc.isSquirter()) || (pc.hasCock() && pc.biggestCockLength() > 8 && pc.cumQ() >= 3000)) output(" and soaked in effluent");
+	if((pc.hasVagina() && pc.isSquirter()) || (pc.hasCock() && pc.biggestCockLength() > 8 && cumQ >= 3000)) output(" and soaked in effluent");
 	output(". She looks like a complete slut, the way her eyes are half rolled back, the way her entire body ripples in the aftermath. She’s not going to be hurting anyone in that state.");
 	output("\n\nWhile you get your things together, you think that’s for the best.");
 	if(pc.isAss()) output(" Maybe when you deal with this siege, the korgs will keep her on a chain for you to use whenever you want.");
@@ -683,9 +685,11 @@ public function tuuvaTagTeamCockstuff(x:int):void
 	output("”</i>");
 	output("\n\nYou nod and switch places again, letting Tuuva give her another dose of her own medicine while you dive back into her intoxicating pit. Each pass drives the three of you further and further into the rut. You stop seeing her as a living thing and more as a simple sex toy, something to share between you and Tuuva.");
 	output("\n\nAt least an hour must have passed before you and your korgonne companion feel like you’ve gotten as much out of her as you possibly can. With a shared nod you both ram your rods as far and as hard as you can; you at her cunt and Tuuva back in her mouth.");
+	
+	var cumQ:Number = pc.cumQ();
 	output("\n\n");
-	if(pc.cumQ() < 100) output("You empty out your [pc.balls] in an instant, the excessive blueballing you’ve put yourself through making the process slightly painful. Even after you run completely dry your [pc.cock " + x + "] keeps going, keeps trying to pump out more sperm than you could possibly make without extensive modding.");
-	else if(pc.cumQ() < 5000) output("You let loose a torrent of [pc.cum] inside her, unable to give anything less than every drop thanks to how thoroughly you’ve built yourself up. Her belly swells up with the fruit of your labor" + (pc.cumQuality() > 0 ? ", likely just a prelude to what’s coming for her after this":"") + ". Even with such a large ejaculation however, you still run dry long before your orgasm actually finishes, leaving you firing blanks for several seconds.");
+	if(cumQ < 100) output("You empty out your [pc.balls] in an instant, the excessive blueballing you’ve put yourself through making the process slightly painful. Even after you run completely dry your [pc.cock " + x + "] keeps going, keeps trying to pump out more sperm than you could possibly make without extensive modding.");
+	else if(cumQ < 5000) output("You let loose a torrent of [pc.cum] inside her, unable to give anything less than every drop thanks to how thoroughly you’ve built yourself up. Her belly swells up with the fruit of your labor" + (pc.cumQuality() > 0 ? ", likely just a prelude to what’s coming for her after this":"") + ". Even with such a large ejaculation however, you still run dry long before your orgasm actually finishes, leaving you firing blanks for several seconds.");
 	else 
 	{
 		output("You wince as the insensate milodan bloats out instantly from your volcanic eruption of an orgasm. You spray so much that it actually hurts; like a pipe at the end of a broken valve, you have no control over the pace or volume. You’re practically a prisoner in your own body, simply watching from the sidelines as you ruin the Temptress.");
@@ -798,6 +802,7 @@ public function chooChooPussyPlowing(x:int):void
 	showMiloTemptress(true);
 	author("QuestyRobo");
 	output("You whip out your [pc.cocks], letting the hard, hot rod" + (pc.hasCocks() ? "s":"") + " almost steam against the cold air of the hold. In response, as if by instinct, the MILFy milodan presses a button on her wrist that causes the rest of her suit to fly off, leaving her completely naked as she inspects your package.");
+	var cumQ:Number = pc.cumQ();
 	var y:int = pc.cockThatFits(enemy.analCapacity(),"volume",[x]);
 	//Multi Bobby
 	//The boy aint right.
@@ -814,8 +819,8 @@ public function chooChooPussyPlowing(x:int):void
 		output(" You give her a slap in order to remind her who’s in charge right now, but that only seems to make her grin larger.");
 		output("\n\nEnough foreplay though, time to get down to business! You pull back, facing some resistance as the Temptress squeezes her thighs together to keep you in her sweltering trap for as long as possible. You grab your [pc.cock " + y + "] and cockslap her ass to get her to let go, but she only squeezes tighter. You start to huff in exertion as your strength is drained by the expert combination of squeezing thigh muscles and swelteringly hot, drug-laced juices.");
 		output("\n\nOff-[pc.cumColor] pre ");
-		if(pc.cumQ() < 100) output("drips");
-		else if(pc.cumQ() < 800) output("drools");
+		if(cumQ < 100) output("drips");
+		else if(cumQ < 800) output("drools");
 		else output("sprays");
 		output(" from the cumslit" + (pc.cockTotal() > 2 ? "s":"") + " of your free member" + (pc.cockTotal() > 2 ? "s":"") + ", signaling just how close you are to blowing your load without even getting a nanometer inside her! Right when you’re about to fly off the edge like a lightspeed train off a sheer cliff, she stops.");
 		output("\n\nYou almost fly backward as her hips release you at the peak of a backswing. The mischievous milodan minx snickers as you desperately struggle to keep your footing, [pc.cocks] flinging pre-seed into the air as you flail.");
@@ -867,19 +872,19 @@ public function chooChooPussyPlowing(x:int):void
 		if(pc.cockTotal() >= 3)
 		{
 			output("\n\nYour other cock" + (pc.cockTotal() > 3 ? "s haven’t":" hasn’t") + " had the pleasure of her holes, but " + (pc.cockTotal() == 3 ? "has":"have") + " been making great use of her generous ass flesh. Every thrust of your main pair has been accompanied by a yearning slap on her rear by your straggling member" + (pc.cockTotal() > 3 ? "s":"") + ". Each slap rings out with the same intensity as if you’d done it with an open palm. Pre cum ");
-			if(pc.cumQ() < 50) output("leaks");
-			else if(pc.cumQ() < 500) output("dribbles");
+			if(cumQ < 50) output("leaks");
+			else if(cumQ < 500) output("dribbles");
 			else output("sprays");
 			output(" out of your " + (pc.hasVagina() ? "she-dick":"manhood") + "" + (pc.cockTotal() > 3 ? "s":"") + ", basting the milo-slut’s rear [pc.cumColor].");
 		}
 		output("\n\nYou feel incredible pressure start to build in your [pc.balls] and you can tell that you’re right on the edge of climax. Just as you realize that, you feel her holes start to squeeze down on you in reverent climax. You push in as far as you can go, needing to force your way through her spasming muscles to get anywhere, and stop for what feels like the first time in hours as you finally climax.");
-		if(pc.cumQ() < 500) 
+		if(cumQ < 500) 
 		{
 			output("\n\nYou give the cum-starved Temptress every ounce you have, split between her back door and baby maker. You’re sure it’s not much compared to what she’s used to, but you don’t think she cares too much right now.");
 			if(pc.cockTotal() > 2) output(" Your other member" + (pc.cockTotal() > 3 ? "s leak":" leaks") + " [pc.cum] onto her rear, coating it in an extra layer of [pc.cumColor].");
 			output(" Your reserves drain quickly, leaving you buried in her, simply enjoying the spasming of her continuing orgasm.");
 		}
-		else if(pc.cumQ() < 10000)
+		else if(cumQ < 10000)
 		{
 			output("\n\nYou pump her holes with what feels like gallons of spunk. The throbbing spurts are so powerful that they reverberate between your hilted [pc.cocks], drawing out your orgasm ever longer and harder. Her belly starts to bloat out as both her back door and womb are crammed full of [pc.cum] to an almost ludicrous degree.");
 			if(pc.cockTotal() > 2) output(" Your other member" + (pc.cockTotal() > 3 ? "s fire":" fires") + " off stray shots of " + (pc.cockTotal() == 3 ? "its":"their") + " own, absolutely coating her ass and even reaching far enough to land on the top of her head.");
@@ -895,8 +900,8 @@ public function chooChooPussyPlowing(x:int):void
 			output("\n\nSadly even you have limits, as insane as they are. The Temptress is caught in a continuous, gushing orgasm brought on by the otherworldly insemination you just performed. You’re all out now, finally, so all that’s left is to just bask in the worship of her insensate body.");
 		}
 		output("\n\nYou enjoy her for a few more moments before you remember the whole invasion thing. Groggily you pull out of her and get to your feet. The Temptress falls to the ground without your support, ");
-		if(pc.cumQ() < 200) output("leaking");
-		else if(pc.cumQ() < 10000) output("gushing");
+		if(cumQ < 200) output("leaking");
+		else if(cumQ < 10000) output("gushing");
 		else output("spewing");
 		output(" your [pc.cum] from both holes as she passes out. With nothing left here, you ");
 		if(!pc.isCrotchExposed()) output("re-cover your members");
@@ -959,17 +964,17 @@ public function chooChooPussyPlowing(x:int):void
 		output("\n\nYou think it’s time for a change, though. Grasping her haunches even hard, you pull her back, sending to two of you flying backward, your [pc.cock] still buried inside the convulsing cat cunt. You land on your [pc.ass], with the Temptress quickly following, spearing herself on your member as she starts to juice herself on your lap.");
 		output("\n\nBefore you can restart thrusting, she turns and starts making out with you. You return the favor as you start up again. Your room for thrusting has been significantly diminished, but the milodan mistress is more than willing to pick up the slack. The bruise-inducing rut continues like a speeding train. Even her starting to cum her brains out through her cunt doesn’t put a hitch in your rhythm.");
 		output("\n\nPre starts to ");
-		if(pc.cumQ() < 50) output("seep");
-		else if(pc.cumQ() < 3000) output("drool");
-		else if(pc.cumQ() < 30000) output("spray");
+		if(cumQ < 50) output("seep");
+		else if(cumQ < 3000) output("drool");
+		else if(cumQ < 30000) output("spray");
 		else output("blast");
 		output(" out of your cumslit at the feeling of her clamping down on you. Under normal circumstances, you’d feel like slowing down in order to prolong this as long as possible; but the combination of drugged juices, her foreplay, and the thought of siring a litter of bastards with your conquered enemy means that holding back isn’t an option in your mind any more!");
 		output("\n\nYou grab her as tight as you can and thrust your [pc.cock] into her as far as possible. The Temptress catches on almost instantly, and seems more than supportive of what you’re about to do. <i>“Are you going to give me a nice litter, outsider? You’re so strong and virile. I bet our children will be immaculate!”</i> She squeezes down on you like a vice, causing you to wince. <i>“Breed. Me!”</i>");
-		if(pc.cumQ() < 500) 
+		if(cumQ < 500) 
 		{
 			output("\n\nYou fulfill her desire with gusto, pumping every drop of [pc.cum] you can muster into her. Her honeypot squeezes you for more, the greedy hole seeming to want and want no matter how much you give it. Part of you wishes you’d juiced up your production some more before going into this, " + (pc.cumQuality() == 0 ? "but it’s not like you’d be knocking her up anyway":"but hopefully it’s still enough to stick") + ".");
 		}
-		else if(pc.cumQ() < 10000)
+		else if(cumQ < 10000)
 		{
 			output("\n\nBig boi output:Her words echo from your head down to your [pc.balls] as you unload gloriously. Her belly bloats as you sigh in relief at finally dumping what must be gallons of [pc.cum] into a willing receptacle. The Temptress cradles her swollen gut, reveling in the feeling of inevitable motherhood" + (pc.cumQuality() == 0 ? ", though <i>you</i> know that’s not going to happen":"") + ". She sighs and turns to kiss you again, rewarding the " + (pc.cumQuality() == 0 ? "supposed ":"") + pc.mf("father","mother") + " of her future litter. All the while you keep cumming, keep stuffing her until you run dry after pumping her out to the point where she looks like she’s about to pump out twins.");
 		}

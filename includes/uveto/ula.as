@@ -298,8 +298,8 @@ public function ulaFirstTimeRemeet():void
 	showImage("UlaDildo");
 	output("The familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
 	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
-	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
-	if(pc.tallness < 70) output(", tackling");
+	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles");
+	if(pc.tallness < 70) output(" into you, tackling");
 	else output(", smacking into you. You hold her there for a moment before letting her weight carry");
 	output(" you to the ground. Kisses pepper your nose. <i>“Savinged me!”</i> A slick, wet tongue smears across your cheek. <i>“You liking me!”</i>");
 
@@ -485,7 +485,7 @@ public function breedWithUla():void
 	output(" Blood thrums in your ears, your heart hammering, sending volley after volley of cock-expanding blood into your loins, pumping your [pc.cocks " + x + "] into full, proud tumescence. ");
 	if(flags["MET_ULA"] == undefined) output("The korgonne princess’s");
 	else output("Ula’s");
-	output(" belly fur tickles against your [pc.cockHead " + x + "].");
+	output(" belly fur tickles your [pc.cockHead " + x + "].");
 
 	output("\n\nWide-eyes set in cute, canine face stare up at you. <i>“");
 	if(korgiTranslate()) output("Good. I want you. I can’t stop thinking about you...");
@@ -577,7 +577,7 @@ public function breedWithUla():void
 	if(ulaPregBelly() >= 2 || flags["ULA_TOTAL_KIDS"] != undefined) output("Milk squirts over your fingers. ");
 	output("The tip of the dog-girl’s nipple feels as hard as diamond against your [pc.skinNoun]. You briefly consider sucking it, then resume frenching her, availing yourself of her kissable blue lips, letting your hands and loins enjoy her from the neck down.");
 
-	output("\n\nA spasm drags your [pc.hips] back, and primitive instincts command you to thrust in, burying your boner with a girlcum-splattering squelch. Her pussy is everywhere: in every breath, soaking your [pc.legs], staining the " + (ulaChief() ? "furs":"sheets") + ", so large in your mind that if you close your eyes you can see its rubbery folds, inviting you to fuck them raw. Now that you’ve started, you can’t stop. Your [pc.hips] bounce back, then slide back in, addicted to the friction shooting up your spine, shocking you with bolts of bliss that seem to make the smell of cunt that much stronger.");
+	output("\n\nA spasm drags your [pc.hips] back, and primitive instincts command you to thrust in, burying your boner with a girlcum-splattering squelch. Her pussy is everywhere: in every breath, soaking your [pc.legs], staining the " + (ulaChief() ? "furs":"sheets") + ", so large in your mind that if you close your eyes you can see its rubbery folds, inviting you to fuck them raw. Now that you’ve started, you can’t stop. Your [pc.hips] bounce back, then slide back in, addicted to the electric sparks shooting up your spine, shocking you with bolts of bliss that seem to make the smell of cunt that much stronger.");
 
 	output("\n\nPadded paws scrabble over your back as the petite dog-woman cums. You can feel it in the fluttering motions of her cunt and the quivering of her thighs more than anything else. The warm dribbles sliding down your [pc.thighs] are a giveaway as well. You break the kiss to watch, fucking her with long, even strokes");
 	if(pc.cockVolume(x) > ulaCapacity() && ulaPregBelly() < 1) output(", dick obscenely visible every through layers of skin and fur");

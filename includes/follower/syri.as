@@ -7,6 +7,18 @@ public function syrisPussAvailable():Boolean
 	return false;
 }
 
+public function syriShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if (showBlurb)
+	{
+		desc += "";
+	}
+	addButton(btnSlot, "Syri", syriFollowerApproach);
+	
+	return desc;
+}
 public function syriFollowerApproach():void
 {
 	if (flags["PENNY_SYRIVAG_WATCHED"] == 1 && (rand(20) == 0 || pc.hasStatusEffect("Syri Pennybating")))
@@ -53,7 +65,7 @@ public function interruptSyrisPornWatching():void
 	output("\n\nYou give her enough time to be done with it all, only tilting your head down to her level and smiling when she’s doubled over on her bed and moaning quietly.");
 	output("\n\n<i>“Hi, Syri,”</i> you greet her.");
 	output("\n\n<i>“Steele!”</i> she yelps, sitting up with eyes as wide as saucers. <i>“Jeez, you gave me a fright...”</i>");
-	output("\n\n<i>“Sorry, just something I do,”</i> you say, shrugging and spreading your arms. <i>“Can’t seem to help myself when I hear a crewmember moaning out loud.”</i>");
+	output("\n\n<i>“Sorry, just something I do,”</i> you say, shrugging and spreading your arms. <i>“Can’t seem to help myself when I hear a crew member moaning out loud.”</i>");
 	output("\n\n<i>“Well, I can hardly blame you for that,”</i> Syri says with a smirk, closing her laptop. <i>“I </i>do<i> sound pretty sexy if I say so myself.”</i>");
 	output("\n\n<i>“You do,”</i> you agree, nodding at the computer. <i>“It’s a nice video, right? Saw it myself not too long ago.”</i>");
 	output("\n\n<i>“Wait - she sent it to </i>you<i>?! Oh, my goood...”</i> Syri moans in despair, rubbing her face as she realizes you know all about what she’s getting off to. <i>“That girl, I swear...”</i>");

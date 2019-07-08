@@ -2343,7 +2343,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				var oldHips:Number = pc.hipRatingRaw;
 				var oldFace:Number = pc.femininity;
 				var sOldHips:String = pc.hipsDescript();
-				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further , making you appear more lady-like as");
+				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further, making you appear more lady-like as");
 				var weightLimit:Number = 45;
 				while(pc.genderWeight() < weightLimit)
 				{

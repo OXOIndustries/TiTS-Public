@@ -1109,7 +1109,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	output(" Stars be damned, whatever she’s doing isn’t nearly enough to relieve you of the pressure building down there, making you feel as if you’re about to explode!");
 	if(pc.hasVagina()) output(" The effect it has on your [pc.pussy], or had, was felt in the " + (!pc.isSquirter() ? "body-rumbling feminine orgasm you just had":"projectile of [pc.girlCum] that just splattered the giggling pirate") + ".");
 
-	output("\n\nWhen you feel two hands on your shoulder blades, you shrug them off and wrestle back! Though your vision may be blurred, the intoxicating scent of cyber-cunt and the sexual overclock inflicted on you give you just enough focus - <i>and strength!</i> - to stay in control. The robo-cat yelps when you spin and force her down, falling on her like a sack of bricks. Both of your [pc.arms] wrap around her body, manhandling the hell out of her tits, squeezing those pebbly cybernips to soak your hands and the ground in tasty trick milk." + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? " You press your your head to her back and, thanks to your endowed organ, work your [pc.tongue] around her waist, happily teasing her sensitive nips and mingle with her own augmented organ.":""));
+	output("\n\nWhen you feel two hands on your shoulder blades, you shrug them off and wrestle back! Though your vision may be blurred, the intoxicating scent of cyber-cunt and the sexual overclock inflicted on you give you just enough focus - <i>and strength!</i> - to stay in control. The robo-cat yelps when you spin and force her down, falling on her like a sack of bricks. Both of your [pc.arms] wrap around her body, manhandling the hell out of her tits, squeezing those pebbly cybernips to soak your hands and the ground in tasty trick milk." + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? " You press your head to her back and, thanks to your endowed organ, work your [pc.tongue] around her waist, happily teasing her sensitive nips and mingle with her own augmented organ.":""));
 
 	output("\n\nYou fall back just a bit, lowering your face into her overheated nethers where you deliver a long, succulent lick to her slightly parted pussy. The taste is... fuck, it’s phenomenal, and it sends you into the next level of overdrive! You rabidly lick up, down, and up again, nibbling on her fat button of a clit, forcing louder and louder groans from the kitty-pirate. You spread the forgiving flesh of her pussylips, drinking down the sweet fruit oozing endlessly from her heavenly folds. Your hot breaths against her cunt make her thrust that ravishing quim into your face, burrowing your [pc.tongue] between ribbed walls that squeeze like an ocean wave against your parched muscle. You tug yourself free and reassert yourself, keeping a few fingers busy down there.");
 	output("\n\n<i>“Ooh, this... Did I underestimate your ability?”</i> the ponytailed slut looks back, grinning as her two puffy tails wrap possessively around your waist. <i>“But I wonder how long you can last. I think you’re - Achh!”</i>");
@@ -2171,7 +2171,7 @@ public function secOpMaleTitfuck(response:String = "intro"):void
 			processTime(7);
 			// +6 breast silicone normally
 			// +12 breast silicone if >70 libido or PC is a bimbo
-			nymFoeInjection(3, (!bigPumps ? 6 : 12));
+			nymFoeInjection(pc, 3, (!bigPumps ? 6 : 12));
 			// Max out lust
 			pc.maxOutLust();
 			

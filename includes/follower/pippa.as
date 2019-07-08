@@ -238,18 +238,25 @@ public function pippaShipIntro():void
 }
 
 // Text that can display on the crew menu for Pippa
-public function pippaShipBonusText():String
+public function pippaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
-	var bonusText:String;
+	var bonusText:String = "";
 	
-	if (flags["PIPPA_SETTLED_IN"] != 1) bonusText = "Pippa is getting set up and settled in. Maybe you should go check in with her.";
-	else if (rand(3) == 0) bonusText = "Pippa is sitting in the kitchen eating. She looks quite content with Yammi’s cooking.";
-	else if (rand(4) == 0)
+	if (showBlurb)
 	{
-		if (rand(2) == 0) bonusText = "Pippa is relaxing in the common area " + RandomInCollection("exercising her fingers", "reading a book", "massaging her hands");
-		else bonusText = "Pippa, who appears to have just gotten out of the shower, is just relaxing in the common area.";
+		if (flags["PIPPA_SETTLED_IN"] != 1) bonusText = "\n\nPippa is getting set up and settled in. Maybe you should go check in with her.";
+		else if (rand(3) == 0) bonusText = "\n\nPippa is sitting in the kitchen eating. She looks quite content with Yammi’s cooking.";
+		else if (rand(4) == 0)
+		{
+			if (rand(2) == 0) bonusText = "\n\nPippa is relaxing in the common area " + RandomInCollection("exercising her fingers", "reading a book", "massaging her hands");
+			else bonusText = "\n\nPippa, who appears to have just gotten out of the shower, is just relaxing in the common area.";
+		}
+		else bonusText = "\n\nPippa is in her quarters doing yoga. When she notices your eyes on her, she goes into a downward dog position and wiggles her ass at you.";
 	}
-	else bonusText = "Pippa is in her quarters doing yoga. When she notices your eyes on her, she goes into a downward dog position and wiggles her ass at you.";
+	
+	if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot, "Pippa", pippaShipIntro);
+	else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Pippa", pippaYammiThreesomeIntro);
+	else addButton(btnSlot, "Pippa", pippaMainMenu);
 	
 	return bonusText;
 }

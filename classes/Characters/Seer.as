@@ -17,6 +17,10 @@ package classes.Characters
 		{
 			kGAMECLASS.approachSeer();
 		}
+		override public function get bustDisplay():String
+		{
+			return "SEER";
+		}
 	}
 
 }

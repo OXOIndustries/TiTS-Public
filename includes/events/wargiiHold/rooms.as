@@ -310,7 +310,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII V14"] = new RoomClass(this);
 	rooms["WARGII V14"].roomName = "EAST\nTUNNEL";
-	rooms["WARGII V14"].description = "The corridors of Korg’ii Hold’s second level are narrow than the first, less suitable for large amounts of foot traffic and more easily defended. However no amount of defenses could prepare them for a massive surprise attack from a force that’s several whole technological generations ahead. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
+	rooms["WARGII V14"].description = "The corridors of Korg’ii Hold’s second level are narrower than the first, less suitable for large amounts of foot traffic and more easily defended. However no amount of defenses could prepare them for a massive surprise attack from a force that’s several whole technological generations ahead. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
 	rooms["WARGII V14"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V14"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V14"].moveMinutes = 2;
@@ -948,7 +948,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII R20"] = new RoomClass(this);
 	rooms["WARGII R20"].roomName = "B1 NORTHWEST\nSTAIRWELL";
-	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. Cum-stains are everywhere. The korgonne may be somewhat inoculated to Savicite’s arousing effects, but the milodan are not. Unconscious korgonne men and women alike doze in a cum-covered pile, discarded like used tissues. You’d best move on if you don’t want to be similarly affected. The stairs themselves are a little on the narrow size - perfect for small korgonne feet. You can climb up or back down to the hold’s ground floor.\n\nThe southern exit is blocked - not by rubble or a barricade but dozens of obvious trip-mines. You dare not disturb them and risk blowing this whole area to kingdom come.";
+	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. Cum-stains are everywhere. The korgonne may be somewhat inoculated to Savicite’s arousing effects, but the milodan are not. Unconscious korgonne men and women alike doze in a cum-covered pile, discarded like used tissues. You’d best move on if you don’t want to be similarly affected. The stairs themselves are a little on the narrow side - perfect for small korgonne feet. You can climb up or back down to the hold’s ground floor.\n\nThe southern exit is blocked - not by rubble or a barricade but dozens of obvious trip-mines. You dare not disturb them and risk blowing this whole area to kingdom come.";
 	rooms["WARGII R20"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R20"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R20"].moveMinutes = 2;

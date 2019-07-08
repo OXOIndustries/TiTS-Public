@@ -1245,11 +1245,12 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	output("\n\nIt isn’t much longer before you feel the body pressed to your back begin to shudder, her cock perceptibly thickening as her massive, heavy balls pull tight to your [pc.legs]. A far hotter jet of liquid warmth spews into you, and another... and another. The undulations of her orgasm being delivered directly to your core swells her knot in pulses, smashing it against your most sensitive places and eking an orgasm out of you, too.");
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" Her knot grinding into your prostate firmly sets your cock off, too,");
-		if (pc.cumQ() <= 500) output(" weak");
+		if (cumQ <= 500) output(" weak");
 		else output(" thick");
 		output(" ropes of your [pc.cumColor] cum");
-		if (pc.cumQ() <= 500) output(" oozing");
+		if (cumQ <= 500) output(" oozing");
 		else output(" splattering");
 		output(" against the coat.");
 	}
@@ -1402,7 +1403,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	}
 	output("ight blasts your face as she lowers the zipper of her smart jacket, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. Things are still fuzzy, but you can just about make out a mirror with your still half-dazed face in front of you as the blue-scaled tail of the taur hooks its tip through the opening made in the jacket so far, tugging it open further.");
 
-	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty from so long tucked into the confines of the garment.");
+	output("\n\nYour reflection comes into focus slowly as more and more of your body is revealed from under the coat; flushed red with heat and sweaty, oh so sweaty, from so long tucked into the confines of the garment.");
 	if (pc.hasFur() || pc.hasHair())
 	{
 		output(" Your");
@@ -2249,7 +2250,7 @@ public function jerynnPetstuffBar():void
 
 	output("She sets back off with definitive purpose, a certain sway to her swagger that you can’t help but deem intentional; you swing around more than the you did during the trip back to Irestead and it feels almost a little disorientating. No time to get used to it though, as the sounds of your surroundings change again. It almost sounds as though a fire is roaring away somewhere off in the distance, an overlay of various, chattering voices around the place holding a dozen different conversations.");
 
-	output("\n\nJerynn takes a few more steps before she sits back on on her rear legs, and what you think is her tail wraps under you and coils all over the bulge you’ve formed in her coat possessively. She sits, quietly, the background titters of people talking continue unabated, her tail lightly rubbing at you through the thick padding keeping you hidden from their eyes.");
+	output("\n\nJerynn takes a few more steps before she sits back on her rear legs, and what you think is her tail wraps under you and coils all over the bulge you’ve formed in her coat possessively. She sits, quietly, the background titters of people talking continue unabated, her tail lightly rubbing at you through the thick padding keeping you hidden from their eyes.");
 
 	if (jerynnPetstuffLevel() < 5)
 	{
@@ -2378,7 +2379,7 @@ public function jerynnPetstuffNightWithJerome():void
 	else output(" Jerynn’s");
 	output(" apartment door closing. She all but orders Jerome to make himself comfortable as light begins to creep back inside your woolen prison, your eyes taking a good while to adjust to the fact you’re no longer in pitch blackness. The taur shucks it free with a wiggle, jostling you around as you hang laden with countless loads of cum below her.");
 	
-	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh so perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
+	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh-so-perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
 	
 	output("\n\n<i>“Go on </i>pet<i>, get him ready,”</i>");
 	if (jerynnIsMistress()) output(" Mistress");

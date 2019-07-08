@@ -132,6 +132,7 @@ public function jadeStoreSetup():void
 	
 	//Inventory sorta alphabetically, because I'm a boss.
 	chars["JADE"].inventory.push(new AusarTreats());
+	chars["JADE"].inventory.push(new Cackler());
 	chars["JADE"].inventory.push(new CaninePoppers());
 	chars["JADE"].inventory.push(new DracoGuard());
 	chars["JADE"].inventory.push(new SheepTF());
@@ -188,13 +189,6 @@ public function jadeAdvancedStoreSetup():void
 	chars["JADE"].inventory.push(new RedPandaPro());
 	
 	buyItem();
-}
-
-
-public function getAmberSeed():void 
-{
-	output("\n\n");
-	itemCollect([new Ovilium()]);
 }
 
 //Appearance

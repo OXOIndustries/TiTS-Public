@@ -23,12 +23,23 @@ public function celiseBustDisplay():String
 	return "CELISE";
 }
 
-
 //Celise In Tavros
 public function celiseTavrosBonus(btnSlot:int = 1):void 
 {
 	output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
 	addButton(btnSlot, "Celise", approachNonCrewCelise);
+}
+
+public function celiseShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) desc += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
+	else desc += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+	
+	addButton(btnSlot, "Celise", celiseFollowerInteractions);
+	
+	return (showBlurb ? desc : "");
 }
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {
@@ -1235,7 +1246,7 @@ public function getDrainedSexyTimes():void {
 	pc.orgasm();
 
 	/*(old text that will not be used) Celise is hungry
-	Suddenly, a chill runs down your spine when you feel Celise’s grip on your asscheeks tighten. <i>“You know, [pc.name], you haven’t been doing a very good job of feeding me...” she says to you rather nonchalantly as one of her protrusions pushes up against the entrance to your anus.  [if (vagina = yes)] Another protrusion rubs itself against the lips of your [vagina] [if (more than one vagina)] , with another joining it at your other lower lips not long after[/] . [/] [if (cock = yes)] Simultaneously, Celise’s goo tightens into a tube about your [cock], teasing you to full hardness.[/] “You really can’t blame me for milking your whole body now that I’ve got you inside me.” She continues the matter-of-fact tone, as she prepares to violate your entrapped form.
+	Suddenly, a chill runs down your spine when you feel Celise’s grip on your asscheeks tighten. <i>“You know, [pc.name], you haven’t been doing a very good job of feeding me...” she says to you rather nonchalantly as one of her protrusions pushes up against the entrance to your anus.  [if (vagina = yes)] Another protrusion rubs itself against the lips of your [vagina] [if (more than one vagina)], with another joining it at your other lower lips not long after[/] . [/] [if (cock = yes)] Simultaneously, Celise’s goo tightens into a tube about your [cock], teasing you to full hardness.[/] “You really can’t blame me for milking your whole body now that I’ve got you inside me.” She continues the matter-of-fact tone, as she prepares to violate your entrapped form.
 	
 	You can probably still break free of her grip and kick her out of your room for trying this, but at the same time, she’s been pretty relaxed about the whole thing, so it will likely be a pretty gentle feeding too. Will you let her drain you all night?*/
 	//(old text that will not be used) Break free

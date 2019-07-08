@@ -4359,8 +4359,8 @@ public function mimbraneMenu():void
 				output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed. However, you have no means to feed " + (totalMimbs == 1 ? "it" : "them") + "!")
 			}
 
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You need to have a dick and the libido to get it up to do this.");
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You need to have a pussy and the libido to get it going to do this.");
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed","You need to have a dick and the libido to get it up to do this.");
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You need to have a pussy and the libido to get it going to do this.");
 		}
 		else
 		{
@@ -4368,18 +4368,18 @@ public function mimbraneMenu():void
 			output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed.");
 			
 			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
-			else addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don’t have a penis to use.");
-			if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
-			else addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don’t have a vagina to use for this.");
+			if (pc.hasCock()) addGhostButton(0, "Penis Feed", feedMimbranesWithCock, undefined, "Penis Feed", "Feed attached Mimbranes using your penis.");
+			else addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have a penis to use.");
+			if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your penis.");
+			else addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have a vagina to use for this.");
 		}
 	}
 	else if (hasFeedableMimbranes() && !mimbranePrivateLocation())
 	{
 		output2("Maybe if you were somewhere a little more private, you could ensure your Mimbranes were properly fed....");
 		
-		addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
-		addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
+		addDisabledGhostButton(0, "Penis Feed","Penis Feed", publicNotice);
+		addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed", publicNotice);
 	}
 	//If all Mimbranes are full
 	else
@@ -4396,8 +4396,8 @@ public function mimbraneMenu():void
 			else output2(" They");
 			output2(" must be full.");
 			
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don’t have any mimbranes wanting to eat at the moment.");
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don’t have any mimbranes wanting to eat at the moment.");
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have any mimbranes wanting to eat at the moment.");
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have any mimbranes wanting to eat at the moment.");
 		}
 		else
 		{
@@ -4407,8 +4407,8 @@ public function mimbraneMenu():void
 			if (attachedMimbranes() > 1) output2(" none seem");
 			else output2(" it doesn’t seem");
 			output2(" that hungry.");
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed", publicNotice);
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed", publicNotice);
 		}
 	}
 

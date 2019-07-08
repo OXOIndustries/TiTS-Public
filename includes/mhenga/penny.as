@@ -113,7 +113,7 @@ public function showPennyBust(nude:Boolean = false):void
 	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
 	{
 		if(pennyIsCrew()) showBust(pennyBustDisplay(true));
-		else if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17)) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
+		else if(hungryFlahneWithBimboPenny()) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
 		else showBust(pennyBustDisplay(true));
 	}
 	else showBust(pennyBustDisplay(nude));
@@ -914,7 +914,7 @@ public function firstTimePennyShowerSex():void {
 		else if(cumQ < 2000) output(" Her belly rounds slightly from all you put into her, but the way her eyes are rolling back, you’re sure she doesn’t mind the added weight.");
 		else
 		{
-			output("Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
+			output(" Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
 			if(cumQ >= 5000)
 			{
 				output(" Of course, after that the pressure becomes to great, and your [pc.cum] runs out in a wave, ");
@@ -2238,7 +2238,7 @@ public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	
 	output("\n\nWith Penny’s pulsating prick nice and slathered in spit and drooling her musky pre, you deem her nice and ready for a real fucking. You slip up her svelte, vulpine body, trailing kisses and caresses up her belly to the peaks of her breasts, pushing her fingers aside to wrap your lips around one of the erect teats. You give the red bud a hard suck, pulling it back until it slips from your lips with a wet pop; Penny gasps, breath quickening as you shower her in affection. Her hands cup around your [pc.butt], lifting you into her lap, resting your head on her shoulder. She spreads your cheeks, squeezing them roughly as her [penny.cock] slips in, sliding into your [pc.butt]’s cleavage before her fingers let go, trapping her meaty shaft in your cheeks.");
 	
-	output("\n\nGrabbing the fox’s lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole’s entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh so sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you’ve given her cock already. Well, she’s clearly ready and raring to go, and you can’t deny the burning need growing in your loins.");
+	output("\n\nGrabbing the fox’s lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole’s entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh-so-sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you’ve given her cock already. Well, she’s clearly ready and raring to go, and you can’t deny the burning need growing in your loins.");
 	
 	output("\n\nYou press your lips to hers, locking Penny in a kiss as you rear up, grabbing her cock and holding it steady. Her fingers lock around yours, holding you for a brief second before spreading your cheeks wide, letting you glide down her throbbing shaft. It parts your walls with a second of mind-numbing pressure, her head spearing past your sphincter a second later. You both moan with shared breathless pleasure as your [pc.hips] slide down, taking inch after inch of [penny.cock], feeling your stomach churn as the thick member spreads you wide. Penny’s hands lock on your hips, guiding your descent until your butt’s on her lap, balancing on her legs as her cock twitches and spurts inside you, filling your ass with juicy fox-pre.");
 	penny.cockChange();
@@ -3102,7 +3102,7 @@ public function gardeFordWritesPennySmex():void {
 	{
 		output("\n\nYou position one arm under Penny’s leg and lift her pelvis up to your face. " + ((!inPennyQuest() && !pennyIsCrew()) ? "Her upper body is pushed further onto her desk, knocking papers onto the floor. ":"") + "You give her lust-engorged pussy a big lick, starting at her tiny clit and traveling all the way up to the base of her tail. The fox girl’s legs dangle in the air, her feet stretching out as far as they can in her spasms of pleasure. " + ((!inPennyQuest() && !pennyIsCrew()) ? "The foxy police-woman struggles to maintain a grip to stop herself from sliding over the edge of the desk. ":"") + "A combination of her juices and your saliva trickles down her belly all the way to the cleft of her breasts.");
 		output("\n\nThe fennec’s tail bats against your face with every pass, the soft fur feeling wonderful against your [pc.skinFurScales]. You move your tongue back down to her vagina and circle it around the edge. When you reach her hole you slide in and lick around her inner walls. <i>“Ahh, f-fuck, eat me like the predator you are, Steele,”</i> Penny slurs through her moans. You happily oblige, moving her legs over your shoulders for easier holding. Her thighs tighten around your head as your licks intensify, and you return both hands to Penny’s sonar dishes.");
-		output("\n\nThe fiesty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
+		output("\n\nThe feisty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
 		//if short tongue: 
 		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slather her walls with your saliva, mixing it with her juices and letting it run into your mouth and down her body like a mountain stream.");
 		else output("Your tongue reaches all the way to her womb and runs little circles around her cervix. Her thighs tense against your head as each rotation is completed. The juices flow into your mouth and down her own body to pool on the table.");
@@ -3244,7 +3244,7 @@ public function teasePenny():void
 	output("\n\n<i>“You’re a lovely little cumslut, aren’t you? You’re hooked on it so badly that you can’t help yourself; you can’t keep your cock out of your mouth, you need the taste of cum so desperately.”</i>");
 	output("\n\nPenny whimpers, her movements becoming faster, her body starting to tense before the inevitable climax. Before it comes, however, you shift your position to grab her fiercely, pulling her head up and away from her cock before she can react.");
 	output("\n\n<i>“Not yet,”</i> you say, as Penny splutters helplessly. <i>“First, you have to tell me how much you want it. You have to </i>admit<i> that you’re addicted to your own cum, and that you’re going to make sure that you stuff your mouth with your own cock as much as possible from now on.”</i>");
-	output("\n\nAfter several moments of breathless gasping, Penny manages to corral her tongue enough to attempt speech, although her hands not letting up their movements for a moment doesn’t make that easy. <i>“I... mmmrrowwmm... I... oh fuck, [pc.name] I need it soOOohhhwmmm bad! Ple-ah! Please! Please let my suu-uhk! Suck my dick!”</i>");
+	output("\n\nAfter several moments of breathless gasping, Penny manages to corral her tongue enough to attempt speech, although her hands not letting up their movements for a moment doesn’t make that easy. <i>“I... mmmrrowwmm... I... oh fuck, [pc.name] I need it soOOohhhwmmm bad! Ple-ah! Please! Please let me suu-uhk! Suck my dick!”</i>");
 	output("\n\nYou grin at her, but refuse to let her head sink back down as she so urgently needs. <i>“You have to </i>admit<i> it,”</i> you hiss fiercely.");
 	output("\n\nPenny’s tongue is stretching down to reach the tip of [penny.cockHead], desperately straining to coat itself in the thick moistness dripping from her. <i>“Pl-please!”</i> she manages eventually. <i>“Please let me swallow my cum!”</i>");
 	output("\n\nPlayfully, you look down at her, still holding her back, and ask, <i>“And why should I do that, exactly?”</i>");

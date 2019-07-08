@@ -215,6 +215,7 @@ public function approachDatLaquineSloot():void
 	if(pc.isBimbo()) output("Omigosh! You’re so cuuute!");
 	else if(pc.isNice()) output("Excuse me, miss?");
 	else if(pc.isMischievous()) output("Are you deaf?");
+	else output("Hey, slut!");
 	output("”</i> You try again, your voice uncomfortably loud in the otherwise empty room.");
 
 	output("\n\nThe bunny-woman bounces to her feet in alarm, screaming, <i>“Gya!”</i> Spinning and windmilling, she loses hold on her tablet, sending it flying straight at you. ");

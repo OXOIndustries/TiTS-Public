@@ -457,9 +457,10 @@ public function queensChambersBonus():Boolean
 		if(pc.hasCock())
 		{
 			if(pc.lust() >= 33) addButton(1,"Gloryhole",useRepeatGloryhole,undefined,"Use Gloryhole","Well, that’s what it’s there for, right? Stick your dick right into the gloryhole and treat yourself to your queenly mate’s favorite evening pastime.");
-			else addDisabledButton(0,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
+			else addDisabledButton(1,"Gloryhole","Use Gloryhole","You’re not aroused enough to consider this.");
 		}
-		else addDisabledButton(0,"Gloryhole","Use Gloryhole","You don’t have the equipment to do that.");
+		else addDisabledButton(1, "Gloryhole", "Use Gloryhole", "You don’t have the equipment to do that.");
+		addButton(2, "Storage", locationStorageMenuRoot, "nyrean");
 	}
 	//Play <i>“Incubator Goo”</i> encounter on first entry.
 	else if(flags["CRYSTAL_GOO_DEFEAT"] == undefined)

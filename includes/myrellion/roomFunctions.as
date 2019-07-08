@@ -121,6 +121,7 @@ public function airFieldCentralBonus():Boolean
 		breedwellPremiumBootyCallPing();
 		return true;
 	}
+	focalorBonus();
 	return false;
 }
 

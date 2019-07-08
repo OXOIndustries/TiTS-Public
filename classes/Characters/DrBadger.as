@@ -226,7 +226,10 @@
 		{
 			kGAMECLASS.mainGameMenu();
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "DRBADGER";
+		}
 		override public function isBimbo():Boolean
 		{
 			return (kGAMECLASS.flags["BADGER_QUEST"] <= -3);

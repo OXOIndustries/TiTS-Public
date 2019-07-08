@@ -309,12 +309,28 @@ public function northEastPlazaBonus():void
 	fisiAtResDeckAddendum(0);
 }
 
+public function resDeck11Func():Boolean
+{
+	playFynsDoorScene(0);
+	bigTiddyGFDoor(1);
+	
+	return false;
+}
+
 public function northWalkwayBonus():void
 {
+	bizzyApartmentHandler(1);
 	fisiannaApartmentHandler(0);
-	kaseApartmentHandler(1);
+	kaseApartmentHandler(2);
 }
 public function resDeck17Func():void
 {
 	veltaAptBonus();
+}
+
+public function anonBackEndBonus():Boolean
+{
+	var btnSlot:int = 0;
+	btnSlot = fadilBonus(btnSlot);
+	return false;
 }

@@ -106,7 +106,10 @@
 			this.buttRatingRaw = 2;
 			
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "INESSA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachIness();

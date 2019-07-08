@@ -816,7 +816,6 @@ package classes.Items.Transformatives
 						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
 						output(" The tip of your tail feels strange. After some probing, you’ve found your tail genitalia still present, but totally unnoticeable under a furry sheath when not aroused.");
 						if(target.hasParasiteTail()) output(" And much less prone to act by itself as well.");
-						output(".");
 					}
 					else if (hasTailCunt)
 					{

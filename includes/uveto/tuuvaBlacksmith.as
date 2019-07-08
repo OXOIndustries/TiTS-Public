@@ -739,7 +739,7 @@ public function talkToTuuvaAboutDicks():void
 public function biggerDForTuuva():void
 {
 	clearOutput();
-	output("She wants quick and simple dick growth, ey? Well you happen to have something right here that can give that. You take out a synth sheath and plant it on the counter in front of her.");
+	output("She wants quick and simple dick growth, ey? Well you happen to have something right here that can give that. You take out a synthsheath and plant it on the counter in front of her.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("What this");
 	else output("What is it");
@@ -826,7 +826,7 @@ public function tuuvaAppearance():void
 	{
 		output("\n\nYou’ve been intimate with her enough to know what she’s packing down there.");
 
-		//No Synth Sheath:
+		//No SynthSheath:
 		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nShe’s packing an eight inch, black puppy dong, though it can get much larger over time, with a pair of balls about an inch and a half in diameter.");
 		else output("\n\nShe’s packing a sixteen inch, black horse dong, though it can get <i>much</i> larger over time, with a sizeable knot, and a pair of huge horsey balls, about four inches in diameter.");
 		output(" Underneath her maleness is a tubby little, chocolate colored pussy.");

@@ -453,22 +453,23 @@ public function crystalGooSculptingMale():void
 	output(" greedily, sucking at your [pc.skinFurScales]. Your mad fuck-lust infects him, and the devil starts to swell his cock inside you, growing thicker in a bid to smear more of his erogenous zones against your insides on each pass. In a fog of fifteen-minutes-to-fuck, you race him to climax and win.");
 	
 	output("\n\nYour [pc.vagOrAss "+holeIdx+"] shudders, battering and deforming the tool with fierce contractions");
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.hasCock())
 	{
 		output(" while your stiff prick");
 		if (pc.cocks.length > 1) output("s unload");
 		else output(" unloads");
 		output(" a");
-		if (pc.cumQ() < 250) output(" sprinkle");
+		if (cumQ < 250) output(" sprinkle");
 		else output(" surge");
 		output(" of slop that makes your lover shiver in ecstasy.");
-		if (pc.cumQ() >= 1000) output(" You cum hard, pumping out [pc.cumVisc] [pc.cumNoun] in a heady attempt to get jizz everywhere, but his absorbent skin gloms every drop of sperm until your [pc.cumColor] adulterates his body.");
+		if (cumQ >= 1000) output(" You cum hard, pumping out [pc.cumVisc] [pc.cumNoun] in a heady attempt to get jizz everywhere, but his absorbent skin gloms every drop of sperm until your [pc.cumColor] adulterates his body.");
 	}
 	else if (pc.hasVagina()) output(" while squirting [pc.girlCum] through the sloppy seal, diluting his crotch with your own color.");
 	output("The ganrael keeps pumping, agonizing your climax with waves of pleasure and pulling out such a calamitously long orgasm that you worry you won’t get to breathe before you pass out. A reprieve finally comes when he shivers all over and collapses, melting against you. His cock spasms and then decoheres, spreading through your insides.");
 
 	//big male cum
-	if (pc.cumQ() >= 2500)
+	if (cumQ >= 2500)
 	{
 		output("\n\n<i>“Oh... o-oh...”</i> your lover stutters. <i>“Something’s happening....”</i>");
 		
@@ -573,8 +574,9 @@ public function crystalGooSculptingFem():void
 		
 		output("\n\nYou can barely endure the hot, form-fitting sleeve that wraps around your penis... your foreplay was too effective. Tamping it down with force of will is all you can do to enjoy the female ideal as long as possible. The effort is so titanic and so doomed - you’re already orgasming but holding the cum inside with your pelvic muscles, and the ganrael senses it by your awkward movement. She folds her goopy legs around your back with a sly smile. They wouldn’t be solid enough to stop you sober, but now, battling climax, you can’t escape. She stares at you innocently, as if not conscious of her trick, and your orgasm slips free.");
 
-	//big cum only
-		if (pc.cumQ() >= 2500)
+		var cumQ:Number = pc.cumQ();
+		//big cum only
+		if (cumQ >= 2500)
 		{
 			output("\n\nThe slip turns into a surge as your");
 			// {(PC not weeaboo race)massively modified }
@@ -590,7 +592,7 @@ public function crystalGooSculptingFem():void
 		else
 		{
 			output("\n\n");
-			if (pc.cumQ() <= 250) output("The ganrael shudders as scant few beads of [pc.cum] touch her plasm. Her stomach spasms, smearing the clean [pc.cumColor] droplets into blurry messes to better mingle them with her body.");
+			if (cumQ <= 250) output("The ganrael shudders as scant few beads of [pc.cum] touch her plasm. Her stomach spasms, smearing the clean [pc.cumColor] droplets into blurry messes to better mingle them with her body.");
 			else output("[pc.Cum] lances from your cock, disfiguring the ganrael’s perfect midriff with slashes of [pc.cumVisc] [pc.cumColor] slop. The girl shakes with tremors from the foreign genetic material, grasping her stomach with both hands so hard that her fingers sink in. A long, rolling sigh of delirium percolates all over, vibrating the goopy flesh on its way out.");
 			
 			output("\n\n<i>“Even better than I hoped,”</i> she slurs, tracing a line on her stomach to wick cum through her body. <i>“");
@@ -922,16 +924,17 @@ public function crystalGooFreeformFucks():void
 	}
 	else
 	{
+		var cumQ:Number = pc.cumQ();
 		//unarmored + cock ending
 		if (enemy.hasStatusEffect("Unarmored"))
 		{
 			output("\n\n");
-			if (pc.cumQ() <= 500) output("Jizz dribbles from your depleted organ, quietly depositing a few dots in the ganrael. It shudders in happiness and plunges its own hand through the skin to swirl your [pc.cum] around, enhancing its buzz.");
+			if (cumQ <= 500) output("Jizz dribbles from your depleted organ, quietly depositing a few dots in the ganrael. It shudders in happiness and plunges its own hand through the skin to swirl your [pc.cum] around, enhancing its buzz.");
 			else output("The ganrael’s body softens even more when the first stroke of your sperm lands. With a perverse thrill, you continue to fuck the creature’s cunt" + (multiCock ? "s" : "") + " while your orgasming body begs for reprieve. [pc.EachCock] jabs into it unguided, plowing aside goopy plasm to forge a new path each time; you hold briefly at every plunge to fire another spurt of [pc.cum], then pull out to blaze a new trail.");
-			if (pc.cumQ() > 500 && pc.cumQ() <= 2500) output(" When your climax fades, the creature has pockets of your slop all over and is quaking in ecstasy from your genetic contribution.");
+			if (cumQ > 500 && cumQ <= 2500) output(" When your climax fades, the creature has pockets of your slop all over and is quaking in ecstasy from your genetic contribution.");
 
 			//big cum only
-			if (pc.cumQ() > 2500)
+			if (cumQ > 2500)
 			{
 				output("\n\n[pc.CumNoun] rushes from you in torrents, turning your scheduled deposits into a swamp of plasm-swirled jizz. The elastic ganrael bulges with cum-babies as you dump your tremendous load, and wave upon wave of sperm renders it higher than a leithan’s ceiling and quite unable to move. ”</i>No... more...”</i> it groans. <i>“Ohhh... gonna... pop!”</i>");
 				
@@ -950,8 +953,8 @@ public function crystalGooFreeformFucks():void
 		{
 			//armored + cock ending
 			output("\n\n");
-			if (pc.cumQ() <= 500) output("[pc.Cum] bubbles from you, dropping all you can muster in the ganrael’s gooey pussy. "+ cgender("She", "It") +" shivers and "+ cgender("her", "its") +" hands fall on "+ cgender("her", "its") +" abdomen reflexively as the buzz kicks in.");
-			else if (pc.cumQ() <= 2500) output("Your [pc.cockNounSimple "+cockIdx+"] fires a stroke of [pc.cumNoun] into the ganrael, who trembles when the foreign genetic material touches "+ cgender("her", "its") +" insides. You keep pumping, letting "+ cgender("her", "its") +" clenches drag the sperm from your shaft; all of "+ cgender("her", "its") +" focus shifts to wringing jizz from your [pc.cockNounSimple "+cockIdx+"].");
+			if (cumQ <= 500) output("[pc.Cum] bubbles from you, dropping all you can muster in the ganrael’s gooey pussy. "+ cgender("She", "It") +" shivers and "+ cgender("her", "its") +" hands fall on "+ cgender("her", "its") +" abdomen reflexively as the buzz kicks in.");
+			else if (cumQ <= 2500) output("Your [pc.cockNounSimple "+cockIdx+"] fires a stroke of [pc.cumNoun] into the ganrael, who trembles when the foreign genetic material touches "+ cgender("her", "its") +" insides. You keep pumping, letting "+ cgender("her", "its") +" clenches drag the sperm from your shaft; all of "+ cgender("her", "its") +" focus shifts to wringing jizz from your [pc.cockNounSimple "+cockIdx+"].");
 			else output("The urethra in your [pc.cockHead "+cockIdx+"] dilates for the massive load of jism that’s already boiling up your dick. The first burst hits the ganrael like a bomb, and the creature’s back arches as the [pc.cumNoun] battles for space inside "+ cgender("her", "its") +" constricting armor. The sheer volume of semen you produce pushes gooey flesh through the gaps, so much so that by the time you finish "+ cgender("she", "it") +" looks like a lump of [enemy.skinTone] dough that has been squeezed by a giant hand. A sound like <i>“guh-guh”</i> comes from your partner as your intoxicating sperm mingles with "+ cgender("her", "its") +" plasm around the edges, but deeper it’s still pure [pc.cumNoun], ensuring "+ cgender("she", "it") +"’ll be high for a good while.");
 			
 			output("\n\n<i>“You’re... amazing,”</i> the ganrael says.");
@@ -1116,11 +1119,13 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 	if (pc.hasCock()) output(" back");
 	else output(" butt");
 	output(" hard into the crystal cage.");
+	
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.hasCock())
 	{
 		output(" [pc.EachCock]");
-		if (pc.cumQ() <= 250) output(" squeezes up what meager jizz you can produce and cheerfully drizzles it onto the ganrael’s stomach.");
-		else if (pc.cumQ() <= 1000) output(" flings [pc.cum] jubilantly onto the ganrael’s pre-smeared chest, covering its breasts with a garland of [pc.cumVisc] [pc.cumColor].");
+		if (cumQ <= 250) output(" squeezes up what meager jizz you can produce and cheerfully drizzles it onto the ganrael’s stomach.");
+		else if (cumQ <= 1000) output(" flings [pc.cum] jubilantly onto the ganrael’s pre-smeared chest, covering its breasts with a garland of [pc.cumVisc] [pc.cumColor].");
 		else output(" hoses the ganrael’s torso with the seed welling from your [pc.balls] until the alien is inundated with such a flood that the peaks and valleys of its cleavage are all the same level.");
 	}
 	else if (pc.hasVagina())
@@ -1146,7 +1151,7 @@ public function crystalGooCuddlebug(pcVictory:Boolean = false):void
 	if (pcVictory)
 	{
 		output("\n\n<i>“See,”</i> the ganrael");
-		if (pc.hasCock() && pc.cumQ() >= 2500) output(" slurs");
+		if (pc.hasCock() && cumQ >= 2500) output(" slurs");
 		else output(" asserts");
 		output(" as it slides from your stretched anus, <i>“I told you I’d do all the work.”</i> It rolls over with you clasped in its legs, then opens the");
 		if (pc.hasCock()) output(" semen-stained");
@@ -1254,10 +1259,13 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 	else output(" truncheon");
 	output(" looks frightening, but the ganrael’s judgement must be better than yours - with a pleasant pinch, the bulb slides into you, still wet from being goo’s lifeblood.");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	//cock branch
 	if (pc.hasCock())
 	{
 		output("\n\n<i>“Ungh,”</i> you grunt, as the foreign object spreads your [pc.cockHead "+cockIdx+"].");
+		
+		pc.cockHoleChange(cockIdx);
 		
 		output("\n\nThe impassive alien makes no acknowledgment but to swirl the sound a bit, dragging your shaft in a cute loop through the air. She pushes, and with the push comes new pressure as the sound descends. The rod advances insolently, pushing through the flesh like a frontiersman parting tall grass. Farther it slides, past the glans, then the neck");
 		if (pc.cocks[cockIdx].cLength() >= 15) output(", then [pc.sheath "+cockIdx+"]");
@@ -1272,7 +1280,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		else if (!pc.isTaur() || pc.cocks[cockIdx].cLength() >= 72) output(" She stares up at you, studying.");
 
 		output("\n\n<i>“Looks enjoyable,”</i> the soft voice reverberates. Without waiting for an answer, she pulls at the sound, and whatever response you had turns to a grunt of pleasure. The tip moving back up is like a miniature orgasm on its own, and when your lover pops the bulbous head free, a");
-		if (pc.cumQ() <= 250) output(" trickle");
+		if (cumQ <= 250) output(" trickle");
 		else output(" rush");
 		output(" of [pc.cumVisc] pre-cum escapes in its train. She intercepts the stream with her hand, dragging her fingers up the underside of your [pc.cock "+cockIdx+"]. The touches make you even stiffer.");
 		
@@ -1295,15 +1303,15 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		output("\n\nWith the sound lodged and moving to the ganrael’s whim, she masturbates you, squeezing you against the intruder. She slows every stroke when it gets to the bulb, letting you feel her stiff, pre-slicked palm stutter over it; your orgasm shivers awake as your cock is stroked both inside and out, building up momentum behind the obstruction until it feels like you could burst. With the toy occupying your cum’s escape route, your impending ejaculation feels like an emergency.");
 		
 		if (pc.balls <= 0 || pc.ballSize() <= 0) output("\n\n<i>“Cumming!”</i> you announce, part whine and warning.\n\n");
-		else output("\n\nYour tightening scrotum cues the alien.");
+		else output("\n\nYour tightening scrotum cues the alien. ");
 
-		output(" With a hand like cold glass, she squeezes the base of your cock. The bulb slides upward, each inch of regression carrying the terrible promise of release if only your patience would hold. As the rod nears the end, the line between ecstasy and torture starts to blur.");
+		output("With a hand like cold glass, she squeezes the base of your cock. The bulb slides upward, each inch of regression carrying the terrible promise of release if only your patience would hold. As the rod nears the end, the line between ecstasy and torture starts to blur.");
 		
 		output("\n\nThe sound clears the last inch before the tip, and your lover scoots backward and nestles your [pc.cockHead "+cockIdx+"] in the perfect, sculpted cleavage of her chest, pressing firmly. Your control overreaches when she caresses your blood-engorged glans - with the bulb still inside you, you give up on holding back. You surrender to orgasm, only hoping your churning load will push the toy out or the alien will pull it free.");
 
 		//li’l cum
 		//you STOLE fizzy lifting drinks
-		if (pc.cumQ() <= 250)
+		if (cumQ <= 250)
 		{
 			output("\n\nYour exhausted body releases a piddling squirt of [pc.cumNoun], nowhere near enough to budge the sound. Lurching once, your body goes limp; the ganrael continues to tease your overstimulated penis, unaware that you’ve already finished. When you slump instead of spasming in further climax, the alien stops. She pulls the sound loose and leans in to inspect, but the arrested cum is already oozing back down your cock, invisible.");
 			
@@ -1313,10 +1321,10 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 			//li’l cum version ends here; time, lust, rewards/penalties, etc.
 			//handle the reflow however - can deplete cum or not
 		}
-		else if (pc.cumQ() <= 1000)
+		else if (cumQ <= 1000)
 		{
 			output("\n\nThe first shot of [pc.cumNoun] is accompanied by a mighty pelvic thrust from you, and the sound vibrates violently in the ganrael’s hand as your jizz tries to batter free. The alien withdraws it in time for the next stroke, which powers through the stalled load to squirt all over her breasts. The sloppy, [pc.cumVisc] fluid scribbles on the statuesque ganrael like graffiti, distorting her beautiful, martial body with blotches of [pc.cumColor]. Two more");
-			if (pc.cumQ() >= 750) output(" thick");
+			if (cumQ >= 750) output(" thick");
 			output(" spurts follow, catching her on the chin. She accepts with poise, neither flinching nor leaning into it.");
 			
 			output("\n\n<i>“Hee hee,”</i> she titters, laying her hand against her forehead and pretending to swoon. <i>“You’re dirty.”</i>");
@@ -1371,7 +1379,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 	if (pcVictory)
 	{
 		output("\n\nThe ganrael watches over you from a distance while you recover from your intense orgasm,");
-		if (pc.hasCock() && pc.cumQ() > 1000) output(" drunkenly laughing as you groan and flop.");
+		if (pc.hasCock() && cumQ > 1000) output(" drunkenly laughing as you groan and flop.");
 		else output(" practicing her inspiring poses and occasionally picking large mushrooms.");
 		output(" When you can finally sit up again, she says a shy farewell. <i>“See you later... pervert.”</i>");
 		output("\n\n");
@@ -1715,12 +1723,13 @@ public function crystalGooDongerLoss():void
 	}
 	//end armored
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYour");
 	if (pc.balls > 0 && pc.ballSize() > 0) output(" [pc.sack]");
 	else output(" body");
 	output(" tightens, and the ganrael is too enraptured with pleasure to stop the fuck. Pulling a groan from you, your cock");
-	if (pc.cumQ() <= 250) output(" splurts a tiny load of [pc.cum] into the creature. "+ cgender("She", "It") +" shivers as the foreign genetic material minges with "+ cgender("her", "its") +" own.");
-	else if (pc.cumQ() <= 1000) output(" fires a stroke of [pc.cum] into the creature’s pussy. "+ cgender("She", "It") +" quivers with joy when the foreign genetic materal touches "+ cgender("her", "it") +", and your cock appreciatively unloads several more shots.");
+	if (cumQ <= 250) output(" splurts a tiny load of [pc.cum] into the creature. "+ cgender("She", "It") +" shivers as the foreign genetic material minges with "+ cgender("her", "its") +" own.");
+	else if (cumQ <= 1000) output(" fires a stroke of [pc.cum] into the creature’s pussy. "+ cgender("She", "It") +" quivers with joy when the foreign genetic materal touches "+ cgender("her", "it") +", and your cock appreciatively unloads several more shots.");
 	else
 	{
 		output(" erupts with an oppressive load of [pc.cum]. The ganrael freezes as so much foreign genetic material hits "+ cgender("her", "its") +" system, too high to move.");

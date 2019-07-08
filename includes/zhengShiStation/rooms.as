@@ -198,7 +198,6 @@ public function initZhengRooms():void
 	rooms["ZS J42"].runOnEnter = maikesOfficeBonus;
 	rooms["ZS J42"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS J42"].addFlag(GLOBAL.BED);
-	rooms["ZS J42"].addFlag(GLOBAL.NPC);
 
 	rooms["ZS H40"] = new RoomClass(this);
 	rooms["ZS H40"].roomName = "SLAVE\nPEN";
@@ -1935,7 +1934,6 @@ public function initZhengRooms():void
 	rooms["ZSF AB20"].moveMinutes = 2;
 	rooms["ZSF AB20"].runOnEnter = researchAndDevLabBonus;
 	rooms["ZSF AB20"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF AB20"].addFlag(GLOBAL.NPC);
 	rooms["ZSF AB20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF AD20"] = new RoomClass(this);
@@ -1950,7 +1948,6 @@ public function initZhengRooms():void
 	rooms["ZSF AD20"].moveMinutes = 2;
 	rooms["ZSF AD20"].runOnEnter = docTeyaaaaaaalsOffice;
 	rooms["ZSF AD20"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
 	rooms["ZSF AD20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z22"] = new RoomClass(this);
@@ -2342,7 +2339,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSF X16"] = new RoomClass(this);
 	rooms["ZSF X16"].roomName = "ACCESS\nCORRIDOR";
-	rooms["ZSF X16"].description = "The corridor stretches north and south past quite a few rooms for crewmembers, every single one of them locked down for the time being. You suppose that once a proper crew manifest is loaded into the console, you’d be able to get inside, but right now, you have bigger fish to fry. The used condom on the floor gives one suggestion as to why these chambers were sealed off while the ship is in drydock, not that the pirates on this station seem to give one whit about finding somewhere private to bang.";
+	rooms["ZSF X16"].description = "The corridor stretches north and south past quite a few rooms for crew members, every single one of them locked down for the time being. You suppose that once a proper crew manifest is loaded into the console, you’d be able to get inside, but right now, you have bigger fish to fry. The used condom on the floor gives one suggestion as to why these chambers were sealed off while the ship is in drydock, not that the pirates on this station seem to give one whit about finding somewhere private to bang.";
 	rooms["ZSF X16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X16"].northExit = "ZSF X14";

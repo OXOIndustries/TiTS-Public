@@ -514,7 +514,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	if(x >= 0) pc.cockChange();
 	
 	output("\n\n<i>“Okay. Okay...”</i> Kaede breathes between soft little moans. <i>“Startin’ to feel good back there. I think... I think it’s okay to move now.”</i>");
-	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh so sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
+	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh-so-sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
 	output("\n\nThe heavy, wet sounds of flesh slapping against flesh echo through the room, accompanied by Kaede’s whimpering grunts of pleasure and the creaking of the bedframe under you. Your hands plant themselves on Kaede’s shoulderblades, pushing the cock-hungry halfbreed into the sheets, letting your hammering crotch do the same to her ass. Kaede sinks into the bed, tail flicking against your [pc.face], her body completely at your mercy.");
 	output("\n\nAnd she’s loving every second of it.");
 	output("\n\nKaede’s tailhole squeezes hard around your thrusting dick, and you can feel something thick and meaty throbbing against your thigh, leaking to the beat of Kaede’s racing heart. A few moments later, she gives voice to it: <i>“O-oh fuck! Too much, too much, too-”</i>");
@@ -675,7 +675,7 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	if(pc.isHerm()) output(" and ");
 	if(pc.hasVagina()) output("drooling femcum down her crimson shaft");
 	if(!pc.hasGenitals()) output("squeezing your ass for her as your sexless body climaxes");
-	output(". When you finish moaning through your orgasm, it all at once feels as thought all the breath has gone out of you - along with all the tension and stress of your long journey , all the worry of the day...");
+	output(". When you finish moaning through your orgasm, it all at once feels as thought all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
 	output("\n\nYou slump down overtop Kaede, resting your cheek against one of her sinfully soft little breasts. There’s a thin, glistening sheen of sweat built up from her vigorous fucking, but her cleavage is still nice and cool for you. Kaede giggles when you nuzzle up, wrapping her big ginger tail around your [pc.butt] and pulling the sheets up over you both.");
 	output("\n\n<i>“Hope you’re comfortable,”</i> she murmurs, yawning and reaching up for the lights. <i>“Gonna be stuck there awhile.”</i>");
 	output("\n\nYou smile up at her and slip your arms around her. <i>“Nowhere I’d rather be...”</i>");

@@ -179,7 +179,7 @@ package classes.Characters
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.ass.wetnessRaw = 0;
-			this.ass.bonusCapacity += 500
+			this.ass.bonusCapacity += 500;
 			this.ass.loosenessRaw = 1;
 			
 			impregnationType = "FrostwyrmPregnancy";

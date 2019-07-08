@@ -57,10 +57,11 @@ public function myrellionBiotechInteriorAddition():Boolean
 	output("\n\n");
 	if (flags["MET_NEVRIE"] == undefined) output("A bronze-skinned woman with a pair of small horns poking out through her blue hair");
 	else output("Nevrie");
-	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
+	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a bag of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 	if(!CodexManager.entryUnlocked("Dzaan"))
 	{
-		output("\n\nYour codex suddenly beeps, telling you the woman is of the “Dzaan” species. <b>(‘Dzaan’ Codex entry unlocked!)</b>");
+		output("\n\nYour codex suddenly beeps, telling you the woman is of the “Dzaan” species.");
+		output("\n\n<b>(‘Dzaan’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Dzaan");
 	}
 

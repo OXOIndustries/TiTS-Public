@@ -13,7 +13,7 @@ public function sydianQueenIntroRedux():void
 	if((flags["SYDIAN_QUEEN_STAGE"]==undefined || flags["SYDIAN_QUEEN_STAGE"]==1))
 	{
 		if (flags["SYDIAN_QUEEN_LUBBIN"] != undefined||flags["RASKVEL_HAREM_SPITROAST"] != undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court... for a little while. What say you?”</i>");
-		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem...”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
+		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem...”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
 		
 		processTime(3);
 		if(flags["SYDIAN_QUEEN_STAGE"] == undefined)flags["SYDIAN_QUEEN_STAGE"] = 1;
@@ -217,7 +217,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 	if (sceneChoice==7)
 	{
 		output("You feel a dragging, resentful reluctance turning her down, but you think it wise not to go off chasing feathery and/or reptilian tail right now.");
-		output("\n\n<i>“A refusal?”</i> Drooped feathers, pouted lips, frustrated tap of the sceptre: The Queen can really do disappointment. <i>“Perhaps you are not my most favored servant, as I imagined. Ah well... “</i> Her beetle-black gaze rolls over her raskvel consort. <i>“ ...there are plenty others who can vie for that honor. Go, then. And think on what you are missing out on well.”</i>");
+		output("\n\n<i>“A refusal?”</i> Drooped feathers, pouted lips, frustrated tap of the sceptre: The Queen can really do disappointment. <i>“Perhaps you are not my most favored servant, as I imagined. Ah well... “</i> Her beetle-black gaze rolls over her raskvel consort. <i>“...there are plenty others who can vie for that honor. Go, then. And think on what you are missing out on well.”</i>");
 		output("\n\nYour body <i>is</i> thinking about it, and makes you feel miserable as you watch that seductive menace sashay away. But perhaps you made the sensible decision.");
 		flags["SYDIAN_QUEEN_STAGE"]=2;
 		flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;

@@ -283,28 +283,28 @@ public function azraInShipGreeting():void
 
 //Azra as a Follower
 //Random crew blurbs
-public function azraCrewBlurbs(button:Number):String
+public function azraCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var buffer:String = "";
 	
 	if(pc.hasStatusEffect("Azra Plant CD")) 
 	{
 		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
-		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
+		addDisabledButton(btnSlot,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
-	else if(pc.hasStatusEffect("Azra CD"))
+	if(pc.hasStatusEffect("Azra CD"))
 	{
 		buffer += "\n\nAzra isn’t available at the moment. You’ll have to come back later.";
-		addDisabledButton(button,"Azra","Azra","Azra isn’t available. Come back later.");
+		addDisabledButton(btnSlot,"Azra","Azra","Azra isn’t available. Come back later.");
 		return buffer;
 	}
 	//Post Coital Relationship Talk
 	//Approach text:
-	else if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
+	if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
 	{
 		buffer += "\n\nAzra is fidgeting in her lab. The plants are secure, but something else must have her bothered. Perhaps if you talked to her, she might explain.";
-		addButton(button,"Azra",azraPostCoitalTalk);
+		addButton(btnSlot,"Azra",azraPostCoitalTalk);
 		return buffer;
 	}
 	switch(rand(10))
@@ -320,8 +320,8 @@ public function azraCrewBlurbs(button:Number):String
 		case 1:
 		case 0: buffer += "\n\nAzra is packing away a tube filled with exotic plant samples. Her portable workstation still displays a visualization of its genetic structure."; break;
 	}
-	addButton(button,"Azra",approachCrewAzra);
-	return buffer;
+	addButton(btnSlot,"Azra",approachCrewAzra);
+	return (showBlurb ? buffer : "");
 }
 
 //Azra Crew Approach
@@ -1039,7 +1039,7 @@ public function talkToAzraAboutAge():void
 	else if(pc.isBro()) output("How old are you?");
 	else if(pc.isNice() || pc.isMischievous()) output("How old are you? Not that old, I wager. You don’t look a day over twenty.");
 	else output("Just how old are you?");
-	output("”</i> You peer closer at your suula crewmember, daring her face to give you a clue.");
+	output("”</i> You peer closer at your suula crew member, daring her face to give you a clue.");
 
 	output("\n\nAzra leans close to you, close enough for to get a good look at the texture of her inky lips as she replies, <i>“Old enough to be your mother and a little more. Old enough one of my daughters could have babysat you.”</i> She ");
 	if(pc.hasHair()) output("ruffles your [pc.hair] affectionately");
@@ -1381,7 +1381,7 @@ public function azraHyperDocking(x:int):void
 		output("\n\nYou whimper in quiet ecstasy. She’s almost to the tendrils.");
 		output("\n\n<i>“I can’t help but wonder how it would feel to be in-mmf! ...your situation.”</i> The angelic dick-girl runs her fingers up and down your dick. <i>“Would I insist my ");
 		if(flags["AZRA_BOYFRIEND"] == 1) output("girlfriend");
-		else output("sexy suula crewmember");
+		else output("sexy suula crew member");
 		output(" push herself inside and try to knock up my balls.”</i> Your veins bulge powerfully from a sudden increase in blood flow. <i>“I bet I would, judging from the sounds you’re making,”</i> Azra muses, watching you carefully. Four of her fingers come together to caress the sensitive, inflating bulge below. <i>“I’d be begging her to fuck it.”</i>");
 		output("\n\nYou whine, high-pitched and needy. <i>“Fuck me already!”</i>");
 		output("\n\nStraightening, the winged shark-girl smiles. <i>“Of course, dear.”</i> She grabs hold of the head in preparation. <i>“I’ll fuck your dick every time we make love, if that’s what you want. Because you would do it for me, if I needed it like you needed it. I know you would, sweet lover. You’d fuck me so good.”</i> She pauses, breathing deep. <i>“Now let me.”</i>");

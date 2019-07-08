@@ -250,6 +250,10 @@ public function configureMails():void
 	
 	//extrameet 	
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
+
+	// Bizzy the Camgirl
+	MailManager.addMailEntry("bizzy_camgirl_initiate", bizzyCamgirlInitialMail, "Proposition?", "B d’Alyso", "izzybizzy12@MegMess.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("bizzy_camgirl_profits", bizzyCamgirlPaymentMail, "Hey :3", "B d’Alyso", "izzybizzy12@MegMess.org", quickPCTo, quickPCToAddress);
 	
 	//Stubs so that the mail entries show up on a load - this is basically for emails that are repeatable and also have dynamic content
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
@@ -315,6 +319,23 @@ public function configureMails():void
 	//breedwell premium
 	MailManager.addMailEntry("breedwell_premium_invite", breedwellPremiumInviteEmail, "Hey There, Eager Breeder...", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_premium_earnings", breedwellPremiumEarningsEmail, "Your Earnings", "TamaniCorp", "BCounter@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//mirrin nonpreg email
+	MailManager.addMailEntry("mirrin_notpreg", mirrinNotPregEmail, "Doctors in, please come", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_tavros", mirrinMovingEmail, "All set up!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_sugarmommy", mirrinSugarMommyEmail, "Feeling good, other updates", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_sendnudes", mirrinSendNudesEmail, "Feeling bad, progress", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_royalties", mirrinRoyaltiesEmail, "Article’s up, pics! Also...", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("mirrin_jenta", "STEELE YOU GOTTA SEE HER YOU GOTTA SEEEEEEEEEEEE\n\nAHHHHHH\n\nGET HERE NOW OR I’LL CRUSH YOUR HEAD WITH MY HOOF\n\n<i>Ohhh, it seems your daughter has been born! <b>You better go visit the Tavros nursery ASAP.</b></i>", "Jenta’s hatched! Come see!", "MirrinBoss", "DatMirrinOfficial@NiceLa.wnet", quickPCTo, quickPCToAddress);
+
+	MailManager.addMailEntry("tessa_wedding",
+	function ():String
+	{
+		var msg:String = "[pc.Name],";
+		msg += "\n\nI’ve got something I want to ask you about the next time to come around. Just a small favor. Remind me in case I forget. Or don’t. If you’re a little bitch.";
+		msg += "\n\n-Tessa";
+		return ParseText(msg);
+	}
+	, "Favor to ask.", "Tessa", "Tessa_da_besta@cmail.com", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
@@ -528,10 +549,6 @@ public function initialMailConfiguration():void
 
 	clearGhostMenu();
 	addGhostButton(0, "Confirm", confirmMailConfig);
-
-	(userInterface as GUI).perkDisplayButton.Deactivate();
-	(userInterface as GUI).dataButton.Deactivate();
-	(userInterface as GUI).appearanceButton.Deactivate();
 }
 
 public function confirmMailConfig():void
@@ -569,9 +586,4 @@ public function confirmMailConfig():void
 
 	clearGhostMenu();
 	addGhostButton(0, "Next", showMails);
-
-	(userInterface as GUI).perkDisplayButton.Activate();
-	(userInterface as GUI).dataButton.Activate();
-	(userInterface as GUI).appearanceButton.Activate();
-	(userInterface as GUI).mailsDisplayButton.Activate();
 }
