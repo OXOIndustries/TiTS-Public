@@ -1863,11 +1863,11 @@ public function amberOnshipSex():void
 	}	
 	clearMenu();
 	addButton(0, "Suck Cock", amberOnshipSexSuckCock, undefined, "Suck Cock", "Get on your knees and pay that fat equine cock of hers the respect it deserves.");
-	if (pc.isTaur()) addButton(1, "Get Fucked", vaginaRouter,[amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Give Amber your rear to mount and rut.");
-	else addButton(1, "Get Fucked", vaginaRouter,[amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Spread your legs to let Amber rut you.");
-	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(2, "Fuck Pussy", penisRouter,[amberOnshipSexFuckPussy,amber.vaginalCapacity(),true,0], "Fuck Pussy", "Fuck Amber’s pussy good and hard.");
+	if (pc.isTaur()) addButton(1, "Get Fucked", vaginaRouter, [amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Give Amber your rear to mount and rut.");
+	else addButton(1, "Get Fucked", vaginaRouter, [amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Spread your legs to let Amber rut you.");
+	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(2, "Fuck Pussy", penisRouter, [amberOnshipSexFuckPussy,amber.vaginalCapacity(),true,0], "Fuck Pussy", "Fuck Amber’s pussy good and hard.");
 	else addDisabledButton(2, "Fuck Pussy", "Fuck Pussy", "You need a cock or a hardlight to fuck Amber’s pussy.");
-	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(3, "Mounting", penisRouter,[amberOnshipSexMounting,amber.vaginalCapacity(),true,0], "Mounting", "Put some of the equipment you and Urbolg put in here to good use.");
+	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(3, "Mounting", penisRouter, [amberOnshipSexMounting,amber.vaginalCapacity(),true,0], "Mounting", "Put some of the equipment you and Urbolg put in here to good use.");
 	else addDisabledButton(3, "Mounting", "Mounting", "You need a penis or hardlight dildo to mount Amber.");
 	// //For non-neuter, non-taur/non-naga PCs with Amber recruited. Uses the taur equipment to comfortably mount a biped PC. Can't be done with Amber at 3+ Dumbfucks.
 	if (amberDumbfuckDoses() > 2) addDisabledButton(4, "Mount Me", "Mount Me", "Amber’s too worked up to consider using the machines to mount you!");
@@ -1875,7 +1875,14 @@ public function amberOnshipSex():void
 	else if (!pc.hasGenitals()) addDisabledButton(4, "Mount Me", "Mount Me", "Requires genitals.");
 	else addButton(4, "Mount Me", vaginaRouter, [amberDoesTheMountingThisTime, ppAmber.biggestCockVolume(), 1, 0], "Mount Me", "Ask Amber to mount the equipment so she can rut you in comfort.");
 	if (amberCanThreesome()) addButton(5, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
-		
+	
+	var descriptionVariant:String = null;	
+	if (flags["AMBER_EQUILICUM"] == 1) descriptionVariant = "Those enormous, jizz-filled cumtanks swinging between her hindlegs could certainly use some relief...";
+	else descriptionVariant = "Those plump, seed-filled testes swinging between her hindlegs could certainly use some relief…"
+	addButton(6, "Drain Her", amberOnShipSexDrainHer, undefined, "Drain Her", descriptionVariant);
+	//Next line is for dev purposes only. Remove before sending this off! -LJ
+	addDisabledButton(6, "Drain Her", "Drain Her", "This is not finished yet!");
+	
 	addButton(14, "Back", amberInTheHold);
 
 }
@@ -2663,6 +2670,18 @@ public function amberOnshipSexFuckPussyAgain(kok:int=0):void
 	clearMenu();
 	addButton(0, "Leave", mainGameMenu);
 }
+//have sex with amber drain her balls into your mouth
+public function amberOnShipSexDrainHer():void
+{
+	clearOutput();
+	amberHeader();
+	output("Hurr hurr sexy time");
+	output("\n\nThis is a work in progress, remove this before sending it off! -LJ");
+	clearMenu();
+	addButton(0,"Leave",mainGameMenu);
+}
+
+
 //is crew content on
 public function amberIsCrewContentOn():Boolean
 {
