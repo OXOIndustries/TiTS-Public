@@ -515,7 +515,7 @@ public function giveThatFadilfSomeDoshGo():void
 		pc.addNice(5);
 	}
 
-	output("\n\nYou can’t but feel a little bit better about yourself after donating to charity.");
+	output("\n\nYou can’t help but feel a little bit better about yourself after donating to charity.");
 
 	pc.credits -= donation;
 	if (flags["FADIL_MONEY_GIVEN"] == undefined) flags["FADIL_MONEY_GIVEN"] = donation;

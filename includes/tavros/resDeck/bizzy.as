@@ -297,7 +297,7 @@ public function bizzySexMenu(fromItem:Boolean = false):void
 	else if (pc.hasVagina() && !pc.hasCock())
 	{
 		if (pc.lust() < 33) addDisabledButton(btnSlot, "Oral", "Oral", "You’re not turned on enough for this.");
-		else addButton(btnSlot, "Oral", bizzySexOral, [true, fromItem], "Oral", "Cat’s are good at licking.");
+		else addButton(btnSlot, "Oral", bizzySexOral, [true, fromItem], "Oral", "Cats are good at licking.");
 
 		btnSlot++;
 	}
@@ -311,7 +311,7 @@ public function bizzySexMenu(fromItem:Boolean = false):void
 		else
 		{
 			addButton(btnSlot, "Oral (M)", bizzySexOral, [false, fromItem], "Oral (Cock)", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
-			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, [true, fromItem], "Oral (Vag)", "Cat’s are good at licking.");
+			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, [true, fromItem], "Oral (Vag)", "Cats are good at licking.");
 		}
 
 		btnSlot += 2;

@@ -1668,6 +1668,7 @@ package classes.GameData
 			var crews:Array = kGAMECLASS.getGunnersOnShipNames();
 			var turrets:Number = 0;
 			var energyCost:Number = 0;
+			var energyCosts:Array = [];
 			output("<b>Currently Fitted Weapons</b>\n<u>Energy | Name</u>");
 			
 			for(var i:int = 0; i < weapons.length; i++)
@@ -1680,21 +1681,34 @@ package classes.GameData
 				}
 				else 
 				{
+					var chargeCost:Boolean = true;
 					output("\n" + weapons[i].shieldDefense + "\t| " + StringUtil.upperCase(weapons[i].longName));
 					if(weapons[i].hasFlag(GLOBAL.ITEM_FLAG_TURRET)) 
 					{
 						turrets++;
-						if(turrets > crews.length) output(" (<b>Insufficient crew</b> to man turret.)");
+						if(turrets > crews.length)
+						{
+							output(" (<b>Insufficient crew</b> to man turret.)");
+							chargeCost = false; // Does not count against cost.
+						}
 						else output(" (Crewed.)");
 					}
 					//addButton(i,weapons[i].shortName,toggleWeapon,[arg,weapons[i]],StringUtil.upperCase(weapons[i].longName),"Disable this weapon.");
 					kGAMECLASS.addItemButton(i, weapons[i], toggleWeapon, [arg,weapons[i]], null, null, pc);
-					energyCost += weapons[i].shieldDefense;
+					if(chargeCost)
+					{
+						energyCost += weapons[i].shieldDefense;
+						energyCosts.push(weapons[i].shieldDefense);
+					}
 				}
 			}
+			output("\n");
 			var energyChange:Number = (arg as ShittyShip).shipPowerGen() - energyCost;
-			output("\n\nProjected Energy Use: " + energyCost + "\nProjected Energy Generation: " + (arg as ShittyShip).shipPowerGen() + "\n<b>Projected Energy Change:</b> " + (energyChange >= 0 ? "+":"") + energyChange + "\n");
-			if(arg.energy() + energyChange < 0) output("\n\n<b>Warning: INSUFFICIENT POWER TO FIRE ONLINE WEAPON SYSTEMS.</b>");
+			output("\nCurrent Energy Stored: " + arg.energy());
+			output("\nProjected Energy Use: " + energyCost);
+			output("\nProjected Energy Generation: " + (arg as ShittyShip).shipPowerGen());
+			output("\n<b>Projected Energy Change:</b> " + (energyChange >= 0 ? "+":"") + energyChange);
+			if((arg.energy() - energyCost) < 0) output("\n\n<b>Warning: INSUFFICIENT POWER TO FIRE" + ((energyCosts.length > 1 && Math.min.apply(null, energyCosts) <= arg.energy()) ? " ALL" : "") + " ONLINE WEAPON SYSTEMS.</b>");
 			output("\n\nSelect equipped weapons to toggle on/off below, or choose back to return to main combat menu.");
 			addButton(14, "Back", generateCombatMenu, true);
 		}
