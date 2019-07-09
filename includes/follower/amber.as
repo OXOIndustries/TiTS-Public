@@ -1876,12 +1876,9 @@ public function amberOnshipSex():void
 	else addButton(4, "Mount Me", vaginaRouter, [amberDoesTheMountingThisTime, ppAmber.biggestCockVolume(), 1, 0], "Mount Me", "Ask Amber to mount the equipment so she can rut you in comfort.");
 	if (amberCanThreesome()) addButton(5, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
 	
-	var descriptionVariant:String = null;	
-	if (flags["AMBER_EQUILICUM"] == 1) descriptionVariant = "Those enormous, jizz-filled cumtanks swinging between her hindlegs could certainly use some relief...";
-	else descriptionVariant = "Those plump, seed-filled testes swinging between her hindlegs could certainly use some relief…"
-	addButton(6, "Drain Her", amberOnShipSexDrainHer, undefined, "Drain Her", descriptionVariant);
+	addButton(6, "Drain Her", amberOnShipSexDrainHer, undefined, "Drain Her", (amberEquilicumDoses() > 0 ? "Those enormous, jizz-filled cumtanks swinging between her hindlegs could certainly use some relief...":"Those plump, seed-filled testes swinging between her hindlegs could certainly use some relief..."));
 	//Next line is for dev purposes only. Remove before sending this off! -LJ
-	addDisabledButton(6, "Drain Her", "Drain Her", "This is not finished yet!");
+	addDisabledButton(6, "Drain Her", "Drain Her", "This is not completely finished yet!");
 	
 	addButton(14, "Back", amberInTheHold);
 
@@ -2675,10 +2672,242 @@ public function amberOnShipSexDrainHer():void
 {
 	clearOutput();
 	amberHeader();
-	output("Hurr hurr sexy time");
+	output("“How about you drain those fat balls of yours inside me,” you suggest, ");
+	if (!pc.isNude()) output("stripping off your [pc.clothes] and ");
+	output("kneeling before her. “Niiiice and thoroughly.”");
+	
+	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+		output("“Oh, I'll empty them in you alright,” Amber purrs, the red-hot lust radiating off her like the heat of a star. “Over, and over, and over, and over...”");
+	} else if (amberDumbfuckDoses() > 2){
+		output("“Mmmm,” Amber murmurs, the red-hot lust radiating off her like the heat of a star. “[pc.name]...”");
+	}
+	
+	output("\n\nAlready thickly erect and slick with precum, the flowering head of her equine cock presses against your [pc.lips] with a fierce insistence as if to demand you open your mouth and let Amber fuck it. She thrusts forward and you're instantly pinned to the spot, ");
+	if(pc.isMale()) output("your [pc.cocks] springing upright ");
+	else if(pc.isFemale()) output("your [pc.pussies] dripping wet ");
+	else if(pc.isHerm()) output("your [pc.pussies] dripping wet and your [pc.cocks] springing upright ");
+	else if(pc.isSexless()) output("your [pc.nipples] hardening ");
+	output("the moment she spears you on her throbbing cocktip. A pulse of pleasure runs along her swelling cumvein and rich, Amber-flavored cream fills your cheeks before you swallow it back with a shiver of delight.");
+	
+	output("\n\n");
+	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+		output("“Oohhh, there's going to be <b>so</b> much more where that came from,” she pants, taking a confident step forward. You let out an acquiescent gurgle as the sensitive underside of her stiff rod slides forward and her swollen head slips into your throat, robbing you of speech. “Ungh! God, fuck!”");
+	} else if (amberDumbfuckDoses() > 2){
+		output("“Oohhhh yes, swallow my cum,” she pants, taking a confident step forward. You let out an acquiescent gurgle as the sensitive underside of her stiff rod slides forward and her swollen head slips into your throat, robbing you of speech. “Ungh! God, fuck!”");
+	}
+	
+	output("\n\nYou know what's coming now, instinctively straightening out your back and neck as your [pc.tongue] squeezes between the veiny surface of her immense cock and your bottom lip to loll from your mouth. In the next second Amber coils like a spring and drives herself forward with an eager scream of joy, slamming herself balls-deep into the recesses of your dick-filled throat and unleashing a massive spurt of hot, sticky cum right into your stomach.");
+	output("\nHer " + (amberEquilicumDoses() > 0 ? "gigantic, drug-enhanced quartet of gonads ":"enormous balls ") + "swing down and slap you in the chin, filling your nostrils with her outrageously irresistible musk and reminding you of just how much you love this sensation.");
+	
+	output("\n\n");
+	if (flags["USED_SNAKEBYTE"] != undefined){
+		output("Thanks to your SnakeByte-enhanced capability, you can't possibly gag or choke while your throat is used as a long, warm and wet cocksheath. What you can do, though, is give Amber the oral sex of her fucking life. She <i>howls</i> in bliss as you display otherworldly control over your gullet, coiling around her and clenching down on her in concentric waves, wringing her enormous cock from base to tip over and over, holding her quaking cockhead deep in your throat and squeezing it with aplomb.");
+		output("“Oh my GOD, <b>STEELE!</b>” Amber screams, hooves clacking furiously against the ground. “FUCK! FUCK! FUCK! I'M CUMMING!”");
+		
+		output("\n\nShe throws her head back and lets loose the thickest stream of cum you've ever drunk from her, thin hindlegs shaking in sheer pleasure while you work your throat with impossible precision to milk her warm, salty loads straight from her taut nuts. They pull up against her soft underside and strain, flexing and shifting in her sweaty sack as you watch in glee. Eruptions of fresh seed splatter down your throat and into your tummy, filling you with a flood of Amber's essence. The orgasming deertaur strains and grunts, slowly working her hindquarters while clear arousal drools from her needy pussy to drip down her quaking balls and spatter on the floor.");
+		output("\n\nYou gulp and swallow, enjoying the sympathetic pleasure of Amber's incredible release. So sensitive is your throat that you can gauge just how large each of her flowing loads are and they are <i>massive</i>, even for her. Your red-headed lover is cumming her brains out, her thrumming cumvein swelling again and again while it delivers yet another heavy load of spooge down your slutty throat. So full of her already, you can't help but want even more.");
+		output("\n\n“Guh! Haah, oh, god,” Amber gasps, sagging above you as the tension drains from her body. “Oh- oh, fuck,” she pants, feeling your gentle, loving post-orgasm squeezing. “I, I don't even have to do anything… I could just- just stand here with my fucking cock in your throat and let you swallow it!”");
+	} else {
+		output("You do your best not to gag and choke as Amber rears back and begins to wildly pound your face with such enthusiasm spit flies from your trembling lips, dredged back out of your throat with her forceful outstrokes. Drool runs down your chin before being splattered everywhere by the heavy impacts of her oversized nuts, battering your face and flattening your protruding tongue beneath them. Every time they swing down you bring your tongue up to run it up the sweaty gap between them, tasting her virile balls before she draws them back for another powerful thrust.");
+		output("\n\n“Guh! Nngh! Fuck!” she gasps, legs shaking in pleasure. “[pc.name]! [pc.name]!”");
+		output("\n\nShe's getting closer and closer with every stallion-like thrust, uttering bestial grunts and moans of bliss while she mounts the peak of ecstasy atop you. With a scream and a savage, desperate thrust forward Amber cums at last, her gorgeous black balls slapping against your soft lips and pulling taut against her quivering underside. A stream of equine jizz so thick you don't think you'd even be able to swallow it jets down the back of your clenching throat, splattering into your stomach and filling you with your deertaur lover's essence.");
+		output("\n\nSettling into the rhythm, you pull back gently in time with Amber and push forward when she re-hilts herself deep inside you to deposit yet another hot, heavy load of her sperm, enjoying the way she throbs and groans in outright bliss. You're giving her the time of her life, and there's going to be a <i>lot</i> more where that's coming from before the two of you are done. Closing your eyes, you hollow your cheeks and suck on her big, pulsating cock as hard as you can.");
+		output("\n\n“Ho-o-ohhh, god,” Amber groans, squeezing her hindquarters and letting out another heated blossom of seed into your insides. “That- that was amazing...”");
+	}
+	
+	output("\n\nYou grin around her enormous cock. Still stiff and needy, she's obviously up to blow several more loads inside you. But where?");
+	
+	//Sex is not *actually* a time machine, so let's pass some time
+	processTime(10 + rand(10));
+	
+	clearMenu();
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+	addButton(0, "Throat", amberOnShipSexDrainHerInThroat, undefined, "Drain Her", "Keep her in your throat. After all, she's already enjoying it so much.");
+	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.biggestCockVolume(), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");
+	addButton(2, "Pussy", vaginaRouter, [amberOnShipSexDrainHerInPussy, ppAmber.cockVolume(0), 0, 0], "Pussy", "Get the rest of her fresh, hot loads deep in your pussy"+(!pc.isPregnant() ? " and womb.":"."));
+	if (!pc.hasVagina(0)) addDisabledButton(2, "Pussy", "Pussy", "Requires a pussy.");
+	
+	addButton(14, "Debug Leave", mainGameMenu); //-LJ
+}
+
+//have sex with amber drain her balls into your mouth
+public function amberOnShipSexDrainHerInThroat():void
+{
+	clearOutput();
+	amberHeader();
+	output("Your hands come up to fondle her big, soft and smooth balls, cupping them with worshipful care and caressing the virile orbs with gentle circular motions, coaxing Amber into continuing.");
+	output("\n\n“Ohhh,” Amber sighs in happiness, spreading her legs a little to allow you more room. The musk of her permeates the air, driving you wild with the desire to carry on servicing the beautiful deergirl. “Keep doing that...”");
+	
+	output("\n\n");
+	if (flags["USED_SNAKEBYTE"] != undefined){
+		output("Not one to focus on only a single thing at a time, you give Amber a comforting squeeze with your throat. When she lets out a pleasured moan you give her another, then another, and soon you've got your lips pressed against her soft-furred underside while your throat milks her in a long, loving undulating motion that sets her panting above you. It feels utterly wonderful to know just how good you can make her feel with your mouth, making full use of the little enhancement you gave yourself.");
+		output("\n\nYou hold Amber's enormous, throbbing studmeat in your throat and massage it, squeezing down on her sensitive cock and feeling the trickle of warm precum resume somewhere deep inside you as her overactive libido reacts to your touch. Her flare flutters and stretches in your throat, pumping back to its full size over the course of a minute of hardcore sucking and worshipping, letting out a long stream of seed into your already-swollen stomach as if to let you know she's ready. <i>Now</i> you let her have it.");
+		output("\n\nYou reach up from her nuts and grab her hind half in a hug, pulling her down into your esophagus and impaling yourself on her giant length. She gasps in surprise but catches on quickly, moaning loudly as she feels your oral attentions blessing her stupefying horsecock, all but wringing the coming orgasm out of her. Shuddering and biting back curses, she stands still and allows you to suck her from below until the impossibly pleasurable ministrations of your expert throat become too much for her to bear.");
+		output("\n\n“Uh! Uuuuhhhhh!” Amber strains, gritting her teeth and pawing at the ground with a foreleg. “Uhhh- nnnnh! NNNNNHHHHGH!”");
+		output("\n\nShe's panting like a bellows as she blows a massive load into your belly, huffing and groaning at length as you milk the staggering loads from her balls. Each thick, gooey shot of Amber's semen is accompanied by a deep moan of ecstasy, her hanging balls drawing tight once more while they softly kiss your lips. Again and again she lets out a fountain of hot spunk inside you, coating your insides with her love and crying out with the desperate, ravenous bliss only you can give her.");
+		output("\n\nYou're still hugging Amber tight when she lets out a loud moan as you <i>squeeze</i> her gargantuan cockhead, lightly teasing her oversensitive tip as it drips and dribbles sperm inside you. Between her insane need to fuck and your overwhelming desire to bring her to greater and greater peaks, you don't see any reason to stop here. Relaxing your grip on her you sink back down to allow her to draw back and relax for a few seconds, breathing hard before you swallow her all the way to her swaying balls and she lets out a little scream of joy.");
+		output("\n\n“I-I l-lo-love y-you!” Amber pants, her hindlegs scrabbling to find grip as you close your eyes and begin to passionately suck her off once more. “[pc.name]! I love you, I love you, I love you, I love you!”");
+		processTime(60 * 6);
+		output("\n\n<b>6 hours later</b>");
+	} else {
+		output("\n\nYour hands come up to fondle her big, soft and smooth balls, cupping them with worshipful care and caressing the virile orbs with gentle circular motions, coaxing Amber into continuing.");
+		output("\n\n“Ohhh,” Amber sighs in happiness, spreading her legs a little to allow you more room. The musk of her permeates the air, driving you wild with the desire to carry on servicing the beautiful deergirl. “Keep doing that...”");
+		output("\n\nYou dutifully obey, massaging your ardent lover while shivers of pleasure run through her soft-furred underside, caring for her in the way only you can. Pressing your eager mouth all the way to her leathery base you work your jaw to give her a kiss, tensing your passionate lips just enough to make her moan and shoot an early load down your throat. The <i>warmth</i> of her is intoxicating, so much so that you can't help but speed up and paw at her a little more frantically, a touch of desperation creeping into your actions.");
+		output("\n\nSoon Amber is grunting and straining above you while you swallow her from medial ring to base over and over, panting through your nose whenever you can, saliva running down your chin while your tongue lashes across her cumvein. Stars, she smells so good -- the pheromones swirling around your head are driving you onwards every bit as much as your own lust, and to give in to their urging feels even better than they promise. Your neck bulges outwards as you arch your back in pleasure, taking her to the very base and pressing your [pc.lipsChaste] up against her shaking belly.");
+		output("\n\n“O-oh, g-god,” Amber says haltingly, repositioning her quivering legs. “I'm g-gonna cum! Cumming! <b>CUMMING!</b>”");
+		output("\n\nShe's panting like a bellows as she blows a massive load into your belly, huffing and groaning at length as you milk the staggering loads from her balls. Each thick, gooey shot of Amber's semen is accompanied by a deep groan of ecstasy, her hanging balls drawing tight once more while they softly kiss your lips. Again and again she lets out a fountain of hot spunk inside you, coating your insides with her love and crying out with the desperate, ravenous bliss of an impassioned lover.");
+		output("\n\nReaching up you grab her around the hips while she noisily empties herself inside you, surprising the libidinous deergirl by pulling her hindquarters downwards and keeping her as far inside you as she can get. Your wanton demonstration of just how much you need her is well-received, if the sudden renewal of gushing sperm is any indicator. Your throat bobs over and over as loads pass through it, squirting from her equine cockhead with the force of a river.");
+		output("\n\nYou're still hugging Amber tight when she lets out a loud moan of desire in response to you reaching up between her spindly hindlegs and rubbing her wet, swollen clit. Between her insane need to fuck and your overwhelming desire to bring her to greater and greater peaks, you don't see any reason to stop here. Relaxing your grip on her you sink back down to allow her to draw back and relax for a few seconds, breathing hard before you swallow her all the way to her swaying balls and she lets out a little scream of joy.");
+		output("\n\n“I-I l-lo-love y-you!” Amber pants, her hindlegs scrabbling to find grip as you close your eyes and begin to passionately suck her off once more. “[pc.name]! I love you, I love you, I love you, I love you!”");
+		processTime(60 * 4);
+		output("\n\n<b>4 hours later</b>");
+	}
+	
+	output("\n\nYou slowly pull yourself off Amber's spitshined cock, glistening with your spit but wholly clean of any spunk -- you've made sure of that. Glancing down at your stomach, you run your hand over the absurdly distended cum-bulge and wince at how taut your skin's been pulled -- such is the price of gulping down gallons of Amber's hot spunk, you guess.");
+	output("\n\nAmber, on the other hand, is outright staring greedily at your throat, knowing she could stick her cock back in you at any time she wanted for the blowjob of her life. You smile knowingly up at her as if to promise exactly that, slowly getting to your feet before you find yourself surprised by the dryad and swept into her arms, pressed into the warmth of her body.");
+	output("\n\n“[pc.name],” she whispers, gazing at you with heat in her eyes before they close, and suddenly you're being inescapably kissed by the adoring deergirl. “Mmmmmm-”");
+	output("\n\nShe sucks on your tongue with such fervor you half-wonder if she's going to fuck you again right then and there but when she pulls back it's to swallow your spit and pant, tongue lolling out and breath hot on your face.");
+	output("\n\n“God, I love you,” Amber says, raising her hand to your cheek.");
+	if (amberDumbfuckDoses() == 0){
+		output(" “Thanks, [pc.name]. I feel amazing.” She smiles. “And not <b>just</b> because of your blowjob skills.”");
+		output("\n\n“I'm flattered,” you reply, smiling back at her. “Remember, any time you need me… I'm here for you.”");
+		output("\n\n“I know,” she murmurs, closing in for another kiss. “I know.”");
+	} else if (amberDumbfuckDoses() > 0 && amberDumbfuckDoses() < 4){
+		output(" “Thanks a lot, [pc.name]. You're the best fuck a girl could ask for.”");
+		output("\n\n“Thank <b>you</b>,” you say, smiling at her.");
+		output("\n\n“What's that, [pc.name]?” she murmurs, closing in for another kiss. “You want more? C'mere…”");
+	} else if (amberDumbfuckDoses() > 3){
+		output(" “You're <b>such</b> a good fuck! God, I just wanna pound your throat all day! Mmm…”");
+		output("\n\n“We can arrange something,” you reply, smiling at her.");
+		output("\n\n“Uh huh,” she murmurs, closing in for another kiss. “C'mere, hottie…”");
+	}
+	
+	output("\n\nIt's quite a while before you find yourself back in your room, rubbing your tummy.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//have sex with amber drain her balls into your ass
+public function amberOnShipSexDrainHerInAss(hole:int):void
+{
+	clearOutput();
+	amberHeader();
+	
+	output("Amber moans in pleasure and with slight disappointment as you slide off the end of her saliva-coated horsecock and let a mouthful of her sticky jizz splatter down your [pc.chest]. No doubt the air on her equine endowment is cold after being sheathed deep in the warmth of your throat, but you know exactly how to solve that.");
+	if (pc.isTaur){
+		output("Getting out from under her and flashing her a brilliant smile you turn around and present yourself in all your glory, gazing back at her.");
+		output("\n\n“Come on, Amber,” you murmur, licking your lips. “D-”");
+		output("\n\nYou scream in pleasure and pain as she immediately mounts you, pounding her immense cock into your [pc.asshole] with such force she sinks herself to the hilt in one go. Reaching forward and grabbing your " + (pc.hasBreasts() ? "[pc.breasts]":"shoulders") + ", Amber pulls you back into a rough embrace and kisses you deep while her narrow hips begin to buck, slamming her swinging balls against your [pc.ass] with all the strength she can muster. You grunt and moan into her open mouth while she sucks on your [pc.tongue], feeling yourself stretch around her thickness.");
+		
+		output("\n\n");
+		if(pc.isMale()) output("Your [pc.cockBiggest] bounces upwards as Amber works herself into your depths, brushing against your prostate hard enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub it on the outstroke makes you feel like you're cumming already, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		else if(pc.isFemale()) output("Your [pc.pussies] " + (pc.hasVaginas() ? "drip and squeeze" : "drips and squeezes") + " as Amber works herself into your depths, her heat penetrating to your core with every thrust. The bloated head of her enormous dick brushes along your sensitive insides, so large you can't help shiver under the rutting deergirl, bolts of pleasure running up your spine with every thrust. Soon enough you find yourself thrusting back into her in need of more and she's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		else if(pc.isHerm()) output("Your [pc.cockBiggest] bounces upwards as Amber works herself into your depths, brushing against your prostate hard enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub it on the outstroke makes you feel like you're cumming already, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it while your [pc.pussies] " + (pc.hasVaginas ? "squeeze and drip" : "squeezes and drips"));
+		else if(pc.isSexless()) output("You groan as Amber works herself into your depths, brushing against your sensitive insides enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub you so roughly on the outstroke makes you feel like you're climbing closer to cumming, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		
+		output("\n\n“Ngh! Nnh! F-fuck,” Amber pants, pulling back for the barest of moments. “So <b>deep!</b> Ungh!”");
+		if(pc.hasNipples()){
+			output("\n\nThen she's drowning out your moans with her tongue again, pressing her soft lips to yours while her hands");
+			if (pc.hasBreasts()) {
+				output(" squeeze and cup your shaking breasts, teasing your [pc.nipples]");
+				if (pc.isLactating()) output(" until [pc.milk] begins to drip down your front");
+				else output("until you cry out into her mouth");
+			} else {
+				output("rove over your chest, squeezing your front and rubbing your [pc.nipples]");
+			}
+			output(".");
+		}
+		output("It's all you can do to remember to breathe through your nose while she assaults you front and rear, pounding you so hard her oversized balls clap against your jiggling ass, the she-stallion running wild with her lust.");
+		output((pc.hasHooves ? "Both your and her hooves clack against the floor as you" : "Amber's hooves clack on the floor as the two of you") + " jostle for position, trying your utmost best to keep her all the way inside you.");
+		
+		output("\n\nAmber doesn't even announce that she's going to cum. Instead the first hint you get is an explosion of satisfying warmth deep in your bowels while she strains and pushes into you, her cockhead suddenly doubling then tripling in size while a river of seed pours into your insides. Tucking her tongue back into her mouth she grits her teeth and presses forward, holding you in place and see-sawing her hindquarters to fuck you full of herself. Hot, thick seed jets into you without end, Amber's leathery black balls drawn taut and quivering against " + (pc.hasVagina(0) ? "the wet heat of your empty cunt." : "your shivering backside."));
+		
+		output("\n\n“Nnnnnnnhhhhhhh,” Amber groans, her fingers digging into your [pc.skinFurScales]. “Nngh! Grrrhh! Nnnnnhhhggh!”");
+		
+		output("\n\nShe lets out so much creamy seed you can scarcely believe it, your mouth falling open as you feel your own pleasure reach a sudden, violent climax. Amber chokes as your asshole squeezes down on her ");
+		if(pc.isMale()) output("and you squirt [pc.cum] all over the floor, splattering your forelegs with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		else if(pc.isFemale()) output("and you cum as hard as she is, " + (pc.isSquirter() ? "hot translucent femcum squirting from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and coating her pulsing testes in bliss" : "hot translucent femcum dripping from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and running down your underside") + ". You soak your shaking hindlegs with arousal, trying to resist the sheer strength of your orgasm and failing. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		else if(pc.isHerm()) output("and you squirt [pc.cum] all over the floor, splattering your forelegs with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is. " + (pc.isSquirter() ? "Hot translucent femcum sprays from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") + " and coats her pulsing testes in bliss" : "Hot translucent femcum drips from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and runs down your underside") + " while you soak your shaking hindlegs with arousal, trying to resist the sheer strength of your orgasm and failing. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		else if (pc.isSexless()) output("and you groan out loud, bliss bubbling frustratingly under the surface and never quite popping your top. Instead you thrust and clench against her, trying to get off, but nothing works. You experience Amber's orgasm in full without ever reaching the electrifying release <i>just</i> out of your reach, feeling her beautiful cock throb and spew cum all over your insides. At least she feels amazing...");
+		
+		output("\n\n“Oh,” she gasps at last, pressing her sweaty breasts into your back. You can feel the hardness of her jutting nipples against you while she holds you, hugging you tight. “Oh, fuck! [pc.name]!”");
+		output("\n\nYou feel so warm and full it's hard not to sag back into her in a mixture of relief and exhaustion -- there's so much more left for her to give you after your promise to completely drain her, and you can already feel her beginning to fuck you again. A stream of her seed gushes from your stretched-out asshole with Amber's outstroke before she drives forward once more, ready to fill you up all over again.");
+		output("\n\n“I-I'll go slower this time,” the flushed, panting deergirl promises" + (pc.hasBreasts() ? "as she grabs your breasts." : "."));
+		output("\n\nShe doesn't.");
+		processTime(60 * 4);
+		output("\n\n<b>4 hours later</b>");
+		output("\n\nAmber lets out a low, rumbling groan of complete and utter satisfaction as she sits atop you, arms wrapped around your waist and hugging you tight, her hindlegs pressing into your own. Your underside sags with the sheer amount of warm equine seed she's pumped you with, looking for all the world like you're carrying her children, and you find yourself unable to think of a better way to while away the time.");
+		output("\n\n“I love you, [pc.name],” she murmurs, nipping your [pc.ear]. Heady pheromones swirl all around you, filling your mind with her scent. “Mmn.”");
+		output("\n\n“I-I love you too,” you moan, head resting against her cheek. “Oohhh...”");
+		output("\n\nYou both moan in chorus as she slowly pulls out, her massive cock coming free with a slurp and leaving your asshole a gaping, squirting mess. Amber's cum spurts to the floor as you struggle to keep your hindlegs together, winking and clenching at the heated deertaur while you try to keep it all inside.");
+	} else { //nontaur
+		output("Getting out from under her and flashing her a brilliant smile you kneel down facing away, getting up on all fours and presenting yourself in all your glory while you gaze back at her.");
+		output("\n\n“Come on, Amber,” you murmur, licking your lips. “D-”");
+		output("\n\nYou scream in pleasure and pain as she immediately mounts you, pounding her immense cock into your [pc.asshole] with such force she sinks herself to the hilt in one go. Your " + (pc.hasBreasts() ? "[pc.breasts] shake":"mouth hangs open") + " as she begins to violently fuck you, her hips bucking back and forth while you grab onto her forelegs and hold on for dear life, her swinging balls clapping against your [pc.ass] with all the strength she can muster. A long, shaky groan works its way out of your mouth while Amber pounds you, her voice lilting with pleasure as you stretch around her thickness.");
+		
+		output("\n\n");
+		if(pc.isMale()) output("Your [pc.cockBiggest] bounces upwards as Amber works herself into your depths, brushing against your prostate hard enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub it on the outstroke makes you feel like you're cumming already, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		else if(pc.isFemale()) output("Your [pc.pussies] " + (pc.hasVaginas() ? "drip and squeeze" : "drips and squeezes") + " as Amber works herself into your depths, her heat penetrating to your core with every thrust. The bloated head of her enormous dick brushes along your sensitive insides, so large you can't help shiver under the rutting deergirl, bolts of pleasure running up your spine with every thrust. Soon enough you find yourself thrusting back into her in need of more and she's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		else if(pc.isHerm()) output("Your [pc.cockBiggest] bounces upwards as Amber works herself into your depths, brushing against your prostate hard enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub it on the outstroke makes you feel like you're cumming already, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it while your [pc.pussies] " + (pc.hasVaginas ? "squeeze and drip" : "squeezes and drips"));
+		else if(pc.isSexless()) output("You groan as Amber works herself into your depths, brushing against your sensitive insides enough to make you shiver under the rutting deergirl, sending bolts of pleasure up your spine with every thrust. Feeling the bloated head of her enormous dick rub you so roughly on the outstroke makes you feel like you're climbing closer to cumming, and you soon find yourself thrusting yourself back into her in a desperate attempt to feel that sensation again. She's more than happy to indulge you, grinding her throbbing cock deep into your asshole and watching your eyes roll upwards with the bliss of it.");
+		
+		output("\n\n“Ngh! Nnh! F-fuck,” Amber pants, pulling back for the barest of moments. “So <b>deep!</b> Ungh!”");
+		output("\n\nThen she's drowning out your moans with the sound of sex once more, pressing down on you until she hits the right angle and your back begins to arch involuntarily. It's all you can do to remember to breathe while she slams you full of her stiff cock, pounding you so hard you can hardly make a noise, the she-stallion running wild with her lust.");
+		output((pc.hasHooves ? "Both your and her hooves clack against the floor as you" : "Amber's hooves clack on the floor as the two of you") + " jostle for position, trying your utmost best to keep her all the way inside you.");
+		
+		output("\n\nAmber doesn't even announce that she's going to cum. Instead the first hint you get is an explosion of satisfying warmth deep in your bowels while she strains and pushes into you, her cockhead suddenly doubling then tripling in size while a river of seed pours into your insides. Tucking her tongue back into her mouth she grits her teeth and presses forward, holding you in place with her forelegs and see-sawing her hindquarters to fuck you full of herself. Hot, thick seed jets into you without end, Amber's leathery black balls drawn taut and quivering against " + (pc.hasVagina(0) ? "the wet heat of your empty cunt." : "your shivering backside."));
+		
+		output("\n\n“Nnnnnnnhhhhhhh,” Amber groans, shaking above you like a leaf in a storm. “Nngh! Grrrhh! Nnnnnhhhggh!”");
+		
+		output("\n\nShe lets out so much creamy seed you can scarcely believe it, your mouth falling open as you feel your own pleasure reach a sudden, violent climax. Amber chokes as your asshole squeezes down on her ");
+		if(pc.isMale()) output("and you squirt [pc.cum] all over the floor, splattering your forelegs with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		if(pc.isMale()) output("and you squirt [pc.cum] all over the floor, splattering yourself with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is.");
+		else if(pc.isFemale()) output("and you cum as hard as she is, " + (pc.isSquirter() ? "hot translucent femcum squirting from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and coating her pulsing testes in bliss" : "hot translucent femcum dripping from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and running down your underside") + ". You soak your shaking hindlegs with arousal, trying to resist the sheer strength of your orgasm and failing. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		else if(pc.isFemale()) output("and you cum as hard as she is,{squirter: hot translucent femcum squirting from your spasming cunt{s} and coating her pulsing testes in bliss/else: hot translucent femcum dripping from your spasming cunt{s} and running down your underside}. You soak your [pc.thighs] with arousal, trying to resist the sheer strength of your orgasm and failing.");
+		else if(pc.isHerm()) output("and you squirt [pc.cum] all over the floor, splattering your forelegs with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is. " + (pc.isSquirter() ? "Hot translucent femcum sprays from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") + " and coats her pulsing testes in bliss" : "Hot translucent femcum drips from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and runs down your underside") + " while you soak your shaking hindlegs with arousal, trying to resist the sheer strength of your orgasm and failing. Unable to stop yourself, you grunt and throw your head back over her shoulder as your back arches with the ecstasy of release.");
+		else if(pc.isHerm()) output("and you squirt [pc.cum] all over the floor, splattering yourself with your own spunk. Each throb of <i>her</i> swollen dick inside you sets you off once more, her cumvein pulsing against your prostate and forcing you to ejaculate for as long as she is. " + (pc.isSquirter() ? "Hot translucent femcum sprays from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") + " and coats her pulsing testes in bliss" : "Hot translucent femcum drips from your spasming cunt"+ (pc.hasVaginas() ? "s" : "") +" and runs down your underside") + " while you soak your shaking [pc.legs] with arousal, trying to resist the sheer strength of your orgasm and failing."); //Replaced hindlegs, since this is the non-taur version.
+		else if (pc.isSexless()) output("and you groan out loud, bliss bubbling frustratingly under the surface and never quite popping your top. Instead you thrust and clench against her, trying to get off, but nothing works. You experience Amber's orgasm in full without ever reaching the electrifying release <i>just</i> out of your reach, feeling her beautiful cock throb and spew cum all over your insides. At least she feels amazing...");
+		
+		output("\n\n“Oh,” she gasps at last, relaxing slightly. You can feel the hardness of her inside you, not even close to giving up. “Oh, fuck! [pc.name]!”");
+		output("\n\nYou feel so warm and full it's hard not to sag back into her in a mixture of relief and exhaustion -- there's so much more left for her to give you after your promise to completely drain her, and you can already feel her beginning to fuck you again. A stream of her seed gushes from your stretched-out asshole with Amber's outstroke before she drives forward once more, ready to fill you up all over again.");
+		output("\n\n“I-I'll go slower this time,” the flushed, panting deergirl promises" + (pc.hasBreasts() ? "as your tits begin to jiggle with the force of her thrusts." : "."));
+		output("\n\nShe doesn't.");
+		processTime(60 * 4);
+		output("\n\n<b>4 hours later</b>");
+		output("\n\nAmber lets out a low, rumbling groan of complete and utter satisfaction as she sits atop your prone form, your lower half pinned beneath her immense cock and balls. Your tummy sags with the sheer amount of warm equine seed she's pumped you with, looking for all the world like you're carrying her children, and you find yourself unable to think of a better way to while away the time.");
+		output("\n\n“I love you, [pc.name],” she murmurs, reaching down to pat you. Heady pheromones swirl all around you, filling your mind with her scent. “Mmn.”");
+		output("\n\n“I-I love you too,” you moan. “Oohhh...”");
+		output("\n\nYou both moan in chorus as she slowly pulls out, her massive cock coming free with a slurp and leaving your asshole a gaping, squirting mess. Amber's cum spurts to the floor as you struggle to keep your [pc.legs] together, winking and clenching at the heated deertaur while you try to keep it all inside.");
+	}
+	output("“Fuck,” she mutters, absentmindedly chewing her lip. “That's… hot.”");
+	
+	output("\n\nAt last you get yourself together, trailing Amber's seed all down your legs while you lean against the wall and pant, your entire body covered in sweat thanks to both the vigorous rutting and the effort of having Amber on top while she made love to you. Turning back around, you're surprised by a sudden kiss as she sweeps you into her arms, pushing herself against you until you're flat against the wall and pressed chest-to-chest with the lusty taurgirl.");
+	output("\n\n“Am-Amber,” you murmur, tongue entwined with hers. “Mmm-”");
+	output("\n\n“I love you,” Amber whispers, one hand at your lower back and the other cupping your cheek. “[pc.name]...”");
+	output("\n\nYou don't get another word in for the next ten minutes, and by the time you find yourself back in your room, still dizzy and sweaty, you don't even know where all the time went.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//have sex with amber drain her balls into your pussy
+public function amberOnShipSexDrainHerInPussy(hole:int):void
+{
+	clearOutput();
+	amberHeader();
+	
+	output("You pop off the end of Amber's warm horsecock and let a mouthful of her thick seed spill from your mouth, splattering your [pc.chest] while you gaze at her dick. It's coated in a mixture of your saliva and her cum by now, slippery and salty, and already Amber is moaning in need. You'll just have to offer up a place to resheathe it.");
+	
+	output("\n\nCrawling out from under her, you ");
+	if (pc.isTaur()){
+		
+	}
+	
+	
 	output("\n\nThis is a work in progress, remove this before sending it off! -LJ");
 	clearMenu();
-	addButton(0,"Leave",mainGameMenu);
+	addButton(14, "Debug Leave", mainGameMenu);//-LJ
 }
 
 
