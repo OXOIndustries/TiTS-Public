@@ -2956,6 +2956,9 @@
 				case "clitorisNoun":
 					buffer = clitDescript(arg2, true);
 					break;
+				case "biggestCuntClit":
+					buffer = clitDescript(biggestVaginaIndex());
+					break;
 				case "eachClit":
 				case "eachClitoris":
 					buffer = eachClit();
@@ -18809,6 +18812,12 @@
 		public function hasHardLightEquipped():Boolean
 		{
 			return (lowerUndergarment.hardLightEquipped);
+		}
+		// PC wears underwear with HL support and nothing else
+		public function hasOnlyHLUndiesEquipped():Boolean
+		{
+			if (!hasArmor() && !hasUpperGarment() && hasHardLightEquipped()) return true;
+			return false;
 		}
 		public function hasHardLightUpgraded():Boolean
 		{
