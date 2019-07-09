@@ -2135,10 +2135,10 @@ public function shipMenu():Boolean
 public function shipStatistics():void
 {
 	clearOutput();
-	showBust(shits["SHIP"].bustDisplay);
-	output(shipCompareString(shits["SHIP"]));
-	clearMenu();
 	var shippy:ShittyShip = shits["SHIP"];
+	showBust(shippy.bustDisplay);
+	output(shipCompareString(shippy, false));
+	clearMenu();
 	var button:Number = 0;
 	shopkeep = new Vahn();
 	if(!(shippy.shield is EmptySlot)) addItemButton(button++, shippy.shield, shipStatistics, undefined, null, null, shopkeep, pc);
@@ -2521,7 +2521,7 @@ public function flyTo(arg:String):void
 
 public function prepShipfite():void
 {
-	setNavDisabled(NAV_OUT_DISABLE);
+	//setNavDisabled(NAV_OUT_DISABLE);
 	shipLocation = "SPACE";
 }
 
@@ -3227,8 +3227,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Procs on ship exit:
 	if(currentLocation == "SHIP INTERIOR")
 	{
+		var toSpace:Boolean = (arg.indexOf("SPACE") != -1 || (rooms[arg].hasFlag(GLOBAL.OUTDOOR) && rooms[arg].hasFlag(GLOBAL.LOW_GRAVITY)));
 		//Procs in safe areas only, like Reaha's milk stand:
-		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !toSpace && !disableExploreEvents())
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
 		}

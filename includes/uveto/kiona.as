@@ -63,6 +63,7 @@ public function kionaKioskIsOpen():Boolean
 public function kionaLuciniteQuestStage():int
 {
 	var questStage:int = 0;
+	if (flags["WARGII_PROGRESS"] == 3 && (flags["KIONA_LUCINITE_QUEST"] < 2 || flags["KIONA_LUCINITE_QUEST"] == undefined )) flags["KIONA_LUCINITE_QUEST"] = 3;
 	if (flags["KIONA_LUCINITE_QUEST"] != undefined) questStage = flags["KIONA_LUCINITE_QUEST"];
 	
 	return questStage;
