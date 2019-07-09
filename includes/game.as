@@ -4041,6 +4041,7 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
+//According to my research, deltaT is in the metric Minute format. Thank me later.
 public function processTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)
