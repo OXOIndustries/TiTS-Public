@@ -1345,7 +1345,7 @@ public function rooAppearance():void
 		if(flags["ROO_STRIP_LEVEL"] == 0) output(" Beneath her buttoned jacket and the nametag it bears");
 		else if(flags["ROO_STRIP_LEVEL"] == 1) output(" Beneath her breezy shirt");
 		output(" are a perky pair of EE-cup boobs, nipples erect and showing plainly through the fabric.");
-		if(flags["ROO_HIGHEST_STRIP_LEVEL"] >= 3) output(" You couldn’t guess as to their color, though.");
+		if(flags["ROO_HIGHEST_STRIP_LEVEL"] < 3) output(" You couldn’t guess as to their color, though.");
 		else output(" You know that they’re a delicious pink in color.");
 	}
 	else

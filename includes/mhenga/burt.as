@@ -36,6 +36,9 @@ public function burtsBarFunc():Boolean {
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
 
+	// yoma can appear either by chance (if the PC fullfills the conditions) or will allways appear if told to wait
+	if (pc.hasGenitals() && (yomaWaitingAtBurts() || (hours >= 12 && hours < 17  && yomaCanAppearAtBurts()))) yomaAtBurtsAddendum(10);
+
 	return false;
 }
 
@@ -1415,3 +1418,4 @@ public function stephIrsonEpisodeOnePartTwo():void
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+

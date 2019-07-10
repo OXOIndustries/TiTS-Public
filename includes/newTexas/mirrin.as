@@ -358,7 +358,9 @@ public function repeatMirrinApproach():void
 		processTime(2);
 		clearMenu();
 		addButton(0,"Yes...",mirrinFindsOutYoureACrappyBreeder,undefined,"Yes...","Ohhh, well... hmmm.");
-		if (pc.fertility() > 0 && !pc.hasSSTD()) addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh... well, presumably do some breeding...???");
+		if(pc.hasSSTD()) addDisabledButton(1,"No","No","You need to take care of your SSTD first!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(1,"No","No","You need to have a fertile vagina or virile penis in order to do this!");
+		else addButton(1,"No",wereGoodToMakeBabbysDragonLady,undefined,"No","You’re all clean and raring to uhhh... well, presumably do some breeding...???");
 	}
 	else if (flags["MIRRIN_PREGSTAGE"] == 3 || flags["MIRRIN_PREGSTAGE"] == 4)
 	{
@@ -372,7 +374,9 @@ public function repeatMirrinApproach():void
 
 		processTime(1);
 		clearMenu();
-		if (!pc.hasVagina() && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can’t make babies without proper equipment, m8.");
+		if(pc.hasSSTD()) addDisabledButton(0,"Yeah","Yeah","You need to take care of your SSTD first!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0 || pc.isFullyWombPregnant()) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(0,"Yeah","Yeah","You need to have an available fertile vagina or a virile penis in order to do this!");
+		else if((!pc.hasVagina() || pc.fertility() <= 0 || pc.isFullyWombPregnant()) && pc.cockThatFits(mirrinMaxSize) < 0) addDisabledButton(0,"Yeah","Yeah","Can’t make babies without proper equipment, m8.");
 		else addButton(0,"Yeah",finallyMakeMirrinBabusForRealThisTimeTotally,undefined,"Yeah","Time to make babies!");
 		addButton(1,"No",function ():void
 		{

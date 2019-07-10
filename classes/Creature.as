@@ -642,6 +642,7 @@
 		public function clearAccentMarkings():void
 		{
 			removeStatusEffect("Vanae Markings");
+			removeStatusEffect("Hyena Fur");
 			removeStatusEffect("Shark Markings");
 			removeStatusEffect("Body Markings");
 			removePerk("Primorditatts");
@@ -652,6 +653,7 @@
 			if(!hasAccentMarkings()) return -1;
 			var accentType:int = -1;
 			if(hasStatusEffect("Vanae Markings")) accentType = 0;
+			if(hasStatusEffect("Hyena Fur")) accentType = statusEffectv1("Hyena Fur");
 			if(hasStatusEffect("Shark Markings")) accentType = statusEffectv1("Shark Markings");
 			if(hasStatusEffect("Body Markings")) accentType = statusEffectv1("Body Markings");
 			if(hasPerk("Primorditatts")) accentType = 7;
@@ -1861,7 +1863,17 @@
 			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
 			return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
+		public function areolaFlagUnlocked(bRowIndex:int, newNippleFlag:Number):Boolean
+		{
+			if (hasLipples(bRowIndex)) return false;
+			return true;
+		}
 
+		public function areolaFlagLockedMessage():String
+		{
+			return "Your [pc.nipples] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
+		}
+		
 		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
 		{
 			if (hasStatusEffect("Gel Body")) return false;
@@ -2679,6 +2691,14 @@
 				case "nipplesHardening":
 					buffer = nipplesErect(arg2, true);
 					break;
+				case "areola":
+				case "areolaDescript":
+					buffer = areolaDescript(arg2);
+					break;
+				case "areolae":
+				case "areolaeDescript":
+					buffer = areolaeDescript(arg2);
+					break;
 				case "eachCock":
 					buffer = eachCock();
 					break;
@@ -2937,6 +2957,9 @@
 				case "clitNoun":
 				case "clitorisNoun":
 					buffer = clitDescript(arg2, true);
+					break;
+				case "biggestCuntClit":
+					buffer = clitDescript(biggestVaginaIndex());
 					break;
 				case "eachClit":
 				case "eachClitoris":
@@ -3483,7 +3506,7 @@
 		}
 		public function hasItemByReference(item:ItemSlotClass, amount:int = 1):Boolean
 		{
-			if (item == null || inventory.length == 0  || amount == 0) return false;
+			if (item == null || inventory.length == 0 || amount == 0) return false;
 
 			var amt:int = numberOfItemByReference(item);
 
@@ -13501,11 +13524,11 @@
 			if (legType == GLOBAL.TYPE_HYENA) counter++;
 			if (armType == GLOBAL.TYPE_HYENA) counter++;
 			if (faceType == GLOBAL.TYPE_HYENA) counter++;
-			if (tailType == GLOBAL.TYPE_HYENA && tailCount > 0) counter++;
-			if (tongueType == GLOBAL.TYPE_CANINE) counter++;
-			if (cockTotal(GLOBAL.TYPE_CANINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_CANINE) > 0 && clitLength >= 4) counter++;
-			if (hasFur()) counter++;
+			if (hasTail(GLOBAL.TYPE_HYENA)) counter++;
+			if (counter > 0 && tongueType == GLOBAL.TYPE_CANINE) counter++;
+			if (counter > 0 && hasFur()) counter++;
+			if (counter > 1 && cockTotal(GLOBAL.TYPE_CANINE) > 0) counter++;
+			if (counter > 1 && vaginaTotal(GLOBAL.TYPE_CANINE) > 0 && clitLength >= 4) counter++;
 			if (hasStatusEffect("Hyena Fur")) counter++;
 			if (hasScales()) counter--;
 			if (hasWings()) counter--;
@@ -13660,7 +13683,7 @@
 			if (eyeType == GLOBAL.TYPE_MYR) counter++;
 			if (armType == GLOBAL.TYPE_MYR) counter++;
 			if (legType == GLOBAL.TYPE_MYR) counter++;
-			if (antennae == 2 && antennaeType == GLOBAL.TYPE_MYR) counter++;
+			if (hasAntennae(GLOBAL.TYPE_MYR)) counter++;
 			if (counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
 			if (counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
 			if (hasFur() || hasScales()) counter--;
@@ -14018,7 +14041,7 @@
 			var counter: int = 0;
 			if (armType == GLOBAL.TYPE_BEE) counter++;
 			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
-			if (antennae == 2 && antennaeType == GLOBAL.TYPE_BEE) counter++;
+			if (hasAntennae(GLOBAL.TYPE_BEE)) counter++;
 			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
 			if (hasTail(GLOBAL.TYPE_BEE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN)
@@ -14982,7 +15005,7 @@
 						else if (nippleWidth(rowNum) < 5) description += RandomInCollection(["juicy","luscious","succulent","cushy-looking"]);
 						//Obscene
 						else if (nippleWidth(rowNum) < 12) description += RandomInCollection(["hypnotic","dazzling","plush","whorish","pornographic","salaciously swollen","obscene"]);
-						else description += RandomInCollection(["Scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
+						else description += RandomInCollection(["scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
 					}
 					descripted++;
 				}
@@ -15149,10 +15172,10 @@
 		{
 			return plural(nippleNoun(rowNum, simple));
 		}
-		public function areolaSizeDescript(): String {
+		public function areolaSizeDescript(rowNum:int = 0): String {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";
-			var nipWidth: Number = nippleWidth();
+			var nipWidth: Number = nippleWidth(rowNum);
 			
 			if(nipWidth <= 0) areolasize = "non-existent";
 			else if(nipWidth <= .375) areolasize = "fairly tiny";
@@ -15181,6 +15204,88 @@
 			else areolasize = "galaxy-swallowing";
 			
 			return areolasize;
+		}
+		
+		public function hasSymbolAreola(rowNum:int = 0):Boolean
+		{
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
+			else if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
+			else return false;
+		}
+		public function areolaDescript(rowNum:int = 0, appearance:Boolean = false):String
+		{
+			var adjectives:Array = new Array();
+			var nouns:Array = ["areola"];
+			var description:String = "";
+			//0-2 Adjectives used for description
+			var adjectiveMin:int = 0;
+			var adjectiveLimit:int = 2;
+			var i:int = 0;
+			var selection:int = 0;
+
+			//Size description
+			if(appearance || rand(3) == 0)
+			{
+				description += areolaSizeDescript(rowNum);
+				if(!appearance) adjectiveLimit--;
+			}
+
+			//Flag descriptions
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
+
+			//If a player has a flag, they probably want to see stuff
+			if (breastRows[rowNum].areolaFlags.length > 0) adjectiveMin++;
+
+			//Select a random number of adjectives within limits
+			i = rand(adjectives.length + 1);
+			if (i < adjectiveMin) i = adjectiveMin;
+			if (i > adjectiveLimit) i = adjectiveLimit;
+			if (i > adjectives.length) i = adjectives.length;
+
+			//Pick adjective(s)
+			for (i; i > 0; i--)
+			{
+				selection = rand(adjectives.length);
+				if(description != "") description += ", ";
+				description += adjectives[selection];
+				adjectives.splice(selection, 1);
+			}
+
+			//Pick a noun.
+			if(description != "") description += " ";
+			description += nouns[rand(nouns.length)];
+
+			return description;
+		}
+		public function areolaeDescript(rowNum:int = 0, appearance:Boolean = false):String
+		{
+			return (areolaDescript(rowNum, appearance) + "e");
+		}
+		public function areolaFlagDescript(rowNum:int = 0):String
+		{
+			var list:Array = new Array();
+			var description:String = "";
+
+			//Flag non-shape descriptions
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
+
+			//Default areola shape
+			if (!hasSymbolAreola(rowNum)) list.push("round");
+
+			//Others
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
+
+			//Build list with punctuation
+			while (list.length > 0)
+			{
+				description += list[0];
+				if (list.length > 1) description += ", ";
+				list.splice(0, 1);
+			}
+			return description;
 		}
 		
 		public function canStyleHairType():Boolean {
@@ -18714,6 +18819,12 @@
 		public function hasHardLightEquipped():Boolean
 		{
 			return (lowerUndergarment.hardLightEquipped);
+		}
+		// PC wears underwear with HL support and nothing else
+		public function hasOnlyHLUndiesEquipped():Boolean
+		{
+			if (!hasArmor() && !hasUpperGarment() && hasHardLightEquipped()) return true;
+			return false;
 		}
 		public function hasHardLightUpgraded():Boolean
 		{

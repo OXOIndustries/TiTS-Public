@@ -158,7 +158,7 @@ public function startCharacterCreation(e:Event = null):void
 	addButton(3,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
 	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
 	addButton(5,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-	addButton(6,"Suula", confirmRaceChoice, "suula", "Suula Mother", "Victor's child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark's tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.");
+	addButton(6,"Suula", confirmRaceChoice, "suula", "Suula Mother", "Victor’s child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark’s tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.");
 	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
 		addButton(7, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
@@ -200,7 +200,7 @@ public function confirmRaceChoice(race:String = "human"):void {
 			output("Gryvain are a highly advanced race of winged hermaphrodites, blending mammalian and reptilian biology. They have darkly scaled limbs, fleshy upper bodies, prehensile tails, curling horns, and frilled ears. Their eyes are dark gold and vertically slitted. All gryvain are feminine in appearance, and most have voluptuous figures: broad egg-laying hips and large breasts. They have bulbous, reptilian phalluses with internal testes, mounted over vaginas that have rings of internal, nub-like secondary clitorises inside, which makes birth and sex extraordinarily pleasurable.");
 			break;
 		case "suula":
-			output("The suula are large, predatory humanoid sharks. They're considered a race of beautiful amazons, standing taller and more powerfully-built than humans, with sharp teeth and muscular wings and tails. They have shark-like scales over their body, colorfully-feathered wings and arms, and muzzles full of sharp teeth. Though anyone can see the average suula is quite voluptuous, more intimate encounters reveal that their sexual organs are full of venomous stingers that impart powerful aphrodisiacs to themselves and their partners.\n\nSuula-human hybrids typically favor their human parent, appearing as amazonian individuals with feathery hair and smoothly-scaled forelimbs. Males tend to be smaller than females, but quite well endowed.");
+			output("The suula are large, predatory humanoid sharks. They’re considered a race of beautiful amazons, standing taller and more powerfully-built than humans, with sharp teeth and muscular wings and tails. They have shark-like scales over their body, colorfully-feathered wings and arms, and muzzles full of sharp teeth. Though anyone can see the average suula is quite voluptuous, more intimate encounters reveal that their sexual organs are full of venomous stingers that impart powerful aphrodisiacs to themselves and their partners.\n\nSuula-human hybrids typically favor their human parent, appearing as amazonian individuals with feathery hair and smoothly-scaled forelimbs. Males tend to be smaller than females, but quite well endowed.");
 			break;
 	}
 
@@ -260,29 +260,6 @@ public function chooseStartingRace(race:String = "human"):void {
 			addButton(1,"Female",setStartingSex,3);
 			//addButton(2,"Herm.",setStartingSex,2);
 			break;
-		case "half-suula":
-			pc.faceType = GLOBAL.TYPE_SIREN;
-			pc.earType = GLOBAL.TYPE_SIREN;
-			pc.clearEarFlags();
-			pc.addEarFlag(GLOBAL.FLAG_LONG);
-			pc.earLength = 4;
-			pc.hairType = GLOBAL.HAIR_TYPE_FEATHERS;
-			pc.tailType = GLOBAL.TYPE_SIREN;
-			pc.clearTailFlags();
-			pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED];
-			pc.tongueFlags = [GLOBAL.FLAG_LONG];
-			pc.lipColor = "black";
-			pc.eyeType = GLOBAL.TYPE_SIREN;
-			pc.armType = GLOBAL.TYPE_SIREN;
-			pc.clearArmFlags();
-			pc.addArmFlag(GLOBAL.FLAG_FEATHERED);
-			pc.legType = GLOBAL.TYPE_SIREN;
-			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-			pc.addLegFlag(GLOBAL.FLAG_SCALED);
-			addButton(0,"Male",setStartingSex,1);
-			addButton(1,"Female",setStartingSex,3);
-			break;
 		case "half-kaithrit":
 			pc.earType = GLOBAL.TYPE_FELINE;
 			pc.clearEarFlags();
@@ -324,6 +301,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_SCALED);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			pc.clearSkinFlags();
 			pc.scaleColor = "black";
 			CodexManager.unlockEntry("Leithans");
 			addButton(0,"Male",setStartingSex,1);
@@ -343,7 +321,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			addButton(0,"Male",setStartingSex,1);
-			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
+			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.");
 			addButton(2,"Herm",setStartingSex,2);
 			break;
 		case "half-gryvain":
@@ -364,6 +342,29 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.eyeType = GLOBAL.TYPE_GRYVAIN;
 			addButton(0, "Female", setStartingSex, 3);
 			addButton(1, "Herm", setStartingSex, 2);
+			break;
+		case "half-suula":
+			pc.faceType = GLOBAL.TYPE_SIREN;
+			pc.earType = GLOBAL.TYPE_SIREN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
+			pc.earLength = 4;
+			pc.hairType = GLOBAL.HAIR_TYPE_FEATHERS;
+			pc.tailType = GLOBAL.TYPE_SIREN;
+			pc.clearTailFlags();
+			pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED];
+			pc.tongueFlags = [GLOBAL.FLAG_LONG];
+			pc.lipColor = "black";
+			pc.eyeType = GLOBAL.TYPE_SIREN;
+			pc.armType = GLOBAL.TYPE_SIREN;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_FEATHERED);
+			pc.legType = GLOBAL.TYPE_SIREN;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
 			break;
 	}
 
@@ -572,9 +573,11 @@ public function chooseHeight():void {
 
 public function averageHeight():Number
 {
-	var heightResult:Number = 68;
-	if(pc.originalRace == "half-leithan") heightResult += 14;
+	var heightMin:Number = raceHeightMin(pc.originalRace);
+	var heightMax:Number = raceHeightMax(pc.originalRace);
+	var heightResult:Number = (((heightMin + heightMax)/2) + 2);
 	if(pc.originalRace == "half-kaithrit") heightResult -= 6;
+	if(pc.originalRace == "half-leithan") heightResult += 4;
 	if(pc.originalRace == "half kui-tan") heightResult -= 2;
 	if(pc.originalRace == "half-gryvain") heightResult += 4;
 	if(pc.hasCock()) heightResult += 5;
@@ -583,40 +586,53 @@ public function averageHeight():Number
 	heightResult += rand(3);
 	return Math.round(heightResult);
 }
+public function raceHeightMin(race:String):Number
+{
+	var nHeight:Number = 48;
+	
+	switch(race)
+	{
+		case "half-suula":
+			nHeight = ((5*12) + 10);
+			if(pc.hasVagina()) nHeight += 2;
+			break;
+	}
+	
+	return nHeight;
+}
+public function raceHeightMax(race:String):Number
+{
+	var nHeight:Number = 84;
+	
+	switch(race)
+	{
+		case "half-leithan": nHeight = 108; break;
+		case "half-suula":
+			nHeight = (7*12);
+			if(pc.hasVagina()) nHeight += 2;
+			break;
+	}
+	
+	return nHeight;
+}
 
 public function applyHeight():void {
 	clearOutput();
 	var fail:Boolean = false;
-	var suulaHeightLimit:Number = 7*12;
-	var suulaHeightMin:Number = 5 * 12 + 10;
-	if(pc.hasVagina()) 
-	{
-		suulaHeightLimit += 2;
-		suulaHeightMin += 2;
-	}
+	var heightMin:Number = raceHeightMin(pc.originalRace);
+	var heightMax:Number = raceHeightMax(pc.originalRace);
+	
+	// Non-number and over-limit fails
 	if(isNaN(Number(userInterface.textInput.text))) {
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) < 48) {
-		output("Choose a height at or above 48 inches tall, please.");
+	else if(Number(userInterface.textInput.text) < heightMin) {
+		output("Choose a height at or above " + heightMin + " inches tall, please.");
 		fail = true;
 	}
-	else if(Number(userInterface.textInput.text) > 84 && pc.originalRace != "half-leithan") {
-		output("Choose a height at or below 84 inches tall, please.");
-		fail = true;
-	}
-	else if(Number(userInterface.textInput.text) > 108 && pc.originalRace == "half-leithan") {
-		output("Choose a height at or below 108 inches tall, please.");
-		fail = true;
-	}
-	else if(Number(userInterface.textInput.text) > suulaHeightLimit && pc.originalRace == "half-suula") {
-		output("Choose a height at or below " + suulaHeightLimit + " inches tall, please.");
-		fail = true;
-	}
-	else if(Number(userInterface.textInput.text) < suulaHeightMin && pc.originalRace == "half-suula")
-	{
-		output("Choose a height at or above " + suulaHeightMin + " inches tall, please.");
+	else if(Number(userInterface.textInput.text) > heightMax) {
+		output("Choose a height at or below " + heightMax + " inches tall, please.");
 		fail = true;
 	}
 	if(fail) {

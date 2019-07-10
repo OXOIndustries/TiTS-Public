@@ -1541,7 +1541,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	output("\n\nYou keep your right hand against her stretched leg, gently drawing your fingernails along her skin, feeling how smooth it is, while your left becomes more adventurous, reaching");
 	if (apologizing) output(" beneath her dress and");
 	output(" up to her stomach, palming at her belly before you hook your arm underneath her other leg. You’re surrounded on both sides by her tanned flesh, warmly pressing against your cheeks; you switch kissing legs, starting up her right leg, getting closer to her wet treasure. She quivers under your touch.");
-	output("\n\n<i>“I like your pace,”</i> she says, and you feel her head resting against your head");
+	output("\n\n<i>“I like your pace,”</i> she says, and you feel her hand resting against your head");
 	if (apologizing) output(", through her dress");
 	if (pc.hasHair()) output(" and playing with your [pc.hair]");
 	output(". <i>“Slow enough to");

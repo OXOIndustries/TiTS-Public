@@ -97,8 +97,7 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
-	if(shits["SHIP"].shipGunCapacity() > shits["SHIP"].listShipWeapons().length) addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
-	else addDisabledButton(5,"Ship Guns","Ship Guns","Your ship has no more hardpoints to equip weapons to.");
+	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
 	addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");

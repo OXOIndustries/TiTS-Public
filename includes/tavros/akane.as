@@ -681,7 +681,7 @@ public function akaneAkaneMain():void
 	output("\n\n<i>“Mmhmm, you know how to shame this old bag of bones and bolts, you monster. Care to entertain me, then?”</i>");
 	
 	addButton(0, "Appearance", akaneLookAtMafiaBoss, undefined, "Appearance", "Take in the full grace and majesty of this augmented crime boss. Respectfully of course. <i>She’s watching</i>.");
-	if (pc.isPregnant()) addDisabledButton(1, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
+	if (pc.isPregnant()) addDisabledButton(1, "Sex", "You are unable to participate in this while pregnant!");
 	else addButton(1, "Sex", akaneSexOptions, undefined, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
 	addButton(2, "Leave", akaneNevermind, true, "Leave", "You just wanna get out of here.");
 	
