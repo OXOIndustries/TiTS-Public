@@ -186,22 +186,14 @@
 		{
 			if (!(e.currentTarget as SquareButton).isActive) return;
 			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext");
-			
 			if (forward)
 			{
-				buttonPage++;
+				buttonPageGoNext();
 			}
 			else
 			{
-				buttonPage--;
+				buttonPageGoPrev();
 			}
-			// Why is this check a thing? It just soft-limits usable inventory, should a future expansion add more.
-			if (buttonPage < 1) buttonPage = 1;
-			if (buttonPage > 4) buttonPage = 4;
-			
-			resetButtons();
-			
-			CheckPages();
 		}
 
 		private function CheckPages():void
@@ -507,9 +499,9 @@
 		{
 			return _buttonData[arg].arg;
 		}
-        /**
-         * Publicly callable function to change to next button page, for use by hotkeys
-        */
+		/**
+		 * Publicly callable function to change to next button page, for use by hotkeys
+		*/
 		public function buttonPageGoNext():void
 		{
 			if (!(_buttonPageNext).isActive) return;

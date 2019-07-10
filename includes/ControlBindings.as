@@ -181,7 +181,7 @@
 			return function():void { inThis.userInterface.buttonTray.buttonPageGoPrev(); };
 
 		}(this));
-    inputManager.AddBindableControl(
+	inputManager.AddBindableControl(
 		"Buttons Next Page",
 		"Go to previous page of buttons",
 		function(inThis:*):Function {
