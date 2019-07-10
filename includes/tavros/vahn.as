@@ -382,7 +382,7 @@ public function swapShipsCheck(arg:String = ""):void
 	output("\n\n");
 	
 	clearMenu();
-	addButton(0,"Yes",swapShips);
+	addButton(0,"Yes",swapShips,arg);
 	addButton(1,"No",swapShipsMenu);
 }
 public function swapShips(arg:String = ""):void
