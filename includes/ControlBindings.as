@@ -174,6 +174,19 @@
 		function(inThis:*):Function {
 			return function():void { inThis.prevOutputPage(); };
 		}(this));
+	inputManager.AddBindableControl(
+		"Buttons Previous Page",
+		"Go to previous page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.buttonPageGoPrev(); };
+
+		}(this));
+    inputManager.AddBindableControl(
+		"Buttons Next Page",
+		"Go to previous page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.buttonPageGoNext(); };
+		}(this));
 		
 	import classes.Cheats;
 	
@@ -391,6 +404,8 @@
 	inputManager.BindKeyToControl(35, "Scroll To End");        // case 35: this.endButtonScroll()
 	inputManager.BindKeyToControl(54, "Next Page");            // case 54: this.pageNextButtonKeyEvt()
 	inputManager.BindKeyToControl(89, "Previous Page");        // case 89: this.pagePrevButtonKeyEvt()
+	inputManager.BindKeyToControl(190,"Buttons Next Page");    // case 190: this.userInterface.buttonTray.buttonPageGoNext();
+	inputManager.BindKeyToControl(188,"Buttons Previous Page");// case 188: this.userInterface.buttonTray.buttonPageGoPrev();
 	inputManager.BindKeyToControl(80, "Debug Menu");           // case 80: this.userInterface.debugmm();
 
 

@@ -195,7 +195,7 @@
 			{
 				buttonPage--;
 			}
-			
+			// Why is this check a thing? It just soft-limits usable inventory, should a future expansion add more.
 			if (buttonPage < 1) buttonPage = 1;
 			if (buttonPage > 4) buttonPage = 4;
 			
@@ -203,7 +203,7 @@
 			
 			CheckPages();
 		}
-		
+
 		private function CheckPages():void
 		{
 			var lastButtonIndex:int = 0;
@@ -506,6 +506,27 @@
 		public function getArgForIndex(arg:int):*
 		{
 			return _buttonData[arg].arg;
+		}
+        /**
+         * Publicly callable function to change to next button page, for use by hotkeys
+        */
+		public function buttonPageGoNext():void
+		{
+			if (!(_buttonPageNext).isActive) return;
+			buttonPage++;
+			// I don't agree that this needs to be a thing, but since it's already here I'll follow it.
+			if(buttonPage > 4) buttonPage = 4;
+			resetButtons();
+			CheckPages();
+		}
+		public function buttonPageGoPrev():void
+		{
+			if (!(_buttonPagePrev).isActive) return;
+			buttonPage--;
+			// I don't agree that this needs to be a thing, but since it's already here I'll follow it.
+			if(buttonPage < 1) buttonPage = 1;
+			resetButtons();
+			CheckPages();
 		}
 	}
 
