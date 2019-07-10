@@ -2675,9 +2675,9 @@ public function amberOnShipSexDrainHer():void
 	if (!pc.isNude()) output("stripping off your [pc.clothes] and ");
 	output("kneeling before her. “Niiiice and thoroughly.”");
 	
-	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+	if (amberEquilicumDoses() >= 0 && amberEquilicumDoses() <= 2){
 		output("“Oh, I'll empty them in you alright,” Amber purrs, the red-hot lust radiating off her like the heat of a star. “Over, and over, and over, and over...”");
-	} else if (amberDumbfuckDoses() > 2){
+	} else if (amberEquilicumDoses() > 2){
 		output("“Mmmm,” Amber murmurs, the red-hot lust radiating off her like the heat of a star. “[pc.name]...”");
 	}
 	
@@ -2689,9 +2689,9 @@ public function amberOnShipSexDrainHer():void
 	output("the moment she spears you on her throbbing cocktip. A pulse of pleasure runs along her swelling cumvein and rich, Amber-flavored cream fills your cheeks before you swallow it back with a shiver of delight.");
 	
 	output("\n\n");
-	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+	if (amberEquilicumDoses() >= 0 && amberEquilicumDoses() <= 2){
 		output("“Oohhh, there's going to be <b>so</b> much more where that came from,” she pants, taking a confident step forward. You let out an acquiescent gurgle as the sensitive underside of her stiff rod slides forward and her swollen head slips into your throat, robbing you of speech. “Ungh! God, fuck!”");
-	} else if (amberDumbfuckDoses() > 2){
+	} else if (amberEquilicumDoses() > 2){
 		output("“Oohhhh yes, swallow my cum,” she pants, taking a confident step forward. You let out an acquiescent gurgle as the sensitive underside of her stiff rod slides forward and her swollen head slips into your throat, robbing you of speech. “Ungh! God, fuck!”");
 	}
 	
@@ -2718,11 +2718,14 @@ public function amberOnShipSexDrainHer():void
 	
 	//Sex is not *actually* a time machine, so let's pass some time
 	processTime(10 + rand(5));
+	IncrementFlag("DRYAD_FUCKED"); //Let's agree that we have sexed Amber at this point.
+	IncrementFlag("DRYAD_BLEWHER"); //Also gave her oral relieve
+	pc.lust(100);
 	
 	clearMenu();
 	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
 	addButton(0, "Throat", amberOnShipSexDrainHerInThroat, undefined, "Drain Her", "Keep her in your throat. After all, she's already enjoying it so much.");
-	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.biggestCockVolume(), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");
+	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.cockVolume(0), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");
 	addButton(2, "Pussy", vaginaRouter, [amberOnShipSexDrainHerInPussy, ppAmber.cockVolume(0), 0, 0], "Pussy", "Get the rest of her fresh, hot loads deep in your pussy"+(!pc.isPregnant() ? " and womb.":"."));
 	if (!pc.hasVagina(0)) addDisabledButton(2, "Pussy", "Pussy", "Requires a pussy.");
 	//Until we get a finished version, let's disable Pussy-path -LJ
@@ -2770,19 +2773,27 @@ public function amberOnShipSexDrainHerInThroat():void
 	output("\n\n“[pc.name],” she whispers, gazing at you with heat in her eyes before they close, and suddenly you're being inescapably kissed by the adoring deergirl. “Mmmmmm-”");
 	output("\n\nShe sucks on your tongue with such fervor you half-wonder if she's going to fuck you again right then and there but when she pulls back it's to swallow your spit and pant, tongue lolling out and breath hot on your face.");
 	output("\n\n“God, I love you,” Amber says, raising her hand to your cheek.");
-	if (amberDumbfuckDoses() == 0){
+	if (amberEquilicumDoses() == 0){
 		output(" “Thanks, [pc.name]. I feel amazing.” She smiles. “And not <b>just</b> because of your blowjob skills.”");
 		output("\n\n“I'm flattered,” you reply, smiling back at her. “Remember, any time you need me… I'm here for you.”");
 		output("\n\n“I know,” she murmurs, closing in for another kiss. “I know.”");
-	} else if (amberDumbfuckDoses() > 0 && amberDumbfuckDoses() < 4){
+	} else if (amberEquilicumDoses() > 0 && amberEquilicumDoses() < 4){
 		output(" “Thanks a lot, [pc.name]. You're the best fuck a girl could ask for.”");
 		output("\n\n“Thank <b>you</b>,” you say, smiling at her.");
 		output("\n\n“What's that, [pc.name]?” she murmurs, closing in for another kiss. “You want more? C'mere…”");
-	} else if (amberDumbfuckDoses() > 3){
+	} else if (amberEquilicumDoses() > 3){
 		output(" “You're <b>such</b> a good fuck! God, I just wanna pound your throat all day! Mmm…”");
 		output("\n\n“We can arrange something,” you reply, smiling at her.");
 		output("\n\n“Uh huh,” she murmurs, closing in for another kiss. “C'mere, hottie…”");
 	}
+	processTime(2 + rand(3));
+	
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+	IncrementFlag("DRYAD_BLEWHER");
+	pc.orgasm();
+	
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+	pc.maxOutCumflation("mouth", ppAmber)
 	
 	output("\n\nIt's quite a while before you find yourself back in your room, rubbing your tummy.");
 	
@@ -2880,11 +2891,21 @@ public function amberOnShipSexDrainHerInAss(hole:int):void
 		output("\n\nYou both moan in chorus as she slowly pulls out, her massive cock coming free with a slurp and leaving your asshole a gaping, squirting mess. Amber's cum spurts to the floor as you struggle to keep your [pc.legs] together, winking and clenching at the heated deertaur while you try to keep it all inside.");
 	}
 	output("“Fuck,” she mutters, absentmindedly chewing her lip. “That's… hot.”");
+	processTime(2 + rand(3));
+	
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+	IncrementFlag("DRYAD_ANALEDYOU");
+	pc.orgasm();
+	
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+	pc.maxOutCumflation("ass", ppAmber)
+	if (pc.isFemale() || pc.isHerm()) pc.applyPussyDrenched();
 	
 	output("\n\nAt last you get yourself together, trailing Amber's seed all down your legs while you lean against the wall and pant, your entire body covered in sweat thanks to both the vigorous rutting and the effort of having Amber on top while she made love to you. Turning back around, you're surprised by a sudden kiss as she sweeps you into her arms, pushing herself against you until you're flat against the wall and pressed chest-to-chest with the lusty taurgirl.");
 	output("\n\n“Am-Amber,” you murmur, tongue entwined with hers. “Mmm-”");
 	output("\n\n“I love you,” Amber whispers, one hand at your lower back and the other cupping your cheek. “[pc.name]...”");
 	output("\n\nYou don't get another word in for the next ten minutes, and by the time you find yourself back in your room, still dizzy and sweaty, you don't even know where all the time went.");
+	processTime(10 + rand(5));
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2910,11 +2931,11 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 	}
 	
 	output("\n\n");
-	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+	if (amberEquilicumDoses() >= 0 && amberEquilicumDoses() <= 2){
 		output("“You all ready to have me blow ten loads in your pussy, [pc.name]?” Amber murmurs. She sticks three fingers into your squeezing, clenching slit and your reply is cut short by a loud, orgasmic moan. “Yeah, you are.”");
-	} else if (amberDumbfuckDoses() == 3){
+	} else if (amberEquilicumDoses() == 3){
 		output("“I'm gonna blow ten fucking loads in your pussy, [pc.name],” Amber murmurs. She sticks three fingers into your squeezing, clenched slit and your reply is cut short by a loud, orgasmic moan. “Mmm, you want it.”");
-	} else if (amberDumbfuckDoses() > 3){
+	} else if (amberEquilicumDoses() > 3){
 		output("“I'm gonna fucking pump your pussy full of cum,” Amber murmurs. She sticks three fingers into your squeezing, clenching slit and your reply is cut short by a loud, orgasmic moan. “Ten times, at least...”");
 	}
 	
@@ -2925,6 +2946,14 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		
 	}
 	
+	
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+	IncrementFlag("DRYAD_YOURCUNT");
+	pc.orgasm();
+	
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+	pc.maxOutCumflation("vagina", ppAmber) //Check if this is true for finished scene -LJ
+	if (pc.isFemale() || pc.isHerm()) pc.applyPussyDrenched(); //Check if this is true for finished scene -LJ
 	
 	output("\n\nThis is a work in progress, remove this before sending it off! -LJ");
 	clearMenu();
