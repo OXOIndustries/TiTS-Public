@@ -1032,7 +1032,7 @@ public function chooseBreastSize():void {
 			addButton(13,"Whatever",applyBreastSize,rand(4));
 		}
 	}
-	if (pc.originalRace != "half-gryvain")
+	else if (pc.originalRace != "half-gryvain")
 	{
 		addButton(0,"Flat",applyBreastSize,0);
 		addButton(1,"A",applyBreastSize,1);
