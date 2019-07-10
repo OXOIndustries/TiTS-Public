@@ -1989,7 +1989,8 @@ public function bizzyBreastsGiveItemStage1II():void
 
 	output("\n\n<i>“Thank you so much for doing this, [pc.Mr]. Steele,”</i> she exclaims. <i>“I feel so good! So many people were watching and saying how good I looked! It feels like a weight’s fallen off me... or - or the opposite, I guess,”</i> she giggles, her natural meekness stealing back. <i>“It was good, right? You enjoyed watching? Do I - do I look good?”</i>");
 
-	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her nipples little splashes of fawn with small, nubby nipples. She flushes with pleasure when you tell her she looks great.");
+	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her areolae - little splashes of fawn - with small, nubby nipples");
+	output(". She flushes with pleasure when you tell her she looks great.");
 
 	output("\n\n<i>“Thank you,”</i> she mumbles. Deeper arousal colors her expression. <i>“I wasn’t joking about doing it again, you know. Did you see how the figures spiked when we did the transformation? I want to make them bigger... become THE, um, booby expansion lady on there. That could be my thing! You’ll bring more Tittyblossom, right? I- if you want to, I mean.”</i>");
 

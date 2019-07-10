@@ -123,7 +123,9 @@ package classes {
 		//Probably set via perk.
 		public function shipCapacity():Number
 		{
-			return shipCapacityRaw;
+			var bonus:Number = 0;
+			bonus += equippedItemCountByClass(AdvancedQuarters);
+			return shipCapacityRaw + bonus;
 		}
 		public function shipWeaponCapacity():Number { return shipGunCapacity(); }
 		public function shipGunCapacity():Number

@@ -23,7 +23,7 @@ public function showPyroPup2(nude:Boolean = false):void
 public function genericShipFiteWin():void
 {
 	clearOutput();
-	output("With that last exchange, your console notifies you of system failures all over the enemy vessel. Its engines sputter, and its defenses lock up one after another. Its drifting with little more than life support and comms left online.");
+	output("With that last exchange, your console notifies you of system failures all over the enemy vessel. Its engines sputter, and its defenses lock up one after another. It’s drifting with little more than life support and comms left online.");
 	IncrementFlag("SHIPFITE_WINS");
 	if(flags["SHIPFITE_WINS"] == undefined)
 	{

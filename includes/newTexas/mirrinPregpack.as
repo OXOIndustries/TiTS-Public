@@ -2315,14 +2315,17 @@ public function mirrinTalkKiddos(bothKiddos:Boolean):void
 	author("SoAndSo");
 
 	output("<i>“Soooo, how’s our little " + (bothKiddos ? "Jenta and Torri" : (jentaBorn() ? "Jenta" : "Torri")) + " doing?”</i> you ask, nudging her arm with your elbow.");
-	output("\n\n<i>“Oh " + (bothKiddos ? "they’re" : "she’s") + " great. I spend like, four hours just doing things with " + (bothKiddos ? "them" : "her") + " every day. I wish I could do more but, uhhh, poor " + (bothKiddos ? "things sleep like rocks" : "thing sleeps like rock") + ", you know? Plus I have <b>other</b> babies to take care of... but yeah, damn.");
+	output("\n\n<i>“Oh " + (bothKiddos ? "they’re" : "she’s") + " great. I spend like, four hours just doing things with " + (bothKiddos ? "them" : "her") + " every day. I wish I could do more but, uhhh, poor " + (bothKiddos ? "things sleep like rocks" : "thing sleeps like a rock") + ", you know? Plus I have <b>other</b> babies to take care of... but yeah, damn.");
 	var child:Child = ChildManager.youngestOfUniqueType(MirrinUniqueChild);
-	//.childAge();
-	if (child.Years > 1) output(" You should see " + (bothKiddos ? "them" : "her") + ", elskan. A joy to be with, I can’t... I can’t ever thank you enough, my sweet.");
-	else if (child.Months > 6) output((bothKiddos ? " Both of their" : (jentaBorn() ? " Jenta’s" : " Torri’s")) + " teeth have set it so a bit restless sometimes. Hurts the fucking nips, like whyyyy does nature make it so painful, fuck!");
-	else if (child.Months > 2) output((bothKiddos ? " They’re" : " She’s") + " looking so healthy now, I didn’t think I’d uh... enjoy breastfeeding so much, fuck. I haven’t felt so ehh... girly. Like, goopy, squishy on the inside, bleh. I have to slap myself sometimes or else the gym regs are going to talk, ha!");
-	else if (child.Days > 3*7) output(" Tiny " + (bothKiddos ? "things" : "thing") + ", although you know I uh.. I see a bit of you in " + (bothKiddos ? "the two of them" : "her") + ". Still on that Nutrisynth stuff instead of milk but eh, I have to trust what the nurses do.");
-	else if (child.Days > 1) output(" Tiny, tiny " + (bothKiddos ? "things" : "thing") + ", so precious. Always scared I’m going to break something so I barely even touch " + (bothKiddos ? "either of them" : "her") + " right now. That look I get from the little " + (bothKiddos ? "things" : "thing") + " when I come to visit though, bjáni...");
+	if(child != null)
+	{
+		//.childAge();
+		if (child.Years > 1) output(" You should see " + (bothKiddos ? "them" : "her") + ", elskan. A joy to be with, I can’t... I can’t ever thank you enough, my sweet.");
+		else if (child.Months > 6) output(" " + (bothKiddos ? "Both of their" : (jentaBorn() ? "Jenta’s" : "Torri’s")) + " teeth have set it so a bit restless sometimes. Hurts the fucking nips, like whyyyy does nature make it so painful, fuck!");
+		else if (child.Months > 2) output(" " + (bothKiddos ? "They’re" : "She’s") + " looking so healthy now, I didn’t think I’d uh... enjoy breastfeeding so much, fuck. I haven’t felt so ehh... girly. Like, goopy, squishy on the inside, bleh. I have to slap myself sometimes or else the gym regs are going to talk, ha!");
+		else if (child.Days > 3*7) output(" Tiny " + (bothKiddos ? "things" : "thing") + ", although you know I uh.. I see a bit of you in " + (bothKiddos ? "the two of them" : "her") + ". Still on that Nutrisynth stuff instead of milk but eh, I have to trust what the nurses do.");
+		else if (child.Days > 1) output(" Tiny, tiny " + (bothKiddos ? "things" : "thing") + ", so precious. Always scared I’m going to break something so I barely even touch " + (bothKiddos ? "either of them" : "her") + " right now. That look I get from the little " + (bothKiddos ? "things" : "thing") + " when I come to visit though, bjáni...");
+	}
 	output("”</i>");
 	output("\n\nYou best come with me, right? Kids always need their " + pc.mf("papa", "momma") + ". Although maybe you go when I’m not there and I just happen to miss you, huh?”</i>");
 	output("\n\nYou nod along, promising that you’ll visit them with her any time you can. You squeeze her trunk of a left arm as added confirmation, a hint of a chuckle tempering the stony dragonesses face.");

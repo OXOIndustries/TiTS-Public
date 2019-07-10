@@ -4660,7 +4660,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Anon's Bar!
-			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined || flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined || flags["SAENDRA_XPACK1_STATUS"] >= 8)
+			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined || flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined || flags["SAENDRA_XPACK1_STATUS"] >= 8 || flags["MET_FADIL"] != undefined)
 			{
 				output2("\n<b><u>Anon’s Bar and Board</u></b>");
 				// Alex
@@ -4671,6 +4671,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(" Met him");
 					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him");
 					if(flags["FUCKED_ALEX"] != undefined) output2("\n<b>* Alex, Times Sexed:</b> " + flags["FUCKED_ALEX"]);
+				}
+				// Alex
+				if(flags["MET_FADIL"] != undefined)
+				{
+					output2("\n<b>* Fadil:</b>");
+					output2(" Met him");
+					if(flags["FADIL_MONEY_GIVEN"] != undefined) output2("\n<b>* Fadil, Total Donation Amount:</b> " + flags["FADIL_MONEY_GIVEN"]);
+					if(flags["FADIL_DONATION_DAY"] != undefined) output2("\n<b>* Fadil, Days Since Last Donation:</b> " + (days - flags["FADIL_DONATION_DAY"]));
+					if(flags["FADIL_SEXED"] != undefined) output2("\n<b>* Fadil, Times Sexed:</b> " + flags["FADIL_SEXED"]);
 				}
 				// Ramis!
 				if(flags["RAMIS_MET"] != undefined)

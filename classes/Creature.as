@@ -642,6 +642,7 @@
 		public function clearAccentMarkings():void
 		{
 			removeStatusEffect("Vanae Markings");
+			removeStatusEffect("Hyena Fur");
 			removeStatusEffect("Shark Markings");
 			removeStatusEffect("Body Markings");
 			removePerk("Primorditatts");
@@ -652,6 +653,7 @@
 			if(!hasAccentMarkings()) return -1;
 			var accentType:int = -1;
 			if(hasStatusEffect("Vanae Markings")) accentType = 0;
+			if(hasStatusEffect("Hyena Fur")) accentType = statusEffectv1("Hyena Fur");
 			if(hasStatusEffect("Shark Markings")) accentType = statusEffectv1("Shark Markings");
 			if(hasStatusEffect("Body Markings")) accentType = statusEffectv1("Body Markings");
 			if(hasPerk("Primorditatts")) accentType = 7;
@@ -13522,11 +13524,11 @@
 			if (legType == GLOBAL.TYPE_HYENA) counter++;
 			if (armType == GLOBAL.TYPE_HYENA) counter++;
 			if (faceType == GLOBAL.TYPE_HYENA) counter++;
-			if (tailType == GLOBAL.TYPE_HYENA && tailCount > 0) counter++;
-			if (tongueType == GLOBAL.TYPE_CANINE) counter++;
-			if (cockTotal(GLOBAL.TYPE_CANINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_CANINE) > 0 && clitLength >= 4) counter++;
-			if (hasFur()) counter++;
+			if (hasTail(GLOBAL.TYPE_HYENA)) counter++;
+			if (counter > 0 && tongueType == GLOBAL.TYPE_CANINE) counter++;
+			if (counter > 0 && hasFur()) counter++;
+			if (counter > 1 && cockTotal(GLOBAL.TYPE_CANINE) > 0) counter++;
+			if (counter > 1 && vaginaTotal(GLOBAL.TYPE_CANINE) > 0 && clitLength >= 4) counter++;
 			if (hasStatusEffect("Hyena Fur")) counter++;
 			if (hasScales()) counter--;
 			if (hasWings()) counter--;
@@ -13681,7 +13683,7 @@
 			if (eyeType == GLOBAL.TYPE_MYR) counter++;
 			if (armType == GLOBAL.TYPE_MYR) counter++;
 			if (legType == GLOBAL.TYPE_MYR) counter++;
-			if (antennae == 2 && antennaeType == GLOBAL.TYPE_MYR) counter++;
+			if (hasAntennae(GLOBAL.TYPE_MYR)) counter++;
 			if (counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
 			if (counter > 0 && canLactate() && milkType == GLOBAL.FLUID_TYPE_HONEY) counter++;
 			if (hasFur() || hasScales()) counter--;
@@ -14039,7 +14041,7 @@
 			var counter: int = 0;
 			if (armType == GLOBAL.TYPE_BEE) counter++;
 			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
-			if (antennae == 2 && antennaeType == GLOBAL.TYPE_BEE) counter++;
+			if (hasAntennae(GLOBAL.TYPE_BEE)) counter++;
 			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
 			if (hasTail(GLOBAL.TYPE_BEE)) counter++;
 			if (counter > 0 && faceType == GLOBAL.TYPE_HUMAN)
