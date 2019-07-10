@@ -84,8 +84,8 @@
 		public static const FLAG_SHORT:int									= 49;
 		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
 		public static const FLAG_HYPER_PUMPED:int 							= 51;
-    public static const FLAG_HEART_SHAPED:int			    = 52;
-		public static const FLAG_STAR_SHAPED:int			    = 53;
+		public static const FLAG_HEART_SHAPED:int							= 52;
+		public static const FLAG_STAR_SHAPED:int							= 53;
 
 		
 		public static const FLAG_NAMES:Array = [
@@ -141,7 +141,7 @@
 			"Short",
 			"Floppy",
 			"Hyper Pumped",
-      "Heart-Shaped",
+			"Heart-Shaped",
 			"Star-Shaped",
 		];
 		
@@ -796,7 +796,7 @@
 			FLAG_HEART_SHAPED,
 			FLAG_STAR_SHAPED,
 		];
-				
+		
 		//CUM & MILK TYPES
 		public static const FLUID_TYPE_MILK:int                                 = 0;
 		public static const FLUID_TYPE_HONEY:int                                = 1;

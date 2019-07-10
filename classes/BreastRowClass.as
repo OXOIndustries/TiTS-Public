@@ -76,16 +76,22 @@
 		public function delAreolaFlag(arg:int):void
 		{
 			//Find and destroy it.
-			for(var x:int = 0; x < areolaFlags.length;x++) {
-				if(arg == areolaFlags[x]) areolaFlags.splice(x,1);
+			var i:int = (areolaFlags.length - 1);
+			while (i >= 0)
+			{
+				if(areolaFlags[i] == arg) areolaFlags.splice(i, 1);
+				i--;
 			}
 		}
 		public function delAreolaShapeFlags():void
 		{
 			//Find and destroy it.
-			for(var x:int = 0; x < areolaFlags.length;x++) {
-				if (areolaFlags[x] == GLOBAL.FLAG_HEART_SHAPED) areolaFlags.splice(x, 1);
-				if (areolaFlags[x] == GLOBAL.FLAG_STAR_SHAPED) areolaFlags.splice(x, 1);
+			var i:int = (areolaFlags.length - 1);
+			while (i >= 0)
+			{
+				if(areolaFlags[i] == GLOBAL.FLAG_HEART_SHAPED) areolaFlags.splice(i, 1);
+				if(areolaFlags[i] == GLOBAL.FLAG_STAR_SHAPED) areolaFlags.splice(i, 1);
+				i--;
 			}
 		}
 		public function clearAreolaFlags():void {

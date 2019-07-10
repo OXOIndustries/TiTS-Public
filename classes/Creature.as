@@ -1865,7 +1865,7 @@
 		}
 		public function areolaFlagUnlocked(bRowIndex:int, newNippleFlag:Number):Boolean
 		{
-			if (hasLipples() || !nippleTypeUnlocked(0,0)) return false;
+			if (hasLipples(bRowIndex)) return false;
 			return true;
 		}
 
@@ -2693,11 +2693,11 @@
 					break;
 				case "areola":
 				case "areolaDescript":
-					buffer = areolaDescript();
+					buffer = areolaDescript(arg2);
 					break;
 				case "areolae":
 				case "areolaeDescript":
-					buffer = areolaeDescript();
+					buffer = areolaeDescript(arg2);
 					break;
 				case "eachCock":
 					buffer = eachCock();
@@ -3506,7 +3506,7 @@
 		}
 		public function hasItemByReference(item:ItemSlotClass, amount:int = 1):Boolean
 		{
-			if (item == null || inventory.length == 0  || amount == 0) return false;
+			if (item == null || inventory.length == 0 || amount == 0) return false;
 
 			var amt:int = numberOfItemByReference(item);
 
@@ -15005,7 +15005,7 @@
 						else if (nippleWidth(rowNum) < 5) description += RandomInCollection(["juicy","luscious","succulent","cushy-looking"]);
 						//Obscene
 						else if (nippleWidth(rowNum) < 12) description += RandomInCollection(["hypnotic","dazzling","plush","whorish","pornographic","salaciously swollen","obscene"]);
-						else description += RandomInCollection(["Scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
+						else description += RandomInCollection(["scylla-tier","impossibly large","game-breaking","crotch-consuming","jacquesian","universe-shaming","ultraporn-banned"]);
 					}
 					descripted++;
 				}
@@ -15172,10 +15172,10 @@
 		{
 			return plural(nippleNoun(rowNum, simple));
 		}
-		public function areolaSizeDescript(): String {
+		public function areolaSizeDescript(rowNum:int = 0): String {
 			//Define areola size description by nippleWidth
 			var areolasize: String = "";
-			var nipWidth: Number = nippleWidth();
+			var nipWidth: Number = nippleWidth(rowNum);
 			
 			if(nipWidth <= 0) areolasize = "non-existent";
 			else if(nipWidth <= .375) areolasize = "fairly tiny";
@@ -15206,13 +15206,13 @@
 			return areolasize;
 		}
 		
-		public function hasSymbolAreola():Boolean
+		public function hasSymbolAreola(rowNum:int = 0):Boolean
 		{
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
-			else if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
+			else if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
 			else return false;
 		}
-		public function areolaDescript():String
+		public function areolaDescript(rowNum:int = 0, appearance:Boolean = false):String
 		{
 			var adjectives:Array = new Array();
 			var nouns:Array = ["areola"];
@@ -15224,15 +15224,19 @@
 			var selection:int = 0;
 
 			//Size description
-			adjectives.push(areolaSizeDescript());
+			if(appearance || rand(3) == 0)
+			{
+				description += areolaSizeDescript(rowNum);
+				if(!appearance) adjectiveLimit--;
+			}
 
 			//Flag descriptions
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
 
 			//If a player has a flag, they probably want to see stuff
-			if (breastRows[0].areolaFlags.length > 0) adjectiveMin++;
+			if (breastRows[rowNum].areolaFlags.length > 0) adjectiveMin++;
 
 			//Select a random number of adjectives within limits
 			i = rand(adjectives.length + 1);
@@ -15243,35 +15247,36 @@
 			//Pick adjective(s)
 			for (i; i > 0; i--)
 			{
-				selection = rand(adjectives.length)
+				selection = rand(adjectives.length);
+				if(description != "") description += ", ";
 				description += adjectives[selection];
-				(i > 1 ? description += ", ": description += " ")
 				adjectives.splice(selection, 1);
 			}
 
 			//Pick a noun.
+			if(description != "") description += " ";
 			description += nouns[rand(nouns.length)];
 
 			return description;
 		}
-		public function areolaeDescript():String
+		public function areolaeDescript(rowNum:int = 0, appearance:Boolean = false):String
 		{
-			return (areolaDescript() + "e");
+			return (areolaDescript(rowNum, appearance) + "e");
 		}
-		public function areolaFlagDescript():String
+		public function areolaFlagDescript(rowNum:int = 0):String
 		{
 			var list:Array = new Array();
 			var description:String = "";
 
 			//Flag non-shape descriptions
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
 
 			//Default areola shape
-			if (!hasSymbolAreola()) list.push("round");
+			if (!hasSymbolAreola(rowNum)) list.push("round");
 
 			//Others
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
-			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
 
 			//Build list with punctuation
 			while (list.length > 0)

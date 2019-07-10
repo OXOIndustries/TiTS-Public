@@ -8288,11 +8288,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Kiona, Times Sexed:</b> " + flags["KIONA_SEX"]);
 				}
-				if (kionaLuciniteQuestStage() > 0)
+				if(kionaLuciniteQuestStage() > 0)
 				{
-					if (kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
-					else if (kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
-					else if (kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
+					if(kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
+					else if(kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
+					else if(kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
 				}
 				if(flags["KIONA_KIRKITE"] != undefined) output2("\n<b>* Kiona, Kirkite Donated:</b> " + flags["KIONA_KIRKITE"]);
 				if(flags["KIONA_LUCINITE"] != undefined) output2("\n<b>* Kiona, Lucinite Donated:</b> " + flags["KIONA_LUCINITE"]);

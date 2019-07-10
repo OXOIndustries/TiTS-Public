@@ -21,48 +21,34 @@ package classes.Items.Transformatives
 		
 		public function Areolove()
 		{
-			this._latestVersion = 1;
+			_latestVersion = 1;
 			
-			this.quantity = 1;
-			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
-			//Used on inventory buttons
-			this.shortName = "Areolove";
-			//Regular name
-			this.longName = "dose of Areolove";
+			quantity = 1;
+			stackSize = 10;
+			type = GLOBAL.PILL;
 			
-			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			shortName = "Areolove";
+			longName = "dose of Areolove";
 			
-			//Longass shit, not sure what used for yet.
-			this.description = "a medipen loaded with Areolove";
-			//Displayed on tooltips during mouseovers
-			this.tooltip = "A low-grade transformative, Areolove will change the shape or size of the user's areolae. Buttons with various shapes line up across the length of the medipen, featuring many ways to stylize your nipples. There's a small disclaimer stating that this product might not work on unusual nipple types.";
+			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			description = "a medipen loaded with Areolove";
+			tooltip = "A low-grade transformative, Areolove will change the shape or size of the user’s areolae. Buttons with various shapes line up across the length of the medipen, featuring many ways to stylize your nipples. There’s a small disclaimer stating that this product might not work on unusual nipple types.";
 			
-			this.attackVerb = "";
+			TooltipManager.addTooltip(shortName, tooltip);
 			
-			//Information
-			this.basePrice = 750;
-			this.attack = 0;
-			this.defense = 0;
-			this.shieldDefense = 0;
-			this.shields = 0;
-			this.sexiness = 0;
-			this.critBonus = 0;
-			this.evasion = 0;
-			this.fortification = 0;
+			basePrice = 750;
 			
-			this.version = this._latestVersion;
+			version = _latestVersion;
 		}
 		
-		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var buttons:int = 0;
 			clearOutput();
 			clearMenu();
 			author("Somebody Else");
+			var i:int = 0;
 			if (target is PlayerCharacter)
 			{
 				if (!target.hasNipples())
@@ -71,10 +57,31 @@ package classes.Items.Transformatives
 				}
 			
 				else addButton(14, "Back", areoloveCancel, target);
-				output("The medipen has a number of symbol shaped buttons on it.")
+				output("The medipen has a number of symbol-shaped buttons on it. You can select an option to change the appearance of your areolae.");
+				if(target.breastRows.length > 1) output(" Note that the selection will change the areolae of all your breast rows.");
+				output("\n\nWhat do you choose?");
+				
+				var sFlags:String = target.areolaFlagDescript();
+				output("\n\nYou currently have " + target.areolaSizeDescript());
+				if(sFlags != "") output(", " + sFlags);
+				output(" areolae.");
+				
+				var numPumped:int = 0;
+				var numFlat:int = 0;
+				var numRound:int = 0;
+				var numHeart:int = 0;
+				var numStar:int = 0;
+				for(i = 0; i < target.breastRows.length; i++)
+				{
+					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) numPumped++; 
+					else numFlat++;
+					if(!target.hasSymbolAreola()) numRound++;
+					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) numHeart++;
+					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) numStar++;
+				}
 				
 				//Increase Size
-				if (target.nipplewidthratio >= 5)
+				if (target.nippleWidthRatio >= 5)
 				{
 					addDisabledButton(buttons++, "Increase", "Increase Size" , "Your areolae are already as large as this transformative can make them.");
 				}
@@ -83,7 +90,7 @@ package classes.Items.Transformatives
 					addButton(buttons++, "Increase", changeThemBoobHats, [-2, target], "Increase Size", "Increases the size of your areola.");
 				}
 				//Decrease Size
-				if (target.nipplewidthratio <= 0.5)
+				if (target.nippleWidthRatio <= 0.5)
 				{
 					addDisabledButton(buttons++, "Decrease", "Decrease Size" , "Your areolae are already as small as this transformative can make them.");
 				}
@@ -93,7 +100,7 @@ package classes.Items.Transformatives
 				}
 				
 				//Puffy
-				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED))
+				if (numPumped >= target.breastRows.length)
 				{
 					addDisabledButton(buttons++,"Puffy","Puffy","Your areolae are already puffy.");
 				}
@@ -102,7 +109,7 @@ package classes.Items.Transformatives
 					addButton(buttons++, "Puffy", changeThemBoobHats, [GLOBAL.FLAG_PUMPED, target], "Puffy", "Makes your areolae puffy.");
 				}
 				//Depuff
-				if (!target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED))
+				if (numFlat >= target.breastRows.length)
 				{
 					addDisabledButton(buttons++,"Flat","Flat","Your areolae are already flat.");
 				}
@@ -112,7 +119,7 @@ package classes.Items.Transformatives
 				}
 				
 				//Round
-				if (!target.hasSymbolAreola())
+				if (numRound >= target.breastRows.length)
 				{
 					addDisabledButton(buttons++,"Round","Round","Your areolae are already round.");
 				}
@@ -122,7 +129,7 @@ package classes.Items.Transformatives
 				}
 			
 				//Heart shaped areola
-				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) 
+				if (numHeart >= target.breastRows.length) 
 				{
 					addDisabledButton(buttons++,"Hearts","Hearts","Your areolae are already shaped like hearts.");
 				}
@@ -132,7 +139,7 @@ package classes.Items.Transformatives
 				}
 			
 				//Star shaped areola
-				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED))
+				if (numStar >= target.breastRows.length)
 				{
 					addDisabledButton(buttons++,"Stars","Stars","Your areolae are already shaped like stars.");
 				}
@@ -160,10 +167,23 @@ package classes.Items.Transformatives
 			var clothed:Boolean = true;
 			author("Somebody Else");
 			
-			//Nipple flags locked: no changes
-			if (!target.areolaFlagUnlocked(0, 0))
+			clearOutput();
+			
+			output("Making your selection, you inject yourself with the medipen.");
+			
+			var numLocked:int = 0;
+			if(selection >= 0)
 			{
-				output("You feel a brief tingling in your areolae, but nothing else happens. What a waste.");
+				for(i = 0; i < target.breastRows.length; i++)
+				{
+					if(!target.areolaFlagUnlocked(i, selection)) numLocked++;
+				}
+			}
+			
+			//Nipple flags locked: no changes
+			if (numLocked >= target.breastRows.length)
+			{
+				output(" You feel a brief tingling in your areolae, but nothing else happens. What a waste.");
 				clearMenu(); 
 				addButton(0, "Next", mainGameMenu);
 				return;
@@ -171,67 +191,72 @@ package classes.Items.Transformatives
 			
 			//Selection independent stuff
 			//Some Steeles are shy/unable to strip
-			if (target.isChestGarbed() && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() <= 66 || target.isChestGarbed && kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NUDITY_ILLEGAL)) output("You peek down your top to get a look at the changes as they unfold.");
+			if (target.isChestGarbed() && ((kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) && target.exhibitionism() <= 66) || kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.NUDITY_ILLEGAL))) output(" You peek down your top to get a look at the changes as they unfold.");
 			else 
 			{
 				clothed = false;
-				output("You " + (target.isChestGarbed() ? "strip out of your gear":"look down") + " to watch the changes as they progress.");
+				output(" You " + (target.isChestGarbed() ? "strip out of your gear":"look down") + " to watch the changes as they progress.");
 			}
-			output(" A slight pins and needles sensation buds in your areolae, then it rapidly builds to the point where you let out a small gasp at the intensity. As the feeling reaches its peak, each individual pinprick takes on a laser-like feeling of heat, there and gone almost too quickly to notice were it not for the staggering number of them. Your breath occasionally hitching in your throat, you watch as the transformation begins.");
+			output("\n\nA slight sensation of pins and needles buds in your areolae, then it rapidly builds to the point where you let out a small gasp at the intensity. As the feeling reaches its peak, each individual pinprick takes on a laser-like feeling of heat, there and gone almost too quickly to notice were it not for the staggering number of them. Your breath occasionally hitching in your throat, you watch as the transformation begins.");
 			
 			//Selection dependent stuff
 			switch (selection)
 			{
 				//Increase size
 				case -2:
-					output(" The sensations focus themselves around the edges of your areolae as they slowly grow. <b>Your areolae are now larger!</b>");
+					output("\n\nThe sensations focus themselves around the edges of your areolae as they slowly grow. <b>Your areolae are now larger!</b>");
 					target.nippleWidthRatio += 0.5;
 					if (target.nippleWidthRatio > 5) target.nippleWidthRatio = 5;
 					break;
 				//Decrease size
 				case -3:
-					output(" The sensations focus themselves around the edges of your areolae as they slowly contract. <b>Your areolae are now smaller!</b>");
+					output("\n\nThe sensations focus themselves around the edges of your areolae as they slowly contract. <b>Your areolae are now smaller!</b>");
 					target.nippleWidthRatio -= 0.5;
 					if (target.nippleWidthRatio < 0.5) target.nippleWidthRatio = 0.5;
 					break;
 				//Puff
 				case GLOBAL.FLAG_PUMPED:
-					output(" The sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape. <b>Your areolae are now puffy!</b>");
+					output("\n\nThe sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape. <b>Your areolae are now puffy!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
+						if(!target.areolaFlagUnlocked(i, GLOBAL.FLAG_PUMPED)) continue;
 						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_PUMPED); 
 					}
 					break;
 				//Unpuff
 				case -1:
-					output(" The sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape.<b>Your areolae are no longer puffy.</b>");
+					output("\n\nThe sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape.<b>Your areolae are no longer puffy.</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
+						if(!target.areolaFlagUnlocked(i, 0)) continue;
 						target.breastRows[i].delAreolaFlag(GLOBAL.FLAG_PUMPED); 
 					}
 					break;
 				//Round
 				case 0:
-					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now round!</b>");
+					output("\n\nThe sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now round!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
+						if(!target.areolaFlagUnlocked(i, 0)) continue;
 						target.breastRows[i].delAreolaShapeFlags(); 
 					}
 					break;
 				//Hearts
 				case GLOBAL.FLAG_HEART_SHAPED:
-					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now hearts!</b>");
+					output("\n\nThe sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now heart-shaped!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
+						if(!target.areolaFlagUnlocked(i, GLOBAL.FLAG_HEART_SHAPED)) continue;
 						target.breastRows[i].delAreolaShapeFlags();
 						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_HEART_SHAPED);
 					}
 					break;
 				//Stars
 				case GLOBAL.FLAG_STAR_SHAPED:
-					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now stars!</b>");
+					output("\n\nThe sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now star-shaped!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
+						if(!target.areolaFlagUnlocked(i, GLOBAL.FLAG_STAR_SHAPED)) continue;
 						target.breastRows[i].delAreolaShapeFlags();
 						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_STAR_SHAPED);
 					}
@@ -239,7 +264,7 @@ package classes.Items.Transformatives
 			}
 			
 			//Puts gear back on if it was taken off earlier
-			if(target.isChestGarbed() && clothed == false) output(" Shivering a bit from the lingering sensations, you put your gear back on.");
+			if(target.isChestGarbed() && !clothed) output(" Shivering a bit from the lingering tingling, you put your gear back on.");
 			target.lust(10);
 			kGAMECLASS.processTime(5);
 			clearMenu(); 
