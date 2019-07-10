@@ -1877,8 +1877,6 @@ public function amberOnshipSex():void
 	if (amberCanThreesome()) addButton(5, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
 	
 	addButton(6, "Drain Her", amberOnShipSexDrainHer, undefined, "Drain Her", (amberEquilicumDoses() > 0 ? "Those enormous, jizz-filled cumtanks swinging between her hindlegs could certainly use some relief...":"Those plump, seed-filled testes swinging between her hindlegs could certainly use some relief..."));
-	//Next line is for dev purposes only. Remove before sending this off! -LJ
-	//addDisabledButton(6, "Drain Her", "Drain Her", "This is not completely finished yet!");
 	
 	addButton(14, "Back", amberInTheHold);
 
@@ -2668,6 +2666,7 @@ public function amberOnshipSexFuckPussyAgain(kok:int=0):void
 	addButton(0, "Leave", mainGameMenu);
 }
 //have sex with amber drain her balls into your mouth
+// Please note that the dose check is left open on the upper end on purpose, so that if in the future we get more doses, these checks don't get broken.
 public function amberOnShipSexDrainHer():void
 {
 	clearOutput();
@@ -2726,8 +2725,11 @@ public function amberOnShipSexDrainHer():void
 	addButton(1, "Ass", vaginaRouter, [amberOnShipSexDrainHerInAss, ppAmber.biggestCockVolume(), -1, 0], "Ass", "Let her empty her overburdened balls into your asshole.");
 	addButton(2, "Pussy", vaginaRouter, [amberOnShipSexDrainHerInPussy, ppAmber.cockVolume(0), 0, 0], "Pussy", "Get the rest of her fresh, hot loads deep in your pussy"+(!pc.isPregnant() ? " and womb.":"."));
 	if (!pc.hasVagina(0)) addDisabledButton(2, "Pussy", "Pussy", "Requires a pussy.");
+	//Until we get a finished version, let's disable Pussy-path -LJ
+	if (true) addDisabledButton(2, "Pussy", "Pussy", "Right now Amber doesn't drain into pussies! Coming soon!");
 	
-	addButton(14, "Debug Leave", mainGameMenu); //-LJ
+	
+	//addButton(14, "Debug Leave", mainGameMenu); //-LJ
 }
 
 //have sex with amber drain her balls into your mouth
@@ -2898,6 +2900,28 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 	
 	output("\n\nCrawling out from under her, you ");
 	if (pc.isTaur()){
+		output("straighten yourself up and let Amber get a good look at your " + (pc.hasBreasts() ? "cum-covered tits" : "front covered in her cum") + " before you turn around and exercise some fine muscle control to wink at her. The arousal is dripping down your hindlegs already, potent pheromones swirling around Amber's head and pulling her in. You don't even need to ask her.");
+		output("\n\n“Oh!” you moan, your back arching as honey-sweet pleasure shoots up your spine. “Amber!”");
+		output("\n\n“Oh, fuck,” she mutters, her upper lips pressed to the softness of your lower ones. “You taste like sex, [pc.name]. Mmmf!”");
+		output("\n\nShe runs her tongue up your soaking slit, your hindlegs shaking as she plants her hands on your [pc.ass] and sucks on your [pc.clit] hard enough to make you scream. She keeps alternating between burying her tongue deep inside you and massaging your plump button and, helpless to resist her advances, you soon find yourself cumming your brains out and shaking so hard you'd fall if not for her steady hands keeping you up. Stars, she's an artist with her tongue!");
+		
+	} else {
+		//This needs a nontaur version -LJ
+	}
+	
+	output("\n\n");
+	if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
+		output("“You all ready to have me blow ten loads in your pussy, [pc.name]?” Amber murmurs. She sticks three fingers into your squeezing, clenching slit and your reply is cut short by a loud, orgasmic moan. “Yeah, you are.”");
+	} else if (amberDumbfuckDoses() == 3){
+		output("“I'm gonna blow ten fucking loads in your pussy, [pc.name],” Amber murmurs. She sticks three fingers into your squeezing, clenched slit and your reply is cut short by a loud, orgasmic moan. “Mmm, you want it.”");
+	} else if (amberDumbfuckDoses() > 3){
+		output("“I'm gonna fucking pump your pussy full of cum,” Amber murmurs. She sticks three fingers into your squeezing, clenching slit and your reply is cut short by a loud, orgasmic moan. “Ten times, at least...”");
+	}
+	
+	output("\n\nThen she's up on her hooves and the lips of your [pc.pussy] are stretching around the thick, swollen flare of Amber's horsecock ");
+	if (pc.isTaur()){
+		output("as she mounts you, groaning in quiet elation while you take her throbbing length inside you. The panting deergirl works her way up your body until she's laid atop you with her breasts pressing into your back and starts swinging her hips, bucking into you with an animal fervor that betrays her inflamed desire.{first time: You're momentarily shocked when she leans forward and bites the back of your neck as she fills you, precum streaming " + (pc.isPregnant() ? "from your quivering cunt" : "into your [pc.womb]") + " while she rides you, taken aback by just how <i>feral</i> she is.");
+	} else {
 		
 	}
 	
