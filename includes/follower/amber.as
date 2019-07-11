@@ -2956,6 +2956,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\nShe tastes like bliss, like passion and need, and when she caves your needy pussy in with long, deep strokes you cum almost immediately. Having the dryad's meaty dick so far inside you feels so fulfilling you don't ever want her to stop, and it seems like you're getting your wish. She goes slow and deliberately, fucking you to orgasm after orgasm, leaving you breathless and sweaty as she displays her sexual skill.");
 		output("\n\nAmber grabs your face and turns your head towards herself, sealing your lips with a deep, passionate kiss right as she explodes inside you, thick spunk splattering into your fucked-full cunny with the force of a tsunami. Her orgasm is so violent in contrast to her actions you find yourself cumming again, your bodies communicating their desires so much more efficiently than words could. With each and every pump of her cock you lovingly clench down on her, milking each load from her quaking balls and feeling her warmth fill you up.");
 		
+		output("\\n\\n");
 		if (amberDumbfuckDoses() == 0){
 			output("“Oh, god, I love you so much,” she moans, wrapping her arms around your waist and hugging you. “Mmmh... oh, fuck...”");
 		} else if (amberDumbfuckDoses() >= 1 && amberDumbfuckDoses() <= 2){
@@ -2974,6 +2975,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\n“Cum for me,” she whispers, squeezing your diamond-stiff nipples. You do as you’re told, your entire body shaking while pure pleasure radiates through your entire body, tightening up your muscles before leaving you a shuddering, breathless wreck. Then she fucks you so hard you're screaming her name, ending by dumping yet another enormous load into your dripping, squirting fuckhole.");
 		output("\n\nThen she starts the entire process all over again, right from the beginning.");
 		
+		output("\\n\\n");
 		if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
 			processTime(4 * 60);
 			output("<b>4 hours later</b>");
@@ -3042,7 +3044,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 			output("“I'm gonna fucking pump your pussy full of cum,” Amber murmurs. She sticks three fingers into your squeezing, clenching slit and your reply is cut short by a loud, orgasmic moan. “Ten times, at least...”");
 		}
 		
-		output("\n\nThen she's up on her hooves and the lips of your [pc.pussy] are stretching around the thick, swollen flare of Amber's horsecock as she mounts you, groaning in quiet elation while you take her throbbing length inside you. The panting deergirl works her way up your body until her forelegs are pressed against the wall and starts swinging her hips, bucking into you with an animal fervor that betrays her inflamed desire. You're forced to stand up straighter as she fills you, precum streaming " + (pc.isPregnant() ? "from your quivering cunt" : "into your [pc.womb]") + "while she rides you, taken aback by just how <i>feral</i> she is.");
+		output("\n\nThen she's up on her hooves and the lips of your [pc.pussy] are stretching around the thick, swollen flare of Amber's horsecock as she mounts you, groaning in quiet elation while you take her throbbing length inside you. The panting deergirl works her way up your body until her forelegs are pressed against the wall and starts swinging her hips, bucking into you with an animal fervor that betrays her inflamed desire. You're forced to stand up straighter as she fills you, precum streaming " + (pc.isPregnant() ? "from your quivering cunt" : "into your [pc.womb]") + " while she rides you, taken aback by just how <i>feral</i> she is.");
 		output("\n\n“Oh, god,” you moan, the fur of her underside brushing against your back. “Fuck me, Amber!”");
 		output("\n\nShe rams into you so hard her heavy balls slap against your groin, driving herself to the hilt with such force you can't help but scream, the sound echoing through the hold. Amber doesn't hold back in the slightest, subjecting you to her full bestial urges, and it's all you can do to stay standing as her rock-hard rod plunges into your clenching pussy, juices spraying down your shaking thighs. She pummels you into submission, forcing you up against the wall " + (pc.hasCock() ? "while your " + (pc.hasCocks() ? "[pc.cocks] shake and strain, precum dripping from their tips." : "[pc.cock] shakes and strains, precum dripping from its tip.") : "while you do your best to stay sane throughout her bestial rutting."));
 		output("\n\nIt's hard not to marvel at just how stiff and swollen her cock is while she frantically plunges it into your depths, slamming herself home again and again in desperate, singleminded need, working herself up to a colossal orgasm. You can feel her beginning to flare inside you once more, the head of her massive horsedick swelling up to what feels like three times its regular size and pressing into your womb hard enough to make you gasp and shake, her rough panting right in your ear. With her chin planted on your shoulder "+ (pc.hasHair() ? "and her face in your [pc.hair]" : "") + ", you have a front row seat to the dryad’s erotic moaning as she begins to find her peak, your own orgasm right on her heels.");
@@ -3065,6 +3067,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\nShe tastes like bliss, like passion and need, and when she caves your needy pussy in with long, deep strokes you cum almost immediately. Having the dryad's meaty dick so far inside you feels so fulfilling you don't ever want her to stop, and it seems like you're getting your wish. She goes slow and deliberately, fucking you to orgasm after orgasm, leaving you breathless and sweaty as she displays her sexual skill.");
 		output("\n\nAmber grabs your face and turns your head towards herself, sealing your lips with a deep, passionate kiss right as she explodes inside you, thick spunk splattering into your fucked-full cunny with the force of a tsunami. Her orgasm is so violent in contrast to her actions you find yourself cumming again, your bodies communicating their desires so much more efficiently than words could. With each and every pump of her cock you lovingly clench down on her, milking each load from her quaking balls and feeling her warmth fill you up.");
 		
+		output("\\n\\n");
 		if (amberDumbfuckDoses() == 0){
 			output("“Oh, god, I love you so much,” she moans, squeezing your cheeks. “Mmmh... oh, fuck...”");
 		} else if (amberDumbfuckDoses() >= 1 && amberDumbfuckDoses() <= 2){
@@ -3083,6 +3086,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\n“Cum for me,” she whispers, squeezing your diamond-stiff nipples. You do as you’re told, your entire body shaking while pure pleasure radiates through your entire body, tightening up your muscles before leaving you a shuddering, breathless wreck. Then she fucks you so hard you're screaming her name, ending by dumping yet another enormous load into your dripping, squirting fuckhole.");
 		output("\n\nThen she starts the entire process all over again, right from the beginning.");
 		
+		output("\\n\\n");
 		if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
 			processTime(4 * 60);
 			output("<b>4 hours later</b>");
