@@ -1120,7 +1120,7 @@ public function synphiaBallForeplay():void
 		if(pc.ballFullness > 80) output("Smells nice and full. No wonder you needed that service.");
 		else if(pc.ballFullness >= 33) output("Hmmm, smells like you didn’t really </i>need<i> the service. " + (!pc.balls == 1 ? "This bad boy":"These bad boys") + " have plenty more room to fill up.");
 		else output("Huh. Not a fan of letting yourself get backed up, I take it. Somebody’s a busy slut.");
-		output("”</i>  Unfurling her tongue the rest of the way, the scaly mechanic caresses it against your underpouch; she rolls it up one side, then gradually works across the front in order to slide down the other.");
+		output("”</i> Unfurling her tongue the rest of the way, the scaly mechanic caresses it against your underpouch; she rolls it up one side, then gradually works across the front in order to slide down the other.");
 		output("\n\nYou’re " + (pc.isErect() ? "quaking":"fully erect") + " by the time she finishes her first foray into polishing your [pc.balls].");
 		output("\n\n<i>“Mmm,”</i> the nut-loving seductress hums, <i>“I love balls.”</i> She reels her roving muscle up and gives your sack a sloppy kiss. <i>“Not as much as cocks, mind you, but there’s something wonderful knowing that " + (pc.balls == 1 ? "this... this benign little thing is":"these... these benign little things are") + " the source of the most ambrosial flavor in all the galaxy.”</i> She cranes her head around to kiss the other side. <i>“And I love that I can caox out even more by giving " + (pc.balls == 1 ? "it":"them") + " a little attention. That every kiss and slurp is paid back an extra helping for little ol’ me.”</i> Again and again, she peppers the source" + (pc.balls > 1 ? "s":"") + " of your virility with sweet affection. <i>“Think I can fit " + (pc.balls == 1 ? "it":"one") + " in my mouth?”</i>");
 		//EZfit
@@ -1186,7 +1186,7 @@ public function synphiaBallForeplay():void
 	pc.lust(45);
 	clearMenu();
 	addButton(0,"Cock",penisRouter,[synphiaCockForeplay,9000000,false,0],"Cock","Put her to work on your dick.");
-	if(!pc.hasStatusEffect("Synphia_Tired")) addButton(1,"Psi Aug",nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT,undefined,"Psi Aug","Get your [pc.sack] enlarge by psionic means.");
+	if(!pc.hasStatusEffect("Synphia_Tired")) addButton(1,"Psi Aug",nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT,undefined,"Psi Aug","Get your [pc.sack] enlarged by psionic means.");
 	else addDisabledButton(1,"Psi Aug","Psi Aug","Synphia is too tired to do this right now.");
 }
 
@@ -1239,10 +1239,10 @@ public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT()
 	//Else
 	else
 	{
-		output("\n\nNot that you weren’t already. The enormous weight of your swollen cumsack" + (pc.balls > 1 ? "s":"") + " is enough to give the slyveren momentary pause - but not enough to dim the glow from her horns or slow the dancing of her fingertips as you swell. Burying herself in fragrant nutskin, she slyveren lets out a muffled moan and pulls you tighter. Her power flares, and your [pc.balls] flow" + (pc.balls == 1 ? "s":"") + " outward like liquid, growing in direct violation of every law of physics you ever learned.");
+		output("\n\nNot that you weren’t already. The enormous weight of your swollen cumsack" + (pc.balls > 1 ? "s":"") + " is enough to give the slyveren momentary pause - but not enough to dim the glow from her horns or slow the dancing of her fingertips as you swell. Burying herself in fragrant nutskin, the slyveren lets out a muffled moan and pulls you tighter. Her power flares, and your [pc.balls] flow" + (pc.balls == 1 ? "s":"") + " outward like liquid, growing in direct violation of every law of physics you ever learned.");
 	}
 	//merge
-	output("\n\n<i>“Almost done,”</i> Synphia mutters. " + StringUtil.capitalize(num2Text(pc.balls)) + " tiny snaps of pain momentarily jolt you from your erotic reverie. You glance down, and amateur psychic is smiling as she caresses " + (pc.balls > 1 ? "one":"your") + " cum-swollen nut. Where there was pain, now you feel warmth. The heat feels like just before an orgasm, that tight, effervescent sensation of almost boiling over but two or three times as strong as normal.");
+	output("\n\n<i>“Almost done,”</i> Synphia mutters. " + StringUtil.capitalize(num2Text(pc.balls)) + " tiny snaps of pain momentarily jolt you from your erotic reverie. You glance down, an amateur psychic is smiling as she caresses " + (pc.balls > 1 ? "one":"your") + " cum-swollen nut. Where there was pain, now you feel warmth. The heat feels like just before an orgasm, that tight, effervescent sensation of almost boiling over but two or three times as strong as normal.");
 	output("\n\nSuddenly holding still seems impossible. Your [pc.hips] shudder, swinging your [pc.balls] around to slap Synphia’s face. She holds on for dear life, dragging back and forth, pouring more power into you, making everything almost painfully tight with how loaded down you are. You feel like you could impregnate a whole capital ship worth of sluts. Crying out in bliss, you barely notice [pc.cum] pouring out of your [pc.cockHeads] in a stream, and you definitely don’t hear it splattering the wall.");
 	output("\n\nSynphia’s hands slip, and she flops back, panting heavily. Her horns flicker and fade to a dull white as she stares up at your orgasmic writhing, eyelids already half closed.");
 	output("\n\nUnthinkingly, you pinch her lower lip between your thumb and forefinger and yank her jaw open, aiming your [pc.cockBiggest] inside just in time for an enormous rush of [pc.cumNoun] to emerge. Then you shift your grip to her horns and push forward, thrusting yourself into her throat so that you have a nice, tight hole to cum into.");
@@ -1257,6 +1257,7 @@ public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT()
 	if(ballDiameter > 12) bonus++;
 	if(pc.hasPerk("Mini")) bonus = Math.ceil(bonus/2);
 	if(pc.hasPerk("Hung")) bonus += 2;
+	if(pc.hasPerk("Bulgy")) bonus += 4;
 	pc.ballSizeRaw += bonus;
 	var newDiameter:Number = pc.ballDiameter();
 	//Reactions!
@@ -1286,7 +1287,7 @@ public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT()
 		//Mini:
 		if(pc.hasPerk("Mini")) speechBlurbs.push(" <i>“I must be weaker than I thought, or maybe you’re just naturally inclined toward petiteness.”</i>");
 		//fat balls
-		if(pc.hasPerk("Hung")) speechBlurbs.push(" <i>“Oh wow. I must be stronger than I thought! Look at how much you swelled.”</i> She leans closer. <i>“Imagine how much bigger we could make you if we did this again. You’d be so virile that I’d smell your cum the second you landed on station.”</i>");
+		if(pc.hasPerk("Hung") || pc.hasPerk("Bulgy")) speechBlurbs.push(" <i>“Oh wow. I must be stronger than I thought! Look at how much you swelled.”</i> She leans closer. <i>“Imagine how much bigger we could make you if we did this again. You’d be so virile that I’d smell your cum the second you landed on station.”</i>");
 		//broken
 		if(ballDiameter >= 40) speechBlurbs.push(" <i>“Fuck, <b>" + (pc.balls == 1 ? "this nut":"these nuts") + " are obscene</b>! So fucking big I can barely think around " + (pc.balls == 1 ? "it":"them") + "... and so fragrant with that virile musk. Every time I breathe around you, I can smell the cum " + (pc.balls == 1 ? "it’s":"they’re") + " making, even now, so soon after tapping you.”</i>");
 		//other random ansers:
@@ -1365,10 +1366,11 @@ public function psychicTalkWithSynphia():void
 	output("\n\nShe might have meant that reassuringly, but the knowledge that she could mess with your head is a little intimidating.");
 	output("\n\n<i>“But that’s just the tip of the fang! I can slow or speed my perception of time, absorb energy directly - handling live wires is a helluva party trick - feel how the wires on the other side of a bulkhead are arranged, and so much more! I could even reshape bodies a little bit, though the one time I tapped that power I damn near put myself in a coma.”</i> Glancing down, Synphia adds, <i>“Totally worth it to graduate to C-cup.”</i>");
 	output("\n\nYou ");
-	if(pc.isBimbo() || pc.isTreated() || pc.libido() >= 100) output("openly ogle her tits");
-	else if(pc.libido() >= 66) output("can’t help but ogle her tits a little bit");
-	else if(pc.libido() >= 50) output("glance at her tits once or twice");
-	else if(pc.libido() >= 33) output("can’t stop yourself from stealing a downward glance at her tits");
+	var libido:Number = pc.libido();
+	if(pc.isBimbo() || pc.isTreated() || libido >= 100) output("openly ogle her tits");
+	else if(libido >= 66) output("can’t help but ogle her tits a little bit");
+	else if(libido >= 50) output("glance at her tits once or twice");
+	else if(libido >= 33) output("can’t stop yourself from stealing a downward glance at her tits");
 	else output("studiously keep your eyes on her face");
 	output(" and ask who she bought such a fabulous implant from. Cybernetics that potent seem like they’d be very popular.");
 	output("\n\n<i>“They would be... if they weren’t a custom order from single seller on the extranet: Kel’korri Tsungmyre. My job was the last one she said she’d take. Word on the ‘net is she vanished when the Rush started to hunt down somebody that stole a prototype.”</i> Synphia shrugs. <i>“Can’t say I blame her, but I’m just happy I got taken care of before she hit the wind.”</i>");
