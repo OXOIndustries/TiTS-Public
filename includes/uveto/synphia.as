@@ -369,8 +369,7 @@ public function synphiaServiceOption():void
 	else
 	{
 		addButton(0,"Cock",penisRouter,[synphiaCockForeplay,9000000,false,0],"Cock","Put her to work on your dick.");
-		//addButton(1,"Balls",);
-		addDisabledButton(1,"Balls","Balls","Unfinished content. Sorry!");
+		addButton(1,"Balls",synphiaBallForeplay,undefined,"Balls","Put her to work on your [pc.balls] to warm you up.");
 	}
 }
 
@@ -850,6 +849,8 @@ public function synphiaEpilogue(args:Array):void
 
 	//Feed her a load :3
 	new SlyverenSlavebreaker().loadInMouth(pc);
+	//A feeding is good for a rest, right? Clear the Cooldown timer on ballswelling.
+	pc.removeStatusEffect("Synphia_Tired");
 	//Increment times sukked
 	IncrementFlag("SYNPHIA_SUCKS");
 	//Increment times headpolished/throated
@@ -874,7 +875,7 @@ public function synphiaEpilogue(args:Array):void
 		quickLoot(new Throbb());
 	}
 }
-//8888
+
 //Args setup: 
 	//[0] = x.
 	//[1] = deepthroatBool
@@ -1106,11 +1107,219 @@ public function letSynphiaDeepDrainYou(args:Array):void
 }
 
 //Ball Foreplay
-//Alternate huge nut worship
-//Ends in choice between Psi Aug and Cock Foreplay(1)
+public function synphiaBallForeplay():void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
+	//Regular size
+	if(pc.ballDiameter() < 7)
+	{
+		output("A simple gesture to your [pc.sack] is all it takes to set the slyveren into motion.");
+		output("\n\nLifting your [pc.cock] out of the way" + (pc.cocks[0].cLength() >= 18 ? " two-handed":"") + ", Synphia leans in close and takes a deep breath, nostrils flaring as her tongue snakes out across her lip. <i>“");
+		if(pc.ballFullness > 80) output("Smells nice and full. No wonder you needed that service.");
+		else if(pc.ballFullness >= 33) output("Hmmm, smells like you didn’t really </i>need<i> the service. " + (!pc.balls == 1 ? "This bad boy":"These bad boys") + " have plenty more room to fill up.");
+		else output("Huh. Not a fan of letting yourself get backed up, I take it. Somebody’s a busy slut.");
+		output("”</i>  Unfurling her tongue the rest of the way, the scaly mechanic caresses it against your underpouch; she rolls it up one side, then gradually works across the front in order to slide down the other.");
+		output("\n\nYou’re " + (pc.isErect() ? "quaking":"fully erect") + " by the time she finishes her first foray into polishing your [pc.balls].");
+		output("\n\n<i>“Mmm,”</i> the nut-loving seductress hums, <i>“I love balls.”</i> She reels her roving muscle up and gives your sack a sloppy kiss. <i>“Not as much as cocks, mind you, but there’s something wonderful knowing that " + (pc.balls == 1 ? "this... this benign little thing is":"these... these benign little things are") + " the source of the most ambrosial flavor in all the galaxy.”</i> She cranes her head around to kiss the other side. <i>“And I love that I can caox out even more by giving " + (pc.balls == 1 ? "it":"them") + " a little attention. That every kiss and slurp is paid back an extra helping for little ol’ me.”</i> Again and again, she peppers the source" + (pc.balls > 1 ? "s":"") + " of your virility with sweet affection. <i>“Think I can fit " + (pc.balls == 1 ? "it":"one") + " in my mouth?”</i>");
+		//EZfit
+		if(pc.ballDiameter() <= 3.5)
+		{
+			output("\n\nKnowing a rhetorical question when you see one, you content yourself with a simple nod. Anything else seems excessive with a slyveren slithering around your [pc.balls].");
+			output("\n\n<i>“Of course... I shouldn’t make you wait. " + (pc.balls == 1 ? "It":"They") + " must be so cold!”</i> Synphia’s eyes twinkle with playful mirth as she opens wide, yawning her lips apart to display just how far she can go. The pink canyon she displays looks soft and toothless, glossy with spit, and it takes little more a slight adjustment to her position to accept your entire pouch inside. She feels even better on the inside, bathing you in warmth and spit. The snake-woman’s tongue spins in lazy circuits around your [pc.balls], at first simply tasting, then caressing with singular intent and focus.");
+			output("\n\nYou relax, as much as you can while getting your sack sucked, but Synphia is insatiable. She won’t stop working your tender orb" + (pc.balls > 1 ? "s":"") + ", won’t stop slurping and suckling and coaxing you to brew up a nice thick load for her. Her eyes say it all: <i>Fill for me</i>. They implore you... no - your ball" + (pc.balls > 1 ? "s":"") + " - to brew the thickest, stickiest, most virile cumshot of your life for her, all while her tongue continues to twist and twirl, dancing across your [pc.sack] with an addict’s passion. She sucks you rapaciously for what feels like hours but can’t be more than ten minutes.");
+		}
+		//Pretty big
+		else
+		{
+			//Repeat
+			if(flags["SYNPHIA_BALLSUCKS"] != undefined) output("\n\n<i>“I know you can.”</i>");
+			//Bimbo
+			else if(pc.isBimbo()) output("\n\n<i>“Omigosh, I fucking hope so!”</i>");
+			//Bro
+			else if(pc.isBro()) output("\n\n<i>“Try.”</i>");
+			//Else
+			else output("\n\n<i>“Oh, I hope so.”</i>");
+			//merge pers variants
+			output("\n\nSynphia’s eyes twinkle with half-concealed pleasure, the sort of knowing gleam one gets from a well executed con. <i>“Of course I can.”</i> Her mouth opens wide, lips yawning apart to reveal the pink-hued chasm of her mouth and the grooved, undulating mass of her tongue. Snake-like, it rises up and slithers out, pressing against the back of your [pc.sack] and looping back and forth to fold itself into a supportive scaffolding. She juggles your [pc.balls]" + (pc.balls > 1 ? " back and forth":"") + " upon that magical organic carpet, lowering you down with every successive bounce until " + (pc.balls > 1 ? "one of ":"") + "your nut" + (pc.balls > 1 ? "s":"") + " slips into her outstretched maw.");
+			output("\n\nWarmth envelops your tender flesh followed by a gentle, tugging suction. Synphia’s luminous eyes stare up at you while her lips close down on your sack, and with a purr of delight, she gently rolls her tongue around the weighty circumference, all but worshipping " + (pc.balls > 1 ? "that":"your") + " nut. She reverently polishes the virile sack from within the secure, doting embrace of her snake-like muzzle, never so much as grazing you with a hint of tooth or fang.");
+			output("\n\nSynphia’s too good for that. " + (pc.balls > 1 ? "She releases the tongue-tied orb from captivity with a slow slurp and rotates to take in the other, casually stretching her glossy lips far beyond typical limits to show you just how built for service she is. She can hot-swap nuts with ease.":"She releases the tongue-tied orb from captivity with seeming regret, then slurps it back in with ease, her glossy lips stretching far beyond meager human limits. If you had another testicle, she’d probably be polishing it right this moment, but instead she slurps the same tender nad back inside.") + " Your size isn’t a problem for her in the slightest. In fact, she’s staring up at you with her mouth sealed around your crinkling sack, teasing your [pc.balls] into brewing up a fresh batch of [pc.cumNoun]. You know that whatever she’s doing is working because you can feel the weight building up, loading you down with unspent, seething passion.");
+		}
+		//Merge
+		output("\n\nSlowly, the slyveren nut-licker eases back, allowing your sopping wet sphere to slide out of her mouth on the slick, pink carpet that is her tongue. The hangar air feels chilly against the wet skin, but Synphia’s hands return to cradle your ball" + (pc.balls > 1 ? "s":"") + " as she grants " + (pc.balls == 1 ? "it":"them") + " one last kiss, her tongue snaking and sliding across your increasingly filled cum-factor" + (pc.balls == 1 ? "y":"ies") + ". She blinks, sighing a delightful current of warm air across the tender scrotum, and says, <i>“Now... shall let’s see about emptying " + (pc.balls == 1 ? "this bad boy":"these bad boys") + "... unless you wanted your ball" + (pc.balls > 1 ? "s":"") + " sucked ");
+		if(flags["SYNPHIA_BALLAUGS"] != undefined) output("bigger again.");
+		else output("because you wanted " + (pc.balls == 1 ? "it":"them") + " to get bigger.");
+		output("”</i>");
+		output("\n\nThe grinning girl licks her lips. <i>“");
+		if(flags["SYNPHIA_BALLAUGS"] != undefined) output("You know I could do it again.");
+		else output("I could do that, you know... with my psi.");
+		output("”</i> Her horns flicker green. <i>“");
+		if(flags["SYNPHIA_BALLAUGS"] == undefined) output("But I’d be too drained to suck you after. I’d have to make you cum fast... make you spurt and grow at the same time so I don’t pass out, but you wouldn’t mind cumming to the feel of your sack stretching, would you?");
+		else output("And I’d need you to cum nice and fast again, just like last time. Does that sound fun? Does blasting a creamy load across me while your nut" + (pc.balls > 1 ? "s":"") + " inflate" + (pc.balls == 1 ? "s":"") + " with even more sound like a good time to you? Because it’s good practice for me and an even better meal...");
+		output("”</i>");
+	}
+	//Alternate huge nut worship
+	else
+	{
+		output("A simple gesture to your [pc.sack] is all it takes to set the slyveren into motion.");
+		output("\n\n<i>“Look at all this... goodness,”</i> she purrs, leaning close, and pushing your [pc.multiCocks] up and onto the top of her head, out of the way. She buries her nose in the fragrant nutfolds and inhales, wrapping her arms behind to pull your monstrous testicle" + (pc.balls > 1 ? "s":"") + " tighter. <i>“Mmm, it even smells like [pc.cumNoun], and there’s so much.”</i> She tilts her head to look up at you, tongue flickering out to taste the skin in between words. <i>“You know what slyverens like, don’t you?”</i> She kisses a tender spot, making you squirm. <i>“You know there’s nothing more fulfilling to a girl like me than draining every drop from cum-tanks like these.”</i>");
+		output("\n\nRelaxing while the anthropomorphic woman explores the buffet of bulge, you nod along with whatever she’s saying, focusing instead on how good she feels down there.");
+		output("\n\n<i>“Ohhh, is somebody getting distracted?”</i> Synphia teases. She runs a fingertip from your taint down the backside of your swollen sack, earning a wobble and a gurgling quiver from inside. <i>“Are somebody’s big fat balls so sensitive that the mean ol’ SteeleTech mechanic can shut [pc.himHer] down with little kisses and strokes?”</i> She kisses one side wide-mouthed, her tongue slowly easing out to caress eight inches of exposed genitalia. <i>“Are you just going to agree with me as long as I keep doing this?”</i>");
+		output("\n\nYou could shut her down, but the slyveren is right about one thing: what she’s doing feels damned good, and you don’t want it to stop.");
+		output("\n\nYou nod.");
+		output("\n\n<i>“Wonderful.”</i> Synphia does that thing with her finger again, but this time with both hands");
+		output(" on ");
+		if(pc.balls > 2) output("two nuts");
+		else if(pc.balls == 2) output("both nuts");
+		else output("each side of your nut");
+		output(". <i>“Then you won’t mind if we spend another ten minutes like this.”</i> She licks her tongue up a crease, moaning from the taste alone. <i>“Another ten minutes of me licking and slurping and worshipping.”</i> Hefting them in her arms, the scaled sack-sucker jiggles your churning cum-factor" + (pc.balls == 1 ? "y":"ies") + ". <i>“Another ten minutes of " + (pc.balls == 1 ? "this":"these") + " filling up, getting heavier and heavier.”</i> Synphia can’t help but moan at her own erotic implications. <i>“Yeah, you’re gonna give me the biggest, fattest load, aren’t you?”</i>");
+		output("\n\nYou are. <i>“Yes.”</i> Just saying it makes your [pc.sack] feel tighter, heavier, and somehow more exposed to the slurping snake.");
+		output("\n\nTime passes in a haze of plump-lipped kisses, roving fingertips, and the long, drawn-out sighs that follow Synphia’s every sniff. She’s right about you filling up for her. The longer this goes on, the more backed-up you feel, yet you feel in no hurry to do anything about it. Besides, what’s wrong with having a thicker load to feed her?");
+		output("\n\n<i>“What if...”</i> Synphia trails off for a second, burying her whole face in your fragrant skin and taking a long, slow inhale. <i>“Ahhh... um... what if I made " + (pc.balls == 1 ? "it":"them") + " bigger.”</i> She reverently caresses a full curve. <i>“What if we didn’t bother with the whole dick-sucking thing, I just used my psi to make you swell and cum.”</i> You notice that the slits of her eyes are almost circular with how they’ve dilated. <i>“You’ll need to feed me lots so I don’t pass out, though I don’t think that’ll be a problem for you, will it big [pc.guyGirl]?”</i> She kisses the joint between [pc.sack] and [pc.cocks]. <i>“Or I could just suck out all this cum like normal, but wouldn’t it be nice to be capable of feeding a whole harem of slyverens? Wouldn’t it be nice to have so much [pc.cumNoun] that you could stuff " + ((flags["SYNPHIA_STEELETECHTALK"] != undefined || flags["SYNPHIA_MODSTALK"] != undefined) ? "my sister and I":"me") + " to the brim, multiple times a day? Think about it.”</i>");
+	}
+	//Ends in choice between Psi Aug and Cock Foreplay(1)
+	processTime(14);
+	IncrementFlag("SYNPHIA_BALLSUCKS");
+	pc.ballFullness += 35;
+	if(pc.ballFullness > 100) pc.ballFullness = 100;
+	pc.lust(45);
+	clearMenu();
+	addButton(0,"Cock",penisRouter,[synphiaCockForeplay,9000000,false,0],"Cock","Put her to work on your dick.");
+	if(!pc.hasStatusEffect("Synphia_Tired")) addButton(1,"Psi Aug",nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT,undefined,"Psi Aug","Get your [pc.sack] enlarge by psionic means.");
+	else addDisabledButton(1,"Psi Aug","Psi Aug","Synphia is too tired to do this right now.");
+}
 
-//Psi Aug
-//Perm/Temp options, then goes to cock foreplay
+
+public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT():void
+{
+	clearOutput();
+	showSynphia();
+	author("Fenoxo");
+	output("You tell the sack-slobbering snake-woman to do it - to make your [pc.ballsNoun] bigger.");
+	output("\n\n<i>“Aww yesss! Okay, now try and hold still.”</i> Synphia ");
+	if(pc.ballDiameter() >= 5) output("clutches your churning spunk-bunker" + (pc.balls > 1 ? "s":"") + " closer");
+	else output("rolls your churning spunk-generator" + (pc.balls > 1 ? "s":"") + " in her palm" + (pc.ballDiameter() >= 2 ? "s":""));
+	output(", stroking " + (pc.balls == 1 ? "it":"them") + " with possessive familiarity. <i>“");
+	if(flags["SYNPHIA_BALLAUGS"] == undefined) output("This is going to feel very, very good, but if you thrash around too much, " + (pc.balls == 1 ? "it":"they") + " won’t properly swell, and you definitely won’t hit me with enough spooge to make up for all this effort.");
+	else output("I know exactly how squirmy this gets you, but I know you can do it this time, [pc.name]. I know you won’t let me ruin you with pleasure.");
+	output("”</i> She stares up at you with incredible seriousness for a woman with your [pc.cocks] resting on her head. <i>“" + (flags["SYNPHIA_BALLAUGS"] == undefined ? "Got it":"Right") + "?”</i>");
+	output("\n\n" + (flags["SYNPHIA_BALLAUGS"] != undefined ? "Squirming?":"Thrashing?") + " At worst you might pump your hips a few times, and you tell the snake-woman as much.");
+	output("\n\n<i>“Oh ho, that sure of yourself, huh?”</i> Synphia winks, her horns’ blue glow slowly picking up green notes. The verdant light shift towards radiant emerald with increasingly luminous pulses. <i>“Fuuuuck, this is always a pain. It’s like trying to jump straight from park into Light Drive!”</i> She pinches at her brow, eyes closed, while the glare jumps another notch, already brighter than the blue had ever been. <i>“Remember, hold still.”</i>");
+	output("\n\nLeaning her head into your [pc.sack], the smooth metallic curve of her horn grazing your tender flesh, Synphia’s wrinkled brow smoothes, and something potent and powerful pours into you. It feels like a low-grade electric shock, like the strange energy is bouncing from misfiring nerve to misfiring nerve, sparking off erotic, scrotum-tightening tingles. Holding still is harder than you thought. Your body wants you to react with a thrust. It wants you to hump Synphia hard: to pin her down and face-fuck her into the floor.");
+	output("\n\nA feral-sounding growl escapes your throat, but you restrain yourself for now.");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> Synphia coos, rubbing her cheek against a slightly bigger ball. She exhales over your [pc.sack], washing it and breath and incredible, inexplicable power as well. Two handed, she grabs your nut" + (pc.balls > 1 ? "s":"") + " and grinds her face into " + (pc.balls == 1 ? "it":"them") + ", slobbering half-kisses that culminate in brain-addling sparks. <i>“Getting so <b>thick</b> and <b>virile</b> for me.”</i>");
+	//No new PG
+	//Smol. < 1
+	var ballDiameter:Number = pc.ballDiameter();
+	if(ballDiameter < 1)
+	{
+		output("\n\nAnd sure enough, you are. Your [pc.balls] " + (pc.balls == 1 ? "is":"are") + " ballooning in her palms, pushing back against her cheek and the incredible softness of her lips. It’s almost scary how fast you’re growing, producing more tender flesh so fast that your sack grows momentarily taut and smooth before the skin can catch up. <b>You’re going to have to get used to having large balls.</b>");
+	}
+	//Large/Baseball < 3
+	else if(ballDiameter < 3)
+	{
+		output("\n\nAnd of course, you are. Already reasonably endowed in that department, you find yourself delighting in the outward expansion of your [pc.balls], reveling in the way it tightens your sack and further fills Synphia’s palms. The more you grow, the more of you is in contact with her head and horns - the source of this literal growing pleasure.");
+	}
+	//Apple/Grapefruit < 5
+	else if(ballDiameter < 5)
+	{
+		output("\n\nHow could you not? You came into this with " + (pc.balls == 1 ? "a ":"") + "ripe, well-developed nut" + (pc.balls > 1 ? "s":"") + "; now you’re overflowing Synphia’s palms. Your [pc.balls] " + (pc.balls > 1 ? "jostle and wobble against each other":"wobbles under its own weight") + ", fuller by the second. Spooge churns inside while you continue to grow for the snake-woman, gasping in delirious want.");
+	}
+	//Cantaloupe < 7
+	else if(ballDiameter < 7)
+	{
+		output("\n\nEvery word she speaks is true. Your big fat balls were already too large for her to comfortable carry in her palms, and now the cartoonish endowment" + (pc.balls > 1 ? "s are":" is") + " getting even bigger - nearly the size of Synphia’s head. Sometimes, when the steady expansion sets off a large enough wobble, you’ll lose the snake-woman in the ocean of swelling scrote, but she’s in there, pumping you full of juicy, spunk-boosting power.");
+	}
+	//Watermelon < 15
+	else if(ballDiameter < 15)
+	{
+		output("\n\nAnd sure enough, you are, in spite of the relative size differences. Your [pc.balls] " + (pc.balls == 1 ? "was":"were") + " already bigger than the nut-drunk slyveren’s face, and now " + (pc.balls == 1 ? "it’s":"they’re") + " getting bigger and heavier. If you lost control and squirmed even the slightest amount, you’d send the titanic spunksacks wobbling like a galotian jogger’s tits, but for now you hold yourself to no more than rhythmic, cum-churning jiggling.");
+	}
+	//Else
+	else
+	{
+		output("\n\nNot that you weren’t already. The enormous weight of your swollen cumsack" + (pc.balls > 1 ? "s":"") + " is enough to give the slyveren momentary pause - but not enough to dim the glow from her horns or slow the dancing of her fingertips as you swell. Burying herself in fragrant nutskin, she slyveren lets out a muffled moan and pulls you tighter. Her power flares, and your [pc.balls] flow" + (pc.balls == 1 ? "s":"") + " outward like liquid, growing in direct violation of every law of physics you ever learned.");
+	}
+	//merge
+	output("\n\n<i>“Almost done,”</i> Synphia mutters. " + StringUtil.capitalize(num2Text(pc.balls)) + " tiny snaps of pain momentarily jolt you from your erotic reverie. You glance down, and amateur psychic is smiling as she caresses " + (pc.balls > 1 ? "one":"your") + " cum-swollen nut. Where there was pain, now you feel warmth. The heat feels like just before an orgasm, that tight, effervescent sensation of almost boiling over but two or three times as strong as normal.");
+	output("\n\nSuddenly holding still seems impossible. Your [pc.hips] shudder, swinging your [pc.balls] around to slap Synphia’s face. She holds on for dear life, dragging back and forth, pouring more power into you, making everything almost painfully tight with how loaded down you are. You feel like you could impregnate a whole capital ship worth of sluts. Crying out in bliss, you barely notice [pc.cum] pouring out of your [pc.cockHeads] in a stream, and you definitely don’t hear it splattering the wall.");
+	output("\n\nSynphia’s hands slip, and she flops back, panting heavily. Her horns flicker and fade to a dull white as she stares up at your orgasmic writhing, eyelids already half closed.");
+	output("\n\nUnthinkingly, you pinch her lower lip between your thumb and forefinger and yank her jaw open, aiming your [pc.cockBiggest] inside just in time for an enormous rush of [pc.cumNoun] to emerge. Then you shift your grip to her horns and push forward, thrusting yourself into her throat so that you have a nice, tight hole to cum into.");
+	output("\n\nYou tell yourself that you’re doing this to make sure she recovers, not because you want to face-fuck the insensate snake, but then you’re grunting like a beast and sawing in and out of her mouth, slopping spooge and spit every which way. Synphia’s belly rounds with the size of your load well before you’ve finished, so you pull out and let the rest rain down upon her in the form of a [pc.cumColor] monsoon.");
+	output("\n\nShe’s drenched, but she’s smiling underneath the spunky mask, even managing to reach out with a toe to cup your [pc.sack] as the last spurts land on her chest.");
+	output("\n\n<i>“Good... [pc.boyGirl]...”</i> Synphia murmurs, wiping the mess out of her eyes to look at you.");
+
+	//do growth here. Track before/after for chex	
+	var bonus:Number = 2 + rand(3);
+	if(ballDiameter > 5) bonus++;
+	if(ballDiameter > 8) bonus++;
+	if(ballDiameter > 12) bonus++;
+	if(pc.hasPerk("Mini")) bonus = Math.ceil(bonus/2);
+	if(pc.hasPerk("Hung")) bonus += 2;
+	pc.ballSizeRaw += bonus;
+	var newDiameter:Number = pc.ballDiameter();
+	//Reactions!
+	//First time congrats :3
+	if(flags["SYNPHIA_BALLAUGS"] == undefined) output(" <i>“See? It was everything I promised, and it’s not like you missed out on anything. I can suck you throat-deep next time, and this time you’ll be packing even more jizz.”</i>");
+	//Achieve baseball size <3
+	else if(newDiameter >= 2 && ballDiameter < 2) output(" <i>“<b>Already up to baseball size, I see</b>.”</i> She leans closer. <i>“I bet we could get you packing " + (pc.balls == 1 ? "a basketball":"basketballs") + ", if you wanted.”</i>");
+	//Achieve Apple <4
+	else if(newDiameter >= 3 && ballDiameter < 3) output(" <i>“Mmm, <b>look at " + (pc.balls == 1 ? "that apple":"those apples") + "</b>.”</i> She caresses one with a cummy fingertip. <i>“You’re bigger than most aliens. Hell, you’re packing more than a horse.”</i>");
+	//Achieve Grapefruit <5
+	else if(newDiameter >= 4 && ballDiameter < 4) output(" <i>“And <b>" + (pc.balls == 1 ? "this fucking grapefruit":"these fucking grapefruits") + "...</b>”</i> She sighs in exhausted contentment. <i>“Look at " + (pc.balls == 1 ? "it":"them") + ". You’re bigger than most pornstars now.”</i>");
+	//Cantaloupe <7
+	else if(newDiameter >= 5 && ballDiameter < 5) output(" <i>“What a change! <b>" + (pc.balls == 1 ? "It’s like a cantaloupe":"They’re like cantaloupes") + " now</b>. I bet it takes two hands just to properly hold " + (pc.balls == 1 ? "it":"one") + ". You can probably feel " + (pc.balls == 1 ? "it":"them") + " slosh when you walk, stars.”</i>");
+	//Socceball < 9
+	else if(newDiameter >= 7 && ballDiameter < 7) output(" <i>“And what a ballsack, by the stars! <b>I could use your nuts for pillows</b>. Heck, you can probably jerk off by fucking your own ballcrease now.”</i>");
+	//basketball < 12
+	else if(newDiameter >= 9 && ballDiameter < 9) output(" <i>“...and how strappingly virile you’ve become! " + (pc.balls == 1 ? "It":"They") + " must feel so heavy now, <b>hanging " + (pc.legCount > 1 ? "between your [pc.legsNoun]":"down") + " like " + (pc.balls == 1 ? "a ":"") + "basketball-sized pendulum" + (pc.balls > 1 ? "s":"") + "</b>! And your cum is getting so </i>rich<i> as well.");
+	//Watermelon < 15
+	else if(newDiameter >= 12 && ballDiameter < 12) output(" <i>“Wow, <b>you’re already as big as a watermelon</b>. I must say, I was surprised when you agreed to pursue this little experiment with me. Most sapients don’t want floor-dragging nuts weighing down on their every step, but you want that and more, doncha?”</i>");
+	//Beachball < 25
+	else if(newDiameter >= 15 && ballDiameter < 15) output(" <i>“Fuck, <b>you’re packing " + (pc.balls > 1 ? "beach balls":"a beach ball") + " now</b>!”</i> She giggles. <i>“You look like you could bounce around on " + (pc.balls == 1 ? "it":"them") + ", you know: to get around. Little blurbs of cum would squeeze out with every hop...”</i> Now she’s laughing for real, but her eyes won’t leave your expanded spunkpurse. <i>“How wonderful.”</i>");
+	//Person < 40
+	else if(newDiameter >= 40 && ballDiameter < 40) output("<i>“You know <b>you’ve got " + (pc.balls == 1 ? "a bigger jewel":"bigger jewels") + " than some people have bodies</b>, which makes sense I guess, given how much you just shot, but damn! I really am powerful... and " + (pc.balls > 1 ? "these... these are":"this... this is") + " beautiful.”</i>");
+	else
+	{
+		var speechBlurbs:Array = [];
+		//Mini:
+		if(pc.hasPerk("Mini")) speechBlurbs.push(" <i>“I must be weaker than I thought, or maybe you’re just naturally inclined toward petiteness.”</i>");
+		//fat balls
+		if(pc.hasPerk("Hung")) speechBlurbs.push(" <i>“Oh wow. I must be stronger than I thought! Look at how much you swelled.”</i> She leans closer. <i>“Imagine how much bigger we could make you if we did this again. You’d be so virile that I’d smell your cum the second you landed on station.”</i>");
+		//broken
+		if(ballDiameter >= 40) speechBlurbs.push(" <i>“Fuck, <b>" + (pc.balls == 1 ? "this nut":"these nuts") + " are obscene</b>! So fucking big I can barely think around " + (pc.balls == 1 ? "it":"them") + "... and so fragrant with that virile musk. Every time I breathe around you, I can smell the cum " + (pc.balls == 1 ? "it’s":"they’re") + " making, even now, so soon after tapping you.”</i>");
+		//other random ansers:
+		//Getting Better At This
+		if(flags["SYNPHIA_BALLAUGS"] < 8) speechBlurbs.push(" <i>“I think I’m getting better at this. I must be - look at what I did to you! ...so fucking virile!”</i>");
+		//Multiball is a handful
+		if(pc.balls > 2) speechBlurbs.push(" <i>“Oh, it’s so hard with that many nuts. I’m sitting there pumping out power, and I need to keep stopping and shifting and shifting again because you’ve got so much to enlarge!”</i> She licks her lips. <i>“Totally worth it.”</i>");
+		//Singlenut is actually the best for this.
+		if(pc.balls == 1) speechBlurbs.push(" <i>“Mmmm, just like I thought - having just the one nut makes this so much easier. There’s no needing to split my power. I can just dump every ounce of ball-swelling psi into you directly, and the results speak for themselves.”</i>");
+		//Apology for not making you bigger
+		if(ballDiameter < 8) speechBlurbs.push(" <i>“Nice volume, but... I’m sorry I couldn’t make you bigger. That isn’t to say that you aren’t bigger.”</i> She wipes away some cum. <i>“But you deserve " + (pc.balls == 1 ? "a nut":"nuts") + " as fat as you want. Let me rest a bit, and we can try again.”</i>");
+		//Big nuts no new threshold
+		else if(ballDiameter < 15) speechBlurbs.push(" <i>“Just how big do you think we can get you? You know... the bigger you get, the more growth it takes to make a discernable difference, but if we do this enough.”</i> She pauses dramatically. <i>“You could do ultraporn... or flood one of these crates. Or this snake.”</i>");
+		//Huge nuts no new threshold
+		else speechBlurbs.push(" <i>“And you’re such a slave-driver! Look at your enormous fucking nut" + (pc.balls > 1 ? "s":"") + "! Look at " + (pc.balls == 1 ? "it":"them") + "! If we keep doing this, you’re going to wind up immobile - immobile and fucking tasty.”</i> She grins.");
+		//Output the lucky blurb!
+		if(speechBlurbs.length > 0) output(speechBlurbs[rand(speechBlurbs.length)]);
+	}
+	processTime(20);
+	//load in Synphia.
+	new SlyverenSlavebreaker().loadInMouth(pc);
+	//Increment SYNPHIA_SUCKS
+	IncrementFlag("SYNPHIA_SUCKS");
+	//Increment SYNPHIA_BALLAUGS
+	IncrementFlag("SYNPHIA_BALLAUGS");
+	IncrementFlag("SYNPHIA_DICKGASMS");
+	//orgasm, fully empty nuts.
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	pc.createStatusEffect("Synphia_Tired");
+	pc.setStatusMinutes("Synphia_Tired",120);
+}
 
 //WhyMechanic
 public function mechanicTalkWivSynphia():void
