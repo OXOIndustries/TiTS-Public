@@ -2956,7 +2956,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\nShe tastes like bliss, like passion and need, and when she caves your needy pussy in with long, deep strokes you cum almost immediately. Having the dryad's meaty dick so far inside you feels so fulfilling you don't ever want her to stop, and it seems like you're getting your wish. She goes slow and deliberately, fucking you to orgasm after orgasm, leaving you breathless and sweaty as she displays her sexual skill.");
 		output("\n\nAmber grabs your face and turns your head towards herself, sealing your lips with a deep, passionate kiss right as she explodes inside you, thick spunk splattering into your fucked-full cunny with the force of a tsunami. Her orgasm is so violent in contrast to her actions you find yourself cumming again, your bodies communicating their desires so much more efficiently than words could. With each and every pump of her cock you lovingly clench down on her, milking each load from her quaking balls and feeling her warmth fill you up.");
 		
-		output("\\n\\n");
+		output("\n\n");
 		if (amberDumbfuckDoses() == 0){
 			output("“Oh, god, I love you so much,” she moans, wrapping her arms around your waist and hugging you. “Mmmh... oh, fuck...”");
 		} else if (amberDumbfuckDoses() >= 1 && amberDumbfuckDoses() <= 2){
@@ -2975,7 +2975,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\n“Cum for me,” she whispers, squeezing your diamond-stiff nipples. You do as you’re told, your entire body shaking while pure pleasure radiates through your entire body, tightening up your muscles before leaving you a shuddering, breathless wreck. Then she fucks you so hard you're screaming her name, ending by dumping yet another enormous load into your dripping, squirting fuckhole.");
 		output("\n\nThen she starts the entire process all over again, right from the beginning.");
 		
-		output("\\n\\n");
+		output("\n\n");
 		if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
 			processTime(4 * 60);
 			output("<b>4 hours later</b>");
@@ -3067,7 +3067,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\nShe tastes like bliss, like passion and need, and when she caves your needy pussy in with long, deep strokes you cum almost immediately. Having the dryad's meaty dick so far inside you feels so fulfilling you don't ever want her to stop, and it seems like you're getting your wish. She goes slow and deliberately, fucking you to orgasm after orgasm, leaving you breathless and sweaty as she displays her sexual skill.");
 		output("\n\nAmber grabs your face and turns your head towards herself, sealing your lips with a deep, passionate kiss right as she explodes inside you, thick spunk splattering into your fucked-full cunny with the force of a tsunami. Her orgasm is so violent in contrast to her actions you find yourself cumming again, your bodies communicating their desires so much more efficiently than words could. With each and every pump of her cock you lovingly clench down on her, milking each load from her quaking balls and feeling her warmth fill you up.");
 		
-		output("\\n\\n");
+		output("\n\n");
 		if (amberDumbfuckDoses() == 0){
 			output("“Oh, god, I love you so much,” she moans, squeezing your cheeks. “Mmmh... oh, fuck...”");
 		} else if (amberDumbfuckDoses() >= 1 && amberDumbfuckDoses() <= 2){
@@ -3086,7 +3086,7 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		output("\n\n“Cum for me,” she whispers, squeezing your diamond-stiff nipples. You do as you’re told, your entire body shaking while pure pleasure radiates through your entire body, tightening up your muscles before leaving you a shuddering, breathless wreck. Then she fucks you so hard you're screaming her name, ending by dumping yet another enormous load into your dripping, squirting fuckhole.");
 		output("\n\nThen she starts the entire process all over again, right from the beginning.");
 		
-		output("\\n\\n");
+		output("\n\n");
 		if (amberDumbfuckDoses() >= 0 && amberDumbfuckDoses() <= 2){
 			processTime(4 * 60);
 			output("<b>4 hours later</b>");
