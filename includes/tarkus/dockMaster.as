@@ -117,7 +117,7 @@ public function shipTalkWithDockmaster():void
 	//Repeat
 	else
 	{
-		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
+		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
 		if(pc.isDrunk() || pc.isSmashed() || pc.isBuzzed()) output("\n\nWell, okay you <i>have</i> been drinking, but that’s hardly fair.");
 		//[Ship] //Acquire her services [Flirt] //Acquire her *services*
 	}
