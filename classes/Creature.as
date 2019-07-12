@@ -5022,7 +5022,6 @@
 		public function HPMax(): Number {
 			var bonus:int = 0;
 			bonus = fortification();
-			if(accessory is SignetOfBravery) bonus += 25;
 			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod + bonus;
 			if (characterClass == GLOBAL.CLASS_MERCENARY)
 				hitPoints += level * 5;
@@ -15863,6 +15862,7 @@
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
 				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
 				else if (type == GLOBAL.TYPE_LEITHAN) desc += "leithan mare-";
+				else if (type == GLOBAL.TYPE_LIZAN) desc += "reptilian ";
 				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
 				else if (type == GLOBAL.TYPE_GABILANI) desc += "gabilani ";
 				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
@@ -15992,6 +15992,13 @@
 						desc += RandomInCollection(["leithan pussy","pheromone-laden pussy","fragrant mare-pussy","prominent pussy","near-equine vagina","leithan vagina","inhuman honeypot","leithan cunt","fragrant honeypot","pheromonal cunt","thick-lipped cunt","thick-lipped pussy","horse-like mare-cunt","leithan mare-cunt","fragrant twat"]);
 					else
 						desc += RandomInCollection(["taur-pussy","mare-pussy","mare-pussy","pussy","mare-cunt","taur-cunt","centaur-slit","centaur-snatch","gash", "mare-twat","pussy","centaur-gina"]);
+				}
+				else if (type == GLOBAL.TYPE_LIZAN)
+				{
+					if (!simple)
+						desc += RandomInCollection(["reptilian pussy", "semi-concealed pussy","reptilian pussy","lizan-like pussy", "reptilian cunt","half-hidden cunny", "lizan-like slit", "reptile pussy", "half-hidden quim", "reptilian quim", "inconspicuous gash", "inconspicuous pussy","lizard-morphed pussy"]);
+					else
+						desc += RandomInCollection(["lizard-pussy","lizan-pussy","pussy","pussy","lizan-cunt","lizard-cunt","reptile-pussy","slit","slit","twat","reptile-cunt","reptile-pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_SYNTHETIC)
 				{

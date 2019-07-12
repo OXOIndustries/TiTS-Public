@@ -1324,9 +1324,9 @@ public function siegwulfeDomSexButtons(fromInv:Boolean):void
 	}
 	if (pc.hasBreasts() && pc.isLactating()) addButton(3, "Milking", siegwulfeTheMilkmAId, fromInv);
 	else addDisabledButton(3, "Milking", "Milking", "You need lactating tits to get milked!");
-	var pcLeashed:Boolean = pc.hasStatusEffect("Siegwulfe's Leash");
 	if (hasWornCollar() && flags["WULFE_LEASH"] != undefined)
 	{
+		var pcLeashed:Boolean = pc.hasStatusEffect("Siegwulfe's Leash");
 		if(!canSiegwulfeUseLeash()) addDisabledButton(13, "Put Leash On", "Put Leash On", "You cannot do this here!");
 		else addButton(13, (pcLeashed ? "Remove Leash " : "Put Leash On"), siegwulfeLeashChange, fromInv, (pcLeashed ? "Take Leash Off" : "Put Leash On"), "Adjust your leash.");
 	}

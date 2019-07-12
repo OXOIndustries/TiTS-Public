@@ -662,7 +662,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 					// FF -> big FF
 					else if(pc.breastRows[0].breastRatingRaw < 14)
 					{
-						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They’re bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind to display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They’re bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent(ParseText("\n\nIt’s a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above."));
