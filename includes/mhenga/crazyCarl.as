@@ -252,11 +252,18 @@ public function crazyCarlShop():void {
 	clearOutput();
 	author("Magic Ted");
 	showBust("CARL");
+
 	output("<i>“Well alrigh’ then, scamp! Let’s take a look what I got, here! Bit underwhelmin’ right now, gotta say, but I think you might find a few things.”</i> He taps a button on the side and the countertop suddenly lights up with a holo overlay display, functioning as a photographic store catalog of the various wares available. You notice that most of them are actually grayed out, as well as a majority of the catalog being pistols and other similarly small firearms which promps you to glance up to the gunsmith in confusion.");
 	output("\n\nLuckily, he appears to be clairvoyant; <i>“Haven’t had the demand to make much more, gettin’ bit too up in age to just make ‘em. ‘Fraid as it stands I don’t quite got anythin’ on me to do requests, either. Whacha see is what ya can get, nothin’ more. Sorry ‘bout that.”</i>");
 	output("\n\nCurious.");
 	processTime(1);
+
+
+	shopkeep = new Carl();
+	shopkeep.inventory = [new HammerPistol(),  new MagnumPistol(), new LaserPistol(), new TheShocker(), new ZKRifle(), new ZKRifle(), new Warhammer(), new Machette(), new Shortsword(), new ShockBow(), new LightningRod()];
+
 	clearMenu();
+	/*
 	addCarlItemButton(0, new HammerPistol());
 	addCarlItemButton(1, new MagnumPistol());
 	addCarlItemButton(2, new LaserPistol());
@@ -264,11 +271,25 @@ public function crazyCarlShop():void {
 	addCarlItemButton(4, new ZKRifle());
 	addCarlItemButton(5, new Warhammer());
 	addCarlItemButton(6, new Machette());
-	addCarlItemButton(7, new Shortsword());
+	addCarlItemButton(7, new Shortsword());*/
+
+	
+	addItemButton(0, shopkeep.inventory[0], carlBuyTalk, shopkeep.inventory[0], null, null, shopkeep, pc);
+	addItemButton(1, shopkeep.inventory[1], carlBuyTalk, shopkeep.inventory[1], null, null, shopkeep, pc);
+	addItemButton(2, shopkeep.inventory[2], carlBuyTalk, shopkeep.inventory[2], null, null, shopkeep, pc);
+	addItemButton(3, shopkeep.inventory[3], carlBuyTalk, shopkeep.inventory[3], null, null, shopkeep, pc);
+	addItemButton(4, shopkeep.inventory[4], carlBuyTalk, shopkeep.inventory[4], null, null, shopkeep, pc);
+	addItemButton(5, shopkeep.inventory[5], carlBuyTalk, shopkeep.inventory[5], null, null, shopkeep, pc);
+	addItemButton(6, shopkeep.inventory[6], carlBuyTalk, shopkeep.inventory[6], null, null, shopkeep, pc);
+	addItemButton(7, shopkeep.inventory[7], carlBuyTalk, shopkeep.inventory[7], null, null, shopkeep, pc);
+	
+
 	if(pc.level >= 6)
 	{
-		addCarlItemButton(8, new ShockBow());
-		addCarlItemButton(9, new LightningRod());
+		//addCarlItemButton(8, new ShockBow());
+		//addCarlItemButton(9, new LightningRod());
+		addItemButton(8, shopkeep.inventory[8], carlBuyTalk, shopkeep.inventory[8], null, null, shopkeep, pc);
+		addItemButton(9, shopkeep.inventory[9], carlBuyTalk, shopkeep.inventory[9], null, null, shopkeep, pc);
 	}
 	else
 	{
@@ -290,7 +311,8 @@ public function addCarlItemButton(btnSlot:int, item:ItemSlotClass):void
 	addButton(btnSlot, item.shortName, carlBuyTalk, item, StringUtil.toDisplayCase(item.longName), item.tooltip);
 }
 public function getCarlPrice(item:ItemSlotClass):Number {
-	return Math.round(item.basePrice);
+	return getBuyPrice(shopkeep,item.basePrice);
+	//return Math.round(item.basePrice);
 }
 
 public function carlBuyTalk(item:ItemSlotClass):void
