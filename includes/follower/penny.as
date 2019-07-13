@@ -132,7 +132,7 @@ public function pennyCrewMenu():void
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && flags["BADGER_QUEST"] == 1)
+	if(!drBadgerImprisioned() && flags["BADGER_QUEST"] == 1)
 	{
 		addButton(5,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		if(flags["NO_ZAP_PENNY"] == undefined) 

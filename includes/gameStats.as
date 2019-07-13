@@ -3146,11 +3146,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["BADGER_QUEST"] != undefined)
 			{
 				if(flags["PEXIGA_TREATMENT"] != undefined) output2("\n<b><u>Bimbo Quest</u></b>");
-				else if(flags["BADGER_QUEST"] >= 0 && flags["DR_BADGER_TURNED_IN"] == undefined) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				else if(flags["BADGER_QUEST"] >= 0 && !drBadgerImprisioned()) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
 				output2("\n<b>* Status:</b>");
-				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Reported Dr. Badger, Completed");
+				if(drBadgerImprisioned()) output2(" Reported Dr. Badger, Completed");
 				else if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
 				else if(flags["PENNY_BADGER_WARNED"] != undefined)
 				{
@@ -3180,7 +3180,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PEXIGA_TREATMENT"] == undefined) output2(" Talked to Yammi about her pexiga");
 				else
 				{
-					if(flags["DR_BADGER_TURNED_IN"] != undefined)
+					if(drBadgerImprisioned())
 					{
 						output2(" Talked to Yammi");
 						if(flags["LASH_BOMB"] == undefined && flags["DEL_DISTRACT"] == undefined) output2(", <i>U.G.C. authorities are patrolling Dr. Badger’s Bimbotorium...</i>");
@@ -6174,7 +6174,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2(" Refused Bimbofication");
 				output2("\n<b>* Doctor Badger:</b>");
-				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Inactive, Arrested by the U.G.C.");
+				if(drBadgerImprisioned()) output2(" Inactive, Arrested by the U.G.C.");
 				else output2(" Active");
 				if(chars["DRBADGER"].isBimbo()) output2(", Bimbofied");
 				variousCount++;

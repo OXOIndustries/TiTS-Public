@@ -1086,6 +1086,11 @@
 			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
 		}
 		
+		public function addCompareButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		{
+			userInterface.addItemButton(slot, cap, 1, 1, func, arg, ttHeader, ttBody, ttCompare);
+		}
+		
 		public function removeButton(slot:int):void
 		{
 			userInterface.addDisabledButton(slot);

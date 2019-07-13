@@ -235,7 +235,7 @@ public function pennyRoomDesc():Boolean {
 	else
 	{
 		output("\n\nA new officer has taken over for Penny, but they regard you with an air of business-like disinterest.");
-		if(flags["DR_BADGER_TURNED_IN"] == undefined)
+		if(!drBadgerImprisioned())
 		{
 			if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(0,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
 			else if(flags["MET_DR_BADGER"] != undefined) addButton(0,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
@@ -694,7 +694,7 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	if(!drBadgerImprisioned())
 	{
 		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
 		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
@@ -1437,7 +1437,7 @@ public function pennyGirlfriendMenu():void
 	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
 	//Add [Badger Help] to Penny’s talk menu
 	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined)
+	if(!drBadgerImprisioned())
 	{
 		if(flags["NO_REPORTING_DOC_BADGER"] != undefined) addDisabledButton(2,"ReportBadger","Report Dr. Badger","You’ve decided not to turn in Doctor Badger.");
 		else if(flags["MET_DR_BADGER"] != undefined) addButton(2,"ReportBadger",whineToPennyCauseYerABitch,undefined,"Report Dr. Badger","That Doctor Badger thought she could get the best of you... Time to turn the tables the right way: by bringing the hammer of the LAW down on her.");
