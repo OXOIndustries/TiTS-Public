@@ -159,6 +159,10 @@ public function thareManorPQBuy():void
 
 // Part 2: Dog in a Box
 // Available to vagina-havers only for now
+public function rkLahImprisoned():Boolean
+{
+	return (flags["PQ_SECURED_LAH"] == 2 && flags["LAH_TO_GASTIGOTH"] != undefined && (GetGameTimestamp() - flags["LAH_TO_GASTIGOTH"]) > 4320);
+}
 public function lahPrisonRoom():void
 {
 	clearOutput();

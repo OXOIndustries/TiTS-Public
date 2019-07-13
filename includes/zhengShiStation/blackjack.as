@@ -1697,7 +1697,7 @@ public function rooSexMenu(display:Boolean = true):void
 	if(pc.hasCock() && pc.cockThatFits(rooCapacity()) >= 0) addButton(1,"Table Fuck",tableFuckRoo,undefined,"Table Fuck","Flop the lapcat on the table and rail her!");
 	else if(!pc.hasCock()) addDisabledButton(1,"Table Fuck","Table Fuck","Go spend your winnings on a brand new penis so you can fuck Roo with it!");
 	else addDisabledButton(1,"Table Fuck","Table Fuck","You’re way too big for this kitty!");
-	addButton(5,"Nevermind",turnDownRoocipher);
+	addButton(5,"Never Mind",turnDownRoocipher);
 }
 
 //[Undertable Oral]

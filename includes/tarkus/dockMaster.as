@@ -314,12 +314,14 @@ public function buyAShipFromTrashRat():void
 	output("\n\nThe dockmaster brushes a sweep of cyan hair aside in annoyance. <i>“’Course we got the goods. Though you’ll have to trade in whatever you’re flying for it. This hangar’s too tight for anybody to use it as a glorified garage, I don’t care how shiny their scales.”</i>");
 	processTime(2);
 	clearMenu();
-	//Initialize all ships, pass to tooltip generating func.
-	var moon:ShittyShip = new MoondastGruss();
 	shopkeep = new Dockmaster();
-	addButton(0,"M.Gruss",shipBuyScreen,moon,"M.Gruss",shipCompareString(moon));
-	//addButton(1,"Colt XLR",shipBuyScreen,coltXLR,"Colt XLR",shipCompareString(coltXLR));
-	//addButton(2,"Spearhead SS",shipBuyScreen,spearhead,"Spearhead SS",shipCompareString(spearhead));
+	//Initialize all ships, pass to tooltip generating func.
+	var ships:Array = [];
+	ships.push(["M.Gruss", "Moondast Gruss", new MoondastGruss()]);
+	for(var i:int = 0; i < ships.length; i++)
+	{
+		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
+	}
 	addButton(14,"Back",raskvelDockmaster,true);
 }
 

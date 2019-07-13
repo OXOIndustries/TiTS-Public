@@ -919,7 +919,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nSylvie shakes her head. <i>“She also left him with a submission fetish a mile wide. We had fun with it for a few days, once he was re-cleared for duty, until he started getting loose with what orders he was obeying. At first it wasn’t a big deal. He’d get woodies from getting his assignments in the morning or blow a load midway through an intense workout with his trainer.”</i> She sighs heavily. <i>“But it got bad enough that he’d let criminals go the moment they asked, and then nearly blow a hole in his pants with the force of his own arousal.”</i>");
 		output("\n\n<i>“Oh.”</i>");
 		output("\n\n<i>“I still call him sometimes,”</i> Sylvie elucidates in between long swallows. <i>“He says he’s happier than he’s ever been, being a live-in servant for some rich couple on Ausaril. But I just can’t help but think of how much he could’ve accomplished here, with me, as an officer of the law.”</i> She stamps a hoof angrily. <i>“");
-		if(flags["DR_BADGER_TURNED_IN"] != undefined) output("Good thing some do-gooder got that bitch arrested.");
+		if(drBadgerImprisioned()) output("Good thing some do-gooder got that bitch arrested.");
 		else output("If I ever find that bitch, I’m going to put her in the darkest hole I can find and make sure she never, ever gets out.");
 		output("”</i>");
 		output("\n\nWith that story told, you realize you’re going to need to change topic - or buy her a drink.");

@@ -3581,19 +3581,12 @@ public function goToKellysHouse():void
 	currentLocation = "KELLY'S HOUSE";
 	rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	generateMap();
+	rooms["NORTH ESBETH 1"].northExit = "";
 }
 public function leaveKellyNext(fromOffice:Boolean = false):void
 {
 	if(pc.hasStatusEffect("Temporary Nudity Cheat")) tempNudeOff();
-	if(fromOffice)
-	{
-		move("SOUTH ESBETH 2");
-	}
-	else
-	{
-		rooms["NORTH ESBETH 1"].northExit = "";
-		move("NORTH ESBETH 1");
-	}
+	move(fromOffice ? "SOUTH ESBETH 2" : "NORTH ESBETH 1");
 }
 
 //Kelly's Cunny

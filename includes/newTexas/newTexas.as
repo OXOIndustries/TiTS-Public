@@ -1689,7 +1689,7 @@ public function yesFixDaMilkar(bGiannaScans:Boolean = true):void
 	clearMenu();
 	if(pc.credits >= nCost) addButton(0,"Pay2Fix",fixDaMilkar,nCost,"Pay to Repair","Pay " + nCost + " credits to fix the milker.");
 	else addDisabledButton(0,"Pay2Fix","Pay to Repair","You do not have enough credits to pay for this!");
-	addButton(1,"Nevermind",noFixDaMilkar,true,"Nevermind","Maybe next time.");
+	addButton(1,"Never Mind",noFixDaMilkar,true,"Never Mind","Maybe next time.");
 }
 
 // Nah, ain't nobody got time fo' dat!

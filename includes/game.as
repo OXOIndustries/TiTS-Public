@@ -2139,7 +2139,8 @@ public function shipStatistics():void
 	clearOutput();
 	var shippy:ShittyShip = shits["SHIP"];
 	showBust(shippy.bustDisplay);
-	output(shipCompareString(shippy, false));
+	output(shipCompareString(shippy, shippy));
+	output("\n\n");
 	clearMenu();
 	var button:Number = 0;
 	shopkeep = new Vahn();

@@ -270,7 +270,7 @@ public function bringBadgerPexibork():void
 //After Fight
 public function afterNymFoeFight():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	if(!drBadgerAtBimbotorium())
 	{
 		noBadgerPostNymFoe();
 		return;
@@ -302,7 +302,7 @@ public function afterNymFoeFight():void
 //After Fight
 public function afterDollmakerFight():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	if(!drBadgerAtBimbotorium())
 	{
 		afterDollmakerFightForAbsentBadger();
 		return;
@@ -1111,7 +1111,7 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 
 public function drBadgerShackPexigaQuestGo():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && flags["PEXIGA_TALKED"] != undefined && flags["PEXIGA_TREATMENT"] != 1)
+	if(!drBadgerAtBimbotorium() && flags["PEXIGA_TALKED"] != undefined && flags["PEXIGA_TREATMENT"] != 1)
 	{
 		if(flags["LASH_BOMB"] != undefined || flags["DEL_DISTRACT"] != undefined)
 		{
@@ -1403,7 +1403,7 @@ public function nymfoeSetup():void
 		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you almost walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
 		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The “V-Ko” designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented steel tail whipping back and forth behind her.");
 		output("\n\n");
-		if(flags["DR_BADGER_TURNED_IN"] == undefined) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");
+		if(drBadgerAtBimbotorium()) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");
 		else output("It looks like Doctor Badger has left behind a guard droid and you must have tripped something to activate it.");
 		output(" There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
 		processTime(2);
@@ -2974,7 +2974,7 @@ public function drBadgerLookAroundButton(btnSlot:int = 5):void
 	if(flags["PEXIGA_TREATMENT"] >= 1)
 	{
 		// if Badger is a bimbo, skip this and go straight to the tank.
-		if(chars["DRBADGER"].isBimbo() || flags["BADGER_LAB_UNLOCKED"] != undefined || flags["DR_BADGER_TURNED_IN"] != undefined) addButton(btnSlot, "Laboratory", drBadgerEnterLaboratory, undefined, "Laboratory", "Browse the lower floor of Doctor Badger’s lab.");
+		if(chars["DRBADGER"].isBimbo() || flags["BADGER_LAB_UNLOCKED"] != undefined || !drBadgerAtBimbotorium()) addButton(btnSlot, "Laboratory", drBadgerEnterLaboratory, undefined, "Laboratory", "Browse the lower floor of Doctor Badger’s lab.");
 		else addButton(btnSlot, "Look Around", drBadgerLookAroundLab, undefined, "Look Around", "Ask Doctor Badger if you can look through her lab.");
 	}
 }
@@ -3521,7 +3521,7 @@ public function badgerNymFoeDakimakuraMenu():void
 	clearMenu();
 	addButton(0, "Appearance", badgerNymFoeDakimakuraLook, undefined, "Appearance", "Take a closer look at the pillow.");
 	addButton(1, "Sleep", badgerNymFoeDakimakuraSleep, undefined, "Sleep", "Sleep with the pillow.");
-	addButton(14, "Nevermind", useItemFunction);
+	addButton(14, "Never Mind", useItemFunction);
 }
 public function badgerNymFoeDakimakuraLook():void
 {
@@ -4188,7 +4188,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			
 			processTime(2);
 			
-			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			addButton(14, "Never Mind", drBadgerLabDollMaker, "badger fix");
 			break;
 		case "fix? lamp fix":
 			showDrBadger();
@@ -4245,7 +4245,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			
 			if(pc.hasItemByClass(Tittyblossom) && pc.hasItemByClass(SemensFriend)) addButton(0, "GiveItems", drBadgerLabDollMaker, "fix? emitter fix", "Give Items", "Give Doctor Badger a Tittyblossom popsicle and a Semen’s Friend candy.");
 			else addDisabledButton(0, "GiveItems", "Give Items", "You need Tittyblosson and Semen’s Friend to give to Doctor Badger!");
-			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			addButton(14, "Never Mind", drBadgerLabDollMaker, "badger fix");
 			break;
 		case "fix? emitter fix":
 			showDrBadger();
@@ -4913,7 +4913,7 @@ public function drBadgerLabStrangeBall(response:String = "menu"):void
 			
 			// [Use] [Nevermind]
 			addButton(0, "Use", drBadgerLabStrangeBall, "use", "Use Brainwashing Ball", "Attempt to fix the machine.");
-			addButton(1, "Nevermind", mainGameMenu);
+			addButton(1, "Never Mind", mainGameMenu);
 			break;
 		case "use":
 			showBrainwashingBall();
@@ -5144,7 +5144,7 @@ public function drBadgerSiliconeTankMenu():void
 	if(silicone == null && flags["BADGER_SILICONE_TANK_USES"] <= 0) { /* Use it at least once! */ }
 	else if(silicone == null || silicone.value1 < maxHips || silicone.value2 < maxButt || silicone.value3 < maxBoob || silicone.value4 < maxLips)
 	{
-		var drBadgerCanAppear:Boolean = (flags["DR_BADGER_TURNED_IN"] == undefined);
+		var drBadgerCanAppear:Boolean = (!drBadgerImprisioned());
 		
 		if(!inShip && pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump as much silicone into your body as you can.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
 		else addButton(4, (!inShip ? "Go Crazy" : "Full Inject"), drBadgerSiliconeTankUse, "go crazy", (!inShip ? "Go Crazy" : "Full Inject"), "Pump as much silicone into your body as you can.");

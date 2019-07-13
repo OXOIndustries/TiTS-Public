@@ -154,12 +154,13 @@ public function synphiaAppearance():void
 	showSynphia();
 	author("Fenoxo");
 	output("Synphia is a member of the snake-like slyveren race, known the galaxy over as seductive protein feeders, and you can see how they’d garner such a reputation with one look at her face; her features are the epitome of classical beauty applied to bone structure with reptilian sensibilities. Vertically slit purple eyes meet your own, looking back at you with ");
-	if(synphiaCockLoveLevel() < 1) output("a professional sort of friendliness");
-	else if(synphiaCockLoveLevel() < 3) output("keen interest");
-	else if(synphiaCockLoveLevel() < 4) output("a knowing sort of interest");
-	else if(synphiaCockLoveLevel() < 5) output("half-hidden desire");
-	else if(synphiaCockLoveLevel() < 6) output("barely suppressed excitement");
-	else if(synphiaCockLoveLevel() < 7) output("passionate familiarity");
+	var synCockLuvLvl:Number = synphiaCockLoveLevel();
+	if(synCockLuvLvl < 1) output("a professional sort of friendliness");
+	else if(synCockLuvLvl < 3) output("keen interest");
+	else if(synCockLuvLvl < 4) output("a knowing sort of interest");
+	else if(synCockLuvLvl < 5) output("half-hidden desire");
+	else if(synCockLuvLvl < 6) output("barely suppressed excitement");
+	else if(synCockLuvLvl < 7) output("passionate familiarity");
 	else output("adoring, almost addicted-seeming desire");
 	output(". Above, ram-like horns curl out of her brow, around her head, and down toward her shoulders. They glint and shine and glow with their own inner light, and the bases clearly show the obvious metallic highlights of cybernetic implants.");
 	output("\n\nBetween the sharp-looking horntips are the soft pillows of her lips. Like most slyverens, Synphia is gifted with a pouty pucker, and she’s chosen to accentuate her mouth’s natural shapeliness by applying an exquisitely high-gloss coating it. When she speaks, it’s difficult not to watch the lights glitter and dance across those plump expanses. Inside, her mouth and tongue and light pink.");
@@ -617,7 +618,8 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 	else output(" If you weren’t currently groaning in inarticulate pleasure, you’d probably be uttering a prayer of thanks to any god who would listen. Synphia’s the kind of cock-pleasing treasure you count yourself lucky to have discovered on your journey.");
 
 	output("\n\n<i>“");
-	switch(synphiaCockLoveLevel())
+	var synCockLuvLvl:Number = synphiaCockLoveLevel();
+	switch(synCockLuvLvl)
 	{
 		case 0: output("Thank you."); break;
 		case 1: output("Mmm, thanks for coming back."); break;
@@ -628,7 +630,7 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 		default: output("Oh, thank you so much, [pc.name]. I missed this dick. I missed it so much, and it tastes so goood..."); break;
 	}
 	output("”</i> Coral tones flash through the slyveren’s artificial horns along with the thought-transmitted words. <i>“");
-	if(synphiaCockLoveLevel() < 5) output(" Now let’s give you the pleasure I promised...");
+	if(synCockLuvLvl < 5) output(" Now let’s give you the pleasure I promised...");
 	else output("I know, I ought to shut up and start really servicing, but I just had to appreciate this... for a moment. Let’s make you cum, ‘kay?");
 	output("”</i>");
 
