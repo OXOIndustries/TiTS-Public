@@ -39,15 +39,12 @@ public function infiniteItems():Boolean
 	return (debug || flags["INFINITE_ITEMS"] != undefined);
 }
 
-public function processEventBuffer():Boolean
+public function processEventBuffer():String
 {
+	var output:String = ("<b>" + possessive(pc.short) + " log:</b>\n");
+	
 	if (timestampedEventBuffer.length > 0)
 	{
-		clearOutput();
-		clearBust();
-		
-		output("<b>" + possessive(pc.short) + " log:</b>");
-		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -68,17 +65,13 @@ public function processEventBuffer():Boolean
 				h = h % 24;
 			}
 			
-			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
+			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + "\n\n");
 		}
 		
 		timestampedEventBuffer = [];
-		
-		clearMenu();
-		addButton(0, "Next", mainGameMenu);
-		return true;
 	}
 	
-	return false;
+	return output;
 }
 
 public static const NAV_NORTH_DISABLE:uint 	= 1;
@@ -184,9 +177,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	generateMap();
 	showLocationName();
 	
-	//Display shit that happened during time passage.
-	if (processEventBuffer()) return;
-	
 	//Queued events can fire off too!
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
@@ -224,6 +214,22 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
+	
+	//Display shit that happened during time passage.
+	var eventBuffer:String = processEventBuffer();
+	if (eventBuffer != ("<b>" + possessive(pc.short) + " log:</b>\n"))
+	{
+		if (samePageLog) output("" + eventBuffer + "");
+		else
+		{
+			clearBust();
+			output("" + eventBuffer + "");
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			return;
+		}
+	}
+	
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
@@ -5290,3 +5296,4 @@ public function taintedLove():void
 	addButton(0, "Again", taintedLove);
 	addButton(14, "Back", mainGameMenu);
 }
+
