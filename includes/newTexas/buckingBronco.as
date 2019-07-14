@@ -575,8 +575,8 @@ public function eatAtTheBB(fud:String):void
 	//Food consumption scenes
 	output("You take a seat at an empty table and check the saloon’s menu on your codex. Deciding that you’re in the mood for some ");
 	if(fud == "B&Gravy") output("biscuits and gravy");
-	else if(fud == "") output("country ham");
-	else if(fud == "") output("chicken fried steak");
+	else if(fud == "Country Ham") output("country ham");
+	else if(fud == "CF Steak") output("chicken fried steak");
 	else output("72 ounce steak");
 	output(", you place your order on the codex screen, the cost of your meal being automatically deducted from your account. It only takes a few minutes for a waitress to appear from the kitchen and set your food in front of you, along with a glass and pitcher of ice-cold sweet tea. Your mouth waters from the delicious smell of good cooking. As soon as your waitress hands you your utensils, you dig in hungrily.");
 

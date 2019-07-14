@@ -712,7 +712,7 @@ public function buyShipFitItem(newScreen:Boolean = false):void
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
 	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
 	var temp:Number = 0;
-	var canBuy:Boolean = (ship.shipCapacity()-ship.inventory.length > 0)
+	var canBuy:Boolean = (ship.shipCapacity() > ship.inventory.length);
 	var hasGunRoom:Boolean = (ship.shipWeaponCapacity() > ship.listShipWeapons().length);
 	if(!hasGunRoom) output("\n\n<b>Warning:</b> Your ship has no more hardpoints to equip weapons to.");
 	output("\n\n<b><u>Modules For Sale & Fit:</u></b>");
@@ -785,8 +785,8 @@ public function unfitShipItem(newScreen:Boolean = false):void
 	output("Ship modules are too large for you to conveniently store. If you want to remove a fitted module, you’ll have to sell it.\n\n");
 	output("<b>Unused Upgrade Slots:</b> " + (ship.shipCapacity()-ship.inventory.length));
 	output("\n<b>Unused Weapon Hardpoints:</b> " + (ship.shipGunCapacity() - ship.listShipWeapons().length));
-	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity() + "\n\n");
-	output("<b><u>Currently Fitted Modules:</u></b>");
+	output("\n<b>Current Crew Capacity:</b> " + ship.shipCrewCapacity());
+	output("\n\n<b><u>Currently Fitted Modules:</u></b>");
 	if(!(ship.rangedWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.rangedWeapon.longName));
 	if(!(ship.meleeWeapon is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.meleeWeapon.longName));
 	if(!(ship.accessory is EmptySlot)) output("\n\\\[<b>Integrated</b>\\\] " + StringUtil.upperCase(ship.accessory.longName));

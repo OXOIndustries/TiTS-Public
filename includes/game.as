@@ -2142,27 +2142,7 @@ public function shipStatistics():void
 	output(shipCompareString(shippy, shippy));
 	output("\n\n");
 	clearMenu();
-	var button:Number = 0;
-	shopkeep = new Vahn();
-	if(!(shippy.shield is EmptySlot)) addItemButton(button++, shippy.shield, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.armor is EmptySlot)) addItemButton(button++, shippy.armor, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.meleeWeapon is EmptySlot)) addItemButton(button++, shippy.meleeWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.rangedWeapon is EmptySlot)) addItemButton(button++, shippy.rangedWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.accessory is EmptySlot)) addItemButton(button++, shippy.accessory, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.lowerUndergarment is EmptySlot)) addItemButton(button++, shippy.lowerUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.upperUndergarment is EmptySlot)) addItemButton(button++, shippy.upperUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-
-	for(var i:int = 0; i < shippy.inventory.length; i++)
-	{
-		//used to be button++; but hacky fix for a crash.
-		if (button >= 14) break;
-		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
-	}
-	while(button > 0) 
-	{ 
-		button--;
-		setButtonDisabled(button); 
-	}
+	shipEquipmentButtons(shits["SHIP"], mainGameMenu);
 	addButton(14,"Back",mainGameMenu);
 }
 
