@@ -2079,7 +2079,7 @@ public function bizzyFirstTimeMeetingII():void
 		else output(" cat morph");
 		output(" yourself you instinctively know she’s female. Call it feline seventh sense.");
 	}
-	output(" Her chest is almost flat, A cups if that, but a covert glance at her crotch suggests she is actually female, not one of those breathtakingly pretty kaithrit bois you see.");
+	else output(" Her chest is almost flat, A cups if that, but a covert glance at her crotch suggests she is actually female, not one of those breathtakingly pretty kaithrit bois you see.");
 
 	if (pc.isNice())
 	{
@@ -2141,8 +2141,8 @@ public function bizzyFirstTimeMenu(opts:Object = null):void
 	{
 		addButton(5, "Agree", bizzyAcceptTheDeal, opts, "Agree", "Owning your own pet camgirl sounds pretty damn sweet. <b>This will cost 40,000 credits.</b>");
 		
-		if (opts.hideJustPay != undefined) addButton(6, "Just Pay", bizzyDebtJustPay, opts, "Just Pay It", "40k is no object to you. Why don’t you just pay it off and let her go on her merry way?");
-		else addDisabledButton(6, "Just Pay", "Just Pay It", "She’s made it clear she doesn’t want charity.");
+		if (opts.hideJustPay != undefined) addDisabledButton(6, "Just Pay", "Just Pay It", "She’s made it clear she doesn’t want charity.");
+		else addButton(6, "Just Pay", bizzyDebtJustPay, opts, "Just Pay It", "40k is no object to you. Why don’t you just pay it off and let her go on her merry way?");
 
 		addButton(7, "Refuse", bizzyFirstTimeRefuse, opts, "Refuse", "Owning a camgirl isn’t your style.");
 	}
@@ -2336,10 +2336,11 @@ public function bizzyFirstTimeRefuse(opts:Object):void
 	showBizzyBust();
 
 	if (pc.isNice() || pc.isMisc()) output("You let her down as gently as you can. You don’t have the time to manage a camgirl... owning someone like that grosses you out a bit... it’s not you or your company’s expertise... you’re sure there’s someone better equipped out there to do what she wants... It doesn’t prevent Bizzy’s face falling about a thousand miles.");
-	else output("You do her the courtesy of being frank and up-front. You aren’t a porn production company, and you don’t know why she thought you were. There’s probably someone out there who’d be willing to take her up on her offer, but it’s certainly not you.");
-
-	output("\n\nBizzy’s face falls about a thousand miles.");
-
+	else
+	{
+		output("You do her the courtesy of being frank and up-front. You aren’t a porn production company, and you don’t know why she thought you were. There’s probably someone out there who’d be willing to take her up on her offer, but it’s certainly not you.");
+		output("\n\nBizzy’s face falls about a thousand miles.");
+	}
 	output("\n\n<i>“Ok,”</i> she mumbles, trying for a brave smile and failing.");
 	if (opts.hidePleaseMe != undefined) output(" You kind of wish you hadn’t gotten oral off her now. There’s little worse than someone covered in cum looking that miserable.");
 	output(" <i>“W-well. You always miss the shots you don’t take, right? Thank you for my ten minutes, [pc.Mr]. Steele. Don’t worry - you won’t hear from me again.”</i>");
