@@ -537,7 +537,7 @@ public function shipCompareDesc(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 	{
 		if(newShip != ship) shipTooltip += "<b>Select Ship:</b> ";
 		else shipTooltip += "<b>Your Ship:</b> ";
-		shipTooltip += newShip.short;
+		shipTooltip += "<i>" + newShip.capitalA + newShip.short + "</i>";
 		shipTooltip += "\n" + newShip.long;
 	}
 	else

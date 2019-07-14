@@ -1288,7 +1288,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF K22"] = new RoomClass(this);
 	rooms["ZSF K22"].roomName = "CIRCUIT\nLAB";
-	rooms["ZSF K22"].description = "This circuit lab is an absolute hodgepodge of high technology and placed with almost intentional randomness. A SteeleTech laboratory would be arranged to provide an optimal workflow for the scientists it employed, but the poor saps stuck working here are saddled with narrow gaps between equipment and wide-open clearings of empty flooring. One of the brighter scallywags must have had the idea to put the control software near the door at least. A wide desk with a dozen different monitors offers minute control over the fabs manufacturing machinery, though at the moment a hardware error has the 3D nanoprinter shuttered.";
+	rooms["ZSF K22"].description = "This circuit lab is an absolute hodgepodge of high technology and placed with almost intentional randomness. A Steele Tech laboratory would be arranged to provide an optimal workflow for the scientists it employed, but the poor saps stuck working here are saddled with narrow gaps between equipment and wide-open clearings of empty flooring. One of the brighter scallywags must have had the idea to put the control software near the door at least. A wide desk with a dozen different monitors offers minute control over the fabs manufacturing machinery, though at the moment a hardware error has the 3D nanoprinter shuttered.";
 	rooms["ZSF K22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF K22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF K22"].northExit = "ZSF K20";

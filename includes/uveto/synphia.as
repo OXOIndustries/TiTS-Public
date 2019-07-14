@@ -63,7 +63,7 @@ public function approachSynphia(back:Boolean = false):void
 	}
 	else if(flags["MET_SYNPHIA"] == undefined)
 	{
-		output("Despite not even looking at you, the mechanic turns to face you well before she could’ve heard your approach. She smiles warmly, one-handedly adjusting the fit of her skin-tight Steeletech jumpsuit while her tail wags back and forth behind her, dragging heavily on the ground. " + (CodexManager.entryUnlocked("Slyverens") ? "She’s definitely one of the protein-hunting slyveren. It’s unusual to encounter one in core space, especially one with green-glowing cybernetic horns instead of the cobra-like hood you’d expect.":"Your Codex identifies her as a protein-hunting slyveren, a race that’s making a big play at the Rush frontier. Most of them have cobra-like hoods, but this one’s rocking cybernetic horns that glow with sickly neon light."));
+		output("Despite not even looking at you, the mechanic turns to face you well before she could’ve heard your approach. She smiles warmly, one-handedly adjusting the fit of her skin-tight Steele Tech jumpsuit while her tail wags back and forth behind her, dragging heavily on the ground. " + (CodexManager.entryUnlocked("Slyverens") ? "She’s definitely one of the protein-hunting slyveren. It’s unusual to encounter one in core space, especially one with green-glowing cybernetic horns instead of the cobra-like hood you’d expect.":"Your Codex identifies her as a protein-hunting slyveren, a race that’s making a big play at the Rush frontier. Most of them have cobra-like hoods, but this one’s rocking cybernetic horns that glow with sickly neon light."));
 		output("\n\n<i>“Need something, Rusher?”</i> The snake-woman enunciates her words quite clearly for a girl with a muzzle and thick, bee-stung lips. <i>“I’m the station’s lead mechanic, so if you need some " + (!pc.hasCock() ? "work done":"star-worthy service") + ", you’ve found the right girl.”</i> She hefts her codex to skim a notification. <i>“That something you need?”</i>");
 		CodexManager.unlockEntry("Slyverens");
 		processTime(2);
@@ -103,7 +103,7 @@ public function noSynphiaService():void
 	showSynphia();
 	author("Fenoxo");
 	output("You shake your head and step away.");
-	output("\n\n<i>“On behalf of the Camarilla and Steeletech, enjoy your stay on Uveto.”</i> She says so with the bored indifference of someone who has to spout that line dozens of times a day.");
+	output("\n\n<i>“On behalf of the Camarilla and Steele Tech, enjoy your stay on Uveto.”</i> She says so with the bored indifference of someone who has to spout that line dozens of times a day.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -125,7 +125,7 @@ public function yesSynphiaService(back:Boolean = false):void
 	else if(pc.isBro()) output("What’s on offer?");
 	else output("What are you offering?");
 	output("”</i>");
-	output("\n\nThe slyveren looks over your shoulder to your vessel and taps the id codes into her tablet. <i>“The standard services you’d expect. Upgrade module installation and removal. Repair work. You know-whoah whoah what’s this?”</i> She hunches over the tablet’s screen, her horns shifting blue for a moment. <i>“There’s an open order me to offer repairs to you, free of charge, for the duration of the Rush.”</i> She straightens and squints, her cybernetic headgear fading to flickering white. <i>“Steeletech’s fronting the bill.... Who the hell are you?”</i>");
+	output("\n\nThe slyveren looks over your shoulder to your vessel and taps the id codes into her tablet. <i>“The standard services you’d expect. Upgrade module installation and removal. Repair work. You know-whoah whoah what’s this?”</i> She hunches over the tablet’s screen, her horns shifting blue for a moment. <i>“There’s an open order me to offer repairs to you, free of charge, for the duration of the Rush.”</i> She straightens and squints, her cybernetic headgear fading to flickering white. <i>“Steele Tech’s fronting the bill.... Who the hell are you?”</i>");
 	output("\n\nYou tell her your name.");
 	output("\n\n<i>“Like, Victor Steele Steele?”</i> A hardlight keyboard materializes just below the device’s bottom edge. The slyveren one-handedly pounds in a search. Her eyes dart across the screen, slowly widening as she absorbs the data. <i>“It is. You are... but you’re not actually in charge of anything. Ouch. Sorry about that.”</i> The keyboard vanishes into thin air, and the tool-toting snake-girl chews her mouth for moment before remembering to introduce herself. <i>“You can call me Synphia. Real name’s Serusynph, but nobody around here calls me that.”</i> She extends her hand for a businesslike handshake. " + (!pc.hasCock() ? "<i>“Just let me know what you need done, and I’ll do it.”</i>":"<i>“Just say the word, and I can start servicing you immediately.”</i> The pink of her tongue slides across her plush lower lip."));
 	processTime(4);
@@ -164,7 +164,7 @@ public function synphiaAppearance():void
 	else output("adoring, almost addicted-seeming desire");
 	output(". Above, ram-like horns curl out of her brow, around her head, and down toward her shoulders. They glint and shine and glow with their own inner light, and the bases clearly show the obvious metallic highlights of cybernetic implants.");
 	output("\n\nBetween the sharp-looking horntips are the soft pillows of her lips. Like most slyverens, Synphia is gifted with a pouty pucker, and she’s chosen to accentuate her mouth’s natural shapeliness by applying an exquisitely high-gloss coating it. When she speaks, it’s difficult not to watch the lights glitter and dance across those plump expanses. Inside, her mouth and tongue and light pink.");
-	output("\n\nExtreme curviness may be the intended slyveren look, but Synphia’s 5’3”</i> frame is anything but. Even with a SteeleTech jumpsuit layered across her green scales, there’s no concealing her pert, C-cup breasts, tight derriere, or limber legs. She has the look of a girl who works hard and either chooses to watch what she eat or can’t quite afford to eat well, though knowing her job and slyveren diets, she probably just spends less time sucking dick than she should.");
+	output("\n\nExtreme curviness may be the intended slyveren look, but Synphia’s 5’3”</i> frame is anything but. Even with a Steele Tech jumpsuit layered across her green scales, there’s no concealing her pert, C-cup breasts, tight derriere, or limber legs. She has the look of a girl who works hard and either chooses to watch what she eat or can’t quite afford to eat well, though knowing her job and slyveren diets, she probably just spends less time sucking dick than she should.");
 	//Sucked
 	if(flags["SYNPHIA_SUCKS"] != undefined)
 	{
@@ -191,7 +191,7 @@ public function synphiaTalkScreen():void
 	output("What will you ask Synphia?");
 	clearMenu();
 	addButton(0,"Mechanic?",mechanicTalkWivSynphia,undefined,"Mechanic?","Ask her how she became a mechanic.");
-	addButton(1,"SteeleTech?",steeletechSynphiaTalk,undefined,"SteeleTech?","What does Synphia think about SteeleTech? She works for them, after all.");
+	addButton(1,"SteeleTech?",steeletechSynphiaTalk,undefined,"Steele Tech?","What does Synphia think about Steele Tech? She works for them, after all.");
 	if(flags["SYNPHIA_JOBTALK"] != undefined)
 	{
 		addButton(2,"Mods?",modTalkWithSynphia,undefined,"Mods","She mentioned mods but doesn’t seem to have any aside from the horns...");
@@ -228,7 +228,7 @@ public function leaveSynphia():void
 	author("Fenoxo");
 	output("You bid Synphia farewell.");
 	//nofucked
-	if(flags["FUCKED_SYNPHIA"] == undefined) output("\n\n<i>“On behalf of the Camarilla and Steeletech, enjoy your stay on Uveto.”</i> She says so with the bored indifference of someone who has to spout that line dozens of times a day.");
+	if(flags["FUCKED_SYNPHIA"] == undefined) output("\n\n<i>“On behalf of the Camarilla and Steele Tech, enjoy your stay on Uveto.”</i> She says so with the bored indifference of someone who has to spout that line dozens of times a day.");
 	//fucked
 	else output("\n\n<i>“Already? Well take care of yourself down on the surface, and if you need a warm-up or a tune-up, you know where to find me.”</i> The slyveren winks.");
 	processTime(1);
@@ -789,7 +789,7 @@ public function synphiaEpilogue(args:Array):void
 	var cummies:Number = args[3];
 	var deepthroat:Boolean = args[1];
 	//Messed jumpsuit fix
-	if(synCum) output("Synphia staggers back, dripping, and reaches for her toolbelt. Whatever she’s going for must be small; the spunked-up snake sure is having a tough time finding it. She gasps and straightens, letting a small hovering drone float off her hand. It spins about and begins the arduous process of somehow zapping away the collected mess, unearthing wide expanses of SteeleTech jumpsuit to shine like it’s brand new. <i>“There we go. All better,”</i> Synphia coos, turning this way and that to ensure every drop is evaporated.");
+	if(synCum) output("Synphia staggers back, dripping, and reaches for her toolbelt. Whatever she’s going for must be small; the spunked-up snake sure is having a tough time finding it. She gasps and straightens, letting a small hovering drone float off her hand. It spins about and begins the arduous process of somehow zapping away the collected mess, unearthing wide expanses of Steele Tech jumpsuit to shine like it’s brand new. <i>“There we go. All better,”</i> Synphia coos, turning this way and that to ensure every drop is evaporated.");
 	//Nonmess
 	else output("Synphia stretches and steps back, checking her appearance in her codex to make sure she’s not too slimed with dick to work. <i>“Looking fine, sister,”</i> she whispers to herself, turning this way and that with her lips puckered. <i>“Looking fine.”</i>");
 	//Came
@@ -1167,7 +1167,7 @@ public function synphiaBallForeplay():void
 		output("A simple gesture to your [pc.sack] is all it takes to set the slyveren into motion.");
 		output("\n\n<i>“Look at all this... goodness,”</i> she purrs, leaning close, and pushing your [pc.multiCocks] up and onto the top of her head, out of the way. She buries her nose in the fragrant nutfolds and inhales, wrapping her arms behind to pull your monstrous testicle" + (pc.balls > 1 ? "s":"") + " tighter. <i>“Mmm, it even smells like [pc.cumNoun], and there’s so much.”</i> She tilts her head to look up at you, tongue flickering out to taste the skin in between words. <i>“You know what slyverens like, don’t you?”</i> She kisses a tender spot, making you squirm. <i>“You know there’s nothing more fulfilling to a girl like me than draining every drop from cum-tanks like these.”</i>");
 		output("\n\nRelaxing while the anthropomorphic woman explores the buffet of bulge, you nod along with whatever she’s saying, focusing instead on how good she feels down there.");
-		output("\n\n<i>“Ohhh, is somebody getting distracted?”</i> Synphia teases. She runs a fingertip from your taint down the backside of your swollen sack, earning a wobble and a gurgling quiver from inside. <i>“Are somebody’s big fat balls so sensitive that the mean ol’ SteeleTech mechanic can shut [pc.himHer] down with little kisses and strokes?”</i> She kisses one side wide-mouthed, her tongue slowly easing out to caress eight inches of exposed genitalia. <i>“Are you just going to agree with me as long as I keep doing this?”</i>");
+		output("\n\n<i>“Ohhh, is somebody getting distracted?”</i> Synphia teases. She runs a fingertip from your taint down the backside of your swollen sack, earning a wobble and a gurgling quiver from inside. <i>“Are somebody’s big fat balls so sensitive that the mean ol’ Steele Tech mechanic can shut [pc.himHer] down with little kisses and strokes?”</i> She kisses one side wide-mouthed, her tongue slowly easing out to caress eight inches of exposed genitalia. <i>“Are you just going to agree with me as long as I keep doing this?”</i>");
 		output("\n\nYou could shut her down, but the slyveren is right about one thing: what she’s doing feels damned good, and you don’t want it to stop.");
 		output("\n\nYou nod.");
 		output("\n\n<i>“Wonderful.”</i> Synphia does that thing with her finger again, but this time with both hands");
@@ -1344,7 +1344,7 @@ public function mechanicTalkWivSynphia():void
 	output("\n\n<i>“I got the gist of it.”</i>");
 	output("\n\nSynphia’s horns fade to a gentle white, and a broad smile lights up the rest of her face. <i>“Good. But like I was saying, I went hard in school, realized I had a good mind for engineering and steady enough hands to be a surgeon, and decided fixing ships would get me across as many star systems as I wanted to see - sort of like being a Rusher myself, but without all the fighting.”</i> She looks proud, not just of her accomplishments but also that she’s getting to relay them to her megacorp’s heir apparent. <i>“I had a few jobs working engine rooms in cargo haulers before I wound up Uveto, and once we landed here, I found myself a new job.”</i>");
 	output("\n\nYou ask how she pulled that off.");
-	output("\n\n<i>“Pretty simple,”</i> Synphia adjusts her toolbelt. <i>“We had a SteeleTech ship docked next to us with engine troubles and a kaithrit mechanic too drunk to stumble down a hallway. I volunteered to lend them a hand since we’d be stuck loading for the rest of the day, and I guess the repair job I did got noticed. I got a job offer as a regular on station that night... for three times what I was getting paid, and that was </i>before<i> I made head mechanic. ‘Course I didn’t know the planet was a frigid iceball back then, but why would I care? All the ships are up here. I’m getting paid rates like I’m living in absolute zero, and I’ll never have to freeze my scales off on the surface.”</i>");
+	output("\n\n<i>“Pretty simple,”</i> Synphia adjusts her toolbelt. <i>“We had a Steele Tech ship docked next to us with engine troubles and a kaithrit mechanic too drunk to stumble down a hallway. I volunteered to lend them a hand since we’d be stuck loading for the rest of the day, and I guess the repair job I did got noticed. I got a job offer as a regular on station that night... for three times what I was getting paid, and that was </i>before<i> I made head mechanic. ‘Course I didn’t know the planet was a frigid iceball back then, but why would I care? All the ships are up here. I’m getting paid rates like I’m living in absolute zero, and I’ll never have to freeze my scales off on the surface.”</i>");
 	output("\n\nYou congratulate Synphia on her good fortune.");
 	output("\n\n<i>“Thank you, [pc.name].”</i> The green-scaled woman’s flit back to her usual business-like blue.");
 	processTime(4);
@@ -1424,10 +1424,10 @@ public function steeletechSynphiaTalk():void
 	clearOutput();
 	showSynphia();
 	author("Fenoxo");
-	output("You ask her what she thinks of SteeleTech.");
-	output("\n\n<i>“That’s a loaded question, [pc.MisterMiss] Steele.”</i> Synphia eyes you up warily. <i>“Though I suppose you’re looking for an honest appraisal of your father’s work since you hold no post in the company... yet.”</i> She rests a hand on her hip, her fingertips tapping. <i>“As far as megacorps go, it’s one of the best of the bunch. Everyone else has scandals two or three times a day. Xenogen? Four or five. SteeleTech? We might get caught up in something once a week, and it’s almost always due to ignorance or an individual bad actor who got the boot. So yeah, I guess I’m as close to a corporate fan-girl as I’m likely to get at this point.”</i>");
+	output("You ask her what she thinks of Steele Tech.");
+	output("\n\n<i>“That’s a loaded question, [pc.MisterMiss] Steele.”</i> Synphia eyes you up warily. <i>“Though I suppose you’re looking for an honest appraisal of your father’s work since you hold no post in the company... yet.”</i> She rests a hand on her hip, her fingertips tapping. <i>“As far as megacorps go, it’s one of the best of the bunch. Everyone else has scandals two or three times a day. Xenogen? Four or five. Steele Tech? We might get caught up in something once a week, and it’s almost always due to ignorance or an individual bad actor who got the boot. So yeah, I guess I’m as close to a corporate fan-girl as I’m likely to get at this point.”</i>");
 	output("\n\nThe way she talks makes it sound like she’s still hesitating about something. You ask.");
-	output("\n\n<i>“Well,”</i> Synphia pauses, sweeping the hangar with her eyes. <i>“If you tell anyone I said this, I’ll deny it up and down the station, but I think things are starting to slip with the old corp. Almost as soon as Vic died, we got word yearly raises were being adjusted downward due to ‘unexpected Rush cost overruns.’ Then there was that story out of Accadia about a SteeleTech freighter hauling a load of indentured servants with contracts way below company spec.”</i> She shakes her head. <i>“My hunch is the board’s getting lazy now that they’re the top of the food chain. If things keep trending this way for another year or two... I’ll probably quit, but by then the Rush’ll be over, and I can retire with my sis. She’ll owe me pretty hard by then.”</i>");
+	output("\n\n<i>“Well,”</i> Synphia pauses, sweeping the hangar with her eyes. <i>“If you tell anyone I said this, I’ll deny it up and down the station, but I think things are starting to slip with the old corp. Almost as soon as Vic died, we got word yearly raises were being adjusted downward due to ‘unexpected Rush cost overruns.’ Then there was that story out of Accadia about a Steele Tech freighter hauling a load of indentured servants with contracts way below company spec.”</i> She shakes her head. <i>“My hunch is the board’s getting lazy now that they’re the top of the food chain. If things keep trending this way for another year or two... I’ll probably quit, but by then the Rush’ll be over, and I can retire with my sis. She’ll owe me pretty hard by then.”</i>");
 	output("\n\nYou ask her what she would do if she was in charge.");
 	output("\n\n<i>“That’s just it: I don’t want to be in charge.”</i> Synphia actually hisses in annoyance. <i>“I can barely manage my team’s corporate culture as it is. I can’t imagine being responsible for a planet’s worth of employees, and having to deal with all competing corporate bullshit. Heavy is the head that wears the crown, [pc.name], but I guess you know that already, or you’d be my boss right now, right.”</i>");
 	output("\n\nIt’s probably best you don’t clear up that misconception for now.");

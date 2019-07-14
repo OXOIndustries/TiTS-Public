@@ -1133,7 +1133,7 @@ public function pcWinsVsRoocipher():void
 			// First Time
 			if(flags["ROO_GASMED"] == 4)
 			{
-				output("\n\nYou go to claim your winnings and your complimentary <i>Ruby Tether,</i> only to jerk upwards in shock when you feel two hands on your [pc.legOrLegs]. You scooch back and look down to see Roo on all fours, nestling herself into your crotch, pressing her nose ");
+				output("\n\nYou go to claim your winnings and your complementary <i>Ruby Tether,</i> only to jerk upwards in shock when you feel two hands on your [pc.legOrLegs]. You scooch back and look down to see Roo on all fours, nestling herself into your crotch, pressing her nose ");
 				if(pc.hasCock()) output("to your " + (!pc.isCrotchExposed() ? "tent-pitching ":"") + "[pc.cockHeadBiggest]");
 				else if(pc.hasVagina()) output("against your clit");
 				else output("to your barren loins");
@@ -2418,7 +2418,7 @@ public function rooTableFukkEpi(milky:Boolean = false):void
 	else
 	{
 		output("\n\n<i>“Well, we better clear out,”</i> she explains, surprisingly lucid and perky, <i>“gotta clean up... keep the cards shuffling... come back to do it tomorrow! Hope to see you again!”</i>");
-		output("\n\nShe hops down from the table and collects her clothing before meeting with security who guide her safely out, but not before she blows you a kiss. While you sit for a few minutes longer, a servant brings you your complimentary <i>Ruby Tether,</i> and you waste no time guzzling it down. Whether or not alcohol is conducive to recovery doesn’t matter, because that inveigling beverage gets you right out of the ditch you were in.");
+		output("\n\nShe hops down from the table and collects her clothing before meeting with security who guide her safely out, but not before she blows you a kiss. While you sit for a few minutes longer, a servant brings you your complementary <i>Ruby Tether,</i> and you waste no time guzzling it down. Whether or not alcohol is conducive to recovery doesn’t matter, because that inveigling beverage gets you right out of the ditch you were in.");
 		output("\n\nYou fish through the effluence-coated table and collect your prize winnings too! Several credits richer, you leave the game floor behind, still thinking about Roo. By the time you’re off, a new dealer has manned the rapidly cleaned table.");
 		output("\n\nHe isn’t anywhere near as appealing as the kaithrit before him.");
 		processTime(15);

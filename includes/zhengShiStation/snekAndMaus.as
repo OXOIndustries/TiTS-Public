@@ -300,7 +300,7 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 		output("\n\nImpassioned deepthroating that speaks to a lifetime of hedonism (or to a biology naturally gifted) is being performed right before your eyes. You can scarcely believe your luck in being able to witness it, and you can’t help but register <i>how lucky that little mouse is.</i> She’s working hard to get every thick load of jism packed away in his balls because she wants it that bad. Unsurprisingly, even fearsome pirates can, at the end of the day, be cock-drunk sluts who’d look more at home in a public use wall.");
 	}
 
-	output("\n\nA microsecond of relief scours through you. There’s a needling pinch; it happens so quick. You don’t know what hit you or how, but you know the payload was lust. Pure lust that lurches your [pc.hips] forward. Complimenting the effect is a phantom press to your groin");
+	output("\n\nA microsecond of relief scours through you. There’s a needling pinch; it happens so quick. You don’t know what hit you or how, but you know the payload was lust. Pure lust that lurches your [pc.hips] forward. Complementing the effect is a phantom press to your groin");
 	if (pc.hasGenitals()) output(", but particularly to your " + (pc.hasCock() ? "[pc.cocksLight]" : "[pc.pussiesLight]"));
 	output(". You fall a little closer to the ground");
 	if (pc.hasGenitals() && !pc.isTaur()) output(", [pc.hands] moving faster");
@@ -966,7 +966,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 	{
 		output("\n\nHyperfocusing on the cum spilling forth is all you can (and want) to do. You’re jockeying competitively with the slyveren, mouth wide open and tongue unfurled");
 		if (pc.hasLongTongue()) output(" to your crotch");
-		output(", eager to catch the most of his glistening squirts. The lewdness of your act nicely compliments the deep satisfaction you feel at finally getting a taste of jizz.");
+		output(", eager to catch the most of his glistening squirts. The lewdness of your act nicely complements the deep satisfaction you feel at finally getting a taste of jizz.");
 		output("\n\nShe catches some of the torrential spouts, you catch the thickest gouts, and both your faces are bukkake’d in his indelicate, endless flow of spunk. His muscles have locked him into that upright position, a perfect position, you think, for splattering two awesome sluts in a volume of pressure only describable as <i>gifted.</i> Bathing in it produces a unique kind of molten bliss you would never be able to reproduce or find anywhere else.");
 		if (pc.hasGenitals())
 		{

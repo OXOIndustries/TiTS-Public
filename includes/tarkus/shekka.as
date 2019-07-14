@@ -2485,7 +2485,7 @@ public function raskvelCureQuestShekkaTalk():void
 		//if Anno’s on your crew
 		if(annoIsCrew())
 		{
-			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steeletech scientists...");
+			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steele Tech scientists...");
 		}
 		//cont
 		output("\n\nYou rock on your heels for a moment, soaking in Shekka’s excitement a little yourself. Hopefully she isn’t getting too far ahead of herself. At the very least it seems promising news. <i>“Of course, while I’m waiting for a few call-backs, how about you and me do something to pass the time?”</i>");

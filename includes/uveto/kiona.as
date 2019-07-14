@@ -81,7 +81,7 @@ public function kionaKioskBonus():Boolean
 	output("A simple display of glimmering, enrapturing jeweled accessories line the counter where");
 	if (firstMeet) output(" the korgonne proprietor of this shop");
 	else output(" Kiona");
-	output(" works. A small forge at the back of the storefront glows brightly, complimenting the light coming from the nearby torch sconces.");
+	output(" works. A small forge at the back of the storefront glows brightly, complementing the light coming from the nearby torch sconces.");
 
 	if (kionaKioskIsOpen())
 	{

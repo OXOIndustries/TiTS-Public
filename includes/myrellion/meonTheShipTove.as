@@ -90,7 +90,7 @@ public function leaveMeon():void
 	showMeon();
 	author("Fenoxo");
 	output("You turn to leave.");
-	output("\n\n<i>“Wait!”</i> Meon is stretching his arms out at you, as if his petite limbs could somehow reach you. <i>“What if I threw in complimentary rust-proofing, de-varminting, and an additional 30 giga-glorp warranty?”</i>");
+	output("\n\n<i>“Wait!”</i> Meon is stretching his arms out at you, as if his petite limbs could somehow reach you. <i>“What if I threw in complementary rust-proofing, de-varminting, and an additional 30 giga-glorp warranty?”</i>");
 	output("\n\n<i>“Maybe later,”</i> you say, stepping further away.");
 	output("\n\nMeon beams. <i>“Of course! Later! I shall eagerly await your return, [pc.name].”</i>");
 	clearMenu();

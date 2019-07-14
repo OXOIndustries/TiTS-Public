@@ -17,6 +17,12 @@ public function kiroIsCrew():Boolean
 {
 	return false;
 }
+
+public function PCShipIsCasstech():Boolean
+{
+	if(shits["SHIP"] != undefined)  return (shits["SHIP"] is Casstech);
+	return false;
+}
 public function PCShipName(customName:Boolean = true):String
 {
 	// 9999 if(customName) return ActivePlayerShip.Name;
