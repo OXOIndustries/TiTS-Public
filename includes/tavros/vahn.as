@@ -331,7 +331,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	else if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
 	else if(shipStorageRoom() > 0)
 	{
-		if(pc.credits >= arg.shipCost()) addButton(0,"Buy",buyAShipYouGo,arg,"Buy","Buy " + arg.a + arg.short + ".\n\n<b><u>Price:</u></b> " + arg.shipCost() + " credits");
+		if(pc.credits >= arg.shipCost()) addButton(0,"Buy",buyAShipYouGo,arg,"Buy","Buy " + arg.a + arg.short + ".\n\n<b><u>Price</u>:</b> " + arg.shipCost() + " credits");
 		else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
 	}
 	else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
@@ -339,8 +339,8 @@ public function shipBuyScreen(arg:ShittyShip):void
 	var tradeInPrice:Number = shipTradeInPrice(shits["SHIP"]);
 	var totalCost:Number = (arg.shipCost()-tradeInPrice);
 	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade in your Casstech. Vahn won’t take it.");
-	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price:</u></b> " + totalCost + " credits");
-	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price:</u></b> " + totalCost + " credits");
+	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
+	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 
 	//else addButton(1,"Buy+Trade",);
 	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
@@ -405,11 +405,18 @@ public function storageShipsMenu():void
 	showName("\n"+shopkeep.short.toUpperCase());
 	showName("SHIP\nSTORAGE");
 	var storageLimit:int = shipStorageLimit();
-	output("<b>Available Storage: </b>" + shipStorageRoom() + " / " + storageLimit + ".\n\n<b><u>Stored Vessels:</u> </b>");
+	output("<b>Available Storage:</b> " + shipStorageRoom() + " / " + storageLimit + ".");
 	clearMenu();
 	var btnSlot:int = 0;
 	var i:int = 0;
 	
+	/*if(shits["SHIP"] != undefined)
+	{
+		output("\n\n<b><u>Docked Vessel</u>:</b> " + shits["SHIP"].short);
+		addShipCompareButton(btnSlot,shits["SHIP"],shits["SHIP"],shits["SHIP"].short,storageShipsCheck,"SHIP",shits["SHIP"].short);
+		btnSlot++;
+	}*/
+	output("\n\n<b><u>Stored Vessels</u>:</b>");
 	for(i = 0; i < storageLimit; i++)
 	{
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
@@ -456,7 +463,7 @@ public function storageShipsCheck(arg:String):void
 	
 	shipEquipmentButtons(shits[arg], storageShipsMenu);
 	
-	addButton(13,"Swap Ship",swapShips,arg,("Swap To "+shits[arg].capitalA+shits[arg].short),"Swap out your current ship for this one.");
+	if(arg != "SHIP") addButton(13,"Swap Ships",swapShips,arg,("Swap To "+shits[arg].short),"Swap out your current ship for this one.");
 	addButton(14,"Back",storageShipsMenu);
 }
 public function swapShips(arg:String):void
@@ -469,7 +476,7 @@ public function swapShips(arg:String):void
 	shits[arg] = shits["SHIP"];
 	shits["SHIP"] = tempShip;
 	clearMenu();
-	addButton(0,"Next",VahnTheMechanic);
+	addButton(0,"Next",storageShipsMenu);
 }
 
 public function shipStorageLimit():Number { return 5; }
@@ -675,8 +682,8 @@ public function shipCompareStat(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 		else shipTooltip += ".)";
 	}
 	
-	shipTooltip += "\n\n<b><u>Purchase Cost:</u></b> " + shipStatCompare(newShip.shipCost(), ship.shipCost());
-	if(newShip != ship) shipTooltip += "\n<b><u>w/Trade In:</u></b> " + (newShip.shipCost()-shipTradeInPrice(ship));
+	shipTooltip += "\n\n<b><u>Purchase Cost</u>:</b> " + shipStatCompare(newShip.shipCost(), ship.shipCost());
+	if(newShip != ship) shipTooltip += "\n<b><u>w/Trade In</u>:</b> " + (newShip.shipCost()-shipTradeInPrice(ship));
 	
 	if(buttonTooltip) return "<span class='words'><p>" + shipTooltip + "</p></span>";
 	return shipTooltip;
