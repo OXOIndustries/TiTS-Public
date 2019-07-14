@@ -71,13 +71,15 @@ public function meonApproach():void
 	}
 	processTime(2);
 	clearMenu();
-	var moon:ShittyShip = new MSXI();
-	var k7:ShittyShip = new ClydesdaleK7();
-	var sledge:ShittyShip = new SledgehammerMkII();
 	shopkeep = new Meon();
-	addButton(0,"Aegis MS-XI",shipBuyScreen,moon,"Aegis MS-XI",shipCompareString(moon));
-	addButton(1,"ClydesdaleK7",shipBuyScreen,k7,"ClydesdaleK7",shipCompareString(k7));
-	addButton(2,"Sledgehammr",shipBuyScreen,sledge,"Sledgehammer Mark II",shipCompareString(sledge));
+	var ships:Array = [];
+	ships.push(["Aegis MS-XI", "Aegis MS-XI", new MSXI()]);
+	ships.push(["ClydesdaleK7", "ClydesdaleK7", new ClydesdaleK7()]);
+	ships.push(["Sledgehammr", "Sledgehammer Mark II", new SledgehammerMkII()]);
+	for(var i:int = 0; i < ships.length; i++)
+	{
+		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
+	}
 	addButton(14,"Leave",leaveMeon);
 }
 
@@ -88,7 +90,7 @@ public function leaveMeon():void
 	showMeon();
 	author("Fenoxo");
 	output("You turn to leave.");
-	output("\n\n<i>“Wait!”</i> Meon is stretching his arms out at you, as if his petite limbs could somehow reach you. <i>“What if I threw in complimentary rust-proofing, de-varminting, and an additional 30 giga-glorp warranty?”</i>");
+	output("\n\n<i>“Wait!”</i> Meon is stretching his arms out at you, as if his petite limbs could somehow reach you. <i>“What if I threw in complementary rust-proofing, de-varminting, and an additional 30 giga-glorp warranty?”</i>");
 	output("\n\n<i>“Maybe later,”</i> you say, stepping further away.");
 	output("\n\nMeon beams. <i>“Of course! Later! I shall eagerly await your return, [pc.name].”</i>");
 	clearMenu();

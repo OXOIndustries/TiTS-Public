@@ -30,7 +30,7 @@
 			this.description = "a frostscale hauberk";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A hauberk of icy blue scale armor made by your kips. It offers good protection for your body, but might leave you limps a bit exposed.";
+			this.tooltip = "A hauberk of icy blue scale armor made by your kips. It offers good protection for your body, but might leave your limbs a bit exposed.";
 
 			//A variant of the frostbane chainmail with reduced defense and freezing resistance.
 		

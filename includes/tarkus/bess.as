@@ -1275,7 +1275,7 @@ public function approachFollowerBess():void
 			if (bess.hornType != 0) output(" and ");
 		}
 		if (bess.hornType != 0) output("[bess.horns]");
-		output(" compliment [bess.hisHer] features.");
+		output(" complement [bess.hisHer] features.");
 	}
 
 	output(" [bess.HeShe]’s");

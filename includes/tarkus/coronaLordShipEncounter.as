@@ -23,7 +23,7 @@ public function showPyroPup2(nude:Boolean = false):void
 public function genericShipFiteWin():void
 {
 	clearOutput();
-	output("With that last exchange, your console notifies you of system failures all over the enemy vessel. Its engines sputter, and its defenses lock up one after another. Its drifting with little more than life support and comms left online.");
+	output("With that last exchange, your console notifies you of system failures all over the enemy vessel. Its engines sputter, and its defenses lock up one after another. It’s drifting with little more than life support and comms left online.");
 	IncrementFlag("SHIPFITE_WINS");
 	if(flags["SHIPFITE_WINS"] == undefined)
 	{
@@ -281,7 +281,7 @@ public function genericVariantUnoForPyroPup2():void
 	var x:int = -1;
 	if(pc.hasCock()) 
 	{
-		pc.cockThatFits(400);
+		x = pc.cockThatFits(400);
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	output("Then she’s kissing you, pressing you back against the wall and grinding her pussy " + (pc.isTaur() ? "against your front":"into your lap"));
@@ -395,7 +395,7 @@ public function pyroPup2GenericSex2():void
 	var x:int = -1;
 	if(pc.hasCock()) 
 	{
-		pc.cockThatFits(400);
+		x = pc.cockThatFits(400);
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	output("Then she’s kissing you, pressing you back against the wall and grinding her pussy " + (pc.isTaur() ? "against your front":"into your lap"));

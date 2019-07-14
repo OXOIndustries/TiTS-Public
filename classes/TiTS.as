@@ -670,7 +670,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.004";
+			version = "0.8.007";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1084,6 +1084,11 @@
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
 			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
+		}
+		
+		public function addCompareButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		{
+			userInterface.addItemButton(slot, cap, 1, 1, func, arg, ttHeader, ttBody, ttCompare);
 		}
 		
 		public function removeButton(slot:int):void

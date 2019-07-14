@@ -67,7 +67,7 @@ public function sentientAcquisitionsBonus():Boolean
 	{
 		showBust("ATTICA", "TERON");
 		
-		output("With a slight amount of apprehension you pass through the pale glare of the shop’s facade. The interior is done up in a sharp, minimalist chic, all polished wood floors and spindly furniture done up in blacks, whites and grays. On either side of the counter two tall, insectile humanoids are standing face-to-face. Their faces are pale skinned and their limbs armored in black chitin, the same color as their liquid, pupil-less eyes. They are good looking in an austere, androgynous kind of way, complimented by their sharp business dress. If they’re conversing, they’re doing it very quietly. They each have a ruff of wide, diaphanous feathers around their necks that flutter at each other vigorously, like hummingbird wings. There’s something not quite right about them; their movement distracts and tugs at your eye, insisting you look at them closer. Color spreads across and below the shimmering surfaces, impossibly thin and infinitely deep at the same time...");
+		output("With a slight amount of apprehension you pass through the pale glare of the shop’s facade. The interior is done up in a sharp, minimalist chic, all polished wood floors and spindly furniture done up in blacks, whites and grays. On either side of the counter two tall, insectile humanoids are standing face-to-face. Their faces are pale skinned and their limbs armored in black chitin, the same color as their liquid, pupil-less eyes. They are good looking in an austere, androgynous kind of way, complemented by their sharp business dress. If they’re conversing, they’re doing it very quietly. They each have a ruff of wide, diaphanous feathers around their necks that flutter at each other vigorously, like hummingbird wings. There’s something not quite right about them; their movement distracts and tugs at your eye, insisting you look at them closer. Color spreads across and below the shimmering surfaces, impossibly thin and infinitely deep at the same time...");
 		output("\n\nThe two creatures seem to notice you and in a single movement brush their feathers back, clipping them behind their necks into some sort of hood attached to their shoulders.");
 		output("\n\n<i>“Sorry about that, rue collar, we didn’t see you standing there,”</i> says one in a brisk, dry tone which buzzes slightly at the edges. Your codex beeps urgently.");
 		output("\n\n<i>“Tarratch. Semi-restricted insectoid race, noted for ability to transfix sentient beings, psychic feeding habits and proclivity for piracy. Should not be approached under any circumstances.”</i>");
@@ -2242,6 +2242,7 @@ public function seraBitchTrainingButtfuck():void
 	var obedience:Number = seraObedience();
 	var cIdx:int = pc.cockThatFits(chars["SERA"].analCapacity());
 	if(cIdx < 0) cIdx = pc.smallestCockIndex();
+	var seraSpeechCensored:Boolean = seraBitchSpeechCensored();
 	
 	// 0-40
 	if(flags["SERA_BITCHENING_BUTTFUCK"] == undefined || obedience <= 40)
@@ -2371,7 +2372,7 @@ public function seraBitchTrainingButtfuck():void
 			output(" When you’ve pulsed your last you pull slowly outwards, fingers trailing down her boobs, enjoying the way her cum-slicked tunnel still clings to your prick all the way out.");
 			output("\n\nSera drops onto one side to recover, your seed slowly oozing out of her gaped asshole, lips parted and looking slightly dazed. You grin at the sight, enjoying your own post-coital buzz.");
 			output("\n\n<i>“We’re getting there, aren’t we?”</i> you say lowly. <i>“Despite how much you want to deny it. We’re pretty close to transforming you into a fully fledged buttslut.”</i>");
-			output("\n\n<i>“You are so full of " + ((flags["SERA_SERVANT_INTRO"] == undefined || flags["SERA_SERVANT_INTRO"] < 3) ? "shit" : "sh- crap") + " [pc.master], anyone ever told you that?”</i> replies Sera, twisting her lip at you. You think you detect a hint of fondness in there though, and there’s certainly no denying the pinkness of her cheeks.");
+			output("\n\n<i>“You are so full of " + (!seraSpeechCensored ? "shit" : "sh- crap") + " [pc.master], anyone ever told you that?”</i> replies Sera, twisting her lip at you. You think you detect a hint of fondness in there though, and there’s certainly no denying the pinkness of her cheeks.");
 			
 			chars["SERA"].lust(35);
 		}
@@ -2402,7 +2403,7 @@ public function seraBitchTrainingButtfuck():void
 				output(".");
 				output("\n\nSera drops onto one side to recover, your seed slowly oozing out of her gaped asshole, lips parted and looking slightly dazed. You grin at the sight, enjoying your own post-coital buzz.");
 				output("\n\n<i>“We’re getting there, aren’t we?”</i> you say lowly. <i>“Despite how much you want to deny it. We’re pretty close to transforming you into a fully fledged buttslut.”</i>");
-				output("\n\n<i>“You are so full of " + ((flags["SERA_SERVANT_INTRO"] == undefined || flags["SERA_SERVANT_INTRO"] < 3) ? "shit" : "sh- crap") + " [pc.master], anyone ever told you that?”</i> replies Sera, twisting her lip at you. You think you detect a hint of fondness in there though, and there’s certainly no denying the pinkness of her cheeks.");
+				output("\n\n<i>“You are so full of " + (!seraSpeechCensored ? "shit" : "sh- crap") + " [pc.master], anyone ever told you that?”</i> replies Sera, twisting her lip at you. You think you detect a hint of fondness in there though, and there’s certainly no denying the pinkness of her cheeks.");
 			}
 			// 61-80:
 			else
@@ -2411,7 +2412,9 @@ public function seraBitchTrainingButtfuck():void
 				output("\n\n<i>“No! Faster!”</i> grits Sera, sheets bunched in her fists. You can practically hear the anticipation of orgasm stiffening her words. <i>“Please! [pc.master]!”</i>");
 				output("\n\n<i>“Clench up first,”</i> you breathe. <i>“That’s it...”</i> You groan as her hot tunnel tightens up intensely around your [pc.cock " + cIdx + "], and you reward her by increasing the flex of your [pc.hips], reaming her jiggling ass, confident now in your well-trained demon whore to not only take it but enjoy every stroke. You switch hands; one finds her other nipple and closes around it intently, the other gives her jiggling butt a well deserved swat. The whimper this draws out of her only spurs you on.");
 				output("\n\n<i>“Which stuck-up bitch is on her knees and having all of her prissiness fucked out of her ass?”</i> you husk. Your hand lands with a clap on her other buttock. <i>“Whose slut is loving every second of it? Answer me!”</i>");
-				output("\n\n<i>“Fuck! Me! Give it to me, you cunt!”</i> howls Sera, sweat running down her back in rivulets. <i>“Fucking give it to me if you think you’ve got it!”</i> You respond by reaching forward, clutching her horns, and surge to your juicy high by pounding her rippling tunnel in a frenzy.");
+				output("\n\n<i>“" + (!seraSpeechCensored ? "Fuck! Me! Give it to me, you cunt!" : "F-Unh! Please! Give it to me, [pc.master]!") + "”</i> howls Sera, sweat running down her back in rivulets. <i>“" + (!seraSpeechCensored ? "Fucking give" : ("F-" + (silly ? "Frickin’ frick! Give" : "Friggin’ give"))) + " it to me if you think you’ve got it!”</i>");
+				if(seraSpeechCensored) output(" Emboldened by your taunts, she almost broke your no-cursing rule, but it is not like you aren’t already giving her what she deserves...");
+				output(" You respond by reaching forward, clutching her horns, and surge to your juicy high by pounding her rippling tunnel in a frenzy.");
 				output("\n\nA sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
 				if(pc.balls > 0) output(" and [pc.balls]");
 				output(".");
@@ -3231,6 +3234,11 @@ public function seranigansEvent(sEvent:String = "none"):void
 	return;
 }
 
+// Cannot curse! Good girls don’t swear like sailors.
+public function seraBitchSpeechCensored():Boolean
+{
+	return (flags["SERA_SERVANT_INTRO"] >= 3);
+}
 // Talk
 public function seraBitcheningTalk():void
 {
@@ -4791,7 +4799,7 @@ public function evictServantSera():void
 	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
 	{
 		output("Narrowed reptilian eyes watch as you fiddle around with the silver remote. It takes a while to comprehend what you’re trying to do, but once you’ve worked out how to enter the location of the Tavros nursery it makes a series of encouraging beeps.");
-		output("\n\n<i>“" + ((flags["SERA_SERVANT_INTRO"] == undefined || flags["SERA_SERVANT_INTRO"] < 3) ? "Fuck" : "F- flip are you doing?") + "”</i> growls Sera, waiting tensely.");
+		output("\n\n<i>“" + (!seraBitchSpeechCensored() ? "Fuck" : "F- flip are you doing?") + "”</i> growls Sera, waiting tensely.");
 		output("\n\n<i>“Moving you off the ship,”</i> you explain. <i>“You will go to Tavros, take the lift up to the Nursery and stay there. Don’t try anything else - your collar is programmed to give you shocks every thirty seconds if you do.”</i>");
 		output("\n\n<i>“You’re giving up, you mean,”</i> leers the succubus, visibly relaxing. She props her face up in her hands and adopts a sugary coo. <i>“Gotten tired of playing " + pc.mf("Billy Big Balls", "Tammy Tin Tits") + " already? All gotten a bit too much for diddums? It’s ok - I don’t mind being a thrown toy, if it gets me out of YOUR pram.”</i>");
 		output("\n\n<i>“I will come back for you later,”</i> you say as evenly as you can, <i>“and your training will resume then.”</i> Sera laughs sardonically, rolling away on the bed from you. She’s singing a filthy song about a fanfir and Fenchurch Spaceport at the top of her lungs as she leaves.");

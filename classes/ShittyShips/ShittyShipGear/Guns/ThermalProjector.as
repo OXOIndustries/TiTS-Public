@@ -23,7 +23,7 @@ package classes.ShittyShips.ShittyShipGear.Guns
 			this.shortName = "T.Projector";
 			
 			//Regular name
-			this.longName = "thermal cannon"
+			this.longName = "thermal projector cannon"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

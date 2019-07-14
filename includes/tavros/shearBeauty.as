@@ -192,6 +192,13 @@ public function buyFromCeria():void
 			if(!chars["CERIA"].hasItemByClass(LipTease)) chars["CERIA"].inventory.push(new LipTease());
 		}
 		else chars["CERIA"].destroyItemByClass(LipTease, -1);
+		
+		if(9999 == 9999)
+		{
+			chars["CERIA"].keeperBuy += " Glancing at a tray of medipens, some more... intimate cosmetics can be seen.";
+			if(!chars["CERIA"].hasItemByClass(Areolove)) chars["CERIA"].inventory.push(new Areolove());
+		}
+		else chars["CERIA"].destroyItemByClass(Areolove, -1);
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.

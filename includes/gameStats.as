@@ -360,6 +360,8 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Breast Row, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("breast", x)));
 						if(pc.weightQ("breast", x) > 0) output2(" (" + pc.weightQ("breast", x) + " %)");
 					}
+					output2("\n<b>* Areola:</b> " + " " + StringUtil.toDisplayCase(pc.areolaFlagDescript(x)));
+					output2("\n<b>* Areola, Size:</b> " + prettifyLength(pc.nippleWidth(x)));
 					output2("\n<b>* Nipple, Type:</b> " + " " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
 					if(pc.breastRows[x].fuckable()) output2(", Fuckable");
 					if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) output2("\n<b>* Nipple, Genital Type:</b> " + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
@@ -373,7 +375,6 @@ public function statisticsScreen(showID:String = "All"):void
 						else output2("\n<b>* Nipple, Length:</b> " + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
 					}
-					output2("\n<b>* Areola, Size:</b> " + prettifyLength(pc.nippleWidth(x)));
 					if(pc.breastRows[x].breasts != 1) output2(" each");
 					if(pc.breastRows.length != 1)
 					{
@@ -3145,11 +3146,11 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["BADGER_QUEST"] != undefined)
 			{
 				if(flags["PEXIGA_TREATMENT"] != undefined) output2("\n<b><u>Bimbo Quest</u></b>");
-				else if(flags["BADGER_QUEST"] >= 0 && flags["DR_BADGER_TURNED_IN"] == undefined) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
+				else if(flags["BADGER_QUEST"] >= 0 && !drBadgerImprisioned()) output2("\n<b><u>Doctor Badger’s Job Offer</u></b>");
 				else output2("\n<b><u>Doctor Badger’s Big Mistake</u></b>");
 				// Bimbo Raygun
 				output2("\n<b>* Status:</b>");
-				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Reported Dr. Badger, Completed");
+				if(drBadgerImprisioned()) output2(" Reported Dr. Badger, Completed");
 				else if(flags["BADGER_QUEST"] == 1) output2(" <i>Find Penny!</i>");
 				else if(flags["PENNY_BADGER_WARNED"] != undefined)
 				{
@@ -3179,7 +3180,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PEXIGA_TREATMENT"] == undefined) output2(" Talked to Yammi about her pexiga");
 				else
 				{
-					if(flags["DR_BADGER_TURNED_IN"] != undefined)
+					if(drBadgerImprisioned())
 					{
 						output2(" Talked to Yammi");
 						if(flags["LASH_BOMB"] == undefined && flags["DEL_DISTRACT"] == undefined) output2(", <i>U.G.C. authorities are patrolling Dr. Badger’s Bimbotorium...</i>");
@@ -4659,7 +4660,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Anon's Bar!
-			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined || flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined || flags["SAENDRA_XPACK1_STATUS"] >= 8)
+			if(flags["MET_ALEX"] != undefined || flags["SEEN_SELLESY"] != undefined || flags["APPROACHED_SHELLY"] != undefined || flags["RAMIS_MET"] != undefined || flags["SAENDRA_XPACK1_CALLGIRLSTATE"] != undefined || flags["SAENDRA_XPACK1_STATUS"] >= 8 || flags["MET_FADIL"] != undefined)
 			{
 				output2("\n<b><u>Anon’s Bar and Board</u></b>");
 				// Alex
@@ -4670,6 +4671,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(" Met him");
 					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him");
 					if(flags["FUCKED_ALEX"] != undefined) output2("\n<b>* Alex, Times Sexed:</b> " + flags["FUCKED_ALEX"]);
+				}
+				// Alex
+				if(flags["MET_FADIL"] != undefined)
+				{
+					output2("\n<b>* Fadil:</b>");
+					output2(" Met him");
+					if(flags["FADIL_MONEY_GIVEN"] != undefined) output2("\n<b>* Fadil, Total Donation Amount:</b> " + flags["FADIL_MONEY_GIVEN"]);
+					if(flags["FADIL_DONATION_DAY"] != undefined) output2("\n<b>* Fadil, Days Since Last Donation:</b> " + (days - flags["FADIL_DONATION_DAY"]));
+					if(flags["FADIL_SEXED"] != undefined) output2("\n<b>* Fadil, Times Sexed:</b> " + flags["FADIL_SEXED"]);
 				}
 				// Ramis!
 				if(flags["RAMIS_MET"] != undefined)
@@ -6032,12 +6042,26 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["YOMA_MET"] != undefined)
 				{
 					output2("\n<b>* Yoma:</b> Met him");
+					if(flags["YOMA_DATE_PROGRESS"] != undefined)
+					{
+						output2(", Times Dated: ");
+						if(flags["YOMA_RELATIONSHIP"] >= 6 ) output2("3");
+						else if(flags["YOMA_RELATIONSHIP"] == 4 ) output2("2");
+						else output2("2");
+					}
+					output2(", Relationship: ");
+					if(flags["YOMA_RELATIONSHIP"] == undefined ) output2("Acquaintances");
+					else if(flags["YOMA_RELATIONSHIP"] == 0 ) output2("Fuckbuddies");
+					else if(flags["YOMA_RELATIONSHIP"] == 1 ) output2("Lovers");
 					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times You Played His RPG Game:</b> " + flags["YOMA_GAMES_PLAYED"]);
+					if(flags["YOMA_TIMES_HUGGED"] != undefined) output2("\n<b>* Yoma, Times Hugged:</b> " + flags["YOMA_TIMES_HUGGED"]);
 					if(flags["YOMA_TIMES_ORALED"] != undefined) output2("\n<b>* Yoma, Times He Oral Sexed You:</b> " + flags["YOMA_TIMES_ORALED"]);
 					if(flags["YOMA_TIMES_EATEN_OUT"] != undefined) output2("\n<b>* Yoma, Times Licked Him Out:</b> " + flags["YOMA_TIMES_EATEN_OUT"]);
-					if(flags["YOMA_TIMES_VAGINAL"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Dick:</b> " + flags["YOMA_TIMES_VAGINAL"]);
+					if(flags["YOMA_TIMES_TRIBBED"] != undefined) output2("\n<b>* Yoma, Times Scissored With Him:</b> " + flags["YOMA_TIMES_TRIBBED"]);
+					if(flags["YOMA_TIMES_FINGERED"] != undefined) output2("\n<b>* Yoma, Times Fingered Each Other:</b> " + flags["YOMA_TIMES_FINGERED"]);
+					if(flags["YOMA_TIMES_VAGINAL"] != undefined) output2("\n<b>* Yoma, Times Fucked His Pussy With Your Dick:</b> " + flags["YOMA_TIMES_VAGINAL"]);
+					if(flags["YOMA_TIMES_ANALED"] != undefined) output2("\n<b>* Yoma, Times Fucked His Ass With Your Dick:</b> " + flags["YOMA_TIMES_ANALED"]);
 					if(flags["YOMA_TIMES_TAILFUCKED"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Tailcock:</b> " + flags["YOMA_TIMES_TAILFUCKED"]);
-					if(flags["YOMA_TIMES_HUGGED"] != undefined) output2("\n<b>* Yoma, Times Hugged:</b> " + flags["YOMA_TIMES_HUGGED"]);
 				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
 				if(flags["MET_KEROKORAS"] != undefined) output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
@@ -6150,7 +6174,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				else output2(" Refused Bimbofication");
 				output2("\n<b>* Doctor Badger:</b>");
-				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Inactive, Arrested by the U.G.C.");
+				if(drBadgerImprisioned()) output2(" Inactive, Arrested by the U.G.C.");
 				else output2(" Active");
 				if(chars["DRBADGER"].isBimbo()) output2(", Bimbofied");
 				variousCount++;
@@ -7526,7 +7550,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["RATS_LOSS_SEXED"] != undefined) ratSex.push("Was Teased");
 						if(flags["RATS_GANGBANGED"] != undefined) ratSex.push("Gangbang");
 						if(flags["RATS_RIDDEN"] != undefined) ratSex.push("Was Abandoned With Jumper");
-						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
+						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was “Harvested”");
 						output2(ratSex.join(", "));
 					}
 					if(flags["RATS_SEXED_EAR"] != undefined)
@@ -8264,11 +8288,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Kiona, Times Sexed:</b> " + flags["KIONA_SEX"]);
 				}
-				if (kionaLuciniteQuestStage() > 0)
+				if(kionaLuciniteQuestStage() > 0)
 				{
-					if (kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
-					else if (kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
-					else if (kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
+					if(kionaLuciniteQuestStage() == 1) output2("\n<b>* Kiona, Lucinite Quest:</b> Accepted");
+					else if(kionaLuciniteQuestStage() == 2) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed");
+					else if(kionaLuciniteQuestStage() == 3) output2("\n<b>* Kiona, Lucinite Quest:</b> Completed by Saving Wargii Hold");
 				}
 				if(flags["KIONA_KIRKITE"] != undefined) output2("\n<b>* Kiona, Kirkite Donated:</b> " + flags["KIONA_KIRKITE"]);
 				if(flags["KIONA_LUCINITE"] != undefined) output2("\n<b>* Kiona, Lucinite Donated:</b> " + flags["KIONA_LUCINITE"]);

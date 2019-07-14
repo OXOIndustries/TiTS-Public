@@ -362,7 +362,7 @@ public function wargiiHoldEpilogue4():void
 	var credits:Number = 75000;
 	if(score >= 50) credits += 25000;
 	if(score >= 90) credits += 50000;
-	output("\n\n<b>You get a " + credits + " credit advance from Steeletech for these gems. Score!</b>\n\n");
+	output("\n\n<b>You get a " + credits + " credit advance from Steele Tech for these gems. Score!</b>\n\n");
 	//collect stuff here :3 - ring given out elsewhere.
 	pc.credits += 150000;
 	//Set location back to normal

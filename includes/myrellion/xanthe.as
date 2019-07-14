@@ -1734,7 +1734,7 @@ public function shePaysAttentionToYouSlut():void
 		//if (pc.sex = female && pc.hasBreasts = false && pc.hasLegs !>= 1)
 		if(pc.hasVagina() && pc.biggestTitSize() < 1 && pc.legCount > 1)
 		{
-			output("\n\n<i>“It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
+			output("\n\n<i>“It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.”</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
 			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor.");
 			if(pc.hasClit()) output(" Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");

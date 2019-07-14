@@ -2711,9 +2711,9 @@ public function youWonSomePodShit():void
 	flags["PLANET_3_UNLOCKED"] = 1;
 	//[SellShekka] [GiveShekka] [SellSteele]	
 	clearMenu();
-	addButton(0,"SellSteele",sellThePodToSteeleTech,undefined,"SellSteele","Dad probably set up the company to pay out for the pods if you sent them back.");
-	addButton(1,"ShekkaSell",sellDatPodToShekka,undefined,"ShekkaSell","The raskvel would probably buy it back for a portion of its value.")
-	addButton(2,"ShekkaGive",giveTheProbeToShekkaForNuttin,undefined,"ShekkaGive","You don’t need the pod itself. Why not just give it to the little raskvel? They could probably use the extra resources around this junk heap.");
+	addButton(0,"SellSteele",sellThePodToSteeleTech,undefined,"Sell to Steele Tech","Dad probably set up the company to pay out for the pods if you sent them back.");
+	addButton(1,"ShekkaSell",sellDatPodToShekka,undefined,"Sell to Shekka","The raskvel would probably buy it back for a portion of its value.")
+	addButton(2,"ShekkaGive",giveTheProbeToShekkaForNuttin,undefined,"Give to Shekka","You don’t need the pod itself. Why not just give it to the little raskvel? They could probably use the extra resources around this junk heap.");
 }
 
 //Sell to Shekka

@@ -3326,7 +3326,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII T10"] = new RoomClass(this);
 	rooms["KORGII T10"].roomName = "CHIEF’S\nBEDROOM";
-	rooms["KORGII T10"].description = "";//Cut and moved to chiefBedroomBonus: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
+	rooms["KORGII T10"].description = "";//Cut and moved to chiefBedroomBonus: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the Steele Tech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
 	rooms["KORGII T10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T10"].moveMinutes = 2;

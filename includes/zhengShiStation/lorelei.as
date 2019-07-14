@@ -1541,7 +1541,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	output("\n\nYou keep your right hand against her stretched leg, gently drawing your fingernails along her skin, feeling how smooth it is, while your left becomes more adventurous, reaching");
 	if (apologizing) output(" beneath her dress and");
 	output(" up to her stomach, palming at her belly before you hook your arm underneath her other leg. You’re surrounded on both sides by her tanned flesh, warmly pressing against your cheeks; you switch kissing legs, starting up her right leg, getting closer to her wet treasure. She quivers under your touch.");
-	output("\n\n<i>“I like your pace,”</i> she says, and you feel her head resting against your head");
+	output("\n\n<i>“I like your pace,”</i> she says, and you feel her hand resting against your head");
 	if (apologizing) output(", through her dress");
 	if (pc.hasHair()) output(" and playing with your [pc.hair]");
 	output(". <i>“Slow enough to");
@@ -1600,7 +1600,7 @@ public function loreleisGreatestTreasureRevealed(apologizing:Boolean):void
 	{
 		output("\n\nLorelei runs her hands through her hair, revelling in herself and the total contentment she feels. One of her hands comes to rest on top of her belly, her fingers inching their way towards her clit, teasing to you both the idea of a round two, and so immediately after round one. You busy yourself by returning to your original business: kissing her legs.");
 		output("\n\n<i>“Drink it in, darling,”</i> she says to you. Her body writhes sensually, from one side to the other, like a snake trying to get your attention. You get the impression she’s referring to her body, and not to the deluge of pussy juice still dribbling down your chin. <i>“Mmmm,</i> this <i>is the body you belong to. Admit it; there are worse lots in life.”</i>");
-		output("\n\nYou agree with her. You can’t take your eyes away from her sensual curves; the way the light of the room compliments her tanned skin; how her wriggling and moving is messing up the bedsheets....");
+		output("\n\nYou agree with her. You can’t take your eyes away from her sensual curves; the way the light of the room complements her tanned skin; how her wriggling and moving is messing up the bedsheets....");
 		output("\n\nLorelei moans again, her fingers massaging at the pussy you’ve just serviced, while she nibbles onto her own lower lip. <i>“No woman in this universe wouldn’t admit that you’ve got talent, [pc.name],”</i> she admits, her eyes flitting towards your own [pc.crotch] and how you’ve neglected yourself for her, <i>“and it’s got me ready for a second round....”</i>");
 		output("\n\nLorelei wants a second round already? Well... you wouldn’t want to disappoint your mistress.");
 

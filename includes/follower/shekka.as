@@ -2184,7 +2184,7 @@ public function shekkaAnnoVibeOffpre(repeat:Boolean = false):void
 	}
 	output("<i>“What about a competition?”</i> you posit. <i>“Both of you build something fun, and I’ll be your proud, unbiased tester.”</i>");
 	output("\n\nThe girls blink and share a look, before turning wicked smiles on you. <i>“Oh fuck you’re so on.”</i> Shekka says, hopping off of the bed and making for the back of the ship (and her impromptu workbench).");
-	output("\n\nAnno seems to agree, diving into the cupboards to pull out a bunch of her old Steeletech shit. <i>“You sit right there [pc.name]! I’ll whip up something that’ll rock your ");
+	output("\n\nAnno seems to agree, diving into the cupboards to pull out a bunch of her old Steele Tech shit. <i>“You sit right there [pc.name]! I’ll whip up something that’ll rock your ");
 	if(pc.hasCock()) output("cock off");
 	else output("cunt into the stratosphere");
 	output("!”</i>");

@@ -594,17 +594,17 @@ public function bigBallBadEndCont(response:String = "help"):void
 				if(btnSlot >= 59 || (i == (lifeline.length - 1))) break;
 				if((btnSlot + 1) % 15 == 0)
 				{
-					addButton(btnSlot, "Nevermind", bigBallBadEndCont, "stay");
+					addButton(btnSlot, "Never Mind", bigBallBadEndCont, "stay");
 					btnSlot++;
 				}
 			}
 			if(btnSlot > 14)
 			{
 				while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
-				addButton(btnSlot, "Nevermind", bigBallBadEndCont, "stay");
+				addButton(btnSlot, "Never Mind", bigBallBadEndCont, "stay");
 			}
 			
-			addButton(14, "Nevermind", bigBallBadEndCont, "stay");
+			addButton(14, "Never Mind", bigBallBadEndCont, "stay");
 			break;
 		case "Steele Tech":
 			showBust("MILLY");
