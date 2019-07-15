@@ -602,10 +602,12 @@
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
+		public function get samePageLog():Boolean {return gameOptions.samePageLog; }
 		public function get debug():Boolean { return gameOptions.debugMode; }
 		
 		public function set silly(v:Boolean):void { gameOptions.sillyMode = v; }
 		public function set easy(v:Boolean):void { gameOptions.easyMode = v; }
+		public function set samePageToggle(v:Boolean):void {gameOptions.samePageLog = v; }
 		public function set debug(v:Boolean):void { gameOptions.debugMode = v; }
 		
 		public var inputManager:InputManager;

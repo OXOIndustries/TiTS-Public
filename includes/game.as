@@ -39,15 +39,12 @@ public function infiniteItems():Boolean
 	return (debug || flags["INFINITE_ITEMS"] != undefined);
 }
 
-public function processEventBuffer():Boolean
+public function processEventBuffer():String
 {
+	var output:String = ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
+	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
-		clearOutput();
-		clearBust();
-		
-		output("<b>" + possessive(pc.short) + " log:</b>");
-		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -67,18 +64,13 @@ public function processEventBuffer():Boolean
 				d += h / 24;
 				h = h % 24;
 			}
-			
-			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
+			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + (i+1 < timestampedEventBuffer.length ? "\n\n":"\n"));
+			//Old: output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
 		}
 		
 		timestampedEventBuffer = [];
-		
-		clearMenu();
-		addButton(0, "Next", mainGameMenu);
-		return true;
 	}
-	
-	return false;
+	return output;
 }
 
 public static const NAV_NORTH_DISABLE:uint 	= 1;
@@ -184,9 +176,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	generateMap();
 	showLocationName();
 	
-	//Display shit that happened during time passage.
-	if (processEventBuffer()) return;
-	
 	//Queued events can fire off too!
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
@@ -224,6 +213,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
+	//Display shit that happened during time passage.
+	var eventBuffer:String = processEventBuffer();
+	if (eventBuffer != ("<b><u>" + possessive(pc.short) + " log:</u></b>\n"))
+	{
+		if (samePageLog) output("" + eventBuffer + "<b><u>End log.</u></b>\n\n");
+		else
+		{
+			clearBust();
+			output("" + eventBuffer + "");
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			return;
+		}
+	}
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
