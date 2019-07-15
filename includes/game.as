@@ -4029,6 +4029,7 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
+//DeltaT is in minutes.
 public function processTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)
