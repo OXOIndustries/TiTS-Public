@@ -17,7 +17,7 @@ package  classes
 		 * @param	value
 		 * @return
 		 */
-		public static function toTitleCase(value:String):String
+		public static function toTitleCase(value:String, splitChar:String = " "):String
 		{
 			if (value == null) return "Null String? :(";
 			if (value.length == 0) return "Length 0 String? :(";
@@ -29,7 +29,7 @@ package  classes
 				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
 				];
 			
-			var w:Array = value.split(" ");
+			var w:Array = value.split(splitChar);
 			var q:String = "";
 			var r:String = "";
 			for (var i:int = 0; i < w.length; i++)
@@ -43,13 +43,14 @@ package  classes
 				if (i == 0 || (conjunctions.indexOf(w[i]) == -1 && romanNum.indexOf(w[i]) == -1))
 				{
 					if(w[i] == w[i].toLowerCase() && romanNum.indexOf(w[i].toUpperCase()) != -1) w[i] = w[i].toUpperCase();
+					else if(w[i].length > 2 && w[i].indexOf("-") != -1) w[i] = toTitleCase(w[i], "-");
 					else if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
 				r = "";
 			}
 			
-			return w.join(" ");
+			return w.join(splitChar);
 		}
 		
 		/**
@@ -57,7 +58,7 @@ package  classes
 		 * @param	value
 		 * @return
 		 */
-		public static function toDisplayCase(value:String):String
+		public static function toDisplayCase(value:String, splitChar:String = " "):String
 		{
 			if (value == null) return "Null String? :(";
 			if (value.length == 0) return "Length 0 String? :(";
@@ -69,7 +70,7 @@ package  classes
 				"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX",
 				];
 			
-			var w:Array = value.split(" ");
+			var w:Array = value.split(splitChar);
 			var q:String = "";
 			var r:String = "";
 			for (var i:int = 0; i < w.length; i++)
@@ -83,13 +84,14 @@ package  classes
 				if (i == 0 || (conjunctions.indexOf(w[i]) == -1 && romanNum.indexOf(w[i]) == -1))
 				{
 					if(w[i] == w[i].toLowerCase() && romanNum.indexOf(w[i].toUpperCase()) != -1) w[i] = w[i].toUpperCase();
+					else if(w[i].length > 2 && w[i].indexOf("-") != -1) w[i] = toDisplayCase(w[i], "-");
 					else if(r.length > 0) w[i] = r + capitalize(w[i], false);
 					else w[i] = capitalize(w[i], false);
 				}
 				r = "";
 			}
 			
-			return w.join(" ");
+			return w.join(splitChar);
 		}
 		
 		/**

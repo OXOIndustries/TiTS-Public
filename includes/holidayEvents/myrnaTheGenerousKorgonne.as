@@ -206,7 +206,7 @@ public function myrnaAppearance():void
 	output("\n\nMyrna is a lightly modded korgonne, standing at about 4\' 8\" tall by your guess. She is a textbook definition of a short stack; well rounded F-cup jugs proportionate to her size, wide shapely hips, and plump bottom, ");
 	if (CodexManager.entryViewed("The Treatment") && flags["MYRNA_MYRNA_TALK"] != undefined) output("all further enhanced by the treatment pen that she consumed.");
 	else output("even more exaggeratedly so than any normal korgonne.");
-	output(" She has a small bit of pudginess to her, which compliments her nicely.");
+	output(" She has a small bit of pudginess to her, which complements her nicely.");
 
 	output("\n\nThe small korgonne has rich, snow-white fur that blends in with the outside world almost perfectly so. A thick, long coat of matching hair extends from the top of her head down to about her chest. The main thing that distinguishes her from other members of her species is that her flesh color is a vibrant red, likely an effect of one of the transformatives she took. She smells strongly of peppermint, so much so that being directly next to her waters your eyes a little.");
 	//If PC read treatment entry in codex:

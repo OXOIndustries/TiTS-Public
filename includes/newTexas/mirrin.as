@@ -1288,7 +1288,7 @@ public function talkToMirrinAbootYuuuu():void
 	author("SoAndSo");
 	output("You go with her original question.");
 	output("\n\n<i>“Well...”</i> you begin, starting with your parents, childhood and so on. You talk about your career as [pc.aStartingCareer] and the early exploits you’ve gone through, the planets you’ve seen, the locals you’ve... become <i>very</i> familiar with. Mirrin laughs with her hand over her mouth at some of those tales.");
-	output("\n\nThe talk quickly shifts to the mess surrounding your inheritance of SteeleTech, the mention of which makes the attentive Mirrin raise an eyebrow.");
+	output("\n\nThe talk quickly shifts to the mess surrounding your inheritance of Steele Tech, the mention of which makes the attentive Mirrin raise an eyebrow.");
 	output("\n\n<i>“That’s you?? I thought Steele was just a common name. But holy <i>shit</i>, that’s actually pretty baller,”</i> she exclaims, inching ever so slightly closer to you. <i>“So what, you’ve got your ship here and just do anything anywhere being the baddest ass?”</i>");
 	output("\n\nMy ass isn’t <i>that</i> bad, you think to yourself. Oh wait.");
 	output("\n\n<i>“Uh, yes! At the minute, I’m trying to out-do my cousin,”</i> you say, ‘cousin’ said through gritted teeth, <i>“and we’ve got this whole ace space-race...? Going on.”</i>");

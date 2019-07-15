@@ -3531,7 +3531,7 @@ public function badgerNymFoeDakimakuraLook():void
 	author("Natetheman223");
 	
 	output("This is a lewd body pillow of Nym-Foe, the nurse you once fought in Badger’s lab. It has a picture of the robo-nurse on either side.");
-	output("\n\nOn the front is Nym-Foe facing forward with one hand down low on her body, pushing her light red panties down ever so slightly, while her other hand is splayed loosely above her head. She has a slightly nervous expression on her face: pink blush along her snow white cheeks, upward tilted brows and a gentle smile on her big lips. Her giant boobs have silicone in them (as in, <i>inside</i> the daki), providing extra cushioning. They take up most of her torso, with her nipples poking out from the top of her corset. Her thick thighs are pointed toward each other, her knees touching with her stocking-clad legs parted. Her injector tail compliments her figure.");
+	output("\n\nOn the front is Nym-Foe facing forward with one hand down low on her body, pushing her light red panties down ever so slightly, while her other hand is splayed loosely above her head. She has a slightly nervous expression on her face: pink blush along her snow white cheeks, upward tilted brows and a gentle smile on her big lips. Her giant boobs have silicone in them (as in, <i>inside</i> the daki), providing extra cushioning. They take up most of her torso, with her nipples poking out from the top of her corset. Her thick thighs are pointed toward each other, her knees touching with her stocking-clad legs parted. Her injector tail complements her figure.");
 	output("\n\nOn the other side is Nym-Foe facing away with her head turned back to you, her boobs squished against the bed she’s laying on. Her metallic blonde braid hangs down her corset covered back, leading down to her big butt. The panties on her appear tight, showing off each delicious cheek and thigh. Her arms are wrapped up around her breasts while her tail weaves delicately above her behind.");
 	output("\n\nA very pretty pillow.");
 	output("\n\n");
@@ -4647,7 +4647,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("\n\nYou examine the needle, applying a little pressure at the base to cause a tiny dollop of the poison-like substance to escape. The drip hits the floor silently. Your hands are a bit shaky as you prepare to inject a small bit of it.");
 			output("\n\nYou calm your hands enough to hold the needle tip still and solid. Slowly and carefully, the tip pierces your " + (silly ? "wagina" : "inner elbow") + ", and the automatic dispensing system activates, gradually sending the green liquid into your veins. After about a quarter of the syringe has entered you, you pull your arm back. The pressure-sensitive needle automatically stops dispensing and you prepare yourself for the imminent changes: the drug siphoning your brain power away.");
 			output("\n\nJust seconds later, you feel different. IQ points seem to disappear quickly as you are looking down at your body.");
-			if(pc.biggestTitSize() >= 5 && pc.biggestCockLength() >= 8) output(" Wow, you’ve got a lot going for you. Tits and a dick, perfectly complimenting each other.");
+			if(pc.biggestTitSize() >= 5 && pc.biggestCockLength() >= 8) output(" Wow, you’ve got a lot going for you. Tits and a dick, perfectly complementing each other.");
 			else if(pc.biggestCockLength() >= 8) output(" Wow, what a great dick, you think to yourself.");
 			else if(pc.biggestTitSize() >= 5) output(" Wow, those are some nice tits, you think to yourself.");
 			else output(" It’s so mesmerizing to just look at yourself.");
@@ -5073,7 +5073,7 @@ public function drBadgerSiliconeMiniTankBonus(btnSlot:int = 0):void
 	// Pick one random line to add depending on crewmates:
 	var siliconeTankBlurbs:Array = [];
 	if(celiseIsCrew()) siliconeTankBlurbs.push("A small splatter of green goo is on the side of the tank.");
-	if(annoIsCrew()) siliconeTankBlurbs.push("A SteeleTech sticker is on the side of the tank.");
+	if(annoIsCrew()) siliconeTankBlurbs.push("A Steele Tech sticker is on the side of the tank.");
 	if(kaseIsCrew()) siliconeTankBlurbs.push("A sticker of a circuit board is on the side of the tank.");
 	if(pexigaIsCrew()) siliconeTankBlurbs.push("Some drool leaks down the side of the tank.");
 	if(gooArmorIsCrew()) siliconeTankBlurbs.push("A splatter or gray microbots sticks to the side of the tank.");

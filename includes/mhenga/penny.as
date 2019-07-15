@@ -5480,7 +5480,7 @@ public function defeatMiningBotsWithPenpen():void
 		else if(pc.isMischievous()) output("flashy");
 		else output("hard");
 		output(" smile. <i>“All good.”</i>");
-		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with SteeleTech to get a good rate on it, right?”</i>");
+		output("\n\n<i>“Great.”</i> Penny pants, trying to catch her breath. <i>“Then let’s file this claim before some other monster reveals itself. You’ve got an inside line with Steele Tech to get a good rate on it, right?”</i>");
 		output("\n\nYou nod.");
 		output("\n\n<i>“Then let’s get the paperwork rolling. A 50/50 split on all this Oxonium is going to take a pretty solid chunk out of my debt.”</i>");
 		output("\n\nYou pull out your Codex and go to work. Not long after, you and Penny are the proud recipients of <b>30,000 credits</b> - each.");

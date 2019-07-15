@@ -1795,6 +1795,11 @@
 		{
 			return chars["LORELEI"];
 		}
+		
+		public function get vahn():Vahn
+		{
+			return chars["VAHN"];
+		}
 
 		public function testShipCombat():void
 		{

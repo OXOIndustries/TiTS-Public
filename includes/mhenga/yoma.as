@@ -927,7 +927,7 @@ public function yomaSexGetFingered(onADate:Boolean=false):void
 	else output("You’re");
 	output(" sweating like some kind of animal, pinned against the wall of your shower as Yoma fumbles for the controls with his spare hand. You gasp and pant as he breaks the messy, adrenaline-comedown inspired liplock you’re sharing.");
 	output("\n\n<i>“"+ (flags["YOMA_TIMES_FINGERED"] != undefined ? "As you know, " : "") +"I am waterproof - this is fine. I will not accidentally electrocute you "+ (pc.hasPerk("Akane's Painslut") ? "though something tells me you might enjoy that" : "")+ ".”</i>");
-	output("\n\nYou laugh breathily, kissing him again to shut him up. He takes the hint, flicking the shower on"+ (PCShipManufacturer() == "Casstech" ? " - snickering at the way you jump as the water comes out freezing cold, though it soon warms up" : "") +". You can feel your sweat being wicked away by the steaming flow, and Yoma begins helping, lathering his hands up with soap and humming gently as he begins cleaning you off.");
+	output("\n\nYou laugh breathily, kissing him again to shut him up. He takes the hint, flicking the shower on"+ (PCShipIsCasstech() ? " - snickering at the way you jump as the water comes out freezing cold, though it soon warms up" : "") +". You can feel your sweat being wicked away by the steaming flow, and Yoma begins helping, lathering his hands up with soap and humming gently as he begins cleaning you off.");
 	output("\n\nOf course, he’s not subtle about your shared desire for physical intimacy"+ (onADate ? " after your near miss earlier" : "") +". His hands are hot and heavy, lingering far longer on your [pc.chest], ");
 	if (pc.isHerm()) output("[pc.cocks], [pc.vaginas]");
 	else if (pc.hasVagina()) output("[pc.vaginas]");
@@ -1191,7 +1191,7 @@ public function yomaFirstDateProceed():void
 	output("Flahne, heading out to the elevator that’ll take you back up to your ship.");
 	output("\n\n<i>“I am simply not familiar with the area, [pc.Name]. It was not my destination either, so no need to dawdle,”</i> he states, his tone not particularly welcoming further questioning. It doesn’t take too long for you to take the elevator up to the platform your ship is docked at, and Yoma rocks back onto the heels of his feet as he looks at it, whistling lowly. For a while, it looks like he’s examining it, tracing a hand along its paintwork with an expression of curiosity painted across his features - ears and tail flicking about, as if making observations of his own.");
 	output("\n\n<i>“Nice ship, [pc.Name]!”</i> is the eventual verdict, the android turning back to look at you. <i>“I like a [pc.manWoman] who treats their machines well.”</i> You don’t doubt that for a moment.");
-	output("\n\nA moment of final admiration "+ (PCShipManufacturer() == "Casstech" ? "and a confirmation that yes, this is the same ship your father used for the Rush he took part in, " : "") +"later and you ask if he’d like to come inside. There’s no need to ask twice - as soon as the words are out of your mouth he brushes past you into the ship.");
+	output("\n\nA moment of final admiration "+ (PCShipIsCasstech() ? "and a confirmation that yes, this is the same ship your father used for the Rush he took part in, " : "") +"later and you ask if he’d like to come inside. There’s no need to ask twice - as soon as the words are out of your mouth he brushes past you into the ship.");
 	output("\n\nIt’s not long before ");
 	if (crew(true, true) > 0) {
 		output("you hear him introducing himself to your crew,");
@@ -1336,7 +1336,7 @@ public function yomaFirstDateOutro():void
 	showYoma();
 	author("GothPastel");
 
-	output("The rest of your journey back to Mhen’ga is uninterrupted - mostly, that is - as Yoma slinks into the cockpit with you the moment he’s finished cleaning up, watching you handle the controls with your usual ease"+ (PCShipManufacturer() == "Casstech" ? " rather impressed, as he makes a point of noting, that you remain unbothered by the somewhat antiquated controls." : "."));
+	output("The rest of your journey back to Mhen’ga is uninterrupted - mostly, that is - as Yoma slinks into the cockpit with you the moment he’s finished cleaning up, watching you handle the controls with your usual ease"+ (PCShipIsCasstech() ? " rather impressed, as he makes a point of noting, that you remain unbothered by the somewhat antiquated controls." : "."));
 	output("\n\nThere aren’t any distractions other than that, and you’re soon touching down. You walk your android companion as far as the bar before the two of you say your goodbyes.");
 	output("\n\nYoma gets a few metres away from you before he spins back, running back up to you and stumbling a little over his feet - though you catch him before he trips over.");
 	output("\n\n<i>“Sorry, sorry - I almost forgot! I had an absolutely lovely night, [pc.Name], and I would certainly not object to a similar event in the future,”</i> he says, trademark beam back on his face once he’s recovered from nearly tripping.");
@@ -1396,9 +1396,9 @@ public function yomaSecondDateProceed():void
 	
 	output("Of course you do.");
 	output("\n\nYoma beams, plopping his bag back onto his shoulder properly, before weaving his way out of the bar, you close behind him. You have to jog a few paces once you’re out to keep up with his energetic, bouncy pace, but once you do catch up the android links his arm with yours, slowing down to match your regular pace.");
-	output("\n\nIt’s not long before you reach your ship, ");
-	if (crew(true, true) > 0) output("your companion calling out a cheery greeting to its other occupant"+ (crew(true, true) > 1 ? "s" : "") +"before");
-	else output("and");
+	output("\n\nIt’s not long before you reach your ship,");
+	if (crew(true, true) > 0) output(" your companion calling out a cheery greeting to its other occupant"+ (crew(true, true) > 1 ? "s" : "") +" before");
+	else output(" and");
 	output(" the two of you easily settle into your cockpit. Clearly, Yoma doesn’t feel the need to get dressed up this time - though you suppose his shorts and sandals really are already fitting gear for a warm weather picnic.");
 	output("\n\nIt’s simple enough to tap in the right coordinates and pilot away from Mhen’ga’s docks before you put the ship into autopilot. You’ve got a good couple of hours before you’ll need to do anything more intensive than keep watch... And Yoma seems to have the perfect distraction, hand tracing over your [pc.crotch], that Void-damned grin on his face.");
 	output("\n\nYou’re going to have a fun flight.");
@@ -1538,7 +1538,7 @@ public function yomaSecondDateProceedVI():void
 	output("\n\n<i>Shit.</i>");
 	output("\n\nThere’s no time to think, and unarmed as you are, no way to fight. You grab Yoma’s hand, tugging him to his feet and <i>run</i>. He barely has time to scoop up his belongings, but manage it he does, and the two of you are off.");
 	output("\n\nYou daren’t stop, not even to catch your breath - these things eat silicone, credits, anything. If they catch you, maybe you’ll be fine - but Yoma? Yoma won’t be.");
-	output("\n\nYou can’t have that. Even when he stumbles you don’t stop, just scooping him up and throwing him over your shoulder"+ (pc.tallness <= 60 ? ", not caring at all about how ridiculous you’ll look when you make it back to the townstead." : ""));
+	output("\n\nYou can’t have that. Even when he stumbles you don’t stop, just scooping him up and throwing him over your shoulder"+ (pc.tallness <= 60 ? ", not caring at all about how ridiculous you’ll look when you make it back to the townstead" : "") + ".");
 	output("\n\nAfter what seems like an age, you collapse out of the fields, lungs burning and sweat dripping from every pore. You hear gunshots as "+ (flags["MET_CAMERON"] != undefined ? "Cameron" : "the farmhand") +" takes potshots at the varmint chasing you, and the sigh of relief as it scarpers.");
 	output("\n\nYoma sits up before you, crying a desperately relieved thanks to anybody who will listen, before you stagger to your feet.");
 	output("\n\nStumbling back through customs, and onto your ship seems to take eons, but the moment you’ve set a course back for Mhen’ga the almost deadly encounter begins to take its toll, and you can do nothing else but press a clumsy kiss to your android lover’s lips as he leads you back to your quarters.");
@@ -1770,7 +1770,9 @@ public function yomaThirdDateSetRelationship(lovers:Boolean):void
 		output("You can’t help it. There’s a reason why you keep coming back to Mhen’ga after all this time, and he’s looking right at you.");
 		output("\n\nThe android blinks a few times, struggling to process for a few moments that feel more like hours to you, before you’re bodily tackled into the nearest snowdrift by the force behind the launching hug sprung on you.");
 		output("\n\n<i>“I did not dare hope, [pc.Name]. I have been telling myself I was foolish to consider the possibility, let alone blurt it out to you like I did. I kept thinking 'oh, do not be so silly, [pc.heShe] has so many possibilities better than someone else’s robot'... But I am so, so glad to be proved wrong.”</i>");
-		output("\n\nThe words are half mumbled into your chest, uncharacteristic shyness evident in every tense inch of your companion’s form. Compelled, you gently take his chin in one hand, pressing what starts as a chaste kiss to his soft lips. He’s soon reciprocating, impassioned to the point where you’re half expecting him to jump you{, even so soon after that last fuck}, but he pulls back eventually.");
+		output("\n\nThe words are half mumbled into your chest, uncharacteristic shyness evident in every tense inch of your companion’s form. Compelled, you gently take his chin in one hand, pressing what starts as a chaste kiss to his soft lips. He’s soon reciprocating, impassioned to the point where you’re half expecting him to jump you");
+		if(flags["YOMA_DATE_ELEVATOR_SEX"] == 1) output(", even so soon after that last fuck");
+		output(", but he pulls back eventually.");
 		output("\n\nStanding up, he offers you a hand and you realise that - oh - you’re still lying in the snow. You take his hand"+ (pc.isMischievous() ? ", tugging it playfully like you might just pull him back down, before you " : " and") + " let him help you up, not letting go even after you’re back on your feet. He helps you dust off the worst clumps sticking to you"+ (pc.isNude() ? " and giving you a playful swat on the [pc.ass] as he does" : "") + ", before ");
 		if (pc.tallness < 63) output("leaning down");
 		else if (pc.tallness == 63) output("leaning in");

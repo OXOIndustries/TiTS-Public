@@ -597,7 +597,7 @@ public function initWargiiRooms():void
 	rooms["WARGII T10"] = new RoomClass(this);
 	rooms["WARGII T10"].roomName = "CHIEF’S\nBEDROOM";
 	rooms["WARGII T10"].description = "";
-	//The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
+	//The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the Steele Tech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
 	rooms["WARGII T10"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T10"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T10"].moveMinutes = 2;

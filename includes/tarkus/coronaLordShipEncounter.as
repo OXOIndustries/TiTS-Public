@@ -281,7 +281,7 @@ public function genericVariantUnoForPyroPup2():void
 	var x:int = -1;
 	if(pc.hasCock()) 
 	{
-		pc.cockThatFits(400);
+		x = pc.cockThatFits(400);
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	output("Then she’s kissing you, pressing you back against the wall and grinding her pussy " + (pc.isTaur() ? "against your front":"into your lap"));
@@ -395,7 +395,7 @@ public function pyroPup2GenericSex2():void
 	var x:int = -1;
 	if(pc.hasCock()) 
 	{
-		pc.cockThatFits(400);
+		x = pc.cockThatFits(400);
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	output("Then she’s kissing you, pressing you back against the wall and grinding her pussy " + (pc.isTaur() ? "against your front":"into your lap"));

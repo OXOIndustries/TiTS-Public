@@ -679,7 +679,7 @@ public function sweatBunSlickyslickTitbang2():void
 	else if(pc.isBimbo()) output(" And you don’t care in the slightest. You love cum! You’d take a bath in if you could, let her fuck you in a tub until bunny-spunk is sloughing over the edge.");
 	else 
 	{
-		output(" And you don’t mind much at all. A deep sense of emotional satisfaction rises alongside the tide of bunny-spunk. The knowledge that your tits drove her to such a state is pleasing in a way that nicely compliments your unsated arousal. You have no doubt you’ll be masturbating to this once she’s gone, but for now, you revel in it, little more than ");
+		output(" And you don’t mind much at all. A deep sense of emotional satisfaction rises alongside the tide of bunny-spunk. The knowledge that your tits drove her to such a state is pleasing in a way that nicely complements your unsated arousal. You have no doubt you’ll be masturbating to this once she’s gone, but for now, you revel in it, little more than ");
 		if(pc.bRows() == 1) output("a set");
 		else output("sets");
 		output(" of too-happy boobs serving as a cum-dumpster.");

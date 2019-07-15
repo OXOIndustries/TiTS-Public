@@ -168,7 +168,7 @@ public function tavrosHangarStuff():Boolean
 				pc.createStatusEffect("SeenMitzi");
 				pc.setStatusMinutes("SeenMitzi",120);
 			}
-			output("\n\n<b>A buxon gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
+			output("\n\n<b>A buxom gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
 			addButton(btnSlot++,"Gabilani",mitziFirstShipApproach);
 		}
 		//Mitzi has been kicked off or is lurking around.

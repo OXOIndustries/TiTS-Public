@@ -3538,7 +3538,7 @@ public function amberAndAnnoGetFucked(cockIdx:int):void
 	if (amberDumbfuckDoses() < 2) output("\n\n<i>“Oh, god, yes,”</i> she moans, her red hair bouncing up and down with every fervent nod. <i>“You’re an amazing team.”</i>");
 	else if (amberDumbfuckDoses() < 4) output("\n\n<i>“Nnnnh, <b>fuck</b> yes,”</i> she moans, squeezing her tits eagerly. <i>“Having her blowing my cock and you fucking my cunt was amazing...”</i>");
 	else output("\n\nShe nods fervently, roughly squeezing her own breasts and tweaking her nipples. Even after all that, she’s still looking for more. Looks like your team efforts really paid off.");
-	output("\n\n<i>“It’s that SteeleTech link!”</i> Anno declares, grinning. <i>“Fostering communication, and all that jazz.”</i>");
+	output("\n\n<i>“It’s that Steele Tech link!”</i> Anno declares, grinning. <i>“Fostering communication, and all that jazz.”</i>");
 	output("\n\n<i>“Maybe you’re right,”</i> you reply, " + pc.mf("chuckling.", "giggling.") + " <i>“I’m going to grab a shower. I’ll see you girls later.”</i>");
 	output("\n\n<i>“Bye, [pc.name]!”</i> they call out, waving as you depart. You’re gonna have to call Anno in more often...");
 
