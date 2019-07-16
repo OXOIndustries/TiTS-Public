@@ -475,6 +475,7 @@
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/sidewinder.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/snekAndMaus.as";
@@ -1782,6 +1783,11 @@
 		public function get marion():Marion
 		{
 			return chars["MARION"];
+		}
+
+		public function get olympia():Marion
+		{
+			return chars["OLYMPIA"];
 		}
 	
 		public function get lureling():Lureling

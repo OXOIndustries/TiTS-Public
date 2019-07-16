@@ -785,6 +785,7 @@ public const CREW_PENNY:int = 19;
 public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
+public const CREW_OLYMPIA:int = 23;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -810,6 +811,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (shekkaRecruited()) crewMembers.push(CREW_SHEKKA);
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
+	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -846,6 +848,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
+	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -959,6 +962,7 @@ public function getCrewOnShip():Array
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
+	if (olympiaIsCrew()) c.push(olympia);
 	return c;
 }
 
@@ -986,6 +990,7 @@ public function getGunnersOnShipNames():Array
 	if (syriIsCrew()) crewMembers.push("Syri");
 	//if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	return crewMembers;
 }
 
@@ -1012,6 +1017,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (shekkaIsCrew()) crewMembers.push("Shekka");
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	
 	if (allcrew)
 	{
@@ -1209,6 +1215,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += mitziCrewBonus(btnSlot, InCollection(CREW_MITZI, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (olympiaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += olympiaCrewText(btnSlot, InCollection(CREW_MITZI, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1967,6 +1982,17 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
+	// Olympia fucks off if you swap ships.
+	if(!(shits["SHIP"] is Sidewinder) && olympiaIsCrew()) 
+	{
+		olympiaIsSidewinderOnly();
+		return true;
+	}
+	if(shits["SHIP"] is Sidewinder && !olympiaIsCrew()) 
+	{
+		olympiaComesBackWithSidewinder();
+		return true;
+	}
 	// Mitzi stops you from going inside~
 	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
 	{
@@ -3854,9 +3880,22 @@ public function variableRoomUpdateCheck():void
 		rooms["ZSM U2"].addFlag(GLOBAL.NPC);
 		rooms["ZS J42"].addFlag(GLOBAL.NPC);
 	}
-
-	if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
-	else rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	//SIDEWINDER
+	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) 
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	}
 
 	if(flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF I8"].addFlag(GLOBAL.NPC);

@@ -49,7 +49,11 @@ public function showRivalAndFeruze():void
 
 public function cousinEncounterBonus():Boolean
 {
-	if(flags["FERUZE_ZHENG_OUTCOME"] == undefined)
+	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	{
+
+	}
+	else if(flags["FERUZE_ZHENG_OUTCOME"] == undefined)
 	{
 		showRivalAndFeruze();
 		author("Fenoxo");
@@ -69,7 +73,11 @@ public function cousinEncounterBonus():Boolean
 	}
 	else
 	{
-		if(pc.hasKeyItem("Teyaal’s Key Card")) addButton(6,"North",enterShip);
+		if(pc.hasKeyItem("Teyaal’s Key Card")) 
+		{
+			output("\n\n<b>You have the keycard. You can enter the ship at any time.</b> (Enter ship via the 'North' button.)");
+			addButton(6,"North",enterShip);
+		}
 		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
 	}
 	return false;
