@@ -441,10 +441,10 @@ public function olympiaTalkingTimes():void
 	addButton(2,"Current Work",olympiasCurrentWork,undefined,"Current Work","What’s Olympia keeping herself busy with these days?");
 	if(crew(true) > 1) addButton(3,"Crew Opinion",olympiasCrewOpinion,undefined,"Crew Opinion","See if Olympia has any thoughts about her fellow crewmen.");
 	else addDisabledButton(3,"Crew Opinion","Crew Opinion","You don't have crew for her to talk about.");
-	addButton(4,"Former Owner?",,undefined,"Former Owner?","");
+	/*addButton(4,"Former Owner?",,undefined,"Former Owner?","");
 	addButton(5,"Clothes?",,undefined,"Clothes?","");
 	addButton(6,"Hug",,undefined,"Hug","");
-	addButton(14,"Back",approachOlympia,true);
+	addButton(14,"Back",approachOlympia,true);*/
 }
 
 //Her History
@@ -676,12 +676,13 @@ public function olympiasClothes():void
 	output("\n\nThe gynoid shifts on her heels, clasping her hands behind her hack. <i>“So, is there a reason you ask, captain? Perhaps you’d like me to change things up?”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(0,"Uniform",,undefined,"Uniform","");
+	/*addButton(0,"Uniform",,undefined,"Uniform","");
 	addButton(1,"Lab Coat",,undefined,"Lab Coat","");
 	addButton(2,"Naked",,undefined,"Naked","");
-	addButton(4,"Back",olympiaTalkingTimes);
+	addButton(4,"Back",olympiaTalkingTimes);*/
 }
 
+/*
 //[Uniform]
 //Put Olympia in some sexy black-and-gold latex.
 //First time, the PC must have a Steele Tech Suit. Giving it to her uses it up. If none present, set tooltip as <i>“You’d need a Steele Tech jumpsuit to give her. Maybe an employee of the company could hook you up.”</i>
