@@ -12,6 +12,7 @@
 	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldDisruptor;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.ShieldBoosterForShips;
 	import classes.ShittyShips.ShittyShipGear.Gadgets.RepairModule;
+	import classes.ShittyShips.ShittyShipGear.Upgrades.HeavyArmor;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -49,7 +50,7 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "";
+			this.long = "The <i>Sidewinder</i> is the culmination of months of work by a coalition of Zheng Shi's pirate gangs. It is a ship built to travel at extreme speeds - to blow through blockades and leave pursuit lost in the space-dust. With its main drive engines accounting for more than half the ship's mass, it has much less interior space than vessels of similar size, but she's got it where it counts.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It’s too evasive!";
 			this.isPlural = false;
@@ -57,7 +58,7 @@
 			//this.meleeWeapon.attack = 2;
 			//this.meleeWeapon = new MissileTurret();
 			//this.rangedWeapon = new EMCannon();
-			//this.accessory = new ShieldBoosterForShips();
+			this.accessory = new HeavyArmor();
 
 			this.armor = new ShipArmor();
 			this.armor.defense = 20;
@@ -72,7 +73,7 @@
 			this.shield.hasRandomProperties = true;
 
 			//SPEED / THRUST
-			this.physiqueRaw = 110;
+			this.physiqueRaw = 120;
 			//AGILITY:
 			this.reflexesRaw = 30;
 			//SENSORS

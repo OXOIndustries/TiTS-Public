@@ -157,6 +157,7 @@
 		include "../includes/follower/kase.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/olympiaAndSidewinder.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeGropazoo.as";
@@ -475,7 +476,6 @@
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
-		include "../includes/zhengShiStation/sidewinder.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/snekAndMaus.as";
@@ -673,7 +673,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.007";
+			version = "0.8.008";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1785,7 +1785,7 @@
 			return chars["MARION"];
 		}
 
-		public function get olympia():Marion
+		public function get olympia():Olympia
 		{
 			return chars["OLYMPIA"];
 		}

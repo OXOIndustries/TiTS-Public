@@ -7,6 +7,7 @@
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Apparel.KhansLabCoat;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -18,7 +19,7 @@
 		//constructor
 		public function Olympia()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -47,13 +48,14 @@
 			
 			rangedWeapon.baseDamage.kinetic.damageValue = 10;
 			rangedWeapon.addFlag(DamageFlag.BULLET);
-			
-			this.armor.longName = "latex";
-			this.armor.defense = 1;
-			this.armor.hasRandomProperties = true;
-			
-			this.shield = new ImprovisedShield();
 			*/
+			this.armor = new KhansLabCoat();
+			//this.armor.defense = 1;
+			//this.armor.hasRandomProperties = true;
+			
+			//this.shield = new ImprovisedShield();
+
+			this.inventory = [];
 
 			this.physiqueRaw = 30;
 			this.reflexesRaw = 25;
@@ -118,7 +120,7 @@
 			this.tailCount = 0;
 			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
-			this.tailGenitalArg = 0;
+			this.tailGenitalArg = GLOBAL.TYPE_CANINE;
 			//tailGenital:
 			//0 - none.
 			//1 - cock
@@ -169,45 +171,28 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
-			this.ass.bonusCapacity += 200;
+			this.ass.bonusCapacity = 250;
 			this.createVagina();
 			this.vaginas[0].wetness(3,true);
 			this.vaginas[0].looseness(1,true);
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].clits = 0;
+			this.vaginas[0].bonusCapacity = 250;
 			this.vaginas[0].vaginaColor = "dark red";
 
 			this.createCock();
 			this.cocks[0].cLengthRaw = 12;
 			this.cocks[0].cType = GLOBAL.TYPE_GRYVAIN;
+
+			this.createPerk("Fixed CumQ", 350, 0, 0, 0);
 			this._isLoading = false;
 		}
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.vaginas[0].hymen = false;
-		}
-		public function UpgradeVersion2(d:Object):void
-		{
-			delete d.resistances;
-			delete d.bonusResistances;
-			delete d.lustVuln;
-			delete d.meleeWeapon;
-			delete d.rangedWeapon;
-			delete d.armor;
-		}
-		public function UpgradeVersion3(d:Object):void
-		{
-			if (d.cocks && d.cocks.length > 0 && d.cocks[0].cType == GLOBAL.TYPE_SNAKE)
-			{
-				d.cocks[0].cType == GLOBAL.TYPE_DRACONIC;
-			}
-		}
-		public function UpgradeVersion4(d:Object):void
-		{
-			d.analVirgin = false;
-			d.vaginas[0].hymen = false;
-			d.vaginalVirgin = false;
-			d.cockVirgin = false;
+		override public function tailCockVolume(effective: Boolean = true): Number {
+			if(tailGenitalArg == GLOBAL.TYPE_CANINE) return 30;
+			else if(tailGenitalArg == GLOBAL.TYPE_EQUINE) return 106;
+			else if(tailGenitalArg == GLOBAL.TYPE_GRYVAIN) return 12;
+			else if(tailGenitalArg == GLOBAL.TYPE_HUMAN) return 12;
+			return 9;
 		}
 	}
 }
