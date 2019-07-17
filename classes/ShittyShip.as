@@ -121,10 +121,13 @@ package classes {
 		public var shipGunCapacityRaw:Number = 2;
 		public var shipCapacityRaw:Number = 3;
 		//Probably set via perk.
-		public function shipCapacity():Number
+		public function shipCapacity(bBonus:Boolean = false):Number
 		{
 			var bonus:Number = 0;
-			bonus += equippedItemCountByClass(AdvancedQuarters);
+			if(bBonus)
+			{
+				bonus += equippedItemCountByClass(AdvancedQuarters);
+			}
 			return shipCapacityRaw + bonus;
 		}
 		public function shipWeaponCapacity():Number { return shipGunCapacity(); }
@@ -141,7 +144,7 @@ package classes {
 		}
 		public function shipCrewCapacity():Number
 		{
-			return ((shipCapacity() + bonusCrewCapacity()) - this.inventory.length);
+			return ((shipCapacity(true) + bonusCrewCapacity()) - this.inventory.length);
 		}
 		//STORAGE SIZES!
 		public function wardrobeSize():Number

@@ -39,15 +39,12 @@ public function infiniteItems():Boolean
 	return (debug || flags["INFINITE_ITEMS"] != undefined);
 }
 
-public function processEventBuffer():Boolean
+public function processEventBuffer():String
 {
+	var output:String = ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
+	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
-		clearOutput();
-		clearBust();
-		
-		output("<b>" + possessive(pc.short) + " log:</b>");
-		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -67,18 +64,13 @@ public function processEventBuffer():Boolean
 				d += h / 24;
 				h = h % 24;
 			}
-			
-			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
+			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + (i+1 < timestampedEventBuffer.length ? "\n\n":"\n"));
+			//Old: output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
 		}
 		
 		timestampedEventBuffer = [];
-		
-		clearMenu();
-		addButton(0, "Next", mainGameMenu);
-		return true;
 	}
-	
-	return false;
+	return output;
 }
 
 public static const NAV_NORTH_DISABLE:uint 	= 1;
@@ -184,9 +176,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	generateMap();
 	showLocationName();
 	
-	//Display shit that happened during time passage.
-	if (processEventBuffer()) return;
-	
 	//Queued events can fire off too!
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
@@ -224,6 +213,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
+	//Display shit that happened during time passage.
+	var eventBuffer:String = processEventBuffer();
+	if (eventBuffer != ("<b><u>" + possessive(pc.short) + " log:</u></b>\n"))
+	{
+		if (samePageLog) output("" + eventBuffer + "<b><u>End log.</u></b>\n\n");
+		else
+		{
+			clearBust();
+			output("" + eventBuffer + "");
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			return;
+		}
+	}
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
@@ -782,6 +785,7 @@ public const CREW_PENNY:int = 19;
 public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
+public const CREW_OLYMPIA:int = 23;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -807,6 +811,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (shekkaRecruited()) crewMembers.push(CREW_SHEKKA);
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
+	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -843,6 +848,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
+	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -956,6 +962,7 @@ public function getCrewOnShip():Array
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
+	if (olympiaIsCrew()) c.push(olympia);
 	return c;
 }
 
@@ -983,6 +990,7 @@ public function getGunnersOnShipNames():Array
 	if (syriIsCrew()) crewMembers.push("Syri");
 	//if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	return crewMembers;
 }
 
@@ -1009,6 +1017,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (shekkaIsCrew()) crewMembers.push("Shekka");
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	
 	if (allcrew)
 	{
@@ -1206,6 +1215,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += mitziCrewBonus(btnSlot, InCollection(CREW_MITZI, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (olympiaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += olympiaCrewText(btnSlot, InCollection(CREW_MITZI, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1964,6 +1982,17 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
+	// Olympia fucks off if you swap ships.
+	if(!(shits["SHIP"] is Sidewinder) && olympiaIsCrew()) 
+	{
+		olympiaIsSidewinderOnly();
+		return true;
+	}
+	if(shits["SHIP"] is Sidewinder && !olympiaIsCrew()) 
+	{
+		olympiaComesBackWithSidewinder();
+		return true;
+	}
 	// Mitzi stops you from going inside~
 	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
 	{
@@ -2142,27 +2171,7 @@ public function shipStatistics():void
 	output(shipCompareString(shippy, shippy));
 	output("\n\n");
 	clearMenu();
-	var button:Number = 0;
-	shopkeep = new Vahn();
-	if(!(shippy.shield is EmptySlot)) addItemButton(button++, shippy.shield, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.armor is EmptySlot)) addItemButton(button++, shippy.armor, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.meleeWeapon is EmptySlot)) addItemButton(button++, shippy.meleeWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.rangedWeapon is EmptySlot)) addItemButton(button++, shippy.rangedWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.accessory is EmptySlot)) addItemButton(button++, shippy.accessory, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.lowerUndergarment is EmptySlot)) addItemButton(button++, shippy.lowerUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.upperUndergarment is EmptySlot)) addItemButton(button++, shippy.upperUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-
-	for(var i:int = 0; i < shippy.inventory.length; i++)
-	{
-		//used to be button++; but hacky fix for a crash.
-		if (button >= 14) break;
-		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
-	}
-	while(button > 0) 
-	{ 
-		button--;
-		setButtonDisabled(button); 
-	}
+	shipEquipmentButtons(shits["SHIP"], mainGameMenu);
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -3871,9 +3880,22 @@ public function variableRoomUpdateCheck():void
 		rooms["ZSM U2"].addFlag(GLOBAL.NPC);
 		rooms["ZS J42"].addFlag(GLOBAL.NPC);
 	}
-
-	if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
-	else rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	//SIDEWINDER
+	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) 
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	}
 
 	if(flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF I8"].addFlag(GLOBAL.NPC);
@@ -4049,6 +4071,7 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
+//DeltaT is in minutes.
 public function processTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)

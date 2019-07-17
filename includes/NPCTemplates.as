@@ -196,6 +196,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepShip(justUpdate, "SHIP", Casstech);
 	prepChar(justUpdate, "KIONA", Kiona);
 	prepChar(justUpdate, "NYKKE", Nykke);
+	prepChar(justUpdate, "VAHN", Vahn);
+	prepChar(justUpdate, "OLYMPIA", Olympia);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

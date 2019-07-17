@@ -2305,7 +2305,7 @@ public function initZhengRooms():void
 	rooms["ZSF X24"].southExit = "";
 	rooms["ZSF X24"].westExit = "";
 	rooms["ZSF X24"].moveMinutes = 3;
-	//rooms["ZSF X24"].runOnEnter = null;
+	rooms["ZSF X24"].runOnEnter = sideWinderCabinBonus;
 	rooms["ZSF X24"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSF X24"].addFlag(GLOBAL.HAZARD);
 	
