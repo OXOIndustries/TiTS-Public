@@ -455,7 +455,7 @@ public function nykkeBlackScalesTalk():void
 
 	processTime(10);
 
-	addDisabledButton(3,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
+	addDisabledButton(4,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
 }
 //[Sex]
 public function nykkeSexMenu():void
