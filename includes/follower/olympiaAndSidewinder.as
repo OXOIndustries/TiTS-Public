@@ -279,7 +279,7 @@ public function olympiaIsSidewinderOnly():void
 	showOlympia();
 	author("Savin");
 	output("You turn back to [ship.name] just in time to see Olympia disembarking, marching up to you with the severe determination you remember from your time on Zheng Shi. She stops just a hand’s breadth from you, staring directly into your eyes.");
-	output("\n\n<i>“I’m staying with [ship.name],”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
+	output("\n\n<i>“I’m staying with [pc.ship],”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
 	output("\n\nThe way she’s fixing you in her gaze, it’s clear there’s no reasoning with the obsessive sexbot. All you can do is tell her that you’ll see her soon as you heft your kit onto your shoulder and make for your chosen vessel.");
 	flags["OLYMPIA_ONBOARD"] = undefined;
 	processTime(3);
