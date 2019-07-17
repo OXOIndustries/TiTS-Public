@@ -205,8 +205,8 @@ public function nykkeTalkMenu():void
 	else addDisabledButton(1,"Psionics","Psionics","You’re far less educated about psionics than Nykke would be, and you probably shouldn’t go into this discussion without at least a little bit of forethought from [frostwyrm.name] first.");
 	
 	addButton(2,"Adventuring",nykkeAdventuringTalk, undefined,"Adventuring","You have a life outside of [frostwyrm.name]’s lair – one that’s rather adventurous, especially compared to the domestic life that Nykke has. Maybe she’d like to hear a few stories about your travels.");
-	addButton(3, "Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
-	addButton(3,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	addButton(3,"Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
+	addButton(4,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	
 	addButton(14, "Back", nykkeMainMenu, false);
 }
