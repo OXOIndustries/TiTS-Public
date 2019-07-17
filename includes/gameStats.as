@@ -8181,13 +8181,22 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
 				if(flags["FROSTWYRM_GAVE_BATH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Gave Tongue Bath:</b> " + flags["FROSTWYRM_GAVE_BATH"]);
 				if(flags["FROSTWYRM_GOT_BLOWN"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Gave Her Oral:</b> " + flags["FROSTWYRM_GOT_BLOWN"]);
-				// Nykke
-				if(flags["NYKKE_MET"] != undefined)
+				// Nykke 1
+				if(flags["NYKKE_MET"] != undefined && flags["NYKKE_VERSION"] == 1)
 				{
 					if(flags["NYKKE_FUCK_HER_CUNT"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Vagina:</b> " + flags["NYKKE_FUCK_HER_CUNT"]);
 					if(flags["NYKKE_FUCK_HER_ASS"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Ass:</b> " + flags["NYKKE_FUCK_HER_ASS"]);
 					if(flags["NYKKE_FUCK_YOUR_CUNT"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Vagina:</b> " + flags["NYKKE_FUCK_YOUR_CUNT"]);
 					if(flags["NYKKE_FUCK_YOUR_ASS"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Ass:</b> " + flags["NYKKE_FUCK_YOUR_ASS"]);
+				}
+				// Nykke 2.0
+				if(flags["NYKKE_MET2"] != undefined && flags["NYKKE_VERSION"] != 1)
+				{
+					if(flags["NYKKE_SEX2"] != undefined) output2("\n<b>* Nykke, Times You Had Sex:</b> " + flags["NYKKE_SEX2"]);
+					if(flags["NYKKE_FUCK_HER_CUNT2"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Vagina:</b> " + flags["NYKKE_FUCK_HER_CUNT2"]);
+					if(flags["NYKKE_FUCK_HER_ASS2"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Ass:</b> " + flags["NYKKE_FUCK_HER_ASS2"]);
+					if(flags["NYKKE_FUCK_YOUR_CUNT2"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Vagina:</b> " + flags["NYKKE_FUCK_YOUR_CUNT2"]);
+					if(flags["NYKKE_FUCK_YOUR_ASS2"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Ass:</b> " + flags["NYKKE_FUCK_YOUR_ASS2"]);
 				}
 				variousCount++;
 			}

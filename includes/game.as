@@ -4362,6 +4362,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		if ((flags["TESSA_BREASTPLAY"] != undefined || flags["TESSA_SHOWER"] != undefined) && !MailManager.isEntryUnlocked("tessa_wedding") && rand(100) >= 100*Math.pow(.8,totalHours)) goMailGet("tessa_wedding", nextTimestamp - rand(deltaT));
 
+		//nykke 2.0 
+		if (nykke2SendEmail() && !MailManager.isEntryUnlocked("nykke2_sighting")) goMailGet("nykke2_sighting");
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
