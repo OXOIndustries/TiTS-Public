@@ -147,57 +147,58 @@ public function bizzyApartmentHandler(btnSlot:int):void
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You don’t know anybody up through this part of the Resential deck...");
 		return;
 	}
-
-	if (pc.credits < 40000 && flags["BIZZY_FIRST_TIME_MEET"] == undefined)
-	{
-		output(" You get the impression whoever sent the message assumed you had plenty of cash ready to go. Perhaps it would be wise to return when that was actually the case...");
-		
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
-		return;
-	}
-	
 	if (flags["BIZZY_FIRST_TIME_MEET"] == undefined)
 	{
-		output(" You could go see about what this ‘Bizzy’ has in mind.");
+		if(pc.credits < 40000)
+		{
+			output(" You get the impression whoever sent the message assumed you had plenty of cash ready to go. Perhaps it would be wise to return when that was actually the case...");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
+		}
+		else
+		{
+			output(" You could go see about what this ‘Bizzy’ has in mind.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Knock on Bizzy’s door and introduce yourself.");
+		}
+		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == -1)
+	if (flags["BIZZY_PORN_STUDIO"] == -1)
 	{
 		output(" You should probably avoid Bizzy after turning her down.");
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You should probably avoid Bizzy after turning her down.");
 		return;
 	}
-	else if ((flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] < 5) && GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+	if (flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] < 5)
 	{
-		output(" Bizzy’s probably a bit busy still in the wake of your entrepreneurship.");
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
+		if(GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+		{
+			output(" Bizzy’s probably a bit busy still in the wake of your entrepreneurship.");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
+		}
+		else
+		{
+			output(" Bizzy is probably prepped and ready to get this show on the road, should be about time to drop in on her and see how she’s doing.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing.");
+		}
 		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == 5 && GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+	if (flags["BIZZY_PORN_STUDIO"] == 5)
 	{
-		output(" Utility drones and a couple of helmeted engineers are at work in and around apartments 155-157. Sparks fly within, and stacks of material are ferried up the grav-lifts. It’ll be a while before they’re finished constructing the [pornStudioName] studio.");
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Giving the place a wide-berth whilst the work-crews are still hard at it would be advisable.");
+		if(GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+		{
+			output(" Utility drones and a couple of helmeted engineers are at work in and around apartments 155-157. Sparks fly within, and stacks of material are ferried up the grav-lifts. It’ll be a while before they’re finished constructing the [pornStudioName] studio.");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Giving the place a wide-berth whilst the work-crews are still hard at it would be advisable.");
+		}
+		else
+		{
+			if (flags["BIZZY_CONSTRUCTION_COMPLETE"] == undefined) output(" Looks like the drones are finally done renovating your new studio. Time to go check out the digs.");
+			else output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing with your new studio.");
+		}
 		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == 5 && GetGameTimestamp() >= flags["BIZZY_PORN_STUDIO_TIMER"])
-	{
-		if (flags["BIZZY_CONSTRUCTION_COMPLETE"] == undefined) output(" Looks like the drones are finally done renovating your new studio. Time to go check out the digs.");
-		else output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
-
-		addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing with your new studio.");
-	}
-	else if (GetGameTimestamp() >= flags["BIZZY_PORN_STUDIO"] && flags["BIZZY_PORN_STUDIO"] >= 1)
-	{
-		output(" Bizzy is probably prepped and ready to get this show on the road, should be about time to drop in on her and see how she’s doing.");
-		addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing.");
-		return;
-	}
-	else
-	{
-		output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
-	}
-
-
-
+	
+	output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
+	
 	addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Knock on Bizzy’s door.");
 }
 

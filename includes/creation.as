@@ -152,18 +152,47 @@ public function startCharacterCreation(e:Event = null):void
 	userInterface.hidePCStats();
 	userInterface.hideNPCStats();
 	clearMenu();
-	addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor’s child will be born a full-blooded human.");
-	addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor’s child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
-	addButton(2,"Gryvain", confirmRaceChoice, "gryvain", "Gryvain Mother", "Victor’s child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.");
-	addButton(3,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
-	addButton(4,"Kui-Tan",confirmRaceChoice,"kui-tan","Kui-Tan Mother","Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.");
-	addButton(5,"Leithan",confirmRaceChoice,"leithan","Leithan Mother","Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.");
-	addButton(6,"Suula", confirmRaceChoice, "suula", "Suula Mother", "Victor’s child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark’s tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.");
+	
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		var race:String = pcMotherRaces[i];
+		var raceName:String = StringUtil.toDisplayCase(race);
+		var momDesc:String = "";
+		
+		switch(race)
+		{
+			case "human":
+				momDesc = "Victor’s child will be born a full-blooded human.";
+				break;
+			case "ausar":
+				momDesc = "Victor’s child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.";
+				break;
+			case "gryvain":
+				momDesc = "Victor’s child would have a gryvain mother. The gryvain are a technologically advanced race of winged hermaphrodites: a halfbreed child would have scaled legs and human-style arms, a fleshy upper body, a pair of draconic wings, and a lengthy tail. Gryvain also have monochrome gold eyes and frilled ears which their children inherit, though most children with human fathers lack horns. Halfbreed gryvain can be born female or as hermaphrodites, and both sexes tend to have voluptuous figures and high sexual sensitivity.";
+				break;
+			case "kaithrit":
+				momDesc = "Victor’s child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).";
+				break;
+			case "kui-tan":
+				momDesc = "Victor’s child would have a kui-tan mother, a race known for its total lack of females and similarities to earth raccoons. Of course, that would make the mother a hermaphrodite - a woman with a vagina and a penis. Half kui-tan usually come into the world as a male or hermaphrodite with one bushy tail, fuzzy ears, and a knotty dick.";
+				break;
+			case "leithan":
+				momDesc = "Victor’s child would have a leithan mother, though that race’s unique biology would mandate some very expensive scientific intervention to ensure a successful pregnancy. Leithans are powerfully built, six-legged reptile-taurs. Half-leithans come into the world with thick, prehensile tails; unique bunny-like ears; and a tauric body configuration. They have limited skin and hair color options compared to other races. Half-leithan males are born with large reptilian genitalia, and both sexes have rear-mounted sexual organs.";
+				break;
+			case "suula":
+				momDesc = "Victor’s child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark’s tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.";
+				break;
+		}
+		addButton(btnSlot, raceName, confirmRaceChoice, race, (raceName + " Mother"), "Victor’s child will be born a full-blooded human.");
+		btnSlot++;
+	}
 	if (GENERATED_CHARACTER["disabled"] == undefined)
 	{
-		addButton(7, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
+		addButton(btnSlot, "Engineered", testCharGenSelection, undefined, "Engineered Race", "A wholly custom genetically engineered child. A designer babby.");
 	}
 }
+public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain", "suula"];
 
 public function testCharGenSelection():void
 {
@@ -175,7 +204,6 @@ public function testCharGenSelection():void
 		output("\n\n<b>" + prop + ":</b> " + GENERATED_CHARACTER[prop]);
 	}
 }
-
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
@@ -2229,8 +2257,7 @@ public function ohShitGameStarts():void {
 
 /* ORIGINAL RACE CORRECTION */
 
-public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain"];
-public function raceToOriginalRace(race:String = "human"):String
+public function raceToOriginalRace(race:String):String
 {
 	var originalRace:String = race;
 	
@@ -2274,7 +2301,7 @@ public function fixOriginalRaceAlert():void
 	
 	fixOriginalRaceMenu();
 }
-public function fixOriginalRaceSelect(race:String = "human"):void
+public function fixOriginalRaceSelect(race:String):void
 {
 	clearOutput();
 	creationHeader("CODEX\nALERT");

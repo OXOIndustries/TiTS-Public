@@ -12752,6 +12752,7 @@
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (gryvainScore() >= 4 && race == "human") race = "half-gryvain";
+			if (suulaScore() >= 4 && race == "human") race = "half-suula";
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (deerScore() >= 4) race = "deer-morph";

@@ -2193,7 +2193,8 @@ public function mirrinSterkurHusButtons():void
 	addButton(1,"Talk",sterkurHusChattus,true,"Talk","Well ya know. Talk. Duh.");
 	if (pc.hasStatusEffect("MirrinSexCooldown")) addDisabledButton(2,"Sex","Sex","<i>“Sorry babe, still a bit worn out from before!”</i>");
 	else addButton(2,"Sex",mommirrinSexingTimes,false,"Sex","It’s just been so long since you chased that dragon tail, you want all of it to yourself.");
-	addButton(3,"Train",trainWithMirrinInHerGymmin,undefined,"Train","Put your body through its paces.");
+	if(pc.isWornOut()) addDisabledButton(3,"Train","Train","You’re too tired for a training session.");
+	else addButton(3,"Train",trainWithMirrinInHerGymmin,undefined,"Train","Put your body through its paces.");
 	addButton(4,"Relaxing Time",chillinAnMirrin,undefined,"Relaxing Time","That sounds good. Nothing crazy, just snacks, hugs and movies...");
 	if (pc.hasStatusEffect("MirrinTiddysuckCooldown")) addDisabledButton(5,"Nursing","Nursing","Let her build up some more first?");
 	else if (flags["MIRRIN_PREG_TIME_LEFT"] != undefined || jentaBorn()) addButton(5,"Nursing",drinkSumDragonJuice,undefined,"Nursing","Jeez, those <b>tits</b>... if they weren’t big and imposing already, now they’re milky as heck! Maybe you could have a nice nibble on a nipple.");

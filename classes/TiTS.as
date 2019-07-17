@@ -157,6 +157,7 @@
 		include "../includes/follower/kase.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/olympiaAndSidewinder.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeGropazoo.as";
@@ -602,10 +603,12 @@
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
+		public function get samePageLog():Boolean {return gameOptions.samePageLog; }
 		public function get debug():Boolean { return gameOptions.debugMode; }
 		
 		public function set silly(v:Boolean):void { gameOptions.sillyMode = v; }
 		public function set easy(v:Boolean):void { gameOptions.easyMode = v; }
+		public function set samePageToggle(v:Boolean):void {gameOptions.samePageLog = v; }
 		public function set debug(v:Boolean):void { gameOptions.debugMode = v; }
 		
 		public var inputManager:InputManager;
@@ -670,7 +673,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.007";
+			version = "0.8.008";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1781,6 +1784,11 @@
 		{
 			return chars["MARION"];
 		}
+
+		public function get olympia():Olympia
+		{
+			return chars["OLYMPIA"];
+		}
 	
 		public function get lureling():Lureling
 		{
@@ -1794,6 +1802,11 @@
 		public function get lorelei():Lorelei
 		{
 			return chars["LORELEI"];
+		}
+		
+		public function get vahn():Vahn
+		{
+			return chars["VAHN"];
 		}
 
 		public function testShipCombat():void

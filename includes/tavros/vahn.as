@@ -31,20 +31,6 @@ public function showVahn(nude:Boolean = false):void
 	author("JimThermic");
 }
 
-// Create Vahn
-public function getVahnPregContainer():PregnancyPlaceholder
-{
-	var ppVahn:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!ppVahn.hasCock()) ppVahn.createCock();
-	ppVahn.shiftCock(0, GLOBAL.TYPE_CANINE);
-	ppVahn.cocks[0].cLengthRaw = 10;
-	ppVahn.cocks[0].flaccidMultiplier = 0.5;
-	ppVahn.balls = 2;
-	ppVahn.ballSizeRaw = 8;
-	ppVahn.createPerk("Fixed CumQ", 1000, 0, 0, 0);
-	return ppVahn;
-}
-
 public function vahnTavrosBonus(btnSlot:int = 0):void 
 {
 	if(flags["MET_VAHN"] == undefined) {
@@ -69,7 +55,7 @@ public function VahnTheMechanic():void
 {
 	clearOutput();
 	showVahn();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	//First Time:
 	if(flags["MET_VAHN"] == undefined)
 	{
@@ -102,7 +88,7 @@ public function VahnTheMechanic():void
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
 	addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
 	addButton(10,"Buy Ship",vahnSellsShips,undefined,"Buy Ship","Buy a ship the local selection.");
-	if(shipStorageRoom() < shipStorageLimit()) addButton(11,"Stored Ships",swapShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
+	if(shipStorageRoom() < shipStorageLimit()) addButton(11,"Stored Ships",storageShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
 	else addDisabledButton(11,"Stored Ships","Stored Ships","You have no ships in storage right now.");
 	addButton(12,"Sell A Ship",sellAShipToVahn,undefined,"Sell A Ship","Sell a ship to Vahn.");
 	addButton(14,"Leave",mainGameMenu);
@@ -201,7 +187,7 @@ public function vahnShipGunsShop():void
 {
 	clearOutput();
 	showVahn();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	shopkeep.inventory.push(new MGun());
 	shopkeep.inventory.push(new EMCannon());
 	shopkeep.inventory.push(new LCannon());
@@ -212,7 +198,7 @@ public function vahnShipGadgetShop():void
 {
 	clearOutput();
 	showVahn();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	shopkeep.inventory.push(new RepairModule());
 	shopkeep.inventory.push(new ShieldBoosterForShips());
 	shopkeep.inventory.push(new ShieldDisruptor());
@@ -222,7 +208,7 @@ public function vahnShipUninstall():void
 {
 	clearOutput();
 	showVahn();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	unfitShipItem();
 }
 
@@ -296,7 +282,7 @@ public function vahnSellsShips():void
 {
 	clearOutput();
 	showVahn();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	author("Fenoxo");
 	if(flags["VAHN_SHIP_SALES"] == undefined)
 	{
@@ -345,7 +331,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	else if(shopkeep is Focalor) addDisabledButton(0,"Buy","Buy","Since there isn’t any storage available for your ships in Myrellion, you’ll have to make your purchase with a trade-in.");
 	else if(shipStorageRoom() > 0)
 	{
-		if(pc.credits >= arg.shipCost()) addButton(0,"Buy",buyAShipYouGo,arg,"Buy","Buy " + arg.a + arg.short + ".\n\n<b><u>Price:</u></b> " + arg.shipCost() + " credits");
+		if(pc.credits >= arg.shipCost()) addButton(0,"Buy",buyAShipYouGo,arg,"Buy","Buy " + arg.a + arg.short + ".\n\n<b><u>Price</u>:</b> " + arg.shipCost() + " credits");
 		else addDisabledButton(0,"Buy","Buy","You can’t afford that!");
 	}
 	else addDisabledButton(0,"Buy","Buy","You don’t have room to place your current ship in storage. You’ll have to sell one of your stored ships (or trade this one in with the purchase).");
@@ -353,8 +339,8 @@ public function shipBuyScreen(arg:ShittyShip):void
 	var tradeInPrice:Number = shipTradeInPrice(shits["SHIP"]);
 	var totalCost:Number = (arg.shipCost()-tradeInPrice);
 	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade in your Casstech. Vahn won’t take it.");
-	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price:</u></b> " + totalCost + " credits");
-	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price:</u></b> " + totalCost + " credits");
+	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
+	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 
 	//else addButton(1,"Buy+Trade",);
 	if(shopkeep is Vahn) addButton(14,"Back",vahnSellsShips);
@@ -411,19 +397,26 @@ public function buyAShipYouGo(arg:ShittyShip):void
 	addButton(0,"Next",VahnTheMechanic);
 }
 
-public function swapShipsMenu():void
+public function storageShipsMenu():void
 {
 	clearOutput();
-	shopkeep = new Vahn();
+	shopkeep = chars["VAHN"];
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	showName("SHIP\nSTORAGE");
 	var storageLimit:int = shipStorageLimit();
-	output("<b>Available Storage: </b>" + shipStorageRoom() + " / " + storageLimit + ".\n\n<b><u>Stored Vessels:</u> </b>");
+	output("<b>Available Storage:</b> " + shipStorageRoom() + " / " + storageLimit + ".");
 	clearMenu();
 	var btnSlot:int = 0;
 	var i:int = 0;
 	
+	/*if(shits["SHIP"] != undefined)
+	{
+		output("\n\n<b><u>Docked Vessel</u>:</b> " + shits["SHIP"].short);
+		addShipCompareButton(btnSlot,shits["SHIP"],shits["SHIP"],shits["SHIP"].short,storageShipsCheck,"SHIP",shits["SHIP"].short);
+		btnSlot++;
+	}*/
+	output("\n\n<b><u>Stored Vessels</u>:</b>");
 	for(i = 0; i < storageLimit; i++)
 	{
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
@@ -439,7 +432,7 @@ public function swapShipsMenu():void
 			var shipA:ShittyShip = shits["SHIP"];
 			var shipB:ShittyShip = shits[shipID];
 			output("\n" + shits[shipID].short);
-			addShipCompareButton(btnSlot,shipA,shipB,shipB.short,swapShipsCheck,shipID,shipB.short);
+			addShipCompareButton(btnSlot,shipA,shipB,shipB.short,storageShipsCheck,shipID,shipB.short);
 			btnSlot++;
 		}
 		else
@@ -458,19 +451,20 @@ public function swapShipsMenu():void
 	
 	addButton(14,"Back",VahnTheMechanic);
 }
-public function swapShipsCheck(arg:String):void
+public function storageShipsCheck(arg:String):void
 {
 	clearOutput();
 	showBust(shits[arg].bustDisplay);
 	showName("\n"+shits[arg].short.toUpperCase());
-	output("Are you sure you want to swap to this ship?");
+	clearMenu();
 	
-	output("\n\n" + shipCompareString(shits["SHIP"], shits[arg]));
+	output(shipCompareString(shits["SHIP"], shits[arg]));
 	output("\n\n");
 	
-	clearMenu();
-	addButton(0,"Yes",swapShips,arg);
-	addButton(1,"No",swapShipsMenu);
+	shipEquipmentButtons(shits[arg], storageShipsMenu);
+	
+	if(arg != "SHIP") addButton(13,"Swap Ships",swapShips,arg,("Swap To "+shits[arg].short),"Swap out your current ship for this one.");
+	addButton(14,"Back",storageShipsMenu);
 }
 public function swapShips(arg:String):void
 {
@@ -482,7 +476,7 @@ public function swapShips(arg:String):void
 	shits[arg] = shits["SHIP"];
 	shits["SHIP"] = tempShip;
 	clearMenu();
-	addButton(0,"Next",VahnTheMechanic);
+	addButton(0,"Next",storageShipsMenu);
 }
 
 public function shipStorageLimit():Number { return 5; }
@@ -526,6 +520,44 @@ public function shipCompareString(ship:ShittyShip, newShip:ShittyShip):String
 	shipTooltip += shipCompareStat(ship, newShip, false);
 	
 	return shipTooltip;
+}
+public function shipEquipmentButtons(arg:ShittyShip, backFunc:Function, execFunc:Function = null):void
+{
+	var i:int = 0;
+	var btnSlot:int = 0;
+	var items:Array = [];
+	
+	if(!(arg.shield is EmptySlot)) items.push(arg.shield);
+	if(!(arg.armor is EmptySlot)) items.push(arg.armor);
+	if(!(arg.meleeWeapon is EmptySlot)) items.push(arg.meleeWeapon);
+	if(!(arg.rangedWeapon is EmptySlot)) items.push(arg.rangedWeapon);
+	if(!(arg.accessory is EmptySlot)) items.push(arg.accessory);
+	if(!(arg.lowerUndergarment is EmptySlot)) items.push(arg.lowerUndergarment);
+	if(!(arg.upperUndergarment is EmptySlot)) items.push(arg.upperUndergarment);
+	for(i = 0; i < arg.inventory.length; i++)
+	{
+		if(!(arg.inventory[i] is EmptySlot)) items.push(arg.inventory[i]);
+	}
+	
+	for(i = 0; i < items.length; i++)
+	{
+		if(btnSlot >= 9 && (btnSlot + 5) % 15 == 0)
+		{
+			btnSlot += 4;
+			addButton(btnSlot, "Back", backFunc);
+			btnSlot++;
+		}
+		if(btnSlot >= 60) break;
+		
+		addItemButton(btnSlot, items[i], execFunc, (execFunc != null ? arg : undefined), null, null, null, pc);
+		btnSlot++;
+		
+		if(items.length > 9 && (i + 1) == items.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", backFunc);
+		}
+	}
 }
 public function shipCompareDesc(ship:ShittyShip, newShip:ShittyShip, buttonTooltip:Boolean = true):String
 {
@@ -650,8 +682,8 @@ public function shipCompareStat(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 		else shipTooltip += ".)";
 	}
 	
-	shipTooltip += "\n\n<b><u>Purchase Cost:</u></b> " + shipStatCompare(newShip.shipCost(), ship.shipCost());
-	if(newShip != ship) shipTooltip += "\n<b><u>w/Trade In:</u></b> " + (newShip.shipCost()-shipTradeInPrice(ship));
+	shipTooltip += "\n\n<b><u>Purchase Cost</u>:</b> " + shipStatCompare(newShip.shipCost(), ship.shipCost());
+	if(newShip != ship) shipTooltip += "\n<b><u>w/Trade In</u>:</b> " + (newShip.shipCost()-shipTradeInPrice(ship));
 	
 	if(buttonTooltip) return "<span class='words'><p>" + shipTooltip + "</p></span>";
 	return shipTooltip;
@@ -813,8 +845,6 @@ public function giveVahnABJ():void
 	clearOutput();
 	showVahn(true);
 	
-	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
-	
 	output("Looking at Vahn, you’re filled with all kinds of lusty thoughts. You want to tear that jumpsuit off him and just have your way with him. Most of all, you want to suck his half-ausar dick. You want to get him all hot and bothered, to suck on his turgid length and to hear his glorious, pleasured moans.");
 	output("\n\nCrooking a finger, you gesture for him to follow you behind a cargo container. It’s semi-private - someone could happen upon you there - but isn’t that half the fun? Vahn gladly follows you, a look of anticipation in his eyes. His bushy brown tail is wagging behind him; he must know he’s in for a ‘treat’.");
 	output("\n\nIn the shadowy alcove, you turn to him, ");
@@ -915,8 +945,8 @@ public function giveVahnABJ():void
 	processTime(13+rand(4));
 	flags["SEXED_VAHN"] = 1;
 	pc.orgasm();
-	pc.loadInMouth(ppVahn);
-	pc.loadInMouth(ppVahn);
+	pc.loadInMouth(chars["VAHN"]);
+	pc.loadInMouth(chars["VAHN"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1031,7 +1061,6 @@ public function catchVahnCowgirl():void
 	showVahn(true);
 	
 	var x:int = rand(pc.vaginas.length);
-	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
 	
 	output("You suggest to Vahn that you both retire to your ship for some relaxation time.");
 	
@@ -1068,7 +1097,7 @@ public function catchVahnCowgirl():void
 	
 	output("\n\nOnce you’re satisfied that you’re both slickened up enough, you slide forward and line up his swollen crown with your slit. You then ease yourself back and down onto Vahn’s cockhead. The sensation of his aroused flesh slipping inside of you makes you reel with delight. Inch by glorious inch, you sink onto his rigid shaft, rewarded by the sensation of his bulbous crown rubbing up deep inside of you. When at last your pussy is kissing his turgid knot, you feel gloriously full and utterly impaled upon his straining staff. You can feel every pulse from his prick against your inner walls, every little flex of his swollen crown.");
 	
-	pc.cuntChange(x, ppVahn.cockVolume(0));
+	pc.cuntChange(x, chars["VAHN"].cockVolume(0));
 	
 	output("\n\nLooking down at Vahn, the look of transcendent pleasure on his face is getting you even wetter. The puppy boy is definitely enjoying the feel of your slick pussy wrapped around his prick. Deciding to give him something to <i>really</i> get happy about, you clench and squeeze around his half-doggie dick, coaxing a breathy moan from his lips. Excited and encouraged by his reaction, you rock and gyrate in his lap, swooning as his hardness rubs and grinds deep inside of you.");
 	if(pc.hasCock()) output(" Pre-cum drools down your [pc.cocks] and lubricates your grinding loins, making things even hotter and wetter");
@@ -1083,7 +1112,7 @@ public function catchVahnCowgirl():void
 	
 	output("\n\nAs you experience your dizzying release, you instinctively clench around Vahn’s veiny cock, wetly wringing it with utter abandon. Stimulated by your squeezing snatch, his canine knot swells up and presses back against your inner walls. You hear him let out a glorious groan and feel him shooting his warm sperm inside of you, flexing and filling you with spurt after spurt of his thermal seed. Trapped in by his knot, his sticky spunk pools inside of your pussy, filling it up to the brim and then some. Your [pc.cunt " + x + "] happily coaxes out every drop of ausar cum he has to give. No doubt his doggie seed is swimming around your " + stripRace(pc.originalRace, true) + " eggs, eager to fertilize them.");
 	
-	pc.cuntChange(x, ppVahn.cockVolume(0) + 50);
+	pc.cuntChange(x, chars["VAHN"].cockVolume(0) + 50);
 	
 	output("\n\nUtterly spent, you fall forward and onto his chest, legs splayed wide over his. Knotted by his cock, you’re not going anywhere; it’s a perfect chance to snuggle. Vahn grins and strokes your ");
 	if(!pc.hasHair()) output("cheek");
@@ -1104,8 +1133,8 @@ public function catchVahnCowgirl():void
 	flags["SEXED_VAHN"] = 1;
 	pc.orgasm();
 	pc.orgasm();
-	pc.loadInCunt(ppVahn, x);
-	pc.loadInCunt(ppVahn, x);
+	pc.loadInCunt(chars["VAHN"], x);
+	pc.loadInCunt(chars["VAHN"], x);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1184,8 +1213,6 @@ public function vahnFucksYourButt():void
 	clearOutput();
 	showVahn(true);
 	
-	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
-	
 	output("With a sensuous smile, you grab Vahn’s hand and lead the sandy-haired ausar up your cargo ramp. When you’re finally out of sight, ");
 	if (pc.isNude()) output("you turn to him and slide your hands down your naked body");
 	else output("you shamelessly strip down in front of him");
@@ -1203,7 +1230,7 @@ public function vahnFucksYourButt():void
 	output("\n\nHis entry comes without so much as a warning; just a slight pull back and pressing against your sensitive pucker. You groan as your asshole stretches deliciously around his engorged head... time stands still for a blissful moment as he caresses your hole, inching inside of you. A moment of give later, and your spread-wide pucker is kissing around the base of his crown; his dick-head is totally inside of you.");
 	
 	if(pc.analVirgin) output("<b>Congratulations; you’ve lost your anal virginity!</b>");
-	pc.buttChange(ppVahn.cockVolume(0), false, false, false);
+	pc.buttChange(chars["VAHN"].cockVolume(0), false, false, false);
 	
 	output("\n\nHis delectably thick cock slips further inside of you, stimulating your inner ass. You groan with delight as your whole body from tip to toe thrums with pleasure. Greedy for more, you lift up your rump, eager to get him as deep as he can go. Mentally, you relax your sphincter, and you’re immediately rewarded with three more inches of throbbing man meat inside of you.");
 	if(pc.hasCock()) 
@@ -1242,7 +1269,7 @@ public function vahnFucksYourButt():void
 	
 	output("\n\nFor what seems like forever, you’re being pumped full of his ausar spunk. Every time his knot pulses and flexes and his cockhead jumps inside of you, you quiver with delight, unable to keep your [pc.thighs] still. Knotted on his cock, you can’t go anywhere; your ass is literally locked to his twitching dick! His arms wrap around you and he pulls you against his hard chest. He presses his lips against your neck and gives it a suckling kiss, making you shiver right down to your dick-filled rump. The blonde ausar is so <i>inside</i> of you that you feel almost one with him, filled up with him from behind and below. You wouldn’t go anywhere even if you could! His knot flexes again and you let out a enraptured cry, cumming all over again from your puppy-plugged ass!");
 	
-	pc.buttChange(ppVahn.cockVolume(0) + 50);
+	pc.buttChange(chars["VAHN"].cockVolume(0) + 50);
 	
 	output("\n\nAfter half an hour of utter ecstasy, Vahn’s knot finally deflates inside of you, slipping out with a loud and lewd <i>plop</i>. Unable to use your legs any longer, you fall forward onto the crate with a near-delirious groan. You can feel his hot creamy jizz sliding out of your stretched asshole and down your [pc.legs], though so much more is still packed inside your ass. Your belly feels so full with him; how much did he cum, anyway? You rub it with a happy sigh, trying to clench your pucker in a futile attempt to keep all his seed inside of your ass.");
 	
@@ -1254,8 +1281,8 @@ public function vahnFucksYourButt():void
 	flags["SEXED_VAHN"] = 1;
 	pc.orgasm();
 	pc.orgasm();
-	pc.loadInAss(ppVahn);
-	pc.loadInAss(ppVahn);
+	pc.loadInAss(chars["VAHN"]);
+	pc.loadInAss(chars["VAHN"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1315,8 +1342,6 @@ public function vahnDomsYourButt():void
 	showVahn(true);
 	author("Gortys");
 	
-	var ppVahn:PregnancyPlaceholder = getVahnPregContainer();
-	
 	output("Maybe it’s something about that big ‘ol ausar brain of his, or the way he looks in that sexy little jumpsuit, but you’ve got an itch to scratch and that blonde cutie in front of you feels the most applicable candidate.");
 	
 	output("\n\nYou give Vahn a pleading look with your [pc.eyes] as you seductively sway your [pc.hips] against his midriff. You nibble on your [pc.lipChaste] when you feel a bulge already beginning to present itself to you. <i>“How about we sneak off and blow off some steam?”</i> You eagerly suggest.");
@@ -1333,7 +1358,7 @@ public function vahnDomsYourButt():void
 	
 	output("\n\nSince you’re all properly lubed up and practically <i>begging</i> to get that knot tied inside you; Vahn begins to press his impressive ten-inch canine cock against your [pc.ass]. The initial entry is a bit of a touch and go even with his saliva coating your entrance. Though, with a bit of effort he quickly begins to get into a rhythm of gently pounding into your ass which incites delicious moans from you.");
 	
-	pc.buttChange(ppVahn.cockVolume(0));
+	pc.buttChange(chars["VAHN"].cockVolume(0));
 	
 	output("\n\nThe techie above you gently goes balls deep into you with each thrust, hands firmly grasping your waist. His knot bumps into your [pc.asshole] occasionally; reminding you of what you’re really after from this cute blonde ausar. You feel his hips begin to pound into you more solidly. His thrusts speed up just a bit as he’s sure you’ve comfortably adjusted to his size.");
 	
@@ -1347,7 +1372,7 @@ public function vahnDomsYourButt():void
 	
 	output("\n\nWith his knot fully enveloped by your [pc.asshole], his thrusts become erratic and you sense what’s coming next. You give one final thrust with your ass into his waist before he goes all the way inside you and unloads rope after rope of that creamy jizz you’ve been after. Nothing goes to waste as the excess is trapped behind his knot. Though, mercifully, he hasn’t forgotten about you in all this bliss.");
 	
-	pc.buttChange(ppVahn.cockVolume(0) + 50);
+	pc.buttChange(chars["VAHN"].cockVolume(0) + 50);
 	
 	output("\n\nHis soft hand is still fondling you, and with the combined pleasure of getting knotted and cummed into whilst your lover pleasures you from the front you finally explode ");
 	if(pc.hasCock()) output("with [pc.cumVisc] ropes of [pc.cumNoun]");
@@ -1362,8 +1387,8 @@ public function vahnDomsYourButt():void
 	flags["SEXED_VAHN"] = 1;
 	pc.orgasm();
 	pc.orgasm();
-	pc.loadInAss(ppVahn);
-	pc.loadInAss(ppVahn);
+	pc.loadInAss(chars["VAHN"]);
+	pc.loadInAss(chars["VAHN"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
