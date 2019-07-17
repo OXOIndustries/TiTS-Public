@@ -814,7 +814,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII V24"] = new RoomClass(this);
 	rooms["WARGII V24"].roomName = "NORTHEAST\nSTOREROOM";
-	rooms["WARGII V24"].description = "Spending time inside this storeroom would be a nice break from the otherwise claustrophobic interior of the rest of the hold - if it wasn’t the site of a raging battle. For a moment, you wonder how the diminutive korgonne managed to hollow out this chamber, then you pull yourself back to the present to focus on forcing your way through the melee. The hold isn’t lost. Not yet.\n\nA wide archway to the north provides access to a roomy access tunnel. The storeroom itself continues on for quite a ways to the south and the west.";
+	rooms["WARGII V24"].description = "Spending time inside this storeroom would be a nice break from the otherwise claustrophobic interior of the rest of the hold - if it wasn’t the site of a raging battle. For a moment, you wonder how the diminutive korgonne managed to hollow out this chamber, then you pull yourself back to the present to focus on forcing your way through the melee. The hold isn’t lost. Not yet.\n\nA wide archway to the north provides access to a roomy access tunnel. The storeroom itself continues on for quite a ways to the south and the west.\n\nA small doorway stands on the east wall. Alien runes above it designate the place as something called “Kiona's Kiosk”.";
 	rooms["WARGII V24"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V24"].moveMinutes = 2;
