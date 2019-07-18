@@ -11574,6 +11574,306 @@
 		public function isFlexible(): Boolean {
 			return (hasPerk("Flexibility") || hasStatusEffect("Gel Body"));
 		}
+		
+		//Checks to see if the player has unlocked the type
+		public function hasTypeUnlocked(type:int):Boolean
+		{
+			switch (type)
+			{
+				//Default unlocks (starter races)
+				case GLOBAL.TYPE_HUMAN:
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_FELINE:
+				case GLOBAL.TYPE_KUITAN:
+				case GLOBAL.TYPE_HUMANMASKED:
+				case GLOBAL.TYPE_LEITHAN:
+				case GLOBAL.TYPE_GRYVAIN:
+				case GLOBAL.TYPE_SIREN:
+					return true;
+					break;
+					
+				//Codex unlocks
+				case GLOBAL.TYPE_BEE:
+				case GLOBAL.TYPE_SMALLBEE:
+					if (CodexManager.entryUnlocked("Zil")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_BOTHRIOC:
+					if (CodexManager.entryUnlocked("Bothrioc")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_DAYNAR:
+					if (CodexManager.entryUnlocked("Daynar")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_DRACONIC:
+				case GLOBAL.TYPE_SMALLDRACONIC:
+					if (CodexManager.entryUnlocked("Fanfir") || CodexManager.entryUnlocked("The Dragon's Hoard")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FLOWER:
+					if (CodexManager.entryUnlocked("Venus Pitchers") || CodexManager.entryUnlocked("Cockvines")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FROG:
+					if (CodexManager.entryUnlocked("Kerokoras")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					if (CodexManager.entryUnlocked("Frostwyrm")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					if (CodexManager.entryUnlocked("Gabilani")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_GOOEY:
+					if (CodexManager.entryUnlocked("Galotians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_KORGONNE:
+					if (CodexManager.entryUnlocked("Korgonne")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_LAPINARA:
+					if (CodexManager.entryUnlocked("Lapinara")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MILODAN:
+					if (CodexManager.entryUnlocked("Milodan")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					if (CodexManager.entryUnlocked("Mothrine")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOUSE:
+				case GLOBAL.TYPE_MOUSEMAN:
+					if (CodexManager.entryUnlocked("Rodenians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOUTHGINA:
+					if (CodexManager.entryUnlocked("Muffstick")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MYR:
+					if (CodexManager.entryUnlocked("Gold Myr") || CodexManager.entryUnlocked("Red Myr")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_NAGA:
+				case GLOBAL.TYPE_NALEEN_FACE:
+					if (CodexManager.entryUnlocked("Naleen")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_NYREA:
+					if (CodexManager.entryUnlocked("Nyrea")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_OVIR:
+					if (CodexManager.entryUnlocked("Ovir")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_RAHN:
+					if (CodexManager.entryUnlocked("Rahn")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_RASKVEL:
+					if (CodexManager.entryUnlocked("Raskvel")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_ROEHM:
+					if (CodexManager.entryUnlocked("Roehm")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					if (CodexManager.entryUnlocked("Saurmorians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SIMII:
+					if (CodexManager.entryUnlocked("Simii")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					if (CodexManager.entryUnlocked("Sydians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_TENTACLE:
+					if (CodexManager.entryUnlocked("Tentatool")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_THRAGGEN:
+					if (CodexManager.entryUnlocked("Thraggen")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_VANAE:
+				case GLOBAL.TYPE_VANAE_MAIDEN:
+				case GLOBAL.TYPE_VANAE_HUNTRESS:
+					if (CodexManager.entryUnlocked("Vanae")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_VENUSPITCHER:
+					if (CodexManager.entryUnlocked("Venus Pitchers")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_XHELARFOG:
+					if (CodexManager.entryUnlocked("Xhelarfog")) return true; 
+					else return false;
+					break;
+					
+				//Other unlocks
+				case GLOBAL.TYPE_DEMONIC:
+				case GLOBAL.TYPE_SMALLDEMONIC:
+				case GLOBAL.TYPE_SUCCUBUS:
+					if (flags["MET_SERA"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_HRAD:
+					if (flags["LIRIEL_MET"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MLP:
+					if (kGAMECLASS.silly) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SYLVAN:
+				case GLOBAL.TYPE_DARK_SYLVAN:
+					if(flags["MET_CERIA"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_WATERQUEEN:
+					if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined) return true;
+					else return false;
+					break;
+					
+				//Terrestial animals
+				case GLOBAL.TYPE_AVIAN:
+				case GLOBAL.TYPE_BADGER:
+				case GLOBAL.TYPE_BOVINE:
+				case GLOBAL.TYPE_DEER:
+				case GLOBAL.TYPE_DOGGIE:
+				case GLOBAL.TYPE_DOVE:
+				case GLOBAL.TYPE_EQUINE:
+				case GLOBAL.TYPE_GOAT:
+				case GLOBAL.TYPE_HYENA:
+				case GLOBAL.TYPE_KANGAROO:
+				case GLOBAL.TYPE_LAPINE:
+				case GLOBAL.TYPE_LUPINE:
+				case GLOBAL.TYPE_PANDA:
+				case GLOBAL.TYPE_REDPANDA:
+				case GLOBAL.TYPE_RHINO:
+				case GLOBAL.TYPE_SAURIAN:
+				case GLOBAL.TYPE_SHEEP:
+				case GLOBAL.TYPE_SWINE:
+				case GLOBAL.TYPE_VULPINE:
+					return true;
+					break;
+					
+				//Hmmmmm
+				case GLOBAL.TYPE_ANEMONE:
+				case GLOBAL.TYPE_ARACHNID:
+				case GLOBAL.TYPE_DRAGONFLY:
+				case GLOBAL.TYPE_NARWHAL:
+				case GLOBAL.TYPE_QUAD_LAPINE:
+				case GLOBAL.TYPE_SHARK:
+					return false;
+					break;
+					
+				//No unlock ever
+				case GLOBAL.TYPE_COCKVINE:
+				case GLOBAL.TYPE_CUNTSNAKE:
+				case GLOBAL.TYPE_MIMBRANE:
+				case GLOBAL.TYPE_SYNTHETIC:	
+				case GLOBAL.TYPE_SANDWORM:
+				case GLOBAL.TYPE_SANDWORM_PARASITE:
+					return false;
+					break;
+				
+				//No unlock yet
+				case GLOBAL.TYPE_ADREMMALEX:
+				case GLOBAL.TYPE_DRIDER:
+				case GLOBAL.TYPE_DRYAD:
+				case GLOBAL.TYPE_INHUMAN:
+				case GLOBAL.TYPE_JANERIA:
+				case GLOBAL.TYPE_LIZAN:
+				case GLOBAL.TYPE_WORG:
+					return false;
+					break;
+					
+				default:
+					return false;
+					break;
+			}
+			return false;
+		}
+
+		//Checks to see if the type is unlocked and is valid for the body part. Returns false for current type
+		public function validShiftType(type:int, bodyPart:String, slot:int = 0):Boolean
+		{
+			switch (bodyPart)
+			{
+				case "cock":
+					//Check to see if type unlocked
+					if (hasTypeUnlocked(type))
+					{
+						//Create new temporary cock for comparison
+						cocks[cocks.length] = new CockClass();
+						//Copy comparison cock onto temporary cock
+						copyCock((cocks.length - 1), slot);
+						//Attempt to change temporary cock
+						shiftCock((cocks.length - 1), type);
+						//If temporary cock still matches comparison cock, no shift function exists
+						if (cocks[slot].cType == cocks[cocks.length - 1].cType)
+						{
+							//Remove temporary cock
+							removeCock((cocks.length - 1));
+							return false;
+						}
+						else
+						{
+							//Remove temporary cock
+							removeCock((cocks.length - 1));
+							return true;
+						}
+					}
+					else return false;
+
+				//Same as before, let's do it some more
+				case "vagina":
+					if (hasTypeUnlocked(type))
+					{
+						vaginas[vaginas.length] = new VaginaClass();
+						copyVagina((vaginas.length - 1), slot);
+						shiftVagina((vaginas.length - 1), type);
+						if (vaginas[slot].type == vaginas[vaginas.length - 1].type)
+						{
+							removeVagina((vaginas.length - 1));
+							return false;
+						}
+						else
+						{
+							removeVagina((vaginas.length - 1));
+							return true;
+						}
+					}
+					else return false;
+
+				default:
+					return false;
+			}
+		}
+		
+		//Builds an array with valid shift options for the body part. Does not include current type
+		public function validShiftTypesArray(bodyPart:String, slot:int = 0):Array
+		{
+			var validShiftTypes:Array; 
+			//Run through all the types, checking for each
+			for (var i:int = 0; i < (GLOBAL.TYPE_NAMES.length - 1); i++)
+			{
+				if (validShiftType(i, bodyPart, slot)) validShiftTypes.push(i);
+			}
+			return validShiftTypes;
+		}
+		
 		//Change cunt type!
 		public function shiftVagina(slot:int = 0, type:int = 0): void {
 			if (slot + 1 > vaginas.length) return;
