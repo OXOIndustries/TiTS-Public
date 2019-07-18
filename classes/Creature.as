@@ -11806,8 +11806,8 @@
 			return false;
 		}
 
-		//Checks to see if the type is unlocked and is valid for the body part. Returns false for current type
-		public function validShiftType(type:int, bodyPart:String, slot:int = 0):Boolean
+		//Checks to see if the type is unlocked and is valid for the body part.
+		public function validShiftType(type:int, bodyPart:String):Boolean
 		{
 			switch (bodyPart)
 			{
@@ -11817,12 +11817,12 @@
 					{
 						//Create new temporary cock for comparison
 						cocks[cocks.length] = new CockClass();
-						//Copy comparison cock onto temporary cock
-						copyCock((cocks.length - 1), slot);
+						//Set temporary cock to nonexistent type for comparison
+						cocks[cocks.length - 1].cType = -1;
 						//Attempt to change temporary cock
 						shiftCock((cocks.length - 1), type);
-						//If temporary cock still matches comparison cock, no shift function exists
-						if (cocks[slot].cType == cocks[cocks.length - 1].cType)
+						//If temporary cock still is a nonexistent type, no shift function exists
+						if (cocks[cocks.length - 1].cType == -1)
 						{
 							//Remove temporary cock
 							removeCock((cocks.length - 1));
@@ -11842,9 +11842,9 @@
 					if (hasTypeUnlocked(type))
 					{
 						vaginas[vaginas.length] = new VaginaClass();
-						copyVagina((vaginas.length - 1), slot);
+						vaginas[vaginas.length - 1].type = -1;
 						shiftVagina((vaginas.length - 1), type);
-						if (vaginas[slot].type == vaginas[vaginas.length - 1].type)
+						if (vaginas[vaginas.length - 1].type == -1)
 						{
 							removeVagina((vaginas.length - 1));
 							return false;
@@ -11862,14 +11862,14 @@
 			}
 		}
 		
-		//Builds an array with valid shift options for the body part. Does not include current type
-		public function validShiftTypesArray(bodyPart:String, slot:int = 0):Array
+		//Builds an array with valid shift options for the body part.
+		public function validShiftTypesArray(bodyPart:String):Array
 		{
 			var validShiftTypes:Array; 
 			//Run through all the types, checking for each
 			for (var i:int = 0; i < (GLOBAL.TYPE_NAMES.length - 1); i++)
 			{
-				if (validShiftType(i, bodyPart, slot)) validShiftTypes.push(i);
+				if (validShiftType(i, bodyPart)) validShiftTypes.push(i);
 			}
 			return validShiftTypes;
 		}
