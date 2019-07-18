@@ -2773,7 +2773,7 @@ public function frostwyrmItsMineAllMine():void
 	
 	clearMenu();
 	processTime(1);
-	addButton(0, "Yes", frostwyrmItsMineAllMine1, undefined);
+	addButton(0, "Yes", frostwyrmItsMineAllMine1, undefined,"Yes","This will be the last decision you’ll ever have to make, if you go this route.");
 	addButton(1, "No", frostwyrmNahIChangeMyMind, undefined);
 }
 public function frostwyrmNahIChangeMyMind():void

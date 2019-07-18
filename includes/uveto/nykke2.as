@@ -377,7 +377,7 @@ public function nykke2CallHer(playIntro:Boolean=true):void
 	}
 	else
 	{
-		output("\n\nYou lounge with Nykke at the base of a snow dune.  Normally, laying in the snow wouldn’t be your idea of a relaxing time, but Nykke gives off so much ambient heat that you’re actually fine, no matter the conditions - provided you stay with her. You’d have thought that Frostwyrms were cold-blooded, but if they were, they probably wouldn’t be on Uveto.");
+		output("You lounge with Nykke at the base of a snow dune.  Normally, laying in the snow wouldn’t be your idea of a relaxing time, but Nykke gives off so much ambient heat that you’re actually fine, no matter the conditions - provided you stay with her. You’d have thought that Frostwyrms were cold-blooded, but if they were, they probably wouldn’t be on Uveto.");
 		output("\n\nAs long as you’re with her, is there anything you’d like to say or do?");
 	}
 		
