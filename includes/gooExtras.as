@@ -2542,32 +2542,8 @@ public function reshapeAGooCawkMenu(arg:Array):void
 	
 	clearGhostMenu();
 	
-	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
-	// Unlockables
-	if(flags["MET_SERA"] != undefined)
-		cTypes.push(GLOBAL.TYPE_DEMONIC);
-	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
-		cTypes.push(GLOBAL.TYPE_TENTACLE);
-	if(CodexManager.entryViewed("Zil"))
-		cTypes.push(GLOBAL.TYPE_BEE);
-	if(CodexManager.entryViewed("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
-		cTypes.push(GLOBAL.TYPE_DRACONIC);
-	if(CodexManager.entryViewed("Gabilani"))
-		cTypes.push(GLOBAL.TYPE_GABILANI);
-	if(CodexManager.entryViewed("Nyrea"))
-		cTypes.push(GLOBAL.TYPE_NYREA);
-	if(flags["LIRIEL_MET"] != undefined)
-		cTypes.push(GLOBAL.TYPE_HRAD);
-	if(flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_COCK) == AmberSeed.FLAG_GOO_COCK)
-		cTypes.push(GLOBAL.TYPE_AVIAN);
-	if(CodexManager.entryViewed("Suulas"))
-		cTypes.push(GLOBAL.TYPE_SIREN);
-	if(CodexManager.entryViewed("Saurmorians"))
-		cTypes.push(GLOBAL.TYPE_SAURIAN);
-	if(flags["KNOW_JADES_NAME"] != undefined)
-		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
-	if(flags["SEER_MET"] == undefined)
-		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
+	var cTypes:Array = new Array();
+	cTypes = pc.validShiftTypesArray("cock");
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -3188,26 +3164,8 @@ public function pickNewGooCuntMenu(arg:Array):void
 	
 	clearGhostMenu();
 	
-	var vTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE];
-	// Unlockables
-	if(CodexManager.entryViewed("Naleen"))
-		vTypes.push(GLOBAL.TYPE_SNAKE);
-	if(CodexManager.entryViewed("Vanae"))
-		vTypes.push(GLOBAL.TYPE_VANAE);
-	if(CodexManager.entryViewed("Lapinara"))
-		vTypes.push(GLOBAL.TYPE_LAPINARA);
-	if(CodexManager.entryViewed("Gabilani"))
-		vTypes.push(GLOBAL.TYPE_GABILANI);
-	if(CodexManager.entryViewed("Nyrea"))
-		vTypes.push(GLOBAL.TYPE_NYREA);
-	if (flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_CUNT) == AmberSeed.FLAG_GOO_CUNT)
-		vTypes.push(GLOBAL.TYPE_AVIAN);
-	if(flags["KNOW_JADES_NAME"] != undefined)
-		vTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
-	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
-		vTypes.push(GLOBAL.TYPE_FLOWER);
-	if(flags["MUFFSTICK_COLORED"] != undefined)
-		vTypes.push(GLOBAL.TYPE_MOUTHGINA);
+	var vTypes:Array = new Array();
+	vTypes = pc.validShiftTypesArray("vagina");
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -3789,3 +3747,4 @@ public function gooballOption(arg:Array):void
 	gooballUsed(gooBall);
 }
 
+
