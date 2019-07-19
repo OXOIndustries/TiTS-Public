@@ -11805,71 +11805,30 @@
 			}
 			return false;
 		}
-
-		//Checks to see if the type is unlocked and is valid for the body part.
-		public function validShiftType(type:int, bodyPart:String):Boolean
-		{
-			switch (bodyPart)
-			{
-				case "cock":
-					//Check to see if type unlocked
-					if (hasTypeUnlocked(type))
-					{
-						//Create new temporary cock for comparison
-						cocks[cocks.length] = new CockClass();
-						//Set temporary cock to nonexistent type for comparison
-						cocks[cocks.length - 1].cType = -1;
-						//Attempt to change temporary cock
-						shiftCock((cocks.length - 1), type);
-						//If temporary cock still is a nonexistent type, no shift function exists
-						if (cocks[cocks.length - 1].cType == -1)
-						{
-							//Remove temporary cock
-							removeCock((cocks.length - 1));
-							return false;
-						}
-						else
-						{
-							//Remove temporary cock
-							removeCock((cocks.length - 1));
-							return true;
-						}
-					}
-					else return false;
-
-				//Same as before, let's do it some more
-				case "vagina":
-					if (hasTypeUnlocked(type))
-					{
-						vaginas[vaginas.length] = new VaginaClass();
-						vaginas[vaginas.length - 1].type = -1;
-						shiftVagina((vaginas.length - 1), type);
-						if (vaginas[vaginas.length - 1].type == -1)
-						{
-							removeVagina((vaginas.length - 1));
-							return false;
-						}
-						else
-						{
-							removeVagina((vaginas.length - 1));
-							return true;
-						}
-					}
-					else return false;
-
-				default:
-					return false;
-			}
-		}
 		
 		//Builds an array with valid shift options for the body part.
 		public function validShiftTypesArray(bodyPart:String):Array
 		{
-			var validShiftTypes:Array; 
-			//Run through all the types, checking for each
-			for (var i:int = 0; i < (GLOBAL.TYPE_NAMES.length - 1); i++)
+			var validShiftTypes:Array = new Array(); 
+			var i:int = 0;
+			switch (bodyPart)
 			{
-				if (validShiftType(i, bodyPart)) validShiftTypes.push(i);
+				case "cock":
+					//Run through all the types, checking each
+					for (i; i < GLOBAL.VALID_COCK_TYPES.length; i++)
+					{
+						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i])) validShiftTypes.push(GLOBAL.VALID_COCK_TYPES[i]);
+					}
+					break;
+
+				case "vagina":
+					for (i; i < GLOBAL.VALID_VAGINA_TYPES.length; i++)
+					{
+						if (hasTypeUnlocked(GLOBAL.VALID_VAGINA_TYPES[i])) validShiftTypes.push(GLOBAL.VALID_VAGINA_TYPES[i]);
+					}
+					break;
+				default:
+					break;
 			}
 			return validShiftTypes;
 		}
