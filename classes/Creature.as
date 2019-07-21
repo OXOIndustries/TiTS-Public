@@ -11587,6 +11587,7 @@
 				case GLOBAL.TYPE_KUITAN:
 				case GLOBAL.TYPE_HUMANMASKED:
 				case GLOBAL.TYPE_LEITHAN:
+				case GLOBAL.TYPE_NAGA:
 				case GLOBAL.TYPE_GRYVAIN:
 				case GLOBAL.TYPE_SIREN:
 					return true;
@@ -11660,7 +11661,6 @@
 					if (CodexManager.entryUnlocked("Gold Myr") || CodexManager.entryUnlocked("Red Myr")) return true;
 					else return false;
 					break;
-				case GLOBAL.TYPE_NAGA:
 				case GLOBAL.TYPE_NALEEN_FACE:
 					if (CodexManager.entryUnlocked("Naleen")) return true;
 					else return false;
@@ -11745,7 +11745,7 @@
 					else return false;
 					break;
 					
-				//Terrestial animals
+				//Terrestial animals. I guess unlock by default?
 				case GLOBAL.TYPE_AVIAN:
 				case GLOBAL.TYPE_BADGER:
 				case GLOBAL.TYPE_BOVINE:
@@ -11757,25 +11757,17 @@
 				case GLOBAL.TYPE_HYENA:
 				case GLOBAL.TYPE_KANGAROO:
 				case GLOBAL.TYPE_LAPINE:
+				case GLOBAL.TYPE_QUAD_LAPINE:
 				case GLOBAL.TYPE_LUPINE:
 				case GLOBAL.TYPE_PANDA:
 				case GLOBAL.TYPE_REDPANDA:
 				case GLOBAL.TYPE_RHINO:
 				case GLOBAL.TYPE_SAURIAN:
+				case GLOBAL.TYPE_SHARK:
 				case GLOBAL.TYPE_SHEEP:
 				case GLOBAL.TYPE_SWINE:
 				case GLOBAL.TYPE_VULPINE:
 					return true;
-					break;
-					
-				//Hmmmmm
-				case GLOBAL.TYPE_ANEMONE:
-				case GLOBAL.TYPE_ARACHNID:
-				case GLOBAL.TYPE_DRAGONFLY:
-				case GLOBAL.TYPE_NARWHAL:
-				case GLOBAL.TYPE_QUAD_LAPINE:
-				case GLOBAL.TYPE_SHARK:
-					return false;
 					break;
 					
 				//No unlock ever
@@ -11790,11 +11782,15 @@
 				
 				//No unlock yet
 				case GLOBAL.TYPE_ADREMMALEX:
+				case GLOBAL.TYPE_ANEMONE:
+				case GLOBAL.TYPE_ARACHNID:
+				case GLOBAL.TYPE_DRAGONFLY:
 				case GLOBAL.TYPE_DRIDER:
 				case GLOBAL.TYPE_DRYAD:
 				case GLOBAL.TYPE_INHUMAN:
 				case GLOBAL.TYPE_JANERIA:
 				case GLOBAL.TYPE_LIZAN:
+				case GLOBAL.TYPE_NARWHAL:
 				case GLOBAL.TYPE_WORG:
 					return false;
 					break;
