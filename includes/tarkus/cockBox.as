@@ -311,40 +311,64 @@ public function cockBoxUse(x:int):void
 public function cockBoxMenu(x:int):void
 {
 	clearMenu();
-	
 	var cockList:Array = [];
 	var i:int = 0;
 	var btnSlot:int = 0;
-	
-	cockList.push([GLOBAL.TYPE_HUMAN, "Terran", "Human", "Get a fleshy, pink penis, like a terran."]);
-	cockList.push([GLOBAL.TYPE_CANINE, "Ausar", "Ausar", "Get a knotted, ausar penis."]);
-	cockList.push([GLOBAL.TYPE_FELINE, "Kaithrit", "Kaithrit", "Get a penis with textured nubs like a kaithrit."]);
-	cockList.push([GLOBAL.TYPE_KUITAN, "Kui-Tan", "Kui-Tan", "Get a bulbous penis, like the kui-tan."]);
-	cockList.push([GLOBAL.TYPE_NAGA, "Leithan", "Leithan", "Get a smooth, tapered penis like that of a leithan."]);
-	cockList.push([GLOBAL.TYPE_GRYVAIN, "Gryvain", "Gryvain", "Get a scaly knotted, ribbed penis, like that of a gryvain."]);
-	cockList.push([GLOBAL.TYPE_EQUINE, "Equine", "Equine", "Get a penis like that of a terran horse."]);
-	// Unlockables
-	if(cockboxUpgraded(InShipInterior()))
+	var typeName:String;
+	//Upgraded version
+	if (cockboxUpgraded(InShipInterior())) cockList = pc.validShiftTypesArray("cock");
+	//Default list
+	else 
 	{
-		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
-		cockList.push([GLOBAL.TYPE_SWINE, "Swine", "Swine", "Get a corkscrew-shaped pig dick."]);
-		cockList.push([GLOBAL.TYPE_DEMONIC, "Demonic", "Demonic", "Get a knotted, nubby and sinister-looking penis."]);
-		cockList.push([GLOBAL.TYPE_TENTACLE, "Tentacle", "Tentacle", "Get a prehensile tentacle penis."]);
-		cockList.push([GLOBAL.TYPE_DRACONIC, "Draconic", "Draconic", "Get a tapered and knotted dragon penis."]);
-		cockList.push([GLOBAL.TYPE_SAURIAN, "Saurian", "Dinosaur", "Get a giant dinosaur dick."]);
+		cockList.push(GLOBAL.TYPE_HUMAN);
+		cockList.push(GLOBAL.TYPE_CANINE);
+		cockList.push(GLOBAL.TYPE_FELINE);
+		cockList.push(GLOBAL.TYPE_KUITAN);
+		cockList.push(GLOBAL.TYPE_NAGA);
+		cockList.push(GLOBAL.TYPE_GRYVAIN);
+		cockList.push(GLOBAL.TYPE_EQUINE);
+		cockList.push(GLOBAL.TYPE_SIREN);
 	}
 	
 	for(i = 0; i < cockList.length; i++)
 	{
+		//Ensures back button is always present
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 		{
 			addButton(btnSlot, "Back", useInstalledDickBox);
 			btnSlot++;
 		}
 		
-		addButton(btnSlot, cockList[i][1], dickBoxTFColorSelect, [x, cockList[i][0]], cockList[i][2], cockList[i][3]);
+		//Name overrides, for cases that the default name would be inappropriate
+		switch (cockList[i])
+		{
+			case GLOBAL.TYPE_HUMAN:
+				typeName = "Terran";
+				break;
+			case GLOBAL.TYPE_CANINE:
+				typeName = "Ausar";
+				break;
+			case GLOBAL.TYPE_FELINE:
+				typeName = "Kaithrit";
+				break;
+			case GLOBAL.TYPE_NAGA:
+				typeName = "Leithan";
+				break;
+			case GLOBAL.TYPE_BEE:
+				typeName = "Zil";
+				break;
+			default:
+				typeName = GLOBAL.TYPE_NAMES[cockList[i]];
+		}
+		
+		//Disabled button for current cock type
+		if (pc.cocks[x].cType == cockList[i]) addDisabledButton(btnSlot, typeName, typeName, "Your cock is already a " + typeName + " penis.");
+		
+		//All the other buttons
+		else addButton(btnSlot, typeName, dickBoxTFColorSelect, [x, cockList[i]], typeName, "Get a " + typeName + "penis.");
 		btnSlot++;
 		
+		//Ensures final back button is positioned in the correct slot
 		if(cockList.length > 14 && (i + 1) == cockList.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
