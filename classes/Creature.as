@@ -11780,7 +11780,7 @@
 					return false;
 					break;
 				
-				//No unlock yet
+				//No unlock yet.. Putting bugs and undersea animals (save sharks, because shark bites) here because they're a bit out there.
 				case GLOBAL.TYPE_ADREMMALEX:
 				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_ARACHNID:
