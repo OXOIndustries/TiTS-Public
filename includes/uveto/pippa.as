@@ -813,6 +813,7 @@ public function pippaStandardMassage():void
 	}
 	
 	processTime(30);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-4);
 	applyOilEffect(pc, OIL_SOURCE_STANDARD_MASSAGE);
 	pippaStandardMassagesGiven();
 	pippaAffection(1);
@@ -1144,6 +1145,7 @@ public function pippaSpecialMassageII():void
 	output("\n\nPippa collapses on top of you and just relaxes there for a little bit. Eventually she climbs off and you carefully slide off after her. She looks at you, her eyes tired, and says, <i>“I hope you enjoyed that, " + pippaCallsSteele() + ". I’m going to clean up in here and take a shower. And maybe a nap. I’ll see you later.”</i>");
 	
 	processTime(30);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	applyOilEffect(pc, OIL_SOURCE_SPECIAL_MASSAGE);
 	pippaSpecialMassagesGiven();
 	pippaAffection(3);
