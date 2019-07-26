@@ -254,24 +254,24 @@
 					case 1:
 						output("\n\nA groaning pressure floods across your [pc.legOrLegs], and you squirm in your place. Before your eyes, your [pc.hips] grow and swell as the silicone settles into your flanks like a feast of cheesecakes. Frankly, it’s a little embarrassing, but you resolve not to be distracted by this added weight.");
 						// pc’s hips increase by 1 step
-						kGAMECLASS.nymFoeInjection(1,3);
+						kGAMECLASS.nymFoeInjection(target,1,3);
 						break;
 					// ass
 					case 2:
 						output("\n\nYour posterior thickens, the cheeks of your [pc.ass] growing broader and fatter as the bio-silicone deposits itself in your rump. You wiggle your backside uncomfortably, trying to get used to the extra mass before the nursedroid has another chance to pump more into you!");
 						// pc’s ass increases by 1 step.
-						kGAMECLASS.nymFoeInjection(2,3);
+						kGAMECLASS.nymFoeInjection(target,2,3);
 						break;
 					// breasts
 					case 3:
 						output("\n\nYou gasp as the fluid filling settles into your [pc.chest], turning into a semi-firm gel that expands your [pc.chest] considerably. You press an arm against the inflated mounds, but the enlarged breasts are just as responsive as if you’d grown them yourself - albeit far more gravity-defying than natural!");
 						// pc’s breasts increase by 1 cup size
-						kGAMECLASS.nymFoeInjection(3,3);
+						kGAMECLASS.nymFoeInjection(target,3,3);
 						break;
 					// lips
 					case 4:
 						output("\n\nYou face flushes as heat momentarily blinds you. You rub the back of your hand across your eyes to help clear your vision and when you draw it away, your fingers brush against your lips. Normally, you’d expect to feel [pc.lips], but now your pucker seems to have been inflated by the silicone! You’ve got a mouth that porn stars would kill for, but there’s no time to think about that now!");
-						kGAMECLASS.nymFoeInjection(4,1);
+						kGAMECLASS.nymFoeInjection(target,4,1);
 						break;
 				}
 			}

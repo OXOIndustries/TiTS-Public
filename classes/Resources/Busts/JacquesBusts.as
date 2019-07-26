@@ -203,6 +203,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/ramis_nude.png", mimeType = "image/png")]
 		public var Bust_RAMIS_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/raskvel_dockmaster.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_DOCKMASTER:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_0.png", mimeType = "image/png")]
 		public var Bust_RILEY_0:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_bra_0.png", mimeType = "image/png")]
@@ -463,6 +466,9 @@ package classes.Resources.Busts
 			public var Full_RAMIS:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/ramis_nude.png", mimeType = "image/png")]
 			public var Full_RAMIS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jacques00/HR/raskvel_dockmaster.png", mimeType = "image/png")]
+			public var Full_RASKVEL_DOCKMASTER:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/babe_0.png", mimeType = "image/png")]
 			public var Full_RILEY_0:Class;

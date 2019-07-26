@@ -347,7 +347,7 @@ public function buttStretchDelsAnus():void
 	output("\n\nFinally, the slutty trap makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood, ");
 	if(delilahSubmissiveness() < 5) output("desperately pressing her legs together to hide her tiny, trappy shame tenting under her skirt");
 	else output("blatantly spreading her legs, one hand fully disappearing under her skirt and up her wanton hole in preparation, teasing her tiny masculinity from behind, making it jump in response, wholly throwing back the hem of her skirt and leaving her cock for all to see");
-	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh so wonderfully. Gods, she was born for this! You stifle a little moan as she ");
+	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh-so-wonderfully. Gods, she was born for this! You stifle a little moan as she ");
 	if(pc.cocks[x].cLength() <= 12) output("takes you to the hilt, your [pc.cock " + x + "] vanishing down her throat");
 	else output("sucks up every inch she can manage, choking down more than a foot of cockmeat before finally giving in, her throat utterly bulging with your massive girth stretching her pussy-like gullet wide");
 	output(".");
@@ -580,7 +580,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	{
 		output("\n\nWell, who’re you to say no? You let down your guard, releasing your body to fulfill its most primal wishes with the help of the trappy bartender. ");
 		//Dicksex:
-		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her tailhole.");
+		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her asshole.");
 		else output("<i>“C-cumming,”</i> the trap moans, burying her face in your [pc.chest] as her hip-thrusts reach a new height of speed, slamming into your [pc.vagina " + x + "] with wild abandon. Grinning, you tell her to let it go, wrapping your [pc.legOrLegs] around her hips to draw her deep inside as she cums, flooding your sex with hot, creamy seed.");
 		pc.orgasm();
 		timesDelilahSexed(1);

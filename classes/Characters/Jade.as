@@ -251,7 +251,10 @@
 			return newInventory;
 		}
 		*/
-		
+		override public function get bustDisplay():String
+		{
+			return "JADE";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachJade();

@@ -1658,6 +1658,7 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	output("\n\nFinally, you feel yourself about to cum again. You pull back and, with a bestial roar of dominance, slam into Sylvie at full force before you tighten your grip around her midriff and begin pumping her full of your seed. Between the load you already dumped in her and the gouts of sticky cum spurting into her now, it’s not long before she’s messily overflowing. Warm seed slowly rolls down her shaking, spread-apart hind legs as it leaks from her abused pussy, spattering to the floor.");
 	output("\n\nWhen you’re finally done, you give a deep, satisfied sigh and pull your cock from Sylvie’s still-gushing cunt, dismounting her. She stays on the bed for a second before pushing herself up with her arms, orange eyes half-lidded and clearly still in an orgasmic haze.");
 	output("\n\n<i>“Oh my god,”</i> she mumbles, dizzily seeking out your face and meeting your gaze in reverence. <i>“My world is still spinning, and that’s </i>not<i> the alcohol.”</i>");
+	var cumQ:Number = pc.cumQ();
 	//2 cums thus far.
 	//Untreated: 
 	if(!pc.isTreated()) 
@@ -1677,9 +1678,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 		output("\n\nSylvie keeps her hands out of the equation, which suits you just fine. She handles your prick with expert care in spite of her drunkenness, sliding her lips inches down your length and sucking hard, leaving an imprint of her cyanlipstick on your cock. You groan when you feel her tongue slide down your cumvein, teasing the underside of your slickened shaft.");
 		output("\n\n<i>“Gonna cum soon, Sylvie,”</i> you grunt, your lower half flexing as you feel yourself nearing the edge.");
 		output("\n\nShe responds by obediently taking you deeper, the head of your cock almost in her throat when you loudly groan in release.");
-		if(pc.cumQ() < 2000) output("\n\nThe first spurt of seed goes straight down her gullet, Sylvie quickly swallowing as you follow it up with a few more, painting the back of her throat [pc.cumColor]. She relaxes into a rhythm, gulping down your jizz every time your cumvein flexes across her tongue. When the flow stops, she swallows down the last of your load and sits back on her haunches.");
-		else if(pc.cumQ() < 5000) output("\n\nRopes of [pc.cumColor] seed splatter against the back of her throat, running down her gullet and into her stomach. Sylvie quickly swallows it down, settling into the rhythm of gulping your jizz every time your cumvein flexes across her tongue. When the flow finally stops, she swallows down the last of your load and sits back on her haunches.");
-		else if(pc.cumQ() <= 15000) output("\n\nSylvie makes a surprised noise from below as thick ropes of seed gush right down her gullet, rapidly swallowing to keep up with the flow of jizz into her tummy. You paint her throat [pc.cumColor] with your cum as she settles into gulping a load down every time your cumvein flexes across her tongue. When the torrential flow finally stops, she struggles to swallow down the last of your loads and sits back on her haunches, panting.");
+		if(cumQ < 2000) output("\n\nThe first spurt of seed goes straight down her gullet, Sylvie quickly swallowing as you follow it up with a few more, painting the back of her throat [pc.cumColor]. She relaxes into a rhythm, gulping down your jizz every time your cumvein flexes across her tongue. When the flow stops, she swallows down the last of your load and sits back on her haunches.");
+		else if(cumQ < 5000) output("\n\nRopes of [pc.cumColor] seed splatter against the back of her throat, running down her gullet and into her stomach. Sylvie quickly swallows it down, settling into the rhythm of gulping your jizz every time your cumvein flexes across her tongue. When the flow finally stops, she swallows down the last of your load and sits back on her haunches.");
+		else if(cumQ <= 15000) output("\n\nSylvie makes a surprised noise from below as thick ropes of seed gush right down her gullet, rapidly swallowing to keep up with the flow of jizz into her tummy. You paint her throat [pc.cumColor] with your cum as she settles into gulping a load down every time your cumvein flexes across her tongue. When the torrential flow finally stops, she struggles to swallow down the last of your loads and sits back on her haunches, panting.");
 		else 
 		{
 			output("\n\nSylvie exclaims from below as a torrent of [pc.cumColor] seed gushes down her throat, spraying into her stomach. The poor girl can barely keep up with the flow, taking gulping swallows every second just to try and keep your cock in her mouth while your cumvein flexes across her tongue. Eventually, it’s no use, and she has to pull your still-spurting prick from between her lips. Jizz runs from her mouth, bulging cheeks unable to contain your virility, and splatters across the top of her freckled breasts.");
@@ -2665,9 +2666,9 @@ public function sylvieRutFunPart3():void
 	if(pc.isTreated()) output(", but that’s just fine. You’re used to riding the seas of enhanced sensation your Treated body offers. It’s when you’re fucking that you feel truly superhuman, and truly alive");
 	output(".");
 
-	output("\n\nYour hips, yoked to the pheromones driving your body, pound away. Curtains of femcum splash up over your [pc.belly]. Other patrons look on in awe. More than one is masturbating, nearly as beholden to Sylvie’s sorcerous scent as you. Some are fucking, adding their own sexual aromas to the fuck-melange filling the air. Your sodden nose twitches. So ");
-	if(pc.cockTotal() > 1) output("do your [pc.cocks.");
-	else if(pc.cockTotal() == 1) output("does your [pc.cock].");
+	output("\n\nYour hips, yoked to the pheromones driving your body, pound away. Curtains of femcum splash up over your [pc.belly]. Other patrons look on in awe. More than one is masturbating, nearly as beholden to Sylvie’s sorcerous scent as you. Some are fucking, adding their own sexual aromas to the fuck-melange filling the air. Your sodden nose twitches.");
+	if(pc.cockTotal() > 1) output(" So do your [pc.cocks.");
+	else if(pc.cockTotal() == 1) output(" So does your [pc.cock].");
 	if(pc.exhibitionism(1) < 33) output(" You’re glad it’s impossible to focus on anything than breeding this law-serving slut or you’d be self-conscious about the audience.");
 	else if(pc.exhibitionism() < 66) output(" You blush, a little embarrassed but equally aroused by all the eyes on your body, thrilling that so many are getting to watch you breed this law-serving slut.");
 	else output(" You flash a feral grin as you continue to thrust, reveling in the attention, knowing that everyone around you either wants to be you or to fuck you.");
@@ -2933,7 +2934,7 @@ public function sylvieTriesHerDongerOn3():void
 	clearOutput();
 	showSylvie(true);
 	author("Wsan");
-	output("<i>“Mmmmm... could you put some of this on my cock, please?”</i> Sylvie asks, tossing you a bottle labelled ‘elasticizing oil’. <i>“Just in case. I figure we both know the best method of application to your asshole. Just rub it right in there and I’ll get right to it,”</i> she says with a grin.");
+	output("<i>“Mmmmm... could you put some of this on my cock, please?”</i> Sylvie asks, tossing you a bottle labeled ‘elasticizing oil’. <i>“Just in case. I figure we both know the best method of application to your asshole. Just rub it right in there and I’ll get right to it,”</i> she says with a grin.");
 	output("\n\nYou do so methodically, albeit with perhaps a little more attention to detail than you really need. It’s just kind of fascinating to feel every single bump, vein, and crease in Sylvie’s equine penis with your hands, knowing it’s about to be buried in your ass. You give special treatment to her medial ring, much to her approval, ensuring it’s slathered in a nice coating of lube before continuing onto the base. Just for good measure, you grope those heavy balls of hers and give them a slight, encouraging squeeze before retreating back to your position at the head of the bed.");
 	output("\n\n<i>“You really know how to treat a girl, [pc.name],”</i> Sylvie says, biting her lip while she checks out your [pc.ass] pointed at her. <i>“Just looking at this... grr!”</i>");
 	output("\n\nBending down, she seizes an asscheek and pulls, aggressively shoving two of her fingers right into your [pc.asshole]. The surprise penetration makes you moan a little, and Sylvie begins to rub her fingers along your sensitive insides.");
@@ -3238,6 +3239,7 @@ public function fuckDickedSylviesPussah(x:int):void
 	output("\n\n<i>“Whoa, girl,”</i> you murmur, impressed. <i>“Better not keep you waiting, eh?”</i>");
 	output("\n\n<i>“Pleeeaase,”</i> she begs.");
 
+	var cumQ:Number = pc.cumQ();
 	if(pc.isTaur()) 
 	{
 		output("\n\nBetween the room rapidly filling with sex pheromones and your animal instincts screaming at you, you’re <i>beyond</i> ready to fuck Sylvie. You’ve got to treat a girl like her right, though, and that means one thing: fucking her needy cunt as hard as possible right from the word ‘go’.");
@@ -3288,16 +3290,16 @@ public function fuckDickedSylviesPussah(x:int):void
 		if(pc.balls == 0) output("dick");
 		else output("[pc.balls]");
 		output(" and Sylvie’s alike while you pump her full, enjoying the way she backs her big butt right up against your thighs.");
-		if(pc.cumQ() < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
-		else if(pc.cumQ() < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
-		else if(pc.cumQ() < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
+		if(cumQ < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
+		else if(cumQ < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
+		else if(cumQ < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
 		else 
 		{
 			output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A torrent of spunk follows, gushing from her stuffed-full pussy until the flow finally recedes to a river, rolling down her rear to her balls and dripping from her flagging cock as if it were her own. The rest is stuffed deep inside, swelling her tummy a little bit and making the moosegirl look like she might be expecting.");
 			output("\n\n<i>“Awww, what a waste,”</i> she laments, looking at all the cum pooling on the ground. <i>“After you did </i>such<i> a good job of putting it so deep inside me, too.”</i>");
 		}
 		output("\n\n<i>“That’s a good look on you,”</i> you tell her, nodding at her ");
-		if(pc.cumQ() >= 15000) output("cum-covered ");
+		if(cumQ >= 15000) output("cum-covered ");
 		output("ass and tummy. <i>“Enhances your natural beauty ‘n all.”</i>");
 		output("\n\n<i>“Aww, thank you!”</i> Sylvie says, smiling wide and giving you a flourish of her extraordinary hips. <i>“So nice of you to say. Care to rinse off together and join me in the baths to get all cleaned up?”</i>");
 		output("\n\nSounds good.");
@@ -3327,16 +3329,17 @@ public function taurFuckDickSylvieSlow():void
 	if(pc.balls == 0) output("dick");
 	else output("[pc.balls]");
 	output(" and Sylvie’s alike while you pump her full, enjoying the way she nuzzles her big butt right up against your legs.");
-	if(pc.cumQ() < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
-	else if(pc.cumQ() < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
-	else if(pc.cumQ() < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
+	else if(cumQ < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
+	else if(cumQ < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
 	else 
 	{
 		output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A torrent of spunk follows, gushing from her stuffed-full pussy until the flow finally recedes to a river, rolling down her rear to her balls and dripping from her flagging cock as if it were her own. The rest is stuffed deep inside, swelling her tummy a little bit and making the moosegirl look like she might be expecting.");
 		output("\n\n<i>“Awww, what a waste,”</i> she laments, looking at all the cum pooling on the ground. <i>“After you did </i>such<i> a good job of putting it so deep inside me, too.”</i>");
 	}
 	output("\n\n<i>“That’s a good look on you,”</i> you tell her, nodding at her");
-	if(pc.cumQ() >= 15000) output(" cum-covered");
+	if(cumQ >= 15000) output(" cum-covered");
 	output(" ass and tummy. <i>“Enhances your natural beauty ‘n all.”</i>");
 
 	output("\n\n<i>“Aww, thank you!”</i> Sylvie says, smiling wide and giving you a flourish of her extraordinary hips. <i>“So nice of you to say. Care to rinse off together and join me in the baths to get all cleaned up?”</i>");
@@ -3885,14 +3888,15 @@ public function inviteKallyOverForTripleHorsemeat():void
 	output("\n\n<i>“Well, more of a one than before.”</i> She trails off dreamily as her massive mare meat throbs against her underside. Kally’s stallion is equally straining, as if the two are having a competition to see which one can drain more blood from their owners.");
 	output("\n\nThe two have almost entirely lost focus as they ogle each other’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
 
+	var kallyCumQ:Number = kally.cumQ();
 	//Kiro and Kally sitting in a tree F U C K I N G:
 	if(kiroKallyThreesomes() > 0) 
 	{
 		output("\n\nSuddenly Kiro comes up and grabs Kally from behind, fondling her sister’s rock-hard cock while threading her own erection under her quaking sack. <i>“Guess who?”</i>");
 		output("\n\nKally starts to moan out, only to be silenced as Kiro locks lips with her. Sylvie almost drools while she looks over the incestuous pair, cursing under her breath that she can’t reach her own cock to relieve the pent-up pressure.");
 		output("\n\nThe ‘nukis part lips, Kally stammering out between moans of pleasure. <i>“K-Kiro please! I-I-I’m gonna cuuuuuum!”</i> Indeed, Kally’s cock is ");
-		if(kally.cumQ() < 8000) output("dribbling pre-cum liberally, slicking her feet and the floor in a thin puddle of nuki-horse cum.");
-		else if(kally.cumQ() < 16000) output("shooting huge gobs of pre onto the floor in front of her.");
+		if(kallyCumQ < 8000) output("dribbling pre-cum liberally, slicking her feet and the floor in a thin puddle of nuki-horse cum.");
+		else if(kallyCumQ < 16000) output("shooting huge gobs of pre onto the floor in front of her.");
 		else output("lancing huge sprays of intoxicating seed, several feet in front of her. <i>“C-cum sooooooo much...”</i>");
 
 		output("\n\nShe looks like she’s about to blow, right before Kiro pulls away from her with a flourish. Kally drops to her knees, trying desperately to resist touching herself while Kiro saunters over to Sylvie.");
@@ -4028,6 +4032,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 		output("\n\n<i>“I call pussy!”</i> she yells out.");
 	}
 	output("\n\n<i>“Alright sluts, gather around for some lube.”</i> Kiro pulls out a huge bottle of her favorite elasticizing lube. From where, you have no idea. ");
+	var kallyCumQ:Number = kally.cumQ();
 	if(kiroKallyThreesomes() > 0) 
 	{
 		output("She personally administers the lubricant, squirting out huge flows into her hands and vigorously jerking off both Sylvie and Kally.");
@@ -4035,12 +4040,12 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 		output("\n\nKally almost seems to be competing with Sylvie in how much she can get off from Kiro’s ministrations. <i>“Kiroooooooo, why are your hands so gooooood?”</i>");
 		output("\n\n <i>“Lots of practice, sis. Maybe you should help me out one of these days?”</i>");
 		output("\n\n<i>“Yesyesyesyesyeeeeeeeeeeeeeeeees!”</i> Kally’s eyes starts to cross as her cock ");
-		if(kally.cumQ() < 8000) output("dribbles");
-		else if(kally.cumQ() < 16000) output("drools");
+		if(kallyCumQ < 8000) output("dribbles");
+		else if(kallyCumQ < 16000) output("drools");
 		else output("spews");
 		output(" pre-cum. Kiro seems to think that’s enough lube for both of them, and starts to get herself ready. Instead of just using the lube, she plants her dick against her sister’s soaking up the pre that she’s leaking. ");
-		if(kally.cumQ() < 8000) output("Of course it’s not enough to get her fully ready, and she squirts another volley onto her’s and Kally’s members.");
-		else if(kally.cumQ() < 16000) output("Kally’s enhanced production provides ample lube, but not quite enough for Kiro’s mammoth member. She squirts another round onto their twined meat.");
+		if(kallyCumQ < 8000) output("Of course it’s not enough to get her fully ready, and she squirts another volley onto her’s and Kally’s members.");
+		else if(kallyCumQ < 16000) output("Kally’s enhanced production provides ample lube, but not quite enough for Kiro’s mammoth member. She squirts another round onto their twined meat.");
 		else 
 		{
 			output("Kally’s production is utterly obscene at this point. In a only a few seconds, she manages to squirt out enough pre to fully cover Kiro’s cock, <i>and</i> give her own a second coating.");
@@ -4137,7 +4142,7 @@ public function tripleHorseingIntro(upAss:Boolean = false):void
 	output("\n\nYou fill out like a balloon attached to a fire hose, reaching limits of fullness that you never thought were possible. The three over-productive skanks make sure that every single inch of space inside of you is filled with their essence, before pulling out. It should hurt, or at least feel strange, but you’re stuffed with so much of Kally’s intoxicating brew, that you can’t feel anything but absolute pleasure.");
 
 	output("\n\nThe three absolutely baste you in their fluids, the excess running off into a pool beneath the bench. ");
-	if(kally.cumQ() >= 16000) output("Kally absolutely steals the show, though. The virility drugs she’s been taking have turned her into a one-nuki tsunami. Kiro and Sylvie look on in awe as she outpaces both of them put together. Kally herself is far too engrossed in it to really notice. Her eyes are completely screwed up into her head, and her mouth hangs open in silent bliss. ");
+	if(kallyCumQ >= 16000) output("Kally absolutely steals the show, though. The virility drugs she’s been taking have turned her into a one-nuki tsunami. Kiro and Sylvie look on in awe as she outpaces both of them put together. Kally herself is far too engrossed in it to really notice. Her eyes are completely screwed up into her head, and her mouth hangs open in silent bliss. ");
 	output("They all eventually run dry, limply falling to the ground in various states of exhaustion. You yourself are completely immobilized on the bench, looking like a galotian that just got done being the center of a kui-tan gangbang. Which isn’t really far from the truth.");
 	output("\n\n<i>“That... was... amazing!”</i> Kiro exhaustedly cries out, to weary, but enthusiastic cheers from the rest of you.");
 	output("\n\nKally rouses from her stupor. <i>“I-I’m gonna g-get this cleaned up. Sylvie, could you be a de");

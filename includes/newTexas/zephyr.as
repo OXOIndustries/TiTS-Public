@@ -1057,9 +1057,9 @@ public function getTailFuckedByZephyrSauce():void
 	output("\n\n<i>“But how am going to get off?”</i> you ask a little plaintively.");
 	output("\n\n<i>“Well, if getting off is what you’re looking for, maybe ask me to fuck you instead of your tail, next time,”</i> she says with a mischievous grin.");
 	output("\n\nIt seems incredibly unfair, but you’re a bit at her mercy. Your body is still twitching and aching to cum as you pick up your clothes, slowly dressing with your tail stuffed full of her throbbing cock. Every other motion brings an accidental tug from it, sending a shuddering wave through your body, bringing you that much closer to cumming. Zephyr smiles as she watches you, looking as if she’s enjoying your predicament.");
-	output("\n\nBy the time you’re done dressing , her knot has gone down, and with a wet slurp, your tail slides free from it, slapping limply against the floor. You stiffen with a sharp intake of air, your back arching as you stand straight up, feeling yourself at the verge of climaxing.");
+	output("\n\nBy the time you’re done dressing, her knot has gone down, and with a wet slurp, your tail slides free from it, slapping limply against the floor. You stiffen with a sharp intake of air, your back arching as you stand straight up, feeling yourself at the verge of climaxing.");
 	output("\n\nZephyr is on you in a flash, striding forward and clamping her hand down on ");
-	if(pc.hasCock()) output("[pc.oneCock] , her grip so tight that cumming would be an impossibility.");
+	if(pc.hasCock()) output("[pc.oneCock], her grip so tight that cumming would be an impossibility.");
 	else output("your [pc.tailCunt], clapping her palm soundly against it, sending a sharp sting of impact up your body, interrupting your breathless spasm.");
 	output(" <i>“Out!”</i> she orders.");
 

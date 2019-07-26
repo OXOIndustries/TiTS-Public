@@ -174,12 +174,13 @@ public function samPrisonStuff(args:Array):void
 		else output("Unfortunately for Sam, you don’t have the knot she’s begging you to plug her with, but you’ve still got the virile seed she desperately wants to quench the raging fires of her lust. As your [pc.cock " + x + "] twitches and throbs powerfully in orgasm, you stuff her box in time with your ejaculations, almost blacking out at the feeling of her swampy cunny feverishly pulling your member back in each time.");
 		output(" You groan loudly and double over her sweat-slicked back as your breed her orgasmically-contracting pussy.");
 
+		var cumQ:Number = pc.cumQ();
 		//Pregnant:
 		if(sam.isPregnant())
 		{
 			output("\n\nWith a litter of pups already occupying her womb, Sam’s cervix remains steadfastly closed. You’re too overwhelmed with your orgasm to care, and your biological imperative keeps you stubbornly cumming in the ausar’s already-pregnant pussy, as if she could carry more of your children if you just tried hard enough.");
 			//anything more than big cummies:
-			if(pc.cumQ() >= 500) 
+			if(cumQ >= 500) 
 			{
 				output(" Your inhuman load quickly fills up Sam’s pussy, bathing every millimeter of her folds in your hot, [pc.cumFlavor] [pc.cumNoun], the rest backwashing out in high-pressure gouts of wasted [pc.cum] ");
 				if(pc.hasKnot(x)) output("even in spite of your knot");
@@ -188,14 +189,14 @@ public function samPrisonStuff(args:Array):void
 			else output(" Your [pc.cock " + x + "] spurts lances of hot, [pc.cumFlavor] [pc.cumNoun], basting Sam’s folds in the proof of your virility.");
 		}
 		//Regular cummies:
-		else if(pc.cumQ() <= 1000)
+		else if(cumQ <= 1000)
 		{
 			output("\n\nYour [pc.cock " + x + "] spurts lances of hot, [pc.cumFlavor] [pc.cum], basting Sam’s folds in the proof of your virility. ");
 			if(pc.hasKnot(x)) output("Your knot ensures every drop stays right where it belongs. ");
 			output("The blonde girl howls in delight as you fill her box, and squeezes down on you so hard it hurts, even after you’ve stopped cumming.");
 			output("\n\n<i>“More! More! Give! Me! Pups!”</i> she manages a few more pleas, but you’ve given her all you have.");
 		}
-		else if(pc.cumQ() <= 10000)
+		else if(cumQ <= 10000)
 		{
 			output("\n\nYour [pc.cock " + x + "] gouts great flumes of hot, [pc.cumFlavor] [pc.cumNoun], filling Sam’s tunnel with just a few spurts and stuffing her fertile womb with the remainder. ");
 			if(pc.hasKnot(x)) output("With your knot sealing her entrance, her cervix has no choice but to accept the entirety of your massive load.");
@@ -225,8 +226,8 @@ public function samPrisonStuff(args:Array):void
 		}
 		else output("\n\nOnce you’ve finished breeding Sam, you pull out of her and step back, the sated girl whining as you leave her feeling very empty. You stroke her canine ears with a sarcastic <i>“Good girl.”</i>");
 		output(" The instant her pussy is unplugged, a torrent of ");
-		if(pc.cumQ() < 200) output("clear, earthy girlcum tinged off-[pc.cumColor]");
-		else if(pc.cumQ() <= 1000) output("clear, earthy girlcum mixed with your [pc.cumNoun]");
+		if(cumQ < 200) output("clear, earthy girlcum tinged off-[pc.cumColor]");
+		else if(cumQ <= 1000) output("clear, earthy girlcum mixed with your [pc.cumNoun]");
 		else output("your [pc.cumNoun], discolored by her clear, earthy girlcum,");
 		output(" gushes out of her to splatter wetly into her ruined pants before she reflexively squeezes her internal muscles to hold in your cum. You admire your handiwork: Sam’s pretty, pink ausar pussy is clenched tight to hold in your cum after being thoroughly creampied, and you, she, and everything around you are splattered in your mixed sexual fluids. The jailbird herself is barely conscious, but her tail is swishing gaily, and her face looks totally content, as if this is the first time in a while she has been able to truly relax.");
 

@@ -16,7 +16,7 @@ Dryad xpac written by Wsan.
   AMBER_CREWMEMBER 0/undefined = not recruited and not on ship, 1 = recruited and on ship, 2 = recruited but not on ship
   AMBER_CREWMEMBER_INITIALSCENE undefined = not played, game timestamp = when initial scene happened
   AMBER_VISIT_HOLD 0/undef = unvisited, 1 = visited her in hold
-  AMBER_RECRUIT_FUCK 0/undefined = not recruited , 1 = you fucked her during recruitment scene, 2 = she fucked you
+  AMBER_RECRUIT_FUCK 0/undefined = not recruited, 1 = you fucked her during recruitment scene, 2 = she fucked you
   AMBER_LASTCUM gametimestamp of last time she came
   AMBER_BRUSHED gametimestamp of last time she was brushed
   AMBER_SHIPSEX_TALK 0/undef no talk yet, 1 = had talk
@@ -252,11 +252,11 @@ public function amberComeWithTalkGetFucked(hole:int):void
 	output("\n\nYou cry out underneath her in a mixture of surprise");
 	if (hole < 0)
 	{
-		if(pc.ass.wetness() < 3) output(" , pain,");
+		if(pc.ass.wetness() < 3) output(", pain,");
 	}
 	else
 	{
-		if(pc.vaginas[hole].wetness() < 3)output(" , pain,");
+		if(pc.vaginas[hole].wetness() < 3)output(", pain,");
 	}
 	output(" and pleasure.");
 	if (pc.isTaur()) output(" Her ragged, desperate breathing is hot against your ear, bestial grunts of satisfaction issuing forth from her throat.");
@@ -524,67 +524,29 @@ public function amberComeWithSleep():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-// 9999
-public function amberBootFromCrew():void
-{
-	clearOutput();
-	amberHeader();
-	author("");
-	
-	output("");
-	output("\n\n");
-	
-	processTime(20);
-	
-	flags["AMBER_CREWMEMBER"] = 2;
-	//if(flags["CREWMEMBER_SLEEP_WITH"] == "AMBER") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
-	
-	output("\n\n(<b>Amber is no longer on your crew. You can find her again on Mhen’ga.</b>)");
-	output("\n\n");
-	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
-}
-// 9999
-public function amberRejoinCrew():void
-{
-	clearOutput();
-	amberHeader();
-	author("");
-	
-	output("");
-	output("\n\n");
-	
-	processTime(20);
-	
-	//currentLocation = "SHIP INTERIOR";
-	flags["AMBER_CREWMEMBER"] = 1;
-
-	output("\n\n(<b>Amber has rejoined your crew!</b>)");
-	output("\n\n");
-	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
-}
 
 //crew activity blurb for ship 
-public function amberShipBonusText():String
+public function amberShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
-	var desc:String;
+	var desc:String = "";
 	
 	if(pc.hasStatusEffect("Amber Disabled")) 
 	{
-		desc = "Amber is not available at the moment.";
+		desc += "\n\nAmber is not available at the moment.";
 		if(mitziIsCrew()) desc += " She’s probably getting into trouble with Mitzi somewhere...";
 	}
 	else
 	{
-		desc = "Amber is likely relaxing down in the hold";
+		desc += "\n\nAmber is likely relaxing down in the hold";
 		if (crew(true) > 0) desc += " or hanging out with a crew member";
 		desc += ".";
 	}
 	
-	return desc;
+	if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+	else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber’s busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
+	else addButton(btnSlot, "Amber", amberInTheHold);
+	
+	return (showBlurb ? desc : "");
 }
 
 //interact with amber in the hold
@@ -677,7 +639,7 @@ public function amberMainMenu():void
 	else addDisabledButton(3,"Brush Fur","Brush Fur","You already know the only type of touch Amber’s keen on right now is a much more sensual one.");
 	addButton(4,"Sex",amberOnshipSex,undefined);
 	
-	//9999 addButton(13, "Leave Crew", amberBootFromCrew, undefined, "Leave Crew", "Ask Amber to move off the ship. You’ll be able to pick her up again later.");
+	addButton(13,"Leave Crew",dismissAmber,undefined,"Leave Crew","The ship is no place for a " + (amberDumbfuckDoses() <= 2 ? "cute, ambling deertaur.":"sex-crazed deergirl!") + " Leave her at the apartment you've got on Tavros.");
 	
 	addButton(14,"Leave",crew);
 }
@@ -689,7 +651,9 @@ public function amberOnshipAppearance():void
 	var timeframe:int = 14400; //10 days
 	
 	output("Amber is a deertaur, all smooth fur and dainty legs from the hips down. Her thick hair reaches down to her shoulders, dark red at the roots and brightening as it reaches the tips. Two animal ears protrude through it from the sides of her head, as articulate as they are distracting. Her eyes are a light blue and her little button nose sits above a mouth often pulled into a genial smile or a humorous smirk.");
-	output("\n\nFreckles spot her skin, dappling her cheeks and shoulders for a start. Some even spot her plump breasts, not quite as big as they might get on other ‘taurs but enough to draw your gaze. Both her nipples and areolae are a luscious pink that matches her lips. Being fairly athletic, Amber is quite lean though not outright skinny. Her hips have an attractive curve to them that seamlessly meets with her tauric half, extending back a few feet.");
+	output("\n\n");
+	showImage("AmberNakkers");
+	output("Freckles spot her skin, dappling her cheeks and shoulders for a start. Some even spot her plump breasts, not quite as big as they might get on other ‘taurs but enough to draw your gaze. Both her nipples and areolae are a luscious pink that matches her lips. Being fairly athletic, Amber is quite lean though not outright skinny. Her hips have an attractive curve to them that seamlessly meets with her tauric half, extending back a few feet.");
 	output("\n\nHer brown fur is");
 	
 	if (flags["AMBER_BRUSHED"] == undefined || GetGameTimestamp() - timeframe > flags["AMBER_BRUSHED"]) output(" a little messy, as you’d expect from having lived in a jungle.");
@@ -4092,4 +4056,167 @@ public function amberAndCelisePutOnAShow():void
 	flags["AMBER_LASTCUM"] = GetGameTimestamp();
 
 	addButton(0, "Next", mainGameMenu);
+}
+
+//[Dismiss]
+//tooltip:The ship is no place for a{dumbfucked 0-2: cute, ambling deertaur./3-4: sex-crazed deergirl!} Leave her at the apartment you've got on Tavros.
+
+public function dismissAmber():void
+{
+	clearOutput();
+	amberHeader();
+	author("Wsan");
+	var haveKids:Number = ChildManager.numChildren();
+	output("<i>“Hey Amber, with all the fighting and raiding going on I think you should probably stay home,”</i> you tell the deergirl. <i>“I’ve got an apartment on Tavros. It’s a lot safer there than it is here, and the facilities are top notch." + (pc.credits >= 100 ? " Here’s a chit - use this for the taxi.":"") + "”</i>");
+	if(pc.credits >= 100)
+	{
+		output("\n\nAmber takes the chit");
+		if(amberDumbfuckDoses() < 3) output(" and looks at it, crestfallen.")
+		else if(amberDumbfuckDoses() == 3) output(" and moans.");
+		else output(" and moans loudly.");
+		pc.credits -= 100;
+	}
+	else 
+	{
+		if(amberDumbfuckDoses() < 3) output("\n\nAmber looks crestfallen.")
+		else if(amberDumbfuckDoses() == 3) output("\n\nAmber moans.");
+		else output("\n\nAmber moans loudly.");
+	}
+	if(amberDumbfuckDoses() == 0) 
+	{
+		output(" <i>“Aaawww... thanks, [pc.name]. But you can’t expect me to be happy that I have to leave...”</i>");
+		output("\n\n<i>“If you got hurt because I decided to fight some pirates, Amber, I would never forgive myself,”</i> you say, rubbing her shoulder and smiling at her. <i>“Don’t worry, the staff there are friendly." + (haveKids > 0 ? " Then there’s the nursery, too. That should keep you occupied.":"") + "”</i>");
+		if(haveKids > 0) 
+		{
+			output("\n\n<i>“The nursery- you have kids?”</i> she gasps, eyes gleaming. <i>“Oh my gosh! Oh, I want to play with little Steele babies! Okay, [pc.name]. You’ve convinced me.”</i>");
+			output("\n\n<i>“Thought that might do the trick,”</i> you say, grinning. <i>“Okay, Amber. I’ll see you soon, okay? I’ll come and say hi or if we’re not doing anything dangerous, put you back on board.”</i>");
+
+		}
+		else
+		{
+			output("\n\n<i>“Well, alright, if you say so,”</i> she says, smiling uncertainly. <i>“I’ll just hope for the best.”</i>");
+			output("\n\n<i>“You’ll be fine, Amber,”</i> you promise, stepping in and hugging her around the waist. <i>“It’ll be like a holiday, I promise. Okay?”</i>}");
+			output("\n\n<i>“Okay,”</i> she says, smiling. She leans in and gives you a kiss, small and soft, before stepping back and giving you a wave. <i>“See you soon, [pc.name].”</i>");
+			output("\n\nYou don’t think she’s quite as happy as she looks, but... it’s better than the alternative. The last thing you need is your lovable and decidedly non-combatant deer girlfriend aboard the ship during a fight.");
+		}
+	}
+	else if(amberDumbfuckDoses() <= 2)
+	{
+		output(" <i>“Aaawww... now we can’t fuck whenever we want...”</i>");
+		output("\n\n<i>“Better that than you getting actually hurt during a fight with some pirates,”</i> you say, smiling. <i>“Don’t worry, I’ll swing by for visits.”</i>");
+		output("\n\n<i>“You’d better!”</i> Amber says, grinning as she draws closer. <i>“I’m going to be so <b>bored</b> and <b>pent-up</b> without you...”</i>");
+		output("\n\n<i>“I’ll bet,”</i> you murmur, wrapping your arms around her little waist and catching her in a hug. <i>“Never let you down before though, have I?”</i>");
+		output("\n\n<i>“You haven’t,”</i> she says, winking. <i>“Never once been disappointed, gotta say. But you can bet your ass I’m gonna hound you when you’re here.”</i>");
+		output("\n\nYou kiss her, Amber’s lips parting to let her warm tongue wrap around your own before she pulls back with a smile.");
+		output("\n\n<i>“Okay, [pc.name]. Make sure to visit often... I’m already missing your company and I haven’t even left yet!”</i> Amber says, waving. <i>“See you.”</i>");
+		output("\n\n<i>“Bye, Amber. I’ll see you soon!”</i> you promise, waving her off.");
+		output("\n\nYou don’t think she’s quite as happy as she looks, but... it’s better than the alternative. The last thing you need is your sexy and decidedly non-combatant deer girlfriend aboard the ship during a fight.");
+	}
+	else if(amberDumbfuckDoses() == 3)
+	{
+		output(" <i>“But now I can’t fuck you whenever I want...”</i>");
+		output("\n\n<i>“We can fuck when I visit,”</i> you say, grinning. <i>“Don’t worry, I wouldn’t just leave you.”</i>");
+		output("\n\n<i>“You’d better visit!”</i> Amber says, grinning as she draws closer. <i>“I’m going to be so <b>bored</b> and <b>pent-up</b> without you...”</i>");
+		output("\n\n<i>“I’ll bet,”</i> you murmur, wrapping your arms around her little waist and catching her in a hug. <i>“Never let you down before though, have I?”</i>");
+		output("\n\n<i>“Uh uh,”</i> she says, drawing closer with a hungry look in her eye. Hanging out of her sheath, her enormous horsecock is already drooling spunk before she wraps her arms around you and kisses you fiercely. <i>“Mmmm...”</i>");
+		output("\n\nHer warm tongue winds around your own while precum spatters across the floor, her hindquarters slowly writhing as she sucks on your [pc.tongue] until she’s had her fill of foreplay. Pulling back, she takes the chit and walks past you, turning back with a sultry grin. Fully exposed and dripping, her pussy winks at you as she waves.");
+		output("\n\n<i>“See you, [pc.name]. Don’t be long.”</i>");
+		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.");
+		pc.lust(15);
+	}
+	else
+	{
+		output(" <i>“But the <b>sex</b>...”</i>");
+		output("\n\n<i>“We can fuck when I visit,”</i> you say, grinning. <i>“Don’t worry, I wouldn’t just leave you.”</i>");
+		output("\n\n<i>“Fine,”</i> Amber groans. Looking up, she begins to draw closer with a hungry look in her eyes. <i>“Kisses...”</i>");
+		output("\n\nHanging out of her sheath, her enormous horsecock is already spurting spunk onto the floor as she wraps her arms around you and kisses you fiercely. <i>“Mmmm!”</i>");
+		output("\n\nHer warm tongue winds around your own while her jizz splatters across the ship’s interior, her hindquarters bucking as she sucks on your [pc.tongue] until she’s had her fill. Pulling back, she walks past you, cock as hard as steel and bumping against her underbelly. Fully exposed and dripping, her pussy winks at you as she gazes back at you longingly.");
+		output("\n\n<i>“Come fuck me soon,”</i> she begs, and then she’s gone.");
+		output("\n\nThere’s probably more on her mind that she’ll be missing than the sex, but... well, actually, maybe not. The apartment’s pretty comfortable. You’ll have to go and help her break it in properly when you’ve got the chance.}");
+		output("\n\n<b>Amber has left the crew. You can pick her back up at your apartment on Tavros.</b>");
+		pc.lust(20);
+	}
+	processTime(10);
+	flags["AMBER_CREWMEMBER"] = 2;
+	//if(flags["CREWMEMBER_SLEEP_WITH"] == "AMBER") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Amber is no longer on your crew. You can find her again in your suite on Tavros Station.</b>)");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Apartment shit
+public function amberApartmentBonus(arg:Number):void
+{
+	output("\n\nThe room Amber’s taken up residence in is right over here.");
+	addButton(arg,"Amber's Room",approachRoomAmber,undefined,"Amber's Room","Say hi to Amber.");
+}
+
+public function approachRoomAmber():void
+{
+	clearOutput();
+	amberHeader();
+	author("Wsan");
+	output("You knock on the door to Amber’s room and hear the tiptap of hooves heading over, then silence before the entrance slides open and before you is ");
+	if(amberDumbfuckDoses() <= 1) output("your surprised deertaur girlfriend.");
+	else if(amberDumbfuckDoses() <= 3) output("your horny deertaur girlfriend, cheeks flushed and slightly sweaty.");
+	else output("your Dumbfucked deertaur girlfriend, cock already hard between her legs.");
+
+	output("\n\n<i>“[pc.name]!”</i> she cries, throwing her arms around you. <i>“Hi!”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Recruit",recruitAmberAgain,undefined,"Recruit","Take Amber onboard again.");
+	addButton(1,"JustVisiting",justVisitingAmber,undefined,"Just Visiting","Just saying hi.");
+}
+
+//[Recruit]
+//valid tt:Take Amber onboard again.
+//invalid tt:You don’t have enough room to recruit Amber at the moment.
+public function recruitAmberAgain():void
+{
+	clearOutput();
+	amberHeader();
+	author("Wsan");
+	output("<i>“Hey, Amber,”</i> you say, rubbing her back. <i>“Wanna come back onboard?”</i>");
+	output("\n\n<i>“Yes!”</i> she cheers, hugging you tighter. ");
+	if(amberDumbfuckDoses() <= 2) 
+	{
+		output("<i>“Oh, yes. It’s fun enough here but I’d much rather be your side, [pc.name]. When do we leave?”</i>");
+		output("\n\n<i>“Now, I guess,”</i> you say, shrugging as you pull back and smile. <i>“Welcome back, Amber.”</i>");
+		output("\n\nYou walk to the ship with your arm around her waist, hooves clacking on the floor.");
+	}
+	else if(amberDumbfuckDoses() <= 3) 
+	{
+		output("<i>“When can I fuck you?”</i>");
+		output("\n\n<i>“Soon as we get onboard,”</i> you say, grinning. <i>“C’mon, girl.”</i>");
+		output("\n\nYou walk to the ship with Amber prancing excitedly alongside you, jiggling up and down.");
+	}
+	else
+	{
+		output("<i>“Sex! Sex!”</i>");
+		output("\n\n<i>“As soon as we’re onboard,”</i> you promise, smirking. <i>“C’mon, you horny pet.”</i>");
+		output("\n\nYou walk to the ship with Amber trotting beside you, casting hot glances your way as her erect cock throbs and drools spooge across the floor. The staff’ll get that...");
+	}
+	processTime(3);
+	flags["AMBER_CREWMEMBER"] = 1;
+
+	output("\n\n(<b>Amber has rejoined your crew!</b>)");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[JustVisiting]
+//tooltip:Just saying hi.
+public function justVisitingAmber():void
+{
+	clearOutput();
+	amberHeader();
+	author("Wsan");
+	output("You take some time to catch up with Amber, asking her about how life’s been in the apartment.");
+	if(amberDumbfuckDoses() <= 1) output(" She details all the little things that’ve kept her entertained - she seems to be doing okay. With a kiss and a hug, you explain you have to leave again and she waves you off, telling you she’ll be fine.");
+	else if(amberDumbfuckDoses() <= 3) output(" Though she answers your questions, it’s clear she’s got something else on her mind - probably a hot, wet fuck at your hands. Unfortunately, you don’t have the time. With a parting kiss, you tell her you have to leave and she gives you a farewell wave before returning to her room.");
+	else output(" She grinds against you with a lewd look in her eyes, your questions falling on deaf ears and horny body. Amber’s not interested in anything except a hot and hard fuck at your hands, and when you explain you have to leave again she’s devastated. Rubbing her ears and petting her head, you give her a kiss as you leave.");
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

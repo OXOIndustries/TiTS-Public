@@ -37,7 +37,7 @@ New Flags:
 		{
 			_handlesType = "LaquinePregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 182); // 182 days
-			_basePregnancyChance = 1;
+			_basePregnancyChance = 0.4;
 			_alwaysImpregnate = false;
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;

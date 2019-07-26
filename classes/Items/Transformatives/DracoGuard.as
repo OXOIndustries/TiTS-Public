@@ -745,7 +745,7 @@
 					
 					output("\n\nYour tits continue to get fuller and fuller and you get a feeling that they won’t stop for anything! When it finally settles, the pressure is almost overwhelming--you’ve got to milk yourself right away! Due to the vast amount of gryvain genes you have in your system, you suspect this permanent change is a result of the drug’s reaction to your preganancy and [pc.milkNoun] production...");
 					
-					output("\n\n<b>Gained perk: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
+					output("\n\n<b>Perk Gained: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
 					pc.createPerk("Hypermilky", 0, 0, 0, 0, "Lactation will not decrease from disuse or overfilling.");
 					changes++;
 				}

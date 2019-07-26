@@ -207,23 +207,18 @@ public function shekkaShop(sell:Boolean = false):void
 		chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
 	}
 	
-	if(pc.level >= 7)
-	{
-		if(!chars["SHEKKA"].hasItemByClass(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
-	}
-	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem, -1);
+	chars["SHEKKA"].inventory = [];
 	
-	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath"))
-	{
-		if(!chars["SHEKKA"].hasItemByClass(HorseCock)) chars["SHEKKA"].inventory.push(new HorseCock());
-	}
-	else chars["SHEKKA"].destroyItemByClass(HorseCock, -1);
-	
-	if(shekkaIsCrew())
-	{
-		if(!chars["SHEKKA"].hasItemByClass(ShekkasCatsuit)) chars["SHEKKA"].inventory.push(new ShekkasCatsuit());
-	}
-	else chars["SHEKKA"].destroyItemByClass(ShekkasCatsuit, -1);
+	chars["SHEKKA"].inventory.push(new Cargobot());
+	if(pc.level >= 7) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
+	if(synthSheathAvailable() && CodexManager.entryUnlocked("SynthSheath")) chars["SHEKKA"].inventory.push(new HorseCock());
+	chars["SHEKKA"].inventory.push(new Hoverboard());
+	chars["SHEKKA"].inventory.push(new RogueRags());
+	chars["SHEKKA"].inventory.push(new ScrapShield());	
+	if(shekkaIsCrew()) chars["SHEKKA"].inventory.push(new ShekkasCatsuit());
+	chars["SHEKKA"].inventory.push(new Smartclothes());
+	chars["SHEKKA"].inventory.push(new StrangeCollar());
+	chars["SHEKKA"].inventory.push(new ExpandedBackpackI());
 	
 	if(!sell) buyItem();
 	else sellItem();
@@ -685,7 +680,7 @@ public function talkToShekkaAboutHerShop():void
 	if(flags["TARKUS_DESTROYED"] == undefined) output(", and Tarkus is pretty rough on clothes");
 	output(". Keeping some smartclothes in stock has been one of the best ideas I’ve had for my profit margins. Between them, custom repairs and selling whatever else I can get working, business has been pretty good.”</i>");
 	output("\n\n<i>“What about taxes?”</i> you ask.");
-	output("\n\nShekka smirks. <i>“Tarkus isn’t officially a member planet of the U.G.C. We aren’t paying them squat... yet. Our own people aren’t really much for governing constructs like taxes either. The elders know I’m putting my money into the tribe’s well being, and they do what they can to make sure I’m going to be successful. It’s a simpler way, and it works for now.”</i>");
+	output("\n\nShekka smirks. <i>“Tarkus isn’t officially a member planet of the U.G.C. We aren’t paying them squat... yet. Our own people aren’t really much for governing constructs like taxes either. The elders know I’m putting my money into the tribe’s wellbeing, and they do what they can to make sure I’m going to be successful. It’s a simpler way, and it works for now.”</i>");
 	output("\n\nYou scratch your chin and ask, <i>“Your tribes seem pretty big now. Is that kind of informal structure going to hold up on a larger scale?”</i>");
 	output("\n\n<i>“Probably not,”</i> Shekka thinks aloud, <i>“but it’s working now. Hopefully by the time that becomes a problem we’ll have new generations of more level-headed thinkers to help us figure out a better answer.”</i>");
 	output("\n\n<i>“Procrastination isn’t a solution.”</i>");

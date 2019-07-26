@@ -322,14 +322,14 @@ package classes.Characters
 			}
 		}
 		// PC struggles
-		public function webStruggle(attacker:Creature):void
+		public function webStruggle(target:Creature):void
 		{
-			var success:Boolean = ((attacker.hasMeleeWeapon() && attacker.meleeWeapon.baseDamage.burning.damageValue > 0) || (attacker.physique() + (rand(60) - 39) > 30));
+			var success:Boolean = ((target.hasMeleeWeapon() && target.meleeWeapon.baseDamage.burning.damageValue > 0) || (target.physique() + (rand(60) - 39) > 30));
 			if (success)
 			{
 				output("With a wet ripping sound you manage to pull your arms clear. You fling off the torn gossamer, stagger back a couple of paces and meaningfully level your weapon at the dominatrix.");
 				output("\n\n<i>“I do wish you’d stop struggling against the inevitable,”</i> it grumbles. <i>“You’re only making sure I make your bonds extra thick when you do finally give in.”</i>");
-				attacker.removeStatusEffect("Grappled");
+				target.removeStatusEffect("Grappled");
 			}
 			else
 			{

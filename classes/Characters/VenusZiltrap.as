@@ -249,6 +249,7 @@
 				//if vines are dead, purge 'em and unstun penpen:
 				if(gNumber >= 0) 
 				{
+					output("\n\n");
 					if(alliedCreatures[gNumber].isDefeated())
 					{
 						CombatManager.removeHostileActor(alliedCreatures[gNumber]);

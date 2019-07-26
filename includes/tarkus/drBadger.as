@@ -31,7 +31,17 @@ public function bimbotoriumHallBonus():Boolean
 		
 		drBadgerShackPexigaQuestGo();
 	}
-	else output("\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	else
+	{
+		output("\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+		
+		if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 2 && pc.hasStatusEffect("Badger Silicone Carry Timer"))
+		{
+			output("\n\nYou still need to fulfill Doctor Badger’s request. <b>You have " + prettifyMinutes(pc.getStatusMinutes("Badger Silicone Carry Timer")) + " until you are able to enter the Bimbotorium.</b>");
+			
+			flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		}
+	}
 	
 	outsideDrLashBonusBonus();
 	
@@ -45,23 +55,17 @@ public function bimbotoriumHallBonus():Boolean
 
 public function drBadgerMenu():void
 {
-	chars["DRBADGER"].keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
-	chars["DRBADGER"].keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
-	chars["DRBADGER"].keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
-	shopkeep = chars["DRBADGER"];
-	
 	clearMenu();
-	addButton(0,"Buy",drBadgerBuyMenu,undefined,"Buy","Buy something from Doctor Badger.");
-	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Doctor Badger.");
-	
+	addButton(0,"Buy",drBadgerBuyMenu,false,"Buy","Buy something from Doctor Badger.");
+	addButton(1,"Sell",drBadgerBuyMenu,true,"Sell","Sell something to Doctor Badger.");
 	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
+	
 	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	drBadgerFixNymFoeButton(3);
+	drBadgerFixDollMakerButton(4);
 	
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
-	
-	drBadgerFixNymFoeButton(3);
-	drBadgerBuyNymFoeButton(8);
 	
 	if(flags["MET_DR_BADGER"] != undefined)
 	{
@@ -77,10 +81,17 @@ public function drBadgerMenu():void
 		else addDisabledButton(6,"Job","Job","You’ve already accepted her “job offer”");
 	}
 	
+	drBadgerBuyNymFoeButton(8);
+	drBadgerBuyTankButton(9);
+	
 	addButton(14,"Leave",mainGameMenu);
 }
-public function drBadgerBuyMenu():void
+public function drBadgerBuyMenu(sell:Boolean = false):void
 {
+	chars["DRBADGER"].keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
+	chars["DRBADGER"].keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
+	chars["DRBADGER"].keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
+	
 	chars["DRBADGER"].inventory = new Array();
 	chars["DRBADGER"].inventory.push(new Dumbfuck());
 	chars["DRBADGER"].inventory.push(new Gush());
@@ -107,6 +118,7 @@ public function drBadgerBuyMenu():void
 	{
 		chars["DRBADGER"].inventory.push(new RedRocket());
 	}
+	
 	shopkeep = chars["DRBADGER"];
 	
 	//Unlock dumbfuck codex
@@ -114,7 +126,8 @@ public function drBadgerBuyMenu():void
 	CodexManager.unlockEntry("Gush");
 	CodexManager.unlockEntry("Tentatool");
 	
-	buyItem();
+	if(sell) sellItem();
+	else buyItem();
 }
 
 //PC Enters Doc Badger’s Shack
@@ -167,6 +180,13 @@ public function drBadgerBonusShit():Boolean
 			}
 		}
 		// Failsafe (captured or otherwise not there)
+		
+		// Silicone carry quest
+		if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 2)
+		{
+			drBadgerSiliconeTankBuy(["times up"]);
+			return true;
+		}
 		
 		// Repeat vists
 		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
@@ -550,7 +570,7 @@ public function heyDocImAHero():void
 	}
 	if(!pc.hasPerk("Ditz Speech"))
 	{
-		output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+		output("\n\n(<b>Bimbo Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 		pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 	}
 	//[Reduce PC intelligence by 30 to minimum of 20]

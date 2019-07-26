@@ -27,9 +27,9 @@ public function nonLustFaps():Array
 	{
 		if (checkToyDrawer(MagicMilker, 1))
 		{
-			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "", ""]);
+			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "JoyCo Magic Milker", "Milk yourself using the Magic Milker."]);
 		}
-		faps.push(["Hand Milk", milkturbation, "", ""]);
+		faps.push(["Hand Milk", milkturbation, "Hand Milking", "Milk yourself by hand."]);
 	}
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
@@ -165,6 +165,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Porn&Celise";
+		fap.ttHeader = "Pornography and Celise";
+		fap.ttBody = "Do some tailcock fapping with Celise.";
 		fap.func = tailCockCeliseFaps;
 		faps.push(fap);
 	}
@@ -173,6 +175,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Vaginal";
+		fap.ttHeader = "Vaginal Masturbation";
+		fap.ttBody = "Treat yourself by buffin’ the muffin.";
 		fap.func = vaginalFap;
 		faps.push(fap);
 	}
@@ -181,6 +185,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Penis";
+		fap.ttHeader = "Penis Masturbation";
+		fap.ttBody = "Rub one out by pleasuring your penis.";
 		fap.func = singleDickFap;
 		faps.push(fap);
 	}
@@ -190,7 +196,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
-			fap.func = cumCowAutoFellatio;
+			fap.func = cumCowAutoFellatioCheck;
 			fap.ttHeader = "Autofellatio";
 			fap.ttBody = "Suck your own dick.";
 			faps.push(fap);
@@ -199,7 +205,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Autofellatio";
-			fap.func = autofellatioForNormies;
+			fap.func = autofellatioForNormiesCheck;
 			fap.ttHeader = "Autofellatio";
 			fap.ttBody = "Suck your own dick.";
 			faps.push(fap);
@@ -209,6 +215,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Penises";
+		fap.ttHeader = "Multiple Penis Masturbation";
+		fap.ttBody = ("Jackin’ the beanstalk. " + (pc.cocks.length == 2 ? "Both" : ("All " + num2Text(pc.cocks.length))) + " of them.");
 		fap.func = multiCockFap;
 		faps.push(fap);
 	}
@@ -216,6 +224,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "HoverHole";
+		fap.ttHeader = "HoverHole";
+		fap.ttBody = "Masturbate using the HoverHole";
 		fap.func = hoverholeFapFapFap;
 		faps.push(fap);
 	}
@@ -226,6 +236,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Magic Milker";
+			fap.ttHeader = "JoyCo Magic Milker";
+			fap.ttBody = "Milk yourself using the Magic Milker.";
 			fap.func = joyCoMagicMilker7Sucks;
 			fap.ignoreRandomSelection = true;
 			faps.push(fap);
@@ -233,6 +245,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		
 		fap = new FapCommandContainer();
 		fap.text = "Hand Milk";
+		fap.ttHeader = "Hand Milking";
+		fap.ttBody = "Milk yourself by hand.";
 		fap.func = milkturbation;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
@@ -244,6 +258,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Penis Feed";
+			fap.ttHeader = "Penis Feed";
+			fap.ttBody = "Feed attached Mimbranes using your penis.";
 			fap.func = feedMimbranesWithCock;
 			faps.push(fap);
 		}
@@ -252,6 +268,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Vaginal Feed";
+			fap.ttHeader = "Vaginal Feed";
+			fap.ttBody = "Feed attached Mimbranes using your penis.";
 			fap.func = feedMimbranesWithPussy;
 			faps.push(fap);
 		}
@@ -261,6 +279,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Tailingus";
+		fap.ttHeader = "Tailingus";
+		fap.ttBody = "Orally pleasure your tailcunt.";
 		fap.func = tailingusFapReqsCuntTail;
 		faps.push(fap);
 		
@@ -268,6 +288,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		{
 			fap = new FapCommandContainer();
 			fap.text = "TailFuck";
+			fap.ttHeader = "Tail Fuck";
+			fap.ttBody = "Pleasure your tailcunt using your penis.";
 			fap.func = cuntTailFapScene;
 			faps.push(fap);
 		}
@@ -277,6 +299,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "ButtFinger";
+		fap.ttHeader = "Butt Finger";
+		fap.ttBody = "Finger your butt.";
 		fap.func = wutwutindabuttbuttFap;
 		faps.push(fap);
 	}
@@ -287,6 +311,8 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	{
 		fap = new FapCommandContainer();
 		fap.text = "GooMassage";
+		fap.ttHeader = "Goo Massage";
+		fap.ttBody = "Get a massage from Celise’s goo tentacles.";
 		fap.func = tentacleMassageFunShit;
 		faps.push(fap);
 	}
@@ -428,7 +454,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap = new FapCommandContainer();
 		fap.text = "Mitzi B.H.";
 		fap.ttHeader = "Mitzi BionaHole";
-		fap.ttBody = "Put Mitzi's cloned pocket pussy to use.";
+		fap.ttBody = "Put Mitzi’s cloned pocket pussy to use.";
 		fap.func = mitziFapSetup;
 		faps.push(fap);
 	}
@@ -503,7 +529,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap = new FapCommandContainer();
 		fap.text = "Mindwash";
 		fap.ttHeader = "Mindwash Visor";
-		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
+		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, it induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
 		fap.func = mindwashMeShipVers;
 		faps.push(fap);
 	}
@@ -647,6 +673,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	
 	var aborted:Boolean = false;
 	var btnSlot:int = 0;
+	var libido:Number = pc.libido();
 
 	if (pc.hasStatusEffect("Denied By Luca"))
 	{
@@ -708,18 +735,18 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 			return;
 		}
 		//Pussy out, unless you're being force-fapped.
-		else if(pc.libido() < 70)
+		else if(libido < 70)
 		{
-			if(pc.libido() < 10) output("You’d never even consider masturbating in public!");
-			else if(pc.libido() < 20) {
+			if(libido < 10) output("You’d never even consider masturbating in public!");
+			else if(libido < 20) {
 				output("No way. You aren’t the kind of person that would masturbate in public");
 				if(pc.lust() >= 75) output(", no matter how horny you are!");
 				else output(".");
 			}
-			else if(pc.libido() < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you’re too nervous to engage in that sort of thing yourself.");
-			else if(pc.libido() < 40) output("This is a public place! You aren’t keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
-			else if(pc.libido() < 50) output("You aren’t the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
-			else if(pc.libido() < 60) 
+			else if(libido < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you’re too nervous to engage in that sort of thing yourself.");
+			else if(libido < 40) output("This is a public place! You aren’t keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
+			else if(libido < 50) output("You aren’t the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
+			else if(libido < 60) 
 			{
 				output("Yeah, you definitely want to masturbate, but this is a public place! Everyone would be able to see you there with your [pc.butt] in the dirt, ");
 				if(pc.hasCock()) output("jacking off like wild.");
@@ -854,7 +881,7 @@ public function tailCockCeliseFaps():void {
 	author("Savin");
 	output("God damn you’re horny.");
 	output("\n\nYou breathe a lusty sigh as the heat of arousal courses through your body, demanding release. You ");
-	if(pc.armor.shortName != "") output("strip out of your [pc.armor] and ");
+	if(pc.hasArmor()) output("strip out of your [pc.armor] and ");
 	output("toss your gear aside before flopping down on your bed, ");
 	if(pc.isTaur()) output("your [pc.legs] curled up under your belly");
 	else output("your [pc.legOrLegs] kicked up behind you");
@@ -864,7 +891,7 @@ public function tailCockCeliseFaps():void {
 	output("\n\nIt takes a good long while to finally find a good vid: one you think you can actually stomach all the way through. One of the actors is a little butter-faced, but hey, the curves on the other one... damn. Oh, that’s nice.... You stroke harder and faster as the foreplay starts in earnest, a meaty cock finding a nice sheath in an alien girl’s mouth, making her throat bulge with the gene-spliced boy’s massive girth. Your tail-wang writhes in your hand, straining against your grasp as you jerk it, the first pearly beads forming at your tip.");
 	output("\n\nThe way it pools and dribbles in your hand makes you think of a certain galotian who’s probably about ready for a snack. Getting a nice and dirty thought forming in your mind, you key the ship’s intercom and call the goo-girl up to your quarters for a meal at the captain’s mess. She’s quick on her... uh... gooey amorphus mass... and before the first blowjob scene’s over, you hear a faint knock on your door. About as heavy as a goo-girl can manage, given her make-up. You call, <i>“Enter,”</i> shooting the green girl a grin, making sure she can see exactly what’s on screen and just how hard your [pc.tailCock] is.");
 	output("\n\nShe may not be a genius, but Celise’s cock-hungry nature takes the fore as she slithers over, her blobby mass of green gel rolling over itself as she approaches, a great big smile on her face. <i>“Oooh, I don’t get to come up here much,”</i> she says, looking around your cabin with mock interest, her eyes never leaving the cock in your hand. <i>“But if I knew there were going to be treats like that, I’d be up here like, every day.”</i>");
-	output("\n\nYou feel a surge of affection at her eagerness, and quickly lay back down on your belly, tail wagging enticingly at the galotian in the closest facsimile to a <i>“come hither”</i> waggle as you can manage with a rock-hard pre-dripping tail-cock. Celise hops into your bed, snuggling up next to you, her flank sticking wetly to your [pc.skin]. <i>“Oooh, whatcha watching?”</i>");
+	output("\n\nYou feel a surge of affection at her eagerness, and quickly lay back down on your belly, tail wagging enticingly at the galotian in the closest facsimile to a “come hither” waggle as you can manage with a rock-hard pre-dripping tail-cock. Celise hops into your bed, snuggling up next to you, her flank sticking wetly to your [pc.skin]. <i>“Oooh, whatcha watching?”</i>");
 	output("\n\nYou hover a finger over the name of the vid, but the sudden insertion of a huge cock into a huge-titted bimbo’s asshole opposite the two in her mouth gets the point across pretty quickly. Celise licks her lips as she watches the holo-vid progress, but you’ve got more in mind than just snuggling with a porno. You reach your tail around and nuzzle it against her cheek, letting it practically submerge in the hot, viscous gel of her body. With a squeal of delight, Celise rolls onto her back, taking your tail-cock in her mouth as her eyes keep trained on the vid. You let out a contented little sigh as your [pc.tailCock] finds a nice, warm, wet sheathe to hold it, but that turns into a low moan of pleasure as Celise’s mouth starts to work its wonders, gyrating and washing over and around your cock rather than simply fellating it, getting the most out of her alien biology as her semi-liquid body churns around your member.");
 	output("\n\nMmmm, that’s niiiiice. Your breath comes heavier as Celise suckles from your cock, little droplets of pre starting to float listlessly in her transparent head. You see a hand vanish down into her crotch, pleasuring her one constant feature -- her big, loose, gooey cunt - as she watches the porno progress from DP to cowgirl as the busty alien rides a huge cock, giving handies to two other males and a hung hermaphrodite pleasures herself with the whore’s big tits. Following along herself, Celise pops your [pc.tailCock] out of her mouth, shifting it downward to her big, bouncy teats and locking it between them, binding your dick in a prison of soft warm goo-tit. Still raptly watching the orgy onscreen, Celise starts to squeeze and move her tits, wanking you off between the two huge orbs. You moan, hips wiggling happily as your cock is coated in green slime, slipping easily through her cleavage again and again, with just enough resistance to let you feel the cum bubbling up through your prick, making you even harder as your seed comes up to feed your gooey friend.");
 	output("\n\nWith your cock submerged in Celise’s gooey tits, your orgasm mounts toward the inevitable, spurred on by her slick sliding tits as she moves them faster and faster. But just before your climax can come, the pornstar’s position changes, the girl rolling onto all fours to be pounded in every hole by her lovers. A moment later, she slides up onto your back, flopping down atop you with breasts pressing into your back, hands stroking your shoulders soothingly as her big, bubbly buttcheeks lock around your [pc.tailCock], squeezing it ever so smoothly. Celise flexes her cheeks, massaging your prick as she works your shoulders, cheek nuzzling against your own as you watch the money shot, cum splattering everywhere on the bimbo’s body, three cocks all coating her in a multi-colored spunk parade.");
@@ -1141,8 +1168,9 @@ public function singleDickFap():void {
 		if(cum > 30000) pc.applyCumSoaked();
 		if(cum > 50000) pc.applyCumSoaked();
 	}
-	if(pc.libido() <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
-	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you’re sexually sated");
+	var libido:Number = pc.libido();
+	if(libido <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
+	else if(libido <= 66) output("\n\nYou let out a dazed, happy smile now that you’re sexually sated");
 	else output("\n\nYou groan, wish you had time for a repeat performance");
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
@@ -1163,12 +1191,13 @@ public function multiCockFap():void {
 		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there’s no doubt that this is going to be a very messy, if enjoyable, experience.");
 	}
 	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There’s no point in making a mess of your equipment after all.");
-	if(pc.libido() <= 33) {
+	var libido:Number = pc.libido();
+	if(libido <= 33) {
 		output(" Your [pc.cocks] don’t seem to react much to the changing environs, ");
 		if(pc.lust() <= 50) output("aside from slowly stiffening thanks to a few quick pumps");
 		else output("aside from getting a little harder when your hands make contact with one of them");
 	}
-	else if(pc.libido() <= 66) output("Your [pc.cocks] react like slowly-rousing beasts, each one getting thicker, harder, and eager for contact as though they’re aware of what’s to come");
+	else if(libido <= 66) output("Your [pc.cocks] react like slowly-rousing beasts, each one getting thicker, harder, and eager for contact as though they’re aware of what’s to come");
 	else output("Your [pc.cocks] react like well-trained animals, stiffening to firm, full mast in seconds, so eager for pleasure that they bob in place excitedly whenever your hand comes close");
 	output(", and you sigh as your hands commence true self-pleasure.");
 	
@@ -1247,7 +1276,7 @@ public function multiCockFap():void {
 	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength()/pc.tallness >= 1/6) 
 		choices[choices.length] = 1;
 	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;
-	if(pc.canAutoFellate(x)) 
+	if(pc.canAutoFellate(x) && !pc.hasStatusEffect("Endowment Immobilized")) 
 		choices[choices.length] = 3;
 	if(pc.biggestTitSize() >= 5) choices[choices.length] = 4;
 	if(choices.length == 0) choices[choices.length] = 0;
@@ -1398,9 +1427,10 @@ public function multiCockFap():void {
 	output(" and involuntarily thrust");
 	if(pc.legCount == 1) output("s");
 	output(" until you are spent, and then, you lie there, coated with your goo and grinning a sated smile.");
-	if(pc.libido() <= 25) output("\n\nYou wipe up as best you can and gear up after a few minutes of rest, feeling like you can take on the world.");
-	else if(pc.libido() <= 50) output("\n\nYou make a half-hearted attempt to wipe up before getting your gear back on and getting ready go back to exploring.");
-	else if(pc.libido() <= 75) output("\n\nYou barely bother to clear your sexual juices from your body before getting dressed and getting back to exploring the universe for sexy aliens to fuck.");
+	libido = pc.libido();
+	if(libido <= 25) output("\n\nYou wipe up as best you can and gear up after a few minutes of rest, feeling like you can take on the world.");
+	else if(libido <= 50) output("\n\nYou make a half-hearted attempt to wipe up before getting your gear back on and getting ready go back to exploring.");
+	else if(libido <= 75) output("\n\nYou barely bother to clear your sexual juices from your body before getting dressed and getting back to exploring the universe for sexy aliens to fuck.");
 	else output("\n\nYou get your gear back on without bothering to clean up. You’re just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	if(tailPussied) pc.loadInCuntTail(pc);
@@ -2307,6 +2337,12 @@ public function goddamnitJimTAndYourExhibitionism():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function fapIncreaseButton(button:int):int
+{
+	if (button > 11 && button < 15) return 15;
+	return button + 1;
+}
+
 //Futa Babe Pantyfaps
 //Add [PantyFap] to masturbation menu. PC must have a dick + waifu panties. Open sub-menu to select which waifu's panties to jerk it into. 
 public function futaBabePantyfapsRouter():void
@@ -2332,6 +2368,8 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) jackOffWithLadyPantiesYouSicko("Claes");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) jackOffWithLadyPantiesYouSicko("Ramis");
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) jackOffWithLadyPantiesYouSicko("Roo");
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) jackOffWithLadyPantiesYouSicko("Tessa");
+		if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong.")) jackOffWithLadyPantiesYouSicko("the dockmaster");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2343,92 +2381,102 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
 			addButton(button,"Anno’s",jackOffWithLadyPantiesYouSicko,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
 		{
 			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
 			addButton(button,"Briha’s",jackOffWithLadyPantiesYouSicko,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties."))
 		{
 			addButton(button,"Claes’s",jackOffWithLadyPantiesYouSicko,"Claes","Claes’s Panties","Use Claes’s silky white panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
+		{
+			addButton(button,"Dockmaster",jackOffWithLadyPantiesYouSicko,"the dockmaster","The Dockmaster's Panties","Use the dockmaster's black-buttoned thong for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
 			addButton(button,embry.short + "’s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
 		{
 			addButton(button,"Emmy’s",futaBabePantyfaps,"Emmy","Emmy’s Panties","Use Emmy’s cum-stained, purple panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
 		{
 			addButton(button,"Erra’s",jackOffWithLadyPantiesYouSicko,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
 		{
 			addButton(button,"Fisianna’s",jackOffWithLadyPantiesYouSicko,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaBabePantyfaps,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick wank.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
 			addButton(button,"Myrna’s",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaBabePantyfaps,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick fap.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies."))
 		{
 			addButton(button,"Ramis’s",jackOffWithLadyPantiesYouSicko,"Ramis","Ramis’s Panties","Use Ramis’s tight, black panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
 		{
 			addButton(button,"Roo’s",jackOffWithLadyPantiesYouSicko,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaBabePantyfaps,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
 			addButton(button,"Syri’s",futaBabePantyfaps,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
+		{
+			addButton(button,"Tessa’s",jackOffWithLadyPantiesYouSicko,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,1,"Random Panties","Select a random pair of panties to fap to.");
 		addButton(14,"Back",masturbateMenu);
@@ -2457,6 +2505,8 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) pureLadyWaifuPussyRubFap("Fisianna");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) pureLadyWaifuPussyRubFap("Ramis");
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) pureLadyWaifuPussyRubFap("Roo");
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) pureLadyWaifuPussyRubFap("Tessa");
+		if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong.")) pureLadyWaifuPussyRubFap("the dockmaster");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2468,92 +2518,102 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
 		{
 			addButton(button,"Anno’s",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
 		{
 			addButton(button,flags["BEA_TITLE"]+"’s",pureLadyWaifuPussyRubFap,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
 		{
 			addButton(button,"Briha’s",pureLadyWaifuPussyRubFap,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) 
 		{
 			addButton(button,"Claes’s",pureLadyWaifuPussyRubFap,"Claes","Claes’s Panties","Use Claes’s silky white panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong.")) 
+		{
+			addButton(button,"Dockmaster’s",pureLadyWaifuPussyRubFap,"the dockmaster","The Dockmaster's Thong","Use the dockmaster's black-buttoned thong for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
 		{
 			addButton(button,embry.short + "’s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
 		{
 			addButton(button,"Emmy’s",futaPantiesFapInPussy,"Emmy","Emmy’s Panties","Use Emmy’s purple, cummy panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
 		{
 			addButton(button,"Erra’s",pureLadyWaifuPussyRubFap,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
 		{
 			addButton(button,"Fisianna’s",pureLadyWaifuPussyRubFap,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaPantiesFapInPussy,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick jill-off session.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
 		{
 			addButton(button,"Myrna’s",pureLadyWaifuPussyRubFap,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
 		{
 			addButton(button,"Penny’s",futaPantiesFapInPussy,"Penny","Penny’s Panties","Use Penny’s blue (but crotchless) panties for a quick bit of self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies."))
 		{
 			addButton(button,"Ramis’s",futaPantiesFapInPussy,"Ramis","Ramis’s Panties","Use Ramis’s tight, pink panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
 		{
 			addButton(button,"Roo’s",futaPantiesFapInPussy,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaPantiesFapInPussy,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) 
 		{
 			addButton(button,"Syri’s",futaPantiesFapInPussy,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
 		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
-			button++;
+			button = fapIncreaseButton(button);
+		}
+		if(pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma."))
+		{
+			addButton(button,"Tessa’s",pureLadyWaifuPussyRubFap,"Tessa","Tessa’s Panties","Use Tessa’s black, sweet scented panties for a little self-pleasure.");
+			button = fapIncreaseButton(button);
 		}
 		addButton(13,"Random",pantyFapRandom,0,"Random Panties","Select a random pair of panties to schlick to.");
 		addButton(14,"Back",masturbateMenu);
@@ -2580,6 +2640,8 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) panties.push("Claes");
 	if(total || pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) panties.push("Ramis");
 	if(total || pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) panties.push("Roo");
+	if(total || pc.hasKeyItem("Panties - Tessa's - A sleek black thong, with a delicious aroma.")) panties.push("Tessa");
+	if(total || pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong.")) panties.push("the dockmaster");
 	return panties;
 }
 
@@ -2647,6 +2709,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Fisianna": jackOffWithLadyPantiesYouSicko("Fisianna"); break;
 			case "Ramis": jackOffWithLadyPantiesYouSicko("Ramis"); break;
 			case "Roo": jackOffWithLadyPantiesYouSicko("Roo"); break;
+			case "the dockmaster": jackOffWithLadyPantiesYouSicko("the dockmaster"); break;
 		}
 	}
 	else
@@ -2672,6 +2735,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Fisianna": pureLadyWaifuPussyRubFap("Fisianna"); break;
 			case "Ramis": pureLadyWaifuPussyRubFap("Ramis"); break;
 			case "Roo": pureLadyWaifuPussyRubFap("Roo"); break;
+			case "the dockmaster": pureLadyWaifuPussyRubFap("the dockmaster"); break;
 		}
 	}
 }
@@ -2700,6 +2764,8 @@ public function getPantyColor(waifu:String = ""):String
 		case "Fisianna": pantyColor = "white"; break;
 		case "Ramis": pantyColor = "black"; break;
 		case "Roo": pantyColor = "bright red"; break;
+		case "Tessa": pantyColor = "black"; break;
+		case "the dockmaster": pantyColor = "black"; break;
 	}
 	return pantyColor;
 }
@@ -2729,11 +2795,13 @@ public function getPantyTexture(waifu:String = ""):String
 		case "Fisianna": pantyTexture = "lace"; break;
 		case "Ramis": pantyTexture = "frictionless spandex"; break;
 		case "Roo": pantyTexture = "satiny"; break;
+		case "Tessa": pantyTexture = "satiny"; break;
+		case "the dockmaster": pantyTexture = "stretchy"; break;
 	}
 	return pantyTexture;
 }
 
-public function futaBabePantyfaps(waifu:String = ""):void
+public function futaBabePantyfaps(waifu:String):void
 {
 	clearOutput();
 	showName("PANTY\nNAUGHTINESS");
@@ -2792,7 +2860,7 @@ public function futaBabePantyfaps(waifu:String = ""):void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function futaPantiesFapInPussy(waifu:String = ""):void
+public function futaPantiesFapInPussy(waifu:String):void
 {
 	clearOutput();
 	showName("PANTY\nFUN");
@@ -3319,7 +3387,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
 	if(arg == "Mitzi") 
 	{
-		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn't kidding about the aphrodisiacs.");
+		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn’t kidding about the aphrodisiacs.");
 		pc.lust(100);
 	}
 	output("\n\nGrinning to yourself, you ");
@@ -3336,7 +3404,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(pc.cockVolume(x) < 500) output("until it’s pressing against your groin, completely enveloping your [pc.cock " + x + "] in its sultry embrace");
 	else output("until your [pc.cockHead " + x + "] is battering against the sealed back of the pussy’s channel, wrapped so tightly by " + bionaTexture(arg) + " wetness that you can barely think");
 	output(". Leaning back, you let your eyes roll closed and start to piston the BionaHole up and down your lube-slicked shaft. The toy is everything you’d expect it to be, reacting as if it was mounted between its owner’s legs, clenching and drooling and flushing with its own arousal. You can see its clit swelling, so sensitive that you can’t help but twist your thumb down to caress it. The pussy trembles at your touch, drenching you in sweet fem-cum at the apex of every thrust between its lips.");
-	if(arg == "Mitzi") output(" You can almost image the look on the slutty goblin's face as she takes you cervix-deep, the whorish delight painted heavily across her fuck-drunk features.");
+	if(arg == "Mitzi") output(" You can almost image the look on the slutty goblin’s face as she takes you cervix-deep, the whorish delight painted heavily across her fuck-drunk features.");
 	
 	var cum:Number = pc.cumQ();
 	
@@ -3679,32 +3747,56 @@ public function bionaHoleSyri():void
 }
 
 // Shower Fappings
-public function shipShowerFaps(genButtons:Boolean = false):Number
+public function shipShowerFaps(genButtons:Boolean = false):int
 {
 	var showerSex:int = 0;
+	var showerScenes:Array = [];
+	var i:int = 0;
+	var btnSlot:int = 0;
 	
-	if (pc.hasCock())
+	if(pc.hasCock())
 	{
-		if(genButtons)
-		{
-			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Jerk Off", "Jerk Off", "You can’t seem to easily reach your genitals for this!");
-			else addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
-		}
-		showerSex++;
+		if(pc.genitalLocation() >= 2) showerScenes.push(["Jerk Off", null, undefined, "Jerk Off", "You can’t seem to easily reach your genitals for this!"]);
+		else showerScenes.push(["Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off."]);
 	}
 	if (pc.hasVagina())
 	{
+		if(pc.genitalLocation() >= 2) showerScenes.push(["Use Nozzle", null, undefined, "Use Nozzle", "You can’t seem to easily reach your genitals for this!"]);
+		else showerScenes.push(["Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy..."]);
+	}
+	
+	for(i = 0; i < showerScenes.length; i++)
+	{
 		if(genButtons)
 		{
-			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Use Nozzle", "Use Nozzle", "You can’t seem to easily reach your genitals for this!");
-			else addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+			if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+			{
+				addButton(btnSlot, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
+				btnSlot++;
+			}
+			
+			if(showerScenes[i][1] == null) addDisabledButton(btnSlot, showerScenes[i][0], showerScenes[i][3], showerScenes[i][4]);
+			else addButton(btnSlot, showerScenes[i][0], showerScenes[i][1], showerScenes[i][2], showerScenes[i][3], showerScenes[i][4]);
+			btnSlot++;
+			
+			if(showerScenes.length > 14 && (i + 1) == showerScenes.length)
+			{
+				while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+				addButton(btnSlot, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
+			}
 		}
-		showerSex++;
+		if(showerScenes[i][1] != null) showerSex++;
+	}
+	
+	if(genButtons)
+	{
+		while(btnSlot < 59 && (btnSlot + 1) % 15 != 0) { btnSlot++; }
+		addButton(btnSlot, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
 	}
 	
 	return showerSex;
 }
-public function shipShowerFappening(scene:String = ""):void
+public function shipShowerFappening(scene:String):void
 {
 	clearOutput();
 	
@@ -3843,6 +3935,39 @@ public function shipShowerFappening(scene:String = ""):void
 	addButton(0, "Next", showerExit);
 }
 
+// Autofellatio checks
+public function autofellatioImmobilizationStop(func:Function):void
+{
+	clearOutput();
+	showName("\nWARNING!");
+	
+	output("Choosing to opt for autofellatio while you are immobilized is probably a bad idea as you will be emptying the contents of your [pc.balls] into your [pc.belly]. Perhaps you should try an alternate form of masturbation?");
+	output("\n\n");
+	
+	clearMenu();
+	masturbateButton(0);
+	if(!canShrinkNuts()) addButton(1, "Help!", bigBallBadEnd, undefined, "Look for Help!", (rooms[currentLocation].hasFlag(GLOBAL.HAZARD) ? "Try to call for some help." : "Get some help from nearby."));
+	addButton(4, "Do It!", func, undefined, "Do It Anyway!", "Damn the consequences!");
+}
+public function cumCowAutoFellatioCheck(special:Boolean = false, timeStuff:Number = 110):void
+{
+	if(!special && pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		autofellatioImmobilizationStop(cumCowAutoFellatio);
+		return;
+	}
+	return cumCowAutoFellatio(special, timeStuff);
+}
+public function autofellatioForNormiesCheck():void
+{
+	if(pc.hasStatusEffect("Endowment Immobilized"))
+	{
+		autofellatioImmobilizationStop(autofellatioForNormies);
+		return;
+	}
+	return autofellatioForNormies();
+}
+
 //CumCow Autofellatio w/Optional Cocknosis intro
 public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 110):void
 {
@@ -3957,6 +4082,16 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 		output(" [pc.Milk] stains your body from the waist down. You could definitely use a shower... or someone else’s tongue.");
 		pc.applyMilkBathed();
 	}
+	processTime(timeStuff);
+	restHeal();
+	pc.loadInMouth(pc);
+	pc.orgasm();
+	cumCowAutoFellatioCooldown(special);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function cumCowAutoFellatioCooldown(special:Boolean = false):void
+{
 	//First time post-script addendum
 	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
 	//Voluntary Beej gives 1 week cooldown
@@ -3965,12 +4100,6 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	else pc.setPerkValue("Auto-Autofellatio",2,3);
 	//Keep count, whynot.
 	pc.addPerkValue("Auto-Autofellatio",1,1);
-	processTime(timeStuff);
-	restHeal();
-	pc.loadInMouth(pc);
-	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Normal Autofellate
@@ -4491,12 +4620,13 @@ public function cumCowCockvineSuck():void
 	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
 	pc.loadInMouth(pp);
 	pc.orgasm();
+	if(pc.perkv1("Auto-Autofellatio") > 0) cumCowAutoFellatioCooldown();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Cockwing Orgy
-//* Can auto-proc if PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+//* Can auto-proc if PC is cumcow or if Willpower < 25%, Libido > 50% and Lust > 70
 //* Otherwise a masturbation option.
 //Voluntary Masturbation
 //[Tentacles]
@@ -4626,7 +4756,7 @@ public function cockwingOrgySluts():void
 }
 
 //Involuntary
-//Requirement: Vag, Cockwings, PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+//Requirement: Vag, Cockwings, PC is cumcow or if Willpower < 25%, Libido > 50% and Lust > 70
 public function involuntarilyCockwangYourself():void
 {
 	clearOutput();

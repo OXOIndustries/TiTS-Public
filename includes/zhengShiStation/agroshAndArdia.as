@@ -85,7 +85,7 @@ public function slavePretenderooo():Boolean
 		output(".");
 
 		output("\n\nThere’s a group of slaves in the hallway, being escorted out of the pens in a line of frightened forms. They’re all wearing the same tight, form-hugging orange and blue bodysuits that you’ve encountered before, “easy access” zippers included. Unlike the mine slaves, though, these ones are pristine - well-kept, clean, unblemished by hard work in the dusty mines. Pleasure slaves.");
-		output("\n\nA pirate in a suit of masked combat armor is directing the herd in your direction, shoving and cajoling the unwilling men and women towards their fate. A couple of robotic wolves hound their feet, keeping the back of the column moving forward in their master’s wake. Looks like they’re being led to somewhere else in the facility... this might be your chance to skip ahead a bit, if you’re willing to degrade yourself at least.");
+		output("\n\nA pirate in a suit of masked combat armor is directing the herd in your direction, shoving and cajoling the unwilling men and women towards their fate. A couple of robotic wolves hound their feet, keeping the back of the column moving forward in their master’s wake. Looks like they’re being led to somewhere else in the facility... this might be your chance to skip ahead a bit, if you’re willing to degrade yourself at least. <b>You doubt you’ll get this chance again.</b>");
 		clearMenu();
 		//[Sneak In] [No Way]
 		addButton(0,"Sneak In",sneakIntoTheSlaveChainGang,undefined,"Sneak In","You have a slave uniform and everything. Sneak into the group of slaves and see where you end up.");

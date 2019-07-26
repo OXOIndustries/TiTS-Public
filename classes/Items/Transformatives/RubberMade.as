@@ -5,10 +5,13 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Util.InCollection;
+	import classes.Engine.Interfaces.AddLogEvent;
 	
 	public class RubberMade extends ItemSlotClass
 	{
@@ -128,7 +131,7 @@
 					if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) output("\n\nThe sudden feeling of shocked and lustful eyes on you rouses you from your reverie. Slowly rising from the ground, you try to maintain as much dignity as you can muster. As you move on, you realize that a moaning squeak accompanies your every step. You don’t have a mirror close at hand, but you realize that with the fresh lacquer, you must look like a black rubber fuckdoll. Putting an embarrassed urgency in your steps, you find a little privacy and try to clean up as best you can.");
 					// Gives player "Black Latex" condition, increasing minimum lust by 10 but making their attempts to escape grapples or constricts far more successful
 					pc.createPerk("Black Latex",0,0,0,0,"Gives you delightful latex skin, but keeps you slightly more aroused at all times.");
-					output("\n\n(<b>Gained Perk: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
+					output("\n\n(<b>Perk Gained: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
 					pc.skinTone = "black";
 					if(pc.hasCock())
 					{
@@ -355,6 +358,25 @@
 			
 			//BAD END.
 			kGAMECLASS.badEnd();
+		}
+		
+		// Latex Regrow
+		public static function latexRegrow(maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
+		{
+			if(target.skinType != GLOBAL.SKIN_TYPE_LATEX)
+			{
+				var oldSkinType:Number = target.skinType;
+				var oldSkinFlags:Array = target.skinFlags;
+				
+				if(target is PlayerCharacter) AddLogEvent(ParseText("You feel the need to stretch and proceed to do so, raising your [pc.arms] high into the air and extending your back. Yes, that feel <i>so</i> goo--<i>Squeeeeaak!</i>\n\nBreaking through your thoughts, the loud, rubbery noise catches your attention. " + (target.isBimbo() ? "<i>Ooo</i>" : "Strange") + ". Rubbing your elbows against your ribs produces more squeaky noises. You flip open your codex and take a good look at your reflection. As glossy as ever, <b>your skin seems to have re-adopted its natural latex properties</b>." + (target.isBimbo() ? " Nothing’s gonna to stop you from being, like, a totally hot sex doll!" : "")), "passive", maxEffectLength);
+				
+				target.skinType = GLOBAL.SKIN_TYPE_LATEX;
+				target.clearSkinFlags();
+				target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+				if(InCollection(GLOBAL.FLAG_THICK, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_THICK);
+				if(InCollection(GLOBAL.FLAG_LUBRICATED, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
+				if(oldSkinType == GLOBAL.SKIN_TYPE_GOO || InCollection(GLOBAL.FLAG_GOOEY, oldSkinFlags)) target.addSkinFlag(GLOBAL.FLAG_GOOEY);
+			}
 		}
 	}
 }

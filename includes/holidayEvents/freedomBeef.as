@@ -115,7 +115,7 @@ public function freedomBeefGoSelection(beefType:uint):void
 		case FREEDOM_BEEF_RIPPED: output(" absolutely ripped"); break;
 		default: output(" ERROR"); break;
 	}
-	output(", that’s for sure. You find yourself staring for a long moment, eying the buxom bison from behind until something causes her to stir, glancing over her shoulder in your direction. A big smile spreads on on the tauric woman’s lips, and when she turns, you can see the hand not busy on the cook-top is holding a half-drained beer bottle - the latest of several scattered around the camp.");
+	output(", that’s for sure. You find yourself staring for a long moment, eying the buxom bison from behind until something causes her to stir, glancing over her shoulder in your direction. A big smile spreads out on the tauric woman’s lips, and when she turns, you can see the hand not busy on the cook-top is holding a half-drained beer bottle - the latest of several scattered around the camp.");
 	
 	output("\n\nShe gives you a jubilant wave, which has the captivating side-effect of making her barely-restrained cleavage quake under her bikini top.");
 	
@@ -475,7 +475,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 
 	if (pc.hasCock())
 	{
-		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers too pound you into the ground.");
+		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers to pound you into the ground.");
 	}
 	else
 	{

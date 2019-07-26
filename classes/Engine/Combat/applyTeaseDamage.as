@@ -133,15 +133,19 @@ package classes.Engine.Combat
 		// Success
 		else
 		{
-			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
+			var damage:Number = (10 * ((teaseCount / 100) + 1)) + (attacker.sexiness() / 2);
+			damage += attacker.statusEffectv4("Heat");
+			damage += attacker.statusEffectv2("Painted Penis");
+			damage += attacker.statusEffectv2("Painted Tits");
 			if (teaseType == "SQUIRT") damage += 5;
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
 			
 			var bonusCap:Number = 0;
 			bonusCap += attacker.statusEffectv3("Painted Penis");
+			bonusCap += attacker.statusEffectv3("Painted Tits");
 			
-			var cap:Number = 15 + attacker.level * 2 + bonusCap;
+			var cap:Number = 15 + (attacker.level * 2) + bonusCap;
 			damage = (Math.min(damage, cap) * factor);
 			
 			//Tease % resistance.
@@ -243,7 +247,7 @@ package classes.Engine.Combat
 					output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become distracted after " + possessive(attacker.getCombatName()) + " display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
 				}
 				
-				CombatAttacks.applyStagger(target, 3);
+				CombatAttacks.applyLustStagger(target, 3);
 				
 				if(target is PlayerCharacter) output(" <b>You are staggered by the tease!</b>");
 				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by the tease!</b>");

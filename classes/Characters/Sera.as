@@ -211,6 +211,12 @@
 			return newInventory;
 		}
 		*/
+		override public function get bustDisplay():String
+		{
+			var str:String = "SERA";
+			
+			return str;
+		}
 		
 		override public function onLeaveBuyMenu():void
 		{

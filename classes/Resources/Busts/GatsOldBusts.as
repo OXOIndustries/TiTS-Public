@@ -54,33 +54,33 @@ package classes.Resources.Busts
 		public var Bust_PENNY:Class;
 		public var Bounds_PENNY:Rectangle = new Rectangle(5,1,80,74);
 		public function get Bust_PENNY_NUDE():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_VIXEN():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_VIXEN():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_VIXEN_1():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN_2():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_VIXEN_2():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_VIXEN():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_VIXEN():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_VIXEN():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_VIXEN_1():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_VIXEN_1():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_VIXEN_2():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_VIXEN_2():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_HORSE():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_HORSE():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_HORSE():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY; }
 		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY; }
-		public function Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY; }
+		public function get Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/raskvel.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_FEMALE:Class;

@@ -161,7 +161,7 @@ public function actuallyStartEventWhorizon():void
 		
 		if (names.length != 1)
 		{
-			output("\n\nERROR: Invalid number of available crewmembers.");
+			output("\n\nERROR: Invalid number of available crew members.");
 		}
 
 		output("\n\nYou tell "+ names[0] +" that you’re going outside to investigate this brave new world you’ve landed in.");
@@ -795,8 +795,7 @@ private function ewDemonSyriComeWithII():void
 	
 	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. Syri stuffs herself into the co-pilot’s chair, buckling to safety belt between her tits and around her toned belly. Her tail flops into her lap, giving the lusty pup the closest thing to modesty she’s had in years. She gives you a nod and braces herself.");
 	
-	// [pc.ship]
-	output("\n\nYour ship lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
+	output("\n\nYour [PCShipName] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
 	
 	output("\n\nThen the colors out of the forward viewscreen change, erupting into blackness dotted with stars. You’re out! The pressure recedes with a gasp of fresh, untainted air. Home again! You let go of the controls and lean back in the captain’s chair.");
 	
@@ -1220,7 +1219,7 @@ private function ewDemonSyriLoss():void
 
 		if (names.length != 1)
 		{
-			output("\n\nERROR: Invalid number of available crewmembers.");
+			output("\n\nERROR: Invalid number of available crew members.");
 		}
 
 		output(" You barely even notice when a group of demons come into the throne, bearing a cum-soaked "+ names[0] +" between them.");

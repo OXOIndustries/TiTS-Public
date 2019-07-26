@@ -323,7 +323,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 	if(!pcBimboedByBadger() && !pennyIsCumSlut())
 	{
 		if(!pennyIsCrew()) output("Penny perks up as you approach. <i>“What’s up [pc.name]?”</i>\n\n");
-		output("You decide the best approach is the best. <i>“Have you ever heard the name ‘Dr. Badger’?”</i>");
+		output("You decide the direct approach is the best. <i>“Have you ever heard the name ‘Dr. Badger’?”</i>");
 		output("\n\nFrowning, Penny thinks for a moment. <i>“The name does ring a bell, yeah, I think there was something about someone named that, some report or something...”</i>");
 		output("\n\nShe turns to her computer, and does a quick search before answering. <i>“Ah, gotcha! There was a bulletin put out about her a little while ago, some mad scientist-type that we’re supposed to be on the lookout for. I remember thinking that if she was too extreme for Xenogen then she must be </i>really<i> wild. I thought about chasing her down, but there’s no information on where she is now, just that she was reported to be somewhere in the area." + (pennyIsCrew() ? " Plus, I’m not exactly a police officer anymore.":" Plus, I can’t exactly leave my post to go hunting for some big catch.") + "”</i> She reads some more, her ears flattening a little involuntarily. <i>“Yeesh, maybe it’s good that I didn’t go after her - it says here the official advice is not to try to bring her in with anything less than a full squad. Apparently the last time someone tried to do it singlehandedly she wiped the floor with them with all sorts of illegal mods and subdermal strength-boosters.”</i>");
 		output("\n\nShe stops suddenly as something occurs to her. <i>“Wait, why do you ask? Have you had a run-in with her? Do you know where she is?”</i>");
@@ -377,7 +377,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		//IF PC DOES NOT HAVE BADGER FORM
 		if(!pcHasBadgerForm())
 		{
-			output("As you walk over to talk to Penny, the thing Dr. Badger gave you vibrates in your pocket. You slip your hand inside to check on it, only to feel a sharp little sting. There was like, some sort of needle or something hidden in it that jabbed you? Suddenly, you feel your whole body tremble. You stop, doubling over as <b>your form reshapes rapidly, sliding back easily into the same form the doctor gave you. In seconds it’s done, and once again you’re a perfect bubbly, big-chested and big dicked badger bimbo.</b> Wow, you think, it must be <i>super</i> important to Dr. Badger that you look the part when you talk to Penny about this. Oh well! Fortunately she was distracted by something on her screen and didn’t notice your sudden change.”</i>\n\n");
+			output("As you walk over to talk to Penny, the thing Dr. Badger gave you vibrates in your pocket. You slip your hand inside to check on it, only to feel a sharp little sting. There was like, some sort of needle or something hidden in it that jabbed you? Suddenly, you feel your whole body tremble. You stop, doubling over as <b>your form reshapes rapidly, sliding back easily into the same form the doctor gave you. In seconds it’s done, and once again you’re a perfect bubbly, big-chested and big dicked badger bimbo.</b> Wow, you think, it must be <i>super</i> important to Dr. Badger that you look the part when you talk to Penny about this. Oh well! Fortunately she was distracted by something on her screen and didn’t notice your sudden change.\n\n");
 			resetDrBadgerBimboTF();
 		}
 		output("<i>“Hey there!”</i> you say perkily, trotting over towards Penny and perching casually on the edge of her " + (pennyIsCrew() ? "bed":"desk") + ". <i>“What’s up?”</i>");
@@ -1574,8 +1574,8 @@ public function doctorBimboBadgerMenu():void
 	addButton(0,"Talk",talkToDoctorBadger,undefined,"Talk","Try to have a conversation with your newly minted bimbo.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
-	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	drBadgerFixNymFoeButton(3);
 	
 	addButton(14,"Leave",mainGameMenu);

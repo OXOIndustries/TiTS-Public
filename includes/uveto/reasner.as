@@ -1,6 +1,3 @@
-import classes.Items.Treasures.Savicite;
-import classes.Items.Accessories.BeatricesScarf;
-
 /**** Flags ****
 MET_BEA_HUBBY		1 when ya meet 'im
 BEA_GIFT			bea_gift
@@ -371,7 +368,7 @@ public function beatriceShipAndCrewTalk():void
 	output("\n\nHow many people, you ask, does she have on her ship right now.");
 	output("\n\n<i>“Over three thousand two hundred officers and crew,”</i> she says with obvious pride.");
 	output("\n\nYou blink. <i>“Why so many?”</i>");
-	output("\n\nShe chuckles at your reaction. <i>“Because I choose to employ minimal automation on </i>Inexorable<i>. I want those onboard to truly feel responsible for the ship’s well being, and it allows more people to join in on our adventure. All are welcome aboard my ship as long as they’re willing to learn.”</i>");
+	output("\n\nShe chuckles at your reaction. <i>“Because I choose to employ minimal automation on </i>Inexorable<i>. I want those onboard to truly feel responsible for the ship’s wellbeing, and it allows more people to join in on our adventure. All are welcome aboard my ship as long as they’re willing to learn.”</i>");
 	output("\n\nWhen she says minimal automation, you ask, does that mean she has them do everything by hand?");
 	output("\n\n<i>“Yes, it does. Almost everything from mopping the deck, food preparation, shoe repair and tailoring to carrying laundry from their berths to the laundromat. I think highly of my crew so I know they can handle it.”</i> She smiles dotingly. <i>“Like most children, they tend to complain about the chores. But when VIPs come aboard, and they put on their dress uniforms and stand at attention to welcome them, knowing that the ship is in pristine condition due to their own hard work, the pride they feel is indescribable.”</i>");
 	flags["BEATRICE_SHIP_TALKED"] = 1;

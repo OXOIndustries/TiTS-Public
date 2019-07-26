@@ -38,7 +38,10 @@
 
 			this.femininity = 85;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "GWEN";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

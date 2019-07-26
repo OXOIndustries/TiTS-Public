@@ -165,7 +165,7 @@ public function jeromePeggingII():void
 		output(" as you");
 		if (pc.isTaur()) output(" struggle to reach back");
 		else output(" reach down");
-		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh so graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
+		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh-so-graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
 	}
 	else
 	{
@@ -398,7 +398,7 @@ public function jeromePeggingIIIBiped():void
 	}
 	else
 	{
-		output("\n\nYou work up a good pace , thrusting into his ass with solid temp and force, working him into a fervor slowly but surely. You change angle slightly and nudge his prostate with your");
+		output("\n\nYou work up a good pace, thrusting into his ass with solid temp and force, working him into a fervor slowly but surely. You change angle slightly and nudge his prostate with your");
 		if (cIdx >= 0) output(" [pc.cockHead "+cIdx+"]");
 		else output(" glowing cocktip");
 		output(". His ass rewards you with an involuntary squeeze, the tight tunnel closing in around your sensitive flesh from all sides, doubling your pleasure in turn.");

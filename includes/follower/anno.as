@@ -190,6 +190,46 @@ public function returnToShipAfterRecruitingAnno():Boolean
 	return false;
 }
 
+public function annoCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	//If anno is disabled due to thiccness
+	if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
+	{
+		desc += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
+		addDisabledButton(btnSlot,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+	}
+	//If anno is away
+	else if(annoIsAway())
+	{
+		desc += "\n\nAnno is currently away or otherwise busy at the moment.";
+		addDisabledButton(btnSlot,"Anno","Anno","Anno is currently away or otherwise busy at the moment.");
+	}
+	//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
+	else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
+	{
+		if (rand(2) == 0) desc += "\n\nAnno’s not in her quarters as you’d expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
+		else desc += "\n\nAnno doesn’t seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship’s common area. Odd.";
+		addButton(btnSlot, "Anno", annoFrenchMaid);
+	}
+	else
+	{
+		if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) desc += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
+		else if (hours >= 12 || hours <= 13) 
+		{
+			if(!annoIsHuskar()) desc += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+			else desc += "\n\nYou catch Anno standing in the middle of her quarters, wearing a skin-tight leotard that’s practically tearing itself apart trying to contain her chest and pillowy ass. She’s following along with a low-impact cardio routine playing on her desk’s holoscreen; guess Anno still wants to keep in shape, but isn’t looking to burn off those sexy curves you’ve given her. You happily drink in her jiggling movements for a few moments before moving on.";
+		}
+		// PC has Freed Reaha and Anno, add to Anno’s random selection:
+		else if (!curedReahaInDebt() && rand(3) == 0) desc += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
+		else desc += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+		addButton(btnSlot, "Anno", annoFollowerApproach);
+	}
+	
+	return (showBlurb ? desc : "");
+}
+
 public function annoFollowerApproach():void
 {
 	clearOutput();
@@ -1945,7 +1985,7 @@ public function annoFollowerShowerSex():void
 		{
 			output("Anno looks up and shoots you a grin before wrapping her lips around your cockhead");
 			if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_FELINE) output(", brushing her tongue across the bumps and ridges of your feline member");
-			else if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output(" , her jaw straining to encompass your flared equine girth");
+			else if (pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output(", her jaw straining to encompass your flared equine girth");
 			output(". One of your hands settles atop Anno’s head, stroking the mat of wet hair between her perky ears as she teases your crown, gently urging her onwards.");
 		}
 		else

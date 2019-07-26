@@ -20,6 +20,7 @@
 	import classes.GameData.Pregnancy.Handlers.LaquinePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LDCShockHopperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.MirrinPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
@@ -87,6 +88,7 @@
 			PregnancyManager.insertNewHandler(new BoredJumperPregnancyHandler());
 			PregnancyManager.insertNewHandler(new LaquinePregnancyHandler());
 			PregnancyManager.insertNewHandler(new LDCShockHopperPregnancyHandler());
+			PregnancyManager.insertNewHandler(new MirrinPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

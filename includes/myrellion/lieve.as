@@ -1451,7 +1451,7 @@ public function lieveFuckHaremDickVersionNoVenom():void
 	output("\n\nWith that, you pull Sierva’s abdomen a little closer, driving your tongue deep inside her. Lieve chuckles and shakes her head, letting her attention return to her wives - whose attentions, in turn, are wholly focused on you. Driven on by their mistress’s poisonous kisses, the gold myr girls move over you with a wild, demanding passion. Hands play over your body, caressing your [pc.nipples]");
 	if (pc.balls > 0 && !pc.hasVagina()) output(" and cupping your [pc.balls]");
 	else if (pc.hasVagina() && pc.balls <= 0) output(" teasing the lips of your [pc.cunt]");
-	else if (pc.hasVagina() && pc.balls > 0) output(" , cupping your [pc.balls] and probing your pussy");
+	else if (pc.hasVagina() && pc.balls > 0) output(", cupping your [pc.balls] and probing your pussy");
 	output(".");
 	
 	output("\n\nWith three amorous ants all straddling you, there’s not much to do but lie back and let them bring you to orgasm again... and again. Even without Lieve’s lust-venom, your sensations swim under the constant barrage of stimulation, bringing you to the heights of pleasure and wringing your precious seed from your [pc.balls]. Mayren takes every load you’ll give her, greedily riding out a series of climaxes that leave her panting and gasping, propped up only by your cock and her chest resting on Lieve’s back.");

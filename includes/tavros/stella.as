@@ -604,7 +604,7 @@ public function stellaPussyFuck():void
 	}
 	output("\n\n<i>“Nnnnhh,”</i> you grunt, stretching out in front of the prostrate girl. <i>“Wanna clean me up?”</i>");
 	if(cumQ >= 5000) output("\n\nDespite her condition, s");
-	else output("S");
+	else output(" S");
 	output("he’s only too eager to get on her hands and knees and suck your cock completely clean. Stella licks you up and down, clearly savoring the experience, not all that dissimilar from how she might treat a lollipop. By the time she’s done your cock glistens with her saliva, a strand almost dripping from the end before she catches it with her tongue.");
 	output("\n\n<i>“Oops,”</i> she says, fluttering her eyelashes. <i>“Can’t have you walking out all </i>drippy<i>.”</i>");
 	output("\n\nAt this rate you’re likely to keep her between your legs for a few hours if you don’t get out now. In fact...");
@@ -901,7 +901,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) output("blunt");
 			else output("swollen");
 			output(" top to bulging bottom, Stella begins passionately planting long, noisy kisses on the base of your dick and all over your groin.");
-			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on on for as long as she wants.");
+			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on for as long as she wants.");
 		}
 		output("By the time she’s done");
 		if(pc.balls > 1) output(" with your nuts");
@@ -1125,7 +1125,7 @@ public function breedStella():void
 	output("\n\nRather than respond with words, you instead rock your [pc.hips] back and start fucking her tight, wet pussy with reckless abandon. Stella’s like a mindless animal right now, clawing at your back in her lustful desire, her immaculate fingernails digging into your [pc.skinFurScales]. You can’t stop yourself from indulging her and your own desires, both of you panting with need not even an inch away from each others faces, watching the other experience ecstasy.");
 	output("\n\nYou can feel her cumming, her sopping wet cunt squeezing down on you as hard as it can, but it does nothing to stop your wild, bestial thrusting. All it does is hasten your own orgasm, but even the tightly wound knot of pleasure unravelling in your taut abs doesn’t halt or even slow your thrusting. The wet, impossibly loud slap of flesh on flesh resounds through the room, your cock erupting with jizz and staying hard throughout the entire process. [pc.Cum] spurts violently into Stella’s fertile womb, but it’s not enough. It’s not <i>nearly</i> enough.");
 	output("\n\n<i>“Keep going, master!”</i> Stella screams in pleasure, thrusting her hips up into you. <i>“Oh! Oohh! [pc.name]! Oh-mmmn!”</i>");
-	output("\n\nYou kiss her savagely, completely without technique, your tongues roughly and passionately wrapping around each other in pure, wanton sexual lust. Reduced to the level of beasts, all either of you can do is roughly fuck the other, sweat flying from Stella’s glistening breasts as your motion rocks her bed against the wall. Holding her down with your embrace and your kiss you fuck her so hard she shakes underneath you, her legs so tightly flexed around you that you’re almost fighting each other to keep fucking.");
+	output("\n\nYou kiss her savagely, completely without technique, your tongues roughly and passionately wrapping around each other in pure, wanton sexual lust. Reduced to the level of beasts, all either of you can do is roughly fuck the other, sweat flying from Stella’s glistening breasts as your motion rocks her bed against the wall. Holding her down with your embrace and your kiss, you fuck her so hard she shakes underneath you, her legs so tightly flexed around you that you’re almost fighting each other to keep fucking.");
 	output("\n\nStella lewdly moans into your mouth as she cums again, unable to resist your unfettered sexual appetite for her blissfully hot, tight pussy or her half-filled womb. Even now a mix of cum and Stella’s juices spurts out from around your dick, flecks of it spattering your stomach and groin.");
 	if(pc.hasKnot(x)) output(" Your [pc.knot " + x + "] has swollen to its full size by the time you finish cumming, and you can feel Stella buck <i>hard</i> under you every time it presses roughly down on her oversensitive clit.");
 	output("\n\nSeveral minutes of wet, desperate sex go by before you cum again, your insane pace outmatching your legendary stamina. Seized by bestial lust, you bite Stella’s neck, holding her head in place with your hands while your hips continue to piston in and out. She cums <i>instantly</i> as well as violently, her entire body shaking as her fingernails rake your back.");
@@ -1212,7 +1212,7 @@ public function stellaBreedingOutro():void
 	clearOutput();
 	showStella(true);
 	author("Wsan");
-	output("You were in there for hours, though it felt like days. It wasn’t until you realized how thirsty you were that you thought about taking a break, and though Stella whined a little you think she’ll be happy she isn’t even more sore tomorrow. You get her to take a quick shower, then join her in the tub.");
+	output("You were in there for hours, though it felt like days. It wasn’t until you realized how thirsty you were that you thought about taking a break, and though Stella whined a little, you think she’ll be happy she isn’t even more sore tomorrow. You get her to take a quick shower, then join her in the tub.");
 	output("\n\n<i>“This is nice,”</i> you sigh, staring at the patterned ceiling while your voluptuous ausar lover cuddles up to you in the bath, nuzzling her face into your neck with a blissful smile. Your arm wrapped around Stella’s side and getting a nice feel of her squishy breast, your thoughts turn briefly to the consequences of your wild romp.");
 	output("\n\n<i>“How do you want to handle kids, Stella?”</i> you ask, looking down at her. She doesn’t open her eyes, but her ears twitch and turn towards you. <i>“Do you have plans? I have a Nursery here on Tavros.”</i>");
 	output("\n\n<i>“Naw, s’okay,”</i> Stella murmurs, breathing deeply. <i>“My family’ll handle everything.”</i> She giggles. <i>“Mom’ll be thrilled, she’s been waiting for me to have kids foreeeeverrrr.”</i>");

@@ -59,11 +59,11 @@ public function frogGirlsEncounter():void
 		output("\n\nThe over-sweet scent of decaying vegetation mixed with the sour scent of stagnant water reaches your nose as you push your way through the dense foliage and come upon a small bog lake covered in algae and violet hued lilypads as big around as a hoverskiff’s braceplate.");
 		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe " + tEnemy.skinTone + "-skinned creature rising up from the murky bog water.");
 		output("\n\nIt is impossible to tell the creature’s gender at first, with a complete lack of secondary sexual characteristics, it just looks boyish and sleek, an effect that is amplified by the light refracting off the beads of water running along its skin. It isn’t until it is fully out of the water and standing that you can see that it is female. A kerokoras, according to your codex's yammering.");
-		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail(tEnemy) + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell man...”</i>");
+		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail(tEnemy) + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell ‘man...”</i>");
 		// Seems predicated on smell/scent, hence cockcheck rather than mf()
-		//hasCock: 
+		// hasCock: 
 		if(pc.hasCock()) output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands draw up over her smooth belly and across her flat and featureless chest before sliding behind her neck as she gives you a lust filled look. Clearly she is trying to seduce you with her androgynous body.");
-		//!hasCock:
+		// !hasCock:
 		else output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands cross defiantly across her flat and featureless chest before she levels her gaze at you. The posture of her androgynous body is one of frustrated hostility. It looks like you have a fight on your hands.");
 
 		output("\n\n");
@@ -313,7 +313,7 @@ public function hasCockLossForForgGirls():void
 	}
 	else CombatManager.genericLoss();
 }
-//!hasCock Loss
+// !hasCock Loss
 // No dicks
 public function youDontHaveADickLossToFrogGirls():void
 {

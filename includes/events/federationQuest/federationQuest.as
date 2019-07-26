@@ -14,10 +14,6 @@
 //					~Special~
 //					10- Follow up to 8, PC succesfully took the rebels to Mhenga themselves
 
-import classes.Items.Guns.RudimentaryRevolver;
-import classes.Items.Treasures.QueenlyNecklace;
-import classes.Items.Miscellaneous.GemSatchel;
-
 //Sellera Quest Intro
 public function selleraHelp():void
 {
@@ -221,7 +217,7 @@ public function fedQuestRendevous():void
 	output("\n\nOne of the black-clad soldiers grunts, <i>“What the fuck? Is Command trying to get us killed?”</i>");
 	output("\n\n<i>“Just you, Marik,”</i> Lieve quips back, hefting herself up onto the hood of one of the armored trucks, facing the rest of the troops. <i>“Thankfully, Marshal Sellera’s managed to find us some backup. Everyone, meet [pc.name] Steele. You’ve all been briefed on how off-worlders fight: [pc.heShe] will be our walking tank. Let [pc.hisHer] shields take the hits, and we’ll sweep up after [pc.himHer].”</i>");
 	output("\n\n<i>“So how do we capture a queen that <b>wants</b> to fight?”</i> another of the troop asks. <i>“Dog-pile her?”</i>");
-	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat ass out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
+	output("\n\nLieve chuckles, <i>“As much as I’d like to see that, I also don’t want to watch a four-meter mountain of muscle rip you in half. So no. We’ve got nets and chains in the half-track, along with a case of tranquilizers -- the big ones they use to knock out riding flordas. The brief says it might take three to five shots with them to bring down a queen-sized target, so don’t waste ‘em. The real problem is going to be getting something that fat out of her base: even if we do sneak in without alerting her guards, I wouldn’t put my coin on us being able to drag her out under her daughters’ noses. Getting the War Queen back to the half-tracks is going to be a fight and a half.”</i>");
 	output("\n\nGlancing between the troops, Lieve adds <i>“Yeah, I know. It’s gonna be rough, but we’ll manage. Always do. Any questions?”</i>");
 	
 	flags["MET_LIEVE"] = 1;
@@ -273,7 +269,7 @@ public function fedQuestTheQueen():void
 	output("<i>“So what do we know about the Queen?”</i>");
 	output("\n\nLieve shrugs. <i>“About as much as the Marshal probably told you, Steele. Estallia, aka the War Queen, is the only one of her kind to fight on the front lines. Led a battalion of her own daughters into combat, apparently quite effectively. Estallia and Sellera went head to head for most of the end of the war -- we all know how that turned out for her.”</i>");
 	output("\n\nThe rest of the troops laugh and cheer, tossing a few profanities about how they kicked the Queen’s ass in the war. And that they’ll do it again, too -- this time in person.");
-	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b>massive</b> crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
+	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b>massive</b>. Crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
 	output("\n\nLieve chuckles at herself. <i>“Not much more to say, really. Like I said, her troops are insanely loyal, so Fed Intel could never get close to her. Couldn’t even get the cypher for their comms out of prisoners, no matter how much venom we plied them with. Almost respectable.”</i>");
 	output("\n\n<i>“You would think that, gold-fucker!”</i> Marik says, flicking her tongue through a v-shaped cleft between two fingers. Some of the other troopers laugh, though a bit more hesitantly than before. Lieve takes something -- a bullet, maybe -- out of her vest pocket and flicks it at the bigger myr’s head, bouncing it off her red mohawk.");
 	
@@ -764,7 +760,7 @@ public function fedQuestInvestigateToxin():void
 	clearMenu();
 	author("Savin");
 	
-	output("You " + (pc.tallness < 5*12 ? "haul yourself up the side and " : "") + "peer over the rim, looking down into a mess of some kind of soft moss that’s been packed down at the bottom of the crate. Must be the local equivalent of hay for packaging, you guess. Well, the inside looks pretty much empty, unfortunately... wait, no, you catch just the barest hint of something shiny at the bottom! You reach inside and nab it, bringing it into the light. It’s a canister, stark metal labelled with several warnings. Between the alien language being translated in your head and the complex chemicals you’ve got no experience with, you have exactly no clue what this stuff is <i>exactly</i>, but the biggest label on the cap, marked on either side by that same symbol as you’ve seen everywhere, says in big bold letters: “<b>LUSTOXIN</b>.” ");
+	output("You " + (pc.tallness < 5*12 ? "haul yourself up the side and " : "") + "peer over the rim, looking down into a mess of some kind of soft moss that’s been packed down at the bottom of the crate. Must be the local equivalent of hay for packaging, you guess. Well, the inside looks pretty much empty, unfortunately... wait, no, you catch just the barest hint of something shiny at the bottom! You reach inside and nab it, bringing it into the light. It’s a canister, stark metal labeled with several warnings. Between the alien language being translated in your head and the complex chemicals you’ve got no experience with, you have exactly no clue what this stuff is <i>exactly</i>, but the biggest label on the cap, marked on either side by that same symbol as you’ve seen everywhere, says in big bold letters: “<b>LUSTOXIN</b>.” ");
 	output("\n\nSomebody must have forgotten their chemical weapons. What a world.");
 	output("\n\nYou don’t know how much use you could get out of military grade chemical weapons in the long run, but for right now... tossing a shot of it into the vents might clear things out for you somewhere. Who knows.");
 	
@@ -863,7 +859,7 @@ public function fedQuestVents():void
 	output("Well, this should keep the guards out of your hair for a good long while while they fuck themselves senseless. You pull the Lustoxin vial from your pack and look around for somewhere to use it. Ah, there we go: you spy a vent above the door, hanging on with a simple metal latch. It comes undone with a thumb’s push" + (pc.tallness < 5*12 ? " once you scramble up onto a chair from a nearby office" : "") + ", letting you peer into a series of connecting metal shafts built into the wall. This’ll spread the gas all over!");
 	processTime(5+rand(4));
 	
-	addButton(0, "Do it", fedQuestGasTheGoldsRaceWarNow, undefined, "Do it", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
+	addButton(0, "Do It", fedQuestGasTheGoldsRaceWarNow, undefined, "Do It", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
 	addButton(1, "Don’t", mainGameMenu, undefined, "Don’t", "Maybe not...");
 }
 
@@ -886,7 +882,7 @@ public function fedQuestGasTheGoldsRaceWarNow():void
 		if(pc.lust(100) >= pc.lustMax())
 		{
 			output("\n\nYou groan and start clawing at your [pc.gear], groping at yourself and helping the myr girl’s wandering hands find your loins. The desperation of your chemical desires drives you forward, grabbing the gold by the arm and pulling her back into the room: one myr alone can’t possibly satisfy you!");
-			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();} , undefined, "", "");
+			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();}, undefined, "", "");
 			return;
 		}
 	}
@@ -1503,7 +1499,7 @@ public function fedQuestRadioSet():void
 	clearMenu();
 	author("Savin");
 	
-	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog “on” button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
+	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog “on” button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labeled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
 	output("\n\nSure that you have things settled the way they should be, you bring the headset up to your [pc.ear] and listen in.");
 	output("\n\nA woman is speaking over the radio, urgency in her voice:");
 	output("\n\n<i>“Ellira, come in! Ellira? Daughter, answer me!”</i>");

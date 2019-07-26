@@ -752,6 +752,7 @@ public function cleanUpYaSkank():void
 	output("You make yourself as presentable as you can");
 	if(pc.cumflationEnabled()) output(", but there’s no cleaning up all the cum in your belly");
 	output(".");
+	pc.simpleClean();
 	IncrementFlag("DANE_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1009,7 +1010,7 @@ public function daneCuntfucks():void
 	output("\n\nThe mercenary doesn’t seem interested in cuddling, however. He scoots forward to the edge of his seat and gently pushes you down to the floor. Still joined to his crotch by the anchor of his knot, your [pc.butt] is lifted up into the air. You pant for breath");
 	if(pc.hasCock() && cumQ >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
 	else output(".");
-	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spin. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
+	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spine. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
 	if(pc.hasCock() && cumQ >= 500) output("smears through your [pc.cumNoun].");
 	else output("rubs on the ground.");
 	output("\n\n<i>“Just like that. Now tell me how much you love being my cumrag.”</i> From seemingly nowhere, a finger appears against the side of your clitoral hood.");
@@ -1018,9 +1019,9 @@ public function daneCuntfucks():void
 	if(flags["DANE_VAGFUCKS"] != undefined && flags["DANE_VAGFUCKS"] >= 4) output("I fucking love it!”</i> you scream. <i>“I love the feel of your spunk inside me, and how you hold me down to make sure it all flows into my womb. I can barely think it feels so good!”</i> True to your words, you squirm around while still embedded on his big, drooling dick. <i>“Fuck me " + (pc.isPregnant() ? "even pregnanter!":"pregnant!") + "”</i>");
 	else if(flags["DANE_VAGFUCKS"] != undefined && flags["DANE_VAGFUCKS"] >= 1) output("It’s so fucking good,”</i> you whine, briefly trying to lift yourself up to look at him before accepting the inevitability of your position. <i>“You fill me so full, and there’s so much cum trapped inside.”</i> Blushing, you add, <i>“I’d probably be down for a second round the moment your balls filled back up.”</i>");
 	else output("I... uh... umm. Who am I kidding, it’s fucking great!”</i> you babble. <i>“Are you always like this?”</i> You vainly try to lift yourself up to look at him, but he holds you in place that much firmer, his pressure only making you more aware of how <i>taut</i> you are around his cock. <i>“Mmm, I guess that does make me your cum-rag, doesn’t it?”</i> You wiggle against him. <i>“I almost wish that knot wouldn’t go down.”</i>");
-	output("\n\nThe ausar’s fingers tease your clit in slow circles, speading up the sluttier your speech becomes. Soon, you’re babbling about how he can nut in every hole you have as much as he wants, barely listening to his whispered ‘Good [pc.boyGirl]s.’ Time seems a blur of post-orgasmic pleasure and warm, comforting decadance that only comes to end when your [pc.vagina " + x + "] abruptly pops free from Dane’s softening knot, leaking a trickle of white across your [pc.belly].");
+	output("\n\nThe ausar’s fingers tease your clit in slow circles, speading up the sluttier your speech becomes. Soon, you’re babbling about how he can nut in every hole you have as much as he wants, barely listening to his whispered <i>‘Good [pc.boyGirl].’</i> Time seems a blur of post-orgasmic pleasure and warm, comforting decadance that only comes to end when your [pc.vagina " + x + "] abruptly pops free from Dane’s softening knot, leaking a trickle of white across your [pc.belly].");
 	output("\n\n<i>“Thanks for the fuck, [pc.name],”</i> Dane says, stepping past you to open the door. <i>“I’ll be at the bar when you’re ready for " + (flags["DANE_VAGFUCKS"] == undefined ? "round two":"another round. Don’t keep me waiting") + ".”</i> He steps out, and the door swings closed.");
-	output("\n\nYou’re still on the floor with your ass in the air, only now beginning to link the ausar’s cooling jism.");
+	output("\n\nYou’re still on the floor with your ass in the air, only now beginning to leak the ausar’s cooling jism.");
 	output("\n\nGathering your possessions and your recovering your full faculties takes a minute.");
 	processTime(45);
 	pc.orgasm();

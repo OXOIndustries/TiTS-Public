@@ -363,9 +363,9 @@ public function goodGirlSexForErra():void
 	//hasCock:
 	if(x >= 0)
 	{
-		output("\n\nGrinning, ");
-		if(!pc.isTaur()) output("bend yourself over Erra, [pc.chest] pressing into her back");
-		else output("mount Erra with your frontmost pair of legs straddling her shoulders");
+		output("\n\nGrinning, you");
+		if(!pc.isTaur()) output(" bend yourself over Erra, [pc.chest] pressing into her back");
+		else output(" mount Erra with your frontmost pair of legs straddling her shoulders");
 		output(", making the puppy squirm while the [pc.cockHead " + x + "] of your stiffening shaft brushes against the folds of her sex. She shudders, body quivering, as you bring yourself closer to one of her raised wolf-ears and ask, <i>“Does puppy want a bone?”</i> She most certainly does, nodding hurriedly as you lift a hand to scratch between her ears. Not wanting to keep such a good girl waiting, you start to push into her, spreading her nether lips with ease, already loosened from your oral pleasures. Her love tunnel hugs at your [pc.cock " + x + "] as you slide it into her, keeping your tool nice and warm until ");
 		if(pc.hasKnot(x)) output("your penetration is halted by your [pc.knot " + x + "].");
 		else output("you finally bottom out inside her.");
@@ -960,7 +960,7 @@ public function walkiesWithErra2(cock:Boolean):void
 		output("\n\nYou sit there for a moment and take in what Dee has said, nodding and contemplating what this means for you and that slutty puppy in the other room.");
 		output("\n\nErra’s co-pilot gives you a robotic sigh and speaks up once more, <i>“It may seem like I don’t care for the Captain, but I do. She’s been a good friend since I’ve met her, and I’d enjoy something going right for her for a change.”</i>");
 		output("\n\nYou shoot Dee, well, the ship’s bulkhead, a suspicious look.");
-		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her well being.”</i> Dee sighs again, <i>“Listen, if you could... let the Captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
+		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her wellbeing.”</i> Dee sighs again, <i>“Listen, if you could... let the Captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
 		output("\n\nYou give Dee a solemn nod and shift your body around, your once comfy seat steadily becoming more disagreeable with your back.");
 		output("\n\n<i>“And if you don’t feel the same way: please, let her down easy.”</i>");
 		output("\n\n<b>You could probably confront Erra with this newfound information, or just let it sit.</b>");

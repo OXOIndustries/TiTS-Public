@@ -218,6 +218,7 @@ public function sydianFemalePCLossHasCock():void
 	else output(" <i>“I heard you liked big dicks... well, I’m the biggest dick there is,”</i> you quip. She laughs once and cups your face in her hands, looking into your eyes.");
 	
 	var c:int = pc.cockThatFits(enemy.vaginalCapacity());
+	var cumQ:Number = pc.cumQ();
 
 	output("\n\n<i>“Silly,”</i> she murmurs");
 	if (!pc.isCrotchExposed()) output(", slipping [pc.oneCock] free of your [pc.lowerGarments]");
@@ -258,8 +259,8 @@ public function sydianFemalePCLossHasCock():void
 		else output("<i>“Fuck,”</i> you groan. <i>“Hurry and get on my cock.”</i>");
 		
 		output("\n\n<i>“Why, you silly...”</i> the woman laughs. She leans down. <i>“I don’t let weaklings come inside me.”</i> Grinding her heel into your [pc.cockHead], she sets off your climax. Your [pc.cockNounSimple]");
-		if (pc.cumQ() <= 150) output(" drools pathetically onto your stomach.");
-		else if (pc.cumQ() <= 1500) output(" shoots several strokes of [pc.cum] onto your chest and stomach.");
+		if (cumQ <= 150) output(" drools pathetically onto your stomach.");
+		else if (cumQ <= 1500) output(" shoots several strokes of [pc.cum] onto your chest and stomach.");
 		else output(" explodes onto your stomach, [pc.chest], and face, covering you in [pc.cum].");
 		if (pc.cocks.length > 1 && !pc.isCrotchExposed())
 		{
@@ -322,8 +323,8 @@ public function sydianFemalePCLossHasCock():void
 		output(" and she thrusts her chest out, enjoying your utter abjection. Her cunt is once again relaxed and swallows your dick right down to the [pc.knot "+c+"], slick with lubrication. It gets hotter and hotter as her gyrations become less elegant, until she’s hammering your pelvis and you’re both riding the edge of climax.");
 		
 		output("\n\n<i>“Come!”</i> the woman demands, slapping your ass with her tail. Fuddled with sex and chemistry, your [pc.cockNounSimple "+c+"] unloads,");
-		if (pc.cumQ() <= 150) output(" producing a few embarrassing squirts that represent all you’re capable of.");
-		else if (pc.cumQ() <= 1500) output(" firing five strokes of [pc.cum] that coat her walls and ride gravity back down to touch your [pc.cockHead "+c+"].");
+		if (cumQ <= 150) output(" producing a few embarrassing squirts that represent all you’re capable of.");
+		else if (cumQ <= 1500) output(" firing five strokes of [pc.cum] that coat her walls and ride gravity back down to touch your [pc.cockHead "+c+"].");
 		else
 		{
 			output(" unleashing a wave of [pc.cum] that lifts her several centimeters. The woman is gobsmacked at the monstrous load");
@@ -333,7 +334,7 @@ public function sydianFemalePCLossHasCock():void
 		output(" Her cunt suctions sperm up in an orgasm of its own, clenching and milking your prick as she moans in sweet release.");
 		
 		output("\n\nSpent, the sydian climbs off of you");
-		if (pc.cumQ() > 1500) output(", ignoring the cataract of semen that falls from her");
+		if (cumQ > 1500) output(", ignoring the cataract of semen that falls from her");
 		output(". <i>“Not a bad dick,”</i> she muses. <i>“If you were stronger, I might take you as a mate.”</i> The woman leans in for a final whisper. <i>“So... get stronger.”</i>");
 		
 		output("\n\nAs you slip into a doze, you think that");
@@ -581,12 +582,13 @@ public function femSydianGentleFuck():void
 			
 			pc.cockChange();
 			
+			var cumQ:Number = pc.cumQ();
 			output("\n\n<i>“Yes! Yess!”</i> she moans, wrapping her arms and legs around you. Her cunt hugs you like a rubber tuxedo, wringing with a desperate hope for virile sperm. You climax,");
-			if (pc.cumQ() <= 150) output(" leaving behind a tiny memento of your oddly-romantic wasteland encounter.");
-			else if (pc.cumQ() <= 1500) output(" basting her pussy with sheets of [pc.cum] to cement your unusual union.");
+			if (cumQ <= 150) output(" leaving behind a tiny memento of your oddly-romantic wasteland encounter.");
+			else if (cumQ <= 1500) output(" basting her pussy with sheets of [pc.cum] to cement your unusual union.");
 			else output(" exploding with fireworks of jizz to celebrate her conversion to your way of love. So much [pc.cum] bubbles from your slit that her eyes well up.");
 			output(" You");
-			if (pc.cumQ() <= 1500) output(" quickly");
+			if (cumQ <= 1500) output(" quickly");
 			else output(" slowly");
 			output(" expend yourself and fall onto her.");
 			
@@ -672,6 +674,8 @@ public function femSydianCallOthers():void
 	else output(" a huge, rapacious-looking male.");
 	output(" You conceal yourself while the newcomer takes in the situation; as " + emf("he", "she") +" draws closer, horror breaks over the defeated girl.");
 
+	var cumQ:Number = pc.cumQ();
+	var milkQ:Number = pc.lactationQ();
 	//female sydian branch opening - req. PC has cock/tailcock/nipcock
 	if (isFemale)
 	{
@@ -799,11 +803,11 @@ public function femSydianCallOthers():void
 			if (pc.hasCock()) pc.cockChange();
 			
 			output("\n\n<i>“Cum!”</i> she moans, delirious. Your ejaculation");
-			if (pc.cumQ() <= 150) output(" flicks a few meagre squirts of [pc.cum inside, and for a second you’re grateful the ball-busting bitch nearby can’t see.");
-			else if (pc.cumQ() <= 1500) output(" unloads several strokes of [pc.cum] into the bug-girl, and her hands reach for your face as the feeling floods her.");
+			if (cumQ <= 150) output(" flicks a few meagre squirts of [pc.cum] inside, and for a second you’re grateful the ball-busting bitch nearby can’t see.");
+			else if (cumQ <= 1500) output(" unloads several strokes of [pc.cum] into the bug-girl, and her hands reach for your face as the feeling floods her.");
 			else output(" ambushes the poor thing with such a wave of [pc.cum] that she arches her back from the pressure. Without her armor, her stomach swells from the load.");
 			output(" When the aftershocks cease, you pop free of her");
-			if (pc.cumQ() > 1500) output(" and a gush of [pc.cumColor] follows");
+			if (cumQ > 1500) output(" and a gush of [pc.cumColor] follows");
 			output(". The armored sydian is the first to speak.");
 			
 			output("\n\n<i>“I’m envious... I’d love to meet you sometime,”</i> she flirts. She stands, still blooming bright orange, and walks away rubbing her thighs together. The broken girl watches while you collect your gear. Though she says nothing, her dopey grin tells you she feels the same way.");
@@ -835,12 +839,12 @@ public function femSydianCallOthers():void
 			if (pc.hasCock() || pc.hasTailCock()) output(" [pc.cum]");
 			else output(" [pc.milk]");
 			output(" spurts from you,");
-			if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 150) || (pc.hasNippleCocks() && pc.lactationQ() <= 150)) output(" dotting");
+			if (((pc.hasCock() || pc.hasTailCock()) && cumQ <= 150) || (pc.hasNippleCocks() && milkQ <= 150)) output(" dotting");
 			else output(" splattering");
 			output(" their vaginas.");
-			if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 150) || (pc.hasNippleCocks() && pc.lactationQ() <= 150)) output(" The ejaculation lasts barely a second, leaving mere flecks in the sydians’ thirsty tunnels.");
-			else if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() <= 1500) || (pc.hasNippleCocks() && pc.lactationQ() <= 1500)) output(" Strokes of jizz climb your cocks like fat earthworms, stimulated ever upward by the enzyme mixed with their pussy juice.");
-			else if (((pc.hasCock() || pc.hasTailCock()) && pc.cumQ() > 1500) || (pc.hasNippleCocks() && pc.lactationQ() > 1500)) output(" So productive are you that the broken one’s stomach expands, distending while she grins stupidly and holds it. The other looks uncomfortable as her intact armor resists, pushing the flood back out.");
+			if (((pc.hasCock() || pc.hasTailCock()) && cumQ <= 150) || (pc.hasNippleCocks() && milkQ <= 150)) output(" The ejaculation lasts barely a second, leaving mere flecks in the sydians’ thirsty tunnels.");
+			else if (((pc.hasCock() || pc.hasTailCock()) && cumQ <= 1500) || (pc.hasNippleCocks() && milkQ <= 1500)) output(" Strokes of jizz climb your cocks like fat earthworms, stimulated ever upward by the enzyme mixed with their pussy juice.");
+			else if (((pc.hasCock() || pc.hasTailCock()) && cumQ > 1500) || (pc.hasNippleCocks() && milkQ > 1500)) output(" So productive are you that the broken one’s stomach expands, distending while she grins stupidly and holds it. The other looks uncomfortable as her intact armor resists, pushing the flood back out.");
 			
 			output("\n\nYour lovers sit atop you while you cool down. The armored woman kisses you on the cheek, gets up, and leads her dopey-looking counterpart away, both rubbing their bellies in satisfaction.");
 
@@ -911,15 +915,15 @@ public function femSydianCallOthers():void
 			if (pc.hasCock())
 			{
 				output(" Your own [pc.cum] spurts free at the sight,");
-				if (pc.cumQ() <= 150) output(" climbing from your unproductive [pc.balls] to dribble and drool over your hand.");
-				else if (pc.cumQ() <= 1500) output(" splattering the oily ground.");
+				if (cumQ <= 150) output(" climbing from your unproductive [pc.balls] to dribble and drool over your hand.");
+				else if (cumQ <= 1500) output(" splattering the oily ground.");
 				else output(" erupting in a worrying wave that you hope attracts no attention.");
 			}
 			else if (pc.hasVagina())
 			{
 				output(" Your [pc.vagina] climaxes in sympathy");
 				if (pc.isSquirter()) output(", coating your hand and the dry ground with a thick spray of [pc.girlCum].");
-				else output(" , milking your hand.");
+				else output(", milking your hand.");
 			}
 			
 			pc.orgasm();
@@ -1018,6 +1022,7 @@ public function femSydianGiveThrob():void
 	//vag-anal branch - mandatory for F/U, preferred (80-85%) if H or if M and player has selected female gender pronouns or has all cocks too large
 	//preg chance for vag PC
 
+	var cumQ:Number = pc.cumQ();
 	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity()) < 0)
 	{
 		var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
@@ -1189,8 +1194,8 @@ public function femSydianGiveThrob():void
 		output("; she pays no mind and continues jerking, tickling her urethra with a thumbtip like an experienced masturbator. Your own climax hits you, and you hilt deep in pussy to deliver your seed. The sydian notices, and you can feel her balls tighten with the base of your penis as the anticipation pushes her over her limit. Her pussy begins to quake just as the [pc.cum] climbs your shaft.");
 		
 		output("\n\n");
-		if (pc.cumQ() <= 150) output("Your scanty load squirts out with no more energy than a handful of confetti thrown by a bored coworker at an office party. Her own ejaculation makes a better showing, and");
-		else if (pc.cumQ() <= 1500) output("Your load escapes in several satisfying squirts; the girl flinches as each one touches her pussy. Her prick tries to match you like a synchronized spurting team, and");
+		if (cumQ <= 150) output("Your scanty load squirts out with no more energy than a handful of confetti thrown by a bored coworker at an office party. Her own ejaculation makes a better showing, and");
+		else if (cumQ <= 1500) output("Your load escapes in several satisfying squirts; the girl flinches as each one touches her pussy. Her prick tries to match you like a synchronized spurting team, and");
 		else output("Your load, more like a loaf, stretches your urethra in great gobs, dumping into the poor girl. Her pussy is filled in the first squirt, but cum keeps coming until her plugged hole resembles a cataract of [pc.cumColor] slime. Her own dick, red with shame and friction,");
 		output(" paints three lines of silvery spunk on her stomach and breastplate as her pussy drinks greedily from your genetic tap.");
 		
@@ -1483,10 +1488,11 @@ public function femSydianFuck():void
 	output(" and turning it into a ball of chemical lust. You hit your limit suddenly, and the sydian’s pussy twitches when she feels the first stroke of [pc.cum].");
 	
 	output("\n\n<i>“Yes... do it inside! I want strong children!”</i> she exclaims, slamming her hips into you.");
-	if (pc.cumQ() <= 1500)
+	var cumQ:Number = pc.cumQ();
+	if (cumQ <= 1500)
 	{
 		output(" She wrings you, clings to you, until you shoot every last string.");
-		if (pc.cumQ() <= 7) output(" With how little your [pc.balls] produce, you doubt very much that she’ll get her wish.");
+		if (cumQ <= 7) output(" With how little your [pc.balls] produce, you doubt very much that she’ll get her wish.");
 	}
 	else
 	{
@@ -1505,7 +1511,7 @@ public function femSydianFuck():void
 	output(" You rest atop the woman for a few minutes,");
 	if (!pc.isTaur()) output(" enjoying the ticklish feeling as she cradles your head,");
 	output(" and then pull out. The sydian surprises you with a kiss");
-	if (pc.cumQ() > 150) output(", and you think you see gratitude in her eyes");
+	if (cumQ > 150) output(", and you think you see gratitude in her eyes");
 	output(".");
 	
 	output("\n\n<i>“My powerful male,”</i> she mumbles again, intoxicated by your presence.");

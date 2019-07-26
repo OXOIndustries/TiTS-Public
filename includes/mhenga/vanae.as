@@ -1529,7 +1529,7 @@ public function vanaeHuntressMilkBath():void
 		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like [pc.aRaceShort]-shaped geyser until you are utterly spent.");
 
 		output("\n\n<i>“Couldn’t hold out anymore? I understand, it’s pretty intense. But we’re nowhere near finished yet");
-		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(" , off-worlder");
+		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
 		output(".”</i> The alien huntress informs you, all the while squirting more milk onto your already slickened body. <i>“...And because you’ve been so good, I’ll be nice, and touch you a little.”</i>");
 
 		output("\n\nShe reaches out with a single toe and strokes your slimy loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you’re already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you’ve ever experienced.");

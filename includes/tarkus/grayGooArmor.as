@@ -918,7 +918,7 @@ public function gooArmorInteractBonus(btnSlot:int = 0):String
 {
 	return gooArmorOnSelfBonus(btnSlot, false);
 }
-public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):String
+public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true, showBlurb:Boolean = true):String
 {
 	var bonusText:String = "";
 	
@@ -1506,7 +1506,7 @@ public function gooArmorCrewOption(arg:Array):void
 		case "stay":
 			showGrayGooArmor();
 			
-			txt += "You ask [goo.name] to stay on your ship as a crewmember.";
+			txt += "You ask [goo.name] to stay on your ship as a crew member.";
 			if(pc.armor is GooArmor)
 			{
 				txt += "\n\nThe goo-girl looks at you in the eyes, sliding her bottom half around your [pc.lowerBody] a bit. <i>“Aww, really?”</i>";
@@ -3013,7 +3013,7 @@ public function gooArmorChangeStyle(arg:Array):void
 			break;
 		case 2:
 			txt += " Large pieces of armor flare out from your suit, giving you a bulkier look. Huge pauldrons and arm guards form at your sides";
-			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", " + (pc.bRows() == 1 ? "a" : num2Text(pc.bRows())) + " breastplate" + (pc.bRows() == 1 ? "" : "s") + " at your front";
+			if(!pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", and " + (pc.bRows() == 1 ? "a" : num2Text(pc.bRows())) + " breastplate" + (pc.bRows() == 1 ? "" : "s") + " at your front";
 			txt += ", adding to the size. Although you know it doesn’t change the armor rating at all, from afar, it makes you appear to be some kind of knight or tank" + (silly ? "... or a tank-knight" : "") + ".";
 			txt += "\n\n<i>“Space marines, eat your heart out!”</i> exclaims your tummy.";
 			break;

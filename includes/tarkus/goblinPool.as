@@ -883,7 +883,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (!isTightFit)
 		{
 			output("\n\n<i>“Oh, stop making a meal out of it,”</i> you " + pc.mf("chuckle", "giggle") + ", closing your eyes to the pleasure of easily sliding in inch after inch of your");
-			if ((pc.cockVolume(y) * 1.5) <= pp.analCapacity()) output(" cute");
+			if (pc.cLength(y) < 6) output(" cute");
 			else output(" decently-sized");
 			output(", sensitive cock past his clenching ring. <i>“Imagine if your mistress had made you go with a REAL monster.”</i>");
 		}
@@ -1065,7 +1065,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (inButt) output(" [pc.anus]");
 		else output(" twat");
 		output(" that he drives to his own high. He holds your head firmly and uses the succulent friction of your [pc.tongue] and [pc.lips] frenetically, saliva running down your chin and liberally coating the steady beat of his balls, until with a hoarse bark he reaches it, his cock swelling up and then surging thick, coating cum into your mouth and down your gullet. Simmering in well-fucked pleasure you curl your hands around his tight bum and drink it down, not letting him escape your suck until the poor, blowjob-starved boy has given you every last musky drop. You give his turgid dick a teasing lick when he finally releases you and draws himself out.");
-		output("\n\n<i>“ ...awesome,”</i> he sighs, leaning back against the headboard. A grinning Godi sinuously slides up on the other side and once again you find yourself sandwiched between lean, hot boy beef, lightly oiled with sweat. You lean into one and enjoy the feeling of cum leaking steadily out of your gently gaped");
+		output("\n\n<i>“...awesome,”</i> he sighs, leaning back against the headboard. A grinning Godi sinuously slides up on the other side and once again you find yourself sandwiched between lean, hot boy beef, lightly oiled with sweat. You lean into one and enjoy the feeling of cum leaking steadily out of your gently gaped");
 		if (inButt) output(" asshole");
 		else output(" pussy");
 		output(". <i>“You’ll keep coming around, right [pc.name]? I could definitely get used to this kind of spreadsheet break.”</i> Godi murmurs his agreement, hand brushing down your [pc.lowerBody]. <i>“You wanna go again in five?”</i> asks Petr, enthusiasm husking his voice. <i>“It’s not been an hour yet.”</i>");
@@ -1277,7 +1277,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 1);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 1);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// PC is female, D cup or above, is not pregnant, is wearing something
@@ -1289,7 +1289,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 0);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 0);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// Otherwise

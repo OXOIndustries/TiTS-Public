@@ -53,6 +53,10 @@ public function flahneDickOut():Boolean {
 }
 
 //Meeting Her:
+public function flahneInOffice():Boolean {
+	if(hungryFlahneWithBimboPenny()) return false;
+	return true;
+}
 public function meetingFlahne(outputT:Boolean = true):Boolean {
 	CodexManager.unlockEntry("Rahn");
 	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
@@ -82,10 +86,10 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 		flahneMenu();
 		return true;
 	}
-	else if(flags["SEEN_BIMBO_PENNY"] == 1)
+	else if(flags["SEEN_BIMBO_PENNY"] != undefined)
 	{
 		//Flahne busy with Penny IF TIME IS BETWEEN 0800 AND 1700
-		if(hours >= 8 && hours < 17)
+		if(flahneInOffice())
 		{
 			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne is at her desk, but although her figure looks a little curvier and her flesh a little lighter than normal, she looks surprisingly normal given her activities with Penny. She must be putting all that mass somewhere,");
@@ -142,7 +146,7 @@ public function flahneApproach():void
 	showFlahne();
 	
 	// Penny stuff
-	if(flags["SEEN_BIMBO_PENNY"] == 1)
+	if(flags["SEEN_BIMBO_PENNY"] != undefined)
 	{
 		output("Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 		output("\n\nWhat did you want with Flahne?");
@@ -226,7 +230,7 @@ public function flahnePostPQZilTalk():void
 	clearOutput();
 	showFlahne();
 	output("You ask if any zil have been in town recently.");
-	output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. " + (!pennyIsCrew() ? "A Peacekeeper officer" : "Officer Penny") + " brought them up here, and once we got the air conditioning on full blast, we had a long talk with them. How did you know about that, [pc.name]?”</i>");
+	output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. " + (pennyIsCrew() ? "A Peacekeeper officer" : "Officer Penny") + " brought them up here, and once we got the air conditioning on full blast, we had a long talk with them. How did you know about that, [pc.name]?”</i>");
 	output("\n\nYou briefly describe your confrontation with Quinn’s tribe, how you talked them out of terrorizing Thare Plantation and persuaded them to talk to the people of Esbeth instead. ");
 	if(pc.isBimbo()) output("Your account is heavy on the <i>smell</i> and the <i>cuteness</i> of zil boys and oh Void you just wanna eat them up, though that doesn’t seem to turn Flahne off much.");
 	else if(pc.isBro()) output("Your account is heavy on how superfine the zil honeys were and just how many of them you laid, though that doesn’t seem to turn Flahne off much.");

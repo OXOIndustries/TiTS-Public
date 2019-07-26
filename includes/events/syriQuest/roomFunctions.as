@@ -376,7 +376,7 @@ public function syriQuestAkkadiBaseResearchDeptPlaza():Boolean
 	clearOutput();
 	author("Savin");
 	output("You’re in the beating heart of Akkadi’s Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.");
-	output("\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words ‘Warp Field Lab’ printed above it.");
+	output("\n\nTo the west is a door labeled BioMed; to the east, one labeled ‘Starship Lab’. And to the south is a seriously heavy-duty metal door with the words ‘Warp Field Lab’ printed above it.");
 	if (flags["SYRIQUEST_STATE"] < 9) output(" If you had to take a guess, that’s where you need to go.")
 	return syriQuestAkkadiBaseSecurityRobotsTrigger()
 	//return false;

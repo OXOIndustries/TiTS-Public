@@ -261,6 +261,14 @@
 		true);
 
 	inputManager.AddBindableControl(
+		"Infinite Crew Space",
+		"Allows you to fly no matter how full your ship may be.",
+		function():void {
+			Cheats.infiniteCrewSpace();
+		},
+		true);
+
+	inputManager.AddBindableControl(
 		"Destinations Unlocked",
 		"Unlocks traveling to any planet.",
 		function():void {
@@ -339,6 +347,7 @@
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
+	inputManager.BindCheatSequence("Infinite Crew Space", "clowncar");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	inputManager.BindCheatSequence("Force Default Treatment", "treatment");
 	inputManager.BindCheatSequence("Force Cow-Girl Treatment", "bimbo");

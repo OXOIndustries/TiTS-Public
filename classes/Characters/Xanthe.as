@@ -207,6 +207,10 @@
 			//Dislikes
 		
 		}
+		override public function get bustDisplay():String
+		{
+			return "XANTHE";
+		}
 		
 		override public function onLeaveBuyMenu():void
 		{

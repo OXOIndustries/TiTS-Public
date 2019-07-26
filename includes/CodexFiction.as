@@ -1370,7 +1370,7 @@ public function eightClicksStory():void
 
 	outputCodex("\n\nShe felt so lustful because she was made that way.");
 
-	outputCodex("\n\nA smokey hiss turned into soft clicks. Four...six...eight clicks slid out in one breath.");
+	outputCodex("\n\nA smoky hiss turned into soft clicks. Four...six...eight clicks slid out in one breath.");
 
 	outputCodex("\n\nShe had been so worried about herself just a moment ago, but now that she knew the truth, she felt a pleasant emptiness. Or, more precisely, she didn’t feel it. There was no self to feel pleasant.");
 
@@ -1467,7 +1467,7 @@ public function bxbiChapter2Story():void
 	outputCodex("\n\nSparkling gold was dancing along his skin. The tan spread up over his face, bringing its warmth and feminine features with it. It washed down along his thighs and his legs.");
 	outputCodex("\n\nIt was there, in the corners of his eyes: darker skin and a slimmer nose. It was there in his socks and shoes: smaller feet, higher arch, thicker and more shapely legs. His cock was stiff and huge with every stroke-or maybe he was just smaller in comparison?");
 	outputCodex("\n\n<i>“Oh, fuck!”</i> he gasped out in the voice of a young woman.");
-	outputCodex("\n\nAt the end of each stroke, with his hand resting against his groin, he pushed in. He started mild , but he was soon pressing harder, spending more time after each stroke. There was less bouncing around beneath his cock, less and less as he kept going, but he was too far to stop.");
+	outputCodex("\n\nAt the end of each stroke, with his hand resting against his groin, he pushed in. He started mild, but he was soon pressing harder, spending more time after each stroke. There was less bouncing around beneath his cock, less and less as he kept going, but he was too far to stop.");
 	outputCodex("\n\nStars were popping in front of his eyes. His skin ached. He shivered because he was flecked with sweat. He moaned out loud again. His hand was traveling only half as far as it was before. His pubic hair had vanished, gone without a single trace. Meanwhile, hair was bouncing around his shoulders and tickling the tops of his breasts and dancing along his back and falling down, black and thick and glossy, over his face.");
 	outputCodex("\n\nHis fingers sunk deeper each time. He was doing more rubbing than stroking. His fingers filled him up and he cried out and pushed his pussy against his fingers. He needed to stop, but he couldn’t. He couldn’t stop to inspect the damage until he was done. He had to finish.");
 	outputCodex("\n\nChris screamed and it was completely a girl’s scream. Her legs, spread awkwardly open, trembled as she sunk to the floor. In the aching, guilty afterglow, a shudder ran down her back and she curled her toes and a bit of wetness slid along her new folds.");
@@ -1689,7 +1689,7 @@ public function bxbiChapter2Story():void
 
 	outputCodex("\n\n<i>“Pink for my lips, and like, light pink, too. And I guess dark and heavy for the other stuff? I’m like, not great with makeup,”</i> she said.");
 
-	outputCodex("\n\nChris watched Erica in the mirror while she worked. Just like reading the magazine, everything she saw her do was sticking to her brain. She could see her reflection in the mirror, too, so she got to watch the makeup slowly come together. First, the lipstick, giving her lips a bright sheen, then some blush in a similar pink, to bring out her cheeks since she was so tan. The silvery-blue eyeshadow looked more like silver-gray when it was brushed out along her skin. With the thick, dark eyeliner and the heavy mascara added on, the makeup brought out her eyes and thickened her lashes. It gave her just the smokey, sexy look she’d wanted but couldn’t quite put into words thanks to her bimboifying vocabulary.");
+	outputCodex("\n\nChris watched Erica in the mirror while she worked. Just like reading the magazine, everything she saw her do was sticking to her brain. She could see her reflection in the mirror, too, so she got to watch the makeup slowly come together. First, the lipstick, giving her lips a bright sheen, then some blush in a similar pink, to bring out her cheeks since she was so tan. The silvery-blue eyeshadow looked more like silver-gray when it was brushed out along her skin. With the thick, dark eyeliner and the heavy mascara added on, the makeup brought out her eyes and thickened her lashes. It gave her just the smoky, sexy look she’d wanted but couldn’t quite put into words thanks to her bimboifying vocabulary.");
 
 	outputCodex("\n\nChris’s lips had puffed up tighter and thicker, and had outgrown her first coat of lipstick, showing a bit of naturally pink lip behind the artificially bright pink gloss.");
 

@@ -50,18 +50,24 @@ public function kaseIsCrew():Boolean
 	return (flags["KASE_CREW"] > 0);
 }
 
-public function kaseCrewBlurbs(btnSlot:int):String
-{	
-	switch(rand(3)+1)
+public function kaseCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	if (showBlurb && flags["RAMIS_ACTIVITY"] != "KASE")
 	{
-		case 1:	addButton(btnSlot, "Kase", kaseApproachCrew, 1, "", "");
-				return "\n\nKase is in his quarters, tapping away at a holopad and running calculations. Whether for work or for fun, though, you can’t quite say.";
-		case 2: addButton(btnSlot, "Kase", kaseApproachCrew, 2, "", "");
-				return "\n\nYou can see Kase in his quarters, head bobbing back and forth happily with headphones pumping music into his ear while he works away on his terminal.";
-		case 3: addButton(btnSlot, "Kase", kaseApproachCrew, 3, "", "");
-				return "\n\nKase seems to be taking a little break in his quarters, drifting off into a catnap on his bunk, tails swaying sleepily.";
-		default:return "\n\n<b>!KASE CREW BLURB SWITCH BORKED!</b>";
+		switch(rand(3)+1)
+		{
+			case 1:	addButton(btnSlot, "Kase", kaseApproachCrew, 1, "", "");
+					return "\n\nKase is in his quarters, tapping away at a holopad and running calculations. Whether for work or for fun, though, you can’t quite say.";
+			case 2: addButton(btnSlot, "Kase", kaseApproachCrew, 2, "", "");
+					return "\n\nYou can see Kase in his quarters, head bobbing back and forth happily with headphones pumping music into his ear while he works away on his terminal.";
+			case 3: addButton(btnSlot, "Kase", kaseApproachCrew, 3, "", "");
+					return "\n\nKase seems to be taking a little break in his quarters, drifting off into a catnap on his bunk, tails swaying sleepily.";
+			default:return "\n\n<b>!KASE CREW BLURB SWITCH BORKED!</b>";
+		}
 	}
+	else addButton(btnSlot, "Kase", kaseApproachCrew, 1);
+	
+	return "";
 }
 
 public function kaseCrewGreeting():void
@@ -161,7 +167,7 @@ public function kaseTryPrivate(beenCrew:Boolean = false):void
 	output("You point out a nearby room for him to change in, much to Anno’s disappointment.");
 	output("\n\n<i>“Awww,”</i> she whines as Kase nods and walks off to try on his new suit, <i>“You’re no fun.”</i>");
 	output("\n\nYou chuckle and shake your head at the ausar and tell her " + (pc.isAss() ? "she’s right, leading her to pout a bit" : "she’s welcome to try and get Kase to strip for her on her own, to which she sticks her tongue out") + ".");
-	output("\n\nAfter a few moments of patient waiting, your new kaithrit crewmember appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
+	output("\n\nAfter a few moments of patient waiting, your new kaithrit crew member appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
 	output("\n\n<i>“Does it fit well?”</i> he asks, looking himself over and checking to make sure he got his tails through his new outfit okay.");
 	if (pc.isBimbo()) output("\n\n Both you and Anno erupt into a call of “Sooooooo cuuuuuuute!”");
 	else output("\n\nYou tell him it seems just right for him, but Anno interrupts with a call of “Sooooooo cuuuuuuute!”");

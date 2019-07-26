@@ -193,7 +193,10 @@
 		{
 			dataObject.rangedWeapon = new EmptySlot().getSaveObject();
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "ANARRIE";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

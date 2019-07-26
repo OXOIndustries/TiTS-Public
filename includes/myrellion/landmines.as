@@ -31,7 +31,7 @@ public function encounterLandmines():void
 	if(pc.hasItemByClass(Hoverboard)) output(" hoverboard suddenly dips and bumps into");
 	else output(" [pc.foot] suddenly hits");
 	output(" something heavy and metallic. You only have the span of a heartbeat to think before a shrill whine echoes through the cavern and a little metal ball pops up from the ground, no bigger than your fist.");
-
+	
 	// PC makes a Reflex Saving Throw
 	// {If Successful:}
 	if ((rand(pc.reflexes() / 3) + pc.reflexes() / 2) >= 20)
@@ -39,7 +39,7 @@ public function encounterLandmines():void
 		output("\n\nYour quick reflexes kick in before you can even think, and you leap down to the ground before the mine detonates. A deafening explosion rocks the cavern, and debris and shrapnel rain down on you");
 		if (pc.shields() > 0) output(", thankfully absorbed by your shields");
 		output(". Worse, though, is the cloud of roiling pink gas that begins to suffuse the tunnel, drifting down from the mine’s height. You scramble away before the gas can get to you, however.");
-
+		
 		processTime(15);
 	}
 	else
@@ -49,17 +49,28 @@ public function encounterLandmines():void
 		if (pc.shields() > 0) output(" shields");
 		else if (pc.hasArmor()) output(" [pc.armor]");
 		else output(" [pc.skin]");
-		output(". Before you can recover, though, a thick cloud of roiling pink gas begins to suffuse the tunnel, drifting down from the mine’s height. You try and hold your breath, but the wind’s been knocked out of you by the mine’s explosive charge, and you soon find yourself breathing the gas in.");
-
-		output("\n\nBy the void, it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
-
+		output(". Before you can recover, though, a thick cloud of roiling pink gas begins to suffuse the tunnel, drifting down from the mine’s height.");
+		
 		var physDamage:Number = (pc.shields() > 0 ? 20 : 40);
 		var lustDamage:Number = 40;
+		
+		if(pc.hasAirtightSuit())
+		{
+			output(" The wind’s been knocked out of you by the mine’s explosive charge so you reflexively attempt to catch your breath. Luckily, your airtight outfit prevents you from inhaling the gas, despite it being obviously scuffed. Well, that’s a relief at least.");
+			
+			lustDamage = 0;
+		}
+		else
+		{
+			output(" You try and hold your breath, but the wind’s been knocked out of you by the mine’s explosive charge, and you soon find yourself breathing the gas in.");
+			output("\n\nBy the void, it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
+		}
+		
 		applyDamage(new TypeCollection( { kinetic: physDamage, pheromone: lustDamage }, DamageFlag.BYPASS_SHIELD, DamageFlag.PENETRATING, DamageFlag.EXPLOSIVE ), null, pc, "minimal");
 		pc.shieldsRaw = 0;
 		processTime(20);
 	}
-
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

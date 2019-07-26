@@ -1450,7 +1450,7 @@ public function talkToEllieAboutPregnancy():void
 		if(pc.isBimbo()) output("\n\n<i>“Weeeellll,”</i> you begin, wiggling with excitement. <i>“I can totally change that if you want! Just for us, I mean. I found a Steele doc that does biology things!”</i>");
 		else output("\n\n<i>“You know, I met a doc on Uveto that could help,”</i> you say, winking at her. <i>“It’d only work for the two of us, but if you wanna be bred I’m your " + pc.mf("man", "gal") + ".”</i>");
 		output("\n\n<i>“Gosh, really?”</i> Ellie says, wide-eyed with a hand on her bosom. <i>“You’d do that for me? I’d thought it was pretty expensive...”</i>");
-		if(pc.isBimbo()) output("\n\n<i>“‘Course I would, silly girl! You’re the sweetest, sexiest girl I know!”</i> you exclaim. <i>“Plus you fuck like a champion. I’ll " + (pc.credits >= 100000 ? "handle" : "get") + "the money, don’t you worry.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“‘Course I would, silly girl! You’re the sweetest, sexiest girl I know!”</i> you exclaim. <i>“Plus you fuck like a champion. I’ll " + (pc.credits >= 100000 ? "handle" : "get") + " the money, don’t you worry.”</i>");
 		else output("\n\n<i>“Guess I just can’t get enough of the nicest girl this side of the galaxy,”</i> you smile affectionately. <i>“Don’t worry about the money, " + (pc.credits >= 100000 ? "I’ve got it handled" : "I’ll get it together") + ".”</i>");
 		output("\n\n<i>“Wow! You’ve really put some thought into breeding lil’ ol’ me, huh [pc.name]?”</i> Ellie says, flirtatiously fluttering her eyelashes. <i>“‘Course I’m not gonna turn </i>that<i> offer down, babe.”</i>");
 		output("\n\n<i>“Didn’t think you would,”</i> you say with a grin.");
