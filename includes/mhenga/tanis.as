@@ -67,7 +67,7 @@ public function tanisBowTrainingFirstTime():void
 	else output(" man");
 	output(",”</i> you say, stepping over to Tanis’s desk. As you walk, you pull the bow off from over your shoulder and plant the butt of it on the ground beside you. His eyes instantly light up at the sight of it, and his ashen lips twist into a hint of a smile.");
 	
-	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous of a weapon.”</i>");
+	output("\n\n<i>“‘Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous of a weapon.”</i>");
 	
 	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering if you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
 	

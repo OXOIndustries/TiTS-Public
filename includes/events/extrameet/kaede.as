@@ -718,7 +718,7 @@ public function kaedeDataIlariaOrder(order:String):void
 
 	output("<i>“Ooh, that sounds good. Same for me.”</i>");
 	
-	output("\n\n<i>“’Kay!”</i> Ilaria grins, spinning on a heel. <i>“Be right up!”</i>");
+	output("\n\n<i>“‘Kay!”</i> Ilaria grins, spinning on a heel. <i>“Be right up!”</i>");
 	
 	output("\n\nAs soon as she’s gone, Kaede claps her hands to her burning cheeks. <i>“Ahh, I didn’t think Lari would make a fuss. I’m sorry!”</i>");
 	
@@ -826,7 +826,9 @@ public function extrameetKaedeBlowNBounce():void
 	else output(" in the ring of your ass");
 	output(", threatening to sink inside if you don’t raise yourself back on your [pc.knees] and start riding that dick.");
 	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
-	pc.cuntChange(0, ppKaede.cockVolume(0));
+	
+	if (pc.hasVagina()) pc.cuntChange(0, ppKaede.cockVolume(0));
+	else pc.buttChange(ppKaede.cockVolume(0));
 	
 	output("\n\n<i>“A-aah,”</i> Kaede moans, grabbing at your hips. <i>“You’re such a bully!”</i>");
 	
@@ -862,7 +864,8 @@ public function extrameetKaedeBlowNBounce():void
 	output("\n\nKaede taps the side of the couch and pulls you in against her. <i>“I’m out... just stay still, or I’m never gonna deflate...”</i>");
 
 	processTime(20+rand(10));
-	pc.loadInCunt(ppKaede, 0);
+	if (pc.hasVagina()) pc.loadInCunt(ppKaede, 0);
+	else pc.loadInAss(ppKaede);
 	pc.orgasm();
 	IncrementFlag("KAEDE_FUCKED");
 

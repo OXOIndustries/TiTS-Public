@@ -56,6 +56,7 @@ public function VahnTheMechanic():void
 	clearOutput();
 	showVahn();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	//First Time:
 	if(flags["MET_VAHN"] == undefined)
 	{
@@ -188,6 +189,7 @@ public function vahnShipGunsShop():void
 	clearOutput();
 	showVahn();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	shopkeep.inventory.push(new MGun());
 	shopkeep.inventory.push(new EMCannon());
 	shopkeep.inventory.push(new LCannon());
@@ -199,6 +201,7 @@ public function vahnShipGadgetShop():void
 	clearOutput();
 	showVahn();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	shopkeep.inventory.push(new RepairModule());
 	shopkeep.inventory.push(new ShieldBoosterForShips());
 	shopkeep.inventory.push(new ShieldDisruptor());
@@ -209,6 +212,7 @@ public function vahnShipUninstall():void
 	clearOutput();
 	showVahn();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	unfitShipItem();
 }
 
@@ -278,24 +282,32 @@ public function renameYourShipGo():void
 	addButton(0,"Next",VahnTheMechanic);
 }
 
-public function vahnSellsShips():void
+public function vahnSellsShips(back:Boolean = false):void
 {
 	clearOutput();
 	showVahn();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	author("Fenoxo");
-	if(flags["VAHN_SHIP_SALES"] == undefined)
+	if(!back)
 	{
-		output("You ask Vahn if he can sell you a whole new ship.");
+		if(flags["VAHN_SHIP_SALES"] == undefined)
+		{
+			output("You ask Vahn if he can sell you a whole new ship.");
 
-		output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird in storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
-		output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
-		output("\n\nVahn taps a few buttons, and your Codex springs to life, displaying a catalog of local spacecraft. <i>“Take your pick.”</i>");
+			output("\n\n<i>“Of course. I can sell you a whole hangar’s worth, if you like.”</i> Vahn spreads his arms wide. <i>“Your dad rented out enough space for you to park your own little squadron here, if you like.”</i> He glances back at the venerable Casstech. <i>“It’ll be a shame to put the old bird in storage. Oh, yeah - I can’t buy her off you. Boss’s orders.”</i>");
+			output("\n\nYou nod along. Of course Dad wouldn’t want you selling such a sentimental piece.");
+			output("\n\nVahn taps a few buttons, and your Codex springs to life, displaying a catalog of local spacecraft. <i>“Take your pick.”</i>");
+		}
+		else
+		{
+			output("You tell Vahn you’d like to go ship-shopping again.");
+			output("\n\n<i>“Not a problem,”</i> the mechanic says, stretching out to tap a few buttons and transmit the local catelog to your Codex. <i>“Take your pick.”</i>");
+		}
 	}
 	else
 	{
-		output("You tell Vahn you’d like to go ship-shopping again.");
-		output("\n\n<i>“Not a problem,”</i> the mechanic says, stretching out to tap a few buttons and transmit the local catelog to your Codex. <i>“Take your pick.”</i>");
+		output("What ship are you interested in buying?");
 	}
 	clearMenu();
 	//Initialize all ships, pass to tooltip generating func.
@@ -307,8 +319,10 @@ public function vahnSellsShips():void
 	{
 		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
 	}
+	addButton(13,"Current Ship",shipStatistics,vahnSellsShipsBack,"Current Ship Stats","Look over your ship and its equipped modules.");
 	addButton(14,"Back",VahnTheMechanic);
 }
+public function vahnSellsShipsBack():void { return vahnSellsShips(true); }
 
 public function shipTradeInPrice(ship:ShittyShip):Number
 {
@@ -401,6 +415,7 @@ public function storageShipsMenu():void
 {
 	clearOutput();
 	shopkeep = chars["VAHN"];
+	shopkeep.inventory = [];
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	showName("SHIP\nSTORAGE");

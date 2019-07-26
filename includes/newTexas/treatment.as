@@ -4620,7 +4620,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				AddLogEvent(ParseText("You run your hands languidly over the boys, appreciating how deliciously soft and round they are, and how perfectly they mold to your form. Somehow, you know this is going to be the feel of your butt from now on, no matter how much weight you happen to lose or put on. You can barely wait to hear the sound of palms or hips slamming powerfully against your [pc.butt]."), "passive", (treatedHours - startHours) * 60);
 				ExtendLogEvent("\n\n(<b>Perk Gained: Bubble Butt</b> - Your butt remains soft regardless of muscle tone.)");
-				pc.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of muscle tone.");
+				pc.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of tone.");
 			}
 		}
 		

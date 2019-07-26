@@ -2071,6 +2071,7 @@ public function fuckMitziJustLikeInCoC():void
 	if(cumQ >= 3000) output(" with a cum-pregnant belly");
 	if(cumQ >= 250) output(", spooge dripping down her thighs from her overfilled snatch");
 	output(". She’s slowly rousing back to consciousness, but you should probably get on with your day.");
+	processTime(27);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

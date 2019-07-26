@@ -257,58 +257,40 @@ public function crazyCarlShop():void {
 	output("\n\nLuckily, he appears to be clairvoyant; <i>“Haven’t had the demand to make much more, gettin’ bit too up in age to just make ‘em. ‘Fraid as it stands I don’t quite got anythin’ on me to do requests, either. Whacha see is what ya can get, nothin’ more. Sorry ‘bout that.”</i>");
 	output("\n\nCurious.");
 	processTime(1);
-
-
-	shopkeep = new Carl();
-	shopkeep.inventory = [new HammerPistol(),  new MagnumPistol(), new LaserPistol(), new TheShocker(), new ZKRifle(), new ZKRifle(), new Warhammer(), new Machette(), new Shortsword(), new ShockBow(), new LightningRod()];
-
+	
+	shopkeep = chars["CARL"];
+	shopkeep.inventory = [];
+	shopkeep.inventory.push(new HammerPistol());
+	shopkeep.inventory.push(new MagnumPistol());
+	shopkeep.inventory.push(new LaserPistol());
+	shopkeep.inventory.push(new TheShocker());
+	shopkeep.inventory.push(new ZKRifle());
+	shopkeep.inventory.push(new Warhammer());
+	shopkeep.inventory.push(new Machette());
+	shopkeep.inventory.push(new Shortsword());
+	shopkeep.inventory.push(new ShockBow());
+	shopkeep.inventory.push(new LightningRod());
+	
 	clearMenu();
-	/*
-	addCarlItemButton(0, new HammerPistol());
-	addCarlItemButton(1, new MagnumPistol());
-	addCarlItemButton(2, new LaserPistol());
-	addCarlItemButton(3, new TheShocker());
-	addCarlItemButton(4, new ZKRifle());
-	addCarlItemButton(5, new Warhammer());
-	addCarlItemButton(6, new Machette());
-	addCarlItemButton(7, new Shortsword());*/
-
-	
-	addItemButton(0, shopkeep.inventory[0], carlBuyTalk, shopkeep.inventory[0], null, null, shopkeep, pc);
-	addItemButton(1, shopkeep.inventory[1], carlBuyTalk, shopkeep.inventory[1], null, null, shopkeep, pc);
-	addItemButton(2, shopkeep.inventory[2], carlBuyTalk, shopkeep.inventory[2], null, null, shopkeep, pc);
-	addItemButton(3, shopkeep.inventory[3], carlBuyTalk, shopkeep.inventory[3], null, null, shopkeep, pc);
-	addItemButton(4, shopkeep.inventory[4], carlBuyTalk, shopkeep.inventory[4], null, null, shopkeep, pc);
-	addItemButton(5, shopkeep.inventory[5], carlBuyTalk, shopkeep.inventory[5], null, null, shopkeep, pc);
-	addItemButton(6, shopkeep.inventory[6], carlBuyTalk, shopkeep.inventory[6], null, null, shopkeep, pc);
-	addItemButton(7, shopkeep.inventory[7], carlBuyTalk, shopkeep.inventory[7], null, null, shopkeep, pc);
-	
-
-	if(pc.level >= 6)
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < shopkeep.inventory.length; i++)
 	{
-		//addCarlItemButton(8, new ShockBow());
-		//addCarlItemButton(9, new LightningRod());
-		addItemButton(8, shopkeep.inventory[8], carlBuyTalk, shopkeep.inventory[8], null, null, shopkeep, pc);
-		addItemButton(9, shopkeep.inventory[9], carlBuyTalk, shopkeep.inventory[9], null, null, shopkeep, pc);
-	}
-	else
-	{
-		addDisabledButton(8, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
-		addDisabledButton(9, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
+		var item:ItemSlotClass = shopkeep.inventory[i];
+		if(((item is ShockBow) || (item is LightningRod)) && pc.level < 6)
+		{
+			addDisabledButton(btnSlot, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
+		}
+		else if(item is ZKRifle)
+		{
+			if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addButton(btnSlot, item.shortName, zkRifleCarlTalk, undefined, StringUtil.toDisplayCase(item.longName), item.tooltip);
+			else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), item.tooltip);
+			else addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), "You have already earned this weapon!");
+		}
+		else addItemButton(btnSlot, item, carlBuyTalk, item, null, null, shopkeep, pc);
+		btnSlot++;
 	}
 	
 	addButton(14,"Back",insideCarlsShop); 
-}
-public function addCarlItemButton(btnSlot:int, item:ItemSlotClass):void
-{
-	if(item.longName == "ZK rifle")
-	{
-		if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addButton(btnSlot, item.shortName, zkRifleCarlTalk, undefined, StringUtil.toDisplayCase(item.longName), item.tooltip);
-		else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), item.tooltip);
-		else addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), "You have already earned this weapon!");
-		return;
-	}
-	addButton(btnSlot, item.shortName, carlBuyTalk, item, StringUtil.toDisplayCase(item.longName), item.tooltip);
 }
 public function getCarlPrice(item:ItemSlotClass):Number {
 	return getBuyPrice(shopkeep,item.basePrice);

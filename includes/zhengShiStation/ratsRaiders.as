@@ -244,7 +244,7 @@ public function ratsAttemptUrbolgRobbery():void
 		}
 		output(", and he quickly lets it go.");
 	}
-	output("\n\nNow calmer and wearing a sly grin, he ushers you back to the workshop, walking and talking with an urging paw on your shoulder. <i>“One of the big five gangs here on the station. You’ll get to know ‘em all eventually, but those ones?”</i> He stops to grip piece of metal, channeling the last of his ire into it. <i>“The fekken’ worst! Paste-fingered loingrommets think me so old and stupid that I won’t see ‘em tryin’ to steal!”</i>");
+	output("\n\nNow calmer and wearing a sly grin, he ushers you back to the workshop, walking and talking with an urging paw on your shoulder. <i>“One of the big five gangs here on the station. You’ll get to know ‘em all eventually, but those ones?”</i> He stops to grip a piece of metal, channeling the last of his ire into it. <i>“The fekken’ worst! Paste-fingered loingrommets think me so old and stupid that I won’t see ‘em tryin’ to steal!”</i>");
 	output("\n\nHis sigh is more like a ragged growl, and you quickly put two and two together as he wipes his arm off with a dirty cloth. <i>“Those rodents work in groups, so ye best be wary, new [pc.guyGirl]. You might have proved yourself to ‘ol Urbolg, but they don’t give up, and they’re fekken everywhere. Watch yourself now, y’hear? Lest ye want te lose everything you’ve got!”</i>");
 	if (flags["SEXED_URBOLG"] == undefined) output("\n\nYou nod lightly, thanking him for the information as you move on.");
 	else output("\n\nNodding, you smile and thank Urbolg, watching his tail thump against the workbench behind him.");

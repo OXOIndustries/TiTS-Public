@@ -134,6 +134,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		chars[prop].sortPerks();
 		chars[prop].sortStatusEffects();
 		chars[prop].sortKeyItems();
+		chars[prop].updateStats();
 	}
 	
 	// Bad ends prevent triggering events and renewing menu.
@@ -1223,7 +1224,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			crewMessages += olympiaCrewText(btnSlot, InCollection(CREW_MITZI, crewMembers));
+			crewMessages += olympiaCrewText(btnSlot, InCollection(CREW_OLYMPIA, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1982,16 +1983,19 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
-	// Olympia fucks off if you swap ships.
-	if(!(shits["SHIP"] is Sidewinder) && olympiaIsCrew()) 
+	if(olympiaRecruited())
 	{
-		olympiaIsSidewinderOnly();
-		return true;
-	}
-	if(shits["SHIP"] is Sidewinder && !olympiaIsCrew()) 
-	{
-		olympiaComesBackWithSidewinder();
-		return true;
+		// Olympia fucks off if you swap ships.
+		if(!(shits["SHIP"] is Sidewinder) && olympiaIsCrew()) 
+		{
+			olympiaIsSidewinderOnly();
+			return true;
+		}
+		if(shits["SHIP"] is Sidewinder && !olympiaIsCrew()) 
+		{
+			olympiaComesBackWithSidewinder();
+			return true;
+		}
 	}
 	// Mitzi stops you from going inside~
 	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
@@ -2117,7 +2121,7 @@ public function shipMenu():Boolean
 			return true;
 		}
 		
-		addButton(0,"Ship Stats",shipStatistics,undefined,"Ship Stats","Look over your ship and its equipped modules.");
+		addButton(0,"Ship Stats",shipStatistics,mainGameMenu,"Ship Stats","Look over your ship and its equipped modules.");
 		if (crew(true, true) > 0) addButton(2, "Crew", crew);
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
@@ -2163,16 +2167,17 @@ public function shipMenu():Boolean
 	return false;
 }
 
-public function shipStatistics():void
+public function shipStatistics(backFunc:Function):void
 {
 	clearOutput();
 	var shippy:ShittyShip = shits["SHIP"];
 	showBust(shippy.bustDisplay);
+	showName("\n" + shippy.short.toUpperCase());
 	output(shipCompareString(shippy, shippy));
 	output("\n\n");
 	clearMenu();
-	shipEquipmentButtons(shits["SHIP"], mainGameMenu);
-	addButton(14,"Back",mainGameMenu);
+	shipEquipmentButtons(shits["SHIP"], backFunc);
+	addButton(14, "Back", backFunc);
 }
 
 public function flyMenu():void

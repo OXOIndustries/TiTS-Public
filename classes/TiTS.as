@@ -1780,17 +1780,14 @@
 		{
 			return chars["LUCA"];
 		}
-	
 		public function get marion():Marion
 		{
 			return chars["MARION"];
 		}
-
 		public function get olympia():Olympia
 		{
 			return chars["OLYMPIA"];
 		}
-	
 		public function get lureling():Lureling
 		{
 			return chars["LURELING"];
@@ -1799,12 +1796,14 @@
 		{
 			return chars["ROXY"];
 		}
-		
 		public function get lorelei():Lorelei
 		{
 			return chars["LORELEI"];
 		}
-		
+		public function get varmint():VarmintPet
+		{
+			return chars["VARMINTPET"];
+		}
 		public function get vahn():Vahn
 		{
 			return chars["VAHN"];

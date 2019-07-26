@@ -189,7 +189,7 @@ public function recruitOlympia():void
 	flags["OLYMPIA_ONBOARD"] = 1;
 	flags["OLYMPIA_RECRUITED"] = 1;
 	//RIP old ship. Urbolg owns it now.
-	flags["OLYMPIA_KILLED"] = 1;
+	//flags["OLYMPIA_KILLED"] = 1;
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -238,7 +238,7 @@ public function diplomacyDatFuckbot():void
 	flags["OLYMPIA_ONBOARD"] = 1;
 	flags["OLYMPIA_RECRUITED"] = 1;
 	//RIP old ship. Urbolg owns it now.
-	flags["OLYMPIA_KILLED"] = 1;
+	//flags["OLYMPIA_KILLED"] = 1;
 	//get shotty.
 	quickLoot(new Stormbull());
 }
@@ -278,7 +278,7 @@ public function olympiaIsSidewinderOnly():void
 	clearOutput();
 	showOlympia();
 	author("Savin");
-	output("You turn back to [ship.name] just in time to see Olympia disembarking, marching up to you with the severe determination you remember from your time on Zheng Shi. She stops just a hand’s breadth from you, staring directly into your eyes.");
+	output("You turn back to [pc.ship] just in time to see Olympia disembarking, marching up to you with the severe determination you remember from your time on Zheng Shi. She stops just a hand’s breadth from you, staring directly into your eyes.");
 	output("\n\n<i>“I’m staying with [pc.ship],”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
 	output("\n\nThe way she’s fixing you in her gaze, it’s clear there’s no reasoning with the obsessive sexbot. All you can do is tell her that you’ll see her soon as you heft your kit onto your shoulder and make for your chosen vessel.");
 	flags["OLYMPIA_ONBOARD"] = undefined;
@@ -293,7 +293,7 @@ public function olympiaComesBackWithSidewinder():void
 	clearOutput();
 	showOlympia();
 	author("Savin");
-	output("As you return to [ship.name], the airlock slides open to reveal Olympia waiting for you. Her arms are crossed under her bust, but her expression is softer than the last time you met, and her tail sways subtly behind her as you draw near.");
+	output("As you return to [pc.ship], the airlock slides open to reveal Olympia waiting for you. Her arms are crossed under her bust, but her expression is softer than the last time you met, and her tail sways subtly behind her as you draw near.");
 	output("\n\n<i>“Welcome back, captain,”</i> she says demurely, stepping aside as you come up the gangplank. <i>“Your seat’s ready for you.”</i>");
 	output("\n\nShe steps aside and follows you to the bridge, waiting for your pleasure as if you’d only been out for a walk since last you met.");
 	flags["OLYMPIA_ONBOARD"] = 1;
@@ -409,7 +409,7 @@ public function olympiaCrewMenu():void
 	addButton(1,"Talk",olympiaTalkingTimes,undefined,"Talk","Talk to your gynoid.")
 	
 	if(pc.lust() >= 33) addButton(2,"Sex",sexWithOlympia,undefined,"Sex","See if the sexy genius before you is up for a little rest and relaxation...");
-	else addDisabledButton(2,"Sex","Sex","You aren't turned on enough for that right now.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that right now.");
 	addButton(3,"Hug",hugOlympia,undefined,"Hug","Olympia looks like she could use a hug...");
 	addButton(4,"Attachments",olympiaAttachments,undefined,"Attachments","Talk to Olympia about any possible aftermarket parts she’s got access to.");
 	addButton(14,"Back",crew);
@@ -442,7 +442,7 @@ public function olympiaTalkingTimes(back:Boolean = false):void
 	clearOutput();
 	showOlympia();
 	author("Savin");
-	if(back) output("Is there something else you'd like to talk to Olympia about?");
+	if(back) output("Is there something else you’d like to talk to Olympia about?");
 	else
 	{
 		output("Olympia’s always been adept at talking while she works, so you tell her to get back to it while you think up a topic for conversation.");
@@ -454,10 +454,10 @@ public function olympiaTalkingTimes(back:Boolean = false):void
 	//[Clothes?] [Hug]
 	addButton(0,"Her History",olympiasHistory,undefined,"Her History","What does Olympia remember about her past, before you two met?");
 	addButton(1,"Her Model",olympiasModelNumbro,undefined,"Her Model","What can Olympia tell you about her physical shell?");
-	addButton(2,"Current Work",olympiasCurrentWork,undefined,"Current Work","What’s Olympia keeping herself busy with these days?");
-	if(crew(true) > 1) addButton(3,"Crew Opinion",olympiasCrewOpinion,undefined,"Crew Opinion","See if Olympia has any thoughts about her fellow crewmen.");
-	else addDisabledButton(3,"Crew Opinion","Crew Opinion","You don't have crew for her to talk about.");
-	if(flags["OLYMPIA_HISTORY"] != undefined) addButton(4,"Former Owner?",olympiaFormerOwner,undefined,"Former Owner?","Press Olympia on the subject of her former owners. Surely there must be some way to recover that data?");
+	addButton(2,"CurrentWork",olympiasCurrentWork,undefined,"Current Work","What’s Olympia keeping herself busy with these days?");
+	if(crew(true) > 1) addButton(3,"CrewOpinion",olympiasCrewOpinion,undefined,"Crew Opinion","See if Olympia has any thoughts about her fellow crewmen.");
+	else addDisabledButton(3,"CrewOpinion","Crew Opinion","You don’t have crew for her to talk about.");
+	if(flags["OLYMPIA_HISTORY"] != undefined) addButton(4,"FormerOwner",olympiaFormerOwner,undefined,"Former Owner?","Press Olympia on the subject of her former owners. Surely there must be some way to recover that data?");
 	else addDisabledButton(4,"Locked","Locked","You need to know more about her to ask this.");
 	addButton(5,"Clothes?",olympiasClothes,undefined,"Clothes?","Ask Olympia about her current attire.");
 	addButton(14,"Back",approachOlympia,true);
@@ -512,9 +512,9 @@ public function olympiasCurrentWork():void
 	showOlympia();
 	author("Savin");
 	output("<i>“So what’re you working on?”</i> you ask, looking over the sexbot’s slender shoulder.");
-	output("\n\n<i>“[ship.name], of course,”</i> Olympia answers simple. <i>“While I do try to make upgrades whenever possible, the nature of the Sidewinder-class as a prototype necessitates constant oversight and maintenance. None of the systems were mass-produced or stress-tested outside of simulations. You took her maiden flight, after all. Every few hours something manages to break, or perform in ways I hadn’t been able to predict... it’s a full time job to keep [ship.name] functioning smoothly.”</i>");
+	output("\n\n<i>“[pc.ship], of course,”</i> Olympia answers simple. <i>“While I do try to make upgrades whenever possible, the nature of the Sidewinder-class as a prototype necessitates constant oversight and maintenance. None of the systems were mass-produced or stress-tested outside of simulations. You took her maiden flight, after all. Every few hours something manages to break, or perform in ways I hadn’t been able to predict... it’s a full time job to keep [pc.ship] functioning smoothly.”</i>");
 	output("\n\nShe seems to be enjoying herself, though.");
-	output("\n\nThe gynoid nods. <i>“I do! Don’t mistake my words for complaint. Teyaal’s reprogramming makes it so that maintaining [ship.name] is... it’s like a constant edge I ride, and every time I fix a major issue or make a significant improvement, my datacore is flooded with the equivalent of dopamine.”</i>");
+	output("\n\nThe gynoid nods. <i>“I do! Don’t mistake my words for complaint. Teyaal’s reprogramming makes it so that maintaining [pc.ship] is... it’s like a constant edge I ride, and every time I fix a major issue or make a significant improvement, my datacore is flooded with the equivalent of dopamine.”</i>");
 	output("\n\n<i>“And don’t worry about taking advantage of my predicament,”</i> she adds. <i>“I think feeling rewarded for my continued good work is less exploitative than for sex. I have no use for credits, so my enjoyment is a fair exchange for my service. Don’t you think?”</i>");
 	output("\n\nPerhaps. <i>“Is there anything you’d <b>rather</b> be doing?”</i>");
 	output("\n\nOlympia considers it for a moment, chewing the end of her dataslate stylus before finally answering: <i>“If I could rewrite my reward parameters to anything I desired? Hmm. Perhaps more theoretical research rather than mechanical. I’ve spent a great deal of time on such a narrow spectrum of starship design - only ever concerned with what is valuable to the </i>Sidewinder<i> project, and never my own interests. Now that the project is complete, or as much so as it ever will be, given Dr. Teyaal’s disappearance... it would be nice to broaden my horizons.”</i>");
@@ -838,30 +838,30 @@ public function olympiaTailcockTalk():void
 	else if(olympia.inventory.length == 1) output(olympia.inventory[0].description + " and a canine phallus");
 	else if(olympia.inventory.length == 2) output(olympia.inventory[0].description + ", " + olympia.inventory[1].description + ", and a canine phallus");
 	else if(olympia.inventory.length == 3) output(olympia.inventory[0].description + ", " + olympia.inventory[1].description + ", " + olympia.inventory[2].description + ", and a canine phallus");
-	else output("(ERROR. Please report this bug to the fenoxo.com forums with a copy of your save file - use the 'save to file' option.)");
+	else output("(ERROR. Please report this bug to the fenoxo.com forums with a copy of your save file - use the ‘save to file’ option.)");
 	output(", though I don’t keep anything attached between uses. It... drags on the floor. Gets dirty; you don’t want that inside you. But I am more than happy to use anything that has the proper KihaCorp adapter. If you have one you’d prefer me to default to, I’m happy to comply.”</i>");
 	processTime(2);
 	clearMenu();
 	//[Give Item] 
 	if(olympia.hasItemByClass(ADCock)) addDisabledButton(0,"Gave Dragon","Gave Dragon","You already gave her a dragon wang.");
 	else if(pc.hasItemByClass(ADCock)) addButton(0,"Give Dragon",giveOlympiaTailwang,"dragon","Give Dragon","Let’s see if you have anything Olympia can use... like this dragon-dick.");
-	else addDisabledButton(0,"Give Dragon","Give Dragon","You don't have a dragon phallus to give her.");
+	else addDisabledButton(0,"Give Dragon","Give Dragon","You don’t have a dragon phallus to give her.");
 	if(olympia.hasItemByClass(AHCock)) addDisabledButton(1,"Gave Equine","Gave Equine","You already gave her a horse wang.");
 	else if(pc.hasItemByClass(AHCock)) addButton(1,"Give Equine",giveOlympiaTailwang,"equine","Give Equine","Let’s see if you have anything Olympia can use... like this big floppy horse-dick.");
-	else addDisabledButton(1,"Give Equine","Give Equine","You don't have an equine phallus to give her.");
-	if(olympia.hasItemByClass(ADCock)) addDisabledButton(2,"Gave Terran","Gave Terran","You already gave her a terran wang.");
+	else addDisabledButton(1,"Give Equine","Give Equine","You don’t have an equine phallus to give her.");
+	if(olympia.hasItemByClass(ACock)) addDisabledButton(2,"Gave Terran","Gave Terran","You already gave her a terran wang.");
 	else if(pc.hasItemByClass(ACock)) addButton(2,"Give Terran",giveOlympiaTailwang,"terran","Give Terran","Let’s see if you have anything Olympia can use... like this terran-modeled phallus.");
-	else addDisabledButton(2,"Give Terran","Give Terran","You don't have a terran phallus to give her.");
+	else addDisabledButton(2,"Give Terran","Give Terran","You don’t have a terran phallus to give her.");
 	//[Set Preference]
 	if(olympia.tailGenitalArg == GLOBAL.TYPE_GRYVAIN) addDisabledButton(5,"Use Dragon","Use Dragon","Olympia is currently using a dragon-cock for her tail-dick.");
 	else if(olympia.hasItemByClass(ADCock)) addButton(5,"Use Dragon",setOlympiaTailcock,"dragon","Use Dragon","Have Olympia use a dragon tail-cock during sex.");
-	else addDisabledButton(5,"Locked","Locked","Olympia doesn't have this tail-cock yet.");
+	else addDisabledButton(5,"Locked","Locked","Olympia doesn’t have this tail-cock yet.");
 	if(olympia.tailGenitalArg == GLOBAL.TYPE_EQUINE) addDisabledButton(6,"Use Equine","Use Equine","Olympia is currently using a horse-cock for her tail-dick.");
 	else if(olympia.hasItemByClass(AHCock)) addButton(6,"Use Equine",setOlympiaTailcock,"equine","Use Equine","Have Olympia use an equine tail-cock during sex.");
-	else addDisabledButton(6,"Locked","Locked","Olympia doesn't have this tail-cock yet.");
+	else addDisabledButton(6,"Locked","Locked","Olympia doesn’t have this tail-cock yet.");
 	if(olympia.tailGenitalArg == GLOBAL.TYPE_HUMAN) addDisabledButton(7,"Use Terran","Use Terran","Olympia is currently using a terran penis for her tail-dick.");
 	else if(olympia.hasItemByClass(ACock)) addButton(7,"Use Terran",setOlympiaTailcock,"terran","Use Terran","Have Olympia use a terran tail-cock during sex.");
-	else addDisabledButton(7,"Locked","Locked","Olympia doesn't have this tail-cock yet.");
+	else addDisabledButton(7,"Locked","Locked","Olympia doesn’t have this tail-cock yet.");
 	if(olympia.tailGenitalArg == GLOBAL.TYPE_CANINE) addDisabledButton(8,"Use Canine","Use Canine","Olympia currently uses her the canine attachment she came with.");
 	else addButton(8,"Use Canine",setOlympiaTailcock,"canine","Use Canine","Have Olympia use the canine tail-penis she came with during sex.");
 	addButton(14,"Back",olympiaAttachments);
@@ -1074,8 +1074,9 @@ public function olympiaTailfucksYou(cunt:Boolean = false):void
 	if(x >= 0) pc.cuntChange(x,olympia.tailCockVolume());
 	else pc.buttChange(olympia.tailCockVolume());
 
+	var olympiaCumQ:Number = olympia.cumQ();
 	//Olympia has huge cumvol:
-	if(olympia.cumQ() >= 5000) 
+	if(olympiaCumQ >= 5000) 
 	{
 		output("\n\n<i>“Fuck... I feel like I’m so backed up thanks to you!”</i> the gynoid complains, raking her nails across your cheeks. <i>“That last bubble was so damn thick... but you were looking forward to this, weren’t you? Getting stuffed full of real, piping-hot cum saved up just for you.”</i>");
 		output("\n\nShe groans, hips grinding hard against your ass, like she can barely restrain herself from cumming already. Maybe you overdid it!");
@@ -1090,7 +1091,7 @@ public function olympiaTailfucksYou(cunt:Boolean = false):void
 	output("\n\nYou couldn’t hide it anymore if you tried.");
 	output("\n\nYour moans reach a crescendo, milked out by her steady thrusts - and in turn, your body works like mad to milk her [olympia.tailCock]. The stacked dragon growls, cocks throbbing in and against you, thrusting deep through your howling orgasm. You feel Olympia’s dick give its most powerful throb yet, swelling with potent need and leaking warmth into your [pc.vagOrAss " + x + "]... and then the dam breaks as your own orgasm’s nearly passed. A sudden surge of steaming-hot cum sprays into your battered " + (x >= 0 ? "womb":"ass") + ", hitting you in just the right spot to keep your climax raging on. More [olympia.cum] splatters across your back, leaving rivers of [olympia.cumColor] drooling down your flanks. Her primarily dick wedges itself between your ass-cheeks, humping your [pc.butt] while her tail fills you");
 	//high olympia cumVol:
-	if(olympia.cumQ() >= 10000) output(" until your belly is stretched gravid by her impossible load");
+	if(olympiaCumQ >= 10000) output(" until your belly is stretched gravid by her impossible load");
 	output(". Her claws rake your hips, hard enough to make you cry out amidst the last aftershots of her orgasm.");
 	output("\n\nWhen her climax finally passes, Olympia sighs heavily and wraps her arms around your waist. Her breath comes hard and hot despite her synthetic nature, an uncanny mimicry of a real humanoid after a good, hard fuck. <i>“That was... a workout. You know just how to drive me mad with lust, captain. But I think you like it when I go all-out on you, don’t you?”</i>");
 	output("\n\nYou can’t help but nod, leaning back against the draconic gynoid as she slips a hand up and cups your cheek, craning your [pc.face] around so she can kiss you. While your lips mingle, her cock slithers out from your batthered hole, leaking the last of its load down your thighs as she pops free. <i>“Thank you, captain... you were right. Sometimes it’s nice to unwind...”</i>");
@@ -1135,8 +1136,9 @@ public function rideOlympiaWheeee(x:int):void
 	else pc.buttChange(olympia.cockVolume(0));	
 	output("\n\n<i>“I <b>was</b> made for this, you know?”</i> Olympia smirks, gently thrusting up into you. <i>“The perfect partner for the perfect captain.”</i>");
 	output("\n\nShe knows just how to get to you. Your body just wants to go limp in her arms, to let the mighty dragon take you any way she wants. Her thick dragon-dick throbs inside you, stretching your [pc.vagOrAss " + x + "] around its girthy curves");
+	var olympiaCumQ:Number = olympia.cumQ();
 	//huge load:
-	if(olympia.cumQ() >= 5000) output(" and leaker her potent bubble-load inside you, adding an extra layer of lubricant to her thrusts");
+	if(olympiaCumQ >= 5000) output(" and leaker her potent bubble-load inside you, adding an extra layer of lubricant to her thrusts");
 	output(". You know you’ve gotta regain control soon, or she’s just going to bounce you in her lap until you cum.");
 
 	output("\n\nYour hands tighten on Olympia’s breasts, bringing the dusky mounds up to meet your [pc.lipsChaste]. One good suck on a rust-hued teat is enough to make her stop mid-thrust, moaning as your hands cup and caress her in all the right ways. It slows her down just long enough for you to calm your frayed senses, pulling yourself back from the edge before Olympia starts thrusting again. This time she takes it slow, lifting you from her lap before rocking her hips up to meet your [pc.butt].");
@@ -1147,17 +1149,17 @@ public function rideOlympiaWheeee(x:int):void
 	output(". Her tail’s curled around your [pc.leg], squeezing rhythmically to the beat of her thrusting hips. <i>“Synchronize with me, captain,”</i> she breathes, voice little more than a whisper. <i>“Come on!”</i>");
 	output("\n\nHer command is all it takes to break the last of your resolve. You moan as orgasm washes through you, crashing through your body from your [pc.vagOrAss " + x + "] outwards. Your climax is complimented by your lover’s throbbing dragon-cock erupting in a surge of wet heat. Her cum smears your inner walls, filling your [pc.vagOrAss " + x + "] with rhythmic squirts of [olympia.cum]. Her claws rake your thighs, holding you tight on her bulbous base ");
 	//smol/medium cum:
-	if(olympia.cumQ() < 500) output("until every last drop has poured into your " + (x >= 0 ? "womb":"bowels") + ".");
+	if(olympiaCumQ < 500) output("until every last drop has poured into your " + (x >= 0 ? "womb":"bowels") + ".");
 	//large:
-	else if(olympia.cumQ() < 10000) output("while her cock pours what feels like a gallon of steamy-hot [olympia.cum] directly into your hungry hole.");
+	else if(olympiaCumQ < 10000) output("while her cock pours what feels like a gallon of steamy-hot [olympia.cum] directly into your hungry hole.");
 	else output("while her cock injects you with gallons of [olympia.cum]. It’s a blink of an eye before your stomach is bulging with the sheer gravid mass of her orgasm, and the excess is leaking out of your [pc.vagOrAss " + x + "] onto the bedsheets.");
 	output("\n\nWith a contented sigh, Olympia lays back on the bed and laces her fingers under her head, fixing you with those golden eyes of hers as you twitch and moan on her cock through the aftershots. When your muscles finally give out, her pillowy tits are there to catch your [pc.face], and her arms wrap around you while she slowly softens inside you.");
 	output("\n\n<i>“Now that... was a pleasant diversion, captain. Now...”</i>");
 	output("\n\nYou put a finger to her lips and shush her. No, it’s not time to get back to work. Right now, it’s time to bask in the fullness your feeling.");
 	processTime(30);
-	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(olympia,x);
 	else pc.loadInAss(olympia);
+	pc.orgasm();
 	IncrementFlag("OLYMPIA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1202,12 +1204,13 @@ public function olympiaMissionaryFuck(x:int):void
 	output("\n\nThat’s an order you don’t dare defy. Locking lips with Olympia one last time, you slam yourself hilt-deep");
 	if(x >= 0 && pc.hasKnot(x)) output(", wedging your [pc.knot " + x + "] in her");
 	output(" as you finally join in her endless orgasms.");
+	var cumQ:Number = pc.cumQ();
 	//Strapon: 
 	if(x < 0) output(" Your hardlight feeds back a mind-numbing cascade of pleasures, assailing your nerves from loins to eyes.");
 	//smol cum: 
-	else if(pc.cumQ() < 25) output(" A sweet little squirt of your [pc.cum] pours into her waiting pussy, milked out by those quivering clits running along your shaft.");
+	else if(cumQ < 25) output(" A sweet little squirt of your [pc.cum] pours into her waiting pussy, milked out by those quivering clits running along your shaft.");
 	//med cum:
-	else if(pc.cumQ() < 1000) output(" You deposit a fat load of [pc.cum] straight through those clenching pussy-walls and into her deepest depths.");
+	else if(cumQ < 1000) output(" You deposit a fat load of [pc.cum] straight through those clenching pussy-walls and into her deepest depths.");
 	else output(" Your [pc.cockOrStrapon " + x + "] floods her with your massive load, filling her pussy with just the first squirt. The second stretches her, forcing her synthetic frame to accomodate the inhuman mass sloshing in her sex. Her stomach tightens against your [pc.belly], rubbing her leaking cock between you until another orgasm leaves Olympia a moaning, squirting mess.");
 
 	output("\n\nA hand strokes your cheek as the last of your orgasm passes. Olympia’s fiery gold eyes wander over your [pc.face], before she finally manages a fatigued smile. <i>“Captain...”</i>");
@@ -1216,8 +1219,8 @@ public function olympiaMissionaryFuck(x:int):void
 	output("\n\nOlympia slowly disentangles herself and turns towards you bathroom, giving you a wink over her shoulder as she moves off. You just lean back in bed and watch those red mountains of scaled ass-cheeks swaying off until the door slides closed.");
 	output("\n\nHate to see her leave, but love to watch her go...");
 	processTime(30);
-	pc.orgasm();
 	if(x >= 0) olympia.loadInCunt(pc,0);
+	pc.orgasm();
 	IncrementFlag("OLYMPIA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1269,9 +1272,10 @@ public function surfaceProblem(x:int):void
 	output("\n\nAn extra smack on the rear confirms it, in your eyes: she gasps and giggles, rocking her hips back as if asking for more - and you’re happy to give it. Watching her ass quake and tremble with every impact is positively hypnotic, and the way her cheeks always come clapping back together around your [pc.cock] is <i>divine</i>.");
 	output("\n\nSo divine, indeed, that it’s not long before you feel a familiar tightness in your [pc.balls]. Olympia seems to sense it coming, and grins hungrily at you. <i>“It seems I need a wax, captain. Care to oblige?”</i>");
 	output("\n\nYeah, you do. Digging both hands into lushous assflesh, you squeeze Olympia’s cheeks together as tight as you can. They’re so soft that no amount of force can keep your [pc.cock] from sliding back into her lubricated depths one last time before you blow your load through her crack. She gasps with glee as the first arcing shot of [pc.cum] squirts up from between her russet cheeks, splattering on her back.");
-	if(pc.cumQ() < 100) {}
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 100) {}
 	//Med cumvol:
-	if(pc.cumQ() < 500) output(" Before long there’s a little pool in the small of her back, sloshing back and forth with every breath Olympia takes.");
+	if(cumQ < 500) output(" Before long there’s a little pool in the small of her back, sloshing back and forth with every breath Olympia takes.");
 	// large+ cumvol:
 	else output(" The second shot creates a jiggle pool in her lower back, and the third overflows it, sending rivers of semen pouring down Olympia’s thick curves and onto the console. The gynoid clicks her tongue with annoyance and flicks the thickest wads off with the tip of her tail, but she’s smiling all the while as your [pc.balls] empt" + (pc.balls <= 1 ? "y":"ies") + " across her bare behind.");
 	output("\n\nWhen the last aftershots have spent themselves across Olympia’s flawless red flesh, she props herself up on her elbows and locks eyes over her shoulder. <i>“Well captain, I feel like a new model already. Do you-”</i>");

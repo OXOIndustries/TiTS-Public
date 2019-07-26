@@ -40,36 +40,43 @@ public function meonBonus():void
 	}
 }
 
-public function meonApproach():void
+public function meonApproach(back:Boolean = false):void
 {
 	clearOutput();
 	showMeon();
 	author("Fenoxo");
-	//Approach 1st time
-	if(flags["MET_MEON"] == undefined)
+	if(!back)
 	{
-		flags["MET_MEON"] = 1;
-		output("Interested in seeing what he’s selling, you walk up to four-eyed ");
-		if(CodexManager.entryUnlocked("Toves")) output("Tove");
-		else output("bird-person");
-		output(" and call out a greeting of your own.");
-		output("\n\n<i>“Oh, delirious delights! Finally, a sapient of class and intelligence.”</i> He lowers his voice to a more comfortable volume and puffs out what passes for his chest. <i>“You have the good fortune of conversating with Meon the fair, a Tove who is as renowned for his appealing appearance as for the equitability of his dealings, but let’s keep that between you and me. If word got out I was this pretty, I’d be disowned.”</i> He winks. <i>“Seriously though, if my mother finds out I haven’t fleeced you for every credit, I really would be disowned.”</i> This time he winks with three eyes. <i>“But enough about my own personage! Tell me about yourself. Who are you, and which of these fine vessels will you fly home in today?”</i>");
-		output("\n\n<i>“[pc.name],”</i> you admin, trying to catch up with the fast-talking alien.");
-		output("\n\n<i>“Perfectitastic! You sound like a [pc.manWoman] of means and determination.”</i> Meon smiles somehow, in spite of his beak. <i>“Lay your occular organs upon the beauty of my vessels, and you’ll find yourself grateful to empty your proverbial wallet upon my altar.”</i> He slaps a black crate, hard, and a holographic display full of prices springs up. <i>“I promise. Ask any other Rusher, and they will sing praises to Meon the fair. Now please, explore the wares I have so dutifully assembled for your express pleasure.”</i>");
-		if(!CodexManager.entryUnlocked("Toves")) 
+		//Approach 1st time
+		if(flags["MET_MEON"] == undefined)
 		{
-			output("\n\nAccording to your Codex, he belongs to a mercantile species known as Toves.");
-			CodexManager.unlockEntry("Toves");
+			flags["MET_MEON"] = 1;
+			output("Interested in seeing what he’s selling, you walk up to four-eyed ");
+			if(CodexManager.entryUnlocked("Toves")) output("Tove");
+			else output("bird-person");
+			output(" and call out a greeting of your own.");
+			output("\n\n<i>“Oh, delirious delights! Finally, a sapient of class and intelligence.”</i> He lowers his voice to a more comfortable volume and puffs out what passes for his chest. <i>“You have the good fortune of conversating with Meon the fair, a Tove who is as renowned for his appealing appearance as for the equitability of his dealings, but let’s keep that between you and me. If word got out I was this pretty, I’d be disowned.”</i> He winks. <i>“Seriously though, if my mother finds out I haven’t fleeced you for every credit, I really would be disowned.”</i> This time he winks with three eyes. <i>“But enough about my own personage! Tell me about yourself. Who are you, and which of these fine vessels will you fly home in today?”</i>");
+			output("\n\n<i>“[pc.name],”</i> you admin, trying to catch up with the fast-talking alien.");
+			output("\n\n<i>“Perfectitastic! You sound like a [pc.manWoman] of means and determination.”</i> Meon smiles somehow, in spite of his beak. <i>“Lay your occular organs upon the beauty of my vessels, and you’ll find yourself grateful to empty your proverbial wallet upon my altar.”</i> He slaps a black crate, hard, and a holographic display full of prices springs up. <i>“I promise. Ask any other Rusher, and they will sing praises to Meon the fair. Now please, explore the wares I have so dutifully assembled for your express pleasure.”</i>");
+			if(!CodexManager.entryUnlocked("Toves")) 
+			{
+				output("\n\nAccording to your Codex, he belongs to a mercantile species known as Toves.");
+				CodexManager.unlockEntry("Toves");
+			}
 		}
+		//Repeat approach
+		else
+		{
+			output("You step up to Meon’s mountain of crates with a smile and a wave. <i>“I came back.”</i>");
+			output("\n\n<i>“You did!”</i> Meon’s four eyes radiate happiness. <i>“That means you quantifitify for my patented returning customer benefits!”</i> He kicks one of the crates, hard, and a holographic display springs into being, listing his inventory once more. The prices are exactly the same as before. Meon must see the look spreading across your face, because he hastily adds, <i>“Non-cash benefits, of course. Returning customers are imparted with platinum-level service and a warranty that’s good for more than 26 kiloflorps!”</i>");
+			output("\n\nUnsure if such a warranty would be good for anything, you nonetheless look through his wares.");
+		}
+		processTime(2);
 	}
-	//Repeat approach
 	else
 	{
-		output("You step up to Meon’s mountain of crates with a smile and a wave. <i>“I came back.”</i>");
-		output("\n\n<i>“You did!”</i> Meon’s four eyes radiate happiness. <i>“That means you quantifitify for my patented returning customer benefits!”</i> He kicks one of the crates, hard, and a holographic display springs into being, listing his inventory once more. The prices are exactly the same as before. Meon must see the look spreading across your face, because he hastily adds, <i>“Non-cash benefits, of course. Returning customers are imparted with platinum-level service and a warranty that’s good for more than 26 kiloflorps!”</i>");
-		output("\n\nUnsure if such a warranty would be good for anything, you nonetheless look through his wares.");
+		output("What ship are you interested in buying?");
 	}
-	processTime(2);
 	clearMenu();
 	shopkeep = new Meon();
 	var ships:Array = [];
@@ -80,8 +87,10 @@ public function meonApproach():void
 	{
 		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
 	}
+	addButton(13,"Current Ship",shipStatistics,meonApproachBack,"Current Ship Stats","Look over your ship and its equipped modules.");
 	addButton(14,"Leave",leaveMeon);
 }
+public function meonApproachBack():void { return meonApproach(true); }
 
 //Leave
 public function leaveMeon():void
