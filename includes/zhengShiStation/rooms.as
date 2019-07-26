@@ -2256,7 +2256,7 @@ public function initZhengRooms():void
 	rooms["ZSF V20"] = new RoomClass(this);
 	rooms["ZSF V20"].roomName = "\nAIRLOCK";
 	rooms["ZSF V20"].description = "The Sidewinder’s airlocks look much like its exterior: shiny, new, and engineered with a surprising degree of precision. Large square buttons operate the airlock’s settings, flanked by the sort of heavy duty, no-nonsense lever you’d expect to find on a military vessel. Automatic docking controls are positioned just below. The reverse wall houses manual linkages. Finally, a small panel on the outer door displays the airlock’s overall status - primarily that it is more or less wide-open, owing to compatible atmospherics on the outside. Handy.\n\nInside the inner door, to the east, lies an access corridor. You may exit the ship to the south.";
-	rooms["ZSF V20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V20"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF V20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V20"].northExit = "";
 	rooms["ZSF V20"].eastExit = "ZSF X20";
@@ -2270,7 +2270,7 @@ public function initZhengRooms():void
 	rooms["ZSF X20"] = new RoomClass(this);
 	rooms["ZSF X20"].roomName = "ACCESS\nCORRIDOR";
 	rooms["ZSF X20"].description = "This north-south access corridor looks like it might run the whole length of the Sidewinder, and while it may be glitzy and brand-new, it’s also been decorated in typical garish, Jumper fashion. A promotion poster hangs from the east wall, framed in glowing neon. It depicts a buxom Jumper in a bright yellow jumpsuit and old-style bubble helmet, rocketing through an asteroid field with nothing but a hand blaster and the jets on her belt. Bold text at the bottom commands, “Jump into the fray... TODAY!”\n\nTo the north, the corridor widens into some kind of mess hall. It also stretches south, presumably toward the cockpit.";
-	rooms["ZSF X20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X20"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X20"].northExit = "ZSF X18";
 	rooms["ZSF X20"].eastExit = "";
@@ -2284,7 +2284,7 @@ public function initZhengRooms():void
 	rooms["ZSF X22"] = new RoomClass(this);
 	rooms["ZSF X22"].roomName = "ACCESS\nCORRIDOR";
 	rooms["ZSF X22"].description = "";//handled in bonus func
-	rooms["ZSF X22"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X22"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X22"].northExit = "ZSF X20";
 	rooms["ZSF X22"].eastExit = "";
@@ -2298,7 +2298,7 @@ public function initZhengRooms():void
 	rooms["ZSF X24"] = new RoomClass(this);
 	rooms["ZSF X24"].roomName = "THE\nCOCKPIT";
 	rooms["ZSF X24"].description = "The Sidewinder’s cockpit looks even flashier than the rest of the ship. Banks of programmable hardlight displays report on the conditions of dozens of subsystems. Black varmint-leather cushions lend the comfy bucket seats an air of luxury, ensuring that this magnificent beast’s crew can truly enjoy themselves while plundering the galaxy’s riches. The captain’s chair is the largest by far, sat behind an array of triple holodisplays, twin flightsticks, and two full keyboards. Judging by the setup, this vessel can be operated by a single pilot if need be, though a good crew would undoubtedly make it more effective.\n\nAs you’re looking it over, a twelve-inch hardlight horse-cock springs out of the chair, wobbling with simulated weight. Of course the Jumpers designed a ship with a dildo in the chair! How else would they take it for pervy joyrides? At least there appears to be a button to turn it off. You don’t, of course. The idea of a bunny squirming on that thing while she tries to navigate an asteroid field is simply too amusing.\n\nThe cockpit’s access hatch leads north.";
-	rooms["ZSF X24"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X24"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X24"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X24"].northExit = "ZSF X22";
 	rooms["ZSF X24"].eastExit = "";
@@ -2312,7 +2312,7 @@ public function initZhengRooms():void
 	rooms["ZSF X18"] = new RoomClass(this);
 	rooms["ZSF X18"].roomName = "THE\nMESS";
 	rooms["ZSF X18"].description = "The ship’s mess hall is a combination kitchen and dining room, complete with tables capable of seating up to twenty. The kitchen is everything you’d expect from hedonistic pirates. Gold trimmed protein synthesizers are neatly packed next to an ornate las-oven and a half-dozen other esoteric food preparation devices. A simple robotic servant trundles around with a touchscreen on its blank face listing suggested foods. At some point, its narrow, servile frame was modified to carry around a set of heavy sexbot knockers that jiggle dangerously with its every step. It appears oblivious to the fact that someone scrawled “Fill these puppies with whiskey!” across them.\n\nA wide access corridor intersects with the mess, stretching north toward the cargohold and engines and south up to the cockpit. A heavy doorway to the west gives the captain convenient access to food from his or her quarters.";
-	rooms["ZSF X18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X18"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X18"].northExit = "ZSF X16";
 	rooms["ZSF X18"].eastExit = "";
@@ -2326,7 +2326,7 @@ public function initZhengRooms():void
 	rooms["ZSF V18"] = new RoomClass(this);
 	rooms["ZSF V18"].roomName = "CAPTAIN’S\nQUARTERS";
 	rooms["ZSF V18"].description = "Furnished with a heart-shaped bed and more throw pillows than any one planet should be allowed to contain, the captain’s quarters look more like a harem chamber than a place of rest. Discarded bottles of lube lie everywhere. The trashbin looks halfway overflowed with condoms. A pair of frilly panties hangs framed on the wall along with a signed picture of Nivas Oxonef, indicating the ultrapornstar herself once wore them. The nightstand is covered with used TamaniCorp gift cards, already scratched off to get at their valuable codes.";
-	rooms["ZSF V18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V18"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF V18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V18"].northExit = "";
 	rooms["ZSF V18"].eastExit = "ZSF X18";
@@ -2340,7 +2340,7 @@ public function initZhengRooms():void
 	rooms["ZSF X16"] = new RoomClass(this);
 	rooms["ZSF X16"].roomName = "ACCESS\nCORRIDOR";
 	rooms["ZSF X16"].description = "The corridor stretches north and south past quite a few rooms for crew members, every single one of them locked down for the time being. You suppose that once a proper crew manifest is loaded into the console, you’d be able to get inside, but right now, you have bigger fish to fry. The used condom on the floor gives one suggestion as to why these chambers were sealed off while the ship is in drydock, not that the pirates on this station seem to give one whit about finding somewhere private to bang.";
-	rooms["ZSF X16"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X16"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X16"].northExit = "ZSF X14";
 	rooms["ZSF X16"].eastExit = "";
@@ -2354,7 +2354,7 @@ public function initZhengRooms():void
 	rooms["ZSF X14"] = new RoomClass(this);
 	rooms["ZSF X14"].roomName = "ACCESS\nCORRIDOR";
 	rooms["ZSF X14"].description = "";//handled in bonus
-	rooms["ZSF X14"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X14"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X14"].northExit = "ZSF X12";
 	rooms["ZSF X14"].eastExit = "";
@@ -2368,7 +2368,7 @@ public function initZhengRooms():void
 	rooms["ZSF X12"] = new RoomClass(this);
 	rooms["ZSF X12"].roomName = "ACCESS\nCORRIDOR";
 	rooms["ZSF X12"].description = "A lone chair sits against this passage’s northern terminus, next to a stack of magazines. Doors flank it to either side, offering access to “Engine Room A” and “Engine Room B.” The latter is presently sealed for testing, according to the message on its terminal. The former is closed but unguarded. This single seat must be where the head mechanic comes to take a break from his job, judging by the hot-rodded spaceships and burly beefcakes his (or her?) chosen literature displays.\n\nYou spot the following headlines at a glance:\n\t<i>Ion Engine Tuning Made Easy!\n\tCum Like Tank Kannon With This One Simple Trick!\n\tPecs: The Milky Manjugs of the Future!\n\tAnal: How Big Is Too Big?\n\tLight Drive Showdown: Which Model Covers the Most Parsecs in a Sec?</i>";
-	rooms["ZSF X12"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X12"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF X12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X12"].northExit = "";
 	rooms["ZSF X12"].eastExit = "";
@@ -2382,7 +2382,7 @@ public function initZhengRooms():void
 	rooms["ZSF V14"] = new RoomClass(this);
 	rooms["ZSF V14"].roomName = "PORT\nCARGOHOLD";
 	rooms["ZSF V14"].description = "";//Handled in the bonus func
-	rooms["ZSF V14"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V14"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF V14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V14"].northExit = "";
 	rooms["ZSF V14"].eastExit = "ZSF X14";
@@ -2396,7 +2396,7 @@ public function initZhengRooms():void
 	rooms["ZSF V12"] = new RoomClass(this);
 	rooms["ZSF V12"].roomName = "ENGINE\nROOM A";
 	rooms["ZSF V12"].description = "This chamber has no walls that you can see - only heavy machinery. Churning coolant pumps and gurgling pumps surround you. Whirring boxes radiate palpable heat, their purpose as unknown as their contents. Banks of winking green indicator lights report on hundreds of sensors scattered throughout the mechanical maze. Even the floor isn’t quite a floor: it’s made of modular metal gratings that could be pried to allow you access to the components below. You aren’t sure if this place is a mechanic’s idea of hell or a wet dream. Maybe it’s both, to the right person.\n\nThe main access corridor lies east.";
-	rooms["ZSF V12"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V12"].planet = "SHIP: SIDEWINDER";
 	rooms["ZSF V12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V12"].northExit = "";
 	rooms["ZSF V12"].eastExit = "ZSF X12";
