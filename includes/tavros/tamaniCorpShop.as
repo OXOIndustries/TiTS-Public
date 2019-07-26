@@ -3,6 +3,7 @@ import classes.Items.Apparel.AssManBoxers;
 import classes.Items.Apparel.BackdoorBoiSlutwear;
 import classes.Items.Apparel.CumflationControlBoyshorts;
 import classes.Items.Apparel.SlutSealThong;
+import classes.Items.Transformatives.Placeholder;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -134,6 +135,7 @@ public function lerrisProducts():void
 	// Sera babies
 	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
 	//chars["LERRIS"].inventory.push(new Sterilex());
+	chars["LERRIS"].inventory.push(new Placeholder());
 	
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
