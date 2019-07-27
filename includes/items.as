@@ -14,7 +14,6 @@ import classes.Items.Accessories.SiegwulfeItem;
 import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Armor.Unique.OmnisuitCollar;
 import classes.Items.Armor.Unique.StrangeCollar;
-import classes.Items.Transformatives.Placeholder;
 import classes.Items.Melee.Rock;
 import classes.Items.Miscellaneous.EmptySlot;
 
@@ -2844,6 +2843,11 @@ public function shipStorageMenuRoot():void
 		activateSiegwulfe();
 		return;
 	}
+	if (flags["PLACEHOLDER_DELIVERY_WAITING"] == true) 
+	{
+		placeholderDeliveryInstallation();
+		return;
+	}
 	
 	clearOutput();
 	showBust("");
@@ -2891,13 +2895,13 @@ public function shipStorageMenuRoot():void
 	// Installed devices
 	var btnSlot:int = 5;
 	var installedDevices:Array = [];
-	var placeholder:Placeholder = new Placeholder;
+
 	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
 	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
 	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
-	if (flags["PLACEHOLDER_INSTALLED"] == 1) installedDevices.push(placeholder.installedPlaceholderBonus);
+	if (flags["PLACEHOLDER_INSTALLED"] == 1) installedDevices.push(installedPlaceholderBonus);
 	
 	for(var d:int = 0; d < installedDevices.length; d++)
 	{
@@ -3414,3 +3418,4 @@ public function queueReturnAllItems(autoEquip:Boolean = false, clearScreen:Boole
 	}
 }
 
+
