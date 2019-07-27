@@ -11628,10 +11628,6 @@
 					if (CodexManager.entryUnlocked("Gabilani")) return true;
 					else return false;
 					break;
-				case GLOBAL.TYPE_GOOEY:
-					if (CodexManager.entryUnlocked("Galotians")) return true;
-					else return false;
-					break;
 				case GLOBAL.TYPE_KORGONNE:
 					if (CodexManager.entryUnlocked("Korgonne")) return true;
 					else return false;
@@ -11770,9 +11766,10 @@
 					return true;
 					break;
 					
-				//No unlock ever
+				//No unlock ever. For things that use their own subsystems
 				case GLOBAL.TYPE_COCKVINE:
 				case GLOBAL.TYPE_CUNTSNAKE:
+				case GLOBAL.TYPE_GOOEY:
 				case GLOBAL.TYPE_MIMBRANE:
 				case GLOBAL.TYPE_SYNTHETIC:	
 				case GLOBAL.TYPE_SANDWORM:
@@ -11803,7 +11800,7 @@
 		}
 		
 		//Builds an array with valid shift options for the body part.
-		public function validShiftTypesArray(bodyPart:String):Array
+		public function getValidShiftTypes(bodyPart:String):Array
 		{
 			var validShiftTypes:Array = new Array(); 
 			var i:int = 0;
