@@ -316,7 +316,7 @@ public function cockBoxMenu(x:int):void
 	var btnSlot:int = 0;
 	var typeName:String;
 	//Upgraded version
-	if (cockboxUpgraded(InShipInterior())) cockList = pc.validShiftTypesArray("cock");
+	if (cockboxUpgraded(InShipInterior())) cockList = pc.getValidShiftTypes("cock");
 	//Default list
 	else 
 	{
