@@ -22,14 +22,13 @@ public function showLerris(asNude:Boolean = false):void
 public function tavrosTamaniCorpStoreEntry():Boolean
 {
 	author("Savin");
-
+	
 	output("\n\n");
 	if (flags["MET_LERRIS"] == undefined)
 	{
 		output("A kaithrit cat-girl dressed in the distinctive pink-and-purple TamaniCorp jumpsuit is prancing around the shop, rearranging product displays and dusting off bits of equipment. She stops for long pauses in front of a large display for a product called <i>“Lactaid,”</i> staring hungrily at the needles and pills on offer. She barely seems to notice you or the other customers that wander in, though whenever someone approaches the counter she comes bounding over to assist.");
 
 		addButton(0, "Cat-girl", lerrisFirstApproach);
-		return false;
 	}
 	else
 	{
@@ -44,10 +43,57 @@ public function tavrosTamaniCorpStoreEntry():Boolean
 		else output(" before dancing off to clean another display or help another customer, making sure she doesn’t get in your way... even if the sway of her hips and her plush butt under the skin-tight suit is more than a little distracting.");
 
 		addButton(0, "Lerris", lerrisRepeatApproach);
-		return false;
+	}
+	
+	//Placeholder booth
+	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined)
+	{
+		output("\n\nOwO What's this?");
+		addButton(1, "Booth", placeholderApproach, true, "Booth", "Go see what the booth is advertising.");
+	}
+	else
+	{
+		output("\n\nCheck out the placeholder booth.");
+		addButton(1, "Booth", placeholderApproach, false, "Booth", "Go check the placeholder booth.");
 	}
 
 	return false;
+}
+
+public function placeholderApproach(firstTime:Boolean = false):void
+{
+	clearOutput();
+	clearMenu();
+	author("");
+	showName("PLACEHOLDER BOOTH");
+	showBust("");
+	
+	output("Flashing lights, fancy stuff, wow!");
+	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined) flags["SEEN_PLACEHOLDER_BOOTH"] = 1;
+	
+	//Too Poor
+	if (pc.credits < 100) addDisabledButton(0, "Buy", "Buy", "You don't have enough credits to buy this!");
+	
+	//We've already got one
+	else if (!canBuyPlaceholder()) addDisabledButton(0, "Buy", "Buy", "You've already got a placeholder!");
+	
+	else addButton(0, "Buy", buyPlaceholder, undefined, "Buy", "Buy a placeholder.");
+
+	
+	addButton(14, "Back", mainGameMenu, undefined, "Back", "Go back to the rest of the store.");
+}
+
+public function buyPlaceholder():void
+{
+	clearOutput();
+	clearMenu();
+	author("");
+	showName("PLACEHOLDER BOOTH");
+	showBust("");
+	
+	output("Stuff. I'll get to it.");
+	flags["PLACEHOLDER_DELIVERY_WAITING"] = true;
+	addButton(0, "Next", mainGameMenu, undefined, "Next", "Go back to the rest of the store.");
 }
 
 public function lerrisFirstApproach():void
