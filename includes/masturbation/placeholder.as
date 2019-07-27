@@ -1,7 +1,19 @@
 import classes.Items.Transformatives.Placeholder;
 import classes.Characters.PlayerCharacter;
 
-//To do: Add in lock checks, tail vagina change type, actually get a name I guess, all the text 
+/*To do: Add in lock checks, tail vagina change type, actually get a name I guess, all the text 
+
+Revamp getValidShiftTypes
+-Pass name and type
+-Check for invalid PC types
+
+Check for invalid PC genital types
+-Check for vagina flags that aren't universal
+ 
+Upgrade buy menu
+Duplicate vagina
+Customzie vagina
+ */
 
 public function canBuyPlaceholder():Boolean
 {
