@@ -64,7 +64,7 @@ public function placeholderApproach(firstTime:Boolean = false):void
 {
 	clearOutput();
 	clearMenu();
-	author("");
+	author("Thebiologist");
 	showName("PLACEHOLDER BOOTH");
 	showBust("");
 	
@@ -87,7 +87,7 @@ public function buyPlaceholder():void
 {
 	clearOutput();
 	clearMenu();
-	author("");
+	author("Thebiologist");
 	showName("PLACEHOLDER BOOTH");
 	showBust("");
 	
