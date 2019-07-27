@@ -13,7 +13,7 @@ public function placeholderDeliveryInstallation():void
 {
 	clearOutput();
 	clearMenu();
-	author("");
+	author("Thebiologist");
 	
 	output("Delivery for Ino Weiner? Oh great \n\n")
 	flags["PLACEHOLDER_INSTALLED"] = 1;
@@ -25,6 +25,9 @@ public function placeholderDeliveryInstallation():void
 public function placeholderInstallation():Boolean
 {
 	clearOutput();
+	showName("\nINSTALLING...");
+	showBust("");
+	author("Thebiologist");
 	
 	if (InShipInterior())
 	{
@@ -50,7 +53,7 @@ public function placeholderUninstallation():void
 	clearOutput();
 	showName("\nUNINSTALLING...");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	output("You take some time to uninstall the placeholder");
 	output("\n\n<b>You no longer have the TamaniCorp placeholder installed!</b>");
@@ -68,8 +71,6 @@ public function placeholderUninstallation():void
 public function installedPlaceholderBonus(btnSlot:int = 0):void
 {
 	showName("Placeholder");
-	showBust("");
-	author("");
 	output("\n\nNearby, the TamaniCorp placeholder hums with life.");
 	
 	addButton(btnSlot, "Placeholdeer", placeholderMainMenu, undefined, "placeholder", "Use the TamaniCorp placeholder");
@@ -82,7 +83,7 @@ public function placeholderMainMenu():void
 	clearOutput();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	var btnSlot:int = 0;
 	var pc:PlayerCharacter = kGAMECLASS.pc;
 	
@@ -109,7 +110,7 @@ public function placeholderCustomizeMenu(vagina:int):void
 	clearOutput();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	output("Fancy! Spectacle!");
 	
 	//Vagina buttons
@@ -145,7 +146,7 @@ public function placeholderSelectType(vagina:int):void
 	clearOutput();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	var vaginaList:Array;
 	var btnSlot:int = 0;
 	
@@ -191,7 +192,7 @@ public function placeholderSelectColorMenu(vagina:int):void
 	clearOutput();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	output("Pick a color list:");
 	
@@ -210,7 +211,7 @@ public function placeholderSelectColor(arg:Array):void
 	clearOutput();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	var btnSlot:int = 0;
 	var colorList:Array = new Array;
 	//Possible colors
@@ -332,7 +333,7 @@ public function placeholderChangeType(arg:Array):void
 	clearMenu();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	//Regular vaginas
 	if (arg[0] != -1)
@@ -358,7 +359,7 @@ public function placeholderChangeColor(arg:Array):void
 	clearMenu();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	if (arg[0] != -1)
 	{
@@ -383,7 +384,7 @@ public function placeholderChangePuffiness(arg:Array):void
 	clearMenu();
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	if (arg[1]) output("Inflate! Wow!");
 	else output("Deflate! Wow!");
@@ -399,7 +400,7 @@ public function leaveplaceholder():void
 {
 	showName("Placeholder");
 	showBust("");
-	author("");
+	author("Thebiologist");
 	
 	clearOutput();
 	output("You decide to leave the placeholder for now.");
