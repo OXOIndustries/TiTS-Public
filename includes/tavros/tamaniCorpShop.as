@@ -91,6 +91,7 @@ public function buyPlaceholder():void
 	showName("PLACEHOLDER BOOTH");
 	showBust("");
 	
+	pc.credits -= 100;
 	output("Stuff. I'll get to it.");
 	flags["PLACEHOLDER_DELIVERY_WAITING"] = true;
 	addButton(0, "Next", mainGameMenu, undefined, "Next", "Go back to the rest of the store.");
@@ -181,7 +182,6 @@ public function lerrisProducts():void
 	// Sera babies
 	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
 	//chars["LERRIS"].inventory.push(new Sterilex());
-	chars["LERRIS"].inventory.push(new Placeholder());
 	
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
