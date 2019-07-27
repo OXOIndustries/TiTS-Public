@@ -1,6 +1,8 @@
 import classes.Items.Transformatives.Placeholder;
 import classes.Characters.PlayerCharacter;
 
+//To do: Add in lock checks, tail vagina change type, actually get a name I guess, all the text 
+
 public function canBuyPlaceholder():Boolean
 {
 	if (pc.hasItemInStorageByClass(Placeholder) || pc.hasItemByClass(Placeholder) || flags["PLACEHOLDER_INSTALLED"] == 1 || flags["PLACEHOLDER_DELIVERY_WAITING"] == true) return false;
