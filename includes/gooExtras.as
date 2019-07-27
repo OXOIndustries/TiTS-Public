@@ -2543,7 +2543,7 @@ public function reshapeAGooCawkMenu(arg:Array):void
 	clearGhostMenu();
 	
 	var cTypes:Array = new Array();
-	cTypes = pc.validShiftTypesArray("cock");
+	cTypes = pc.getValidShiftTypes("cock");
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -3165,7 +3165,7 @@ public function pickNewGooCuntMenu(arg:Array):void
 	clearGhostMenu();
 	
 	var vTypes:Array = new Array();
-	vTypes = pc.validShiftTypesArray("vagina");
+	vTypes = pc.getValidShiftTypes("vagina");
 	
 	var newType:Number = 0;
 	var btnName:String = "";
