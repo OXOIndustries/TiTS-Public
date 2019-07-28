@@ -851,6 +851,7 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	addButton(2, "Sex", frostwyrmIWantToBangTheLizard, undefined);
 	addButton(3, "Kips", frostwyrmBunchaKiddoContent, undefined);
 	addButton(4, "Bellyrub", whosAGoodFrostwyrm, undefined);
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) addButton(5, "Boop", frostwyrmTouchDaDragon, undefined);
 	
 	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
 	
@@ -904,7 +905,7 @@ public function frostwyrmWeGotSomeDialogue():void
 	addButton(0, "Qim&Qal", frostwyrmQimAndQal, undefined);
 	addButton(1, "Psionics", frostwyrmPsionicsTalk, undefined);
 	addButton(2, "OtherWyrms?", frostwyrmAnybodyOutThere, undefined);
-	addButton(3, "Back", frostwyrmMainMenu, undefined);
+	addButton(4, "Back", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmQimAndQal():void
 {
@@ -1024,7 +1025,37 @@ public function whosAGoodFrostwyrm():void
 	processTime(60);
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
+public function frostwyrmTouchDaDragon():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
 
+	output("You find yourself looking up, towards [frostwyrm.name]’s face. It could just be because you’re in her lair, or because you’re lying next to her, or because you’re dependant on her to go back to Irestead if you wanted, but you’ve been thinking about her a bit more often lately.");
+	output("\n\nThere’s a lot that’s going into you being exactly where you are right now. You remember starting this whole adventure on Tavros – simultaneously not so long ago, and such a long time ago that you’d hardly recognize who you were if you met yourself on the street – determined to claim your father’s inheritance and take over his multi-trillion-credit company. You had been through jungles; desert wastes; sprawling desert caves; and across a frozen tundra to get to this point.");
+	output("\n\nAnd then you met [frostwyrm.name]. Frostwyrms, as you understand it, are an endangered species: once, the apex predator of Uveto, but now they’re so few and far between that [frostwyrm.name], in her desperation for a mate and to have a child, took the chance and chose to mate with you.");
+	output("\n\nThere aren’t a lot of people in this universe that can say that a dragon found them exemplary enough to take them as a mate. If you recall correctly, [frostwyrm.name] had said that you weren’t the first, so it’s an exceptionally rare offer. You could have said no, and then went back to the bar in Irestead and fucked the first drunk, willing hole you found – but you accepted. You won’t lie: some part of you agreed so <i>you</i> had that rare privilege of saying that you had sex with a dragon, like it was some kind of badge. But you had stayed for <i>her.</i>");
+	output("\n\nMaybe it was a spur of the moment decision: you two had fought a handful of times, and it was only after you had proven yourself the better fighter (except for that one fateful time) that she finally decided that you’d make a good mate. She seemed confident that Frostwyrms were compatible with [pc.race]s, but it was a gamble. Maybe she felt like she <i>had</i> to; after all, she sometimes likes to remind you that you weren’t her first choice.");
+	output("\n\nBut here you are. In a Frostwyrm’s lair, in the middle of the ocean, cuddled up next to the Frostwyrm that had taken her chances with you – and with your healthy, beautiful firstborn kip next to you both. You had made it work. Her gamble had paid off. Her line wasn’t going to end with her.");
+	output("\n\nFrostwyrms communicate almost purely through emotions, and [frostwyrm.name] communicating in a way you understand is for your benefit, not hers. But that doesn’t mean you can’t feel what she’s feeling. When she’s happy, you can feel her happiness; when she’s content, like she is now, you can feel her ease; when she’s aroused and lustful, well... that certainly helps with skipping the formalities.");
+	output("\n\nMost importantly, though, you can feel her affection. Her affection for you and for the clutch you’ve started with her. She had been alone for most of her life, and you gave her the one thing she had been after since she had settled in her lair all those ‘Sky Cycles’ ago. You don’t need to be able to read her mind to know just how much you mean to her: it’s not just the family you’ve started with her, but the companionship and company that she’d been starved of since the beginning. She had never once told you that she loves you – emotions are everything with Frostwyrms, and she might be hesitant to use a word that powerful – but you don’t need her to. You can feel it.");
+	output("\n\nYou disengage from [frostwyrm.name]. She looks at you curiously, but doesn’t ask you what you’re doing – not even when you loop to her front and stand before her. She lowers her face, bringing her four deep, ruby-red, intelligent eyes to yours. You can see your reflection in them.");
+	output("\n\nA hug would feel too comical for you to take seriously, considering your size differences, and although a kiss is a universal gesture in your culture, it wouldn’t be in hers. Besides, a kiss is too fleeting. You want to express to her how much she means to you, and that you know how much you mean to her, without using words, and without resorting to something as base as mating – while it inarguably brings you two closer (and is certainly the most fun of your options), it doesn’t capture your emotion as well as you feel it could.");
+	output("\n\nActing mostly on instinct, you place your palms on either side of [frostwyrm.name]’s jaw, and you close the gap, pressing your [pc.nose] against hers. She sometimes like to nuzzle against you, so, with any luck, she’d understand what it is you hope to convey to her.");
+	output("\n\nShe doesn’t say anything. Her eyes close, and a low, throaty rumble comes from her closed mouth and vibrates through the ice you’re standing on. Her body relaxes, languidly spilling into a puddle on her icy platform, and she leans into you, returning the gesture and pressing her nose back against you.");
+	output("\n\nYou feel a number of emotions through your psionic link with her. None of them are unusual or unfamiliar – contentment, happiness, affection – but they’re more pronounced now than when they were just moments ago. You know she isn’t poking around in your head, looking for why you’d thought to do this, probably because she knows exactly why.");
+	output("\n\nYou drop to your [pc.knees], just to give them a break, since you figure you’re probably going to be there for a while. You both lean into each other, and [frostwyrm.name] tips her nose downward to follow you, keeping your connection from breaking. ");
+	if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("Your kip joins her Qim in song, her own throaty purr joining hers and reverberating off the icy walls of the lair.");
+	else if (flags["FROSTWYRM_KIP_COUNT"] <= 10) output("Your kips cuddle up and relax against their Qim, their own songs joining with [frostwyrm.name]’s throaty purr, until the only thing you hear, and the only thing you feel, is them.");
+	else output("The bustle of the lair stops, and your family all cuddle up with each other, in response to the affection their Qim and their Qal is broadcasting to them all. Their purrs join with [frostwyrm.name]’s, until the lair is a certified orchestra of singing Frostwyrms.");
+	output("\n\nAfter a long few moments, you stand, finally breaking the physical connection with [frostwyrm.name]. You don’t leave her unattended for long, though: you stand and make your way back to your sitting place, right between her forelegs, against her beating heart.");
+	output("\n\nWhen you show yourself back to your spot, her massive legs close gently around you, holding you closer to her, pressing your ear against her chest. There wasn’t a word between you two, but there was no need: you and [frostwyrm.name] could tell everything the other needed to hear without a sound.");
+	if (flags["FROSTWYRM_KIP_COUNT"] >= 100) output("\n\nMaybe staying here for good isn’t such a bad idea. What does the company even have that you’d miss?");
+
+	clearMenu();
+	processTime(30);
+	addButton(0, "Next", frostwyrmMainMenu, undefined);
+}
 public function frostwyrmIWantToBangTheLizard():void
 {
 	clearOutput();
@@ -1072,6 +1103,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	else addDisabledButton(2, "Behind Her", "Behind Her", "You can’t properly breed your mate if you have nothing to breed her with!");
 	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(3, "Bathe", frostwyrmSteeleIsADirtyGirl, undefined);
 	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(4, "Blow Her", frostwyrmAllowMeToReturnTheFavor, undefined);
+	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(5, "Eat Her", frostwyrmLickTheMagicDragon, undefined);
 	addButton(14, "Back", frostwyrmMainMenu, undefined);
 }
 /*public function frostwyrmQuestSample():void
@@ -1824,6 +1856,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	}
 	else{
 		output("\n\nThat gives you an idea: if your hands aren’t enough for the job anymore, you’ll just have to upgrade to your arms. You shuffle forward on your knees, approaching the titanic cock, and you wrap both your arms around it; you hug it closely to your body, resting your cheek against its head and letting its warmth spread throughout your body. Her every heartbeat shakes your entire body, and you feel it all the way down to your [pc.feet].");
+		output("\n\nThat gives you an idea: if your hands aren’t enough for the job anymore, you’ll just have to upgrade to your arms. You shuffle forward on your [pc.knees], approaching the titanic cock, and you wrap both your arms around it; you hug it closely to your body, resting your cheek against its head and letting its warmth spread throughout your body. Her every heartbeat shakes your entire body, and you feel it all the way down to your [pc.feet].");
 		output("\n\n[frostwyrm.name] takes a deep breath as she feels you tightly squeeze against her. You could hardly believe you’re even doing this: if you had told yourself when you first started your quest to earn your father’s inheritance that it would involve you giving a full-body handjob to a three-foot cock belonging to a literal dragon, and that you’d love every second of it, you’d have either said that you were crazy – or you would have asked when and where you’d get started.");
 		output("\n\n[frostwyrm.name] purrs in delight, her body moving in time with yours, thrusting forward involuntarily as you draw your body up and relaxing when you reset your position. You snake your tongue out every time you push upward, drawing a new line of spit up the side of her tower, and lapping at the bead of pre that’s waiting for you when you do.");
 		output("\n\n<i>Is this a ritual that your kind perform during mating?</i> she asks you. Her voice is unsteady, her mind too focused on colliding sensations. You respond that your kind can perform an act that is similar, but it only involves your hands – your Qim is rather <i>significant</i> and you had to get a little creative to handle her. <i>I have made the correct choice in Qal; only one as inventive as yourself is worthy of–</i> She shudders when you touch a particularly sensitive spot, and she doesn’t attempt to continue.");
@@ -1863,6 +1896,99 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	pc.loadInMouth(frostwyrm);
 	processTime(60);
 	IncrementFlag("FROSTWYRM_GOT_BLOWN");
+	clearMenu();
+	addButton(0, "Next", frostwyrmMainMenu, undefined);
+}
+public function frostwyrmLickTheMagicDragon():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	if (flags["FROSTWYRM_EATEN_OUT"] == undefined){
+		output("Once more, you think back to when [frostwyrm.name] gave you your bath, and how... thorough she was, reaching to all of your difficult nooks and crannies, and ensuring that no part of you was unclean before the end. Even if it meant you got a little dirtier again halfway through. Before you had met her, you’d have found the idea of being so close to such a large, deadly mouth, with all those teeth, rather uninviting – now, you just wonder if she wouldn’t mind giving you another one, no matter how clean you really are.");
+		output("\n\nBut still, that’s not fair of you. Your Qim is going through the effort of giving you such a wonderful bath, and all you want is for her to do all the work, keeping you clean as can be. What sort of mate would you be if you didn’t go through the effort of returning the favor?");
+		output("\n\nYour eyes trail down her form, from her neck, to her belly, to her hind legs. Her penile vent sits, half-hidden in the crotch of her rearmost legs, and underneath it, her massive, scaly testicles. They would be easy targets – and, hell, it’s all too tempting to start there – but [frostwyrm.name] would have just as easy a time ‘cleaning’ those on her own. No; she has something <i>else</i> that’s probably in need of some <i>attention.</i>");
+		output("\n\nYou disengage from [frostwyrm.name], exposing your [pc.skinFurScales] to the cold air of her lair, and you place your hand on her belly, gently rubbing at her scales. You reach out to [frostwyrm.name] through your link, and you ask her how often she manages to bathe herself.");
+		output("\n\n<i>Often enough,</i> she answers, her four ruby-red eyes on you. <i>What do you imply? Am I in need of another?</i>");
+		output("\n\nYou ignore the question and walk towards her rear legs, your hand trailing down her massive, soft stomach along the way. You ask her how <i>much</i> of her body she manages to wash: surely, even with her long neck, she can’t reach <i>everywhere.</i>");
+		output("\n\n<i>This is true,</i> she answers. You can tell she’s trying to understand what it is you mean to say to her – she’s prodding at your mind, and you’re feeding some rather unmistakable feelings into her, but they aren’t matching the words you’re saying. <i>I cannot wash my backside, nor much of my tail, and I rely on the ocean to cleanse whatever I cannot.</i> Your hand is inches from her penile vent, but she still doesn’t take your action to be sexual in nature. <i>If you mean to offer to wash me, then I would decline; it would take you until the next Light’s Rise, if not longer, with a form as diminutive as yours.</i>");
+		output((pc.tallness >= 96 ? "\n\nYou don’t think you’re <i>that</i> short compared to her, but you know she didn’t mean anything by it. " : "\n\n")+"Your wandering hand finds her vent, your palm brushing against the warm, musky opening, and you ask if she washes it regularly. <i>I do,</i> she answers. You continue, your hand traveling down the crease of her massive, draconic testicles, disappearing in their hot cleavage, and you ask if she washes those. <i>I do,</i> she answers again, totally oblivious to what you’re getting at.");
+		output("\n\nYou show your way around her flank, towards the underside of her tail. Hidden there, underneath her crunched flanks and squished between her resting balls and her anus, is her feminine treasure: a vagina, with bluish-pink vulva, and capped with a clitoris the size of your fist. Its folds meld together neatly, comfortably at rest with itself.");
+		output("\n\nYou trace your hand along one massive lip, as long, from clit to taint, as your torso. [frostwyrm.name] flinches and tenses at your touch, her flank shivering slightly. You ask her if she keeps <i>this</i> clean, too.");
+		output("\n\n<i>No. My...,</i> she hesitates – a very rare thing for her. <i>My endowments prevent me from reaching.</i>");
+		output("\n\nThat simply won’t do. You tell [frostwyrm.name] to stand and face away from her platform, with her tail raised. You will ensure that your Qim is clean and presentable – it’s only right, as her Qal, that you tend to her every need.");
+	}
+	else {
+		output("You know what? Sometimes, you’re just in the mood to have something in your mouth.");
+		output("\n\nYou reach out to [frostwyrm.name] and ask if she remembers when you had offered to clean that one spot of hers that she <i>couldn’t</i> reach. You doubt she could forget – everyone remembers their first time, and Frostwyrms have a good memory.");
+		output("\n\n<i>I do,</i> she answers. <i>What of it, my Qal?</i>");
+		output("\n\nYou’re <i>positive</i> she knows what you’re going to say next, and she’s trying to string you along. You didn’t teach her that – she’s trying to play coy all on her own. You ask her if she liked it.");
+		output("\n\n<i>I did,</i> she answers, her four ruby-red eyes on you. <i>I had never felt... cleaner.</i>");
+		output("\n\nYou ask if she’d like you to do it again. She must be in need of another one by now.");
+		output("\n\n[frostwyrm.name] hesitates on her answer. <i>Would you like to give me one?</i> she asks instead.");
+		output("\n\nIt seems to you like you’re both on the same page! You disengage from [frostwyrm.name] and tell her to assume the position. She has a great, big, draconic pussy that’s in desperate need of some washing!");
+	}
+	output("\n\n[frostwyrm.name] does as you say: she gets to her six feet and carefully (so she doesn’t step on you) makes her way off it, facing the far wall of the lair. Then, with a flex of her back, her long, heavy tail rises and arcs over her back, her balled tip touching down just between her wings. [frostwyrm.name] is taller than you, but with your raised elevation, "+(pc.tallness >= 84 ? "you’d just need to get on your [pc.knees], and you’d be" : "you’re already")+" eye-level with [frostwyrm.name]’s massive pussy. All you have to do is close the distance....");
+	output("\n\n[frostwyrm.name]’s enormous, draconic ass totally encapsulates your view of everything, and then some: if you were to spread your arms wide and dive right in, you wouldn’t reach halfway across either thick flank. You haven’t even started, and her feminine musk is already overpowering: at that moment, the thick, wafting smell of a fertile woman in need of some desperate lip-service rewrites your brain, and all you care about is tasting her.");
+	output("\n\nSo you do: you close your eyes and you close the gap, pressing your face directly in between the monumental folds of her cunt. They part easily for you, sinking you into her body with a moistening ‘squelch;’ what oxygen is available inside her tunnel is from the gap between your neck and her pussy, and the smallest of breaths through your mouth are flavored with ripe Frostwyrm pussy, and, through your nose, the tang of a woman in need.");
+	output("\n\n[frostwyrm.name]’s haunches reflexively tense: her body understands that she has something in her pussy, and her instinct is to try and get it deeper into herself. You’re pulled at the neck, her pussy sucking you deeper into herself: your skull dips into her folds, nearly down to your ears, but your hands on her ass press against her, and her muscles are taut enough to give something solid enough to push against.");
+	output("\n\nOn the one hand, you doubt that she’d be able to take you in past your shoulders – but on the other, some deviant part of your imagination kind of wants her to try.");
+	output("\n\nYou twist your head to the right and extend your [pc.tongue], drawing it up and against the velvety muscles just inside her vulva. You lift your entire head as you lick, drawing it further up; you can feel [frostwyrm.name] clench around you, making it harder to move, and you feel her moisten around your head and neck. Your every movement is punctuated by a wet peeling sound as her pussy splits to accommodate yourself.");
+	if (flags["FROSTWYRM_EATEN_OUT"] == undefined){
+		output("\n\nAside from the physical sensations, you feel the indescribable prodding of [frostwyrm.name]’s psionics at your head. <i>By the Grand Qim, [pc.name], what is it you are doing to me?</i> she asks.");
+		output("\n\nYou respond that you’re bathing her. Was that not obvious?");
+		output("\n\n<i>It is obvious that you are doing no such thing!</i> Her two rearmost legs stamp impatiently, reverberating your fleshy prison around you, shifting you against her soft cunt. <i>In no world must a bath be so... thorough! And your lust is unmistakable – this is another of your eclectic means of pleasure!</i>");
+		output("\n\nYou hesitate on your response, but not your actions: you twist your entire head around, facing to your left. You know she can feel every little motion and every little tickle of your [pc.skinFurScales] against her, teasing her and pleasuring her in a way she could never have conceived before. You take another long, thick taste of her draconic vent, and – judging from the shake of her body, and the building moisture around your head, and the lust she’s feeding into your psyche through your connection – you <i>then</i> you ask her if she finds it pleasurable.");
+		output("\n\n<i>It is</i> obvious <i>that I do,</i> she responds, and, with a buck of her hips, rears into you, shunting you deeper into her. <i>I would bid that you continue. As you said: as my Qal, it is only right that you do.</i>");
+		}
+	else {
+		output("\n\nYou can tell that [frostwyrm.name] is enjoying every moment of you and your ‘bathing’ her: the lust she’s feeding into you through your psionic link is enough to get you ");
+		if (pc.hasCock()) output("hard as diamonds");
+		if (pc.isHerm()) output(", and ");
+		if (pc.hasVagina()) output("wet as the ocean");
+		output(". You almost wish you had someone ‘bathing’ you right now.");
+		output("\n\n<i>You need only ask, my Qal,</i> [frostwyrm.name] says, picking up on your fantasies. <i>Just as your duty is to tend to the every need of your Qim, so too is the duty of your Qim to tend to every need of yours.</i>");
+		output("\n\nAs long as [frostwyrm.name] is poking around in your thoughts, you send her a fantasy of you popping back out of her, <i>stinking</i> from head to chest like a horny Frostwyrm. You’d be in <i>desperate need</i> of a bath.");
+		output("\n\n<i>And I would see to it that you receive one. From scalp to sole.</i> She impatiently bucks her hips, rearing them into you, shunting you deeper into her. <i>However... you must not leave your duty half-complete, my Qal.</i>");
+	}
+	output("\n\nYou shift your hands, running them from her flank to her vulva, clasped tightly around your neck. She’s as sensitive as any human’s, from the way her body shivers around you: you weaponize that information by running the flats of your palms along the lips of her quim, squeezing their spongy wet textures between your fingers. You run your hands up and down either one, alternating them, massaging her vulva like each one was a long, thin, wet cock, knowing that she’s going to feel every single motion.");
+	output("\n\nAnd you’re right: [frostwyrm.name] takes a long, deep, growling breath, and her haunches can’t help but shift towards you again, trying to suck your whole skull into her like a she would a cock. Your [pc.ears] are pulled into her, and all you hear are the sounds of her body: the throb of her cunt; the squish of your hands against her pussy; the hammering beat of her excited, horny heart; and the pleasured growl in her throat. When she stamps her feet again, it comes to you as a muted, dull thud.");
+	output("\n\nIt’s hot in her, and what bits of your face that aren’t buried in some fold and are exposed to the ‘air’ inside her, are singed with moisture. You don’t dare open your eyes – it’d be like opening them underwater, and that’s never comfortable. Your lungs burn, too: the only source of fresh air in her is some wet creases around your neck, and the few times you dare (or care) to stop eating out your draconic lover, the air you breathe is tinged with the taste and the smell of [frostwyrm.name].");
+	output("\n\nStill, it’s all worth it: she was mostly dry when you started, and now she’s so wet, you’re having a hard time keeping yourself steady against her. A push too hard and you’ll pop out, but if you’re not careful, you might just slip deeper into her. Down to the neck is a good stopping point, you think.");
+	output("\n\nThis is what your life has led to: you, neck-deep, inside a dragon’s vagina, and you deciding to yourself that going as deep as you are is a good stopping point. You’d laugh at the absurdity of it if your mouth wasn’t full of draconic pussy juice.");
+	output("\n\nYou realign your hands: your left dips deep southward, tracing along the rim of her pussy, while your right bends and inches up your [pc.chest], angling upward, towards [frostwyrm.name]’s tunnel. Your left hand finds the full, taut sack of [frostwyrm.name]’s bouncing balls; you give them a grope before heading back up, searching for her pearl. Your right, meanwhile, digs into [frostwyrm.name]’s cooch, where her pussy is clamped around you, and starts to push between the seal.");
+	output("\n\nBoth hands find purchase at once: your left finds her budding, pulsating clit, unmistakable even if your vision is totally blocked off. It’s huge, round, soaked, and smooth as could be: with every beat of her heart, you feel it lunge and pulse in your grip. You gently fondle it, rubbing it like a crystal ball, lifting it up and pushing it down; [frostwyrm.name]’s haunches unconsciously follow your movements, "+(silly ? "almost like you’re piloting her with a joystick." : "seeking out more of the intense pleasure you’re giving her."));
+	output("\n\nYour right, meanwhile, worms its way into her, splitting her wider apart, but also causing her to clench even more tightly onto you. Your arm spreads the gap around you, giving you some more air to breathe, but, more importantly, you reach far deeper into her than you could with just your face: your fingers prod and poke at every muscle they can as you sink deeper into her, which, in turn, makes her shiver and clench and buck even more, feeling something akin to some real penetration since you started"+(silly ? " – you joke to yourself that this probably isn’t where you left your keys, but it doesn’t hurt to look." :""));
+	output("\n\nYou can only imagine what it must truly feel like for her: sure, you can feel her lust and her pleasure, but that doesn’t mean "+(pc.hasVagina() ? "you can feel whatever [frostwyrm.name]’s feeling in your own pussy" : "you have a phantom vagina with a face and an arm in it, with a hand polishing your clit")+". Although you can’t feel every minute sensation, what you know for certain is that [frostwyrm.name] is enjoying every little thing you’re doing – and, if you’re right, she’s getting awfully close.");
+	output("\n\n<i>I need not read your thoughts to know that cleanliness was never your intent, my Qal,</i> Frosty says, in a chastising, yet playful tone. Her breathing is coming out in quick, dry pants – although, her lungs are so huge that a single pant for her is bigger than a deep sigh for you. Her flanks are shaking in pleasuring, with every little vibration going straight through to you, jostling you inside her vent. <i>Continue, and I would surmise that both of us would be in urgent need of a second bath.</i>");
+	output("\n\nYou tell her not to resist or hold back – her pleasure is your duty, and if that means you keep giving her a thorough, in-depth bath until she doesn’t need them anymore, then, as her Qal, that’s what that means. She’d do the same for you.");
+	output("\n\nYou can hear the sharp sound of claws raking against ice, even muffled as they are through her spongy walls. Her muscles, and particularly her vulva, grow tense around you, squeezing around your intrusive skull and your right hand, still aimlessly seeking and raking at nothing inside her canal. <i>Indeed I would,</i> she replies – and you get the sudden gut feeling that you should hold your breath.");
+	output("\n\nHer shaking gets more intense, and, with a hearty flex of her haunches, you’re trapped in between the squeezing walls of her pussy. Your skull is pinched on both sides by her wet, spongy vulva, and your arm is pressed in a hot, wet vice, from shoulder to fingertip. And then, in a surprising move, [frostwyrm.name] leans forward, her front side dropping and her rear side lifting, taking you with it: your [pc.legOrLegs] lift straight up off the ground, dangling in the air, forcing you to lean them against her bouncing Frostwyrm balls for some stability.");
+	output("\n\nYour upper body is facing downward, going with [frostwyrm.name]’s body; with her orgasming pussy keeping you nice and snug inside her, and with gravity fighting to pull you deeper, it’s fair to say you aren’t going anywhere, forced to ride out the whole thing from start to finish.");
+	output("\n\n[frostwyrm.name]’s pussy undulates around you, every muscle working to squeeze and suck whatever juices they can from your trapped body. A hot wash of fluids gush against you from inside her: it covers you from your fingers, to your neck, and then washes down your [pc.chest] and your waist before dripping onto the icy floor beneath you. You try and turn your face downward, to keep any of her pussy juice from getting up your nose.");
+	output("\n\nA single, low, emanating growl escapes [frostwyrm.name]’s throat all the while, letting you know just how much she’s enjoying every last second of you inside her body. At this red-hot moment, her body is using you as little more than some kind of sex toy: the rhythmic pulsing of her cunt has you slide in and out of her, a few inches in when she clenches in pleasure, and a few inches out when she relaxes. Like all things about [frostwyrm.name], her orgasm is as big as her body, and it lasts for at least a solid minute – perhaps longer. You don’t have a sense of time when all your senses are inundated with orgasming dragon pussy.");
+	output("\n\nIt doesn’t take much for you to finish yourself, despite the lack of tactile sensation: with you being shoulder-deep inside [frostwyrm.name], and with her funnelling her lust and her pleasure into your psyche, the slightest touch of her massive nuts against your crotch is enough to set you off.");
+	output("\n\nYour ");
+	if (pc.hasCock()) output("[pc.cock] has found its way into the huge crease of her testicles, frotting itself in between her gargantuan nuts like a weird, impromptu, reverse titfuck. All it takes is a buck or two, and your [pc.cum] is soaking down the crease, showering her scaly sack with your seed. You can feel her balls pull and tense against herself, giving you more tension to fuck against – she must be cumming out her cock as well");
+	if (pc.isHerm()) output(". But, of course, if it’s that good for her, it’s that good for you: your ");
+	if (pc.hasVagina()) output("own [pc.vagina], totally ignored, clenches in time with your Qim’s, helplessly squeezing down on nothing and causing a river of your own to flood down your [pc.thighs]. Despite having nothing inside you (as badly as you want there to be), your orgasm is just as powerful as hers: you know exactly how she’s feeling, and you have the equipment to reciprocate in kind. Her every clench of her pussy on you is matched with a clench of yours on nothing, and although you can’t match her output, your orgasm matches her consistency, clench for clench and drop for drop");
+	output(".");
+	output("\n\nIt takes [frostwyrm.name] minutes before her body has finally exhausted its orgasm. You hadn’t noticed that your lungs were starting to burn until her haunches lower and, with her pussy no longer greedily slurping your body tightly into her, and with you being slick as could be, you slide out of her with relative ease. You fall back onto the icy platform with a wet thud, and you take your first deep breath of real, clean, unfiltered oxygen for the first time since you dove face-first into [frostwyrm.name]’s muff. With your left hand (the cleaner of the two), you wipe the slime from your eyes and slowly blink them open–");
+	output("\n\nAnd staring back at you is [frostwyrm.name], her four ruby-red eyes intently on yours. She huffs at you once through her nostrils, her breath warming your wet body against the ice. Her breath heaves from her chest in her usual crude mimicry of laughter. <i>Thanks to you, my Qal, I have never felt more refreshed.</i> She steps over you, as gingerly as before, and circles her platform before coming down to rest, just as she had before. <i>But it seems you are in need of a wash. It is wrong of me, as your mate, to sully you for my benefit.</i>");
+	output("\n\nYour world is still reeling a bit from the whole experience. How often does a person get to say that they were shoulder-deep inside a dragon’s climaxing vagina?");
+	output("\n\nWith some gentle nudging and guidance from [frostwyrm.name], you’re brought back to your [pc.feet], and then showed back to your usual sitting spot, up against her warm, soft, purring belly. Despite still dripping from your scalp to your waist in pussy juice, [frostwyrm.name] doesn’t shy away from pressing her snout gently against you, to help direct you back to your usual sitting spot with her.");
+	output("\n\n<i>Do not hesitate to ask your Qim for a bath of your own once more,</i> she instructs, lovingly nudging you some more, tucking you in against her. <i>I will understand if you require a moment to recollect yourself, first.</i>");
+	output("\n\nThe whole ordeal’s taken quite a bit out of you. A nap, followed by a bath, sounds lovely to you.");
+	output("\n\n<i>However,</i> she says in a devious, lustful tone, <i>just as you must not hesitate to bid your Qim for a bath... you must be ready to give your Qim another ‘bath’ at her request.</i>");
+	output("\n\nIt hasn’t been a <i>minute,</i> and she’s already fantasizing about a second round!");
+	output("\n\nStill... you can’t blame her.");
+
+	pc.orgasm();
+	pc.applyPussyDrenched();
+	pc.girlCumInMouth(frostwyrm);
+	processTime(60);
+	IncrementFlag("FROSTWYRM_EATEN_OUT");
 	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
