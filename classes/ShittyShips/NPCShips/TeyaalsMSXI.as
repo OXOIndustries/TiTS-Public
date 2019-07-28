@@ -88,9 +88,9 @@
 			//AGILITY:
 			this.reflexesRaw = 26;
 			//SENSORS
-			this.aimRaw = 95;
+			this.aimRaw = 100;
 			//SYSTEMS
-			this.intelligenceRaw = 40;
+			this.intelligenceRaw = 65;
 			//POWER GEN
 			this.willpowerRaw = 50;
 
