@@ -2560,8 +2560,12 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
-	if (ramisOutDrinking()) return false;
-	if (isDoingEventWhorizon()) return false;
+	if(ramisOutDrinking()) return false;
+	if(isDoingEventWhorizon()) return false;
+	
+	if((shits["SHIP"] != undefined ? shits["SHIP"].shipCrewCapacity() : 3) < crew(true,false) && flags["INFINITE_CREW"] == undefined) return false;
+	if(shipOverEncumberedByStorage()) return false;
+	
 	return true;
 }
 
@@ -3238,8 +3242,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(shekkaAndAnnoNerdOff);
 		}
-		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50") eventQueue.push(ratsRaidingXXXmas2018ByWill);
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50")
+		{
+			eventQueue.push(ratsRaidingXXXmas2018ByWill);
+		}
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
 		{
 			eventQueue.push(encounterKrissy);
 		}
