@@ -1142,7 +1142,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["CHRISSY_ANAL"] != undefined) totalVirginitiesTaken++;
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
-		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) totalVirginitiesTaken++;
+		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -7703,6 +7703,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_OLYMPIA"] != undefined)
 				{
 					output2("\n<b>* Olympia:</b> Met her");
+					if(olympiaRecruited())
+					{
+						output2(", Crew member");
+						if(olympiaIsCrew()) output2(" (Onboard Ship)");
+					}
+					else if(flags["OLYMPIA_KILLED"] != undefined) output2(", Killed her");
 					if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
 				}
 				// Dr. Teyaal

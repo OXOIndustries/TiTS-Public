@@ -240,7 +240,8 @@ public function buyGadgetsFromSynphia():void
 {
 	clearOutput();
 	showSynphia();
-	shopkeep = new Synphia();
+	shopkeep = chars["SYNPHIA"];
+	shopkeep.inventory = [];
 	shopkeep.inventory.push(new CapacitorVampire());
 	shopkeep.inventory.push(new ShieldVampire());
 
@@ -252,7 +253,8 @@ public function buyUpgradesFromSynphia():void
 {
 	clearOutput();
 	showSynphia();
-	shopkeep = new Synphia();
+	shopkeep = chars["SYNPHIA"];
+	shopkeep.inventory = [];
 	shopkeep.inventory.push(new AdvancedQuarters());
 	shopkeep.inventory.push(new AuxiliaryThrusters());
 	shopkeep.inventory.push(new ThrustVectoringSystem());
@@ -266,7 +268,8 @@ public function unfitSynphia():void
 {
 	clearOutput();
 	showSynphia();
-	shopkeep = new Synphia();
+	shopkeep = chars["SYNPHIA"];
+	shopkeep.inventory = [];
 	unfitShipItem();
 }
 

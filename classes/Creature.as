@@ -425,6 +425,15 @@
 		public var credits: Number = 500;
 		//Perks used to store 'queued' perk buys
 		public var perkPoints: Number = 0;
+		
+		// Stats NaN Hotfix
+		public function updateStats():void 
+		{
+			if(isNaN(XPRaw)) XPRaw = 0;
+			if(isNaN(level)) level = 1;
+			if(isNaN(credits)) credits = 0;
+			if(isNaN(perkPoints)) perkPoints = 0;
+		}
 
 		//Appearance Variables
 		public var femininity: Number = 50;
@@ -2028,7 +2037,11 @@
 					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 					break;
 				case "ship":
-					if(this is PlayerCharacter) buffer = (kGAMECLASS.shits["SHIP"] != undefined ? kGAMECLASS.shits["SHIP"].short : "Casstech Z14");
+					if(this is PlayerCharacter) buffer = kGAMECLASS.PCShipName(true);
+					else buffer = "ship";
+					break;
+				case "shipModel":
+					if(this is PlayerCharacter) buffer = kGAMECLASS.PCShipModel();
 					else buffer = "ship";
 					break;
 				case "short":

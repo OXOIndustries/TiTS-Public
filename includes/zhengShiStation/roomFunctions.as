@@ -1497,7 +1497,8 @@ public function firstTimeCasinoPartDues():void
 
 public function aquariusBonusFunc():void
 {
-	daneBonus(0);
+	var btnSlot:int = 0;
+	if(daneAtZhengShi()) daneBonus(btnSlot++);
 }
 
 /* REDUX FOR SIDEWINDER STEALINGL */

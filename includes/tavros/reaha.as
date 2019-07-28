@@ -764,7 +764,7 @@ public function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():
 
 	output("<i>“No,”</i> you answer, <i>“Now come on, let’s get you to the ship.”</i>");
 	output("\n\n<i>“I... yes, "+ pc.mf("master","mistress") +",”</i> she sighs, looking back down again as you lead the way to the door.");
-	output("\n\n<i>“Good riddance,”</i> you hear the mistress mutter behind you as you make your way out, and back toward the [PCShipName].");
+	output("\n\n<i>“Good riddance,”</i> you hear the mistress mutter behind you as you make your way out, and back toward the [pc.ship].");
 	clearMenu();
 	addButton(0, "Next", reahaWantsToKnowWhatsUp)
 }
