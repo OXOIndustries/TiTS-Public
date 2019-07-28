@@ -64,7 +64,6 @@
 			//this.meleeWeapon.attack = 2;
 			this.meleeWeapon = new ThermalProjector();
 			this.rangedWeapon = new LCannon();
-			this.accessory = new ShieldBoosterForShips();
 
 			this.armor = new ShipArmor();
 			this.armor.defense = 20;
@@ -77,6 +76,7 @@
 			this.inventory.push(new TunedEmitters());
 			this.inventory.push(new ShieldVampire());
 			this.inventory.push(new CapacitorBank());
+			this.inventory.push(new ShieldDisruptor());
 						
 			this.shield = new ShipShield();
 			this.shield.shieldDefense = 30;
