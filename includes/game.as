@@ -3893,7 +3893,7 @@ public function variableRoomUpdateCheck():void
 		rooms["ZS J42"].addFlag(GLOBAL.NPC);
 	}
 	//SIDEWINDER
-	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	if(pirateResearchVesselStolen())
 	{
 		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
 		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);

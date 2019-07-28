@@ -49,7 +49,7 @@ public function showRivalAndFeruze():void
 
 public function cousinEncounterBonus():Boolean
 {
-	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	if(pirateResearchVesselStolen())
 	{
 
 	}

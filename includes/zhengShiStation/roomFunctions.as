@@ -713,6 +713,13 @@ public function landingAtZhengShi():void
 	//Repeat Approach, Post Correct Answer
 	else
 	{
+		if(pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
+		{
+			currentLocation = "SHIP INTERIOR";
+			generateMap();
+			zhengShiReturnDoof();
+			return;
+		}
 		output("You set course for the pirate base at Zhèng Shi. Now that you know where it is, and have solidified your right to be there as far as its gate guards are concerned, it’s easy going. The heavy cannons surrounding the docking bay entrance follow you in, but hold their fire while your slide your ship in through the force field and into your parking spot at the back of the massive hangar. Looks like you’re on the roster now!");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);

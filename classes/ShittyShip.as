@@ -453,6 +453,11 @@ package classes {
 				{
 					for(i = 0; i < gadgets.length; i++)
 					{
+						if(gadgets[i] is ShieldVampire && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
+						{
+							gadgets[i].useFunction(this,this);
+							return true;
+						}
 						if(gadgets[i] is ShieldBoosterForShips && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
 						{
 							gadgets[i].useFunction(this,this);
