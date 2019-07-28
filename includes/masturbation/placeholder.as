@@ -14,6 +14,11 @@ Upgrade buy menu
 Duplicate vagina
 Customzie vagina
  */
+public var placeholderPrice:int = 100000;
+public var placeholderAnimalUpgradePrice:int = 1;
+public var placeholderUpgradePrice:int = 1;
+public var placeholderDuplicatorPrice:int = 1;
+public var placeholderDeluxePrice:int = 1;
 
 public function canBuyPlaceholder():Boolean
 {
@@ -111,6 +116,7 @@ public function placeholderMainMenu():void
 	//Tailgina button
 	if (pc.hasTailCunt()) addButton(btnSlot, "Tailgina" + (pc.hasTails() ? "s" : ""), placeholderCustomizeMenu, -1, "Tailgina" + (pc.hasTails() ? "s" : ""), "Description");
 	
+	addButton(12, "Store", placeholderBuyMenu);
 	addButton(13, "Uninstall", placeholderUninstallation);
 	addButton(14, "Leave", leaveplaceholder);
 }
@@ -405,6 +411,34 @@ public function placeholderChangePuffiness(arg:Array):void
 	else pc.deflateVagina(arg[0]);
 	IncrementFlag("USED_PLACEHOLDER");
 	addButton(0, "Next", placeholderMainMenu);
+}
+
+//Menu of available upgrades.
+public function placeholderBuyMenu():void
+{
+	showName("Placeholder");
+	showBust("");
+	author("Thebiologist");
+	clearMenu();
+	clearOutput();
+	
+	output("Stuff!");
+	
+	addButton(0, "Animal Upgrade", placeholderConfirmBuy, [kGAMECLASS.vendorToggle, 0], "Animal Upgrade", "Buy the animal upgrade.");
+	
+	addButton(14, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
+}
+
+public function placeholderConfirmBuy(showConfirmation:Boolean, option:int):void
+{
+	if (showConfirmation)
+	{
+		
+	}
+	else
+	{
+		
+	}
 }
 
 //Leave the placeholder menu
