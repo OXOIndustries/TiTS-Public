@@ -6520,7 +6520,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Female Raskvel, Times Encountered:</b> " + flags["MET_FEMALE_RASKVEL"]);
 					if(flags["TIMES_RODE_RASKVEL_FACE"] != undefined) output2("\n<b>* Female Raskvel, Times Riding Her Face:</b> " + flags["TIMES_RODE_RASKVEL_FACE"]);
-					if(flags["RASKVEL_PREG_TIMER"] != undefined) output2("\n<b>* Female Raskvel, Days Pregnant:</b> " + flags["RASKVEL_PREG_TIMER"]);
+					if(flags["FEM_RASKVEL_MATING_PRESS"] != undefined) output2("\n<b>* Female Raskvel, Times Mating Press Fucked:</b> " + flags["FEM_RASKVEL_MATING_PRESS"]);
+					if(flags["RASKVEL_PREG_TIMER"] != undefined) output2("\n<b>* Female Raskvel, Days Pregnant:</b> " + (5 - flags["RASKVEL_PREG_TIMER"]));
 				}
 				if(flags["MET_MALE_RASKVEL_GANG"] != undefined) output2("\n<b>* Male Raskvel Gang, Times Encountered:</b> " + flags["MET_MALE_RASKVEL_GANG"]);
 				if(flags["ENCOUNTERED_SANDWORM"] != undefined)
