@@ -6375,10 +6375,12 @@
 				if(adjectives.length > 0) result += adjectives[rand(adjectives.length)];
 				// Silicone
 				var silicone:Number = siliconeRating("lips");
-				if(silicone > 0 && rand(2) == 0) {
+				var siliconePref:int = statusEffectv1("Silicone Preference");
+				if(silicone > 0 && siliconePref != -1 && rand(2) == 0) {
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
-					adjectives.push("fake", "plastic", "silicone-filled");
+					if(siliconePref != 1 && siliconePref != 2) adjectives.push("fake", "plastic");
+					if(siliconePref != 2) adjectives.push("collagen-enhanced", "augmented", "silicone-filled");
 					if(lips >= 3) adjectives.push("perfectly rounded");
 					if(result != "") result += ", ";
 					result += adjectives[rand(adjectives.length)];
@@ -14567,10 +14569,12 @@
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			// Silicone
 			var silicone:Number = siliconeRating("hips");
-			if(silicone > 0 && rand(2) == 0) {
+			var siliconePref:int = statusEffectv1("Silicone Preference");
+			if(silicone > 0 && siliconePref != -1 && rand(2) == 0) {
 				adjectives.length = 0;
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled");
+				if(siliconePref != 1 && siliconePref != 2) adjectives.push("fake", "plastic");
+				if(siliconePref != 2) adjectives.push("artificially-enhanced", "augmented", "silicone-filled");
 				if(hips >= 6) adjectives.push("perfectly rounded");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
@@ -14917,11 +14921,13 @@
 			}
 			// Silicone
 			var silicone:Number = siliconeRating("butt");
-			if(silicone > 0 && rand(2) == 0) {
+			var siliconePref:int = statusEffectv1("Silicone Preference");
+			if(silicone > 0 && siliconePref != -1 && rand(2) == 0) {
 				adjectives.length = 0;
 				if(silicone >= 2) adjectives.push("gravity defying");
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled");
+				if(siliconePref != 1 && siliconePref != 2) adjectives.push("fake", "plastic");
+				if(siliconePref != 2) adjectives.push("artificially-enhanced", "augmented", "silicone-filled");
 				if(butt >= 6) adjectives.push("perfectly rounded", "globular");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
@@ -19261,11 +19267,13 @@
 				var adjectives:Array = [];
 				// Silicone
 				var silicone:Number = siliconeRating("tits");
-				if(silicone > 0 && rand(2) == 0) {
+				var siliconePref:int = statusEffectv1("Silicone Preference");
+				if(silicone > 0 && siliconePref != -1 && rand(2) == 0) {
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
 					if(silicone >= 5) adjectives.push("ridiculously perky");
-					adjectives.push("fake", "plastic", "silicone-filled");
+					if(siliconePref != 1 && siliconePref != 2) adjectives.push("fake", "plastic");
+					if(siliconePref != 2) adjectives.push("artificially-enhanced", "augmented", "silicone-filled");
 					if(bRowRating >= 4) adjectives.push("perfectly rounded", "globular");
 					if(descript != "") descript += ", ";
 					descript += adjectives[rand(adjectives.length)];
@@ -19282,6 +19290,7 @@
 			var nouns:Array = [];
 			var bRowRating:Number = breastRows[rowNum].breastRating();
 			var silicone:Number = siliconeRating("tits");
+			var siliconePref:int = statusEffectv1("Silicone Preference");
 			if (isLactating())
 			{
 				if(!milkied)
@@ -19298,7 +19307,7 @@
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
 			nouns.push("tit", "tit", "tit");
 			if(bRowRating > 6) nouns.push("tit");
-			if(silicone > 0) {
+			if(silicone > 0 && siliconePref != -1) {
 				nouns.push("balloon");
 				if(silicone >= 2) nouns.push("balloon");
 				if(silicone >= 5) nouns.push("balloon");
