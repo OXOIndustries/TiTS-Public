@@ -72,7 +72,7 @@ public function placeholderApproach(firstTime:Boolean = false):void
 	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined) flags["SEEN_PLACEHOLDER_BOOTH"] = 1;
 	
 	//Too Poor
-	if (pc.credits < 100) addDisabledButton(0, "Buy", "Buy", "You don't have enough credits to buy this!");
+	if (pc.credits < placeholderPrice) addDisabledButton(0, "Buy", "Buy", "You don't have enough credits to buy this!");
 	
 	//We've already got one
 	else if (!canBuyPlaceholder()) addDisabledButton(0, "Buy", "Buy", "You've already got a placeholder!");
@@ -91,7 +91,7 @@ public function buyPlaceholder():void
 	showName("PLACEHOLDER BOOTH");
 	showBust("");
 	
-	pc.credits -= 100;
+	pc.credits -= placeholderPrice;
 	output("Stuff. I'll get to it.");
 	flags["PLACEHOLDER_DELIVERY_WAITING"] = true;
 	addButton(0, "Next", mainGameMenu, undefined, "Next", "Go back to the rest of the store.");
