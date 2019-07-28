@@ -38,6 +38,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
 		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+		case "sjw": cheatFunc = Cheats.SJWMode; break;
 		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;

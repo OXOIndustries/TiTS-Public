@@ -361,11 +361,19 @@
 			Cheats.ClassicLapinara();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"SJW Mode",
+		"Toggle whether certain offensive words are used.",
+		function():void {
+			Cheats.SJWMode();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
+	inputManager.BindCheatSequence("SJW Mode","sjw");
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Infinite Crew Space", "clowncar");
