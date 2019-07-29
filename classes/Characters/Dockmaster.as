@@ -28,11 +28,6 @@
 			this.typesBought = [];
 			this.sellMarkup = 1.0;
 			this.buyMarkdown = .4;
-			if(kGAMECLASS.pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
-			{
-				this.sellMarkup = 0.95;
-				this.buyMarkdown = .7;
-			}
 			this.createPerk("SHIP VENDOR");
 		}
 		override public function get bustDisplay():String

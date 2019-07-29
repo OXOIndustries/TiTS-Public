@@ -30,7 +30,7 @@ public function olympiaCreatureStats():PregnancyPlaceholder
 
 public function pirateResearchVesselStolen():Boolean
 {
-	return (flags["SIDEWINDER_TAKEN"] == 1);
+	return (flags["SIDEWINDER_TAKEN"] != undefined);
 }
 //Room Descriptions
 //AB 20: Research & Development Lab

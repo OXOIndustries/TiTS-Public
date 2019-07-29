@@ -25,6 +25,7 @@ package classes {
 	import classes.ShittyShips.ShittyShipGear.Gadgets.*;
 	import classes.ShittyShips.ShittyShipGear.Upgrades.*;
 	import classes.ShittyShips.ClydesdaleK7;
+	import classes.ShittyShips.NPCShips.TeyaalsMSXI;
 
 	public class ShittyShip extends Creature {
 	
@@ -407,9 +408,9 @@ package classes {
 			var gadgets:Array = listShipGadgets();
 			var HPPercent:Number = target.HP()/target.HPMax();
 			var shieldPercent:Number = target.shields()/target.shieldsMax();
-			if(shieldPercent >= 50)
+			if(shieldPercent >= 0.5)
 			{
-				if((this.hasPerk("AGGRESSIVE_AI") && rand(2) == 0) || (this.hasPerk("TACTICAL_AI") && shieldPercent >= 75) || shieldPercent >= 80 || (this.hasPerk("RANDOM_AI") && rand(3) == 0))
+				if((this.hasPerk("AGGRESSIVE_AI") && rand(2) == 0) || (this.hasPerk("TACTICAL_AI") && shieldPercent >= 0.75) || shieldPercent >= 0.80 || (this.hasPerk("RANDOM_AI") && rand(3) == 0))
 				{
 					for(var i:int = 0; i < gadgets.length; i++)
 					{
@@ -418,6 +419,7 @@ package classes {
 							gadgets[i].useFunction(target,this);
 							return true;
 						}
+
 					}
 				}
 			}
@@ -435,7 +437,11 @@ package classes {
 			if(shieldPercent < 1)
 			{
 				var shieldMe:Boolean = false;
-				if(this.hasPerk("DEFENSIVE_AI"))
+				if(this is TeyaalsMSXI)
+				{
+					if(shieldPercent <= 0.66) shieldMe = true;
+				}
+				else if(this.hasPerk("DEFENSIVE_AI"))
 				{
 					if(shieldPercent <= 0.66) shieldMe = true;
 				}
@@ -453,6 +459,12 @@ package classes {
 				{
 					for(i = 0; i < gadgets.length; i++)
 					{
+						//Shield vamp only used if target has shields to leech.
+						if(gadgets[i] is ShieldVampire && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense && target.shields() >= 750)
+						{
+							gadgets[i].useFunction(target,this);
+							return true;
+						}
 						if(gadgets[i] is ShieldBoosterForShips && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
 						{
 							gadgets[i].useFunction(this,this);
@@ -540,7 +552,7 @@ package classes {
 
 			//Clear "Off flags"
 			resetEquipment(true);
-
+			
 			//Defensive boiz pick 1 gun.
 			if(defensiveAI)
 			{

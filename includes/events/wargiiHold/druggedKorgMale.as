@@ -94,7 +94,7 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 	// Bimbo
 	if(pc.isBimbo()) output("\n\n<i>“" + (useCock ? "Sucking cock’s great! Just thinking about it makes me wanna cum already!":"Don’t worry, the water’s nice and warm. It’s a tasty pussy, after all; you’ll be jizzing all over me in no time!") + "”</i> you sing, rubbing a finger " + (useCock ? "across [pc.eachCockHead]":"through your sopping [pc.vaginaColor] slit") + ".");
 	// Bro
-	else if(pc.isBro()) output("\n\n<i>“’Share heat’, then. With your mouth,”</i> you say bluntly, tapping your [pc.thigh] expectantly.");
+	else if(pc.isBro()) output("\n\n<i>“‘Share heat’, then. With your mouth,”</i> you say bluntly, tapping your [pc.thigh] expectantly.");
 	// Kind
 	else if(pc.isNice()) output("\n\n<i>“Better make it quick, before someone else finds us. Right now, I’m only interested in sharing with you.”</i> You wink cutely, " + (useCock ? "patting your [pc.cockNoun]":"drumming your [pc.clit]") + ".");
 	// Misch

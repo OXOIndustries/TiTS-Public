@@ -27,13 +27,16 @@ public function PCShipName(customName:Boolean = true):String
 {
 	// 9999 if(customName) return ActivePlayerShip.Name;
 	
-	if(shits["SHIP"] != undefined) return (customName ? shits["SHIP"].short : shits["SHIP"].short);
+	if(customName && shits["SHIP"] != undefined) return shits["SHIP"].short;
+	if(PCShipIsCasstech()) return "Casstech Z14";
+	if(shits["SHIP"] != undefined) return shits["SHIP"].modelDisplay;
 	
 	return (PCShipManufacturer() + " " + PCShipModel());
 }
 public function PCShipManufacturer():String
 {
 	// 9999 return ActivePlayerShip.Manufacturer;
+	
 	return "Casstech";
 }
 public function PCShipModel():String
@@ -46,6 +49,11 @@ public function PCShipModel():String
 }
 
 public function hasCapitalShip():Boolean
+{
+	return false;
+}
+
+public function PCShipHasHolodeck():Boolean
 {
 	return false;
 }

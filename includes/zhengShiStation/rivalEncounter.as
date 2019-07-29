@@ -49,7 +49,7 @@ public function showRivalAndFeruze():void
 
 public function cousinEncounterBonus():Boolean
 {
-	if(flags["SIDEWINDER_TAKEN"] != undefined)
+	if(pirateResearchVesselStolen())
 	{
 
 	}
@@ -486,7 +486,7 @@ public function leaveFeruzeAfterWinning():void
 	if(pc.isBimbo()) output("You’re super pretty, but it wouldn’t be right with you working for that meanie. Look me up later and I’ll consider being the [pc.manWoman] of your dreams.");
 	else if(pc.isBro()) output("Nah.");
 	else if(pc.isNice()) output("Sorry cutie, but I’ve got a job to do.");
-	else if(pc.isMischievous()) output("How about I give you my extranet address, and if you still feel this way in the morning, you give me a ring.”</i> You jot it down and pass it her way. <i>“’Course you’d have to quit working for that douche first.");
+	else if(pc.isMischievous()) output("How about I give you my extranet address, and if you still feel this way in the morning, you give me a ring.”</i> You jot it down and pass it her way. <i>“‘Course you’d have to quit working for that douche first.");
 	else output("Tempting, but I won’t let you distract me. Not this time.");
 	output("”</i>");
 	output("\n\nFeruze pouts" + (enemy.lust() < enemy.lustMax() ? ", backing away slowly.":" then nods, throwing herself from the catwalk with a lusty cry. Her flight path is drunken, addled by the frenzied pumping of one hand between her legs.") + " You’re left alone once more.");

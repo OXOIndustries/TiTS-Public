@@ -239,7 +239,7 @@ public function yomaTalkHim():void
 	}
 	
 	processTime(10);
-	if (flags["YOMA_TALKED_ABOUT_HIMSELF"] == 0) flags["YOMA_TALKED_ABOUT_HIMSELF"] = 1;
+	if (flags["YOMA_TALKED_ABOUT_HIMSELF"] != 1) flags["YOMA_TALKED_ABOUT_HIMSELF"] = 1;
 	yomaTalkMenu();
 	addDisabledButton(0, "Him");
 }

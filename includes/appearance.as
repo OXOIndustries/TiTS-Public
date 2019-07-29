@@ -3054,6 +3054,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		// Gender preference
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
+		// Silicone preference
+		if(target.hasSilicone() > 0) addGhostButton(btnIndex++, "PrefSilicone", selectSiliconePref, undefined, "Preferred Silicone Description", "Indicate how you would like your silicone implants to be potentially described.");
 		// Wing position
 		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
 		//PC Goo'ed up?
@@ -4175,6 +4177,67 @@ public function setGenderPref(pref:String):void
 	}
 	
 	selectGenderPref();
+}
+
+public function selectSiliconePref():void
+{
+	clearOutput2();
+	var outputRouter:Function = output2;
+	outputRouter("Your current preferred silicone description is set to ");
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Full", setSiliconePref, 0);
+	addGhostButton(1, "Moderate", setSiliconePref, 1);
+	addGhostButton(2, "Light", setSiliconePref, 2);
+	addGhostButton(3, "None", setSiliconePref, -1);
+	
+	if(!pc.hasStatusEffect("Silicone Preference"))
+	{
+		outputRouter("<b>Full</b>.");
+		outputRouter("\n\nYour bio-silicone implants will be potentially described as fake and plastic, augmented and filled, as well as rounded and gravity defying.");
+		addDisabledGhostButton(0, "Full");
+	}
+	else
+	{
+		if(pc.statusEffectv1("Silicone Preference") == 1)
+		{
+			outputRouter("<b>Moderate</b>.");
+			outputRouter("\n\nYour bio-silicone implants will be potentially described as augmented and filled, as well as rounded and gravity defying, but not fake and plastic.");
+			addDisabledGhostButton(1, "Moderate");
+		}
+		else if(pc.statusEffectv1("Silicone Preference") == 2)
+		{
+			outputRouter("<b>Light</b>.");
+			outputRouter("\n\nYour bio-silicone implants will be potentially described as rounded and gravity defying, but not augmented and filled, nor fake and plastic.");
+			addDisabledGhostButton(2, "Light");
+		}
+		else
+		{
+			outputRouter("<b>None</b>.");
+			outputRouter("\n\nYour bio-silicone implants will not be specifically described.");
+			addDisabledGhostButton(3, "None");
+		}
+	}
+	
+	addGhostButton(14, "Back", backToAppearance, pc);
+}
+public function setSiliconePref(pref:int):void
+{
+	switch(pref)
+	{
+		case -1:
+		case 1:
+		case 2:
+			pc.createStatusEffect("Silicone Preference");
+			pc.setStatusValue("Silicone Preference", 1, pref);
+			break;
+		default:
+			pc.removeStatusEffect("Silicone Preference");
+			break;
+	}
+	
+	selectSiliconePref();
 }
 
 public function selectWingPref():void

@@ -1142,7 +1142,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["CHRISSY_ANAL"] != undefined) totalVirginitiesTaken++;
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
-		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) totalVirginitiesTaken++;
+		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -7704,6 +7704,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_OLYMPIA"] != undefined)
 				{
 					output2("\n<b>* Olympia:</b> Met her");
+					if(olympiaRecruited())
+					{
+						output2(", Crew member");
+						if(olympiaIsCrew()) output2(" (Onboard Ship)");
+					}
+					else if(flags["OLYMPIA_KILLED"] != undefined) output2(", Killed her");
 					if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
 				}
 				// Dr. Teyaal
@@ -8182,6 +8188,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
 				if(flags["FROSTWYRM_GAVE_BATH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Gave Tongue Bath:</b> " + flags["FROSTWYRM_GAVE_BATH"]);
 				if(flags["FROSTWYRM_GOT_BLOWN"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Gave Her Oral:</b> " + flags["FROSTWYRM_GOT_BLOWN"]);
+				if(flags["FROSTWYRM_EATEN_OUT"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Have Eaten Her Out:</b> " + flags["FROSTWYRM_EATEN_OUT"]);
 				// Nykke 1
 				if(flags["NYKKE_MET"] != undefined && flags["NYKKE_VERSION"] == 1)
 				{

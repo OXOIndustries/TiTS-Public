@@ -188,7 +188,8 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	else output("<i>“Sure, come on in,”</i> you say, waving her aboard.");
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
-	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard " + indefiniteArticle(PCShipModel()) + " in a while.”</i>");
+	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around.");
+	if(PCShipIsCasstech()) output(" <i>“Haven’t been aboard a Z14 in a while.”</i>");
 
 	//if PC has Anno aboard:
 	if (annoIsCrew())

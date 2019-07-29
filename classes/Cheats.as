@@ -115,6 +115,26 @@
 				kGAMECLASS.flags["LAPLOVE"] = undefined;
 			}
 		}
+		public static function SJWMode():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["SJW"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>'Shemale' will now be converted to dick-girl.</b>");
+				kGAMECLASS.flags["SJW"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Text will appear in unaltered form.</b>");
+				kGAMECLASS.flags["SJW"] = undefined;
+			}
+		}
+
 		public static function infiniteCrewSpace():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)

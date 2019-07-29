@@ -38,6 +38,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
 		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+		case "sjw": cheatFunc = Cheats.SJWMode; break;
 		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
@@ -184,7 +185,7 @@ public function startCharacterCreation(e:Event = null):void
 				momDesc = "Victor’s child would have a suula mother. Suula are a race of large, winged aliens with a distinctly shark-like appearance. A halfbreed child would have a partially-scaled body, feathery hair, and a powerful shark’s tail. Suula are a colorful race and, regardless of sex, tend to be fairly feminine and voluptuous in figure. Half-suula can be male or female.";
 				break;
 		}
-		addButton(btnSlot, raceName, confirmRaceChoice, race, (raceName + " Mother"), "Victor’s child will be born a full-blooded human.");
+		addButton(btnSlot, raceName, confirmRaceChoice, race, (raceName + " Mother"), momDesc);
 		btnSlot++;
 	}
 	if (GENERATED_CHARACTER["disabled"] == undefined)

@@ -1847,8 +1847,8 @@ public function breedwellPremiumBadEndCowmazonNext():void
 	author("Nonesuch");	
 	
 	moveTo("TAVROS HANGAR");
-		
-	output("You shoot back into your [PCShipName] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
+	
+	output("You shoot back into your [pc.ship] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
 	output("\n\nYou’re in a panic by the time you land in Tavros docking bay. You’re certain you see uniformed peacekeepers approaching your ship as you head up the escalator; you’ll have to ditch it.");
 	if (crew(true, false) > 0) output(" You duck into Anon’s and compose a hurried email to your crew, telling them that you’ve had to scarper, that they are not to look for you, and the ship is theirs to do with as they choose.");
 	output("\n\nIt’s only then, huddled in a dark corner of a bar, that you look at the message the cowmazon left you. PATRONELLA. COME FIND ME, K SUGARLIPS? I CAN LOOK AFTER YOU. XXX. There’s some coordinates, which punched into your codex reveals a virtually uninhabited moon in a virtually uninhabited system, as far out in the current planet rush as it’s possible to be.");

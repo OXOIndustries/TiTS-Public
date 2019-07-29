@@ -610,6 +610,12 @@
 				//ret = ret.replace(/Dr.Badger/g,"Dr.Horrible");
 				//ret = ret.replace(/BADGER/g,"HORRIBLE");
 			}
+			if(kGAMECLASS.flags["SJW"] == 1)
+			{
+				ret = ret.replace(/shemale/g,"dick-girl");
+				ret = ret.replace(/Shemale/g,"Dick-girl");
+				ret = ret.replace(/SHEMALE/g,"DICK-GIRL");
+			}
 
 			//trace(ret);
 			// trace("Maintext content @ recursiveParser = ", mainText.htmlText.length)
