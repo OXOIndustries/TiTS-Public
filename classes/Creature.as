@@ -11576,7 +11576,7 @@
 		}
 		
 		//Checks to see if the player has unlocked the type
-		public function hasTypeUnlocked(type:int):Boolean
+		public function hasTypeUnlocked(type:int, bodypart:String =  "all"):Boolean
 		{
 			switch (type)
 			{
@@ -11799,7 +11799,7 @@
 			return false;
 		}
 		
-		//Builds an array with valid shift options for the body part.
+		//Builds an array with valid shift options for the body part. Array[x][0] is type, Array[x][1] is name
 		public function getValidShiftTypes(bodyPart:String):Array
 		{
 			var validShiftTypes:Array = new Array(); 
@@ -11810,7 +11810,10 @@
 					//Run through all the types, checking each
 					for (i; i < GLOBAL.VALID_COCK_TYPES.length; i++)
 					{
-						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i])) validShiftTypes.push(GLOBAL.VALID_COCK_TYPES[i]);
+						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i]))
+						{
+							validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_COCK_TYPES[i]]]);
+						}
 					}
 					break;
 
