@@ -340,7 +340,7 @@ public function cockBoxMenu(x:int):void
 		}
 		
 		//Name overrides, for cases that the default name would be inappropriate
-		switch (cockList[i])
+		switch (cockList[i][0[)
 		{
 			case GLOBAL.TYPE_HUMAN:
 				typeName = "Terran";
@@ -362,10 +362,10 @@ public function cockBoxMenu(x:int):void
 		}
 		
 		//Disabled button for current cock type
-		if (pc.cocks[x].cType == cockList[i]) addDisabledButton(btnSlot, typeName, typeName, "Your cock is already a " + typeName + " penis.");
+		if (pc.cocks[x].cType == cockList[i][0]) addDisabledButton(btnSlot, typeName, typeName, "Your cock is already a " + typeName + " penis.");
 		
 		//All the other buttons
-		else addButton(btnSlot, typeName, dickBoxTFColorSelect, [x, cockList[i]], typeName, "Get a " + typeName + "penis.");
+		else addButton(btnSlot, typeName, dickBoxTFColorSelect, [x, cockList[i][0]], typeName, "Get a " + typeName + "penis.");
 		btnSlot++;
 		
 		//Ensures final back button is positioned in the correct slot
