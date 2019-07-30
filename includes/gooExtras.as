@@ -2553,7 +2553,7 @@ public function reshapeAGooCawkMenu(arg:Array):void
 	{
 		if(x >= cTypes.length) break;
 		
-		newType = cTypes[x];
+		newType = cTypes[x][0];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
@@ -3174,7 +3174,7 @@ public function pickNewGooCuntMenu(arg:Array):void
 	{
 		if(x >= vTypes.length) break;
 		
-		newType = vTypes[x];
+		newType = vTypes[x][0];
 		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
 		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
 		else btnName = GLOBAL.TYPE_NAMES[newType];
