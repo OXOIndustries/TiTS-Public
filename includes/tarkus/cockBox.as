@@ -345,7 +345,7 @@ public function cockBoxMenu(x:int):void
 		if (pc.cocks[x].cType == cockList[i][0]) addDisabledButton(btnSlot, typeName, typeName, "Your cock is already a " + typeName + " penis.");
 		
 		//All the other buttons
-		else addButton(btnSlot, typeName, dickBoxTFColorSelect, [x, cockList[i][0]], typeName, "Get a " + typeName + "penis.");
+		else addButton(btnSlot, typeName, dickBoxTFColorSelect, [x, cockList[i][0]], typeName, "Get a " + typeName + " penis.");
 		btnSlot++;
 		
 		//Ensures final back button is positioned in the correct slot
