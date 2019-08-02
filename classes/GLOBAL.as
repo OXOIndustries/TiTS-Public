@@ -1057,6 +1057,11 @@
 			TYPE_MOUTHGINA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_ANEMONE,
+			TYPE_SHARK,
+			TYPE_FELINE,
+			TYPE_AVIAN,
+			TYPE_KORGONNE,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
