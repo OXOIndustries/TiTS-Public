@@ -11603,7 +11603,7 @@
 		}
 		
 		//Checks to see if the player has unlocked the type
-		public function hasTypeUnlocked(type:int):Boolean
+		public function hasTypeUnlocked(type:int, bodypart:String =  "all"):Boolean
 		{
 			switch (type)
 			{
@@ -11826,7 +11826,7 @@
 			return false;
 		}
 		
-		//Builds an array with valid shift options for the body part.
+		//Builds an array with valid shift options for the body part. Array[x][0] is type, Array[x][1] is name
 		public function getValidShiftTypes(bodyPart:String):Array
 		{
 			var validShiftTypes:Array = new Array(); 
@@ -11837,14 +11837,56 @@
 					//Run through all the types, checking each
 					for (i; i < GLOBAL.VALID_COCK_TYPES.length; i++)
 					{
-						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i])) validShiftTypes.push(GLOBAL.VALID_COCK_TYPES[i]);
+						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i]))
+						{
+							//Name overrides for when the default would be inappropriate
+							switch (GLOBAL.VALID_COCK_TYPES[i])
+							{
+								case GLOBAL.TYPE_HUMAN:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Terran"]);
+									break;
+								case GLOBAL.TYPE_CANINE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Ausar"]);
+									break;
+								case GLOBAL.TYPE_FELINE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Kaithrit"]);
+									break;
+								case GLOBAL.TYPE_NAGA:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Leithan"]);
+									break;
+								case GLOBAL.TYPE_BEE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Zil"]);
+									break;
+								default:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_COCK_TYPES[i]]]);
+									break;
+							}
+						}
 					}
 					break;
 
 				case "vagina":
 					for (i; i < GLOBAL.VALID_VAGINA_TYPES.length; i++)
 					{
-						if (hasTypeUnlocked(GLOBAL.VALID_VAGINA_TYPES[i])) validShiftTypes.push(GLOBAL.VALID_VAGINA_TYPES[i]);
+						//
+						if (hasTypeUnlocked(GLOBAL.VALID_VAGINA_TYPES[i]))
+						{
+							switch (GLOBAL.VALID_VAGINA_TYPES[i])
+							{
+								case GLOBAL.TYPE_HUMAN:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Terran"]);
+									break;
+								case GLOBAL.TYPE_SNAKE:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Snake-like"]);
+									break;
+								case GLOBAL.TYPE_BEE:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Zil"]);
+									break;
+								default:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_VAGINA_TYPES[i]]]);
+									break;
+							}
+						}
 					}
 					break;
 				default:

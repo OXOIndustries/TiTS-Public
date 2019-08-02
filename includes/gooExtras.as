@@ -2553,12 +2553,9 @@ public function reshapeAGooCawkMenu(arg:Array):void
 	{
 		if(x >= cTypes.length) break;
 		
-		newType = cTypes[x];
-		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
-		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
-		else if(newType == GLOBAL.TYPE_BEE) btnName = "Zil";
-		else if(newType == GLOBAL.TYPE_AVIAN && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_COCK_GRIFFIN) == AmberSeed.FLAG_COCK_GRIFFIN) btnName = "Griffin"; 
-		else btnName = GLOBAL.TYPE_NAMES[newType];
+		newType = cTypes[x][0];
+		btnName = cTypes[x][1];
+			
 		if(pc.cocks[iCock].cType != newType) addGhostButton(btnSlot,btnName,seriouslyThoReshapeDatGooCock,[iCock,newType]);
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The penis is already this shape.");
 		btnSlot++;
@@ -3174,10 +3171,9 @@ public function pickNewGooCuntMenu(arg:Array):void
 	{
 		if(x >= vTypes.length) break;
 		
-		newType = vTypes[x];
-		if(newType == GLOBAL.TYPE_HUMAN) btnName = "Terran";
-		else if(newType == GLOBAL.TYPE_SNAKE) btnName = "Snake-like";
-		else btnName = GLOBAL.TYPE_NAMES[newType];
+		newType = vTypes[x][0];
+		btnName = vTypes[x][1];
+		
 		if(pc.vaginas[iCunt].type != newType) addGhostButton(btnSlot,btnName,actuallyTFToNewCuntType,[iCunt,newType]);
 		else addDisabledGhostButton(btnSlot,btnName,btnName,"The vagina is already this shape.");
 		btnSlot++;
