@@ -48,19 +48,19 @@ public function tavrosTamaniCorpStoreEntry():Boolean
 	//Placeholder booth
 	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined)
 	{
-		output("\n\nOwO What's this?");
-		addButton(1, "Booth", placeholderApproach, true, "Booth", "Go see what the booth is advertising.");
+		output("\n\nSomething calls your attention. There's a curious-looking machine with its own stand and advertised with several, impossible-to-miss neon signs.");
+		addButton(1, "Placeholder Stand", placeholderApproach, undefined, "Placeholder Stand", "The nearby stand calls your attention. You could go check it out.");
 	}
 	else
 	{
-		output("\n\nCheck out the placeholder booth.");
-		addButton(1, "Booth", placeholderApproach, false, "Booth", "Go check the placeholder booth.");
+		output("\n\nNearby, the placeholder booth stands ready if you'd like to take another look.");
+		addButton(1, "Placeholder Stand", placeholderApproach, undefined, "Placeholder Stand", "Go check out the placeholder booth.");
 	}
 
 	return false;
 }
 
-public function placeholderApproach(firstTime:Boolean = false):void
+public function placeholderApproach():void
 {
 	clearOutput();
 	clearMenu();
@@ -68,19 +68,82 @@ public function placeholderApproach(firstTime:Boolean = false):void
 	showName("PLACEHOLDER BOOTH");
 	showBust("");
 	
-	output("Flashing lights, fancy stuff, wow!");
+	output("You approach and take a good look at the whole expo. The device stands at the center of the platform and under a bright light. The base rotates the machine around slowly, so customers can see the whole deal in detail. As for the stand itself, it's heavily - if cheesily - decorated. Someone surely loves pink, because it's all over. Red ribbons also decorate the stand, eventually coming together and forming a large heart. There's also the obvious symbology representing female genitalia. Last, but not least, several neon signs name and advertise the product: Placeholder.");
+	output("\n\n The machine itself is quite sleek and streamlined, featuring smooth lines and a warm, glossy finish. The device looks quite comfortable, almost like an anatommically adaptable, curved chaise lounge, with a large apparatus underneath and is mounted on a sturdy frame that features an adaptable seat and handlebars.");
 	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined) flags["SEEN_PLACEHOLDER_BOOTH"] = 1;
 	
-	//Too Poor
-	if (pc.credits < placeholderPrice) addDisabledButton(0, "Buy", "Buy", "You don't have enough credits to buy this!");
+	addButton(0, "Play Ad", placeholderAd, undefined, "Play Ad", "Get closer to the machine. The commercial seems triggered by proximity.");
+	
+	addButton(1, "Back Off", mainGameMenu, undefined, "Back Off", "You're not intereseted right now, so back off and return to the main floor instead.");
+	
+	if (flags["SEEN_PLACEHOLDER_AD"] == undefined) addDisabledButton(2, "Buy", "Buy", "You don't even know what you'd be buying; you'd better watch the ad first.");
+	else
+	{
+		//Too Poor
+		if (pc.credits < placeholderPrice) addDisabledButton(2, "Buy", "Buy", "You don't have that kind of money.");
+	
+		//We've already got one
+		else if (!canBuyPlaceholder()) addDisabledButton(2, "Buy", "Buy", "You've already got a placeholder!");
+	
+		else addButton(2, "Buy", buyPlaceholder, undefined, "Buy", "Buy a placeholder.");
+	}
+}
+
+public function placeholderAd():void
+{
+	clearOutput();
+	clearMenu();
+	author("Thebiologist");
+	showName("PLACEHOLDER BOOTH");
+	showBust("");
+	
+	
+	output("Once you're close enough, a corny, “erotic” fanfare begins playing - the kind you'd expect in low budget, vintage pornos. Suddenly, a hologram manifests right in front of you" + (flags["SEEN_PLACEHOLDER_AD"] == undefined ? ", startling you and nearly causing you to knock over a nearby stall.":"."));
+	
+	output("\n\nAn overly sexualized hardlight human woman stands in front of this “Cunt Crafter” with her eyes shut and her hands covering her crotch. Her arms press on her breast, lifting and accentuating them. You approach again" + (flags["SEEN_PLACEHOLDER_AD"] == undefined ? ", curious about the meaning of this":"") + " and poke the holographic woman a couple of times. She opens her eyes, smiles and looks right at you.");
+
+	output("\n\n<i>“Welcome, dear sir or madam. TamaniCorp proudly presents to you our latest model of Placeholder. Our highly customizable and universally adaptable pussy modification engine now arrives to make your life easier. Be it female, hermaphrodite or otherwise pussy bearing individual, our product adapts to all your needs. Look no more if all your heart desires is a quick and reliable method to modify your genitalia. The Placeholder offers on-demand and near-instantaneous pussy transformation and comes pre-installed with a modest selection of the most popular vaginas. Additional features may be purchased separately. Would you like to know more?”</i>");
+
+	output("\n\nThe hologram keeps smiling as it stares at you - it's a bit unsettling - and you guess you have to say something for it to continue. Well, you're already here, so might as well listen to the whole deal. You nod and say yes. The hardlight woman moves anew and continues her exposition.");
+
+	output("\n\n<i>“The Placeholder is a convenient appliance - surely a must-have by any modding aficionado - that only requires a power source and an omniversal modification cartridge to operate.”</i> The holo-lady outstretches her arm and a large, hardlight cylinder manifests on her hand."); 
+
+	output("\n\n<i>“Containing all the necessary building blocks and a large army of microsurgeons, these bio-canisters are all you need for a quick change. No more would you need to purchase expensive and specific, targeted transformatives, and of course, they only cost a tiny fraction of what you'd pay for a full retail product. Of course, a firmware compatibility upgrade is available to link with our customers' own microsurgeons should they have them, completely eliminating the need for such cartridges.”</i>");
+
+	output("\n\nNice, that means you won't have to buy a replacement cylinder every time you use the machine. So far this machine looks convenient, just as advertised." + (pc.hasVagina() ? " Too bad you don't have a pussy to use it. Of course, you could always buy it anyway just in case.":""));
+
+	output("\n\n<i>“The Placeholder is easy to operate as well. Once you've inserted the cylinder in this compartment...”</i> the woman points out at a side opening in the machine and inserts the hardlight cartridge in. <i>“All you need to do now is sit down and relax.”</i> The lady winks at you before positioning herself over the device, lying on top of it and sitting down on the seat, then grabbing the handlebars. A virtual screen pops up in front of her and an artificial, feminine voice chimes in.");
+
+	output("\n\n<i>“Welcome to Placeholder's user interface. I'm your personal V.I. assistant. You may browse my catalog and select an option or you may state your desires.”</i> The holo-lady giggles and speaks up. <i>“Alright, give me a nice... mmmm... suula pussy!”</i> The device beeps in confirmation. <i>“Preparing selection and securing customer. Stand by.”</i> A few holographic safety bars secure the woman in place, who reacts startled.");
+
+	output("\n\n<i>“Wait! Is this really on? You've said we were shooting a commercial! L-let me go! I like my pussy the way it is!”</i> The woman struggles for a bit, but she's unable to break free. <i>“Commending modifications.”</i> The artificial voice gleefully chirps. <i>“Wait! Nononono! AH! O-oh! M-my... AH! Stars! It's entering my pussy! F-fuuuuck!”</i> You can see the holo-lady's expression changing drastically over time. She's clearly distressed at first, then strained, but eventually, her face shows a flustered appearance and she starts whining meekly.");
+
+	output("\n\n<i>“A-ah! This is... gosh! Aaaaaaah! It feels... sooooo! Fucking AH! GOOOD! Fuckfuckfuckfuck. Ah! It's going in deeper.”</i> You hear an increasingly loud spool-up sound that ends up in a wet, splorch, followed immediately by a thunderous, throaty moan coming from the poor, trapped woman. She winces and whines, delivering one sonorous cry of pleasure after another, like an obscene symphony of bliss and perversion.");
+
+	output("\n\n<i>“D-don't stop now! Ah! I'm about to... I'm about to... AAAAAAH! STARS!”</i> The woman's face looks surreal right now. Her eyes are rolling back, and her mouth is wide open, with her tongue lolling out. She's delivering a loud and constant cacophony of moans and wails of ecstasy almost like her mind just snapped. You hear a very faint masculine voice on the background.");
+
+	output("\n\n<i>“Boy... this is definitely going in the commercial.”</i> Any further comment seems to be drowned by the incessant cries of the woman, who's, at the moment, cumming her brains out. A final howl of pure bliss signals the peak of her climax, and the woman's back arches obscenely as her body tenses up. Then, she falls completely limp over the machine and lets go of the handlebars. The device keeps working its magic, not caring in the slightest about the near-unconscious, sensory-overloaded woman, who's drooling, nearly catatonic. Only a few twitches and the occasional, soft moan acknowledge her last vestiges of lucidity."); 
+
+	output("\n\n<i>“Procedure finalized. Have a nice day.”</i> The electronic voice announces. The holo-woman attempts to move, only to fall to the ground on her back. She spreads her legs, displaying her brand new suula pussy. It has a cute, neon pink clit with puffy labia to match, as well as a few tentacle tendrils sticking out, probing for a cock to prey upon. The woman immediately reaches for her clit and starts masturbating like an ausar in heat that's been tied up and denied for a whole week. She's vicious and relentless, not caring in the slightest about her surroundings or anything else but her own pleasure.");
+
+	output("\n\nThe lust-struck lady carries on with her self loving, as the myriad of aphrodisiac tendrils coming from her pussy sting her all over her hand, clit and labia, causing her to squirt and moan like a frenzied animal.");
+
+	output("\n\n<i>“Alright, alright, I think that's enough. Zoom in and cut.” You hear the male voice from before, still muffled and far sounding. The hologram pauses and disappears, only to reappear after a couple of seconds. It's the same lady as before, and she's again standing. You can see her pussy remains modified, and she displays a strained expression, trying her best to smile. While the woman tries to remain stoic, it's clear she's still flustered, and you catch a few discreet attempts at pleasuring herself, squeezing her clit.</i>");
+
+	output("\n\n<i>“The- Ah! P-Placeholder... features unparalleled quality and a vast array of AH!vailable... available... ngh! Customization options for your pussy. T-TamaniCorp only delivers the best of the best. For all your sexual needs and transformatives, c-choose Tamani. Ah! P-please... again. I-”</i>"); 
+
+	output("\n\nThe hardlight lady disappears and is replaced by a rotating logo of Tamani featuring the name and price of the product as well as the option to “Buy now.” Well, now it's time to decide what to do.");
+
+	flags["SEEN_PLACEHOLDER_AD"] = true;
+	
+	if (pc.credits < placeholderPrice) addDisabledButton(0, "Buy", "Buy", "You don't have that kind of money.");
 	
 	//We've already got one
 	else if (!canBuyPlaceholder()) addDisabledButton(0, "Buy", "Buy", "You've already got a placeholder!");
 	
 	else addButton(0, "Buy", buyPlaceholder, undefined, "Buy", "Buy a placeholder.");
-
 	
-	addButton(14, "Back", mainGameMenu, undefined, "Back", "Go back to the rest of the store.");
+	addButton(1, "Back Off", mainGameMenu, undefined, "Back Off", "You're not intereseted right now, so back off and return to the main floor instead.");
 }
 
 public function buyPlaceholder():void
@@ -92,8 +155,13 @@ public function buyPlaceholder():void
 	showBust("");
 	
 	pc.credits -= placeholderPrice;
-	output("Stuff. I'll get to it.");
-	flags["PLACEHOLDER_DELIVERY_WAITING"] = true;
+	output("You press the holographic button and hear a catchy tune and a synthetic, feminine voice."); 
+
+	output("\n\n<i>“TamaniCorp thanks you for your purchase. A brand new Placeholder is now en - route to your current address: [pc.ship]. Owned by: [pc.name] Steele. Located in: Local hangar. Payment has been deducted from your account. Enjoy your purchase and have a nice day.”</i>");
+
+	output("\n\nWell, that was... efficient. It's true, they've already charged you, and according to your codex, a drone is already flying towards your ship. The package should be waiting for you once you get back.");
+
+	flags["PLACEHOLDER_INSTALLED"] = 2;
 	addButton(0, "Next", mainGameMenu, undefined, "Next", "Go back to the rest of the store.");
 }
 
