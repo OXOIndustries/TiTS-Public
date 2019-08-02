@@ -2843,7 +2843,7 @@ public function shipStorageMenuRoot():void
 		activateSiegwulfe();
 		return;
 	}
-	if (flags["PLACEHOLDER_DELIVERY_WAITING"] == true) 
+	if (flags["PLACEHOLDER_INSTALLED"] == 2) 
 	{
 		placeholderDeliveryInstallation();
 		return;
@@ -3418,4 +3418,4 @@ public function queueReturnAllItems(autoEquip:Boolean = false, clearScreen:Boole
 	}
 }
 
-
+
