@@ -51,7 +51,8 @@ package classes.Items.Transformatives
 		{
 			if (target is PlayerCharacter) 
 			{
-				return kGAMECLASS.placeholderInstallation();
+				//return kGAMECLASS.placeholderInstallation();
+				return true;
 			}
 			else
 			{
