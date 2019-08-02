@@ -320,14 +320,14 @@ public function cockBoxMenu(x:int):void
 	//Default list
 	else 
 	{
-		cockList.push(GLOBAL.TYPE_HUMAN);
-		cockList.push(GLOBAL.TYPE_CANINE);
-		cockList.push(GLOBAL.TYPE_FELINE);
-		cockList.push(GLOBAL.TYPE_KUITAN);
-		cockList.push(GLOBAL.TYPE_NAGA);
-		cockList.push(GLOBAL.TYPE_GRYVAIN);
-		cockList.push(GLOBAL.TYPE_EQUINE);
-		cockList.push(GLOBAL.TYPE_SIREN);
+		cockList.push([GLOBAL.TYPE_HUMAN, "Terran"]);
+		cockList.push([GLOBAL.TYPE_CANINE, "Ausar"]);
+		cockList.push([GLOBAL.TYPE_FELINE, "Kaithrit"]);
+		cockList.push([GLOBAL.TYPE_KUITAN, "Kui-tan"]);
+		cockList.push([GLOBAL.TYPE_NAGA, "Leithan"]);
+		cockList.push([GLOBAL.TYPE_GRYVAIN, "Gryvain"]);
+		cockList.push([GLOBAL.TYPE_EQUINE, "Equine"]);
+		cockList.push([GLOBAL.TYPE_SIREN, "Suula"]);
 	}
 	
 	for(i = 0; i < cockList.length; i++)
@@ -339,27 +339,7 @@ public function cockBoxMenu(x:int):void
 			btnSlot++;
 		}
 		
-		//Name overrides, for cases that the default name would be inappropriate
-		switch (cockList[i][0[)
-		{
-			case GLOBAL.TYPE_HUMAN:
-				typeName = "Terran";
-				break;
-			case GLOBAL.TYPE_CANINE:
-				typeName = "Ausar";
-				break;
-			case GLOBAL.TYPE_FELINE:
-				typeName = "Kaithrit";
-				break;
-			case GLOBAL.TYPE_NAGA:
-				typeName = "Leithan";
-				break;
-			case GLOBAL.TYPE_BEE:
-				typeName = "Zil";
-				break;
-			default:
-				typeName = GLOBAL.TYPE_NAMES[cockList[i]];
-		}
+		typeName = cockList[i][1];
 		
 		//Disabled button for current cock type
 		if (pc.cocks[x].cType == cockList[i][0]) addDisabledButton(btnSlot, typeName, typeName, "Your cock is already a " + typeName + " penis.");
