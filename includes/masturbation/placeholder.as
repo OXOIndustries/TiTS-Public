@@ -2,7 +2,7 @@ import classes.Characters.Varmint;
 import classes.Items.Transformatives.Placeholder;
 import classes.Characters.PlayerCharacter;
 
-/*To do: Add in lock checks, tail vagina change type, actually get a name I guess, all the text
+/*To do: Add in lock checks actually get a name I guess,
 
    Revamp getValidShiftTypes
    -Pass name and type
@@ -11,17 +11,18 @@ import classes.Characters.PlayerCharacter;
    Check for invalid PC genital types
    -Check for vagina flags that aren't universal
 
-   Upgrade buy menu
    Duplicate vagina
-   Customzie vagina
+
  */
 
 //flags["PLACEHOLDER_INSTALLED"] == 2 means delivery waiting
 //flags["PLACEHOLDER_INSTALLED"] == 1 means installed on ship
 public var placeholderPrice:int = 100000;
-private var placeholderCodexUpgradePrice:int = 25000;
-private var placeholderDuplicatorPrice:int = 75000;
+private var placeholderGalotianPrice:int = 10000;
+private var placeholderCodexUpgradePrice:int = 20000;
+private var placeholderDuplicatorPrice:int = 70000;
 private var placeholderDeluxePrice:int = 100000;
+
 private var tailginaFlags:Array = [GLOBAL.FLAG_OVIPOSITOR, GLOBAL.FLAG_FLARED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_KNOTTED, GLOBAL.FLAG_RIBBED, GLOBAL.FLAG_NUBBY, GLOBAL.FLAG_APHRODISIAC_LACED, GLOBAL.FLAG_TENDRIL]
 private var defaultPussyTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_AVIAN];
 private var defaultTailginaTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE];
@@ -120,14 +121,35 @@ public function placeholderMainMenu():void
 		addDisabledButton(btnSlot, "Pussy", "Pussy", "You should get a pussy or tailcunt before attempting to modify it.");
 	}
 	
-	for (var i:int = 0; i < pc.vaginas.length; i++)
+	//No goos without an upgrade, since that would normally lock vagina type
+	if (pc.hasStatusEffect("Goo Crotch") && flags["PLACEHOLDER_GALOTIAN_UPGRADE"] == undefined && pc.hasVagina())
 	{
-		addButton(btnSlot, "Pussy " + (i + 1), placeholderCustomizeMenu, i, "Modify", "Take your junk for a spin. Time to mod your snatch.");
+		addDisabledButton(btnSlot, "Pussy", "Pussy", "Your mutable physiology prevents the Placeholder from working on your crotch without an upgrade.");
 		btnSlot++;
 	}
 	
+	else
+	{
+		//Add a button for each vagina
+		for (var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			//Placeholder doesn't work on roboginas 
+			if (pc.vaginas[i].type == GLOBAL.TYPE_SYNTHETIC) addDisabledButton(btnSlot, "Pussy " + (i + 1), "Pussy " + (i + 1), "The Placeholder can't modify robotic vaginas.");
+			
+			else addButton(btnSlot, "Pussy " + (i + 1), placeholderCustomizeMenu, i, "Modify", "Take your junk for a spin. Time to mod your snatch.");
+			btnSlot++;
+		}
+	}
+	
 	//Tailgina button
-	if (pc.hasTailCunt()) addButton(btnSlot, "Tailcunt" + (pc.hasTails() ? "s" : ""), placeholderCustomizeMenu, -1, "Tailcunt" + (pc.hasTails() ? "s" : ""), (pc.hasTails() ? "Modify your tailginas.":"Modify your tailgina."));
+	if (pc.hasTailCunt())
+	{
+		//Placeholder doesn't work on robotailginas
+		if (pc.tailGenitalArg == GLOBAL.TYPE_SYNTHETIC) addDisabledButton(btnSlot, (pc.hasTails() ? "Tailcunts":"Tailcunt"), (pc.hasTails() ? "Tailcunts":"Tailcunt"), "The Placeholder can't modify robotic body parts.");
+		//Need an upgrade for fully gooified pcs
+		else if (flags["GALOMAX_DOSES"] == 5 && flags["PLACEHOLDER_GALOTIAN_UPGRADE"] == undefined) addDisabledButton(btnSlot, (pc.hasTails() ? "Tailcunts":"Tailcunt"), (pc.hasTails() ? "Tailcunts":"Tailcunt"), "Your mutable physiology prevents the Placeholder from working on you without an upgrade.");
+		else addButton(btnSlot, "Tailcunt" + (pc.hasTails() ? "s" : ""), placeholderCustomizeMenu, -1, "Tailcunt" + (pc.hasTails() ? "s" : ""), (pc.hasTails() ? "Modify your tailginas.":"Modify your tailgina."));
+	}
 	
 	addButton(12, "Store", placeholderBuyMenu, undefined, "Store", "Browse the add-on store and purchase new modifications.");
 	addButton(13, "Uninstall", placeholderUninstallation);
@@ -175,13 +197,12 @@ public function placeholderCustomizeMenu(vagina:int):void
 			output("\n<b>* Clitoris:</b> " + pc.vaginas[vagina].clits);
 			output("\n<b>* Clitoris, Length:</b> " + prettifyLength(pc.clitLength));
 		}
-		if (pc.vaginas[vagina].bonusCapacity == 0) output("\n<b>* Capacity:</b> " + prettifyVolume(pc.vaginalCapacity(vagina)));
-		else
-		{
-			output("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[vagina].bonusCapacity));
-		}
-		output("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[vagina].looseness(), 3));
+		output("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[vagina].bonusCapacity));
 		output("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[vagina].minLooseness, 3));
+		output("\n<b>* Girlcum, Quantity Modifier:</b> " + Math.round(pc.girlCumMultiplier() * 1000) / 10 + " %");
+		output("\n<b>* Fertility:</b> " + (pc.fertility() <= 0 ? "Infertile":Math.round(pc.fertility()*1000)/10 + " %"));
+		output("\n<b>* Pregnancy Speed Modifier:</b> " + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
+		output("\n<b>* Pregnancy Quantity Modifier:</b> " + Math.round(pc.pregnancyMultiplier()*1000)/10 + " %");
 	}
 	
 	//Tailgina Description
@@ -192,28 +213,46 @@ public function placeholderCustomizeMenu(vagina:int):void
 		output(" " + GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 		output("\n<b>* Color:</b>");
 		output(" " + StringUtil.toDisplayCase(pc.tailGenitalColor));
-		if (pc.tailFlags.length > 0)
+		for (i; i < tailginaFlags.length; )
 		{
-			output("\n<b>* Flags:</b>");
-			for (i; i < tailginaFlags.length; )
+			if (pc.hasTailFlag(tailginaFlags[i]))
 			{
-				if (pc.hasTailFlag(tailginaFlags[i]))
-				{
-					if (tailginaFlagString != "") tailginaFlagString += ",";
-					tailginaFlagString += (" " + GLOBAL.FLAG_NAMES[tailginaFlags[i]]);
-				}
-				i++;
+				if (tailginaFlagString != "") tailginaFlagString += ",";
+				tailginaFlagString += (" " + GLOBAL.FLAG_NAMES[tailginaFlags[i]]);
 			}
-			output(tailginaFlagString);
+			i++;
 		}
+		if (tailginaFlagString != "") output("\n<b>* Flags:</b> " + tailginaFlagString);
 	}
 	
 	//Vagina buttons
 	if (vagina != -1)
 	{
-		output("\n\nHow are you going to customize your vagina?");
+		if (flags["PLACEHOLDER_DELUXE_EDITION"]) output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 		
 		addButton(0, "Type", placeholderSelectType, vagina, "Type", "Change the type of your " + GLOBAL.TYPE_NAMES[pc.vaginas[vagina].type]);
+		
+		//Duplicator upgrade buttons; need some shenanigans to make sure the buttons are positioned properly.
+		//Duplicator upgrade but no deluxe edition
+		if (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] && flags["PLACEHOLDER_DELUXE_EDITION"] == undefined)
+		{
+			if (pc.vaginas.length >= 3) addDisabledButton(1, "Copy Pussy", "Copy Pussy", "You already have as many vaginas as your body can hold.");
+			else addButton(1, "Copy Pussy", placeholderDuplicateVagina, vagina, "Copy Pussy", "Duplicate this vagina.");
+			
+			if (!pc.removeVaginaUnlocked()) addDisabledButton(2, "Remove Pussy", "Remove Pussy", "You can't remove this vagina.");
+			else addButton(2, "Remove Pussy", placeholderRemoveVagina, vagina, "Remove Pussy", "Remove this vagina.");
+		}
+		//Duplicator upgrade and deluxe edition
+		else if (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"])
+		{
+			if (pc.vaginas.length >= 3) addDisabledButton(25, "Copy Pussy", "Copy Pussy", "You already have as many vaginas as your body can hold.");
+			else addButton(25, "Copy Pussy", placeholderDuplicateVagina, vagina, "Copy Pussy", "Duplicate this vagina.");
+			
+			if (!pc.removeVaginaUnlocked()) addDisabledButton(26, "Remove Pussy", "Remove Pussy", "You can't remove this vagina.");
+			else addButton(26, "Remove Pussy", placeholderRemoveVagina, vagina, "Remove Pussy", "Remove this vagina.");
+		}
+		
+		//Deluxe Edition Buttons. So many buttons...
 		if (flags["PLACEHOLDER_DELUXE_EDITION"])
 		{
 			addButton(1, "Color", placeholderSelectColorMenu, vagina, "Color", "Change the color of your " + GLOBAL.TYPE_NAMES[pc.vaginas[vagina].type] + " pussy.");
@@ -227,11 +266,11 @@ public function placeholderCustomizeMenu(vagina:int):void
 			if (pc.vaginas[vagina].hymen) addDisabledButton(5, "Regen Hymen", "Regen Hymen", "Your vagina's hymen is intact.");
 			else addButton(5, "Regen Hymen", placeholderChangeHymen, vagina, "Regen Hymen", "Regenerate your vagina's hymen.");
 			
-			if (pc.vaginas[vagina].wetnessRaw >= 8) addDisabledButton(6, "Increase Wetness", "Increase Wetness", "Your vagina is already as wet as this machine can make it.");
-			else addButton(6, "Increase Wetness", placeholderChangeWetness, [vagina, true], "Increase Wetness", "Increase the wetness of your vagina.");
+			if (pc.vaginas[vagina].wetnessRaw >= 8) addDisabledButton(6, "Inc. Wetness", "Increase Wetness", "Your vagina is already as wet as this machine can make it.");
+			else addButton(6, "Inc. Wetness", placeholderChangeWetness, [vagina, true], "Increase Wetness", "Increase the wetness of your vagina.");
 			
-			if (pc.vaginas[vagina].wetnessRaw <= 0) addDisabledButton(7, "Decrease Wetness", "Decrease Wetness", "Your vagina is already as dry as this machine can make it.");
-			else addButton(7, "Decrease Wetness", placeholderChangeWetness, [vagina, false], "Decrease Wetness", "Decrease the wetness of your vagina.");
+			if (pc.vaginas[vagina].wetnessRaw <= 0) addDisabledButton(7, "Dec. Wetness", "Decrease Wetness", "Your vagina is already as dry as this machine can make it.");
+			else addButton(7, "Dec. Wetness", placeholderChangeWetness, [vagina, false], "Decrease Wetness", "Decrease the wetness of your vagina.");
 			
 			addButton(8, "Add Clit", placeholderChangeClitNumber, [vagina, true], "Add Clit", "Add a clitoris to your vagina.");
 			
@@ -249,6 +288,36 @@ public function placeholderCustomizeMenu(vagina:int):void
 			
 			if (pc.vaginas[vagina].bonusCapacity <= 0) addDisabledButton(13, "Decrease Cap.", "Decrease Capacity", "Your vagina is already as tight as this machine can make it.");
 			else addButton(13, "Decrease Cap.", placeholderChangeBonusCapacity, [vagina, false], "Decrease Capacity", "Decrease the bonus capacity of your vagina.");
+			
+			if (pc.vaginas[vagina].minLooseness >= 5) addDisabledButton(15, "Inc. Min. Looseness", "Increase Minimum Looseness", "Your vagina is as loose as this machine can make it.");
+			else addButton(15, "Inc. Min. Looseness", placeholderChangeMinimumLooseness, [vagina, true], "Increase Minimum Looseness", "Increase the minimum looseness of your vagina.");
+			
+			if (pc.vaginas[vagina].minLooseness <= 1) addDisabledButton(16, "Dec. Min. Looseness", "Decrease Minimum Looseness", "Your vagina is as tight as this machine can make it.");
+			else addButton(16, "Dec. Min. Looseness", placeholderChangeMinimumLooseness, [vagina, true], "Decrease Minimum Looseness", "Decrease the minimum looseness of your vagina.");
+			
+			if (pc.girlCumMultiplierRaw >= 10) addDisabledButton(17, "Inc. Girl Cum", "Increase Girl Cum", "You cum as much as this machine can make you.");
+			else addButton(17, "Inc. Girl Cum", placeholderChangeGirlCumMultiplier, true, "Increase Girl Cum", "Increase how much you cum.");
+			
+			if (pc.girlCumMultiplierRaw <= 1) addDisabledButton(18, "Dec. Girl Cum", "Decrease Girl Cum", "You cum as little as this machine can make you.");
+			else addButton(18, "Dec. Girl Cum", placeholderChangeGirlCumMultiplier, false, "Decrease Girl Cum", "Decrease how much you cum.");
+			
+			if (pc.fertilityRaw >= 10) addDisabledButton(19, "Inc. Fertility", "Increase Fertility", "You're as fertile as this machine can make you.");
+			else addButton(19, "Inc. Fertility", placeholderChangeFertility, true, "Increase Fertility", "Increase your fertility.");
+			
+			if (pc.fertilityRaw <= 1) addDisabledButton(20, "Dec. Fertility", "Decrease Fertility", "Your fertility is as low as this machine can make it.");
+			else addButton(20, "Dec. Fertility", placeholderChangeFertility, false, "Decrease Fertility", "Decrease your fertility.");
+			
+			if (pc.pregnancyIncubationBonusMotherRaw >= 10) addDisabledButton(21, "Inc. Preg Speed", "Increase Incubation Speed", "Your pregnancies are as fast as this machine can make them.");
+			else addButton(21, "Inc. Preg Speed", placeholderChangeIncubationSpeed, true, "Increase Incubation Speed", "Increase your incubation speed modifier.");
+			
+			if (pc.pregnancyIncubationBonusMotherRaw <= 1) addDisabledButton(22, "Dec. Preg Speed", "Decrease Incubation Speed", "Your pregnancies are as slow as this machine can make them.");
+			else addButton(22, "Decrease Inc. Speed", placeholderChangeIncubationSpeed, false, "Decrease Inc. Speed", "Decrease your incubation speed modifier.");
+			
+			if (pc.pregnancyMultiplierRaw >= 5) addDisabledButton(23, "Inc. Preg #", "Increase Incubation Quantity", "Your broods are as large as this machine can make them.");
+			else addButton(23, "Inc. Preg #", placeholderChangeIncubationQuantity, true, "Increase Incubation Quantity", "Increase your incubation quantity modifier.");
+			
+			if (pc.pregnancyMultiplierRaw <= 1) addDisabledButton(24, "Dec. Preg #", "Decrease Incubation Quantity", "Your broods are as small as this machine can make them.");
+			else addButton(24, "Dec. Preg #", placeholderChangeIncubationQuantity, false, "Decrease Incubation Quantity", "Decrease your incubation quantity modifier.");
 		}
 	}
 	
@@ -268,6 +337,7 @@ public function placeholderCustomizeMenu(vagina:int):void
 	}
 	
 	addButton(14, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
+	if (flags["PLACEHOLDER_DELUXE_EDITION"] && vaginia != -1) addButton(29, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
 }
 
 //MENU SELECTIONS
@@ -735,19 +805,19 @@ public function placeholderChangeText(vagina:int, flags:Array):void
 	//Tailgina scene
 	else
 	{
-		output("It's nice to see you also have to option to modify your genitail. You take a quick glance at your [pc.tailcunt] and grin. Yeah, it could use a new appearance. You punch the new changes into the holoscreen and confirm your selection.");
+		output("It's nice to see you also have to option to modify your genitail. You take a quick glance at your [pc.tailCunt] and grin. Yeah, it could use a new appearance. You punch the new changes into the holoscreen and confirm your selection.");
 
-		output("\n\nA synthetic, feminine voice responds to your input. <i>“Genitail modifications selected. Synchronizing. Adapting seating. Please, press your genitail against the modification docket.”</i> A pair of pink, silicone semi-circles illuminate, indicating what you should do next. You take a seat and relax, then  move your [pc.tailcunt] and press it against the cunt-shaped slot.");
+		output("\n\nA synthetic, feminine voice responds to your input. <i>“Genitail modifications selected. Synchronizing. Adapting seating. Please, press your genitail against the modification docket.”</i> A pair of pink, silicone semi-circles illuminate, indicating what you should do next. You take a seat and relax, then  move your [pc.tailCunt] and press it against the cunt-shaped slot.");
 
 		output("\n\n<i>“Securing genitail. Stand by.”</i> A pair of adaptable straps make their appearance and loop around your [pc.tail]'s tip, firmly securing your tailborne snatch. Well, now you just have to wait and let the machine work its magic. You relax and lie down on top of the padding that protects the device. This material is otherworldly. It adapts perfectly to your body's contour and feels almost like your lying on a cloud.");
 
 		output("\n\nA few seconds pass, and you can feel the cushion, seat and docket warm up until they reach a nice and relaxing body temperature. You take it easy and grab the handlebars. Mmmm... if this doesn't begin soon, you could totally fall asleep here.");
 
-		output("\n\n<i>“Phase one.”</i> True to your desires, something pokes in between the silicone lips. You can feel it's shaped like a simple dildo, and it presses against your labia just slightly. <i>“Commencing modifications. Please remain calm and control your genitail.”</i> Here we go! The device starts rumbling at low intensity, vibrating smoothly and teasing your [pc.tailcunt] with a delightful back-and-forth. The sensation is quite stimulating, and your tail slit reacts and squirms a bit. Soon, your tail pussy readies itself to welcome its new friend, opening wide and rewarding the unthinking tool with a few dollops of its natural lube.");
+		output("\n\n<i>“Phase one.”</i> True to your desires, something pokes in between the silicone lips. You can feel it's shaped like a simple dildo, and it presses against your labia just slightly. <i>“Commencing modifications. Please remain calm and control your genitail.”</i> Here we go! The device starts rumbling at low intensity, vibrating smoothly and teasing your [pc.tailCunt] with a delightful back-and-forth. The sensation is quite stimulating, and your tail slit reacts and squirms a bit. Soon, your tail pussy readies itself to welcome its new friend, opening wide and rewarding the unthinking tool with a few dollops of its natural lube.");
 
 		output("\n\nAh! This is truly captivating. The vibe has cranked up the power and it's now moving up and down, slowly caressing your labia. You're unsure how, but this machine seems to know you inside and out, because it hits all the right spots with millimeter precision. You can already feel the pressure rising. Your orgasm is slowly building up inside you. For a machine, this thing is quite the gentle lover.");
 
-		output("\n\nThe vibe pushes a couple of inches inside, and it switches to a different massage mode, delivering smooth, circular motions while increasing its intensity. Fuck! Now this is too much. Your [pc.tailcunt] is taking the toll. It struggles and trembles from the intensity of the situation, trying to push harder and pleasure itself, but it's firmly secured.");
+		output("\n\nThe vibe pushes a couple of inches inside, and it switches to a different massage mode, delivering smooth, circular motions while increasing its intensity. Fuck! Now this is too much. Your [pc.tailCunt] is taking the toll. It struggles and trembles from the intensity of the situation, trying to push harder and pleasure itself, but it's firmly secured.");
 
 		output("\n\nYou feel an intense heat and a powerful tingling sensation coming from your tailborne breeder and climbing all the way up your [pc.tail] and spine. This is so odd, but it feels unnaturally pleasurable at the same time. You won't be able to stand this anymore. Your mind is clouded, overwhelmed by lust and delight. You can feel your climax peeking around the corner, yet you're denied time and again, almost like on purpose. Is this damn thing teasing you?! It can't be.");
 
@@ -767,7 +837,7 @@ public function placeholderChangeText(vagina:int, flags:Array):void
 
 		output("\n\nOrgasm after orgasm hits your very being, threatening to take away your consciousness. You barely manage to hold, only to fail as the most intense climax yet hits your brain like a sledgehammer, knocking you off.");
 
-		output("\n\nYou snap out of your stupor a few minutes later. You're completely limp and drooling all over the machine. You've been out for a while, and you can barely react. The holoscreen informs you that the procedure is over, and urges you to remove yourself from the machine. With some difficulty, you stand up and check your brand new [pc.tailcunt].");
+		output("\n\nYou snap out of your stupor a few minutes later. You're completely limp and drooling all over the machine. You've been out for a while, and you can barely react. The holoscreen informs you that the procedure is over, and urges you to remove yourself from the machine. With some difficulty, you stand up and check your brand new [pc.tailCunt].");
 
 		processTime(10);
 		if (pc.hasTails())
@@ -1093,6 +1163,142 @@ public function placeholderChangeMinimumLooseness(arg:Array):void
 	addButton(0, "Next", placeholderMainMenu);
 }
 
+//Changes girl cum multiplier
+public function placeholderChangeGirlCumMultiplier(increase:Boolean):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	
+	placeholderChangeText(1, []);
+		
+	if (increase)
+	{
+		pc.girlCumMultiplierRaw += 1;
+		if (pc.girlCumMultiplierRaw > 10) pc.girlCumMultiplierRaw = 10;
+	}
+	
+	else
+	{
+		pc.girlCumMultiplierRaw -= 1;
+		if (pc.girlCumMultiplierRaw < 1) pc.girlCumMultiplierRaw = 1;
+	}
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
+//Changes fertility
+public function placeholderChangeFertility(increase:Boolean):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	
+	placeholderChangeText(1, []);
+		
+	if (increase)
+	{
+		pc.fertilityRaw += 1;
+		if (pc.fertilityRaw > 10) pc.fertilityRaw = 10;
+	}
+	
+	else
+	{
+		pc.fertilityRaw -= 1;
+		if (pc.fertilityRaw < 1) pc.fertilityRaw = 1;
+	}
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
+//Changes incubation speed
+public function placeholderChangeIncubationSpeed(increase:Boolean):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	
+	placeholderChangeText(1, []);
+		
+	if (increase)
+	{
+		pc.pregnancyIncubationBonusMotherRaw += 1;
+		if (pc.pregnancyIncubationBonusMotherRaw > 10) pc.pregnancyIncubationBonusMotherRaw = 10;
+	}
+	
+	else
+	{
+		pc.pregnancyIncubationBonusMotherRaw -= 1;
+		if (pc.pregnancyIncubationBonusMotherRaw < 1) pc.pregnancyIncubationBonusMotherRaw = 1;
+	}
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
+//Changes incubation quantity
+public function placeholderChangeIncubationQuantity(increase:Boolean):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	
+	placeholderChangeText(1, []);
+		
+	if (increase)
+	{
+		pc.pregnancyMultiplierRaw += 1;
+		if (pc.pregnancyMultiplierRaw > 5) pc.pregnancyMultiplierRaw = 5;
+	}
+	
+	else
+	{
+		pc.pregnancyMultiplierRaw -= 1;
+		if (pc.pregnancyMultiplierRaw < 1) pc.pregnancyMultiplierRaw = 1;
+	}
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
+//Duplicates vagina
+public function placeholderDuplicateVagina(vagina:int):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	var targetVagina:int = pc.vaginas.length;
+	
+	placeholderChangeText(vagina, []);
+
+	pc.createVagina();
+	pc.copyVagina(targetVagina, vagina);
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
+public function placeholderRemoveVagina(vagina:int):void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nPLACEHOLDER");
+	showBust("");
+	author("Thebiologist");
+	
+	placeholderChangeText(vagina, []);
+	pc.removeVagina(vagina);
+	
+	addButton(0, "Next", placeholderMainMenu);
+}
+
 //BUY MENU FUNCTIONS
 //Menu of available upgrades.
 public function placeholderBuyMenu():void
@@ -1107,6 +1313,9 @@ public function placeholderBuyMenu():void
 	var purchasableUpgrades:int = 0;
 	switch (undefined)
 	{
+	case flags["PLACEHOLDER_GALOTIAN_UPGRADE"]: 
+		seasonPassPrice += placeholderGalotianPrice;
+		purchasableUpgrades++;
 	case flags["PLACEHOLDER_CODEX_UPGRADE"]: 
 		seasonPassPrice += placeholderCodexUpgradePrice;
 		purchasableUpgrades++;
@@ -1124,36 +1333,42 @@ public function placeholderBuyMenu():void
 	
 	output("\n\n<i>“Welcome to TamaniCorp's online catalog. New and exciting pussy options await you.”</i>");
 	
-	output("\n\n<b>Codex Upgrade:</b> An expansion pack containing a  wide selection of unusual pussies.");
-	output("\n" + (flags["PLACEHOLDER_CODEX_UPGRADE"] == undefined ? +placeholderCodexUpgradePrice + " credits" : "You already own this upgrade."));
+	output("\n\n<b>Galotian Upgrade:</b> An upgrade that allows the Placeholder to work on galotians.");
+	output("\n" + (flags["PLACEHOLDER_GALOTIAN_UPGRADE"] == undefined ? +placeholderGalotianPrice + " credits" : "<i>You already own this upgrade.</i>"));
 	
-	output("\n<b>Duplicator Upgrade:</b> A firmware update that should deal with multiple vaginas, including copying, removal, and duplication");
-	output("\n" + (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] == undefined ? +placeholderDuplicatorPrice + " credits" : "You already own this upgrade."));
+	output("\n<b>Codex Upgrade:</b> An expansion that allows the Placeholder to interface with your codex, unlocking new types of pussies as you discover them.");
+	output("\n" + (flags["PLACEHOLDER_CODEX_UPGRADE"] == undefined ? +placeholderCodexUpgradePrice + " credits" : "<i>You already own this upgrade.</i>"));
+	
+	output("\n<b>Duplicator Upgrade:</b> A firmware update that should deal with multiple vaginas, including removal and duplication");
+	output("\n" + (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] == undefined ? +placeholderDuplicatorPrice + " credits" : "<i>You already own this upgrade.</i>"));
 	
 	output("\n<b>Deluxe Edition:</b> Upgrade to the deluxe edition, which allows for targeted modifications.");
-	output("\n" + (flags["PLACEHOLDER_DELUXE_EDITION"] == undefined ? +placeholderDeluxePrice + " credits" : "You already own this upgrade."));
+	output("\n" + (flags["PLACEHOLDER_DELUXE_EDITION"] == undefined ? +placeholderDeluxePrice + " credits" : "<i>You already own this upgrade.</i>"));
 	
 	output("\n<b>Season Pass:</b> All-in-one pack containing all current content.");
-	output("\n" + (purchasableUpgrades > 1 ? + seasonPassPrice + " credits" : "This option is no longer available."));
-	
+	output("\n" + (purchasableUpgrades > 1 ? + seasonPassPrice + " credits" : "<i>This option is no longer available.</i>"));
 	
 	//Buttons
-	if (flags["PLACEHOLDER_CODEX_UPGRADE"] != undefined) addDisabledButton(0, "Codex Upgrade", "Codex Upgrade", "You already own this upgrade!");
-	else if (pc.credits < placeholderCodexUpgradePrice) addDisabledButton(0, "Codex Upgrade", "Codex Upgrade", "You can't afford this upgrade!");
-	else addButton(0, "Codex Upgrade", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 0], "Codex Upgrade", "Buy the codex upgrade.");
+	if (flags["PLACEHOLDER_GALOTIAN_UPGRADE"] != undefined) addDisabledButton(0, "Galotian Upgrade", "Galotian Upgrade", "You already own this upgrade!");
+	else if (pc.credits < placeholderGalotianPrice) addDisabledButton(0, "Galotian Upgrade", "Galotian Upgrade", "You can't afford this upgrade!");
+	else addButton(0, "Galotian Upgrade", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 0], "Galotian Upgrade", "Buy the galotian upgrade.");
 	
-	if (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] != undefined) addDisabledButton(1, "Duplicator", "Duplicator", "You already own this upgrade!");
-	else if (pc.credits < placeholderDuplicatorPrice) addDisabledButton(1, "Duplicator", "Duplicator", "You can't afford this upgrade!");
-	else addButton(1, "Duplicator", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 1], "Duplicator", "Buy the duplicator upgrade.");
+	if (flags["PLACEHOLDER_CODEX_UPGRADE"] != undefined) addDisabledButton(1, "Codex Upgrade", "Codex Upgrade", "You already own this upgrade!");
+	else if (pc.credits < placeholderCodexUpgradePrice) addDisabledButton(1, "Codex Upgrade", "Codex Upgrade", "You can't afford this upgrade!");
+	else addButton(1, "Codex Upgrade", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 1], "Codex Upgrade", "Buy the codex upgrade.");
 	
-	if (flags["PLACEHOLDER_DELUXE_EDITION"] != undefined) addDisabledButton(2, "Deluxe Edition", "Deluxe Edition", "You already own this upgrade!");
+	if (flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] != undefined) addDisabledButton(2, "Duplicator", "Duplicator", "You already own this upgrade!");
+	else if (pc.credits < placeholderDuplicatorPrice) addDisabledButton(2, "Duplicator", "Duplicator", "You can't afford this upgrade!");
+	else addButton(2, "Duplicator", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 2], "Duplicator", "Buy the duplicator upgrade.");
+	
+	if (flags["PLACEHOLDER_DELUXE_EDITION"] != undefined) addDisabledButton(3, "Deluxe Edition", "Deluxe Edition", "You already own this upgrade!");
 	else if (pc.credits < placeholderDeluxePrice) addDisabledButton(3, "Deluxe Edition", "Deluxe Edition", "You can't afford this upgrade!");
-	else addButton(2, "Deluxe Edition", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 2], "Deluxe Edition", "Buy the deluxe edition upgrade.");
+	else addButton(3, "Deluxe Edition", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 3], "Deluxe Edition", "Buy the deluxe edition upgrade.");
 	
-	if (purchasableUpgrades == 1) addDisabledButton(3, "Season Pass", "Season Pass", "You no longer need a bundled offer!");
-	else if (purchasableUpgrades == 0) addDisabledButton(3, "Season Pass", "Season Pass", "You already own all the upgrades!");
-	else if (pc.credits < seasonPassPrice) addDisabledButton(3, "Season Pass", "Season Pass", "You can't afford this option!");
-	else addButton(3, "Season Pass", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 3], "Season Pass", "Buy the season pass upgrade.");
+	if (purchasableUpgrades == 1) addDisabledButton(4, "Season Pass", "Season Pass", "You no longer need a bundled offer!");
+	else if (purchasableUpgrades == 0) addDisabledButton(4, "Season Pass", "Season Pass", "You already own all the upgrades!");
+	else if (pc.credits < seasonPassPrice) addDisabledButton(4, "Season Pass", "Season Pass", "You can't afford this option!");
+	else addButton(4, "Season Pass", placeholderConfirmBuy, [kGAMECLASS.gameOptions.vendorToggle, 4], "Season Pass", "Buy the season pass upgrade.");
 	
 	addButton(14, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
 }
@@ -1170,6 +1385,8 @@ public function placeholderConfirmBuy(arg:Array):void
 	var seasonPassPrice:int = 0;
 	switch (undefined)
 	{
+	case flags["PLACEHOLDER_GALOTIAN_UPGRADE"]: 
+		seasonPassPrice += placeholderGalotianPrice;
 	case flags["PLACEHOLDER_CODEX_UPGRADE"]: 
 		seasonPassPrice += placeholderCodexUpgradePrice;
 	case flags["PLACEHOLDER_DUPLICATOR_UPGRADE"]: 
@@ -1186,16 +1403,19 @@ public function placeholderConfirmBuy(arg:Array):void
 		output("Are you sure you want to buy the ");
 		switch (arg[1])
 		{
-		case 0: 
-			output("codex upgrade for " + placeholderCodexUpgradePrice + " credits?");
+		case 0:
+			output("galotian upgrade for " + placeholderGalotianPrice + " credits?");
 			break;
 		case 1: 
-			output("duplicator for " + placeholderDuplicatorPrice + " credits?");
+			output("codex upgrade for " + placeholderCodexUpgradePrice + " credits?");
 			break;
 		case 2: 
-			output("deluxe edition for " + placeholderDeluxePrice + " credits?");
+			output("duplicator for " + placeholderDuplicatorPrice + " credits?");
 			break;
 		case 3: 
+			output("deluxe edition for " + placeholderDeluxePrice + " credits?");
+			break;
+		case 4: 
 			output("season pass for " + seasonPassPrice + " credits?");
 			break;
 		}
@@ -1209,26 +1429,32 @@ public function placeholderConfirmBuy(arg:Array):void
 	{
 		switch (arg[1])
 		{
-		case 0: 
+		case 0:
+			output("You bought the galotian upgrade!");
+			flags["PLACEHOLDER_GALOTIAN_UPGRADE"] = true;
+			pc.credits -= placeholderGalotianPrice;
+			break;
+		case 1: 
 			output("You bought the codex upgrade!");
 			flags["PLACEHOLDER_CODEX_UPGRADE"] = true;
 			pc.credits -= placeholderCodexUpgradePrice;
 			break;
-		case 1: 
+		case 2: 
 			output("You bought the duplicator!");
 			flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] = true;
 			pc.credits -= placeholderDuplicatorPrice;
 			break;
-		case 2: 
+		case 3: 
 			output("You bought the deluxe edition!");
 			flags["PLACEHOLDER_DELUXE_EDITION"] = true;
 			pc.credits -= placeholderDeluxePrice;
 			break;
-		case 3: 
+		case 4: 
 			output("You bought the season pass!");
 			flags["PLACEHOLDER_CODEX_UPGRADE"] = true;
 			flags["PLACEHOLDER_DUPLICATOR_UPGRADE"] = true;
 			flags["PLACEHOLDER_DELUXE_EDITION"] = true;
+			flags["PLACEHOLDER_GALOTIAN_UPGRADE"] = true;
 			pc.credits -= seasonPassPrice;
 			break;
 		}
