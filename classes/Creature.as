@@ -6050,6 +6050,33 @@
 				tailFlags.splice(tailFlags.indexOf(arg), 1);
 			}
 		}
+		public function clearTailGenitalFlags():void {
+			switch (true)
+			{
+				case hasTailFlag(GLOBAL.FLAG_TAILCOCK):
+					removeTailFlag(GLOBAL.FLAG_TAILCOCK);
+				case hasTailFlag(GLOBAL.FLAG_TAILCUNT):
+					removeTailFlag(GLOBAL.FLAG_TAILCUNT);
+				case hasTailFlag(GLOBAL.FLAG_OVIPOSITOR):
+					removeTailFlag(GLOBAL.FLAG_OVIPOSITOR);
+				case hasTailFlag(GLOBAL.FLAG_FLARED):
+					removeTailFlag(GLOBAL.FLAG_FLARED);
+				case hasTailFlag(GLOBAL.FLAG_SHEATHED):
+					removeTailFlag(GLOBAL.FLAG_SHEATHED);
+				case hasTailFlag(GLOBAL.FLAG_KNOTTED):
+					removeTailFlag(GLOBAL.FLAG_KNOTTED);
+				case hasTailFlag(GLOBAL.FLAG_RIBBED):
+					removeTailFlag(GLOBAL.FLAG_RIBBED);
+				case hasTailFlag(GLOBAL.FLAG_NUBBY):
+					removeTailFlag(GLOBAL.FLAG_NUBBY);
+				case hasTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED):
+					removeTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+				case hasTailFlag(GLOBAL.FLAG_TENDRIL):
+					removeTailFlag(GLOBAL.FLAG_TENDRIL);
+				case hasTailFlag(GLOBAL.FLAG_STINGER_BASED):
+					removeTailFlag(GLOBAL.FLAG_STINGER_BASED);
+			}
+		}
 		public function clearTailFlags(): void {
 			tailFlags = new Array();
 		}
@@ -12212,6 +12239,49 @@
 					break;
 			}
 		}
+		
+		//Shift tail genitals
+		public function shiftTailgina(newType:int):void
+		{
+			clearTailGenitalFlags();
+			addTailFlag(GLOBAL.FLAG_TAILCUNT);
+			
+			switch(newType)
+			{
+				case GLOBAL.TYPE_HUMAN:
+					tailGenitalArg = GLOBAL.TYPE_HUMAN;
+					break;
+				case GLOBAL.TYPE_EQUINE:
+					tailGenitalArg = GLOBAL.TYPE_EQUINE;
+					break;
+				case GLOBAL.TYPE_CANINE:
+					tailGenitalArg = GLOBAL.TYPE_CANINE;
+					break;
+				case GLOBAL.TYPE_SIREN:
+					tailGenitalArg = GLOBAL.TYPE_SIREN;
+					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					addTailFlag(GLOBAL.FLAG_TENDRIL);
+					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					tailGenitalArg = GLOBAL.TYPE_GRYVAIN;
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_FELINE:
+					tailGenitalArg = GLOBAL.TYPE_FELINE;
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_VULPINE:
+					tailGenitalArg = GLOBAL.TYPE_VULPINE;
+					addTailFlag(GLOBAL.FLAG_SHEATHED);
+					break;
+				case GLOBAL.TYPE_FLOWER:
+					tailGenitalArg = GLOBAL.TYPE_FLOWER;
+					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					break;
+			}
+		}
+		
 		//PC can fly?
 		public function canFly(): Boolean {
 			//web also makes false!
@@ -15867,29 +15937,29 @@
 			{
 				if (special != "appearance tail") desc += vag.vaginaColor + ", ";
 				if (type == GLOBAL.TYPE_EQUINE) desc += "equine ";
-				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
-				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
-				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
-				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
 				else if (type == GLOBAL.TYPE_ANEMONE) desc += "sea anemone-";
-				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
-				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
+				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
-				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
-				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
-				else if (type == GLOBAL.TYPE_LEITHAN) desc += "leithan mare-";
-				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
-				else if (type == GLOBAL.TYPE_GABILANI) desc += "gabilani ";
-				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
-				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
-				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
-				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
+				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
 				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
-				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
-				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
-				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
+				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
+				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
+				else if (type == GLOBAL.TYPE_GABILANI) desc += "gabilani ";
+				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
+				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
 				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
+				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
+				else if (type == GLOBAL.TYPE_LEITHAN) desc += "leithan mare-";
+				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
+				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
+				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
 				else if (type == GLOBAL.TYPE_SAURMORIAN) desc += "saurmorian ";
+				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
+				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
+				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
+				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
+				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
+				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
