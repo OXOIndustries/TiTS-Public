@@ -1332,6 +1332,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
 				if(StatTracking.getStat("pregnancy/mirrin sired") > 0)
 					output2("\n<b>* Sired, Mirrin’s Children:</b> " + StatTracking.getStat("pregnancy/mirrin sired"));
+				if(StatTracking.getStat("pregnancy/royal nyrea eggs sired") > 0)
+					output2("\n<b>* Sired, Nyrean Eggs, Royal:</b> " + StatTracking.getStat("pregnancy/royal nyrea eggs sired"));
 				if(StatTracking.getStat("pregnancy/quaelle sired") > 0)
 					output2("\n<b>* Sired, Quaelle’s Children:</b> " + StatTracking.getStat("pregnancy/quaelle sired"));
 				if(StatTracking.getStat("pregnancy/quinn sired") > 0)
@@ -1953,6 +1955,8 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 // Prettify Minutes!
 public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 {
+	if(nMinutes < 0) nMinutes = Math.abs(nMinutes);
+	
 	var retStr:String = "";
 	var nHours:Number = 0;
 	var nDays:Number = 0;
@@ -2693,7 +2697,10 @@ public function displayQuestLog(showID:String = "All"):void
 					case undefined: output2(" Tracking"); break;
 					case 1: output2(" Paid the Host"); break;
 					case 2: output2(" Accepted corporal punishment"); break;
-					case 3: output2(" Took Akane’s offer"); break;
+					case 3:
+						output2(" Took Akane’s offer");
+						if(flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] != undefined && (flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + (24*60)) > GetGameTimestamp()) output2(" (" + prettifyMinutes((flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + (24*60)) - GetGameTimestamp()) + " until you can return)");
+						break;
 				}
 				output2("\n<b>* Tavros:</b> " + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? "Chased" : "Didn’t chase") + " culprits");
 				if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");

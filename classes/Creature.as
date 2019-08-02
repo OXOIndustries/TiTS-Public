@@ -11990,7 +11990,15 @@
 					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					//cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].cockColor = scaleColor;
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SCALED);
 					break;
 				case GLOBAL.TYPE_FROSTWYRM:
 					cocks[slot].cockColor = "pink";
@@ -12063,13 +12071,6 @@
 					cocks[slot].cockColor = RandomInCollection(["purple", "angry purple", "reddish-purple"]);
 					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 					cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
-					break;
-				case GLOBAL.TYPE_GRYVAIN:
-					cocks[slot].knotMultiplier = 1;
-					cocks[slot].cockColor = scaleColor;
-					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
-					cocks[slot].addFlag(GLOBAL.FLAG_SCALED);
 					break;
 				case GLOBAL.TYPE_AVIAN:
 					cocks[slot].knotMultiplier = 1;
