@@ -3,7 +3,6 @@ import classes.Items.Apparel.AssManBoxers;
 import classes.Items.Apparel.BackdoorBoiSlutwear;
 import classes.Items.Apparel.CumflationControlBoyshorts;
 import classes.Items.Apparel.SlutSealThong;
-import classes.Items.Transformatives.Placeholder;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -49,12 +48,12 @@ public function tavrosTamaniCorpStoreEntry():Boolean
 	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined)
 	{
 		output("\n\nSomething calls your attention. There's a curious-looking machine with its own stand and advertised with several, impossible-to-miss neon signs.");
-		addButton(1, "Placeholder Stand", placeholderApproach, undefined, "Placeholder Stand", "The nearby stand calls your attention. You could go check it out.");
+		addButton(1, "Booth", placeholderApproach, undefined, "Placeholder Stand", "The nearby stand calls your attention. You could go check it out.");
 	}
 	else
 	{
 		output("\n\nNearby, the placeholder booth stands ready if you'd like to take another look.");
-		addButton(1, "Placeholder Stand", placeholderApproach, undefined, "Placeholder Stand", "Go check out the placeholder booth.");
+		addButton(1, "Placeholder", placeholderApproach, undefined, "Placeholder Stand", "Go check out the placeholder booth.");
 	}
 
 	return false;
@@ -69,7 +68,10 @@ public function placeholderApproach():void
 	showBust("");
 	
 	output("You approach and take a good look at the whole expo. The device stands at the center of the platform and under a bright light. The base rotates the machine around slowly, so customers can see the whole deal in detail. As for the stand itself, it's heavily - if cheesily - decorated. Someone surely loves pink, because it's all over. Red ribbons also decorate the stand, eventually coming together and forming a large heart. There's also the obvious symbology representing female genitalia. Last, but not least, several neon signs name and advertise the product: Placeholder.");
+	
 	output("\n\n The machine itself is quite sleek and streamlined, featuring smooth lines and a warm, glossy finish. The device looks quite comfortable, almost like an anatommically adaptable, curved chaise lounge, with a large apparatus underneath and is mounted on a sturdy frame that features an adaptable seat and handlebars.");
+	
+	output("\n\nScanning the advertisement, you find the price: 100,000 credits.")
 	if (flags["SEEN_PLACEHOLDER_BOOTH"] == undefined) flags["SEEN_PLACEHOLDER_BOOTH"] = 1;
 	
 	addButton(0, "Play Ad", placeholderAd, undefined, "Play Ad", "Get closer to the machine. The commercial seems triggered by proximity.");
@@ -85,7 +87,7 @@ public function placeholderApproach():void
 		//We've already got one
 		else if (!canBuyPlaceholder()) addDisabledButton(2, "Buy", "Buy", "You've already got a placeholder!");
 	
-		else addButton(2, "Buy", buyPlaceholder, undefined, "Buy", "Buy a placeholder.");
+		else addButton(2, "Buy", buyPlaceholder, undefined, "100,000 Credits", "Durable, reliable and highly customizable - the Cunt Crafter is one of the most popular, top-shelf products available to modding enthusiasts. Offering rapid and high-quality pussy modifications for over a decade, the Cunt crafter is as durable as it's reliable, and with integrated ExtraNet support, new updates are rolled out as soon as they are available.");
 	}
 }
 
@@ -133,6 +135,8 @@ public function placeholderAd():void
 	output("\n\n<i>“The- Ah! P-Placeholder... features unparalleled quality and a vast array of AH!vailable... available... ngh! Customization options for your pussy. T-TamaniCorp only delivers the best of the best. For all your sexual needs and transformatives, c-choose Tamani. Ah! P-please... again. I-”</i>"); 
 
 	output("\n\nThe hardlight lady disappears and is replaced by a rotating logo of Tamani featuring the name and price of the product as well as the option to “Buy now.” Well, now it's time to decide what to do.");
+	
+	output("\n\nChecking the ad, the price is 100,000 credits.");
 
 	flags["SEEN_PLACEHOLDER_AD"] = true;
 	
@@ -141,7 +145,7 @@ public function placeholderAd():void
 	//We've already got one
 	else if (!canBuyPlaceholder()) addDisabledButton(0, "Buy", "Buy", "You've already got a placeholder!");
 	
-	else addButton(0, "Buy", buyPlaceholder, undefined, "Buy", "Buy a placeholder.");
+	else addButton(0, "Buy", buyPlaceholder, undefined, "100,000 Credits", "Durable, reliable and highly customizable - the Cunt Crafter is one of the most popular, top-shelf products available to modding enthusiasts. Offering rapid and high-quality pussy modifications for over a decade, the Cunt crafter is as durable as it's reliable, and with integrated ExtraNet support, new updates are rolled out as soon as they are available.");
 	
 	addButton(1, "Back Off", mainGameMenu, undefined, "Back Off", "You're not intereseted right now, so back off and return to the main floor instead.");
 }
