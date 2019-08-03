@@ -1,19 +1,11 @@
-import classes.Characters.Varmint;
-import classes.Items.Transformatives.Placeholder;
 import classes.Characters.PlayerCharacter;
 
-/*To do: Add in lock checks actually get a name I guess,
+//To do: Actually get a name I guess
 
-   Revamp getValidShiftTypes
-   -Pass name and type
-   -Check for invalid PC types
-
-   Check for invalid PC genital types
-   -Check for vagina flags that aren't universal
-
-   Duplicate vagina
-
- */
+//Bugs:
+//Tentacle tailcunt
+//pumped flags
+//Types mentioned multiple times
 
 //flags["PLACEHOLDER_INSTALLED"] == 2 means delivery waiting
 //flags["PLACEHOLDER_INSTALLED"] == 1 means installed on ship
@@ -23,13 +15,13 @@ private var placeholderCodexUpgradePrice:int = 20000;
 private var placeholderDuplicatorPrice:int = 70000;
 private var placeholderDeluxePrice:int = 100000;
 
-private var tailginaFlags:Array = [GLOBAL.FLAG_OVIPOSITOR, GLOBAL.FLAG_FLARED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_KNOTTED, GLOBAL.FLAG_RIBBED, GLOBAL.FLAG_NUBBY, GLOBAL.FLAG_APHRODISIAC_LACED, GLOBAL.FLAG_TENDRIL]
-private var defaultPussyTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_AVIAN];
+private var tailginaFlags:Array = [GLOBAL.FLAG_OVIPOSITOR, GLOBAL.FLAG_RIBBED, GLOBAL.FLAG_NUBBY, GLOBAL.FLAG_APHRODISIAC_LACED, GLOBAL.FLAG_TENDRIL]
+private var defaultPussyTypes:Array = [[GLOBAL.TYPE_HUMAN, "Human"], [GLOBAL.TYPE_KUITAN, "Kui-tan"], [GLOBAL.TYPE_LEITHAN, "Leithan"], [GLOBAL.TYPE_GRYVAIN, "Gryvain"], [GLOBAL.TYPE_SIREN, "Suula"], [GLOBAL.TYPE_EQUINE, "Equine"], [GLOBAL.TYPE_CANINE, "Canine"], [GLOBAL.TYPE_FELINE, "Feline"], [GLOBAL.TYPE_VULPINE, "Vulpine"], [GLOBAL.TYPE_SHARK, "Shark"], [GLOBAL.TYPE_DEER, "Deer"], [GLOBAL.TYPE_SWINE, "Swine"], [GLOBAL.TYPE_AVIAN, "Avian"]];
 private var defaultTailginaTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE];
 
 public function canBuyPlaceholder():Boolean
 {
-	if (pc.hasItemInStorageByClass(Placeholder) || pc.hasItemByClass(Placeholder) || flags["PLACEHOLDER_INSTALLED"] == 1 || flags["PLACEHOLDER_INSTALLED"] == 2) return false;
+	if (flags["PLACEHOLDER_INSTALLED"] == 1 || flags["PLACEHOLDER_INSTALLED"] == 2) return false;
 	else return true;
 }
 
@@ -79,16 +71,14 @@ public function placeholderUninstallation():void
 	showBust("");
 	author("Thebiologist");
 	
-	output("You take some time to uninstall the placeholder");
-	output("\n\n<b>You no longer have the TamaniCorp placeholder installed!</b>");
+	output("You take some time to uninstall the Placeholder.");
+	output("\n\n<b>You no longer have the TamaniCorp Placeholder installed!</b>");
 	
-	kGAMECLASS.processTime(8);
-	kGAMECLASS.flags["PLACEHOLDER_INSTALLED"] = undefined;
+	processTime(8);
+	flags["PLACEHOLDER_INSTALLED"] = undefined;
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-	output("\n\n");
-	kGAMECLASS.quickLoot(new Placeholder());
 }
 
 //Use the placeholder from the storage menu
@@ -151,8 +141,8 @@ public function placeholderMainMenu():void
 		else addButton(btnSlot, "Tailcunt" + (pc.hasTails() ? "s" : ""), placeholderCustomizeMenu, -1, "Tailcunt" + (pc.hasTails() ? "s" : ""), (pc.hasTails() ? "Modify your tailginas.":"Modify your tailgina."));
 	}
 	
-	addButton(12, "Store", placeholderBuyMenu, undefined, "Store", "Browse the add-on store and purchase new modifications.");
-	addButton(13, "Uninstall", placeholderUninstallation);
+	//addButton(12, "Uninstall", placeholderUninstallation);
+	addButton(13, "Store", placeholderBuyMenu, undefined, "Store", "Browse the add-on store and purchase new modifications.");
 	addButton(14, "Back off", leaveplaceholder, undefined, "Back off", "Leave the machine alone.");
 }
 
@@ -230,7 +220,7 @@ public function placeholderCustomizeMenu(vagina:int):void
 	{
 		if (flags["PLACEHOLDER_DELUXE_EDITION"]) output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 		
-		addButton(0, "Type", placeholderSelectType, vagina, "Type", "Change the type of your " + GLOBAL.TYPE_NAMES[pc.vaginas[vagina].type]);
+		addButton(0, "Type", placeholderSelectType, vagina, "Type", "Change the type of your " + GLOBAL.TYPE_NAMES[pc.vaginas[vagina].type] + " pussy.");
 		
 		//Duplicator upgrade buttons; need some shenanigans to make sure the buttons are positioned properly.
 		//Duplicator upgrade but no deluxe edition
@@ -277,11 +267,13 @@ public function placeholderCustomizeMenu(vagina:int):void
 			if (pc.vaginas[vagina].clits <= 1) addDisabledButton(9, "Remove Clit", "Remove Clit", "Your vagina already has the smallest number of clits possible.");
 			else addButton(9, "Remove Clit", placeholderChangeClitNumber, [vagina, false], "Remove Clit", "Remove one of your clits.");
 			
-			if (pc.clitLength >= 12) addDisabledButton(10, "Lengthen Clits", "Lengthen Clits", "Your clits are already as long as this machine can make them.");
-			else addButton(10, "Lengthen Clits", placeholderChangeClitLength, [vagina, true], "Lengthen Clits", "Lengthen your clits.");
+			//Ternary operators deal with pluralizing
+			if (pc.clitLength >= 12) (pc.totalClits() > 1 ? addDisabledButton(10, "Lengthen Clits", "Lengthen Clits", "Your clits are already as long as this machine can make them."):addDisabledButton(10, "Lengthen Clit", "Lengthen Clit", "Your clit is already as long as this machine can make it"));
+			else (pc.totalClits() > 1 ? addButton(10, "Lengthen Clits", placeholderChangeClitLength, [vagina, true], "Lengthen Clits", "Lengthen your clits."):addButton(10, "Lengthen Clit", placeholderChangeClitLength, [vagina, true], "Lengthen Clit", "Lengthen your clit."));
 			
-			if (pc.clitLength <= 0.1) addDisabledButton(11, "Shrink Clits", "Shrink Clits", "Your clits are already as small as this machine can make them.");
-			else addButton(11, "Shrink Clits", placeholderChangeClitLength, [vagina, false], "Shrink Clits", "Shrink your clits.");
+			//Ternary operators deal with pluralizing
+			if (pc.clitLength <= 0.1) (pc.totalClits() > 1 ? addDisabledButton(11, "Shrink Clits", "Shrink Clits", "Your clits are already as small as this machine can make them."):addDisabledButton(11, "Shrink Clit", "Shrink Clit", "Your clit is already as small as this machine can make it."));
+			else (pc.totalClits() > 1 ? addButton(11, "Shrink Clits", placeholderChangeClitLength, [vagina, false], "Shrink Clits", "Shrink your clits."):addButton(11, "Shrink Clit", placeholderChangeClitLength, [vagina, false], "Shrink Clit", "Shrink your clit."));
 			
 			if (pc.vaginas[vagina].bonusCapacity >= 800) addDisabledButton(12, "Increase Cap.", "Increase Capacity", "Your vagina is already as capacious as this machine can make it.");
 			else addButton(12, "Increase Cap.", placeholderChangeBonusCapacity, [vagina, true], "Increase Capacity", "Increase your vagina's bonus capacity.");
@@ -301,10 +293,12 @@ public function placeholderCustomizeMenu(vagina:int):void
 			if (pc.girlCumMultiplierRaw <= 1) addDisabledButton(18, "Dec. Girl Cum", "Decrease Girl Cum", "You cum as little as this machine can make you.");
 			else addButton(18, "Dec. Girl Cum", placeholderChangeGirlCumMultiplier, false, "Decrease Girl Cum", "Decrease how much you cum.");
 			
-			if (pc.fertilityRaw >= 10) addDisabledButton(19, "Inc. Fertility", "Increase Fertility", "You're as fertile as this machine can make you.");
+			if (pc.fertility() <= 0) addDisabledButton (19, "Inc. Fertility", "Increase Fertility", "You're infertile.");
+			else if (pc.fertilityRaw >= 10) addDisabledButton(19, "Inc. Fertility", "Increase Fertility", "You're as fertile as this machine can make you.");
 			else addButton(19, "Inc. Fertility", placeholderChangeFertility, true, "Increase Fertility", "Increase your fertility.");
 			
-			if (pc.fertilityRaw <= 1) addDisabledButton(20, "Dec. Fertility", "Decrease Fertility", "Your fertility is as low as this machine can make it.");
+			if (pc.fertility() <= 0) addDisabledButton(20, "Dec. Fertility", "Decrease Fertility", "You're infertile.");
+			else if (pc.fertilityRaw <= 1) addDisabledButton(20, "Dec. Fertility", "Decrease Fertility", "Your fertility is as low as this machine can make it.");
 			else addButton(20, "Dec. Fertility", placeholderChangeFertility, false, "Decrease Fertility", "Decrease your fertility.");
 			
 			if (pc.pregnancyIncubationBonusMotherRaw >= 10) addDisabledButton(21, "Inc. Preg Speed", "Increase Incubation Speed", "Your pregnancies are as fast as this machine can make them.");
@@ -337,7 +331,7 @@ public function placeholderCustomizeMenu(vagina:int):void
 	}
 	
 	addButton(14, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
-	if (flags["PLACEHOLDER_DELUXE_EDITION"] && vaginia != -1) addButton(29, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
+	if (flags["PLACEHOLDER_DELUXE_EDITION"] && vagina != -1) addButton(29, "Back", placeholderMainMenu, undefined, "Back", "Go back to the main menu.");
 }
 
 //MENU SELECTIONS
@@ -352,35 +346,50 @@ public function placeholderSelectType(vagina:int):void
 	var vaginaList:Array;
 	var btnSlot:int = 0;
 	var btnName:String;
+	var btnDescription:String;
 	var i:int = 0;
+	var multipageMenu:Boolean = false;
 	
 	output("Select a type:");
 	
+	if (vagina != -1)
+	{
+		if (flags["PLACEHOLDER_CODEX_UPGRADE"]) vaginaList = pc.getValidShiftTypes("vagina");
+		else vaginaList = defaultPussyTypes;
+	}
+
 	//Vagina buttons
 	if (vagina != -1)
 	{
 		//Build us our buttons
-		for (i; i < GLOBAL.VALID_VAGINA_TYPES.length; i++)
+		for (i; i < vaginaList.length; i++)
 		{
 			//Ensures buttons don't overwrite the back button
 			if (btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 			{
 				addButton(btnSlot, "Back", placeholderCustomizeMenu, vagina, "Back", "Go back to the customize menu.");
 				btnSlot++;
+				//Alerts the player if multiple pages are available.
+				if (!multipageMenu)
+				{
+					output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+					multipageMenu = true;
+				}
 			}
 			
-			btnName = GLOBAL.TYPE_NAMES[GLOBAL.VALID_VAGINA_TYPES[i]];
+			btnName = vaginaList[i][1]
 			//Disabled button for PC's current hoo-ha type
-			if (pc.vaginas[vagina].type == GLOBAL.VALID_VAGINA_TYPES[i])
+			if (pc.vaginas[vagina].type == vaginaList[i][0])
 			{
 				addDisabledButton(btnSlot, btnName, btnName, "Your vagina is already a " + btnName + " vagina.");
 				btnSlot++;
 			}
 			
 			//Add buttons for unlocked cooch types
-			else if (pc.hasTypeUnlocked(GLOBAL.VALID_VAGINA_TYPES[i]))
+			else
 			{
-				addButton(btnSlot, btnName, placeholderChangeType, [vagina, GLOBAL.VALID_VAGINA_TYPES[i]], btnName, "Changes your vagina to a " + btnName + " vagina.");
+				btnDescription = placeholderTypeButtonDescription(vaginaList[i][0]);
+				addButton(btnSlot, btnName, placeholderChangeType, [vagina, vaginaList[i][0]], btnName, btnDescription);
 				btnSlot++;
 			}
 			
@@ -391,31 +400,47 @@ public function placeholderSelectType(vagina:int):void
 	else
 	{
 		//Build us our buttons
-		for (i; i < GLOBAL.VALID_TAIL_GENITAL_ARGS.length; i++)
+		for (i; i < (flags["PLACEHOLDER_CODEX_UPGRADE"] ? GLOBAL.VALID_TAIL_GENITAL_ARGS.length:defaultTailginaTypes.length); i++)
 		{
 			//Ensures buttons don't overwrite the back button
 			if (btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 			{
 				addButton(btnSlot, "Back", placeholderCustomizeMenu, vagina, "Back", "Go back to the customize menu.");
 				btnSlot++;
+				//Alerts the player if multiple pages are available.
+				if (!multipageMenu)
+				{
+					output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+					multipageMenu = true;
+				}
 			}
 			
-			btnName = GLOBAL.TYPE_NAMES[GLOBAL.VALID_TAIL_GENITAL_ARGS[i]];
+			if (flags["PLACEHOLDER_CODEX_UPGRADE"]) btnName = GLOBAL.TYPE_NAMES[GLOBAL.VALID_TAIL_GENITAL_ARGS[i]];
+			else btnName = GLOBAL.TYPE_NAMES[defaultTailginaTypes[i]];
+			
+			btnDescription = placeholderTypeButtonDescription((flags["PLACEHOLDER_CODEX_UPGRADE"] ? GLOBAL.VALID_TAIL_GENITAL_ARGS[i]:defaultTailginaTypes[i]));
 			
 			//Disabled button for PC's current tailgina type
-			if (pc.tailGenitalArg == GLOBAL.VALID_TAIL_GENITAL_ARGS[i])
+			if (pc.tailGenitalArg == (flags["PLACEHOLDER_CODEX_UPGRADE"] ? GLOBAL.VALID_TAIL_GENITAL_ARGS[i]:defaultTailginaTypes[i]))
 			{
 				addDisabledButton(btnSlot, btnName, btnName, "Your " + (pc.hasTails() ? "tailginas are" : "tailgina is") + "  already " + btnName);
 				btnSlot++;
 			}
 			
 			//Add buttons for unlocked cooch types
-			else if (pc.hasTypeUnlocked(GLOBAL.VALID_TAIL_GENITAL_ARGS[i]))
+			else if (flags["PLACEHOLDER_CODEX_UPGRADE"])
 			{
-				addButton(btnSlot, btnName, placeholderChangeType, [vagina, GLOBAL.VALID_TAIL_GENITAL_ARGS[i]], btnName, "Changes your " + (pc.hasTails() ? "tailginas to " + btnName + " tailginas." : "tailgina to a " + btnName + " tailgina."));
-				btnSlot++;
+				if (pc.hasTypeUnlocked(GLOBAL.VALID_TAIL_GENITAL_ARGS[i]))
+				{
+					addButton(btnSlot, btnName, placeholderChangeType, [vagina, GLOBAL.VALID_TAIL_GENITAL_ARGS[i]], btnName, btnDescription);
+					btnSlot++;
+				}
 			}
-			
+			else
+			{
+				addButton(btnSlot, btnName, placeholderChangeType, [vagina, defaultTailginaTypes[i]], btnName, btnDescription);
+				btnSlot++
+			}	
 		}
 	}
 	
@@ -425,6 +450,71 @@ public function placeholderSelectType(vagina:int):void
 		btnSlot++;
 	}
 	addButton(btnSlot, "Back", placeholderCustomizeMenu, vagina, "Back", "Go back to the customization menu.");
+}
+
+public function placeholderTypeButtonDescription(type:int):String
+{
+	switch (type)
+	{
+		case GLOBAL.TYPE_HUMAN:
+			return "The classic Terran pussy. It's simple, sleek and utilitarian.";
+		case GLOBAL.TYPE_KUITAN:
+			return "The usual Tanuki cunt. It's cute and ready for action.";
+		case GLOBAL.TYPE_LEITHAN:
+			return "A roomy leithan snatch. It's big, broad and puffy when excited, yet compact and discreet when not in use.";
+		case GLOBAL.TYPE_GRYVAIN:
+			return "A typical Gryvain pussy. It's full of internal clits for maximum pleasure. ";
+		case GLOBAL.TYPE_SIREN:
+			return "An aphrodisiac Suula cunt. It's armed to the brim with powerful venomous tendrils ready to inject its mate with a potent aphrodisiac.";
+		case GLOBAL.TYPE_EQUINE:
+			return "A mare's muff. It's puffy, juicy and swollen, ready to take even the largest insertions.";
+		case GLOBAL.TYPE_CANINE:
+			return "A bitch's cunt. Its shape is a bit different than usual, like a streamlined triangle. It's puffy and built for taking large knots.";
+		case GLOBAL.TYPE_FELINE:
+			return "The typical feline pussy. It's simple, tight and very discreet.";
+		case GLOBAL.TYPE_VULPINE:
+			return "A foxy snatch. Similar to canine pussies, but more discreet.";
+		case GLOBAL.TYPE_SHARK:
+			return "An aquatic pussy. It's large and features big, smooth lips.";
+		case GLOBAL.TYPE_DEER:
+			return "A cute cervine pussy. It's largely unremarkable and discreet.";
+		case GLOBAL.TYPE_SWINE:
+			return "A sow's pussy. It's tight but deep.";
+		case GLOBAL.TYPE_AVIAN:
+			return "A simple avian cunt. It's very basic and resembles a cloaca.";
+		case GLOBAL.TYPE_ARACHNID:
+			return "The pussy of an arachnid creature. It's exotic to say the least.";
+		case GLOBAL.TYPE_SAURMORIAN:
+			return "The mighty, reptilian pussy of an armored Saurmorian. It's powerful and muscular, just like the species.";
+		case GLOBAL.TYPE_GOOEY:
+			return "A Galotian faux-pussy. It's completely stretchy and adaptable.";
+		case GLOBAL.TYPE_BEE:
+			return "A Zil's pussy. It's not very different from a human's.";
+		case GLOBAL.TYPE_LAPINARA:
+			return "The pussy of a lapinaran. It's sleek and smooth.";
+		case GLOBAL.TYPE_VANAE:
+			return "An unusual Vanae snatch.";
+		case GLOBAL.TYPE_KORGONNE:
+			return "A compact Korgonne cunt. It's tight but can take large knots.";
+		case GLOBAL.TYPE_BOTHRIOC:
+			return "A modified Bothrioc genitalia. It protrudes slightly, forming four bulbs decreasing in size until it ends in a curious-looking opening.";
+		case GLOBAL.TYPE_FROSTWYRM:
+			return "The pussy of the legendary Frostwyrm. Recreated by TamaniCorp from ancient imagery. The pussy of this extinct species is as impressive as the dragons they resemble.";
+		case GLOBAL.TYPE_NAGA:
+			return "The snatch of a serpentine lady. It's hidden behind a genital slit and it's large and accommodating.";
+		case GLOBAL.TYPE_FLOWER:
+			return "A beautiful flower. An exotic form of genital flora. It's vibrant, velvety and fragrant.";
+		case GLOBAL.TYPE_MOUTHGINA:
+			return "A curious blend of mouth and vagina. It's bizarre, but the universe is full of different tastes.";
+		case GLOBAL.TYPE_ANEMONE:
+			return "An exotic looking muff. It resembles a balanced blend of anemone and pussy when it comes to external appearance. It's armed with a myriad of aphrodisiac-laced tendrils ready to entice its mate.";
+		case GLOBAL.TYPE_DEMONIC:
+			return "An intimidating, demonic pussy. It's similar to a human's, but it's folds are different and it's noticeably larger."
+		case GLOBAL.TYPE_TENTACLE:
+			return "This pussy is mounted on a wild tentacle. Quite unusual."
+		default:
+			return "A " + GLOBAL.TYPE_NAMES[type] + " vagina.";
+	}
 }
 
 //Selects which list of colors to use.
@@ -456,6 +546,7 @@ public function placeholderSelectColor(arg:Array):void
 	author("Thebiologist");
 	var btnSlot:int = 0;
 	var colorList:Array = new Array;
+	var multipageMenu:Boolean = false;
 	//Possible colors
 	switch (arg[1])
 	{
@@ -521,6 +612,12 @@ public function placeholderSelectColor(arg:Array):void
 		{
 			addButton(btnSlot, "Back", placeholderSelectColorMenu, arg[0], "Back", "Go back to the color list selection menu.");
 			btnSlot++;
+				//Alerts the player if multiple pages are available.
+				if (!multipageMenu)
+				{
+					output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+					multipageMenu = true;
+				}
 		}
 		
 		//Tail genital buttons
@@ -581,6 +678,7 @@ public function placeholderSelectFlag(arg:Array):void
 	var flagName:String;
 	var btnSlot:int = 0;
 	var tailginaFlagString:String = "";
+	var multipageMenu:Boolean = false;
 	
 	output("Select flag:");
 	
@@ -593,19 +691,25 @@ public function placeholderSelectFlag(arg:Array):void
 			//Build our buttons
 			for (i; i < GLOBAL.VALID_VAGINA_FLAGS.length; i++)
 			{
+				//Plugged flag is more of a scene specific thing
+				if (GLOBAL.VALID_VAGINA_FLAGS[i] == GLOBAL.FLAG_PLUGGED) continue;
 				//Ensures buttons don't overwrite the back button
 				if (btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
 					addButton(btnSlot, "Back", placeholderCustomizeMenu, arg[0], "Back", "Go back to the customization menu.");
 					btnSlot++;
+					//Alerts the player if multiple pages are available.
+					if (!multipageMenu)
+					{
+						output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+						multipageMenu = true;
+					}
 				}
 				
 				flagName = GLOBAL.FLAG_NAMES[GLOBAL.VALID_VAGINA_FLAGS[i]];
+				
 				//Disabled button for the currently possessed flags
 				if (pc.vaginas[arg[0]].hasFlag(GLOBAL.VALID_VAGINA_FLAGS[i])) addDisabledButton(btnSlot, flagName, flagName, "Your vagina already has that flag.");
-				
-				//Disable buttons for pumped flags if the PC has any of them
-				else if (pc.vaginalPuffiness(arg[0], true) != 0 && (GLOBAL.VALID_VAGINA_FLAGS[i] == (GLOBAL.FLAG_SLIGHTLY_PUMPED || GLOBAL.FLAG_PUMPED || GLOBAL.FLAG_HYPER_PUMPED))) addDisabledButton(btnSlot, flagName, flagName, "Your vagina can only have one pumped flag.");
 				
 				else addButton(btnSlot, flagName, placeholderChangeFlag, [arg[0], arg[1], GLOBAL.VALID_VAGINA_FLAGS[i]], flagName, "Add the " + flagName + " flag to your vagina.");
 				btnSlot++;
@@ -623,6 +727,12 @@ public function placeholderSelectFlag(arg:Array):void
 				{
 					addButton(btnSlot, "Back", placeholderCustomizeMenu, arg[0], "Back", "Go back to the customization menu.");
 					btnSlot++;
+					//Alerts the player if multiple pages are available.
+					if (!multipageMenu)
+					{
+						output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+						multipageMenu = true;
+					}
 				}
 				
 				flagName = GLOBAL.FLAG_NAMES[tailginaFlags[i]];
@@ -658,6 +768,12 @@ public function placeholderSelectFlag(arg:Array):void
 				{
 					addButton(btnSlot, "Back", placeholderCustomizeMenu, arg[0], "Back", "Go back to the customization menu.");
 					btnSlot++;
+					//Alerts the player if multiple pages are available.
+					if (!multipageMenu)
+					{
+						output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+						multipageMenu = true;
+					}
 				}
 				
 				flagName = GLOBAL.FLAG_NAMES[pc.vaginas[arg[0]].vagooFlags[i]];
@@ -670,7 +786,6 @@ public function placeholderSelectFlag(arg:Array):void
 		else
 		{
 			//Displays flags the pc has
-			output("\n<b>* Flags:</b>");
 			for (i; i < tailginaFlags.length; )
 			{
 				if (pc.hasTailFlag(tailginaFlags[i]))
@@ -680,7 +795,7 @@ public function placeholderSelectFlag(arg:Array):void
 				}
 				i++;
 			}
-			output(tailginaFlagString);
+			if (tailginaFlagString != "") output("\n<b>* Flags:</b> " + tailginaFlagString);
 			
 			//Build our buttons
 			for (i = 0; i < tailginaFlags.length; i++)
@@ -690,6 +805,12 @@ public function placeholderSelectFlag(arg:Array):void
 				{
 					addButton(btnSlot, "Back", placeholderCustomizeMenu, arg[0], "Back", "Go back to the customization menu.");
 					btnSlot++;
+					//Alerts the player if multiple pages are available.
+					if (!multipageMenu)
+					{
+						output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+						multipageMenu = true;
+					}
 				}
 				
 				flagName = GLOBAL.FLAG_NAMES[tailginaFlags[i]];
@@ -721,24 +842,31 @@ public function placeholderSelectGirlCumType(vagina:int):void
 	
 	var btnSlot:int = 0;
 	var typeName:String;
+	var multipageMenu:Boolean = false;
+	
+	output("Select a female ejaculate type:");
 	
 	for (var i:int = 0; i < GLOBAL.VALID_GIRLCUM_TYPES.length; i++)
 	{
+		if (GLOBAL.VALID_GIRLCUM_TYPES[i] == GLOBAL.FLUID_TYPE_SPECIAL_GOO) continue;
 		//Ensures buttons don't overwrite the back button
 		if (btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 		{
 			addButton(btnSlot, "Back", placeholderCustomizeMenu, vagina, "Back", "Go back to the customization menu.");
 			btnSlot++;
+			//Alerts the player if multiple pages are available.
+			if (!multipageMenu)
+			{
+				output("\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
+				multipageMenu = true;
+			}
 		}
 		
 		typeName = GLOBAL.FLUID_TYPE_NAMES[GLOBAL.VALID_GIRLCUM_TYPES[i]];
 		//Disabled button for pc's current girl cum type
-		if (pc.girlCumType == GLOBAL.VALID_GIRLCUM_TYPES[i]) addDisabledButton(btnSlot, typeName, typeName, "Your girl cum is already " + typeName + ".");
+		if (pc.girlCumType == GLOBAL.VALID_GIRLCUM_TYPES[i]) addDisabledButton(btnSlot, typeName, typeName, "Your female ejaculate is already " + typeName + ".");
 		
-		//Goo is a no
-		else if (GLOBAL.VALID_GIRLCUM_TYPES[i] == GLOBAL.FLUID_TYPE_SPECIAL_GOO) btnSlot *= 1;
-		
-		else addButton(btnSlot, typeName, placeholderChangeGirlCumType, GLOBAL.VALID_GIRLCUM_TYPES[i], typeName, "Change your girl cum to " + typeName + ".");
+		else addButton(btnSlot, typeName, placeholderChangeGirlCumType, GLOBAL.VALID_GIRLCUM_TYPES[i], typeName, "Change your female ejaculate to " + typeName + ".");
 		btnSlot++;
 	}
 	
@@ -931,17 +1059,16 @@ public function placeholderChangeType(arg:Array):void
 	//Regular vaginas
 	if (arg[0] != -1)
 	{
-
+		placeholderChangeText(arg[0], pc.vaginas[arg[0]].vagooFlags);
 		pc.shiftVagina(arg[0], arg[1]);
 	}
 	
 	//Tailgina
 	else
 	{
+		placeholderChangeText(arg[0], pc.tailFlags);
 		pc.shiftTailgina(arg[1]);
 	}
-	
-	placeholderChangeText(arg[0], pc.vaginas[0].vagooFlags);
 	
 	addButton(0, "Next", placeholderMainMenu);
 }
@@ -967,8 +1094,6 @@ public function placeholderChangeColor(arg:Array):void
 		pc.tailGenitalColor = arg[1];
 	}
 	
-	placeholderChangeText(arg[0], []);
-	
 	addButton(0, "Next", placeholderMainMenu);
 }
 
@@ -981,30 +1106,40 @@ public function placeholderChangeFlag(arg:Array):void
 	showBust("");
 	author("Thebiologist");
 	
+	placeholderChangeText(arg[0], [arg[2]]);
+	
 	//Vagina flag change
 	if (arg[0] != -1)
 	{
-		placeholderChangeText(arg[0], arg[2]);
-		
+		//Adding a Flag
 		if (arg[1])
 		{
-			pc.vaginas[0].addFlag(arg[2]);
+			//If adding a pumped flag, first remove all pumped flag. There can only be one
+			if (arg[2] == GLOBAL.FLAG_SLIGHTLY_PUMPED || arg[2] == GLOBAL.FLAG_PUMPED || arg[2] == GLOBAL.FLAG_HYPER_PUMPED)
+			{
+				if (pc.vaginas[arg[0]].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) pc.vaginas[arg[0]].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+				if (pc.vaginas[arg[0]].hasFlag(GLOBAL.FLAG_PUMPED)) pc.vaginas[arg[0]].delFlag(GLOBAL.FLAG_PUMPED);
+				if (pc.vaginas[arg[0]].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) pc.vaginas[arg[0]].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			
+			pc.vaginas[arg[0]].addFlag(arg[2]);
 		}
+		//Removing a flag
 		else
 		{
-			pc.vaginas[0].delFlag(arg[2]);
+			pc.vaginas[arg[0]].delFlag(arg[2]);
 		}
 	}
 	
 	//Tailgina flag change
 	else
 	{
-		placeholderChangeText(arg[0], []);
-		
+		//Adding a flag
 		if (arg[1])
 		{
 			pc.addTailFlag(arg[2]);
 		}
+		//Removing a flag
 		else
 		{
 			pc.removeTailFlag(arg[2]);
@@ -1083,7 +1218,7 @@ public function placeholderChangeClitNumber(arg:Array):void
 	addButton(0, "Next", placeholderMainMenu);
 }
 
-//Changes clit size. arg[0] which vagina, arg[1] increase or decrease (true == increase)
+//Changes clit size. arg[0] which vagina, arg[1] increase or decrease (true == increase). Changes clits for every vagina, because making clit length an attribute of each vagina rather than a general one would require a massive rewrite of existing code.
 public function placeholderChangeClitLength(arg:Array):void
 {
 	clearOutput();
