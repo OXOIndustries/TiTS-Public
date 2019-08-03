@@ -1065,6 +1065,7 @@
 			TYPE_FELINE,
 			TYPE_AVIAN,
 			TYPE_KORGONNE,
+			TYPE_BOTHRIOC,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1078,6 +1079,7 @@
 			FLAG_GOOEY,
 			FLAG_SLIGHTLY_PUMPED,
 			FLAG_PUMPED,
+			FLAG_HYPER_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
 			FLAG_PLUGGED,
