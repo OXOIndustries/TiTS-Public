@@ -12321,6 +12321,12 @@
 					tailGenitalArg = GLOBAL.TYPE_FLOWER;
 					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
+				case GLOBAL.TYPE_TENTACLE:
+					tailGenitalArg = GLOBAL.TYPE_TENTACLE;
+					break;
+				default:
+					tailGenitalArg = newType;
+					break;
 			}
 		}
 		
@@ -16002,6 +16008,8 @@
 				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
 				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
+				else if (type == GLOBAL.TYPE_LAPINARA) desc += "lapinara ";
+				else if (type == GLOBAL.TYPE_BOTHRIOC) desc += "bothrioc ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -16191,6 +16199,16 @@
 				{
 					if (!simple) desc += RandomInCollection("glossy ", "bestial ", "savage ", "saurmorian ");
 					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
+				}
+				else if (type == GLOBAL.TYPE_LAPINARA)
+				{
+					if (!simple) desc += RandomInCollection("chubby pussy ", "puffy pussy ", "egg-receptive cunt ", "egg-accommodating muff ", "breed-hungry snatch ");
+					desc += RandomInCollection(["lapinara pussy", "lapinara twat", "cunt", "pussy", "twat", "egg-loving muff", "xeno- pussy"]);
+				}
+				else if (type == GLOBAL.TYPE_BOTHRIOC)
+				{
+					if (!simple) desc += RandomInCollection("insectile pussy ", "egg-injecting box ", "oily slit ", "insectile muff ", "bulbous box ");
+					desc += RandomInCollection(["bothrioc box", "bothrioc pussy", "insectile xeno-slit", "cloaca-like cunt", "insectile vagina"]);
 				}
 				else
 				{
@@ -16453,7 +16471,9 @@
 				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged");
 				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
 				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
-				if(vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if (vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if (vag.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
+				
 				if(collection.length > 0)
 				{
 					if(adjectiveCount > 0) desc += ", ";
