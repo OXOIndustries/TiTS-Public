@@ -2843,9 +2843,9 @@ public function shipStorageMenuRoot():void
 		activateSiegwulfe();
 		return;
 	}
-	if (flags["PLACEHOLDER_INSTALLED"] == 2) 
+	if (flags["MUFF_MODELER_INSTALLED"] == 2) 
 	{
-		placeholderDeliveryInstallation();
+		muffModelerDeliveryInstallation();
 		return;
 	}
 	
@@ -2901,7 +2901,7 @@ public function shipStorageMenuRoot():void
 	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
 	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
-	if (flags["PLACEHOLDER_INSTALLED"] == 1) installedDevices.push(installedPlaceholderBonus);
+	if (flags["MUFF_MODELER_INSTALLED"] == 1) installedDevices.push(installedMuffModelerBonus);
 	
 	for(var d:int = 0; d < installedDevices.length; d++)
 	{
