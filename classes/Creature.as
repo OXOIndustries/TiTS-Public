@@ -12035,6 +12035,9 @@
 					vaginas[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
 					break;
 				case GLOBAL.TYPE_BOTHRIOC:
+					vaginas[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					vaginas[slot].vaginaColor = "light purple";
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
 					break;
