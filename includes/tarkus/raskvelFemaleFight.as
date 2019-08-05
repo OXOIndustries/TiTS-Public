@@ -1413,7 +1413,7 @@ public function watchDatRaskvelEggLayyyy():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
  }
-  public function raskvelFemaleMatingPress(kok:int=0):void
+ public function raskvelFemaleMatingPress(kok:int=0):void
  {
  	clearOutput();
  	showBust(raskvelFemaleBustDisplay(true));
@@ -1439,12 +1439,13 @@ public function watchDatRaskvelEggLayyyy():void
 
 	if (pc.cockCanSting(kok)) output("\n\nThe involuntary application of your phallic tendril’s sex-enhancing qualities raises the local ardor to volcanic proportions. It’s a wonder how the little scavenger-lizard has any voice left to use when the sensitivity reaches mind-wiping levels. Only one thing’s certain right now, and that’s this sweaty slut is the happiest in the star system. Nobody else at this very moment, perhaps anyway, is undergoing a zen-like euphoria at being <b>so assertively claimed.</b>");
 	if (pc.hasBalls()) output("\n\nWhile the upper half of your pelvis (and, by proxy, your upper girth) teases the first of her bloated buttons, your heavy, spunk-burdened nutsack is teasing the hell out of her southern light. [pc.BallsIsAre] swinging with nearly violent momentum into her bottom-mounted clitoris, and she reacts in the only way so pleased a little obedient slut can: by cumming harder, and harder... and harder. You groan with joy, feeling your already great, womb-plugging load of [pc.cumNoun] fattening, mentally prolonging the pleasure that comes with your virile [pc.ballsNoun] churning like a maelstrom on the verge of touching down on fertile fields yet to be fully despoiled.");
-	if (pc.cockTotal() > 1) output("\n\nIn this position there’s only room for one cock, but it doesn’t mean your other" + (pc.cockTotal() > 2 ? "s" : "") + " aren’t expressing their innate enjoyment. Fat wads of bubbling prejizz are spurting and slapping and shooting and spraying in a spree reminiscent of a wild west showdown. They surf on the waves of her endlessly rippling flesh, flying high and crouching low. In " + (pc.cockTotal() > 2 ? "their own way, they’re" : "its own way, it’s") + " fucking her. It’s unorthodox, but she knows she’s going to get it inside and out, and that makes her the happiest protein junkie.");
-
-	output("\n\nWeak, softened, and intoxicated, the weak raskvel sings your praises a dozen strokes now, a dozen strokes later; your smooth pumping pace accelerates to raging wantonness. You’re light-headed and dizzy, but doing far better than her. A velvety, fuzzy fills your ears when her continually squeezing, sloppy sluthole tightens normally and then madly. She’s by far the most suitable cocksheath you’ll ever meet. It’s hard to believe diplomacy is even a problem in this day and age when, at the end of the day, everyone wants what you’ve got right now.");
+	if (pc.cockTotal() > 2) output("\n\nIn this position there’s only room for one cock, but it doesn’t mean your others aren’t expressing their innate enjoyment. Fat wads of bubbling prejizz are spurting and slapping and shooting and spraying in a spree reminiscent of a wild west showdown. They surf on the waves of her endlessly rippling flesh, flying high and crouching low. In " + (pc.cockTotal() > 2 ? "their own way, they’re" : "its own way, it’s") + " fucking her. It’s unorthodox, but she knows she’s going to get it inside and out, and that makes her the happiest protein junkie.");
+	else if (pc.cockTotal() > 1) output("\n\nIn this position there’s only room for one cock, but it doesn’t mean your other isn't expressing its innate enjoyment. Fat wads of bubbling prejizz are spurting and slapping and shooting and spraying in a spree reminiscent of a wild west showdown. It surfs on the waves of her endlessly rippling flesh, flying high and crouching low. In " + (pc.cockTotal() > 2 ? "their own way, they’re" : "its own way, it’s") + " fucking her. It’s unorthodox, but she knows she’s going to get it inside and out, and that makes her the happiest protein junkie.");
+	
+	output("\n\nWeak, softened, and intoxicated, the weak raskvel sings your praises a dozen strokes now, a dozen strokes later; your smooth pumping pace accelerates to raging wantonness. You’re light-headed and dizzy, but doing far better than her. A velvety, fuzzy ache fills your ears when her continually squeezing, sloppy sluthole tightens normally and then madly. She’s by far the most suitable cocksheath you’ll ever meet. It’s hard to believe diplomacy is even a problem in this day and age when, at the end of the day, everyone wants what you’ve got right now.");
 	output("\n\nSexual stench is high in your nostrils. Coarse sounds best found in highly rated pornos are your entire world now. Ejaculatory tremors keep her simmering, soaked depths firm and <b>alive.</b> You’re carried away by your own savageness, not caring that you’re putting pause to your quest just to buck and bounce on top of this tiny lizard, driving your peaking intensity into her wetness. You’re just enjoying the silky feel of pussy sheathing your indomitable dick, fucking her with unmatched ardor.");
 	output("\n\nThe allure of cumming inside, of planting your seed in every egg, proves to be too much. You put the ‘press’ in mating press, growling like a beast while you piledrive her provocative pussy. The scour of your veiny dickflesh against her fecund carries hits every one of your buttons in sequence. Hard thrusts of rutting hindquarters ram your [pc.cockNoun] into the alluring raskvel’s cunt, on the very edge of warming it with a thick load of sizzling-hot seed.");
-	output("\n\nNails rake your [pc.skinFurScalesNoun] and a firestorm of girlish arousal conflagrates your body. Your orgasm is there, just below your surface" + (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FLARED) ? "; you can feel it when the flare of your beastly cock billows out into full, circular tumescence" : "") + ". A percussive beat of reproductive urge pounds a final note, suffocating tightness envelopes you from [pc.cockNoun] to brain. Bliss flows in vein-bloating amounts, surging through your hypersensitive urethra and straight into the wet, willing bitch locked to your desires.");
+	output("\n\nNails rake your [pc.skinFurScalesNoun] and a firestorm of girlish arousal conflagrates your body. Your orgasm is there, just below your surface" + (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FLARED) ? "; you can feel it when the flare of your beastly cock billows out into full, circular tumescence" : "") + ". A percussive beat of reproductive urge pounds a final note; suffocating tightness envelopes you from [pc.cockNoun] to brain. Bliss flows in vein-bloating amounts, surging through your hypersensitive urethra and straight into the wet, willing bitch locked to your desires.");
 	if (pc.cocks[kok].cLength() < 14 && pc.hasKnot(kok)) output(" A single thrust more and your [pc.knot " + kok + "] wears her pussy like a wedding band, tying the knot, as it were, and ensuring maximum hatchling potential.");
 	
 	if (pc.cumQ() >= 5000)
@@ -1455,17 +1456,33 @@ public function watchDatRaskvelEggLayyyy():void
 	}
 	else output("\n\nThe extreme rush of overflowing spunk caps off your fertilizing orgy. [pc.Cum] races through your spunk-vein, plastering unquenchable walls in fecund heat. Heated release pushes past mindless contractions and into a womb more than ready to receive its due rewards. Teeming crackles of electrical urgency arc through your loins, pulsating like the visible glow of a rare lightning strike when another rope fires off. Feverish walls suckle you and your [pc.cumVisc] loads deeper, making sure as many swimmers get their opportunity to fill the lapis girl’s bred body to the brim with eggs made ready to hatch the healthiest possible children. A little round swell in her tummy will be indicative of her successful mating." + (pc.cockTotal() > 1 ? " Sympathetic squirts of a divided creampie spray out over her, striping her body in [pc.cumGem] lines." : ""));
 
-	output("\n\nPulling away from your sloppy lay is the most exhausting part of this. Satiated and calm, you glance at the clenching and unclenching form of the inflated scavenger and think about how you met her... what led you here. Man, what a story, and perhaps not the only time this might happen. Ignorant to anything outside of her well-fucked body, she’ll be a sperm-soaked landmark here for a good while. [pc.CumColor] curtains drain from her pussy, sadly wasteful... but you put enough in there to make the job mean something.");
+	if (pc.cocks[kok].cLength() < 14 && pc.hasKnot(kok))
+	{
+		output("\n\nSealed inside, your orgasm will continue for a while longer. Ribbons and thin arcs of spoo launch out of the plugged hole, breaking on contact with your [pc.thighs]. Organic, cock-milking innards usher out load after [pc.cumVisc] load, promising a delightful stay until your bitch-breaking bulb deflates and frees you from your propagative responsibility. Sadly, the pregnable rask is in no condition for a chat or anything. Oh well!");
+		processTime(5);	
+	}
+	processTime(9 + rand(11));
+	clearMenu();
+	addButton(0, "Next", raskvelFemaleMatingPressEnd, kok);
+ }
+
+ public function raskvelFemaleMatingPressEnd(kok:int=0):void
+ {
+ 	clearOutput();
+ 	showBust(raskvelFemaleBustDisplay(true));
+ 	showName("FEMALE\nRASKVEL");
+ 	author("William");
+	
+	output("Pulling away from your sloppy lay is the most exhausting part of this. Satiated and calm, you glance at the clenching and unclenching form of the inflated scavenger and think about how you met her... what led you here. Man, what a story, and perhaps not the only time this might happen. Ignorant to anything outside of her well-fucked body, she’ll be a sperm-soaked landmark here for a good while. [pc.CumColor] curtains drain from her pussy, sadly wasteful... but you put enough in there to make the job mean something.");
 	output("\n\nFor now, you’ve spent enough time and energy on this scrappy, would-be mechanic. Breathing slow and steady, you stand and get back to your adventure, a little more spritely than before.");
 	
 	IncrementFlag("FEM_RASKVEL_MATING_PRESS");
-	processTime(9 + rand(11));
 	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance(true);
 	pc.orgasm();
 	setEnemy(null);	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);		
+	addButton(0, "Next", mainGameMenu);	
  }
 public function knockUpRaskChance(heatSex:Boolean=false):void
 {
