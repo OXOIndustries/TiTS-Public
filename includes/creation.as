@@ -460,8 +460,6 @@ public function setStartingSex(sex:int = 1):void {
 				break;
 			case "half-gryvain":
 				pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
-				pc.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
-				pc.cocks[0].addFlag(GLOBAL.FLAG_RIBBED);
 				pc.ballSizeRaw = 5;
 				break;
 		}
@@ -533,7 +531,6 @@ public function setStartingSex(sex:int = 1):void {
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.elasticity = 1.25;
 			pc.vaginas[0].bonusCapacity += 30;
-			pc.vaginas[0].addFlag(GLOBAL.FLAG_NUBBY);
 			pc.vaginas[0].clits = 6;
 		}
 		if(sex == 3)
@@ -645,7 +642,7 @@ public function raceHeightMax(race:String):Number
 	return nHeight;
 }
 
-public function applyHeight():void {
+public function applyHeight(confirm:Boolean = false):void {
 	clearOutput();
 	var fail:Boolean = false;
 	var heightMin:Number = raceHeightMin(pc.originalRace);
@@ -671,6 +668,14 @@ public function applyHeight():void {
 		clearMenu();
 		addButton(0,"Next",applyHeight);
 		addButton(14,"Back",startCharacterCreation);
+		return;
+	}
+	
+	if(confirm) {
+		pc.tallness = Number(userInterface.textInput.text);
+		if(stage.contains(userInterface.textInput)) 
+			removeInput();
+		chooseThickness();
 		return;
 	}
 	
@@ -707,14 +712,8 @@ public function applyHeight():void {
 	userInterface.textInput.text = stringInput;
 	output("\n\n\n");
 	clearMenu();
-	addButton(0,"Confirm",applyHeightConfirm);
+	addButton(0,"Confirm",applyHeight,true);
 	addButton(1,"Retry",applyHeight);
-}
-public function applyHeightConfirm():void {
-	pc.tallness = Number(userInterface.textInput.text);
-	if(stage.contains(userInterface.textInput)) 
-		removeInput();
-	chooseThickness();
 }
 
 public function chooseThickness():void {
