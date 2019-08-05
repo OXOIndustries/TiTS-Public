@@ -152,7 +152,7 @@ public function akaneCeleritasVeritasAvailable():Boolean
 
 public function akaneLairAvailable():Boolean
 {
-	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24*60);
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > (flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + (24*60)));
 }
 
 public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
@@ -1721,7 +1721,7 @@ public function akanePostSexOptions(activity:String = "TALKED"):void
 	IncrementFlag("AKANE_TIMES_" + activity);
 	if (silenceOnly) IncrementFlag("AKANE_TIMES_TALKED");
 	else flags["AKANE_LAST_FUN_VISIT_TIMESTAMP"] = GetGameTimestamp();
-		
+	
 	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	addButton((silenceOnly ? 0 : 1), "Enjoy Silence", akaneEnjoySilence, undefined, "Enjoy Silence", "Just enjoy each other on an instinctual level.");
 }
