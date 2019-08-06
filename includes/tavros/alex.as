@@ -1,4 +1,4 @@
-//Redone byt Kitteh6660
+//Redone by BubbleLord, coded by Kitteh6660
 //Original can be found in alex_original.as
 import classes.Characters.PregnancyPlaceholder;
 /*FIRST TIME INTRO
