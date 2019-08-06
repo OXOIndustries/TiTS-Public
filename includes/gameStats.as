@@ -4673,13 +4673,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Alex
 				if(flags["MET_ALEX"] != undefined)
 				{
-					if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2("\n<b>* Alex:</b>");
+					if(flags["DRANK_WITH_ALEX"] != undefined || flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2("\n<b>* Alex:</b>");
 					else output2("\n<b>* Pretty Boy:</b>");
 					output2(" Met him");
-					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him");
+					if(flags["LEFT_ALEX_REASON"] == 1) output2(", Bailed on him");
+					else if(flags["LEFT_ALEX_REASON"] == 2) output2(", Declined his offer to drink together");
+					if(flags["DRANK_WITH_ALEX"] != undefined) output2(", Drank with him");
+					if(flags["ALEX_CONFESSED"] != undefined) output2(", Learned about his gender");
+					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him"); //Should this line be changed somehow?
 					if(flags["FUCKED_ALEX"] != undefined) output2("\n<b>* Alex, Times Sexed:</b> " + flags["FUCKED_ALEX"]);
+					if(flags["ALEX_DRUNK_SEX"] != undefined) output2("\n<b>* Alex, Times Drunk-Sexed:</b> " + flags["ALEX_DRUNK_SEX"]);
 				}
-				// Alex
+				// Fadil
 				if(flags["MET_FADIL"] != undefined)
 				{
 					output2("\n<b>* Fadil:</b>");
