@@ -27,6 +27,7 @@
 			
 			this.inventory = [];
 			inventory.push(new Gush());
+			inventory.push(new Soak());
 			inventory.push(new Throbb());
 			inventory.push(new BreedingSylvie());
 			

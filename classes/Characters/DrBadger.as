@@ -19,6 +19,7 @@
 			
 			this.inventory.push(new Dumbfuck());
 			this.inventory.push(new Gush());
+			this.inventory.push(new Soak());
 			this.inventory.push(new Throbb());
 			this.inventory.push(new SlutRay());
 			this.inventory.push(new BimboleumDefenseSystem());
