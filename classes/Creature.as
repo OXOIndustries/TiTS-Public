@@ -5444,6 +5444,7 @@
 			currLib += statusEffectv1("Undetected Locofever");
 			currLib += statusEffectv1("Locofever");
 			currLib += statusEffectv1("Fried Cunt Snake");
+			if (hasStatusEffect("Soak") && currLib < 100) currLib = 100;
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			if (pluggedVaginas() > 0 || isPlugged(-1)) currLib *= 2;
 			if (currLib > libidoMax())
@@ -5611,7 +5612,9 @@
 			if(!raw) {
 				// Nothing yet!
 			}
-			return ((level * 5) + bonuses);
+			//OD Soak = 1/2.
+			if(hasStatusEffect("Soak Overdose")) return (((level * 5) + bonuses)/2);
+			else return ((level * 5) + bonuses);
 		}
 		public function libidoMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
@@ -10153,6 +10156,7 @@
 			capacity *= (vaginas[arg].looseness() * 5 + 1)/3;
 			//Add bonuses!
 			capacity += vaginas[arg].bonusCapacity;
+			if(hasStatusEffect("Soak")) capacity += 150;
 			//CoC-tier wetness 5 will double capacity.
 			capacity *= (vaginas[arg].wetness()+4)/5;
 			//elasticity bonuses!
@@ -10319,6 +10323,11 @@
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			//Soak bumps up 1 level to 2 at max.
+			if(hasStatusEffect("Soak") && puffScore < 1) puffScore = 1;
+			else if(hasStatusEffect("Soak") && puffScore < 2) puffScore = 2;
+			//OD is the hypers!
+			if(hasStatusEffect("Soak Overdose") && puffScore < 3) puffScore = 3;
 			
 			return puffScore;
 		}
@@ -11296,6 +11305,7 @@
 		public function isSquirter(arg: int = -1): Boolean {
 			if (vaginas.length <= 0) return false;
 			if (arg > (vaginas.length - 1)) return false;
+			if (hasStatusEffect("Soak")) return true;
 			if (arg < 0)
 			{
 				if(wettestVaginalWetness() >= 4 || hasOpalRingVagina()) return true;
@@ -11338,6 +11348,8 @@
 			quantity = tempGirlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
 			// Heat means wetter orgasms.
 			if(inHeat()) quantity *= 1.5;
+			//Soak is double multiplier!
+			if(hasStatusEffect("Soak")) quantity *= 2;
 			if(hasPerk("Treated Readiness")) quantity *= 2;
 			if(hasOpalRingVagina()) 
 			{
@@ -16245,28 +16257,30 @@
 			if(this is PlayerCharacter && rand(2) == 0 && vaginaNum == 0 && hasStatusEffect("Mimbrane Pussy") && adjectiveCount == 0)
 			{
 				var puffScore:Number = (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				var soak:Boolean = (this as PlayerCharacter).hasStatusEffect("Soak");
+				var soakOD:Boolean = (this as PlayerCharacter).hasStatusEffect("Soak Overdose");
 				var mimAdjectives:Array = [];
 				
 				if(puffScore <= 0) {}
 				else if(puffScore <= 1)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) || soakOD) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || soak) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || soak) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
 				else if(puffScore <= 2)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) || soakOD) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || soak) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || soak) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
 					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
 				}
 				else
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) || soakOD) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || soak) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || soak) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
 				
@@ -16783,6 +16797,8 @@
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && biggestSize == -1) biggestSize = 1;
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == -1) biggestSize = 2;
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && biggestSize == -1) biggestSize = 3;
+				else if(hasStatusEffect("Soak") && biggestSize < 2) biggestSize = 2;
+				else if(hasStatusEffect("Soak Overdose") && biggestSize < 3) biggestSize = 3;
 			}
 			if(biggestSize > 0)
 			{
@@ -22221,6 +22237,18 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Soak":
+						if(requiresRemoval)
+						{
+							//Strip out bonus wet.
+							for(var ii:int = 0; ii < this.totalVaginas(); ii++) 
+							{ 
+								if(vaginas[ii].wetnessMod >= 5) vaginas[ii].wetnessMod -= 5; 
+							}
+							if(clitLength >= 0.6) clitLength -= 0.5;
+							kGAMECLASS.eventQueue.push(new Soak().soakOverWrapper);
+						}
+						break;
 					case "Shekka_Pay_CD":
 						if (this is PlayerCharacter && requiresRemoval)
 						{

@@ -121,6 +121,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Soak", soakCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentatool", tentacoolCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
@@ -2794,7 +2795,7 @@ public function korgonneCodexEntry():void
 
 			if(korgiTranslateProgress() >= 100) 
 			{
-				output(" <b>Would you like to submit your Codex’s language data to improve translations?</b>");
+				outputCodex(" <b>Would you like to submit your Codex’s language data to improve translations?</b>");
 				clearGhostMenu();
 				addGhostButton(4, "Back", showCodex);
 				addGhostButton(0, "Translate", translateKorgii);
@@ -2807,7 +2808,7 @@ public function korgonneCodexEntry():void
 		outputCodex("\n\nLastly, while their language has proven difficult for procedural translation software to adapt to, your extensive sampling of the residents of Korg’ii Hold improved the algorithm to near perfection. Your efforts to refine translation software has not gone unnoticed.");
 		if(!korgiTranslate()) 
 		{
-			output(" <b>For some reason, you’re using the old software version.</b>");
+			outputCodex(" <b>For some reason, you’re using the old software version.</b>");
 		}
 		clearGhostMenu();
 		addGhostButton(0, "Translate", translationToggle);
@@ -3117,6 +3118,36 @@ public function throbbCodexEntry():void
 	outputCodex("Throbb is almost assuredly illegal. Do not use it. Should you come across any, turn it over to your local UGC Peacekeepers or planetary security forces. If you are on a planet where it is legal, avoid it all costs. It could ruin your life. (Attached is a short, anti-drug video clip. In it, a kaithrit is holding up a hotdog. She says, <i>“This is your dick. And this-”</i> Then she pivots and smacks face-first into the side of a tubular ship, rusted out with age. Rubbing her nose, she adds, <i>“...is your dick on Throbb. It isn’t going anywhere, and certainly not in me. Any questions?”</i>)");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Throbb");
+}
+
+public function soakCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("MITZI_NUDE");
+	outputCodex(header("Soak, AKA the Slut Thrill Pill"));
+	outputCodex("<i>“And when you first take it, your pussy feel really, really weird. Everything gets all puffy and swollen and almost rubbery looking, especially once the drooling starts. You’ll feel it happening, and you just can’t help but get wet enough to ride a tribe of raskvel.”</i> - Mitzi, Gabilani Soak junkie\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The Soak project started after Tamani Corp’s CEO was utterly humiliated by the JoyCo representative during an exhibit of femininity-enhancement mods. It is said that Tamani’s pink complexion turned a beet-red shade after the competitor’s representative showcased their newest product, Tittyblossom, while making a rather unsubtle reference to the Gush fiasco from a couple of years before.");
+	outputCodex("\n\nFueled by collective outrage, Tamani Corp poured inordinate amounts of resources into the creation of a product that would <i>“wipe the smirk off that bitch’s face,”</i> as the CEO herself said during a press conference, her words now immortalized in the extranet. Tamani’s choice was a pussy-enhancement mod that promised users a permanently lubricated, shapely pussy, along with increased sensitivity and fertility.");
+	outputCodex("\n\nEarly results were promising enough, however in their zeal (or, as some say, their obsessive focus on carnality), Tamani Corp’s researchers went a little too far. What was supposed to be a small libido enhancement turned out to cause severe addiction, leading up to extreme levels of nymphomania. Participants from the focus groups also complained about permanent leakage from their vaginas, which made it impossible to wear normal fabrics on their legs, and to top it off, the vaunted fertility boost only came to one in every ten participants.");
+	outputCodex("\n\nThe compound had been discovered only recently, so a few defects were to be expected, but <i>this</i> looked too much like the Gush incident. Before things could escalate into legal problems, Tamani Corp decided to shut down the project and fully disclose the results to the U.G.C. Drug Regulation Office (D.R.O.), which led to a universe-wide ban on Soak and similar compounds.");
+	outputCodex("\n\nMany business specialists speculate that this was a deliberate move to stop other companies that were already experimenting with similar formulas. If Tamani Corp was to take a blow, its competitors would pay an even heavier price - JoyCo and Xenogen, in particular, had to shut down a number of projects that were nearing their final stages.");
+	outputCodex("\n\nShortly thereafter, Soak’s formula was leaked to the extranet by an anonymous hacker who infiltrated the D.R.O. systems (and who is now widely regarded as a hero). Conspiracy theorists point to Tamani herself as the mastermind, saying she used her connections to facilitate the cyber-heist, because she wanted her creation to spread all over the universe.");
+	outputCodex("\n\nThe truth will never be known, but it’s undeniable that this stunt gave the company’s image a nice boost among the rebellious youth. Since then, Tamani Corp’s shares have seen a subtle but steady growth that many staticians correlate to the rise in Soak’s underground popularity.\n\n");
+	outputCodex(blockHeader("Method of Application"));
+	outputCodex("Soak is a quickly-dissolving candy that can be taken orally, or used as a vaginal suppository. The latter method is often recommended for solo use, but many clubbers prefer the former, since it allows them to share a dose through kissing. U.G.C. Peacekeeper offices receive frequent reports of people getting unknowingly drugged in this manner.\n\n");
+	outputCodex(blockHeader("Legality"));
+	outputCodex("The U.G.C. prohibits the Soak compound, however it would be impossible to ban every single component of the formula, since most of them are also used in widely popular products. As a result, it is relatively easy to manufacture by back-alley chemists with the right equipment. Nowadays, Soak can be found in just about every underground party in a core planet, though it has only recently started to spread to rush planets.");
+	outputCodex("\n\nGiven Soak’s rising popularity and the fact that it doesn’t carry very serious physical debilitating effects (not nearly on the same level as Throbb, at any rate), some sectors of the U.G.C. have been pressing for legalization of the drug, and the Health Department has been seeking better ways to offer mental care for addicts.\n\n");
+	outputCodex(blockHeader("Known Effects"));
+	outputCodex("* Intense euphoria for a few hours.");
+	outputCodex("\n* Chemical and psychological addiction.");
+	outputCodex("\n* A steep and permanent increase in the production of vaginal fluids.");
+	outputCodex("\n* A steady increase in libido, often expressed by users as ‘cock craving’.");
+	outputCodex("\n* Extensive vaginal swelling and enhanced sensitivity to pleasure.");
+	outputCodex("\n* A stark increase in fertility, but only when overdosed.");
+	outputCodex("\n* Nymphomania and permanently reduced inhibitions.\n");
+	CodexManager.viewedEntry("Soak");
 }
 
 public function dumbfuckCodexEntry():void
