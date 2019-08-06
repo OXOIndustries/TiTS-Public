@@ -6349,6 +6349,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
+					if(flags["ANNO_FACESIT"] != undefined) output2("\n<b>* Anno, Times She Sat on Your Face:</b> " + flags["ANNO_FACESIT"]);
 				}
 				variousCount++;
 			}
