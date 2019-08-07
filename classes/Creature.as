@@ -15243,8 +15243,9 @@
 		public function hasSymbolAreola(rowNum:int = 0):Boolean
 		{
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
-			else if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
-			else return false;
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) return true;
+			return false;
 		}
 		public function areolaDescript(rowNum:int = 0, appearance:Boolean = false):String
 		{
@@ -15268,6 +15269,7 @@
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) adjectives.push("flower-shaped");
 
 			//If a player has a flag, they probably want to see stuff
 			if (breastRows[rowNum].areolaFlags.length > 0) adjectiveMin++;
@@ -15311,6 +15313,7 @@
 			//Others
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) list.push("flower-shaped");
 
 			//Build list with punctuation
 			while (list.length > 0)

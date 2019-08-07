@@ -1555,6 +1555,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.FLAG_FEATHERED: outputRouter(" mane of poofy, " + target.furColor + " feathers"); break;
 			case GLOBAL.FLAG_SPIKED: outputRouter(" collar of sinister-looking spikes"); break;
 			case GLOBAL.FLAG_TENDRIL: outputRouter(" wreath of plant-like vines"); break;
+			case GLOBAL.FLAG_FLOWER_SHAPED: outputRouter("n aromatic mane of flower petals"); break;
 			case GLOBAL.FLAG_AMORPHOUS: outputRouter("n amorphous brace of translucent slime"); break;
 			default: outputRouter(" magnificent mane"); break;
 		}

@@ -110,6 +110,7 @@ package classes.Items.Transformatives
 					output("You pick up the dose of Soak all too eagerly, and you immediately know there’s no going back. No way you’d be able to muster the will to put it down. There is no hesitation, no worry, no fear - just giddy anticipation of how slutty you will a few minutes from now.");
 					output("\n\nWell, it’s now or never! You have only one choice to make.");
 				}
+				output("\n\n");
 				//BUTTONS: <Vaginal> <Oral> <Put Away>
 				//* Don't create the Put Away button if SOAK_TIMES_USED >= 5.
 				clearMenu();
@@ -138,7 +139,8 @@ package classes.Items.Transformatives
 			if(uses >= 1) output("both relief and yearning regret escapes your lips, but you know it’s for the best.");
 			else output("pure, clear-headed relief escapes your lips.");
 			output(" Maybe you should sell the drug or get rid of it somehow, this way you’ll not be so easily tempted anymore.");
-			if(kGAMECLASS.mitziIsCrew()) output(" Maybe Mitzi would like it as a gift? It probably can’t make her <i>more</i> slutty than she already is... ");
+			if(kGAMECLASS.mitziIsCrew()) output(" Maybe Mitzi would like it as a gift? It probably can’t make her <i>more</i> slutty than she already is...");
+			output("\n\n");
 			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Soak()]);
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
@@ -157,7 +159,7 @@ package classes.Items.Transformatives
 			if(kGAMECLASS.flags["SOAK_TIMES_USED"] != undefined) uses = kGAMECLASS.flags["SOAK_TIMES_USED"];
 			output("You ");
 			if(!pc.isCrotchExposed()) output(" quickly pull open your [pc.crotchCovers] and ");
-			output("press the candy against the slit of your [pc.vagina], slowly sliding it in with a finger. It goes inside quite easily, but the pill leaves a trail of warm, needy itch where it rubs your canal. The sensation is so pervasive that you can’t resist fingering yourself a little - which only helps the Soak to spread and dissolve quicker.");
+			output("press the candy against the slit of [pc.oneVagina], slowly sliding it in with a finger. It goes inside quite easily, but the pill leaves a trail of warm, needy itch where it rubs your canal. The sensation is so pervasive that you can’t resist fingering yourself a little - which only helps the Soak to spread and dissolve quicker.");
 			output("\n\nYou could masturbate here and now, but that would be kind of a waste, since the real rush hasn’t even started yet. Therefore, you decide to hold out for now, giving the drug time to really act on your system and build up one of those mind-shattering orgasms!");
 			// set flag SOAK_USE_METHOD = 1; (vaginal)
 			kGAMECLASS.flags["SOAK_USE_METHOD"] = 1;
@@ -301,7 +303,7 @@ package classes.Items.Transformatives
 				pc.exhibitionism(2);
 			}	
 			output("To your utter delight, [pc.eachVagina] has swollen up quite noticeably, " + (pc.hasVaginas() ? "their":"its") + " lips juicy and puffed up in a mouthwatering invitation for a tongue or cock. You run a couple of fingers ever so softly over the labia, which sends a shiver of ecstasy running through your whole groin.");
-			if(pc.hasCock()) output(" Your [pc.cocks] tremble" + (!pc.hasCocks() ? "s":"") + " with neglected excitement, already drooling precum without being even touched. Too bad for " + (!pc.hasCocks() ? "it":"them") + ", but you have other priorities right now! }");
+			if(pc.hasCock()) output(" Your [pc.cocks] tremble" + (!pc.hasCocks() ? "s":"") + " with neglected excitement, already drooling precum without being even touched. Too bad for " + (!pc.hasCocks() ? "it":"them") + ", but you have other priorities right now!");
 			output("\n\nPleasurable as it is, you notice the change isn’t complete yet: your [pc.clits] " + (pc.totalClits() ? "is":"are") + " still engorging, getting larger and puffier by the second before your very eyes! The change is accompanied by a sensation of tingly need that spreads through the whole exterior" + (pc.hasVaginas() ? "s":"") + " of your [pc.vaginas], begging to be touched and filled.");
 			output("\n\nEven if you wanted to resist, this takes you far past the limit of your willpower, and you bring a hand down to gently massage your [pc.clits], encouraging even more growth. " + (pc.totalClits() == 1 ? "It":"Each of them") + " must have swollen almost half an inch larger by now. The touch causes you to tremble with ecstasy, your legs weakening momentarily. As soon as you recover, your other hand moves of its own accord to the slit of your [pc.vagina " + x + "], introducing a finger all the way in with needy haste, knuckles pressing against your swollen pussylips in a very gratifying manner.");
 			output("\n\nThis new sensation is too much, and you immediately freeze in an attempt not to cum. The slightest stimulus could set off your orgasm, but you want to save it for the <i>real</i> thing. First, you release your [pc.clits], then you carefully pull the finger out of your [pc.vagina " + x + "], trying your darndest not to think of cock (and failing). Still, you manage to stave off the impending climax.");
@@ -415,12 +417,12 @@ package classes.Items.Transformatives
 			if(pc.vaginas[x].looseness() >= 5) output("eventually settling for a fistful. ");
 			output("Your [pc.vagina " + x + "] is releasing fem-lube so profusely that it doesn’t take any effort at all to slide that many fingers in and out! Before long, you are sitting on a pool of your own [pc.girlCumFlavor] fem-lube, a strong scent of female sex permeating the air, but you barely pay any attention to this as your other hand moves to play with your [pc.clits], circling and teasing with growing degrees of intensity.");
 			if(pc.hasCock()) output("\n\nYour [pc.multiCocks] start" + (!pc.hasCocks() ? "s":"") + " drooling a weak trickle of [pc.cumNoun], which runs down your thighs and soon mixes with the puddle of fem lube on the ground. It’s almost like a soft, slow-moving, never-ending cumshot, but even this sensation is just another drop in the ocean of pleasure being provided by your [pc.vagina " + x + "].");
-			output("\n\nBy this point, you are just following blind instinct. You continue to finger yourself with debauched abandon, the squishing and slapping sounds only eclipsed by the noises coming out of your throat in between ragged breaths - your shameless, needy moans would outclass any slut right now.");
 			if(InPublicSpace(pc))
 			{
 				output("\n\nBy this point, a crowd of locals has gathered tightly around you, most of whom are masturbating furiously to your sensual performance. Their devoted presence forms a protective circle around you, preventing non-fans from spotting you in this vulnerable state, even though everyone can hear your shameless, slutty vocalizations. Not that you care, considering how high you are right now.");
 				pc.exhibitionism(2);
 			}
+			else output("\n\nBy this point, you are just following blind instinct. You continue to finger yourself with debauched abandon, the squishing and slapping sounds only eclipsed by the noises coming out of your throat in between ragged breaths - your shameless, needy moans would outclass any slut right now.");
 			kGAMECLASS.processTime(2);
 			pc.lust(25);
 			clearMenu();
@@ -593,7 +595,7 @@ package classes.Items.Transformatives
 			if(rand(4) == 0 && soakChanges < soakMaxChanges && soakPump < 2)
 			{
 				soakChanges++;
-				if(soakPump == 1)
+				if(soakPump == 0)
 				{
 					output("\n\nThe first thing to catch your attention is a visible increase in the volume of your pussylips. They aren’t quite as swollen as during the Soak rush, but they definitely look puffier than before! You run a finger over your [pc.vaginas], delighting in how plump and sensitive your labia feel.");
 					for (x = 0; x < pc.totalVaginas(); x++)
@@ -606,7 +608,7 @@ package classes.Items.Transformatives
 						}
 					}
 				}
-				else if(soakPump == 2)
+				else if(soakPump == 1)
 				{
 					output("\n\nChecking the appearance of your pussylips in the Codex, you note that they look mouthwatering and absolutely gorgeous - perfect for being serviced by a hungry tongue, rubbed by a huge cock, or squeezed against someone else’s cunt!");
 					for (x = 0; x < pc.totalVaginas(); x++)
@@ -728,7 +730,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou’ve barely formulated the thought when you feel a familiar wave of pleasure building up inside your [pc.vaginas]. Your walls start contracting of their own volition, and your body trembles as it is seized by a sudden, intense ecstasy. Some of the Soak-related blogs you’ve read talked about spontaneous orgasms, but this is <i>way</i> better than they said!");
 					output("\n\nIntent on making the most of this rare opportunity, you start to vigorously finger [pc.oneVagina], while the other hand gently massages your [pc.clits] and pussylips, escalating out the impending climax. It doesn’t take five seconds for your [pc.vaginas] to start gushing out [pc.girlCum] like a fountain, prompting you to moan like a bitch in heat, and you savor every moment of it!");
-					output("By the time your long, spontaneous orgasm finally winds down, you notice you’re standing on a pool of your own fluids, your thighs, [pc.legOrLegs] and everything around entirely coated with [pc.girlCumNoun] and reeking of sex. <b>It looks like your" + (pc.hasCock() ? " feminine" : "") + " orgasms have gotten quite a little bit messier!</b>");
+					output("\n\nBy the time your long, spontaneous orgasm finally winds down, you notice you’re standing on a pool of your own fluids, your thighs, [pc.legOrLegs] and everything around entirely coated with [pc.girlCumNoun] and reeking of sex. <b>It looks like your" + (pc.hasCock() ? " feminine" : "") + " orgasms have gotten quite a little bit messier!</b>");
 					pc.orgasm();
 					pc.applyPussyDrenched();
 				}

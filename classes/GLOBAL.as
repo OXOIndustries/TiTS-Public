@@ -86,6 +86,7 @@
 		public static const FLAG_HYPER_PUMPED:int 							= 51;
 		public static const FLAG_HEART_SHAPED:int							= 52;
 		public static const FLAG_STAR_SHAPED:int							= 53;
+		public static const FLAG_FLOWER_SHAPED:int							= 54;
 
 		
 		public static const FLAG_NAMES:Array = [
@@ -143,6 +144,7 @@
 			"Hyper Pumped",
 			"Heart-Shaped",
 			"Star-Shaped",
+			"Flower-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [

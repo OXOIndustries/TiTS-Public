@@ -2465,7 +2465,7 @@ public function mommirrinSexingTimes(fromNursing:Boolean):void
 	if (pc.cockThatFits(mirrinMaxSize) < 0 && !(pc.hasHardLightUpgraded() && pc.hasHardLightEquipped())) addDisabledButton(3,"Kegel Ride","Kegel Ride","You’re gonna need something that fits in her.");
 	else addButton(3,"Kegel Ride",penisRouter,[doinMirranWhereFewHaveGoneBefore,mirrinMaxSize,true],"Kegel Ride","She’s a muscle queen, even the sexy, <b>hidden</b> muscles. Coax her into kegel-fucking your tool with her pussy while getting buried in tits and milk.");
 
-	if (pc.ass.looseness() < (mirrin.cLength(0)>20?6:4) || pc.analCapacity() < (mirrin.cLength(0)>20?600:300)) addDisabledButton(4,"Anal DP?","Anal Double Penetration?","Your butt is too tight.");
+	if (pc.ass.looseness() < 4 || pc.analCapacity() < (mirrin.cLength(0)>20?600:300)) addDisabledButton(4,"Anal DP?","Anal Double Penetration?","Your butt is too tight.");
 	else addButton(4,"Anal DP?",gitFuktByBothMirranDiks,undefined,"Anal Double Penetration?","Two cocks... one hole. Even if you’re brave enough, that’s a lot of EasyFit. You remember that EasyFit becomes a little <i>permanent</i>, too...");
 
 	addButton(14,"Back",mirrinSterkurHusButtons);
