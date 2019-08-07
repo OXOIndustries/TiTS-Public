@@ -132,9 +132,9 @@ public function muffModelerAd():void
 
 	output("\n\nThe lust-struck lady carries on with her self loving, as the myriad of aphrodisiac tendrils coming from her pussy sting her all over her hand, clit and labia, causing her to squirt and moan like a frenzied animal.");
 
-	output("\n\n<i>“Alright, alright, I think that's enough. Zoom in and cut.” You hear the male voice from before, still muffled and far sounding. The hologram pauses and disappears, only to reappear after a couple of seconds. It's the same lady as before, and she's again standing. You can see her pussy remains modified, and she displays a strained expression, trying her best to smile. While the woman tries to remain stoic, it's clear she's still flustered, and you catch a few discreet attempts at pleasuring herself, squeezing her clit.</i>");
+	output("\n\n<i>“Alright, alright, I think that's enough. Zoom in and cut.”</i> You hear the male voice from before, still muffled and far sounding. The hologram pauses and disappears, only to reappear after a couple of seconds. It's the same lady as before, and she's again standing. You can see her pussy remains modified, and she displays a strained expression, trying her best to smile. While the woman tries to remain stoic, it's clear she's still flustered, and you catch a few discreet attempts at pleasuring herself, squeezing her clit.</i>");
 
-	output("\n\n<i>“The- Ah! P-" + muffModelerName() + "... features unparalleled quality and a vast array of AH!vailable... available... ngh! Customization options for your pussy. T-TamaniCorp only delivers the best of the best. For all your sexual needs and transformatives, c-choose Tamani. Ah! P-please... again. I-”</i>"); 
+	output("\n\n<i>“The- Ah! M-" + muffModelerName() + "... features unparalleled quality and a vast array of AH!vailable... available... ngh! Customization options for your pussy. T-TamaniCorp only delivers the best of the best. For all your sexual needs and transformatives, c-choose Tamani. Ah! P-please... again. I-”</i>"); 
 
 	output("\n\nThe hardlight lady disappears and is replaced by a rotating logo of Tamani featuring the name and price of the product as well as the option to “Buy now.” Well, now it's time to decide what to do.");
 	
