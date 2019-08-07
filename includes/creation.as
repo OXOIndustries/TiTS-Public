@@ -349,6 +349,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.armType = GLOBAL.TYPE_KUITAN;
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			CodexManager.unlockEntry("Kui-Tan");
 			addButton(0,"Male",setStartingSex,1);
 			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.");
 			addButton(2,"Herm",setStartingSex,2);
@@ -369,6 +370,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;
 			pc.eyeType = GLOBAL.TYPE_GRYVAIN;
+			CodexManager.unlockEntry("Gryvain");
 			addButton(0, "Female", setStartingSex, 3);
 			addButton(1, "Herm", setStartingSex, 2);
 			break;
@@ -392,6 +394,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			CodexManager.unlockEntry("Suulas");
 			addButton(0,"Male",setStartingSex,1);
 			addButton(1,"Female",setStartingSex,3);
 			break;
@@ -436,21 +439,18 @@ public function setStartingSex(sex:int = 1):void {
 		pc.ballSizeRaw = 1.5;
 		switch(pc.originalRace)
 		{
-			case "half-suula":
-				pc.ballSizeRaw = 6;
-			case "half-leithan":
-				pc.shiftCock(0,GLOBAL.TYPE_NAGA);
-				pc.ballSizeRaw = 3;
-				break;
 			case "half-ausar":
 				pc.shiftCock(0,GLOBAL.TYPE_CANINE);
-				//Get rid of sheath for reasons
-				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // Get rid of sheath for reasons
 				break;
 			case "half-kaithrit":
 				pc.shiftCock(0,GLOBAL.TYPE_FELINE);
 				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
 				pc.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
+				break;
+			case "half-leithan":
+				pc.shiftCock(0,GLOBAL.TYPE_NAGA);
+				pc.ballSizeRaw = 3;
 				break;
 			case "half kui-tan":
 				pc.shiftCock(0,GLOBAL.TYPE_KUITAN);
@@ -462,6 +462,11 @@ public function setStartingSex(sex:int = 1):void {
 				pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
 				pc.ballSizeRaw = 5;
 				break;
+			case "half-suula":
+				//pc.shiftCock(0,GLOBAL.TYPE_SIREN);
+				//pc.cocks[0].cockColor = "blue";
+				pc.ballSizeRaw = 6;
+				break;
 		}
 		//MALE!
 		if(sex == 1)
@@ -471,16 +476,17 @@ public function setStartingSex(sex:int = 1):void {
 			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
-			if (pc.originalRace == "half-kaithrit")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 50;
-				pc.hipRatingRaw = 6;
-			}
-			else if (pc.originalRace == "half-suula")
-			{
-				pc.femininity = 49;
-				pc.hipRatingRaw = 6;
-				pc.buttRatingRaw = 6;
+				case "half-kaithrit":
+					pc.femininity = 50;
+					pc.hipRatingRaw = 6;
+					break;
+				case "half-suula":
+					pc.femininity = 49;
+					pc.hipRatingRaw = 6;
+					pc.buttRatingRaw = 6;
+					break;
 			}
 		}
 		//HERM!
@@ -492,46 +498,50 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
-			if (pc.originalRace == "half-kaithrit" || pc.originalRace == "half-gryvain")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 75;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+				case "half-kaithrit":
+				case "half-gryvain":
+					pc.femininity = 75;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}
 	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
 		pc.createVagina();
-		if (pc.originalRace == "half-suula")
+		switch(pc.originalRace)
 		{
-			pc.femininity = 85;
-			pc.hipRatingRaw = 5;
-			pc.buttRatingRaw = 10;
-		}
-		if(pc.originalRace == "half-leithan")
-		{
-			pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity += 20;
-		}
-		if(pc.originalRace == "half-ausar") {
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity = 20;
-			pc.elasticity = 1.25;
-		}
-		if(pc.originalRace == "half kui-tan")
-		{
-			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
-			//pc.vaginas[0].wetnessRaw = 1;
-		}
-		if (pc.originalRace == "half-gryvain")
-		{
-			pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.elasticity = 1.25;
-			pc.vaginas[0].bonusCapacity += 30;
-			pc.vaginas[0].clits = 6;
+			case "half-ausar":
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity = 20;
+				pc.elasticity = 1.25;
+				break;
+			case "half-leithan":
+				pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity += 20;
+				break;
+			case "half kui-tan":
+				pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
+				//pc.vaginas[0].wetnessRaw = 1;
+				break;
+			case "half-gryvain":
+				pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.elasticity = 1.25;
+				pc.vaginas[0].bonusCapacity += 30;
+				pc.vaginas[0].clits = 6;
+				break;
+			case "half-suula":
+				//pc.shiftVagina(0,GLOBAL.TYPE_SIREN);
+				//pc.vaginas[0].vaginaColor = "blue";
+				pc.femininity = 85;
+				pc.hipRatingRaw = 5;
+				pc.buttRatingRaw = 10;
+				break;
 		}
 		if(sex == 3)
 		{
@@ -541,10 +551,13 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 10;
-			if (pc.originalRace == "half-kaithrit") {
-				pc.femininity = 85;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+			switch(pc.originalRace)
+			{
+				case "half-kaithrit":
+					pc.femininity = 85;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}

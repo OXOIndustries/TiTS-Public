@@ -13,7 +13,7 @@
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.COCKSOCK;
+			this.type = GLOBAL.COCKWEAR;
 			
 			this.shortName = "S.CockBell";
 			this.longName = "silky cock bell";
@@ -28,6 +28,7 @@
 			
 			this.basePrice = 1000;
 			
+			addFlag(GLOBAL.ITEM_FLAG_COCKSOCK);
 			addFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY);
 			
 			this.version = _latestVersion;
