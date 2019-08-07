@@ -4,8 +4,8 @@ import classes.Characters.PlayerCharacter;
 //flags["MUFF_MODELER_INSTALLED"] == 1 means installed on ship
 public var muffModelerPrice:int = 100000;
 private var muffModelerGalotianPrice:int = 10000;
-private var muffModelerCodexUpgradePrice:int = 20000;
-private var muffModelerDuplicatorPrice:int = 70000;
+private var muffModelerCodexUpgradePrice:int = 30000;
+private var muffModelerDuplicatorPrice:int = 100000;
 private var muffModelerDeluxePrice:int = 200000;
 private var muffModelerRandomName:Boolean = true;
 private var muffModelerSillyModeNames:Array = ["Box Beautificator", "Box Box", "Clam Changer", "Clam Customizer", "CENSORED", "Cervix Servicer", "Cooch Customizer", "Cooch Constructor", "Cunt Crafter", "Cunt Changer", "Cunt Constructor", "Cuntstomizer", "Cuntstructor", "Fanny Finagler", "Hoo-ha Hootenanier", ,"Muff Modifier", "Muff Master", "Muff Mistress", "Passage Painter", "Pussy Perfector", "PLACEHOLDER", "Pussy Picker", "Pussy Planner", "Slit Sculptor", "Slit Shifter", "Snatch Shaper", "Twat Tweaker", "Vagoo Vandalizer", "Vaggy McVagFace"];
@@ -309,7 +309,7 @@ public function muffModelerCustomizeMenu(vagina:int):void
 			btnSlot++;
 			
 			if (tailginaFlagString == "") addDisabledButton(btnSlot, "Remove Feature", "Remove Feature", (pc.hasTails() ? "Your tailginas have no special features.":"Your tailgina has no special features."));
-			else addButton(btnSlot, "Remove Flag", muffModelerSelectFlag, [vagina, false], "Remove Features", (pc.hasTails() ? "Remove a feature from your tailginas.":"Remove a feature from your tailgina."));
+			else addButton(btnSlot, "Remove Features", muffModelerSelectFlag, [vagina, false], "Remove Features", (pc.hasTails() ? "Remove a feature from your tailginas.":"Remove a feature from your tailgina."));
 			btnSlot++;
 		}
 	}
@@ -951,7 +951,7 @@ public function muffModelerSelectPregnancyOptions(vagina:int):void
 	btnSlot++;
 	
 	if (pc.pregnancyIncubationBonusMotherRaw <= 1) addDisabledButton(btnSlot, "Dec. Preg Speed", "Decrease Incubation Speed", "Your pregnancies are as slow as this machine can make them.");
-	else addButton(btnSlot, "Decrease Inc. Speed", muffModelerChangeIncubationSpeed, [vagina, false], "Decrease Inc. Speed", "Decrease your incubation speed modifier.");
+	else addButton(btnSlot, "Decrease Preg Speed", muffModelerChangeIncubationSpeed, [vagina, false], "Decrease Incubation Speed", "Decrease your incubation speed modifier.");
 	btnSlot++;
 	
 	if (pc.pregnancyMultiplierRaw >= 5) addDisabledButton(btnSlot, "Inc. Preg #", "Increase Incubation Quantity", "Your broods are as large as this machine can make them.");
@@ -1257,7 +1257,7 @@ public function muffModelerChangeFlag(arg:Array):void
 		}
 	}
 	
-	muffModelerChangeDescriptionText(arg[0], [], arg[1]);
+	muffModelerChangeDescriptionText(arg[0], [arg[2]], arg[1]);
 	addButton(0, "Next", muffModelerMainMenu);
 }
 
@@ -1272,7 +1272,7 @@ public function muffModelerChangeGirlCumType(arg:Array):void
 	
 	muffModelerChangeText(arg[0]);
 	pc.girlCumType = arg[1];
-	muffModelerChangeDescriptionText(arg[0], [], false, false, "Time to check if the changes set in. After toying with your labia and clitty for a bit, you're finally wet enough to confirm your expectations. Your femienine juices has changed, just as expected. They are now [pc.girlcum]. This should be interesting.");
+	muffModelerChangeDescriptionText(arg[0], [], false, false, "Time to check if the changes set in. After toying with your labia and clitty for a bit, you're finally wet enough to confirm your expectations. Your femienine juices has changed, just as expected. They are now [pc.girlcumNoun]. This should be interesting.");
 	
 	addButton(0, "Next", muffModelerMainMenu);
 }
@@ -1752,7 +1752,7 @@ public function muffModelerConfirmBuy(arg:Array):void
 	}
 }
 
-//Leave the muffModeler menu
+//Leave the Muff Modeler menu
 public function leavemuffModeler():void
 {
 	showName("\nMUFF MODELER");
