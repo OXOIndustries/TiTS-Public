@@ -5,6 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Stories.BreedingSylvie;
 	import classes.kGAMECLASS;
 	

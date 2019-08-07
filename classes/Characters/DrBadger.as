@@ -6,6 +6,7 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Accessories.BimboleumDefenseSystem;
 	import classes.Items.Guns.SlutRay;
 	public class DrBadger extends Creature

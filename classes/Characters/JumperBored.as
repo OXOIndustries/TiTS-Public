@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	//import classes.Items.Guns.*
 	import classes.Items.Miscellaneous.Throbb;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Transformatives.LaquineEars;
 	import classes.Items.Protection.JumperShield;
 	import classes.Items.Armor.JumperJumpsuit;
