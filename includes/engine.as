@@ -51,6 +51,13 @@ public function clearOutput():void
 	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
 	_bufferChanged = true;
+	if (flags["EVENT_BUFFER_OVERRIDE"])
+		{
+				var eventBuffer:String = processEventBuffer();
+				if (eventBuffer != ("<b>" + possessive(pc.short) + " log:</b>\n"))  output(eventBuffer);
+				clearEventBuffer();
+				flags["EVENT_BUFFER_OVERRIDE"] = undefined;
+		}
 }
 
 public function output2(words:String, markdown:Boolean = false):void
