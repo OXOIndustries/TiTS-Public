@@ -67,11 +67,14 @@ public function processEventBuffer():String
 			
 			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + "\n\n");
 		}
-		
-		timestampedEventBuffer = [];
 	}
 	
 	return output;
+}
+
+public function clearEventBuffer():void
+{
+	timestampedEventBuffer = [];
 }
 
 public static const NAV_NORTH_DISABLE:uint 	= 1;
@@ -219,11 +222,16 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	var eventBuffer:String = processEventBuffer();
 	if (eventBuffer != ("<b>" + possessive(pc.short) + " log:</b>\n"))
 	{
-		if (samePageLog) output("" + eventBuffer + "");
+		if (samePageLog)
+		{
+			output("" + eventBuffer + "");
+			flags["EVENT_BUFFER_OVERRIDE"] = true;
+		}
 		else
 		{
 			clearBust();
 			output("" + eventBuffer + "");
+			clearEventBuffer();
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 			return;
@@ -265,6 +273,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Time passing effects
 	if(passiveTimeEffects(minutesMoved)) return;
+	
+	clearEventBuffer();
+	flags["EVENT_BUFFER_OVERRIDE"] = undefined;
 	
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);
