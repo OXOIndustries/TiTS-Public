@@ -10,7 +10,7 @@ public function dockmasterBonus():Boolean
 {
 	if(flags["MET_DOCKMISTRESS"] == undefined)
 	{
-		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call if <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
+		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call of: <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
 	}
 	else
 	{

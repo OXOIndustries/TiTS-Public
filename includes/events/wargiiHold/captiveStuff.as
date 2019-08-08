@@ -366,14 +366,14 @@ public function kionaWargiiPrebattle():void
 	//we want to clear the usual intro text for the attacker
 	clearOutput();
 	
-	output("Everywhere around you is chaos. There is no shortage of rifle blasts reverberating through Korg'ii Hold's corridors, or yelping and howling as the hostile takeover progresses. You've seen a number of korgonne guards fight back against their assailants, though not a great deal many have been able to stand up to the vast difference in armament grades so far.");
+	output("Everywhere around you is chaos. There is no shortage of rifle blasts reverberating through Korg’ii Hold’s corridors, or yelping and howling as the hostile takeover progresses. You’ve seen a number of korgonne guards fight back against their assailants, though not a great deal many have been able to stand up to the vast difference in armament grades so far.");
 	output("\n\nWhile traversing the hallway, you come across one such fight smack dab in the middle of your path. A towering hulk of a milodan has its high-tech rifle pointed right at the korgonne. Despite staring down the barrel of a large gun, she shows no sign of wanting to back down.");
-	if (haveMet) output(" Now that you think about it, this korgonne looks distinctly familiar. Looking at the numerous piercings dotting her body, you can tell that she's definitely Kiona!");
-	output(" She has on a reinforced fur cloak overtop of some delicate jeweled clothing. Against the milodan warrior's weaponry, however, you doubt it will do very much to protect her.");
-	output("\n\nWithout warning, " + (haveMet ? "Kiona" : "the korgonne") + " bursts forward towards her opponent, brandishing a pair of daggers. She makes a few feints along the way, deftly dodging the hail of fire coming at her. Whenever she can get close enough, she slashes, though her blows bounce uselessly off of the warrior's armor. While dodging a lunging grab, she reaches into her belt and brings a blowgun to her mouth, firing several darts at her foe, only for the same result to happen.");
+	if (haveMet) output(" Now that you think about it, this korgonne looks distinctly familiar. Looking at the numerous piercings dotting her body, you can tell that she’s definitely Kiona!");
+	output(" She has on a reinforced fur cloak overtop of some delicate jeweled clothing. Against the milodan warrior’s weaponry, however, you doubt it will do very much to protect her.");
+	output("\n\nWithout warning, " + (haveMet ? "Kiona" : "the korgonne") + " bursts forward towards her opponent, brandishing a pair of daggers. She makes a few feints along the way, deftly dodging the hail of fire coming at her. Whenever she can get close enough, she slashes, though her blows bounce uselessly off of the warrior’s armor. While dodging a lunging grab, she reaches into her belt and brings a blowgun to her mouth, firing several darts at her foe, only for the same result to happen.");
 	output("\n\nWith a frustrated snarl, she rushes towards the milodan warrior again. When she reaches it, she thrusts a dagger towards a thinner section of its armor. Unlike her usual evasive movements, her attack method is very forceful and straightforward this time. The milodan easily avoids her attempted charge and in the same movement, brings the butt of its gun down on the back of her head. With a heavy thud and a high-pitched yelp, " + (haveMet ? "Kiona" : "the korgonne") + " stumbles and crashes into a pile of broken crates and remains unmoving.");
 	output("\n\n<i>“Stupid mutts,”</i> the milodan grumbles. When you step closer, it quickly turns to you and brandishes its weapon at you.");
-	output("\n\n<i>“An off-worlder? Here?”</i> The warrior furrows their brow in confusion for a brief moment before adjusting their aim. <b>As much as you want to check on " + (haveMet ? "Kiona's" : "the korgonne's") + " safety, you need to get rid of the immediate threat in front of you first.</b> You unsheathe your own weapon and engage the milodan warrior.");
+	output("\n\n<i>“An off-worlder? Here?”</i> The warrior furrows their brow in confusion for a brief moment before adjusting their aim. <b>As much as you want to check on " + (haveMet ? "Kiona’s" : "the korgonne’s") + " safety, you need to get rid of the immediate threat in front of you first.</b> You unsheathe your own weapon and engage the milodan warrior.");
 }
 public function rescueKiona():void
 {	
@@ -383,39 +383,39 @@ public function rescueKiona():void
 	var haveMet:Boolean = false;
 	if (flags["KIONA_MET"] == 1) haveMet = true;
 	
-	output("With the milodan warrior out of the way, you rush over to " + (haveMet ? "Kiona" : "the fallen korgonne") + " to make sure that she is okay. You gingerly lift her out of the wreckage of crates and lay her down on the ground. From your cursory examination, a small trickle of blood leaks from an open wound on her forehead, likely from impact with the crates rather than the gun butt. A small lump swells from the impact point of the milodan's rifle, tender to the touch.");
+	output("With the milodan warrior out of the way, you rush over to " + (haveMet ? "Kiona" : "the fallen korgonne") + " to make sure that she is okay. You gingerly lift her out of the wreckage of crates and lay her down on the ground. From your cursory examination, a small trickle of blood leaks from an open wound on her forehead, likely from impact with the crates rather than the gun butt. A small lump swells from the impact point of the milodan’s rifle, tender to the touch.");
 	output("\n\nYou gather what first-aid materials you have on hand and what you can find in the immediate area, you dress her wound to stop the bleeding. A loud boom reminds you that other hostile invaders are still in the vicinity, and treating an unconscious korgonne in the middle of a high-traffic hallway is asking for more trouble to show up.");
-	output("\n\nYou apply the finishing touches before hoisting " + (haveMet ? "Kiona's" : "the korgonne's") + " limp body into your arms and make your way over to a well-hidden spot not far off. There, you place her down once more and gently tap her cheek in an attempt to wake her up. " + (haveMet ? "Kiona's" : "The korgonne's") + " eyelids flicker open a few moments later, her hazel eyes looking unfocused into yours.");
+	output("\n\nYou apply the finishing touches before hoisting " + (haveMet ? "Kiona’s" : "the korgonne’s") + " limp body into your arms and make your way over to a well-hidden spot not far off. There, you place her down once more and gently tap her cheek in an attempt to wake her up. " + (haveMet ? "Kiona’s" : "The korgonne’s") + " eyelids flicker open a few moments later, her hazel eyes looking unfocused into yours.");
 	if (kionaLuciniteQuestStage() >= 2)
 	{
 		if (flags["KIONA_TALK_YOU"] == 1) output("\n\n<i>“[pc.name]?”</i>");
 		else output("\n\n<i>“Off-worlder?”</i>");
 		output(" Kiona groans groggily. She attempts to sit upright, but you prevent her from doing so, urging her to rest.");
-		if (translateKorgi) output("\n\n<i>“B-but… I need to help my clanmates. I need to help Korg'ii Hold...”</i>");
-		else output("\n\n<i>“B-but… Kiona need helpings clanmates. Needings to help Korg'ii Hold...”</i>");
-		output(" She trails off, burying her face into her hands and grunting in pain. As eager as she may be to defend the hold, she's definitely in no condition to be fighting right now. That blow to the head from earlier is not doing her any favors, and you tell her as much.");
+		if (translateKorgi) output("\n\n<i>“B-but... I need to help my clanmates. I need to help Korg’ii Hold...”</i>");
+		else output("\n\n<i>“B-but... Kiona need helpings clanmates. Needings to help Korg’ii Hold...”</i>");
+		output(" She trails off, burying her face into her hands and grunting in pain. As eager as she may be to defend the hold, she’s definitely in no condition to be fighting right now. That blow to the head from earlier is not doing her any favors, and you tell her as much.");
 		
-		if (translateKorgi) output("\n\n<i>“Urgh… I hate feeling fucking useless. It's not fair that those damn milodan got a huge -OW- upgrade from last time. They're like… off-worlder strong all of a sudden.”</i>");
-		else output("\n\n<i>“Urgh… Hatings feeling frickin no use. It not fair damn cat-dogs got -OW- huge power up from last time. Fang-cats like… alien-strong all of sudden.”</i>");
+		if (translateKorgi) output("\n\n<i>“Urgh... I hate feeling fucking useless. It’s not fair that those damn milodan got a huge -OW- upgrade from last time. They’re like... off-worlder strong all of a sudden.”</i>");
+		else output("\n\n<i>“Urgh... Hatings feeling frickin no use. It not fair damn cat-dogs got -OW- huge power up from last time. Fang-cats like... alien-strong all of sudden.”</i>");
 		output(" Kiona snarls, smashing a fist into the ground in frustration.");
 		output("\n\nIn an attempt to keep her pride intact, you reassure her that the moves that she put on during her fight would have felled any opponent that equally matched her. Your praises work well to placate Kiona, who visibly relaxes the more you comfort her.");
 		output("\n\nWhen Kiona finally calms down, you stand up, telling Kiona that you need to be on your way to help any others you see in the hold.");
-		if (translateKorgi) output("\n\n<i>“Alright. Be careful out there. As soon as I feel good enough to move on my own, I'll go back to my shop to defend it.”</i> Kiona smiles slightly before adding, <i>“And kick all of their asses for me!”</i>");
+		if (translateKorgi) output("\n\n<i>“Alright. Be careful out there. As soon as I feel good enough to move on my own, I’ll go back to my shop to defend it.”</i> Kiona smiles slightly before adding, <i>“And kick all of their asses for me!”</i>");
 		else output("\n\n<i>“Alright. Careful out there. Soon as Kiona feel good enough to move on own, will go to shop to defend.”</i> Kiona smiles slightly before adding, <i>“And kick all cat-dog arses for Kiona!”</i>");
 		output("\n\nYou give her a nod in acknowledgement before heading back into the fray.");
 	}
 	else
 	{
 		output("\n\nSuddenly, she springs up from her resting place, pushing you away and backing herself against the nearby wall while reaching for her belt. " + (haveMet ? "Kiona" : "The korgonne") + " pats her hips frantically, searching for her missing weapons. The anxiousness on her face rapidly becomes more evident the more she pats herself down. Finally, she brings her furred fists in front of her in a defensive manner, shielding herself from you.");
-		if (translateKorgi) output("\n\n<i>“W-who? " + (haveMet ? "The…" : "An…") + " off-worlder? I'll hurt you if you come closer! I won't be your slave!”</i>");
+		if (translateKorgi) output("\n\n<i>“W-who? " + (haveMet ? "The..." : "An...") + " off-worlder? I’ll hurt you if you come closer! I won’t be your slave!”</i>");
 		else output("\n\n<i>“W-who? Alien? Will hurtings if coming closer! Will not be slave!”</i>");
-		output(" " + (haveMet ? "Kiona" : "The korgonne") + " shouts at you. She is trembling violently against the wall, whether from fear or the blow to the head you can't tell.");
-		output("\n\nYou do whatever you can to calm her down, telling her that you witnessed her fight, what you did while she was unconscious, and that you are fighting on the korgonnes' side. By the end of your explanation, she doesn't seem much less tense than she was to start with, not that you can blame her. Her own home has turned into a warzone in the blink of an eye.");
+		output(" " + (haveMet ? "Kiona" : "The korgonne") + " shouts at you. She is trembling violently against the wall, whether from fear or the blow to the head you can’t tell.");
+		output("\n\nYou do whatever you can to calm her down, telling her that you witnessed her fight, what you did while she was unconscious, and that you are fighting on the korgonnes’ side. By the end of your explanation, she doesn’t seem much less tense than she was to start with, not that you can blame her. Her own home has turned into a warzone in the blink of an eye.");
 		
-		if (translateKorgi) output("\n\n<i>“I need to get back out there. N-need to help hold… help...”</i>");
-		else output("\n\n<i>“Needings to get back out there… Needings to help hold… help...”</i>");
-		output(" " + (haveMet ? "Kiona's" : "The korgonne's") + " shaking legs buckle underneath of her. You rush over and manage to catch her just before she falls down. You ease her back to her resting spot, urging her to stay there and recover from her injury. She tries to wrestle you away the entire time, but ultimately gives up when her efforts end in vain.");
-		output("\n\nAfter making her as comfortable as possible, you reassure her that you'll do what you can in her place to make sure Korg'ii Hold and its inhabitants are safe. As you turn to leave, you hear a dull thud behind you, followed by a wet sniffle.");
+		if (translateKorgi) output("\n\n<i>“I need to get back out there. N-need to help hold... help...”</i>");
+		else output("\n\n<i>“Needings to get back out there... Needings to help hold... help...”</i>");
+		output(" " + (haveMet ? "Kiona’s" : "The korgonne’s") + " shaking legs buckle underneath of her. You rush over and manage to catch her just before she falls down. You ease her back to her resting spot, urging her to stay there and recover from her injury. She tries to wrestle you away the entire time, but ultimately gives up when her efforts end in vain.");
+		output("\n\nAfter making her as comfortable as possible, you reassure her that you’ll do what you can in her place to make sure Korg’ii Hold and its inhabitants are safe. As you turn to leave, you hear a dull thud behind you, followed by a wet sniffle.");
 		output("\n\n<i>“Dammit...”</i> she growls through a heavy sob. You continue forward into the fray.");
 		flags["KIONA_LUCINITE_QUEST"] = 3;
 	}

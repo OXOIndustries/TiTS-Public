@@ -375,7 +375,7 @@ public function dontLetHerOrgy():void
 
 //[Inside]
 // Tooltip: Get the jumper to bloat this girl!
-// PC will be ‘Cum Splattered’’
+// PC will be ‘Cum Splattered’
 public function slaveOrgyCumInside():void
 {
 	clearOutput();

@@ -158,6 +158,8 @@
 					// Lose “Buns of Steel” perk.
 					if(target.hasPerk("Buns of Steel")) tfList.push(29);
 				}
+				// PC gains cow tongue.
+				if(target.earType == GLOBAL.TYPE_BOVINE && target.tongueType != GLOBAL.TYPE_BOVINE) tfList.push(30);
 				
 				if(tfList.length > 0) select = tfList[rand(tfList.length)];
 				// None of the above apply:
@@ -642,6 +644,19 @@
 				output("\n\n(<b>Perk Lost: Buns of Steel</b>)");
 				
 				target.removePerk("Buns of Steel");
+				return;
+			}
+			// Gain cow tongue
+			if(select == 30) {
+				if(target.tongueTypeUnlocked(GLOBAL.TYPE_BOVINE))
+				{
+					output("\n\nA strange feeling in your mouth hits your tongue and you feel it change shape, becoming smoother and broader. After the sensation subsides, you stick out the morphed muscle and find that <b>your tongue is now a bovine one</b>.");
+					
+					target.tongueType = GLOBAL.TYPE_BOVINE;
+					target.clearTongueFlags();
+					target.addTongueFlag(GLOBAL.FLAG_SMOOTH);
+				}
+				else output("\n\n" + target.tongueTypeLockedMessage());
 				return;
 			}
 			

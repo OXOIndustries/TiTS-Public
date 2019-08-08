@@ -77,7 +77,7 @@ public function useItem(item:ItemSlotClass):Boolean
 		useAPiercing(item);	
 		return false;
 	}
-	if (item.type == GLOBAL.COCKSOCK)
+	if (item.type == GLOBAL.COCKWEAR)
 	{
 		useACocksock(item);
 		return false;
@@ -833,6 +833,11 @@ public function unfitShipItemForReal(i:Number):void
 }
 
 public function buyItem():void {
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(false);
+	}
+	
 	clearOutput();
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
@@ -1094,6 +1099,10 @@ public function sellItem():void
 	if(shopkeep is Sera)
 	{
 		if(seraDebtCheck()) return;
+	}
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(true);
 	}
 	
 	clearOutput();
@@ -3042,7 +3051,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "TOYS":
-				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKSOCK))
+				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKWEAR))
 				{
 					items.push(item);
 				}

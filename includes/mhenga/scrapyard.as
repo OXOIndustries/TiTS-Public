@@ -23,16 +23,19 @@ public function scrapyardMaintenance():void {
 		//Sell/Buy/Leave
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}
-	shopkeep = geoff;
-	this.addButton(0,"Buy",buyFromGeoff);
-	this.addButton(1,"Sell",sellToArtie);
+	addButton(0,"Buy",buyFromGeoff);
+	addButton(1,"Sell",sellToArtie);
 }
 
 public function sellToArtie():void {
 	author("Nonesuch");
-	userInterface.showBust("ARTIE");
-	userInterface.showName("\nARTIE");
+	shopkeep = geoff;
 	sellItem();
+}
+public function buyItemFromGeoff():void {
+	author("Nonesuch");
+	shopkeep = geoff;
+	buyItem();
 }
 public function buyFromGeoff():void {
 	clearOutput();
@@ -45,7 +48,7 @@ public function buyFromGeoff():void {
 	geoff.keeperBuy = "What would you like to buy?\n";
 	flags["MET_GEOFF"] = 1;
 	this.clearMenu();
-	this.addButton(0,"Buy",buyItem);
+	this.addButton(0,"Buy",buyItemFromGeoff);
 	this.addButton(1,"Talk",talkToGeoff);
 
 	if(flags["SEXED_GEOFF"] == 1) 
