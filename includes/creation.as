@@ -34,11 +34,11 @@ public function hasCheatInput(sText:String = ""):Boolean
 	{
 		// Gameplay/Debug
 		case "clowncar": cheatFunc = Cheats.infiniteCrewSpace; break;
-		case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+		case "urta": cheatFunc = Cheats.infiniteItemUse; break;
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
 		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
-		case "sjw": cheatFunc = Cheats.SJWMode; break;
+		case "poison": cheatFunc = Cheats.SJWMode; break;
 		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
