@@ -1399,10 +1399,9 @@ public function frostwyrmIncubationDays():int
 }
 public function frostwyrmBirth():void
 {
-	StatTracking.track("pregnancy/frostwyrm eggs sired", 2);
-	StatTracking.track("pregnancy/total sired", 2);
+	StatTracking.track("pregnancy/frostwyrm eggs sired", 1);
+	StatTracking.track("pregnancy/total sired", 1);
 	
-	IncrementFlag("FROSTWYRM_EGGS");
 	IncrementFlag("FROSTWYRM_EGGS");
 	
 	flags["FROSTWYRM_INCUBATION_TIMER"] = undefined;
