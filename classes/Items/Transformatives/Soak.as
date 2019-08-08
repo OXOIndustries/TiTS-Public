@@ -518,6 +518,7 @@ package classes.Items.Transformatives
 		public function applySoakOverdose(pc:Creature,duration:Number = 480):void
 		{
 			if(!pc.hasStatusEffect("Soak")) applySoak(pc,duration);
+			else pc.setStatusMinutes("Soak",duration);
 			if(!pc.hasStatusEffect("Soak Overdose")) pc.createStatusEffect("Soak Overdose",0,0,0,0,false,"Icon_Vagina_2","Your risky behavior has left you a sodden mess of slickened holes and pure libido.",false,0,0xB793C4);
 			pc.setStatusMinutes("Soak Overdose",duration);
 			//Yay, heat!

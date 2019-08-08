@@ -141,6 +141,11 @@ public function mabbsBuyMenu():void
 	shopkeep = chars["MABBS"];
 	chars["MABBS"].keeperBuy = buyText + "\n";
 	shopkeepBackFunctor = mabbsPostShopping;
+	
+	CodexManager.unlockEntry("Gush");
+	CodexManager.unlockEntry("Soak");
+	CodexManager.unlockEntry("Throbb");
+	
 	buyItem();
 }
 

@@ -12366,9 +12366,13 @@
 		public function createCock(clength: Number = 5.5, cthickness: Number = 1): Boolean {
 			if (cocks.length >= 10) return false;
 			var newCock:CockClass = new CockClass();
+			newCock.cThicknessRatioRaw = cthickness;
+			newCock.cLengthRaw = clength;
+			
+			if(hasStatusEffect("Condensol-A")) newCock.cLengthRaw /= 2;
+			else if(hasStatusEffect("Condensol-B")) newCock.cLengthRaw /= 4;
+			
 			cocks.push(newCock);
-			cocks[cocks.length - 1].cThicknessRatioRaw = cthickness;
-			cocks[cocks.length - 1].cLengthRaw = clength;
 			return true;
 		}
 		public function createCockUnlocked(numCocks:int = 1):Boolean
@@ -12406,7 +12410,9 @@
 		//General utility function for setting appropriate dick type with new-grown weiners.
 		public function setNewCockValues(arg:int = 0):void
 		{
+			// Reset cock length.
 			cocks[arg].cLengthRaw = 5.5;
+			if(hasPerk("Mini")) cocks[arg].cLengthRaw -= 1+rand(2);
 			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
 			
 			var race:String = race();
@@ -12494,6 +12500,10 @@
 				cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
 				cocks[arg].cockColor = skinTone;
 			}
+			
+			// Modify final length since it was reset above.
+			if(hasStatusEffect("Condensol-A")) cocks[arg].cLengthRaw /= 2;
+			else if(hasStatusEffect("Condensol-B")) cocks[arg].cLengthRaw /= 4;
 		}
 		//General utility function for setting appropriate dick type with new-grown vaginas.
 		public function setNewVaginaValues(arg:int = 0):void
@@ -12542,6 +12552,9 @@
 		public function createVagina(): Boolean {
 			if (vaginas.length >= 3) return false;
 			var newVagina:VaginaClass = new VaginaClass();
+			
+			if (hasStatusEffect("Soak")) newVagina.wetnessMod += 5;
+			
 			vaginas.push(newVagina);
 			return true;
 		}
@@ -12686,6 +12699,7 @@
 			//Amazon Treatment prevents cunt-loss during.
 			if (hasStatusEffect("Treated Amazon") && vaginas.length <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (hasStatusEffect("Ovalasting")) return false;
+			if (hasStatusEffect("Soak")) return false;
 			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
@@ -12713,6 +12727,7 @@
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return false;
 			if (hasStatusEffect("Treated Amazon") && vaginas.length <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (hasStatusEffect("Ovalasting")) return false;
+			if (hasStatusEffect("Soak")) return false;
 			if (isPregnant(arraySpot)) return false;
 			return true;
 		}
@@ -22262,12 +22277,12 @@
 						if(requiresRemoval)
 						{
 							//Strip out bonus wet.
-							for(var ii:int = 0; ii < this.totalVaginas(); ii++) 
+							for(y = 0; y < this.totalVaginas(); y++) 
 							{
-								if(vaginas[ii].wetnessMod >= 5) vaginas[ii].wetnessMod -= 5; 
+								if(vaginas[y].wetnessMod >= 5) vaginas[y].wetnessMod -= 5; 
 							}
 							if(clitLength >= 0.6) clitLength -= 0.5;
-							kGAMECLASS.eventQueue.push(new Soak().soakOverWrapper);
+							if (this is PlayerCharacter && hasVagina()) kGAMECLASS.eventQueue.push(new Soak().soakOverWrapper);
 						}
 						break;
 					case "Shekka_Pay_CD":
@@ -22469,19 +22484,6 @@
 						}
 						break;
 					case "Condensol-A":
-						if (!hasCock())
-						{
-							requiresRemoval = true;
-						}
-						else if (requiresRemoval)
-						{
-							for(y = 0; y < cocks.length; y++)
-							{
-								cocks[y].cLengthRaw *= 2;
-							}
-							if(this is PlayerCharacter) AddLogEvent(ParseText("You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
-						}
-						break;
 					case "Condensol-B":
 						if (!hasCock())
 						{
@@ -22489,12 +22491,16 @@
 						}
 						else if (requiresRemoval)
 						{
-							for(z = 0; z < cocks.length; z++)
+							var condensolMult:int = 1;
+							if(thisStatus.storageName == "Condensol-A") condensolMult = 2;
+							if(thisStatus.storageName == "Condensol-B") condensolMult = 4;
+							for(y = 0; y < cocks.length; y++)
 							{
-								cocks[z].cLengthRaw *= 4;
+								cocks[y].cLengthRaw *= condensolMult;
 							}
-							if(this is PlayerCharacter) AddLogEvent(ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
+							if(this is PlayerCharacter) AddLogEvent(ParseText("You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
 						}
+						break;
 						break;
 					case "Lane's Hypnosis":
 					case "Lane's Hypnosis - Physique":
