@@ -63,12 +63,17 @@
 				var hasHradSkinColor:Boolean = InCollection(pc.skinTone, "green", "viridescent", "emerald");
 				if (changes < changeLimit && rand(2) == 0)
 				{
-					if (pc.hasFur() || pc.hasScales())
+					if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN)
 					{
 						if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 						{
-							if (pc.hasScales()) output("\n\nYour scaly epidermal layer begins to smoothen out as each scale recedes until they are freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of scales.");
-							if (pc.hasFur()) output("\n\nYour skin prickles all over as your body hair begins to recede. Slowly, the amount of hair on your body decreases until your [pc.skinColor] skin is revealed.");
+							output("\n\n");
+							if (pc.skinType == GLOBAL.SKIN_TYPE_FUR) output("Your skin prickles all over as your body hair begins to recede. Slowly, the amount of hair on your body decreases until your [pc.skinColor] skin is revealed.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("Your scaly epidermal layer begins to smoothen out as each scale recedes until they are freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of scales.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_CHITIN) output("Your chitinous surface begins to crackle and disintegrate as each plate dissolves into freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of chitin.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output("Your skin prickles all over as your plumage begins to ruffle and molt. Gradually, the feathers on your body drop off until the [pc.skinColor] skin underneath is revealed.");
+							else if (pc.skinType == GLOBAL.SKIN_TYPE_BARK) output("Your arboreal surface begins to crack and shift as each bark plate recedes into freckled patterns on your [pc.skinColor] skin. Soon the marks fade, leaving your skin free of bark.");
+							else output("A prickling sensation runs across your [pc.skin] and you notice the surface of your body smoothing and shifting into something more normal.");
 							output(" <b>Your body is now covered in bare skin.</b>");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
