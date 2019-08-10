@@ -41,10 +41,11 @@ public function infiniteItems():Boolean
 
 public function processEventBuffer():String
 {
-	var output:String = ("<b>" + possessive(pc.short) + " log:</b>\n");
+	var output:String = "";
 	
 	if (timestampedEventBuffer.length > 0)
 	{
+		output += ("<b>" + possessive(pc.short) + " log:</b>\n");
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -63,9 +64,9 @@ public function processEventBuffer():String
 			{
 				d += h / 24;
 				h = h % 24;
-			}
+			}	
 			
-			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + "\n\n");
+			output += ("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + "\n\n");
 		}
 	}
 	
@@ -220,17 +221,18 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	//Display shit that happened during time passage.
 	var eventBuffer:String = processEventBuffer();
-	if (eventBuffer != ("<b>" + possessive(pc.short) + " log:</b>\n"))
+	if (eventBuffer != "")
 	{
 		if (samePageLog)
 		{
-			output("" + eventBuffer + "");
+			output(eventBuffer);
+			//While this flag is active, if clearOutput is called then event notifications are applied to the new page, so the player can see them
 			flags["EVENT_BUFFER_OVERRIDE"] = true;
 		}
 		else
 		{
 			clearBust();
-			output("" + eventBuffer + "");
+			output(eventBuffer);
 			clearEventBuffer();
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
@@ -273,9 +275,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Time passing effects
 	if(passiveTimeEffects(minutesMoved)) return;
-	
-	clearEventBuffer();
-	flags["EVENT_BUFFER_OVERRIDE"] = undefined;
 	
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);
@@ -388,6 +387,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
+	
+	//If we made it to here, nothing's going to overwrite the event notices
+	flags["EVENT_BUFFER_OVERRIDE"] = undefined;
+	clearEventBuffer();
+
 	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 	
