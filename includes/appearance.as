@@ -4589,8 +4589,8 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		//Siren flavor
 		case GLOBAL.TYPE_ANEMONE:
 		case GLOBAL.TYPE_SIREN:
-			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
-			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
+			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with pleasure-inducing cilia.");
+			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with pleasure-inducing cilia.");
 			break;
 		//Goblin flavor
 		case GLOBAL.TYPE_GABILANI:
