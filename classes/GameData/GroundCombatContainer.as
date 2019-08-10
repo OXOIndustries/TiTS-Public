@@ -4001,7 +4001,7 @@ package classes.GameData
 			var damIdx:uint = 0;
 			var tarShields:TypeCollection = target.getShieldResistances();
 			var tarHPs:TypeCollection = target.getHPResistances();
-			output("\n\n<b>Shield Defense: </b>" + target.shield.shieldDefense);
+			output("\n\n<b>Shield Defense: </b>" + target.shieldDefense());
 			output("\n<b>Shield Resistances:</b>");
 			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
 			{

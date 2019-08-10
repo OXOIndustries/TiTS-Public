@@ -287,7 +287,7 @@
 						
 						if (pc.cockLengthUnlocked(x, newLength))
 						{
-							output("\n\nYour [pc.cock] suddenly becomes impossibly erect, which causes you to flinch in surprise. It only lasts for a moment, though, and once it passes you can’t help but notice that <b>your dick feels a bit heavier and more solid.</b>");
+							output("\n\nYour [pc.cock " + x + "] suddenly becomes impossibly erect, which causes you to flinch in surprise. It only lasts for a moment, though, and once it passes you can’t help but notice that <b>your dick feels a bit heavier and more solid.</b>");
 							pc.cocks[x].cLengthRaw = newLength;
 							if (pc.cocks[x].cThicknessRatioRaw < 1.5) pc.cocks[x].cThicknessRatioRaw = 1.5;
 							groinChanged = true;
@@ -335,10 +335,12 @@
 				{
 					// Select non-hrad cock
 					x = -1;
+					var nonHradCocks:Array = [];
 					for(b = 0; b < pc.cockTotal(); b++)
 					{
-						if (pc.cocks[b].cType != GLOBAL.TYPE_HRAD) x = b;
+						if (pc.cocks[b].cType != GLOBAL.TYPE_HRAD) nonHradCocks.push(b);
 					}
+					if (nonHradCocks.length > 0) x = nonHradCocks[rand(nonHradCocks.length)];
 					// 1 cock becomes hrad cock
 					if (x >= 0)
 					{

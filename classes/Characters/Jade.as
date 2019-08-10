@@ -253,6 +253,7 @@
 		*/
 		override public function get bustDisplay():String
 		{
+			if(hasTentacleNipples()) return "JADE_NIPS";
 			return "JADE";
 		}
 		override public function onLeaveBuyMenu():void
