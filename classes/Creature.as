@@ -6071,8 +6071,6 @@
 					removeTailFlag(GLOBAL.FLAG_NUBBY);
 				case hasTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED):
 					removeTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-				case hasTailFlag(GLOBAL.FLAG_TENDRIL):
-					removeTailFlag(GLOBAL.FLAG_TENDRIL);
 				case hasTailFlag(GLOBAL.FLAG_STINGER_BASED):
 					removeTailFlag(GLOBAL.FLAG_STINGER_BASED);
 			}
@@ -12306,7 +12304,8 @@
 					tailGenitalArg = GLOBAL.TYPE_SIREN;
 					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					addTailFlag(GLOBAL.FLAG_NUBBY);
-					addTailFlag(GLOBAL.FLAG_TENDRIL);
+					addTailFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					addTailFlag(GLOBAL.FLAG_STINGER_BASED);
 					break;
 				case GLOBAL.TYPE_GRYVAIN:
 					tailGenitalArg = GLOBAL.TYPE_GRYVAIN;
@@ -16085,16 +16084,16 @@
 				else if (type == GLOBAL.TYPE_ANEMONE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "anemone-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "cilia-filled cunny", "anemone-like honeypot","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim"]);
 					else
-						desc += RandomInCollection(["anemone-pussy", "venom-pussy", "anemone-pussy", "anemone-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
+						desc += RandomInCollection(["anemone-pussy", "anemone-pussy", "anemone-slit", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_SIREN)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "cilia-filled cunny", "suula-like honeypot","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim"]);
 					else
-						desc += RandomInCollection(["suula-pussy", "venom-pussy", "suula-pussy", "suula-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
+						desc += RandomInCollection(["suula-pussy", "suula-pussy", "suula-slit", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
@@ -16210,7 +16209,7 @@
 				}
 				else if (type == GLOBAL.TYPE_BOTHRIOC)
 				{
-					if (!simple) desc += RandomInCollection("insectile pussy ", "egg-injecting box ", "oily slit ", "insectile muff ", "bulbous box ");
+					if (!simple) desc += RandomInCollection("insectile pussy ", "oily slit ", "insectile muff ", "bulbous box ");
 					desc += RandomInCollection(["bothrioc box", "bothrioc pussy", "insectile xeno-slit", "cloaca-like cunt", "insectile vagina"]);
 				}
 				else
@@ -16471,11 +16470,13 @@
 			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && rand(100) <= bonus)
 			{
 				var collection:Array = [];
-				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged");
-				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
-				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
-				if (vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged", "crested", "ridge-filled", "ridge-laden", "ridge-lined");
+				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby", "nub-filled", "bumpy", "nub-laden", "bump-filled", "bump-laden", "protrusion-filled", "nub-lined");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("tendril-riddled", "stinger-filled", "stinger-lined", "stinger-laden", "stinger-riddled");
+				if (vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-equipped", "stinger-ringed", "stinger-framed");
 				if (vag.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
+				if (vag.hasFlag(GLOBAL.FLAG_OVIPOSITOR)) collection.push("ovipositing", "ovipositor", "egg-injecting", "egg-laying");
+				if (vag.hasFlag(GLOBAL.FLAG_TONGUE)) collection.push("tongue-bearing", "tongue-equipped", "tongue-armed", "tongue-occupied");
 				
 				if(collection.length > 0)
 				{
