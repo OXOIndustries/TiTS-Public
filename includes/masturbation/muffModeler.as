@@ -226,7 +226,7 @@ public function muffModelerCustomizeMenu(vagina:int):void
 		{
 			output("\n<b>* Fertility:</b> " + Math.round(pc.fertility()*1000)/10 + " %");
 			output("\n<b>* Pregnancy Speed Modifier:</b> " + Math.round(pc.pregnancyIncubationBonusMother()*1000)/10 + " %");
-			output("\n<b>* Pregnancy Quantity Modifier:</b> " + Math.round(pc.pregnancyMultiplier() * 1000) / 10 + " %");
+			//output("\n<b>* Pregnancy Quantity Modifier:</b> " + Math.round(pc.pregnancyMultiplier() * 1000) / 10 + " %");
 		}
 	}
 	
@@ -764,7 +764,11 @@ public function muffModelerSelectFlag(arg:Array):void
 				}
 				
 				flagName = GLOBAL.FLAG_NAMES[pc.vaginas[arg[0]].vagooFlags[i]];
-				addButton(btnSlot, flagName, muffModelerChangeFlag, [arg[0], arg[1], pc.vaginas[arg[0]].vagooFlags[i]], flagName, "Remove the " + flagName + " feature from your vagina.");
+				
+				//Goo PCs can't remove the gooey flag
+				if (pc.hasStatusEffect("Goo Crotch") && pc.vaginas[arg[0]].vagooFlags[i] == GLOBAL.FLAG_GOOEY) addDisabledButton(btnSlot, flagName, flagName, "As it's part of your nature, you're sure it wouldn't be a good idea to fiddle with that trait in particular.");
+				
+				else addButton(btnSlot, flagName, muffModelerChangeFlag, [arg[0], arg[1], pc.vaginas[arg[0]].vagooFlags[i]], flagName, "Remove the " + flagName + " feature from your vagina.");
 				btnSlot++;
 			}
 		}
@@ -954,6 +958,7 @@ public function muffModelerSelectPregnancyOptions(vagina:int):void
 	else addButton(btnSlot, "Decrease Preg Speed", muffModelerChangeIncubationSpeed, [vagina, false], "Decrease Incubation Speed", "Decrease your incubation speed modifier.");
 	btnSlot++;
 	
+	/* Disabled buttons for incubation quantity
 	if (pc.pregnancyMultiplierRaw >= 5) addDisabledButton(btnSlot, "Inc. Preg #", "Increase Incubation Quantity", "Your broods are as large as this machine can make them.");
 	else addButton(btnSlot, "Inc. Preg #", muffModelerChangeIncubationQuantity, [vagina, true], "Increase Incubation Quantity", "Increase your incubation quantity modifier.");
 	btnSlot++;
@@ -961,6 +966,7 @@ public function muffModelerSelectPregnancyOptions(vagina:int):void
 	if (pc.pregnancyMultiplierRaw <= 1) addDisabledButton(btnSlot, "Dec. Preg #", "Decrease Incubation Quantity", "Your broods are as small as this machine can make them.");
 	else addButton(btnSlot, "Dec. Preg #", muffModelerChangeIncubationQuantity, [vagina, false], "Decrease Incubation Quantity", "Decrease your incubation quantity modifier.");
 	btnSlot++;
+	*/
 
 	addButton(14, "Back", muffModelerCustomizeMenu, vagina, "Back", "Go back to the customization menu.");
 }
@@ -1092,13 +1098,8 @@ public function muffModelerChangeDescriptionText(vagina:int, flags:Array, addFla
 				else output("\n\nAfter probing and testing for a couple of minutes, you're able to confirm your extra lubrication is gone, just as requested. Perhaps you should buy some real lube now.");
 				break;
 
-			case GLOBAL.FLAG_TENDRIL: 
-				if (addFlag) output("\n\nWell, this is interesting. From time to time you can catch a glance of thin, yet noticeably long tendrils poking out of your [pc.pussy " + vagina + "]. The darn things have a mind of their own, but if you concentrate hard enough you can at the very least give them a target. You can feel them constantly squirming inside your snatch. This is surely going to raise a few eyebrows during sex, only to drop a few jaws later on once they realize how nice can a hundred of helping hands feel.");
-				else output("\n\nIt doesn't take much to notice the myriad tendrils you used to have inside your pussy are gone for good. To be fair, sometimes they can be a bother.");
-				break;
-
 			case GLOBAL.FLAG_APHRODISIAC_LACED: 
-				if (addFlag) output("\n\nYou catch a whiff of something peculiar. It's musky and fragrant, with a faint, sweet scent. Apparently, it's coming from your pussy. You spot a viscous, light purple liquid mixed together with your natural femenine juices. You take a sample and immediately feel something off. The finger you've used to scoop a bit is tingling and feels awfully sensitive. You're almost certain this is some kind of aphrodisiac. From now on, people are gonna have a hard time resisting your pussy's charms.");
+				if (addFlag) output("\n\nYou catch a whiff of something peculiar. It's musky and fragrant, with a faint, sweet scent. Apparently, it's coming from your pussy. You spot a viscous, light purple liquid mixed together with your natural feminine juices. You take a sample and immediately feel something off. The finger you've used to scoop a bit is tingling and feels awfully sensitive. You're almost certain this is some kind of aphrodisiac. From now on, people are gonna have a hard time resisting your pussy's charms.");
 				else output("\n\nAfter toying with your cunt for a bit, you manage to get it wet enough to confirm your femenine juices are no longer mixed with that aphrodisiac fluid anymore. It was fun, but being over-reliant of chemical stimulants can dull your skills.");
 				break;
 
