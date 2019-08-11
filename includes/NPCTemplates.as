@@ -30,6 +30,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "ELDERVENUSPITCHER", ElderVenusPitcher);
 	prepChar(justUpdate, "SYRI", Syri);
 	prepChar(justUpdate, "NALEEN_MALE", NaleenMale);
+	prepChar(justUpdate, "CARL", Carl);
 	prepChar(justUpdate, "MACHINA", CarlsRobot);
 	prepChar(justUpdate, "JADE", Jade);
 	prepChar(justUpdate, "REAHA", Reaha);
@@ -194,6 +195,13 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "LORELEI", Lorelei);
 	prepChar(justUpdate, "VELTA", Velta);
 	prepShip(justUpdate, "SHIP", Casstech);
+	prepChar(justUpdate, "KIONA", Kiona);
+	prepChar(justUpdate, "NYKKE", Nykke);
+	prepChar(justUpdate, "VAHN", Vahn);
+	prepChar(justUpdate, "DOCKMASTER", Dockmaster);
+	prepChar(justUpdate, "SYNPHIA", Synphia);
+	prepChar(justUpdate, "FOCALOR", Focalor);
+	prepChar(justUpdate, "OLYMPIA", Olympia);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)

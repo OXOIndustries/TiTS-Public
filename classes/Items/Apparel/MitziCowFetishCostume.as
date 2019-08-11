@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a cow-girl fetish costume";
 			
-			this.tooltip = "Brownish pads designed to resemble hooves guard knees knees while pitch-black socks hide everything behind. Shoulder length white gloves with padded elbows and patchwork black splotches compliment a set of matching panties and a nursing bra.";
+			this.tooltip = "Brownish pads designed to resemble hooves guard knees knees while pitch-black socks hide everything behind. Shoulder length white gloves with padded elbows and patchwork black splotches complement a set of matching panties and a nursing bra.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -30,8 +30,8 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a SteeleTech branded snack-bar";
-			tooltip = "Similar to the more popular Terran Treats, this transformative takes the form of a snack-bar, its wrapper bearing the SteeleTech logo, and the usual amount of technobabble explaining its microsurgeons. Unlike the other item though, this is designed to give the consumer more Xhelarfog-aligned features. It’s even marked with a seal of approval from the government of Anon-Xusya B!\n\n...Wait, is that <i>actual</i> gold leaf?";
+			description = "a Steele Tech branded snack-bar";
+			tooltip = "Similar to the more popular Terran Treats, this transformative takes the form of a snack-bar, its wrapper bearing the Steele Tech logo, and the usual amount of technobabble explaining its microsurgeons. Unlike the other item though, this is designed to give the consumer more Xhelarfog-aligned features. It’s even marked with a seal of approval from the government of Anon-Xusya B!\n\n...Wait, is that <i>actual</i> gold leaf?";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -465,7 +465,7 @@ package classes.Items.Transformatives
 				output("<i>“-Eele?!”</i>");
 				output("\n\n<i>“[pc.Name] Steele?!”</i>")
 				output("\n\nYou open your eyes, groggy. Wait, where are you?");
-				output("\n\n" + (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] == undefined ? "An androgynous half-ausar in a SteeleTech jumpsuit" : "Elijah") + " is standing over you, looking significantly concerned.");
+				output("\n\n" + (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] == undefined ? "An androgynous half-ausar in a Steele Tech jumpsuit" : "Elijah") + " is standing over you, looking significantly concerned.");
 				output("\n\nYou ask what happened, looking around you and spotting your ship a scant few metres away.");
 				output("\n\n<i>“I, ah, I found you passed out. Judging by your, uh... Um... Kinda... Gooey? Yeah, gooey! Uh, your skin - I’m guessing bad reaction to the Xhelarfog drug? We’re working on it, I am so, so sorry!");
 				if (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] != undefined) output(" ...Again.");

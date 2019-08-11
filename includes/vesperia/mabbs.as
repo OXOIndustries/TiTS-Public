@@ -7,7 +7,7 @@ public function mabbsBonus(button:int):void
 	//Unmet
 	if(flags["MET_MABBS"] == undefined) 
 	{
-		output("\n\nA pink " + mabbsRace() + " female is slouching in a booth by herself, bobbing her head to an unseen melody, compliments of the over-sized earphones she wears.");
+		output("\n\nA pink " + mabbsRace() + " female is slouching in a booth by herself, bobbing her head to an unseen melody, complements of the over-sized earphones she wears.");
 		addButton(button,"Mouse-Girl",approachMabbs);
 	}
 	else 

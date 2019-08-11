@@ -87,7 +87,7 @@ public function bizzyBustDisplay(isNude:Boolean = false):String
 {
 	var sBust:String = "BIZZY";
 	
-	/*
+	
 	// Stage 1: flat-chested
 	if(flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] <= 1) {}
 	// Stage 2: C-cup breasts
@@ -102,7 +102,6 @@ public function bizzyBustDisplay(isNude:Boolean = false):String
 		if(bizzySlaveCollar()) sBust += "_COLLAR"; // neck
 		//if(bizzySlaveTat()) sBust += "_TATTOO"; // butt
 	}
-	*/
 	
 	if(isNude) sBust += "_NUDE";
 	
@@ -148,57 +147,58 @@ public function bizzyApartmentHandler(btnSlot:int):void
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You don’t know anybody up through this part of the Resential deck...");
 		return;
 	}
-
-	if (pc.credits < 40000 && flags["BIZZY_FIRST_TIME_MEET"] == undefined)
-	{
-		output(" You get the impression whoever sent the message assumed you had plenty of cash ready to go. Perhaps it would be wise to return when that was actually the case...");
-		
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
-		return;
-	}
-	
 	if (flags["BIZZY_FIRST_TIME_MEET"] == undefined)
 	{
-		output(" You could go see about what this ‘Bizzy’ has in mind.");
+		if(pc.credits < 40000)
+		{
+			output(" You get the impression whoever sent the message assumed you had plenty of cash ready to go. Perhaps it would be wise to return when that was actually the case...");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You get the impression whoever sent the message assumed you had plenty of cash. Maybe you should have some more on you before meeting them.");
+		}
+		else
+		{
+			output(" You could go see about what this ‘Bizzy’ has in mind.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Knock on Bizzy’s door and introduce yourself.");
+		}
+		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == -1)
+	if (flags["BIZZY_PORN_STUDIO"] == -1)
 	{
 		output(" You should probably avoid Bizzy after turning her down.");
 		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "You should probably avoid Bizzy after turning her down.");
 		return;
 	}
-	else if ((flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] < 5) && GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+	if (flags["BIZZY_PORN_STUDIO"] == undefined || flags["BIZZY_PORN_STUDIO"] < 5)
 	{
-		output(" Bizzy’s probably a bit busy still in the wake of your entrepreneurship.");
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
+		if(GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+		{
+			output(" Bizzy’s probably a bit busy still in the wake of your entrepreneurship.");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Bizzy will be hard at work, setting up her equipment, a camwhore profile and producing some material. You should come back in a day or so - maybe with some Tittyblossom.");
+		}
+		else
+		{
+			output(" Bizzy is probably prepped and ready to get this show on the road, should be about time to drop in on her and see how she’s doing.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing.");
+		}
 		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == 5 && GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+	if (flags["BIZZY_PORN_STUDIO"] == 5)
 	{
-		output(" Utility drones and a couple of helmeted engineers are at work in and around apartments 155-157. Sparks fly within, and stacks of material are ferried up the grav-lifts. It’ll be a while before they’re finished constructing the [pornStudioName] studio.");
-		addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Giving the place a wide-berth whilst the work-crews are still hard at it would be advisable.");
+		if(GetGameTimestamp() < flags["BIZZY_PORN_STUDIO_TIMER"])
+		{
+			output(" Utility drones and a couple of helmeted engineers are at work in and around apartments 155-157. Sparks fly within, and stacks of material are ferried up the grav-lifts. It’ll be a while before they’re finished constructing the [pornStudioName] studio.");
+			addDisabledButton(btnSlot, "KnockNorth", "Knock North", "Giving the place a wide-berth whilst the work-crews are still hard at it would be advisable.");
+		}
+		else
+		{
+			if (flags["BIZZY_CONSTRUCTION_COMPLETE"] == undefined) output(" Looks like the drones are finally done renovating your new studio. Time to go check out the digs.");
+			else output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
+			addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing with your new studio.");
+		}
 		return;
 	}
-	else if (flags["BIZZY_PORN_STUDIO"] == 5 && GetGameTimestamp() >= flags["BIZZY_PORN_STUDIO_TIMER"])
-	{
-		if (flags["BIZZY_CONSTRUCTION_COMPLETE"] == undefined) output(" Looks like the drones are finally done renovating your new studio. Time to go check out the digs.");
-		else output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
-
-		addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing with your new studio.");
-	}
-	else if (GetGameTimestamp() >= flags["BIZZY_PORN_STUDIO"] && flags["BIZZY_PORN_STUDIO"] >= 1)
-	{
-		output(" Bizzy is probably prepped and ready to get this show on the road, should be about time to drop in on her and see how she’s doing.");
-		addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Drop in on Bizzy, see how your pet cam-girl is doing.");
-		return;
-	}
-	else
-	{
-		output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
-	}
-
-
-
+	
+	output(" Although they look as dull and innocuous from the outside as ever, numbers 155-157 contain "+ pornStudioName +", your smutty production company. You could drop in and see how it and Bizzy are doing.");
+	
 	addButton(btnSlot, "KnockNorth", bizzyDoorKnock, undefined, "Knock North", "Knock on Bizzy’s door.");
 }
 
@@ -298,7 +298,7 @@ public function bizzySexMenu(fromItem:Boolean = false):void
 	else if (pc.hasVagina() && !pc.hasCock())
 	{
 		if (pc.lust() < 33) addDisabledButton(btnSlot, "Oral", "Oral", "You’re not turned on enough for this.");
-		else addButton(btnSlot, "Oral", bizzySexOral, [true, fromItem], "Oral", "Cat’s are good at licking.");
+		else addButton(btnSlot, "Oral", bizzySexOral, [true, fromItem], "Oral", "Cats are good at licking.");
 
 		btnSlot++;
 	}
@@ -312,7 +312,7 @@ public function bizzySexMenu(fromItem:Boolean = false):void
 		else
 		{
 			addButton(btnSlot, "Oral (M)", bizzySexOral, [false, fromItem], "Oral (Cock)", "Why own a camwhore if you can’t get a sloppy blowjob whenever you wish?");
-			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, [true, fromItem], "Oral (Vag)", "Cat’s are good at licking.");
+			addButton(btnSlot + 1, "Oral (F)", bizzySexOral, [true, fromItem], "Oral (Vag)", "Cats are good at licking.");
 		}
 
 		btnSlot += 2;
@@ -1990,7 +1990,8 @@ public function bizzyBreastsGiveItemStage1II():void
 
 	output("\n\n<i>“Thank you so much for doing this, [pc.Mr]. Steele,”</i> she exclaims. <i>“I feel so good! So many people were watching and saying how good I looked! It feels like a weight’s fallen off me... or - or the opposite, I guess,”</i> she giggles, her natural meekness stealing back. <i>“It was good, right? You enjoyed watching? Do I - do I look good?”</i>");
 
-	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her nipples little splashes of fawn with small, nubby nipples. She flushes with pleasure when you tell her she looks great.");
+	output("\n\nShe leans back on her knees, so you can admire her pert, grapefruit-sized breasts, her areolae - little splashes of fawn - with small, nubby nipples");
+	output(". She flushes with pleasure when you tell her she looks great.");
 
 	output("\n\n<i>“Thank you,”</i> she mumbles. Deeper arousal colors her expression. <i>“I wasn’t joking about doing it again, you know. Did you see how the figures spiked when we did the transformation? I want to make them bigger... become THE, um, booby expansion lady on there. That could be my thing! You’ll bring more Tittyblossom, right? I- if you want to, I mean.”</i>");
 
@@ -2079,7 +2080,7 @@ public function bizzyFirstTimeMeetingII():void
 		else output(" cat morph");
 		output(" yourself you instinctively know she’s female. Call it feline seventh sense.");
 	}
-	output(" Her chest is almost flat, A cups if that, but a covert glance at her crotch suggests she is actually female, not one of those breathtakingly pretty kaithrit bois you see.");
+	else output(" Her chest is almost flat, A cups if that, but a covert glance at her crotch suggests she is actually female, not one of those breathtakingly pretty kaithrit bois you see.");
 
 	if (pc.isNice())
 	{
@@ -2141,8 +2142,8 @@ public function bizzyFirstTimeMenu(opts:Object = null):void
 	{
 		addButton(5, "Agree", bizzyAcceptTheDeal, opts, "Agree", "Owning your own pet camgirl sounds pretty damn sweet. <b>This will cost 40,000 credits.</b>");
 		
-		if (opts.hideJustPay != undefined) addButton(6, "Just Pay", bizzyDebtJustPay, opts, "Just Pay It", "40k is no object to you. Why don’t you just pay it off and let her go on her merry way?");
-		else addDisabledButton(6, "Just Pay", "Just Pay It", "She’s made it clear she doesn’t want charity.");
+		if (opts.hideJustPay != undefined) addDisabledButton(6, "Just Pay", "Just Pay It", "She’s made it clear she doesn’t want charity.");
+		else addButton(6, "Just Pay", bizzyDebtJustPay, opts, "Just Pay It", "40k is no object to you. Why don’t you just pay it off and let her go on her merry way?");
 
 		addButton(7, "Refuse", bizzyFirstTimeRefuse, opts, "Refuse", "Owning a camgirl isn’t your style.");
 	}
@@ -2336,10 +2337,11 @@ public function bizzyFirstTimeRefuse(opts:Object):void
 	showBizzyBust();
 
 	if (pc.isNice() || pc.isMisc()) output("You let her down as gently as you can. You don’t have the time to manage a camgirl... owning someone like that grosses you out a bit... it’s not you or your company’s expertise... you’re sure there’s someone better equipped out there to do what she wants... It doesn’t prevent Bizzy’s face falling about a thousand miles.");
-	else output("You do her the courtesy of being frank and up-front. You aren’t a porn production company, and you don’t know why she thought you were. There’s probably someone out there who’d be willing to take her up on her offer, but it’s certainly not you.");
-
-	output("\n\nBizzy’s face falls about a thousand miles.");
-
+	else
+	{
+		output("You do her the courtesy of being frank and up-front. You aren’t a porn production company, and you don’t know why she thought you were. There’s probably someone out there who’d be willing to take her up on her offer, but it’s certainly not you.");
+		output("\n\nBizzy’s face falls about a thousand miles.");
+	}
 	output("\n\n<i>“Ok,”</i> she mumbles, trying for a brave smile and failing.");
 	if (opts.hidePleaseMe != undefined) output(" You kind of wish you hadn’t gotten oral off her now. There’s little worse than someone covered in cum looking that miserable.");
 	output(" <i>“W-well. You always miss the shots you don’t take, right? Thank you for my ten minutes, [pc.Mr]. Steele. Don’t worry - you won’t hear from me again.”</i>");

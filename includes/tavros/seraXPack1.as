@@ -489,7 +489,7 @@ public function seraInchStealingIntro(response:String = ""):void
 		if(biggestLength >= 12) output("\n\n<i>“Ugh, look at that thing,”</i> she scoffs. <i>“Yes, I can do something about that, but it won’t be for you--it’ll be for </i>me<i>.”</i>");
 		else if(biggestLength <= 11.5 && biggestLength >= 7) output("\n\n<i>“I think it looks perfect,”</i> she compliments, but it is quickly reversed by, <i>“but if you think that makes you look too manly, I have a solution to make you better suited to be my sissy " + pc.mf("boy", "slut") + ".”</i>");
 		else if(biggestLength <= 6.5 && biggestLength >= 4.5) output("\n\n<i>“Aw, how adorable,”</i> she teases. <i>“What makes you want to change that puny pecker of yours?”</i>");
-		else output("\n\n<i>“Mmm, are you sure you want me to fiddle with your petite pretty?”</i> she sneers, <i>“It compliments your status quite well.”</i>");
+		else output("\n\n<i>“Mmm, are you sure you want me to fiddle with your petite pretty?”</i> she sneers, <i>“It complements your status quite well.”</i>");
 		output("\n\nShe gives you a loud slap on your [pc.ass] and grabs your cock, taking a moment to examine it some more.");
 		output("\n\n<i>“Since you sound so interested, I’ll show you what I’ve got in store for you, pet - but are you ready for it?”</i>");
 		

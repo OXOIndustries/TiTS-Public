@@ -15,15 +15,19 @@ public function drBadgerBustDisplay(nude:Boolean = false):String
 
 public function drBadgerAtBimbotorium():Boolean
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined) return false;
+	if(drBadgerImprisioned()) return false;
 	return true;
+}
+public function drBadgerImprisioned():Boolean
+{
+	return (flags["DR_BADGER_TURNED_IN"] != undefined);
 }
 
 public function bimbotoriumHallBonus():Boolean
 {
 	output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.");
 	
-	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
+	if(drBadgerImprisioned()) 
 	{
 		output("\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, though the shack has been all but mummified in flickering holographic police tape.");
 		
@@ -189,7 +193,7 @@ public function drBadgerBonusShit():Boolean
 		}
 		
 		// Repeat vists
-		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+		if(!drBadgerImprisioned()) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
 		if (siegwulfeIsDom() && !wulfe.isEggWulfe())
 		{
 			if (pc.hasItemByClass(Ovilium, 10)) addButton(1, "Ovilium", siegwulfeInstallEggs, undefined, "Give Ovilium", "Give Badger the bottles of Ovilium she needs.");

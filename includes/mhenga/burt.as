@@ -29,12 +29,15 @@ public function burtsBarFunc():Boolean {
 		return true;
 	}
 	roamingBarEncounter(3);
-	if(debug) addButton(4,"Oil Cheat",oilyButt);
-	else vendingMachineButton(4, "XXX");
+	
+	// yoma can appear either by chance (if the PC fullfills the conditions) or will allways appear if told to wait
+	if (pc.hasGenitals() && (yomaWaitingAtBurts() || (hours >= 12 && hours < 17  && yomaCanAppearAtBurts()))) yomaAtBurtsAddendum(4);
 
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+
+	
 
 	return false;
 }
@@ -1415,3 +1418,4 @@ public function stephIrsonEpisodeOnePartTwo():void
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+

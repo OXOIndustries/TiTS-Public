@@ -1,6 +1,9 @@
 //The Great Slave Rebellion && Agrosh & Ardia
 //By Savin Savsav.
 
+//Placeholder func. Move to ardia when she's in.
+public function ardiaIsCrew():Boolean { return false; }
+
 public function showArdia(nude:Boolean = false):void
 {
 	showName("\nARDIA");

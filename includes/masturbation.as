@@ -782,6 +782,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	}
 	if(aborted)
 	{
+		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
@@ -842,13 +843,13 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	// Repeat button
 	if (showRepeat)
 	{
-		addButton(btnSlot, "Repeat", filtFaps[0].func);
+		addButton(btnSlot, "Repeat", filtFaps[0].func, undefined, "Repeat", "Repeat the last masturbation act.");
 		btnSlot++;
 	}
 	// Random button
 	if (faps.length > 0)
 	{
-		addButton(btnSlot, "Random", selectRandomFap, faps);
+		addButton(btnSlot, "Random", selectRandomFap, faps, "Random", "Randomly select any available masturbation act.");
 		btnSlot++;
 	}
 
