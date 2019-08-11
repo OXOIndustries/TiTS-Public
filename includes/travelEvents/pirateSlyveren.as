@@ -509,6 +509,7 @@ public function acceptSnekBuddyYay():void
 	output("\n\nYou pull her into your bedroom, gently pushing her down on your bed. Flipping herself over, she pulls herself up onto her elbows and takes her top off revealing two abundant mounds, each big enough to sink your hands into. You take stock of her with your palms, murmuring appreciatively as she turns red and arches her back with a slight moan.");
 	output("\n\nShe’s putty in your hands.");
 	IncrementFlag("STAR_VIPER_SAVED");
+	pc.createStatusEffect("SnekOnboard");
 	processTime(4);
 	clearMenu();
 	var capacity:Number = new SlyverenSlavebreaker().vaginalCapacity(0);
@@ -818,7 +819,6 @@ public function refuseWinBoardingFun():void
 	addButton(14,"Leave",leaveShipfiteAfterVictory);
 }
 
-
 //Leaving scene
 //for when the PC drops her off
 public function snekWifeDropoffScene():void
@@ -826,10 +826,12 @@ public function snekWifeDropoffScene():void
 	clearOutput();
 	showStarViperPilot();
 	author("Wsan");
+	pc.removeStatusEffect("SnekOnboard");
 	output("<i>“Okay, we’re here,”</i> you tell the snakegirl pirate, nodding at the console as she peers over your shoulder. <i>“Make your escape, or whatever it is you do.”</i>");
 	output("\n\n<i>“Thank you so much,”</i> she says, leaning back when you turn to face her. Averting her eyes, she continues. <i>“And um, thanks for the... fun. I- I mean, I hope it was as fun for you as it was for me. I didn’t expect you to be so giving <b>or</b> skilled.”</i>");
-	output("\n\n<i>“Sounds like you don’t want to go back out there,”</i> you venture, smiling. <i>“You could just stay onboard, you know. I’m sure the two of us could find a way to keep entertained.”</i>");
-	output("\n\n<i>“I- damn,”</i> she mutters. <i>“No, I can’t. But...”</i> she hesitates, biting her lip and turning away. <i>“Thanks for the offer.”</i>");
+	output("\n\n<i>“Sounds like you don’t want to go back out there,”</i> you venture, smiling.");
+	//" <i>“You could just stay onboard, you know. I’m sure the two of us could find a way to keep entertained.”</i>");
+	output("\n\n<i>“I- damn,”</i> she mutters. <i>“No, I do. But...”</i> she hesitates, biting her lip and turning away. <i>“Thanks for the ride.”</i>");
 	output("\n\n<i>“Suit yourself,”</i> you say, shrugging. You watch her walk down the corridor, hips and butt swaying hypnotically. <i>“Feel free to come back soon.”</i>");
 	output("\n\nThen she’s gone, and your ship is down one snakegirl. Still, it was nice while it lasted - and you have a feeling you’ll run into her again, anyway.");
 	clearMenu();

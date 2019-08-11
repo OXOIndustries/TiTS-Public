@@ -2392,7 +2392,7 @@ public function flyTo(arg:String):void
 		else if(InCollection(arg,["Tarkus","Myrellion","MyrellionDeepCaves","Mhen'ga","ZhengShi","Uveto"]) && rand(10) == 0)
 		{
 			prepShipfite();
-			if(InCollection(arg,["ZhengShi","Uveto","Myrellion","MyrellionDeepCaves"]) && rand(2) == 0)
+			if(InCollection(arg,["ZhengShi","Uveto","Myrellion","MyrellionDeepCaves"]) && rand(2) == 0 && !pc.hasStatusEffect("SnekOnboard"))
 			{
 				encounterSlyverenPirate();
 			}
@@ -2600,6 +2600,12 @@ public function landingEventCheck(arg:String = ""):Boolean
 			getAPetVarmint();
 			return true;
 		}
+	}
+	if(pc.hasStatusEffect("SnekOnboard"))
+	{
+		currentLocation = "SHIP INTERIOR";
+		snekWifeDropoffScene();
+		return true;
 	}
 	return false;
 }
