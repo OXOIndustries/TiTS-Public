@@ -2392,8 +2392,15 @@ public function flyTo(arg:String):void
 		else if(InCollection(arg,["Tarkus","Myrellion","MyrellionDeepCaves","Mhen'ga","ZhengShi","Uveto"]) && rand(10) == 0)
 		{
 			prepShipfite();
+			if(InCollection(arg,["ZhengShi","Uveto","Myrellion","MyrellionDeepCaves"]) && rand(2) == 0)
+			{
+				encounterSlyverenPirate();
+			}
+			else
+			{
+				encounterPyrotechZ7();
+			}
 			flags["SUPRESS TRAVEL EVENTS"] = 1;
-			encounterPyrotechZ7();
 			return;
 		}
 		
