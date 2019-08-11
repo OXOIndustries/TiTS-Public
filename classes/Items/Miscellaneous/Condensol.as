@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Combat.inCombat;
 	
 	public class Condensol extends ItemSlotClass
 	{
@@ -45,6 +46,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			this.combatUsable = true;
+			this.targetsSelf = true;
+			
 			this.version = this._latestVersion;
 		}
 		
@@ -81,13 +85,15 @@
 				//When using without a cock:
 				if(!pc.hasCock())
 				{
-					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn’t do anything if you don’t have a cock.");
+					if(inCombat()) kGAMECLASS.output("You swallow a Condensol pill and shudder as its payload swims throughout your body. The tingling quickly fades... Apparently it doesn’t do anything if you don’t have a cock.");
+					else kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn’t do anything if you don’t have a cock.");
 				}
 				else if(!pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B") && pc.shortestCockLength() <= 4)
 				{
-					if (pc.cocks.length == 1 && !pc.removeCockUnlocked(0, 1))
+					if (pc.cocks.length == 1 && (!pc.removeCockUnlocked(0, 1) || inCombat()))
 					{
-						kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch as your cock throbs to attention. The feeling passes after a moment, with no immediately evident changes.");
+						if(inCombat()) kGAMECLASS.output("You gulp down a Condensol pill, and immediately regret it as you feel an intense pain in [pc.cockShortest]. The feeling passes after a moment, with no immediately evident changes.");
+						else kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch as your cock throbs to attention. The feeling passes after a moment, with no immediately evident changes.");
 					}
 					else
 					{
@@ -105,7 +111,10 @@
 				}
 				else if(!pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B"))
 				{
-					kGAMECLASS.output("You gulp down the Condensol, feeling the “patented techniques” get to work as [pc.eachCock] tingles. Upon checking you find that the dose has cut the size of your member");
+					kGAMECLASS.output("You gulp down the Condensol, feeling the “patented techniques” get to work as [pc.eachCock] tingles.");
+					if(inCombat()) kGAMECLASS.output(" Y");
+					else kGAMECLASS.output(" Upon checking y");
+					kGAMECLASS.output("ou find that the dose has cut the size of your member");
 					if(pc.cockTotal() > 1) kGAMECLASS.output("s roughly in half from their usual size.");
 					else kGAMECLASS.output(" roughly half its usual size.");
 					pc.createStatusEffect("Condensol-A", 0, 0, 0, 0, false, "Icon_Penis", "Any and all phalli are reduced in size by 50%.", false, 240,0xB793C4);
@@ -117,7 +126,11 @@
 				//When using as directed second time:
 				else if(pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B"))
 				{
-					kGAMECLASS.output("You’re big enough that you probably need a double dose. You gulp down a second Condensol, the tingle in [pc.eachCock] intensifying to just on the edge of uncomfortable. You can feel how you’re now a mere quarter of your usual length. Given how tight you’re feeling right now, taking another would probably be a bad idea.");
+					if(!inCombat()) kGAMECLASS.output("You’re big enough that you probably need a double dose. ");
+					kGAMECLASS.output("You gulp down a second Condensol, the tingle in [pc.eachCock] intensifying to just on the edge of uncomfortable. You can feel how you’re now a mere quarter of your usual length.");
+					if(inCombat()) kGAMECLASS.output(" T");
+					else kGAMECLASS.output(" Given how tight you’re feeling right now, t");
+					kGAMECLASS.output("aking another would probably be a bad idea.");
 					pc.createStatusEffect("Condensol-B", 0, 0, 0, 0, false, "Icon_Penis", "Any and all phalli are reduced in size by 75%.", false, 240,0xB793C4);
 					pc.removeStatusEffect("Condensol-A");
 					for(x = 0; x < pc.cockTotal(); x++)
@@ -128,7 +141,10 @@
 				//When overdosing with a cock:
 				else
 				{
-					kGAMECLASS.output("Ignoring the directions, you swallow another of the cock-shrinking pills. Immediately your groin complains, [pc.eachCock] feeling so tight it’s like a spring being forced down. After a moment you feel a snapping sensation, and you briefly panic before looking down to see [pc.eachCock] spring back to ");
+					kGAMECLASS.output("Ignoring the directions, you swallow another of the cock-shrinking pills. Immediately your groin complains, [pc.eachCock] feeling so tight it’s like a spring being forced down.");
+					if(inCombat()) kGAMECLASS.output(" Y");
+					else kGAMECLASS.output(" After a moment you feel a snapping sensation, and y");
+					kGAMECLASS.output("ou briefly panic before looking down to see [pc.eachCock] spring back to ");
 					if(pc.cockTotal() == 1) kGAMECLASS.output("its");
 					else kGAMECLASS.output("their");
 					kGAMECLASS.output(" normal size, or close. It seems overdosing has undone the normal effect of the Condensol, but also made you permanently smaller. Damn, that hurt.");
@@ -151,8 +167,10 @@
 			}
 			else
 			{
-				kGAMECLASS.output(target.short + " consumes the pill to no effect.");
-			}	
+				if(inCombat()) kGAMECLASS.output("\n\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.short + " consumes the Condensol pill to no effect.");
+			}
 			return false;
 		}
 	}

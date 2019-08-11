@@ -1267,7 +1267,8 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Sex:</b> Male");
 			output("\n<b>Race:</b> Milodan");
 			output("\n\nConvicted of: Possession of Unlicensed Technology.");
-			addButton(0,"Visit",prisonerTimes,"Zaalt","Captain Zaalt","Visit Zaalt and possibly pay his bail.");
+			if(9999 == 9999) addDisabledButton(0,"Visit","Captain Zaalt","You cannot visit this prisoner at the moment.");
+			else addButton(0,"Visit",prisonerTimes,"Zaalt","Captain Zaalt","Visit Zaalt and possibly pay his bail.");
 			payFee = false;
 			break;
 		case "Lah":
@@ -1277,8 +1278,7 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Sex:</b> Male");
 			output("\n<b>Race:</b> Ausar");
 			output("\n\nConvicted of: First degree arson; battery; prison escape; incitement and conspiracy to violence; incitement and conspiracy to pervert the course of justice; treason.");
-			if(9999 == 9999) addDisabledButton(0,"Visit","R.K.Lah","You cannot visit this prisoner at the moment.");
-			else addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","Visit Lah.\n\n<b>Cost:</b> 1,000 credits");
+			addButton(0,"Visit",visitAPrisoner,"Lah","R.K. Lah","Visit Lah.\n\n<b>Cost:</b> 1,000 credits");
 			break;
 	}
 	showName("CLICK\nCLACK");

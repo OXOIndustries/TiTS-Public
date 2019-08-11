@@ -41,7 +41,7 @@
 			this.description = "tuned shield emitters";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "By tuning a vessel’s shield emitters to the tightest tolerances, it is possible to further \"harden\" its shields against damage, making it more able to defend against large volleys of lightly damaging projectiles.\n\n(+20 shield defense)";
+			this.tooltip = "By tuning a vessel’s shield emitters to the tightest tolerances, it is possible to further “harden” its shields against damage, making it more able to defend against large volleys of lightly damaging projectiles.\n\n(+20 shield defense)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
