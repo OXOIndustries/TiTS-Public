@@ -3643,6 +3643,61 @@ public function sylvieBreedingByGardeford():void
 	CodexManager.viewedEntry("Breeding Sylvie");
 }
 
+public function gremoryPuddingByFrogapus():void
+{
+	clearOutputCodex();
+	author("Frogapus");
+	outputCodex(header("Pudding Panic XIII - Collector's Edition"));
+	outputCodex(blockHeader("A Shax Gremory Film"));
+	outputCodex("\nThe file boots up, a blank screen giving way to a drifting jellyfish against a blue sky. A banner behind it proudly proclaims the film to be a <i>'Aerial Jellyfish Production.'</i> The banner fades, replaced with a bold-lettered title, <i>'Pudding Panic XIII - Collector's Edition,'</i> and in smaller letters below it, <i>'A Shax Gremory Film.'</i>");
+	outputCodex("\n\nThe camera zooms forward, piercing through a bank of clouds, dropping dizzyingly towards a cluster of artificial-looking homes in the center of an alien forest. When the camera finally stops moving, it's centered on the blue door of a house.");
+	outputCodex("\n\nA tall, gray-furred ausar strolls up to the door. The slate uniform and clipboard under his arm would normally cut a less-than notable figure. Even his name, embroidered on his chest pocket, declares the individual an unassuming <i>“Rex.”</i> However, the rippling muscles straining to escape the confines of his jumpsuit speak otherwise. He raises a fist and raps sharply on the door, announcing himself.");
+	outputCodex("\n\n<i>“Delivery for Lips Slutly!”</i> he recites, clearly well-practiced in announcing his presence.");
+	outputCodex("\n\nAfter a pause the door swings open, revealing an ovir woman in a just-as revealing robe. Her fuschia scales are dusted with glitter, her blue hair cut in an even fringe, and he face painted with an obscene amount of gaudy makeup.");
+	outputCodex("\n\nShe leans forward, her cantaloupe-sized breasts slipping free of the powder-blue robe. <i>“I'm Lips Slutly,”</i> she breathes, flickering a bright-blue tongue across her outrageously-pouty lips.");
+	outputCodex("\n\nRex adjusts the crotch of his suit, a bulge already causing a significant amount of tenting. <i>“Well then I've got a delivery for you,”</i> he says flatly.");
+	outputCodex("\n\nThe scene shifts, an albeit-low angle providing the view from the ovir's side of the door. <i>“Who's that at the door, Lips?”</i> comes a third voice, as a pair of feet pad their way across plush carpet. The camera draws back, revealing a second ovir woman, this one green-scaled, with a red ponytail.");
+	outputCodex("\n\n<i>“His shirt says his name is Rex,”</i> says Lips, running a finger along his chest.");
+	outputCodex("\n\n<i>“I've got a delivery for you,”</i> confirms Rex.");
+	outputCodex("\n\n<i>“So does that mean if he didn't have a shirt, he wouldn't have a name?”</i> giggles the newcomer.");
+	outputCodex("\n\n<i>“Maybe we should get it off him and check, Candy,”</i> murmurs Lips.");
+	outputCodex("\n\n<i>“Oh yes!”</i> says Candy, clapping her hands excitedly.");
+	outputCodex("\n\n<i>“But ... my delivery?”</i> asks Rex haltingly.");
+	outputCodex("\n\n<i>“Bring it inside, big guy,”</i> purrs Lips, grabbing the front of Rex's jumpsuit, drawing him in through the door. Background music begins playing, relatively unremarkable, save for its prominent beat.");
+	outputCodex("\n\nThe scene transitions, a wipe to a bare living room. In the center of the room is a massive tub of dark, viscous liquid. Rex, Lips, and Candy stand around it, watching it as a lazy bubble burps to the surface.");
+	outputCodex("\n\n<i>“That's your delivery?”</i> asks Lips, her brows knitted together in confusion. <i>“A hot tub full of chocolate pudding?”</i>");
+	outputCodex("\n\n<i>“Plus this additional hose full of pudding,”</i> says Rex, hefting a foot-wide flexible pipe seeming out of nowhere.");
+	outputCodex("\n\n<i>“Lips, </i>what<i> are we gonna </i>do<i> with all this pudding?”</i> emotes Candy, throwing her arms up in the air, her smaller, palmable breasts bouncing.");
+	outputCodex("\n\n<i>“Well I guess we'll have to test it out,”</i> says Lips, cocking her head to the side.");
+	outputCodex("\n\n<i>“</i>What<i> do you mean?”</i> asks Candy, popping her hands to her hips.");
+	outputCodex("\n\nRather than answering, Lips shoves Candy hard, sending the smaller ovir, arms pinwheeling, backwards into the tub of pudding.");
+	outputCodex("\n\nA messy SPLAT of pudding radiates outward, spattering the room, everyone in it, and even the camera. Candy surfaces, gasping, completely painted in pudding, sputtering and wiping dessert from her eyes.");
+	outputCodex("\n\n<i>“Ohmigod, Lips! How </i>could<i> you!”</i> she squeals. She lunges forward and grabs Lips' arm, smearing her scales and pulling her toward the tub.");
+	outputCodex("\n\n<i>“Candy, you bitch!”</i> yelps Lips, struggling against Candy's grasp. After a few moments of play-fighting, Lips topples over on top of Candy. The two submerge in a messy spray of chocolate.");
+	outputCodex("\n\nWhen they emerge, Lips is cursing, wiping pudding from her face, as Candy laughs maniacally.");
+	outputCodex("\n\n<i>“You bitch!”</i> snarls Lips, charging at Candy, but only managing to struggle slowly through the thick liquid around her waist. When Candy meets Lips, arms upraised, their hands lock. The two proceed to struggle back and forth, both completely painted in pudding, slogging through the hot tub.");
+	outputCodex("\n\nCandy drops, grabbing Lips around the waist as the larger ovir attempts to grab her in return. The next few minutes are the ovir wrestling naked in the tub of pudding, Lips squealing obscenities as Candy giggles like a woman possessed. The two grapple, their hands grasping at any handhold, breasts, asses,, thighs, and supple tails are all fair game as each tries to pin the other.");
+	outputCodex("\n\n<i>“Hey, it looks like you could use some help,”</i> says Rex, hefting the pipe. There's a gurgling noise, and more pudding begins blasting out of the hose, showering the two ovir in the tub.");
+	outputCodex("\n\nThey scream in protest, bathed in more and more chocolatey dessert, as Rex swings the hose, ensuring that no inch of their supple forms escapes a sweet coating.");
+	outputCodex("\n\nAs Rex briefly turns the hose away from them, Candy (identifiable through her chocolate coating by her voice alone) perks up. <i>“But Mister Delivery Man! How can I have any pudding if ...”</i> she trails off, looking confused.");
+	outputCodex("\n\nThere's a brief hiccup in the feed, and a flicker of static, as if two takes were spliced together.");
+	outputCodex("\n\n<i>“If I don't eat my meat!”</i> Candy yells triumphantly.");
+	outputCodex("\n\n<i>“Finally!”</i> cries a faint voice from off-screen.");
+	outputCodex("\n\nStanding at the edge of the chocolate-smeared hot tub, Rex tugs down the zipper of his jumpsuit, freeing nine inches of shiny, knotted dick. Candy slogs forward through the morass until she stands level with Rex's bright-red cock. Without further preamble, she dunks her mouth down on it, smearing his shafter with streaks of sweet, syrupy goodness.");
+	outputCodex("\n\nRex groans in pleasure, lifting the pudding-pumping hose higher and showering Lips with the spray. The buxom ovir moans, bathing in the thick liquid, running her hands up and down her generous curves, toying with her chocolate-covered breasts. She turns and gyrates, like some kind of living treat caught under a dessert fountain.");
+	outputCodex("\n\nThe screen splits, one side showing Candy's eager chocolate blowjob from Rex's point of view, the other side displaying Lips' exotic dance. The background music, unobtrusive until this point, rises in volume, and both Lips and Candy move to it, one dancing sensuously to the beat, and the other bobbing her head faster and faster as it picks up speed.");
+	outputCodex("\n\nFinally, Rex lets out a massive howl, grabbing Candy's head and pulling her from his dick, only to unload a few thick jets of pearly cum across her pudding-smeared face. Simultaneously, the pipe gushes out a massive gout of pudding, bowling Lips over into the tub.");
+	outputCodex("\n\nIn the aftermath, Rex releases Candy as Lips surfaces, and both ovir, exhausted, flop over the side of the tub. Rex drops the hose, and the camera zooms in on the discarded equipment, apparently spent, now only dripping a faint trickle of pudding.");
+	outputCodex("\n\n–");
+	outputCodex("\n\nThe screen slowly fades to black, and credits briefly roll. A moment later, the text cuts away, revealing a fluffy, birdlike creature sitting on its haunches in an antique director's chair. A smaller banner on the screen labels the creature as <i>'Shax Gremory.'</i>");
+	outputCodex("\n\nShax Gremory is a tove with lavender feathers, some of them concealed beneath a black turtleneck sweater. A matching fedora tops his head, and a fringe of white plumage flops from under one side of it. A set of four-lensed dark glasses are perched atop his indigo beak.");
+	outputCodex("\n\nHe steeples both pairs of hands over each other as he leans back in his his director's chair, speaking to an interviewer just off-camera. <i>“Pudding Panic XIII was a passion project of mine,”</i> he intones, his voice rich and musical. <i>“I wanted a piece that could investigate the intricacies of existentialism within the genre of video pornography. We are, all of us, familiar with the archetype of the so-called 'Delivery Person,' but I was driven to interrogate that familiar persona. My hope is that the audience will ask him, her, or themselves, 'Am ... </i>I<i> the delivery man of my </i>own<i> life? Or am I simply the camera?'”</i>");
+	outputCodex("\n\nHe pauses, raising a hand deliberately to the side of his face in a thoughtful expression. <i>“More than that, though, I hope that audiences will realize that the pudding itself was a metaphor for the quagmire that is interpersonal contact in an increasingly-digital age.”</i> He chuckles. <i>“I expect very few notice that on their first watch-through. Though I would be remiss if I failed to mention that Lips Slutly immediately grasped the nuance at the first table read. She is – and always has been – a consummate professional and a master of her craft.”</i>");
+	outputCodex("\n\nHe stops to accept a cup of tea from off-screen. He sips it, then adds, <i>“Candy was an absolute nightmare.”</i>");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gremory Pudding");
+}
+
 /*
 Exgartuan Bad End by Carol J
 The memory’s long since been faded in the face of white-hot pleasure, but your slow descent into hedonism began with but a single sip from a fountain in the desert. Just one sip, one cupped handful of water, and you had invited him into you. As your monstrous, bloated fucklog of a cock drools another fist-sized bead of precum, you smile dully to yourself. Best decision you ever made.

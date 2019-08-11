@@ -224,6 +224,27 @@ public function bonusTubeSteakRepeat():Boolean
 	return false;
 }
 
+public function bonusGremoryPudding():Boolean
+{
+	if (!CodexManager.entryUnlocked("Gremory Pudding"))
+	{
+		if (rand(20) == 0)
+		{
+			clearOutput();
+			author("Frogapus");
+			output("As you traverse the pitted surface of Tarkus, something clatters across the metal, kicked forward by your stride. You glance down at the scuffed black box. It's a plastic case, proclaiming the contents as part of “The Gremory” collection - whatever that is. ");
+			output("\n\nThe rattling contents of the container turn out to be a small datachip with what initially scans as porn. Score! You pocket the chip and continue on your way. ");
+			CodexManager.unlockEntry("Gremory Pudding");
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			return true;
+		}
+		else return false;
+	}
+	return false;
+}
+
 public function tryEncounterBess():Boolean
 {
 	if (!rustPlainsEncounters())
@@ -263,6 +284,7 @@ public function rustPlainsEncounters():Boolean {
 		return true;
 	}
 	if(bonusTubeSteakRepeat()) return true;
+	if(bonusGremoryPudding()) return true;
 	return false;
 }
 
@@ -300,6 +322,7 @@ public function rustCoastEncounters():Boolean {
 		return true;
 	}
 	if(bonusTubeSteakRepeat()) return true;
+	if(bonusGremoryPudding()) return true;
 	return false;
 }
 
@@ -342,6 +365,7 @@ public function rustRidgesEncounters():Boolean {
 		return true;
 	}
 	if(bonusTubeSteakRepeat()) return true;
+	if(bonusGremoryPudding()) return true;
 	return false;
 }
 //Goos and Saxbots
