@@ -240,6 +240,7 @@
 		include "../includes/travelEvents/fallOfThePhoenix.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
+		include "../includes/travelEvents/pirateSlyveren.as";
 		include "../includes/travelEvents/shizuya.as";
 		include "../includes/travelEvents/shizuyaGreatMajin.as";
 		include "../includes/travelEvents/shizuyaGreatMajinFunctions.as";

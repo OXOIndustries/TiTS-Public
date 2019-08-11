@@ -884,6 +884,21 @@ package classes.GameData
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " practically invisible thanks to " + target.getCombatPronoun("hisher") + " stealth field generator.</b>");
 				}
 			}
+			if(target.hasStatusEffect("Stealth Field"))
+			{
+				target.addStatusValue("Stealth Field",1,-1);
+				if(target.statusEffectv1("Stealth Field") <= 0)
+				{
+					if (target.hasPerk("PCs")) output("\n\n<b>Your stealth field collapses.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " stealth drops abruptly!</b>");
+					target.removeStatusEffect("Stealth Field");
+				}
+				else 
+				{
+					if (target.hasPerk("PCs")) output("\n\n<b>You are practically invisible thanks to your stealth field.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " practically invisible thanks to its stealth field.</b>");
+				}
+			}
 	
 			if (target.hasStatusEffect("Taking Cover"))
 			{
