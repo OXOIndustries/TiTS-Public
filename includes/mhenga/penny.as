@@ -171,6 +171,13 @@ public function pennyRoomDesc():Boolean {
 			else {
 				output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 			}
+			// Zil codex unlock
+			if(!CodexManager.entryUnlocked("Zil"))
+			{
+				output("\n\nYour codex beeps, informing you about some details on the Zil.");
+				CodexManager.unlockEntry("Zil");
+			}
+			
 			this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 		}
 

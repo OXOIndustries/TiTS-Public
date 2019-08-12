@@ -252,9 +252,9 @@ public function raskVelBabeGetsDoggieStyled():void
 	//Cocktail
 	if(pc.hasCockTail()) output("\n\nYou instinctively twitch a second set of muscles and whip your [pc.tail] around lightning fast, spearing it into the raskvel’s empty pucker before she can react. The skin of your [pc.tailCock] is pulled back immediately, exposing the turgid mass to her sensitive anal walls. It fills her ass with thick, twitching cockflesh, immediately pumping out a thick blast of [pc.cumColor] release straight inside her bowels. The raskvel whimpers in distress and lust, her ass spasming wonderfully in a way that feels like she’s trying to squeeze the [pc.cum] straight out of your tool.");
 	//RESUME!
-	output("\n\nYou slam home one last time, slapping your ");
-	if(pc.balls > 0) output("[pc.sack] into her bullet-hard frontal clit and your ");
-	output("crotch against her rigid frontal button. Blood surges into [pc.eachCock] as orgasm arrives, stretching the raskvel’s sopping-wet cunt with even more thickness, triggering a whole new avalanche of climatic contractions from her well-used mound.");
+	output("\n\nYou slam home one last time, slapping your");
+	if(pc.balls > 0) output(" [pc.sack] into her bullet-hard frontal clit and your");
+	output(" crotch against her rigid rear button. Blood surges into [pc.eachCock] as orgasm arrives, stretching the raskvel’s sopping-wet cunt with even more thickness, triggering a whole new avalanche of climatic contractions from her well-used mound.");
 
 	var cumQ:Number = pc.cumQ();
 	//NON KNOT:

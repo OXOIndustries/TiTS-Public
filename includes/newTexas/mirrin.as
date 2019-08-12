@@ -1563,7 +1563,7 @@ public function ohJeezRickMirranIsGonnaFuckYa():void
 	showMirrin(true);
 	pc.lust(100);
 	author("SoAndSo");
-	output("Without any other words, the domineering qilin thrusts her hips toward your face. The largest of her two members - a 16’’ python of a horsedick - pushes aggresively against your [pc.lips].");
+	output("Without any other words, the domineering qilin thrusts her hips toward your face. The largest of her two members - a 16\" python of a horsedick - pushes aggresively against your [pc.lips].");
 	output("\n\n<i>“<b>Suck.</b>”</i>");
 	output("\n\nYou’re in no position to refuse... you open your mouth as wide as you feel you can, enough for her pulsing cockhead to sit in it comfortably. At least it only gets thicker the further down you go! Both of her cocks sit perfectly in the middle of your [pc.fullChest], using your flesh and [pc.skinFurScales] as an extra layer of friction. They’re not even hard yet...");
 	output("\n\nShe pushes just a little bit more aaand it’s in, filling up most of your mouth in an instant. Using your [pc.tongue], you eagerly try to find her cumslit. A stifled squeal from your dragon lover confirms your skill at finding it. You look up with your eyes and she’s looking back, biting hard on her bottom lip.");
@@ -1614,7 +1614,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 
 		output("\n\nYou nod weakly, looking down to the floor. It’s about 5 feet to the ground...");
 
-		output("\n\nShe holds up her biggest horsemember in her other hand, its tip covered in an extra smear of EasyFit. She guides it to your floor-facing, exposed [pc.asshole] and presses <i>you</i> down on to it. Oh shit, it’s <b>huge</b>. Your tensed up [pc.asshole] gives way all the more easily thanks to the smear of cream, stretching painfully around the 4’’ wide horsecock.");
+		output("\n\nShe holds up her biggest horsemember in her other hand, its tip covered in an extra smear of EasyFit. She guides it to your floor-facing, exposed [pc.asshole] and presses <i>you</i> down on to it. Oh shit, it’s <b>huge</b>. Your tensed up [pc.asshole] gives way all the more easily thanks to the smear of cream, stretching painfully around the 4\" wide horsecock.");
 		output("\n\nAs you sink lower, that thickness grows and grows, stopping once you’re speared halfway down her rock-solid tool. Some nubbly sensation tortures your slick [pc.asshole]");
 		if(pc.hasCock()) output(" and tender prostate");
 		output(". You look to see that the bottom of her cock is covered in coil-like ridges that extend down from tip to bottom. <i>Ow</i>.");
@@ -1836,9 +1836,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 //Scene concepts and requirements:
 //Oil Worship into Double Handjob: All PC’s. Very messy.
 //Deep DP: PC has vagina, height 80<.
-//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
+//Sparr Fight into Oral for the winner: PC has cock at 18" < and/or vagina. High PC stats = wins.
 //Humiliating Pork: (aside sounding like a bad chinese translation of something with bacon in it) REWORKED: All PC’s. Pure humiliation anal sex. Special things happen when PC thickness >65. That’s what ya get for being a fatty fat person, fatty. YEAH, YOU GET HOT BUTTSEX MY BRO.
-//Dommy Oral: PC has cock at 18’’< and/or vagina. A merging of ‘TongueFun’ for ease. Written into Sparr Fight because it essentially ends up the same anyway if you win.
+//Dommy Oral: PC has cock at 18" < and/or vagina. A merging of ‘TongueFun’ for ease. Written into Sparr Fight because it essentially ends up the same anyway if you win.
 
 //Her Place
 //tooltip: Into the dragon’s lair...

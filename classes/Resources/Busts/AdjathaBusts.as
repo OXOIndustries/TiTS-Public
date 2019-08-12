@@ -1159,6 +1159,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_fanfir.png", mimeType = "image/png")]
+		public var Bust_WALL_FANFIR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_gabilani.png", mimeType = "image/png")]
+		public var Bust_WALL_GABILANI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_leithan.png", mimeType = "image/png")]
+		public var Bust_WALL_LEITHAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_raskvel.png", mimeType = "image/png")]
+		public var Bust_WALL_RASKVEL:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
 		public var Bust_XOTCHI:Class;
 		
@@ -1171,7 +1180,7 @@ package classes.Resources.Busts
 		public var Bust_YAMMI_APRON:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
-		
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/zea.png", mimeType = "image/png")]
 		public var Bust_ZEA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/zea_nude.png", mimeType = "image/png")]
@@ -2266,6 +2275,15 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/war_alpha_nude.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_fanfir.png", mimeType = "image/png")]
+			public var Full_WALL_FANFIR:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_gabilani.png", mimeType = "image/png")]
+			public var Full_WALL_GABILANI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_leithan.png", mimeType = "image/png")]
+			public var Full_WALL_LEITHAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_raskvel.png", mimeType = "image/png")]
+			public var Full_WALL_RASKVEL:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;
 			

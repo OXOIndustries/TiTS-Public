@@ -50,7 +50,7 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			//this.combatUsable = true;
+			this.combatUsable = true;
 			this.targetsSelf = true;
 			
 			this.version = _latestVersion;
@@ -76,9 +76,10 @@
 			}
 			else
 			{
-				kGAMECLASS.clearOutput();
-				kGAMECLASS.output(target.capitalA + target.short + " shoves the pill up " + target.mf("his","her") + " backdoor with an odd expression on " + target.mf("his","her") + " face.");
-				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, " + target.mf("his","her") + " anus is particularly slippery! ...at least for a while.",false,4320);
+				if(inCombat()) kGAMECLASS.output("\n\n");
+				else kGAMECLASS.clearOutput();
+				kGAMECLASS.output(target.capitalA + target.short + " shoves the pill up " + target.getCombatPronoun("pa") + " backdoor with an odd expression on " + target.getCombatPronoun("pa") + " face.");
+				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, " + target.getCombatPronoun("pa") + " anus is particularly slippery! ...at least for a while.",false,4320);
 			}
 			return false;
 		}

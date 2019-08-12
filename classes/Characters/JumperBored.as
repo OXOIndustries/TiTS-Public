@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	//import classes.Items.Guns.*
 	import classes.Items.Miscellaneous.Throbb;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Transformatives.LaquineEars;
 	import classes.Items.Protection.JumperShield;
 	import classes.Items.Armor.JumperJumpsuit;
@@ -315,6 +316,7 @@
 			this.long += " bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and luscious, E-cup tits lingers behind.\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!";
 			credits = 350+rand(150);
 			if(rand(4) == 0) this.inventory.push(new LaquineEars());
+			else if(rand(4) == 0) this.inventory.push(new Soak());
 			else if(rand(4) == 0) this.inventory.push(new Throbb());
 			else if(rand(13) == 0) this.inventory.push(new JumperJumpsuitSlutty());
 			else if(rand(12) == 0) this.inventory.push(new JumperJumpsuit());

@@ -1006,7 +1006,7 @@ public function altTooltipCornyTShirt(variant:int = 0):String
 			tooltipLine = "\n\t\t&nbsp;&nbsp;<b>Wrangling Varmints is easy!\n<b>\t\t\t</b>Let’s see if you are</b>\n\n";
 			break;
 		case 3:
-			tooltipLine = "\n\t<b>It ain’t hard to pick up horseback ridin’</b>\n\t\t&nbsp;&nbsp;<b>How bout I pick you up for</b>\n\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>some horse<i>cock</i> ridin’’</b>\n\n";
+			tooltipLine = "\n\t<b>It ain’t hard to pick up horseback ridin’</b>\n\t\t&nbsp;&nbsp;<b>How bout I pick you up for</b>\n\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>some horse<i>cock</i> ridin’</b>\n\n";
 			break;
 		case 4:
 			tooltipLine = "\n\t\t<b>I can help you saddle a horse.</b>\n\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>So long as you straddle my face.</b>\n\n";

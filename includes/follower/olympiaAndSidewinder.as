@@ -129,6 +129,7 @@ public function shootOlympiaYouMonster():void
 		output("\n\nWell, no sense keeping them waiting. You punch it, sending your new flagship hurtling through the launch bay and out into the stars. She handles like an angel: the controls are tuned to perfection, easily enabling you to start spinning the ship in circles and cartwheeling around asteroids. What a rush!");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
 	flags["OLYMPIA_KILLED"] = 1;
 	flags["SIDEWINDER_TAKEN"] = 1;
 	shits["SHIP"] = new Sidewinder();
@@ -176,6 +177,7 @@ public function recruitOlympia():void
 		output("\n\n<i>“Satisfied, captain?”</i> Olympia purrs, leaning against the bridge’s hatchway. <i>“She handles even better than I do...”</i>");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
 	processTime(10);
 	clearMenu();
 	flags["SIDEWINDER_TAKEN"] = 1;
@@ -227,6 +229,7 @@ public function diplomacyDatFuckbot():void
 		output("\n\n<i>“Satisfied, captain?”</i> Olympia purrs, leaning against the bridge’s hatchway. <i>“She handles even better than I do...”</i>");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
 	flags["SIDEWINDER_TAKEN"] = 1;
 	//gib ship.
 	shits["SHIP"] = new Sidewinder();
@@ -278,8 +281,21 @@ public function olympiaIsSidewinderOnly():void
 	clearOutput();
 	showOlympia();
 	author("Savin");
+	
+	// Get Sidewinder name
+	var sidewinderName:String = "the Sidewinder";
+	for(var i:int = 0; i < shipStorageLimit(); i++)
+	{
+		var shipID:String = String("SHIP_" + (i+2));
+		if(shits[shipID] != undefined && (shits[shipID] is Sidewinder))
+		{
+			sidewinderName = shits[shipID].a + " " + shits[shipID].short;
+			break;
+		}
+	}
+	
 	output("You turn back to [pc.ship] just in time to see Olympia disembarking, marching up to you with the severe determination you remember from your time on Zheng Shi. She stops just a hand’s breadth from you, staring directly into your eyes.");
-	output("\n\n<i>“I’m staying with [pc.ship],”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
+	output("\n\n<i>“I’m staying with " + sidewinderName + ",”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
 	output("\n\nThe way she’s fixing you in her gaze, it’s clear there’s no reasoning with the obsessive sexbot. All you can do is tell her that you’ll see her soon as you heft your kit onto your shoulder and make for your chosen vessel.");
 	flags["OLYMPIA_ONBOARD"] = undefined;
 	processTime(3);
@@ -685,7 +701,7 @@ public function olympiasClothes():void
 		output("\n\nAfter a moment’s thought, Olympia shrugs. <i>“I’m not terribly put upon by it, I suppose, though this outfit is an unfortunate reminder of my time with Dr. Teyaal. Still, it doesn’t restrict my movements or impede my in any way.”</i>");
 	}
 	//Olympia in Steele Tech
-	else
+	else if(olympia.armor is SteeleTechSuit)
 	{
 		output("\n\nOlympia smirks. <i>“I enjoy a little latex, captain. While I admit, I am more comfortable nude, I can’t deny this uniform of yours gives me a certain sexy swagger. The way it hugs my ass is particularly delightful.”</i>");
 	}
@@ -693,9 +709,9 @@ public function olympiasClothes():void
 	output("\n\nThe gynoid shifts on her heels, clasping her hands behind her hack. <i>“So, is there a reason you ask, captain? Perhaps you’d like me to change things up?”</i>");
 	processTime(3);
 	clearMenu();
-	if(flags["OLYMPIA_UNIFORMED"] != undefined || pc.hasItemByClass(SteeleTechSuit)) addButton(0,"Uniform",uniformOlympia,undefined,"Uniform","Put Olympia in some sexy black-and-gold latex.");
-	else if(olympia.armor is SteeleTechSuit) addDisabledButton(0,"Uniform","Uniform","Olympia is already wearing this.");
-	else addDisabledButton(0,"Uniform","Uniform","You need to have a SteeleTech uniform to give her.");
+	if(olympia.armor is SteeleTechSuit) addDisabledButton(0,"Uniform","Uniform","Olympia is already wearing this.");
+	else if(flags["OLYMPIA_UNIFORMED"] == undefined && !pc.hasItemByClass(SteeleTechSuit)) addDisabledButton(0,"Uniform","Uniform","You need to have a Steele Tech uniform to give her.");
+	else addButton(0,"Uniform",uniformOlympia,undefined,"Uniform","Put Olympia in some sexy black-and-gold latex.");
 	if(olympia.armor is KhansLabCoat) addDisabledButton(1,"Lab Coat","Lab Coat","Olympia is already wearing this.");
 	else addButton(1,"Lab Coat",olympiasLabcoat,undefined,"Lab Coat","Olympia ought to be wearing something befitting her intelligence, like Dr. Teyaal’s sexy lab coat and panties combo.");
 	if(olympia.armor is EmptySlot) addDisabledButton(2,"Naked","Naked","Olympia is already naked.");

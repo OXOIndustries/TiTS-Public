@@ -362,7 +362,7 @@
 		},
 		true);
 	inputManager.AddBindableControl(
-		"SJW Mode",
+		"Politically Correct Mode",
 		"Toggle whether certain offensive words are used.",
 		function():void {
 			Cheats.SJWMode();
@@ -373,9 +373,9 @@
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
-	inputManager.BindCheatSequence("SJW Mode","sjw");
+	inputManager.BindCheatSequence("Politically Correct Mode","poison");
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
-	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
+	inputManager.BindCheatSequence("Infinte Item Use", "urta");
 	inputManager.BindCheatSequence("Infinite Crew Space", "clowncar");
 	inputManager.BindCheatSequence("Toggle Debug", "fuckyou");
 	inputManager.BindCheatSequence("Force Default Treatment", "treatment");

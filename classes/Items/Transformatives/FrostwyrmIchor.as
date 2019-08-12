@@ -435,7 +435,7 @@ package classes.Items.Transformatives
 		//Grow Slit:
 		private function growSlit(pc:Creature):void
 		{
-			output("\n\nYou think the cold might be getting to you as [pc.eachCock] shrinks, before noticing the tugging inward sensation in your groin. You reach down in a panic, but discover that thankfully you haven’t lost your manhood. Instead " + (pc.hasCocks() ? "they're" : "it’s") + " contained in a new internal slit that’s practically invisible when sealed shut. Well, that’s certainly going to open up some new clothing options. You take some time to ponder the possibilities as you get used to <b>your new genital slit</b>.");
+			output("\n\nYou think the cold might be getting to you as [pc.eachCock] shrinks, before noticing the tugging inward sensation in your groin. You reach down in a panic, but discover that thankfully you haven’t lost your manhood. Instead " + (pc.hasCocks() ? "they’re" : "it’s") + " contained in a new internal slit that’s practically invisible when sealed shut. Well, that’s certainly going to open up some new clothing options. You take some time to ponder the possibilities as you get used to <b>your new genital slit</b>.");
 			
 			pc.createStatusEffect("Genital Slit");
 		}
@@ -450,7 +450,7 @@ package classes.Items.Transformatives
 					validCocks.push(cIdx);
 			cIdx = RandomInCollection(validCocks);
 			
-			output("\n\nThe chill settles inside your slit, wrapping its way around your [pc.cock " + cIdx + "]. You feel a delicious stretching feeling in your shaft, letting it spill out on reflex. What emerges is a pink, blunt tip with a ring of muscle at the edges of the flat glans, with a shaft that's covered from root to crown with blue, pulsing veins and it has several nubs and pricks along the underside of its length. Is this really what a frostwyrm has between their legs? You rub your new malehood, giving a heady grin at just how good all that texture feels, and the thought of how good it’ll probably feel for any hole you stick it in. <b>You’ve got a frostwyrm dick</b>!");
+			output("\n\nThe chill settles inside your slit, wrapping its way around your [pc.cock " + cIdx + "]. You feel a delicious stretching feeling in your shaft, letting it spill out on reflex. What emerges is a pink, blunt tip with a ring of muscle at the edges of the flat glans, with a shaft that’s covered from root to crown with blue, pulsing veins and it has several nubs and pricks along the underside of its length. Is this really what a frostwyrm has between their legs? You rub your new malehood, giving a heady grin at just how good all that texture feels, and the thought of how good it’ll probably feel for any hole you stick it in. <b>You’ve got a frostwyrm dick</b>!");
 			
 			pc.shiftCock(cIdx, GLOBAL.TYPE_FROSTWYRM);
 		}

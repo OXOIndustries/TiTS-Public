@@ -6,6 +6,7 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Accessories.BimboleumDefenseSystem;
 	import classes.Items.Guns.SlutRay;
 	public class DrBadger extends Creature
@@ -17,11 +18,15 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
+			// Note: Shop inventory handeled by drBadgerBuyMenu(), in tarkus/drBadger.as
+			/*
 			this.inventory.push(new Dumbfuck());
 			this.inventory.push(new Gush());
+			this.inventory.push(new Soak());
 			this.inventory.push(new Throbb());
 			this.inventory.push(new SlutRay());
 			this.inventory.push(new BimboleumDefenseSystem());
+			*/
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

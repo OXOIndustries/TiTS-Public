@@ -5444,6 +5444,7 @@
 			currLib += statusEffectv1("Undetected Locofever");
 			currLib += statusEffectv1("Locofever");
 			currLib += statusEffectv1("Fried Cunt Snake");
+			if (hasStatusEffect("Soak") && currLib < 100) currLib = 100;
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			if (pluggedVaginas() > 0 || isPlugged(-1)) currLib *= 2;
 			if (currLib > libidoMax())
@@ -5611,7 +5612,9 @@
 			if(!raw) {
 				// Nothing yet!
 			}
-			return ((level * 5) + bonuses);
+			//OD Soak = 1/2.
+			if(hasStatusEffect("Soak Overdose")) return (((level * 5) + bonuses)/2);
+			else return ((level * 5) + bonuses);
 		}
 		public function libidoMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
@@ -7461,7 +7464,7 @@
 		{
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
-			||	InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN)
+			||	InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN])
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
@@ -7470,7 +7473,7 @@
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_SCALED);
-			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN);
+			if(part == "wing") return (InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN]) || statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED);
 			return hasScales();
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
@@ -7503,7 +7506,7 @@
 		{
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_FEATHERED) || hasLegFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_FEATHERED)
-			||	InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE)
+			||	InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_FEATHERED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FEATHERED
@@ -7511,7 +7514,7 @@
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FEATHERED);
-			if(part == "wing") return InCollection(wingType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE);
+			if(part == "wing") return (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE]) || statusEffectv1("Wing Style") == GLOBAL.FLAG_FEATHERED);
 			return hasFeathers();
 		}
 		public function skinNoun(skin: Boolean = false,appearance:Boolean = false): String {
@@ -10153,6 +10156,7 @@
 			capacity *= (vaginas[arg].looseness() * 5 + 1)/3;
 			//Add bonuses!
 			capacity += vaginas[arg].bonusCapacity;
+			if(hasStatusEffect("Soak")) capacity += 150;
 			//CoC-tier wetness 5 will double capacity.
 			capacity *= (vaginas[arg].wetness()+4)/5;
 			//elasticity bonuses!
@@ -10319,6 +10323,11 @@
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			//Soak bumps up 1 level to 2 at max.
+			if(hasStatusEffect("Soak") && puffScore < 1) puffScore = 1;
+			else if(hasStatusEffect("Soak") && puffScore < 2) puffScore = 2;
+			//OD is the hypers!
+			if(hasStatusEffect("Soak Overdose") && puffScore < 3) puffScore = 3;
 			
 			return puffScore;
 		}
@@ -11296,6 +11305,7 @@
 		public function isSquirter(arg: int = -1): Boolean {
 			if (vaginas.length <= 0) return false;
 			if (arg > (vaginas.length - 1)) return false;
+			if (hasStatusEffect("Soak")) return true;
 			if (arg < 0)
 			{
 				if(wettestVaginalWetness() >= 4 || hasOpalRingVagina()) return true;
@@ -11338,6 +11348,8 @@
 			quantity = tempGirlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
 			// Heat means wetter orgasms.
 			if(inHeat()) quantity *= 1.5;
+			//Soak is double multiplier!
+			if(hasStatusEffect("Soak")) quantity *= 2;
 			if(hasPerk("Treated Readiness")) quantity *= 2;
 			if(hasOpalRingVagina()) 
 			{
@@ -12354,9 +12366,13 @@
 		public function createCock(clength: Number = 5.5, cthickness: Number = 1): Boolean {
 			if (cocks.length >= 10) return false;
 			var newCock:CockClass = new CockClass();
+			newCock.cThicknessRatioRaw = cthickness;
+			newCock.cLengthRaw = clength;
+			
+			if(hasStatusEffect("Condensol-A")) newCock.cLengthRaw /= 2;
+			else if(hasStatusEffect("Condensol-B")) newCock.cLengthRaw /= 4;
+			
 			cocks.push(newCock);
-			cocks[cocks.length - 1].cThicknessRatioRaw = cthickness;
-			cocks[cocks.length - 1].cLengthRaw = clength;
 			return true;
 		}
 		public function createCockUnlocked(numCocks:int = 1):Boolean
@@ -12394,7 +12410,9 @@
 		//General utility function for setting appropriate dick type with new-grown weiners.
 		public function setNewCockValues(arg:int = 0):void
 		{
+			// Reset cock length.
 			cocks[arg].cLengthRaw = 5.5;
+			if(hasPerk("Mini")) cocks[arg].cLengthRaw -= 1+rand(2);
 			if(hasPerk("Hung")) cocks[arg].cLengthRaw += 2+rand(4);
 			
 			var race:String = race();
@@ -12482,6 +12500,10 @@
 				cocks[arg].addFlag(GLOBAL.FLAG_GOOEY);
 				cocks[arg].cockColor = skinTone;
 			}
+			
+			// Modify final length since it was reset above.
+			if(hasStatusEffect("Condensol-A")) cocks[arg].cLengthRaw /= 2;
+			else if(hasStatusEffect("Condensol-B")) cocks[arg].cLengthRaw /= 4;
 		}
 		//General utility function for setting appropriate dick type with new-grown vaginas.
 		public function setNewVaginaValues(arg:int = 0):void
@@ -12530,6 +12552,9 @@
 		public function createVagina(): Boolean {
 			if (vaginas.length >= 3) return false;
 			var newVagina:VaginaClass = new VaginaClass();
+			
+			if (hasStatusEffect("Soak")) newVagina.wetnessMod += 5;
+			
 			vaginas.push(newVagina);
 			return true;
 		}
@@ -12674,6 +12699,7 @@
 			//Amazon Treatment prevents cunt-loss during.
 			if (hasStatusEffect("Treated Amazon") && vaginas.length <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (hasStatusEffect("Ovalasting")) return false;
+			if (hasStatusEffect("Soak")) return false;
 			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
@@ -12701,6 +12727,7 @@
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return false;
 			if (hasStatusEffect("Treated Amazon") && vaginas.length <= 1 && hasStatusEffect("The Treatment")) return false;
 			if (hasStatusEffect("Ovalasting")) return false;
+			if (hasStatusEffect("Soak")) return false;
 			if (isPregnant(arraySpot)) return false;
 			return true;
 		}
@@ -12768,7 +12795,7 @@
 			if (leithanScore() >= 3 && race == "human") race = "half-leithan";
 			if (nukiScore() >= 2 && race == "human") race = "half kui-tan"
 			if (gryvainScore() >= 4 && race == "human") race = "half-gryvain";
-			if (suulaScore() >= 4 && race == "human") race = "half-suula";
+			if (suulaScore() >= 6 && race == "human") race = "half-suula";
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
 			if (deerScore() >= 4) race = "deer-morph";
@@ -12802,7 +12829,7 @@
 			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 6) race = "zil";
-			if (suulaScore() >= 6) race = "suula";
+			if (suulaScore() >= 8) race = "suula";
 			if (badgerScore() >= 4) race = "badger";
 			if (ovirScore() >= 5) race = "ovir";
 			if (myrScore() >= 4) race = "myr";
@@ -13962,14 +13989,14 @@
 		public function suulaScore(): int
 		{
 			var counter: int = 0;
-			if (faceType == GLOBAL.TYPE_SHARK || faceType == GLOBAL.TYPE_SIREN) counter++;
-			if (hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
+			if (faceType == GLOBAL.TYPE_SIREN || faceType == GLOBAL.TYPE_SHARK) counter++;
 			if (earType == GLOBAL.TYPE_SIREN) counter++;
 			if (eyeType == GLOBAL.TYPE_SIREN) counter++;
 			if (armType == GLOBAL.TYPE_SIREN) counter++;
 			if (legType == GLOBAL.TYPE_SIREN && legCount == 2 && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter++;
 			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
-			if (hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
+			if (counter > 0 && hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
+			if (counter > 0 && hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
 			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;
 			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
 			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;
@@ -14370,41 +14397,43 @@
 			var rando: Number = 0;
 			var descripted: Number = 0;
 			//25% tightness desc
-			if (((!simple || analVirgin) && rand(4) == 0) || ((!simple || analVirgin) && ass.looseness() <= 1 && rand(4) <= 2)) {
+			var looseness:Number = ass.looseness();
+			if (((!simple || analVirgin) && rand(4) == 0) || ((!simple || analVirgin) && looseness <= 1 && rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
 				if (analVirgin) {
 					desc += RandomInCollection(["virgin", "unspoiled", "unclaimed"]);
-				} else if (ass.looseness() <= 1) {
+				} else if (looseness <= 1) {
 					desc += RandomInCollection(["tight", "narrow"]);
-				} else if (ass.looseness() <= 2) {
+				} else if (looseness <= 2) {
 					desc += RandomInCollection(["pliant", "supple"]);
-				} else if (ass.looseness() <= 3) {
+				} else if (looseness <= 3) {
 					desc += RandomInCollection(["loose", "welcoming"]);
-				} else if (ass.looseness() <= 4) {
+				} else if (looseness <= 4) {
 					desc += RandomInCollection(["stretched", "broad"]);
-				} else if (ass.looseness() <= 5) {
+				} else if (looseness <= 5) {
 					desc += RandomInCollection(["gaping", "wide-open", "expansive"]);
 				}
 				//Account for larger values of loosness!
-				else if (ass.looseness() > 5) {
+				else if (looseness > 5) {
 					desc += RandomInCollection(["elastically yawning", "completely cavernous", "excessively agape"]);
 				}
 				descripted++;
 			}
 			//66% wetness description
-			if (!simple && rand(3) <= 1 && ass.wetness() >= 2) {
+			var wetness:Number = ass.wetness();
+			if (!simple && rand(3) <= 1 && wetness >= 2) {
 				if (descripted > 0) desc += ", ";
-				if (ass.wetness() <= 2) {
+				if (wetness <= 2) {
 					desc += RandomInCollection(["moist", "lubricated"]);
-				} else if (ass.wetness() <= 3) {
+				} else if (wetness <= 3) {
 					desc += RandomInCollection(["slimy", "slick"]);
-				} else if (ass.wetness() <= 4) {
+				} else if (wetness <= 4) {
 					desc += RandomInCollection(["lube-drooling", "soaked"]);
-				} else if (ass.wetness() <= 5) {
+				} else if (wetness <= 5) {
 					desc += RandomInCollection(["slime-drooling", "immaculately lubricated"]);
 				}
 				//Account for larger values of wetness!
-				else if (ass.wetness() > 5) {
+				else if (wetness > 5) {
 					desc += RandomInCollection(["lube-flooding", "slime-spilling"]);
 				}
 				descripted++;
@@ -15229,8 +15258,9 @@
 		public function hasSymbolAreola(rowNum:int = 0):Boolean
 		{
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
-			else if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
-			else return false;
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) return true;
+			return false;
 		}
 		public function areolaDescript(rowNum:int = 0, appearance:Boolean = false):String
 		{
@@ -15254,6 +15284,7 @@
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) adjectives.push("flower-shaped");
 
 			//If a player has a flag, they probably want to see stuff
 			if (breastRows[rowNum].areolaFlags.length > 0) adjectiveMin++;
@@ -15297,6 +15328,7 @@
 			//Others
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
 			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
+			if (breastRows[rowNum].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) list.push("flower-shaped");
 
 			//Build list with punctuation
 			while (list.length > 0)
@@ -16245,28 +16277,34 @@
 			if(this is PlayerCharacter && rand(2) == 0 && vaginaNum == 0 && hasStatusEffect("Mimbrane Pussy") && adjectiveCount == 0)
 			{
 				var puffScore:Number = (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				var pumpScore:int = 0;
+				if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) pumpScore = 1;
+				if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) pumpScore = 2;
+				if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) pumpScore = 3;
+				if((this as PlayerCharacter).hasStatusEffect("Soak")) pumpScore += 1;
+				if((this as PlayerCharacter).hasStatusEffect("Soak Overdose")) pumpScore += 2;
 				var mimAdjectives:Array = [];
 				
 				if(puffScore <= 0) {}
 				else if(puffScore <= 1)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
+					if(pumpScore >= 3) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
+					else if(pumpScore >= 2) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					else if(pumpScore >= 1) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
 				else if(puffScore <= 2)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
+					if(pumpScore >= 3) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
+					else if(pumpScore >= 2) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					else if(pumpScore >= 1) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
 					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
 				}
 				else
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
-					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					if(pumpScore >= 3) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
+					else if(pumpScore >= 2) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					else if(pumpScore >= 1) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
 				
@@ -16783,6 +16821,8 @@
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && biggestSize == -1) biggestSize = 1;
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == -1) biggestSize = 2;
 				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && biggestSize == -1) biggestSize = 3;
+				else if(hasStatusEffect("Soak") && biggestSize < 2) biggestSize = 2;
+				else if(hasStatusEffect("Soak Overdose") && biggestSize < 3) biggestSize = 3;
 			}
 			if(biggestSize > 0)
 			{
@@ -17770,13 +17810,25 @@
 				}
 			}
 			if (adjectives < adjectiveLimit && !multi && rand(5) == 0 && !(cock.cocksock is EmptySlot)) {
-				if(adjectives > 0) descript += ", ";
+				var sockAdj:Array = [];
 				// Generic adjectives
-				var sockAdj:Array = ["wrapped","garment-wrapped","smartly dressed"];
-				// Actually coverd like socks
-				if(!cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) sockAdj.push("covered","sock-sheathed","sock-shrouded","cloth-shrouded","fabric swaddled");
-				descript += RandomInCollection(sockAdj);
-				adjectives++;
+				if(cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_COCKRING))
+				{
+					sockAdj.push("ringed","jewelry-decorated","jewelry-ringed");
+					if(!cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) sockAdj.push("jewelry-covered","jewelry-encased");
+				}
+				if(cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_COCKSOCK))
+				{
+					sockAdj.push("wrapped","garment-wrapped","smartly dressed");
+					// Actually coverd like socks
+					if(!cock.cocksock.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) sockAdj.push("covered","sock-sheathed","sock-shrouded","cloth-shrouded","fabric swaddled","fabric-encased");
+				}
+				if(sockAdj.length > 0)
+				{
+					if(adjectives > 0) descript += ", ";
+					descript += RandomInCollection(sockAdj);
+					adjectives++;
+				}
 			}
 			return [descript,adjectives];
 		}
@@ -22221,6 +22273,18 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Soak":
+						if(requiresRemoval)
+						{
+							//Strip out bonus wet.
+							for(y = 0; y < this.totalVaginas(); y++) 
+							{
+								if(vaginas[y].wetnessMod >= 5) vaginas[y].wetnessMod -= 5; 
+							}
+							if(clitLength >= 0.6) clitLength -= 0.5;
+							if (this is PlayerCharacter && hasVagina()) kGAMECLASS.eventQueue.push(new Soak().soakOverWrapper);
+						}
+						break;
 					case "Shekka_Pay_CD":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
@@ -22420,19 +22484,6 @@
 						}
 						break;
 					case "Condensol-A":
-						if (!hasCock())
-						{
-							requiresRemoval = true;
-						}
-						else if (requiresRemoval)
-						{
-							for(y = 0; y < cocks.length; y++)
-							{
-								cocks[y].cLengthRaw *= 2;
-							}
-							if(this is PlayerCharacter) AddLogEvent(ParseText("You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
-						}
-						break;
 					case "Condensol-B":
 						if (!hasCock())
 						{
@@ -22440,12 +22491,16 @@
 						}
 						else if (requiresRemoval)
 						{
-							for(z = 0; z < cocks.length; z++)
+							var condensolMult:int = 1;
+							if(thisStatus.storageName == "Condensol-A") condensolMult = 2;
+							if(thisStatus.storageName == "Condensol-B") condensolMult = 4;
+							for(y = 0; y < cocks.length; y++)
 							{
-								cocks[z].cLengthRaw *= 4;
+								cocks[y].cLengthRaw *= condensolMult;
 							}
-							if(this is PlayerCharacter) AddLogEvent(ParseText(" You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
+							if(this is PlayerCharacter) AddLogEvent(ParseText("You feel your groin relax, and check your [pc.cocks] to discover that everything is more or less as it should be. The Condensol must have worn off."), "passive", maxEffectLength);
 						}
+						break;
 						break;
 					case "Lane's Hypnosis":
 					case "Lane's Hypnosis - Physique":

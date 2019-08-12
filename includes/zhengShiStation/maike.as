@@ -617,7 +617,7 @@ public function continueMaikeVictoryChoices():void
 }
 
 //Quick Anal
-//Requires strapon or a cock less than 22’’ long and less than 4’’ wide, greyed out otherwise. Orgasm event.
+//Requires strapon or a cock less than 22" long and less than 4" wide, greyed out otherwise. Orgasm event.
 //tooltip: Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your {/pcOnlyStrapon: fake-}junk. {/pcTooBig: Actually, it looks like what you got couldn’t fit in that ass. Shit.}
 //USE COCK ROUTAH
 public function quickMaikeAnal(x:int):void
@@ -643,7 +643,7 @@ public function quickMaikeAnal(x:int):void
 	var cLength:Number = 9;
 	if(x >= 0) cLength = pc.cocks[x].cLength();
 	if(x == -1) output("<i>“Hardlight...? Needs must, I guess,”</i>");
-	//pcCock<7’’:
+	//pcCock<7":
 	else if(cLength < 7) output("<i>“Mm, thank the sun that you’re not using a can opener for a cock, even if you could do with a bit... more,”</i>");
 	else if(cLength < 13) output("<i>“Ooo, packing back there. I hope you know how to go <b>deep</b> and not just hard,”</i>");
 	else output("<i>“Oh fucking... why is every spacer packing so much meat these days? You better be... nice...”</i>");
@@ -953,7 +953,7 @@ public function losingToMaikeHereWeGo2():void
 	output("\n\n<i>“Ohoooo, yes, the mouth! [pc.heShe] is very good, verrrry good,”</i> chimes the bee boy as he openly gropes his bulge.");
 	output("\n\nYour vision clears up enough to take in the full view of what you’re seeing. The gold-and-black bee holds his fingers to his lips as he yanks and fiddles with a burgeoning stiffy, the skin-tight bottoms covering his cutesy bulge being all too easy for him to just slip out from.");
 	output("\n\n<i>“There’s my big boy, ready for a royal suck,”</i> giggles the much larger moth-queen as she reaches around his girly, curvy hips and takes over fondling duty. ");
-	output("\n\n<i>“Mmmmuhmistressmmm,”</i> is all the willowy bee murmurs as she steals his painted lips with hers. In her expert hands, his golden boy-cock throbs into its full stride to a tasty 5’’ and gets its full fill of her skill with each pump. Satisfied with how ready her sub is, the blue moth guides him forward and lines him up with your [pc.lips]. On his own accord, he sinks his girlish hips forwards and spreads your mouth apart with his pulsing rod. You’re in much to addled a state to say anything but even so, the gentle push and alien flavor is more like an invitation to suck than anything. His hands come to rest on your cheek and [pc.hair] which helps him balance as he slides his his boyshaft all the way to the hilt with a little ‘Iiihh!’ sound. You keep your eyes focused on his blushing face all the while, innately wishing to please this cute little intruder.");
+	output("\n\n<i>“Mmmmuhmistressmmm,”</i> is all the willowy bee murmurs as she steals his painted lips with hers. In her expert hands, his golden boy-cock throbs into its full stride to a tasty 5\" and gets its full fill of her skill with each pump. Satisfied with how ready her sub is, the blue moth guides him forward and lines him up with your [pc.lips]. On his own accord, he sinks his girlish hips forwards and spreads your mouth apart with his pulsing rod. You’re in much to addled a state to say anything but even so, the gentle push and alien flavor is more like an invitation to suck than anything. His hands come to rest on your cheek and [pc.hair] which helps him balance as he slides his his boyshaft all the way to the hilt with a little ‘Iiihh!’ sound. You keep your eyes focused on his blushing face all the while, innately wishing to please this cute little intruder.");
 	output("\n\n<i>“Good <b>boy</b>,”</i> grunts the moth as she penetrates his tight trap-hole with her thumb. He squeals aloud as his plump butt is explored by his moth-mistress and a dribbly spurt of pre-cum hits the back of your mouth. You find that the moth-femme is now at eye level and she grins at you with her devilish visage. She licks the side of her bee’s hip with an uncomfortably long, thin tongue and you spy the claws of her penetrating hand cupping and fondling his tight trap-sack from underneath.");
 	output("\n\nNow in several different clutches, the bee-trap has no choice but to hump your [pc.face]. With his hands gripping your head, he pushes and pulls you backwards and forwards with immediacy. His soft head constantly hits the back of your [pc.tongue] as he works your mouth like a pro, almost as if he had owned you for years and knew how your body works. His little gasps and moans dot with squeaks as his leering mistress hits a sensitive spot deep in his boyhole, treating you to a tiny spurt of his salty-sweet honey cream each time. You do your best, of course: [pc.lips] squeeze against his veiny shaft and you can’t help but murmur in delight as his head slides so cleanly and smoothly against your [pc.tongue]. Mmmm, cooooooock...!");
 	output("\n\nThe bee’s shaft massages your tongue with such a regular rhythm that deep down inside, you just wish it was another breeding hole. <i>Feeling</i> such a nice, tasty tool fill your mouth-cunt is a fantasy so wild you become lost to it while he and his mistress thrust into you.");

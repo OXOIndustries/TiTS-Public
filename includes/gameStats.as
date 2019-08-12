@@ -1493,7 +1493,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.spiderScore() > 0)
 			output2("\n<b>* Spider:</b> " + prettifyGeneticMarker(pc.spiderScore(), 4, 6));
 		if(CodexManager.entryUnlocked("Suulas") && pc.suulaScore() > 0)
-			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 6, 10));
+			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 8, 10));
 		if(pc.tentacleScore() > 0)
 			output2("\n<b>* Tentacle:</b> " + prettifyGeneticMarker(pc.tentacleScore(), 15, -99));
 		if(CodexManager.entryUnlocked("Vanae") && pc.vanaeScore() > 0)
@@ -4673,13 +4673,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Alex
 				if(flags["MET_ALEX"] != undefined)
 				{
-					if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2("\n<b>* Alex:</b>");
+					if(flags["DRANK_WITH_ALEX"] != undefined || flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2("\n<b>* Alex:</b>");
 					else output2("\n<b>* Pretty Boy:</b>");
 					output2(" Met him");
-					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him");
+					if(flags["LEFT_ALEX_REASON"] == 1) output2(", Bailed on him");
+					else if(flags["LEFT_ALEX_REASON"] == 2) output2(", Declined his offer to drink together");
+					if(flags["DRANK_WITH_ALEX"] != undefined) output2(", Drank with him");
+					if(flags["ALEX_CONFESSED"] != undefined) output2(", Learned about his gender");
+					if(flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) output2(", Bailed on him"); //Should this line be changed somehow?
 					if(flags["FUCKED_ALEX"] != undefined) output2("\n<b>* Alex, Times Sexed:</b> " + flags["FUCKED_ALEX"]);
+					if(flags["ALEX_DRUNK_SEX"] != undefined) output2("\n<b>* Alex, Times Drunk-Sexed:</b> " + flags["ALEX_DRUNK_SEX"]);
 				}
-				// Alex
+				// Fadil
 				if(flags["MET_FADIL"] != undefined)
 				{
 					output2("\n<b>* Fadil:</b>");
@@ -8943,6 +8948,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MITZI_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			if(flags["MITZI_GUSHED"] != undefined) output2("\n<b>* Mitzi, Gush, Times Used:</b> " + flags["MITZI_GUSHED"]);
+			if(flags["MITZI_SOAKED"] != undefined) output2("\n<b>* Mitzi, Soak, Times Used:</b> " + flags["MITZI_SOAKED"]);
 			if(flags["MITZI_FUCKED"] != undefined) output2("\n<b>* Mitzi, Times Fucked Her Vagina:</b> " + flags["MITZI_FUCKED"]);
 			if(flags["MITZI_CUNTLICKED_PC"] != undefined) output2("\n<b>* Mitzi, Times She Licked Your Vagina:</b> " + flags["MITZI_CUNTLICKED_PC"]);
 			if(flags["MITZI_TITFUCKED"] != undefined) output2("\n<b>* Mitzi, Times Slowly Tit-Fucked Her:</b> " + flags["MITZI_TITFUCKED"]);
@@ -9256,11 +9262,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
+		if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined || flags["MITZI_BIMBO_TALK"] != undefined || flags["MITZI_FAV_DRUG"] != undefined || flags["SOAK_TIMES_USED"] != undefined || CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("Soak") || CodexManager.entryViewed("Throbb") || CodexManager.entryViewed("The Treatment"))
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
-			if(CodexManager.entryViewed("Dumbfuck"))
+			if(flags["MITZI_BIMBO_TALK"] != undefined || CodexManager.entryViewed("Dumbfuck"))
 			{
 				output2("\n<b>* Dumbfuck:</b> Known");
 				if(flags["TIMES_TAKEN_DUMBFUCK"] != undefined)
@@ -9276,13 +9282,23 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// Gush
-			if(CodexManager.entryViewed("Gush"))
+			if(flags["MITZI_FAV_DRUG"] != undefined || CodexManager.entryViewed("Gush"))
 			{
 				output2("\n<b>* Gush:</b> Known");
 				if(flags["USED_GUSH"] != undefined) output2(", Used");
 			}
+			// Soak
+			if(flags["MITZI_FAV_DRUG"] != undefined || flags["SOAK_TIMES_USED"] != undefined || CodexManager.entryViewed("Soak"))
+			{
+				output2("\n<b>* Soak:</b> Known");
+				if(flags["SOAK_TIMES_USED"] != undefined)
+				{
+					if(flags["SOAK_TIMES_USED"] == 1) output2(", Used once");
+					else output2(", Used " + flags["SOAK_TIMES_USED"] + " times");
+				}
+			}
 			// Throbb
-			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
+			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined || CodexManager.entryViewed("Throbb"))
 			{
 				output2("\n<b>* Throbb:</b> Known");
 				if(flags["TIMES_THROBB_USED"] != undefined)

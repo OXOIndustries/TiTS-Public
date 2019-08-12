@@ -179,7 +179,7 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nPetra is a mountain of a woman. Six and a half feet by your guess, wide and maybe just a little too muscular for her bodysuit. Heavy plates cover the vital areas including a rather telling pelvic plate that juts out between her legs. She be <i>packing</i>.");
 	output("\n\nIn terms of weapons, you can see a large looking hilt hanging loosely off her hip and a complex looking gauntlet on her left arm. Wonder what they could be...");
 	output("\n\nCheo is... suited up? Oh and without his mask...");
-	output("\n\nCompletely unrecognisable save for his tri-colored tail, a somewhat boyish faced Cheo stands next to you with folded arms. You notice his 5’’ hair is a somewhat bushy bundle of brown, white and black. Black markings adorn his eyelids like some kind of warpaint, maybe a tattoo...? Snapping back to reality a second, you can’t spot any weapons on him. How does he plan to handle this if it goes");
+	output("\n\nCompletely unrecognisable save for his tri-colored tail, a somewhat boyish faced Cheo stands next to you with folded arms. You notice his 5\" hair is a somewhat bushy bundle of brown, white and black. Black markings adorn his eyelids like some kind of warpaint, maybe a tattoo...? Snapping back to reality a second, you can’t spot any weapons on him. How does he plan to handle this if it goes");
 	if (silly) output(" Trials in Tainted Space up?");
 	else output(" tits up?");
 	output("\n\n<i>“What do I do now?”</i> you whisper to him.");
