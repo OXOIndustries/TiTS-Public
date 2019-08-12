@@ -175,6 +175,20 @@
 			return function():void { inThis.prevOutputPage(); };
 		}(this));
 		
+	inputManager.AddBindableControl(
+		"Previous Button Page",
+		"Go to the previous page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.execButtonPagePrevious(); };
+		}(this));
+		
+	inputManager.AddBindableControl(
+		"Next Button Page",
+		"Go to the next page of buttons",
+		function(inThis:*):Function {
+			return function():void { inThis.userInterface.buttonTray.execButtonPageNext(); };
+		}(this));
+		
 	import classes.Cheats;
 	
 	inputManager.AddBindableControl(
@@ -340,11 +354,26 @@
 			Cheats.BoobSiliconePlease();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Classic Lapinara",
+		"Toggle whether the classic Lapinara on Tarkus will encounter you.",
+		function():void {
+			Cheats.ClassicLapinara();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"SJW Mode",
+		"Toggle whether certain offensive words are used.",
+		function():void {
+			Cheats.SJWMode();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
 	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	inputManager.BindCheatSequence("XP to Level", "motherlode");
+	inputManager.BindCheatSequence("SJW Mode","sjw");
 	inputManager.BindCheatSequence("100K Credits", "anotherbrickinthewall");
 	inputManager.BindCheatSequence("Infinte Item Use", "furfag");
 	inputManager.BindCheatSequence("Infinite Crew Space", "clowncar");
@@ -362,6 +391,7 @@
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
+	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
@@ -391,6 +421,8 @@
 	inputManager.BindKeyToControl(35, "Scroll To End");        // case 35: this.endButtonScroll()
 	inputManager.BindKeyToControl(54, "Next Page");            // case 54: this.pageNextButtonKeyEvt()
 	inputManager.BindKeyToControl(89, "Previous Page");        // case 89: this.pagePrevButtonKeyEvt()
+	inputManager.BindKeyToControl(90 , "Previous Button Page");
+	inputManager.BindKeyToControl(88 , "Next Button Page");
 	inputManager.BindKeyToControl(80, "Debug Menu");           // case 80: this.userInterface.debugmm();
 
 

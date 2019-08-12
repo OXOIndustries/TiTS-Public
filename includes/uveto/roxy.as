@@ -818,7 +818,7 @@ public function roxyTalkHerself():void
 	output("\n\n<i>“Nahhhh,”</i> she groans out, sounding stoic. <i>“It’s just like any other sport. Well, any other sport that isn’t like boxing where you’re </i>meant<i> to hurt others. Say...”</i> she shifts closer to you, <i>“one of these days you should you see one of my matches with the Pinup Punks.”</i> She pulls back, one eye shut cutely. <i>“You know, if you ever get the chance.”</i>");
 	output("\n\nYou just might. In the meantime, you ask her how she feels being on Uveto, noting her fluffier, unshorn coat compared to others.");
 	output("\n\n<i>“Hm,”</i> she rolls her eyes, her head following the movements of her irises. <i>“I don’t hate Uveto. It’s damn cold, sure, but thank you to the geniuses behind indoor heating!”</i> She chuckles. <i>“Some of my teammates aren’t big on the place, and I can understand that. I sure as hell didn’t expect to get moved out to some frigid moon. I doubt any of the athletes here really expected to.”</i> Roxy shrugs. <i>“But the money is here and I get paid on time, so I can’t complain.”</i>");
-	output("\n\nHer head tilts, one ear slumps, and she smirks mischievously. <i>“’Least that’s what my contract says.”</i>");
+	output("\n\nHer head tilts, one ear slumps, and she smirks mischievously. <i>“‘Least that’s what my contract says.”</i>");
 	output("\n\n<i>“I guess the other downside of living on Uveto is I’m not a hop-skip-and-a-jump away from family anymore. Like, I still keep in touch with my mom, mother, and siblings. I kinda just miss getting to physically see them. Wouldn’t want them struggling against the cold here just for that, though.”</i>");
 	output("\n\nRoxy places her hands on her hips when you give her a quizzical look. <i>“That face your making is about my use of words ‘mom’ and ‘mother’ right? My parents are both herms, girly as can be. I grew up calling the one who gave birth to me ‘mom’ and my sire ‘mother’. Easy as that.”</i>");
 	if (CodexManager.entryViewed("Laquines")) output("\n\nNot too surprising, really. Laquines have an even split of males, females, and natural hermaphrodites in their race.");
@@ -976,7 +976,7 @@ public function roxyTalkStadium():void
 	flags["ROXY_TALK_STADIUM"] = 1;
 	
 	output("Curious as to what goes on around the stadium, you ask about the inner workings, who runs the place, what else takes place besides the races.");
-	output("\n\n<i>“The stadium, huh?”</i> Roxy tilts her head grunting cutely from a stretch. <i>“It’s a big place sponsored by big companies. With all the money to be made around here, not just at the stadium, it’s been growing.”</i> She looks to the furthest corner of the room at a small window. <i>“’Sides, gotta keep people’s minds off the storms somehow. What better way than a bunch of guys and girls sweatin’ for entertainment?”</i>");
+	output("\n\n<i>“The stadium, huh?”</i> Roxy tilts her head grunting cutely from a stretch. <i>“It’s a big place sponsored by big companies. With all the money to be made around here, not just at the stadium, it’s been growing.”</i> She looks to the furthest corner of the room at a small window. <i>“‘Sides, gotta keep people’s minds off the storms somehow. What better way than a bunch of guys and girls sweatin’ for entertainment?”</i>");
 	output("\n\nMakes sense; you gesture for her to go on.");
 	output("\n\n<i>“There are a lot of games that go on around here. Race track’s the crowd favorite right now.”</i> Roxy leans in with an unimpressed look on her face, <i>“Which if you ask me is mainly ‘cause you can bet on those races. </i>Bet you,<i> heh, a lot of sports would be more popular if the laws on gambling weren’t so wonky. Eh, but I don’t think I’d like the pressure of knowing someone else’s money rides on my performance. Last thing I need is some dick taking his bad decisions out on me or my team.”</i>");
 	output("\n\nYou nod. <i>“And you’re one of many floppy-eared athletes around here, yeah?”</i>");
@@ -2440,7 +2440,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyDP():void
 	output("\n\nMuscles aching all over, you do anything in your power to molest other sounds of euphoria from her: mauling her boobs, pinching her tits, and thrusting as viciously as you can.");
 	output("\n\n...The door slides open. <i>“O-oh, s-shit, sorry, I didn’t-”</i>");
 	output("\n\n<i>“G-GET THE HELL OUT!”</i> Roxy bellows.");
-	output("\n\nThe door doesn’t close right away, and then there’s a catcalling whistle. <i>“’Ey, ROX! TAKE THOSE DICKS YA SLUT!”</i>");
+	output("\n\nThe door doesn’t close right away, and then there’s a catcalling whistle. <i>“‘Ey, ROX! TAKE THOSE DICKS YA SLUT!”</i>");
 	output("\n\nYou almost get distracted enough to offer up an insult of your own, but your fuzzy bunny slams the bench and twists her head. <i>“ALREADY DOING THAT, FUCK OFF AND GET YOUR OWN!”</i>");
 	output("\n\nThe door finally slides shut, and the steamy air is sealed back in. You realize you slowed down. You’re laughing, because your punky laquine is too. <i>“I can’t BELIEVE that shit. They know I last longer than they do! And what do- you-”</i> she pauses, and elbowing you in the gut. <i>“Speed the fuck up, [pc.name], how can you be slowing down after all that!?”</i>");
 	output("\n\nHer wish is your command. You take a deep breath, assured it’s going to be the last one you get for a time, and build back up to the pace from before, clutching one fertile thigh and one perky boob. You’re not sure what to feel. For how hard you rail the vivacious hare, the job never seems like one you can succeed at.");
@@ -3054,7 +3054,7 @@ public function roxySexIdeaYes():void
 	else output(" Get on with it!");
 	output("”</i> Your [pc.hips] squirm around, pinned beneath the leaper’s legs. Her biological prowess for breeding, for selecting a proper mate, mercifully abates.");
 	
-	output("\n\n<i>“D’aww,”</i> she leans forward. <i>“Consider that your only favor, [pc.name]!”</i> She rips both her top garments off in one fluid motion. <i>“’Sides, can’t have you wasting any of that on my body. Just accept that you’re my piece of fuckable meat right now.”</i>");
+	output("\n\n<i>“D’aww,”</i> she leans forward. <i>“Consider that your only favor, [pc.name]!”</i> She rips both her top garments off in one fluid motion. <i>“‘Sides, can’t have you wasting any of that on my body. Just accept that you’re my piece of fuckable meat right now.”</i>");
 	
 	processTime(10);
 	pc.exhibitionism(1);

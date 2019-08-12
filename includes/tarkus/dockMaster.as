@@ -25,7 +25,7 @@ public function raskvelDockmaster(back:Boolean = false):void
 	clearOutput();
 	showDockmistress();
 	author("SomeKindofWizard");
-
+	
 	//Been 5+ days since impregnated her?
 	if(flags["DOCKMASTER_PREGNANT"] != undefined && flags["DOCKMASTER_PREGNANT"] + (60*24*5) < GetGameTimestamp())
 	{
@@ -117,7 +117,7 @@ public function shipTalkWithDockmaster():void
 	//Repeat
 	else
 	{
-		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
+		output("\n\nThe dockmaster quirks a brow at you, tapping a foot. <i>“You been drinking, Spacer? I may not like putting names to faces, but I know I’ve told you this all before. I fix broken ships, I fit parts if you bring them to me or buy some basics of us, and I will remove and scrap crap if you don’t want it anymore... and of course you get the junk money.”</i>");
 		if(pc.isDrunk() || pc.isSmashed() || pc.isBuzzed()) output("\n\nWell, okay you <i>have</i> been drinking, but that’s hardly fair.");
 		//[Ship] //Acquire her services [Flirt] //Acquire her *services*
 	}
@@ -238,7 +238,8 @@ public function dockmasterAddonsShop():void
 {
 	clearOutput();
 	showDockmistress();
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CapacitorBank());
 	shopkeep.inventory.push(new ShieldUpgrade());
@@ -258,7 +259,8 @@ public function dockmasterWeaponShop():void
 {
 	clearOutput();
 	showDockmistress();
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“Alright, let me see what you’ve got. We charge a standard rate for the hookup.”</i>\n\n");
 	shopkeep.inventory.push(new CoilCannon());
 	shopkeep.inventory.push(new EMTurret());
@@ -279,6 +281,12 @@ public function dockmasterWeaponShop():void
 
 public function raskvelDockmasterMenu():void
 {
+	if(pc.hasKeyItem("Panties - The Dockmaster's - Black-buttoned thong."))
+	{
+		chars["DOCKMASTER"].sellMarkup = 0.95;
+		chars["DOCKMASTER"].buyMarkdown = 0.70;
+	}
+	
 	clearMenu();
 	addButton(0,"About You?",shipTalkWithDockmaster,undefined,"About You?","Ask her more about who she is and what she does around here.");
 	addButton(1,"Appearance",dockmasterAppearance,undefined,"Appearance","Take a closer look at her.");
@@ -299,29 +307,42 @@ public function uninstallRaskStyle():void
 	clearOutput();
 	showDockmistress();
 	author("SomeKindofWizard");
-	shopkeep = new Dockmaster();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	output("<i>“I do enjoy taking stuff out. I get to use my big girl here.”</i> She fondly strokes her wrench, looking over your ship. <i>“What do you need?”</i>\n\n");
 	//Ship part removal menu
 	unfitShipItem();
 }
 
-public function buyAShipFromTrashRat():void
+public function buyAShipFromTrashRat(back:Boolean = false):void
 {
 	clearOutput();
 	showDockmistress();
 	author("Fenoxo");
-	output("You ask her if they have any ships for sale... speficially ships you would actually want. Anything as rusty as the <b>Nova</b> itself is bound to be a hard no.");
-	output("\n\nThe dockmaster brushes a sweep of cyan hair aside in annoyance. <i>“’Course we got the goods. Though you’ll have to trade in whatever you’re flying for it. This hangar’s too tight for anybody to use it as a glorified garage, I don’t care how shiny their scales.”</i>");
-	processTime(2);
+	if(!back)
+	{
+		output("You ask her if they have any ships for sale... specifically ships you would actually want. Anything as rusty as the <b>Nova</b> itself is bound to be a hard no.");
+		output("\n\nThe dockmaster brushes a sweep of cyan hair aside in annoyance. <i>“‘Course we got the goods. Though you’ll have to trade in whatever you’re flying for it. This hangar’s too tight for anybody to use it as a glorified garage, I don’t care how shiny their scales.”</i>");
+		processTime(2);
+	}
+	else
+	{
+		output("What ship are you looking to trade for?");
+	}
 	clearMenu();
+	shopkeep = chars["DOCKMASTER"];
+	shopkeep.inventory = [];
 	//Initialize all ships, pass to tooltip generating func.
-	var moon:ShittyShip = new MoondastGruss();
-	shopkeep = new Dockmaster();
-	addButton(0,"M.Gruss",shipBuyScreen,moon,"M.Gruss",shipCompareString(moon));
-	//addButton(1,"Colt XLR",shipBuyScreen,coltXLR,"Colt XLR",shipCompareString(coltXLR));
-	//addButton(2,"Spearhead SS",shipBuyScreen,spearhead,"Spearhead SS",shipCompareString(spearhead));
+	var ships:Array = [];
+	ships.push(["M.Gruss", "Moondast Gruss", new MoondastGruss()]);
+	for(var i:int = 0; i < ships.length; i++)
+	{
+		addShipCompareButton(i,shits["SHIP"],ships[i][2],ships[i][0],shipBuyScreen,ships[i][2],ships[i][1]);
+	}
+	addButton(13,"Current Ship",shipStatistics,buyAShipFromTrashRatBack,"Current Ship Stats","Look over your ship and its equipped modules.");
 	addButton(14,"Back",raskvelDockmaster,true);
 }
+public function buyAShipFromTrashRatBack():void { return buyAShipFromTrashRat(true); }
 
 //Flirt
 public function flirtWivRaskDock(repaired:Boolean = false):void

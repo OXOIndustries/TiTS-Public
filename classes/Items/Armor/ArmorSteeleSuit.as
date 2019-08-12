@@ -30,7 +30,7 @@ package classes.Items.Armor
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a armored SteeleTech jumpsuit";
+			this.description = "a armored Steele Tech jumpsuit";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "An armored jumpsuit, based on the standard company uniform. Though it provides no more modesty than it’s sibling, shock-gel padding will provide lightweight protection for your vitals and limbs.";

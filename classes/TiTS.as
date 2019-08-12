@@ -157,6 +157,7 @@
 		include "../includes/follower/kase.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/olympiaAndSidewinder.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeGropazoo.as";
@@ -475,6 +476,7 @@
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/sidewinderVictoryLap.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/snekAndMaus.as";
@@ -521,6 +523,7 @@
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
+		include "../includes/uveto/kiona.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
@@ -535,6 +538,7 @@
 		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/nykke.as";
+		include "../includes/uveto/nykke2.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
@@ -601,10 +605,12 @@
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
+		public function get samePageLog():Boolean {return gameOptions.samePageLog; }
 		public function get debug():Boolean { return gameOptions.debugMode; }
 		
 		public function set silly(v:Boolean):void { gameOptions.sillyMode = v; }
 		public function set easy(v:Boolean):void { gameOptions.easyMode = v; }
+		public function set samePageToggle(v:Boolean):void {gameOptions.samePageLog = v; }
 		public function set debug(v:Boolean):void { gameOptions.debugMode = v; }
 		
 		public var inputManager:InputManager;
@@ -669,7 +675,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.003";
+			version = "0.8.012";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1083,6 +1089,11 @@
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
 			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
+		}
+		
+		public function addCompareButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		{
+			userInterface.addItemButton(slot, cap, 1, 1, func, arg, ttHeader, ttBody, ttCompare);
 		}
 		
 		public function removeButton(slot:int):void
@@ -1770,12 +1781,14 @@
 		{
 			return chars["LUCA"];
 		}
-	
 		public function get marion():Marion
 		{
 			return chars["MARION"];
 		}
-	
+		public function get olympia():Olympia
+		{
+			return chars["OLYMPIA"];
+		}
 		public function get lureling():Lureling
 		{
 			return chars["LURELING"];
@@ -1784,10 +1797,17 @@
 		{
 			return chars["ROXY"];
 		}
-		
 		public function get lorelei():Lorelei
 		{
 			return chars["LORELEI"];
+		}
+		public function get varmint():VarmintPet
+		{
+			return chars["VARMINTPET"];
+		}
+		public function get vahn():Vahn
+		{
+			return chars["VAHN"];
 		}
 
 		public function testShipCombat():void

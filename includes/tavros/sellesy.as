@@ -143,6 +143,9 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 	pc.imbibeAlcohol(50);
 	processTime(5+rand(5));
 
+	//Set and incerement amount of times drank from her.
+	IncrementFlag("DRANK_FROM_SELLESY");
+
 	//[The following scenes are effective no matter character type, size/stature. It is assumed Sellesy and the chair adjust for any difference in height, or in the case of being awkwardly largely endowed, she just straddles their cock with a wider berth between her legs.]
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Next",firstTimeWithSellesyForCocks);

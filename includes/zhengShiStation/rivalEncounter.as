@@ -49,7 +49,11 @@ public function showRivalAndFeruze():void
 
 public function cousinEncounterBonus():Boolean
 {
-	if(flags["FERUZE_ZHENG_OUTCOME"] == undefined)
+	if(pirateResearchVesselStolen())
+	{
+
+	}
+	else if(flags["FERUZE_ZHENG_OUTCOME"] == undefined)
 	{
 		showRivalAndFeruze();
 		author("Fenoxo");
@@ -69,7 +73,11 @@ public function cousinEncounterBonus():Boolean
 	}
 	else
 	{
-		if(pc.hasKeyItem("Teyaal’s Key Card")) addButton(6,"North",enterShip);
+		if(pc.hasKeyItem("Teyaal’s Key Card")) 
+		{
+			output("\n\n<b>You have the keycard. You can enter the ship at any time.</b> (Enter ship via the 'North' button.)");
+			addButton(6,"North",enterShip);
+		}
 		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
 	}
 	return false;
@@ -478,7 +486,7 @@ public function leaveFeruzeAfterWinning():void
 	if(pc.isBimbo()) output("You’re super pretty, but it wouldn’t be right with you working for that meanie. Look me up later and I’ll consider being the [pc.manWoman] of your dreams.");
 	else if(pc.isBro()) output("Nah.");
 	else if(pc.isNice()) output("Sorry cutie, but I’ve got a job to do.");
-	else if(pc.isMischievous()) output("How about I give you my extranet address, and if you still feel this way in the morning, you give me a ring.”</i> You jot it down and pass it her way. <i>“’Course you’d have to quit working for that douche first.");
+	else if(pc.isMischievous()) output("How about I give you my extranet address, and if you still feel this way in the morning, you give me a ring.”</i> You jot it down and pass it her way. <i>“‘Course you’d have to quit working for that douche first.");
 	else output("Tempting, but I won’t let you distract me. Not this time.");
 	output("”</i>");
 	output("\n\nFeruze pouts" + (enemy.lust() < enemy.lustMax() ? ", backing away slowly.":" then nods, throwing herself from the catwalk with a lusty cry. Her flight path is drunken, addled by the frenzied pumping of one hand between her legs.") + " You’re left alone once more.");

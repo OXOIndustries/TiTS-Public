@@ -278,6 +278,7 @@ public function lostFightToGryvainAgentDotDotDotShit():void
 	output("\n\nShe gives you a sultry wink and saunters off, swaying her hips and stuffing the hard drive into her jacket.");
 	output("\n\nIt takes several minutes for you to catch your breath - and stop coughing up her cum - before you’re able to gather up your discarded belongings and stagger up out of the crater.\n\n");
 	
+	IncrementFlag("FUCKED_TEYAALS_DAUGHTER");
 	flags["SATELLITE_GRYVAIN_DEFEAT"] = -1;
 	flags["SATELLITE_QUEST"] = -2;
 	
@@ -398,6 +399,7 @@ public function rideDatCockAndShit():void
 	pc.createKeyItem("Satellite Hard Drive");
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
 	output("\n\n");
+	IncrementFlag("FUCKED_TEYAALS_DAUGHTER");
 
 	processTime(30);
 	pc.orgasm();
@@ -473,6 +475,7 @@ public function fuckDatGryvainShit():void
 
 	pc.createKeyItem("Satellite Hard Drive");
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
+	IncrementFlag("FUCKED_TEYAALS_DAUGHTER");
 	output("\n\n");
 	enemy.loadInCunt(pc,0);
 	processTime(30);

@@ -85,7 +85,7 @@ public function kaseCrewGreeting():void
 		output("\n\n<i>“Hey, where’d you find this cutie?”</i> she asks, turning to look at the kaithrit in question with you and leaning on your shoulder.");
 		if(pc.isAss()) output("\n\nYou tell her not to worry about it");
 		else output("\n\nYou chuckle and explain how you did some work for Kase in the past, and that he’s in need of a new job");
-		output(", then ask if SteeleTech is actually hiring him.");
+		output(", then ask if Steele Tech is actually hiring him.");
 		output("\n\n<i>“Oh yeah,”</i> Anno says with a smile, <i>“With a merchant on board, getting a logistics officer like him on the ship will be a piece of cake, especially since it’s </i>your<i> ship. He qualifies for the position like no one’s business after working for Pyrite for so long. Might be nice to get this place organized, too.”</i>");
 		output("\n\nYou ask how long he’s been on the ship.");
 		output("\n\n<i>“Not too long,”</i> she answers, shaking her head, <i>“Just having him fill out some employment forms before corporate gobbles up his contract" + (silly ? ", you know, I-9000’s and W-2600’s, standard stuff" : "") + ". He’s a speedy guy, though, so he should be done soon.”</i>");
@@ -99,8 +99,8 @@ public function kaseCrewGreeting():void
 		output("\n\nKase gulps, <i>“Well, I just wanted to thank you again for giving me this opportunity, and I will do all that is in my power to make your journey run smoothly.”</i>");
 		if (pc.isAss()) output("\n\n You give him a nod in response");
 		else output("\n\nYou smile at his enthusiasm and thank him");
-		output(", right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
-		output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the SteeleTech family, you’re gonna need one of these.”</i>");
+		output(", right before Anno returns, clutching a Steele Tech suit in her fluffy hands.");
+		output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the Steele Tech family, you’re gonna need one of these.”</i>");
 		output("\n\nThe kaithrit happily accepts the suit, examining its colors and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
 		output("\n\nThe ausar beauty is quick to lean in next to your [pc.ear] and whisper, <i>“He could try it on heeeeerrreee.”</i>");
 		output("\n\nThe suggestion makes you smirk, and seems like a good one to you, but you could always let him change in privacy. ");
@@ -138,8 +138,8 @@ public function kaseTryHere(beenCrew:Boolean = false):void
 	output("\n\nThen the show begins: he reaches up to his Pyrite Industries armored-suit and begins to pull down, parting his clothing to reveal his smooth, pale chest before it continues its trip south. Finally, the zipper reaches his groin, and the femboy has no choice but to pull his suit over his shoulders and push it downwards until his bristly kaithrit cock is set free alongside his plump balls.");
 	output("\n\nThat only serves to make the kitty blush all the harder and set Anno bouncing excitedly in place.");
 	output("\n\nKase easily pulls his prehensile tails through his clothes and continues to shimmy out of them, revealing his wide, girly hips and plush thighs, completely naked as he steps out of his suit.");
-	output("\n\nHe’s only nude for a few glorious moments as he fumbles around with his new SteeleTech suit, and despite all his blushing and apparent embarrassment, Kase seems fine stripping for you. Maybe he gets off on the orders.");
-	output("\n\nThen, he starts to redress himself, pale skin disappearing behind a layer of tight-fitting latex. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
+	output("\n\nHe’s only nude for a few glorious moments as he fumbles around with his new Steele Tech suit, and despite all his blushing and apparent embarrassment, Kase seems fine stripping for you. Maybe he gets off on the orders.");
+	output("\n\nThen, he starts to redress himself, pale skin disappearing behind a layer of tight-fitting latex. His Pyrite-issue suit may have also been frame-hugging, but not like these Steele Tech suits, easily showing off all his curves and that bulge between his legs.");
 	output("\n\nBefore you know it, Kase is clothed again and smiling at you and Anno, still beet-red, <i>“Does it fit well?”</i>");
 	if(pc.isBimbo()) output("\n\nBoth you and Anno erupt into a call of <i>“Sooooooo cuuuuuuute!”</i>");
 	else output("\n\nYou tell him it seems just right for him, but Anno interrupts with a call of <i>“Sooooooo cuuuuuuute!”</i>");
@@ -167,7 +167,7 @@ public function kaseTryPrivate(beenCrew:Boolean = false):void
 	output("You point out a nearby room for him to change in, much to Anno’s disappointment.");
 	output("\n\n<i>“Awww,”</i> she whines as Kase nods and walks off to try on his new suit, <i>“You’re no fun.”</i>");
 	output("\n\nYou chuckle and shake your head at the ausar and tell her " + (pc.isAss() ? "she’s right, leading her to pout a bit" : "she’s welcome to try and get Kase to strip for her on her own, to which she sticks her tongue out") + ".");
-	output("\n\nAfter a few moments of patient waiting, your new kaithrit crew member appears again, all dressed in his SteeleTech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these SteeleTech suits, easily showing off all his curves and that bulge between his legs.");
+	output("\n\nAfter a few moments of patient waiting, your new kaithrit crew member appears again, all dressed in his Steele Tech suit. His Pyrite-issue suit may have also been frame-hugging, but not like these Steele Tech suits, easily showing off all his curves and that bulge between his legs.");
 	output("\n\n<i>“Does it fit well?”</i> he asks, looking himself over and checking to make sure he got his tails through his new outfit okay.");
 	if (pc.isBimbo()) output("\n\n Both you and Anno erupt into a call of “Sooooooo cuuuuuuute!”");
 	else output("\n\nYou tell him it seems just right for him, but Anno interrupts with a call of “Sooooooo cuuuuuuute!”");
@@ -223,7 +223,7 @@ public function kaseCrewMenu():void
 	if(flags["KASE_HEALED"] == undefined) addDisabledButton(5, "Sleep With", "Sleep With", "Maybe you should let Kase’s arm heal before you start pulling him into your bunk.");
 	else if (flags["CREWMEMBER_SLEEP_WITH"] == "KASE") addButton(5, "No Sleep W.", kaseSleepToggleOff, undefined, "Don’t Sleep With", "Tell Kase you don’t want him in your bed anymore.");
 	else addButton(5, "Sleep With", kaseSleepToggleOn, undefined, "Sleep With", "Ask Kase to join you in your bed.");
-	if(flags["KASE_STEELETECH"] == undefined && annoIsCrew()) addButton(6, "JoinSteele", kaseJoinSteele, undefined, "Join SteeleTech", "See if your crewmate is interested in joining SteeleTech.");
+	if(flags["KASE_STEELETECH"] == undefined && annoIsCrew()) addButton(6, "JoinSteele", kaseJoinSteele, undefined, "Join Steele Tech", "See if your crewmate is interested in joining Steele Tech.");
 	addButton(13, "Evict", kaseEvict, undefined, "", "");
 	addButton(14, "Leave", crew);
 }
@@ -271,10 +271,10 @@ public function kaseTalkCrewWork(btnSlot:int = 0):void
 	
 	if(flags["KASE_STEELETECH"] != undefined)
 	{
-		output("<i>“I’m feeling much better since I started working for SteeleTech, and for you,”</i> he begins, a smile on his face, <i>“I’ve been experiencing a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
+		output("<i>“I’m feeling much better since I started working for Steele Tech, and for you,”</i> he begins, a smile on his face, <i>“I’ve been experiencing a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
 		if(pc.isAss()) output("\n\nYou ask him what he’s been doing around your vessel.");
 		else output("\n\nYou tell him you’re glad he’s happy with his new job and ask him what he’s been doing around your vessel.");
-		output("\n\n<i>“Oh, plenty!”</i> he exclaims, picking up his datapad, <i>“I’ve been keeping track of our travel and fuel consumption mostly, along with cataloging the ship’s storage and anything that leaves or enters the ship" + (annoIsCrew() ? ", and with Miss Dorna acting as a merchant onboard, I have more than enough to keep me busy" : "") + ". Even when I’m not busy, I try to do miscellaneous calculations for SteeleTech.”</i> He sighs complacently, <i>“I couldn’t be happier, Captain. Thank you, again, for this opportunity. There isn’t a boss I’d rather have.”</i>");
+		output("\n\n<i>“Oh, plenty!”</i> he exclaims, picking up his datapad, <i>“I’ve been keeping track of our travel and fuel consumption mostly, along with cataloging the ship’s storage and anything that leaves or enters the ship" + (annoIsCrew() ? ", and with Miss Dorna acting as a merchant onboard, I have more than enough to keep me busy" : "") + ". Even when I’m not busy, I try to do miscellaneous calculations for Steele Tech.”</i> He sighs complacently, <i>“I couldn’t be happier, Captain. Thank you, again, for this opportunity. There isn’t a boss I’d rather have.”</i>");
 		output("\n\nHis last few words bring a proud grin to your face.");
 		if(annoIsCrew())
 		{
@@ -408,7 +408,7 @@ public function kaseSexGiveOral():void
 	clearMenu();
 	
 	output("You tell the blushing kaithrit to sit himself down and spread his legs, and he’s eager to oblige with a call of <i>“Yes, " + pc.mf("sir","ma’am") + ".”</i> Then he hurriedly takes a seat at a good position and parts his still-clothed legs, plush thighs spreading to reveal the cute bulge between them.");
-	output("\n\nSmiling at his compliance, you " + (pc.isNaga() ? "slither" : "saunter") + " towards him, giving him a wink and reaching for the zipper of his suit while his breath goes ragged. Kase fidgets slightly in his place as you start to open his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite uniform, parting its latex and plate" : "SteeleTech uniform, parting its latex") + " to reveal his flat chest and pale skin. All the way down to his stomach the zipper goes, with you following it down onto ");
+	output("\n\nSmiling at his compliance, you " + (pc.isNaga() ? "slither" : "saunter") + " towards him, giving him a wink and reaching for the zipper of his suit while his breath goes ragged. Kase fidgets slightly in his place as you start to open his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite uniform, parting its latex and plate" : "Steele Tech uniform, parting its latex") + " to reveal his flat chest and pale skin. All the way down to his stomach the zipper goes, with you following it down onto ");
 	if (pc.isTaur()) output("your haunches");
 	else if (pc.isNaga()) output("the ground");
 	else output("your knees");
@@ -502,7 +502,7 @@ public function kaseSexPitchAnal(x:int):void
 	clearMenu();
 	
 	output("You tell the blushing kaithrit to strip himself and lie down on the bed for you, grabbing at your " + (!pc.isNude() ? "still-clothed " : "") + "[pc.cocks] as you do so. ");
-	output("\n\nKase is eager to oblige with a <i>“Yes, " + pc.mf("sir","ma’am") + ",”</i> standing up straight before he hurriedly begins to undress himself. He wastes no time in giving you a show, pulling the zipper of his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "SteeleTech") + " suit all the way down to his crotch. Shrugging his clothing off his shoulders and peeling it away from his supple, porcelain skin, Kase shimmies his way out of his uniform, letting his soft cock and hefty testicles dangle freely before your eyes.");
+	output("\n\nKase is eager to oblige with a <i>“Yes, " + pc.mf("sir","ma’am") + ",”</i> standing up straight before he hurriedly begins to undress himself. He wastes no time in giving you a show, pulling the zipper of his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "Steele Tech") + " suit all the way down to his crotch. Shrugging his clothing off his shoulders and peeling it away from his supple, porcelain skin, Kase shimmies his way out of his uniform, letting his soft cock and hefty testicles dangle freely before your eyes.");
 	output("\n\nYou can hardly wait, finding yourself licking your lips as you take in the sight of the kaithrit’s now-bare wide hips and plush thighs, along with his cute package as he finally steps out of his skin-tight suit. Once he’s free of his clothes, Kase looks up at you, blushing and smiling with an expectant look on his face.");
 	output("\n\nGrinning, you twirl a finger in the air, commanding the feline femboy to turn around for you and lie down on the bed.");
 	output("\n\nLike the unflinching subordinate he is, Kase pirouettes on his heel to face the bed. He looks over his shoulder at you with a goofy, barely contained smile, and you give him an approving nod. Then, he flops forward onto the mattress, lying flat on his tummy with his legs just slightly spread, his slowly stiffening kitty-dick and balls right between them. He grabs a nearby pillow and places it under his shoulders and head for comfort, hugging at it and looking back at you lustfully, his big, squishy butt all there for the taking.");
@@ -543,7 +543,7 @@ public function kaseSexGetFuck():void
 	
 	if(pc.isNude()) output("You throw yourself back onto Kase’s bed, and instruct him to disrobe himself.");
 	else output("Without saying a word, you being stripping yourself bare right in front of Kase, which prompts a confused <i>“" + pc.mf("S-sir","M-ma’am") + "?”</i> from the kaithrit. Then, once you’re completely bare, you throw yourself back onto Kase’s bed, and instruct him to disrobe himself, as well.");
-	output("\n\nHe stutters out a quick <i>“Yes, Captain”</i> and goes to undress, unzipping his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "SteeleTech") + " bodysuit, and pulling it down around his shoulders, baring his pale skin to the open. The feline femboy works the " + (flags["KASE_OUTFIT"] == 0 ? "armored" : "latex") + " suit over his crotch, revealing his already hardening cat-cock before he continues to pull his uniform over his hips and plush thighs. Finally, he kicks off his suit and tosses it aside, leaving him standing there naked before you, blushing red, nearly shaking with anticipation. ");
+	output("\n\nHe stutters out a quick <i>“Yes, Captain”</i> and goes to undress, unzipping his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "Steele Tech") + " bodysuit, and pulling it down around his shoulders, baring his pale skin to the open. The feline femboy works the " + (flags["KASE_OUTFIT"] == 0 ? "armored" : "latex") + " suit over his crotch, revealing his already hardening cat-cock before he continues to pull his uniform over his hips and plush thighs. Finally, he kicks off his suit and tosses it aside, leaving him standing there naked before you, blushing red, nearly shaking with anticipation. ");
 	output("\n\nYou " + (pc.isNaga() ? "unwind" : "spread") + " your [pc.legs] for the kaithrit, making sure he can see your " + (pc.hasVagina() ? "[pc.vagina]" : "winking pucker") + ". His face burns all the more crimson at the sight, gulping and fidgeting in place, but not acting. No, he’s waiting for his orders like the good employee he is.");
 	output("\n\nSo, you give him the only command he needs for the only job he needs to do: <i>“Fuck me.”</i>");
 	output("\n\nAnd, with another <i>“Yes, " + pc.mf("sir","ma’am") + ",”</i> Kase’s on you, " + (pc.isNaga() ? "getting on top of you" : "kneeling down on the bed between your legs") + ", nubby dick pointed right at your [pc.vagOrAss]. You wrap your [pc.legs] around his the femboy’s waist as he inches forward towards your needy hole, making sure he stays well in his place. Though, you don’t think he’ll be wanting to leave any time soon.");
@@ -589,7 +589,7 @@ public function kaseSexFrott(x:int):void
 	clearMenu();
 	
 	output("You order Kase to lie down on the bed for you, and while that isn’t much for the kaithrit to go off of, he happily complies with a call of <i>“Yes, " + pc.mf("sir","ma’am") + ".”</i> He lowers himself onto the mattress until he’s flat on his back, looking up at your with an expectant, blushing face.");
-	output("\n\nSmiling down at the feline femboy, you follow him onto the bed, kneeling down and straddling his wide hips. He keeps his hands and arms pinned submissively at his sides, but still wiggles with anticipation beneath you. You take hold of his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "SteeleTech") + " suit’s zipper and bend yourself over, pressing your [pc.lipsChaste] his and bringing him into a kiss. That seems to stop his squirming, pulling a contented sigh from Kase as he stills himself and eagerly returns your kiss.");
+	output("\n\nSmiling down at the feline femboy, you follow him onto the bed, kneeling down and straddling his wide hips. He keeps his hands and arms pinned submissively at his sides, but still wiggles with anticipation beneath you. You take hold of his " + (flags["KASE_OUTFIT"] == 0 ? "Pyrite" : "Steele Tech") + " suit’s zipper and bend yourself over, pressing your [pc.lipsChaste] his and bringing him into a kiss. That seems to stop his squirming, pulling a contented sigh from Kase as he stills himself and eagerly returns your kiss.");
 	output("\n\nAnd with the catboy good and unmoving, you can finally start to undress him. You slowly part his uniform to reveal bare, pale skin beneath, all while you keep him still and silent with your lips. The kaithrit doesn’t go so far as to use his barb-covered tongue, though. No, he keeps it well in his mouth, content to enjoy a light, loving kiss while you undo his uniform, pulling its zipper all the way down to his crotch. Then, all you have to do is part his latex " + (flags["KASE_OUTFIT"] == 1 ? "cat" : "") + "suit and his soft, but slowly stiffening cat-cock can flop free onto Kase’s svelte tummy.");
 	output("\n\nYou smirk amidst a flurry of kisses and reach a hand down to grab at the femboy’s nubby shaft, wrapping it in the warm embrace of your fingers as you slowly stroke him to hardness. Kase whimpers into your mouth at the feeling of your palm caressing his cockflesh, prompting you to break your kiss so you can hear his pleasured tones completely. You straighten yourself to look down at Kase’s bliss-etched face, doing his best to give you a smile between quiet groans. ");
 	if(!pc.isNude()) 
@@ -723,7 +723,7 @@ public function kaseCrewStressRelief():void
 	output("You smirk and sit yourself next to Kase, telling him that you don’t need anything from him, but that he seems a little stressed from all his work, and quickly reach a hand down to grab at the visible bulge in his suit’s groin.");
 	output("\n\nHe gasps with surprise as your hand makes contact with his still clothed cock, shoulders jumping before he settles down, slumping a bit in his seat.");
 	output("\n\n<i>“Y-yes,”</i> he stutters, breathing heavy, <i>“I-I think the release of endorphins from some intimate contact should relieve some anxiety...”</i>");
-	output("\n\nYou smile, wondering if Kase’s sudden loss of composure is due to lust or surprise, but all the same, you put an arm over his shoulder and reach up to the zipper of his " + (flags["KASE_OUTFIT"] == 0 ? "armored" : "SteeleTech") + " suit with another.");
+	output("\n\nYou smile, wondering if Kase’s sudden loss of composure is due to lust or surprise, but all the same, you put an arm over his shoulder and reach up to the zipper of his " + (flags["KASE_OUTFIT"] == 0 ? "armored" : "Steele Tech") + " suit with another.");
 	output("\n\nThe kaithrit’s breath goes ragged as you start to pull downward, parting his clothing and revealing the pale skin of his smooth chest, all the way down to his svelte tummy until the zipper reaches his groin. Then it’s just a little trip south before you finally free Kase’s cat-cock, letting his slowly stiffening tool pop free of its confines with a relieved sigh, already radiating warmth onto your palm and pulsing with each beat of the kitty’s heart.");
 	output("\n\nIt’s hard to tell his length now, but you’re sure Kase has a thick shaft, one you quickly wrap your fingers around, drawing quivering and stuttering noises from the kaithrit. You lean into him, and once you’ve got a good grip on his manhood, you start to stroke, gently stroking his cock to hardness. Grinning, you look at his face, getting a good look at his beet-red and lust-ridden visage, but he keeps his gaze downwards, focusing on the hand jerking him off.");
 	output("\n\nYou take a moment to enjoy the feeling of his soft kaithrit bristles against your palm, so different than a human’s dick. Regardless, you speed up the movement of your hand, up and down, up and down at a steady pace, watching Kase bite at his lip and make the cutest faces as he tries to quiet himself. His efforts are for naught, though; his voice breaks into quiet little moans at increasingly short intervals.");
@@ -926,13 +926,13 @@ public function kaseJoinSteele():void
 	showKase();
 	clearMenu();
 	
-	output("Grinning, you ask Kase if he’d be interested in joining SteeleTech while he’s part of your crew.");
-	output("\n\nHis slitted pupils widen and his ears swivel towards you at that suggest, seeming a bit surprised. <i>“R-really?”</i> he stutters, losing a bit of his composure as a grin appears on his face, <i>“I know you have connections with Miss Dorna working for you, but do you think you could actually get me a job with SteeleTech?”</i>");
+	output("Grinning, you ask Kase if he’d be interested in joining Steele Tech while he’s part of your crew.");
+	output("\n\nHis slitted pupils widen and his ears swivel towards you at that suggest, seeming a bit surprised. <i>“R-really?”</i> he stutters, losing a bit of his composure as a grin appears on his face, <i>“I know you have connections with Miss Dorna working for you, but do you think you could actually get me a job with Steele Tech?”</i>");
 	output("\n\nYou tell him you think you can, " + (pc.isMischievous() ? "a bit of smugness in your voice, " : "") + "and ask him if he’d like to go see Anno with you to fill out some paperwork. ");
 	output("\n\n<i>“Yes, please!”</i> he exclaims standing up straight, looking as ready as ever for an employment opportunity. ");
 	output("\n\nSo, you lead him out of his quarters and to the room of your ausar employee, getting her attention with Kase by your side.");
 	output("\n\n<i>“Oh, hey guys,”</i> she says, stepping back from her work, taking a moment to lean back and thrust out her impressive chest, <i>“You " + pc.mf("boys","two") + " need anything?”</i>");
-	output("\n\nNoticing Kase blush a bit, you tell Anno you’d like to get your feline companion signed on as a employee of SteeleTech.");
+	output("\n\nNoticing Kase blush a bit, you tell Anno you’d like to get your feline companion signed on as a employee of Steele Tech.");
 	output("\n\nShe smiles in response, <i>“No problem; with a merchant already on board, it should be easy to get him hired as a logistics officer.”</i> The ausar reaches for her datapad and flicks it on, <i>“I’ll just go over all the forms with you real quick...”</i>");
 	output("\n\n<b>Some amount of paperwork later...</b>");
 	output("\n\nAnno steps over to you after awhile of looking over Kase’s shoulder, and you ask her how much longer he’ll be. ");
@@ -944,8 +944,8 @@ public function kaseJoinSteele():void
 	output("\n\n<i>“So, Captain, you’re </i>the<i> Steele, then?”</i> he asks quietly.");
 	output("\n\nYou tell him you most certainly are. ");
 	output("\n\nKase gulps, <i>“Well, I just wanted to thank you again for giving me this opportunity, and I will do all that is in my power to make your journey run smoothly.”</i>");
-	output("\n\n" + (pc.isAss() ? "You give him a nod in response" : "You smile at his enthusiasm and thank him") + ", right before Anno returns, clutching a SteeleTech suit in her fluffy hands.");
-	output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the SteeleTech family, you’re gonna need one of these.”</i>");
+	output("\n\n" + (pc.isAss() ? "You give him a nod in response" : "You smile at his enthusiasm and thank him") + ", right before Anno returns, clutching a Steele Tech suit in her fluffy hands.");
+	output("\n\n<i>“Here,”</i> she says, handing the latex suit to Kase, <i>“If you’re gonna be part of the Steele Tech family, you’re gonna need one of these.”</i>");
 	output("\n\nThe kaithrit happily accepts the suit, examining its colors and materials while Anno returns to your side. <i>“Do you have a place where I could try this on?”</i>");
 	output("\n\nThe ausar beauty is quick to lean in next to your [pc.ear] and whisper, <i>“He could try it on heeeeerrreee.”</i>");
 	output("\n\nThe suggestion makes you smirk, and seems like a good one to you, but you could always let him change in privacy. ");
@@ -1000,7 +1000,7 @@ public function kaseEvict():void
 	clearMenu();
 	
 	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it’s time for him to leave the ship and he should pack his things.");
-	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has paid for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros Steele Tech has paid for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he’s taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
 	
 	output("\n\n(<b>Kase is no longer on your crew. You can find him again in Tavros Station.</b>)");
@@ -1066,7 +1066,7 @@ public function kaseApartmentCheckup():void
 	showKase();
 	
 	output("You tell Kase you’re stopping by to see how he’s doing all by himself here on Tavros. ");
-	if(flags["KASE_STEELETECH"] == 1) output("\n\n<i>“Oh, well, it’s been fine, more or less,”</i> he says, keeping his straight and proper posture, <i>“SteeleTech has been keeping me busy with work, plenty of accounting and logistics operations that can be taken care of remotely.”</i> Kase pauses and lets out a long sigh, <i>“But, in all honesty, Captain, it’s nowhere near the... purpose I felt working on your ship.”</i>");
+	if(flags["KASE_STEELETECH"] == 1) output("\n\n<i>“Oh, well, it’s been fine, more or less,”</i> he says, keeping his straight and proper posture, <i>“Steele Tech has been keeping me busy with work, plenty of accounting and logistics operations that can be taken care of remotely.”</i> Kase pauses and lets out a long sigh, <i>“But, in all honesty, Captain, it’s nowhere near the... purpose I felt working on your ship.”</i>");
 	else output("\n\n<i>“In all honesty, Captain,”</i> he says, keeping his straight posture, <i>“It’s been quite boring. There’s been odd jobs here and there, but none of it even comes close to working on the ship with you.”</i> Kase pauses and lets out a long sigh, <i>“But, I’ll be here if that’s where you need me, " + pc.mf("sir","ma’am") + ".”</i>");
 	
 	processTime(3+rand(3));

@@ -48,7 +48,7 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The Clydesdale K7 comes from an unlikely source: Steeletech. Victor’s company may not operate extensive ship foundries like KihaCorp or Aegis, but it has taken to producing in-house vessels to serve its own industrial interests. The Clydesdale, much like its namesake, is a heavy, plodding thing designed to shift cargo using its own bloated mass. In Rusher hands, it does all that and more. The copious interior space allows for near infinite customization via upgrades or the presence of a small army of support staff. Many foolhardy captains have made the mistake of underestimating the venerable K7, to their own detriment.";
+			this.long = "The Clydesdale K7 comes from an unlikely source: Steele Tech. Victor’s company may not operate extensive ship foundries like KihaCorp or Aegis, but it has taken to producing in-house vessels to serve its own industrial interests. The Clydesdale, much like its namesake, is a heavy, plodding thing designed to shift cargo using its own bloated mass. In Rusher hands, it does all that and more. The copious interior space allows for near infinite customization via upgrades or the presence of a small army of support staff. Many foolhardy captains have made the mistake of underestimating the venerable K7, to their own detriment.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It rolls aside!";
 			this.isPlural = false;

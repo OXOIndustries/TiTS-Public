@@ -991,12 +991,12 @@ public function doggyStyleWithGil():void
 	{
 		output("\n\nYou grab his ass with both hands and easily pull him up to your [pc.chest], while he wraps his legs around your waist and holds himself up by your shoulder. You’re so huge that, despite the aid, he is still staring straight at your chest, and he can’t help but bury his face into your");
 		//pc is flat:
-		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output("[pc.skinFurScales]-covered");
-		else if(pc.femininity <= 10 && pc.biggestTitSize() < 1) output("hairy");
-		else output("hairless");
-		if(pc.biggestTitSize() >= 1) output("bosoms");
-		else if(pc.tone >= 70) output("pecs");
-		else output("chest");
+		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output(" [pc.skinFurScales]-covered");
+		else if(pc.femininity <= 10 && pc.biggestTitSize() < 1) output(" hairy");
+		else output(" hairless");
+		if(pc.biggestTitSize() >= 1) output(" bosoms");
+		else if(pc.tone >= 70) output(" pecs");
+		else output(" chest");
 		output(". He looks up and tries to pull himself closer, failing until you help him by pushing his soft furry buttocks upwards, followed by planting a passionate kiss onto his lips. Both of you spend a while there, just enjoying each other’s embrace, before you throw him onto your bed and settle down on top of him.");
 	}
 	//if more than 7 feet:

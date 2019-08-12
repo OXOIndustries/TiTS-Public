@@ -94,7 +94,7 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 	// Bimbo
 	if(pc.isBimbo()) output("\n\n<i>“" + (useCock ? "Sucking cock’s great! Just thinking about it makes me wanna cum already!":"Don’t worry, the water’s nice and warm. It’s a tasty pussy, after all; you’ll be jizzing all over me in no time!") + "”</i> you sing, rubbing a finger " + (useCock ? "across [pc.eachCockHead]":"through your sopping [pc.vaginaColor] slit") + ".");
 	// Bro
-	else if(pc.isBro()) output("\n\n<i>“’Share heat’, then. With your mouth,”</i> you say bluntly, tapping your [pc.thigh] expectantly.");
+	else if(pc.isBro()) output("\n\n<i>“‘Share heat’, then. With your mouth,”</i> you say bluntly, tapping your [pc.thigh] expectantly.");
 	// Kind
 	else if(pc.isNice()) output("\n\n<i>“Better make it quick, before someone else finds us. Right now, I’m only interested in sharing with you.”</i> You wink cutely, " + (useCock ? "patting your [pc.cockNoun]":"drumming your [pc.clit]") + ".");
 	// Misch
@@ -722,7 +722,7 @@ public function keepuFrottuWang(x:int):void
 		if(flags["LANDED_ON_TEXAS"] != undefined) output(" beneath the thick layer of pre that’d have the entirety of New Texas lining up for a taste");
 		output(".");
 		output("\n\nBlunt-clawed fingers dig into your rigid veins, mapping the blood-filled schema of your colossal cock. The tiny blockages create pockets of pressure that relieve in widely different ways. The result is always the same though: you fall further and further apart, little more than [pc.aRaceShort] controlled by a string. A big string: your [pc.cock]. It’s all that matters.");
-		output("\n\nSavage cries echo down the corridor; you haul forwards and backwards, ripping your throat apart with all the air stored away in your lungs. Thunderous thrusts and quick yanks gush [pc.cumColor] goo that puddles and sparkles in what light there is, nicely complimenting what sloshes in on the next pump. Shudders interrupt your once consistent rhythm. You’re close to begging him to move faster, thinking it’s not enough to give you the release you crave...");
+		output("\n\nSavage cries echo down the corridor; you haul forwards and backwards, ripping your throat apart with all the air stored away in your lungs. Thunderous thrusts and quick yanks gush [pc.cumColor] goo that puddles and sparkles in what light there is, nicely complementing what sloshes in on the next pump. Shudders interrupt your once consistent rhythm. You’re close to begging him to move faster, thinking it’s not enough to give you the release you crave...");
 		output("\n\n...But he knows exactly what you both need.");
 		output("\n\nHis now ponderous pace smothers and strains your [pc.cock] until it changes color. It throws your head back, dilating your [pc.eyes] to the size of dinner plates. Your mind focuses on the pleasure only a gifted hypersexual could know. Fully-soaked fur strokes noisily across the tenderest spots, and now you’re spurting thick gobs of pre. Glazed muscles tighten when they rub you in the opposite direction of your thrusts, smashing into a tighter vice.");
 		output("\n\nYou can feel it now. Dizziness gives up the assault only to be replaced by ecstasy. You moan in mindless bliss as your " + (!pc.isGoo() ? "tendons burn":"body burns") + " from the reaming. You don’t care. <i>It’s coming.</i> You drill home, hard enough to feel your pre-pumping organ" + (pc.hasCocks() ? "s":"") + " preparing to pour out its lusts, to leave a mark befitting its size and shape. One last time and you slam in so hard his feet kick into your gut" + (pc.balls > 0 && pc.ballDiameter() >= 2.5 ? " and your weighty sack rams into his crotch":"") + ". All the pressure releases at that dick-swelling moment, and the familiar wetness and tightness of orgasm saturates your soul in that reflexive impulse to ejaculate.");
@@ -836,7 +836,7 @@ public function getFuckedByKorgo(x:int):void
 	else
 	{
 		output(" <i>“" + (!korgiTranslate() ? "Alien is... Wondrous-big...":"Alien... you’re wonderfully big...") + "”</i> the korgonne husks, slapping at your [pc.ass] with wild abandon. He doesn’t just tongue over your [pc.skinFurScales], he gropes it, he plays with it, he watches all the fat on your ass wobble enticingly. His fingers leave imprints that lash the rest of your body with a feeling of possession. He loses his face into your deliciously smothering jiggle. Ripples fan out past your waist while breathy pants of joy warm your [pc.asshole].");
-		output("\n\nHis love and worship for your [pc.ass] nicely compliments your arousal to this point, and you’re perfectly happy to let him enjoy it. It’s not often you get to experience the kind of ecstatic kneading a true appreciator of callipygian luxury can provide. Overwhelming praise for your form crashes up his throat until he’s repeating himself. <i>He loves your butt.</i>");
+		output("\n\nHis love and worship for your [pc.ass] nicely complements your arousal to this point, and you’re perfectly happy to let him enjoy it. It’s not often you get to experience the kind of ecstatic kneading a true appreciator of callipygian luxury can provide. Overwhelming praise for your form crashes up his throat until he’s repeating himself. <i>He loves your butt.</i>");
 		output("\n\nYou hope he likes fucking it, too.");
 	}
 	// Merge

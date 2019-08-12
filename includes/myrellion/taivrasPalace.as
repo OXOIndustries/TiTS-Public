@@ -1276,7 +1276,7 @@ public function explainRivalnessToTaivra(plat190:Boolean = false):void
 	pc.addMischievous(4);
 	author("Savin");
 	output("<i>“Wait, wait,”</i> you say, putting your hands up in a disarming gesture. <i>“Look, you’ve got it all wrong. Me and this " + chars["RIVAL"].mf("bastard","bitch") + " are enemies! We’re on the same side here, Queen Taivra.”</i>");
-	output("\n\nThe queen’s eyes cock upwards at that, and she reclines in her chair with a hearty chuckle. <i>“Is that so? And why should I beleive you, [pc.name]? Your cousin came to me under a promise of peace, only to try and make off with my throne like a common thief. [rival.HeShe] came very close to killing several of my guards before we could subdue [rival.himHer] and [rival.hisHer] bodyguard. If you are truly enemies, simply leave. I will keep your cousin out of your hair... forever.”</i>");
+	output("\n\nThe queen’s eyes cock upwards at that, and she reclines in her chair with a hearty chuckle. <i>“Is that so? And why should I believe you, [pc.name]? Your cousin came to me under a promise of peace, only to try and make off with my throne like a common thief. [rival.HeShe] came very close to killing several of my guards before we could subdue [rival.himHer] and [rival.hisHer] bodyguard. If you are truly enemies, simply leave. I will keep your cousin out of your hair... forever.”</i>");
 	output("\n\n<i>“Way to throw us under the bus, you jerk!”</i> your cousin whines from [rival.hisHer] cage.");
 	output("\n\nDane actually laughs, turning to the queen and saying <i>“[pc.HeShe] wants the probe too, you know. ");
 	//if didn’t beat Dane:
@@ -2833,7 +2833,7 @@ public function queenTaivraAskThrone():void
 	output("\n\nShe seems to be mollified by your quick explanation, though you can tell that she’s not particularly fond of speaking of this here. <i>“You have a point, but what do you suggest we do about it? I am the strongest here, and showing that is important, even if most don’t realize it. The throne serves as a reminder of the bruises I left when I claimed them, to soften it is to soften my claim,”</i> she finishes, but the look of challenge in her eyes means that this might be a hard sell.");
 	output("\n\nYou start off by reminding her of your partnership. How your power <b>is</b> her power, how altering and upgrading her throne serves not to diminish her image, but enhance it. You continue on in this vein for a bit, seeing her ire start to waver, before pulling out your codex and showing her how they can create furniture with upgrades for invisible cushions, heat, and targeted ultrasonic massage without even the slightest hint that they’re there.");
 	output("\n\nShe rolls her eyes, fighting to conceal her interest in your technology. <i>“Well then. I suppose that it would only make sense for me to try and become familiar with the ‘marvelous’ advances you star-walkers have come up with, my mate. Don’t disappoint me, hmm?”</i>");
-	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to SteeleTech to have a far more comfortable version made.");
+	output("\n\nYou agree and lean in to claim your wife’s lips in a kiss before she moves forward in her throne, summoning some of her soldiers to start disassembling it as you place the call in to Steele Tech to have a far more comfortable version made.");
 	
 	processTime(69);
 	pc.lust(15);

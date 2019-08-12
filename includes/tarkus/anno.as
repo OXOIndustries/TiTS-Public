@@ -988,7 +988,7 @@ public function talkToSyriAboutTheLocals():void
 		if(pc.hasCock()) output("grab a rask and bend her over something");
 		else output("bend over and hike your clothes");
 		output("; they’ll take care of the rest. As a race, they’re obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.”</i>");
-		output("\n\nAfter a moment of thought, Anno adds, <i>“There’s also the little eggy girls, the lapinara; goblins - they’re like something out of that shitty book-game-thing my sister plays - and probably other races, too. Don’t know much about them, though. Try the extranet,”</i> she says with a playful wink.");
+		if(flags["LAPLOVE"] != undefined) output("\n\nAfter a moment of thought, Anno adds, <i>“There’s also the little eggy girls, the lapinara; goblins - they’re like something out of that shitty book-game-thing my sister plays - and probably other races, too. Don’t know much about them, though. Try the extranet,”</i> she says with a playful wink.");
 	}
 	else
 	{

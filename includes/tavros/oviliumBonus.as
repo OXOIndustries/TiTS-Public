@@ -199,7 +199,7 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 		if (!pc.isCrotchExposed()) output(" pull off your [pc.lowerGarments] as best you can, spreading your [pc.legs] so the eggs can exit more easily");
 		else output(" spread your [pc.legs] so the eggs can get out more easily, you wouldn’t want any of them to break");
 	}
-	else output(" lie down so that your [pc.vagina " + pregSlot + "] is at a good angle for laying eggs");
+	else output(" lie down so that your " + (pregSlot == 3 ? "[pc.asshole]" : "[pc.vagina " + pregSlot + "]") + " is at a good angle for laying eggs");
 	output(".");
 	output("\n\nYou feel the contractions quickening and prepare to push the eggs out. Steeling yourself for the coming eggs, you prepare to push, expecting it to be a bit tough. Contrary to your beliefs, as soon as you push a torrent of eggs slip through your passage. The suddenness of it causes your muscles to tense, [pc.legs] splaying out in the air. Before you can recover your wits, a few more eggs slide out of you and into the pile.");
 	
@@ -208,12 +208,12 @@ public function oviliumPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):
 	// (normal)
 	if (pc.statusEffectv2("Ovilium") <= 0)
 	{
-		output("\n\nYou can’t resist any longer as the final eggs leave your body, cumming as the last of them are pushed out. Spasms rock your body, pumping out two or three eggs at a time until your womb is empty. You lie on the ground, resting for a moment until you’ve recovered enough to get up. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but one of the eggs with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
+		output("\n\nYou can’t resist any longer as the final eggs leave your body, cumming as the last of them are pushed out. Spasms rock your body, pumping out two or three eggs at a time until your " + (pregSlot == 3 ? "ass" : "womb") + " is empty. You lie on the ground, resting for a moment until you’ve recovered enough to get up. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but one of the eggs with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
 	}
 	// (if sex had)
 	else
 	{
-		output("\n\nYou feel something big within you line up to come out. For once you actually have to push, and your eyes lose focus as a mammoth version of the previous eggs nudges through your opening. You sigh as the giant reaches the halfway point and pops out easily, landing amidst the smaller eggs. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but the giant egg with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
+		output("\n\nYou feel something big within you line up to come out. For once you actually have to push, and your eyes lose focus as a mammoth version of the previous eggs nudges through your " + (pregSlot == 3 ? "anus" : "opening") + ". You sigh as the giant reaches the halfway point and pops out easily, landing amidst the smaller eggs. A small probe emblazoned with the Steele logo appears seemingly out of nowhere, picking up all but the giant egg with a couple beeps. You assume it’s taking the eggs somewhere to deal with, but since these eggs aren’t of the hatching variety you aren’t completely sure.");
 		
 		bigEgg = true;
 	}

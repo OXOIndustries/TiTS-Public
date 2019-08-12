@@ -159,6 +159,10 @@ public function thareManorPQBuy():void
 
 // Part 2: Dog in a Box
 // Available to vagina-havers only for now
+public function rkLahImprisoned():Boolean
+{
+	return (flags["PQ_SECURED_LAH"] == 2 && flags["LAH_TO_GASTIGOTH"] != undefined && (GetGameTimestamp() - flags["LAH_TO_GASTIGOTH"]) > 4320);
+}
 public function lahPrisonRoom():void
 {
 	clearOutput();
@@ -2381,7 +2385,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			output("\n\n<i>“Fuck me, make me feel it deep!”</i> the goddess snarls over her shoulder, sunken golden eyes flashing at you. <i>“I demand it!”</i> Those horns rearing up over her head catch your attention, and it is with deep satisfaction that you seize them and do as she orders, pressing yourself home into deep honey with a wondering groan, sheerest pleasure pulsing up your [pc.cockNoun " + cIdx + "].");
 			output("\n\nVoid, maybe you are addicted to this, the Queen’s sweet pheromones overriding every impulse you have, a drone hand-picked to be her captive breeding slave until she has a hive packed with her children. If so, it’s the best fate of all, to buck your [pc.hips] into her soft backside, slap your " + (pc.balls > 0 ? "[pc.balls]" : "groin") + " into the small waterfall of honey and your own spent seed running down her thighs, to grip her sacred horns and lose yourself in the give and heft of the plush wetness running up and down your cock, rippling and clenching you intermittently, willing you on, bringing your arousal to another brilliant point.");
 			output("\n\nYou’d pull out and shower her with [pc.cum] this time, demonstrate the virility of the Chosen Drone in the crudest, most glorious way possible... but no, you have a duty here, and it won’t be fulfilled until her womb is utterly packed with your thick, teeming cum. You groan mightily as orgasm overcomes you again, your muscles locking and forcing out great gobbets of [pc.cum], and you make sure every last drop of it is buried deep in Quinn’s pussy.");
-			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount your ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
+			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount you are ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
 			output(" The woozy, gratified ‘mmm’ you draw from her by the end, as you finally withdraw your dripping cock from her cum-choked hole, is pure poetry.");
 			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. I will require more of you - in the morning.”</i>");
 			output("\n\n");

@@ -3119,7 +3119,7 @@ public function shekkaMindwashFirstTime3(touch:Boolean):void
 	}
 	else 
 	{
-		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complimented by another thick gout of her cum decorating the floor some distance from her chair.");
+		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complemented by another thick gout of her cum decorating the floor some distance from her chair.");
 		if(touch) output(" You stroke her through it all: your hand rubs along her thick, steely length again and again, coaxing more of her cum from her body.");
 		output(" Her meat is beet-red and her every vein pulses with blood");
 	}
