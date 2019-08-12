@@ -58,8 +58,11 @@ public function bimboPennyMenu():void
 	addButton(0,"Talk",bimboPennyTalk);
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
-	if(pc.hasItemByClass(IQBGone)) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
-	
+	if(!pennyRecruited())
+	{
+		// IQ B-Gone
+		if(pc.hasItemByClass(IQBGone)) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	}
 	if(pennyRecruited()) addButton(5, "Join Crew", pennyRejoinCrew, undefined, "Join Crew", "Ask Penny to rejoin your crew and move back into your ship.");
 	else
 	{

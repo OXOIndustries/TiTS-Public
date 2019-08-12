@@ -152,7 +152,7 @@ public function akaneCeleritasVeritasAvailable():Boolean
 
 public function akaneLairAvailable():Boolean
 {
-	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24*60);
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > (flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + (24*60)));
 }
 
 public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
@@ -588,7 +588,7 @@ public function akaneDoneShockingMe():void
 	output("\n\n<i>“Do I even have a choice?”</i> you say back in a low tone.");
 	output("\n\n<i>“Well said,”</i> she grins, tapping her fingertips against both armrests in arpeggiated patterns. <i>“Did we um... did we ever find the relevant information, Cheo?”</i>");
 	output("\n\nCheo nods and produces a small datapad from his pocket, holding it in front of the mob boss. She lazily trails her fingers along its surface, talking out loud as she goes.");
-	output("\n\n<i>“Let’s see, Steele, Steele... SteeleTech, Victor, Maximilian, dead, blah blah, heir or heiress... oh,”</i> she says at first, abruptly stopping and squinting when some detail catches her eye. <i>“So young, [pc.name]. Oh my, I had no idea...”</i> she exclaims, her grin gaining a devilish hint as she stares you down.");
+	output("\n\n<i>“Let’s see, Steele, Steele... Steele Tech, Victor, Maximilian, dead, blah blah, heir or heiress... oh,”</i> she says at first, abruptly stopping and squinting when some detail catches her eye. <i>“So young, [pc.name]. Oh my, I had no idea...”</i> she exclaims, her grin gaining a devilish hint as she stares you down.");
 	output("\n\nYou turn your head away, both to avoid her predatory stare and to hide the mild blush you feel welling in your cheeks. It’s not like she’s your mother, she can’t just... say that kind of thing... Akane simply laughs, holding her palm up to cover her mouth.");
 	output("\n\n<i>“Look at you, all grown up and playing spacer. How about that, how about that indeed...”</i> she says to you, her grin turning into a smile. She cocks her head to the left as if to examine you once more.");
 	output("\n\n<i>“As to the deal: consider it as something as informal as it could be. An open invitation, that’s all. An invitation for my audience in a very... intimate setting,”</i> says Akane, tapping a knee with her fingers. <i>“If you’ve a need for... pain, love, joy, or maybe to brighten a bored old woman’s day, just say so at our representative’s stall. You know the one. No knockouts this time, I promise.”</i>");
@@ -681,7 +681,7 @@ public function akaneAkaneMain():void
 	output("\n\n<i>“Mmhmm, you know how to shame this old bag of bones and bolts, you monster. Care to entertain me, then?”</i>");
 	
 	addButton(0, "Appearance", akaneLookAtMafiaBoss, undefined, "Appearance", "Take in the full grace and majesty of this augmented crime boss. Respectfully of course. <i>She’s watching</i>.");
-	if (pc.isPregnant()) addDisabledButton(1, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
+	if (pc.isPregnant()) addDisabledButton(1, "Sex", "You are unable to participate in this while pregnant!");
 	else addButton(1, "Sex", akaneSexOptions, undefined, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
 	addButton(2, "Leave", akaneNevermind, true, "Leave", "You just wanna get out of here.");
 	
@@ -1721,7 +1721,7 @@ public function akanePostSexOptions(activity:String = "TALKED"):void
 	IncrementFlag("AKANE_TIMES_" + activity);
 	if (silenceOnly) IncrementFlag("AKANE_TIMES_TALKED");
 	else flags["AKANE_LAST_FUN_VISIT_TIMESTAMP"] = GetGameTimestamp();
-		
+	
 	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	addButton((silenceOnly ? 0 : 1), "Enjoy Silence", akaneEnjoySilence, undefined, "Enjoy Silence", "Just enjoy each other on an instinctual level.");
 }
@@ -1785,7 +1785,7 @@ public function akaneTalkYou():void
 	clearOutput();
 	showAkane(true, true);
 	
-	output("<i>“So what do you actually know about me...?”</i> you ask plainly, the sneaking suspicion about her knowing of SteeleTech tickling bits of your curiosity.\n\n<i>“");
+	output("<i>“So what do you actually know about me...?”</i> you ask plainly, the sneaking suspicion about her knowing of Steele Tech tickling bits of your curiosity.\n\n<i>“");
 	if (flags["AKANE_TALKED_YOU"] != undefined) output("No more than I’ve already said back to you. ");
 	output("I know what you look like naked, ”</i> she giggles, brushing her hair to the side as it flops over her face. <i>“And that you’re very receptive... very receptive indeed.”</i>");
 	output("\n\nIn that small moment, her eyes turn from calm to predatory as if she was still in control of your physical body.");
@@ -2069,7 +2069,7 @@ public function akaneEpilogue():void
 		if (flags["YAMMI_HELPED"] >= 2) output("With her pexiga pet in tow, she already begins preparing for her newly minted business schemes.");
 	}
 
-	output("\n\nAnd that’s that. Despite having such love to go around, you know that your commitment to Akane now comes first. The spontaneity of it all, giving up your spacer life and all your friends, the promise of something new that you <i>need</i>... a pure, cathartic rush. A week after the declaration, you’re already at a shipyard with your ancient Casstech cleared of all personal belongings. It’s old enough and <i>just</i> about famous enough that it’s sequestered into an ‘artefacts’ category, presumably for some sort of Rushers museum. There’s an intense pang of guilt as you hand the command codes over... but by turning around, the guilt wafts away in a sea of new ideas and aspiration.");
+	output("\n\nAnd that’s that. Despite having such love to go around, you know that your commitment to Akane now comes first. The spontaneity of it all, giving up your spacer life and all your friends, the promise of something new that you <i>need</i>... a pure, cathartic rush. A week after the declaration, you’re already at a shipyard with your " + (PCShipIsCasstech() ? "ancient Casstech" : "ship") + " cleared of all personal belongings. It’s old enough and <i>just</i> about famous enough that it’s sequestered into an ‘artefacts’ category, presumably for some sort of Rushers museum. There’s an intense pang of guilt as you hand the command codes over... but by turning around, the guilt wafts away in a sea of new ideas and aspiration.");
 	output("\n\nYou spend the next week adjusting to life in the Host. Akane’s room becomes the most central part of your new home, something you get used to very quickly. The soft covers become the perfect balm for the nightly sessions you and her play out, and Akane is more than willing to wrap you up and tuck you in whenever there’s a particularly brutal one.");
 	output("\n\nEvery night feels like a new experience as she finds more intense and disturbing ways to bring you to your knees. During the day, you become familiar with the other inhabitants: the agents who have their own dorms and temporary sleeping places; training rooms and meditation spaces; comms rooms and actions rooms for planning and staging... with all your new free time, you dedicate yourself to knowing your surroundings in as complete a way as possible.");
 	output("\n\nAkane lets you roam free, letting you interact with the agents on their off hours. Despite their universally ‘professional’ attitudes, they lead surprisingly sane lives within the context of the Host. In turn, they all ask about how you plan to live in the organization, a question you leave open. Even if you don’t make friends immediately, you make good foundations.");

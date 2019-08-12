@@ -2033,7 +2033,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 	output("\n\n<i>“What? You think just because I like a bit of casualness in life I’m completely unsophisticated?”</i> she giggles, then moves to pull out her own chair, stopping before actually seating herself. <i>“Ah, guests first?”</i> she suggests with a smile, indicating your seat with her hand. <i>“That’s what my mom always said.”</i>");
 	output("\n\nSeeing no reason to refuse her invitation, you take your seat, place your serving in front of you, and patiently wait for her to take hers. Happily she flops down into her seat and pulls herself in to the table. <i>“Alright! I’m so hungry... I was starting to wonder just how long this stupid ham was gonna take to cook,”</i> she pouts, her belly grumbling as if in emphasis.");
 
-	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious; you compliment Kelly on her recipe.");
+	output("\n\nYou exchange smiles and promptly dig in. The ham is delicious; you praise Kelly on her recipe.");
 
 	output("\n\n<i>“Thank you!”</i> she beams, already forking up a big piece for herself. <i>“I’m quite proud of my cooking - I didn’t go to home economics class for nothing, I’ll have you know,”</i> she jokes, then gobbles down her forkful.");
 
@@ -3581,19 +3581,12 @@ public function goToKellysHouse():void
 	currentLocation = "KELLY'S HOUSE";
 	rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	generateMap();
+	rooms["NORTH ESBETH 1"].northExit = "";
 }
 public function leaveKellyNext(fromOffice:Boolean = false):void
 {
 	if(pc.hasStatusEffect("Temporary Nudity Cheat")) tempNudeOff();
-	if(fromOffice)
-	{
-		move("SOUTH ESBETH 2");
-	}
-	else
-	{
-		rooms["NORTH ESBETH 1"].northExit = "";
-		move("NORTH ESBETH 1");
-	}
+	move(fromOffice ? "SOUTH ESBETH 2" : "NORTH ESBETH 1");
 }
 
 //Kelly's Cunny

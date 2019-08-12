@@ -1689,7 +1689,7 @@ public function yesFixDaMilkar(bGiannaScans:Boolean = true):void
 	clearMenu();
 	if(pc.credits >= nCost) addButton(0,"Pay2Fix",fixDaMilkar,nCost,"Pay to Repair","Pay " + nCost + " credits to fix the milker.");
 	else addDisabledButton(0,"Pay2Fix","Pay to Repair","You do not have enough credits to pay for this!");
-	addButton(1,"Nevermind",noFixDaMilkar,true,"Nevermind","Maybe next time.");
+	addButton(1,"Never Mind",noFixDaMilkar,true,"Never Mind","Maybe next time.");
 }
 
 // Nah, ain't nobody got time fo' dat!
@@ -1922,7 +1922,7 @@ public function carrieBlowjobsGo():void
 		output("\n\n<i>“Sure you don’t want anything?”</i> the euphoria");
 		if(pc.isTreatedBull()) output(" of cooperation");
 		output(" compels you to ask. <i>“Return the favor?”</i>");
-		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling " + (hours >= 6 && hours < 20 ? "as a gray cloud vaguely intrudes on an eternally sunlit mind" : "as crickets chirp in the night") + ". <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
+		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling " + (hours >= 6 && hours < 20 ? "as a gray cloud vaguely intrudes on an eternally sunlit mind" : "as crickets chirp in the night") + ". <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you " + pc.mf("bulls","amazons") + "...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
 		else if(pc.tallness < 60) output("lil’ ");
@@ -1934,7 +1934,7 @@ public function carrieBlowjobsGo():void
 		//Big cock/1 < cock first time:
 		else if((pc.cocks[x].cLength() >= 12 || doubleDickEnough) && flags["CORA_QUEUED"] == undefined) 
 		{
-			output("<i>“I’ll be ready for a real bull like you next time, I promise!”</i>");
+			output("<i>“I’ll be ready for a real " + pc.mf("bull","amazon") + " like you next time, I promise!”</i>");
 			flags["CORA_QUEUED"] = 1
 		}
 		else output("<i>“I’ll make it even better for you next time. You deserve it, for giving me such a big load!”</i>");
@@ -1962,7 +1962,7 @@ public function carrieBlowjobsGo():void
 			if(flags["BRYNN_INTRODUCED"] != undefined) output("Why, he looks even bigger than Brynn! ");
 			if(pc.cockTotal() > 1) 
 			{
-				output("I don’t know any bulls round here that pack ");
+				output("I don’t know any " + pc.mf("bulls","amazons") + " round here that pack ");
 				if(pc.cockTotal() == 2) output("double");
 				else output("</i>that<i> many");
 				output(". ");
@@ -2086,7 +2086,7 @@ public function carrieBlowjobsGo():void
 		output("A minute later you’re in the grassy back lot of the milking barn, back against the oak tree, getting your [pc.cock " + x + "] enthusiastically sucked. The ");
 		if(hours >= 6 && hours < 20) output("sun");
 		else output("moon");
-		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. Warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHead] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant bull’s true home.");
+		output(" shines on your [pc.face] and the sweet, verdant air fills your nostrils as Carrie’s auburn head bobs gently. Warm hand gripped around the base, wet lips traveling further and further down your length, your [pc.cockHead] lavished and squeezed by her mouth until it’s radiating pure, straining pleasure, beading pre that is continuously whisked away by a hungry, dexterous tongue. You hazily wonder why you’re spending so much time and energy searching the stars when everything you could ever want is right here: a rampant " + pc.mf("bull","amazon") + "’s true home.");
 		if(pc.balls > 0) 
 		{
 			output("\n\nShe sinks down lower between your [pc.hips], hand lazily coiling your cock as she licks your [pc.balls], lavishing ");
@@ -2162,7 +2162,7 @@ public function carrieBlowjobsGo():void
 		//Big cock/1 < cock first time:
 		else if((pc.cocks[x].cLength() >= 12 || doubleDickEnough) && flags["CORA_QUEUED"] == undefined) 
 		{
-			output(" <i>“I’ll be ready for a real bull like you next time, I promise!”</i>");
+			output(" <i>“I’ll be ready for a real " + pc.mf("bull","amazon") + " like you next time, I promise!”</i>");
 			flags["CORA_QUEUED"] = 1;
 		}
 		else output(" <i>“Cute " + pc.mf("bulls","amazons") + " with heavy loads like you are always welcome in the quiet hours!”</i>");
@@ -2313,7 +2313,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			output(" into the wet, tight ecstasy that is cowgirl cunt a dozen times, then two dozen, then four... even if the gasps and then wails of ecstasy that you draw out of Carrie weren’t enough to alert anyone listening in to what you are doing, you’re pretty sure the energetic slap-slap-slap of your");
 			if(pc.balls > 0) output(" [pc.balls]");
 			else output(" [pc.thighs]");
-			output(" against her thighs would. Or maybe your husky groan when you finally reach your second orgasm, the plush flesh of Carrie’s boobs squeezing between your fingers, packing her flexing, clinging fuck hole full of bull cream too.");
+			output(" against her thighs would. Or maybe your husky groan when you finally reach your second orgasm, the plush flesh of Carrie’s boobs squeezing between your fingers, packing her flexing, clinging fuck hole full of " + pc.mf("bull","stud") + " cream too.");
 			
 			processTime(3 + rand(4));
 			pc.lust(50);

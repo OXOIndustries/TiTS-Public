@@ -9,8 +9,12 @@
 //Dane Plans/Ideas
 //Dane only fucks feminine-presenting PCs with C+ cups.
 
-//Placeholder func. Move to ardia when she's in.
-public function ardiaIsCrew():Boolean { return false; }
+public function daneAtZhengShi():Boolean
+{
+	if(daneIsCrew()) return false;
+	if(!zhengCoordinatesUnlocked()) return false;
+	return true;
+}
 
 public function daneCockVolume():Number
 {
@@ -1149,14 +1153,14 @@ public function daneTaurfukky(volunteered:Boolean = false):void
 	{
 		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while [pc.girlCum] " + (pc.isSquirter() ? "squirts":"drips") + " down your shaking hindlegs. Dane doesn’t let up at all, slamming into your convulsing cunt and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the ");
 		//Nonfollower:
-		if(9999 == 9999) output("base");
+		if(!daneIsCrew()) output("base");
 		else output("ship");
 		output(" can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
 		output("\n\nHe’s stimulating your oversensitive pussy so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
 	}
 	else
 	{
-		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while your hindlegs violently shake. Dane doesn’t let up at all, slamming into your slippery ass and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the " + (9999 == 9999 ? "base":"ship") + " can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
+		output(" you cum so hard your eyes cross, a deep, desperate groan emanating from your throat while your hindlegs violently shake. Dane doesn’t let up at all, slamming into your slippery ass and driving your voice an octave higher with every thrust until you’re screaming so loudly you’re sure everyone on the " + (!daneIsCrew() ? "base":"ship") + " can hear how hard you’re getting fucked. Drool runs from the corner of your mouth while you orgasm your brains out, shaking and shuddering.");
 		output("\n\nHe’s stimulating your oversensitive insides so violently you can’t seem to escape cumming - crying out like the most depraved of whores, you clench up and clamp down on Dane while he grunts and growls, slamming you full of enormous equine cock. You can hardly believe how <i>wild</i> he is with you, rutting you with the intensity of a stallion and the stamina of a god. The sheer ecstasy coursing through your body tells you to stay, to be good, and to let him fuck you however he wants. You’re only too happy to sluttily comply.");
 	}
 	output("\n\nYou’re slammed into the wall again and again, your " + (pc.biggestTitSize() >= 1 ? "[pc.breasts] squished up":"cheek pressed") + " against it while you scream in lust, begging him to cum inside you. Instead he swats you across the ass hard, your forelegs crumpling while he grunts and holds your rear half in the air to fuck. You’re too busy marvelling at his strength to notice the way his giant cock is throbbing until you feel his growing knot pressing at your " + (x >= 0 ? "swollen pussylips.":"gaped fuckhole."));

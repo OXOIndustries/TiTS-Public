@@ -426,7 +426,7 @@ public function nessaSuckTimeLetsGo(cockIdx:int):void
 	if (flags["NESSA_ORAL"] != undefined) output(" Gotta love how she’s always so quick about it.");
 	output(" She sniffs once, then again, nuzzling into your crotch with a pleasant, body-vibrating purr");
 	if (!pc.isCrotchExposed()) output("; the kaithrit, well-practiced in stripping down eager lovers, has your [pc.cocks] free in short order");
-	output(". " + (pc.isTaur() ? "Crawling under your horse half, she" : "She") + " tongues the " + (pc.hasCocks() ? "undersides" : "underside") + " of your [pc.cockHeads]");
+	output(". " + (pc.isTaur() ? "Crawling under your " + (pc.legType == GLOBAL.TYPE_EQUINE ? "horse" : "bestial") + " half, she" : "She") + " tongues the " + (pc.hasCocks() ? "undersides" : "underside") + " of your [pc.cockHeads]");
 	if (pc.hasCocks()) output(" in sequence");
 	output(", cooing ecstatically when the first [pc.cumGem] drop of preseed bubbles to the surface of your throbbing peak.");
 	if (pc.cLength(cockIdx) < 6) output("\n\nNessa overwhelms your girth in a two-handed grip, squeezing hard enough to obstruct the liquid flow before releasing, letting it dribble out onto her smattering of freckles. <i>“Not as big as those laquines I see strolling on in ‘n out.”</i> She kisses the [pc.cockHead " + cockIdx + "], audibly gulping the first fresh, [pc.cumVisc] meal. <i>“But you’re actually packing. Guess they missed out on all those cummy ads, huh?”</i>");
@@ -504,7 +504,7 @@ public function furtherNessaFeeding(cockIdx:int):void
 	output("\n\nThe inevitable bloom of climax spreads like the tightening grasp of an octopus’ tendrils. Arousal coils around reproductive tubes, stroking them to a scorching friction. There’s nothing but pleasure as you whimper and squirm, railing the sexy kaithrit’s face in rapid, drilling humps. Both of her cat tails wind around your [pc.legOrLegs] and squeeze tight - an automatic action, to be sure.");
 	output("\n\nLoads stacked atop heavy, heated loads begin their journey into Nessa.");
 	if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_EQUINE) output(" There’s an odd twist in her posture that immediately follows the billowing of your cum-sealing flare, which has properly expanded to accomplish its biological purpose.");
-	output("With no care for her comfort, you rear back and ram yourself into the taxi-kitten’s maw");
+	output("\n\nWith no care for her comfort, you rear back and ram yourself into the taxi-kitten’s maw");
 	if (pc.cLength(cockIdx) < 18 && pc.hasKnot(cockIdx)) output(", successfully plugging the gap with your [pc.cockColor " + cockIdx + "] knot");
 	output(".");
 	if (pc.cLength(cockIdx) >= 18)

@@ -795,7 +795,7 @@ private function ewDemonSyriComeWithII():void
 	
 	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. Syri stuffs herself into the co-pilot’s chair, buckling to safety belt between her tits and around her toned belly. Her tail flops into her lap, giving the lusty pup the closest thing to modesty she’s had in years. She gives you a nod and braces herself.");
 	
-	output("\n\nYour [PCShipName] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
+	output("\n\nYour [pc.ship] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
 	
 	output("\n\nThen the colors out of the forward viewscreen change, erupting into blackness dotted with stars. You’re out! The pressure recedes with a gasp of fresh, untainted air. Home again! You let go of the controls and lean back in the captain’s chair.");
 	
