@@ -855,7 +855,7 @@ public function breedwellPremiumSanctionVisitors():void
 	if (flags["BREEDWELL_PREM_PUN_VISITORS"] != undefined) firstTime = false;
 	flags["BREEDWELL_PREM_PUN_VISITORS"] = 0;
 	
-	output("<i>“Ooh, the complimentary alleviation orifice,”</i> Tamani croons. <i>“You lucky [pc.boy]!”</i> A virtual yellow line appears on the floor in front of you. A sharp buzz on your [pc.ass] makes you jump. Quickly, you get up and follow the line, through employee-only corridors towards the loading bay where your own ship is docked. The rahn employees you pass smirk at your uniform, but none stop you. ");
+	output("<i>“Ooh, the complementary alleviation orifice,”</i> Tamani croons. <i>“You lucky [pc.boy]!”</i> A virtual yellow line appears on the floor in front of you. A sharp buzz on your [pc.ass] makes you jump. Quickly, you get up and follow the line, through employee-only corridors towards the loading bay where your own ship is docked. The rahn employees you pass smirk at your uniform, but none stop you. ");
 	output("\n\nThe yellow line leads into an unmarked door: It hisses open as you approach, revealing a featureless cubicle. The door clicks shut behind you, and a sultry, purple light bathes your body.");
 	output("\n\nThe room isn’t quite featureless, it turns out. There’s a hole on the opposite wall about 3 feet up, surrounded by glossy padding. Similarly glossy padding cushions the floor directly beneath.");
 	output("\n\n<i>“It’s important that our breeders know how to orally satisfy our sperm donors,”</i> Tamani’s bubbly voice sounds in your ear, <i>“not just because it will encourage them to return - but so you can get all the nutrition a heavily pregnant mother needs. And there’s no better nutrition than cum!”</i>");
@@ -865,7 +865,7 @@ public function breedwellPremiumSanctionVisitors():void
 	}
 	output("\n\nYou put your [pc.knees] on the padded floor and push your [pc.lips] through the plush, supple hole. The relief is instant and overwhelming, like a warm cloth spreading over your body.");
 	output("\n\nA panorama view of a room appears on the visor: It’s that of a large, unisex public bathroom, utilitarian and clean. On the wall opposite the exit is a round hole about three feet off the ground, in the centre of which are a pair of lips. Instinctively you wet your [pc.lips], and a funny, vicarious thrill runs down your spine as you watch the mouth mimic the action. It looks... inviting. ");
-	output("\n\nThere’s a hand-wipe dispenser beside it and a brass plaque above. COMPLIMENTARY ALLEVIATION ORIFICE, you read. GIVE GENEROUSLY.");
+	output("\n\nThere’s a hand-wipe dispenser beside it and a brass plaque above. COMPLEMENTARY ALLEVIATION ORIFICE, you read. GIVE GENEROUSLY.");
 	output("\n\nYou jump slightly as a gryvain spacer strides in. You should really lick your lips again. Present yourself. You blink and shake your head, muddled. The gryvain quickly uses a urinal and leaves. You feel that aching, fretful feeling again as she does. You <i>really</i> need to do better, make sure the public knows that sweet relief is on hand. You <i>thirst</i> to do better. ");
 	output("\n\nThe entrance bumps open again, and this time you lick your [pc.lips] and extend your [pc.tongue], glossy and inviting. The burly saurmorian who’s just walked in pauses, green reptilian eyes on the hole. He slowly slopes off to the stalls... but when he comes back, and you repeat the action, he grunts with lusty amusement and approaches, unzipping his trousers and allowing his sturdy, ridged member to flop outwards.");
 	output("\n\nThat soothing balm you felt earlier enfolds you, only this time it’s even stronger, happy warmth running slowly down your body, concentrating itself finally over [pc.eachVagina]; you sigh with bliss, puffing over the big reptile’s dick as he hefts it and bumps its blunt, musky head against your [pc.lips].");
@@ -921,7 +921,7 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	output("\n\n<i>“Oh my,”</i> says a deep, calm, feminine voice.");
 	if (flags["LANDED_ON_TEXAS"] == 1) output(" You recognise the drawl of a New Texan Cowmazon.");
 	else output(" It’s the drawl of a working country lady.");
-	output(" <i>“A complimentary gloryhole. And here’s me that’s just spent the last few hours lookin’ at rahn fillin’ out their clothes in that mighty fine way of theirs.”</i>");
+	output(" <i>“A complementary gloryhole. And here’s me that’s just spent the last few hours lookin’ at rahn fillin’ out their clothes in that mighty fine way of theirs.”</i>");
 	output("\n\nThere’s a rustle and unbuttoning, and you can’t help but gulp as you feel a flat, oozing tip a good three inches wide butt against your opened, waiting lips.");
 	output("\n\n<i>“Hope you’re ready for this, whoever you may be,”</i> she rumbles. <i>“I ain’t gonna be gentle, and I ain’t gonna be quick.”</i>");
 	output("\n\nSoothing calmness brushes its way down you as the massive, light pink horse shaft is fed into your face, your jaw cracking, holding your [pc.lips] open as far as they will go. She grunts as she bumps against your tonsils. Void, it’s so big... and the swarming, bestial <i>smell</i>... and the sinful taste, dripping down your throat... you orgasm with a muffled moan, a wet explosion in [pc.eachVagina], and you shudder mightily around the massive, unyielding beast-cock packing out your maw.");
@@ -1847,8 +1847,8 @@ public function breedwellPremiumBadEndCowmazonNext():void
 	author("Nonesuch");	
 	
 	moveTo("TAVROS HANGAR");
-		
-	output("You shoot back into your [PCShipName] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
+	
+	output("You shoot back into your [pc.ship] and head out of Wistral as fast as you can. An official communication from Breedwell tells you that you are unauthorized to use the warp gate and to turn back immediately just as you’re approaching it. It’s co-signed by the local U.G.C. authority.");
 	output("\n\nYou’re in a panic by the time you land in Tavros docking bay. You’re certain you see uniformed peacekeepers approaching your ship as you head up the escalator; you’ll have to ditch it.");
 	if (crew(true, false) > 0) output(" You duck into Anon’s and compose a hurried email to your crew, telling them that you’ve had to scarper, that they are not to look for you, and the ship is theirs to do with as they choose.");
 	output("\n\nIt’s only then, huddled in a dark corner of a bar, that you look at the message the cowmazon left you. PATRONELLA. COME FIND ME, K SUGARLIPS? I CAN LOOK AFTER YOU. XXX. There’s some coordinates, which punched into your codex reveals a virtually uninhabited moon in a virtually uninhabited system, as far out in the current planet rush as it’s possible to be.");

@@ -1863,6 +1863,7 @@ public function nippleGooGetsTypeChanged(target:int):void
 	for(var i:int = 0; i < pc.bRows(); i++)
 	{
 		pc.breastRows[i].nippleType = target;
+		if(target == GLOBAL.NIPPLE_TYPE_LIPPLES) pc.breastRows[i].clearAreolaFlags();
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooChestCustomizer);

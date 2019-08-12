@@ -1275,7 +1275,7 @@ public function approachFollowerBess():void
 			if (bess.hornType != 0) output(" and ");
 		}
 		if (bess.hornType != 0) output("[bess.horns]");
-		output(" compliment [bess.hisHer] features.");
+		output(" complement [bess.hisHer] features.");
 	}
 
 	output(" [bess.HeShe]’s");
@@ -2367,7 +2367,7 @@ public function bessSetBoobSize(newSize:int):void
 		else if (bessIsDom()) output(" Milk my tits, "+ bessPCSexName() +" - that’s an order.");
 		else output(" I’m not sure how much I can hold out, "+ bessPCSexName() +"... can I have permission to cum?");
 		if (!bessIsDom()) output("”</i> [bess.name] pleads, all the while desperately massaging [bess.hisHer] quickly inflating mounds.");
-		else output(" [bess.name] commands you. There is a predatory look in [bess.hisHer] eyes.");
+		else output("”</i> [bess.name] commands you. There is a predatory look in [bess.hisHer] eyes.");
 
 		output("\n\n");
 		if (bessIsDom()) output("Obeying [bess.himHer], you");
@@ -2402,7 +2402,7 @@ public function bessSetBoobSize(newSize:int):void
 
 		output("\n\n[bess.name]’s [bess.thighs] shake spastically as [bess.heShe] utterly creams [bess.himHer]self");
 		if (pc.hasCock() && pc.genitalSpot <= 1) output(" for a second time");
-		output(", overstimulated by the frothy streams from [bess.hisHer] [bess.nipple].");
+		output(", overstimulated by the frothy streams from [bess.hisHer] [bess.nipples].");
 		if (bess.hasCock()) output(" [bess.HeShe] shoots a thick, steaming load of [bess.hisHer] spunk all over the ship’s floor, splattering the surface beneath [bess.hisHer] feet.");
 		else if (bess.hasVagina()) output(" [bess.HisHer] pussy squirts intermittent jets of [bess.hisHer] [bess.girlCum] all over the ship’s floor, splattering the surface beneath [bess.hisHer] feet.");
 
@@ -2410,13 +2410,13 @@ public function bessSetBoobSize(newSize:int):void
 
 		output("\n\nAfter the rather intense experience, [bess.name] strokes [bess.hisHer] new [bess.breastCupSize] breasts. [bess.HisHer] surroundings are an utter mess from the experience and [bess.heShe]");
 		if (!bessIsDom()) output(" flushes with embarrassment.");
-		else output("shoots you a commanding look.");
+		else output(" shoots you a commanding look.");
 
 		if (bessIsEqual())
 		{
 			output("\n\n<i>“...Ahem. I’d better get a mop for all this.”</i> [bess.name] coughs, looking about for one.");
 			// {if (Celise Companion true
-			if (9999 == 0) output(" <i>“...Oh wait, I’ll just get Celise! CELLLIIISE! FREE PROTEIN!”</i> [bess.HeShe] shouts out.");
+			if (celiseIsCrew()) output(" <i>“...Oh wait, I’ll just get Celise! CELLLIIISE! FREE PROTEIN!”</i> [bess.HeShe] shouts out.");
 		}
 		else if (bessIsDom())
 		{
@@ -2430,7 +2430,7 @@ public function bessSetBoobSize(newSize:int):void
 			output(". [bess.HeShe] make sure you don’t miss a single spot.");
 
 			// {if Celise companion
-			if (9999 == 0) output("\n\nCelise comes across you licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
+			if (celiseIsCrew()) output("\n\nCelise comes across you licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
 		}
 		else
 		{
@@ -2439,7 +2439,7 @@ public function bessSetBoobSize(newSize:int):void
 			output(". You make sure [bess.heShe] doesn’t miss a single spot.");
 
 			// {if Celise companion 
-			if (9999 == 0) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
+			if (celiseIsCrew()) output("\n\nCelise comes across [bess.name] licking up [bess.hisHer] liquids and pouts. <i>“Aww, lucky! Why don’t I get a free meal like that?”</i>");
 		}
 
 		output("\n\n<b>[bess.name] now has a pair of [bess.breastCupSize] breasts!<\b>");
@@ -4804,7 +4804,7 @@ public function talkToBessAboutThings():void
 
 	if (flags["BESS_FUCKED"] != undefined || flags["BESS_BOOBCHANGED"] != undefined) addButton(4, "Nipples", talkToBessGetInfoOnNipnips);
 	if (flags["BESS_EVENT_11"] != undefined) addButton(5, bess.mf("His", "Her") + " Job", talkToBessAboutHerJob);
-	if (flags["BESS_EVENT_17"] && /*pcShipHasHolodeck()*/ 9999 == 0) addButton(6, "Graviball", talkToBessPlayGraviball);
+	if (flags["BESS_EVENT_17"] && PCShipHasHolodeck()) addButton(6, "Graviball", talkToBessPlayGraviball);
 	if (flags["BESS_EVENT_18"] != undefined) addButton(7, "Karaoke", talkToBessSingKareoke);
 	if (celiseIsCrew()) addButton(8, "Celise", talkToBessAboutCelise);
 
@@ -7771,7 +7771,7 @@ public function bessEvent9():void
 	if (bess.earType != GLOBAL.TYPE_HUMAN) output(" while [bess.hisHer] [bess.ears] are perked");
 	output(". <i>“Hi there, "+ bessPCName() +", look what I found! These were stashed in the back of the ship; I found them when I was cleaning up.”</i>");
 
-	if (9999 == 9999)
+	if (PCShipIsCasstech())
 	{
 		// If on starter ship.
 		output("\n\nYou’ve seen books before, your father had a fondness for them. He also had a soft spot for archaic pornography, so you quickly check over the covers to discern their content.");
@@ -8827,7 +8827,7 @@ public function bessEvent17():void
 	}
 
 	// If Ship Has a Holoroom:
-	if (9999 == 0)
+	if (PCShipHasHolodeck())
 	{
 		output("\n\n<i>“How about we play a game? I’ve reprogrammed the holoroom to run a very realistic simulation of the real thing. Pitch, crowd and the whole works! Even digital teammates to fill in the gaps,”</i> the");
 		if (bess.hairLength > 0) output(" [bess.hairColor] haired");

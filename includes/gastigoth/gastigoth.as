@@ -45,11 +45,11 @@ public function processGastigothEvents():void
 	
 	//Not unlocked yet!
 	var prisonerSent:Number = 0;
-	if(flags["TARKUS_BOMB_TIMER"] == 0) prisonerSent += 3; // Pirates of Tarasque: Khorgan, Kaska and Tam
-	//if(flags["DR_BADGER_TURNED_IN"] == 0) prisonerSent += 1; // Dr. Badger
-	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
-	if(flags["PLANTATION_LAH_TALK"] != undefined) prisonerSent += 1; // R.K.Lah
-	if(samImprisoned()) prisonerSent += 1;
+	if(completedStellarTetherGood()) prisonerSent += 3; // Pirates of Tarasque: Khorgan, Kaska and Tam
+	if(drBadgerImprisioned()) prisonerSent += 1; // Dr. Badger
+	if(zaaltImprisoned()) prisonerSent += 1; // Zaalt
+	if(rkLahImprisoned()) prisonerSent += 1; // R.K.Lah
+	if(samImprisoned()) prisonerSent += 1; // Sam
 
 	if(prisonerSent <= 0) return;
 	
@@ -123,7 +123,7 @@ public function arrivalAtGastibooty():void
 		output("\n\nYou answer quickly, not eager to make whoever’s got that much firepower antsy.");
 		output("\n\nThe forward viewscreen blinks out and resolves into an interior camera view. Aboard the armored dock’s bridge, you imagine, if the dozens of holoscreens and fire solution displays flickering in the background are any indication. Unsubtly, several of them show your ship in the crossed sights of heavy cannons and missile racks.");
 		output("\n\nThe only actual person visible on screen is a young woman, pretty as far as primly-cut military types go, though she’s got an unpleasant, emotionless expression on her face. Her hands are clasped in front of her, folded in a way that shows small patches of colorful scales underneath her white-trimmed, dark orange uniform’s sleeves - coloration mirrored on her cheeks and neck, though her face is fleshy and human. Human-reptile crossbreed of some sort?");
-		output("\n\nShe fixes you with a pair of solid, bright blue eyes slitted like a cat’s. <i>“Attention [PCShipName], you have entered a Confederate-licensed security zone. You will power down all shields and weapons, and follow automatic docking trajectories into hanger...”</i> she glances aside. <i>“Hanger twenty-two alpha. Hmm, reserved for special guests. Regardless, any change in your weapons systems once you are within the point perimeter will be construed as an active threat and result in atomization. Understood?”</i>");
+		output("\n\nShe fixes you with a pair of solid, bright blue eyes slitted like a cat’s. <i>“Attention [pc.ship], you have entered a Confederate-licensed security zone. You will power down all shields and weapons, and follow automatic docking trajectories into hanger...”</i> she glances aside. <i>“Hanger twenty-two alpha. Hmm, reserved for special guests. Regardless, any change in your weapons systems once you are within the point perimeter will be construed as an active threat and result in atomization. Understood?”</i>");
 		output("\n\nWow, they really go all out here. Feels like you’re flying into a military base as much as you are into a maximum-security prison.");
 		output("\n\nConsidering the Nova Securities uniform the woman on-screen is wearing, you’re not sure there’s much of a difference here. Private military, private prison... You shrug off the thought and power down your ship’s combat defenses. Not that they’d do you much good if the owner of this place decided to get nasty, but losing your shields makes you feel awfully vulnerable nonetheless.");
 		output("\n\n<i>“Thank you, Captain,”</i> the security officer says, giving you the faintest hint of a nod. <i>“Docking tethers are interfacing with your systems... now.”</i>");
@@ -160,7 +160,7 @@ public function leaveZePrison():void
 	else output(" Commander Brandt");
 	output(" appears on your forward screen, cool and crisp in her dark uniform.");
 
-	output("\n\n<i>“Understood, [PCShipName],”</i> she answers evenly, depressing a holographic panel in front of her. You feel the deck underneath you shudder, then your ship start to move. <i>“The magnetic catapult will launch your vessel beyond our security perimeter. Per regulation, do not attempt manual engine control or activate any weapons systems until you are beyond our security zone.”</i>");
+	output("\n\n<i>“Understood, [pc.ship],”</i> she answers evenly, depressing a holographic panel in front of her. You feel the deck underneath you shudder, then your ship start to move. <i>“The magnetic catapult will launch your vessel beyond our security perimeter. Per regulation, do not attempt manual engine control or activate any weapons systems until you are beyond our security zone.”</i>");
 	output("\n\nYou’re reminded of the hundred or so railguns outside, and decide that’s mighty fine advice.");
 	output("\n\nA few moments later and the catapult chain under your landing gear hurls you like a big, fat brick off into space. The ship shudders around you, balking at the sudden acceleration, but the trip out of the prison’s defensive zone is relatively quick. Once you’re safe, ");
 	if(flags["MET_BRANDT"] == undefined) output("the officer");
@@ -328,7 +328,7 @@ public function talkToCommandyBrandy():void
 	if(flags["MET_BRANDT"] == undefined)
 	{
 		output("The message is clear enough: you step up to the small, gunmetal desk between you and the woman you’d spoken to over comms. Now that you’re in the same room, you can really get the size of her: she’s handsome, in a serious and grim-faced way, overly tall for a human and athletically built. She’s six-five, you’d guess, though that might be helped by the over-sized combat boots she’s wearing, complete with magnetized armor and jump jets, and she’s sleekly muscular beneath the dark orange dress uniform she’s got on. A boxer’s build, you think to yourself, though of course you’d need to see under that uniform to really gauge her physique.");
-		output("\n\nStill, what you can see is appealing: flawless golden-bronze skin on a fundamentally human body shape, though she’s got small patches of yellowish scales on the sides of her neck and completely encasing her bare hands. Reddish blonde hair compliments her coloration, pulled back into a tight military bun behind a pair of unadorned, small ears. Her eyes, though, are huge and solid blue, save for a pair of vertical slits that regard you cooly.");
+		output("\n\nStill, what you can see is appealing: flawless golden-bronze skin on a fundamentally human body shape, though she’s got small patches of yellowish scales on the sides of her neck and completely encasing her bare hands. Reddish blonde hair complements her coloration, pulled back into a tight military bun behind a pair of unadorned, small ears. Her eyes, though, are huge and solid blue, save for a pair of vertical slits that regard you cooly.");
 		output("\n\nAnd, you notice, she’s got a thick tail sprouting from the back of her uniform, dragging heavily on the floor like a still lump of solid muscle - it’s yellow like her scales, though a somewhat darker hue. Almost gold. ");
 		//Ovir Codex unlocked:
 		if(CodexManager.entryUnlocked("Ovir")) output("You’d guess she’s half-ovir now that you can see the tail. Wonder what she’s got under the belt, if that’s the case");
@@ -1128,39 +1128,59 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	//List all current inmates on the buttons.
 	//When you select an inmate, show their bust and display a readout of:
 	clearMenu();
-	var button:Number = 0;
+	var btnSlot:int = 0;
+	var prisonerBtns:Array = [];
+	var i:int = 0;
 	
-	if(flags["TARKUS_BOMB_TIMER"] == 0) 
+	if(completedStellarTetherGood()) 
 	{
 		output("\n\\\[Pirate\\\] Tam-Tam");
-		addButton(button++,"Tam-Tam",prisonerStatline,"Tamtam","Tam-Tam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus.");
+		prisonerBtns.push(["Tam-Tam",prisonerStatline,"Tamtam","Tam-Tam","Pay a visit to the spunky cat-girl mechanic you met on Tarkus."]);
 		output("\n\\\[Pirate\\\] Kaska");
-		addButton(button++,"Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus.");
+		prisonerBtns.push(["Kaska",prisonerStatline,"Kaska","Kaska","Pay a visit to the dick-toting pirate you defeated on Tarkus."]);
 		output("\n\\\[Pirate\\\] Khorgan");
-		addButton(button++,"Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus.");
+		prisonerBtns.push(["Khorgan",prisonerStatline,"Khorgan","Captain Khorgan","Pay a visit to the bad-ass space-pirate you defeated on Tarkus."]);
 	}
 	if(samImprisoned())
 	{
 		output("\n\\\[Pirate\\\] Sam");
-		addButton(button++,"Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam.");
+		prisonerBtns.push(["Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam."]);
 	}
-	if(flags["PQ_SECURED_LAH"] == 2 && flags["LAH_TO_GASTIGOTH"] != undefined && (GetGameTimestamp() - flags["LAH_TO_GASTIGOTH"]) > 4320)
+	if(rkLahImprisoned())
 	{
 		output("\n\\\[Convict\\\] R.K.Lah");
-		addButton(button++,"R.K.Lah",prisonerStatline,"Lah","R.K.Lah","Pay a visit to Lah.");
+		prisonerBtns.push(["R.K.Lah",prisonerStatline,"Lah","R.K.Lah","Pay a visit to Lah."]);
 	}
-	/*
-	if(flags["DR_BADGER_TURNED_IN"] == 0)
+	if(drBadgerImprisioned())
 	{
 		output("\n\\\[Doctor\\\] Dr. Badger");
-		addButton(button++,"Dr. Badger",prisonerStatline,"Badger","Dr. Badger","9999");
+		prisonerBtns.push(["Dr. Badger",prisonerStatline,"Badger","Dr. Badger","Pay a visit to Dr. Badger."]);
 	}
-	if(flags["ICEQUEEN COMPLETE"] == 2)
+	if(zaaltImprisoned())
 	{
 		output("\n\\\[Smuggler\\\] Zaalt");
-		addButton(button++,"Zaalt",prisonerStatline,"Zaalt","Captain Zaalt","9999");
+		prisonerBtns.push(["Zaalt",prisonerStatline,"Zaalt","Captain Zaalt","Pay a visit to Zaalt."]);
 	}
-	*/
+	
+	output("\n\n");
+	for(i = 0; i < prisonerBtns.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Never Mind", mainGameMenu);
+			btnSlot++;
+		}
+		if(btnSlot >= 60) break;
+		
+		addButton(btnSlot, prisonerBtns[i][0], prisonerBtns[i][1], prisonerBtns[i][2], prisonerBtns[i][3], prisonerBtns[i][4]);
+		btnSlot++;
+		
+		if(prisonerBtns.length > 14 && (i + 1) == prisonerBtns.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Never Mind", mainGameMenu);
+		}
+	}
 	
 	addButton(14,"Never Mind",mainGameMenu);
 }
@@ -1237,7 +1257,8 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Sex:</b> Hermaphrodite");
 			output("\n<b>Race:</b> Unknown");
 			output("\n\nConvicted of: Assault, Drug Manufacturing, Drug Trafficking, Illegal Mind Control, Indecent Exposure, Kidnapping, Possession of Unlicensed Technology, Racketeering, and Unlicensed Medical Practices.");
-			addButton(0,"Visit",visitAPrisoner,"Badger","Dr. Badger","9999.\n\n<b>Cost:</b> 1,000 credits");
+			if(9999 == 9999) addDisabledButton(0,"Visit","Dr. Badger","You cannot visit this prisoner at the moment.");
+			else addButton(0,"Visit",visitAPrisoner,"Badger","Dr. Badger","Visit Dr. Badger.\n\n<b>Cost:</b> 1,000 credits");
 			break;
 		case "Zaalt":
 			showZaalt();
@@ -1256,7 +1277,8 @@ public function prisonerStatline(prisonerName:String):void
 			output("\n<b>Sex:</b> Male");
 			output("\n<b>Race:</b> Ausar");
 			output("\n\nConvicted of: First degree arson; battery; prison escape; incitement and conspiracy to violence; incitement and conspiracy to pervert the course of justice; treason.");
-			addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","Visit Lah.\n\n<b>Cost:</b> 1,000 credits");
+			if(9999 == 9999) addDisabledButton(0,"Visit","R.K.Lah","You cannot visit this prisoner at the moment.");
+			else addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","Visit Lah.\n\n<b>Cost:</b> 1,000 credits");
 			break;
 	}
 	showName("CLICK\nCLACK");

@@ -270,7 +270,7 @@ public function bringBadgerPexibork():void
 //After Fight
 public function afterNymFoeFight():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	if(!drBadgerAtBimbotorium())
 	{
 		noBadgerPostNymFoe();
 		return;
@@ -302,7 +302,7 @@ public function afterNymFoeFight():void
 //After Fight
 public function afterDollmakerFight():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined)
+	if(!drBadgerAtBimbotorium())
 	{
 		afterDollmakerFightForAbsentBadger();
 		return;
@@ -1111,7 +1111,7 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 
 public function drBadgerShackPexigaQuestGo():void
 {
-	if(flags["DR_BADGER_TURNED_IN"] != undefined && flags["PEXIGA_TALKED"] != undefined && flags["PEXIGA_TREATMENT"] != 1)
+	if(!drBadgerAtBimbotorium() && flags["PEXIGA_TALKED"] != undefined && flags["PEXIGA_TREATMENT"] != 1)
 	{
 		if(flags["LASH_BOMB"] != undefined || flags["DEL_DISTRACT"] != undefined)
 		{
@@ -1403,7 +1403,7 @@ public function nymfoeSetup():void
 		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you almost walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
 		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The “V-Ko” designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented steel tail whipping back and forth behind her.");
 		output("\n\n");
-		if(flags["DR_BADGER_TURNED_IN"] == undefined) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");
+		if(drBadgerAtBimbotorium()) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");
 		else output("It looks like Doctor Badger has left behind a guard droid and you must have tripped something to activate it.");
 		output(" There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
 		processTime(2);
@@ -2555,11 +2555,21 @@ public function leaveTheDollmaker():void
 public function turnInIQBGoneToPenpen():void
 {
 	clearOutput();
-	showPenny();
-	author("Adjatha");
-	//Normal Penny: 
-	if(flags["PENNY_BIMBO"] == undefined) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
-	else output("<i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
+	if(!pennyRecruited())
+	{
+		showPenny();
+		author("Adjatha");
+		//Normal Penny: 
+		if(flags["PENNY_BIMBO"] == undefined) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
+		else output("<i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
+	}
+	else
+	{
+		author("Jacques00");
+		output("You tell the new Peacekeeper that you’ve got some potentially incriminating evidence. It’s probably better not to tell the policewoman that you’ve been dealing with Doctor Badger right now so you make up a story about buying it off some scrapper on Tarkus. <i>“Okay, I’m going to send it off to the UGC for analysis. First, I’ll need you to fill out this report.”</i> The officer hands you a data slate with a no-nonsense expression on her face.");
+		output("\n\nYou take the tablet, complete the form with the relevant information and hand it back to her.");
+		output("\n\nThe officer quickly looks over it and nods. <i>“Good. That is all.”</i>");
+	}
 	pc.destroyItemByClass(IQBGone);
 	pc.createStatusEffect("IQBGoneTimer", 0, 0, 0, 0, true, "", "", false, 1440);
 	flags["IQBGONE_POLICED"] = 1;
@@ -2974,7 +2984,7 @@ public function drBadgerLookAroundButton(btnSlot:int = 5):void
 	if(flags["PEXIGA_TREATMENT"] >= 1)
 	{
 		// if Badger is a bimbo, skip this and go straight to the tank.
-		if(chars["DRBADGER"].isBimbo() || flags["BADGER_LAB_UNLOCKED"] != undefined || flags["DR_BADGER_TURNED_IN"] != undefined) addButton(btnSlot, "Laboratory", drBadgerEnterLaboratory, undefined, "Laboratory", "Browse the lower floor of Doctor Badger’s lab.");
+		if(chars["DRBADGER"].isBimbo() || flags["BADGER_LAB_UNLOCKED"] != undefined || !drBadgerAtBimbotorium()) addButton(btnSlot, "Laboratory", drBadgerEnterLaboratory, undefined, "Laboratory", "Browse the lower floor of Doctor Badger’s lab.");
 		else addButton(btnSlot, "Look Around", drBadgerLookAroundLab, undefined, "Look Around", "Ask Doctor Badger if you can look through her lab.");
 	}
 }
@@ -3521,7 +3531,7 @@ public function badgerNymFoeDakimakuraMenu():void
 	clearMenu();
 	addButton(0, "Appearance", badgerNymFoeDakimakuraLook, undefined, "Appearance", "Take a closer look at the pillow.");
 	addButton(1, "Sleep", badgerNymFoeDakimakuraSleep, undefined, "Sleep", "Sleep with the pillow.");
-	addButton(14, "Nevermind", useItemFunction);
+	addButton(14, "Never Mind", useItemFunction);
 }
 public function badgerNymFoeDakimakuraLook():void
 {
@@ -3531,7 +3541,7 @@ public function badgerNymFoeDakimakuraLook():void
 	author("Natetheman223");
 	
 	output("This is a lewd body pillow of Nym-Foe, the nurse you once fought in Badger’s lab. It has a picture of the robo-nurse on either side.");
-	output("\n\nOn the front is Nym-Foe facing forward with one hand down low on her body, pushing her light red panties down ever so slightly, while her other hand is splayed loosely above her head. She has a slightly nervous expression on her face: pink blush along her snow white cheeks, upward tilted brows and a gentle smile on her big lips. Her giant boobs have silicone in them (as in, <i>inside</i> the daki), providing extra cushioning. They take up most of her torso, with her nipples poking out from the top of her corset. Her thick thighs are pointed toward each other, her knees touching with her stocking-clad legs parted. Her injector tail compliments her figure.");
+	output("\n\nOn the front is Nym-Foe facing forward with one hand down low on her body, pushing her light red panties down ever so slightly, while her other hand is splayed loosely above her head. She has a slightly nervous expression on her face: pink blush along her snow white cheeks, upward tilted brows and a gentle smile on her big lips. Her giant boobs have silicone in them (as in, <i>inside</i> the daki), providing extra cushioning. They take up most of her torso, with her nipples poking out from the top of her corset. Her thick thighs are pointed toward each other, her knees touching with her stocking-clad legs parted. Her injector tail complements her figure.");
 	output("\n\nOn the other side is Nym-Foe facing away with her head turned back to you, her boobs squished against the bed she’s laying on. Her metallic blonde braid hangs down her corset covered back, leading down to her big butt. The panties on her appear tight, showing off each delicious cheek and thigh. Her arms are wrapped up around her breasts while her tail weaves delicately above her behind.");
 	output("\n\nA very pretty pillow.");
 	output("\n\n");
@@ -4188,7 +4198,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			
 			processTime(2);
 			
-			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			addButton(14, "Never Mind", drBadgerLabDollMaker, "badger fix");
 			break;
 		case "fix? lamp fix":
 			showDrBadger();
@@ -4245,7 +4255,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			
 			if(pc.hasItemByClass(Tittyblossom) && pc.hasItemByClass(SemensFriend)) addButton(0, "GiveItems", drBadgerLabDollMaker, "fix? emitter fix", "Give Items", "Give Doctor Badger a Tittyblossom popsicle and a Semen’s Friend candy.");
 			else addDisabledButton(0, "GiveItems", "Give Items", "You need Tittyblosson and Semen’s Friend to give to Doctor Badger!");
-			addButton(14, "Nevermind", drBadgerLabDollMaker, "badger fix");
+			addButton(14, "Never Mind", drBadgerLabDollMaker, "badger fix");
 			break;
 		case "fix? emitter fix":
 			showDrBadger();
@@ -4647,7 +4657,7 @@ public function drBadgerLabDollMaker(response:String = "menu"):void
 			output("\n\nYou examine the needle, applying a little pressure at the base to cause a tiny dollop of the poison-like substance to escape. The drip hits the floor silently. Your hands are a bit shaky as you prepare to inject a small bit of it.");
 			output("\n\nYou calm your hands enough to hold the needle tip still and solid. Slowly and carefully, the tip pierces your " + (silly ? "wagina" : "inner elbow") + ", and the automatic dispensing system activates, gradually sending the green liquid into your veins. After about a quarter of the syringe has entered you, you pull your arm back. The pressure-sensitive needle automatically stops dispensing and you prepare yourself for the imminent changes: the drug siphoning your brain power away.");
 			output("\n\nJust seconds later, you feel different. IQ points seem to disappear quickly as you are looking down at your body.");
-			if(pc.biggestTitSize() >= 5 && pc.biggestCockLength() >= 8) output(" Wow, you’ve got a lot going for you. Tits and a dick, perfectly complimenting each other.");
+			if(pc.biggestTitSize() >= 5 && pc.biggestCockLength() >= 8) output(" Wow, you’ve got a lot going for you. Tits and a dick, perfectly complementing each other.");
 			else if(pc.biggestCockLength() >= 8) output(" Wow, what a great dick, you think to yourself.");
 			else if(pc.biggestTitSize() >= 5) output(" Wow, those are some nice tits, you think to yourself.");
 			else output(" It’s so mesmerizing to just look at yourself.");
@@ -4913,7 +4923,7 @@ public function drBadgerLabStrangeBall(response:String = "menu"):void
 			
 			// [Use] [Nevermind]
 			addButton(0, "Use", drBadgerLabStrangeBall, "use", "Use Brainwashing Ball", "Attempt to fix the machine.");
-			addButton(1, "Nevermind", mainGameMenu);
+			addButton(1, "Never Mind", mainGameMenu);
 			break;
 		case "use":
 			showBrainwashingBall();
@@ -5073,7 +5083,7 @@ public function drBadgerSiliconeMiniTankBonus(btnSlot:int = 0):void
 	// Pick one random line to add depending on crewmates:
 	var siliconeTankBlurbs:Array = [];
 	if(celiseIsCrew()) siliconeTankBlurbs.push("A small splatter of green goo is on the side of the tank.");
-	if(annoIsCrew()) siliconeTankBlurbs.push("A SteeleTech sticker is on the side of the tank.");
+	if(annoIsCrew()) siliconeTankBlurbs.push("A Steele Tech sticker is on the side of the tank.");
 	if(kaseIsCrew()) siliconeTankBlurbs.push("A sticker of a circuit board is on the side of the tank.");
 	if(pexigaIsCrew()) siliconeTankBlurbs.push("Some drool leaks down the side of the tank.");
 	if(gooArmorIsCrew()) siliconeTankBlurbs.push("A splatter or gray microbots sticks to the side of the tank.");
@@ -5144,7 +5154,7 @@ public function drBadgerSiliconeTankMenu():void
 	if(silicone == null && flags["BADGER_SILICONE_TANK_USES"] <= 0) { /* Use it at least once! */ }
 	else if(silicone == null || silicone.value1 < maxHips || silicone.value2 < maxButt || silicone.value3 < maxBoob || silicone.value4 < maxLips)
 	{
-		var drBadgerCanAppear:Boolean = (flags["DR_BADGER_TURNED_IN"] == undefined);
+		var drBadgerCanAppear:Boolean = (!drBadgerImprisioned());
 		
 		if(!inShip && pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump as much silicone into your body as you can.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
 		else addButton(4, (!inShip ? "Go Crazy" : "Full Inject"), drBadgerSiliconeTankUse, "go crazy", (!inShip ? "Go Crazy" : "Full Inject"), "Pump as much silicone into your body as you can.");

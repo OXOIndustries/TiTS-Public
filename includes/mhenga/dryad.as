@@ -277,7 +277,7 @@ public function dryadAss():void
 	pc.lust(30);
 	if(pc.lustQ() >= 100)
 	{
-		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complimentary orgasm. That was quite the experience!");
+		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complementary orgasm. That was quite the experience!");
 		pc.orgasm();
 	}
 	processTime(10);

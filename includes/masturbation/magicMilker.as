@@ -25,7 +25,7 @@ public function joyCoMagicMilker7Sucks():void
 	}
 	//Intro Pt II
 	output("\n\nThe button audibly clicks under your thumb, and the miniaturized milker whirrs. Like someone waking from a long sleep, the machine’s tubes writhe and lift, barely coordinated. After a few seconds of this, they lift the cups up before you.");
-	if(pc.totalBreasts() > 2) output(" A hatch on the Magic-Milker’s main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cups emerge to compliment the original pair, one for every single one of your breasts.");
+	if(pc.totalBreasts() > 2) output(" A hatch on the Magic-Milker’s main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cup" + ((pc.totalBreasts()-2) == 1 ? " emerges" : "s emerge") + " to complement the original pair, a tube for every single one of your breasts.");
 	output(" The ");
 	if(pc.totalBreasts() > 2) output("many ");
 	output("milkers arrange themselves so that they’re hovering a scant few inches from your soon to be sucked nipples and pause as if considering their options or calculating something.");

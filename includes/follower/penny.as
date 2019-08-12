@@ -128,19 +128,19 @@ public function pennyCrewMenu():void
 		else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
 	}
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.");
-	//Go Whine to Penny that a Mustelide was Mean to You
-	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
-	//Add [Badger Help] to Penny’s talk menu
-	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
-	if(flags["DR_BADGER_TURNED_IN"] == undefined && flags["BADGER_QUEST"] == 1)
+	
+	if(!drBadgerImprisioned())
 	{
-		addButton(5,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
-		if(flags["NO_ZAP_PENNY"] == undefined) 
+		if(flags["BADGER_QUEST"] == 1)
 		{
-			if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(6,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
-			else addButton(6,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+			if(flags["NO_ZAP_PENNY"] == undefined) 
+			{
+				if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(2,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
+				else addButton(2,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+			}
+			else addDisabledButton(2,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+			addButton(3,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
 		}
-		else addDisabledButton(6,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
 	}
 	
 	addButton(13, "Leave Crew", pennyBootFromCrew, undefined, "Leave Crew", "Ask Penny to move off the ship. You’ll be able to pick her up again later.");
@@ -591,7 +591,7 @@ public function ask2ChangePenny():void
 
 //[=Interrupt=]
 // Tooltip: You’ve seen enough. You need to fuck her.
-/* Play the <i>“OverDeskFuck”</i> scene or some PC-is-female scene; will require some contextual edits
+/* Play the “OverDeskFuck” scene or some PC-is-female scene; will require some contextual edits
 public function interruptPennyChanging():void
 {
 

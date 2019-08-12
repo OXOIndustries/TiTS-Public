@@ -131,8 +131,11 @@
 		public function delFlag(arg:int):void
 		{
 			//Find and destroy it.
-			for(var x:int = 0; x < vagooFlags.length; x++) {
-				if(arg == vagooFlags[x]) vagooFlags.splice(x,1);
+			var i:int = (vagooFlags.length - 1);
+			while (i >= 0)
+			{
+				if(vagooFlags[i] == arg) vagooFlags.splice(i, 1);
+				i--;
 			}
 		}
 		public function clearFlags():void {

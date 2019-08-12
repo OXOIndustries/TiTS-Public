@@ -515,7 +515,7 @@ public function hopperLossBadEndCombinedNewLifeShit():void
 	output("\n\nA holo-screen flashes into nothingness with a faint, crackly <i>wisp.</i>");
 	output("\n\n<i>“Arrogant son of a...”</i> the tall woman scoffs and mutters, hopping back to her giant bed.");
 	output("\n\n<i>“Don’t get in such a huff, beautiful.”</i>");
-	output("\n\nA black and blue furred laquine share a quick kiss, barely avoiding an escalation into wanton excess. <i>“Hmph,”</i> the laquine in an orange suit cracks her neck. <i>“So much trouble over one person, this close to finally getting shit done. Guess it’s nothing if not exciting.”</i> She laughs with the smaller rabbit beside her, finally looking down. <i>“’Sides, all that hassle was worth it for this...”</i>");
+	output("\n\nA black and blue furred laquine share a quick kiss, barely avoiding an escalation into wanton excess. <i>“Hmph,”</i> the laquine in an orange suit cracks her neck. <i>“So much trouble over one person, this close to finally getting shit done. Guess it’s nothing if not exciting.”</i> She laughs with the smaller rabbit beside her, finally looking down. <i>“‘Sides, all that hassle was worth it for this...”</i>");
 	output("\n\nA gloved hand rests on your head, stirring you from her cozy lap. It’s only by her touch that you react. You look up to your neon-styled mistress in all her floppy-eared glory, heart warmed and fluttering from the reassuring smile on her muzzle. You nuzzle into that affectionate palm before moving back to the outline of her pillowy testicles, planting a fat, lipsticked kiss on one of its spherical contents, being rewarded with a gentle ");
 	if(pc.hasEmoteEars()) output("scritch behind the [pc.ears]");
 	else if(pc.hasHair()) output("ruffle to your [pc.hair]");

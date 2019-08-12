@@ -84,6 +84,9 @@
 		public static const FLAG_SHORT:int									= 49;
 		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
 		public static const FLAG_HYPER_PUMPED:int 							= 51;
+		public static const FLAG_HEART_SHAPED:int							= 52;
+		public static const FLAG_STAR_SHAPED:int							= 53;
+
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -138,6 +141,8 @@
 			"Short",
 			"Floppy",
 			"Hyper Pumped",
+			"Heart-Shaped",
+			"Star-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -785,7 +790,13 @@
 			NIPPLE_TYPE_INVERTED,
 			NIPPLE_TYPE_TENTACLED,
 		];
-				
+		
+		public static const VALID_AREOLA_FLAGS:Array = [
+			FLAG_PUMPED,
+			FLAG_HEART_SHAPED,
+			FLAG_STAR_SHAPED,
+		];
+		
 		//CUM & MILK TYPES
 		public static const FLUID_TYPE_MILK:int                                 = 0;
 		public static const FLUID_TYPE_HONEY:int                                = 1;
@@ -1234,6 +1245,8 @@
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
 		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
+		public static const ITEM_FLAG_PIERCING_BAR:int 					= 47; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1282,7 +1295,9 @@
 			"Burst Fire",
 			"Full-Auto Fire",
 			"Ship Equipment",
-			"Crewed Turret"
+			"Crewed Turret",
+			"Bar",
+			"Hoop"
 		];
 		
 		/**

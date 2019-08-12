@@ -15,12 +15,6 @@ Chief Teyaal's personal assistant, found in the personal chambers outside the ch
 She's hostile to you if you fuck with the ship; if you promise to leave it alone and let her work on it, she's fine with you. If you're smart / Tech Spec it up, she'll get so turned on by your intelligence and interest in her ship that she goes down on you.
 */
 
-public function showOlympia(nude:Boolean = false):void
-{
-	showName("\nOLYMPIA");
-	showBust("OLYMPIA" + (nude ? "_NUDE":""));
-}
-
 public function olympiaCreatureStats():PregnancyPlaceholder
 {
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
@@ -36,7 +30,7 @@ public function olympiaCreatureStats():PregnancyPlaceholder
 
 public function pirateResearchVesselStolen():Boolean
 {
-	return (9999 == 0);
+	return (flags["SIDEWINDER_TAKEN"] != undefined);
 }
 //Room Descriptions
 //AB 20: Research & Development Lab

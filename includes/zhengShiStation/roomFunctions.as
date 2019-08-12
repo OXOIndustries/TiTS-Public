@@ -329,7 +329,7 @@ public function zsmw8Bonus():Boolean
 }
 public function zsmyy18AirlockBonus():Boolean
 {
-	//Haven't found replacement helmet:
+	//Haven’t found replacement helmet:
 	if(flags["ZHENG_SPACESUIT_TAKEN"] == undefined)
 	{
 		output("\n\nThere’s a bulky black space suit next to you, the only one hanging up on the racks. Somebody’s stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest.");
@@ -418,7 +418,7 @@ public function tIntersectionSlaveFunProcChance():Boolean
 
 public function slavePensBonus():Boolean
 {
-	//Hasn't freed slaves:
+	//Hasn’t freed slaves:
 	if(flags["MAIKE_SLAVES_RELEASED"] != 2) 
 	{
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
@@ -536,7 +536,7 @@ public function maikesOfficeBonus():Boolean
 		showName("\nLOCKED...");
 		currentLocation = rooms[currentLocation].westExit;
 		generateMap();
-		//Maike's door has a lock puzzle the PC must bypass to enter, or have her access card.
+		//Maike’s door has a lock puzzle the PC must bypass to enter, or have her access card.
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		
 		clearMenu();
@@ -547,7 +547,7 @@ public function maikesOfficeBonus():Boolean
 		addButton(14,"Leave",mainGameMenu);
 		return true;
 	}
-	//Hasn't freed slaves:
+	//Hasn’t freed slaves:
 	if(flags["MAIKE_SLAVES_RELEASED"] == undefined)
 	{
 		if(flags["MET_TIVF"] == undefined)
@@ -661,7 +661,7 @@ public function urbolgsOffice():void
 {
 	vendingMachineButton(0,"energy");
 	output(" You’re surprised it doesn’t have a combination as well.");
-	//Appended to Urbolg's room description.
+	//Appended to Urbolg’s room description.
 	if(flags["GOT_URBOLGS_SHIELD"] == 0) 
 	{
 		output("\n\nThe brown safe Urbolg mentioned is in fact under his desk. If you remember correctly, the combination is 7-8-9. You could pop it open, if you wanted to.");
@@ -713,6 +713,13 @@ public function landingAtZhengShi():void
 	//Repeat Approach, Post Correct Answer
 	else
 	{
+		if(pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
+		{
+			currentLocation = "SHIP INTERIOR";
+			generateMap();
+			zhengShiReturnDoof();
+			return;
+		}
 		output("You set course for the pirate base at Zhèng Shi. Now that you know where it is, and have solidified your right to be there as far as its gate guards are concerned, it’s easy going. The heavy cannons surrounding the docking bay entrance follow you in, but hold their fire while your slide your ship in through the force field and into your parking spot at the back of the massive hangar. Looks like you’re on the roster now!");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1497,5 +1504,158 @@ public function firstTimeCasinoPartDues():void
 
 public function aquariusBonusFunc():void
 {
-	daneBonus(0);
+	var btnSlot:int = 0;
+	if(daneAtZhengShi()) daneBonus(btnSlot++);
+}
+
+/* REDUX FOR SIDEWINDER STEALINGL */
+public function ZSFG16Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("You stand square in the center of the station’s foundry level, aptly named, judging by the red-glowing, steam-belching furnaces and auto-smithies to the north. The entire area is one massive cavern - with a gleaming ship dangling high over it, surrounded by heavy scaffolds and the flashing torches of busy work-slaves. Rusty steel beams and geddanium-braid cabling stretch all the way into the craggy ceiling above, marking out just how much higher the cargo elevator can climb. Prefab hallways and white-boxed workrooms sit just to the south, undoubtedly providing a locale for more cerebral talents to be employed, insulated from the cacophonous din. A tunnel in the western wall is tagged with cheap spraypaint: “Shuttle Bay.”");
+	else output("You stand square in the center of the station’s foundry level, aptly named, judging by the red-glowing, steam-belching furnaces and auto-smithies to the north. The entire area is one massive cavern - with the skeletal frame of a ship dangling high over it, surrounded by heavy scaffolds and the flashing torches of busy work-slaves. Rusty steel beams and geddanium-braid cabling stretch all the way into the craggy ceiling above, marking out just how much higher the cargo elevator can climb. Prefab hallways and white-boxed workrooms sit just to the south, undoubtedly providing a locale for more cerebral talents to be employed, insulated from the cacophonous din. A tunnel in the western wall is tagged with cheap spraypaint: “Shuttle Bay.”");
+	return zhengFoundryF1EncounterBonus();
+}
+public function ZSFM12Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("The machinery comes to a halt along the eastern edge of the cavern. High above, a suspended scaffold surrounds the shape of an enormous craft. It looks complete, any work long since finished. To your northwest, the forgefires burn bright, the plasma furnaces glittering with fiery, metal-dissolving energies.");
+	else output("The machinery comes to a halt along the eastern edge of the cavern. High above, a suspended scaffold surrounds the skeleton of an enormous craft. You may have stolen the original, but a replacement is well on its way. To your northwest, the forgefires burn bright, the plasma furnaces glittering with fiery, metal-dissolving energies.");
+	return zhengFoundryF1EncounterBonus();
+}
+public function ZSFR6Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("This scaffold hangs from anchors in the cavern’s ceiling. Looking down, you’re at least four stories up from the ground floor and its bevy of automated smelting equipment. A fall from this height could kill you. Fortunately, the pirates eschewed their traditional disregard for safety and sprung for some quality steel railings. Still, you’d rather not lean to hard on any of them. The scaffold stretches off to the east and south around the bulk of a gleaming, newly constructed ship.");
+	else output("This scaffold hangs from anchors in the cavern’s ceiling. Looking down, you’re at least four stories up from the ground floor and its bevy of automated smelting equipment. A fall from this height could kill you. Fortunately, the pirates eschewed their traditional disregard for safety and sprung for some quality steel railings. Still, you’d rather not lean to hard on any of them. The scaffold stretches off to the east and south around the bulk of a new <i>Sidewinder</i> - one still a long ways from complete.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFT6Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Walking along the scaffold, you pass by one of the ship’s enormous engines. It isn’t just large - it’s large for the heavy corvette it’s bolted onto. Boosters this size are rarely seen on anything smaller than a full-size capital ship, but you suppose the pirates are rigging this ship for speed, the better to avoid Peacekeeper intervention. A little to the west, you can see a ladder. The scaffold also continues east.");
+	else output("Walking along the scaffold, you pass by one of the ship’s partly-completed engines. Even half built, it’s large for the heavy corvette it’s bolted onto. Boosters this size are rarely seen on anything smaller than a full-size capital ship, but you suppose the pirates are rigging this ship for speed, the better to avoid Peacekeeper intervention. A little to the west, you can see a ladder. The scaffold also continues east.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFV6Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("You stand directly behind and below a wall of awe-inspiring engines, their exhaust cones individually big enough to contain a large house. The ship’s hull gleams with fresh paint and a variety of pirate insignias (along with some flashy graffiti). This is what Zheng Shi was built for - you’re sure of it. The station exists purely to produce this ship in secret, constructed bespoke for some oh-so-specific job. The scaffold around the engines runs east and west from here.");
+	else output("You stand directly behind and below a wall of awe-inspiring engines, their exhaust cones individually big enough to contain a large house. The ship’s hull is somewhat less complete. Patchworks of armor plating and exposed internal systems show off its masterful engineering like a camwhore shows off her tits. This is what Zheng Shi was built for - you’re sure of it. The station exists purely to produce this ship in secret, constructed bespoke for some oh-so-specific job. The scaffold around the engines runs east and west from here.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFX6Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("To your south lies the Zheng Shi’s crown jewel: a heavy corvette with engines befitting a capital ship. One of them is close by - so close you could reach out and touch the flare of its cone, caress the super-high durability alloy. A ladder to the east descends along the cavern’s southern wall back to the foundry level and its heat belching machines. Alternatively, this suspended platform strolls west behind the ship’s thruster bank.");
+	else output("To your south lies the Zheng Shi’s newest crown jewel: a second heavy corvette with engines befitting a capital ship. One of them is close by - so close you could reach out and touch the flare of its cone, caress the super-high durability alloy. A ladder to the east descends along the cavern’s southern wall back to the foundry level and its heat belching machines. Alternatively, this suspended platform strolls west behind the ship’s thruster bank.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ6Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("You stand at the corner of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft’s fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.");
+	else output("You stand at the corner of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the replacement craft’s partly-constructed fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ8Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Following along the underside of a corvette, the scaffold allows you to admire its every swell and curve, the size and reflective sheen of its sensor dishes, the girth of its steam-belching barrels. Unfortunately the scaffold itself is not so glorious, but it tracks north and south, giving you ample opportunity to take a closer look at the custom-built vessel.");
+	else output("Following along the underside of a corvette, the scaffold allows you to admire its every swell and curve, marred by huge gaps that remain to be filled in. Even half-finished, the second <i>Sidewinder</i> is a sight to behold. Unfortunately the scaffold itself is not so glorious, but it tracks north and south, giving you ample opportunity to take a closer look at the custom-built vessel.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ10Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Part of the scaffold’s railing is broken and dangles precariously over the forge below, nearly four stories down. You move carefully past it and back to the safer path beyond, briefly wondering why nobody has bothered to fix it. Then you look up at the ship’s side, every panel polished and in position. Work here is done. The scaffold continues to the north and south.");
+	else output("Part of the scaffold’s railing is broken and dangles precariously over the forge below, nearly four stories down. You move carefully past it and back to the safer path beyond, briefly wondering why nobody has bothered to fix it. Then you look up at the ship’s side, where half-welded panels sway dangerously. After your theft, safety appears to be an even lower priority. The scaffold continues to the north and south.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ12Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Following the ship’s hull like a lost puppy, these hanging platforms bend along in a generally north-south path. Heavy cables as thick as your arm hold them aloft, able to support the weight of dozens of workers, armor plates, and a small army of tools.");
+	else output("Following the new ship’s partial hull like a lost puppy, these hanging platforms bend along in a generally north-south path. Heavy cables as thick as your arm hold them aloft, able to support the weight of dozens of workers, armor plates, and a small army of tools.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ14Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Ten feet across and hemmed in by sturdy safety rails, the metallic scaffold continues its north-south journey in the shadow of the pirate’s corvette, providing an awesome view of the assembled industry below and the spacecraft above.");
+	else output("Ten feet across and hemmed in by sturdy safety rails, the metallic scaffold continues its north-south journey in the shadow of the pirate’s corvette, providing an awesome view of the assembled industry below and the second Zheng Shi-crafted spacecraft above.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ22Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("The crimson vessel’s smooth bulges and rounded curves evoke memories of sporty hover-cars. Its recessed turret ports allow it to maintain a sleek profile for maneuverability in atmospheres of all types while still carrying enough weaponry to come out ahead in a dogfight. The longer you walk around it, the more surprised you are that these rag-tag groups of degenerates managed to come together to build something so beautiful. The walkway continues to the north and south.");
+	else output("The bare metal vessel’s framework hints at the rounded curves of a sporty hover-car. You know all too well how well those smooth arcs will fill out. Recessed turret ports will allow it to maintain a sleek profile for maneuverability in atmospheres of all types while still carrying enough weaponry to come out ahead in a dogfight. The longer you walk around it, the more surprised you are that these rag-tag groups of degenerates managed to come together to build two incredible spacecraft. The walkway continues to the north and south.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ24Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("The scaffold doesn’t so much as sway when you walk. The heavy cables the bolt it to the foundry’s ceiling should allow some amount of motion, but it hangs rock solid. The secret, you realize, is the black boxes positioned at several of the intersections between panels. They occasionally flare with repulsive energy, pushing back in opposition to the inertial load it is subjected to. Brilliant.");
+	else output("The scaffold doesn’t so much as sway when you walk. The heavy cables the bolt it to the foundry’s ceiling should allow some amount of motion, but it hangs rock solid. The secret, you realize, is the black boxes positioned at several of the intersections between panels. They occasionally flare with repulsive energy, pushing back in opposition to the inertial load it is subjected to. Brilliant.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFZ26Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Bending 90 degrees to follow the last bits of construction on the pirate’s prized ship, the hanging catwalk stretches away to the north and west. Flecks of red paint adorn places of the deck. Bored-looking workers and slaves sometimes pass you by without a second thought, taking the long walk to their next job. Now if you could get the sharper-eyed scalawags to ignore you as easily.");
+	else output("Bending 90 degrees to follow the hurried re-construction on the pirate’s prized ship, the hanging catwalk stretches away to the north and west. Flecks of red paint adorn places of the deck. Bored-looking workers and slaves sometimes pass you by without a second thought, taking the long walk to their next job. Now if you could get the sharper-eyed scalawags to ignore you as easily.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFX26Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("You stand under the fore portions of an enormous, red-painted vessel. Its body swells wider and wider to the north, fattening to a huge bank of engine cones in the distance. She’s no capital ship, but she sure makes the Casstech Z14 you started with look like small potatoes. The scaffold leads east and west. A few steps in the former direction and you’ll hit a right angle bend to the north.");
+	else output("You stand under the fore portions of the enormous attempt to replace your pilfered vessel. Its body swells wider and wider to the north, fattening to a huge bank of engine cones in the distance. She’s no capital ship, but you know firsthand that she’ll have it where it counts. The scaffold leads east and west. A few steps in the former direction and you’ll hit a right angle bend to the north.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFV26Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("You flick your gaze back and forth along the hanging scaffold. It races east and west from here, under the nose of the privateer’s star-faring vessel. That ship is complete now - or mostly complete. More abandoned tools can be found lingering in disuse than workmen to crew them. The craftspeople who pass by do so with the casual smiles of men and women on the cusp of completing a long-time labor, and you don’t see them often.");
+	else output("You flick your gaze back and forth along the hanging scaffold. It races east and west from here, under the nose of the privateer’s second attempt at a star-faring vessel. This ship is still a long way from complete. More abandoned tools can be found lingering in disuse than workmen to crew them. The craftspeople who pass by do so with the casual smiles of men and women on the cusp of completing a long-time labor, and you don’t see them often.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFT26Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("A smaller scaffold breaks north from the bigger, better-supported cat-walk to strike out toward a boarding hatch in the suspended ship. The larger path continues east and west, while the view over the southern railing presents you with a bird’s-eye view of the manufacturing complex below.");
+	else output("A smaller scaffold breaks north from the bigger, better-supported cat-walk to strike out toward an incomplete boarding hatch in the suspended ship. The larger path continues east and west, while the view over the southern railing presents you with a bird’s-eye view of the manufacturing complex below.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR26Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("The hanging metal catwalk jerks north and east at a perfect right angle, flanking around all sides of the crimson ship. The north path hugs along its starboard side. The eastern one dangles beneath its nose, providing a beautiful head-on view of its sporty curves. There, a smaller scaffold breaks toward a hatch - the only entrance you’ve seen on your suspended jaunt.");
+	else output("The hanging metal catwalk jerks north and east at a perfect right angle, flanking around all sides of the stand-in for your crimson ship. The north path hugs along its starboard side. The eastern one dangles beneath its nose, providing a head-on view of its soon to be armored curves. There, a smaller scaffold breaks toward a hatch - the only entrance you’ve seen on your suspended jaunt.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR20Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Walking into this section of scaffold is like stepping into a cool mountainside morning, except the mist here is rolling off a ceiling-mounted coolant pipe. It cuts a dogleg east and plugs into a frost-rimmed port in the corvette’s flank. A lingering worker leans against the railing, savoring the chill, but a warning beep stirs him into action. He steps away with a respectful nod, heading back toward some unknown post to the north. You could follow or wander off in the other direction, though it’ll be tough to see anything until you escape this bank of artificial fog.");
+	else output("Walking into this section of scaffold is like stepping into a cool mountainside morning, except the mist here is rolling off a ceiling-mounted coolant pipe. It dangles limp, unconnected to anything. The port at its terminus only closes halfway, causing it to spill out an avalanche of aerosolized chill. You recognize it as the same coolant your ship uses, and you suppose once the <i>Sidewinder II</i> is complete enough to plug it in, you won’t have to deal with this leak any longer. You could head north or wander off in the other direction, though it’ll be tough to see anything until you escape this bank of artificial fog.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR16Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("From this T-intersection, the catwalk splits three ways. The north and south branches combine to form a solid avenue for bustling workmen (or workslaves) to move around every side of the hanging, heavy corvette. The east fork more heavily reinforced and over twenty feet across. It races up to the side of the cargo elevator, itself narrowly threading narrowly alongside the tremendous craft.");
+	else output("From this T-intersection, the catwalk splits three ways. The north and south branches combine to form a solid avenue for bustling workmen (or workslaves) to move around every side of the hanging corvette’s exposed skeleton. The east fork more heavily reinforced and over twenty feet across. It races up to the side of the cargo elevator, itself narrowly threading narrowly alongside the tremendous craft.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR12Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("Sensor dishes went out of style decades ago, but the reality of long distance detection has made them a practical necessity for dealing with pirates - and skirting the long arm of the law. The one shading the top of the ship is quite large for a vessel of this size, and workmen with magsuits slowly crawl around the struts and folded metal of the bay of its hidden storage bay. The scaffold continues north and south.");
+	else output("An unhappy-looking slave dangles above second <i>Sidewinder</i>’s exposed frame. In her hand, the sputtering plasma welder carefully traces the connection between metallic skeleton and sensor dish mounting bracket, merging two pieces of metal into one. Such equipment went out of style decades ago, but the reality of long distance detection has made them a practical necessity for dealing with pirates - and skirting the long arm of the law. This particular dish is quite large for a vessel of this size.\n\nThe scaffold continues north and south.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR10Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("A patch of unpainted armor flares out to within arm’s reach of the catwalk, seated by concealed fastening mechanisms on the underside so as not to present any weaknesses to hostile fire. A few tools hang from a bucket on the rail, left behind by some workers on break. Such basic implements are hardly worth the effort it would take to steal them. Your path along the suspended catwalk traverses in a straight north-south line.");
+	else output("A bit of the second <i>Sidewinder</i>’s exposed frame almost within arm’s reach, and the pirates have taken the opportunity to paint <i>“Fuck [pc.Name]!”</i> on the side. A few tools hang from a bucket on the rail, left behind by some workers on break. Such basic implements are hardly worth the effort it would take to steal them. Your path along the suspended catwalk traverses in a straight north-south line.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFR8Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("From this high up you’re able to casually follow the foundry’s every connection. Ore rises on conveyors below to be carried into crucibles for smelting and pouring, then fed into automatic smelters to the east that hammer and the ingots into chunks of modular armor plating. It’s a miniaturized take on the processes occurring in the mega-corps’ orbital shipyards, doubtless assembled with the help of stolen manufacturing data schematics. The scaffold stretches north and south along the ship’s starboard side.");
+	else output("From this high up you’re able to casually follow the foundry’s every connection. Ore rises on conveyors below to be carried into crucibles for smelting and pouring, then fed into automatic smelters to the east that hammer and the ingots into chunks of modular armor plating. It’s a miniaturized take on the processes occurring in the mega-corps’ orbital shipyards, doubtless assembled with the help of stolen manufacturing data schematics. The scaffold stretches north and south along the skeletal ship’s starboard side.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFT22Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("This suspended boarding ramp hangs a sharp, 90 degree turn to the east and south from here. The ship itself lies in the former direction, majestic and gleaming, its aerodynamic curves suggesting equal ease among stars or cloudy skies. The other direction leads back to the wider catwalks above Zheng Shi’s foundry.");
+	else output("This suspended boarding ramp hangs a sharp, 90 degree turn to the east and south from here. You remember the first time you came here, looking up at the majestic, gleaming curves of your ship. Now there’s nothing but the sharp, angled metal of support beams and half-completed armor plating. The ship lies east, though there’s nothing to climb inside of... yet. The other direction leads back to the wider catwalks above Zheng Shi’s foundry.");
+	return zhengFoundryF2EncounterBonus();
+}
+public function ZSFV22Bonus():Boolean
+{
+	if(!pirateResearchVesselStolen()) output("The catwalk terminates at the Sidewinder’s side, buffered by the six inches of rubberized padding, squished tight against the gleaming hull. A squarish seam, roughly eight feet high, provides graciously accommodating entry to the craft, assuming you can work the transparent aluminum touchscreen and card reader to get inside.");
+	else output("The catwalk terminates at a large gap between you and the new <i>Sidewinder</i>’s frame. When it’s complete, the gleaming hull will connect nicely with the catwalk’s six inches of rubberized padding.\n\nThere’s nothing to do but go back.");
+	return cousinEncounterBonus();
 }

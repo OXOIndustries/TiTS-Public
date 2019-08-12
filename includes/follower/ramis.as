@@ -254,7 +254,7 @@ public function ramisRecruitDealShip():void
 
 	moveTo("TAVROS HANGAR");
 	
-	if (shits["SHIP"] is Casstech)
+	if (PCShipIsCasstech())
 	{
 		output("Her face falls, her ears droop, when she beholds your trusty, humble Casstech in the hangar.");
 		output("\n\n<i>“I would’ve thought a rich playboy’s sprog would have a cool as fuck ride,”</i> she mumbles, <i>“not a piece of junk from the 29th century.");
@@ -263,7 +263,7 @@ public function ramisRecruitDealShip():void
 	}
 	else
 	{
-		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [PCShipName] up.");
+		output("<i>“Nice ride, " + ramisfmt("mate", "big lad", "knickers") + ",”</i> she purrs, eyeing your [pc.ship] up.");
 		output("\n\n<i>“Think I saw you comen in on a real piece of junk a couple of times, and I was kind’ve worried you were still floaten around in that.”</i> She tuts and hums as she walks around it, taking in the armaments. <i>“Yeeeaaahhh, but see, these are all calibrated wrong. They produce ‘em like this cuz they’re dead easy to bolt on factory-fresh to a ship like this, you know, but you’re wasten energy and not getten the full ay oh eff when they’re configured like that.”</i> She snaps the straps of her sports bra resolutely. <i>“Plenty to be getten on with! I’ll go and pick my stuff up from the lockers and get to it. I’ll be on board by the time you’re ready to leave... captain.”</i>");
 	}
 	
@@ -1804,7 +1804,7 @@ public function ramisEnoughCatnapping():void
 		output("You set to work on the most obvious and enticing targets in front of you. Ramis stirs, her pointed ears flattening when you slide one of her small nipples between your [pc.lips], gently sucking and nibbling on it; her snoring turns into a pleased, murmuring groan when your fingers find her other breast, kneading and rubbing its nub. Her grip on you tightens, and a hot, heavy hip wraps itself around your [pc.legs].");
 		output("\n\n<i>“Well now,”</i> she says, opening fuggy eyes at last and looking down at you. <i>“What d’we have here?”</i>");
 		output("\n\n<i>“Morning service,”</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
-		output("\n\n<i>“How nice. Why don’t officers get a complimentary " + (pc.isFemboy() ? "sissy" : "boy toy") + " assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
+		output("\n\n<i>“How nice. Why don’t officers get a complementary " + (pc.isFemboy() ? "sissy" : "boy toy") + " assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
 	
 		if (pc.biggestCockLength() < 6)
 		{
@@ -1842,7 +1842,7 @@ public function ramisEnoughCatnapping():void
 		output("\n\n<i>“Well now,”</i> she says, opening fuggy eyes at last and looking down at you. <i>“What d’we have here?”</i>");
 
 		output("\n\n<i>“Morning service,”</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
-		output("\n\n<i>“How nice. Why don’t officers get a complimentary boy toy assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
+		output("\n\n<i>“How nice. Why don’t officers get a complementary boy toy assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
 		output("\n\nA few seconds later you’re on your back, hands clutched around two full, tawny buttocks, watching 120 kilograms of blonde bombshell ride your [pc.cockBiggest] with stern, athletic shoves of her hips. Void, it’s all you can do to hold back when the fucking is this supple, this tight, this spry... your throaty groan twines with her exhilarated gasps as she clamps her thighs around your waist even more intently, clutching your straining cock up in sleek pressure and begins to pump you hard, her large breasts bouncing in front of your eyes. ");
 
 		output("\n\nHer claws biting into your shoulders, you grasp her brawny shoulders and cum, ecstasy grabbing at your muscles and nerves and yanking at them again and again as the [pc.cumColor] seed is practically vacuumed out of you by the formidable clamp of bulging kaithrit muscle locked around your [pc.hips]. Ramis moans and meows wordless elation at the ceiling, her pussy rippling around you as she continues to ride you as if you were a frothing stallion.");
@@ -2140,7 +2140,7 @@ public function ramisFuckinBois():void
 	var shagType:String = RandomInCollection(possibleShags);
 	
 	output("Once you’re ensconced in a large, plush suite in Ramis’s favourite fully-automated love hotel");
-	if (shits["SHIP"] is Casstech) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
+	if (PCShipIsCasstech()) output(" (you suspect the reason why she insisted upon it was to spare everyone the cramped diminutiveness of your poor old Casstech, which isn’t built for orgies this size at all)");
 	output(", some champagne is ordered out of the synthesizer and the conversation turns yet wilder and lewder, led on by your utterly incorrigible, lusty gunnery officer.");
 	output("\n\nShe encourages Kroy to get on the table and give you a strip tease, and you all watch as he twists this way and that, teasing his stripy thigh-high socks, the little gap of brown flesh between them and his silky red undies underneath his flouncy skirt, cock-bulge prominent against the silk; then he slowly takes off his top strap by strap, revealing his soft, lean chest, his tiny, pointy nipples and achingly flat belly.");
 	output("\n\nLust and heat coalesces in your [pc.groin] as you watch this, particularly as Vanesse’s stockinged foot has climbed its way between your [pc.thighs],");

@@ -1442,7 +1442,7 @@ public function moreStellaPetPlayPostCollarShop():void
 	else output(" an explosive, moaning orgasm");
 	output(". Then you order her to get down, pulling her bottoms back into place and walking back into the crowd before things get too serious.");
 
-	output("\n\nYou’re not overly concerned about the two of you ending up on the extranet - SteeleTech is ostensibly a force for good, but its lawyers have no qualms about scouring ‘particular’ unsavory videos from existence. You expect you’ll get a call later. Still, though, it was worth it.");
+	output("\n\nYou’re not overly concerned about the two of you ending up on the extranet - Steele Tech is ostensibly a force for good, but its lawyers have no qualms about scouring ‘particular’ unsavory videos from existence. You expect you’ll get a call later. Still, though, it was worth it.");
 
 	output("\n\n<i>“That was fun, wasn’t it?”</i> you mutter to Stella, lightly pulling the leash. She barks in affirmative, her tail and butt wagging madly. <i>“Good girl.”</i>");
 

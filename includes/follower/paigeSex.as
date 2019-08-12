@@ -959,7 +959,7 @@ public function FTDN3(args:Array):void
 		if(pc.balls > 0) output(" and down across your [pc.sack], sloshing and multiplying the load within for her");
 		output(". Your [pc.cockHead] spears just deep enough into her and your girth flits against all the right spots – and her pocket, in turn, squeezes you in just the right ways and kisses your crown with just enough pressure");
 	}
-	else if(pc.hasVagina()) output("your [pc.vagina] melding against hers in a sloppy facsimile of a kiss. Her body straightens and her tail goes rigid whenever her button happens to glide against yours, and you sharply inhale and mimic her form in kind. Her body seems to compliment yours perfectly: the way your genitals happen to form against each other and the way you intrinsically know, and match, each other’s rhythm, knowing when to draw back and when to push up and in");
+	else if(pc.hasVagina()) output("your [pc.vagina] melding against hers in a sloppy facsimile of a kiss. Her body straightens and her tail goes rigid whenever her button happens to glide against yours, and you sharply inhale and mimic her form in kind. Her body seems to complement yours perfectly: the way your genitals happen to form against each other and the way you intrinsically know, and match, each other’s rhythm, knowing when to draw back and when to push up and in");
 	else output("meeting and coalescing with nothing. Her body’s rhythm is rocked and unsteady at first as she takes broad strokes, dragging her pussy all over your blank crotch – she knew there was no dick but she at least expected a vagina to bond with. You both can’t help but be a little disappointed, although Paige is too horny to stop and you’re not about to ask her to");
 	output(".");
 

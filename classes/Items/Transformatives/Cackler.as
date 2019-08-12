@@ -184,14 +184,19 @@ package classes.Items.Transformatives
 			if (!target.hasEmoteEars()) output(" move up to the top of your head, then");
 			output(" enlarge, eventually coming to pointed tips. As a thin layer of fur begins to settle in, you look into your reflection and realize <b>you’ve grown a pair of furred hyena ears!</b>");
 			target.earType = GLOBAL.TYPE_HYENA;
+			target.clearEarFlags();
+			target.addEarFlag(GLOBAL.FLAG_TAPERED);
+			target.addEarFlag(GLOBAL.FLAG_FURRED);
 		}
 
 		//Gain Black and Brown or Black and Gray striped fur
 		private function furMorph(target:Creature):void
 		{
 			output("\n\nYour [pc.skinFurScales] " + (InCollection(target.skinType, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) ? "start" : "starts") + " to itch as a prickly, burning sensation overcomes your dermis. Almost as if your pores themselves are on fire, you helplessly scratch yourself for relief!");
-			if (target.hasFur()) output(" Soon after, your [pc.furColor] coat becomes a layer of pure white.");
-			else output(" You feel the fur spread over your body, sprouting up over every inch.");
+			if (target.hasFur()) output(" Soon after, your [pc.furColor] coat becomes a layer of pure white");
+			else output(" You feel the fur spread over your body, sprouting up over every inch");
+			if (target.hasAccentMarkings()) output(", your [pc.accentMarkings] fading away");
+			output(".");
 			if (InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_CHITIN))
 			{
 				output(" Your");
@@ -203,10 +208,16 @@ package classes.Items.Transformatives
 				}
 				output(" fall from your body and land on the ground around you, only to be swiftly replaced by a layer of fur.");
 			}
-			if (!target.hasStatusEffect("Hyena Fur")) target.createStatusEffect("Hyena Fur");
-			target.setStatusTooltip("Hyena Fur", (rand(2) == 0 ? "brown striped" : "gray spotted"));
-			output(" The burning itch subsides and you’re left with <b>black and " + target.getStatusTooltip("Hyena Fur") + " fur!</b>");
+			target.clearAccentMarkings();
+			// 1: brown stripes 2: gray spots
+			var accentChoice:int = (1 + rand(2));
+			var newAccent:String = (accentChoice == 1 ? "brown" : "gray");
+			target.setStatusValue("Hyena Fur", 1, accentChoice);
+			target.createStatusEffect("Hyena Fur");
+			target.setStatusTooltip("Hyena Fur", newAccent);
+			output(" The burning itch subsides and you’re left with <b>black and " + newAccent + " " + (accentChoice == 1 ? "striped" : "spotted") + " fur!</b>");
 			target.skinType = GLOBAL.SKIN_TYPE_FUR;
+			target.skinAccent = newAccent;
 			target.clearSkinFlags();
 			target.furColor = "black";
 		}

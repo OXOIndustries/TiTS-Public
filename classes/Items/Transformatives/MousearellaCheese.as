@@ -24,11 +24,11 @@
 			stackSize = 10;
 			type = GLOBAL.FOOD;
 			shortName = "MouseCh";
-			longName = "Mousearrela Cheese";
+			longName = "Mousearella Cheese";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a wedge of Mousearrela Cheese";
+			description = "a wedge of Mousearella Cheese";
 			tooltip = "A cheesy snack covered in a thin plastic wrapper with the image of a cartoon mouse nibbling on an oversized wedge of Swiss cheese. To the side in fine print is a warning about this product’s mutative properties.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
