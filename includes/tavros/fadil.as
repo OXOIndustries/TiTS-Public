@@ -1,6 +1,6 @@
 public function showFadil(nude:Boolean = false):void
 {
-	showName("\nFADIL");
+	showName("\nFADIL" + (nude ? "_NUDE":""));
 }
 
 public function matchesFadilsPreference():Boolean
@@ -92,7 +92,11 @@ public function fadilMenu():void
 	if (flags["FADIL_TALKED_SEX"] == undefined) addDisabledButton(2, "Sex", "Sex", "You should probably get to know more about his preferences before making the move.");
 	else if (!matchesFadilsPreference()) addDisabledButton(2, "Sex", "Sex", "He told you his preferences, and unfortunately you don’t match them.");
 	else addButton(2, "Sex", sexifyTheWorkyFadilf, undefined, "Sex", "Let the older ausar take you to the bedroom.");
-	if (flags["FADIL_TALKED_CHARITY"] != undefined) addButton(3, "Donate", giveThatFadilfSomeDosh);
+	if (flags["FADIL_TALKED_CHARITY"] != undefined)
+	{
+		if(flags["FADIL_DONATION_DAY"] >= days) addDisabledButton(3, "Donate", "Donate", "You have already donated for today. Try again tomorrow!");
+		else addButton(3, "Donate", giveThatFadilfSomeDosh);
+	}
 	addButton(14, "Leave", itsBestToLetWorkingDogDILFsWork);
 }
 
@@ -178,7 +182,7 @@ public function fadilTalk(topic:String):void
 			output("\n\n<i>“I did. I realized that it was my turn to take care of the family. I applied to a mining company under an indentured laborer contract. I didn’t tell mom or my siblings until after I signed the indenture. They would have tried to dissuade me from it, but I couldn’t stand by and let my mother’s health decline, or allow loans to hamstring my siblings. Not when I could do something about it.”</i>");
 			output("\n\n<i>“Anyway, I came home to find my sisters in the living room having a meeting about mom’s condition, trying to figure out what they were going to do. There were holopads and all sorts of papers, documents and just junk everywhere, so I figured they had been at it for a while.”</i> A slight smirk begins to tug at the corner of his mouth. <i>“My sisters were a little shell-shocked when I told them what I’d done. They’d spent a few days wringing their brains for ways to cover treatment costs, and I’d rendered it moot all at once.”</i>");
 			output("\n\n<i>“Now my brother, on the other hand, when I told <i>him</i> he just went along with it.”</i> Fadil snorted. Fadil seems to have a rather lively family, you surmise.");
-			output("\n\nNow that you think about it, dad brought you to various company workplaces as a wide-eyed young " + chars["PC_BABY"].mf("boy", "girl") + ". Your interest piqued by your own internal musing, you gaze thoughtfully at Fadil and ask, <i>“So, you mentioned serving out an indenture for a mining company. Do you mind if I ask what your specific occupation was?”</i>");
+			output("\n\nNow that you think about it, dad brought you to various company workplaces as a wide-eyed young child. Your interest piqued by your own internal musing, you gaze thoughtfully at Fadil and ask, <i>“So, you mentioned serving out an indenture for a mining company. Do you mind if I ask what your specific occupation was?”</i>");
 			output("\n\n<i>“Oh sure,”</i> replies Fadil. <i>“You remember, how I used to be a tanker? Well, my unit underwent some cross-training to ensure we could support our engineers during sustained operations. So, for me, getting company certification to operate heavy equipment was mostly just a matter of applying what I already knew to a different work environment. I mostly used the initial training period to get acquainted with the people I was going to be working with. After that I spent the next several years going wherever operations deployed us until I paid off my debt and fulfilled my indenture.”</i>");
 			output("\n\nWell, that doesn’t sound too bad. But from what you understand, it isn’t uncommon for rarer, specialized medical treatments to cost in the hundreds of thousands of credits. How did he pay off his debt so quickly?");
 			output("\n\n<i>“That’s a good question,”</i> Fadil says with a nod of his head. <i>“During my third yearly performance review, my boss made me a job offer, saying that he’d recommended me to sapient resources for a promotion and that management had opened a leadership track slot for me. I had begun to half-expect something early in the review but being offered a promotion caught me off guard. I wanted to refuse at first because I wasn’t sure I was right choice for the job, but then I thought about it and realized that the increased pay would help me pay off my mother’s medical bills faster.”</i>");
@@ -289,7 +293,7 @@ public function fadilIsGonnaThrowYouABone():void
 	output("\n\nYou can feel his heartbeat through his bitch breaker. You’ll have to be careful or you’ll be stuck to it. Not that you’d mind that, but if he’s tied to your face you wouldn’t get to taste his cum.");
 	output("\n\nA groan of pleasure from him makes your [pc.pussy] clench around nothing. Only now do you notice how soaked your cunt is, despite the fact that you haven’t even touched yourself.");
 	output("\n\nA part of you wants to pleasure yourself, but another, stronger part of you tells you to be a good girl and ignore your own need. You want to cum from sucking " + (flags["FADIL_TALKED_DADDY"] != undefined ? "daddy’s" : "his") + " canine member.");
-	output("\n\nYou’ve forgotten about his strong hand laying on your head, but you shudder pleasantly as he scratches your head. Having him keep his strong hand atop of your head and giving you encourage scratches from time to time makes you incredibly relaxed. Safely tucked between his legs, attending to his member, it just feels right. Nothing in the world could bother you right now.");
+	output("\n\nYou’ve forgotten about his strong hand laying on your head, but you shudder pleasantly as he scratches your head. Having him keep his strong hand atop of your head and giving you encouraging scratches from time to time makes you incredibly relaxed. Safely tucked between his legs, attending to his member, it just feels right. Nothing in the world could bother you right now.");
 	output("\n\nYou’re momentarily confused when he presses his palm against your forehead, pushing you off of his cock. Did you do something wrong? Did you scratch him with your teeth? Looking up to him uncertainty you’re faced with a gentle smile. He positions himself so that his balls press against your [pc.lips]. ");
 	output("\n\nYou kiss his large orbs before parting your lips and swallowing them. The masculine taste of his cock is nothing compared to how strong the flavor is on his testicles. After a few minutes of suckling and licking them, you’re intoxicated with the masculine taste; you are properly cock drunk.");
 	output("\n\nHe pulls his nuts out of your mouth and lowers his member back to your face. Nuzzling against his prick, you rub it against your face, smearing a mixture of pre and spit over yourself. After rubbing against him you slip his prick back into your throat. Your [pc.pussy] clenches and quivers as you swallow a bead of his pre-cum. In your cock haze, the drop of precum is more than his natural lubrication, it’s a confirmation of a job well done.");
@@ -340,7 +344,7 @@ public function rideYourWayOntoFadilsRedRocketMountain(vagIdx:int):void
 	output("\n\nYou realize that you have no idea if he’s on sterilex");
 	if (pc.fertility() == 0) output(", but thankfully you don’t have to worry about that.");
 	else output(" but having his puppies doesn’t sound that bad at the moment.");
-	output("\n\nThe two of you relish in your shared afterglow while more of his spunk fills your already full womb. Wrapping your arms around him, you wait for your afterglow to pass, and for his knot to go down. Being and ausar, his knot stays inflated for quite the while, giving the two of you a perfect opportunity to grope, touch, and feel each other’s bodies.");
+	output("\n\nThe two of you relish in your shared afterglow while more of his spunk fills your already full womb. Wrapping your arms around him, you wait for your afterglow to pass, and for his knot to go down. Being an ausar, his knot stays inflated for quite some time, giving the two of you a perfect opportunity to grope, touch, and feel each other’s bodies.");
 	output("\n\nEventually, his knot goes down, allowing him to pull his dick out of your cunny with a soft ‘pop’. You let out a sigh as warm cum rushes out of your pussy, and down your thighs.");
 
 	pc.loadInCunt(tempFadil(), vagIdx);
@@ -422,7 +426,7 @@ public function afterglowWithFadil():void
 {
 	generateMapForLocation("ANON'S BOARD HALL");
 	output("\n\n<i>“That was amazing,”</i> he sighs while kissing your cheek. You smile to yourself and cuddle against him while you both catch your breath. Instinctively you press yourself against him as he pulls the covers up. You press your head against his chest, listening to the soft beating of his heart. At the same time, he wraps his arm around your midsection.");
-	output("\n\nYou tilt your head back and look him into his eyes and can’t but to shiver under his smoldering gaze. Grabbing his head, you pull yourself closer to him and gently press your lips against his. Running his hand up the small of your back, he kisses you back just as gently. Eventually, you break off the kiss. You briefly consider getting up, but in the end, the warmth of his body wins out. You find yourself drifting off to sleep.");
+	output("\n\nYou tilt your head back and look him into his eyes and can’t help but to shiver under his smoldering gaze. Grabbing his head, you pull yourself closer to him and gently press your lips against his. Running his hand up the small of your back, he kisses you back just as gently. Eventually, you break off the kiss. You briefly consider getting up, but in the end, the warmth of his body wins out. You find yourself drifting off to sleep.");
 	addButton(0, "Next", fadilfIsFadone);
 }
 
@@ -438,7 +442,7 @@ public function fadilfIsFadone():void
 	output("\n\nFadil seems to wake up when you stand up. <i>“Seeing a beauty like you naked almost makes me want to go for a second round.”</i> He laughs softly while standing up and grabbing his discarded clothing.");
 	if (!pc.isNude()) output(" You do the same, and after a few minutes you’re in presentable shape again.");
 	else if (pc.statusEffectv1("Wing Position") == 1) output(" You simply flex your wing muscles and wrap your body in your [pc.wings] around yourself.");
-	output("\n\nThe two of you descend the stairs back into the bar. You turn around and kiss him straight on his lips. Surprised at first he quickly takes control. Grabbing you by your ass and kissing you deep. When your lips depart, you’re out of breath and your [pc.pussy] is freely drooling down your thighs. He smiles seductively before sitting down in the empty corner table.");
+	output("\n\nThe two of you descend the stairs back into the bar. You turn around and kiss him straight on his lips. Surprised at first he quickly takes control. Grabbing you by your ass and kissing you deep. When your lips part, you’re out of breath and your [pc.pussy] is freely drooling down your thighs. He smiles seductively before sitting down in the empty corner table.");
 
 	//Add some lust
 	pc.lust(15+pc.libido()/10);
@@ -515,11 +519,13 @@ public function giveThatFadilfSomeDoshGo():void
 		pc.addNice(5);
 	}
 
-	output("\n\nYou can’t but feel a little bit better about yourself after donating to charity.");
+	output("\n\nYou can’t help but feel a little bit better about yourself after donating to charity.");
 
 	pc.credits -= donation;
 	if (flags["FADIL_MONEY_GIVEN"] == undefined) flags["FADIL_MONEY_GIVEN"] = donation;
 	else flags["FADIL_MONEY_GIVEN"] += donation;
+	
+	flags["FADIL_DONATION_DAY"] = days;
 
 	fadilMenu();
 }

@@ -1269,7 +1269,7 @@ public function eatMuffDumplings():void
 	pc.setStatusMinutes("MufflingsCD",10080);
 	sexedJade();
 	output("With a greedy smile you rush towards the counter, more than happy to start eating.");
-	output("\n\nYou start by sampling the one on the counter, the mixed tastes of pussy juice and a sweet fruity dumpling complimenting each other quite nicely. As soon as you swallow the dumpling another one slides out of Jade’s hole, followed by a small squeak of pleasure. <i>“Oh fuck!”</i>");
+	output("\n\nYou start by sampling the one on the counter, the mixed tastes of pussy juice and a sweet fruity dumpling complementing each other quite nicely. As soon as you swallow the dumpling another one slides out of Jade’s hole, followed by a small squeak of pleasure. <i>“Oh fuck!”</i>");
 	output("\n\nYou smirk at the idea that she’s getting off on the food she made to feed you, but you continue, eating the second dumpling, which tastes a bit airy and smoother than the last one - different flavors, you assume. You savor the flavor before you swallow, and, before Jade can squeeze another one out, you press your face against her pussy; providing a direct line of supply of dumplings. Taking your time with the varying flavors, you savor each one before swallowing.");
 	output("\n\nJade seems to be more than a bit happy that you’re enjoying her cooking, stroking your ");
 	if(pc.hasHair()) output("[pc.hair]");

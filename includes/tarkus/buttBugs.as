@@ -1670,7 +1670,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 			output("\n\nIt’s been a long time since you’ve been taken over, and you’ve been trying to ignore the atrocities your hilinara parasite has committed while puppeteering your body around.");
 			output("\n\nYou can’t even remember how many eggs you’ve birthed, how large your harem of male bugs are, how many people you’ve kidnapped and infected, and how many years it’s been since you’ve lost control. Your parasite was pretty lucky to find a body as capable as yours, and she’s been quite busy as the puppeteer to your body. Now your body has become a queen, with a deep underground hive and a veritable kingdom of pregnant bellied raskvel breeders,");
 			if(buttBugF != null && buttBugF.value1 == 2) output(" hybridized children,");
-			output(" mind controlled lapinara scouts, and puppeted worm riding sydian soldiers. It might just be your parasite’s influence, but some part of you thinks it’s good to be the queen, ultimately relinquishing yourself to the worm hive entirely.");
+			output(" mind controlled " + (flags["LAPLOVE"] != undefined ? "lapinara ":"") + "scouts, and puppeted worm riding sydian soldiers. It might just be your parasite’s influence, but some part of you thinks it’s good to be the queen, ultimately relinquishing yourself to the worm hive entirely.");
 			output("\n\n");
 			
 			processTime(50400 + rand(1441));

@@ -50,9 +50,9 @@ public function encounterKrissy():void
 	showKrissy();
 	author("Fenoxo");
 	flags["KRISSY_YEAR"] = getRealtimeYear();
-	output("Just as you’re about to board your ship, a hand falls softly on your shoulder, accompanied by the squeak of a girlish voice. <i>“’Scuse me, [pc.misterMiss].”</i> The ‘clip-clop’ of nervous hooves on the deck rings in your ears as you turn to regard the speaker. <i>“You mind giving me a lift to Canadia Station?”</i> A feminine, bipedal deer-girl interlaces her fingers together pleadingly. <i>“It’s Christmas, ya know? Season of giving an’ all.”</i> She bats her overlong lashes at you imploringly, literally doe-eyed. <i>“Please? I didn’t realize how low on creds I was getting.”</i>");
+	output("Just as you’re about to board your ship, a hand falls softly on your shoulder, accompanied by the squeak of a girlish voice. <i>“‘Scuse me, [pc.misterMiss].”</i> The ‘clip-clop’ of nervous hooves on the deck rings in your ears as you turn to regard the speaker. <i>“You mind giving me a lift to Canadia Station?”</i> A feminine, bipedal deer-girl interlaces her fingers together pleadingly. <i>“It’s Christmas, ya know? Season of giving an’ all.”</i> She bats her overlong lashes at you imploringly, literally doe-eyed. <i>“Please? I didn’t realize how low on creds I was getting.”</i>");
 	output("\n\nYou spare the would-be hitchhiker a more thorough examination.");
-	output("\n\nDressed in a shimmery red dress with a short hemline and thick fur lining, the deer woman looks to have come fresh from a holiday get-together. A small bouquet of flowers pretties up her freshly styled, shoulder-length hair. Her lips are painted a glossy chocolate, and her makeup does a fantastic job of complimenting the cuteness of her coal black, button nose. Your gaze inevitably dips lower to take in the firm, half-exposed swells of her shapely bosom, large enough to jiggle like twin bowls full of jelly when she moves; without a bra or straps on her dress, she spends a <b>lot</b> of time jiggling. Finally, black leather anklets with brassy sleigh bells lend the woman a final note of holiday cheer with every step she takes.");
+	output("\n\nDressed in a shimmery red dress with a short hemline and thick fur lining, the deer woman looks to have come fresh from a holiday get-together. A small bouquet of flowers pretties up her freshly styled, shoulder-length hair. Her lips are painted a glossy chocolate, and her makeup does a fantastic job of complementing the cuteness of her coal black, button nose. Your gaze inevitably dips lower to take in the firm, half-exposed swells of her shapely bosom, large enough to jiggle like twin bowls full of jelly when she moves; without a bra or straps on her dress, she spends a <b>lot</b> of time jiggling. Finally, black leather anklets with brassy sleigh bells lend the woman a final note of holiday cheer with every step she takes.");
 	output("\n\nHow did she sneak up on you again?");
 	output("\n\n<i>“Sooo, um... can I hitch a ride? I have the coordinates if you’ve never been there or nuttin’. It’s not far.”</i> Those big eyes roam back and forth across your body. <i>“An’ maybe we can spread some holiday cheer of our own on the trip. Whaddya say?”</i>");
 	processTime(3);
@@ -338,10 +338,11 @@ public function gushyGushSantaShit():void
 	output("\n\nWithin that pillowy soft valley, drowning in the scent of milk and cherries, you climax.");
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" [pc.Cum] ");
-		if(pc.cumQ() < 10) output("dribbles all over Krissy’s fingers");
-		else if(pc.cumQ() < 50) output("shoots up to splatter back down on Krissy’s fingers");
-		else if(pc.cumQ() < 5000) output("erupts in thick, wet blasts, slapping into the underside of Krissy’s tits to hang in gooey webs.");
+		if(cumQ < 10) output("dribbles all over Krissy’s fingers");
+		else if(cumQ < 50) output("shoots up to splatter back down on Krissy’s fingers");
+		else if(cumQ < 5000) output("erupts in thick, wet blasts, slapping into the underside of Krissy’s tits to hang in gooey webs.");
 		else output("sprays out in torrential deluges, each thicker than last, drenching Krissy’s tits in the virile tidal waves that your body calls release.");
 	}
 	else 
@@ -436,19 +437,21 @@ public function krissyWrapUpByThird(x:int):void
 	output("\n\nKrissy’s entire body shudders suddenly, and her vaginal walls tighten, nearly locking you in place as an orgasm rocks her body. Unfortunately, this causes some kind of feedback effect with the ribbon, which seems to constrict before your eyes. The cheery lights grow brighter, and a soft Christmas jingle reverberates around the cabin. The more she shudders, the more pleasure the ribbons give, which seems to send her over the edge into a second orgasm, and then a third.");
 	output("\n\nYou steel yourself against the constant onslaught of electric, pulsing pleasure and continue your trip to pound town, with your " + (pc.balls > 1 ? "balls slapping against the deer-girl’s ass":"hips grinding into the deer-girl’s cunt") + " with every thrust. With the Christmas music softly jingling through the room, you find a nice rhythm, battering her honeypot with every jingle, and pulling out in preparation for another thrust with every jangle.");
 	output("\n\nThe orgasm-wracked deer-girl convulses as she comes again and again, each time nearly sending you to the brink with her, until you can’t help but finally succumb. When she twists around in the seat, twisting the tip of your dick like a corkscrew, you give one last thrust. Your whole body tightens up, your dick stiffening and ");
+	var cumQ:Number = 0;
 	if(x >= 0) 
 	{
+		cumQ = pc.cumQ();
 		output("abruptly unleashing jet after jet of [pc.cum] directly into Krissy’s waiting womb");
-		if(pc.cumQ() >= 10000) output(", causing her stomach to bulge lewdly outward due to the volume, jostling to and fro like a bowl full of jelly");
-		if(pc.cumQ() >= 1000) output(", causing her stomach to distend slightly due to the sheer volume");
+		if(cumQ >= 10000) output(", causing her stomach to bulge lewdly outward due to the volume, jostling to and fro like a bowl full of jelly");
+		if(cumQ >= 1000) output(", causing her stomach to distend slightly due to the sheer volume");
 		output(".");
 	}
 	else output("sending a powerful pulse of orgasmic energy into you.");
 	output("\n\nKrissy shakes with yet another orgasm as <i>“Knotty or Nice”</i>, an Ausari Christmas classic, begins to play. You stumble back a step, admiring your handiwork as ");
 	if(x >= 0)
 	{
-		if(pc.cumQ() < 1000) output("your [pc.cum] dribbles out of her gaping slit");
-		else if(pc.cumQ() < 10000) output("your [pc.cum] runs out of her like a small waterfall, dribbling down onto the seat and floor beneath her");
+		if(cumQ < 1000) output("your [pc.cum] dribbles out of her gaping slit");
+		else if(cumQ < 10000) output("your [pc.cum] runs out of her like a small waterfall, dribbling down onto the seat and floor beneath her");
 		else output("your [pc.cum] periodically jets out of her abused, gaping slit, as though another cock were nestled inside cumming endlessly. It drips down onto the chair and absolutely drenches the floor beneath her");
 	}
 	else output("her drooling cunt winks lewdly at you, with droplets of femcum dripping onto the chair and floor below");

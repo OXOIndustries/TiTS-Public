@@ -818,7 +818,7 @@ public function consensualGangBang():void
 	}
 	output(" The raskvel pinned down beneath you groans as you tense your butt-cheeks up around him and squeezes your flanks; you feel warm slime spurt up your back and crack. You frown back at him in disbelief. Has he really cum already? The youthful reptile blissfully opens his eyes and gazes back at you languidly.");
 
-	output("\n\n<i>“Yeah, the lapinara get surprised by that too,”</i> he says lowly. <i>“Do ");
+	output("\n\n<i>“Yeah, the" + (flags["LAPLOVE"] == undefined ? "y all":" lapinara") + " get surprised by that too,”</i> he says lowly. <i>“Do ");
 	if(pc.mf("male","female") != "male") output("your males ");
 	else output("offworlders ");
 	output("only cum the once too, then? Sucks to be you.”</i> He shunts his still-very-much-erect-dick between your cheeks teasingly.");

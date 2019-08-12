@@ -1682,7 +1682,7 @@ public function subTunerAnnoExhib():void
 	output("\n\nYou’re too focused on those gently buzzing toys in and on you to give her an answer to that question. Instead, you get on your knees right in front of her and paw at her crotch with your hand, whining like a puppy, begging to get at the delicious folds of her sex.");
 	output("\n\n<i>“W-whoa!”</i> Anno stutters as your digits brush against her still-clothed pussy, <i>“I was hoping I’d be the one in the collar, but I gueeeess I can let you have </i>all<i> the fun for once.”</i> She gives you a smile and a wink with that before continuing, <i>“Just uh, not out here. Think we could find somewhere more... private?”</i>");
 	output("\n\n<i>If that’s what it takes for you to get Anno off, of course you can find somewhere more private.</i> You nod eagerly at her proposal, resulting in a smile from the ausar along with a wag of her big, fluffy tail.");
-	output("\n\n<i>“Umm,”</i> she ponders for a moment, <i>“I think I know a place we could go. SteeleTech has a little building they use for storage near here. It </i>should<i> be pretty empty, don’t think there’s any shipments due today.”</i>");
+	output("\n\n<i>“Umm,”</i> she ponders for a moment, <i>“I think I know a place we could go. Steele Tech has a little building they use for storage near here. It </i>should<i> be pretty empty, don’t think there’s any shipments due today.”</i>");
 	output("\n\n<i>If your new master thinks it’s a good idea, of course it is.</i> You give Anno another nod to tell her you’re ready.");
 	output("\n\nThe ausar gives you a grin, <i>“Alright! Let’s get going... uh, [pc.boyGirl].”</i>");
 	processTime(20);
@@ -1694,7 +1694,7 @@ public function subTunerAnnoExhib2():void
 	clearOutput();
 	author("HugsAlright");
 	showAnno(true);
-	output("After getting back up on your [pc.feet], Anno leads you around the best she can without a leash to the building she was talking about. Sleek and featureless like most of the places on the station, the SteeleTech storage’s only defining attribute is the control panel next to the door which Anno quickly taps a few keys on. Watching the ausar’s tail wagging like it is makes you think she’s just as excited for this as you are. A moment later and the door swishes open, and Anno walks her way into the storage depot, stopping in the door to look over her shoulder at you.");
+	output("After getting back up on your [pc.feet], Anno leads you around the best she can without a leash to the building she was talking about. Sleek and featureless like most of the places on the station, the Steele Tech storage’s only defining attribute is the control panel next to the door which Anno quickly taps a few keys on. Watching the ausar’s tail wagging like it is makes you think she’s just as excited for this as you are. A moment later and the door swishes open, and Anno walks her way into the storage depot, stopping in the door to look over her shoulder at you.");
 	output("\n\n<i>“Coming?”</i>");
 	output("\n\n<i>Oh, you most certainly are</i>, or are going to be, at least.");
 	output("\n\nYou follow your canine companion for a little while longer until she leads the two of you behind a suitably hidden stack of crates that should keep you lovemaking concealed well enough. When Anno finally comes to a stop, she spins around on a heel to look at you.");
@@ -1763,7 +1763,7 @@ public function subTunerAnnoExhib2():void
 
 	output("\n\n<i>“Hey... uh,”</i> Anno says between laboured breaths, <i>“Why don’t you head out... and I’ll catch up with you, think I need a breather after that.”</i>");
 	output("\n\n<i>If that’s what she thinks is best, of course you’ll head out... Belle’s probably expecting you back by now anyways.</i> You nod at the ausar girl’s suggestion and pick yourself up off your knees, though your legs are still a bit wobbly from orgasm. Anno falls backwards onto the crate again, wiping some sweat from her forehead and releasing a long, happy sigh.");
-	output("\n\nYou make your way out of the storage depot with a smile, catching a glimpse of Anno’s lazily swinging, white-furred leg. Pride that only a good pet can feel swells in your chest, leaving the SteeleTech building well fulfilled, and with a <i>very</i> happy mistr- er... employee, but for now, it’s time to get back to Belle.");
+	output("\n\nYou make your way out of the storage depot with a smile, catching a glimpse of Anno’s lazily swinging, white-furred leg. Pride that only a good pet can feel swells in your chest, leaving the Steele Tech building well fulfilled, and with a <i>very</i> happy mistr- er... employee, but for now, it’s time to get back to Belle.");
 
 	processTime(30);
 	pc.orgasm();

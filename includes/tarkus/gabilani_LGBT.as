@@ -610,8 +610,9 @@ public function gabilaniHoodOrnamentLossOhNo():void
 	author("Nonesuch");
 	output("The LG-BT moans and clanks as it’s maneuvered over so that its great metal bulk looms directly over you. For one horrible moment you get it into your head that the gabilani plan on squishing you like a piece of roadkill... but no, the walker’s padded feet stop either side of you, and it is with some relief you see the weapons far above withdraw with a whirr backwards, leaving the chin of the war machine bare.");
 	output("\n\n<i>“Oh wow,”</i> coos the female gabilani, once she’s clambered down the transport’s leg to get a closer look at you. Up close, you can see that she’s a plump, blue-haired little thing in a one-piece jumpsuit, with plush, wide-set boobs and a big, jiggling ass. <i>“Look at you!");
-	if(pc.race() == "gabilani") output(" So gabilani-like. That’s eerie. Ooh, it gives me little shivers.”</i>");
-	else if(pc.race() == "raskvel") output(" So much like the herliani. But then you get close enough, and you <b>see</b> the alien-ness! Ooh, it gives me little shivers.”</i>");
+	var race:String = pc.race();
+	if(race == "gabilani") output(" So gabilani-like. That’s eerie. Ooh, it gives me little shivers.”</i>");
+	else if(race == "raskvel") output(" So much like the herliani. But then you get close enough, and you <b>see</b> the alien-ness! Ooh, it gives me little shivers.”</i>");
 	else if(pc.tallness > 5*12+10) output(" Such size! Such alien vastness and... fruitiness! Gosh, I could run my hands over all of that for <b>days</b>.”</i>");
 	else output(" There is such strangeness in the outer cosmos, isn’t there? I couldn’t ever imagined something so bizarre just wandering around the wastelands a few years ago. And yet... kinda enticing.”</i>");
 
@@ -637,16 +638,21 @@ public function gabilaniHoodOrnamentLossOhNo2():void
 	output("\n\nThere’s an ominous series of clicks and whirrs above your head, and you groan when you see what he means. A series of spindly mechanical arms are flexed around you, each one tipped with some garishly colored sex toy: dildos, cock-rings, vibrating studs, a drooling injector filled with pink fluid. This latter is unceremoniously jabbed into your [pc.ass]; the sharp pain is superseded by aphrodisiac lust flooding through your system" + (pc.lust() >= pc.lustMax() ? ", your already overwhelming arousal now blotting out every other instinct, whatever panic you feel about your situation replaced by the need to FUCK and NOW":"") + ".");
 	if(!pc.isErect() && pc.hasCock()) output(" Heat and hardness veins into [pc.eachCock], becoming restless and turgid without even a hint of manual stimulation.");
 	else if(pc.hasVagina() && pc.lust() < pc.lustMax()) output(" [pc.EachVagina] spreads and moistens, " + (!pc.isSquirter() ? "beading":"drooling") + " [pc.femcum], practically begging to be filled.");
-	pc.buttChange(20);
-
 	output("\n\nYour lusty moan turns into a squawk when a hooked, pronged, metal hand like a craning, two-fingered hoe reaches over your hand and skilfully hooks itself into your nostrils. It adjusts itself with a tiny whirr and then gently but firmly tilts your head backward, blunt upward pressure flaring your poor nose. You open your mouth to protest that this is too much, way too much - and another mechanical arm rams a black ball-gag into your mouth, turning your words into a wet, outraged muffle.");
 	output("\n\n<i>“Winch secure? Check. Devices operational? Check. Muffler and display hasp locked in? Check!”</i> booms the gabilani male’s voice merrily. <i>“Let’s have a look...”</i> a free-flying camera drone hovers about your face. <i>“...oh my. You were right, darling! What a splendid hood ornament! Oh, we’ll be the talk of Arbetz for weeks.”</i>");
 	output("\n\n<i>“We haven’t even gotten started yet...”</i> the female is back in the cockpit, and sounds positively gleeful. <i>“Let’s try... this!”</i>");
 	output("\n\nTransfixed on the LG-BT’s bondage gear 18 feet in the air, you can only moan and flex helplessly against your intractable fetters as you feel a thick, smooth bluntness press against your [pc.vagOrAss], boring its way into your sensitive inner passage. Once the dildo has spread your " + (!pc.hasVagina() ? "[pc.anus]":"[pc.vaginaNoun]") + " dramatically wide and begun filling you deep, it begins to vibrate hard, maddening, juddering shivers which cannot fail to stimulate your aphrodisiac-ridden body. You huff and whine helplessly around your ball-gag, not even able to see what’s being done to your rear end with your nose hooked like it is.");
+	
+	if(pc.hasVagina()) pc.cuntChange(0,20);
+	else pc.buttChange(20);
+	
 	output("\n\n<i>“Loooovely,”</i> croons the female. <i>“Yeah, keep the camera focused on [pc.himHer]. I’m enjoying that.”</i>");
 	output("\n\n<i>“Yeah?”</i> schmoozes the male. <i>“What if I did... this?”</i>");
 	if(pc.hasCock()) output("\n\nThere’s another whirr, and you feel something heated and padded grip your fervently erect [pc.cock]. You ball your fists as the ingenious, hateful, wonderful little device flicks up and down your dick, coiling your sensitive, chemically aroused flesh into a flaming hard-on, all the while the dildo in your [pc.vagOrAss] remorselessly judders into your prostate.");
 	if(pc.hasVagina()) output("\n\nYou know what’s probably coming next, but it doesn’t stop the fresh pressure applied to your [pc.anus], patiently opening you and spearing its way in, any more intense. This dildo is smaller, squirts oil to ease its passage, but is also covered in small bumps. So that when it begins to thrust in and out of you hard with mechanical remorselessness, the bumpy sensation is impossible not to be devoured by, particularly as it rubs against the vibrating one in your [pc.vagina].");
+	
+	if(pc.hasVagina()) pc.buttChange(20);
+	
 	// {merge}
 	output("\n\nWith the amount of aphrodisiac they’ve pumped into you, you can’t take this kind of stimulation for long. You moan wetly around your gag, saliva drooling around it as you cum explosively to the pleasure being forced upon your overheated loin");
 	if(pc.hasGenitals()) output(", ");
@@ -671,7 +677,7 @@ public function gabilaniHoodOrnamentLossOhNo3():void
 	clearOutput();
 	showLGBT(true);
 	author("Nonesuch");
-	output("You dangle from the LG-BT’s chin, a bondage slave trophy, as the gabilani stomp it around Tarkus’s sprawling scrap-heaps and ruins. They find little settlements of sydians, raskvel burrows and little enclaves of lapinara and display the alien captive to them, wriggling and gasping to the unceasing attentions of their niggling, ravishing sex toys, booming their triumph from the transport’s sound system so that all come out of their homes and get an eyeful of you. You see disgust, amusement, pity and undisguised lust in a myriad of distant, upturned native expressions.");
+	output("You dangle from the LG-BT’s chin, a bondage slave trophy, as the gabilani stomp it around Tarkus’s sprawling scrap-heaps and ruins. They find little settlements of sydians" + (flags["LAPLOVE"] != undefined ? ", raskvel burrows and little enclaves of lapinara":" and raskvel burrows") + " and display the alien captive to them, wriggling and gasping to the unceasing attentions of their niggling, ravishing sex toys, booming their triumph from the transport’s sound system so that all come out of their homes and get an eyeful of you. You see disgust, amusement, pity and undisguised lust in a myriad of distant, upturned native expressions.");
 	if(pc.exhibitionism() >= 66) 
 	{
 		output("\n\nYou squirm away from the truth at first, but there’s ultimately no hiding away from the fact you find this extremely hot. In a way, all of your little dalliances with exhibiting yourself, baring your flesh and making people stare, was simply an overture to this, being turned into a sexual ornament, moaning as you’re fucked raw by the gabilanis’ merciless machinery and dangled over the stage of the world, the ordinary folk of Tarkus staring, laughing and whispering at the humiliating spectacle of you. You cum and you cum again, your skin burning to the magnificent shame, and you curse and bless your own filthy mind in the same, ball-gag muffled, saliva-clotted breath.");

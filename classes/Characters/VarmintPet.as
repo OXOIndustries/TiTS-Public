@@ -18,7 +18,7 @@
 	{
 		public function VarmintPet()
 		{
-			_latestVersion = 1;
+			_latestVersion = 2;
 			version = _latestVersion;
 			_neverSerialize = false;
 			
@@ -27,8 +27,8 @@
 			a = "the ";
 			capitalA = "The ";
 			long = "";
-			customDodge = "Claws scrabbling, " + getCombatName() + " slips away from your attack.";
-			customBlock = "The armor plates soak up your attack.";
+			customDodge = "Claws scrabbling, [varmint.combatName] slips away from the attack.";
+			customBlock = "The armor plates soak up the damage inflicted by the attack.";
 			isPlural = false;
 			isLustImmune = true;
 			
@@ -105,6 +105,12 @@
 		override public function get bustDisplay():String
 		{
 			return "VARMINT";
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.customDodge = "Claws scrabbling, [varmint.combatName] slips away from the attack.";
+			dataObject.customBlock = "The armor plates soak up the damage inflicted by the attack.";
 		}
 	}
 }

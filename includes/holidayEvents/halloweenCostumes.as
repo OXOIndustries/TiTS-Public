@@ -11,6 +11,38 @@ public function showHoliday(arg:String = "normal"):void
 	else showBust("HOLIDAY");
 }
 
+public function getHolidayPregContainer():PregnancyPlaceholder
+{
+	var ppHoliday:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	if(!ppHoliday.hasCock()) ppHoliday.createCock();
+	ppHoliday.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	ppHoliday.cocks[0].cockColor = "pink";
+	ppHoliday.cocks[0].cLengthRaw = 21;
+	ppHoliday.cocks[0].cThicknessRatioRaw = 1;
+	ppHoliday.cocks[0].knotMultiplier = 1.5;
+	ppHoliday.balls = 2;
+	ppHoliday.cumMultiplierRaw = 15;
+	ppHoliday.cumQualityRaw = 0;
+	ppHoliday.cumType = GLOBAL.FLUID_TYPE_CUM;
+	ppHoliday.ballSizeRaw = 10;
+	ppHoliday.ballFullness = 100;
+	ppHoliday.ballEfficiency = 30;
+	ppHoliday.refractoryRate = 9991;
+	ppHoliday.minutesSinceCum = 2000;
+	ppHoliday.createPerk("Fixed CumQ", 50000, 0, 0, 0);
+	
+	if(!ppHoliday.hasVagina()) ppHoliday.createVagina();
+	ppHoliday.vaginas[0].hymen = true;
+	ppHoliday.vaginas[0].wetnessRaw = 2;
+	ppHoliday.vaginas[0].loosenessRaw = 2;
+	ppHoliday.vaginas[0].vaginaColor = "pink";
+	ppHoliday.clitLength = .25;
+	ppHoliday.createPerk("Fixed GirlCumQ", 1000, 0, 0, 0);
+	
+	return ppHoliday;
+}
+
 public function halloweenShipMove():void
 {
 	moveTo("SHIP INTERIOR");
@@ -633,9 +665,10 @@ public function bountyHuntEpilogue():void
 	output("\n\nWhen you glance back up at the monitor, the reporter has a little green blob on her head that wiggles and vibrates in pulsing squeaks. Her bust has grown four or five cups and is on the verge of busting out of her top. Her hair grows before you eyes, fading from brown to blonde to platinum white. Her expression of shock quickly becomes one of oozing, sexual delight as her lips puff into a thick, whorish pucker and her eyes soften to a pale and empty blue. Switching the news feed off, you take stock of your own transformations. It’s a good thing you had that helmet on! Who knows how much more of a bimbo-bloated sex doll you would’ve turned into if that thing had been parked right on top of you all night! You entertain the thought of trying to turn in Holiday for keeping dangerous organisms in crates and boxes, but considering your own role in their release was more than just incidental, decide that would be a very bad idea. Plus, she did get you off-world before the shit really hit the fan.");
 
 	output("\n\nAnd, you realize with a groan, maybe the prop she meant for you to grab was the blue latex suit, not the multiplying brain parasite under it. Oops.");
-	// Kiro stand-in, for consistency!
-	pc.loadInAss(chars["KIRO"]);
-	pc.loadInMouth(chars["KIRO"]);
+	
+	var ppHoliday:PregnancyPlaceholder = getHolidayPregContainer()
+	pc.loadInAss(ppHoliday);
+	pc.loadInMouth(ppHoliday);
 	if(pc.femininity < 70) pc.femininity = 70;
 	if(pc.lipMod < 5 && pc.femininity >= 90) pc.lipMod++;
 	if(pc.lipMod < 5) pc.lipMod++;
@@ -1428,18 +1461,27 @@ public function femaleTaurLadySex():void
 {
 	clearOutput();
 	showDane(true);
+	
+	var daneIsRivalBodyguard:Boolean = (!zhengCoordinatesUnlocked());
+	
 	output("<i>“Holy shit... is that you, [pc.name]?”</i> calls a familiar-sounding voice.");
-	output("\n\nYou turn suddenly alarmed to see the familiar, four-armed figure of your cousin’s guard dog, Dane. Instead of glowing armor and weapons, he’s wrapped in dozens of glowing bands. The ones on his biceps look like they’d snap off if his mighty muscle bothered to flex. A purple-glowing rope holds a black panel of silk across his groin and an identical weave over his ass, barely protecting his modesty. If the breeze blew the wrong way, you’d be able to see his dick snaking out of his sheath.");
+	output("\n\nYou turn suddenly alarmed to see the familiar, four-armed figure");
+	if(daneIsRivalBodyguard) output(" of your cousin’s guard dog");
+	output(", Dane. Instead of glowing armor and weapons, he’s wrapped in dozens of glowing bands. The ones on his biceps look like they’d snap off if his mighty muscle bothered to flex. A purple-glowing rope holds a black panel of silk across his groin and an identical weave over his ass, barely protecting his modesty. If the breeze blew the wrong way, you’d be able to see his dick " + (daneIsRivalBodyguard ? "snaking" : "poking") + " out of his sheath.");
 	output("\n\nYou yank your gaze up to the grinning ausar’s face, unsure if you should run. <i>“Dane?! What are you doing here?”</i>");
-	output("\n\n<i>“Partying. What’s it look like? Your cousin may be a hard-ass, but even [rival.heShe] has to play by union rules. All work and no play makes Dane a dull boy.”</i> He winks under an eye-covering black mask. Not much of a concealing costume, but in retrospect, neither is your own. ‘Naked centaur’ wouldn’t win many points in the informant protection program. Dane slaps your haunches, startling you from your reverie. <i>“Damn, that’s real isn’t it?”</i> His nostrils flare, and he peers around to eyeball your drooling horse pussy. <i>“It’s a... a good look on you.”</i> His tongue lolls out happily.");
+	output("\n\n<i>“Partying. What’s it look like?");
+	if(daneIsRivalBodyguard) output(" Your cousin may be a hard-ass, but even [rival.heShe] has to play by union rules.");
+	output(" All work and no play makes Dane a dull boy.”</i> He winks under an eye-covering black mask. Not much of a concealing costume, but in retrospect, neither is your own. ‘Naked centaur’ wouldn’t win many points in the informant protection program. Dane slaps your haunches, startling you from your reverie. <i>“Damn, that’s real isn’t it?”</i> His nostrils flare, and he peers around to eyeball your drooling horse pussy. <i>“It’s a... a good look on you.”</i> His tongue lolls out happily.");
 	output("\n\nYou start to explain that it <i>isn’t</i> real. It’s just a costume, but his obvious admiration brings a blush to your cheeks, soothing away your arguments with the warm pleasure of being <i>wanted</i>. <i>“");
 	if(pc.isBimbo()) output("Like, t");
-	else output("Thanks");
-	output(",”</i> you coo, shuffling your thighs to grind your plump pussylips together. The clip-clop of your rearward hooves does a good job of disguising the sound of a fresh gush of bubbling mare broth splattering off the floor. You may have fought him in the past, but there’s no denying the sheer masculinity of the ausar mercenary");
-	if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) output(", and you won’t soon forget the feeling of his many-knotted cock surging through you");
+	else output("T");
+	output("hanks,”</i> you coo, shuffling your thighs to grind your plump pussylips together. The clip-clop of your rearward hooves does a good job of disguising the sound of a fresh gush of bubbling mare broth splattering off the floor. You may have fought him in the past, but there’s no denying the sheer masculinity of the ausar mercenary");
+	if(flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) output(", and you won’t soon forget the feeling of his " + (daneIsRivalBodyguard ? "many-" : "") + "knotted cock surging through you");
 	output(". He would be a strong stud, surely capable of scratching the itch inside you.");
 
-	output("\n\n<i>“You okay?”</i> The muscled merc looks at you with concern, the twisting undulations beneath his loincloth stilling. <i>“You look hot.”</i> Dane scratches behind his head nervously with one hand and presses the back of another against your forehead. <i>“I mean feverish. Do you need to hit a medical tent? I think I’m out of a job if you kick the bucket.”</i>");
+	output("\n\n<i>“You okay?”</i> The muscled merc looks at you with concern, " + (daneIsRivalBodyguard ? "the twisting undulations" : "tenting bulge") + " beneath his loincloth stilling. <i>“You look hot.”</i> Dane scratches behind his head nervously with one hand and presses the back of another against your forehead. <i>“I mean feverish. Do you need to hit a medical tent?");
+	if(daneIsRivalBodyguard) output(" I think I’m out of a job if you kick the bucket.");
+	output("”</i>");
 	output("\n\nHow touching, literally and figuratively! He’s worried about you. You lean against him, nearly bowling him over with the additional weight of your new hindquarters. He catches himself on the edge of the bar and wraps two glowing arms around you, one looped about your waist and the other beneath your armpit, holding you aloft. The tips of his fingers are so close to ");
 	if(pc.biggestTitSize() >= 1) output("pressing on your [pc.chest]");
 	else output("touching your [pc.nipples]");
@@ -1453,37 +1495,47 @@ public function femaleTaurLadySex():void
 	else output("I forgot to prepare my ass, but my pussy is ready.");
 	output("”</i>");
 	output("\n\nDane’s ears twitch. <i>“You sure?”</i>");
-	output("\n\nYou turn around and shift your equine hips, pinning him between the bar and haunches, forcing him to feel the broiling heat pouring out of your babymaker. The feeble bit of fabric dividing your bodies insulates him about as well an oven mitt in a volcano, allowing your lurid juices to spill across the rapidly engorging hybrid dick beneath. Inch after inch of turgid erection pours forth, the bulges along his length rubbing past your puffy lips like a knotted rope.");
-	output("\n\n<i>“So long...”</i> you whimper.");
+	output("\n\nYou turn around and shift your equine hips, pinning him between the bar and haunches, forcing him to feel the broiling heat pouring out of your babymaker. The feeble bit of fabric dividing your bodies insulates him about as well an oven mitt in a volcano, allowing your lurid juices to spill across the rapidly engorging hybrid dick beneath. Inch after inch of turgid erection pours forth, the " + (daneIsRivalBodyguard ? "bulges along his length rubbing past your puffy lips like a knotted rope" : "pleasurably pulsing, equine pillar pushing past your puffy pussy lips") + ".");
+	output("\n\n<i>“So " + (daneIsRivalBodyguard ? "long" : "thick") + "...”</i> you whimper.");
 	output("\n\nPushing you away, Dane grunts in irritation. <i>“Are you always this brazen? You could have saved us both a bunch of time, back on Mhen’ga...?”</i> He looks around, noting two girls beside you already scissoring and grinding, feeding each other drinks. <i>“Screw it. When in Terran space, do as the Terrans do.”</i>");
 	processTime(33);
 	pc.lust(200);
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",ladyTaursFuckDane);
+	addButton(0,"Next",ladyTaursFuckDane,daneIsRivalBodyguard);
 }
 
-public function ladyTaursFuckDane():void
+public function ladyTaursFuckDane(daneIsRivalBodyguard:Boolean):void
 {
 	clearOutput();
 	showName("DANE\n& HOLIDAY");
 	showBust(daneBustDisplay(true),"HOLIDAY_HORSE");
-	output("That sounds like consent to you. You wiggle your rump, smearing long lines of glistering horse-lube across the loincloth dividing you and the four-armed ausar, marinating his wriggling phallus in slippery pheromones. A big boy like him is going to need lots of lube to help carry all his sperm into your womb. Your achingly empty crevasse clenches, hollow and needy. Grinding harder against him, you pin Dane between a rock and a wet place.");
-	output("\n\nFour powerful hands press back against your straining haunches, shifting your bulk enough to give the musclebound merc some breathing room - breathing room he’s all too happy to spend yanking the silk curtain from between your bodies. The slimy garment lands on a cheering human’s head, momentarily muffling her jubilation, but you pay it no mind. Without the condom-tight fabric stretched between Dane’s cock and your gushing nethers, his phallus is free to plunge into your waiting gates, spearing through the entrance with the force of a striking snake.");
+	output("That sounds like consent to you. You wiggle your rump, smearing long lines of glistering horse-lube across the loincloth dividing you and the four-armed ausar, marinating his " + (daneIsRivalBodyguard ? "wriggling" : "bestial") + " phallus in slippery pheromones. A big boy like him is going to need lots of lube to help carry all his sperm into your womb. Your achingly empty crevasse clenches, hollow and needy. Grinding harder against him, you pin Dane between a rock and a wet place.");
+	output("\n\nFour powerful hands press back against your straining haunches, shifting your bulk enough to give the musclebound merc some breathing room - breathing room he’s all too happy to spend yanking the silk curtain from between your bodies. The slimy garment lands on a cheering human’s head, momentarily muffling her jubilation, but you pay it no mind. Without the condom-tight fabric stretched between Dane’s cock and your gushing nethers, his phallus is free to plunge into your waiting gates, spearing through the entrance with the force of a " + (daneIsRivalBodyguard ? "striking snake" : "stampeding stallion") + ".");
 	//CuntChange
-	pc.cuntChange(0,chars["DANE"].cockVolume(0));
+	pc.cuntChange(0,(daneIsRivalBodyguard ? chars["DANE"].cockVolume(0) : daneCockVolume()));
 
-	output("\n\nIt feels like a normal ausar cock at first. The tapered tip lets it slide with ease, quickly broadening into a sturdy base, the kind you’d imagine could lift your hind legs off the ground with a single frenzied hump, and that’s only the beginning. Dane’s knot, the anchor of his pillar of cock, stretches you wide open. It’s pleasant, really. Your body is built to be stuffed with bigger dicks than this, so the swollen lump in the base is nothing more than erotic bonus.");
-	output("\n\nAll things considered, it’s a pretty good start to your evening.");
-	output("\n\nThe knot pushes deeper. Your eyes widen in surprise as the bulb burrows into your passage, leaving your lips hanging cutely agape behind. There’s no time to puzzle over this most recent development, not when Dane is spooling near-equine lengths of prick into your quim. Another knot pushes in, and your legs tremble, making your hooves slip and slide in the puddle you’ve made below. Your alien partner holds you upright, keeping you from spilling entirely to the ground. He literally saves your ass, if only so that he can hold his hips against it and continue to deep-dick you.");
-	output("\n\nSomewhat cowed by his display of might and control, you kneel down on your forelegs, ceding Dane the authority to use your body as he will, allowing you to focus on the way he’s slowly but steadily filling your cunt. His dick seems endless, revealing more and more knot-like bulges with each passing minute. You look back at him, delirious with pleasure, squeezing down on the wiggling, hybrid cock until the pleasure inflates every orb along the length of his phallus. They open you wider than two rutting pony-boys ever could.");
+	if(daneIsRivalBodyguard)
+	{
+		output("\n\nIt feels like a normal ausar cock at first. The tapered tip lets it slide with ease, quickly broadening into a sturdy base, the kind you’d imagine could lift your hind legs off the ground with a single frenzied hump, and that’s only the beginning. Dane’s knot, the anchor of his pillar of cock, stretches you wide open. It’s pleasant, really. Your body is built to be stuffed with bigger dicks than this, so the swollen lump in the base is nothing more than erotic bonus.");
+		output("\n\nAll things considered, it’s a pretty good start to your evening.");
+		output("\n\nThe knot pushes deeper. Your eyes widen in surprise as the bulb burrows into your passage, leaving your lips hanging cutely agape behind. There’s no time to puzzle over this most recent development, not when Dane is spooling near-equine lengths of prick into your quim. Another knot pushes in, and your legs tremble, making your hooves slip and slide in the puddle you’ve made below. Your alien partner holds you upright, keeping you from spilling entirely to the ground. He literally saves your ass, if only so that he can hold his hips against it and continue to deep-dick you.");
+		output("\n\nSomewhat cowed by his display of might and control, you kneel down on your forelegs, ceding Dane the authority to use your body as he will, allowing you to focus on the way he’s slowly but steadily filling your cunt. His dick seems endless, revealing more and more knot-like bulges with each passing minute. You look back at him, delirious with pleasure, squeezing down on the wiggling, hybrid cock until the pressure inflates every orb along the length of his phallus. They open you wider than two rutting pony-boys ever could.");
+	}
+	else
+	{
+		output("\n\nIt feels like a perfect fit at first. The broad tip slides with ease, quickly flaring out when your lips reach his sturdy base, the kind you’d imagine could lift your hind legs off the ground with a single frenzied hump. Dane’s medial ring caresses your [pc.clits 0], giving you a slight tickle before the rest of the length is pushed inside you.");
+		output("\n\nAll things considered, it’s a pretty good start to your evening.");
+		output("\n\nYour eyes widen in " + (flags["DANE_VAGFUCKS"] == undefined ? "surprise as a" : "excitement as a familiar") + " bulb burrows into your passage. There’s no time to puzzle over this most recent development, not when Dane is ramming his fully-equine length of prick into your quim. Your legs tremble, making your hooves slip and slide in the puddle you’ve made below. Your alien partner holds you upright, keeping you from spilling entirely to the ground. He literally saves your ass, if only so that he can hold his hips against it and continue to deep-dick you.");
+		output("\n\nSomewhat cowed by his display of might and control, you kneel down on your forelegs, ceding Dane the authority to use your body as he will, allowing you to focus on the way he’s slowly but steadily filling your cunt. His dick completely and utterly fills you with its veiny length. You look back at him, delirious with pleasure, squeezing down on the wiggling, hybrid cock. The pressure inflates his knot, the anchor at the base of his pillar of cock, stretching wider than two rutting pony-boys ever could.");
+	}
 	output("\n\nDane slaps your ass, keeping ahold of you with his other three hands. <i>“You got a tight cunt for a taur-[pc.boyGirl], you know?”</i> He yanks back, dragging dozens of spherical protrusions against misfiring nerves, then slowly pushes back in. <i>“A guy could get used to this.”</i>");
 	output("\n\n<i>“Room for one more?”</i> a high-pitched, mischievous voice calls over the debauched din.");
 	output("\n\nYou blink tears of pleasure from your eyes and suck your tongue back into your mouth.");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG) && pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" It was wetly lapping at one of your [pc.nipples].");
 	output(" When did that start? You catch a flash of pink before something heavy, wet, and fragrant slaps onto your face, thick enough to blot out the sight of the newcomer.");
 
-	output("\n\nIt’s a cock. If the smooth skin and veiny ribs didn’t give it away, there’d be no mistaking it. It <i>smells</i> like cock, and not just any cock: a horse-cock. Its heady pheromones fill your nose with their musk and your brain with barnyard romps, the perfect compliment to the sharp scent your cunny is doing its best to flood the bar with.");
+	output("\n\nIt’s a cock. If the smooth skin and veiny ribs didn’t give it away, there’d be no mistaking it. It <i>smells</i> like cock, and not just any cock: " + (daneIsRivalBodyguard ? "a" : "<i>another</i>") + " horse-cock. Its heady pheromones fill your nose with their musk and your brain with barnyard romps, the perfect complement to the sharp scent your cunny is doing its best to flood the bar with.");
 	output("\n\nDane grunts something, but you don’t care. Your back half isn’t what’s being discussed here. It’s your mouth, and you’ll decide what goes in it. Or you would if you hadn’t have already swallowed the head. In retrospect, sucking this cock was a pretty great idea. It gives your mouth something to do while your quim is being bred. The taste on your tongue just makes the blaze in your cunt that much hotter, and it gives you the chance to see just who owns this lovely sausage.");
 	output("\n\nHoliday waves down. <i>“I’m glad I found you! I tried to dress for the occasion, but this shit won’t stop getting hard, and nobody else had the balls to stretch out their jaw and give it a go.”</i>");
 	output("\n\nThe demon nurse from earlier... it’s her fault... her fault you can’t stop thinking about cum in your cunny, spunk pooling between your splayed hind legs, having such a swollen middle that it’s difficult to walk... You shake off the thought of milk spilling down tits, swollen by newfound motherhood, and scowl around her dick. You don’t take it out - perish the thought. With your hands cupping balls a bit too big for the nurse’s slight frame, you give her a scathing rebuke with nothing but your eyes.");
@@ -1496,24 +1548,25 @@ public function ladyTaursFuckDane():void
 	{
 		pc.orgasm();
 	}
-	//Kiro used for volume~
+	
+	var ppHoliday:PregnancyPlaceholder = getHolidayPregContainer()
 	pc.loadInCunt(chars["DANE"], 0);
-	pc.loadInCunt(chars["KIRO"], 0);
-	pc.loadInCunt(chars["KIRO"], 0);
-	pc.loadInCunt(chars["KIRO"], 0);
-	pc.loadInCunt(chars["KIRO"], 0);
+	pc.loadInCunt(ppHoliday, 0);
+	pc.loadInCunt(ppHoliday, 0);
+	pc.loadInCunt(ppHoliday, 0);
+	pc.loadInCunt(ppHoliday, 0);
 	pc.loadInMouth(chars["DANE"]);
-	pc.loadInMouth(chars["KIRO"]);
-	pc.loadInMouth(chars["KIRO"]);
+	pc.loadInMouth(ppHoliday);
+	pc.loadInMouth(ppHoliday);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	pc.exhibitionism(2);
 	clearMenu();
-	addButton(0,"Next",femTaurCostumeEpilogue);
+	addButton(0,"Next",femTaurCostumeEpilogue,daneIsRivalBodyguard);
 }
 
 //Epilogue Female
-public function femTaurCostumeEpilogue():void
+public function femTaurCostumeEpilogue(daneIsRivalBodyguard:Boolean):void
 {
 	clearOutput();
 	clearBust();
@@ -1528,10 +1581,10 @@ public function femTaurCostumeEpilogue():void
 	processTime(500);
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",finalLadyTaurCostumeEpilogue);
+	addButton(0,"Next",finalLadyTaurCostumeEpilogue,daneIsRivalBodyguard);
 }
 
-public function finalLadyTaurCostumeEpilogue():void
+public function finalLadyTaurCostumeEpilogue(daneIsRivalBodyguard:Boolean):void
 {
 	clearOutput();
 	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the Peacekeepers meant by symbiosis tech? Are you a centaur forever?");
@@ -2310,7 +2363,7 @@ public function saurmorianHalloweenAfterStuff():void
 	output("\n\nFeeling somewhat off ever since putting on this costume, frustrated by teasing strangers, and even now horny out of your mind, you find yourself struggling to care when you casually turn back and, lo and behold; the door’s locked! Isn’t that great. There’s no sign of anyone nearby and now would be a good time to relieve some stress, you figure, and spend a moment searching for the suit’s zipper.");
 	output("\n\nYou can’t find it. Your chest heaves in a sigh. That’s odd... The place seems less like a store or a club, you note as you look around, and more like a chapel... no, a <i>cathedral</i>. On the far end, past numerous piles of debris and rubble, you spot the altar; a great stone slab, marred by only the barest of chips and cracks. Strangely, every statue within sight is ruined except for one. An incredibly cute and attractive gargoyle of some sort hunches over limbs shackled in restraints of gold, as stock still as the very rubble surrounding her.");
 	output("\n\n<i>“You shouldn’t be here,”</i> a sharp, feminine voice rings out from behind you.");
-	output("\n\nYour claws grind against the ground as you whirl on the spot, almost tripping yourself. A great gasp escapes you once you see the voice’s owner; a tall, lithe figure stands before you, the feminine body covered in elegant silver scales that mark her as saurmorian. Though, now that you’re allowed a good look, you notice more matronly curves than you feel is usual for a saurmorian, her chest capped with luscious globes that bulge against her monokini of a uniform. It hugs her closely, complimenting her curves on an otherwise still-sleek form. Her reptilian face shows the beginnings of the lines of age and stress, lending her brilliant green eyes a hint of wisdom.");
+	output("\n\nYour claws grind against the ground as you whirl on the spot, almost tripping yourself. A great gasp escapes you once you see the voice’s owner; a tall, lithe figure stands before you, the feminine body covered in elegant silver scales that mark her as saurmorian. Though, now that you’re allowed a good look, you notice more matronly curves than you feel is usual for a saurmorian, her chest capped with luscious globes that bulge against her monokini of a uniform. It hugs her closely, complementing her curves on an otherwise still-sleek form. Her reptilian face shows the beginnings of the lines of age and stress, lending her brilliant green eyes a hint of wisdom.");
 	output("\n\nMistaking your silence for confusion, she crosses her arms over her chest, compressing those perfect mounds. <i>“You’re disobeying my orders. Everyone onboard was told-”</i> she suddenly growls, noticing your nudity for the first time, <i>“-oh for... You’re even violating the dress code.”</i> Her tail begins to sway in agitation, but quickly settles as she looks you over, raising an eyebrow instead. <i>“Oh I see; drink the tapwater or something, did you?”</i> she quips, cocking a curvy hip.");
 	output("\n\nRather taken aback, you struggle for a response - you’re not under her command, let alone an actual <i>saurmorian</i>. But anything you say falls on deaf ears.");
 	output("\n\nTaking a token look around, the imposing woman swiftly strips of her regalia, baring the silky obsidian hide of her torso and nethers - her plump slit already weeping with excitement - as well as letting her perky, motherly breasts free! <i>“This will come back to bite me in the ass, but </i>fuck it<i>. I haven’t cut loose in years,”</i> she mutters, both for you and herself you think. She orders you to approach, and in a flash the both of you are clinging to each other.");

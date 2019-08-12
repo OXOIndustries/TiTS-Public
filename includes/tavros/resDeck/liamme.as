@@ -939,7 +939,7 @@ public function blowLiammeInNewPanties():void
 	clearOutput();
 	showLiamme(true);
 	author("HugsAlright");
-	output("If you were in a less lustful state of mind, you’d probably tell Liamme that the black compliments his hair, or something like that. Of course, you’re pretty focused on that doggy-dong hanging out from the ausar’s outfit right now, growing harder with each passing moment of attention it’s getting.");
+	output("If you were in a less lustful state of mind, you’d probably tell Liamme that the black complements his hair, or something like that. Of course, you’re pretty focused on that doggy-dong hanging out from the ausar’s outfit right now, growing harder with each passing moment of attention it’s getting.");
 
 	output("\n\nSo, you tell him it looks great, but you also see a little problem with the whole outfit as you lower yourself to ");
 	if(pc.hasKnees()) output("your knees");
@@ -1001,7 +1001,7 @@ public function tellLiammeHeLooksGr8():void
 	clearOutput();
 	showLiamme(true);
 	author("HugsAlright");
-	output("Looking him over, you tell Liamme that the black really compliments his skin and hair, bringing out all those lighter colours.");
+	output("Looking him over, you tell Liamme that the black really complements his skin and hair, bringing out all those lighter colours.");
 	output("\n\nThe femboy’s face brightens at your word. <i>“Ooooh,”</i> he coos, proceeding to give his girly hips a little shake, making his cock wobble, <i>“Anything else?”</i> He looks at you with an expectant smile.");
 	output("\n\nYou grin and bring yourself closer, pressing your body against his until the blonde pup is up against the changing room’s wall, eyes still looking over his body. Your hands find their way to Liamme’s plush thighs, running up and down his legs as you tell him about how nicely these stockings hug at his curvy thighs. Then, your digits make their way to his butt, digging into his squishy assflesh, enough to make him whimper while you explain how well the panties fit his butt before sliding your hand up to his sides. You trail your fingers along the smooth skin of his midsection, enjoying the simple tactile sensation of his flesh until they reach his chest. You flick your thumbs across his stiff, silk-covered nipple, causing the femboy whine quietly. Licking your lips, you whisper into Liamme’s, twitching, fluffy ears, telling that you wish this little chestwrap wasn’t here so you could see those cute nipples of his.");
 	output("\n\nThen, feeling you’ve given his outfit a good appraisal (and that you’ve teased him enough), you pull back, noticing his cock is at full mast and twitching needily.");

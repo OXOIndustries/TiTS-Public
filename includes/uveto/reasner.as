@@ -155,7 +155,7 @@ public function approachBeatrice():void
 		//set BEA_RELATIONSHIP to 1
 		flags["BEA_RELATIONSHIP"] = 1;
 		output("She seems friendly enough, and you could use some company, so you make your way over to her table. As you draw closer, you can see she’s human - seemingly unmodded, you note - with a captivating set of curves, from wide hips and a narrow waist, to a hefty bust; unfortunately her jacket tries to conceal a lot of it. What might have been some epic cleavage is covered by a well-fitted dress shirt buttoned all the way up with a necktie hanging from the top. She’s dressed quite professionally - the only skin showing are her face and hands.");
-		output("\n\nHer face is what many would call beautiful; with full, red lips and high cheekbones complimenting a pair of russet eyes with thick lashes, all framed by a head of voluminous chestnut hair tied into a loose braid. A few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother.");
+		output("\n\nHer face is what many would call beautiful; with full, red lips and high cheekbones complementing a pair of russet eyes with thick lashes, all framed by a head of voluminous chestnut hair tied into a loose braid. A few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother.");
 		output("\n\nShe motions to the chair across from her, <i>“Please, sit with me.”</i> Her voice is smooth as silk and warm as the nearby fire.");
 		output("\n\nYou oblige by ");
 		if(pc.isTaur()) output("moving the chair and sitting down in its place");
