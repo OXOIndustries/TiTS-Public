@@ -194,6 +194,8 @@ package classes.Resources
 			//SYRI
 			[Embed(source = "../../assets/images/imagepack/syri/rajii_syri_final.jpg", mimeType = "image/jpg")]
 			public static const SyriButtfuck:Class;
+			[Embed(source = "../../assets/images/imagepack/syri/bashko_syri_lingerie.jpg", mimeType = "image/jpg")]
+			public static const SyriLingerie:Class;
 
 			//SLYVEREN SLAVEBREAKER
 			[Embed(source = "../../assets/images/imagepack/slavebreaker/mrpink_shoucolor_slyveren_blowjob.png", mimeType = "image/png")]
