@@ -163,6 +163,10 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
 			public static const PrincessIntro:Class;
 
+			//PYROPUP
+			[Embed(source = "../../assets/images/imagepack/pyropup/buntcake_pyropup_flamer_corona_lord_final.jpg", mimeType = "image/jpg")]
+			public static const PyropupChokeFuck:Class;
+
 			//RATS
 			[Embed(source = "../../assets/images/imagepack/rats/octomush_earfuck_ffion.jpg", mimeType = "image/jpg")]
 			public static const OctoEarfuck:Class;
