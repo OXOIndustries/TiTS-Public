@@ -904,21 +904,16 @@ public function buyItem(quantity:int=1):void {
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty")) + temp * (quantity-1);
 			}
-			/*
 			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
 			{
 				temp = (temp * quantity) - kionaCreditOwed();
 				if (temp < 0) temp = 0;
-			}*/
+			}
 			else
 			{
 				temp = temp * quantity;
 			}
-			else if (shopkeep is Kiona && kionaCreditOwed() > 0)
-			{
-				temp -= kionaCreditOwed();
-				if (temp < 0) temp = 0;
-			}
+
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
 			{
@@ -1153,7 +1148,8 @@ public function buyItemGo(arg:Array):void {
 	}
 	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
-	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg[0].description,price);
+	if (shopkeep is Kiona) kionaBuyUsingStoreCredit(arg[0].description, price);
+	
 	else
 	{
 	  output("You purchase " + arg[0].description + "(x" + arg[1] + ") for " + num2Text(price) + " credits.");
