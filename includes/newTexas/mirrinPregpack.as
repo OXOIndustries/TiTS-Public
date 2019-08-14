@@ -14,7 +14,7 @@
  * 9 - pregged both
  * 10 - pregged live
  * 11 - pregged live & both
- * MIRRIN_PREGMAIL_TIMESTAMP: when to recieve nonpreg email
+ * MIRRIN_PREGMAIL_TIMESTAMP: when to receive nonpreg email
  * MIRRIN_TAVROSMAIL_TIMESTAMP: when to receive tavros email
  * MIRRIN_PREG_TIME_LEFT: how long until mirrin pops
 */

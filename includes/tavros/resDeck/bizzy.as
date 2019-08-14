@@ -10,7 +10,7 @@ BIZZY_SEEN_NAKED	0/undefined nope
 					1 Yep
 
 BIZZY_MAIL_PAYMENT_DAY 	undef unset
-						>= 0 The first day number the PC recieves a pay out
+						>= 0 The first day number the PC receives a pay out
 
 BIZZY_SLAVER_CHOICE		undef/0 none
 						1 Tat

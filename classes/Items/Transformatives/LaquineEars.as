@@ -241,7 +241,7 @@ package classes.Items.Transformatives
 				
 				pc.applyPriapism();
 			}
-			// (Penor) Grow five to ten inches, dependant on perks. Low chance cock becomes glossy black if not. Immensely pleasurable but no cum. (Mini: 3/4-7/Hung:7-11} inches. (20"mini/28" norm/36" hung)
+			// (Penor) Grow five to ten inches, dependent on perks. Low chance cock becomes glossy black if not. Immensely pleasurable but no cum. (Mini: 3/4-7/Hung:7-11} inches. (20"mini/28" norm/36" hung)
 			else if(select == 2)
 			{
 				choices = [];

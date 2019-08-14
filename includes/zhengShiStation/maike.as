@@ -880,7 +880,7 @@ public function maikeNextThing():void
 	}
 
 	//[Exit]*
-	//*PC gains x1 Space Helmet (if not recieved before), x1 Hand Repulsor and x1 Illumorpheme.
+	//*PC gains x1 Space Helmet (if not received before), x1 Hand Repulsor and x1 Illumorpheme.
 	currentLocation = rooms[currentLocation].southExit;
 	CombatManager.genericVictory();
 }

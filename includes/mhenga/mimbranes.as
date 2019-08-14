@@ -389,7 +389,7 @@ public function feedCost(effectName:String, feedCost:int):void
 }
 
 /**
- * "Feed" any available mimbranes that are eligible to recieve ~nutrition~
+ * "Feed" any available mimbranes that are eligible to receive ~nutrition~
  * target selects the "grouping" that feeding will apply to; "all" or "regular"
  * "all" applies to all currently attached mimbranes
  * "regular" applies to only mimbranes that fall into the bracket of "regular sexytimes activity contact"

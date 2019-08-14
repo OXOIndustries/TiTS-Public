@@ -4082,7 +4082,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processReahaEvents(deltaT, doOut, totalDays);
 	processGobblesEvents(deltaT, doOut);
 	processIrelliaEvents(deltaT, doOut);
-	processOmniSuitEvents(deltaT, doOut); // Dependant on Libido changes, might need to be refactored to support jumping between states directly
+	processOmniSuitEvents(deltaT, doOut); // Dependent on Libido changes, might need to be refactored to support jumping between states directly
 	processCarryTrainingEvents(deltaT, doOut);
 	processNessaEvents(deltaT, doOut);
 	processCuntTailEggs(deltaT, doOut);

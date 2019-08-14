@@ -200,7 +200,7 @@ public function uvetoKaedeAnno():void
 		
 		if (pc.isAss())
 		{
-			output("\n\nIf she’s just taking corporate hand-outs, that doesn’t sound very independant to you.");
+			output("\n\nIf she’s just taking corporate hand-outs, that doesn’t sound very independent to you.");
 		
 			output("\n\n<i>“Have I told you to fuck off lately?”</i> Kaede huffs, sticking her tongue out at you. ");
 		}

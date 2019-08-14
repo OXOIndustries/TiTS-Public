@@ -4763,7 +4763,7 @@
 		public static const DEPENDANT_CUM:uint = 2;
 		public static const DEPENDANT_ANAL:uint = 3;
 	
-		// Is the character dependant on some external drug/chemical/etc
+		// Is the character dependent on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
 			if(dependantType == DEPENDANT_MYRVENOM || dependantType == DEPENDANT_ANY)
