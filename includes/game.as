@@ -41,10 +41,11 @@ public function infiniteItems():Boolean
 
 public function processEventBuffer():String
 {
-	var output:String = ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
+	var output:String = "";
 	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
+		output += ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -67,10 +68,14 @@ public function processEventBuffer():String
 			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + (i+1 < timestampedEventBuffer.length ? "\n\n":"\n"));
 			//Old: output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
 		}
-		
-		timestampedEventBuffer = [];
+		//Old: timestampedEventBuffer = [];
 	}
 	return output;
+}
+
+public function clearEventBuffer():void
+{
+	timestampedEventBuffer = [];
 }
 
 public static const NAV_NORTH_DISABLE:uint 	= 1;
@@ -216,14 +221,20 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	clearOutput();
 	//Display shit that happened during time passage.
 	var eventBuffer:String = processEventBuffer();
-	if (eventBuffer != ("<b><u>" + possessive(pc.short) + " log:</u></b>\n"))
+	if (eventBuffer != "")
 	{
-		if (samePageLog) output("" + eventBuffer + "<b><u>End log.</u></b>\n\n");
+		if (samePageLog)
+		{
+			output(eventBuffer + "<b><u>End log.</u></b>\n\n");
+			//If clearOutput is called while this flag is active, the output was cleared without the player seeing the event buffer. clearOutput's functionality changes to append the event buffer to the cleared output.
+			flags["EVENT_BUFFER_OVERRIDE"] = true;
+		}
 		else
 		{
 			clearBust();
 			output("" + eventBuffer + "");
 			clearMenu();
+			clearEventBuffer();
 			addButton(0, "Next", mainGameMenu);
 			return;
 		}
@@ -375,6 +386,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
+	
+	//If we made it to here without clearOutput being called, the player has seen the event buffer
+	flags["EVENT_BUFFER_OVERRIDE"] = true;
+	clearEventBuffer();
 	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 	
