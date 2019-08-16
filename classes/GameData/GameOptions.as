@@ -65,7 +65,7 @@ package classes.GameData
 		
 		//Do log events generate their own page
 		public var samePageLog:Boolean;
-		
+
 		// Text Settings
 		
 		// FontSize
