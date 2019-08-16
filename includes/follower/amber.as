@@ -4537,8 +4537,8 @@ public function amberOnShipSexDrainHerInPussy(hole:int):void
 		} else if (amberDumbfuckDoses() == 3){
 			processTime(6 * 60);
 			output("<b>6 hours later</b>");
-			processTime(8 * 60);
 		} else if (amberDumbfuckDoses() > 3){
+			processTime(8 * 60);
 			output("<b>8 hours later</b>");
 		}
 

@@ -588,14 +588,14 @@ package classes.Items.Transformatives
 
 			//Has vagina, incubation speed modifier<500%
 			//increase incubation speed modifier by 20 - 50%
-			var newSpeed:Number = target.pregnancyMultiplierRaw + ((2.0 + rand(4))/10);
+			var newSpeed:Number = target.pregnancyIncubationBonusMotherRaw + ((2.0 + rand(4))/10);
 			if (rand(100) >= 25) {}
-			else if (target.hasVagina() && target.pregnancyMultiplierRaw < 5)
+			else if (target.hasVagina() && target.pregnancyIncubationBonusMotherRaw < 5)
 			validChanges.push(function (target:Creature):void
 			{
 				output("There’s a brief spark of heat in your [pc.wombs] that almost gives you pause, but it swiftly shifts to a comforting warmth - not unlike the feeling of being hugged tight by a lover, idly admiring and praising your fertility. The thought brings a smile to your face, and you place your hands on your middle. After a few moments, you snap out of your daydreaming, but the warmth stays for a while longer.\n\nA notification from your Codex tells you that your pregnancies will be a bit faster from now on.");
 				
-				target.pregnancyMultiplierRaw = newSpeed;
+				target.pregnancyIncubationBonusMotherRaw = Math.min(newSpeed, 5);
 			});
 			
 			//Vagina count >1

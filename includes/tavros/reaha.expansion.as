@@ -220,12 +220,11 @@ public function reahaTalkTreatment():void
 
 	output("<i>“Think you could tell me more about the Treatment?”</i> you ask.");
 
-	if (pc.isTreated())
+	if (pc.isTreated() && pc.isBimbo())
 	{
 		output("\n\n<i>“Seems like you already know everything you need to about it");
 		if (!reahaFree()) output("... [pc.master]");
 		output(".”</i>");
-
 		output("\n\n<i>“Just, like, el- ela... Just, like, tell me, okay? Please?”</i>")
 	}
 	

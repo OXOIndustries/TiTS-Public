@@ -785,7 +785,7 @@ public function initTavrosRooms():void
 	//1015 West Walkway 2
 	rooms["RESIDENTIAL DECK 15"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 15"].roomName = "WEST\nWALKWAY";
-	rooms["RESIDENTIAL DECK 15"].description = "This part of the walkway is fairly standard. There’s a few humble decorations outside the stock-standard doors: pot plants, mats, the usual fare. Even in space and during such an advanced technological era, some things don’t change all that much.\n\nTo the south, you notice a residence with two barn-like doors. Attached to the artificial windows are boxes filled with blossoming flowers. The number beside the door is 154.\n\nThe thoroughfare here ends in a gigantic steel wall to the west. Seems that part of the station is still under construction. You can only head back east.";
+	rooms["RESIDENTIAL DECK 15"].description = "";
 	rooms["RESIDENTIAL DECK 15"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 15"].system = "SYSTEM: KALAS";
 	//rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18"; -> added to game.as
@@ -796,7 +796,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NPC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["RESIDENTIAL DECK 15"].runOnEnter = checkIfAinaIsAround;
+	rooms["RESIDENTIAL DECK 15"].runOnEnter = resDeck15Func;
 
 	//Yoga palace!
 	rooms["YOGA_HOUSE"] = new RoomClass(this);

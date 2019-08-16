@@ -559,7 +559,7 @@ public function saendraParents():void
 
 	output("<i>“Tell me a little bit more about your folks.”</i>");
 	
-	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’ still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
+	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’s still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
 	
 	output("\n\n<i>“But, uh, dad passed a couple of years back. Got in a fight he couldn’t win, I guess.”</i>");
 	

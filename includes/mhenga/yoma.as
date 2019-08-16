@@ -1290,7 +1290,7 @@ public function yomaFirstDateProceedIV(wantCream:Boolean = true):void
 	}
 	output(", as well the brief period of time you spent working as a [pc.class] before Victor’s passing. Yoma listens intently, interrupting you now and then to remind you to actually drink your hot chocolate before it goes cold, or to ask you to elaborate on something you’ve said.");
 	output("\n\nHe’s pleasantly warm, pushed up against you as he is, and even after you’ve finished your drink, you stay there, chattering away. ");
-	output("\n\nEventually though, after polishing up a "+ (pc.isMischievous() ? "highly exaggerated " : "") +"story about something embarrassing that your cousin did on one of [rival.hisHer] rare visits, you realise that you’ve been here easily an hour and it’s probably time you head out. Yoma doesn’t remove his arm from you "+(pc.tallness < 53 ? "though he does move it up to be around your shoulders now " : "")+"as you stroll through Tavros Station, still talking idly.");
+	output("\n\nEventually though, after polishing up a "+ (pc.isMischievous() ? "highly exaggerated " : "") +"story about something embarrassing that your cousin did on one of [rival.hisHer] rare visits, you realize that you’ve been here easily an hour and it’s probably time you head out. Yoma doesn’t remove his arm from you "+(pc.tallness < 53 ? "though he does move it up to be around your shoulders now " : "")+"as you stroll through Tavros Station, still talking idly.");
 	output("\n\nAfter you’re quite certain you’ve walked off that hot chocolate, you start moving towards your ship again, not ignoring the little circles that Yoma’s been rubbing into your flesh and the grin that hints he’d like a little more than a quiet ride home.");
 
 	showLocationName();
@@ -1717,8 +1717,8 @@ public function yomaThirdDateElevatorPitch(wantSex:Boolean = true):void
 			else output("reaches down to lightly finger your [pc.asshole], thumb stroking over your perineum ");
 			output(" and one of your [pc.hands] instinctively reaches for Yoma’s head, getting a good grip on a fistful of dreadlocks to steer him.");
 			output("\n\nNeither of you are particularly interested in dragging it out, just wanting some quick relief and the thrill of public sex, and it’s not long until you’re "+(pc.cumQ() >= 1000 ? " flooding your partner’s oral passage with enough cum that he’s still coughing it up when he pulls off." : "cumming."));
-			output("\n\nYou don’t quite manage to muffle your loud, orgasmic cry in time - something you soon realise as you hear a gruff, huskar-sounding voice call out an <i>“Everything okay back there?”</i>");
-			output("\n\n" + (pc.cumQ() >= 1000 ? "Now that he’s finished coughing, " : "") + "Yoma calls out a confirmation, earning an amused laugh from the voice. Looks like they realised that there’s more than one of you back here...");
+			output("\n\nYou don’t quite manage to muffle your loud, orgasmic cry in time - something you soon realize as you hear a gruff, huskar-sounding voice call out an <i>“Everything okay back there?”</i>");
+			output("\n\n" + (pc.cumQ() >= 1000 ? "Now that he’s finished coughing, " : "") + "Yoma calls out a confirmation, earning an amused laugh from the voice. Looks like they realized that there’s more than one of you back here...");
 			output("\n\nIt doesn’t take long to clean up, and soon the two of you have settled back to how you were.");
 		}
 		else {
@@ -1729,8 +1729,8 @@ public function yomaThirdDateElevatorPitch(wantSex:Boolean = true):void
 				else output("delving under its hood for even more intense stimulation");
 				output(". It’s all you can do not to scream at the sensations washing through your shaking body.");
 			output("\n\nIt’s obvious to both of you that you’re not particularly interested in dragging this out, just wanting some quick relief and the thrill of public sex, so it doesn’t surprise you when you cum suddenly and spectacularly, unable to cover up your loud yell of pleasure in the heat of the moment.");
-			output("\n\nYou soon realise your mistake as you hear a gruff, huskar-sounding voice call out an <i>“Everything okay back there?”</i>");
-			output("\n\nWiping the [pc.girlcum] from his visage, Yoma calls out a confirmation, earning an amused laugh from the voice. Looks like they realised that there’s more than one of you back here...");
+			output("\n\nYou soon realize your mistake as you hear a gruff, huskar-sounding voice call out an <i>“Everything okay back there?”</i>");
+			output("\n\nWiping the [pc.girlcum] from his visage, Yoma calls out a confirmation, earning an amused laugh from the voice. Looks like they realized that there’s more than one of you back here...");
 			output("\n\nIt doesn’t take long to clean up, and soon the two of you have settled back to how you were.");
 		}
 	}
@@ -1773,7 +1773,7 @@ public function yomaThirdDateSetRelationship(lovers:Boolean):void
 		output("\n\nThe words are half mumbled into your chest, uncharacteristic shyness evident in every tense inch of your companion’s form. Compelled, you gently take his chin in one hand, pressing what starts as a chaste kiss to his soft lips. He’s soon reciprocating, impassioned to the point where you’re half expecting him to jump you");
 		if(flags["YOMA_DATE_ELEVATOR_SEX"] == 1) output(", even so soon after that last fuck");
 		output(", but he pulls back eventually.");
-		output("\n\nStanding up, he offers you a hand and you realise that - oh - you’re still lying in the snow. You take his hand"+ (pc.isMischievous() ? ", tugging it playfully like you might just pull him back down, before you " : " and") + " let him help you up, not letting go even after you’re back on your feet. He helps you dust off the worst clumps sticking to you"+ (pc.isNude() ? " and giving you a playful swat on the [pc.ass] as he does" : "") + ", before ");
+		output("\n\nStanding up, he offers you a hand and you realize that - oh - you’re still lying in the snow. You take his hand"+ (pc.isMischievous() ? ", tugging it playfully like you might just pull him back down, before you " : " and") + " let him help you up, not letting go even after you’re back on your feet. He helps you dust off the worst clumps sticking to you"+ (pc.isNude() ? " and giving you a playful swat on the [pc.ass] as he does" : "") + ", before ");
 		if (pc.tallness < 63) output("leaning down");
 		else if (pc.tallness == 63) output("leaning in");
 		else output("tugging you down");
@@ -1822,7 +1822,7 @@ public function yomaThirdDateMilodanEncounter():void
 	}
 	else {
 		output("The goal of exploration gets forgotten pretty quickly when, in an attempt to bring his trademark smile back to his face, you target him with a barrage of "+ (pc.AQ() <= 20 ? "poorly aimed " : "")+"snowballs. You instantly earn yourself a surprised shriek when "+ (pc.AQ() <= 20 ? "one of them makes" : "they make")+" contact, shocking him enough that he manages to trip himself into a pretty deep snowdrift.");
-		output("\n\nAt first, you think he’s mad at you from the shake of his shoulders as you go to pull him up, but soon realise he’s laughing gleefully. Of course, just as you think you’ve escaped, you’re pelted with a hastily made snowball yourself, Yoma crying out victorious.");
+		output("\n\nAt first, you think he’s mad at you from the shake of his shoulders as you go to pull him up, but soon realize he’s laughing gleefully. Of course, just as you think you’ve escaped, you’re pelted with a hastily made snowball yourself, Yoma crying out victorious.");
 		output("\n\n<i>“Sweet, sweet vengeance!”</i> he laughs, narrowly avoiding your returning volley.");
 		output("\n\nOh, come on, that’s so petty!");
 		output("\n\nYour friend is easy to track, red clothing and dark skin standing out clearly against stark white snow as you chase him down again.");
@@ -1863,7 +1863,7 @@ public function yomaThirdDateMilodanPlayAlong():void
 	if (flags["YOMA_RELATIONSHIP"] == 1) {
 		output("\n\nYou reach down, "+ (pc.isFemale() ? "pushing two fingers into your drooling [pc.biggestCunt]" : "wrapping a hand around your [pc.cockBiggest]") +", only for Yoma to grab your wrist to stop you. For a horrible moment, you’re left exposed and untouched, but once he releases your wrist he replaces your hand with his own "+ (pc.hasCock() ? "jacking" : "jilling") +" you off with far more vigour than you could have managed for yourself.");
 		output("\n\nIt’d be rude not to reciprocate, you think, and your hand practically moves of its own accord, slinking its way through a maze of thick fabric into your companion’s pants before plunging into that hot, always wet and ready pussy buried between soft, synthetic thighs.");
-		output("\n\nThe Milodan towering over your kneeling forms seems close to his peak, clearly having got more than he bargained for with a couple of relatively harmless looking offworlders. You both realise at the same time and once again you’re not sure who actually goes for it first, but you’re almost instantly frenching messily, his cockhead sealed firmly between your matched lips.");
+		output("\n\nThe Milodan towering over your kneeling forms seems close to his peak, clearly having got more than he bargained for with a couple of relatively harmless looking offworlders. You both realize at the same time and once again you’re not sure who actually goes for it first, but you’re almost instantly frenching messily, his cockhead sealed firmly between your matched lips.");
 	}
 	else {
 		output("\n\nYou reach down, "+ (pc.isFemale() ? "pushing two fingers into your drooling [pc.biggestCunt]" : "wrapping a hand around your [pc.cockBiggest]") +", noticing that Yoma’s reaching into his own pants, doubtless frigging his cunt. It’s a damn hot sight, and you start "+ (pc.hasCock() ? "jacking" : "jilling") +" off even more vigorously than before.");

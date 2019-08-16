@@ -2088,7 +2088,7 @@ public function nurseryMaternityWaitGo():void
 	{
 		output(" By the end of the second day, you can feel all the tension bleeding away: all the aches and the cares of your adventuring life seem so far away as you’re pampered by Briget and her staff. The matronly gynoid simply refuses to let you lift a finger for yourself, insisting that she knows exactly how to treat a pregnant Steele after all these years. Considering her breadth of experience, and how relaxed and contented you soon find yourself, it’s hard to argue the point.");
 
-		if (flags["CREWMEMBER_SLEEP_WITH"] != undefined)
+		if (flags["CREWMEMBER_SLEEP_WITH"] != undefined && flags["CREWMEMBER_SLEEP_WITH"].indexOf(" AND ") == -1)
 		{
 			output(" " + getSleepingPartnerName() + " joins you after the first night, carrying in a handful of belongings and making " + (isSleepingPartnerMale() ? "him" : "her") + "self comfortable in your shared living space. Briget");
 			if (flags["BRIGET_FUCKED"] != undefined) output(" takes the extra presence in your bed in stride - you are a Steele, after all. Your poor bed, however, clearly wasn’t made for the sexual escapades that the three of you get up to - though a shattered headboard or two is easily replaced.");

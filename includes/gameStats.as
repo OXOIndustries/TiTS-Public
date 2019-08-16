@@ -5359,7 +5359,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// Sydney
 				if(flags["MET_SYDNEY"] != undefined) output2("\n<b>* Sydney:</b> Met him");
-				//Ciaran
+				// Ciaran
 				if(flags["CIARAN_MET"] != undefined)
 				{
 					output2("\n<b>* Ciaran:</b> Met him");
@@ -8304,7 +8304,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			// kiona's kiosk
 			if(flags["KIONA_MET"] != undefined)
 			{
-				output2("\n<b><u>Kiona's Kiosk</u></b>");
+				output2("\n<b><u>Kiona’s Kiosk</u></b>");
 				output2("\n<b>* Kiona:</b> Met her");
 				if(!kionaLovers())
 				{
