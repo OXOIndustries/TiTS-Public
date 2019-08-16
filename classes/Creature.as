@@ -15990,6 +15990,7 @@
 				else if (type == GLOBAL.TYPE_ANEMONE) desc += "sea anemone-";
 				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
+				else if (type == GLOBAL.TYPE_BOTHRIOC) desc += "bothrioc ";
 				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
 				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
 				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
@@ -15999,7 +16000,9 @@
 				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
 				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
 				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
+				else if (type == GLOBAL.TYPE_LAPINARA) desc += "lapinara ";
 				else if (type == GLOBAL.TYPE_LEITHAN) desc += "leithan mare-";
+				else if (type == GLOBAL.TYPE_LIZAN) desc += "reptilian ";
 				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
 				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
@@ -16010,8 +16013,6 @@
 				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
 				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
-				else if (type == GLOBAL.TYPE_LAPINARA) desc += "lapinara ";
-				else if (type == GLOBAL.TYPE_BOTHRIOC) desc += "bothrioc ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
