@@ -16,7 +16,7 @@ public function seatingZea(btnSlot:int):Boolean
 	if (hours < 12 || hours > 13) return false;
 	if (flags["MET_ZEA"] == undefined)
 	{
-		output("\n\nThere’s a " + (CodexManager.entryUnlocked("Xhelarfog") ? "Xhelarfog" : "strange looking alien with opalescent skin and golden scales") + " tapping away at some sort of codex in the far corner, barely paying attention to the meal they’ve been served. They’re wearing some sort of armband, and when you look closer, you recognize the SteeleTech logo.");
+		output("\n\nThere’s a " + (CodexManager.entryUnlocked("Xhelarfog") ? "Xhelarfog" : "strange looking alien with opalescent skin and golden scales") + " tapping away at some sort of codex in the far corner, barely paying attention to the meal they’ve been served. They’re wearing some sort of armband, and when you look closer, you recognize the Steele Tech logo.");
 		addButton(btnSlot, "Alien", zeaIsGreeted);
 	}
 	else
@@ -125,7 +125,7 @@ public function zeappearance():void
 	output("\n\nShe’s about 4\' 8\" by your best guess, quite short by galactic standards.");
 	output("\n\nHer face has a curious lack of a nose, presumably meaning she can’t smell, and when she speaks you catch a glimpse of sharp, predatory teeth. Her horns, erupting from the center of her forehead, are the same opalescent white as the rest of her slightly sticky skin, but fade into a golden shade at their tips.");
 	output("\n\nShe has the typical scale pattern of an adult of her species - corset-like over her abdomen, with the top half of her tail likewise protected by scales of gold. The only tell of her age is that she’s begun to develop yet more rough scales on her legs, but as you’re not sure of how fast these grow in, or even what the average Xhelarfog lifespan is; you can only surmise the basic fact that she’s clearly above the legal age.");
-	output("\n\nSeeing as she wears no clothes aside from a cloth band around one arm bearing the SteeleTech logo, you can clearly see that she has gone without modification to her chest - having no breasts or even nipples to speak of - and her groin is as bare as is true of all unmodded individuals of her species.");
+	output("\n\nSeeing as she wears no clothes aside from a cloth band around one arm bearing the Steele Tech logo, you can clearly see that she has gone without modification to her chest - having no breasts or even nipples to speak of - and her groin is as bare as is true of all unmodded individuals of her species.");
 	if (CodexManager.entryViewed("Xhelarfog") || flags["ZEA_DISCOUNT"] != undefined)
 	{
 		output("\n\nHer genitals, as you’ve discovered, are instead located on the underside of her thick, stubby tail");
@@ -142,8 +142,8 @@ public function zeaChat():void
 	showZea();
 	processTime(5);
 	
-	output("You ask her about her job, and why she’s here rather than across the street at the SteeleTech branch.");
-	output("\n\n<i>“I’m what you’d call a delivery woman. Mostly runs to various SteeleTech shops like the one across the road, delivering merchandise for people like Anno to stock - though why <i>she’s</i> been relegated to the nowhere place this is I don’t know... Of course, I am having something of a... What’s your word? The break-from-work one?”</i> She trails off.");
+	output("You ask her about her job, and why she’s here rather than across the street at the Steele Tech branch.");
+	output("\n\n<i>“I’m what you’d call a delivery woman. Mostly runs to various Steele Tech shops like the one across the road, delivering merchandise for people like Anno to stock - though why <i>she’s</i> been relegated to the nowhere place this is I don’t know... Of course, I am having something of a... What’s your word? The break-from-work one?”</i> She trails off.");
 	output("\n\nShe’s on vacation... On Tarkus of all places?");
 	output("\n\n<i>“Mhmm. Scrap heap this big, this full of metal? It kind of reminds me of home. Less gold, of course.”</i>");
 	output("\n\nStrange, but you suppose you can’t judge. But is that really all she’s doing here?");
@@ -175,7 +175,7 @@ public function zeaGimmeDiscounts():void
 		return zeaButtons(3);
 	}
 
-	output("You know you’re already getting below average rates as the future CEO of SteeleTech, but you can’t help but ask if there’s any way for you to earn a future discount.");
+	output("You know you’re already getting below average rates as the future CEO of Steele Tech, but you can’t help but ask if there’s any way for you to earn a future discount.");
 	output("\n\nZea laughs, clearly noticing the slight edge of the Steele family charm in your voice, but relents as you don’t budge on it.");
 	output("\n\n<i>“I do suppose that there’s... Something you can help me with. Get down on the floor behind me and eat me out. 25% off the next purchase.”</i>");
 	output("\n\nSo, do you want to?");

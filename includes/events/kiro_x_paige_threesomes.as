@@ -107,7 +107,7 @@ public function kiroPaigeIntro2():void
 		// Continue here if Paige is blind
 		if(!paigeIsCrew())
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [PCShipName], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
+			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
 			// end scene (scene: Intro 2); go to (scene: Intro 3)
 			processTime(10);
 			clearMenu();
@@ -117,7 +117,7 @@ public function kiroPaigeIntro2():void
 		// Continue here if Paige can see
 		else
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [PCShipName], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
+			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
 			output("\n\n<i>“How’d you do that?”</i> she asks incredulously. <i>“Last I heard, Paige was blind. How’s she gonna navigate with no eyesight?”</i>");
 			output("\n\nYou reply that you had paid for Paige’s surgery and that she joined your crew in part to pay you back, and in part because she wanted to be with you.");
 			output("\n\n<i>“What the hell?”</i> Kiro asks, her breath catching in her throat. <i>“Didn’t she say that surgery would cost her a million credits or something?”</i>");

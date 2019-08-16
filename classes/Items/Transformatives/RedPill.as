@@ -102,28 +102,28 @@ package classes.Items.Transformatives
 				if(changes < changeLimit)
 				{
 					//PC is gooey
-					if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && rand(2) == 0)
+					if(pc.hasGooSkin() && rand(2) == 0)
 					{
-						if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+						if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 						{
 							output("\n\nYour gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the myr you’re striving to become! Before long, your body is covered with solid flesh! <b>You now have normal skin!</b>");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
 							changes++;
 						}
-						else output("\n\n" + target.skinTypeLockedMessage());
+						else output("\n\n" + pc.skinTypeLockedMessage());
 					}
 				}
 				//Chitin Limbs & Human Skin
 				if(changes < changeLimit)
 				{
-					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legType != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || (pc.hasFur() || pc.hasScales()));
+					var armLegSkinTF:Boolean = (pc.armType != GLOBAL.TYPE_MYR || (pc.legType != GLOBAL.TYPE_MYR && pc.legType != GLOBAL.TYPE_HUMAN) || pc.legCount != 2 || !pc.hasSkin());
 					if(armLegSkinTF && rand(2) == 0)
 					{
 						//PC isn't a biped: 
 						if(pc.legCount != 2 || (pc.legType != GLOBAL.TYPE_MYR && pc.legType != GLOBAL.TYPE_HUMAN))
 						{
-							if(target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
+							if(pc.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 							{
 								output("\n\nYour [pc.legOrLegs] ");
 								if(pc.legCount > 1) output("are");
@@ -141,7 +141,7 @@ package classes.Items.Transformatives
 								pc.genitalSpot = 0;
 								changes++;
 							}
-							else output("\n\n" + target.legTypeLockedMessage());
+							else output("\n\n" + pc.legTypeLockedMessage());
 						}
 						//Gain Chitin: 
 						if(pc.armType != GLOBAL.TYPE_MYR || pc.legType != GLOBAL.TYPE_MYR)
@@ -182,17 +182,14 @@ package classes.Items.Transformatives
 								pc.scaleColor = "red";
 								changes++;
 							}
-							else output("\n\n" + target.legFlagsLockedMessage());
+							else output("\n\n" + pc.legFlagsLockedMessage());
 						}
 						//Lose fur/scales/etc.
-						if(pc.hasFur() || pc.hasScales())
+						if(!pc.hasSkin())
 						{
-							if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+							if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 							{
-								output("\n\nAs you adjust your chitinous limbs, you’re also forced to watch your body-covering ");
-								if(pc.hasFur()) output("fur");
-								else output("scales");
-								output(" shed off, slowly wilting and then falling to the ground, revealing the [pc.skinTone] flesh beneath. <b>Most of your body is covered in bare skin now.</b>");
+								output("\n\nAs you adjust your chitinous limbs, you’re also forced to watch your body-covering [pc.skinFurScalesNoun] shedding off, slowly wilting and then falling to the ground, revealing the [pc.skinTone] flesh beneath. <b>Most of your body is covered in bare skin now.</b>");
 								pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 								pc.clearSkinFlags();
 								changes++;
@@ -251,8 +248,8 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYou feel a burning sensation in your [pc.ears], aching and straining and tearing. You clutch at your head, rubbing at your ears. The pill you swallowed works its scientific wonders, slowly starting to morph the shape of your ears. They become long and tapered, elfin in shape over the course of a few minutes.");
 						pc.earType = GLOBAL.TYPE_SYLVAN;
-						target.clearEarFlags();
-						target.addEarFlag(GLOBAL.FLAG_TAPERED);
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 						pc.earLength = 4+rand(5);
 						changes++;
 					}
@@ -293,7 +290,7 @@ package classes.Items.Transformatives
 				}
 				//Insect Feelers
 				//Gain slight vulnerability to Lust (Tease) & Lust (Chemical) damage
-				if(pc.antennae == 0 && changes < changeLimit && rand(4) == 0)
+				if(!pc.hasAntennae(GLOBAL.TYPE_MYR) && changes < changeLimit && rand(4) == 0)
 				{
 					if(pc.antennaeUnlocked(2))
 					{
@@ -402,25 +399,25 @@ package classes.Items.Transformatives
 					else output("\n\n" + pc.milkTypeLockedMessage());
 				}
 				//Grow wings once! Requires legs!
-				if(changes < changeLimit && target.hasCock() && target.legType == GLOBAL.TYPE_MYR && (target.wingType != GLOBAL.TYPE_SMALLBEE && target.wingType != GLOBAL.TYPE_MYR) && target.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
-					if(!target.hasWings()) {
+				if(changes < changeLimit && pc.hasCock() && pc.legType == GLOBAL.TYPE_MYR && (pc.wingType != GLOBAL.TYPE_SMALLBEE && pc.wingType != GLOBAL.TYPE_MYR) && pc.wingTypeUnlocked(GLOBAL.TYPE_MYR) && rand(4) == 0) {
+					if(!pc.hasWings()) {
 						output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there’s the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
-						if(target.armor.shortName != "") output(" and pull back your [pc.armor.longName]");
+						if(pc.armor.shortName != "") output(" and pull back your [pc.armor.longName]");
 						output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They’re too small to allow you to fly, but you’re definitely getting more myr-like.");
 						if(kGAMECLASS.silly) output("\n\nAll of a sudden, your codex beeps and a jingle rings out: <i>“Red Pill® Gives You Wings!”</i>")
-						target.shiftWings(GLOBAL.TYPE_MYR, 2);
+						pc.shiftWings(GLOBAL.TYPE_MYR, 2);
 					}
 					//TF other wings!
 					else {
 						output("\n\nA cramp ruffles your [pc.wings], making them flutter wildly as they contort and twist. You can feel them changing as they flail around, thinning, shrinking, and warping with each gasp of air you drag into your lungs. A few seconds later, your body calms, and you’re able to look behind you. <b>You’ve grown small, transparent, myr-like wings!</b>");
-						target.wingType = GLOBAL.TYPE_MYR;
-						if(target.wingCount < 2) target.wingCount = 2;
+						pc.wingType = GLOBAL.TYPE_MYR;
+						if(pc.wingCount < 2) pc.wingCount = 2;
 					}
 					changes++;
 				}
-				else if (!target.wingTypeUnlocked(GLOBAL.TYPE_MYR))
+				else if (!pc.wingTypeUnlocked(GLOBAL.TYPE_MYR))
 				{
-					output("\n\n" + target.wingTypeLockedMessage());
+					output("\n\n" + pc.wingTypeLockedMessage());
 				}
 				//+Thin
 				//Slight reduction to thickness. 

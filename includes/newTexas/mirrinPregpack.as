@@ -2193,7 +2193,8 @@ public function mirrinSterkurHusButtons():void
 	addButton(1,"Talk",sterkurHusChattus,true,"Talk","Well ya know. Talk. Duh.");
 	if (pc.hasStatusEffect("MirrinSexCooldown")) addDisabledButton(2,"Sex","Sex","<i>“Sorry babe, still a bit worn out from before!”</i>");
 	else addButton(2,"Sex",mommirrinSexingTimes,false,"Sex","It’s just been so long since you chased that dragon tail, you want all of it to yourself.");
-	addButton(3,"Train",trainWithMirrinInHerGymmin,undefined,"Train","Put your body through its paces.");
+	if(pc.isWornOut()) addDisabledButton(3,"Train","Train","You’re too tired for a training session.");
+	else addButton(3,"Train",trainWithMirrinInHerGymmin,undefined,"Train","Put your body through its paces.");
 	addButton(4,"Relaxing Time",chillinAnMirrin,undefined,"Relaxing Time","That sounds good. Nothing crazy, just snacks, hugs and movies...");
 	if (pc.hasStatusEffect("MirrinTiddysuckCooldown")) addDisabledButton(5,"Nursing","Nursing","Let her build up some more first?");
 	else if (flags["MIRRIN_PREG_TIME_LEFT"] != undefined || jentaBorn()) addButton(5,"Nursing",drinkSumDragonJuice,undefined,"Nursing","Jeez, those <b>tits</b>... if they weren’t big and imposing already, now they’re milky as heck! Maybe you could have a nice nibble on a nipple.");
@@ -2315,14 +2316,17 @@ public function mirrinTalkKiddos(bothKiddos:Boolean):void
 	author("SoAndSo");
 
 	output("<i>“Soooo, how’s our little " + (bothKiddos ? "Jenta and Torri" : (jentaBorn() ? "Jenta" : "Torri")) + " doing?”</i> you ask, nudging her arm with your elbow.");
-	output("\n\n<i>“Oh " + (bothKiddos ? "they’re" : "she’s") + " great. I spend like, four hours just doing things with " + (bothKiddos ? "them" : "her") + " every day. I wish I could do more but, uhhh, poor " + (bothKiddos ? "things sleep like rocks" : "thing sleeps like rock") + ", you know? Plus I have <b>other</b> babies to take care of... but yeah, damn.");
+	output("\n\n<i>“Oh " + (bothKiddos ? "they’re" : "she’s") + " great. I spend like, four hours just doing things with " + (bothKiddos ? "them" : "her") + " every day. I wish I could do more but, uhhh, poor " + (bothKiddos ? "things sleep like rocks" : "thing sleeps like a rock") + ", you know? Plus I have <b>other</b> babies to take care of... but yeah, damn.");
 	var child:Child = ChildManager.youngestOfUniqueType(MirrinUniqueChild);
-	//.childAge();
-	if (child.Years > 1) output(" You should see " + (bothKiddos ? "them" : "her") + ", elskan. A joy to be with, I can’t... I can’t ever thank you enough, my sweet.");
-	else if (child.Months > 6) output((bothKiddos ? " Both of their" : (jentaBorn() ? " Jenta’s" : " Torri’s")) + " teeth have set it so a bit restless sometimes. Hurts the fucking nips, like whyyyy does nature make it so painful, fuck!");
-	else if (child.Months > 2) output((bothKiddos ? " They’re" : " She’s") + " looking so healthy now, I didn’t think I’d uh... enjoy breastfeeding so much, fuck. I haven’t felt so ehh... girly. Like, goopy, squishy on the inside, bleh. I have to slap myself sometimes or else the gym regs are going to talk, ha!");
-	else if (child.Days > 3*7) output(" Tiny " + (bothKiddos ? "things" : "thing") + ", although you know I uh.. I see a bit of you in " + (bothKiddos ? "the two of them" : "her") + ". Still on that Nutrisynth stuff instead of milk but eh, I have to trust what the nurses do.");
-	else if (child.Days > 1) output(" Tiny, tiny " + (bothKiddos ? "things" : "thing") + ", so precious. Always scared I’m going to break something so I barely even touch " + (bothKiddos ? "either of them" : "her") + " right now. That look I get from the little " + (bothKiddos ? "things" : "thing") + " when I come to visit though, bjáni...");
+	if(child != null)
+	{
+		//.childAge();
+		if (child.Years > 1) output(" You should see " + (bothKiddos ? "them" : "her") + ", elskan. A joy to be with, I can’t... I can’t ever thank you enough, my sweet.");
+		else if (child.Months > 6) output(" " + (bothKiddos ? "Both of their" : (jentaBorn() ? "Jenta’s" : "Torri’s")) + " teeth have set it so a bit restless sometimes. Hurts the fucking nips, like whyyyy does nature make it so painful, fuck!");
+		else if (child.Months > 2) output(" " + (bothKiddos ? "They’re" : "She’s") + " looking so healthy now, I didn’t think I’d uh... enjoy breastfeeding so much, fuck. I haven’t felt so ehh... girly. Like, goopy, squishy on the inside, bleh. I have to slap myself sometimes or else the gym regs are going to talk, ha!");
+		else if (child.Days > 3*7) output(" Tiny " + (bothKiddos ? "things" : "thing") + ", although you know I uh.. I see a bit of you in " + (bothKiddos ? "the two of them" : "her") + ". Still on that Nutrisynth stuff instead of milk but eh, I have to trust what the nurses do.");
+		else if (child.Days > 1) output(" Tiny, tiny " + (bothKiddos ? "things" : "thing") + ", so precious. Always scared I’m going to break something so I barely even touch " + (bothKiddos ? "either of them" : "her") + " right now. That look I get from the little " + (bothKiddos ? "things" : "thing") + " when I come to visit though, bjáni...");
+	}
 	output("”</i>");
 	output("\n\nYou best come with me, right? Kids always need their " + pc.mf("papa", "momma") + ". Although maybe you go when I’m not there and I just happen to miss you, huh?”</i>");
 	output("\n\nYou nod along, promising that you’ll visit them with her any time you can. You squeeze her trunk of a left arm as added confirmation, a hint of a chuckle tempering the stony dragonesses face.");

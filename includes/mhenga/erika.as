@@ -941,7 +941,7 @@ public function erikaTakeHerToShip():void
 	showErika();
 	author("Doots");
 
-	output("You can definitely think of few things to do with Erika, but none of the involve any of the patrons getting an eyeful of what you are planning");
+	output("You can definitely think of few things to do with Erika, but none of them involve any of the patrons getting an eyeful of what you are planning");
 	if(syriFriendsWithBenefits()) output(", well maybe Syri");
 	output(".");
 	output("\n\nYou reach to grab a handful of Erika’s ass while whispering into her feline ear what exactly you have in mind. She gives a quick nod before nuzzling into your neck.");

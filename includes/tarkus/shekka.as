@@ -433,10 +433,16 @@ public function talkToShekkaAboutRaskvel():void
 	output(". Over there ");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("we’re ");
 	else output("we were ");
-	output("as thick as fermites in a ruined girder,”</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>“Not just us either. The Lapinara ");
-	if(flags["TARKUS_DESTROYED"] == undefined) output("are");
-	else output("were");
-	output(" the same way. Maybe we both came from the same ancestor, I don’t know. There’s enough similarities to make you wonder, right?”</i>");
+	output("as thick as fermites in a ruined girder,”</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>“Not just us either.");
+	if(flags["LAPLOVE"] != undefined)
+	{
+		output(" The Lapinara ");
+		if(flags["TARKUS_DESTROYED"] == undefined) output("are");
+		else output("were");
+		output(" the same way. Maybe we both came from the same ancestor, I don’t know. There’s enough similarities to make you wonder, right?");
+	}
+	else output(" Seems like every species on planet's wired up for junking. Makes you wonder, right?");
+	output("”</i>");
 	output("\n\nYou find yourself nodding, though Shekka is too busy examining serial numbers on power converters to see.");
 	output("\n\n<i>“Anyhow, like I was saying, I think we’re the way we are because of the way Tarkus ");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("is. It’s");
@@ -581,7 +587,7 @@ public function talkToShekkaAboutNovahome():void
 	output("You ask about Novahome.");
 	output("\n\n<i>“Oh isn’t it just the best!”</i> Shekka throws her arms up in the air and practically dances in place, revealing the flighty side that most of her race seem to spend all their time exposing. <i>“It’s way better than living in some smoky hole in the ground, fighting the sydians or rogue bots every rotation. ");
 	if(flags["TARKUS_DESTROYED"] != undefined) output("It even saved us from the death of our planet. ");
-	else output("Hell, it’s hard enough to keep the parasitic lapinara from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
+	else output("Hell, it’s hard enough to keep the parasit" + (flags["LAPLOVE"] != undefined ? "ic lapinara":"es") + " from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
 	output("”</i> She puffs her chest out in pride, clearly outlining the curves of her small bosom for all to see. Her nipples stick out like tiny, sore thumbs, begging to be tweaked or touched. You restrain yourself for now, wanting to hear the rest of her words.");
 	output("\n\nShekka explains, <i>“I was pretty young when my tribe moved in. I can still remember huddling in a leaky old cave around the warmth of a dozen half-repaired generators at night. Luckily, one of our neighboring tribes, the Gyss, found the Nova while foraging. They wanted to make it their home, but there were too many sydians inside for them to take on their own, not to mention all the aquiara inside.”</i>");
 	output("\n\n<i>“Aquiara?”</i> you wonder.");
@@ -639,8 +645,8 @@ public function talkToShekkaAboutTheWastes():void
 	else output("<i>“There were other areas like the wastes that were just about as bad if not worse. For one, there was the scything glades. Trees grew there, metallic, predatory trees that lashed out at anything that came to close with razor-sharp blades. There were usually a few safe paths through them, but you had to keep your wits about you if you didn’t want to wind up cut to ribbons with your blood used for fertilizer.”</i>");
 	output("\n\n<i>“That’s terrifying!”</i>");
 	output("\n\nShekka ticks off her fingers, counting in her head. ");
-	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>“Then there’s the Oil Sea. It isn’t really just oil either. It’s full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.”</i> She moves on to the next finger. <i>“Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there - there’s lapinara and worse aplenty.”</i>");
-	else output("<i>“Then there was the Oil Sea. It wasn’t just oil either. It was full of liquid metals, pollutants, corrosives, and the like. That place swarmed with gray goos once we kicked them out of Novahome. I guess the lubricants and moisture helped them to reproduce.”</i> She moves on to the next finger. <i>“The iron ridges were tricky too: all metal plates and perfect places to ambush. Our tribe never really went there - there were lapinara and worse aplenty.”</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>“Then there’s the Oil Sea. It isn’t really just oil either. It’s full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.”</i> She moves on to the next finger. <i>“Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there" + (flags["LAPLOVE"] != undefined ? " - there’s lapinara and worse aplenty.":"") + "”</i>");
+	else output("<i>“Then there was the Oil Sea. It wasn’t just oil either. It was full of liquid metals, pollutants, corrosives, and the like. That place swarmed with gray goos once we kicked them out of Novahome. I guess the lubricants and moisture helped them to reproduce.”</i> She moves on to the next finger. <i>“The iron ridges were tricky too: all metal plates and perfect places to ambush. Our tribe never really went there" + (flags["LAPLOVE"] != undefined ? " - there were lapinara and worse aplenty":"") + ".”</i>");
 	output("\n\nYou make a mental note about that and thank her for the intel.");
 	if(flags["TARKUS_DESTROYED"] == undefined) output("\n\n<i>“Just don’t get caught in a storm, and you’ll be fine. They don’t happen often, but the metal flakes will cut you to ribbons in minutes if you’re out in the open,”</i> Shekka warns. <i>“Make sure you’ve always got an eye on a potential bolt-hole. You’ll do fine, [pc.name]. You’ve got a good head on you");
 	else output("\n\n<i>“You didn’t want to get caught in a storm either. They didn’t happen often, but the metal flakes would cut you to ribbons in minutes if you were out in the open,”</i> Shekka warns. <i>“You had to always keep an eye out for a bolt-hole. You would’ve done fine, [pc.name]. You’ve got a good head on you");
@@ -2479,7 +2485,7 @@ public function raskvelCureQuestShekkaTalk():void
 		//if Anno’s on your crew
 		if(annoIsCrew())
 		{
-			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steeletech scientists...");
+			output("\n\nHuh, maybe your resident puppy-slut Anno might be able to score Shekka the details of a few legitimate Steele Tech scientists...");
 		}
 		//cont
 		output("\n\nYou rock on your heels for a moment, soaking in Shekka’s excitement a little yourself. Hopefully she isn’t getting too far ahead of herself. At the very least it seems promising news. <i>“Of course, while I’m waiting for a few call-backs, how about you and me do something to pass the time?”</i>");
