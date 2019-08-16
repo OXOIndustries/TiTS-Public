@@ -1,4 +1,4 @@
-﻿import classes.BreastRowClass;
+﻿﻿import classes.BreastRowClass;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.GameData.EventContainer;
@@ -42,10 +42,10 @@ public function infiniteItems():Boolean
 public function processEventBuffer():String
 {
 	var output:String = "";
-	
+	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
-		output += ("<b>" + possessive(pc.short) + " log:</b>\n");
+		output += ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -64,12 +64,12 @@ public function processEventBuffer():String
 			{
 				d += h / 24;
 				h = h % 24;
-			}	
-			
-			output += ("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + "\n\n");
+			}
+			output +=("\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg + (i+1 < timestampedEventBuffer.length ? "\n\n":"\n"));
+			//Old: output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? ("0" + h) : h) + ":" + (m < 10 ? ("0" + m) : m) + "</b></span>\\\] " + tEvent.msg);
 		}
+		//Old: timestampedEventBuffer = [];
 	}
-	
 	return output;
 }
 
@@ -139,6 +139,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		chars[prop].sortPerks();
 		chars[prop].sortStatusEffects();
 		chars[prop].sortKeyItems();
+		chars[prop].updateStats();
 	}
 	
 	// Bad ends prevent triggering events and renewing menu.
@@ -218,28 +219,26 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
-	
 	//Display shit that happened during time passage.
 	var eventBuffer:String = processEventBuffer();
 	if (eventBuffer != "")
 	{
 		if (samePageLog)
 		{
-			output(eventBuffer);
-			//While this flag is active, if clearOutput is called then event notifications are applied to the new page, so the player can see them
+			output("" + eventBuffer + "<b><u>End log.</u></b>\n\n");
+			//If clearOutput is called while this flag is active, the output was cleared without the player seeing the event buffer. clearOutput's functionality changes to append the event buffer to the cleared output.
 			flags["EVENT_BUFFER_OVERRIDE"] = true;
 		}
 		else
 		{
 			clearBust();
-			output(eventBuffer);
-			clearEventBuffer();
+			output("" + eventBuffer + "");
 			clearMenu();
+			clearEventBuffer();
 			addButton(0, "Next", mainGameMenu);
 			return;
 		}
 	}
-	
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
@@ -388,10 +387,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
 	
-	//If we made it to here, nothing's going to overwrite the event notices
-	flags["EVENT_BUFFER_OVERRIDE"] = undefined;
+	//If we made it to here without clearOutput being called, the player has seen the event buffer
+	flags["EVENT_BUFFER_OVERRIDE"] = true;
 	clearEventBuffer();
-
 	
 	flags["NAV_DISABLED"] = undefined; // Clear disabled directions.
 	
@@ -803,6 +801,7 @@ public const CREW_PENNY:int = 19;
 public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
+public const CREW_OLYMPIA:int = 23;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -828,6 +827,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (shekkaRecruited()) crewMembers.push(CREW_SHEKKA);
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
+	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -864,6 +864,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
+	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -977,6 +978,7 @@ public function getCrewOnShip():Array
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
+	if (olympiaIsCrew()) c.push(olympia);
 	return c;
 }
 
@@ -1004,6 +1006,7 @@ public function getGunnersOnShipNames():Array
 	if (syriIsCrew()) crewMembers.push("Syri");
 	//if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	return crewMembers;
 }
 
@@ -1030,6 +1033,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (shekkaIsCrew()) crewMembers.push("Shekka");
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
+	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	
 	if (allcrew)
 	{
@@ -1227,6 +1231,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += mitziCrewBonus(btnSlot, InCollection(CREW_MITZI, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (olympiaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += olympiaCrewText(btnSlot, InCollection(CREW_OLYMPIA, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1985,6 +1998,20 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
+	if(olympiaRecruited())
+	{
+		// Olympia fucks off if you swap ships.
+		if(!(shits["SHIP"] is Sidewinder) && olympiaIsCrew()) 
+		{
+			olympiaIsSidewinderOnly();
+			return true;
+		}
+		if(shits["SHIP"] is Sidewinder && !olympiaIsCrew()) 
+		{
+			olympiaComesBackWithSidewinder();
+			return true;
+		}
+	}
 	// Mitzi stops you from going inside~
 	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
 	{
@@ -2060,10 +2087,12 @@ public function shipMenu():Boolean
 	if(flags["INFINITE_CREW"] != undefined) output("<b>\\\[ <span class='lust'>UNLIMITED CREW MEMBER SPACE IS ON</span> \\\]</b>\n\n");
 	
 	if(shits["SHIP"] == undefined) shits["SHIP"] = new Casstech();
-	showBust(shits["SHIP"].bustDisplay);
+	var ship:ShittyShip = shits["SHIP"];
 	
-	if(shits["SHIP"] is Casstech) output("The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.");
-	else output(shits["SHIP"].long);
+	showBust(ship.bustDisplay);
+	
+	if(ship is Casstech) output("The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.");
+	else output(ship.long);
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
@@ -2077,8 +2106,8 @@ public function shipMenu():Boolean
 	
 	//HP/Repair notices:
 	output("\n");
-	var shipHP:Number = shits["SHIP"].HP();
-	var shipHPMax:Number = shits["SHIP"].HPMax();
+	var shipHP:Number = ship.HP();
+	var shipHPMax:Number = ship.HPMax();
 	var HPPercent:Number = Math.round(shipHP/shipHPMax*100);
 	if(HPPercent < 5) output("\n<b>Alert!</b> Ship is <b>massively damaged</b>!!! Travel with care.");
 	else if(HPPercent < 25) output("\n<b>Alert!</b> Ship is <b>heavily damaged</b>!!! Travel with care.");
@@ -2107,7 +2136,7 @@ public function shipMenu():Boolean
 			return true;
 		}
 		
-		addButton(0,"Ship Stats",shipStatistics,undefined,"Ship Stats","Look over your ship and its equipped modules.");
+		addButton(0,"Ship Stats",shipStatistics,mainGameMenu,"Ship Stats","Look over your ship and its equipped modules.");
 		if (crew(true, true) > 0) addButton(2, "Crew", crew);
 		if (hasShipStorage()) addButton(3, "Storage", shipStorageMenuRoot);
 		else addDisabledButton(3, "Storage");
@@ -2115,7 +2144,7 @@ public function shipMenu():Boolean
 
 		var crewTotal:int = crew(true,true);
 		var crewCounter:int = crew(true,false);
-		var crewCapacity:int = PCShipCrewCapacity();
+		var crewCapacity:int = ship.shipCrewCapacity();
 		var crewOccuppied:int = Math.min(crewCapacity, crewCounter);
 		// Crew note
 		if(crewTotal > 0)
@@ -2134,7 +2163,7 @@ public function shipMenu():Boolean
 		if(crewCapacity < crewCounter && flags["INFINITE_CREW"] == undefined) 
 		{
 			output("\n\nYour ship is <b>overloaded</b>. Send " + (crewCounter - crewCapacity) + " crew member" + ((crewCounter - crewCapacity) == 1 ? "":"s") + " home before you attempt to fly.");
-			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew compliment. Send some of them home before attempting to fly.");
+			addDisabledButton(5,"Fly","Fly","You do not have enough space for your current crew complement. Send some of them home before attempting to fly.");
 		}
 		else if(shipOverEncumberedByStorage())
 		{
@@ -2153,35 +2182,17 @@ public function shipMenu():Boolean
 	return false;
 }
 
-public function shipStatistics():void
+public function shipStatistics(backFunc:Function):void
 {
 	clearOutput();
-	showBust(shits["SHIP"].bustDisplay);
-	output(shipCompareString(shits["SHIP"]));
-	clearMenu();
 	var shippy:ShittyShip = shits["SHIP"];
-	var button:Number = 0;
-	shopkeep = new Vahn();
-	if(!(shippy.shield is EmptySlot)) addItemButton(button++, shippy.shield, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.armor is EmptySlot)) addItemButton(button++, shippy.armor, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.meleeWeapon is EmptySlot)) addItemButton(button++, shippy.meleeWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.rangedWeapon is EmptySlot)) addItemButton(button++, shippy.rangedWeapon, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.accessory is EmptySlot)) addItemButton(button++, shippy.accessory, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.lowerUndergarment is EmptySlot)) addItemButton(button++, shippy.lowerUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-	if(!(shippy.upperUndergarment is EmptySlot)) addItemButton(button++, shippy.upperUndergarment, shipStatistics, undefined, null, null, shopkeep, pc);
-
-	for(var i:int = 0; i < shippy.inventory.length; i++)
-	{
-		//used to be button++; but hacky fix for a crash.
-		if (button >= 14) break;
-		addItemButton(button++, shippy.inventory[i], shipStatistics, undefined, null, null, shopkeep, pc);
-	}
-	while(button > 0) 
-	{ 
-		button--;
-		setButtonDisabled(button); 
-	}
-	addButton(14,"Back",mainGameMenu);
+	showBust(shippy.bustDisplay);
+	showName("\n" + shippy.short.toUpperCase());
+	output(shipCompareString(shippy, shippy));
+	output("\n\n");
+	clearMenu();
+	shipEquipmentButtons(shits["SHIP"], backFunc);
+	addButton(14, "Back", backFunc);
 }
 
 public function flyMenu():void
@@ -2342,12 +2353,15 @@ public function flyTo(arg:String):void
 	generateMapForLocation("SHIP INTERIOR");
 	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
 	resetStepCounters();
+	
+	// Pause any docked ship repairs--because the ship is not docked! (Should be removed after flyTo completes);
+	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, 0);
 
 	//No travel events on first zheng visit.
 	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
 	//Otherwise clear suppress flag.
 	else if (flags["SUPRESS TRAVEL EVENTS"] == 1) flags["SUPRESS TRAVEL EVENTS"] = 0;
-	
+	//Other flight interruption events
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
@@ -2405,8 +2419,6 @@ public function flyTo(arg:String):void
 			incomingMessage(tEvent, arg);
 			return;
 		}
-		
-
 	}
 	
 	var shortTravel:Boolean = false;
@@ -2508,6 +2520,9 @@ public function flyTo(arg:String):void
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
+	// Re-enable docked ship auto repairs.
+	pc.removeStatusEffect("Ship Repair Paused");
+	
 	if(pc.pluggedVaginas() > 0 || pc.isPlugged(-1))
 	{
 		if(pc.isPlugged(-1)) 
@@ -2542,7 +2557,7 @@ public function flyTo(arg:String):void
 
 public function prepShipfite():void
 {
-	setNavDisabled(NAV_OUT_DISABLE);
+	//setNavDisabled(NAV_OUT_DISABLE);
 	shipLocation = "SPACE";
 }
 
@@ -2560,8 +2575,12 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
-	if (ramisOutDrinking()) return false;
-	if (isDoingEventWhorizon()) return false;
+	if(ramisOutDrinking()) return false;
+	if(isDoingEventWhorizon()) return false;
+	
+	if((shits["SHIP"] != undefined ? shits["SHIP"].shipCrewCapacity() : 3) < crew(true,false) && flags["INFINITE_CREW"] == undefined) return false;
+	if(shipOverEncumberedByStorage()) return false;
+	
 	return true;
 }
 
@@ -3238,8 +3257,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(shekkaAndAnnoNerdOff);
 		}
-		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50") eventQueue.push(ratsRaidingXXXmas2018ByWill);
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50")
+		{
+			eventQueue.push(ratsRaidingXXXmas2018ByWill);
+		}
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
 		{
 			eventQueue.push(encounterKrissy);
 		}
@@ -3248,8 +3270,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Procs on ship exit:
 	if(currentLocation == "SHIP INTERIOR")
 	{
+		var toSpace:Boolean = (arg.indexOf("SPACE") != -1 || (rooms[arg].hasFlag(GLOBAL.OUTDOOR) && rooms[arg].hasFlag(GLOBAL.LOW_GRAVITY)));
 		//Procs in safe areas only, like Reaha's milk stand:
-		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !toSpace && !disableExploreEvents())
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
 		}
@@ -3884,9 +3907,22 @@ public function variableRoomUpdateCheck():void
 		rooms["ZSM U2"].addFlag(GLOBAL.NPC);
 		rooms["ZS J42"].addFlag(GLOBAL.NPC);
 	}
-
-	if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
-	else rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	//SIDEWINDER
+	if(pirateResearchVesselStolen())
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	}
+	else if(flags["FERUZE_ZHENG_OUTCOME"] != undefined) 
+	{
+		rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].addFlag(GLOBAL.SHIPHANGAR);
+	}
+	else
+	{
+		rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+		rooms["ZSF V22"].removeFlag(GLOBAL.SHIPHANGAR);
+	}
 
 	if(flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF I8"].addFlag(GLOBAL.NPC);
@@ -4062,6 +4098,7 @@ public function variableRoomUpdateCheck():void
 	}
 }
 
+//DeltaT is in minutes.
 public function processTime(deltaT:uint, doOut:Boolean = true):void
 {
 	for (var prop:String in chars)
@@ -4375,11 +4412,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		if ((flags["TESSA_BREASTPLAY"] != undefined || flags["TESSA_SHOWER"] != undefined) && !MailManager.isEntryUnlocked("tessa_wedding") && rand(100) >= 100*Math.pow(.8,totalHours)) goMailGet("tessa_wedding", nextTimestamp - rand(deltaT));
 
+		//nykke 2.0 
+		if (nykke2SendEmail() && !MailManager.isEntryUnlocked("nykke2_sighting")) goMailGet("nykke2_sighting");
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 
-	processShipHealing(deltaT,doOut,totalDays);
+	if (!pc.hasStatusEffect("Ship Repair Paused")) processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
@@ -4449,7 +4489,11 @@ public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):v
 		//Hit max HP and report on it.
 		if(shits["SHIP"].HP() >= shits["SHIP"].HPMax()) 
 		{
-			if(mechanics.length == 0) AddLogEvent(ParseText("<b>Your ship has been fully repaired.</b>"), "hp", deltaT);
+			var msg:String = "";
+			if(mechanics.length == 0)
+			{
+				msg += ParseText("<b>Your ship has been fully repaired.</b>");
+			}
 			else
 			{
 				var mechanicsList:String = "";
@@ -4462,14 +4506,15 @@ public function processShipHealing(deltaT:uint, doOut:Boolean, totalDays:uint):v
 					}
 					mechanicsList += mechanics[ii];
 				}
-				AddLogEvent(ParseText(StringUtil.upperCase(mechanicsList) + " send" + (mechanics.length == 1 ? "s":"") + " notice that <b>your ship has been fully repaired.</b>"), "hp", deltaT);
+				msg += ParseText(StringUtil.upperCase(mechanicsList) + " send" + (mechanics.length == 1 ? "s":"") + " notice that <b>your ship has been fully repaired.</b>");
 			}
 			// Max out shields?
 			if(shits["SHIP"].shieldsRaw < shits["SHIP"].shieldsMax())
 			{
 				shits["SHIP"].shieldsRaw = shits["SHIP"].shieldsMax();
-				ExtendLogEvent(" Your ship’s shields have also been replenished.");
+				msg += ParseText(" Your ship’s shields have also been replenished.");
 			}
+			if(msg != "") AddLogEvent(msg, "hp", deltaT);
 		}
 	}
 }
@@ -4969,26 +5014,28 @@ public function processCarryTrainingEvents(deltaT:uint, doOut:Boolean):void
 			
 			//Event: Jiggle Jiggle!
 			//Play sometimes when PC is walking. Increase Lust by 10 per Training level.
-			AddLogEvent(ParseText("Your progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the "), "passive", deltaT);
-			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) ExtendLogEvent("dozen");
-			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) ExtendLogEvent("dozens");
-			else ExtendLogEvent("close to a hundred");
-			ExtendLogEvent(" eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ");
+			msg += ParseText("Your progress is interrupted by a sudden shift in your [pc.belly], making you nearly double over with intense, overwhelming pleasure. Just feeling the ");
+			if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 18) msg += "dozen";
+			else if(pc.totalBabiesOfType("EggTrainerCarryTraining") < 75) msg += "dozens";
+			else msg += "close to a hundred";
+			msg += " eggs moving around inside you, jiggling with your movements, is almost enough to make you cum on the spot. You bite your lip and hold on, ";
 
 			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 			{
-				if(pc.exhibitionism() < 33) ExtendLogEvent("ignoring the curious looks from passersby.");
+				if(pc.exhibitionism() < 33) msg += "ignoring the curious looks from passersby.";
 				else 
 				{
-					ExtendLogEvent("more than a little aroused by the way people are looking at you.");
+					msg += "more than a little aroused by the way people are looking at you.";
 					pc.lust(5);
 				}
 			}
-			else ExtendLogEvent("thankful that you’re all alone.");
-			ExtendLogEvent("\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) ExtendLogEvent("good deal");
-			else ExtendLogEvent("little");
-			ExtendLogEvent(" more flushed than before.");
+			else msg += "thankful that you’re all alone.";
+			msg += "\n\nYour body’s betrayal lasts only for a moment before the eggs settle down again. You sigh, taking a deep breath to steady yourself before you get going again, a ";
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33) msg += "good deal";
+			else msg += "little";
+			msg += " more flushed than before.";
+			
+			if(msg != "") AddLogEvent(msg, "passive", deltaT);
 			
 			//Reset cooldown
 			flags["CARRY_TRAINING_BONUS_PROC"] = GetGameTimestamp() + deltaT;
@@ -5311,4 +5358,3 @@ public function taintedLove():void
 	addButton(0, "Again", taintedLove);
 	addButton(14, "Back", mainGameMenu);
 }
-
