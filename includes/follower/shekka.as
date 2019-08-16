@@ -483,7 +483,7 @@ public function shekkaBessTalk():void
 {
 	clearOutput();
 	showShekka();
-	output("Shekka frowns at your next query, ears jingling as she shifts her head from side-to-side. <i>“Weird, I guess. They got dumped in the middle of the wastes by someone, and now they’re here. Maybe I’ve been watching too much shitty holo-drama, but I half expect her to reveal some kind of hidden malevolent directive and laser-blast us to hell.”</i>");
+	output("Shekka frowns at your next query, ears jingling as she shifts her head from side-to-side. <i>“Weird, I guess. They got dumped in the middle of the wastes by someone, and now they’re here. Maybe I’ve been watching too much shitty holo-drama, but I half expect [bess.himHer] to reveal some kind of hidden malevolent directive and laser-blast us to hell.”</i>");
 	output("\n\n<i>“Also bots that are super synthetic don’t do it for me. I like that clunky, scrappy style. I want to see some metal, and bolts. I want our sexable future to be shiny and chrome!”</i>");
 	output("\n\nCool.");
 	//Next: back to People menu
@@ -2184,7 +2184,7 @@ public function shekkaAnnoVibeOffpre(repeat:Boolean = false):void
 	}
 	output("<i>“What about a competition?”</i> you posit. <i>“Both of you build something fun, and I’ll be your proud, unbiased tester.”</i>");
 	output("\n\nThe girls blink and share a look, before turning wicked smiles on you. <i>“Oh fuck you’re so on.”</i> Shekka says, hopping off of the bed and making for the back of the ship (and her impromptu workbench).");
-	output("\n\nAnno seems to agree, diving into the cupboards to pull out a bunch of her old Steeletech shit. <i>“You sit right there [pc.name]! I’ll whip up something that’ll rock your ");
+	output("\n\nAnno seems to agree, diving into the cupboards to pull out a bunch of her old Steele Tech shit. <i>“You sit right there [pc.name]! I’ll whip up something that’ll rock your ");
 	if(pc.hasCock()) output("cock off");
 	else output("cunt into the stratosphere");
 	output("!”</i>");
@@ -2720,11 +2720,11 @@ public function shekkaOnaholeIntro():void
 			else output("gushes lube");
 			output(" from those few cautious sniffs, ready to ride the raskvel’s pony before you can so much as lay eyes upon it.");
 		}
-		else
+		else if(pc.hasVagina())
 		{
 			output(" Your [pc.vaginas] ");
-			if(pc.vaginas[0].wetness() < 3) output("dampen");
-			else if(pc.vaginas[0].wetness() < 4) output("soak themselves");
+			if(pc.wettestVaginalWetness() < 3) output("dampen");
+			else if(pc.wettestVaginalWetness() < 4) output("soak themselves");
 			else output("gush lube");
 			output(" from those few cautious sniffs, ready to ride the raskvel’s pony before you can so much as lay eyes upon it.");
 		}
@@ -4074,7 +4074,7 @@ public function shekkaButtfucksYou():void
 		output("\n\nYou look like you wanna go again right now,”</i> you tease her, watching her cock jump to a full, massively erect state in seconds. It slings a fat string of pre" + (pc.biggestTitSize() >= 1 ? " between your tits.":" at your chin."));
 		output("\n\n<i>“Fuck yes I do!”</i> Shekka replies, eyes dilated into saucers. She kisses you madly, all but sucking the spit out of your mouth. A half-giddy, half-contented look seats itself upon her inebriated face as firmly as her impassioned length throbs between her thighs. <i>“Let’s fuck summore!”</i>");
 		output("\n\n<i>“Maybe,”</i> you concede, kissing her gently on the forehead, so as not to addle her any further. <i>“But we ought to clean up for now.”</i>");
-		output("\n\n<i>“Awww,”</i> Shekka sighs morosely, grinding herself into you. <i>“’Kay I’ll clean up. But then I’m gonna make another mess again, and I’m gonna be thinking about kissing you while I do it.”</i>");
+		output("\n\n<i>“Awww,”</i> Shekka sighs morosely, grinding herself into you. <i>“‘Kay I’ll clean up. But then I’m gonna make another mess again, and I’m gonna be thinking about kissing you while I do it.”</i>");
 		output("\n\n<i>“I’m sure you’ll find yourself blessed by an incredibly messy orgasm then - maybe one loud enough to tempt your captain right back into you arms for another bit of engine-room love-making.”</i>");
 	}
 	else

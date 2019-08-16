@@ -218,7 +218,7 @@ package classes.Items.Transformatives
 				{
 					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you");
 					if(!pc.hasGenitals()) output(" when you lack any genitals");
-					else output("due to your " + ((pc.hasVagina() && !pc.isFullyWombPregnant()) ? "infertility" : "non-virility"));
+					else output(" due to your " + ((pc.hasVagina() && !pc.isFullyWombPregnant()) ? "infertility" : "non-virility"));
 					output(".");
 				}
 				return false;

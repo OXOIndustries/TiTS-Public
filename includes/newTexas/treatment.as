@@ -590,7 +590,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						AddLogEvent("You give a squeal of surprise when you realize how big your tits are getting. They’re way more bouncy and squishy than before. If you got measured for a cheap bra, you’d definitely be an E-cup, but you don’t think you need one.", "passive", (i * 3) * 60);
 						if(!pc.isChestExposed()) ExtendLogEvent(ParseText(" Even with your [pc.upperGarments] peeled down,"));
 						else ExtendLogEvent(" Even as naked as you are,");
-						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren’t too firm or too soft. In short, they look damned near perfect on you, a beautiful compliment to match the rest of your developing body.");
+						ExtendLogEvent(" they sit high and proud, as if cradled by an imaginary corset. You play with them, bouncing them around. They aren’t too firm or too soft. In short, they look damned near perfect on you, a beautiful complement to match the rest of your developing body.");
 						// +2 lust
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw = 7;
@@ -662,7 +662,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 					// FF -> big FF
 					else if(pc.breastRows[0].breastRatingRaw < 14)
 					{
-						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They’re bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("Every movement you make is accompanied by a lovely bounce and jiggle. Your breasts are the kind to display a fetching amount of kinetic movement without bouncing around so hard as to strain your back - that or your back is too tough to be bothered by a bit of boobalicious bouncing. The thought of every eye in the area watching your [pc.chest] has them feeling fuzzy with heat and swelling with pride - and an assortment of mammary-enhancing hormones. They’re bigger than the last time you checked. How much are they going to grow?"), "passive", (i * 3) * 60);
 						if(pc.bRows() > 1)
 						{
 							ExtendLogEvent(ParseText("\n\nIt’s a shame that only your top row is seems to benefit from the Treatment, but at least your other [pc.nipples 1] are perking up to match their sisters above."));
@@ -1078,7 +1078,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".");
 						ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
-						ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all’s said and done, all the better to compliment your other growing rack."));
+						ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all’s said and done, all the better to complement your other growing rack."));
 						pc.hornType = GLOBAL.TYPE_BOVINE;
 						pc.removeStatusEffect("Horn Bumps", true);
 						pc.horns = 2;
@@ -1630,7 +1630,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// 21
 		if(startHours < 42 && treatedHours >= 42)
 		{
-			AddLogEvent("You’re taken by a sudden fantasy - sitting at your SteeleTech office, panties around your ankles. Your latest acquisition is kneeling between your thighs, getting his reward for selling his company at such a low price. One of your guards is sprawled out on your desk, filling your mouth with his length while you jack off his cohorts; it pays to keep one’s security happy after all.", "passive", (42 - startHours) * 60);
+			AddLogEvent("You’re taken by a sudden fantasy - sitting at your Steele Tech office, panties around your ankles. Your latest acquisition is kneeling between your thighs, getting his reward for selling his company at such a low price. One of your guards is sprawled out on your desk, filling your mouth with his length while you jack off his cohorts; it pays to keep one’s security happy after all.", "passive", (42 - startHours) * 60);
 			// +11 lust
 			pc.lust(11);
 			// Libido to 60 or +5
@@ -4205,7 +4205,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		// 19
 		if(startHours < 38 && treatedHours >= 38)
 		{
-			AddLogEvent("You’re taken by a sudden fantasy – you’re making an important presentation to the SteeleTech local branch, when suddenly the vibe in your ass springs to life. You manage to disguise your reaction as a fit of coughing and try to continue the presentation as best you can, but your amazon secretary, sitting across, looks at you with a teasing smile and slowly jacks up the intensity. The vibrator’s noise can be heard by the entire room.", "passive", (38 - startHours) * 60);
+			AddLogEvent("You’re taken by a sudden fantasy – you’re making an important presentation to the Steele Tech local branch, when suddenly the vibe in your ass springs to life. You manage to disguise your reaction as a fit of coughing and try to continue the presentation as best you can, but your amazon secretary, sitting across, looks at you with a teasing smile and slowly jacks up the intensity. The vibrator’s noise can be heard by the entire room.", "passive", (38 - startHours) * 60);
 			ExtendLogEvent("\n\nEventually, you give up any pretense of self-control and fall to the ground, lifting your ass up and whimpering in needy pleasure even as you hastily unbutton your elegant suit. The local managers already know the routine: within seconds, they’re forming a line to use you, starting with a Leithan technician preparing to mount you with his thick bulbous cock, while a Suula director rubs her tentacle-laden pussy all over your hungry lips.");
 			ExtendLogEvent("\n\nIt’s their special ‘surprise’ bonus for good sales – that’s why everyone loves having you as a boss!");
 			pc.lust(30);
@@ -4620,7 +4620,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			{
 				AddLogEvent(ParseText("You run your hands languidly over the boys, appreciating how deliciously soft and round they are, and how perfectly they mold to your form. Somehow, you know this is going to be the feel of your butt from now on, no matter how much weight you happen to lose or put on. You can barely wait to hear the sound of palms or hips slamming powerfully against your [pc.butt]."), "passive", (treatedHours - startHours) * 60);
 				ExtendLogEvent("\n\n(<b>Perk Gained: Bubble Butt</b> - Your butt remains soft regardless of muscle tone.)");
-				pc.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of muscle tone.");
+				pc.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of tone.");
 			}
 		}
 		

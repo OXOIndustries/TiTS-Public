@@ -575,15 +575,15 @@ public function eatAtTheBB(fud:String):void
 	//Food consumption scenes
 	output("You take a seat at an empty table and check the saloon’s menu on your codex. Deciding that you’re in the mood for some ");
 	if(fud == "B&Gravy") output("biscuits and gravy");
-	else if(fud == "") output("country ham");
-	else if(fud == "") output("chicken fried steak");
+	else if(fud == "Country Ham") output("country ham");
+	else if(fud == "CF Steak") output("chicken fried steak");
 	else output("72 ounce steak");
 	output(", you place your order on the codex screen, the cost of your meal being automatically deducted from your account. It only takes a few minutes for a waitress to appear from the kitchen and set your food in front of you, along with a glass and pitcher of ice-cold sweet tea. Your mouth waters from the delicious smell of good cooking. As soon as your waitress hands you your utensils, you dig in hungrily.");
 
 	//Biscuits & Gravy:
 	if(fud == "B&Gravy")
 	{
-		output("\n\nYou use your fork to cut a piece out of the closer of the two biscuits, making sure to scoop up a piece of sausage from the gravy along with it. The biscuit is still crunchy on the outside, and the soft interior tastes buttery and flaky. It blends perfectly with the crumbled bits of spiced sausage and peppery, creamy gravy. The gravy is still so hot from the kitchen that you fear you may burn your mouth, but the taste is so delicious that you just can’t bring yourself to wait for the meal to cool. You relish every bite, taking a few sips of your sweet tea whenever the pepper begins to overwhelm you. The sugary taste of the drink compliments the salty meal perfectly.");
+		output("\n\nYou use your fork to cut a piece out of the closer of the two biscuits, making sure to scoop up a piece of sausage from the gravy along with it. The biscuit is still crunchy on the outside, and the soft interior tastes buttery and flaky. It blends perfectly with the crumbled bits of spiced sausage and peppery, creamy gravy. The gravy is still so hot from the kitchen that you fear you may burn your mouth, but the taste is so delicious that you just can’t bring yourself to wait for the meal to cool. You relish every bite, taking a few sips of your sweet tea whenever the pepper begins to overwhelm you. The sugary taste of the drink complements the salty meal perfectly.");
 		output("\n\nWhen you start on the second biscuit, it’s a different experience from the first; the gravy has soaked in, leaving you with a more homogenous but unique new taste. The biscuit itself isn’t crunchy, but it is far more moist than the first, and the gravy has begun to thicken as it cools, providing another new texture in your meal. You consume the second half of your meal as quickly as the first, wishing you could have a breakfast like this every day.");
 		restHeal();
 		pc.credits -= 5;
@@ -601,7 +601,7 @@ public function eatAtTheBB(fud:String):void
 	else if(fud == "CF Steak")
 	{
 		output("\n\nThe steak is so tender you barely need to use your knife to cut it. The crispy breading on the beef crunches satisfyingly as you slice into the steak. The meat is far more flavorful than a normal steak; it’s rich, juicy, savory, peppery and oh so tender. The contrast between the textures of the crunchy breading, the chewy beef, and the thick and creamy gravy is wonderful, and the spices used in the batter and gravy bring out every flavor to its fullest.");
-		output("\n\nThe mashed potatoes are no less satisfying. They were mashed without being peeled, leaving bits of peel throughout the dish to vary the texture and add an earthy note to the dish. You can definitely tell milk was added to the potatoes, as well as a generous portion of butter, but aside from a dash of salt and pepper, there isn’t much more to the dish. The mashed potatoes provide a soft and creamy texture to the meal that compliments the crunchy and chewy texture of the steak, and the simple taste of the potatoes doesn’t distract from the complicated array of flavors in the steak. It doesn’t take you long to work through the delicious meal, leaving you feeling absolutely stuffed.");
+		output("\n\nThe mashed potatoes are no less satisfying. They were mashed without being peeled, leaving bits of peel throughout the dish to vary the texture and add an earthy note to the dish. You can definitely tell milk was added to the potatoes, as well as a generous portion of butter, but aside from a dash of salt and pepper, there isn’t much more to the dish. The mashed potatoes provide a soft and creamy texture to the meal that complements the crunchy and chewy texture of the steak, and the simple taste of the potatoes doesn’t distract from the complicated array of flavors in the steak. It doesn’t take you long to work through the delicious meal, leaving you feeling absolutely stuffed.");
 		restHeal();
 		pc.credits -= 20;
 	}

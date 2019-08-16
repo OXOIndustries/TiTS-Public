@@ -390,7 +390,7 @@ output("\n\n// Merge");
 
 output("\n\n<i>“Wait!”</i> the [enemy.furColor] furred jumper wriggles her hands. <i>“I’m not on the job right now, and I’m not armed...”</i> She twirls around and shows you she’s got nothing on her, not even a bag or pouch. She waits until you relax, then her lapine face is graced with a cheshire grin. <i>“I saw you heading this way and was wondering if you wanted to fuck without the fight. You’re not like anyone else around here, sex with you is awesome and you’re hot as hell! Your ship, right?”</i>");
 
-output("\n\nShe looks up and down your [PCShipName] and puts her hands on her wide hips. <i>“I’m hot and bothered right now, and I thought we could just have some sweaty fun in the bedroom instead! A nice sexual workout! It sure as hell beats anything else around here...”</i>");
+output("\n\nShe looks up and down your [pc.ship] and puts her hands on her wide hips. <i>“I’m hot and bothered right now, and I thought we could just have some sweaty fun in the bedroom instead! A nice sexual workout! It sure as hell beats anything else around here...”</i>");
 
 output("\n\nThe laquine jumper’s proposition is a tempting one. Her [enemy.furColor] fur glows with cold perspirant and her suit is obviously soaked from work. She pats her crotch and smiles cutely at you. You’re already getting a little aroused from her stewed body odor alone...");
 
