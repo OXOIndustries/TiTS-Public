@@ -2043,17 +2043,20 @@ public function jentaIsHatchedAndInitialized():void
 	var jenta:MirrinUniqueChild = new MirrinUniqueChild();
 	
 	jenta.RaceType = GLOBAL.TYPE_GRYVAIN;
+	jenta.MaturationRate = 1.0;
+	jenta.BornTimestamp = MailManager.getEntry("mirrin_jenta").UnlockedTimestamp - 30 - rand(16);
+	jenta.NumMale = 0;
+	jenta.NumFemale = 1;
+	jenta.NumIntersex = 0;
+	jenta.NumNeuter = 0;
 
 	jenta.Name = "Jenta";
-	jenta.NumFemale = 1;
 	jenta.skinTone = (baby.skinTone == "ebony" ? "chocolate" : "white");
 	jenta.lipColor = "brown";
 	jenta.nippleColor = "brown";
 	jenta.eyeColor = "rose";
 	jenta.hairColor = "silver";
 	jenta.scaleColor = "grey";
-	jenta.MaturationRate = 1.0;
-	jenta.BornTimestamp = MailManager.getEntry("mirrin_jenta").UnlockedTimestamp - 30 - rand(16);
 	ChildManager.addChild(jenta);
 
 	StatTracking.track("pregnancy/mirrin sired", 1);	
