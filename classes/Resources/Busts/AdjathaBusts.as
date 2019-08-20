@@ -132,6 +132,18 @@ package classes.Resources.Busts
 		//[Embed(source = "../../../assets/images/npcs/adjatha/victoria.png", mimeType = "image/png")]
 		//public var Bust_VICTORIA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_casual.png", mimeType = "image/png")]
+		public var Bust_BIANCA_CASUAL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_clothed.png", mimeType = "image/png")]
+		public var Bust_BIANCA_CLOTHED:Class;
+		public function get Bust_BIANCA():Class { return Bust_BIANCA_CLOTHED; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_lingerie.png", mimeType = "image/png")]
+		public var Bust_BIANCA_LINGERIE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_nude.png", mimeType = "image/png")]
+		public var Bust_BIANCA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_work.png", mimeType = "image/png")]
+		public var Bust_BIANCA_WORK:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kat.png", mimeType = "image/png")]
 		public var Bust_BORING_MISTRESS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kat_nude.png", mimeType = "image/png")]
@@ -1256,6 +1268,18 @@ package classes.Resources.Busts
 			//public var Full_BETSY:Class;
 			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/victoria.png", mimeType = "image/png")]
 			//public var Full_VICTORIA:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_casual.png", mimeType = "image/png")]
+			public var Full_BIANCA_CASUAL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_clothed.png", mimeType = "image/png")]
+			public var Full_BIANCA_CLOTHED:Class;
+			public function get Full_BIANCA():Class { return Full_BIANCA_CLOTHED; }
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_lingerie.png", mimeType = "image/png")]
+			public var Full_BIANCA_LINGERIE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_nude.png", mimeType = "image/png")]
+			public var Full_BIANCA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_work.png", mimeType = "image/png")]
+			public var Full_BIANCA_WORK:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kat.png", mimeType = "image/png")]
 			public var Full_BORING_MISTRESS:Class;

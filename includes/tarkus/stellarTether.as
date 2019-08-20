@@ -2551,6 +2551,7 @@ public function roomOutsideShekkasBonus():Boolean
 		else output("You’ve got a lot of balls showing up here,”</i> he growls before smiling. <i>“Boss said not to stop you, and after last time, I’m not sure I’d want to try. Just don’t start any trouble, all right?");
 		output("”</i> He gives you an unsubtle wink.</b>");
 	}
+	else biancaBoothBonus(0, "tarkus");
 	return false;
 }
 

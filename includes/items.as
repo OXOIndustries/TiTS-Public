@@ -847,7 +847,7 @@ public function buyItem():void {
 		//If slot has something in it.
 		if(shopkeep.inventory[i].quantity > 0) {
 			output("\n");
-			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice*shopkeep.inventory[i].quantity);
 			
 			// Coupons (only affects buy price--not sell price.)
 			var couponName:String = "Coupon - " + shopkeep.inventory[i].shortName;
@@ -912,7 +912,7 @@ public function buyItemOK(arg:ItemSlotClass):void
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
 	
-	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var price:Number = getBuyPrice(shopkeep,arg.basePrice*arg.quantity);
 	var hasCoupon:Boolean = false;
 	var couponName:String = "Coupon - " + arg.shortName;
 	if(pc.hasKeyItem(couponName))
@@ -943,7 +943,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
-	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
+	var price:Number = getBuyPrice(shopkeep,arg.basePrice*arg.quantity);
 	
 	//Special Vendor/Item Overrides
 	if(shopkeep is Colenso && arg is TarkusJokeBook)
@@ -976,6 +976,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
 	else if(shopkeep is Zea) shopkeep.sellMarkup = 1;
+	else if(shopkeep is Bianca) pc.createStatusEffect("Bought From Bianca");
 	
 	//Suma swap
 	if(arg is SumaCream)

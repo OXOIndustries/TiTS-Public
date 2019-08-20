@@ -258,6 +258,8 @@ public function rustPlainsEncounters():Boolean {
 		
 		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
 
+		if(biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
+
 		//Run the event
 		weightedRand(e)();
 		return true;
@@ -294,6 +296,8 @@ public function rustCoastEncounters():Boolean {
 		if (encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
 		
 		if (breedwellPremiumBootyCallCheck("tarkus")) e.push( { v: breedwellPremiumBootyCallPing, w: 2 } );
+
+		if(biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
 		//Run the event
 		weightedRand(e)();
@@ -336,6 +340,8 @@ public function rustRidgesEncounters():Boolean {
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 		
 		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+
+		if(biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
 		//Run the event
 		weightedRand(e)();
@@ -362,6 +368,8 @@ public function rustScytheGladeEncounters():Boolean {
 			e.push( { v: encounterASexBot, w: 2 + rand(2) } );
 		}
 		e.push( { v: encounterDasGooGray, w: 3 } );
+
+		if(biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 
 		//Run the event
 		weightedRand(e)();

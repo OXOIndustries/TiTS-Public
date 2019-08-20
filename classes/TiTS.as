@@ -64,6 +64,7 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+	import classes.Items.Recovery.*;
 	//Change SilkyCockBell to * when it's time -lighterfluid
 	import classes.Items.Piercings.SilkyCockBell;
 
@@ -79,6 +80,7 @@
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.*;
 	import classes.Util.IsOneOf;
+	import classes.Util.ShuffleArray;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
@@ -200,6 +202,11 @@
 		// Misc Events
 		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/bianca/bianca.as";
+		include "../includes/events/bianca/biancaTalks.as";
+		include "../includes/events/bianca/biancaHealing.as";
+		include "../includes/events/bianca/biancaStories.as";
+		include "../includes/events/bianca/biancaSex.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
@@ -1785,6 +1792,10 @@
 		public function get lorelei():Lorelei
 		{
 			return chars["LORELEI"];
+		}
+		public function get bianca():Bianca
+		{
+			return chars["BIANCA"];
 		}
 
 		public function testShipCombat():void

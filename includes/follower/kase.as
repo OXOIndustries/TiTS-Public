@@ -566,6 +566,7 @@ public function kaseSexGetFuck():void
 	{
 		pc.cuntChange(0, ppKase.cockVolume(0), pc.vaginalVirgin, false, false);
 		pc.loadInCunt(ppKase, 0);
+		IncrementFlag("KASE_FUCKED_PCVAG");
 	}
 	else
 	{
@@ -697,6 +698,7 @@ public function kaseSexThreesomeAnno():void
 	{
 		pc.cuntChange(0, ppKase.cockVolume(0), pc.vaginalVirgin, false, false);
 		pc.loadInCunt(ppKase, 0);
+		IncrementFlag("KASE_FUCKED_PCVAG");
 	}
 	else
 	{
