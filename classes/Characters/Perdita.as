@@ -28,7 +28,7 @@
 			a = "";
 			capitalA = "";
 			
-			keeperBuy = "Why wait when money can buy you instant gratification?\n\nPerdita tilts her head to the side and smirks. <i>“Seriously? You’d be my first customer if that were the case...”</i>\n\nShe pauses and blinks. <i>“I have no idea what to charge for that. Uuuh... here.”</i> A blush creeps into her cheeks and she fiddles with her datapad before holding it out to you.";
+			keeperBuy = "Why wait when money can buy you instant gratification?\n\nPerdita tilts her head to the side and smirks. <i>“Seriously? You’d be my first customer if that were the case...”</i>\n\nShe pauses and blinks. <i>“I have no idea what to charge for that. Uuuh... here.”</i> A blush creeps into her cheeks and she fiddles with her datapad before holding it out to you.\n\n";
 			keeperSell = "";
 			
 			inventory.push(new LeatherClub());

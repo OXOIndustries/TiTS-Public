@@ -32,13 +32,47 @@ public function processPerditaPayments(deltaT:int, doOut:Boolean, totalDays:int)
 {
 	if(flags["PERDITA_CHAMPEON"] == undefined) return;
 	var pledgeDay:Number = flags["PERDITA_CHAMPEON"];
-	if((days - pledgeDay) % 30 == 0)
+	var dayDiff:Number = (days - pledgeDay);
+	if(dayDiff % 30 == 0 && dayDiff > 29)
 	{
-		if(pc.credits >= 100) AddLogEvent("A notification comes through that your monthly 100 credit Champeon pledge for Perdita was processed successfully.", "passive", deltaT);
-		else AddLogEvent("A notification arrives to inform you that your 100 credit per month Champeon pledge was deducted from your credit account, putting you <b>into debt</b>.", "passive", deltaT);
-		pc.credits -= 100;
-		perditaPayouts(100);
+		var loots:Array = perditaLootsAvailable();
+		if(loots.length > 0) eventQueue.push(getPerditaStory);
+		else
+		{
+			if(pc.credits >= 100) AddLogEvent("A notification comes through that your monthly 100 credit Champeon pledge for Perdita was processed successfully." + (loots.length > 0 ? " Attached is a download code for one of her stories!":""), "passive", deltaT);
+			else AddLogEvent("A notification arrives to inform you that your 100 credit per month Champeon pledge was deducted from your credit account, putting you <b>into debt</b>.", "passive", deltaT);
+			pc.credits -= 100;
+			perditaPayouts(100);
+		}
+		
 	}
+}
+public function getPerditaStory():void
+{
+	clearOutput();
+	showName("CHAMPEON\nBILL/REWARD");
+	var loots:Array = perditaLootsAvailable();
+	if(pc.credits >= 100) output("A notification comes through that your monthly 100 credit Champeon pledge for Perdita was processed successfully." + (loots.length > 0 ? " Attached is a download code for one of her stories!":""));
+	else output("A notification arrives to inform you that your 100 credit per month Champeon pledge was deducted from your credit account, putting you <b>into debt</b>." + (loots.length > 0 ? " At least it came with a story download code...":""));
+	output("\n\n");
+	pc.credits -= 100;
+	perditaPayouts(100);
+	quickLoot(loots[rand(loots.length)]);
+}
+
+public function perditaLootsAvailable():Array
+{
+	var loots:Array = [];
+	if(!CodexManager.entryUnlocked("Go Jackals!")) loots.push(new GoJackals());
+	if(!CodexManager.entryUnlocked("Hellhound Gangbang")) loots.push(new HellhoundGangbang());
+	if(!CodexManager.entryUnlocked("Leather Club")) loots.push(new LeatherClub());
+	if(!CodexManager.entryUnlocked("Monster Threesome!")) loots.push(new MonsterThreesome());
+	if(!CodexManager.entryUnlocked("My First Story")) loots.push(new MyFirstStory());
+	if(!CodexManager.entryUnlocked("My Romantic Encounter")) loots.push(new MyRomanticEncounter());
+	if(!CodexManager.entryUnlocked("Succubus in Love")) loots.push(new SuccubusInLove());
+	if(!CodexManager.entryUnlocked("Wolf Breeding")) loots.push(new WolfBreeding());
+	if(!CodexManager.entryUnlocked("Worshipping The Anubis Queen")) loots.push(new WorshippingTheAnubisQueen());
+	return loots;
 }
 
 public function showPerdita(nude:Boolean = false):void
@@ -77,15 +111,16 @@ public function perdita1stTimeMeatingMenu():void
 	clearMenu();
 	addButton(0,"Appearance",perditaAppearance,undefined,"Appearance","How’s she Lookin’?");
 	addButton(1,"About",learnAboutPerdita,undefined,"About","Learn about Perdita.");
-	addButton(2,"Champeon",champeonPerditaTalk,undefined,"Champeon","Money every month?");
 	if(flags["PERDITA_ABOUT"] == undefined) 
 	{
+		addDisabledButton(2,"???","???","You don't know her well enough for this.");
 		addDisabledButton(3,"???","???","You don't know her well enough for this.");
 		addDisabledButton(4,"???","???","You don't know her well enough for this.");
 		addDisabledButton(5,"???","???","You don't know her well enough for this.");
 	}
 	else 
 	{
+		addButton(2,"Champeon",champeonPerditaTalk,undefined,"Champeon","Money every month?");
 		addButton(3,"Buy Smut",buySmutFromPerditles,undefined,"Buy Smut","Does she sell-direct?");
 		addButton(4,"Support",supportThatBroadOnPatreon,undefined,"Support","Support her on Champeon.");
 		addButton(5,"Flirt",flirtWivPerditles,undefined,"Flirt","Perhaps she’s interested in a tumble?");
@@ -240,6 +275,7 @@ public function buySmutFromPerditles():void
 {
 	clearOutput();
 	shopkeep = new Perdita();
+	if(flags["PERDITA_CHAMPEON"] != undefined) shopkeep.sellMarkup = 0.01;
 	buyItem();
 	author("SomeKindofWizard");
 }
@@ -323,15 +359,17 @@ public function perditaMenu():void
 	clearMenu();
 	addButton(0,"Appearance",howIsPerditaLooking,undefined,"Appearance","How’s she Lookin’?");
 	addButton(1,"About",perditaAboutNumbah2,undefined,"About","Learn about Perdita.");
-	addButton(2,"Champeon",repeatPerditaChampeonTalk,undefined,"Champeon","Money every month?");
+	
 	if(flags["PERDITA_ABOUT"] == undefined) 
 	{
+		addDisabledButton(2,"???","???","You don't know her well enough for this.");
 		addDisabledButton(3,"???","???","You don't know her well enough for this.");
 		addDisabledButton(4,"???","???","You don't know her well enough for this.");
 		addDisabledButton(5,"???","???","You don't know her well enough for this.");
 	}
 	else 
 	{
+		addButton(2,"Champeon",repeatPerditaChampeonTalk,undefined,"Champeon","Money every month?");
 		addButton(3,"Buy Smut",buySmutFromPerditles,undefined,"Buy Smut","Does she sell-direct?");
 		addButton(4,"Support",supportThatBroadOnPatreon,true,"Support","Support her on Champeon.");
 		addButton(5,"Flirt",flirtWithPostVacayPerditles,undefined,"Flirt","Perhaps she’s interested in a tumble?");
@@ -349,6 +387,7 @@ public function howIsPerditaLooking():void
 	output("She’s a cute half-ausar; probably about six foot tall not including the near-foot of wolf-ear height. Her brown hair is tied up in a ponytail that passes her shoulder, with scruffy bangs that rest just above lavender-colored eyes that glow faintly in the dark and soft-looking feminine features. Her skin is lusciously tanned now that she’s spent some time out of active ship-engineering duty. It’s impossible to miss the huge fluffy tail that idly wags from side-to-side as she’s observed on the bar-stool, poking out from a tail-hole cut into some tight black jeans.");
 	output("\n\nOf course it’s impossible to miss her other assets; those jeans are holding in a big bouncy-looking ass and a thick bulge. As for her top, she’s wearing a matching black cropped jacket over a pale pink button-up shirt whose buttons have failed to restrain a plush DD-Cup chest. You half expect her to give you the ‘Eyes up here’ routine but instead she proudly stretches for you, revealing perky nipples that push through whatever bra it is that she’s wearing.");
 	processTime(1);
+	clearMenu();
 	addButton(0,"Next",perditaIsBackForNormalInteractions,true)
 }
 
