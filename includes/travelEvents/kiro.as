@@ -26,6 +26,7 @@ public function roamingBarEncounter(button:int = 0):void
 		if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
 		//Cow - chance changes depending on location and is handled in scienceCowAvailable()
 		if(scienceCowAvailable()) NPCs.push(drinkingScienceCowBonus);
+		if(currentLocation == "CANADA5" && perditaAvailable()) NPCs.push(perditaBonus,perditaBonus,perditaBonus,perditaBonus,perditaBonus);
 		//Pick available NPC, run setup func
 		if(NPCs.length > 0)
 		{

@@ -298,6 +298,7 @@
 		include "../includes/vesperia/luca.as";
 		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
+		include "../includes/vesperia/perdita.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";

@@ -163,10 +163,19 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Go Jackals!", goJackals);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Hellhound Gangbang", hellhoundGangbang);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Leather Club", leatherClub);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Monster Threesome!", monsterThreesome);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "My First Story", myFirstStoryStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "My Romantic Encounter", myRomanticEncounter);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Succubus in Love", succubusInLove);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tower of Trials",towerOfTrialsStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Wolf Breeding", wolfBreeding);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Worshipping The Anubis Queen", worshippingTheAnubisQueen);
 }
 
 public function codexHomeFunction():void

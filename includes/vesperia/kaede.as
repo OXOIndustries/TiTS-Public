@@ -24,7 +24,7 @@ public function kaedeBlurb4KuiCountryBarAndGrilllll(button:int):Boolean
 	{
 		if(flags["KAEDE_CANADA_MET"] == undefined)
 		{
-			output("\n\nA familiar ginger half-ausar is sitting at the bar, enjoying a scotch on the rocks and scoping out the guns displayed on the walls.");
+			output("\n\nA familiar ginger half-ausar is sitting at the bar, enjoying a scotch on the rocks and scoping out the guns displayed on the walls. It’s Kaede!");
 			//[Kaede]
 			addButton(button,"Kaede",approachKaedeInNewCanadia,undefined,"Kaede","Go say hi to Kaede.");
 		}
