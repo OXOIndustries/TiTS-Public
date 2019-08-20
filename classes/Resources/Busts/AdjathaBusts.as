@@ -682,6 +682,8 @@ package classes.Resources.Busts
 		public var Bust_MITZI_ZIPSUIT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_nun.png", mimeType = "image/png")]
 		public var Bust_MITZI_NUN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_valentines.png", mimeType = "image/png")]
+		public var Bust_MITZI_VALENTINES:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_nude.png", mimeType = "image/png")]
 		public var Bust_MITZI_NUDE:Class;		
 		
@@ -1853,6 +1855,8 @@ package classes.Resources.Busts
 			public var Full_MITZI_ZIPSUIT:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nun.png", mimeType = "image/png")]
 			public var Full_MITZI_NUN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_valentines.png", mimeType = "image/png")]
+			public var Full_MITZI_VALENTINES:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nude.png", mimeType = "image/png")]
 			public var Full_MITZI_NUDE:Class;
 

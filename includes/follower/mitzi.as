@@ -54,6 +54,13 @@ public function showMitzi(nude:Boolean = false):void
 	showBust(mitziBustString(nude));
 }
 
+public function showMitziVD(nude:Boolean = false):void
+{
+	showName("\nMITZI");
+	if(!nude) showBust("MITZI_VALENTINES");
+	else showBust(mitziBustString(nude));
+}
+
 public function mitziBustString(nude:Boolean = false):String
 {
 	var dressString:String = "";
@@ -3838,7 +3845,7 @@ public function tooManyTentacles(cIdx:int):void
 public function mitziVDayFun():void
 {
 	clearOutput();
-	showMitzi();
+	showMitziVD();
 	author("Fenoxo");
 	output("Mitzi appears from behind a bulkhead with the sort of silent swiftness that you would expect from a non-corporeal life form or highly trained stealth operative. Her pigtails bob wildly, wrapped in an array of pink ribbons - to say nothing of the form-fitting, heart-themed dress she’s purloined a trashy slutwear shop. In her hands is a marvel of modern toymaking technology: a BERF bow, complete with an oversized pink dart inexpertly shaved down into the shape of a phallus.");
 	output("\n\n<i>“Surprise! Mitzi’s gonna like, spread the love! Just like that cutie Cupid guy!”</i>");
@@ -3855,7 +3862,7 @@ public function mitziVDayFun():void
 public function avoidMitzisLoveDart():void
 {
 	clearOutput();
-	showMitzi();
+	showMitziVD();
 	author("Fenoxo");
 	output("Mitzi’s tongue slips out over one pillowy, gloss-lacquered lip as she tries to aim, closing her left eye, then her right, then finally remembering to open the left one back up and aim down the sights. She giggles to herself a moment before she fires - all the warning you need to step to the side and dodge the clumsy (if relatively high-velocity) dart.");
 	output("\n\nPinging rings through the corridors of your ship as the needle-tipped foam-cock breaks itself open on ship-grade titanium, spilling its potent payload into the dart’s porous structure. Nobody’ll be taking that drug anytime soon.");
@@ -3870,7 +3877,7 @@ public function avoidMitzisLoveDart():void
 public function takeTheHitMitzi():void
 {
 	clearOutput();
-	showMitzi(true);
+	showMitziVD();
 	author("Fenoxo");
 	output("Instead of dodging, you take the hit square on your chest" + (!pc.isChestExposed() ? ", even going so far as to open your [pc.chestCover] to ensure that her fun little addition will get to deliver its tainted payload":"") + ". There’s no pain, not really. The medipen’s built-in anesthetic does its job - that or the stinging impact masks whatever microscopic irritation the payload could possibly deliver.");
 	//notes:
@@ -3907,7 +3914,7 @@ public function takeTheHitMitzi():void
 public function mitziVDayFun2():void
 {
 	clearOutput();
-	showMitzi(true);
+	showMitziVD();
 	author("Fenoxo");
 	output("You tumble into the bed with Mitzi in your arms. You can deal with the side effects later. If “Cupid’s Kiss” has some sort of nefarious come-down, there’s nothing you can do about it now. You might as well keep playing with the goblin-girl’s luscious tits, stroking and petting her. She’s just so void-damned <b>soft</b>. Mitzi was made to be held, and touch, and... well, fucked. She’s never presented herself as anything else. The squishy little goblin may utterly sex-addicted in all the best and worst ways, but she’s always been honest about.");
 	output("\n\nIn a way, you admire that about her.");
@@ -3951,7 +3958,7 @@ public function mitziVDayFun2():void
 public function mitziVDayFun3():void
 {
 	clearOutput();
-	showMitzi(true);
+	showMitziVD();
 	author("Fenoxo");
 	output("The next eight hours are a sweaty mess of impassioned declarations of affection and toe-curling bursts of pleasure. The sex and words of appreciation blend together until they almost seem to be one and the same, like you’re getting off from Mitzi’s adoration just as much as the magic things her fingers can do, and you swear that she cums a little every time you whisper that you love her into her ear.");
 	processTime(60*8);
@@ -3963,7 +3970,7 @@ public function mitziVDayFun3():void
 public function mitziVDayFun4():void
 {
 	clearOutput();
-	showMitzi(true);
+	showMitziVD();
 	author("Fenoxo");
 	output("You wake up next to a sleeping, sex-soaked goblin with a sense of... positivity? Well-being? It’s hard to describe, but when you look down at her, you’re nearly instantly spellbound by the glorious curvature of her breasts. A few minutes pass by while you stare at them, but you eventually muster the strength to pull yourself away. <b>Cupid’s Kiss is still in your system.</b> You’re going to be so much easier to tease until it wears off, but it’s also sort of nice in its own way. <b>You feel lucky</b> to have experienced it.");
 	processTime(45);
