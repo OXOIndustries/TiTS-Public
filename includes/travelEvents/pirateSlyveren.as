@@ -133,8 +133,8 @@ public function losingToStahVipah():void
 	clearMenu();
 	if(pc.hasGenitals()) addButton(0,"Offer Sex",offerSex2Snake,undefined,"Offer Sex","Try and ply the full-bodied snakegirl with an alternative reward instead of your precious wallet.");
 	else addDisabledButton(0,"Offer Sex","Offer Sex","You need genitals to get the full-bodied snakegirl interested in you.");
-	if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that's what it takes.");
-	else addDisabledButton(1,"Pay 5,000","Pay 5,000","You don't have enough money for this...");
+	if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that’s what it takes.");
+	else addDisabledButton(1,"Pay 5,000","Pay 5,000","You don’t have enough money for this...");
 	if(!pc.hasGenitals() && pc.credits < 5000)
 	{
 		output("\n\nWhen you let her know that you don’t have very much money... or genitalia either, the greedy alien fumes. <i>“For real?”</i> She looks almost disappointed to pull out a stun-gun and aim its discharge at your chest.\n\nEverything goes black..." + (pc.credits > 0 ? " and your credit wallet is empty when you awaken.":"") + "\n\n");
@@ -182,12 +182,12 @@ public function offerSex2Snake():void
 				else
 				{
 					output("\n\nShe looks over you, eyes roving from bottom to top, and shakes her head in staunch refusal. <i>“No. Give me your money or your ship’s gonna get it.”</i>");
-					output("\n\nDamn. Maybe if you’d worn sexier clothing...}");
+					output("\n\nDamn. Maybe if you’d worn sexier clothing...");
 					//send PC back to offer menu, but without the option to offer sex
 					processTime(1);
 					clearMenu();
 					addDisabledButton(0,"Offer Sex","Offer Sex","You already tried this.");
-					if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that's what it takes.");
+					if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that’s what it takes.");
 					else 
 					{
 						output("\n\nWhen you let her know that you don’t have very much money... or genitalia either, the greedy alien fumes. <i>“For real?”</i> She looks almost disappointed to pull out a stun-gun and aim its discharge at your chest.\n\nEverything goes black..." + (pc.credits > 0 ? " and your credit wallet is empty when you awaken.":"") + "\n\n");
@@ -222,7 +222,7 @@ public function offerSex2Snake():void
 					processTime(1);
 					clearMenu();
 					addDisabledButton(0,"Offer Sex","Offer Sex","You already tried this.");
-					if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that's what it takes.");
+					if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that’s what it takes.");
 					else 
 					{
 						output("\n\nWhen you let her know that you don’t have very much money... or genitalia either, the greedy alien fumes. <i>“For real?”</i> She looks almost disappointed to pull out a stun-gun and aim its discharge at your chest.\n\nEverything goes black..." + (pc.credits > 0 ? " and your credit wallet is empty when you awaken.":"") + "\n\n");
@@ -250,7 +250,7 @@ public function offerSex2Snake():void
 			processTime(1);
 			clearMenu();
 			addDisabledButton(0,"Offer Sex","Offer Sex","You already tried this.");
-			if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that's what it takes.");
+			if(pc.credits >= 5000) addButton(1,"Pay 5,000",payOffDaStarVoipah,undefined,"Give 5000 Credits","Pay off the pirate, if that’s what it takes.");
 			else 
 			{
 				output("\n\nWhen you let her know that you don’t have very much money... or genitalia either, the greedy alien fumes. <i>“For real?”</i> She looks almost disappointed to pull out a stun-gun and aim its discharge at your chest.\n\nEverything goes black..." + (pc.credits > 0 ? " and your credit wallet is empty when you awaken.":"") + "\n\n");
@@ -267,12 +267,16 @@ public function offerSex2Snake():void
 public function roamingStarViperPersuadeCheck():Boolean
 {
 	var odds:Number = 20;
-	odds += pc.sexiness() * 5;
-	if(pc.hasCock()) odds += pc.cockTotal() * 5;
-	if(pc.biggestCockLength() >= 10) odds += 5;
-	if(pc.biggestCockLength() >= 20) odds += 5;
-	if(pc.biggestCockLength() >= 30) odds += 5;
-	if(pc.biggestCockLength() >= 40) odds += 5;
+	odds += (pc.sexiness() * 5);
+	if(pc.hasCock())
+	{
+		odds += (pc.cockTotal() * 5);
+		var cLength:Number = pc.biggestCockLength();
+		if(cLength >= 10) odds += 5;
+		if(cLength >= 20) odds += 5;
+		if(cLength >= 30) odds += 5;
+		if(cLength >= 40) odds += 5;
+	}
 	return (rand(100) < odds);
 }
 
@@ -524,7 +528,7 @@ public function acceptSnekBuddyYay():void
 	if(pc.hasVagina()) addButton(2,"Get Licked",vaginaRouter,[getSlyverenCuntSlurpies,0,0,0,false],"Get Licked","Get your pussy eaten out.");
 	else addDisabledButton(2,"Get Licked","Get Licked","You need to have a vagina for this.");
 
-	addButton(4,"No Thanks",noThanksSnekkySnake,undefined,"No Thanks","You don't actually want to fuck right now.");
+	addButton(4,"No Thanks",noThanksSnekkySnake,undefined,"No Thanks","You don’t actually want to fuck right now.");
 }
 
 public function noThanksSnekkySnake():void
@@ -611,7 +615,7 @@ public function dickGrowthWithSlyveren2(x:int):void
 	showStarViperPilot(true);
 	author("Wsan");
 	output("Time passes by in achingly slow fashion. Fearing cramping muscles, you move all over the ship with your faithful cocksucker between your [pc.thighs], keeping your iron-hard dick sheathed well within the warm, wet comfort of her throat and having her swallow every last drop of cum from its throbbing head. She clings to you like an ardent lover, switching positions and coiling herself around you but never once letting up on her target.");
-	output("\n\nAfter one colossal orgasm she slips " + (pc.legCount > 1 ? "through your [pc.legs]":"around your [pc.leg]")  + " and begins blowing you from behind while you shake in your metaphorical boots and grit your teeth in pleasure. From there you plod down the hall to your captain’s chair, one very slow step at a time with the sexy snakegirl’s nose pressed against your ");
+	output("\n\nAfter one colossal orgasm she slips " + (pc.legCount > 1 ? "through your [pc.legs]":"around your [pc.leg]") + " and begins blowing you from behind while you shake in your metaphorical boots and grit your teeth in pleasure. From there you plod down the hall to your captain’s chair, one very slow step at a time with the sexy snakegirl’s nose pressed against your ");
 	if(pc.balls > 0) output("ball" + (pc.balls > 1 ? "s":""));
 	else output("underside");
 	output(" until you have to lean against the wall for support as you cum again. You’re beginning to believe her venom does a lot more than just lengthen your dick, but you can’t be bothered thinking about it.");

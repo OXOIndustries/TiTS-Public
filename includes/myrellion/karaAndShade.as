@@ -1099,16 +1099,16 @@ public function shadePostCoitusHangouts():void
 		output("\n\nYou nod, and watch Shade");
 		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome()) output(" leave the bedroom");
 		else output(" on her way out");
-		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your");
+		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your gear in order and let yourself out");
 		if(flags["SHADE_ON_UVETO"] == undefined)
 		{
-			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
+			output(". Shade’s ships seals tight behind you.");
 			//PC is left in the far north of the airfield.
 			moveTo("602");
 		}
 		else
 		{
-			output(" kit in order and let yourself out shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
+			output(" shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
 			currentLocation = "UVI P32";
 		}
 		

@@ -2630,7 +2630,7 @@ public function boredJumperHeatSexIII():void
 		flags["BJUMPER_HEAT_SEX"] = 1;
 		pc.loadInCunt(enemy,2);	
 	}
-	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
+	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears and yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
 	processTime(30);
 	pc.orgasm();
 	flags["BJUMPER_HEAT_SEX"] = 1;

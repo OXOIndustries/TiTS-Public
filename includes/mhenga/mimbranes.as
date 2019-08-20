@@ -4370,7 +4370,7 @@ public function mimbraneMenu():void
 			//[Feed With Cock][Feed With Pussy]
 			if (pc.hasCock()) addGhostButton(0, "Penis Feed", feedMimbranesWithCock, undefined, "Penis Feed", "Feed attached Mimbranes using your penis.");
 			else addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have a penis to use.");
-			if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your penis.");
+			if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your vagina.");
 			else addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have a vagina to use for this.");
 		}
 	}
