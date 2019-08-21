@@ -1,4 +1,4 @@
-﻿kage classes
+﻿Package classes
 {
 	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;
