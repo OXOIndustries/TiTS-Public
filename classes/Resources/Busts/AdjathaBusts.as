@@ -983,6 +983,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
 		public var Bust_SLAVEBREAKER_2_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/star_viper_pilot.png", mimeType = "image/png")]
+		public var Bust_STAR_VIPER_PILOT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/star_viper_pilot_nude.png", mimeType = "image/png")]
+		public var Bust_STAR_VIPER_PILOT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_topless.png", mimeType = "image/png")]
@@ -2113,6 +2118,11 @@ package classes.Resources.Busts
 			public var Full_SLAVEBREAKER_2:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_2_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/star_viper_pilot.png", mimeType = "image/png")]
+			public var Full_STAR_VIPER_PILOT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/star_viper_pilot_nude.png", mimeType = "image/png")]
+			public var Full_STAR_VIPER_PILOT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella.png", mimeType = "image/png")]
 			public var Full_STELLA:Class;
