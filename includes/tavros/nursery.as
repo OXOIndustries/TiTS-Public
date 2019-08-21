@@ -93,8 +93,8 @@ public function npcInNurseryCafeteria():Boolean
 {
 	if(seraAtNursery()) return true;
 	if(riyaAtNursery()) return true;
-	if (reahaAtNurseryCafeteria()) return true;
-	if (roxyIsInCafeteria()) return true;
+	if(reahaAtNurseryCafeteria()) return true;
+	if(roxyIsInCafeteria()) return true;
 	return false;
 }
 public function npcInNurseryCommonArea():Boolean
@@ -461,7 +461,7 @@ public function playWithMilodan(choice:Number = -1):void
 
 public function nurseryZilCallgirlRandomEvents():Boolean
 {
-	if (!zilCallgirlAtNursery() || hours < 8 || hours > 16) return false;
+	if (!zilCallgirlAtNursery() || hours < 8 || hours > 16 || pc.hasStatusEffect("Zheniya Birth Recover")) return false;
 	if ((flags["NURSERY_ZIL_CALLGIRL_EVENT_DAY"] == undefined || flags["NURSERY_ZIL_CALLGIRL_EVENT_DAY"] < days) && rand(10) == 0)
 	{
 		var options:Array = [];
@@ -562,7 +562,7 @@ public function nurseryCommonAreaFunc():Boolean
 public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
-	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
+	if(yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
 
 	nurseryZilCallgirlRandomEvents();
 	
@@ -571,8 +571,8 @@ public function nurseryCafeteriaFunc():Boolean
 	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	else pc.removeStatusEffect("Riya at Nursery");
-	if (reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
-	if (roxyIsInCafeteria()) roxyInCafeteriaBonus(btnSlot++);
+	if(reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if(roxyIsInCafeteria()) roxyInCafeteriaBonus(btnSlot++);
 	
 	return false;
 }

@@ -113,10 +113,10 @@ public function perdita1stTimeMeatingMenu():void
 	addButton(1,"About",learnAboutPerdita,undefined,"About","Learn about Perdita.");
 	if(flags["PERDITA_ABOUT"] == undefined) 
 	{
-		addDisabledButton(2,"???","???","You don't know her well enough for this.");
-		addDisabledButton(3,"???","???","You don't know her well enough for this.");
-		addDisabledButton(4,"???","???","You don't know her well enough for this.");
-		addDisabledButton(5,"???","???","You don't know her well enough for this.");
+		addDisabledButton(2,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(3,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(4,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(5,"???","???","You don’t know her well enough for this.");
 	}
 	else 
 	{
@@ -219,7 +219,7 @@ public function supportThatBroadOnPatreon(repeats:Boolean = false):void
 		if(!repeats) addButton(4,"Back",perditaMeeting,true);
 		else addButton(0,"Next",perditaIsBackForNormalInteractions,true);
 		if(pc.credits >= 100) addButton(0,"Support",supportThatBroadOnPatreon2,repeats,"Support","Spend one hundred credits a month to support Perdita.");
-		else addDisabledButton(0,"Support","Support","You can't afford to support Perdita.");
+		else addDisabledButton(0,"Support","Support","You can’t afford to support Perdita.");
 	}
 	//Already supporting
 	else
@@ -314,8 +314,8 @@ public function leavePerditaBeforeFlirtingFirstTime():void
 	clearOutput();
 	showPerdita();
 	author("SKoW & Fen");
-	output("You let her know that you've got to head out.");
-	output("<i>“I’m headed out in an hour or so and I’m going to be away for like... a week? I can’t afford to be late.”</i> She grins and tail-wags. <i>“Don't sweat it. You can hit me up later, if you like.”</i>");
+	output("You let her know that you’ve got to head out.");
+	output("<i>“I’m headed out in an hour or so and I’m going to be away for like... a week? I can’t afford to be late.”</i> She grins and tail-wags. <i>“Don’t sweat it. You can hit me up later, if you like.”</i>");
 	if(!pc.hasStatusEffect("PERDITA_MEETING_CD")) pc.createStatusEffect("PERDITA_MEETING_CD");
 	pc.setStatusMinutes("PERDITA_MEETING_CD",7*24*60);
 	processTime(2);
@@ -362,10 +362,10 @@ public function perditaMenu():void
 	
 	if(flags["PERDITA_ABOUT"] == undefined) 
 	{
-		addDisabledButton(2,"???","???","You don't know her well enough for this.");
-		addDisabledButton(3,"???","???","You don't know her well enough for this.");
-		addDisabledButton(4,"???","???","You don't know her well enough for this.");
-		addDisabledButton(5,"???","???","You don't know her well enough for this.");
+		addDisabledButton(2,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(3,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(4,"???","???","You don’t know her well enough for this.");
+		addDisabledButton(5,"???","???","You don’t know her well enough for this.");
 	}
 	else 
 	{
@@ -497,7 +497,7 @@ public function perditaSexMenu():void
 {
 	clearMenu();
 	if (pc.hasCock() && pc.cockThatFits(2000) >= 0) addButton(0, "Fuck", penisRouter, [fuckPerditles, 2000, false, 0], "Fuck", "Drink up and fuck this pup.");
-	else if (pc.hasCock()) addDisabledButton(0, "Fuck", "Fuck", "Perdita's an adventurous slut-pupper, but even she has limits.");
+	else if (pc.hasCock()) addDisabledButton(0, "Fuck", "Fuck", "Perdita’s an adventurous slut-pupper, but even she has limits.");
 	else addDisabledButton(0, "Fuck", "Fuck", "You need a phallus for this.");
 	if (pc.hasGenitals()) addButton(1, "Ice Play", icePlayWivPerditles, undefined, "Ice Play", "Get cold to get hot.");
 	else addDisabledButton(1, "Ice Play", "Ice Play", "You need genitals for this.");
@@ -551,7 +551,7 @@ public function nopeOutOfPerditasDick():void
 	clearOutput();
 	showPerdita();
 	flags["PERDITA_SEEN_NAKED"] = -1;
-	output("You put up your hand and pull away, explaining that you aren't into girls with a little extra.");
+	output("You put up your hand and pull away, explaining that you aren’t into girls with a little extra.");
 	output("\n\nPerdita recoils as if struck broadside, her features narrowing from wide-open excitement to painfully guarded. Crossing her arms across her chest, she says one word: <i>“Fine.”</i>");
 	clearMenu();
 	addButton(0,"Next",move,"CANADA5");
@@ -615,10 +615,11 @@ public function perditaDickFuckingPart2(x:int):void
 	else if(pc.hasCocks()) output("cocks");
 	else output("member"); 
 	output(" heralds your approach to the end. Instead of grit your teeth and nut however, you ");
+	var cumQ:Number = pc.cumQ();
 	if(pc.isTaur()) 
 	{
 		output("bend down at the tauric half and get your hands beneath her pits. She yelps in surprise, flailing a little until you twist her around atop you. Now you’re graced the perfect position to watch her eyes roll back and drink in her pleasure-broken expression. The horny half-ausar cums again, wrapping her arms around your monstrous lower-half and humping weakly against it. Buried as you are within her, it’s actually possible to <i>feel</i> her prostate churn before she blasts your underside with seed and turns your bodies into an alabaster sandwich. At last you stop holding back yourself, joining her in ecstasy ");
-		if(pc.cumQ() < 2000) output("and blasting thick ropes of [pc.cumNoun] into her depths. By the time you’ve finished firing away she’s still whimpering and cumming, although it soon peters out into a trickle that escapes the press of your forms and fills the bathtub beneath.");
+		if(cumQ < 2000) output("and blasting thick ropes of [pc.cumNoun] into her depths. By the time you’ve finished firing away she’s still whimpering and cumming, although it soon peters out into a trickle that escapes the press of your forms and fills the bathtub beneath.");
 		else output("and not so much cum as you do flood her bowels in [pc.cumColor]. She’s still spasming her way through the orgiastic aftershocks of her own mighty finish when you’ve packed her as full as she can go. The rest of your potent cock-sauce is forced to squirt out around the tight seal her ass is forming around your [pc.cock " + x + "] until the bath looks like it’s threatening to overflow.");
 	}
 	else
@@ -628,13 +629,13 @@ public function perditaDickFuckingPart2(x:int):void
 		else if(pc.cocks[x].cLength() < 14) output("her prostate");
 		else output("every inch of flesh you’re able to fit your prick past");
 		output(". You get to capture that perfect moment; Perdita comes crashing headlong into a massive orgasm. The first thick streak of alabaster cream paints the underside of her tits before you take a hold of her cock, aiming it straight up so that her scalding hot fluids can come raining down onto the two of you. At the same time you finally relax and allow yourself to join her in ecstasy. ");
-		if(pc.cumQ() < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumtype], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
+		if(cumQ < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumtype], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
 		else output("\n\nIt doesn’t matter how proud of her production Perdita is; you don’t so much cum as you do baste her guts in goo. By the time she’s spasming her way through those last aftershocks of orgasm you’ve finished filling her to the brim, the rest of your ardor is forced to squirt out around the tight seal of her ring and your [pc.cock] where it fills the bath until it’s fit to flood.");
 	}
 	output("\n\n<i>“Fuuuck...”</i> She eventually moans, running her hands across her cum-covered " + (!silly ? "tits":"yams") + " and squeezing her puffy nipples. Jizz escapes between her fingers like leaking milk as you attempt to unlodge yourself");
 	if(pc.hasKnot(x)) output("; thanks to a little extra hot lubrication it’s just barely possible to draw your knot out");
 	output(". There’s ");
-	if(pc.cumQ() < 2000) output("a small waterfall of your cum that quickly joins the pupperspunk already forming a thick layer atop the water");
+	if(cumQ < 2000) output("a small waterfall of your cum that quickly joins the pupperspunk already forming a thick layer atop the water");
 	else output("an epic waterfall of cum that finally floods the bath, creating a sure slip-hazard entirely of sexual effluvia");
 	output(". With an almost breathless laugh you clamber ");
 	if(pc.isTaur()) 
@@ -746,8 +747,9 @@ public function perditaIceFuckpart2(x:int):void
 	output("\n\nYou slump out of her grasp and into the water, shuddering once more as your muscles tighten up{ and force her hand out of your pussy}. What’s left of the ice-cube in your rear shoots out before you ");
 	if(x >= 0)
 	{
-		if(pc.cumQ() < 50) output("fire off a few errant ropes of [pc.cumColor] spunk under the water’s surface where it can bubble and steam upwards");
-		else if(pc.cumQ() < 10000) output("let off every last ounce of [pc.cum] you have in your reserves, not stopping until the hot water is thrown off-color and become even thicker");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 50) output("fire off a few errant ropes of [pc.cumColor] spunk under the water’s surface where it can bubble and steam upwards");
+		else if(cumQ < 10000) output("let off every last ounce of [pc.cum] you have in your reserves, not stopping until the hot water is thrown off-color and become even thicker");
 		else output("don’t so much fill the waters with cum as you do <i>over</i>-fill them. The waters immediately turn [pc.cumColor] and thick, putting whatever special cum-consuming enzymes that hide in this pool to the true test. Perdita giggles and squeals, climbing out of the water before her fur is rendered a matted mess by the lurid ooze. <i>“Stars, look at you go! You’re a fucking monster down there!”</i>");
 	}
 	else
