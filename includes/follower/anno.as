@@ -108,7 +108,7 @@ public function returnToShipAfterRecruitingAnno():Boolean
 {
 	// Fixup missed flags.
 	// Not doing it as a save updater. Basically, tell people to go back to Tarkus if Anno is missing, and it should trigger the stuff that they've missed appropriately.
-	// Incidently, this is something I would like to move out of flags, and into the Creature objects as it's more relevent to Anno than it is to general gameplay- and then also do things like have "GLOBALS" for various things, that again, can be part of the creature objects.
+	// Incidentally, this is something I would like to move out of flags, and into the Creature objects as it's more relevant to Anno than it is to general gameplay- and then also do things like have "GLOBALS" for various things, that again, can be part of the creature objects.
 	// f.ex anno.crewState == Anno.Undefined, Anno.OnCrew, Anno.KickedOffCrew or whatever.
 	if (flags["ANNO_SHOP_CLOSED"] != undefined && flags["ANNO_CREWMEMBER"] == undefined)
 	{
