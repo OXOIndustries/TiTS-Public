@@ -21,7 +21,7 @@ public function dosedKorgiMaleEncounter():void
 	clearMenu();
 	addButton(0,"Help",helpOutDosedMaleKorg,undefined,"Help","The poor pup’s all fired up and too shy to show it. You can think of a few ways to help him get over it.");
 
-	addButton(1,"Don’t Help",dontHelpThatKorgo,undefined,"Don’t Help","You can’t get caught up fucking at random in a pitched battle!");;
+	addButton(1,"Don’t Help",dontHelpThatKorgo,undefined,"Don’t Help","You can’t get caught up fucking at random in a pitched battle!");
 }
 
 //[Don’t Help]

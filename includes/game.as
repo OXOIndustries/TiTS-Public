@@ -3396,7 +3396,7 @@ public function variableRoomUpdateCheck():void
 	if (zilCallgirlAtNursery())
 	{
 		rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
-		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
+		if ((hours >= 8 && hours <= 16) || pc.hasStatusEffect("Zheniya Birth Recover")) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
 		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
 	}
 	else if(flags["SAENDRA_XPACK1_STATUS"] >= 8)

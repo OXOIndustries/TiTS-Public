@@ -892,7 +892,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 	if (pc.hasEmoteEars()) output(" between your [pc.ears]");
 	output(", scritching gestures of passive thankfulness into your scalp. All the while, you’re handling them with the fondest care. These slippery spheres thrumming in your hand with a near-boiling load are to be venerated. You knead, you squeeze, and you roll his doughy flesh between your [pc.fingers], intent on making this ripe sack the most loved on all of Zheng Shi -- at least, until you’re bumped off again.");
 	output("\n\nThis damn snake keeps getting in the way!");
-	if (pc.isBimbo()) output("\n\n<i>“Like, move over! We can’t work like this!”</i> you whine.”</i>");
+	if (pc.isBimbo()) output("\n\n<i>“Like, move over! We can’t work like this!”</i> you whine.");
 	else if (pc.isBro() || pc.isAss()) output("\n\n<i>“Get out of the way already,”</i> you bark, <i>“you’re making this harder than it needs to be!”</i>");
 	else output("\n\n<i>“Please move a little, we’re just getting in each other’s way...”</i> you murmur.");
 	output("\n\n<i>“Fine...”</i> ");
