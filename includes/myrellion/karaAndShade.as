@@ -756,7 +756,7 @@ public function cuntTailShadeFux():void
 		output(", cupping one of your breasts and giving it a rough squeeze");
 		if(pc.isLactating()) output(", just hard enough to draw a bead of milk from your bountiful bosom");
 	}
-	output(". Her tail moves on its own behind her, completely independant of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredible muscle control to wring and caress your manhood than outright fucking you.");
+	output(". Her tail moves on its own behind her, completely independent of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredible muscle control to wring and caress your manhood than outright fucking you.");
 	output("\n\nYou lie back on the bed, content to enjoy the alien ministrations of Shade’s tail. Her hips move slowly with the shifting mass of her tail, gently guiding the movements of her alien genitalia towards a quickening pace, steadily pumping your shaft. Between that and her hand roaming across your chest, squeezing your [pc.nipples] and caressing your ");
 	if(pc.biggestTitSize() < 1) output("flat, tight chest");
 	else if(pc.biggestTitSize() < 4) output("burgeoning bosom");
@@ -1278,7 +1278,7 @@ public function shadeApproach():void
 			output(" and I’m having that maternal urge to meet my family back home.”</i>");
 			output("\n\nYou ask her where exactly she is off to.");
 			output("\n\n<i>“On the frozen ice ball known as Uveto VII,”</i> she says as she walks by.");
-			if(!uvetoUnlocked()) output(" <b>Your codex beeps when you recieve the coordinates to location of the moon and its station.</b>");
+			if(!uvetoUnlocked()) output(" <b>Your codex beeps when you receive the coordinates to location of the moon and its station.</b>");
 			output(" <i>“Feel free to come by and pay me a visit. " + (flags["SEXED_SHADE"] != undefined ? ("We can have a lot of fun together, " + pc.mf("handsome", "cutie", true) + ".") : "Would be nice to have company over.") + "”</i> With that, she leaves the bar and out of your view.");
 			
 			processTime(4);

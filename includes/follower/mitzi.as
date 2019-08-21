@@ -709,7 +709,7 @@ public function mitziPCDropOutfit(arg:Array):void
 	addButton(0,"Next",dressMitziUpMenu);
 }
 
-//Mitzi crew bonus and approach screen is clothing dependant:
+//Mitzi crew bonus and approach screen is clothing dependent:
 public function mitziCrewBonus(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var dress:ItemSlotClass = mitziCurrentDress();

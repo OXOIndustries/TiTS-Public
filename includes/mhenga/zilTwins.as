@@ -204,7 +204,7 @@ public function zilTwinsInitialDissapointment():void
 public function zilTwinsBarBonus():Boolean
 {
 	output("\n\nIn the back, you can just barely make out the frames of Tetra and Mica");
-	if (flags["ZILTWINS_BARCOUNTERS"] == undefined) output(", those inscestuous zil twins you met before,");
+	if (flags["ZILTWINS_BARCOUNTERS"] == undefined) output(", those incestuous zil twins you met before,");
 	output(" sitting together in a booth. Though, it’s hard to tell exactly what they’re doing with the low lighting. You don’t think they’d mind a visit from you.");
 
 	addButton(1, "Tetra&Mica", zilTwinsBarcounter, undefined, "Tetra & Mica", "Pay a visit to the lusty zil siblings.");
@@ -225,7 +225,7 @@ public function zilTwinsBarcounter():void
 	{
 		case 0:
 			showZilTwins(1, 2);
-			output("\n\nOnly then does it become clear what the incetuous couple is doing in the dark corners of the bar.");
+			output("\n\nOnly then does it become clear what the incestuous couple is doing in the dark corners of the bar.");
 			output("\n\nBoth of the twins are sitting on the same side of the booth, gently kissing each other in the low-light of their seat.");
 			output(" Neither of them notice until you’re near, giving you a few moments to admire the couple as their tongues pass across one another, lips parting and connecting again and again.");
 			output(" You even catch a few glimpses of Mica’s erect cock throbbing, obviously needing some release from his sister.");
@@ -237,8 +237,8 @@ public function zilTwinsBarcounter():void
 			break;
 		case 1:
 			showZilTwins(2, 2);
-			output("\n\nOnly then does it become clear what the incetuous couple is doing in the dark corners of the bar.");
-			output("\n\nBoth of the twins are sitting on the same side of the booth, but Mica is sitting in his sister’s lap, recieving a handjob from his sibling while he suckles Tetra’s cuppable tits, free of their chitin cover for the moment.");
+			output("\n\nOnly then does it become clear what the incestuous couple is doing in the dark corners of the bar.");
+			output("\n\nBoth of the twins are sitting on the same side of the booth, but Mica is sitting in his sister’s lap, receiving a handjob from his sibling while he suckles Tetra’s cuppable tits, free of their chitin cover for the moment.");
 			output(" You enjoy the show as you [pc.walk] towards their booth, watching zil cock throb and honey flow from coal-black nipples as you take a seat across from them.");
 			output("\n\nTetra notices you and smiles your way, a gentle whimper escaping her lips as she’s suckled, her brother moaning quietly as well. It seems like you came at a good time too, because Mica is just on the verge of his climax.");
 			output(" He grunts, still swallowing his sister’s honey, his hips bucking up against the zil woman’s hand slightly. His thick alien tool convulses in Tetra’s grip, fountaining ropes of golden cum all over himself and his companion’s hand.");

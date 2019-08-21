@@ -951,7 +951,7 @@ public function vaginalFap():void {
 	else output("soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
 	output(" quivers deliciously at your touch, the folds engorging as they fill with unspent desire, their flesh sensitive and achy.");
 	if(pc.totalClits() > 0) {
-		output(" You slide your palm across the slowly-stiffening surface of your clitroral hood");
+		output(" You slide your palm across the slowly-stiffening surface of your clitoral hood");
 		if(pc.totalClits() > 1) output("s before they swell");
 		else output(" before it swells");
 		output(" enough to become exposed.");
@@ -1100,7 +1100,7 @@ public function singleDickFap():void {
 	}
 	//Anemone Wavy
 	else if(temp == GLOBAL.FLAG_STINGER_TIPPED) {
-		output("\n\nSoon, you’re panting with excitement and stroking your hand up and down your length. It’s hard and sensitive as you’ve come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
+		output("\n\nSoon, you’re panting with excitement and stroking your hand up and down your length. It’s hard and sensitive as you’ve come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independent skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
 	}
 	//Prehensile
 	else if(temp == GLOBAL.FLAG_PREHENSILE) {

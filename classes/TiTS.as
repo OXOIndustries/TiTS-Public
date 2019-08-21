@@ -1,4 +1,4 @@
-﻿package classes
+package classes
 {
 	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;

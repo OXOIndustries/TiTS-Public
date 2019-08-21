@@ -1258,14 +1258,14 @@ package classes.Items.Transformatives
 			}
 		}
 		
-		// Below is copy-paste from Mutator, so it is not dependant on non-vanilla external modules.
+		// Below is copy-paste from Mutator, so it is not dependent on non-vanilla external modules.
 		
 		public static var buffer:String = "";
 		/**
-		 * Wrapper for Creature.modFem with some auto-ajust. Supports common Mutator buffer for suppressed output.
+		 * Wrapper for Creature.modFem with some auto-adjust. Supports common Mutator buffer for suppressed output.
 		 * 
 		 * @param	pc target creature
-		 * @param	towards target feminity
+		 * @param	towards target femininity
 		 * @param	power desired amount to change, should be positive
 		 * @param	display show results of Creature.modFem in output
 		 * @return if something actually changed
@@ -1294,7 +1294,7 @@ package classes.Items.Transformatives
 		}
 		
 		/**
-		 * Wrapper for Creature.modThickness with some auto-ajust. Supports common Mutator buffer for suppressed output.
+		 * Wrapper for Creature.modThickness with some auto-adjust. Supports common Mutator buffer for suppressed output.
 		 * 
 		 * @param	pc target creature
 		 * @param	towards target thickness
@@ -1326,7 +1326,7 @@ package classes.Items.Transformatives
 		}
 		
 		/**
-		 * Wrapper for Creature.modTone with some auto-ajust. Supports common Mutator buffer for suppressed output.
+		 * Wrapper for Creature.modTone with some auto-adjust. Supports common Mutator buffer for suppressed output.
 		 * 
 		 * @param	pc target creature
 		 * @param	towards target tone

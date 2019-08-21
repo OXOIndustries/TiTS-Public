@@ -2189,7 +2189,7 @@ public function winAgainstMirrin():void
 		output(" and [pc.pussy]. Her tongue is already hanging out and slathered up, aiming downwards. She shifts herself down the bed somewhat, looking for the right angle of attack. Pressing her face down to your [pc.pussy], both of her calloused, clawed hands gripping comfortably on your [pc.cock " + cIdx + "]. Already she’s pumping at your shaft, the double grip of her hands impossible to resist through will alone.");
 		output("\n\nSimultaneously, her thick, lively tongue trails itself across your labia, already teasing out your wetness.");
 		if(pc.wetness(0) >= 4) output(" It doesn’t take long for your [pc.cunt] to get particularly juicy.");
-		output(" Without warning, it slithers right roughly into your [pc.pussy], recieving a hot, wet welcome.");
+		output(" Without warning, it slithers right roughly into your [pc.pussy], receiving a hot, wet welcome.");
 		if(pc.looseness(0) >= 4) output(" Your [pc.vagina] is already used to such an invasion and gives her no resistance at all!");
 		output(" A throaty groan escapes from your [pc.lips] as both shaft and snatch get worked over at the same time.");
 		if(pc.cockTotal() > 1) output(" You’re not even concerned with your untouched [pc.cock " + cIdxB + "] while getting such special treatment.");
