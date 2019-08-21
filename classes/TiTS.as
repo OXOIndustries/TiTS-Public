@@ -1,4 +1,4 @@
-package classes
+﻿kage classes
 {
 	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;
@@ -677,7 +677,7 @@ package classes
 
 			trace("TiTS Constructor")
 
-			version = "0.8.015";
+			version = "0.8.016";
 
 			//temporary nonsense variables.
 			temp = 0;
