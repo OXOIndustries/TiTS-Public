@@ -1476,6 +1476,7 @@ public function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 		output(" Your own steps are a little off-kilter after getting reamed that hard!");
 	}
 	processTime(15+rand(10));
+	pc.shower();
 	//Return PC to bar
 	if (syriQuestComplete()) currentLocation = "UVI R32";
 	else currentLocation = "BURT'S MAIN HALL";
@@ -1552,6 +1553,7 @@ public function syriShowerAdventures2():void
 	output("\n\nBy the time you’re both done, Syri’s giving you a grin and offering you a hand up, <i>“Buy you a drink?”</i>");
 	//[Next] //Should take the PC back to purt’s padbass pead ball.
 	processTime(15+rand(10));
+	pc.shower();
 	//Return PC to bar
 	if (syriQuestComplete()) currentLocation = "UVI R32";
 	else currentLocation = "BURT'S MAIN HALL";

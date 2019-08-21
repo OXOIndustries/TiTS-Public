@@ -4001,8 +4001,8 @@ public function giveMitziSoak():void
 	clearMenu();
 	addButton(0,"Eat Her Out",eatOutSoakMitzi,undefined,"Eat Her Out","Enjoy the fruits of Mitzi’s favorite drug.");
 	var mitziCapacityNew:Number = mitzi.vaginalCapacity(0)*2.5;
-	if(pc.hasCock() && pc.cockThatFits(mitziCapacityNew) >= 0) addButton(1,"Fuck Her",penisRouter,[soakySoakyHumpsBySkom,mitziCapacityNew,false,0],"Fuck Her","Use your cock to satiate the Mitzi's sodden pussy.");
-	else if(pc.hasCock()) addDisabledButton(1,"Fuck Her","Fuck Her","Even with her pussy rendered into a girlspunk faucet, there's no way you would fit.");
+	if(pc.hasCock() && pc.cockThatFits(mitziCapacityNew) >= 0) addButton(1,"Fuck Her",penisRouter,[soakySoakyHumpsBySkom,mitziCapacityNew,false,0],"Fuck Her","Use your cock to satiate the Mitzi’s sodden pussy.");
+	else if(pc.hasCock()) addDisabledButton(1,"Fuck Her","Fuck Her","Even with her pussy rendered into a girlspunk faucet, there’s no way you would fit.");
 	else addDisabledButton(1,"Fuck Her","Fuck Her","This scene uses a penis, but you forgot to bring one.");
 	addButton(14,"Leave",leaveSoakedMitzi);
 }
@@ -4031,7 +4031,7 @@ public function soakySoakyHumpsBySkom(x:int = 0):void
 	output("\n\nIntent on savoring every moment, you apply only a little pressure, but - to your surprise - the [pc.cockHead " + x + "] meets almost no resistance as it parts her folds and plunges all at once into her hot, silken depths. You suck in a deep breath as your shaft unintentionally bottoms out and is assaulted by the sudden caress. <i>“Yessss!”</i> Mitzi coos in delight. And it all happened in less than a second!");
 	pc.cockChange();
 	output("\n\nAstonished, you pull out and repeat the deed: your cock goes in with a wet, squishy sound, utterly slick with Mitzi’s sweet lube. A devious smile creeps on your face, and you give your slut a predatory look as you " + (pc.legCount > 1 ? "adjust your stance, placing your [pc.legsNoun] at each side of the chair.":"adjust your stance so that the weight of your [pc.leg] is mostly on the footrest.") + " Mitzi returns the hunger in your eyes with her own, and without further ado, you impale her sodden quim in one swift thrust, causing both you and Mitzi moan in unison from the onslaught of sensation." + (pc.hasKnot(x) ? " Even the knot goes in, further spreading her thick, swollen labia as her vagina bulges obscenely with the additional volume.":""));
-	var mitziNewSoakiesCapacity:Number =  mitzi.vaginalCapacity(0)*2.5;;
+	var mitziNewSoakiesCapacity:Number = mitzi.vaginalCapacity(0)*2.5;
 	if(pc.cockVolume(x) >= mitziNewSoakiesCapacity * 0.65) output("\n\nLooking closely at the goblin, you can even make out the shape of your cock distending her belly, so deep that you are. Mitzi’s eyes follow your gaze, only for her to giggle reassuringly. <i>“[pc.MasterMistress], don’t be silly! It’s totally normal for Mitzi to dis-disti- stretch like this when taking [pc.name]’s big cock,”</i> she winks.");
 	output("\n\nNot willing to wait even a second longer, you grab the armrests for support and start start pounding the shortstack as fast as you can, fully enjoying the advantages of her incredibly slick pussy. But, in addition to making Mitzi’s cunt even wetter than normal, it’s also made it <i>hot</i> for some reason. The heat seeps into your [pc.cock " + x + "], enhancing sensation and driving you to a strange, feverish kind of lust while you plow her silken love tunnel ruthlessly.");
 	output("\n\nMitzi wraps her legs around you and pulls in tempo with your thrusts, moaning in unbelievable bliss. <i>“Yes! More! Harder!!”</i> are the only words you can make out, and soon enough you find yourself adding your own notes to this symphony of raw, unbridled desire. ");
@@ -4046,7 +4046,7 @@ public function soakySoakyHumpsBySkom(x:int = 0):void
 			else y++;
 		}
 	}
-	if(y >= 0) output(" Meanwhile, your [pc.cock " + y + "], rubs the area between her thick thighs, which has become utterly slick from the constant flow of fem-lube that oozes out of the shortstack’s pussy in-between thrusts. Every time your [pc.cockNounSimple " + x + "] bottoms out, your [pc.cock " + y  + "] buries itself between her fat ass-cheeks and the chair’s smooth leather. The feel of all those different textures caressing on your shafts is addictive, prompting you to go at it even harder than before.");
+	if(y >= 0) output(" Meanwhile, your [pc.cock " + y + "], rubs the area between her thick thighs, which has become utterly slick from the constant flow of fem-lube that oozes out of the shortstack’s pussy in-between thrusts. Every time your [pc.cockNounSimple " + x + "] bottoms out, your [pc.cock " + y + "] buries itself between her fat ass-cheeks and the chair’s smooth leather. The feel of all those different textures caressing on your shafts is addictive, prompting you to go at it even harder than before.");
 	output("\n\nIt doesn’t take even a full minute for the goblin to reach the first orgasm, her moans rising to an utterly debauched pitch, large breasts jiggling beautifully as her body trembles in ecstasy. Meanwhile, Mitzi’s sugary girlcum splashes hotly all over your groin");
 	if(pc.balls > 0) output(", [pc.balls],");
 	else if(pc.hasVagina()) output(", [pc.vaginasSimple],");

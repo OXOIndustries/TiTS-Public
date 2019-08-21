@@ -3190,6 +3190,7 @@
 					break;
 				case "mistress":
 				case "master":
+				case "masterMistress":
 					buffer = mf("master", "mistress");
 					break;
 				case "he":

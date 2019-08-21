@@ -1225,7 +1225,8 @@ public function chooseYourJunkSize():void {
 	}
 	addButton(13,"Whatever",applyJunkSize,cLengths[rand(cLengths.length)]);
 	
-	output(" inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
+	output(" inches. How long do you want it?”</i>");
+	if(cLengths[cLengths.length - 1] >= 9) output(" He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	
 	//NEW (cont.)
 	output("\n\n<b>How long do you want your character’s penis to be?</b>");

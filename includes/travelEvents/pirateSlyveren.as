@@ -282,12 +282,25 @@ public function roamingStarViperPersuadeCheck():Boolean
 
 public function slyverenLossSceneRouter():void
 {
-	if(pc.hasCock()) if(pc.biggestCockLength() >= 40) hyperSnekfun();
-	else if(pc.hasCock()) normalweenSlyverenSuckin();
-	//for naga PCs with a pussy
-	else if(pc.hasVagina() && pc.isNaga()) nagaWithPussyStuff();
-	//Non-naga puss-havers
-	else nonNagaPussywhipping();
+	if(pc.hasCock())
+	{
+		if(pc.biggestCockLength() >= 40) hyperSnekfun();
+		else normalweenSlyverenSuckin();
+	}
+	else if(pc.hasVagina())
+	{
+		//for naga PCs with a pussy
+		if(pc.isNaga()) nagaWithPussyStuff();
+		//Non-naga puss-havers
+		else nonNagaPussywhipping();
+	}
+	else
+	{
+		clearOutput();
+		output("ERROR: You need to have genitals!");
+		output("\n\n");
+		CombatManager.genericLoss();
+	}
 }
 	
 //Hyper variant
