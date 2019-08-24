@@ -24,10 +24,17 @@ public function showOlympia(nude:Boolean = false):void
 
 public function sideWinderCabinBonus():Boolean
 {
-	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShop,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
+	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShopPrompt,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
 	return false;
 }
-
+public function hijackThisShippyShopPrompt():void
+{
+	clearOutput();
+	output("You should make certain you’ve gotten everything you need on the station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
+	addButton(0, "Yes", hijackThisShippyShop);
+	addButton(1, "Reconsider", mainGameMenu);
+}
 public function hijackThisShippyShop():void
 {
 	clearOutput();

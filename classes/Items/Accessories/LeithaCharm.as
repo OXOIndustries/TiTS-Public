@@ -553,7 +553,7 @@
 			{
 				if (target.vaginas[i].type != GLOBAL.TYPE_LEITHAN && target.vaginaTypeUnlocked(i, GLOBAL.TYPE_LEITHAN))
 				{
-					target.vaginas[i].type = GLOBAL.TYPE_LEITHAN;
+					target.shiftVagina(i, GLOBAL.TYPE_LEITHAN);
 					tfType++;
 				}
 				if (target.vaginas[i].bonusCapacity < 500)

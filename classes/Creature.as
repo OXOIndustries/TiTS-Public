@@ -11824,8 +11824,10 @@
 					vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
 					break;
 				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_KORGONNE:
 					vaginas[slot].clits = 1;
-					vaginas[slot].vaginaColor = "pink";
+					if(type == GLOBAL.TYPE_KORGONNE) vaginas[slot].vaginaColor = "pale blue";
+					else vaginas[slot].vaginaColor = "pink";
 					vaginas[slot].wetnessRaw = 3;
 					vaginas[slot].minLooseness = 3;
 					break;
@@ -11942,11 +11944,16 @@
 					break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
+				case GLOBAL.TYPE_KORGONNE:
 					cocks[slot].knotMultiplier = 1.25;
 					cocks[slot].cockColor = "bright red";
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					if(type == GLOBAL.TYPE_KORGONNE) {
+						cocks[slot].cType = GLOBAL.TYPE_CANINE;
+						cocks[slot].cockColor = "pale blue";
+					}
 					break;
 				case GLOBAL.TYPE_FELINE:
 					cocks[slot].knotMultiplier = 1;
@@ -12450,6 +12457,7 @@
 			else if(raceSimple == "leithan") shiftCock(arg,GLOBAL.TYPE_SNAKE);
 			else if(raceSimple == "kui-tan") shiftCock(arg, GLOBAL.TYPE_KUITAN);
 			else if(raceSimple == "gryvain") shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(raceSimple == "korgonne") shiftCock(arg, GLOBAL.TYPE_KORGONNE);
 			else if(InCollection(raceSimple, ["equine", "pony", "laquine", "ovir", "minotaur", "centaur", "hippogriff"])) shiftCock(arg, GLOBAL.TYPE_EQUINE);
 			else if(InCollection(raceSimple, ["vulpine", "kitsune", "vulpogryph"])) shiftCock(arg,GLOBAL.TYPE_VULPINE);
 			else if (InCollection(raceSimple, ["griffin", "phoenix", "sirin", "harpy", "avian"]))
@@ -12535,6 +12543,7 @@
 			else if(raceSimple == "kui-tan") shiftVagina(arg, GLOBAL.TYPE_KUITAN);
 			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
+			else if(raceSimple == "korgonne") shiftVagina(arg, GLOBAL.TYPE_KORGONNE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
 			else if(raceSimple == "reptile") shiftVagina(arg, GLOBAL.TYPE_LIZAN);

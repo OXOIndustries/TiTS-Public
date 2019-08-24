@@ -201,7 +201,7 @@ public function extrameetKaedeRocketRide():void
 	if (pc.isHerm()) output(" and");
 	if (pc.hasVagina()) output(" drooling femcum down her crimson shaft");
 	if (!pc.hasGenitals()) output(" squeezing your ass for her as your sexless body climaxes");
-	output(". When you finish moaning through your orgasm, it all at once feels as thought all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
+	output(". When you finish moaning through your orgasm, it all at once feels as though all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
 	
 	output("\n\nYou slump down overtop Kaede, resting your cheek against one of her sinfully soft little breasts. There’s a thin, glistening sheen of sweat built up from her vigorous fucking, but her cleavage is still nice and cool for you. Kaede giggles when you nuzzle up, wrapping her big ginger tail around your [pc.butt] and pulling the sheets up over you both.");
 	
