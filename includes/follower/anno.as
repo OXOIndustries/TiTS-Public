@@ -660,12 +660,29 @@ public function annoFollowerBuyMenu():void
 
 	annoFollowerInventoryCheck();
 
-	shopkeep = anno;
 	anno.keeperBuy = "<i>“Want something from my stock, boss?”</i> Anno asks, picking up a datapad and handing it over to you. <i>“Here’s what’s in inventory at the moment.";
 	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperBuy += " Steele Tech’s still supplying us with top-tier equipment, and plenty of it.";
 	else anno.keeperBuy += "My contacts might be a </i>little<i> more seedy these days, but the equipment they’re hooking me up with isn’t too far behind Steele Tech’s gear.";
 	anno.keeperBuy += "”</i>\n";
+	
+	shopkeep = anno;
 	buyItem();
+}
+
+public function annoFollowerSellMenu():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	annoFollowerInventoryCheck();
+
+	anno.keeperSell = "<i>“Got something weighing you down, boss? I can";
+	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperSell += " send just about anything back to Steele Tech for a good profit. Perks of being a field merchant!";
+	else anno.keeperSell += " fence just about anything through my friends. Just give me the word!";
+	anno.keeperSell += "”</i>\n";
+	
+	shopkeep = anno;
+	sellItem();
 }
 
 // Updates and configures Annos inventory depending on how she ended up on the players ship
@@ -687,6 +704,7 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new NovaRifle());
 			anno.inventory.push(new NovaPistol());
 			anno.inventory.push(new SteeleTechSuit());
+			anno.inventory.push(new ArmorSteeleSuit());
 			anno.inventory.push(new ACock());
 			anno.inventory.push(new AHCock());
 			anno.inventory.push(new ADCock());
@@ -725,21 +743,6 @@ public function annoFollowerInventoryCheck():void
 
 	// Set her up so she can buy/sell everything
 	anno.typesBought = [GLOBAL.ALL];
-}
-
-public function annoFollowerSellMenu():void
-{
-	clearOutput();
-	annoFollowerHeader();
-
-	annoFollowerInventoryCheck();
-
-	shopkeep = anno;
-	anno.keeperSell = "<i>“Got something weighing you down, boss? I can";
-	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperSell += " send just about anything back to Steele Tech for a good profit. Perks of being a field merchant!";
-	else anno.keeperSell += " fence just about anything through my friends. Just give me the word!";
-	anno.keeperSell += "”</i>\n";
-	sellItem();
 }
 
 public function annoFollowerTalkMenu(doOut:Boolean = true):void
