@@ -80,6 +80,7 @@
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.*;
 	import classes.Util.IsOneOf;
+	import classes.Util.ShuffleArray;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
@@ -202,6 +203,11 @@
 		// Misc Events
 		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/bianca/bianca.as";
+		include "../includes/events/bianca/biancaTalks.as";
+		include "../includes/events/bianca/biancaHealing.as";
+		include "../includes/events/bianca/biancaStories.as";
+		include "../includes/events/bianca/biancaSex.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
@@ -1810,6 +1816,10 @@
 		public function get vahn():Vahn
 		{
 			return chars["VAHN"];
+		}
+		public function get bianca():Biance
+		{
+			return chars["BIANCA"];
 		}
 
 		public function testShipCombat():void

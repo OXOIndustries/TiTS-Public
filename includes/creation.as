@@ -43,6 +43,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 		case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
+		case "healthdelivery": cheatFunc = Cheats.BringMeAFox; break;
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
 		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
 		

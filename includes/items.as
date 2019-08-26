@@ -893,7 +893,7 @@ public function buyItem(quantity:int=1):void {
 		//If slot has something in it.
 		if(shopkeep.inventory[i].quantity > 0) {
 			output("\n");
-			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice*shopkeep.inventory[i].quantity);
 			
 			// Coupons (only affects buy price--not sell price.)
 			var couponName:String = "Coupon - " + shopkeep.inventory[i].shortName;
@@ -1125,6 +1125,7 @@ public function buyItemGo(arg:Array):void {
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
 	else if(shopkeep is Zea) shopkeep.sellMarkup = 1;
+	else if(shopkeep is Bianca) pc.createStatusEffect("Bought From Bianca");
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;

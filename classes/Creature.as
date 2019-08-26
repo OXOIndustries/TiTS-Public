@@ -2488,6 +2488,9 @@
 				case "multiCocks":
 					buffer = multiCockDescript();
 					break;
+				case "cockCount":
+					buffer = num2Text(cocks.length);
+					break;
 				case "cocks":
 				case "cocksDescript":
 					buffer = cocksDescript();
@@ -2778,6 +2781,9 @@
 				case "nutsack":
 				case "scrotum":
 					buffer = sackDescript();
+					break;
+				case "sackTexture":
+					buffer = sackTexture();
 					break;
 				case "chestDesc":
 				case "chest":
@@ -14187,6 +14193,14 @@
 			if(desc != "") desc += " " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
+		}
+		public function sackTexture(skinAdjective:String = "doughy", furAdjective:String = "fuzzy", scalesAdjective:String = "scaly", gelAdjective:String = "semi-gelatinous"): String {
+			switch (scrotumType())
+			{
+				case GLOBAL.FLAG_FURRED: return furAdjective;
+				case GLOBAL.FLAG_SCALED: return scalesAdjective;
+				default: return skinAdjective;
+			}
 		}
 		public function cockClit(number: int = 0): String {
 			if (hasCock() && number >= 0 && number < cocks.length) return cockDescript(number);

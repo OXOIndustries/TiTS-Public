@@ -270,6 +270,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		{
 			if(pattonIsHere()) pattonAppearance();
 		}
+		if(flags["BIANCA_LOCATION"] == currentLocation) biancaBonus();
 	}
 	
 	// Time passing effects
@@ -1484,11 +1485,16 @@ public function wait(minPass:int = 0):void
 	else if(hrPass == 1) output(" one hour");
 	else output(" " + num2Text(hrPass) + " hours");
 	output(".");
-	
+
 	var waitMult:Number = 0.20 * (minPass / 240);
+	if(pc.hasStatusEffect("Using Doctor's Bag"))
+	{
+		waitMult *= 1.1 + 0.05*pc.statusEffectv1("Using Doctor's Bag");
+		pc.removeStatusEffect("Using Doctor's Bag");
+	}
 	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
 	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
-	
+
 	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
 	processTime(minPass);
@@ -1573,13 +1579,18 @@ public function restHeal():void
 		bonusMult += 0.5;
 		soreMult += 1;
 	}
+	if(pc.hasStatusEffect("Using Doctor's Bag"))
+	{
+		bonusMult += 0.3
+		pc.removeStatusEffect("Using Doctor's Bag");
+	}
 	if(pc.accessory is MaikesCollar)
 	{
 		bonusMult = 0;
 		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
-	
+
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) {
@@ -3498,6 +3509,8 @@ public function variableRoomUpdateCheck():void
 		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else if(pennyRecruited() && !pennyIsCrew()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
+		if(biancaPlanet() == "mhen'ga") rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.FIRST_AID);
+		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.FIRST_AID);
 	}
 	//Yakuza things
 	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
@@ -3713,6 +3726,9 @@ public function variableRoomUpdateCheck():void
 	// Lane is away
 	if (flags["LANE_DISABLED"] == undefined) rooms["LANESSHOP"].addFlag(GLOBAL.NPC);
 	else rooms["LANESSHOP"].removeFlag(GLOBAL.NPC);
+	//Bianca doan medicine
+	if (biancaPlanet() == "tarkus") rooms["211"].addFlag(GLOBAL.FIRST_AID);
+	else rooms["211"].removeFlag(GLOBAL.FIRST_AID);
 	
 	
 	/* NEW TEXAS */
@@ -3909,7 +3925,10 @@ public function variableRoomUpdateCheck():void
 	//Breedwell
 	if (quaelleSexTimer(1, 6) || quaelleIsImmobile()) rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.NPC);
 	else rooms["BREEDWELL_QUAELLE_APT"].removeFlag(GLOBAL.NPC);
-	
+
+	if (biancaPlanet() == "myrellion") rooms["604"].addFlag(GLOBAL.FIRST_AID);
+	else rooms["604"].removeFlag(GLOBAL.FIRST_AID);
+
 	/* ZHENG SHI */
 
 	if(flags["MAIKE_SLAVES_RELEASED"] != undefined) {
@@ -4170,6 +4189,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processLucaTimeStuff(deltaT, doOut, totalDays);
 	processBreedwellPremiumBreederEvents(deltaT, doOut, totalDays);
 	processMirrinPregnancy(deltaT, nextTimestamp);
+	processBianca(totalDays, nextTimestamp);
 	
 	// Per-day events
 	if (totalDays >= 1)

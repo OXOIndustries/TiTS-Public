@@ -90,7 +90,19 @@ public function pcReadyForPainsluttery():Boolean
 	if (flags["AKANE_FUN_VISITS"] == undefined || flags["AKANE_FUN_VISITS"] < 9) return false;
 	return true;
 }
- 
+
+public function hasAkaneEffects(includeHealed:Boolean = true):Boolean
+{
+	return hasAkanaEffects(includeHealed);
+}
+public function hasAkanaEffects(includeHealed:Boolean = true):Boolean
+{
+	if (pc.hasStatusEffect("Sore Tubes") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Tenderized") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Lash Marks") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	return false;
+}
+
 public function akanePainslutTrigger():void
 {
 	clearMenu();

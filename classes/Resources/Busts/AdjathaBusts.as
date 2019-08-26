@@ -1339,6 +1339,18 @@ package classes.Resources.Busts
 			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/victoria.png", mimeType = "image/png")]
 			//public var Full_VICTORIA:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_casual.png", mimeType = "image/png")]
+			public var Full_BIANCA_CASUAL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_clothed.png", mimeType = "image/png")]
+			public var Full_BIANCA_CLOTHED:Class;
+			public function get Full_BIANCA():Class { return Full_BIANCA_CLOTHED; }
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_lingerie.png", mimeType = "image/png")]
+			public var Full_BIANCA_LINGERIE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_nude.png", mimeType = "image/png")]
+			public var Full_BIANCA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_work.png", mimeType = "image/png")]
+			public var Full_BIANCA_WORK:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bizzy.png", mimeType = "image/png")]
 			public var Full_BIZZY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bizzy_nude.png", mimeType = "image/png")]
