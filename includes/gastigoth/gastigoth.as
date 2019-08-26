@@ -1323,7 +1323,7 @@ public function prisonerTimes(prisonerName:String):void
 	clearBust();
 	output("<b>ERROR: Prisoner not found.</b> Please try again!");
 	clearMenu();
-	addButton(0, "Next", backOuttaPrisonVisit, true);
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function backOuttaPrisonVisit():void
