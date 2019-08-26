@@ -41,7 +41,7 @@
 			this.description = "a sensor suite";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This sensor suite comes as a full and comprehensive upgrade. It includes: additional external sensors, signal processing units, licenses for KihaCorp Data+ software suites, and a complement to how smart you are for choosing this product.\n\n(+25 sensors)";
+			this.tooltip = "This sensor suite comes as a full and comprehensive upgrade. It includes: additional external sensors, signal processing units, licenses for KihaCorp Data+ software suites, and a compliment to how smart you are for choosing this product.\n\n(+25 sensors)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

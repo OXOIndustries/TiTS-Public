@@ -268,7 +268,7 @@ public function sweatBunny69Loss2():void
 	if(pc.isBimbo()) output("You cry in out in pure, wanton need, delirious at the chance to press your [pc.lips] to her crotch.");
 	else if(pc.libido() >= 50) output("Your murmur your assent.");
 	else output("You shudder in sudden awareness of what’s about to happen, reeling your tongue back in it, but it’s too late.");
-	output("\n\n<i>“Here you go.”</i> The bunny-slut’s tongue dips into your navel while her hips swivel up and back, planting her balls on your forehead and and directing her [enemy.cockNoun] toward your mouth. Pre and sweat dribble from the tip ");
+	output("\n\n<i>“Here you go.”</i> The bunny-slut’s tongue dips into your navel while her hips swivel up and back, planting her balls on your forehead and directing her [enemy.cockNoun] toward your mouth. Pre and sweat dribble from the tip ");
 	if(pc.isBimbo()) output("into your greedy, cum-hungry maw");
 	else if(pc.libido() >= 50) output("into your wide-open, accepting mouth");
 	else output("onto your [pc.lipsChaste], shocking you into a gasp");

@@ -1362,7 +1362,7 @@ public function nowAllICanHangOutWithIsTessasLoveThatWasOnce(fromClark:Boolean):
 	output("\n\nYou tell her he just stepped into the men’s room.");
 	output("\n\n<i>“Ah.”</i> She turns to regard the men’s room door, then shifts her gaze back to you and the contents of your hands. <i>“Nice bouquet. " + (tessaHandler.caughtBouquet ? "You" : "Tess") + " really worked for that thing. Things must be serious between you two.”</i>");
 	if (tessaHandler.lewdness) output(" She looks you up and down, exploring you with her eyes.");
-	output("\n\nBefore you can answer, you hear the faint sound of a toilet flushing coming from the ladies’ room. Adra’s ears twitch, signalling she heard it as well. <i>“Speak of the devil.”</i> You and and Adra stare at each other for a moment, the blonde ausar’s ears twitching. <i>“She’s washing her hands now.”</i>");
+	output("\n\nBefore you can answer, you hear the faint sound of a toilet flushing coming from the ladies’ room. Adra’s ears twitch, signalling she heard it as well. <i>“Speak of the devil.”</i> You and Adra stare at each other for a moment, the blonde ausar’s ears twitching. <i>“She’s washing her hands now.”</i>");
 	if (tessaHandler.adraValTwo)
 	{
 		output("\n\nShe gives you a serious look. <i>“So she really didn’t say anything to you about me and her?”</i> When you shake your head no the tall woman rolls her eyes. <i>“That’s almost insulting.”</i>");

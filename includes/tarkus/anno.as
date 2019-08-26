@@ -226,9 +226,9 @@ public function firstTimeAnnoTalks():void
 //[Discount?]
 public function soAboutDatDiscountSlut():void
 {
-	shopkeep = chars["ANNO"];
 	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms.") + " Steele,”</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
+	annoShopSetup();
 	buyItem();
 }
 
@@ -255,9 +255,8 @@ public function annoMainMenu():void
 {
 	//[Buy] [Sell] [Talk] [Repair Gear] [Ear Scratches]
 	clearMenu()
-	annoShopSetup();
 	addButton(0,"Buy",buyFromDatDogslut,undefined,"Buy","See what Anno has for sale.");
-	addButton(1,"Sell",sellItem,undefined,"Sell","See if you can sell any of your carried items to Anno.");
+	addButton(1,"Sell",sellToDatDogslut,undefined,"Sell","See if you can sell any of your carried items to Anno.");
 	addButton(2,"Talk",annoTalkMenu,undefined,"Talk","Talk to Anno about a variety of topics.");
 	addButton(3,"EarScratches",earScritchesForAnno,undefined,"Ear Scratches","Give her a good scratching right behind the ears. She’s been a good girl, after all.");
 	addButton(5,"Appearance",annoAppearance,undefined,"Appearance","Review what Anno’s entire body looks like.");
@@ -277,33 +276,58 @@ public function buyFromDatDogslut():void
 {
 	author("Savin");
 	showAnno();
-	shopkeep = chars["ANNO"];
+	
 	if(flags["SEEN_ANNO_BUY_MENU"] == undefined)
 	{
 		flags["SEEN_ANNO_BUY_MENU"] = 1;
 		chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue?”</i> Anno says hopefully. <i>“We mostly do business with rushers and pioneers coming through, so I’ve got some pretty decent weapons and armor in stock. Even some military grade stuff, which I’m pretty sure you’re allowed to buy. Plus, plenty of junk I’ve managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.”</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop’s goods.\n";
 	}
-	else annoShopSetup();
-	buyItem();
-}
-public function annoShopSetup():void
-{
-	author("Savin");
-	showAnno();
-	shopkeep = chars["ANNO"];
-	
-	gooArmorOrphanedCheck(chars["ANNO"]);
-	
-	if(flags["TARKUS_DESTROYED"] != undefined)
+	else if(flags["TARKUS_DESTROYED"] != undefined)
 	{
 		// First Time
 		chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue?”</i> Anno says hopefully. <i>“Not a lot of business to work with after the planet blew, so I’ve got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I’m pretty sure you’re allowed to buy. Plus, plenty of junk I’ve managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.”</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop’s goods.\n";
 	}
 	else chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.”</i>\n";
+	
+	annoShopSetup();
+	shopkeep = chars["ANNO"];
+	buyItem();
+}
+public function sellToDatDogslut():void
+{
+	author("Savin");
+	showAnno();
+	
 	//List prices and whatnot.
 	//Sell Menu
 	chars["ANNO"].keeperSell = "<i>“Got a little something weighing you down? I’m sure I can take a load off you!”</i> she chuckles as you sort through your sellable gear.\n";
 	chars["ANNO"].keeperGreeting = "Anno shrugs. <i>“Well, how can I help you, boss?”</i>\n";
+	
+	annoShopSetup();
+	shopkeep = chars["ANNO"];
+	sellItem();
+}
+public function annoShopSetup():void
+{
+	chars["ANNO"].inventory.push(new AusarTreats());
+	chars["ANNO"].inventory.push(new HammerCarbine());
+	chars["ANNO"].inventory.push(new LaserCarbine());
+	chars["ANNO"].inventory.push(new EMPGrenade());
+	chars["ANNO"].inventory.push(new TSTArmor());
+	chars["ANNO"].inventory.push(new Goovolver());
+	chars["ANNO"].inventory.push(new ACock());
+	chars["ANNO"].inventory.push(new AHCock());
+	chars["ANNO"].inventory.push(new ADCock());
+	
+	gooArmorOrphanedCheck(chars["ANNO"]);
+	
+	chars["ANNO"].typesBought = [];
+	chars["ANNO"].typesBought.push(GLOBAL.ARMOR);
+	chars["ANNO"].typesBought.push(GLOBAL.RANGED_WEAPON);
+	chars["ANNO"].typesBought.push(GLOBAL.SHIELD);
+	
+	chars["ANNO"].sellMarkup = 1.2;
+	chars["ANNO"].buyMarkdown = 0.80;
 }
 
 //Test Drive
@@ -3040,7 +3064,7 @@ public function deck13DecisionBodies():void
 	output("\n\n<i>“I don’t know what to say... other than yes. And thank you!”</i> Nova smiles, for the first time. <i>“I never thought someone would be willing - or able - to help us like that. Not in a million years. Ten thousand cyber bodies has to be a fortune”</i>");
 	
 	if (pc.isMischievous())	output("\n\n<i>“Call it the company’s charity for the year. It’ll all come off on taxes anyway,”</i> you chuckle.");
-	else output("\n\n<i>“SteeleTech can afford it,”</i> you answer simply. <i>“Especially if we can find a way to monetize the gray goo.”</i>");
+	else output("\n\n<i>“Steele Tech can afford it,”</i> you answer simply. <i>“Especially if we can find a way to monetize the gray goo.”</i>");
 	
 	output("\n\n<i>“I see,”</i> Nova says, still smiling. Her sword vanishes, disintegrating as she steps forward. <i>“Most... no, </i>all<i> of the crew would like to convey a message.”</i>");
 	

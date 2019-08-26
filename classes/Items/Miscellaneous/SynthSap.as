@@ -384,7 +384,7 @@
 		}
 		protected function setSkinColorVanae(pc:Creature):void
 		{
-			var colors:Array = ["pale violet","pale purple","pale blue","pale pink","pale orange","pale green","pale","pale gray","pale gold"];
+			var colors:Array = ["pale violet","pale purple","pale blue","pale pink","pale orange","pale green","pale","pale gold"];
 			pc.skinTone = RandomInCollection(colors);
 		}
 		protected function getVanaeAccentColor(pc:Creature):String

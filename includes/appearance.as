@@ -3311,7 +3311,7 @@ public function boobStuff(forTarget:Creature = null):void
 	outputRouter("\n\n");
 	if(target.gills)
 	{
-		outputRouter("A pair of [target.gills] are growing out just below " + (target == pc ? "your":"[target.hisHer]") + " neck, spreading out horizontally and draping down " + (target == pc ? "your":"[target.hisHer]") + " chest. They allow " + (target == pc ? "you":"[target.himHer]") + " to stay in the water for quite a long time. ");
+		outputRouter("A pair of [target.gills] are growing out from below " + (target == pc ? "your":"[target.hisHer]") + " jaw, down the sides of " + (target == pc ? "your":"[target.hisHer]") + " neck. They allow " + (target == pc ? "you":"[target.himHer]") + " to stay in the water for quite a long time. ");
 	}
 	//Chesticles..I mean bewbz.
 	if(target.breastRows.length == 1) {

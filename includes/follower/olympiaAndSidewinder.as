@@ -22,12 +22,121 @@ public function showOlympia(nude:Boolean = false):void
 	else showBust("OLYMPIA" + (nude ? "_NUDE":"_STEELE"));
 }
 
-public function sideWinderCabinBonus():Boolean
+// Hotfix check
+// Storage extra stuff
+public function sidewinderCargoholdExtras():Boolean
 {
-	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShop,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
+	if(shits["SHIP"] is Sidewinder)
+	{
+		if(flags["ZHENG_SHI_PROBED"] == undefined) return true;
+		if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined || flags["ZHENG_SHI_GALOMAX"] == undefined) return true;
+		if(flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined) return true;
+	}
 	return false;
 }
+public function sidewinderCargoholdExtrasBonus(btnSlot:int = 0):void
+{
+	output("\n\nYou can access the ship’s cargohold if you like.");
+	
+	addButton(btnSlot, "Cargohold", sidewinderCargoholdExtrasStuff, undefined, "Cargohold", "Access the ship’s cargohold.");
+}
+public function sidewinderCargoholdExtrasStuff(response:String = "menu"):void
+{
+	clearOutput();
+	clearMenu();
+	switch(response)
+	{
+		case "menu":
+			showName("PORT\nCARGOHOLD");
+			output("You access the ship’s cargohold. The hold is full of spare parts for various systems onboard the ship. Cables, tools, and racks of armor plate patches are organized neatly against the back wall.");
+			var btnSlot:Number = 0;
+			// Probe
+			if(flags["ZHENG_SHI_PROBED"] == undefined || flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined)
+			{
+				if(flags["ZHENG_SHI_PROBED"] == undefined)
+				{
+					output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. The keypad is intact, though.");
+					addButton(btnSlot++, "Probe", sidewinderCargoholdExtrasStuff, "coords", "Probe Data", "Claim the probe’s coordinates.");
+				}
+				else if(flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined)
+				{
+					output("\n\nThe probe is right where you left it: propped in the corner and pockmarked by dozens of laser blasts from its time with careless pirate crews. <b>You already have the coordinates, so it has nothing more to offer you.</b>");
+					addButton(btnSlot++, "Sell Probe", sidewinderCargoholdExtrasStuff, "reclaim", "Reclaim Probe", "Reclaim the probe for Steele Tech.");
+				}
+			}
+			// Jumper suit
+			if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) 
+			{
+				output("\n\nA singular vacuum suit in the Jumper’s signature style hangs from a hook on the wall.");
+				addButton(btnSlot++, "J.Spacesuit", takeZhengShiJumperSpacesuit);
+			}
+			// Galomax
+			if(flags["ZHENG_SHI_GALOMAX"] == undefined)
+			{
+				output("\n\nYou spot an expensive looking case on a fold-out table. It’s labeled as Galomax.");
+				addButton(btnSlot++, "Galomax", takeZhengShiGalomax);
+			}
+			break;
+		case "coords":
+			output("The probe flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
+			output("\n\nEat that, [rival.name]!");
+			
+			flags["ZHENG_SHI_PROBED"] = 1;
+			
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff);
+			break;
+		case "reclaim":
+			// 9999 - Need reclaimation scene!
+			output("Steele Tech salvage isn’t able to retrieve the probe at the moment, so you’ll have to leave it for the time being.");
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff);
+			/*
+			output("");
+			output("\n\n");
+			
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff, "probe reclaimed");
+			*/
+			break;
+		case "probe reclaimed":
+			output("");
+			output("\n\n");
+			
+			processTime(35);
+			
+			pc.credits += 0;
+			flags["ZHENG_SHI_PROBE_RECLAIMED"] = 1;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+	output("\n\n");
+}
 
+public function sideWinderCabinBonus():Boolean
+{
+	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShopPrompt,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
+	return false;
+}
+public function hijackThisShippyShopPrompt():void
+{
+	clearOutput();
+	clearMenu();
+	
+	if(flags["ZHENG_SHI_PROBED"] == undefined)
+	{
+		output("Before you do this, shouldn’t you make sure you’ve obtained your father’s probe first?");
+		output("\n\n");
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
+	output("\n\n");
+	
+	addButton(0, "Yes", hijackThisShippyShop);
+	addButton(1, "Reconsider", mainGameMenu);
+}
 public function hijackThisShippyShop():void
 {
 	clearOutput();

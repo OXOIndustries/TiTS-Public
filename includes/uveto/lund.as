@@ -3711,7 +3711,7 @@ public function lundBreakHimD():void
 	
 	output("\n\n<i>“Good boy,”</i> you murmur to him, reaching up to scratch his chest fur as he struggles to sit back down in your lap. <i>“Keep going and I’ll give you a treat.”</i>");
 	
-	output("\n\nOrdinarily having him sit down on your erect cock without lube would be a trial but the Anusoft has long since seen to that. Lund’s asshole is a sexual toy without peer, effortlessly swallowing your tip and sucking down more of you with its grippy walls. He’s so tight and and warm inside that it’s almost like he’s giving you a blowjob, taking you deeper by the second.");
+	output("\n\nOrdinarily having him sit down on your erect cock without lube would be a trial but the Anusoft has long since seen to that. Lund’s asshole is a sexual toy without peer, effortlessly swallowing your tip and sucking down more of you with its grippy walls. He’s so tight and warm inside that it’s almost like he’s giving you a blowjob, taking you deeper by the second.");
 	
 	output("\n\nWhen his ass touches your [pc.thighs] once more, he gives a loud, deep groan of satisfaction. You’re tempted to join him; the way he’s squeezing on you is insanely erotic, not to mention pleasurable. He’s <i>well</i> practiced by now, clearly having paid attention to what makes you feel good during all your hot, sweaty sex sessions. You can feel him trying to milk you now, squeezing his tailhole to massage you from base to tip, and fuck if that doesn’t feel great.");
 	
