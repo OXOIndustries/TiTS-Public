@@ -1817,7 +1817,7 @@
 		{
 			return chars["VAHN"];
 		}
-		public function get bianca():Biance
+		public function get bianca():Bianca
 		{
 			return chars["BIANCA"];
 		}
