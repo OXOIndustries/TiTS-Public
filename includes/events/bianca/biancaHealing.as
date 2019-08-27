@@ -200,7 +200,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 	{
 		output("\n\nThere is... something amiss, and maybe she can check you out for it. When you try to find the words for it, the malaise strikes again.");
 	}
-
+	IncrementFlag("BIANCA_TREATMENT");
 	biancaTreatmentEnd(inBooth);
 }
 
@@ -259,7 +259,7 @@ public function biancaHealingAkanafflictions(inBooth:Boolean):void
 		pc.setStatusMinutes(statusName, Math.ceil(pc.getStatusMinutes(statusName)/4));
 		pc.setStatusValue(statusName,4,1);
 	}
-
+	IncrementFlag("BIANCA_TREATMENT");
 	biancaTreatmentEnd(inBooth);
 }
 
@@ -437,7 +437,7 @@ public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
 			addDisabledButton(1, "Treatment");
 		}
 	}
-
+	IncrementFlag("BIANCA_TREATMENT");
 	pc.credits -= (pc.sstdTotal() > 1 ? 250 : 350);
 	pc.removeSSTDs();
 }

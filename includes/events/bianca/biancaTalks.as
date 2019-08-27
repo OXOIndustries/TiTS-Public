@@ -28,40 +28,42 @@ public function biancaTellsYouAboutBianca(inRandomEncounter:Boolean):void
 	processTime(1+rand(2));
 
     // Repeat
-    if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF)) output("You gesture at Bianca and ask her to tell you about herself in as much detail as she's comfortable with. A twinge of surprise weaves through her face, but she nods affirmatively.");
+    if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF)) output("You ask Bianca to refresh you on her background, to which she reflexively acquiesces with a fond countenance.");
     // First Time
-    else output("You ask Bianca to refresh you on her background, to which she reflexively acquiesces with a fond countenance.");
+    else output("You gesture at Bianca and ask her to tell you about herself in as much detail as she's comfortable with. A twinge of surprise weaves through her face, but she nods affirmatively.");
     output("\n\n<i>\"Sure, [pc.name],\"</i> she leans back. <i>\"...Well, where to begin...\"</i> Her head tilts back and forth to a hushed hum, polishing off her chronological timeline. You can practically see the filtering of memory in her slitted irises.");
     output("\n\n<i>\"From the start, then.\"</i> She fixes her sight on you. <i>\"My name is Bianca Ketria. I am 47-years old, and I am a certified doctor, physician and surgeon in the U.G.C. I graduated at the Revenire Medical Academy on Earth. My doctoral theses were in cardiovascular health and the development of universal treatment programs that can be applied across humans, ausar, kaithrit, laquine... so forth. Improving heart health has always been one of the hardest goals in medicine too - indeed, for our entire history - and I'm glad to have contributed.\"</i>");
     output("\n\nSo she's a medical researcher too? Shouldn't someone of her caliber be working back in the Core systems?");
     output("\n\n<i>\"Hehe, no, I was never focused enough to be a full-time researcher. I concentrated on learning to heal, not to study. Between you and me, sitting around reading is wearisome. Important but... there was always so much more I could do!\"</i> She giggles. <i>\"There are a lot of young people out risking themselves for the sake of adventure and someone should keep an eye on at least a few of them.\"</i> She scratches at her chin. <i>\"I'd prefer young men and women like yourself to be more cautious, but this is the reality of it.\"</i>");
     output("\n\nBianca brushes her hair aside and continues in a jovial tone, <i>\"I have 31 years of experience in a variety of medical fields and I've served several tours as a combat medic in the T.S.C., U.G.C., and the J.A.F. I have performed everything from on-site surgery to mending broken bones, fixing disjointed limbs, and patching up soldiers and civilians alike in disaster and emergency situations. I have worked as a clinician, a chiropractor, and of course a general surgeon in the civilian and military fields. I've even been hired as a masseuse once!\"</i> ");
-    output("\n\nYou wonder if there's even more to that. Her furiously active tails indicate that your curiosity is close to the truth.");
+	output("\n\nYou wonder if there’s even more to that. Her furiously active tails paint a mysterious picture, deepening your curiosity. Alas, she’s much too humble to talk about <i>everything!</i>");
     output("\n\n<i>\"As you might expect, [pc.name],\"</i> her agile fingers fasten together one by one, <i>\"I'm very much in my element treating the typical wounds rushers like you will suffer in the course of your explorations. My methods may be considered primitive by the public and private industries at large... and I do not deny they are in many ways... but I feel that a hands-on touch with my patients is better for their health overall.\"</i> ");
     output("\n\nHer eyes flick down to your [pc.legOrLegs]. <i>\"I could spray a can on your cuts or inject a nano-regenerative solution and have you go on your merry way, but that'd be a bit impersonal don't you think?\"</i>");
     output("\n\nYou nod in acknowledgement. <i>\"" + (pc.isNice() ? "They must enjoy your touch more than the treatment itself." : (pc.isMisch() ? "Never hurts having a beautiful woman tending to what ails you!" : "They're there for you, not the treatment.")) + "\"</i>");
-    output("\n\n<i>\"That's exactly my point!\"</i> Bianca declares - she even fist bumps. <i>\"I understand the value of expediency, but I also understand the value of tender care. I always practiced the more mmm, shall we say... 'medieval' methods on the soldiers when they weren't needed immediately. I always cherished the looks in their eyes after spending more time patching them up. And...\"</i> her voice softens, <i>\"...It was that same look which led to my marriage with a young ausar cadet.\"</i> ");
+    output("\n\n<i>\"That's exactly my point!\"</i> Bianca declares - she even fist pumps. <i>\"I understand the value of expediency, but I also understand the value of tender care. I always practiced the more mmm, shall we say... 'medieval' methods on the soldiers when they weren't needed immediately. I always cherished the looks in their eyes after spending more time patching them up. And...\"</i> her voice softens, <i>\"...It was that same look which led to my marriage with a young ausar cadet.\"</i> ");
     output("\n\nBianca blushes, " + (flags["BIANCA_CONFRONTED"] != 1 ? "but does not look at her ring" : "then lets out a hard sigh after glancing at her ringless hand") + ". <i>\"I see that grateful look in the eyes of everyone I have ever helped. Those feelings... they have always empowered me, they've motivated me. " + (flags["BIANCA_TREATMENT"] != undefined ? "I've seen that look in your eyes too, [pc.name], a" : "A") + "nd...\"</i> ");
-    output("\n\nShe smiles her usual smile, but there's a happier glint to this one. <i>\"...I feel like my purpose in life is fulfilled every time someone heads on with that glow in their eyes, the color on their raised cheeks. Anyway,\"</i> she cradles one of her tails, <i>\"the methods I treat people with: bandages, gels, and maybe a little massaging may be old fashioned, but they're still tempered by our amazing modern technology!\"</i>");
+    output("\n\nDr. Ketria wears her usual smile, this one markedly improved by a happy, radiant fullness. In a diplomatic situation, this face would knock you off your [pc.footOrFeet]. <i>“...I feel like my purpose in life is fulfilled every time someone heads on with that glow in their eyes, the color on their raised cheeks. Anyway,”</i> she cradles one of her tails, <i>“the methods I treat people with: bandages, gels, and maybe a little massaging may be old fashioned, but they’re still tempered by our amazing modern technology!”</i>");
     output("\n\n");
-    if (flags["BIANCA_TREATMENT"] != undefined) output("You chuckle and thank her again for looking you over before.");
-    output(" You ask to see her codex again, wanting to get an in-depth look at her qualifications -- if she doesn't mind. Bianca hands her fancy looking black and silver tablet over with the screen already set to her profile.");
+    if (flags["BIANCA_TREATMENT"] != undefined) output("You chuckle and thank her again for looking you over before. ");
+    output("You ask to see her codex again, wanting to get an in-depth look at her qualifications -- if she doesn't mind. Bianca hands her fancy looking black and silver tablet over with the screen already set to her profile.");
     output("\n\nIt scrolls down the list to the whim of your [pc.finger] - you now have time to read it in detail. As a medical professional, she's served on hundreds of planets, and has served some years on board no less than six capital-class ships in the U.G.C., T.S.C., and J.A.F. fleets; their emblems, names, and affiliations are shining next to everything else.");
-    output("\n\nYou, of course, see hundreds of positions she's held across the galaxy as surgeon, clinician, nurse... there are also plenty of hard to pronounce medical titles there. According to an article further down, she's been in the news several times, referred to as foremost in her chosen field and widely considered the nonpareil medical professional. Seems like she was too humble to mention <i>that...</i>");
+	output("\n\nYou, of course, see hundreds of positions she’s held across the galaxy as surgeon, clinician, nurse... there’s a disturbing number of hard-to-pronounce medical titles laden in here, almost dizzyingly absurd. Before you start seeing alphabet soup everywhere, you fly to the end of her CV. According to an old article past the job listings, Bianca’s been in the news several times, referred to as foremost in her chosen field and widely considered the nonpareil medical professional. There are some quotes from people whose names you’ve never heard, with relevant links to their profiles you won’t be scanning.");
+	output("\n\nSeems like she was too modest to mention <i>that...</i>");
     output("\n\nHer impressive résumé bids you to congratulate and thank her for her work.");
-    output("\n\n<i>\"Thank you very much, [pc.name]!\"</i> she exclaims, accepting her fancy gadget back. <i>\"My mother was the one who encouraged me to become a doctor in the first place. I was a bookish girl in my youth, believe it or not, and I have a good memory. I can never forget a face! It's why I love seeing my former patients just as much, because they're always impressed that I remember them like I'd known them all their lives!\"</i> ");
+	output("\n\n<i>“Thank you very much, [pc.name]!”</i> she exclaims, accepting her fancy gadget back. <i>“My mother was the one who encouraged me to become a doctor in the first place. I was a bookish girl in my youth, believe it or not, and I have a good memory. I can never forget a face! It’s why I love seeing my former patients. They’re always impressed that I remember them like I’d known them all their lives! One man even told me I was like a good friend he had forgotten, and that made me so happy!”</i>");
     output("\n\nThe doctor's fluffy tails are swinging to a fascinating blur now. Her excitement is downright contagious.");
     // PC has asked about Family
     if (biancaTalkedTopic(BIANCA_TOPIC_FAMILY)) output("\n\nEven though Bianca has told you about her first husband's passing, she still wears the ring of her second's matrimony. You decide not to ask about her family any further and let the dialogue end there.");
+    // PC has confronted Bianca
+    else if (flags["BIANCA_CONFRONTED"] > 0) output("\n\nYou look down to her finger where a ring once was, feeling some small relief that she's dispatched that agony to the past. The conversation continues for a while longer, ending in amicable fashion.");
     // PC hasn't asked about Family (one-time)
-    else
+    else if(flags["BIANCA_HERSELF_1OFF_FAMILY_MENTION"] == undefined)
     {
+    	flags["BIANCA_HERSELF_1OFF_FAMILY_MENTION"] = 1;
         output("\n\nYou have only one other question. Tentatively, you ask how her husband's doing, pointing out the ring on her finger.");
         output("\n\nHer ears droop slightly and she cups her cheek bashfully. <i>\"Ah, that's a little personal, [pc.name]... suffice to say that he's doing well, and he supports my work even though I'm not serving in any official capacity.\"</i>");
         output("\n\nAnd just like that, her atmosphere has thinned considerably, and a pang of regret sticks itself like a flaking scale in your side. Nonetheless, you thank her for the dialogue.");
     }
-    // PC has confronted Bianca
-    if (flags["BIANCA_CONFRONTED"] > 0) output("\n\nYou look down to her finger where a ring once was, feeling some small relief that she's dispatched that agony to the past. The conversation continues for a while longer, ending in amicable fashion.");
 
 	if (!biancaTalkedTopic(BIANCA_TOPIC_HERSELF) || !(flags["MET_BIANCA"] & 512 || rand(3) != 0)) addButton(0, "Next", biancaWishesToKnowAboutCptSteele, inRandomEncounter);
 	else biancaTalkEndMenu(inRandomEncounter);
@@ -114,8 +116,11 @@ public function callMeSteeleshmaelDrBianca(inRandomEncounter:Boolean):void
 	if (pc.isNice())
 	{
 		output("<i>\"I'm not in charge of dad's business yet. After he passed away, he wanted me to participate in the planet rush like he did to earn my inheritance. I'm looking for probes he threw out into the new systems which will lead me to the golden key. Unfortunately, my fiend of an uncle knows about this too, and he's tasked his [pc.son] with stealing it. My cousin has styled [rival.himHer]self my rival, and if [rival.name] gets to the end first my dad's legacy is over...\"</i>");
-		output("\n\n" + (inRandomEncounter ? "Bianca places a hand on your shoulder." : "Bianca places her hand on yours, fingers lingering on the side of your palm.") + " <i>\"Don't ever look down, [pc.name]. There...\"</i> she pauses, choosing her words carefully, <i>\"there have been a few times in my life that I felt I would die, or worse, that I felt I should have died. If doubt or malevolence creeps in, remember who is relying on you. There is an incomprehensible weight on your shoulders, such a burden that I can't imagine where it will lead you.\"</i>");
-		output("\n\nShe gives the usual smile. <i>\"I don't think anyone could,\"</i> she laughs. <i>\"I'm certain those at Steele Tech are counting on you. That company rose on the back of a virtuous if not infallible man. While I never knew him, I painted a picture in a year from all that my husband commented on. Working there was a dream job for him. For what it's worth, you have my support, too. The hardship you're going to face on this road will make you into someone as great as him, and then beyond it.\"</i>");
+		output("\n\n" + (inRandomEncounter ? "Bianca places a hand on your shoulder." : "Bianca places her hand on yours, fingers lingering on the side of your palm.") + " <i>\"Don't ever look down, [pc.name]. There...\"</i> she pauses, choosing her words carefully, <i>\"...there have been a few times in my life that I felt I would die, or worse, that I felt I should have died. If doubt or malevolence creeps in, remember who is relying on you. There is an incomprehensible weight on your shoulders, such a burden that I can't imagine where it will lead you.\"</i>");
+		output("\n\nDr. Ketria hums sweetly. <i>“I don’t think anyone could,”</i> she laughs. <i>“I’m certain those at Steele Tech are counting on you. That company rose on the back of a virtuous if not infallible man. While I never knew him, I painted a picture in a year from all that my husband commented on. Working there was a dream job for him. For what it’s worth, you have my support, too. The hardship you’re going to face on this road will make you into someone as great as him. And then?”</i> Bianca grins. <i>“That’s when you’ll rise beyond him.”</i>");
+
+
+
 		output("\n\n" + (inRandomEncounter ? "The doctor's sudden hug is warm and tight," : "The foxy doctor squeezes your hand affectionately,") + " strong enough that it feels like she's sharing in your struggle. Pulling away from that is one of the hardest things you've ever had to do.");
 		output("\n\nBut one of the most empowering.");
 	}
@@ -432,25 +437,36 @@ public function biancaSpeaksOnCreationClub(inRandomEncounter:Boolean = false):vo
 	if (biancaTalkedTopic(BIANCA_TOPIC_MODS)) output("You ask Bianca to tell you about her mods again, and why she picked them up.");
 	// First Time
 	else output("Bianca's fluttering, elusive, adorable, twitching... soft... fox ears are, if one's eyes are polite, the first indication one gets of her modded form. You can't help but grin when you see the perky appendages swiveling playfully, much like the twin fluffy tails emerging from her backside. You ask her to tell you about her gene mods, and what led her to modding herself. There <i>has</i> to be a story behind the fluff!");
-	output("\n\n<i>\"It's a fun story actually!\"</i> Dr. Ketria brings a hand to her forward-pointed ears and brushes one flaxen tail around to her lap. <i>\"Where should I start... hm...!\"</i> She raises a finger to her eyes, tapping the rim of her glasses' lens. <i>\"These eyes of mine, their color, " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "Dian" : "my husband") + " requested this. My original eye color was green, but he asked me to change to something that he could always see even in the dark... like...\"</i> She blushes. <i>\"Under the sheets... hehe, Dian was a good flirt, and I was a young, fun-loving girl!\"</i>");
-	output("\n\nThe vulpine physician produces her black and silver codex, tapping energetically. Blurry fingers then move to show you the screen, and upon it is an extranet webpage displaying a basic mod called <i>Rainbow Gaze.</i> <i>\"This mod is sold by your company, [pc.name]. He bought it while he was employed. I was told that if I used it, then I got to pick the color!\"</i> she exclaims, letting the device fall back to her waist. <i>\"I always wondered what I'd look like to have violet eyes, and I loved how they mixed with my hair color. And... well, the glowing part...\"</i>");
+	output("\n\n<i>\"It's a fun story actually!\"</i> Dr. Ketria brings a hand to her forward-pointed ears and brushes one flaxen tail around to her lap. <i>\"Where should I start... hm...!\"</i> She raises a finger to her eyes, tapping the rim of her glasses' lens. <i>\"These eyes of mine, their color, " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "Dian" : "my husband") + " requested this. My original eye color was green, but he asked me to change to something that he could always see even in the dark... like...\"</i> She blushes. <i>\"...Under the sheets... hehe, Dian was a good flirt, and I was a young, fun-loving girl!\"</i>");
+	output("\n\nThe vulpine physician produces her black and silver codex, tapping energetically. Blurry fingers then move to show you the screen, and upon it is an extranet webpage displaying a basic mod called <i>Rainbow Gaze.</i> <i>\"This mod is sold by your company, [pc.name]. He bought it while he was employed. I was told that if I used it, then I got to pick the color!\"</i> she giddily explains, casually allowing the device to fall back to her waist. <i>\"I always wondered what I'd look like to have violet eyes, and I loved how they mixed with my hair color. And... well, the glowing part...\"</i>");
 	output("\n\nWith " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "Dian" : "her husband") + ", you have to agree. The sparkling violet is simultaneously subtle and unsubtle, like it changes depending on her mood. At maximum lambency, her slit irises are beacons capable of guiding ships during foggy nights, or if you're feeling sappy, a light sent by a god or goddess leading their champion along the correct path. They don't merely glow, either. White, snowy speckles within the cornea rise and fall, creating an ocularly addictive effect.");
 	output("\n\n...You tell her she looks enchanting.");
 	output("\n\n<i>\"Thank you, [pc.name]! To answer your question about my fur... oh,\"</i> Bianca cups her fair skinned cheek, a rosy tint beginning to spread. <i>\"...It's embarrassing!\"</i> You press the bashful fox to continue. <i>\"Well... my mother used to tell me a lot of silly stories when I was very young. Stories of foxes, how they were a blessed animal, and that women who took after them in manner were the smartest of all.\"</i>");
 	output("\n\nIs that a hint of pride you're detecting? The back and forth flipping of her ears is a dead giveaway.");
 	output("\n\n<i>\"Wha-\"</i> Bianca pouts, her face turning red. <i>\"I never took any of her stories seriously, she spoiled me a lot. I promise there's nothing self-fulfilling behind this.\"</i>");
 	output("\n\nHer prim demeanor returns with a signature tight frown and heated, maternal blush.");
-	output("\n\n<i>\"There is one thing, though, that I thought was an interesting touch,\"</i> the doctor muses, running her hand through her hair. <i>\"In old Earth myths there were human-like foxes with multiple tails, 'kitsunes', yes? Trickster spirits in folklore thousands of years old. I never researched the creature, but my mother also said that they have one tail for every lover they've had.\"</i>");
-	output("\n\n" + (biancaLover() ? "The third tail on her backside tells you right away what you mean to her, and it fills you with a warmth as fuzzy as the bristly fur held together on it." : "That's interesting... she has <i>two</i> tails.") + " <i>\"I ended up purchasing the mod treatment after meeting a kaithrit woman on duty -- her ears were... very big. They were softer than silk and beautifully fluffy...\"</i> she says in something resembling a trance. <i>\"...I wondered if " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "Dian" : "my husband") + " would love to touch something like that.\"</i> ");
+	output("\n\n<i>\"There is one thing, though, that I thought was an interesting touch,\"</i> the doctor muses, running her hand through her hair. <i>“In old Earth myths there were human-like foxes with multiple tails, ‘kitsunes’, yes? Trickster spirits in folklore thousands of years old. I never researched the creature, but my mother also said that they had one tail for every lover.”</i>");
+	output("\n\n");
+
+	//biancaLover() ? "The third tail on her backside tells you right away what you mean to her, and it fills you with a warmth as fuzzy as the bristly fur held together on it." : "That's interesting... she has <i>two</i> tails.") + 
+	//normal first time
+	if(!biancaTalkedTopic(BIANCA_TOPIC_MODS)) output("That’s interesting... she has <i>two</i> tails.");
+	//normal repeat
+	else if(!biancaLover()) output("Despite her insistence, her two tails are rather telling of her true beliefs.");
+	//pcIsLover:
+	else output("The third tail on her backside tells you right away what you mean to her, and it fills you with a warmth as fuzzy as the bristly fur held together on it.");
+	
+
+	output(" <i>\"I ended up purchasing the mod treatment after meeting a kaithrit woman on duty -- her ears were... very big. They were softer than silk and beautifully fluffy...\"</i> she says in something resembling a trance. <i>\"...I wondered if " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "Dian" : "my husband") + " would love to touch something like that.\"</i> ");
 	if (biancaKnownAusar())
 	{
 		output("\n\nWhy aren't you surprised a woman like her wanted to provoke her hound's hunting instincts?");
 		output("\n\n<i>\"Don't tease me!\"</i> she cries, hands balling into fists. <i>\"T-T-That's not why at all!\"</i>");
 	}
 	else output("\n\nYou doubt he wouldn't!");
-	output("\n\nPleasant memories resurface, and her lips quiver slightly as a happy sigh floats over them. <i>\"It was like he fell in love with me all over again... I didn't have any strong reasons for choosing the fox appearance beyond remembering what my mother talked about, but I think I've aged to fit the appearance!\"</i>");
+	output("\n\nPleasant memories resurface, and her lips quiver slightly as a happy sigh floats over them. <i>“It was like he fell in love with me all over again... I didn’t have any strong, inborn reasons for choosing this vulpine appearance beyond remembering what my mother talked about, but I think I’ve aged to fit the look!”</i>");
 	output("\n\n" + (biancaKnownAusar() ? "Teasing aside, t" : "T") + "hat is something you wholeheartedly agree with. She's a proud woman, highly skilled, " + (biancaLover() ? "and your supremely diligent lover" : (flags["BIANCA_CONFRONTED"] != 1 ? "and married" : "and a good friend")) + ". Can there be any better combination?");
-	output("\n\n<i>\"Hee hee...\"</i> she giggles. <i>\"It's troublesome if these tails become drenched, but I love them. And my eyes and ears too. My hearing is a little better and it's easier to see in darker space - that helped me during my tours! - and grooming gives me something to do while I relax. I always had trouble keeping my hands still back then!\"</i> Bianca happily explains, her voice so cheery and light.");
+	output("\n\n<i>\"Hee hee...\"</i> she giggles. <i>\"It's troublesome if these tails become drenched, but I love them. And my eyes and ears too. My hearing is a little better and it's easier to see in darker space - that helped me during my tours! - and grooming gives me something to do while I relax. I always had trouble keeping my hands still back then!\"</i> Bianca gladly explains, her voice so cheery and light.");
 	output("\n\nYou can't help but notice she has a very playful side when she starts opening up about herself. Would it be possible to get her to be this fun all the time? Ah well.");
 	output("\n\n<i>\"There's the story of my gene modding, [pc.name]. The foxiness I did to surprise my husband and my eye color was at his request. Otherwise, I am just a regular human. And before you ask, my hair color is natural!\"</i>");
 	output("\n\nThat said, she stops to finally take a breath.");
@@ -476,7 +492,7 @@ public function biancaAskingAboutMods(inRandomEncounter:Boolean):void
 	output("\n\nShe then looks nervously to the side. <i>\"There are safe mods... safe to use without worry of scrambling your genome, but certainly not safe for your savings account. Then there are so many illegal mods that exist, and some that do... terrifying things to a person...\"</i>");
 	// Bianca detected PC bimbo");
 	if (biancaDitzLockout()) output("\n\nBianca worriedly glances at you. <i>\"Even you, [pc.name]... you understand what I mean, right? You've used something that's changed you drastically...\"</i>");
-	output("\n\n<i>\"Nevermind me, I shouldn't bring things like this up.\"</i> Her head tilts, and she quickly asks, <i>\"What do you think about mods in general, [pc.name]?\"</i>");
+	output("\n\n<i>“Nevermind me... I don’t mean to poison my own question.”</i> Her head tilts, and she quickly asks, <i>“What do you think about mods in general, [pc.name]?”</i>");
 
 	biancaTalkedTopic(BIANCA_TOPIC_MODS, true);
 
@@ -499,8 +515,8 @@ public function biancaTellModOpinion(args:Object):void
 	switch (args.opinion)
 	{
 		case 0:
-			output("You give Bianca a thoughtful glance. <i>\"They can be fun items, but they're the greatest temptation of all I think. Being able to become whatever you want for a gamble and have few side effects to worry about... for that alone people will use them.\"</i> ");
-			output("\n\nBeyond that, someone can easily get shorter or taller, take on a more appealing charm, change their body and their race, and grow a variety of sexual equipment... devil's in the details. Certainly, there are horrible things that can result as a misuse of them, and they are expensive treatments that can put someone into debt... ");
+			output("The look you give Bianca is decidedly introspective. <i>“They can be fun items, but they’re the greatest temptation of all I think. Being able to become whatever you want for a gamble and have few side effects to worry about... for that alone people will use them.”</i>");
+			output("\n\nBeyond that, someone can easily get shorter or taller, take on a more appealing charm, change their body and their race, and grow a variety of sexual equipment... devil's in the details. Certainly, there are horrible things that can result as a misuse of them, and there are predatorily expensive treatments that can put someone into debt...");
 			output("\n\n...but the ability to adapt, improve, or change for any situation and also be able to undo it if you choose is a scientific gift that, you think, should be a fully-funded pursuit.");
 			if (isPCHeavilyModded()) output(" Besides, you've taken advantage of a few yourself! It's for nobody else but you to say if it was worth it in the end.");
 			output("\n\nPart of you does wonder, though, if you're really at liberty to be so libertine in your outlook on transformatives. Your father saw fit to equip you with a suite of microsurgeons that preserves your original genetic schema, enabling you to return to your original form any time you desire, and lending you a greater freedom in how you portray yourself than most people in the galaxy. With the backing of your company and the funds you're securing out here, you also don't run as great a risk of falling into inescapable debt, which, of course, means the probability of abusing TFs is comparable...");
@@ -558,15 +574,15 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 		output("\n\nYou ask if there's a more salient reason she's out alone on dangerous fringe planets. Is there really nowhere, or nothing else she could do to improve upon what she's doing already? Why put herself alone on the frontlines, treating whatever just happens to be there? It seems to you like a self-defeating purpose. There's no way she can treat everyone, find everyone, but she's working so hard anyway...");
 	}
 
-	output("\n\n" + (inRandomEncounter ? "Her posture shifts comfortably, leaning back." : "A soft knuckle moves to her chin as she leans comfortably.") + " <i>\"There are a lot of places I could be, [pc.name],\"</i> Bianca starts, <i>\"but being out here gives me a sense of peace. It's dangerous, yes, and very draining, but I have my methods to stay safe.\"</i>");
+	output("\n\n" + (inRandomEncounter ? "Her posture shifts comfortably, leaning back." : "A soft knuckle moves to her chin as she leans comfortably.") + " <i>“Yes, there are a lot of places I could be, [pc.name],”</i> Bianca starts, <i>“but being out here gives me a sense of peace. It’s dangerous, yes, and very draining, but I have my methods to stay safe.”</i>");
 	output("\n\n");
-	if (!biancaTalkedTopic(BIANCA_TOPIC_WORK)) output(" This fox is being... craftier than usual.");
-	output(" You ask what she means exactly.");
-	output("\n\n<i>\"It's... It's not that I'm tired of it, but I just wanted to get away from the Core worlds and military life for a while. I wanted to work on my own, work at my own pace, do what I want.");
-	if (!biancaTalkedTopic(BIANCA_TOPIC_WORK)) output(" You're not wrong, either. It sounds like a mad dash because it is.");
-	output("\"</i>");
+	if (!biancaTalkedTopic(BIANCA_TOPIC_WORK)) output("This fox is being... craftier than usual. ");
+	output("You ask what she means exactly.");
+	output("\n\n<i>“It’s...”</i> Bianca sighs a lengthy, numbing sigh. <i>“It’s not that I’m tired of it, but I needed to distance mcially the military. I wanted to work on my own, work at my own pace, do what I want, set my own rules." + (!biancaTalkedTopic(BIANCA_TOPIC_WORK) ? " You’re not wrong, either. It sounds like a mad dash because it is.":" I’m driving myself to feel like I have some semblance of control that I didn’t have before.") + "”</i>");
 	output("\n\nHer gaze turns, and she folds her arms. <i>\"" + (flags["BIANCA_CONFRONTED"] == 1 ? "You know full well how my life was before I met you, so I won't go into detail on that." : "The last three years of my life have been my utter worst.") + " I could work at any clinic I want, find a comfy job on a wealthy planet, or take another tour of duty.\"</i>");
-	output("\n\nLooking back to you, you see that her eyes have narrowed. <i>\"But any of those options would mean being under watch and having little privacy again. I'm not capable of it right now,\"</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>\"Out here on the planet rush, I can live in relative freedom off of my money and do my job the way I want to. I have that rush of <b>purpose,</b>\"</i> she clenches her hand, <i>\"a reason to live; my reason to live is to give others the chance to keep living. It always has been. I feel that my life matters only when I'm using it to save others. But,\"</i> she chuckles, throwing up her hands, <i>\"I guess this all makes me a vagrant at best and a deluded heroine at worst.\"</i>");
+
+	output("\n\nShe turns back to you, marble eyes thinned to a sedate strand. <i>“But all of those roads lead to the same outcome: being under watch, having no privacy. My tolerance for that is quite low now...”</i> Bianca explains in a sterile tone, almost sounding like she laments her old life. <i>“...Perhaps non-existence. Out here on the planet rush, I can live in relative freedom off of my savings and do my job the way I want to. Being here empowers me... gives me that rush of <b>purpose,</b>”</i> she clenches her hand, <i>“a reason to live! And my reason to live? It’s to give others the chance to keep living. It always has been. I feel that my life matters only when I’m using it to save others. But,”</i> she chuckles, recognizing the dramatic wording she used, <i>“I guess this all makes me a vagrant at best and a deluded heroine at worst.”</i>");
+
 	output("\n\nThe fox stretches out, touching a hand to her tail. It's an idle motion, no different than rubbing arms or cracking a neck, but it makes her look so... powerful. Bianca looks <i>complete</i> in her answer: <i>\"It's my goal, my dream, my destination reached,\"</i> she says, holding that final syllable. <i>\"Every morning I greet... I ask myself in the mirror, 'who can I help today?'\"</i> She rolls her shoulders, gradual expressions of implacable contentment flashing across her. <i>\"Every night, I say a prayer for those I did help.\"</i>");
 	output("\n\nPrayer, huh? Is she a follower of the Church of the One, then?");
 	output("\n\n<i>\"Not exactly, but I've always been fascinated. When I first looked up to the starry skies, I felt smaller than I was. I thought to myself... all those stars are distant places. Who knows who lives out there? Who knows what exists beyond them? As I grew older, I chose to believe in... something. It didn't matter what. I am not superstitious, but I believe, deep down... that there are things out there we can never know, may never know... you get the picture, right? I don't believe in any God, but I believe that there's a possibility <b>something</b> exists that defies our understanding. That... and I used to study old Earth religions.\"</i>");
@@ -575,7 +591,7 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 	output("\n\n<i>\"Science is about questions of existence.\"</i> She holds up her codex. <i>\"What is this? How does it work? How does it affect the things around it?\"</i> She sets it down. <i>\"Religion is about questions of purpose. Who are we? Where are we going? How do we best use the time that we have? Indeed... in the past, religion and science were seen as opposing forces, but the idea that these things must necessarily conflict with one another is <b>untrue.</b>\"</i> Her voice deepened to drive that assertion home. <i>\"And, I'd argue, very dangerous... simply because without purpose, knowledge doesn't matter, and without knowledge? Your purpose is impossible. That is why I believe in a higher concept... why I characterized myself with some of those old tenets. It kept me going through those very hard days in the academy.\"</i>");
 	output("\n\nAfter a minute of information digestion, you ask her " + (biancaTalkedTopic(BIANCA_TOPIC_WORK) ? "again" : "then") + " how she ended up in the military. You heard her say she worked for the U.G.C. and J.A.F. Her amethyst eyes errantly pulse when she registers the question.");
 	output("\n\n<i>\"I only had my mother growing up and we lived in a good neighborhood, but we weren't well off enough to afford all of my education, even during middle and high school. The T.S.C., by good fortune, had started a scholarship program to encourage the training of new caregivers and medical researchers. I wasn't as good at the latter as I was the former; however, it was thanks to them I could enter med school. My whole life changed that day. I was never one for material possession or idle recreation. Every morning I awoke in the dorms, I paid respects to those who brought me there and got right back to work. I was driven!\"</i>");
-	output("\n\nShe brushes a lock of hair from her eye. <i>\"After two years of study and residency, I was attached to the T.S.C. Destroyer <i>Solace</i> and taken under the wing of a more seasoned professional. Between you and me, [pc.name], I thought he would have been my future husband!\"</i>");
+	output("\n\nBianca touches a finger to her lower lip. <i>“After two years of study and residency, I was attached to the T.S.C. Destroyer </i>Solace<i> and taken under the wing of a more seasoned professional. Between you and me, [pc.name], I thought he would have been my future husband!”</i>");
 	output("\n\nHer sudden laugh is so... free. Unrestrained. It goes against her meticulous and delicate nature. It's the high, girlish tone more appropriate for a younger woman. <i>\"One of the best teachers I've ever had, but alas, he was already married!\"</i>");
 	output("\n\n<i>\"Anyway,\"</i> her impeccable elegance returns, <i>\"he was an excellent man. It was also with him that I entered into several combat zones. We were there in the aftermath of terrorist attacks and civil unrest. He believed, and I too believe, that hands-on experience was the only way to harden one's resolve and embrace the role with anything resembling competence. More than that, those harsh environments are how I found myself too. I was hardened by my experiences, made into the woman I am today.\"</i> ");
 	output("\n\nBianca looks around idly, tone suddenly flattening. Even her eyes lose their luster. <i>\"The worst deployment I'd had in my training years was when a starport had been bombed and was tilting and breaking down. It was plummeting to the planet, and it was... the first time I had almost died. But he and I managed to fend off one of the attackers and evacuate what survivors we could.\"</i>");
@@ -897,7 +913,8 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 	processTime(10+rand(36));
 
 	// at Random
-	if (inRandomEncounter) output("You could ask Bianca any number of specific questions, but just talking about something unimportant and listening to the result would be more interesting right now. You've both been wandering around for a while now, and the planet's ambience presents a decent backdrop to the random topics racing to the front of your brain. The good doctor is more than willing to entertain you, opening up right away to the opportunity.");
+	if (inRandomEncounter) output("You could ask Bianca any number of specific questions, but just talking about something unimportant and listening to the result would be more interesting right now. You’ve both been wandering around for a while now, and the planet’s ambience presents a serene enough backdrop to the random topics coming to mind. The good doctor is more than willing to entertain you, opening up right away to the opportunity.");
+	
 	// at Bar
 	else
 	{
@@ -924,8 +941,8 @@ public function chattingAboutMiscWithAFoxyDoc(inRandomEncounter:Boolean = false)
 	{
 		// rand 1
 		case 0:
-			output("\n\nFilling her in on what you did today and yesterday comes naturally after the simple exchange of pleasantries. You're speaking your mind with only the occasional fumble and 'uh', gesturing fluidly when you make your points or punchlines. Bianca is congenian like always, and, to your surprise, always filling the dead air with a good joke and a bad joke. Once or twice she deftly interrupts you when you pause, only to slot in something you hadn't thought about, or just to make you laugh.");
-			output("\n\n<i>\"" + RandomInCollection("...And then Fi, my nurse at the time... oh I shouldn't say, but she somehow ended up mixing Disyline with Alleleren and administering it to a fanfir. [pc.name], I hope you never see the aftermath of generic priapin and an over-the-counter muscle relaxant on a waiting room...", "Thomas was a good man, I mean that! But he... I hate to say, he just wasn't cut out for the job. His hands were large and clumsy, and he couldn't suture. He almost broke a patient's arm one time with a tourniquet! Still, believe it or not, he is a doctor -- a combat doctor. His natural strength gives him the ability to carry teammates to safety and handle greater amounts of protective gear. Hopefully he doesn't run out of regelatin...", "One of the first customers I had at the booth when I set it up... hehe, I shouldn't laugh. A man I treated was so proud that he would not accept his first free checkup. He said he 'owed nothing to anyone, ever!' With bravado he made a scene, being aggressive, being diplomatic, then perhaps being accepting... until he broke one of his fingers on purpose. But, as I immediately found out, his hand was prosthetic, so it spun back into place while he slipped the chit into my pocket!", "...I had a strange family case once. Their son Edward was an odd kid. Not mentally stunted, he was in good health, but the way he went about solving problems was always... odd. They thought it was indication of a recently discovered genetic illness brought on by anti-aging drugs. It wasn't, thankfully, but he peeled the wallpaper off our daycare; he did it because he smelled something odd in the room that nobody else did... and, would you believe it, we had an infestation of germ-bearing rictus bugs in the corners. He the.n tried to tape it all back on...", "I moonlighted as a psychologist only one time. Never again, [pc.name]... but, the event in question was one of my apprentice doctors being stingy. She was hoarding medical supplies and refusing to do her job when it suited her, citing that there could always be someone who needs it more. In short, I persuaded her that not offering aid meant that everyone suffered; suffering has a purpose. It was up to her to realize that no choice in medicine was easy, and that it was not for us to weigh life, only do everything we can to ensure its sanctity.") + "\"</i>");
+			output("\n\nFilling her in on what you did today and yesterday comes naturally after the simple exchange of pleasantries. You're speaking your mind with only the occasional fumble and 'uh', gesturing fluidly when you make your points or punchlines. Bianca is congenial like always, and, to your surprise, always filling the dead air with a good joke and a bad joke. Once or twice she deftly interrupts you when you pause, only to slot in something you hadn't thought about, or just to make you laugh.");
+			output("\n\n<i>\"" + RandomInCollection("...And then Fi, my nurse at the time... oh I shouldn't say, but she somehow ended up mixing Disyline with Alleleren and administering it to a fanfir. [pc.name], I hope you never see the aftermath of generic priapin and an over-the-counter muscle relaxant on a waiting room...", "Thomas was a good man, I mean that! But he... I hate to say, he just wasn't cut out for the job. His hands were large and clumsy, and he couldn't suture. He almost broke a patient's arm one time with a tourniquet! Still, believe it or not, he is a doctor -- a combat doctor. His natural strength gives him the ability to carry teammates to safety and handle greater amounts of protective gear. Hopefully he doesn't run out of regelatin...", "One of the first customers I had at the booth when I set it up... hehe, I shouldn't laugh. A man I treated was so proud that he would not accept his first free checkup. He said he 'owed nothing to anyone, ever!' With bravado he made a scene, being aggressive, being diplomatic, then perhaps being accepting... until he broke one of his fingers on purpose. But, as I immediately found out, his hand was prosthetic, so it spun back into place while he slipped the chit into my pocket!", "...I had a strange family case once. Their son Edward was an odd kid. Not mentally stunted, he was in good health, but the way he went about solving problems was always... odd. They thought it was indication of a recently discovered genetic illness brought on by anti-aging drugs. It wasn't, thankfully, but he peeled the wallpaper off our daycare; he did it because he smelled something odd in the room that nobody else did... and, would you believe it, we had an infestation of germ-bearing rictus bugs in the corners. He tried to tape it all back on...", "I moonlighted as a psychologist only one time. Never again, [pc.name]... but, the event in question was one of my apprentice doctors being stingy. She was hoarding medical supplies and refusing to do her job when it suited her, citing that there could always be someone who needs it more. In short, I persuaded her that not offering aid meant that everyone suffered; suffering has a purpose. It was up to her to realize that no choice in medicine was easy, and that it was not for us to weigh life, only do everything we can to ensure its sanctity.") + "\"</i>");
 			output("\n\nPast her immaculate exterior she possesses an urbane side she hardly flaunts. You talking so much and so fast leads you to think this was all a subconscious effort to dig out the doctor's latent, girlier sociabilities. You're not quite sure how long the chatter has gone on, but by the time time it winds down you're just happy she's happy. If you thought you were relaxed, you haven't taken a good long look at Bianca!");
 			break;
 		// rand 2
@@ -1399,16 +1416,144 @@ public function tellBiancaAboutYerFutureKiddos(kiddos:int):void
 	biancaTalkEndMenu(false);
 }
 
+//[Family]
+// Tooltip: Carefully broach the topic of Bianca's family, and see if she will share anything personal.
+// Tooltip2, if grayed out after first use: You've already asked about this, and it went about as well as it could. Best to leave indelicate topics be.
+// Tooltip3: You haven't gotten to know her well enough for this topic.
+// Tooltip4: This is neither the time nor the place to have this conversation{, even if Bianca trusted you well enough to have it}.
+// PC must speak to Bianca about everything else first and totally exhaust all dialogue the PC can prompt her for, not what she asks.
+// Available at 50% Familiarity, must have had sex five times, and PC must see the one-time event in random encounters where she's hungry.
+// After talking to Bianca the first time about this, the encounter at the bar ends and she disappears for 2 days and then resumes her schedule. 
+// PC must [Confront] Bianca to open Repeat Dialogue.
+// Bianca can ask if the player thinks their extended family can be redeemed and talks about their cousin.
+// Unavailable in Random Encounters
+
 public function biancaAndHerFamily(inRandomEncounter:Boolean):void
 {
 	clearMenu();
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	
+	// First Time
+	if(!biancaTalkedTopic(BIANCA_TOPIC_FAMILY))
+	{
+		output("There’s a lot about Bianca’s behavior you can critique, but it’s clear that she’s been hiding <i>something</i> from you. While it is her prerogative, you’ve witnessed too much anguish in her. It’s healthy for no one to keep that bottled up. If there’s some grief, some despair eating away at her, maybe now’s the time to find out about it. It may not even be for you to know, but you’ve both learned a lot about one another...");
+		output("\n\n<i>“Bianca,”</i> you call the opaque doctor’s name, <i>“there’s something I want to ask.”</i>");
+		output("\n\nDr. Ketria peers up from her food, looking dog-tired and ready to bury her head in several pillows. She fixes her posture while you ask her, tentatively, about her family.");
+		if(pc.isNice()) output(" <i>“The way you’ve been acting worries me... you know what I mean.”</i>");
+		else if(pc.isMischievous()) output(" <i>“I want to know what’s bothering you. I’ve seen too much not to ask.”</i>");
+		else output(" <i>“You need to talk to someone. Don’t try to hide it from me”</i>");
+		//coding 1 handed because of catte. Me gud coder.
+		output(" You lean forward a bit, staring intently into her slitted irises.");
+		output("\n\nShe knows <i>exactly</i> what you mean.");
+		output("\n\nThe vulpine medic runs a hand over her face and through the river of her hair, sighing deeply. It’s a long, pained groan, tainted with some malevolent emotion that’s finally seeped through the cracks in her character. <i>“Alright.”</i> Her voice is dull, monotone - soulless. <i>“Alright, [pc.name]. I suppose it was inevitable you’d ask. Your interest in me, and your concern for my well-being, is undoubtable. And... ehhm...”</i> Her cheeks crease into a miserable grimace. <i>“It’s not wrong; there’s no way I can hide it from you, and you don’t deserve to be lied to any longer.”</i>");
+		output("\n\nLied to?");
+		output("\n\nHer shimmering eyes close and barely open, then close again. They flutter at such a slow pace that the eyelash hairs stick to and snap free of each other. Her lips curl and part; small breaths escape, the remnants of words that suffocated in her throat. Eventually, a light-refracting tear streams down her jawline, violet-purple light glimmering inside the stream. The bead of water falls all the way to her chin, hangs, and then falls, splattering silently against the floor.");
+		output("\n\n<i>“The truth is... my husband Dian, and my sons... are dead.”</i>");
+		if(pc.isNice()) output("\n\n<i>What..?</i> Gooseflesh ripples across your [pc.skinFurScales], and all the tiny hairs on your flesh stand straight. It’s a revelation that sends a chill through your limbs.");
+		else if(pc.isMischievous()) output("\n\nYou had expected her to be haunted by some tragedy. Nothing else explained her behavior and her death march. A sympathetic ripple of gooseflesh passes through neck and swims down your arms and thighs while you digest that revelation.");
+		else output("\n\nAlthough others consider you numbed entirely to empathy, you’re not so apathetic that you can see the damage on display in Bianca. Your usual nonchalance and apathy vanishes, only adding a more painful chill to this miserable revelation.");
+		output("\n\n<i>“That’s.... That’s what I’ve been struggling with. You and I have been seeing each other often, and the things we’ve talked about, what we’ve done... it kept bringing back memories I’m running from.”</i> She grips her glass so tight it looks like it’s about to shatter in her chalky palm. Her muscles ease following another deep exhalation. <i>“I felt nothing better could have happened in my life after I married Dian. We exchanged our virginities, and we conceived three incredible children together. That loss... it caused a pain in me that I have been unable to let go of.”</i>");
+		output("\n\nYou carefully ask her how and it happened, well aware of the trauma you’re brushing in as few words as possible.");
+		output("\n\n<i>“Three years ago. My sons, Caleb and Aiden, had just entered officer’s school. Dian was beside himself; he was ecstatic, the most energetic I had ever seen him.”</i> Bianca takes a long drink from the glass in her hand, finishing the liquid fill in one go. <i>“My daughter Cecily and I were late to the station where the inaugural feast was to be held, but not by much. Our transport was seven ships behind my husband’s in the procession line. It was a very important day and it was going to be a slow one, as a lot of senior staff would be present both from the U.G.C. and J.A.F. That’s why it was slow going, it was densely crowded and security was high.”</i>");
+		output("\n\nSwallowing her next words, Bianca has trouble putting voice to what she says next. <i>“But not high enough. I have shed so many tears since then that I seem to be dulled to the thoughts now.”</i> A visible lump forms in her throat that she has to massage away. <i>“There... there.... There was an... ex-ex... explosion...”</i> she swallows, <i>“...in one of the hangars after a transport had docked. It was just after I saw my husband’s transport had landed. It was a bomb, made of rare, undetectable materials that forensics determined was attached to a ship in an effort to target key command staff in the upper echelons.”</i> She pulls off her glasses, folds them, and sets them to the table. <i>“The explosion caught my family and mutilated them. My husband and my sons were three of seven casualties.”</i>");
+		output("\n\nLike cracked glass, her entire facade spiderwebs and crumbles into fine chips and shards. Both ears fold to her head, weighed down by history. Her tails disappear from view, limp under the table. Quivers vibrate her fingers apart, clutching to tufts of now-messy hair. She props her head into her hand and slumps against the table, tremulous, actively tearing apart.");
+		output("\n\n<i>“It.... It ripped a hole in my heart and sucked out everything inside me; I smashed myself into the bulkhead of our vessel, in utter disbelief at what had occurred. I screamed, I cried, be... became an embodiment of grief. He was my soulmate, my mind replayed in a manic fit. My soulmate, my husband... and my sons...”</i>");
+		output("\n\nBianca lips pull back in a garish wince, exposing all her teeth. Another tear falls down her cheek. She’s doing everything possible to avoid openly sobbing and to maintain face and propriety. <i>“The only thing that stopped me was blood loss. Just before it happened, my only thought was that I didn’t care if it killed me, too.”</i> She pauses only to let the emotional distress filter out of her musculature. <i>“I awoke in the station’s infirmary with Cecily at my side, and Captain Galen too, explaining to me what had happened.”</i>");
+		if(pc.isNice()) output("\n\nYou apologize sincerely for making her relive this painful past");
+		else if(pc.isMischievous()) output("\n\nYou make a quick apology in a tone lower than you meant");
+		else output("\n\nYou exhale, offering an apology for your earlier question");
+		output(", but she raises her hand to you. <i>“You aren’t at fault, [pc.name]. The reason I am out here alone, the reason I left everything behind is because I am running. I was... <b>am</b> driving myself to death to beat out the thoughts in my head.”</i> The doctor lets her hands fall. <i>“I simply felt there was no other recourse. My life ended that day. While it wasn’t my fault, I had lost my purpose to live, thus I wandered... wandered until this planet rush. Healing over time is a slow, meticulous process, and one that I think is not yet over.”</i>");
+		output("\n\nBut what about her daughter? Cecily. She has her still, right? And she’s still wearing a ring, too.");
+		output("\n\nBianca looks at her finger and squints. <i>“This isn’t the ring Dian gave me. I gave that to Cecily. Two years after the incident I was able to marry again. My daughter is grown up and pursuing her goals. For the time being, I’ve asked them not to contact me. Three years is a long time, I understand, but I don’t have the strength to face that part of me yet.”</i>");
+		output("\n\nYou nod slowly, unsure of what else to say.");
+		output("\n\n<i>“I’m glad I could confess this to you, [pc.name].”</i> She sighs, rubbing a sleeve to her face. <i>“I’m sorry. To look this pathetic... to make my problems yours. I’ll take a few days off. By then, I’ll be right as rain.”</i> As she stands, Bianca flashes a lopsided smile. <i>“For now, I’m going to bed, and I believe I will stay there for a while. Take care of yourself, and do not worry for me. What you see,”</i> she steps out from the table like a ghost, <i>“is quiet grief. I’ve already mourned,”</i> her hand strokes atop yours, <i>“and I’m thankful that you were here to listen to me. I can only promise that I’ll be better. Until next time, okay?");
+		output("\n\nUntil next time.... Sauntering off, Bianca disappears into the night.");
+		output("\n\nHopefully her words ring true.");
+		// Bianca disappears two days
+		pc.createStatusEffect("Bianca Gone");
+		pc.setStatusMinutes("Bianca Gone", 24*60*2);
+		processTime(30);
+		biancaTalkedTopic(BIANCA_TOPIC_FAMILY,true);
 
-	output("fuk it not available in this release anyways");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 
+	}
+	// Repeat, (ONLY after [Confront]ing Bianca)
+	else
+	{
+		output("You ask Bianca to tell you about her family life a little more now that she’s feeling better. There’s a tepid moment you think it was unwise to ask this again, but her body language assures you there’s nothing to fear.");
+		output("\n\nIndeed, she takes to the question with a fervor reminiscent of a time they were alive.");
+		output("\n\n<i>“Caleb and Aiden took to sports and athleticism with unparalleled focus. Dian encouraged it every step of the way and enrolled them in military school as soon as they were of age. Cecily chose intellectual pursuits. Music, history, and psychology. Like myself, she wanted to find a way to help others.”</i> Bianca says, a hand on her heart the whole time. It does nothing to steady the deep beats visibly pulsing in her wrist veins.");
+		output("\n\n<i>“I spoiled Cecily a lot; I spent more time with her than my sons, and Dian was the opposite. We weren’t divided, mind you, we all came together at the dinner table at the end of the day. One little pastime I encouraged our children to do was write about noticeable events every month so they could understand the bad things that happened and the good things that happened, how they could learn from it all, and what insights we as parents could offer.”</i> She gives a full, bright white smile. <i>“I think they were better at raising each other than we were.”</i>");
+		output("\n\nAnd how was Dian before and after kids?");
+		output("\n\n<i>“A real animal in bed...”</i> Bianca whispers to you with a fierce, proud look in her eye. <i>“The sex was amazing of course!”</i>");
+		output("\n\nThat’s not exactly what you asked. <i>“Reaaaaalllly?”</i> She draws out in a hushed voice. <i>“You didn’t want to hear about the sexual adventures of two star-crossed lovers from different ends of the galaxy?”</i>");
+		output("\n\nWell, maybe a little." + (silly ? " Wait, what are <i>you</i> saying now? Hell yeah you did.":""));
+		output("\n\n<i>“A fair warning to you, [pc.name], he passed that on to me...”</i> Bianca presses her face into kissing distance with you, hissing seductively. <i>“He was an animal in bed, but I can be a <i>tamer</i> if you’d like to tease that out of me...”</i>");
+		output("\n\nThe shock of her advance wears off and you wonder just what the right response here is. Bianca senses your loss for words and gives you a smooch on your upper lip, moistening the space between mouth and nose.");
+		output("\n\nYou audibly hope this isn’t her new way of coping.");
+		output("\n\n<i>“It’s not!”</i> She yips and tumbles back with a defeated expression. <i>“You must understand these events happened years ago and I’m still an energetic woman, [pc.name]. To answer your question seriously, I don’t know what I can say that I haven’t. He was a man with his faults, his qualities, and a father like no other. I don’t think I’ll ever meet anyone as loyal to family and duty as him.”</i>");
+		output("\n\nShe looks around then to you with a continental spark. <i>“I will always miss them and the love, but I’ve let go. That means I’m just Bianca Ketria again, which means I can be someone again.”</i> She stares at you suggestively. <i>“Maybe someone’s <i>someone</i> again too.”</i>");
+		output("\n\nBianca caresses your [pc.face], violet eyes fluttering, and moves to gently scratch at your scalp. <i>“Let me know anytime. [pc.name]. I will take care of you if ever you need me.”</i>");
+
+		// Bianca’s Question - Your Family?
+		// Bianca will query the player about their extended family, and ask if the PC has any hope for resolving things with their cousin in the future.
+		output("\n\n<i>“That reminds me,”</i> Bianca starts abruptly, <i>“while I was away I had a question I almost asked you in email but decided it was best saved for now.”</i>	");
+		output("\n\nOh?");
+		output("\n\n<i>“[pc.name], should you succeed in obtaining your father’s legacy and completing the scavenger hunt, what will you... hm, hold on.”</i> Bianca leans down a little closer. <i>“Not about you, but your family. What will you do with your cousin, your extended family? Do you think they can be redeemed? Or will you disown them?”</i>");
+		processTime(30);
+		//[Optimistic] [Distrust] [No Chance]
+		clearMenu();
+		addButton(0,"Optimistic",optimisticResponseToThisSpaghetti,inRandomEncounter);
+		addButton(1,"Distrust",distrustBiancaSpaghetti,inRandomEncounter);
+		addButton(2,"No Chance",noChanceBiancaSpaghetti,inRandomEncounter);
+	}
+}
+
+//[Optimistic]
+public function optimisticResponseToThisSpaghetti(inRandomEncounter:Boolean):void
+{
+	clearOutput();
+	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
+	author("William");
+
+	output("<i>“Not all of them, but I think my cousin may one day realize that relying on the strength of Max’s ill-gotten wealth makes [rival.himHer] a colossal imbecile,”</i> you reply with a hint of optimism. <i>“Should my cousin fail, [rival.heShe]’s going to have a rude awakening when [rival.heShe] has everything stripped from [rival.himHer].”</i>");
+	output("\n\n<i>“You say that as if you think there can be peace between the two of you,”</i> Bianca suggests.");
+	output("\n\n<i>“Maybe,”</i> you say, <i>“it’s too early to tell. My cousin is twisted because [rival.hisHer] father is a liar, a cheat, and a thief. I don’t know about Uncle Max but I think I could forgive my cousin. <i>Could</i>.”</i>");
+	output("\n\nBianca gestures thoughtfully, a nod of the head and a casting of the eye. <i>“Forgiveness is hard, especially when the other person thinks they are unstoppable. But you’re right, [rival.heShe] is relying on someone else’s strength. When that’s gone...”</i>");
+	output("\n\nOnly time will tell.");
+	processTime(3);
+	biancaTalkEndMenu(false);
+}
+
+//[Distrust]
+public function distrustBiancaSpaghetti(inRandomEncounter:Boolean):void
+{
+	clearOutput();
+	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
+	author("William");
+	output("<i>“While my cousin was born to a thief and liar who piggybacked off my dad’s success, I don’t think I could ever trust [rival.himHer], let alone anyone affiliated with dear uncle Max,”</i> you state levelly. <i>“My cousin may be relying on daddy’s credit chits but when that’s gone they’re likely to turn into another like him. Stepping on others and making things worse for the space around them.”</i>");
+	output("\n\n<i>“But do you think there is a chance to turn your cousin around?”</i> she asks.");
+	output("\n\n<i>“I don’t know, and I don’t know if [rival.heShe] will be trustworthy when [rival.heShe] falls.”</i>");
+	output("\n\nYour doctor nods quietly, knowing this is your battle. She takes a sip from her glass and comments, <i>“Distrust can be worse than decision sometimes, [pc.name]. When you make your judgment, do so with resolve.”</i>");
+	output("\n\nYou will. Oh, you will.");
+	processTime(3);
+	biancaTalkEndMenu(false);
+}
+
+//[No Chance]
+public function noChanceBiancaSpaghetti(inRandomEncounter:Boolean):void
+{
+	clearOutput();
+	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
+	author("William");
+	output("<i>“No,”</i> you blurt. <i>“My cousin is the spawn of a thief and liar and raised in the shadow of said prick. When their money runs out they’ll be nothing, and they’ll come begging for more before they try to steal again. Uncle Max and his [rival.boyGirl] cannot be trusted, that much is obvious. They’ve already turned on family, and there’s no reason to believe they won’t again.”</i>");
+	output("\n\n<i>“I see,”</i> Bianca whispers. <i>“Your decision isn’t without merit, but it’s a shame too. When there is a confrontation, make sure to be precise in your actions.”</i>");
+	output("\n\nPrecise? Oh, you plan on being <i>methodical</i>.");
+	processTime(3);
 	biancaTalkEndMenu(inRandomEncounter);
 }
 
@@ -1422,7 +1567,7 @@ public function biancaTalkEndMenu(inRandomEncounter:Boolean = false, addBlurb:Bo
 			addButton(0, "Next", biancaEncounterEnd);
 		}
 		// familiarity >51; after conversation when she'd otherwise leave
-		// make this a separate scene to match her bar talk? 9999
+		// make this a separate scene to match her bar talk?
 		else
 		{
 			output("\n\n<i>\"Anything else on your mind? I'll make any time you need or... want, [pc.name]...\"</i> Bianca purrs.");
