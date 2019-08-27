@@ -150,7 +150,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 			output("\n\n<i>“Don’t worry, [pc.name]. I can take care of that no problem!”</i>");
 		}
 		output("\n\nThe demure doctor " + (inBooth ? "collects from her booth" : "reveals") + " a box of square paper packets and a jar of faintly red paste.");
-		if (pc.isTaur()) output(" You’re asked to hold very still while she rips  " + (inBooth ? "a few open." : "open a few of them."));
+		if (pc.isTaur()) output(" You’re asked to hold very still while she rips " + (inBooth ? "a few open." : "open a few of them."));
 		else
 		{
 			output(" While she rips into the paper she asks you to")
