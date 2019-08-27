@@ -80,7 +80,7 @@
 			if (kGAMECLASS.flags["BIANCA_LOCATION"] != undefined) return;
 			if (!InRoomWithFlag(GLOBAL.HAZARD) || kGAMECLASS.biancaPlanetPool().indexOf(getPlanetName().toLowerCase()) < 0)
 			{
-				kGAMECLASS.output("\n<b>Bianca can't spawn here.</b>");
+				kGAMECLASS.output("\n<b>Bianca can’t spawn here.</b>");
 				return;
 			}
 			kGAMECLASS.clearMenu();
@@ -145,7 +145,7 @@
 			Cheats.OutputStuff();
 			if(kGAMECLASS.flags["SJW"] == undefined)
 			{
-				kGAMECLASS.output("\n<b>'Shemale' will now be converted to dick-girl.</b>");
+				kGAMECLASS.output("\n<b>‘Shemale’ will now be converted to dick-girl.</b>");
 				kGAMECLASS.flags["SJW"] = 1;
 			}
 			else
@@ -326,7 +326,7 @@
 			}
 			
 			OutputStuff(true);
-			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments \"like so\".\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
+			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments “like so”.\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
 			kGAMECLASS.removeInput();
 			kGAMECLASS.displayInput();
 			kGAMECLASS.userInterface.textInput.text = "";

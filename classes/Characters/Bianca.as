@@ -24,7 +24,7 @@ package classes.Characters
 
 			this.sellMarkup = 1;
 			this.buyMarkdown = .80;
-			this.keeperBuy = "You take Bianca's orange tablet and scroll down the list of medicines available, though only a few catch your eye as being useful in your line of work.\n\n";
+			this.keeperBuy = "You take Bianca’s orange tablet and scroll down the list of medicines available, though only a few catch your eye as being useful in your line of work.\n\n";
 
 			this.inventory = [new DoctorsBag(), new FSrgKit()];
 
@@ -64,14 +64,14 @@ package classes.Characters
 
 			if (kGAMECLASS.pc.hasStatusEffect("Bought From Bianca"))
 			{
-				output("<i>\"Thank you very much,\"</i> Bianca chimes before handing you your purchase, <i>\"be sure to apply treatment carefully and use only when necessary.\"</i>");
+				output("<i>“Thank you very much,”</i> Bianca chimes before handing you your purchase, <i>“be sure to apply treatment carefully and use only when necessary.”</i>");
 				kGAMECLASS.pc.removeStatusEffect("Bought From Bianca");
 				boughtSomething = true;
 				kGAMECLASS.biancaBoothMenu(true);
 			}
 			else
 			{
-				output("You shake your head, telling Bianca that of these options you won't be needing anything right now. She quietly takes the tablet back and nods.");
+				output("You shake your head, telling Bianca that of these options you won’t be needing anything right now. She quietly takes the tablet back and nods.");
 				kGAMECLASS.biancaBoothMenu(boughtSomething);
 			}
 			output("\n\nWhat now?");

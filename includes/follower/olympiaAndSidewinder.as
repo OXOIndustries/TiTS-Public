@@ -239,6 +239,7 @@ public function shootOlympiaYouMonster():void
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
 	output("\n\n");
+	pc.addHard(15);
 	flags["OLYMPIA_KILLED"] = 1;
 	flags["SIDEWINDER_TAKEN"] = 1;
 	shits["SHIP"] = new Sidewinder();
@@ -249,7 +250,7 @@ public function shootOlympiaYouMonster():void
 	currentLocation = "SHIP INTERIOR";
 	//RIP old ship. Urbolg owns it now.
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	quickLoot(new Stormbull());
 }
 
 //[Recruit Her]
@@ -301,7 +302,7 @@ public function recruitOlympia():void
 	flags["OLYMPIA_RECRUITED"] = 1;
 	//RIP old ship. Urbolg owns it now.
 	//flags["OLYMPIA_KILLED"] = 1;
-	addButton(0,"Next",mainGameMenu);
+	quickLoot(new Stormbull());
 }
 
 //Diplomacy
