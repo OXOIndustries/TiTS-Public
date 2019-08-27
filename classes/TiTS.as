@@ -1821,6 +1821,10 @@
 		{
 			return chars["BIANCA"];
 		}
+		public function get synphia():Synphia
+		{
+			return chars["SYNPHIA"];
+		}
 
 		public function testShipCombat():void
 		{

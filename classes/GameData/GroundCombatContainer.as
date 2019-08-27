@@ -1386,13 +1386,13 @@ package classes.GameData
 				if (target.statusEffectv1("Healing Spray") > 0)
 				{
 					var sprayHealing:int = Math.min(target.HPMax() - target.HP(), 15);
-					if (sprayHealing > 0) output("\n\nThe healing spray continues to heal " + (target is PlayerCharacter ? "your" : target.getCombatName() + "'s") + " wounds! (<b>H: +<span class='hp'>" + sprayHealing + "</span></b>)");
+					if (sprayHealing > 0) output("\n\nThe healing spray continues to heal " + (target is PlayerCharacter ? "your" : target.getCombatName() + "’s") + " wounds! (<b>H: +<span class='hp'>" + sprayHealing + "</span></b>)");
 					else output("\n\nThe healing spray " + (target is PlayerCharacter ? "you have on" : "on " + target.getCombatName()) + " does nothing, having no wounds to heal.");
 				}
 				target.addStatusValue("Healing Spray",1,1);
 				if (target.statusEffectv1("Healing Spray") > 3)
 				{
-					output(" <b>It's duration has run out!</b>");
+					output(" <b>It’s duration has run out!</b>");
 					target.removeStatusEffect("Healing Spray");
 				}
 			}

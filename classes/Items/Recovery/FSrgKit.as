@@ -36,7 +36,7 @@ package classes.Items.Recovery
 			this.description = "a kit of medical spray";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This handy kit comes pre-packaged with three cans of regelatin spray. Once applied to a wound, the gel is absorbed straight away and reconstitutes the damaged tissue by melding into the patient's body. Flesh knitting rapidly is not a painless process without unwanted secondary effects, which is why it's best used on light injuries and not gaping wounds.";
+			this.tooltip = "This handy kit comes pre-packaged with three cans of regelatin spray. Once applied to a wound, the gel is absorbed straight away and reconstitutes the damaged tissue by melding into the patient’s body. Flesh knitting rapidly is not a painless process without unwanted secondary effects, which is why it’s best used on light injuries and not gaping wounds.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -71,9 +71,9 @@ package classes.Items.Recovery
 				return false;
 			}
 			clearOutput();
-			if (quantity == 3) output("You pop free one of the magnetically sealed tubes in your surgeon's kit and spray every last drop of it on " + (target is PlayerCharacter ? "your wounds, already feeling the sting of working medicine." : target.getCombatName() + "'s wounds.") + " You hope it works fast.");
-			else if (quantity == 2) output("You pull out the second of the metallic cans sealed in your kit and apply every last bit of silvery healing goo to " + (target is PlayerCharacter ? "your wounds. You already feel the needles and pins of treatment, n" : target.getCombatName() + "'s wounds. N") + "ow all you can do is hope it makes a difference.");
-			else output("You toss your surgeon's kit away after pulling out the last featureless chrome can. You methodically apply the contents to all of " + (target is PlayerCharacter ? "your wounds and sigh hard at the cool touch and discomfort that follows. You feel better, but i" : target.getCombatName() + "'s wounds. I") + "t will take a while longer for it to work.");
+			if (quantity == 3) output("You pop free one of the magnetically sealed tubes in your surgeon’s kit and spray every last drop of it on " + (target is PlayerCharacter ? "your wounds, already feeling the sting of working medicine." : target.getCombatName() + "’s wounds.") + " You hope it works fast.");
+			else if (quantity == 2) output("You pull out the second of the metallic cans sealed in your kit and apply every last bit of silvery healing goo to " + (target is PlayerCharacter ? "your wounds. You already feel the needles and pins of treatment, n" : target.getCombatName() + "’s wounds. N") + "ow all you can do is hope it makes a difference.");
+			else output("You toss your surgeon’s kit away after pulling out the last featureless chrome can. You methodically apply the contents to all of " + (target is PlayerCharacter ? "your wounds and sigh hard at the cool touch and discomfort that follows. You feel better, but i" : target.getCombatName() + "’s wounds. I") + "t will take a while longer for it to work.");
 
 			var healing:int;
 			if (inCombat())

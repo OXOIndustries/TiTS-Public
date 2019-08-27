@@ -853,7 +853,7 @@ public function synphiaEpilogue(args:Array):void
 	output("\n\nShe departs back to the hangar. You follow a moment later.");
 
 	//Feed her a load :3
-	new SlyverenSlavebreaker().loadInMouth(pc);
+	chars["SYNPHIA"].loadInMouth(pc);
 	//A feeding is good for a rest, right? Clear the Cooldown timer on ballswelling.
 	pc.removeStatusEffect("Synphia_Tired");
 	//Increment times sukked
@@ -1313,7 +1313,7 @@ public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT()
 	}
 	processTime(20);
 	//load in Synphia.
-	new SlyverenSlavebreaker().loadInMouth(pc);
+	chars["SYNPHIA"].loadInMouth(pc);
 	//Increment SYNPHIA_SUCKS
 	IncrementFlag("SYNPHIA_SUCKS");
 	//Increment SYNPHIA_BALLAUGS
