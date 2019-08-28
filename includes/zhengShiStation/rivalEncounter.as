@@ -75,7 +75,7 @@ public function cousinEncounterBonus():Boolean
 	{
 		if(pc.hasKeyItem("Teyaal’s Key Card")) 
 		{
-			output("\n\n<b>You have the keycard. You can enter the ship at any time.</b> (Enter ship via the 'North' button.)");
+			output("\n\n<b>You have the keycard. You can enter the ship at any time.</b> (Enter ship via the ‘North’ button.)");
 			addButton(6,"North",enterShip);
 		}
 		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
@@ -522,12 +522,13 @@ public function fuckFeruzesPussy(x:int):void
 	else if(pc.cocks[x].cLength() < 17) output("Her cunt would fit very nicely around your cock.");
 	else output("Her cunt is the perfect size for your cock. Just big enough enough to accept a meaty member and strain taut around it.");
 
+	var cumQ:Number = pc.cumQ();
 	//Tentacle Tail
 	if(pc.hasCockTail() && pc.hasParasiteTail()) output("\n\n<i>“F-f-fuck, don’t think I can’t see that sneaky little fuck-parasite you’re carrying around.”</i> Feruze watches your [pc.cockTail] sway back and forth behind you. <i>“If it goes in my ass it’d better make me cum... because if it doesn’t...”</i> She trails off, licking her lips.");
 	//Suula dick
 	else if(pc.cocks[x].cType == GLOBAL.TYPE_SUULA) output("\n\n<i>“F-f-fuck how could I have known you’d have the perfect dick for me,”</i> Feruze purrs in between pumps. <i>“Nothing better than a nice suula dick to put me into the mood for a womb full of cum! I bet your venom’s nice and strong, isn’t it?”</i>");
 	//Huge cumQ
-	else if(pc.cumQ() >= 10000) output("\n\n<i>“F-f-fuck I can smell all the cum you’re packing.”</i> Feruze gestures to your cock as pre begins to leak from your widening urethra. <i>“Gonna have to hope the sterilex can keep up. D-don’t wanna quit my job ‘cause you got me pregnant.”</i>");
+	else if(cumQ >= 10000) output("\n\n<i>“F-f-fuck I can smell all the cum you’re packing.”</i> Feruze gestures to your cock as pre begins to leak from your widening urethra. <i>“Gonna have to hope the sterilex can keep up. D-don’t wanna quit my job ‘cause you got me pregnant.”</i>");
 	//Have a dick that’s too big
 	else if(pc.biggestCockVolume() > enemy.vaginalCapacity(0)) output("\n\n<i>“F-f-fuck I wish I could fit your biggest dick inside me.”</i> Feruze gestures to your over-sized cock in open desire. <i>“You’d break me in half with a fuck-monster like that. I guess it’s a good thing you brought something more to scale, you fucking " + pc.mf("stud","goddess") + ".”</i>");
 	//Multiple dicks
@@ -559,10 +560,10 @@ public function fuckFeruzesPussy(x:int):void
 	output("\n\nTrapped hilt-deep inside her, you give Feruze exactly what she wants. You couldn’t stop if you wanted to, but right now, you very much want to cum. You want to feel that white-hot torrent of [pc.cumNoun] surging through your body, stretching out your urethra in rhythmic pulses. You crave the effervescent ecstasy of your own puddling juices swirling around your cock in the moment of climax. So instead of thinking or talking or trying to pull out, you grab hold of Feruze’s big, fat, slutty tits and squeeze, groping your way through a cunt" + (pc.hasCockTail() && pc.hasParasiteTail() ? "-and-butt":"") + "-flooding orgasm.");
 	if(pc.hasCockTail() && pc.hasParasiteTail()) enemy.loadInAss(pc);
 	output("\n\n<i>“Ah ah ahhhh!”</i> the shark-girl gasps");
-	if(pc.cumQ() >= 3000)
+	if(cumQ >= 3000)
 	{
 		output(" as her belly begins to rise");
-		if(pc.cumQ() >= 20000) output(", high-pressure squirts of seed backwashing out of her from the force of your ejaculation");
+		if(cumQ >= 20000) output(", high-pressure squirts of seed backwashing out of her from the force of your ejaculation");
 	}
 	else output(" as she feels you letting go");
 	output(". <i>“Yes! More!”</i> Her tentacles wrap around your [pc.knotOrSheath " + x + "] like a molten vice, flooding you with what feels like a double dose of erection-inducing venom.");
@@ -784,23 +785,24 @@ public function titfuckAndGrindFeruze(x:int):void
 	if(pc.isBimbo()) output("\n\nYou giggle and realize that you won’t have to help her cum after all! She can do it all on her own, so long as you keep letting her kiss and suck on the big fat cock she’s so enamored of.");
 	//Merge
 	output("\n\n<i>“More,”</i> Feruze cries. <i>“Fuck my tits more!”</i>");
-	output("\n\nYou give her exactly what she wants, squeezing her cushy mounds until your fingers all but disappear into the spongy flesh, then pump back through the slippery canyon. Your [pc.cock " + x + "] smothers the mercenary’s sultry visage with its heaving bulk. She reacts much as you would expect: with a louder, wetter sound from below and gurgling, sucking delight above. Feruze works your cock so ecstatically that the underside is almost completely glazed in spit. When you draw back, her face shines with a layer of it" + (pc.cumQ() > 100 ? " swirls into your drooling pre":"") + ". She hums in pleasure and watches raptly when your [pc.cockHead " + x + "] withdraws into her pillowy bosom, waiting for it to emerge with pursed lips and flaring nostrils.");
+	var cumQ:Number = pc.cumQ();
+	output("\n\nYou give her exactly what she wants, squeezing her cushy mounds until your fingers all but disappear into the spongy flesh, then pump back through the slippery canyon. Your [pc.cock " + x + "] smothers the mercenary’s sultry visage with its heaving bulk. She reacts much as you would expect: with a louder, wetter sound from below and gurgling, sucking delight above. Feruze works your cock so ecstatically that the underside is almost completely glazed in spit. When you draw back, her face shines with a layer of it" + (cumQ > 100 ? " swirls into your drooling pre":"") + ". She hums in pleasure and watches raptly when your [pc.cockHead " + x + "] withdraws into her pillowy bosom, waiting for it to emerge with pursed lips and flaring nostrils.");
 	output("\n\nMinutes pass with only the slick sounds of female masturbation and the rhythmic slap of heaving tits smacking into your [pc.belly]. They wobble eye-catchingly, almost hypnotically You pinch and pull the nipples sometimes. Other times you smush Feruze’s tits into a tighter vise. You allow them to fall apart in order to better behold your pulsating boner, then wrap yourself back up in tight, hot, suula-tit, redoubling the force of your thrusts. Your masturbating cock-receptacle tilts her head this way and that, her eyes closed and happy, collecting ");
-	if(pc.cumQ() < 25) output("dribbles");
-	else if(pc.cumQ() < 1000) output("streams");
-	else if(pc.cumQ() < 5000) output("ceaseless flows");
+	if(cumQ < 25) output("dribbles");
+	else if(cumQ < 1000) output("streams");
+	else if(cumQ < 5000) output("ceaseless flows");
 	else output("thick waves");
 	output(" of syrupy pre on her cheeks. She wants the cum you can feel well up inside you. She wants it all over her.");
 
 	//Bone dry
-	if(pc.cumQ() < 5)
+	if(cumQ < 5)
 	{
 		output("\n\nIf only you weren’t so free with your affections. You climax, but it’s almost a dry orgasm. Dribbles and trickles and [pc.cumNoun] leak out on the shark-girl’s forehead into a weak puddle. The bulk of your sexual juices are undoubtedly plastered elsewhere on Zheng Shi or its inhabitants. Still, the suula’s eyes cross to watch what you offer emerging, and at the sight of it, she shudders into a squirting peak of her own, sending slick dribbles through the catwalk’s grating to rain below.");
 	}
 	//Normal
-	else if(pc.cumQ() < 150) output("\n\nYou climax. Spurting out your [pc.cumNoun] directly onto Feruze’s forehead, you hold still and give her the privilege of moving around to catch the individual ropes in different places. A few on her cheeks, one across the bridge of her nose. She even rolls out her tongue to gather the last [pc.cumFlavor] dregs. It’s swallowing that load that puts her over the edge herself. Her eyes cross and her arm shudders jerkily while dribbles of squirting pussyjuice slip through the catwalk grating to rain over the foundry below.");
+	else if(cumQ < 150) output("\n\nYou climax. Spurting out your [pc.cumNoun] directly onto Feruze’s forehead, you hold still and give her the privilege of moving around to catch the individual ropes in different places. A few on her cheeks, one across the bridge of her nose. She even rolls out her tongue to gather the last [pc.cumFlavor] dregs. It’s swallowing that load that puts her over the edge herself. Her eyes cross and her arm shudders jerkily while dribbles of squirting pussyjuice slip through the catwalk grating to rain over the foundry below.");
 	//Big boi
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nFeruze came to the right person. You spurt your [pc.cum] in long, heavy ropes that spatter in starbursts wherever they land. The first explodes across her forehead, spreading from her eyebrows up into her hair, and by the time she’s taking the second on her cheek, the suula reaches a squirting climax of her own, spraying pussy-juice through the grating to rain down on the foundry below. Her mouth falls open and is summarily filled by your [pc.cock " + x + "], her lips painted as well. Yet you always seem to have more - more than enough to coat her other cheek and plaster her hair beneath a [pc.cumColor] helmet.");
 		enemy.applyCumSoaked();
@@ -808,9 +810,9 @@ public function titfuckAndGrindFeruze(x:int):void
 	//huge boi
 	else
 	{
-		output("\n\nFeruze has no idea how lucky she is to have found you. Spraying [pc.cum] in a long, torrid lance, you paint her from the top of her hairline to her eyebrows, the fuckjuice falling so thick that ropes of it roll down into her eyes, forcing them closed. Her mouth falls open in an ecstatic scream only to be muffled by a burbling deluge of jaw-flooding spooge. You can hear her pussy squirting and spraying, but you pay it little mind, intent on basting this big-titted mercenary completely. You squeeze her wobbling boobs tight to wring out more and encase her hair in a matted, [pc.cumColor] helmet. Then you draw back to fire " + (pc.cumQ() >= 10000 ? "more":"the last") + " jets across the orbs that brought you so much pleasure. Plenty pools in her cleavage, but most spills onto the hot peaks of her nipples, creating volcano-like flows of sperm, racing to glaze as much shine-encased breast as possible.");
+		output("\n\nFeruze has no idea how lucky she is to have found you. Spraying [pc.cum] in a long, torrid lance, you paint her from the top of her hairline to her eyebrows, the fuckjuice falling so thick that ropes of it roll down into her eyes, forcing them closed. Her mouth falls open in an ecstatic scream only to be muffled by a burbling deluge of jaw-flooding spooge. You can hear her pussy squirting and spraying, but you pay it little mind, intent on basting this big-titted mercenary completely. You squeeze her wobbling boobs tight to wring out more and encase her hair in a matted, [pc.cumColor] helmet. Then you draw back to fire " + (cumQ >= 10000 ? "more":"the last") + " jets across the orbs that brought you so much pleasure. Plenty pools in her cleavage, but most spills onto the hot peaks of her nipples, creating volcano-like flows of sperm, racing to glaze as much shine-encased breast as possible.");
 		//Extrahuge boy - appended to previous
-		if(pc.cumQ() >= 10000)
+		if(cumQ >= 10000)
 		{
 			output("\n\nThe shark-woman finishes cumming long before you. She collapses back under the tidal wave of [pc.cum] you’ve buried her in and moans in confused, semi-satisfied lust. Her fingers scoop up cupfuls of the stuff as she tries to make sense of your absurd orgasm. All the while, you’re still going, assaulting her curvaceous form with torrential outpourings of seed. Feruze gulps down some of it, then giggles insanely. <i>“So much cum! No wonder I lost to you. You’re a fucking sex god!”</i> She begins to shovel as much as she can between her thighs, pushing it in until just as much as squirting out around her fingers as is creampieing in. <i>“F-f-fuuuck that feels good.”</i>");
 			output("\n\nYou assist her by spending the last of your orgasm right there, at the junction of her thighs. Your [pc.cockHead " + x + "] brushes aside her fingers, and you allow three massive pulses to fire into her, visibly puffing up her belly from the volume. <i>“There,”</i> you say, <i>“is that what you wanted?”</i>");

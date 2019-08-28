@@ -340,7 +340,7 @@
 			
 			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
-			if (hasStatusEffect("Hot Meal")) r.burning.resistanceValue += 10.0;
+			if (hasStatusEffect("Hot Meal")) r.freezing.resistanceValue += 10.0;
 			
 			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
 			// Fen Nerf: -35% Burning
@@ -2488,6 +2488,9 @@
 				case "multiCocks":
 					buffer = multiCockDescript();
 					break;
+				case "cockCount":
+					buffer = num2Text(cocks.length);
+					break;
 				case "cocks":
 				case "cocksDescript":
 					buffer = cocksDescript();
@@ -2778,6 +2781,9 @@
 				case "nutsack":
 				case "scrotum":
 					buffer = sackDescript();
+					break;
+				case "sackTexture":
+					buffer = sackTexture();
 					break;
 				case "chestDesc":
 				case "chest":
@@ -3190,6 +3196,7 @@
 					break;
 				case "mistress":
 				case "master":
+				case "masterMistress":
 					buffer = mf("master", "mistress");
 					break;
 				case "he":
@@ -4928,7 +4935,7 @@
 		public static const DEPENDANT_CUM:uint = 2;
 		public static const DEPENDANT_ANAL:uint = 3;
 	
-		// Is the character dependant on some external drug/chemical/etc
+		// Is the character dependent on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
 			if(dependantType == DEPENDANT_MYRVENOM || dependantType == DEPENDANT_ANY)
@@ -7453,27 +7460,32 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FURRED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_FURRED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FURRED
+			||	hasACockFlag(GLOBAL.FLAG_FURRED) || hasAVaginaFlag(GLOBAL.FLAG_FURRED)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FURRED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FURRED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FURRED);
 			if(part == "chest") return hasSkinFlag(GLOBAL.FLAG_FLUFFY);
+			if(part == "wing") return (statusEffectv1("Wing Style") == GLOBAL.FLAG_FURRED);
+			if(part == "genital") return (statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FURRED || hasACockFlag(GLOBAL.FLAG_FURRED) || hasAVaginaFlag(GLOBAL.FLAG_FURRED));
 			return hasFur();
 		}
 		public function hasPartScales(part:String = "any"):Boolean
 		{
 			if(part == "any" &&
 			(	hasArmFlag(GLOBAL.FLAG_SCALED) || hasLegFlag(GLOBAL.FLAG_SCALED) || hasTailFlag(GLOBAL.FLAG_SCALED)
-			||	InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN])
+			||	InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK])
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
+			||	hasACockFlag(GLOBAL.FLAG_SCALED) || hasAVaginaFlag(GLOBAL.FLAG_SCALED)
 			||	hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_SCALED);
-			if(part == "wing") return (InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN]) || statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED);
+			if(part == "wing") return (InCollection(wingType, [GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK]) || statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED);
+			if(part == "genital") return (statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED || hasACockFlag(GLOBAL.FLAG_SCALED) || hasAVaginaFlag(GLOBAL.FLAG_SCALED));
 			return hasScales();
 		}
 		public function hasPartChitin(part:String = "any"):Boolean
@@ -7483,10 +7495,13 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_CHITINOUS
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_CHITINOUS
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_CHITINOUS
+			||	hasACockFlag(GLOBAL.FLAG_CHITINOUS) || hasAVaginaFlag(GLOBAL.FLAG_CHITINOUS)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_CHITINOUS);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_CHITINOUS);
+			if(part == "wing") return (statusEffectv1("Wing Style") == GLOBAL.FLAG_CHITINOUS);
+			if(part == "genital") return (statusEffectv1("Special Scrotum") == GLOBAL.FLAG_CHITINOUS || hasACockFlag(GLOBAL.FLAG_CHITINOUS) || hasAVaginaFlag(GLOBAL.FLAG_CHITINOUS));
 			return hasChitin();
 		}
 		public function hasPartGoo(part:String = "any"):Boolean
@@ -7496,10 +7511,13 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_GOOEY
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_GOOEY
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY
+			||	hasACockFlag(GLOBAL.FLAG_GOOEY) || hasAVaginaFlag(GLOBAL.FLAG_GOOEY)
 			)) return true;
 			if(part == "arm") return (armType == GLOBAL.TYPE_GOOEY || hasArmFlag(GLOBAL.FLAG_GOOEY));
 			if(part == "leg") return (legType == GLOBAL.TYPE_GOOEY || hasLegFlag(GLOBAL.FLAG_GOOEY));
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_GOOEY);
+			if(part == "wing") return (statusEffectv1("Wing Style") == GLOBAL.FLAG_GOOEY);
+			if(part == "genital") return (statusEffectv1("Special Scrotum") == GLOBAL.FLAG_GOOEY || hasACockFlag(GLOBAL.FLAG_GOOEY) || hasAVaginaFlag(GLOBAL.FLAG_GOOEY));
 			return hasGooSkin();
 		}
 		public function hasPartFeathers(part:String = "any"):Boolean
@@ -7510,11 +7528,13 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_FEATHERED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_FEATHERED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FEATHERED
+			||	hasACockFlag(GLOBAL.FLAG_FEATHERED) || hasAVaginaFlag(GLOBAL.FLAG_FEATHERED)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "tail") return hasTailFlag(GLOBAL.FLAG_FEATHERED);
 			if(part == "wing") return (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE]) || statusEffectv1("Wing Style") == GLOBAL.FLAG_FEATHERED);
+			if(part == "genital") return (statusEffectv1("Special Scrotum") == GLOBAL.FLAG_FEATHERED || hasACockFlag(GLOBAL.FLAG_FEATHERED) || hasAVaginaFlag(GLOBAL.FLAG_FEATHERED));
 			return hasFeathers();
 		}
 		public function skinNoun(skin: Boolean = false,appearance:Boolean = false): String {
@@ -11810,8 +11830,10 @@
 					vaginas[slot].vaginaColor = RandomInCollection(["pink", "pink", "purple"]);
 					break;
 				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_KORGONNE:
 					vaginas[slot].clits = 1;
-					vaginas[slot].vaginaColor = "pink";
+					if(type == GLOBAL.TYPE_KORGONNE) vaginas[slot].vaginaColor = "pale blue";
+					else vaginas[slot].vaginaColor = "pink";
 					vaginas[slot].wetnessRaw = 3;
 					vaginas[slot].minLooseness = 3;
 					break;
@@ -11928,11 +11950,16 @@
 					break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
+				case GLOBAL.TYPE_KORGONNE:
 					cocks[slot].knotMultiplier = 1.25;
 					cocks[slot].cockColor = "bright red";
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					if(type == GLOBAL.TYPE_KORGONNE) {
+						cocks[slot].cType = GLOBAL.TYPE_CANINE;
+						cocks[slot].cockColor = "pale blue";
+					}
 					break;
 				case GLOBAL.TYPE_FELINE:
 					cocks[slot].knotMultiplier = 1;
@@ -12436,6 +12463,7 @@
 			else if(raceSimple == "leithan") shiftCock(arg,GLOBAL.TYPE_SNAKE);
 			else if(raceSimple == "kui-tan") shiftCock(arg, GLOBAL.TYPE_KUITAN);
 			else if(raceSimple == "gryvain") shiftCock(arg, GLOBAL.TYPE_GRYVAIN);
+			else if(raceSimple == "korgonne") shiftCock(arg, GLOBAL.TYPE_KORGONNE);
 			else if(InCollection(raceSimple, ["equine", "pony", "laquine", "ovir", "minotaur", "centaur", "hippogriff"])) shiftCock(arg, GLOBAL.TYPE_EQUINE);
 			else if(InCollection(raceSimple, ["vulpine", "kitsune", "vulpogryph"])) shiftCock(arg,GLOBAL.TYPE_VULPINE);
 			else if (InCollection(raceSimple, ["griffin", "phoenix", "sirin", "harpy", "avian"]))
@@ -12521,6 +12549,7 @@
 			else if(raceSimple == "kui-tan") shiftVagina(arg, GLOBAL.TYPE_KUITAN);
 			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
+			else if(raceSimple == "korgonne") shiftVagina(arg, GLOBAL.TYPE_KORGONNE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
 			else if(raceSimple == "reptile") shiftVagina(arg, GLOBAL.TYPE_LIZAN);
@@ -14164,6 +14193,14 @@
 			if(desc != "") desc += " " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
+		}
+		public function sackTexture(skinAdjective:String = "doughy", furAdjective:String = "fuzzy", scalesAdjective:String = "scaly", gelAdjective:String = "semi-gelatinous"): String {
+			switch (scrotumType())
+			{
+				case GLOBAL.FLAG_FURRED: return furAdjective;
+				case GLOBAL.FLAG_SCALED: return scalesAdjective;
+				default: return skinAdjective;
+			}
 		}
 		public function cockClit(number: int = 0): String {
 			if (hasCock() && number >= 0 && number < cocks.length) return cockDescript(number);

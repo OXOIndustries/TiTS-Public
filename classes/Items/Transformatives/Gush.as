@@ -301,7 +301,9 @@ package classes.Items.Transformatives
 					if(!pc.hasCock() && !pc.hasVagina()) output(" Your [pc.asshole] clenches in a sudden, full-body orgasm, but the pleasure of the climax pales next to the bliss you get from expressing even a single droplet of [pc.milk].");
 					//New PG
 					output("\n\nYou need to find someone to fuck you and suckle the [pc.milk] that’s pouring out in streams!");
-					pc.milkMultiplier = 100;
+					pc.boostLactation(90, false);
+					if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
+					pc.milkFullnessAdd(100, false);
 					pc.orgasm();
 				}
 				//2. Lactating? Lactate harder
@@ -373,7 +375,9 @@ package classes.Items.Transformatives
 					output(". There’s so much!");
 					if(pc.lactationQ() < 100) output(" You were so empty before, but somehow, Gush has made you... well, gush.");
 					output(" Rivers of it wash down the sides of your growing tits, coating your hands until you might as well be wearing [pc.milkColor] gloves.");
-					if(pc.milkMultiplier < 125) pc.milkMultiplier = 125;
+					//if(pc.milkMultiplier < 125) pc.milkMultiplier = 125;
+					pc.boostLactation(15, false);
+					pc.milkFullnessAdd(100, false);
 				}
 				//Actually boost boobs 'n shit
 				pc.lust(pc.lustMax());

@@ -2018,7 +2018,7 @@ public function drainBunnies2(x:int):void
 		{
 			var z:int = 0;
 			while(z == x || z == y) { z++; }
-			output("\n\n...And she’s stuffing your third [pc.pussyNoun " + z + "] with that spunk-stained rod, writhing and howling, her muscular breeder’s thighs <i>whapping</i> into you with hostile and totally reckless abandon. Your [pc.tongue] falls from your mouth as you let the domme-rabbit take control, impregnating your third womb with another ecstatic and spite-rushed orgasm. <i>“I don’t use sterilex,”</i> she grunts into your neck" + (pc.hasHair() ? ", tugging on your [pc.hair]":"") + ". <i>“When you have my kids, I’ll come and find them, make them part of my crew...! Maybe next time I’ll make you my personal breeder...!”</i> Another brawny load shatters your coherency.");
+			output("\n\n...And she’s stuffing your third [pc.pussyNoun " + z + "] with that spunk-stained rod, writhing and howling, her muscular breeder thighs <i>whapping</i> into you with hostile and totally reckless abandon. Your [pc.tongue] falls from your mouth as you let the domme-rabbit take control, impregnating your third womb with another ecstatic and spite-rushed orgasm. <i>“I don’t use sterilex,”</i> she grunts into your neck" + (pc.hasHair() ? ", tugging on your [pc.hair]":"") + ". <i>“When you have my kids, I’ll come and find them, make them part of my crew...! Maybe next time I’ll make you my personal breeder...!”</i> Another brawny load shatters your coherency.");
 			pc.cuntChange(z,enemy.cockVolume(0));	
 			flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 			pc.loadInCunt(enemy,z);

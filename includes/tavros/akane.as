@@ -90,7 +90,19 @@ public function pcReadyForPainsluttery():Boolean
 	if (flags["AKANE_FUN_VISITS"] == undefined || flags["AKANE_FUN_VISITS"] < 9) return false;
 	return true;
 }
- 
+
+public function hasAkaneEffects(includeHealed:Boolean = true):Boolean
+{
+	return hasAkanaEffects(includeHealed);
+}
+public function hasAkanaEffects(includeHealed:Boolean = true):Boolean
+{
+	if (pc.hasStatusEffect("Sore Tubes") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Tenderized") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Lash Marks") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	return false;
+}
+
 public function akanePainslutTrigger():void
 {
 	clearMenu();
@@ -482,7 +494,7 @@ public function akaneShockMeAlready():void
 	output("\n\nThe groggy dominatrix stumbles on her mechanical heels, the metallic <i>plink-plinks</i> erratic as she manages to stop herself from teetering over. You can see Akane hold herself up against the wall, her knees bent inward and all her limbs jittering with a palsy. Did she just...?");
 	output("\n\n<i>“Nngggmmm... I haven’t heard someone say it like that in... ahehe, I don’t even know!”</i> she pants, her voice dotted with feminine squeaks.");
 	output("\n\nEven in your compromised state, you can see a glistening <i>wetness</i> seep out between her pale thighs. Oh, she definitely did...");
-	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinFurScales] are sore and far too sensitive to try again.");
+	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinNoun] is sore and far too sensitive to try again.");
 	output("\n\nAkane also slumps to her knees, her fingertips causing sparks to flare against the wall as she drags them down with her.");
 	output("\n\n<i>“Oh how glad I am that you agreed... oh how fucking glad,”</i> she giggles, wiping her face with the backs of her wrists. Whatever thoughts you have to add fail to form in your mouth: the cool air filling your lungs is too good to pass up right now.");
 	output("\n\nYour eyelids flutter to a close as that same air works its magic. Your lungs relax, your heart slows and your limbs loosen in short order, the comforting afterglow of expending so much energy making things numb and....sleepy...and....");
@@ -1251,7 +1263,7 @@ public function akanePleaseComeAgain():void
 	if (pc.hasCock() && pc.hasVagina()) output("[pc.eachCock] throb and harden then [pc.eachVagina] to moisten and puff up in seconds!");
 	else if (pc.hasCock()) output("[pc.eachCock] to bounce and throb, coming to hardness in seconds!");
 	else if (pc.hasVagina()) output("[pc.eachVagina] to moisten and puff up in seconds!");
-	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realises you’re at a loss when you can become so aroused on mere command.");
+	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realizes you’re at a loss when you can become so aroused on mere command.");
 	
 	output("\n\n<i>“Theeere we go. Now hold still for me, precious,”</i> coos Akane, just out of sight. Your fists make it difficult to tell what she’s about to do but then-\n\n");
 	if (pc.hasCock())
@@ -1397,7 +1409,7 @@ public function akaneMoarMoarMoar():void
 
 	if (flags["AKANE_TIMES_FORCED"] == undefined)
 	{
-		output("\n\nYou whine again when it makes contact, making you instinctively realise that all forms of nerve are extremely sensitive.");
+		output("\n\nYou whine again when it makes contact, making you instinctively realize that all forms of nerve are extremely sensitive.");
 		output("\n\n<i>“Oh don’t fret, my dear [pc.name]. If you’ll hang on and allow me to do a bit of this... and this,”</i> she says casually, as if ticking off a to-do list but with a box of wires instead.");
 	}
 	else if (pcIsPainslut())

@@ -166,6 +166,9 @@ package classes.GameData.Pregnancy.Handlers
 			cTemp.MaturationRate = baby.MaturationRate;
 			cTemp.BornTimestamp = baby.BornTimestamp;
 			cTemp.NumMale = baby.NumMale;
+			cTemp.NumFemale = baby.NumFemale;
+			cTemp.NumIntersex = baby.NumIntersex;
+			cTemp.NumNeuter = baby.NumNeuter;
 			return cTemp;
 		}
 
@@ -176,7 +179,15 @@ package classes.GameData.Pregnancy.Handlers
 			if(mother is PlayerCharacter) traitChar = kGAMECLASS.chars["PC_BABY"];
 			
 			var c:MirrinUniqueChild = new MirrinUniqueChild();
-
+			
+			c.RaceType = pregnancyChildRace;
+			c.MaturationRate = childMaturationMultiplier;
+			c.BornTimestamp = kGAMECLASS.GetGameTimestamp();
+			c.NumMale = 0;
+			c.NumFemale = 1;
+			c.NumIntersex = 0;
+			c.NumNeuter = 0;
+			
 			/*
 			// Race modifier (if different races)
 			c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, (mother is PlayerCharacter));
@@ -192,17 +203,14 @@ package classes.GameData.Pregnancy.Handlers
 			//if(rand(2) == 0) c.chitinColor = traitChar.scaleColor;
 			//if(rand(2) == 0) c.featherColor = traitChar.furColor;
 			*/
-			c.NumFemale = 1;
+			
 			c.Name = "Torri";
-			c.originalRace = "half-gryvain";
 			c.skinTone = traitChar.skinTone;
 			c.lipColor = "tan";
 			c.nippleColor = "tan";
 			c.eyeColor = "silver";
 			c.hairColor = "onyx";
 			c.scaleColor = "onyx";
-			c.MaturationRate = childMaturationMultiplier;
-			c.BornTimestamp = kGAMECLASS.GetGameTimestamp();
 
 			return c;
 		}

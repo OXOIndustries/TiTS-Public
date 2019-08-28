@@ -348,6 +348,13 @@
 		},
 		true);
 	inputManager.AddBindableControl(
+		"Bianca Spawn",
+		"Places Bianca wherever player is, if in compatible tile.",
+		function():void {
+			Cheats.BringMeAFox();
+		},
+		true);
+	inputManager.AddBindableControl(
 		"Nym-Foe Targets TiTS",
 		"Toggle whether or not Nym-Foe will target the breasts when she injects silicone.",
 		function():void {
@@ -390,6 +397,7 @@
 	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
 	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	inputManager.BindCheatSequence("Space Yakuza Skip", "anofferyoucantrefuse");
+	inputManager.BindCheatSequence("Bianca Spawn", "healthdelivery");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	

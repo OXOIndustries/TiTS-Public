@@ -26,6 +26,7 @@ public function roamingBarEncounter(button:int = 0):void
 		if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
 		//Cow - chance changes depending on location and is handled in scienceCowAvailable()
 		if(scienceCowAvailable()) NPCs.push(drinkingScienceCowBonus);
+		if(currentLocation == "CANADA5" && perditaAvailable()) NPCs.push(perditaBonus,perditaBonus,perditaBonus,perditaBonus,perditaBonus);
 		//Pick available NPC, run setup func
 		if(NPCs.length > 0)
 		{
@@ -1672,7 +1673,8 @@ public function kiroSexMenu():void
 	{
 		if(kiroTrust() >= 66)
 		{
-			if(pc.hasCock() && (pc.cockThatFits(kiro.vaginalCapacity(0) + 200) < 0 && pc.biggestCockLength() < 20) && !pc.hasVagina()) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
+			if(pc.hasCock() && !pc.hasVagina() && (pc.cockThatFits(kiro.vaginalCapacity(0) + 200) < 0 && pc.biggestCockLength() < 20)) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
+			else if(pc.hasCock() && !pc.hasVagina() && pc.cockThatFits(kiro.vaginalCapacity(0) + 200) < 0 && kiroTrust() < 75) addDisabledButton(4,"PussyPump","PussyPump","Kiro doesn’t trust you enough for this yet.");
 			else if(pc.hasGenitals()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro’s pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention.");
 			else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
 		}
@@ -2921,7 +2923,7 @@ public function inviteSaenForKiroFilling():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//Trusted Pussy Pumpings - AKA, Kiro’s <i>“Heart”</i> Grew Three Sizes That Day
+//Trusted Pussy Pumpings - AKA, Kiro’s “Heart” Grew Three Sizes That Day
 //Intro might need adjusted to lead into this at a later time. Not sure how exactly you get to this point.
 //SukMastr 2000
 public function treatedPussPumps():void
@@ -3036,7 +3038,7 @@ public function kiroPussPumpPartII():void
 	if(pc.hasVagina()) addButton(1,"TribThem",tribDemLips,undefined,"TribThem","What better to please a pussy than another hot, wet cunt?");
 	else addDisabledButton(1,"TribThem","TribThem","You need a vagina to trib with Kiro.");
 
-	if(pc.biggestCockLength() >= 20) addButton(2,"GrindFrot",kiroGrindFrot,undefined,"GrindFrot","Grind your plus-sized dick against Kiro’s until both of you pop your corks.");
+	if(pc.hasCock() && pc.biggestCockLength() >= 20) addButton(2,"GrindFrot",kiroGrindFrot,undefined,"GrindFrot","Grind your plus-sized dick against Kiro’s until both of you pop your corks.");
 	else addDisabledButton(2,"GrindFrot","GrindFrot","You need a big dick (at least 20 inches) for this scene.");
 }
 

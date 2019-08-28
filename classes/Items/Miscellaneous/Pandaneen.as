@@ -156,7 +156,7 @@
 					}
 
 					//Minor Sex stuff:
-					//Penis-dependant
+					//Penis-dependent
 					if(target.hasCock())
 					{
 						//Find smallest dick for expansion
@@ -260,7 +260,7 @@
 							kGAMECLASS.output(target.ballSizeLockedMessage());
 						}
 					}
-					//Minor Vagina-dependant
+					//Minor Vagina-dependent
 					if(target.hasVagina())
 					{
 						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals

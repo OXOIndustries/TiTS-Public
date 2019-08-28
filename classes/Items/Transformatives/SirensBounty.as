@@ -99,7 +99,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_SIREN))
 					{
-						output("\n\nYou immediately notice that your face seems to be losing feeling by the minute. It’s almost like the muscles have fallen asleep on you. Concerned by this turn of events, you rub and pinch your face only for it to tighten. You flinch as your the bones in your face suddenly begin cracking and shifting, becoming increasingly angular. Your clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. Unsure of what just happened, you pull up the reflective screen of your Codex to discover that <b>your face has changed to match the muzzled, shark-like appearance of a suula!</b>");
+						output("\n\nYou immediately notice that your face seems to be losing feeling by the minute. It’s almost like the muscles have fallen asleep on you. Concerned by this turn of events, you rub and pinch your face only for it to tighten. You flinch as your the bones in your face suddenly begin cracking and shifting, becoming increasingly angular. You clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. Unsure of what just happened, you pull up the reflective screen of your Codex to discover that <b>your face has changed to match the muzzled, shark-like appearance of a suula!</b>");
 						
 						pc.faceType = GLOBAL.TYPE_SIREN;
 						pc.clearFaceFlags();
@@ -107,6 +107,29 @@ package classes.Items.Transformatives
 						//pc.addFaceFlag(GLOBAL.FLAG_LONG);
 					}
 					else output("\n\n" + pc.faceTypeLockedMessage());
+					changes++;
+				}
+				else if(changes < changeLimit && pc.faceType == GLOBAL.TYPE_SIREN && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(4) == 0)
+				{
+					if(pc.faceFlagsUnlocked(GLOBAL.FLAG_MUZZLED))
+					{
+						output("\n\nA sharp sensation spears through your skull as the bones in your half-suula face suddenly begin cracking and shifting, becoming increasingly angular. You clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. You quickly flip out your Codex to see that <b>you now have a muzzled, shark-like suula face!</b>");
+						
+						pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+					}
+					else output("\n\n" + pc.faceFlagsLockedMessage());
+					changes++;
+				}
+				// Extend tongue
+				if(changes < changeLimit && InCollection(pc.faceType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_SHARK]) && !pc.hasTongueFlag(GLOBAL.FLAG_LONG) && rand(4) == 0)
+				{
+					if(pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
+					{
+						output("\n\nYou feel your tongue push against your teeth on its own. Surprised, you open your mouth and and find your [pc.tongue] dangling out, much longer than usual. <b>Your tongue has extended in length!</b>");
+						
+						pc.addTongueFlag(GLOBAL.FLAG_LONG);
+					}
+					else output("\n\n" + pc.tongueFlagsLockedMessage());
 					changes++;
 				}
 				// Grow Gills

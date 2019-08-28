@@ -33,8 +33,8 @@
 			// Needs a few things checked.
 			this.short = "Demon Queen Syri";
 			this.originalRace = "ausar";
-			this.a = "the ";
-			this.capitalA = "The ";
+			this.a = "";
+			this.capitalA = "";
 			this.long = "She’s a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull’s, adorned with chains and rings. Syri’s fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler’s fists in preparation for her attacks.";
 			this.customDodge = "The demon queen slides past your attack with graceful agility.";
 			this.customBlock = "The demon queen meets your attack with one of her own, glancing it away.";
@@ -74,6 +74,63 @@
 			this.credits = 0;
 			this.HPMod = 300;
 			this.HPRaw = this.HPMax();
+			
+			// From Syri but minor tweaks
+			this.femininity = 75;
+			this.eyeType = 0;
+			this.eyeColor = "fiery orange";
+			this.tallness = 101;
+			this.thickness = 45;
+			this.tone = 75;
+			this.hairColor = "black";
+			this.scaleColor = "ebony";
+			this.furColor = "black";
+			this.hairLength = 10;
+			this.hairType = 0;
+			this.beardLength = 0;
+			this.beardStyle = 0;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			this.skinTone = "olive";
+			this.skinFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_THICK];
+			this.faceType = 0;
+			this.faceFlags = new Array();
+			this.tongueType = 0;
+			this.lipMod = 2;
+			this.earType = GLOBAL.TYPE_CANINE;
+			this.earFlags = [GLOBAL.FLAG_FURRED];
+			this.antennae = 0;
+			this.antennaeType = 0;
+			this.horns = 2;
+			this.hornLength = 9;
+			this.hornType = GLOBAL.TYPE_BOVINE;
+			this.armType = GLOBAL.TYPE_CANINE;
+			this.armFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_THICK];
+			this.gills = false;
+			this.wingType = 0;
+			this.legType = GLOBAL.TYPE_CANINE;
+			this.legCount = 2;
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_THICK];
+			this.genitalSpot = 0;
+			this.tailType = GLOBAL.TYPE_CANINE;
+			this.tailCount = 1;
+			this.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_THICK];
+			this.hipRatingRaw = 12;
+			this.buttRatingRaw = 11;
+			this.minutesSinceCum = 65;
+			this.timesCum = 9001;
+			this.vaginalVirgin = false;
+			this.analVirgin = false;
+			this.elasticity = 1.5;
+			this.fertilityRaw = 1.05;
+			this.clitLength = 0.5;
+			this.pregnancyMultiplierRaw = 1;
+			this.breastRows[0].breastRatingRaw = 5;
+			this.nippleColor = "pink";
+			this.milkMultiplier = 0;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
+			this.milkRate = 0;
+			this.ass.wetnessRaw = 0;
+			this.ass.loosenessRaw = 3;
 			
 			/*
 			var c:CockClass = new CockClass();

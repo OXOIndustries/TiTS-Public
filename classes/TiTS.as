@@ -80,6 +80,7 @@
 	import classes.Engine.showImage;
 	import classes.Engine.Utility.*;
 	import classes.Util.IsOneOf;
+	import classes.Util.ShuffleArray;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Map.*;
@@ -202,6 +203,11 @@
 		// Misc Events
 		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
+		include "../includes/events/bianca/bianca.as";
+		include "../includes/events/bianca/biancaTalks.as";
+		include "../includes/events/bianca/biancaHealing.as";
+		include "../includes/events/bianca/biancaStories.as";
+		include "../includes/events/bianca/biancaSex.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
@@ -298,6 +304,7 @@
 		include "../includes/vesperia/luca.as";
 		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
+		include "../includes/vesperia/perdita.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
@@ -676,7 +683,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.014";
+			version = "0.8.017";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1809,6 +1816,14 @@
 		public function get vahn():Vahn
 		{
 			return chars["VAHN"];
+		}
+		public function get bianca():Bianca
+		{
+			return chars["BIANCA"];
+		}
+		public function get synphia():Synphia
+		{
+			return chars["SYNPHIA"];
 		}
 
 		public function testShipCombat():void

@@ -323,6 +323,21 @@ public function northWalkwayBonus():void
 	fisiannaApartmentHandler(0);
 	kaseApartmentHandler(2);
 }
+public function resDeck15Func():Boolean
+{
+	if(checkIfAinaIsAround()) return true;
+	
+	clearOutput();
+	
+	output("This part of the walkway is fairly standard. There’s a few humble decorations outside the stock-standard doors: pot plants, mats, the usual fare. Even in space and during such an advanced technological era, some things don’t change all that much.");
+	output("\n\nYou see a room to the north with a sign reading: ‘Paige’s Yoga Class & Seminar’--");
+	if(hours >= 17 || hours < 9) output("perhaps you can give it a visit if you are interested.");
+	else output("though it doesn’t seem to be open at the moment.");
+	output("\n\nTo the south, you notice a residence with two barn-like doors. Attached to the artificial windows are boxes filled with blossoming flowers. The number beside the door is 154.");
+	output("\n\nThe thoroughfare here ends in a gigantic steel wall to the west. Seems that part of the station is still under construction. You can only head back east.");
+	
+	return false;
+}
 public function resDeck17Func():void
 {
 	veltaAptBonus();

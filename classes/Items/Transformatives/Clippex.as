@@ -108,7 +108,7 @@
 			}
 		}
 		
-		// This only triggers during removal afaik, so deltaT is kinda irrelevent
+		// This only triggers during removal afaik, so deltaT is kinda irrelevant
 		public static function ClippexTF(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			var isPlus:Boolean = effect.value2 > 1;

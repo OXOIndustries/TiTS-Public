@@ -1125,6 +1125,7 @@
 		public static const LOW_GRAVITY:int								= 31;
 		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
 		public static const LOW_TECH:int								= 33; //used to mark rooms where the inhabitants wouldn't own regular space tech (see InRoomWithPhones)
+		public static const FIRST_AID:int								= 34;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

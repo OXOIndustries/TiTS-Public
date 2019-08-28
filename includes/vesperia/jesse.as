@@ -79,7 +79,7 @@ public function jesseBarBonus(button:int):void
 {
 	if (flags["MET_JESSE"] == undefined) 
 	{
-		output("\n\nThere’s a petite humanoid surrounding by empty glasses and gadgets. She seems rather bored, perhaps you wanna speak to her...?");
+		output("\n\nThere’s a petite humanoid surrounded by empty glasses and gadgets. She seems rather bored, perhaps you wanna speak to her...?");
 		addButton(button,"SolitaryWomn",firstTimeApproachJesseI,undefined,"Solitary Woman","She seems a bit lonely in that corner.");
 	}
 	else if (!pc.hasStatusEffect("Jesse Bar Cooldown"))

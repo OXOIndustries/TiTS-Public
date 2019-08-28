@@ -523,7 +523,7 @@ public function fuckYouMaike():void
 	//pcTech:
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
-		output("\n\nHitting a panic button on your codex, your shield crackles with a kinetic pulse and the unawares slaver is knocked several feet into the air! She very quickly manages to gain stability mid-flight and hovers high above you.");
+		output("\n\nHitting a panic button on your codex, your shield crackles with a kinetic pulse and the unaware slaver is knocked several feet into the air! She very quickly manages to gain stability mid-flight and hovers high above you.");
 		output("\n\nYou quickly get to your feet and draw your");
 		if(pcHasSlaveOutfit()) output(" cleverly stowed");
 		output(" [pc.weapon].");
@@ -670,7 +670,7 @@ public function quickMaikeAnal(x:int):void
 
 	output("\n\nYour [pc.belly] tingles as her tail unfurls and wraps around your middle with a gentle, smooth motion. The flowering tip of her tailcock dribbles with yet more seed and you become strangely hooked with the bulging, visceral squirt of the stuff with every pump and hump you make. You’re compelled to rub the comfortably warm snake of her tail while keeping your other hand on her cheek. On top of deep-fucking her hole so that your [pc.hips] always <i>smack</i> against her juicy tush, you massage the cheeks one at a time to temper the sensitive flesh with a gentle set of fingers.");
 
-	output("\n\nA dirty, <i>filthy</i> thought comes up: just how much can you squeeze out of her at once? You pause mid-thrust and then lean your weight on the bent over moth, sinking your [pc.cockOrStrapon " + x + "] as deep as it can go. Naturally, she pushes back against it, some hint of resistance still flaring in her head. However, you’re up here and she’s down there... inevitably, her back curves in as your insistent pressure squeezes against her sensitive body. In a chorus of algedonic wails, the slavers tail shoots a thick, bulging streak of her hot seed across the ground, far thicker and juicier than the gooey steam it’s been spewing before. You can help but laugh to yourself as you realise just how much control you have with your hips.");
+	output("\n\nA dirty, <i>filthy</i> thought comes up: just how much can you squeeze out of her at once? You pause mid-thrust and then lean your weight on the bent over moth, sinking your [pc.cockOrStrapon " + x + "] as deep as it can go. Naturally, she pushes back against it, some hint of resistance still flaring in her head. However, you’re up here and she’s down there... inevitably, her back curves in as your insistent pressure squeezes against her sensitive body. In a chorus of algedonic wails, the slavers tail shoots a thick, bulging streak of her hot seed across the ground, far thicker and juicier than the gooey steam it’s been spewing before. You can’t help but laugh to yourself as you realize just how much control you have with your hips.");
 
 	output("\n\nNow cock-deep inside, another filthy thought crosses your mind: why not keep her hilted and just <i>squeeze</i> as much as you possibly can? " + (pc.isTaur() ? "Should be easy with this body, after all. ":"") + "Now she’ll be the one to get her face buried into the dirt.");
 
@@ -699,7 +699,7 @@ public function quickMaikeAnal(x:int):void
 
 	output("\n\nYou keep her held to until your [pc.cockOrStrapon " + x + "] wilts on its own accord. With a groggy step, you pull your shaft out of Maike’s well used tailhole and sit down for a breather. You take in the messy picture of [pc.cum] and a gaping moth-hole, satisfied with your efforts in plowing ass- uhh, doing the right thing in the face of inequality, yeah that. The spread-flat, panting form of the moth-domme barely moves save for a few limp flicks of her wings and tail. By her side is the syrupy thick pool of her pure-white seed: must be a good two or three gallons going on there...! She really <i>was</i> pent up, to the point where you wonder how she was able to sit down, walk, rest easily or-");
 	output("\n\n<i>“Mmmheeeey Tivfff, where’s Tivf, Tiffy,”</i> moans the Overseer as she tries to get to her feet. <i>“Make sure he’s... okay... gotta get out of here...”</i>");
-	output("\n\nAs she lays there in a gooey mess, you consider whether you should help. Quickly though, you realise that a slaver’s still a slaver: you’re not gonna help her more than you already have. She just can just sort herself out. You re-equip your gear, then ready up.");
+	output("\n\nAs she lays there in a gooey mess, you consider whether you should help. Quickly though, you realize that a slaver’s still a slaver: you’re not gonna help her more than you already have. She just can just sort herself out. You re-equip your gear, then ready up.");
 	output("\n\n");
 	processTime(30);
 	pc.orgasm();
@@ -797,7 +797,7 @@ public function tailFeedMaike():void
 
 	output("\n\n<i>“Bottoms up,”</i> you chirp after a quick minute, carefully swinging your cum-bloated tail around to the Overseer’s gasping mouth. She can barely get a sound out before you smash that cum-slick entrance of a [pc.tailCunt] against her purple lips! Maike whines and kicks her legs against the ground as you tip her horns back, allowing a smooth, slick flow of her own seed to gush across her face and lips. Her tongue lashes against your still-sensitive folds in some instinctual effort to drink the free-flowing fluid and you swear she’s just protesting with moans to hide her dirty, debased passion.");
 
-	output("\n\nHowever, half a minute in and you realise there’s an awful lot more stuffed inside your tail than you first considered. Out of frustration, you let go of one of her horns and instead squeeze down on the gooey, internal lumps that bulge through your tails length. Each squeeze feels like some mini-orgasm that you bite down with disdain: you beat her, gotta look strong, gotta not give in. Maike’s recycled seed pools under her white-bleached chin and and one last idea pops into your head.");
+	output("\n\nHowever, half a minute in and you realize there’s an awful lot more stuffed inside your tail than you first considered. Out of frustration, you let go of one of her horns and instead squeeze down on the gooey, internal lumps that bulge through your tails length. Each squeeze feels like some mini-orgasm that you bite down with disdain: you beat her, gotta look strong, gotta not give in. Maike’s recycled seed pools under her white-bleached chin and one last idea pops into your head.");
 
 	output("\n\n<i>“Didn’t <b>finish</b>, bitch,”</i> you grunt as your force her face into the puddle with a push on her horns. <i>“Eat it!”</i>");
 
@@ -880,7 +880,7 @@ public function maikeNextThing():void
 	}
 
 	//[Exit]*
-	//*PC gains x1 Space Helmet (if not recieved before), x1 Hand Repulsor and x1 Illumorpheme.
+	//*PC gains x1 Space Helmet (if not received before), x1 Hand Repulsor and x1 Illumorpheme.
 	currentLocation = rooms[currentLocation].southExit;
 	CombatManager.genericVictory();
 }

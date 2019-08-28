@@ -162,7 +162,7 @@ public function getButtfuckedByDudeleen():void
 		if(pc.hasHair()) output("runs his fingers through your [pc.hair].");
 		else output("traces a claw down your back.");
 		output("\n\n<i>“You’re pretty brave, aren’t you?”</i> he asks, to which you respond with a strained smile and a shrug. The dick buried halfway in your ass swells a bit before you feel it move forward, inching deeper inside you. The naleen starts to rock his hips gently, easing himself in and out of your untrained ass. He carefully stretches you with his girthy reptilian dick and, slowly but surely, pleasure replaces pain.");
-		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambience of the jungle.");
 	}
 	else
 	{
@@ -183,7 +183,7 @@ public function getButtfuckedByDudeleen():void
 		output("”</i>");
 		output("\n\nHe flicks his forked tongue and winks. There’s a pause as he draws his hips back, holding you in suspense, until he surges forward and nearly slams your face against the tree. You cry out in approval, and the naleen leans forward to hammer against you. ");
 		if(pc.isNaga()) output("Your serpentine tails entangle one another, scales sliding over scales and muscles twisting every which way. Each of you coils around the other, keeping your lower halves together as your top halves maintain the excited, rhythmic fucking. ");
-		output("You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+		output("You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambience of the jungle.");
 	}
 	
 	var analCap:Number = pc.analCapacity();

@@ -989,6 +989,7 @@ public function statisticsScreen(showID:String = "All"):void
 				case GLOBAL.OUTDOOR: roomFlagTypes.push("Outdoors"); break;
 				case GLOBAL.SHIPINTERIOR: roomFlagTypes.push("Ship Interior"); break;
 				
+				case GLOBAL.LOW_TECH: roomFlagTypes.push("Technologically Limited"); break;
 				case GLOBAL.FOREST: roomFlagTypes.push("Forest"); break;
 				case GLOBAL.JUNGLE: roomFlagTypes.push("Jungle"); break;
 				case GLOBAL.WATERFALL: roomFlagTypes.push("Waterfall"); break;
@@ -996,16 +997,18 @@ public function statisticsScreen(showID:String = "All"):void
 				case GLOBAL.CAVE: roomFlagTypes.push("Caves"); break;
 				case GLOBAL.ICYTUNDRA: roomFlagTypes.push("Icy Tundra"); break;
 				case GLOBAL.FROZENTUNDRA: roomFlagTypes.push("Frozen Tundra"); break;
-				case GLOBAL.LOW_GRAVITY: roomFlagPlace.push("Low Gravity"); break;
+				case GLOBAL.LOW_GRAVITY: roomFlagTypes.push("Low Gravity"); break;
 				
 				case GLOBAL.NUDITY_ILLEGAL: roomFlagRules.push("Nudity Illegal"); break;
 				case GLOBAL.FAPPING_ILLEGAL: roomFlagRules.push("Masturbation Illegal"); break;
 				case GLOBAL.NOFAP: roomFlagRules.push("Masturbation Impossible"); break;
 				
 				case GLOBAL.SHIPHANGAR: roomFlagPlace.push("Ship Hangar"); break;
+				case GLOBAL.NURSERY: roomFlagPlace.push("Nursery"); break;
 				case GLOBAL.BAR: roomFlagPlace.push("Bar"); break;
 				case GLOBAL.COMMERCE: roomFlagPlace.push("Commerce"); break;
 				case GLOBAL.MEDICAL: roomFlagPlace.push("Medical"); break;
+				case GLOBAL.FIRST_AID: roomFlagPlace.push("First Aid"); break;
 				case GLOBAL.POOL: roomFlagPlace.push("Pool"); break;
 				case GLOBAL.LIFTUP:
 				case GLOBAL.LIFTDOWN: roomFlagPlace.push("Lift"); break;
@@ -5359,7 +5362,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// Sydney
 				if(flags["MET_SYDNEY"] != undefined) output2("\n<b>* Sydney:</b> Met him");
-				//Ciaran
+				// Ciaran
 				if(flags["CIARAN_MET"] != undefined)
 				{
 					output2("\n<b>* Ciaran:</b> Met him");
@@ -8304,7 +8307,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			// kiona's kiosk
 			if(flags["KIONA_MET"] != undefined)
 			{
-				output2("\n<b><u>Kiona's Kiosk</u></b>");
+				output2("\n<b><u>Kiona’s Kiosk</u></b>");
 				output2("\n<b>* Kiona:</b> Met her");
 				if(!kionaLovers())
 				{

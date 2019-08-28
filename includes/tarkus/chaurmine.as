@@ -602,7 +602,7 @@ public function talkToChaurmineAboutTarkus():void
 
 	output("So why is he on Tarkus specifically? Hardly seems like a place that would have anything of worth to him.");
 	output("\n\n<i>“Not here for the locals, either,”</i> he grunts, <i>“I was hoping to find some outdated weapons that may have been thrown out. Every once in a rare while, old tech can still be useful. Though I haven’t found jack shit yet, and now I regret coming to this heap of junk. The air irritates my scales...”</i> He shivers, making his scales clank and clatter against each other.");
-	output("\n\nThat brings up an interesting question; How have his scales not corroded? Not just from the environment, but the natives too.");
+	output("\n\nThat brings up an interesting question: how have his scales not corroded? Not just from the environment, but the natives too.");
 	output("\n\nChaurmine responds with a shrug as he growls, <i>“Hmph, fuck if I know. What I </i>do<i> know is that any of those bugs or fat-eared skinks that come near me are getting a fistful of these scales they covet so much!”</i> He curls an armored hand into a tight fist, his silvery scales reflecting the surrounding area like polished platemail. <i>“No, seriously, tell me if you see any bugs.”</i>");
 	processTime(5);
 	clearMenu();

@@ -770,7 +770,15 @@ package classes.GameData
 				if(npcShooter == "") output("You " + weapon.attackVerb + " your " + weapon.longName + " and hit " + target.getCombatName() + "!");
 				else 
 				{
-					if(npcShooter == "Mitzi") output("Mitzi creams herself from the vibrations caused by unloading " + weapon.description + " into " + target.getCombatName() + "!");
+					if(npcShooter == "Mitzi" && rand(3) == 0) 
+					{
+						var mitziTexts:Array = [];
+						if(kGAMECLASS.mitzi.canLactate()) mitziTexts.push("The vibrations from firing " + weapon.description + " into " + target.getCombatName() + " release rivers of milk from Mitzi's straining nipples.");
+						if(kGAMECLASS.flags["MITZI_SOAKED"] != undefined) mitziTexts.push("Mitzi squirts <i>everywhere</i> while firing off " + weapon.description + " at " + target.getCombatName() + ".");;
+						mitziTexts.push("Mitzi's here to shoot " + weapon.description + " at " + target.getCombatName() + " and drink cum... and she's all out of cum!");
+						mitziTexts.push(("Mitzi creams herself from the vibrations caused by unloading " + weapon.description + " into " + target.getCombatName() + "!"));
+						output(mitziTexts[rand(mitziTexts.length)]);
+					}
 					else output(StringUtil.capitalize(npcShooter, false) + " " + weapon.attackVerb + "s" + " " + target.getCombatName() + " with " + weapon.description + "!");
 				}
 			}

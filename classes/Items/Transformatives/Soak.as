@@ -740,7 +740,7 @@ package classes.Items.Transformatives
 			//Fertility and Pregnancy Speed
 			if(rand(6) == 0 && soakChanges < soakMaxChanges && !pc.hasPerk("Sterile") && !pc.hasPerk("Infertile"))
 			{
-				if(pc.fertilityRaw < 5 && !pc.isPregnant())
+				if(pc.fertilityRaw < 5 && !pc.hasWombPregnancy())
 				{
 					soakChanges += 1;
 					pc.fertilityRaw += 0.5;
@@ -753,7 +753,7 @@ package classes.Items.Transformatives
 					pc.pregnancyIncubationBonusMotherRaw += 0.5;
 					if(pc.pregnancyIncubationBonusMotherRaw > 10) pc.pregnancyIncubationBonusMotherRaw = 10;
 					//* If pregnant, accelerate all ongoing pregnancies by cutting down 20% of the remaining time. Probably a good idea to check motherhusk as a reference.
-					output("\n\nThere’s a lingering ‘hotness’ deep inside your womb that refuses to go away even after the Soak has worn off. Pulling out your Codex and having it perform a detailed medical checkup, the reason becomes clear: your" + (pc.hasCock() ? " feminine" : "") + " reproductive system is working faster than before to accelerate fetal development. <b>Your pregnancies are going to progress a bit quicker from now on.</b>");
+					output("\n\nThere’s a lingering ‘hotness’ deep inside your womb that refuses to go away even after the Soak has worn off. Pulling out your Codex and having it perform a detailed medical checkup, the reason becomes clear: your" + (pc.hasCock() ? " feminine" : "") + " reproductive system is working faster than before to accelerate fetal development. <b>Your future pregnancies are going to progress a bit quicker from now on.</b>");
 				}
 			}
 			//* IMPORTANT: When the Soak Overdose status effect ends, set flag SOAK_OVERDOSE to 0.

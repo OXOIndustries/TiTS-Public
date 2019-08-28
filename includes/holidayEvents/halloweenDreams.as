@@ -1421,7 +1421,7 @@ Reproduction
 Unknown. All victims report a sexual nature to the encounter, but range++eattheirpleasure=. Some victims recount intercourse with the kama-tanha itself, reporting a variety of genitalia. Others indicate that the kama-tanha is incidental to a dreamed or hallucinated sexual encounter
 
 Encounters
-Kama-tanha encounters are of questionable veracity, as many describe the encounters as dreams, or "dream-like," leading many xenobiologists to suspect that that the creature is a hoax or some kind of universal myth. Many point to roughly-parallel folklore present on most planets regarding sleep paralysis and REM states, implying thatkama-tanhaisreal+hangupsidedownfromdreams+fall&dig&leftwhisperleftleftalwaysleft_intonighhtlickyyoutouchyouinsideheads_showyou[pc.name]&againagaini.find_u
+Kama-tanha encounters are of questionable veracity, as many describe the encounters as dreams, or "dream-like," leading many xenobiologists to suspect that the creature is a hoax or some kind of universal myth. Many point to roughly-parallel folklore present on most planets regarding sleep paralysis and REM states, implying thatkama-tanhaisreal+hangupsidedownfromdreams+fall&dig&leftwhisperleftleftalwaysleft_intonighhtlickyyoutouchyouinsideheads_showyou[pc.name]&againagaini.find_u
 */
 
 //Witch’s Kitten

@@ -238,7 +238,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 			// Special addons
-			if(target.faceType == GLOBAL.TYPE_SIREN) outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " mouth and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a slightly angular appearance.");
+			if(target.faceType == GLOBAL.TYPE_SIREN) outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "extended maw" : "mouth") + " and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a" + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "n" : " slightly") + " angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) outputRouter(" A set of retractable, needle-like fangs sit in place of " + (target == pc ? "your":"[target.hisHer]") + " canines, just like a naleen.");
 			else if(target.faceType == GLOBAL.TYPE_ARACHNID) outputRouter(" A set of spider-like fangs protrude over " + (target == pc ? "your":"[target.hisHer]") + " bottom lip.");
 			break;
@@ -3311,7 +3311,7 @@ public function boobStuff(forTarget:Creature = null):void
 	outputRouter("\n\n");
 	if(target.gills)
 	{
-		outputRouter("A pair of [target.gills] are growing out just below " + (target == pc ? "your":"[target.hisHer]") + " neck, spreading out horizontally and draping down " + (target == pc ? "your":"[target.hisHer]") + " chest. They allow " + (target == pc ? "you":"[target.himHer]") + " to stay in the water for quite a long time. ");
+		outputRouter("A pair of [target.gills] are growing out from below " + (target == pc ? "your":"[target.hisHer]") + " jaw, down the sides of " + (target == pc ? "your":"[target.hisHer]") + " neck. They allow " + (target == pc ? "you":"[target.himHer]") + " to stay in the water for quite a long time. ");
 	}
 	//Chesticles..I mean bewbz.
 	if(target.breastRows.length == 1) {
