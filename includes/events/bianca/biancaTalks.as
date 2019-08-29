@@ -1396,7 +1396,7 @@ public function tellBiancaAboutYerFutureKiddos(kiddos:int):void
 	else if (kiddos == 2)
 	{
 		output("<i>“Not now, not until I find the right person,”</i> you reply, then go on to explain the nursery that your father secured for you on Tavros where your children can be cared for, should you have any.");
-		output("\n\n<i>“That’s the smartest option for someone like you, if I might comment,”</i> Bianca remarks. <i>“A child deserves to be cared for by their parents and not have their lives run by a system. If you have too many children, cautiously or incautiously, it will make rearing your family too difficult. Besides, you have a lot going on right now. Based on what you told me. Hopefully you’ll find that special someone someday, no?”</i>");
+		output("\n\n<i>“That’s the smartest option for someone like you, if I might comment,”</i> Bianca remarks. <i>“A child deserves to be cared for by their parents and not have their lives run by a system. If you have too many children, cautiously or incautiously, it will make rearing your family too difficult. Besides, you have a lot going on right now - based on what you told me. Hopefully you’ll find that special someone someday, no?”</i>");
 		output("\n\nOh, for sure. For now, thinking about kids isn’t on your agenda, and won’t be any time soon.");
 	}
 	else
