@@ -76,6 +76,7 @@ public function sidewinderCargoholdExtrasStuff(response:String = "menu"):void
 				output("\n\nYou spot an expensive looking case on a fold-out table. It’s labeled as Galomax.");
 				addButton(btnSlot++, "Galomax", takeZhengShiGalomax);
 			}
+			addButton(14, "Back", shipStorageMenuRoot);
 			break;
 		case "coords":
 			output("The probe flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");

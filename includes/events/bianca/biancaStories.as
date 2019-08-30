@@ -217,7 +217,7 @@ public function finishBiancaStory(inRandomEncounter:Boolean = false):void
 public function biancaStoryMenu(isAvailable:Boolean = false, inRandomEncounter:Boolean = false):Boolean
 {
 	// PC must complete the Plantation quest by arresting RK Lah and getting the Zil Tribe to be friendly with Esbeth.
-	if (flags["PQ_RESOLUTION"] == 1 && flags["PQ_SECURED_LAH"] == 1)
+	if (flags["PQ_RESOLUTION"] >= 1 && flags["PQ_SECURED_LAH"] >= 2)
 	{
 		if (isAvailable) return true;
 		else addButton(0, "Plantation", tellBiancaAboutHowAwesomeYouAre, 0, "Snugglé Plantation", "Helping a megacorp isn’t necessarily a good thing, but stopping an anarchist and giving the natives a chance at diplomacy are.");
@@ -241,7 +241,7 @@ public function biancaStoryMenu(isAvailable:Boolean = false, inRandomEncounter:B
 	else if (!isAvailable) addDisabledButton(2, "???", "???", "You’ll need to have ratted out a dangerous scientist for this.");
 
 	// PC must rescue Saendra, know her, etc. Also checks for Deck 92 quest. If Saendra goes MIA at any point, lock this out with appropriate tooltip.
-	if (flags["MET_SAENDRA"] != undefined)
+	if (flags["SAEN MET AT THE BAR"] != undefined)
 	{
 		if (flags["SAENDRA_DISABLED"] != undefined && !isAvailable) addDisabledButton(3, "Saendra", "Saendra en Illya", "Saendra is gone. Unless you wanted to give yourself a reason to feel bad, then there’s no reason to talk about her.");
 		else if (isAvailable) return true;
@@ -250,7 +250,7 @@ public function biancaStoryMenu(isAvailable:Boolean = false, inRandomEncounter:B
 	else if (!isAvailable) addDisabledButton(3, "???", "???", "You’ll need to have saved a kitty-dog space captain from certain death to bring this up.");
 
 	// PC must rescue Fazian on Myrellion, planet must not be nuked.
-	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_RESCUE)
+	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_COMPLETE)
 	{
 		if (flags["KQ2_MYRELLION_STATE"] != undefined && !isAvailable) addDisabledButton(4, "Fazian", "Fazian", "With Myrellion turned to glass and the Myr lost to history, talking about Fazian would only bring up bad memories.");
 		else if (isAvailable) return true;
@@ -294,7 +294,7 @@ public function biancaStoryMenu(isAvailable:Boolean = false, inRandomEncounter:B
 	else if (!isAvailable) addDisabledButton(8, "???", "???", "You’ll need to save a certain vessel and its crew from parasitic infestation.");
 
 	// PC must save the Kashima and use the cure.
-	if (flags["WARGII_PROGRESS"] == 3)
+	if (flags["WARGII_PROGRESS"] >= 3)
 	{
 		if (isAvailable) return true;
 		else addButton(9, "Korg’ii Hold", tellBiancaAboutHowAwesomeYouAre, 9, "Korg’ii Hold", "On Uveto, you saved Ula’s tribe from certain death at the hand of a Pyrite-sponsored tribal war.");

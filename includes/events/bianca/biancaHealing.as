@@ -45,7 +45,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 		flags["BIANCA_EXPLAINED_AKANA"] = 1;
 
 		addButton(0, "Yes", biancaHealingAkanafflictions, inBooth, "Yes", "Whether or not Akane would be disappointed, you have your reasons for this.");
-		addButton(1, "No", tellBiancaYouWannaKeepTheLashes, undefined, "No", "Akane would approve of your loyalty, at any rate!");
+		addButton(1, "No", tellBiancaYouWannaKeepTheLashes, inBooth, "No", "Akane would approve of your loyalty, at any rate!");
 		return;
 	}
 	// PC under 100% HP And/Or Sore && PC has 'Gel Body'
@@ -402,7 +402,7 @@ public function biancaTreatmentSSTDFollowup(inBooth:Boolean):void
 		addDisabledButton(0, "Cure");
 	}
 
-	addButton(1, "No Cure", tellBiancaYouLikeYourSSTDs, undefined, "Do Not Cure", "You’re going to have to deal with it.");
+	addButton(1, "No Cure", tellBiancaYouLikeYourSSTDs, inBooth, "Do Not Cure", "You’re going to have to deal with it.");
 }
 
 public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
@@ -416,7 +416,8 @@ public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
 	if (inBooth)
 	{
 		output("Before you even finish agreeing, Bianca provides you three pills - white, pink, red - and a flask of water. You take what’s offered and gulp it down right away. A few minutes later, a gurgling sound ripples up from your belly, coursing upwards and colliding with your brain, sending out a broadcast of something <i>cleansing.</i> Seconds after, you feel perked up, the invisible weight of infection lifted.");
-		if (pc.hasSSTD("Furpies", true)) output(" A low growl and a sudden realization of your former infatuation with furrier men and women signals the end of your Furpies Infection. Somehow it’s rather relieving to look at that kui-tan male in line and not think about becoming his live-in cock milker.");
+		if (pc.sstdTotal() > 1) { }
+		else if (pc.hasSSTD("Furpies", true)) output(" A low growl and a sudden realization of your former infatuation with furrier men and women signals the end of your Furpies Infection. Somehow it’s rather relieving to look at that kui-tan male in line and not think about becoming his live-in cock milker.");
 		else if (pc.hasSSTD("Locofever", true)) output(" The swampy heat in your crotch clears up as the fever breaks and your body thrusts out a layer of cold sweat. The bacterial lust wreaking havoc on your mind is expelled, and Bianca wipes your moistened brow with a wet towel.");
 		else if (pc.hasSSTD("Sneezing Tits", true)) output(" Your nose clears up in the most satisfyingly crisp way possible. Neither nasal passage is congested and now you feel no insistently creeping urge to sneeze. All you can do is inhale deeply and exhale happily.");
 		output("\n\nDr. Ketria gives you a firm nod and lets out the breath she held, very much relieved that you took her up on the offer.");

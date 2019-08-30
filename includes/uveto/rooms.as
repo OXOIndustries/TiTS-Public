@@ -1571,7 +1571,7 @@ public function initUvetoRooms():void
 	rooms["UVIP N10"].planet = "PLANET: UVETO VII";
 	rooms["UVIP N10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP N10"].eastExit = "UVIP P10";
-	rooms["UVIP N10"].southExit = "UVIP N12";
+	//rooms["UVIP N10"].southExit = "UVIP N12";
 	rooms["UVIP N10"].westExit = "UVIP L10";
 	rooms["UVIP N10"].moveMinutes = 6;
 	rooms["UVIP N10"].addFlag(GLOBAL.ICYTUNDRA);

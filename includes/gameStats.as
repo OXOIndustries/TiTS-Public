@@ -1158,6 +1158,7 @@ public function statisticsScreen(showID:String = "All"):void
 		//Births header!
 		var totalOffspring:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
 		var totalProduce:Number = 0;
+		totalProduce += StatTracking.getStat("pregnancy/ovalasting eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/siegwulfe eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");

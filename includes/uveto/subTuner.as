@@ -3161,7 +3161,7 @@ public function taurStadiumCashier():void
 	//[EnterRace?] Ask her if you can enter the races here. //Only accessible if the PC is a taur.
 	processTime(2);
 	clearMenu();
-	addButton(0,"WatchRace",actuallyWatchTaurRace,undefined,"WatchRace","Spend some time watching a race for free.");
+	addButton(0,"WatchRace",watchTaurRace,undefined,"WatchRace","Spend some time watching a race for free.");
 	addButton(1,"BetRace",betRaceOnUveto,undefined,"BetRace","Bet on and watch a race here at U7.");
 	if(pc.isTaur()) addButton(2,"EnterRace?",enterTheRace,undefined,"Enter Race?","Ask her if you can enter the races here.");
 	addButton(14,"Leave",mainGameMenu);

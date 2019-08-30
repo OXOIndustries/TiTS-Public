@@ -653,7 +653,7 @@ public function shipCompareStat(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 	
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), ship.shipCapacity());
-	if(newShip.bonusCrewCapacity() > 0 || ship.bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(), ship.bonusCrewCapacity());
+	if(newShip.bonusCrewCapacity() > 0 || ship.bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(true), ship.bonusCrewCapacity(true));
 
 	//Upgrades Installed
 	shipTooltip += "\n<b>Weapon Capacity: </b>" + shipStatCompare(newShip.shipGunCapacity(), ship.shipGunCapacity());

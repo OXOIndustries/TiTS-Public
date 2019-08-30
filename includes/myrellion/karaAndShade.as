@@ -1577,6 +1577,8 @@ public function talkToShadeAboutHerFamily():void
 	}
 	else
 	{
+		var metSaendra:Boolean = flags["SAEN MET AT THE BAR"] != undefined;
+		
 		output("<i>“So, you have any family, Shade?”</i>");
 		output("\n\n<i>“Everybody’s got family,”</i> she chuckles. <i>“I didn’t just grow out of a pod, you know.”</i>");
 		output("\n\nYou ");
@@ -1592,19 +1594,19 @@ public function talkToShadeAboutHerFamily():void
 		output("\n\nYou cock an eyebrow, and Shade chuckles. <i>“I was getting to that, but yeah, I’ve got a girl of my own. She’s about your age, I’d guess, maybe a little younger. Had her real early, barely past eighteen - probably the only time </i>my<i> mom threatened to kill me. And I got plenty shit bringing her up, too, since she was half-ausar to boot.”</i>");
 
 		output("\n\n<i>“Her father was an ausar?”</i> you ask");
-		if(flags["MET_SAENDRA"] != undefined) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
+		if(metSaendra) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
 		output(".");
 
 		output("\n\nShade flashes you a grin. <i>“Her </i>other mother<i> was, yeah. Met her when I was just starting out in the hunter business; she was leading a crew of construction drones on a kaithrit colony, and they’d turned up my next lead while excavating: a body, buried in the jungle. Nasty business. She was older than me, and bigger, but just enough to take the lead and buy me a drink the next time I talked to her. One thing led to another, as they say, and by the time I’d brought in my quarry I was starting to show. One night, one time, without protection and look what happens. Still, I wouldn’t change a thing... I love my little girl and, I’ll be honest, I see her sire from time to time. We stay close, though she was too much of a play-girl to commit more than that. Has a trail of bastards behind her other than mine, I hear.”</i>");
 
 		output("\n\n<i>“This daughter of yours have a name, by the way?”</i>");
-		if(flags["MET_SAENDRA"] != undefined) output(" you press, crossing your fingers under the table.");
+		if(metSaendra) output(" you press, crossing your fingers under the table.");
 
 		output("\n\n<i>“Astra. Astra Irons. I’d say I hope you get to meet her sometime, ");
 		if(flags["SEXED_SHADE"] != undefined) output("but knowing you, I’d have to kill you afterwards");
 		else output("but I’d rather not have to kill you down the line");
 		output(",”</i> Shade laughs, though there’s a noticeable edge in her voice.");
-		if(flags["MET_SAENDRA"] != undefined) output(" Well, at least it’s not Saendra....");
+		if(metSaendra) output(" Well, at least it’s not Saendra....");
 	}
 	
 	processTime(6);
