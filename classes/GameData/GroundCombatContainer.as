@@ -1576,7 +1576,9 @@ package classes.GameData
 				addButton(4, "Do Nothing", waitRound);
 				return;
 			}
-			
+
+			if (ZilMaleTreated.processBeeMuskStun(pc)) return;
+
 			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
 			{
 				output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");

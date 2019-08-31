@@ -344,7 +344,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 		}
 		choices.push(femzilEncounter);
 		choices.push(femzilEncounter);
-		if(pc.hasStatusEffect("Zil Pheromones"))
+		if(pc.hasStatusEffect("Zil Pheromones") && pc.hasPregnancyOfType("ZilPregnancy"))
 		{
 			choices.push(maleZilPreggomonesEncounter);
 			choices.push(maleZilPreggomonesEncounter);
@@ -451,6 +451,15 @@ public function jungleMiddleEncounters():Boolean {
 			&& !pc.hasStatusEffect("Prai Cooldown") 
 			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
+		if (zilBullHere()) //I don't wanna make two functions oh no no, nonono
+		{
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
