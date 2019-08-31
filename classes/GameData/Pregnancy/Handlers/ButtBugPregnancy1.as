@@ -83,7 +83,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			// Ends via time if cycle is not active or eggs have been fertilized
-			if(mother.statusEffectv1("Butt Bug Egg Cycle") == 0 || mother.statusEffectv2("Butt Bug (Female)") > 0)
+			if((mother.statusEffectv1("Butt Bug Egg Cycle") == 0 && pData.pregnancyQuantity >= 30) || mother.statusEffectv2("Butt Bug (Female)") > 0)
 			{
 				var tEventCall:Function = (function(c_mother:Creature, c_pregSlot:int, c_thisPtr:BasePregnancyHandler):Function
 				{

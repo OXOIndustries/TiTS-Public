@@ -2493,10 +2493,12 @@
 					break;
 				case "cocks":
 				case "cocksDescript":
+				case "dicks":
 					buffer = cocksDescript();
 					break;
 				case "cocksDescriptLight":
 				case "cocksLight":
+				case "dicksLight":
 					buffer = cocksDescriptLight();
 					break;
 				case "cocksIsAre":
@@ -14026,6 +14028,7 @@
 			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
 			if (counter > 0 && hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 0 && hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
+			if (counter > 1 && gills) counter++;
 			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;
 			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
 			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;
@@ -22865,13 +22868,14 @@
 						}
 						break;
 					case "Butt Bug Egg Cycle":
-						if(requiresRemoval)
+						if(requiresRemoval && statusEffectv1("Butt Bug (Female)") == 1)
 						{
 							thisStatus.value1 = (thisStatus.value1 != 0 ? 0 : 1);
 							thisStatus.value2 = 0;
 							thisStatus.value4 = 0;
 							thisStatus.minutesLeft = (7 * 24 * 60);
 							requiresRemoval = false;
+							if(this is PlayerCharacter) AddLogEvent(ParseText("Your [pc.asshole] pulses " + (thisStatus.value1 == 0 ? "softly for a moment before settling down. <b>It seems like your attached butt bug has ended its egg-production cycle... for now.</b>" : "quickly in preparation to work overtime. <b>It seems your attached butt bug is ready to produce more eggs!</b>")), "passive", maxEffectLength);
 						}
 						if(statusEffectv1("Butt Bug (Female)") != 1) requiresRemoval = true;
 						break;

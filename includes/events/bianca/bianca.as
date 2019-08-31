@@ -127,12 +127,12 @@ public function lookAtBianca(from:int = 0):void
 	pc.lust(2+rand(5));
 
 	if (from == 0) output("Away from her work in town you have a good chance to look over Bianca. She commits herself to patient silence for the duration of your curiosity, smirking at the level of detail your eyes work to drink in.");
-	else if (from == 1) output("You work your eyes and your brain like never before, making the most of a few seconds to look over Bianca’s form. Her radiantly bemused expression is one such thing recorded by your rigorous inspection.");
+	else if (from == 1) output("You work your eyes and your brain like never before, making the most of a scant few seconds to look over Bianca’s maternal form. Her radiantly bemused expression is one such thing recorded by your rigorous inspection.");
 	else output("Even in the muted light here, and despite her low-profile, you can still make out all of Bianca’s important features.");
 	output("\n\nDr. Bianca Ketria stands at an imposing yet demure six-and-a-half feet of fair-skinned buxom beauty. Her beautifully effeminate and sophisticated terran appearance is accentuated by a pair of charming glasses and elegant vulpine features. Her lush, light-red lips are almost always curved into a natural smile unblemished by time. Amplifying her compassionate aura is a saccharine perfume with a scent that strongly hints at a steep price.");
 	if (biancaFamiliarity() >= 50) output(" Around her finger is a thin gold band, proof of marriage.");
 	output("\n\nVoluminous amethyst-purple eyes with slitted irises are the only other indicator of the light mod work she’s undergone, " + (from != 2 ? "and their speckled shine greatly enhances her every expression" : "and their soft shine lights up her face in the dark with a mystical glow") + ". The back-length golden-blonde hair on her head is evenly fringed; two shafts flow down the front of her shoulders like liquid gold, all parted by two playfully swiveling fox ears bigger than your [pc.hands].");
-	output("\n\nHer shapeliness is legendary, straight out of a teenager’s wet dreams -- Bianca is the very voluptuous <i>nature</i> of reproductive sexuality. Beneath her " + (from != 2 ? "medical uniform" : "casual attire") + " is a tall, fecund frame that has endured the stresses of motherhood.");
+	output("\n\nHer shapeliness is legendary, straight out of a teenager’s wet dreams -- Bianca is the very voluptuous <i>nature</i> of reproductive sexuality. Stretching beneath her " + (from != 2 ? "medical uniform" : "casual attire") + " is a tall, fecund frame that has endured the stresses of motherhood.");
 	output("\n\nRound, pendulous breasts with a suppleness and softness unparalleled bounce and jiggle on sudden movements, begging you to bury your face in their protective warmth. Wide, nubile hips swell out from below her thick middle, carrying thighs toned yet plush enough to wobble and substitute for earmuffs. The ass that strains her curve-hugging black pants is a vast, peach-shaped cushion that imprints itself on the entire front half of your brain, and likely does so to anyone else who glances at it.");
 	if (from == 0) output("\n\nHer bound boobs are suffocating in a black compression shirt, and " + (flags["BIANCA_SEEN_TITS"] == undefined ? "you can spot the plump outline of succulent nipples that your lips could feast on..." : "her fat, red nipples are bulging out against it in protest, begging to be plucked..."));
 	else output("\n\nHer high-set boobs are kept toasty warm under the red sweater she’s wearing for comfort, " + (flags["BIANCA_SEEN_TITS"] == undefined ? "though you can only guess what her nipples must look like under it... suckable and packed with milk..." : "and after such intimate contact with her you’d never forget the large, plump red nipples capping her luxurious cleavage..."));
@@ -141,8 +141,8 @@ public function lookAtBianca(from:int = 0):void
 	output("\n\nDespite her creamy plushness, she’s somewhat muscular too");
 	if (flags["MET_BIANCA"] & 2) output(", thanks all the running around she does escaping from danger and searching for patients");
 	output(". There’s an Olympian stamina about her that speaks of diligence in diet and exercise - " + (pc.tone >= 80 ? "you wonder if you’d be able to keep up with her in a marathon" : "you wonder if anyone could keep up with her in a marathon.") + " That said, you do identify the barest hint of fatigue behind her politeness, and a thin sheen of sweat on her forehead.");
-	output("\n\n" + (from != 0 ? "Completing her look is a pair of knee-length, grimy boots." : "Completing her look is a pair of knee-length, grimy boots that end just before some scuffed knee-pads.") + " At first they look mundane, but there’s an interesting design around the heels and soles -- perhaps something to lighten her step?");
-	output("\n\n" + (flags["BIANCA_SEEN_PUSSY"] == undefined ? "You can only guess as to what her hidden pussy must look like. There’s no visible bulge but the outline of female flesh there." : "Between her legs you know she’s hiding a tight, fat-lipped pussy that can get as wet as an ausar’s when aroused. You vividly recall the red color of her sapphic flesh and the sound she made when you teased her button-like clit.") + " Fit snug between her pillowy cheeks and kept warm by the overhead presence of her tails is her asshole, right where it belongs.");
+	output("\n\n" + (from != 0 ? "Completing her look is a pair of knee-length, grimy boots." : "Completing her look is a pair of knee-length, grimy boots that end inches away from some scuffed knee-pads.") + " At first they look mundane, but there’s an interesting design around the heels and soles -- perhaps something to lighten her step?");
+	output("\n\n" + (flags["BIANCA_SEEN_PUSSY"] == undefined ? "You can only guess as to what her hidden pussy must look like. There’s no visible bulge but the plump outline of female flesh there." : "Between her legs you know she’s hiding a tight, fat-lipped pussy that can get as wet as an ausar’s when aroused. You vividly recall the red color of her sapphic flesh and the sound she made when you teased her button-like clit.") + " Fit snug between her pillowy cheeks and kept warm by the overhead presence of her tails is most certainly her asshole, right where it belongs.");
 	output("\n\nAll in all, Bianca is <i>ravishing,</i> enchanted with an otherworldly glamor. Her body is attraction enough, but her smile is weapons-grade relief capable of thawing the most cold-hearted brutes out there.");
 	output("\n\n<i>“Am I to your expectations, [pc.name]?”</i> she grins.");
 
@@ -220,50 +220,50 @@ public function niceToMeetYouFoxMILFDoctor():void
 	}
 
 	var yesImSteele:String;
-	if (pc.isBimbo()) yesImSteele = "\n\n<i>“That’s me alright!”</i> She didn’t ask for the full story, but you’re happy to tell her all about yourself in hyper-bubbly fashion. Bianca gives a weakly impressed look, but you can tell she’s just tired. Now, how does she know about him? Maybe she’s one of dad’s flings?";
+	if (pc.isBimbo()) yesImSteele = "\n\n<i>“That’s me alright!”</i> She didn’t ask for the full story, but you’re happy to tell her all about yourself in hyper-bubbly fashion. Bianca gives a weakly impressed look, but you can tell she’s a lil’ tired. Now, how does she know about him? Maybe she’s one of dad’s flings?";
 	else if (pc.isBro()) yesImSteele = "\n\n<i>“Damn straight I am.”</i> You give a silly flex for effect, going into perhaps too much detail about yourself. Bianca gives a weakly impressed look, perhaps overcome by exhaustion or something else, so you ask how she knows about your father.";
 	else if (pc.isNice()) yesImSteele = "\n\nYou nod affirmatively, <i>“I’m indeed his [pc.son]. Did you know him?”</i>";
-	else if (pc.isMisch()) yesImSteele = "\n\nYou nod and flash her a cocksure grin, <i>“I’m definitely Victor’s kid! But, I gotta say... not just everyone knows his name, nor do they speak like they knew him... what about you?”</i>";
+	else if (pc.isMisch()) yesImSteele = "\n\nYou nod and flash her a cocksure grin, <i>“I’m definitely Victor’s kid! But, I gotta say... not just anyone knows his name, nor do they speak like they knew him... what about you?”</i>";
 	else yesImSteele = "\n\n<i>“Yes... I take it you were another of his conquests?”</i> you murmur.";
-	yesImSteele += "\n\nGesticulating wildly, Bianca shakes her head with a boisterous laugh. <i>“Oh no, I know very little about him. My husband once worked for Steele Tech and he never came home unhappy for it. I’m just surprised to meet the company’s inheritor!”</i>";
+	yesImSteele += "\n\nBianca shakes her head with a boisterous laugh, gesticulating wildly. <i>“Oh no, I know very little about him. My husband once worked for Steele Tech and he never came home unhappy for it. I’m just surprised to meet the company’s inheritor!”</i>";
 
 	if ((flags["MET_BIANCA"] & 6) == 0)
 	{
 		// Never Seen Her
 		if (flags["MET_BIANCA"] == undefined)
 		{
-			output("You’re taken aback when the source of disturbance makes herself known. A tall, curvaceous woman with long golden hair is standing there with a disarming smile on her smooth face. A chrome-silver drone hovers around her head in a protective manner. <i>“Good day!”</i> she calls with a wave.");
-			output("\n\nThe triangular fox ears overlapping her lengthy hair twitch cutely and the two tails peeking out from under her hip-hugging white coat jostle a few bags she wears on their errant swishing. You lower your weapon, not sure where your attention should fixate first on the doctor: her thick thighs, her superlative chest, or her vivid violet eyes that shine behind demure glasses.");
+			output("You’re taken aback when the source of disturbance makes herself known. A tall, curvaceous woman with long golden hair is standing there with a disarming smile on her smooth face. A chrome-silver drone hovers closely in a protective manner. She calls out to you with a genial wave, <i>“Good day!”</i>");
+			output("\n\nThe triangular fox ears overlapping her lengthy hair twitch cutely and the two tails peeking out from under her hip-hugging white coat jostle a few bags she wears on their errant swishing. You lower your weapon, not sure where your attention should fixate first on the doctor: her thick thighs, her superlative chest, or her vivid violet eyes shining behind a demure pair of glasses.");
 			output("\n\nAs she approaches, you decide the latter is for the best.");
 		}
 		// Seen her at booth
 		else
 		{
-			output("You are taken aback when the source of disturbance reveals herself. The golden-haired fox woman you glimpsed at the clinic booth in town steps into your sight, dressed in black fatigues under a form-fitting white coat. Her disarmingly affectionate smile distracts you from the drone hovering about her. Two long fluffy fox tails brush the air behind her waist, jostling the many bags on her belt.");
+			output("You are taken aback when the source of disturbance reveals herself. The golden-haired fox woman you glimpsed at the clinic booth in town steps into your sight, dressed in black fatigues under a form-fitting white coat. Her disarmingly affectionate smile distracts you from the drone hovering about her. Two long, fluffy fox tails brush the air behind her waist, jostling the many bags on her belt.");
 			output("\n\nShe makes sure to keep her vibrant violet eyes on yours the whole time she approaches. <i>“Good day!”</i> she calls out pleasantly, palms facing outward ready to greet you.");
 		}
 		output("\n\n<i>“Dr. Bianca Ketria, certified physician, at your service!”</i> she cheerily exclaims, eagerly extending her hand. Storing your weapon, you shake it, noting a thin gold band around her finger, and ask the easiest question you can: what is she doing out here?");
 		output(droneThought);
 		output("\n\n<i>“I’m part of the planet rush to provide medical attention to rushers like yourself. I’ll be moving around helping people in need and providing checkups in the local towns and colonies. Maybe you saw my booth? I’m afraid I cannot sell you anything out here, though if you’re feeling sick or tired I can take care of that right now!”</i>");
 		output("\n\nShe gestures affably enough, though you feel like you’re being a bit rushed. <i>“Ah, but my manners... forgive me.”</i>");
-		output("\n\nDr. Ketria proudly produces a sleek black and silver codex for you. The screen displays her picture, name, and scrolls automatically down the list of her qualifications from general surgeon to clinician. You see a long list of recommendations and references -- a few governmental and <i>military</i> markings are instantly recognizable.");
+		output("\n\nDr. Ketria proudly produces a sleek black and silver codex for you. The screen displays her picture, name, and scrolls automatically down the immense <b>column</b> of her qualifications from general surgeon to clinician. You see a long list of recommendations and references -- a few governmental and <i>military</i> markings are instantly recognizable.");
 		output("\n\nYou surmise that if it’s not legitimate it’s an astonishingly good forgery. <i>“Ah, I’m sorry...”</i> she scratches her head. <i>“May I ask your name?”</i> Before answering that question, you offer the handy gadget back.");
 		output("\n\n<i>“[pc.name] Steele,”</i> you respond, " + (pc.isBimbo() || pc.isNice() ? "smiling" : (pc.isMisch() ? "grinning" : "gazing")) + " back at her.");
-		output("\n\n<i>“" + (pc.short == "Bianca" ? "Really? I didn’t know I looked so " + pc.mf("handsome", "cute") + " as a [pc.raceShort]! But, more to the point, w" : "A-ha! W") + "ould I be correct in assuming you are the [pc.son] of Victor Steele?”</i> the vixen physician asks, her glowing eyes glinting with an air of esteem.");
+		output("\n\n<i>“" + (pc.short == "Bianca" ? "Really? I didn’t know I looked so " + pc.mf("handsome", "cute") + " as a [pc.raceShort]! But, more to the point, w" : "A-ha! W") + "ould I be correct in assuming you are the [pc.son] of Victor Steele?”</i> the vixen physician asks, her glowing eyes glinting with a sparkle of esteem.");
 		output(yesImSteele);
 		output("\n\nThe foxy doctor takes a deep breath, brushing a lock of sweaty gold from her forehead. <i>“Mm, I think I’ve taken up enough of your time for small talk. Before I leave, do you need any medical attention, [pc.name]? I don’t charge anything out here. Your health comes first.”</i>");
 	}
 	// PC has gotten a checkup and been introduced to Bianca in town
 	else
 	{
-		output("You are taken aback when you identify the source of disturbance: Dr. Bianca Ketria, the foxy physician who looked you over in town! She waves at you with a knowing smile before approaching. That smile she seems to always wear is reinforced by the apparent delight she takes in the confusion displayed in your [pc.eyes]. <i>“Good day, [pc.name]! How are you?”</i>");
+		output("You are taken aback when you identify the source of disturbance: Dr. Bianca Ketria, the foxy physician who looked you over in town! She waves at you with a knowing look of encouragement before approaching. That smile she seems to always wear is reinforced by the apparent delight she takes in the confusion swimming your eyes. <i>“Good day, [pc.name]! How are you?”</i>");
 		if (pc.isAss()) output("\n\nYou shrug your shoulders and say things are going well enough. The broader question is what she’s doing out in this dangerous place alone.");
 		else if (pc.isMisch()) output("\n\nYou chuckle and greet her in return, quipping that you’re in your element. You ask what she’s doing out in the wilds alone.");
 		else output("\n\nYou shake your head quickly and give her your winning smile, happy to see her again, but quickly ask why she’s traveling alone in these dangerous areas.");
 		output("\n\n<i>“I’m a doctor, and I can’t bear sitting still waiting for people to come to me. Like I told you in town, [pc.name], I am participating in this planet rush to help as many people as I can... for that goal, I wander.”</i> She brushes a sweaty lock of hair from her brow. <i>“I know the native species don’t take kindly to us but I have my ways of staying out of danger and deterring them if need be.”</i>");
 		output("\n\nShe gestures in an affable, upbeat manner. <i>“I can’t sell you anything out here, but if you’re hurt I will be happy to take care of that free of charge!”</i>");
 		output(droneThought);
-		output("\n\n<i>“By the way, [pc.name],”</i> she cuts off your building response, <i>“...are you perchance Victor Steele’s [pc.son]?”</i> There’s a soft flutter among her eyelashes. <i>“The question has been on my mind since you told me in town, but I try to keep things brief when I’m working.”</i>");
+		output("\n\n<i>“By the way, [pc.name],”</i> she cuts off your building response, <i>“...are you perchance Victor Steele’s [pc.son]?”</i> There’s a soft flutter of her eyelashes when she inquires. The words linger for a little longer than she likes. <i>“The question has been on my mind since you told me in town. I wanted to ask, but I try to keep things brief when I’m working.”</i>");
 		output(yesImSteele);
 		output("\n\nThe foxy doctor takes a deep breath, brushing a lock of sweaty gold from her forehead. <i>“Mm, I think I’ve taken up enough of your time for small talk. Before I leave, do you need any medical attention, [pc.name]? I won’t charge anything out here, as my booth pays for my excursions.”</i>");
 	}
@@ -289,16 +289,16 @@ public function biancaRunningIntoYou():void
 	// Intro 12, if PC Cuddled with Bianca 3 times but did not confront
 	if (false)
 	{
-		output("\n\nYou happen upon Bianca again, still regarding you grimly. She turns away and prepares to leave, not wasting any of her imprisoned breath on words. You get the feeling you’ll never get anything out of her until you put your [pc.foot] down and try to get to the bottom of her bizarre behavior.");
+		output("\n\nYou happen upon Bianca again. Sure enough, she regards you grimly, eluding your attentions. Her changed mannerisms darken to your visual pressure. She pivots, walking away, not wasting any of her imprisoned breath on words. If you don’t put your [pc.foot] down, you’ll never get to the bottom of her bizarre change in behavior.");
 
 		//[Confront] [Back Off]
 	}
 	// Bianca Procs, Intro 11, Familiarity 100 or Lover
 	else if (biancaFamiliarity() >= 100 && rand(5) == 0)
 	{
-		output("\n\nA sweet and fascinating perfume fragrance alerts you to Bianca long before she steps into sight, approaching you quietly... romantically. Her walk is finely tuned to showcase her curves and present her dreamy body’s finest assets in a way that causes a brief bit of sensory overload. It’s only natural that your [pc.hands] weave around her hip when she’s close enough, and it’s only natural that she presses her cherry-pale lips to yours, keen on sharing the hidden frenzy roiling inside through a mutual taste.");
-		output("\n\nBianca pulls away, colored a faint, mischievous red, only to close in to peck the tip of your nose, each cheek, and your forehead, all while rubbing small, sensuous circles into your temple. <i>“" + (biancaLover() ? "I love you, [pc.name]. I hope in time you’ll see every way I can show mine. Though... you’ll be waiting a very long time," : "I’m... very happy that we can do that, [pc.name].") + "”</i> she simpers, fingertips drumming her lips.");
-		output("\n\n<i>“But, shall I cure what ails you?”</i>");
+		output("\n\nA sweet and fascinating perfume fragrance tips you off to Bianca’s proximity long before she steps into sight, approaching you quietly... romantically. Her walk is finely tuned to showcase her generous curves and present her dreamy body’s finest assets in a way that causes a brief bit of sensory overload. It’s only natural that your [pc.hands] wolfishly weave around her hips, and it’s only natural that she presses her cherry-pale lips to yours, keen on sharing the eternal compassion contained inside through a mutual taste.");
+		output("\n\nBianca pulls away only after savoring her connection with you, colored a faint, mischievous red, only to close in to peck the tip of your nose, each cheek, and your forehead, all while rubbing small, sensuous circles into your temple. <i>“" + (biancaLover() ? "I love you, [pc.name]. I hope in time you’ll see every way I can show mine. Though... you’ll be waiting a very long time," : "I’m... very happy that we can do that, [pc.name].") + "”</i> she simpers, fingertips drumming on your vertebrae.");
+		output("\n\n<i>“But, shall I cure what ails you?”</i> the doctor asks, constantly tempting.");
 	}
 	// Bianca Procs, Intro 10, Familiarity >=80
 	else if (biancaFamiliarity() >= 80 && rand(4) == 0)
@@ -306,12 +306,12 @@ public function biancaRunningIntoYou():void
 		switch (planet)
 		{
 			case "mhen'ga": output("Squatting next to a sparkling stream of clear water, your eyes follow its trail into a full-on river that animals of all shapes drink from. Before you can get relaxed, you hear something that pulls on your delicate neck hairs."); break;
-			case "tarkus": output("You take a seat under a large piece of debris for momentary shelter, but the toppling a husk you just passed has you dashing from your cover to see what’s coming your way."); break;
+			case "tarkus": output("You take a seat under a large piece of debris for momentary shelter, but the toppling of a husk you recently passed has you dashing from your cover to see what’s coming your way."); break;
 			case "myrellion": output("You narrowly avoid stepping your foot in a flimsy trap and triggering a landmine as you round the next corner in this once-defended strategic point. The yawning shriek of disturbed metal behind you has you flatten your back to the wall. Something’s coming your way..."); break;
 		}
 		output("\n\nWhere you once stood, a familiar figure enters with a blank stare. It’s Bianca, and you’ve got the element of surprise!");
-		if (pc.isNice()) output("\n\nYou move quickly and quietly behind Bianca, hugging her at the waist. She jumps, but starts laughing. <i>“Looks like <i>I</i> win this time,”</i> you say, stroking her tails and nuzzling into her shoulder.");
-		else if (pc.isMisch()) output("\n\nYou dive at Bianca and hug her from behind. She keeps her footing remarkably well despite your ambush. The motherly fox graciously encourages your indulgent, floof-focused affections. <i>“You better keep your eyes open in the future, Bianca. Never know what’s around the next corner!”</i>");
+		if (pc.isNice()) output("\n\nYou move quickly and quietly behind the crafty vulpine, hugging her at the waist, breathing in the shampooed scent of her freshly-cleaned hair. She jumps, but starts laughing. <i>“Looks like <i>I</i> win this time, Bianca,”</i> you say, stroking her tails and nuzzling into her shoulder.");
+		else if (pc.isMisch()) output("\n\nYou leap at the fox and hug her from behind. Her footing is thrown off, but her impeccable balance wins out even with the added burden of you. The motherly physician wordlessly and graciously encourages your indulgent, floof-focused affections. <i>“You better keep your eyes open in the future, Bianca. Never know what’s around the next corner!”</i>");
 		else output("\n\nYou saunter slowly up behind Bianca and wrap your arms around her, holding her tight. She gasps quietly and sinks back into you wordlessly. <i>“I win, Bianca. You should be a bit more mindful than that.”</i>");
 		output("\n\nStill panting from her regular routine, Dr. Ketria separates from you and gives you the usual look. <i>“Can I do anything for you today, [pc.name]? You know that I worry...”</i>");
 	}
@@ -321,18 +321,18 @@ public function biancaRunningIntoYou():void
 		output("The palpable feeling of being watched suffuses every facet of your perception -- you whip your head back and find nothing. A sound catches your attention, and your [pc.ears] twitch with the force of a flexing bicep. Something must be toying with you now. The sound comes again from one side, then another a few seconds later. Grinning, you launch yourself at a nearby hiding spot, confident you’ll get the drop on whoever or whatever it is.");
 		output("\n\nYou hop down...");
 		output("\n\n...to find nothing.");
-		output("\n\nBrow furrowing, you let out an agitated sigh. Just before you turn to leave, you feel two arms like satiny garter wrap around your shoulders amid a whisper in your [pc.ear]. <i>“Looks like I win this time.”</i>");
+		output("\n\nBrow furrowing, you let out an agitated sigh. Before you can leave, you feel two arms like satiny garter wrap around your shoulders amid a whisper in your [pc.ear], <i>“Looks like I win this time.”</i>");
 		output("\n\nAh crap. You’ve been caught in the middle of the mofu.");
-		if (pc.isNice()) output("\n\n<i>“I suppose there’s always next time, Bianca,”</i> you say, sinking back into her bosom.");
+		if (pc.isNice()) output("\n\n<i>“I suppose there’s always next time, Bianca,”</i> you murmur, sinking back into her bosom.");
 		else if (pc.isMisch()) output("\n\n<i>“You won’t win next time, Bianca!”</i> you quip, but your disappointment evaporates in the fields of her ample bosom.");
 		else output("\n\n<i>“You won’t next time, doctor,”</i> you quietly remark, availing yourself of her bountiful bosom as consolation.");
-		output("\n\nAfter a few seconds she reluctantly lets you go and clasps her hands behind her back, " + (biancaLover() ? "her three" : "both") + " tails weaving around and caressing your [pc.legNoun] by their snowy pinpoints. <i>“If there’s something I can do for you- anything, please let me know, [pc.name].”</i>");
+		output("\n\nYou stay bound in her inescapable hug, reciprocating and even groping back. Inevitably, all you care to do is rest your head on her bust, sinking your being into her cleavage, to be part of that wonderful, infinite love. A hand strokes the back of your head with maternal encouragement. Sadly and reluctantly, she lets you go and clasps her hands behind her back, " + (biancaLover() ? "her three" : "both") + " tails weaving around and caressing your [pc.legNoun] by their snowy pinpoints. <i>“If there’s something I can do for you- anything, please let me know, [pc.name].”</i>");
 	}
 	// Bianca Procs, Intro 8, Familiarity >=60
 	else if (biancaFamiliarity() >= 60 && rand(2) == 0)
 	{
-		output("The genteel Dr. Ketria makes no attempt to surprise you this time, simply appearing in front of you with a wave and stern walk. Before you even register the fullness of her matronly body she’s standing inches from you, drawing you into a firm, lovely hug. All of your worries fall off like shreds of damaged armor, leaving you little else to do but seek security in the comforting warmth of her large chest.");
-		output("\n\nWhen her arms unthread, she steps away caressing your cheek, planting a small kiss on your nose. <i>“I’m glad to see you again, [pc.name]. Is there anything I can do for you today?”</i>");
+		output("The genteel Dr. Ketria makes makes no attempt to surprise you this time, and she ‘forgets’ to greet you in usual fashion. Before you even register the fullness of her matronly body, she’s standing inches from you, drawing you into a firm, lovely hug. All of your worries fall off like shredded scraps of sundered armor, leaving you with little else to do but seek security in the inviting comfort of her incredible bosom.");
+		output("\n\nYou’re kept face-deep in her cleavage for a length of time that makes a mockery of your perceptions of time. You’ve lost yourself entirely in Bianca’s gentle caresses. Her stepping away would be a shock, but the touch to your cheek and the kiss on your nose both ease the necessary (but deeply aggravating) separation. <i>“I’m glad to see you again, [pc.name]. Is there anything I can do for you today?”</i>");
 	}
 	// Bianca Procs, Intro 7
 	// At Familiarity >=51%, ONLY THE ABOVE ARE USED
@@ -340,13 +340,13 @@ public function biancaRunningIntoYou():void
 	{
 		output("Rapid footfalls throw up every self-defense instinct in your mind; you frantically turn to face the source. Before you’re all the way around, you feel someone jump into you, " + (pc.tallness < 68 ? "and you tumble down for it. Once your vision corrects you look up to see Bianca straddling you with a delighted expression. She nuzzles your [pc.face], kisses you on the cheek, then pulls you to your feet." : "and you barely keep your footing. When you take stock of the situation, your mind registers Bianca pressing her head firmly upon your [pc.chestNoun]. She kisses you on the cheek before breaking the hug."));
 		output("\n\n<i>“I’m happy to see you [pc.name]!”</i> the fox all but yips. <i>“Will you be needing anything? Besides an affectionate touch...”</i>");
-		output("\n\nPerhaps.");
+		output("\n\nPerhaps!");
 	}
 	// One-Time Intro Variant, Familiarity >30, Met Bianca at a Bar
 	// Bianca disappears for the rest of the day, refresh next day.
 	else if ((flags["MET_BIANCA"] & 16) && (flags["MET_BIANCA"] & 64) != 64 && biancaFamiliarity() >= 30 && rand(7) == 0)
 	{
-		output("Your trek has your thoughts wandering in all directions, but your mild reverie is interrupted by exigent cries. In one direction, right over a slope, you can hear heavy panting; just a second before you heard what sounded like a nasty tumble. It could be a trap to lure curious adventurers like you in, but it could also be someone who ran afoul of something really bad.");
+		output("Your trek has your thoughts wandering in all directions, but your mild reverie is interrupted by exigent cries. In one direction, right over a slope, you can hear heavy panting; a second before you heard what sounded like a nasty tumble. It could be a trap to lure curious adventurers like you in, but it could also be someone who ran afoul of something bigger than them.");
 		output("\n\nIt’s still worth a look.");
 		output("\n\nCreeping closer to the source of distress reveals it to be a familiar, golden-haired fox physician.");
 		switch (planet)
@@ -356,22 +356,22 @@ public function biancaRunningIntoYou():void
 			case "myrellion": output(" Bianca is knelt in a small crater"); break;
 		}
 		output(" clutching her stomach. Her tails are wrapped around her gut and her white coat has has been frayed on its ends. She’s curled up in obvious pain.");
-		output("\n\nThrowing caution to the wind you hurry to her side. The prognosis is good: nothing untoward seems to have happened, and her drone still hovers airily nearby clean as a whistle. There’s no sign of a scuffle for miles.");
+		output("\n\nThrowing caution to the wind, you hurry to her side, sprinting so hard that your blood begins to burn. The prognosis is good: nothing untoward seems to have occurred here, and her drone still hovers airily nearby, clean as a whistle. There’s no sign of a scuffle for miles.");
 		output("\n\nBianca looks up at you with a grimace on her face and you ask what’s happened.");
 		output("\n\n<i>“[pc.name]?”</i> She winces, then looks back down. <i>“This must look bad from where you’re standing.”</i> Ain’t that the truth. <i>“Don’t worry, I’m not hurt... or pregnant,”</i> she... snickers? <i>“I had a sudden cramp and I tripped. The pain’s fading now.”</i>");
-		output("\n\nThe doctor gives you a shy smile and leans back, sighing heavily but still keeping one hand on her gut.");
-		output("\n\nWhat you saw of Bianca off-duty comes rushing back straight away: she was sitting listless in front of a plate of food that had gone cold. Based on that knowledge, a germane leap in logic leads you to one simple conclusion.");
+		output("\n\nThe doctor gives you a shy smile and leans back, sighing heavily. One tummy-squeezing fist remains glued to her gut.");
+		output("\n\nWhat you saw of Bianca off-duty comes rushing back straight away: she was listing in front of a plate of food that had gone cold, starved for rest as much as nourishment. Based on that knowledge, a germane leap in logic leads you to one simple conclusion.");
 		if (pc.isNice()) output("\n\nGingerly squatting, you place a hand on the fox-woman’s shoulder. <i>“Bianca, are you eating enough? You’re in too good of a shape to just keel over.”</i> You offer your overworked vixen some rations with a politely insistent look.");
 		else if (pc.isMisch()) output("\n\nReaching for your belongings, you kneel next to the fox. <i>“Hey, it’s probably just hunger pains. ‘Ya looked pretty tired the other night so you better eat this!”</i> you say, producing some of your rations with a stress-eating grin. <i>“Doctor’s orders!”</i>");
 		else output("\n\n<i>“You’re not someone I’d expect to forget to eat properly,”</i> you bluntly state, drawing back a [pc.hand] and producing one of your ration kits for her. <i>“Ironic, isn’t this?”</i>");
-		output("\n\nBianca’s shimmering eyes denote your gift and you with some surprise. She regards the snack-pack hesitantly, only taking it when you sit down next to her. Your body language outright says <i>‘don’t go anywhere until it’s all gone.’</i>");
-		output("\n\nThe doctor tears into the package like a... well, a fox in a rabbit’s nest. Just seconds later she’s scarfed down the chocolate, crackers, and finished a bottle of water with all the grace and desperation of an impoverished animal. Considerable relief flows over you like a waterfall to see her ears perk up and her tails flourishing again. They even caress your [pc.legs] with an affectionate touch.");
+		output("\n\nBianca’s shimmering eyes denote your gift and you with some surprise. She regards the snack-pack hesitantly, only taking it when you sit down next to her. Your body language outright says <i>‘don’t go anywhere until it’s all gone.’</i> She takes the hint.");
+		output("\n\nThe doctor tears into the package like a... well, a fox in a rabbit’s nest. Mere seconds later, she’s scarfed down the chocolate, crackers, and finished a bottle of water with all the grace and desperation of an impoverished animal. Considerable relief flows down your neck seeing see her ears perk up and her tails flourishing again. The softness swishes affectionately against your [pc.legOrLegs], resting in your lap for a few seconds.");
 		output("\n\nYou’re not about to leave before you know she’s alright, but you don’t push. You can’t force an answer out of her-- it’s something she’ll have to give you when she’s ready. Meanwhile, Bianca’s blushing and avoiding your [pc.eyes], thinking quietly, stealing glances at you... then scrunching her body inward again. You know she’s feeling much better.");
-		output("\n\nFor starters, you don’t hear any upset gurgling in her belly.");
-		output("\n\n<i>“I’m terribly, terribly sorry,”</i> she says suddenly, standing to her feet quickly, <i>“I’ve made myself look foolish, and I won’t let this happen again.”</i> She regards you with a mix of gratitude and melancholy. <i>“Sometimes even I get a little tired.”</i>");
+		output("\n\nFor starters, you don’t hear an upset gurgling in her belly.");
+		output("\n\n<i>“I’m terribly, terribly sorry,”</i> she says suddenly, briskly rising to her feet, <i>“I’ve made myself look foolish, and I won’t let this happen again.”</i> She regards you with a mix of gratitude and melancholy. <i>“Sometimes, even I get a little tired. It’s unavoidable.”</i>");
 		output("\n\nSounds like she needs a break.");
-		output("\n\nThankfully, she agrees. <i>“I’m going to do just that, then. I’ll see you again, [pc.name]... and thank you.”</i>");
-		output("\n\nBianca nods her head once and saunters off, leaving you to do the same.");
+		output("\n\nThankfully, she agrees. <i>“I’m going to do exactly that. I’ll see you again, [pc.name]. Thank you... I’m sorry you had to see this.”</i>");
+		output("\n\nBianca nods evenly and traipses off with a gait of tell-tale embarrasment. No reason to stick around here now.");
 
 		flags["MET_BIANCA"] |= 64;
 		biancaGoneForTheDay();
@@ -381,8 +381,8 @@ public function biancaRunningIntoYou():void
 	// Bianca Procs, Intro 6, Familiarity >25
 	else if (biancaFamiliarity() >= 25 && rand(6) == 0)
 	{
-		output("<i>“Hiya [pc.name]!”</i> An all too familiar voice rings loudly, making you jump in surprise. When you turn, Bianca is already standing inches away, giggling at your reaction. Her chest is heaving, but she keeps a prim and proper countenance.");
-		output("\n\n<i>“Will you be needing anything?”</i>");
+		output("<i>“Hiya [pc.name]!”</i> a polite woman’s voice rings loudly, making you jump in surprise. When you turn, Bianca is already standing inches away, giggling at your reaction. Her chest is heaving, but she keeps a prim and proper countenance.");
+		output("\n\n<i>“Will you be needing anything?”</i> she asks expectantly.");
 		output("\n\nStraight to the point...");
 	}
 	// Bianca Procs, Intro 5, Familiarity >25
@@ -404,15 +404,15 @@ public function biancaRunningIntoYou():void
 		}
 		output(" and you are keen on not being caught in a complicated position.");
 		output("\n\nIt takes some careful maneuvering to avoid the worst of it. Out of danger you get a chance to decompress, and it’s one of the nicer breaths you’ve been able to take.");
-		output("\n\n<i>“[pc.name]?”</i> a light, matronly voice calls out from beside you.");
-		output("\n\nYou recoil in shock when you register Dr. Ketria standing within arms reach. How couldn’t you hear her coming...?");
-		output("\n\nShe flashes you a coy smile, looking very... <i>smug</i> about it. <i>“Well, it is in my best interest to keep a low profile,”</i> she laughs cutely, soon dropping that expression. <i>“So, do you need treatment, [pc.name]? You look like you’ve seen a ghost...”</i>");
+		output("\n\n<i>“[pc.name]?”</i> a calm, light voice calls out from beside you.");
+		output("\n\nYou recoil, twisting and grimacing in shock before you register Dr. Ketria standing within arms reach. How couldn’t you hear her coming...?");
+		output("\n\nShe flashes you a coy smile, looking very... <i>smug</i> about it. <i>“Well, it is in my best interest to keep a low profile,”</i> she titters cutely, soon exchanging playfulness for seriousness. <i>“So, do you need treatment, [pc.name]? You look like you’ve seen a ghost...”</i>");
 		output("\n\nCheeky fox...");
 	}
 	// Bianca Procs, Intro 4
 	else if (flags["BIANCA_WILDERNESS_INTROS"] > 2 && rand(4) == 0)
 	{
-		output("Voices nearby speak in genial tones, but you know better than to judge a book by its cover in hostile territory. When you discover the source of the noises, a strange sense of catharsis washes over you. It’s Bianca, seeing someone off. Apparently they didn’t need anything, as she’s already surveying the landscape for her next destination. It’s not long before she sees you, and lights up reflexively.");
+		output("Voices nearby speak in genial tones, but you know better than to judge a book by its cover in hostile territory. When you discover the source of the noises, a strange sense of catharsis washes over you. It’s Bianca, seeing someone off. Apparently they didn’t need anything, as she’s already surveying the landscape for her next destination. It’s not long before she sees you, lighting up reflexively.");
 		output("\n\n<i>“[pc.name]!”</i> Dr. Ketria beams, jogging to you, hair and fluff trailing in sweaty strands behind her. She wipes an arm across her head, ears folded, before catching her breath. <i>“Small world, huh? Shall I provide a level of care...?”</i>");
 		output("\n\nShe really needs to take some time to herself one of these days...");
 		IncrementFlag("BIANCA_WILDERNESS_INTROS");
@@ -420,8 +420,8 @@ public function biancaRunningIntoYou():void
 	// Bianca Procs, Intro 3
 	else if ((flags["BIANCA_WILDERNESS_INTROS"] > 2 && rand(3) == 0) || flags["BIANCA_WILDERNESS_INTROS"] == 2)
 	{
-		output("You train your eyes on every blind spot around. It only just now occurred to you how easily someone or something in your position could be ambushed. Just before you move on, your [pc.ears] flex - a series of barely audible footfalls clap in your blind spot. You ready your [pc.weapon] and whirl around just as a voice calls out to you amidst the tension.");
-		output("\n\n<i>“Good day, [pc.name],”</i> Bianca’s gentle voice reaches you. <i>“It’s good to see you again!”</i>");
+		output("You train your eyes on every blind spot around. It’s only now occurring to you how easily someone or something in your position could be ambushed. Just before you move on, your [pc.ears] flex - a series of barely audible footfalls clap in your blind spot. You ready your [pc.weapon] and whirl around as a voice calls out to you amidst the tension.");
+		output("\n\n<i>“Good day, [pc.name],”</i> Bianca’s soft and gentle voice reaches you. <i>“It’s good to see you again!”</i>");
 		output("\n\nEven though she’s trying to look like a hero, you can tell she’s a bit tired. You shake your head and then her hand -- it <i>is</i> good to see a friendly face again. That smile on her lips has an uncanny way of dismissing any fomenting distress.");
 		output("\n\nBianca breathily intones, <i>“Can I offer assistance? I’m always happy to help!”</i>");
 		IncrementFlag("BIANCA_WILDERNESS_INTROS");
@@ -430,14 +430,14 @@ public function biancaRunningIntoYou():void
 	else if ((flags["BIANCA_WILDERNESS_INTROS"] > 2 && rand(2) == 0) || flags["BIANCA_WILDERNESS_INTROS"] == 1)
 	{
 		output("The sounds of a fight, or maybe a tango, have you approach the next ridge with caution. The noises fade quickly and your fears are allayed when you finally get eyes on the area and see none other than Dr. Ketria finishing a conversation with " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "rodenian", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + ". When her patient heads off, she remains behind under guard of her drone to tap away at her codex.");
-		output("\n\nYou call out to the foxy doctor and reciprocate her smile. Pocketing her handy gadget, she quickly comes to meet you. <i>“[pc.name], it’s good to see you again! I hope you’re taking care of yourself,”</i> she huffs. <i>“Do you need medical attention?”</i>");
+		output("\n\nYou call out to the foxy doctor and return her smile. Pocketing her handy gadget, she quickly comes to meet you proper. <i>“[pc.name], it’s good to see you again! I hope you’re taking care of yourself,”</i> she huffs. <i>“Do you need medical attention?”</i>");
 		IncrementFlag("BIANCA_WILDERNESS_INTROS");
 	}
 	// Bianca Procs, Intro 1
 	else
 	{
 		output("<i>“Ah! [pc.name]!”</i> a familiar voice rings out. When you turn, you see Bianca jogging up to you with all haste, split coattails flapping in the wind above her golden fluff. There’s a thin layer of sweat on her brow, and you detect a faint, ragged breathing in her speech. <i>“I almost lost you... hee hee. Well, since I’ve caught you here,”</i> she exhales, <i>“can I offer first aid?”</i>");
-		output("\n\nYou’re still taken off guard her sincerity and diligence. You may never get used to a doctor that seeks people like you out just to offer them a checkup!");
+		output("\n\nYou’re still taken off guard her sincerity and diligence. You may never get used to a doctor that seeks people like you out all to offer them a checkup!");
 		IncrementFlag("BIANCA_WILDERNESS_INTROS");
 	}
 
@@ -475,13 +475,13 @@ public function biancaVisitedInTheWilderness():void
 		// PC Procs, Intro 3 (familiarity >25)
 		if (biancaFamiliarity() >= 25 && rand(3) == 0)
 		{
-			output("The flaxen fox pockets her codex and spins on her heel to take you in with a brighter expression than usual. Her face changes gradually from inquisitive to playful, and you can’t help but mimic her tiny giggle. <i>“I’m happy to see you again, [pc.name]. I hope you’re doing well... and staying out of trouble.”</i>");
-			output("\n\nDr. Ketria gestures widely before folding her hands at her waist, waiting for your answer. What do you do?");
+			output("The flaxen fox pockets her codex and spins on her heel to take you in with a brighter expression than usual. Her face changes gradually from inquisitive to playful, and you can’t help but mimic her tiny giggle. <i>“I’m happy to see you again, [pc.name]. I hope you’re doing well... and staying out of trouble. Might I be of assistance?”</i>");
+			output("\n\nDr. Ketria smirks, folding her hands at her waist, waiting for your answer. What do you do?");
 		}
 		// PC Procs, Intro 2
 		else if (rand(2) == 0)
 		{
-			output("Bianca’s head dips on your approach, burying itself into a mechanically orange light. You attribute that to her simply being oh-so-very busy. Just looking at her when she’s not maintaining her professionalism is enough time to spot where her posture is strained from work too strenuous for one person. Eventually, though, she turns and pockets her codex, presenting you an open mouthed smile as part of her mannered expression.");
+			output("Bianca’s head dips on your approach, burying itself into a mechanically orange light. You attribute that to her simply being oh-so-very busy. Having the opportunity to look at her when she’s not maintaining her studious professionalism is enough time to spot where her posture is strained from work too strenuous for one person. Eventually, though, she turns and pockets her codex, speaking to you with the body language of a tireless philanthropist.");
 			output("\n\n<i>“Good day, [pc.name],”</i> she waves, approaching quickly. <i>“Not always that I’m the one found. Shall I perform a field checkup for you?”</i>");
 		}
 		// PC Procs, Intro 1
@@ -625,7 +625,7 @@ public function hangingOutInTheWildWithMyFoxMilfBroess(gotTreatment:Boolean):voi
 	else if (flags["BIANCA_TIME_SPENT"] == 1 || biancaFamiliarity() < 25)
 	{
 		output("It’s not your intention to tease Bianca, but that’s what it feels like when you ask her to take a break with you again. ");
-		output("\n\n<i>“Alright, [pc.name], I can do that.”</i> Her reaction when prompted to relax is just as awkward as it was the first time. Like before, she doesn’t meet your gaze, and seems distracted, just looking around and fidgeting obsessively with the tails in her lap.");
+		output("\n\n<i>“Alright, [pc.name], I can do that.”</i> Her reaction when prompted to relax is just as awkward as it was the first time. Like before, she doesn’t meet your gaze, and seems distracted, rapidly casting her eyes around and fidgeting obsessively with the tails in her lap.");
 		output("\n\nIt’s... well, it’s a start.");
 		flags["BIANCA_TIME_SPENT"] = 2;
 	}
@@ -636,15 +636,15 @@ public function hangingOutInTheWildWithMyFoxMilfBroess(gotTreatment:Boolean):voi
 		if (flags["BIANCA_TIME_SPENT"] == 3) output(" still");
 		output(" catches you off guard when Bianca reciprocates your query with her familiar, motherly smile. <i>“Ah, okay, [pc.name].”</i> ");
 		output("\n\nWell, that’s progress! ");
-		output("\n\nHer growing openness assuages your hesitance -- it feels much less weird having her sit next to you than it has in the past. There’s a warm emotion starbursting in her eyes. Maybe that’s just the mod though. The athletic doctor looks like she’s already enjoying the chance to stop in her day. Even if you had nothing to say, spending time in good company is suitable enough rest.");
+		output("\n\nHer growing openness assuages your hesitance -- it feels much less weird having her sit next to you than it has previously. There’s a warm emotion starbursting in her eyes. Maybe that’s just the mod though. The athletic doctor looks like she’s already enjoying the chance to stop in her day. Even if you had nothing to say, spending time in good company is suitable enough rest.");
 		flags["BIANCA_TIME_SPENT"] = 3;
 	}
 	// Repeat Time, Familiarity 35-44
 	else if (flags["BIANCA_TIME_SPENT"] == 3 || biancaFamiliarity() < 45)
 	{
-		output("Bianca’s eyes glow a bit brighter when prompted to relax with you. Her lips spread easily into an ear-to-ear smile. <i>“A break once in a while is just fine,”</i> she says, already setting down near you. ");
-		output("\n\n<i>“So, how is your day, [pc.name]?”</i> she asks, and she listens attentively and quietly until it’s her turn. It’s not long before you realize you’ve spent more time engaging her than the usual amount of time she’s stuck around in the past!");
-		output("\n\nSeeing her take it easy almost feels like a reward for your persistence. The demure physician isn’t the type of person to think it, but you wonder if you came off as an annoying fly for it all. ");
+		output("Bianca’s eyes glow a bit brighter when prompted to relax with you. Her lips spread easily into an ear-to-ear smile. <i>“A break once in a while is fine,”</i> she says, already setting down near you.");
+		output("\n\n<i>“So, how is your day, [pc.name]?”</i> she asks, and she listens attentively and quietly until it’s her turn. It’s not long before you realize you’ve spent more time engaging her than the usual amount of time she’d stuck around for!");
+		output("\n\nSeeing her take it easy almost feels like a reward for your persistence. The demure physician isn’t the type of person to think it, but you wonder if you came off as an annoying fly for it all.");
 		output("\n\nWhen your conversation trails off, she leans back and exhales pleasantly, waiting to hear what else you might have to say. In her eyes right now, you are all that matters.");
 		flags["BIANCA_TIME_SPENT"] = 4;
 	}
@@ -652,17 +652,17 @@ public function hangingOutInTheWildWithMyFoxMilfBroess(gotTreatment:Boolean):voi
 	else if (flags["BIANCA_TIME_SPENT"] == 4 || biancaFamiliarity() < 50)
 	{
 		output("It’s probably the look in your eye that tells Bianca what you’re thinking. She doesn’t need to be verbally prodded to stride to your side and sit herself close by, a knowing grin on her glowing face. " + (flags["BIANCA_TIME_SPENT"] == 4 ? "<i>“I never realized how much I missed doing this until you came along, you know.”</i>" : "<i>“As long as you’re around, I can steal plenty of time for myself.”</i>"));
-		output("\n\nYour mouths are forming words on autopilot, bantering back and forth in an easy trade of pleasantries. Bianca’s a refined woman, but there’s a lot of bluntness and playfulness that she gives away when at rest. The fox is never not polite though, always focusing on agreements, concentrating on the good in whatever conversation enters one ear then exits the other.");
+		output("\n\nYour mouths articulate the foundations of deep, meaningful conversation on autpilot. Bianca is bantering back and forth with you in an easy trade of pleasantries. She’s a refined woman, but there’s a lot of bluntness and playfulness that she gives away when at rest. The fox is never not polite though, always focusing on agreements, concentrating on the good in whatever dialogue enters one ear then exits the other.");
 		output("\n\nWhat will you do now that you have her undivided attention?");
 		flags["BIANCA_TIME_SPENT"] = 5;
 	}
 	// Repeat Time, Bianca is Lover (add to pile)
 	else if (biancaLover() && rand(4) == 0)
 	{
-		output("Bianca’s eyes light up - more so than they already do - and she darts toward you with madly affectionate intent burning like suns behind them. " + (pc.tallness < 74 ? "Her arms weave you into her knot; she sits down suddenly, bringing your smaller form into the fullness of hers. Your head ends up nestled in her chest, resting against her sizeable boobs." : "Like a needy puppy she jumps straight into your [pc.arms]. You don’t have the strength to stay upright after that. When you’re both finally sitting, she’s got her arms around your neck and her head resting on your shoulder, letting out a long, happy breath."));
+		output("Bianca’s eyes light up - more so than they already do - and she darts toward you with madly affectionate intent burning like depthless, life-nurturing suns behind them. " + (pc.tallness < 74 ? "Her arms weave you into her knot; she sits down suddenly, bringing your smaller form into the fullness of hers. Your head ends up nestled in her [pc.name]-absorbing bust, resting against her sizeable boobs." : "Like a needy puppy she jumps straight into your [pc.arms]. You don’t have the strength to stay upright after that. When you’re both finally sitting, she’s got her arms around your neck and her head resting on your shoulder, letting out a long, happy breath, so obviously pleased to be entangled with her lover."));
 		output("\n\n<i>“[pc.name]?”</i> Bianca whispers, prompting you to meet her gaze. <i>“I love you.”</i>");
 		output("\n\nThe rosiness on her cheeks spreads to yours in that flash of fondness. Her mixed playful-intimate voice is like the stroke of a feather to your senses.");
-		output("\n\nWhen you say the same, she gushes, and tightens her embrace.");
+		output("\n\nWhen you say the same, she gushes, and tightens her embrace. Now... what else is on your mind?");
 	}
 	// Repeat Time, Familiarity >51, rand 1
 	else if (rand(3) == 0)
@@ -1077,7 +1077,7 @@ public function biancaBoothIntro():void
 		output("\n\nThat agitation can only grow as they see her figure cold and still.");
 		output("\n\nBefore things get out of hand and the situation is grossly misunderstood, you hurry away from the line, bumping into a few workers on the way. <b>You won’t be able to see Bianca unless you catch her one-on-one.</b>");
 		// The [Line Up] option grays out until the player [Confront]'s her [[[Not In Part 1]]]
-		// Tooltip: You won't be able to see Bianca at work unless you work out what's going on in a more private encounter away from prying eyes.
+		// Tooltip: You won’t be able to see Bianca at work unless you work out what’s going on in a more private encounter away from prying eyes.
 	}
 	// Replace all <=50 with these.
 	// Familiarity 100 and is Lover (add to pile)
