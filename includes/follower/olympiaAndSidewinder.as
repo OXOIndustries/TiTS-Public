@@ -832,7 +832,7 @@ public function olympiaTailcockTalk():void
 	showOlympia();
 	author("Savin");
 	output("<i>“So, tail attachments...”</i> you prompt.");
-	output("<i>“Hm? Ah, yes. There are plenty of aftermarket options. I currently own ");
+	output("\n\n<i>“Hm? Ah, yes. There are plenty of aftermarket options. I currently own ");
 	//list Olympia’s owned dicks here. She comes with a doggy dick
 	if(olympia.inventory.length == 0) output("a canine phallus");
 	else if(olympia.inventory.length == 1) output(olympia.inventory[0].description + " and a canine phallus");
