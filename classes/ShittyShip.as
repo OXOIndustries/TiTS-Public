@@ -132,11 +132,11 @@ package classes {
 		{
 			return shipGunCapacityRaw;
 		}
-		public function bonusCrewCapacity():Number
+		public function bonusCrewCapacity(statDisplay:Boolean = false):Number
 		{
 			var bonus:Number = 0;
 			if(this is ClydesdaleK7) bonus += 2;
-			bonus += equippedItemCountByClass(AdvancedQuarters)*2;
+			bonus += (equippedItemCountByClass(AdvancedQuarters) * (statDisplay ? 1 : 2));
 			return bonus;
 		}
 		public function shipCrewCapacity():Number

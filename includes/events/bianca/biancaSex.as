@@ -322,7 +322,8 @@ public function letBiancaHandleTheSituation():void
 	{
 		case "mhen'ga": output(" rock"); break;
 		case "tarkus": output(" solid surface"); break;
-		case "myrellion": output("wall"); break;
+		case "myrellion": output(" wall"); break;
+		default: output(" wall"); break;
 	}
 	output(", breathy and lust-amplified moans come easy. Her fingers stroke your");
 	if (!pc.isCrotchExposed()) output(" clothed");
@@ -732,6 +733,7 @@ public function biancaBJTwo(cockIdx:int):void
 		case "mhen'ga": output(" the tree"); break;
 		case "tarkus": output(" the rock"); break;
 		case "myrellion": output(" the wall"); break;
+		default: output(" the wall"); break;
 	}
 	if (pc.hasKnees()) output(" and bend your [pc.knees].");
 	else output(" and slide up on your [pc.leg].");
@@ -1065,7 +1067,7 @@ public function biancasThroatfulOfCum(cum:Number):void
 	output("\n\nBianca’s lips close and purse, and then there’s an unmissable gulp. You can see the bulge of your heavy load traveling down her throat. She opens her mouth with an ‘ahhh’ and sticks her tongue out, showing that there’s nothing left in a rod-readying display of depravity. You pet her ears and and finally step back before your blood starts flowing again, crumpling to the ground like an autumn leaf.");
 	if (flags["BIANCA_SEXED_FACE"] == undefined) output("\n\n<i>“I’m really glad you took the lead, [pc.name],”</i> the fox coos.");
 	else output("\n\n<i>“Hehe, you really know how to take charge, [pc.name]! That was amazing, and I loved it!”</i> the fox congratulates.");
-	output("\n\n<i>“I loved your taste, too. Thanks for letting me have it,”</i> she says with a broad smile. <i>“And thank you for the meal as well.”</i> She pats her belly appreciatively" + (cum < 2500 ? "." : ", highHyperCum: which wobbles obligingly with vast liquid weight. Hey, you didn’t cum on her clothes, so that’s fine!"));
+	output("\n\n<i>“I loved your taste, too. Thanks for letting me have it,”</i> she says with a broad smile. <i>“And thank you for the meal as well.”</i> She pats her belly appreciatively" + (cum < 2500 ? "." : ", which wobbles obligingly with vast liquid weight. Hey, you didn’t cum on her clothes, so that’s fine!"));
 	if (pc.isNice()) output("\n\n<i>“Sorry if I got carried away,”</i> you say, <i>“I hope you’re not upset.”</i>");
 	else if (pc.isMisch()) output("\n\n<i>“Uh... sorry if I was too rough. You’ve got a way of making me wanna go all in, though,”</i> you smirk.");
 	else output("\n\n<i>“Hope that didn’t hurt too much.”</i>");
@@ -1717,12 +1719,9 @@ public function biancaContinuesTheFingering(vagIdx:int):void
 	else if (pc.clitLength < 1) output(" gumball");
 	output(" rod");
 	output(". <i>“You’ll be thinking about being taken by someone, or maybe many people...”</i> When the sensation becomes too much she glides off your buzzer. <i>“...And you’re going to be thinking them making you theirs, maybe even breeding you...”</i>");
-	output("\n\nYour [pc.pussiesLightIsAre] so hot that " + (pc.hasVaginas() ? "they cum":"it cums") + " at the barest touches, trapped in a hellish loop of constant and easily triggered orgasm. No word adequately describes how trivial it is to turn you into a sodden slut just by playing across your clitoral hood. Numerous hyper-erotic fantasies play out in your eyes on each tug to your throbbing bud. ");
-	if(pc.balls > 0)
-	{
-		output("Your [pc.ballsNoun] churn" + (pc.balls == 1 ? "s":"") + " with a heavy load on top of her busy knuckles, demanding service that will never come. Your feminine side is getting all of the attention this time, something your skyward-facing [pc.cocksLight] don’t exactly approve of.");
-	}
-	else output("Needy pulses of [pc.dickSkin] above Bianca’s busy hand beg for service that will never come. Your [pc.cocksLightIsAre] not happy about this arrangement where only your feminine side gets the attention.");
+	output("\n\nYour [pc.pussiesLightIsAre] so hot that " + (pc.hasVaginas() ? "they cum":"it cums") + " at the barest touches, trapped in a hellish loop of constant and easily triggered orgasm. No word adequately describes how trivial it is to turn you into a sodden slut just by playing across your clitoral hood. Numerous hyper-erotic fantasies play out in your eyes on each tug to your throbbing bud.");
+	if(pc.balls > 0) output(" Your [pc.ballsNoun] churn" + (pc.balls == 1 ? "s":"") + " with a heavy load on top of her busy knuckles, demanding service that will never come. Your feminine side is getting all of the attention this time, something your skyward-facing [pc.cocksLight] don’t exactly approve of.");
+	else if(pc.hasCock()) output(" Needy pulses of [pc.dickSkin] above Bianca’s busy hand beg for service that will never come. Your [pc.cocksLightIsAre] not happy about this arrangement where only your feminine side gets the attention.");
 	// pc Big Clit
 	if (pc.clitLength >= 4) output("\n\nThe tugs turns into full-on handjobs. Bianca encircles your ladylike fuckpole with her thumb and index finger, forming a band of magnificent pleasure. A filthy feeling of bliss comes, and in your state you can only approve of it. <i>“Hehe, a clit should never get this big. You’re making this even easier for me. It’s evident you’re the kind of [pc.boyGirl] who wants to be played with.”</i> Just when you thought it couldn’t get better, she vibrates her rod-rubbers in similar fashion to high-quality vibrators, overpowering you with your strongest femgasm yet.");
 	// pc Multi Vagina
@@ -2260,60 +2259,61 @@ public function biancaNomNomNom():void
 	{
 		if (flags["BIANCA_SEXED_LICK_HER"] == undefined)
 		{
-		
+			output("It’s rare for Bianca to be inconsistent. Something’s distracting her, and it’s done a good enough job that she can’t sit still. She can’t focus on her careful, lily-soft coaxings. The precise talent you’ve known has plainly vanished without comment, and in its place is impulsive gratification more appropriate for the cheapest body in a brothel than a composed and fiery lover. A gasp of genuine glee slips off her tongue; she looks at you, cheeks a scarlet shade, a scent of scintillating estrus rising off her.");
 		}
 		// Repeat Time (pc in Rut or Has Pheromones)
 		else
 		{
-			output("It’s rare for Bianca to be inconsistent. Something’s distracting her, and it’s done a good enough job that she can’t sit still, she can’t focus on her careful, lily-soft ministrations. The precise talent you’ve known has plainly vanished without comment, and in its place is impulsive gratification more appropriate for the cheapest body in a brothel than a composed and fiery lover. A gasp of genuine glee slips off her tongue; she looks at you, cheeks a scarlet shade, a vapor of scintillating estrus rising off her.");
-			// pc Rut (overrides pheromones)
-			if (pc.inRut())
-			{
-				output("\n\n<i>“[pc.name]!”</i> she cries through her spit-flooded mouth, gripping your [pc.cocks]. The ache of restrained breeding desire is a dropkick to the face compared to the slow shove of a fertile woman’s broadcast pheromones. In a head-swimming haze of critical reproductive lust you grab the fox-woman’s hands and drag her to her feet, slamming your groin into hers and crushing her back in a bear hug. Precum spurts out");
-				if (pc.isCrotchExposed()) output(" into your boner-binding clothing in tune with every hump.");
-				else output(" onto her shirt in tune with every hump that slaps your [pc.ballsNoun] into her seething pussy.");
-				output("\n\nIt’s a wanton and shameless thing that, for a moment, she surrenders to. The armor of civility and propriety cracks. Heavy shards fall away, peeling like the layers of a plantain, revealing the cooing, craving woman underneath, bound to the rules of nature.");
-				if (biancaFamiliarity() < 50) output("\n\n<i>“W-Wait... no this isn’t-”</i> she stammers, cutting through your haze.");
-				else output("\n\n<i>“Anything, [pc.name]! For you! Anything!”</i> she groans, cutting through your haze.");
-				output("\n\nYou stop yourself, gripping her shoulders tight, gazing into her ghostly-violet eyes past two lust-fogged lenses. Her voice brought a moment of clarity... an idea in the midst of gushing breeding urges. To punish this slutty fox for her mischief, for all her teasing... yes, there’s only one way to make it happen, and " + (biancaFamiliarity() < 50 ? "and you don’t need your dick to do it!" : "and it’s not by thrusting your dick inside her. You’ll bust a much bigger nut when she comes begging for the real deal later."));
-			}
-			// pc Pheromones
-			else
-			{
-				output("\n\n<i>“I’m going to cum... I-I-I’m this... [pc.name], your scent just makes me...”</i> She stops teasing you. <i>“I can’t tell if it’s my animal side... or if I’m just that vulnerable but I can’t do this!”</i> Her voice comes cracked and unsteady. <i>“I need and want you! The strain is intolerable, I can’t concentrate! Please,”</i> she finishes, opening her arms invitingly, <i>“take me!”</i>");
-				output("\n\nSitting up with a knowing smile, you take her by the wrists and stand her up, already knowing what to do. You would be remiss if you didn’t return the teasing, planting one [pc.hand] on a fertility-fattened boob and sticking the other between her legs. Bianca squeals and buckles at the knee, crumpling onto you for support. It was hot and slippery when you touched it, but when she orgasmed... it felt like your [pc.hand] was in the wrong place when a sink’s hot water knob was turned all the way.");
-				output("\n\nBianca’s so wet, so sensitive. Every touch brings delightful little clenches that spurts and drips of femme-cum leak from her. The more undiluted musk she breathes in right from a certain [pc.raceShort]’s pores, the ‘worse’ it gets. The statuesque fox-woman is reduced to a faintly shuddering whore. Her nostrils flare to their absolute limits, drawing the maximum amount of your ultrasexual aroma in. It permeates every blood cell and clouds her judgment, and every idle motion that occurs to her sends ripples through her fertile body, her fat ass, and her big, melon-shaped tits. No longer civilized, no longer even polite, she grinds and humps against you, droning and whimpering in pheromone-induced bliss. ");
-				output("\n\nYou could push her down right now and have your way with her, but there’s a better way, a way that " + (biancaFamiliarity() < 50 ? "doesn’t involve you breaking your promise and taking advantage of her." : "will leave her much more vulnerable to a proper fucking later."));
-				output("\n\nBeing rough is the only way you’re going to accomplish it, too. She likes it rough anyway.");
-			}
-			// Merge
-			// imagePack: embed octomush Bianca Bent Over pic here
-			output("\n\nYou grip her shoulders so hard that your [pc.fingers] lock into her skin, spinning her around and pinioning her against the nearest");
-			switch (getPlanetName().toLowerCase())
-			{
-				case "mhen'ga" : output(" tree"); break;
-				case "tarkus": output(" rock"); break;
-				case "myrellion": output(" wall"); break;
-			}
-			output(". Orgasm strikes the overwhelmingly aroused fox like lightning. She shivers to your bestial show and claws at the surface in front of her, your insistent grinding doing nothing to hold her down. She’s too strong and too horny to be held back.");
-			if (pc.inRut()) output(" Just like you.");
-			output("\n\nGrappling with her waist, you pull on her like a drawer until she’s bent into an appealing L-shape. The wobbles of her bubble-butt through her pants are practically rebellious, declaring that it will never be hidden away no matter how firmly clutched the oppressive fabric is. Bianca’s ass is much more reminiscent of a seat cushion like this, both girthy cheeks pressing out without a single wrinkle; both globes are perfectly spherical, unleashing huge amounts of dominant decisions into your senses. ");
-			output("\n\nNeedless to say, having this position over her conjures up every hormonal thrill imaginable.");
-			output("\n\n<i>“C-Come on... pull it all down.”</i> Like a " + (biancaLover() ? "triple" : "double") + "-ended scarf, Bianca’s tails weave around you in a pattern reminiscent of a hug, exposing the entirety of her blanched vista with an over-the-shoulder wink. The clink of an unbuckling belt reaches your twitchy ear. <i>“I’m just a horny fox who deserves to be put in her place. You’ll love what you see, I promise...”</i> ");
-			output("\n\n<i>Seeing is believing,</i> they say, but what you’re <i>feeling</i> between her legs is enough. Liquid splotches are invisible against clothes so dark... but they’re soaked. The cum-sponged threads have absorbed all they’re willing to take. You lift the slut-doctor’s coat, stroking the bases of her tails approvingly before fish-hooking the hem of her pants and yanking so hard you nearly go tumbling with her.");
-			output("\n\nThe first thing that happens is your face is pounded by a sledgehammer of fertile milfscent. It’s a dense cloud of eye-blearing need half-turned to vapor upon exposure to your connected ozone. Her black and pink panties, struggling to contain an ocean of burgeoning buttocks, look ready to tear clean off. A flood of femme-cum has reduced the lacy lingerie to a mess of leaking juice seeping through the microscopic gaps between the threads. Bianca seizes on the moment of your marvelling to hum a soft hymn that matches the up and down sway of her thumpable rump. The smoothest pillow in the galaxy is undulating against your pelvis and stomach with the most debauched undulations imaginable.");
-			output("\n\nA glow of genuine gratification on her face pushes you to finish the job. Wiggling one finger into the hip-string of her underwear, you pull it down over the sweaty hills of her perspiring vale, folding the material into a fragrant corkscrew and wringing more liquid out of it. The cleft of her vanilla mountains comes into full view, followed by the detachment of silky-soft panties from ripe milf-twat.");
-			output("\n\nThick cords of femslime follow her undergarment down to the border of her inner thigh, gradually coalescing and writhing for her reactive spasms. Gooey streams pour into a stitch-stressing depression below, puddling with the rest of Bianca’s abject shamelessness. The realization, or rather, the reminder that <b>your musk had rendered her into this state</b> comes close to giving you a heart attack.");
-			output("\n\nOverwhelming eroticism feeds back into your mind, drawing lecherous fantasies directly upon your canvas. First her ass, then her pussy; her smell... her womanhood is completely exposed to you. It’s vulnerable... and as if to encourage you, her tails are stroking your [pc.hairNoun], fluttering down your [pc.arms], spooling around your abdomen and ‘scratching’ at your [pc.skinFurScales]. Drool waterfalls from your lips down your chin. Being this close to her plump cunt is suffocating. The sheer amount of heat radiating from its luscious exterior could be carved.");
-			output("\n\nHer aft orbs, too, are universe-class. Beads of sweat trickle down her big round spheres. The twin moons ripple majestically, begging to be stroked, maybe licked, definitely spanked. Each hemisphere is nearly as large as your head, and should the gap be closed, they will definitely outsize it, be able to cover it completely with plenty of forgiving skin to bulge down your cheeks. Pornstars everywhere are so fucking jealous of this caretaker’s wide, cushiony ass that they cry themselves to sleep over how imperfect theirs are compared to it.");
-			output("\n\nThey don’t even know it, either. They’d quit their jobs out of shame on the spot. The best part? <i>It’s all for you.</i>");
-			output("\n\nYou sniff again, much too fascinated by the aroma of a woman you feel is in your control, and raise your hands for the first sampling of this butt bounty...");
-			output("\n\n...Only to be knocked backwards! She leaned forwards and bucked in your direction, knocking you to the ground! In that same motion, a tail moves to block her vagina, adding insult to injury.");
-			output("\n\n<i>“Hee hee,”</i> Bianca giggles, <i>“you were taking too long, [pc.name]!”</i> You stand up, " + (pc.hasCock() ? "well-aware of your violently twitching [pc.cocksLight]" : "a feeling of denial suffusing your [pc.pussiesLight]") + ". <i>“Forgive me,”</i> she grins with a courtesan’s cultivated enthusiasm, <i>“but I want you to come at me with all you’ve got.”</i>");
-			output("\n\nThe more things change, the more they stay the same...");
-			output("\n\nWiggling her butt, she chews her lower lip. <i>“Just...”</i> she husks, <i>“you’re good at what you do, and I love what you’re capable of! Now,”</i> she bends forward a little more, virtually imprinting those rolling hinterlands on the front of your brain, <i>“look at me... " + (biancaFamiliarity() < 50 ? "look how unforgivable I am, getting this aroused for a [pc.boyGirl] like you!" : "look at how wet I am because of you... only you can deal with this. It’s all yours, whatever you want to do!") + "”</i>");
-			output("\n\nThe cunt-blocking tail sweeps away, one side drenched in its owner’s juices. You rise up in the blink of an eye, eyes firmly locked on her dramatically soaked red slit, steaming from contact with cooler air now. It shines with molten bliss in the light. You take one step only to stop, watching Bianca slide a finger through the plush crease. <i>“Enjoy me, [pc.name], make me cry your name!”</i> she says. <i>“" + (biancaFamiliarity() < 50 ? "I bet I won’t be able to stand when you’re through..." : "When you’re done teasing me, we’ll meet later tonight... and you can show me just how good a <b>mate</b> you really are.") + "”</i>");
+			output("Bianca’s motions aren’t consistent. Technique is gradually assimilated into wantonness. Pure animalism overtakes her. She’s not just pawing at your groin, but your whole body. Groaning in need, the vulpine medic gives up accuracy and teasing for blatant whorishness, breathing rapidly and heavily. Your doctor gives up on her oh-so kind treatment for bestial indulgence, sniffing close to your erogenous zones - she gives up control, and instead of goading you into anything, she pleases you simply by acting like a slut broadcasting an aroma of ovulation.");
 		}
+		// pc Rut (overrides pheromones)
+		if (pc.inRut())
+		{
+			output("\n\n<i>“[pc.name]!”</i> she cries through her spit-flooded mouth, gripping your [pc.cocks]. The ache of restrained breeding desire is a dropkick to the face compared to the slow shove of a fertile woman’s broadcast pheromones. In a head-swimming haze of critical reproductive lust you grab the fox-woman’s hands and drag her to her feet, slamming your groin into hers and crushing her back in a bear hug. Precum spurts out");
+			if (pc.isCrotchExposed()) output(" into your boner-binding clothing in tune with every hump.");
+			else output(" onto her shirt in tune with every hump that slaps your [pc.ballsNoun] into her seething pussy.");
+			output("\n\nIt’s a wanton and shameless thing that, for a moment, she surrenders to. The armor of civility and propriety cracks. Heavy shards fall away, peeling like the layers of a plantain, revealing the cooing, craving woman underneath, bound to the rules of nature.");
+			if (biancaFamiliarity() < 50) output("\n\n<i>“W-Wait... no this isn’t-”</i> she stammers, cutting through your haze.");
+			else output("\n\n<i>“Anything, [pc.name]! For you! Anything!”</i> she groans, cutting through your haze.");
+			output("\n\nYou stop yourself, gripping her shoulders tight, gazing into her ghostly-violet eyes past two lust-fogged lenses. Her voice brought a moment of clarity... an idea in the midst of gushing breeding urges. To punish this slutty fox for her mischief, for all her teasing... yes, there’s only one way to make it happen, and " + (biancaFamiliarity() < 50 ? "and you don’t need your dick to do it!" : "and it’s not by thrusting your dick inside her. You’ll bust a much bigger nut when she comes begging for the real deal later."));
+		}
+		// pc Pheromones
+		else
+		{
+			output("\n\n<i>“I’m going to cum... I-I-I’m this... [pc.name], your scent just makes me...”</i> She stops teasing you. <i>“I can’t tell if it’s my animal side... or if I’m just that vulnerable but I can’t do this!”</i> Her voice comes cracked and unsteady. <i>“I need and want you! The strain is intolerable, I can’t concentrate! Please,”</i> she finishes, opening her arms invitingly, <i>“take me!”</i>");
+			output("\n\nSitting up with a knowing smile, you take her by the wrists and stand her up, already knowing what to do. You would be remiss if you didn’t return the teasing, planting one [pc.hand] on a fertility-fattened boob and sticking the other between her legs. Bianca squeals and buckles at the knee, crumpling onto you for support. It was hot and slippery when you touched it, but when she orgasmed... it felt like your [pc.hand] was in the wrong place when a sink’s hot water knob was turned all the way.");
+			output("\n\nBianca’s so wet, so sensitive. Every touch brings delightful little clenches that spurts and drips of femme-cum leak from her. The more undiluted musk she breathes in right from a certain [pc.raceShort]’s pores, the ‘worse’ it gets. The statuesque fox-woman is reduced to a faintly shuddering whore. Her nostrils flare to their absolute limits, drawing the maximum amount of your ultrasexual aroma in. It permeates every blood cell and clouds her judgment, and every idle motion that occurs to her sends ripples through her fertile body, her fat ass, and her big, melon-shaped tits. No longer civilized, no longer even polite, she grinds and humps against you, droning and whimpering in pheromone-induced bliss. ");
+			output("\n\nYou could push her down right now and have your way with her, but there’s a better way, a way that " + (biancaFamiliarity() < 50 ? "doesn’t involve you breaking your promise and taking advantage of her." : "will leave her much more vulnerable to a proper fucking later."));
+			output("\n\nBeing rough is the only way you’re going to accomplish it, too. She likes it rough anyway.");
+		}
+		// Merge
+		// imagePack: embed octomush Bianca Bent Over pic here
+		output("\n\nYou grip her shoulders so hard that your [pc.fingers] lock into her skin, spinning her around and pinioning her against the nearest");
+		switch (getPlanetName().toLowerCase())
+		{
+			case "mhen'ga" : output(" tree"); break;
+			case "tarkus": output(" rock"); break;
+			case "myrellion": output(" wall"); break;
+			default: output(" wall"); break;
+		}
+		output(". Orgasm strikes the overwhelmingly aroused fox like lightning. She shivers to your bestial show and claws at the surface in front of her, your insistent grinding doing nothing to hold her down. She’s too strong and too horny to be held back.");
+		if (pc.inRut()) output(" Just like you.");
+		output("\n\nGrappling with her waist, you pull on her like a drawer until she’s bent into an appealing L-shape. The wobbles of her bubble-butt through her pants are practically rebellious, declaring that it will never be hidden away no matter how firmly clutched the oppressive fabric is. Bianca’s ass is much more reminiscent of a seat cushion like this, both girthy cheeks pressing out without a single wrinkle; both globes are perfectly spherical, unleashing huge amounts of dominant decisions into your senses. ");
+		output("\n\nNeedless to say, having this position over her conjures up every hormonal thrill imaginable.");
+		output("\n\n<i>“C-Come on... pull it all down.”</i> Like a " + (biancaLover() ? "triple" : "double") + "-ended scarf, Bianca’s tails weave around you in a pattern reminiscent of a hug, exposing the entirety of her blanched vista with an over-the-shoulder wink. The clink of an unbuckling belt reaches your twitchy ear. <i>“I’m just a horny fox who deserves to be put in her place. You’ll love what you see, I promise...”</i> ");
+		output("\n\n<i>Seeing is believing,</i> they say, but what you’re <i>feeling</i> between her legs is enough. Liquid splotches are invisible against clothes so dark... but they’re soaked. The cum-sponged threads have absorbed all they’re willing to take. You lift the slut-doctor’s coat, stroking the bases of her tails approvingly before fish-hooking the hem of her pants and yanking so hard you nearly go tumbling with her.");
+		output("\n\nThe first thing that happens is your face is pounded by a sledgehammer of fertile milfscent. It’s a dense cloud of eye-blearing need half-turned to vapor upon exposure to your connected ozone. Her black and pink panties, struggling to contain an ocean of burgeoning buttocks, look ready to tear clean off. A flood of femme-cum has reduced the lacy lingerie to a mess of leaking juice seeping through the microscopic gaps between the threads. Bianca seizes on the moment of your marvelling to hum a soft hymn that matches the up and down sway of her thumpable rump. The smoothest pillow in the galaxy is undulating against your pelvis and stomach with the most debauched undulations imaginable.");
+		output("\n\nA glow of genuine gratification on her face pushes you to finish the job. Wiggling one finger into the hip-string of her underwear, you pull it down over the sweaty hills of her perspiring vale, folding the material into a fragrant corkscrew and wringing more liquid out of it. The cleft of her vanilla mountains comes into full view, followed by the detachment of silky-soft panties from ripe milf-twat.");
+		output("\n\nThick cords of femslime follow her undergarment down to the border of her inner thigh, gradually coalescing and writhing for her reactive spasms. Gooey streams pour into a stitch-stressing depression below, puddling with the rest of Bianca’s abject shamelessness. The realization, or rather, the reminder that <b>your musk had rendered her into this state</b> comes close to giving you a heart attack.");
+		output("\n\nOverwhelming eroticism feeds back into your mind, drawing lecherous fantasies directly upon your canvas. First her ass, then her pussy; her smell... her womanhood is completely exposed to you. It’s vulnerable... and as if to encourage you, her tails are stroking your [pc.hairNoun], fluttering down your [pc.arms], spooling around your abdomen and ‘scratching’ at your [pc.skinFurScales]. Drool waterfalls from your lips down your chin. Being this close to her plump cunt is suffocating. The sheer amount of heat radiating from its luscious exterior could be carved.");
+		output("\n\nHer aft orbs, too, are universe-class. Beads of sweat trickle down her big round spheres. The twin moons ripple majestically, begging to be stroked, maybe licked, definitely spanked. Each hemisphere is nearly as large as your head, and should the gap be closed, they will definitely outsize it, be able to cover it completely with plenty of forgiving skin to bulge down your cheeks. Pornstars everywhere are so fucking jealous of this caretaker’s wide, cushiony ass that they cry themselves to sleep over how imperfect theirs are compared to it.");
+		output("\n\nThey don’t even know it, either. They’d quit their jobs out of shame on the spot. The best part? <i>It’s all for you.</i>");
+		output("\n\nYou sniff again, much too fascinated by the aroma of a woman you feel is in your control, and raise your hands for the first sampling of this butt bounty...");
+		output("\n\n...Only to be knocked backwards! She leaned forwards and bucked in your direction, knocking you to the ground! In that same motion, a tail moves to block her vagina, adding insult to injury.");
+		output("\n\n<i>“Hee hee,”</i> Bianca giggles, <i>“you were taking too long, [pc.name]!”</i> You stand up, " + (pc.hasCock() ? "well-aware of your violently twitching [pc.cocksLight]" : "a feeling of denial suffusing your [pc.pussiesLight]") + ". <i>“Forgive me,”</i> she grins with a courtesan’s cultivated enthusiasm, <i>“but I want you to come at me with all you’ve got.”</i>");
+		output("\n\nThe more things change, the more they stay the same...");
+		output("\n\nWiggling her butt, she chews her lower lip. <i>“Just...”</i> she husks, <i>“you’re good at what you do, and I love what you’re capable of! Now,”</i> she bends forward a little more, virtually imprinting those rolling hinterlands on the front of your brain, <i>“look at me... " + (biancaFamiliarity() < 50 ? "look how unforgivable I am, getting this aroused for a [pc.boyGirl] like you!" : "look at how wet I am because of you... only you can deal with this. It’s all yours, whatever you want to do!") + "”</i>");
+		output("\n\nThe cunt-blocking tail sweeps away, one side drenched in its owner’s juices. You rise up in the blink of an eye, eyes firmly locked on her dramatically soaked red slit, steaming from contact with cooler air now. It shines with molten bliss in the light. You take one step only to stop, watching Bianca slide a finger through the plush crease. <i>“Enjoy me, [pc.name], make me cry your name!”</i> she says. <i>“" + (biancaFamiliarity() < 50 ? "I bet I won’t be able to stand when you’re through..." : "When you’re done teasing me, we’ll meet later tonight... and you can show me just how good a <b>mate</b> you really are.") + "”</i>");
 	}
 	else
 	{
