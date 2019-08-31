@@ -536,7 +536,7 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 			output("\n\n<i>“I don’t think I will ever fully comprehend you, [pc.name] Steele... but, I believe you. And you know what?”</i> Bianca muses with a dopey grin, <i>“...I bet your dad didn’t slay a dragon.”</i>");
 			output("\n\nYeah, he probably laid it. ");
 			output("\n\nYou both laugh uproariously. ");
-			if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("\n\nAs soon as the laughter dies down, your thoughts turn back to the affair you have with [fw.name] and hope your qim isn’t intruding on your shameless boasting right now...");
+			if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("\n\nAs soon as the laughter dies down, your thoughts turn back to the affair you have with " + (flags["FROSTWYRM_NOT_HOSTILE"] >= 2 ? "[frostwyrm.name]" : "the frostwyrm") + " and hope your qim isn’t intruding on your shameless boasting right now...");
 			break;
 	}
 

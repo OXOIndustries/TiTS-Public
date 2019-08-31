@@ -1646,11 +1646,16 @@ public function yomaThirdDateProceedII():void
 	output("A few hours and a few laughably bad movies you brought up on your codex later, you’re touching down on Uveto at last.");
 	output("\n\n");
 	if (pc.hasPerk("Icy Veins") || pc.hasStatusEffect("Icy Veins") || (pc.hasFur() && pc.hasPerk("Wooly"))) output("Having no need for warm clothing or heat belts, you’re the first to step down from your ship, extending a hand to your "+ (pc.RQ() <= 20 ? "marginally " : "") +"less graceful companion.");
-	else if (!pc.isNude()) output("Tugging your [pc.clothes] around you"+ (pc.hasHeatBelt() ? " and firing up your heat belt" : "") +", you step down from your ship, helping your "+(pc.RQ() <= 20 ? "marginally " : "")+"less graceful companion down as you do.")
-	output(" Once you’re done taking extra care to make sure that your heat belt is pushing out enough energy to keep you positively toasty and not a single inch of your bare flesh is left exposed and out of its field, you step down from your ship");
-	if (!pc.isAss()) output((pc.isNice() ? ", graciously" : ",")+" taking Yoma’s extended hand to help steady the descent.")
-	else output(", barely noticing Yoma’s offered hand.");
-	output("\n\nThe android himself still looks slightly ridiculous, bundled up as he is, but you’re certainly not worried about him freezing over - so you suppose it’s a small sacrifice. It certainly doesn’t impede his movement like you thought it would either, as he’s soon tugging you towards the space elevator that you can see towards the other end of the low orbit station. ");
+	else
+	{
+		if (!pc.isNude()) output("Tugging your [pc.clothes] around you"+ (pc.hasHeatBelt() ? " and firing up your heat belt" : "") +", you step down from your ship, helping your "+(pc.RQ() <= 20 ? "marginally " : "")+"less graceful companion down as you do.")
+		if (pc.hasHeatBelt()) output(" Once you’re done taking extra care to make sure that your heat belt is pushing out enough energy to keep you positively toasty and not a single inch of your bare flesh is left exposed and out of its field, y");
+		else output(" Y");
+		output("ou step down from your ship");
+		if (!pc.isAss()) output((pc.isNice() ? ", graciously" : ",")+" taking Yoma’s extended hand to help steady the descent.");
+		else output(", barely noticing Yoma’s offered hand.");
+	}
+	output("\n\nThe android himself still looks slightly ridiculous, bundled up as he is, but you’re certainly not worried about him freezing over - so you suppose it’s a small sacrifice. It certainly doesn’t impede his movement like you thought it would either, as he’s soon tugging you towards the space elevator that you can see towards the other end of the low orbit station.");
 	output("\n\nThe two of you manage to squirrel yourself away into a corner of the thing, Yoma hopping up onto one of many RhenWorld branded boxes, and you join him. Your android companion leans into you, letting out a pleased noise as you wrap one arm around his waist whilst the other reaches for your codex, giving the weather a quick check.");
 	output("\n\nYep, you’ll be fine for a good few hours yet, there’ll be no need to find somewhere to camp out in Irestead when you get down there... In about forty five minutes. As you’re trying to think of something simple to chat about on the way down, you’re cut off.");
 	output("\n\n<i>“You know, [pc.name], we are going to be here for a while. How about some <i>fun</i> while we wait?”</i> It doesn’t take a genius to figure out what he means, but");

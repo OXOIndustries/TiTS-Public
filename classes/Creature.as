@@ -2493,10 +2493,12 @@
 					break;
 				case "cocks":
 				case "cocksDescript":
+				case "dicks":
 					buffer = cocksDescript();
 					break;
 				case "cocksDescriptLight":
 				case "cocksLight":
+				case "dicksLight":
 					buffer = cocksDescriptLight();
 					break;
 				case "cocksIsAre":
@@ -14026,6 +14028,7 @@
 			if (hasTail(GLOBAL.TYPE_SIREN)) counter++;
 			if (counter > 0 && hasHair() && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 0 && hasWings() && InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) counter++;
+			if (counter > 1 && gills) counter++;
 			if (counter > 4 && hasCock(GLOBAL.TYPE_SIREN)) counter++;
 			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
 			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;

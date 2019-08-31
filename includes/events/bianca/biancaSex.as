@@ -1067,7 +1067,7 @@ public function biancasThroatfulOfCum(cum:Number):void
 	output("\n\nBianca’s lips close and purse, and then there’s an unmissable gulp. You can see the bulge of your heavy load traveling down her throat. She opens her mouth with an ‘ahhh’ and sticks her tongue out, showing that there’s nothing left in a rod-readying display of depravity. You pet her ears and and finally step back before your blood starts flowing again, crumpling to the ground like an autumn leaf.");
 	if (flags["BIANCA_SEXED_FACE"] == undefined) output("\n\n<i>“I’m really glad you took the lead, [pc.name],”</i> the fox coos.");
 	else output("\n\n<i>“Hehe, you really know how to take charge, [pc.name]! That was amazing, and I loved it!”</i> the fox congratulates.");
-	output("\n\n<i>“I loved your taste, too. Thanks for letting me have it,”</i> she says with a broad smile. <i>“And thank you for the meal as well.”</i> She pats her belly appreciatively" + (cum < 2500 ? "." : ", highHyperCum: which wobbles obligingly with vast liquid weight. Hey, you didn’t cum on her clothes, so that’s fine!"));
+	output("\n\n<i>“I loved your taste, too. Thanks for letting me have it,”</i> she says with a broad smile. <i>“And thank you for the meal as well.”</i> She pats her belly appreciatively" + (cum < 2500 ? "." : ", which wobbles obligingly with vast liquid weight. Hey, you didn’t cum on her clothes, so that’s fine!"));
 	if (pc.isNice()) output("\n\n<i>“Sorry if I got carried away,”</i> you say, <i>“I hope you’re not upset.”</i>");
 	else if (pc.isMisch()) output("\n\n<i>“Uh... sorry if I was too rough. You’ve got a way of making me wanna go all in, though,”</i> you smirk.");
 	else output("\n\n<i>“Hope that didn’t hurt too much.”</i>");

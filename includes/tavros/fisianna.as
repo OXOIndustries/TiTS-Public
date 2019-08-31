@@ -3792,7 +3792,7 @@ public function sexFisi(skipText:Boolean = false):void
 	
 	if (flags["FISI_TIMES_PEGGED"] == undefined) addDisabledButton(8, "Locked", "Locked", "You’ll need to lose against Fisi and do this with her to unlock this.");
 	else if (fisiPrurience() < 75) addDisabledButton(8, "Get Pegged", "Get Pegged", "At Fisi’s current level of prurience, it would be best to bring up her sexual confidence to do this without being influenced by a bet.");
-	else addButton(8, "Get Pegged", getPeggedByFisiI, true, "Get Ridden", "Let Fisi experiment with her hard-light toy with you!");
+	else addButton(8, "Get Pegged", getPeggedByFisiI, true, "Get Pegged", "Let Fisi experiment with her hard-light toy with you!");
 
 	if (flags["FISI_TIMES_VAG"] == undefined) addDisabledButton(9, "Locked", "Locked", "It doesn’t look like she is comfortable enough with you to do this yet.");
 	else if (flags["FISI_TIMES_BET"] == undefined) addDisabledButton(9, "Breed Her", "Breed Her", "You should get her to open up more sexually first with a friendly bet or two!");
