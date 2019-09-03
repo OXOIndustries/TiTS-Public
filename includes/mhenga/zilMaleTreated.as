@@ -93,7 +93,7 @@ public function treatedZilBullEncounter():void
 		output("\n\nWith that, he sits down on a tree log and awaits your response.");
 		output("\n\nOh, that's… a pleasant surprise. He seems entirely genuine. You can blow him, or walk away.");
 
-		addButton(0, "Give Blowjob", zilBullInTheForestGetsAHoneysuckle, undefined, "Give Blowjob", "Give the zil a bit of oral love."); // goes to victory blowjob scene
+		addButton(0, "Give Blowjob", zilBullInTheForestGetsAHoneysuckle, true, "Give Blowjob", "Give the zil a bit of oral love."); // goes to victory blowjob scene
 		addButton(1, "No Thanks", function():void {
 			clearMenu();
 			clearOutput();
@@ -198,6 +198,15 @@ public function swattingABumblingBeeBull():void
 	else addButton(3, "Facesit", vaginaRouter, [whatsTheDifferenceBetweenZilAndSeatsAnyways, 0, 0, 0, false], "Facesit", "Grind your snatch into the zil's face."); //Requires PC to have a cunt.
 
 	addButton(4, "Give Blowjob", zilBullInTheForestGetsAHoneysuckle, false, "Give Blowjob", "Give the zil a bit of oral love.");
+
+	addButton(14, "Leave", function ():void
+	{
+		clearMenu();
+		clearOutput();
+		showTreatedZilBull();
+		output("Nothing. You'll do nothing.\n\nAs you turn to leave the zil " + (enemy.HPQ() <= 0 ? "shoots you an angered glare accompanied by a mumbled curse" : "lets out a frustrated moan, clearly miffed that you're leaving him with blue balls") + ". Tough luck. You grab your things and head off into the orange foliage.\n\n");
+		CombatManager.genericVictory();	
+	});
 }
 
 public function timeToRideTheBullAndAlsoSomethingAboutBees(cuntIdx:int):void
