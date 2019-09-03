@@ -158,6 +158,8 @@ package classes.Resources
 			public static const PennyOnaholeBig:Class;
 			[Embed(source = "../../assets/images/imagepack/penny/Adjatha_Penny_Horse_Color_Corrected.jpg", mimeType = "image/jpg")]
 			public static const PennyEquineAutofellate:Class;
+			[Embed(source = "../../assets/images/imagepack/penny/DCLzexon_Penny_futa_panties.jpg", mimeType = "image/jpg")]
+			public static const PennyFutaPantiesCG:Class;
 
 			//PRINCESS
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
