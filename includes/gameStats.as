@@ -8743,6 +8743,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_BIANCA"] != undefined)
 		{
 			output2("\n<b>* Bianca:</b> Met her");
+			/*
 			if(flags["BIANCA_PLANET"] != undefined)
 			{
 				output2(" (At ");
@@ -8758,6 +8759,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["BIANCA_LOCATION"] != undefined) output2("\n<b>* Bianca, Last Known Location:</b> " + getPlanetName(flags["BIANCA_LOCATION"]));
 			output2("\n<b>* Bianca, Affection:</b> " + biancaFamiliarity() + " % (" + biancaFamiliarityMax() + " % Max)");
+			*/
 			if(flags["BIANCA_SEXED"] != undefined) output2("\n<b>* Bianca, Times Sexed:</b> " + flags["BIANCA_SEXED"]);
 			roamCount++;
 		}
