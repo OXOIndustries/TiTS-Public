@@ -181,11 +181,21 @@ public function pennyBootFromCrew():void
 
 public function pennyOffCrewKickedOff(arg:Number):void
 {
-	showPenny();
+	showPennyBust();
 	if(hungryFlahneWithBimboPenny()) output("\n\nOutside of Flahne’s office, you see the vixen heavily flirting with the bubbly rahn. You could ask Penny to return to your crew if you like.");
 	else output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
 	
-	addButton(arg,"Recruit",pennyRejoinCrew,undefined,"Recruit","Bring Penny back onboard.");
+	addButton(arg,"Penny",pennyOffCrewKickedOffMenu,undefined,"Penny","Approach Penny.");
+}
+public function pennyOffCrewKickedOffMenu():void
+{
+	clearOutput();
+	showPenny();
+	output("Would you like to take Penny back onboard as a crew member?");
+	
+	clearMenu();
+	addButton(0, "Recruit", pennyRejoinCrew, undefined, "Recruit Penny","Bring Penny back onboard.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function pennyRejoinCrew():void

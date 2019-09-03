@@ -42,8 +42,16 @@ public function biancaFamiliarity(arg:int = 0, apply:Boolean = false):int
 	if (flags["BIANCA_FAMILIARITY"] == undefined) flags["BIANCA_FAMILIARITY"] = 0;
 	if (apply) flags["BIANCA_FAMILIARITY"] = arg;
 	else flags["BIANCA_FAMILIARITY"] += arg;
-	if (flags["BIANCA_FAMILIARITY"] > 49) flags["BIANCA_FAMILIARITY"] = 49; // TEMPORARY UNTIL FURTHER XPACKS
+	var iMin:int = 0;
+	var iMax:int = biancaFamiliarityMax();
+	if (flags["BIANCA_FAMILIARITY"] < iMin) flags["BIANCA_FAMILIARITY"] = iMin;
+	if (flags["BIANCA_FAMILIARITY"] > iMax) flags["BIANCA_FAMILIARITY"] = iMax;
 	return flags["BIANCA_FAMILIARITY"];
+}
+public function biancaFamiliarityMax():int
+{
+	return 49; // TEMPORARY UNTIL FURTHER XPACKS
+	return 100;
 }
 
 public function biancaLover():Boolean
@@ -89,13 +97,29 @@ public function biancaPlanetPool():Array
 public function processBiancaPlanet(totalDays:uint):void
 {
 	var biancaMoves:Boolean = false;
+	var planets:Array = biancaPlanetPool();
 	if (flags["BIANCA_PLANET"] == undefined || flags["BIANCA_LAST_DAY_MOVED"] == undefined) biancaMoves = true;
 	else if (flags["BIANCA_LAST_DAY_MOVED"] + 6 < days + totalDays) biancaMoves = true;
-	else if (!InCollection(flags["BIANCA_PLANET"], biancaPlanetPool())) biancaMoves = true;
+	else if (!InCollection(flags["BIANCA_PLANET"], planets)) biancaMoves = true;
 
 	if (biancaMoves)
 	{
-		flags["BIANCA_PLANET"] = RandomInCollection(biancaPlanetPool());
+		//flags["BIANCA_PLANET"] = RandomInCollection(biancaPlanetPool());
+		if(flags["BIANCA_PLANET"] != undefined)
+		{
+			var i:int = 0;
+			for(i = 0 ; i < planets.length; i++)
+			{
+				if(planets[i] == flags["BIANCA_PLANET"])
+				{
+					if(planets.length > 1) planets.splice(i, 1); // Remove current planet from pool.
+					if(i >= planets.length) i = 0; // Reset index if out of bounds.
+					break;
+				}
+			}
+			flags["BIANCA_PLANET"] = planets[i];
+		}
+		else flags["BIANCA_PLANET"] = "mhen'ga";
 		flags["BIANCA_LAST_DAY_MOVED"] = days + totalDays;
 	}
 }

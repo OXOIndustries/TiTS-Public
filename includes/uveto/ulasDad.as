@@ -113,7 +113,7 @@ public function ulasDadTalksAboutHerMom():void
 	//Nice
 	if(pc.isNice()) output("\n\nYou express your condolences.");
 	//Mischievous
-	else if(pc.isMischievous()) output("\n\nYou suggest that a wound to the eye could be every bit as fatal as a dismemebered arm.");
+	else if(pc.isMischievous()) output("\n\nYou suggest that a wound to the eye could be every bit as fatal as a dismembered arm.");
 	//Hard
 	else output("\n\n<i>“She knew the risks.”</i>");
 	//Merge
