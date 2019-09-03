@@ -742,17 +742,21 @@ public function giveBirthThroughCuntTail():void {
 	//If in ship
 	if(InShipInterior()) {
 		output("\n\nDo you leave it outside the ship to fend for itself (and likely acquire a host) or send it off to the on-station daycare that Dad left you?");
+		//[Leave it] [Send it off]
+		clearMenu();
+		addButton(0,"Outside",hideYoEggYo);
+		addButton(1,"Daycare",takeYoEggYo);
 	}
 	//Else
 	else {
 		output("\n\nDo you conceal it so that it can hatch and potentially force itself on a host of its own, or do you take it back and send to the station your father got you, where it will be cared for but probably remain unattached?");
+		//[Hide it] [Take it]
+		clearMenu();
+		addButton(0,"Hide It",hideYoEggYo);
+		addButton(1,"Take It",takeYoEggYo);
 	}
 	processTime(10+rand(5));
 	pc.orgasm();
-	//[Hide it] [Take it]
-	clearMenu();
-	addButton(0,"Hide It",hideYoEggYo);
-	addButton(1,"Take It",takeYoEggYo);
 }
 
 //*Hide It
