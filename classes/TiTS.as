@@ -342,6 +342,7 @@
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
 		include "../includes/mhenga/zilTwins.as";
+		include "../includes/mhenga/zilMaleTreated.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";

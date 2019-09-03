@@ -1393,6 +1393,8 @@ public function useTailOnZilWhenUWin():void
 
 public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 {
+	if (pc.pregnancyData[pregSlot].pregnancyType == "ZilBullPregnancy" && getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR)) return zilBullPregEndScene(numBabies);
+
 	clearOutput();
 	showName("\nBIRTHING!");
 	author("HugsAlright");
