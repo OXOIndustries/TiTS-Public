@@ -238,7 +238,7 @@ public function veltaSexMenu(apt:Boolean = false):void
 		var hasCock:Boolean = (pc.hasCock());
 		var hasBigCock:Boolean = (hasCock && pc.biggestCockLength() >= 8);
 		var hasCockThatFits:Boolean = (hasCock && pc.cockThatFits(chars["VELTA"].vaginalCapacity(0)) >= 0);
-		var hasBalls:Boolean = (pc.balls <= 0);
+		var hasBalls:Boolean = (pc.balls > 0);
 		if(!hasBigCock || !hasCockThatFits || !hasBalls)
 		{
 			output(" who possesses");

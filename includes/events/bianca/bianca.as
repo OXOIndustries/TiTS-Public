@@ -42,8 +42,16 @@ public function biancaFamiliarity(arg:int = 0, apply:Boolean = false):int
 	if (flags["BIANCA_FAMILIARITY"] == undefined) flags["BIANCA_FAMILIARITY"] = 0;
 	if (apply) flags["BIANCA_FAMILIARITY"] = arg;
 	else flags["BIANCA_FAMILIARITY"] += arg;
-	if (flags["BIANCA_FAMILIARITY"] > 49) flags["BIANCA_FAMILIARITY"] = 49; // TEMPORARY UNTIL FURTHER XPACKS
+	var iMin:int = 0;
+	var iMax:int = biancaFamiliarityMax();
+	if (flags["BIANCA_FAMILIARITY"] < iMin) flags["BIANCA_FAMILIARITY"] = iMin;
+	if (flags["BIANCA_FAMILIARITY"] > iMax) flags["BIANCA_FAMILIARITY"] = iMax;
 	return flags["BIANCA_FAMILIARITY"];
+}
+public function biancaFamiliarityMax():int
+{
+	return 49; // TEMPORARY UNTIL FURTHER XPACKS
+	return 100;
 }
 
 public function biancaLover():Boolean
@@ -89,13 +97,29 @@ public function biancaPlanetPool():Array
 public function processBiancaPlanet(totalDays:uint):void
 {
 	var biancaMoves:Boolean = false;
+	var planets:Array = biancaPlanetPool();
 	if (flags["BIANCA_PLANET"] == undefined || flags["BIANCA_LAST_DAY_MOVED"] == undefined) biancaMoves = true;
 	else if (flags["BIANCA_LAST_DAY_MOVED"] + 6 < days + totalDays) biancaMoves = true;
-	else if (!InCollection(flags["BIANCA_PLANET"], biancaPlanetPool())) biancaMoves = true;
+	else if (!InCollection(flags["BIANCA_PLANET"], planets)) biancaMoves = true;
 
 	if (biancaMoves)
 	{
-		flags["BIANCA_PLANET"] = RandomInCollection(biancaPlanetPool());
+		//flags["BIANCA_PLANET"] = RandomInCollection(biancaPlanetPool());
+		if(flags["BIANCA_PLANET"] != undefined)
+		{
+			var i:int = 0;
+			for(i = 0 ; i < planets.length; i++)
+			{
+				if(planets[i] == flags["BIANCA_PLANET"])
+				{
+					if(planets.length > 1) planets.splice(i, 1); // Remove current planet from pool.
+					if(i >= planets.length) i = 0; // Reset index if out of bounds.
+					break;
+				}
+			}
+			flags["BIANCA_PLANET"] = planets[i];
+		}
+		else flags["BIANCA_PLANET"] = "mhen'ga";
 		flags["BIANCA_LAST_DAY_MOVED"] = days + totalDays;
 	}
 }
@@ -1152,8 +1176,8 @@ public function biancaBoothIntro():void
 	else if (rand(2) == 0)
 	{
 		output("For some reason, Bianca’s face loses its luster when she looks at you again. <i>“Ah...”</i>");
-		output("\n\nNot only does it make you think she’s upset over something you’ve done, but it makes you worried that others might mistake the situation and think you’re a danger to their favorite doctor who suddenly looks to be in pain. It’s certainly not normal - insofar as you know her - for her smile to so much as crack.");
-		output("\n\nThe golden fox claps her hands together to break the awkward silence, red lips extending once again. <i>“[pc.name], I’m happy you’ve come!”</i> Her tails once-unmoving are swishing lively again, brushing you on your [pc.walk] to her assorted amenities. <i>“People might think you’re dangerous to be around with how often you come by.”</i>");
+		output("\n\nNot only does it make you think she’s upset over something you’ve done, but it makes you worried that others might mistake the situation and think you’re a threat to their favorite doctor who suddenly looks to be in pain. It’s not normal - insofar as you know her - for her smile to so much as crack.");
+		output("\n\nThe golden fox claps her hands together to break the awkward silence, red lips curving once again. <i>“[pc.name], I’m happy you’ve come!”</i> Her tails once-unmoving are swishing lively again, brushing you on your [pc.walk] to her assorted amenities. <i>“People might think you’re dangerous to be around with how often you come by.”</i>");
 		output("\n\nShe laughs at her own joke, but you can sense something about her voice had changed. Still, once you’re seated, everything seems okay.");
 		output("\n\n<i>“What will you ask of me today, [pc.name]?”</i>");
 		output("\n\nYou can’t get that pained expression out of your mind...");
@@ -1161,8 +1185,8 @@ public function biancaBoothIntro():void
 	// Familiarity <50 rand2
 	else
 	{
-		output("<i>“Sometimes I wonder, [pc.name],”</i> Dr. Ketria simpers, <i>“if you get hurt to come and see me so often. More than anyone else I see you...”</i> she huffs, shaking her head. <i>“But I shouldn’t be surprised. You’ve always had that powerful look in your eye.”</i> She takes your hand, guiding you to your seat in a way that never fails to make you blush. <i>“You’re someone who can be relied on, someone to be admired.”</i>");
-		output("\n\nShe looks into your eyes. <i>“It’s the look of someone who </i>has<i> to face adversity, and won’t let it get in [pc.hisHer] way.”</i> There’s a twinkle of admiration behind her lenses. <i>“But you’re going to give me mood swings!”</i> she giggles unrestrained, <i>“I’m going to worry about you then be proud of you then... it starts over!”</i>");
+		output("<i>“Sometimes I wonder, [pc.name],”</i> Dr. Ketria simpers, <i>“if you get hurt to come and see me so often. More than anyone else I see you...”</i> she huffs, shaking her head. <i>“But I shouldn’t be surprised. You’ve always had that powerful look in your eye.”</i> You're guided, by the hand as usual, to your seat in a way that never fails to make you blush. <i>“You’re someone who can be relied on, someone to be admired.”</i>");
+		output("\n\nThe foxy doctor kneels, aligning herself with you in an empathic way. <i>“It’s the look of someone who <b>has</b> to face adversity, and won’t let it get in [pc.hisHer] way.”</i> There’s a twinkle of admiration behind her lenses. An unrestrained giggle takes her from there, <i>“But you’re going to give me mood swings! I’m going to worry about you, then be proud of you... then... it starts over!”</i>");
 		output("\n\nBianca rises up, fingers sewn at the center of her broad waist. <i>“Forgive me,”</i> she says behind dissipating happiness, <i>“I’m just glad you’re alright. What brings you back to me?”</i>");
 		output("\n\nWell...");
 	}

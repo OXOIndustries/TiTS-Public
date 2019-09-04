@@ -229,6 +229,7 @@ public function soAboutDatDiscountSlut():void
 	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms.") + " Steele,”</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
 	annoShopSetup();
+	shopkeep = chars["ANNO"];
 	buyItem();
 }
 

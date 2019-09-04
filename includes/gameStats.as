@@ -8750,6 +8750,30 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["AZRA_SEXED"] != undefined) output2("\n<b>* Azra, Times Sexed:</b> " + flags["AZRA_SEXED"]);
 			roamCount++;
 		}
+		// Bianca
+		if(flags["MET_BIANCA"] != undefined)
+		{
+			output2("\n<b>* Bianca:</b> Met her");
+			/*
+			if(flags["BIANCA_PLANET"] != undefined)
+			{
+				output2(" (At ");
+				switch(flags["BIANCA_PLANET"])
+				{
+					case "mhen'ga": output2("Mhen’ga"); break;
+					case "tarkus": output2("Tarkus"); break;
+					case "myrellion": output2("Myrellion"); break;
+					default: output2(StringUtil.toDisplayCase(flags["BIANCA_PLANET"])); break;
+				}
+				if(days - flags["BIANCA_LAST_DAY_MOVED"] > 0) output2(" for " + (days - flags["BIANCA_LAST_DAY_MOVED"]) + " days");
+				output2(")");
+			}
+			if(flags["BIANCA_LOCATION"] != undefined) output2("\n<b>* Bianca, Last Known Location:</b> " + getPlanetName(flags["BIANCA_LOCATION"]));
+			output2("\n<b>* Bianca, Affection:</b> " + biancaFamiliarity() + " % (" + biancaFamiliarityMax() + " % Max)");
+			*/
+			if(flags["BIANCA_SEXED"] != undefined) output2("\n<b>* Bianca, Times Sexed:</b> " + flags["BIANCA_SEXED"]);
+			roamCount++;
+		}
 		// Chaurmine
 		if(flags["MET_CHAURMINE"] != undefined)
 		{

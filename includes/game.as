@@ -3296,7 +3296,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	{
 		var toSpace:Boolean = (arg.indexOf("SPACE") != -1 || (rooms[arg].hasFlag(GLOBAL.OUTDOOR) && rooms[arg].hasFlag(GLOBAL.LOW_GRAVITY)));
 		//Procs in safe areas only, like Reaha's milk stand:
-		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !toSpace && !disableExploreEvents())
+		//Dont proc on the Zheng Shi, cause slavers and such
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !toSpace && !disableExploreEvents() && !rooms[arg].planet == "ZHENG SHI STATION")
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
 		}

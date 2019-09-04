@@ -324,6 +324,7 @@ public function extrameetGetProfiles(num:int):Array
 			if (extrameetProfileStatus("EXTRAMEET_HANSI") == num) pospro.push("EXTRAMEET_HANSI");
 			if (extrameetProfileStatus("EXTRAMEET_DOMME90") == num) pospro.push("EXTRAMEET_DOMME90");
 			if (extrameetProfileStatus("EXTRAMEET_BIGDICKRICK") == num) pospro.push("EXTRAMEET_BIGDICKRICK");
+			if (extrameetProfileStatus("EXTRAMEET_PROSNUGGLER23") == num) pospro.push("EXTRAMEET_PROSNUGGLER23");
 			break;
 		case "new texas":
 			if (extrameetProfileStatus("EXTRAMEET_FRANKMOLLY") == num) pospro.push("EXTRAMEET_FRANKMOLLY");
@@ -456,6 +457,7 @@ public function extrameetDisplayProfile(prof:String):void
 		else if (prof == "EXTRAMEET_HANSI") extrameetHansiProfile();
 		else if (prof == "EXTRAMEET_DOMME90") extrameetDomme90Profile();
 		else if (prof == "EXTRAMEET_BIGDICKRICK") extrameetBigDickRickProfile();
+		else if (prof == "EXTRAMEET_PROSNUGGLER23") extrameetProSnuggler23Profile();
 		else output("Profile not found!");
 		
 	}
@@ -588,6 +590,7 @@ public function extrameetCheckMatch(prof:String):Boolean
 		else if (prof == "EXTRAMEET_HANSI") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_DOMME90") match = extrameetFlavorCheckMatch();
 		else if (prof == "EXTRAMEET_BIGDICKRICK") match = extrameetFlavorCheckMatch();
+		else if (prof == "EXTRAMEET_PROSNUGGLER23") match = extrameetProSnuggler23CheckMatch();
 		
 	}
 	else if (loc == "new texas")
@@ -699,6 +702,7 @@ public function extrameetSetMeet(prof:String):void
 		else if (prof == "EXTRAMEET_SCIENCERULEZ41") extrameetScienceRulez41Date();
 		else if (prof == "EXTRAMEET_RIPPED4YOURPLEASURE") extrameetRipped4YourPleasureDate();
 		else if (prof == "EXTRAMEET_STORMDRAGON") extrameetStormDragonDate();
+		else if (prof == "EXTRAMEET_PROSNUGGLER23") extrameetProSnuggler23Date();
 		else
 		{
 			output("\n\nError finding date");
@@ -932,6 +936,7 @@ public function extrameetCheckReset():void
 			flags["EXTRAMEET_HANSI"] = 0;
 			flags["EXTRAMEET_DOMME90"] = 0;
 			flags["EXTRAMEET_BIGDICKRICK"] = 0;
+			flags["EXTRAMEET_PROSNUGGLER23"] = 0;
 			
 		}
 	}
