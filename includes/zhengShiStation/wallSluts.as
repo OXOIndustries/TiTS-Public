@@ -830,6 +830,7 @@ public function goblinAnalStuff(x:int):void
 	pc.orgasm();
 	while(pc.lust() < 33) { pc.lust(2); }
 	pc.energy(-5);
+	processTime(10 + rand(10));
 	IncrementFlag("THICK_GAB_USED");
 	pc.createStatusEffect("ThiccGobDisable");
 	pc.setStatusMinutes("ThiccGobDisable",90);
@@ -2200,7 +2201,7 @@ public function wallSlutsNoisyRodentsEarFuckingFillBoth(kok:int=0):void
 		output("\n\nTits grow in real time like on a pervy film, swelling out, even lactating the overflow. [pc.CumColor] lines of curving trickle run down the shaking rodentses bodies, certainly felt and relished on a level deeper than base comprehension. Unloading your colossal tides into the pair is an absolute joy, as is the quadruple clenching of ear and dick at once." + (pc.cockTotal() > 2 ? " To commemorate their temporary endowments, you wiggle your hips to paint their sloshing swells in seed, making sure that your unused [pc.cocksLightIsAre] gratified in equal measure." : ""));
 		if (pc.cumQ() >= 3000)
 		{
-			output("\n\nIt’s not over yet. Prolonged climax may not be healthy, especially on a pirate base, but it’s just another opportunity to show these dim-as-fuck rats who their preferred client will be from now on. Bucking muscles drown their already clogged tubes in knee-buckling weight. By the time you’re done, they’ll need a back-support just to not go sore from having been infused with gallons of [pc.raceShort] loin-fruit. Jug-filling eruptions take place over the next minute, careening into pools of ovarian delicacy. With nowhere else to go, the law of physics inserts itself on your illicit coitus. Splashes of [pc.cumFlavor] spooge smash into your pelvis while torrential bolts launch from Walnut and Chestnut’s other ears, spraying up and down the wall of your booth, sending microbial droplets your way.");
+			output("\n\nIt’s not over yet. Prolonged climax may not be healthy, especially on a pirate base, but it’s just another opportunity to show these dim-as-fuck rats who their preferred client will be from now on. Bucking muscles drown their already clogged tubes in knee-buckling weight. By the time you’re done, they’ll need a back-support just to not go sore from having been infused with gallons of [pc.raceShort] loin-fruit. Jug-filling eruptions take place over the next minute, careening into pools of ovarian delicacy. With nowhere else to go, the law of physics inserts itself on your illicit coitus. Splashes of [pc.cumFlavor] spooge smash into your pelvis while torrential bolts launch from Walnut and Chestnut’s other ears, spraying up and down the wall of your booth, sending micro-droplets your way.");
 			output("\n\nFuck yeah.");
 			cumVolume *= .75;
 		}
@@ -2236,7 +2237,7 @@ public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
 	wallSlutsShowNoisyRodents();
 		
 	output("Emptied, but still aroused thanks to pirate machinistry, you step away from Walnut and Chestnut, wiping your windshield with a leaden arm. The impetuous imps are shuddering, caked in your liquid signature, savoring the vicious fervor you fucked into them. The rodenians flop into a twilight consciousness, softly panting, squeaking in their dreams a positive testimonial for your patronage. Surplus spills from them into the lake of effluvium where you once stood. Cherry’s goo-janitor will have a buffet waiting for her when she gets around to these silly pi-rats.");
-	output("\n\nUnfortunately, your [pc.cocksIsAre] still rock-hard. Maybe it’s time to see to check out the other stock in this tempting inventory?");
+	output("\n\nUnfortunately, your [pc.cocksIsAre] still rock-hard. Maybe it’s time to check out the other stock in this tempting inventory?");
 	
 	pc.createStatusEffect("NoisyRodentsDisable");
 	pc.setStatusMinutes("NoisyRodentsDisable", 90);
