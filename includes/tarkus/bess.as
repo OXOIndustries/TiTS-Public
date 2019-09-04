@@ -1376,7 +1376,7 @@ public function bessFollowerMenu():void
 	clearMenu();
 	
 	addButton(0, "Discuss", talkToBessAboutThings);
-	addButton(1, "Functions", bessFunctionsMenu, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
+	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
 	
 
@@ -6214,7 +6214,7 @@ public function talkToBessAboutCelise():void
 	}
 	else if (celiseIsCrew() && bessClosedRelationship() && flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
 	{
-		output("\n\n<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That’s so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask her.");
+		output("\n\n<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That’s so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask [bess.himHer].");
 	}
 	else if (flags["BESS_LOVER"] != undefined)
 	{

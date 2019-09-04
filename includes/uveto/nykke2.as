@@ -585,7 +585,7 @@ public function nykke2SexMenu():void
 	output("\n\nHer thick, heavy tail makes broad, downward swings into the snow, loudly thumping her approval into the air around you. You can’t see her cock, with your vision thoroughly blocked by her breasts, but you can feel it get harder, hotter, heavier, and longer with every slow, impatient thrust of her hips against yours.");
 	if (pc.hasCock()) output(" It frots against yours" + (pc.isCrotchExposed() ? "" : " right through your [pc.lowerGarments]") + ", rousing yourself to action as well.");
 	else output(" Like a heat - seeking missile, it finds your [pc.vagina " + rand(pc.vaginaTotal()) + "]" + (pc.isCrotchExposed() ? "" : ", right through your [pc.lowerGarments]") + ", and she grinds the thick of her pole against you, readying you for the thorough thrashing she’s ready to give you.");
-	output("And you <i>are</i> getting ready....");
+	output(" And you <i>are</i> getting ready....");
 
 	output("\n\nTwo of Nykke’s huge hands come down on either side of your head – not as a show of force or dominance, but it keeps you from thinking of backing out. You’ve projected to her that you’re ready and willing, and that’s all the signalling a horny, neglected dragon like her needs.");
 	output("\n\nThat said, you can tell, she’s inexperienced. As ready as she is, she’s still very... pliable to suggestion. If you wanted to have her a certain way, you doubt she’d put up any resistance – all she knows is that she wants you, and she doesn’t care how.");

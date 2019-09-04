@@ -1453,7 +1453,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if(target.wingCount == 2) outputRouter(" a pair of");
 				else if(target.wingCount == 4) outputRouter(" a quartet of");
 				else if(target.wingCount > 1) outputRouter(" " + num2Text(int(target.wingCount)));
-				outputRouter(" large, insectile wings sprout from " + (target == pc ? "your":"[target.hisHer]") + " back, reflecting the light through their clear membranes beautifully. They’ll bear " + (target == pc ? "your":"[target.hisHer]") + " weight if " + (target == pc ? "you choose":"[target.heShe] chooses") + " to fly.");
+				outputRouter(" large, insectile wings sprout from " + (target == pc ? "your":"[target.hisHer]") + " back, reflecting the light through their clear membranes beautifully.");
+				if (!(target is ZilMaleTreated)) outputRouter(" They’ll bear " + (target == pc ? "your":"[target.hisHer]") + " weight if " + (target == pc ? "you choose":"[target.heShe] chooses") + " to fly.");
 				break;
 			case GLOBAL.TYPE_SMALLDEMONIC:
 				if(target.wingCount == 2) outputRouter(" a pair of");

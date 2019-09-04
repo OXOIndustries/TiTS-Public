@@ -2816,7 +2816,10 @@ public function futaBabePantyfaps(waifu:String):void
 	else output("onto the edge of your bed");
 	output(".");
 
-	output("\n\nReclining back, you bring " + waifu + "’s panties up to your face and drink deep of the rich, musky scent of them, smelling so wonderfully of your lover that you could easily imagine her here with you, her crotch pressed into your face with a big, throbbing hard-on for you to worship. The thought of your lover’s tumescent cock rubbing against your face, her body wrapped around yours in a passionate embrace... her hands around your [pc.cock], stroking you... yeah, that’s enough to get you going.");
+	output("\n\n");
+	if(waifu == "Penny") showImage("PennyFutaPantiesCG");
+	else if(waifu == "Syri") showImage("SyriLingerie");
+	output("Reclining back, you bring " + waifu + "’s panties up to your face and drink deep of the rich, musky scent of them, smelling so wonderfully of your lover that you could easily imagine her here with you, her crotch pressed into your face with a big, throbbing hard-on for you to worship. The thought of your lover’s tumescent cock rubbing against your face, her body wrapped around yours in a passionate embrace... her hands around your [pc.cock], stroking you... yeah, that’s enough to get you going.");
 
 	if(!pc.isCrotchExposed()) 
 	{
@@ -2875,14 +2878,23 @@ public function futaPantiesFapInPussy(waifu:String):void
 	//CrotchGarbed
 	if(!pc.isCrotchExposed())
 	{
-		output("\n\nOoh, you’re getting a little hot to be penned up inside the confines of your ");
+		output("\n\n");
+		if(waifu == "Penny") showImage("PennyFutaPantiesCG");
+		else if(waifu == "Syri") showImage("SyriLingerie");
+		output("Ooh, you’re getting a little hot to be penned up inside the confines of your ");
 		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
 		else if(pc.hasArmor() && !pc.isCrotchExposedByArmor()) output("[pc.armor]");
 		
 		output(". Sometimes a [pc.boy]’s got to let [pc.hisHer] inner flower bloom, and quite frankly, your petals are already soaked with dew. You kick the offending equipment off with a few deft twists of your fingers and contemptuous snap of your [pc.foot]. Your heart races. It’s just you, " + waifu + "’s panties, and your eagerly wiggling fingers, now.");
 	}
 	//Nakkers
-	else output("\n\nOoh, it’s a good thing you’re already naked. It wouldn’t do to have your own underwear as fragrant with lust as " + waifu + "’s. You’re not nearly that libidinous - you’re just a [pc.boy] whose needs have risen to the point where they need taken care of, like any normal U.G.C. citizen. Left to your own devices, you’ll need to pollinate your delicate, dewy flower with naught but your fingers and the too-rich scent of your absent lover. Good thing you’ve such a wonderfully stimulating aid.");
+	else 
+	{
+		output("\n\n");
+		if(waifu == "Penny") showImage("PennyFutaPantiesCG");
+		else if(waifu == "Syri") showImage("SyriLingerie");
+		output("Ooh, it’s a good thing you’re already naked. It wouldn’t do to have your own underwear as fragrant with lust as " + waifu + "’s. You’re not nearly that libidinous - you’re just a [pc.boy] whose needs have risen to the point where they need taken care of, like any normal U.G.C. citizen. Left to your own devices, you’ll need to pollinate your delicate, dewy flower with naught but your fingers and the too-rich scent of your absent lover. Good thing you’ve such a wonderfully stimulating aid.");
+	}
 	//Merge
 	output("\n\nYou run your palms down the [pc.skinFurScales] of your [pc.fullChest], pausing at each ");
 	if(pc.hasInvertedNipples()) output("inverted nipple to gently probe the perfectly concealed nub");
