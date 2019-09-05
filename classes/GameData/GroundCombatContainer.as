@@ -1059,7 +1059,7 @@ package classes.GameData
 				}
 			}
 		
-			// This is basically irrelevent now-
+			// This is basically irrelevant now-
 			// NPCs use the same method (doStunRecover) as the player to recover from stunned effects
 			// automatically.
 			
