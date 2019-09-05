@@ -688,14 +688,14 @@ public function annoFollowerSellMenu():void
 // Updates and configures Annos inventory depending on how she ended up on the players ship
 public function annoFollowerInventoryCheck():void
 {
+	anno.inventory = new Array();
+	
 	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		// Check for the presence of a unique item, if not there, add all
 		if (!anno.hasItemByClass(SteeleTechSuit))
 		{
-			anno.inventory = new Array();
-			
 			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new LaserCarbine());
@@ -723,8 +723,6 @@ public function annoFollowerInventoryCheck():void
 	{
 		if (!anno.hasItemByClass(JoyCoPremiumShield))
 		{
-			anno.inventory = new Array();
-			
 			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new HammerCarbine());

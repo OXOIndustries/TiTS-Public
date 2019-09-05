@@ -2470,7 +2470,7 @@
 					buffer = knotDescript(arg2);
 					break;
 				case "knots":
-					buffer = plural(knotDescript(arg2));
+					buffer = (hasCocks() ? plural(knotDescript(arg2)) : knotDescript(arg2));
 					break;
 				case "knotBiggest":
 					buffer = knotDescript(biggestCockIndex());
@@ -2998,6 +2998,9 @@
 					break;
 				case "clitsNoun":
 					buffer = clitsDescript(arg2, true);
+					break;
+				case "clitsIsAre":
+					buffer = (totalClits() != 1 ? clitsDescript(arg2) + " are" : clitDescript(arg2) + " is");
 					break;
 				case "tailVagina":
 				case "tailCunt":

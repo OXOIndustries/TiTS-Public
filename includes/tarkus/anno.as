@@ -310,6 +310,8 @@ public function sellToDatDogslut():void
 }
 public function annoShopSetup():void
 {
+	chars["ANNO"].inventory = [];
+	
 	chars["ANNO"].inventory.push(new AusarTreats());
 	chars["ANNO"].inventory.push(new HammerCarbine());
 	chars["ANNO"].inventory.push(new LaserCarbine());
