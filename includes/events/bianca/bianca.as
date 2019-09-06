@@ -1936,7 +1936,7 @@ public function biancaBarTalkMain(comingFrom:String):void
 		else addButton(8, "Children", askBiancaAboutTheDoctorsKits, false, "Her Children", (flags["BIANCA_STORIES_TOLD"] > 3 || biancaTalkedTopic(BIANCA_TOPIC_CHILDREN) ? "Ask Bianca about her children." : "Ask Bianca if she has any children."));
 		
 		// [Family]
-		if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You'll have to get much more <b>intimate</b> with Bianca to broach this topic.");
+		if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You’ll have to get much more <b>intimate</b> with Bianca to broach this topic.");
 		else if(biancaFamiliarity() < 49) addDisabledButton(9,"Family","Family"," You aren’t familiar enough with Bianca for this.");
 		else if(!biancaTalkedTopic(BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS | BIANCA_TOPIC_WORK | BIANCA_TOPIC_DOCTOR | BIANCA_TOPIC_STORIES | BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_CHILDREN)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.");
 		else if(!(flags["MET_BIANCA"] & 64)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.\n\n(You still need a certain event to occur with her in the wild.)");
