@@ -7769,6 +7769,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ROO_GAMES_PLAYED"] != undefined) output2("\n<b>* Roo, Times Played Blackjack With:</b> " + flags["ROO_GAMES_PLAYED"]);
 				}
 			}
+			if(flags["MET_CHERRY"] != undefined)
+			{
+				output2("\n<b><u>Cherry's Slut Wall</u></b>");
+				output2("\n<b>* Cherry:</b> Met her");
+				if(flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] != undefined) output2("\n<b>* Walnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"]);
+				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] != undefined) output2("\n<b>* Chestnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"]);
+				if(flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] != undefined) wallSlutsNoisyRodentsReduceCum();
+				if(flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] != undefined) output2("\n<b>* Walnut, Cum in Boobwombs:</b> " + flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"]);
+				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] != undefined) output2("\n<b>* Chestnut, Cum in Boobwombs:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"]);
+				variousCount++;
+			}
 		}
 		
 		if(showID == "Uveto" || showID == "All")
