@@ -2456,7 +2456,7 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	else
 	{
 		output("\n\nYou drop down to your knees and give the oozing " + rat2.mf("cocks", "cock") + " on display a thorough taste test. " + rat2.mf("Their heads are", "His head is") + " thrown back the second your breath and tongue wash over " + rat2.mf("their cumslits", "his cumslit"));
-		if (pc.hasLongTongue()) output(", and thanks to the length of your muscle, all the way around " + rat2.mf("their broad girths, including their", "his broad girth, including his") + " big, wobbling nuts");;
+		if (pc.hasLongTongue()) output(", and thanks to the length of your muscle, all the way around " + rat2.mf("their broad girths, including their", "his broad girth, including his") + " big, wobbling nuts");
 		output(". Your hands take possession of " + rat2.mf("their bouncing sacks", "his bouncing sack") + ", and in no time at all your mouth is moistened with their yummy taste. Greater loads of pre flow behind the fat drippings you hungrily swallow up. " + rat2.mf("Cocks", "Cock") + " coated in pre and hanging ropes of saliva, " + rat2.mf("they’re", "he’s") + " nice and ready to give you <i>just</i> what you need!");
 	}
 

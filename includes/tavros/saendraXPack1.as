@@ -2271,9 +2271,10 @@ public function resDeck16Func():Boolean
 	{
 		output("\n\nOne of the apartments is certainly occupied, though: several Mhen’gan flowers are growing from pots in the window, and red silk curtains are flittering in the artificial breeze. A nameplate underneath that residence reads “Zheniya” - your lover has found quite a lovely place for herself with her new paycheck.");
 
-		if (hours >= 8 && hours <= 16)
+		if ((hours >= 8 && hours <= 16) || pc.hasStatusEffect("Zheniya Birth Recover"))
 		{
-			if (zilCallgirlAtNursery()) output(" You’ll have to pay her a visit when she isn’t busy working in the nursery.");
+			if (pc.hasStatusEffect("Zheniya Birth Recover")) output(" <b>You’ll have to wait for her to recover from delivering her offspring before visiting her.</b>");
+			else output(" <b>You’ll have to pay her a visit when she isn’t busy working in the nursery.</b>");
 			flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 		}
 	}
@@ -2544,6 +2545,10 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = 1;
 	if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined) flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] = 1;
 	else flags["ZIL_CALLGIRL_TOTAL_BIRTHS"]++;
+	
+	// Add timer for waiting
+	pc.createStatusEffect("Zheniya Birth Recover");
+	pc.setStatusMinutes("Zheniya Birth Recover", 1440);
 }
 public function zilCallGirlPregnancyCleanup():void
 {

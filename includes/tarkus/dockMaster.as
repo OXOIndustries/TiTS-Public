@@ -10,7 +10,7 @@ public function dockmasterBonus():Boolean
 {
 	if(flags["MET_DOCKMISTRESS"] == undefined)
 	{
-		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call if <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
+		output("\n\nIt’s hard to tell who’s in charge among the dozens of Raskvel scampering around the hangar bay - at least until you see the gigantic glowing techno-wrench ominously swaying around. In its wake a couple of the mechanical shorties sprawl away with a yelp, and you can just about make out the call of: <i>“Fuck off, you scrappy bastards! This is fer sale! Not fixin’!”</i>");
 	}
 	else
 	{
@@ -296,7 +296,7 @@ public function raskvelDockmasterMenu():void
 	else addDisabledButton(4,"Repair","Repair","Your ship is not damaged.");
 	addButton(5,"Ship Weapons",dockmasterWeaponShop,undefined,"Ship Weapons","Purchase weapons for your ship.");
 	addButton(6,"Ship Upgrades",dockmasterAddonsShop,undefined,"Ship Upgrades","Purchase upgrade modules for your ship.");
-	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you longer wish to keep.");
+	addButton(7,"Uninstall",uninstallRaskStyle,undefined,"Uninstall","Uninstall and sell an upgrade or weapon you no longer wish to keep.");
 	addButton(10,"Buy A Ship",buyAShipFromTrashRat,undefined,"Buy A Ship","See what the raskvel have for sale.");
 	addButton(14,"Leave",mainGameMenu);
 }

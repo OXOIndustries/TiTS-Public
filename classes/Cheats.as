@@ -4,6 +4,9 @@
 	import classes.Items.Miscellaneous.ZilRation;
 	import classes.Resources.StatusIcons;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.InRoomWithFlag;
+	import classes.Engine.Utility.getPlanetName;
+	
 	
 	/**
 	 * ...
@@ -67,6 +70,23 @@
 			kGAMECLASS.flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_EMAIL_TIMER"] = (kGAMECLASS.GetGameTimestamp() - (60 * 24 * 7));
 		}
+		public static function BringMeAFox():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			if (kGAMECLASS.flags["BIANCA_LOCATION"] != undefined) return;
+			if (!InRoomWithFlag(GLOBAL.HAZARD) || kGAMECLASS.biancaPlanetPool().indexOf(getPlanetName().toLowerCase()) < 0)
+			{
+				kGAMECLASS.output("\n<b>Bianca can’t spawn here.</b>");
+				return;
+			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Spawning Fox</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.biancaRandomEncounter);
+		}
 		public static function BoobSiliconePlease():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
@@ -125,7 +145,7 @@
 			Cheats.OutputStuff();
 			if(kGAMECLASS.flags["SJW"] == undefined)
 			{
-				kGAMECLASS.output("\n<b>'Shemale' will now be converted to dick-girl.</b>");
+				kGAMECLASS.output("\n<b>‘Shemale’ will now be converted to dick-girl.</b>");
 				kGAMECLASS.flags["SJW"] = 1;
 			}
 			else
@@ -306,7 +326,7 @@
 			}
 			
 			OutputStuff(true);
-			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments \"like so\".\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
+			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments “like so”.\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
 			kGAMECLASS.removeInput();
 			kGAMECLASS.displayInput();
 			kGAMECLASS.userInterface.textInput.text = "";

@@ -50,6 +50,7 @@ public function goldenPeakBonusFunction():Boolean
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits(2);
 	roamingBarEncounter(3);
+	if (biancaAtBar("myrellion") && biancaBarBonus(4)) return true;
 	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won’t watch itself!");
 	vendingMachineButton(7, "J'ejune");
 	

@@ -235,8 +235,7 @@ package classes.Items.Transformatives
 						pc.lust(20+rand(20));
 						pc.libido(2);
 						changes++;
-						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
-						pc.cocks[x].cockColor = "pale blue";
+						pc.shiftCock(x, GLOBAL.TYPE_KORGONNE);
 					}
 					else
 					{
@@ -268,10 +267,8 @@ package classes.Items.Transformatives
 						output(" A few inches inside, bundles of nerve cluster together in anticipation of being stretched out by a knot.");
 						output("\n\nYou pant like a horny bitch as the changes finish, <b>leaving you with a korgonne pussy.</b>");
 						pc.libido(2);
-						pc.shiftVagina(x,GLOBAL.TYPE_CANINE);
 						//You thought I was dog, but it was me, KORGONNE THE WHOLE TIME!
-						pc.vaginas[x].type = GLOBAL.TYPE_KORGONNE;
-						pc.vaginas[x].vaginaColor = "pale blue";
+						pc.shiftVagina(x, GLOBAL.TYPE_KORGONNE);
 					}
 					else
 					{

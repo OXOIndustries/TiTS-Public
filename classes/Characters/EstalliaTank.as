@@ -71,6 +71,7 @@ package classes.Characters
 			this.femininity = 85;
 			this.eyeType = 0;
 			this.eyeColor = "black";
+			this.tallness = 144;
 			this.thickness = 40;
 			this.tone = 29;
 			this.hairColor = "black";
@@ -185,6 +186,7 @@ package classes.Characters
 			this.createStatusEffect("Stun Immune");
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createStatusEffect("Planted", 0, 0, 0, 0, false, "Icon_Constricted", "Heavy treads on the ground prevent being tripped or staggered.", true, 0);
 			
 			this._isLoading = false;
 		}

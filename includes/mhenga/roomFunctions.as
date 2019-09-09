@@ -70,6 +70,7 @@ public function bountyBoardExtra():Boolean
 	var btnSlot:int = 0;
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
 	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
+	if(biancaBoothBonus(btnSlot, "mhen'ga")) btnSlot++;
 	if(pennyRecruited() && !pennyIsCrew()) pennyOffCrewKickedOff(btnSlot++);
 	
 	return false;
@@ -343,7 +344,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 		}
 		choices.push(femzilEncounter);
 		choices.push(femzilEncounter);
-		if(pc.hasStatusEffect("Zil Pheromones"))
+		if(pc.hasStatusEffect("Zil Pheromones") && pc.hasPregnancyOfType("ZilPregnancy"))
 		{
 			choices.push(maleZilPreggomonesEncounter);
 			choices.push(maleZilPreggomonesEncounter);
@@ -378,13 +379,14 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 				choices.push(fZilPregEncounter);
 			}
 		}
+		if(!hostileOnly && biancaInTheWilderness("mhen'ga")) choices.push(biancaRandomEncounter, biancaRandomEncounter, biancaRandomEncounter, biancaRandomEncounter);
 		if (!hostileOnly && breedwellPremiumBootyCallCheck("mhen'ga")) choices.push(breedwellPremiumBootyCallPing);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
 	}
 	if (!hostileOnly && tryEncounterMango()) return true;
-	
+
 	return false;
 }
 
@@ -442,12 +444,22 @@ public function jungleMiddleEncounters():Boolean {
 			}
 		}
 		if(yomaExploringTheJungle() && CodexManager.entryUnlocked("Naleen")) choices.push(yomaJungleMiddleEncounter);
+		if(biancaInTheWilderness("mhen'ga")) choices.push(biancaRandomEncounter, biancaRandomEncounter, biancaRandomEncounter, biancaRandomEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
 			&& !pc.hasStatusEffect("Prai Cooldown") 
 			&& rand(2) == 0) 
 				choices.push(praiSecondEncounter);
+		if (zilBullHere()) //I don't wanna make two functions oh no no, nonono
+		{
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+			choices.push(treatedZilBullEncounter);
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -1005,6 +1017,7 @@ public function zilXenogenProtest():void
 public function westMyrRebelsBonus():Boolean
 {
 	output("The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. " + (myrOnMhenga() ? "\n\nThe western building has been opened up, and a pair of gold myr women are standing outside with rifles slung over their shoulders. A sign above the door in clear, crisp English says “Embassy of the Gilden Republics, Mhen’ga.”" : "The western building is closed and locked, for now.") + "\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.");
+	if (myrOnMhenga()) flags["MHENGA_MYR_EMBASSY_SEEN"] = 1;
 	return zilTwinsEsbethBonus();
 }
 

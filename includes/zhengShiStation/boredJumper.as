@@ -268,7 +268,7 @@ public function sweatBunny69Loss2():void
 	if(pc.isBimbo()) output("You cry in out in pure, wanton need, delirious at the chance to press your [pc.lips] to her crotch.");
 	else if(pc.libido() >= 50) output("Your murmur your assent.");
 	else output("You shudder in sudden awareness of what’s about to happen, reeling your tongue back in it, but it’s too late.");
-	output("\n\n<i>“Here you go.”</i> The bunny-slut’s tongue dips into your navel while her hips swivel up and back, planting her balls on your forehead and and directing her [enemy.cockNoun] toward your mouth. Pre and sweat dribble from the tip ");
+	output("\n\n<i>“Here you go.”</i> The bunny-slut’s tongue dips into your navel while her hips swivel up and back, planting her balls on your forehead and directing her [enemy.cockNoun] toward your mouth. Pre and sweat dribble from the tip ");
 	if(pc.isBimbo()) output("into your greedy, cum-hungry maw");
 	else if(pc.libido() >= 50) output("into your wide-open, accepting mouth");
 	else output("onto your [pc.lipsChaste], shocking you into a gasp");
@@ -2630,7 +2630,7 @@ public function boredJumperHeatSexIII():void
 		flags["BJUMPER_HEAT_SEX"] = 1;
 		pc.loadInCunt(enemy,2);	
 	}
-	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
+	output("\n\nYou’re flipped onto your back, face to face with the lapine herm. She tears and yanks her suit apart before picking you up off the ground. You soon find yourself pinned against the nearest wall. She spreads your legs by the thigh, leaning you forward a bit until her [enemy.cockHead] slips past your [pc.clit]. Is she...? Oh no...");
 	processTime(30);
 	pc.orgasm();
 	flags["BJUMPER_HEAT_SEX"] = 1;

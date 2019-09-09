@@ -71,7 +71,7 @@ public function nykke2Intro():void
 	output("You keep your eyes peeled all around you as you wander the coast. This is where [frostwyrm.name] had claimed as her territory, and no other creature was brave enough to try and wander the area – but the email you had gotten from that advisory board is still fresh on your mind. A creature, described as being ten feet tall, bipedal, and looking like a Frostwyrm, has been spotted in the area. It sounded like " + (flags["FROSTWYRM_KIP_COUNT"] == 1 ? "your kip" : "one of your kips") + ", but... that can’t be true, can it?");
 	output("\n\nWhen you crest a nearby dune, you stop. It wasn’t difficult to find: like the email had reported, the creature was covered head-to-toe in pitch-black scales, a far-cry from [frostwyrm.name] and her snowy-white scales. Whatever this creature is, it sticks out from among the snow like a sore thumb. And it’s standing right there.");
 	output("\n\nLike the report had described, it’s very tall, about ten feet, from foot to scalp. Its highly muscled all over, like a draconic Amazon; every step from its thick legs has its thighs and calves flex and its thick tail sway, keeping itself upright and balanced. It has a pair of massive wings sprouting from its shoulder-blades, and, solidifying your hunch, it has four arms total – the unique hallmark of a Frostwyrm kip.");
-	output("\n\nYou aren’t sure what you should do, now that you’ve come this far. Do you approach it?  Call out to it? Do you leave and come back later, when it’s somewhere else among the coast? Do you call [frostwyrm.name] for help?");
+	output("\n\nYou aren’t sure what you should do, now that you’ve come this far. Do you approach it? Call out to it? Do you leave and come back later, when it’s somewhere else among the coast? Do you call [frostwyrm.name] for help?");
 	output("\n\nUnfortunately for you, you’re not much stealthier than it is: you’re standing on the crest of a snow dune, an easy sight for anyone else to see. As soon as the Frostwyrmling sees you, it launches into the air with a thick, powerful flap of its wings, and it’s rushing straight toward you!");
 	output("\n\nYou assume the creature is approaching aggressively " + (pc.hasEquippedWeapon() ? "and reach for your weapons" : "and assume a defensive stance") + ". Your combat prowess is what attracted [frostwyrm.name] to you in the first place – you could probably fight a biped half her size just fine.");
 	
@@ -333,7 +333,7 @@ public function nykke2IntroTalk():void
 	pc.lust(10);	
 	processTime(5);
 	clearMenu();
-	addButton(0,"Fuck",nykke2IntroFuck, 1,"Fuck","Nykke seems honest enough, and you can hardly imagine what it’s like to be a two-hundred-year-old-virgin.  The poor girl desperately needs someone to rock her world, and who better than you, Certified Frostwyrm Fucker?");
+	addButton(0,"Fuck",nykke2IntroFuck, 1,"Fuck","Nykke seems honest enough, and you can hardly imagine what it’s like to be a two-hundred-year-old-virgin. The poor girl desperately needs someone to rock her world, and who better than you, Certified Frostwyrm Fucker?");
 	addButton(1,"Talk",nykke2IntroRejection, undefined, "Talk", "You’re still not so sure you’d like to jump straight into the sack with Nykke – it’s going to take more than a sob story and a stiff cock to get into your pants." + (silly ? " Never mind that that’s exactly how [frostwyrm.name] got you, of course." : ""));
 }
 public function nykke2IntroRejection():void
@@ -353,11 +353,11 @@ public function nykke2IntroRejection():void
 		
 	processTime(5);
 	clearMenu();
-	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have.  Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
-	if (flags["FROSTWYRM_PSIONICS_TALK"] == 1) addButton(1, "Psionics", nykke2TalkPsionics, undefined, "Psionics", "Ask Nykke about her control over her psionic powers.  You can’t say you’ve experienced what it’s like to have them first-hand, after all!");
+	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have. Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
+	if (flags["FROSTWYRM_PSIONICS_TALK"] == 1) addButton(1, "Psionics", nykke2TalkPsionics, undefined, "Psionics", "Ask Nykke about her control over her psionic powers. You can’t say you’ve experienced what it’s like to have them first-hand, after all!");
 	else addDisabledButton(1, "Psionics","Psionics","You’re far less educated about psionics than Nykke would be, and you probably shouldn’t go into this discussion without at least a little bit of forethought from [frostwyrm.name] first.");
-	addButton(2,"Adventuring",nykke2TalkAdventuring,undefined,"Adventuring","You’ve been to all manner of planets and places by now, while Nykke’s been trapped on Uveto all her life.  Maybe she’d like to hear a few stories about your travels.");
-	addButton(3,"Black Scales",nykke2TalkBlackScales,undefined,"Black Scales","Ask Nykke about her unique melanin condition.  You get the sense she isn’t comfortable with her own body, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	addButton(2,"Adventuring",nykke2TalkAdventuring,undefined,"Adventuring","You’ve been to all manner of planets and places by now, while Nykke’s been trapped on Uveto all her life. Maybe she’d like to hear a few stories about your travels.");
+	addButton(3,"Black Scales",nykke2TalkBlackScales,undefined,"Black Scales","Ask Nykke about her unique melanin condition. You get the sense she isn’t comfortable with her own body, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	addButton(14,"Back",nykke2CallHer,false);
 }
 public function nykke2CallHer(playIntro:Boolean=true):void
@@ -377,14 +377,14 @@ public function nykke2CallHer(playIntro:Boolean=true):void
 	}
 	else
 	{
-		output("You lounge with Nykke at the base of a snow dune.  Normally, laying in the snow wouldn’t be your idea of a relaxing time, but Nykke gives off so much ambient heat that you’re actually fine, no matter the conditions - provided you stay with her. You’d have thought that Frostwyrms were cold-blooded, but if they were, they probably wouldn’t be on Uveto.");
+		output("You lounge with Nykke at the base of a snow dune. Normally, laying in the snow wouldn’t be your idea of a relaxing time, but Nykke gives off so much ambient heat that you’re actually fine, no matter the conditions - provided you stay with her. You’d have thought that Frostwyrms were cold-blooded, but if they were, they probably wouldn’t be on Uveto.");
 		output("\n\nAs long as you’re with her, is there anything you’d like to say or do?");
 	}
 		
 	clearMenu();
 	addButton(0,"Appearance",nykke2Appearance,undefined,"Appearance","Get a better look at Nykke, and see how she differs from your own kip.");
-	addButton(1,"Talk",nykke2TalkMenu,undefined,"Talk","Nykke, despite her appearance, is rather old and experienced.  Surely she has a unique perspective on life and the world around her, being a Frostwyrmling, and with such a distinct scale condition.");
-	addButton(2,"Sex",nykke2SexMenu,undefined,"Sex","Nykke’s been alone for two centuries.  She’s probably got one hell of a backlog to work through – why not give her a hand, or maybe some other appendages, to help her out?");
+	addButton(1,"Talk",nykke2TalkMenu,undefined,"Talk","Nykke, despite her appearance, is rather old and experienced. Surely she has a unique perspective on life and the world around her, being a Frostwyrmling, and with such a distinct scale condition.");
+	addButton(2,"Sex",nykke2SexMenu,undefined,"Sex","Nykke’s been alone for two centuries. She’s probably got one hell of a backlog to work through – why not give her a hand, or maybe some other appendages, to help her out?");
 	addButton(3, "Leave", nykke2Leave);
 }
 public function nykke2Appearance():void
@@ -418,11 +418,11 @@ public function nykke2TalkMenu():void
 	pc.lust(10);	
 	processTime(1);
 	clearMenu();
-	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have.  Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
-	if (flags["FROSTWYRM_PSIONICS_TALK"] == 1) addButton(1, "Psionics", nykke2TalkPsionics, undefined, "Psionics", "Ask Nykke about her control over her psionic powers.  You can’t say you’ve experienced what it’s like to have them first-hand, after all!");
+	addButton(0,"Mates",nykke2TalkMates,undefined,"Mates","Ask Nykke what qualities her ideal mate should have. Should they be strong, or smart, or just virile enough to give her a legendary clutch?");
+	if (flags["FROSTWYRM_PSIONICS_TALK"] == 1) addButton(1, "Psionics", nykke2TalkPsionics, undefined, "Psionics", "Ask Nykke about her control over her psionic powers. You can’t say you’ve experienced what it’s like to have them first-hand, after all!");
 	else addDisabledButton(1, "Psionics","Psionics","You’re far less educated about psionics than Nykke would be, and you probably shouldn’t go into this discussion without at least a little bit of forethought from [frostwyrm.name] first.");
-	addButton(2,"Adventuring",nykke2TalkAdventuring,undefined,"Adventuring","You’ve been to all manner of planets and places by now, while Nykke’s been trapped on Uveto all her life.  Maybe she’d like to hear a few stories about your travels.");
-	addButton(3,"Black Scales",nykke2TalkBlackScales,undefined,"Black Scales","Ask Nykke about her unique melanin condition.  You get the sense she isn’t comfortable with her own body, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	addButton(2,"Adventuring",nykke2TalkAdventuring,undefined,"Adventuring","You’ve been to all manner of planets and places by now, while Nykke’s been trapped on Uveto all her life. Maybe she’d like to hear a few stories about your travels.");
+	addButton(3,"Black Scales",nykke2TalkBlackScales,undefined,"Black Scales","Ask Nykke about her unique melanin condition. You get the sense she isn’t comfortable with her own body, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	addButton(14,"Back",nykke2CallHer,false);
 }
 public function nykke2TalkMates():void
@@ -459,7 +459,7 @@ public function nykke2TalkMates():void
 		
 	pc.lust(10);
 	processTime(5 + rand(5));
-	addDisabledButton(0, "Mates","Mates","You already have a <i>pretty</i> good idea on what Nykke considers to be the perfect mate…");
+	addDisabledButton(0, "Mates","Mates","You already have a <i>pretty</i> good idea on what Nykke considers to be the perfect mate...");
 }
 public function nykke2TalkPsionics():void
 {	
@@ -496,7 +496,7 @@ public function nykke2TalkPsionics():void
 	output("\n\nShe ‘tch’s’ at the suggestion, but doesn’t immediately dismiss it. <i>“Maybe in a Light’s Rise or two,”</i> she says. <i>“It’ll give me some time to think about it.”</i>");
 		
 	processTime(60 + rand(15));
-	addDisabledButton(1, "Psionics","Psionics","You had just had a whole ordeal about this!  Nykke is still a little peeved over her inability to teach you to use psionics, so it’d be best to not press your luck for more right now.");
+	addDisabledButton(1, "Psionics","Psionics","You had just had a whole ordeal about this! Nykke is still a little peeved over her inability to teach you to use psionics, so it’d be best to not press your luck for more right now.");
 }
 public function nykke2TalkAdventuring():void
 {	
@@ -536,7 +536,7 @@ public function nykke2TalkAdventuring():void
 		
 	pc.lust(20);
 	processTime(10 + rand(5));
-	addDisabledButton(2, "Adventuring","Adventuring","You’ve just talked about this!  The idea of traveling the stars and seeing new cultures and peoples is an exciting idea for Nykke.  She probably wouldn’t be against going with you some day.");
+	addDisabledButton(2, "Adventuring","Adventuring","You’ve just talked about this! The idea of traveling the stars and seeing new cultures and peoples is an exciting idea for Nykke. She probably wouldn’t be against going with you some day.");
 }
 public function nykke2TalkBlackScales():void
 {	
@@ -573,7 +573,7 @@ public function nykke2TalkBlackScales():void
 
 	pc.lust(10);		
 	processTime(5 + rand(5));
-	addDisabledButton(3, "Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales… but now she knows that, to you, and to her own Qim and Qal, it never mattered what she looks like.");
+	addDisabledButton(3, "Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you, and to her own Qim and Qal, it never mattered what she looks like.");
 }
 public function nykke2SexMenu():void
 {	
@@ -585,7 +585,7 @@ public function nykke2SexMenu():void
 	output("\n\nHer thick, heavy tail makes broad, downward swings into the snow, loudly thumping her approval into the air around you. You can’t see her cock, with your vision thoroughly blocked by her breasts, but you can feel it get harder, hotter, heavier, and longer with every slow, impatient thrust of her hips against yours.");
 	if (pc.hasCock()) output(" It frots against yours" + (pc.isCrotchExposed() ? "" : " right through your [pc.lowerGarments]") + ", rousing yourself to action as well.");
 	else output(" Like a heat - seeking missile, it finds your [pc.vagina " + rand(pc.vaginaTotal()) + "]" + (pc.isCrotchExposed() ? "" : ", right through your [pc.lowerGarments]") + ", and she grinds the thick of her pole against you, readying you for the thorough thrashing she’s ready to give you.");
-	output("And you <i>are</i> getting ready....");
+	output(" And you <i>are</i> getting ready....");
 
 	output("\n\nTwo of Nykke’s huge hands come down on either side of your head – not as a show of force or dominance, but it keeps you from thinking of backing out. You’ve projected to her that you’re ready and willing, and that’s all the signalling a horny, neglected dragon like her needs.");
 	output("\n\nThat said, you can tell, she’s inexperienced. As ready as she is, she’s still very... pliable to suggestion. If you wanted to have her a certain way, you doubt she’d put up any resistance – all she knows is that she wants you, and she doesn’t care how.");
@@ -593,13 +593,13 @@ public function nykke2SexMenu():void
 	processTime(2);
 	clearMenu();
 	if (pc.cockThatFits(chars["NYKKE"].vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",penisRouter,[nykke2SexFuckHer,chars["NYKKE"].vaginalCapacity(),false,0],"Fuck Her","Nykke might be thinking with her dick, but you’re sure that every single part of her needs some special attention. Maybe she’ll hike her tail up for you and give you the chance to show her how a Qal like you fucks a dragon.");
-	else if (pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don't have a cock that fits her!");
+	else if (pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a cock that fits her!");
 	else addDisabledButton(0, "Fuck Her", "Fuck Her", "You can’t do this if you have nothing to fuck her with!");
 	if (pc.cockThatFits(chars["NYKKE"].analCapacity()) >= 0) addButton(1, "In Her Ass", penisRouter, [nykke2SexInHerAss, chars["NYKKE"].analCapacity(), false, 0], "In Her Ass", "It might not be as ‘productive’ as fucking her pussy, but surely, as a Frostwyrm, Nykke would be eager to learn all the alternative ways a mate can pleasure their better half. Consider it a lesson on how to be a good mate.");
-	else if (pc.hasCock()) addDisabledButton(1, "In Her Ass", "In Her Ass", "You don't have a cock that fits her!");
+	else if (pc.hasCock()) addDisabledButton(1, "In Her Ass", "In Her Ass", "You don’t have a cock that fits her!");
 	else addDisabledButton(1, "In Her Ass", "In Her Ass", "You need a penis to be able to fuck her butt!");
-	if (pc.hasVagina()) addButton(2, "Take Her", vaginaRouter, [nykke2SexTakeHer, chars["NYKKE"].cockVolume(0), 0, 0], "Take Her", "The way her Frostwyrmling cock is grinding against you, you’re not thinking of any reason to deny her giving a proper, willing, wet hole to slide herself into. You almost can’t wait, yourself….");
-	else addButton(2, "Take Her", nykke2SexTakeHer, -1, "Take Her", "Nykke is so pent up from having gone so long without a proper hole to fuck, it almost makes you guilty that you don’t have one to give her. Maybe you can turn around and offer her the next best thing….");
+	if (pc.hasVagina()) addButton(2, "Take Her", vaginaRouter, [nykke2SexTakeHer, chars["NYKKE"].cockVolume(0), 0, 0], "Take Her", "The way her Frostwyrmling cock is grinding against you, you’re not thinking of any reason to deny her giving a proper, willing, wet hole to slide herself into. You almost can’t wait, yourself....");
+	else addButton(2, "Take Her", nykke2SexTakeHer, -1, "Take Her", "Nykke is so pent up from having gone so long without a proper hole to fuck, it almost makes you guilty that you don’t have one to give her. Maybe you can turn around and offer her the next best thing....");
 	addButton(14,"Back",nykke2CallHer,false);
 }
 public function nykke2SexFuckHer(kok:int=0):void

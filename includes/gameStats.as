@@ -989,6 +989,7 @@ public function statisticsScreen(showID:String = "All"):void
 				case GLOBAL.OUTDOOR: roomFlagTypes.push("Outdoors"); break;
 				case GLOBAL.SHIPINTERIOR: roomFlagTypes.push("Ship Interior"); break;
 				
+				case GLOBAL.LOW_TECH: roomFlagTypes.push("Technologically Limited"); break;
 				case GLOBAL.FOREST: roomFlagTypes.push("Forest"); break;
 				case GLOBAL.JUNGLE: roomFlagTypes.push("Jungle"); break;
 				case GLOBAL.WATERFALL: roomFlagTypes.push("Waterfall"); break;
@@ -996,16 +997,18 @@ public function statisticsScreen(showID:String = "All"):void
 				case GLOBAL.CAVE: roomFlagTypes.push("Caves"); break;
 				case GLOBAL.ICYTUNDRA: roomFlagTypes.push("Icy Tundra"); break;
 				case GLOBAL.FROZENTUNDRA: roomFlagTypes.push("Frozen Tundra"); break;
-				case GLOBAL.LOW_GRAVITY: roomFlagPlace.push("Low Gravity"); break;
+				case GLOBAL.LOW_GRAVITY: roomFlagTypes.push("Low Gravity"); break;
 				
 				case GLOBAL.NUDITY_ILLEGAL: roomFlagRules.push("Nudity Illegal"); break;
 				case GLOBAL.FAPPING_ILLEGAL: roomFlagRules.push("Masturbation Illegal"); break;
 				case GLOBAL.NOFAP: roomFlagRules.push("Masturbation Impossible"); break;
 				
 				case GLOBAL.SHIPHANGAR: roomFlagPlace.push("Ship Hangar"); break;
+				case GLOBAL.NURSERY: roomFlagPlace.push("Nursery"); break;
 				case GLOBAL.BAR: roomFlagPlace.push("Bar"); break;
 				case GLOBAL.COMMERCE: roomFlagPlace.push("Commerce"); break;
 				case GLOBAL.MEDICAL: roomFlagPlace.push("Medical"); break;
+				case GLOBAL.FIRST_AID: roomFlagPlace.push("First Aid"); break;
 				case GLOBAL.POOL: roomFlagPlace.push("Pool"); break;
 				case GLOBAL.LIFTUP:
 				case GLOBAL.LIFTDOWN: roomFlagPlace.push("Lift"); break;
@@ -1155,6 +1158,7 @@ public function statisticsScreen(showID:String = "All"):void
 		//Births header!
 		var totalOffspring:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
 		var totalProduce:Number = 0;
+		totalProduce += StatTracking.getStat("pregnancy/ovalasting eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/siegwulfe eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
@@ -1493,7 +1497,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.spiderScore() > 0)
 			output2("\n<b>* Spider:</b> " + prettifyGeneticMarker(pc.spiderScore(), 4, 6));
 		if(CodexManager.entryUnlocked("Suulas") && pc.suulaScore() > 0)
-			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 6, 10));
+			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 8, 11));
 		if(pc.tentacleScore() > 0)
 			output2("\n<b>* Tentacle:</b> " + prettifyGeneticMarker(pc.tentacleScore(), 15, -99));
 		if(CodexManager.entryUnlocked("Vanae") && pc.vanaeScore() > 0)
@@ -5359,7 +5363,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// Sydney
 				if(flags["MET_SYDNEY"] != undefined) output2("\n<b>* Sydney:</b> Met him");
-				//Ciaran
+				// Ciaran
 				if(flags["CIARAN_MET"] != undefined)
 				{
 					output2("\n<b>* Ciaran:</b> Met him");
@@ -6349,6 +6353,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
 					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
+					if(flags["ANNO_FACESIT"] != undefined) output2("\n<b>* Anno, Times She Sat on Your Face:</b> " + flags["ANNO_FACESIT"]);
 				}
 				variousCount++;
 			}
@@ -8303,7 +8308,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			// kiona's kiosk
 			if(flags["KIONA_MET"] != undefined)
 			{
-				output2("\n<b><u>Kiona's Kiosk</u></b>");
+				output2("\n<b><u>Kiona’s Kiosk</u></b>");
 				output2("\n<b>* Kiona:</b> Met her");
 				if(!kionaLovers())
 				{
@@ -8734,6 +8739,30 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["AZRA_SEXED"] != undefined) output2("\n<b>* Azra, Times Sexed:</b> " + flags["AZRA_SEXED"]);
 			roamCount++;
 		}
+		// Bianca
+		if(flags["MET_BIANCA"] != undefined)
+		{
+			output2("\n<b>* Bianca:</b> Met her");
+			/*
+			if(flags["BIANCA_PLANET"] != undefined)
+			{
+				output2(" (At ");
+				switch(flags["BIANCA_PLANET"])
+				{
+					case "mhen'ga": output2("Mhen’ga"); break;
+					case "tarkus": output2("Tarkus"); break;
+					case "myrellion": output2("Myrellion"); break;
+					default: output2(StringUtil.toDisplayCase(flags["BIANCA_PLANET"])); break;
+				}
+				if(days - flags["BIANCA_LAST_DAY_MOVED"] > 0) output2(" for " + (days - flags["BIANCA_LAST_DAY_MOVED"]) + " days");
+				output2(")");
+			}
+			if(flags["BIANCA_LOCATION"] != undefined) output2("\n<b>* Bianca, Last Known Location:</b> " + getPlanetName(flags["BIANCA_LOCATION"]));
+			output2("\n<b>* Bianca, Affection:</b> " + biancaFamiliarity() + " % (" + biancaFamiliarityMax() + " % Max)");
+			*/
+			if(flags["BIANCA_SEXED"] != undefined) output2("\n<b>* Bianca, Times Sexed:</b> " + flags["BIANCA_SEXED"]);
+			roamCount++;
+		}
 		// Chaurmine
 		if(flags["MET_CHAURMINE"] != undefined)
 		{
@@ -8947,6 +8976,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MITZI_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
 			if(flags["MITZI_GUSHED"] != undefined) output2("\n<b>* Mitzi, Gush, Times Used:</b> " + flags["MITZI_GUSHED"]);
+			if(flags["MITZI_SOAKED"] != undefined) output2("\n<b>* Mitzi, Soak, Times Used:</b> " + flags["MITZI_SOAKED"]);
 			if(flags["MITZI_FUCKED"] != undefined) output2("\n<b>* Mitzi, Times Fucked Her Vagina:</b> " + flags["MITZI_FUCKED"]);
 			if(flags["MITZI_CUNTLICKED_PC"] != undefined) output2("\n<b>* Mitzi, Times She Licked Your Vagina:</b> " + flags["MITZI_CUNTLICKED_PC"]);
 			if(flags["MITZI_TITFUCKED"] != undefined) output2("\n<b>* Mitzi, Times Slowly Tit-Fucked Her:</b> " + flags["MITZI_TITFUCKED"]);
@@ -9260,11 +9290,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
+		if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined || flags["MITZI_BIMBO_TALK"] != undefined || flags["MITZI_FAV_DRUG"] != undefined || flags["SOAK_TIMES_USED"] != undefined || CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("Soak") || CodexManager.entryViewed("Throbb") || CodexManager.entryViewed("The Treatment"))
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
-			if(CodexManager.entryViewed("Dumbfuck"))
+			if(flags["MITZI_BIMBO_TALK"] != undefined || CodexManager.entryViewed("Dumbfuck"))
 			{
 				output2("\n<b>* Dumbfuck:</b> Known");
 				if(flags["TIMES_TAKEN_DUMBFUCK"] != undefined)
@@ -9280,13 +9310,23 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// Gush
-			if(CodexManager.entryViewed("Gush"))
+			if(flags["MITZI_FAV_DRUG"] != undefined || CodexManager.entryViewed("Gush"))
 			{
 				output2("\n<b>* Gush:</b> Known");
 				if(flags["USED_GUSH"] != undefined) output2(", Used");
 			}
+			// Soak
+			if(flags["MITZI_FAV_DRUG"] != undefined || flags["SOAK_TIMES_USED"] != undefined || CodexManager.entryViewed("Soak"))
+			{
+				output2("\n<b>* Soak:</b> Known");
+				if(flags["SOAK_TIMES_USED"] != undefined)
+				{
+					if(flags["SOAK_TIMES_USED"] == 1) output2(", Used once");
+					else output2(", Used " + flags["SOAK_TIMES_USED"] + " times");
+				}
+			}
 			// Throbb
-			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
+			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined || CodexManager.entryViewed("Throbb"))
 			{
 				output2("\n<b>* Throbb:</b> Known");
 				if(flags["TIMES_THROBB_USED"] != undefined)

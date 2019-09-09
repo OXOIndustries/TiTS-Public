@@ -132,6 +132,19 @@ package classes.Resources.Busts
 		//[Embed(source = "../../../assets/images/npcs/adjatha/victoria.png", mimeType = "image/png")]
 		//public var Bust_VICTORIA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_casual.png", mimeType = "image/png")]
+		public var Bust_BIANCA_CASUAL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_clothed.png", mimeType = "image/png")]
+		public var Bust_BIANCA_CLOTHED:Class;
+		public function get Bust_BIANCA():Class { return Bust_BIANCA_CLOTHED; }
+		public function get Bust_BIANCA_COAT():Class { return Bust_BIANCA_CLOTHED; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_lingerie.png", mimeType = "image/png")]
+		public var Bust_BIANCA_LINGERIE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_nude.png", mimeType = "image/png")]
+		public var Bust_BIANCA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/bianca_work.png", mimeType = "image/png")]
+		public var Bust_BIANCA_WORK:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/bizzy.png", mimeType = "image/png")]
 		public var Bust_BIZZY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/bizzy_nude.png", mimeType = "image/png")]
@@ -682,6 +695,8 @@ package classes.Resources.Busts
 		public var Bust_MITZI_ZIPSUIT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_nun.png", mimeType = "image/png")]
 		public var Bust_MITZI_NUN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_valentines.png", mimeType = "image/png")]
+		public var Bust_MITZI_VALENTINES:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_nude.png", mimeType = "image/png")]
 		public var Bust_MITZI_NUDE:Class;		
 		
@@ -980,6 +995,11 @@ package classes.Resources.Busts
 		public var Bust_SLAVEBREAKER_2:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
 		public var Bust_SLAVEBREAKER_2_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/star_viper_pilot.png", mimeType = "image/png")]
+		public var Bust_STAR_VIPER_PILOT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/star_viper_pilot_nude.png", mimeType = "image/png")]
+		public var Bust_STAR_VIPER_PILOT_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
@@ -1331,6 +1351,19 @@ package classes.Resources.Busts
 			//public var Full_BETSY:Class;
 			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/victoria.png", mimeType = "image/png")]
 			//public var Full_VICTORIA:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_casual.png", mimeType = "image/png")]
+			public var Full_BIANCA_CASUAL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_clothed.png", mimeType = "image/png")]
+			public var Full_BIANCA_CLOTHED:Class;
+			public function get Full_BIANCA():Class { return Full_BIANCA_CLOTHED; }
+			public function get Full_BIANCA_COAT():Class { return Full_BIANCA_CLOTHED; }
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_lingerie.png", mimeType = "image/png")]
+			public var Full_BIANCA_LINGERIE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_nude.png", mimeType = "image/png")]
+			public var Full_BIANCA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bianca_work.png", mimeType = "image/png")]
+			public var Full_BIANCA_WORK:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bizzy.png", mimeType = "image/png")]
 			public var Full_BIZZY:Class;
@@ -1853,6 +1886,8 @@ package classes.Resources.Busts
 			public var Full_MITZI_ZIPSUIT:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nun.png", mimeType = "image/png")]
 			public var Full_MITZI_NUN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_valentines.png", mimeType = "image/png")]
+			public var Full_MITZI_VALENTINES:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nude.png", mimeType = "image/png")]
 			public var Full_MITZI_NUDE:Class;
 
@@ -2109,6 +2144,11 @@ package classes.Resources.Busts
 			public var Full_SLAVEBREAKER_2:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_2_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/star_viper_pilot.png", mimeType = "image/png")]
+			public var Full_STAR_VIPER_PILOT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/star_viper_pilot_nude.png", mimeType = "image/png")]
+			public var Full_STAR_VIPER_PILOT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella.png", mimeType = "image/png")]
 			public var Full_STELLA:Class;

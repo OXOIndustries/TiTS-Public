@@ -250,7 +250,7 @@
 			if(hasUnderwear) output(" Once your climax ends you pull up your [pc.lowerGarments], the fabric rubbing against your new nubs.");
 			output(" While rubbing your lips");
 			if(hasUnderwear) output(" through the fabric");
-			output(", you drool at the thought of how good it will feel to to get penetrated by an actual dick.");
+			output(", you drool at the thought of how good it will feel to get penetrated by an actual dick.");
 			
 			target.vaginas[i].addFlag(GLOBAL.FLAG_NUBBY);
 			target.orgasm();

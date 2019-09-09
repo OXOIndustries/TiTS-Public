@@ -2051,6 +2051,7 @@ public function spiderCostumeOutro():void
 	if(pc.breastRows[0].breastRatingRaw < 5) pc.breastRows[0].breastRatingRaw = 5;
 	//Tongue
 	pc.tongueType = GLOBAL.TYPE_ARACHNID;
+	pc.clearTailFlags();
 	pc.addTongueFlag(GLOBAL.FLAG_LONG);
 	pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 	//No testes

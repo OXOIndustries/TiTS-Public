@@ -331,7 +331,7 @@ public function ratsInTheMineEncounter():Boolean
 		else if (pc.isNice()) output(" <i>“And what secret are you so sure is mine?”</i>");
 		else if (pc.isMisch()) output(" <i>“Oh yeah? I’ve got a lot of secrets, and I don’t recall sharing that many to you.”</i>");
 		else output(" <i>“Really? Do tell.”</i>");
-		output("\n\nChuckling, the self-assured mouse-thief brings the device to her face and and acts like she’s presenting on a stage. <i>“Ohh, you know... just a little tip we got from a concerned party a while back,”</i> she quips, clears her throat, and begins narrating with exaggerated enunciation.");
+		output("\n\nChuckling, the self-assured mouse-thief brings the device to her face and acts like she’s presenting on a stage. <i>“Ohh, you know... just a little tip we got from a concerned party a while back,”</i> she quips, clears her throat, and begins narrating with exaggerated enunciation.");
 		output("\n\n<i>“There will be a bothersome little snotbag coming your way who can’t help but stick his or her dull face into every corner. You’ll know them by their conceited sense of superiority and their complete lack of honesty and virtue. However this troublesome child may look compared to what they were born as, one fact remains: they are the " + pc.mf("son", "daughter") + " of Victor Steele, late CEO to Steele Tech, direct descendant and inheritor. What you do with this information is up to you, but I wholeheartedly suggest they are <i>not</i> to be left alone.”</i>");
 		output("\n\nA thread snaps in your mind hearing the name of your father, and their snickering cuts even deeper than before in your speechless form. The words you were hearing all spilled away at that moment, and now you know... now <i>they</i> know... <b><i>thanks to your " + chars["RIVAL"].mf("bastard", "bitch") + " cousin.</i></b> Who else could have sent that kind of message?");
 		output("\n\n<i>“[pc.name] Steele!”</i> the cocky rodenian points at you, <i>“Next in line to ownership of the Steele Tech megacorporation! Just our luck that a corporate stooge was walking around Zheng Shi! Haha! And would you believe it? Not a <i>mere</i> stooge, but the <b>head</b> stooge! It took us a while to figure it out, but who else fits the bill besides you?”</i>");
@@ -2662,7 +2662,7 @@ public function ratsDoneTeasing():void
 	else
 	{
 		output("You come to alone, naked, and absolutely drenched in " + rat2.mf("cum", "sexual effluvium") + ". You sputter to life, ballstench and the taste of semen prevalent when you cough, and the soreness in your body more than evident. At least you came. You think, anyway...");
-		output("\n\nYou roll over to find all your things strewn about and obviously ‘inspected’ for loot. Spunk drips from your face and and the sweaty musk of three horny rats clings to you. Sighing, you collect your belongings and assess the damage, finding that you");
+		output("\n\nYou roll over to find all your things strewn about and obviously ‘inspected’ for loot. Spunk drips from your face and the sweaty musk of three horny rats clings to you. Sighing, you collect your belongings and assess the damage, finding that you");
 		if (rat0.credits > 0 || rat0.inventory.length > 0)
 		{
 			output("’re short");

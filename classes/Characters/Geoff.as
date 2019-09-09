@@ -11,8 +11,6 @@
 	
 	public class Geoff extends Creature
 	{
-		
-		
 		//constructor
 		public function Geoff()
 		{
@@ -182,7 +180,14 @@
 		}
 		override public function get bustDisplay():String
 		{
-			return "GEOFF";
+			return bustString;
+		}
+		
+		public var bustString:String = "GEOFF";
+		public function bustUpdate(isArtie:Boolean = false):void
+		{
+			short = (!isArtie ? "Geoff" : "Artie");
+			bustString = (!isArtie ? "GEOFF" : "ARTIE");
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -220,6 +225,8 @@
 		
 		override public function onLeaveBuyMenu():void
 		{
+			short = "Geoff";
+			bustString = "GEOFF";
 			kGAMECLASS.mainGameMenu();
 		}
 	}

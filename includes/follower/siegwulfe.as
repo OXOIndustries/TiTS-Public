@@ -108,7 +108,7 @@ public function renameSiegwulfe(fromInv:Boolean = false):void
 	showBust(wulfeBustDisplay());
 	showName("RENAME\nSIEGWULFE");
 	
-	output("<i>“O-oh... you don’t like my name, [pc.master]?”</i> she asks, reaching for her collar. <i>“Here, feel free to change it.”</i>");
+	output("<i>“O-oh... you don’t like my name, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + "?”</i> she asks, reaching for her collar. <i>“Here, feel free to change it.”</i>");
 	
 	clearMenu();
 	addButton(0, "Next", nameSiegwulfe, fromInv);
@@ -167,7 +167,7 @@ public function nameSiegwulfeResult(fromInv:Boolean = false):void
 	{
 		// Tam-wolf
 		case "tam-wolf":
-			output("<i>“Tam... wolf?”</i> she echoes curiously, rubbing her tags between thumb and forefinger. <i>“Are you sure, [pc.master]? I’m not a cat-girl, and I’m </i>much<i> more advanced than a mere Fenris drone!”</i>");
+			output("<i>“Tam... wolf?”</i> she echoes curiously, rubbing her tags between thumb and forefinger. <i>“Are you sure, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + "? I’m not a cat-girl, and I’m </i>much<i> more advanced than a mere Fenris drone!”</i>");
 			output("\n\nOh, hush. It’s a perfectly good name.");
 			break;
 		// Sig
@@ -187,14 +187,14 @@ public function nameSiegwulfeResult(fromInv:Boolean = false):void
 			}
 			else
 			{
-				output("<i>“[wulfe.name],”</i> she echoes happily, rubbing her tags between thumb and forefinger. <i>“A lovely name, [pc.master], thank you so much!”</i> ");
+				output("<i>“[wulfe.name],”</i> she echoes happily, rubbing her tags between thumb and forefinger. <i>“A lovely name, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ", thank you so much!”</i> ");
 				output("\n\nThe newly-named siegwulfe cocks her head aside and gives you a pleasant little smile.");
 				output("\n\nWell, hopefully the gooey [goo.name] won’t mind you borrowing her name...");
 			}
 			break;
 		// Any Other Name:
 		default:
-			output("<i>“[wulfe.name],”</i> she echoes happily, rubbing her tags between thumb and forefinger. <i>“A lovely name, [pc.master], thank you so much!”</i> ");
+			output("<i>“[wulfe.name],”</i> she echoes happily, rubbing her tags between thumb and forefinger. <i>“A lovely name, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ", thank you so much!”</i> ");
 			output("\n\nThe newly-named siegwulfe cocks her head aside and gives you a pleasant little smile.");
 			break;
 	}
@@ -223,7 +223,7 @@ public function useDatacoreOnSiegwulfe(fromInv:Boolean = false):void
 	output("\n\nWell, better to get this over with now quickly before you grow attached to the new V. I.. With a " + (pc.isNice() ? "heavy " : "") + "sigh you tell her to deactivate herself.");
 	output("\n\n<i>“I live to serve.”</i> your canine droid says with an content smile as she shuts off. Switching the cores afterwards is a simple affair - you do have a bit of experience at that after all - and mere moments later [wulfe.name]’s CPU is locked firmly into her new chassis.");
 	output("\n\n[wulfe.name]’s eyes briefly flash as she boots up before tuning into the constant crimson red you are used to. Slowly looking around the room, the towering " + (chars["WULFE"].isBimbo() ? "bimbo" : "gynoid") + "-hound seems kinda lost for a moment before focusing her gaze on you, now a " + (chars["WULFE"].isBimbo() ? "lustful" : "playful") + " smirk on her face.");
-	output("\n\n<i>“Hello again, [pc.master].”</i> a familiar voice purrs. <i>“How may I" + (chars["WULFE"].isBimbo() ? ", like," : "") + " serve you today?”</i>");
+	output("\n\n<i>“Hello again, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ".”</i> a familiar voice purrs. <i>“How may I" + (chars["WULFE"].isBimbo() ? ", like," : "") + " serve you today?”</i>");
 	output("\n\nWell, looks like that little brain transplant worked just fine. Then again, it couldn’t hurt to thoroughly test certain features of your mechanic companion just to be one the safe side....");
 	if (chars["WULFE"].isBimbo()) output(" An in-depth check, so to speak.");
 
@@ -293,7 +293,7 @@ public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false, s
 	}
 	
 	addButton(btnSlot, (chars["WULFE"].short), approachSiegwulfe, [true, fromInv], (chars["WULFE"].short), (siegwulfeIsDom() ? "Call for your bimbo-domme Mistress." : ("Check up on your loyal " + (chars["WULFE"].isBimbo() ? "bimbobot" : "Siegwulfe") + ".")));
-	return (showBlurb ?  bonusText: "");
+	return (showBlurb ? bonusText: "");
 }
 
 // Siegwulfe Interactions
@@ -469,7 +469,7 @@ public function doSiegwulfeAction(arg:Array):void
 		// Stay
 		case "stay":
 			output("You ask [wulfe.name] to stay on your ship as a crew member.");
-			output("\n\nThe droid looks at you and nods. <i>“Yes, [pc.master].”</i>");
+			output("\n\nThe droid looks at you and nods. <i>“Yes, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ".”</i>");
 			output("\n\n(<b>[wulfe.name] has joined your crew!</b>)");
 			output("\n\n");
 			
