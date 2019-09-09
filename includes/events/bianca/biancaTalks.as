@@ -772,7 +772,7 @@ public function biancaCrewBlurb(crewmember:String):void
 			// PC has Nova on them
 			if (hasGooArmorOnSelf())
 			{
-				output("\n\n[nova.name] chimes in before you can say anything. <i>“I’m on [pc.name]’s crew!”</i> The nanobot gel makes herself known, " + (pc.armor is GooArmor ? "head peeking up around yours" : "slithering out of your pack") + ". <i>“I’m [goo.name], and [pc.name]’s been the bestest friend ever! We go on so many adventures and we’re always having fun and I’m learning so much!”</i>");
+				output("\n\n[goo.name] chimes in before you can say anything. <i>“I’m on [pc.name]’s crew!”</i> The nanobot gel makes herself known, " + (pc.armor is GooArmor ? "head peeking up around yours" : "slithering out of your pack") + ". <i>“I’m [goo.name], and [pc.name]’s been the bestest friend ever! We go on so many adventures and we’re always having fun and I’m learning so much!”</i>");
 				output("\n\nR-Right. You explain to the bemused doctor how you met [goo.name]. After helping the original crew of Novahome, she had appeared, and has been a helpful presence on your journey. She functions as an adaptable suit of armor and a companion all in one, bound together by insatiable curiosity and quick thinking. To be honest, you can’t wait to see what else she learns on your journey.");
 				output("\n\n<i>“Interesting...”</i> Bianca waves to the bubbly goo-girl. <i>“I admit, I don’t know what to say about that, but I’m glad you’ve met someone else you can trust.”</i>");
 				output("\n\nThat’s an understatement when it comes to [goo.name]...");
