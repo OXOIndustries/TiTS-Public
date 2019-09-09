@@ -4638,7 +4638,7 @@ public function roxyBirthSceneNext2(firstLitter:Boolean = false):void
 	output("\n\nAfter dotting the i in her last name, the laquine returns the pad and grabs her stuff. <i>“Well, [pc.name], I gotta get back to Uveto. You’ll know where to find me if you wanna talk or fuck,”</i> she grins. <i>“Man, feels so much better being over the pregnancy. Being in bed for days on end just sucks ass. I could use a game or two...”</i>");
 	output("\n\nWhile you escort Roxy to the elevator, you tell her to take it easy at the very least.");
 	output("\n\n<i>“Fuck that, way too young to be rocking in a chair all day.”</i> She laughs, smacking her fist to your shoulder. <i>“Anyway, I’ll be coming out weekly. Don’t worry, I’m making coach Charlie pay for that.");
-	if (firstLitter && roxyGetKidName(0, "FH") != "") output(" You keep an eye on " + roxyGetKidName(0, "FH") + ", I think she’s gonna be the most stubborn of the litter!”</i>");
+	if (firstLitter && roxyGetKidName(0, "FH") != "") output(" You keep an eye on " + roxyGetKidName(0, "FH") + ", I think " + (roxyGetKidSex(0) == "M" ? "he" : "she") + "’s gonna be the most stubborn of the litter!”</i>");
 	else output("\n\nKeep an eye on those kids, I think they all had a bit too much of me in ‘em.”</i>");
 	output("\n\nYou slap her ass and she whips around, hopping up and falling on you in a hug that nearly smashes you into the floor. <i>“You fucking take care of yourself, alright? I don’t want to be a single parent. And come by soon, kay?”</i>");
 	output("\n\n<i>Kiss.</i> She parts from you, bounding into the elevator and waving you off with two fingers. <i>“See ya, [pc.name]. Love you!”</i> she makes a heart gesture with her hands.");

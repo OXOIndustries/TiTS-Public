@@ -32,7 +32,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Commander Schora";
-			this.originalRace = "human";
+			this.originalRace = "dzaan";
 			this.a = "";
 			this.capitalA = "";
 			this.isPlural = false;
@@ -68,19 +68,19 @@
 			
 			this.femininity = 85;
 			this.eyeType = 0;
-			this.eyeColor = "blue";
-			this.tallness = 60;
+			this.eyeColor = "red";
+			this.tallness = 88;
 			this.thickness = 40;
 			this.tone = 70;
-			this.hairColor = "red";
+			this.hairColor = "strawberry blonde";
 			this.scaleColor = "bronze";
-			this.furColor = "tawny";
-			this.hairLength = 3;
+			this.furColor = "brown";
+			this.hairLength = 7;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
-			this.skinTone = "pink";
+			this.skinTone = "bronze";
 			this.skinFlags = new Array();
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
@@ -89,12 +89,13 @@
 			this.earType = GLOBAL.TYPE_HUMAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
-			this.horns = 0;
-			this.hornType = 0;
-			this.armType = 0;
+			this.horns = 2;
+			this.hornType = GLOBAL.TYPE_HUMAN;
+			this.hornLength = 4;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = 0;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE];
 			//0 - Waist
@@ -136,8 +137,8 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cThicknessRatioRaw = 1.2;
-			this.cocks[0].cLengthRaw = 18;
+			this.cocks[0].cThicknessRatioRaw = 1.75;
+			this.cocks[0].cLengthRaw = 5.125;
 			this.cocks[0].cType = GLOBAL.TYPE_HUMAN;
 			this.cocks[0].cockColor = "red";
 			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
@@ -148,7 +149,7 @@
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 2;
+			this.ballSizeRaw = 20;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
@@ -173,8 +174,8 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 6;
-			this.nippleColor = "pink";
+			this.breastRows[0].breastRatingRaw = 12;
+			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.

@@ -412,18 +412,18 @@ public function vanaePCVictory():void
 				else if (pc.genitalSpot >= 2) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You’d need front-mounted genitals for the huntress to eat you out.");
 			}
 
-			// 69 whilst gettin a blowjerb
+			// 69 whilst getting a blowjob
 			// 4 * 12, min 6", spot 0
 			if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(4, "69 - BJ", vanaeVictorySexIntro, "69bj", "Blowjob 69", "Have the huntress suck your cock whilst you return the favor.");
 			else
 			{
-				if (!pc.hasCock()) addDisabledButton(4, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst recieving a blowjerb.");
+				if (!pc.hasCock()) addDisabledButton(4, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst receiving a blowjob.");
 				else if (pc.cockThatFits(217) == -1) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too big for the Vanae to handle.");
 				else if (pc.longestCockLength() < 6) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too short for the Vanae to properly lavish it with the attention it requires.");
 				else if (pc.genitalSpot >= 2) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is in the wrong place to support 69 positions.");
 			}
 
-			// 69 whilst gettin eaten out
+			// 69 whilst getting eaten out
 			if (pc.hasVagina() && pc.genitalSpot < 2) addButton(5, "69 - Cunni", vanaeVictorySexIntro, "69cunni", "Cunnilingus 69", "Eat the huntress out whilst she returns the favor.");
 			else
 			{

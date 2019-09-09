@@ -212,11 +212,8 @@
 			vaginas[0].loosenessRaw = rand(4) + 1;
 			credits = 100+rand(100);
 
-			if (rand(10) == 0)
-			{
-				inventory.push(new RaskvelWrench());
-			}
-			else if(rand(8) <= 6) inventory.push(new Ruskvel());
+			if (rand(10) == 0) inventory.push(new RaskvelWrench());
+			else if(rand(8) <= 2) inventory.push(new Ruskvel());
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void

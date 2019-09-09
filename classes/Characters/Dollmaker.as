@@ -78,6 +78,7 @@
 			this.femininity = 100;
 			this.eyeType = 0;
 			this.eyeColor = "red";
+			this.tallness = 132;
 			this.thickness = 40;
 			this.tone = 29;
 			this.hairColor = "red";
@@ -226,6 +227,7 @@
 			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			*/
 			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Planted", 0, 0, 0, 0, false, "Icon_Constricted", "Firmly attached to the environment prevents being tripped or staggered.", true, 0);
 			this._isLoading = false;
 		}
 		

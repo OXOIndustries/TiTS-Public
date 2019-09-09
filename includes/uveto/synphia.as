@@ -853,7 +853,7 @@ public function synphiaEpilogue(args:Array):void
 	output("\n\nShe departs back to the hangar. You follow a moment later.");
 
 	//Feed her a load :3
-	new SlyverenSlavebreaker().loadInMouth(pc);
+	chars["SYNPHIA"].loadInMouth(pc);
 	//A feeding is good for a rest, right? Clear the Cooldown timer on ballswelling.
 	pc.removeStatusEffect("Synphia_Tired");
 	//Increment times sukked
@@ -1313,7 +1313,7 @@ public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT()
 	}
 	processTime(20);
 	//load in Synphia.
-	new SlyverenSlavebreaker().loadInMouth(pc);
+	chars["SYNPHIA"].loadInMouth(pc);
 	//Increment SYNPHIA_SUCKS
 	IncrementFlag("SYNPHIA_SUCKS");
 	//Increment SYNPHIA_BALLAUGS
@@ -1392,7 +1392,7 @@ public function modTalkWithSynphia():void
 	showSynphia();
 	author("Fenoxo");
 	output("Synphia mentioned getting mods earlier, but aside from her horns you don’t see any. You ask if she wound up buying any after landing the sweet gig on Uveto.");
-	output("\n\n<i>“I thought about it. I really did.”</i> Synphia stretches out, intentionally displaying her lithe body. <i>“Tits any bigger than this would get me stick in an engine housing, and it’s not like I need a wetter pussy, bigger lips, or help with a gag reflex. I’m a slyveren, and even with an undersized chest, I’m still hotter and better in the sack than damn near anybody else on this iceball. Sometimes you grow up thinking you lost the genetic lotto, but when you move out, you realize you’re still better off than the rest of the galaxy.”</i>");
+	output("\n\n<i>“I thought about it. I really did.”</i> Synphia stretches out, intentionally displaying her lithe body. <i>“Tits any bigger than this would get me stuck in an engine housing, and it’s not like I need a wetter pussy, bigger lips, or help with a gag reflex. I’m a slyveren, and even with an undersized chest, I’m still hotter and better in the sack than damn near anybody else on this iceball. Sometimes you grow up thinking you lost the genetic lotto, but when you move out, you realize you’re still better off than the rest of the galaxy.”</i>");
 	output("\n\nYou raise an eyebrow in disbelief. <i>“None at all?”</i>");
 	output("\n\n<i>“None... aside from the horns, but they’re more of a cybernetic augment than some kind of genome-rewriting mod. Besides, skipping expenses like that means I can keep my sister fitted in top-end gear for the rush.”</i> Synphia’s squeezes her tail fondly underneath an arm. <i>“Hope she’s doing okay. Almost due to come back for a refit, but yeah, that’s it. I’m almost entirely au natural.”</i>");
 	flags["SYNPHIA_MODSTALK"] = 1;

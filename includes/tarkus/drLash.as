@@ -124,7 +124,7 @@ public function dontBeADumbshitLashGreeting(pulledGuns:Boolean = false):void
 {
 	clearOutput();
 	showDrLash();
-	//dont be a dumbshit.
+	//don't be a dumbshit.
 	output("<i>“No.”</i>");
 	output("\n\nThe scientist cocks his head");
 	if(pulledGuns) output(", and distributes his weapons amongst his dozens of pockets");

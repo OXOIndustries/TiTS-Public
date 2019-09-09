@@ -56,10 +56,11 @@ package classes.Items.Transformatives
 			
 			var pc:Creature = target;
 			var changes:int = 0;
+			var hasAnalPregnancy:Boolean = pc.hasAnalPregnancy();
 			
 			//Subsequent Uses (PC is Blood Fevered):
 			//Effect : auto raises pc lust by 15
-			if(pc.hasStatusEffect("Fuck Fever"))
+			if(pc.hasStatusEffect("Fuck Fever") && !hasAnalPregnancy)
 			{
 				pc.lust(15);
 				output("Despite the fire already coursing through your veins, you decide to take another dose of Omega Oil. You pour the viscous liquid on your finger");
@@ -91,7 +92,7 @@ package classes.Items.Transformatives
 				}
 			}
 			//3rd dose and more, status “Flushed”:
-			else if(pc.hasStatusEffect("Flushed"))
+			else if(pc.hasStatusEffect("Flushed") && !hasAnalPregnancy)
 			{
 				//Consume
 				//automatically adds 15 to the players lust/
@@ -145,7 +146,7 @@ package classes.Items.Transformatives
 			}
 			//2nd dose, status “Flushed” :
 			//Consume
-			else if(pc.hasStatusEffect("Strangely Warm"))
+			else if(pc.hasStatusEffect("Strangely Warm") && !hasAnalPregnancy)
 			{
 				//automatically adds 15 to the players lust/
 				pc.lust(15);
@@ -219,7 +220,7 @@ package classes.Items.Transformatives
 				output(". A dull ache throbs inside you. You <i>need</i> to be filled with a big, fat cock, with a thick knot to keep you impaled on it while it breeds you. The feeling passes quickly, but it leaves you slightly flushed as you wait for the advertised effects to occur.");
 				//Gives status “Flushed” (48 hours)
 				//Effect: min lust raised by 15 (for the duration of the status)
-				if(!pc.hasStatusEffect("Strangely Warm") && rand(2) == 0)
+				if(!pc.hasStatusEffect("Strangely Warm") && !hasAnalPregnancy && rand(2) == 0)
 				{
 					output("\n\nYou fantasize about submitting and presenting your needy [pc.asshole] to a faceless, well-endowed stranger, having them ram your ass like it’s going out of style. <b>You feel like you’ll stay hornier than normal... at least for a while!</b>");
 					
@@ -294,6 +295,11 @@ package classes.Items.Transformatives
 					else if(pc.isMischievous()) output(" Well, that’ll teach you to buy from some no-name company....");
 					else output(" What a fucking scam.");
 					break;
+			}
+			
+			if(hasAnalPregnancy)
+			{
+				output("\n\nAside from the lust boost, you don’t experience much else. <b>Your anal incubation must be preventing you from obtaining the heat-like effects as described by the item.</b>");
 			}
 			
 			IncrementFlag("OMEGA_OILED");

@@ -41,7 +41,7 @@
 			this.description = "advanced quarters";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "With internal volume the most valuable commodity in space, laying out large sums of capital in order to maximize crew space has become a common practice. Advanced quarters utilize space-saving technologies to minimize a crew member’s volumetric footprint while providing creature comforts to rival a high-end hotel.\n\n(+2 crew capacity)";
+			this.tooltip = "With internal volume the most valuable commodity in space, laying out large sums of capital in order to maximize crew space has become a common practice. Advanced quarters utilize space-saving technologies to minimize a crew member’s volumetric footprint while providing creature comforts to rival a high-end hotel.\n\n(+1 bonus crew capacity)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

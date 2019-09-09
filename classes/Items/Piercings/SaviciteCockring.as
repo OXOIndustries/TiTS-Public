@@ -13,7 +13,7 @@ package classes.Items.Piercings
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.COCKSOCK;
+			this.type = GLOBAL.COCKWEAR;
 			
 			this.shortName = "S.C.Ring";
 			this.longName = "Savicite Cockring";
@@ -27,6 +27,9 @@ package classes.Items.Piercings
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 25000;
+			
+			addFlag(GLOBAL.ITEM_FLAG_COCKRING);
+			addFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL);
 			
 			this.version = _latestVersion;
 		}

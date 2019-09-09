@@ -35,15 +35,8 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
-			inventory.push(new AusarTreats());
-			inventory.push(new HammerCarbine());
-			inventory.push(new LaserCarbine());
-			inventory.push(new EMPGrenade());
-			inventory.push(new TSTArmor());
-			inventory.push(new Goovolver());
-			inventory.push(new ACock());
-			inventory.push(new AHCock());
-			inventory.push(new ADCock());
+			// set up with annoShopSetup() in tarkus/anno.as
+			inventory = new Array();
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -287,6 +280,10 @@
 		public function UpgradeVersion13(dataObject:Object):void
 		{
 			dataObject.inventory.push(new ArmorSteeleSuit().getSaveObject());
+		}
+		public function UpgradeVersion14(dataObject:Object):void
+		{
+			dataObject.inventory = new Array();
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{

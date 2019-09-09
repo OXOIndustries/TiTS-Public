@@ -71,6 +71,7 @@ package classes.Items.Transformatives
 				var numRound:int = 0;
 				var numHeart:int = 0;
 				var numStar:int = 0;
+				var numFlower:int = 0;
 				for(i = 0; i < target.breastRows.length; i++)
 				{
 					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) numPumped++; 
@@ -78,6 +79,7 @@ package classes.Items.Transformatives
 					if(!target.hasSymbolAreola()) numRound++;
 					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) numHeart++;
 					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) numStar++;
+					if(target.breastRows[i].hasAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED)) numFlower++;
 				}
 				
 				//Increase Size
@@ -118,6 +120,8 @@ package classes.Items.Transformatives
 					addButton(buttons++, "Flat", changeThemBoobHats, [-1, target], "Flat", "Makes your areolae flat.");
 				}
 				
+				buttons++;
+				
 				//Round
 				if (numRound >= target.breastRows.length)
 				{
@@ -127,7 +131,6 @@ package classes.Items.Transformatives
 				{
 					addButton(buttons++, "Round", changeThemBoobHats, [0, target], "Round", "Changes the shape of your areolae to be round.");
 				}
-			
 				//Heart shaped areola
 				if (numHeart >= target.breastRows.length) 
 				{
@@ -137,7 +140,6 @@ package classes.Items.Transformatives
 				{
 					addButton(buttons++, "Hearts", changeThemBoobHats, [GLOBAL.FLAG_HEART_SHAPED, target], "Hearts", "Changes the shape of your areolae to hearts.");
 				}
-			
 				//Star shaped areola
 				if (numStar >= target.breastRows.length)
 				{
@@ -147,8 +149,17 @@ package classes.Items.Transformatives
 				{
 					addButton(buttons++, "Stars", changeThemBoobHats, [GLOBAL.FLAG_STAR_SHAPED, target], "Stars", "Changes the shape of your areolae to stars.");
 				}
-			
-			return true;
+				//Flower shaped areola
+				if (numFlower >= target.breastRows.length)
+				{
+					addDisabledButton(buttons++,"Flowers","Flowers","Your areolae are already shaped like flowers.");
+				}
+				else
+				{
+					addButton(buttons++, "Flowers", changeThemBoobHats, [GLOBAL.FLAG_FLOWER_SHAPED, target], "Flowers", "Changes the shape of your areolae to flowers.");
+				}
+				
+				return true;
 			}
 			
 			//Not player!
@@ -259,6 +270,16 @@ package classes.Items.Transformatives
 						if(!target.areolaFlagUnlocked(i, GLOBAL.FLAG_STAR_SHAPED)) continue;
 						target.breastRows[i].delAreolaShapeFlags();
 						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_STAR_SHAPED);
+					}
+					break;
+				//Flowers
+				case GLOBAL.FLAG_FLOWER_SHAPED:
+					output("\n\nThe sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now flower-shaped!</b>");
+					for(i = 0; i < target.breastRows.length; i++)
+					{
+						if(!target.areolaFlagUnlocked(i, GLOBAL.FLAG_FLOWER_SHAPED)) continue;
+						target.breastRows[i].delAreolaShapeFlags();
+						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_FLOWER_SHAPED);
 					}
 					break;
 			}

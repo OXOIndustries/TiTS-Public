@@ -83,7 +83,7 @@ public function veltaApproach():void
 	clearMenu();
 	if (flags["VELTA_MET"] == 1)
 	{
-		veltaMainMenu();		
+		veltaMainMenu();
 	}
 	else
 	{
@@ -96,8 +96,8 @@ public function veltaApproach():void
 
 		processTime(5);
 		addButton(0, "Yes", veltaApproachTakeCareYes,undefined, "Yes", "Whatever you say, lady.");
-		addButton(1, "No", veltaApproachTakeCareNo,undefined, "No", "Rude, but probably honest.");			
-	}	
+		addButton(1, "No", veltaApproachTakeCareNo,undefined, "No", "Rude, but probably honest.");
+	}
 }
 public function veltaApproachTakeCareYes():void
 {
@@ -109,7 +109,7 @@ public function veltaApproachTakeCareYes():void
 	
 	processTime(1);
 	clearMenu();
-	addButton(0, "Next", veltaMainMenu);	
+	addButton(0, "Next", veltaMainMenu);
 }
 public function veltaApproachTakeCareNo():void
 {
@@ -140,25 +140,25 @@ public function veltaMainMenu():void
 	output("<i>“Yeah?”</i> Velta says, looking at you curiously. <i>“What’s on your mind?”</i>");
 
 	clearMenu();
-	addButton(0, "Talk", veltaTalkMenu);	
-	if (flags["VELTA_TALK_FAMILY"] == 1 && flags["VELTA_TALK_COLLEGE"] == 1 && flags["VELTA_TALK_HOBBIES"] == 1) addButton(1, "Sex", veltaSexMenu);	
-	else addDisabledButton(1, "Sex", "Sex", "You should get to know her a little better first.");	
-	addButton(2, "Appearance", veltaAppearance);	
-	addButton(14, "Leave", mainGameMenu);	
+	addButton(0, "Talk", veltaTalkMenu);
+	if (flags["VELTA_TALK_FAMILY"] == 1 && flags["VELTA_TALK_COLLEGE"] == 1 && flags["VELTA_TALK_HOBBIES"] == 1) addButton(1, "Sex", veltaSexMenu);
+	else addDisabledButton(1, "Sex", "Sex", "You should get to know her a little better first.");
+	addButton(2, "Appearance", veltaAppearance);
+	addButton(14, "Leave", mainGameMenu);
 }
 public function veltaTalkMenu(apt:Boolean = false):void
 {
 	clearOutput();
-	showVelta(false);	
+	showVelta(false);
 	
 	output("<i>“Yeah?”</i> Velta says, looking at you curiously. <i>“What’s on your mind?”</i>");
 	
 	processTime(10);
-	addButton(0, "Family", veltaTalkFamily, apt);	
-	addButton(1, "College", veltaTalkCollege, apt);		
-	addButton(2, "Hobbies", veltaTalkHobbies, apt);	
+	addButton(0, "Family", veltaTalkFamily, apt);
+	addButton(1, "College", veltaTalkCollege, apt);
+	addButton(2, "Hobbies", veltaTalkHobbies, apt);
 	if (apt) addButton(14, "Back", veltaApartmentFunc);
-	else addButton(14, "Back", veltaMainMenu);	
+	else addButton(14, "Back", veltaMainMenu);
 }
 public function veltaTalkFamily(apt:Boolean = false):void
 {
@@ -174,7 +174,7 @@ public function veltaTalkFamily(apt:Boolean = false):void
 	
 	flags["VELTA_TALK_FAMILY"] = 1;
 	processTime(5);
-	addDisabledButton(0, "Family","Family","You just talked about this.");	
+	addDisabledButton(0, "Family","Family","You just talked about this.");
 }
 public function veltaTalkCollege(apt:Boolean = false):void
 {
@@ -192,7 +192,7 @@ public function veltaTalkCollege(apt:Boolean = false):void
 	
 	flags["VELTA_TALK_COLLEGE"] = 1;
 	processTime(5);
-	addDisabledButton(1, "College","College","You just talked about this.");	
+	addDisabledButton(1, "College","College","You just talked about this.");
 }
 public function veltaTalkHobbies(apt:Boolean = false):void
 {
@@ -207,7 +207,7 @@ public function veltaTalkHobbies(apt:Boolean = false):void
 	
 	flags["VELTA_TALK_HOBBIES"] = 1;
 	processTime(5);
-	addDisabledButton(2, "Hobbies","Hobbies","You just talked about this.");	
+	addDisabledButton(2, "Hobbies","Hobbies","You just talked about this.");
 }
 public function veltaSexMenu(apt:Boolean = false):void
 {
@@ -220,11 +220,11 @@ public function veltaSexMenu(apt:Boolean = false):void
 	if (veltaSexOK())
 	{
 		output("\n\n<i>“Weeelllll...”</i> she purrs as she looks you up and down, <i>“I’m sure I could fit you in, muscles.”</i>");
-		addButton(0, "Vag", penisRouter,[veltaSexVag,chars["VELTA"].vaginalCapacity(0),false,6]);	
-		if (veltaAnalOK()) addButton(1, "Anal", veltaSexAnal, apt);	
+		addButton(0, "Vag", penisRouter,[veltaSexVag,chars["VELTA"].vaginalCapacity(0),false,6]);
+		if (veltaAnalOK()) addButton(1, "Anal", veltaSexAnal, apt);
 		else addDisabledButton(1, "Anal","Anal","You need to wait a day before doing this again.");
 		if (apt) addButton(14, "Back", veltaApartmentFunc);
-		else addButton(14, "Back", veltaMainMenu);	
+		else addButton(14, "Back", veltaMainMenu);
 	}
 	else
 	{
@@ -238,7 +238,7 @@ public function veltaSexMenu(apt:Boolean = false):void
 		var hasCock:Boolean = (pc.hasCock());
 		var hasBigCock:Boolean = (hasCock && pc.biggestCockLength() >= 8);
 		var hasCockThatFits:Boolean = (hasCock && pc.cockThatFits(chars["VELTA"].vaginalCapacity(0)) >= 0);
-		var hasBalls:Boolean = (pc.balls <= 0);
+		var hasBalls:Boolean = (pc.balls > 0);
 		if(!hasBigCock || !hasCockThatFits || !hasBalls)
 		{
 			output(" who possesses");
@@ -258,7 +258,7 @@ public function veltaSexMenu(apt:Boolean = false):void
 		output(".</i>");
 		
 		if (apt) addButton(14, "Back", veltaApartmentFunc);
-		else addButton(14, "Back", veltaMainMenu);		
+		else addButton(14, "Back", veltaMainMenu);
 	}
 }
 public function veltaSexVag(kok:int=0):void
@@ -287,10 +287,10 @@ public function veltaSexVag(kok:int=0):void
 		output("\n\nVelta actually looks a bit remorseful, but that doesn’t stop her from continuing to drag you through the residential deck,");
 		if (pc.isCrotchExposed()) output(" only now with your [pc.cocks] bouncing along as you go.");
 		else output(" only now with a rather distinct bulge distending your [pc.crotchCovers].");
-		output(" People are staring...");	
+		output(" People are staring...");
 		output("\n\nYou reach her apartment not long after that; she has the door open with impressive speed, and you’re in soon after, the tiny woman locking the door after you. Before you can react, she’s on you again, this time pinning your back against the nearest wall and practically tearing your gear and clothes off.");
 	}
-	else output("Before you can react, she’s on you, pinning your back against the nearest wall and practically tearing your gear and clothes off.");	
+	else output("Before you can react, she’s on you, pinning your back against the nearest wall and practically tearing your gear and clothes off.");
 	
 	if (pc.isChestExposed()) output(" Her hands trace down your hard body");
 	else output(" First your top, revealing your hard body");
@@ -342,7 +342,7 @@ public function veltaSexVag(kok:int=0):void
 	restHeal();
 	pc.shower();
 	clearMenu();
-	addButton(0, "Next", move,"RESIDENTIAL DECK 17");	
+	addButton(0, "Next", move,"RESIDENTIAL DECK 17");
 }
 public function veltaSexAnal(apt:Boolean = false):void
 {
@@ -368,8 +368,8 @@ public function veltaSexAnal(apt:Boolean = false):void
 	
 	processTime(10);
 	clearMenu();
-	addButton(0, "Yes", veltaSexAnalYes);	
-	addButton(1, "No", veltaSexAnalNo);	
+	addButton(0, "Yes", veltaSexAnalYes);
+	addButton(1, "No", veltaSexAnalNo);
 }
 public function veltaSexAnalYes():void
 {
@@ -378,7 +378,7 @@ public function veltaSexAnalYes():void
 	var firstTime:Boolean = true;
 	if (flags["VELTA_FUCK_ANAL"] > 0) firstTime = false;
 	
-	var kok:int = rand(pc.cockTotal());	
+	var kok:int = rand(pc.cockTotal());
 	var dildoVol:int = 23;
 	
 	if (firstTime) output("This is... unexpected, but you’re not about to complain. On the contrary, your [pc.cocks] " + (pc.cockTotal() > 1 ? "are" : "is") + " even stiffer than before, beading pre onto your hand.");
@@ -433,7 +433,7 @@ public function veltaSexAnalYes():void
 	eatHomeCooking(30);
 	flags["VELTA_ANAL_TIMER"] = GetGameTimestamp(); 
 	clearMenu();
-	addButton(0, "Next", move,"RESIDENTIAL DECK 17");	
+	addButton(0, "Next", move,"RESIDENTIAL DECK 17");
 }
 public function veltaSexAnalNo():void
 {
@@ -444,29 +444,29 @@ public function veltaSexAnalNo():void
 	
 	clearMenu();
 	processTime(5);
-	if (veltaAptOpen()) addButton(0, "Next", veltaApartmentFunc, undefined);	
-	else addButton(0, "Next", move,"RESIDENTIAL DECK 17");		
+	if (veltaAptOpen()) addButton(0, "Next", veltaApartmentFunc, undefined);
+	else addButton(0, "Next", move,"RESIDENTIAL DECK 17");
 }
 
 public function veltaApartmentFunc():void
 {
 	clearOutput();
-	showVelta(false);		
+	showVelta(false);
 	
 	output("<i>“Yeah?”</i> Velta says, looking at you curiously. <i>“What’s on your mind?”</i>");
 
 	clearMenu();
-	addButton(0, "Talk", veltaTalkMenu, true);	
-	if (flags["VELTA_TALK_FAMILY"] == 1 && flags["VELTA_TALK_COLLEGE"] == 1 && flags["VELTA_TALK_HOBBIES"] == 1) addButton(1, "Sex", veltaSexMenu, true);	
-	else addDisabledButton(1, "Sex", "Sex", "You should get to know her a little better first.");	
-	addButton(2, "Appearance", veltaAppearance, true);	
-	addButton(14, "Leave", mainGameMenu);	
+	addButton(0, "Talk", veltaTalkMenu, true);
+	if (flags["VELTA_TALK_FAMILY"] == 1 && flags["VELTA_TALK_COLLEGE"] == 1 && flags["VELTA_TALK_HOBBIES"] == 1) addButton(1, "Sex", veltaSexMenu, true);
+	else addDisabledButton(1, "Sex", "Sex", "You should get to know her a little better first.");
+	addButton(2, "Appearance", veltaAppearance, true);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function veltaAppearance(apt:Boolean=false):void
 {
 	clearOutput();
-	showVelta(false);	
+	showVelta(false);
 	
 	output("Velta is short for a human woman, standing only 5 feet tall by ancient Imperial measurements. She has cocoa skin, short, jet-black hair, and a round face with an adorable button nose, complemented by the red bindi in the center of her forehead. But probably the most notable thing about her face is her eyes; one is a brilliant, lively shade of blue, while the other is a deep, warm brown. She is in excellent shape, having slim hips, toned, slender arms and legs, a chiseled set of abs and two smallish, perfectly formed B-cups sitting proudly on her chest, capped with dark brown nipples. There is a single beauty mark on the left side of her neck, just above the collarbone.");
 	//currently the same, but created this if statement just in case she wears a different outfit in her apartment in the future

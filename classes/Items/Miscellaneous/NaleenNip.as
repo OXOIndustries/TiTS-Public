@@ -284,8 +284,7 @@
 				//Loop through and set 'em all, baby!
 				for(x = 0; x < target.totalVaginas(); x++)
 				{
-					target.vaginas[x].clits = 1;
-					target.vaginas[x].type = GLOBAL.TYPE_NAGA;
+					target.shiftVagina(x, GLOBAL.TYPE_NAGA);
 				}
 				changes++;
 			}

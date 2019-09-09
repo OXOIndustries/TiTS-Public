@@ -205,7 +205,7 @@ public function hijackRozArmor():void
 	output("\n\nShe seems sincere...");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Take It",takeRozArmor,undefined,"Take It","Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.");;
+	addButton(0,"Take It",takeRozArmor,undefined,"Take It","Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.");
 	addButton(1,"Leave It",leaveRozsArmor,undefined,"Leave It","Oh okay... Roz can keep her power armor.");
 }
 

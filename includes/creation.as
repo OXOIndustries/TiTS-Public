@@ -34,15 +34,16 @@ public function hasCheatInput(sText:String = ""):Boolean
 	{
 		// Gameplay/Debug
 		case "clowncar": cheatFunc = Cheats.infiniteCrewSpace; break;
-		case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+		case "urta": cheatFunc = Cheats.infiniteItemUse; break;
 		case "idclev": cheatFunc = Cheats.RoomTeleport; break;
 		case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
 		case "motherlode": cheatFunc = Cheats.XPToLevel; break;
-		case "sjw": cheatFunc = Cheats.SJWMode; break;
+		case "poison": cheatFunc = Cheats.SJWMode; break;
 		case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 		case "88mph": cheatFunc = Cheats.TimeSkip; break;
 		case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 		case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
+		case "healthdelivery": cheatFunc = Cheats.BringMeAFox; break;
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
 		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
 		
@@ -322,6 +323,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.earLength = 3;
 			//>Reptilian, forked tongues
 			pc.tongueType = GLOBAL.TYPE_LEITHAN;
+			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.tailType = GLOBAL.TYPE_LIZAN;
@@ -346,9 +348,11 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
 			pc.faceType = GLOBAL.TYPE_HUMANMASKED;
+			pc.clearFaceFlags();
 			pc.armType = GLOBAL.TYPE_KUITAN;
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			CodexManager.unlockEntry("Kui-Tan");
 			addButton(0,"Male",setStartingSex,1);
 			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.");
 			addButton(2,"Herm",setStartingSex,2);
@@ -369,20 +373,24 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;
 			pc.eyeType = GLOBAL.TYPE_GRYVAIN;
+			CodexManager.unlockEntry("Gryvain");
 			addButton(0, "Female", setStartingSex, 3);
 			addButton(1, "Herm", setStartingSex, 2);
 			break;
 		case "half-suula":
 			pc.faceType = GLOBAL.TYPE_SIREN;
+			pc.clearFaceFlags();
 			pc.earType = GLOBAL.TYPE_SIREN;
 			pc.clearEarFlags();
 			pc.addEarFlag(GLOBAL.FLAG_LONG);
 			pc.earLength = 4;
 			pc.hairType = GLOBAL.HAIR_TYPE_FEATHERS;
+			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_SIREN;
 			pc.clearTailFlags();
-			pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED];
-			pc.tongueFlags = [GLOBAL.FLAG_LONG];
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_SCALED);
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 			pc.lipColor = "black";
 			pc.eyeType = GLOBAL.TYPE_SIREN;
 			pc.armType = GLOBAL.TYPE_SIREN;
@@ -392,6 +400,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			CodexManager.unlockEntry("Suulas");
 			addButton(0,"Male",setStartingSex,1);
 			addButton(1,"Female",setStartingSex,3);
 			break;
@@ -436,21 +445,18 @@ public function setStartingSex(sex:int = 1):void {
 		pc.ballSizeRaw = 1.5;
 		switch(pc.originalRace)
 		{
-			case "half-suula":
-				pc.ballSizeRaw = 6;
-			case "half-leithan":
-				pc.shiftCock(0,GLOBAL.TYPE_NAGA);
-				pc.ballSizeRaw = 3;
-				break;
 			case "half-ausar":
 				pc.shiftCock(0,GLOBAL.TYPE_CANINE);
-				//Get rid of sheath for reasons
-				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // Get rid of sheath for reasons
 				break;
 			case "half-kaithrit":
 				pc.shiftCock(0,GLOBAL.TYPE_FELINE);
 				pc.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause kaithrits are not cool enough to have real kitty peckers
 				pc.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
+				break;
+			case "half-leithan":
+				pc.shiftCock(0,GLOBAL.TYPE_NAGA);
+				pc.ballSizeRaw = 3;
 				break;
 			case "half kui-tan":
 				pc.shiftCock(0,GLOBAL.TYPE_KUITAN);
@@ -462,6 +468,11 @@ public function setStartingSex(sex:int = 1):void {
 				pc.shiftCock(0, GLOBAL.TYPE_GRYVAIN);
 				pc.ballSizeRaw = 5;
 				break;
+			case "half-suula":
+				//pc.shiftCock(0,GLOBAL.TYPE_SIREN);
+				//pc.cocks[0].cockColor = "blue";
+				pc.ballSizeRaw = 6;
+				break;
 		}
 		//MALE!
 		if(sex == 1)
@@ -471,16 +482,17 @@ public function setStartingSex(sex:int = 1):void {
 			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
-			if (pc.originalRace == "half-kaithrit")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 50;
-				pc.hipRatingRaw = 6;
-			}
-			else if (pc.originalRace == "half-suula")
-			{
-				pc.femininity = 49;
-				pc.hipRatingRaw = 6;
-				pc.buttRatingRaw = 6;
+				case "half-kaithrit":
+					pc.femininity = 50;
+					pc.hipRatingRaw = 6;
+					break;
+				case "half-suula":
+					pc.femininity = 49;
+					pc.hipRatingRaw = 6;
+					pc.buttRatingRaw = 6;
+					break;
 			}
 		}
 		//HERM!
@@ -492,46 +504,50 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
-			if (pc.originalRace == "half-kaithrit" || pc.originalRace == "half-gryvain")
+			switch(pc.originalRace)
 			{
-				pc.femininity = 75;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+				case "half-kaithrit":
+				case "half-gryvain":
+					pc.femininity = 75;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}
 	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
 		pc.createVagina();
-		if (pc.originalRace == "half-suula")
+		switch(pc.originalRace)
 		{
-			pc.femininity = 85;
-			pc.hipRatingRaw = 5;
-			pc.buttRatingRaw = 10;
-		}
-		if(pc.originalRace == "half-leithan")
-		{
-			pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity += 20;
-		}
-		if(pc.originalRace == "half-ausar") {
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.vaginas[0].bonusCapacity = 20;
-			pc.elasticity = 1.25;
-		}
-		if(pc.originalRace == "half kui-tan")
-		{
-			pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
-			//pc.vaginas[0].wetnessRaw = 1;
-		}
-		if (pc.originalRace == "half-gryvain")
-		{
-			pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
-			pc.vaginas[0].wetnessRaw = 2;
-			pc.elasticity = 1.25;
-			pc.vaginas[0].bonusCapacity += 30;
-			pc.vaginas[0].clits = 6;
+			case "half-ausar":
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity = 20;
+				pc.elasticity = 1.25;
+				break;
+			case "half-leithan":
+				pc.shiftVagina(0,GLOBAL.TYPE_LEITHAN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.vaginas[0].bonusCapacity += 20;
+				break;
+			case "half kui-tan":
+				pc.shiftVagina(0,GLOBAL.TYPE_KUITAN);
+				//pc.vaginas[0].wetnessRaw = 1;
+				break;
+			case "half-gryvain":
+				pc.shiftVagina(0, GLOBAL.TYPE_GRYVAIN);
+				pc.vaginas[0].wetnessRaw = 2;
+				pc.elasticity = 1.25;
+				pc.vaginas[0].bonusCapacity += 30;
+				pc.vaginas[0].clits = 6;
+				break;
+			case "half-suula":
+				//pc.shiftVagina(0,GLOBAL.TYPE_SIREN);
+				//pc.vaginas[0].vaginaColor = "blue";
+				pc.femininity = 85;
+				pc.hipRatingRaw = 5;
+				pc.buttRatingRaw = 10;
+				break;
 		}
 		if(sex == 3)
 		{
@@ -541,10 +557,13 @@ public function setStartingSex(sex:int = 1):void {
 			pc.tone = 45;
 			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 10;
-			if (pc.originalRace == "half-kaithrit") {
-				pc.femininity = 85;
-				pc.hipRatingRaw = 7;
-				pc.buttRatingRaw = 5;
+			switch(pc.originalRace)
+			{
+				case "half-kaithrit":
+					pc.femininity = 85;
+					pc.hipRatingRaw = 7;
+					pc.buttRatingRaw = 5;
+					break;
 			}
 		}
 	}
@@ -610,6 +629,9 @@ public function averageHeight():Number
 	//Add a little randomness:
 	heightResult -= rand(3);
 	heightResult += rand(3);
+	// Clamp to limits
+	if(heightResult < heightMin) heightResult = heightMin;
+	if(heightResult > heightMax) heightResult = heightMax;
 	return Math.round(heightResult);
 }
 public function raceHeightMin(race:String):Number
@@ -781,7 +803,7 @@ public function chooseHairColor():void {
 		addButton(2,"Green",applyHairColor,"green");
 		addButton(3,"Purple",applyHairColor,"purple");
 		addButton(4,"Gold",applyHairColor,"gold");
-		addButton(4,"Silver",applyHairColor,"silver");
+		addButton(5,"Silver",applyHairColor,"silver");
 	}
 	else
 	{
@@ -943,7 +965,7 @@ public function chooseSkinTone():void
 		addButton(2, "Pink", applySkinTone, "pink");
 		addButton(3, "DarkRed", applySkinTone, "dark red");
 		addButton(4, "DarkGreen", applySkinTone, "dark green");
-		addButton(14, "Back", chooseGryvainColor)
+		addButton(14, "Back", chooseGryvainColor);
 	}
 	else
 	{
@@ -1017,8 +1039,48 @@ public function applySkinTone(skinTone:String = "pale"):void {
 				pc.nippleColor = "blue";
 			}
 		}
-
 	}
+	if(InCollection(pc.originalRace, ["half-suula"])) chooseScaleColor();
+	else chooseBreastSize();
+}
+
+public function chooseScaleColor():void
+{
+	clearOutput();
+	showBust("CREATION_DOCTOR");
+	creationHeader("SELECTING\nSCALE PIGMENT");
+	
+	output("<i>“Nice. Now how about the scale color?”</i>");
+	output("\n\n<b>What will your character’s scale color be?</b>");
+	
+	var colorList:Array = [];
+	
+	switch(pc.originalRace)
+	{
+		case "half-suula":
+			colorList.push(["Blue", "blue"]);
+			colorList.push(["Red", "red"]);
+			colorList.push(["Green", "green"]);
+			colorList.push(["Purple", "purple"]);
+			colorList.push(["Gold", "gold"]);
+			colorList.push(["Silver", "silver"]);
+			break;
+		default:
+			colorList.push(["Blue", "blue"]);
+			break;
+	}
+	
+	clearMenu();
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < colorList.length; i++)
+	{
+		addButton(btnSlot, colorList[i][0], applyScaleColor, colorList[i][1]);
+		btnSlot++;
+	}
+	addButton(14, "Back", chooseSkinTone);
+}
+public function applyScaleColor(newColor:String = "blue"):void {
+	pc.scaleColor = newColor;
 	chooseBreastSize();
 }
 
@@ -1144,70 +1206,28 @@ public function chooseYourJunkSize():void {
 	
 	clearMenu();
 	
+	var i:uint = 0;
+	var cLengths:Array = [4, 5, 6, 7, 8];
+	
 	switch (pc.originalRace)
 	{
-		case "half-leithan":
-			output("thirteen to twenty ");
-			
-			for (var i:uint = 0; i <= 7; i++)
-			{
-				addButton(i, String(13 + i) + "”", applyJunkSize, 13 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,13+rand(8));
-			break;
-
-		case "half-suula":
-			output("thirteen to twenty ");
-			
-			for (i = 0; i <= 4; i++)
-			{
-				addButton(i, String(10 + i) + "”", applyJunkSize, 10 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,10+rand(5));
-			break;
-			
-		case "half kui-tan":
-			output("five to ten ");
-			
-			for (i = 0; i <= 5; i++)
-			{
-				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,5+rand(10));
-			break;
-		
-		case "half-kaithrit":
-			output("four to six ");
-			
-			for (i = 0; i <= 2; i++)
-			{
-				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,4+rand(3));
-			break;
-			
-		case "half-gryvain":
-			output("five to twelve ");
-
-			for (i = 0; i <= 7; i++)
-			{
-				addButton(i, String(5 + i) + "”", applyJunkSize, 5 + i);
-			}
-			addButton(13, "Whatever", applyJunkSize, 5 + rand(8));
-			break;
-
-		default:
-			output("four to eight ");
-			
-			for (i = 0; i <= 4; i++)
-			{
-				addButton(i, String(4 + i) + "”", applyJunkSize, 4 + i);
-			}
-			addButton(13,"Whatever",applyJunkSize,4+rand(5));
-			break;
+		case "half-kaithrit": cLengths = [4, 5, 6]; break;
+		case "half kui-tan": cLengths = [5, 6, 7, 8, 9, 10]; break;
+		case "half-leithan": cLengths = [13, 14, 15, 16, 17, 18, 19, 20]; break;
+		case "half-gryvain": cLengths = [5, 6, 7, 8, 9, 10, 11, 12]; break;
+		case "half-suula": cLengths = [10, 11, 12, 13, 14]; break;
 	}
-
-	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
+	
+	output(num2Text(cLengths[0]) + " to " + num2Text(cLengths[cLengths.length - 1]));
+	
+	for (i = 0; i < cLengths.length; i++)
+	{
+		addButton(i, (String(cLengths[i]) + "\""), applyJunkSize, cLengths[i]);
+	}
+	addButton(13,"Whatever",applyJunkSize,cLengths[rand(cLengths.length)]);
+	
+	output(" inches. How long do you want it?”</i>");
+	if(cLengths[cLengths.length - 1] >= 9) output(" He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
 	
 	//NEW (cont.)
 	output("\n\n<b>How long do you want your character’s penis to be?</b>");
@@ -1215,7 +1235,7 @@ public function chooseYourJunkSize():void {
 	addButton(14,"Back",chooseBreastSize);
 }
 
-public function applyJunkSize(arg:int = 0):void {
+public function applyJunkSize(arg:Number = 0):void {
 	pc.cocks[0].cLengthRaw = arg;
 	pc.cocks[0].cThicknessRatioRaw = 1;
 	if (pc.originalRace == "half-kaithrit") {
