@@ -451,7 +451,7 @@ public function sitOnTemptingKittyFace2():void
 			{
 				output(" The tendrils lining your alien mast ");
 				if(pc.hasVagina() && (pc.vaginas[0].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.vaginas[0].type == GLOBAL.TYPE_SUULA)) output("further ");
-				output("drain her mind of coherency, lashing at pretty nerves and and stinging her palate with liquid lust, making your swampy trip even easier.");
+				output("drain her mind of coherency, lashing at pretty nerves and stinging her palate with liquid lust, making your swampy trip even easier.");
 			}
 			output("\n\nWhen you slide into her neck now, your [pc.cockHead " + dick + "] brushes her tonsil before replacing her adam’s apple with its perverse shape. That’s the spot you aim for on every descent. Convulsing neck-muscles arrest your thick phallus when you take too much from her, but you can hardly be blamed for that. The frictious massage against your urethral lips spreads them a bit wider, enabling you to vent more masculine pressure into her subservient suck-hole.");
 			output("\n\nYour prey strokes your [pc.thighs] tenderly while you hump away at her jaw with slow, tentative gyrations, brushing her teeth, jerking left and right between her cheeks. You’re spurting so much pre that it’s coming back up on her strained gurgles, rinsing her taste buds and turning her flipped mouth into a slippery waterpark that very few dicks will have a problem participating in.");

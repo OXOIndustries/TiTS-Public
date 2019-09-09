@@ -2660,7 +2660,7 @@ public function extrameetMistressVenomSex():void
 	output("\n\nYou look around at the dust floor. <i>“Is there a mattress or something?”</i> You contemplate pulling a sheet off one of the crates, but suspect they are not any less dusty than the floor would be.");
 	output("\n\nTassius gives you a stern look. <i>“On. Your. Back.”</i> Her voice makes it clear she isn’t asking. The woman has a way with authority, and knows how to exercise that power.");
 	output("\n\nDoing as you’re told, you gently lower yourself down, the floor feeling cold against your back. You take a moment to silently lament the dust that now coats your [pc.skinFurScales].");
-	output("\n\nThe Red Woman pulls herself to her feet once more, bushing off her backside with a few firm pats. She stalks over to you, her chitinous boots clicking on the ground as she walks. She stands over top of you, blocking out what little light there is and and appearing like a shadow overhead. <i>“You are not at attention.”</i> She nods her head towards your still soft [pc.cock " + kok + "]. <i>“This won’t do.”</i>");
+	output("\n\nThe Red Woman pulls herself to her feet once more, bushing off her backside with a few firm pats. She stalks over to you, her chitinous boots clicking on the ground as she walks. She stands over top of you, blocking out what little light there is and appearing like a shadow overhead. <i>“You are not at attention.”</i> She nods her head towards your still soft [pc.cock " + kok + "]. <i>“This won’t do.”</i>");
 	output("\n\nShe takes another step forward, her feet on either side of your head now and offering you a very informative look up her skirt. The Sergeant isn’t wearing any panties, which doesn’t strictly surprise you, but does seem slightly odd for how you perceived her. Despite the poor lighting, you can vaguely make out her twat, the sight of it causing your crotch to stir.");
 	output("\n\nTassius scoffs. <i>“Men. You’re almost too easy.”</i> She takes another few steps forward, carefully stepping over your shoulders and widening her stance. The red woman comes to a stop over your [pc.hips], her womanhood looming over your rising member. Slowly, she reaches down and hikes up her skirt, offering you a very nice view of her perfectly formed ass. You feel your cock twitch, stiffening up to full mast, and in no small part due to the very red and round scenery. Tassius drops her hand between her thighs, caressing her cunt with her fingers slowly.");
 	output("\n\nThe Sergeant warms herself up for a few short moments, her touching becoming more intense. You hear her softly gasp a few times, but nothing too loud or lewd seems to escape her lips. Your current angle gives you a view of the action, and watching her red pussy come alive and slick with sticky juices makes your cock throb with excitement. After another minute, Tassius stops teasing her now ready pussy and starts to lower herself down, right over your hard and eager pole.");
@@ -3296,6 +3296,64 @@ public function extrameetStormDragonSex():void
 	IncrementFlag("EXTRAMEET_ORAL_GIVE");
 	addButton(0,"Next",mainGameMenu);
 }
+
+//ProSnuggler23
+//[EXTRAMEET_PROSNUGGLER23]
+public function extrameetProSnuggler23Profile():void
+{
+	output("The profile picture is of a slender looking androgenous naga, lounging on a couch to the light of a simulated fireplace and sipping a mug full of a steaming hot beverage. The snake person's skin looks remarkably soft, marred only by the occasional patch of scales.");
+	output("\n\nUsername: ProSnuggler23");
+	output("\nSex: Male");
+	output("\nAge: 23 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Uveto");
+	output("\n\nBio:");
+	output("\nLooking for a big strong man (or herm, I don't mind) to come help a chilly snake warm up. Oh also to tell me what a naughty little bitch slut I am! Will have hot drinks for afterwords. Looking for something quick and rough, just for today.");
+}
+public function extrameetProSnuggler23CheckMatch():Boolean
+{
+	//requires pc taller than 6' and has a dick, biped or naga
+	if ((pc.isBiped() || pc.isNaga()) && pc.hasCock() && pc.tallness > 72) return true;
+	else return false;
+}
+public function extrameetProSnuggler23Date():void
+{
+	showName("\nPROSNUGGLER23");
+	author("Gardeford");
+	moveTo("UVI N32");
+	output("You log off, making the trek down to uveto city proper. You pass by residential areas till you come to the address given on the meet-up confirmation, a cozy looking apartment complex set up right near The Freezer. Sounds of hasty preparation breach the door as you ring the buzzer, followed swiftly by a soft click as the door opens, revealing a now slightly more disheveled version of the face you saw on the extrameet profile. He straightens his hair and wipes a line of sweat from his brow, appraising you in a way that sets your lust ablaze.");
+	output("\n\n<i>“Ahhh I can't believe someone actually came! You wouldn't believe how many people have swiped me and then just not realized how cold it is here. They always underestimate Uvetan heating,”</i> Now that he mentions it, the heat is certainly working in his apartment, and working wonders on his body. A thin sheen of sweat glistens in the dim light, drawing your eyes to every curve and shapely angle of his completely naked form. A thin slit just below his waist assumedly hides his genitalia, whatever he's packing. His voice draws you back to reality, and you realize you haven't been hearing him talk.");
+	output("\n\n<i>“I was thinking you could take me on the couch! Oh oh, or by the counter!”</i>");
+	output("\n\nWait, already? Shouldn't there be some kind of foreplay?");
+	output("\n\n<i>“I don't know about you, but I've been fantasizing about you pushing me up against... literally anything in this house and railing me till my tail doesn't work right. It's all I can do to keep my dicks in my slit, so hurry up!”</i> His hips give a little jiggle as he begs you. You recall he did ask for it rough. Maybe you can give him what he wants. Without another word, you bring your hands up under his arms, hoisting the fussy naga up to level with your face. You can't fully bring him off the ground because of his long tail, but he's surprisingly light. He goes quiet when you get him at eye level, and quivers with excitement when you walk him back into the foyer wall.");
+	output("\n\n<i>“");
+	if (pc.isNice()) output("Then maybe I'll take you up on that offer");
+	else if (pc.isMischievous()) output("Maybe those other people wouldn't have run away if they'd known how hot it is in here");
+	else output("Up against anything in the house eh? I think I'll prefer pressing you down into those couch cushions");
+	output(",”</i> you croon into his ear, pulling him toward the couch. He nods, making a half noise of compliance as he vibrates excitedly. You press him onto the couch, running your hands over the smooth combination of flesh and scales that cover his body. You lean in for a kiss, and he throws his arms around your neck to make it deeper. Without breaking contact, you "+(pc.isCrotchExposed() ? "take your [pc.cockBiggest] in your hands and line it up with his genital slit." : "hike your [pc.lowerGarments] down over your thighs and line your [pc.cockBiggest] up with his genital slit."));
+	output("\n\nA sigh of utter bliss escapes his lips as your length slides deep into his genital slit, and you feel the twin shafts of his hemipenis as your [pc.cockhead] pushes them aside. Now that your inside, you begin a steady rhythm of pumping your hips, grinding your tip between his rods with brief strokes. His hands fly into action, at first attempting to push you away to give himself a breather, and then clenching tightly around your shoulders as his double penis throbs powerfully, spurting a full load of hot cum into his own tight passage.");
+	output("\n\n<i>“Really? Is that all it takes? Just a few good thrusts and your creaming yourself like a slut!”</i> you laugh kissing his neck while he struggles to respond. He manages to bite his lip and give you a thoughtful glance before his eyes roll back and a few more spurts of warm jizz work their way out of his system.");
+	output("\n\n<i>“Hehe, yeah,”</i> he admits, stretching himself to curl his snake-like tail around "+(pc.isNaga() ? "your own" : "your legs")+". With him seemingly recovered, you start to move your hips again, steadily increasing your pace and the depth of your thrusts. Girlish moans and outright blissful cries issue from your serpentine lover, punctuated by muffled sounds of pleasure as you share deep kisses. He can't seem to find the best way to hold you, arms flying over your back like a lost explorer searching a map. You pull back and thrust deep, surprised for a moment to find a lack of dick.");
+	output("\n\n<i>“Hnngghh, thats! Asssss!”</i> he slurs, and you feel his twinned cocks shoot out of their hiding space, pressing against your belly and releasing a fresh, although a little thin, spurt of cream. Ass? You feel around his rear end, finding nothing but the round bumps of his hips and smooth scales that knead nicely beneath your fingertips. It appears he went all out on his mods, with a cloaca and everything.");
+	output("\n\nHis ass is tight, but the generous coating of natural lube he's applied makes it slick and easy to thrust deep into the constricting passage. Your thrusts are accompanied by sticky wet slaps as your hips bounce on his slender thighs. His spent cocks throb uselessly between you, still hot and hard against your stomach. Your kiss breaks, breath coming in heaving gasps as you feel your own orgasm approaching.");
+	output("\n\n<i>“Yuhh, " + (silly ? "impregnate my boi pussy!" : "make me warm inside!") + "”</i> he mumbles, clamping tighter around your length with instinctive force. Well, since he asked nicely. You give one more monumental thrust, hilting in the cumblasted naga's asshole before the thundering pressure of backed up pleasure bursts from your loins. ");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ < 100) output("[pc.Cum] spurts into the depths of his ass, leaving you feeling as drained as he looks.");
+	else if (cumQ < 1000) output("[pc.Cum] fills his ass as you fill his mouth with your [pc.tongue], massaging his wrists as you hold them against the couch.");
+	else if (cumQ < 5000) output("[pc.Cum] fills his ass and then spills in thick gobs back out around your length, mixing with his own as you slow grind the rest into his faux cunt.");
+	else output("[pc.Cum] erupts completely fills his ass on the first spurt, pouring out around your length as his faux cunt overflows. His own inferior seed is washed away, replaced completely by [pc.cumColor] cream.");
+	output("\n\nYou lie together for a few more minutes before you push yourself up. The serpentine slut lies on his back, a dazed grin on his face as he rubs his cum slicked belly.");
+	output("\n\n<i>“Are you gonna be ok?”</i> you ask, raising an eyebrow. He gives a long, slow nod, accompanied by a giggle. His twincock still juts out of his cloaca, shining like a pair of rubies in the hearthlight. You gather your things and get him a cup of cocoa from the pot near his sink, one that he accepts warmly and sips as he watches you prepare to leave.");
+	output("\n\n<i>“Stay warm,”</i> he mumbles, smiling as you pull the door open, heading back out into uveto proper.");
+
+	processTime(30 + rand(15));
+	pc.orgasm();
+
+	IncrementFlag("EXTRAMEET_SEX");
+	IncrementFlag("EXTRAMEET_ASS_GIVE");
+	addButton(0,"Next",mainGameMenu);
+}
+
 //uveto flavor
 
 //LoveBelow0
@@ -3436,4 +3494,4 @@ public function extrameetBigDickRickProfile():void
 	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
-}
+}

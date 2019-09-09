@@ -41,6 +41,7 @@
 	import classes.GameData.Pregnancy.Handlers.ZaaltPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ZephyrPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ZilPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.ZilBullPregnancyHandler;
 	import classes.Items.Transformatives.AmberSeed;
 	/**
 	 * ...
@@ -89,6 +90,7 @@
 			PregnancyManager.insertNewHandler(new LaquinePregnancyHandler());
 			PregnancyManager.insertNewHandler(new LDCShockHopperPregnancyHandler());
 			PregnancyManager.insertNewHandler(new MirrinPregnancyHandler());
+			PregnancyManager.insertNewHandler(new ZilBullPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

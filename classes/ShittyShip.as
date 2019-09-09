@@ -122,13 +122,9 @@ package classes {
 		public var shipGunCapacityRaw:Number = 2;
 		public var shipCapacityRaw:Number = 3;
 		//Probably set via perk.
-		public function shipCapacity(bBonus:Boolean = false):Number
+		public function shipCapacity():Number
 		{
 			var bonus:Number = 0;
-			if(bBonus)
-			{
-				bonus += equippedItemCountByClass(AdvancedQuarters);
-			}
 			return shipCapacityRaw + bonus;
 		}
 		public function shipWeaponCapacity():Number { return shipGunCapacity(); }
@@ -136,16 +132,16 @@ package classes {
 		{
 			return shipGunCapacityRaw;
 		}
-		public function bonusCrewCapacity():Number
+		public function bonusCrewCapacity(statDisplay:Boolean = false):Number
 		{
 			var bonus:Number = 0;
 			if(this is ClydesdaleK7) bonus += 2;
-			bonus += equippedItemCountByClass(AdvancedQuarters)*2;
+			bonus += (equippedItemCountByClass(AdvancedQuarters) * (statDisplay ? 1 : 2));
 			return bonus;
 		}
 		public function shipCrewCapacity():Number
 		{
-			return ((shipCapacity(true) + bonusCrewCapacity()) - this.inventory.length);
+			return ((shipCapacity() + bonusCrewCapacity()) - this.inventory.length);
 		}
 		//STORAGE SIZES!
 		public function wardrobeSize():Number
@@ -176,6 +172,7 @@ package classes {
 			var bonus:Number = 0;
 			if(hasPerk("PCs")) bonus = kGAMECLASS.pc.reflexes()/4;
 			if(hasStatusEffect("Evading!")) bonus += 50;
+			if(hasStatusEffect("Stealth Field")) bonus += 80;
 			return bonus + shipThrust()/2 + shipAgility() + shipStatBonusTotal(0);
 		}
 		//(Sensors + Systems +Chosen weapon stat, +pcaim) - additively reduces enemy evasion
@@ -484,9 +481,19 @@ package classes {
 
 				if(healMe)
 				{
+					//Actual heal loop
 					for(i = 0; i < gadgets.length; i++)
 					{
 						if(gadgets[i] is RepairModule && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
+						{
+							gadgets[i].useFunction(this,this);
+							return true;
+						}
+					}
+					//Defense loop.
+					for(i = 0; i < gadgets.length; i++)
+					{
+						if(gadgets[i] is StealthFieldForShips && !gadgets[i].hasFlag(GLOBAL.ITEM_FLAG_TOGGLED_OFF) && this.energy() >= gadgets[i].shieldDefense)
 						{
 							gadgets[i].useFunction(this,this);
 							return true;
@@ -676,23 +683,14 @@ package classes {
 						if(guns[i].shieldDefense+energyCost <= this.energy()) tactiGuns.push(guns[i]);
 						energyCost += guns[i].shieldDefense;
 					}
+					else if(target.shields() == 0 && (guns[i].baseDamage.kinetic.damageValue > 0))
+					{
+						if(guns[i].shieldDefense+energyCost <= this.energy()) tactiGuns.push(guns[i]);
+						energyCost += guns[i].shieldDefense;
+					}
 					else 
 					{
 						unusedGuns.push(guns[i]);
-					}
-				}
-				//Select type advantageous weapons
-				for(i = 0; i < unusedGuns.length; i++)
-				{
-					if(energyCost + unusedGuns[i].shieldDefense <= this.energy())
-					{
-						if(target.shields() == 0 && (guns[i].baseDamage.electric.damageValue > 0 || guns[i].baseDamage.burning.damageValue > 0)) {}
-						else if(target.shields() > 0 && (guns[i].baseDamage.kinetic.damageValue > 0 || guns[i].baseDamage.corrosive.damageValue > 0)) {}
-						else 
-						{
-							tactiGuns.push(unusedGuns[i]);
-							energyCost += unusedGuns[i].shieldDefense;
-						}
 					}
 				}
 				//If all our guns are bad fits, let's pick a few to fire, because we have to damage SOMEHOW
@@ -708,7 +706,7 @@ package classes {
 					}
 				}
 				//Even if we can fire a little bit, recharge if low
-				if(this.energy()/this.energyMax() < 0.5 && !acted)
+				if(this.energy()/this.energyMax() < 0.35 && !acted)
 				{
 					CombatAttacks.RechargeImpl(alliedCreatures, hostileCreatures, this, target);
 					acted = true;

@@ -379,7 +379,7 @@ public function initializeMyrellionRooms():void
 	//Beetles covered in glowy spores.
 	rooms["707"] = new RoomClass(this);
 	rooms["707"].roomName = "MUSHROOM\nPARK";
-	rooms["707"].description = "Swarms of beetles zip above the onyx pavers, heading to any number of bioluminescent mushrooms. Their whole bodies glow, painted with the same bluish-purple ambiance as the surrounding fungal life. Sometimes, they’ll form incredible patterns in the air in response to some stimulus beyond your perception - maybe air currents? Most myr pay them no mind, but here and there you can see an occasional awestruck smile.";
+	rooms["707"].description = "Swarms of beetles zip above the onyx pavers, heading to any number of bioluminescent mushrooms. Their whole bodies glow, painted with the same bluish-purple ambience as the surrounding fungal life. Sometimes, they’ll form incredible patterns in the air in response to some stimulus beyond your perception - maybe air currents? Most myr pay them no mind, but here and there you can see an occasional awestruck smile.";
 	rooms["707"].planet = "PLANET: MYRELLION";
 	rooms["707"].system = "SYSTEM: SINDATHU";
 	rooms["707"].northExit = "706";
@@ -1412,7 +1412,7 @@ public function initializeMyrellionRooms():void
 	//Park Path J16
 	rooms["824"] = new RoomClass(this);
 	rooms["824"].roomName = "\nSTREET";
-	rooms["824"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making the most of the fungal gardens and quiet ambiance.";
+	rooms["824"].description = "The Queen’s Solace park is quiet and relaxing, much less crowded than the rest of the city you’ve seen so far. Several myr of both gold and red persuasions are lounging around, clearly avoiding each other but all making the most of the fungal gardens and quiet ambience.";
 	rooms["824"].system = "SYSTEM: SINDATHU";
 	rooms["824"].planet = "PLANET: MYRELLION";
 	rooms["824"].westExit = "811";

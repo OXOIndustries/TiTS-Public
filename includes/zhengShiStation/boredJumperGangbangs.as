@@ -375,7 +375,7 @@ public function dontLetHerOrgy():void
 
 //[Inside]
 // Tooltip: Get the jumper to bloat this girl!
-// PC will be ‘Cum Splattered’’
+// PC will be ‘Cum Splattered’
 public function slaveOrgyCumInside():void
 {
 	clearOutput();
@@ -873,7 +873,7 @@ public function watchSomePirateGanguBanguSlanguWangu():void
 		else
 		{
 			output("\n\nThe fierce, obscene sex on display makes you shudder and gasp.");
-			if(pc.isHerm()) output(" Your crotch feels numb, you slump and and grind your diamond-hard [pc.cocksLight] against your own belly. Your shaky hindlegs are glazed by a waterfall of [pc.girlCum] your needy pussy.");
+			if(pc.isHerm()) output(" Your crotch feels numb, you slump and grind your diamond-hard [pc.cocksLight] against your own belly. Your shaky hindlegs are glazed by a waterfall of [pc.girlCum] your needy pussy.");
 			else if(pc.hasCock()) output(" [pc.EachCock] throbs, twitching so hard they ram into your underbelly, ropes of pre and watery ejaculate bridging the gap between your [pc.cockHeads] and the jagged floor.");
 			else if(pc.hasVagina()) output(" [pc.EachVagina] clinches and oozes with orgasmic slime, so ready for a dick, a dildo, even a fist that sadly isn’t coming.");
 			else output(" You squirm and slump, furiously groping yourself as you concentrate on the smells to bring about a suitable orgasm.");

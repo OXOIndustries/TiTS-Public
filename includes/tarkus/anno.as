@@ -226,9 +226,9 @@ public function firstTimeAnnoTalks():void
 //[Discount?]
 public function soAboutDatDiscountSlut():void
 {
-	shopkeep = chars["ANNO"];
 	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms.") + " Steele,”</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
+	annoShopSetup();
 	buyItem();
 }
 
@@ -255,9 +255,8 @@ public function annoMainMenu():void
 {
 	//[Buy] [Sell] [Talk] [Repair Gear] [Ear Scratches]
 	clearMenu()
-	annoShopSetup();
 	addButton(0,"Buy",buyFromDatDogslut,undefined,"Buy","See what Anno has for sale.");
-	addButton(1,"Sell",sellItem,undefined,"Sell","See if you can sell any of your carried items to Anno.");
+	addButton(1,"Sell",sellToDatDogslut,undefined,"Sell","See if you can sell any of your carried items to Anno.");
 	addButton(2,"Talk",annoTalkMenu,undefined,"Talk","Talk to Anno about a variety of topics.");
 	addButton(3,"EarScratches",earScritchesForAnno,undefined,"Ear Scratches","Give her a good scratching right behind the ears. She’s been a good girl, after all.");
 	addButton(5,"Appearance",annoAppearance,undefined,"Appearance","Review what Anno’s entire body looks like.");
@@ -277,33 +276,58 @@ public function buyFromDatDogslut():void
 {
 	author("Savin");
 	showAnno();
-	shopkeep = chars["ANNO"];
+	
 	if(flags["SEEN_ANNO_BUY_MENU"] == undefined)
 	{
 		flags["SEEN_ANNO_BUY_MENU"] = 1;
 		chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue?”</i> Anno says hopefully. <i>“We mostly do business with rushers and pioneers coming through, so I’ve got some pretty decent weapons and armor in stock. Even some military grade stuff, which I’m pretty sure you’re allowed to buy. Plus, plenty of junk I’ve managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.”</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop’s goods.\n";
 	}
-	else annoShopSetup();
-	buyItem();
-}
-public function annoShopSetup():void
-{
-	author("Savin");
-	showAnno();
-	shopkeep = chars["ANNO"];
-	
-	gooArmorOrphanedCheck(chars["ANNO"]);
-	
-	if(flags["TARKUS_DESTROYED"] != undefined)
+	else if(flags["TARKUS_DESTROYED"] != undefined)
 	{
 		// First Time
 		chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue?”</i> Anno says hopefully. <i>“Not a lot of business to work with after the planet blew, so I’ve got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I’m pretty sure you’re allowed to buy. Plus, plenty of junk I’ve managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.”</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop’s goods.\n";
 	}
 	else chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.”</i>\n";
+	
+	annoShopSetup();
+	shopkeep = chars["ANNO"];
+	buyItem();
+}
+public function sellToDatDogslut():void
+{
+	author("Savin");
+	showAnno();
+	
 	//List prices and whatnot.
 	//Sell Menu
 	chars["ANNO"].keeperSell = "<i>“Got a little something weighing you down? I’m sure I can take a load off you!”</i> she chuckles as you sort through your sellable gear.\n";
 	chars["ANNO"].keeperGreeting = "Anno shrugs. <i>“Well, how can I help you, boss?”</i>\n";
+	
+	annoShopSetup();
+	shopkeep = chars["ANNO"];
+	sellItem();
+}
+public function annoShopSetup():void
+{
+	chars["ANNO"].inventory.push(new AusarTreats());
+	chars["ANNO"].inventory.push(new HammerCarbine());
+	chars["ANNO"].inventory.push(new LaserCarbine());
+	chars["ANNO"].inventory.push(new EMPGrenade());
+	chars["ANNO"].inventory.push(new TSTArmor());
+	chars["ANNO"].inventory.push(new Goovolver());
+	chars["ANNO"].inventory.push(new ACock());
+	chars["ANNO"].inventory.push(new AHCock());
+	chars["ANNO"].inventory.push(new ADCock());
+	
+	gooArmorOrphanedCheck(chars["ANNO"]);
+	
+	chars["ANNO"].typesBought = [];
+	chars["ANNO"].typesBought.push(GLOBAL.ARMOR);
+	chars["ANNO"].typesBought.push(GLOBAL.RANGED_WEAPON);
+	chars["ANNO"].typesBought.push(GLOBAL.SHIELD);
+	
+	chars["ANNO"].sellMarkup = 1.2;
+	chars["ANNO"].buyMarkdown = 0.80;
 }
 
 //Test Drive
@@ -901,7 +925,7 @@ public function syriTalksAboutAnno():void
 
 	output("\n\nSyri cocks an eyebrow at you. <i>“Why do... right, billionaire play" + pc.mf("boy","girl") + ",”</i> she rolls her eyes. <i>“Tell that pussy-stealing harpy she can write </i>me<i> whenever she feels like it. I haven’t exactly changed email addresses.”</i>");
 	output("\n\n<i>“Harsh.”</i>");
-	output("\n\nSyri holds your gaze for a long second before sighing, the fight gone out of her. <i>“Yeah. I’ll write her when " + (syriQuestComplete() ? "I get off work later" : "I'm done talkin' with you") + ".”</i>");
+	output("\n\nSyri holds your gaze for a long second before sighing, the fight gone out of her. <i>“Yeah. I’ll write her when " + (syriQuestComplete() ? "I get off work later" : "I’m done talkin’ with you") + ".”</i>");
 	if(syriIsAFuckbuddy() && pc.lust() >= 33)
 	{
 		output("\n\nSuddenly, Syri’s lips curl into a fierce grin, and her big, blue eyes search you over. <i>“Hmm... maybe I ought to ask her to take some vacation time and come on out here. What do you say, Steele... ever thought about what it’d be like with twins?”</i>");
@@ -915,8 +939,8 @@ public function syriTalksAboutAnno():void
 		}
 		else
 		{
-			if(pc.hasCock()) output("<i>“Come on, Anno’s huge jugs and my perky tits, jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others' arms...”</i>");
-			else output("<i>“Imagine yourself bent over, face buried in Anno’s big, fat tits, your hands all over the sensitive little nips of hers as I fuck you from behind, pounding you extra hard cuz you’ve got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I'm doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
+			if(pc.hasCock()) output("<i>“Come on, Anno’s huge jugs and my perky tits, jacking you off together until you bust a big, thick nut all over our faces... watching us lick it off each other, maybe turns into kissing, groping, until you bend us over and take us together, still in each others’ arms...”</i>");
+			else output("<i>“Imagine yourself bent over, face buried in Anno’s big, fat tits, your hands all over the sensitive little nips of hers as I fuck you from behind, pounding you extra hard cuz you’ve got your grubby, terran hands on my sister... until maybe my cock slips, and suddenly I’m doing her, pounding her wet, sloppy little bitch-hole while you watch.”</i>");
 		}
 		output(" Your eyes dart down to the suddenly immense-looking bulge in Syri’s pants. She’s... she’s not joking, is she?");
 		output("\n\nThe ausar follows your gaze, her body suddenly tense. Syri grabs you by the ");
@@ -1711,15 +1735,28 @@ public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	else output("\n\n<i>“No, really?”</i>");
 	output(" you answer.");
 
-	output("\n\n<i>“What’s there to even come here for, now? I thought it was a shithole before, but now... the planet’s gone, and the raskvel don’t have shit to offer aside from cockshines for the galaxy. Damn it, I might as well pack up shop. Fuck your dad, and fuck this post. I want to go home!”</i>");
-	output("\n\nAfter a moment of pouting, she groans, <i>“I don’t suppose you need a warp-field expert on your crew, boss? Hell, I can do mechanical engineering, too. Just get me the fuck off the tub before it vents us all into space. I’m begging you!”</i>");
 	flags["MET_ANNO_POST_SPLOSION"] = 1;
 	processTime(3);
-	//Join Crew or Hold Up
-	clearMenu();
-	// addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn’t coded yet.");
-	addButton(0, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Invite Anno to join your crew.");
-	addButton(1, "Hold Up", holdOnAnno,undefined,"Hold Up","You aren’t ready to take her on as crew just yet.")
+	// Ghost Deck not done, recruit option
+	if(flags["ANNO_MISSION_OFFER"] == undefined || flags["ANNO_MISSION_OFFER"] < 3)
+	{
+		output("\n\n<i>“What’s there to even come here for, now? I thought it was a shithole before, but now... the planet’s gone, and the raskvel don’t have shit to offer aside from cockshines for the galaxy. Damn it, I might as well pack up shop. Fuck your dad, and fuck this post. I want to go home!”</i>");
+		output("\n\nAfter a moment of pouting, she groans, <i>“I don’t suppose you need a warp-field expert on your crew, boss? Hell, I can do mechanical engineering, too. Just get me the fuck off the tub before it vents us all into space. I’m begging you!”</i>");
+		
+		//Join Crew or Hold Up
+		clearMenu();
+		// addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn’t coded yet.");
+		addButton(0, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Invite Anno to join your crew.");
+		addButton(1, "Hold Up", holdOnAnno,undefined,"Hold Up","You aren’t ready to take her on as crew just yet.");
+	}
+	// Ghost Deck done
+	else
+	{
+		output("\n\n<i>“What’s the point of this place now? I thought it was a shithole before, but now... the planet’s gone. With things as they are, I think it’s for the best to pack up shop, I don’t know if I would want to stay here for another minute!”</i>");
+		output("\n\nAfter a moment of pouting, she asks, <i>“Anyway, you came here for something, or just to check on me?”</i>");
+		
+		annoMainMenu();
+	}
 }
 
 public function joinCrewPlanetCrackerVersion():void
@@ -1729,7 +1766,7 @@ public function joinCrewPlanetCrackerVersion():void
 	author("Savin");
 	showAnno();
 
-	output("<i>“So, you want off this rust bucket?”</i> you ask, leaning over the counter. ");
+	output("<i>“So, you want off this rust bucket?”</i> you ask, leaning over the counter.");
 	
 	output("\n\nAnno perks up, ears and tail twitching. <i>“W-what? Really?”</i>");
 	
@@ -1831,7 +1868,9 @@ public function holdOnAnno():void
 	author("Savin");
 	showAnno();
 	output("<i>“Keep your chin up, Anno,”</i> you say, patting the miserable scientist between her big, fluffy ears. <i>“You’ve got a job to do.”</i>");
-	output("\n\n<i>“Ugh. I know,”</i> Anno sighs, but still nuzzles her head up against your palm. <i>“I’m just scared, boss. We lost some people when the boat went orbital. Lost that little bat kid. A fuckin’ kid, [pc.name]. I swear to God I heard her getting sucked out when we lost atmosphere.”</i> She shudders. <i>“I don’t want to be next. This clanker is barely holding together. I mean, it crashed for a reason, right?”</i>");
+	output("\n\n<i>“Ugh. I know,”</i> Anno sighs, but still nuzzles her head up against your palm. <i>“I’m just scared, boss. We lost some people when the boat went orbital.");
+	if(flags["AURORA_SEEN_AFTER_SPLOSION"] == undefined) output(" Lost that little bat kid. A fuckin’ kid, [pc.name]. I swear to God I heard her getting sucked out when we lost atmosphere.");
+	output("”</i> She shudders. <i>“I don’t want to be next. This clanker is barely holding together. I mean, it crashed for a reason, right?”</i>");
 	output("\n\n<i>“Shit. Never mind me, boss. I’m a big girl, I’ll take care of myself. Anyway, you came here for something, or just to check on me?”</i>");
 	processTime(1);
 	annoMainMenu();
@@ -3025,7 +3064,7 @@ public function deck13DecisionBodies():void
 	output("\n\n<i>“I don’t know what to say... other than yes. And thank you!”</i> Nova smiles, for the first time. <i>“I never thought someone would be willing - or able - to help us like that. Not in a million years. Ten thousand cyber bodies has to be a fortune”</i>");
 	
 	if (pc.isMischievous())	output("\n\n<i>“Call it the company’s charity for the year. It’ll all come off on taxes anyway,”</i> you chuckle.");
-	else output("\n\n<i>“SteeleTech can afford it,”</i> you answer simply. <i>“Especially if we can find a way to monetize the gray goo.”</i>");
+	else output("\n\n<i>“Steele Tech can afford it,”</i> you answer simply. <i>“Especially if we can find a way to monetize the gray goo.”</i>");
 	
 	output("\n\n<i>“I see,”</i> Nova says, still smiling. Her sword vanishes, disintegrating as she steps forward. <i>“Most... no, </i>all<i> of the crew would like to convey a message.”</i>");
 	
@@ -3522,12 +3561,12 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	else output(" bar and up a few decks to Kaede’s apartment on the station");
 	output(". ");
 	if(!annoIsHuskar()) output("You can’t help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way.");
-	else output("You can't help but grin as Anno's arm slips around Kaede's slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede's only recourse is to grab a great big handful of huksar booty and squeezing for all she's worth all the way to their destination.");
+	else output("You can’t help but grin as Anno’s arm slips around Kaede’s slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede’s only recourse is to grab a great big handful of huksar booty and squeezing for all she’s worth all the way to their destination.");
 	if (inShop) output(" Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim <i>“to something sexy.”</i> Her");
 	else output(" Kaede hastily unlocks her apartment door, Anno urging her to work faster admist a flurry of lustful, teasing gropes. The moment the door slides open, Anno bundles both herself and Kaede through the opening in a hurry. Once inside, the snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The");
 	output(" V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her back into another kiss. ");
 	if(!annoIsHuskar()) output("This time it’s more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
-	else output("This time it's more passionate, more <i>vigorous</i>: Kaede's all but overwhelmed up by the vastness of Anno's chest pressing down on her meager C-cups, and her hands are lost in her lover's plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others' mouths.");
+	else output("This time it’s more passionate, more <i>vigorous</i>: Kaede’s all but overwhelmed up by the vastness of Anno’s chest pressing down on her meager C-cups, and her hands are lost in her lover’s plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others’ mouths.");
 	
 	output("\n\nAfter a few moments, though, the two ausars turn their attentions to you: hand in hand, they slink over to you with big, lusty smiles, eyes entirely focused on your [pc.cocksLight]. You quickly toss your [pc.gear] aside and sit back on the edge of the bed, leaving yourself bare to the randy girls’ ministrations. Kaede’s prior nervousness is nowhere to be seen now: she even licks her lips at the sight of your manhood, and is the first of the pair to drop to her knees in front of you. Anno stands behind her for a moment, giving you a proud wink as her girlfriend wraps her fingers around your [pc.cock "+ selCock +"], giving it a tentative stroke. ");
 	
@@ -3584,7 +3623,7 @@ public function annoxKaedeFuckThemFromKaedeBeej(selCock:int):void
 	
 	output("\n\nBefore you can feel too left out, though, their kiss ends and their attention returns to you. Anno looks between you, Kaede, and back to you... ");
 	if(!annoIsHuskar()) output("and then stands, stepping out of her discarded clothes and crawling over you, pushing you down onto the bed");
-	else output("and then stands, stepping out of her discarded clothes and sliding Kaede's cock out of her honeypot. Kaede whines, kissing plush butt and thick thighs until Anno's up and crawling over you, pushing you down onto the bed");
+	else output("and then stands, stepping out of her discarded clothes and sliding Kaede’s cock out of her honeypot. Kaede whines, kissing plush butt and thick thighs until Anno’s up and crawling over you, pushing you down onto the bed");
 	output(". You let the horny slut do it, reaching up to cup her breasts and squeeze her ass. She pauses to plant a kiss on your lips, giving you a little wink before moving forward over you, letting her breasts play across your face. She settles in just over you, her knees planted over your shoulders, tail swishing across your [pc.chest]. It’s just a little crane of your neck to put yourself within easy reach of Anno’s spread pussylips. She coos and gasps as your tongue slithers out to caress her glistening lower lips, squeezing her own rack to eke out a little more pleasure as your [pc.tongue] laps across the gash of her sex, probing in between the lips to taste the sweet juices inside.");
 	
 	output("\n\nYou barely notice Kaede standing, slipping out of what clothes she’s still wearing as she crawls into the bed. You start to look up, but instantly find your head trapped between Anno’s thighs, pinning you with your tongue still firmly lodged inside her. <i>“Not yet,”</i> she purrs, stroking your [pc.hair]. <i>“Gotta get me ready first...”</i>");
@@ -3763,12 +3802,12 @@ public function annoxKaedeService(inShop:Boolean = true):void
 	else output(" bar and up a few decks to Kaede’s apartment on the station.");
 	output(". ");
 	if(!annoIsHuskar()) output("You can’t help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way.");
-	else output("You can't help but grin as Anno's arm slips around Kaede's slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede's only recourse is to grab a great big handful of huksar booty and squeezing for all she's worth all the way to their destination.");
+	else output("You can’t help but grin as Anno’s arm slips around Kaede’s slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede’s only recourse is to grab a great big handful of huksar booty and squeezing for all she’s worth all the way to their destination.");
 	if (inShop) output(" Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim <i>“to something sexy.”</i> Her");
 	else output(" Kaede hastily unlocks her apartment door, Anno urging her to work faster admist a flurry of lustful, teasing gropes. The moment the door slides open, Anno bundles both herself and Kaede through the opening in a hurry. Once inside, the snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The");
 	output(" V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her back into another kiss. ");
 	if(!annoIsHuskar()) output("This time it’s more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
-	else output("This time it's more passionate, more <i>vigorous</i>: Kaede's all but overwhelmed up by the vastness of Anno's chest pressing down on her meager C-cups, and her hands are lost in her lover's plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others' mouths.");
+	else output("This time it’s more passionate, more <i>vigorous</i>: Kaede’s all but overwhelmed up by the vastness of Anno’s chest pressing down on her meager C-cups, and her hands are lost in her lover’s plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others’ mouths.");
 	
 	output("\n\nYou take the opportunity to slip off your [pc.gear], tossing your equipment aside. While you do, Anno busies herself on her lover, letting Kaede take the initiative on disrobing her while Anno kisses and caresses the halfbreed. It takes a while for Anno to be fully bared to you, but the show they put on in the meantime is well worth the wait, and you’re already");
 	if (pc.hasCock() || pc.hasVagina())
@@ -3846,12 +3885,12 @@ public function annoxKaedeWatch(inShop:Boolean = true):void
 	else output(" bar and up a few decks to Kaede’s apartment on the station.");
 	output(". ");
 	if(!annoIsHuskar()) output("You can’t help but grin as you watch their tails brush and intertwine while they walk, hand in hand, down the way.");
-	else output("You can't help but grin as Anno's arm slips around Kaede's slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede's only recourse is to grab a great big handful of huksar booty and squeezing for all she's worth all the way to their destination.");
+	else output("You can’t help but grin as Anno’s arm slips around Kaede’s slender little waist, pulling the now <i>much</i>smaller girl tight against her flank, wrapping her extra-fluffy tail around her as they walk. Kaede’s only recourse is to grab a great big handful of huksar booty and squeezing for all she’s worth all the way to their destination.");
 	if (inShop) output(" Anno unlocks her apartment door with a flourish, pulling the both of you in and commanding the lights to dim <i>“to something sexy.”</i> Her");
 	else output(" Kaede hastily unlocks her apartment door, Anno urging her to work faster admist a flurry of lustful, teasing gropes. The moment the door slides open, Anno bundles both herself and Kaede through the opening in a hurry. Once inside, the snowy-haired ausar commands the lights to dim <i>“to something sexy.”</i> The");
 	output(" V.I. turns the illumination way down to a sultry, dusky hue, just enough to see the red of Kaede’s hair and tail as Anno slips her arms around her girlfriend’s waist, pulling her back into another kiss. ");
 	if(!annoIsHuskar()) output("This time it’s more passionate, more intimate: their chests press together, lips parting to allow their tongues to explore each others’ mouths.");
-	else output("This time it's more passionate, more <i>vigorous</i>: Kaede's all but overwhelmed up by the vastness of Anno's chest pressing down on her meager C-cups, and her hands are lost in her lover's plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others' mouths.");
+	else output("This time it’s more passionate, more <i>vigorous</i>: Kaede’s all but overwhelmed up by the vastness of Anno’s chest pressing down on her meager C-cups, and her hands are lost in her lover’s plus ass, grabbing both cheeks and holding Anno tight while their tongues to explore each others’ mouths.");
 	
 	output("\n\nYou");
 	if (pc.isBiped()) output(" find a chair and");

@@ -181,7 +181,7 @@ public function procDumbfuckStuff():void
 	//The fifth one
 	else if(flags["DUMBFUCK_SNEEZES"] <= 5)
 	{
-		output("\n\nA pink haze settles down in place of whatever you were thinking. You chase it away with a shake of your head as you clean yourself and wonder just how bad off you are. You’ve let yourself cum five times, and it’s definitely starting to effect you. You feel warm all over, your get horny at the drop of a hat, and focusing on complicated problems is getting increasingly difficult.");
+		output("\n\nA pink haze settles down in place of whatever you were thinking. You chase it away with a shake of your head as you clean yourself and wonder just how bad off you are. You’ve let yourself cum five times, and it’s definitely starting to effect you. You feel warm all over, you get horny at the drop of a hat, and focusing on complicated problems is getting increasingly difficult.");
 	}
 	//Sixth!
 	else if(flags["DUMBFUCK_SNEEZES"] <= 6)

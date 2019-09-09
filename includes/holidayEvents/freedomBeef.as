@@ -247,7 +247,7 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	
 	output("\n\n<i>“Hey, that tickles,”</i> she laughs when you fiddle with one of the straps. All the ones around her flanks seem to be fine, at your casual inspection. The only one that’s too tight doesn’t seem to have a buckle you can find, though it is being yanked on by the whirring gear on her backpack. You ask if she can just turn the launcher off and pull it free, to which she shakes her head. <i>“Nuh-uh, looks totally jammed up. Gotta cut the cord before I can fix this. Darn Tarkus tech, always breakin’ on me! Could you, uh...”</i>");
 	
-	output("\n\nRiley grunts and staggers to her hooves, swaying slightly with the sudden change of position pointing straight along her back. Her long blonde tail swishes at you, drawing your attention to her meaty haunches. The tight cord is running all the way back around her rump, looks like. The bison babe gives you a pleading look, and eventually you make your way around to her far end.");
+	output("\n\nRiley grunts and staggers to her hooves, swaying slightly with the sudden change of position, before pointing straight along her back. Her long blonde tail swishes at you, drawing your attention to her meaty haunches. The tight cord is running all the way back around her rump, looks like. The bison babe gives you a pleading look, and eventually you make your way around to her far end.");
 	
 	output("\n\nHer tail flicks up as you approach, and you’re suddenly hit with a sweet, rich smell wafting off the buffalo-girl’s hindquarters, sending a slow burn spreading from your cheeks on down. One glance tells you all you need to know: she’s as naked back here as everywhere else on her lower body, save for where three leather straps converged in a bundle that’s digging deep into the thick black lips of her bovine twat.");
 	
@@ -342,7 +342,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 
 	if ((pc.hasCock() && !failedCheck) || !pc.hasCock())
 	{
-		output("\n\nWith as clear a head as you can manage in the face of Riley’s potent arousal, you trace a pair of fingers across one of the slimy leather straps and wrap them around the knot digging into her twat. This necessitates your digits plunges a little way past the very edges of her black pussy-lips, feeling the humid warmth radiating from her bovine sex. You’re practically fisting her by the time you’ve got your hands around the straps.");
+		output("\n\nWith as clear a head as you can manage in the face of Riley’s potent arousal, you trace a pair of fingers across one of the slimy leather straps and wrap them around the knot digging into her twat. This necessitates your digits plunging a little way past the very edges of her black pussy-lips, feeling the humid warmth radiating from her bovine sex. You’re practically fisting her by the time you’ve got your hands around the straps.");
 		
 		output("\n\nSeparated from you by a few feet of heavy-breathing buffalo body, Riley makes a little squeal and stamps her hooves, clutching her hands to her chest. She’s trying not to show how good what you’re doing feels, but the contractions of her lips around your fingers and the flowing wetness can’t hide her arousal. You try and ignore it as best you can, pulling the knot out of where it’s lodged itself and quickly unravelling it.");
 		

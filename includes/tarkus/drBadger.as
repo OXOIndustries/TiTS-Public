@@ -99,6 +99,7 @@ public function drBadgerBuyMenu(sell:Boolean = false):void
 	chars["DRBADGER"].inventory = new Array();
 	chars["DRBADGER"].inventory.push(new Dumbfuck());
 	chars["DRBADGER"].inventory.push(new Gush());
+	chars["DRBADGER"].inventory.push(new Soak());
 	chars["DRBADGER"].inventory.push(new SlutRay());
 	chars["DRBADGER"].inventory.push(new Tentacool());
 	chars["DRBADGER"].inventory.push(new BimboleumDefenseSystem());
@@ -128,6 +129,7 @@ public function drBadgerBuyMenu(sell:Boolean = false):void
 	//Unlock dumbfuck codex
 	CodexManager.unlockEntry("Dumbfuck");
 	CodexManager.unlockEntry("Gush");
+	CodexManager.unlockEntry("Soak");
 	CodexManager.unlockEntry("Tentatool");
 	
 	if(sell) sellItem();

@@ -15,6 +15,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/map/map_down.svg", mimeType = "image/svg")]
 		public static var Map_Down:Class;
 		
+		[Embed(source = "../../assets/icons/map/map_first_aid.svg", mimeType = "image/svg")]
+		public static var Map_First_Aid:Class;
+		
 		// Special case -- this shouldn't be used as an icon, it should be used as a mask on the
 		// underlying room display
 		[Embed(source = "../../assets/icons/map/map_hazard.svg", mimeType = "image/svg")]

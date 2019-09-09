@@ -31,7 +31,7 @@
 			this.description = "a Zhou-Ling Rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Developed by the long-gone Zhu-Rong Incorporated, the Zhou-Ling rifle is a weapon that condenses water vapor in the air and uses a series of freezing-coils to turn it into icicles that are launched at high-velocities. Originally rejected from military contracts due to its limited range, later versions such as this one feature a reservoir that continuously collects water and a high-pressure gas tank that is able to shoot projectiles farther distances.\n\nSteeleTech purchased a large reserve of these weapons in the bankruptcy auctions and recently began liquidating them after your father’s passing.";
+			this.tooltip = "Developed by the long-gone Zhu-Rong Incorporated, the Zhou-Ling rifle is a weapon that condenses water vapor in the air and uses a series of freezing-coils to turn it into icicles that are launched at high-velocities. Originally rejected from military contracts due to its limited range, later versions such as this one feature a reservoir that continuously collects water and a high-pressure gas tank that is able to shoot projectiles farther distances.\n\nSteele Tech purchased a large reserve of these weapons in the bankruptcy auctions and recently began liquidating them after your father’s passing.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

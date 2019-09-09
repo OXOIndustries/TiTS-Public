@@ -642,9 +642,18 @@ public function shipCompareStat(ship:ShittyShip, newShip:ShittyShip, buttonToolt
 		shipTooltip += "\n<b>Toys Capacity: </b>" + shipStatCompare(newShip.toysSizeRaw, ship.toysSizeRaw);
 	}
 	
+	// Slot Status
+	if(!buttonTooltip && newShip == ship)
+	{
+		shipTooltip += "\n";
+		shipTooltip += "\n<b>Unused Upgrade Slots: </b>" + (ship.shipCapacity()-ship.inventory.length);
+		shipTooltip += "\n<b>Unused Weapon Hardpoints: </b>" + (ship.shipGunCapacity() - ship.listShipWeapons().length);
+		shipTooltip += "\n<b>Current Crew Capacity: </b>" + ship.shipCrewCapacity();
+	}
+	
 	//Upgrades/Crew: shipCapacityRaw
 	shipTooltip += "\n\n<b>Module/Crew Capacity: </b>" + shipStatCompare(newShip.shipCapacity(), ship.shipCapacity());
-	if(newShip.bonusCrewCapacity() > 0 || ship.bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(), ship.bonusCrewCapacity());
+	if(newShip.bonusCrewCapacity() > 0 || ship.bonusCrewCapacity() > 0) shipTooltip += "\n<b>Bonus Crew Capacity: </b>" + shipStatCompare(newShip.bonusCrewCapacity(true), ship.bonusCrewCapacity(true));
 
 	//Upgrades Installed
 	shipTooltip += "\n<b>Weapon Capacity: </b>" + shipStatCompare(newShip.shipGunCapacity(), ship.shipGunCapacity());

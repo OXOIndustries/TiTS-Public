@@ -1608,15 +1608,17 @@ public function arbetzBuyGoblinola(vendedItem:ItemSlotClass):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
-public function arbetzVendItem(vendedItem:ItemSlotClass, price:Number = 0):void
+public function arbetzVendItem(vendedItem:ItemSlotClass, price:Number = 0, quantity:int = 1):void
 {
 	var vendedItemList:Array = [];
-	
-	vendedItemList.push(vendedItem);
 	
 	if (price > 0) pc.credits -= price;
 	else pc.credits -= vendedItem.basePrice;
 	
+	for (var i:int = quantity; i > 0; i--)
+	{
+		vendedItemList.push(vendedItem);
+	}
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
@@ -1654,7 +1656,7 @@ public function arbetzPetrBuy():void
 	showBust("PETR");
 	showName("BUY\nSWIMWEAR");
 }
-public function arbetzPetrBuyGo(item:ItemSlotClass):void
+public function arbetzPetrBuyGo(item:ItemSlotClass, quantity:int):void
 {
 	author("Nonesuch");
 	showBust("PETR");
@@ -1663,11 +1665,11 @@ public function arbetzPetrBuyGo(item:ItemSlotClass):void
 	output("You give Petr the money. He leans behind the desk and retrieves your swimsuit, which is thankfully well laundered and ironed.");
 	output("\n\n<i>“Thanks, and take it easy,”</i> he grins.");
 	
-	var price:Number = getBuyPrice(chars["PETR"],item.basePrice);
-	output("\n\nYou purchase " + item.description + " for " + num2Text(price) + " credits.");
+	var price:Number = getBuyPrice(chars["PETR"],item.basePrice) * quantity;
+	output("\n\nYou purchase " + item.description + "(x" + quantity + ") for " + num2Text(price) + " credits.");
 	output("\n\n");
 	
 	processTime(2);
 	
-	arbetzVendItem(item, price);
+	arbetzVendItem(item, price, quantity);
 }

@@ -31,9 +31,9 @@ public function helpDruggedKorgonne():void
 	output("\n\nIt seems like a milodan jabbed her with an aphrodisiac. Luckily, you know exactly how to take care of this.");
 	processTime(3);
 	clearMenu();
-	if(pc.cockThatFits(800) >= 0) addButton(0,"DickDown",cockSelect,[dickThatKorgDownMan,800,true,0],"DickDown","Fuck the wound-up girl hard enough to satisfy her.");
+	if(pc.hasHardLightEquipped() || (pc.hasCock() && pc.cockThatFits(800) >= 0)) addButton(0,"DickDown",cockSelect,[dickThatKorgDownMan,800,true,0],"DickDown","Fuck the wound-up girl hard enough to satisfy her.");
 	else if(pc.hasCock()) addDisabledButton(0,"DickDown","DickDown","You’re too big for her pussy.");
-	else addDisabledButton(0,"DickDown","DickDown","You need a penis for this.");
+	else addDisabledButton(0,"DickDown","DickDown","You need to be wearing a hardlight strap-on or have a penis for this.");
 	if(pc.hasCock())
 	{
 		if(pc.biggestCockVolume() >= 800) addButton(1,"HyperDick",cockSelect,[hyperdiiiiick,900000000000,true,0],"Hyper Dick","Use your massive cock to satisfy her.");
@@ -54,7 +54,7 @@ public function dickThatKorgDownMan(x:int):void
 	showName("DRUGGED\nKORGONNE");
 	showBust("KORG_DOSED");
 	author("Wsan");
-	output("<i>“Alright,”</i> you say, separating from the hug and grinning" + (!pc.isCrotchExposed() ? " as you remove your [pc.crotchCovers]":"") + ". <i>“Lay back and spread those legs, cutie.”</i>");
+	output("<i>“Alright,”</i> you say, separating from the hug and grinning" + (x >= 0 && !pc.isCrotchExposed() ? " as you remove your [pc.crotchCovers]":"") + ". <i>“Lay back and spread those legs, cutie.”</i>");
 	output("\n\n");
 	showImage("KorgDosedDicked");
 	output("<i>“Yes yes yes yes,”</i> she pants, flopping onto her back and putting her furred legs in the air before slowly laying them to the sides. <i>“" + (korgiTranslate() ? "Hurry! Take me!":"Alien hurry! Take!") + "”</i>");
@@ -126,10 +126,11 @@ public function hyperdiiiiick(x:int = 0):void
 	output("\n\nHer legs spread to the side once more as she plants herself firmly, bracing herself against the ground as you begin to pound her with your colossal cock, slamming into her body and wringing out yet more orgasms from deep within her broken-in pussy. You can feel orgasm rising within you with each thrust, subdued at first but surprising you with just how fast it builds, your own desire to soak this slutty beauty’s womb with your seed sending you into a frenzy.");
 	output("\n\n<i>“Nnnnggh- fuck!”</i> you grunt, grabbing her wide, bountiful hips and thrusting yourself so deep you can <i>feel</i> her insides subserviently shift for you. <i>“Take it!”</i>");
 	output("\n\n<i>“Yes! Yes!”</i> she cries out, looking down at her misshapen stomach. <i>“Fuck! Fuck! Yes!”</i>");
-	if(pc.cumQ() < 5000) output("\n\nEnormous, gooey ropes of [pc.cum] spurt from your spasming prick as her clenching cunt welcomes it all, your cockhead brushing right up against her womb and filling it with your seed. She cries out in orgasm again and again, panting and moaning with the sustained effort of it all until at last, you free her from the bliss of servitude and slowly pull out.");
-	else if(pc.cumQ() < 10000) output("\n\nAn enormous spurt of [pc.cum] splatters her womb as your spasming cock brushes against her cervix, forcibly ejaculating all over her innermost walls, drenching her in your seed. She groans as multiple orgasms wash over her all at once, rebounding and intensifying until she loses her voice and naught comes from her mouth but strained, wordless gasps of rapture. You pull out and note her stomach still bulges, but now with your virility instead of your cock.");
-	else if(pc.cumQ() < 20000) output("\n\nHer womb is pumped full of [pc.cum] in an instant, her voice rising several octaves before breaking as she writhes in ecstasy below you, eyes wide. Orgasm after orgasm washes over her all at once, spurring her on while you dump so many loads inside her that you leave her stomach bulging out with your well-spent seed. By the time you pull out and lazily spurt spunk all over her shaking tits, the korgonne girl looks like she’s ready to give birth to several of your children right on the spot.");
-	else if(pc.cumQ() < 40000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 5000) output("\n\nEnormous, gooey ropes of [pc.cum] spurt from your spasming prick as her clenching cunt welcomes it all, your cockhead brushing right up against her womb and filling it with your seed. She cries out in orgasm again and again, panting and moaning with the sustained effort of it all until at last, you free her from the bliss of servitude and slowly pull out.");
+	else if(cumQ < 10000) output("\n\nAn enormous spurt of [pc.cum] splatters her womb as your spasming cock brushes against her cervix, forcibly ejaculating all over her innermost walls, drenching her in your seed. She groans as multiple orgasms wash over her all at once, rebounding and intensifying until she loses her voice and naught comes from her mouth but strained, wordless gasps of rapture. You pull out and note her stomach still bulges, but now with your virility instead of your cock.");
+	else if(cumQ < 20000) output("\n\nHer womb is pumped full of [pc.cum] in an instant, her voice rising several octaves before breaking as she writhes in ecstasy below you, eyes wide. Orgasm after orgasm washes over her all at once, spurring her on while you dump so many loads inside her that you leave her stomach bulging out with your well-spent seed. By the time you pull out and lazily spurt spunk all over her shaking tits, the korgonne girl looks like she’s ready to give birth to several of your children right on the spot.");
+	else if(cumQ < 40000) 
 	{
 		output("\n\nThe very first shot pumps her womb beyond capacity as she screams in orgasmic relief, quickly followed by a second gush inflating her to such an absurd degree her stomach balloons past her heaving tits. They’re pushed to the side as it rises and rises, her hands groping at her sheer-stretched skin until you grunt and pull out, rubbing yourself on her quivering form and drenching her from top to bottom in your essence.");
 		output("\n\nShe’s still cumming even now, her brain being knocked about by multiple orgasms while her body catches up to the fact you’re not even fucking her. It takes several seconds before she stops howling in abject pleasure, her stomach very, <i>very</i> slowly receding. You’ve really done a number on her, though she did blatantly ask for it.");
@@ -140,8 +141,8 @@ public function hyperdiiiiick(x:int = 0):void
 		output("\n\nThe semen inside her sloshes and gurgles as she swells with the sheer amount of it, her voluptuous titties falling to the side as her tummy protrudes so far she looks as though she might be about to give birth to full-grown leithans. You stay inside her, holding her down and mercilessly pumping her full as she cums over and over until she slowly begins to slip off your cock, her body bloated with your thick spunk. You don’t even pull out - she slides off on her own, crying out in pleasure.");
 	}
 	output("\n\nHer ridiculously-stretched cunt gapes after your exit, flexing and winking while semen ");
-	if(pc.cumQ() < 5000) output("drools");
-	else if(pc.cumQ() < 20000) output("pours");
+	if(cumQ < 5000) output("drools");
+	else if(cumQ < 20000) output("pours");
 	else output("gushes");
 	output(" from deeper inside. The term <i>“well-used”</i> comes to mind immediately, though you suspect this girl in particular will recover like a champion.");
 	output("\n\n<i>“So... good feeling...”</i> she moans quietly, her head falling back on the ground. <i>“Full and warm... th-kyu...”</i>");

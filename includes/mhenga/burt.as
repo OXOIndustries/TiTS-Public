@@ -36,6 +36,7 @@ public function burtsBarFunc():Boolean {
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+	else if (biancaAtBar("mhen'ga") && biancaBarBonus(7)) return true; // short-circuiting, boye
 
 	
 
