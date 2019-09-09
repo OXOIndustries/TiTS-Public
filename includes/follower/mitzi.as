@@ -977,7 +977,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 				if(rand(2) == 0) output("Mitzi spins around and puckers, snapping a half-dozen pictures of herself with you in frame over her shoulder. <i>“Mmm... we look good together, [pc.Master], but we’d look even better tangled up in bed.”</i> She giggles vapidly. <i>“You wanna make a holo or somethin’?”</i>");
 				else 
 				{
-					output("<i>“Hiya [pc.Mister] [pc.Master]! Did you want a copy of these pics? Mitzi got some that make her look totally fuckable.”</i> The brain-drained bimbo holds up the tablet to show you. It’s a smorgasbord of titillation and debaucher, including more than a few pictures of exposed nipples or a soaked pubic mound. <i>“It’s your fault. You’re the one that dressed her up so hot! It’s no wonder you’re getting all ");
+					output("<i>“Hiya [pc.Mister] [pc.Master]! Did you want a copy of these pics? Mitzi got some that make her look totally fuckable.”</i> The brain-drained bimbo holds up the tablet to show you. It’s a smorgasbord of titillation and debauchery, including more than a few pictures of exposed nipples or a soaked pubic mound. <i>“It’s your fault. You’re the one that dressed her up so hot! It’s no wonder you’re getting all ");
 					if(pc.hasCock()) output("hard");
 					else output("blushy");
 					output(" now!");

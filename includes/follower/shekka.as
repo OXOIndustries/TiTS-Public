@@ -1179,10 +1179,10 @@ public function shekkaSleepWithMornings():void
 		else
 		{
 			output("Your dreams are interrupted by an all-encompasing sensation of warmth at your core, of dainty little fingers squeezing at your thighs. Opening your eyes to a brand new day feels a little bit too challenging, but you do so anyway at the rather insistent need to cum. Unknown waves of orgasm are apparently cresting the shores of your resolve, and a peek beneath the bedsheets reveals the culprit; Shekka.");
-			output("\n\nHer ears are laid out across your legs, ass up in the air as the nude creature lovingly licks and kisses at ");
-			if(pc.hasVagina()) output("your thoroughly-soaked slit");
+			output("\n\nHer ears are laid out across your legs, ass up in the air as the nude creature lovingly licks and kisses at your ");
+			if(pc.hasVagina()) output("thoroughly-soaked slit");
 			else if(pc.hasCock()) output(pc.hasAKnot() ? "engorging knot" : "turgid shaft");
-			else output("your [pc.groin]");
+			else output("[pc.groin]");
 			output(". The very first question on your lips is how long she’s been at it, but the breath is practically stolen from you after one exceptionally adoring kiss. Apparently it must have been a while since you’re immediately sent crashing into orgasm");
 			if(pc.hasCock()) output(", painting your own chest in [pc.cum]");
 			else if(pc.hasVagina()) output(", coating her face in [pc.girlcum]");

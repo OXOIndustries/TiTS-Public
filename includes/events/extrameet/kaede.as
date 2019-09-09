@@ -316,6 +316,7 @@ public function extrameetKaedeFuckHerAss():void
 
 public function extrameetKaedeFirstTime():void
 {
+	clearOutput();
 	showKaede();
 	moveTo("BUNBAKERY");
 

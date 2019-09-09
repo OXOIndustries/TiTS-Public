@@ -1154,7 +1154,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a narrow but flexible tongue that, if " + (target == pc ? "you so desire":"[target.heShe] so desires") + ", can extend a good distance out from " + (target == pc ? "your":"[target.hisHer]") + " mouth. Its tip is forked, and " + (target == pc ? "you are":"[target.heShe] is") + " capable of moving it around in an almost prehensile manner.");
 			break;
 		case GLOBAL.TYPE_RASKVEL:
-			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a thick, purple tongue that, if " + (target == pc ? "you so desire":"[target.heShe] so desires") + " so desire, can extend a fair portion from " + (target == pc ? "your":"[target.hisHer]") + " mouth. Its tip is blunted slightly.");
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a thick, purple tongue that, if " + (target == pc ? "you so desire":"[target.heShe] so desires") + ", can extend a fair portion from " + (target == pc ? "your":"[target.hisHer]") + " mouth. Its tip is blunted slightly.");
 			break;
 		case GLOBAL.TYPE_OVIR:
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) outputRouter(" A lengthy, tapered tongue fills " + (target == pc ? "your":"[target.hisHer]") + " mouth, able to stretch out almost nine inches in order to taste the very air.");

@@ -515,10 +515,10 @@ public function marionsDenSexFuckMarion(x:int):void
 		else output(" hugged by her yet-unfilled-twat.");
 	}
 	else if (x >= 0) {
-		output("When you roll off of her the ");
-		if (cumQ >= 2000) output("seemingly endless quantities of your cum pool from her well-used snatch.");
-		else if (cumQ >= 500) output("tightness of her pussy seems to restore itself, trapping at least the majority of your orgasm.");
-		output("essyra’s tight slit clenches and doesn’t let a single drop of your "+ (cumQ < 500 ? "admittedly limited" : "") +" load out.");
+		output("When you roll off of her,");
+		if (cumQ >= 2000) output(" the seemingly endless quantities of your cum pool from her well-used snatch.");
+		else if (cumQ >= 500) output(" the tightness of her pussy seems to restore itself, trapping at least the majority of your orgasm.");
+		output(" Essyra’s tight slit clenches and doesn’t let a single drop of your "+ (cumQ < 500 ? "admittedly limited" : "") +" load out.");
 	}
 	else output("It’s a titanic effort just to reach down and switch off your hardlight as the two of you try to catch your respective breaths. The floor beneath you both is a sticky-sweet girlcummy mess, and the Essyra shivers a little as she comes down from her nearly mind-breaking series of orgasms.");
 

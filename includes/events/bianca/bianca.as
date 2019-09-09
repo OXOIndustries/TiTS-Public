@@ -1945,6 +1945,8 @@ public function biancaBarTalkMain(comingFrom:String):void
 		//If you talked already, require confront
 		else if(flags["BIANCA_CONFRONTED"] == 1) addDisabledButton(9,"Family","Family","You’ve already asked about this, and it went about as well as it could. Best to leave indelicate topics be.");
 		else addButton(9,"Family",biancaAndHerFamily,false,"Family","You could probably discuss family more with her, if you like.");
+		
+		addButton(10, "Bianca", biancaBarTalkMain, "biancaSwitch", "Bianca", "She’s opened her mouth to ask...");
 	}
 	else
 	{
