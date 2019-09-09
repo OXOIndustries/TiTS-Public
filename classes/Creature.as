@@ -2246,6 +2246,9 @@
 				case "lowerGarmentOuter":
 					buffer = lowerGarmentOuterDescript();
 					break;
+				case "covers":
+					buffer = covers();
+					break;
 				case "crotchCover":
 					buffer = crotchCover();
 					break;
@@ -17059,6 +17062,29 @@
 			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
 			return "nothing";
+		}
+		public function covers():String
+		{
+			var parts:Array = [];
+			if(!isCrotchExposedByArmor()) parts.push(armor.longName);
+			else if(!isChestExposedByArmor()) parts.push(armor.longName);
+			else if(!isAssExposedByArmor()) parts.push(armor.longName);
+
+			if(!isChestExposedByUpperUndergarment()) parts.push(upperUndergarment.longName)
+			if(!isCrotchExposedByLowerUndergarment() || !isAssExposedByLowerUndergarment()) parts.push(lowerUndergarment.longName)
+			if(parts.length == 0) return "nothing";
+			var buffer:String = "";
+			for(var coverCount:int = 0; coverCount < parts.length; coverCount++)
+			{
+				if(coverCount > 0 && parts.length > 2) 
+				{
+					buffer += ", ";
+					if(parts.length-1 == coverCount) buffer += "and ";
+				}
+				else if(coverCount > 0) buffer += " and ";
+				buffer += parts[coverCount];
+			}
+			return buffer;
 		}
 		public function crotchCover(): String
 		{
