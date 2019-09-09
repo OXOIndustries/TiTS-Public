@@ -2813,7 +2813,7 @@ public function dolledBadEnd2():void
 
 	output("\n\n<i>“My my, what progress. And so quickly, too! Most people hold out for days or weeks. Interesting that you succumbed almost immediately. I guess we both know what that means, eh Goo Gulper?”</i> ");
 	if(!bimbo) output("There’s no fight left in you. All you can do is take the abuse and hope that you can cum soon. No! Hope that it’s over soon. Ugh, the room seems to be spinning around you too quickly to police your thoughts anymore.");
-	else output("Heck yeah, you know what that means! It means you’re a talented slut who gets things done! You’re danged good at being the sexiest bitch around and just as soon as you finish up here, you’re gonna go fuck all of Tarkus! Twice!");
+	else output("Heck yeah, you know what that means! It means you’re a talented slut who gets things done! You’re dang good at being the sexiest bitch around and just as soon as you finish up here, you’re gonna go fuck all of Tarkus! Twice!");
 
 	output("\n\nThe autonomous rig circles around you appreciatively. <i>“Well, you look like a sex doll, you think like a sex doll, and your body knows it’s a sex doll. I guess we’ll just move to the final step then and take care of the last few finishing touches.”</i> A host of paint-filled squirt guns surround you, red latex leaking from their nozzles. <i>“I can honestly say I wish we had more time together, Fuck Fest. You were definitely my best.”</i>");
 

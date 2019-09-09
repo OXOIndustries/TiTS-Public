@@ -2053,7 +2053,7 @@ public function fZilPregRelax():void
 	output("\n\n<i>“And this is all it is? We just sit here?”</i>");
 	output("\n\n<i>“Yeah.”</i>");
 	output("\n\n<i>“Oh.”</i>");
-	output("\n\nYour companion seems confused for the first few moments, but is eventually lulled into a relaxed and peaceful state. Her head comes to rest on your shoulder, and her hands on her pregnant belly, as you lean back against the tree and simply enjoy the moment. You shut your eyes to bask in the warmth of the jungle air, listening to the ambiance and taking a few deep breaths.");
+	output("\n\nYour companion seems confused for the first few moments, but is eventually lulled into a relaxed and peaceful state. Her head comes to rest on your shoulder, and her hands on her pregnant belly, as you lean back against the tree and simply enjoy the moment. You shut your eyes to bask in the warmth of the jungle air, listening to the ambience and taking a few deep breaths.");
 	output("\n\nInevitably, those deep breaths fill your nostrils with more of the zil’s potent pheromones, but you don’t seem to be too distracted by them. You know your mate is safe and sound beside you, and that is more than enough. The zil lets out a quiet sigh and shifts herself slightly, leaning more of her weight against you, and the two of you sink into a blissful silence.");
 	output("\n\nMinutes pass without interruption, until the zil yawns and snuggles up against you even more. <i>“This is nice,”</i> she whispers.");
 	output("\n\nHer statement is followed by a gentle twitch of her antennae, the slight movement just enough to tickle the side of your face and make you smile. You feel as if you could stay like this forever, resting peacefully with your partner in your arms without a care in the world.");

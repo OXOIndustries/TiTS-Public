@@ -80,7 +80,7 @@ public function useItem(item:ItemSlotClass):Boolean
 		useAPiercing(item);	
 		return false;
 	}
-	if (item.type == GLOBAL.COCKSOCK)
+	if (item.type == GLOBAL.COCKWEAR)
 	{
 		useACocksock(item);
 		return false;
@@ -836,6 +836,11 @@ public function unfitShipItemForReal(i:Number):void
 }
 
 public function buyItem(quantity:int=1):void {
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(false);
+	}
+	
 	clearOutput();
 	if(stage.contains(userInterface.textInput)) removeInput();
 	showBust(shopkeep.bustDisplay);
@@ -888,7 +893,7 @@ public function buyItem(quantity:int=1):void {
 		//If slot has something in it.
 		if(shopkeep.inventory[i].quantity > 0) {
 			output("\n");
-			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice);
+			temp = getBuyPrice(shopkeep,shopkeep.inventory[i].basePrice*shopkeep.inventory[i].quantity);
 			
 			// Coupons (only affects buy price--not sell price.)
 			var couponName:String = "Coupon - " + shopkeep.inventory[i].shortName;
@@ -1120,6 +1125,7 @@ public function buyItemGo(arg:Array):void {
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
 	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
 	else if(shopkeep is Zea) shopkeep.sellMarkup = 1;
+	else if(shopkeep is Bianca) pc.createStatusEffect("Bought From Bianca");
 	
 	// Apply and destroy coupons!
 	var usedCoupon:Boolean = false;
@@ -1295,6 +1301,10 @@ public function sellItem():void
 	if(shopkeep is Sera)
 	{
 		if(seraDebtCheck()) return;
+	}
+	if(shopkeep is Geoff)
+	{
+		(shopkeep as Geoff).bustUpdate(true);
 	}
 	
 	clearOutput();
@@ -3111,6 +3121,7 @@ public function shipStorageMenuRoot():void
 	var btnSlot:int = 5;
 	var installedDevices:Array = [];
 	
+	if(sidewinderCargoholdExtras()) installedDevices.push(sidewinderCargoholdExtrasBonus);
 	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
 	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
@@ -3243,7 +3254,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "TOYS":
-				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKSOCK))
+				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKWEAR))
 				{
 					items.push(item);
 				}

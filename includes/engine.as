@@ -51,6 +51,14 @@ public function clearOutput():void
 	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
 	_bufferChanged = true;
+	//If clearOutput is called in a way that would prevent the player seeing their event notices, append those notices to the new page.
+	if (flags["EVENT_BUFFER_OVERRIDE"])
+	{
+		var eventBuffer:String = processEventBuffer();
+		if (eventBuffer != "")  output(eventBuffer + "<b><u>End log.</u></b>\n\n");
+		clearEventBuffer();
+		flags["EVENT_BUFFER_OVERRIDE"] = undefined;
+	}
 }
 
 public function output2(words:String, markdown:Boolean = false):void
@@ -343,6 +351,7 @@ public function vaginaRouterDesc(vIdx:int = -1, fullDesc:Boolean = false):String
 //Args[1] = max size.
 //Args[2] = boolean for if strapon allowed
 //Args[3] = min size
+//Args[4] = unselectable indexes
 public function cockSelect(args:Array):void { penisRouter(args); }
 public function penisRouter(args:Array):void
 {
@@ -350,9 +359,11 @@ public function penisRouter(args:Array):void
 	var maxFit:Number = 700;
 	var minFit:Number = 0;
 	var straponAllowed:Boolean = true;
+	var noSelect:Array = [];
 	if(args.length > 1) maxFit = args[1];
 	if(args.length > 2) straponAllowed = args[2];
 	if(args.length > 3) minFit = args[3];
+	if(args.length > 4) noSelect = args[4];
 
 	//Build up a choice of boners:
 	var choices:Array = [];
@@ -360,7 +371,7 @@ public function penisRouter(args:Array):void
 	if(pc.hasHardLightEquipped() && straponAllowed) choices.push(-1);
 	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
-		if(pc.cockVolume(x, true) <= maxFit && pc.cockVolume(x, false) >= minFit) choices.push(x);
+		if(pc.cockVolume(x, true) <= maxFit && pc.cockVolume(x, false) >= minFit && noSelect.indexOf(x) < 0) choices.push(x);
 		else ineligibles.push(x);
 	}
 	//Only 1 choice? Go right ahead with no menu.

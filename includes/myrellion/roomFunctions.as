@@ -430,6 +430,7 @@ public function kressiaAirfieldBonus():Boolean
 public function myrellionSecurityCheckpointEvents():Boolean
 {
 	if (findKaedeOnMyrellion()) return true;
+	biancaBoothBonus(0, "myrellion");
 	return false;
 }
 
@@ -622,6 +623,7 @@ public function noManzLandBonus():Boolean
 		choices[choices.length] = approachMyrDeserters;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		if(biancaInTheWilderness("myrellion")) choices.push(biancaRandomEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;

@@ -312,7 +312,7 @@ public function kaseHireSteeleTech():void
 	clearMenu();
 	
 	output("You lean forward and ask him if he’d like to work for Steele Tech on your ship. ");
-	output("\n\n<i>“SteeleTech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with Steele Tech? I mean their health policy alone makes them a better employer than Pyrite...”</i>");
+	output("\n\n<i>“Steele Tech?”</i> he says, slitted pupils wide, looking almost bewildered, <i>“You could get me a job with Steele Tech? I mean their health policy alone makes them a better employer than Pyrite...”</i>");
 	output("\n\nGrinning, you tell him you have quite the in with Steele Tech, and one of their employees on your ship.");
 	output("\n\n<i>“You’re... You’re being serious aren’t you?”</i> he asks, fluffy green ears perking up.");
 	output("\n\nYou tell him that if he’s interested he should head to your ship at the docks and talk to the white-haired ausar aboard your craft, Anno Dorna.");

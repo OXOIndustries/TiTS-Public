@@ -90,7 +90,19 @@ public function pcReadyForPainsluttery():Boolean
 	if (flags["AKANE_FUN_VISITS"] == undefined || flags["AKANE_FUN_VISITS"] < 9) return false;
 	return true;
 }
- 
+
+public function hasAkaneEffects(includeHealed:Boolean = true):Boolean
+{
+	return hasAkanaEffects(includeHealed);
+}
+public function hasAkanaEffects(includeHealed:Boolean = true):Boolean
+{
+	if (pc.hasStatusEffect("Sore Tubes") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Tenderized") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	if (pc.hasStatusEffect("Lash Marks") && (includeHealed || pc.statusEffectv4("Sore Tubes") == 0)) return true;
+	return false;
+}
+
 public function akanePainslutTrigger():void
 {
 	clearMenu();
@@ -192,7 +204,7 @@ public function akaneEmailMeeting():void
 	output(" you prep up for whatever’s to come next. You’ve experience with their tactics, methods and motives, the only thing to do is to not slip up.");
 	output("\n\nAs if it were any other shop or vendor, you stroll up to the display and eye over the various ‘wares’ on sale. Likely most of these are part of a front, you posit, although the presentation is very authentic...");
 	output("\n\n<i>“Anything I can help you with, " + pc.mf("sir", "madam") +"? Anything at all?”</i> comes a voice from your left, the diminutive man in the suit now suddenly within handshaking distance. Sneaky...");
-	output("\n\nYou turn to face him, his beaming salesman’s smile and clasped hands inviting you to speak. You have a quick lookover: no more than 5’7’’ at a guess, broad shoulders exacerbated by a pinstripe black suit. A trimmed, greying beard and short-sides haircut paint him as a veteran at this role.");
+	output("\n\nYou turn to face him, his beaming salesman’s smile and clasped hands inviting you to speak. You have a quick lookover: no more than 5\' 7\" at a guess, broad shoulders exacerbated by a pinstripe black suit. A trimmed, greying beard and short-sides haircut paint him as a veteran at this role.");
 	output("\n\nYou start by saying you’re interested in some wares but would like to know more about previous buyers.");
 	output("\n\n<i>“Anyone specific, " + pc.mf("sir", "madam") + "? A brand such as ours works on reputation alone,”</i> he replies, gesticulating in a rather delighted manner.");
 	output("\n\n<i>“Host Shukuchi. They must need <b>very</b> advanced equipment for what they do, all that on-the-fly invisibility...”</i> you say casually, palming a decommissioned display pistol. That namedrop should get his attention.");
@@ -482,7 +494,7 @@ public function akaneShockMeAlready():void
 	output("\n\nThe groggy dominatrix stumbles on her mechanical heels, the metallic <i>plink-plinks</i> erratic as she manages to stop herself from teetering over. You can see Akane hold herself up against the wall, her knees bent inward and all her limbs jittering with a palsy. Did she just...?");
 	output("\n\n<i>“Nngggmmm... I haven’t heard someone say it like that in... ahehe, I don’t even know!”</i> she pants, her voice dotted with feminine squeaks.");
 	output("\n\nEven in your compromised state, you can see a glistening <i>wetness</i> seep out between her pale thighs. Oh, she definitely did...");
-	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinFurScales] are sore and far too sensitive to try again.");
+	output("\n\nYou try hauling yourself up but to no avail, the tight binding still a coarse reminder of your bondage. The slightest bit of extra effort cuts into your stamina and your [pc.skinNoun] is sore and far too sensitive to try again.");
 	output("\n\nAkane also slumps to her knees, her fingertips causing sparks to flare against the wall as she drags them down with her.");
 	output("\n\n<i>“Oh how glad I am that you agreed... oh how fucking glad,”</i> she giggles, wiping her face with the backs of her wrists. Whatever thoughts you have to add fail to form in your mouth: the cool air filling your lungs is too good to pass up right now.");
 	output("\n\nYour eyelids flutter to a close as that same air works its magic. Your lungs relax, your heart slows and your limbs loosen in short order, the comforting afterglow of expending so much energy making things numb and....sleepy...and....");
@@ -725,7 +737,7 @@ public function akaneLookAtMafiaBoss():void
 	output("\n\nHer jet black hair is silky smooth, wavy and glossy and cut sharply to about chin length on her left side. Where you would expect hair follicles on the right side, there is a web of scar tissue consistent with cuts and lacerations going from her right ear down to her right collarbone. All of the healed-over marks are made of erratic, angular and deep looking patterns. Said ear seems surprisingly undamaged and appears to be modded into an elvish, pointed shape. Instead of one prong, there are three and they all have a slight upward flick towards the tips, making her right ear look ‘wing-like’.");
 	output("\n\nHer eyes dart around you from time to time, as if sizing you up every few minutes. They’re colored a plain shade of black and give little away.");
 	output("\n\nAside a light application of crimson lipstick, she wears no makeup.");
-	output("\n\nWhat draws your eyes more and more are her cybernetic augmentations. From elbow to fingertip and from knee to toe, sleek and seamless black replacements make up the rest of her limbs. They almost seem realistic, aside from the obvious joints and pivots. Instead of typical human feet and legs, her robo-limbs form pseudo-boots with angular arched heels about 4’’ high, giving her a stylish edge on top of pinpoint footing balance. When traversing, she moves with grace and precision; the added effect of the heels pushing her hips out with each step is just a small bonus.");
+	output("\n\nWhat draws your eyes more and more are her cybernetic augmentations. From elbow to fingertip and from knee to toe, sleek and seamless black replacements make up the rest of her limbs. They almost seem realistic, aside from the obvious joints and pivots. Instead of typical human feet and legs, her robo-limbs form pseudo-boots with angular arched heels about 4\" high, giving her a stylish edge on top of pinpoint footing balance. When traversing, she moves with grace and precision; the added effect of the heels pushing her hips out with each step is just a small bonus.");
 	output("\n\nIn terms of outfit, Akane wears a short, sleeveless dress much like an ancient qipao. It’s made of thin silver fabric and patterned with pink and red draconic designs. On top of that is a short, black leather jacket cut at the diaphragm, the sleeves only extending to her prosthetic elbows. The end effect would normally make one believe she was wearing long gloves.");
 	output("\n\nUnderneath all this, her body is slender but not slim, detailed with muscle but built more like a gymnast or acrobat. A mild amount of ab detail shines through her thin dress, although little else does.");
 	output("\n\nHer chest barely seems to reach a B-cup and her jacket adds modesty. Although <i>some</i> natural curve exists on her, she is on the lanky side of things.");
@@ -1251,7 +1263,7 @@ public function akanePleaseComeAgain():void
 	if (pc.hasCock() && pc.hasVagina()) output("[pc.eachCock] throb and harden then [pc.eachVagina] to moisten and puff up in seconds!");
 	else if (pc.hasCock()) output("[pc.eachCock] to bounce and throb, coming to hardness in seconds!");
 	else if (pc.hasVagina()) output("[pc.eachVagina] to moisten and puff up in seconds!");
-	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realises you’re at a loss when you can become so aroused on mere command.");
+	output("\n\nYou can’t help but inhale sharply as virulent arousal takes over your flesh, counteracting the growing aches in your bound limbs. You whimper as somewhere deep down, your body realizes you’re at a loss when you can become so aroused on mere command.");
 	
 	output("\n\n<i>“Theeere we go. Now hold still for me, precious,”</i> coos Akane, just out of sight. Your fists make it difficult to tell what she’s about to do but then-\n\n");
 	if (pc.hasCock())
@@ -1397,7 +1409,7 @@ public function akaneMoarMoarMoar():void
 
 	if (flags["AKANE_TIMES_FORCED"] == undefined)
 	{
-		output("\n\nYou whine again when it makes contact, making you instinctively realise that all forms of nerve are extremely sensitive.");
+		output("\n\nYou whine again when it makes contact, making you instinctively realize that all forms of nerve are extremely sensitive.");
 		output("\n\n<i>“Oh don’t fret, my dear [pc.name]. If you’ll hang on and allow me to do a bit of this... and this,”</i> she says casually, as if ticking off a to-do list but with a box of wires instead.");
 	}
 	else if (pcIsPainslut())

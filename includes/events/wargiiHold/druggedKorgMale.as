@@ -21,7 +21,7 @@ public function dosedKorgiMaleEncounter():void
 	clearMenu();
 	addButton(0,"Help",helpOutDosedMaleKorg,undefined,"Help","The poor pup’s all fired up and too shy to show it. You can think of a few ways to help him get over it.");
 
-	addButton(1,"Don’t Help",dontHelpThatKorgo,undefined,"Don’t Help","You can’t get caught up fucking at random in a pitched battle!");;
+	addButton(1,"Don’t Help",dontHelpThatKorgo,undefined,"Don’t Help","You can’t get caught up fucking at random in a pitched battle!");
 }
 
 //[Don’t Help]
@@ -339,7 +339,7 @@ public function stayForBeejCuntsuckythings(x:int):void
 	
 	var ppKorgMale:Creature = new KorgonneMale();
 	
-	output("Scratching behind the pussy-drunk pup’s ears, you step forward, " + (pc.legCount > 1 ? "scissoring him between your [pc.thighs]":"grinding your front into his skull") + " and rubbing your [pc.clits] on his head. Lightheadedness follows when he licks and suckles at your engorged buzzer, polishing its surface until you’re seeing stars and and impregnating his fur with another batch of [pc.girlCumNoun]. <i>“Whew,”</i> you huff, petting him with as much energy as his tail wags, <i>“you keep that up, just like that, and I’ll help you get off.”</i>");
+	output("Scratching behind the pussy-drunk pup’s ears, you step forward, " + (pc.legCount > 1 ? "scissoring him between your [pc.thighs]":"grinding your front into his skull") + " and rubbing your [pc.clits] on his head. Lightheadedness follows when he licks and suckles at your engorged buzzer, polishing its surface until you’re seeing stars and impregnating his fur with another batch of [pc.girlCumNoun]. <i>“Whew,”</i> you huff, petting him with as much energy as his tail wags, <i>“you keep that up, just like that, and I’ll help you get off.”</i>");
 	output("\n\nShivering and moaning, you ");
 	if(pc.isNaga()) output("slither your snake-tail close enough to brush his cock");
 	else if(pc.isGoo()) output("inch forward so that his cock-tip slides into your gooey form");

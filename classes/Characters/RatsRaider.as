@@ -251,6 +251,7 @@ package classes.Characters
 					tallness = 60;
 					femininity = 40;
 					skinTone = "chocolate";
+					cocks[0].cockColor = "chocolate";
 					furColor = "black";
 					eyeColor = "violet";
 					hairColor = "blonde";

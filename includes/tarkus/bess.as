@@ -1376,7 +1376,7 @@ public function bessFollowerMenu():void
 	clearMenu();
 	
 	addButton(0, "Discuss", talkToBessAboutThings);
-	addButton(1, "Functions", bessFunctionsMenu, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
+	addButton(1, "Functions", bessFunctions, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
 	
 
@@ -4512,7 +4512,7 @@ public function bessBuyOutfit(boughtItem:ItemSlotClass):void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
-	output("\n\nYou’ve recieved " + boughtItem.description + " for [bess.name]!");
+	output("\n\nYou’ve received " + boughtItem.description + " for [bess.name]!");
 
 	bess.inventory.push(boughtItem);
 	pc.credits -= boughtItem.basePrice;
@@ -4643,7 +4643,7 @@ public function bessBuyAccessory(opts:Array):void
 	var cost:int = opts[1];
 	var lbl:String = opts[2];
 	
-	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " accessory set a for [bess.name]!");
+	output("\n\nYou’ve received " + indefiniteArticle(lbl.toLowerCase()) + " accessory set a for [bess.name]!");
 
 	pc.credits -= cost;
 	bessAddAccessorySet(accSet);
@@ -4675,7 +4675,7 @@ public function bessBuyShitItems():void
 
 	if (flags["BESS_OWNS_JBKIT"] >= 1) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "You already own this!");
 	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000 credits\nToo expensive!");
-	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa.\n\n<i><b>Warning:</b> While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.</i>\n\nCost: 25000 credits");
+	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa.\n\n<i><b>Warning:</b> While this should have no effect on the memory or personality of your android, the functionality is no longer officially supported by JoyCo and may void the units warranty. Use with caution.</i>\n\nCost: 25000 credits");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
 }
@@ -4686,7 +4686,7 @@ public function bessBuyGlasses():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
-	output("\n\nYou’ve recieved a pair of glasses for [bess.name]!");
+	output("\n\nYou’ve received a pair of glasses for [bess.name]!");
 
 	pc.credits -= 500;
 	flags["BESS_OWNS_GLASSES"] = 1;
@@ -4701,7 +4701,7 @@ public function bessBuyKatana():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
-	output("\n\nYou’ve recieved a katana for [bess.name]!");
+	output("\n\nYou’ve received a katana for [bess.name]!");
 
 	pc.credits -= 1000;
 	flags["BESS_OWNS_KATANA"] = 1;
@@ -4716,7 +4716,7 @@ public function bessBuyJailbreakingKit():void
 	bessHeader();
 
 	output("You transfer the credits to the vendor and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
-	output("\n\nYou’ve recieved a jail-breaking kit for use on [bess.name]!");
+	output("\n\nYou’ve received a jail-breaking kit for use on [bess.name]!");
 
 	pc.credits -= 25000;
 	flags["BESS_OWNS_JBKIT"] = 1;
@@ -4778,7 +4778,7 @@ public function bessBuyCockType(opts:Array):void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
-	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " cock for [bess.name]!");
+	output("\n\nYou’ve received " + indefiniteArticle(lbl.toLowerCase()) + " cock for [bess.name]!");
 
 	bessAddCockType(cType);
 	pc.credits -= cost;
@@ -5034,7 +5034,7 @@ public function bessSpendTime8():void
 
 	if (bessLoverStatus().indexOf("dom") == -1)
 	{
-		output("You spend some time with your "+bessLoverStatus()+", [bess.name]. You hand [bess.hisHer] a bouquet of [bess.hisHer] favorite flowers you recieved via space delivery - white oriental lilies with pink roses - causing [bess.hisHer] to flush and give you a great big hug. [bess.HeShe] immediately finds a place in the ship where [bess.heShe] can put it to show them off.");
+		output("You spend some time with your "+bessLoverStatus()+", [bess.name]. You hand [bess.hisHer] a bouquet of [bess.hisHer] favorite flowers you received via space delivery - white oriental lilies with pink roses - causing [bess.hisHer] to flush and give you a great big hug. [bess.HeShe] immediately finds a place in the ship where [bess.heShe] can put it to show them off.");
 
 		output("\n\nShe then spends quite a while showing you exactly how appreciative [bess.heShe] is of them.");
 	}
@@ -6214,7 +6214,7 @@ public function talkToBessAboutCelise():void
 	}
 	else if (celiseIsCrew() && bessClosedRelationship() && flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
 	{
-		output("\n\n<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That’s so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask her.");
+		output("\n\n<i>“Celise?”</i> [bess.name] narrows her eyes at you a little. <i>“Look, I love Celise, not in the same way I love you, but... letting her sleep with you while I have to sleep in another room? That’s so unfair!”</i> [bess.HisHer] tone is very grumpy. It was probably a bad question to ask [bess.himHer].");
 	}
 	else if (flags["BESS_LOVER"] != undefined)
 	{
@@ -6299,8 +6299,8 @@ public function talkToBessConfirmDismiss():void
 }
 
 /**
- * Hook into the approach method for Bess. Attempt to fire a relevent event, or do nothing.
- * Supports event supression via a flag (BESS_EVENT_SUPRESSION). Set it to a positive integer to supress events for that many initial approaches.
+ * Hook into the approach method for Bess. Attempt to fire a relevant event, or do nothing.
+ * Supports event suppression via a flag (BESS_EVENT_SUPRESSION). Set it to a positive integer to suppress events for that many initial approaches.
  * @return 		Returns true if an event fired, false if no events fired.
  */
 public function bessEventHook():Boolean
@@ -6317,7 +6317,7 @@ public function bessEventHook():Boolean
 		return true;
 	}
 
-	// TODO: Play 20 immediately after 19 is done -- no supression
+	// TODO: Play 20 immediately after 19 is done -- no suppression
 	if (bessEventCheck(19) && !bessEventCheck(20) && flags["BESS_JUST_A_FRIEND"] == undefined)
 	{
 		bessEvent20();
@@ -6331,7 +6331,7 @@ public function bessEventHook():Boolean
 		return true;
 	}
 
-	// Tick down supression of event procs
+	// Tick down suppression of event procs
 	if (flags["BESS_EVENT_SUPRESSION"] != undefined)
 	{
 		flags["BESS_EVENT_SUPRESSION"] -= 1;
@@ -6339,7 +6339,7 @@ public function bessEventHook():Boolean
 		return false;
 	}
 
-	// Depending on outcome of an event, prevent any further relationship building (supress further events)
+	// Depending on outcome of an event, prevent any further relationship building (suppress further events)
 	if (flags["BESS_JUST_A_SEXBOT"] == 1 || flags["BESS_JUST_A_FRIEND"] == 1)
 	{
 		return false;

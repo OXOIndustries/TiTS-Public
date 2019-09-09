@@ -133,6 +133,9 @@ package classes.Items.Transformatives
 			//#18 Flower tailcunt: Has tail-cunt, overdose.
 			if (target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && effect.value3 >= 1)
 				TFList[TFList.length] = 18;
+			//#19 Change Regal Mane type, overdose.
+			if (target.hasPerk("Regal Mane") && !InCollection(target.perkv1("Regal Mane"), [GLOBAL.FLAG_TENDRIL, GLOBAL.FLAG_FLOWER_SHAPED]) && effect.value3 >= 1)
+				TFList[TFList.length] = 19;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
@@ -571,6 +574,17 @@ package classes.Items.Transformatives
 					{
 						msg += "\n\n" + target.tailGenitalArgLockedMessage();
 					}
+				}
+				//#19 Change mane
+				else if(select == 19)
+				{
+					var newManeType:int = (target.isFeminine() ? GLOBAL.FLAG_FLOWER_SHAPED : GLOBAL.FLAG_TENDRIL);
+					
+					msg += "\n\nSuddenly, a tingling sensation runs through your mane and you find it drooping and disintegrating off of your shoulders. That is not the end however as";
+					if(newManeType == GLOBAL.FLAG_TENDRIL) msg += " plant-like creepers begin sprouting up from below your neck and stretching out to touch the air. <b>You now have a collar of vines around your neck!</b>";
+					if(newManeType == GLOBAL.FLAG_FLOWER_SHAPED) msg += " fresh flower petals blossom from your neck, splashing your nostrils with a scent of light morning dew. <b>You now have a collar of flower petals decorating your neck!</b>";
+					
+					target.setPerkValue("Regal Mane", 1, newManeType);
 				}
 				totalTFs--;
 			}

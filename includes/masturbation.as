@@ -269,7 +269,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 			fap = new FapCommandContainer();
 			fap.text = "Vaginal Feed";
 			fap.ttHeader = "Vaginal Feed";
-			fap.ttBody = "Feed attached Mimbranes using your penis.";
+			fap.ttBody = "Feed attached Mimbranes using your vagina.";
 			fap.func = feedMimbranesWithPussy;
 			faps.push(fap);
 		}
@@ -951,7 +951,7 @@ public function vaginalFap():void {
 	else output("soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
 	output(" quivers deliciously at your touch, the folds engorging as they fill with unspent desire, their flesh sensitive and achy.");
 	if(pc.totalClits() > 0) {
-		output(" You slide your palm across the slowly-stiffening surface of your clitroral hood");
+		output(" You slide your palm across the slowly-stiffening surface of your clitoral hood");
 		if(pc.totalClits() > 1) output("s before they swell");
 		else output(" before it swells");
 		output(" enough to become exposed.");
@@ -1100,7 +1100,7 @@ public function singleDickFap():void {
 	}
 	//Anemone Wavy
 	else if(temp == GLOBAL.FLAG_STINGER_TIPPED) {
-		output("\n\nSoon, you’re panting with excitement and stroking your hand up and down your length. It’s hard and sensitive as you’ve come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
+		output("\n\nSoon, you’re panting with excitement and stroking your hand up and down your length. It’s hard and sensitive as you’ve come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independent skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
 	}
 	//Prehensile
 	else if(temp == GLOBAL.FLAG_PREHENSILE) {
@@ -3581,7 +3581,7 @@ public function bionaHoleInstructionalBullshit():void
 	else output("your bed");
 	output(". Satisfied, you scroll through your stored media until you alight on the <i>“instructional”</i> holovid that came with the toy and punch it on.");
 
-	output("\n\nYou sit and start to gently caress your [pc.cock " + x + "] as the vid starts to play, scrolling quickly through a bunch of multi-language legalese and credits before opening to a shot of Nivas herself, sitting back and relaxing on a plush leather couch. She’s as smoking hot an ausar babe as you could expect: long hair dyed a lustrous dark blue parting around a pair of tall canid ears. She’s got a cutely feminine face with big almond-shaped blue eyes under a hint of aqua shadow, and full pink-painted lips. Nivas is rocking a pair of tight black latex booty shorts that show off a lot of long, slender leg, and a too-tight latex top revealing a very, very generous amount of creamy cleavage. Several colorful silk ribbons adorn her dark blue tail, swishing beside her on the seat as the camera pans up and down her half-bare body.");
+	output("\n\nYou sit and start to gently caress your [pc.cock " + x + "] as the vid starts to play, scrolling quickly through a bunch of multi-language legalese and credits before opening to a shot of Nivas herself, sitting back and relaxing on a plush leather couch. She’s as smoking hot as an ausar babe as you could expect: long hair dyed a lustrous dark blue parting around a pair of tall canid ears. She’s got a cutely feminine face with big almond-shaped blue eyes under a hint of aqua shadow, and full pink-painted lips. Nivas is rocking a pair of tight black latex booty shorts that show off a lot of long, slender leg, and a too-tight latex top revealing a very, very generous amount of creamy cleavage. Several colorful silk ribbons adorn her dark blue tail, swishing beside her on the seat as the camera pans up and down her half-bare body.");
 	output("\n\n<i>“Hey there,”</i> the starlet purrs seductively as the camera drone settles on her face. She blows it - and you - a rosy-lipped kiss, wrapping her arms around the back of the couch and thrusting out her ample chest.");
 	output("\n\n<i>“Hey,”</i> a disembodied masculine voice says from behind the camera. <i>“Why don’t you introduce yourself, beautiful?”</i>");
 	output("\n\nNivas chuckles and rolls her eyes. <i>“I think we all know the answer. Why don’t you look at the side of that toy you’ve got there, big boy?”</i>");
@@ -4272,7 +4272,7 @@ public function adjustableHolofap():void
 	//No new PG: Activation
 	output(" ");
 	//Bimbo
-	if(pc.isBimbo()) output("You reach for your crotch and, in your horny daze, clumsily bump the activation stud to your [pc.lowerUndergarment]. The dazzling spear or light manifests with an audible hum almost loud enough to overwhelm the bimbolicious thought that swims to the front of your mind: <i>cock</i>. Whatever you had planned, it’s long gone. There’s a dick here to play with!");
+	if(pc.isBimbo()) output("You reach for your crotch and, in your horny daze, clumsily bump the activation stud to your [pc.lowerUndergarment]. The dazzling spear of light manifests with an audible hum almost loud enough to overwhelm the bimbolicious thought that swims to the front of your mind: <i>cock</i>. Whatever you had planned, it’s long gone. There’s a dick here to play with!");
 	//Lust90+
 	else if(pc.lust() >= 90) 
 	{

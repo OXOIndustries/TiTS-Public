@@ -155,7 +155,9 @@ public function coronaFlamerFuckedLikeTheBitchInHeatSheIs(cockIdx:int):void
 	output("You kneel over her and place your hand at her throat, a gesture that makes her respond with immediate joy. Her long pink tongue lolls out as you begin to choke her, breath coming in short, halting gasps when you allow her to breathe. She shudders and shakes in your grip, eyes rolling in her head as her back arches off the ground.");
 	output("\n\nShe’s having <i>too</i> much fun. You loosen your grip slightly and slap her hard enough to bring her back to her senses, her cheek reddening immediately as she turns back to you with her shining eyes focused on yours, panting in bliss and taking long, grateful breaths. Squeezing the sides of her neck, you watch her head droop momentarily before you let go and she springs back up, drooling running from the corner of her lips.");
 	output("\n\n<i>“Oh my god-- ghhk,”</i> she chokes, shivering beneath you, <i>“I think I love you!”</i>");
-	output("\n\nYou give her a light slap to the other cheek and she gasps, tilting her head upward to expose more of her vulnerable neck while you align your [pc.cock " + cockIdx + "] with her juicy, dripping pussy. She screams in delight as the [pc.cockHead " + cockIdx + "] teases her slit open, spreading her wide, and can’t help but squirt all down your shaft as her legs thud against");
+	output("\n\n");
+	showImage("PyropupChokeFuck");
+	output("You give her a light slap to the other cheek and she gasps, tilting her head upward to expose more of her vulnerable neck while you align your [pc.cock " + cockIdx + "] with her juicy, dripping pussy. She screams in delight as the [pc.cockHead " + cockIdx + "] teases her slit open, spreading her wide, and can’t help but squirt all down your shaft as her legs thud against");
 	if (pc.hasLegs()) output(" yours.");
 	else output(" your side.");
 	output(" Her lower back comes off the ground completely, undulating up and down while she cums, holding your gaze with adulation in her eyes the entire time.");

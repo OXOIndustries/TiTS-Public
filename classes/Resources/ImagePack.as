@@ -163,6 +163,10 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
 			public static const PrincessIntro:Class;
 
+			//PYROPUP
+			[Embed(source = "../../assets/images/imagepack/pyropup/buntcake_pyropup_flamer_corona_lord_final.jpg", mimeType = "image/jpg")]
+			public static const PyropupChokeFuck:Class;
+
 			//RATS
 			[Embed(source = "../../assets/images/imagepack/rats/octomush_earfuck_ffion.jpg", mimeType = "image/jpg")]
 			public static const OctoEarfuck:Class;
@@ -194,6 +198,8 @@ package classes.Resources
 			//SYRI
 			[Embed(source = "../../assets/images/imagepack/syri/rajii_syri_final.jpg", mimeType = "image/jpg")]
 			public static const SyriButtfuck:Class;
+			[Embed(source = "../../assets/images/imagepack/syri/bashko_syri_lingerie.jpg", mimeType = "image/jpg")]
+			public static const SyriLingerie:Class;
 
 			//SLYVEREN SLAVEBREAKER
 			[Embed(source = "../../assets/images/imagepack/slavebreaker/mrpink_shoucolor_slyveren_blowjob.png", mimeType = "image/png")]

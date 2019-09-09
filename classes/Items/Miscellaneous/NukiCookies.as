@@ -550,7 +550,7 @@
 					pc.orgasm();
 					while(choices.length > 0)
 					{
-						if(pc.vaginas[choices[0]].vaginaColor == "black") pc.vaginas[choices[0]].type = GLOBAL.TYPE_KUITAN;
+						if(pc.vaginas[choices[0]].vaginaColor == "black") pc.shiftVagina(choices[0], GLOBAL.TYPE_KUITAN);
 						choices.splice(0,1);
 					}
 					changes++;
