@@ -2697,6 +2697,13 @@ public function taivraFertilize():void
 	if(pc.virility() <= 0) return;
 	
 	flags["TAIVRA_FERTILE"] = GetGameTimestamp();
+	// PC fertilized egg count
+	if(flags["TAIVRA_FERTILE_EGGS"] == undefined)
+	{
+		var nEggs:int = 6 + rand(5);
+		if(pc.virility() > 1) nEggs += Math.round((1 + rand(2)) * (pc.virility() - 1));
+		flags["TAIVRA_FERTILE_EGGS"] = nEggs;
+	}
 }
 public function taivraHasFertileEggs():Boolean
 {
@@ -3599,6 +3606,17 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			output("\n\nYour queenly mate gives you a playful smile and pulls you up onto her throne’s dais beside her, leaning up to plant a kiss on your lips. When she breaks it, Taivra brushes her lips from yours up to your ear, just long enough to whisper, <i>“My heart’s racing, thinking about you doing that to me...”</i>");
 			output("\n\nShe gives you a little nip on the ear and reclines into her throne, crossing her legs in a way that might make her look positively regal... if it weren’t for the soft breeder resting on her slickened thighs. <i>“I’ll make sure our brood’s bearer is well taken care of, [pc.name]. Why don’t you go and catch your breath, and we can see about making sure your mate is, too.”</i>");
 			output("\n\nThis private, flirtatious side of your royal mate fades as the throne room doors open again and her guards return, doubtless drawn by the climactic cries from within. You gather your gear and step back, giving your queen a knowing wink.");
+			
+			// Taivra laid her eggs!
+			var nEggs:int = 0;
+			if(flags["TAIVRA_FERTILE_EGGS"] != undefined)
+			{
+				nEggs = flags["TAIVRA_FERTILE_EGGS"];
+				flags["TAIVRA_FERTILE_EGGS"] = undefined;
+			}
+			if(nEggs <= 0) nEggs = 6 + rand(5);
+			StatTracking.track("pregnancy/royal nyrea eggs sired", nEggs);
+			StatTracking.track("pregnancy/total sired", nEggs);
 			
 			// Reset Taivra's preg timer.
 			flags["TAIVRA_FERTILE"] = 0;

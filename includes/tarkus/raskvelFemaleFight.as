@@ -33,7 +33,7 @@ public function encounterHostileRaskvelFemale():void
 		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. <i>“An off-worlder, huh?”</i>");
 		output("\n\nYou nod.");
-		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred " + (isAprilFools() ? "dogecoin" : "credit") + " fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
+		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred " + (isAprilFools() ? "dogecoin" : "credit") + " fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at your " + pc.rawmfn("crotch before reaching down to pull her alien twat wide open, winking","face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her","face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
 		output("\n\nDo you pay the feisty little alien, fight her, or try and get a little something for your credits?");
 	}
 	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
@@ -252,9 +252,9 @@ public function raskVelBabeGetsDoggieStyled():void
 	//Cocktail
 	if(pc.hasCockTail()) output("\n\nYou instinctively twitch a second set of muscles and whip your [pc.tail] around lightning fast, spearing it into the raskvel’s empty pucker before she can react. The skin of your [pc.tailCock] is pulled back immediately, exposing the turgid mass to her sensitive anal walls. It fills her ass with thick, twitching cockflesh, immediately pumping out a thick blast of [pc.cumColor] release straight inside her bowels. The raskvel whimpers in distress and lust, her ass spasming wonderfully in a way that feels like she’s trying to squeeze the [pc.cum] straight out of your tool.");
 	//RESUME!
-	output("\n\nYou slam home one last time, slapping your ");
-	if(pc.balls > 0) output("[pc.sack] into her bullet-hard frontal clit and your ");
-	output("crotch against her rigid frontal button. Blood surges into [pc.eachCock] as orgasm arrives, stretching the raskvel’s sopping-wet cunt with even more thickness, triggering a whole new avalanche of climatic contractions from her well-used mound.");
+	output("\n\nYou slam home one last time, slapping your");
+	if(pc.balls > 0) output(" [pc.sack] into her bullet-hard frontal clit and your");
+	output(" crotch against her rigid rear button. Blood surges into [pc.eachCock] as orgasm arrives, stretching the raskvel’s sopping-wet cunt with even more thickness, triggering a whole new avalanche of climatic contractions from her well-used mound.");
 
 	var cumQ:Number = pc.cumQ();
 	//NON KNOT:

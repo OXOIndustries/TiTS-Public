@@ -424,12 +424,12 @@ public function goAwayYouMilkyMilkSlut():void
 		clearMenu();
 		addButton(0,"Stay in Debt",stayInDebtCowslut,undefined,"Stay in Debt","She clearly doesn’t know how to live as anything other than a slave at this point. You might as well just take care of her. Let her keep feeding money into your accounts, and keep her around.");
 		addButton(1,"Stay Free",stayFreeReaha,undefined,"Stay Free","You had no idea she’d actually be so desperate to stay with you that she’d pull something like this. Reaha’s made her point: let her stick around - how much trouble can she be?");
-		addButton(2,"Leave Now",leaveNowYouLowConfidenceCuredCowSlut,undefined,"Leave Now","You’re not falling for her very, very obvious attempts to get you to keep her around. Is she really that dependant on you?");
+		addButton(2,"Leave Now",leaveNowYouLowConfidenceCuredCowSlut,undefined,"Leave Now","You’re not falling for her very, very obvious attempts to get you to keep her around. Is she really that dependent on you?");
 	}
 	//Confidence >60 path
 	else
 	{
-		output("She vanishes into her cabin, and for a few minutes, you think that’s all settled. Might as well grab your Codex and look up a taxi company to come pick her up. You order the taxi, and a few minutes later, Reaha returns to you with her gear all packed up in a duffle bag you’re not sure you’ve seen before. She sits down beside you with a heavy sigh, wrapping her arms around her bag.");
+		output("She vanishes into her cabin, and for a few minutes, you think that’s all settled. Might as well grab your Codex and look up a taxi company to come pick her up. You order the taxi, and a few minutes later, Reaha returns to you with her gear all packed up in a duffel bag you’re not sure you’ve seen before. She sits down beside you with a heavy sigh, wrapping her arms around her bag.");
 		output("\n\n<i>“I don’t know what I’m going to do,”</i> she admits after a while. <i>“I haven’t been a free woman... I mean, really <b>free</b>... since I was eighteen. For all of a week, maybe. I pretty much bounced right from the military into Beth’s. I’ve always had someone telling me what to do. How to live. What to think. Who to fuck, or fight, or care about.”</i>");
 		output("\n\nYou reach over and put a comforting hand on her shoulder. She leans into it, but doesn’t look at you.");
 		output("\n\n<i>“Guess I’ll need to find a job, then. How do I even do that? I’ve never... no, don’t tell me. I’ll figure it out. Maybe I’ll go back to Tavros, hook up with some of the girls that used to work at Beth’s. I remember a few of them said they’d stay on station. Probably turning tricks in the red light, still. Just new management: less cunt-y management, I hope.”</i>");
@@ -452,7 +452,7 @@ public function goAwayYouMilkyMilkSlut():void
 }
 
 //[Leave Now]
-//You’re not falling for her very, very obvious attempts to get you to keep her around. Is she really that dependant on you?
+//You’re not falling for her very, very obvious attempts to get you to keep her around. Is she really that dependent on you?
 public function leaveNowYouLowConfidenceCuredCowSlut():void
 {
 	clearOutput();

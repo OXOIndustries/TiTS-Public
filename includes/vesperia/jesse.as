@@ -79,7 +79,7 @@ public function jesseBarBonus(button:int):void
 {
 	if (flags["MET_JESSE"] == undefined) 
 	{
-		output("\n\nThere’s a petite humanoid surrounding by empty glasses and gadgets. She seems rather bored, perhaps you wanna speak to her...?");
+		output("\n\nThere’s a petite humanoid surrounded by empty glasses and gadgets. She seems rather bored, perhaps you wanna speak to her...?");
 		addButton(button,"SolitaryWomn",firstTimeApproachJesseI,undefined,"Solitary Woman","She seems a bit lonely in that corner.");
 	}
 	else if (!pc.hasStatusEffect("Jesse Bar Cooldown"))
@@ -97,7 +97,7 @@ public function firstTimeApproachJesseI():void
 
 	output("You can’t imagine someone keeping their head down in a place like this, not with that enthusiastic kui-tan at the helm anyway.");
 	output("\n\nYou gather the pluck to speak with her, cuz hey, she looks cute enough.");
-	output("\n\nSauntering over to her little den, you get a quick look at her. She’s pretty short, at most 5’3’’ and the tips of her shoes just about touch the floor. Her hair is a very rich shade of wine red and admirably well-kept. She has peculiar eye-shaped markings above her eyebrows. Her clothing style is smart-casual: classy but all purpose. A straw leading to a thin glass full of soda sits idly between her lips and small earphones play unfamiliar music that drifts around her. You can’t quite tell if she’s looking at you because her eyes... seem to be made of stardust.");
+	output("\n\nSauntering over to her little den, you get a quick look at her. She’s pretty short, at most 5\' 3\" and the tips of her shoes just about touch the floor. Her hair is a very rich shade of wine red and admirably well-kept. She has peculiar eye-shaped markings above her eyebrows. Her clothing style is smart-casual: classy but all purpose. A straw leading to a thin glass full of soda sits idly between her lips and small earphones play unfamiliar music that drifts around her. You can’t quite tell if she’s looking at you because her eyes... seem to be made of stardust.");
 	output("\n\nTaking a chance, you say <i>“hey there”</i> in a clear voice. She slowly turns her head to see who’s breaking her immersion. She gestures a short wave and then holds up her index finger, implying <i>“wait a second.”</i>");
 	output("\n\nThe straw in her mouth plops neatly into the glass and she carefully removes her earphones before meticulously wrapping them up. <i>“May I help you with something, " + pc.mf("sir","madam") + "?”</i> She asks in a husky, polite tone of voice. Her accent is certainly Terran - at a rough guess, you’d say from England - and somewhat sophisticated. You could sum it up as ‘proper’.");
 	output("\n\n" + pc.mf("Sir","Madam") + ", eh?");
@@ -242,14 +242,14 @@ public function jesseAppearance():void
 	author("SoAndSo");
 	showJesse();
 
-	output("Jesse is a 20-something year old human. She just about scrapes 5’3’’ in height, generally shorter than the other inhabitants of Canadia station.");
+	output("Jesse is a 20-something year old human. She just about scrapes 5\' 3\" in height, generally shorter than the other inhabitants of Canadia station.");
 	output("\n\nCurrently, she’s sitting comfortably with her laptop and datapads in front of her. A few tall glasses of soda dot her table, all at varying degrees of fullness. She’s fairly immersed in what she’s doing: Earphones and the bluish glare of the screens her hold her attention.");
 	output("\n\nJesse is almost certainly female... you think. She acts and looks the part, but her voice is somewhat huskier than you’d expect from someone so short. Her shoulders are a little broad for a female human, and her hips and legs appear to be spaced slightly further apart than the average as well. Looking closer, you can see that certain parts of her bone structure are a little unusual too.");
-	output("\n\nHer visibly smooth, Terran skin is a pure, snow white. There doesn’t appear to be a single blemish or mark on it, not even a bluish vein. Her face is adorably feminine if slightly angular, much like a lithe elf or another fantastical higher being of Olde Earth legends. A pointed, fleshy tongue very occasionally slips out of her bare lips to lap up some soda. You’d say it was about 7’’ long. Her hair is a deep, rich wine-red and impeccably well kept: shoulder length, wavy and with a straight fringe that rests an inch above her thin eyebrows. Her hands and nails are similarly well-kept. Expertly applied, black eyeshadow emphasises her eyes. Speaking of...");
+	output("\n\nHer visibly smooth, Terran skin is a pure, snow white. There doesn’t appear to be a single blemish or mark on it, not even a bluish vein. Her face is adorably feminine if slightly angular, much like a lithe elf or another fantastical higher being of Olde Earth legends. A pointed, fleshy tongue very occasionally slips out of her bare lips to lap up some soda. You’d say it was about 7\" long. Her hair is a deep, rich wine-red and impeccably well kept: shoulder length, wavy and with a straight fringe that rests an inch above her thin eyebrows. Her hands and nails are similarly well-kept. Expertly applied, black eyeshadow emphasises her eyes. Speaking of...");
 	output("\n\nJesse’s eyes are curious things. They seem to lack pupils until you really focus on their centers. They’re two orbs of a black and red blend, dotted with what seem to be miniscule, pale-red lights. They almost look like miniature star systems! You can never quite tell what she’s looking at.");
 	output("\n\nRight above her eyebrows are two flesh-red, tattoo-like markings that vaguely mimic the shape of her eyes. They animate accordingly when she makes a movement with the respective eyelid.");
-	output("\n\nJesse’s wearing a fashionable ensemble of an outfit. She has a white, long sleeved blouse that fits smartly and loosely round her arms. It covers her petite chest in translucent, silken material. A mini cravatte rests loosely round the collar. Below her midriff is a short black skirt that is also a little loose, thus allowing her lithe legs to move and swing freely. She has a set of grey, knee-length socks and black pumps with 2’’ heels on her dainty feet.");
-	if (flags["JESSE_TEASE_STATE"] >= 1) output("\n\nUnderneath her shirt is a no-nonsense white bra that accentuates her small B-cup bust. Her skirt hides a white pair of short, skintight boxers, making her hidden fem-bulge very apparent if anyone should get a peak. Her slender member is just as oddly proportioned because, at 10’’, she is quite long in that regard. It’s a dick meant for grippin’, not dippin’! Her proportionate bubble butt fits very snugly in her underwear.");
+	output("\n\nJesse’s wearing a fashionable ensemble of an outfit. She has a white, long sleeved blouse that fits smartly and loosely round her arms. It covers her petite chest in translucent, silken material. A mini cravatte rests loosely round the collar. Below her midriff is a short black skirt that is also a little loose, thus allowing her lithe legs to move and swing freely. She has a set of grey, knee-length socks and black pumps with 2\" heels on her dainty feet.");
+	if (flags["JESSE_TEASE_STATE"] >= 1) output("\n\nUnderneath her shirt is a no-nonsense white bra that accentuates her small B-cup bust. Her skirt hides a white pair of short, skintight boxers, making her hidden fem-bulge very apparent if anyone should get a peak. Her slender member is just as oddly proportioned because, at 10\", she is quite long in that regard. It’s a dick meant for grippin’, not dippin’! Her proportionate bubble butt fits very snugly in her underwear.");
 	if (flags["JESSE_TIMES_SEXED"] != undefined) {
 		output("\n\nWhat she hides further under her clothes is another story.");
 		output("\n\nHer body is quite skinny overall, arms and legs in particular lacking in muscle tone and body fat. Aside a good few proportionate and cute curves in the right places, she certainly gives the impression of someone under a rather barebones diet. All soda diet...?");
@@ -1008,7 +1008,7 @@ public function jesseSexHerFaceII():void
 
 	output("You clamber onto the bed and line yourself up so that you’re in line with the bound up Jesse. Shuffling backwards on your knees, you push down your lower body so that your [pc.pussy] is only a few inches from her face.");
 	if (pc.isNaga()) output(" It’s a little awkward with your naga half but you’ve got plenty of body strength to hold yourself up.");
-	output("\n\n<i>“Tongue out,”</i> you command. Small puffs of heat brushing against your labia tell you her 7’’ tongue is fully extended.");
+	output("\n\n<i>“Tongue out,”</i> you command. Small puffs of heat brushing against your labia tell you her 7\" tongue is fully extended.");
 	output("\n\n<i>“Lick.”</i>");
 	output("\n\nTo help her, you lower yourself a little. Her hot, fleshy tongue drags slowly across your [pc.cunt] and doesn’t stop till it collaterally flicks at your [pc.asshole]. Mmm, feels <i>nice</i> to have a personal pleasure pet so obediently playing along to your tune. And has such a well trained tongue, of course...");
 	output("\n\nYou press your mound down so that your [pc.eachClit] can brush against her nose.");
@@ -1097,10 +1097,10 @@ public function jesseSexBagOTricksI():void
 	output("\n\nLastly, and perhaps as the cherry to this Jesse cake, you get the bottle of lube and squirt a thick string of the stuff onto her exposed asshole. She sighs in relief as you then rub the cool liquid around, on and inside the rim of her accepting fuckhole. You lean over her to her pointy ear and whisper.");
 	output("\n\n<i>“Almost there, buttslut.”</i>");
 	output("\n\nShe can barely contain herself at this point, fake-moaning to encourage you to hurry up. You give her wiggling tush a firm spank, although that only makes her do it more.");
-	output("\n\nTaking the first dildo, a smooth, blandly shaped 9’’ cylinder, and the plastic string of tiny beads, you wrap said beads around the fake dick in an ad hoc, somewhat shabby spiral shape. It looks more like a baseball bat covered in barbed wire after you’re finished with it.");
+	output("\n\nTaking the first dildo, a smooth, blandly shaped 9\" cylinder, and the plastic string of tiny beads, you wrap said beads around the fake dick in an ad hoc, somewhat shabby spiral shape. It looks more like a baseball bat covered in barbed wire after you’re finished with it.");
 	output("\n\nEhhh, it’ll do.");
 	output("\n\nThe other dildo is spiny and thinner but certainly longer: a kaithrit shape. That CEO from her story really must have rubbed off on her, hm? Also seems to have an on/off switch...");
-	output("\n\nPutting the two together gives them a full 3’’ width: just enough to make her scream.");
+	output("\n\nPutting the two together gives them a full 3\" width: just enough to make her scream.");
 	output("\n\nOo, can’t forget that bowl either. You align Jesse’s personal bowl underneath her, making sure her semi-hard rod is angled right over it. Perfect.");
 	output("\n\nOn with the show!");
 
@@ -1191,7 +1191,7 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 	output("\n\nYou can see her bound up, angled femcock twitch and spasm erratically underneath her: she really <i>is</i> on the edge! The pain she must be feeling in her poor rod... at this rate, the cock binding might just rip itself off!");
 	output("\n\nFiguring that her backup must be significant, you hastily undo the bindings on her dick and sack, leaving just enough tension around the pink cock vibe to keep it close to her urethra.");
 	output("\n\nWith a few final pumps from the vibe in her ass and with hoarse, delirious cries of pain-fused pleasure, Jesse finally gets to cum.");
-	output("\n\nWithout much ceremony, her 10’’ femdick unleashes its backed up load. You quickly grab the spasming rod and direct it to her feeding bowl. Thick, pearly strings of spunk spurt and splatter in the bowl, quickly forming a layer of opaline goo. Five shots, six shots... her eighth shot ends in a dribble of watery fluid and the exhausted buttslut immediately slumps onto her side. She doesn’t pant so much as wheeze, every exhale punctuated with a faint, high pitched note.");
+	output("\n\nWithout much ceremony, her 10\" femdick unleashes its backed up load. You quickly grab the spasming rod and direct it to her feeding bowl. Thick, pearly strings of spunk spurt and splatter in the bowl, quickly forming a layer of opaline goo. Five shots, six shots... her eighth shot ends in a dribble of watery fluid and the exhausted buttslut immediately slumps onto her side. She doesn’t pant so much as wheeze, every exhale punctuated with a faint, high pitched note.");
 	output("\n\nYou’re not done with her yet, however...");
 	output("\n\nSetting the full bowl of her cum in front of her drooling, tongue-leashed mouth, you remove the mouth-gag. Her long tongue is dipping into the warm fluid immediately! You push it a little closer for her ease, just to guarantee she gets it all.");
 	output("\n\n<i>“Eat up, Jesse. All of it, every last drop.”</i> you encourage her, undoing her various restraints and bindings as she meekly laps and licks at her ‘meal’. There’s a defeated whine from the cum-hungry wench as you gently pull out the combi-dildo. Her abused hole even leaves a puckering gape as testament to your power over her.");
@@ -1225,7 +1225,7 @@ public function jesseSexTrapFunI():void
 	output("\n\nKeeping the apprehension to yourself, you ask her what it is.");
 	output("\n\n<i>“It’s just a f-fun thing. Let’s get on the bed,”</i> she tries to explain, already clambering onto the bed with the dildo-mine set up in no time at all.");
 	output("\n\n<i>“It’s called a mutualizer... cuz it brings us both down to the same level,”</i> she grins, grabbing something else from her bag: some lube and an onahole? It’s a wide one...");
-	output("\n\nYou get onto the bed and sit at one end while Jesse sits at the other. What’s in front of you is a matte-grey ‘box’ of sorts with two bright pink dildoes sticking out at opposite ends. Those fake dicks are pretty decently sized: 10’’, curved up slightly, smooth, a bit skinny... <i>wait</i>. ");
+	output("\n\nYou get onto the bed and sit at one end while Jesse sits at the other. What’s in front of you is a matte-grey ‘box’ of sorts with two bright pink dildoes sticking out at opposite ends. Those fake dicks are pretty decently sized: 10\", curved up slightly, smooth, a bit skinny... <i>wait</i>. ");
 	output("\n\nAs if guessing the source of your question-mark face, Jesse’s face is a flushed pink grin.");
 	output("\n\n<i>“S-so now I kinda get to be inside you, huh? Tiny, small me, inside... mmm, inside [pc.name] Steele.”</i>");
 	output("\n\n<i>Devious</i> buuut oddly cute all the same. You get yourself lined up, making sure your [pc.legs] can hold you up freely and comfortably. Jesse does the same and squirts some lube on both the fake cocks, making sure to work it into the bells. When both are slightly sheened in fluid, Jesse suddenly lifts her lower body up and practically impales herself on the pink dildo!");
@@ -1240,15 +1240,15 @@ public function jesseSexTrapFunI():void
 	output(" Your prostate thanks you all the way: tingly, sharp, and pleasurable sensations fill your lower body in spite of your hole bearing the stretch.");
 	output("\n\nWhen you make it to the base, there’s a few moments to take in what’s before you: Jesse happily sitting on a bright pink fake cock with the most red - faced grin you’ve seen from her. Then there’s you, perversely impaled in the same way...");
 	if (pc.biggestCockLength() > 13) {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10’’ fempecker in the middle, dwarfing it in size. Her femdink gets bent by the sheer amount of your dick mass! ");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle, dwarfing it in size. Her femdink gets bent by the sheer amount of your dick mass! ");
 		if (silly) output("HO HO HO, MERRY DICKMAS. ");
 		output("Jesse giggles as she watches the meat rod mess. <i>“Mmm, Steele’s monster cock...”</i> she coos.");
 	}
 	else if (pc.biggestCockLength() > 8) {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10’’ fempecker in the middle, two twin sizes rubbing their heads together. How cute! <i>“Mmm, I love twin touching tips,”</i> giggles Jesse, her femcock twitching and pushing against yours.");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle, two twin sizes rubbing their heads together. How cute! <i>“Mmm, I love twin touching tips,”</i> giggles Jesse, her femcock twitching and pushing against yours.");
 	}
 	else {
-		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10’’ fempecker in the middle but is immediately dwarfed by her size. Her slender pecker lilts against your " + pc.cockDescript(x) + ". <i>“Mmmmhaha, look at it! So </i>cute<i>!”</i> she giggles, trying very hard not to belly laugh. <i>M-mean...</i>");
+		output("\n\nYour half hard, [pc.cockNounComplex] meets Jesses 10\" fempecker in the middle but is immediately dwarfed by her size. Her slender pecker lilts against your " + pc.cockDescript(x) + ". <i>“Mmmmhaha, look at it! So </i>cute<i>!”</i> she giggles, trying very hard not to belly laugh. <i>M-mean...</i>");
 	}
 	output("\n\nStill giggling, Jesse grabs and lubes the insides of the onahole. It’s a pretty robust one, made of some ultra-flexible plastic...? Hard to say. Once she’s done liberally lubing the entrance, she holds it over your tip-touching meat spears. It’s an interesting feat on her part for her skinny fingers hold her femcock and your [pc.cockNounSimple] in one hand lock.");
 	output("\n\n<i>“Ready?”</i> she asks, pursing her mouth so that her ruby-flushed cheeks bulge <i>just</i> so.");
@@ -1320,7 +1320,7 @@ public function jesseSexRoleReversal():void
 	output("\n\nOh how could you say no to that");
 	if (silly) output(" you goddamn monster");
 	output("! Well, it’s probably very easy to but you’re still not really against the idea. You ask her for some details. She grins, points to her slowly hardening fempecker then points to your [pc.ass]. As clear as intent as any.");
-	output("\n\nAlright, if we’re playing this game... you hastily make way to the bed and lay front first with your [pc.butt] protruding just <i>so</i> to encourage her. What can you say: 10’’ of free dick!");
+	output("\n\nAlright, if we’re playing this game... you hastily make way to the bed and lay front first with your [pc.butt] protruding just <i>so</i> to encourage her. What can you say: 10\" of free dick!");
 	output("\n\nJesse claps her hands together in glee. <i>“O-oh my, we’re actually doing it! This is so <b>cool</b>,”</i> she exclaims, bouncing on the spot. With haste, she rushes over to her bag, starts unpacking things, and flings them left and right. She quickly finds what she’s looking for, mulling over each item before organizing it at her side: a pink collar, a retractable lead, a fairly thick butt plug, and some lube.");
 	output("\n\nWith everything in hand, she bounces onto the bed and straddles your back. She’s so light that it feels more like a large cushion against your spine. <i>“Just say if anything’s uncomfortable, I’m never quite sure how lax this thing should be...”</i> she says, putting her hands around your neck with the pink collar in hand. Its plastic material feels oddly warm on your [pc.skinFurScales]. There’s a sudden constriction on your throat as the collar tightens and then exacerbates that same warmth. You yelp in response but relax when you find breathing to be an unimpeded task.");
 	output("\n\nAs she attaches then tugs on the taut leash, you find it yourself having to bend your upper body towards the ceiling. Truly, despite her small stature and lack of strength, Jesse knows a thing about submission holds and positioning.");

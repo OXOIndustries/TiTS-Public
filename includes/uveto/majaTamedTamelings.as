@@ -501,9 +501,9 @@ public function majaAliensTalk():void
 	if(pc.isBimbo()) 
 	{
 		output("Those people sound like the worst! You shouldn’t be forced into things you don’t want... But it can’t be all bad. Having both parts");
-		if(pc.isHerm()) output("is");
-		else output("sounds like fun");
-		output("!");
+		if(pc.isHerm()) output(" is");
+		else output(" sounds like");
+		output(" fun!");
 	}
 	else if(pc.isBro()) output("Cheer up. It can’t be all bad,");
 	else if(pc.isNice()) output("That’s terrible! That kind of thing is illegal on core planets like this. But it’s not all bad, is it? Plenty of people who live with both parts down there nowadays,");

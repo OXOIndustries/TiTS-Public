@@ -1305,8 +1305,9 @@ public function sidewinderCargohold():void
 	{
 		output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. The keypad is intact, though. It flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
 		output("\n\nEat that, [rival.name]!");
-		output("\n\nSteeletech salvage won’t be able to retrieve the probe from here, so you’ll have to leave it for the time being.");
+		output("\n\nSteele Tech salvage won’t be able to retrieve the probe from here, so you’ll have to leave it for the time being.");
 		flags["ZHENG_SHI_PROBED"] = 1;
+		variableRoomUpdateCheck();
 	}
 	//Probe collected
 	else

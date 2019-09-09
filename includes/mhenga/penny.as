@@ -171,6 +171,13 @@ public function pennyRoomDesc():Boolean {
 			else {
 				output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 			}
+			// Zil codex unlock
+			if(!CodexManager.entryUnlocked("Zil"))
+			{
+				output("\n\nYour codex beeps, informing you about some details on the Zil.");
+				CodexManager.unlockEntry("Zil");
+			}
+			
 			this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 		}
 
@@ -1227,7 +1234,7 @@ public function talkToPennyAboutSpecies():void {
 	output(". <i>“I’ll admit, I may have seen some racier footage out there on the extranet that gave me the extra push to do this. I mean, what young single girl doesn’t want to be unique and sexy, to literally embody an animal associated with pleasing female forms?”</i> Penny smiles and stretches, arching her back for good measure. <i>“I never really took it seriously until I was in the academy though...”</i>");
 	output("\n\n<i>“What happened in the academy?”</i> you ask.");
 	output("\n\nPenny answers, <i>“I met someone that was doing it already, and... she loved it. She even changed her name to Kit after her cat ears grew in. I wound up being pretty good friends with her... great friends actually, and I decided I was going to go for it.”</i> The way she talks, it sounds like her and this cat-girl might have been a little more than friends, but you don’t push the issue. <i>“Unfortunately, I didn’t have a nice inheritance from a rich aunt to pay for my changes. Instead, I took the toughest, best paying posts I could.”</i> Penny growls low in her throat. <i>“It was hell, but I stuck it out. I knew what I wanted, and bit by bit, I saved up the cash for some splices.”</i>");
-	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i>Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
+	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i> Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
 	
 	output("\n\nYou’re a little stunned by the information she’s piled onto you, but it seems to have lifted the big-eared vixen’s attitude a bit. <i>“" + (!pennyIsCrew() ? "I better get this report filed, [pc.name]. ":"") + "Thanks for listening. It’s nice to get things off your chest every once and a while.”</i> She chuckles at her inadvertant pun" + (!pennyIsCrew() ? " as she turns back to her computer":"") + ".");
 	

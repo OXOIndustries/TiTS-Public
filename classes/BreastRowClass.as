@@ -91,6 +91,7 @@
 			{
 				if(areolaFlags[i] == GLOBAL.FLAG_HEART_SHAPED) areolaFlags.splice(i, 1);
 				if(areolaFlags[i] == GLOBAL.FLAG_STAR_SHAPED) areolaFlags.splice(i, 1);
+				if(areolaFlags[i] == GLOBAL.FLAG_FLOWER_SHAPED) areolaFlags.splice(i, 1);
 				i--;
 			}
 		}

@@ -22,12 +22,122 @@ public function showOlympia(nude:Boolean = false):void
 	else showBust("OLYMPIA" + (nude ? "_NUDE":"_STEELE"));
 }
 
-public function sideWinderCabinBonus():Boolean
+// Hotfix check
+// Storage extra stuff
+public function sidewinderCargoholdExtras():Boolean
 {
-	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShop,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
+	if(shits["SHIP"] is Sidewinder)
+	{
+		if(flags["ZHENG_SHI_PROBED"] == undefined) return true;
+		if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined || flags["ZHENG_SHI_GALOMAX"] == undefined) return true;
+		if(flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined) return true;
+	}
 	return false;
 }
+public function sidewinderCargoholdExtrasBonus(btnSlot:int = 0):void
+{
+	output("\n\nYou can access the ship’s cargohold if you like.");
+	
+	addButton(btnSlot, "Cargohold", sidewinderCargoholdExtrasStuff, undefined, "Cargohold", "Access the ship’s cargohold.");
+}
+public function sidewinderCargoholdExtrasStuff(response:String = "menu"):void
+{
+	clearOutput();
+	clearMenu();
+	switch(response)
+	{
+		case "menu":
+			showName("PORT\nCARGOHOLD");
+			output("You access the ship’s cargohold. The hold is full of spare parts for various systems onboard the ship. Cables, tools, and racks of armor plate patches are organized neatly against the back wall.");
+			var btnSlot:Number = 0;
+			// Probe
+			if(flags["ZHENG_SHI_PROBED"] == undefined || flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined)
+			{
+				if(flags["ZHENG_SHI_PROBED"] == undefined)
+				{
+					output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. The keypad is intact, though.");
+					addButton(btnSlot++, "Probe", sidewinderCargoholdExtrasStuff, "coords", "Probe Data", "Claim the probe’s coordinates.");
+				}
+				else if(flags["ZHENG_SHI_PROBE_RECLAIMED"] == undefined)
+				{
+					output("\n\nThe probe is right where you left it: propped in the corner and pockmarked by dozens of laser blasts from its time with careless pirate crews. <b>You already have the coordinates, so it has nothing more to offer you.</b>");
+					addButton(btnSlot++, "Sell Probe", sidewinderCargoholdExtrasStuff, "reclaim", "Reclaim Probe", "Reclaim the probe for Steele Tech.");
+				}
+			}
+			// Jumper suit
+			if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) 
+			{
+				output("\n\nA singular vacuum suit in the Jumper’s signature style hangs from a hook on the wall.");
+				addButton(btnSlot++, "J.Spacesuit", takeZhengShiJumperSpacesuit);
+			}
+			// Galomax
+			if(flags["ZHENG_SHI_GALOMAX"] == undefined)
+			{
+				output("\n\nYou spot an expensive looking case on a fold-out table. It’s labeled as Galomax.");
+				addButton(btnSlot++, "Galomax", takeZhengShiGalomax);
+			}
+			addButton(14, "Back", shipStorageMenuRoot);
+			break;
+		case "coords":
+			output("The probe flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
+			output("\n\nEat that, [rival.name]!");
+			
+			flags["ZHENG_SHI_PROBED"] = 1;
+			
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff);
+			break;
+		case "reclaim":
+			// 9999 - Need reclaimation scene!
+			output("Steele Tech salvage isn’t able to retrieve the probe at the moment, so you’ll have to leave it for the time being.");
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff);
+			/*
+			output("");
+			output("\n\n");
+			
+			addButton(0, "Next", sidewinderCargoholdExtrasStuff, "probe reclaimed");
+			*/
+			break;
+		case "probe reclaimed":
+			output("");
+			output("\n\n");
+			
+			processTime(35);
+			
+			pc.credits += 0;
+			flags["ZHENG_SHI_PROBE_RECLAIMED"] = 1;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+	output("\n\n");
+}
 
+public function sideWinderCabinBonus():Boolean
+{
+	if(flags["SHOCK_HOPPER_DEFEATED"] != undefined) addButton(0,"Hijack",hijackThisShippyShopPrompt,undefined,"Hijack","Take control of the <i>Sidewinder</i>. With the L.D.C. and Shock Hopper dealt with, there’s nobody around to stop you from making this marvel of pirate engineering your own." + (!pirateLordsDefeated() ? " Of course, the pirate lords that are left surely won’t appreciate this.":""));
+	return false;
+}
+public function hijackThisShippyShopPrompt():void
+{
+	clearOutput();
+	clearMenu();
+	
+	if(flags["ZHENG_SHI_PROBED"] == undefined)
+	{
+		output("Before you do this, shouldn’t you make sure you’ve obtained your father’s probe first?");
+		output("\n\n");
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
+	output("\n\n");
+	
+	addButton(0, "Yes", hijackThisShippyShop);
+	addButton(1, "Reconsider", mainGameMenu);
+}
 public function hijackThisShippyShop():void
 {
 	clearOutput();
@@ -129,6 +239,8 @@ public function shootOlympiaYouMonster():void
 		output("\n\nWell, no sense keeping them waiting. You punch it, sending your new flagship hurtling through the launch bay and out into the stars. She handles like an angel: the controls are tuned to perfection, easily enabling you to start spinning the ship in circles and cartwheeling around asteroids. What a rush!");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
+	pc.addHard(15);
 	flags["OLYMPIA_KILLED"] = 1;
 	flags["SIDEWINDER_TAKEN"] = 1;
 	shits["SHIP"] = new Sidewinder();
@@ -139,7 +251,7 @@ public function shootOlympiaYouMonster():void
 	currentLocation = "SHIP INTERIOR";
 	//RIP old ship. Urbolg owns it now.
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	quickLoot(new Stormbull());
 }
 
 //[Recruit Her]
@@ -176,6 +288,7 @@ public function recruitOlympia():void
 		output("\n\n<i>“Satisfied, captain?”</i> Olympia purrs, leaning against the bridge’s hatchway. <i>“She handles even better than I do...”</i>");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
 	processTime(10);
 	clearMenu();
 	flags["SIDEWINDER_TAKEN"] = 1;
@@ -190,7 +303,7 @@ public function recruitOlympia():void
 	flags["OLYMPIA_RECRUITED"] = 1;
 	//RIP old ship. Urbolg owns it now.
 	//flags["OLYMPIA_KILLED"] = 1;
-	addButton(0,"Next",mainGameMenu);
+	quickLoot(new Stormbull());
 }
 
 //Diplomacy
@@ -227,6 +340,7 @@ public function diplomacyDatFuckbot():void
 		output("\n\n<i>“Satisfied, captain?”</i> Olympia purrs, leaning against the bridge’s hatchway. <i>“She handles even better than I do...”</i>");
 		output("\n\nNow that you’ve got the galaxy’s latest and greatest raider at your fingers, there’s nothing beyond your reach. Time to see what this baby can do!");
 	}
+	output("\n\n");
 	flags["SIDEWINDER_TAKEN"] = 1;
 	//gib ship.
 	shits["SHIP"] = new Sidewinder();
@@ -278,8 +392,21 @@ public function olympiaIsSidewinderOnly():void
 	clearOutput();
 	showOlympia();
 	author("Savin");
+	
+	// Get Sidewinder name
+	var sidewinderName:String = "the Sidewinder";
+	for(var i:int = 0; i < shipStorageLimit(); i++)
+	{
+		var shipID:String = String("SHIP_" + (i+2));
+		if(shits[shipID] != undefined && (shits[shipID] is Sidewinder))
+		{
+			sidewinderName = shits[shipID].a + " " + shits[shipID].short;
+			break;
+		}
+	}
+	
 	output("You turn back to [pc.ship] just in time to see Olympia disembarking, marching up to you with the severe determination you remember from your time on Zheng Shi. She stops just a hand’s breadth from you, staring directly into your eyes.");
-	output("\n\n<i>“I’m staying with [pc.ship],”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
+	output("\n\n<i>“I’m staying with " + sidewinderName + ",”</i> she says. <i>“It will be in peak condition when you come to your senses and return to the captain’s chair.”</i>");
 	output("\n\nThe way she’s fixing you in her gaze, it’s clear there’s no reasoning with the obsessive sexbot. All you can do is tell her that you’ll see her soon as you heft your kit onto your shoulder and make for your chosen vessel.");
 	flags["OLYMPIA_ONBOARD"] = undefined;
 	processTime(3);
@@ -685,7 +812,7 @@ public function olympiasClothes():void
 		output("\n\nAfter a moment’s thought, Olympia shrugs. <i>“I’m not terribly put upon by it, I suppose, though this outfit is an unfortunate reminder of my time with Dr. Teyaal. Still, it doesn’t restrict my movements or impede my in any way.”</i>");
 	}
 	//Olympia in Steele Tech
-	else
+	else if(olympia.armor is SteeleTechSuit)
 	{
 		output("\n\nOlympia smirks. <i>“I enjoy a little latex, captain. While I admit, I am more comfortable nude, I can’t deny this uniform of yours gives me a certain sexy swagger. The way it hugs my ass is particularly delightful.”</i>");
 	}
@@ -693,9 +820,9 @@ public function olympiasClothes():void
 	output("\n\nThe gynoid shifts on her heels, clasping her hands behind her hack. <i>“So, is there a reason you ask, captain? Perhaps you’d like me to change things up?”</i>");
 	processTime(3);
 	clearMenu();
-	if(flags["OLYMPIA_UNIFORMED"] != undefined || pc.hasItemByClass(SteeleTechSuit)) addButton(0,"Uniform",uniformOlympia,undefined,"Uniform","Put Olympia in some sexy black-and-gold latex.");
-	else if(olympia.armor is SteeleTechSuit) addDisabledButton(0,"Uniform","Uniform","Olympia is already wearing this.");
-	else addDisabledButton(0,"Uniform","Uniform","You need to have a SteeleTech uniform to give her.");
+	if(olympia.armor is SteeleTechSuit) addDisabledButton(0,"Uniform","Uniform","Olympia is already wearing this.");
+	else if(flags["OLYMPIA_UNIFORMED"] == undefined && !pc.hasItemByClass(SteeleTechSuit)) addDisabledButton(0,"Uniform","Uniform","You need to have a Steele Tech uniform to give her.");
+	else addButton(0,"Uniform",uniformOlympia,undefined,"Uniform","Put Olympia in some sexy black-and-gold latex.");
 	if(olympia.armor is KhansLabCoat) addDisabledButton(1,"Lab Coat","Lab Coat","Olympia is already wearing this.");
 	else addButton(1,"Lab Coat",olympiasLabcoat,undefined,"Lab Coat","Olympia ought to be wearing something befitting her intelligence, like Dr. Teyaal’s sexy lab coat and panties combo.");
 	if(olympia.armor is EmptySlot) addDisabledButton(2,"Naked","Naked","Olympia is already naked.");
@@ -832,7 +959,7 @@ public function olympiaTailcockTalk():void
 	showOlympia();
 	author("Savin");
 	output("<i>“So, tail attachments...”</i> you prompt.");
-	output("<i>“Hm? Ah, yes. There are plenty of aftermarket options. I currently own ");
+	output("\n\n<i>“Hm? Ah, yes. There are plenty of aftermarket options. I currently own ");
 	//list Olympia’s owned dicks here. She comes with a doggy dick
 	if(olympia.inventory.length == 0) output("a canine phallus");
 	else if(olympia.inventory.length == 1) output(olympia.inventory[0].description + " and a canine phallus");
@@ -1086,7 +1213,7 @@ public function olympiaTailfucksYou(cunt:Boolean = false):void
 	output("\n\nYou can hear Olympia’s breath quickening, a programmed response to her efforts that makes her seem just that much more real. Her breasts heavy against your back, dusky nipples tracing your shoulders every time her broad hips slap against your ass. Her dick’s leaving a slimey trail of pre over your [pc.skinFurScales] now, thicker and thicker as her lusts grow. You know she’s close, she has to be, but every thrust is pushing you closer to your own edge. Closer and closer, moaning like a whore as the twice-hung gynoid takes you.");
 	output("\n\nYour endurance cracks before Olympia’s does. What else would you expect, letting a bonafide sexbot have her way with you? Your teeth grit, trying to hold back your wanton moans of orgasmic pleasure as your ");
 	if(pc.hasCock()) output("dick squirts down your thigh, [pc.cumColor] streaks spilling down your [pc.skinFurScales]");
-	else output("[pc.vagOrAss " + x + "] starts going wild, squeezing madly around the plunging shaft of Olympia’s [olumpia.tailCock].");
+	else output("[pc.vagOrAss " + x + "] starts going wild, squeezing madly around the plunging shaft of Olympia’s [olympia.tailCock].");
 	output("\n\n<i>“That’s it, captain! Cum for me,”</i> she growls, voice husky in your ear. <i>“Show me just how much you love it.”</i>");
 	output("\n\nYou couldn’t hide it anymore if you tried.");
 	output("\n\nYour moans reach a crescendo, milked out by her steady thrusts - and in turn, your body works like mad to milk her [olympia.tailCock]. The stacked dragon growls, cocks throbbing in and against you, thrusting deep through your howling orgasm. You feel Olympia’s dick give its most powerful throb yet, swelling with potent need and leaking warmth into your [pc.vagOrAss " + x + "]... and then the dam breaks as your own orgasm’s nearly passed. A sudden surge of steaming-hot cum sprays into your battered " + (x >= 0 ? "womb":"ass") + ", hitting you in just the right spot to keep your climax raging on. More [olympia.cum] splatters across your back, leaving rivers of [olympia.cumColor] drooling down your flanks. Her primarily dick wedges itself between your ass-cheeks, humping your [pc.butt] while her tail fills you");

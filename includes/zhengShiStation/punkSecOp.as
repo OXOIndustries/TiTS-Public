@@ -41,13 +41,33 @@ import classes.Characters.SlamwulfeDrone;
 //Bouncing Tease - Leap onto PC’s shoulders and open suit, rubbing junk in face. +Tease! Suit seals back up after.
 //Weapon Hack - disable energy weapons
 
+/* ============= FLAGS ===================
+	SECOP_SLIT_SLUTTINGS	Count of slit slut hypnoprogram.
+	SECOP_WALLSLUTTINGS		Count of wall slut hypnoprogram
+	SECOP_TAURSLUTTINGS		Count of Wsan's taurslut scene.
+
+*/
+
 public function showPunkSecOp(nude:Boolean = false):void
 {
 	if(enemy == null || enemy.hasCock()) showBust("PUNK_SECOP_MALE" + (nude ? "_NUDE":""));
 	else showBust("PUNK_SECOP_FEMALE" + (nude ? "_NUDE":""));
 	showName("PUNK\nSECOP");
 }
-
+public function secOpMaleSubmission(arg:Number = 0):Number
+{
+	if(flags["SECOP_MALE_SUBMISSION"] == undefined) flags["SECOP_MALE_SUBMISSION"] = 0;
+	flags["SECOP_MALE_SUBMISSION"] += arg;
+	if(flags["SECOP_MALE_SUBMISSION"] < 0) flags["SECOP_MALE_SUBMISSION"] = 0;
+	return flags["SECOP_MALE_SUBMISSION"];
+}
+public function secOpFemaleSubmission(arg:Number = 0):Number
+{
+	if(flags["SECOP_FEMALE_SUBMISSION"] == undefined) flags["SECOP_FEMALE_SUBMISSION"] = 0;
+	flags["SECOP_FEMALE_SUBMISSION"] += arg;
+	if(flags["SECOP_FEMALE_SUBMISSION"] < 0) flags["SECOP_FEMALE_SUBMISSION"] = 0;
+	return flags["SECOP_FEMALE_SUBMISSION"];
+}
 //Encounter Texts:
 public function encounterPunkSecOp():Boolean
 {
@@ -57,6 +77,11 @@ public function encounterPunkSecOp():Boolean
 	//First time male
 	if(tEnemy.hasCock())
 	{
+		if(secOpMaleSubmission() >= 3)
+		{
+			maxSubmissionSecopEncounterText(tEnemy);
+			return true;
+		}
 		output("\n\n<i>“Hey, you aren’t supposed to be here!”</i>");
 		output("\n\nA swaggering kaithrit in a suit that looks like it’s made from coiled steel is advancing with long, bounding leaps. The bright blue holovisor across his eyes flickers, painting a red outline around the shape of your body.");
 		output("\n\nHe’s too sure of himself to bluff and too fast to hide from. You’ll have to fight!");
@@ -66,6 +91,16 @@ public function encounterPunkSecOp():Boolean
 	//Female
 	else
 	{
+		if(secOpFemaleSubmission() >= 3)
+		{
+			maxSubmissionSecopEncounterText(tEnemy);
+			return true;
+		}
+		if(InCollection(pc.race(),["rodenian","half-rodenian","mouse-morph","mouse-boy","mouse-girl","rat-morph","rat-girl","rat-boy","rat-man","mouse-man"]) && rand(2) == 0 && !pc.hasStatusEffect("MausbullyCD") && pc.hasGenitals())
+		{
+			mausBullyScene(tEnemy);
+			return true;
+		}
 		output("\n\n<i>“Oh come on! Another one?”</i> A bosomy kaithrit in a suit that looks like it’s made from coiled steel is advancing with a slow shake of her head. <i>“Independents aren’t allowed up here without a boss’s okay and you, cutie, do </i>not<i> have a boss’s okay.”</i> The pale blue band of her cybernetically-projected holovisor lights up with an outline of your body as she finishes some kind of scan. <i>“Come on. If you walk back to the elevator on your own, " + pc.mf("you won’t have to tell everyone you got your ass whupped by a girl","I won’t have to leave any bruises on that pretty face of yours") + ".”</i>");
 		output("\n\nYou’ve been given a choice - be escorted away or fight for the freedom to continue your exploration.");
 		
@@ -92,11 +127,25 @@ public function loseToPunkSecOP():void
 	{
 		if(enemies[i] is SlamwulfeDrone) CombatManager.removeHostileActor(enemies[i]);
 	}
-	if(enemy.mf("m","") == "m" && rand(2) == 0) 
-	{
-		SecOPFucksYourThroat();
+
+	var submission:Number = (enemy.mf("m","") == "m" ? secOpMaleSubmission(1):secOpFemaleSubmission(1));
+
+	//Personal scenes~
+	if(submission == 3)
+	{	
+		if(enemy.mf("m","f") == "f") smotheringFemdomWivTittyKitty();
+		else SecOPFucksYourThroat();
 		return;
 	}
+	//Bad ends
+	else if(submission >= 4)
+	{
+		if(enemy.mf("m","") == "m") slaveslutBadEnd();
+		else luckyCatchBadEndWithFSecop();
+		return;
+	}
+	//On to normal visors :3
+
 	//showPunkSecOp();
 	output("The grinning cyber-kitty strides over your slumping form" + (pc.lust() >= pc.lustMax() ? ", not even so much as bothering to glance at your exposed genitalia or the libertine attentions your hands are determined to give out.":", barely looking down") + ". <i>“Not giving me any trouble now, are you?”</i> [enemy.HeShe] reaches behind [enemy.hisHer] back, producing a pair of blinking goggles with a simple, elastic strap. <i>“Yeah, I think you’re done fighting, but just to be safe, you can take a ride in the goggles while I get you out of the restricted zone.”</i>");
 	output("\n\nThe last thing you see before the goggles’ inner blackness envelops your vision is a white-fanged, cheshire grin.");
@@ -107,9 +156,17 @@ public function loseToPunkSecOP():void
 	output("\n\nWhen the visor’s perfectly-rendered, three dimensional programming resolves into clarity, you’re right there with it - a little foggy-minded perhaps. You aren’t sure how you got here, how you came to be in this scenario, but <i>it is too real to reject as anything but your true and natural life</i>.");
 	processTime(1);
 	clearMenu();
-	if(rand(3) == 0) addButton(0,"Next",wsanTaurServicingLoss);
-	else if(rand(2) == 0) addButton(0,"Next",slutSlutLossScene);
-	else addButton(0,"Next",wallSlutPunkSecOpEnd);
+	var forcedScenes:Array = [];
+	if(flags["SECOP_SLIT_SLUTTINGS"] == undefined) forcedScenes.push(slutSlutLossScene);
+	if(flags["SECOP_WALLSLUTTINGS"] == undefined) forcedScenes.push(wallSlutPunkSecOpEnd);
+	if(flags["SECOP_TAURSLUTTINGS"] == undefined) forcedScenes.push(wsanTaurServicingLoss);
+	if(forcedScenes.length > 0) addButton(0,"Next",forcedScenes[rand(forcedScenes.length)]);
+	else
+	{
+		if(rand(3) == 0) addButton(0,"Next",wsanTaurServicingLoss);
+		else if(rand(2) == 0) addButton(0,"Next",slutSlutLossScene);
+		else addButton(0,"Next",wallSlutPunkSecOpEnd);
+	}
 	/*More mindfucky variant:
 	else
 	{
@@ -126,6 +183,7 @@ public function wallSlutPunkSecOpEnd():void
 	clearOutput();
 	showName("WALL\nSLUT");
 	author("Fenoxo");
+	IncrementFlag("SECOP_WALLSLUTTINGS");
 	output("A low bass thrum ripples through the wall into which you’ve been embedded, though not uncomfortably. There’s a sort of inflatable, rubberized padding lining the socket around your low chest, stretching all the way to your waist. Your [pc.legOrLegs] dangle" + (pc.legCount == 1 ? "s":"") + " uselessly out the other side, not quite able to touch the ground" + (pc.tallness > 6*12+6 ? " in spite of your endless inches of height":"") + ". Worse is that your arms are similarly restrained, leaving you to rely on a band under your armpits to hold you up.");
 	output("\n\n");
 	showImage("VRWallSlut");
@@ -258,6 +316,7 @@ public function slutSlutLossScene():void
 	clearOutput();
 	showName("PUSSY\nSLUT");
 	author("Fenoxo");
+	IncrementFlag("SECOP_SLIT_SLUTTINGS");
 	output("<i>“Hi there.”</i> A breathy voice whispers in your ears, accompanied by the sight of a faintly glowing kaithrit sex-pot. <i>“I’m Anayill Siltoya, and welcome to your first day on the job as a TamaniCorp female relief specialist, more commonly known as a pussy-slut.”</i> She smiles winningly. <i>“The idea of being blindfolded and mounted with your face in the seat of a chair for twelve hours a day might seem kind of scary to you right now, but I promise that by the time you’ve finished this training holo and undergone the complementary libido adjustment, you’ll be looking forward to it.”</i>");
 	output("\n\nAnayill flashes two thumbs up, and " + (pc.lust() < pc.lustMax() ? "you are suddenly, irrevocably horny. It’s a warm buzz of pleasure, like she just swept you up in a hug, mixed with an undercurrent of want and desire.":"you are suddenly more than just horny. You’re pleased to be so. You’re <i>happy</i> to be aroused. Somehow, her approval has made your rampaging libido feel like a good thing."));
 	output("\n\n<i>“That feeling? What you’re feeling right now? That’s what you’re going to be feeling every day on the job. And that’s on a bad day.”</i> Her wink is so comically overdone that you wish you could make yourself cringe at it, wish you could find it anything less than wonderfully endearing. What a cutie! <i>“At TamaniCorp pleasure is our specialty, and soon to be yours.”</i> Anayill playfully mimes shooting at you. <i>“So hold still, and let’s get started with your training.”</i>");
@@ -580,6 +639,793 @@ public function wakeUpFromThroatfuckingCybercat():void
 	IncrementFlag("PUNK_SUCKOP_SUCKED_OFF");
 }
 
+// Titty Kitty - Smothering Femdom 
+// PC will be mounted and smothered by the kitty's tits. They will be forced to ingest a LOT of the synthetic vanae milk and then be ruthlessly dommed by the augmented woman, depending on genitalia.
+// I'm just going to roll 'taur PCs on their back for this.
+// William
+
+// Note on these loss scenes: Please set the M. SecOp and F. SecOp loss scenes (Throatfucking and this Femdom) to be viewable only after the PC gets one or two VR-visor loss scenes. The bad end path is based around escalating punishment in the form of the two non-visor loss scenes.
+
+// Under // Bad Ends you'll see some more info. Basically, after the PC sees Smothering Femdom or Get Throatfucked, PC will start gaining submissiveness towards M. or F. SecOps. After three losses it maxes out and the bad end sequence can trigger.
+
+public function smotheringFemdomWivTittyKitty():void
+{
+	showPunkSecOp(true);
+	author("William");
+	// PC HP loss
+	if(pc.HP() <= 1) 
+	{
+		output("You stagger back and fall to the ground with eye-blurring impact. The grinning cyber-kitty saunters forward, the clacks of her heavy armor ringing in your ears until she’s looming above, staring down, both fangs gleaming against her glossy black lips. She chucks her rifle aside and draws her tongue across those ebon pillows, humming quietly, looking ready to pounce the small, defenseless interloper sprawled out before her.");
+		output("\n\n<i>“You know, cutie,”</i> she speaks with a certain controlled ferocity that silences the station, visor fizzing away into nothing, <i>“you <b>were</b> told to stay away from the restricted area. I don’t know what’s got you coming back so much... but as you can see, I’ll take you down you any time you try.”</i> The pony-tailed ‘punk squats and clasps your cheek, two fingers trailing assertion and control across your [pc.face] wherever they go. The studied kaithrit’s ocular augments manifest as reticles trained on you with a naked thirst inhabiting the neon-turquoise.");
+		if(flags["SECOP_FEMALE_TITTYSMOTHER"] == undefined) output("\n\n<i>“I don’t think the goggles are having the desired effect here, so it’s time to get a bit more personal. Seems to me you need a very strict lesson in <b>obedience,</b> [pc.raceShort].”</i>");
+		else output("\n\n<i>“But I don’t think I mind your obstinance. You’re a very obedient [pc.boyGirl] when I get personal. I’m starting to feel bad about beating you up, because I think you enjoy this part, being a little pet.”</i>");
+	}
+	// PC Lust loss
+	else
+	{
+		output("You whine and thrust forward, your futile attempt at relief tangling your [pc.footOrFeet] and sending you to the ground. Your impact prompts a strained gasp as you work to relieve the pressure at your crotch, focusing all your efforts on masturbating. In the haze of lust you don’t even notice the bosomy security operative looming over you, arms folded under her great big breasts, sharp fangs gleaming against glossy black lips rippling with a lusty purr’s vibrations.");
+		output("\n\n<i>“I really don’t understand why you’ve chosen to ignore the warnings you’ve been given, why you insist on entering the restricted area...”</i> The dangerous and... <b>very beautiful catgirl</b> squats next to you, arresting the clumsy frenzy of your automolesting [pc.arms]. <i>“Shh... everything from here is for me to decide.”</i>");
+		if(flags["SECOP_FEMALE_TITTYSMOTHER"] == undefined) output("\n\n<i>“Hmm... I think the goggles aren’t going to be enough. I think,”</i> she says, her bombshell boobs spilling out from her unsealing suit, <i>“you need a strict lesson in <b>obedience,</b> [pc.raceCute].”</i>");
+		else output("\n\n<i>“You’re too unruly for the goggles, but I know you’ll calm down when I give you my lesson again. If you ask me, I think you enjoy being my obedient little [pc.raceCuteShort].”</i>");
+	}
+	// Merge
+	output("\n\nThe sleek weave of armor encasing her voluptuous body slides apart with a low mechanical whine. Her superbly stacked rack <i>flops out</i>; studded onyx nipples harden before your eyes, droplets of a purplish lactic treat leaking from the potent pebbles. She raises a hand that curls around one of the nubs, and, with a victorious flex of the wrist, unleashes a thin stream of pale violet fluid from her breast. The sweet-smelling eruption smacks into your upper lip just below your nostrils, ");
+	//libidoLow:
+	if(pc.libido() < 33) output("and out of traitorous instinct your [pc.tongue] darts out to taste it, licking the opened shape of your mouth clean");
+	else if(pc.libido() < 66) output("and despite your position you eagerly lap it up, desperate to slake your thirst as much as your lust");
+	else output("and you gladly lap it up, opening wide for more of that ambrosial treat the moment you finish lapping the residue from your thirsty suckhole");
+	output(". A note of approval on her lips fills you with a strange sort of satisfaction.");
+	output("\n\nYou feel good... but demotivated. Then, you’re suddenly aware of just <i>how fucking big</i> the lawless kaithrit’s boobs are, and how easy the slightest jiggle makes it easy to lie there and stare. They’re big enough to smother an entire arm all the way to the shoulder, large enough to engulf your entire head... huge enough to make you realize they’re all that you can see. Inside and out, the techno-junkie is loaded with ballistics - these are easily the most impressive in her arsenal.");
+	output("\n\nAnd they’re getting closer.");
+	output("\n\nA nervous breath escapes your [pc.lipsChaste] as she straddles you, clutching you between her thighs and guiding her superlative sugarmounds nearer to your trembling mouth. She coos, <i>“Now that you’re where you belong, it’s time ");
+	if(flags["SECOP_FEMALE_TITTYSMOTHER"] == undefined) output("you get a taste of the life that’s waiting for you, [pc.raceShort]-slave-to-be");
+	else output("we pick up where we left off, pet. Once you’re nice and trained, you’ll be ready for your slave collar");
+	output(".”</i> Fingers rub towards moist, leaking nipples, squeezing softly until they shape into teardrops. Fat beads of lactic fluid bubble to the surface of her mesmerizing areolae. The operative’s organically-enhanced titties are so malleable that you’re hypnotized by their forgiving pliability. It’s hard not to spend valuable time thinking about those being <i>your [pc.hands]</i> on them. <i>“Trust me...”</i> She aims the fluid-weighted girls down with a salacious smile. <i>“...You’ll be thanking me for being so gentle once you submit.”</i>");
+	output("\n\nNerve-inflaming numbness makes you feel so weak, a realization that paradoxically feels rather... <i>necessary.</i> You can’t do anything without her. You can’t fight, can’t resist, only be hypnotized by a power that grows more compelling with every new detail you discover on the boundless tracts of unsagging boobflesh. Those pendulous, trance-inducing jugs, inches from your [pc.face], are the source of her sultry voice, automatically tuned to be as sexy and charming and seductive as possible.");
+	output("\n\n<i>“<b>Drink,</b>”</i> she exhales, her deeply uttered command fluttering in your [pc.ears]. <i>“You’ll feel better and...”</i> the kaithrit nibs your ear, breathing out two last words in deep, sweeping chord, <i>“...you’ll be ready to listen.”</i>");
+	output("\n\nThe last few seconds of your history seem to be missing like corrupted fragments on a data drive. All that your addled brain clocks is that your [pc.lipColor] lips are firmed around the wet source of your unnatural arousal, suckling away sans voluntary input and filling your emptiness with nourishment and liquid relaxation. Slow, soothing gulps of her mind-melting milk permeate every nook and cranny of your body with ebbing, flowing warmth, the effect no different from having someone tuck you into a warm bed on a cold winter’s night.");
+	output("\n\n<i>“The VR programs are nothing like the real thing, are they?”</i> she asks, pinching your [pc.ear]. One arm keeps the beauteous babe’s boob hefted for your consumption. <i>“Oh, they’re good for quick, easy training. It’s effective, undoubtedly. Logically... heh.”</i> She snickers only slightly maliciously. <i>“...But it takes all the fun out of the process. You can see it for yourself, feel it. I know exactly what’s happening inside you.”</i> Your kitty-lover leans closer so that you can feel her breath wash down your [pc.skinFurScales]. <i>“You want more, and more... and you don’t want to stop. Am I wrong? You could struggle right now.”</i>");
+	output("\n\nHuh? Wait... it’s true. You manage to look away from the sedating jiggle of her chest for a second. Cybernetic augments lend her a flexibility and shape unavailable to most out there, and... she’s not wrong! She’s sort of... hovering over you, propped up on her legs!");
+	output("\n\n<i>“See? Nobody’s keeping you here... <b>but you.</b>”</i> More tit is pressed into your mouth, causing an overflow of pale-purple to dribble down your chin. Void... it feels like your lips are ensorceled, or glued to it. The passionate, forgiving quality of her nipple is so wonderful! <i>“Honestly, it’s a fitting position for you. You’re rather ");
+	if(pc.isFemboy()) output("adorable. A sweet, harmless little thing like you... it’s a mystery how you got here. I’m surprised you’re not tailing after that rat man’s group nor hooked into one of those fancy biometric chastity cages for the head Viper. All the better for me.");
+	else output(pc.mf("dashing. A handsome stud like you needs someone to take charge, let you sit back and enjoy yourself, all so that your mistress can enjoy herself... mmm-make ends meet.","fetching. Any up-and-coming pirate would cherish a pleasure-slave like you, so servile and open to [pc.hisHer] training. But none more than me."));
+	output("”</i>");
+	output("\n\nYou can’t bring yourself to hate this, can’t force yourself to stop. Drinking from her has become as natural as breathing. She continues to instruct you, stroking your [pc.hairNoun] until you can’t even bear to think anymore. The owner of this succulent breast kneads her capacious milk-tank in a suggestible circle, inexorably siphoning your will. Just keeping your eyes open has become an oppressive bother. Your mind drifts across the sea of aphrodisiac-infused cream while her unhindered fingers massage away your stress... <i>and the knowledge that she’s your enemy.</i>");
+	output("\n\nThis kaithrit isn’t your foe, she’s not an outlaw: she’s your goddess. She’s divinity manifest, charting your course towards total surrender. While you suck from one juicy breast, the other is still there, bouncing, nuzzling its colossal soft self into you. When you let out a breathy groan, your free will puffs out with it.");
+	output("\n\n<i>“Umfff... there you go");
+	//repeat:
+	if(flags["SECOP_FEMALE_TITTYSMOTHER"] != undefined) output(", pet");
+	output(".”</i> Violet milk sprays out on your hollowed cheeks, radiating power and enjoyment. Where it sprinkles, your body tickles, reddening with raw need. Pleasure wells up inside, an erotic force that she’s in absolute control of. <i>“See how easy it was to let go, and how sublime it felt when your worries and troubles disappeared? <b>That</b> is what subservience truly is... and I felt every bit of yours.”</i> She begins to rock back and forth, delight and desire coalescing into a powerful expression on her face. <i>“Whatever brought you here doesn’t matter. Your life before this doesn’t matter.”</i> God! You’re sway to the waves! <i>“It felt so good to let go, didn’t it? That’s why the goggles are so impersonal. Your transition to a better life just <b>happens</b> with them, and we lose out on this quality time together.”</i> Her purrs feed incredible vibrations into your body, raising all the hairs on your frame while you groan in absolute joy. The exciting perception of those tiny follicles all moving at once is so heavenly that it’s like a gentle breeze brushing over your [pc.skinFurScalesNoun] on a hot summer’s day.");
+	output("\n\n<i>“Let me assure you: you’re not being broken in. I have no such violent intentions.”</i> She strokes your cheek lovingly, imploringly, ensuring that her every word is embedded into your memories. <i>“You’re being taught a valuable lesson. Free will is a terrible burden not meant for obedient [pc.boyGirl]s like you.”</i> Her vocalizations lick at the back of your buzzing brain, making them seem more right with every utterance. <i>“Before you met me, you were little more than an unformed, aimless traveler. You know I’m right. That’s why you’re here, listening to me so intently.”</i>");
+	output("\n\nHer essence nestles deep inside, always more to follow it down to your expanding gut. Filthy bliss billows into all recesses of your slackened form. As you grow more relaxed and more aroused, you tremble and shake, crying out in raging, unbidden ecstasy, a slave to the seething in your nethers. It hurts, it burns, and most of all, <i>there’s nothing you can do about it.</i> Your willpower, and whatever else could tell you that this should be alarming, has drifted away on the endless currents of your kitty’s milk.");
+	output("\n\n<i>“Shh-sh-sh...”</i> she soothes, patting your cheek. The bosomy kaithrit hefts her heavenly boobflesh and hushes you by thrusting both jutting nipples into your mouth and <i>squeezing.</i> <i>“We’ll see to that soon. It’s important for you to understand this part. Once you realize your place, you’ll also realize that your pleasure comes at your owner’s pleasure.”</i> Gouts of libido-spiking milkiness splashes your taste buds like a fertile field, and when your gums are thoroughly sunk in her glorious treat, you finally lose your equilibrium - whatever sense of control you had is now completely gone.");
+	output("\n\nShe keeps her glaring, unerring sight locked to yours, wiggling her hips and swishing her twin-tails left and right" + (pc.tailCount > 0 ? ", sometimes brushing your [pc.tails] with them":"") + ". They eventually stop, winding around your waist in a gesture of alien dominance. Through her prehensile appendages, she declares to you through touch alone that you belong to her.");
+	output("\n\nEvery suckle from her teat is arousing, in more ways than it ought to be. Your [pc.lipsChaste] are abnormally sensitive, feeling a lot like genuine sex-organs. Squelches like latex against wet latex bloom between the pirate’s muffled musings. It nearly makes you cum when she pulls her breasts away and the teats caress your pleasure-tasters. The augmented catgirl settles on your [pc.chest] with the heavy, contented sigh of a successful huntress.");
+	output("\n\nA fuzzy, dreamlike feeling envelopes your entire being. The more you genuflect on the soothing wobble and sensual sway of her bosom, the more you realize that this isn’t a dream. For once you feel... calm... <i>It calms you to stare at her</i>, to worship her with your [pc.eyes]. The longer you focus on her and the sparkling droplets streaming from her divine tits, the deeper you sink into that feeling, that amazing feeling that eliminates all anxiety, obliterates stress, and makes you feel <i>so secure.</i>");
+	output("\n\nAnd the deeper she sinks into your consciousness.");
+	processTime(8+rand(9));
+	pc.lust(pc.lustMax());
+	clearMenu();
+	addButton(0,"Next",nextBoobsuckingKaithritMindwashing);
+}
+
+public function nextBoobsuckingKaithritMindwashing():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("William");
+	output("<i>“Now, let’s see...”</i> the punky feline purrs, " + (!pc.isCrotchExposed() ? "pulling apart your clothes to expose the flushed curtain of [pc.skinFurScalesNoun] behind them":"her groping of your [pc.skinFurScales] taking on a new urgency") + "." + (pc.isTaur() ? " For good measure, she flips you over on your back, a process that should be more strenuous than it turns out to be. The milk is incredible, as is her weight atop you!":"") + " She cranes her head towards your crotch, looking over what’s on offer.");
+	// pc Herm or Cock
+	if(pc.hasCock())
+	{
+		output("\n\nNimble fingers are bundling your [pc.cocks] in a blanket of teasing warmth. Her touch is tender and caring - every fondling stroke to [pc.cockType] dickmeat reinforces just how good it feels to give in to her. <i>“Lovely toy" + (pc.hasCocks() ? "s":"") + ",”</i> she smirks, jacking you just a little bit faster in a leaned-back straddle" + (pc.hasVagina() ? "; one of the kitty’s hands intrudes further down, discovering your [pc.pussiesLight] hidden in the shadow of your male half":"") + ". The position exposes her own pussy for your inspection, a slightly moist and visibly augmented cunt aching with need. <i>“Mm... I wonder if you can feel how hard you are, little [pc.boyGirl].”</i> You can! You’re so hard it fucking hurts! Any second now your [pc.cockHeads] might twitch, erupt with incendiary delight! <i>“I can feel it. You want to cum very hard. You’re so ready to obey now...”</i> she stares pointedly, <i>“...aren’t you?”</i>");
+		output("\n\nShe asks that in a mellow, honey-sweet tone, and you’re nodding along unthinkingly, so very ready to do anything asked to get the release you crave.");
+	}
+	// pc Pussy Only
+	else if(pc.hasVagina())
+	{
+		output("\n\nAgile, blunt-clawed digits are wandering your vulnerable field of pussyflesh. Your kitty-conqueror’s hands delve into [pc.eachPussy], stroking at the innermost edges, teasing out fresh wetness. <i>“Ah, so ready to be claimed. I wonder if you realize just how horny you are. It’s hot enough that my sensors are already warning me not to stay long!”</i> She laughs, raking her fingers through the [pc.vaginaColor] slit" + (pc.hasVaginas() ? "s":"") + " of your " + (pc.puffiestVaginalPuffiness() > 0 ? "plump ":"") + "femininit" + (!pc.hasVaginas() ? "y":"ies") + ". In no time flat she’s gliding across the slickened surface" + (pc.hasVaginas() ? "s":"") + " of your dewy twat" + (pc.hasVaginas() ? "s":"") + ", fracturing your mind with the prospect of being penetrated knuckle-deep in one go. Leaned back, straddling you from the [pc.chestNoun]-down in cowgirl position, she stokes your incendiary libido to mentally unsafe heights. The passing of the seconds gradually reveals her aroused, synthetic quim. <i>“Now, little [pc.boyGirl]...”</i> she stares pointedly, <i>“do you want to cum? Your body squirms at my touch, but it won’t achieve anything. Not until I allow it. You’re so ready to obey... am I wrong?”</i>");
+		output("\n\nA second ago you were inclined to bathe in her milky presence. Her words are bringing forth the most painful of realizations, however: you need to cum. You’re signaling it and you don’t even realize it. Of course you tell her she’s right, nodding eagerly; you’ll do anything to get the release you crave.");
+	}
+	// pc Neuter
+	else
+	{
+		output("\n\n...Rather, what’s <i>not on offer.</i> <i>“Hmm?”</i> The kaithrit feels around your barren crotch. There’s a moment you sense some disappointment in her reactions. Certainly, there’s some detachment in her eyes, but then she turns to you again, tenderness and sympathy in the bright light of her augmented vision. <i>“So be it. Everyone is useful, regardless of what they choose to do with their bodies. It takes bravery and confidence to go into the galaxy like that. I’m quite impressed. But...”</i> she titters, <i>“...I’m more amused by how compliant you really are. What good are you to anyone but being their next lay? After this, you’ll be more than that to me. I want you to serve me.”</i> Her waist presses forward, presenting more of her artificial vagina. <i>“I will grant you the pleasure of compliance... but only if you really want it. Do you, my little pet?”</i>");
+		output("\n\nThe impact of her words is harmless on the surface level, but deep down they’re blanketing you in a submissive haze. It feels genuinely good to be useful to others. You have no means of expressing your libido, but that doesn’t mean you don’t want to earn her favor, pay her back properly for how good she’s made you feel. Of course you want it! You want to please her! She’d be surprised by your empathy right now!");
+	}
+	// merge
+	output("\n\n<i>“Then simply ask for it,”</i> she replies, adding sharply, <i>“<b>properly.</b>”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“I wanna cum! Please! I’ll be a good girl if I can cum lots!”</i> you cry out deliriously.");
+	else if(pc.isBro()) output("\n\n<i>“Let me cum,”</i> you grunt in defeat, nostrils puffing pangs of denial. <i>“I’m already yours.”</i>");
+	else if(pc.isNice()) output("\n\n<i>“P-Please, let me cum, mistress...!”</i> you beg, entirely uncertain if you’re really embracing the pleasure of servitude. <i>“Anything you say!”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“I-I submit - let me cum!”</i> you say breathily, unsure if you’re placating her or yourself. Some of your latent sarcasm does inject itself, though. <i>“I’ll do what you want if... if you do what I want!”</i>");
+	else output("\n\n<i>“Yes...!”</i> you hiss, defiant in your tone. <i>“I’ll listen...”</i>");
+	output("\n\nWearing a cheshire grin, she crows delighted, <i>“You’re already learning well your most important lesson as a <b>slave.</b>”</i> A genial pat on the head turns into a long, loving stroke of your [pc.ear] that pinches the ");
+	if(pc.earType == 0 || pc.earType == GLOBAL.TYPE_SYLVAN) output("lobe");
+	else output("tip");
+	output(". While her words reverberate through them, she pushes off a few inches from your torso and pivots, seating a curvy, round ass on your collarbone. The kaithrit’s twin black tails weave through the air, corkscrewing around your head while their owner wiggles back, massaging your forehead with her creamy thighs. <i>“Before you can submit, you must learn to please your betters correctly. You will do as commanded and nothing more.”</i> Her tone stops you from smashing your nose into her box, only adding to your wanton writhing.");
+	output("\n\nBackward movements of bubbly ass rest a chrome-colored clitoris on your chin. In defiance of its color and make, it’s surprisingly rubbery. It doesn’t just throb, it wiggles with a self-aware sentience, pleasing itself on its own terms against your [pc.skinFurScalesNoun]. You’re then hit with the first taste of her pheromones. It’s a rich saccharine scent distinct among expensive products, not the cloying, gooey accumulation that is natural lube. Her modified muff hones in on your salivating mouth, finally planting its silky, synthetic slopes to your [pc.lipsChaste]. It takes all your willpower to remain composed and not start servicing that obviously ready hole... and of course, you fail. All the prickling heat in your body drives you to deliver short, staccato strokes to the flexing cuntlips warming your [pc.face] in the valley of her sumptuous rear.");
+	output("\n\n<i>“Stop.”</i> She pushes up, both tails squeezing on your brain, embedding the command. <i>“You will act only when told. Your innate enjoyment, however, is noted.”</i> The kitty-cat’s hourglass hips set down again, filling your nostrils with even more of that crisp, erotic scent and blinding you under her sizable butt. This time, you manage to keep your tongue from acting on that tantalizing crease, which is made all the more difficult by the steady flow of juices. Large droplets of the stuff splash your palate and tonsil, mixing with residual aphro-milk to make your head swim and your body burst into pleasure.");
+	output("\n\nOccupying your view of Zheng Shi is your mistress’ pillowy posterior.");
+	// pc Herm or Cock (append, no new pg)
+	if(pc.hasCock()) 
+	{
+		output(" While you can’t see what’s going on in front, you can feel it. The kaithrit’s mammoth mammaries abruptly wrap around your [pc.cocksLight], engulfing your mast" + (pc.hasCocks() ? "s":"") + " in a sensuous crevice of dick-compressing heaven. <i>“Mmm...”</i> she hums, surely smiling from the contact of cock to her hefty bosom. <i>“I once heard one of the Vipers say that " + (!pc.hasCocks() ? "a dick this hard is":"dicks this hard are") + " a sign of subservience.”</i> Lithe arms tighten the velvety vice around your rigid boner" + (pc.hasCocks() ? "s":"") + ", coaxing out lurid volumes of almost boiling precum. <i>“Yes... this is perfect,”</i> she purrs, already sliding her divine boobies down to your [pc.knotOrSheath] and projecting their magnificence through every inch of [pc.dickSkin]. <i>“Just relax, and wait for my command.”</i>");
+		output("\n\nSlurps and kisses to your [pc.cockHeads] polish the crown" + (pc.hasCocks() ? "s":"") + " of your phallus" + (pc.hasCocks() ? "es":"") + " at the nadir of her titfucking. Hot slaver washes away on the upwards friction to be repeated. [pc.CumColor] slime mixes with spit, aggravating your pulsating, pent-up need. Raw, animalistic urge simmers just below, begging for real pleasure that her absurdly long tongue begins to offer. Noisy squelches and a full-body throb alert you to the spill of more milk. The kaithrit’s chesty slipperiness bathes your manhood in so much drugged fluid that when your crotch throbs, your entire body <i>pulsates</i> like a fusion core. Clinging violet juice soaks into the outstretched veins on your meat, weighing you down with anarchic sexual desire.");
+		if(pc.balls > 0)
+		{
+			output("\n\nThat’s not all. The busty kitty’s cream floods onto your [pc.sack], drenching your ");
+			if(pc.hasFur()) output("fuzzy");
+			else if(pc.hasScales()) output("scaly");
+			else output("doughy");
+			output(" scrotum in phosphorescent euphoria. Rather than climaxing immediately the sensations there magnify tenfold. Your [pc.balls] enlarge" + (pc.balls == 1 ? "s":"") + " like unscratchable itches, tightening your loins even further. At this point, you could snap like a coil and go mad. Your thickening load of teeming sperm serves your body notice that it will be responsible for any loss in faculty once it’s unloaded. You twist about for all the good that does, some sort of swirling, churning weightiness pacifying your sudden spasms until you’re a fluttering thing sliding in and out of your kind mistress’ oh-so soft cleavage. Whatever effect she has on you is undeniably good - you feel full, fuller than ever. Full enough to impress anyone with how much spunk your swollen [pc.ballsNoun] will pump out!");
+		}
+	}
+	// pc Pussy (append, no new pg)
+	else if(pc.hasVagina())
+	{
+		output(" Being unable to see what she’s doing only amplifies the pleasure you suddenly feel. She deploys her tongue in all its wriggling, serpentine glory. Wet, augmented muscle spirals out from her lips to abuse your " + (pc.puffiestVaginalPuffiness() > 0 ? "plump ":"") + "[pc.pussiesLight]. It proves itself a wonderful tool in her proverbial drawer, writhing and twisting and lashing at your [pc.thighs] and [pc.clits]. Before long she’s pressing inside, skewering your [pc.vaginaColor] interior impatiently, pushing out on every single nerve all at once until you clamp down and cum, slathering the technological organ with rivulets of [pc.girlCumVisc] orgasm.");
+		output("\n\n<i>“Exquisite taste, pet,”</i> she compliments, slurping and kissing your anatomy clean. You can’t hope to steady your breathing, not with her own folds winking smut upon your features. <i>“The flavor of submission is such a sweet treat.”</i> In post-orgasmic sensitivity she’s gleefully plowing your nethers with that inhuman tendril again, working over you in ways neither you nor anyone else could match. <i>“I can tell you liked that. It must feel so good to be properly touched, to have your needs satisfied by someone who knows you better than you know yourself, yes?”</i>");
+		output("\n\nWhat she does next blasts you with an extreme amount of pressure and pleasure all at once that your irises contract to thin points. The station goes while and you register nothing for long, unconscious seconds. Your muffled cries vibrate through her pelvis, gradually weakening in the haze of horniness billowing from it. <b>She’s squirted her aphrodisiac milk there.</b> It’s all you can think to comprehend. It feels <i>so wet,</i> like more moisture has collected there then is physically possible. Even if you were standing naked on a seabed, you would not feel as drenched as you do now.");
+		output("\n\nIt teaches you very clearly that her secret bounty is as effective on the exterior as it is the interior.");
+		output("\n\nYou cum again at the insertion of a single finger - Fuck! She’s right! It feels too good! And then again you cum, and again... your [pc.pussiesLight] " + (!pc.hasVaginas() ? "is":"are") + " bursting with bliss, glowing like the sizzling-hot source of a beacon’s light. Whimpers and cries build in the back of your throat, rising and falling to the wave of your conductor’s wands. You’re just a playtoy at this point, and that’s a fate you gladly accept so long as she keeps finger-fucking you into the next star system!");
+	}
+	// pc Neuter (append, no new pg)
+	else
+	{
+		output(" <i>“No genitalia doesn’t mean you can’t feel anything, pet. In fact, think of it this way...”</i> A lengthy tongue longer than any organic muscle slides across every inch of your [pc.thighs], forming itself into a thong for your barren nethers. The tip laps around you [pc.asshole], threatening to pierce it in lieu of any other hole. <i>“...You having nothing now doesn’t mean you can’t receive a gift later. It’s a canvas for us to work on, change as your owner desires. Anyone expecting no more than a juicy fuck doesn’t see the value in a body like yours.”</i>");
+		output("\n\nThe kaithrit’s techno-tendril lances your poor bum then and there, wiggling and writhing. Untender motions invade deeper into your bowels, sliding on ample lubrication. Sweat and saliva mix to make you groan from pressure, quivering and slobbering with a face full of cyber-cunt. The tip pushes deeper, sliding around your intestines, certainly capable of finding its way deeper into your body and riding on pathways never meant to be traveled in reverse. She’s content to hang back, however, stay where she thinks you’re comfortable.");
+		if(pc.hasPerk("Buttslut")) output("\n\nIt surprises her when you beg for it, when you stammer out the words she can’t believe she’s hearing. You want her to <b>own your " + (pc.analPuffiness() > 0 ? "plumped-up ":"") + "ass.</b> You implore her to go deeper, encouraging her with a desperate twitch and provocative whimper. So she does, packing your colon and stretching it out in that indescribably pleasurable way. Demonstrating your buttslut tendencies is usually more pleasurable than being pounded full of dick. But the way her tongue moves, tucking itself between your [pc.butts]... oh fucking VOID! It’s INCREDIBLE!");
+	}
+	// merge
+	output("\n\nShe’s not ignoring your [pc.face] while she works. As expected from a woman of her caliber, this kaithrit is humping and grinding your face with her potent pussy, smearing you in her uniquely appealing fragrance. Possessive rocks of her glistening vulva shine you in a glaze of intense desire. It gives you reason to whine - <i>why aren’t you allowed to lick yet?</i> It smells so good! The way it makes you feel being this close to it and not being allowed to please it, to lap at it, to worship it... that brings a tear to your eye.");
+	output("\n\n<i>“Lick.”</i>");
+	output("\n\nYou happily gurgle into the cunt cupping your mouth; finally! The order you’ve been waiting for!");
+	output("\n\nAnd as it turns out, an order you could never be prepared for. Your head nearly goes white when your [pc.tongue] touches down on the kitty’s kitty. The mollifying touch of your mistress’ cunt ends your agitations, simultaneously opening itself wider for further inspection. Glistening slopes of steaming-hot puss yawn to accept your oral length, held back by some supernatural (or technological, most like) force.");
+	output("\n\nExploring the pirate pussycat leads you to discover a real kind of booty. The one on your face is definitely just for show. Sticky, clear runnels of lube glaze your taste buds in exotic alien nectar. All the slime splashing your energetically pumping organ helps loosen a hole that you realize is cinching down, squeezing with cock-milking efficiency. You expect your face to be numbed by the force of her mesh-like innards, but they rub you like a lover’s hand on the cheek. They’re following you, aiding your service, tugging and grinding only when you slow.");
+	output("\n\nSprawling hinterlands wobble around your eyes, effortlessly humping, tucking you deeper inside the kaithrit’s prodigious canyon. All the oral attention sets her hips to bucking - she’s in control, though you’re not sure for how long. She gasps, feeling her own tension drain in eye-webbing waterfalls of gummy goodness. Wads of pre-gasm spurt out, broadcasting the titty-kitty’s promise of a deliciously messy climax. Satisfied gulps keep your mouth mostly empty of the unrelenting tides, though you can’t shake the idea you’re just an extended pussy pump.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nA yelp and laugh sets your [pc.chestNoun] to jiggling. No doubt she’s very impressed by the girthy length of your tongue. It’s no match for hers, but it’s stretching her so wonderfully. All the tightness you impart drives her to squirt a thick rope of slick wetness in reaction to your unstoppable oral advance. On its own, that one orgasmic emission floods you. It tastes better than all the juice before it, too - it tastes like <b>approval.</b>");
+	// Herm or Cock + Cum
+	if(pc.hasCock())
+	{
+		output("\n\nThe best and biggest bosom on station jacks your hungry [pc.cocksLight] in a frenzy. Husky moans wash over the throbbing and dripping fuckstick being polished and lavished by optimal amounts of titflesh. The sea of saturated jiggle laps and rows and heaves and squeezes on your manhood" + (pc.hasCocks() ? "s":"") + ", always a little faster, always a little harder. You’re so firm and eager, going crazy from all the praise. Wet licks to your dilated urethra jerk your hips upwards, barely managing a centimeter from the deck. Curvy hips respond to your nearing detonation, suffocating you in all the pussy you could ever want. Molten pressure builds in the center of your loins, so ready to explode out.");
+		output("\n\nBut she won’t let it. <i>“Before I allow you to cum, you will speak four simple words. You belong to me. Say them!”</i> she growls, supple, squishing breasts wringing out another moan. <i>“You... belong... to... me.”</i>");
+		output("\n\nHer gloating, wicked tone stirs you. It spreads the sea in your brainwashed cortex. You obey, because that’s what you’ve been conditioned to do. <i>“I belong to you!”</i> Spatters of milk throw more fuel to the fire. <i>“I belong to you!”</i> you shout again, and it strengthens. It’s so close to erupting out. You’ll get to cum if only you make her certain she heard right...");
+		output("\n\n<i>“I belong to you!”</i>");
+		output("\n\nSpunk gushes out; your spasms flop you around like a beached fish. ");
+		//lowCum:
+		if(750) output("[pc.Cum] spills forth in creamy torrents, plastering the elysian meadow between your mistress’ heartbeat-thumping breasts. They bulge and deform around your spurting [pc.cocksLight], burying " + (!pc.hasCocks() ? "it":"them") + " in the depths of her crushing valley. The taut embrace coaxes submission and sperm in masterful spate, filling her cleavage with the proof of your virility and obedience.");
+		//higherCum:
+		else output(" [pc.Cum] launches out; ropes of [pc.cumVisc] spooge packed with submission and sperm coat your mistress in an orgasm born of submission. It coats her face, it spatters her tits, it tells her exactly what kind of prize slave you are. It tells her, more than anything else, that you listened, that you obeyed.");
+		output(" [pc.CumGem] arcs of seed buffet her, draining your individuality per successive shot. Your [pc.thighs] jolt upward, eager to empty yourself of all that ejaculate now, some part of your mind perhaps too accepting of your place - when will she let you cum again, after all? Best to enjoy it now.");
+	}
+	// Pussy and Neuter + Cum
+	else
+	{
+		output("\n\nMilk squirts helter-skelter from the sea of excessive boob weighing upon your [pc.belly] all the while a tongue bathes your nether regions on its own. More efficient than a shower and some soap, it has oiled your [pc.skinFurScalesNoun] and every conceivable erogenous zone in warm sheens of saliva. It’s so relaxing. All you need do is sink back, let her go to work on your [pc.vagOrAss], and remember to breathe when her assiduous cunt gives you such a precious opportunity. She controls you. Her voice is everywhere in your thoughts. Her visage, punky and domineering, is embedded on your frontal lobe. Thick ass cheeks buffet you while orgasm draws near, aided by a twist of that magical " + (!pc.hasVagina() ? "anal":"pussy") + "-pleasing spear.");
+		output("\n\nRegardless of the fact that your entire body is libidinous mush, unable to move, and so badly wanting to cum... it can’t. <i>Because she hasn’t allowed it yet.</i> <i>“Mmm... if you wish to cum... if you want to feel the love of a mistress... then you need only say four little words for me. <b>You belong to me.</b> Say them... and you may cum.”</i>");
+		output("\n\nHer hypnotic tone is irrefutable. It reminds you of the one thought that your brainwashed cortex is capable of: that you obey, because you’ve been conditioned to. <i>“I belong to you!”</i> you shout, and your waistline jerks up. Everything is numb and prickly and hot, agonizingly heavy. You can sense your climax boiling inside, waiting for the right moment. <i>“I belong to you!”</i> you cry this time, and it gets nearer.");
+		output("\n\n<i>“I belong to you!”</i>");
+		output("\n\nLightning bolts charged with overwhelming sex drive strike the top of your head and scour towards your groin. ");
+		if(pc.hasVagina()) 
+		{
+			output("Ardor explodes from your swollen [pc.pussiesLight]. It’s the orgasm of a lifetime, vibrating you like the resistance of an atmosphere on a planet-bound vessel. You’re trapped between starbursts and impacting asteroids, shattering into chunks and pieces much like your brain.");
+			if(pc.isSquirter()) output(" You clamp down and pleasure seize, wetness bolting out of your " + (!pc.hasVaginas() ? "snatch":"aligned snatches") + " in maddening squirts.");
+			else output(" Wetness trickles out in volumes unimagined, likely spurred to flooding by all the milk motivating your system. Needful expulsions of [pc.girlCum] rob your brain of the ability to send electrical signals.");
+			output(" You don’t know where your [pc.girlCum] is going, but you don’t care. It’s taking your life with it, gradually reducing you to an unshaped lake of black-out desire between every clench and contraction.");
+		}
+		else output("Jolts of unexpressed release taper out towards the tips of your body, inner heat venting and overflowing that you could believe steam is hissing out of your pores. As orgasm rams another pounding rhythm of spasmodic release into you, you let out a blissful little sigh.");
+	}
+	// merge
+	output("\n\nAll the while, lust-made-fluid inundates you starting from the head. Femme-cum is everywhere. Javelins of spattering, superheated girlmusk soak into your [pc.hairNoun], dribble across or into your [pc.ears]; it flows down your torso, curtains every limb. It makes you feel dirty, it makes you feel used. But most of all... it makes you feel <i>owned.</i> And that thought, strangely enough, produces only happiness rather than spite.");
+	output("\n\nOnce again you lose track of yourself. All of a sudden the kaithrit is off you, sealed up in armor again. There you are, looking at your midden form, gummed up in the leavings of your encounter. For a second you think it a dream until she’s bending low, whispering instructions that you subconsciously accede. You move your hands to the front of your waist, and open them, lifting your wrists for the grav-cuffs being snapped snugly to the [pc.skinFurScalesNoun].");
+	output("\n\nAfter that, nothing.");
+
+	// sceneTag: processTime by 20~\rand minutes
+	processTime(20+rand(10));
+	// sceneTag: PC gets ‘Milk Bath’ effect.
+	pc.applyMilkBathed();
+	// sceneTag: PC gets ‘Pussy Drenched’ effect.
+	pc.applyPussyDrenched();
+	// sceneTag: PC cums
+	pc.orgasm();
+	pc.girlCumInMouth(enemy);
+	clearMenu();
+	addButton(0,"Next",postLossCuntsuckin);
+}
+
+public function postLossCuntsuckin():void
+{
+	moveToElevatorAdjustment();
+	clearOutput();
+	author("William");
+	output("Life comes at you fast. Air rushes into your lungs when you gasp awake, sat in Zheng Shi’s cargo elevator. The lusty kitty-pirate is nowhere to be seen.");
+	output("\n\n<i>“If you continue to show yourself here, I will see to it that your training is completed.");
+	//hasCollar:
+	if(pc.accessory is MaikesCollar) output(" That collar you wear clearly comes from an unsuitable master.");
+	output("”</i>");
+	output("\n\nYou’d jolt back in shock, but there are the armored baps of an augmented pirate pushing against you. Two hands at your waist unlock the cuffs responsible for your bondage, coming away alongside two black tails latched around your abdominals. Before she stands, she nibbles at your [pc.ear], a fang sinking into the appendage just deep enough to cause a wince.");
+	output("\n\n<i>“Any more intrusions, interloper, and your freedom ends,”</i> she smirks over her shoulder, hefting her rifle. <i>“But you’ll be back. [pc.BoyGirl]s like you crave attention. And when you come back,”</i> she closes her hand into an O shape, <i>“that’s when you’ll be mine. But that wouldn’t be so bad, would it? Whatever you’re doing with your life, I can’t say, but judging by your skillessness...”</i> she laughs, <i>“you’d be better off living it on your knees.”</i>");
+	output("\n\nWithout another word she returns to her patrol, leaving you alone and covered from head-to-toe in leftover effluvium of varying colors and scents. The smell brings an instant twinge of arousal. More... more than it should, in fact. All the milk she made you drink has likely had an effect on your libido...");
+	processTime(7);
+	pc.libido(2);
+	output("\n\n");
+	IncrementFlag("SECOP_FEMALE_TITTYSMOTHER");
+	CombatManager.genericLoss();
+}
+
+// Bad Ends
+// Submission to F. SecOp and M. SecOp will be tracked after the PC is subject to one of the non-Visor loss scenes. After about three losses in total, the PC can be bad ended. Next encounter to a maximum dominance SecOp will proc this. The SecOp in question will toss Steele a collar and offer to let them submit. PC can fight for freedom, submit, or lose and be bad ended anyway.
+// Subbiness goes down if the PC wins any fight with subbiness. It starts at 0% and goes to 100%.
+// If PC bad ends to boi cat, becomes a pleasure slave whored out at Cherry’s wall and his personal use cum-dump. Brain gets fried so that the difference between reality and hypno-VR-programming is completely lost to the PC.
+// If PC bad ends to titty kitty, they will be used as a means to test all sorts of new augments and features that she gets, a real life of pleasure. But they’re also hopelessly and eternally addicted to aphro-milk.
+// William
+
+// Encounter blurb for bad end, max sub to a SecOp
+
+public function maxSubmissionSecopEncounterText(tEnemy:Creature):void
+{
+	showPunkSecOp();
+	output("\n\n<i>“Stop where you are.”</i>");
+	output("\n\nThe voice of a meandering kaithrit does indeed stop you in your tracks. The patrolling operative leaps into view and waltzes up with self-aware bravado. The turquoise holovisor over [enemy.hisHer] eyes evaporates in a digital mist - [enemy.heShe] doesn’t need another superfluous scan of you.");
+	output("\n\nOne of the stolid cat’s hands hefts an energy rifle over [enemy.hisHer] shoulder while the other reaches behind to produce an item. A gleaming metallic accessory, circular in shape, is thrown in your direction. It lands on the floor with an ear-numbing slam, rolls a few inches, and lies flat. When you look at it, recognize it for what it is, the ‘punk’s voice reverberates in the vulnerable din.");
+	output("\n\n<i>“You heard me well enough before, and here you are again. Anyone else’d shoot you on the spot. I’d rather not damage my new property, though. I’ll give you a choice. Either put that on... or resist. Either way, I think we both know how this is going to end.”</i>");
+	output("\n\nThe memories of your use at the cyber-cat’s hands flash before your eyes. Part of you can’t deny the offer. It... has an appeal you can’t quite place: trade your freedom and be swept away on endless rivers of bliss. No more probes. No more fighting. No more thinking. Just submit...");
+	output("\n\n...For an impotent moment you stare at the device, a cold-silver slave collar. It’s obviously heavy, and it’s much larger than what the work-slaves wear. A visible latch at the back is pre-opened, ready to be snap shut around its intended recipient: <b>you.</b> Past pleasure and present dread resolve into a disconcerting blend. This extant ultimatum coalesces into an amalgam of humiliation and determination vying for control over your next critical action.");
+	output("\n\nIt takes more effort than you care to admit to turn away from the execrable piece of jewelry and face your opponent. [enemy.HeShe] saunters forward, cheshire grin on [enemy.hisHer] face. The kaithrit’s ready for anything.... You only have a second to decide your fate before it’s decided for you.");
+	//[Fight] \\ Tooltip: You won’t give up! <b>But if you lose this fight...</b>
+	//[Submit] \\ Tooltip: The pleasure you’ve experienced tempts you even now. It was all just a taste of the life waiting for you, if only you would allow yourself to be seized by it.
+	CombatManager.newGroundCombat();
+	CombatManager.setHostileActors(tEnemy);	
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.victoryScene(defeatASecop);
+	CombatManager.lossScene(loseToPunkSecOP);
+	CombatManager.displayLocation("PUNK SECOP");
+	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tEnemy);
+	clearMenu();
+	if(enemy.hasVagina()) 
+	{
+		IncrementFlag("MET_SECOP_FEMALE");
+		addButton(1,"Submit",luckyCatchBadEndWithFSecop,true,"Submit","The pleasure you’ve experienced tempts you even now. It was all just a taste of the life waiting for you, if only you would allow yourself to be seized by it.");
+	}
+	else 
+	{
+		addButton(1,"Submit",slaveslutBadEnd,true,"Submit","The pleasure you’ve experienced tempts you even now. It was all just a taste of the life waiting for you, if only you would allow yourself to be seized by it.");
+		IncrementFlag("MET_SECOP_MALE");
+	}
+	addButton(0,"Fight",fightOrBadEndGooooo);
+	return;
+}
+
+public function fightOrBadEndGooooo():void
+{
+	clearOutput();
+	showPunkSecOp();
+	author("William");
+	output("[pc.Weapon] raised, you step back in an aggressive stance.");
+	output("\n\nThe kaithrit does the same. <i>“Gonna make me earn it, huh? That’s fine. Training you has been a welcome reprieve from the daily grind.”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+//[M. SecOp Bad End] - Slaveslut
+public function slaveslutBadEnd(volunteered:Boolean = false):void
+{
+	if(volunteered) clearOutput();
+	showPunkSecOp(true);
+	author("William");
+	// pc Lost The [Fight]
+	if(!volunteered)
+	{
+		if(pc.HP() <= 1) output("A twisting dart of plasma careens into your [pc.weapon], shattering it into several halves that fling from your hands. Before you can react, the pirate leaps forward and slams into your gut, knocking you to the ground and sitting himself on your [pc.belly] with an immaculate and pitiless grin.");
+		else output("Sweat builds around your neck like a strangling whirlpool of all-consuming desire. You drop your [pc.weapon] and paw at your [pc.skinFurScales], a prisoner in your own unresponsive body. Wicked and pitiless laughter fills your ears, reverberating in the darkness behind your eyelids. A sudden foot to the [pc.chestNoun] shoves you to your back, and when you open your eyes, there sitting on top of you is the fanged kaithrit with a wide grin.");
+		output(" <i>“One last chance, trespasser, and you failed. I’ll admit, it was worth the effort, and a fun diversion. Nothing better than success, right? Well, for me anyway.”</i> His right hand extends, palm opened, and the collar on the floor, as if yanked by an industrial magnet, flies into his grip. <i>“Don’t make this any harder... not that you could. You’ve been conditioned rather well so far. You’ll take to your new life smoothly.”</i>");
+		output("\n\nYour [pc.arms] won’t move with his legs pinning them - all they can do is squirm. One hand lifts your head by the chin ");
+		//wearingCollar:
+		if(pc.accessory is MaikesCollar) output("and slices off your old collar ");
+		output("while the other whacks the ");
+		if(pc.accessory is MaikesCollar) output("new ");
+		else output("warm ");
+		output("choker to your neck. As heavily as it hit the floor, it snaps shut with bleak conclusiveness, strong enough to make your eyes cross from a tsunami of overwhelming reality. Its inescapable grasp tightens around your throat, hissing steam as it flattens your [pc.skinFurScales] to become a permanent fixture on your body.");
+	}
+	// pc Chose To [Submit]
+	else
+	{
+		output("<i>“Resistance is pointless.”</i>");
+		output("\n\nThat’s what your brain is telling you, and you stumble over all attempts to refute it, incapable of formulating a coherent argument. Your inability to defend yourself from the cyber-cat is a shame reflected in every synapse, pressing heavily on your mind.");
+		output("\n\nAnd then your brain reminds you of what he’s capable of giving you. A life of pleasure unending in service to something better than you are. His taste flickers on your tongue even now. Being some pirate’s cock holster was more pleasurable than you’d given it credit for, encompassing you in the inexpressible succulence of total submission. Memories vibrate apart, recollection of your mind-wiping orgasm bringing a shudderingly sweet and ecstatic sensation back to you. You want it again.");
+		output("\n\nSuddenly you’re knelt beside the device, hefting it, each lewd fantasy making a mockery of your perception of time. If you put this on, then that will be your life now and forever. He’s only given you a sampling of what it’s like to be a slave.");
+		output("\n\nYou want more. That’s why you throw your weapons ");
+		if(pc.accessory is MaikesCollar) output("and old collar ");
+		output("away and press the warm device comfortably and snugly to your throat, a shameful heat like morning sunlight blossoming through your loins all the way to your fingertips. You feel the crushing weight of your choice, of the life you’re leaving behind, and let it all go by snapping the slavemaking device to your neck where it belongs, every stress and worry disappearing in a fleeting moment of urgence. The silver necklace hisses steam and cinches down, flattening your [pc.skinFurScales] to become a permanent fixture of your quivering body.");
+		output("\n\n<i>“Now lie back,”</i> your <b>owner</b> commands, and you obey. You were already doing so before he finished his sentence, and you can’t tell if it was really you making the choice. You don’t have long to contemplate it before your <b>Master</b> is sat atop your [pc.belly].");
+	}
+	// merge
+	output("\n\nBefore you can ask or wonder <i>what now,</i> your brain goes sluggish and for... lack of a word... or many words... crashes. Blurriness and a surreal feeling of queasiness overwhelm you. It lasts forever, worsening overtime. Invisible fingers poke and prod at your skull, then your brain, reaching and coaxing like you’re undergoing open brain surgery. If the existential discomfort was the darkness, then the soul-soothing wellness you feel at the end of it is the light.");
+	output("\n\nHoney-gold contentment works its way down your neck and through your body. Waves of complacency clear your sight. You let out a breath, only now realizing that the criminal cat on top of you is naked. His armor has pulled away to reveal his flexing chrome cock, beading violet, aphrodisiac-laced precum. His artificial dong is heavily engorged, flapping from either a heartbeat or some underlying mechanic. It dominates your view - hell, it’s so close you have to cross your eyes just to get a decent look at it.");
+	output("\n\n<b>You want it.</b> Deep down, you really want it. Your dilated eyes admit it, your wiggling, paralyzed tongue demands it. Depraved visions of dragging your taste buds over the synthetic texture of his burgeoning tool flash before your [pc.eyes]. You inhale through your nose, taking in your master’s appealing male aroma, instantly imagining yourself buried nose-deep in those plump balls resting on your [pc.chestNoun] and washing the succulent orbs all day and night.");
+	output("\n\nHe brings the toy-like head of his cock to rest on your [pc.lips], shudderingly pleased by what he sees. <i>“Ahhh... what I’m about to say, I may as well be talking to myself. But no matter how much you fine tune a collar or prepare the slave, there’s always some part that lingers, a little bit of old self that recognizes. It’ll be gone soon. So if it’s there, let me explain...”</i> The calm kaithrit grasps the sides of your temple and scoots forward, smearing his tangy, flavorful lube across your [pc.face]. <i>“That collar’s hijacked more than your nervous system. It’s generating an EM field across your brain, intercepting all electrical signals while allowing me to send my own. The goggles we use to program our pleasure-slaves utilize a similar function... but not to this strength. Those target specific areas, replay an infinitesimal fraction of pleasure. But this? A wireless thought is all it takes to give you an order now... and so much more.”</i>");
+	output("\n\nYou smile, because he smiles. It opens your mouth to accept the freshest droplets of palate cleansing cock-juice. Now, without words, you hear his voice. It’s almost hallucinatory, a little staticy. On a level deeper than language you know what was meant: <i>“Give me your name.”</i>");
+	output("\n\n<i>“[pc.name],”</i> you answer in a voice that’s not your own. It has no inflection or emotion. It would be scary, but with that hi-tech collar weaving its spell on your cerebrum, you don’t feel anything remotely unsettling. Another question comes, and you mouth an immediate and telling answer, <i>“I’m [pc.name] Steele. I came to Zheng Shi to find my father’s probes. I can’t inherit the company without them.”</i>");
+	output("\n\n<i>“Hrmm,”</i> your owner purrs, tapping your cheek thoughtfully. <i>“Heh. In other words, a wayward rusher. I can decide what to do with that information later. For now...”</i> His hips smack forward, burying thirteen inches of cyber-phallus in your gullet and pinning your [pc.tongue] to the thick underside. Raw, dizzying alpha-musk wafts into your nostrils when <i>Master</i> presses your nose to his pubic mound, slick with perspirant, rubbing your head all around his grafted girth. <i>“I’ve spent long enough chasing you,”</i> he moans. <i>“I’ve put enough of my associate’s resources into your apprehension. The investment I’ve put into modifying this device as well... oh, it’ll take you some time to pay it off.”</i>");
+	if(!pc.canDeepthroat()) output("\n\nHis thrust should have made you gag, but that reflex has been defeated by the inimitable power of mad science.");
+	else output("\n\nYour tonsils and uvula knowingly stood aside for his jaw-stretching organ, proving that your innate training as a cocksucker has followed you into subservience.");
+	output(" Being taken so fully and so abruptly by something so large is indescribably intense. It bows easily towards your belly in this position, a feat inferior dicks wouldn’t accomplish. You feel absolutely no pain when his huge bluntness reverses to exit amid a <b>Command</b> for your mouth to slaver on all over his fuckstick. Hot inches of spit-shined mecha-cock emerge, savoring the stretching sweep of your [pc.lipsChaste] until it pops free. Your [pc.tongue] lashes out at his turgid synth-meat to clean and polish it, begging it back into your very wet, extremely willing, and unbelievably eager maw with rapid-fire strokes to the crest.");
+	output("\n\nAnd you’ll never know if it’s really <i>you</i> doing it.");
+	if(flags["USED_SNAKEBYTE"] != undefined) output("\n\nMaster can’t resist thrusting in again, actually meowing when his heavy mast swims into the exotically muscled channel of your modded throat. Ribbed rings of ball-milking quality add a frisson of friction that the kaithrit just can’t get enough of. He grinds into that organic mesh of boner-girding bliss, willing you to suck and hollow your cheeks around his deliciously smooth schlong, eager to find ways to strain it - he doesn’t succeed. Shifting over you, he shoves his apple-sized balls into the obscenely-wide entrance of your accommodating jaw until your eyes roll back. <i>“This is <b>all mine!</b> Fuck! I can’t... believe it!”</i> Simply by pleasing himself at your expense, he pleases you, and knowing that you’re pleasing him pleases you! Profoundly orgasmic mental pressure squeezes down on top of the brainwashing blanket, your erogenous oral zones attempting to achieve climax and failing. He almost cums. Almost... but then he pulls out again.... Noo!");
+	output("\n\n<i>“Not only do I control what you feel and what you taste,”</i> he huffs excitedly, <i>“but what you see.”</i>");
+	output("\n\n<i>Static.</i>");
+	output("\n\nWait, why were you-");
+	output("\n\nA flood of graphic pornography crackles in your [pc.eyes]. Some sort of quantum floodgate breaks and your optics, organic though they may be, are hacked into. Real memories of who you were and what you were even doing here filter out so that they don’t trouble a consciousness undergoing a rewrite. Flickering images of VR porn crackle appear and disappear - those you recognize.");
+	output("\n\n<b>The immense library you don’t.</b> You find yourself at the center of the entire galaxy’s scandalous sexual productions, the star in every single director’s cut. One second you’re the breeding mare for a gang of masked, gimp-suit wearing leithans. The next you’re tied naked to a bondage cross while haughty saurmorians and rich libertines throw things at you for amusement. Is this really someone’s fetish? You’re not the kind to kink-shame but-");
+	output("\n\nIn the span of the next three seconds you’re licking at the most artificially endowed pussy that’s not there, sucking asteroid-sized nipples on spine-liquefying boobs the size of fucking planets, and kissing some Ausar-themed Adonis that is so disgustingly beautiful that only an insouciant apartment dweller could be blamed for its unrealistic features.");
+	output("\n\n<i>Static.</i>");
+	output("\n\nNow you’re sucking cock. Is it real? Everything around you is inverted, like a photo-negative picture advertising some new teenage flick. It tastes wonderful, so it must be real! The groaning, magisterial kaithrit on top of you is humping away, anxiously pumping into your mouth and stretching your [pc.lips] to their limit. It feels so good to just <i>accept</i> that raw energy, let it mold you. You empathize greatly with how badly he wants to facefuck you, drive that maw-gaping mast ever deeper with successive, savage strokes. You can sympathize with all that dangerously-high tension rutting your suckling cheeks balls-deep.");
+	if(pc.tailCount > 0) output(" Your [pc.tails] bristle" + (pc.tailCount == 1 ? "s":"") + " with the idea of cumming from being so ruthlessly claimed.");
+	output("\n\n<i>Static.</i>");
+	output("\n\nThe kitty’s gone, and in his place is a gigantic, barbaric lizard-man, dual-dicked and jackhammering both jaw-breakers into a gargling mouth you can’t be sure isn’t yours. Cascades of reptilian jizz stream into your overfilled cheeks; the sensory overload is unbelievable. Involuntary gulps on your part swallow endless onyx inches of breeding mass meant for mythological titans while a throat stretched into an industrial pipe guzzles thick rivers of gut-swelling slurry. Balls the size of melons, stinking of bestial musk, smash into your... gigantic boobs!?");
+	output("\n\n<i>Static.</i>");
+	output("\n\nYou stop asking where you end up. It feels good. Why bother worrying? It’s happening for a reason, after all, and that reason is it feels soooo goooooood...");
+	output("\n\nNow you’re face-down and ass up, [pc.vagOrAss] being plunged desperately by someone you can’t see - you’re blindfolded. Girlish grunts overlap the smack of hauling hips - fuck! That’s hot! She must be a dick-girl, or a full hermaphrodite. She’s definitely got a pair of hefty, full nuts... and they’re soft and fuzzy! Oh you wish you could see her. Whatever fictitious scenario this is, that’s your only criticism of it! How much better this circumstance would be if you could only see the <i>raw emotion</i> beaming on the futanari’s face? Your mystery lover’s luscious pumps bring your libidinous mania to a peak. Can’t she go any faster!?");
+	output("\n\n<i>Static.</i>");
+	//pcSawWallSlutVR:
+	if(flags["SECOP_WALLSLUTTINGS"] != undefined) output(" Oooh! You recognize this club! And you recognize those horny bunnies!");
+	else output(" Now you’re in some sort of club... and the air <b>reeks</b> of horny bunnies.");
+	output("\n\n<b>You LOVE horny bunnies!</b>");
+	output("\n\nPink and Gray laquines, fully naked, have their padded fingers hooked into your head and are plowing your leaky front suck-hole for all its worth. You don’t have the control necessary to pleasure them, only sit back and watch them plunge through the tension-pinched band of your windpipe past the immensely-strained band that is your cock-gobbling lips. Oh fuck! It’s full of cum; the slut-bunnies orgasmed a while ago, <i>that’s</i> why it’s so hard to do anything! Pink pulls her totemic pillar away and gray’s four-ringed sledgehammer acts as a plunger. It thrusts in, barreling into your belly, and emerges with a firm yank. A fast-oozing pillar of cum pours from the hole, so exquisitely pleasurable. Now you know exactly how champagne bottles feel after being shaken and uncorked!");
+	output("\n\nAnd, thank goodness you don’t have to worry about things like breathing!");
+	output("\n\n<i>ZZZZzzZZsttttatic</i>");
+	output("\n\nIncoherent gurgles are all you make out. Your senses are so completely fried at this point you only exist in an erotic anthology that could go on forever." + (silly ? " <b>Sounds exactly like the game you’re playing, doesn’t it?</b>":"") + " Trapped in a chair licking pussies for a virtual facade of Tamani Corp is a delight you can’t wait to have crop up again. You’re cumming on an endless loop, fingers clenching and unclenching at nothing. In fact, your whole body’s doing that. You’re no longer a body, you’re just an erogenous zone drifting from timeline to fake, super sexy timeline. Oh look, you’re fucking some pregnant, child-swollen bunny bitch! Aw, and now she’s gone!");
+	output("\n\nBut that’s fine, now you’re riding the twitching form of a very important looking dog man! He’s dressed up like a soldier, maybe you’re his CO giving him the reward of a lifetime! Ssssshit... then there’s... aw this one sucks! You’re all alone! Thank the VOID it’s over though, because now you’re having the time of your life fucking in a freefall. This can’t be safe, but holy damn is it a thrill!");
+	output("\n\nWhite noise overwhelms you and your senses go flat and white. In some place... in some reality you cannot comprehend, you feel... full. It’s weird. You don’t want to feel this. Why is everything so blank and joyless now?");
+	output("\n\nDarkness comes, and then there’s a glitchy whine.");
+	output("\n\n......");
+	processTime(60);
+	pc.lust(pc.lustMax());
+	clearMenu();
+	addButton(0,"Next",slaveslutBadEnd2);
+}
+
+public function slaveslutBadEnd2():void
+{
+	clearOutput();
+	showName("WALL\nSLUT");
+	showBust("BORED_JUMPER_EQUINE_NUDE");
+	author("William");
+	output("<i>“I’ll pay you back, I promise! I want it so bad c’mooonnnn I’m like the only one who hasn’t gotten to try [pc.himHer] out!”</i> whined a zipsuit-wearing laquine, gray-furred and stupidly horny. <i>“Besides, I don’t need the whole amount, just a little extra pleeeeaaassse!”</i>");
+	output("\n\n<i>“Fiiiine,”</i> a brown-furred one groaned, tossing her crewmate a credit chit. The gray-furred one, eyes wide and giddy, transferred the monetary value to hers in the blink of an eye, hopping for joy until her sweaty getup squeaked and creaked.");
+	output("\n\n<i>“I’ll get it back to you, promise!”</i>");
+	output("\n\nAll Gray gets is a shrug of the shoulders while she turns towards a huge wall full of presented mouths and crotches. Cherry’s Tap Hall, one of the two premiere attractions on Zheng Shi’s recreation deck, was always busy. Crowds of pirates belonging to the top five or freelancers looking for a nice, wet hole to pump full of unspent seed grazed shoulders and chose a disposable pleasure-to mounted in the so-called ‘Slut Wall’. It was like a soukh at its busiest, and at the time, it was busier than it had ever been.");
+	output("\n\nThe overexcited Jumper made her way down the sexual corridor lit a yummy, erotic red, whimpering softly from the squelching glide of an erect dick tightly bound in her skin-tight latex zipsuit. She hadn’t cum all day. Waiting any longer would leave the poor herm with a serious case of blue-balls. While there were sluts open for business as far as the hungry eye could see, she, like half a dozen other outlaws, was here to try out a popular new attachment to the sexual stockade.");
+	output("\n\nIf she thought she was in agony getting there, she had no idea what it would be like to wait in line for that reputed slave. Everybun in her crew talked about [pc.himHer]. All the other bunnies got a go, later lamenting how other slaves felt so unsatisfying, particularly on the matters of oral sex. The lewdness of flesh being urgently pressed into a servile piece of fuck-meat replayed again and again as a train of at least twenty mercs all taking their turn on the [pc.raceShort] sex-toy hooked into this wall, turning the largest profit out of all other contracts.");
+	output("\n\nGray waited, ears lifting in delight. For everyone that left the line, cocks satisfied and messy with rainbow lipstick, another two appeared behind her. In her rubbery fingers she clutched the the credit stick filled with the exact price of Zheng Shi’s preeminent cumdump, thinking very, very hard about the amazing fuck to come. She’d gotten close enough to note the hired muscle keeping watch of this slave, dangerous weapon in hand.");
+	output("\n\nShe paid the lump no mind, blinking the anticipatory excitement from her eyes. A Corona Lord left the booth, making her next in line. Like a kid in a candy store she darted around the corner, finally laying her eyes on the station’s most distinguished oral whore.");
+	output("\n\nStepping forward, Gray noted the cum-flecked features of the [pc.boyGirl] installed there, and the name ‘[pc.name]’ on a tag in the corner. In ordinary fashion, [pc.hisHer] torso jutted out, arms bound in rubberized compartments. [pc.HisHer] mouth was available, and from it hung a ridiculously long tongue that was longer than the average rodenian was tall. The hedonistic laquine had already unzipped, baring fourteen inches of precum-glossed horsemeat to the [pc.raceShort] salivating over [pc.hisHer] next customer with a thousand-yard stare. [pc.HeShe] had a ");
+	if(pc.isFemboy()) output("cute");
+	else output(pc.mf("handsome","beautiful"));
+	output(" face, [pc.ears]");
+	if(pc.hasHair()) output(", [pc.hair]");
+	output(", and " + (pc.bRows() == 1 ? "a ":"") + "[pc.fullChest].");
+	output("\n\nBut what was really incredible, aside from the floor-reaching organ dangling from the [pc.raceShort]’s mouth, was [pc.hisHer] augmented lips. Apparently one of the Cyber Punks provided this slave, got [pc.himHer] modded up with a pair of perpetually transfiguring lips that constantly swapped from one color to the next on the full RGB spectrum. Seemingly at random, the upper and lower lips deflated and inflated independent of each other, too!");
+	output("\n\nWithout further delay, the sweat-lathered cred stick was rammed into the slot nearby. Price paid in full, the feral laquine thrust her beefy dick forward, holstering her mammoth girth into a ribbed throat designed for maximum dick-pleasing effect. The cock-slave’s tentacle of a tongue wound around her latest client’s sheath and pheromone-drenched nutsack, tip juggling the densely-packed apples behind the cum-taut pelt. <i>“Aaaahhh f-f-fuck!”</i> the lapine woman screamed, gripping [pc.name]’s ");
+	if(pc.hasHorns()) output("horns");
+	else if(pc.hasLongEars()) output("ears");
+	else if(pc.hasHair() && pc.hairLength >= 2) output("hair");
+	else output("head");
+	output(", struggling to pull out from suddenly-shifting DSLs that loved to hug and squeeze and touch, holding so firmly so as to provide the ultimate cock worship.");
+	output("\n\n[pc.name] expected this ferocity - everyone went at [pc.himHer] this way. One touch of those impossibly silky soft lips and they were slamming their schlongs in with all possible vigor. Ball-draining gulps capable of decompressing a capital-class starship kept the hapless slut-bunny from pulling out more than a couple inches <i>at most.</i> Although she occupied the dominant role, she, like everyone else, didn’t have the strength or endurance to handle the glory of those unreal sensations sweeping her off her feet. The mouth of this slave was like a cock-pump, pulling on every veiny inch of musky bunny-dick in ways only ultraporn-stars with fap-worthy pole-smokers could.");
+	output("\n\nBut a laquine knew how to fuck. They knew how to breed. She wasn’t gonna be done in by some gulping! Rearing back, Gray thrashed on the verge of spermy decoration, pushing through bloated cock-pillows custom made for pleasing the galaxy’s menagerie of penises in one or two bobs of the exotic neck. Conjuring up her inborn hardiness, Gray fucked those blubbery cock-cushions like the slippery twat they imitated, staining her veiny hardon in a multitude of colors to remind her of the fun she had.");
+	output("\n\n[pc.name]’s lower lip caressed the bunny-bitch’s spongy cumvein, the upper lip shrinking in contrast to the growing of the bottom. Blue and green lips, glazed in the cum of a thousand criminals, strained into a jizz-flecked pucker imploring the needy slut to give in and let gush waves of spunk to add to the reservoir most certainly sloshing within the slave’s containment. If Gray could see her pricey prostitute’s eyes, they’d be frantically swerving and rolling in a style similar to REM sleep. But, she couldn’t, focused as she was on leaving an imprint of her crotch in her [pc.face], riding her libido to mountainous proportions.");
+	output("\n\nGray’s beret fell right off her head when she thumped forward, knees knocking and losing strength. Her throat-filling mass could no longer contain itself, not in the face of those magnificent deep-throaters. She did more than cum, she cracked like a planet. The latent ‘pink note’ stoking the Tap Hall’s alumni into debauchery prolonged her barbarically elongated male orgasm. The taut throat loosened then clamped down again on the pirate-bun’s aching dong, tending to the defiant member until its length had been fully sapped of sperm and sex drive.");
+	output("\n\nAnd so she crab-walked away, barely managing to tuck her horsedick away in time for the next customer to see to [pc.name].");
+	output("\n\nThe cycle repeated ad infinitum...");
+	days += 7;
+	processTime(4*60+rand(20));
+	clearMenu();
+	addButton(0,"Next",slaveslutBadEnd3);
+}
+
+public function slaveslutBadEnd3():void
+{
+	clearOutput();
+	author("William");
+	showPunkSecOp(true);
+	output("<i>“Oh, yeah. It’s taken care of. In fact, we’ve done more than break even. Yeah. Yeah. Yes, boss, that too.");
+	if(crew(true) > 0) output(" Ah, good. I’m sure " + (crew(true) > 2 ? "some of ":"") + "our intruder’s former staff will bring us in even more money when we find prospective buyers.");
+	output("”</i>");
+	output("\n\nYour master’s communications aren’t for you to care about. He’s embedded to the hilt in your throat for a reason. You love that look on his face, those smiles he gives, all without breaking stride in what sounds very important.");
+	output("\n\n<i>“Huh. You found it? So our trespasser wasn’t lying, then. With that company’s fortune and immediate family for ransom, we may just be able to take on the Black Void soon. I’m sure Vanika is already hounding you for a share.”</i> He grabs your head and forces you back and down again, eyes nonchalantly aimed to the ceiling of this dim little sex pit. <i>“Ah, yeah, [pc.heShe]’s where she always is. I was away too long, so I decided my quality time is best spent here for the week.”</i>");
+	output("\n\nYou suck, lick, swallow, and gulp. There’s a little static in your eyes but you don’t mind it. The little pulse in his balls channeling through your many-times slapped chin tells you he’s so close to cumming. Just a little harder, in that spot you know Master likes. Apparently you’ve gotten so good at it you managed to interrupt his chat!");
+	output("\n\n<i>“Ah, don’t worry. I’ll see you soon. Maybe,”</i> he laughs.");
+	output("\n\nWhen his neck cranes to face you, he allows himself to cum, lets you tap the urge that begins his long-overdue release. Master was away for so long.");
+	output("\n\n<i>“Who knew that you were so valuable,”</i> he puts a hand on your head. <i>“I have to say, I never expected this in my line of work. Don’t worry. The rest of the galaxy will never know our little secret.”</i>");
+	output("\n\n<i>Static.</i>");
+	days += 3;
+	processTime(10+rand(1000));
+	badEnd();
+}
+
+//[F. SecOp Bad End] - Lucky Catch
+public function luckyCatchBadEndWithFSecop(volunteered:Boolean = false):void
+{
+	if(volunteered) clearOutput();
+	showPunkSecOp(true);
+	author("William");
+	// pc Lost The [Fight]
+	if(!volunteered)
+	{
+		if(pc.HP() <= 1) output("Your footing is lost, and the kaithrit across from you fires an aimed shot that disarms you. Your [pc.weapon] breaks apart in a matter-obliterating discharge of plasma, leaving you helpless to stop her from stepping forward and claiming her prize. While you fall to the ground exhausted and beaten, she throws her weapon aside, softly laughing per meandering step.");
+		else output("No longer will your libido be denied. It remembers the conditioning. It blooms at the supple, sensuous sway of her female form. It explodes at the jiggle of her armored breast and at the memory of your lips being wrapped around the source of infinite joy. You fall, losing your [pc.weapon] in the descent, and struggle to masturbate, no longer able to defend yourself from a life of slavery.");
+		output(" <i>“There you have it. See? Told you I wouldn’t hurt you. Much,”</i> she chuckles.");
+		output("\n\nYou manage to look over and she’s gone... and then two hands weave under your [pc.arms] and around your front. The cool, oppressive touch of her armor to your [pc.skinFurScales] settles into your core, driving in the truth of your situation with every beat of the heart.");
+		output("\n\nThe victorious operative whispers into your ear, <i>“Now... it’s time for you to stop fighting it. You know your life is here...”</i> She opens one of her hands and the silver collar on the floor is tugged towards it by a powerful magnetic force. <i>“...in this collar. You’ll be taken care of" + (pc.accessory is MaikesCollar ? ", moreso than your previous owner seems to have cared":"") + ". You will want for nothing ever again. You will spend your days thinking of how best to please me. Such is the ease of being a slave.”</i>");
+		output("\n\nShe brings the open loop of gleaming metal to your neck and pulls the inorganic snare back, snapping the slavemaker to your throat. The circuit is completed tight and oppressively, deafening you with the sound of its closure. When it cinches down, hissing steam to close permanently around your neck, it scares you, makes you squirm... but the kaithrit is there, stroking your [pc.hairNoun] gently, whispering sweet nothings into your [pc.ear] to soften your transition to your new life.");
+	}
+	// pc Chose To [Submit]
+	else
+	{
+		output("There’s no denying that siren call echoing somewhere in your head. You’ve had a taste of the life that’s waiting for you. The flavor of obedient submission has coursed through you, allowed you to cum, shown you what a good [pc.boyGirl] like yourself will receive if [pc.heShe] listens. The memories of being beneath that lovely kaithrit come rushing back. She spoke softly, treated you sincerely, eased you into this.");
+		output("\n\nEvery step you take to the collar gets easier than the last. First you shed your weapons, and then your worries. Left - color is brought to your cheeks. Right - the color deepens. Left - you remind yourself of her meticulous care. Right - you realize how wonderful the shame of being so inferior and yet so useful and desired is.");
+		output("\n\nAll of a sudden you’re holding the silver collar and the kaithrit is gone. The alluring prospect of giving up your stresses and your quest to become a pleasure-slave curls your mouth upward. You’ll be <i>hers.</i> You’ll get more of her milk. Most of all, you haven’t forgotten what you said to her. That admittance before is replaying in your mind.");
+		output("\n\n<i>“You belong to me.”</i> She appears behind you, arms wrapped around your torso. She places a hand on your wrist, crooked fingers gently ushering the device to your throat." + (pc.accessory is MaikesCollar ? " You didn’t even notice how quickly or silently she took your old collar off.":""));
+		output("\n\nYou belong to her. That’s why you fit the ");
+		if(pc.accessory is MaikesCollar) output("new ");
+		output(" collar snugly to your neck and cinch it shut. An agonizing moment comes - your old life ejects into the ether - it goes, and then... nothing. The device closes with a quiet hiss, flattening your [pc.skinFurScales] below its implacable circumference. Once it’s become a permanent fixture of your body, the quiet that settles over you makes you feel so <i>liberated.</i>");
+		output("\n\nMore than you ever have before.");
+	}
+	// merge
+	output("\n\nA moment of queasiness blots Zheng Shi out; you fall backwards, though you’re propped up. You can’t tell what’s doing it until the sensation clears, yet there’s still some kind of <i>interference</i> in your mind, electrical in nature. Something vague and unnatural tingles in the back half of your brain. Overhead, below a fluorescent light, is the face of a gorgeous woman, gazing intently. Her eyes have a dizzying radiance to them, filling the cracks in your shaky memory. You have no idea what’s going on, but you meet those glowing irises above and the grinning face leaning ever closer.");
+	output("\n\nGlossy black lips shimmer in the light, mouthing words you can’t hear. Those succulent pillows, sweet as black licorice, purse into a friendly pout and everything clears. The low whine in your [pc.ears] dissipates and the uneasiness in your gut simmers down. <i>“Nnmm...”</i> you moan, sitting up, much too confused. It’s a little hot in here, weirdly enough");
+	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output(" too warm! These clothes are making it unbearable! Thankfully you have beauteous woman there to help get them off!");
+	else output(", almost hot enough to sweat. Fortunately, the beauteous woman at your side has a rather cooling touch!");
+	output("\n\n<i>“How do you feel?”</i> she asks smilingly. <i>“Perhaps a little nauseous. It will pass, as all pain does.”</i> She grabs your [pc.ass] and gives it a firm squeeze, walking that same hand over your [pc.thigh] and [pc.hip]. <i>“It feels so, so good doesn’t it?”</i> The kaithrit narrows her eyes mischievously, grasping at the back of your [pc.hairNoun]. <i>“Oh, no need to be so quiet.”</i>");
+	output("\n\nYou still can’t find your voice, but she seems rather understanding of the whole scenario. You nod, for now, hoping you can be a little more candid soon. It’s almost a little scary how intensely she stares at you, watching your eyes. Attention from a woman this beautiful is rather difficult to handle. You’re not worthy of it. Really, it’s too much...");
+	output("\n\nWhen you cast your eyes down, she lifts them back up. <i>“None of that. I have some things I’d like to tell you. When you feel up to talking you may speak freely... but only to me. You will be as quiet as a mouse-  well,”</i> she chuckles, <i>“as quiet as they can be around here. Simply put, you will answer only to me and no one else. Understand?”</i>");
+	output("\n\nAutomatically, you agree. You’re nodding so fast that your neck begins to ache! Nothing in this universe would make you happier than to comply with that order! Interestingly, you feel <i>even better</i> in light of that admittance, like someone just put a nice, warm shirt on you after a long steamy shower. What residual tension you felt has been soothed away so thoroughly you wonder if you’ll feel that blissful sensation again if you acquiesce to another request!");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> she pats you on the head. <i>“Once you’re adjusted to your collar, I’d like us to get a little more intimate in the future. I’d love to hear all about your life. I bet nobody else has ever given you the time of day. I’m sure there’s a lot of things you’d be eager to tell me, right?”</i>");
+	output("\n\nFor her!? Yes! Absolutely!");
+	output("\n\nA small shiver works its way through your muscles, like your entire body had been fatally parched and is now being nourished by a life-giving spring. While some small part of your brain is trying its damndest to tell you this artificial euphoria isn’t all it’s cracked up to be... you don’t care. Mimicked though it might be, the innocuous pleasures that your obedience grants you are still glorious waves of emotional contentment you’re happy to ride on.");
+	output("\n\nFor a while she doesn’t say anything. The black-furred catwoman with a fierce, possessive profile shifts her weight to another shoulder, buxom boobies rocking gently. If she were a model waiting for a score, any judge who held up less than ten-fucking-out-of-ten would be a liar. And liars get stomped! You could sit here watching measurements of her juicy chest slide around, take your eyes and your pathetic little brain with them. You don’t want to look away, such is their captivating power.");
+	output("\n\nViolet-purple beads form at the inky plateaus of her onyx nubs, lending them a lovely ebony shine when they sag and leave behind moisture. A whine builds in your throat when it drips onto the deck and you want so badly to catch it, savor it. Unformed need sets your limbs to twitching, aberrant electrical signals running through a body subject to the whims of a very playful mistress.");
+	output("\n\nIf you could look away from her boobs, you’d see an analytical, hawkish expression poking and prodding, sizing you up. Her breaths, her heartbeats, her little laughs, they all keep your sluggish brain focused on what matters most: heavy, taut, milky mammaries bouncing and swinging. <i>Why won’t she let you touch them? Why won’t she give you another order?</i>");
+	output("\n\n<i>“Do you want them that badly?”</i> she asks, fully aware of your stacked lust, how badly you want to nestle deep into them. <i>“Well, slave? Can you answer yet?”</i>");
+	output("\n\n<i>“Y-Yes!”</i> you blurt, loosening that throbbing lump in your throat.");
+	output("\n\n<i>“Ooh... I think that’ll be fine. We can see to the more <b>active</b> arrangements later. But before I give you a little treat, tell me your name.”</i> Her finger strokes the metal of your collar, little touches feeding through the fancy bit of jewelry to stimulate the rest of you.");
+	output("\n\n<i>“[pc.name]!”</i> you answer, completely incorrigible. <i>“[pc.name] Steele!”</i>");
+	output("\n\n<i>“Mm, that’ll do. Come, drink all that you can.”</i> She sits up proper, hefting her shaky bosom with an inviting smirk.");
+	output("\n\nWith all the force that your electronic bondage will allow you throw yourself into the purring kaithrit’s lap, prostrating yourself to the undersides of those smothering mountains. Grasping the back of your head, she slides one of the large, jutting nipples into your mouth, quietly ordering you to suckle.");
+	output("\n\nDiscomfort immediately fades as you gulp down bliss-imbued milk. Worry is massaged away by the two tails wrapping around your abdomen. The epic mounds of curvesome rapture press into you, deforming around your form until pretty much all you can ‘see’ is an expansive squish. <i>“Touch them... gently.”</i> Oh, she spoils you! Your [pc.hands] rise, athrill that they too can feast on these sumptuous breasts. Twitches of pure pleasure run through her body while you squeeze your upquirked mouth full of libido-spiking juice. Spurts of thick warmth splash into the back of your throat. Your cheeks can’t handle the overflow, and a line of kitty-cream trickles down your [pc.lipsChaste].");
+	output("\n\n<i>“Don’t waste it,”</i> she sternly reminds, wiping a finger to the [pc.skinFurScalesNoun]-striping excess, stuffing it delicately into your maw once there’s room. Her tenderness and sincerity, mixed with the rich, delectable milk filling your gut, bring exuberant tears to your eyes that she also wipes away. <i>“Better,”</i> she coos. <i>“Remember your manners while your mouth is full. What I’m about to say I will not repeat, so those ears better still be working.”</i>");
+	output("\n\nJoy blooms in your fluttering heart, layering over a hunger that just doesn’t abate. You listen on your linear mindset.");
+	output("\n\n<i>“Hearing your mistress’ needs will be your whole purpose from now on. You will do only as I command, will serve my needs. It will make you feel very happy. You won’t care where my work takes us. You will always be at my side, pleasuring me, taking care of me, being the most valuable thing to me.”</i>");
+	output("\n\nBubbling lactic fluid gurgles in your throat. Your response is muffled under the eternal streams, but <i>fuck</i> <b>yes</b> that’s what you want to do! Your eyes sort of roll back at the same time, too. Any more of that pleasure will make you shut down!");
+	output("\n\n<i>“Don’t get too excited,”</i> she winks, stroking your face. <i>“You will never get any rest until I’m satisfied. You’re going to be there for me at all times of the day should I need you. Lucky for you, I’m a rather needy girl. I like getting new things, like trying out my new toys, seeing to my property. You’re going to help me with that in any way I choose.”</i>");
+	output("\n\nHer fingernails rake your scalp, focused behind your [pc.ears]. On the cusp of slavish orgasm, she massages her desires into your head. Now your eyes have rolled back, and you’re simply basking in your goddess’ divine, feminine aroma. The ceaseless streams of ambrosia inspire the worst kind of gluttony...!");
+	output("\n\n<i>“I’ll take care of you, protect you, because you’re my slave. Nobody’s going to hurt you. You’ll get to spend every day thinking about how your mistress will come back rich from a raid, wanting to sit back and relax.”</i> Her soft, sweet tones fade into heavy pants. <i>“It’ll be nice, having a reason like you to keep kicking ass. Life’ll be so damn-”</i> she winces, your incisor grazing her nipple <i>“...easy. So much more fun. Heh, you get to suck on boobs for the rest of yours while I have to work even harder. Good thing we found each other.”</i>");
+	output("\n\nShe presses forward, squirting a throat-clogging volume of serenity-inducing love into you. You’re so hot and horny that you can’t do anything but replay everything she said on repeat, cumming to the thought. You’re thrashing in her lap, shuddering and quivering as your belly swells and you suck and suck, breathlessly enchanted...");
+	processTime(50);
+	pc.lust(pc.lustMax());
+	clearMenu();
+	addButton(0,"Next",luckyCatchBadEndWithFSecop2);
+}
+
+public function luckyCatchBadEndWithFSecop2():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("William");
+	output("<i>“Mmm, a little deeper there, [pc.name]. I think you’re holding that tongue back. You wouldn’t be trying to annoy me, would you?”</i>");
+	output("\n\n<i>“Nnnoooo, mistress,”</i> you groan.");
+	output("\n\nMistress’ ass wiggles, and the pussy on your [pc.lipsChaste] stretches around them. You’re trying that new tongue she got for you a while ago and, sadly, you’re not as proficient with it as she’d like. It’s demotivating to hear the bored sighs from above and the tactile lack of enthusiasm in her blinding flanks. But you’re her slave, and a good one at that. You’ve been mouth-deep in twat innumerable times (how did that happen anyway?), you just have to find-");
+	output("\n\n<i>“Ahh!”</i> she twitches suddenly. That’s why she likes you, because you’re a quick learner. Lashing <i>that spot</i> with giddy exultation, you pack your owner’s infallible muff full of juicy, inorganic flesh, spearing her baby-factory in a singular lunge. Your brain’s coping mechanisms are finally kicking in with this rad new augmentation mistress graciously had installed for you, turning you into the ultimate cunt-kisser, demonstrated by the way your new flesh undulates in curvy motions. <i>“Mmm, that’s a good [pc.boyGirl]. It always takes a little encouragement and you’re just the fucking best.”</i>");
+	output("\n\nThere’s a kind of madness in the way you devour her augmented womanhood. Her clit bulges out, inflating with lust - you get a [pc.hand] around it, jerking the erectile fuckpole until she’s bucking the way <i>you</i> love. You impale her right up to the ovaries, still not entirely sure if that part of her is modified or not. The sounds she’s making lanced on your cock-shaming muscle motivates you to drive more of your incredible gift into her soakingly-aroused wetness. <i>“Right there, [pc.name]!”</i> she meows, a full-body purr setting in just before she cums. Orgasm begins with a squirt, and then a slow, steady trickle of femme-cum to slather your trunk-like tongue in succulent bliss.");
+	output("\n\nYour withdrawal is long, slow, and provocative. It’s the embodiment of total, delighted submission. There’s no impulse, only a drag of noisy, lurid flesh from a tensing wet hole of fervently-fucked nerves. You’ve done this so much you know exactly what she enjoys regardless of what kind of firmware upgrades her very-functional vagina obtains.");
+	output("\n\n<i>“Every night is one to remember,”</i> she growls appreciatively, sitting up and letting you taste fresh air. <i>“Who needs a harem when they can have someone so damn devoted?”</i>");
+	output("\n\nYou clean your face - a task very easy thanks to your new organ - and patiently watch her turn around and sit surprisingly daintily on your collarbone. Your kaithrit owner’s face glows a radiant cherry-red as she balances perfectly. This view is the rightful reward for a very good [pc.raceShort]-[pc.boyGirl]. She pets your cheek, <i>“Nice work. Hmhm,”</i> she titters softly, leaning back. <i>“You know better than anyone how good you are at that, but that doesn’t mean I’m going to stop telling you.”</i>");
+	output("\n\nHer flattery makes you swoon.");
+	output("\n\n<i>“I’m not nearly satisfied, however. I can’t quite contain my excitement. I think tomorrow will be a great time to go and claim those company funds you were promised. What do you think, [pc.name]?”</i>");
+	output("\n\nYou swallow, though you’re not sure why. Steele Tech’s like any other corporation: run by greedy assholes having their dance macabre, trying to make off with as much as they can before it goes under. Apparently the brother of the recently deceased CEO has suffered some rather unfortunate losses. His " + rival.mf("son","daughter") + " also got abducted. It’s not going well for them.");
+	output("\n\n<i>“Best to put them out of their misery, right? Imagine all we could get with that money. The Black Void will be on the run at last, and once these gangs have smashed them good, I  may just get out of the whole lawless game. I’ve always wanted to go to the planet Bacchus for a vacation. Did you know the sunsets there are violet-red? That the clouds change colors based on the seasons? I could see us there. Could see myself there,”</i> she closes her eyes, showing a smidge of uncharacteristic weakness. <i>“...Could see me and you at the top of our own suite, not a care in the universe, living well forever.”</i> It remains while she gropes you, touching you all over, enjoying your tactility. <i>“Goodness, I sometimes can’t believe how lucky I am to have you around.”</i>");
+	output("\n\nYour fingers curl into the plain sheets of her bunk while she scoots backwards, straddling your two legs");
+	if(pc.isTaur() || pc.legCount == 1) output(" - she’s well within her right to change you as she sees fit");
+	output(". <i>“Now, that was a decent rest. This little extra I’ve gotten... I want to see what it’ll do to your face. I’ve been thinking about this all week.”</i>");
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
+	output("\n\nShe’s referring, of course, to a new upgrade she’s teased you about. Not the first one she’s gotten - you still have some less-than-stellar things to say about the ‘Dong Drainer’ software that some buffoon peddled to her! Sliding up over ");
+	if(pc.hasCock()) 
+	{
+		if(x >= 0) output("your [pc.cock " + x + "]");
+		else if(pc.hasCock()) output("the hardlight strapon she makes you wear alongside your mountainous bitch-breaker");
+		else output("your hardlight strapon");
+	}
+	output(", the kitty-domme slides down your ");
+	if(x >= 0) output("veiny");
+	else output("luminous");
+	output(" pole, smoothly and gently, meowing every inch of the way.");
+	output("\n\nYou’ll never get enough of that sound.");
+	output("\n\n<i>“If you cum right away, well... I think I’ll have to withhold your reward,”</i> she giggles, cupping a tit.");
+	output("\n\nFuck that! You’ll endur-");
+	output("\n\nAlthough your " + (x < 0 ? "artificial ":"") + "erection has spread her wonderfully, the most indescribable sensation worms its way through your nervous system at a rate your brain cannot cope with. Such a strange feeling; there’s no throb, no twitch, just some kind of soul-crushing pleasure numbing your pelvis. Some faintly bussing texture rubs across the glans of your warm" + (x < 0 ? ", glowing":"") + " erection, interfacing one-on-one with the nerves there before overloading them with ecstasy. Naturally, your [pc.face] contorts and twists into a photo-worthy expression of maddening excitement, the kind of sensitivity so out of this fucking galaxy it has to be an unsafe VR sequence.");
+	output("\n\nGreat, heavy boobs tremble and her whole body vibrates. She is <i>definitely</i> vibrating. <i>“T-T-This mod... f-fuck me... I wasn’t ready for that either!”</i> Your mistress cums straight away. <i>“But let’s make the most of this!”</i>");
+	output("\n\nAs it turns out, a pussy equipped with an industrial-grade motor capable of bone-rattling vibration is really hard to ‘make the most out of’ in one session. Half a minute in on most nights and you were both legless. But you’re more than fine with that. It takes at least a week or two to finally adapt, and it quickly becomes the favorite in your brilliant evenings. The irresistible shine of gratification on her face is matched only by the glow of sensual submission on yours.");
+	output("\n\nYou can’t remember the last time you ever felt pain, stress, agony, any of those things. You’re so busy keeping up with a modded kaithrit on her life of hedonism and conquest that you don’t have time to be bored enough to entertain such thoughts. Once you helped her nab the Steele Tech inheritance for the Cyber Punks, things changed on Zheng Shi. A fleet of ships outfitted with the kind of hardware capable of bringing down super-stations and capital ships in the U.G.C. quickly became a force to be reckoned with, cutting heavily into the Black Void’s operations before reducing them to a shadow of their former power.");
+	output("\n\nZheng Shi and its gangs, to your knowledge, are still a terror among the stars, spoken of in low whispers at the Confederation’s parliament, operating from secrecy. The staff they’ve kidnapped from Core worlds and from the BV were, last you heard, cranking out awesome reserves of firepower to give them the edge on their campaigns.");
+	output("\n\nBut none of that really matters to you, or to your mistress. You both took off to the other edge of known space, finding a comfy life in a skyscraping penthouse with a view of amethyst sunrises and ruby-purple sunsets. She even taught you a thing or two about body modification, entrusting you with her bi-monthly maintenance. Claiming you offered her a passport to comfort and wealth, ensuring that neither you nor her will ever want for materials or succor.");
+	output("\n\nYou’re never apart. Practically every day is spent tucked away in a safe, secure domicile, much too caught up in fucking the hell out of each other in increasingly depraved ways. While another boilerplate U.G.C bulletin flashes on the massive wall-display, warning about another raid by an army of bunny pirates, your kaithrit’s testing out a multi-clit attachment, flinging the remote control against the wall and into a bunch of sparking pieces while jolts fly from her little head-mounted antenna.");
+	output("\n\nWhen you’re both spent, you flop over on the couch in a tangle of overstimulation.");
+	output("\n\nIt kinda bites you really have no idea how you ended up here, but here there is only feeling, no more knowing.");
+	output("\n\nYou love it, and will never think of giving it up.");
+	badEnd();
+}
+
+// F. SecOp Nursing Handjob
+//FEN NOTE: REQUIRES GENITALS. IF HAS COCK, MUST BE COCK THAT FITS.
+// Unique random scene only for PCs classified as a mouse or rodenian of any kind, have encountered Rat’s Raiders (rat thief encounter for now) at least once, have encountered Sec.Ops once, and have genitals.
+// It just happens randomly while wandering the Forge Deck, like that Mouse and Slavebreaker scene, and has a cooldown of about 3-5 days.
+// F. SecOp will approach and bully the PC, inevitably forcing them into a position where they get nursed on aphro milk while she gives a handy/fingers the puss. PC can either run, fight, or allow it to happen. These are generic girls. Just pretend it’s a new person every time. It’s niche enough as is.
+public function mausBullyScene(tEnemy:Creature):void
+{
+	//force female encounter?
+	showPunkSecOp();
+	author("William");
+	pc.createStatusEffect("MausbullyCD");
+	pc.setStatusMinutes("MausbullyCD",60*36);
+	IncrementFlag("MET_SECOP_FEMALE");
+	output("\n\n<i>“What are you doing skulking around here?”</i>");
+	output("\n\nA kaithrit operative encased in an armored suit leaps into view, multi-colored ponytail whipping from inertia. <i>“Hmm... that’s curious...”</i> The projected band of light shielding her eyes dissolves, and yet she doesn’t assume a hostile stance. Instead, she’s content to stand there, gazing at you incredulously. <i>“One of that goofball’s rats, huh?”</i> Her pale eyes wander across your mousey appearance, lingering unusually long on your rodent appendages. <i>“Don’t you all work in groups?");
+	if(pc.armor is RattyArmor) output(" Look at you, all dressed up and all alone! Get too distracted trying to find something valuable?");
+	else output(" Not even in uniform. Didn’t take them for the hazing types, to be honest.");
+	output("”</i>");
+	output("\n\nDoes... <i>does she think you’re part of <b>Rat’s Raiders</b>?</i> You don’t offer any response other than a wary look. You’re not sure if this is an elaborate ruse or if she’s genuinely fooled. It doesn’t seem likely, but maybe you can shake this heat safely if she thinks you belong here.");
+	output("\n\nThe grinning kaithrit advances a step and you retreat one. <i>“What?”</i> She steps forward, you step back. <i>“Afraid of something?”</i> Another step, this time with a change in posture that presents more of her shielded bosom. Now she leaps forward, closing the gap half-way. <i>“Can’t see why,”</i> she remarks with a fresh injection of sarcasm, circling around and changing your direction. <i>“It’s not like there’s an itinerant mouse lost in unsafe territory...”</i> Her expression turns outright mischievous, a sort of predatory wickedness sustaining it.");
+	output("\n\nOne hand goes to cup the underside of her boob, armor folding back in the process to expose the hard tips of her jet-black nipples, moist... and not from sweat. <i>“Lost but found,”</i> she snickers. A glossy purple sheen coats the plump nub, thickening to the wringing twist of a thumb and two fingers. <i>“Good thing, too. Who knows who else might have found you, wanted to hurt that cute face of yours.”</i>");
+	output("\n\nYou fail to avert your eyes from the cyber-kitty’s teasing. The careful and easily followed movements of her fingers make for an entrancing show. It’s an obviously arousing show... and one that’s distracted you long enough. The only thing that jolts you out of this game of cat and mouse is the wall impeding your backwards progress. Suddenly you realize just how expertly she’s entrapped you, and how very close she (and her beautiful rack) is.");
+	output("\n\nFuck! How could this have happened? Stupid, sexy, busty catgirls! You could stop her right here and blow your cover, or make a break for it! Whatever she has in mind can’t be good!");
+	output("\n\nHer demeanor shifts to something victorious. How presumptuous! But... she’s almost got you... and... maybe that wouldn’t be so bad if those tits kept getting closer? Right? They’re really big, and she’s squeezing the supple flesh so passionately. Maybe you’re looking at this all wrong?");
+	output("\n\nWhat do you do!?");
+	processTime(3);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Fight",fightDatMausBullier,tEnemy,"Fight","You can’t cower here! Show her that a mouse is no cat’s prey!");
+	addButton(1,"Run",runFromFemSecShop,undefined,"Run","Make a break for it - <b>Hopefully!</b>");
+	addButton(2,"Let Her",letHerSecOpBullyYou,undefined,"Let Her","Let her close the distance, see where it goes. Submitting to some sexy and extremely dangerous pirate with huge tits can’t be all bad, right?");
+}
+
+//[Fight]
+// Tooltip: You can’t cower here! Show her that a mouse is no cat’s prey!
+// You just have a totally normal fight, like always.
+// Could always come back to add a more PC-dommy variant to this.
+public function fightDatMausBullier(tEnemy:Creature):void
+{
+	clearOutput();
+	showPunkSecOp();
+	author("William");
+	output("It takes a heroic effort to blot out the sizeable image of big milky boob from your mind, but when you do, you raise your [pc.weapon] and tell her to back off.");
+	output("\n\n<i>“Huh?”</i> she blinks, immediately suiting up and grabbing her rifle. <i>“Fuck! You’re not part of that gang! Just some wandering asshole with a mouse fetish. Thanks for ruining my mood. I’ll try not to bruise that face of yours too badly.”</i>");
+	if(silly) output("\n\nHave at thee, foul knave!");
+	clearMenu();
+	CombatManager.newGroundCombat();
+	CombatManager.setHostileActors(tEnemy);	
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.victoryScene(defeatASecop);
+	CombatManager.lossScene(loseToPunkSecOP);
+	CombatManager.displayLocation("PUNK SECOP");
+	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tEnemy);
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+
+}
+
+//[Run]
+// Tooltip: Make a break for it - <b>Hopefully!</b>
+// PC has to make a willpower check, and then a reflex check. If either fail, get booli’d.
+public function runFromFemSecShop():void
+{
+	clearOutput();
+	showPunkSecOp();
+	author("William");
+	// pc Willpower Fail, <40%
+	//Fen note: converted this to diceroll.
+	if(pc.willpower() + rand(20)+1 < 30)
+	{
+		output("You stumble in one direction only to be held back by the infinite power of " + (silly ? "nano-augmentation":"bombshell boobies") + ". The kaithrit’s sensuously swaying breasts freeze you in place. Any direction you turn she’s there, even in places you can’t see. Every step makes it very clear that your place is backed up on a wall - trapped - and staring at them. Why run? Why make a fuss? Beautiful, supple tits are there- Always. There.");
+		output("\n\nAnd now they’re engulfing your [pc.face] into a valley you have no hope (or inclination, really) of fleeing. <i>“That’s better. See? Nothing to worry about,”</i> the operative says in a mocking, tone, stroking your big round ear and weaving her black tails around your waist. <i>“What to do with a lost, little mouse[pc.boyGirl]?”</i>");
+		//[Next] \\ Go to [Bullied]
+	}
+	// pc Willpower Success, <100%
+	else
+	{
+		output("Gulping, you immediately scan for an escape vector lest you be completely ensorceled by the techno-feline’s swaying chest. Before darting off, you perform a feint and sprint in the other direction!");
+		// pc Reflex Fail, <75%
+		//Fen note: converted this to diceroll.
+		if(pc.reflexes() + rand(20)+1 < 40)
+		{
+			output("\n\nBefore you make it even halfway down the corridor, the lawless kitty-cat leaps ahead by virtue of her superior limbs. The bitch didn’t even bother to cover up her chest! Before you can issue your [pc.legs] a change in direction, you barrel face-first into a pair of pendulous jugs. The impact of [pc.skinFurScales] to aggressively-warm flesh causes them both to flop back on either side and slap together around your head, banded tight by a pair of arms now wrapped around the back of your [pc.hairNoun].");
+			output("\n\n<i>“Got ‘ya,”</i> she coos, waltzing you back to the wall like a bully their mark against a locker. Her two black tails have wound around your waist. <i>“Now, what to do with you, my little mouse[pc.boyGirl]...”</i>");
+			//[Next] \\ Go to [Bullied]
+		}
+		// pc Reflex Success, <100%
+		else
+		{
+			output("\n\nNo matter how fast your feet beat against the floor, the kaithrit operative’s always one leap ahead, bounding insane distances by virtue of her augmented limbs. Giggles of delight circulate through your [pc.ears] up until she heads you off in an obvious trap. You saw it coming, and were only barely prepared by great reflex to make the shift in direction necessary to bypass her and her hypnotic, mind-controlling boobs. She grabs nothing but air while you twist around a corner, daring not to look over your shoulder.");
+			output("\n\nHeart beating and lungs burning... you’ve shaken her. Whew.");
+			output("\n\nDammit. Speaking of shaking, <i>those tits...</i>");
+			pc.energy(-10);
+			pc.lust(5);
+			processTime(8+rand(3));
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return;
+		}
+	}
+	pc.lust(pc.lustMax());
+	// sceneTag: PC lust maximizes
+	clearMenu();
+	addButton(0,"Next",letHerSecOpBullyYou);
+}
+
+//[Let Her...]
+// Tooltip: Let her close the distance, see where it goes. Submitting to some sexy and extremely dangerous pirate with huge tits can’t be all bad, right?
+public function letHerSecOpBullyYou():void
+{
+	clearOutput();
+	showPunkSecOp();
+	author("William");
+	output("You inhale, deeply, and take your mind off the potential dangers. If she <i>really thinks</i> you’re a member of the rat pack, then she certainly wouldn’t want to be the one to kick off some gang war on a station this size. Besides, why run? She’s already got you cornered, got you where she wants you. The view isn’t all that bad, and it’s getting better by the second. Her nipples inexorably stiffen into puffy, suckable pebbles. You swallow your worries and remind yourself that what she’s doing is designed to give <i>only you</i> pleasure before letting more of that healing wobble come in.");
+	output("\n\nWhen she takes the final step that pins you between her and the wall, you’re wholly engulfed in kaithrit boobflesh. Your [pc.face] is smothered in the fathomless depths of her warm, slightly-sloshing cleavage. Both of her warm, fluid-filled mammaries close around your cheeks, then your head, and you can’t help but feel relaxed, if a little hazy. A gentle sort-of writhing works out all your tension while a steady hand strokes the outer rim of your mousy ear and two tails warp around your waist.");
+	output("\n\n<i>“See? No need to be on edge, cutie. I’m not some random merc who’ll fuck anything that moves, and we have to <i>try</i> not to kill each other around here. That said, what should I do with you...”</i>");
+	output("\n\nWhatever it is, you honestly can’t wait for it now.");
+	processTime(4);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",getBulliedByFemSecop);
+}
+
+public function getBulliedByFemSecop():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("William");
+
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	// Cock takes priority, but you’ll see.
+	output("<i>“Stay still.”</i>");
+	output("\n\nNot a second after her whisper enters your mind that she swaps positions and drags you to the ground with her. She sits back against the wall and lays you across her lap in the blink of a cybernetic eye, cradling you under her matron-sized bosom. Purple droplets of her milky juice bubble out of nipples enlarged to the size of battering ram heads, trickling down the flaw-free curves of her mouse-smushing bosom. <i>“There,”</i> she coos" + (pc.tailCount > 0 ? ", her tails restraining your own":"") + ". <i>“I saw you from far away and just <b>had</b> to have you here. I know this is all happening so fast, but something about you just made me want to get comfy. Your group doesn’t spend enough time on relaxation, and since I myself need a little relief... why not help at least one of them with that?”</i>");
+	output("\n\nShe leans forward and her rack- no, <b>shelf</b> of titty ‘pools’ across your head and [pc.chestNoun], obscuring you. The pumps of her heart can be felt in your cheeks and behind your eyes. Even though everything is dark, you can still see the shape of her titties inside your ocular lids, and every impressible cardiac beat defines and outlines her chest more clearly. <i>“Feeling better? I guess I should just get to the point: you’re not in danger, but you are gonna be really horny after I’m done. You’ll thank me later, sweetie.”</i>");
+	output("\n\nThe kaithrit’s slightly-muffled words have the ring of truth, and you nod, quite unable to speak as is. By now, the power of her tits has gotten so compelling that you graciously accept your role as an uninitiated rat thief if just to indulge more in it. Her plush, expansive boobs, jiggling and rippling all over, have a unique kind of shakiness that could probably brainwash an entire star system.");
+	output("\n\n<i>“Touch me,”</i> she breathes, pulling away. <i>“I want you to feel me. Play with them.”</i> It’s hard to pay attention to her voice when you’re so wide-eyed and distracted by the quaking wobble playing out in her sprawling chest. Their warm, milk-taut softness was everywhere. You want to be completely surrounded in that again. <i>“C’mon,”</i> her shoulders gyrate, clapping her dreamy tits together hard enough to spurt, <i>“don’t keep me waiting. They’re yours.”</i>");
+	output("\n\nA finger wipes away the drool from your parted lips. When did that happen? How long have you been staring like some teenage virgin? Cupping and hefting the [pc.hand]-overflowing boob, you appreciate its weight. Almost immediately the black-tailed kitty-cat moans, though you can’t tell if she’s that sensitive or loves this as much as you do. Underneath all the machine augmentation, she’s still a woman with very organic needs.");
+	output("\n\nShe really won’t stop you, and you eagerly give into your emotions and boob-lust, delighting in her ear scritches and head rubs. Rubs and caresses reward you with an approving, full-body purr that quickly and silently takes you out of Zheng Shi. Gropes and rough squeezes evoke heart-catching meows. The grinning and gratified operative shifts a little, biting her lower lip, face reddening with uncontrolled lust. <i>“Just keep touching,”</i> her aroused voice flutters. <i>“I only want you thinking of how good they feel, how lucky we are to be in this position. I want you to see these boobs in your dreams.”</i>");
+	output("\n\nLust-heat blooms in your groin as the imperious pirate-cat returns the favor.");
+	// Herm or Cock (append, no new pg)
+	if(pc.hasCock())
+	{
+		output(" " + (!pc.isCrotchExposed() ? "Slender fingers briskly tug your clothes away until your [pc.cocksIsAre] exposed, writhing and throbbing in the air. ":"")  + "Burningly-red dickskin is wrapped up tight between the cat’s digits, her palm sliding up your rigid flesh in ardent see-saws of the wrist. <i>“Dribble some precum for me, cutie. Show me how much you love my tits.”</i> You already were, but her slutty spiel is an invisible coaxing directly to the surface of your prostate. [pc.CumColor] lube <i>squirts</i> at her request, and you can only marvel at how ready to please your [pc.cocksLightIsAre]. <i>“Good [pc.boyGirl], she sighs" + (pc.balls > 0 ? ", fondly kneading your ballsack":"") + ". Don’t you worry about any raiding or training or working, you just think about me.”</i>");
+		output("\n\nYou sink further into the commanding kaithrit’s mind-melting presence, secretly ashamed that you ever thought of turning her away. The smooth, wet pressure of her hand finds all the good spots on your juicy dick, matching the strength you apply to her burgeoning, messily-leaking breasts. Modified muscles map your girth until every vein is stroked-to-swelling on rhythmic jackings. <i>“Mmm...  hrrryes...”</i> she groans, half-meowing again, eyes shining while she handles your meat.");
+		if(pc.balls > 0) 
+		{
+			output("\n\nThe feisty feline, in a feat of manual alacrity, thumbs your cumvein while her fingers drop to your [pc.sack]. <i>“");
+			if(pc.ballDiameter() < 3) output("Such a lovely size, " + (pc.balls == 1 ? "it fits":"they fit") + " into my hand.");
+			else if(pc.ballDiameter() < 6) output("Ahh, what a good size. " + (pc.balls == 1 ? "A b":"B") + "ig, full, ball" + (pc.balls == 1 ? " like this":"s like these") + " must make cumming feel so good.");
+			else output("Oh my, what a package you carry around. Why are you rats so opposed to a good time when you get this swollen?");
+			output("”</i> Her fingers trace a flowing script into the sperm-stretched exterior of your churning nutsack, writing instructions for it on how to get even bigger. She does a lot with one hand. Although you’re missing the practiced snaps of her wrist around your mast, her thumb keeps your [pc.knotOrSheath " + x + "] company so that she can make you writhe with ecstasy. The ball-slut jostles your breed-stash until thick quantities of goo pour from your peak, staking her claim on your virility by paying thoughtful and meaningful tribute to your tight and unstably-clenching [pc.ballsNoun]. Something tells you your orgasm is going to be all the better for this.");
+		}
+		if(pc.hasVagina()) output("\n\n<i>“Ooh, you’re the first mouse I’ve seen to have both. Most of you are rather plain, no offense.”</i> Your [pc.cocksLightIsAre] abandoned in a moment of tribulation to your [pc.pussy]. Too late you realize how much your [pc.vaginaColor] cunny needed the attention, and now that it’s gotten a taste it’s pulsing and glowing, letting loose a deluge of [pc.girlCumFlavor] juices for the possessive pussy-cat’s use. Her plunging fingers push you nearer to premature climax, taking you for a spin around that hole by stroking only barely the insides. <i>“That’s right. Moan for me.”</i>");
+	}
+	// Pussy only (append, no new PG)
+	else if(pc.hasVagina())
+	{
+		output(" " + (!pc.isCrotchExposed() ? "You don’t even feel the kaithrit slip your clothes away to expose your [pc.pussies]. ":"") + "Juice-glazed pussyflesh bursts in pleasure the moment it feels your dom’s fingers exploring the " + (pc.puffiestVaginalPuffiness() > 1 ? "pumped ":"") + "exterior, rubbing up and down your vulva until fresh, syrupy lubricants are smeared on its needy surface. Every fingertip swims through your [pc.vaginaColor] slit, spreading your feminine slopes a little bit wider with each pass. <i>“");
+		if(pc.wettestVaginalWetness() < 2) output(" Ah... I was expecting a little more wetness. Don’t worry, we can fix that.");
+		else if(pc.wettestVaginalWetness() < 3) output(" Just a little touching and you could maybe fill a bucket. That’s cute. Let’s try for more, shall we?");
+		else output(" You’re going to flood the forge deck at this rate... but that’s exactly what I want to see from a good [pc.boyGirl].");
+		output("”</i>");
+		output("\n\nA whine builds in the back of your throat and you arch into her thighs. All that finger-pumping ecstasy drives you into a miniature orgasm. Your eyes glaze over; you gasp in joy, already dizzy from knuckle-deep abuses. Smooth plunging nails rake against clusters of nerves, dragging you from one visceral internal clenching to the next. A swirling thumb revolves around every circular inch of your [pc.clits]. You’re squeezing so hard that you almost trap her inside, spunking her to the elbow in thick, cummy dribbles, all the while being told <i>what a very good [pc.boyGirl] you are.</i>");
+		if(pc.vaginalPuffiness(0) > 0 || pc.vaginas[0].type == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Your pussy is rather obscene, isn’t it? Oh, please don’t take that as a criticism,”</i> she giggles, delicately cupping the huge, swollen lips ringing your womanhood. <i>“There’s so much here you might even be able to handle a leithan. Those Jumpers would crawl out of the metalwork to fuck this.”</i> Sweat and pussy-greased fingers squeeze the chubby folds of your outer cunt together, truly in awe of how much there is to enjoy. She can’t quite settle into one place for long, too enamored with pressing and rubbing as much of it as possible.");
+		if(pc.clitLength >= 3) output("\n\n<i>“Getting into the mods, huh?”</i> Before you can wonder what she means, her masterful hand curls around your clitoral anatomy, swollen and grown to sizes never intended by nature. <i>“Look at that, big enough to use like a penis, and far, <b>far more sensitive.</b>”</i> Your love-rod is tweaked and tugged like a lever, and your body reacts in the most blissfully pliant and aggressive manner: by cumming, and it’s an almost painfully extended process. She shows no signs of caring that you’re about to shut down, at least until it’s nearly too late.");
+	}
+	// merge
+	output("\n\n<i>“More,”</i> she practically slurs, <i>“drink from me.”</i> You’re unprepared for the forward shift that slides one pluckable nipple past your [pc.lipsChaste]. On instinct you seal around the tap and suckle from kaithrit bosom, cheeks hollowing to draw out all the yummy treat. A cool, prickly sensation spreads through your membranes when her milk squirts onto your tastebuds and drowns your palate. Rising heat elicits a groan and steady drool as your sensitivity magnifies, elevated to precarious heights.");
+	output("\n\n<i>“Keep it up. I want you to cum really hard.”</i> You dial up the pace of your boob-fondling, letting your mind drift after the first gulp. Her creamy treat nourishes you, at once revitalizing and enervating. You’re so pliable that you don’t want to ever get up from this position. Feeling her hand ");
+	if(pc.hasCock()) output("around your [pc.cockNoun]");
+	else if(pc.hasVagina()) output("inside your [pc.pussyNoun]");
+	output(" while you wiggle your tongue around a bursting teat is overwhelmingly erotic.");
+	output("\n\nA second effect makes itself known. Something in her milk makes your [pc.lipColor] lips feel swollen and engorged as a heat once ticklish becomes intense and almost suffocating. If you could see your cheeks now, you wouldn’t blame anyone for thinking you fell victim to a rainbowtox prank. There’s numbness, and it disappears every time your lips firm for another suck, and that sensation is now so intense that it’s blindingly pleasurable.");
+	output("\n\n<i>“Good [pc.boyGirl], good [pc.boyGirl],”</i> she murmurs, eyes shut while she gives you a handy. The scent of sex fills your nostrils. Rivulets of lactic purple flow from your overstuffed cheeks, your body simply incapable of keeping up with the flow. Forget Steele Tech. Forget the inheritance. You just want to sit here and be nursed all day. Who knew that a pirate could be so tender, so passionate?");
+	output("\n\nYou squeeze the buxom boob until bursts of torrid goodness are ignoring your reflexes and flooding your gullet. Once or twice you spare a [pc.hand] to squeeze her other boob, dousing your [pc.skinFurScales] in more drug-enhanced milk. It occurs to you that if she told you to do anything, instructed you carefully, you may end up listening too obediently. Fortunately, training you to do anything isn’t her goal, as evident by her incessant yowlings. The knowledge that she’s some random criminal surfaces only to get dunked like an unwelcome guest.");
+	output("\n\nShe’s vibrating inside and out. There’s certainly no way either of you are going to stop, bound together on a journey to orgasm. Your pelvis squirms with the need to vent your raging arousal. All your aphrodisiac-imbued needs compress down into a singular surge too much for you to endure.");
+	// Hermgasm or Cockgasm
+	if(pc.hasCock())
+	{
+		output("\n\nHeart thumping, breeding urge rushes through your [pc.cocksLight]. She makes every attempt to maximize it while your mouth goes slack. Waves of juice rush out from top and bottom - milk from your lips, and [pc.cum] from your [pc.cockHeads]. The [pc.cumVisc] fusillade spatters her hand and the floor in [pc.cumColor] jizz, your squeals fading into horizons of soothing kaithrit titty." + (pc.balls > 0 ? " A squeeze to your nutsack expedites the process, launching a rope of steaming-hot cum straight towards the overhead light.":"") + " Your [pc.hips] jerk upwards, gliding through the palm-pussy until your sperm-packed spooge is thoroughly spent so that her wrist wears your seed like a [pc.cumGem] bracelet.");
+		if(pc.hasVagina()) output("\n\nIt’s not over yet. She’s seeing to your feminine sex, tweaking and tugging the clit and forcing a hermaphroditic orgasm. Various buttons and switches are thrown, and [pc.girlCum] bathes her in estrus fragrance. " + (pc.isSquirter() ? "Your waist locks up, detaching you from your lower end. Your [pc.pussiesLight] rob everything of muscle control, squirting in tune with fading masculine bliss.":"The gaspless, depthless sensation of girlish ejaculation combined with fading masculine bliss remains a sensation uneroded by repeated experience. Just <b>feeling</b> the syrupy lines leaving your body, trailing down flushed, satisfied skin...."));
+	}
+	// Pussygasm
+	else if(pc.hasVagina())
+	{
+		output("\n\nYou scream. It’s as necessary an urge as ejaculation. Your [pc.vaginaColor] interior is opened to an obscene degree by the unsympathetic operative’s grip, swirling you in the final prelude to system-crashing bliss. Your tongue goes slack; you arch back and needfully wiggle; you fall from the milky nipple, half-gargling on what’s still in your maw. " + (pc.isSquirter() ? "A squirt of [pc.girlCum] girds her wrist with a fancy bracelet of [pc.girlCumGem]-encrusted girlmusk, and then more. [pc.EachPussy] rob the rest of you for the strength needed to make these hip-straining discharges work, post-eruption always leaving you quivering and anticipating the next.":"Sweat builds on your brow while you’re fingered into incomprehensible ecstasy. She’s so good with it that you feel that sort of gaspless, depthless enjoyment, all the thick beads of venting lady-lust trailing down well-sated pussyflesh. [pc.GirlCumGem] leavings mark the kaithrit’s hand in your fragrant dew."));
+	}
+	// merge
+	output("\n\nSighing contentedly, you relax in her lap, on her thighs, sleeping on a puffy white cloud under a blanket of boob. A stroke to your head keeps you conscious. <i>“Good, good, now...”</i> she huffs, slowly moving. You’re suddenly aware of a new scent in the air. <i>“I hope you don’t think that this was all about you. Oh, spoiling you’s fun, but don’t you think about resting yet, mouse[pc.boyGirl].”</i>");
+	output("\n\nShe lays you flat on your back and positions herself between your legs, straddling your waist as if to fuck you missionary. " + (pc.hasCock() ? "Your [pc.cockNoun] slaps into your belly with a wincing clap.":"Your [pc.pussyNoun] winks, secreting a little more juice.") + " Hovering above your genitalia is <i>her</i> pussy, an obvious implant with seams separating it from her body. The synthetic, gushy crease is already swollen, ready to fuck.");
+	output("\n\n<i>“Time for you to hold up your end,”</i> she cackles.");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mouseBullyFuckyWucky);
+}
+
+public function mouseBullyFuckyWucky():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("William");
+	
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Right. How could you forget the part where she backed you into the wall and laid claim to your body? She takes her time, too, lifting you up in preparation to enjoy you amazon style.");
+	// Herm or Cock (append, no new pg)
+	if(pc.hasCock())
+	{
+		output(" Your tender [pc.dickSkin] is hefted and aligned with her beading passage. She doesn’t delay, ");
+		if(pc.cockVolume(x) > enemy.vaginalCapacity(0)) output("sliding you into that silky-wet pocket and stretching her taut channel of artificial muscle around your [pc.cockType] girth");
+		else output("planting her silky-wet pocket on your totemic girth and grinding against it");
+		output(".");
+		if(pc.cockVolume(x) > enemy.vaginalCapacity(0)) output(" <i>“Hah, aren’t you supposed to be a thief? Crawling through tight spaces, keeping a low profile... the only thing you can fit in your pocket is this big dumb dick. Maybe don’t get into the illegal stuff next time, huh?”</i>");
+	}
+	// Pussy Only (append, no new pg)
+	else if(pc.hasVagina()) output(" Her silky-wet cunt plants down on your [pc.pussy], grinding her techno-slit into yours regardless of post-coital tenderness. The sheerest kind of joy prompts you to let out a muffled cry as your vaginal flesh is assaulted by the alien catgirl in such a manner. Vulva slides off vulva, and clit deflects off clit - it’s the most perverse thing.");
+	// merge
+	output("\n\nThere’s absolutely nothing you can do about the way she takes you right here, right now, riding you into the deck. One gyration she laughs, the other she meows, the next she purrs, and so forth. She drowns your crotch in twat, putting your body through its paces. Now you know why those rats always travel in groups. It’s not because rodenians are vulnerable, it’s because these predatory cats have it out for them. At this point, you believe it, and what actually hurts just a little is knowing that they won’t thank you for taking this heat for them.");
+	output("\n\nThe kaithrit’s boobs, bulging downward, maintain their glorious roundness to spite gravity. Aphrodisiac-laced milk spills out in continuous bubbly tides, painting your [pc.skinFurScales] with violet highlights. Not only is your appearance temporarily bathed in lactation, but the chemical inside it responsible for your addled state of mind seeps into your dermis, reigniting the spark in your libido.");
+	output("\n\nCreamy amethyst straits pour off your [pc.chestNoun] and abdomen. The rotation of her hips is unnatural, aided by limbs capable of more than their biological counterparts. <i>“Make that face again!”</i> she cries, fire in her leonine eyes. Her hips rise up and smack down, thwapping against your [pc.thighs], and you make that face again. The next time is better than the last. Pleasure-saliva flings off in arcs with every pelvis-chipping plow. <i>“Finding you was the best luck I’ve had lately. I’ve gotta go out soon, and I didn’t want to be so distracted. Maybe you’ll share this with your friends when you get back? When I’m done? Wouldn’t mind having a few more of you in my lap if you’re this much fun!”</i>");
+	output("\n\nThe operative lays into you proudly and ferociously, driving you to cum. You’ve already cum three times, but here’s the fourth laying into you and driving into her. She always cums at the same time, saturating you in sizzling-hot relief. You don’t think you have anymore in you; you beg for a little mercy, hoping she might want to take it a little bit slower.");
+	output("\n\nOf course, she doesn’t. In fact, your disjointed comments only intensify her want to <b>use you.</b>");
+	// Herm or Cock
+	if(pc.hasCock())
+	{
+		output("\n\nSoaking-wet kaithrit muff, a machine in its own right, practically vacuums another orgasm out of your innards. You can’t do anything but wear gradual expressions of excitement and ahegao that she’s no doubt snapping photos of with some hidden augment to jill herself off with later. Her grip strengthens on your limbs as she comes down again, engaging every possible function of her cock-milking quim. It controls your orgasm, denies it for effect, produces it when desired. The realization that her pussy is such a technological marvel that it can do this to you doesn’t give you the means to resist its extremely acute efficacy.");
+	}
+	// Pussy Only
+	else if(pc.hasVagina())
+	{
+		output("\n\nBeautifully sopping-wet, the kaithrit’s twitching quim slips into yours. One hill of vaginal flesh rakes against your own and against the inside, desperately seeking pleasure best found from a male. All you can do is sit there and wear expressions of ecstasy and ahegao like you’re trying on new clothes at the boutique - something tells you she’s snapping plenty of pics. Her pussy is meant to take cocks and handle them with thought-obliterating precision, but against another pussy its arsenal is simply unnecessary or superfluous. One part isn’t, however, and that’s her rapidly extending clit, growing well into footlong territory, exposing vast amounts of overly sensitive flesh, the stimulation of it taking her nearer to desired release.");
+	}
+	// merge
+	output("\n\nYou cum again, hoping the sixth... eighth...?");
+	
+	/*OLD
+	output("\n\nNo, it’s not over yet. She wants at least one more. Your sore crotch is already telling you how much it’s going to hate you for this, that you didn’t do a good enough job of getting away or asserting to avoid the aches and pains that will come.");
+	output("\n\nAt least all the milk you’re catching is reducing it, somewhat...");*/
+
+	//New
+	output("\n\nNo, it’s not over yet. She wants at least one more. Your sore crotch is already telling you how much it’s going to hate you for this, that you didn’t do a good enough job of getting away or asserting to avoid the aches and pains that will come.");
+	if(pc.cockVolume(x) < enemy.vaginalCapacity(0)) output(" Your [pc.face] is a mess of your own seed, pumping lamely out of a bulky dick slapping lewdly into your own body." + (pc.isBimbo() ? " Sucking it happens naturally, you can’t let any more cum be wasted!":""));
+    
+	output("\n\nAt least all the milk you’re catching is reducing the stress, somewhat...");
+
+
+
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",theEndOfMausBullyReal);
+}
+
+public function theEndOfMausBullyReal():void
+{
+	clearOutput();
+	output("nGroaning woozily awake, you sit up with a shock and rush of air, frantically checking your vicinity for the catgirl... or any other pirate. Wait, this isn’t where you were...");
+	output("\n\nOh wait, it is. You, and your belongings, were moved out of sight. Yeah. Still the same area, because the stink of your tryst is still in the air. It’s a thoughtful gesture, but not one you’re entirely happy about. Alas, that kaithrit was little more than a love ‘em and leave ‘em Sagittarius...");
+	output("\n\nWhen you take stock of yourself for a change, you’re absolutely drenched in milk... and still rather horny. Your [pc.legsNoun] go bowlegged the moment you stand, the after-effects of your sex still lingering. Inside, too, there’s also a higher temperature. That milk no doubt had a rather strong effect on your libido...");
+	processTime(25);
+	pc.libido(2);
+	pc.applyMilkBathed();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 //Victory
 public function defeatASecop():void
 {
@@ -588,6 +1434,8 @@ public function defeatASecop():void
 	{
 		if(enemies[i] is SlamwulfeDrone) CombatManager.removeHostileActor(enemies[i]);
 	}
+	if(enemy.mf("m","f") == "m") secOpMaleSubmission(-1);
+	else secOpFemaleSubmission(-1);
 	//HP
 	if(enemy.HP() <= 1) output("Falling to the ground with a whine and a burst of sparks, the kaithrit security operative barely catches [enemy.himHer]self on [enemy.hisHer] hands and knees. [enemy.HisHer] arms wobble for a second before [enemy.heShe] pivots to fall heavily on [enemy.hisHer] [enemy.butt]. <i>“Fine, fine. I guess you </i>do<i> belong up here. Just... don’t fuck me up too bad, alright? If you try and off me, every other Cyber Punk on station’ll be swarming over you worse than Rat’s Raiders on a corporate freighter.”</i> [enemy.HeShe] jabs sharply at the antenna above [enemy.hisHer] ear, panting heavily but otherwise lacking any life threatening injuries. <i>“If the apology isn’t good enough for you, there’s other ways I can make this up to you with my tongue. Just... no more weapons, okay?”</i>");
 	//Lust
@@ -1184,7 +2032,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	// PC lots of cum
 	else
 	{
-		output("\n\nYou have no idea if this techno-feline’s womb is modded, but it’s sure swelling gravid with [pc.cum] like any other would. Her spunk-sucking pussy expertly massages and and palpates your urethra, making every powerful ejaculation an exquisitely pleasurable and unforgettable experience as you pump her womb" + (y >= 0 ? " and colon":"") + " full and fuller with [pc.cumVisc] [pc.cumNoun].");
+		output("\n\nYou have no idea if this techno-feline’s womb is modded, but it’s sure swelling gravid with [pc.cum] like any other would. Her spunk-sucking pussy expertly massages and palpates your urethra, making every powerful ejaculation an exquisitely pleasurable and unforgettable experience as you pump her womb" + (y >= 0 ? " and colon":"") + " full and fuller with [pc.cumVisc] [pc.cumNoun].");
 		if(pc.hasKnot(x)) output(" You’re bloating her so much that with each pulse and throb, [pc.cumColor] seed begins to leak out around your knot" + (y >= 0 && pc.hasKnot(y) ? "s":"") + ".");
 		if(freecocks > 0) output(" Your unslotted " + (freecocks == 1 ? "member helplessly sprays":"[pc.cocksLight] helplessly spray") + " [pc.cum] all over her back and yourself.");
 	}
@@ -1496,6 +2344,7 @@ public function wsanTaurServicingLoss():void
 {
 	clearOutput();
 	author("Wsan");
+	IncrementFlag("SECOP_TAURSLUTTINGS");
 	showName("‘TAUR\nSERVICE");
 	output("Chaos reigns. Jostled from every side as people continually brush past you, knock into you, and almost send you spinning like a top, the din of metal clashing thunders in your ears. A rough hand squeezes your arm and turns you around to gaze into the displeased visage of a gruff-looking older ausar man wearing a chef’s hat.");
 	output("\n\n<i>“What are you doing just standing around?! Get this out to table seven!”</i> he barks in your face, practically tossing clinking plates into your arms.");
@@ -1722,7 +2571,7 @@ public function tailMilkTheMaleSecOp():void
 	//Horsepussy
 	if(pc.hasTailCunt(GLOBAL.TYPE_EQUINE)) output("\n\nThe fat mare-pussy at the end audibly squelches around the feline’s rod, its chubby lips wobbling slightly as it is split open, lips beautifully taut. That silver cock is every bit as thick as the horse-cocks your cunt was meant to take, every bit as beautifully girthy. There’s a pang of disappointment from your tail that he has no medial ring to grind against your nerves, but the swollen mushroom tip at his head feels every bit as good as a flare as it burrows deeper, pulled inside by the concentric, flexing rings of muscle.");
 	//Dogpussy
-	else if(pc.hasTailCunt(GLOBAL.TYPE_CANINE)) output("\n\nThe slim canid pussy at the end strains to swallow the feline’s girthy rod, its animalistic lips straining and taut. That silver cock is every bit thick as an ausar mod-junkie’s and and even harder. There’s a pang of disappointment as you slide down that there’s no knot to really pop your tail-pussy open, no gloriously engorged bulb of flesh to lock every droplet of cum inside, but the swollen mushroom head at the tip feels almost as good as it burrows deep, swallowed up by the concentric, flexing rings of muscle.");
+	else if(pc.hasTailCunt(GLOBAL.TYPE_CANINE)) output("\n\nThe slim canid pussy at the end strains to swallow the feline’s girthy rod, its animalistic lips straining and taut. That silver cock is every bit thick as an ausar mod-junkie’s and even harder. There’s a pang of disappointment as you slide down that there’s no knot to really pop your tail-pussy open, no gloriously engorged bulb of flesh to lock every droplet of cum inside, but the swollen mushroom head at the tip feels almost as good as it burrows deep, swallowed up by the concentric, flexing rings of muscle.");
 	//Otherpussy
 	else output("\n\nThe wet, tentacle-mounted pussy at the end strains to swallow the feline’s girthy rod, its lips wet dribbling clear lubricants as it slides down. There’s a pang of disappoint that he isn’t somehow thicker, that his cock isn’t covered in exotic, stimulating nubs, or that his dick mounted among a bevy of clit-stimulating tendrils. Still, his swollen, mushroom-like head strokes gloriously down your passage, swallowed deeply by your concentric, flexing rings of muscle.");
 	//Merge

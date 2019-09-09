@@ -148,12 +148,19 @@ public function korgiTranslateProgress():Number
 	if(flags["ULA_OTHER_TRIBES"] != undefined) qualifyingEvents++;
 	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
 	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
-
+	// Lund
 	if(flags["LUND_FUCKED_OFF"] != undefined) qualifyingEvents++;
 	if(flags["LUND_GO_AWAY"] != undefined) qualifyingEvents++;
 	if(flags["LUND_LEFT_FOOLISH"] != undefined) qualifyingEvents++;
 	if(flags["LUND_LAST_SEX"] != undefined) qualifyingEvents++;
 	if(flags["WARGII_PROGRESS"] == 3) qualifyingEvents += 3;
+	//Kiona
+	if(flags["KIONA_TALK"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_KIONA"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_YOU"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_HUNTING"] != undefined) qualifyingEvents++;
+	if(flags["KIONA_TALK_SHOP"] != undefined) qualifyingEvents++;
+	if(kionaLuciniteQuestStage() > 0) qualifyingEvents += kionaLuciniteQuestStage();
 
 	qualifyingEvents *= 4;
 	if(qualifyingEvents >= 100) qualifyingEvents = 100;

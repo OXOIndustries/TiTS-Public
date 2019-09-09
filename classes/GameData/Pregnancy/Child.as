@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy
 			var c:Child = new Child();
 			c.RaceType = raceType;
 			c.MaturationRate = matRate;
-			c.BornTimestamp = kGAMECLASS.GetGameTimestamp(); // Might just switch this to whole days passed, as a resolution "better" than that is kinda irrelevent
+			c.BornTimestamp = kGAMECLASS.GetGameTimestamp(); // Might just switch this to whole days passed, as a resolution "better" than that is kinda irrelevant
 			
 			var possGenders:Array = [];
 			if (maleChance > 0) possGenders.push( { w: maleChance, v: ChildManager.GENDER_MALE } );

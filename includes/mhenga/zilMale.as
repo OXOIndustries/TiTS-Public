@@ -1393,6 +1393,8 @@ public function useTailOnZilWhenUWin():void
 
 public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 {
+	if (pc.pregnancyData[pregSlot].pregnancyType == "ZilBullPregnancy" && getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR)) return zilBullPregEndScene(numBabies);
+
 	clearOutput();
 	showName("\nBIRTHING!");
 	author("HugsAlright");
@@ -1479,7 +1481,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		if(numBabies <= pc.totalBreasts()) output(" one for each breast");
 		else output(" and unfortunately you don’t have enough breasts for all of them, resorting to having them take turns");
 		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a zil’s appearance, but with [baby.skinTone] human skin like yours, and [baby.hairColor] fuzz atop their heads.");
-		output("\n\nAfter you spend a little bit more time making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few times; before you can say “SteeleTech,” a drone prepared to carry your children to your personal nursery arrives. They seem to have no trouble getting into or out of your ship, docking with the nearest airlock. You carefully place your newborns inside the cushioned, life-supported compartment, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself and detach safely from your ship before flying off, en-route to Tavros.");
+		output("\n\nAfter you spend a little bit more time making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few times; before you can say “Steele Tech,” a drone prepared to carry your children to your personal nursery arrives. They seem to have no trouble getting into or out of your ship, docking with the nearest airlock. You carefully place your newborns inside the cushioned, life-supported compartment, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself and detach safely from your ship before flying off, en-route to Tavros.");
 		output("\n\nYou let out a heavy sigh, a little pang of sadness caused by having to leave your kids like that so soon, but the rational part of your brain reminds you that uncharted space is no place for a baby to be. With that, you");
 		if(!isNude) output(" dress yourself and");
 		output(" prepare to continue your journey as a new " + pc.mf("dad", "mom") + "...");
@@ -1541,7 +1543,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		if(numBabies <= pc.totalBreasts()) output(" one for each breast");
 		else output(" and unfortunately you don’t have enough breasts for all of them");
 		output(". Looking at them as they enjoy their first meal, you notice they’re some sort of biological chimera, possessing a zil’s appearance, but with human skin, [baby.skinTone] like yours, and [baby.hairColor] hair too.");
-		output("\n\nAfter a few more moments of making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few time, and before you can say “SteeleTech,” a drone prepared to carry your children to the your personal nursery arrives. They seem to have no trouble getting to you, hovering around and repeating pre-programmed commands. You carefully place your newborns inside the cushioned, life-supported probes, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself before flying off, en-route to Tavros.");
+		output("\n\nAfter a few more moments of making sure your babies are in good health and well-fed, you pull out your Codex and tap the screen a few time, and before you can say “Steele Tech,” a drone prepared to carry your children to the your personal nursery arrives. They seem to have no trouble getting to you, hovering around and repeating pre-programmed commands. You carefully place your newborns inside the cushioned, life-supported probes, giving them each a long, warm hug before letting them go. Once you’ve said your goodbyes, the drone closes itself before flying off, en-route to Tavros.");
 		output("\n\nYou breath a heavy sigh, a little pang of sadness left behind after having to leave your kids like that so soon, but your instincts remind you that this place is nowhere for a baby to be. With that, you");
 		if(!isNude) output(" dress yourself and");
 		output(" prepare to continue your journey as a new " + pc.mf("dad", "mom") + "...");

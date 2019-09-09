@@ -181,11 +181,21 @@ public function pennyBootFromCrew():void
 
 public function pennyOffCrewKickedOff(arg:Number):void
 {
-	showPenny();
+	showPennyBust();
 	if(hungryFlahneWithBimboPenny()) output("\n\nOutside of Flahne’s office, you see the vixen heavily flirting with the bubbly rahn. You could ask Penny to return to your crew if you like.");
 	else output("\n\nPenny loiters outside Flahne’s office, looking entirely bored with a quiet Mhen’gan life. Maybe you could take her back on your crew?");
 	
-	addButton(arg,"Recruit",pennyRejoinCrew,undefined,"Recruit","Bring Penny back onboard.");
+	addButton(arg,"Penny",pennyOffCrewKickedOffMenu,undefined,"Penny","Approach Penny.");
+}
+public function pennyOffCrewKickedOffMenu():void
+{
+	clearOutput();
+	showPenny();
+	output("Would you like to take Penny back onboard as a crew member?");
+	
+	clearMenu();
+	addButton(0, "Recruit", pennyRejoinCrew, undefined, "Recruit Penny","Bring Penny back onboard.");
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function pennyRejoinCrew():void
@@ -1533,8 +1543,9 @@ public function interruptPennyfaps():void
 	processTime(3);
 	pc.lust(5);
 	clearMenu();
-	if(pc.cockThatFits(penny.vaginalCapacity(0)) >= 0) addButton(0,"Reacharound",cockSelect,[reachAroundThePennyslut,penny.vaginalCapacity(0), false,0],"Reacharound","Fuck the foxgirl’s pussy and give her a nice reacharound while you do.");
-	else addDisabledButton(0,"Fuck Penny","Fuck Penny","You need a penis that fits inside Penny for this.");
+	if(pc.hasHardLightEquipped() || (pc.hasCock() && pc.cockThatFits(penny.vaginalCapacity(0)) >= 0)) addButton(0,"Reacharound",cockSelect,[reachAroundThePennyslut,penny.vaginalCapacity(0), true,0],"Reacharound","Fuck the foxgirl’s pussy and give her a nice reacharound while you do.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Penny","Fuck Penny","You’re too big for her pussy.");
+	else addDisabledButton(0,"Fuck Penny","Fuck Penny","You need to be wearing a hardlight strap-on or have a penis that fits inside Penny for this.");
 	addButton(1,"Facefucked",facefuckMitziJerkingPenpen,undefined,"Facefucked","Get a rough faceful of Penny’s hard cock.");
 	addButton(2,"Get Fucked",vaginaRouter,[missionaryCatchWithPantiesPenny,penny.cockVolume(0),1,0],"Get Fucked Missionary Style","Let Penny sate her lust inside you. Likely to be rough.");
 }
@@ -1547,11 +1558,11 @@ public function reachAroundThePennyslut(x:int):void
 	clearOutput();
 	showPenny(true);
 	author("Wsan");
-	output("<i>“Let’s get you off nice and hard,”</i> you say" + (!pc.isCrotchExposed() ? ", stripping off your [pc.crotchCovers]":"") + ". <i>“Turn around, you horny little foxslut.”</i>");
+	output("<i>“Let’s get you off nice and hard,”</i> you say" + (x >= 0 && !pc.isCrotchExposed() ? ", stripping off your [pc.crotchCovers]":"") + ". <i>“Turn around, you horny little foxslut.”</i>");
 	output("\n\n<i>“I’m not </i>that<i> horny,”</i> Penny protests, turning around" + (penny.hasCock(GLOBAL.TYPE_EQUINE) ? ", her equine cock flopping onto the bed while she spreads her pussy for you with both hands.":" while she spreads her pussy for you with both hands.") + " <i>“I-it’s just when I smell those panties- oh, fuuuuck...”</i>");
 	output("\n\nYou lean over and stuff them right in her drooling mouth, jamming them between her teeth as you thrust forward and force a deep, muffled moan out of her. Her pussy is wet and warm around you, already soaked with unrepressed lust and trembling in pleasure. It’s really not going to take much to set her off like a bomb.");
 	output("\n\nReaching up and pulling her upwards by her shoulder, you sit her back down on your [pc.cockOrHardlight " + x + "] and tug her into your lap. Penny all but melts in your hands, groaning and shivering until you take a firm hold of her [penny.cock] and she stiffens both against you and in your grip. A soft sigh of pleasure tumbles from her lips as you rub her with your thumb, rolling your [pc.hips] up into her from below.");
-	pc.cockChange();
+	if(x >= 0) pc.cockChange();
 	output("\n\n<i>“Oh, that’s so good,”</i> Penny whispers, squeezing her own breasts. <i>“H-harder... fuck me harder!”</i>");
 	output("\n\n<i>“Oh, you sure?”</i> you tease her.");
 	output("\n\n<i>“Yes! Yes! Please!”</i> she chants, voice rising a few octaves in desperation. <i>“I’m </i>so<i> close!”</i>");
@@ -1571,7 +1582,7 @@ public function reachAroundThePennyslut(x:int):void
 		output("\n\nShe leans upwards to give you a kiss with your " + (x < 0 ? "hardlight":"half-hard cock") + " still deep inside her, gyrating her hips and squeezing until you pull back with a pleased grin.");
 		output("\n\n<i>“I gotta run, Penny. You can handle cleanup, right?”</i> you ask, pulling out and standing. Her pussy drips juices{non-hardlight: and cum} in your wake.");
 		output("\n\n<i>“Uh huh,”</i> she nods happily, looking around her room. <i>“I’m good at cleaning!”</i>");
-		output("\n\n<i>“That’s good,”</i> you say, " + (!pc.isCrotchExposed() ? "re-dressing ":"") + "and turning around at the door. <i>“I’ll swing by later and see you, okay?”</i>");
+		output("\n\n<i>“That’s good,”</i> you say, " + (x >= 0 && !pc.isCrotchExposed() ? "re-dressing ":"") + "and turning around at the door. <i>“I’ll swing by later and see you, okay?”</i>");
 		output("\n\n<i>“Yeah! See you soon, [pc.name]!”</i> Penny says, smiling wide.");
 	}
 	else
@@ -1579,13 +1590,13 @@ public function reachAroundThePennyslut(x:int):void
 		output("\n\n<i>“Ooohhh, shit,”</i> Penny whimpers in the wake of it all, falling back against your [pc.chest]. <i>“I can’t cum any more than that...”</i>");
 		output("\n\n<i>“That’s okay, I’ll be leaving the panties with you,”</i> you remark lightly, pulling free of her quivering quim. A trail of her juices" + (x >= 0 ? " and your cum":"") + " follows, dripping to the bed. <i>“I’ll send Mitzi around to get them later.”</i>");
 		output("\n\n<i>“Oof,”</i> she says, settling back on the bed and admiring your butt");
-		if(!pc.isCrotchExposed()) output(" as you re-dress");
+		if(x >= 0 && !pc.isCrotchExposed()) output(" as you re-dress");
 		output(". <i>“That’ll be fun...”</i>");
 		output("\n\n<i>“No doubt,”</i> you say, grinning. <i>“I’ll swing by again later. See ya soon, Penny.”</i>");
 		output("\n\nShe gives you an affectionate smile and a wave as you depart.");
 	}
 	processTime(10);
-	penny.loadInCunt(pc,0);
+	if(x >= 0) penny.loadInCunt(pc,0);
 	pc.orgasm();
 	penny.orgasm();
 	//maingamemenu
