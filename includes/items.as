@@ -2914,7 +2914,7 @@ public function shipStorageMenuRoot():void
 	// Installed devices
 	var btnSlot:int = 5;
 	var installedDevices:Array = [];
-
+	
 	if(sidewinderCargoholdExtras()) installedDevices.push(sidewinderCargoholdExtrasBonus);
 	if(flags["DONG_DESIGNER_INSTALLED"] == 1) installedDevices.push(installedDickBoxBonus);
 	if(flags["EGG_TRAINER_INSTALLED"] == 1) installedDevices.push(installedEggTrainerBonus);
