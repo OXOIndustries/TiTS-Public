@@ -157,7 +157,7 @@ package classes.Items.Transformatives
 				if (!target.isCrotchExposed()) output(", causing " + (target.hasCocks() ? "them" : "it") + " to strain against your [pc.crotchCoverUnder]");
 				output(".");
 				output("\n\nThe pulsing continues as you feel your [pc.cock " + i + "] shrink into your crotch, disappearing");
-				if (target.hasSheath(i) || target.hasStatusEffect("Genital Slit")) output(" into your " + (target.hasStatusEffect("Genital Slit") + "slit" : "sheath"));
+				if (target.hasSheath(i) || target.hasStatusEffect("Genital Slit")) output(" into your " + (target.hasStatusEffect("Genital Slit") ? "slit" : "sheath"));
 				output(" completely. Just as you think your cock has been removed, you see a tapered head poking out of your");
 				if (!target.hasSheath(i)) output(" newly formed");
 				output(" sheath, stretching outwards until it reaches its full length.");
@@ -171,18 +171,18 @@ package classes.Items.Transformatives
 
 		public function halfDeerFaceTF(target:Creature):void
 		{
-			if (target.faceTypeUnlocked(GLOBAL.TYPE_DEER)
+			if (target.faceTypeUnlocked(GLOBAL.TYPE_DEER))
 			{
 				output("\n\nYou feel your nose twitch for a bit, but your face doesn't feel any different. Still, you pull up your codex just to make sure. And behold, <b>you now have an adorable black, button nose - just like a deer's!</b>");
 				target.faceType = GLOBAL.TYPE_DEER;
 				target.clearFaceFlags();
 			}
-			else output("\n\n" + target.faceTypeLocked());
+			else output("\n\n" + target.faceTypeLockedMessage());
 		}
 
 		public function fullDeerFaceTF(target:Creature):void
 		{
-			if (target.faceFlagsUnlocked(GLOBAL.FLAG_LONG, GLOBAL.FLAG_MUZZLED)
+			if (target.faceFlagsUnlocked([GLOBAL.FLAG_LONG, GLOBAL.FLAG_MUZZLED]))
 			{
 				output("\n\nYou feel an uncomfortable tingling sensation as the bones in your face begin flex out, stretching your nose and jaw until they form <b>a long, elegant snout, like a deer's!</b>");
 
@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 				target.skinType = GLOBAL.SKIN_TYPE_FUR;
 				target.clearSkinFlags();
 			}
-			else output("\n\n" + target.skinTypeLocked(GLOBAL.SKIN_TYPE_FUR));
+			else output("\n\n" + target.skinTypeLockedMessage());
 		}
 
 		public function furDyeTF(target:Creature):void
