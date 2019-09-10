@@ -2190,8 +2190,6 @@ public function shipMenu():Boolean
 		}
 	}
 
-	addButton(0, "DeeriumLite", quickLoot, new TauricoVenidaeLight());
-	
 	return false;
 }
 

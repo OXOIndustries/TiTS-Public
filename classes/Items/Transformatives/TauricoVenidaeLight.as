@@ -29,7 +29,7 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a Taurico Venidae medipen";
+			this.description = "a Deerium Lite medipen";
 			
 			this.tooltip = "With the success of Taurico Venidae, VesperTech received high demands to create a 'Deerium Lite' for those who wanted to gain deer-like features without becoming a taur. This time, VesperTech's marketing team chose to stick with the more popular name.";
 			
