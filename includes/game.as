@@ -2189,6 +2189,8 @@ public function shipMenu():Boolean
 			addDisabledButton(5,"Fly","Fly","Maybe you should stay close while Paige is in surgery.");
 		}
 	}
+
+	addButton(0, "DeeriumLite", quickLoot, new TauricoVenidaeLight());
 	
 	return false;
 }

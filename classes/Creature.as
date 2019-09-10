@@ -12169,6 +12169,11 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
+				case GLOBAL.TYPE_DEER:
+					cocks[slot].cockColor = "pink";
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
 			}
 		}
 		//PC can fly?
@@ -12829,7 +12834,7 @@
 			if (suulaScore() >= 6 && race == "human") race = "half-suula";
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
-			if (deerScore() >= 4) race = "deer-morph";
+			if (deerScore() >= 5) race = "deer-morph";
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (redPandaScore() >= 4) race = redPandaRace();
@@ -13400,7 +13405,14 @@
 			if (earType == GLOBAL.TYPE_DEER) counter++;
 			if (hasTail(GLOBAL.TYPE_DEER)) counter++;
 			if (legType == GLOBAL.TYPE_DEER) counter++;
-			if (counter > 1 && vaginaTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_DEER) counter++;
+			if (faceType == GLOBAL.TYPE_DEER) counter++;
+			if (counter > 1)
+			{
+				if (vaginaTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+				if (cockTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+				else if (cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			}
 			return counter;
 		}
 		public function demonScore(): int
