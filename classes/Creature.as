@@ -17072,7 +17072,7 @@
 
 			if(!isChestExposedByUpperUndergarment()) parts.push(upperUndergarment.longName)
 			if(!isCrotchExposedByLowerUndergarment() || !isAssExposedByLowerUndergarment()) parts.push(lowerUndergarment.longName)
-			if(parts.length == 0) return "nothing";
+			if(parts.length == 0) return "equipment";
 			var buffer:String = "";
 			for(var coverCount:int = 0; coverCount < parts.length; coverCount++)
 			{
