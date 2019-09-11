@@ -2247,6 +2247,7 @@
 					buffer = lowerGarmentOuterDescript();
 					break;
 				case "covers":
+				case "coverings":
 					buffer = covers();
 					break;
 				case "crotchCover":
