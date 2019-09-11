@@ -1428,7 +1428,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.lupineScore() > 0)
 			output2("\n<b>* Lupine:</b> " + prettifyGeneticMarker(pc.lupineScore(), 5, 5));
 		if(pc.deerScore() > 0)
-			output2("\n<b>* Deer:</b> " + prettifyGeneticMarker(pc.deerScore(), 4, 5));
+			output2("\n<b>* Deer:</b> " + prettifyGeneticMarker(pc.deerScore(), 5, 8));
 		if(pc.demonScore() > 0)
 			output2("\n<b>* Demon:</b> " + prettifyGeneticMarker(pc.demonScore(), 5, 8));
 		if(pc.dragonScore() > 0)

@@ -379,6 +379,7 @@
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
 			TYPE_HYENA,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -410,6 +411,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -1022,6 +1024,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [

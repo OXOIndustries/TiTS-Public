@@ -476,6 +476,23 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if (target.hasPartGoo("face")) outputRouter("[target.combatHeShe] [target.hasHave] a hyena’s face with a small perpetual grin and bone-crushing jaws filled with sharp teeth.");
 			else outputRouter("[target.combatHeShe] [target.hasHave] a hyena’s face with a small perpetual grin and bone-crushing jaws filled with sharp teeth. The odd visage is hairless and covered with [target.skinFurScales].");
 			break;
+		case GLOBAL.TYPE_DEER:
+			if (target.hasMuzzle())
+			{
+				outputRouter((target == pc ? "Your":"[target.HisHer]") + " face is entirely deer-like in appearance with a long, " + RandomInCollection("dainty", "elegant") + " snout");
+				if (target.hasPartFur("face")) outputRouter(" covered in [target.skinFurScales]. Underneath " + (target == pc ? "your":"[target.hisHer]") + " fur, you believe " + (target == pc ? "you have":"[target.heShe] has") + " [target.skin].");
+				else if (target.hasPartFeathers("face")) outputRouter(" covered in [target.skin] and lightly framed with [target.skinFurScales].");
+				else if (target.hasPartScales("face") || target.hasPartChitin("face")) outputRouter(" decorated with [target.skinFurScales], making " + (target == pc ? "you":"[target.himHer]") + " look less mammalian.");
+				else outputRouter(". It looks a little strange covered in nothing but [target.skinFurScales].");
+			}
+			else
+			{
+				if (target.hasPartFur("face")) outputRouter("Underneath " + (target == pc ? "your":"[target.hisHer]") + " [target.skinFurScales], " + (target == pc ? "you have":"[target.heShe] has") + " a mostly human face with a black button nose, making " + (target == pc ? "you":"[target.himHer]") + " appear more deer-like.");
+				else if (target.hasPartFeathers("face") || target.hasPartScales("face") || target.hasPartChitin("face")) outputRouter((target == pc ? "You have":"[target.HeShe] has") + " a mostly human face with [target.skin] and a black deer-like nose, " + (target.hasPartFeathers("face") ? "lightly framed" : "decorated") + " with [target.skinFurScales].");
+				else outputRouter((target == pc ? "Your":"[target.HisHer]") + " face is mostly human in shape and structure with [target.skinFurScales], aside from " + (target == pc ? "your":"[target.hisHer]") + " black button nose, making you appear more deer-like.");				
+				if (target.hasFaceFlag(GLOBAL.FLAG_FRECKLED)) outputRouter(" White speckles adorn " + (target == pc ? "your":"[target.hisHer]") + " cheeks, further enhancing " + (target == pc ? "your":"[target.hisHer]") + " deer-like visage.");
+			}
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
 	{
@@ -488,7 +505,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	// Special face additions
 	if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") outputRouter(" A distinctive purple stripe runs across the bridge of " + (target == pc ? "your":"[target.hisHer]") + " nose.");
 	// Freckles
-	if(target.hasFaceFlag(GLOBAL.FLAG_FRECKLED))
+	if(target.hasFaceFlag(GLOBAL.FLAG_FRECKLED) && target.faceType != GLOBAL.TYPE_DEER)
 	{
 		if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) outputRouter(" Beneath " + (target == pc ? "your":"[target.hisHer]") + " fur, f");
 		else outputRouter(" F");
@@ -680,6 +697,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if (hasGemstoneEyes) outputRouter(" They seem to glow in the light, shimmering like jewels.");
 			else if (target.eyeColor == "black") outputRouter(" They look unsettling, their many shades of black crawling together the longer you look at them.");
 			outputRouter(" An off-" + target.eyeColor.split(" ").pop() + " line at the sides betray the presence of a second set of eyelids.");
+			break;
+		case GLOBAL.TYPE_DEER:
+			outputRouter(" " + (target == pc ? "You have" : "[target.HeShe] has") + " large doe-eyes with huge [target.eyeColor] irises that");
+			if (hasLuminousEyes) outputRouter(" gleam ominously in the dark.");
+			else if (hasMetallicEyes) outputRouter(" metallically glisten in the light.");
+			else if (hasGemstoneEyes) outputRouter(" shimmer in the light, like jewels.");
+			else outputRouter(" make " + (target == pc ? "you" : "[target.himHer]") + " look cuter than a puppy.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -4424,6 +4448,9 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			outputRouter(" The saurmorian phallus is ringed with thick, fattened ridge-like protrusions along its length, starting from the base and up the shaft until just below the");
 			if (target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) outputRouter(" blunted");
 			outputRouter(" tip.");
+			break;
+		case GLOBAL.TYPE_DEER:
+			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it's length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
 			break;
 	}
 	
