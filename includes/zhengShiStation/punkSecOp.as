@@ -839,7 +839,7 @@ public function postLossCuntsuckin():void
 	moveToElevatorAdjustment();
 	clearOutput();
 	author("William");
-	output("Life comes at you fast. Air rushes into your lungs when you gasp awake, sat in Zheng Shi’s cargo elevator. The lusty kitty-pirate is nowhere to be seen.");
+	output("Life comes at you fast. Air rushes into your lungs when you gasp awake, seated in Zheng Shi’s cargo elevator. The lusty kitty-pirate is nowhere to be seen.");
 	output("\n\n<i>“If you continue to show yourself here, I will see to it that your training is completed.");
 	//hasCollar:
 	if(pc.accessory is MaikesCollar || getWornCollar() != null) output(" That collar you wear clearly comes from an unsuitable master.");

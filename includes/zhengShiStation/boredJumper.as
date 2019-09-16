@@ -2289,7 +2289,7 @@ public function boredJumperCowgirlWinByWilliam():void
 	output("\n\nYou take over, grabbing those sweat-soaked ears of hers and deepthroating her. You’re more worried about slipping off them than anything else. Her paws " + (pc.balls > 0 ? "cup your [pc.balls], helping to mix the protein shake she’s hoping to get.":"caress your inner thighs, smearing copious amounts of fluid down your [pc.legOrLegs].") + " Railing her mouth like the faux-pussy it is, you decide to give her the treat she’s been working so hard for. An appetizer for the main event, you think.");
 	if(pc.cockTotal() > 1) output(" You free one hand to jerk " + (pc.cockTotal() > 2 ? "one of your extra cocks":"your extra cock") + ", making sure to rub it against her forehead every time you go all in.");
 
-	output("\n\n<i>“Cumming!”</i> you announce, your crotch clapping one last time into her jaw. Growling as you ride this powerful orgasm with open eyes, you shoot line after rope of [pc.cum] into the slutty bunny’s throat, every pulse in your shaft accompanied by the lick of a coiling tongue that makes sure no tasty drop escapes.");
+	output("\n\n<i>“Cumming!”</i> you announce, your crotch clapping one last time into her jaw. Growling as you ride this powerful orgasm with open eyes, you shoot rope after rope of [pc.cum] into the slutty bunny’s throat, every pulse in your shaft accompanied by the lick of a coiling tongue that makes sure no tasty drop escapes.");
 	if(pc.cockTotal() > 1)
 	{
 		output(" Your extra dick" + (pc.cockTotal() > 2 ? "s, sadly, shoot the most of their":", sadly, shoots most of its") + " loads over and around her, though as your orgasm dies down, you color part of her face [pc.cumColor].");

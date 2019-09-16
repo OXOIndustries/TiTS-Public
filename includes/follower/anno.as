@@ -4163,7 +4163,7 @@ public function annoXGedanThreesomeEpilogue():void
 	showLocationName();
 	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
 	output("\n\nBy the time you’re out, Anno’s woken up enough to stagger up and ");
-	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
+	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sitting on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
 	else output("strip the spunk-soaked bed for cleaning.");
 	output("\n\n<i>“What do you say, Boss?”</i> she grins when you get out, looking back to eye your naked body. <i>“Think I should give her a ‘would date again’ on ExtraMeet?”</i>");
 	output("\n\n");

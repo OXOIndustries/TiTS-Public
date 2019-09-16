@@ -838,7 +838,7 @@ public function biancaBoothBonus(btnSlot:int = 0, planet:String = null):Boolean
 		if ((flags["MET_BIANCA"] & 6) == 0)
 		{
 			if (flags["MET_BIANCA"] == undefined) output("\n\nA murmuring crowd gathered near the exit draws your attention. A bespectacled woman stands there, speaking to the enamored colonists and explorers. Just a glance at her charming smile, twitching fox ears, and fluffy tails from this distance indicates the <i>physical</i> appeal of the gesturing lady.");
-			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " sat on one of several chairs while she performs a medical checkup.");
+			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " seated on one of several chairs while she performs a medical checkup.");
 			output(" Talkative locals and Rushers are lined up waiting their turn and the mood seems energetic enough. You could join the procession and see what the hubbub is about. Hopefully before it gets any bigger.");
 			if (flags["MET_BIANCA"] == undefined) flags["MET_BIANCA"] = 1;
 			else flags["MET_BIANCA"] |= 1;

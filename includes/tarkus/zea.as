@@ -21,7 +21,7 @@ public function seatingZea(btnSlot:int):Boolean
 	}
 	else
 	{
-		output("\n\nZea’s sat in the far corner as always, seemingly lost in her work.");
+		output("\n\nZea’s sitting in the far corner as always, seemingly lost in her work.");
 		addButton(btnSlot, "Zea", zeaApproach, true);
 	}
 	

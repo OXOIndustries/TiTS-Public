@@ -1808,7 +1808,7 @@ public function ramisEnoughCatnapping():void
 	
 		if (pc.biggestCockLength() < 6)
 		{
-			output("\n\nA minute later your wrists are being pressed firmly into the mattress, 120 kilograms of warm, brawny kaithrit is sat on your crotch, and you’re watching Ramis use your strainingly erect [pc.cockNoun] with slow, assertive thrusts of her hips. Your prick is overwhelmed in a cave of wet, shifting pressure, and you can’t stop moans and gasps being pushed out of your mouth, little stars exploding in your head.");
+			output("\n\nA minute later your wrists are being pressed firmly into the mattress, 260 pounds of warm, brawny kaithrit is seated on your crotch, and you’re watching Ramis use your strainingly erect [pc.cockNoun] with slow, assertive thrusts of her hips. Your prick is overwhelmed in a cave of wet, shifting pressure, and you can’t stop moans and gasps being pushed out of your mouth, little stars exploding in your head.");
 			output("\n\n<i>“You like that, little boy?”</i> she gloats gently, tightening her hips around your waist, giggling lowly as you writhe helplessly, her pussy tightening up precipitously around your prick. <i>“Good. It’s not goin’ to take much to make you spunk, is it? Just a little bit of special time with me - and it is very special, you know that, don’t you? Cuz I’m not getting anything out of this.”</i> The big kaithrit says nothing for a little while, simply sneering down at you as she rocks her thick, powerful hips backwards and forwards, making your arousal rise to an unbearable, slutty point. <i>“I’d get more sensation out of my pinky.”</i>");
 			output("\n\nThat’s too much. Your [pc.cock] seizes up and ejaculates helplessly, creaming that beguiling, kneading cave it’s in in [pc.cumColor] seed. It’s not even in there for long, coming loose easily and spurting [pc.cum] back up " + (pc.cumQ() > 500 ? "your [pc.belly]" : "towards your [pc.face]") + ". Ramis laughs softly, dipping her hand down to stroke you off, holding you down as she squirts your cum all over your weighed-down, desperately heaving body.");
 			output("\n\n<i>“Cute,”</i> she smirks, when you’re finally done, before heaving her gloriously naked body out of bed. She gives you a teasing, yellow eye at the door to the bathroom.");
@@ -1816,7 +1816,7 @@ public function ramisEnoughCatnapping():void
 		}
 		else
 		{
-			output("\n\nA minute later your wrists are being pressed firmly into the mattress, 260 pounds of warm, brawny kaithrit is sat on your crotch, and you’re watching Ramis use your strainingly erect [pc.cockNoun] with vigorous thrusts of her hips. The wet pressure applied to your penis is breathtakingly tight and forceful, and you can’t stop moans and gasps being pushed out of your mouth, little stars exploding in your head.");
+			output("\n\nA minute later your wrists are being pressed firmly into the mattress, 260 pounds of warm, brawny kaithrit is seated on your crotch, and you’re watching Ramis use your strainingly erect [pc.cockNoun] with vigorous thrusts of her hips. The wet pressure applied to your penis is breathtakingly tight and forceful, and you can’t stop moans and gasps being pushed out of your mouth, little stars exploding in your head.");
 			output("\n\n<i>“‘S it boyo, you just lie there, look pretty and take it like a good " + (pc.isFemboy() ? "bitch" : "toy") + ",”</i> Ramis husks, uncontrolled lust in her voice, breasts jouncing with every forward pump, bed-frame groaning in protest. <i>“All you got to do is hold yourself back before I... before I...”</i> A great shiver runs up her formidable frame, her yellow eyes close and then she’s yowling at the ceiling, hips tightening around your waist painfully, claws biting into your wrists and riding you even harder somehow as orgasm overtakes her.");
 
 			output("\n\nIt’s impossible to hold back against the soaked, churning machine that is her pussy in spate, but she is at least well into it before your [pc.cock] can take no more, seizes up and jerks into action. The [pc.cum] is practically vacuumed out of you by her muscular, thirsty cunt, a thoroughbred, organic cock-milker.");
@@ -3107,7 +3107,7 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			if(!ramisOnTop())
 			{
 				output("<i>“Alright, captain?”</i>");
-				output("\n\nRamis is sat in the canteen, twiddling her claws. There is an uncharacteristic expression of bemusement on her face.");
+				output("\n\nRamis is seated in the canteen, twiddling her claws. There is an uncharacteristic expression of bemusement on her face.");
 				output("\n\n<i>“Can I ask you somethen?”</i> she says, frowning at you. <i>“Did you... nick my knickers, a couple of days ago?”</i>");
 				output("\n\n");
 				
@@ -3123,7 +3123,7 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 				cIdx = pc.smallestCockIndex();
 				
 				output("<i>“Hey there, my little boyo.”</i>");
-				output("\n\nRamis is sat on the edge of her bed, cross-legged and walking her fingers along the sheets in an unusually coy manner. She grins at you, displaying her sharp teeth.");
+				output("\n\nRamis is sitting on the edge of her bed, cross-legged and walking her fingers along the sheets in an unusually coy manner. She grins at you, displaying her sharp teeth.");
 				output("\n\n<i>“Why don’t you come here and sit yourself right here?”</i> she purrs, patting her brawny thigh. <i>“I’ve got somethen for you.”</i>");
 				output("\n\nYour heart is thumping with excitement by the time you’ve planted your [pc.ass] in her lap. You never know what to expect from your impulsive top... you exhale slowly as she");
 				if(!pc.isCrotchExposed()) output(" slips her hand inside your [pc.underGarments] and");
