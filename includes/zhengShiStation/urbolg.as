@@ -1129,6 +1129,13 @@ public function buyFromUrbolg():void
 	shopkeep = chars["URBOLG"];
 	shopkeep.keeperBuy = "You indicate that you’d like to buy something from him.\n\nUrbolg raises an eyebrow. <i>“Ye ain’t pulling on my tail, are ye? Most of the stuff I have laying around fer sale isn’t exactly masterwork material, just standard gear some idiot broke and tossed my way. Lucky for you, it was me what fixed it up, so this second-hand junk’ll serve ye better than the brand new crap from JoyCo.”</i>\n";
 	shopkeep.inventory = [new HandCannon(),new JumperShield(),new RattyArmor(), new Vibrolass(), new TriBeamRifle(), new TrickBracer()];
+	if(flags["MAIKE_HELMET_TAKEN"] != undefined && flags["ZHENG_SPACESUIT_TAKEN"] != undefined)
+	{
+		var suitypants:ItemSlotClass = new SpacesuitComplete();
+		suitypants.basePrice = 30000;
+		shopkeep.inventory.push(suitypants);
+	}
+	if(flags["ZHENG_SHI_JUMPSUITED"] != undefined) shopkeep.inventory.push(new Slavesuit());
 	buyItem();
 }
 

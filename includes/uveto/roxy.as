@@ -5018,7 +5018,7 @@ public function roxyInCafeteriaBonus(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nRoxy is sat in the nicest place of the cafeteria, right next to a large playground for kids to work off their calories. One nurse and several robots are seeing to her needs. The medic checking her pulse, among other things, and the ‘bots providing all the healthy food she’ll need to make it through her infant tribulation. From here, you can see how confused she is by all the attention, clearly not used to this kind of VIP treatment. Ironic.");
+		output("\n\nRoxy is seated in the nicest place of the cafeteria, right next to a large playground for kids to work off their calories. One nurse and several robots are seeing to her needs. The medic checking her pulse, among other things, and the ‘bots providing all the healthy food she’ll need to make it through her infant tribulation. From here, you can see how confused she is by all the attention, clearly not used to this kind of VIP treatment. Ironic.");
 		if (!roxyCuddleRefused()) output(" She waves at you when she sees you, because her mouth is full of oats.");
 	}
 	

@@ -838,7 +838,7 @@ public function biancaBoothBonus(btnSlot:int = 0, planet:String = null):Boolean
 		if ((flags["MET_BIANCA"] & 6) == 0)
 		{
 			if (flags["MET_BIANCA"] == undefined) output("\n\nA murmuring crowd gathered near the exit draws your attention. A bespectacled woman stands there, speaking to the enamored colonists and explorers. Just a glance at her charming smile, twitching fox ears, and fluffy tails from this distance indicates the <i>physical</i> appeal of the gesturing lady.");
-			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " sat on one of several chairs while she performs a medical checkup.");
+			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " seated on one of several chairs while she performs a medical checkup.");
 			output(" Talkative locals and Rushers are lined up waiting their turn and the mood seems energetic enough. You could join the procession and see what the hubbub is about. Hopefully before it gets any bigger.");
 			if (flags["MET_BIANCA"] == undefined) flags["MET_BIANCA"] = 1;
 			else flags["MET_BIANCA"] |= 1;
@@ -1936,8 +1936,8 @@ public function biancaBarTalkMain(comingFrom:String):void
 		else addButton(8, "Children", askBiancaAboutTheDoctorsKits, false, "Her Children", (flags["BIANCA_STORIES_TOLD"] > 3 || biancaTalkedTopic(BIANCA_TOPIC_CHILDREN) ? "Ask Bianca about her children." : "Ask Bianca if she has any children."));
 		
 		// [Family]
-		if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You aren’t quite... intimate enough for this topic yet.\n\n(Must be sexually intimate with Bianca 5+ times.)");
-		else if(biancaFamiliarity() < 50) addDisabledButton(9,"Family","Family"," You aren’t familiar enough with Bianca for this.\n\n(50+ familiarity required.)");
+		if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You’ll have to get much more <b>intimate</b> with Bianca to broach this topic.");
+		else if(biancaFamiliarity() < 49) addDisabledButton(9,"Family","Family"," You aren’t familiar enough with Bianca for this.");
 		else if(!biancaTalkedTopic(BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS | BIANCA_TOPIC_WORK | BIANCA_TOPIC_DOCTOR | BIANCA_TOPIC_STORIES | BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_CHILDREN)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.");
 		else if(!(flags["MET_BIANCA"] & 64)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.\n\n(You still need a certain event to occur with her in the wild.)");
 		//First time talkies:
@@ -1945,6 +1945,8 @@ public function biancaBarTalkMain(comingFrom:String):void
 		//If you talked already, require confront
 		else if(flags["BIANCA_CONFRONTED"] == 1) addDisabledButton(9,"Family","Family","You’ve already asked about this, and it went about as well as it could. Best to leave indelicate topics be.");
 		else addButton(9,"Family",biancaAndHerFamily,false,"Family","You could probably discuss family more with her, if you like.");
+		
+		addButton(10, "Bianca", biancaBarTalkMain, "biancaSwitch", "Bianca", "She’s opened her mouth to ask...");
 	}
 	else
 	{

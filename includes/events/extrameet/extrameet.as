@@ -788,7 +788,7 @@ public function extrameetGetUserName(prof:String):String
 		if (prof == "EXTRAMEET_SCIENCERULEZ41") return "ScienceRulez41";
 		if (prof == "EXTRAMEET_RIPPED4YOURPLEASURE") return "Ripped4YourPleasure";
 		if (prof == "EXTRAMEET_STORMDRAGON") return "Storm_Dragon";
-		
+		if (prof == "EXTRAMEET_PROSNUGGLER23") return "ProSnuggler23";
 	}
 	else if (loc == "new texas")
 	{

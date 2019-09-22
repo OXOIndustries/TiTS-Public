@@ -4395,6 +4395,9 @@ package classes.GameData
 		private function prepFriendlyForCombat(target:Creature):void
 		{
 			target.droneTarget = null;
+			
+			if(target is ShittyShip) return;
+			
 			target.alreadyDefeated = false;
 			if (!(target is PlayerCharacter))
 			{

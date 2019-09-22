@@ -310,6 +310,8 @@ public function sellToDatDogslut():void
 }
 public function annoShopSetup():void
 {
+	chars["ANNO"].inventory = [];
+	
 	chars["ANNO"].inventory.push(new AusarTreats());
 	chars["ANNO"].inventory.push(new HammerCarbine());
 	chars["ANNO"].inventory.push(new LaserCarbine());
@@ -2978,7 +2980,7 @@ public function deck13GrayPrimeTalkWork():void
 
 	output("<i>“So what’s this work you didn’t want us to see?”</i>");
 	
-	output("\n\nNova sighs, turning from you to the mess of computers and hardware around. <i>“I’ve been trying to find a way out for centuries. Out of this... un-death. I don’t think we, the crew, will survive much longer like this, all jumbled together on the network and mixed together as primordial goo. We’re losing our sense of self. We needed new bodies, so we tried to take them: there were plenty of robots on Tarkus, but all too primitive to support a real human mind. ");
+	output("\n\nNova sighs, turning from you to the mess of computers and hardware around. <i>“I’ve been trying to find a way out for centuries. Out of this... un-death. I don’t think we, the crew, will survive much longer like this, all jumbled together on the network and mixed together as primordial goo. We’re losing our sense of self. We needed new bodies, so we tried to take them: there were plenty of robots on Tarkus, but all too primitive to support a real human mind.”</i>");
 	
 	output("\n\n<i>“So I’ve turned to the goo. We can make more of it, even if programming it is a nightmare. I wanted to make new bodies for the crew, one for every crewman, each with a strong enough network to host a living mind. It hasn’t entirely been a success, but I’m so close I can taste it. The goo on the planet are very nearly human. They just need a little more structural work, a little help in the right direction, and they’ll be ready.”</i>");
 	

@@ -2246,6 +2246,10 @@
 				case "lowerGarmentOuter":
 					buffer = lowerGarmentOuterDescript();
 					break;
+				case "covers":
+				case "coverings":
+					buffer = covers();
+					break;
 				case "crotchCover":
 					buffer = crotchCover();
 					break;
@@ -2470,7 +2474,7 @@
 					buffer = knotDescript(arg2);
 					break;
 				case "knots":
-					buffer = plural(knotDescript(arg2));
+					buffer = (hasCocks() ? plural(knotDescript(arg2)) : knotDescript(arg2));
 					break;
 				case "knotBiggest":
 					buffer = knotDescript(biggestCockIndex());
@@ -2998,6 +3002,9 @@
 					break;
 				case "clitsNoun":
 					buffer = clitsDescript(arg2, true);
+					break;
+				case "clitsIsAre":
+					buffer = (totalClits() != 1 ? clitsDescript(arg2) + " are" : clitDescript(arg2) + " is");
 					break;
 				case "tailVagina":
 				case "tailCunt":
@@ -12169,6 +12176,11 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
+				case GLOBAL.TYPE_DEER:
+					cocks[slot].cockColor = "pink";
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
 			}
 		}
 		//PC can fly?
@@ -12829,7 +12841,7 @@
 			if (suulaScore() >= 6 && race == "human") race = "half-suula";
 			if (raskvelScore() >= 2) race = "rask-morph";
 			if (bovineScore() >= 3) race = bovineRace(); // Cow-morphs
-			if (deerScore() >= 4) race = "deer-morph";
+			if (deerScore() >= 5) race = "deer-morph";
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
 			if (redPandaScore() >= 4) race = redPandaRace();
@@ -13400,7 +13412,14 @@
 			if (earType == GLOBAL.TYPE_DEER) counter++;
 			if (hasTail(GLOBAL.TYPE_DEER)) counter++;
 			if (legType == GLOBAL.TYPE_DEER) counter++;
-			if (counter > 1 && vaginaTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+			if (eyeType == GLOBAL.TYPE_DEER) counter++;
+			if (faceType == GLOBAL.TYPE_DEER) counter++;
+			if (counter > 1)
+			{
+				if (vaginaTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+				if (cockTotal(GLOBAL.TYPE_DEER) > 0) counter++;
+				else if (cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			}
 			return counter;
 		}
 		public function demonScore(): int
@@ -17056,6 +17075,29 @@
 			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
 			return "nothing";
+		}
+		public function covers():String
+		{
+			var parts:Array = [];
+			if(!isCrotchExposedByArmor()) parts.push(armor.longName);
+			else if(!isChestExposedByArmor()) parts.push(armor.longName);
+			else if(!isAssExposedByArmor()) parts.push(armor.longName);
+
+			if(!isChestExposedByUpperUndergarment()) parts.push(upperUndergarment.longName)
+			if(!isCrotchExposedByLowerUndergarment() || !isAssExposedByLowerUndergarment()) parts.push(lowerUndergarment.longName)
+			if(parts.length == 0) return "equipment";
+			var buffer:String = "";
+			for(var coverCount:int = 0; coverCount < parts.length; coverCount++)
+			{
+				if(coverCount > 0 && parts.length > 2) 
+				{
+					buffer += ", ";
+					if(parts.length-1 == coverCount) buffer += "and ";
+				}
+				else if(coverCount > 0) buffer += " and ";
+				buffer += parts[coverCount];
+			}
+			return buffer;
 		}
 		public function crotchCover(): String
 		{

@@ -713,7 +713,7 @@ public function landingAtZhengShi():void
 	//Repeat Approach, Post Correct Answer
 	else
 	{
-		if(pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
+		if((shits["SHIP"] is Sidewinder) && pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
 		{
 			currentLocation = "SHIP INTERIOR";
 			generateMap();

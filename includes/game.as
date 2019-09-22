@@ -2189,7 +2189,7 @@ public function shipMenu():Boolean
 			addDisabledButton(5,"Fly","Fly","Maybe you should stay close while Paige is in surgery.");
 		}
 	}
-	
+
 	return false;
 }
 

@@ -654,6 +654,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "RiyaPregnancy": output2(" Riya"); break;
 						case "ZaaltPregnancy": output2(" Zaalt"); break;
 						case "ZilPregnancy": output2(" Zil"); break;
+						case "ZilBullPregnancy": output2(" Treated Zil"); break;
 						case "RaskvelPregnancy": output2(" Raskvel, Eggs"); break;
 						case "ShekkaPregnancy": output2(" Shekka, Eggs"); break;
 						case "FrostwyrmPregnancy": output2(" [frostwyrm.name], Eggs"); break;
@@ -1427,7 +1428,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.lupineScore() > 0)
 			output2("\n<b>* Lupine:</b> " + prettifyGeneticMarker(pc.lupineScore(), 5, 5));
 		if(pc.deerScore() > 0)
-			output2("\n<b>* Deer:</b> " + prettifyGeneticMarker(pc.deerScore(), 4, 5));
+			output2("\n<b>* Deer:</b> " + prettifyGeneticMarker(pc.deerScore(), 5, 8));
 		if(pc.demonScore() > 0)
 			output2("\n<b>* Demon:</b> " + prettifyGeneticMarker(pc.demonScore(), 5, 8));
 		if(pc.dragonScore() > 0)
