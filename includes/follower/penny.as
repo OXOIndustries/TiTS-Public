@@ -125,7 +125,7 @@ public function pennyCrewMenu():void
 	if(pc.lust() >= 33) 
 	{
 		if(penny.isBimbo()) addButton(1,"Sex",bimboPennySex,undefined,"Sex","Get naughty with your bimbo.");
-		else if (flags["PENNY_MADE_LOVE"] == undefined && penny.hasCock()) addButton(1,"Sex?",(pennyIsCumSlut() || penny.isBimbo() ? yourFoxCamslutWantsToShowYouHowMuchSheAppreciatesYou : pennyHasADifferentIdeaForToday),(pc.hasVagina() ? 0 : -1),"Sex","There's a telling look in Penny's eyes." + ((pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin) ? " <b>You may not keep your virginity if you ask this.</b>" : " She'll probably take the lead if you ask."));
+		else if (flags["PENNY_MADE_LOVE"] == undefined && penny.hasCock()) addButton(1,"Sex?",(pennyIsCumSlut() || penny.isBimbo() ? yourFoxCamslutWantsToShowYouHowMuchSheAppreciatesYou : pennyHasADifferentIdeaForToday),(pc.hasVagina() ? 0 : -1),"Sex","There’s a telling look in Penny’s eyes." + ((pc.hasVagina() ? pc.vaginalVirgin : pc.analVirgin) ? " <b>You may not keep your virginity if you ask this.</b>" : " She’ll probably take the lead if you ask."));
 		else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
 	}
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.");
@@ -747,8 +747,8 @@ public function pennyCrewSexMenu():void
 	
 	if (penny.hasCock() && flags["PENNY_MADE_LOVE"] != undefined)
 	{
-		if (pennyIsCumSlut() || penny.isBimbo()) addButton(13, "Make Love", vaginaRouter, [timeToLoveAFoxCamwhore, 0, 1, 0], "Make Love", "Penny, for all her unrepentant autofellatio, still enjoys the gentle touch of a lover.  Ask if she’s willing to calm down long enough for it.");
-		else addButton(13, "Make Love", vaginaRouter, [makingWuvvWiffASexyOfficer, 0, 1, 0], "Make Love", "Penny, for all her bluster, has a softer side.  Ask if she’s willing to explore it.");
+		if (pennyIsCumSlut() || penny.isBimbo()) addButton(13, "Make Love", vaginaRouter, [timeToLoveAFoxCamwhore, 0, 1, 0], "Make Love", "Penny, for all her unrepentant autofellatio, still enjoys the gentle touch of a lover. Ask if she’s willing to calm down long enough for it.");
+		else addButton(13, "Make Love", vaginaRouter, [makingWuvvWiffASexyOfficer, 0, 1, 0], "Make Love", "Penny, for all her bluster, has a softer side. Ask if she’s willing to explore it.");
 	}
 
 	addButton(14,"Back",approachCrewPenny,true);
@@ -1912,7 +1912,7 @@ public function yourFoxCamslutWantsToShowYouHowMuchSheAppreciatesYou(vagIdx:int)
 	output("\n\nGiven how much her cock keeps interrupting her line of thought (not that you can blame her. It’s awfully distracting), it clearly took her a lot of effort to say all that. She must want it badly.");
 	output("\n\nIt would be wrong of you to turn down a request like that as her mate. She has a need, and your duty as her other-half is to ensure she has want of nothing. You tell her that, if she wants to try something slower, you’re all for it – but she needs to make the first move.");
 
-	addButton(0, "Next", pennyGonnaFuckHerLover);
+	addButton(0, "Next", pennyGonnaFuckHerLover, vagIdx);
 }
 
 public function timeToLoveAFoxCamwhore(vagIdx:int):void

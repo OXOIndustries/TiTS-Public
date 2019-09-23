@@ -14652,7 +14652,7 @@
 				if(mf("m","f", true) == "m") adjectives.push("masculine");
 				if (tone >= 70) adjectives.push("muscular");
 				else if (tone >= 30) adjectives.push("lean muscled");
-				if (thickness >= 30) adjectives.push("broad");
+				if (thickness >= 30) adjectives.push(hips < 4 ? "soft" : "broad");
 				else adjectives.push((mf("m","f", true) == "m" ? "mannishly " : "") + "slender");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
