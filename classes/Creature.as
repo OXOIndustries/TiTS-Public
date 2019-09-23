@@ -6148,7 +6148,7 @@
 			if (hasStatusEffect("Bulky Belly")) temp = temp * (temp < 0 ? (2.0 - statusEffectv1("Bulky Belly")) : (statusEffectv1("Bulky Belly")));
 
 			if (temp > 90) temp = 90;
-			if (temp < 1) temp = 1;
+			//if (temp < 1) temp = 1; // Possible to have negative evasion for combat!
 			
 			return temp;
 		}
