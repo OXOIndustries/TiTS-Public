@@ -3714,6 +3714,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII R43"].inText = "Up";
 	rooms["KORGII R43"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII R43"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII R43"].runOnEnter = korgiiMineGuardsBonus;
 	//rooms["KORGII R43"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII R41"] = new RoomClass(this);
@@ -3806,6 +3807,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII X43"].inText = "Up";
 	rooms["KORGII X43"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII X43"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII X43"].runOnEnter = korgiiMineGuardsBonus;
 	//rooms["KORGII X43"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII X41"] = new RoomClass(this);
@@ -3950,6 +3952,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII R33"].inText = "Up";
 	rooms["KORGII R33"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII R33"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII R33"].runOnEnter = korgiiMineGuardsBonus;
 	//rooms["KORGII R33"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII X35"] = new RoomClass(this);
@@ -4004,6 +4007,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII X33"].inText = "Up";
 	rooms["KORGII X33"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII X33"].addFlag(GLOBAL.PUBLIC);
+	rooms["KORGII X33"].runOnEnter = korgiiMineGuardsBonus;
 	//rooms["KORGII X33"].runOnEnter = korgiD12Bonus;
 
 	//One-off encounter
@@ -4074,4 +4078,15 @@ public function initUvetoRoomsII():void
 	rooms["WILLOWS ROOM"].inText = "Up";
 	rooms["WILLOWS ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["WILLOWS ROOM"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["MILODAN TRIBE"] = new RoomClass(this);
+	rooms["MILODAN TRIBE"].roomName = "\nEITAN'S TRIBE";
+	rooms["MILODAN TRIBE"].description = "If you are reading this, something has gone terribly wrong.";
+	rooms["MILODAN TRIBE"].planet = "PLANET: UVETO VII";
+	rooms["MILODAN TRIBE"].system = "SYSTEM: SIRETTA";
+	rooms["MILODAN TRIBE"].southExit = "UVGR O34";
+	rooms["MILODAN TRIBE"].moveMinutes = 3;
+	rooms["MILODAN TRIBE"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["MILODAN TRIBE"].addFlag(GLOBAL.OBJECTIVE);
+	rooms["MILODAN TRIBE"].runOnEnter = eitansTribe;
 }

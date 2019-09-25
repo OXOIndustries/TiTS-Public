@@ -155,6 +155,7 @@
 		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
@@ -526,6 +527,7 @@
 		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/eitan.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/heidrun.as";

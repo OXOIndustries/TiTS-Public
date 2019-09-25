@@ -251,6 +251,7 @@ public function pcBeatsUpAMilo():void
 	showName("\nVICTORY!");
 	var enemiess:Array = CombatManager.getHostileActors();
 	while(enemiess.length > 1) CombatManager.removeHostileActor(enemiess[1]);
+	flags["WAR_ALPHA_DEFEAT_METHOD"] = (enemy.HP() <= 1 ? 1 : 2);
 
 	author("Fenoxo");
 	output("With the war alpha " + (enemy.HP() <= 1 ? "downed and cursing ineffectively":"splayed out on his back and jerking off harmlessly") + ", you have a moment to catch your breath - no more than a moment, though.");
@@ -368,6 +369,7 @@ public function wargiiHoldEpilogue4():void
 	//Set location back to normal
 	currentLocation = "KORGII B12";
 	removeUvetoCold();
+	flags["WARGII_OVER_TIMESTAMP"] = GetGameTimestamp();
 	if(score >= 90) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol(), new KordiiakHideArmor());
 	else if(score >= 50) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol());
 	else 
