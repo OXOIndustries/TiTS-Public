@@ -5905,10 +5905,12 @@
 		public function damage(melee:Boolean = true):TypeCollection
 		{
 			var modifiedDamage:TypeCollection;
+			var lustOnly:Boolean = false;
 			
 			if (melee) 
 			{
 				modifiedDamage = meleeWeapon.baseDamage.makeCopy();
+				if(meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) lustOnly = true;
 				
 				if(hasPerk("Low Tech Solutions") && !hasMeleeEnergyWeapon()) 
 					modifiedDamage.multiply(1.2);
@@ -5919,6 +5921,7 @@
 			else 
 			{
 				modifiedDamage = rangedWeapon.baseDamage.makeCopy();
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON)) lustOnly = true;
 				
 				if(hasPerk("Heavy Weapons") && !hasRangedEnergyWeapon()) 
 					modifiedDamage.multiply(1.2);
@@ -5943,6 +5946,17 @@
 			//Add bonus to both melee and ranged attacks
 			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.05);
 			if (hasStatusEffect("Valden-Possessed")) modifiedDamage.multiply(1.75);
+			
+			// Lust-only weapons, zero out all shield or hp damage values! 
+			if(lustOnly) {
+				modifiedDamage.kinetic.damageValue = 0;
+				modifiedDamage.electric.damageValue = 0;
+				modifiedDamage.burning.damageValue = 0;
+				modifiedDamage.freezing.damageValue = 0;
+				modifiedDamage.corrosive.damageValue = 0;
+				modifiedDamage.poison.damageValue = 0;
+				modifiedDamage.unresistable_hp.damageValue = 0;
+			}
 			
 			return modifiedDamage;
 		}
@@ -12673,24 +12687,101 @@
 				return;
 			}
 			if (array.length == 0) {
-				//trace("ERROR: removeCock called but cocks do not exist.");
+				//trace("ERROR: removeJunk called but cocks do not exist.");
 				return;
 			}
 			if (arraySpot > array.length - 1) {
-				//trace("ERROR: removeCock failed - array location is beyond the bounds of the array.");
+				//trace("ERROR: removeJunk failed - array location is beyond the bounds of the array.");
 				throw new Error("removeJunk call failed. Target location to remove is out of array bounds.");
-			} else {
+			}
+			else {
+				var idx:int = arraySpot;
+				var idxEnd:int = (arraySpot + totalRemoved);
+				var piercings:Array = [];
+				if(array == cocks)
+				{
+					for(idx = arraySpot; idx < idxEnd; idx++)
+					{
+						if(hasStatusEffect("Mimbrane Cock") && idx == 0) removeStatusEffect("Mimbrane Cock");
+						if(hasStatusEffect("Painted Penis") && idx == statusEffectv1("Painted Penis")) clearPaintedPenisEffect();
+						if(!(cocks[idx].piercing is EmptySlot))
+						{
+							cocks[idx].piercing.onRemove(this);
+							piercings.push(cocks[idx].piercing);
+							cocks[idx].piercing = new EmptySlot();
+						}
+						if(!(cocks[idx].cocksock is EmptySlot))
+						{
+							cocks[idx].cocksock.onRemove(this);
+							piercings.push(cocks[idx].cocksock);
+							cocks[idx].cocksock = new EmptySlot();
+						}
+					}
+					// shift effect position
+					if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") >= idxEnd) setStatusValue("Painted Penis", 1, (idxEnd - 1));
+					
+					trace("Attempted to remove " + totalRemoved + " spots from cocks.");
+				}
+				if(array == vaginas)
+				{
+					for(idx = arraySpot; idx < idxEnd; idx++)
+					{
+						if(hasStatusEffect("Mimbrane Pussy") && idx == 0) removeStatusEffect("Mimbrane Pussy");
+						if(!(vaginas[idx].piercing is EmptySlot))
+						{
+							vaginas[idx].piercing.onRemove(this);
+							piercings.push(vaginas[idx].piercing);
+							vaginas[idx].piercing = new EmptySlot();
+						}
+						if(!(vaginas[idx].clitPiercing is EmptySlot))
+						{
+							vaginas[idx].clitPiercing.onRemove(this);
+							piercings.push(vaginas[idx].clitPiercing);
+							vaginas[idx].clitPiercing = new EmptySlot();
+						}
+					}
+					
+					trace("Attempted to remove " + totalRemoved + " spots from vaginas.");
+				}
+				if(array == breastRows)
+				{
+					for(idx = arraySpot; idx < idxEnd; idx++)
+					{
+						if(hasStatusEffect("Mimbrane Boobs") && idx == 0) removeStatusEffect("Mimbrane Boobs");
+						if(hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == idx)
+						{
+							if(this is PlayerCharacter) AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(idx + 1) + " row of breast" + (breastRows[idx].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
+							removeStatusEffect("Boobswell Pads");
+						}
+						if(hasStatusEffect("Painted Tits") && idx == statusEffectv1("Painted Tits")) clearPaintedTitsEffect();
+						if(!(breastRows[idx].piercing is EmptySlot))
+						{
+							breastRows[idx].piercing.onRemove(this);
+							piercings.push(breastRows[idx].piercing);
+							breastRows[idx].piercing = new EmptySlot();
+						}
+					}
+					// shift effect position
+					if(hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") >= idxEnd) setStatusValue("Boobswell Pads", 1, (idxEnd - 1));
+					if(hasStatusEffect("Painted Tits") && statusEffectv1("Painted Tits") >= idxEnd) setStatusValue("Painted Tits", 1, (idxEnd - 1));
+					
+					trace("Attempted to remove " + totalRemoved + " spots from breastRows.");
+				}
 				array.splice(arraySpot, totalRemoved);
-				if (array == cocks) trace("Attempted to remove " + totalRemoved + " spots from cocks.");
-				else if (array == vaginas) trace("Attempted to remove " + totalRemoved + " spots from vaginas.");
-				else if (array == breastRows) trace("Attempted to remove " + totalRemoved + " spots from breastRows.");
+				
+				if(piercings.length > 0)
+				{
+					if(this is PlayerCharacter) kGAMECLASS.eventQueue.push(function():void { kGAMECLASS.itemCollectMainMenu(piercings, true); });
+					else inventory.concat(piercings);
+				}
 			}
 		}
 		//Remove cocks
 		public function removeCocks(): void {
-			while (hasCock()) {
+			/*while (hasCock()) {
 				removeCock(0, 1);
-			}
+			}*/
+			if(hasCock()) removeCock(0, cocks.length);
 		}
 		public function removeCocksUnlocked():Boolean 
 		{
@@ -12707,8 +12798,6 @@
 		
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int = 1): void {
-			if(hasStatusEffect("Mimbrane Cock") && arraySpot == 0) removeStatusEffect("Mimbrane Cock");
-			if(hasStatusEffect("Painted Penis") && arraySpot == statusEffectv1("Painted Penis")) clearPaintedPenisEffect();
 			removeJunk(cocks, arraySpot, totalRemoved);
 			if(!hasCock())
 			{
@@ -12732,9 +12821,10 @@
 		
 		//Remove vaginas
 		public function removeVaginas(): void {
-			while (hasVagina()) {
+			/*while (hasVagina()) {
 				removeVagina(0, 1);
-			}
+			}*/
+			if(hasVagina()) removeVagina(0, vaginas.length);
 		}
 		public function removeVaginasUnlocked():Boolean
 		{
@@ -12756,7 +12846,6 @@
 
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
-			if(hasStatusEffect("Mimbrane Pussy") && arraySpot == 0) removeStatusEffect("Mimbrane Pussy");
 			removeJunk(vaginas, arraySpot, totalRemoved);
 			if(!hasVagina())
 			{
@@ -12784,13 +12873,6 @@
 
 		//Remove a breast row
 		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
-			if(hasStatusEffect("Mimbrane Boobs") && arraySpot == 0) removeStatusEffect("Mimbrane Boobs");
-			if (hasStatusEffect("Boobswell Pads") && statusEffectv1("Boobswell Pads") == arraySpot)
-			{
-				if(this is PlayerCharacter) AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(arraySpot + 1) + " row of breast" + (breastRows[arraySpot].breasts != 1 ? "s" : "") + " disintegrate as the row was removed. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
-				removeStatusEffect("Boobswell Pads");
-			}
-			if(hasStatusEffect("Painted Tits") && arraySpot == statusEffectv1("Painted Tits")) clearPaintedTitsEffect();
 			removeJunk(breastRows, arraySpot, totalRemoved);
 		}
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -14185,11 +14267,11 @@
 			return (InCollection(originalRace, ["automaton", "conglomerate", "junker", "machine", "robot"]));
 		}
 		
-		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
+		public function sackDescript(forceAdjectives:Boolean = false, adjectives:Boolean = true, ignoreTexture:Boolean = false): String {
 			if (balls <= 0) return "prostate";
 			var desc: String = "";
-			//fur adjectives
-			if (rand(3) == 0)
+			//texture adjectives
+			if (!ignoreTexture && adjectives && rand(3) == 0)
 			{
 				var ballsackType:int = scrotumType();
 				switch(ballsackType)
@@ -14198,15 +14280,9 @@
 					case GLOBAL.FLAG_SCALED: desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]); break;
 					case GLOBAL.FLAG_GOOEY: desc += RandomInCollection(["gooey", "slimy", "semi-solid"]); break;
 				}
-				/*
-				if(hasFur()) desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]);
-				else if(hasScales()) desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]);
-				else if(hasChitin()) desc += RandomInCollection(["chitin-armored","chitin-plated","chitinous","armored"]);
-				else if(hasFeathers()) desc += RandomInCollection(["downy","fluffy","feathery"]);
-				*/
 			}
 			//capacity adjectives
-			if ((adjectives && rand(3) == 0) || forceAdjectives) {
+			if (forceAdjectives || (adjectives && rand(3) == 0)) {
 				if(desc != "") desc += ", ";
 				if (ballFullness <= 10) desc += RandomInCollection(["recently emptied","well-drained","nearly empty"]);
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
