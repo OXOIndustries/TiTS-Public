@@ -20,7 +20,7 @@ public function biancaSexings():void
 	clearOutput();
 	showBianca("WORK");
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(5));
 
 	if (pc.hasSSTD())
 	{
@@ -218,7 +218,7 @@ public function getBiancasSexualHealing():void
 	clearOutput();
 	showBianca("WORK");
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(3));
 
 	output("You don’t even get a chance to reach for your money before Bianca thrusts the medicine past your lips and offers the flask of water. Once the pills are sliding down to your gut you get a moment to wonder just why she’s being so forceful. The great results of biomedical advances surprises you the next second, purging your system of harmful elements. Your SSTD is cured, and Bianca is pleased.");
 	// never Sexed Bianca
@@ -315,7 +315,7 @@ public function letBiancaHandleTheSituation():void
 	showBust("BIANCA_WORK");
 	showName("\nHANDIWORK");
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(5));
 
 	output("If this kind of foreplay were taking place in public, Bianca would land herself smack dab on the cover of every magazine as a sex-starved slut. Imaginations aside, you are just <i>in love</i> with the way she pokes and rubs your [pc.cocks]. Leaned back against a");
 	switch (getPlanetName().toLowerCase())
@@ -366,7 +366,7 @@ public function furtherBiancaHandies():void
 	showBust("BIANCA_WORK");
 	showName("\nHANDIWORK");
 	author("William");
-	processTime(5+rand(2));
+	processTime(5+rand(5));
 
 	var bigCock:int = pc.biggestCockIndex();
 	var tentacle:Boolean = pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_TENTACLE;
@@ -425,7 +425,7 @@ public function furtherBiancaHandies2():void
 	showBust("BIANCA_WORK");
 	showName("\nHANDIWORK");
 	author("William");
-	processTime(1+rand(2));
+	processTime(10+rand(5));
 
 	var bigCock:int = pc.biggestCockIndex();
 	var tentacle:Boolean = pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_TENTACLE;

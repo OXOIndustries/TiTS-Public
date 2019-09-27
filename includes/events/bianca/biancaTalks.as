@@ -25,7 +25,7 @@ public function biancaTellsYouAboutBianca(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1+rand(2));
+	processTime(8+rand(5));
 
     // Repeat
     if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF)) output("You ask Bianca to refresh you on her background, to which she reflexively acquiesces with a fond countenance.");
@@ -75,7 +75,7 @@ public function biancaWishesToKnowAboutCptSteele(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(3));
 
 	output("<i>“[pc.name],”</i> Bianca taps your shoulder. <i>“Now that I’ve told you a bit about me, would you like to tell me about your travels? You’re the inheritor of a well-liked, highly successful CEO. I’d be happy to listen to why you’re participating in the rush.”</i>");
 	output("\n\nThe fox’s features furl. <i>“I mean... if that’s fine with you.”</i>");
@@ -92,7 +92,7 @@ public function biancaAsksAboutYourAdventures():void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1+rand(2));
+	processTime(5+rand(3));
 
 	output("The " + (biancaLover() ? "three" : "two") + "-tailed fox playfully pats your shoulder. <i>“Since you’re feeling talkative, I’d be glad to listen to hear how your search is going, [pc.name]. Anything new?”</i>");
 	output("\n\nYou briefly consider the places you’ve been and try to come up with a decent story. On the other hand, you could decline.");
@@ -110,7 +110,7 @@ public function callMeSteeleshmaelDrBianca(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC Kind
 	if (pc.isNice())
@@ -172,7 +172,7 @@ public function letsTellBiancaAboutBees(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC fought and won against Dane
 	if (flags["WHUPPED_DANES_ASS_ON_MHENGA"] != undefined)
@@ -222,7 +222,7 @@ public function letsTellBiancaAboutRustLocusts(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(2);
+	processTime(5+rand(3));
 
 	// PC completed the Stellar Tether Quest and did not disarm the bomb
 	if (flags["TARKUS_DESTROYED"] != undefined)
@@ -267,7 +267,7 @@ public function letsTellBiancaAboutAnts(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// PC met or never met Taivra, and planet gets nuked
 	if (flags["KQ2_MYRELLION_STATE"] != undefined)
@@ -340,7 +340,7 @@ public function letsTellBiancaAboutRats(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Thinking about Zheng Shi, you’re not sure <i>what</i> you should remember most about your first taste of lawless, slavery-saturated life. There was your fight with Urbolg, your run-ins with hardened professional killers");
 	if (maikeEncountered()) output(", the " + (silly ? "grand moff" : "overseer") + " Maike");
@@ -428,7 +428,7 @@ public function biancaSpeaksOnCreationClub(inRandomEncounter:Boolean = false):vo
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(8+rand(5));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_MODS)) output("You ask Bianca to tell you about her mods again, and why she picked them up.");
@@ -482,7 +482,7 @@ public function biancaAskingAboutMods(inRandomEncounter:Boolean):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Knuckle on her chin, the thoughtful clinician opens her mouth to speak.");
 	output("\n\n<i>“The typical way of life in the galaxy is heavily predicated on gene mods, don’t you think? They can change someone for the better, change someone to their desires... but it’s addicting, expensive, and only bad things can happen to those who don’t show wisdom in their use.”</i> Bianca states, then quietly finishes, <i>“Slavery, for one...”</i>");
@@ -507,7 +507,7 @@ public function biancaTellModOpinion(args:Object):void
 	clearOutput();
 	showBianca((args.inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	switch (args.opinion)
 	{
@@ -560,7 +560,7 @@ public function theSpaceAdventuresOfDrKetria(inRandomEncounter:Boolean = false):
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(9));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_WORK)) output("You ask Bianca to tell you why she’s out on the planet rush again, beyond the philanthropy. Her ears twitch in response, and her synapses fire into careful consideration.");
@@ -608,7 +608,7 @@ public function regaleTheMILFWithTalesOfYourHarem(inRandomEncounter:Boolean = fa
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	// Bianca asked question at the end of first time use of [Work]
 	if (!biancaTalkedTopic(BIANCA_TOPIC_WORK))
@@ -1104,7 +1104,7 @@ public function whoDidBiancaComeFrom(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(11+rand(3));
 
 	// Repeat
 	if (biancaTalkedTopic(BIANCA_TOPIC_PARENTS)) output("You ask Bianca to tell you about her childhood again. <i>“Can do, [pc.name].”</i> She sets down her drink and articulates her thoughts.");
@@ -1143,7 +1143,7 @@ public function biancaWishesToKnowAboutVictor(inRandomEncounter:Boolean = false)
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("<i>“Say,”</i> Bianca looks to you, <i>“What were your parents like, [pc.name]? If not your mother, certainly you remember a lot about your father?”</i>");
 	// pc Kind
@@ -1188,7 +1188,7 @@ public function whyIsSheTheOneTheyCallFluffgood(inRandomEncounter:Boolean = fals
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(11+rand(3));
 
 	// Repeat:
 	if (biancaTalkedTopic(BIANCA_TOPIC_DOCTOR)) output("You ask Bianca to tell you why she became a doctor again, to which she gives you a cute smile.");
@@ -1234,7 +1234,7 @@ public function convinceBiancaYoureNotASpaceHobo(inRandomEncounter:Boolean = fal
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("Bianca’s sly grin nudges at you before her voice, which has already sanitized itself of gloom. <i>“So, what did you decide for your career in your earlier life, [pc.name]? I would hope your father offered you <b>some</b> reasonable starting points.”</i>");
 	// pc Mercenary
@@ -1288,7 +1288,7 @@ public function askBiancaAboutTheDoctorsKits(inRandomEncounter:Boolean = false):
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	if (!biancaTalkedTopic(BIANCA_TOPIC_CHILDREN))
 	{
@@ -1338,7 +1338,7 @@ public function biancaWonderingAboutTheNextSteeles(inRandomEncounter:Boolean):vo
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	output("After a pregnant pause, Bianca makes a light ‘Ahh’ noise and turns to you. <i>“If you don’t mind me asking... do you think you’ll want to have kids someday, [pc.name]? You’re young but you stand to inherit the means to provide for them easily enough. From a financial perspective anyway.”</i>");
 	output("\n\nThat’s a good question. Your dad was a sex hound who probably had a lot of bastard children out there you may or may not meet.");
@@ -1381,7 +1381,7 @@ public function tellBiancaAboutYerFutureKiddos(kiddos:int):void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	if (kiddos == 3)
 	{

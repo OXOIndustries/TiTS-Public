@@ -368,7 +368,7 @@ public function biancaRunningIntoYou():void
 	}
 	// One-Time Intro Variant, Familiarity >30, Met Bianca at a Bar
 	// Bianca disappears for the rest of the day, refresh next day.
-	else if ((flags["MET_BIANCA"] & 16) && (flags["MET_BIANCA"] & 64) != 64 && biancaFamiliarity() >= 30 && rand(7) == 0)
+	else if ((flags["MET_BIANCA"] & 16) && (flags["MET_BIANCA"] & 64) != 64 && biancaFamiliarity() >= 30 && rand(2) == 0)
 	{
 		output("Your trek has your thoughts wandering in all directions, but your mild reverie is interrupted by exigent cries. In one direction, right over a slope, you can hear heavy panting; a second before you heard what sounded like a nasty tumble. It could be a trap to lure curious adventurers like you in, but it could also be someone who ran afoul of something bigger than them.");
 		output("\n\nIt’s still worth a look.");
