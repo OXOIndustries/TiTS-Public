@@ -6560,7 +6560,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
-				if(flags["MET SYDIAN FEMALE"] != undefined) output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
+				if (flags["MET SYDIAN FEMALE"] != undefined)
+				{
+					output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
+					if(flags["SYDIAN_FEMALE_PREG"] != undefined) output2("\n<b>* Female Sydian, Times Impregnated:</b> " + flags["SYDIAN_FEMALE_PREG"]);
+				}
 				if(flags["MET_SYDIAN_MALE"] != undefined)
 				{
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
