@@ -73,7 +73,15 @@ package classes.Items.Transformatives
 				var canHeat:Boolean = (pc.hasVagina() && pc.fertility() > 0);
 				var canRut:Boolean = (pc.hasCock() && pc.virility() > 0);
 				
-				if(canHeat && !pc.isFullyWombPregnant() && (!pc.hasCock() || rand(2) == 0))
+				//if pc can go into heat and rut, and one condition alreeady exist but the other doesn't, this code will force the other to be applied instaead of it being random
+				//if neither or both conditions exists, it stays random
+				if (canHeat && canRut)
+				{
+					if (pc.inHeat() && !pc.inRut()) canHeat = false;
+					else if (pc.inRut() && !pc.inHeat()) canRut = false;
+				}
+				
+				if(canHeat && !pc.isFullyWombPregnant() && (canRut == false || rand(2) == 0))
 				{
 					var totalWombs:int = pc.totalVaginas() - pc.totalWombPregnancies();
 					
