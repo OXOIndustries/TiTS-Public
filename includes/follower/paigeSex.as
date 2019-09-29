@@ -3629,7 +3629,9 @@ public function SSDYTC(args:Array):void
 	clearOutput();
 	showPaige(true);
 	args.push("SSDYTC");
-	output("Paige sometimes likes to go on about being dominant or submissive in bed, and how she doesn’t mind being the bottom every once in a while. Seeing her now – in her own unit, on her knees, her mouth inches from your crotch, ready to serve you – you think she might appreciate you taking on a more controlling attitude. You’d be lying if you said you weren’t into that too, of course.");
+	output("Paige sometimes likes to go on about being dominant or submissive in bed, and how she doesn’t mind being the bottom every once in a while. Seeing her now –");
+	if(currentLocation == "PAIGE_HOUSE") output(" in her own unit,");
+	output(" on her knees, her mouth inches from your crotch, ready to serve you – you think she might appreciate you taking on a more controlling attitude. You’d be lying if you said you weren’t into that too, of course.");
 
 	// Continue here if Paige is focusing on the PC’s penis
 	if(args[0] == 1)

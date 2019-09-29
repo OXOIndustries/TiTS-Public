@@ -184,7 +184,7 @@ public function genesModsInterior():void
 			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
-		if (pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
+		if (!isGeneSubmissionDisabled() && pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
