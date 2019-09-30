@@ -671,7 +671,7 @@ public function syriMorningMenu():void
 	//On Uveto? Go back to Syri's Uveto menu instead.
 	if(currentLocation == "UVI R32" && syriAtFreeezer()) 
 	{
-		syriFreezerMenu();
+		syriFreezerMenu(false);
 		return;
 	}
 	clearMenu();
@@ -884,8 +884,7 @@ public function syriBookTalkEpilogue():void {
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
 	clearMenu();
-	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
-	else addButton(0,"Next",approachSyriIntheMorning);
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 4
@@ -1573,8 +1572,7 @@ public function syriAppearance():void {
 
 	output("\n\nA thick eight-inch knotty dog-cock rests between Syri’s legs where her cunt ought to be, hanging over a pair of cum-filled testicles, surrounded by a nicely trimmed bush of downy pubes. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	clearMenu();
-	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
-	else addButton(0,"Next",approachSyriIntheMorning);
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 

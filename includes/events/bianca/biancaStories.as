@@ -491,13 +491,13 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 			output("\n\nNot hard to see why, but you did meet that ambassador. <i>“Ara Kei Enya asked for my help. [ara.He] wanted to unite the bothrioc. One hell of an obstacle, as the wisest and most powerful among them cannot, on a biological level, stand to be around each other due to some kind of pheromone they produce. I was also asked to procure a counteragent for this so they could meet in peace.”</i>");
 			output("\n\nDr. Ketria looks calmly at you, with a face that suggests nothing. Her concern is palpable. <i>“How did it go?”</i>");
 			// Gave Ara Kei Counteragent
-			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] == -1)
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] > 0)
 			{
 				output("\n\nYou explain that you produced the counteragent, and gave them a chance at unity. It worked, and from what you heard, they’ve begun to unify as a species. Ara Kei’s vision of seeing them granted citizenship is well on its way. The more you talk though, the more you and Bianca wonder if it was worth it, but who’s to say?");
 				output("\n\n<i>“Should they integrate into galactic culture then changes can be made,”</i> Bianca says evenly, her hesitation giving way to open-mindedness. <i>“...Perhaps I’m being unfair, too biased. The Dzaan can suppress their biology. If the bothrioc assimilate, then concessions can be made there, too. And,”</i> she says with a hopeful smile, <i>“they don’t deserve to be held back or endangered by the myr and their war.”</i>");
 			}
 			// Gave Ara Kei Fake Counteragent
-			else
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] < 0)
 			{
 				output("\n\nYou explain that you handed Ara Kei the fake counteragent, deciding that it would have been too dangerous to let the bothrioc expand beyond Myrellion. Perhaps ending her dream of unity for her race wasn’t a choice you should have ever made, but it was one you ended up <i>having</i> to make.");
 				output("\n\n<i>“I see,”</i> Bianca says, sipping her water. <i>“What you did was...”</i>");
