@@ -659,7 +659,9 @@ public function regaleTheMILFWithTalesOfYourHarem(inRandomEncounter:Boolean = fa
 
 	// All other crew members are referenced but only 3 random members will be mentioned each time Bianca asks this question for brevity.
 	ShuffleArray(crewList);
-	crewList.splice(3);
+	if(crewList.length > 3) crewList.splice(3);
+
+	//output("\n\n<b>" + crewList.concat() + "</b>");
 
 	for each (var crewMember:String in crewList) biancaCrewBlurb(crewMember);
 
@@ -741,11 +743,12 @@ public function biancaCrewBlurb(crewmember:String):void
 			output("\n\nYou go into exquisite (and sometimes gratuitous) detail about the dishes you’ve seen Yammi able to whip up. Bianca’s thoughtless drooling almost makes you laugh.");
 			output("\n\n<i>“Would it be okay if I came by once in a while..?”</i> Bianca whispers. <i>“No, no, it’s fine. I may be running around all day but I don’t know if I could work off some of those meals on cardio alone.”</i>");
 			output("\n\nYou both laugh.");
+			break;
 		// Varmint
 		case "varmint":
 			output("\n\nThere was a little bugger you picked up on New Texas and <i>accidentally</i> forgot to deal with. <i>“This one’s a bit of an odd story. While on New Texas I sort of went back to my ship with one of the varmints still tied up. That was a bad idea.”</i>");
 			output("\n\nBianca starts laughing at you, until she realizes that was a wee bit callous. <i>“And what did you do after that?”</i>");
-			output("\n\n<i>“I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog. Emphasis on dog.”</i>");
+			output("\n\n<i>“" + (flags["NATALIE_TAMES_VARMINT"] != undefined ? "I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog." : "I bought a leash on the extranet to make sure it wouldn’t run off and make trouble. Now it’s an obedient guard dog.") + " Emphasis on dog.”</i>");
 			output("\n\n<i>“Try to be careful in the future, [pc.name],”</i> she whispers to you.");
 			break;
 		// Mitzi (must tell Bianca about the Stellar Tether stuff via ’Yourself’)
