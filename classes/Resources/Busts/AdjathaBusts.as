@@ -1206,6 +1206,10 @@ package classes.Resources.Busts
 		public var Bust_WALL_LEITHAN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/wall_raskvel.png", mimeType = "image/png")]
 		public var Bust_WALL_RASKVEL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_tura.png", mimeType = "image/png")]
+		public var Bust_WALL_TURA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/wall_tura_portrait.png", mimeType = "image/png")]
+		public var Bust_WALL_TURA_PORTRAIT:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
 		public var Bust_XOTCHI:Class;
@@ -2361,6 +2365,10 @@ package classes.Resources.Busts
 			public var Full_WALL_LEITHAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_raskvel.png", mimeType = "image/png")]
 			public var Full_WALL_RASKVEL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_tura.png", mimeType = "image/png")]
+			public var Full_WALL_TURA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/wall_tura_portrait.png", mimeType = "image/png")]
+			public var Full_WALL_TURA_PORTRAIT:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;

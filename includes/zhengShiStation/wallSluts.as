@@ -847,6 +847,7 @@ public function approachDatUrtaKnockoff():void
 {
 	clearOutput();
 	showUrta();
+	showBust("WALL_TURA_PORTRAIT");
 	author("Fenoxo");
 	output("Making your selection, you stride up for a better look at this potential partner. Embedded in the wall at her waist, this hermaphroditic fox-girl’s lower body is entirely on display. With her legs thrown up in a wide ‘V’ and held securely by rubberized straps while restraints bind her fluffy gray tail below, her genitals are perfectly arranged for your use - assuming you don’t mind lifting her heavy nuts out of the way for a better look at her pussy.");
 	output("\n\nJust above those wobbling cumtanks is the fox’s baseball bat of a cock. Fully 20 inches long and equine in shape, it would look more at home on a leithan’s undercarriage than the petite fox from which it sprouts. No doubt it’d be aggressively slapping the wall if it wasn’t imprisoned in a snug, self-lubricating ring. Whenever sags the slightest amount, the faint buzz of vibrational motors whirs, and the head surges powerfully, bulging out in a thick, flaring lip around its crown. The toy winds down before the poor prick-vixen can release the monster load she’s been brewing, leaving her flare to pulse with her heart.");
@@ -867,8 +868,8 @@ public function approachDatUrtaKnockoff():void
 
 public function showUrta():void
 {
-	showBust("TURA");
-	showName("WALL-FOX\nTURA");
+	showBust("WALL_TURA");
+	showName("WALL-FOX:\nTURA");
 }
 public function showTaoth():void
 {
