@@ -165,13 +165,13 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
-		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing:</b> " + pc.earsPierced + " " + StringUtil.toDisplayCase(pc.earsPShort));
+		if(pc.hasEarPiercing()) output2("\n<b>* Ear Piercing:</b> " + StringUtil.toDisplayCase(pc.earPiercing.longName));
 		output2("\n<b>* Eyes:</b>");
 		if(pc.eyeCount() > 0) output2(" " + pc.eyeCount() + ",");
 		if(pc.eyeColor != "") output2(" " + StringUtil.toDisplayCase(pc.eyeColor) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.eyeType]);
-		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing:</b> " + pc.eyebrowPierced + " " + StringUtil.toDisplayCase(pc.eyebrowPShort));
-		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing:</b> " + pc.nosePierced + " " + StringUtil.toDisplayCase(pc.nosePShort));
+		if(pc.hasEyebrowPiercing()) output2("\n<b>* Eyebrow Piercing:</b> " + StringUtil.toDisplayCase(pc.eyebrowPiercing.longName));
+		if(pc.hasNosePiercing()) output2("\n<b>* Nose Piercing:</b> " + StringUtil.toDisplayCase(pc.nosePiercing.longName));
 		output2("\n<b>* Lips:</b> " + showCharLipRating("PC"));
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipMod != 0 && pc.siliconeRating("lips") != 0) output2("\n<b>* Lips, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("lips"), 3));
@@ -180,12 +180,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Lip Accent:</b>");
 			if(flags["MIMBRANE_FACE_APPEARANCE"] == 1) output2(" Beauty Marks");
 			if(flags["MIMBRANE_FACE_APPEARANCE"] == 2) output2(" Pair of Piercings");
-			if(pc.lipPierced != 0)
-			{
-				if(flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2) output2(",");
-				output2(" " + pc.lipPierced + " " + StringUtil.toDisplayCase(pc.lipPShort));
-			}
 		}
+		if(pc.hasLipPiercing()) output2("\n<b>* Lip Piercing:</b> " + StringUtil.toDisplayCase(pc.lipPiercing.longName));
 		output2("\n<b>* Tongue:</b>");
 		if(pc.tongueFlags.length > 0)
 		{
@@ -195,7 +191,7 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.tongueType]);
-		if(pc.tonguePierced != 0) output2("\n<b>* Tongue Piercing:</b> " + pc.tonguePierced + " " + StringUtil.toDisplayCase(pc.tonguePShort));
+		if(pc.hasTonguePiercing()) output2("\n<b>* Tongue Piercing:</b> " + StringUtil.toDisplayCase(pc.tonguePiercing.longName));
 		if(pc.hasHorns())
 		{
 			output2("\n<b>* [pc.HornsNoun]:</b>");
@@ -323,7 +319,6 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.isLactating()) output2(", Lactation Active");
 				output2("\n<b>* Nipple, Length Ratio:</b> " + formatFloat(pc.nippleLengthRatio, 3));
 				output2("\n<b>* Areola, Width Ratio:</b> " + formatFloat(pc.nippleWidthRatio, 3));
-				if(pc.nipplesPierced != 0) output2("\n<b>* Nipple Piercing:</b> " + pc.nipplesPierced + " " + StringUtil.toDisplayCase(pc.nipplesPShort));
 			}
 			// Lactation
 			if(pc.canLactate())
@@ -375,6 +370,7 @@ public function statisticsScreen(showID:String = "All"):void
 						else output2("\n<b>* Nipple, Length:</b> " + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
 					}
+					if(pc.hasPiercedNipples(x)) output2("\n<b>* Nipple Piercing:</b> " + StringUtil.toDisplayCase(pc.breastRows[x].piercing.longName));
 					if(pc.breastRows[x].breasts != 1) output2(" each");
 					if(pc.breastRows.length != 1)
 					{
@@ -487,8 +483,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Capacity:</b> " + prettifyVolume(pc.cockCapacity(x)));
 					output2("\n<b>* Weight:</b> " + prettifyWeight(pc.bodyPartWeight("penis", x)));
 					if(pc.weightQ("penis", x) > 0) output2(" (" + pc.weightQ("penis", x) + " %)");
-					if(pc.cocks[x].pierced != 0) output2("\n<b>* Piercing:</b> " + pc.cocks[x].pierced + " " + StringUtil.toDisplayCase(pc.cocks[x].pShort));
-					if(pc.cocks[x].sock != "") output2("\n<b>* Sock:</b> " + StringUtil.toDisplayCase(pc.cocks[x].sock));
+					if(pc.hasCockPiercing(x)) output2("\n<b>* Piercing:</b> " + StringUtil.toDisplayCase(pc.cocks[x].piercing.longName));
+					if(pc.hasCocksock(x)) output2("\n<b>* Sock:</b> " + StringUtil.toDisplayCase(pc.cocks[x].cocksock.longName));
 				}
 			}
 		}
@@ -571,8 +567,8 @@ public function statisticsScreen(showID:String = "All"):void
 						if(pc.vaginas[x].clits != 1) output2(", total");
 						if(pc.weightQ("clitoris", x) > 0) output2(" (" + pc.weightQ("clitoris", x) + " %)");
 					}
-					if(pc.vaginas[x].clitPierced != 0) output2("\n<b>* Clit Piercing:</b> " + pc.vaginas[x].clitPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].clitPShort));
-					if(pc.vaginas[x].labiaPierced != 0) output2("\n<b>* Labia Piercing:</b> " + pc.vaginas[x].labiaPierced + " " + StringUtil.toDisplayCase(pc.vaginas[x].labiaPShort));
+					if(pc.hasClitPiercing(x)) output2("\n<b>* Clit Piercing:</b> " + StringUtil.toDisplayCase(pc.vaginas[x].clitPiercing.longName));
+					if(pc.hasVaginaPiercing(x)) output2("\n<b>* Labia Piercing:</b> " + StringUtil.toDisplayCase(pc.vaginas[x].piercing.longName));
 				}
 			}
 		}
@@ -595,6 +591,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.bellyRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.bellyRatingMod, 3)) + ")");
 		output2("\n<b>* Belly, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("belly")));
 		if(pc.weightQ("belly") > 0) output2(" (" + pc.weightQ("belly") + " %)");
+		if(pc.hasBellyPiercing()) output2("\n<b>* Belly Piercing:</b> " + StringUtil.toDisplayCase(pc.bellyPiercing.longName));
 		if(pc.statusEffectv1("Orally-Filled") > 0) output2("\n<b>* Cumflation, Oral:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Orally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Orally-Filled"))));
 		if(pc.statusEffectv1("Anally-Filled") > 0) output2("\n<b>* Cumflation, Anal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Anally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Anally-Filled"))));
 		if(pc.statusEffectv1("Vaginally-Filled") > 0) output2("\n<b>* Cumflation, Vaginal:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.statusEffectv3("Vaginally-Filled")] + ", " + mLs(Math.round(pc.statusEffectv1("Vaginally-Filled"))));
@@ -8396,6 +8393,28 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Maja:</b> Met her");
 				if(flags["SEXED_MAJA"] != undefined) output2("\n<b>* Maja, Times Sexed:</b> " + flags["SEXED_MAJA"]);
 				variousCount++;
+			}
+			if(flags["EITAN_PRISONER_NEGOTIATIONS"] != undefined)
+			{
+				output2("\n<b><u>Milodan Prisoners</u></b>");
+				output2("\n<b>* Eitan:</b> Met him");
+				if (flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
+				switch (flags["EITAN_PRISONER_NEGOTIATIONS"])
+				{
+					case 1: case 2: output2(", Wants an exotic meal"); break;
+					case 3: output2(", Wants a revealing outfit"); break;
+					case 4: output2(", Wants alcohol"); break;
+					case 5: output2(", Wants medicine and air"); break;
+					case 6: output2(", Wants medicine, Ula allowed air"); break;
+					case 7: output2(", Wants an undershirt"); break;
+					case 8: case 9: output2(", Wants water"); break;
+					case 10: output2(", Wants audience with Ula"); break;
+				}
+				if (eitanRecruited())
+				{
+					output2(", Crew member");
+					if(eitanIsCrew()) output2(" (Onboard Ship)");
+				}
 			}
 			// Krym
 			if(flags["MET_KRYM"] != undefined)

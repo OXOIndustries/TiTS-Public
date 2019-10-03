@@ -53,10 +53,12 @@ package classes.Items.Miscellaneous
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+
+			this.addFlag(GLOBAL.ITEM_FLAG_MEDICINE);
 			
 			this.version = _latestVersion;
 		}
-		
+
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{

@@ -118,6 +118,11 @@ public function ulaMenu():void
 	addButton(1,"Talk",ulaTalk);
 	addButton(2,"Sex",ulaSexApproach);
 	//addButton(4,"WARGII TEST",startWargiiQuestOnEnterUlaRoom,undefined,"WARG'II TEST","<b>WARNING:</b> This is a test of in-development content. Saving after playing this could leave data behind that could result in bugs, incorrect tracking of quest decisions, or unplayability. Be careful, and save first!\n\nThanks,\n\tFenoxo");
+	if (flags["ULA_HELP_MILO_NOT_NOW"] != undefined) addButton(4, "Help W Milo", steeleTakesUpHerdingBaraCats);
+	else if (flags["EITAN_PRISONER_NEGOTIATIONS"] == 5) addButton(4, "Air For Milo", heyUlaCanYouLetTheMilosBreathe);
+	else if (flags["EITAN_PRISONER_NEGOTIATIONS"] == 8) addButton(4, "Water", theCatsWantWaterAndUlaIsBewildered);
+	else if (flags["EITAN_PRISONER_NEGOTIATIONS"] == 10) addButton(4, "Audience", moreLikeUlaTruceManGeddit);
+	//else if (flags["EITAN_PRISONER_NEGOTIATIONS"] == 10) addButton(4, "Audience", theCatsWantWaterAndUlaIsBewildered);
 	addButton(14,"Leave",mainGameMenu);
 }
 

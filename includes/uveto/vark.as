@@ -16,7 +16,7 @@ public var varkCaveRoom:String = "UVIP T46";
 
 public function showVark(nood:Boolean = false, showAuthor:Boolean = true):void
 {
-	showBust((nood ? "VARK" : "VARK_NUDE"));
+	showBust((!nood ? "VARK" : "VARK_NUDE"));
 	if (flags["MET_VARK"] != undefined) showName("\nVARK");
 	else showName("\nMILODAN");
 	if (showAuthor) author("Damiekinz♥");

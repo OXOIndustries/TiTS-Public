@@ -2958,6 +2958,7 @@ public function seranigansCheck(totalAttempts:int = 1):void
 {
 	if(flags["SERA_CREWMEMBER"] != 1 || pc.hasStatusEffect("Seranigans")) return;
 	if(totalAttempts < 1 || pc.hasStatusEffect("Seranigans Event")) return;
+	if(flags["SERA_OBEDIENCE_MAX"] != undefined && rand(flags["SERA_OBEDIENCE_MAX"]) >= 50) return;
 	
 	var chance:int = 1000;
 	if(!seraIsMerchant()) chance = 500;
