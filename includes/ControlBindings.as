@@ -369,6 +369,13 @@
 		},
 		true);
 	inputManager.AddBindableControl(
+		"Sexdoll Encounter",
+		"Trigger an encounter with a WIP enemy from Kiro's Recruitment quest.",
+		function():void {
+			Cheats.SexdollEncounter();
+		},
+		true);
+	inputManager.AddBindableControl(
 		"Politically Correct Mode",
 		"Toggle whether certain offensive words are used.",
 		function():void {
@@ -400,6 +407,7 @@
 	inputManager.BindCheatSequence("Bianca Spawn", "healthdelivery");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
+	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

@@ -135,6 +135,17 @@
 				kGAMECLASS.flags["LAPLOVE"] = undefined;
 			}
 		}
+		public static function SexdollEncounter():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n<b>You will now encounter a sexdoll...</b>");
+			kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
+		}
 		public static function SJWMode():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)

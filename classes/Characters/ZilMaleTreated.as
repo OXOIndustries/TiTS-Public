@@ -64,8 +64,7 @@ package classes.Characters
 			this.ballSizeRaw = 40;
 			this.ballFullness = 1;
 			
-			//9999 impregnationType = "ZilBullPregnancy";
-			impregnationType = "ZilPregnancy";
+			impregnationType = "ZilBullPregnancy";
 			this.virility(1.5);
 
 			this.analVirgin = true;

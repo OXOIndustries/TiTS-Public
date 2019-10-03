@@ -84,6 +84,10 @@ public function storiesOfFloofAndStoriesOfDocs(inRandomEncounter:Boolean = false
 			output("\n\nGeez, that’s not something you expected her to tell you.");
 		}
 		else output("\n\nThe grisly tale doesn’t get any easier to listen to.");
+		
+		output("\n\n<i>“While we wrapped up inside, I heard over comms that the two away men had been taken down when they attempted another abduction. We prepared to move out and call in the </i>First Dusk<i> but the pilot of the ship broke into the room, screaming for all his lung’s worth. He must have been told to take off, that their crime had been exposed. Instead,”</i> she sighed heavily, <i>“he fell to a murderous desire... and I was his nearest target.”</i> A little color has drained from Bianca’s face, and she holds her trembling right hand still by the wrist.");
+		output("\n\n<i>“I was a bit surprised by what I did as it all went down.”</i> She mutters, voice beginning to quiver. <i>“I heard the yell, saw the glinting edge of a vibro-knife... my movements were instinctual. Before my team could react, I had pulled my gun from my belt,”</i> she performs the act with lightning speed, <i>“and shot him twice in the chest. He fell to his knees and then to his back. As soon as I saw his movements pause, I shot the weapon from his hand. Afterward, he was taken away to be treated for trial. It was a standard operation all told, but the story means something to me because I noticed what I felt: that if I pulled the trigger a few more times nobody would have thought twice.”</i>");
+		
 		if (pc.isNice()) output("\n\nYou tell her what matters is that she held her ground just fine. She stayed true to herself.");
 		else if (pc.isMisch()) output("\n\nWhile that may be true, it’s a good thing she didn’t give into animal instinct. The man may have deserved a fate worse than meeting her, but it wasn’t her call to make.");
 		else output("\n\nHe deserved everything he got. You tell Bianca that she did exactly what was required of her, no more, no less. Society certainly judged them harshly for their murders.");
@@ -487,13 +491,13 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 			output("\n\nNot hard to see why, but you did meet that ambassador. <i>“Ara Kei Enya asked for my help. [ara.He] wanted to unite the bothrioc. One hell of an obstacle, as the wisest and most powerful among them cannot, on a biological level, stand to be around each other due to some kind of pheromone they produce. I was also asked to procure a counteragent for this so they could meet in peace.”</i>");
 			output("\n\nDr. Ketria looks calmly at you, with a face that suggests nothing. Her concern is palpable. <i>“How did it go?”</i>");
 			// Gave Ara Kei Counteragent
-			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] == -1)
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] > 0)
 			{
 				output("\n\nYou explain that you produced the counteragent, and gave them a chance at unity. It worked, and from what you heard, they’ve begun to unify as a species. Ara Kei’s vision of seeing them granted citizenship is well on its way. The more you talk though, the more you and Bianca wonder if it was worth it, but who’s to say?");
 				output("\n\n<i>“Should they integrate into galactic culture then changes can be made,”</i> Bianca says evenly, her hesitation giving way to open-mindedness. <i>“...Perhaps I’m being unfair, too biased. The Dzaan can suppress their biology. If the bothrioc assimilate, then concessions can be made there, too. And,”</i> she says with a hopeful smile, <i>“they don’t deserve to be held back or endangered by the myr and their war.”</i>");
 			}
 			// Gave Ara Kei Fake Counteragent
-			else
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] < 0)
 			{
 				output("\n\nYou explain that you handed Ara Kei the fake counteragent, deciding that it would have been too dangerous to let the bothrioc expand beyond Myrellion. Perhaps ending her dream of unity for her race wasn’t a choice you should have ever made, but it was one you ended up <i>having</i> to make.");
 				output("\n\n<i>“I see,”</i> Bianca says, sipping her water. <i>“What you did was...”</i>");

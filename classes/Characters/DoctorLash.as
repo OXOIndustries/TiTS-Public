@@ -81,7 +81,7 @@
 			this.eyeType = 0;
 			this.eyeColor = "crimson";
 			//============THESE VALUES BE PLACEHOLDER, YAR ================//
-			this.tallness = 95;
+			this.tallness = 75;
 			this.thickness = 15;
 			this.tone = 85;
 			this.hairColor = "none";

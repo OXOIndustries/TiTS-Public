@@ -533,7 +533,7 @@ public function bodySuitedKirbuDefeat():void
 	output("Your best efforts are slain by wanton lust, weighing you down to a single knee before a rather excited victor. Even through your labored breathing, you can tell plain as day that the technological gelatin can’t even begin to decide what to do with you. Judging by her boisterous attitude, you suspect it’s been quite some time since this gray gal’s last meal. A rather impatient gaze on your part eventually catches her attention, knocking her out of her babbling trance.");
 	output("\n\n<i>“Oh, you’re rather anxious, aren’t you?”</i> the goo girl responds, rambunctiousness practically dripping from her voice. She steps your way, trying to hide her excitement with a sexy gait. Doubt melts away at the sight of her jiggling, exaggerated hips, each alternating in size in time with her overstated steps. <i>“There’s nothing but–”</i>");
 	output("\n\nThe majesty dies the second the slimy oaf trips over her own amorphous feet. The sudden shock of the fall causes her to lose her form, leaving naught but a gray blob heading your way. An involuntary gasp is all you can manage before your world is shrouded in gooey, undulating darkness. She hit you hard enough to knock you flat onto your back. With the debilitating sexual high losing to a resurgence of adrenaline, you work to try and get out of the gray curtain.");
-	output("\n\nA incredibly faint <i>“Oh, fuck it.”</i> comes from somewhere. The utterance is your only warning before life surges back into the silver mass. She’s clinging to your body, completely immobilizing you; your struggle’s been decimated before it even had a chance to begin! ");
+	output("\n\nAn incredibly faint <i>“Oh, fuck it.”</i> comes from somewhere. The utterance is your only warning before life surges back into the silver mass. She’s clinging to your body, completely immobilizing you; your struggle’s been decimated before it even had a chance to begin! ");
 	if(pc.armor.shortName != "") output("Your " + pc.armor.longName + " proves worthless as the goo girl seeps in underneath it. The goop easily undoes your protection, popping it off piece by piece. ");
 	output("The onslaught of flowing mischievousness adheres to your facet, leaving no tender spot unloved. Inconceivably small nano-bots explore your every pore wrinkle, hair, and whatever else you have on you.");
 
@@ -643,7 +643,7 @@ public function gooGooEnvelopsCunts():void
 	else output(" female sex is laid victim");
 	output(" to some unseen force, but the sensation is spot-on sucking, licking and even a little nipping. The gooey storyteller is losing her words, but she fights on. It’s too soon for her to drop the act.");
 	output("\n\n<i>“P-Pardon me. The knight’s a pro at this. His wife is just falling to pieces! ‘Just fuck me already!’ she shouts. The housewife is anxious for a hot slab of husband deep in her cooch. But he ignores her, his mouth attempting to pick up the pace. She shoves him off.”</i>");
-	output("\n\nThe oral barrage halts, giving your battered senes a moment to breathe.");
+	output("\n\nThe oral barrage halts, giving your battered senses a momentary reprieve.");
 	output("\n\n<i>“‘What’s wrong with you?’ the wife shouts. Her knight hesitates. There’s a look of shame in his face.”</i>");
 	output("\n\n<i>“‘M’lady... I was cursed during my journey,’ he responds, a look of sadness in his face. Before his wife can ask, he drops his trousers to reveal this massive horse cock of his.”</i>");
 	output("\n\nOh fuck.");
