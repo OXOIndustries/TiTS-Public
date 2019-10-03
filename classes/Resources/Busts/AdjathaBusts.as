@@ -327,6 +327,9 @@ package classes.Resources.Busts
 		public var Bust_ESTALLIA_NUDE:Class;
 		public function get Bounds_ESTALLIA_NUDE():Rectangle { return Bounds_ESTALLIA; }
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/spidertank.png", mimeType = "image/png")]
+		public var Bust_EXCAVATION_ROBOT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/corona_firepup.png", mimeType = "image/png")]
 		public var Bust_FIREPUP:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/corona_firepup_nude.png", mimeType = "image/png")]
@@ -1555,6 +1558,9 @@ package classes.Resources.Busts
 			public var Full_ESTALLIA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/estallia_nude.png", mimeType = "image/png")]
 			public var Full_ESTALLIA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/spidertank.png", mimeType = "image/png")]
+			public var Full_EXCAVATION_ROBOT:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;

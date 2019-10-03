@@ -26,6 +26,7 @@ public function spacewalkSuccess():void
 {
 	clearOutput();
 	showName("\nOH NO!");
+	showBust("EXCAVATION_ROBOT");
 	author("Savin");
 	moveTo("ZSM SPACE");
 	output("You close the distance and set to work, pulling the wires free of the torn bits of plastic and looking to assess the damage.");
@@ -56,6 +57,8 @@ output("\n\nDue to fighting in space, the PC takes a -{some big number} penalty 
 
 public function pcIsDefeatedByMiningBot():void
 {
+	showBust("EXCAVATION_ROBOT");
+	author("Savin");
 	output("The robot slams you right in the chest with one of its tree-trunk arms, hard enough to disconnect your magboots from the walkway. You scream as you’re thrown backwards, floating through the darkness away from the asteroid. The mining robot doesn’t need to follow through - why would it? You’re no longer a threat, indeed you’re all but a floating corpse already. You’ve got no tether and no external jets: you’re at the mercy of the gravitational winds. The robot scrabbles off back the way it came, and you... you just go floating away, never to be seen again.");
 	badEnd();
 	//<b>GAME OVER</b>
@@ -64,6 +67,8 @@ public function pcIsDefeatedByMiningBot():void
 //PC is Victorious
 public function pcIsVictoriousVsMiningBottle():void
 {
+	showBust("EXCAVATION_ROBOT");
+	author("Savin");
 	flags["ZHENG_SPACEWALKED"] = 1;
 	output("The robot staggers backwards under the force of your assault, screeching over the comms and flailing its grappling arms until with a bellow of static, it goes crashing off the side of the walkway and off into the aether. You’re left to watch as the mining robot tumbles through space, off and away into the asteroid belt, never to be seen again.");
 	output("\n\nWith the imminent threat dealt with, you return your attention to the damaged power coupling. It’s a simple fix once you find the problem - just a wire that needs some repair. After defeating the mining bot, there’s plenty of spares floating around within reach.");
