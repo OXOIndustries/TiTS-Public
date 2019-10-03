@@ -2285,6 +2285,12 @@ package classes.GameData
 							output("You manage to recover your wits and adopt a fighting stance!");
 						}
 					}
+					else if (target is KQSexdollGeneric)
+					{
+						if(!target.hasStatusEffect("KQDollStunText")) output("The stunned sexdoll stumbles around, leaking trickles of purplish cum until she recovers her wits a moment later.");
+						else output("The stunned sexdoll shakes herself back to alertness and stops leaking cum all over the floor.");
+						target.lust(-10);
+					}
 					else if (!target.isPlural)
 					{
 						output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
@@ -2306,7 +2312,13 @@ package classes.GameData
 						}
 						else
 						{
-							if (!target.isPlural) output("<b>Your teasing has " + (_hostiles.length == 1 ? ("the poor " + target.mfn("boy", "girl", "thing")) : target.getCombatName()) + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
+							if (target is KQSexdollGeneric)
+							{
+								output("The stunned sexdoll stumbles, leaking a steady trickle of purplish cum.");
+								target.lust(-10);
+								if(!target.hasStatusEffect("KQDollStunText")) target.createStatusEffect("KQDollStunText");
+							}
+							else if (!target.isPlural) output("<b>Your teasing has " + (_hostiles.length == 1 ? ("the poor " + target.mfn("boy", "girl", "thing")) : target.getCombatName()) + " in a shuddering mess as " + target.mfn("he", "she", "it") +" tries to regain control of " + target.mfn("his", "her", "its") + " lust addled nerves.</b>");
 							else output("<b>Your teasing has " + target.getCombatName() + " in a shuddering mess as they try to regain control of their lust addled nerves.</b>");
 						}
 					}
