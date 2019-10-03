@@ -566,6 +566,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/ldc.png", mimeType = "image/png")]
 		public var Bust_LDC:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/lgbt.png", mimeType = "image/png")]
+		public var Bust_LGBT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lgbt_nude.png", mimeType = "image/png")]
+		public var Bust_LGBT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
 		public var Bounds_LIEVE:Rectangle = new Rectangle(17, 0, 60, 60);
@@ -1765,6 +1770,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ldc.png", mimeType = "image/png")]
 			public var Full_LDC:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lgbt.png", mimeType = "image/png")]
+			public var Full_LGBT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lgbt_nude.png", mimeType = "image/png")]
+			public var Full_LGBT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;

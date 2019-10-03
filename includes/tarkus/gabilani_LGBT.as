@@ -34,7 +34,7 @@ Drops: Goblinola, credit chit.
 public function showLGBT(sexy:Boolean = false):void
 {
 	showName("GABILANI\nLG-BT");
-	showBust((sexy ? "LGBT_PILOTS":"LGBT"));
+	showBust((sexy ? "LGBT_NUDE":"LGBT"));
 }
 public function standInGabiCockVolume():Number
 {
@@ -113,6 +113,11 @@ public function encounterLGBT():Boolean
 //PC Wins
 public function defeatLGBT():void
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is LGBT) CombatManager.removeHostileActor(enemies[i]);
+	}
 	output("Smoking and sparking from a dozen craggy wounds, the LG-BT comes to a shuddering, moaning halt. Its arsenal sags downwards, and with a drawn-out, mournful beep, the war machine shuts itself down.");
 	if(!enemy.hasStatusEffect("Gabilani_Fucking")) 
 	{
@@ -136,6 +141,11 @@ public function defeatLGBT():void
 //PC loses
 public function pcDefeatedByLGBT():void
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is LGBT) CombatManager.removeHostileActor(enemies[i]);
+	}
 	//By HP
 	if(pc.HP() <= 1)
 	{
