@@ -14,14 +14,14 @@ package classes.Resources.Busts
 		// Making assumptions here
 		
 		[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca.png", mimeType = "image/png")]
-		public var Bust_BIANCA:Class;
+		public var Bust_BIANCA_CLOTHED:Class;
 		[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca_nude.png", mimeType = "image/png")]
 		public var Bust_BIANCA_NUDE:Class;
 			
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca.png", mimeType = "image/png")]
-			public var Bust_BIANCA:Class;
+			public var Bust_BIANCA_CLOTHED:Class;
 			[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca_nude.png", mimeType = "image/png")]
 			public var Bust_BIANCA_NUDE:Class;
 		}
