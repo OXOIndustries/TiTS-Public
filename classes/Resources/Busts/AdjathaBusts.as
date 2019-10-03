@@ -852,6 +852,9 @@ package classes.Resources.Busts
 		public function get Bust_RASK_TRAP():Class { return Bust_AZAPHEL; }
 		public function get Bust_RASK_TRAP_NUDE():Class { return Bust_AZAPHEL_NUDE; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_dockmaster_nude.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_DOCKMASTER_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_male.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_MALE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_male_nude.png", mimeType = "image/png")]
@@ -2042,8 +2045,10 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_tits_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_MOMMY_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_dockmaster_nude.png", mimeType = "image/png")]
+			public var Full_RASKVEL_DOCKMASTER_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_male.png", mimeType = "image/png")]
-			
 			public var Full_RASKVEL_MALE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_male_nude.png", mimeType = "image/png")]
 			public var Full_RASKVEL_MALE_NUDE:Class;
