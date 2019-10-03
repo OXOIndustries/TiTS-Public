@@ -50,6 +50,8 @@
 			
 			this.combatUsable = true;
 			this.targetsSelf = true;
+
+			this.addFlag(GLOBAL.ITEM_FLAG_ALCOHOLIC);
 			
 			this.version = this._latestVersion;
 		}

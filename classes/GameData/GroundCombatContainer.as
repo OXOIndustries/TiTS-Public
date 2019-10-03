@@ -1684,6 +1684,7 @@ package classes.GameData
 			{
 				addDisabledButton(14, "Run", "Run", "You agreed to this, no turning back now.");
 			}
+			else if (_hostiles.length > 0 && _hostiles[0] is Eitan) addButton(14, "Surrender", kGAMECLASS.miloSparringIsCancelled);
 			else if (pc.accessory is SignetOfBravery) addDisabledButton(14, "Run", "Run", "You can’t possibly bring yourself to run! (Prevented by <b>Signet of Bravery</b> accessory.)");
 			else
 			{
@@ -1802,6 +1803,7 @@ package classes.GameData
 					kGAMECLASS.setEnemy(null);
 				}
 				else if (hasEnemyOfClass(Lorelei)) Lorelei.waitRoundReaction(pc);
+				else if (hasEnemyOfClass(Eitan)) getEnemyOfClass(Eitan).waitRoundReaction(pc);
 				else output("You choose not to act.");
 				waitRoundEffects();
 			}
@@ -2408,6 +2410,7 @@ package classes.GameData
 						else if (hasEnemyOfClass(BothriocPidemme) || hasEnemyOfClass(BothriocQuadomme)) output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						else if (hasEnemyOfClass(RatsRaider)) output("You take a deep breath and focus. You aren’t breaking through on raw physique, so you wait for an opening. Liquid movements too graceful for even the rats to catch have your arms free in short order; you push the rodent on your face up then push against the ground, sliding out by the limber strength of your [pc.leg] muscles, contorting and twisting to stand and gain some distance all at once. Your motions were so precise that the merry " + (RatsRaider.ratCount() == 2 ? "duo" : "trio") + " are left confused and nervous. You can’t help but crack a smile.");
 						else if (hasEnemyOfClass(Lorelei)) output("You attempt to break free from Minuet’s grasp!\n\nWith a sudden movement, and a burst of speed, you manage to wrench yourself away from Minuet; her grip is still on your wrist, but all it takes now is a twist, and you’re both at a neutral position. Rather than attempt to fight you at arm’s length, Minuet lets you go, and returns to her earlier stance, ready to try again.");
+						else if (hasEnemyOfClass(Eitan)) output("You struggle in Eitan's tight bear-hug lock, pushing against his arms from the inside to try and make some room between you two. With a bit of force, you manage to make just the tiniest of gaps between his body and yours, and that's all you need to slip out of his grasp and return to a neutral position.");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 					}
 					else
@@ -2463,6 +2466,7 @@ package classes.GameData
 						}
 						else if (hasEnemyOfClass(Johr)) output("You break free of the zil, narrowly dodging another heavy blow from Johr as you regain your feet and rejoin the fight. The zil circle around you, snarling.");
 						else if (hasEnemyOfClass(Lorelei)) output("You attempt to break free from Minuet’s grasp!\n\nWith a sudden movement, and a burst of strength, you manage to wrench yourself away from Minuet; her grip is still on your wrist, but all it takes now is a twist, and you’re both at a neutral position. Rather than attempt to fight you at arm’s length, Minuet lets you go, and returns to her earlier stance, ready to try again.");
+						else if (hasEnemyOfClass(Eitan)) output("You struggle in Eitan's tight bear-hug lock, pushing against his arms from the inside to try and make some room between you two. With a bit of force, you manage to make just the tiniest of gaps between his body and yours, and that's all you need to slip out of his grasp and return to a neutral position.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 					}
 					else
@@ -2507,6 +2511,7 @@ package classes.GameData
 					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
 					else if (hasEnemyOfClass(RatsRaider)) output("Try as you might, even with humiliation powering your enfeebled muscles, you cannot shake the raw kinetic burden of the scrappy pirates. Your refusal to concede only accelerates their hunt for loot.");
 					else if (hasEnemyOfClass(Lorelei)) getEnemyOfClass(Lorelei).struggleFailReaction(target);
+					else if (hasEnemyOfClass(Eitan)) getEnemyOfClass(Eitan).struggleFailReaction(target);
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 				}
@@ -5214,6 +5219,7 @@ package classes.GameData
 						output("\n\n...Fuck it. You’re too horny to keep going. You tell Minuet that you surrender.");
 						continue;
 					}
+					else if (_friendlies[i] is PlayerCharacter && _friendlies[i].hasStatusEffect("Grappled") && hasEnemyOfClass(Eitan)) continue;
 					else if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
 					else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
 					if (_friendlies[i].HP() <= 0) output(" defeated.");

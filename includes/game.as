@@ -803,6 +803,7 @@ public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
+public const CREW_EITAN: int = 24;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -815,6 +816,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (celiseIsFollower()) crewMembers.push(CREW_CELISE);
 	if (daneRecruited()) crewMembers.push(CREW_DANE);
+	if (eitanRecruited()) crewMembers.push(CREW_EITAN);
 	if (kaseIsRecruited()) crewMembers.push(CREW_KASE);
 	if (kiroRecruited()) crewMembers.push(CREW_KIRO);
 	if (mitziRecruited()) crewMembers.push(CREW_MITZI);
@@ -852,6 +854,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (bessIsCrew()) crewMembers.push(CREW_BESS);
 	if (celiseIsCrew()) crewMembers.push(CREW_CELISE);
 	if (daneIsCrew()) crewMembers.push(CREW_DANE);
+	if (eitanIsCrew()) crewMembers.push(CREW_EITAN);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (kiroIsCrew()) crewMembers.push(CREW_KIRO);
 	if (mitziIsCrew()) crewMembers.push(CREW_MITZI);
@@ -993,6 +996,7 @@ public function getGunnersOnShipNames():Array
 	//if (bessIsCrew()) crewMembers.push(chars["BESS"].short);
 	//if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
+	//if (eitanIsCrew()) crewMembers.push("Eitan");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
@@ -1021,6 +1025,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
 	if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
+	if (eitanIsCrew()) crewMembers.push("Eitan");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
@@ -1072,6 +1077,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Bess-13": return bessBustDisplay(); break;
 		case "Celise": return celiseBustDisplay(); break;
 		case "Dane": return daneBustDisplay(); break;
+		case "Eitan": return eitanBustDisplay(); break;
 		case "Kase": return kaseBustDisplay(); break;
 		case "Kiro": return kiroBustDisplay(); break;
 		case "Mitzi": return mitziBustString(); break;
@@ -1098,6 +1104,7 @@ public function isFollowerMale(followerName:String = ""):Boolean
 	{
 		case "Bess-13":
 		case "Dane":
+		case "Eitan":
 		case "Kase": return true; break;
 	}
 	return false;
@@ -1214,6 +1221,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		//count++;
 		if(!counter) {
 			crewMessages += celiseShipBonusText(btnSlot, InCollection(CREW_CELISE, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (eitanIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += eitanCrewBlurbs(btnSlot, InCollection(CREW_EITAN, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -4065,6 +4081,9 @@ public function variableRoomUpdateCheck():void
 	else rooms["UVIP T44"].southExit = undefined;
 	//Ula and main hold daddy swapping.
 	ulaRoomUpdater();
+	//War Alpha tribe freed
+	if (wargiiMilodanTribeFreed()) rooms["UVGR O34"].northExit = "MILODAN TRIBE";
+	else rooms["UVGR O34"].northExit = "";
 	
 	/* VESPERIA / CANADIA STATION */
 	/*

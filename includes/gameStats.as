@@ -8384,6 +8384,28 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SEXED_MAJA"] != undefined) output2("\n<b>* Maja, Times Sexed:</b> " + flags["SEXED_MAJA"]);
 				variousCount++;
 			}
+			if(flags["EITAN_PRISONER_NEGOTIATIONS"] != undefined)
+			{
+				output2("\n<b><u>Milodan Prisoners</u></b>");
+				output2("\n<b>* Eitan:</b> Met him");
+				if (flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
+				switch (flags["EITAN_PRISONER_NEGOTIATIONS"])
+				{
+					case 1: case 2: output2(", Wants an exotic meal"); break;
+					case 3: output2(", Wants a revealing outfit"); break;
+					case 4: output2(", Wants alcohol"); break;
+					case 5: output2(", Wants medicine and air"); break;
+					case 6: output2(", Wants medicine, Ula allowed air"); break;
+					case 7: output2(", Wants an undershirt"); break;
+					case 8: case 9: output2(", Wants water"); break;
+					case 10: output2(", Wants audience with Ula"); break;
+				}
+				if (eitanRecruited())
+				{
+					output2(", Crew member");
+					if(eitanIsCrew()) output2(" (Onboard Ship)");
+				}
+			}
 			// Krym
 			if(flags["MET_KRYM"] != undefined)
 			{
