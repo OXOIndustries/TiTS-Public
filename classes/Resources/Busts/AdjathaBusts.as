@@ -778,7 +778,15 @@ package classes.Resources.Busts
 		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
 		public function get Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY_BIMBO_HORSE; }
 
-		
+		[Embed(source = "../../../assets/images/npcs/adjatha/perdita.png", mimeType = "image/png")]
+		public var Bust_PERDITA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/perdita_nude.png", mimeType = "image/png")]
+		public var Bust_PERDITA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/perdita_tan.png", mimeType = "image/png")]
+		public var Bust_PERDITA_TAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/perdita_tan_nude.png", mimeType = "image/png")]
+		public var Bust_PERDITA_TAN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr.png", mimeType = "image/png")]
 		public var Bust_PETR:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr_nude.png", mimeType = "image/png")]
@@ -1963,10 +1971,24 @@ package classes.Resources.Busts
 			public function get Full_PENNY_BIMBO_HORSE_1():Class { return Full_PENNY_BIMBO_HORSE; }
 			public function get Full_PENNY_BIMBO_HORSE_2():Class { return Full_PENNY_BIMBO_HORSE; }
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/perdita.png", mimeType = "image/png")]
+			public var Full_PERDITA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/perdita_nude.png", mimeType = "image/png")]
+			public var Full_PERDITA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/perdita_tan.png", mimeType = "image/png")]
+			public var Full_PERDITA_TAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/perdita_tan_nude.png", mimeType = "image/png")]
+			public var Full_PERDITA_TAN_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/petr.png", mimeType = "image/png")]
 			public var Full_PETR:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/petr_nude.png", mimeType = "image/png")]
 			public var Full_PETR_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga.png", mimeType = "image/png")]
+			public var Full_PEXIGA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga_bimbo.png", mimeType = "image/png")]
+			public var Full_PEXIGA_BIMBO:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/broodmother.png", mimeType = "image/png")]
 			public var Full_PREGRASK:Class;
@@ -1984,11 +2006,6 @@ package classes.Resources.Busts
 			public var Full_PYROTECH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pyrotech_nude.png", mimeType = "image/png")]
 			public var Full_PYROTECH_NUDE:Class;
-
-			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga.png", mimeType = "image/png")]
-			public var Full_PEXIGA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga_bimbo.png", mimeType = "image/png")]
-			public var Full_PEXIGA_BIMBO:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quaelle.png", mimeType = "image/png")]
 			public var Full_QUAELLE:Class;

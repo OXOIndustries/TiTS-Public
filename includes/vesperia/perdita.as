@@ -77,7 +77,9 @@ public function perditaLootsAvailable():Array
 
 public function showPerdita(nude:Boolean = false):void
 {
-	showBust("PERDITA" + (nude ? "_NUDE":""));
+	var tanString:String = "";
+	if(flags["MET_PERDITA"] == 2) tanString = "_TAN";
+	showBust("PERDITA" + tanString + (nude ? "_NUDE":""));
 	showName("\nPERDITA");
 }
 //Talk First Time
@@ -342,6 +344,7 @@ public function perditaIsBackForNormalInteractions(back:Boolean = false):void
 		output("\n\nThe half-Ausar leans in, giving you a good look (and a faceful of whisky-breath) before settling back. Very cool indeed, you agree, opting not to mention your more... extensive alterations.");
 		processTime(5);
 		flags["MET_PERDITA"] = 2;
+		showPerdita();
 		//[Appearance] [About] [Champeon] [Buy Smut] [Support] [Flirt]
 	}
 	else
