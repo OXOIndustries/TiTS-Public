@@ -19,10 +19,10 @@ Steeletech Suit + Toolbelt
 Floor dragging tail
 Working to keep her sister supplied on the rush. Iphedra.
 */
-public function showSynphia(nude:Boolean = false):void
+public function showSynphia(unzipped:Boolean = false):void
 {
 	showName("\nSYNPHIA");
-	showBust("SYNPHIA" + (nude ? "_NUDE":""));
+	showBust("SYNPHIA" + (unzipped ? "_UNZIP":""));
 }
 
 public function synphiaCockLoveLevel():Number
@@ -277,7 +277,7 @@ public function unfitSynphia():void
 public function synphiaServiceOption():void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	if(flags["SYNPHIA_SUCKS"] == undefined)
 	{
@@ -381,7 +381,7 @@ public function synphiaServiceOption():void
 public function synphiaCockForeplay(x:int):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	output("You don’t need to say a thing. Looking at your prickhead is enough.");
 	output("\n\nSynphia straightens, gently kissing her way up your [pc.cock " + x + "] as she goes");
@@ -498,7 +498,7 @@ public function synphiaCockForeplay(x:int):void
 public function synphiaVenomRouter(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 
 	var x:int = args[0];
@@ -530,7 +530,7 @@ public function synphiaVenomRouter(args:Array):void
 public function getVenomedUpSon(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	var x:int = args[0];
 	var deepthroat:Boolean = args[1];
 	author("Fenoxo");
@@ -559,7 +559,7 @@ public function getVenomedUpSon(args:Array):void
 public function noVenomSynphia(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 
 	var x:int = args[0];
@@ -591,7 +591,7 @@ public function synphiaDickSuckSceneRouter(args:Array):void
 public function strokeAndHeadPolishingBySynphia(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	var cummies:Number = pc.cumQ();
 	var x:int = args[0];
@@ -756,7 +756,7 @@ public function strokeAndHeadPolishingBySynphia(args:Array):void
 public function extraCumLeakingPostSynphia(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	
 	var x:int = args[0];
@@ -784,7 +784,7 @@ public function extraCumLeakingPostSynphia(args:Array):void
 public function synphiaEpilogue(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	var x:int = args[0];
 	var synCum:Boolean = args[4];
@@ -892,7 +892,7 @@ public function synphiaEpilogue(args:Array):void
 public function longSucksWithSynphia(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 
 	var cummies:Number = pc.cumQ();
@@ -976,7 +976,7 @@ public function longSucksWithSynphia(args:Array):void
 public function faceFuckDeepSnake(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 
 	var x:int = args[0];
@@ -1043,7 +1043,7 @@ public function faceFuckDeepSnake(args:Array):void
 public function letSynphiaDeepDrainYou(args:Array):void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	var x:int = args[0];
 	var venomBool:Boolean = args[2];
@@ -1115,7 +1115,7 @@ public function letSynphiaDeepDrainYou(args:Array):void
 public function synphiaBallForeplay():void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	//Regular size
 	if(pc.ballDiameter() < 7)
@@ -1199,7 +1199,7 @@ public function synphiaBallForeplay():void
 public function nutswellomaticWithYourHostCOLONGOESHERESynphiaEXCLAMATIONPOINT():void
 {
 	clearOutput();
-	showSynphia();
+	showSynphia(true);
 	author("Fenoxo");
 	output("You tell the sack-slobbering snake-woman to do it - to make your [pc.ballsNoun] bigger.");
 	output("\n\n<i>“Aww yesss! Okay, now try and hold still.”</i> Synphia ");

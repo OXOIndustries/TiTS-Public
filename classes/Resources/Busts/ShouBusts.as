@@ -653,6 +653,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shiare_nude.png", mimeType = "image/png")]
 		public var Bust_SHIARE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/synphia.png", mimeType = "image/png")]
+		public var Bust_SYNPHIA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/synphia_unzip.png", mimeType = "image/png")]
+		public var Bust_SYNPHIA_UNZIP:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/taivra.png", mimeType = "image/png")]
 		public var Bust_TAIVRA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/taivra_nude.png", mimeType = "image/png")]
@@ -1382,6 +1387,11 @@
 			public var Full_SHIARE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/shiare_nude.png", mimeType = "image/png")]
 			public var Full_SHIARE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/synphia.png", mimeType = "image/png")]
+			public var Full_SYNPHIA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/synphia_unzip.png", mimeType = "image/png")]
+			public var Full_SYNPHIA_UNZIP:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/taivra.png", mimeType = "image/png")]
 			public var Full_TAIVRA:Class;
