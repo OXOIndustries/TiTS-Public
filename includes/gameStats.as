@@ -6078,7 +6078,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["YOMA_TIMES_TAILFUCKED"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Tailcock:</b> " + flags["YOMA_TIMES_TAILFUCKED"]);
 				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
-				if(flags["MET_KEROKORAS"] != undefined) output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
+				if (flags["MET_KEROKORAS"] != undefined)
+				{
+					output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
+					if(flags["KEROKORAS_PREG"] != undefined) output2("\n<b>* Kerokoras, Times Impregnated:</b> " + flags["KEROKORAS_PREG"]);
+				}
 				if(flags["ENCOUNTERED_MIMBRANE"] != undefined) output2("\n<b>* Mimbranes, Times Encountered:</b> " + flags["ENCOUNTERED_MIMBRANE"]);
 				if(flags["TIMES_MET_NALEEN"] != undefined)
 				{
@@ -6092,11 +6096,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Vanae Maiden, Times Encountered:</b> " + flags["MET_VANAE_MAIDEN"]);
 					if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) output2("\n<b>* Vanae Maiden, Total Deflowered:</b> " + StatTracking.getStat("characters/maiden vanae/cherrys popped"));
+					if(flags["VANEA_MAIDEN_PREG"] != undefined) output2("\n<b>* Vanae Maiden, Times Impregnated:</b> " + flags["VANEA_MAIDEN_PREG"]);
 				}
 				if(flags["MET_VANAE_HUNTRESS"] != undefined)
 				{
 					output2("\n<b>* Vanae Huntress, Times Encountered:</b> " + flags["MET_VANAE_HUNTRESS"]);
 					if(flags["VANAE_HUNTRESS_BRED"] != undefined) output2("\n<b>* Vanae Huntress, Times Bred By:</b> " + flags["VANAE_HUNTRESS_BRED"]);
+					if(flags["VANEA_HUNTRESS_PREG"] != undefined) output2("\n<b>* Vanae Huntress, Times Impregnated:</b> " + flags["VANEA_HUNTRESS_PREG"]);
 					if(flags["VANAE_MILKBATH_TIMES"] != undefined) output2("\n<b>* Vanae Huntress, Times Received Milkbath By:</b> " + flags["VANAE_MILKBATH_TIMES"]);
 				}
 				if(flags["TIMES_MET_VENUS_PITCHER"] != undefined) output2("\n<b>* Venus Pitcher, Times Encountered:</b> " + flags["TIMES_MET_VENUS_PITCHER"]);
@@ -6551,7 +6557,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
-				if(flags["MET SYDIAN FEMALE"] != undefined) output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
+				if (flags["MET SYDIAN FEMALE"] != undefined)
+				{
+					output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
+					if(flags["SYDIAN_FEMALE_PREG"] != undefined) output2("\n<b>* Female Sydian, Times Impregnated:</b> " + flags["SYDIAN_FEMALE_PREG"]);
+				}
 				if(flags["MET_SYDIAN_MALE"] != undefined)
 				{
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);

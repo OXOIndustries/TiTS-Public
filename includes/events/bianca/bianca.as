@@ -39,6 +39,11 @@ public function showBianca(bust:* = false):void
 
 public function biancaFamiliarity(arg:int = 0, apply:Boolean = false):int
 {
+	trace("bianca fam " + flags["BIANCA_FAMILIARITY"]);
+	trace("bianca time " + flags["BIANCA_TIME_SPENT"]);
+	trace("bianca planet " + flags["BIANCA_PLANET"]);
+	
+	
 	if (flags["BIANCA_FAMILIARITY"] == undefined) flags["BIANCA_FAMILIARITY"] = 0;
 	if (apply) flags["BIANCA_FAMILIARITY"] = arg;
 	else flags["BIANCA_FAMILIARITY"] += arg;
@@ -141,7 +146,13 @@ public function biancaPlanet(newPlanet:String = null):String
 	else if (flags["BIANCA_PLANET"] == undefined) processBiancaPlanet(0);
 	return flags["BIANCA_PLANET"];
 }
-
+//if talking in bar and it passes midnight, return true
+//there shouldn't be any process times over an hour but it is set to 2 or less just in case one is ever added
+public function biancaTimeToLeaveBar():Boolean
+{
+	if (hours <= 2) return true;
+	return false;
+}
 public function lookAtBianca(from:int = 0):void
 {
 	clearOutput();
@@ -368,7 +379,7 @@ public function biancaRunningIntoYou():void
 	}
 	// One-Time Intro Variant, Familiarity >30, Met Bianca at a Bar
 	// Bianca disappears for the rest of the day, refresh next day.
-	else if ((flags["MET_BIANCA"] & 16) && (flags["MET_BIANCA"] & 64) != 64 && biancaFamiliarity() >= 30 && rand(7) == 0)
+	else if ((flags["MET_BIANCA"] & 16) && (flags["MET_BIANCA"] & 64) != 64 && biancaFamiliarity() >= 30 && rand(2) == 0)
 	{
 		output("Your trek has your thoughts wandering in all directions, but your mild reverie is interrupted by exigent cries. In one direction, right over a slope, you can hear heavy panting; a second before you heard what sounded like a nasty tumble. It could be a trap to lure curious adventurers like you in, but it could also be someone who ran afoul of something bigger than them.");
 		output("\n\nIt’s still worth a look.");
@@ -1838,10 +1849,17 @@ public function justACoupleOfBarfliesAndBarfoxes():void
 
 public function biancaBarMenu():void
 {
-	addButton(0, "Appearance", lookAtBianca, 2, "Appearance", "It may be dark, but you can still look over Bianca in detail.");
-	addButton(1, "Talk", boozeningsAndDrFoxes, undefined, "Talk", "Here in the safety of town you’ve got plenty of time to speak at length.");
-	if (flags["BIANCA_ANNOYED"] > GetGameTimestamp()) addButton(4, "Apology", sorryIAnnoyedYouWithMyFriendshipBianca, undefined, "Apology", "Apologize to Bianca for your previous unnecessary visits.");
-	addButton(14, "Leave", leaveBiancaToHerFoodstuffs);
+	if (biancaTimeToLeaveBar())
+	{
+		biancaLeavePastMidnight();
+	}
+	else
+	{
+		addButton(0, "Appearance", lookAtBianca, 2, "Appearance", "It may be dark, but you can still look over Bianca in detail.");
+		addButton(1, "Talk", boozeningsAndDrFoxes, undefined, "Talk", "Here in the safety of town you’ve got plenty of time to speak at length.");
+		if (flags["BIANCA_ANNOYED"] > GetGameTimestamp()) addButton(4, "Apology", sorryIAnnoyedYouWithMyFriendshipBianca, undefined, "Apology", "Apologize to Bianca for your previous unnecessary visits.");
+		addButton(14, "Leave", leaveBiancaToHerFoodstuffs);
+	}
 }
 
 public function boozeningsAndDrFoxes():void
@@ -1891,77 +1909,84 @@ public function biancaBarTalkMain(comingFrom:String):void
 	author("William");
 
 	var playerTurn:Boolean = true;
-	switch (comingFrom)
+	if (biancaTimeToLeaveBar())
 	{
-		case "talk":
-			output("<i>“Is there something else you wish to know, [pc.name]?”</i> she asks plainly.");
-			if (biancaFamiliarity() >= 50)
-			{
-				if (rand(3) == 0) output("\n\n<i>“I always enjoy hearing your voice. It reminds me of what I have next to me.”</i>");
-				else if (rand(2) == 0) output("\n\n<i>“Now that we’ve talked, maybe we can focus on each other?”</i>");
-				else output("\n\n<i>“Hopefully it’s something more- er, not to sound rude, but I’d love if we could go somewhere else soon!”</i>");
-			}
-			break;
-		case "playerSwitch": output("What would you like to ask Bianca?"); break;
-		case "biancaSwitch":
-			output("Developing vocabulary swirls in Bianca’s eyes. She’s on the cusp of asking you something...");
-			playerTurn = false;
-			break;
-	}
-
-	if (playerTurn)
-	{
-		addButton(0, "Chat", chattingAboutMiscWithAFoxyDoc, false, "Chat", "While away the time with Bianca, talking about whatever " + (silly ? "the writer happened to come up with." : "whatever comes to mind."));
-		addButton(1, "Herself", biancaTellsYouAboutBianca, false, "Herself", "Ask Bianca about herself.");
-		addButton(2, "Mods", biancaSpeaksOnCreationClub, false, "Mods", "Ask Bianca about her gene mods.");
-		addButton(3, "Work", theSpaceAdventuresOfDrKetria, false, "Work", "Ask Bianca about her work. Maybe there’s another reason she’s out here? At the very least, why isn’t she working in an official capacity?");
-		if (flags["BIANCA_TALKED_TOPICS"] != undefined) addButton(4, "You OK?", hasBiancaBeenCheckingHerselfUp, false, "You OK?", "See how Bianca is doing. Never hurts to show a little empathy.");
-
-		// [Stories]
-		// Available at 30% Familiarity, and PC must speak about [Work].
-		if (biancaFamiliarity() < 30 || !biancaTalkedTopic(BIANCA_TOPIC_WORK)) addDisabledButton(5, "Stories", "Stories", "You haven’t gotten to know her well enough for this topic.");
-		else addButton(5, "Stories", storiesOfFloofAndStoriesOfDocs, false, "Stories", "Ask Bianca if she has any stories. She’s served with the military, she’s gotta have some real campfire tales... or some really messed up ones.");
-
-		// [Parents]
-		// Available at 30% Familiarity.
-		// Must talk about [Herself], [Mods], and [Work].
-		if (biancaFamiliarity() < 30 || !biancaTalkedTopic(BIANCA_TOPIC_WORK | BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS)) addDisabledButton(6, "Parents", "Parents", "You haven’t gotten to know her well enough for this topic.");
-		else addButton(6, "Parents", whoDidBiancaComeFrom, false, "Bianca’s Parents", "Ask Bianca about her parents and childhood.");
-
-		// [Doctor]
-		// Available at 35% Familiarity.
-		// PC must ask about [Parents] and [Stories].
-		if (biancaFamiliarity() < 35 || !biancaTalkedTopic(BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_STORIES)) addDisabledButton(7, "Doctor", "Doctor", "You haven’t gotten to know her well enough for this topic.");
-		else addButton(7, "Doctor", whyIsSheTheOneTheyCallFluffgood, false, "Doctor", "Ask Bianca why she became a physician.");
-
-		// [Children]
-		if (biancaFamiliarity() < 40) addDisabledButton(8, "Children", "Children", "You haven’t gotten to know her well enough for this topic.");
-		// Option is grayed out until player [Confront]s Bianca later.
-		else if (flags["BIANCA_CONFRONTED"] != 1 && biancaTalkedTopic(BIANCA_TOPIC_CHILDREN)) addDisabledButton(8, "Children", "Children", "Judging by her reaction last time, asking this again would only cause ructions.");
-		else addButton(8, "Children", askBiancaAboutTheDoctorsKits, false, "Her Children", (flags["BIANCA_STORIES_TOLD"] > 3 || biancaTalkedTopic(BIANCA_TOPIC_CHILDREN) ? "Ask Bianca about her children." : "Ask Bianca if she has any children."));
-		
-		// [Family]
-		if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You’ll have to get much more <b>intimate</b> with Bianca to broach this topic.");
-		else if(biancaFamiliarity() < 49) addDisabledButton(9,"Family","Family"," You aren’t familiar enough with Bianca for this.");
-		else if(!biancaTalkedTopic(BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS | BIANCA_TOPIC_WORK | BIANCA_TOPIC_DOCTOR | BIANCA_TOPIC_STORIES | BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_CHILDREN)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.");
-		else if(!(flags["MET_BIANCA"] & 64)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.\n\n(You still need a certain event to occur with her in the wild.)");
-		//First time talkies:
-		else if(!biancaTalkedTopic(BIANCA_TOPIC_FAMILY)) addButton(9,"Family",biancaAndHerFamily,false,"Family","Carefully broach the topic of Bianca’s family, and see if she will share anything personal.");
-		//If you talked already, require confront
-		else if(flags["BIANCA_CONFRONTED"] == 1) addDisabledButton(9,"Family","Family","You’ve already asked about this, and it went about as well as it could. Best to leave indelicate topics be.");
-		else addButton(9,"Family",biancaAndHerFamily,false,"Family","You could probably discuss family more with her, if you like.");
-		
-		addButton(10, "Bianca", biancaBarTalkMain, "biancaSwitch", "Bianca", "She’s opened her mouth to ask...");
+		biancaLeavePastMidnight();
 	}
 	else
 	{
-		if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF) && tarkusCoordinatesUnlocked()) addButton(0, "Yourself", biancaAsksAboutYourAdventures);
-		if (biancaTalkedTopic(BIANCA_TOPIC_WORK)) addButton(1, "Your Crew", regaleTheMILFWithTalesOfYourHarem, false);
-		if (flags["BIANCA_STORIES_HEARD"] != undefined && biancaStoryMenu(true)) addButton(2, "Your Stories", biancaAsksForAStory, false);
-		if (biancaTalkedTopic(BIANCA_TOPIC_DOCTOR)) addButton(3, "Your Job", convinceBiancaYoureNotASpaceHobo, false);
-		addButton(10, "You", biancaBarTalkMain, "playerSwitch", "You", "You could ask her about...");
+		switch (comingFrom)
+		{
+			case "talk":
+				output("<i>“Is there something else you wish to know, [pc.name]?”</i> she asks plainly.");
+				if (biancaFamiliarity() >= 50)
+				{
+					if (rand(3) == 0) output("\n\n<i>“I always enjoy hearing your voice. It reminds me of what I have next to me.”</i>");
+					else if (rand(2) == 0) output("\n\n<i>“Now that we’ve talked, maybe we can focus on each other?”</i>");
+					else output("\n\n<i>“Hopefully it’s something more- er, not to sound rude, but I’d love if we could go somewhere else soon!”</i>");
+				}
+				break;
+			case "playerSwitch": output("What would you like to ask Bianca?"); break;
+			case "biancaSwitch":
+				output("Developing vocabulary swirls in Bianca’s eyes. She’s on the cusp of asking you something...");
+				playerTurn = false;
+				break;
+		}
+
+		if (playerTurn)
+		{
+			addButton(0, "Chat", chattingAboutMiscWithAFoxyDoc, false, "Chat", "While away the time with Bianca, talking about whatever " + (silly ? "the writer happened to come up with." : "whatever comes to mind."));
+			addButton(1, "Herself", biancaTellsYouAboutBianca, false, "Herself", "Ask Bianca about herself.");
+			addButton(2, "Mods", biancaSpeaksOnCreationClub, false, "Mods", "Ask Bianca about her gene mods.");
+			addButton(3, "Work", theSpaceAdventuresOfDrKetria, false, "Work", "Ask Bianca about her work. Maybe there’s another reason she’s out here? At the very least, why isn’t she working in an official capacity?");
+			if (flags["BIANCA_TALKED_TOPICS"] != undefined) addButton(4, "You OK?", hasBiancaBeenCheckingHerselfUp, false, "You OK?", "See how Bianca is doing. Never hurts to show a little empathy.");
+
+			// [Stories]
+			// Available at 30% Familiarity, and PC must speak about [Work].
+			if (biancaFamiliarity() < 30 || !biancaTalkedTopic(BIANCA_TOPIC_WORK)) addDisabledButton(5, "Stories", "Stories", "You haven’t gotten to know her well enough for this topic.");
+			else addButton(5, "Stories", storiesOfFloofAndStoriesOfDocs, false, "Stories", "Ask Bianca if she has any stories. She’s served with the military, she’s gotta have some real campfire tales... or some really messed up ones.");
+
+			// [Parents]
+			// Available at 30% Familiarity.
+			// Must talk about [Herself], [Mods], and [Work].
+			if (biancaFamiliarity() < 30 || !biancaTalkedTopic(BIANCA_TOPIC_WORK | BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS)) addDisabledButton(6, "Parents", "Parents", "You haven’t gotten to know her well enough for this topic.");
+			else addButton(6, "Parents", whoDidBiancaComeFrom, false, "Bianca’s Parents", "Ask Bianca about her parents and childhood.");
+
+			// [Doctor]
+			// Available at 35% Familiarity.
+			// PC must ask about [Parents] and [Stories].
+			if (biancaFamiliarity() < 35 || !biancaTalkedTopic(BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_STORIES)) addDisabledButton(7, "Doctor", "Doctor", "You haven’t gotten to know her well enough for this topic.");
+			else addButton(7, "Doctor", whyIsSheTheOneTheyCallFluffgood, false, "Doctor", "Ask Bianca why she became a physician.");
+
+			// [Children]
+			if (biancaFamiliarity() < 40) addDisabledButton(8, "Children", "Children", "You haven’t gotten to know her well enough for this topic.");
+			// Option is grayed out until player [Confront]s Bianca later.
+			else if (flags["BIANCA_CONFRONTED"] != 1 && biancaTalkedTopic(BIANCA_TOPIC_CHILDREN)) addDisabledButton(8, "Children", "Children", "Judging by her reaction last time, asking this again would only cause ructions.");
+			else addButton(8, "Children", askBiancaAboutTheDoctorsKits, false, "Her Children", (flags["BIANCA_STORIES_TOLD"] > 3 || biancaTalkedTopic(BIANCA_TOPIC_CHILDREN) ? "Ask Bianca about her children." : "Ask Bianca if she has any children."));
+			
+			// [Family]
+			if(flags["BIANCA_SEXED"] == undefined || (flags["BIANCA_SEXED"] != undefined && flags["BIANCA_SEXED"] < 5)) addDisabledButton(9,"Family","Family","You’ll have to get much more <b>intimate</b> with Bianca to broach this topic.");
+			else if(biancaFamiliarity() < 49) addDisabledButton(9,"Family","Family"," You aren’t familiar enough with Bianca for this.");
+			else if(!biancaTalkedTopic(BIANCA_TOPIC_HERSELF | BIANCA_TOPIC_MODS | BIANCA_TOPIC_WORK | BIANCA_TOPIC_DOCTOR | BIANCA_TOPIC_STORIES | BIANCA_TOPIC_PARENTS | BIANCA_TOPIC_CHILDREN)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.");
+			else if(!(flags["MET_BIANCA"] & 64)) addDisabledButton(9,"Family","Family","You haven’t gotten to know her well enough for this topic.\n\n(You still need a certain event to occur with her in the wild.)");
+			//First time talkies:
+			else if(!biancaTalkedTopic(BIANCA_TOPIC_FAMILY)) addButton(9,"Family",biancaAndHerFamily,false,"Family","Carefully broach the topic of Bianca’s family, and see if she will share anything personal.");
+			//If you talked already, require confront
+			else if(flags["BIANCA_CONFRONTED"] == 1) addDisabledButton(9,"Family","Family","You’ve already asked about this, and it went about as well as it could. Best to leave indelicate topics be.");
+			else addButton(9,"Family",biancaAndHerFamily,false,"Family","You could probably discuss family more with her, if you like.");
+			
+			addButton(10, "Bianca", biancaBarTalkMain, "biancaSwitch", "Bianca", "She’s opened her mouth to ask...");
+		}
+		else
+		{
+			if (biancaTalkedTopic(BIANCA_TOPIC_HERSELF) && tarkusCoordinatesUnlocked()) addButton(0, "Yourself", biancaAsksAboutYourAdventures);
+			if (biancaTalkedTopic(BIANCA_TOPIC_WORK)) addButton(1, "Your Crew", regaleTheMILFWithTalesOfYourHarem, false);
+			if (flags["BIANCA_STORIES_HEARD"] != undefined && biancaStoryMenu(true)) addButton(2, "Your Stories", biancaAsksForAStory, false);
+			if (biancaTalkedTopic(BIANCA_TOPIC_DOCTOR)) addButton(3, "Your Job", convinceBiancaYoureNotASpaceHobo, false);
+			addButton(10, "You", biancaBarTalkMain, "playerSwitch", "You", "You could ask her about...");
+		}
+		addButton(14, "Back", biancaBarTalkOver);
 	}
-	addButton(14, "Back", biancaBarTalkOver);
 }
 
 public function biancaBarTalkOver():void
@@ -2008,4 +2033,43 @@ public function leaveBiancaToHerFoodstuffs():void
 	if (flags["BIANCA_TALKED_TOPICS"] != undefined) flags["BIANCA_TALKED"] = 1;
 
 	addButton(0, "Next", mainGameMenu);
+}
+public function biancaLeavePastMidnight():void
+{
+	clearOutput();
+	showBianca("CASUAL");
+	author("William");
+	processTime(3 + rand(3));
+	clearMenu();
+	
+	output("The evening hours have flown by in a whirl of words" + (biancaFamiliarity() >= 60 ? " and stealthy indecency" : "") + ". Bianca’s plate is empty; she sets a glass down, completely empty, wiping a napkin to her lips. <i>“It’s gotten late, [pc.name].”</i> She eyes you sleepily, wearing a legendary foxen smile that defies exhaustion. <i>“Times with good company have a way of doing that. I’m afraid our dalliance must conclude.”</i>");
+	output("\n\nAlthough it’s the staff’s job to see to any mess, Bianca takes the time to organize her dishes and items for simple pickup, disposal, and cleaning. After setting them all to the side, she stretches back and yawns. You can’t help but watch her boobs wobble as a result. The hooded doctor cranes her neck left and right, saying, <i>“I’m going to sleep soon. I trust that won’t be an issue, and you’ll keep yourself out of harm’s way in the meantime?”</i>");
+
+	if (biancaFamiliarity() >= 60 && (!pc.hasSSTD() && !pc.isTaur() && !pc.isGoo() && pc.hasGenitals()))
+	{
+		output("\n\nThere might be.");
+		output("\n\n<i>“Oh?”</i> comes the incredulous doctor’s voice, her face leaning closer. <i>“And what makes you say that?”</i>");
+		output("\n\nYou reach a [pc.hand] up only to lose it in her sweater puppies, fiercely blushing as she embosoms you in her great stature, barely");
+		if (pc.isNice()) output(" mustering, <i>“Loneliness is more dangerous than a bullet.”</i>");
+		else if (pc.isMischievous()) output(" stammering, <i>“‘Cuz my bed might be empty.”</i>");
+		else output(" blurting, <i>“Because you could sleep with me.”</i>");
+
+		output("\n\nBianca tenderly kisses your [pc.face] and squeezes your [pc.thigh] hard. <i>“I know all too well. I bet you just wanted to get a woman tired so you could ask that. Would you like me to visit, then?”</i>");
+		output("\n\nHeart racing, you’re a hair away from gasping. Bianca’s a horny and needy woman radiating consent and pure desire. The suggestive stare she’s giving you can only be interpreted as a sultry look of readiness. Any kind of mischief from you is met with overwhelming " + (silly > 1 ? "ara ara" : "sensuality") + ". It took you this long to notice she’s holding your wrist to her breast, sinking you elbow-deep into the immense valley of her motherly tits, reveling in the tender touches. You pull her closer into a hug that lasts a lifetime, closing your eyes in the hope that this long moment never ends.");
+		output("\n\n<i>“[pc.name]. Shall I come back with you?”</i> Bianca’s voice is a whisper, and barely even that. The question could be a concoction of your imagination. But you know better. You squeeze her butt, stroke a tail, and answer,");
+		
+		//this is currently unimplimented as you cant get familiarity above 50 and there is nothing written for it
+		//so for now send to mainGameMenu in case familiary 60+ gets added and adding new scene functions for "yes" and "not tonight" gets missed
+		addButton(0, "Yes", mainGameMenu);
+		addButton(1, "Not Tonight", mainGameMenu);
+	}
+	else
+	{
+		output("\n\nNo issue at all.");
+		output("\n\nAt your response, Bianca extricates herself from the square of eating space. <i>“We’ll see each other again. But try not to get into any trouble, okay?”</i> comes the doctor’s voice from over her shoulder. A violet-eyed peek makes you smirk.");
+		output("\n\nNo guarantee at all.");
+		output("\n\n<i>“I know,”</i> she says, quietly sauntering off.");
+		
+		addButton(0, "Next", mainGameMenu);
+	}
 }

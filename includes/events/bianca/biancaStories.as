@@ -11,7 +11,7 @@ public function storiesOfFloofAndStoriesOfDocs(inRandomEncounter:Boolean = false
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	// First time
 	if (flags["BIANCA_STORIES_TOLD"] == undefined) output("Based on what Bianca’s hinted at in past conversations, she’s had more than a few dangerous encounters in her life. You look across the table, putting together as polite a query as you can: can she tell you such a story?\n\nA brief shuffle and contemplative stirring and Bianca’s gotten her mind and body in order. Her mouth opens but no words come. The doctor visibly ponders answering, but ultimately decides to regale you.");
@@ -131,7 +131,7 @@ public function biancaAndPiros(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	output("<i>“We received an urgent instruction to intervene at a suspicious incident on a civilian starport that was established for research over a planet set to be terraformed and colonized. I was on the bridge at the time the orders came and we had very little information going in, but the station had gone silent after half a distress call was received.”</i> Not one to theorycraft or bandy words pointlessly, Bianca continues, <i>“We arrived at Piros Starport a few hours later. The docking berths were fit to bursting, but nobody was coming or going, and it was... ominously quiet for such an installation. No vessels were moving in the vicinity, there was no inbound or outbound communication...”</i>");
 	output("\n\nAn ironic smirk crests the fox’s face, her next words spoken in a flippant, dull voice. <i>“I thought to myself at the time, ‘it’s like the first horror movie I ever saw’, where the down-on-their-luck scavenging team encounters a cosmic monstrosity aboard an abandoned station.”</i> Her ears flatten in fear, though you can’t tell if it’s feigned. When she straightens to look directly into your [pc.eye], you lean on it being sincere. <i>“It gives me chills still thinking about either of those today.”</i>");
@@ -157,9 +157,9 @@ public function biancaAndPirosTwo(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
-	output("\n\nOne of Bianca’s tails dips into her lap and she starts brushing it quietly, cradling the fluff like a stress relief pillow. <i>“I can still hear everything Officer Franks had said,”</i> her voice mimes something masculine, <i>“Captain, a directed explosion has torn through the station’s support channels! It’s falling, fast. Run! Get back to the transport on the double!”</i> She hugs her tail tighter, muscles relaxing. <i>“I’m sorry to digress.”</i>");
+	output("One of Bianca’s tails dips into her lap and she starts brushing it quietly, cradling the fluff like a stress relief pillow. <i>“I can still hear everything Officer Franks had said,”</i> her voice mimes something masculine, <i>“Captain, a directed explosion has torn through the station’s support channels! It’s falling, fast. Run! Get back to the transport on the double!”</i> She hugs her tail tighter, muscles relaxing. <i>“I’m sorry to digress.”</i>");
 	output("\n\n<i>“...the station, tilting and plummeting faster, could have been my grave. I could have burned up in the atmosphere, no trace left. I was... I was terrified.”</i> Bianca continues in a steady tone, though there’s still a trickle of sweat on her cheek. For how horrible it was, you wouldn’t be surprised if she had PTSD, but by her coalescing mannerisms you can tell she’s made peace with her past. <i>“My superiors kept me together. I’ve come to terms with it all, but it was so gut wrenching to see that many bodies flung about like discarded trash.”</i> ");
 	output("\n\nShe brushes a lock of hair, meeting your gaze again. <i>“Two minutes before the station would hit the atmosphere, the corridor in front of me collapsed, separating me from the team. A steel beam nearly landed on me, too.”</i> For a second, the thought of Bianca being crushed and bloodied forms an image in your mind you never want to recall. <i>“I would be lying if I said I wasn’t panicking, but the Captain barked an instant order telling me to go through the adjacent room.”</i>");
 	output("\n\nCuriously, Bianca’s comforted words tell you she was <i>glad</i> that this happened.");
@@ -187,7 +187,7 @@ public function biancaAndTheHound(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	output("Bianca pulls up her black and silver codex. A few quick taps later, she shows you the profile for a predatory creature called a Kanaxxus. Four legs, half as big as a spaceship, huge scaled bodies. The page is a handwritten journal, a lot of the doctor’s old handwriting describing them in detail. When she scrolls down you see a picture of her with a towering, uniformed ausar with dark red fur standing over the body of one fallen predator.");
 	output("\n\n<i>“Dian?”</i> you ask.");
@@ -340,7 +340,7 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	switch (story)
 	{

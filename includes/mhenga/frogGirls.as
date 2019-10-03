@@ -302,7 +302,8 @@ public function hasCockLossForForgGirls():void
 		output(" jungle floor and slips into the water, kicking away on her back while you recover yourself.");
 	}
 	output("\n\nYou awaken a bit later, feeling a little sore, but otherwise somewhat rested. You get up and gather your [pc.gear] and return to your prior affairs.");
-	processTime(60+rand(30));
+	processTime(60 + rand(30));
+	frogGirlsSimplePreg();
 	pc.orgasm();
 	output("\n\n");
 	if (!inCombat())
@@ -795,4 +796,40 @@ public function femaleVictoryFacesitting():void
 	processTime(100+rand(30));
 	pc.orgasm();
 	CombatManager.genericVictory();
+}
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function frogGirlsKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -.693; //base 50%
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function frogGirlsSimplePreg():void
+{
+	var chance:Number;
+		
+	if (pc.virility() == 0) chance = 0;
+	else chance = frogGirlsKnockupChance();
+	
+	//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+	if(rand(10000) < chance)
+	{
+		//succesful impregnation
+		IncrementFlag("KEROKORAS_PREG");
+		pc.clearRut();
+	}
 }
