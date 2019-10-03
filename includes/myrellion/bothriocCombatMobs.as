@@ -734,7 +734,7 @@ public function bothriocPidemmeOralTime(fromCombat:Boolean):void
 		
 		output("\n\nYou find yourself blushing from the kindness of the egg-giver, and the warmth you can feel throbbing between you.");
 		
-		output("\n\n<i>“Would you really mind - ?”</i> The bothrioc shifts themselves upwards, deliberately dragging the heavy weight of their abdomen up your spine, and arranges themselves in front of you so they are sat on top of that black, shiny teardrop, The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
+		output("\n\n<i>“Would you really mind - ?”</i> The bothrioc shifts themselves upwards, deliberately dragging the heavy weight of their abdomen up your spine, and arranges themselves in front of you so they are sitting on top of that black, shiny teardrop, The distended, violet hole winks at you wetly, the tip of their pent-up ovipositor clear to see.");
 		
 		output("\n\n<i>“Of course not, precious,”</i> they smile. <i>“Open wide.”</i> The purple tip presses insistently against your [pc.lips], and with a sigh of pure pleasure you do exactly what they say.");
 		

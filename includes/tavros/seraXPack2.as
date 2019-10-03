@@ -2919,7 +2919,7 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 				if(chars["SERA"].hasCock()) output(" own cock needily erect,");
 				output(" she cups her big tits and lets you paint them with your seed, quivering and laughing slightly as you go on to give her cruel, pretty features and brilliant hair the heavy pasting of musky [pc.cumNoun] they so richly deserve.");
 			}
-			output("\n\nYou take huge, shuddering breaths once you’ve spurted your last, [pc.groin] aching mightily, exhausted, shaken and profoundly satiated. The sight you’re met with when you finally wipe the sweat from your eyes is Sera, sat in front of her bowl");
+			output("\n\nYou take huge, shuddering breaths once you’ve spurted your last, [pc.groin] aching mightily, exhausted, shaken and profoundly satiated. The sight you’re met with when you finally wipe the sweat from your eyes is Sera, sitting in front of her bowl");
 			if(pc.cumQ() < 5000) output(", giving you a silent, coy crook of the eyebrow");
 			else output(", giving you a perfectly coy look despite the heavy amounts of cum drooling down her face");
 			output(".");
@@ -2958,6 +2958,7 @@ public function seranigansCheck(totalAttempts:int = 1):void
 {
 	if(flags["SERA_CREWMEMBER"] != 1 || pc.hasStatusEffect("Seranigans")) return;
 	if(totalAttempts < 1 || pc.hasStatusEffect("Seranigans Event")) return;
+	if(flags["SERA_OBEDIENCE_MAX"] != undefined && rand(flags["SERA_OBEDIENCE_MAX"]) >= 50) return;
 	
 	var chance:int = 1000;
 	if(!seraIsMerchant()) chance = 500;
@@ -4231,7 +4232,7 @@ public function seraBitcheningPunishCumRation():void
 		if(chars["SERA"].hasCock()) output(" own cock needily erect");
 		output(", she cups her big tits and lets you ice them with your seed, quivering and laughing slightly as you go on to give her cruel, pretty features and brilliant hair the heavy pasting of musky [pc.cum] they so richly deserve.");
 	}
-	output("\n\nYou take huge, shuddering breaths once you’ve spurted your last, [pc.groin] aching mightily, exhausted, shaken and profoundly satiated. The sight you’re met with when you finally wipe the sweat from your eyes is Sera is sat in front of her bowl,");
+	output("\n\nYou take huge, shuddering breaths once you’ve spurted your last, [pc.groin] aching mightily, exhausted, shaken and profoundly satiated. The sight you’re met with when you finally wipe the sweat from your eyes is Sera, sitting in front of her bowl,");
 	if(pc.cumQ() < 5000) output(" giving you a silent, coy crook of the eyebrow");
 	else output(" giving you a perfectly coy look despite the heavy amounts of cum drooling down her face");
 	output(".");
@@ -4955,7 +4956,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
 				{
 					output("<i>“Hey [pc.master]! How’s it going?”</i>");
-					output("\n\nSera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+					output("\n\nSera puts down her holopad and grins up at you when you enter her room. She’s seated on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
 				}
 				else
 				{

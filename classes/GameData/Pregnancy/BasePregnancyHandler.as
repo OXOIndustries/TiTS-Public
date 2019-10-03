@@ -140,7 +140,7 @@ package classes.GameData.Pregnancy
 			if (_onTryImpregnate != null)
 			{
 				if (debugTrace) trace("Calling onTryImpregnate handler");
-				wasSuccessful = _onTryImpregnate(father, mother, pregSlot, this);
+				wasSuccessful = _onTryImpregnate(father, mother, pregSlot, (this as BasePregnancyHandler));
 			}
 			else
 			{
@@ -152,12 +152,12 @@ package classes.GameData.Pregnancy
 				if (wasSuccessful)
 				{
 					if (debugTrace) trace("Calling onSuccessfulImpregnation handler");
-					_onSuccessfulImpregnation(father, mother, pregSlot, this);
+					_onSuccessfulImpregnation(father, mother, pregSlot, (this as BasePregnancyHandler));
 					
 					if (_onSuccessfulImpregnationOutput != null) 
 					{
 						if (debugTrace) trace("Calling onSuccessfulImpregnationOutput handler");
-						_onSuccessfulImpregnationOutput(father, mother, this);
+						_onSuccessfulImpregnationOutput(father, mother, (this as BasePregnancyHandler));
 					}
 					
 					return wasSuccessful;
@@ -173,12 +173,12 @@ package classes.GameData.Pregnancy
 				if (!wasSuccessful)
 				{
 					if (debugTrace) trace("Calling onFailedImpregnation handler");
-					_onFailedImpregnation(father, mother, pregSlot, this);
+					_onFailedImpregnation(father, mother, pregSlot, (this as BasePregnancyHandler));
 					
 					if (_onFailedImpregnationOutput != null)
 					{
 						if (debugTrace) trace("Calling onFailedImpregnationOutput handler");
-						_onFailedImpregnationOutput(father, mother, this);
+						_onFailedImpregnationOutput(father, mother, (this as BasePregnancyHandler));
 					}
 					
 					return wasSuccessful;
@@ -233,7 +233,7 @@ package classes.GameData.Pregnancy
 				if (_onDurationEnd != null)
 				{
 					if (debugTrace) trace("Calling onDurationEnd handler");
-					_onDurationEnd(tarCreature, pregSlot, this);
+					_onDurationEnd(tarCreature, pregSlot, (this as BasePregnancyHandler));
 				}
 				else
 				{

@@ -115,7 +115,7 @@ public function callMeSteeleshmaelDrBianca(inRandomEncounter:Boolean):void
 	// PC Kind
 	if (pc.isNice())
 	{
-		output("<i>“I’m not in charge of dad’s business yet. After he passed away, he wanted me to participate in the planet rush like he did to earn my inheritance. I’m looking for probes he threw out into the new systems which will lead me to the golden key. Unfortunately, my fiend of an uncle knows about this too, and he’s tasked his [pc.son] with stealing it. My cousin has styled [rival.himHer]self my rival, and if [rival.name] gets to the end first my dad’s legacy is over...”</i>");
+		output("<i>“I’m not in charge of dad’s business yet. After he passed away, he wanted me to participate in the planet rush like he did to earn my inheritance. I’m looking for probes he threw out into the new systems which will lead me to the golden key. Unfortunately, my fiend of an uncle knows about this too, and he’s tasked his [rival.son] with stealing it. My cousin has styled [rival.himHer]self my rival, and if [rival.name] gets to the end first my dad’s legacy is over...”</i>");
 		output("\n\n" + (inRandomEncounter ? "Bianca places a hand on your shoulder." : "Bianca places her hand on yours, fingers lingering on the side of your palm.") + " <i>“Don’t ever look down, [pc.name]. There...”</i> she pauses, choosing her words carefully, <i>“...there have been a few times in my life that I felt I would die, or worse, that I felt I should have died. If doubt or malevolence creeps in, remember who is relying on you. There is an incomprehensible weight on your shoulders, such a burden that I can’t imagine where it will lead you.”</i>");
 		output("\n\nDr. Ketria hums sweetly. <i>“I don’t think anyone could,”</i> she laughs. <i>“I’m certain those at Steele Tech are counting on you. That company rose on the back of a virtuous if not infallible man. While I never knew him, I painted a picture in a year from all that my husband commented on. Working there was a dream job for him. For what it’s worth, you have my support, too. The hardship you’re going to face on this road will make you into someone as great as him. And then?”</i> Bianca grins. <i>“That’s when you’ll rise beyond him.”</i>");
 		output("\n\n" + (inRandomEncounter ? "The doctor’s sudden hug is warm and tight," : "The foxy doctor squeezes your hand affectionately,") + " strong enough that it feels like she’s sharing in your struggle. Pulling away from that is one of the hardest things you’ve ever had to do.");
@@ -659,7 +659,9 @@ public function regaleTheMILFWithTalesOfYourHarem(inRandomEncounter:Boolean = fa
 
 	// All other crew members are referenced but only 3 random members will be mentioned each time Bianca asks this question for brevity.
 	ShuffleArray(crewList);
-	crewList.splice(3);
+	if(crewList.length > 3) crewList.splice(3);
+
+	//output("\n\n<b>" + crewList.concat() + "</b>");
 
 	for each (var crewMember:String in crewList) biancaCrewBlurb(crewMember);
 
@@ -741,11 +743,12 @@ public function biancaCrewBlurb(crewmember:String):void
 			output("\n\nYou go into exquisite (and sometimes gratuitous) detail about the dishes you’ve seen Yammi able to whip up. Bianca’s thoughtless drooling almost makes you laugh.");
 			output("\n\n<i>“Would it be okay if I came by once in a while..?”</i> Bianca whispers. <i>“No, no, it’s fine. I may be running around all day but I don’t know if I could work off some of those meals on cardio alone.”</i>");
 			output("\n\nYou both laugh.");
+			break;
 		// Varmint
 		case "varmint":
 			output("\n\nThere was a little bugger you picked up on New Texas and <i>accidentally</i> forgot to deal with. <i>“This one’s a bit of an odd story. While on New Texas I sort of went back to my ship with one of the varmints still tied up. That was a bad idea.”</i>");
 			output("\n\nBianca starts laughing at you, until she realizes that was a wee bit callous. <i>“And what did you do after that?”</i>");
-			output("\n\n<i>“I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog. Emphasis on dog.”</i>");
+			output("\n\n<i>“" + (flags["NATALIE_TAMES_VARMINT"] != undefined ? "I sought the help of an expert of course! I met with Natalie Irson and she helped me tame the creature. Now it’s a loyal, rock-eating guard dog." : "I bought a leash on the extranet to make sure it wouldn’t run off and make trouble. Now it’s an obedient guard dog.") + " Emphasis on dog.”</i>");
 			output("\n\n<i>“Try to be careful in the future, [pc.name],”</i> she whispers to you.");
 			break;
 		// Mitzi (must tell Bianca about the Stellar Tether stuff via ’Yourself’)

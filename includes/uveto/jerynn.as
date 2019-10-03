@@ -650,7 +650,7 @@ public function jerynnAllowRidden():void
 	else output(" on");
 	output(" your package never lets up, hefting and stroking and <i>squeezing</i> the beginnings of life into your oncoming erection. When the doors open with a ping, that same grip tightens to the edge of pain... and then she sets off out of the elevator, dragging you along dick-first!");
 
-	output("\n\nBlessed relief comes when you finally make it into Jerynns apartment and her hand falls away from your crotch... shortly before she pushes you over into the recessed pit filling the center of the room. Thankfully, the soft base and the padding around the edges arrests most of your rapid descent, but you don’t have long to orient yourself before the taurs hands are shoving you back upright. Between a flurry of pokes and prods you gradually get pushed to the edge of the comfortable recess, sat on the outer edge of it");
+	output("\n\nBlessed relief comes when you finally make it into Jerynns apartment and her hand falls away from your crotch... shortly before she pushes you over into the recessed pit filling the center of the room. Thankfully, the soft base and the padding around the edges arrests most of your rapid descent, but you don’t have long to orient yourself before the taurs hands are shoving you back upright. Between a flurry of pokes and prods you gradually get pushed to the edge of the comfortable recess, sitting on the outer edge of it");
 	if (pc.hasArmor() || pc.hasLowerGarment()) output(" somehow having lost your [pc.lowerGarments] in the process");
 	output(".");
 

@@ -838,7 +838,7 @@ public function biancaBoothBonus(btnSlot:int = 0, planet:String = null):Boolean
 		if ((flags["MET_BIANCA"] & 6) == 0)
 		{
 			if (flags["MET_BIANCA"] == undefined) output("\n\nA murmuring crowd gathered near the exit draws your attention. A bespectacled woman stands there, speaking to the enamored colonists and explorers. Just a glance at her charming smile, twitching fox ears, and fluffy tails from this distance indicates the <i>physical</i> appeal of the gesturing lady.");
-			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " sat on one of several chairs while she performs a medical checkup.");
+			else output("\n\nYou see that foxy woman in a white and sky-blue coat again, dutifully checking over " + indefiniteArticle(RandomInCollection("human", "ausar", "kaithrit", "laquine", "mouse", "gryvain")) + " " + RandomInCollection("boy", "girl", "man", "woman") + " seated on one of several chairs while she performs a medical checkup.");
 			output(" Talkative locals and Rushers are lined up waiting their turn and the mood seems energetic enough. You could join the procession and see what the hubbub is about. Hopefully before it gets any bigger.");
 			if (flags["MET_BIANCA"] == undefined) flags["MET_BIANCA"] = 1;
 			else flags["MET_BIANCA"] |= 1;
@@ -1760,8 +1760,13 @@ public function justACoupleOfBarfliesAndBarfoxes():void
 		// Familiarity 36-50
 		case 2:
 			output("Bianca looks a lot happier than usual. You identify an enduring energy behind her eyes, and the ‘door’s-always-open’ expression she gives reinforces positivity and dispels worry. First question: how’s she doing this evening?");
-
-
+			output("\n\n<i>“" + RandomInCollection([
+				"I’m better than ever",
+				"Tranquil... poised... I think those two words sum up the end of my day,",
+				"I’m composed, better than some of my other days,",
+				"Just fine,",
+				"The usual... but my usual is unusual,",
+			]) + "”</i> she titters. <i>“And you, [pc.name]?”</i>");
 			output("\n\nThe same! You lean back and scan the room, idly wondering why exactly you came over.");
 			break;
 		// Familiarity >51, rand1
@@ -1771,7 +1776,7 @@ public function justACoupleOfBarfliesAndBarfoxes():void
 			output("\n\nHow can you refuse? You open your mouth with an ‘ahh’ and let her feed you a piece of spicy eden. When your teeth sink into the excellently cooked food you discover that it’s outrageously delectable. Your brain identifies chicken, salami, and underneath it all is the taste of a sweet, melted cheese. " + (pc.tallness < 64 ? "Bianca pats your head and scratches behind your [pc.ears]" : "Bianca kisses you on the cheek") + " and indulges herself further.");
 			output("\n\nDefinitely a protein rich meal!");
 			output("\n\n<i>“Hehe... don’t mind me, [pc.name]. I thought I could have a little fun,”</i> your fox-mom quips. You assure her that you did too, eliciting a cute swoon from Bianca. <i>“So, would you like to talk? Or something else?”</i>");
-			if (pc.hasGenitals() && pc.lust() >= 50) output("\n\n<i>“Or... are you still <i>hungry</i>?”</i> She nuzzles into your cheek, quietly moaning, reaching for your crotch. Seems she’s feeling as randy as you are...");
+			if (pc.hasGenitals() && pc.lust() >= 50) output("\n\n<i>“Or... are you still </i>hungry<i>?”</i> She nuzzles into your cheek, quietly moaning, reaching for your crotch. Seems she’s feeling as randy as you are...");
 			break;
 		// Familiarity >51, rand2
 		case 4:

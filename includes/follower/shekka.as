@@ -2145,7 +2145,7 @@ public function shekkaAnnoFightFollowup():void
 	showName("GETTING\nALONG?");
 	showBust(annoBustDisplay(),shekkaBustDisplay());
 	author("SomeKindofWizard");
-	output("When you hunt both of the girls out again, they’re both sat on your bed, scrolling through a datapad. <i>“A step up from arguing, what are you both looking at?”</i> you begin, rubbing your chin.");
+	output("When you hunt both of the girls out again, they’re both sitting on your bed, scrolling through a datapad. <i>“A step up from arguing, what are you both looking at?”</i> you begin, rubbing your chin.");
 	output("\n\nAnno looks up, tail wagging idly as she gives you a bright smile. <i>“Porn!”</i>");
 	output("\n\n<i>“...Of course.”</i>");
 	output("\n\n<i>“No, but really,”</i> Shekka adds <i>“It’s one of Anno’s old colleagues doing something fucking wild with sex-toy construction. We... may or may not have restarted the pulse-versus-vibes argument. But we’ve stopped snapping at each other.”</i>");
