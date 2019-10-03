@@ -13,6 +13,16 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
 			public static const AnnoMaid:Class;
 
+			//BIANCA
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_bentOver.png", mimeType = "image/png")]
+			public static const bianca_octomush_bentOver:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_cunnilingus.png", mimeType = "image/png")]
+			public static const bianca_octomush_cunnilingus:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_thighSex.png", mimeType = "image/png")]
+			public static const bianca_octomush_thighSex:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_working_marked_NOLIMIT.png", mimeType = "image/png")]
+			public static const bianca_working_marked_NOLIMIT:Class;
+
 			//CAMERON SPLAYED
 			[Embed(source = "../../assets/images/imagepack/cameron/javkiller_cameron.png", mimeType = "image/png")]
 			public static const CameronSplayed:Class;
