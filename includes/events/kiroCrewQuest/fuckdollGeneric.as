@@ -36,11 +36,6 @@ public function resetKiroQuest():void
 	flags["KQ_MET_SEXDOLL_HUM"] = undefined;
 	flags["KQ_VULPATRA_TAINTS"] = undefined; // How many times dickgrown via earfukks
 }
-public function nukeWillTesting():void
-{
-	pc.willpower(-100);
-	genericSexdollEncounter();
-}
 public function genericSexdollEncounter():void 
 {
 	var tEnemy:Creature = new KQSexdollGeneric();
