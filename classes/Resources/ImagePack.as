@@ -225,7 +225,19 @@ package classes.Resources
 
 			//VKO
 			[Embed(source = "../../assets/images/imagepack/vko/Renezuo_VKo_MQ.jpg", mimeType = "image/jpg")]
-			public static const VKOBJ:Class;		
+			public static const VKOBJ:Class;
+
+			//WALL SLUTS
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_fanfir.png", mimeType = "image/png")]
+			public static const WallFanfir:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_gabilani.png", mimeType = "image/png")]
+			public static const WallGabilani:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_leithan.png", mimeType = "image/png")]
+			public static const WallLeithan:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_raskvel.png", mimeType = "image/png")]
+			public static const WallRaskvel:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_tura.png", mimeType = "image/png")]
+			public static const WallTura:Class;
 
 			//ZIL FEMALE
 			[Embed(source = "../../assets/images/imagepack/zil_female/aldergames_zilfemB_final_01.png", mimeType = "image/png")]
