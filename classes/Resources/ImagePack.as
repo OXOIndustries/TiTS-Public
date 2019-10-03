@@ -83,6 +83,16 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/jade/tktktk_Jade_nipples_Shaded.png", mimeType = "image/png")]
 			public static const JadeTitfuckNips:Class;
 
+			//Jumper
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHumanVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperHumanVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperCanineVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperCanineVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperFelineVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperFelineVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHorseVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperHorseVaginalMoira:Class;
+
 			//KELLY
 			[Embed(source = "../../assets/images/imagepack/kelly/dsan_nenette_kelly_herm_horsecock_laquine.jpg", mimeType = "image/jpg")]
 			public static const KellyDP:Class;
