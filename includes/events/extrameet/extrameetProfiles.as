@@ -20,6 +20,7 @@ public function extrameetKaedeProfile():void
 
 public function extrameetKaedeCheckMatch():Boolean
 {
+	if(flags["ANNOxKAEDE_INTRODUCED"] == undefined || flags["ANNOxKAEDE_INTRODUCED"] <= 0) return false;
 	return (pc.hasCock() || pc.hasVagina());
 }
 

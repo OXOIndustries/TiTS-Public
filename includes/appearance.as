@@ -1313,7 +1313,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					}
 					else outputRouter(" curled goat horns twist back from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curling over " + (target == pc ? "your":"[target.hisHer]") + " [target.ears] like a satyr out of terran legend.");
 				}
-				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick stright out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
+				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick straight out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
 				break;
 			//Ram horns
 			case GLOBAL.TYPE_SHEEP:

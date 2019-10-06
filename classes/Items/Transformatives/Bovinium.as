@@ -267,7 +267,7 @@ package classes.Items.Transformatives
 			// Genderless autoacquires vagina
 			if (!target.hasCock() && !target.hasVagina() || (!target.hasVagina() && rand(4) > 0))
 			{
-				output("\n\nYou feel a lance of point, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
+				output("\n\nYou feel a lance of pain, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
 
 				output("\n\nYou reach a hand down, brushing it along your ");
 				if(!target.isCrotchGarbed()) output("bare ");

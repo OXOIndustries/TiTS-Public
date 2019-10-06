@@ -7575,12 +7575,12 @@
 				if (temp <= 7 || appearance)
 				{
 					if (perkv1("Wooly") >= 1 && rand(2) == 0) output += "wool";
-					output += "fur";
+					else output += "fur";
 				}
 				else if (temp <= 8)
 				{
 					if (perkv1("Wooly") >= 1 && rand(2) == 0) output += "fleece";
-					output += "pelt";
+					else output += "pelt";
 				}
 				else output += "coat";
 			} else if (skinType == GLOBAL.SKIN_TYPE_SCALES) {
