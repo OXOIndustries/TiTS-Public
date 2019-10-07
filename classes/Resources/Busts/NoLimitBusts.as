@@ -6,7 +6,7 @@ package classes.Resources.Busts
 	 */
 	public class NoLimitBusts 
 	{
-		public function get PREVIEW():Class { return Bust_BIANCA; }
+		public function get PREVIEW():Class { return Bust_BIANCA_CLOTHED; }
 		//public function get SIGNATURE():Class { return SigEmbed; }
 		
 		//[Embed(source = "../../../assets/images/sig/damnit.png", mimeType = "image/png")]
@@ -21,9 +21,9 @@ package classes.Resources.Busts
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca.png", mimeType = "image/png")]
-			public var Bust_BIANCA_CLOTHED:Class;
+			public var Full_BIANCA_CLOTHED:Class;
 			[Embed(source = "../../../assets/images/npcs/nolimit/HR/bianca_nude.png", mimeType = "image/png")]
-			public var Bust_BIANCA_NUDE:Class;
+			public var Full_BIANCA_NUDE:Class;
 		}
 		
 	}
