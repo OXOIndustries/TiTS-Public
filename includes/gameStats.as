@@ -7788,6 +7788,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] != undefined) output2("\n<b>* Chestnut, Cum in Boobwombs:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"]);
 				variousCount++;
 			}
+			// More Rec Dec?
+			if(flags["MET_VULRIKS"] != undefined)
+			{
+				output2("\n<b><u>Recreational Deck:</u></b>");
+				if (flags["MET_VULRIKS"] != undefined)
+				{
+					output2("\n<b>* Vulriks:</b> Met him");
+					if (flags["VULRIKS_SEXED"] != undefined) output2(", Sexed him");
+					if (flags["VULRIKS_SOLD"] != undefined) output2(", Has paid " + flags["VULRIKS_SOLD"] + " credits for your items");
+				}
+			}
 		}
 		
 		if(showID == "Uveto" || showID == "All")
