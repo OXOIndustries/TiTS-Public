@@ -1508,6 +1508,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
 	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
+	if(shopkeep is Vulriks) flags["VULRIKS_SOLD"] = (flags["VULRIKS_SOLD"] != undefined ? flags["VULRIKS_SOLD"] + price : price);
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
