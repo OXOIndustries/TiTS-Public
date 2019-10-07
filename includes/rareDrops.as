@@ -55,6 +55,7 @@ public function genericRareDrops(loot:Array):Array
 				tempLoot.push(new GeddaniumRingPiercing());
 				if(!CodexManager.entryUnlocked("Cow Stuff")) tempLoot.push(new CowStuff());
 				if(!CodexManager.entryUnlocked("Tower of Trials")) tempLoot.push(new TowerOfTrials());
+				if(!pc.hasKeyItem("Video - Zil Nigh the Science Bi")) tempLoot.push(new ZilNighTheScienceBi());
 			default:
 				break;
 		}
