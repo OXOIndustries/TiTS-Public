@@ -700,10 +700,10 @@ public function letTheFookdollCumInside(x:int):void
 	var changes:Number = 0;
 	var choices:Array = [];
 	if(pc.wetness(x) < 5) choices.push(1);
-	if(pc.vaginalPuffiness(x) < 2) choices.push(2);
+	if(pc.vaginalPuffiness(x,true) < 2) choices.push(2);
 	if(pc.clitLength < 12) choices.push(3);
 	//Wetness can combo with 1 other change:
-	if(pc.wetness(x) < 5 && pc.vaginalPuffiness(x) < 2) choices.push(4);
+	if(pc.wetness(x) < 5 && pc.vaginalPuffiness(x,true) < 2) choices.push(4);
 	if(pc.wetness(x) < 5 && pc.clitLength < 12) choices.push(5);
 	//Pick a change if any avail.
 	var select:int = -1;
@@ -787,10 +787,10 @@ public function outsideCummiesForFutaSexdolls(x:int):void
 	var changes:Number = 0;
 	var choices:Array = [];
 	if(pc.wetness(x) < 5) choices.push(1);
-	if(pc.vaginalPuffiness(x) < 2) choices.push(2);
+	if(pc.vaginalPuffiness(x,true) < 2) choices.push(2);
 	if(pc.clitLength < 12) choices.push(3);
 	//Wetness can combo with 1 other change:
-	if(pc.wetness(x) < 5 && pc.vaginalPuffiness(x) < 2) choices.push(4);
+	if(pc.wetness(x) < 5 && pc.vaginalPuffiness(x,true) < 2) choices.push(4);
 	if(pc.wetness(x) < 5 && pc.clitLength < 12) choices.push(5);
 	//Pick a change if any avail.
 	var select:int = -1;

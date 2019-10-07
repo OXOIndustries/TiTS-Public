@@ -559,7 +559,7 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
 					output2("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[x].minLooseness, 3));
 					output2("\n<b>* Wetness Level:</b> " + formatFloat(pc.vaginas[x].wetness(), 3));
-					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
+					if(pc.isSquirter(x)) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0)
 					{
 						output2("\n<b>* Clitoris:</b> " + pc.vaginas[x].clits);

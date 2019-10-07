@@ -10366,11 +10366,14 @@
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
-			//Soak bumps up 1 level to 2 at max.
-			if(hasStatusEffect("Soak") && puffScore < 1) puffScore = 1;
-			else if(hasStatusEffect("Soak") && puffScore < 2) puffScore = 2;
-			//OD is the hypers!
-			if(hasStatusEffect("Soak Overdose") && puffScore < 3) puffScore = 3;
+			if(!flagOnly)
+			{
+				//Soak bumps up 1 level to 2 at max.
+				if(hasStatusEffect("Soak") && puffScore < 1) puffScore = 1;
+				else if(hasStatusEffect("Soak") && puffScore < 2) puffScore = 2;
+				//OD is the hypers!
+				if(hasStatusEffect("Soak Overdose") && puffScore < 3) puffScore = 3;
+			}
 			
 			return puffScore;
 		}
@@ -22431,6 +22434,9 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Anal Lubricant":
+						if(requiresRemoval) ass.wetnessMod -= thisStatus.value1;
+						break;
 					case "Soak":
 						if(requiresRemoval)
 						{
