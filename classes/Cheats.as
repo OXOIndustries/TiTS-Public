@@ -94,16 +94,10 @@
 				return;
 			}
 			Cheats.OutputStuff(true);
-			if(!kGAMECLASS.pc.hasStatusEffect("Boob Silicone Please"))
-			{
-				kGAMECLASS.pc.createStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will now be the target</b>!");
-			}
-			else
-			{
-				kGAMECLASS.pc.removeStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will no longer be the target</b>!");
-			}
+			
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Doctor Badger cheat menu activated!</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.drBadgerCheatMenu);
 		}
 		public static function XPToLevel():void
 		{

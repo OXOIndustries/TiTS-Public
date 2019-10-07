@@ -1656,7 +1656,7 @@ public function xhelarfogCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Body Composition (Flesh)"));
 	outputCodex("While perhaps not obvious at a first glance, Xhelarfog are a semi-gelatinous species. Though they do not possess the remarkable shape changing powers of a galotian, they are certainly capable of sealing shut and quickly healing any wounds they attain, and their boneless bodies are easily able to contort through small openings and survive much greater falls than other races.");
-	outputCodex("Xhelarfog have, at present, only been observed to possess opalescent, pale skin.");
+	outputCodex("\n\nXhelarfog have, at present, only been observed to possess opalescent, pale skin.");
 	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Body Composition (Scales)"));
@@ -3099,7 +3099,7 @@ public function throbbCodexEntry():void
 	outputCodex("\n\nGrowing or expanding genitalia produced a powerful, psychologically addictive euphoria akin to the feeling of an adolescent discovering his or her first love. What’s more, it also unbalanced the user’s endocrine system in much the same manner as puberty, resulting in a large but otherwise harmless increase in libido. Initial test subjects frequently requested additional doses, citing that “they weren’t big enough yet” or “they could be so much more virile.”");
 	outputCodex("\n\nThe study was shut down, but the problems did not end there. Many who had partaken in the study eventually turned to sex work or wound up arrested for sexual assault.");
 	outputCodex("\n\nAs a result, the scientists were ordered to reformulate the drug in order to minimize the side effects. Any success in suppressing the high or associated nymphomania brought with it a massive reduction in the efficacy of its desired effects. Xenogen had a drug that would push its users into deviancy or a drug that took dozens of doses and achieved essentially the same effect.");
-	outputCodex("\n\nOne year later, the Throbb project was shuttered. Xenogen shares dropped 18.5% in trading due to the news but recovered later in the week thanks to the successful launch of Rainbowtox.");
+	outputCodex("\n\nOne year later, the Throbb project was shuttered. Xenogen shares dropped 18.5% in trading due to the news but recovered later in the week thanks to the successful launch of Rainbotox.");
 	outputCodex("\n\nThrobb’s synthesis was leaked to the extranet, and now most back-alley chemists can whip up a batch in a few days. Most newer model fabricators and molecule assemblers prevent its manufacture at a firmware level, citing UGC “Deleterious Drugs” statute, section 7, paragraph 4. Hacks to circumvent these restrictions are commonplace and easily attainable.\n\n");
 	outputCodex(blockHeader("Method of Application"));
 	outputCodex("Throbb requires injection into the area to be affected. Injecting it into non-reproductive areas may result in unwanted growths or bizarre sensitivity.\n\n");

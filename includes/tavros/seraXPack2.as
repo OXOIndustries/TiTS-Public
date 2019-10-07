@@ -2972,7 +2972,7 @@ public function seranigansCheck(totalAttempts:int = 1):void
 		pc.createStatusEffect("Seranigans Event", iEvent, 0, 0, 0, true, "", "", false);
 	}
 }
-public function seranigansRainbowtoxColors():Array
+public function seranigansRainbotoxColors():Array
 {
 	return ["lime green", "fluorescent pink", "fluorescent yellow", "purple", "concrete gray"];
 }
@@ -3132,15 +3132,15 @@ public function seranigansEvent(sEvent:String = "none"):void
 			
 			if (flags["SERA_PRANK_DETECTED"] == 1)
 			{
-				output("You step into the shower and... wait. Did you leave the bathroom door open when you left earlier? You don’t think you did. Which means <b>someone</b> maybe came in here, and... you reach up and gingerly touch the shower nozzle with a flannel. Aha! The colorless slime it’s slathered in turns the cloth " + RandomInCollection(seranigansRainbowtoxColors()) + ", but leaves your naked body mercifully unscathed. Sera’s antics have been foiled!");
+				output("You step into the shower and... wait. Did you leave the bathroom door open when you left earlier? You don’t think you did. Which means <b>someone</b> maybe came in here, and... you reach up and gingerly touch the shower nozzle with a flannel. Aha! The colorless slime it’s slathered in turns the cloth " + RandomInCollection(seranigansRainbotoxColors()) + ", but leaves your naked body mercifully unscathed. Sera’s antics have been foiled!");
 			}
 			else
 			{
 				var tfList:Array = [];
 				var partsList:Array = [
-					["hair", RandomInCollection(seranigansRainbowtoxColors())],
-					["lips", RandomInCollection(seranigansRainbowtoxColors())],
-					["skin", RandomInCollection(seranigansRainbowtoxColors())],
+					["hair", RandomInCollection(seranigansRainbotoxColors())],
+					["lips", RandomInCollection(seranigansRainbotoxColors())],
+					["skin", RandomInCollection(seranigansRainbotoxColors())],
 				];
 			
 				if(pc.hairColor != partsList[0][1]) tfList.push(partsList[0]);

@@ -672,7 +672,7 @@ public function bothriocPidemmeVagEggs(fromCombat:Boolean):void
 		if (totalOtherVagPregs >= 1) output("s");
 		output(" you’re already carrying, utterly bloating with dense alien pregnancy.");
 		
-		if (pc.buttRating() >= 1)
+		if (pc.buttRating() >= 10)
 		{
 			output("\n\n<i>“Such a perfect ass you have for breeding, farlander,”</i> groans the bothrioc, their supple hips and backside bounce energetically on your [pc.ass]. <i>“Would that I could sit on a cushion like this and give you eggs all day long...”</i>");
 		}

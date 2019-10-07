@@ -261,11 +261,12 @@ public function dudesFeedCelise():void {
 //Say Nothing
 public function feedCeliseSayNothing():void {
 	//Pick one of the following scenes. If cum production is low, go in is not considered. If cum production is high, suck out is not considered. Low is considered less than a liter. High is consider more than five liters.
-	if(pc.cumQ() < 1000) {
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 1000) {
 		if(rand(2) == 0) celiseDoesSomeAnalMilking();
 		else celiseSucksYouDry();
 	}
-	else if(pc.cumQ() < 5000) {
+	else if(cumQ < 5000) {
 		if(rand(3) == 0) celiseDoesSomeAnalMilking();
 		else if(rand(2) == 0) celiseGoesInYerBallsYo();
 		else celiseSucksYouDry();
@@ -295,9 +296,8 @@ public function celiseSucksYouDry():void {
 	output("\n\nSlipping behind your back, Celise’s arms connect just above your spine and pull down into a tight, form-fitting seal. The definition of her fingers and knuckles fades into a smooth column of green restraint, holding you still while the suction increases. Your [pc.toes] twitch and your back arches when the vacuum pumps on your [pc.cocks] double the tug, pulling so hard that droplets of pre-cum wick out of your [pc.cockHeads] one after another to vanish directly into the galotian.");
 	
 	output("\n\nSudden motion assaults you, and the texture of the prison");
-	if (pc.cockTotal() > 1) output("s")
-	output(" around your [pc.cocks] change");
-	if(pc.cockTotal() > 1) output("s");
+	if(pc.cockTotal() > 1) output("s")
+	output(" around your [pc.cocks] changes");
 	output(". Your point of view forcibly shifts to regard the ceiling, twisted that way by your hungry cum-drinking crewmate as she moves to get a better angle. You look down to see her smiling at you, tongue back in her mouth, but you can also feel a second oral organ wrapped ");
 	if(pc.balls > 0) output("just above your [pc.balls]");
 	else output("around your genitals");
@@ -338,7 +338,7 @@ public function celiseSucksYouDry():void {
 		else output(" T");
 		output("hey remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in");
 		if(pc.hasClit()) output(" or connecting with a clit properly");
-		 output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
+		output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
 	// Tailcock
 	if(pc.hasTailCock()) {
@@ -362,7 +362,8 @@ public function celiseSucksYouDry():void {
 	output("\n\n");
 	output("<i>“Feels like, totally good, right?”</i> Celise asks, squeezing her arms and constantly suckling dicksleeves tighter. <i>“Most bodies can’t handle this kind of suction, and they just let it all out without getting any kind of relief.”</i> Spots of [pc.cumColor] are swimming inside her as she teases you. <i>“You taste so good, too! Captain, I could keep you like this all day long!”</i>");
 	output("\n\nYou shudder, wracked by rising ecstasy and yet unable to hit the climax that feels so achingly close. The steady ejaculation continues well past when you thought you should have gone dry.");
-	if(pc.cumQ() >= 5000) output(" Celise, meanwhile, is flush with fresh fluid, noticeably less cohesive and dripping uncontrolled moisture into a puddle of sex and goo at her base.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 5000) output(" Celise, meanwhile, is flush with fresh fluid, noticeably less cohesive and dripping uncontrolled moisture into a puddle of sex and goo at her base.");
 	output(" She draws cum from you until the flow thins, turning runny, more water than protein, and an uncomfortably empty feeling grows even as your [pc.balls] ");
 	if(pc.balls > 0) output("empty");
 	else output("empties");
@@ -377,11 +378,11 @@ public function celiseSucksYouDry():void {
 	if(pc.cockTotal() > 1) output("s engorge");
 	else output(" engorges");
 	output(" further, finally getting stroking you craved. You cry out, your muscles clench, and at long last, you cum. Your whole body trembles and shakes with the force of it, ");
-	if(pc.cumQ() < 5000) output("even though barely a few drops escape your spasming [pc.cocks]");
+	if(cumQ < 5000) output("even though barely a few drops escape your spasming [pc.cocks]");
 	else output("launching huge blasts of previously reserved [pc.cumNoun] into the woman. Her tits, hips, and ass all expand under the deluge, filling until each new rope forces Celise to leak a river of [pc.cumColor]");
 	output(".");
 	output("\n\nPumping away, the cum-stuffed goo-girl barely seems to care. She expertly fondles [pc.eachCock] through your bliss, wracking you with bliss until every single drop of nutritious seed has been spent in her specially formed compartments");
-	if(pc.cumQ() >= 5000) output(" and then summarily deposited on the floor");
+	if(cumQ >= 5000) output(" and then summarily deposited on the floor");
 	output(". Once you sag down, spent, you’re slowly lowered to the floor and gradually ejected from the goo-girl’s mass to recover. Your [pc.balls] ache");
 	if(pc.balls <= 1) output("s");
 	output(", but you feel deeply and completely satisfied by the experience.");
@@ -389,12 +390,12 @@ public function celiseSucksYouDry():void {
 	if(pc.balls == 0) output("loins");
 	else output("[pc.balls]");
 	output(" until you recover. She purrs, “");
-	if(pc.cumQ() < 1000) output("<i>I think that was a pretty nice workout for you, huh? If we keep this up, you’ll be properly filling me in no time.</i>");
-	else if(pc.cumQ() <= 5000) output("<i>Oh wow, that was filling. You cum just the right amount for me, [pc.name]. You’re so perfect....</i>");
+	if(cumQ < 1000) output("<i>I think that was a pretty nice workout for you, huh? If we keep this up, you’ll be properly filling me in no time.</i>");
+	else if(cumQ <= 5000) output("<i>Oh wow, that was filling. You cum just the right amount for me, [pc.name]. You’re so perfect....</i>");
 	else output("<i>I think... you need to tone it back a bit, Captain. Maybe let me climb inside you and tune you to have just the right amount of cum for a girl like me. I’ll make it feel good, I promise.</i>");
 	output("”");
 	output("\n\nStretching languidly, you pull yourself out of her grasp and gather your things. She’s a little over-enthusiastic, but she leaves you with the most satisfying ache in your crotch after a nice suck.");
-	if(pc.cumQ() < 1000) {
+	if(cumQ < 1000) {
 		output(" You can feel your body responding to her sexual training already if that wondrous throb is any indication.");
 		if(pc.balls > 0 && pc.ballSize() < 5) pc.ballSizeRaw++;
 		if(pc.ballEfficiency < 400) pc.ballEfficiency++;
@@ -472,9 +473,10 @@ public function celiseDoesSomeAnalMilking():void {
 	output(".");
 	output("\n\nBlissfully cooing, Celise seems to be enjoying this just as much, if not more, than you, and you’re experiencing a wonderfully unusual orgasm. Every strong vibration squeezes out a thick dollop of your cock-cream into the hungry goo-girl, forcing you to experience blissful jet after blissful jet, but the climax is completely controlled by the constant, squeezing vibrations. It doesn’t feel like an end is coming, only more and more ejaculations. The portion of her in your colon is getting bigger with every passing second and squeezing more and more of your reserves out each time.");
 	output("\n\nYou shudder and gasp, eyes rolling, mouth frothing, and [pc.hips] lurching spasmodically as you’re milked. [pc.Cum] drizzles out of [pc.eachCockHead], piling up in the bottom of Celise’s milking tube before wicking away. The goo-girl’s middle ");
-	if(pc.cumQ() < 600) output("slowly colors [pc.cumColor] as she’s fed your juice.");
-	else if(pc.cumQ() < 1200) output("slowly rounds, turning halfway [pc.cumColor] as feeding forces her to adopt a pregnant appearance.");
-	else if(pc.cumQ() < 5000) output("quickly rounds with heavy, liquid weight. Her middle has turned [pc.cumColor], showing you quite clearly how well you’re feeding her.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 600) output("slowly colors [pc.cumColor] as she’s fed your juice.");
+	else if(cumQ < 1200) output("slowly rounds, turning halfway [pc.cumColor] as feeding forces her to adopt a pregnant appearance.");
+	else if(cumQ < 5000) output("quickly rounds with heavy, liquid weight. Her middle has turned [pc.cumColor], showing you quite clearly how well you’re feeding her.");
 	else output("balloons out comically, actually pushing up against you as it’s filled with [pc.cumColor] deposits. The poor girl can barely contain it all, and you see some of your [pc.cum] leaking out around her base.");
 	output(" She squeezes your prostate with vibrating strokes, filling your colon with warmth and pleasure until every single drop of potential food has exited your body.");
 	//Tailcunt
@@ -482,15 +484,15 @@ public function celiseDoesSomeAnalMilking():void {
 	//Tailcock
 	if(pc.hasTailCock()) {
 		output("\n\nSeeing little action itself, your [pc.tailCock] can’t quite get off with its brothers, forced to lamely drip into a puddle on the floor. Celise’s base is happy to collect the spilled pre-cum");
-		if(pc.cumQ() >= 5000) output(", though she fails to retain it due to the massive fluid injections you’re forcing into her");
+		if(cumQ >= 5000) output(", though she fails to retain it due to the massive fluid injections you’re forcing into her");
 		output(".");
 	}
 	output("\n\n<i>“Good " + pc.mfn("boy","cum-cow","cum-cow") + ",”</i> Celise purrs as she works. <i>“Let it all out...”</i> Your eyes roll back as your rectum is flooded with yet more of her warm vibrations, pushing more and more inside you until your belly bulges slightly. The orgasm you’ve been locked in for what feels like forever just drags on, not ending your waist goes numb and your squeezed-out prostate feels achy and pained.");
 	output("\n\nSensing this, the jade-eyed honey begins to exit your stuffed backdoor in much the same way that she entered - a narrow, painless thread of slippery biological matter that releases you from your forced spurting. You sag into her slick arms");
 	if(pc.hasFuckableNipples() || pc.hasNippleCocks()) output(", feeling your nipples pop apart");
 	output(", and the ");
-	if(pc.cumQ() >= 1000) output("well-");
-	else if(pc.cumQ() < 300) output("barely-");
+	if(cumQ >= 1000) output("well-");
+	else if(cumQ < 300) output("barely-");
 	output("fed goo-girl guides you down next to your possessions with bubbles of [pc.cum] floating inside her, slowly dissolving.");
 	output("\n\nCelise plunges her fingers into her nipples as she watches you recuperate, fucking herself through a number of orgasms as you rouse and re-dress. When you leave, the hungry galotian is slumping back into her heated pipes, cooing and rubbing her belly with an exhausted look on her face.");
 	pc.orgasm();
@@ -597,7 +599,8 @@ public function celiseInBallsFinalEnding():void {
 	output("Abruptly, you’re aware of the feeling of the incredible, pleasant pleasure draining out of you, releasing the backed-up [pc.cumNoun] in a wave of ecstasy. There’s a snug tightness around [pc.eachCock] that grows tighter by the moment, and it isn’t nearly as warm or wet as the pressure you felt before. You pull your tongue back in your mouth, but you still cannot manage to suppress your pleasured moans, looking down to watch the pink surface of a condom bloating with [pc.cumColor] fluid. [pc.eachCock] is lurching powerfully, pumping out huge deluges into the beachball-sized balloon of condensed lust.");
 	output("\n\nCelise plucks up fresh condoms to drop into herself. One after another, their wrappings open and their contents are drawn out. The discarded packaging ejects from her blobby undercarriage to land in a nearby trashcan. Your orgasm is once more arrested, redirected back inside yourself, causing you to give a high pitched whine of disappointment, but it does not last long. [pc.eachCock] has its condom pulled off, tied into a wobbling balloon, and then replaced with a fresh one. Once the new cum-receptacle is in place, your reproductive efflux is let free again.");
 	output("\n\n<i>“Fill ‘er up!”</i> Celise giggles, stroking you encouragingly. <i>“");
-	if(pc.cumQ() >= 5000) output("You cum too much normally anyway.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 5000) output("You cum too much normally anyway.");
 	else output("This is a good way to make sure you make enough to feed me anyway.");
 	output("”</i>");
 	output("\n\nYou fill that balloon and more like it until there is a small mountain of stored cum bobbing under its own liquid weight next to you. At that point, Celise runs out of condoms and shrugs. She removes the last one and gingerly squeezes your [pc.cockBiggest], purring, <i>“I’ll take the rest, go on.”</i>");
@@ -610,7 +613,7 @@ public function celiseInBallsFinalEnding():void {
 	else if(pc.balls > 1) output("balls have");
 	else output("belly has");
 	output(" shrunk back down to normal, leaving nothing but a dull, almost painful ache to remind you of the never-ending orgasm you seem to have experienced. Celise has busied herself moving the condoms towards a refridgeration unit, leaving you a moment to dry off, catch your breath, and get dressed.");
-	if(pc.cumQ() >= 5000) {
+	if(cumQ >= 5000) {
 		output(" With how hard you’re throbbing down there, you think you might have permanently lowered your ability to produce cum. Perhaps you’re a bit more productive than Celise would prefer?");
 		if(pc.cumMultiplierRaw > 10) pc.cumMultiplierRaw -= 5;
 		if(pc.ballEfficiency > 20) pc.ballEfficiency -= 10;
@@ -849,8 +852,9 @@ public function celiseSleezeLactation():void {
 	output(" Celise quivers herself as she cums to the thick fluid squirting into her, plumping her wide and full with her " + pc.mf("master’s","mistress’") + " rich liquid love, and the two of you writhe and thrust into each other for a long, mindless moment of pure, wet joy.");
 	pc.orgasm();
 
+	var milkQ:Number = pc.lactationQ();
 	//Low lactation:
-	if(pc.lactationQ() <= 5000) output("\n\nWhen you are finally spent and come back to yourself, you hazily realize there is still a mouth at your breast, still attempting to tease out more. You look down at Celise, still attached - you are completely empty and feel like you’ve poured several gallons of your [pc.milk] into her, and yet she still wants more? Gently, you pry her from your over-sensitive, aching [pc.nipples]. She makes a small noise of disappointment as you do, even though you can see the large amount of fluid she has imbibed from you sloshing heavily within her body. It’s not enough to change her green color but enough to fill her boobs and butt out, giving her an exaggerated bimbo form, enough to keep her going for days. You shake your head sternly at the galotian’s greed and she has the civility to blush turquoise and simper.");
+	if(milkQ <= 5000) output("\n\nWhen you are finally spent and come back to yourself, you hazily realize there is still a mouth at your breast, still attempting to tease out more. You look down at Celise, still attached - you are completely empty and feel like you’ve poured several gallons of your [pc.milk] into her, and yet she still wants more? Gently, you pry her from your over-sensitive, aching [pc.nipples]. She makes a small noise of disappointment as you do, even though you can see the large amount of fluid she has imbibed from you sloshing heavily within her body. It’s not enough to change her green color but enough to fill her boobs and butt out, giving her an exaggerated bimbo form, enough to keep her going for days. You shake your head sternly at the galotian’s greed and she has the civility to blush turquoise and simper.");
 	//High lactation:
 	else {
 		output("\n\nYou keep going and going, spurting more and more [pc.milk] into the goo girl, your body thrust upwards into an orgy of expression - not that a minute goes by usually when you aren’t thinking about how heavy your body is with the [pc.milk] that strains and tightens your [pc.chest], how full and needy they make you feel. It’s so goddamn good to relieve all of that pressure, to unload the deepest, creamiest [pc.milk] into multiple hungry mouths.");
@@ -914,11 +918,11 @@ public function celiseSleezeLactation():void {
 	output("\n\n<i>“You taste sooooo good, [pc.name],”</i> she sighs. <i>“");
 	if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
 	output("You’ll never stop leaking nice stuff from your top, will you? Because I just want to keep drinking that forever, and ever, and...”</i> She pauses, and looks down at her bulging bimbo body. <i>“...well, maybe not </i>right<i> now, but you’ll come back with more, right?”</i> You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
-	if(pc.lactationQ() <= 5000) output("green");
+	if(milkQ <= 5000) output("green");
 	else output("[pc.milkColor], heavily-inflated");
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
 	//(If possible, have Celise retain the colour on her description screen for a day or two if it changed)
-	if(pc.lactationQ() > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She’ll be back to her old self in no time.");
+	if(milkQ > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She’ll be back to her old self in no time.");
 	pc.milked(pc.milkFullness);
 	//reset lust, add lust
 	processTime(30+rand(10));
@@ -1496,6 +1500,7 @@ public function zeiksCeliseSubmersionTechnique():void
 	output(", squeezing and kneading for both Celise’s pleasure and your own.");
 	if(!pc.isTaur()) output(" She, for her part, keeps her slimy toy at work at a slightly relaxed pace until your hands return.");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	//M and H
 	if(pc.hasCock())
 	{
@@ -1503,7 +1508,7 @@ public function zeiksCeliseSubmersionTechnique():void
 		if(pc.balls > 1) output("your [pc.balls] tighten up as ");
 		else if(pc.balls == 1) output("your [pc.ball] tightens up as ");
 		output("you near your climax, fucking your slimy sleeve faster and faster. Goo shifts under your hand, sliding along your [pc.cockBiggest] and gathering at the tip just in time for the first stroke. ");
-		if(pc.cumQ() < 1000) output("The impromptu condom balloons with [pc.cumColor] as you empty your load into the slimy sleeve, twitching. Celise giggles behind you as her gooey form redistributes the nutrients, and you can feel the hot cum sliding back down the outside your cock as it makes its way to Celise’s core. The sensation is enough to trigger aftershocks in your swollen, sensitive prick.");
+		if(cumQ < 1000) output("The impromptu condom balloons with [pc.cumColor] as you empty your load into the slimy sleeve, twitching. Celise giggles behind you as her gooey form redistributes the nutrients, and you can feel the hot cum sliding back down the outside your cock as it makes its way to Celise’s core. The sensation is enough to trigger aftershocks in your swollen, sensitive prick.");
 		else
 		{
 			output("It’s not enough; the impromptu condom balloons with [pc.cumColor] and then bursts, freeing you to spray [pc.cumVisc] ejaculate into the air.");
@@ -1536,7 +1541,7 @@ public function zeiksCeliseSubmersionTechnique():void
 	else output("[pc.girlcum]");
 	output(". She looks lovingly into your eyes, and with a wink from her, your arm raises up to your chest. The sucking sensation of Celise’s slime receding from your upper body draws your attention; the gooey hand she holds over you is ");
 	//(small cum/no squirter)
-	if(!pc.isSquirter() && pc.cumQ() < 1000) output("partially");
+	if(!pc.isSquirter() && cumQ < 1000) output("partially");
 	//(big cum/squirter)
 	else output("completely");
 	if(pc.hasCock()) output(" [pc.cumColor]");

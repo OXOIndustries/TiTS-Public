@@ -1313,7 +1313,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					}
 					else outputRouter(" curled goat horns twist back from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curling over " + (target == pc ? "your":"[target.hisHer]") + " [target.ears] like a satyr out of terran legend.");
 				}
-				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick stright out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
+				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick straight out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
 				break;
 			//Ram horns
 			case GLOBAL.TYPE_SHEEP:
@@ -3438,7 +3438,7 @@ public function boobStuff(forTarget:Creature = null):void
 					outputRouter(" The plump, " + target.areolaSizeDescript(0) + ", " + target.nippleColor + " lips that " + (target == pc ? "you have":"[target.heShe] has") + " in place of areolae could easily be parted to allow something stiff and hard inside " + (target == pc ? "your":"[target.hisHer]") + " sensitive chest-based passages.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_FLAT:
-					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just " + target.nippleColor + ", "  + target.areolaeDescript(0, true) + ".");
+					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just " + target.nippleColor + ", " + target.areolaeDescript(0, true) + ".");
 					break;
 				case GLOBAL.NIPPLE_TYPE_INVERTED:
 					outputRouter(" The " + target.areolaeDescript(0, true) + " are " + target.nippleColor + ".");
@@ -3887,6 +3887,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(!target.hasCock() && target.isTaur()) outputRouter("As a tauric creature, " + (target == pc ? "your":"[target.hisHer]") + " womanly parts lie between " + (target == pc ? "your":"[target.hisHer]") + " rear legs in a rather equine fashion. ");
 		
 		var vagSwellBonus:int = 0;
+		var vagWetness:Number = 0;
 		
 		//Vaginal Numbers
 		if(target.vaginaTotal() == 1) {
@@ -3941,6 +3942,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 			}
 			//Variances based on lustiness & wetness & such. THE DETAIL!
+			vagWetness = target.vaginas[0].wetness();
 			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_LUBRICATED))
 			{
 				if(target.libido() < 50 && target.lust() < 50) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
@@ -3950,24 +3952,24 @@ public function crotchStuff(forTarget:Creature = null):void
 			else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 2) outputRouter("No moisture presently escapes ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Moisture gleams in ");
+				if(vagWetness < 2) outputRouter("No moisture presently escapes ");
+				else if(vagWetness < 4) outputRouter("Moisture gleams in ");
 				else outputRouter("Occasional beads of [target.girlCum] drip from ");
 			}
 			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) outputRouter("Moisture gleams in ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Occasional beads of [target.girlCum] drip from ");
+				if(vagWetness < 1) {}
+				else if(vagWetness < 2) outputRouter("Moisture gleams in ");
+				else if(vagWetness < 4) outputRouter("Occasional beads of [target.girlCum] drip from ");
 				else outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
 			}
 			else //WTF horny!
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) outputRouter("Occasional beads of [target.girlCum] drip from ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
+				if(vagWetness < 1) {}
+				else if(vagWetness < 2) outputRouter("Occasional beads of [target.girlCum] drip from ");
+				else if(vagWetness < 4) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
 				else outputRouter("Thick streams of [target.girlCum] drool constantly from ");
 			}
 			//Different description based on vag looseness
@@ -4005,6 +4007,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				//Else wetness -> size
 				else
 				{
+					vagWetness = target.vaginas[temp].wetness();
 					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_LUBRICATED))
 					{
 						if(target.lust() < 50) outputRouter(", frequently drooling its ever-present [target.girlCumNoun]");
@@ -4012,14 +4015,14 @@ public function crotchStuff(forTarget:Creature = null):void
 						else outputRouter(", profusely seeping immense streams of [target.girlCumNoun]");
 					}
 					//High wetness shit
-					else if(target.vaginas[temp].wetness() >= 4)
+					else if(vagWetness >= 4)
 					{
 						if(target.lust() < 50) outputRouter(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) outputRouter(", frequently drooling its ever-present [target.girlCumNoun]");
 						else outputRouter(", constantly drooling thick strands of [target.girlCumNoun]");
 					}
 					//Medium wetness shit
-					else if(target.vaginas[temp].wetness() >= 2)
+					else if(vagWetness >= 2)
 					{
 						if(target.lust() > 50) outputRouter(", gleaming with barely-contained wetness");
 					}
@@ -4102,6 +4105,7 @@ public function crotchStuff(forTarget:Creature = null):void
 	//BUNGHOLIO
 	if(target.ass != null) {
 		outputRouter("\n\n" + (target == pc ? "You have":"[target.Name] has") + " one " + target.assholeDescript(true) + ", placed between " + (target == pc ? "your":"[target.hisHer]") + " cheeks where it belongs");
+		var assWetness:Number = target.ass.wetness();
 		if(target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
 		{
 			if(target.libido() < 50 && target.lust() < 50) outputRouter(" with thin streams of lube leaking out of its edges.");
@@ -4111,27 +4115,27 @@ public function crotchStuff(forTarget:Creature = null):void
 		else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(" without any sign of moisture.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 4) outputRouter(" with slight signs of moisture bordering its edges.");
+			if(assWetness < 0) outputRouter(" without any sign of moisture.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 4) outputRouter(" with slight signs of moisture bordering its edges.");
 			else outputRouter(" with occasional beads of lube bordering its edges.");
 		}
 		else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(", completely dry of any kind of moisture.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 3) outputRouter(" with slight signs of moisture bordering its edges.");
-			else if(target.ass.wetness() < 5) outputRouter(" with occasional beads of lube bordering its edges.");
+			if(assWetness < 0) outputRouter(", completely dry of any kind of moisture.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 3) outputRouter(" with slight signs of moisture bordering its edges.");
+			else if(assWetness < 5) outputRouter(" with occasional beads of lube bordering its edges.");
 			else outputRouter(" with thin streams of lube leaking out of its edges.");
 		}
 		else //WTF horny!
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(", desperately in need of lubricant.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 3) outputRouter(" with occasional beads of lubricant dripping from the orifice every so often.");
-			else if(target.ass.wetness() < 5) outputRouter(" with thin streams of lubricant occasionally dribbling from the orifice.");
+			if(assWetness < 0) outputRouter(", desperately in need of lubricant.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 3) outputRouter(" with occasional beads of lubricant dripping from the orifice every so often.");
+			else if(assWetness < 5) outputRouter(" with thin streams of lubricant occasionally dribbling from the orifice.");
 			else outputRouter(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
 		var assSwellBonus:int = target.analPuffiness();
@@ -4450,7 +4454,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			outputRouter(" tip.");
 			break;
 		case GLOBAL.TYPE_DEER:
-			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it's length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
+			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it’s length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
 			break;
 	}
 	

@@ -59,6 +59,7 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
+			var wetBonus:Number = 2;
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
@@ -67,7 +68,8 @@
 				if(!target.hasStatusEffect("Anal Lubricant"))
 				{
 					kGAMECLASS.output(" but it seems to have worked.");
-					target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, your anus is particularly slippery! ...at least for a while.",false,4320);
+					target.createStatusEffect("Anal Lubricant",wetBonus,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, your anus is particularly slippery! ...at least for a while.",false,4320);
+					target.ass.wetnessMod += wetBonus;
 				}
 				else
 				{
@@ -79,7 +81,11 @@
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " shoves the pill up " + target.getCombatPronoun("pa") + " backdoor with an odd expression on " + target.getCombatPronoun("pa") + " face.");
-				if(!target.hasStatusEffect("Anal Lubricant")) target.createStatusEffect("Anal Lubricant",0,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, " + target.getCombatPronoun("pa") + " anus is particularly slippery! ...at least for a while.",false,4320);
+				if(!target.hasStatusEffect("Anal Lubricant"))
+				{
+					target.createStatusEffect("Anal Lubricant",wetBonus,0,0,0,false,"Icon_Splatter","Thanks to some YTR Lube, " + target.getCombatPronoun("pa") + " anus is particularly slippery! ...at least for a while.",false,4320);
+					target.ass.wetnessMod += wetBonus;
+				}
 			}
 			return false;
 		}

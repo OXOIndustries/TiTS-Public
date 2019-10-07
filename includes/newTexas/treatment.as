@@ -2930,9 +2930,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
 		// Clit Expanding
-		if(pc.totalClits() > 0 && pc.clitLength < .75 && ((startHours < 113 && treatedHours >= 113) || (startHours < 127 && treatedHours >= 127)))
+		if(pc.totalClits() > 0)
 		{
-			if(startHours < 113)
+			if((startHours < 113 && treatedHours >= 113) && pc.clitLength < 0.75)
 			{
 				// Small clits gro - clothed
 				if(pc.isCrotchGarbed())
@@ -2951,9 +2951,11 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				// Merge
 				ExtendLogEvent("\n\n<b>Your clit is like a big, pink gumball!</b> Even when it isn’t stimulated, it’ll probably stick out of its hood. It must be three quarters of an inch long at full size. You’ll just have to get used to having such a big, easily stimulated buzzer.");
 				pc.clitLength = 0.75;
+				// track
+				pc.createStatusEffect("Clitgrow Done Notice",0,0,0,0,true,"","",false,10080);
 			}
 			// Big clit exhibitionism - not a TF, just a fun message.
-			else
+			if((startHours < 127 && treatedHours >= 127) && pc.clitLength >= 0.75 && pc.hasStatusEffect("Clitgrow Done Notice"))
 			{
 				AddLogEvent("You wonder if the best way to handle your enlarged clit", "passive", (127 - startHours) * 60);
 				if(pc.totalClits() > 1) ExtendLogEvent("s");
@@ -2961,6 +2963,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 				if(pc.totalClits() == 1) ExtendLogEvent("it");
 				else ExtendLogEvent("them");
 				ExtendLogEvent(" out and open to the air. Most of the frontier worlds don’t have laws against public nudity; some even encourage it! You wouldn’t have the constant rubbing to worry about, and you could bask in the lusty gazes of onlookers, maybe even seduce one into a quick romp!");
+				// untrack
+				pc.removeStatusEffect("Clitgrow Done Notice");
 			}
 		}
 		// Defattening
