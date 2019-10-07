@@ -188,6 +188,15 @@ package classes.GameData
 					return true;
 				}
 			}
+			//KQ BJ offer
+			if (pc.hasStatusEffect("KQ BJ Offer"))
+			{
+				pc.removeStatusEffect("KQ BJ Offer");
+				clearMenu();
+				addButton(0,"Yes",kGAMECLASS.yesToGooeyFillings,undefined,"Yes","Fine, you’ll get on your knees for her.");
+				addButton(1,"Hell No!",kGAMECLASS.awwwHellllNoSexbot,undefined,"Hell No!","Hell no.");
+				return true;
+			}
 			
 			if (pc.hasStatusEffect("Trigger Game Over"))
 			{

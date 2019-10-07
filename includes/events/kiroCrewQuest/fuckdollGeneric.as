@@ -28,14 +28,6 @@ public function showSexDoll(nude:Boolean = false):void
 	}
 }
 
-public function resetKiroQuest():void
-{
-	flags["KQ_MET_SEXDOLL_VUL"] = undefined;
-	flags["KQ_MET_SEXDOLL_DEM"] = undefined;
-	flags["KQ_MET_SEXDOLL_LAQ"] = undefined;
-	flags["KQ_MET_SEXDOLL_HUM"] = undefined;
-	flags["KQ_VULPATRA_TAINTS"] = undefined; // How many times dickgrown via earfukks
-}
 public function genericSexdollEncounter():void 
 {
 	var tEnemy:Creature = new KQSexdollGeneric();
@@ -124,10 +116,10 @@ public function genericSexdollEncounter():void
 		output("\n\nYou look to your Codex, expecting some notification about a new race, but it lies inert. Whoever’s underneath all those mods isn’t anything new.");
 	}
 	//Count meetings:
-	if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) IncrementFlag("KQ_SEXDOLL_LAQUINE");
-	else if(enemy.hasCock(GLOBAL.TYPE_VULPINE)) IncrementFlag("KQ_SEXDOLL_VULPATRA");
-	else if(enemy.hasCock(GLOBAL.TYPE_HUMAN)) IncrementFlag("KQ_SEXDOLL_HUMAN");
-	else IncrementFlag("KQ_SEXDOLL_DEMON");
+	if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) IncrementFlag("KQ_MET_SEXDOLL_LAQ");
+	else if(enemy.hasCock(GLOBAL.TYPE_VULPINE)) IncrementFlag("KQ_MET_SEXDOLL_VUL");
+	else if(enemy.hasCock(GLOBAL.TYPE_HUMAN)) IncrementFlag("KQ_MET_SEXDOLL_HUM");
+	else IncrementFlag("KQ_MET_SEXDOLL_DEM");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
@@ -155,7 +147,7 @@ public function defeatTheGenericSexydoll():void
 	else output("\n\nLeaving her without so much as a single orgasm seems cruel... but so does fucking with your friend’s fate on the line. What do you do?");
 	output("\n\n");
 
-	//9999 vicotoroy meeenu!
+	//vicotoroy meeenu!
 	clearMenu();
 	var capacity:Number = enemy.vaginalCapacity(0);
 	if(enemy.hasCock(GLOBAL.TYPE_VULPINE))

@@ -4101,7 +4101,8 @@ public function variableRoomUpdateCheck():void
 	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
 
 	/* MISC */
-	
+	// Kiroquest:
+	kiroQuestRoomUpdate();
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
 	// Phoenix Location

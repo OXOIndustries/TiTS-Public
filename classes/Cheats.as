@@ -137,8 +137,9 @@
 			}
 			
 			Cheats.OutputStuff();
-			kGAMECLASS.output("\n<b>You will now encounter a sexdoll...</b>");
-			kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
+			kGAMECLASS.output("\n<b>You will now be transported to a location to test the sexdolls in Kiro's recruitment quest. A teleport out can be found to the northeast of the map...</b>");
+			kGAMECLASS.currentLocation = "KQ N32";
+			//kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
 		}
 		public static function SJWMode():void
 		{
