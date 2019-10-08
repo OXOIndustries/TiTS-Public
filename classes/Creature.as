@@ -20101,6 +20101,15 @@
 			}
 			return count;
 		}
+		public function totalPregnanciesOfType(type:String):int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) count += 1;
+			}
+			return count;
+		}
 		public function totalBabiesOfType(type:String):int
 		{
 			var count:int = 0;

@@ -14,9 +14,9 @@ package classes.Characters
 		//constructor
 		public function Ilaria()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			fluidSimulate = true;
 			//statusSimulate = true;
 			this.short = "Ilaria";
@@ -48,7 +48,7 @@ package classes.Characters
 			this.cumMultiplierRaw = 15;
 			
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 0;
+			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 10;
 			this.ballFullness = 100;
@@ -66,6 +66,7 @@ package classes.Characters
 			this.fertilityRaw = 8;
 			createPerk("Fixed CumQ",50000,0,0,0);
 			//createPerk("No Cum Leakage",0,0,0,0);
+			this.impregnationType = "IlariaPregnancy";
 		}
 		
 		override public function get bustDisplay():String

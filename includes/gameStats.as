@@ -667,6 +667,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
 						case "MirrinPregnancy": output2(" Mirrin"); if(rand(4) == 0) output2(", (Torri?)"); else if(rand(3) == 0) output2(", (Einar?)"); break;
 						case "SiegwulfeEggnancy": output2(" [wulfe.name], Eggs"); break;
+						case "IlariaPregnancy": output2(" Ilaria"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1173,6 +1174,8 @@ public function statisticsScreen(showID:String = "All"):void
 				// Mother
 				if(StatTracking.getStat("pregnancy/total births") > 0)
 					output2("\n<b>* Births, Total:</b> " + StatTracking.getStat("pregnancy/total births"));
+				if(StatTracking.getStat("pregnancy/ausar births") > 0)
+					output2("\n<b>* Births, Ausar Children (generic):</b> " + StatTracking.getStat("pregnancy/ausar births"));
 				if(StatTracking.getStat("pregnancy/jumper horse births") > 0)
 					output2("\n<b>* Births, Bored Jumper (Gray) Children:</b> " + StatTracking.getStat("pregnancy/jumper horse births"));
 				if(StatTracking.getStat("pregnancy/jumper dog births") > 0)
@@ -1202,6 +1205,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cunt Snake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
 				if(StatTracking.getStat("pregnancy/frostwyrm eggs laid") > 0)
 					output2("\n<b>* Births, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs laid"));
+				if(StatTracking.getStat("pregnancy/ilaria births") > 0)
+					output2("\n<b>* Births, Ilaria Children:</b> " + StatTracking.getStat("pregnancy/ilaria births"));
 				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
 					output2("\n<b>* Births, Korgonne Young:</b> " + StatTracking.getStat("pregnancy/korgonne births"));
 				if(StatTracking.getStat("pregnancy/lah kids") > 0)
