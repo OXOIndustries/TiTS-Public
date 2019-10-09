@@ -291,7 +291,7 @@ public function fuckWsansSexdoll():void
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(capacity) >= 0) addButton(0,"Fuck Pussy",penisRouter,[fuckWsansSexdollPussy,capacity,false,0],"Fuck Pussy","Get a feel for that perfect sexbot pussy.");
-		else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Even as capacious as this self-titled sexbot is, you're too hung to squeeze inside.");
+		else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Even as capacious as this self-titled sexbot is, you’re too hung to squeeze inside.");
 		if(pc.cockThatFits(9000000) >= 0) addButton(1,"Fuck Face",penisRouter,[fuckSexdollFaceStuff,9000000,false,0],"Fuck Face","");
 		else addDisabledButton(1,"Fuck Face","Fuck Face","A dick that big pretty much breaks the game, [pc.manWoman]. I had to put SOME cap on the blowjob scene...");
 	}
@@ -496,7 +496,7 @@ public function catchARoboLoadInsideLikeADoof(x:int):void
 	else output("guts");
 	output(" and makes you cum all the harder. <i>“Nnnnnghhhhh!”</i>");
 	output("\n\nOh, <i>fuck</i>, that feels so good! And there’s so <i>much</i> - in fact, she only seems to be cumming harder the more time you spend hilted and stretched around her big, fat cock. When you look down you find your stomach is already beginning to sag, the sheer liquid weight stretching you out. Slightly worried, you make to lift yourself off - only to find that you can’t, that the sexbot’s grip has intensified to the point you literally cannot remove her no matter how strong you are.");
-	output("\n\nA short struggle ensues as she  plunges her cock as deep as she can inside you, drawing you to a standing position and then forcing you up against a wall as you begin to weaken, both your strength and willpower fading as she grins viciously.");
+	output("\n\nA short struggle ensues as she plunges her cock as deep as she can inside you, drawing you to a standing position and then forcing you up against a wall as you begin to weaken, both your strength and willpower fading as she grins viciously.");
 	output("\n\n<i>“Thaaat’s right... just give in,”</i> she soothes, shuddering in utmost bliss as she empties her balls into your quivering body. <i>“Feel the changes wash over you and it’ll be over oh-so-soon.”</i>");
 	output("\n\n<i>“U-uh,”</i> you moan, trying to twist away from her while she plows you as hard as she can, cum pouring from your flexing orifice. <i>“Nnh! Ooohh!”</i>");
 	output("\n\nLetting out a loud, desirous moan, she pulls you away from the wall and pushes you down into the floor, catching you in a mating press while she empties her swollen nuts into you with an almost feral need. Your mind wants so badly to drift away into the ecstasy but her wild, desperate thrusting keeps you anchored, like she wants to seed you as roughly and thoroughly as she possibly can, and her <i>output</i> - she’s a <i>beast</i>! Her cum pumps and pours into you without end, flooding your insides and gushing back out onto the floor with wet splatters and splurts. So occupied are you with the sensation of being dominantly filled to the brim you don’t even notice the oncoming differences until they’re well and truly underway.");

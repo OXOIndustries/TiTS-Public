@@ -238,7 +238,7 @@
 						outputB("regrown your");
 						pc.vaginas[x].hymen = true;
 					}
-					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>.");
+					outputB(" hymen. <b>You now have a virgin, [pc.pussyColor] vanae pussy!</b>");
 					pc.shiftVagina(x, GLOBAL.TYPE_VANAE);
 					pc.vaginas[x].vaginaColor = getVanaeAccentColor(pc);
 					changes++;

@@ -2903,7 +2903,7 @@ public function mitziRepeatCuntnosisExtraInterval():void
 	output("\n\nYou’re getting close again already. There’s lightning between your legs, and with every pussy-swabbing stroke of your tongue, it crackles across your hypersensitive nerves. You thrust deep and bury ");
 	if(pc.hasMuzzle()) output("your muzzle deep into Mitzi’s pussy, letting her snatch become your world");
 	else output("your nose up to her clit");
-	output(". A rolling wave of crackling, white-hot bliss starts between your [pc.thighs] and crashes into your brain with a thunderclap of sapphic ecstacy.");
+	output(". A rolling wave of crackling, white-hot bliss starts between your [pc.thighs] and crashes into your brain with a thunderclap of sapphic ecstasy.");
 	output("\n\n<i>“Ahh! Poor [pc.Master], so devoted to cunt that your pussy’ll never let you think about anything else.”</i> The goblin’s torrid gash gushes for you, but she keeps talking, <i>“Betcha you wanna spend the rest of your life between my lil’ legs, right?”</i>");
 	output("\n\n<i>“Riggt,”</i> you mumble into her sublime slit.");
 	output("\n\n<i>“You’re almost as good a slut as Mitzi,”</i> she purrs. <i>“Just keep licking there... Fuck you’re so hot like this, so fucking sexy.”</i>");
