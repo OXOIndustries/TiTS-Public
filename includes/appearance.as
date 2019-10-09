@@ -227,6 +227,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	switch(target.faceType)
 	{
 		case GLOBAL.TYPE_ARACHNID:
+		case GLOBAL.TYPE_DZAAN:
 		case GLOBAL.TYPE_HUMAN:
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
@@ -241,6 +242,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.faceType == GLOBAL.TYPE_SIREN) outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "extended maw" : "mouth") + " and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a" + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "n" : " slightly") + " angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) outputRouter(" A set of retractable, needle-like fangs sit in place of " + (target == pc ? "your":"[target.hisHer]") + " canines, just like a naleen.");
 			else if(target.faceType == GLOBAL.TYPE_ARACHNID) outputRouter(" A set of spider-like fangs protrude over " + (target == pc ? "your":"[target.hisHer]") + " bottom lip.");
+			else if(target.faceType == GLOBAL.TYPE_DZAAN) outputRouter(" Small spots of keratin growths protrude in various areas of " + (target == pc ? "your":"[target.hisHer]") + " face, most notably near the forehead, eyes and cheekbones.");
 			break;
 		case GLOBAL.TYPE_LAPINE:
 			if(!target.hasMuzzle())
@@ -927,6 +929,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_HYENA:
 				outputRouter(" A pair of pointed hyena-like ears protrude from [target.combatHisHer] [target.headNoun].");
 				break;
+			case GLOBAL.TYPE_DZAAN:
+				outputRouter(" A pair of long, triangular dzaan ears point outwards");
+				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
+				outputRouter(" from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ".");
+				break;
 			default:
 				outputRouter(" There is nothing notable to mention about " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -1108,6 +1115,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				break;
 			case GLOBAL.TYPE_HYENA:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of pointed hyena-like ears.");
+				break;
+			case GLOBAL.TYPE_DZAAN:
+				outputRouter(" The " + target.hairDescript(true,true) + " on " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of");
+				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + "-inch");
+				outputRouter(" long, triangular dzaan ears.");
 				break;
 			default:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head hides non-descript ears.");
@@ -1360,6 +1372,19 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
 				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
 				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
+				break;
+			//Dzaan horns!
+			case GLOBAL.TYPE_DZAAN:
+				if(target.hornLength < 1) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " tiny keratin nubs protrude from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
+				else if(target.hornLength < 2) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " small, roughly one-inch long keratin horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " forehead. They’re kind of cute, actually.");
+				else if(target.hornLength < 3) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns, approximately two inches in length, jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
+				else if(target.hornLength < 4) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns jut a full three inches from " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve upwards.");
+				else if(target.hornLength < 5) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns protrude through the [target.skin] of " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve backwards. Each is about four inches in length and impossible to ignore.");
+				else if(target.hornLength < 6) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " big, strong keratin horns jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve backwards.");
+				else if(target.hornLength < 8) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " skull, each powerful and half a foot long with a natural backwards-facing curve.");
+				else if(target.hornLength < 12) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " large keratin horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving back over " + (target == pc ? "your":"[target.hisHer]") + " head and looking quite alluring.");
+				else if(target.hornLength < 20) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " very large and dangerous looking keratin horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " head, curving backward and over a foot long. They appear both imposing and alluring.");
+				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " huge keratin horns erupt from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving upward and backwards. The weight of them is noticeable but their size commands attention.");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")
@@ -1921,6 +1946,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if (target.hasPartGoo("arm")) outputRouter(" [target.CombatHisHer] gooey [target.skinColor] arms retain their hyena-like appearance.");
 			else output(" [target.CombatHisHer] arms retain their hyena-like shape and claws despite being covered in [target.skinFurScalesNounSimple].");
 			if (target.hasClawedHands() && !target.hasPartScales("arm")) outputRouter(" Each finger is tipped with blunt claws.");
+			break;
+		case GLOBAL.TYPE_DZAAN:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " arms appear relatively normal, though the shoulders are patterened with spots of keratin and " + (target == pc ? "your":"[target.hisHer]") + " fingernails are naturally darker in color and longer in length.");
 			break;
 		// Catch all
 		default:
@@ -2628,7 +2656,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + ".");
 			break;
 		case GLOBAL.TYPE_SUCCUBUS:
-			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed feet with an addition of a" : "mostly human feet, apart from the") + " horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed feet with an addition of a" : "mostly human feet, apart from the") + " horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving " + (target == pc ? "you":"[target.himHer]") + " permanently locked into an awkwardly sexy pose.");
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " perfectly lissom legs that end in " + target.feet(true,true) + ".");
 			break;
 		case GLOBAL.TYPE_DEMONIC:
@@ -2930,6 +2958,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_HYENA:
 			outputRouter(" [target.CombatHisHer] legs are crooked into high knees with hocks and fairly long digitigrade feet like those of a hyena, each ending with thick padded paws and toes tipped with blunt claws.");
+			break;
+		case GLOBAL.TYPE_DZAAN:
+			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " long, hyper-feminine legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed" : "human-like") + " feet. The naturally short achilles tendon on each foot raises the heels high and forces " + (target == pc ? "you":"[target.himHer]") + " to walk tiptoed with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having stripper-heels for feet, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward dramatically to compensate, leaving " + (target == pc ? "you":"[target.himHer]") + " permanently locked into an awkwardly sexy pose.");
+			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " long, hyper-feminine legs that end in " + target.feet(true,true) + ".");
 			break;
 		// Catch all
 		default:
@@ -4456,10 +4488,13 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		case GLOBAL.TYPE_DEER:
 			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it’s length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
 			break;
+		case GLOBAL.TYPE_DZAAN:
+			outputRouter(" The dzaan member is covered in dark, nub-like protrusions, spotted evenly along the shaft. Each growth is slightly convex in shape and designed to deliver pleasure to any passage.");
+			break;
 	}
 	
 	//Nubby or Ribbed
-	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM])) || (target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SAURMORIAN])))
+	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_DZAAN])) || (target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SAURMORIAN])))
 	{
 		outputRouter(" It is");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) outputRouter(" covered in nub-like protrusions, spread out evenly across the shaft");

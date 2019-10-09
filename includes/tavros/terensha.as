@@ -241,7 +241,7 @@ public function undertaleFootjob():void
 	output("\n\nConsidering how devoted she is to yours, that’s a damn shame. Her wet, rapid ministrations have already brought you near to your peak - you can feel pressure welling in the base of your cock");
 	if(pc.hasKnot(0)) output(", which she’s keen to exploit by rubbing your swelling bitch-breaker.");
 	// keratin:
-	else if(9999) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
+	else if(pc.cocks[0].cType == GLOBAL.TYPE_DZAAN) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
 	else output(" and deep inside your [pc.balls].");
 	output("\n\nShe must be able to feel your prick throbbing with need, as Ren’s green lips curl into a lustrous smile. <i>“Don’t worry about making a mess. Just go ahead and cover my feet in cum....”</i>");
 	output("\n\nHer urging is like a magic word in your ear. The pressure in your [pc.balls] is suddenly overwhelming, and watery pre spurts all over Ren’s latex-wrapped toes. Your pre-orgasmic juices just add to the glaze of lube already on her, letting her move those dexterous digits just that much faster. Her toes circle and squeeze your crown, milking out every juicy drop until with a grunt of pleasure, you buck your hips and feel a rush of heat barreling through your throbbing manhood. A thick gout of [pc.cumNoun] splatters the bottom of her toes, earning a delighted gasp from your partner as her foot is slathered in a thick load of cum. Her other foot presses against your tender underside, massaging out more and more of your orgasm’s fruit to smear against her soles and toes.");

@@ -3971,6 +3971,14 @@
 					if(!travel) actions.push("flit");
 				}
 			}
+			if(legType == GLOBAL.TYPE_DZAAN) {
+				if(present) {
+					actions.push("tip-toeing");
+				}
+				else {
+					actions.push("tip-toe");
+				}
+			}
 			if(legType == GLOBAL.TYPE_MLP) {
 				if(present) {
 					actions.push("galloping", "cantering", "trotting");
@@ -6482,13 +6490,13 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_DZAAN)) return true;
 			return hasEarFlag(GLOBAL.FLAG_LONG);
 		}
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA) || (InCollection(earType, [GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_GABILANI]) && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -6652,6 +6660,9 @@
 				case GLOBAL.TYPE_HYENA:
 					adjectives = ["pointed", "large", "broad"];
 					break;
+				case GLOBAL.TYPE_DZAAN:
+					adjectives = ["dzaan", "pointy dzaan", "long triangular", "sharp alien", "elven-like"];
+					break;
 			}
 			if (hasLongEars()) 
 			{
@@ -6767,7 +6778,7 @@
 			switch (tongueType)
 			{
 				case GLOBAL.TYPE_HUMAN:
-					if(faceType != GLOBAL.TYPE_HUMAN)
+					if(!InCollection(faceType, [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_DZAAN]))
 					{
 						if(isHuman() || isHalfHuman())
 						{
@@ -6883,7 +6894,7 @@
 			return description;
 		}
 		public function hasSmallNose(): Boolean {
-			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT);
+			return InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_HUMANMASKED, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_MOUSEMAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT);
 		}
 		public function faceDesc(): String {
 			var faceo: String = "";
@@ -8211,6 +8222,7 @@
 						case GLOBAL.TYPE_XHELARFOG: adjectives = ["mostly humanoid"]; break;
 						case GLOBAL.TYPE_SAURMORIAN: adjectives = ["armored", "gilded", "plated", "reptile-like", "reptilian"]; break;
 						case GLOBAL.TYPE_HYENA: adjectives = ["hyena", "hyena-like", "hyaenidae", "thin"]; break;
+						case GLOBAL.TYPE_DZAAN: adjectives = ["dzaan", "hyper-feminine", "sensual", "seductive", "sexy"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -8295,6 +8307,7 @@
 					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_XHELARFOG: adjectives = ["anisodactyl", "four toed", "alien"]; break;
+					case GLOBAL.TYPE_DZAAN: adjectives = ["tiptoed", "stripper-heeled", "sexy"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -11970,6 +11983,7 @@
 			{
 				case GLOBAL.TYPE_HUMAN:
 				case GLOBAL.TYPE_INHUMAN:
+				case GLOBAL.TYPE_DZAAN:
 					cocks[slot].knotMultiplier = 1;
 					if(InCollection(skinTone, "dark", "ebony", "chocolate")) cocks[slot].cockColor = "ebony";
 					else cocks[slot].cockColor = "pink";
@@ -12954,6 +12968,7 @@
 			if (korgonneScore() >= 6) race = "korgonne";
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
+			if (dzaanScore() >= 6) race = "dzaan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
 			if (raskvelScore() >= 6) race = "raskvel";
 			if (zilScore() >= 6) race = "zil";
@@ -13533,6 +13548,25 @@
 			if (hasHorns(GLOBAL.TYPE_DRACONIC) || hasHorns(GLOBAL.TYPE_LIZAN) || hasHorns(GLOBAL.TYPE_GRYVAIN) || hasHorns(GLOBAL.TYPE_FROSTWYRM)) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
 			if (hasPerk("Dragonfire")) counter++;
+			return counter;
+		}
+		public function dzaanScore():int
+		{
+			var counter:int = 0;
+			if (hasVagina())
+			{
+				if (faceType == GLOBAL.TYPE_DZAAN) counter++;
+				if (earType == GLOBAL.TYPE_DZAAN) counter++;
+				if (armType == GLOBAL.TYPE_DZAAN) counter++;
+				if (legType == GLOBAL.TYPE_DZAAN) counter++;
+				if (hasHorns(GLOBAL.TYPE_DZAAN)) counter++;
+				if (counter > 0 && !hasTail()) counter++;
+				if (counter > 0 && tallness >= 6*12) counter++;
+				if (counter > 2 && hasCock(GLOBAL.TYPE_DZAAN)) counter++;
+				if (hasFur() || hasFeathers()) counter--;
+				if (wingType != 0) counter--;
+				if (isGoo() || isTaur() || isNaga() || isDrider()) counter -= 2;
+			}
 			return counter;
 		}
 		public function felineScore(): int {
@@ -17452,6 +17486,9 @@
 				case GLOBAL.TYPE_SAURMORIAN:
 					collection = ["dinosaur", "bestial", "savage", "saurmorian"];
 					break;
+				case GLOBAL.TYPE_DZAAN:
+					collection = ["dzaan", "keratin-nubbed", "keratin-spotted"];
+					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
 					collection = ["bestial"];
@@ -17613,6 +17650,9 @@
 							break;
 						case GLOBAL.TYPE_MOTHRINE:
 							desc += RandomInCollection(["ovipositor", "ovi-cock", "egg-layer", "moth-cock", "ovi-dong", "ovi-dick", "egg-dick", "moth-dick", "egg-organ", "moth-prick", "mothipositor", "ovi-member", "egg-shaft", "ovi-shaft"]);
+							break;
+						case GLOBAL.TYPE_DZAAN:
+							desc += RandomInCollection(["dzaan-cock","dzaan-dick","dzaan-prick","cock","cock","member","xeno-dick","phallus"]);
 							break;
 						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
@@ -17812,7 +17852,7 @@
 				else if (cLength < 7) descript += RandomInCollection(["fair-sized","nice"]);
 				else if (cLength < 11) descript += RandomInCollection([(cock.cType == GLOBAL.TYPE_EQUINE) ? "pony-sized" : "long","lengthy","long","lengthy","wrench-length","cucumber-sized","large"]);
 				else if (cLength < 14) descript += RandomInCollection(["huge","foot-long",(cock.cType == GLOBAL.TYPE_CANINE) ? "mastiff-sized" : "pornstar-sized","impressive","beefy"]);
-				else if (cLength < 18) descript += RandomInCollection(["massive","knee-length","forearm-length","imposing","seam-straining","pant-bulging"]);
+				else if (cLength < 18) descript += RandomInCollection(["massive",(cLength >= tallness/5 ? "knee-length":"extensive"),(cLength >= tallness/6 ? "forearm-length":"very long"),"imposing","seam-straining","pant-bulging"]);
 				else if (cLength < 30) descript += RandomInCollection(["enormous","enormous","giant","giant",(cock.cType == GLOBAL.TYPE_EQUINE) ? "clydesdale-sized" : "arm-sized","seam-shredding",(femininity > 60) ? "panty-destroying" : "pant-ripping","hulking"]);
 				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large","unwieldy"]);
 				else if (cLength < 100) descript += RandomInCollection(["person-sized","ridiculously massive","extremely prodigious","overly imposing","room-dominating","body-dominating","colossal","monumental","immense","ponderous","unwieldy"]);
@@ -21040,6 +21080,9 @@
 						case GLOBAL.TYPE_DRYAD:
 							types.push("dryad", (hornLength < 12 ? "twig" : "branch") + "-like", "oaken");
 							if(hornLength > 12) types.push("tree-like");
+							break;
+						case GLOBAL.TYPE_DZAAN:
+							types.push("dzaan", "keratin");
 							break;
 					}
 					if(types.length > 0)

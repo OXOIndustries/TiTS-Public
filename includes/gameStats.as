@@ -6078,7 +6078,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["YOMA_TIMES_TAILFUCKED"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Tailcock:</b> " + flags["YOMA_TIMES_TAILFUCKED"]);
 				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
-				if (flags["MET_KEROKORAS"] != undefined)
+				if(flags["MET_KEROKORAS"] != undefined)
 				{
 					output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
 					if(flags["KEROKORAS_PREG"] != undefined) output2("\n<b>* Kerokoras, Times Impregnated:</b> " + flags["KEROKORAS_PREG"]);
@@ -6557,7 +6557,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
-				if (flags["MET SYDIAN FEMALE"] != undefined)
+				if(flags["MET SYDIAN FEMALE"] != undefined)
 				{
 					output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
 					if(flags["SYDIAN_FEMALE_PREG"] != undefined) output2("\n<b>* Female Sydian, Times Impregnated:</b> " + flags["SYDIAN_FEMALE_PREG"]);
@@ -7779,7 +7779,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MET_CHERRY"] != undefined)
 			{
-				output2("\n<b><u>Cherry's Slut Wall</u></b>");
+				output2("\n<b><u>Cherry’s Slut Wall</u></b>");
 				output2("\n<b>* Cherry:</b> Met her");
 				if(flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] != undefined) output2("\n<b>* Walnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"]);
 				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] != undefined) output2("\n<b>* Chestnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"]);
@@ -7792,11 +7792,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_VULRIKS"] != undefined)
 			{
 				output2("\n<b><u>Recreational Deck:</u></b>");
-				if (flags["MET_VULRIKS"] != undefined)
+				if(flags["MET_VULRIKS"] != undefined)
 				{
 					output2("\n<b>* Vulriks:</b> Met him");
-					if (flags["VULRIKS_SEXED"] != undefined) output2(", Sexed him");
-					if (flags["VULRIKS_SOLD"] != undefined) output2(", Has paid " + flags["VULRIKS_SOLD"] + " credits for your items");
+					if(flags["VULRIKS_SEXED"] != undefined) output2(", Sexed him");
+					if(flags["VULRIKS_SOLD"] != undefined) output2(", Has paid " + flags["VULRIKS_SOLD"] + " credits for your items");
 				}
 			}
 		}
@@ -8409,7 +8409,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Milodan Prisoners</u></b>");
 				output2("\n<b>* Eitan:</b> Met him");
-				if (flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
+				if(flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
 				switch (flags["EITAN_PRISONER_NEGOTIATIONS"])
 				{
 					case 1: case 2: output2(", Wants an exotic meal"); break;
@@ -8421,7 +8421,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 8: case 9: output2(", Wants water"); break;
 					case 10: output2(", Wants audience with Ula"); break;
 				}
-				if (eitanRecruited())
+				if(eitanRecruited())
 				{
 					output2(", Crew member");
 					if(eitanIsCrew()) output2(" (Onboard Ship)");

@@ -253,6 +253,7 @@
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
 		public static const TYPE_HYENA:int									= 89;
+		public static const TYPE_DZAAN:int									= 90;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -345,6 +346,7 @@
 			"Xhelarfog",
 			"Saurmorian",
 			"Hyena",
+			"Dzaan",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
