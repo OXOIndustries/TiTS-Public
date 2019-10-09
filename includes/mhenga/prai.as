@@ -572,7 +572,7 @@
  	showPrai(1);
  	clearMenu();
  	
- 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cocksnake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
+ 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cunt snake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
  	output("\n\nFinally, the brush gives way to a curious scene. Suspended inches off the ground is the grayscale kui-tan from before--Prai Ellit. She’s wearing her usual bandolier over a white blouse and a yellow skirt as she struggles weakly. Her wrists and ankles are secured tightly by multicolored vines that suspend her, spreadeagled in the air. The vines don’t seem to be moving, and a chlorophyllic woman behind her is slumped over the curve of a massive tree leaf. A pith helmet sits askew on Prai’s head, while a cream-colored scarf is draped loosely about her neck.");
  	output("\n\nThe kui-tan twists this way and that, trying to get a look at you.");
  	if (flags["PRAI_MOOD"] == 1) output("\n\n<i>“Oh crackers! Well, this is embarrassing,”</i> she says her cheeks pinkening.");

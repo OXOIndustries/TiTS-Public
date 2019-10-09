@@ -19,7 +19,7 @@ public function kiroQuestRoomUpdate():void
 
 public function kiroQuestTestResetPrompt():void
 {
-	output("\n\nIf you're done testing this unfinished content, you can be returned to your ship by selecting \"Return\".");
+	output("\n\nIf you’re done testing this unfinished content, you can be returned to your ship by selecting “Return”.");
 	addButton(0,"Return",resetKiroQuest);
 }
 

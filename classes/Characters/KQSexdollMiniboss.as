@@ -286,7 +286,7 @@
 					output("but the damage is done; she’s standing over you and smiling, her enormous cock growing more erect by the second. <b>You are tripped!</b>");
 					CombatAttacks.applyTrip(target);
 				}
-				else output("fast enough to spring back onto your feet, but the damage is still done; she's standing there, smiling at you, her enormous cock growing more erect by the second.");
+				else output("fast enough to spring back onto your feet, but the damage is still done; she’s standing there, smiling at you, her enormous cock growing more erect by the second.");
 				applyDamage(new TypeCollection( { psionic: 10+rand(3) } ), this, target, "minimal");
 				output("\n\n<i>“Wouldn’t you like to get your lips around this beast?”</i> she titters.");
 			}
@@ -300,7 +300,7 @@
 		{
 			output("Your opponent drops her arm momentarily, letting the whip hang by her side as she slowly gropes one of her curvy breasts with a lusty smile, winking at you and letting out a gasp when glistening pink milk slowly begins to trickle from her nipple. She tugs and tweaks just hard enough to ensure there’s a continuous flow before settling back, looking so hard she could cut diamonds.");
 			output("\n\n<i>“Come get some,”</i> she invites you.");
-			if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\nYou don't let her get to you this time, not when so much is on the line!");
+			if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\nYou don’t let her get to you this time, not when so much is on the line!");
 			else applyDamage(new TypeCollection( { tease: 9+rand(3) } ), this, target, "minimal");
 		}
 		//Dick tease
@@ -308,7 +308,7 @@
 		{
 			output("Slinging her whip over her shoulder, the libidinous sexbot places both of her hands on her enormous cock, stroking and sliding her fingers over the flesh of it with light, high-pitched moans of joy. She jacks herself off just hard enough for precum to start drooling from the tip, spattering the ground with one long, continuous strand that renews itself every few seconds. Glancing at you, she grins.");
 			output("\n\n<i>“Want to join in on the fun?”</i> she inquires. <i>“I promise it tastes amazing, and the more you have the better it gets.”</i>");
-			if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\nYou don't let her get to you this time, not when so much is on the line!");
+			if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\nYou don’t let her get to you this time, not when so much is on the line!");
 			else applyDamage(new TypeCollection( { tease: 9+rand(3) } ), this, target, "minimal");
 		}
 		//BJ attempt

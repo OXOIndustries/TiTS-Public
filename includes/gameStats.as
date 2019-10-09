@@ -1401,7 +1401,7 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b>* Ausar:</b> " + prettifyGeneticMarker(pc.ausarScore(), 4, 5));
 			if(pc.huskarScore() > 0)
-				output2("\n<b>* Huskar:</b> " + prettifyGeneticMarker(pc.huskarScore(), 3, 5));
+				output2("\n<b>* Ausar, Huskar:</b> " + prettifyGeneticMarker(pc.huskarScore(), 3, 5));
 		}
 		if(CodexManager.entryUnlocked("Kaithrit") && pc.kaithritScore() > 0)
 			output2("\n<b>* Kaithrit:</b> " + prettifyGeneticMarker(pc.kaithritScore(), 6, 9));
@@ -1409,36 +1409,34 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Leithan:</b> " + prettifyGeneticMarker(pc.leithanScore(), 6, 9));
 		if(CodexManager.entryUnlocked("Kui-Tan") && pc.nukiScore() > 0)
 			output2("\n<b>* Kui-Tan:</b> " + prettifyGeneticMarker(pc.nukiScore(), 6, 7));
+		if(CodexManager.entryUnlocked("Suulas") && pc.suulaScore() > 0)
+			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 8, 11));
 		if(pc.gooScore() > 0)
 			output2("\n<b>* Goo:</b> " + prettifyGeneticMarker(pc.gooScore(), 6, 9));
-		if(pc.bovineScore() > 0)
-			output2("\n<b>* Bovine:</b> " + prettifyGeneticMarker(pc.bovineScore(), 3, 6));
-		if(pc.cowScore() > 0 && pc.bovineScore() > 0)
-			output2("\n<b>* Cow:</b> " + prettifyGeneticMarker(pc.cowScore(), 4, 12));
 		if(pc.amazonScore() > 0)
 			output2("\n<b>* Amazon:</b> " + prettifyGeneticMarker(pc.amazonScore(), 4, 5));
 		if(pc.avianScore() > 0)
 			output2("\n<b>* Avian:</b> " + prettifyGeneticMarker(pc.avianScore(), 4, 7));
 		if(pc.badgerScore() > 0)
 			output2("\n<b>* Badger:</b> " + prettifyGeneticMarker(pc.badgerScore(), 4, 4));
+		if(pc.bovineScore() > 0)
+			output2("\n<b>* Bovine:</b> " + prettifyGeneticMarker(pc.bovineScore(), 3, 6));
+		if(pc.cowScore() > 0 && pc.bovineScore() > 0)
+			output2("\n<b>* Bovine, Cow:</b> " + prettifyGeneticMarker(pc.cowScore(), 4, 12));
 		if(pc.bunnyScore() > 0)
 			output2("\n<b>* Bunny:</b> " + prettifyGeneticMarker(pc.bunnyScore(), 4, 6));
-		if(CodexManager.entryUnlocked("Korgonne") && pc.korgonneScore() > 0)
-			output2("\n<b>* Korgonne:</b> " + prettifyGeneticMarker(pc.korgonneScore(), 4, 5));
 		if(pc.canineScore() > 0)
 			output2("\n<b>* Canine:</b> " + prettifyGeneticMarker(pc.canineScore(), 5, 9));
-		if(pc.lupineScore() > 0)
-			output2("\n<b>* Lupine:</b> " + prettifyGeneticMarker(pc.lupineScore(), 5, 5));
 		if(pc.deerScore() > 0)
 			output2("\n<b>* Deer:</b> " + prettifyGeneticMarker(pc.deerScore(), 5, 8));
 		if(pc.demonScore() > 0)
 			output2("\n<b>* Demon:</b> " + prettifyGeneticMarker(pc.demonScore(), 5, 8));
 		if(pc.dragonScore() > 0)
 			output2("\n<b>* Dragon:</b> " + prettifyGeneticMarker(pc.dragonScore(), 5, 10));
+		if(CodexManager.entryUnlocked("Dzaan") &&  pc.dzaanScore() > 0)
+			output2("\n<b>* Dzaan:</b> " + prettifyGeneticMarker(pc.dzaanScore(), 6, 8));
 		if(pc.felineScore() > 0)
 			output2("\n<b>* Feline:</b> " + prettifyGeneticMarker(pc.felineScore(), 5, 7));
-		if(CodexManager.entryUnlocked("Kerokoras") && pc.frogScore() > 0)
-			output2("\n<b>* Kerokoras:</b> " + prettifyGeneticMarker(pc.frogScore(), 5, 8));
 		if(CodexManager.entryUnlocked("Frostwyrm") && pc.frostyScore() > 0)
 			output2("\n<b>* Frostwyrm:</b> "+ prettifyGeneticMarker(pc.frostyScore(), 6, 11));
 		if(CodexManager.entryUnlocked("Gabilani") && pc.gabilaniScore() > 0)
@@ -1455,8 +1453,14 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Hrad:</b> " + prettifyGeneticMarker(pc.hradScore(), 4, 8));
 		if(false && pc.janeriaScore() > 0)
 			output2("\n<b>* Janeria:</b> " + prettifyGeneticMarker(pc.janeriaScore(), 6, 10));
+		if(CodexManager.entryUnlocked("Kerokoras") && pc.frogScore() > 0)
+			output2("\n<b>* Kerokoras:</b> " + prettifyGeneticMarker(pc.frogScore(), 5, 8));
+		if(CodexManager.entryUnlocked("Korgonne") && pc.korgonneScore() > 0)
+			output2("\n<b>* Korgonne:</b> " + prettifyGeneticMarker(pc.korgonneScore(), 4, 5));
 		if(pc.laquineScore() > 0)
 			output2("\n<b>* Laquine:</b> " + prettifyGeneticMarker(pc.laquineScore(), 5, 6));
+		if(pc.lupineScore() > 0)
+			output2("\n<b>* Lupine:</b> " + prettifyGeneticMarker(pc.lupineScore(), 5, 5));
 		if(CodexManager.entryUnlocked("Mothrine") && pc.mothrineScore() > 0)
 			output2("\n<b>* Mothrine:</b> " + prettifyGeneticMarker(pc.mothrineScore(), 5, 10));
 		if(pc.rodentScore() > 0)
@@ -1465,11 +1469,11 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			if(pc.myrScore() > 0) output2("\n<b>* Myr:</b> " + prettifyGeneticMarker(pc.myrScore(), 4, 6));
 			if(CodexManager.entryUnlocked("Red Myr") && pc.redMyrScore() > 0)
-				output2("\n<b>* Red Myr:</b> " + prettifyGeneticMarker(pc.redMyrScore(), 8, 12));
+				output2("\n<b>* Myr, Red:</b> " + prettifyGeneticMarker(pc.redMyrScore(), 8, 12));
 			if(CodexManager.entryUnlocked("Gold Myr") && pc.goldMyrScore() > 0)
-				output2("\n<b>* Gold Myr:</b> " + prettifyGeneticMarker(pc.goldMyrScore(), 8, 15));
+				output2("\n<b>* Myr, Gold:</b> " + prettifyGeneticMarker(pc.goldMyrScore(), 8, 15));
 			if(flags["MCALLISTER_MYR_HYBRIDITY"] >= 3 && pc.orangeMyrScore() > 0)
-				output2("\n<b>* Orange Myr:</b> " + prettifyGeneticMarker(pc.orangeMyrScore(), 9, 16));
+				output2("\n<b>* Myr, Orange:</b> " + prettifyGeneticMarker(pc.orangeMyrScore(), 9, 16));
 		}
 		if(CodexManager.entryUnlocked("Naleen") && pc.naleenScore() > 0)
 			output2("\n<b>* Naleen:</b> " + prettifyGeneticMarker(pc.naleenScore(), 5, 10));
@@ -1499,8 +1503,6 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Simii:</b> " + prettifyGeneticMarker(pc.simiiScore(), 4, 5));
 		if(pc.spiderScore() > 0)
 			output2("\n<b>* Spider:</b> " + prettifyGeneticMarker(pc.spiderScore(), 4, 6));
-		if(CodexManager.entryUnlocked("Suulas") && pc.suulaScore() > 0)
-			output2("\n<b>* Suula:</b> " + prettifyGeneticMarker(pc.suulaScore(), 8, 11));
 		if(pc.tentacleScore() > 0)
 			output2("\n<b>* Tentacle:</b> " + prettifyGeneticMarker(pc.tentacleScore(), 15, -99));
 		if(CodexManager.entryUnlocked("Vanae") && pc.vanaeScore() > 0)
@@ -1509,7 +1511,7 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b>* Vulpine:</b> " + prettifyGeneticMarker(pc.vulpineScore(), 4, 9));
 			if(pc.kitsuneScore() > 0 && pc.tailCount > 1)
-				output2("\n<b>* Kitsune:</b> " + prettifyGeneticMarker(pc.kitsuneScore(), 4, 8));
+				output2("\n<b>* Vulpine, Kitsune:</b> " + prettifyGeneticMarker(pc.kitsuneScore(), 4, 8));
 		}
 		if(CodexManager.entryUnlocked("Xhelarfog") && pc.xhelScore() > 0)
 			output2("\n<b>* Xhelarfog:</b> " + prettifyGeneticMarker(pc.xhelScore(), 6, 9));
@@ -6083,7 +6085,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["YOMA_TIMES_TAILFUCKED"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Tailcock:</b> " + flags["YOMA_TIMES_TAILFUCKED"]);
 				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
-				if (flags["MET_KEROKORAS"] != undefined)
+				if(flags["MET_KEROKORAS"] != undefined)
 				{
 					output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
 					if(flags["KEROKORAS_PREG"] != undefined) output2("\n<b>* Kerokoras, Times Impregnated:</b> " + flags["KEROKORAS_PREG"]);
@@ -6562,7 +6564,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
-				if (flags["MET SYDIAN FEMALE"] != undefined)
+				if(flags["MET SYDIAN FEMALE"] != undefined)
 				{
 					output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);
 					if(flags["SYDIAN_FEMALE_PREG"] != undefined) output2("\n<b>* Female Sydian, Times Impregnated:</b> " + flags["SYDIAN_FEMALE_PREG"]);
@@ -7784,7 +7786,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MET_CHERRY"] != undefined)
 			{
-				output2("\n<b><u>Cherry's Slut Wall</u></b>");
+				output2("\n<b><u>Cherry’s Slut Wall</u></b>");
 				output2("\n<b>* Cherry:</b> Met her");
 				if(flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] != undefined) output2("\n<b>* Walnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"]);
 				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] != undefined) output2("\n<b>* Chestnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"]);
@@ -7797,11 +7799,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_VULRIKS"] != undefined)
 			{
 				output2("\n<b><u>Recreational Deck:</u></b>");
-				if (flags["MET_VULRIKS"] != undefined)
+				if(flags["MET_VULRIKS"] != undefined)
 				{
 					output2("\n<b>* Vulriks:</b> Met him");
-					if (flags["VULRIKS_SEXED"] != undefined) output2(", Sexed him");
-					if (flags["VULRIKS_SOLD"] != undefined) output2(", Has paid " + flags["VULRIKS_SOLD"] + " credits for your items");
+					if(flags["VULRIKS_SEXED"] != undefined) output2(", Sexed him");
+					if(flags["VULRIKS_SOLD"] != undefined) output2(", Has paid " + flags["VULRIKS_SOLD"] + " credits for your items");
 				}
 			}
 		}
@@ -8414,7 +8416,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Milodan Prisoners</u></b>");
 				output2("\n<b>* Eitan:</b> Met him");
-				if (flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
+				if(flags["EITAN_PRISONER_NEGOTIATIONS"] > 10) output2(", Freed");
 				switch (flags["EITAN_PRISONER_NEGOTIATIONS"])
 				{
 					case 1: case 2: output2(", Wants an exotic meal"); break;
@@ -8426,7 +8428,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 8: case 9: output2(", Wants water"); break;
 					case 10: output2(", Wants audience with Ula"); break;
 				}
-				if (eitanRecruited())
+				if(eitanRecruited())
 				{
 					output2(", Crew member");
 					if(eitanIsCrew()) output2(" (Onboard Ship)");

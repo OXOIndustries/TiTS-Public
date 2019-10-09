@@ -819,7 +819,10 @@ public function syriQuestStealthField():void {
 	output("Well, this’ll be easy. You click on your stealth field generator and shimmer out of sight, blending into the shadows. While you’re hidden from view, you quickly make your way across the hangar and duck into the cargo hold underneath the hovercraft’s main fuselage. The next few minutes are spent being very quiet as you’re all but entombed behind other crates and containers, boxing you in until you have to curl up on yourself to fit.");
 	output("\n\nBut you’ve gone undetected! You let out a long-held breath and press your eye to one of the gaps between the containers, watching the remaining workers file aboard. They have the luxury of a warm trip inside the passenger deck, and seem all too happy to get inside. You count Syri among their number, trying to act natural. The supervisor is the last man aboard, reaching up to pull down the bay doors.");
 	output("\n\nJust as he’s about to close up, though, you hear a woman’s voice from outside: <i>“Hold up!”</i>");
-	output("\n\nIt’s a strong, booming voice. Loud and commanding. The blonde huskar pauses mid-motion, giving time for the speaker to step aboard. She’s a tall, full-figured woman zipped up in a skin-tight blue Akkadi jumpsuit that flatters her ample curves in all the right ways. Though she’s got the perky canine ears, the woman’s also got a pair of sweeping black horns growing from her brow, as well as bronzed skin and dark red eyes. Definitely not a huskar... a halfbreed?");
+	output("\n\nIt’s a strong, booming voice. Loud and commanding. The blonde huskar pauses mid-motion, giving time for the speaker to step aboard. She’s a tall, full-figured woman zipped up in a skin-tight blue Akkadi jumpsuit that flatters her ample curves in all the right ways. T");
+	//output("hough she’s got the perky canine ears, t");
+	output("he woman’s also got a pair of sweeping black horns growing from her brow, as well as bronzed skin and dark red eyes.");
+	//output(" Definitely not a huskar... a halfbreed?");
 	output("\n\n<i>“Room for one more?”</i> the woman asks, hefting a bulging rucksack on her shoulder.");
 	output("\n\n<i>“Of course, Commander,”</i> the huskar man answers, stepping out of her way. <i>“Climb aboard! Enjoy your vacation?”</i>");
 	output("\n\nThe woman laughs. <i>“It’s hard </i>not<i> to enjoy a week at a Heloith resort! After all those massages and all the pool time, I feel more loose and limber than I have in years.”</i>");
@@ -1135,7 +1138,9 @@ public function syriQuestAkkadiBaseShowersWhatsUp():void
 	showSchora(true);
 	author("Savin")
 	output("<i>“Forget that. Where is everyone?”</i> you ask. <i>“You’re the only other person I’ve seen!”</i>");
-	output("\n\nThe conversation’s tone changes immediately. The woman yanks back a corner of the curtain, revealing a bronze-skinned face fringed by sodden rose-gold hair, parted around horns and fuzzy pointed ears. She stares at you with hard red eyes, brow furrowed. <i>“What do you mean ‘where’s everyone’? And who are <b>you</b> supposed to be?”</i>");
+	output("\n\nThe conversation’s tone changes immediately. The woman yanks back a corner of the curtain, revealing a bronze-skinned face fringed by sodden rose-gold hair, parted around horns and");
+	//output(" fuzzy");
+	output(" pointed ears. She stares at you with hard red eyes, brow furrowed. <i>“What do you mean ‘where’s everyone’? And who are <b>you</b> supposed to be?”</i>");
 	output("\n\nSkirting the second question, you tell her that there’s nobody in the halls. The facility’s on lockdown. The power’s barely running.");
 	output("\n\nThe woman curses and throws the curtain aside -- giving you a momentary look at a full rack of F-cup tits, each capped with a coal-black nipple, and a small knotty human cock over a comparatively massive set of balls swinging between her legs -- before she grabs a towel and throws it over herself.");
 	output("\n\nShe’s got little regard for modesty, roughly slapping the water off her body while demanding <i>“Why didn’t you say so!? Fuck, what happened?”</i>");
@@ -1166,7 +1171,10 @@ public function syriQuestAkkadiBaseShowersYeahIDid():void
 	output("\n\nIndeed, the woman bites her lower lip for a moment, then fixes you with her dark red eyes. She throws the curtain aside, revealing a lusciously thick, curvaceous body; not chubby like a huskar, but statuesque like a dzaan alpha. Her big F-cup breasts rise and fall hypnotically with her quick breaths, jiggling softly, and between her legs... your eyes fixate on a human-shaped cock, relatively small, but with a plump knot and a big apple-sized sack hanging behind it.");
 	output("\n\n<i>“So what, you offering?”</i>");
 	output("\n\n<i>“Wouldn’t be interrupting the show if I wasn’t,”</i> you answer, starting to pull off your [pc.gear]. ");
-	output("\n\nThe dog-eared woman blinks, then laughs and steps back into the rushing waters of the shower, crooking a finger to you.");
+	output("\n\nThe ");
+	//output("dog");
+	output("knife");
+	output("-eared woman blinks, then laughs and steps back into the rushing waters of the shower, crooking a finger to you.");
 	output("\n\nYou follow her in, shrugging off the last of your gear before submerging yourself in the steamy downpour. The dusky dickgirl keeps retreating until her back’s against the wall, letting you pin her between yourself and the slick tile. <i>“I guess I deserve one more day of vacation,”</i> she moans as you grab her ass, pinning her little dick between your bodies and groping one of her meaty breasts.");
 
 	processTime(10);
@@ -1290,7 +1298,9 @@ public function syriQuestAkkadiBaseShowersTreatHerBad(x:int):void
 		
 		output("\n\nEmphasis on slow. You take your own time, enjoying the way her pussy clenches and squeezes around every inch of your shaft. She’s a soaking wet mess, inside and out, making it almost too easy to slide all the way in. She can’t resist you, even if she wanted to, only able to add a little slick friction to your penetration that enhances your pleasure. By the time you’ve bottomed out in the buxom bitch, there’s a broad smear of halfbreed cream on her belly; a constant stream of pre leaks from her dusky cockhead, bubbling up with every little movement of your " + pc.simpleCockNoun(x) + ".");
 		output("\n\nYou don’t want to let her adjust to your size, so you start moving immediately, pumping your [pc.hips] against her plump posterior. Her ass jiggles with every impact, sending shockwaves through her plush body that reach all the way to her mammoth bosoms, making the olive mounds bounce every time your dick slams back home inside her. Alyru’s voice is nothing but a cascade of gasps, whimpers, and cries of pleasure, driven insensate by your relentless fucking. You can tell she desperately wants to jack off, to have some measure of control over the waves of ecstasy crashing through her, but you refuse to let her move, dominating her mind and body with your [pc.cock " + x + "].");
-		output("\n\nAlyru squirms harder suddenly, thrashing her legs and tail around your waist until her back arches and her dick juts up with enough force to dislodge it from underneath her balls. An absolute geyser of white cream lances up from her crown, arcing through the sultry air between your bodies before ");
+		output("\n\nAlyru squirms harder suddenly, thrashing her legs");
+		//output(" and tail");
+		output(" around your waist until her back arches and her dick juts up with enough force to dislodge it from underneath her balls. An absolute geyser of white cream lances up from her crown, arcing through the sultry air between your bodies before ");
 		if(pc.biggestTitSize() >= 5) output("coming down in a hot smear across the tops of your [pc.boobs].");
 		else output("splattering down all over Alyru’s belly.");
 		output("\n\nYou grin down fiercely at the subby slut, not skipping a beat in the movements of your hips. You’re relentless, pounding her plump puss until the halfbreed whore’s screaming, arching her back and leaking her dickmilk again... and again... and again. You’re sure now that she gets off on the helplessness, on her complete, whimpering submission to a stranger fucking her into the ground. By the time you feel your own orgasm building, Alyru’s belly is coated in a thick veneer of her own semen. Her balls, once apple-sized, bounce airily with your rapid thrusts, so emptied by their owner’s repeated orgasms that they feel almost weightless each time they swing back and slap against your crotch.");
@@ -1495,7 +1505,7 @@ public function syriQuestTorraPoundPuss(x:int):void
 	output("\n\nShe keeps sucking, bobbing her head up and down your rod until your entire " + pc.cockNounComplex(x) + " is sheathed in spittle. Only then do her lips release you, letting you smear them with pre as you pull out.");
 	output("\n\n<i>“You’re gonna fuck me, right?”</i> she pleads, groping at her titties. <i>“I need it so bad!”</i>");
 	output("\n\nOf course you are... but you don’t mind stringing her along a little. You take your time stroking yourself and circling around behind the kneeling milodan, running a hand through her messy red hair before grabbing her shoulders and pushing her forward onto all fours. The naked cat gasps, but in the same breath raises her fluffy grey tail to expose her plugged ass and drooling gash.");
-	output("\n\nThat’s what you like to see. You slink down on your [pc.knees] and throw the kitty’s tail over your shoulder, letting your " + pc.cockDescript(x) + " flop into the fluffy trench between her fat asscheeks. Your " + pc.cockHead(x) + " rubs against the sex toy buried in her tailhole, feeling the rapid vibrations assaulting her insides. Damn, that thing’s turned up <i>high</i>! Between that and all the savicite piercings... no wonder the cat-babe’s so lust-addled. She probably can’t put two thoughts together with all that ecstacy running through her.");
+	output("\n\nThat’s what you like to see. You slink down on your [pc.knees] and throw the kitty’s tail over your shoulder, letting your " + pc.cockDescript(x) + " flop into the fluffy trench between her fat asscheeks. Your " + pc.cockHead(x) + " rubs against the sex toy buried in her tailhole, feeling the rapid vibrations assaulting her insides. Damn, that thing’s turned up <i>high</i>! Between that and all the savicite piercings... no wonder the cat-babe’s so lust-addled. She probably can’t put two thoughts together with all that ecstasy running through her.");
 	output("\n\nWell, she doesn’t need to think much to take a dick, does she? You rock your [pc.hips] back and push the crown of your cock into the thick, wet lips of her pussy; your member pushes the curtains of her sex apart, letting loose a trickle of pent-up femcum that lubes you up to a nice shine in the harsh office lights. Setting your hands on the kitty-slut’s broodbearing hips, you thrust yourself deep inside her sodden depths. Her constantly lurid moans peak into a husky wail of orgasmic delight as your " + pc.simpleCockNoun(x) + " sinks into her, delving the dank depths of her quivering quim until your " + pc.knotDescript(x) + " is throbbing between her pussylips.");
 	
 	pc.cockChange();
@@ -2344,7 +2354,7 @@ public function syriQuestSchoraFightText():String
 {
 	var eText:String = "";
 	eText += "She is the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship.";
-	eText += "\n\nShe’s a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station’s security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she’s wearing. She’s currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger..";
+	eText += "\n\nShe’s a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station’s security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she’s wearing. She’s currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.";
 	
 	return eText;
 }

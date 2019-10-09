@@ -370,7 +370,7 @@ package classes.Items.Transformatives
 				bGain = 1 + rand(bGain / 2);
 				target.breastRows[0].breastRatingRaw += bGain;
 
-				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>.");
+				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>");
 			}
 		}
 		
