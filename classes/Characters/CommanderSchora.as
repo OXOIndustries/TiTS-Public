@@ -140,7 +140,7 @@
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cLengthRaw = 5.125;
-			this.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			this.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 			this.cocks[0].cockColor = "red";
 			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);

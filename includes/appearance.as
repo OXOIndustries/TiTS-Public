@@ -4489,12 +4489,12 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it’s length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
 			break;
 		case GLOBAL.TYPE_DZAAN:
-			outputRouter(" The dzaan member is covered in dark, nub-like protrusions, spotted evenly along the shaft. Each growth is slightly convex in shape and designed to deliver pleasure to any passage.");
+			outputRouter(" The dzaan member has darker spots, made up of smooth keratin, dotted along its length.");
 			break;
 	}
 	
 	//Nubby or Ribbed
-	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_DZAAN])) || (target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SAURMORIAN])))
+	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM])) || (target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_SAURMORIAN])))
 	{
 		outputRouter(" It is");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) outputRouter(" covered in nub-like protrusions, spread out evenly across the shaft");
