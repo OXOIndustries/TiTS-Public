@@ -494,6 +494,7 @@ public function orgasmenderScene4():void
 	}
 	pc.HP(pc.HPMax());
 	pc.energy(40);
+	pc.taint(3);
 	IncrementFlag("ORGASMENDER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
