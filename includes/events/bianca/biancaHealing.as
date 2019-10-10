@@ -197,7 +197,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 		}
 		else output("\n\n");
 		output("Your physician’s tranquilizing ministrations are so calming that you nearly fall asleep, having forgotten you were ever in pain. But just before you hit the threshold of indulgent, inviting rest, she peels the patches away with a sharp, stinging tug and sprinkles them");
-		if (inBooth) output(" to a bin. After your pampering concludes and Bianca’s finished, you feel ready to win every test of strength!");
+		if (inBooth) output(" to a bin.");
 		else output(" into the air for her drone to collect. <i>“I hope you’ll take better care of yourself after this.”</i>");
 		output((inBooth ? " " : "\n\n") + "After your pampering concludes and Bianca’s finished, you feel ready to win every test of strength!");
 	}

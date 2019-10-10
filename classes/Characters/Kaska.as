@@ -140,6 +140,7 @@
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 5;
 			this.createCock();
+			this.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 			this.cocks[0].cLengthRaw = 11;
 			this.cocks[0].cThicknessRatioRaw = 1.2;
 			this.cocks[0].flaccidMultiplier = .75;
@@ -226,6 +227,8 @@
 			dataObject.hornLength = 0;
 			dataObject.armType = GLOBAL.TYPE_DZAAN;
 			dataObject.legType = GLOBAL.TYPE_DZAAN;
+			
+			dataObject.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 		}
 			
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
