@@ -16,7 +16,7 @@ package classes.Characters
 		{
 			this._latestVersion = 2;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			fluidSimulate = true;
 			//statusSimulate = true;
 			this.short = "Ilaria";
@@ -68,7 +68,11 @@ package classes.Characters
 			//createPerk("No Cum Leakage",0,0,0,0);
 			this.impregnationType = "IlariaPregnancy";
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.cumQualityRaw = 1;
+			dataObject.impregnationType = "IlariaPregnancy";
+		}
 		override public function get bustDisplay():String
 		{
 			if(bellyRating() >= 25) return "ILARIA_PREG";
