@@ -15248,12 +15248,13 @@
 					description += "inverted";
 					descripted++;
 				}
+				/* Fen note: disabled due to echoing.
 				//Tentacled
 				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
 					if (descripted > 0) description += ", ";
 					description += RandomInCollection(["tentacle-concealing", "tendril-hiding"]);
 					descripted++;
-				}
+				}*/
 				//Just lactating!
 				else if (isLactating() && milkFullness > 50) {
 					if (descripted > 0) description += ", ";
