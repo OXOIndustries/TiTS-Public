@@ -42,7 +42,6 @@ public function infiniteItems():Boolean
 public function processEventBuffer():String
 {
 	var output:String = "";
-	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
 		output += ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");

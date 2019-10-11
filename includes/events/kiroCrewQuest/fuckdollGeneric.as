@@ -182,12 +182,12 @@ public function defeatTheGenericSexydoll():void
 	}
 	var toolty:String = "Put her mouth to work. And yours. ";
 	//bimboOrCumAddict: 
-	if(pc.isBimbo() || pc.isCumSlut()) toolty += "Sucking dick is means to an end: rescuing Kiro and getting a filling of thick cum. You can't let this opportunity go!";
+	if(pc.isBimbo() || pc.isCumSlut()) toolty += "Sucking dick is means to an end: rescuing Kiro and getting a filling of thick cum. You can’t let this opportunity go!";
 	else if(pc.libido() < 33) toolty += "That dick deserves some up-close attention, after all...";
-	else if(pc.libido() < 66) toolty += "She's tried to seduce you with that dick, might as well try it out, right?";
-	else toolty += "That dick is the centerpiece of temptation incarnate, and it'd be a shame to let it wilt a single inch.";
+	else if(pc.libido() < 66) toolty += "She’s tried to seduce you with that dick, might as well try it out, right?";
+	else toolty += "That dick is the centerpiece of temptation incarnate, and it’d be a shame to let it wilt a single inch.";
 	if(!pc.isTaur()) addButton(3,"Sixty-Nine",sixtyNineFuckdoll,undefined,"Sixty-Nine",toolty);
-	else addDisabledButton(3,"Sixty-Nine","Sixty-Nine","<b>Given your 'tauric shape,</b> your genitals can't exchange mutual vows.");
+	else addDisabledButton(3,"Sixty-Nine","Sixty-Nine","<b>Given your ‘tauric shape,</b> your genitals can’t exchange mutual vows.");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -1025,8 +1025,8 @@ public function sixtyNineFuckdoll():void
 	if(!pc.hasVagina()) y = -1;
 	if(!pc.hasCock()) x = -1;
 	//[Sixty-Nine]
-	// Tooltip1: Put her mouth to work. And yours. {libidoLow: That dick deserves some up-close attention, after all.../ libidoMed: She's tried to seduce you with that dick, might as well try it out, right?/ libidoHigh: That dick is the centerpiece of temptation incarnate, and it'd be a shame to let it wilt a single inch./ bimboOrCumAddict: Sucking dick is means to an end: rescuing Kiro and getting a filling of thick cum. You can't let this opportunity go!}
-	// Tooltip2: <b>Given your 'tauric shape,</b> your genitals can't exchange mutual vows.
+	// Tooltip1: Put her mouth to work. And yours. {libidoLow: That dick deserves some up-close attention, after all.../ libidoMed: She’s tried to seduce you with that dick, might as well try it out, right?/ libidoHigh: That dick is the centerpiece of temptation incarnate, and it’d be a shame to let it wilt a single inch./ bimboOrCumAddict: Sucking dick is means to an end: rescuing Kiro and getting a filling of thick cum. You can’t let this opportunity go!}
+	// Tooltip2: <b>Given your ‘tauric shape,</b> your genitals can’t exchange mutual vows.
 	// No taurs. No other restrictions, however.
 	// Tainting includes lip size increase (while sucking!!) and a temporary hit of something that does the same as Soak - PC will be drooling up a storm while craving dick for a few hours. Also, PC's cock size can be increased, and pussies will get wetter.
 
@@ -1041,7 +1041,7 @@ public function sixtyNineFuckdoll():void
 	if(pc.isBimbo() || pc.isCumSlut()) 
 	{
 		output(" Your face contorts into an expression of indescribable joy - that cock, and all its cum, belongs to you. When you take a step closer you have to concentrate on not collapsing into a delirious, craving mess. ");
-		if(pc.isBimbo() && pc.isCumSlut()) output("You need her dick<b>and</b> her cum!");
+		if(pc.isBimbo() && pc.isCumSlut()) output("You need her dick <b>and</b> her cum!");
 		else if(pc.isBimbo()) output("You need that dick!");
 		else output("You need her cum!");
 		output(" Your safety, and Kiro’s future, may depend on it!");
@@ -1308,7 +1308,7 @@ public function wills69Part3(args:Array):void
 		output("You become aware of how drenched you are, a walking rainstorm of [pc.girlCumFlavor] ambrosia. Liquid flows at a greater, filthier quantity than before, and you moan like a beast in heat. Your <b>increased wetness</b> is at first worrying, but then you can’t help but think of using it to try out the herm’s dick properly. And then any other on board.");
 		if(pc.vaginas[y].wetnessRaw < 4 && pc.vaginas[y].wetnessRaw+1 >= 4)
 		{
-			output("<b> You're a squirter now!</b>");
+			output("<b> You’re a squirter now!</b>");
 		}
 		pc.vaginas[y].wetnessRaw++;
 		enemy.createStatusEffect("LipGrown");

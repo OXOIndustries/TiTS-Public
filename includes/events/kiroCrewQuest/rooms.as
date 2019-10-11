@@ -66,7 +66,7 @@ public function initKQRooms():void
 
 	rooms["KQ N30"] = new RoomClass(this);
 	rooms["KQ N30"].roomName = "GAUDY\nHALLWAY";
-	rooms["KQ N30"].description = "A single set of doors are all that separates this gaudy, silver and white corridor from the rust-riddled hangar to the south. This place feels like a portal between two entirely different worlds. One side is gritty and real, the other manufactured and pristine, illuminated by its own inner glow and decorated with the sorts of stylish accents you'd expect to find on most well-appointed, luxurious vacation yacht. It stretches further north, deeper into this freighter's gaudy innards.";
+	rooms["KQ N30"].description = "A single set of doors are all that separates this gaudy, silver and white corridor from the rust-riddled hangar to the south. This place feels like a portal between two entirely different worlds. One side is gritty and real, the other manufactured and pristine, illuminated by its own inner glow and decorated with the sorts of stylish accents you’d expect to find on most well-appointed, luxurious vacation yacht. It stretches further north, deeper into this freighter’s gaudy innards.";
 	rooms["KQ N30"].planet = "N/A";
 	rooms["KQ N30"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ N30"].southExit = "KQ N32";
@@ -78,7 +78,7 @@ public function initKQRooms():void
 
 	rooms["KQ N28"] = new RoomClass(this);
 	rooms["KQ N28"].roomName = "GAUDY\nHALLWAY";
-	rooms["KQ N28"].description = "Stretching north and south, this gaudy-looking hallway burrows deep through the freighter's technologically advanced innards. Sealed, high-end starship doors offer access to chambers in either direction. The west is stamped by a dazzlingly bright pink cross embedded on a glittery purple heart. Some kind of medical chamber? The eastern aperture is completely unlabeled, unmarked, and unsecured.";
+	rooms["KQ N28"].description = "Stretching north and south, this gaudy-looking hallway burrows deep through the freighter’s technologically advanced innards. Sealed, high-end starship doors offer access to chambers in either direction. The west is stamped by a dazzlingly bright pink cross embedded on a glittery purple heart. Some kind of medical chamber? The eastern aperture is completely unlabeled, unmarked, and unsecured.";
 	rooms["KQ N28"].planet = "N/A";
 	rooms["KQ N28"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ N28"].northExit = "KQ N26";
@@ -106,7 +106,7 @@ public function initKQRooms():void
 
 	rooms["KQ L28"] = new RoomClass(this);
 	rooms["KQ L28"].roomName = "FIRST\nAID";
-	rooms["KQ L28"].description = "While the room is made up like the inside of a doctor's office, there are startlingly few medical implements to be found. There is a small medicine cabinet, stocked with a variety of basic lubricants, an examination table with bright pink bondage cuffs, and a wheeled cabinet that contributes to the scientific veneer without containing a single item of merit.";
+	rooms["KQ L28"].description = "While the room is made up like the inside of a doctor’s office, there are startlingly few medical implements to be found. There is a small medicine cabinet, stocked with a variety of basic lubricants, an examination table with bright pink bondage cuffs, and a wheeled cabinet that contributes to the scientific veneer without containing a single item of merit.";
 	rooms["KQ L28"].planet = "N/A";
 	rooms["KQ L28"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ L28"].northExit = "";
@@ -134,7 +134,7 @@ public function initKQRooms():void
 
 	rooms["KQ N24"] = new RoomClass(this);
 	rooms["KQ N24"].roomName = "SLOPPY\nCORRIDOR";
-	rooms["KQ N24"].description = "A pile of old condoms disabuses you of any classy notions about this place. Puddles of pink mystery juices further bolsters that realization. It wouldn't be so bad if the lighting wasn't so perfect for displaying every uncleaned remnant of sexual intercourse. This ship looks like it has hosted bareback orgies from stem to stern. An intersection lies to the north. Things get a bit less filthy to the south.";
+	rooms["KQ N24"].description = "A pile of old condoms disabuses you of any classy notions about this place. Puddles of pink mystery juices further bolsters that realization. It wouldn’t be so bad if the lighting wasn’t so perfect for displaying every uncleaned remnant of sexual intercourse. This ship looks like it has hosted bareback orgies from stem to stern. An intersection lies to the north. Things get a bit less filthy to the south.";
 	rooms["KQ N24"].planet = "N/A";
 	rooms["KQ N24"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ N24"].northExit = "KQ N22";
@@ -190,7 +190,7 @@ public function initKQRooms():void
 
 	rooms["KQ P20"] = new RoomClass(this);
 	rooms["KQ P20"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ P20"].description = "You follow the cargo circuit's winding path through the inside of this mysterious freighter, tracing its broad arc as you search what open areas you can find. The number of tightly sealed, completely inaccessible hatches you have to bypass is disheartening, but sooner or later you'll find your objective... or a central control room where you can open everything up. This pathway continues east and south from here.";
+	rooms["KQ P20"].description = "You follow the cargo circuit’s winding path through the inside of this mysterious freighter, tracing its broad arc as you search what open areas you can find. The number of tightly sealed, completely inaccessible hatches you have to bypass is disheartening, but sooner or later you’ll find your objective... or a central control room where you can open everything up. This pathway continues east and south from here.";
 	rooms["KQ P20"].planet = "N/A";
 	rooms["KQ P20"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ P20"].northExit = "";
@@ -218,7 +218,7 @@ public function initKQRooms():void
 
 	rooms["KQ R18"] = new RoomClass(this);
 	rooms["KQ R18"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ R18"].description = "A fight happened here. Plasma bolts burned deep furrows in the titanium-composite walls, and a ring of irregular black soot clearly reveals where an explosive was detonated to little effect. If anybody bled as a result of all that violence, they certainly didn't do it on the floor. The only stains you can see are sexual in nature: a small puddle of dried cum not five feet from the explosion. The hallway leads north and south.";
+	rooms["KQ R18"].description = "A fight happened here. Plasma bolts burned deep furrows in the titanium-composite walls, and a ring of irregular black soot clearly reveals where an explosive was detonated to little effect. If anybody bled as a result of all that violence, they certainly didn’t do it on the floor. The only stains you can see are sexual in nature: a small puddle of dried cum not five feet from the explosion. The hallway leads north and south.";
 	rooms["KQ R18"].planet = "N/A";
 	rooms["KQ R18"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R18"].northExit = "KQ R16";
@@ -246,7 +246,7 @@ public function initKQRooms():void
 
 	rooms["KQ P16"] = new RoomClass(this);
 	rooms["KQ P16"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ P16"].description = "You nearly step on an onahole - or what's left of one, anyway. The well-used sextoy looks like it was fucked until split in half, then tossed away, half-full of strangely sparkling, purple cum. For a place populated by high-heeled sexdolls, there sure are a lot of slipping hazards left around.\n\nYou can follow the arcing hallway to the north and east.";
+	rooms["KQ P16"].description = "You nearly step on an onahole - or what’s left of one, anyway. The well-used sextoy looks like it was fucked until split in half, then tossed away, half-full of strangely sparkling, purple cum. For a place populated by high-heeled sexdolls, there sure are a lot of slipping hazards left around.\n\nYou can follow the arcing hallway to the north and east.";
 	rooms["KQ P16"].planet = "N/A";
 	rooms["KQ P16"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ P16"].northExit = "KQ P14";
@@ -317,7 +317,7 @@ public function initKQRooms():void
 
 	rooms["KQ J16"] = new RoomClass(this);
 	rooms["KQ J16"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ J16"].description = "Pinkish-purplish milk is everywhere. It completely coats the floor. You can't move without having to splash through the lukewarm secretions. The air smells like it's straight out of a full-sensory add for New Texan milk, but somehow even sweeter than that, like it's half dairy, half baked good. It probably still tastes good too. Maybe you could sneak a little without anyone seeing?\n\nThe cargo circuit continues its freighter traversing route to the east and south.";
+	rooms["KQ J16"].description = "Pinkish-purplish milk is everywhere. It completely coats the floor. You can’t move without having to splash through the lukewarm secretions. The air smells like it’s straight out of a full-sensory add for New Texan milk, but somehow even sweeter than that, like it’s half dairy, half baked good. It probably still tastes good too. Maybe you could sneak a little without anyone seeing?\n\nThe cargo circuit continues its freighter traversing route to the east and south.";
 	rooms["KQ J16"].planet = "N/A";
 	rooms["KQ J16"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ J16"].northExit = "";
@@ -331,7 +331,7 @@ public function initKQRooms():void
 
 	rooms["KQ J18"] = new RoomClass(this);
 	rooms["KQ J18"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ J18"].description = "A three-foot long dildo lies across the hallway like some kind of turgid, well-used tripwire. The rent in the middle indicates that it's already been 'tripped,' or more likely, suffered rough use to the point that its pussy-soaked mass lost its elasticity and ripped. You don't even have to get close to it to smell the residue of wet cunt and acrid, old cum on it. Better to give it a wide berth as you traverse this north-south part of the passage.";
+	rooms["KQ J18"].description = "A three-foot long dildo lies across the hallway like some kind of turgid, well-used tripwire. The rent in the middle indicates that it’s already been ‘tripped,’ or more likely, suffered rough use to the point that its pussy-soaked mass lost its elasticity and ripped. You don’t even have to get close to it to smell the residue of wet cunt and acrid, old cum on it. Better to give it a wide berth as you traverse this north-south part of the passage.";
 	rooms["KQ J18"].planet = "N/A";
 	rooms["KQ J18"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ J18"].northExit = "KQ J16";
@@ -359,7 +359,7 @@ public function initKQRooms():void
 
 	rooms["KQ L20"] = new RoomClass(this);
 	rooms["KQ L20"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ L20"].description = "Two panties lie entwined with one another on the floor, pulled so tightly that the waistbands have knotted them into one unit. Two someones clearly had quite a lot of fun with them, judging by the mix of purple and white seed. It blends together into a pool of dull pink in the fully saturated gusset. Is there anywhere on this ship that hasn't been fucked in?\n\nYou can continue travelling to the west and south through the freighter.";
+	rooms["KQ L20"].description = "Two panties lie entwined with one another on the floor, pulled so tightly that the waistbands have knotted them into one unit. Two someones clearly had quite a lot of fun with them, judging by the mix of purple and white seed. It blends together into a pool of dull pink in the fully saturated gusset. Is there anywhere on this ship that hasn’t been fucked in?\n\nYou can continue travelling to the west and south through the freighter.";
 	rooms["KQ L20"].planet = "N/A";
 	rooms["KQ L20"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ L20"].northExit = "";
@@ -373,7 +373,7 @@ public function initKQRooms():void
 
 	rooms["KQ L22"] = new RoomClass(this);
 	rooms["KQ L22"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ L22"].description = "Pink and black striping along the tops of the walls leads the way through this winding, circuitous corridor as it migrates through the freighter's sealed-off storage compartments one at a time. None of them have visible door controls or handles, let alone a holographic interface for inputting custom commands. They must be controlled somewhere deeper in the vessel, perhaps a security station or on the bridge. A bit of pink-hued fluid puddles on the deck's corner, left by stars-know-what. The mess is worse to the east, where another hallway intersects with this one.";
+	rooms["KQ L22"].description = "Pink and black striping along the tops of the walls leads the way through this winding, circuitous corridor as it migrates through the freighter’s sealed-off storage compartments one at a time. None of them have visible door controls or handles, let alone a holographic interface for inputting custom commands. They must be controlled somewhere deeper in the vessel, perhaps a security station or on the bridge. A bit of pink-hued fluid puddles on the deck’s corner, left by stars-know-what. The mess is worse to the east, where another hallway intersects with this one.";
 	rooms["KQ L22"].planet = "N/A";
 	rooms["KQ L22"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ L22"].northExit = "KQ L20";
@@ -388,7 +388,7 @@ public function initKQRooms():void
 	//Bossy portion~
 	rooms["KQ P12"] = new RoomClass(this);
 	rooms["KQ P12"].roomName = "WAITING\nROOM";
-	rooms["KQ P12"].description = "Doctor Illustria Po, as identified by the nameplate mounted above the bright pink bell on the wall, keeps a tidier waiting area than ship, that's for sure. This room houses everything you'd expect in a Doctor's waiting room: cheap (but pornographic) magazines, inspirational (but also pornographic) posters, and cushy-looking chairs with small hatches to conceal the built-in restraints (and dildos). You can escape into a circular hallway to the south or venture deeper into Doctor Po's lair to the east.";
+	rooms["KQ P12"].description = "Doctor Illustria Po, as identified by the nameplate mounted above the bright pink bell on the wall, keeps a tidier waiting area than ship, that’s for sure. This room houses everything you’d expect in a Doctor’s waiting room: cheap (but pornographic) magazines, inspirational (but also pornographic) posters, and cushy-looking chairs with small hatches to conceal the built-in restraints (and dildos). You can escape into a circular hallway to the south or venture deeper into Doctor Po’s lair to the east.";
 	rooms["KQ P12"].planet = "N/A";
 	rooms["KQ P12"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ P12"].northExit = "";
@@ -444,7 +444,7 @@ public function initKQRooms():void
 
 	rooms["KQ T10"] = new RoomClass(this);
 	rooms["KQ T10"].roomName = "\nBEDROOM";
-	rooms["KQ T10"].description = "A massive bed, easily the size of two king-sized mattresses laid next to each other, is just one of the myriad sleeping possibilities provided by this chamber. Next to the bed is a small mountain of pillows and furs. Behind that is a vat of extremely viscous looking goo that might be comfortable for a galotian or goo fetishest. You aren't here to judge, after all - just rescue a friend.\n\nDoctor Po's kitchen is just to the west. An archway to the south offers access to a workstation.";
+	rooms["KQ T10"].description = "A massive bed, easily the size of two king-sized mattresses laid next to each other, is just one of the myriad sleeping possibilities provided by this chamber. Next to the bed is a small mountain of pillows and furs. Behind that is a vat of extremely viscous looking goo that might be comfortable for a galotian or goo fetishest. You aren’t here to judge, after all - just rescue a friend.\n\nDoctor Po’s kitchen is just to the west. An archway to the south offers access to a workstation.";
 	rooms["KQ T10"].planet = "N/A";
 	rooms["KQ T10"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ T10"].northExit = "";
@@ -541,10 +541,10 @@ public function kqn14Bonus():Boolean
 }
 public function kqp22bonus():Boolean
 {
-	output("Lead by a band of black-and-pink caution paint near the ceiling joint, the cargo circuit chases a broad, slow loop through the freighter's innards. Plenty of doors line the sides, though they come with no obvious controls and no labels. Perhaps the owner doesn't need the extra space? Or, more likely, she'd like to keep ");
+	output("Lead by a band of black-and-pink caution paint near the ceiling joint, the cargo circuit chases a broad, slow loop through the freighter’s innards. Plenty of doors line the sides, though they come with no obvious controls and no labels. Perhaps the owner doesn’t need the extra space? Or, more likely, she’d like to keep ");
 	var seenType:Boolean = (flags["KQ_MET_SEXDOLL_HUM"] != undefined || flags["KQ_MET_SEXDOLL_DEM"] != undefined || flags["KQ_MET_SEXDOLL_LAQ"] != undefined || flags["KQ_MET_SEXDOLL_VUL"] != undefined);
 	if(seenType) output("her slutty pets");
-	else output("whoever's responsible for all the cum puddles in the halls");
+	else output("whoever’s responsible for all the cum puddles in the halls");
 	output(" away from sensitive machinery or valuable prizes. You can see a filthy intersection to the west or follow the curving tunnel northeast around the ship.");
 	return kiroQuestHallwaysEncounters();
 }
@@ -622,7 +622,7 @@ public function examinePink():void
 	output("\n\nDo you try to open it yourself?");
 	clearMenu();
 	addButton(0,"Unlock",vaginaRouter,[attemptPinkUnlock,15,1,0,false],"Unlock","Attempting to unlock the door means putting the pink phallus in one of your holes, to be clear.");
-	if(pc.hasItemByClass(MitziBionaHole) || pc.hasItemByClass(NivasBionaHole) || pc.hasItemByClass(TamaniBionaHole)) addButton(1,"Bionahole",useBionaholeSuccess,undefined,"Bionahole","Use a bionahole instead of subjecting one of your holes to this place's madness.");
+	if(pc.hasItemByClass(MitziBionaHole) || pc.hasItemByClass(NivasBionaHole) || pc.hasItemByClass(TamaniBionaHole)) addButton(1,"Bionahole",useBionaholeSuccess,undefined,"Bionahole","Use a bionahole instead of subjecting one of your holes to this place’s madness.");
 	else addDisabledButton(1,"Bionahole","Bionahole","If you had a bionahole with you, you could try using that instead of one of your holes...");
 	addButton(4,"Back",mainGameMenu);
 }
@@ -778,8 +778,8 @@ public function examineDildolock(black:Boolean = false):void
 	output("\n\nCould it be? Could this waist-high" + ((pc.tallness < 5*12 || pc.tallness >= 7*12) ? " (for most sapients)":"") + " aperture be the keyhole? Did the mind behind this foul place create doors you have to fuck to open?");
 	clearMenu();
 	if(getDildos().length > 0) addButton(0,"Use Dildo",pickADildo,undefined,"Use Dildo","Ramming a dildo in there ought to do the trick...");
-	else addDisabledButton(0,"Use Dildo","Use Dildo","You're not carrying a dildo.");
-	if(pc.hasCock()) addButton(1,"Insert Dick",penisRouter,[weenUpADingleDanglehole,2000,false,0],"Insert Dick","You've got your own key!");
+	else addDisabledButton(0,"Use Dildo","Use Dildo","You’re not carrying a dildo.");
+	if(pc.hasCock()) addButton(1,"Insert Dick",penisRouter,[weenUpADingleDanglehole,2000,false,0],"Insert Dick","You’ve got your own key!");
 	else addDisabledButton(1,"Insert Dick","Insert Dick","You need a penis for this.");
 	addButton(14, "Back", mainGameMenu);
 }
