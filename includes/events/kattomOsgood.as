@@ -9,7 +9,7 @@ public function pattonIsNotSupposedToBeHere():Boolean
 	||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
 	||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
 	||	InCollection(shipLocation, ["500", "ZS L50", "EW-M23", "KQ N32"])
-	||	InCollection(getPlanetName().toLowerCase(), ["n/a", "new texas", "zheng shi station", "spatial anomaly"])
+	||	InCollection(getPlanetName().toLowerCase(), ["n/a", "unknown", "new texas", "zheng shi station", "spatial anomaly"])
 	||	disableExploreEvents()
 	)
 	{

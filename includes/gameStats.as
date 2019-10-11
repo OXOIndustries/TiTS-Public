@@ -1024,8 +1024,8 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 		if(disableExploreEvents()) roomFlagFlags.push("<i>Explore events are disabled.</i>");
-		output2("\n<b>* " + (rooms[(inShip ? shipLocation : currentLocation)].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName());
-		output2("\n<b>* System:</b> " + getSystemName());
+		output2("\n<b>* " + (rooms[(inShip ? shipLocation : currentLocation)].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName((inShip ? shipLocation : currentLocation), true));
+		output2("\n<b>* System:</b> " + getSystemName((inShip ? shipLocation : currentLocation), true));
 		if(roomFlagTypes.length > 0)
 		{
 			output2("\n<b>* Area:</b> ");
@@ -1100,8 +1100,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!inShip)
 		{
 			output2("\n<b><u>Ship Location</u></b>");
-			output2("\n<b>* " + (rooms[shipLocation].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName(shipLocation));
-			output2("\n<b>* System:</b> " + getSystemName(shipLocation));
+			output2("\n<b>* " + (rooms[shipLocation].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName(shipLocation, true));
+			output2("\n<b>* System:</b> " + getSystemName(shipLocation, true));
 		}
 	}
 	
@@ -8816,7 +8816,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(days - flags["BIANCA_LAST_DAY_MOVED"] > 0) output2(" for " + (days - flags["BIANCA_LAST_DAY_MOVED"]) + " days");
 				output2(")");
 			}
-			if(flags["BIANCA_LOCATION"] != undefined) output2("\n<b>* Bianca, Last Known Location:</b> " + getPlanetName(flags["BIANCA_LOCATION"]));
+			if(flags["BIANCA_LOCATION"] != undefined) output2("\n<b>* Bianca, Last Known Location:</b> " + getPlanetName(flags["BIANCA_LOCATION"], true));
 			output2("\n<b>* Bianca, Affection:</b> " + biancaFamiliarity() + " % (" + biancaFamiliarityMax() + " % Max)");
 			*/
 			if(flags["BIANCA_SEXED"] != undefined) output2("\n<b>* Bianca, Times Sexed:</b> " + flags["BIANCA_SEXED"]);
@@ -8920,7 +8920,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			var kattomName:String = (flags["MET_KATTOM"] == undefined ? "Short Kaithrit" : "Kattom Osgood");
 			
 			output2("\n<b>* " + kattomName + ":</b> " + (flags["MET_KATTOM"] == undefined ? "Seen" : "Met") + " him");
-			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"]) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
+			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"], true) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
 			roamCount++;
 		}
 		// Kimber

@@ -154,7 +154,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	updatePCStats();
 	
 	//Overall
-	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + indefiniteArticle(target.originalRace) + ".");
+	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + (target.originalRace.indexOf("???") != -1 ? "of an unknown race" : indefiniteArticle(target.originalRace)) + ".");
 	else
 	{
 		outputRouter((target == pc ? "You":"[target.HeShe]") + " started your journey as " + indefiniteArticle(target.originalRace) + ", but " + (target == pc ? "you’ve":"[target.heShe] has") + " become "+indefiniteArticle(target.race())+" over the course of " + (target == pc ? "your":"[target.hisHer]") + " adventures.");

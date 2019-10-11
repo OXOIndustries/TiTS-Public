@@ -15139,7 +15139,7 @@
 			{
 				rando = rand(21);
 				if(onlyCheek) desc += RandomInCollection(["butt", "ass"]) + "cheek";
-				else if(silicone > 0 && rand(4) == 0) desc += "bubble";
+				else if(silicone > 0 && rand(4) == 0) desc += "bubble butt";
 				else if (rando <= 4) desc += "butt";
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
@@ -15152,7 +15152,11 @@
 			else
 			{
 				if(silicone > 0 && rand(4) == 0) desc += "bubbles";
-				else desc += "cheeks";
+				else
+				{
+					if(rand(4) == 0) desc += RandomInCollection(["butt", "ass"]);
+					desc += "cheeks";
+				}
 			}
 			return desc;
 		}
@@ -19527,7 +19531,11 @@
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
 					if(silicone >= 5) adjectives.push("ridiculously perky");
-					if(siliconePref != 1 && siliconePref != 2) adjectives.push("fake", "plastic");
+					if(siliconePref != 1 && siliconePref != 2)
+					{
+						adjectives.push("fake", "plastic");
+						if(silicone >= 4) adjectives.push("bolt-on");
+					}
 					if(siliconePref != 2) adjectives.push("artificially-enhanced", "augmented", "silicone-filled");
 					if(bRowRating >= 4) adjectives.push("perfectly rounded", "globular");
 					if(descript != "") descript += ", ";
@@ -19567,7 +19575,6 @@
 				if(silicone >= 2) nouns.push("balloon");
 				if(silicone >= 5) nouns.push("balloon");
 				if(silicone >= 10) nouns.push("balloon");
-				//nouns.push("bolt-on");
 			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");

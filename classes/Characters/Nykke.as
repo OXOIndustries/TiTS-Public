@@ -17,7 +17,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "Nykke";
-			this.originalRace = "Frostwyrm";
+			this.originalRace = "frostwyrm";
 			this.a = "";
 			this.capitalA = "";
 			this.isPlural = false;
