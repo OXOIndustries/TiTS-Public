@@ -1081,7 +1081,7 @@ public function sixtyNineFuckdoll():void
 	else output(" <i>“Huuuuh!?”</i> she whines, gobsmacked by your lack of reproductive means. <i>“Where’s your penis? Your vagina? You poor thing! Did someone steal them?”</i> She shakes her head, utilizing significant amounts of bimbo empathy to cope with this distress. <i>“Oh, don’t worry, Mistress can get them back for you! I can help you pass the time ‘til she’s ready for you! Just tell me what to do!”</i>");
 	output("\n\nHalf-lidded eyes follow your dominant stride. Pivoting in preparation, you drop down without a word, planting your groin on the stamped slut’s maw, " + (enemy.hasMuzzle() ? "engulfing her muzzle":"smothering her face") + " in your ");
 	if(pc.balls > 0) output("[pc.balls]");
-	else if(enemy.hasVagina()) output("feminine depths");
+	else if(pc.hasVagina()) output("feminine depths");
 	else output("taint");
 	output(". The taste of your ");
 	if(pc.balls > 0) output("[pc.sack]");
@@ -1288,7 +1288,7 @@ public function wills69Part3(args:Array):void
 	output("\n\nSucking spittle back behind your lips, you find that you can’t stop. You stand quickly, realizing the mistake(?) you’ve made in pairing up with the sapient toy of a mad genius.");
 
 	//cockGetsBigger: 
-	if(!enemy.hasStatusEffect("LipGrown") && rand(3) == 0 && ((pc.cocks[x].cLength() < 30 && pc.hasPerk("Hung")) || (pc.cocks[x].cLength() < 16 && pc.hasPerk("Mini")) || (pc.cocks[x].cLength() < 20 && !pc.hasPerk("Mini"))))
+	if(x >= 0 && !enemy.hasStatusEffect("LipGrown") && rand(3) == 0 && ((pc.cocks[x].cLength() < 30 && pc.hasPerk("Hung")) || (pc.cocks[x].cLength() < 16 && pc.hasPerk("Mini")) || (pc.cocks[x].cLength() < 20 && !pc.hasPerk("Mini"))))
 	{
 		var growth:int = 1 + rand(2);
 		if(pc.hasPerk("Hung")) growth++;
@@ -1297,18 +1297,18 @@ public function wills69Part3(args:Array):void
 			growth--;
 			if(growth < 1) growth = 1;
 		}
-		output("The artificial gravity doesn’t feel right, and that’s because your [pc.cock] has swelled in size, becoming lengthier and girthier after a night in a very special hotel. <b>It’s grown by at least " + num2Text(growth) + "inch" + (growth > 1 ? "es":"") + ".</b>");
+		output(" The artificial gravity doesn’t feel right, and that’s because your [pc.cock] has swelled in size, becoming lengthier and girthier after a night in a very special hotel. <b>It’s grown by at least " + num2Text(growth) + "inch" + (growth > 1 ? "es":"") + ".</b>");
 		pc.cocks[x].cLengthRaw += growth;
 		enemy.createStatusEffect("LipGrown");
 		pc.taint(2);
 	}
 	//pussyGetsWetter: 
-	if(!enemy.hasStatusEffect("LipGrown") && rand(2) == 0 && pc.vaginas[y].wetness() < 5) 
+	if(y >= 0 && !enemy.hasStatusEffect("LipGrown") && rand(2) == 0 && pc.vaginas[y].wetness() < 5) 
 	{
-		output("You become aware of how drenched you are, a walking rainstorm of [pc.girlCumFlavor] ambrosia. Liquid flows at a greater, filthier quantity than before, and you moan like a beast in heat. Your <b>increased wetness</b> is at first worrying, but then you can’t help but think of using it to try out the herm’s dick properly. And then any other on board.");
+		output(" You become aware of how drenched you are, a walking rainstorm of [pc.girlCumFlavor] ambrosia. Liquid flows at a greater, filthier quantity than before, and you moan like a beast in heat. Your <b>increased wetness</b> is at first worrying, but then you can’t help but think of using it to try out the herm’s dick properly. And then any other on board.");
 		if(pc.vaginas[y].wetnessRaw < 4 && pc.vaginas[y].wetnessRaw+1 >= 4)
 		{
-			output("<b> You’re a squirter now!</b>");
+			output(" <b>You’re a squirter now!</b>");
 		}
 		pc.vaginas[y].wetnessRaw++;
 		enemy.createStatusEffect("LipGrown");
@@ -1323,7 +1323,10 @@ public function wills69Part3(args:Array):void
 	// sceneTag: processTime
 	output("\n\n");
 	processTime(3*60+rand(10));
-	new Soak().applySoak(pc);
+	if(pc.hasVagina())
+	{
+		new Soak().applySoak(pc);
+	}
 	pc.orgasm();
 	CombatManager.genericVictory();
 }

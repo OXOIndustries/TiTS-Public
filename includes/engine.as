@@ -57,7 +57,7 @@ public function clearOutput():void
 		if(samePageLog)
 		{
 			var eventBuffer:String = processEventBuffer();
-			if (eventBuffer != "")  output(eventBuffer + "<b><u>End log.</u></b>\n\n");
+			if (eventBuffer != "") output(eventBuffer + "<b><u>End log.</u></b>\n\n");
 			clearEventBuffer();
 		}
 		flags["EVENT_BUFFER_OVERRIDE"] = undefined;
