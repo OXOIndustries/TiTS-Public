@@ -1086,7 +1086,7 @@ public function buyItemOK(arg:Array):void
 		price = price * arg[1];
 	}
 	
-	output("Are you sure you want to buy " + arg[0].description + "(x" + arg[1] +") for");
+	output("Are you sure you want to buy " + arg[0].description + " (x" + arg[1] +") for");
 	if (hasCoupon)	output(" a discounted price of");
 	output(" " + price + " credits?");
 	
@@ -1165,7 +1165,7 @@ public function buyItemGo(arg:Array):void {
 	
 	else
 	{
-	  output("You purchase " + arg[0].description + "(x" + arg[1] + ") for " + num2Text(price) + " credits.");
+	  output("You purchase " + arg[0].description + " (x" + arg[1] + ") for " + num2Text(price) + " credits.");
 	  pc.credits -= price;
 	}
 
@@ -1515,6 +1515,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
 	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
+	if(shopkeep is Vulriks) flags["VULRIKS_SOLD"] = (flags["VULRIKS_SOLD"] != undefined ? flags["VULRIKS_SOLD"] + price : price);
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)

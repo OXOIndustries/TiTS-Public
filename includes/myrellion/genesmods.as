@@ -1226,7 +1226,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
-	if (pc.tallness < 112 || !pc.hasVagina())
+	if (pc.tallness >= 112 || !pc.hasVagina())
 	{
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
 

@@ -183,7 +183,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 		output("I can free you from your meddlesome genitalia ");
 		if(pc.biggestTitSize() >= 1) output("and distracting breasts ");
 		output("for a price.");
-		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll wave many of my standard fees.");
+		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll waive many of my standard fees.");
 	}
 	else output("I can free you from any meddlesome genitalia you manage to acquire in your travels.");
 	output(" What do you say?”</i>");

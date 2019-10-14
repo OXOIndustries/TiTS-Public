@@ -239,7 +239,7 @@
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output("\n\nIt’s tiny and flaccid, hardly worth any admiration, but y");
 					else kGAMECLASS.output("\n\nY");
 					kGAMECLASS.output("ou can’t resist grabbing it in your hands. It feels amazing. The transformative heat passes through it as you begin to stroke your new fuckstick. Slowly but steadily, it gradually fills with blood, growing engorged and erect. You release a small gasp of surprise at your new cock’s first boner, increasing the pace of your stroking.");
-					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can’t seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn’t a urethra either. You don’t feel any different inside, so you’re probably missing a prostate too.");
+					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can’t seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstasy, you find out that not only is the cockhole missing, there isn’t a urethra either. You don’t feel any different inside, so you’re probably missing a prostate too.");
 					kGAMECLASS.output("\n\nJust as you finish that thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive spunk-factory. You can feel a pending orgasm as a cum-vein forms along your");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output(" tiny");
 					else kGAMECLASS.output(" turgid");

@@ -1910,7 +1910,7 @@ public function newFutaSaendraScenes():void
 	output("\n\nSaen slides in to the hilt, grunting in your [pc.ear] as she pounds your ");
 	if(pc.hasVagina()) output("cunt");
 	else output("ass");
-	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
+	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstasy - God <i>damn</i> you love her cock!");
 	if(pc.IQ() > 75) output(" Definitely one of your best investments yet.");
 	else if(pc.isBimbo()) output(" Everything’s better with dicks - especially your girlfriends!");
 

@@ -1607,7 +1607,7 @@ public function milkturbation():void
 	{
 		milked = true;
 		//Holy shit yer tits are full intro
-		if(pc.milkFullness >= 125)
+		if(pc.milkFullness >= 175)
 		{
 			output("\n\n[pc.Milk] beads on your [pc.nippleColor] teats at the first touches, and just like that, your saturated bosom lets loose. An eager sigh slips through your [pc.lips] at the sudden release of pressure. You feel like a ");
 			if(pc.totalBreasts() == 2) output("pair");
@@ -1617,7 +1617,7 @@ public function milkturbation():void
 			output(" of soda bottles that have been shaken and had the caps unscrewed - so full of potential energy needing to leak and spray everywhere. That’s precisely what you do: spray. Liberal amounts of [pc.milk] are rushing out in thin streams, but they’re too fine to vent all of your pressure any time soon. You’ll have to milk it all out by hand.");
 		}
 		//Fuck you needed some relief intro
-		else if(pc.milkFullness >= 175)
+		else if(pc.milkFullness >= 125)
 		{
 			output("\n\nIt does not take more than a second or two to make your [pc.nipples] shine with their own moisture, but you keep working yourself all the same. [pc.MilkColor] droplets hang from the tips of your tingling teats. You catch them in your palms and use them to lubricate your hands’ motions across your [pc.fullChest]. Soon, thin streams are spraying out even when you aren’t squeezing. Your chest is clearly overdue for a good milking.");
 		}
@@ -4778,7 +4778,7 @@ public function involuntarilyCockwangYourself():void
 	var plant:Boolean = (pc.wingType == GLOBAL.TYPE_COCKVINE);
 	var count:Number = pc.wingCount;
 	var inRoom:Boolean = InShipInterior() && rooms[currentLocation].hasFlag(GLOBAL.BED);
-	output("Unfettered lust is seething through you like wildfire, and increasingly you lack the will to think about anything but the heat beneath your [pc.skinFurScalesNoun] and the way [pc.eachVagina] beg} for a good, hard filling. It’s profably due to how over-sexed your form has become. You moan slightly as your back tentacles push inexorably outwards, inflated by the roaring flame of your arousal, waving and wagging around you, batting gently against your face and [pc.chest]. You can’t even <i>think</i> when those things are hard and ready, " + num2Text(pc.wingCount) + " thick, sinuous ");
+	output("Unfettered lust is seething through you like wildfire, and increasingly you lack the will to think about anything but the heat beneath your [pc.skinFurScalesNoun] and the way [pc.eachVagina] begs for a good, hard filling. It’s profably due to how over-sexed your form has become. You moan slightly as your back tentacles push inexorably outwards, inflated by the roaring flame of your arousal, waving and wagging around you, batting gently against your face and [pc.chest]. You can’t even <i>think</i> when those things are hard and ready, " + num2Text(pc.wingCount) + " thick, sinuous ");
 	if(plant) output("plant");
 	else output("demon");
 	output(" cocks all demanding your attention...");

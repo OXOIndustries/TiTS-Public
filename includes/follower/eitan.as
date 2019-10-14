@@ -58,6 +58,8 @@ public function isEitanExcitedAboutCatchingTheBigRedDotInTheSky():void
 	clearMenu();
 	clearOutput();
 	showEitan();
+	
+	removeUvetoCold();
 	processTime(287);
 
 	output("Considering Eitan is leaving not only his tribe, but his planet, you’d have thought there would have been more ceremony and fanfare. He’s being ‘uplifted,’ which you thought was a big deal to the milodan, but apparently they, or at least Eitan’s tribe, don’t waste a lot of time with goodbyes. There were well-wishes and good-lucks, but it was all fairly formal, like they were all co-workers and Eitan was just punching out to go home.");
@@ -140,7 +142,7 @@ public function eitanPlsGetOutYoureLeavingFurEverywhere():void
 public function eitanCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	addButton(btnSlot, "Eitan", eitanApproachCrew);
-	return showBlurb ? "\n\nEitan is on the ship if you need him. He spends most of his time either in his quarters, or doing exercises in the ship's recreational rooms." : "";
+	return showBlurb ? "\n\nEitan is on the ship if you need him. He spends most of his time either in his quarters, or doing exercises in the ship’s recreational rooms." : "";
 }
 
 public function eitanApproachCrew():void

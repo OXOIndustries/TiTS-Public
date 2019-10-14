@@ -873,7 +873,7 @@ public function ilariaPreg2EmailText():String
 {
 	var eText:String = "";
 	
-	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.isAusar(true) ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
 	eText+="\n\nCongratulations!";
 	eText+="\n\nNurse Carter";
 	eText+="\nTavros Residential Clinic, Deck 45";
@@ -1000,6 +1000,15 @@ public function ilariaPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Ilaria Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ilaria Pregnancy Ends” does not exist!");
+		output("\n\n");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
@@ -1026,8 +1035,8 @@ public function ilariaPregnancyEnds():void
 	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
 	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
 	
-	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.race() == "ausar" ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of Ilaria, who deserves an email after all this, you suppose.");
-	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.race() == "ausar" ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of Ilaria, who deserves an email after all this, you suppose.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
 	
 	processTime(60 + ((10 + rand(10)) * numChildren));
 	clearMenu();
@@ -1042,6 +1051,15 @@ public function ausarPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Ausar Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ausar Pregnancy Ends” does not exist!");
+		output("\n\n");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
@@ -1068,8 +1086,8 @@ public function ausarPregnancyEnds():void
 	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
 	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
 	
-	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.race() == "ausar" ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of the father.");
-	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.race() == "ausar" ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of the father.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
 	
 	processTime(60 + ((10 + rand(10)) * numChildren));
 	clearMenu();

@@ -44,6 +44,8 @@
 		public static var LILIRURU:Object = new LiliRuruBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
 		public static var MISSBEHAVIOR:Object = new MissBehaviorBusts();
+		public static var MOIRA:Object = new MoiraBusts();
+		public static var NOLIMIT:Object = new NoLimitBusts();
 		public static var NUBATTORI:Object = new NuBattoriBusts();
 		public static var PEEKAY:Object = new PeeKayBusts();
 		public static var RENEZUO:Object = new RenezuoBusts();

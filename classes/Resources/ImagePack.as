@@ -13,6 +13,16 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
 			public static const AnnoMaid:Class;
 
+			//BIANCA
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_bentOver.png", mimeType = "image/png")]
+			public static const bianca_octomush_bentOver:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_cunnilingus.png", mimeType = "image/png")]
+			public static const bianca_octomush_cunnilingus:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_thighSex.png", mimeType = "image/png")]
+			public static const bianca_octomush_thighSex:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_working_marked_NOLIMIT.png", mimeType = "image/png")]
+			public static const bianca_working_marked_NOLIMIT:Class;
+
 			//CAMERON SPLAYED
 			[Embed(source = "../../assets/images/imagepack/cameron/javkiller_cameron.png", mimeType = "image/png")]
 			public static const CameronSplayed:Class;
@@ -72,6 +82,16 @@ package classes.Resources
 			public static const JadeTitfuck:Class;
 			[Embed(source = "../../assets/images/imagepack/jade/tktktk_Jade_nipples_Shaded.png", mimeType = "image/png")]
 			public static const JadeTitfuckNips:Class;
+
+			//Jumper
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHumanVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperHumanVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperCanineVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperCanineVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperFelineVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperFelineVaginalMoira:Class;
+			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHorseVaginalMoira.jpg", mimeType = "image/jpg")]
+			public static const jumperHorseVaginalMoira:Class;
 
 			//KELLY
 			[Embed(source = "../../assets/images/imagepack/kelly/dsan_nenette_kelly_herm_horsecock_laquine.jpg", mimeType = "image/jpg")]
@@ -225,7 +245,19 @@ package classes.Resources
 
 			//VKO
 			[Embed(source = "../../assets/images/imagepack/vko/Renezuo_VKo_MQ.jpg", mimeType = "image/jpg")]
-			public static const VKOBJ:Class;		
+			public static const VKOBJ:Class;
+
+			//WALL SLUTS
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_fanfir.png", mimeType = "image/png")]
+			public static const WallFanfir:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_gabilani.png", mimeType = "image/png")]
+			public static const WallGabilani:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_leithan.png", mimeType = "image/png")]
+			public static const WallLeithan:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_raskvel.png", mimeType = "image/png")]
+			public static const WallRaskvel:Class;
+			[Embed(source = "../../assets/images/imagepack/wall_sluts/wall_tura.png", mimeType = "image/png")]
+			public static const WallTura:Class;
 
 			//ZIL FEMALE
 			[Embed(source = "../../assets/images/imagepack/zil_female/aldergames_zilfemB_final_01.png", mimeType = "image/png")]

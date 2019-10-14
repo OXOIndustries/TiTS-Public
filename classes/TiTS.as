@@ -120,6 +120,7 @@
 		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/Pornos.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -227,6 +228,8 @@
 		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiroCrewQuest/rooms.as";
+		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -494,6 +497,7 @@
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/vulriks.as";
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
@@ -687,7 +691,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.020";
+			version = "0.8.024";
 
 			//temporary nonsense variables.
 			temp = 0;

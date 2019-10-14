@@ -77,7 +77,9 @@ public function perditaLootsAvailable():Array
 
 public function showPerdita(nude:Boolean = false):void
 {
-	showBust("PERDITA" + (nude ? "_NUDE":""));
+	var tanString:String = "";
+	if(flags["MET_PERDITA"] == 2) tanString = "_TAN";
+	showBust("PERDITA" + tanString + (nude ? "_NUDE":""));
 	showName("\nPERDITA");
 }
 //Talk First Time
@@ -342,6 +344,7 @@ public function perditaIsBackForNormalInteractions(back:Boolean = false):void
 		output("\n\nThe half-Ausar leans in, giving you a good look (and a faceful of whisky-breath) before settling back. Very cool indeed, you agree, opting not to mention your more... extensive alterations.");
 		processTime(5);
 		flags["MET_PERDITA"] = 2;
+		showPerdita();
 		//[Appearance] [About] [Champeon] [Buy Smut] [Support] [Flirt]
 	}
 	else
@@ -629,7 +632,7 @@ public function perditaDickFuckingPart2(x:int):void
 		else if(pc.cocks[x].cLength() < 14) output("her prostate");
 		else output("every inch of flesh you’re able to fit your prick past");
 		output(". You get to capture that perfect moment; Perdita comes crashing headlong into a massive orgasm. The first thick streak of alabaster cream paints the underside of her tits before you take a hold of her cock, aiming it straight up so that her scalding hot fluids can come raining down onto the two of you. At the same time you finally relax and allow yourself to join her in ecstasy. ");
-		if(cumQ < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumtype], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
+		if(cumQ < 2000) output("\n\nImmediately her depths are filled with ropes of [pc.cumType], but apparently this pup wasn’t kidding about her production. By the time you’ve finished jettisoning every last quart of cream and rendered your balls aching and empty, she’s still twitching and squirming on your length and only just starting to peter off.");
 		else output("\n\nIt doesn’t matter how proud of her production Perdita is; you don’t so much cum as you do baste her guts in goo. By the time she’s spasming her way through those last aftershocks of orgasm you’ve finished filling her to the brim, the rest of your ardor is forced to squirt out around the tight seal of her ring and your [pc.cock] where it fills the bath until it’s fit to flood.");
 	}
 	output("\n\n<i>“Fuuuck...”</i> She eventually moans, running her hands across her cum-covered " + (!silly ? "tits":"yams") + " and squeezing her puffy nipples. Jizz escapes between her fingers like leaking milk as you attempt to unlodge yourself");

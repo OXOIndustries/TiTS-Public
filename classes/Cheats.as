@@ -94,16 +94,10 @@
 				return;
 			}
 			Cheats.OutputStuff(true);
-			if(!kGAMECLASS.pc.hasStatusEffect("Boob Silicone Please"))
-			{
-				kGAMECLASS.pc.createStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will now be the target</b>!");
-			}
-			else
-			{
-				kGAMECLASS.pc.removeStatusEffect("Boob Silicone Please");
-				kGAMECLASS.output("\nWhen falling victim to random silicone injections, <b>your [pc.breastsNoun] will no longer be the target</b>!");
-			}
+			
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Doctor Badger cheat menu activated!</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.drBadgerCheatMenu);
 		}
 		public static function XPToLevel():void
 		{
@@ -143,8 +137,10 @@
 			}
 			
 			Cheats.OutputStuff();
-			kGAMECLASS.output("\n<b>You will now encounter a sexdoll...</b>");
-			kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
+			kGAMECLASS.output("\n<b>You will now be transported to a location to test the sexdolls in Kiro’s recruitment quest. A teleport out can be found to the northeast of the map...</b>");
+			//kGAMECLASS.shipLocation = "KQ N32";
+			kGAMECLASS.currentLocation = "KQ N32";
+			//kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
 		}
 		public static function SJWMode():void
 		{

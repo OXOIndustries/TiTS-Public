@@ -130,7 +130,7 @@ public function gooKnightLossScene():void
 	}
 	pc.cockChange();
 	output("\n\n<i>“You’re not supposed to cum before I even get my mouth on there, but I suppose you couldn’t help it,”</i> she says grumpily, leaning in to take your [pc.cockHead] between her lips. She sucks out the last of the ");
-	if(fauxCock) output("[pc.cum]");
+	if(!fauxCock) output("[pc.cum]");
 	else output("[pc.girlCum]");
 	output(" that remains while her long tongue cleans the surface to spotlessness. You get caught up watching your jizz slip through her insides, traveling towards whatever serves as her stomach until it gets too far into her opaque body for you to see.");
 
@@ -157,7 +157,7 @@ public function gooKnightLossScene():void
 
 	output("\n\n<i>“N-now for the main event. A good prince makes their savior a princess,”</i> she says as she stands, straddling your hips before lowering herself onto your [pc.cock]. The viscous surface of her legs holds her fast to your [pc.skinFurScales] as the folds of her cunt run like silk over the underside of your shaft. She leans closer to you, so close that you can see the bubbles in her goo-formed body. When she gets close enough she kisses you, invading your mouth with her tongue as she finishes sheathing your [pc.cock] in her [enemy.skinTone] cunt.");
 	output("\n\nHer DD-cup’s mash against your [pc.chest] as she gyrates madly atop you. Were she human the motions might be more hurtful than pleasurrable, but her malleable insides follow and massage your [pc.cock] throughout her rapid fucking. The amount of stamina you’ve used up prevents you from doing anything but holding weakly to her hips as they bounce. As she moves faster your hands sink in an inch or two, stuck tight in her sticky body.");
-	if(pc.hasCock()) 
+	if(!fauxCock) 
 	{
 		output("\n\nSoon the final burst of energy rears its head, and the goo girl shoots up with a moan. Her legs clamp so tightly to your sides that they explode into a puddle of liquid. She holds herself up with her hands as [pc.eachCock] releases torrential spurts of [pc.cum] into her pussy. Her body is too opaque for you to see clearly, but you can see the throbbing silhouette");
 		if(pc.cockTotal() > 1) output("s");

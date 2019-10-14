@@ -889,19 +889,20 @@ public function meetingBiancasBooth():void
 	//5) In the first time [Line Up], wanted the small height check to be more in depth.
 	output("\n\n" + (pc.tallness <= 74 ? "If you took a step forward, you’d get a face-full of sweater-wrapped boobies. The statuesque fox, whose entire body absorbs your field of view, bends at the waist with one hand on her lap, leaning close to you and pushing her bouncy chest out. Her other extended hand beckons you onward.":"The shapely fox tilts her head demurely, extending her smooth hand winsomely.") + " <i>“Dr. Bianca Ketria, certified physician, at your service,”</i> the vulpine woman introduces in a mellow, cheery voice. Her warm breath pats your [pc.skinFurScalesNoun] like the hand of a close friend.");
 	if (flags["MET_BIANCA"] & 6) output(" She flashes <i>you</i> a secretly knowing look.");
-	output("\n\nOn reflex you shake the fox’s warm hand, noting a thin gold ring around her finger. She guides you blushing to the floating furniture behind her, both fluffy tails under her sky-blue coat brushing against your [pc.legOrLegs] along the way. This close to her you can feel the heat from the red sweater she wears under her uniform. " + (pc.isTaur() ? "She asks you to sit on a rug near a low-set bench." : "She has you sit on the low bench which puts your face directly across from her view-dominating bosom."));
-
+	output("\n\nOn reflex you shake the fox’s warm hand, noting a thin gold ring around her finger. She guides you blushing to the floating furniture behind her, both fluffy tails under her sky-blue coat brushing against your [pc.legOrLegs] along the way. This close to her you can feel the heat from the red sweater she wears under her uniform. " + (pc.isTaur() ? "She asks you to sit on a rug near a low-set bench." : "She has you sit on the low bench which puts your face directly across from her view-dominating bosom.\n\n"));
+	// imagePack: embed NO-LIMIT Bianca booth pic here.
+	showImage("bianca_working_marked_NOLIMIT");
 	// PC didn't meet Bianca in the Wild
 	if ((flags["MET_BIANCA"] & 2) != 2)
 	{
-		output("\n\n<i>“May I have your name?”</i> she asks pleasantly. <i>“I remember every face, but yours is new to me.”</i>");
+		output("<i>“May I have your name?”</i> she asks pleasantly. <i>“I remember every face, but yours is new to me.”</i>");
 		output("\n\n<i>“[pc.name] Steele,”</i> you reply with a hurried gasp as she runs her slender fingers " + (pc.hasHair() ? "through your [pc.hair]" : "over your head") + " and checks your scalp, scritching kindly behind your [pc.ears]. Fuzzy tingles spun by her friendliness weave through your [pc.skinFurScales]; you’re caught up in her moment and methodical approach.");
 		if (pc.short == "Bianca") output("\n\n" + (pc.short == "Bianca" ? "<i>“Really? I didn’t know I looked so " + pc.mf("handsome", "cute") + " as a [pc.raceShort]!”</i> she giggles, though her slitted eyes trembled when she heard" : "Bianca’s slitted eyes tremble when she hears") + " your family name. Her sublimely delicate tone smooths you into airy placidity. <i>“I hope you are well today, [pc.name].”</i>");
 	}
 	// PC met Bianca in the Wild
 	else
 	{
-		output("\n\n<i>“Welcome, [pc.name].”</i> Bianca gently runs her fingers " + (pc.hasHair() ? "through your [pc.hair]" : "over your head") + ", scritching behind your [pc.ears] in earnest greeting. Fuzzy, braiding warmth travels through your [pc.skinFurScales], residual tingles from her practiced approach; you’re caught up in her moment.");
+		output("<i>“Welcome, [pc.name].”</i> Bianca gently runs her fingers " + (pc.hasHair() ? "through your [pc.hair]" : "over your head") + ", scritching behind your [pc.ears] in earnest greeting. Fuzzy, braiding warmth travels through your [pc.skinFurScales], residual tingles from her practiced approach; you’re caught up in her moment.");
 		output("\n\n<i>“It’s good to see you again, I hope you are well,”</i> she says in a good-hearted voice that smooths you into airy placidity.");
 	}
 	if (pc.isBimbo()) output("\n\nD’aww, she’s so sweet! You don’t really know what to ask, but having her think so nicely of you is pretty hot. Weeelll, maybe there’s one thing you can ask...");

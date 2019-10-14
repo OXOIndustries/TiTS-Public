@@ -154,7 +154,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	updatePCStats();
 	
 	//Overall
-	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + indefiniteArticle(target.originalRace) + ".");
+	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + (target.originalRace.indexOf("???") != -1 ? "of an unknown race" : indefiniteArticle(target.originalRace)) + ".");
 	else
 	{
 		outputRouter((target == pc ? "You":"[target.HeShe]") + " started your journey as " + indefiniteArticle(target.originalRace) + ", but " + (target == pc ? "you’ve":"[target.heShe] has") + " become "+indefiniteArticle(target.race())+" over the course of " + (target == pc ? "your":"[target.hisHer]") + " adventures.");
@@ -227,6 +227,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	switch(target.faceType)
 	{
 		case GLOBAL.TYPE_ARACHNID:
+		case GLOBAL.TYPE_DZAAN:
 		case GLOBAL.TYPE_HUMAN:
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
@@ -241,6 +242,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.faceType == GLOBAL.TYPE_SIREN) outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "extended maw" : "mouth") + " and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a" + (target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "n" : " slightly") + " angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) outputRouter(" A set of retractable, needle-like fangs sit in place of " + (target == pc ? "your":"[target.hisHer]") + " canines, just like a naleen.");
 			else if(target.faceType == GLOBAL.TYPE_ARACHNID) outputRouter(" A set of spider-like fangs protrude over " + (target == pc ? "your":"[target.hisHer]") + " bottom lip.");
+			else if(target.faceType == GLOBAL.TYPE_DZAAN) outputRouter(" Small spots of keratin growths protrude in various areas of " + (target == pc ? "your":"[target.hisHer]") + " face, most notably near the forehead, eyes and cheekbones.");
 			break;
 		case GLOBAL.TYPE_LAPINE:
 			if(!target.hasMuzzle())
@@ -927,6 +929,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_HYENA:
 				outputRouter(" A pair of pointed hyena-like ears protrude from [target.combatHisHer] [target.headNoun].");
 				break;
+			case GLOBAL.TYPE_DZAAN:
+				outputRouter(" A pair of long, triangular dzaan ears point outwards");
+				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
+				outputRouter(" from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ".");
+				break;
 			default:
 				outputRouter(" There is nothing notable to mention about " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -1108,6 +1115,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				break;
 			case GLOBAL.TYPE_HYENA:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of pointed hyena-like ears.");
+				break;
+			case GLOBAL.TYPE_DZAAN:
+				outputRouter(" The " + target.hairDescript(true,true) + " on " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of");
+				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + "-inch");
+				outputRouter(" long, triangular dzaan ears.");
 				break;
 			default:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head hides non-descript ears.");
@@ -1313,7 +1325,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					}
 					else outputRouter(" curled goat horns twist back from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curling over " + (target == pc ? "your":"[target.hisHer]") + " [target.ears] like a satyr out of terran legend.");
 				}
-				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick stright out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
+				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " goat horns stick straight out from " + (target == pc ? "your":"[target.hisHer]") + " forehead, making " + (target == pc ? "you":"[target.himHer]") + " appear like a satyr out of terran legend.");
 				break;
 			//Ram horns
 			case GLOBAL.TYPE_SHEEP:
@@ -1360,6 +1372,19 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
 				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
 				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
+				break;
+			//Dzaan horns!
+			case GLOBAL.TYPE_DZAAN:
+				if(target.hornLength < 1) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " tiny keratin nubs protrude from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
+				else if(target.hornLength < 2) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " small, roughly one-inch long keratin horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " forehead. They’re kind of cute, actually.");
+				else if(target.hornLength < 3) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns, approximately two inches in length, jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
+				else if(target.hornLength < 4) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns jut a full three inches from " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve upwards.");
+				else if(target.hornLength < 5) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns protrude through the [target.skin] of " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve backwards. Each is about four inches in length and impossible to ignore.");
+				else if(target.hornLength < 6) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " big, strong keratin horns jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead and curve backwards.");
+				else if(target.hornLength < 8) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " keratin horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " skull, each powerful and half a foot long with a natural backwards-facing curve.");
+				else if(target.hornLength < 12) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " large keratin horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving back over " + (target == pc ? "your":"[target.hisHer]") + " head and looking quite alluring.");
+				else if(target.hornLength < 20) outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " very large and dangerous looking keratin horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " head, curving backward and over a foot long. They appear both imposing and alluring.");
+				else outputRouter(" " + StringUtil.capitalize(num2Text(target.horns)) + " huge keratin horns erupt from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving upward and backwards. The weight of them is noticeable but their size commands attention.");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")
@@ -1921,6 +1946,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if (target.hasPartGoo("arm")) outputRouter(" [target.CombatHisHer] gooey [target.skinColor] arms retain their hyena-like appearance.");
 			else output(" [target.CombatHisHer] arms retain their hyena-like shape and claws despite being covered in [target.skinFurScalesNounSimple].");
 			if (target.hasClawedHands() && !target.hasPartScales("arm")) outputRouter(" Each finger is tipped with blunt claws.");
+			break;
+		case GLOBAL.TYPE_DZAAN:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " arms appear relatively normal, though the shoulders are patterened with spots of keratin and " + (target == pc ? "your":"[target.hisHer]") + " fingernails are naturally darker in color and longer in length.");
 			break;
 		// Catch all
 		default:
@@ -2628,7 +2656,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + ".");
 			break;
 		case GLOBAL.TYPE_SUCCUBUS:
-			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed feet with an addition of a" : "mostly human feet, apart from the") + " horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed feet with an addition of a" : "mostly human feet, apart from the") + " horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving " + (target == pc ? "you":"[target.himHer]") + " permanently locked into an awkwardly sexy pose.");
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " perfectly lissom legs that end in " + target.feet(true,true) + ".");
 			break;
 		case GLOBAL.TYPE_DEMONIC:
@@ -2926,10 +2954,14 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are mostly humanoid in structure, but " + (target == pc ? "your":"[target.hisHer]") + " feet are distinctly alien with only three toes at their front, and a single toe sprouting from their heel.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter(" " + num2Text(target.legCount) + " human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [target.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
+			outputRouter(" " + StringUtil.upperCase(num2Text(target.legCount)) + " human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [target.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
 			break;
 		case GLOBAL.TYPE_HYENA:
 			outputRouter(" [target.CombatHisHer] legs are crooked into high knees with hocks and fairly long digitigrade feet like those of a hyena, each ending with thick padded paws and toes tipped with blunt claws.");
+			break;
+		case GLOBAL.TYPE_DZAAN:
+			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " long, hyper-feminine legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed" : "human-like") + " feet. The naturally short achilles tendon on each foot raises the heels high and forces " + (target == pc ? "you":"[target.himHer]") + " to walk tiptoed with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having stripper-heels for feet, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward dramatically to compensate, leaving " + (target == pc ? "you":"[target.himHer]") + " permanently locked into an awkwardly sexy pose.");
+			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " long, hyper-feminine legs that end in " + target.feet(true,true) + ".");
 			break;
 		// Catch all
 		default:
@@ -3438,7 +3470,7 @@ public function boobStuff(forTarget:Creature = null):void
 					outputRouter(" The plump, " + target.areolaSizeDescript(0) + ", " + target.nippleColor + " lips that " + (target == pc ? "you have":"[target.heShe] has") + " in place of areolae could easily be parted to allow something stiff and hard inside " + (target == pc ? "your":"[target.hisHer]") + " sensitive chest-based passages.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_FLAT:
-					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just " + target.nippleColor + ", "  + target.areolaeDescript(0, true) + ".");
+					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just " + target.nippleColor + ", " + target.areolaeDescript(0, true) + ".");
 					break;
 				case GLOBAL.NIPPLE_TYPE_INVERTED:
 					outputRouter(" The " + target.areolaeDescript(0, true) + " are " + target.nippleColor + ".");
@@ -3887,6 +3919,7 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(!target.hasCock() && target.isTaur()) outputRouter("As a tauric creature, " + (target == pc ? "your":"[target.hisHer]") + " womanly parts lie between " + (target == pc ? "your":"[target.hisHer]") + " rear legs in a rather equine fashion. ");
 		
 		var vagSwellBonus:int = 0;
+		var vagWetness:Number = 0;
 		
 		//Vaginal Numbers
 		if(target.vaginaTotal() == 1) {
@@ -3941,6 +3974,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 			}
 			//Variances based on lustiness & wetness & such. THE DETAIL!
+			vagWetness = target.vaginas[0].wetness();
 			if(target.vaginas[0].hasFlag(GLOBAL.FLAG_LUBRICATED))
 			{
 				if(target.libido() < 50 && target.lust() < 50) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
@@ -3950,24 +3984,24 @@ public function crotchStuff(forTarget:Creature = null):void
 			else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 2) outputRouter("No moisture presently escapes ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Moisture gleams in ");
+				if(vagWetness < 2) outputRouter("No moisture presently escapes ");
+				else if(vagWetness < 4) outputRouter("Moisture gleams in ");
 				else outputRouter("Occasional beads of [target.girlCum] drip from ");
 			}
 			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) outputRouter("Moisture gleams in ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Occasional beads of [target.girlCum] drip from ");
+				if(vagWetness < 1) {}
+				else if(vagWetness < 2) outputRouter("Moisture gleams in ");
+				else if(vagWetness < 4) outputRouter("Occasional beads of [target.girlCum] drip from ");
 				else outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
 			}
 			else //WTF horny!
 			{
 				//Wetness
-				if(target.vaginas[0].wetness() < 1) {}
-				else if(target.vaginas[0].wetness() < 2) outputRouter("Occasional beads of [target.girlCum] drip from ");
-				else if(target.vaginas[0].wetness() < 4) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
+				if(vagWetness < 1) {}
+				else if(vagWetness < 2) outputRouter("Occasional beads of [target.girlCum] drip from ");
+				else if(vagWetness < 4) outputRouter("Thin streams of [target.girlCum] occasionally dribble from ");
 				else outputRouter("Thick streams of [target.girlCum] drool constantly from ");
 			}
 			//Different description based on vag looseness
@@ -4005,6 +4039,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				//Else wetness -> size
 				else
 				{
+					vagWetness = target.vaginas[temp].wetness();
 					if(target.vaginas[temp].hasFlag(GLOBAL.FLAG_LUBRICATED))
 					{
 						if(target.lust() < 50) outputRouter(", frequently drooling its ever-present [target.girlCumNoun]");
@@ -4012,14 +4047,14 @@ public function crotchStuff(forTarget:Creature = null):void
 						else outputRouter(", profusely seeping immense streams of [target.girlCumNoun]");
 					}
 					//High wetness shit
-					else if(target.vaginas[temp].wetness() >= 4)
+					else if(vagWetness >= 4)
 					{
 						if(target.lust() < 50) outputRouter(", occassionally beading its ever-present [target.girlCumNoun]");
 						else if(target.lust() < 75) outputRouter(", frequently drooling its ever-present [target.girlCumNoun]");
 						else outputRouter(", constantly drooling thick strands of [target.girlCumNoun]");
 					}
 					//Medium wetness shit
-					else if(target.vaginas[temp].wetness() >= 2)
+					else if(vagWetness >= 2)
 					{
 						if(target.lust() > 50) outputRouter(", gleaming with barely-contained wetness");
 					}
@@ -4102,6 +4137,7 @@ public function crotchStuff(forTarget:Creature = null):void
 	//BUNGHOLIO
 	if(target.ass != null) {
 		outputRouter("\n\n" + (target == pc ? "You have":"[target.Name] has") + " one " + target.assholeDescript(true) + ", placed between " + (target == pc ? "your":"[target.hisHer]") + " cheeks where it belongs");
+		var assWetness:Number = target.ass.wetness();
 		if(target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
 		{
 			if(target.libido() < 50 && target.lust() < 50) outputRouter(" with thin streams of lube leaking out of its edges.");
@@ -4111,27 +4147,27 @@ public function crotchStuff(forTarget:Creature = null):void
 		else if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(" without any sign of moisture.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 4) outputRouter(" with slight signs of moisture bordering its edges.");
+			if(assWetness < 0) outputRouter(" without any sign of moisture.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 4) outputRouter(" with slight signs of moisture bordering its edges.");
 			else outputRouter(" with occasional beads of lube bordering its edges.");
 		}
 		else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(", completely dry of any kind of moisture.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 3) outputRouter(" with slight signs of moisture bordering its edges.");
-			else if(target.ass.wetness() < 5) outputRouter(" with occasional beads of lube bordering its edges.");
+			if(assWetness < 0) outputRouter(", completely dry of any kind of moisture.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 3) outputRouter(" with slight signs of moisture bordering its edges.");
+			else if(assWetness < 5) outputRouter(" with occasional beads of lube bordering its edges.");
 			else outputRouter(" with thin streams of lube leaking out of its edges.");
 		}
 		else //WTF horny!
 		{
 			//Wetness
-			if(target.ass.wetness() < 0) outputRouter(", desperately in need of lubricant.");
-			else if(target.ass.wetness() <= 2) outputRouter(".");
-			else if(target.ass.wetness() <= 3) outputRouter(" with occasional beads of lubricant dripping from the orifice every so often.");
-			else if(target.ass.wetness() < 5) outputRouter(" with thin streams of lubricant occasionally dribbling from the orifice.");
+			if(assWetness < 0) outputRouter(", desperately in need of lubricant.");
+			else if(assWetness <= 2) outputRouter(".");
+			else if(assWetness <= 3) outputRouter(" with occasional beads of lubricant dripping from the orifice every so often.");
+			else if(assWetness < 5) outputRouter(" with thin streams of lubricant occasionally dribbling from the orifice.");
 			else outputRouter(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
 		var assSwellBonus:int = target.analPuffiness();
@@ -4450,7 +4486,10 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			outputRouter(" tip.");
 			break;
 		case GLOBAL.TYPE_DEER:
-			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it's length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
+			outputRouter(" The deer member is [target.cockColor " + x + "] in color and very horse-like in appearance with thick veins covering it’s length" + (target.hasCockFlag(GLOBAL.FLAG_TAPERED, x) ? ", however it ends in a pointed tip rather than a blunt one." : "."));
+			break;
+		case GLOBAL.TYPE_DZAAN:
+			outputRouter(" The dzaan member has darker spots, made up of smooth keratin, dotted along its length.");
 			break;
 	}
 	
