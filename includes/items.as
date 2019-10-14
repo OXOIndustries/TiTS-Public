@@ -1086,7 +1086,7 @@ public function buyItemOK(arg:Array):void
 		price = price * arg[1];
 	}
 	
-	output("Are you sure you want to buy " + arg[0].description + "(x" + arg[1] +") for");
+	output("Are you sure you want to buy " + arg[0].description + " (x" + arg[1] +") for");
 	if (hasCoupon)	output(" a discounted price of");
 	output(" " + price + " credits?");
 	
@@ -1165,7 +1165,7 @@ public function buyItemGo(arg:Array):void {
 	
 	else
 	{
-	  output("You purchase " + arg[0].description + "(x" + arg[1] + ") for " + num2Text(price) + " credits.");
+	  output("You purchase " + arg[0].description + " (x" + arg[1] + ") for " + num2Text(price) + " credits.");
 	  pc.credits -= price;
 	}
 

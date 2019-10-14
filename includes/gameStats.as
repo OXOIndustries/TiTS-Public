@@ -627,6 +627,8 @@ public function statisticsScreen(showID:String = "All"):void
 						case "KaithritPregnancy": output2(" Kaithrit"); break;
 						case "LeithanPregnancy": output2(" Leithan"); break;
 						case "KuitanPregnancy": output2(" Kui-Tan"); break;
+						case "GryvainPregnancy": output2(" Gryvain"); break;
+						case "SuulaPregnancy": output2(" Suula"); break;
 						case "VenusPitcherSeedCarrier": output2(" Venus Pitcher, Seed"); break;
 						case "VenusPitcherFertilizedSeedCarrier": output2(" Venus Pitcher, Seed, Fertilized"); break;
 						case "NyreaEggPregnancy": output2(" Nyrean Huntress, Eggs"); break;

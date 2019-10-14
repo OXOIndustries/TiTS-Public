@@ -13106,9 +13106,16 @@
 			if(InCollection(sRaceShort, ["ausar", "kaithrit", "naleen", "huskar", "milodan", "korgonne", "canine", "feline", "vulpine", "lupine"])) return true;
 			return false;
 		}
-		public function isAusar():Boolean
+		public function isAusar(original:Boolean = false, strict:Boolean = false):Boolean
 		{
-			var sRaceShort:String = raceShort();
+			if(original)
+			{
+				var ogRaceShort:String = stripRace(originalRace, (strict && this is PlayerCharacter));
+				if(InCollection(ogRaceShort, ["ausar", "huskar"])) return true;
+				if(strict) return false;
+			}
+			
+			var sRaceShort:String = raceShort(strict);
 			if(InCollection(sRaceShort, ["ausar", "huskar"])) return true;
 			return false;
 		}

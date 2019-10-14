@@ -1208,7 +1208,7 @@ public function eightClicksStory():void
 
 	outputCodex("\n\nAll around him, the machine whirred with a quiet, large noise. His fur prickled as if it had been magnetized, standing on end with a chorus of tiny tingling sensations. His back arched and his chest rose, pulled by powerful forces that worked beneath his skin. Flesh swelled out into his chest. His skin was tender, his nipples swollen, and an ache pounded through his whole torso.");
 
-	outputCodex("\n\nAnother surge rushed through the machine and into the air around him. His gasp was strangled by the pressure blossoming against his chest. His shirt tented out; his flesh was achingly hot and stiff and swollen, He had breasts. They tugged at his shirt and rubbed at the fabric until they were tender and swelled again, large enough to overflow his cupped palms, wobbling atop his ragged breaths.");
+	outputCodex("\n\nAnother surge rushed through the machine and into the air around him. His gasp was strangled by the pressure blossoming against his chest. His shirt tented out; his flesh was achingly hot and stiff and swollen. He had breasts. They tugged at his shirt and rubbed at the fabric until they were tender and swelled again, large enough to overflow his cupped palms, wobbling atop his ragged breaths.");
 
 	outputCodex("\n\nThomas pulled at his bonds. A new urgency had filled him. The resilient rubber stretched and returned back to normal. He pulled again, holding his arms as far apart as he could. A hole split through the middle, through the membrane that connected his arms. His muscles gave way, and he was forced to relax them for a moment.");
 
