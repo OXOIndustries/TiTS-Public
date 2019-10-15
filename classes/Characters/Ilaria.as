@@ -83,5 +83,13 @@ package classes.Characters
 		{
 			return (kGAMECLASS.flags["ILARIA_PREG_TIMER"] != undefined);
 		}
+		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
+		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"vagina");
+			
+			kGAMECLASS.tryKnockUpIlaria();
+			
+			return false;
+		}
 	}
 }

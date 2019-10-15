@@ -1,5 +1,6 @@
 package classes.GameData.Pregnancy.Handlers 
 {
+	import classes.Characters.Ilaria;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.Creature;
 	import classes.PregnancyData;
@@ -241,36 +242,44 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
 			
-			//If this is the first birth, go at it.
-			if (!mother.hasStatusEffect("Ilaria Pregnancy Ends"))
+			if (mother is Ilaria)
 			{
-				// Baby count check (just in case)
-				var babies:int = mother.pregnancyData[pregSlot].pregnancyQuantity;
-				var belly:int = mother.pregnancyData[pregSlot].pregnancyBellyRatingContribution;
-				var babyGender:int = rand(2);
-				
-				var babyList:Array = (new IlariaPregnancyHandler()).ilariaChildren(mother, babies);
-				
-				var genderList:Array = [];
-				var i:int = 0;
-				var j:int = 0;
-				for(i = 0; i < babyList.length; i++)
-				{
-					//for(j = 0; j < babyList[i].NumNeuter; j++) { genderList.push(-1); }
-					for(j = 0; j < babyList[i].NumFemale; j++) { genderList.push(0); }
-					for(j = 0; j < babyList[i].NumMale; j++) { genderList.push(1); }
-					//for(j = 0; j < babyList[i].NumIntersex; j++) { genderList.push(2); }
-					ChildManager.addChild(babyList[i]);
-				}
-				
-				if (genderList.length > 0) babyGender = genderList[rand(genderList.length)];
-				
-				mother.createStatusEffect("Ilaria Pregnancy Ends", babies, belly, pregSlot, babyGender, true);
-				kGAMECLASS.eventQueue.push(kGAMECLASS.ilariaPregnancyEnds); //see ilaria.as
-				IlariaPregnancyHandler.ilariaCleanupData(mother, pregSlot, thisPtr);
+				//trace("caught a fuck up in ilariaOnDurationEnd!");
+				pData.reset();
 			}
-			//Delay subsequent births till the first has had time to go off.
-			else mother.pregnancyData[pregSlot].pregnancyIncubation += 24;
+			else
+			{
+				//If this is the first birth, go at it.
+				if (!mother.hasStatusEffect("Ilaria Pregnancy Ends"))
+				{
+					// Baby count check (just in case)
+					var babies:int = mother.pregnancyData[pregSlot].pregnancyQuantity;
+					var belly:int = mother.pregnancyData[pregSlot].pregnancyBellyRatingContribution;
+					var babyGender:int = rand(2);
+					
+					var babyList:Array = (new IlariaPregnancyHandler()).ilariaChildren(mother, babies);
+					
+					var genderList:Array = [];
+					var i:int = 0;
+					var j:int = 0;
+					for(i = 0; i < babyList.length; i++)
+					{
+						//for(j = 0; j < babyList[i].NumNeuter; j++) { genderList.push(-1); }
+						for(j = 0; j < babyList[i].NumFemale; j++) { genderList.push(0); }
+						for(j = 0; j < babyList[i].NumMale; j++) { genderList.push(1); }
+						//for(j = 0; j < babyList[i].NumIntersex; j++) { genderList.push(2); }
+						ChildManager.addChild(babyList[i]);
+					}
+					
+					if (genderList.length > 0) babyGender = genderList[rand(genderList.length)];
+					
+					mother.createStatusEffect("Ilaria Pregnancy Ends", babies, belly, pregSlot, babyGender, true);
+					kGAMECLASS.eventQueue.push(kGAMECLASS.ilariaPregnancyEnds); //see ilaria.as
+					IlariaPregnancyHandler.ilariaCleanupData(mother, pregSlot, thisPtr);
+				}
+				//Delay subsequent births till the first has had time to go off.
+				else mother.pregnancyData[pregSlot].pregnancyIncubation += 24;
+			}
 		}
 		public static function ilariaCleanupData(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
