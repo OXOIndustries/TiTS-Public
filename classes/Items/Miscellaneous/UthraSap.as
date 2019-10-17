@@ -79,8 +79,8 @@ package classes.Items.Miscellaneous
 				kGAMECLASS.output(" and the smacking sound of the syrupy fluid quickly fills the air. You let out a husky moan and let your head loll back. Why exactly were you smearing this on yourself again?");
 
 				// Faux-lactation, the "method" by which the mass is lost from the titties
-				if (target.biggestTitSize() > 0)
-				{	
+				if (target.biggestTitSize(true) > 0)
+				{
 					var moddedAnyTits:int = 0;
 					var removedTitRows:int = 0;
 					
@@ -108,7 +108,7 @@ package classes.Items.Miscellaneous
 							if (moddedAnyTits == 0) moddedAnyTits = ratingReduction;
 							changes++;
 							
-							if (i > 0 && target.breastRows[i].breastRatingRaw <= 0)
+							if (i > 0 && target.breastRows[i].breastRatingRaw <= 0 && target.removeBreastRowUnlocked(i, 1))
 							{
 								target.removeBreastRow(i, 1);
 								removedTitRows++;

@@ -1007,6 +1007,7 @@ public function ilariaPregnancyEnds():void
 		output("\n\n");
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
+		return;
 	}
 	
 	var numChildren:int = se.value1;
@@ -1058,6 +1059,7 @@ public function ausarPregnancyEnds():void
 		output("\n\n");
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
+		return;
 	}
 	
 	var numChildren:int = se.value1;
