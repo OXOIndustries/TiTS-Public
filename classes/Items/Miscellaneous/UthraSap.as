@@ -108,7 +108,7 @@ package classes.Items.Miscellaneous
 							if (moddedAnyTits == 0) moddedAnyTits = ratingReduction;
 							changes++;
 							
-							if (i > 0 && target.breastRows[i].breastRatingRaw <= 0 && target.removeBreastRowUnlocked(i, 1))
+							if (i > 0 && target.breastRows[i].breastRatingRaw <= 0)
 							{
 								target.removeBreastRow(i, 1);
 								removedTitRows++;
