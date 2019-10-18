@@ -3603,7 +3603,7 @@ public function fifthDateFisi():void
 	}
 	else
 	{
-		output("\n\nWith a great deal of willpower, you are able to shake off the tantalizing smell coming from the masterbating bee. Right before the zil’s long tongue can reach Fisianna’s lips, you yank the catgirl backwards, while with your free hand you give the brazen interloper a good punch across his face. He reels from the blow and falls out of the side of the booth and onto the floor. The smell of pheromones suddenly becomes much less intense and you can see that Fisianna has snapped out of her lust-addled state. The zil has shock, anger, and pain written all over his face as he struggles and fails to straighten up and sheathe his penis inside of his pants.");
+		output("\n\nWith a great deal of willpower, you are able to shake off the tantalizing smell coming from the masturbating bee. Right before the zil’s long tongue can reach Fisianna’s lips, you yank the catgirl backwards, while with your free hand you give the brazen interloper a good punch across his face. He reels from the blow and falls out of the side of the booth and onto the floor. The smell of pheromones suddenly becomes much less intense and you can see that Fisianna has snapped out of her lust-addled state. The zil has shock, anger, and pain written all over his face as he struggles and fails to straighten up and sheathe his penis inside of his pants.");
 		output("\n\n<i>“You... you were supposed to be helpless before my sweet scent. Nobody asked you to interfere, you asshole.”</i> The zil curses as he glowers at you. Words cannot describe the rage you are feeling at this bee ruining your date with Fisianna. Despite this, you ");
 		if (pc.isNice())
 		{
