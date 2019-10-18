@@ -646,7 +646,10 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 						}
 					}
 					
-					addButton(14, "Back", combatInventoryMenu);
+					// Alt character rerouting
+					if(usingCreature.hasPerk("PCs")) addButton(14, "Back", CombatManager.showCombatMenu);
+					// Normal player character
+					else addButton(14, "Back", combatInventoryMenu);
 					return;
 				}
 			}
@@ -669,11 +672,18 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 
 public function backToCombatInventory(item:ItemSlotClass):void
 {
-	if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
+	// Ship gadget rerouting
+	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT))
+	{
+		CombatManager.processCombat();
+	}
+	// Quick draw never loses a turn for weapon items
+	else if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
 	{
 		clearMenu();
-		addButton(0,"Next",combatInventoryMenu);
+		addButton(0, "Next", combatInventoryMenu);
 	}
+	// Normal return
 	else
 	{
 		CombatManager.processCombat();

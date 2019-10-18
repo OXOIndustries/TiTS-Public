@@ -1008,6 +1008,7 @@ public function ilariaPregnancyEnds():void
 		chars["ILARIA"].pregnancyData[0].reset();
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
+		return;
 	}
 	else
 	{
@@ -1055,6 +1056,7 @@ public function ausarPregnancyEnds():void
 	
 	var se:StorageClass = pc.getStatusEffect("Ausar Pregnancy Ends");
 	
+		return;
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
