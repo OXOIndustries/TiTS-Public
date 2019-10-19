@@ -1,3 +1,5 @@
+import classes.Creature;
+import classes.Dildo;
 import classes.GameData.CommandContainers.FapCommandContainer;
 import classes.Items.Armor.GooArmor;
 import classes.Items.Miscellaneous.MagicMilker;
@@ -4887,6 +4889,418 @@ public function involuntarilyCockwangYourself():void
 	pc.loadInAss(pp);
 	pc.applyCumSoaked();
 	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dildonics... the art of fucking your own worthless ass on a plastic dick.
+public function useDildoOnPussy(x:int):void
+{
+	clearOutput();
+	showName("USING:\nDILDO");
+	author("Fenoxo");
+	var dildo:ItemSlotClass = chars["CARL"].inventory[chars["CARL"].inventory.length-1];
+	var cock:CockClass = (dildo as Dildo).cock();
+	var material:String = (dildo as Dildo).material;
+	var timesUsed:Number = (dildo as Dildo).timesUsed;
+	var cumQ:Number = (dildo as Dildo).cumQ;
+
+	var choices:Array = [];
+	var select:int = 0;
+	//Material. Dick type, length, color, cumQ
+
+	var cockSack:Creature = new Creature();
+	cockSack.cocks.push((dildo as Dildo).cock());
+	
+	cockSack.createPerk("Fixed CumQ",cumQ,0,0,0);
+
+	//PG 1: examination of dick. Variations based on libido and number of times used.
+	//low libido
+	if(pc.libido() < 33)
+	{
+		output("You produce the artificial " + cockSack.simpleCockNoun(0) + " and take a moment to regard the false penis. It is a " + cock.cockColor + " " + num2Text(Math.floor(cock.cLength())) + "-inch long piece of " + material);
+
+		//Build list of all possible "flavor" options, then roll for which to show.
+		if(cock.hasFlag(GLOBAL.FLAG_BLUNT)) choices.push(1);
+		if(cockSack.hasKnot(0)) choices.push(2);
+		if(cock.cType != GLOBAL.TYPE_DEMONIC && (cock.hasFlag(GLOBAL.FLAG_NUBBY) || cock.hasFlag(GLOBAL.FLAG_SPIKED))) choices.push(3);
+		else if(cock.hasFlag(GLOBAL.FLAG_NUBBY)) choices.push(4);
+		if(cock.hasFlag(GLOBAL.FLAG_TAPERED)) choices.push(5);
+		if(cock.cType == GLOBAL.TYPE_HUMAN) choices.push(6);
+
+		select = -1;
+		if(choices.length > 0) select = choices[rand(choices.length)];
+
+		if(select == 1)
+		{
+			output(" with a ");
+			if(timesUsed > 3 || pc.vaginas[x].type == GLOBAL.TYPE_EQUINE) output("comfortingly");
+			else output("distressingly");
+			output(" blunted tip");
+			if(cockSack.hasKnot(x)) output(" and a bulb of canine anatomy at the base");
+			if(cockSack.cockVolume(0) * 1.5 > pc.vaginalCapacity(x)) output(" that you aren’t entirely sure you can take");
+		}
+		else if(select == 2)
+		{
+			output(" with a bestial breeding bulb at the base");
+			if(cockSack.cockVolume(0) * 1.5 > pc.vaginalCapacity(x)) output(" thick enough to leave you anxious about taking it");
+			else output(" thick enough to make you" + (pc.legCount > 1 && pc.hasKnees() ? "r knees":"") + " quiver at the thought of stuffing it inside");
+		}
+		else if(select == 3)
+		{
+			output(" covered in the sorts of blunted ‘barbs’ kaithrits are so fond of");
+		}
+		else if(select == 4) output(" liberally peppered with gently sloping nodules designed to tickle your innermost nerves");
+		else if(select == 5) output(" capped with a pointed tip for easy insertion" + (cockSack.hasKnot(0) ? " and a bulb of distinctly canine anatomy waiting for you at the base":""));
+		else if(select == 6) 
+		{
+			output(" with all the familiar features Earth’s most well known sapients");
+			if(cumQ > 0) output(", somehow as warm as one might find on a living specimen");
+		}
+		output(".");
+		if(timesUsed <= 0) output(" You take your time looking it over. This is new, or new to you at any rate. You’ve never tried it before, and a fair bit of trepidation flutters through your heart at the obviously erotic sight of it.");
+		else if(timesUsed <= 1) output(" You smile as you look it over. It’s only your second outing with the portable stud, but the erotic memories send thrilling shivers up your spine.");
+		else if(timesUsed <= 4) output(" You favor it with a fond smile, remembering your previous trysts with the portable stud. For how naughty and debauched it looks... it filled you quite nicely.");
+		else if(timesUsed <= 9) output(" You shudder with erotic remembrances. This toy and your insides know each other so well. It might be lewd, but you can’t wait to play with it again.");
+		else output(" A lusty flush appears on your cheeks as you mentally play through some of your past experiences with the toy. It’s made you cum more than enough for you to feel comfortable thinking of it as a sort of boyfriend.");
+	}
+	//med libido
+	else if(pc.libido() < 66)
+	{
+		output("You select a dildo while your cheeks blush hotly. The " + cockSack.simpleCockNoun(0) + " rests heavily in your hands, absolutely loaded with erotic potential. Made from " + material + " and a full " + num2Text(Math.floor(cock.cLength())) + " inches long,");
+
+		//Build list of all possible "flavor" options, then roll for which to show.
+		if(cock.cType == GLOBAL.TYPE_EQUINE) choices.push(0);
+		if(cock.hasFlag(GLOBAL.FLAG_BLUNT)) choices.push(1);
+		if(cockSack.hasKnot(0)) choices.push(2);
+		if(cock.hasFlag(GLOBAL.FLAG_TAPERED)) choices.push(3);
+		if(cock.cType != GLOBAL.TYPE_DEMONIC && (cock.hasFlag(GLOBAL.FLAG_NUBBY) || cock.hasFlag(GLOBAL.FLAG_SPIKED))) choices.push(4);
+		else if(cock.hasFlag(GLOBAL.FLAG_NUBBY)) choices.push(5);
+		if(cock.cType == GLOBAL.TYPE_HUMAN) choices.push(6);
+
+		select = -1;
+		if(choices.length > 0) select = choices[rand(choices.length)];
+
+		//horse
+		if(select == 0) output(" it represents a lust for equine endowments taken to the absolute limits. The head is blunt and flaring, almost cartoonishly so. Riddled with veins and a medial ring, it is textured to stroke every single horny nerve and fold on its debauched path.");
+		//blunt
+		else if(select == 1) output(" it is capped with a blunted, bestial tip - not exactly easy to insert, but so very good for stretching out the deepest, most debauched parts inside you. Your mind can only imagine what sort of creature would host such a brutal implement, how strong and virile it would have to be...");
+		//knot
+		else if(select == 2) output(" it has a thick, spherical bulb near the base - like an ausar or kui-tan. If you push too hard, you’re going to knot yourself on this bestial dildo, and unlike the real thing, there’ll be no waiting for it to shrink. You’ll have to pop it out, " + (pc.vaginas[x].looseness() < 4 ? "maybe even gape yourself a little for the trouble.":"not that you’ll have much problem with that, gaped as you are."));
+		//taper
+		else if(select == 3) output(" it has a narrow, tapered tip - perfect for slotting into an unprepared pussy... or gracefully plowing a sopping wet one. A toy like this is built for comfort and pleasure in equal measure, you’re fairly sure.");
+		//kitty
+		else if(select == 4) output(" it plays host to numerous feline ‘barbs’. They’re spongy and soft, and perfect for teasing pussies with every inch of bestial debauchery, sort of like a kaithrit’s. You slide your finger playfully across them, squishing them down and letting them spring back up with lusty promise.");
+		//demonic nodules
+		else if(select == 5) output(" its surface swarms with rounded, demonic nubs. There’s no excuse for such a pattern in natural biology, but a perfectly debauched one lounges in the forefront of your mind: pleasure. The dildo is a long, bumpy road, just waiting for you to take it for a ride.");
+		//terran
+		else if(select == 6) output(" it represents the terran shape in exacting detail. The swollen, mushroom-like head crowns a long, somewhat arching shaft that’s been decorated with bulging veins for added, pussy-teasing pleasure.");
+		//else?
+		else output(" the toy promises exotic plenty of exotic pleasure for your pussy.");
+		//merge. Usage variants!
+		//First time
+		if(timesUsed <= 0) output(" As this is your first time with the store-bought suitor, you take your time examining it, making sure there are no manufacturing defects or issues that could distract from the matter at hand: bringing you to an enjoyable climax.");
+		//2nd
+		else if(timesUsed <= 1) output(" You hold the toy up in front of your face and give it a spin, ensuring that every facet of your store-bought suitor measures up just as well as it did the first time. It does, and you can’t wait to use it to bring yourself to another enjoyable climax.");
+		//3rd
+		else if(timesUsed <= 2) output(" You wave the by now familiar toy around in front of your eyes up close, delighted to find it undamaged and just as equipped to bring you to climax as the last time. What a stud!");
+		//4-6
+		else if(timesUsed <= 5) output(" You lift up the store-bought stud and admire the weight and heft, remembering all the times it’s been inside you, slipping and sliding its near-flawless surface against your wantonly tingling nerves.");
+		//7-9
+		else if(timesUsed <= 8) output(" Idly stroking the store-bought stud, you give it a quick once over to make sure it’s still in perfect condition for bringing you to an enjoyable climax. It is, and it looks sooo good.");
+		//10+
+		else output(" You lift the store-bought stud up to rub against your [pc.lips] while you inspect it for damage. Once satisfied that it’s in prime condition for driving you to climax, you favor it with a kiss and a lick, leaving a thick layer of saliva to help lubricate the lovely plaything on its coming journey.");
+	}
+	//high libido!
+	else
+	{
+		output("You yank the faux " + cockSack.simpleCockNoun(0) + " out of your pack with a greedy smile. The " + num2Text(Math.floor(cock.cLength())) + "-inch, " + material + " toy will feel fantastic inside you. And why wouldn’t it? Almost anything would feel good inside you, but there’s something special about stuffing yourself with an object this firm and this <i>thick</i>.");
+
+		//Build list of all possible "flavor" options, then roll for which to show.
+		if(cock.cType == GLOBAL.TYPE_EQUINE) choices.push(0);
+		if(cock.hasFlag(GLOBAL.FLAG_BLUNT)) choices.push(1);
+		if(cockSack.hasKnot(0)) choices.push(2);
+		if(cock.hasFlag(GLOBAL.FLAG_TAPERED)) choices.push(3);
+		if(cock.cType != GLOBAL.TYPE_DEMONIC && (cock.hasFlag(GLOBAL.FLAG_NUBBY) || cock.hasFlag(GLOBAL.FLAG_SPIKED))) choices.push(4);
+		else if(cock.hasFlag(GLOBAL.FLAG_NUBBY)) choices.push(5);
+		if(cock.cType == GLOBAL.TYPE_HUMAN) choices.push(6);
+
+		select = -1;
+		if(choices.length > 0) select = choices[rand(choices.length)];
+
+		//hoss
+		if(select == 0) output(" The blunted, bestial head, so thick and girthy, is going to ruin for you lesser toys. It actually flares out a bit wider than the shaft, but there’s so many thick veins to clench against. Best of all, it comes complete with a distended medial ring to tickle your [pc.clits] in a way few sapients could match.");
+		//blunt
+		else if(select == 1) output(" The blunted head, so thick and girthy, is going to " + (cockSack.cockVolume(0) > pc.vaginalCapacity(x) ? "take some work to wrench your lips open with":"slide into your blown-out slut-hole with ease") + ", but it’ll stretch you so good once it burrows deep enough into your thirsty channel.");
+		//pointy
+		else if(select == 3) output(" It’s designed with a tapered, pointed tip for easier insertion. You could be the galaxy’s tightest virgin and still have plenty to play with, not that you’d stop with just the tip. You can’t wait to stuff it deep, stretching yourself wider with every inch taken.");
+		//knotty
+		else if(select == 2) output(" Not to mention the thick, round breeding bulb at the base. Just like a canine or an ausar, your dildo comes complete with a slut-tempting challenge. Can you take it inside? Will that final stretch push you to orgasm or intensify your ongoing climax? Either way sounds lovely.");
+		//barby
+		else if(select == 4) output(" Its barbs would concern you if they were modeled after a true feline instead of the kaithrit, but these spongy protrusions are a cunt-pleasing bonus - like a dick with a hundred fingers ready to wiggle around at the drop of a hat.");
+		//demon nubby
+		else if(select == 5) output(" And the nubs! Nearly the entire thing is covered with rounded bumps, designed to stimulate every nerve on the pleasure cruise through your moistening delta. Unholy and demonic though it may appear, you’re quite certain it’ll help to guide you to heaven.");
+		//terran
+		else if(select == 6) output("This particular specimen is terran in design, which pleases you just fine. The mushroom-like crown will do a lovely job spreading you open and pressing against your hungry walls. The thick veins will be a steady drumbeat on the underside of [pc.oneClit] on every stroke.");
+		//1
+		if(timesUsed <= 0) output(" You can’t wait to take the portable stud for its first ride. There’s something thrilly about despoiling something so virginal, even something created explicitly for sex.");
+		//2
+		else if(timesUsed <= 1) output(" Time to take this portable stud for his second tango. After last time, the mere sight is enough to make your heart race.");
+		//3
+		else if(timesUsed <= 2) output(" You can hardly wait to take this portable stud for his third ride.");
+		//4-6
+		else if(timesUsed <= 5) output(" Smooching the portable stud on his " + cockSack.cockHead(0) + ", you barely restrain yourself from fellating his familiar, climax-inducing length.");
+		//7-9
+		else if(timesUsed <= 8) output(" You lift the portable stud and give him a long, loving lick as payback for all the lovely climaxes he’s brought you to. No doubt this one will be every bit as crotch-soakingly respectable as the last.");
+		//10+
+		else output(" You can smell your leftover juices all over the portable stud. No matter how thorough the cleaning, you can’t seem to wipe away the evidence of your numerous toy-driven climaxes. The scent of your pussy has impregnated the shaft as thoroughly as it has pleasured you.");
+	}
+	
+	//PG 2: prep&foreplay. Stripping. Pussy type variation (plump, equine, canine).
+	//Clear choices array for next setup.
+	choices = [];
+	//Armor covered
+	if(!pc.isCrotchExposedByArmor()) output("\n\nYour [pc.armor] may look nice, but having to stop to strip out of it proves more than a little irritating." + ((pc.exhibitionism() >= 66 || pc.libido() >= 70) ? " Maybe you can find something bare-crotched to wear in the future.":""));
+	//Panty covered
+	if(!pc.isCrotchExposedByLowerUndergarment())
+	{
+		output((!pc.isCrotchExposedByArmor() ? " Ugh! And you have to peel off your [pc.lowerUndergarment] too.":"\n\nYour [pc.lowerUndergarment] may look nice, but pausing to yank the garment down proves a little irritating.") + " The material is predictably " + (pc.wettestVaginalWetness() < 3 ? "sticky":"soaked") + " with excitement.");
+	}
+	//Uncovvies
+	if(pc.isCrotchExposed()) output("\n\nDays like today are why you elected to keep your crotch uncovered in the first place. You don’t have to worry about fidgeting with pants or yanking down panties. That bothersome warmth can be taken care of presently and personally.");
+
+	if(pc.inRut()) 
+	{
+		choices.push(0);
+		choices.push(0);
+	}
+	if(pc.inHeat())
+	{
+		choices.push(1);
+		choices.push(1);
+	}
+	if(pc.vaginas[x].type == GLOBAL.TYPE_EQUINE) choices.push(2);
+	if(pc.vaginalPuffiness(x) > 0) choices.push(3);
+	if(pc.wetness(x) >= 4) choices.push(4);
+	if(pc.looseness(x) >= 4) choices.push(5);
+	if(pc.elasticity >= 3 || (pc.vaginas[x].bonusCapacity >= 150 && !pc.isTaur())) choices.push(6);
+	if(pc.totalClits() > 1) choices.push(7);
+	if(pc.vaginas[x].type == GLOBAL.TYPE_SUULA) choices.push(8);
+
+	select = -1;
+	if(choices.length > 0) select = choices[rand(choices.length)];
+	else
+	{
+		if(pc.libido() < 50) select = -1;
+		else select = -2;
+	}
+
+	//rut
+	if(select == 0) output(" Part of you rages at the presence of a foreign prick nestling into your loins, but lusty feminine desires yank the reigns and authoritatively slap the " + cockSack.cockDescript(0) + " into place atop your netherlips, greasing its underside with your horny juices. The ecstatic pleasure produced by such licentious contact temporarily counters your rut; with pressure on your pussy, it’s tough to think about anything but getting stuffed.");
+	//heat
+	else if(select == 1) output(" A dildo is a poor substitute for impregnation, but you’ll do what you have to in order to achieve satisfaction (and calm down long enough to walk to the closest virile prick). You roughly slam it against your cuntlips, sawing the " + cockSack.cockDescript(0) + " through your aching entrance. It quickly grows slick with your fertile offerings, ready to slide deeper. If only it could knock you up! Your [pc.thighs] quiver anxiously at the thought.");
+	//equine
+	else if(select == 2) output(" The " + cockSack.cockDescript(0) + " feels right at home, slapped against your equine cunt. The thick-lipped, lengthy pussy is perfect for cradling your dildo and even better grinding against it. Your slick juices get all over your fingers as you work the rigid shaft against yourself, smearing it with your musky excitement until it’s almost too slick to hold. When you bump " + (pc.totalClits() > 1 ? "a":"your") + " [pc.clit], you nearly ram it inside on the spot.");
+	//plump
+	else if(select == 3) output(" Your plump cuntlips form a natural cradle for you to rest the " + cockSack.cockDescript(0) + " in. After a second to get used to the weight and heft of it, you begin to slide it back and forth, flossing through the chubby pussy-gates until it glistens with a mirror shine - as does your increasingly swollen entrance. It begs for something to be stuffed inside it.\n\nYou have just the thing.");
+	//high wetness
+	else if(select == 4) output(" The " + cockSack.cockDescript(0) + " glistens the instant it slaps against your sopping cunt. Your pussy is a drooling, messy thing that’s all too happy to slobber all over the first thing you press against it, be prick, toy, or thigh. Flossing the " + material + " phallus through your saturated pussylips feels almost too good, almost as good as getting fucked properly, but it’s worth it to make sure the dildo is every bit as slick and ready to fuck as you are. It gleams with promise.");
+	//gaped
+	else if(select == 5) output(" You slap the " + cockSack.cockDescript(0) + " against your gaping hole, rubbing it back and forth to collect as much of your natural lube as possible. You pause when the " + cockSack.cockHead(0) + " brushes against the edge of your distended breeding canyon, bumping against the tender lip without yet daring to slide it deeper.");
+	//stretchy AF.
+	else if(select == 6) output(" You " + (pc.libido() < 50 ? "guide":"slap") + " the " + cockSack.cockDescript(0) + " into place on your waiting slit, rubbing it back and forth while your capacious cunt flexes and tries its damnedest to drink the dildo in. You’re almost too stretchy for your own good! The moment you make contact, you’re intimately aware of how wide you could pull yourself open, how easy it would be to slide it so nice and deep...");
+	//multiclit
+	else if(select == 7) output(" You " + (pc.libido() < 50 ? "gently press":"slap") + " the " + cockSack.cockDescript(0) + " into place against your waiting slit, gasping as the simultaneously friction against multiple clits registers in your mind. In the time it takes you to stop whining and mentally reassemble the pleasure-fragmented bits of your psyche, you realize you’ve already fully lubricated the dildo, and your hands are eagerly sawing it back and forth across your tender rift.");
+	//suula
+	else if(select == 8) output(" You " + (pc.libido() < 50 ? "gently press":"slap") + " the " + cockSack.cockDescript(0) + " against the outside of your [pc.vagina " + x + "], allowing the tendrils without to rush out and press back against the offered toy. Your alien anatomy quickly coats the faux phallus in your juices, but you enjoy the simple friction for the moment, dragging it back and forth across your ripening clit" + (pc.totalClits() > 1 ? "s":"") + ".");
+	//basic bitch (low lib)
+	else if(select == -1) output(" You gently bring the " + cockSack.cockDescript(0) + " down to rest on your vaginal lips, savoring the potent weight as your juices seep into the underside. Gently sawing it back and forth feels amazing, so amazing you let out a kittenish whimper while self-lubricating the lucky dildo.");
+	//basic bitch (high lib)
+	else output(" You brazenly slap the " + cockSack.cockDescript(0) + " against your vaginal lips, cooing at the spike of sensation. It’s immediately moistened by your freely flowing excitement, and you set to sawing it back and forth against your wettening quim, spreading your slick juices across every inch with whorish abandon.");
+
+	//Pg 3: Insertion. Tip, fit, inner nubs, and wetness variants.
+	//Wayyy 2 big (oh god it’ll never fit, it’s so tight, halp etc, no tapers!)
+	if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 2))
+	{
+		output("\n\nThe toy shouldn’t fit inside you. It’s too big, and you’re too small and tight. Nevertheless, you work its " + cockSack.cockHead(0) + " back and forth against your [pc.vagina " + x + "], stretching yourself wider and wider every time. It hurts a little bit, but it’s a good hurt - the kind of hurt that’s going to leave you sore and satisfied from having taken so much dick. You audibly cuss when the " + cockSack.cockHeadNoun(0) + " finally breaches your gates, then stare down at your cunt in surprise. The hole is almost cartoonishly distended around the giant, fake cock. Your taut lips shine like fine glasswork, and they vibrate like plucked guitar strings when they bump across a veiny ridge.\n\nYou are so absurdly, blessedly <b>full</b>!");
+	}
+	//Too big (oh god its so hard to work in, etc. No tapers.):
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 1.2)) output("\n\nThe toy is <i>big</i>, but you’re not going to let that stop you, not when you’ve come this far. You grab it by the base and push the " + cockSack.cockHead(0) + " against your netherlips, pressing on them until they visibly strain around the offending implement of pleasure in taut protest. You wiggle it back and forth, varying the pressure so that it pushes a little deeper each time, working the too-thick head further and further until your body finally gives in and accepts the lurid tool with a dribble of hot, leaking joy.");
+	//Tight fit
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 0.85)) output("\n\nThe toy is going to be a good fit for you. You can tell. It lines up with your [pc.vagina " + x + "] so easily, and even though the " + cockSack.cockHead(0) + " catches for a second, a little bit of wiggling and squirming is all it takes for the fully lubricated " + cockSack.simpleCockNoun(0) + " to nudge its way inside. Ooh, that’s tight! You can feel yourself being spread open by every inch you take. The further you impale yourself, the more your petals bloom into a lurid flower, clutching the implement of faux fertilization in greedy rapture.");
+	//good fit
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 0.15)) output("\n\nNo reason to keep a good toy waiting! You angle it up and in, thrusting it into the welcoming folds of your feminine delta with ease thanks to the well-selected size. It threads wondrously through your lips and burrows deep into your clutching channel. You squeeze down to heighten the sensation of penetration, then relax when it becomes a little too intense. Fully in control, you take the " + cockSack.simpleCockNoun(0) + " to the " + cockSack.knotDescript(0) + ".");
+	//dildo2small4cunt
+	else output("\n\nThe toy seems a little small, but you press on (and in!) It slides deep into your [pc.vagina " + x + "] with the most negligible of efforts, less an act of penetration and more a long, erotic swallow. You can clench down to heighten the pleasure, then relax to let it wiggle around and settle into place. A vagina like yours has plenty of room for the nimble device to explore, and you intend to take it on a grand tour of all your nooks and crannies.");
+	//Stretchin' bois!
+	pc.cuntChange(x,cockSack.cockVolume(0));
+
+
+	//PG 4. Fuckin’. Special inner nubs. Suula tents. Otherwise libido?
+	choices = [];
+	if(pc.libido() < 50) choices.push(0);
+	else choices.push(1);
+	if(pc.vaginas[x].type == GLOBAL.TYPE_GRYVAIN) 
+	{
+		choices.push(2);
+		choices.push(2);
+	}
+	if(pc.vaginas[x].type == GLOBAL.TYPE_SUULA) 
+	{
+		choices.push(3);
+		choices.push(3);
+	}
+	if(pc.totalClits() > 1) 
+	{
+		choices.push(4);
+		choices.push(4);
+	}
+	if(pc.clitLength >= 3) 
+	{
+		choices.push(5);
+		choices.push(5);
+	}
+	if(pc.isBimbo()) 
+	{
+		choices.push(6);
+		choices.push(6);
+	}
+
+	//Low libido
+	if(select == 0) output("\n\nFucking yourself with a dildo feels so lewd... and dirty. You knew that out here on the Rush, things get a lot lewder than deep in the core, but you never expected you’d be fucking yourself on the floor just to think straight! Listening to the sloppy sounds of your own self-penetration, you flush hotter than supernova and try to keep your moans from sounding too slutty. It doesn’t work. As you feel the pleasure build, your voice turns disturbingly whorish, yet you dare not stop this close to the edge!");
+	//High libido
+	else if(select == 1) output("\n\nOh, this is exactly what you needed! Nothing takes the edge of like a nice, forceful fuck, even if you have to settle for your own arm’s imperfect thrusting. You slam the dildo home again and again. Wet, obviously sexual sounds squelch out of your straining, engorged cunt as you plow yourself silly. Is it slutty to moan and scream with pleasure? Perhaps, but it feels far too good to stop. You let yourself caterwaul like a kaithrit nympho while the sloppy self-fuck drifts you closer and closer to the edge.");
+	//Nubby Gryvain
+	else if(select == 2) output("\n\nHow wondrous, to have a Gryvain vagina! Not only do you get all the benefits of " + (pc.totalClits() == 1 ? "a ":"") + "[pc.clits], but the dildo is stimulating the dozens upon dozens of clit-like nodules that line your interior. Nearly paralyzed with pleasure, you pump your cunt with shaky-handed thrusts, feeling it grind past bump-after-bump-after-bump. It’s too good! You can’t control yourself in the face of such raw sensation. Whether you like it or not, you’re rapidly moaning your way to the edge thanks to your alien anatomy.");
+	//Suula tenties
+	else if(select == 3) output("\n\nThe only problem with fucking yourself on the dildo is that it drags your clutching, stinging tendrils back inside your lusty vent, subjecting you to your own misapplied venom. The telltale torrid feeling of potent aphrodisiac races out from your cunt and through your veins as you continue to gleefully plumb your horny hole. Stopping feels impossible. The chemicals swimming through your brain make it impossible to think of anything but the fire between your thighs and how good it feels to pump the hard rod through you sweltering delta. Taking yourself to the edge is inevitable, and throwing yourself over a fond desire.");
+	//Multiclit
+	else if(select == 4) output("\n\nFucking yourself with a dildo feels so right in this moment, but it’s lacking a little something. You want more than simply being filled. You need something on your [pc.clits]. It’s what they exist for: to bring you all the pleasure in the universe. Shifting the angle slightly secures you pressure against one, but you’re a [pc.manWoman] for whom one is never enough. You reach down with your free hand and start thumbing around the wonderful organ’s petite hood, rubbing it with faster and faster circles as you inexorably climb to the edge.");
+	//Cocky clit.
+	else if(select == 5) output("\n\nFucking yourself with a dildo is one thing, but as you regard the twitching, feminine tentpole" + (pc.totalClits() > 1 ? "s":"") + (pc.hasCock() ? " rising up next to your [pc.cocks]":"") + ", temptation overpowers your sense. You grab hold of " + (pc.totalClits() > 1 ? "one":"your") + " " + (pc.clitLength > 12 ? "monstrously ":"") + "bloated clit and give it a stroke, crossing your eyes with blinding pleasure. At first, it’s impossible to maintain a rhythm between the two disparate methods of masturbation, yet as time passes, you fall into an easy rhythm of wanking down as you thrust in, creating a fake sort of penetration in time with your own self-powered stuffing. It truly feels like fucking yourself, and that sensation carries you straight to the cusp.");
+	//Bimbo
+	else if(select == 6) output("\n\nFucking yourself with a dildo feels almost disappointly impersonal, like you’re cheating by not finding a real, hard dick to give you the fucking you really need. That’s not to say that it doesn’t feel amazing - it does. You love every second you spend stretching out around a toy, but you’re a true slut; getting fucked is an opportunity to sample from the bouquet of sensuous delights that is your life. Masturbation is like junk food. It feels good in the moment, but if you wallow in it, you’ll never get to be in the center of a ten-man orgy... or sea of raunchy, wiggling tentacles. As you feel the pleasure guiding you toward the edge, you resolve to get properly reamed out next time.");
+
+	//FINAL PG! Cummiiiiies!
+	var heatEvent:Boolean = false;
+	
+	if(cumQ <= 0)
+	{
+		if(pc.isSquirter())
+		{
+			//Dildo doesn’t cum. PC is squirter (LOODS) (KNOT)
+			if(cockSack.hasKnot(x)) output("\n\nYou gush all over the " + cockSack.cockDescript(0) + ". You can’t help it. You’re a squirter, and when you’re a squirter, you clench up when you cum. [pc.GirlCum] floods across the floor while your arms seize, driving the knotty toy against your " + (cockSack.cockVolume(0) > pc.vaginalCapacity(x) ? "straining":"tingling") + " netherlips until, in a euphoric frenzy, you pound that heavy, bitch-breaking bulb straight into your leaky channel. Stars go supernova in your crotch. Sight vanishes beneath a torrential outflowing of bliss as your climax redoubles, and you spray like a struck fire hydrant. Your hands are painted with your own girlish goo, but you dare not let go of the dildo. Instead, you thrust it deeper, whining in the back of your throat until your voice is as sore as your pussy is going to be.");
+			//Dildo doesn’t cum. PC is squirter (LOODS) (NO KNOT)
+			else output("\n\nYou squirt all over the " + cockSack.cockDescript(0) + " like a wanton whore. Your body knows what it wants, and it takes from the dildo, clenching and sputtering, spraying out a fan of fragrant girlish juice across the ground in front of you. You don’t care. What matters are the stars behind your eyes and the bolts of white-hot ecstasy blasting through your [pc.vagina " + x + "]. What matters is the iron-hard rod ramming into you, forcing you to gush in slutty delight. You ride the euphoria while it lasts, shivering and moaning for as long as the blissful aftertremors last.");
+		}
+		else
+		{
+			//Dildo doesnt cum. PC not squirter (BASIC BIYATCH) (KNOT V)
+			if(cockSack.hasKnot(x)) output("\n\nWhen you cum, the ecstasy strikes you so firmly that your arms seize and drive the " + cockSack.cockDescript(0) + " home, forcing the knot the splay your gates wide. Pressure and pleasure rise in equal portion until something inside you gives, and the knot pops inside. Your [pc.vagina " + x + "] recoils closed around it, trapping it inside, exposing your innermost nerves to the barrage of bestial ecstasy that comes with canine endowments" + (!InCollection(cock.cType,[GLOBAL.TYPE_CANINE,GLOBAL.TYPE_VULPINE]) ? " (and their alien cousins)":"") + ". Holding it by the base and repeatedly tugging it back and forth across the inch of movement you can get seems like it might be too much, but the stars behind your eyes compel you to hump your hand-bound cock for every iota of bliss you can get.");
+			//Dildo doesnt cum. PC not squirter (BASIC BIYATCH)
+			else output("\n\nYou cum all over the " + cockSack.cockDescript(0) + ". It feels like the bliss grabs you by the back of the head and shakes your whole body around. Your [pc.thighs] quiver and shake. Your [pc.vagina " + x + "] clenches and drools. [pc.GirlCum] slides slowly down your [pc.legOrLegs]" + (pc.legCount > 1 ? " while they fall open, inviting the dildo to plunge deeper":"") + ". The ecstasy wrings out your other thoughts, leaving you as a gasping husk, marinating in your own euphoria. You shuddering around the " + (timesUsed <= 1 ? "newly used":"well used") + " toy while your tongue slides out of your mouth. It isn’t until the sparking fireworks behind your eyes fade that you hear moaning, and identify it as your own.");
+		}
+	}
+	else
+	{
+		//Dildo can cum, knot version
+		if(cockSack.hasKnot(x))
+		{
+			output("\n\nYou cum all over the " + cockSack.cockDescript(0) + ", thrusting it so hard and so deep that when it comes back, the knot pops right into your greedy canal. You can scarcely contain your ecstasy, nor can you suppress the need to clench down, squeezing out a long lance of artificially-brewed semen." + (pc.isSquirter() ? " Your own juices, bottled up by the knot, finally burst out around it, blasting out in a v-shaped fan of feminine euphoria.":" Your own juices slowly dribble out around the knot, discolored by addition of foreign fluids.") + " Taking a breeding bulb like that <i>and</i> getting to feel it sputtering liquid joy " + (!pc.isPregnant(x) ? "through":"against") + " your cervix is sublime. You can think of no greater pleasure in the moment, though to be honest, you aren’t doing much thinking at all");
+			if(cumQ > 2000) output(". Climax and the slow rounding of your increasingly pregnant" + (!pc.isPregnant(x) ? "-seeming":"") + " middle are the most you’re capable of. Accepting the building pressure as only a woman can, you don’t even identify your own joyful screaming until long after your pleasure fades into sporadic aftershocks.");
+			else output(" Climax has your mind occupied so thoroughly that you don’t even realize you’re screaming with joy until long after the pleasure has faded into sporadic aftershocks.");
+		}
+		//Dildo can cum, HEAT
+		else if(pc.inHeat())
+		{
+			output("\n\nYou cum, and when the " + cockSack.cockDescript(0) + " cums with you, you cum again, irrespective of your pre-blissed status. There is something primal and satisfying about painting your [pc.vagina " + x + "] with thick, virile cum. You may know that it’s not the real thing, not really, but your body doesn’t. It loves the feel of it. It wants you flooded with the stuff, lifting your hips in the air and spreading your legs so it cool pool against your cervix and drip in while the next male in line lines up to take you. You wish this could knock you up more than anything.");
+			output("\n\nWorst, or perhaps best, of all is that you can’t seem to stop. Even when your climax winds down, you’re still horny. You still want bred. You imagine your toy is the next suitor in line, the next hard dick, fucking his or her way through the last stud’s leavings. Right now, you’d do anything if you could be pregnant. You’d beg for it. You’d fuck any alien, breed with any terran, even pour every used condom you could find straight into your baby-crazy pussy. You stir yourself to climax after climax, heedless of your own screams, ignoring the mess.");
+			output("\n\nFluids puddle around you, but you keep going. You can’t help it. You need stuffed. You need fucked. You need more of this cum to be inside. It’s the only thought on your mind as you orgasm for the third - or was that fourth? - time. The next spurt might of blacked out conscious thought, but the savage, hungry, animal part of your brain loves every single second of it.");
+			heatEvent;
+		}
+		//Dildo can cum, no knot
+		else
+		{
+			output("\n\nYou cum, and the " + cockSack.cockDescript(0) + " cums with you, spurting long lances of artificial seed into your clutching cunny." + (pc.isSquirter() ? " Not to be outdone, your [pc.vagina " + x + "] answers with its own tidal wave of fragrant, orgasmic fluid, spraying for several feet across the floor in front of you.":" No matter how copious your fragrant, orgasmic fluids, the dildo outdoes you.") + " Nothing could compare to the warm feeling of a hard cock spurting inside of you, coating your folds with clinging spunk. You can feel it sloshing around inside you while you pump the shaft back and forth. Euphoric, you stuff the dildo hilt-deep so you can feel it splash " + (!pc.isPregnant(x) ? "through":"against") + " your cervix. It feels like heaven, and for a minute or two, you lose all track of reality beyond friction, pleasure, and cum.");
+		}
+	}
+	
+	var mouthLoad:Boolean = false;
+	if(pc.hasCock())
+	{
+		//bonus cock cum selfsuck
+		if(pc.canAutoFellate(pc.biggestCockIndex()) && (rand(2) == 0 || pc.isCumSlut()))
+		{
+			output("\n\nIn those moments, [pc.oneCock] makes itself known by slapping against your face, and who are you deny it? You open wide and suck your [pc.cockHead " + pc.biggestCockIndex() + "] into your mouth, muffling your own sounds of bliss beneath the gurgling necessity of greedy cock-sucking. It feels so debased, but so perfect that you can’t seem to care. You wouldn’t have grown such a fat, fucking cock if you didn’t intend to flood your own throat. The trickles that escape the corners of your mouth to dribble down the chin feel good in their own way, especially when they drip onto your [pc.chest].");
+			mouthLoad = true;
+		}
+		//bonus cock cum feeding cunttail
+		else if(pc.hasCuntTail() && (flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] > 1 && rand(2) == 0))
+		{
+			output("\n\nIn those moments, you nearly miss the feeling of a second cunt getting stuffed - and [pc.oneCock] getting sucked. <b>Your cunttail!</b> That rebellious, hungry little wyrm took advantage of your orgasm-diminished agency to seat itself upon your spurting tool and drink deep of its syrupy offerings. You’d be more upset if it didn’t feel so good, and if you didn’t wind up grabbing the flexible puss to squeeze the last of your cum into its maw.\n\nThe satisfaction it shivers up your spine is so much more rewarding than your own...");
+			feedCuntSnake(pc);
+		}
+		//Bonus cock cum (low lib - paint floor)
+		else if(pc.libido() < 50) 
+		{
+			output("\n\nYou almost forget your [pc.cocks]. The pleasure from your southernmost anatomy overwhelmed the spurting tightness in your male organ" + (pc.hasCocks() ? "s":"") + ", but when you look down, the evidence is writ clear across the floor.");
+			if(pc.cumQ() < 10) output(" Thin, [pc.cumGem] lines");
+			else if(pc.cumQ() < 50) output(" Thick, [pc.cumGem] lines");
+			else if(pc.cumQ() < 200) output(" Fat, [pc.cumGem] ribbons");
+			else if(pc.cumQ() < 1000) output(" Wide, [pc.cumGem] splatters");
+			else if(pc.cumQ() < 5000) output(" Cartoonish, [pc.cumGem] splatters");
+			else if(pc.cumQ() < 15000) output(" Wide [pc.cumGem] puddles");
+			else if(pc.cumQ() < 30000) output(" Wide [pc.cumGem] pools");
+			else if(pc.cumQ() < 100000) output(" A deep, [pc.cumGem] river");
+			else output(" A deep, [pc.cumGem] ocean");
+			output(" bear" + (pc.cumQ() >= 30000 ? "s":"") + " witness to your own wasted virility" + (pc.isSquirter() ? ", mixing slowly into your [pc.girlCum]":"") + ".");
+		}
+		//Bonus cock cum (high lib - paint self)
+		else
+		{
+			output("\n\nIn the moment, you nearly forget your [pc.cocks], but as you rouse from your climactic stupor, it becomes clear that you male organ" + (pc.hasCocks() ? "s":"") + " did not spend " + (pc.hasCocks() ? "their":"its") + " pleasure idly. " + (pc.hasCocks() ? "They":"It") + " jerked and flung ");
+			if(pc.cumQ() < 25) output("long ropes");
+			else if(pc.cumQ() < 150) output("thick jets");
+			else if(pc.cumQ() < 1000) output("pornographic bursts");
+			else if(pc.cumQ() < 2500) output("obscene torrents");
+			else if(pc.cumQ() < 20000) output("body-soaking blobs");
+			else output("room-flooding deluges");
+			output(" of [pc.cum] up at you. You’re soaked in your own spermy juice, yet it feels to good to be mad about it. Rubbing it into one [pc.breast], you wonder if it would’ve been smarter to aim at the floor. Would it feel as good?\n\nProbably not.");
+			pc.applyCumSoaked();
+		}
+	}
+	if(!heatEvent)
+	{
+		processTime(25);
+		pc.orgasm();
+		if(cumQ > 0) pc.loadInCunt(cockSack,x);
+	}
+	else
+	{
+		processTime(60);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.loadInCunt(cockSack,x);
+		pc.loadInCunt(cockSack,x);
+		pc.loadInCunt(cockSack,x);
+	}
+	if(mouthLoad) pc.loadInMouth(pc);
+	(dildo as Dildo).timesUsed++;
+	IncrementFlag("DILDO_FAPPED");
+
+	if(cockSack.hasKnot(x))
+	{
+		output("\n\nThe knot doesn’t want to come out. You wiggle increasingly firmly until, at last, the swollen sphere pops free.");
+		if(cumQ > 0) 
+		{
+			output("A ");
+			if(cumQ < 50) output("blob");
+			else if(cumQ < 200) output("stream");
+			else output("tide of oozing, backwashed jism slides out after it.");
+		}
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
