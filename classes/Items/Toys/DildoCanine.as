@@ -33,7 +33,7 @@ package classes.Items.Toys
 			this.description = "a dog dildo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: The red rocket! Packing 12 inches of red hot dog-dick (but really silicone!), this dildo was lovingly reproduced from the popular “Astro Fox 69” game using the official 3D model!";
+			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Katherine! Packing 15 inches of bright red doggie dong (but really silicone!), this dildo was lovingly reproduced from the popular “Champions of Corruption” game using the official 3D model!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -58,9 +58,10 @@ package classes.Items.Toys
 		override public function cock():CockClass
 		{
 			var dildCock:CockClass = new CockClass();
-			dildCock.cLengthRaw = 12;
+			dildCock.cLengthRaw = 15;
 			dildCock.knotMultiplier = 1.25;
 			dildCock.cockColor = "bright red";
+			dildCock.cType = GLOBAL.TYPE_CANINE;
 			dildCock.addFlag(GLOBAL.FLAG_TAPERED);
 			dildCock.addFlag(GLOBAL.FLAG_KNOTTED);
 			return dildCock;
