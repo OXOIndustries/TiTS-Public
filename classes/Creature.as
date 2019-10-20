@@ -12816,12 +12816,6 @@
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int = 1): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
-			if(!hasCock())
-			{
-				removePerk("Firing Blanks");
-				removeStatusEffect("Blue Balls");
-				removeStatusEffect("Priapism");
-			}
 		}
 		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{
@@ -12864,12 +12858,6 @@
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
 			removeJunk(vaginas, arraySpot, totalRemoved);
-			if(!hasVagina())
-			{
-				removePerk("Sterile");
-				removeStatusEffect("Vaginally-Filled");
-				removeStatusEffect("Pussy Pumped");
-			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
 		{

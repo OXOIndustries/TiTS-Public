@@ -2433,7 +2433,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			if(pc.lust() >= 33)
 			{
 				output("\n\nYou could probably do something about that lust buildup too...");
-				masturbateButton(1);
+				masturbateButton(1, false, true);
 			}
 			break;
 	}

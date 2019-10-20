@@ -33,7 +33,7 @@ package classes.Items.Toys
 			this.description = "a deluxe terran dildo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp’s ‘<i>Cumlux</i>’ line of dildos comes hot on the heels of recent BionaHole(tm) breakthroughs, allowing for warm dildos that not only feel alive - they cum real, honest-to-goodness cum. Enjoy the feeling of a warm load of sexual relief, perfectly timed to your own climax on demand.\n\nIn a surprise move for the breeding-obsessed corporation, they even made sure the cum was sterile, though it makes sense that they wouldn't want to cut into the market for their own high-end, hospital-grade reproductive assistance devices.\n\nThis particular device was cloned from a nine-inch phallus with fairly juicy, 250 mL cumshots and grown from the purest digimeat(tm).";
+			this.tooltip = "TamaniCorp’s ‘<i>Cumlux</i>’ line of dildos comes hot on the heels of recent BionaHole(tm) breakthroughs, allowing for warm dildos that not only feel alive - they cum real, honest-to-goodness cum. Enjoy the feeling of a warm load of sexual relief, perfectly timed to your own climax on demand.\n\nIn a surprise move for the breeding-obsessed corporation, they even made sure the cum was sterile, though it makes sense that they wouldn’t want to cut into the market for their own high-end, hospital-grade reproductive assistance devices.\n\nThis particular device was cloned from a nine-inch phallus with fairly juicy, 250 mL cumshots and grown from the purest digimeat(tm).";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

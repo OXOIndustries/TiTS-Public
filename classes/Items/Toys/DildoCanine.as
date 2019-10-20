@@ -33,7 +33,7 @@ package classes.Items.Toys
 			this.description = "a dog dildo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Bukkir the feline stud! Packing 10 inches of pink cat-cock (but really silicone!), this dildo was lovingly reproduced from the popular <i>“Biocock Infinibang”</i> game using the official 3D model!";
+			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: The red rocket! Packing 12 inches of red hot dog-dick (but really silicone!), this dildo was lovingly reproduced from the popular “Astro Fox 69” game using the official 3D model!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -58,10 +58,11 @@ package classes.Items.Toys
 		override public function cock():CockClass
 		{
 			var dildCock:CockClass = new CockClass();
-			dildCock.cLengthRaw = 10;
-			dildCock.cockColor = "pink";
-			dildCock.cType = GLOBAL.TYPE_FELINE;
-			dildCock.addFlag(GLOBAL.FLAG_NUBBY);
+			dildCock.cLengthRaw = 12;
+			dildCock.knotMultiplier = 1.25;
+			dildCock.cockColor = "bright red";
+			dildCock.addFlag(GLOBAL.FLAG_TAPERED);
+			dildCock.addFlag(GLOBAL.FLAG_KNOTTED);
 			return dildCock;
 		}
 	}

@@ -33,7 +33,7 @@ package classes.Items.Toys
 			this.description = "a horse dildo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Urta! Packing 20 inches of pure black horsemeat (but really silicone!), this dildo was lovingly reproduced from the popular <i>“Champions of Corruption”</i> game using the official 3D model!";
+			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Urta! Packing 20 inches of pure black horsemeat (but really silicone!), this dildo was lovingly reproduced from the popular “Champions of Corruption” game using the official 3D model!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

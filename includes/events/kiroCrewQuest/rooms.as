@@ -810,7 +810,7 @@ public function buildDildoMenu():void
 	var dildos:Array = getDildos();
 	for(var x:int = 0; x < dildos.length; x++)
 	{
-		addItemButton(x, dildos[x].shortName, useADildo, dildos[x], null, null, pc, null)
+		addItemButton(x, dildos[x], useADildo, dildos[x], null, null, pc, null);
 	}
 }
 

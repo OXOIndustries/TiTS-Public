@@ -112,11 +112,23 @@ public function arousalMenu():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function masturbateButton(btnSlot:int = 0, roundTwo:Boolean = false):void
+public function masturbateButton(btnSlot:int = 0, roundTwo:Boolean = false, fapOnly:Boolean = false):void
 {
-	if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-	else if(!pc.canMasturbate()) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-	else if(availableFaps(roundTwo, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	if(pc.hasStatusEffect("Myr Venom Withdrawal"))
+	{
+		if(!fapOnly && canArouseSelf()) addButton(btnSlot, "Arousal", arousalMenu);
+		else addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	}
+	else if(!pc.canMasturbate())
+	{
+		if(!fapOnly && canArouseSelf()) addButton(btnSlot, "Arousal", arousalMenu);
+		else addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	}
+	else if(availableFaps(roundTwo, true).length <= 0)
+	{
+		if(!fapOnly && canArouseSelf()) addButton(btnSlot, "Arousal", arousalMenu);
+		else addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	}
 	else addButton(btnSlot, "Masturbate", masturbateMenu);
 }
 
@@ -3960,7 +3972,7 @@ public function autofellatioImmobilizationStop(func:Function):void
 	output("\n\n");
 	
 	clearMenu();
-	masturbateButton(0);
+	masturbateButton(0, false, true);
 	if(!canShrinkNuts()) addButton(1, "Help!", bigBallBadEnd, undefined, "Look for Help!", (rooms[currentLocation].hasFlag(GLOBAL.HAZARD) ? "Try to call for some help." : "Get some help from nearby."));
 	addButton(4, "Do It!", func, undefined, "Do It Anyway!", "Damn the consequences!");
 }
@@ -5120,16 +5132,16 @@ public function useDildoOnPussy(x:int):void
 
 	//Pg 3: Insertion. Tip, fit, inner nubs, and wetness variants.
 	//Wayyy 2 big (oh god it’ll never fit, it’s so tight, halp etc, no tapers!)
-	if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 2))
+	if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) > pc.vaginalCapacity(x) * 2))
 	{
 		output("\n\nThe toy shouldn’t fit inside you. It’s too big, and you’re too small and tight. Nevertheless, you work its " + cockSack.cockHead(0) + " back and forth against your [pc.vagina " + x + "], stretching yourself wider and wider every time. It hurts a little bit, but it’s a good hurt - the kind of hurt that’s going to leave you sore and satisfied from having taken so much dick. You audibly cuss when the " + cockSack.cockHeadNoun(0) + " finally breaches your gates, then stare down at your cunt in surprise. The hole is almost cartoonishly distended around the giant, fake cock. Your taut lips shine like fine glasswork, and they vibrate like plucked guitar strings when they bump across a veiny ridge.\n\nYou are so absurdly, blessedly <b>full</b>!");
 	}
 	//Too big (oh god its so hard to work in, etc. No tapers.):
-	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 1.2)) output("\n\nThe toy is <i>big</i>, but you’re not going to let that stop you, not when you’ve come this far. You grab it by the base and push the " + cockSack.cockHead(0) + " against your netherlips, pressing on them until they visibly strain around the offending implement of pleasure in taut protest. You wiggle it back and forth, varying the pressure so that it pushes a little deeper each time, working the too-thick head further and further until your body finally gives in and accepts the lurid tool with a dribble of hot, leaking joy.");
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) > pc.vaginalCapacity(x) * 1.2)) output("\n\nThe toy is <i>big</i>, but you’re not going to let that stop you, not when you’ve come this far. You grab it by the base and push the " + cockSack.cockHead(0) + " against your netherlips, pressing on them until they visibly strain around the offending implement of pleasure in taut protest. You wiggle it back and forth, varying the pressure so that it pushes a little deeper each time, working the too-thick head further and further until your body finally gives in and accepts the lurid tool with a dribble of hot, leaking joy.");
 	//Tight fit
-	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 0.85)) output("\n\nThe toy is going to be a good fit for you. You can tell. It lines up with your [pc.vagina " + x + "] so easily, and even though the " + cockSack.cockHead(0) + " catches for a second, a little bit of wiggling and squirming is all it takes for the fully lubricated " + cockSack.simpleCockNoun(0) + " to nudge its way inside. Ooh, that’s tight! You can feel yourself being spread open by every inch you take. The further you impale yourself, the more your petals bloom into a lurid flower, clutching the implement of faux fertilization in greedy rapture.");
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) > pc.vaginalCapacity(x) * 0.85)) output("\n\nThe toy is going to be a good fit for you. You can tell. It lines up with your [pc.vagina " + x + "] so easily, and even though the " + cockSack.cockHead(0) + " catches for a second, a little bit of wiggling and squirming is all it takes for the fully lubricated " + cockSack.simpleCockNoun(0) + " to nudge its way inside. Ooh, that’s tight! You can feel yourself being spread open by every inch you take. The further you impale yourself, the more your petals bloom into a lurid flower, clutching the implement of faux fertilization in greedy rapture.");
 	//good fit
-	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) >  pc.vaginalCapacity(x) * 0.15)) output("\n\nNo reason to keep a good toy waiting! You angle it up and in, thrusting it into the welcoming folds of your feminine delta with ease thanks to the well-selected size. It threads wondrously through your lips and burrows deep into your clutching channel. You squeeze down to heighten the sensation of penetration, then relax when it becomes a little too intense. Fully in control, you take the " + cockSack.simpleCockNoun(0) + " to the " + cockSack.knotDescript(0) + ".");
+	else if(!cock.hasFlag(GLOBAL.FLAG_TAPERED) && (cockSack.cockVolume(0) > pc.vaginalCapacity(x) * 0.15)) output("\n\nNo reason to keep a good toy waiting! You angle it up and in, thrusting it into the welcoming folds of your feminine delta with ease thanks to the well-selected size. It threads wondrously through your lips and burrows deep into your clutching channel. You squeeze down to heighten the sensation of penetration, then relax when it becomes a little too intense. Fully in control, you take the " + cockSack.simpleCockNoun(0) + " to the " + cockSack.knotDescript(0) + ".");
 	//dildo2small4cunt
 	else output("\n\nThe toy seems a little small, but you press on (and in!) It slides deep into your [pc.vagina " + x + "] with the most negligible of efforts, less an act of penetration and more a long, erotic swallow. You can clench down to heighten the pleasure, then relax to let it wiggle around and settle into place. A vagina like yours has plenty of room for the nimble device to explore, and you intend to take it on a grand tour of all your nooks and crannies.");
 	//Stretchin' bois!

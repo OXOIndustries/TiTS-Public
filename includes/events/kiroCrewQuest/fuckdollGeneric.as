@@ -1297,7 +1297,7 @@ public function wills69Part3(args:Array):void
 			growth--;
 			if(growth < 1) growth = 1;
 		}
-		output(" The artificial gravity doesn’t feel right, and that’s because your [pc.cock] has swelled in size, becoming lengthier and girthier after a night in a very special hotel. <b>It’s grown by at least " + num2Text(growth) + "inch" + (growth > 1 ? "es":"") + ".</b>");
+		output(" The artificial gravity doesn’t feel right, and that’s because your [pc.cock] has swelled in size, becoming lengthier and girthier after a night in a very special hotel. <b>It’s grown by at least " + num2Text(growth) + " inch" + (growth != 1 ? "es":"") + ".</b>");
 		pc.cocks[x].cLengthRaw += growth;
 		enemy.createStatusEffect("LipGrown");
 		pc.taint(2);
