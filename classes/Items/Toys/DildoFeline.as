@@ -33,7 +33,7 @@ package classes.Items.Toys
 			this.description = "a cat dildo";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Urta! Packing 20 inches of pure black horsemeat (but really silicone!), this dildo was lovingly reproduced from the popular <i>“Champions of Corruption”</i> game using the official 3D model!";
+			this.tooltip = "TamaniCorp’s ‘<i>Basics for Bitches</i>’ line of dildos is proud to include the latest addition to their phallic stable: Bukkir the feline stud! Packing 10 inches of pink cat-cock (but really silicone!), this dildo was lovingly reproduced from the popular <i>“Biocock Infinibang”</i> game using the official 3D model!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -58,11 +58,10 @@ package classes.Items.Toys
 		override public function cock():CockClass
 		{
 			var dildCock:CockClass = new CockClass();
-			dildCock.cLengthRaw = 20;
-			dildCock.cockColor = "black";
-			dildCock.cType = GLOBAL.TYPE_EQUINE;
-			dildCock.addFlag(GLOBAL.FLAG_BLUNT);
-			dildCock.addFlag(GLOBAL.FLAG_FLARED);
+			dildCock.cLengthRaw = 10;
+			dildCock.cockColor = "pink";
+			dildCock.cType = GLOBAL.TYPE_FELINE;
+			dildCock.addFlag(GLOBAL.FLAG_NUBBY);
 			return dildCock;
 		}
 	}
