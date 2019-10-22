@@ -867,9 +867,18 @@ package classes.Characters
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
-			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
+			// Genital checks
+			if(!hasCock())
 			{
+				removePerk("Firing Blanks");
 				removeStatusEffect("Blue Balls");
+				removeStatusEffect("Priapism");
+			}
+			if(!hasVagina())
+			{
+				removePerk("Sterile");
+				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Pussy Pumped");
 			}
 			
 			// Daily changes

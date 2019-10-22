@@ -157,7 +157,7 @@ package classes.GameData.Pregnancy.Handlers
 				txt = ParseText(txt);
 				
 				if(inPublic) mother.exhibitionism(1);
-				mother.orgasm();
+				//mother.orgasm();
 				mother.lust(50);
 			}
 			// Repeat blurbs

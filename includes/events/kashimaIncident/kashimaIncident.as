@@ -75,6 +75,8 @@ public function startKashimaJobbo(destination:String):void
 	if (annoIsCrew() && flags["ANNO_MISSION_OFFER"] == 3) output(" and maybe grill your favorite puppy-slut on why the company’s been tracking you");
 	output(".");
 
+	flags["KASHIMA_STATE"] = 0;
+	
 	sleep(false);
 	pc.lustRaw = pc.lustMin();
 	flags["STORED SHIP DESTINATION"] = destination;

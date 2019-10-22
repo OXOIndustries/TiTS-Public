@@ -198,7 +198,7 @@ public function shekkaRejoinCrew():void
 
 	output("\n\n<i>“You sure you have room?”</i> Shekka teases. <i>“You know us raskvel, taking up all kinds of room in those tight quarters, requesting 20 foot ceilings, and eating six times our weight in a day. I’d be a tremendous burden.”</i>");
 	output("\n\nYou answer by raising an eyebrow.");
-	output("\n\n<i>“Okay, okay, if you insist, but don’t come running to me when the ship’s protein stores run low.”</i> {Shekka glances down and flushes./Shekka winks.} <i>“I patch holes in the hull and make your engines run like new, but I can’t be held responsible if you knowingly overencumber your ship again!”</i>");
+	output("\n\n<i>“Okay, okay, if you insist, but don’t come running to me when the ship’s protein stores run low.”</i> Shekka " + (shekka.hasCock() ? "glances down and flushes" : "winks") + ". <i>“I patch holes in the hull and make your engines run like new, but I can’t be held responsible if you knowingly overencumber your ship again!”</i>");
 	output("\n\nWhile you’re reassuring the wide-hipped mechanic that you do in fact, have room, she’s tossing tools and equipment together for the walk back to the hangar. In fact, she doesn’t even pay attention to you until she’s gathered her things together by the door.");
 	output("\n\n<i>“Hey, [pc.name].”</i> Shekka crooks a finger.");
 	output("\n\nYou lean closer. <i>“What?”</i>");

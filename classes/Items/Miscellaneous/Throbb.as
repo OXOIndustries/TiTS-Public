@@ -209,14 +209,14 @@
 			}
 			
 			//Grow balls from nothing!
-			if(pc.ballsUnlocked(2) && pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
+			if(pc.ballsUnlocked(2) && pc.balls <= 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nJust when you’re getting into the chemical arousal that’s coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there’s nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
 				pc.balls = 2;
 				pc.ballSizeRaw = 3;
 				if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 3;
 				changes++;
 			}
-			else if (!pc.ballsUnlocked(2))
+			else if (!pc.ballsUnlocked(2) && pc.balls <= 0)
 			{
 				kGAMECLASS.output(pc.ballsLockedMessage());
 			}
@@ -244,7 +244,7 @@
 				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>Your [pc.balls] got bigger!</b>");
 				changes++;
 			}
-			else if (!pc.ballSizeUnlocked(newBallSize))
+			else if (!pc.ballSizeUnlocked(newBallSize) && pc.balls > 0)
 			{
 				kGAMECLASS.output(pc.ballSizeLockedMessage());
 			}

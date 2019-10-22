@@ -314,7 +314,7 @@ public function jerkOnYouYaDegenerate():void
 	output("\n\nRibbons of laquine love drip and fall on your head as the slut-bunny is positively drenched in her own torrential downpour. She flops back with a loud <i>THUD</i> and lets out a long, stinging sigh as her smooth, fuzzy sack is depleted.");
 	output("\n\n<i>“I didn’t think I could cum that much... <i>“G... geez... You really like playing the long game, huh cutie?”</i> the laquine hoarsely asks. <i>“Gosh... you have the best mouth everrrrr... You make all the slaves feel soooo uselesssss...”</i>");
 	output("\n\nAlthough sexual spillage still drips from your every limb, your head is perfectly clear after your orgasms subside. Unlike her, you can still move your legs!");
-	output("\n\n<i>“I can’t moooooveeee!”</i> she whines, her arms making limp attempts to reach out to you. <i>“But I guess that’s I get losing to you, huh?”</i>");
+	output("\n\n<i>“I can’t moooooveeee!”</i> she whines, her arms making limp attempts to reach out to you. <i>“But I guess that’s what I get losing to you, huh?”</i>");
 	output("\n\n<i>“Thinking of losing again?”</i> you coyly ask.");
 	output("\n\nShe grins as you take your material reward from her defenseless form. <i>“No way! I hate getting edged! Even though this was worth it, I’d rather just have some sweaty sex!”</i>");
 	output("\n\nTaking her compliment, you yank your well-earned chit from her. Still broiling in bunny batter, you turn to leave, the pitiful laquine’s groans carrying on even as the minutes go by.");

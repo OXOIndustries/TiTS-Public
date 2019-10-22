@@ -1591,7 +1591,7 @@
 			dataFile.shittyShips = new Object();
 			for (prop in kGAMECLASS.shits)
 			{
-				if ((kGAMECLASS.shits[prop] as ShittyShip).neverSerialize == false)
+				if (kGAMECLASS.shits[prop] != undefined && (kGAMECLASS.shits[prop] as ShittyShip).neverSerialize == false)
 				{
 					dataFile.shittyShips[prop] = (kGAMECLASS.shits[prop] as ShittyShip).getSaveObject();
 				}

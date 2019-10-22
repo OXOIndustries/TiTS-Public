@@ -116,7 +116,7 @@ public function disableExploreEvents():Boolean
 	// Pirate Base (Bomb Timer)
 	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
-	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	if (flags["KASHIMA_STATE"] >= 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
