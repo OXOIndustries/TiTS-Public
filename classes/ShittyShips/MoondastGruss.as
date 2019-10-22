@@ -46,7 +46,7 @@
 
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "A ship hailing from the junkyard wasteland of Tarkus, the Moodast Gruss isn’t a single specification of ship design, but rather a class of junker built by the technologically advanced local groups before First Contact with the U.G.C. The Moodast Gruss is little more than a gunboat, several hull pieces patched together from available technology around a heavy cannon. Surprisingly, all that firepower and armor leave it able to stand up to the best UGC civilian vessels. Decent engines and a complete lack of storage space round it out its status as a Rush-world bruiser without compare.";
+			this.long = "A ship hailing from the junkyard wasteland of Tarkus, the Moondast Gruss isn’t a single specification of ship design, but rather a class of junker built by the technologically advanced local groups before First Contact with the U.G.C. The Moondast Gruss is little more than a gunboat, several hull pieces patched together from available technology around a heavy cannon. Surprisingly, all that firepower and armor leave it able to stand up to the best UGC civilian vessels. Decent engines and a complete lack of storage space round it out its status as a Rush-world bruiser without compare.";
 			this.customBlock = "<b>Placeholder</b>.";
 			this.customDodge = "It lumbers aside!";
 			this.isPlural = false;

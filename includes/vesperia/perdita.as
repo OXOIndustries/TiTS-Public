@@ -153,7 +153,7 @@ public function learnAboutPerdita():void
 	flags["PERDITA_ABOUT"] = 1;
 	author("SomeKindofWizard");
 	output("<i>“My name’s [pc.name] Steele, pleasure.”</i> You accept the spot she’s cleared for you amongst her various empties, ordering a drink for yourself as you do so. Perdita necks a mouthful of her own; it looks like a simple whisky on the rocks...");
-	output("\n\nStill she doesn’t look <i>entirely</i> blasted. <i>“Something about me draw you in? Perhaps you’re just looking to kill a few.”</i> She pauses for a moment, pulling out a palm-sized looking datapad. It chirps at her and she smiles brightly, tail wagging. <i>“Sorry, got mail. Anyway, please! Tell me about yourself [pc.name]. I’ve got enough drink in me to actually manage being sociable.”</i>");
+	output("\n\nStill she doesn’t look <i>entirely</i> blasted. <i>“Something about me draw you in? Perhaps you’re just looking to kill some time.”</i> She pauses for a moment, pulling out a palm-sized looking datapad. It chirps at her and she smiles brightly, tail wagging. <i>“Sorry, got mail. Anyway, please! Tell me about yourself [pc.name]. I’ve got enough drink in me to actually manage being sociable.”</i>");
 	output("\n\nAlthough Perdita says as much, she has a hard time keeping eye contact with you while you’re talking. ");
 	if(pc.biggestTitSize() >= 4 || pc.lipRating() >= 4) output("Indeed, plenty of the time her attention trails down to your [pc.breasts] or [pc.lips]. ");
 	output("You recount some of your exploits (including the raunchier few) before you manage to turn the conversation in her direction.");

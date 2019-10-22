@@ -731,7 +731,8 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		else output(" [pc.cock]");
 		output(" seizing up and then pulsing thick surges of cum into her, delivering by one ardent thrust of your [pc.hips] after another. Bizzy coos with joy, mouth open and savoring it, as you");
 		if (cumQ <= 1500) output(" fill her with [pc.cum]");
-		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch.");
+		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch");
+		output(".");
 
 		output("\n\nYou relax against her when you’re done, feeling gently steamed, stroking her silky hair and fondling her");
 		if (flags["BIZZY_PORN_STUDIO"] == 1) output(" flat chest");

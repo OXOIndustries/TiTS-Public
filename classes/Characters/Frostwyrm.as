@@ -25,7 +25,7 @@ package classes.Characters
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -154,7 +154,7 @@ package classes.Characters
 			this.createCock();
 			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 			this.cocks[0].cLengthRaw = 36;
-			this.cocks[0].cThicknessRatioRaw = 5.5;
+			this.cocks[0].cThicknessRatioRaw = 1.75;
 			
 			this.balls = 2;
 			this.cumMultiplierRaw = 3500;
@@ -201,6 +201,11 @@ package classes.Characters
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			//dataObject._neverSerialize = false;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.cocks[0].cLengthRaw = 36;
+			dataObject.cocks[0].cThicknessRatioRaw = 1.75;
 		}
 		
 		override public function get bustDisplay():String

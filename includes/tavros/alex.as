@@ -649,24 +649,24 @@ public function pitchIntoAlexsBoyPussy():void {
 	output("\n\nCarefully untangling from you, Alex slips over onto the bed beside you and settles onto his knees. The hand on your shaft keeps a firm hold on you the entire time, too; eventually you’re freed however, Alex fluffing up a pillow and shifting into it to get nice and comfy.");
 	output("\n\n<i>“Alright now listen,”</i> Alex bites his bottom lip and coaxes you up and behind him like someone pulling a leash. <i>“");
 	if (pc.smallestCockLength() < 6) { //Small dick
-		output("You’re not that big but I’m counting on you to prove them all wrong about little peckers!");
+		output("You’re not that big but I’m counting on you to prove them all wrong about little peckers! ");
 	}
 	else if (pc.smallestCockLength() < 12) { //Medium dick
-		output("A nice dick like this needs to really fuck me silly or I might not squeeze it tight enough, understand?");
+		output("A nice dick like this needs to really fuck me silly or I might not squeeze it tight enough, understand? ");
 	}
 	else if (pc.smallestCockLength() < 20) { //Large dick
-		output("As big as you are, all I need you to do is pound my pussy like it’s an onahole.");
+		output("As big as you are, all I need you to do is pound my pussy like it’s an onahole. ");
 	}
 	else { //HUGE dick
-		output("It’s going to be a miracle if I fit you, you know that? But man... it’s going to feel like heaven!");
+		output("It’s going to be a miracle if I fit you, you know that? But man... it’s going to feel like heaven! ");
 	}
 	output("So soldier up and fuck my brains out, Steele!”</i>");
 	output("\n\nThe bossy bottom releases you, tucks his arms under the pillow and starts plump butt at you. So demanding! Giving him an appreciative spank - and sending his ass rippling - you set to work leaning over him and pinning him down. If he wants to fuck like animals then he’d at least better be ready to walk funny for a bit. Aligning " + (pc.cockTotal() == 1 ? "your " + pc.cockDescript() : "one of your cocks") + " with his dripping wet lips and putting your " + pc.breastDescript(0) + " to make sure you’ve got him held down, you push inside his womanly hole without much restraint.");
 	output("\n\n<i>“Fuck yes!”</i> Alex’s pussy clenches tight around you, " + (pc.smallestCockLength() >= 16 ? "ignoring the bulging of his stomach and screaming out a lengthier moan into his pillow" : "groaning out while your balls thump into his womanhood’s folds with an almost deafening pop of your bodies") + ".");
 	output("\n\nThat’s what you like to hear! No reason to keep waiting, you set a rough-thwacking pace so you can pummel him from tip to base as hard as Alex can handle it. Like an absolute champ he takes it alright; his folds vice tighter but his wetness betrays any attempt to slow you, building more friction along your cockmeat. The dark-skinned brunette’s face might be half-hidden his cushion but not enough to conceal his wanton lust."); 
-	output("The red shade glazing over his features and the almost too hard bite of the corner of his lower lip might have been alarming if you didn’t feel his pre-cum splattering both of your thighs everytime you slammed into him and made his seven-incher flop around.");
+	output("\n\nThe red shade glazing over his features and the almost too hard bite of the corner of his lower lip might have been alarming if you didn’t feel his pre-cum splattering both of your thighs everytime you slammed into him and made his seven-incher flop around.");
 	output("\n\nBut you want to really make him cum; you don’t want it to just be a nice bit of rough sex that he can forget, do you? Releasing his hips and reaching around, you slip your hands over his muscled chest and lift him up from his pillowy safeguard almost too fast; he’s still holding it to his face in confusion while you stir his pussy up trying to re-align and continue fucking him like a cocksleeve."); 
-	output("Changing the angle tightens him even further and forces a scream of joy from Alex and a hissing groan of pleasurable pain from you, your raven-haired boy and his pussy’s tightness reaches what must surely be his peak. Alex drops his pillow as his voice and mind catch up to the please, quickly taking your hands even while his mouth rolls open and his tongue droops out in an early ahegao.");
+	output("\n\nChanging the angle tightens him even further and forces a scream of joy from Alex and a hissing groan of pleasurable pain from you, your raven-haired boy and his pussy’s tightness reaches what must surely be his peak. Alex drops his pillow as his voice and mind catch up to the please, quickly taking your hands even while his mouth rolls open and his tongue droops out in an early ahegao.");
 	output("\n\n<i>“Come on, Steele! Keep going! Almost there! Fuck yeah, man! This is what I wanted!”</i> His voice breaks as a particularly hard clap of your hips into his jiggly ass strikes his insides just right. <i>“<b>Holy FUCK</b>! Cum all you want, you fucking <b>beast</b>!”</i>");
 	output("\n\nHe doesn’t need to beg; you gently tuck your head ");
 	if (pc.tallness < 71) output("against his back");
@@ -899,21 +899,21 @@ public function frottageWithAlex():void {
 	//balls and taur/’pillar: 
 	if(pc.balls > 0 && pc.isTaur()) 
 	{
-		output("as your [pc.sack] swings heavily below you");
+		output(" as your [pc.sack] swings heavily below you");
 		if(pc.ballSize() > 6) output(", slapping against the side of the bed");
 		output(" with each trust");
 	}
 	//Hermy balls taur
 	else if(pc.balls > 0 && pc.hasVagina())
 	{
-		output("as your [pc.sack] swings heavily below you and your neglected cunt");
+		output(" as your [pc.sack] swings heavily below you and your neglected cunt");
 		if(pc.totalVaginas() > 1) output("s contract");
 		else output(" contracts");
 		output(" rhythmically");
 	}
 	//Just a herm
 	else if(pc.hasCock() && pc.hasVagina()) {
-		output("as your neglected cunt");
+		output(" as your neglected cunt");
 		if(pc.totalVaginas() > 1) output("s contract");
 		else output(" contracts");
 		output(" rhythmically");
@@ -1101,21 +1101,21 @@ public function catchAnalFromAlex():void {
 	output((pc.hasTail() ? "Brushing your [pc.tails] across the inside of his slick thighs" : "Trailing a finger up his lightly-muscled pecs and hooking your [pc.legOrLegsNoun]") + " around his back, you can’t help but approve of his taste. If the maleherm is looking to fuck your butt missionary-style, it’s almost like he’s trying to mating-press your ass like it’s a fertile cunt.");
 	output("\n\n<i>“Pft,”</i> Alex flicks his hair from his face with a sway of his head and topples closer, pecking you with a kiss while he shifts onto his knees and over you as best her can. <i>“I might not be able to put a kid in it but if you keep that up I might stuff it full enough you’d think your butt <b>is</b> pregnant!”</i>");
 	output("\n\nHis left hand slips behind your head but the right slides down between you both and past " + (pc.hasCock() ? "both" : "his") + " dick and between his thighs. You can’t see it but you can hear his fingers slipping up and down Alex’s pussy, gathering a sheen-worthy amount of his personal moisture. Both of you lock lips again - albeit this time getting a substantial amount of tongue to dance with yours in slippery harmony - before the maleherm pulls free and sits up."); 
-	output((pc.tallness <= 70 ? "Looming over you from his knees" : "Trying his best to appear befitting your larger stature") + ", Alex wastes no time squeezing his dry hand’s grip onto your hip to keep you still; your focus instead turns to his girl-slicken cock getting rubbed up and made perfect for pounding your [pc.anus] to his shape.");
+	output("\n\n" + (pc.tallness <= 70 ? "Looming over you from his knees" : "Trying his best to appear befitting your larger stature") + ", Alex wastes no time squeezing his dry hand’s grip onto your hip to keep you still; your focus instead turns to his girl-slicken cock getting rubbed up and made perfect for pounding your [pc.anus] to his shape.");
 	output("\n\nAnd once he’s ready, Alex doesn’t waste anymore time slipping back over you and forcing your [pc.legOrLegsNoun] to hike up and your thighs to hug his waistline. Grabbing his ass in one hand and the sheets in the other catches the prettyboy off-guard. Just long enough to make him pause with the tip of his human prick’s nestling at your [pc.anus]. Smugly squeezing and lifting, Alex wraps both of his arms around behind you and pulls the two of you together into a nice, cutesy kiss."); 
 	//Deflowerity deflower.
-	output("But the romance vanishes in an instant when he takes your breath" + (isVirgin ? " - and virginity -" : "") + " away in one filling push. ");
-	pc.buttChange(20, true, true, false);
+	output("\n\nBut the romance vanishes in an instant when he takes your breath" + (isVirgin ? " - and virginity -" : "") + " away in one filling push.");
+	pc.buttChange(20);
 	output("\n\nAs much as you want to moan he won’t let you, humping you with his arms clinging tight enough that your moans echo within his mouth and your throat. It’s an almost-suffocating feeling but one that Alex doesn’t relent on in his buttfucking; the way his dick pushes into you ensures you feel his member bottom out and his nutsack gently thwacking up your spine. And to his credit, Alex’s anal pounding betrays the androgynous maleherm and makes him seem like a true stud."); 
-	output("Even if he wasn’t the biggest cock in space, the way it brushes up your inner walls" + (pc.hasCock() ? " and prostate" : "") + " sparks pleasure all the way up to your toes!"); 
+	output("\n\nEven if he wasn’t the biggest cock in space, the way it brushes up your inner walls" + (pc.hasCock() ? " and prostate" : "") + " sparks pleasure all the way up to your toes!"); 
 	if (pc.hasCock()) output(" Trapped between your bodies, you’re making a mess of your stomachs with all the pre-cum you’re leaking.");
 	output("\n\nBut for all the buttfucking rocking his bed and your hole into his shape, Alex isn’t in much better shape as far as handling his mating press goes. You can feel strings of pre-cum turning into a sticky, wet mess on-par with the dripping of his girl-gash across your thighs. Pushing your tongue against his and forcing yourselves apart, your hands slip up to the back of his head and force him to rest over your shoulder."); 
-	output("Thankfully for both of you it doesn’t slow him in the slightest; in fact, Alex’s whimpering borders on the most innocent thing you’ve seen for someone having an anal field-day.");
+	output("\n\nThankfully for both of you it doesn’t slow him in the slightest; in fact, Alex’s whimpering borders on the most innocent thing you’ve seen for someone having an anal field-day.");
 	output("\n\n<i>“F-Fuck! Your hole is so warm I want to live in it! Steele, I-I... y-you better swing by and let me fill this ass of yours up more often!”</i>");
 	output("\n\nYou’ll think about it; hooking your [pc.legOrLegsNoun] behind him, you raise your hips just that extra bit to encourage him to ram harder. The slapping of flesh must be audible outside by now with how deafening it is inside the room. As far as you’re concerned, all you care about is making him blow his load and cumming your brains out. Tightening up forces Alex to squeal in ecstasy and half-collapse into you, your right hand slipping down and carefully behind him to his pussy before he can react."); 
 	output("Thankfully for you the two of you aren’t face-to-face; brushing your fingertips up and down his sloppy folds makes him both thrust harder and openly scream into the sheets for release.");
 	output("\n\nAnd boy does he cum, smacking together and grinding into you to get the best seal possible. The grinding smothers the tip of his cock against your " + (pc.hasCock() ? "prostate" : "wall") + ", amplifying the pressure of his seed erupting free of his prick. It hits hard enough to make your lip-biting draw traces of blood, stifling your own moans and squirming beneath him for any room to escape."); 
-	output("But all Alex allows is you to adjust for more of his weight to collapse into you, the sticky warm seed stringing and practically glazing your insides alabaster without stopping. His cunt releases a nice spray against your fingers but the lack of slowing down means you keep rubbing mid-crash into your own orgasm.");
+	output("\n\nBut all Alex allows is you to adjust for more of his weight to collapse into you, the sticky warm seed stringing and practically glazing your insides alabaster without stopping. His cunt releases a nice spray against your fingers but the lack of slowing down means you keep rubbing mid-crash into your own orgasm.");
 	output("\n\nIn seconds, the two of you catch into a loop where his feminine parts let him keep riding his orgasm and his cum-hammering filling continues to push you toward the brink. ");
 	if (pc.hasCock()) {
 		output("Your own cock even fires its load, " + (pc.cumQ() < 100 ? "coating your chests" : "spraying out over the two of you") + " in [pc.cum] and ensuring that every bit of movement makes you stick together a bit better. "); 
