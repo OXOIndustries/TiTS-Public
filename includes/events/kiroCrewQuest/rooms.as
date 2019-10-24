@@ -204,7 +204,7 @@ public function initKQRooms():void
 
 	rooms["KQ R20"] = new RoomClass(this);
 	rooms["KQ R20"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ R20"].description = "A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.";
+	rooms["KQ R20"].description = "";
 	rooms["KQ R20"].planet = "N/A";
 	rooms["KQ R20"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R20"].northExit = "KQ R18";
@@ -212,7 +212,7 @@ public function initKQRooms():void
 	rooms["KQ R20"].southExit = "";
 	rooms["KQ R20"].westExit = "KQ P20";
 	rooms["KQ R20"].moveMinutes = 1;
-	rooms["KQ R20"].runOnEnter = kiroQuestHallwaysEncounters;
+	rooms["KQ R20"].runOnEnter = kqr20bonus;
 	rooms["KQ R20"].addFlag(GLOBAL.INDOOR);
 	rooms["KQ R20"].addFlag(GLOBAL.HAZARD);
 
@@ -534,8 +534,15 @@ public function kqt12Bonus():Boolean
 	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, <i>“Lab.”</i> That must be where she" + (9999 == 9999 ? "’s":" was") + " keeping Kiro!");
 	return kiroQuestHallwaysEncounters();
 }
+public function kqr20bonus():Boolean
+{
+	showImage("ObediencePoster");
+	output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+	return kiroQuestHallwaysEncounters();
+}
 public function kqn14Bonus():Boolean
 {
+	showImage("MindfuckPoster");
 	output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
 	return kiroQuestHallwaysEncounters();
 }
