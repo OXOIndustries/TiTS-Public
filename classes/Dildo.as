@@ -59,7 +59,7 @@ package classes {
 					kGAMECLASS.chars["CARL"].createStatusEffect("DILDO");
 					kGAMECLASS.chars["CARL"].inventory.push(this);
 					
-					kGAMECLASS.vaginaRouter([kGAMECLASS.useDildoOnPussy,cock().volume(),0,0]);
+					kGAMECLASS.vaginaRouter([kGAMECLASS.useDildoOnPussy,cock().volume(),1,0]);
 				}
 			}
 			else

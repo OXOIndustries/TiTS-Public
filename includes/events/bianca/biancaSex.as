@@ -773,33 +773,43 @@ public function biancaBJTwo(cockIdx:int):void
 	// pc Cock Canine
 	if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_CANINE)
 	{
-		output("\n\n<i>“Do you think it’ll go inside when it inflates?”</i> Bianca asks, though you’re not sure what she means until you feel her hands on it. <i>“This is the best part of an ausar’s cock. The shaft has a woodsy, primal smell underlying its sexual musk.”</i> She licks your tip, nostrils flaring in excitement. <i>“That meaty scent sets me off.”</i> She kisses along the length of your shaft. <i>“If you caught me at a bad time, [pc.name]... I would bend over for this without a second thought.”</i> The fox intakes the scent of your [pc.cockColor " + cockIdx + "] rocket, sighing dreamily until a cock-addicted giggle interrupts it. Dr. Ketria’s squirming around in obvious, smoldering lust. <i>“Watching a cock get hard makes me happy... but a knot is that and more. <b>Your knot</b> will batter into my lips... are you going to treat my belly like a womb?”</i>");
+		output("\n\n");
+		showImage("Bianca_Canine_BJ");
+		output("<i>“Do you think it’ll go inside when it inflates?”</i> Bianca asks, though you’re not sure what she means until you feel her hands on it. <i>“This is the best part of an ausar’s cock. The shaft has a woodsy, primal smell underlying its sexual musk.”</i> She licks your tip, nostrils flaring in excitement. <i>“That meaty scent sets me off.”</i> She kisses along the length of your shaft. <i>“If you caught me at a bad time, [pc.name]... I would bend over for this without a second thought.”</i> The fox intakes the scent of your [pc.cockColor " + cockIdx + "] rocket, sighing dreamily until a cock-addicted giggle interrupts it. Dr. Ketria’s squirming around in obvious, smoldering lust. <i>“Watching a cock get hard makes me happy... but a knot is that and more. <b>Your knot</b> will batter into my lips... are you going to treat my belly like a womb?”</i>");
 		output("\n\nThe words coming out of her mouth are enough to make your [pc.thighs] tremble.");
 	}
 	// pc Cock Equine
 	else if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_EQUINE)
 	{
-		output("\n\nBianca whines and falls weakly into a bow-legged mess underneath your scintillating equine endowment. Nose utterly wrinkled, her lips quiver trying to mouth words she speaks through her tracing fingers. <i>“This musk... this wonderfully rich musk... you spoil me, [pc.name]. This proud, bestial cock makes me feel so insignificant-”</i> She shoots up, kissing your medial ring with a happy cry. <i>“No! Not insignificant, but important. This will flare inside <b>me,</b>”</i> she moans, ringing your flat tip, <i>“this is big, hot, and hard because it wants <b>me,</b>”</i> she wedges her nostrils between two flared veins, taking another whiff of your [pc.cockColor " + cockIdx + "] horsemeat, then at the fat loop of your medial ring. <i>“I can’t wait to feel this inside me... I may even taste it in my dreams...”</i>");
+		output("\n\n");
+		showImage("Bianca_Equine_BJ");
+		output("Bianca whines and falls weakly into a bow-legged mess underneath your scintillating equine endowment. Nose utterly wrinkled, her lips quiver trying to mouth words she speaks through her tracing fingers. <i>“This musk... this wonderfully rich musk... you spoil me, [pc.name]. This proud, bestial cock makes me feel so insignificant-”</i> She shoots up, kissing your medial ring with a happy cry. <i>“No! Not insignificant, but important. This will flare inside <b>me,</b>”</i> she moans, ringing your flat tip, <i>“this is big, hot, and hard because it wants <b>me,</b>”</i> she wedges her nostrils between two flared veins, taking another whiff of your [pc.cockColor " + cockIdx + "] horsemeat, then at the fat loop of your medial ring. <i>“I can’t wait to feel this inside me... I may even taste it in my dreams...”</i>");
 		output("\n\nHer sheer reverence for your dick is enough to make your thighs tremble.");
 	}
 	// pc Cock Feline
 	else if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_FELINE)
 	{
-		output("\n\n<i>“I can’t wait to feel these in my throat");
+		output("\n\n");
+		showImage("Bianca_Feline_BJ");
+		output("<i>“I can’t wait to feel these in my throat");
 		if (flags["BIANCA_SEXED_BLOW"] == undefined) output(" again");
 		output(",”</i> Bianca says in brazenly slutty fashion, ogling the fleshy nodules bristling along your [pc.cockColor " + cockIdx + "] cockflesh. <i>“Kaithrits can satisfy the clit hands-free with these. But, [pc.name],”</i> she purrs, jacking the entirety of your feline length, <i>“you’re going to brush and <b>rake</b> my throat while you stretch it. How does that make you feel?”</i> Your dick answers for you, throbbing out a stripe of spooge that paints her cheek. <i>“The smell is dry and relaxing... and it will enter easily with this smooth, pointed head.”</i>");
 	}
 	// pc Cock Suula
 	else if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_SIREN)
 	{
-		output("\n\nBianca hums like a disciplinary school teacher, pinching one of your venom-imbued tendrils. <i>“Suula venom has a potent effect, and not even the wielder is immune to it. When you put this in my throat, they’ll treat it like a pussy. What is it going to feel like");
+		output("\n\n");
+		showImage("Bianca_Suula_BJ");
+		output("Bianca hums like a disciplinary school teacher, pinching one of your venom-imbued tendrils. <i>“Suula venom has a potent effect, and not even the wielder is immune to it. When you put this in my throat, they’ll treat it like a pussy. What is it going to feel like");
 		if (flags["BIANCA_SEXED_BLOW"] == undefined) output(" this time");
 		output("...”</i> She huffs downwind your thrumming girth, causing the stingers at your crown and base to flutter in mesmerizing motions, billowing in her gratified expression. <i>“I can’t wait, [pc.name].”</i> She winks. <i>“Make sure you give me everything.”</i>");
 	}
 	// pc Cock Human (or Unspecified)
 	else
 	{
-		output("\n\n<i>“Watching your cock get hard is so flattering, [pc.name].”</i>");
+		output("\n\n");
+		showImage("Bianca_Human_BJ");
+		output("<i>“Watching your cock get hard is so flattering, [pc.name].”</i>");
 		output("\n\nShe’s just saying that to be nice.");
 		output("\n\n<i>“But I’m not!”</i> the fox-milf retorts, staring incredulously, licking all around the dome. <i>“These veins are thick and healthy, and you’re so warm! It’s weight is <b>there</b> in my wrists every time your heart beats, I can feel it. Just a few licks and touches is all it takes for you to want to breed. It makes me happy,”</i> she says, groaning into your bone with need. <i>“Well, [pc.name]?”</i> Tilting her head, she kisses your cumslit. <i>“Do you want to breed my mouth?”</i>");
 	}

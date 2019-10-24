@@ -2592,6 +2592,8 @@ public function prepShipfite():void
 {
 	//setNavDisabled(NAV_OUT_DISABLE);
 	shipLocation = "SPACE";
+	generateMap();
+	showLocationName();
 }
 
 public function leaveShipOK():Boolean

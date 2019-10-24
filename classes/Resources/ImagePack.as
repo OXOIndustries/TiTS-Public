@@ -22,6 +22,16 @@ package classes.Resources
 			public static const bianca_octomush_thighSex:Class;
 			[Embed(source = "../../assets/images/imagepack/bianca/bianca_working_marked_NOLIMIT.png", mimeType = "image/png")]
 			public static const bianca_working_marked_NOLIMIT:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_human.png", mimeType = "image/png")]
+			public static const Bianca_Human_BJ:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_suula.png", mimeType = "image/png")]
+			public static const Bianca_Suula_BJ:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_cat.png", mimeType = "image/png")]
+			public static const Bianca_Feline_BJ:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_horse.png", mimeType = "image/png")]
+			public static const Bianca_Equine_BJ:Class;
+			[Embed(source = "../../assets/images/imagepack/bianca/bianca_octomush_fellatio_dog.png", mimeType = "image/png")]
+			public static const Bianca_Canine_BJ:Class;
 
 			//CAMERON SPLAYED
 			[Embed(source = "../../assets/images/imagepack/cameron/javkiller_cameron.png", mimeType = "image/png")]
@@ -115,6 +125,11 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/kiro/dsan_kiro_kally_questycommissioned.jpg", mimeType = "image/jpg")]
 			public static const KiroKallyTeamMilk:Class;
 			
+			//KIROQUEST
+			[Embed(source = "../../assets/images/imagepack/kiroquest/dcl_kiroquest_kiro_quest_pos_dolls_motivational_poster_obedience.png", mimeType = "image/png")]
+			public static const MindfuckPoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
+			public static const ObediencePoster:Class;
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]

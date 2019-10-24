@@ -23527,5 +23527,13 @@
 		{
 			return (siliconeRating(sType) > 0);
 		}
+		public function hasDildo():Boolean
+		{
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i] is Dildo) return true;
+			}
+			return false;
+		}
 	}
 }
