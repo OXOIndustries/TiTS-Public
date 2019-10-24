@@ -3553,7 +3553,7 @@ public function variableRoomUpdateCheck():void
 	}
 	//Filling Burt's back end
 	//Kally not at work or incesty zil
-	if ((hours < 6 || hours >= 17) || zilTwinsAtBar())
+	if ((hours < 6 || hours >= 17) || zilTwinsAtBar() || thyvaraInBurts())
 		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
