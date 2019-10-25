@@ -1,6 +1,7 @@
 public function showTreatedZilBull():void
 {
 	author("Altair");
+	showBust("ZIL_MALE_TREATED");
 	showName("\nTREATED ZIL");
 }
 

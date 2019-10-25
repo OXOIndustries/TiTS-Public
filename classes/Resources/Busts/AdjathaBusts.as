@@ -546,6 +546,19 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_xl_2_nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_XL_2_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_laquine.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_LAQUINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_laquine_cum.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_LAQUINE_CUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_devil.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_DEMON:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_devil_cum.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_DEMON_CUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_terran.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_TERRAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_terran_cum.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_TERRAN_CUM:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
 		public var Bust_KRISSY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy_nude.png", mimeType = "image/png")]
@@ -1258,6 +1271,9 @@ package classes.Resources.Busts
 		public var Bust_ZIL_HOVERFLY_NUDE:Class;
 		public function get Bounds_ZIL_HOVERFLY_NUDE():Rectangle { return Bounds_ZIL_HOVERFLY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/zil_male_treated.png", mimeType = "image/png")]
+		public var Bust_ZIL_MALE_TREATED:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/zil9tail.png", mimeType = "image/png")]
 		public var Bust_ZIL9TAIL:Class;
 		public var Bounds_ZIL9TAIL:Rectangle = new Rectangle(46, 15, 96, 55);
@@ -1771,6 +1787,19 @@ package classes.Resources.Busts
 			public var Full_KIRO_XL_1_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_laquine.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_LAQUINE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_laquine_cum.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_LAQUINE_CUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_devil.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_DEMON:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_devil_cum.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_DEMON_CUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_terran.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_TERRAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_terran_cum.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_TERRAN_CUM:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
@@ -2411,6 +2440,9 @@ package classes.Resources.Busts
 			public var Full_ZIL_HOVERFLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hoverfly_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/zil_male_treated.png", mimeType = "image/png")]
+			public var Full_ZIL_MALE_TREATED:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/zil9tail.png", mimeType = "image/png")]
 			public var Full_ZIL9TAIL:Class;

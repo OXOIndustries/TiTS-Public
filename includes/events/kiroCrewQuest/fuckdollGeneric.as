@@ -21,10 +21,10 @@ public function showSexDoll(nude:Boolean = false):void
 	showName("\nSEXDOLL");
 	if(enemy != null)
 	{
-		if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) showBust("KQ_SEXDOLL_LAQUINE");
-		else if(enemy.hasCock(GLOBAL.TYPE_VULPINE)) showBust("KQ_SEXDOLL_VULPATRA");
-		else if(enemy.hasCock(GLOBAL.TYPE_FELINE)) showBust("KQ_SEXDOLL_DEMON");
-		else showBust("KQ_SEXDOLL_HUMAN");
+		if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) showBust("KQ_SEXDOLL_LAQUINE" + (nude ? "_CUM":""));
+		else if(enemy.hasCock(GLOBAL.TYPE_VULPINE)) showBust("KQ_SEXDOLL_VULPATRA" + (nude ? "_CUM":""));
+		else if(enemy.hasCock(GLOBAL.TYPE_DEMONIC)) showBust("KQ_SEXDOLL_DEMON" + (nude ? "_CUM":""));
+		else showBust("KQ_SEXDOLL_TERRAN" + (nude ? "_CUM":""));
 	}
 }
 
