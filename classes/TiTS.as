@@ -151,6 +151,7 @@
 		//Followers
 		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
+		include "../includes/follower/ardia.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
 		include "../includes/follower/azraPlantSamples.as";

@@ -154,6 +154,21 @@
 				kGAMECLASS.flags["SJW"] = undefined;
 			}
 		}
+		public static function ArdiaLetsYouChoose():void
+		{
+			if (kGAMECLASS.pc.short == "undefined" || kGAMECLASS.pc.short.length == 0) return;
+			Cheats.OutputStuff();
+			if (kGAMECLASS.flags["ARDIA_CHOICE"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>Ardia will still display her sex menu at high DM.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Ardia will pick sex scenes as normal.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = undefined;
+			}
+		}
 
 		public static function infiniteCrewSpace():void
 		{

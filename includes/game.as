@@ -804,6 +804,7 @@ public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
 public const CREW_EITAN: int = 24;
+public const CREW_ARDIA: int = 25;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -812,6 +813,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberRecruited()) crewMembers.push(CREW_AMBER);
 	if (annoRecruited()) crewMembers.push(CREW_ANNO);
+	if (ardiaRecruited()) crewMembers.push(CREW_ARDIA);
 	if (azraRecruited()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (celiseIsFollower()) crewMembers.push(CREW_CELISE);
@@ -850,6 +852,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberIsCrew()) crewMembers.push(CREW_AMBER);
 	if (annoIsCrew()) crewMembers.push(CREW_ANNO);
+	if (ardiaIsCrew()) crewMembers.push(CREW_ARDIA);
 	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsCrew()) crewMembers.push(CREW_BESS);
 	if (celiseIsCrew()) crewMembers.push(CREW_CELISE);
@@ -970,6 +973,7 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (annoIsCrew()) c.push(anno);
+	if (ardiaIsCrew()) c.push(ardia);
 	if (syriIsCrew()) c.push(syri);
 	if (azraIsCrew()) c.push(azra);
 	if (bessIsCrew()) c.push(bess);
@@ -1021,6 +1025,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	
 	if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
+	if (ardiaIsCrew()) crewMembers.push("Ardia");
 	if (azraIsCrew()) crewMembers.push("Azra");
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
 	if (celiseIsCrew()) crewMembers.push("Celise");
@@ -1072,6 +1077,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 	{
 		case "Amber": return dryadBustDisplay(); break;
 		case "Anno": return annoBustDisplay(); break;
+		case "Ardia": return ardiaBustDisplay(); break;
 		case "Azra": return azraBustString(); break;
 		case "Ben-14":
 		case "Bess-13": return bessBustDisplay(); break;
@@ -1124,6 +1130,7 @@ public function getSleepingPartnerBustDisplay():String
 	{
 		case "AMBER": return dryadBustDisplay(); break;
 		case "ANNO": return annoBustDisplay(); break;
+		case "ARDIA": return ardiaBustDisplay(); break;
 		case "AZRA": return azraBustString(); break;
 		case "BESS": return bessBustDisplay(); break;
 		case "CELISE": return celiseBustDisplay(); break;
@@ -1194,6 +1201,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += annoCrewBlurbs(btnSlot, InCollection(CREW_ANNO, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (ardiaIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += ardiaCrewBlurbs(btnSlot, InCollection(CREW_ARDIA, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1772,6 +1788,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = ramisSleep();
 					}
 					break;
+				case "ARDIA":
+					if (ardiaIsCrew())
+					{
+						ardiaSleep();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1831,6 +1854,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
 		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (flags["ARDIA_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ardiaWantsToDoMorningThings];
 		if (pc.hasStatusEffect("PENNY_WAKEUP_CUED"))
 		{
 			pc.removeStatusEffect("PENNY_WAKEUP_CUED");
@@ -2103,6 +2127,11 @@ public function insideShipEvents():Boolean
 	if(amberAvailable() && mitziAvailable() && mitziIsCrew() && amberIsCrew() && amberDumbfuckDoses() >= 3 && flags["MITZI_FAV_DRUG"] != undefined && (flags["MITZI_AMBER_SOAK_LAST"] == undefined || flags["MITZI_AMBER_SOAK_LAST"] + 60*24*3 < GetGameTimestamp()) && rand(10) == 0) 
 	{
 		amberAndMitziFun();
+		return true;
+	}
+	if (flags["DZAAN_CURE_ARRIVAL"] < GetGameTimestamp() && ardiaIsCrew() && annoIsCrew())
+	{
+		annoHasYourDzaanDrugs();
 		return true;
 	}
 
@@ -3992,6 +4021,10 @@ public function variableRoomUpdateCheck():void
 	// Dr. Teyaal
 	if(flags["TEYAAL_DEFEATED"] == 2) rooms["ZSF AD20"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
+
+	// Ardia Leaving
+	if (ardiaInZhengShi()) rooms["ZSF I22"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF I22"].removeFlag(GLOBAL.NPC);
 
 	/* UVETO */
 	

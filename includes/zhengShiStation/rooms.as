@@ -1172,7 +1172,6 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].moveMinutes = 1;
 	rooms["ZSF I22"].runOnEnter = foundryLoungeBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
 
 	rooms["ZSF G22"] = new RoomClass(this);
 	rooms["ZSF G22"].roomName = "BREAK\nROOM";
