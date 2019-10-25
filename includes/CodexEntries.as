@@ -34,6 +34,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Matisar", matisarCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Mothrine", mothrineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
@@ -840,6 +841,55 @@ public function laquineCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Laquines");
 }
+public function matisarCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Matisar"));
+	outputCodex("<b>Name (Singular & Plural):</b> Matisar");
+	outputCodex("\n<b>Sexes:</b> 55% female, 40% male, 5% hermaphrodite.");
+	outputCodex("\n<b>Height:</b> 4\' to 6\' for males, 6\' to 8\' for females.");
+	outputCodex("\n<b>Hair:</b> Only hair is atop the head. Usually greens and browns, rarely streaked with red, pink or white.");
+	outputCodex("\n<b>Eyes:</b> Dark brown sclera, with a wide range of iris colours, from pink, red and yellow, to blue, purple and white. They have a pupil that contracts into a four-pointed star, expanding into a traditional circular shape.");
+	outputCodex("\n<b>Chitin:</b> Colours range from dark greens to aqua, or dark greys. Rarely more vibrant colours such as pink, yellow and orange.");
+	outputCodex("\n<b>Arms:</b> Covered in thick chitin, spined along the forearm. Hands contain four clawed fingers and a thumb.");
+	outputCodex("\n<b>Legs:</b> Chitinous, digitigrade legs that end in four toed feet, three forward, one backward.");
+	outputCodex("\n<b>Abdomen:</b> Female abdomen stretches from 6-12” long. In comparison males are only 4-7” long.");
+	outputCodex("\n<b>Average Lifespan:</b> Natural lifespan ranges from 40-50 years.");
+	outputCodex("\n\n");	
+	outputCodex(blockHeader("Features"));
+	outputCodex("On top of the arm and leg coverings, they also have chitin across their body, covering the entirety of their torso, with females breasts being exposed. The chitin around the back curls across the neck to terminate around the cheeks, giving a permanent face guard. Also of note is that the females have a thicker chitin than males. This stems from the races traditional hunting methods, where the females act as targets to draw enemy forces or prey in.");	
+	outputCodex("\n\nOn their back they have two fan-like appendages that, while at rest, resemble a pair of ridges along their spine. In females these run the full length of their back, and have a curve while open, while the males have much smaller fans that open straight.");	
+	outputCodex("\n\n");	
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Females have large, vaginally equipped abdomens, which they usually hold vertically, against their backs. The vaginal cavity contains several rings of strong muscle, and matisar can control these rings individually. Matisar abdomens have three wombs, stretching down the length of their abdomen. The inner two are set underneath the vaginal canal, and only collect semen during intercourse with exceptionally virile individuals, or in cases of multiple mates. Each womb will only ever hold a single egg at a time, allowing for up to three offspring per mating. Matisar vaginas also lack a clitoris, instead the two ‘spare’ wombs have a highly sensitive entrance, the further back of the two being more receptive than the first.");	
+	outputCodex("\n\nMales have a single penis, held inside a genital slit. Matisar penis’ have several knots, spaced between three to five inches depending on length, and one which rests atop the tip, similar to a flare. Matisar males hold the testes inside of the abdomen, with between two to four individual gonads resting within. This allows them to store vast amounts of semen, and flood a potential partner to inseminate all three wombs.");	
+	outputCodex("\n\nA small percentage of matisar are born with both a vagina and a penis. These are usually smaller than females, but taller than males. They only have one womb, and where the other wombs would be is where the testes rest.");		
+	outputCodex("\n\nMatisar cum contains a large amount of fat, allowing them to recycle their seed when food is scarce. It is commonly used among matisar as a staple food during long voyages, and many male matisar donate to an organisation dedicated to the collection and distribution of this matisar food.");	
+	outputCodex("\n\nWhen an egg is fertilised it develops in the mother’s womb for three-five weeks, before being laid. The eggs are soft and round, with a solid yellow-orange shell. The eggs hatch after another eight-ten weeks, and offspring take twelve years to reach adulthood.");	
+	outputCodex("\n\n");	
+	outputCodex(blockHeader("Homeworld"));
+	outputCodex("The matisar homeworld is a humid jungle world with regular, low-level volcanic activity and only a few large water bodies, as a good percentage of the planets water comes from seemingly permanent roving storms.");	
+	outputCodex("\n\nThe heat and humidity of the world allowed for a large level of biodiversity, leaving a large food chain which the matisar sat happily on top of. While many predators were more than capable of killing the native sapients, the tactics employed by them gave them the upperhand.");
+	outputCodex("\n\nThanks to this heated environment they operate well in hot or humid atmospheres, but have a very low tolerance for cold, and even what many races consider a warm day they perceive as chilly.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("Matisar culture all stems from a small number of ideals. To be a great hunter, to protect one’s Party, and to be worthy of the time you have. These three defining ideals make up what matisar call the Wanderer, their equivalent of a soul. They believe that a part of the Wanderer resides in each of their weapons, and most traditionalist matisar refuse to use any equipment not made by their own race. Some particularly devout matisar won’t even use gear from outside their own Party.");	
+	outputCodex("\n\nA Party is the matisar name for families, depending on the family they also have a prefix, such as crafting or hunting. A family consists of a Matriarch and Patriarch, each in charge of their respective gender amongst a party, and their offspring. Cooking is considered a male’s duty among matisar, due to their semen being a large part of a matisar’s diet during food shortages or setup of new settlements.");
+	outputCodex("\n\nWhen a matisar obtains a partner, they split off from the party and create their own, with the exception of the last born child, who takes the parties name and accolades, being held in similar regard to human first borns. Naming conventions for creating new parties are meant to describe the tactics employed by such. In the occurrence of settled parties these generally describe what they deal in, whether it be merchants, mechanics or craftsman.");
+	outputCodex("\n\nEach party has a Shrine to the Wanderer where skilled members weapons are kept. Some of the oldest tribes shrines are more akin to temples devoted to the weapons of ancient heroes. Each weapon in the shrine is kept with a book, detailing that matisar’s greatest work, whether it be a hunt, rescue or creation. Craftsman keep tools instead of weapons, though still go through the same rites.");
+	outputCodex("\n\nA final aspect of matisar culture is their fans. A matisar’s fan pattern is considered a window into their Wanderer, and can be seen as an omen of the matisars chances of living a great life. Should a matisar lose their fans in an accident, or have them damaged, many go through great efforts to restore them, though few are willing to get cyber replacements.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Matisar primarily live frontier lives, with many small permanent settlements that fluctuated between a few dozen to a few hundred in population. The majority of the population roamed the world as hunters and mercenaries. Very few settled down in one place, and even less accepted another’s authority.");	
+	outputCodex("\n\nThe result was thousands of small hunting parties, usually consisting of one or two family groups, that travelled between the small settlements, trading supplies for shelter and advanced materials. While they hadn’t yet mastered electricity, gunpowder had been well refined and incorporated into matisar life upon first contact.");
+	outputCodex("\n\nWhen first contact was made, and the first rushers landed on the world, the natives were oddly welcoming to the newcomers. Integration of the colonial matisar was quick, though the main population took several generations. Once introduced to space travel, the matisar were quick to make use of it, many setting out and joining in on the very same planet rush they were discovered in.");	
+	outputCodex("\n\nOne of the most surprising skills the matisar practice is tailoring. Almost all matisar clothing is made of leather or fur with polished bone accents. This skill proved to be quite popular with early colonists, and clothing was a popular trade item between the locals and the colonists.");
+	outputCodex("\n\nEven in modern time the species still has no true government body nor do they have any worlds dominated by them beyond their homeworld, but they do have hundreds of colonies across many systems, and if one begins broadcasting an emergency beacon, they’ll soon be swamped by hunters looking to help.");
+	outputCodex("\n\nThough the species quickly became notorious for their disregard of authority, proper procedure and generally undisciplined nature, their natural talents for stealth and love of hunting new and dangerous game made them skilled scouts and bounty hunters. They also have been slow to pick up the credit system, still primarily taking payment in the form of equipment or services.");
+	outputCodex("\n\n");	
+	CodexManager.viewedEntry("Matisar");
+}	
 public function mothrineCodexEntry():void
 {
 	clearOutputCodex();

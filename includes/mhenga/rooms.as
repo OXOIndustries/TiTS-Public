@@ -2187,6 +2187,16 @@ public function initMhengaRooms():void
 	rooms["PQUEST_G8"].northExit = "PQUEST_G6";
 	rooms["PQUEST_G8"].southExit = "";
 	rooms["PQUEST_G8"].addFlag(GLOBAL.HAZARD);
+	
+	//Generic Apartment, use when you need a room in an undisclosed location
+	rooms["MHENGA_APARTMENT"] = new RoomClass(this);
+	rooms["MHENGA_APARTMENT"].roomName = "\nAPARTMENT";
+	rooms["MHENGA_APARTMENT"].description = "";
+	rooms["MHENGA_APARTMENT"].planet = "PLANET: MHEN'GA";
+	rooms["MHENGA_APARTMENT"].system = "SYSTEM: ARA ARA";
+	rooms["MHENGA_APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["MHENGA_APARTMENT"].addFlag(GLOBAL.PRIVATE);
+	rooms["MHENGA_APARTMENT"].addFlag(GLOBAL.NPC);
 
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
 	//ammending their runOnEnter functions and/or adding new ones

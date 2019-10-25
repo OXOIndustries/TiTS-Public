@@ -5755,7 +5755,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Badass Mead Hall
-			if(flags["MET_BURT"] != undefined || flags["KELLY_MET"] != undefined || flags["MET_SYRI"] != undefined || flags["KASE_INTRO"] != undefined || flags["ERIKA_MET"] != undefined || flags["ZILTWINS_MET"] != undefined)
+			if(flags["MET_BURT"] != undefined || flags["KELLY_MET"] != undefined || flags["MET_SYRI"] != undefined || flags["KASE_INTRO"] != undefined || flags["ERIKA_MET"] != undefined || flags["ZILTWINS_MET"] != undefined || flags["THYVARA_MET"] != undefined)
 			{
 				output2("\n<b><u>Burt’s Badass Mead Hall</u></b>");
 				// Burt and Company
@@ -5855,6 +5855,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_SYRI_COUNT"] != undefined) output2("\n<b>* Syri, Times Sexed:</b> " + flags["FUCKED_SYRI_COUNT"]);
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
+				}
+				if (flags["THYVARA_MET"] != undefined)
+				{
+					output2("\n<b>* Thyvara Rosanvond:</b> Met her");
+					if (flags["THYVARA_PROGRESS"] != undefined)
+					{
+						if (flags["THYVARA_PROGRESS"] == 5) output2(", Lovers");
+						else if (flags["THYVARA_PROGRESS"] == 4) output2(", Buddies");
+					}
+					if (flags["THYVARA_SEX_FUCK"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times Fucked:</b> " + flags["THYVARA_SEX_FUCK"]);
+					if (flags["THYVARA_SEX_69"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times 69:</b> " + flags["THYVARA_SEX_69"]);
 				}
 				// Erika
 				if(flags["ERIKA_MET"] != undefined)
