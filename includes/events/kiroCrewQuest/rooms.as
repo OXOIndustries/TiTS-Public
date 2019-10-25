@@ -561,22 +561,89 @@ public function kqp28Bonus():Boolean
 	//If Kiro is fully converted, add a Kiro bionacock!
 	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled <i>“FOR EMERGENCY USE ONLY.”</i> They’ve all been used, multiple times.");
 	output("\n\nA bucket near the door, labelled similarly, ");
-	if(9999 == 9999) 
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
 		output("holds ");
-		if(9999 == 9999) output("a variety of different dildos");
+		var dilds:int = 0;
+		if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined) dilds++;
+		if(flags["KQ_TAINTED_KUITAN_TAKEN"] == undefined) dilds++;
+		if(flags["KQ_MINO_KING_TAKEN"] == undefined) dilds++;
+
+		if(dilds > 1) output("a variety of different dildos");
 		else output("a single dildo");
 		output(".");
+		
 	}
 	else output("lies empty thanks to your pillaging hands.");
+	addButton(0,"Dildo Bucket",inspectDildoBin,undefined,"Dildo Bucket","Take a closer look at the emergency dildo bucket.");
 	return kiroQuestHallwaysEncounters();
 }
-//9999
-//Dildos.
-//	The "EMERGENCY USE ONLY" dildo bucket holds the following:
 
-//Empty:
-//	The "EMERGENCY USE ONLY" dildo bucket had an emergency of its own: you taking everything inside it.
+//Dildos.
+public function inspectDildoBin():void
+{
+	clearOutput();
+	showName("DILDO\nBUCKET");
+	author("Fenoxo");
+	//Empty:
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
+	{
+		output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket had an emergency of its own: you taking everything inside it.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket holds the following:");
+	clearMenu();
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined)
+	{
+		output("\n\t* Knotty Terran");
+		addItemButton(0,new DildoKnottyTerran(),lootADildo, new DildoKnottyTerran());
+	}
+	else addDisabledButton(0,"Knotty Terran","Knotty Terran","Already taken.");
+	if(flags["KQ_TAINTED_KUITAN_TAKEN"] == undefined)
+	{
+		output("\n\t* Tainted Kui-Tan Toy");
+		//DildoTaintedKuiTanTool
+		addItemButton(1,new DildoTaintedKuiTanTool(),lootADildo, new DildoTaintedKuiTanTool());
+	}
+	else addDisabledButton(1,"Kui-Tan Toy","Kui-Tan Toy","Already taken.");
+	if(flags["KQ_MINO_KING_TAKEN"] == undefined)
+	{
+		output("\n\t* The Minotaur King");
+		//DildoMinotaurKing
+		addItemButton(2,new DildoMinotaurKing(),lootADildo, new DildoMinotaurKing());
+	}
+	else addDisabledButton(2,"Mino King","Mino King","Already taken.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+public function lootADildo(item:ItemSlotClass):void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	if(item is DildoKnottyTerran)
+	{
+		flags["KQ_KNOTTY_TERRAN_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else if(item is DildoMinotaurKing)
+	{
+		flags["KQ_MINO_KING_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else if(item is DildoTaintedKuiTanTool)
+	{
+		flags["KQ_TAINTED_KUITAN_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else
+	{
+		output("Whoops! Something went wrong.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 
 public function kqj20Bonus():Boolean
 {
@@ -807,7 +874,7 @@ public function getDildos():Array
 	var dildos:Array = [];
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(pc.inventory[x].longName.indexOf("dildo") >= 0 || pc.inventory[x].longName.indexOf("Dildo") >= 0 || pc.inventory[x].longName.indexOf("DILDO") >= 0) dildos.push(pc.inventory[x]);
+		if(pc.inventory[x] is Dildo) dildos.push(pc.inventory[x]);
 	}
 	return dildos;
 }
@@ -817,7 +884,7 @@ public function buildDildoMenu():void
 	var dildos:Array = getDildos();
 	for(var x:int = 0; x < dildos.length; x++)
 	{
-		addItemButton(x, dildos[x], useADildo, dildos[x], null, null, pc, null);
+		addItemButton(x, dildos[x], useADildo, dildos[x]);
 	}
 }
 
@@ -829,7 +896,11 @@ public function useADildo(dildo:ItemSlotClass):void
 	author("Fenoxo");
 
 	var black:Boolean = (flags["KQ_PANEL"] == 1);
-	var correct:Boolean = ((black && (pc.cocks[x].cType == GLOBAL.TYPE_EQUINE || pc.cocks[x].cockColor == "black" || (pc.hasSheath() && pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)))) || (!black && (pc.cocks[x].cType == GLOBAL.TYPE_CANINE || pc.hasKnot(x) || pc.cocks[x].cockColor == "red" || pc.cocks[x].cockColor == "crimson" || pc.cocks[x].cockColor == "scarlet")));
+	var cock:CockClass = (dildo as Dildo).cock();
+	var cockSack:Creature = new Creature();
+	cockSack.cocks = [cock];
+
+	var correct:Boolean = ((black && (cock.cType == GLOBAL.TYPE_EQUINE || cock.cockColor == "black" || (cockSack.hasSheath() && cock.hasFlag(GLOBAL.FLAG_BLUNT)))) || (!black && (cock.cType == GLOBAL.TYPE_CANINE || cockSack.hasKnot(0) || cock.cockColor == "red" || cock.cockColor == "crimson" || cock.cockColor == "scarlet")));
 	output("You stuff the dildo into the socket in the wall. It’s the only logical choice in a perverse place like this. The socket hums, and there’s the slight hiss of pneumatic pressure as the puckered hole inflates like a blood pressure cuff. It’s so tight that it traps the dildo inside; you can’t tug it out or force it any deeper.");
 	//Use dildo on doorlock (wrong)
 	if(!correct) 
@@ -843,6 +914,8 @@ public function useADildo(dildo:ItemSlotClass):void
 	{
 		output("\n\nA pleased-sounding tone chimes from the control panel, and the glossy plastic hole relaxes, allowing the dildo to slide out into your waiting hands. A moment later, the door rumbles and slides down on hidden tracks, recessed into the floor.");
 		output("\n\nWhat a fucked up system for locking doors.");
+		if(black) flags["KQ_BLACK_UNLOCKED"] = 1;
+		else flags["KQ_RED_UNLOCKED"] = 1;
 	}
 	processTime(5);
 	clearMenu();
