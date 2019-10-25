@@ -204,7 +204,8 @@ public function loseToKQMiniboss():void
 public function loseToKQMiniboss2():void
 {
 	clearOutput();
-	//9999 show Po!
+	showBust("ILLUSTRIA_PO");
+	showName("ILLUSTRIA\nPO");
 	author("Wsan");
 	output("The boss is a beautiful, sexy scientist that’s so smart you can’t even begin to comprehend how intelligent she is. Fortunately, your inability to think beyond your directives isn’t a hindrance - she finds you <i>much</i> more useful using your other head to please her, grinding it right into her padded cervix as she drapes herself across a chair.");
 	output("\n\n<i>“Nnngh, yes,”</i> she pants, gyrating her wide, womanly hips and clenching on your swollen cock with her absurd tightness and strength. <i>“Nnnnnn... fuck, that’s good. Hey,”</i> she says, lifting her head and looking and directly at you. <i>“What’s your name?”</i>");
@@ -228,7 +229,8 @@ public function loseToKQMiniboss2():void
 public function loseToKQMiniboss3():void
 {
 	clearOutput();
-	//9999 show Po!
+	showBust("ILLUSTRIA_PO");
+	showName("ILLUSTRIA\nPO");
 	author("Wsan");
 	output("<i>“Was- was that good enough, mistress?”</i> you pant, standing back from her. You can see her gaping slit begin tightening up the moment you exit it, dripping with precum. Your cock is <i>aching</i>, your balls positively throbbing and swollen with the need to cum. But you won’t. Not until she tells you to.");
 	output("\n\n<i>“Oh, it was <b>so</b> good,”</i> she moans, rolling onto her stomach and folding her legs up as she looks back at you with a smile. <i>“But you’ll have to go for another six hours if you really want to cum. Climb on top of me and let me have it. I want you <b>balls</b> deep in my cunt, whore.”</i>");
@@ -244,7 +246,8 @@ public function loseToKQMiniboss3():void
 public function loseToKQMiniboss4():void
 {
 	clearOutput();
-	//9999 show Po!
+	showBust("ILLUSTRIA_PO");
+	showName("ILLUSTRIA\nPO");
 	author("Wsan");
 	output("Your boss is, first and foremost, a scientist. And that’s why when you eventually do cum, it’s with another sexbot’s fat cock rammed so far up your lubricated asshole your tummy is bulging with her. Screaming your pleasure through a gag, you squeeze down on her time and time again while your heartbeat pounds in your ears and your cock pulses so hard your back arches with every massive, splattering spew of seed. The timed vibration against your prostate forces an elongation of every single orgasmic ejaculation, your ass clenching so hard the girl behind you lets out a low groan of pleasure.");
 	output("\n\n<i>“Amazing. You actually <b>exceed</b> the theoretical output I had noted down!”</i> your mistress exclaims, grinning. <i>“This calls for repeated experimentation! I’ll have to upgrade my womb capacity...”</i> she hums, notes flashing across the terminal behind her as she mentally jots her ideas down. <i>“I wonder if intermittent periods of sucking my cunt would make you even more pent-up. We’ll have to test that later.”</i>");
