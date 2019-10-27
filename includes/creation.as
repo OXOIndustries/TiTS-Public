@@ -47,6 +47,7 @@ public function hasCheatInput(sText:String = ""):Boolean
 		case "beshineforever": cheatFunc = Cheats.BoobSiliconePlease; break;
 		case "laplove": cheatFunc = Cheats.ClassicLapinara; break;
 		case "doll": cheatFunc = Cheats.SexdollEncounter; break;
+		case "ardiaschoice": cheatFunc = Cheats.ArdiaLetsYouChoose; break;
 		
 		// Treatment
 		case "treatment": cheatFunc = Cheats.TryTreatmentHaxDefault; break;

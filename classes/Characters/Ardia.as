@@ -11,6 +11,7 @@
 			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
+			fluidSimulate = true;
 			
 			this.short = "Ardia";
 			this.originalRace = "dzaan";
@@ -165,6 +166,7 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.cockVirgin = false;
+		}
 		}
 		public function UpgradeVersion2(dataObject:Object):void
 		{

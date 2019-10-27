@@ -382,6 +382,13 @@
 			Cheats.SJWMode();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Ardia DM7+ Sex Choice",
+		"Toggle whether Ardia chooses sex scenes at high dominance. May result in unintended behaviour.",
+		function():void {
+			Cheats.ArdiaLetsYouChoose();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -408,6 +415,7 @@
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
 	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
+	inputManager.BindCheatSequence("Ardia DM7+ Sex Choice", "ardiaschoice");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
