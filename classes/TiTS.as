@@ -227,6 +227,7 @@
 		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
+		include "../includes/events/kiroCrewQuest/holoTrap.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/kiroCrewQuest/rooms.as";

@@ -5551,7 +5551,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
-			if (hasPerk("Amazonian Needs")) bonus += 20;
+			if (hasPerk("Amazonian Needs")) bonus += perkv1("Amazonian Needs");
 			if (hasPerk("Black Latex")) bonus += 10;
 			//Doesn't stack for reasons.
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");

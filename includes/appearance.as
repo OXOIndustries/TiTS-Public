@@ -2185,6 +2185,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		else outputRouter(" On one of " + (target == pc ? "your":"[target.hisHer]") + " ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind " + (target == pc ? "you":"[target.himHer]") + " of " + (target == pc ? "your":"[target.hisHer]") + " place as her pet.");
 	}
 	if(target.hasPerk("Slut Stamp")) outputRouter(" To highlight " + (target == pc ? "your":"[target.hisHer]") + " vulgarity, a tattoo is permanently printed on " + (target == pc ? "your":"[target.hisHer]") + " lower back, advertising how much of a slut " + (target == pc ? "you are":"[target.heShe] is") + " to anyone who sees it.");
+	if(target.hasPerk("Whore-Stamped")) outputRouter(" To highlight " + (target == pc ? "your":"[target.hisHer]") + " whorish nature, a tattoo is permanently printed on " + (target == pc ? "your":"[target.hisHer]") + " lower back, advertising how much of a \"WHORE\" " + (target == pc ? "you are":"[target.heShe] is") + " to anyone who sees it.");
 	
 	//TAILS
 	switch(target.tailType)

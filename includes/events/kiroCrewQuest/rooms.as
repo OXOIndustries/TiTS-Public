@@ -17,7 +17,13 @@ public function resetKiroQuest():void
 	flags["KQ_PINK_UNLOCKED"] = undefined;
 	flags["KQ_RED_UNLOCKED"] = undefined;
 	flags["KQ_BLACK_UNLOCKED"] = undefined;
-	flags["KQ_PINK_ZAP"] = undefined
+	flags["KQ_PINK_ZAP"] = undefined;
+
+	//VR ADVENTURE:
+	flags["KQ_GOBLIN_DED"] = undefined;
+	flags["KQ_VR_LLAERWYN"] = undefined;
+	flags["KQ_VR_CHEST"] = undefined;
+	flags["KQ_VR_WOMAN"] = undefined;
 	move("SHIP INTERIOR");
 }
 
@@ -401,8 +407,8 @@ public function initKQRooms():void
 	rooms["KQ P12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KQ R12"] = new RoomClass(this);
-	rooms["KQ R12"].roomName = "COMMON\nAREA";
-	rooms["KQ R12"].description = "A combination TV screen and hologram projector completely dominates the eastern wall. Chairs, small couches, and a coffee table arrange themselves around it for optimal viewing angles whilst still providing ample opportunities for discussion amongst seated guests. Right now, the screen displays a still hologram of Kiro with a list of what you guess are her attributes, printed in a bizarrely mathematical script.\n\nA kitchen lies north, and a waiting area waits to the west.";
+	rooms["KQ R12"].roomName = "VR\nEXPERIMENT";
+	rooms["KQ R12"].description = "";//OLD AND CHANGED: "A combination TV screen and hologram projector completely dominates the eastern wall. Chairs, small couches, and a coffee table arrange themselves around it for optimal viewing angles whilst still providing ample opportunities for discussion amongst seated guests. Right now, the screen displays a still hologram of Kiro with a list of what you guess are her attributes, printed in a bizarrely mathematical script.\n\nA kitchen lies north, and a waiting area waits to the west.";
 	rooms["KQ R12"].planet = "N/A";
 	rooms["KQ R12"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R12"].northExit = "KQ R10";
@@ -410,9 +416,9 @@ public function initKQRooms():void
 	rooms["KQ R12"].southExit = "";
 	rooms["KQ R12"].westExit = "KQ P12";
 	rooms["KQ R12"].moveMinutes = 1;
-	rooms["KQ R12"].runOnEnter = kiroQuestHallwaysEncounters;
+	rooms["KQ R12"].runOnEnter = holoTrapIntro;
 	rooms["KQ R12"].addFlag(GLOBAL.INDOOR);
-	rooms["KQ R12"].addFlag(GLOBAL.HAZARD);
+	rooms["KQ R12"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["KQ R10"] = new RoomClass(this);
 	rooms["KQ R10"].roomName = "\nKITCHEN";
@@ -485,6 +491,166 @@ public function initKQRooms():void
 	rooms["KQ T14"].addFlag(GLOBAL.HAZARD);
 	rooms["KQ T14"].addFlag(GLOBAL.OBJECTIVE);
 
+	//==============================================
+	//
+	//			VR TRAP!
+	//
+	//==============================================
+
+	rooms["KQVR M0"] = new RoomClass(this);
+	rooms["KQVR M0"].roomName = "\nCROSSROADS";
+	rooms["KQVR M0"].description = "";
+	rooms["KQVR M0"].planet = "N/A";
+	rooms["KQVR M0"].system = "SYSTEM: N/A";
+	rooms["KQVR M0"].northExit = "";
+	rooms["KQVR M0"].eastExit = "";
+	rooms["KQVR M0"].southExit = "KQVR S1";
+	rooms["KQVR M0"].westExit = "KQVR W1";
+	rooms["KQVR M0"].moveMinutes = 1;
+	rooms["KQVR M0"].runOnEnter = kqVR_M0Bonus;
+	rooms["KQVR M0"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR M0"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S5"] = new RoomClass(this);
+	rooms["KQVR S5"].roomName = "SAFE\nZONE";
+	rooms["KQVR S5"].description = "You’re standing in the middle of a grassy mound surrounded by a little moat of water. Beyond the moat lies the lush greenery of a forest, idyllic and peaceful as far as the eye can see. The Safe Zone here allows you to peacefully exit the game and return to the real world.";
+	rooms["KQVR S5"].planet = "N/A";
+	rooms["KQVR S5"].system = "SYSTEM: N/A";
+	rooms["KQVR S5"].northExit = "KQVR S4";
+	rooms["KQVR S5"].eastExit = "";
+	rooms["KQVR S5"].southExit = "";
+	rooms["KQVR S5"].westExit = "";
+	rooms["KQVR S5"].moveMinutes = 1;
+	rooms["KQVR S5"].runOnEnter = KQVR_S5Bonus;
+	rooms["KQVR S5"].addFlag(GLOBAL.INDOOR);
+	//rooms["KQVR S5"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S4"] = new RoomClass(this);
+	rooms["KQVR S4"].roomName = "FOREST\nEDGE";
+	rooms["KQVR S4"].description = "";
+	rooms["KQVR S4"].planet = "N/A";
+	rooms["KQVR S4"].system = "SYSTEM: N/A";
+	rooms["KQVR S4"].northExit = "KQVR S3";
+	rooms["KQVR S4"].eastExit = "";
+	rooms["KQVR S4"].southExit = "KQVR S5";
+	rooms["KQVR S4"].westExit = "";
+	rooms["KQVR S4"].moveMinutes = 1;
+	rooms["KQVR S4"].runOnEnter = kqVR_S4Bonus;
+	rooms["KQVR S4"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S3"] = new RoomClass(this);
+	rooms["KQVR S3"].roomName = "THE\nFOREST";
+	rooms["KQVR S3"].description = "You’ve entered the forest proper. The calls of creatures unknown echo through the treetops, though you never catch sight of them or any movement at all. In fact, the area seems strangely devoid of life. You find yourself wondering if the calls are even real, or as real as they can be here. Grass and twigs crunch beneath your feet with every step.";
+	rooms["KQVR S3"].planet = "N/A";
+	rooms["KQVR S3"].system = "SYSTEM: N/A";
+	rooms["KQVR S3"].northExit = "KQVR S2";
+	rooms["KQVR S3"].eastExit = "";
+	rooms["KQVR S3"].southExit = "KQVR S4";
+	rooms["KQVR S3"].westExit = "";
+	rooms["KQVR S3"].moveMinutes = 1;
+	rooms["KQVR S3"].runOnEnter = undefined;
+	rooms["KQVR S3"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S2"] = new RoomClass(this);
+	rooms["KQVR S2"].roomName = "A\nCLEARING";
+	rooms["KQVR S2"].description = "";
+	rooms["KQVR S2"].planet = "N/A";
+	rooms["KQVR S2"].system = "SYSTEM: N/A";
+	rooms["KQVR S2"].northExit = "KQVR S1";
+	rooms["KQVR S2"].eastExit = "";
+	rooms["KQVR S2"].southExit = "KQVR S3";
+	rooms["KQVR S2"].westExit = "";
+	rooms["KQVR S2"].moveMinutes = 1;
+	rooms["KQVR S2"].runOnEnter = kqVR_S2Bonus;
+	rooms["KQVR S2"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S1"] = new RoomClass(this);
+	rooms["KQVR S1"].roomName = "FOREST\nEDGE";
+	rooms["KQVR S1"].description = "";
+	rooms["KQVR S1"].planet = "N/A";
+	rooms["KQVR S1"].system = "SYSTEM: N/A";
+	rooms["KQVR S1"].northExit = "KQVR M0";
+	rooms["KQVR S1"].eastExit = "";
+	rooms["KQVR S1"].southExit = "KQVR S2";
+	rooms["KQVR S1"].westExit = "";
+	rooms["KQVR S1"].moveMinutes = 1;
+	rooms["KQVR S1"].runOnEnter = kqVR_S1Bonus;
+	rooms["KQVR S1"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W1"] = new RoomClass(this);
+	rooms["KQVR W1"].roomName = "THE\nROAD";
+	rooms["KQVR W1"].description = "Walking along the road, the landscape abruptly shifts from gravel and dirt to rocky outcroppings and hard, cracked mud beneath your feet. The further west you head, the more the world changes until the sky takes on the faint red glow of sunset, an imposing mountain looming in the distance. The road continues stretching west, leading deeper into mountainous terrain.\n\nThere is no Safe Zone here.";
+	rooms["KQVR W1"].planet = "N/A";
+	rooms["KQVR W1"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W1"].northExit = "";
+	rooms["KQVR W1"].eastExit = "KQVR M0";
+	rooms["KQVR W1"].southExit = "";
+	rooms["KQVR W1"].westExit = "KQVR W2";
+	rooms["KQVR W1"].moveMinutes = 1;
+	rooms["KQVR W1"].runOnEnter = undefined;
+	rooms["KQVR W1"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W2"] = new RoomClass(this);
+	rooms["KQVR W2"].roomName = "BROKEN\nROAD";
+	rooms["KQVR W2"].description = "";
+	rooms["KQVR W2"].planet = "N/A";
+	rooms["KQVR W2"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W2"].northExit = "";
+	rooms["KQVR W2"].eastExit = "KQVR W1";
+	rooms["KQVR W2"].southExit = "";
+	rooms["KQVR W2"].westExit = "KQVR W3";
+	rooms["KQVR W2"].moveMinutes = 1;
+	rooms["KQVR W2"].runOnEnter = kqVR_W2Bonus;
+	rooms["KQVR W2"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W3"] = new RoomClass(this);
+	rooms["KQVR W3"].roomName = "\nMOUNTAINSIDE";
+	rooms["KQVR W3"].description = "";
+	rooms["KQVR W3"].planet = "N/A";
+	rooms["KQVR W3"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W3"].northExit = "";
+	rooms["KQVR W3"].eastExit = "KQVR W2";
+	rooms["KQVR W3"].southExit = "";
+	rooms["KQVR W3"].westExit = "KQVR W4";
+	rooms["KQVR W3"].moveMinutes = 1;
+	rooms["KQVR W3"].runOnEnter = kqVR_W3Bonus;
+	rooms["KQVR W3"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W4"] = new RoomClass(this);
+	rooms["KQVR W4"].roomName = "\nMOUNTAINS";
+	rooms["KQVR W4"].description = "Stumbling along the winding, rising path along the mountain, the air actually gets cleaner as you walk. Aside from the dizzying height and the soreness of your legs, this isn’t too bad. You glance out at the landscape below and see the divisions of land - the forest you initially emerged from, a desert, a ruined city, and the road leading to where you are now. You have to admit, it’s been <i>somewhat</i> of an adventure.\n\nThere is no Safe Zone here.";
+	rooms["KQVR W4"].planet = "N/A";
+	rooms["KQVR W4"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W4"].northExit = "";
+	rooms["KQVR W4"].eastExit = "KQVR W3";
+	rooms["KQVR W4"].southExit = "";
+	rooms["KQVR W4"].westExit = "KQVR W5";
+	rooms["KQVR W4"].moveMinutes = 1;
+	rooms["KQVR W4"].runOnEnter = undefined;
+	rooms["KQVR W4"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W5"] = new RoomClass(this);
+	rooms["KQVR W5"].roomName = "\nMOUNTAINS";
+	rooms["KQVR W5"].description = "";
+	rooms["KQVR W5"].planet = "N/A";
+	rooms["KQVR W5"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W5"].northExit = "";
+	rooms["KQVR W5"].eastExit = "KQVR W4";
+	rooms["KQVR W5"].southExit = "";
+	rooms["KQVR W5"].westExit = "";
+	rooms["KQVR W5"].moveMinutes = 1;
+	rooms["KQVR W5"].runOnEnter = kqVR_W5Bonus;
+	rooms["KQVR W5"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W5"].addFlag(GLOBAL.HAZARD);
+
 	//Template room :3
 	rooms["KQ TEMP"] = new RoomClass(this);
 	rooms["KQ TEMP"].roomName = "NAME\nME";
@@ -499,6 +665,7 @@ public function initKQRooms():void
 	rooms["KQ TEMP"].runOnEnter = kiroQuestHallwaysEncounters;
 	rooms["KQ TEMP"].addFlag(GLOBAL.INDOOR);
 	rooms["KQ TEMP"].addFlag(GLOBAL.HAZARD);
+	rooms["KQ TEMP"].addFlag(GLOBAL.OBJECTIVE);
 
 }
 
