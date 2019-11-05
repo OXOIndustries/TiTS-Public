@@ -1,5 +1,51 @@
 //Holodeck & Surgery Suite
+//Wsan + revisions by Fenfen!
 
+/* FLAG LIST:
+
+flags["KQ_VR_COMPLETE"]
+	1 = complete.
+flags["KQ_VR_CHEST"]
+	1 = opened box, can proceed.
+flags["KQ_GOBLIN_DED"]
+	1 = ded.
+	-1 = fukt. (5 libido on the spot)
+flags["KQ_VR_LLAERWYN"]
+	1 = "Let Her Cum". Long tongue. +libido, +taint. Make squirty.
+	2 = "Fuck Her". Grow 16" dick+balls, plenty o cum, +libido+taint.
+	-1 = "Leave"
+flags["KQ_VR_LUVIA"]
+	2 = very much liked her. Grow boobs + Lactate + Fem + taint/lib ofc
+	1 = "yes", (No bad effects if hascock or got from llaerwyn), (elseif puss: squirter+analcap), (else: grow vag, +squirt, +analcap)
+	0 = "no", snakebyte injectimals.
+	-1 = Leave
+flags["KQ_VR_LUVIA_PUSS"]
+	1 = exclusively using for tracking dat pussgrowth.
+flags["KQ_VR_HYLIE"] 
+	1 = fighty end
+	2 = smutty end. //NO TF OR SCOREBOARD STUFF FOR HER?
+
+flags["KQ_VR_DEMONNAME"]
+	1 = know name
+flags["KQ_VR_DEMONPAST"]
+	1 = know past (unlock "Almost")
+flags["KQ_VR_DEMONALMOST"]
+	1 = unlocks Fight! and Predecessors talks.
+flags["KQ_VR_DEMONSERVING"]
+	1 = unlocks Sex options.
+flags["KQ_VR_DEMONPREDEC"]
+	1 = unlocks Characters? talk
+flags["KQ_VR_DEMONCHARACT"]
+	1 = unlocks "Time" talk.
+flags["KQ_VR_DEMONTIME"]
+	1 = unlocks Escape and StayForever
+flags["KQ_VR_DEMONFIGHT"]
+	-1 = left by request,
+	+1 = tried to fight and got spankt.
+flags["KQ_VR_DEMONFUKK"]
+	Counter for sex actions done.
+
+*/
 public function holoTrapIntro():void
 {
 	clearOutput();

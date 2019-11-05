@@ -20,10 +20,22 @@ public function resetKiroQuest():void
 	flags["KQ_PINK_ZAP"] = undefined;
 
 	//VR ADVENTURE:
+	flags["KQ_VR_COMPLETE"] = undefined;
 	flags["KQ_GOBLIN_DED"] = undefined;
 	flags["KQ_VR_LLAERWYN"] = undefined;
 	flags["KQ_VR_CHEST"] = undefined;
-	flags["KQ_VR_WOMAN"] = undefined;
+	flags["KQ_VR_LUVIA"] = undefined;
+	flags["KQ_VR_LUVIA_PUSS"] = undefined;
+	flags["KQ_VR_HYLIE"] = undefined;
+	flags["KQ_VR_DEMONNAME"] = undefined;
+	flags["KQ_VR_DEMONPAST"] = undefined;
+	flags["KQ_VR_DEMONALMOST"] = undefined;
+	flags["KQ_VR_DEMONSERVING"] = undefined;
+	flags["KQ_VR_DEMONPREDEC"] = undefined;
+	flags["KQ_VR_DEMONCHARACT"] = undefined;
+	flags["KQ_VR_DEMONTIME"] = undefined;
+	flags["KQ_VR_DEMONFIGHT"] = undefined;
+	flags["KQ_VR_DEMONFUKK"] = undefined;
 	move("SHIP INTERIOR");
 }
 
