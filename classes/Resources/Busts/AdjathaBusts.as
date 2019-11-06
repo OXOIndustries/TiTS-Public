@@ -558,6 +558,15 @@ package classes.Resources.Busts
 		public var Bust_KQ_SEXDOLL_TERRAN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_terran_cum.png", mimeType = "image/png")]
 		public var Bust_KQ_SEXDOLL_TERRAN_CUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_vulpatra.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_VULPATRA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_vulpatra_cum.png", mimeType = "image/png")]
+		public var Bust_KQ_SEXDOLL_VULPATRA_CUM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_boss.png", mimeType = "image/png")]
+		public var Bust_KQ_MINIBOSS_SEXDOLL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_boss_cum.png", mimeType = "image/png")]
+		public var Bust_KQ_MINIBOSS_SEXDOLL_NUDE:Class;
+		
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
 		public var Bust_KRISSY:Class;
@@ -1800,6 +1809,14 @@ package classes.Resources.Busts
 			public var Full_KQ_SEXDOLL_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_terran_cum.png", mimeType = "image/png")]
 			public var Full_KQ_SEXDOLL_TERRAN_CUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_vulpatra.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_VULPATRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_vulpatra_cum.png", mimeType = "image/png")]
+			public var Full_KQ_SEXDOLL_VULPATRA_CUM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_boss.png", mimeType = "image/png")]
+			public var Full_KQ_MINIBOSS_SEXDOLL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_boss_cum.png", mimeType = "image/png")]
+			public var Full_KQ_MINIBOSS_SEXDOLL_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
