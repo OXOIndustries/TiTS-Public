@@ -5398,6 +5398,7 @@ public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 		case "JULY_4TH": return checkDate(4, 7, 7); break;
 		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
 		case "HALLOWEEN": return checkDate(29, 10, 10); break;
+		case "LATE_HALLOWEEN": return checkDate(10,11,10); break;
 		case "THANKSGIVING":
 			// Canadian Holiday
 			if(checkDate(12, 10, 6)) return true;
@@ -5420,6 +5421,7 @@ public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST
 public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
 public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
 public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
+public function isLateHalloween():Boolean { return holidaySeasonCheck("LATE_HALLOWEEN"); }
 
 public function getRealtimeYear():Number
 {
