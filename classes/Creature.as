@@ -19382,8 +19382,65 @@
 		public function breastSize(val: Number): String {
 			var descript: String = "";
 			//Catch all for dudes.
-			if (val < 1) {
-				return RandomInCollection(["tight", "hard", "fine", "manly"]);
+			if (val < 1) 
+			{
+				if (rand(2) == 0)
+				{
+					var adjective:String = "";
+					if (tone >= 100)
+					{
+						if (rand(4) == 0) return mf("extremely pronounced","very pronounced", true);
+						else if (thickness > 70) return "immense";
+						else if (thickness >= 30) return "robust";
+						else return "chiseled";
+					}
+					else if (tone > 70)
+					{
+						if (rand(4) == 0) return mf("well-defined","well-toned", true);
+						else if (thickness > 70) return "broad";
+						else if (thickness >= 30) return "healthy";
+						else return "fit";
+					}
+					else if (tone >= 30)
+					{
+						if (rand(4) == 0) return mf("toned","lightly-toned", true);
+						else if (thickness > 70) return "thick";
+						else if (thickness >= 30) return "average";
+						else return "soft";
+					}
+					else
+					{
+						if (rand(4) == 0) return "unremarkable";
+						else if (thickness > 70) return "wide";
+						else if (thickness >= 30) return "passable";
+						else return "flat";
+					}
+				}
+				else
+				{
+					// Feminine/Andro, Low/Medium Tone
+					if((mfn("m","f","n", true) != "m") && tone < 60) {
+						return RandomInCollection(["soft, flat", "flat, girly", "smooth, featureless"]);
+					}
+					// Masculine, High Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone >= 60 && thickness >= 60) {
+						return RandomInCollection(["manly, rippling", "big, muscular", "beefcake"]);
+					}
+					// Masculine, Low Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone <= 30 && thickness >= 60) {
+						return RandomInCollection(["broad, cuddly", "bear-like", "fleshy, manly"]);
+					}
+					// Masculine/Feminine/Andro, High Tone, Low Thickness
+					else if(tone >= 60 && thickness <= 30) {
+						return RandomInCollection([mf("tight, firm","firm, flat", true), mf("hard, sleek","athletic", true), mf("fine, flat","sleek, firm", true)]);
+					}
+					// Default
+					else {
+						return RandomInCollection(["plain", "flat"]);
+					}
+				}
+				//OLD.
+				//return RandomInCollection(["tight", "hard", "fine", "manly"]);
 			}
 			//A-cup
 			else if (val == 1) {
@@ -19428,6 +19485,7 @@
 			var descript: String = "";
 			var milkied:Boolean = false;
 			var bRowRating:Number = breastRows[rowNum].breastRating();
+			/*
 			if (bRowRating < 1) {
 				if(rand(2) == 0)
 				{
@@ -19435,7 +19493,7 @@
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";
-			}
+			}*/
 			//33% of the time size-descript them
 			if (rand(3) == 0) descript += breastSize(bRowRating);
 			//Lactation notices are rare unless near-empty or full!
@@ -19522,7 +19580,8 @@
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
-			else {
+			else if(bRowRating < 1) descript += "chest";
+			else if(bRowRating > 1) {
 				var adjectives:Array = [];
 				// Silicone
 				var silicone:Number = siliconeRating("tits");
@@ -19589,7 +19648,7 @@
 		public function chestNoun(rowNum:int = 99, milkied:Boolean = false):String
 		{
 			if (rowNum < 0 || rowNum == 99) rowNum = 0;
-			if (breastRows[rowNum].breastRating() <= 0) return "chest";
+			if (breastRows[rowNum].breastRating() < 1) return "chest";
 			return plural(breastNoun(rowNum, milkied));
 		}
 		public function biggestBreastDescript(): String {
