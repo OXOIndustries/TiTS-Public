@@ -19580,7 +19580,7 @@
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
-			else if(bRowRating < 1) descript += "chest";
+			else if(bRowRating < 1) descript += "pecs";
 			else if(bRowRating > 1) {
 				var adjectives:Array = [];
 				// Silicone
