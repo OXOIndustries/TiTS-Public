@@ -54,6 +54,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vildarii", vildariiCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulkrimi", vulkrimiCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulpatra", vulpatraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Xhelarfog", xhelarfogCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Cunt Snakes", cuntSnakeCodexEntry);
@@ -1263,7 +1264,7 @@ public function slyverenCodex():void
 	clearOutputCodex();
 	showBust("SLAVEBREAKER_1","SLAVEBREAKER_2");
 	outputCodex(header("Slyverens"));
-	outputCodex("<i>Snake-woman as voracious for protein as they are engineered for beauty.</i>\n\n");
+	outputCodex("<i>Snake-woman as voracious for protein as they are engineered for beauty.</i>");
 	outputCodex("\n\n<b>Name:</b> Slyverens (Singular: Slyveren)");
 	outputCodex("\n<b>Sex:</b> Hermaphrodites with female characteristics.");
 	outputCodex("\n<b>Height:</b> 5\' to 7\' tall. Tallest unaugmented specimen recorded at 8\' 7\".");
@@ -1288,7 +1289,7 @@ public function slyverenCodex():void
 	outputCodex("\n\nTime has only given the slyverens more opportunities for self-improvement. In modernity, they boast a numbing coating on their fangs, additionally salivary glands along the inside edge of their lower lip, hyper-sensitivity to pheromones, and an aptitude toward psychic ability that left terrans in the dust two generations ago. Fully 50% of their population is considered to have some degree of psychic talent, with projections estimating race-wide telepathic capability in 100 years.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
-	outputCodex("\n\nSlyverens do not reproduce utilizing penises, like most races. Instead, a slyveren woman will produce a fist-sized egg once a year. When mating, she press her vagina to her lover’s, and specialized muscles will eject the ovum into her mate’s channel. Hard-wired reflexes kick in at this point and draw the egg all the way into womb, pushing the second slyveren’s egg out to trade places with the first’s. This exchange triggers the release of semen from a combination ovary/gonad gland until fertilization occurs.");
+	outputCodex("Slyverens do not reproduce utilizing penises, like most races. Instead, a slyveren woman will produce a fist-sized egg once a year. When mating, she press her vagina to her lover’s, and specialized muscles will eject the ovum into her mate’s channel. Hard-wired reflexes kick in at this point and draw the egg all the way into womb, pushing the second slyveren’s egg out to trade places with the first’s. This exchange triggers the release of semen from a combination ovary/gonad gland until fertilization occurs.");
 	outputCodex("\n\nA full incubation term lasts five months, after which the egg will be roughly melon-sized. Hatching takes four to five months, much longer than the \\\[REDACTED\\\]s they originated from. Slyveren younglings emerge tiny but capable of basic locomotion. Milk, an adaptation stolen from other races, provides sustenance for them well into adolescence. It is only after maturation that they switch to the licentious food-source that has given rise to their fame - and only after lactation stops does a slyveren mother’s body begin to produce eggs once more.");
 	outputCodex("\n\nUnfertilized eggs are expelled from the body after a few months. The more debased among high society consider them to be an exquisite delicacy.");
 	outputCodex("\n\n");
@@ -1609,6 +1610,44 @@ public function vulkrimiCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vulkrimi");
 }
+
+//Vulpatra Codex
+public function vulpatraCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("KQ_SEXDOLL_VULPATRA");
+	outputCodex(header("Vulpatra"));
+	outputCodex("<i>Don’t call their antennas dustballs...</i>");
+	outputCodex("\n\n<b>Name:</b> Vulpatra (Singular & Plural)");
+	outputCodex("\n<b>Lifespan:</b> 60 years.");
+	outputCodex("\n<b>Sexes:</b> Male & female with numerous mod-created intersex individuals.");
+	outputCodex("\n<b>Height:</b> 3’2” to 4’3” commonly. Exceptional specimens recorded as small as 2’5”</i> and as tall as 5’.");
+	outputCodex("\n<b>Weight:</b> 45 to 120 lbs.");
+	outputCodex("\n<b>Eyes:</b> Green, purple, and red most commonly with a terran-like circular pupil.");
+	outputCodex("\n<b>Skin:</b> Covered in full body fur except the nipples and genitalia. Fur is typically pigmented amber or olive green.");
+	outputCodex("\n<b>Ears:</b> Roughly head-sized, fox-like ears with a number of unique attributes discussed below.");
+	outputCodex("\n<b>Face:</b> Vulpine-like with a singular <i>“puffball”</i>-tipped antenna.");
+	outputCodex("\n<b>Tail:</b> Large (proportionally) and very fluffy, often tipped with lighter colored fur.\n\n");
+
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("On the surface, Vulpatra may appear to share many characteristics with terran canines or foxes - large ears, long puffy tails, full body fur, and even cute little pads on their fingers and toes for shock absorption and grip. The similarities end there, however. Vulpatran ears are huge, complex affairs with a spongy inner lining and an extremely low friction coefficient, useful for their primary survival strategy.");
+	outputCodex("\n\nVulpatran faces have short, squat muzzles filled with omnivorous teeth and topped by a sensitive, button nose. Their tongues extend only a few inches beyond their lips, useful for taste and little else. Their most iconic feature is the fluffy, puffball-topped antenna that sprouts from the center of every vulpatra’s forehead. This highly decorative organ is also highly functional, as detailed in <i>“Psychic Abilities & Feeding”</i>.\n\n");
+	outputCodex(blockHeader("Psychic Abilities & Feeding"));
+	outputCodex("Vulpatra are one of the few species to join the UGC with naturally-occurring psychic powers. Their <i>“puffball”</i> is actually a highly sophisticated psychic amplifier. Nearly every living vulpatra is capable of short-ranged telepathy as a result, capable of communicating thoughts across distances of up to five feet and more advanced feats (mind reading, sensory manipulation, etc) with direct contact. Some extremely rare, powerful vulpatra are even capable of manipulating another’s thoughts directly with puffball-to-head contact.");
+	outputCodex("\n\nScientists theorize these attributes developed in response to the vulpatra’s status as a prey species on their homeworld. Telepathy allows for constant soundless communication in times of danger and even limited dialogue with non-verbal or foreign creatures - like the apex creatures of their homeworld, the Pworfu.");
+	outputCodex("\n\nPworfu are large, powerful creatures that reproduce using the wombs of other sentients. The vulpatra, all-too-often forced to play host for these less intelligent creatures, developed a unique defense: fuckable ears that drain into the stomach. By using their telepathic abilities, waist-high stature, and extremely visible, stretchy earpussies, they’re often able to manipulate bigger, stronger individuals into leaving them with a meal instead of an alien pregnancy. To assist in this, their ear linings actually inflate in times of passion or stress, rapidly engorging until they’ve flushed reddish pink and bulged beyond the curved interior.");
+	outputCodex("\n\nThey do not require reproductively-sourced meals to survive, as rahn or galotians might. Vulpatra can feast quite comfortably on fruits, vegetables, and the occasional cut of meat. A typically vulpatra diet consists of 80% plant material, 10% meat, and 10% foreign reproductive matter. Since joining other species in the UGC core, they’ve adapted well to galactic life and proven themselves more than capable of surviving on a pure, ejaculate-based diet, usually with the assistance of a virile kui-tan. Others function just fine without a single droplet of cum.");
+	outputCodex("\n\nA superstition has appeared recently, suggesting that a vulpatra’s psychic ability is tied to the amount of cum devoured. Supporting propaganda on the extranet typically includes pictures of cum-swollen vulpatra surrounded by kneeling, vacant-eyed kui-tan. There is no scientific data to support this assertion, yet the rumor tenaciously endures all the same.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Reproduction amongst vulpatra is a simple affair. The male inserts his penis (usually no more than four inches long) into the female’s lower vaginal orifice. Like a canine, the male will eventually <i>“knot”</i> himself into place and release a steady trickle of seed over the following hour. The female usually finds this quite pleasurable thanks to seed-detecting nerve-clusters around the cervix which provide what the vulpatra describe as <i>“one long, slow, rolling, orgasm.”</i>");
+	outputCodex("\n\nVulpatran kits are born in litters of 1 to 3 after a four month pregnancy. They mature over the course of ten years, developing rapidly after six months of near-helplessness. A five-year old vulpatra child often displays intelligence comparable to a thirteen year old terran, though without the hormonal angst. That comes later, during the ninth year of life, when they rapidly develop adult sexual attributes and the lining of the ear thickens to its mature state. Reproductive urges appear months after the body has finished developing. For a vulpatra, the true marker for adulthood is appearance sexual desire, something primitive communities often celebrated with feasts, dance, and drinks.\n\n");
+	outputCodex(blockHeader("Homeworld"));
+	outputCodex("The vulpatra homeworld of Satio has an Earth-like climate with similar levels of biodiversity but no true oceans. It’s average temperatures are roughly four degrees Celsius higher than terran standard, though powerful wind currents keep the equatorial region more habitable than such temperatures would imply.");
+	outputCodex("\n\nMost homeworld vulpatra live in walled fortress cities impervious to primitive Pworfu weapons. Some tribal societies continue to live in the wilds as they always have, hiding from their larger rivals and maintaining the ancient traditions of their people. Modern vulpatra look down on them as simple fools.");
+	outputCodex("\n\nPolitically, the vulpine shortstacks have managed to avoid pledging themselves to any one corporation or group, skating the thin line between hiding from conflict and aggressively maintaining their independence. With the latest Planet Rush ongoing, the galaxy has been too focused on the spreading rim to take advantage of these petite fluffballs.\n\n");
+	CodexManager.viewedEntry("Vulpatra");
+}
+
 public function varmintCodex():void
 {
 	clearOutputCodex();
