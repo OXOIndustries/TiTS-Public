@@ -715,14 +715,42 @@ public function kqt12Bonus():Boolean
 }
 public function kqr20bonus():Boolean
 {
-	showImage("ObediencePoster");
-	output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+	if(flags["KQ_POSTER_LOOT"] == undefined)
+	{
+		showImage("ObediencePoster");
+		output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+		addButton(0,"TakePoster",takeObediencePoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster hung here, but you took it.\n\nYou can follow this passage to the north and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
+
+public function takeObediencePoster():void
+{
+	flags["KQ_POSTER_LOOT"] = 1;
+	quickLoot(new ObediencePoster);
+}
+public function takeMindfuckPoster():void
+{
+	flags["KQ_POSTER_LOOT_2"] = 1;
+	quickLoot(new MindfuckPoster);
+}
+
 public function kqn14Bonus():Boolean
 {
-	showImage("MindfuckPoster");
-	output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+	if(flags["KQ_POSTER_LOOT_2"] == undefined)
+	{
+		showImage("MindfuckPoster");
+		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+		addButton(0,"TakePoster",takeMindfuckPoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster here, but you took it down.\n\nThe passageway stretches east and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
 public function kqp22bonus():Boolean

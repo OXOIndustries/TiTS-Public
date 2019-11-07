@@ -2187,6 +2187,7 @@ public function luviaScoreScene():void
 			{
 				output("\n\nYou wait and wait, but nothing happens. You’re wondering if you’ll be lying here forever, trapped by the restraints.");
 				//nothing. Stores your cum for archival.
+				pc.taint(5);
 			}
 		}
 		else

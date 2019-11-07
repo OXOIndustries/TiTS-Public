@@ -15,6 +15,8 @@ import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
+import classes.Items.Decorations.ObediencePoster;
+import classes.Items.Decorations.MindfuckPoster;
 import classes.RoomClass;
 import classes.StorageClass;
 import classes.UIComponents.ContentModules.MailModule;
@@ -2136,6 +2138,83 @@ public function insideShipEvents():Boolean
 
 	return false;
 }
+/* NEW DECORATIONS NEED ADDED TO EACH OF THE FOLLOWING FOUR FUNCTIONS!!! */
+public function hasDecorations():Boolean
+{
+	if(flags["KQ_POSTER_HUNG"] != undefined) return true;
+	if(flags["KQ_POSTER_2_HUNG"] != undefined) return true;
+	return false;
+}
+public function displayAPoster():void
+{
+	var choices:Array = [];
+	if(flags["KQ_POSTER_HUNG"] != undefined) choices.push(0);
+	if(flags["KQ_POSTER_2_HUNG"] != undefined) choices.push(1);
+
+	if(choices.length == 0) return;
+	var select:int = choices[rand(choices.length)];
+
+	if(select == 0)
+	{
+		output("\n\n");
+		showImage("ObediencePoster");
+		output("A holographic poster hangs on a nearby wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>");
+	}
+	else if(select == 1)
+	{
+		output("\n\n");
+		showImage("MindfuckPoster");
+		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>");
+	}
+}
+public function decorationsMenu():void
+{
+	clearOutput();
+	showName("\nDECORATIONS");
+	clearMenu();
+	if(flags["KQ_POSTER_HUNG"] == undefined && flags["KQ_POSTER_2_HUNG"] == undefined)
+	{
+		output("You don’t have any decorations.");
+	}
+	else
+	{
+		var button:Number = 0;
+		output("You have the following decorations installed:\n");
+		if(flags["KQ_POSTER_HUNG"] != undefined)
+		{
+			output("\nAn obedience holo-poster.");
+			addButton(button++,"Poster:Ob",removeDecoration,"Obedience Poster","Take down the obedience holo-poster.");
+		}
+		if(flags["KQ_POSTER_2_HUNG"] != undefined)
+		{
+			output("\nA mindfuck holo-poster.");
+			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck","Take down the mindfuck holo-poster.");
+		}
+	}
+	addButton(14,"Back",mainGameMenu);
+}
+
+public function removeDecoration(arg:String):void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	if(arg == "Obedience Poster") 
+	{
+		quickLoot(new ObediencePoster());
+		flags["KQ_POSTER_HUNG"] = undefined;
+	}
+	else if(arg == "Mindfuck") 
+	{
+		quickLoot(new MindfuckPoster());
+		flags["KQ_POSTER_2_HUNG"] = undefined;
+	}
+	else 
+	{
+		output("You can't take that down.");
+		clearMenu();
+		addButton(0,"Next",decorationsMenu);
+	}
+}
 
 public function shipMenu():Boolean
 {
@@ -2149,6 +2228,9 @@ public function shipMenu():Boolean
 	if(ship is Casstech) output("The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.");
 	else output(ship.long);
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
+
+	//Poster display :3
+	displayAPoster();
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	

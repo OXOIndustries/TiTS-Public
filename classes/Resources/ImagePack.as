@@ -127,9 +127,9 @@ package classes.Resources
 			
 			//KIROQUEST
 			[Embed(source = "../../assets/images/imagepack/kiroquest/dcl_kiroquest_kiro_quest_pos_dolls_motivational_poster_obedience.png", mimeType = "image/png")]
-			public static const MindfuckPoster:Class;
-			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
 			public static const ObediencePoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
+			public static const MindfuckPoster:Class;
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]

@@ -1840,6 +1840,11 @@ public function unequipMenu(inCombat:Boolean = false):void
 		}
 		else addDisabledButton(10, "Cockwear", "Cockwear", "You are not wearing any cockwear.");
 	}
+	if(hasDecorations())
+	{
+		addButton(11,"Decorations",decorationsMenu,undefined,"Decorations","View your currently installed decorations");
+	}
+	else addDisabledButton(11,"Decorations","Decorations","You do not have decorations installed.")
 	
 	//Set user and target.
 	itemUser = pc;
