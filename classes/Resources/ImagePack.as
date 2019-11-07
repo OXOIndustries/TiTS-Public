@@ -140,6 +140,14 @@ package classes.Resources
 			//Lieve
 			[Embed(source = "../../assets/images/imagepack/lieve/maniacpaint_lieve.png", mimeType = "image/png")]
 			public static const LieveAgainstWall:Class;
+
+			//Lorelei
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei.png", mimeType = "image/png")]
+			public static const LoreleiSitting:Class;
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei_canine.png", mimeType = "image/png")]
+			public static const LoreleiSittingCanine:Class;
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei_horse.png", mimeType = "image/png")]
+			public static const LoreleiSittingEquine:Class;
 			
 			//MILLIE
 			[Embed(source = "../../assets/images/imagepack/millie/CyanCapsule_Millie_Clothed_BG_MR.jpg", mimeType = "image/jpg")]
