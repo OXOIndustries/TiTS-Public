@@ -311,6 +311,9 @@
 			resetButtonColours();
 			clearButtonData();
 			clearGhostButtons();
+			
+			buttonPage = 1;
+			
 			CheckPages();
 		}
 		

@@ -313,7 +313,7 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\n<i>“Oh! Yes, give me your all, [pc.name],”</i> Olympia moans, abandoning all pretense of her labors. Her draconic tail tightens around your waist, holding you tight until you’ve finish inseminating her robotic bowels. The last aftershot you give her is accompanied by an audible sigh from your gynoid lover, and her body slowly relaxes around you, though her tail and hole don’t let you go quite yet.");
 	output("\n\nAfter a moment, the gynoid casts a glance over her shoulder with a flare of her glowing eyes. <i>“I thought you weren’t going to be a distraction, [pc.name]...”</i>");
 	output("\n\nYou lean over her, cupping a succulent breast in one hand and finishing off an equation for her with the other. <i>“But it was a good distraction?”</i>");
-	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gain some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
+	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gained some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
 	output("\n\nYou give her your answer in the form of a firm squeeze as you finally divest yourself of her tight little asshole, letting the last vestiges of your orgasm leak down Olympia’s thigh. By the time you’ve found your [pc.weapon], she’s already back at work... though still obviously marked by your seed.");
 	processTime(30);
 	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();

@@ -303,7 +303,7 @@ public function synphiaServiceOption():void
 			//Hard
 			else output("<i>“I’ll take some of that oral service you’re offering,”</i> you declare, rocking your pelvis forward.");
 			//3 normies
-			output("\n\nSynphia shushes you with a finger to your lip and gestures toward a gap in the nearby crates, whispering, <i>“If you actually want your dick sucked, this way.”</i> She steps away slowly, increasing her pace when she hears you following after. <i>“Core-dwellers always get their panties in a bunch about somebody getting their rocks off in public, like they don’t also wanna bust a fat load down a hot alien’s throat.”</i> She chuckles, then swings a loui between truck-sized boxes to deposit you in a dim corner. <i>“Station policy is that you can swab my tonsils as much as you like, so long as nobody else sees it, and it’s easier to find a quiet corner than file for an exemption.”</i>");
+			output("\n\nSynphia shushes you with a finger to your lip and gestures toward a gap in the nearby crates, whispering, <i>“If you actually want your dick sucked, this way.”</i> She steps away slowly, increasing her pace when she hears you following after. <i>“Core-dwellers always get their panties in a bunch about somebody getting their rocks off in public, like they don’t also wanna bust a fat load down a hot alien’s throat.”</i> She chuckles, then swings a left between truck-sized boxes to deposit you in a dim corner. <i>“Station policy is that you can swab my tonsils as much as you like, so long as nobody else sees it, and it’s easier to find a quiet corner than file for an exemption.”</i>");
 		}
 	}
 	//REPEATS
@@ -924,7 +924,7 @@ public function longSucksWithSynphia(args:Array):void
 	output("\n\nYou are exactly where she wants you.");
 	output("\n\nA mischievous little muscle announces itself by sliding against your [pc.cockNoun " + x + "]: Synphia’s tongue. It’s long and thick on the edges - perfect for sandwiching between the bottom of her mouth and your curved underside, and when it does slide, it does so knowingly, tweaking tender spots that make your toes curl and you dick momentarily swell, stretching her maw further.");
 	if(venomBool) output(" Something thick and viscous and <i>pleasant</i> slides out of you when she does it. The venom has pried something open inside you, something that’s making your pre pour out with a bit of sperm mixed in. If the beginning of the blowjob feels like this, how good is going to feel to cum?");
-	else output("There’s something so arousing about the situation, leaning here, looking down while you dribble pre-cum " + (pc.cocks[x].cLength() >= 10 ? "right down the back of her throat":"onto the central groove of her tongue") + ".");
+	else output(" There’s something so arousing about the situation, leaning here, looking down while you dribble pre-cum " + (pc.cocks[x].cLength() >= 10 ? "right down the back of her throat":"onto the central groove of her tongue") + ".");
 	//ball licking
 	if(pc.balls > 0)
 	{
@@ -1127,7 +1127,7 @@ public function synphiaBallForeplay():void
 		else output("Huh. Not a fan of letting yourself get backed up, I take it. Somebody’s a busy slut.");
 		output("”</i> Unfurling her tongue the rest of the way, the scaly mechanic caresses it against your underpouch; she rolls it up one side, then gradually works across the front in order to slide down the other.");
 		output("\n\nYou’re " + (pc.isErect() ? "quaking":"fully erect") + " by the time she finishes her first foray into polishing your [pc.balls].");
-		output("\n\n<i>“Mmm,”</i> the nut-loving seductress hums, <i>“I love balls.”</i> She reels her roving muscle up and gives your sack a sloppy kiss. <i>“Not as much as cocks, mind you, but there’s something wonderful knowing that " + (pc.balls == 1 ? "this... this benign little thing is":"these... these benign little things are") + " the source of the most ambrosial flavor in all the galaxy.”</i> She cranes her head around to kiss the other side. <i>“And I love that I can caox out even more by giving " + (pc.balls == 1 ? "it":"them") + " a little attention. That every kiss and slurp is paid back an extra helping for little ol’ me.”</i> Again and again, she peppers the source" + (pc.balls > 1 ? "s":"") + " of your virility with sweet affection. <i>“Think I can fit " + (pc.balls == 1 ? "it":"one") + " in my mouth?”</i>");
+		output("\n\n<i>“Mmm,”</i> the nut-loving seductress hums, <i>“I love balls.”</i> She reels her roving muscle up and gives your sack a sloppy kiss. <i>“Not as much as cocks, mind you, but there’s something wonderful knowing that " + (pc.balls == 1 ? "this... this benign little thing is":"these... these benign little things are") + " the source of the most ambrosial flavor in all the galaxy.”</i> She cranes her head around to kiss the other side. <i>“And I love that I can coax out even more by giving " + (pc.balls == 1 ? "it":"them") + " a little attention. That every kiss and slurp is paid back an extra helping for little ol’ me.”</i> Again and again, she peppers the source" + (pc.balls > 1 ? "s":"") + " of your virility with sweet affection. <i>“Think I can fit " + (pc.balls == 1 ? "it":"one") + " in my mouth?”</i>");
 		//EZfit
 		if(pc.ballDiameter() <= 3.5)
 		{

@@ -16,15 +16,13 @@ public function masturbateWithTaurMilker():void
 	output("\n\nSoon you’re grunting and panting, sweat starting to run down your " + (pc.tone < 30 ? "soft ":"") + (pc.tone > 70 ? "finely chiselled ":"") + "body as you approach an orgasm that the milker seems to want every bit as much as you do. It sucks at your [pc.cockHead " + x + "], encouraging you to blow as soon as you can and endeavoring to bring you to the point of climax. It doesn’t take too long.");
 	output("\n\nGroaning, you hilt yourself" + (pc.cocks[x].cLength() >= 48 ? " - a rarity for you, owing to your size -":"") + " and feel the first load all but squeezed from the end of your" + (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED) ? " blossoming,":"") + " pulsing cock. It’s like there’s a set of careful, loving fingers that gently milks you from base to tip, the origin of the motion repeating before it’s even ended. The end result is you slumping over the milker moaning out loud, futilely humping the machine while it greedily sucks you dry." + (pc.cumQ() >= 15000 ? " The excess spews to the ground but it does better than you expected - better than most actual partners, for sure.":""));
 
-	output("\n\nYou’re sedately massaged through your entire orgasm,");
-	if(pc.balls > 0)
-	{
-		if(pc.balls > 1) output(" your [pc.balls] aching as they’re emptied to the very last.");
-		else output(" your [pc.balls] aching as it’s drained to the very last.");
-		output(" emptied to the very last drop.");
-	}
+	output("\n\nYou’re sedately massaged through your entire orgasm");
+	if(pc.balls > 0) output(", your [pc.balls] aching as " + (pc.balls == 1 ? "it’s drained" : "they’re emptied") + " to the very last drop");
+	output(".");
+	
 	processTime(20);
 	pc.orgasm();
+	
 	output(" You finally withdraw with a satisfied sigh, patting the machine in appreciation.");
 	if(amberIsCrew())
 	{

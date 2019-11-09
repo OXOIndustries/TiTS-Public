@@ -655,7 +655,7 @@ public function roxyGreet():void
 	{
 		roxyIdea = true;
 		flags["ROXY_IDEA"] = -1;
-		output("<i>“Yo, [pc.name],”</i> Roxy waves you over. <i>“Wanting another round already?”</i> she elbows you in bicep. <i>“Hey, you fuck good, but I was thinking I could show you somethin’ else, maybe show you how I do. You got me thinkin’ it’s only fair you get a chance to see what I can do. Let me know if you wanna see my little ‘idea’, a’ight?”</i> she smiles, eyes closed.");
+		output("<i>“Yo, [pc.name],”</i> Roxy waves you over. <i>“Wanting another round already?”</i> she elbows you in your bicep. <i>“Hey, you fuck good, but I was thinking I could show you somethin’ else, maybe show you how I do. You got me thinkin’ it’s only fair you get a chance to see what I can do. Let me know if you wanna see my little ‘idea’, a’ight?”</i> she smiles, eyes closed.");
 		output("\n\nShe leans forward, putting her pert cleavage on display. <i>“Kay, what’s up? Anything on your mind, or you wanna just get to the action?”</i>");
 		processTime(2);
 	}
@@ -855,7 +855,7 @@ public function roxyTalkHerself():void
 	if (firstTime)
 	{
 		output("\n\nShe pauses, looking at you rather intently. <i>“Say, what about your family? Anything going on there? Miss anyone?”</i>");
-		output("\n\nYour lips spread to automatically answer, but you realize that’s a big of a loaded question for you. Roxy stares expectantly, awaiting any type of answer.");
+		output("\n\nYour lips spread to automatically answer, but you realize that’s a bit of a loaded question for you. Roxy stares expectantly, awaiting any type of answer.");
 		addButton(0, "Answer", roxyTalkHerselfAnswer, undefined, "Answer", "Tell her how things are going, getting a bit personal.");
 		addButton(1, "Don’t Answer", roxyTalkHerselfDontAnswer, undefined, "Don’t Answer", "That’s something you’d rather stay tight-lipped on.");
 	}

@@ -59,7 +59,7 @@ package classes.Characters
 			this.shiftCock(0, GLOBAL.TYPE_EQUINE);
 			this.cocks[0].cockColor = "black";
 			this.cocks[0].cLengthRaw = 16;
-			this.cocks[0].cThicknessRatioRaw = 2;
+			this.cocks[0].cThicknessRatioRaw = 1.5;
 
 			this.ballSizeRaw = 40;
 			this.ballFullness = 1;

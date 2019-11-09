@@ -117,7 +117,7 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 	if (!ppFrostwyrmling.hasCock()) ppFrostwyrmling.createCock();
 	ppFrostwyrmling.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 	ppFrostwyrmling.cocks[0].cLengthRaw = 12;
-	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 2.5;
+	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 1.5;
 	ppFrostwyrmling.createPerk("Fixed CumQ", 450000, 0, 0, 0);
 	
 	//ppFrostwyrmling.impregnationType = "FrostwyrmPregnancy";

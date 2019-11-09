@@ -1435,7 +1435,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Demon:</b> " + prettifyGeneticMarker(pc.demonScore(), 5, 8));
 		if(pc.dragonScore() > 0)
 			output2("\n<b>* Dragon:</b> " + prettifyGeneticMarker(pc.dragonScore(), 5, 10));
-		if(CodexManager.entryUnlocked("Dzaan") &&  pc.dzaanScore() > 0)
+		if(CodexManager.entryUnlocked("Dzaan") && pc.dzaanScore() > 0)
 			output2("\n<b>* Dzaan:</b> " + prettifyGeneticMarker(pc.dzaanScore(), 6, 8));
 		if(pc.felineScore() > 0)
 			output2("\n<b>* Feline:</b> " + prettifyGeneticMarker(pc.felineScore(), 5, 7));
@@ -5856,16 +5856,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
 				}
-				if (flags["THYVARA_MET"] != undefined)
+				if(flags["THYVARA_MET"] != undefined)
 				{
 					output2("\n<b>* Thyvara Rosanvond:</b> Met her");
-					if (flags["THYVARA_PROGRESS"] != undefined)
+					if(flags["THYVARA_PROGRESS"] != undefined)
 					{
-						if (flags["THYVARA_PROGRESS"] == 5) output2(", Lovers");
-						else if (flags["THYVARA_PROGRESS"] == 4) output2(", Buddies");
+						if(flags["THYVARA_PROGRESS"] == 5) output2(", Lovers");
+						else if(flags["THYVARA_PROGRESS"] == 4) output2(", Buddies");
 					}
-					if (flags["THYVARA_SEX_FUCK"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times Fucked:</b> " + flags["THYVARA_SEX_FUCK"]);
-					if (flags["THYVARA_SEX_69"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times 69:</b> " + flags["THYVARA_SEX_69"]);
+					if(flags["THYVARA_SEX_FUCK"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times Fucked:</b> " + flags["THYVARA_SEX_FUCK"]);
+					if(flags["THYVARA_SEX_69"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times 69:</b> " + flags["THYVARA_SEX_69"]);
 				}
 				// Erika
 				if(flags["ERIKA_MET"] != undefined)
@@ -7435,14 +7435,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["AGROSH_WHUPPED"] != undefined) output2(", Defeated him in combat");
 				if(flags["ARDIA_WHACKED_OFF_AGROSH"] != undefined) output2(", Sexed him with Ardia");
 				output2("\n<b>* Ardia:</b> Met her");
-				if (immuneToArdia()) output2(", Became immune to her cum");
+				if(immuneToArdia()) output2(", Became immune to her cum");
 				if(flags["SEXED_ARDIA"] != undefined)
 				{
 					output2("\n<b>* Ardia, Sex Organs:</b> " + listCharGenitals("ARDIA"));
 					output2("\n<b>* Ardia, Times Sexed:</b> " + flags["SEXED_ARDIA"]);
 				}
 				if(flags["ARDIA_BUTTLOVED"] != undefined) output2("\n<b>* Ardia, Times Fucked Her Ass:</b> " + flags["ARDIA_BUTTLOVED"]);
-				if (ardiaDomLevel() > 0) output2("\n<b>* Ardia, Dominance Towards You:</b> " + ardiaDomLevel())
+				if(ardiaDomLevel() > 0) output2("\n<b>* Ardia, Dominance Towards You:</b> " + ardiaDomLevel())
 				variousCount++;
 			}
 			if(flags["ZHENG_SHI_JUMPSUITED"] != undefined)
