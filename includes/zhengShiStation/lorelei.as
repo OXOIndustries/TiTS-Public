@@ -1172,7 +1172,9 @@ public function loreleiEngagesInADifferentTypeOfIllicitAct():void
 		output("\n\n<i>“I enjoy when you ask me about myself, as a matter of fact,”</i> she laughs, before placing down her wine glass and standing. She reaches forward and takes your hand in hers. <i>“I will choose to take this as you wanting to learn</i> more <i>about me.”</i> She bends down, her breasts pressing into your shoulder, as she whispers into your ear. <i>“And I have a lot to teach you.”</i>");
 	}
 
-	output("\n\nShe leads you to the bed, and sits. As she does, her black dress begins to melt away from her body, piece by piece; chunks of her clothing disappears in seemingly random spots all over herself, showing you more and more of her tanned body beneath it.");
+	output("\n\n");
+	showImage("LoreleiSitting");
+	output("She leads you to the bed, and sits. As she does, her black dress begins to melt away from her body, piece by piece; chunks of her clothing disappears in seemingly random spots all over herself, showing you more and more of her tanned body beneath it.");
 	if (pc.isNude())
 	{
 		output("\n\n<i>“I don’t share your nudist tendencies, but in a way, I sort of envy them,”</i> she says, smiling at you. <i>“If I did, and I were half as beautiful as you, I’d have no qualms bearing my all to the universe.”</i>");
@@ -1923,7 +1925,9 @@ public function loreleiHasNoRopeButSheDoesHaveKnots(knotCount:int):void
 	{
 		output("You tell Lorelei that you want... you want her to have a <i>huge, fat, <b>throbbing</b></i> cock. You want it to be bigger than she is. You want to sit underneath its shadow. You want her to have a <i>legendary</i> cock that would make even the loosest sluts in the universe clench in surprise.");
 		output("\n\nLorelei audibly licks her lips as you describe it, and, as you asked, the black, streaming tendrils up their output, adding to the bulging mass in between her legs at a suddenly-surprising rate. Before, the bulge was maybe the size of your two fists together, but, in the blink of an eye, it gets bigger than your head – and, with each thick pulsate, it gets even bigger. Bigger than that. Bigger than <i>that.</i>");
-		output("\n\n<i>“We won’t have the material left for any other bits or baubles, I’m afraid,”</i> she says, her hand idly palming the growing bulge. Her hand sinks down to her wrist into the growing mass; it gets so large that she needs to spread her legs further apart, and only now, moments later, is its growth waning in size. <i>“But let it be known that Lorelei</i> provides <i>for her lovers.”</i>");
+		output("\n\n");
+		//showImage("LoreleiSittingEquine");
+		output("<i>“We won’t have the material left for any other bits or baubles, I’m afraid,”</i> she says, her hand idly palming the growing bulge. Her hand sinks down to her wrist into the growing mass; it gets so large that she needs to spread her legs further apart, and only now, moments later, is its growth waning in size. <i>“But let it be known that Lorelei</i> provides <i>for her lovers.”</i>");
 
 		lorelei.cocks[0].cLength(60, true);
 		lorelei.cocks[0].delFlag(GLOBAL.FLAG_KNOTTED);
@@ -1945,7 +1949,8 @@ public function loreleiHasNoRopeButSheDoesHaveKnots(knotCount:int):void
 			if (knotCount == 1)
 			{
 				output(" she has you sold: nothing would sound more delightful than to have her lodged deep inside you, locked together, until she’s well and truly satisfied.");
-				output("\n\nLorelei likes what she hears, and another few black tendrils make their way down her body, adding to the growing sphere and making it all the more <i>formidable.</i>");
+				output("\n\n");
+				output("Lorelei likes what she hears, and another few black tendrils make their way down her body, adding to the growing sphere and making it all the more <i>formidable.</i>");
 			}
 			else
 			{
@@ -2008,7 +2013,10 @@ public function loreleisFutaSexFinallyBegins():void
 	processTime(2+rand(2));
 
 	output("Lorelei reclines into her bed, her hand idly groping at her crotch, the nanomachines shaping and forming the shifting black mass into the cock of your dreams. As the seconds tick by, the sphere’s shape becomes more defined and transformed, until you can clearly make out the shape of a semi-erect cock, sculpted to your exact specifications:");
-	output("\n\nHanging between her legs is a [lorelei.cockNoun],");
+	output("\n\n");
+	if(lorelei.cLength() >= 24) showImage("LoreleiSittingEquine");
+	else if(lorelei.hasKnot()) showImage("LoreleiSittingCanine");
+	output("Hanging between her legs is a [lorelei.cockNoun],");
 	if (lorelei.cLength() < 10) output(" gliding its way up the inside of her thighs as it gets more and more erect. She has a pair of balls that will comfortably fit the palm of your hand – or into your mouth.");
 	else if (lorelei.cLength() < 24) output(" hanging down to her knees, struggling to lift itself underneath its weight and point its head towards you. She has a pair of testicles that hang huge and low: you could barely fit a single one in your palm if you tried, and if you tried with your mouth, you’d have your work cut out for you.");
 	else output(" nearly as long as she is tall, radiating heat all the way over to where you’re standing, and strong enough to support itself as it rises into the air, even with its immensity. Underneath that monolith of a cock isn’t what you’d call a pair of testicles: they’re a pair of beanbag chairs, each of them massive enough for you to recline into, or be smothered by.");

@@ -699,7 +699,7 @@ public function yomaSexVaginal():void
 	output("\n\n<i>“I am going to have to redouble my efforts to get you off, am I not?”</i> he asks, and it’s the only warning you get before ")
 	if (pc.tone >= 50) output("even ");
 	output("your grip can’t hold him still. Yoma’s tail stands ramrod straight now, letting you get a glimpse of a very welcoming looking asshole, as he rapidly slams himself up and down on your "+ (pc.hasCock() ? "[pc.cockNounComplex " + cIdx + "]." : "fake dick."));
-	if (pc.hasVagina()) output(" He doesn’t leave "+ pc.vaginaNounDescript(pc.biggestVaginaIndex()) +" out either, reaching down between your legs to stroke your throbbing clit expertly, the sensation bringing you ever closer to orgasm.");
+	if (pc.hasVagina()) output(" He doesn’t leave your "+ pc.vaginaNounDescript(pc.biggestVaginaIndex()) +" out either, reaching down between your legs to stroke your throbbing clit expertly, the sensation bringing you ever closer to orgasm.");
 	output(" His hot, wet cunt grips you tight, and the fast, rippling motion brings you closer and closer to your climax.");
 	output("\n\nEventually, you can’t hold back any longer and slam your hips up"+	(pc.hasKnot(cIdx) ? (", forcing your knot into him") : "") + (pc.hasCock() ? ", spraying cum into his waiting passage" : "") +" just as he peaks to a second orgasm, crying out loudly. ");
 	if (pc.hasCocks() || pc.hasVagina()) {
@@ -883,7 +883,7 @@ public function yomaSexAnal(onADate:Boolean = false):void
 	output("\n\n<i>“[pc.name]!”</i> he whines out, pouting at you. Noticing the amused glint in his eyes though, you just laugh, twitching your hips up again. The noise he makes is almost a mewl, and he leans forwards, bracing his hands on the bed either side of your shoulders.");
 	output("\n\nOnce he’s recovered sufficiently though, you lose all hope of retaining your dominance over the situation.");
 	output("\n\n<i>“Now then, how about you settle down - just a little. I am not used to this particular action,”</i> he states, pulling back up off your "+ (pc.hasCock() ? "[pc.cockNounComplex " + cIdx + "]" : "[pc.hardlightCock]") +". You can’t stop yourself from jerking your hips up again as he sinks down, but to your horror, he just grins and pulls back up before you can bottom out. <i>“No, we really cannot have that, [pc.name]! This happens by my pace, or not at all.”</i>");
-	output("\n\nGrumbling, you agree to double your efforts to stay still and the android pats your head affectionately" + (pc.hasEmoteEars() ? "making sure to scratch behind your ears in a way that never fails to make you relax" : "") +". <i>“Much better.”</i>");
+	output("\n\nGrumbling, you agree to double your efforts to stay still and the android pats your head affectionately" + (pc.hasEmoteEars() ? " making sure to scratch behind your ears in a way that never fails to make you relax" : "") +". <i>“Much better.”</i>");
 	output("\n\nThe next attempt goes better than the prior, Yoma actually manages to settle into a rhythm fast enough to get your heart racing"+ (pc.hasCock() ? " and shaft throbbing" : "") +", but it doesn’t last - the pleasure from the subtle ribbing wears away at your self restraint until you just can’t help it, thrusting in as far as you can manage. Despite your protests, he pulls up again, shaking his head in amusement at you.");
 	output("\n\n<i>“Let us try that again.”</i>");
 	output("\n\nAnd try the two of you do. It takes several attempts, each more frustrating than the last, until finally, finally you cum");
@@ -1317,7 +1317,7 @@ public function yomaFirstDateProceedV():void
 	output("pulling you towards him, your [pc.chest] "+ (pc.tallness <= 72 ? "pressing against his" : "finding a comfortable resting place against his chest") +" as he roams his hands over you. A finger ghosts lightly across your [pc.asshole], but passes on");
 	if (pc.hasPlumpAsshole() || pc.hasPerk("Buttslut")) output(", much to your chagrin");
 	output(", before he’s tweaking at your nipples gently");
-	if (pc.isLactating()) output("drawing forth a drop of [pc.milk] that he licks up, seemingly amused");
+	if (pc.isLactating()) output(" drawing forth a drop of [pc.milk] that he licks up, seemingly amused");
 	output(".");
 	output("\n\nAfter a while of teasing, you can take no more, leading the android back towards your bed, pushing him down onto it and locking your [pc.lipsChaste] with his. It’s not long before his hands snake down towards your [pc.genitals], although he strokes teasingly across your lower stomach "+(pc.hasVagina() ? "and mons " : "")+"for several moments before you needily push against him.");
 

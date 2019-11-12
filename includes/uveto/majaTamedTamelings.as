@@ -735,7 +735,7 @@ public function worshipMajasBitchBreakingBoner():void
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Much good feels! Unh, very goods");
 	else output("Ohh fuck! I can feel it in my whole body");
-	output(",”</i> she yips, muscles clenching as you slip your [pc.lips] around around her cockhead. The twin tastes of meat and mint mix with the salty pre-cum fountaining from her tip, and you greedily lick and suckle the soft point. Her breasts bounce in the air as you release them, using both hands to coddle her expanding knot. The bulging meat swells as you massage it, swiftly matching the size of her melon-thick balls.");
+	output(",”</i> she yips, muscles clenching as you slip your [pc.lips] around her cockhead. The twin tastes of meat and mint mix with the salty pre-cum fountaining from her tip, and you greedily lick and suckle the soft point. Her breasts bounce in the air as you release them, using both hands to coddle her expanding knot. The bulging meat swells as you massage it, swiftly matching the size of her melon-thick balls.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Maja’s... Already,");
 	else output("I... I’m already,");

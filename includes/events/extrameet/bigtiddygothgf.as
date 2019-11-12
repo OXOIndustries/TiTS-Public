@@ -59,14 +59,14 @@ public function knockOnBigTiddyGFDoor():void
 		output("\n\n<i>“Oh...”</i> she seems to shrink away at the question, and you notice her fidgeting with some of the rings on her fingers absentmindedly. <i>“I was... having a disagreement with my master...”</i>");
 		output("\n\nYou raise your brow, your fast twisting up in confusion. <i>“Your master?”</i> you ask aloud.");
 		if (pc.isNice()) output(" <i>“We were alone.”</i>");
-		else if (pc.isMisc()) output(" <i>“Honey, that’s not the kind of crazy I like”</i>");
+		else if (pc.isMisc()) output(" <i>“Honey, that’s not the kind of crazy I like.”</i>");
 		else output(" <i>“What the fuck are you talking about?”</i>");
 		output("\n\n<i>“I’m sorry, I...”</i> she winces, as if somebody yelled directly into her ear, staying silent after for a long moment. Watching her closely, it almost looks like she’s listening to someone speak. <i>“I was... high...”</i> she shifts in her seat.");
 		output("\n\nShe’s lying. Badly.");
 		output("\n\n<i>“Right....”</i> Well this went south fast. Again.");
 		output("\n\nYou turn your head and eyeball the door, ready to ditch this crazy chick.");
 		if (pc.isNice()) output(" The door isn’t far, and silently you plan to excuse yourself without harming the addled woman.");
-		else if (pc.isMisc()) output("Shame she’s nuts, since she’s so damn hot. You eyeball the door, planning a quick escape.");
+		else if (pc.isMisc()) output(" Shame she’s nuts, since she’s so damn hot. You eyeball the door, planning a quick escape.");
 		else output(" The door isn’t far, but you ready yourself all the same, not knowing what the crazy woman will do.");
 		output(" A loud gasp turns your attention back to The Servant.");
 		output("\n\nHer face is flushed, sweat forming on her pale brow. She lets out another gasp, gripping onto the edge of the table for support, her fingers shaking. Shuddering, her gasping becomes a depraved moan.");
@@ -84,7 +84,7 @@ public function knockOnBigTiddyGFDoor():void
 		{
 			if (pc.isCrotchGarbed()) output(" You pull your [pc.cock] free");
 			else output(" You stroke your [pc.cock]");
-			output(", wrapping your fingers around your already rock-hard mast. With just that simple touch, a lusty moan escapes your [pc.lips]; your senstive cockflesh throbs in your grasp, every wrist driven pump egged on by the display the pale woman is putting on.Your burning hot [pc.cockShape] member already slick with your [pc.cumColor] pre.");
+			output(", wrapping your fingers around your already rock-hard mast. With just that simple touch, a lusty moan escapes your [pc.lips]; your senstive cockflesh throbs in your grasp, every wrist driven pump egged on by the display the pale woman is putting on. Your burning hot [pc.cockShape] member already slick with your [pc.cumColor] pre.");
 		}
 		else if (pc.hasVagina()) output(" You move your fingers down, pushing them between your legs, and running them over your already wet cunt. With just that simple touch, a lusty moan escapes your [pc.lips], your senstive cuntflesh quivering at the faintest stimulation. Your eyes stay fixed on the pale woman before you as you slip your fingers inside, your burning hot snatch already yearning to be <b>fucked</b>.");
 		else output(" You rub your bare groin feebly. Despite your lack of sex organs, you feel your crotch burn, itching to be touched. Somehow, the simple act of rubbing yourself feels like heaven, almost like having your lost sex back once more.");

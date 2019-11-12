@@ -2054,7 +2054,7 @@ public function wallSlutsNoisyRodentsGetStarted(kok:int=0):void
 	}
 	else
 	{
-		output("\n\nWithdrawing from the valley of genital genuflection, you command Walnut to ‘open up’ before sheathing yourself rather forcibly in her smiling suckhole. You think you even hear a little ‘yay’ just before your [pc.cockHead " + kok + "] rolls over her uvula and wears her adams’ apple like a hat. Grinning, content to sit there, you allow the rodenian a moment to luxuriate in the feel of taking <i>your</i> dick. You let Chestnut get her last stimulations in before you start pumping.");
+		output("\n\nWithdrawing from the valley of genital genuflection, you command Walnut to ‘open up’ before sheathing yourself rather forcibly in her smiling suckhole. You think you even hear a little ‘yay’ just before your [pc.cockHead " + kok + "] rolls over her uvula and wears her Adam’s apple like a hat. Grinning, content to sit there, you allow the rodenian a moment to luxuriate in the feel of taking <i>your</i> dick. You let Chestnut get her last stimulations in before you start pumping.");
 		output("\n\nIt’s as much an intense experience for Walnut as it is for you: her green eyes roll all the way back as your penis rides into her gloriously accepting throat, wearing it like a tailor-made condom. No gag reflex in sight");
 		if (pc.libido() >= 66) output(" enables you to thrust all " + num2Text(pc.cocks[kok].cLength()) + " inches into this dispensable prick - holster without any care in the world, satisfying your savage impulses.");
 		else if (pc.libido() >= 33) output(" fills you with the kind of glee one invariably gets when they realize that their unleashed sexual desires can be carried out.");

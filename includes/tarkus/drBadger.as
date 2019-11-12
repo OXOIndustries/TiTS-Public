@@ -1477,7 +1477,7 @@ public function drBadgerCheatMenuInjectBits(args:Array):void
 		
 		pc.addStatusValue("Silicone Please", loc, val);
 		
-		// Cannot have a total of 0 units...
+		// Cannot have a total of 0 units... so default to +1 for breasts
 		if(pc.statusEffectv1("Silicone Please") <= 0 && pc.statusEffectv2("Silicone Please") <= 0 && pc.statusEffectv3("Silicone Please") <= 0 && pc.statusEffectv4("Silicone Please") <= 0) pc.setStatusValue("Silicone Please", 3, 1);
 	}
 	else

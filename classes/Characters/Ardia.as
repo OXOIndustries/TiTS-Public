@@ -8,9 +8,10 @@
 		//constructor
 		public function Ardia()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
+			fluidSimulate = true;
 			
 			this.short = "Ardia";
 			this.originalRace = "dzaan";
@@ -161,7 +162,6 @@
 		{
 			return "ARDIA";
 		}
-		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.cockVirgin = false;
@@ -182,6 +182,10 @@
 			dataObject.hornLength = 0;
 			dataObject.armType = GLOBAL.TYPE_DZAAN;
 			dataObject.legType = GLOBAL.TYPE_DZAAN;
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.fluidSimulate = true;
 		}
 	}
 }

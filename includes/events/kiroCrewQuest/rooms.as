@@ -17,7 +17,25 @@ public function resetKiroQuest():void
 	flags["KQ_PINK_UNLOCKED"] = undefined;
 	flags["KQ_RED_UNLOCKED"] = undefined;
 	flags["KQ_BLACK_UNLOCKED"] = undefined;
-	flags["KQ_PINK_ZAP"] = undefined
+	flags["KQ_PINK_ZAP"] = undefined;
+
+	//VR ADVENTURE:
+	flags["KQ_VR_COMPLETE"] = undefined;
+	flags["KQ_GOBLIN_DED"] = undefined;
+	flags["KQ_VR_LLAERWYN"] = undefined;
+	flags["KQ_VR_CHEST"] = undefined;
+	flags["KQ_VR_LUVIA"] = undefined;
+	flags["KQ_VR_LUVIA_PUSS"] = undefined;
+	flags["KQ_VR_HYLIE"] = undefined;
+	flags["KQ_VR_DEMONNAME"] = undefined;
+	flags["KQ_VR_DEMONPAST"] = undefined;
+	flags["KQ_VR_DEMONALMOST"] = undefined;
+	flags["KQ_VR_DEMONSERVING"] = undefined;
+	flags["KQ_VR_DEMONPREDEC"] = undefined;
+	flags["KQ_VR_DEMONCHARACT"] = undefined;
+	flags["KQ_VR_DEMONTIME"] = undefined;
+	flags["KQ_VR_DEMONFIGHT"] = undefined;
+	flags["KQ_VR_DEMONFUKK"] = undefined;
 	move("SHIP INTERIOR");
 }
 
@@ -401,8 +419,8 @@ public function initKQRooms():void
 	rooms["KQ P12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["KQ R12"] = new RoomClass(this);
-	rooms["KQ R12"].roomName = "COMMON\nAREA";
-	rooms["KQ R12"].description = "A combination TV screen and hologram projector completely dominates the eastern wall. Chairs, small couches, and a coffee table arrange themselves around it for optimal viewing angles whilst still providing ample opportunities for discussion amongst seated guests. Right now, the screen displays a still hologram of Kiro with a list of what you guess are her attributes, printed in a bizarrely mathematical script.\n\nA kitchen lies north, and a waiting area waits to the west.";
+	rooms["KQ R12"].roomName = "VR\nEXPERIMENT";
+	rooms["KQ R12"].description = "";//OLD AND CHANGED: "A combination TV screen and hologram projector completely dominates the eastern wall. Chairs, small couches, and a coffee table arrange themselves around it for optimal viewing angles whilst still providing ample opportunities for discussion amongst seated guests. Right now, the screen displays a still hologram of Kiro with a list of what you guess are her attributes, printed in a bizarrely mathematical script.\n\nA kitchen lies north, and a waiting area waits to the west.";
 	rooms["KQ R12"].planet = "N/A";
 	rooms["KQ R12"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R12"].northExit = "KQ R10";
@@ -410,9 +428,9 @@ public function initKQRooms():void
 	rooms["KQ R12"].southExit = "";
 	rooms["KQ R12"].westExit = "KQ P12";
 	rooms["KQ R12"].moveMinutes = 1;
-	rooms["KQ R12"].runOnEnter = kiroQuestHallwaysEncounters;
+	rooms["KQ R12"].runOnEnter = holoTrapIntro;
 	rooms["KQ R12"].addFlag(GLOBAL.INDOOR);
-	rooms["KQ R12"].addFlag(GLOBAL.HAZARD);
+	rooms["KQ R12"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["KQ R10"] = new RoomClass(this);
 	rooms["KQ R10"].roomName = "\nKITCHEN";
@@ -485,6 +503,166 @@ public function initKQRooms():void
 	rooms["KQ T14"].addFlag(GLOBAL.HAZARD);
 	rooms["KQ T14"].addFlag(GLOBAL.OBJECTIVE);
 
+	//==============================================
+	//
+	//			VR TRAP!
+	//
+	//==============================================
+
+	rooms["KQVR M0"] = new RoomClass(this);
+	rooms["KQVR M0"].roomName = "\nCROSSROADS";
+	rooms["KQVR M0"].description = "";
+	rooms["KQVR M0"].planet = "N/A";
+	rooms["KQVR M0"].system = "SYSTEM: N/A";
+	rooms["KQVR M0"].northExit = "";
+	rooms["KQVR M0"].eastExit = "";
+	rooms["KQVR M0"].southExit = "KQVR S1";
+	rooms["KQVR M0"].westExit = "KQVR W1";
+	rooms["KQVR M0"].moveMinutes = 1;
+	rooms["KQVR M0"].runOnEnter = kqVR_M0Bonus;
+	rooms["KQVR M0"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR M0"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S5"] = new RoomClass(this);
+	rooms["KQVR S5"].roomName = "SAFE\nZONE";
+	rooms["KQVR S5"].description = "You’re standing in the middle of a grassy mound surrounded by a little moat of water. Beyond the moat lies the lush greenery of a forest, idyllic and peaceful as far as the eye can see. The Safe Zone here allows you to peacefully exit the game and return to the real world.";
+	rooms["KQVR S5"].planet = "N/A";
+	rooms["KQVR S5"].system = "SYSTEM: N/A";
+	rooms["KQVR S5"].northExit = "KQVR S4";
+	rooms["KQVR S5"].eastExit = "";
+	rooms["KQVR S5"].southExit = "";
+	rooms["KQVR S5"].westExit = "";
+	rooms["KQVR S5"].moveMinutes = 1;
+	rooms["KQVR S5"].runOnEnter = KQVR_S5Bonus;
+	rooms["KQVR S5"].addFlag(GLOBAL.INDOOR);
+	//rooms["KQVR S5"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S4"] = new RoomClass(this);
+	rooms["KQVR S4"].roomName = "FOREST\nEDGE";
+	rooms["KQVR S4"].description = "";
+	rooms["KQVR S4"].planet = "N/A";
+	rooms["KQVR S4"].system = "SYSTEM: N/A";
+	rooms["KQVR S4"].northExit = "KQVR S3";
+	rooms["KQVR S4"].eastExit = "";
+	rooms["KQVR S4"].southExit = "KQVR S5";
+	rooms["KQVR S4"].westExit = "";
+	rooms["KQVR S4"].moveMinutes = 1;
+	rooms["KQVR S4"].runOnEnter = kqVR_S4Bonus;
+	rooms["KQVR S4"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S3"] = new RoomClass(this);
+	rooms["KQVR S3"].roomName = "THE\nFOREST";
+	rooms["KQVR S3"].description = "You’ve entered the forest proper. The calls of creatures unknown echo through the treetops, though you never catch sight of them or any movement at all. In fact, the area seems strangely devoid of life. You find yourself wondering if the calls are even real, or as real as they can be here. Grass and twigs crunch beneath your feet with every step.";
+	rooms["KQVR S3"].planet = "N/A";
+	rooms["KQVR S3"].system = "SYSTEM: N/A";
+	rooms["KQVR S3"].northExit = "KQVR S2";
+	rooms["KQVR S3"].eastExit = "";
+	rooms["KQVR S3"].southExit = "KQVR S4";
+	rooms["KQVR S3"].westExit = "";
+	rooms["KQVR S3"].moveMinutes = 1;
+	rooms["KQVR S3"].runOnEnter = undefined;
+	rooms["KQVR S3"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S2"] = new RoomClass(this);
+	rooms["KQVR S2"].roomName = "A\nCLEARING";
+	rooms["KQVR S2"].description = "";
+	rooms["KQVR S2"].planet = "N/A";
+	rooms["KQVR S2"].system = "SYSTEM: N/A";
+	rooms["KQVR S2"].northExit = "KQVR S1";
+	rooms["KQVR S2"].eastExit = "";
+	rooms["KQVR S2"].southExit = "KQVR S3";
+	rooms["KQVR S2"].westExit = "";
+	rooms["KQVR S2"].moveMinutes = 1;
+	rooms["KQVR S2"].runOnEnter = kqVR_S2Bonus;
+	rooms["KQVR S2"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR S1"] = new RoomClass(this);
+	rooms["KQVR S1"].roomName = "FOREST\nEDGE";
+	rooms["KQVR S1"].description = "";
+	rooms["KQVR S1"].planet = "N/A";
+	rooms["KQVR S1"].system = "SYSTEM: N/A";
+	rooms["KQVR S1"].northExit = "KQVR M0";
+	rooms["KQVR S1"].eastExit = "";
+	rooms["KQVR S1"].southExit = "KQVR S2";
+	rooms["KQVR S1"].westExit = "";
+	rooms["KQVR S1"].moveMinutes = 1;
+	rooms["KQVR S1"].runOnEnter = kqVR_S1Bonus;
+	rooms["KQVR S1"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR S1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W1"] = new RoomClass(this);
+	rooms["KQVR W1"].roomName = "THE\nROAD";
+	rooms["KQVR W1"].description = "Walking along the road, the landscape abruptly shifts from gravel and dirt to rocky outcroppings and hard, cracked mud beneath your feet. The further west you head, the more the world changes until the sky takes on the faint red glow of sunset, an imposing mountain looming in the distance. The road continues stretching west, leading deeper into mountainous terrain.\n\nThere is no Safe Zone here.";
+	rooms["KQVR W1"].planet = "N/A";
+	rooms["KQVR W1"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W1"].northExit = "";
+	rooms["KQVR W1"].eastExit = "KQVR M0";
+	rooms["KQVR W1"].southExit = "";
+	rooms["KQVR W1"].westExit = "KQVR W2";
+	rooms["KQVR W1"].moveMinutes = 1;
+	rooms["KQVR W1"].runOnEnter = undefined;
+	rooms["KQVR W1"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W2"] = new RoomClass(this);
+	rooms["KQVR W2"].roomName = "BROKEN\nROAD";
+	rooms["KQVR W2"].description = "";
+	rooms["KQVR W2"].planet = "N/A";
+	rooms["KQVR W2"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W2"].northExit = "";
+	rooms["KQVR W2"].eastExit = "KQVR W1";
+	rooms["KQVR W2"].southExit = "";
+	rooms["KQVR W2"].westExit = "KQVR W3";
+	rooms["KQVR W2"].moveMinutes = 1;
+	rooms["KQVR W2"].runOnEnter = kqVR_W2Bonus;
+	rooms["KQVR W2"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W3"] = new RoomClass(this);
+	rooms["KQVR W3"].roomName = "\nMOUNTAINSIDE";
+	rooms["KQVR W3"].description = "";
+	rooms["KQVR W3"].planet = "N/A";
+	rooms["KQVR W3"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W3"].northExit = "";
+	rooms["KQVR W3"].eastExit = "KQVR W2";
+	rooms["KQVR W3"].southExit = "";
+	rooms["KQVR W3"].westExit = "KQVR W4";
+	rooms["KQVR W3"].moveMinutes = 1;
+	rooms["KQVR W3"].runOnEnter = kqVR_W3Bonus;
+	rooms["KQVR W3"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W4"] = new RoomClass(this);
+	rooms["KQVR W4"].roomName = "\nMOUNTAINS";
+	rooms["KQVR W4"].description = "Stumbling along the winding, rising path along the mountain, the air actually gets cleaner as you walk. Aside from the dizzying height and the soreness of your legs, this isn’t too bad. You glance out at the landscape below and see the divisions of land - the forest you initially emerged from, a desert, a ruined city, and the road leading to where you are now. You have to admit, it’s been <i>somewhat</i> of an adventure.\n\nThere is no Safe Zone here.";
+	rooms["KQVR W4"].planet = "N/A";
+	rooms["KQVR W4"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W4"].northExit = "";
+	rooms["KQVR W4"].eastExit = "KQVR W3";
+	rooms["KQVR W4"].southExit = "";
+	rooms["KQVR W4"].westExit = "KQVR W5";
+	rooms["KQVR W4"].moveMinutes = 1;
+	rooms["KQVR W4"].runOnEnter = undefined;
+	rooms["KQVR W4"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["KQVR W5"] = new RoomClass(this);
+	rooms["KQVR W5"].roomName = "\nMOUNTAINS";
+	rooms["KQVR W5"].description = "";
+	rooms["KQVR W5"].planet = "N/A";
+	rooms["KQVR W5"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W5"].northExit = "";
+	rooms["KQVR W5"].eastExit = "KQVR W4";
+	rooms["KQVR W5"].southExit = "";
+	rooms["KQVR W5"].westExit = "";
+	rooms["KQVR W5"].moveMinutes = 1;
+	rooms["KQVR W5"].runOnEnter = kqVR_W5Bonus;
+	rooms["KQVR W5"].addFlag(GLOBAL.INDOOR);
+	rooms["KQVR W5"].addFlag(GLOBAL.HAZARD);
+
 	//Template room :3
 	rooms["KQ TEMP"] = new RoomClass(this);
 	rooms["KQ TEMP"].roomName = "NAME\nME";
@@ -499,6 +677,7 @@ public function initKQRooms():void
 	rooms["KQ TEMP"].runOnEnter = kiroQuestHallwaysEncounters;
 	rooms["KQ TEMP"].addFlag(GLOBAL.INDOOR);
 	rooms["KQ TEMP"].addFlag(GLOBAL.HAZARD);
+	rooms["KQ TEMP"].addFlag(GLOBAL.OBJECTIVE);
 
 }
 
@@ -536,14 +715,42 @@ public function kqt12Bonus():Boolean
 }
 public function kqr20bonus():Boolean
 {
-	showImage("ObediencePoster");
-	output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+	if(flags["KQ_POSTER_LOOT"] == undefined)
+	{
+		showImage("ObediencePoster");
+		output("A holographic poster appears over the western wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>\n\nYou can follow this passage to the north and west.");
+		addButton(0,"TakePoster",takeObediencePoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster hung here, but you took it.\n\nYou can follow this passage to the north and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
+
+public function takeObediencePoster():void
+{
+	flags["KQ_POSTER_LOOT"] = 1;
+	quickLoot(new ObediencePoster);
+}
+public function takeMindfuckPoster():void
+{
+	flags["KQ_POSTER_LOOT_2"] = 1;
+	quickLoot(new MindfuckPoster);
+}
+
 public function kqn14Bonus():Boolean
 {
-	showImage("MindfuckPoster");
-	output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+	if(flags["KQ_POSTER_LOOT_2"] == undefined)
+	{
+		showImage("MindfuckPoster");
+		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>\n\nThe passageway stretches east and west.");
+		addButton(0,"TakePoster",takeMindfuckPoster,undefined,"Take Poster","Take down the poster. Maybe it’ll look nice in your ship?");
+	}
+	else
+	{
+		output("There used to be a holographic poster here, but you took it down.\n\nThe passageway stretches east and west.");
+	}
 	return kiroQuestHallwaysEncounters();
 }
 public function kqp22bonus():Boolean
@@ -561,22 +768,89 @@ public function kqp28Bonus():Boolean
 	//If Kiro is fully converted, add a Kiro bionacock!
 	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled <i>“FOR EMERGENCY USE ONLY.”</i> They’ve all been used, multiple times.");
 	output("\n\nA bucket near the door, labelled similarly, ");
-	if(9999 == 9999) 
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
 		output("holds ");
-		if(9999 == 9999) output("a variety of different dildos");
+		var dilds:int = 0;
+		if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined) dilds++;
+		if(flags["KQ_TAINTED_KUITAN_TAKEN"] == undefined) dilds++;
+		if(flags["KQ_MINO_KING_TAKEN"] == undefined) dilds++;
+
+		if(dilds > 1) output("a variety of different dildos");
 		else output("a single dildo");
 		output(".");
+		
 	}
 	else output("lies empty thanks to your pillaging hands.");
+	addButton(0,"Dildo Bucket",inspectDildoBin,undefined,"Dildo Bucket","Take a closer look at the emergency dildo bucket.");
 	return kiroQuestHallwaysEncounters();
 }
-//9999
-//Dildos.
-//	The "EMERGENCY USE ONLY" dildo bucket holds the following:
 
-//Empty:
-//	The "EMERGENCY USE ONLY" dildo bucket had an emergency of its own: you taking everything inside it.
+//Dildos.
+public function inspectDildoBin():void
+{
+	clearOutput();
+	showName("DILDO\nBUCKET");
+	author("Fenoxo");
+	//Empty:
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
+	{
+		output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket had an emergency of its own: you taking everything inside it.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket holds the following:");
+	clearMenu();
+	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined)
+	{
+		output("\n\t* Knotty Terran");
+		addItemButton(0,new DildoKnottyTerran(),lootADildo, new DildoKnottyTerran());
+	}
+	else addDisabledButton(0,"Knotty Terran","Knotty Terran","Already taken.");
+	if(flags["KQ_TAINTED_KUITAN_TAKEN"] == undefined)
+	{
+		output("\n\t* Tainted Kui-Tan Toy");
+		//DildoTaintedKuiTanTool
+		addItemButton(1,new DildoTaintedKuiTanTool(),lootADildo, new DildoTaintedKuiTanTool());
+	}
+	else addDisabledButton(1,"Kui-Tan Toy","Kui-Tan Toy","Already taken.");
+	if(flags["KQ_MINO_KING_TAKEN"] == undefined)
+	{
+		output("\n\t* The Minotaur King");
+		//DildoMinotaurKing
+		addItemButton(2,new DildoMinotaurKing(),lootADildo, new DildoMinotaurKing());
+	}
+	else addDisabledButton(2,"Mino King","Mino King","Already taken.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+public function lootADildo(item:ItemSlotClass):void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	if(item is DildoKnottyTerran)
+	{
+		flags["KQ_KNOTTY_TERRAN_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else if(item is DildoMinotaurKing)
+	{
+		flags["KQ_MINO_KING_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else if(item is DildoTaintedKuiTanTool)
+	{
+		flags["KQ_TAINTED_KUITAN_TAKEN"] = 1;
+		quickLoot(item);
+	}
+	else
+	{
+		output("Whoops! Something went wrong.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 
 public function kqj20Bonus():Boolean
 {
@@ -807,7 +1081,7 @@ public function getDildos():Array
 	var dildos:Array = [];
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
-		if(pc.inventory[x].longName.indexOf("dildo") >= 0 || pc.inventory[x].longName.indexOf("Dildo") >= 0 || pc.inventory[x].longName.indexOf("DILDO") >= 0) dildos.push(pc.inventory[x]);
+		if(pc.inventory[x] is Dildo) dildos.push(pc.inventory[x]);
 	}
 	return dildos;
 }
@@ -817,7 +1091,7 @@ public function buildDildoMenu():void
 	var dildos:Array = getDildos();
 	for(var x:int = 0; x < dildos.length; x++)
 	{
-		addItemButton(x, dildos[x], useADildo, dildos[x], null, null, pc, null);
+		addItemButton(x, dildos[x], useADildo, dildos[x]);
 	}
 }
 
@@ -829,7 +1103,11 @@ public function useADildo(dildo:ItemSlotClass):void
 	author("Fenoxo");
 
 	var black:Boolean = (flags["KQ_PANEL"] == 1);
-	var correct:Boolean = ((black && (pc.cocks[x].cType == GLOBAL.TYPE_EQUINE || pc.cocks[x].cockColor == "black" || (pc.hasSheath() && pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)))) || (!black && (pc.cocks[x].cType == GLOBAL.TYPE_CANINE || pc.hasKnot(x) || pc.cocks[x].cockColor == "red" || pc.cocks[x].cockColor == "crimson" || pc.cocks[x].cockColor == "scarlet")));
+	var cock:CockClass = (dildo as Dildo).cock();
+	var cockSack:Creature = new Creature();
+	cockSack.cocks = [cock];
+
+	var correct:Boolean = ((black && (cock.cType == GLOBAL.TYPE_EQUINE || cock.cockColor == "black" || (cockSack.hasSheath() && cock.hasFlag(GLOBAL.FLAG_BLUNT)))) || (!black && (cock.cType == GLOBAL.TYPE_CANINE || cockSack.hasKnot(0) || cock.cockColor == "red" || cock.cockColor == "crimson" || cock.cockColor == "scarlet")));
 	output("You stuff the dildo into the socket in the wall. It’s the only logical choice in a perverse place like this. The socket hums, and there’s the slight hiss of pneumatic pressure as the puckered hole inflates like a blood pressure cuff. It’s so tight that it traps the dildo inside; you can’t tug it out or force it any deeper.");
 	//Use dildo on doorlock (wrong)
 	if(!correct) 
@@ -843,6 +1121,8 @@ public function useADildo(dildo:ItemSlotClass):void
 	{
 		output("\n\nA pleased-sounding tone chimes from the control panel, and the glossy plastic hole relaxes, allowing the dildo to slide out into your waiting hands. A moment later, the door rumbles and slides down on hidden tracks, recessed into the floor.");
 		output("\n\nWhat a fucked up system for locking doors.");
+		if(black) flags["KQ_BLACK_UNLOCKED"] = 1;
+		else flags["KQ_RED_UNLOCKED"] = 1;
 	}
 	processTime(5);
 	clearMenu();

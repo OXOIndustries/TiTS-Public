@@ -1583,7 +1583,7 @@ public function autoFillNymFoeBoobjection(bRow:int = 0):void
 			
 			pc.breastRows[c_bRow].breastRatingMod += amount;
 			
-			txt += " <b>Your " + num2Ordinal(c_bRow + 1) + " row now has " + pc.breastCup(c_bRow) + " breasts!</b>";
+			txt += " <b>Your " + num2Ordinal(c_bRow + 1) + " row " + (pc.bRating(c_bRow) <= 0 ? "is now flat" : ("now has " + pc.breastCup(c_bRow) + " breasts")) + "!</b>";
 			
 			clearOutput();
 			showBust("");
@@ -1676,6 +1676,9 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
+	
+	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
+	
 	//normal
 	if(!pc.isBimbo())
 	{
@@ -1689,10 +1692,10 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		if(pc.femininity < 50) pc.femininity = 50;
 		else pc.modFem(15);
 		
-		nymFoeInjection(pc,1,3);
-		nymFoeInjection(pc,2,3);
-		nymFoeInjection(pc,3,3);
-		nymFoeInjection(pc,4,1);
+		nymFoeInjection(pc,1,(siliconeSite == null || siliconeSite.value1 < 3 ? 3 : siliconeSite.value1));
+		nymFoeInjection(pc,2,(siliconeSite == null || siliconeSite.value2 < 3 ? 3 : siliconeSite.value2));
+		nymFoeInjection(pc,3,(siliconeSite == null || siliconeSite.value3 < 3 ? 3 : siliconeSite.value3));
+		nymFoeInjection(pc,4,(siliconeSite == null || siliconeSite.value4 < 1 ? 1 : siliconeSite.value4));
 
 		if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 		pc.milkStorageMultiplier++;
@@ -1722,7 +1725,7 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		}
 		//player’s ass increases 3 steps
 		//[Next]
-		nymFoeInjection(pc,2,3);
+		nymFoeInjection(pc,2,(siliconeSite == null || siliconeSite.value2 < 3 ? 3 : siliconeSite.value2));
 
 		processTime(10);
 		clearMenu();
@@ -1757,10 +1760,13 @@ public function loseToNymFoeViaHPBimboStep2(pexiga:Boolean = true):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
+	
+	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
+	
 	output("Just as your bubble-like cheeks seem to reach their limit, the expanding goo spreads down into your [pc.hips], giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen.");
 	//player’s hips and thighs increase 3 steps
-	nymFoeInjection(pc,1,3);
-	nymFoeInjection(pc,2,3);
+	nymFoeInjection(pc,1,(siliconeSite == null || siliconeSite.value1 < 3 ? 3 : siliconeSite.value1));
+	nymFoeInjection(pc,2,(siliconeSite == null || siliconeSite.value2 < 3 ? 3 : siliconeSite.value2));
 
 	processTime(3);
 	clearMenu();
@@ -1771,6 +1777,9 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
+	
+	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
+	
 	output("By the time it’s done with this bit, you’re already shaking your [pc.ass] and [pc.hips] in delight. ");
 	if(pc.hasVagina())
 	{
@@ -1794,7 +1803,7 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 	}
 	output("The steel tail keeps pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
 	//player’s breasts increase by 3 cup sizes
-	nymFoeInjection(pc,3,3);
+	nymFoeInjection(pc,3,(siliconeSite == null || siliconeSite.value3 < 3 ? 3 : siliconeSite.value3));
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep4,pexiga);
@@ -1805,10 +1814,13 @@ public function loseToNymFoeViaHPBimboStep4(pexiga:Boolean = true):void
 	clearOutput();
 	showNymFoe();
 	author("Adjatha");
+	
+	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
+	
 	output("In no time at all, your chest now sports [pc.breasts], wobbling with their overstuffed expansion but just as sensitive as before. You tremble with the bliss of your added weight, and can’t help but to rub your [pc.nipples] a little bit. <i>“And, for the cherry on top...”</i> Nym-Foe adds, tweaking your nose playfully. The silicone rushes across your face, settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
 	//player’s lips increase 3 steps, Libido increases by 15
 	pc.modFem(20);
-	nymFoeInjection(pc,4,1);
+	nymFoeInjection(pc,4,(siliconeSite == null || siliconeSite.value4 < 1 ? 1 : siliconeSite.value4));
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep5,pexiga);

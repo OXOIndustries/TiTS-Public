@@ -5114,7 +5114,7 @@ public function useDildoOnPussy(x:int):void
 		//terran
 		else if(select == 6) output("This particular specimen is terran in design, which pleases you just fine. The mushroom-like crown will do a lovely job spreading you open and pressing against your hungry walls. The thick veins will be a steady drumbeat on the underside of [pc.oneClit] on every stroke.");
 		//1
-		if(timesUsed <= 0) output(" You can’t wait to take the portable stud for its first ride. There’s something thrilly about despoiling something so virginal, even something created explicitly for sex.");
+		if(timesUsed <= 0) output(" You can’t wait to take the portable stud for its first ride. There’s something thrilling about despoiling something so virginal, even something created explicitly for sex.");
 		//2
 		else if(timesUsed <= 1) output(" Time to take this portable stud for his second tango. After last time, the mere sight is enough to make your heart race.");
 		//3

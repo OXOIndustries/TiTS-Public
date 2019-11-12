@@ -1943,7 +1943,7 @@ public function aGreedyPCLovingTheirPenny(vagIdx:int):void
 	output("\n\nIt’s not a process that should be rushed. You lean in,");
 	if (pc.tallness > penny.tallness + 4) output(" your gaze turned downward");
 	else if (pc.tallness > penny.tallness - 4) output(" your forehead against hers");
-	output(" your gaze turned upward");
+	else output(" your gaze turned upward");
 	output(", your nose touching hers – it’s obvious what you want, but it’s not something for you to take. It’s something for her to give.");
 	output("\n\nAnd give it, she does: she leans in across those last few inches and meets your [pc.lipsChaste] with hers. It’s a chaste, tongue-less kiss, but with all the energy and promise of much, much more: she kisses you once, then pulls her lips away and kisses you again, and again, and again. She lets go of your hands, only to grab your wrists and direct them to her thighs, towards her rear side, where her tail is giddily swishing from side to side.");
 	output("\n\nAfter what must have been the two-dozenth kiss, she pulls away, your noses booping into each other and not letting go, and laughs again, more of a giddy giggle than before. Her hips sway against your hands, subliminally directing them this way and that, and her clenched thighs press against yours. You can feel her dick, straining against " + (penny.armor is UGCUniform ? "her officer’s uniform" : "her shorts") + ", telling you exactly how ready she is to get right to business – but, as horny as her body might be, you know that her heart yearns for a bit more.");

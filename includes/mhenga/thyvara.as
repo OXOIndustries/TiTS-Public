@@ -44,7 +44,7 @@ public function showThyvara(nude:Boolean = false,preg:Boolean = false):void
 	if (flags["THYVARA_MET"] == 1) showName("\nTHYVARA");
 	else showName("ARMORED\nWOMEN");
 	showBust("THYVARA" + (preg ? "_PREG" : "") + (nude ? "_NUDE" : ""));
-	author("Fucky McFuck");
+	author("Redknight910");
 }
 public function thyvaraInBurts():Boolean
 {

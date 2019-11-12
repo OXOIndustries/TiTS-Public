@@ -432,9 +432,9 @@
 		override public function get bustDisplay():String
 		{
 			if(this.hasCock(GLOBAL.TYPE_EQUINE)) return "KQ_SEXDOLL_LAQUINE";
-			else if(this.hasCock(GLOBAL.TYPE_CANINE)) return "KQ_SEXDOLL_VULPATRA";
-			else if(this.hasCock(GLOBAL.TYPE_FELINE)) return "KQ_SEXDOLL_DEMON";
-			else return "KQ_SEXDOLL_HUMAN";
+			else if(this.hasCock(GLOBAL.TYPE_VULPINE)) return "KQ_SEXDOLL_VULPATRA";
+			else if(this.hasCock(GLOBAL.TYPE_DEMONIC)) return "KQ_SEXDOLL_DEMON";
+			else return "KQ_SEXDOLL_TERRAN";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

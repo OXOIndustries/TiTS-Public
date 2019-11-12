@@ -1172,7 +1172,6 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].moveMinutes = 1;
 	rooms["ZSF I22"].runOnEnter = foundryLoungeBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
 
 	rooms["ZSF G22"] = new RoomClass(this);
 	rooms["ZSF G22"].roomName = "BREAK\nROOM";
@@ -2716,7 +2715,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L37"] = new RoomClass(this);
 	rooms["ZSR L37"].roomName = "CRIMSON\nPATH";
-	rooms["ZSR L37"].description = "A kiosk sits propped against the eastern wall, filled with strange-looking headphones. Its signage declares them to be “hedon-guard” headphones, and the price is listed as “free for Rat’s Raiders, via DNA-scan.” There’s a spot to place a thumb for testing, and a slot for the strange devices to dispense into, assuming the user’s packing suitably rodenian DNA. Half the racks still hold headphones, the rest already dispensed to mouse-folk in need of a bit of aural protection - or in need of the few credits they can make flipping them elsewhere.\n\nYou notice what appears to be a... storefront? Albeit a rather shady looking one. It’s just a door with a sign that says <b>“SELL HERE”</b>…";
+	rooms["ZSR L37"].description = "A kiosk sits propped against the eastern wall, filled with strange-looking headphones. Its signage declares them to be “hedon-guard” headphones, and the price is listed as “free for Rat’s Raiders, via DNA-scan.” There’s a spot to place a thumb for testing, and a slot for the strange devices to dispense into, assuming the user’s packing suitably rodenian DNA. Half the racks still hold headphones, the rest already dispensed to mouse-folk in need of a bit of aural protection - or in need of the few credits they can make flipping them elsewhere.\n\nYou notice what appears to be a... storefront? Albeit a rather shady looking one. It’s just a door with a sign that says <b>“SELL HERE”</b>...";
 	rooms["ZSR L37"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L37"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L37"].northExit = "ZSR L35";

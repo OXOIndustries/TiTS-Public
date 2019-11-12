@@ -15,6 +15,8 @@ import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
+import classes.Items.Decorations.ObediencePoster;
+import classes.Items.Decorations.MindfuckPoster;
 import classes.RoomClass;
 import classes.StorageClass;
 import classes.UIComponents.ContentModules.MailModule;
@@ -647,7 +649,7 @@ public function showMailsHandler(e:Event = null):void
 		{
 			userInterface.showSecondaryOutput();
 			clearOutput2();
-			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with it’s quantum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
+			output2("You try and access your Codex’s communications functions, but the app refuses to go beyond the login screen. Something’s messed up with its quantum comms. device... or it’s getting some serious interference. You’ll not be able to use the function until you get back to your ship and tinker with it.");
 			return;
 		}
 		else
@@ -803,6 +805,7 @@ public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
 public const CREW_EITAN: int = 24;
+public const CREW_ARDIA: int = 25;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -811,6 +814,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberRecruited()) crewMembers.push(CREW_AMBER);
 	if (annoRecruited()) crewMembers.push(CREW_ANNO);
+	if (ardiaRecruited()) crewMembers.push(CREW_ARDIA);
 	if (azraRecruited()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (celiseIsFollower()) crewMembers.push(CREW_CELISE);
@@ -849,6 +853,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberIsCrew()) crewMembers.push(CREW_AMBER);
 	if (annoIsCrew()) crewMembers.push(CREW_ANNO);
+	if (ardiaIsCrew()) crewMembers.push(CREW_ARDIA);
 	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsCrew()) crewMembers.push(CREW_BESS);
 	if (celiseIsCrew()) crewMembers.push(CREW_CELISE);
@@ -969,6 +974,7 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (annoIsCrew()) c.push(anno);
+	if (ardiaIsCrew()) c.push(ardia);
 	if (syriIsCrew()) c.push(syri);
 	if (azraIsCrew()) c.push(azra);
 	if (bessIsCrew()) c.push(bess);
@@ -1020,6 +1026,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	
 	if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
+	if (ardiaIsCrew()) crewMembers.push("Ardia");
 	if (azraIsCrew()) crewMembers.push("Azra");
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
 	if (celiseIsCrew()) crewMembers.push("Celise");
@@ -1071,6 +1078,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 	{
 		case "Amber": return dryadBustDisplay(); break;
 		case "Anno": return annoBustDisplay(); break;
+		case "Ardia": return ardiaBustDisplay(); break;
 		case "Azra": return azraBustString(); break;
 		case "Ben-14":
 		case "Bess-13": return bessBustDisplay(); break;
@@ -1123,6 +1131,7 @@ public function getSleepingPartnerBustDisplay():String
 	{
 		case "AMBER": return dryadBustDisplay(); break;
 		case "ANNO": return annoBustDisplay(); break;
+		case "ARDIA": return ardiaBustDisplay(); break;
 		case "AZRA": return azraBustString(); break;
 		case "BESS": return bessBustDisplay(); break;
 		case "CELISE": return celiseBustDisplay(); break;
@@ -1193,6 +1202,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += annoCrewBlurbs(btnSlot, InCollection(CREW_ANNO, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (ardiaIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += ardiaCrewBlurbs(btnSlot, InCollection(CREW_ARDIA, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1771,6 +1789,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = ramisSleep();
 					}
 					break;
+				case "ARDIA":
+					if (ardiaIsCrew())
+					{
+						ardiaSleep();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1830,6 +1855,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
 		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (flags["ARDIA_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ardiaWantsToDoMorningThings];
 		if (pc.hasStatusEffect("PENNY_WAKEUP_CUED"))
 		{
 			pc.removeStatusEffect("PENNY_WAKEUP_CUED");
@@ -2104,8 +2130,90 @@ public function insideShipEvents():Boolean
 		amberAndMitziFun();
 		return true;
 	}
+	if (flags["DZAAN_CURE_ARRIVAL"] < GetGameTimestamp() && ardiaIsCrew() && annoIsCrew())
+	{
+		annoHasYourDzaanDrugs();
+		return true;
+	}
 
 	return false;
+}
+/* NEW DECORATIONS NEED ADDED TO EACH OF THE FOLLOWING FOUR FUNCTIONS!!! */
+public function hasDecorations():Boolean
+{
+	if(flags["KQ_POSTER_HUNG"] != undefined) return true;
+	if(flags["KQ_POSTER_2_HUNG"] != undefined) return true;
+	return false;
+}
+public function displayAPoster():void
+{
+	var choices:Array = [];
+	if(flags["KQ_POSTER_HUNG"] != undefined) choices.push(0);
+	if(flags["KQ_POSTER_2_HUNG"] != undefined) choices.push(1);
+
+	if(choices.length == 0) return;
+	var select:int = choices[rand(choices.length)];
+
+	if(select == 0)
+	{
+		output("\n\n");
+		showImage("ObediencePoster");
+		output("A holographic poster hangs on a nearby wall. It depicts two excessively endowed hermaphrodites kneeling with their arms folded behind their backs, dribbling thin ribbons of pre-cum down their veiny masts. Tight, taut nipples jut from their mountainous bosoms while they bite their lips in obvious pleasure. The text reads, <i>“Good girls know that obedience is better than orgasm.”</i>");
+	}
+	else if(select == 1)
+	{
+		output("\n\n");
+		showImage("MindfuckPoster");
+		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>");
+	}
+}
+public function decorationsMenu():void
+{
+	clearOutput();
+	showName("\nDECORATIONS");
+	clearMenu();
+	if(flags["KQ_POSTER_HUNG"] == undefined && flags["KQ_POSTER_2_HUNG"] == undefined)
+	{
+		output("You don’t have any decorations.");
+	}
+	else
+	{
+		var button:Number = 0;
+		output("You have the following decorations installed:\n");
+		if(flags["KQ_POSTER_HUNG"] != undefined)
+		{
+			output("\nAn obedience holo-poster.");
+			addButton(button++,"Poster:Ob",removeDecoration,"Obedience Poster","Take down the obedience holo-poster.");
+		}
+		if(flags["KQ_POSTER_2_HUNG"] != undefined)
+		{
+			output("\nA mindfuck holo-poster.");
+			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck","Take down the mindfuck holo-poster.");
+		}
+	}
+	addButton(14,"Back",mainGameMenu);
+}
+
+public function removeDecoration(arg:String):void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	if(arg == "Obedience Poster") 
+	{
+		quickLoot(new ObediencePoster());
+		flags["KQ_POSTER_HUNG"] = undefined;
+	}
+	else if(arg == "Mindfuck") 
+	{
+		quickLoot(new MindfuckPoster());
+		flags["KQ_POSTER_2_HUNG"] = undefined;
+	}
+	else 
+	{
+		output("You can't take that down.");
+		clearMenu();
+		addButton(0,"Next",decorationsMenu);
+	}
 }
 
 public function shipMenu():Boolean
@@ -2120,6 +2228,9 @@ public function shipMenu():Boolean
 	if(ship is Casstech) output("The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.");
 	else output(ship.long);
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
+
+	//Poster display :3
+	displayAPoster();
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
 	
@@ -3995,6 +4106,10 @@ public function variableRoomUpdateCheck():void
 	if(flags["TEYAAL_DEFEATED"] == 2) rooms["ZSF AD20"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
 
+	// Ardia Leaving
+	if (ardiaInZhengShi()) rooms["ZSF I22"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF I22"].removeFlag(GLOBAL.NPC);
+
 	/* UVETO */
 	
 	// Huskar Bimbos
@@ -5365,6 +5480,7 @@ public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 		case "JULY_4TH": return checkDate(4, 7, 7); break;
 		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
 		case "HALLOWEEN": return checkDate(29, 10, 10); break;
+		case "LATE_HALLOWEEN": return checkDate(10,11,10); break;
 		case "THANKSGIVING":
 			// Canadian Holiday
 			if(checkDate(12, 10, 6)) return true;
@@ -5387,6 +5503,7 @@ public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST
 public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
 public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
 public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
+public function isLateHalloween():Boolean { return holidaySeasonCheck("LATE_HALLOWEEN"); }
 
 public function getRealtimeYear():Number
 {

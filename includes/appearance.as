@@ -1268,7 +1268,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				else if(target.hornLength < 4) outputRouter(" A pair of bovine horns jut a full three inches from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
 				else if(target.hornLength < 5) outputRouter(" Two horns protrude through the [target.skin] of " + (target == pc ? "your":"[target.hisHer]") + " forehead. Each is about four inches in length and impossible to ignore.");
 				else if(target.hornLength < 6) outputRouter(" Two big, strong bovine horns jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead. Their weight is a constant reminder just how much you look like a " + target.mf("bull","cow") + ".");
-				else if(target.hornLength < 8) outputRouter(" Roughly half a foot of powerful, bovine horn protrudes from " + (target == pc ? "your":"[target.hisHer]") + " skull. All " + (target == pc ? "you have":"[target.heShe] has") + " to do is lower " + (target == pc ? "your":"[target.hisHer]") + " head, and suddenly, " + (target == pc ? "you look":"[target.heShe] looks") + " quite dangerous.");
+				else if(target.hornLength < 8) outputRouter(" A pair of roughly half a foot of powerful, bovine horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " skull. All " + (target == pc ? "you have":"[target.heShe] has") + " to do is lower " + (target == pc ? "your":"[target.hisHer]") + " head, and suddenly, " + (target == pc ? "you look":"[target.heShe] looks") + " quite dangerous.");
 				else if(target.hornLength < 12) outputRouter(" Two large horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving forwards like those of a bull.");
 				else if(target.hornLength < 20) outputRouter(" Two very large and dangerous looking horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " head, curving forward and over a foot long. They have dangerous looking points.");
 				else outputRouter(" Two huge horns erupt from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
@@ -2185,6 +2185,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		else outputRouter(" On one of " + (target == pc ? "your":"[target.hisHer]") + " ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind " + (target == pc ? "you":"[target.himHer]") + " of " + (target == pc ? "your":"[target.hisHer]") + " place as her pet.");
 	}
 	if(target.hasPerk("Slut Stamp")) outputRouter(" To highlight " + (target == pc ? "your":"[target.hisHer]") + " vulgarity, a tattoo is permanently printed on " + (target == pc ? "your":"[target.hisHer]") + " lower back, advertising how much of a slut " + (target == pc ? "you are":"[target.heShe] is") + " to anyone who sees it.");
+	if(target.hasPerk("Whore-Stamped")) outputRouter(" To highlight " + (target == pc ? "your":"[target.hisHer]") + " whorish nature, a tattoo is permanently printed on " + (target == pc ? "your":"[target.hisHer]") + " lower back, advertising how much of a \"WHORE\" " + (target == pc ? "you are":"[target.heShe] is") + " to anyone who sees it.");
 	
 	//TAILS
 	switch(target.tailType)

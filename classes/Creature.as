@@ -2471,6 +2471,7 @@
 					buffer = sheathDescript(biggestCockIndex());
 					break;
 				case "knot":
+				case "knotOrBase":
 					buffer = knotDescript(arg2);
 					break;
 				case "knots":
@@ -3293,6 +3294,11 @@
 				case "niece":
 				case "nephewNiece":
 					buffer = mf("nephew", "niece");
+					break;
+				case "handsome":
+				case "cute":
+				case "handsomeCute":
+					buffer = mf("handsome", "cute");
 					break;
 				case "cockShape":
 				case "cockshape":
@@ -5546,7 +5552,7 @@
 		public function lustMin(): Number {
 			var bonus:int = 0;
 			if (hasPerk("Drug Fucked")) bonus += 10;
-			if (hasPerk("Amazonian Needs")) bonus += 20;
+			if (hasPerk("Amazonian Needs")) bonus += perkv1("Amazonian Needs");
 			if (hasPerk("Black Latex")) bonus += 10;
 			//Doesn't stack for reasons.
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
@@ -6496,7 +6502,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA) || (InCollection(earType, [GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_GABILANI]) && earLength > 1)) return true;
+			if(InCollection(earType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA]) || (InCollection(earType, [GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_GABILANI]) && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -11343,7 +11349,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls > 0 && this is PlayerCharacter)
+				if(hasPerk("'Nuki Nuts") && balls > 0 && (this is PlayerCharacter || this is Ardia))
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
@@ -19377,8 +19383,65 @@
 		public function breastSize(val: Number): String {
 			var descript: String = "";
 			//Catch all for dudes.
-			if (val < 1) {
-				return RandomInCollection(["tight", "hard", "fine", "manly"]);
+			if (val < 1) 
+			{
+				if (rand(2) == 0)
+				{
+					var adjective:String = "";
+					if (tone >= 100)
+					{
+						if (rand(4) == 0) return mf("extremely pronounced","very pronounced", true);
+						else if (thickness > 70) return "immense";
+						else if (thickness >= 30) return "robust";
+						else return "chiseled";
+					}
+					else if (tone > 70)
+					{
+						if (rand(4) == 0) return mf("well-defined","well-toned", true);
+						else if (thickness > 70) return "broad";
+						else if (thickness >= 30) return "healthy";
+						else return "fit";
+					}
+					else if (tone >= 30)
+					{
+						if (rand(4) == 0) return mf("toned","lightly-toned", true);
+						else if (thickness > 70) return "thick";
+						else if (thickness >= 30) return "average";
+						else return "soft";
+					}
+					else
+					{
+						if (rand(4) == 0) return "unremarkable";
+						else if (thickness > 70) return "wide";
+						else if (thickness >= 30) return "passable";
+						else return "flat";
+					}
+				}
+				else
+				{
+					// Feminine/Andro, Low/Medium Tone
+					if((mfn("m","f","n", true) != "m") && tone < 60) {
+						return RandomInCollection(["soft, flat", "flat, girly", "smooth, featureless"]);
+					}
+					// Masculine, High Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone >= 60 && thickness >= 60) {
+						return RandomInCollection(["manly, rippling", "big, muscular", "beefcake"]);
+					}
+					// Masculine, Low Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone <= 30 && thickness >= 60) {
+						return RandomInCollection(["broad, cuddly", "bear-like", "fleshy, manly"]);
+					}
+					// Masculine/Feminine/Andro, High Tone, Low Thickness
+					else if(tone >= 60 && thickness <= 30) {
+						return RandomInCollection([mf("tight, firm","firm, flat", true), mf("hard, sleek","athletic", true), mf("fine, flat","sleek, firm", true)]);
+					}
+					// Default
+					else {
+						return RandomInCollection(["plain", "flat"]);
+					}
+				}
+				//OLD.
+				//return RandomInCollection(["tight", "hard", "fine", "manly"]);
 			}
 			//A-cup
 			else if (val == 1) {
@@ -19423,6 +19486,7 @@
 			var descript: String = "";
 			var milkied:Boolean = false;
 			var bRowRating:Number = breastRows[rowNum].breastRating();
+			/*
 			if (bRowRating < 1) {
 				if(rand(2) == 0)
 				{
@@ -19430,7 +19494,7 @@
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";
-			}
+			}*/
 			//33% of the time size-descript them
 			if (rand(3) == 0) descript += breastSize(bRowRating);
 			//Lactation notices are rare unless near-empty or full!
@@ -19517,7 +19581,8 @@
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
-			else {
+			else if(bRowRating < 1) descript += "pecs";
+			else if(bRowRating > 1) {
 				var adjectives:Array = [];
 				// Silicone
 				var silicone:Number = siliconeRating("tits");
@@ -19584,7 +19649,7 @@
 		public function chestNoun(rowNum:int = 99, milkied:Boolean = false):String
 		{
 			if (rowNum < 0 || rowNum == 99) rowNum = 0;
-			if (breastRows[rowNum].breastRating() <= 0) return "chest";
+			if (breastRows[rowNum].breastRating() < 1) return "chest";
 			return plural(breastNoun(rowNum, milkied));
 		}
 		public function biggestBreastDescript(): String {
@@ -23024,7 +23089,7 @@
 							{
 								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has dissipated, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
 								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
-								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha’s cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
+								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha’s cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, (kGAMECLASS.ardiaDomLevel() < 4 ? 24*28*60 : 0), 0xFF0000);
 							}
 						}
 						break;

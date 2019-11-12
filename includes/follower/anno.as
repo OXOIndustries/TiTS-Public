@@ -287,7 +287,7 @@ public function annoFollowerMenu():void
 	addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
 	addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
 	addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	
+	addAnnosArdiaAddictionButton(4);
 	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno’s entire body looks like.");
 	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn’t interested in whatever you’re considering to be a prize.");
@@ -693,26 +693,20 @@ public function annoFollowerInventoryCheck():void
 	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
-		// Check for the presence of a unique item, if not there, add all
-		if (!anno.hasItemByClass(SteeleTechSuit))
-		{
-			anno.inventory.push(new GrayMicrobots());
-			anno.inventory.push(new AusarTreats());
-			anno.inventory.push(new LaserCarbine());
-			anno.inventory.push(new EMPGrenade());
-			anno.inventory.push(new Goovolver());
-			anno.inventory.push(new NovaRifle());
-			anno.inventory.push(new NovaPistol());
-			anno.inventory.push(new SteeleTechSuit());
-			anno.inventory.push(new ArmorSteeleSuit());
-			anno.inventory.push(new ACock());
-			anno.inventory.push(new AHCock());
-			anno.inventory.push(new ADCock());
-		}
-		if(pc.level >= 5)
-		{
-			if(!anno.hasItemByClass(ZhouLingRifle)) anno.inventory.push(new ZhouLingRifle());
-		}
+		anno.inventory.push(new GrayMicrobots());
+		anno.inventory.push(new AusarTreats());
+		anno.inventory.push(new LaserCarbine());
+		if (flags["ANNO_HOLDOUT_PISTOL_UNLOCKED"] != undefined) anno.inventory.push(new HoldoutHP());
+		anno.inventory.push(new EMPGrenade());
+		anno.inventory.push(new Goovolver());
+		anno.inventory.push(new NovaRifle());
+		anno.inventory.push(new NovaPistol());
+		if(pc.level >= 5) anno.inventory.push(new ZhouLingRifle());
+		anno.inventory.push(new SteeleTechSuit());
+		anno.inventory.push(new ArmorSteeleSuit());
+		anno.inventory.push(new ACock());
+		anno.inventory.push(new AHCock());
+		anno.inventory.push(new ADCock());
 
 		// Buy/Sell markups
 		anno.sellMarkup = 1.1;
@@ -721,17 +715,15 @@ public function annoFollowerInventoryCheck():void
 	else
 	// Unemployed by Steeletech
 	{
-		if (!anno.hasItemByClass(JoyCoPremiumShield))
-		{
-			anno.inventory.push(new GrayMicrobots());
-			anno.inventory.push(new AusarTreats());
-			anno.inventory.push(new HammerCarbine());
-			anno.inventory.push(new FlashGrenade());
-			anno.inventory.push(new JoyCoPremiumShield());
-			anno.inventory.push(new ACock());
-			anno.inventory.push(new AHCock());
-			anno.inventory.push(new ADCock());
-		}
+		anno.inventory.push(new GrayMicrobots());
+		anno.inventory.push(new AusarTreats());
+		anno.inventory.push(new HammerCarbine());
+		if (flags["ANNO_HOLDOUT_PISTOL_UNLOCKED"] != undefined) anno.inventory.push(new HoldoutHP());
+		anno.inventory.push(new FlashGrenade());
+		anno.inventory.push(new JoyCoPremiumShield());
+		anno.inventory.push(new ACock());
+		anno.inventory.push(new AHCock());
+		anno.inventory.push(new ADCock());
 
 		anno.sellMarkup = 1.2;
 		anno.buyMarkdown = 0.8;
@@ -2083,7 +2075,7 @@ public function annoFollowerSpecialGear():void
 	clearMenu();
 
 	// Merc/Smuggler + Quest Done
-	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItemByClass(HoldoutHP))
+	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && flags["ANNO_HOLDOUT_PISTOL_UNLOCKED"] == undefined)
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn’t seem like a stock model.")
 	}
@@ -2118,10 +2110,7 @@ public function annoFollowerSpecialGearHerGun():void
 	
 	output("\n\nAnno chuckles. <i>“It’s a one-and-only, but... toss a couple thousand credits my way, and I might be able to find those replication codes somewhere.”</i>");
 
-	if (!anno.hasItemByClass(HoldoutHP))
-	{
-		anno.inventory.push(new HoldoutHP());
-	}
+	flags["ANNO_HOLDOUT_PISTOL_UNLOCKED"] = 1;
 	
 	annoFollowerSpecialGear();
 }
