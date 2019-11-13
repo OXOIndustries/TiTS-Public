@@ -1799,6 +1799,15 @@ public function processButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 			) eventQueue.push(expelButtBugEggImmobile);
 		}
 	}
+	if(target is PlayerCharacter)
+	{
+		// Hotfix for reminder messages
+		if(!target.hasStatusEffect("Butt Bug Message Cooldown"))
+		{
+			target.createStatusEffect("Butt Bug Message Cooldown", 0, 0, 0, 0, true, "", "", false);
+			target.setStatusMinutes("Butt Bug Message Cooldown", 5);
+		}
+	}
 }
 
 // Parasitism Flavor:

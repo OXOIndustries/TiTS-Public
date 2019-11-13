@@ -1709,8 +1709,19 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		//Bimbo
 		output("It’s no good! You just can’t keep up with the pretty robot any more. You stumble over to her and collapse against her comforting curves. <i>“Oh, there there,”</i> she soothes, stroking a hand across your [pc.hair]. <i>“Just a little checkup and you’ll be right as rain,”</i> the nursedroid adds, her eyes glowing with pink light.");
 		output("\n\n<i>“First, how about we get all that stuff off of you?”</i> Nym-Foe quickly and efficiently strips off your [pc.gear] and gives you an encouraging smile. <i>“Much better! Now, be a brave " + pc.mf("boy","girl") + ", because you’re going to feel a pinch.”</i> Her tail whips around and pokes you right in the [pc.ass]! You yipe and clutch at her again. <i>“Now that wasn’t so bad, was it?”</i> she asks with a motherly tone.");
-		output("\n\n<i>“We’re just going to put a little bit of silicone into you,”</i> she explains with a smile. As you’re about to voice a protest, she places a gloved finger over your [pc.lips] and shakes her head. <i>“Now, now. The doctor knows best. Plus, if you’re good, you’ll get a lollipop!”</i>");
-		output("\n\nAny further complains vanish as the nurse’s tail bloats with the silicone being pumped into you. It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care. Your cheeks swell and bubble so thick that you can feel the jiggle even while standing still!");
+		
+		output("\n\n");
+		if(siliconeSite == null || siliconeSite.value2 < 50) output("<i>“We’re just going to put a little bit of silicone into you,”</i> she explains with a smile.");
+		else output("<i>“Oh my,”</i> she gasps, <i>“we need to make some serious adjustments to you! Please, remain calm.”</i> The nurse smiles.");
+		output(" As you’re about to voice a protest, she places a gloved finger over your [pc.lips] and shakes her head. <i>“Now, now. The doctor knows best. Plus, if you’re good, you’ll get a lollipop!”</i>");
+		output("\n\nAny further complaints vanish as the nurse’s tail bloats with the silicone being pumped into you.");
+		if(siliconeSite == null || siliconeSite.value2 == 3) output(" It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care. Your cheeks swell and bubble so thick that you can feel the jiggle even while standing still!");
+		else if(siliconeSite.value2 < 3) output("It’s not nearly as painful as you’d expected, and there’s also not as much as you’d expected. Though, it still feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care. Your cheeks swell and bubble slowly and lightly, just enough that you can feel the jiggle even while standing still!");
+		else if(siliconeSite.value2 > 3 && siliconeSite.value2 <= 9) output("It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care. It’s growing pretty big, even a bit bigger than you were expecting! Your cheeks swell and bubble so thick that you can feel the jiggle even while standing still! You could get used to this...");
+		else if(siliconeSite.value2 > 9 && siliconeSite.value2 <= 24) output("It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care, bouncing around already, even though she just started. Your cheeks swell and bubble so thick that you can feel the jiggle even while standing still!");
+		else if(siliconeSite.value2 > 24 && siliconeSite.value2 <= 49) output("It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care, surprised and quite frankly impressed at just how much she’s putting inside you. Your cheeks swell and bubble so thick that you can feel the jiggle non stop, and you’re sure they’re always going to be bouncing around like this. You can only love how awesome it feels to be so sexy!");
+		else output("It’s not nearly as painful as you’d expected. In fact, it actually feels pretty good! You giggle and crane your head around to watch as your [pc.ass] inflates under the pumping pressure of the robot’s care, only to be surprised by just how big she’s making you! Your ass grows out impossibly far - this amazing nurse is clearly intent on making your frame as hyper-huge as can be! Your cheeks swell and bubble so thick that you can feel the jiggle wobble through your whole form with every heartbeat!");
+		
 		if(pc.hasVagina())
 		{
 			output(" The sheer pleasure of being plumped up is leaving you a bit antsy. Moisture starts dripping down from your [pc.vaginas].");
@@ -1725,7 +1736,8 @@ public function loseToNymFoeViaHP(pexiga:Boolean = true):void
 		}
 		//player’s ass increases 3 steps
 		//[Next]
-		nymFoeInjection(pc,2,(siliconeSite == null || siliconeSite.value2 < 3 ? 3 : siliconeSite.value2));
+		if(siliconeSite != null && siliconeSite.value2 <= 0) nymFoeInjection(pc,2,1);
+		else nymFoeInjection(pc,2,(siliconeSite == null ? 3 : siliconeSite.value2));
 
 		processTime(10);
 		clearMenu();
@@ -1763,10 +1775,17 @@ public function loseToNymFoeViaHPBimboStep2(pexiga:Boolean = true):void
 	
 	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
 	
-	output("Just as your bubble-like cheeks seem to reach their limit, the expanding goo spreads down into your [pc.hips], giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen.");
+	output("Just as your bubble-like cheeks seem to reach their limit, the expanding goo spreads down into your [pc.hips]");
+	if(siliconeSite == null || siliconeSite.value1 == 3) output(", giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen.");
+	else if(siliconeSite.value1 < 3) output(", giving them a taste, too. The nurse works with precision, only choosing to add a small amount of silicone to you, possibly to prevent hurting you. <i>“This silicone is very special,”</i> she adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks slowly widen.");
+	else if(siliconeSite.value1 > 3 && siliconeSite.value1 <= 9) output(", giving them a taste as well and really working to grow them out. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen, wobbling just a bit.");
+	else if(siliconeSite.value1 > 9 && siliconeSite.value1 <= 24) output(", giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight, rather heavily inflating you. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen, feeling wonderful as they bulge much farther outwards than usual.");
+	else if(siliconeSite.value1 > 24 && siliconeSite.value1 <= 49) output(", giving them a taste... wait, no, way more than just a taste! <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen, your heart racing as they just keep growing farther and farther outwards.");
+	else output(", swelling them outward at a few inches per second. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body, not to mention just how much can be inside someone without causing them aches or pains. Won’t that be fun?”</i> You nod excitedly as your flanks just keep getting farther and farther apart, to the point where you couldn’t even reach their widest points with your hands, no matter how hard you try.");
+	
 	//player’s hips and thighs increase 3 steps
-	nymFoeInjection(pc,1,(siliconeSite == null || siliconeSite.value1 < 3 ? 3 : siliconeSite.value1));
-	nymFoeInjection(pc,2,(siliconeSite == null || siliconeSite.value2 < 3 ? 3 : siliconeSite.value2));
+	if(siliconeSite != null && siliconeSite.value1 <= 0) nymFoeInjection(pc,1,1);
+	else nymFoeInjection(pc,1,(siliconeSite == null ? 3 : siliconeSite.value1));
 
 	processTime(3);
 	clearMenu();
@@ -1801,9 +1820,18 @@ public function loseToNymFoeViaHPBimboStep3(pexiga:Boolean = true):void
 		output(". ");
 		pc.lust(10);
 	}
-	output("The steel tail keeps pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
+	output("The steel tail keeps pumping");
+	if(siliconeSite == null || siliconeSite.value3 == 3) output(", but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
+	else if(siliconeSite.value3 < 3) output(", but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies slowly but surely.");
+	else if(siliconeSite.value3 > 3 && siliconeSite.value3 <= 9) output(", but now the silicone makes ticklish paths through your body to settle in your [pc.chest], your nipples pushing outwards along with it. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible! You’ll probably need a new measure after this, because your tits are seriously expanding!");
+	else if(siliconeSite.value3 > 9 && siliconeSite.value3 <= 24) output(", but now the silicone makes ticklish paths through your body to settle in your [pc.chest], blasting you through cup sizes at an impossible rate. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you could’ve ever expected, growing them like globes on your chest!");
+	else if(siliconeSite.value3 > 24 && siliconeSite.value3 <= 49) output(", giant bulges going through the nurse’s tail and straight into you, but now they make ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle, causing your rapidly expanding tits to swell as the semi-solid goo inflates your mounds, boosting your boobies wildly!");
+	else output(", basketball sized bulges of material flowing through it and right into your body. The gigantic amounts of silicone make ticklish paths through you to settle in your [pc.chest], expanding the globes held snugly within the confines of your chest. You moan and wiggle as the semi-solid goo inflates your mounds to hyper proportions, boosting your boobies faster than any person could ever think possible!");
+	
 	//player’s breasts increase by 3 cup sizes
-	nymFoeInjection(pc,3,(siliconeSite == null || siliconeSite.value3 < 3 ? 3 : siliconeSite.value3));
+	if(siliconeSite != null && siliconeSite.value3 <= 0) nymFoeInjection(pc,3,1);
+	else nymFoeInjection(pc,3,(siliconeSite == null ? 3 : siliconeSite.value3));
+	
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep4,pexiga);
@@ -1817,10 +1845,18 @@ public function loseToNymFoeViaHPBimboStep4(pexiga:Boolean = true):void
 	
 	var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
 	
-	output("In no time at all, your chest now sports [pc.breasts], wobbling with their overstuffed expansion but just as sensitive as before. You tremble with the bliss of your added weight, and can’t help but to rub your [pc.nipples] a little bit. <i>“And, for the cherry on top...”</i> Nym-Foe adds, tweaking your nose playfully. The silicone rushes across your face, settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
+	output("In no time at all, your chest now sports [pc.breasts], wobbling with their overstuffed expansion but just as sensitive as before. You tremble with the bliss of your added weight, and can’t help but to rub your [pc.nipples] a little bit. <i>“And, for the cherry on top...”</i> Nym-Foe adds, tweaking your nose playfully. The silicone rushes across your face");
+	if(siliconeSite == null || siliconeSite.value4 <= 1) output(", settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
+	else if(siliconeSite.value4 > 1 && siliconeSite.value4 <= 3) output(", settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. It’s clear that she wants you admire these, seeing as just how much of the wonderful material she’s putting into them. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
+	else if(siliconeSite.value4 > 3 && siliconeSite.value4 <= 6) output(", settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. When you expect it to stop flowing inside, it doesn’t. Your whole face feels repurposed with how much different your lips feel and look, rather huge in appearance. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
+	else if(siliconeSite.value4 > 6 && siliconeSite.value4 <= 9) output(", pumping quickly into your [pc.lips] and overly bloating your pucker beyond swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts, your lips even bigger than hers by now.");
+	else output(", at least a gallon’s worth of the material filling your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection - big enough that you could probably suck a watermelon through a straw. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts, your lips big enough to squish against her chin and nose.");
+	
 	//player’s lips increase 3 steps, Libido increases by 15
 	pc.modFem(20);
-	nymFoeInjection(pc,4,(siliconeSite == null || siliconeSite.value4 < 1 ? 1 : siliconeSite.value4));
+	if(siliconeSite != null && siliconeSite.value4 <= 0) nymFoeInjection(pc,4,1);
+	else nymFoeInjection(pc,4,(siliconeSite == null ? 1 : siliconeSite.value4));
+	
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep5,pexiga);
@@ -1854,10 +1890,11 @@ public function loseToNymFoeViaHPBimboStep5(pexiga:Boolean = true):void
 	//if not already, the player begins lactating. Treat it as if they had 3 uses of Gush. If the player’s femininity was below 50, set it to 50. Player hp & energy set to max, lust set to 0
 	if(!pc.canLactate()) output(" <b>You’re pretty sure it’s making you lactate.</b>");
 	else output(" <b>You’re pretty sure it’s bolstering off your ability to lactate.</b>");
+	
 	if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
 	pc.milkStorageMultiplier++;
+	
 	processTime(10);
-
 	clearMenu();
 	addButton(0,"Next",loseToNymFoeViaHPBimboStep6,pexiga);
 }

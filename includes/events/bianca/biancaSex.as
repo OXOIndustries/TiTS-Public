@@ -2248,6 +2248,7 @@ public function howAppropriateBiancaYouLeakLikeACow():void
 		output("\n\nYou can think of a few things in the meantime. For now, it’s back to the trail...");
 	}
 
+	biancaSexed("MILK");
 	// Trips Flag \\SEEN BIANCA'S NAKED CHEST
 	flags["BIANCA_SEEN_TITS"] = 1;
 	// Remove the cum/milk effects

@@ -23103,7 +23103,7 @@
 							}
 						}
 						break;
-					case "Butt Bug Message":
+					case "Butt Bug Message Cooldown":
 						if(requiresRemoval)
 						{
 							if(this is PlayerCharacter) kGAMECLASS.messageButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);
