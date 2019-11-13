@@ -558,7 +558,7 @@ public function carryTrainingWithEggMachine():void
 		output("\n\nThe familiar, wonderful pleasure of the tentacle hammers through you, burrowing deep inside to discharge its belly-filling load. Eggs come flooding easily out of its engorged cockhead, blasting into your ");
 		if(x >= 0) output("womb");
 		else output("bowels");
-		output(" in a flood of hot lube and smooth plastic. Dozens and dozens of eggs pump into your well-trained body, swelling you up just like you like it. You cum again - if you really stopped at all in the first place - and let yourself go completely with screams of pleasure that echo across the cargo hold. Your hands clench around your belly, feeling your skin stretch around around the growing load of eggs: you look ");
+		output(" in a flood of hot lube and smooth plastic. Dozens and dozens of eggs pump into your well-trained body, swelling you up just like you like it. You cum again - if you really stopped at all in the first place - and let yourself go completely with screams of pleasure that echo across the cargo hold. Your hands clench around your belly, feeling your skin stretch around the growing load of eggs: you look ");
 		if(pc.isPregnant() && pc.bellyRating() >= 50) output("an extra ");
 		output("nine months pregnant by the time the machine’s decided you’ve had enough, filled with almost a hundred eggs that churn wetly ");
 		if(x < 0) output("up your ass");

@@ -3730,7 +3730,8 @@ public function lundBreakHimD():void
 	output("\n\n<i>“[pc.Master], [pc.master], "+ (!korgiTranslate() ? "Lund" : "I’m") +" gonna cum,”</i> Lund moans, biting his lip. You can feel him tightening up around you. <i>“[pc.Master]-!”</i>");
 	
 	output("\n\nThere’s a couple of urgent splashes and then nothing but labored silence as the two of you shake, teeth grit as you cum together in the pool. Lund’s throbbing cock creates tiny currents in the water as it twitches up and down, spurting creamy seed that dissolves in the hot water immediately. All of your own spunk ends up inside Lund, your warmth tightly sealed in his depths.");
-	if (pc.cumQ() >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.");
 	
 	output("\n\nSlowly, gripping Lund’s hips and letting out a long sigh, you release the tension in your body and lean back against the side of the pool. Lund’s done a fantastic job of milking you and keeping it all inside, and you idly scratch him between the ears for doing so.");
 	
@@ -3751,12 +3752,13 @@ public function lundBreakHimD():void
 	output(" sucking your [pc.biggestCock] a few minutes later, lying on his bed with your arms behind your head. You were right; this <i>is</i> a good idea. You should be getting him to come out of his shell a little, take matters into his own hands. Now that you’ve broken him down, you can build him back up if you so desire.");
 	
 	output("\n\nThe possibilities whirl around your head, but you take a moment to quash them as you grunt and cum hard into his throat. Sighing in satisfaction, you let him lick and suckle your cock as he greedily swallows down every drop you have to give him.");
-	if (pc.cumQ() >= 3000) output(" Well, nearly every drop - some of it spurts from his snout as he struggles to cope with your voluminous flow, but he gets most of it.");
+	if (cumQ >= 3000) output(" Well, nearly every drop - some of it spurts from his snout as he struggles to cope with your voluminous flow, but he gets most of it.");
 	
 	output("\n\nYou wave him goodbye and set out before he’s even finished cleaning himself off, his lips still dribbling seed. He gives you a little wave, but chokes on your jizz before he can get his words out. You close the door on him taking a few deep, hard swallows.");
 
 	processTime(30+rand(15));
 	pc.orgasm();
+	pc.shower();
 	
 	IncrementFlag("SEXED_LUND");
 	currentLocation = "KORGII J10";

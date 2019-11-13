@@ -1231,7 +1231,7 @@ public function analRedButtStuffMcStuffinButts():void
 	if(enemy.short != "Briha") output("the ");
 	output("[enemy.name], ");
 	if(pc.HP() > 0 && pc.lust() < pc.lustMax() && inCombat()) output("pull her to her feet, ");
-	output("and turn her on the spot. Without warning, you you pull down her camo pants and underwear, and she lets out a cry of surprise.");
+	output("and turn her on the spot. Without warning, you pull down her camo pants and underwear, and she lets out a cry of surprise.");
 
 	output("\n\n<i>“W-what are you planning...”</i> She breathlessly asks. Without answering, you pull out [pc.oneCock] and grind it between her bare red buttocks. Her muscular butt feels divine against your [pc.sheath " + x + "], clenching it instinctively.");
 	output("\n\nAs you grind against ");

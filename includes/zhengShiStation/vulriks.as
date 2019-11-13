@@ -25,7 +25,7 @@ public function vulriksShopBonus():Boolean
 		output("You step into the shady looking shop and take a look around.");
 		output("\n\nIt’s far more private than you expected, more of a single connected room than a storefront, with less than a hundred feet worth of free floor space. Most of the room is filled with stacked metal containers, the vast majority of them sealed tightly shut. The few that are open seem piled full of various forms of contraband and other curious odds and ends.");
 		output("\n\nOn the far side of the room, behind a makeshift counter, you see a tall figure, it's face obscured by a hood and a helmet.");
-		output("\n\nNo… not a helmet. A mask, and a natural one at that.");
+		output("\n\nNo... not a helmet. A mask, and a natural one at that.");
 		output("\n\n");
 		if (!CodexManager.entryViewed("Anatae")) output("<b>Your Codex beeps to tell you:</b> ");
 		output("He’s an Anatae. Seeing one outside of their empire is rare, so why one is standing across from you in a place like this is anyone's guess. Through his mask you can make out he's watching you with two piercing blue eyes.");
@@ -68,9 +68,9 @@ public function approachVulriks():void
 		if (pc.isNice()) output("\n\nDespite the locale, you get the impression the stranger means you no ill will. <i>“[pc.name] Steele. And you are?”</i>.");
 		else if (pc.isMisch()) output("\n\n<i>“Depends who’s asking.”</i> You look around the room, not completely at ease, but see no reason to be difficult. <i>“Name’s Steele. [pc.name] Steele.”</i>");
 		else output("\n\nYou stay silent for a moment, trying to size up the Anat. He’s armed, but isn't making any threatening moves. <i>“[pc.name] Steele. You?”</i>");
-		output("\n\nThe Anat’s eyes give a slight twitch, a sign of recognition. <i>“Steele… interesting. I am Vulriks, and I am at your service.”</i> He bows his head slightly, but keeps his piercing eyes on you. <i>“If you, the great [pc.name] Steele, have anything you would like to sell, I would be most honored.”</i>");
+		output("\n\nThe Anat’s eyes give a slight twitch, a sign of recognition. <i>“Steele... interesting. I am Vulriks, and I am at your service.”</i> He bows his head slightly, but keeps his piercing eyes on you. <i>“If you, the great [pc.name] Steele, have anything you would like to sell, I would be most honored.”</i>");
 		output("\n\nYou look around the room once more at the containers littering the room. <i>“You’re a merchant?”</i> A few of the open containers are loaded full with various, mostly dubiously legal, odds and ends. You turn back to face Vulriks. <i>“What do you sell?”</i>");
-		output("\n\nThe Anat scoffs and waves a single clawed hand in the air, as if shooing away the question. <i>“I do not sell my stock. Not here at least. What is it the Rat said… something about how I do not ‘shit where I eat.’ The expression is lost on me, but I think I understand her meaning. I keep my business here focused.”</i>");
+		output("\n\nThe Anat scoffs and waves a single clawed hand in the air, as if shooing away the question. <i>“I do not sell my stock. Not here at least. What is it the Rat said... something about how I do not ‘shit where I eat.’ The expression is lost on me, but I think I understand her meaning. I keep my business here focused.”</i>");
 		output("\n\n<i>“If you wish to sell, I will buy. And believe me, I will buy whatever it is you would wish to sell.”</i> Vulriks shifts in place, his bright eyes suddenly round and kind. <i>“So, shall we do business, Per?”</i>");
 
 		flags["MET_VULRIKS"] = 1;
@@ -124,7 +124,7 @@ public function buyFromVulriks():void
 	output("\n\nYou look around the room at the various containers, all filled with miscellaneous stuff. <i>“Well what about all this then? Isn't it for sale?”</i> ");
 	output("\n\nThe Anat taps a clawed digit against the counter, sighing from behind his mask. <i>“Most of this is already spoken for. I merely prepare it here before I move it elsewhere to be transfered.”</i>");
 	output("\n\nYou eyeball a particularly interesting-looking shoulder mounted rocket launcher sticking out from an open container. Now you can’t help but ask. <i>“So where exactly do I have to go to buy this stuff then?”</i>");
-	output("\n\nVulriks lifts a single finger and waves it in the air. <i>“Tsk, tsk. That I cannot tell you. My clients would be very cross with me if I gave away those particular locations. But I will tell you what…”</i> his blue eyes narrow, and you suspect behind his mask he’s smiling. <i>“If I ever come across something that I think you simply must own, I will hold it for you. Deal?”</i>");
+	output("\n\nVulriks lifts a single finger and waves it in the air. <i>“Tsk, tsk. That I cannot tell you. My clients would be very cross with me if I gave away those particular locations. But I will tell you what...”</i> his blue eyes narrow, and you suspect behind his mask he’s smiling. <i>“If I ever come across something that I think you simply must own, I will hold it for you. Deal?”</i>");
 	output("\n\nYou suppose that’s the best you’re going to get...");
 
 	flags["VULRIKS_BOUGHT"] = 1;
@@ -206,7 +206,7 @@ public function explainToVulriksHowProfitsWork():void
 	output("\n\n<i>“Everything?”</i> You turn to regard one of the open containers, regarding a pile of worn out junk, mostly old ship parts, sticking out from the top. <i>“How exactly do you manage that?”</i>");
 	output("\n\nFrom behind his mask you hear something like lips smacking, but you’re not sure what’s exactly going on behind the damned thing. <i>“I will admit, some things stick around much longer than others. But if I’ve learned one thing in this line of work it’s this: trash and treasure are subjective”</i>");
 	output("\n\n<i>“I think the expression is ‘One man’s trash is another man’s treasure’.”</i> ");
-	output("\n\nVulriks laughs, smacking the counter in a sign of approval. <i>“I like that! Yes! That’s good. Very true. Now, I will admit sometimes, ehh…”</i> Vulriks positions his hand sideways in the air, wiggling it. <i>“I take a loss on something. But I am not worried about profits.”</i>");
+	output("\n\nVulriks laughs, smacking the counter in a sign of approval. <i>“I like that! Yes! That’s good. Very true. Now, I will admit sometimes, ehh...”</i> Vulriks positions his hand sideways in the air, wiggling it. <i>“I take a loss on something. But I am not worried about profits.”</i>");
 
 	addButton(0, "No Profit?", turnsOutVulriksDoesntWannaMakeDosh, true, "No Profit?", "He doesn't care about profit?");
 	addButton(1, "Good For You", turnsOutVulriksDoesntWannaMakeDosh, false, "Good For You", "Encourage the man.");
@@ -248,11 +248,11 @@ public function isVulriksEvenARealAnat():void
 	output("<i>“Why don’t you tell me a bit more about yourself.”</i>");
 	output("\n\nVulriks makes an odd noise, something between clearing his throat and gagging. <i>“Big question. You might want to narrow it down.”</i>");
 	output("\n\nYou think for a moment. <i>“Well, it’s rare to see Anatae outside of the Empire, isn't it? Why don’t you start with that?”</i>");
-	output("\n\nVulriks stares at you, his blue eyes betraying none of his thoughts. <i>“I suppose that is true…”</i> he sighs, then lifts one of his clawed hands to his throat, scratching it absentmindedly. <i>“Well, I am how do you say… unofficially excommunicated.”</i> ");
+	output("\n\nVulriks stares at you, his blue eyes betraying none of his thoughts. <i>“I suppose that is true...”</i> he sighs, then lifts one of his clawed hands to his throat, scratching it absentmindedly. <i>“Well, I am how do you say... unofficially excommunicated.”</i> ");
 	output("\n\nYou’ve never heard of the Anatae kicking out their own. Although you do admit your knowledge on their culture is, at best, limited due to their insular nature. You decide to keep the line of questioning simple. <i>“So they kicked you out? What for?”</i>");
 	output("\n\nVulriks groans slightly, his claws tapping on the counter. <i>“No. That’s not quite right. As far as they know I am still very much present, albeit preoccupied.”</i> The Anat stops his digits from tapping, sighing from behind his mask. <i>“I was to die, you see. Sentenced to a lifetime breaking rocks as punishment for my crimes.”</i>");
 	output("\n\n<i>“Crimes?”</i> You look the tall man up and down.");
-	if (pc.isNice()) output(" <i>“You were a prisoner? That’s horrible…”</i>");
+	if (pc.isNice()) output(" <i>“You were a prisoner? That’s horrible...”</i>");
 	else if (pc.isMisch()) output(" <i>“Get caught with your hand in the cookie jar or something?”</i>");
 	else output(" <i>“You did time? That’s surprising.”</i>");
 	output("\n\n<i>“Ehh. It was what it was. I managed to escape, clearly, and chose to leave the Empire,”</i> his tone is somber, almost sad. <i>“I keep in contact with some friends I met during my time imprisoned. They chose to stay, despite the possible consequences. They are still to this day my most lucrative customers.”</i> ");
@@ -262,7 +262,7 @@ public function isVulriksEvenARealAnat():void
 	output("\n\nYou can’t hide your surprise at the brazen declaration. Vulriks’ operation is far more impressive than you thought. Smuggling and selling goods in the Anatae Empire is no joke, and one of the most serious crimes you can think of. At least as far as the Empire is concerned...");
 	output("\n\nFrom behind his mask, Vulriks chuckles softly, clearly sensing your shock. <i>“Surprised? My business started by indulging my people’s vices. I cannot put a price on that, Per. It is the greatest service I can provide for them, despite my current situation.”</i> Vulriks seems content, and if you had to guess you’d say behind his mask he must be smiling. ");
 	output("\n\nDespite being bad business, you understand his motivations. About to let the topic drop, you remember something you didn't get an answer about. <i>“You never told me, why were you imprisoned in the first place?”</i> ");
-	output("\n\nVulriks doesn't answer at first, his blue eyes narrowing behind his mask. <i>“Ehh, a topic for another time. Another tale that needs, the proper… context. Did you have something else you wanted to discuss?”</i>");
+	output("\n\nVulriks doesn't answer at first, his blue eyes narrowing behind his mask. <i>“Ehh, a topic for another time. Another tale that needs, the proper... context. Did you have something else you wanted to discuss?”</i>");
 
 	if (flags["VULRIKS_TALKS_STAGE"] < 2) flags["VULRIKS_TALKS_STAGE"] = 2;
 
@@ -278,12 +278,12 @@ public function whatsSoSpecialAboutZSAnatMan():void
 
 	output("<i>“So why set up shop in a place like this?”</i>");
 	output("\n\nVulriks rolls his eyes. <i>“Where else could I conduct my business? When dealing with pirates, one must be where the pirates are.”</i>");
-	output("\n\n<i>“Fair enough…”</i> you cede the point, but remain unsatisfied with this answer.");
-	output("\n\nAs if reading your mind, Vulriks offers some clarification. <i>“I realize this place is rather… ehh…”</i> he searches for the correct word a moment, his blue eyes wandering. <i>“Unstable. But it’s the best for my needs. Sure, I live under the constant threat of being stabbed and robbed, but I fear for the fate of the poor soul who does this to me.”</i>");
+	output("\n\n<i>“Fair enough...”</i> you cede the point, but remain unsatisfied with this answer.");
+	output("\n\nAs if reading your mind, Vulriks offers some clarification. <i>“I realize this place is rather... ehh...”</i> he searches for the correct word a moment, his blue eyes wandering. <i>“Unstable. But it’s the best for my needs. Sure, I live under the constant threat of being stabbed and robbed, but I fear for the fate of the poor soul who does this to me.”</i>");
 	output("\n\nYou eyeball the blaster on his hip. <i>“You must think pretty highly of yourself.”</i>");
 	output("\n\nFollowing your gaze, Vulriks chuckles. <i>“You misunderstand, Steele. I am not the danger, the gangs are.”</i>");
 	output("\n\nVulriks leans in close, elbows on the table. <i>“I am a major source of income for the pirates, you see. Sure, much of their stolen wares they can pawn off anywhere. But whom else would buy a stolen box of pornography or a stretched out well worn pair of panties?”</i> Vulriks raises a hand, waving a single long digit in the air. <i>“Only me. So, the gangs leave me alone. And if any try to bother me, well, let’s just say a few teeth get knocked loose.”</i>");
-	output("\n\nYou nod, understanding the situation. <i>“So… what kind of price do you get for stretched out panties in the Empire?”</i>");
+	output("\n\nYou nod, understanding the situation. <i>“So... what kind of price do you get for stretched out panties in the Empire?”</i>");
 	output("\n\nVulriks chuckles and pulls himself off the counter. <i>“Depends on the musk.”</i>");
 
 	if (flags["VULRIKS_TALKS_STAGE"] < 3) flags["VULRIKS_TALKS_STAGE"] = 3;
@@ -299,13 +299,13 @@ public function vulriksWaxesPoeticAboutDicks():void
 	processTime(2+rand(2));
 
 	output("<i>“So what was with all the posturing before?”</i>");
-	output("\n\nVulriks cocks his head. <i>“What do you-”</i> suddenly his blue eyes go wide. <i>“Oh! You mean… ah, yes, well it is a force of habit you see.”</i>");
+	output("\n\nVulriks cocks his head. <i>“What do you-”</i> suddenly his blue eyes go wide. <i>“Oh! You mean... ah, yes, well it is a force of habit you see.”</i>");
 	output("\n\n<i>“Something from your prison days?”</i> You let out a coy smile, hoping the jest will land.");
-	output("\n\nAn eye roll tells you the Anat gets the joke, but doesn’t particularly find it funny. <i>“From my freedom days. Back home, females are in short supply, so males must take what we can get. Not to mention we Anatae are always… passionate lovers.”</i>");
+	output("\n\nAn eye roll tells you the Anat gets the joke, but doesn’t particularly find it funny. <i>“From my freedom days. Back home, females are in short supply, so males must take what we can get. Not to mention we Anatae are always... passionate lovers.”</i>");
 	output("\n\nVulriks lifts himself up to his full height, reminding you just how much he slouches. <i>“So, a bit of ritual decides the order of things. Since I am so, ehh, gifted, I rarely found occasion to dine on pillow.”</i>");
 	output("\n\n<i>“Dine on what?”</i> You’re almost tempted to check to see if your translator got that right.");
 	output("\n\nVulriks blinks. <i>“Is that not the phrase?”</i>");
-	output("\n\nYou can’t help but chuckle, understanding what he was trying to say. <i>“It’s close… who taught you that one?”</i>");
+	output("\n\nYou can’t help but chuckle, understanding what he was trying to say. <i>“It’s close... who taught you that one?”</i>");
 	output("\n\n<i>“A member of a local gang. She was an enthusiastic pillow eater, despite being quite endowed herself.”</i> Vulriks chuckles and shakes his head. <i>“Truth be told. I think I spend more intimate time with those with pricks than without.”</i>");
 	output("\n\nYou ask the Anat why he thinks that is.");
 	output("\n\nVulriks shrugs. <i>“We have an expression back home. ‘Pussy is costly, but cock is free’. Since I’m not too picky, I think it just so happens that more cock comes to my door than pussy.”</i>");
@@ -344,17 +344,17 @@ public function andTheShadyAnatPastIiiiiisss(promised:Boolean):void
 	{
 		processTime(2);
 
-		output("<i>“Ah, thank you…”</i> Vulriks shifts his weight from one foot to the other. <i>“Well, how do I explain…”</i>");
+		output("<i>“Ah, thank you...”</i> Vulriks shifts his weight from one foot to the other. <i>“Well, how do I explain...”</i>");
 		output("\n\nWatching his body language closely, you can tell your tall friend is uncomfortable as he searches for an explanation. He fidgets uncontrollably, scratching the side of his neck absentmindedly with his clawed digits. ");
-		output("\n\n<i>“Back home, in the Empire, there is, ehh, pressure for young…”</i> Vulriks’ blue eyes lock onto yours, forcing him to pause. ");
+		output("\n\n<i>“Back home, in the Empire, there is, ehh, pressure for young...”</i> Vulriks’ blue eyes lock onto yours, forcing him to pause. ");
 		output("\n\nA few long heartbeats pass.");
 		output("\n\nSuddenly, Vulriks groans and rolls his eyes. <i>“Okay, okay. Plainly then. I was charged with a few things, but the main crime was kidnapping, but!”</i> Vulriks waves his clawed hands in the air. <i>“But! I assure you this was not the case! It was not really kidnapping you see...”</i>");
 		output("\n\n<i>“Hm.”</i> As far as you can tell he’s telling the truth, and since you promised not to judge, you let him explain himself.");
 		output("\n\nVulriks clears his throat, and behind his mask you hear an odd smacking sound. <i>“It was my daughter, you see.”</i>");
 		output("\n\nYou can’t hide your surprise. <i>“You have a kid? How come you never mentioned it before?”</i>");
-		output("\n\nThe tall Anat chuckles half heartedly. <i>“I have many children. A stud like me? Families lined their daughters up for even a chance at my genes.”</i> Vulriks shakes his head and continues. <i>“Falia was… different from my other children. She was bright, wise in ways adults nary are. While the rest of the clutch she was born with were still wetting themselves, she was already learning to read. She was... not meant for the life she was to live.”</i>");
+		output("\n\nThe tall Anat chuckles half heartedly. <i>“I have many children. A stud like me? Families lined their daughters up for even a chance at my genes.”</i> Vulriks shakes his head and continues. <i>“Falia was... different from my other children. She was bright, wise in ways adults nary are. While the rest of the clutch she was born with were still wetting themselves, she was already learning to read. She was... not meant for the life she was to live.”</i>");
 		output("\n\nVulriks lets a moment of silence pass before continuing.");
-		output("\n\n<i>“My other daughters, dutiful as they were, would do whatever the Empire would ask of them. Falia wanted… more. Deserved more, really. She was not content to be a broodmare like her half sisters, or her mother, or her mother’s mother. So when she asked me for help…”</i>");
+		output("\n\n<i>“My other daughters, dutiful as they were, would do whatever the Empire would ask of them. Falia wanted... more. Deserved more, really. She was not content to be a broodmare like her half sisters, or her mother, or her mother’s mother. So when she asked me for help...”</i>");
 		output("\n\nYou finish the thought for him. <i>“You tried to help her escape the Empire.”</i> ");
 		output("\n\nBehind his mask, you see Vulriks' bright blue eyes wander. <i>“I failed. We were found out and captured. I am likely a grandfather many times by her now...”</i> Vulriks lets out a heavy sigh, rolling his broad shoulders a few times. <i>“This was my crime, Steele. I hoped to make my child’s dream come true. For her to be free and live her life as she wanted.”</i>");
 		output("\n\nVulriks seems to deflate before your eyes, slouching more than he normally does. <i>“This is all I wish to say on the topic, so hopefully your curiosity is sated.”</i>");
@@ -425,7 +425,7 @@ public function swordfightingWithVulriks():void
 
 	output("Vulriks lets out a low chuckle. <i>“Excellent.”</i> Slowly, the tall man reaches for his hood, taking ahold of it with his clawed hands and pulling it back.");
 	output("\n\nFreed from his hood, thick gray plumage unfurls, an impressive crown that adds nearly another foot to his already impressive height. <i>“Forgive the, ehh, poor color. Age and hard living have taken it from me. But I assure you,”</i> the tall Anat seems to grow before you, pulling himself up to his full height, the crown on his head nearly threatening to hit the ceiling. <i>“I am still more man than most.”</i>");
-	output("\n\nSomething about the Anat’s body language changes. He seems to flex his muscles, trying to show off. No, not show off… he’s trying to intimidate you. Not willing to back down, you stand as straight as you can, flexing in turn.");
+	output("\n\nSomething about the Anat’s body language changes. He seems to flex his muscles, trying to show off. No, not show off... he’s trying to intimidate you. Not willing to back down, you stand as straight as you can, flexing in turn.");
 
 	if (pc.tallness < 90)
 	{
@@ -438,7 +438,7 @@ public function swordfightingWithVulriks():void
 	else if (pc.isTaur() || !pc.hasCock() || pc.shortestCockLength() > 30)
 	{
 	
-		output("\n\n<i>“Hm…”</i> Vulriks looks you up and down closely. <i>“This is unusual for me… I am not normally beaten like this. However…”</i> Vulriks chuckles, his eye narrowing. <i>“Physiology as it is, I think may have to veto your win.”</i>");
+		output("\n\n<i>“Hm...”</i> Vulriks looks you up and down closely. <i>“This is unusual for me... I am not normally beaten like this. However...”</i> Vulriks chuckles, his eye narrowing. <i>“Physiology as it is, I think may have to veto your win.”</i>");
 		if (pc.isTaur()) output("\n\nGlancing back at your hindquarters, you understand why that might be necessary, and cede control to the Anatae.");
 		else if (!pc.hasCock()) output("\n\nRolling your eyes, you understand Vulriks concern. Although you might need to educate the man about the pros in favor of hardlight cocks.");
 		else output("\n\nYou should have seen this coming. A dysfunctionally large dick isn't much good for something like this after all.");
@@ -466,8 +466,8 @@ public function swordfightingWithVulriks():void
 		else
 		{
 			if (pc.longestCockLength() == 21) output("\n\n<i>“A tie?! Impossible.”</i> Vulriks snaps his head up, his eyes wide.");
-			else output("\n\n<i>“This… this cannot be…”</i> Vulriks seems to deflate slightly.");
-			output(" <i>“Between this and your height…”</i> he pulls himself off the counter, growling.");
+			else output("\n\n<i>“This... this cannot be...”</i> Vulriks seems to deflate slightly.");
+			output(" <i>“Between this and your height...”</i> he pulls himself off the counter, growling.");
 			output("\n\n<i>“You win...”</i>");
 
 			addButton(0, "Next", youWinTheAnatDickMeasuringContest);
@@ -499,7 +499,7 @@ public function notBigEnoughToFuckTheSpaceBlackMarketeer():void
 
 	if (pc.hasVagina())
 	{
-		output("\n\n<i>“Hm…”</i> Vulriks lifts a hand from your hip, followed by the sound of claw tapping against mask. <i>“Choices… been awhile since I have had one… I will allow you to choose. One last ounce of freedom... before I take you. Ass or Pussy?”</i>");
+		output("\n\n<i>“Hm...”</i> Vulriks lifts a hand from your hip, followed by the sound of claw tapping against mask. <i>“Choices... been awhile since I have had one... I will allow you to choose. One last ounce of freedom... before I take you. Ass or Pussy?”</i>");
 		addButton(0, "Ass", vulriksDoingYourButt);
 		addButton(1, "Pussy", vaginaRouter, [vulriksDoingYourVag, getVulriks().cockVolume(0), 0, 0]);
 	}
@@ -522,8 +522,8 @@ public function vulriksDoingYourButt():void
 	output("Vulriks seems to purr behind you. <i>“Prepare yourself.”</i> ");
 	output("\n\nThe unseen cock against your ass seems to press harder, nubbed with torturously sinful spikes. The thought of it in your ass scares you, but that fear is outweighed by lascivious curiosity.");
 	output("\n\nThe Anats hands move along your [pc.hips] towards your backside, roughly pulling apart your cheeks.");
-	if (pc.analVirgin) output(" <i>“Ahhh… interesting. I am to be your first, no?”</i>");
-	output(" One of Vulriks’ clawed hands leaves your hips. <i>“You are small. Meat like mine is not meant for the likes of you. If I am to not break you…”</i> you hear something pop open, <i>“...steps must be taken.”</i>");
+	if (pc.analVirgin) output(" <i>“Ahhh... interesting. I am to be your first, no?”</i>");
+	output(" One of Vulriks’ clawed hands leaves your hips. <i>“You are small. Meat like mine is not meant for the likes of you. If I am to not break you...”</i> you hear something pop open, <i>“...steps must be taken.”</i>");
 	output("\n\nLiquid pours down onto your hole, cold against your sensitive pucker. You jerk and shiver, but Vulriks holds you tight in place with one powerful clawed hand. <i>“Tsk. Easy now, little one. Do not fight my gift. Unless you want me to break you.”</i>");
 	output("\n\nA moment later the liquid stops, and you hear Vulriks throw something aside. You feel him inch closer, the heat of his cockhead against your anxious hole. <i>“Ready?”</i> he asks. You nod and quiver, hungry to feel his alien manhood inside of you. <i>“Eager little beta, aren't you? Don’t worry, I will treat you right.”</i>");
 	output("\n\nVulriks moves forward, his cockhead pressing firmly against your tightness. With a grunt, Vulriks spears himself in, his fat alien cockhead penetrating you in one powerful motion. A gasping moans escapes your [pc.lipsChaste] as your fuckhole widens to accept his monster cock. His cockhead is massive, stretching your hole out, while his spiked nubs sinfully torture your inner walls.");
@@ -601,9 +601,9 @@ public function youWinTheAnatDickMeasuringContest():void
 	output("\n\nHe stalks out from behind the counter, brushing past you on his way towards the entrance, dragging his feet as he moves to the door. You keep an eye on him as he walks, trying to get a read on his mood. It’s hard to tell if he’s pissed off or just being dramatic, but he’s certainly not himself.");
 	output("\n\nAfter locking the door, he turns to face you. <i>“So,”</i> his blue eyes narrow. <i>“What is your plan?”</i> He stalks towards you, suddenly looking very large, his spiked cock pointed directly at you.");
 	output("\n\nHe bumps his shoulder into yours, pushing you out of the way with a bit of unexpected aggression on his way to the counter. While not a violent bump, you get the impression he’s trying to accomplish... something. <i>“Do you think you can top me?”</i> Vulriks pulls off his cloak and tosses it aside, standing chest to chest with you, his mask inches from your face. You notice his crest seems to rise slightly, the feathered crown looking impressive despite his dull colors. <i>“Well? Are you going to fuck me or what?”</i>");
-	output("\n\nBefore you can answer, Vulriks lets out a growing noise, then reaches and pulls his pants down around his ankles. <i>“I think you want to fuck me.”</i> Oozing machismo, Vulriks bumps his chest against yours. Again, you notice it’s not a violent action, but feels almost like… foreplay?");
+	output("\n\nBefore you can answer, Vulriks lets out a growing noise, then reaches and pulls his pants down around his ankles. <i>“I think you want to fuck me.”</i> Oozing machismo, Vulriks bumps his chest against yours. Again, you notice it’s not a violent action, but feels almost like... foreplay?");
 	output("\n\nVulrik turns away from you, slamming his hands on the counter, and lifting his large red ass high into the air. <i>“Come on then! Fuck me!”</i>");
-	output("\n\nYou pause for a moment, not sure what to make of this…");
+	output("\n\nYou pause for a moment, not sure what to make of this...");
 
 	var wrongCocks:Array = new Array();
 	for (var i:int = 0; i < pc.cocks.length; i++) if (pc.cLength(i) < 21 || pc.cLength(i) > 30) wrongCocks.push(i);
@@ -635,13 +635,13 @@ public function haveSomeFunWithVulriksButt(cockIdx:int):void
 	output("\n\nThe lewd sounds of your hips slapping his ass fill the air, along with your shared moans. You fuck him hot and hard against the counter, your cock on the verge of exploding. Below you Vulriks writhes, losing himself into a sea of bliss. An idea crosses your mind, one that will surely throw the proud Anatae over the edge. ");
 	output("\n\nYou lift one of your hands off his hips, moving around the Anatae’s waist and reaching for his manhood. As you seize it, Vulriks gasps, his thick meat throbbing between your fingers. <i>“Wh-what are yo-,”</i> Vulriks moans, shuddering as a shiver runs up his spine. His cock is hot in your hand, slick with pre-cum leaking like an out of control faucet. Seems his dick isn't able to lie nearly as well as he is about how much he loves to be topped. Pumping your wrist, you slide your hand up and down his shaft, causing Vulriks to moan even louder. ");
 	output("\n\n<i>“You gonna admit it?”</i> You tease, jerking him off while plowing his ass. Sweat starts to form on your brow, and the air in your lungs burns. You won’t be able to keep this up much longer.");
-	output("\n\n<i>“Admit… what?”</i> Vulriks gasps, only able to form words between your powerful thrusts.");
+	output("\n\n<i>“Admit... what?”</i> Vulriks gasps, only able to form words between your powerful thrusts.");
 	output("\n\n<i>“You know what,”</i> you tease, fighting the urge to bite your lip. Gasping for air, you try to keep yourself together, feeling a tightness in your [pc.balls].");
 	output("\n\n<i>“F-fuck you,”</i> Vulriks manages to sputter. You feel his asshole tighten again around your [pc.cockNounSimple " + cockIdx + "].");
 	output("\n\nThe pressure makes you moan, a shiver running up your spine. In response, you start moving your wrist faster, trying to beat Vulriks off and down into submission. <i>“Last chance,”</i> you manage to say, your [pc.balls] on the verge of bursting. <i>“Say it.”</i>");
-	output("\n\n<i>“I… I...,”</i> he cuts himself off once more, his whole body starting to tremble. <i>“F-Fuuuck,”</i> he manages to groan, and around your cock you feel his hole tighten once more. <i>“I love it!”</i> he screams, <i>“I love being fucked by big cocks!”</i> No sooner than the last word comes out of his mouth, you feel the submitted Anatae tremble and shake.");
+	output("\n\n<i>“I... I...,”</i> he cuts himself off once more, his whole body starting to tremble. <i>“F-Fuuuck,”</i> he manages to groan, and around your cock you feel his hole tighten once more. <i>“I love it!”</i> he screams, <i>“I love being fucked by big cocks!”</i> No sooner than the last word comes out of his mouth, you feel the submitted Anatae tremble and shake.");
 	output("\n\nYou can’t contain yourself either, and lose yourself to ecstasy. The two of you climax in unison with each other, your cock erupting deep inside of his trembling hole, while his own impressive load fires off all over the side of the counter. He trembles beneath you, his eyes rolling back slightly, and his muscles left twitching.");
-	output("\n\nWhen you pull out of Vulriks’ tight bottom, you leave his back door open wide. [pc.cumColor] spunk trails out of his gaping hole, running down his rough red thighs. He glances back over his shoulder at you, his blue eyes glazed over. <i>“Well… that was something…”</i>");
+	output("\n\nWhen you pull out of Vulriks’ tight bottom, you leave his back door open wide. [pc.cumColor] spunk trails out of his gaping hole, running down his rough red thighs. He glances back over his shoulder at you, his blue eyes glazed over. <i>“Well... that was something...”</i>");
 	output("\n\nVulriks pulls himself to his feet, awkwardly pulling his pants up while slowly moving towards the door and unlocking it. <i>“I need to clean up. Both the store and myself.”</i> He opens the door for you, motioning for you to leave. <i>“Thank you, Steele. That was quite fun.”</i>");
 	output("\n\nWith a few shakey steps, you collect yourself and move to the exit, thanking the tall Anat for the fun as you leave.");
 
@@ -674,16 +674,16 @@ public function timeForVulriksToPowerBottom(cockIdx:int):void
 	output("\n\n<i>“Hmm,”</i> Vulriks sneers, seemingly quite pleased with himself. <i>“I can feel it inside of me. All that meat, and you cannot even use it right. Pathetic. Allow me.”</i> With a primal growl, Vulriks drives himself against you, fully sheathing your fat cock inside him. You can’t help but let out a throaty moan, the sensation of having the whole of your [pc.cockNounSimple " + cockIdx + "] inside at once almost too much to bear. Vulriks moans as well, but seems to keep control. <i>“T-this is how you use it.”</i>");
 	output("\n\nThe lewd sounds of his hips slapping against your lap fill the air, along with your shared moans. Holding on tightly, all you can do his shudder and writhe, trying not to cum while Vulriks continues to fuck himself on your [pc.cockNounSimple " + cockIdx + "]. Below you Vulriks turns his head, glancing back at you over his shoulder, a cunning look in his blue eye. <i>“Touch me. You should at least get the chance to sample a real man’s cock after all.”</i> ");
 	output("\n\nYou lift one of your hands off his hips, moving around the Anatae’s waist and reaching for his manhood. As you grab it, Vulriks grunts, his thick meat throbbing between your fingers. <i>“That is it,”</i> Vulriks moans, shuddering as a shiver runs up his spine. His cock is hot in your hand, slick with pre-cum leaking from its tip like an out of control faucet. <i>“Well? What are you waiting for, an invitation? Stroke me!”</i> Not needing to be told twice, you get to work, pumping your wrist and sliding your hand up and down his powerful shaft.");
-	output("\n\n<i>“Like… this?”</i> You struggle to form the words, jerking him off the best you can while he continues to pound into you. Your [pc.balls] ache, and you feel yourself leaking inside of Vulriks’ sinfully skilled hole already. You won’t be able to keep this up much longer...");
-	output("\n\n<i>“Shhhh, stop talking.”</i> Vulriks clenches himself between one of his thrusts, his powerful muscles compressing your buried meat and causing you to let out a depraved moan. <i>“Just keep doing that. Yes, just like that…”</i>");
+	output("\n\n<i>“Like... this?”</i> You struggle to form the words, jerking him off the best you can while he continues to pound into you. Your [pc.balls] ache, and you feel yourself leaking inside of Vulriks’ sinfully skilled hole already. You won’t be able to keep this up much longer...");
+	output("\n\n<i>“Shhhh, stop talking.”</i> Vulriks clenches himself between one of his thrusts, his powerful muscles compressing your buried meat and causing you to let out a depraved moan. <i>“Just keep doing that. Yes, just like that...”</i>");
 	output("\n\nGasping for air, you try to pull yourself together, feeling a tightness in your [pc.balls]. That last clench was nearly too much, and you feel yourself starting to lose it. Your hand keeps moving, sliding up and down Vulriks’ throbbing shaft. He’s close, but you don’t think you’ll be able to outlast him. Desperately, you start to pump your wrist faster, trying to finish him off quickly so you can cum.");
 	output("\n\nVulriks lets out a throaty moan, taken off guard by your vigorous dick pounding, but manages to let out a low chuckle afterwards. <i>“I told you... I can feel you inside of me. I can feel all that pre leaking from you... You’re at the end of the line.”</i> Vulriks lets out a passionate sigh, and you feel his asshole tighten again around your [pc.cockNounSimple " + cockIdx + "]. <i>“Lucky for you, so am I.”</i>");
 	output("\n\nHis ass is blissful agony, and you can’t contain yourself another second. Your cock is melting, pulsating wildly and on the verge of exploding. Your whole body trembling, the world around your shifts out of focus, with your mind turning to mush. As you feel a massive rush of ecstasy surge through your loins, Vulriks convulses below you, his ass constricting around your cockflesh tigher than ever before. He wasn't lying.");
 	output("\n\nThe two of you climax in unison with each other, your cock erupting deep inside of his trembling hole, while his own impressive load fires off all over the side of the counter. You struggle to hold on, your [pc.legOrLegs] threatening to buckle beneath you as you fill the large man up with your [pc.cumColor] hot spunk.");
 	if (pc.balls > 0) output(" Your [pc.balls] are still aching, seemingly angry with you for holding back for so long.");
 	output(" Slowly, after a long moment, the world starts to come back into focus, and your [pc.legOrLegsNoun] " + (pc.hasLegs() ? "feel" : "feels") + " a bit more sturdy and able.");
-	output("\n\n<i>“F-fuck yes,”</i> Vulriks moans below you, stopping his movement for the first time in many minutes. He’s panting like he ran a marathon, his red skin slick with sweat. <i>“Alright… pull it out…”</i> ");
-	output("\n\nDoing as you’re told, you pull yourself out of Vulriks’ tight bottom, leaving his back door open wide. [pc.cumColor] spunk trails out of his gaping hole, running down his rough red thighs. He glances back over his shoulder at you, his blue eyes heavy and tired. <i>“Well… that was something…”</i>");
+	output("\n\n<i>“F-fuck yes,”</i> Vulriks moans below you, stopping his movement for the first time in many minutes. He’s panting like he ran a marathon, his red skin slick with sweat. <i>“Alright... pull it out...”</i> ");
+	output("\n\nDoing as you’re told, you pull yourself out of Vulriks’ tight bottom, leaving his back door open wide. [pc.cumColor] spunk trails out of his gaping hole, running down his rough red thighs. He glances back over his shoulder at you, his blue eyes heavy and tired. <i>“Well... that was something...”</i>");
 	output("\n\nVulriks pulls himself to his feet, awkwardly pulling his pants up while slowly moving towards the door and unlocking it. <i>“I need to clean up. Both the store and myself.”</i> He opens the door for you, motioning for you to leave. <i>“That was quite fun, we should do it again sometime.”</i>");
 	output("\n\nWith a few shaky steps, you collect yourself and move to the exit, thanking the tall Anat for the fun as you leave.");
 

@@ -1138,6 +1138,7 @@ public function HSA(comeFrom:String):void
 		else output(", but you’re reminded rather strictly of the thick, tight knot keeping you both decidedly in place. You aren’t moving, and that’s that");
 		output(". You remind the ghost that she gets <i>one night.</i> She’s had her fun; you want Paige back now.");
 
+		output("\n\n");
 		//if {Clock is less than 05:59}
 		if(hours < 6) output("<i>“The night ain’t over yet, first of all,”</i> she replies snidely, rocking her hips, and her still-hard cock, against your body enticingly. <i>“And second of all, ");
 		//if {Clock is more than 06:00}

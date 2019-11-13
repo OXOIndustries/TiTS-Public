@@ -502,7 +502,8 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
-			public var Full_SAENDRA_FUTA:Class;
+			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
+			//public var Full_SAENDRA_FUTA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra_nude.png", mimeType = "image/png")]
 			public var Full_SAENDRA_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/HR/saendra_futa_nude.png", mimeType = "image/png")]

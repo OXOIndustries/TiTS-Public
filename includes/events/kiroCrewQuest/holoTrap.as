@@ -247,7 +247,7 @@ public function letTheGoblinFuckYouKQVR():void
 
 	output("\n\nYour eyes bulge in abject shock as he pulls his rugged loincloth to the side - where the fuck was he hiding <i>that</i> thing?! The dishevelled creature itself is probably four feet tall and ugly as sin, yet between his legs is the thickest, veiniest, most beautiful cock you’ve ever seen in your life. Your mouth begins watering the moment you lay eyes on it.");
 	output("\n\nYou don’t even have time to regret offering him your " + (pc.hasVagina() ? "vagina":"ass") + " instead of your lips. Grabbing your [pc.thighs] he forces them backwards, aligning his monstrous cock and shoving himself as deep as he can get with a forceful grunt. You scream out loud at the violent penetration, just a whore on [pc.hisHer] back in the middle of clearing being raped by a goblin and loving every second of it. Impossibly strong pleasure radiates outwards from every inch of your insides he touches with his throbbing prick, driving you to clench down on him and pull him deeper in the hopes he might impale you on the entire thing.");
-	output("\n\nIt doesn’t seem like he cares about your hopes at all but luckily, he’s of a similar mind. Grunting and cackling to himself, he angles his hips and slams himself downwards into your stretched-out hole, " + (pc.hasVagina() ? "his purple crown giving your cervix a wet, sloppy kiss of greeting.":"his purple crown reaching deep inside your guts to stimulate you from the inside.") + " Your mouth stretches open in an 'O' of pleasure as your unconsciously rip grass from the ground with your hands; you had no idea sex could feel this good.");
+	output("\n\nIt doesn’t seem like he cares about your hopes at all but luckily, he’s of a similar mind. Grunting and cackling to himself, he angles his hips and slams himself downwards into your stretched-out hole, " + (pc.hasVagina() ? "his purple crown giving your cervix a wet, sloppy kiss of greeting.":"his purple crown reaching deep inside your guts to stimulate you from the inside.") + " Your mouth stretches open in an ‘O’ of pleasure as your unconsciously rip grass from the ground with your hands; you had no idea sex could feel this good.");
 	output("\n\nLying there unresistant, you let the goblin pound you into the fucking dirt like you’re nothing more than his worthless slut. Each and every penetration makes your " + (pc.hasVagina() ? "whore cunt":"whorish ring") + " clench around him so hard you worry he might pause, but he never does. He only continues fucking you, grunting and laughing, " + (pc.biggestTitSize() >= 2 ? "savagely slapping your tits with one hand. You cry out in blissful assent at each impact, the sting of his palm only enhancing your ecstasy.":"making a mockery of your supposed superiority."));
 	output("\n\nYou lose count of how many times you cum, ");
 	if(pc.isHerm()) output("flexing and squeezing around the goblin’s thick bitchbreaker like you’re trying to milk him even as your cock" + (pc.hasCocks() ? "s":"") + " slowly pump" + (!pc.hasCocks() ? "s":"") + " yet another load out onto your [pc.stomach].");
@@ -2017,8 +2017,8 @@ public function llaerwynScoring():void
 	}
 	else if(flags["KQ_VR_LLAERWYN"] == 1)
 	{
-		output("<i>“She came - 50 points!");
-		output("\n\nSuch a talented pussy-eater, waiting for your blessing. Enjoy the changes to better facilitate your service in the future...”</i>");
+		output("<i>“She came - 50 points!”</i>");
+		output("\n\n<i>“Such a talented pussy-eater, waiting for your blessing. Enjoy the changes to better facilitate your service in the future...”</i>");
 		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
 		{
 			output("\n\nYou moan and open your mouth as an ache starts within your tongue, prompting you to let it loll from your lips. The feeling grows and grows until the entire muscle is <i>vibrating</i> with the intensity of it and then, finally, it begins to grow with every pulse. Groaning, you feel your tongue throb and pulse until it’s elongated to somewhere north of two or three feet - you can’t even tell. <b>Your tongue is now long!</b>");
@@ -2050,8 +2050,8 @@ public function llaerwynScoring():void
 	}
 	else if(flags["KQ_VR_LLAERWYN"] == 2)
 	{
-		output("<i>“Fucked her - 50 points!");
-		output("\n\nSuch wild, rampant desire to seed and fuck, to desecrate and conquer. Those impulses are oh-so-useful...”</i>");
+		output("<i>“Fucked her - 50 points!”</i>");
+		output("\n\n<i>“Such wild, rampant desire to seed and fuck, to desecrate and conquer. Those impulses are oh-so-useful...”</i>");
 		if(!pc.hasCock())
 		{
 			output("\n\nYou grunt in surprise as your groin twitches, almost a tickling sensation against your [pc.skinFurScales]. As you glance down, you’re suddenly surprised when an enormous cock begins to sprout from your pubic mound, towering in the air before gravity exerts its familiar force and you hear an audible slap against your [pc.stomach]. That’s <i>big!</i>");
@@ -2108,17 +2108,17 @@ public function luviaScoreScene():void
 {
 	clearOutput();
 	showName("\nSCORE:");
-	author("Wsan+a lil' Fen");
+	author("Wsan+a lil’ Fen");
 	output("<i>“<b>Luvia</b>”</i> - ");
 	if(flags["KQ_VR_LUVIA"] == -1)
 	{
-		output("<i>Avoided her - negative 100 points!");
-		output("\n\nA chaste life is a boring life! You’re really quite bad at videogames, you know...”</i>");
+		output("<i>“Avoided her - negative 100 points!”</i>");
+		output("\n\n<i>“A chaste life is a boring life! You’re really quite bad at videogames, you know...”</i>");
 	}
 	else if(flags["KQ_VR_LUVIA"] == 2) 
 	{
-		output("<i>Liked her very much - 100 points!");
-		output("\n\nWell done, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
+		output("<i>“Liked her very much - 100 points!”</i>");
+		output("\n\n<i>“Well done, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
 		output("The machine switches position and hovers over your [pc.chest], as if considering its next course of action. With no sign of activation or changes, you slowly become aware of your chest warming; unlike the prior induced heatings, this one is much more slow and gradual, alternating between spreading out and focusing on your [pc.nipples].");
 		output("\n\n");
 		if(pc.biggestTitSize() >= 1) 
@@ -2174,8 +2174,8 @@ public function luviaScoreScene():void
 	{
 		if(pc.hasCock() || hasLlaerwynCock())
 		{
-			output("<i>“Fucked her - 150 points!");
-			output("\n\nWell done, adventurer. Your seed has been collected for use in future experiments. Since you’ve taken the effort to contribute your genes to science, you’ve been awarded a complimentary libido boost!”</i>");
+			output("<i>“Fucked her - 150 points!”</i>");
+			output("\n\n<i>“Well done, adventurer. Your seed has been collected for use in future experiments. Since you’ve taken the effort to contribute your genes to science, you’ve been awarded a complimentary libido boost!”</i>");
 			if(pc.taint() < 100)
 			{
 				output("\n\nThat familiar burn returns, duller this time but no less titillating. Now it feels almost like a gentle embrace, the warmth rising within you until you’re gasping and moaning with the sensation of it. By the time it recedes you’re on the verge of orgasm, letting out a slightly disappointed sigh over the fact it didn’t push you even further.");
@@ -2192,8 +2192,8 @@ public function luviaScoreScene():void
 		}
 		else
 		{
-			output("<i>“Fucked her - 100 points!");
-			output("\n\nWell done, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
+			output("<i>“Fucked her - 100 points!”</i>");
+			output("\n\n<i>“Well done, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
 
 			output("\n\nYou grunt in surprise as something begins prodding at your [pc.ass] from below - from <i>within</i> the bench, a lilting groan slipping from your lips as the protrusion enters your [pc.asshole]. Stars! You can feel yourself stretching around it, the foreign object sliding deeper and deeper until surely it must be inside your stomach, then withdrawing itself with a slow, steady suction that makes a faint popping noise when it comes free.");
 			pc.buttChange(100);
@@ -2223,8 +2223,8 @@ public function luviaScoreScene():void
 	//PC said no:
 	else
 	{
-		output("<i>“Said no... sort of - 75 points!");
-		output("\n\nDespite your hesitance, you did well, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
+		output("<i>“Said no... sort of - 75 points!”</i>");
+		output("\n\n<i>“Despite your hesitance, you did well, adventurer. You’ve taken yet another step on your journey! Take your rewards and enjoy - I’ll very much be looking forward to meeting you...”</i>");
 		output("\n\nYou watch with some trepidation as the machine rises to sit above your face, the faintest of beams scanning your face up and down and even your neck. It fades away and you’re left moderately curious about what will happen, anticipating the changes before they even come.");
 		output("\n\nWhen they <i>do</i> come, you open your mouth in surprise and a moan comes out. Your lips plumpen, becoming rounder and fuller until it’s wholly clear you’re meant to be sucking a cock the size of Luvia’s with them.");
 		pc.lipMod++;
@@ -2255,13 +2255,13 @@ public function hylieScoreScene():void
 	if(flags["KQ_VR_HYLIE"] == 1)
 	{
 		output("<i>“Defeated - 1 point!");
-		output("\n\nYou played the game wrong and didn't learn a thing from the previous encounters. What a shame!”</i>");
+		output("\n\nYou played the game wrong and didn’t learn a thing from the previous encounters. What a shame!”</i>");
 	}
 	else
 	{
-		output("<i>“Submitted to - 169 points!");
-		output("\n\nYou threw yourself upon the mercy of your betters and earned nothing but affection and pleasure as a reward! What more could a sexdoll-in-waiting ask for?”</i>");
-		output("\n\nThe machine sweeps a pinkish beam across your body, but nothing outside seems to change. Sure, it’s a bit warm on your [pc.skinFurScales], but you aren’t getting " + (pc.biggestTitSize() < 1 ? "huger, more":"huge") + " fuckable tits or anything - just a little bit warmer. Your heart flutters a bit, like you're getting turned on again, but it also feels easier to endure somehow, like you can get way more turned on before you <i>need</i> to cum.");
+		output("<i>“Submitted to - 169 points!”</i>");
+		output("\n\n<i>“You threw yourself upon the mercy of your betters and earned nothing but affection and pleasure as a reward! What more could a sexdoll-in-waiting ask for?”</i>");
+		output("\n\nThe machine sweeps a pinkish beam across your body, but nothing outside seems to change. Sure, it’s a bit warm on your [pc.skinFurScales], but you aren’t getting " + (pc.biggestTitSize() < 1 ? "huger, more":"huge") + " fuckable tits or anything - just a little bit warmer. Your heart flutters a bit, like you’re getting turned on again, but it also feels easier to endure somehow, like you can get way more turned on before you <i>need</i> to cum.");
 		if(!pc.hasPerk("Inhuman Desire"))
 		{
 			output("\n\n(<b>Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 20.)");
@@ -2282,7 +2282,7 @@ public function hylieScoreScene():void
 		{
 			output("\n\n(<b>Perk Upgraded: Amazonian Needs</b> - Your minimum lust is increased by 20.)");
 			pc.addPerkValue("Amazonian Needs",1,20);
-			pc.setPerkTooltip("Amazonian Needs","Increases minimum lust by " + pc.perkv1("Inhuman Desire") + ".");
+			pc.setPerkTooltip("Amazonian Needs","Increases minimum lust by " + pc.perkv1("Amazonian Needs") + ".");
 		}
 		pc.taint(5);
 		pc.libido(10);
