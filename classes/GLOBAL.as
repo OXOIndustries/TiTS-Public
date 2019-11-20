@@ -1478,6 +1478,8 @@
 			"FUBMISTRESS",
 			"JAYFIREGROWLITHE",
 			"YOHSL",
+			"R4",
+			"DEIMACOS",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1521,6 +1523,8 @@
 			"FubMistress",
 			"JayfireGrowlithe",
 			"YohSL",
+			"R4",
+			"Deimacos",
 		];
 		
 		// These are what show up in the options menu combo boxes
