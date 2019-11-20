@@ -38,7 +38,7 @@ public function resetKiroQuest():void
 	flags["KQ_VR_DEMONFIGHT"] = undefined;
 	flags["KQ_VR_DEMONFUKK"] = undefined;
 	
-	/*==========================================
+	==========================================
 	       PO + TFs + GENERAL ROUTING
 	  ==========================================
 	KQ_START
@@ -65,7 +65,7 @@ public function resetKiroQuest():void
 		-1 = Kiro is kicked off.
 	Kiro TFs:
 		Ditz Speech at the end so kiro.isBimbo() works.
-		*/
+		
 }*/
 
 public function kiroQuestRoomUpdate():void
