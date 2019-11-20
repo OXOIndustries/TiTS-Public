@@ -239,6 +239,10 @@
 			super.orgasm();
 			ballSizeRaw = 10;
 		}
+		//Kiro milkies :3
+		override public function canLactate():Boolean { return hasPerk("Evermilk"); }
+		override public function isLactating():Boolean { return canLactate(); }
+		override public function milkQ(arg:int = -1):Number { return perkv1("Evermilk"); }
 		
 		override public function get bustDisplay():String
 		{

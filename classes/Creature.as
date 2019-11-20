@@ -5246,6 +5246,7 @@
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currReflexes *= 0.9;
 			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
+			if (hasStatusEffect("Stumble Strobed")) currReflexes = Math.ceil(currReflexes * 0.5);
 
 			if (currReflexes > reflexesMax())
 			{
@@ -5368,6 +5369,8 @@
 			}
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
+			// Status effect reduction
+			if(hasStatusEffect("Ditzi Strobed")) currInt = Math.ceil(currInt * 0.5);		
 
 			if (currInt > intelligenceMax())
 			{

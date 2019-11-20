@@ -2481,6 +2481,10 @@ public function flyMenu():void
 	{
 		addButton(11, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
 	}
+	if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
+	{
+		addButton(12,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
+	}
 	
 	addButton(14, "Back", mainGameMenu);
 }
@@ -4327,6 +4331,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processBreedwellPremiumBreederEvents(deltaT, doOut, totalDays);
 	processMirrinPregnancy(deltaT, nextTimestamp);
 	processBianca(totalDays, nextTimestamp);
+	processKiroQuestEvents(deltaT, doOut);
 	
 	// Per-day events
 	if (totalDays >= 1)
