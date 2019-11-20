@@ -1,3 +1,5 @@
+import classes.ShittyShips.Blade;
+
 //Here B Fen's werkies. OwU
 
 public function showPo(nude:Boolean = false):void
@@ -1517,9 +1519,10 @@ public function getBackToShipsWivKiroFollows():void
 public function takeKirosShip():void
 {
 	clearOutput();
-	showBust("9999LeafShip");
+	showBust("BLADE");
 	output("You spend some time using the hangar's equipment to transfer possessions from your old vessel into the new, then plot a safe course back to Tavros Station.");
 	processTime(8*60);
+	shits["SHIP"] = new Blade();
 	shipLocation = "TAVROS HANGAR";
 	moveTo("SHIP INTERIOR");
 	clearMenu();
@@ -1775,7 +1778,7 @@ public function kq36HourTF():void
 	}
 	//merge
 	output("\n\n");
-	showImage("KiroReprogramming1 9999");
+	showImage("KiroReprogramming1");
 	output("Illustria rotates the view to focus on Kiro once more. The floating robot you saw last time rests against her head, its tendril split to embed its drugged payload into her tits. She doesn’t seem to mind, if anything, she looks like she’s just spotted the hottest girl in the bar, and she’s about to take her home for a hard-and-fast bang. She’s even up on her paws off the chair, straining the restraints. Her desire-hooded eyes peer through the strobing hypnotics on her visor to fixate on the camera lens beyond, and she whimpers, <i>“A-angel? I think... I think I need to fuck somebody. Anybody.”</i> She licks her lips, gyrating her hips into a new piece of equipment.");
 	output("\n\nThe large penile milker has been swapped out for a ring studded with vibrators. The top of the ring connects to a translucent latex hose, connected to a tap in the wall. Thick gouts of pre bulge the connective spunk-pipe from time to time, proof of the tanuki’s lusty, ready-to-go state. Kiro’s breasts look almost a little bigger than the last time you remember them, still obligingly pumping out cream.");
 	output("\n\nThe cyborg stalks forward, bringing the camera with her, and you’re treated to a PoV shot of her fingers dipping under Kiro’s quaking ballsack to rub her pussy. Working her digits in slow circles, Illustria winks to you and asks, <i>“Would you fuck me, 65?”</i>");
