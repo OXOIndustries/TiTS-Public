@@ -18,6 +18,7 @@ public function encounterDatPoBitchBaybeee():Boolean
 	showBust(poBustString(),kiroBustDisplay());
 	//Stop all TFs from proccing. Also, you either rescue her or bad-end here, so no need to worry much about it.
 	flags["KQ_RESCUED"] = GetGameTimestamp();
+	flags["KQ_STEP"] = undefined;
 	//Not truly met
 	if(flags["KQ_LAST_HOUR_TF"] == undefined || flags["KQ_LAST_HOUR_TF"] < 18)
 	{
@@ -79,7 +80,7 @@ public function encounterDatPoBitchBaybeee():Boolean
 	//Kiro broke
 	else
 	{
-		output("\n\nYou charge into Doctor Po’s lab, and more or less as predicted, both Kiro and the cyborg scientist are present. The latter is closer, rising out of a chair with a look of smug success disappointment, but your concern is squarely on the tanuki pirate and her expanded rack. Right now, she kneels on the floor with her firmly erect prick buried inside an ultraporn-star’s worth of cleavage. The atmosphere of the lab is musky with the scent of her arousal, a small puddle of slick pussyjuice ever so gradually thickens beneath her knees. If she’s aware of your presence, she doesn’t make it known. Her eyes stay fixed firmly upon Illustria’s backdoor while she silently licks her lips.");
+		output("You charge into Doctor Po’s lab, and more or less as predicted, both Kiro and the cyborg scientist are present. The latter is closer, rising out of a chair with a look of smug success disappointment, but your concern is squarely on the tanuki pirate and her expanded rack. Right now, she kneels on the floor with her firmly erect prick buried inside an ultraporn-star’s worth of cleavage. The atmosphere of the lab is musky with the scent of her arousal, a small puddle of slick pussyjuice ever so gradually thickens beneath her knees. If she’s aware of your presence, she doesn’t make it known. Her eyes stay fixed firmly upon Illustria’s backdoor while she silently licks her lips.");
 		output("\n\nYou call out, <i>“Kiro! Kiro! Are you okay?”</i>");
 		output("\n\nThe cyborg steps to the side and kneels down next to Kiro. <i>“Go ahead. Tell [pc.himHer]. Tell [pc.himHer] if you’re upset, or worried, or whatever’s on your mind.”</i>");
 		output("\n\nYour tanuki friend regretfully drags her gaze from the scientist’s fluid-filled form and meets your gaze with lidded eyes. <i>“Uhh, hey, [pc.name]. Sorry about the call. I was really, really confused, but Miss Po has made me so <b>obedient</b> and horny.”</i> She shudders and reaches into her mammoth mounds, producing an entire handful of slick pre. It takes her a single swallow to devour most of it. <i>“But she made my titties so big and good, and I cum so easy now. And like, no matter what I might think about a person, when I know that they own me, it makes me so hot for them, like... If you were my owner I could just live between your legs and be happy like that, ya know? It’s like that syrupy lovey goodness that you get when you first bed a girl, but it never goes away and it’s always sloshing around my slutty little dollbrain!”</i> She looks back over her shoulder at the cyborg scientist. <i>“You should totally help [pc.name] like you helped me! [pc.HeShe] would make the best doll!”</i>");
@@ -367,18 +368,17 @@ public function youBoughtASlutGoodJob():void
 	else
 	{
 		showName("NAME\nHER");
-		output("\n\n<i>“Everything seems to be in order,”</i> Illustria reports, gesturing toward a chestier Kiro one-handedly.	<i>“Sixty-five, ownership transfer. Authorization: Doctor Illustria Po, your mistress. New owner: [pc.fullName]. Acknowledge.”</i>");
+		output("<i>“Everything seems to be in order,”</i> Illustria reports, gesturing toward a chestier Kiro one-handedly.	<i>“Sixty-five, ownership transfer. Authorization: Doctor Illustria Po, your mistress. New owner: [pc.fullName]. Acknowledge.”</i>");
 		output("\n\nKiro’s jaw goes slack. Her eyes empty of residual thought. Three seconds pass in silence, after which she wobbles, blinking in confusion. Bracing herself against the ground, she looks up at you with sudden, total love in her eyes. <i>“[pc.name]! You... oh wow. You own me.”</i> She strokes her cock in a way that somehow communicates abject wonder. <i>“I’m your poperty. Your doll number 65, your pet kui-tan pirate fucktoy.”</i> She shudders pinches both her nipples, firming up the dinner plate sized tit-toppers to rigid attention. <i>“You can name me, [pc.name]. You can call me anything, and I’ll love it. You could give me the most degrading, filthiest name in the galaxy, and I’d get hard to hear you say it...”</i>");
 		output("\n\nYou open your mouth, about to tell her that her name is Kiro, but something stops you. This is an important choice, and Kiro is already broken. Maybe a new moniker would be in order?");
 		output("\n\n<b>What do you name Kiro?</b>");
 		//gotta do this shit.
 		processTime(3);
-		this.displayInput();
-		this.userInterface.textInput.text = "Kiro";
-
-		output("\n\n\n");
 		clearMenu();
 		addButton(0,"Name Her",giveKiroANewName);
+		displayInput();
+		userInterface.textInput.text = "Kiro";
+		output("\n\n\n");
 	}
 }
 
@@ -421,7 +421,7 @@ public function giveKiroANewName():void
 	//Choose anything else
 	else
 	{
-		output("\n\n<i>“Your name is [kiro.name],”</i> you say, a little hesitantly.");
+		output("<i>“Your name is [kiro.name],”</i> you say, a little hesitantly.");
 		output("\n\n<i>“Oh.”</i> Kiro mouths as her eyes empty of conscious thought, her rewired brain working triple-time to shape itself for the reality you’ve chosen. She whimpers in the back of her throat, her whole body tensing. Her tail slams down into the floor behind her with a muted ‘thump’, then lifts and does it again, and again, and again. After a half-dozen such slams, partial awareness returns to her face, her expression still dopey. <i>“Hiiiiiiiii, [pc.name].”</i> The dollified tanuki smiles warmly, surging up onto her toes. A web of glittering pussyjuice hangs between her thighs, and the obscene girth of her flare wobbles eagerly in your direction. <i>“You’re such a naughty owner, [pc.name], getting rid of that old name and giving me a new one.”</i>");
 		output("\n\nYou lean back a little surprised. <i>“Oh?”</i>");
 		output("\n\n<i>“Yeaaaaah,”</i> the kui-tan purrs, prowling closer. <i>“You knew my real name, whatever that was, but you... you horny devil. You decided to take charge of me completely.”</i> [kiro.name]’s tail winds around your waist. <i>“Grab my titties if you want. I know you wannaaa! You <b>own</b> me, [pc.name]. I’m literally your personal toy. You can tell me to lay in your bed and wait for you, and I’ll love doing it. I’ll be there, hard if you want to cuddle.”</i> She strokes her cock. <i>“Soft if you want to rest.”</i> Her other hand lifts a breast and presses the soft expanse into your " + (pc.tallness+10 > kiro.tallness ? "side":"head") + ". <i>“And anything between. I’m yours.”</i>");
@@ -433,7 +433,7 @@ public function giveKiroANewName():void
 	processTime(10);
 	clearMenu();
 	addButton(0,"Buttslutinator",buyTheButtslutinator,undefined,"Buttslutinator","Buy the \"Buttslutinator\". That's a piece of mad scientist kit for sure.");
-	addButton(1,"Orgasmender",buyTheButtslutinator,undefined,"Orgasmender","Buy the \"Orgasmender\", though judging the brochure you spot on the wall, it looks more like a tentacle rape tank.");
+	addButton(1,"Orgasmender",healyTankBullshit,undefined,"Orgasmender","Buy the \"Orgasmender\", though judging the brochure you spot on the wall, it looks more like a tentacle rape tank.");
 	addButton(4,"Leave",moveOnPostBuying);
 }
 
@@ -1309,11 +1309,15 @@ public function postPoOptionsWinRouting():void
 	if(!kiro.isBimbo())
 	{
 		output("You smash Kiro out of her remaining restraints");
-		if(flags["KQ_PO_DEAD"] == undefined)
+		if(flags["KQ_PO_DEAD"] == undefined && pc.RQ() < 33)
 		{
 			output(", and she wastes no time in grabbing your [pc.rangedWeapon] and using it to put an end to the defeated Doctor Po");
 			flags["KQ_PO_DEAD"] = 2;
 			//kiro killed po :3
+		}
+		else
+		{
+			output(", and she wastes no time in going for your [pc.rangedWeapon]. You catch her wrist and stop her. If you wanted Po dead, you would have done it yourself.");
 		}
 		output(". <i>“Let’s get out of here.”</i>");
 		output("\n\nYou couldn’t have said it better.");
@@ -1332,12 +1336,11 @@ public function postPoOptionsWinRouting():void
 		output("\n\nWhat do you name Kiro?");
 		//dialogue box :3
 		processTime(3);
-		this.displayInput();
-		this.userInterface.textInput.text = "Kiro";
-
-		output("\n\n\n");
 		clearMenu();
 		addButton(0,"Name Her",nameKiroAfterWinning);
+		displayInput();
+		userInterface.textInput.text = "Kiro";
+		output("\n\n\n");
 	}
 }
 
@@ -1422,7 +1425,7 @@ public function KQKiroFollowBonusTexts():void
 	//Bimbokiro
 	if(kiro.isBimbo())
 	{
-		output("\n\n" + RandomInCollection(["[kiro.name] bumps her expanded bust into the wall and bounces off with a giggle and a tweak of her nipple.","[kiro.name] follows demurely behind you, checking you out every time she thinks you’re not looking. Her cock stays hard the entire time.","[kiro.name] follows obediently.","[kiro.name] plays with her cock, not for pleasure but to show it off to you, presenting it new ways every time you look back her.","[kiro.name] rubs her boobs in wonder, clearly taken when their size and feel.","[kiro.name] hefts her tits in hand and pulls them apart, letting them clap together with an audible ‘smack’ and endless waves of roiling jiggles.","[kiro.name] bounces on the balls of her padded feet when you look back, bouncing her breasts for your amusement. It’s quite a sight.","[kiro.name] watches you with obvious infatuation.","[kiro.name] can be heard quietly muttering through a list of obscene euphemisms for breasts.","[kiro.name] hugs her tail and blushes when you glance her way.","//bought only: 	[kiro.name] stops to hug a passing fuckdoll. The two herms grind against one another in obvious pleasure for longer than you would have expected before parting with shuddering smiles. Your tanuki returns to your side, and the fuckdoll moves on by as if you were nothing more than a piece of furniture.","[kiro.name] leans against the wall with her tail upraised, displaying her soaking wet twat and drenched ballfur."]));
+		output("\n\n" + RandomInCollection(["[kiro.name] bumps her expanded bust into the wall and bounces off with a giggle and a tweak of her nipple.","[kiro.name] follows demurely behind you, checking you out every time she thinks you’re not looking. Her cock stays hard the entire time.","[kiro.name] follows obediently.","[kiro.name] plays with her cock, not for pleasure but to show it off to you, presenting it new ways every time you look back her.","[kiro.name] rubs her boobs in wonder, clearly taken when their size and feel.","[kiro.name] hefts her tits in hand and pulls them apart, letting them clap together with an audible ‘smack’ and endless waves of roiling jiggles.","[kiro.name] bounces on the balls of her padded feet when you look back, jiggling her breasts for your amusement. It’s quite a sight.","[kiro.name] watches you with obvious infatuation.","[kiro.name] can be heard quietly muttering through a list of obscene euphemisms for breasts.","[kiro.name] hugs her tail and blushes when you glance her way.","//bought only: 	[kiro.name] stops to hug a passing fuckdoll. The two herms grind against one another in obvious pleasure for longer than you would have expected before parting with shuddering smiles. Your tanuki returns to your side, and the fuckdoll moves on by as if you were nothing more than a piece of furniture.","[kiro.name] leans against the wall with her tail upraised, displaying her soaking wet twat and drenched ballfur."]));
 	}
 	//Nonbimbo - bought
 	else if(flags["KQ_BUY_OFFER"] != undefined)
@@ -1506,7 +1509,8 @@ public function getBackToShipsWivKiroFollows():void
 		flags["KIRO_ONBOARD"] = 1;
 		//[Yours] [Kiro's]
 		addButton(0,"Yours",returnHomeFromKiroQuest,undefined,"Yours","Doing this means leaving Kiro's leaf-shaped vessel behind, but it means you get to keep your own.");
-		addButton(1,"Kiro's",takeKirosShip,undefined,"Kiro's","Doing this will leave your ship and its weapon/upgrade loadout behind. It will be lost to you, but you'll claim the tanuki's craft for your own.");
+		if(olympiaIsCrew() && shits["SHIP"] is Sidewinder) addButton(1,"Kiro's",takeKirosShip,undefined,"Kiro's","Doing this will leave your ship and its weapon/upgrade loadout behind. It will be lost to you, but you'll claim the tanuki's craft for your own.");
+		else addDisabledButton(1,"Kiro's","Kiro's","Olympia won't let you dare leave the Sidewinder behind.");
 	}
 }
 
