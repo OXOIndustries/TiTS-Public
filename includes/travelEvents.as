@@ -37,7 +37,7 @@ public function tryProcTravelEvent(destination:String):Function
 	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	if (flags["ICEQUEEN COMPLETE"] == undefined && pc.level > 5) possibleMessages.push(iceQueenMessage);
-	if(roamingKiroAvailable() && flags["KIRO_RECRUITED"] == undefined && kiroTrust() >= 100 && flags["KQ_START"] == undefined)possibleMessages.push(kirosDistressCall);
+	if (roamingKiroAvailable() && flags["KIRO_RECRUITED"] == undefined && kiroTrust() >= 100 && flags["KQ_START"] == undefined && pc.level >= 9) possibleMessages.push(kirosDistressCall);
 
 	// Should only be available a week either side of hallowiener
 	if (isHalloweenish() || debug || rand(100) == 0)
