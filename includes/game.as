@@ -4867,6 +4867,8 @@ public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 		if (totalHours >= 1)
 		{
 			kiro.ballSizeRaw += totalHours;
+			//Add half again after Kiro quest refractory treatment~!
+			if(kiro.refractoryRate >= 9992) kiro.ballSizeRaw += Math.ceil(totalHours/2);
 			
 			if (kiro.ballDiameter() > 20)
 			{

@@ -37,7 +37,35 @@ public function resetKiroQuest():void
 	flags["KQ_VR_DEMONTIME"] = undefined;
 	flags["KQ_VR_DEMONFIGHT"] = undefined;
 	flags["KQ_VR_DEMONFUKK"] = undefined;
-	move("SHIP INTERIOR");
+	
+	/*==========================================
+	       PO + TFs + GENERAL ROUTING
+	  ==========================================
+	KQ_START
+		Timestamp of when she's captured, used for calculating TFs
+	KQ_RESCUED
+		Timestamp of when you enter Po's lab. If not undefined, stops TF progress.
+		Once set, disables the entrance to Po's lab.
+	KQ_LAST_HOUR_TF
+		The last hour of TF. Used to avoid repeat procs.
+	KQ_BUY_OFFER
+		Highest amount offered to buy Kiro.
+		-1 if bought with platinum :3
+	KQ_OFFER_FAIL
+		Number of failed offers
+	KQ_PLAT_OFFERED
+		1 = offered platinum!
+	KQ_PO_DEAD
+		1 = PC did it.
+		2 = kiro did it
+	KIRO_RECRUITED
+		1 = Recruited Kiro!
+	KIRO_ONBOARD
+		1 = Kiro is currently crew.
+		-1 = Kiro is kicked off.
+	Kiro TFs:
+		Ditz Speech at the end so kiro.isBimbo() works.
+		*/
 }*/
 
 public function kiroQuestRoomUpdate():void

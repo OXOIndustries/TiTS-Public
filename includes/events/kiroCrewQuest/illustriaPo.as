@@ -1666,6 +1666,8 @@ public function kq18HourTF():void
 	output("\n\nA sleek hand appears in frame, firmly gripping Kiro about the medial ring while the cybernetic thumb draws spirals up and down the kui-tan’s urethra. She dribbles out pre almost as soon as she’s touched, and within the space of ten seconds, a steady stream is pouring out, racing down pulsating veins and the flawless forearm of her technological tormenter. Her balls wobble, swelling back to their normal size with alarming rapidity.");
 	output("\n\nThe captive pirate whines, <i>“How does it still feel this goooooooood?”</i>");
 	output("\n\nIn a flash, the viewpoint whips back to Illustria Po’s too-pleased face. <i>“I’ll update you in six hours or so, once the milk starts coming in, and as for you, naughty little 65... we’ll see if you can keep up that defiance after another some endurance testing with the milkers.”</i> A wet, slurping sound is the last thing you hear before the message cuts out.");
+	kiro.refractoryRate++;
+	kiro.createPerk("MinCumQ",2000);
 	processTime(3);
 	pc.lust(3);
 	clearMenu();
@@ -1725,7 +1727,7 @@ public function kq30HourTF():void
 	output("\n\n<i>“Would you like some pornography, [pc.misterMiss] Steele?”</i> The doctor’s poreless visage radiates pleasure. <i>“Of course you do. Everyone likes porn. Me? I adore it. Nothing like a nice pair of ripe tits to get the endorphins flowing and flush the genitals. Is there truly anything better to behold than another’s body, brazenly displayed for your pleasure, engorged with wanton desire?”</i> Her head shakes. <i>“Of course there isn’t. Porn is <b>art!</b> ...and I am an artist. Behold!”</i>");
 	output("\n\nThe viewpoint glides once more to focus on Kiro.");
 	output("\n\nThe hung tanuki is still sleeping, you note, but that’s not to say that she’s inactive. Quite the opposite. Her hips roll in slow, sensuous circles. Her cock throbs, and the thick-sounding gurgles of her seed being whisked down the connected pipe continue exactly as before.");
-	output("\n\nBut that isn’t what the doctor wants you to look at. She wants your gaze higher, at Kiro’s tits. There’s no better word for them now. They’ve swollen from luscious breasts into obscene, cow-caliber udders. Milk courses out of them in regular, pulsing streams, much thicker than you saw in the previous video. In her sleep, Kiro occasionally arches her back and whimpers in unconscious pleasure, the motion making her cream-filled milktanks wobble about in the most delightfully hypnotic way. When they clap together, they simultaneously spurt torrents of perfect, alabaster white. You could sit here and watch them jiggle for hours... if you weren’t watching your {girl}friend’s slow descent into lust-drunk fuckdoll.");
+	output("\n\nBut that isn’t what the doctor wants you to look at. She wants your gaze higher, at Kiro’s tits. There’s no better word for them now. They’ve swollen from luscious breasts into obscene, cow-caliber udders. Milk courses out of them in regular, pulsing streams, much thicker than you saw in the previous video. In her sleep, Kiro occasionally arches her back and whimpers in unconscious pleasure, the motion making her cream-filled milktanks wobble about in the most delightfully hypnotic way. When they clap together, they simultaneously spurt torrents of perfect, alabaster white. You could sit here and watch them jiggle for hours... if you weren’t watching your " + (flags["KIRO_BF_TALK"] == 1 ? "girl":"") + "friend’s slow descent into lust-drunk fuckdoll.");
 	output("\n\n<i>“Magnificent, aren’t they?”</i> Illustria appears back in frame, full of pride. <i>“But while these are certainly </i>slutty tits<i>, a fuckdoll amongst fuckdolls deserves better. Bigger. Real, plush, that proudly declare to the universe, ‘Hi, my only use is milking and fucking!’”</i> Her lip curls in a cruel sneer. <i>“But the supportive tissues and ligaments will need some time before they’re ready to support my boobalicious little toy.”</i>");
 	output("\n\nThat’s good, at least. Kiro has some time...");
 	output("\n\n<i>“Which means I should probably start in on her mind proper.”</i> The mad doctor glances to side, and a sleep, needle-bearing robot floats by. <i>“I could manually make the adjustments I want - establish custom synaptic linkages with a swarm of robotic helpers... or hit her with a crude but potent drug like dumbfuck that’ll hardwire her into a slut among sluts, seeking unending hedonistic delights, but why do something so crude when I can hack her very mind into rewiring itself?”</i> Letting go of the camera, Doctor Po strides away, allowing you enough of a glimpse at her body to spot translucent panels and glowing, sloshing fluids inside. She reclines against a console and taps her chin. <i>“I’ll take my time on this one.");
@@ -1795,6 +1797,8 @@ public function kq36HourTF():void
 	output("\n\n<i>“Yes, miss...tress?”</i> Kiro guesses.");
 	output("\n\nThe camera pulls back, but Doctor Po announces. <i>“Very good, 65. You may orgasm as much as you like for the next three hours.”</i> The buzzing hum of the vibroring kicks up three or four notches, and Kiro cries out in absolute, sublime bliss. Over the sound of her captive’s caterwauling, Illustria states, <i>“It might not be visible, but I’ve made subtle adjustments to her penile and vaginal tissues for greater durability. Near-constant erections won’t leave her sore at all, and if her owner wants to leave her riding a dildo when not in use, she’ll happily bounce on it for as long as she’s allowed. And the subliminals are progressing more or less as planned. 65’s mental resilience is far above what I expected from a pirate with a slut-body like hers, but that just means I get to enjoy her struggles for a little bit longer.”</i> Kiro screams in ecstasy. <i>“Maybe not too much longer. Ta ta!”</i>");
 	output("\n\nThe message ends.");
+	kiro.vaginas[0].bonusCapacity += 100;
+	kiro.ass.bonusCapacity += 100;
 	processTime(3);
 	pc.lust(3);
 	clearMenu();
@@ -1852,12 +1856,15 @@ public function kq48HourTF():void
 	output("\n\nKiro’s nose wrinkles, and she removes her finger with excessive slowness. <i>“Do I... want [pc.name] to own me?”</i> She chews her lip. <i>“I want everyone to own me, Mistress.”</i>");
 	output("\n\nThat makes Illustria Po laugh. <i>“I see you’re still full of rodenian chemicals. No, what I meant was, obedience aside, would you enjoy being owned by [pc.name]?”</i>");
 	output("\n\nKiro says, <i>“Oooooooooh,”</i> then taps her chin. <i>“Yeah probably. [pc.HeShe] saved my life, and [pc.heShe] helped me out so much that I’d trust [pc.himHer] to treat me right even if I wasn’t a fuckdoll, and now that I am, I can be pretty confident [pc.name] would take great care of me so I could serve [pc.himHer] for a long, long time.");
-	if(flags["KIRO_BF_TALK"] == 1) output(" [pc.HeShe] would have to break up with me, though, because I’m just a fucktoy.”</i>\n\n<i>“And if he told you to be [pc.hisHer] perfect wife?”</i>\n\n<i>“Then I’d be [pc.hisHer] fucktoy wife forever,”</i> Kiro smartly answers. <i>“That’s a silly question}”</i>");
+	if(flags["KIRO_BF_TALK"] == 1) output(" [pc.HeShe] would have to break up with me, though, because I’m just a fucktoy.”</i>\n\n<i>“And if he told you to be [pc.hisHer] perfect wife?”</i>\n\n<i>“Then I’d be [pc.hisHer] fucktoy wife forever,”</i> Kiro smartly answers. <i>“That’s a silly question");
+	output("”</i>");
 	output("\n\nIllustria says, <i>“Good girl. You heard the toy, [pc.name]. Come buy her if you want her. I think I’ll be keeping her around for a while.”</i>");
 	output("\n\nThe message ends.");
 	processTime(4);
 	kiro.lipMod++;
 	kiro.createPerk("Ditz Speech");
+	kiro.vaginas[0].bonusCapacity += 150;
+	kiro.ass.bonusCapacity += 150;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-}
+}

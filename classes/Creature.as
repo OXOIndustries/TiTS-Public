@@ -11246,6 +11246,7 @@
 			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
+			if(quantity < perkv1("MinCumQ")) quantity = perkv1("MinCumQ");
 			trace("Total produced: " + quantity);
 			return quantity;
 		}
