@@ -725,7 +725,8 @@ public function kiroQuestHallwaysEncounters():Boolean
 			//Reset step counter
 			flags["KQ_STEP"] = 0;
 			//POSSIBLE ENCOUNTERS! SABERFLOOF!
-			choices.push(genericSexdollEncounter,genericSexdollEncounter);
+			if(rand(4) == 0) choices.push(taursuitsBonusFunz);
+			else choices.push(genericSexdollEncounter,genericSexdollEncounter);
 			
 			//Run the event
 			choices[rand(choices.length)]();
