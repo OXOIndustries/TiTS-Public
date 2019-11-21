@@ -345,7 +345,7 @@ public function letTheSpriteCummies():void
 {
 	clearOutput();
 	showName("A\nBLESSING");
-	showBust("KQ_VR_LLAERWYN_NUDE");
+	showBust("KQ_VR_LLAERWYN");
 	author("Wsan");
 	output("You watch the girl masturbate herself with increasing vigor, her cheeks glowing a faint red you can see even with just her outline. Your attention, despite her obvious embarrassment, seems to serve only to further turn her on, and soon enough she’s dripping all over the ground in her arousal. Moaning, she stretches her narrow hips out towards you.");
 	output("\n\n<i>“It’s coming- nnh! Drink! Drink it!”</i> she urges, almost stumbling as she begins to shake in pleasure.");
@@ -376,7 +376,7 @@ public function fuckLlaerwyn():void
 {
 	clearOutput();
 	showName("FUCK\nBLESSINGS");
-	showBust("KQ_VR_LLAERWYN_NUDE");
+	showBust("KQ_VR_LLAERWYN");
 	author("Wsan");
 	output("<i>“I’ll fuck you to make you cum, then,”</i> you offer, and she stops, looking at you red-faced.");
 	output("\n\n<i>“Y-you will?”</i> she stutters shyly. <i>“Then, traveller, if you would...”</i>");
@@ -539,7 +539,7 @@ public function veryMuchVRLady():void
 {
 	clearOutput();
 	showName("\nPRINCESS");
-	showBust("KQ_VR_LUVIA_NUDE");
+	showBust("KQ_VR_LUVIA");
 	author("Wsan");
 	output("<i>“You want to touch them?”</i> she says, smiling as a slight flush colors her cheeks. She leans forward slightly, offering you her bountiful chest. <i>“Go right ahead, adventurer...”</i>");
 	output("\n\n<i>“Aah...”</i> she moans as you take ahold of them, cupping and squeezing her weighty tits. <i>“Mmm...”</i>");
@@ -625,7 +625,7 @@ public function yesLadyTheyNiceBoobies():void
 {
 	clearOutput();
 	showName("\nPRINCESS");
-	showBust("KQ_VR_LUVIA_NUDE");
+	showBust("KQ_VR_LUVIA");
 	author("Wsan");
 	output("<i>“I quite like them myself, if I must confess,”</i> she says, giggling softly. <i>“But perhaps you prefer something different...”</i>");
 	output("\n\nShe leans over and slowly wiggles her hips, drawing her panties down her legs until she’s standing before you completely naked, a tuft of wispy blonde pubic hair above her exposed pussy. Smiling up at you, she raises herself back up and turns around, showing off her shapely butt.");
@@ -791,7 +791,7 @@ public function noPrincessPlz():void
 {
 	clearOutput();
 	showName("\nPRINCESS");
-	showBust("KQ_VR_LUVIA_NUDE");
+	showBust("KQ_VR_LUVIA");
 	author("Wsan");
 	output("Her expression freezes in place for a moment before her eyes narrow, her soft upper lip curling. <i>“Is that so? Worry not, I have a gift for you, <b>adventurer</b>.”</i>");
 	output("\n\nRight as she says that, you jump at the feeling of something ");
@@ -939,7 +939,7 @@ public function dontFightDatSalamander():void
 {
 	clearOutput();
 	showName("\nSALAMANDER");
-	showBust("KQ_VR_HYLIE_NUDE");
+	showBust("KQ_VR_HYLIE");
 	author("Wsan + EditFen");
 
 	output("Rather than try to fight her, you drop your weapon and shield and fall to your knees, knowing that in a game like this, submission can be a sort of weapon all its own - sort of.");
@@ -1018,7 +1018,7 @@ public function fightDatVRSallyMandy2():void
 {
 	clearOutput();
 	showName("\nSALAMANDER");
-	showBust("KQ_VR_HYLIE_NUDE");
+	showBust("KQ_VR_HYLIE");
 	author("Wsan");
 	output("You remember now - she asked you which hole you wanted it in, and you told her to take her pick. A little embarrassing in hindsight but she’s clearly still up for it, and frankly, you are too. She’s friendly, warm, and sexy - not to mention you’ve come to garner a bit more of an appreciation for being held down by strong women and dominated since coming here. You briefly wonder if perhaps that was the whole idea but shake it off. Deep thought is a little too distracting when you have a seven foot barbarian woman on the verge of fucking you into the ground.");
 	output("\n\n<i>“You look nice and ready for this,”</i> Hylie says, licking her lips. <i>“Just reach back here for me, babe...”</i>");
