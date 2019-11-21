@@ -1,6 +1,7 @@
 import classes.Items.Toys.NivasBionaHole;
 import classes.Items.Toys.TamaniBionaHole;
 
+/*
 public function resetKiroQuest():void
 {
 	flags["KQ_MET_SEXDOLL_VUL"] = undefined;
@@ -36,8 +37,36 @@ public function resetKiroQuest():void
 	flags["KQ_VR_DEMONTIME"] = undefined;
 	flags["KQ_VR_DEMONFIGHT"] = undefined;
 	flags["KQ_VR_DEMONFUKK"] = undefined;
-	move("SHIP INTERIOR");
-}
+	
+	==========================================
+	       PO + TFs + GENERAL ROUTING
+	  ==========================================
+	KQ_START
+		Timestamp of when she's captured, used for calculating TFs
+	KQ_RESCUED
+		Timestamp of when you enter Po's lab. If not undefined, stops TF progress.
+		Once set, disables the entrance to Po's lab.
+	KQ_LAST_HOUR_TF
+		The last hour of TF. Used to avoid repeat procs.
+	KQ_BUY_OFFER
+		Highest amount offered to buy Kiro.
+		-1 if bought with platinum :3
+	KQ_OFFER_FAIL
+		Number of failed offers
+	KQ_PLAT_OFFERED
+		1 = offered platinum!
+	KQ_PO_DEAD
+		1 = PC did it.
+		2 = kiro did it
+	KIRO_RECRUITED
+		1 = Recruited Kiro!
+	KIRO_ONBOARD
+		1 = Kiro is currently crew.
+		-1 = Kiro is kicked off.
+	Kiro TFs:
+		Ditz Speech at the end so kiro.isBimbo() works.
+		
+}*/
 
 public function kiroQuestRoomUpdate():void
 {
@@ -46,11 +75,13 @@ public function kiroQuestRoomUpdate():void
 	else if(!rooms["KQ P14"].hasFlag(GLOBAL.NPC) && flags["KQ_MINIBOSS_DOWNED"] == undefined) rooms["KQ P14"].addFlag(GLOBAL.NPC);
 }
 
+/*
 public function kiroQuestTestResetPrompt():void
 {
 	output("\n\nIf you’re done testing this unfinished content, you can be returned to your ship by selecting “Return”.");
 	addButton(0,"Return",resetKiroQuest);
 }
+*/
 
 public function initKQRooms():void
 {
@@ -498,7 +529,7 @@ public function initKQRooms():void
 	rooms["KQ T14"].southExit = "";
 	rooms["KQ T14"].westExit = "";
 	rooms["KQ T14"].moveMinutes = 1;
-	rooms["KQ T14"].runOnEnter = kiroQuestTestResetPrompt;
+	rooms["KQ T14"].runOnEnter = encounterDatPoBitchBaybeee;
 	rooms["KQ T14"].addFlag(GLOBAL.INDOOR);
 	rooms["KQ T14"].addFlag(GLOBAL.HAZARD);
 	rooms["KQ T14"].addFlag(GLOBAL.OBJECTIVE);
@@ -688,29 +719,89 @@ public function kiroQuestHallwaysEncounters():Boolean
 	IncrementFlag("KQ_STEP");
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["KQ_STEP"] >= 4 && rand(3) == 0) {
-		//Reset step counter
-		flags["KQ_STEP"] = 0;
-		//POSSIBLE ENCOUNTERS! SABERFLOOF!
-		choices.push(genericSexdollEncounter,genericSexdollEncounter);
-		
-		//Run the event
-		choices[rand(choices.length)]();
+	if(flags["KQ_RESCUED"] == undefined)
+	{
+		if(flags["KQ_STEP"] >= 4 && rand(3) == 0) {
+			//Reset step counter
+			flags["KQ_STEP"] = 0;
+			//POSSIBLE ENCOUNTERS! SABERFLOOF!
+			choices.push(genericSexdollEncounter,genericSexdollEncounter);
+			
+			//Run the event
+			choices[rand(choices.length)]();
+			return true;
+		}
+	}
+	else KQKiroFollowBonusTexts();
+	return false;
+}
+
+//Landing
+public function landOnKiroQuest():void
+{
+	shipLocation = "KQ N32";
+	processTime(8*55);
+	clearOutput();
+	showName("A\nFREIGHTER");
+	author("Fenoxo");
+	output("The coordinates you received turned out to be correct, if remote - about as far as you can get from the nearest planet without sailing into deep, deep space. Kiro’s ship must have been packing some high grade scanners to catch a signal from the distant craft. You spool up your sensors for a look at the vile, sputtering behemoth and get back... almost nothing: shields. It has shields, though they resist your attempts to secure a reading on their strength, type, and manufacturer. All you know is that they exist and that they stymie your attempts to detect anything inside their protective dome.");
+	output("\n\nYou tap the controls to close the distance, fully prepared to blast your way through the invisible barrier, when dozens of turrets appear across his crater-pocked surface, nearly deafening you in shrill, screaming tones lock-on tones. You throw your ship through maneuver after maneuver, yet the turrets precisely track your course, never once deviating from perfect aim. Strangely, they do not fire. They follow you like a dog waiting for a treat: completely alert and ready to spring into action at the first opportunity.");
+	output("\n\nA small gap in the shields folds open, though it exposes a landing bay rather than a vulnerable system - and Kiro’s ship too, dark and unpowered. More turrets line the inside - if you land there, you doubt they’ll let you leave in one piece.");
+	output("\n\nDo you attempt a landing?");
+	clearMenu();
+	addButton(0,"Yes",saveKiroLanding);
+	addButton(1,"No",dontLandThereImOut);
+}
+
+//No
+public function dontLandThereImOut():void
+{
+	clearOutput();
+	showName("I'M\nOUT");
+	author("Fenoxo");
+	output("You reverse course and book it out of there before you can get blown out of the sky. Getting yourself killed or enslaved won’t save Kiro.");
+	processTime(4*61);
+	shipLocation = "TAVROS HANGAR";
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Yes
+public function saveKiroLanding():void
+{
+	clearOutput();
+	showName("\nLANDING");
+	author("Fenoxo");
+	output("Fuck the danger! You throttle up and gently maneuver into the hangar, keeping one eye on a bank of turrets, just in case. You know you’d never react fast enough to dodge if they fired, but you can’t stop yourself from watching all the same. A bead of sweat oozes down your brow while you cross the threshold. By the time you extend the landing gear and settle into the place in the bigger craft’s hold, you’re mopping up moisture and lightly shaking.");
+	output("\n\nNo shots are fired. You’re safe. Sort of.");
+	output("\n\nYour surroundings show up as empty, aside from the turrets. You could safely disembark at any time. Leaving? Leaving might be problematic. You doubt an attempt to take off will end well.");
+	clearMenu();
+	addButton(0,"Next",move,"KQ N32");
+}
+
+//Try to fly out:
+/* cut content?
+	As you spin up your engines, you notice flashes of light out of the corners of your eyes.
+	It is the last thing your atomized body is capable of experiencing.
+*/
+
+public function hangarBonusText():Boolean
+{
+	output("This excessively broad hangar would look at home in any self-respecting station, core-ward or otherwise. Instead, this heavy duty docking area was constructed inside junky-looking wreck of a freighter. Looks can be deceiving, of course. For all its rust, holes, and pock-marked craters, this vessel is clearly packed to the gills with advanced tech - including the capital-sized, prototype turrets " + (flags["KQ_RESCUED"] == undefined ? "keeping watch over the parked vessels":"that once watched over the parked vessels. Now, they sag like sleeping sentinels, a threat only to the floor below") + ".");
+	output("\n\nA single crooked doorway provides access to the rest of the ship, bearing toward the local ‘north’.");
+	output("\n\nThe [pc.ship] sits parked here alongside Kiro’s leaf-shaped craft, though the latter is fully powered down and essentially dead without its captain inside.");
+	if(flags["KQ_RESCUED"] != undefined)
+	{
+		getBackToShipsWivKiroFollows();
 		return true;
 	}
 	return false;
 }
 
-public function hangarBonusText():void
-{
-	output("This excessively broad hangar would look at home in any self-respecting station, core-ward or otherwise. Instead, this heavy duty docking area was constructed inside junky-looking wreck of a freighter. Looks can be deceiving, of course. For all its rust, holes, and pock-marked craters, this vessel is clearly packed to the gills with advanced tech - including the capital-sized, prototype turrets " + (9999 == 9999 ? "keeping watch over the parked vessels":"that once watched over the parked vessels. Now, they sag like sleeping sentinels, a threat only to the floor below") + ".");
-	output("\n\nA single crooked doorway provides access to the rest of the ship, bearing toward the local ‘north’.");
-	output("\n\nThe [pc.ship] sits parked here alongside Kiro’s leaf-shaped craft, though the latter is fully powered down and essentially dead without its captain inside.");
-}
-
 public function kqt12Bonus():Boolean
 {
-	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, <i>“Lab.”</i> That must be where she" + (9999 == 9999 ? "’s":" was") + " keeping Kiro!");
+	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, <i>“Lab.”</i> That must be where she" + (flags["KQ_RESCUED"] == undefined ? "’s":" was") + " keeping Kiro!");
+	if(flags["KQ_RESCUED"] != undefined) setNavDisabled(NAV_SOUTH_DISABLE);
 	return kiroQuestHallwaysEncounters();
 }
 public function kqr20bonus():Boolean

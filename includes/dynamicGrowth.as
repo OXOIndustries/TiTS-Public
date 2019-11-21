@@ -403,7 +403,7 @@ private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	{
 		if((altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
 		{
-			AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
+			AddLogEvent("Shifting your weight around seems a lot easier now.  <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
 			pc.removeStatusEffect("Bulky Belly");
 		}
 		if((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 

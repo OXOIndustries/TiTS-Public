@@ -1015,7 +1015,7 @@ public function thyvaraShareStories():void
 	clearOutput();
 	showThyvara(false, true);
 	
-	output("You let her know you’re interested in swapping stories. She grins and sits her flask down on the table.");
+	output("You let her know you’re interested in swapping stories. She grins and sets her flask down on the table.");
 	output("\n\n<i>“Well then, I’m always up for a good story.”</i> She gives you an elaborate wave. <i>“Take us off then.”</i>");
 	
 	processTime(15 + rand(10));
@@ -1037,9 +1037,9 @@ public function thyvaraShareStoriesMhenga():void
 	
 	output("You recall your time on Mhen’ga, and the journey’s you’ve had in the jungles. After recounting a particular adventure you ask if she has anything to share? She smiles looking up and thinking.");
 	output("\n\n<i>“Yeah, yeah I got one. Story from right around here.”</i> She takes another swig of her drink and leans back with a sigh.");
-	output("\n\n<i>“Alright, so, this was before my party left we were out hunting around a stream that’d carved itself a canyon. We were down there, fishing, exploring, all the usual stuff you’d do on a frontier world.”</i>");
+	output("\n\n<i>“Alright, so, this was before my party left. We were out hunting around a stream that’d carved itself a canyon. We were down there, fishing, exploring, all the usual stuff you’d do on a frontier world.”</i>");
 	output("\n\n<i>“We found one of those sacae, those tentacled girls who live in the water? We found one of them, strung up in the rocks, getting taunted by a few zil. Never found out how they caught her, but we definitely made sure they weren’t gonna keep her.”</i> She gets a proud smile as she recalls the rescue.");
-	output("\n\n<i>“We got into some positions around them. Mirase yelled at them ‘Let the girl go!’ and they </i>freaked<i>. They started spinning around trying to work out where the shout had come from.”</i>");
+	output("\n\n<i>“We positioned around them. Mirase yelled at them ‘Let the girl go!’ and they </i>freaked<i>. They started spinning around trying to work out where the shout had come from.”</i>");
 	output("\n\n<i>“Then Caris shouted that they angered the Canyon Kings, and it took everything I had not to burst out laughing.”</i> she giggles at the memory <i>“They just kept up the act, pretending to be some kind of immortal guardians, and eventually our matriarch, Gisara, got tired of it and fired off a warning shot. Watching those poor bee boys climb over each other trying to get the hell out of there was one of the funniest things I’ve seen on this world.”</i>");
 	output("\n\n<i>“After they were long gone we popped out of our hiding place and got the poor girl down from the cliff. She slid herself back into the water and we had a little chat. I mean, when you meet a fellow hunter out there, you have to have some respect for each other.”</i>");
 	output("\n\n<i>“She showed us a few nice fishing spots in the river, and let me tell you, some of these fish are absolutely delicious.”</i>");

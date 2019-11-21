@@ -57,6 +57,9 @@ public function kiroSetup(button:int = 0):void
 
 public function roamingKiroAvailable():Boolean
 {
+	//Captured Kiro not rescued.
+	if(flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined) return false;
+	
 	if(flags["KIRO_3SOME_REACTION"] == -1) return false;
 	//flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
 	//Not yet rescued.

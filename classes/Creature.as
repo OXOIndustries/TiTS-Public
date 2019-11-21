@@ -5246,6 +5246,7 @@
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currReflexes *= 0.9;
 			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
+			if (hasStatusEffect("Stumble Strobed")) currReflexes = Math.ceil(currReflexes * 0.5);
 
 			if (currReflexes > reflexesMax())
 			{
@@ -5368,6 +5369,8 @@
 			}
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
+			// Status effect reduction
+			if(hasStatusEffect("Ditzi Strobed")) currInt = Math.ceil(currInt * 0.5);		
 
 			if (currInt > intelligenceMax())
 			{
@@ -11243,6 +11246,7 @@
 			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
+			if(quantity < perkv1("MinCumQ")) quantity = perkv1("MinCumQ");
 			trace("Total produced: " + quantity);
 			return quantity;
 		}
@@ -23104,7 +23108,7 @@
 							}
 						}
 						break;
-					case "Butt Bug Message":
+					case "Butt Bug Message Cooldown":
 						if(requiresRemoval)
 						{
 							if(this is PlayerCharacter) kGAMECLASS.messageButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);

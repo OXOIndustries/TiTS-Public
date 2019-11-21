@@ -228,6 +228,7 @@
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
 		include "../includes/events/kiroCrewQuest/holoTrap.as";
+		include "../includes/events/kiroCrewQuest/illustriaPo.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/kiroCrewQuest/rooms.as";
@@ -694,7 +695,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.032";
+			version = "0.8.035";
 
 			//temporary nonsense variables.
 			temp = 0;

@@ -8,6 +8,8 @@ package classes.Resources
 			//AMBER
 			[Embed(source = "../../assets/images/imagepack/amber/jojocite_amber_nude.png", mimeType = "image/png")]
 			public static const AmberNakkers:Class;
+			[Embed(source = "../../assets/images/imagepack/amber/moira_anno_and_amber.png", mimeType = "image/png")]
+			public static const Moira_Anno_Amber:Class;
 
 			//ANNO
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
@@ -130,6 +132,8 @@ package classes.Resources
 			public static const ObediencePoster:Class;
 			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
 			public static const MindfuckPoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/mrpink_kiro_mindfuck.png", mimeType = "image/png")]
+			public static const KiroReprogramming1:Class;
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]

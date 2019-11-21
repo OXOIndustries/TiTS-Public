@@ -198,7 +198,7 @@ public function yammiShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):St
 			else if(rand(2) == 0)
 			{
 				buffer += "For once, Yammi isn’t in the kitchen. Instead, she’s parked herself in your common room and is sprawled out in front of the holoscreen, watching what you surmise to be a ";
-				if(rand(4) == 0) buffer += "very old sparadat romance flick";
+				if(rand(4) == 0) buffer += "very old sparadat romance flick.";
 				else if(rand(3) == 0) buffer += "hot and heavy ausar chick flick. Either that or a fairly tame porno, judging by the amount of bouncy cleavage and red rocket on display.";
 				else if(rand(2) == 0) buffer += "thraggen mystery movie. Considering they’re a race of giant green brutes, the fact that there’s a slow-paced, thoughtful crime drama from their homeworld is a little shocking. At least, until the detective pulls out a plasma caster and melts a human gangster’s face off.";
 				else buffer += "melodrama set during the brief but tense Human-Ausar cold war of ‘68. You can’t remember much of the history around it, but the way that the ausar Star-Queen and the human Supreme Commander are eyeing each other in the negotiation chambers, you think this might just be a space-age <i>Romeo and Juliet</i> knockoff. Especially when they start speaking in iambic pentameter for some reason.";

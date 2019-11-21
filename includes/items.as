@@ -3158,6 +3158,8 @@ public function shipStorageMenuRoot():void
 	if(flags["MINDWASH_VISOR_INSTALLED"] == 1) installedDevices.push(installedMindwashBonus);
 	if(flags["BADGER_SILICONE_TANK_INSTALLED"] == 1) installedDevices.push(drBadgerSiliconeMiniTankBonus);
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == 1) installedDevices.push(installedSleepFapneaBonus);
+	if(flags["ORGASMENDER_INSTALLED"] == 1) installedDevices.push(shipOrgasmenderBonus);
+	if(flags["BUTTSLUTINATOR_INSTALLED"] == 1) installedDevices.push(buttslutinatorBonus);
 	
 	for(var d:int = 0; d < installedDevices.length; d++)
 	{
