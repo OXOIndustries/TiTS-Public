@@ -14,10 +14,6 @@
 //					~Special~
 //					10- Follow up to 8, PC succesfully took the rebels to Mhenga themselves
 
-import classes.Items.Guns.RudimentaryRevolver;
-import classes.Items.Treasures.QueenlyNecklace;
-import classes.Items.Miscellaneous.GemSatchel;
-
 //Sellera Quest Intro
 public function selleraHelp():void
 {
@@ -273,7 +269,7 @@ public function fedQuestTheQueen():void
 	output("<i>“So what do we know about the Queen?”</i>");
 	output("\n\nLieve shrugs. <i>“About as much as the Marshal probably told you, Steele. Estallia, aka the War Queen, is the only one of her kind to fight on the front lines. Led a battalion of her own daughters into combat, apparently quite effectively. Estallia and Sellera went head to head for most of the end of the war -- we all know how that turned out for her.”</i>");
 	output("\n\nThe rest of the troops laugh and cheer, tossing a few profanities about how they kicked the Queen’s ass in the war. And that they’ll do it again, too -- this time in person.");
-	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b<massive</b>. Crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
+	output("\n\n<i>“We know the queen’s big. Maybe four meters tall. Carries a pair of massive swords -- and I mean <b>massive</b>. Crush light armor kinda big. She’s got more chitin than most myr of either race, and apparently bolts metal to it, making herself like a walking tank. Taking her out through direct action is going to be... tough. And for a giant gold death machine, she’s surprisingly wiley -- prefers ambuscade and misdirection to frontal attacks. One of the only generals to realize hurling troops at gun lines was less than genius. Maybe that’s why her troops love her so much. That, or that fact that she’s their mom.”</i>");
 	output("\n\nLieve chuckles at herself. <i>“Not much more to say, really. Like I said, her troops are insanely loyal, so Fed Intel could never get close to her. Couldn’t even get the cypher for their comms out of prisoners, no matter how much venom we plied them with. Almost respectable.”</i>");
 	output("\n\n<i>“You would think that, gold-fucker!”</i> Marik says, flicking her tongue through a v-shaped cleft between two fingers. Some of the other troopers laugh, though a bit more hesitantly than before. Lieve takes something -- a bullet, maybe -- out of her vest pocket and flicks it at the bigger myr’s head, bouncing it off her red mohawk.");
 	
@@ -532,8 +528,6 @@ public function fedQuestAmbushText():String
 	eText+="\n\nLieve is " + (lieve.HP() > 0 ? "standing beside you, doing what she can to keep the commando team fighting" : "collapsed on a pile of rubble beside you, groaning and cradling a cracked sleeve of chitin on her arm") + ".";
 	eText+="\n<b>("+flags["GOLD_AMBUSH_COVER"] +"% Cover)</b>";
 	
-	
-	
 	return eText;
 }
 
@@ -693,7 +687,7 @@ public function fedQuestAmbushVictory2():void
 	output("\n\n<i>“You give us all the fun jobs, boss,”</i> one of the commandos laughs.");
 	output("\n\nAnother adds, <i>“We’ll keep the bitches off you, captain. Just stick a boot up that queen’s tailpipe for the ones we lost.”</i>");
 	output("\n\n<i>“Settle down,”</i> Marik says. <i>“We’ve all got our jobs. Check weapons and ammo, get ready to move.”</i>");
-	output("\n\nThe commandos grunt a unified <i>“Yes, sergeant,”</i> and get to work shoving rounds into their rifles or passing out the remaining grenades.");
+	output("\n\nThe commandos grunt a unified, <i>“Yes, sergeant,”</i> and get to work shoving rounds into their rifles or passing out the remaining grenades.");
 	
 	processTime(10+rand(5));
 	
@@ -730,7 +724,7 @@ public function fedQuestAmbushVictorySupport():void
 	output("<i>“We’re gonna get help from the Federation now, right?”</i>");
 	output("\n\nMarik just laughs. <i>“No way. Nearest outpost is more than an hour out, and we can’t get artillery cover until we have the queen.”</i>");
 	output("\n\n<i>“[pc.HeShe] has a point, though,”</i> Lieve says, turning to one of the commandos with a trunk-sized primitive radio strapped to her back. <i>“Tell Sellera to get the 10th Armored out here on the double, or she’s going to be down a dozen pathfinders with no queen to show for it.”</i>");
-	output("\n\nThe radio-myr snaps a crisp salute and puts the reciver to her ear, starting to speak a rush of jargon that your translators can’t make heads or tails of.");
+	output("\n\nThe radio-myr snaps a crisp salute and puts the receiver to her ear, starting to speak a rush of jargon that your translators can’t make heads or tails of.");
 	output("\n\n<i>“Like Marik said, though, those tanks won’t be here for a while. We’re on our own for now.”</i>");
 	output("\n\nGreat.");
 	
@@ -747,7 +741,7 @@ public function fedQuestAmbushVictoryLeave():void
 	showBust("LIEVE", "RED_COMMANDO", "RED_HEAVY_WEAPONS");
 	showName("\nRENNEKE");
 	
-	output("You give Lieve a firm nod and turn towards the hallway, brushing past Marik as you do so. The big myr gives you a friendly clap on the shoulder, whispering <i>“Good luck." + (flags["MARIK_FLIRTED"] != undefined ? " Pull this off, and I’ll definitely show you what these muscles can do." : "") + "”</i>");
+	output("You give Lieve a firm nod and turn towards the hallway, brushing past Marik as you do so. The big myr gives you a friendly clap on the shoulder, whispering, <i>“Good luck." + (flags["MARIK_FLIRTED"] != undefined ? " Pull this off, and I’ll definitely show you what these muscles can do." : "") + "”</i>");
 	output("\n\n<i>“[pc.name],”</i> Lieve calls after you. She draws something from her belt -- a cannister about the size of her forearm, filled with a bubbling green liquid. <i>“Take this tranquilizer. It’s not enough to deal with the queen on its own, we don’t have enough left between us for that, but maybe you can get some use out of it. Slow her down, at least.”</i>");
 	output("\n\nYou take the vial and stow it in your pack.");
 	output("\n\n<i>“We’ll do what we can to keep the goldies off you,”</i> Lieve repeats. " + (hasFuckedLieveSolo() ? "She leans in, giving you a kiss on the cheek. The familiar warmth of residual venom burns where her lips touched you, making your heart go aflutter. <i>“Stay safe out there. I’m counting on you.”</i>" : "<i>“Stay safe.”</i>") + "");
@@ -766,7 +760,7 @@ public function fedQuestInvestigateToxin():void
 	clearMenu();
 	author("Savin");
 	
-	output("You " + (pc.tallness < 5*12 ? "haul yourself up the side and " : "") + "peer over the rim, looking down into a mess of some kind of soft moss that’s been packed down at the bottom of the crate. Must be the local equivalent of hay for packaging, you guess. Well, the inside looks pretty much empty, unfortunately... wait, no, you catch just the barest hint of something shiny at the bottom! You reach inside and nab it, bringing it into the light. It’s a canister, stark metal labelled with several warnings. Between the alien language being translated in your head and the complex chemicals you’ve got no experience with, you have exactly no clue what this stuff is <i>exactly</i>, but the biggest label on the cap, marked on either side by that same symbol as you’ve seen everywhere, says in big bold letters: “<b>LUSTOXIN</b>.” ");
+	output("You " + (pc.tallness < 5*12 ? "haul yourself up the side and " : "") + "peer over the rim, looking down into a mess of some kind of soft moss that’s been packed down at the bottom of the crate. Must be the local equivalent of hay for packaging, you guess. Well, the inside looks pretty much empty, unfortunately... wait, no, you catch just the barest hint of something shiny at the bottom! You reach inside and nab it, bringing it into the light. It’s a canister, stark metal labeled with several warnings. Between the alien language being translated in your head and the complex chemicals you’ve got no experience with, you have exactly no clue what this stuff is <i>exactly</i>, but the biggest label on the cap, marked on either side by that same symbol as you’ve seen everywhere, says in big bold letters: “<b>LUSTOXIN</b>.” ");
 	output("\n\nSomebody must have forgotten their chemical weapons. What a world.");
 	output("\n\nYou don’t know how much use you could get out of military grade chemical weapons in the long run, but for right now... tossing a shot of it into the vents might clear things out for you somewhere. Who knows.");
 	
@@ -865,7 +859,7 @@ public function fedQuestVents():void
 	output("Well, this should keep the guards out of your hair for a good long while while they fuck themselves senseless. You pull the Lustoxin vial from your pack and look around for somewhere to use it. Ah, there we go: you spy a vent above the door, hanging on with a simple metal latch. It comes undone with a thumb’s push" + (pc.tallness < 5*12 ? " once you scramble up onto a chair from a nearby office" : "") + ", letting you peer into a series of connecting metal shafts built into the wall. This’ll spread the gas all over!");
 	processTime(5+rand(4));
 	
-	addButton(0, "Do it", fedQuestGasTheGoldsRaceWarNow, undefined, "Do it", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
+	addButton(0, "Do It", fedQuestGasTheGoldsRaceWarNow, undefined, "Do It", "Pop that sucker in there and smoke the golds out with their fuck-gasses.");
 	addButton(1, "Don’t", mainGameMenu, undefined, "Don’t", "Maybe not...");
 }
 
@@ -888,7 +882,7 @@ public function fedQuestGasTheGoldsRaceWarNow():void
 		if(pc.lust(100) >= pc.lustMax())
 		{
 			output("\n\nYou groan and start clawing at your [pc.gear], groping at yourself and helping the myr girl’s wandering hands find your loins. The desperation of your chemical desires drives you forward, grabbing the gold by the arm and pulling her back into the room: one myr alone can’t possibly satisfy you!");
-			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();} , undefined, "", "");
+			addButton(0, "Next", function():void{moveTo("G19"); clearOutput(); clearMenu(); author("Savin"); if(pc.hasCock())fedQuestOrgyCock(); else fedQuestOrgyCooter();}, undefined, "", "");
 			return;
 		}
 	}
@@ -1264,7 +1258,7 @@ public function fedQuestOfficerFight():void
 	if(pc.isDependant(Creature.DEPENDANT_MYRVENOM)) output(" I can see it in your eyes: you’re hooked on their poison, aren’t you? Is that why you’re here -- so you can get your next fix? Disgusting.");
 	if(flags["KQ2_QUEST_FINISHED"] == 1) output(" And you’re to blame for ruining our operation out in the wastelands, too!");
 	output("”</i>");
-	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
+	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when she learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
 	output("\n\nYeah, right.");
 	processTime(5+rand(3));
 	
@@ -1356,7 +1350,7 @@ public function fedQuestOfficerVictory():void
 	author("Savin");
 	
 	processTime(15+rand(6));
-	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under a [pc.foot]. Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
+	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under " + indefiniteArticle(pc.foot()) + ". Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
 	output("\n\n<i>“M-mother won’t fall so easily,”</i> she groans. <i>“And even if you defeat us, the spirit of freedom will live on!”</i>");
 	output("\n\nWhatever. You throw her primitive weapons out the window, and think of what to do with her...");
 	output("\n\n<b>You found the Queen’s keys</b>");
@@ -1463,7 +1457,7 @@ public function fedQuestRadioFolder():void
 	clearMenu();
 	author("Savin");
 	
-	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at the some of the other documents lying around shows that they’re still legible... so what gives?");
+	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at some of the other documents lying around shows that they’re still legible... so what gives?");
 	if(pc.isBimbo() || pc.isBro() || pc.intelligence()/pc.intelligenceMax() < .33) output("\n\nHow weird!");
 	else output("\n\nOnly when you get to the last page in the folder does everything make sense: several lines of the gibberish are paired with identical-length phrases in the gold myr’s language... it’s a cipher! No doubt that the Federation would kill to have this.");
 	
@@ -1505,14 +1499,14 @@ public function fedQuestRadioSet():void
 	clearMenu();
 	author("Savin");
 	
-	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog <i>“on”</i> button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
+	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog “on” button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labeled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
 	output("\n\nSure that you have things settled the way they should be, you bring the headset up to your [pc.ear] and listen in.");
 	output("\n\nA woman is speaking over the radio, urgency in her voice:");
 	output("\n\n<i>“Ellira, come in! Ellira? Daughter, answer me!”</i>");
 	output("\n\nDaughter? That means... the queen! You’ve got her on radio!");
 	if(pc.isAss())
 	{
-		output("\n\nA victorious smirk on your lips, you hold down the <i>“TALK”</i> button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
+		output("\n\nA victorious smirk on your lips, you hold down the “TALK” button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
 		output("\n\n<i>“Who-?”</i> the voice comes back, scowl almost audible. <i>“You "+pc.mf("bastard","bitch")+"! I won’t let you red dogs get away with this!”</i>");
 		output("\n\n<i>“Then come and stop me,”</i> you taunt, and smash the radio. Hopefully, that’ll lure your quarry right to you...");
 		output("\n\nTurning to the window, you watch a big, bulky armored truck pull up outside. Must be the queen.");
@@ -1533,7 +1527,7 @@ public function fedQuestRadioSet():void
 	else
 	{
 		output("\n\n<i>“Hello?”</i> you venture. <i>“This is [pc.name] Steele. Your daughter is unharmed... Queen Estallia.”</i>");
-		output("\n\nA moment’s silence passes. <i>“I’d heard there was a star-walked amongst this red filth. I thought your kind were supposed to be elevated, enlightened. Yet here you are, supporting the brutal war-mongers that have torn this planet apart.”</i>");
+		output("\n\nA moment’s silence passes. <i>“I’d heard there was a star-walker amongst this red filth. I thought your kind were supposed to be elevated, enlightened. Yet here you are, supporting the brutal war-mongers that have torn this planet apart.”</i>");
 		output("\n\n<i>“Seems to me like you’re the one keeping this war going,”</i> you answer back. <i>“We’re stopping you.”</i>");
 		output("\n\nYou hear a sharp breath, then a long sigh. <i>“I can’t allow that. I will reclaim my daughters, and you will be my prisoner. You must realize you are alone here. There is nobody left to stop me.”</i>");
 		output("\n\n<i>“We’ll see.”</i>");
@@ -1924,7 +1918,7 @@ public function fedQuestQueenFight():void
 	showBust("ESTALLIA");
 	author("Savin");
 	
-	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking covering behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
+	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking cover behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
 	if(flags["FEDERATION_QUEST_TANK"] == 1)
 	{
 		output("the tank engine sputters... and then a cloud of black, greasy gas starts fuming from under the armored turret. The crew screams and starts bailing out, followed by flames licking at their chitin. ");
@@ -2471,7 +2465,7 @@ public function fedQuestResolutionEscaped():void
 	
 	output("Lieve looks like she wants to say something, but instead bites her lip and guides you back outside. It’s a silent walk right up until you reach the gates leading back into town. There, Lieve finally lets a grunt and lets the tension out of her shoulders. ");
 	output("\n\n<i>“I’m sorry about... everything. The marshal was right: we needed Estallia. Badly. But I know me and my girls wouldn’t have made it out of that deathtrap without you. So thanks. I mean it.”</i>");
-	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
+	if(hasFuckedLieveSolo()) output("\n\nShe steps closer, putting her hands on your [pc.hips]. <i>“I knew I picked good,”</i> she smiles, leaning in and putting a kiss on your cheek. Your [pc.skin] tingles, just a bit, making you blush. <i>“I’m gonna go tell the girls I didn’t die. Come see me when you get a chance, okay?”</i>");
 	else output("\n\nShe gives you a clap on the shoulder. <i>“We’ll get her someday... though probably without your help. I was afraid Sellera was going to try and have you thrown in the brig. No matter how badly we messed up... that would have been a mistake. I’m glad reason won out, because there’s nobody who could have stopped her if she’d decided to commit suicide by alien. Anyway! I’m gonna go check in on my wives, tell ‘em I’m okay. Come see me over at the gatehouse when you get a chance, okay?”</i>");
 	processTime(10+rand(5));
 	if(flags["FEDERATION_QUEST"] >= 7) flags["FEDERATION_QUEST_EVAC_TIMER"] = GetGameTimestamp();

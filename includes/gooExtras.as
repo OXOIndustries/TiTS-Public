@@ -265,8 +265,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar");
 			output(". Your other hand settles on [pc.oneCock] and begins to stroke, and pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains");
@@ -299,8 +299,8 @@ public function galoMaxTFProc():void
 			output(". Biting your lip, you struggle to keep your hands away, but it’s a futile effort.");
 
 			output("\n\nYour fingers know where they belong, know where they can touch to bring relief, where they can stroke to make your nerves dance pirouettes of bliss. They make the journey to [pc.oneCock] before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them off with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The peacekeepers would have to pry them off of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them off with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The Peacekeepers would have to pry them off of you with a crowbar");
 			output(". Pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains.");
@@ -319,8 +319,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar.");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar.");
 			output(" Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your fingers. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your puss");
 			if(pc.totalVaginas() > 1) output("ies");
@@ -1048,7 +1048,7 @@ public function gooBodyCustomizer():void
 	{
 		if(gooBiomass() >= 20)
 		{
-			if(pc.statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Body",revertGooBodyLegs,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
+			if(pc.statusEffectv1("Gel Body") >= 1) addGhostButton(7,"Revert Legs",revertGooBodyLegs,"mound","Revert Lower Body","Revert your lower body back to an amorphous goo mound.\n\n<b>20 mLs Biomass</b>");
 			else addGhostButton(7,"Revert Legs",revertGooBodyLegs,"legs","Revert Lower Body","Revert your lower body back to goo.\n\n<b>20 mLs Biomass</b>");
 		}
 		else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
@@ -1078,6 +1078,11 @@ public function gooBodyCustomizer():void
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
 	if((pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
 	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
+	
+	if(pc.legType == GLOBAL.TYPE_GOOEY && pc.statusEffectv1("Gel Body") >= 1)
+	{
+		addGhostButton(12,"Change Legs",adjustGooLegs,["menu"],"Customize Lower Body","Change the shape of your [pc.legs].");
+	}
 	
 	addGhostButton(14,"Back",gooShiftMenu);
 }
@@ -1221,7 +1226,7 @@ public function adjustGooBody(arg:Array):void
 		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
-		if(pc.hasPerk("Buttslut")) limitMin = 20;
+		if(pc.hasPerk("Buttslut")) limitMin = 18;
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();
@@ -1254,6 +1259,179 @@ public function adjustGooBody(arg:Array):void
 	
 	addGhostButton(14,"Back",gooBodyCustomizer);
 }
+public function adjustGooLegsMenu():void
+{
+	clearGhostMenu();
+	
+	addGhostButton(0, "Count", adjustGooLegs, ["count", -1, 0], "Leg Count", "Adjust the number of appendages that make up your lower body.");
+	
+	if(pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) addDisabledGhostButton(1, "Amorphous", "Amorphous Lower Body", "Your lower body is already an amorphous blob.");
+	else if(gooBiomass() >= 20) addGhostButton(1, "Amorphous", adjustGooLegs, ["shape", GLOBAL.FLAG_AMORPHOUS, 20], "Amorphous Lower Body", "Liquify your lower body, reverting it back to a natural goo mound.\n\n<b>20 mLs Biomass</b>");
+	else addDisabledGhostButton(1, "Amorphous", "Amorphous Lower Body", "You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+	
+	if(pc.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) addDisabledGhostButton(2, "Prehensile", ("Prehensile Tentacle" + (pc.legCount == 1 ? "":"s")), ("Your appendage" + (pc.legCount == 1 ? " is already a snake-like tail" : "s are already gooey tentacles") + "."));
+	else if(gooBiomass() >= 20) addGhostButton(2, "Prehensile", adjustGooLegs, ["shape", GLOBAL.FLAG_PREHENSILE, 20], ("Prehensile Tentacle" + (pc.legCount == 1 ? "":"s")), ("Convert your appendage" + (pc.legCount == 1 ? " into a snake-like tail" : "s to gooey tentacles") + ".\n\n<b>20 mLs Biomass</b>"));
+	else addDisabledGhostButton(2, "Prehensile", ("Prehensile Tentacle" + (pc.legCount == 1 ? "":"s")), "You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+	
+	if(pc.hasLegFlag(GLOBAL.FLAG_TENDRIL)) addDisabledGhostButton(7, "Tendril", ("Wriggling Tendril" + (pc.legCount == 1 ? "":"s")), ("Your appendage" + (pc.legCount == 1 ? " is already a tendril-like tail" : "s are already gooey tendrils") + "."));
+	else if(gooBiomass() >= 20) addGhostButton(7, "Tendril", adjustGooLegs, ["shape", GLOBAL.FLAG_TENDRIL, 20], ("Wriggling Tendril" + (pc.legCount == 1 ? "":"s")), ("Convert your appendage" + (pc.legCount == 1 ? " into a tendril-like tail" : "s to gooey tendrils") + ".\n\n<b>20 mLs Biomass</b>"));
+	else addDisabledGhostButton(7, "Tendril", ("Wriggling Tendril" + (pc.legCount == 1 ? "":"s")), "You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+	
+	if(pc.legCount >= 2) {
+		if(pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) addDisabledGhostButton(3, "Plantigrade", "Plantigrade Legs", "Your legs are already human-shaped.");
+		else if(gooBiomass() >= 20) addGhostButton(3, "Plantigrade", adjustGooLegs, ["shape", GLOBAL.FLAG_PLANTIGRADE, 20], "Plantigrade Legs", "Change your leg stance to be more human-like.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(3, "Plantigrade", "Plantigrade Legs", "You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+		
+		if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) addDisabledGhostButton(8, "Digitigrade", "Digitigrade Legs", "Your legs are already beast-shaped.");
+		else if(gooBiomass() >= 20) addGhostButton(8, "Digitigrade", adjustGooLegs, ["shape", GLOBAL.FLAG_DIGITIGRADE, 20], "Digitigrade Legs", "Change your leg stance to be more bestial.\n\n<b>20 mLs Biomass</b>");
+		else addDisabledGhostButton(8, "Digitigrade", "Digitigrade Legs", "You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
+	}
+	else {
+		addDisabledGhostButton(3, "Plantigrade", ("Plantigrade Leg" + (pc.legCount == 1 ? "":"s")), "You require multiple legs for this!\n\n<b>20 mLs Biomass</b>");
+		addDisabledGhostButton(8, "Digitigrade", ("Digitigrade Leg" + (pc.legCount == 1 ? "":"s")), "You require multiple legs for this!\n\n<b>20 mLs Biomass</b>");
+	}
+	
+	addGhostButton(14, "Back", gooBodyCustomizer);
+}
+public function adjustGooLegs(args:Array):void
+{
+	clearOutput2();
+	
+	var response:String = (args.length > 0 ? args[0] : "menu");
+	var iNum:int = (args.length > 1 ? args[1] : -1);
+	var cost:int = (args.length > 2 ? args[2] : 0);
+	var i:int = 0;
+	
+	switch(response)
+	{
+		case "menu":
+			output2("How would you like to adjust your [pc.lowerBody]?");
+			
+			adjustGooLegsMenu();
+			break;
+		case "count":
+			output2("How many appendages do you want for your lower body?");
+			
+			var legList:Array = [];
+			var btnSlot:int = 0;
+			var baseCost:int = 20;
+			
+			legList.push(1);
+			legList.push(2);
+			//legList.push(3);
+			legList.push(4);
+			legList.push(6);
+			legList.push(8);
+			//legList.push(10);
+			//legList.push(12);
+			//legList.push(16);
+			//legList.push(24);
+			
+			for(i = 0; i < legList.length; i++)
+			{
+				if(pc.legCount == legList[i]) addDisabledGhostButton(btnSlot, StringUtil.upperCase(num2Text(legList[i])), (legList[i] == 1 ? "Single Mass" : (StringUtil.upperCase(num2Text(legList[i])) + " Masses")), ("Your lower body " + (legList[i] == 1 ? "is already a natural goo mass" : ("already consists of " + num2Text(legList[i]) + " appendages")) + "."));
+				else {
+					cost = (baseCost * (legList[i] - pc.legCount));
+					if(pc.legCount > legList[i]) addGhostButton(btnSlot, StringUtil.upperCase(num2Text(legList[i])), adjustGooLegs, ["legCount", legList[i], cost], (legList[i] == 1 ? "Single Mass" : (StringUtil.upperCase(num2Text(legList[i])) + " Masses")), ("Reduce your appendages until you have " + num2Text(legList[i]) + "."));
+					else if(gooBiomass() >= cost) addGhostButton(btnSlot, StringUtil.upperCase(num2Text(legList[i])), adjustGooLegs, ["legCount", legList[i], cost], (legList[i] == 1 ? "Single Mass" : (StringUtil.upperCase(num2Text(legList[i])) + " Masses")), ("Grow " + (legList[i] == 1 ? "a single mass lower body" : ("up to " + num2Text(legList[i]) + " appendages total")) + ".\n\n<b>" + cost + " mLs Biomass</b>"));
+					else addDisabledGhostButton(btnSlot, StringUtil.upperCase(num2Text(legList[i])), (legList[i] == 1 ? "Single Mass" : (StringUtil.upperCase(num2Text(legList[i])) + " Masses")), ("You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>"));
+				}
+				btnSlot++;
+			}
+			cost = 0;
+			
+			addGhostButton(14, "Back", adjustGooLegs, ["menu"]);
+			break;
+		case "legCount":
+			output2("You concentrate your thoughts to the center of your [pc.lowerBody], preparing yourself for a new change. A bubbling sensation is felt throughout " + (pc.legCount == 1 ? "the whole of your lower body" : "all " + num2Text(pc.legCount) + " of your [pc.legsNoun]. They then merge together, melting into a unified puddle") + ". Ripples form across the lake-like surface and the biomass");
+			if(iNum == 1) output2(" extends and morphs until it becomes a single appendage, more-or-less.");
+			else output2(" subdivides itself until it becomes a total of " + num2Text(iNum) + " limbs.");
+			
+			// Apply leg count
+			pc.legCount = iNum;
+			// Flag adjustments
+			if(pc.legCount < 2) {
+				pc.removeLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+				pc.removeLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+				if(!pc.hasLegFlag(GLOBAL.FLAG_PREHENSILE) && !pc.hasLegFlag(GLOBAL.FLAG_TENDRIL) && !pc.hasLegFlag(GLOBAL.FLAG_GOOEY)) pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+			}
+			// Genital location
+			pc.resetGenitalLocation();
+			
+			output2("\n\n<b>" + (iNum == 1 ? "You now have a single goo mound" : ("Your gooey mass has sprouted " + num2Text(iNum) + " appendages")));
+			if(pc.isDrider()) output2(" like a scurrying spider");
+			else if(pc.isTaur()) output2(" like a bestial taur");
+			else if(pc.isNaga()) output2(" like a " + (pc.legCount <= 2 ? "slithering snake" : "land-roaming cephalopod"));
+			output2("!</b>");
+			
+			// Subtract/Add biomass cost
+			if(cost != 0) gooBiomass(-1 * cost);
+			
+			addGhostButton(0, "Next", adjustGooLegs, ["menu"]);
+			break;
+		case "shape":
+			output2("You concentrate your thoughts to the base of your [pc.lowerBody], preparing yourself for a new change.");
+			if(pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && iNum != GLOBAL.FLAG_AMORPHOUS) output2(" The gooey surface of your undercarriage begins to tighten, taking on a more gel-like consistency.");
+			else if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && iNum == GLOBAL.FLAG_AMORPHOUS) output2(" The gel-like surface of your undercarriage begins to loosen, taking on a more liquid consistency.");
+			else output2(" The surface of your undercarriage begins to ripple but mostly retains its consistency.");
+			
+			pc.removeLegFlag(GLOBAL.FLAG_AMORPHOUS);
+			pc.removeLegFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.removeLegFlag(GLOBAL.FLAG_TENDRIL);
+			pc.removeLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.removeLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			
+			if(iNum == GLOBAL.FLAG_AMORPHOUS) {
+				output2(" You shift your weight from side to side, feeling very comfortable and content being in your more natural and fluid form.");
+				output2("\n\n<b>You now have " + (pc.legCount == 1 ? "an amorphous lower body" : "amorphous appendages making up your lower body") + "!</b>");
+				pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+			}
+			else if(iNum == GLOBAL.FLAG_PREHENSILE) {
+				output2(" You allow your biomass to morph into a form that slithers and squirms around, much like a serpent or tentacle.");
+				output2("\n\n<b>You now have " + (pc.legCount == 1 ? "a prehensile snake-like lower body" : "prehensile tentacles making up your lower body") + "!</b>");
+				pc.addLegFlag(GLOBAL.FLAG_PREHENSILE);
+			}
+			else if(iNum == GLOBAL.FLAG_TENDRIL) {
+				output2(" You allow your biomass to morph into a form that curls and contorts about, similar to a vine or tentacle.");
+				output2("\n\n<b>You now have " + (pc.legCount == 1 ? "a wriggling tendril-like lower body" : "wriggling tendrils making up your lower body") + "!</b>");
+				pc.addLegFlag(GLOBAL.FLAG_TENDRIL);
+			}
+			else if(iNum == GLOBAL.FLAG_PLANTIGRADE) {
+				output2(" You allow your biomass to morph into legs that have obvious joints, including knees and ankles, and shaping them into something similar to humanoid legs.");
+				output2("\n\n<b>You now have human-jointed legs!</b>");
+				pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			}
+			else if(iNum == GLOBAL.FLAG_DIGITIGRADE) {
+				output2(" You allow your biomass to morph into legs that have obvious joints, including knees and ankles, and shaping them into something similar to an animal’s legs.");
+				output2("\n\n<b>You now have beast-jointed legs!</b>");
+				pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			}
+			
+			if(cost != 0) gooBiomass(-1 * cost);
+			
+			addGhostButton(0, "Next", adjustGooLegs, ["menu"]);
+			break;
+	}
+	
+	output2("\n\n<b><u>Body</u></b>");
+	if(pc.legCount >= 2)
+	{
+		if(pc.legType == GLOBAL.TYPE_NAGA) output2("\n<b>* Lower Tails:</b>");
+		else output2("\n<b>* Legs:</b>");
+		output2(" " + pc.legCount + ",");
+	}
+	else output2("\n<b>* Lower Body:</b>");
+	if(pc.legFlags.length > 0)
+	{
+		for(i = 0; i < pc.legFlags.length; i++)
+		{
+			output2(" " + GLOBAL.FLAG_NAMES[pc.legFlags[i]] + ",");
+		}
+	}
+	output2(" " + GLOBAL.TYPE_NAMES[pc.legType]);
+	showBiomass();
+	output2("\n\n");
+}
 public function revertGooBodyLegs(part:String = "legs"):void
 {
 	if(gooBiomass() < 5000)
@@ -1263,7 +1441,9 @@ public function revertGooBodyLegs(part:String = "legs"):void
 	else
 	{
 		clearOutput2();
-		output2("Hm, you want to change your [pc.legOrLegs]? Since you seem to have enough biomass, would you like to use a good chunk of it to retain your lower body’s shape as much as possible?");
+		output2("Hm, you want to change your [pc.legOrLegs]? Since you seem to have enough biomass, would you like to use a good chunk of it to retain your lower body’s shape as much as possible or simply return it back into a normal goo mound?");
+		
+		showBiomass();
 		
 		clearGhostMenu();
 		if(part == "mound") addGhostButton(0,"Normal", revertGooBodyPart, part, "Normal Revert", "Just change back to a normal goo mound.\n\n<b>20 mLs Biomass</b>");
@@ -1683,6 +1863,7 @@ public function nippleGooGetsTypeChanged(target:int):void
 	for(var i:int = 0; i < pc.bRows(); i++)
 	{
 		pc.breastRows[i].nippleType = target;
+		if(target == GLOBAL.NIPPLE_TYPE_LIPPLES) pc.breastRows[i].clearAreolaFlags();
 	}
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooChestCustomizer);
@@ -2386,7 +2567,7 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		cTypes.push(GLOBAL.TYPE_SAURIAN);
 	if(flags["KNOW_JADES_NAME"] != undefined)
 		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
-	if(flags["SEER_MET"] == undefined)
+	if(flags["SEER_MET"] != undefined)
 		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
 	
 	var newType:Number = 0;
@@ -2703,7 +2884,8 @@ public function shortenSelectedCock(arg:int = 0):void
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
-		addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
+		if(!pc.removeCockUnlocked(arg, 1)) addDisabledGhostButton(0,"Remove It","Remove It","Something is preventing your [pc.cock " + arg + "] from being removed.");
+		else addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
 		addGhostButton(1,"Nah",gooCockRootMenu);
 		return;
 	}
@@ -3213,7 +3395,8 @@ public function gooVaginaInflate(arg:int = 0):void
 	
 	output2("You concentrate and watch your [pc.vagina " + arg + "] swell larger.");
 	pc.inflateVagina(arg);
-	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) output2(" <b>Your vagina is now massively puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
 	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
 	else output2(" <b>Your vagina is no longer puffy!</b>");
 	gooBiomass(-100);
@@ -3227,7 +3410,8 @@ public function gooVaginaDeflate(arg:int = 0):void
 	
 	output2("You focus and feel your [pc.vagina " + arg + "] lose some mass.");
 	pc.deflateVagina(arg);
-	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) output2(" <b>Your vagina is now massively puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
 	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
 	else output2(" <b>Your vagina is no longer puffy!</b>");
 	gooBiomass(75);

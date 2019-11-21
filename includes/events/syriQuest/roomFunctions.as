@@ -147,7 +147,7 @@ public function syriQuestBackupGenerators(doOutput:Boolean = true):void
 	addButton(13, "Plasma Coil C", syriQuestToggleSettings, 13);
 	userInterface.setButtonBlue(13);
 
-	addDisabledButton(14, "Rest");
+	addDisabledButton(14, "Reset");
 }
 
 public function syriQuestToggleSettings(slot:int):void
@@ -172,8 +172,8 @@ public function syriQuestToggleSettings(slot:int):void
 	output("The power reading is flashing ‘" + syriQuestBackupGeneratorsPower + "%’.");
 	output("\n\nYou need 40% power to stay in the sweet spot, and all three generators need to be online to work.");
 
-	if (syriQuestBackupGeneratorsPower != 0 ) addButton(14, "Rest", syriQuestBackupGeneratorsFailure);
-	else addDisabledButton(14, "Rest");
+	if (syriQuestBackupGeneratorsPower != 0 ) addButton(14, "Reset", syriQuestBackupGeneratorsFailure);
+	else addDisabledButton(14, "Reset");
 
 	if (syriQuestBackupGeneratorsPower == sweetSpot) {
 		if (syriQuestBackupGeneratorsActiveA() && syriQuestBackupGeneratorsActiveB() && syriQuestBackupGeneratorsActiveC()) syriQuestBackupGeneratorsSuccess();
@@ -308,7 +308,7 @@ public function syriQuestAkkadiBaseArchivesStealData():void
 	output("You step up to one of the access computers and quickly run a cable from your Codex to a universal port on its side. You make quick work of disabling the firewalls; from the inside, the server defenses aren’t much of an obstacle. It only takes a few moments to bypass them and then start digging around for something tasty to sell. There’s so much data here, way more than you can parse or download on the fly here, so you just go for the project with the highest budget earmarked for it.");
 	output("\n\nA bit of searching turns up a new ultra-heavy dreadnought being designed for the Joint Ausar Federation navy. It’s not being built here, but there are some parts being tested in the hangar down below, so they have the full specs for the ship. Somebody’ll pay a pretty penny for this, and it <i>probably</i> won’t actually hurt the navy.");
 	output("\n\nYou jack the documents, throw ‘em up on an dark.net forum you’ve visited a few times, and within a minute you’ve got a bid that’s hard to turn down. 12,500 credits are wired to your account, and the files vanish. Nice and easy.");
-	pc.credits += 12,500;
+	pc.credits += 12500;
 	flags["SYRIQUEST_DATA_STOLEN"] = 1;
 	processTime(10);
 	clearMenu();
@@ -361,7 +361,7 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 		flags["MET_TORRA"] = 1;
 		addButton(0, "Fight", syriQuestTorraFight, undefined, "Fight", "You’ve got a bad feeling about submitting to this needy kitty.");
 		if (pc.hasCock() && pc.cockThatFits(chars["TORRA"].vaginalCapacity()) >= 0) addButton(1,"Fuck",penisRouter,[syriQuestTorraFuck,chars["TORRA"].vaginalCapacity(),false,0],"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
-		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
+		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both want the same thing anyway!");
 		return true;
 	}
 	else {
@@ -376,7 +376,7 @@ public function syriQuestAkkadiBaseResearchDeptPlaza():Boolean
 	clearOutput();
 	author("Savin");
 	output("You’re in the beating heart of Akkadi’s Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.");
-	output("\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words ‘Warp Field Lab’ printed above it.");
+	output("\n\nTo the west is a door labeled BioMed; to the east, one labeled ‘Starship Lab’. And to the south is a seriously heavy-duty metal door with the words ‘Warp Field Lab’ printed above it.");
 	if (flags["SYRIQUEST_STATE"] < 9) output(" If you had to take a guess, that’s where you need to go.")
 	return syriQuestAkkadiBaseSecurityRobotsTrigger()
 	//return false;

@@ -1,6 +1,7 @@
 ﻿package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.rand;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -107,7 +108,7 @@
 			}
 		}
 		
-		// This only triggers during removal afaik, so deltaT is kinda irrelevent
+		// This only triggers during removal afaik, so deltaT is kinda irrelevant
 		public static function ClippexTF(deltaT:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 		{
 			var isPlus:Boolean = effect.value2 > 1;
@@ -254,7 +255,7 @@
 						{
 							msg += "\n\n";
 						}
-						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is a [pc.vaginaColor], horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
+						msg += ParseText("You gasp as your nipples suddenly suck themselves inwards, like mouths pulling their lips in. Something wet and warm is happening within your [pc.chest]... when your breasts feel like they’ve finally relaxed you gingerly touch them. Your nipples have become “innies” – all that remains is " + indefiniteArticle(target.nippleColor) + ", horizontal slit in place of each. Experimentally, you sink a finger into one and sigh as a delicious sensation shimmers through your boob. They feel every bit as slick and sensitive inside as a vagina.");
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -295,6 +296,7 @@
 							if (target.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES)
 							{
 								target.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_LIPPLES;
+								target.breastRows[i].clearAreolaFlags();
 								//+10 lust, +3 Libido
 								target.lust(10);
 								target.slowStatGain("libido", 3);

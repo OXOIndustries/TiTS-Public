@@ -245,7 +245,7 @@ public function initTarkusRooms():void
 	rooms["215"] = new RoomClass(this);
 	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
 	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You’d be more worried if it wasn’t so thick and the welds didn’t look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you’ll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
-	rooms["215"].runOnEnter = undefined;
+	rooms["215"].runOnEnter = novahomeGangplankBonus;
 	rooms["215"].northExit = "211";
 	rooms["215"].southExit = "216";
 	rooms["215"].planet = "PLANET: TARKUS";
@@ -676,7 +676,7 @@ public function initTarkusRooms():void
 	//#44 NEXT TO\nA JUNK PILE
 	rooms["244"] = new RoomClass(this);
 	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you’ll stay alongside this artificial graveyard. You can also go west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
+	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at the corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you’ll stay alongside this artificial graveyard. You can also go west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
 	rooms["244"].runOnEnter = rustCoastEncounters;
 	rooms["244"].northExit = "235";
 	rooms["244"].eastExit = "243";
@@ -1011,7 +1011,7 @@ public function initTarkusRooms():void
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
 	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you’ve found on planet. The air is markedly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There’s nowhere to travel but north from here.";
-	rooms["268"].runOnEnter = cockBoxDiscoveryBlurb;
+	rooms["268"].runOnEnter = tarkusMetalRavineBonus;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";
 	rooms["268"].system = "SYSTEM: REDACTED";
@@ -1047,7 +1047,7 @@ public function initTarkusRooms():void
 	//#71 SCYTHING\nGLADE
 	rooms["271"] = new RoomClass(this);
 	rooms["271"].roomName = "SCYTHING\nGLADE";
-	rooms["271"].description = "You’re struck by how red the soil of Tarkus is inside the glade; it’s so dark that’s it’s nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
+	rooms["271"].description = "You’re struck by how red the soil of Tarkus is inside the glade; it’s so dark that it’s nearly purple in places, broken only by the glittering silver roots of the trees that hem your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
 	rooms["271"].runOnEnter = rustScytheGladeEncounters;
 	rooms["271"].northExit = "270";
 	rooms["271"].eastExit = "272";
@@ -1398,6 +1398,18 @@ public function initTarkusRooms():void
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
 	rooms["304"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["BIMBOTORIUM LAB"] = new RoomClass(this);
+	rooms["BIMBOTORIUM LAB"].roomName = "BIMBOTORIUM\nLAB";
+	rooms["BIMBOTORIUM LAB"].description = "";
+	rooms["BIMBOTORIUM LAB"].runOnEnter = drBadgerLaboratoryBonus;
+	rooms["BIMBOTORIUM LAB"].moveMinutes = 1;
+	rooms["BIMBOTORIUM LAB"].outExit = "304";
+	rooms["BIMBOTORIUM LAB"].planet = "PLANET: TARKUS";
+	rooms["BIMBOTORIUM LAB"].system = "SYSTEM: REDACTED";
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.INDOOR);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.PRIVATE);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.LIFTUP);
 	
 	rooms["305"] = new RoomClass(this);
 	rooms["305"].roomName = "COLENSO’S\nJUNK";
@@ -1632,7 +1644,6 @@ public function initTarkusRooms():void
 	rooms["364"] = new RoomClass(this);
 	rooms["364"].roomName = "CORE\nPLATFORM";
 	rooms["364"].description = "";
-	rooms["364"].runOnEnter = undefined;
 	rooms["364"].eastExit = "363";
 	rooms["364"].northExit = "356";
 	rooms["364"].planet = "PLANET: TARKUS";

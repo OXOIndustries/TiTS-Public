@@ -101,6 +101,11 @@ public function drLessauShop():void
 		if(!chars["DRLESSAU"].hasItemByClass(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
 	}
 	else chars["DRLESSAU"].destroyItemByClass(OrangePill, -1);
+	if (flags["FROSTWYRM_TF_UNLOCKED"] != undefined)
+	{
+		if(!chars["DRLESSAU"].hasItemByClass(FrostwyrmIchor)) chars["DRLESSAU"].inventory.push(new FrostwyrmIchor());
+	}
+	else chars["DRLESSAU"].destroyItemByClass(FrostwyrmIchor, -1);
 	
 	shopkeep = chars["DRLESSAU"];
 	buyItem();
@@ -318,7 +323,7 @@ public function drLessauOral():void
 		output("\n\n<i>“You tease,”</i> you reply, <i>“get back in there!”</i>");
 		output("\n\nHe does, almost. Certainly he delves back in, but rather than slipping into your pussy you feel his tongue run up the right side of your exposed snatch, then the left. Back and forth he licks, his tonguetip flicking your clit each time he switches sides. His fingertips stay in place, keeping you spread, keeping it easy for him to lick and suck at your petals while letting your [pc.girlCumNoun] flow freely. Gods, that tongue feels amazing");
 		//"Vanae or otherwise cilia-laden pussy"
-		if (InCollection(pc.vaginas[i].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_VANAE])) output(", especially when it teases your feelers");
+		if (pc.vaginaHasFeelers(i)) output(", especially when it teases your feelers");
 		output("!");
 		output("\n\nIt’s more than enough to cum from. You throw your head back in an exultant groan as your pussy clenches and turns even juicier, leaving a puddle on the doctor’s desk that he happily licks up in a way that makes him look even more catlike.");
 	}

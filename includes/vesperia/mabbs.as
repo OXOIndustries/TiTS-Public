@@ -7,7 +7,7 @@ public function mabbsBonus(button:int):void
 	//Unmet
 	if(flags["MET_MABBS"] == undefined) 
 	{
-		output("\n\nA pink " + mabbsRace() + " female is slouching in a booth by herself, bobbing her head to an unseen melody, compliments of the over-sized earphones she wears.");
+		output("\n\nA pink " + mabbsRace() + " female is slouching in a booth by herself, bobbing her head to an unseen melody, complements of the over-sized earphones she wears.");
 		addButton(button,"Mouse-Girl",approachMabbs);
 	}
 	else 
@@ -83,7 +83,7 @@ public function approachMabbs():void
 			output("supply your own.");
 		}
 		//Merge 2 intro forks
-		output("\n\n<i>“Mabbs.”</i> She stretches. <i>“Don’t worry. I didn’t lose my last name. You just don’t get to get it. Get it?”</i> There’s a sharp undercurrent to her playful banner.");
+		output("\n\n<i>“Mabbs.”</i> She stretches. <i>“Don’t worry. I didn’t lose my last name. You just don’t get to get it. Get it?”</i> There’s a sharp undercurrent to her playful banter.");
 		output("\n\n");
 		if(pc.IQ() < 40) output("You’re trying to catch up to her fast-paced, staccato ramblings when she plows on.");
 		else output("<i>“Got it,”</i> you answer with a quick nod.");
@@ -141,6 +141,11 @@ public function mabbsBuyMenu():void
 	shopkeep = chars["MABBS"];
 	chars["MABBS"].keeperBuy = buyText + "\n";
 	shopkeepBackFunctor = mabbsPostShopping;
+	
+	CodexManager.unlockEntry("Gush");
+	CodexManager.unlockEntry("Soak");
+	CodexManager.unlockEntry("Throbb");
+	
 	buyItem();
 }
 

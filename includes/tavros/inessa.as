@@ -1,4 +1,6 @@
 ﻿import classes.Items.Toys.GravCuffs;
+import classes.Items.HalloweenItems.WitchsOutfit;
+import classes.Items.Toys.*;
 
 /*Inessa and the Happy Tails
 By JimThermic
@@ -76,23 +78,24 @@ public function inessaMenu():void
 	clearMenu();
 	addButton(0,"Appearance",inessaAppearance,undefined,"Appearance","Get a better look at the shopkeep.");
 	addButton(1,"Buy",inessaBuyGo);
-	addButton(2,"Talk",talkToInessaSlut);
+	addButton(2,"BuyDildo",buyDildosFromInessa);
+	addButton(3,"Talk",talkToInessaSlut);
 	if(flags["INESSA_BEING_DOMMED"] == 1)
 	{
-		if(pc.lust() >= 33) addButton(3,"Order",inessaSexApproach);
-		else addDisabledButton(3,"Order","Order","You aren’t turned on enough to pursue some sex.");
+		if(pc.lust() >= 33) addButton(4,"Order",inessaSexApproach);
+		else addDisabledButton(4,"Order","Order","You aren’t turned on enough to pursue some sex.");
 	}
 	else if(flags["INESSA_INESSAED"] != undefined)
 	{
-		if(pc.lust() >= 33) addButton(3,"Sex",inessaSexApproach);
-		else addDisabledButton(3,"Sex","Sex","You aren’t turned on enough to pursue some sex.");
+		if(pc.lust() >= 33) addButton(4,"Sex",inessaSexApproach);
+		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough to pursue some sex.");
 	}
-	else addDisabledButton(3,"Sex","Sex","You don’t know her well enough for that.");
+	else addDisabledButton(4,"Sex","Sex","You don’t know her well enough for that.");
 	//INESSA EXPANSION - Must have silk and Xanthe must be alive
 	if((flags["INESSA_EXP"] != 1 && flags["INESSA_EXP"] >= 2) || flags["KQ2_MYRELLION_STATE"] > 0) { /* Nada */ }
-	else if(flags["INESSA_EXP"] == 1) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
-	else addDisabledButton(4,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
-	if(erraLover() && !erraCollared() && !pc.hasKeyItem("Ausar Collar - A custom collar for Erra.")) addButton(5,"Collars",errasCollarPurchaseScene,undefined,"Collars","Inspect the display of collars lining the wall.");
+	else if(flags["INESSA_EXP"] == 1) addButton(5,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
+	else addDisabledButton(5,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
+	if(erraLover() && !erraCollared() && !pc.hasKeyItem("Ausar Collar - A custom collar for Erra.")) addButton(6,"Collars",errasCollarPurchaseScene,undefined,"Collars","Inspect the display of collars lining the wall.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -388,8 +391,8 @@ public function inessaSaeriTalk():void
 	else // Not first time:
 	{
 		output("<i>“Anything else you can tell me about your species?”</i> you ask, and Inessa shakes her head.");
-		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.raceShort]–?”</i>");
-		output("\n\nYou tell her a bit about about being a [pc.race], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
+		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being [pc.aRaceShort]–?”</i>");
+		output("\n\nYou tell her a bit about about being [pc.aRace], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
 	}
 	processTime(4);
 	inessaTalkMenu(inessaSaeriTalk);
@@ -572,15 +575,17 @@ public function inessaFamily():void
 	inessaTalkMenu(inessaFamily);
 }
 
-//Buy
-public function inessaBuyGo():void
+public function inessaInventory():void
 {
-	clearOutput();
-	showInessa();
-	author("JimThermic");
-	shopkeep = chars["INESSA"];
-	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>\n";
-	
+	chars["INESSA"].inventory = [];
+	chars["INESSA"].inventory.push(new SukMastr());
+	chars["INESSA"].inventory.push(new HoverHole());
+	chars["INESSA"].inventory.push(new GravCuffs());
+	//chars["INESSA"].inventory.push(new NivasBionaHole());
+	//chars["INESSA"].inventory.push(new TamaniBionaHole());
+	//chars["INESSA"].inventory.push(new EggTrainer());
+
+	chars["INESSA"].inventory.push(new Whip());
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -588,16 +593,53 @@ public function inessaBuyGo():void
 	}
 	//Else no whip
 	else chars["INESSA"].destroyItemByClass(BioWhip, -1);
-	
+
+	chars["INESSA"].inventory.push(new Allure());
+
+	chars["INESSA"].inventory.push(new MaidOutfit());
+	chars["INESSA"].inventory.push(new LeatherStrapHarness());
+	chars["INESSA"].inventory.push(new LatexBodysuit());
+	chars["INESSA"].inventory.push(new SpacePirateOutfit());
+	chars["INESSA"].inventory.push(new CheerleaderUniform());
+	chars["INESSA"].inventory.push(new BunnyOutfit());
+	chars["INESSA"].inventory.push(new SchoolgirlOutfit());
 	if(flags["MET_SERA"] != undefined)
 	{
 		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
 	}
 	else chars["INESSA"].destroyItemByClass(LeatherLeash, -1);
 	
+	if(isHalloweenish())
+	{
+		if(!chars["INESSA"].hasItemByClass(WitchsOutfit)) chars["INESSA"].inventory.push(new WitchsOutfit());
+	}
+	else chars["INESSA"].destroyItemByClass(WitchsOutfit, -1);
+}
+//Buy
+public function inessaBuyGo():void
+{
+	clearOutput();
+	showInessa();
+	author("JimThermic");
+	shopkeep = chars["INESSA"];
+	inessaInventory();
+	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>\n";
+	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
+	buyItem();
+}
+
+public function buyDildosFromInessa():void
+{
+	clearOutput();
+	showInessa();
+	author("Fenoxo&JimT");
+	shopkeep = chars["INESSA"];
+	chars["INESSA"].inventory = [new DildoCanine(), new DildoEquine(), new DildoFeline(), new DildoTerran()];
+
+	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! Which one would you..?”</i>\n";
 	buyItem();
 }
 
@@ -1028,7 +1070,7 @@ public function breastTeaseInessaShit():void
 	}
 	else output("I-I can’t believe I just squirted on you... again!");
 	output("”</i> she panics, clearly mortified at covering you in her slick girl juice. Instead of complaining, however, you reach down and dab your finger in it, then bring it up to suckle upon. It’s so deliciously sweet! And you want more...");
-	output("\n\n<i>“I want </i>more<i>,”</i> you hungrily tell her. There must be a predatory look in your eyes, because she freezes on the spot, her own bright eyes wide as can be. Flipping her onto her back, you hungrily lash at her silky inner thighs, lapping at the thin, sticky streams of feminine fluid that drooled down from her guarded snatch. The butterfly-winged girl moans and grips the bedsheets above her head as you aggressively tongue-lash so <i>close</i> to her virgin pussy, like an animal pouncing on [pc.hisHer] favorite meal. <i>“O-oh Zyi, I-It’s too much–!”</i>");
+	output("\n\n<i>“I want </i>more<i>,”</i> you hungrily tell her. There must be a predatory look in your eyes, because she freezes on the spot, her own bright eyes wide as can be. Flipping her onto her back, you hungrily lash at her silky inner thighs, lapping at the thin, sticky streams of feminine fluid that drooled down from her " + (flags["INESSA_BELTED"] == 2 ? "naked" : "guarded") + " snatch. The butterfly-winged girl moans and grips the bedsheets above her head as you aggressively tongue-lash so <i>close</i> to her " + (flags["INESSA_VIRGINITY"] == undefined ? "virgin" : "hungry") + " pussy, like an animal pouncing on [pc.hisHer] favorite meal. <i>“O-oh Zyi, I-It’s too much–!”</i>");
 	output("\n\nYou’re caught off guard as <i>another</i> weaker splash of sticky girl-cum jumps out and splashes you directly in the cheek. You chuckle under your breath and lap up what’s left, taking it all for yourself. Once you’re done, you slide up her trembling body and give her a long, lusty kiss–sharing with her the taste of her sweet lady juice as your tongue dance with each other.");
 	output("\n\n<i>“...I don’t think I’ll take the bed, but I’ll certainly take </i>you<i>,”</i> you seductively murmur in her ear, and she squirms with barely concealed delight. You give her a parting kiss before hopping off the bed, leaving the poor saeri girl to recuperate from her back-to-back orgasms. By the way she’s splayed out across the silky sheets, she definitely needs it!");
 	processTime(27);
@@ -2179,7 +2221,7 @@ public function inessaProvingSceneii():void
 	output("\n\n<i>“You two certainly took your time, hmm?”</i> Xanthe quips, standing nearby a large polished metal table fitted with all manner and length of shiny black leather straps and ropes that appear to be woven from her own Siel silk. <i>“This is your test, [pc.name], dominate my sister and act like I’m not here at all - but nothing too rough, then it would be over too quickly.”</i> Xanthe chuckles and steps over to the side of the room, letting you have free reign over the selection of toys and the table. You ponder over this for a moment before pulling Inessa over to the table.");
 	output("\n\n<i>“Hop up onto the table sl-”</i> You stop yourself and rethink your words. <i>“My dear.”</i>");
 	output("\n\n<i>“Yes, " + pc.mf("Sir","Ma’am") + ",”</i> Inessa replies quickly before jumping up onto the cold metal table, a light shiver passing through her as her [inessa.butt] contacts the cool polished surface. You lay her down carefully, ensuring her wings are not going to be damaged, then make your first selection on the silk ropes, deftly tying them around Inessa’s wrists and ankles, slipping two fingers between her skin and the rope to ensure her circulation won’t be cut off. You allow your [pc.eyes] to wander over the bound Saeri sub, her [inessa.skin] flushing under your gaze, feeling a heat in your loins as she lightly squirms on the cool metal table, but this time you won’t focus on your pleasure. Turning around to the selection of toys and teasing devices, you pick out a few to make use of.");
-	output("\n\nTurning back to Inessa, you set your selection down on the small table beside the bondage table, first reaching forwards to glide your fingers over her supple flesh, tracing little shapes onto her navel, scraping your nails along her skin to leave behind a soft tingle which causes the snowy haired sub to squirm more, her breathing quickening oh so slightly. Moving your fingers further up, you trail your nails up through the valley of her pert handfuls, turning back around to glide across the topside of her breasts before working down once more through the valley. <i>“How does that feel, dear?”</i> you ask softly. She answers with a soft whimper, a shudder of pleasure rumbling through her small frame.");
+	output("\n\nTurning back to Inessa, you set your selection down on the small table beside the bondage table, first reaching forwards to glide your fingers over her supple flesh, tracing little shapes onto her navel, scraping your nails along her skin to leave behind a soft tingle which causes the snowy haired sub to squirm more, her breathing quickening oh-so-slightly. Moving your fingers further up, you trail your nails up through the valley of her pert handfuls, turning back around to glide across the topside of her breasts before working down once more through the valley. <i>“How does that feel, dear?”</i> you ask softly. She answers with a soft whimper, a shudder of pleasure rumbling through her small frame.");
 	output("\n\nWith that you gaze over your selection once more before picking out a feather, twirling it in your fingers experimentally before bringing it down to just above the snowy haired sub’s [inessa.nipple], looking her in the eyes before brushing it across, eliciting a surprised squeak from her lips that causes a slight grin to grow on your face and brush the feather across once more, trailing it slowly down across her areolae and titflesh.");
 	output("\n\n<i>“"+ pc.mf("Sir","Ma’am") +" that feels strange but... G-Good as well.”</i> Inessa says after a particularly loud pleasured squeak, tugging lightly against her silken restraints. Encouraged by her response you trace circles around her other nipple with the tip of the feather before setting it aside, snickering as her breathing speeds up again, though not quite hot and heavy yet. Deciding to take it a bit further and test her trust, you take a woven silk sleep mask from the toy rack, feeling the soft texture in your hands before hovering it in front of Inessa’s face, her dusky cheeks darkening as she understands, lifting her head from the table to allow you to slip the blindfold over her [inessa.eyes], casting her into darkness.");
 	output("\n\n<i>“Don’t worry, I promise I’ll be gentle.”</i> You whisper softly into her ear, causing her breath to catch in her throat, she nods softly, trusting you completely at this point. You cast a quick glance towards Xanthe and notice her smiling, not in a smug or amused way, just a genuine pleased smile. The acknowledgement that you are doing well spurs you on, picking up a pair of nipple clamps from your selection and testing their strength, dialing the adjustment screw down before attaching them to Inessa’s [inessa.nipples], causing her to suck in a sharp breath that devolves into a pleasured sigh accompanied by a shudder. Once the clamps are sitting snugly on her nipples you twist the adjustment screws, slowly increasing the pressure upon the perky nubs, her back arching in response, to which you grin and give the clamps a light flick, the slight twisting of her nipples sending a light shock of pleasure, causing her to gasp rather loudly.");
@@ -2190,8 +2232,8 @@ public function inessaProvingSceneii():void
 	output("\n\nAs she comes down from her orgasmic high you quickly untie her bindings and slowly remove the blindfold as not to startle her, gently pulling her closer as you rest an arm over her, your other hand gently caressing her dusky blue cheek. She breathes heavily and looks around in a confused daze, but she feels your loving touch and calms, taking slow breaths as she relaxes, scooting a bit closer to your touch.");
 	output("\n\n<i>“T-Thank... Thank you... "+ pc.mf("Sir","Ma’am") +"...”</i> She says wearily, closing her eyes and drifting off to a peaceful rest. You gently lift her from the table and carry her over to the nearby bed, setting her down on the plush cushions that cover the surface.");
 	output("\n\n<i>“You did well.”</i> Xanthe says, the same pleased smile on her lips. <i>“I admit I didn’t think you would go through with this, but I’m glad to be wrong, for once.”</i> She chuckles softly, nodding to herself. <i>“You’ve earned this, [pc.short]. I don’t say that often.”</i> Xanthe tosses you the little gold key to Inessa’s belt and you smile, nodding to her.");
-	output("\n\n<i>“I’ll treat her well, don’t worry”</i> You quip, pocketing the key for later. For now Inessa is still recovering and you need to care to her.");
-	output("\n\n<i>“I must get back to business though, silk clothing doesn’t sew itself.”</i> Xanthe says as she walks to the door. <i>“Do take care, won’t you?”</i> You nod and return your attention to Inessa who is slowly stirring from her short rest.");
+	output("\n\n<i>“I’ll treat her well, don’t worry”</i> You quip, pocketing the key for later. For now, Inessa is still recovering and you need to care for her.");
+	output("\n\n<i>“I must get back to business though, silk clothing doesn’t sew itself.”</i> Xanthe says as she walks to the door. <i>“Do take care, won’t you?”</i> You nod and return your attention to Inessa, who is slowly stirring from her short rest.");
 	output("\n\n<i>“Mnhh... Wow...”</i> She mutters, stretching herself out on the bed. <i>“I-I’ve never felt like that before, with anyone...”</i> You smile at her declaration and lean down to plant a kiss on her forehead which causes her to flush and giggle. Void, she’s cute sometimes. You leave for a moment to grab a cup of water, setting it on the table beside her until she can sit up.");
 	output("\n\n<i>“I...”</i> Inessa starts, taking a breath before continuing. <i>“I’m happy we did this... "+ pc.mf("Master","Mistress") +", thank you.”</i> Hearing her decide to call you that fills your heart with a deep sense of happiness and fulfillment, and you just smile, caressing the snowy haired subs cheek, she leans into your touch and sits up, taking a sip from the cup of water you got her.");
 	output("\n\n<i>“Let’s head back to the ship,”</i> you say. Inessa nods and slowly stands, walking out of the dungeon.");
@@ -2219,7 +2261,7 @@ public function inessaBeltRemoval():void
 	output("Returning to your ship with Inessa in tow, you instruct her to follow you to your quarters, heart fluttering at what is to come next. Inessa follows suit, her dusky cheeks a darkened shade, her fingers lightly fidgeting with the edge of her belt.");
 	output("\n\n<i>“Lie on the bed, my dear.”</i> You instruct, Inessa does so without hesitation, laying herself out on your bed and marveling in its comfort as she sinks into its soft embrace. <i>“M-"+ pc.mf("Master","Mistress") +"... Thank you...”</i> The submissive Saeri girl whispers. <i>“Thank you for going through all this, just for me.”</i> She fidgets with the blankets on your bed as her nerves get the better of her, dusky cheeks darkening. <i>“I promise I’ll be the best sub ever.”</i>");
 	output("\n\nYou hop up onto the bed with your sub and lightly toussle her [inessa.hair], saying you are sure she will do perfectly fine. You hold the golden key in your hand, the dim light of your quarters glittering off of its reflective surface. <i>“Are you ready?”</i> You ask Inessa, she doesn’t hesitate to nod softly, eyes fixed to the key.");
-	output("\n\nYou lower the key down to her belt and insert it into the high security lock, turning it with a bit of light pressure and a soft ‘click’, the lock relents and the side straps of the torturous device fall from the front plate. You gently pry the belt upwards, the sheer amount of sexual fluids coating the padded interior of the belt is almost mind boggling, she really hasn’t had any release for a long time, and no doubt the test Xanthe had you perform made things all the more sticky. Inessa gasps softly as the padded front plate is finally removed from her achingly wanting pussy, releasing her from her crotchular bondage, letting a cool breeze billow across the fluid-slicked surface of her outer lips, causing her to shudder from tip to toe, her lips slightly agape and her eyes softly closed, finally free of the belt. You lift her [inessa.butt] up from the surface of the bed and remove the rest of the belt, setting it to the side.");
+	output("\n\nYou lower the key down to her belt and insert it into the high security lock, turning it with a bit of light pressure and a soft ‘click’, the lock relents and the side straps of the torturous device fall from the front plate. You gently pry the belt upwards, the sheer amount of sexual fluids coating the padded interior of the belt is almost mind boggling, she really hasn’t had any release for a long time, and no doubt the test Xanthe had you perform made things all the more sticky. Inessa gasps softly as the padded front plate is finally removed from her achingly wanting pussy, releasing her from her crotchular bondage. Allowing a cool breeze to billow across the fluid-slicked surface of her outer lips causes her to shudder from tip to toe. Her lips slightly agape and her eyes softly closed, she is finally free of the belt. You lift her [inessa.butt] up from the surface of the bed and remove the rest of the belt, setting it to the side.");
 	output("\n\n<i>“Aaah.”</i> Inessa gasps. <i>“It feels so strange after so long, but it feels good to be free of it.”</i> Her lips curl up into a contented smile, her eyes remaining softly closed in the same manner. You go to the cockpit for a moment and plug in the coordinates for Tavros station, setting a course for the nearest gate before slipping into bed with your new Saeri sub, wrapping your arms around her in a warm embrace which she sinks into happily.");
 	output("\n\n<i>“Tomorrow, my dear, I will take your virginity and truly claim you as mine.”</i> Your breath tickles her ear and you feel the Saeri girl shudder in your arms. <i>“For tonight, rest and regain your strength.”</i>");
 	output("\n\n<i>“Yes, "+ pc.mf("Master","Mistress") +".”</i> Inessa chimes happily, curling up in the protection of your comforting cuddles, slowly lulling into a well deserved rest from the long day.");
@@ -2251,14 +2293,14 @@ public function inessaFirstTime():void
 		x = pc.cockThatFits(chars["INESSA"].vaginalCapacity(0));
 		if(x < 0) x = pc.smallestCockIndex();
 		
-		output("\n\nWith that you stand up and order her to bend over on the edge of the bed, she does so without hesitation, resting her top half on the plush covers with her [inessa.butt] hiked up, exposing her [inessa.vagina], the lips parted oh so invitingly causing your [pc.cocks] to spring to half-mast near instantly. Inessa looks back nervously, biting her lip as she prepares herself, spreading her legs a bit more as you hop up onto the bed with her, getting closer to her submissive form to lightly trail your [pc.tongue] across her [inessa.vagina] lips, tasting her sweet juices after her being pent up and desperate for oh-so long. She tastes amazing and you find yourself gently lapping at her folds, cleaning her snatch of her liquid arousal.");
+		output("\n\nWith that you stand up and order her to bend over on the edge of the bed, she does so without hesitation, resting her top half on the plush covers with her [inessa.butt] hiked up, exposing her [inessa.vagina], the lips parted oh-so-invitingly causing your [pc.cocks] to spring to half-mast near instantly. Inessa looks back nervously, biting her lip as she prepares herself, spreading her legs a bit more as you hop up onto the bed with her, getting closer to her submissive form to lightly trail your [pc.tongue] across her [inessa.vagina] lips, tasting her sweet juices after her being pent up and desperate for oh-so long. She tastes amazing and you find yourself gently lapping at her folds, cleaning her snatch of her liquid arousal.");
 		output("\n\nInessa begins to let out cute little gasps and subtle moans as you work your mouth magic on her cunt, twitching every now and again as the tip of your tongue passes over her sensitive little pleasure buzzer, sending a jolt right up her spine. Deciding she’s well enough prepared, you kneel up behind her and line your [pc.cockHead " + x + "] up with her virginal snatch, causing her to shiver as your glans brushes her [inessa.clit].");
 		output("\n\nYou grip Inessa’s [inessa.hips] for leverage, slowly pulling her back onto your [pc.cock " + x + "], spreading her [inessa.vaginaColor] lips apart. Void, she’s so damn tight it’s difficult to make any progress beyond poking her outer lips, but you push just a bit harder, letting out a grunt when you slide in further than you expected, half of your [pc.cockNounSimple " + x + "] forced into her virginal passage so suddenly. Inessa cries out in mixed pain and pleasure as her virginity is taken by your [pc.cockNounComplex " + x + "]. <i>“M-"+ pc.mf("Master","Mistress") +"!”</i> the little fuckterfly cries out, her back arching as her [inessa.vagina] is stuffed for the first time.");
 		output("\n\nYou sit there still for a moment, letting her adjust to your size before picking up a slow but steady rhythm, your [pc.cockNounComplex " + x + "] molding her inner walls to your exact shape as they squeeze you so tightly, almost painfully, but you persevere. Being cramped up for so long her pussy practically begs for more, her [inessa.girlCum] leaking and dripping all over your bed covers as well as splattered over your thighs, coating them in a sheen of fluids. Inessa’s [inessa.wings] flutter erratically every now and then as her nerves are assaulted with these new feelings of pleasure so deep inside of her. Precum begins to leak from your [pc.cockHead " + x + "] and mix with her juices, leaking out from around your shaft as it slides in and out, lewd noises clearly audible from the vice grip her walls have on you.");
 		
 		pc.cockChange();
 		
-		output("\n\nYou shift your position slightly, lifting her [inessa.butt] higher for some better leverage before you pick up the pace, [pc.cockNounSimple " + x + "] plunging in and out of her [inessa.vagina] with an increased vigor, setting your Saeri sub moaning aloud, burying her face into the covers in a vain attempt to stifle them. <i>“M-"+ pc.mf("Master","Mistress") +" it feels amazing! Please don’t stop!”</i> She cries out as you rail her no longer virginal depths. In time it becomes too much to bear");
+		output("\n\nYou shift your position slightly, lifting her [inessa.butt] higher for some better leverage before you pick up the pace, [pc.cockNounSimple " + x + "] plunging in and out of her [inessa.vagina] with an increased vigor, setting your Saeri sub moaning aloud, burying her face into the covers in a vain attempt to stifle them. <i>“M-"+ pc.mf("Master","Mistress") +" it feels amazing! Please don’t stop!”</i> She cries out as you rail her no-longer-virginal depths. In time it becomes too much to bear");
 		if(pc.balls >= 1) output(" as your [pc.balls] churn with their liquid payload"); 
 		else output(" as your peak fast approaches");
 		output(", and judging by how your Saeri sub moans and writhes beneath you she is right there with you.");
@@ -2271,7 +2313,7 @@ public function inessaFirstTime():void
 	{
 		if(pc.hasVagina()) x = rand(pc.vaginas.length);
 		
-		output("\n\nWith that you stand up from the bed and order her to bend over on the edge of the bed, she does so without hesitation, resting her top half on the plush covers with her [inessa.butt] hiked up, exposing her [inessa.vagina], the lips parted oh so invitingly causing a heat to rise"); 
+		output("\n\nWith that you stand up from the bed and order her to bend over on the edge of the bed, she does so without hesitation, resting her top half on the plush covers with her [inessa.butt] hiked up, exposing her [inessa.vagina], the lips parted oh-so-invitingly causing a heat to rise"); 
 		if(x >= 0) output("in your [pc.vaginas].");
 		else output("within you.");
 		output("\n\nInessa looks back nervously, biting her lip as she prepares herself, spreading her legs a bit more as you hop up onto the bed with her, leaning down behind her submissive form to lightly trail your [pc.tongue] across her [inessa.vagina] lips, tasting her sweet juices after her being pent up and desperate for so long. She tastes amazing and you find yourself gently lapping at her folds, cleaning her snatch of her liquid arousal.");
@@ -2283,7 +2325,7 @@ public function inessaFirstTime():void
 		output("\n\nInessa cries out in mixed pain and pleasure as her virginity is taken by the girthy strapon. You moan aloud in sync as the other end of the dildo batters up against your deepest recesses, setting nerve endings alight. <i>“M-"+ pc.mf("Master","Mistress") +"!”</i> the little fuckterfly cries out, her back arching as her [inessa.vagina] is stuffed for the first time.");
 		output("\n\nYou sit there still for a moment, shuddering in pleasure as the dildo shifts inside of your own snatch. You allow Inessa to adjust to the size before picking up a slow but steady rhythm, the unrelenting pseudo-phallus molding her inner walls to its exact shape as they squeeze so tightly. Being cramped up for so long her pussy practically begs for more, her [inessa.girlCum] leaking and dripping all over your bed covers as well as splattered over your thighs, coating them in a sheen of fluids. Inessa’s [inessa.wings] flutter erratically every now and then as her nerves are assaulted with these new feelings of pleasure so deep inside of her.");
 		if(x >= 0) output("The steady rhythm has your own [pc.girlCum] running rivulettes from your sodden box, soaking the leather strapon before seeping out and down your thighs, mixing in with the snowy haired subs liquid lust as it soaks into the covers.");
-		output("\n\nYou shift your position slightly, lifting her [inessa.butt] higher for some better leverage before you pick up the pace, soaked dildo plunging in and out of her [inessa.vagina] with an increased vigor, setting your Saeri sub moaning aloud, burying her face into the covers in a vain attempt to stifle them. <i>“M-"+ pc.mf("Master","Mistress") +" it feels amazing! Please don’t stop!”</i> She cries out as you rail her no longer virginal depths. In time it becomes too much to bear as the dildo batters your insides, setting your nerves alight with pleasure, and judging by how your Saeri sub moans and writhes beneath you she is right there with you.");
+		output("\n\nYou shift your position slightly, lifting her [inessa.butt] higher for some better leverage before you pick up the pace, soaked dildo plunging in and out of her [inessa.vagina] with an increased vigor, setting your Saeri sub moaning aloud, burying her face into the covers in a vain attempt to stifle them. <i>“M-"+ pc.mf("Master","Mistress") +" it feels amazing! Please don’t stop!”</i> She cries out as you rail her no-longer-virginal depths. In time it becomes too much to bear as the dildo batters your insides, setting your nerves alight with pleasure, and judging by how your Saeri sub moans and writhes beneath you she is right there with you.");
 		output("\n\n<i>“"+ pc.mf("Master","Mistress") +"! I-I’m cumming!”</i> Inessa cries out, her vice-like grip on the shaft clenching even harder, wringing the imitation cock in vain trying to suck baby batter from its tip."); 
 		if(x >= 0) output("Your own [pc.vagina " + x + "] spasms around the other end, doing much the same as your [pc.girlCum] leaks freely from your sopping quim.");
 		else output("You gasp in pleasure.");
@@ -2306,7 +2348,7 @@ public function inessaFirstTimeAfter():void
 
 	output("You awake some time later, your snowy haired sub curled up in your arms, you place a sweet kiss to her cheek before disentangling yourself from her, sitting up and stretching. Inessa stirs as you sit up, yawning cutely before sitting up herself.");
 	output("\n\n<i>“Y-You know... I still can’t believe I got so lucky.”</i> Inessa remarks, leaning against your shoulder. <i>“I’m just a little submissive Saeri girl, yet you chose me, of all the subs in the galaxy... And I couldn’t have hoped for anyone better.”</i> You wrap an arm around her and pull her close, your warm embrace bringing a dusky hue to her cheeks.");
-	output("\n\n<i>“There is one last thing, my dear,”</i> you say, turning to pick up the box from your bedside table. Turning back around and opening it up Inessa’s breath catches in her throat as she lays eyes on the item, a beautiful collar made of the same material as her chastity belt, engraved with a similar floral pattern as the tattoo on her back. On the reverse is a high-security lock fitted to the same key as the chastity belt, and on the front is a moderately sized amethyst, carved into the shape of a heart with a padlock symbol engraved on the front.");
+	output("\n\n<i>“There is one last thing, my dear,”</i> you say, turning to pick up the box from your bedside table. Turning back around and opening it up, Inessa’s breath catches in her throat as she lays eyes on the item, a beautiful collar made of the same material as her chastity belt, engraved with a similar floral pattern as the tattoo on her back. On the reverse is a high-security lock fitted to the same key as the chastity belt, and on the front is a moderately sized amethyst, carved into the shape of a heart with a padlock symbol engraved on the front.");
 	output("\n\n<i>“M-"+ pc.mf("Master","Mistress") +", it’s beautiful!”</i> Your snowy haired sub squeals, you chuckle at her reaction and tell her to turn around, she does so without question allowing you to loop the padded metal band around her neck and lock it shut in the back with an audible ‘click’ that sends a shiver down her spine. <i>“Thank you so much!”</i> Inessa exclaims, turning back around and giving you a big hug before sitting back, letting you admire how it looks on her. You comment that it looks amazing and her already flushed cheeks darken even further.");
 	output("\n\n<i>“I suppose I should get back to the shop, it isn’t going to run itself, but... Could I use the shower first?”</i> She asks. You nod and lie back down, content to relax for just a bit longer while Inessa uses your ships shower.");
 	output("\n\nA few minutes later Inessa emerges from the shower and towels herself off before heading back to the quarters. You wrap her in a tight hug and smile. <i>“Be good my dear, I expect you to be ready whenever I come back,”</i> you say, giving her a little wink as well.");
@@ -2358,7 +2400,7 @@ public function fuckInessaPussy():void
 		output("\n\nYou smirk at her reaction and sit up, wasting no time in");
 		if(x >= 0) output(" lining one tip of the dildo up with your [pc.vagina " + x + "] and shoving it inside rather unceremoniously, causing you to let out a squeal of pleasure, your walls gripping the toy firmly. You secure the straps around your waist to make sure the dildo doesn’t shift around too much, giving the shaft a little tug and letting out a gasp when the end of the faux-cock inside of you shifts just a bit.");
 		else output(" fastening the straps around your waist to make sure the dildo doesn’t shift around too much, giving the shaft a little tug");
-		output("You line the tip of the strapon up with your little fuckterfly’s [inessa.vagina], spreading her [inessa.vaginaColor] lips apart. It’s difficult to make any progress beyond poking her outer lips, but you push just a bit harder, letting out a grunt when you slide in further than you expected, half of the dildo forced into her virginal passage so suddenly.");
+		output("You line the tip of the strapon up with your little fuckterfly’s [inessa.vagina], spreading her [inessa.vaginaColor] lips apart. It’s difficult to make any progress beyond poking her outer lips, but you push just a bit harder, letting out a grunt when you slide in further than you expected, half of the dildo forced into her " + (flags["INESSA_VIRGINITY"] == undefined ? "virginal" : "moist") + " passage so suddenly.");
 		output("\n\nInessa cries out in pleasure as you ram the dildo so deeply in with one stroke, you moan aloud in sync as the other end of the dildo batters up against your deepest recesses, setting nerve endings alight. The little fuckterfly moans delectably, her back arching as her [inessa.vagina] is stuffed so full.");
 		output("\n\nYou sit there still for a moment, shuddering in pleasure as the dildo shifts inside of your own snatch. You allow Inessa to adjust to the size before picking up a slow but steady rhythm, the unrelenting pseudo-phallus molding her inner walls to its exact shape as they squeeze so tightly. Her [inessa.girlCum] leaks all over the bed covers as well as splattered over your thighs, coating them in a sheen of fluids. Inessa’s [inessa.wings] flutter erratically every now and then underneath her as her nerves are assaulted with pleasure."); 
 		if(x >= 0) output("The steady rhythm has your own [pc.girlCum] running rivulettes from your sodden box, soaking the leather strapon before seeping out and down your thighs, mixing in with the snowy haired subs liquid lust as it soaks into the covers.");

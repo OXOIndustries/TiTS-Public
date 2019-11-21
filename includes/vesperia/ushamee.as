@@ -12,6 +12,13 @@
  * USHA_DATE		1-2, last date went on with Usha, undefined if never dated Usha
  */
 
+public function showUshameeCiv(asNude:Boolean = false):void
+{
+	showName("CHIEF\nNEYKKAR");
+	author("Savin");
+	showBust(asNude ? "USHAMEE_CIV_NUDE" : "USHAMEE_CIV");
+}
+
 public function ushameeMeetInviteText():String
 {
 	var buff:String = "";
@@ -64,7 +71,7 @@ public function approachUshameeCorridor():void
 	clearOutput();
 	clearMenu();
 	//Defined in kashimaIncident.as
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“Look you little bastard, I said check again!”</i> the leithan amazon growls, grabbing the deer-bodied ‘taur by the collar of his uniform. <i>“So check!”</i>");
 	output("\n\n<i>“I’m... I’m sorry, miss,”</i> the young buck whimpers, squirming against her grasp. <i>“It’s like I said, there’s no ship by that name registered at the docks. I’m sorry, but I can check fifty times and it won’t just magically appear!”</i>");
@@ -84,7 +91,7 @@ public function approachUshameeCorridor2():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	rooms[currentLocation].removeFlag(GLOBAL.NPC);
 	moveTo("CANADA5");
@@ -95,7 +102,7 @@ public function approachUshameeCorridor2():void
 	output(" and takes you to a ‘taur-accessible booth near the back. ");
 	if (flags["MET_DEL_SHEMALE"] == undefined) output("One of the serving staff ");
 	else output("Del ");
-	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in one her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
+	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in on her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
 	output("<i>“Yeah, I was hoping we could talk. About what happened, and um... what we did.”</i>");
 	output("\n\nThe last few words there cause a dark, purplish flush to spread across her cheeks. Your mind immediately flashes back to those last, involuntarily intimate moments aboard the ship, with the parasites wriggling inside of the chief’s gravid belly, peeking their tentacle-like appendages back out of her chocolate-hued pussy.");
 	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
@@ -117,7 +124,7 @@ public function approachUshameeCorridor2():void
 public function embarassedUshamee():void
 {
 	clearOutput();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“Embarrassed, probably,”</i> you answer. <i>“What happened back on the ship should probably stay there.”</i>");
 	output("\n\nThe leithan woman sighs and bites her lip, averting her gaze. <i>“Ah, right. You’re right, of course. Better to stay professional.”</i>");
@@ -131,7 +138,7 @@ public function embarassedUshamee():void
 public function arousedUshamee():void
 {
 	clearOutput();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("Giving her your most charming smile, you tell the chief that you certainly liked seeing that side of her. And you gotta say: you wouldn’t mind seeing it again, in less dire circumstances.");
 	output("\n\n<i>“O-oh? Is that right?”</i> the chief grins, <i>“Well, I’d be lying if I said I wasn’t hoping for that answer.”</i>");
@@ -150,11 +157,11 @@ public function arousedUshamee():void
 public function noIdeaUshamee():void
 {
 	clearOutput();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("You answer with a shrug, saying that how she feels is up to her.");
 	output("\n\n<i>“Well of course it is!”</i> she huffs, crossing her arms in a way that puffs out her already-big tits. <i>“And let me tell you, I’m a girl who knows what she wants! And what I want... is you. That’s why I called you out here, and that’s what I’m gonna get! So are you in, or am I gonna have to work at it until you give in?”</i>");
-	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you out to ask her out. Or let her ask you out, whichever comes first.");
+	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you ought to ask her out. Or let her ask you out, whichever comes first.");
 	
 	flags["USHA_STATE"] = 2;
 	processTime(1 + rand(2));
@@ -169,7 +176,7 @@ public function mainMenuUsha(intro:Boolean = false):void
 		if(intro)
 		{
 			clearOutput();
-			chiefNeykkarHeader();
+			showUshameeCiv();
 			
 			output("<i>“Back again?”</i> Usha says with a hungry little smile. <i>“Good to see you, [pc.name]! Sit down, take a load off. Let me buy you a drink!”</i>");
 			output("\n\nShe grabs ");
@@ -195,7 +202,7 @@ public function dateUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“So, maybe we could go somewhere?”</i> you suggest. <i>“Know anyplace fun around here?”</i>");
 	output("\n\n<i>“On the station? You’re looking at it,”</i> Ushamee chuckles. <i>“But I’ve been all over Vesperia with my brother and his family. Tell you what, rich " + (pc.isMale() ? "boy" : "girl") + ". If you foot the bill, I’ll show you some of the best places down there.”</i>");
@@ -214,11 +221,11 @@ public function goForUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“Deal,”</i> you say, standing.");
 	output("\n\nUsha chuckles and finishes off her beer, drawing in a long, sharp breath as she does so. <i>“Alright! Now we’re talking. C’mon, there’s a shuttle planetside on the other side of the station.”</i>");
-	output("\n\nThe chief pays off the tab and offers you her hand, leading you of of the lodge and around the gentle curve of Canadia Station’s outer ward. The transit station is much more crowded than anywhere else you’ve visited here, and most of them ‘taurs to boot: deers and meese and good old-fashioned horsefolk, all coming and going from the planet’s surface. ");
+	output("\n\nThe chief pays off the tab and offers you her hand, leading you off of the lodge and around the gentle curve of Canadia Station’s outer ward. The transit station is much more crowded than anywhere else you’ve visited here, and most of them ‘taurs to boot: deers and meese and good old-fashioned horsefolk, all coming and going from the planet’s surface. ");
 	if (flags["USHA_DATE"] == undefined)
 	{
 		output("You’ve heard that Vesperia’s got a serious culture for tauric gene-mods, but seeing a slice of the public really drives home just how many four-legged citizens the planet must have. They easily outnumber the two-legged folk three to one. You and Usha are ushered onto a shuttlecraft by a particularly statuesque moose-bodied woman in a red mountie’s jacket who sweetly guides passengers into appropriate cabins before sealing you in.");
@@ -239,9 +246,9 @@ public function firstDateUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
-	moveTo("GAME OVER");
+	moveTo("USHADATE");
 	
 	output("<i>“There’s the gravball arena a couple blocks from here,”</i> Usha suggests as the two of you -- and a crowd of local bulls -- gather onto a spacious elevator and head towards the ground floor. <i>“And I’m pretty sure there’s a game in just a couple hours.”</i>");
 	output("\n\nSounds fun. You tell her to lead the way, falling in beside the towering leithan. Happily, the sidewalks on Vesperia are made for ‘taurs, so there’s plenty of room for both of you to walk side by side. Usha’s arm settles around your shoulder, pulling you against her flank and guiding you towards your destination. It isn’t long before you arrive at a wide, flat arena covered in banners for local sports teams and Vesperian lagers.");
@@ -261,16 +268,16 @@ public function firstDateUsha():void
 	flags["USHA_DATE"] = 1;
 	pc.credits -= 250;
 	processTime(180 + rand(30));
-	addButton(0, "Next", sexUsha);
+	addButton(0, "Next", sexUsha, false);
 }
 
 public function secondDateUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
-	moveTo("GAME OVER");
+	moveTo("USHADATE");
 	
 	output("<i>“I’ve got an idea,”</i> Usha says, leading you towards the edge of the city. <i>“C’mon, it’s not far.”</i>");
 	output("\n\nFair enough. You " + (pc.isTaur() ? "trot along beside Usha" : "hop onto Usha’s back") + " and set out to your mystery destination. Usha’s not exactly a master conversationalist, but over the half hour or so you end up walking, you manage to coax her into talking a little about her work with NovaSec.");
@@ -293,7 +300,7 @@ public function secondDateUsha():void
 	if (flags["SEEN_TEXAS_SURFACE"] != undefined) output(" Even New Texas has a very different atmosphere. More... full of bull musk and milk, not wine and poutine.");
 	output("\n\n<i>“It’s nice, right?”</i> Usha says... or rather, asks. Almost timidly.");
 	output("\n\n<i>“Sure,”</i> you tell her. <i>“Mostly because of the company.”</i>");
-	output("\n\nUshamee’s upper ears flatten against her scalp, and her dusky skin flushes even darker. She sports a little smile throughout the rest of your meal, though, and once everything’s done and paid for, she takes your hand while two two of you " + (pc.isTaur() ? "trot" : "make your way") + " back to town. Neither of you had all that much to drink in the tasting -- everything came in small little samplers -- but there was enough to leave you both with a pleasant buzz keeping you warm and talkative all the way back to town.");
+	output("\n\nUshamee’s upper ears flatten against her scalp, and her dusky skin flushes even darker. She sports a little smile throughout the rest of your meal, though, and once everything’s done and paid for, she takes your hand while the two of you " + (pc.isTaur() ? "trot" : "make your way") + " back to town. Neither of you had all that much to drink in the tasting -- everything came in small little samplers -- but there was enough to leave you both with a pleasant buzz keeping you warm and talkative all the way back to town.");
 	output("\n\nJust as you’re getting back to the spaceport, though, Usha yanks hard on your hand, pulling you out of the thinning crowds and into the alley just beside the port. Before you can ask what’s up, your back is shoved up against the wall, and Usha’s lips are pressed against yours. Her hands pin your own on either side of you, leaving you wide open as her tongue molests your [pc.lips].");
 	output("\n\n<i>“Sorry,”</i> Usha murmurs after she’s broken the kiss, taking a shy step back from you. <i>“I get real lovey when I’m drunk...”</i>");
 	output("\n\nIs that right?");
@@ -311,28 +318,28 @@ public function toCanadiaUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("You run a hand across Usha’s cheeks, telling that if she feels that way, the two of you ought to get back to space where you can be alone.");
 	output("\n\nYour leithan companion grins, swishing her tail along the gravel. <i>“I like that plan. C’mon, race you to the shuttle!”</i>");
 	output("\n\nUsha’s bolting off before you can even agree, leaving you to run after her all the way back to New Canadia...");
 	
 	processTime(1 + rand(2));
-	addButton(0, "Next", sexUsha);
+	addButton(0, "Next", sexUsha, false);
 }
 
 public function quickieUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“That so?”</i> you tease, tracing your fingers along Usha’s dusky cheek, until you reach one of her lush lips. She nibbles on your fingertip, staring at you with lustful, lidded eyes. That’s the stuff. You lean back against the brick wall and run your other hand over your [pc.chest], down your [pc.belly], and finally to your crotch. " + (!pc.isNude() ? " You shimmy out of your [pc.lowerGarment], letting your [pc.cockBiggest] taste the air. " : "") + "You wrap your fingers around your shaft, slowly stroking it, watching the chief’s eyes widen with desire.");
 	output("\n\nYou don’t need to prompt her any further. Usha grins at you and slinks down onto her knees, resting her hands on your [pc.hips] and the [pc.cockHeadBiggest] of your dick on her glistening lips.");
 	if (pc.exhibitionismRaw >= 33) output("\n\nA shiver of excitement runs up your spine. You can’t help but glance out of the alley to the bustle of people walking past. Any one of them could look your way and see what you’re doing... and you’re sure some of them must! ");
 	else output("\n\nYou shudder, realizing all of a sudden that you’re only hidden by a few nearby trashcans. Anybody on the sidewalk could just look down the alley and see what the two of you are doing! ");
 	output("\n\nUsha seems entirely oblivious to the potential onlookers as she flicks her tongue around your [pc.cockHeadBiggest], getting a taste of you before sliding her head down your length, taking your [pc.cockBiggest] to the base in one long bob of her head.");
-	output("\n\nDamn, that’s good. You moan, gripping the sides of Usha’s head and guiding her down your shaft. Slowly at first, then faster, working with her to get her sucking your cock as hard as she can. Your [pc.hips] pump forward, slapping your [pc.knot]" + (pc.balls > 0 ? "and [pc.balls]" : "") + " against her lips and chin, letting the sounds of flesh pounding flesh echo through the alley. Her hands keep caressing your thighs, when they’re not teasing her breasts through her shirt" + (pc.balls > 0 ? "or cupping your [pc.balls]" : "") + ". Usha moans softly around her mouthful of dick, making no effort to conceal that she’s enjoying the act too.");
+	output("\n\nDamn, that’s good. You moan, gripping the sides of Usha’s head and guiding her down your shaft. Slowly at first, then faster, working with her to get her sucking your cock as hard as she can. Your [pc.hips] pump forward, slapping your [pc.knot]" + (pc.balls > 0 ? " and [pc.balls]" : "") + " against her lips and chin, letting the sounds of flesh pounding flesh echo through the alley. Her hands keep caressing your thighs, when they’re not teasing her breasts through her shirt" + (pc.balls > 0 ? " or cupping your [pc.balls]" : "") + ". Usha moans softly around her mouthful of dick, making no effort to conceal that she’s enjoying the act too.");
 	output("\n\nAll you need to do now is lean back and let her work, caressing Usha’s raven hair and petting her top-ears and groaning as she milks your [pc.cockBiggest] with her throat. Thick ropes of glistening spittle bridge your [pc.knot] to her lips at the nadir of ever motion, dripping down into the valley of her cleavage as she speeds up her face-fucking. With the speed and vigor she’s working with, it doesn’t take long before the muscles in your ass and crotch tense, presaging the inevitable. Usha senses it coming, flashing you a smile and a wink with her starry blue eyes in the moment before your [pc.cockBiggest] throbs and cum, pumping [pc.cum] down her throat. ");
 	if (pc.cumQ() > 1000) output("Her cheeks bloat, trying to keep up with your prodigious orgasm and failing explosively. Spunk drools out around your member, splattering her tits and the pavement beneath your [pc.feet].");
 	else output("She struggles to keep up, swallowing the product of every penile pulse until your [pc.balls] " + (pc.balls > 1 ? "have" : "has") + " emptied into her stomach.");
@@ -344,13 +351,13 @@ public function quickieUsha():void
 	pc.exhibitionism(1);
 	
 	processTime(15 + rand(5));
-	addButton(0, "Next", sexUsha);
+	addButton(0, "Next", sexUsha, false);
 }
 
 public function laterUsha():void
 {
 	clearOutput();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“On second thought, I’m liking the bar here,”</i> you tell her, taking a long draw from your drink. Usha just throws her head back and laughs, loud enough that a few patrons nearby turn and stare at her.");
 	output("\n\nWhen she’s done, the leithan rubs at her upper ears and shakes her heads. <i>“Yeah-huh. It’s alright, I guess you upper-crusts are cheap by nature. ");
@@ -360,27 +367,31 @@ public function laterUsha():void
 	mainMenuUsha();
 }
 
-public function sexUsha():void
+public function sexUsha(fromBar:Boolean = true):void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	moveTo("SHIP INTERIOR");
 	
-	if (flags["USHA_SEXED"] == undefined)
+	if(fromBar)
 	{
-		output("<i>“So, do you have a place nearby we could get away to, just the two of us? Or maybe you’d rather come back to my ship?”</i>");
-		output("\n\nThe chief grins, setting her drink down and drinking you in with those big, starry eyes of hers. <i>“Thought you’d never ask. Let’s go back to your ship... my little room here’s barely big enough for " + (pc.isTaur() ? "one ‘taur" : "me") + ", let alone the two of us. Lemme just pick up our tab here...”</i>");
+		if (flags["USHA_SEXED"] == undefined)
+		{
+			output("<i>“So, do you have a place nearby we could get away to, just the two of us? Or maybe you’d rather come back to my ship?”</i>");
+			output("\n\nThe chief grins, setting her drink down and drinking you in with those big, starry eyes of hers. <i>“Thought you’d never ask. Let’s go back to your ship... my little room here’s barely big enough for " + (pc.isTaur() ? "one ‘taur" : "me") + ", let alone the two of us. Lemme just pick up our tab here...”</i>");
+		}
+		else
+		{
+			output("<i>“How ‘bout we get out of here?”</i> you suggest, giving the chief your sauciest smile.");
+			output("\n\n<i>“I was hoping you’d say that,”</i> she answers, her tail thrashing against the booth. <i>“Lemme grab the tab, and then you’re all mine!”</i>");
+			
+		}
+		output("\n\nUsha taps her Codex against a little display on the table, gives you a little nod, and stands, rising to her full amazonian height to " + (pc.tallness < 68 ? "tower over you" : "reach even your lofty stature") + ". Grinning, she " + (pc.isTaur() ? "offers you a hand, hooking her arm around yours." : "pats her flank and kneels her rearmost legs down, making a clear invitation. You saunter over and swing your [pc.leg] over her plated rear, pulling yourself up onto Usha’s back and wrapping your arms around her upper half’s slender waist.") + " The two of you trot on back towards the [pc.ship], punctuating every twist and turn of the docking arms with gropes and teases, planting kisses all along the chief’s neck and cheeks as you hold her close.");
+		output("\n\n");
 	}
-	else
-	{
-		output("<i>“How ‘bout we get out of here?”</i> you suggest, giving the chief your sauciest smile.");
-		output("\n\n<i>“I was hoping you’d say that,”</i> she answers, her tail thrashing against the booth. <i>“Lemme grab the tab, and then you’re all mine!”</i>");
-		
-	}
-	output("\n\nUsha taps her Codex against a little display on the table, gives you a little nod, and stands, rising to her full amazonian height to " + (pc.tallness < 68 ? "tower over you" : "reach even your lofty stature") + ". Grinning, she " + (pc.isTaur() ? "offers you a hand, hooking her arm around yours." : "pats her flank and kneels her rearmost legs down, making a clear invitation. You saunter over and swing your [pc.leg] over her plated rear, pulling yourself up onto Usha’s back and wrapping your arms around her upper half’s slender waist.") + " The two of you trot on back towards the [PCShipName], punctuating every twist and turn of the docking arms with gropes and teases, planting kisses all along the chief’s neck and cheeks as you hold her close.");
-	output("\n\nUshamee’s cheeks are flushed a sultry dark purple by the time you arrive back at your ship. Home sweet home. Her upper ears are flush with her scalp, and her long, sinuous tail swishes along the deck and entwining between her legs. Even from where you are, you can smell the slowly swelling lust emanating from the chief’s backside, hanging more heavily in the air with every step. You’re starting to love the smell of leithan-bitch arousal, and no matter how much Usha tries to hide it, her womanly musk starts suffusing the atmosphere until you, too, are as flush as your tauric companion, almost ready to tear your gear off and ravish that lush pussy of hers.");
+	output("Ushamee’s cheeks are flushed a sultry dark purple by the time you arrive back at your ship. Home sweet home. Her upper ears are flush with her scalp, and her long, sinuous tail swishes along the deck and entwining between her legs. Even from where you are, you can smell the slowly swelling lust emanating from the chief’s backside, hanging more heavily in the air with every step. You’re starting to love the smell of leithan-bitch arousal, and no matter how much Usha tries to hide it, her womanly musk starts suffusing the atmosphere until you, too, are as flush as your tauric companion, almost ready to tear your gear off and ravish that lush pussy of hers.");
 	output("\n\nYou can’t get through the airlock quickly enough.");
 	output("\n\nWhen you’re finally stumbling into your ship, you slip away from Usha, disentangling yourself from her strong arms and leading her back to your bedroom with a coy crook of your finger. Over your shoulder, you hear her husky breathing and the sound of clothes hitting the deck. Her claws clitter-clack over the deck, and you can hear her tail slapping against damn near everything that gets in range. It’s a miracle she doesn’t knock something over before you’ve finally led her into into your cabin, and the door seals closed behind you.");
 	output("\n\nYou turn, and are greeted by the succulent sight of the chief standing naked before you, her dusky breasts rising and falling with steady, heavy breaths. They’re wonderfully full and heavy, and unrestrained as they are, every step the chief takes make them jiggle and bounce enticingly. You can’t help yourself but to saunter up to the big, beautiful woman and sink your hands into those melons, rolling her sin-black nipple between your fingers and cupping up the meaty mounds they capstone. Usha grins, wrapping her strong arms around your shoulders and neck, holding you close while you molest her chest.");
@@ -400,7 +411,7 @@ public function fuckUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	output("Leaning up and giving Usha a parting kiss on the lips, you release your grip on her and start making your way around her long, reptilian body. You trace a hand along her flanks all the way, enjoying the warmth and smoothness of armored plates, until you finally reach her rump and give it a sharp but playful spank. Usha gasps and canters forward, grabbing the footposts of your bed to steady herself. Whether by intent or by fuck-hungry instinct, her tail curls up over her back, baring everything she’s got.");
 	output("\n\nYou drink deep of her needy scent, finding yourself staring down the gulf between a pair of slick, thick black lips. Her sex is almost pear-shaped, narrowing around the hood of a broad, black clitoris, and drawing your eyes upwards to a sinfully dark, silky-soft looking donut ring above it.");
@@ -429,7 +440,7 @@ public function fuckUsha():void
 		output("\n\nShe shivers visibly, locking her fingers around the big, dark mounds of her pornstar’s rack, nodding hurriedly over her shoulder. <i>“Q-quit pussyfooting and put it in already!”</i>");
 		output("\n\nWell, if that’s what she wants! You reach forward, digging your fingers into the amazon’s plated flanks and use them like anchors to pull yourself in. Inch by inch, your [pc.cockBiggest] sinks into the silken slit of Usha’s quim, spreading the slick, hot walls wide open around your animalistic girth. The sheer force of your entry, even as slow as it is, makes the Chief gasp and stagger forward. Her forelegs give out, and her upper body collapses onto your bed. She grabs her own tits and starts playing with them, wrestling for some control of the pleasure she’s getting while you steadily fuck your way into the steamy embrace of her quim.");
 		output("\n\n<i>“O-oh <b>fuck!</b>”</i> she cries out, clawing her fingers into your blanket. <i>“S-so big... take it slow!”</i>");
-		output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow do. Quite the opposite. Giving her a reassuring rub on the haunch, you allow the buxom amazon a second of stillness to adjust to your pussy-stretching presence... before you grab two handfuls of ass and ram yourself in to the hilt.");
+		output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow down. Quite the opposite. Giving her a reassuring rub on the haunch, you allow the buxom amazon a second of stillness to adjust to your pussy-stretching presence... before you grab two handfuls of ass and ram yourself in to the hilt.");
 		output("\n\n<i>“Gah!”</i> she screams, knees buckling. She staggers, groping helplessly at the blankets until she’s slinking onto her forelegs’ knees, body still rocking with the ecstatic shockwaves of your surprise attack. You can’t help but appreciate the way her big tits spread out like clay on the bed, and the spastic way her twat squeezes and cums around your shaft, spraying your thighs with thick, musky leithan fem-cum. <i>“B-" + (pc.isMale() ? "bastard" : "bitch") + "! I said-”</i>");
 		output("\n\nYou shush her, affectionately rubbing her up-raised rump. Her tail weakly swats at your face, trying to punish you for taking her down like that... but ending up just caressing your cheek like a lover’s tender hand. With your cock buried to the hilt in her gaping twat and your hands sensuously massaging her broad behind, Usha can’t seem to muster the will to do anything more but moan and grope at her chest -- she can’t even get up! Considering the way her body’s still clenching like mad around your member, you can clearly see just how weak-kneed you’ve made her with one thrust!");
 		output("\n\nNow that she’s down on the deck, ass in the air and wetter than a whole gang of ausar cum-sluts, you can finally go to work. Still squeezing and caressing her horse-like ass, you gingerly rock your entire body back, hips and all, to drag your behemoth cock back through her slick passage. The lusty leithan moans ecstatically, squirting even more girl-juice around your shaft to ease your movements. She’s a veritable lube-factory back here, so wet that you’re practically sliding right out of her, as far as the awkward angle can take you, before hammering back home.");
@@ -491,7 +502,7 @@ public function fuckUshaBumPart2():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	output("The next few seconds stretch out like an eternity -- a lifetime spent indulging in unspeakable pleasures of the flesh that have your whole body on edge, tingling with the pent-up need to spill your seed into the welcoming embrace of the leithan’s bowels. Finally, though, Usha lets out a shrill scream and her pussy clenches hard around your fist, drawing your [pc.arm] deeper and deeper in with its sudden, violent contractions. At the same time, her dark asshole gives you a firm but surprisingly gentle squeeze, a mere echo of the tumultuous chaos that’s going on between her legs. But it’s enough -- more than enough by a Jovian mile -- to pull you over the edge with her.");
 	output("\n\nYou cum. Not a gentle, loving climax, but a violent eruption of pent-up [pc.cum] that seems to tear its way out of your fatigued body. You can’t even manage a scream, not even a grunt of effort, just a silent gasp of pleasure as you’re drawn as deep into the cock-hungry leithan as you’ve ever been and forced to plaster her silken insides with every last drop of [pc.cum] you have to your name.");
@@ -528,7 +539,7 @@ public function oralUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	//99999
 	if (pc.leithanScore() >= 3) output("There’s no more awkward couple than lesbian leithans, but you’re going to give it a shot.\n\n");
@@ -555,7 +566,7 @@ public function oralUsha2():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	output("The moment you do, an absolute flood of fem-cum comes pouring out; easily a gallon of thick lube splatters all over the deck, drenching Usha’s hindquarters and your [pc.legs]. You blink in surprise at just how wet the Chief’s gotten -- leithan-on-leithan fucking must be brutal if they need that much lube!");
 	output("\n\n<i>“Oh. Ohhhh wow,”</i> Usha manages to moan out, still slumped against the bed. <i>“That was... you’re an animal, Steele! Nobody’s ever fucked me like " + (flags["USHA_ORAL"] == undefined ? "that before" : "you do") + "!”</i>");
@@ -582,7 +593,7 @@ public function mountUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	if(pc.originalRace == "half-leithan") output("You were born for this, to mount luscious beauties like Usha and drive your [pc.cockBiggest] deep into their slavering, hungry wombs. ");
 	else output("You’ve long since changed yourself into the perfect form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb and flood it with your " + (pc.hasPerk("Potent") ? "potent " : "") + "seed. ");
@@ -618,10 +629,10 @@ public function sexMerge():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader(true);
+	showUshameeCiv(true);
 	
 	output("You wake up some time later, feeling a lingering warmth that clings to your [pc.skinFurScales] and a thick scent of sex that still hangs in the air. You sit up, groggily rubbing at your eyes, and find Usha sitting on her haunches in front of the little mirror in your bathroom, sensually brushing out her lush black hair like some ancient Godiva model.");
-	output("\n\nIt takes her a moment to notice you stirring. When she does, Usha pulls her hair back into a ponytail and flashes you a little smile. <i>“Hey, sleepyhead. Have fun groping my tits all night?”</i>");
+	output("\n\nIt takes her a moment to notice you stir. When she does, Usha pulls her hair back into a ponytail and flashes you a little smile. <i>“Hey, sleepyhead. Have fun groping my tits all night?”</i>");
 	output("\n\nWell... You give that huge leithan butt of hers an affectionate spank and tell her to get dressed");
 	if (pc.isMischievous())
 	{
@@ -649,7 +660,7 @@ public function leaveUsha():void
 {
 	clearOutput();
 	clearMenu();
-	chiefNeykkarHeader();
+	showUshameeCiv();
 	
 	output("<i>“I’ll see you around, Usha,”</i> you say, standing.");
 	output("\n\nThe leithan girl sighs and flicks a lock of raven hair behind one of her tapered ears. <i>“Aww, going already? Nice talking to you, [pc.name]. I’ll be here if you need me.”</i>");

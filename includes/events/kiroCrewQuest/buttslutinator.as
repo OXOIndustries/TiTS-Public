@@ -9,11 +9,14 @@ Anal ravishing can then commence. No matter what commands are entered, orgasm by
 Effects include but are not limited to: enlarged posterior, increased rectal nerve density, feelings of emptiness, stronger orgasms, regeneration via anal cum-absorption, sexual mania, headaches, spanking fetish, submissive tendencies, blood pressure spikes, and thinking of oneself as little more than property to be used and abused.*/
 
 //Initial Encounter
-public function buttslutinatorBonus():void
+public function buttslutinatorBonus():Boolean
 {
-	output("\n\n<b>This doesn’t belong, but it’s here anyway. Probably a fragment of future content, meant to appear somewhere not yet developed...</b> A pearly white, ‘A’-shaped device stands square in the middle of the room. Two control sticks flank the far side, clearly for the user’s hands, but how to use such a device? A strange gap is placed at the peak of the unusual ‘A,’ though the edges are both round and padded. The nearer side of the device is padded as well, made from some kind of spongy-looking material. When you take a step closer to it, the padding instantly adopts the shape of your [pc.legOrLegs], in perfect inverse.");
+	if(currentLocation != "KQ N20") output("\n\n<b>This doesn’t belong, but it’s here anyway. Probably a fragment of future content, meant to appear somewhere not yet developed...</b> ");
+	output("A pearly white, ‘A’-shaped device stands square in the middle of the room. Two control sticks flank the far side, clearly for the user’s hands, but how to use such a device? A strange gap is placed at the peak of the unusual ‘A,’ though the edges are both round and padded. The nearer side of the device is padded as well, made from some kind of spongy-looking material. When you take a step closer to it, the padding instantly adopts the shape of your [pc.legOrLegs], in perfect inverse.");
 	output("\n\nYou suppose that you would have to bend over the top to use it. Strange.");
 	addButton(0,"Use Device...",useTheButtslutinator,undefined,"Use Device...","Bend yourself over the bizarre device and see what it does. It’s obviously going to be sexual. Of that you can be sure.");
+	if(currentLocation == "KQ N20") return kiroQuestHallwaysEncounters();
+	else return false;
 }
 
 public function slutPCButt():void
@@ -273,7 +276,7 @@ public function secondButtsluttening():void
 	output("\n\nCould you complete your journey bottomless? Surely such an enticing booty would be irresistible to this galaxy’s biggest, strongest dicks. Why, you wouldn’t even need to walk anymore! You could just find yourself a hulking brute to fuck your ass for the rest of your journey, carrying you around on his pole like an ornament.");
 	output("\n\nYou glance back at the machine, feeling suddenly hollow, deeply so. If you climbed back in, you wouldn’t have to find someone to fuck. Is a little mental reprogramming too steep a price to pay for endless anal pleasure?");
 	output("\n\nWhatever the case, <b>you’re definitely a buttslut now.</b> Your doubt you’ll ever be able to have a small ass again, let alone go unfucked for more than a few days.");
-	output("\n\n(<b>Perk Gained: Buttslut</b> - Ensures your ass stays large and in charge, and allows you to heal from anal cumshots.)");
+	if(!pc.hasPerk("Buttslut")) output("\n\n(<b>Perk Gained: Buttslut</b> - Ensures your ass stays large and in charge, and allows you to heal from anal cumshots.)");
 	slutPCButt();
 	IncrementFlag("BUTTSLUTINATOR");
 	processTime(75);

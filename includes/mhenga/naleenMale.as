@@ -162,7 +162,7 @@ public function getButtfuckedByDudeleen():void
 		if(pc.hasHair()) output("runs his fingers through your [pc.hair].");
 		else output("traces a claw down your back.");
 		output("\n\n<i>“You’re pretty brave, aren’t you?”</i> he asks, to which you respond with a strained smile and a shrug. The dick buried halfway in your ass swells a bit before you feel it move forward, inching deeper inside you. The naleen starts to rock his hips gently, easing himself in and out of your untrained ass. He carefully stretches you with his girthy reptilian dick and, slowly but surely, pleasure replaces pain.");
-		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+		output("\n\nThe naleen picks up his pace, but keeps his thrusts shallow, at least until your ass stops putting up so much of a fight. Just as your pleasure begins to outpace your breath, the alien lets out a predatory hiss and drives himself deeper. Your whole body tenses and you let out a cry of surprise as he starts pounding away at your [pc.ass], but he gave you enough of a warm up that you can take him decently well. You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambience of the jungle.");
 	}
 	else
 	{
@@ -183,7 +183,7 @@ public function getButtfuckedByDudeleen():void
 		output("”</i>");
 		output("\n\nHe flicks his forked tongue and winks. There’s a pause as he draws his hips back, holding you in suspense, until he surges forward and nearly slams your face against the tree. You cry out in approval, and the naleen leans forward to hammer against you. ");
 		if(pc.isNaga()) output("Your serpentine tails entangle one another, scales sliding over scales and muscles twisting every which way. Each of you coils around the other, keeping your lower halves together as your top halves maintain the excited, rhythmic fucking. ");
-		output("You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambiance of the jungle.");
+		output("You grunt and gasp, the slapping of the naleen’s balls against your butt punctuating the ambience of the jungle.");
 	}
 	
 	var analCap:Number = pc.analCapacity();
@@ -191,7 +191,7 @@ public function getButtfuckedByDudeleen():void
 	
 	if(pc.hasVagina())
 	{
-		if(pc.totalVaginas() > 1) output("\n\nYour untouched slits let out a dribble of [pc.girlCum], as if indignant that they’ve been ignored.");
+		if(pc.totalVaginas() > 1) output("\n\nYour untouched slits let out a dribble of [pc.girlCum], as if indignant that they’ve been ignored. ");
 		else output("\n\nYour untouched slit lets out a dribble of [pc.girlCum], as if indignant that it’s been ignored. ");
 		if(pc.genitalLocation() >= 2) output("Sadly, you can’t reach your [pc.cunts], having to settle for the buttfuck alone. Or so you think. While the naleen may have respected where you did or did not want his dick, he’s still a little eager to try out your feminine side. You giggle as you feel a few furred fingers slip into [pc.oneVagina], expertly teasing it. ");
 		else
@@ -840,7 +840,7 @@ public function cuntailOnDudeleen():void {
 
 	output("\n\nYou moan in ecstasy as you idly hump his greedy mouth, letting the last of your load slip down his throat and into his ");
 	if(pc.cumQ() >= 2500) output("bloated ");
-	output("belly. You feel oh so deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen’s lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
+	output("belly. You feel oh-so-deliciously full yourself, your tail-cunt gorged on his seed. Yet... you can fit more, and he has another cock. Drooling mixed fluids, your tail wetly slurps free of the naleen’s lower prick and moves back to the upper one with deceptive laziness, swallowing him up once more. With practiced ease, your tail pushes him over the edge, draining this second cock of all its remaining seed as well, leaving you groaning at the delicious sensation of being so utterly and completely stuffed with predator-spunk.");
 
 	output("\n\nWith blissful laziness, you pull your cock free of the naleen’s mouth and slide off of his midriff, tail curling back around for you to inspect it. The perverse lips at its end are drooling thick gobbets of naleen seed, the scent of sex wafting from it with each twitch. Naughty boy, he got you so very messy....");
 
@@ -1301,7 +1301,7 @@ public function maleNaleenSucksPCOff():void
 	if(pc.biggestTitSize() >= 2) output("\n\nYour [pc.fullChest] presses into the naleen’s toned front, and you can’t help but " + pc.mf("groan","moan") + " into the kiss as your rock hard [pc.nipples] grind against your lover.");
 	if(pc.isLactating()) output(" It doesn’t take any more for your sensitive [pc.nipples] to start leaking thin [pc.milkColor] streams of your [pc.milkNoun] that drench both your own mammaries and the fur of the naga-kitty.");
 
-	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze.The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
+	output("\n\nDeepening the kiss, you slip your tongue into the naleen’s mouth and explore it with raw sexual hunger. Your partner mewls submissively against your [pc.lips]. When you finally break the kiss, a sole strand of saliva still connects both your mouths for a second, before it breaks. You don’t intend to give the cute feline a break though. Instead, you start to assault his neck with kisses while one of your hands finds its way down to his groin. The naleen gasps as you close your fingers around his uppermost erection and give it a playful squeeze. The throbbing, bulbous shafts twitches and small spurt of pre drips over your hand.");
 	output("\n\nWith a ");
 	if(pc.isBimbo()) output("delighted giggle");
 	else output("self-assured smile");
@@ -1398,14 +1398,14 @@ public function maleNaleenSucksPCOff():void
 	{
 		output("\n\nContinuing to work his turgid prick with your mouth, you look up at his face and give your lover a reassuring wink, telling him it’s okay for him to climax.");
 		if(pc.isBimbo()) output(" You hope he’ll give you a huge, tasty load of yummy cum.");
-		output("\n\nEncouraged by that, the naleen surprises you when he suddenly grabs you by your [pc.hair] and thrusts your head down into his crotch, forcing his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air and quite a lot of it lands in you [pc.hair] and on your face.");
+		output("\n\nEncouraged by that, the naleen surprises you when he suddenly grabs you by your [pc.hair] and thrusts your head down into his crotch, forcing his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air and quite a lot of it lands in your [pc.hair] and on your face.");
 		output("\n\nOnce he is spent and his dicks dribble their last drops into your throat and hair respectively, the naleen sighs happily and lets go of you. You let his dick slide out of your well fucked throat.");
 	}
 	else
 	{
 		output("\n\nWell didn’t you ");
 		if(pc.isBimbo()) output("like ");
-		output("tell him to be quiet. Seems like some punishment is required. You grin deviously around your kitty play toy’s turgid shaft and give his second bulbous length, which you are still jerking, a hard, slightly painful squeeze. The poor guy screams out in pain and pleasure and is brought over the edge. His hips jerk upwards and push his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air, and quite a lot of it lands in you [pc.hair] and on your face.");
+		output("tell him to be quiet. Seems like some punishment is required. You grin deviously around your kitty play toy’s turgid shaft and give his second bulbous length, which you are still jerking, a hard, slightly painful squeeze. The poor guy screams out in pain and pleasure and is brought over the edge. His hips jerk upwards and push his thick reptilian shaft as far down your throat as it can get. His dick twitches and then erupts into a messy orgasm that shoots cum straight down your throat. You can’t do anything but swallow as your lover fills your stomach with his seed, not that you are complaining. Simultaneously, the second dick spurts thick ropes of semen in the air, and quite a lot of it lands in your [pc.hair] and on your face.");
 		output("\n\nOnce he is and his dicks dribble their last drops into your throat and hair respectively the naleen sighs happily and you let his dick slide out of your well fucked throat.");
 	}
 	output("\n\n It leaves your ");

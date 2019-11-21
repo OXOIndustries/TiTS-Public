@@ -201,6 +201,8 @@
 			output("\n\nSuddenly, you feel a pressure building in the center of your forehead. Running your fingers along it, you feel a lump forming dead center of your brow. The lump becomes hard and plated, smooth like chitin rather than the same texture of your [pc.skinFurScales]. After a long moment, the lump splits off, growing two prongs out of the top. While they start off as amorphous, chitinous blobs growing off of your head, the two lumps eventually begin to coalesce and solidify into what seem to be a pair of reversed, plated bunny ears. <b>It looks like you now have the strange, four-part ears of a leithan!</b>");
 
 			target.earType = GLOBAL.TYPE_LEITHAN;
+			target.clearEarFlags();
+			target.addEarFlag(GLOBAL.FLAG_LONG);
 			if (target.earLength < 2) target.earLength = 2 + rand(5);
 			if (target.earLength > 6) target.earLength = 6;
 
@@ -235,7 +237,10 @@
 			if (target.tailType != GLOBAL.TYPE_LIZAN && target.tailTypeUnlocked(GLOBAL.TYPE_LIZAN))
 			{
 				target.tailType = GLOBAL.TYPE_LIZAN;
-				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_PREHENSILE];
+				target.clearTailFlags();
+				target.addTailFlag(GLOBAL.FLAG_LONG);
+				target.addTailFlag(GLOBAL.FLAG_SCALED);
+				target.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			}
 
 			return true;
@@ -254,7 +259,7 @@
 			output(" <b>You now have scales with a gray, leithan palette!</b>");
 
 			target.skinType = GLOBAL.SKIN_TYPE_SCALES;
-			target.skinFlags = [];
+			target.clearSkinFlags();
 			target.skinTone = "gray";
 			target.scaleColor = "gray";
 
@@ -270,6 +275,7 @@
 			//Change legtype to Leithan. Gain centaur body. Increase capacity of orifices. Gain six legs. 
 			
 			var wrongLegType:Boolean = target.legType != GLOBAL.TYPE_LIZAN && target.legTypeUnlocked(GLOBAL.TYPE_LIZAN);
+			if(!wrongLegType) wrongLegType = (!target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || !target.hasLegFlag(GLOBAL.FLAG_SCALED) || !target.hasLegFlag(GLOBAL.FLAG_PAWS));
 			
 			// Wrong legs or not biped
 			if (wrongLegType || (target.legCount < 2 && target.legCountUnlocked(2)))
@@ -289,7 +295,7 @@
 				if (wrongLegType)
 				{
 					target.legType = GLOBAL.TYPE_LIZAN;
-					target.legFlags = [];
+					target.clearLegFlags();
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_SCALED);
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
@@ -309,7 +315,7 @@
 				output("Your already equine body starts to itch and ache, starting to mutate at the behest of your Leitha Charm. Slowly, your horse-side’s skin starts to harden, becoming dark and plate-like. Luminescant veins begin to form between the plates, giving you a sensuous glow on top of your newfound armored hide. The transformation is quick, and surprisingly pleasant feeling. <b>Your legs are now that of a leithan!</b>");
 				
 				target.legType = GLOBAL.TYPE_LIZAN;
-				target.legFlags = [];
+				target.clearLegFlags();
 				target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 				target.addLegFlag(GLOBAL.FLAG_SCALED);
 				target.addLegFlag(GLOBAL.FLAG_PAWS);
@@ -405,7 +411,7 @@
 			output(" <b>an altogether human face</b>.");
 
 			target.faceType = GLOBAL.TYPE_HUMAN;
-			target.faceFlags = [];
+			target.clearFaceFlags();
 
 			return true;
 		}
@@ -419,7 +425,9 @@
 			output("\n\nYou lash it around experimentally as the feeling in your mouth gradually returns to normal. Slurping it back home with a wet pop, you realize <b>you now have a forked leithan tongue!<b>");
 			
 			target.tongueType = GLOBAL.TYPE_LEITHAN;
-			target.tongueFlags = [GLOBAL.FLAG_PREHENSILE, GLOBAL.FLAG_LONG];
+			target.clearTongueFlags();
+			target.addTongueFlag(GLOBAL.FLAG_LONG);
+			target.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			
 			return true;
 		}
@@ -545,7 +553,7 @@
 			{
 				if (target.vaginas[i].type != GLOBAL.TYPE_LEITHAN && target.vaginaTypeUnlocked(i, GLOBAL.TYPE_LEITHAN))
 				{
-					target.vaginas[i].type = GLOBAL.TYPE_LEITHAN;
+					target.shiftVagina(i, GLOBAL.TYPE_LEITHAN);
 					tfType++;
 				}
 				if (target.vaginas[i].bonusCapacity < 500)

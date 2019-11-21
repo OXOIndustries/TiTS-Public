@@ -4,6 +4,9 @@
 	import classes.Items.Miscellaneous.ZilRation;
 	import classes.Resources.StatusIcons;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.InRoomWithFlag;
+	import classes.Engine.Utility.getPlanetName;
+	
 	
 	/**
 	 * ...
@@ -50,20 +53,51 @@
 				return;
 			}
 			Cheats.OutputStuff(true);
+			kGAMECLASS.output("\n<b>Mitzi has been unlocked!</b>");
 			kGAMECLASS.flags["MITZI_RESCUED"] = (kGAMECLASS.GetGameTimestamp() - (60*24*8));
 			//if(kGAMECLASS.flags["MITZI_RESCUED"] < 0) kGAMECLASS.flags["MITZI_RESCUED"] = 0;
 		}
 		public static function YakuzaUnlock():void
 		{
-			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0 || kGAMECLASS.flags["SHUKUCHI_FOURTH_ENCOUNTER"] == undefined)
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0 || kGAMECLASS.flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined)
 			{
 				return;
 			}
-			Cheats.OutputStuff(false);
+			Cheats.OutputStuff(true);
+			kGAMECLASS.output("\n<b>Shukuchi encounter has been unlocked!</b>");
 			kGAMECLASS.flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1; 
 			kGAMECLASS.flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
 			kGAMECLASS.flags["SHUKUCHI_EMAIL_TIMER"] = (kGAMECLASS.GetGameTimestamp() - (60 * 24 * 7));
+		}
+		public static function BringMeAFox():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			if (kGAMECLASS.flags["BIANCA_LOCATION"] != undefined) return;
+			if (!InRoomWithFlag(GLOBAL.HAZARD) || kGAMECLASS.biancaPlanetPool().indexOf(getPlanetName().toLowerCase()) < 0)
+			{
+				kGAMECLASS.output("\n<b>Bianca can’t spawn here.</b>");
+				return;
+			}
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Spawning Fox</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.biancaRandomEncounter);
+		}
+		public static function BoobSiliconePlease():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.output("\n<b>Doctor Badger cheat menu activated!</b>");
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.drBadgerCheatMenu);
 		}
 		public static function XPToLevel():void
 		{
@@ -76,7 +110,92 @@
 			kGAMECLASS.output("\n\nGiving XP to next level!");
 			(kGAMECLASS.pc as PlayerCharacter).XPRaw = (kGAMECLASS.pc as PlayerCharacter).XPMax();
 		}
-		
+		public static function ClassicLapinara():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["LAPLOVE"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>You can now encounter the classic Lapinara on Tarkus.</b>");
+				kGAMECLASS.flags["LAPLOVE"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Classic Lapinara encounters are disabled.</b>");
+				kGAMECLASS.flags["LAPLOVE"] = undefined;
+			}
+		}
+		public static function SexdollEncounter():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			kGAMECLASS.output("\n<b>You will now be transported to a location to test the sexdolls in Kiro’s recruitment quest. A teleport out can be found to the northeast of the map...</b>");
+			//kGAMECLASS.shipLocation = "KQ N32";
+			kGAMECLASS.currentLocation = "KQ N32";
+			//kGAMECLASS.eventQueue.push(kGAMECLASS.genericSexdollEncounter);
+		}
+		public static function SJWMode():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["SJW"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>‘Shemale’ will now be converted to dick-girl.</b>");
+				kGAMECLASS.flags["SJW"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Text will appear in unaltered form.</b>");
+				kGAMECLASS.flags["SJW"] = undefined;
+			}
+		}
+		public static function ArdiaLetsYouChoose():void
+		{
+			if (kGAMECLASS.pc.short == "undefined" || kGAMECLASS.pc.short.length == 0) return;
+			Cheats.OutputStuff();
+			if (kGAMECLASS.flags["ARDIA_CHOICE"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>Ardia will still display her sex menu at high DM.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>Ardia will pick sex scenes as normal.</b>");
+				kGAMECLASS.flags["ARDIA_CHOICE"] = undefined;
+			}
+		}
+
+		public static function infiniteCrewSpace():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			if(kGAMECLASS.flags["INFINITE_CREW"] == undefined)
+			{
+				kGAMECLASS.output("\n<b>You can now fly with any amount of crew members.</b>");
+				kGAMECLASS.flags["INFINITE_CREW"] = 1;
+			}
+			else
+			{
+				kGAMECLASS.output("\n<b>You can no longer fly with any amount of crew members.</b>");
+				kGAMECLASS.flags["INFINITE_CREW"] = undefined;
+			}
+		}
 		public static function infiniteItemUse():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
@@ -87,12 +206,12 @@
 			Cheats.OutputStuff();
 			if(kGAMECLASS.flags["INFINITE_ITEMS"] == undefined)
 			{
-				kGAMECLASS.output("\n<b>Items can now be used infinitely.");
+				kGAMECLASS.output("\n<b>Items can now be used infinitely.</b>");
 				kGAMECLASS.flags["INFINITE_ITEMS"] = 1;
 			}
 			else
 			{
-				kGAMECLASS.output("\n<b>Items can no longer be used indefinitely.");
+				kGAMECLASS.output("\n<b>Items can no longer be used indefinitely.</b>");
 				kGAMECLASS.flags["INFINITE_ITEMS"] = undefined;
 			}
 		}
@@ -105,13 +224,24 @@
 			
 			Cheats.OutputStuff();
 			kGAMECLASS.output("\n<b>All locations have been unlocked.</b>");
+			// Tarkus
 			kGAMECLASS.flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
+			// Myrellion
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
+			// Zheng Shi
+			kGAMECLASS.flags["KING_NYREA"] = 1; kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] = kGAMECLASS.GetGameTimestamp();
+			// New Texas
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
+			// Poe A
 			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = kGAMECLASS.GetGameTimestamp();
+			// Uveto
 			kGAMECLASS.flags["UVETO_UNLOCKED"] = 1;
+			// Canadia Station
 			kGAMECLASS.flags["CANADA_UNLOCKED"] = 1;
-
+			// Gastigoth
+			kGAMECLASS.flags["GASTIGOTH_UNLOCKNUM"] = 0; kGAMECLASS.goMailGet("gastigoth_unlock");
+			// Breedwell
+			kGAMECLASS.goMailGet("breedwell_unlock");
 		}
 		public static function toggleDebug():void
 		{
@@ -123,12 +253,12 @@
 			Cheats.OutputStuff();
 			if(!kGAMECLASS.debug)
 			{
-				kGAMECLASS.output("\n<b>Debug mode enabled. Expect broken shit.");
+				kGAMECLASS.output("\n<b>Debug mode enabled. Expect broken shit.</b>");
 				kGAMECLASS.debug = true;
 			}
 			else
 			{
-				kGAMECLASS.output("\n<b>Debug mode disabled. Atta " + kGAMECLASS.pc.mf("boy","girl") + "!");
+				kGAMECLASS.output("\n<b>Debug mode disabled. Atta " + kGAMECLASS.pc.mf("boy","girl") + "!</b>");
 				kGAMECLASS.debug = false;
 			}
 		}
@@ -218,7 +348,7 @@
 			}
 			
 			OutputStuff(true);
-			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments \"like so\".\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
+			output("\nSmash in a JSON formatted string of arguments.\n\nYou will have to quote string arguments “like so”.\n\nIf you want more than a single argument, you will have to wrap them in \\\[ \\\] like this:\n\\\[\"mystringarg\", 123456\\\].");
 			kGAMECLASS.removeInput();
 			kGAMECLASS.displayInput();
 			kGAMECLASS.userInterface.textInput.text = "";
@@ -294,13 +424,15 @@
 		}
 		
 		// Treatment Haxxx
+		public static function TryTreatmentHaxDefault():void { TryTreatmentHax(); }
 		public static function TryTreatmentHaxCowGirl():void { TryTreatmentHax(0); }
 		public static function TryTreatmentHaxBull():void { TryTreatmentHax(1); }
 		public static function TryTreatmentHaxCumCow():void { TryTreatmentHax(2); }
-		public static function TryTreatmentHaxFauxCow():void { TryTreatmentHax(3); }
+		public static function TryTreatmentHaxCowStud():void { TryTreatmentHax(3); }
 		public static function TryTreatmentHaxAmazon():void { TryTreatmentHax(4); }
 		public static function TryTreatmentHaxDouble():void { TryTreatmentHax(5); }
 		public static function TryTreatmentHaxMini():void { TryTreatmentHax(6); }
+		public static function TryTreatmentHaxFauxCow():void { TryTreatmentHax(7); }
 		private static function TryTreatmentHax(variant:int = -1):void
 		{
 			if(variant >= 0)
@@ -312,10 +444,11 @@
 					case 0: msg += "Cow-Girl"; break;
 					case 1: msg += "Bull"; break;
 					case 2: msg += "Cum-Cow"; break;
-					case 3: msg += "Faux-Cow"; break;
+					case 3: msg += "Cow Stud"; break;
 					case 4: msg += "Amazon"; break;
 					case 5: msg += "Double Stud"; break;
 					case 6: msg += "Undersized"; break;
+					case 7: msg += "Faux-Cow"; break;
 				}
 				msg += "!";
 				
@@ -323,6 +456,13 @@
 				
 				Cheats.OutputStuff();
 				kGAMECLASS.output(msg);
+			}
+			else if(kGAMECLASS.flags["TREATMENT_HAX"] != undefined)
+			{
+				kGAMECLASS.flags["TREATMENT_HAX"] = undefined;
+				
+				Cheats.OutputStuff();
+				kGAMECLASS.output("\nThe next Treatment dose will no longer be forced and should perform as expected.");
 			}
 		}
 		
@@ -387,7 +527,7 @@
 			// flag, short, long
 			//["NEW_YEARS", "NewYrs", "New Years"],
 			//["LUNAR_NEW_YEAR", "Lunar", "Lunar New Years"],
-			//["VALENTINES", "Valent.", "Valentine’s"],
+			["VALENTINES", "Valent.", "Valentine’s"],
 			//["ST_PATRICKS", "StPatty", "Saint Patrick’s"],
 			["APRIL_FOOLS", "AprFool", "April Fools"],
 			["EASTER", "Easter", "Easter"],

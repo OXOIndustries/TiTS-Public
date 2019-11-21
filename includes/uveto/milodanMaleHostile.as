@@ -126,6 +126,12 @@ public function winVsMilodanMale():void
 	else output("Defeated by your sensuous wiles, the barbarian gives up all pretense of fighting and drops to his knees, grunting in need. You walk over and casually kick his hands away from his loincloth, leaving him at your mercy.");
 	output("\n\n");
 	processTime(1);
+	
+	miloMaleWinMenu();
+}
+
+public function miloMaleWinMenu():void
+{
 	clearMenu();
 
 	if(pc.lust() >= 33)
@@ -333,6 +339,7 @@ public function yesGetTheMilodanOff(x:int):void
 
 	output("\n\nYou grit your teeth and groan in satisfaction as you finally let yourself go, your backed-up load spurting into the milodan’s ass and coating his insides in spunk. Giving him a few last lazy thrusts,");
 
+	var timeBonus:Number = 0;
 	//No knot:
 	if(!pc.hasKnot(x)) 
 	{
@@ -345,6 +352,7 @@ public function yesGetTheMilodanOff(x:int):void
 	//Knot:
 	else
 	{
+		timeBonus = 180;
 		output(" you hilt yourself inside him, relishing the prospect of what’s to come.");
 		//pc.cumVolume <50000:
 		if(pc.cumQ() < 50000)
@@ -370,7 +378,7 @@ public function yesGetTheMilodanOff(x:int):void
 		}
 	}
 	output("\n\n");
-	processTime(30);
+	processTime(30+timeBonus);
 	enemy.loadInAss(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
@@ -1040,6 +1048,15 @@ public function milodanPregnancyEnds():void
 
 	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
 	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Milodan Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
@@ -1147,7 +1164,7 @@ public function milodanBadEndHandler():Boolean
 		output("\n\nSome thirty minutes later, shivering and afraid, you find yourself passing a thick wall of ice as you enter a village, other milodan tribe members watching curiously as you’re carried into a large tent and laid on your belly on a pile of sheets, still struggling and protesting feebly. The milodan climbs in with you, his furry weight pinning you down as he slides his hardening cock into your jizz-leaking ");
 		if (pc.hasVagina()) output("cunt");
 		else output("[pc.asshole]");
-		output(" , picking up a rhythm alarmingly quickly, railing your helpless form pronebone. When he finally finishes with you hours later, the edge taken off his libido by his romp with you in the snow, you’re too tired, too well-fucked to do much of anything besides leak jizz and whimper, your entire body now agonizingly sore from being pounded so brutally and cumming so many times. When he pulls a thick pelt over the two of you and begins to snore you make no protest, though a small whimper escapes your [pc.lips] before you drift into sweet, dreamless sleep.");
+		output(", picking up a rhythm alarmingly quickly, railing your helpless form pronebone. When he finally finishes with you hours later, the edge taken off his libido by his romp with you in the snow, you’re too tired, too well-fucked to do much of anything besides leak jizz and whimper, your entire body now agonizingly sore from being pounded so brutally and cumming so many times. When he pulls a thick pelt over the two of you and begins to snore you make no protest, though a small whimper escapes your [pc.lips] before you drift into sweet, dreamless sleep.");
 		if (pc.hasVagina())
 		{
 			output("\n\nYou try to escape, of course - more than once. Each time, your new alpha finds you in the snow, drags you back to his tent and spanks you like a disobedient child until your [pc.ass] is glowing red, until you can’t sit without whimpering in discomfort. Eventually, you realize it’s hopeless; he knows the terrain around the village too well - your only hope is that someone will come rescue you. They don’t though, and at some point during your first pregnancy ");

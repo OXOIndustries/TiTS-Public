@@ -267,6 +267,22 @@ public function hasFeedableMimbranes():Boolean
 	return false;
 }
 
+public function hasVisibleMimbranes():Boolean
+{
+	if (pc.hasStatusEffect("Mimbrane Face")) return true;
+	if (pc.hasAirtightSuit()) return false;
+	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right")) return true;
+	if (pc.isChestExposed() && pc.hasStatusEffect("Mimbrane Boobs")) return true;
+	if (pc.isCrotchExposed())
+	{
+		if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit")) return true;
+		if (pc.hasStatusEffect("Mimbrane Balls")) return true;
+		if (pc.hasStatusEffect("Mimbrane Pussy")) return true;
+	}
+	if (pc.isAssExposed() && pc.hasStatusEffect("Mimbrane Ass")) return true;
+	return false;
+}
+
 public function logAllEffects(old:Object = null):Object
 {
 	if (old == null)
@@ -373,7 +389,7 @@ public function feedCost(effectName:String, feedCost:int):void
 }
 
 /**
- * "Feed" any available mimbranes that are eligible to recieve ~nutrition~
+ * "Feed" any available mimbranes that are eligible to receive ~nutrition~
  * target selects the "grouping" that feeding will apply to; "all" or "regular"
  * "all" applies to all currently attached mimbranes
  * "regular" applies to only mimbranes that fall into the bracket of "regular sexytimes activity contact"
@@ -2417,7 +2433,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			if(pc.lust() >= 33)
 			{
 				output("\n\nYou could probably do something about that lust buildup too...");
-				masturbateButton(1);
+				masturbateButton(1, false, true);
 			}
 			break;
 	}
@@ -3808,7 +3824,7 @@ public function useDatMimbraneLikeACondom():void
 	} 
 	
 	if (pc.balls > 0) output(" More than a few heads would turn at the sight of your [pc.sack] clenching its damnedest, anxious for clemency.");
-	output(" A [pc.cumColor]");
+	output(" " + StringUtil.capitalize(indefiniteArticle(pc.cumColor())));
 	if (pc.cumQ() <= 100) output(" burst");
 	else if (pc.cumQ() <= 200) output(" fountain");
 	else if (pc.cumQ() <= 400) output(" downpour");
@@ -3862,7 +3878,7 @@ public function beatUpByAFuckinDishcloth():void
 	output("\n\n[pc.LegOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
-	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caress you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and oppressive environment.");
+	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caressing you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and the oppressive environment.");
 	pc.lust(100);
 	if(pc.hasTailCock() && rand(2) == 0)
 	{
@@ -3886,7 +3902,7 @@ public function beatUpByAFuckinDishcloth():void
 All numbers in this section may be subject to change.
 Preferred Order of Attachment
 Mimbranes will attach to the PC’s body in a specific order, ideally prioritizing nourishment, seclusion, and warmth. Parasites will only skip to the next organ when previous organs have been claimed by other Mimbranes or the PC does not have the organ. If the missing organ appears later, new Mimbranes will target it before the organ next in the list (e.g. a male PC becomes a herm by gaining a vagina, but already has parasites on their dick, ass and balls. The next Mimbrane will target the new pussy before going for breasts or hands). 
-Head Mimbranes require all attached Mimbranes to be at at least level two trust before they can be gained. They will start at level two trust.
+Head Mimbranes require all attached Mimbranes to be at least level two trust before they can be gained. They will start at level two trust.
 Breasts must be more than flat (A cup+) to be a target for Mimbranes.
 If by some happenstance, a PC has testicles and no dick, then they’re skipped as well.
 The order is as follows:
@@ -4144,15 +4160,15 @@ public function attachFaceMimbrane():void
 {
 	//Requires all attached Mimbranes be minimum level 2 trust
 	// Shit should already have been checked in the attachment scene router.
-	output("It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; it’s easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.");
+	output("It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat that is contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; it’s easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.");
 	output("\n\nNature seems especially interesting again today. The pink haze isn’t as thick as usual, giving you a clearer sight at the Mimbrane hovering over your face.");
 	output("\n\nWait. What?");
 	output("\n\nYour mind is dragged back to reality. You’re fully aware again, right in the moment. The odd sensation of being watched by a multitude of eyes is upon you. But nothing is more apparent than the Mimbrane staring you right in the eyes. The parasite’s front two corners are perched on the sides of your face, letting the creature suspend the best representation it has of a face a good distance above yours. Your labored breathing pushes the parasite a little with each exhale and sucks in a little of its haze with each inhale.");
 	output("\n\nWhat does it intend to do? Have the number of Mimbranes gotten high enough for them to claim dominance over your body? You start to worry, but the look in the Mimbrane’s face is inquisitive. It’s as if it’s waiting for a response. The parasite taps on your [pc.face] again, tracing your [pc.lips] with one of its corners while chirping lightly at you. There’s no way in hell your microsurgeons can translate that for you...");
-	output("\n\nThat’s when you recall the codex! Mimbrane naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing?");
+	output("\n\nThat’s when you recall the codex! Mimbranes naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing?");
 	output("\n\nYou think for a moment, eyes darting around your close-up champion, its face tilted to one side to only further appear as if awaiting a response. The rest of the Mimbranes on your body seem to think you’re alright... Perhaps they goaded this one into testing its luck? That would explain the tense feeling you’re getting about being watched. But rather than just go whole hog on your head, it would seem this parasite at least wants to try and get approval from you before working against its instincts.");
 	output("\n\nIt makes sense to you anyway.");
-	output("\n\nIt’s been awhile since you haven’t abandoned your body when it’s in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.");
+	output("\n\nIt’s been awhile since you haven’t abandoned your body when it’s in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants to attach itself on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.");
 	output("\n\nLooks like the decision is up to you.");
 
 	//[Go ahead][No!]
@@ -4343,8 +4359,8 @@ public function mimbraneMenu():void
 				output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed. However, you have no means to feed " + (totalMimbs == 1 ? "it" : "them") + "!")
 			}
 
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You need to have a dick and the libido to get it up to do this.");
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You need to have a pussy and the libido to get it going to do this.");
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed","You need to have a dick and the libido to get it up to do this.");
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You need to have a pussy and the libido to get it going to do this.");
 		}
 		else
 		{
@@ -4352,18 +4368,18 @@ public function mimbraneMenu():void
 			output2("You have " + (totalMimbs == 1 ? "a Mimbrane that is" : "Mimbranes that are") + " ready to feed.");
 			
 			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
-			else addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don’t have a penis to use.");
-			if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
-			else addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don’t have a vagina to use for this.");
+			if (pc.hasCock()) addGhostButton(0, "Penis Feed", feedMimbranesWithCock, undefined, "Penis Feed", "Feed attached Mimbranes using your penis.");
+			else addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have a penis to use.");
+			if (pc.hasVagina()) addGhostButton(1, "Vaginal Feed", feedMimbranesWithPussy, undefined, "Vaginal Feed", "Feed attached Mimbranes using your vagina.");
+			else addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have a vagina to use for this.");
 		}
 	}
 	else if (hasFeedableMimbranes() && !mimbranePrivateLocation())
 	{
 		output2("Maybe if you were somewhere a little more private, you could ensure your Mimbranes were properly fed....");
 		
-		addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
-		addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
+		addDisabledGhostButton(0, "Penis Feed","Penis Feed", publicNotice);
+		addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed", publicNotice);
 	}
 	//If all Mimbranes are full
 	else
@@ -4380,8 +4396,8 @@ public function mimbraneMenu():void
 			else output2(" They");
 			output2(" must be full.");
 			
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed","You don’t have any mimbranes wanting to eat at the moment.");
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed","You don’t have any mimbranes wanting to eat at the moment.");
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed","You don’t have any mimbranes wanting to eat at the moment.");
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed","You don’t have any mimbranes wanting to eat at the moment.");
 		}
 		else
 		{
@@ -4391,8 +4407,8 @@ public function mimbraneMenu():void
 			if (attachedMimbranes() > 1) output2(" none seem");
 			else output2(" it doesn’t seem");
 			output2(" that hungry.");
-			addDisabledGhostButton(0, "Cock Feed","Cock Feed", publicNotice);
-			addDisabledGhostButton(1, "Vag Feed","Vag Feed", publicNotice);
+			addDisabledGhostButton(0, "Penis Feed","Penis Feed", publicNotice);
+			addDisabledGhostButton(1, "Vaginal Feed","Vaginal Feed", publicNotice);
 		}
 	}
 
@@ -4420,7 +4436,7 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(5, "Toggle Sweat");
+		addDisabledGhostButton(5, "Toggle Sweat", "Toggle Sweat", "Your Mimbrane trust level is not high enough to use this.");
 	}
 
 	// Spit attacks
@@ -4444,7 +4460,19 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(6, "Toggle Spit");
+		addDisabledGhostButton(6, "Toggle Spit", "Toggle Spit", "Your Mimbrane trust level is not high enough to use this.");
+	}
+
+	// Toggle Swelling
+	if (pc.hasPerk("Mimbrane Symbiosis"))
+	{
+		output2("\n\n<b>You’ve unlocked the ability to adjust the swelling appearance of specific Mimbrane-attached body parts.</b>");
+		
+		addGhostButton(7, "Swelling", toggleMimbraneSwellingMenu);
+	}
+	else
+	{
+		addDisabledGhostButton(7, "Swelling", "Swelling", "Your Mimbrane attachment is not strong enough to use this.");
 	}
 
 	// Face customisation
@@ -4509,7 +4537,7 @@ public function mimbraneMenu():void
 		}
 		else
 		{
-			addDisabledGhostButton(12, "Lip Pc.Ing");
+			addDisabledGhostButton(12, "Lip Pc.Ing", "Lip Piercing", "Your Mimbrane trust level is not high enough to use this.");
 		}
 	}
 	else
@@ -4698,6 +4726,116 @@ public function toggleMimbraneSpit():void
 	clearGhostMenu();
 	addGhostButton(0, "Next", mimbraneMenu);
 }
+
+public function toggleMimbraneSwellingMenu(newTxt:Boolean = true):void
+{
+	if(newTxt) clearOutput2();
+	clearGhostMenu();
+	
+	var numMims:int = attachedMimbranes();
+	var btnSlot:int = 0;
+	
+	if(newTxt)
+	{
+		output2("Your Mimbrane" + (numMims == 1 ? "" : "s") + " will swell based on " + (numMims == 1 ? "its" : "their") + " feeding level. You are able to tell " + (numMims == 1 ? "it" : "them") + " to look less bloated if you desire.");
+		output2("\n\n<i>Note that this only changes the swollen appearance of the body part, if applicable, and may not necessarily decrease the extra size added to the body part from the swelling. The Mimbrane" + (numMims == 1 ? "" : "s") + " can only do so much with " + (numMims == 1 ? "its" : "their") + " own mass after all.</i>");
+	}
+	
+	output2("\n\n<b><u>Current Mimbranes</u></b>");
+	if(pc.hasStatusEffect("Mimbrane Cock")) {
+		output2("\n<b>* Penis:</b> Swelling " + (flags["MIMBRANE_NOSWELL_COCK"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Penis:" + (flags["MIMBRANE_NOSWELL_COCK"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "COCK");
+	}
+	if(pc.hasStatusEffect("Mimbrane Pussy")) {
+		output2("\n<b>* Vagina:</b> Swelling " + (flags["MIMBRANE_NOSWELL_CUNT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Vagina:" + (flags["MIMBRANE_NOSWELL_CUNT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "CUNT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Ass")) {
+		output2("\n<b>* Asshole:</b> Swelling " + (flags["MIMBRANE_NOSWELL_BUTT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Asshole:" + (flags["MIMBRANE_NOSWELL_BUTT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "BUTT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Balls")) {
+		output2("\n<b>* Testicle:</b> Swelling " + (flags["MIMBRANE_NOSWELL_SACK"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Testicle:" + (flags["MIMBRANE_NOSWELL_SACK"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "SACK");
+	}
+	if(pc.hasStatusEffect("Mimbrane Boobs")) {
+		output2("\n<b>* Chest:</b> Swelling " + (flags["MIMBRANE_NOSWELL_TITS"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Chest:" + (flags["MIMBRANE_NOSWELL_TITS"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "TITS");
+	}
+	if(pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right")) {
+		output2("\n<b>* Hand:</b> Swelling " + (flags["MIMBRANE_NOSWELL_HAND"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Hand:" + (flags["MIMBRANE_NOSWELL_HAND"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "HAND");
+	}
+	if(pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right")) {
+		output2("\n<b>* Feet:</b> Swelling " + (flags["MIMBRANE_NOSWELL_FOOT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Feet:" + (flags["MIMBRANE_NOSWELL_FOOT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "FOOT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Face")) {
+		output2("\n<b>* Face:</b> Swelling " + (flags["MIMBRANE_NOSWELL_FACE"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Face:" + (flags["MIMBRANE_NOSWELL_FACE"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "FACE");
+	}
+	output2("\n\n");
+	
+	addGhostButton(14, "Back", mimbraneMenu);
+}
+public function toggleMimbraneSwelling(mimType:String = ""):void
+{
+	clearOutput2();
+	
+	var swell:Number = 0;
+	var both:Boolean = false;
+	var part:String = "";
+	
+	switch(mimType)
+	{
+		case "COCK":
+			swell = pc.statusEffectv3("Mimbrane Cock");
+			part = "[pc.cock 0]";
+			break;
+		case "CUNT":
+			swell = pc.statusEffectv3("Mimbrane Pussy");
+			part = "[pc.vagina 0]";
+			break;
+		case "BUTT":
+			swell = pc.statusEffectv3("Mimbrane Ass");
+			part = "[pc.cheeks]";
+			break;
+		case "SACK":
+			swell = pc.statusEffectv3("Mimbrane Balls");
+			part = "[pc.ballsack]";
+			break;
+		case "TITS":
+			swell = pc.statusEffectv3("Mimbrane Boobs");
+			part = (!pc.hasBreasts() ? "[pc.chest]" : "[pc.breasts]");
+			break;
+		case "HAND":
+			swell = Math.max(pc.statusEffectv3("Mimbrane Hand Left"), pc.statusEffectv3("Mimbrane Hand Right"));
+			both = (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"));
+			part = (!both ? "[pc.hand]" : "[pc.hands]");
+			break;
+		case "FOOT":
+			swell = Math.max(pc.statusEffectv3("Mimbrane Foot Left"), pc.statusEffectv3("Mimbrane Foot Right"));
+			both = (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"));
+			part = (!both ? "[pc.foot]" : "[pc.feet]");
+			break;
+		case "FACE":
+			swell = pc.statusEffectv3("Mimbrane Face");
+			part = "[pc.face]";
+			break;
+		default:
+			output2("<b>ERROR:</b> Mimbrane for " + mimType + " does not exist!");
+			break;
+	}
+	
+	output2("The Mimbrane" + (!both ? "" : "s") + " residing on your " + part);
+	if(flags["MIMBRANE_NOSWELL_" + mimType] == undefined) output2(" constrict" + (!both ? "s" : "") + " " + (swell <= 0 ? "slightly" : ("and gradually flatten" + (!both ? "s itself" : " themselves") + " to the surface of your [pc.skin]")) + ", holding " + (!both ? "its" : "their") + " form so is to no longer look so obviously bloated.");
+	else output2(" relax" + (!both ? "es itself" : " themselves") + ", " + (swell <= 0 ? ("making you aware that " + (!both ? "it" : "they") + " can swell up when " + (!both ? "it is" : "they are") + " well-fed again") : ("gradually inflating " + (!both ? "its" : "their") + " form back to a more natural state of fullness")) + ".");
+	
+	flags["MIMBRANE_NOSWELL_" + mimType] = (flags["MIMBRANE_NOSWELL_" + mimType] != undefined ? undefined : 1);
+	
+	toggleMimbraneSwellingMenu(false);
+}
+
 
 //Unlock Head Customization
 //Unlocks immediately upon getting a Head Mimbrane, as it starts at level two. Toggle disappears if Head Mimbrane goes under level two trust. Occurs a few hours after getting the head Mimbrane. Occurs once.

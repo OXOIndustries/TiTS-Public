@@ -9,12 +9,14 @@
 		//constructor
 		public function Bea()
 		{
-			this._latestVersion = 1;
-			this.version = _latestVersion;
-			this._neverSerialize = true;
+			_latestVersion = 1;
+			version = _latestVersion;
+			_neverSerialize = true;
 			
-			this.short = "Beatrice Reasner";
+			short = "Beatrice Reasner";
 			originalRace = "human";
+			a = "";
+			capitalA = "";
 			
 			femininity = 100;
 			hairType = GLOBAL.HAIR_TYPE_HAIR;

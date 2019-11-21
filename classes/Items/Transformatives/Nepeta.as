@@ -173,6 +173,9 @@ package classes.Items.Transformatives
 			// " {if not top-placed ears: As you run your fingers across them, your ears begin to quiver and... move... altering their place on your head until they’re perched near the top of your head.}");
 			output(" They begin to change shape, growing pointed and sprouting a thin layer of fuzz. Before long, you realize <b>you’ve grown a pair of feline ears!</b> Meow!");
 			target.earType = GLOBAL.TYPE_FELINE;
+			target.clearEarFlags();
+			target.addEarFlag(GLOBAL.FLAG_TAPERED);
+			target.addEarFlag(GLOBAL.FLAG_FURRED);
 		}
 		
 		private function eyeTF(target:Creature):void
@@ -367,7 +370,7 @@ package classes.Items.Transformatives
 				bGain = 1 + rand(bGain / 2);
 				target.breastRows[0].breastRatingRaw += bGain;
 
-				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>.");
+				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>");
 			}
 		}
 		

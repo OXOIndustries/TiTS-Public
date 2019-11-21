@@ -338,11 +338,16 @@ public function buildEllieTalkMenu():void
 	//Lots of shit for this button for preg stuff
 	if(flags["ELLIE_OPERATION"] == 1) addDisabledButton(4, "Operation", "Operation", "Ellie’s already had the fertility operation.");
 	else if(flags["ELLIE_OPERATION"] == 2) addButton(4, "Pregnancy", talkToEllieAboutPregnancyButShesActuallyPregnantThisTime, undefined, "Pregnancy", "See how Ellie is fairing with her pregnancy.");
-	else if(flags["ELLIE_OPERATION"] == 3) addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
+	else if(flags["ELLIE_OPERATION"] == 3) {
+		if(shipLocation != "TAVROS HANGAR" && (disableExploreEvents() || !leavePlanetOK())) addDisabledButton(4, "VisitNursery", "Visit Nursery", "You are unable to leave with your ship at the moment.");
+		else addButton(4, "VisitNursery", ellieTakeOnTripToNursery, undefined, "Visit Nursery", "See if Ellie wants to go visit the eggs.");
+	}
 	else if(flags["ELLIE_OPERATION"] == 4) addButton(4, "Kids", askEllieAboutTheKiddos, undefined, "Kids", "Ask Ellie how she and the kids are fairing.");
 	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation, undefined, "Operation", "Discuss the fertility operation with Ellie.");
 	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy, undefined, "Pregnancy", "Discuss pregnancy with Ellie.");
 	else addDisabledButton(4, "Locked", "Locked", "You need to be really close with Ellie to discuss this.");
+
+	if (pc.hasStatusEffect("Haley Bet In Progress") && flags["HALEY_WEAKSPOT_KNOWN"] == undefined) addButton(5, "Haley", ellieSnitchesOnHaley, undefined, "Haley", "Ask Ellie about Haley to see if you can get an advantage over the competition for your bet."); //function in ./haley.as
 	 
 	addButton(14,"Back",ellieMenu);
 }
@@ -1219,7 +1224,7 @@ public function ellieSexScene():void
 	{
 		//Mount Her (Centaurs, any dick size)
 		if (pc.isTaur()) scenes.push((flags["ELLIE_OPERATION"] == 4 ? specialNewMountSceneIfYouGaveEllieKiddos : centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception));
-		else if(pc.biggestCockLength() < 12)
+		else if(pc.biggestCockLength() < 12 && pc.biggestCockThickness() < 2)
 		{
 			//Little Dick, First Time
 			if (flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] == undefined) scenes.push(littleDicksGetToPlayForTheFirstTime);
@@ -1250,7 +1255,7 @@ public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustT
 	if(pc.tallness < 76) output("grabbing a smallish box to stand on and ");
 	output("aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff length of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
 	output("\n\nYou grab your hefty cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. <i>“Mmmm, I can </i>feel<i> that, lover...”</i> Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts. <i>“");
-	if(pc.biggestCockLength() <= 23) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!”</i>");
+	if(pc.biggestCockLength() < 24) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!”</i>");
 	else output("That delicious hunk of meat belongs on a leithan, or maybe a real centaur... not that I’m complaining! Easier on my back this way, you know. Either way, my poor little pussy’s just drooling in anticipation... come on, lover, go ahead and slide it in!”</i>");
 
 	output("\n\nTaking a breath to steady yourself, you angle your rod towards Ellie’s gaping cunt and start to push forward. Ellie’s pussylips part like a veil of silks for you, making way for your [pc.cockBiggest] to plunge into her sultry depths. She’s hotter than a human, boiling hot no matter how cold her blood may run! Her muscles move gingerly around you as you penetrate her, the slick slabs of flesh in her pussy almost kissing you, sucking your rod further and further in until you’re totally buried inside your leithan lover. Even as hugely endowed as you are, she takes you without resistance, though her legs claw at the ground and her whole body shifts with the forward motion of your dick, moving with you until Ellie’s chest is mashed against the wall, breasts squishing on cold concrete. She shivers at the sensation -- both of the cold on her huge nipples and the gargantuan cock spreading her pussy wide.");
@@ -1326,7 +1331,7 @@ public function littleDicksGetToGoRoundTwo():void
 	output("\n\nYou all but leap at the opportunity, ");
 	if(pc.tallness < 84) output("grabbing a smallish box to stand on and ");
 	output("aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff length of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; while you can’t act on your mind’s primal urges to breed that sultry leithan pussy, you can at least sate your chemically-aroused desires on a hole built for someone your size.");
-	output("\n\n<i>“Not so fast, babe,”</i> Ellie grunts as you [pc.cockBiggest] brushes against the X-shaped hole of her butt. <i>“What do you say to a little lube first, huh? My pussy’s wet enough for just about anything, but my ass? Better safe than sorry...”</i>");
+	output("\n\n<i>“Not so fast, babe,”</i> Ellie grunts as your [pc.cockBiggest] brushes against the X-shaped hole of her butt. <i>“What do you say to a little lube first, huh? My pussy’s wet enough for just about anything, but my ass? Better safe than sorry...”</i>");
 	output("\n\nYou grunt in frustration and pent-up horniness, but yield to your lover’s request. However, you won’t settle for something that came out of a bottle when there’s a hot, wet well of juicy lube rubbing up against you already. You redirect your [pc.cockBiggest] to the wide-open lips of Ellie’s black cunt, pushing yourself easily into its sultry depths. You move yourself in a circle around her wet, hot muscles, gathering up as much of Ellie’s natural lubricants onto your shaft as you possibly can. She looks over her shoulder, watching you with eager eyes while you prepare. Once you’ve got enough slippery taur-spunk slathered onto your rod to make sure that you’ll have an easy time with even the tightest of holes, you slide your hips back from the leithan’s bestial pussy and angle yourself back up toward your target. X marks the spot...");
 	output("\n\nSeeing that you’re about the take the plunge, Ellie lifts her tail up and out of the way, curling the leathery appendage along her back to make herself nice and open for you. She flashes you a little smile as you grab her hips, and she starts to cup and squeeze her breasts again, milking herself ever so slightly in anticipation. The sight of her maternity bra filling up with lactic excess is enough to drive you onwards, and you start to press your [pc.hips] forward.");
 	output("\n\nThe four folds of muscle that make up Ellie’s X-shaped asshole part easily, folding back against themselves as you enter her. The difference between her ass and pussy is like night and day: you can feel Ellie’s muscles worming and squirming around you, the beat of her powerful, head-sized heart thrumming through the tightly clenched passage. It feels like a hot, silken glove around your [pc.cockBiggest], a little warmer and drier than a normal girl’s pussy, but just as pleasant to sheathe your wang in.");
@@ -1448,7 +1453,7 @@ public function talkToEllieAboutPregnancy():void
 		if(pc.isBimbo()) output("\n\n<i>“Weeeellll,”</i> you begin, wiggling with excitement. <i>“I can totally change that if you want! Just for us, I mean. I found a Steele doc that does biology things!”</i>");
 		else output("\n\n<i>“You know, I met a doc on Uveto that could help,”</i> you say, winking at her. <i>“It’d only work for the two of us, but if you wanna be bred I’m your " + pc.mf("man", "gal") + ".”</i>");
 		output("\n\n<i>“Gosh, really?”</i> Ellie says, wide-eyed with a hand on her bosom. <i>“You’d do that for me? I’d thought it was pretty expensive...”</i>");
-		if(pc.isBimbo()) output("\n\n<i>“‘Course I would, silly girl! You’re the sweetest, sexiest girl I know!”</i> you exclaim. <i>“Plus you fuck like a champion. I’ll " + (pc.credits >= 100000 ? "handle" : "get") + "the money, don’t you worry.”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“‘Course I would, silly girl! You’re the sweetest, sexiest girl I know!”</i> you exclaim. <i>“Plus you fuck like a champion. I’ll " + (pc.credits >= 100000 ? "handle" : "get") + " the money, don’t you worry.”</i>");
 		else output("\n\n<i>“Guess I just can’t get enough of the nicest girl this side of the galaxy,”</i> you smile affectionately. <i>“Don’t worry about the money, " + (pc.credits >= 100000 ? "I’ve got it handled" : "I’ll get it together") + ".”</i>");
 		output("\n\n<i>“Wow! You’ve really put some thought into breeding lil’ ol’ me, huh [pc.name]?”</i> Ellie says, flirtatiously fluttering her eyelashes. <i>“‘Course I’m not gonna turn </i>that<i> offer down, babe.”</i>");
 		output("\n\n<i>“Didn’t think you would,”</i> you say with a grin.");
@@ -1595,7 +1600,7 @@ public function ellieDoOperation(part:int = 0):void
 				output("\n\n<i>“Ooh, that’s sexy,”</i> she murmurs, lost in thought for a moment. <i>“Just being a big ol’ broodmare getting fucked full of babies.”</i> She turns to you, her cheeks darker than they were a moment ago, and grins cheekily. <i>“You know, Haley has been talking about breeding me lately. She might beat you to the punch if you’re not careful!”</i>");
 				output("\n\n<i>“The hell with that, I’m gonna get a headstart the moment you get in there,”</i> you huff, slapping her jiggly butt as the two of you walk up the ramp.");
 				output("\n\n<i>“Ooh! I can hardly wait,”</i> she says, wiggling her voluptuous ass in your face as she disappears into your ship, her tail swishing aside briefly to reveal her dripping-wet nethers.");
-				pc.credits-=100000;
+				pc.credits -= 100000;
 				flags["ELLIE_OPERATION"] = 1;
 				ellie.fertilityRaw += 1;
 				processTime(50+rand(20));

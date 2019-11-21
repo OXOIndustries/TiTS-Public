@@ -48,7 +48,7 @@ public function approachIlaria():void
 	//First Time
 	if(flags["MET_ILARIA"] == undefined)
 	{
-		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like an jubilant ausar’s.");
+		output("You’ve barely sauntered up to the counter before the one and only employee bounces over to you, springing on long, digitigrade legs behind the counter. Now that she’s a little closer, you’re not so sure it’s a bunny costume so much as some high-quality mod work she’s had done: a pair of fluffy white-and-pink rabbit’s ears swivel towards you atop her head, and a poof-ball of a tail wiggles like a jubilant ausar’s.");
 		output("\n\n<i>“Hey there, sweet stuff,”</i> the bunny-woman croons, leaning over the counter in a way that makes her ample chest wobble against the polished surface, barely constrained by her showy black corset. <i>“What can I getcha?”</i>");
 		output("\n\nYou notice a little name-tag is pinned to the stand-alone collar-and-bow-tie around her neck, reading on bubbly pink capitals: “ILARIA.”");
 		
@@ -58,11 +58,12 @@ public function approachIlaria():void
 	else if(flags["ILARIA_PREG_EMAIL1"] == 1)
 	{
 		output("<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I’m glad you came by. Really glad... my virile stud.”</i>");
-		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my  pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
+		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
 		output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you’re allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is -- her treat. Between her giddy ejaculations, you manage to " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "remind" : "inform") + " her of the nursery dedicated to you upstairs -- she’s free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she’d been feeling off her shoulders: a place that’ll take care of her children while she works will make this all the sweeter for her.");
 		
 		flags["ILARIA_PREG_EMAIL1"] = 2;
 	}
+	else if (ilariaSteelePregTalkTrigger()) ilariaSteelePregTalk();
 	else
 	{
 		output("Ilaria bounds over to you with a smile. <i>“Welcome back!");
@@ -475,6 +476,46 @@ public function sexWithIlaria():void
 		else addDisabledButton(1,"Pound Her","Pound Her","You need a penis that will fit inside her for this.");
 	}
 	else addDisabledButton(1,"Pound Her","Pound Her","You need a penis for this.");
+	addButton(2,"Urethral Suck",ilariaCumSlurp,undefined,"Urethral Suck","Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.");
+}
+
+public function ilariaCumSlurp():void
+{
+	clearOutput();
+	showIlaria(true);
+	author("Wsan");
+	// [Blowjob]
+	//tooltip: Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.
+	output("<i>“Nuh uh,”</i> you say, shaking your head. Ilaria moans in disappointment as you take the milker off her from behind, but quickly recovers as you bend down to lick her between the legs.");
+	output("\n\n<i>“Oh!”</i> she gasps, reaching back to " + (pc.hasHair() ? "stroke your [pc.hair]":"place her palm on your head") + ". <i>“I guess you wanna do things the hard way" + (flags["ILARIA_CUMSUCKED_URETHRAL"] != undefined ? " again":"") + ", huh?”</i>");
+	output("\n\n<i>“You know it,”</i> you murmur, lashing your [pc.tongue] over her knot while she pulls herself out. She can’t resist holding herself in place for a few seconds of fun before extricating herself completely and turning around as you sink to your knees. <i>“I want to try something" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? " new..":"") + ".”</i>");
+	output("\n\n<i>“I’m all yours, babe,”</i> Ilaria says, leaning back against the milker’s mount with an easy grin. <i>“" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? "Show me your stuff!":"Still gettin’ used to the straw thing, but last time was so much fun I can’t say no!") + "”</i>");
+	output("\n\nShe lets out a quiet grunt as you plant your [pc.lipsChaste] on her swollen cock and suck, letting your tongue loll out along her underside. You give her some hard, loving sucks that make her shudder against you before you let her out of your mouth with a satisfied sigh and duck a little lower to tend to the heavy cumtanks hanging between her legs. Each one is big enough to give even an experienced partner pause, but not you.");
+	output("\n\nYou gently drag your tongue along the underside of one of her fat, musky nuts, bigger than a grapefruit and every bit as plump. Lifting her red puppycock out of the way to really get at her hefty balls, you lick her up and down until you can feel them shifting in her sack, gaining liquid weight while you tantalize her. When she blows her load, it’s going to be monumental. Already you can feel her uncontrollably dripping all over your hand, sticky clear precum running over your fingers.");
+	output("\n\nYou pull back and lick it off your hand with slow, deliberate motions of your tongue, swallowing hard after each one and revelling in the way Ilaria bites her lip while she watches. When you’ve finished with your fingers you tend to her swollen cock, tongue-bathing her until she’s veritably shining with saliva before resealing your lips around her dick, this time intent upon bringing her swift relief.");
+	output("\n\n<i>“Oh- oh, that’s </i>good<i>,”</i> Ilaria moans, letting out a pant while she shakily grasps your " + (pc.hasLongHorns() ? "horns":"head") + ". <i>“I’m gonna c-cum pretty hard, [pc.name]! I huh-hope you’re ready!”</i>");
+	output("\n\nYou reach for the controller to her vibrators and grin around her prick as she gasps, her very cock shaking in your mouth as shudders run throughout her entire body. Her thighs tighten and her hips begin to flick back and forth as she gives into the irresistible instinct of pure, animal pleasure. Grabbing handfuls of her curvy asscheeks, you let her start battering your face against her taut stomach, panting all the while.");
+	output("\n\n<i>“Gonna cum,”</i> Ilaria whines needily, spittle flying from your lips as you’re rocked back and forth over the entire length of her throbbing dick. <i>“Oh fuck oh fuck oh fuck gonna cum gonna cum nnnh-!”</i>");
+	output("\n\nRight on cue you switch the vibes to max and she suddenly doubles over, breath catching in her throat while her eyes go wide. The pause affords you the precious seconds you need to gently slide the straw you procured from a container earlier right down the first few inches of her shaft before she blows. She doesn’t even notice the intrusion, and in a flash you have your lips wrapped around the straw and suck <i>hard</i>.");
+	
+	chars["ILARIA"].cockHoleChange(0);
+	
+	output("\n\nYour effort almost makes you choke on her seed. Her cum doesn’t even come in loads, it just jets into your mouth as a high-pressure stream of hot, thick cream that you’re forced to chug lest it spill from your lips. Even so, you don’t let up on sucking it straight out of her churning balls for even a second. Her voice comes out in desperate, breathless utterances and wordless moans, the vibrators inside her keeping her trapped in endless orgasm.");
+	output("\n\nThe flood of cum gushing into your mouth and down your overworked throat certainly <i>feels</i> endless, your stomach swelling with the sheer amount of her seed you’re swallowing down. It seems like she’ll never stop, and you’re not sure either of you want her to. You can feel her ass flexing in your grip, straining and squeezing down on the buzzing vibe set against her overactive prostate.");
+	output("\n\n<i>“Cuh- can’t, stop,”</i> Ilaria pants. <i>“Nnnnnnngh!”</i>");
+	output("\n\nFeeling overwhelmed, you let your concentration lapse for a moment and the straw slips past your lips and almost down your throat before you realize. Ilaria’s prodigious offering pumps straight down your unresisting throat, your gag reflex long since subdued in the wake of her ridiculous outpouring. By the time you get yourself repositioned your stomach has swollen a few extra inches outward.");
+	output("\n\nWhen you finally enter the home stretch, it feels like you’ve both won. Shuddering violently, Ilaria leans back and spreads her legs wide with her head tilted back to look at the ceiling, relaxing at last. She pants while you dutifully suck every single last remnant out of her, letting out a long, tired moan when you’re done and withdraw your little straw.");
+	output("\n\n<i>“Oh </i>man<i>,”</i> Ilaria huffs, breasts jiggling while she takes deep breaths. <i>“I do not regret letting you do that at all. I’ve never felt so light in my life!”</i>");
+	output("\n\nAs if to emphasize the point, she puts her hand between her legs and gives her balls a gentle squeeze. You feel warmth splatter across your nose and blink in surprise, earning an abashed giggle from the bunnywoman.");
+	output("\n\n<i>“Whoops! Sorry sugar. I guess I’ve always got a little left in the tank! Lemme get that for ya,”</i> she says, bending down to lick it off your cheek. <i>“Thanks for the suckjob, babe. I’ll meet you back outside after I get cleaned up!”</i>");
+	IncrementFlag("ILARIA_CUMSUCKED_URETHRAL");
+	processTime(20);
+	pc.lust(10);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 15000);
+	pc.loadInMouth(chars["ILARIA"]);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Munch Pussy
@@ -654,7 +695,7 @@ public function poundIlariaLikeMad():void
 
 	processTime(30);
 	chars["ILARIA"].loadInCunt(pc, 0);
-	tryKnockUpIlaria();
+	//tryKnockUpIlaria(); moved to Ilaria.loadInCunt override function
 	if(y >= 0) chars["ILARIA"].loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
@@ -832,7 +873,7 @@ public function ilariaPreg2EmailText():String
 {
 	var eText:String = "";
 	
-	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.isAusar(true) ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
 	eText+="\n\nCongratulations!";
 	eText+="\n\nNurse Carter";
 	eText+="\nTavros Residential Clinic, Deck 45";
@@ -916,3 +957,143 @@ output("\n\nA round of applause starts up through the place, until your lover is
 
 
 */
+//should the steele preg talk trigger (will trigger for each new preg after a talk)
+public function ilariaSteelePregTalkTrigger():Boolean
+{
+	if (flags["ILARIA_STEELE_PREG"] == undefined && pc.hasPregnancyOfType("IlariaPregnancy")) return true;
+	if (pc.totalPregnanciesOfType("IlariaPregnancy") > flags["ILARIA_STEELE_PREG"]) return true;
+	
+	return false;
+}
+public function ilariaSteelePregTalk():void
+{
+	var firstTime:Boolean = true;
+	if (StatTracking.getStat("pregnancy/ilaria births") > 0) firstTime = false;
+	if (flags["ILARIA_STEELE_PREG"] != undefined) firstTime = false;
+	flags["ILARIA_STEELE_PREG"] = pc.totalPregnanciesOfType("IlariaPregnancy");
+	
+	output("<i>“Hey, [pc.name],”</i> Ilaria grins, sashaying over to you with that familiar, sexy high-heeled gait of hers and stretching out over the counter to plant a kiss on your cheek. <i>“You’re looking positively radiant today. How’s things, sweetie?”</i>");
+	output("\n\nYou shuffle awkwardly " + (pc.isTaur() || pc.isNaga() ? "on your haunches" : "in your seat") + " and tell Ilaria she might want to sit down. You’ve got some news for her.");
+	
+	if (pc.hasStatusEffect("Bulky Belly"))
+	{
+		output("\n\n<i>“Don’t tell me!”</i> she gasps, looking between you and your [pc.belly]. <i>“That’s not... I didn’t knock you up, did I?”</i>");
+		output("\n\nWell, actually yeah, that’s pretty much exactly what she did.");
+	}
+	else
+	{
+		output("\n\nShe cranes her big bunny ears towards you. <i>“What’s up, babe?”</i>");
+		output("\n\nYou take her hand in yours and spill the beans: you’re pregnant. They’re hers.");
+	}
+	
+	output("\n\nIlaria blinks at you, then bursts out in a big, toothy smile. <i>“Really!? Ohmygod, [pc.name]!”</i> She tries to say something else, but it just devolves into an unintelligable, delighted squeal. She throws her arms around your neck and locks you in a death-grip of a hug, bouncing on her bunny-like feet.");
+	output("\n\n<i>“Ahhh! This is amazing! <b>AMAZING</b>!”</i>");
+	output("\n\nShe’s practically dancing, drawing every eye in the shop - as if her big ol’ jiggling tits didn’t serve that purpose already. Ilaria just grins at the voyeuristic patrons and announces, <i>“I’m gonna be a dad" + (firstTime ? "" : " again") + "!”</i>");
+	output("\n\nA round of applause starts up through the place, until your lover is beaming and you’re " + (pc.exhibitionism() < 10 ? "blushing" : "getting all hot and bothered") + " from the attention. When the crowd settles, Ilaria turns to you with another kiss. <i>“Now, how about we celebrate with some treats" + (firstTime ? " while you tell me all about this famous Steele Tech nursery upstairs..." : "") + ".”</i>");
+}
+//this is for Ilaria's kids and is similar to ausarPregnancyEnds but there are some minor differences due to being a named npc and not a generic parent
+public function ilariaPregnancyEnds():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass = pc.getStatusEffect("Ilaria Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ilaria Pregnancy Ends” does not exist!");
+		output("\n\nThis was an erroneouse pregnancy and the issue has been corrected.");
+		output("\n\n");
+		chars["ILARIA"].pregnancyData[0].reset();
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1);
+
+	pc.removeStatusEffect("Ilaria Pregnancy Ends");
+	
+	output("Pain in your gut bends you over and fluid spills");
+	if (pc.isCrotchExposed())
+	{
+		if (InShipInterior()) output(" onto the deck");
+		else output(" onto the ground");	
+	}
+	else output(" into your [pc.lowerUndergarment]");
+	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
+	
+	if (InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (pc.isCrotchExposed() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD))	output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now - you’ll have to deliver on your own.");
+	else output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output("\n\n");
+	else output("\n\nThe medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of " + num2Text(numChildren) + ".");
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
+	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of Ilaria, who deserves an email after all this, you suppose.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	
+	processTime(60 + ((10 + rand(10)) * numChildren));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+//for AusarPregnancyHandler, this is generic ausar preg
+public function ausarPregnancyEnds():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass = pc.getStatusEffect("Ausar Pregnancy Ends");
+	
+	if(se == null)
+	{
+		output("ERROR: Status effect “Ausar Pregnancy Ends” does not exist!");
+		output("\n\n");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1);
+
+	pc.removeStatusEffect("Ausar Pregnancy Ends");
+	
+	output("Pain in your gut bends you over and fluid spills");
+	if (pc.isCrotchExposed())
+	{
+		if (InShipInterior()) output(" onto the deck");
+		else output(" onto the ground");	
+	}
+	else output(" into your [pc.lowerUndergarment]");
+	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
+	
+	if (InShipInterior()) output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed" + (pc.isCrotchExposed() ? ", rip off your [pc.gear]" : "") + " and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD))	output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now - you’ll have to deliver on your own.");
+	else output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output("\n\n");
+	else output("\n\nThe medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of " + num2Text(numChildren) + ".");
+	if (InRoomWithFlag(GLOBAL.HAZARD)) output(" You grit your teeth and bear down again.");
+	else output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	
+	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your tiny children, curled up in your arms " + (pc.isLactating() ? "nursing hungrily on your [pc.boobs]" : "and whining hungrily") + ". They’re " + (pc.isAusar(true) ? "full " : "half-") + "ausars, and as predicted, you’ve given birth to " + num2Text(numChildren) + " of them, all safe and sound. Their coloration definitely reminds you of the father.");
+	output("\n\nYou spend a little time with the newborns first, cleaning them and playing with their cute pointed toes and brushing their nascent fur, drawing little whinnies and whines out of them. Tiny " + (pc.isAusar(true) ? "paw-" : "") + "hands touch your face and chest, exploring the world despite their blindness. Eventually, though, reality intrudes. With a heavy heart, you call up the incubation drone, which arrives altogether too fast, and carefully load the newborn pups into its protected belly. You watch the shuttle disappear, comforting yourself with the knowledge that you’ll be able to see them again soon at the Nursery.");
+	
+	processTime(60 + ((10 + rand(10)) * numChildren));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}

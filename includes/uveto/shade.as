@@ -211,7 +211,7 @@ public function createLetterFromShade():String
 		{
 			msg = "Hey kid, welcome to the snowy little iceball I call home. Glad you could find the time off on your big important mission to come by.";
 			msg += "\n\nConsider my house... and bed... your home away from home while you’re here. It’s the first little hut between the Mead Hall and the temple, up in northern Irestead. Can’t miss it. Don’t worry, it’s bigger than it looks!";
-			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ’em. ;) Looking forward to seeing you!";
+			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ‘em. ;) Looking forward to seeing you!";
 			msg += "\n\nLove,";
 			msg += "\nShade";
 			

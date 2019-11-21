@@ -258,7 +258,7 @@ public function buskyTalksAboutTreatment():void {
 	
 	if (pc.isTreated()) output(" A lot of people do, although it’s usually just tourists, and you...”</i> he glances at your treated physique, <i>“you’re no newcomer.");
 	else output(" Everyone wants to know the changes before they take it themselves.");
-	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ’Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
+	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ‘Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
 
 	output("\n\n<i>“And what about you? Were you always the hulking slab of meat you are today?”</i> You ask sarcastically, underestimating the power of the Treatment.");
 	output("\n\n<i>“Actually, I was quite the nerd. Glasses, thin, nose-deep in books, no muscle bulk. Nothin’. But then once I got the Treatment at the beginning of my Senior school year things turned out much better for me. You see, before my Treating I was... close with the football team.");
@@ -311,7 +311,7 @@ public function buskyTalksAboutModeling():void {
 	output("\n\n<i>“True, but they’re so still and lifeless. I need something dynamic,”</i> you continue.");
 	output("\n\n<i>“Hardlight mannequin, dead center of the displays, can’t miss it,”</i> he says nonchalantly.");
 	output("\n\n<i>“Can’t compliment it either,”</i> you joke. <i>“So I was wondering. If you’d be willing to try on your clothes for me.”</i>");
-	output("\n\n<i>“You want me to model eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
+	output("\n\n<i>“You want me to model, eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
 	
 	processTime(1);
 	
@@ -333,12 +333,12 @@ public function buskySex(): void {
 		
 		if (pc.hasBreasts() && pc.femininity <= 40) output(" tits on a guy");
 		else if (pc.hasBreasts() || pc.femininity > 40) {
-			if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" femboys");
+			if (pc.isFemmyMale() || pc.isManHerm() || pc.isManlyFemale()) output(" femboys");
 			else if (pc.isTreated()) output(" cows");
 			else output(" chicks");
 		}
 		output(", plenty of other bulls are, just not me. Sorry,");
-		if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" you’re a bit too girly for my tastes - not into that myself.");
+		if (pc.isFemmyMale() || pc.isManHerm() || pc.isManlyFemale()) output(" you’re a bit too girly for my tastes - not into that myself.");
 		else output(" just really not looking for what you’ve got");
 		output(". No offense intended of course.”</i>");
 		
@@ -347,7 +347,7 @@ public function buskySex(): void {
 
 	//guys, or masculine chars	
 	} else {
-		output("<i>“Oh so you wanna take me out for a ride, eh? What do you have in mind,”</i> he leans over the counter, beginning to list off sexual exploits. <i>“I’d be more than happy to pump you full of cum, of course I could always get on my knees and go from there. Or maybe you’d like to stuff me up like a cow. Honestly, I’m down for everything.”</i>");
+		output("<i>“Oh, so you wanna take me out for a ride, eh? What do you have in mind,”</i> he leans over the counter, beginning to list off sexual exploits. <i>“I’d be more than happy to pump you full of cum, of course I could always get on my knees and go from there. Or maybe you’d like to stuff me up like a cow. Honestly, I’m down for everything.”</i>");
 		output("\n\nYour head swims with thoughts of what to do...");
 		
 		buskySexNavigation();
@@ -363,10 +363,10 @@ public function buskySexNavigation(activeTopic:Function = undefined): void {
 	
 	if(activeTopic == buskySexChestWorship) addDisabledButton(1, "ChestWorship", "Chest Worship", "You just did that.");
 	addButton(1, "ChestWorship", buskySexChestWorship, new Undershirt(), "Chest Worship", "Worship the chest of the muscular adonis.");
-		
+	
 	if(!pc.hasCock() || buskyGetLargestBlowableCockIndex() == -1) addDisabledButton(2, "Get Blown", "Get Blown", "Requires a cock with girth under 10 inches and length under 36 inches.");
 	else addButton(2, "Get Blown", buskySexGetBlown, undefined, "Get Blown", "Get the bull to blow you.");
-		
+	
 	if (!pc.hasCock()) addDisabledButton(3, "Anal Pitch", "Anal Pitch", "You’ll need a real cock to take him for a ride.");
 	else if(pc.hasCock() && pc.smallestCockVolume() > chars["BUSKY"].analCapacity()) addDisabledButton(3, "Anal Pitch", "Anal Pitch", "You’re too big for him.");
 	else addButton(3, "Anal Pitch", buskySexAnalPitch, undefined, "Anal Pitch", "See if Busky’s up for a ride from behind.");
@@ -386,7 +386,7 @@ public function buskyGetLargestBlowableCockIndex():int {
 	while (counter > 0) {
 		counter--;
 		//check for cock with girth under 10 and length under 36
-		if (pc.cocks[counter].thickness() * Math.PI < 10 && pc.cocks[counter].cLength() < 36) {
+		if (pc.cocks[counter].girth() < 10 && pc.cocks[counter].cLength() < 36) {
 			//save index of first found cock, when none saved yet
 			if (largestCockIndex == -1) largestCockIndex = counter;
 			//check if current cock is longer than saved index cock
@@ -1006,7 +1006,7 @@ public function altTooltipCornyTShirt(variant:int = 0):String
 			tooltipLine = "\n\t\t&nbsp;&nbsp;<b>Wrangling Varmints is easy!\n<b>\t\t\t</b>Let’s see if you are</b>\n\n";
 			break;
 		case 3:
-			tooltipLine = "\n\t<b>It ain’t hard to pick up horseback ridin’</b>\n\t\t&nbsp;&nbsp;<b>How bout I pick you up for</b>\n\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>some horse<i>cock</i> ridin’’</b>\n\n";
+			tooltipLine = "\n\t<b>It ain’t hard to pick up horseback ridin’</b>\n\t\t&nbsp;&nbsp;<b>How bout I pick you up for</b>\n\t\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>some horse<i>cock</i> ridin’</b>\n\n";
 			break;
 		case 4:
 			tooltipLine = "\n\t\t<b>I can help you saddle a horse.</b>\n\t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>So long as you straddle my face.</b>\n\n";
@@ -1444,7 +1444,7 @@ public function buskySexMotivationFollowUp():void {
 		output("\n\n<i>“Hold on to something, you’re not done yet,”</i> smirks Busky. You wrap your arms around his neck, pulling yourself to his ear.");
 	}
 	
-	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck my ass raw you little wimp! You got 4 balls, use ‘em!”</i>");
+	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck m" + (pc.hasVagina() ? "e" : "y ass") + " raw you little wimp! You got 4 balls, use ‘em!”</i>");
 	else if (pc.isBimbo()) output("\n\n<i>“Oh my god, you’re fucking me raw. Cum, c’mon, I like, need it.”</i>");
 	else output("\n\n<i>“I can’t take it anymore, just finish already.”</i>");
 	

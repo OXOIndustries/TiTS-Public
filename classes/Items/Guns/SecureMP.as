@@ -46,6 +46,7 @@
 			baseDamage.addFlag(DamageFlag.BULLET);
 			itemFlags = [GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS];
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

@@ -179,11 +179,18 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Inhuman Desire", 100, 0, 0, 0, "");
+			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
+			createPerk("'Nuki Nuts", 0, 0, 0, 0, "");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Dr Khan";
 			
 			this._isLoading = false;
+		}
+		//Gotta reset 'dem balls!'
+		override public function orgasm(): void {
+			super.orgasm();
+			ballSizeRaw = 1.5;
 		}
 		
 		override public function get bustDisplay():String

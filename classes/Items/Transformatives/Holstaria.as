@@ -111,13 +111,13 @@
 				{
 					for(i = 0; i < target.vaginas.length; i++)
 					{
-						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || (!target.vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED))) nonCowVaginas++;
+						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || !target.hasPlumpPussy(i)) nonCowVaginas++;
 					}
 				}
 				if(nonCowVaginas > 0) tfList.push(15);
 				// PC’s vagina is pumped once:
 				// Pump vagina.
-				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) tfList.push(16);
+				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) tfList.push(16);
 				// PC has a cock:
 				// Shrink cock by 2-4 inches. Remove cock once below 3 inches, remove balls and grow one black pumped gabilani vagina if this leaves the PC with no genitals.
 				if(target.hasCock()) tfList.push(17);
@@ -152,8 +152,14 @@
 				// Increase ass size.
 				if(target.buttRatingRaw < 16) tfList.push(27);
 				// Ass above size 10 and tone above 70:
-				// Gain “Bubble Butt” perk.
-				if(!target.hasPerk("Bubble Butt") && target.buttRating() > 10 && target.tone >= 70) tfList.push(28);
+				if(target.buttRating() > 10 && target.tone >= 70) {
+					// Gain “Bubble Butt” perk.
+					if(!target.hasPerk("Bubble Butt") && !target.hasPerk("Buns of Steel")) tfList.push(28);
+					// Lose “Buns of Steel” perk.
+					if(target.hasPerk("Buns of Steel")) tfList.push(29);
+				}
+				// PC gains cow tongue.
+				if(target.earType == GLOBAL.TYPE_BOVINE && target.tongueType != GLOBAL.TYPE_BOVINE) tfList.push(30);
 				
 				if(tfList.length > 0) select = tfList[rand(tfList.length)];
 				// None of the above apply:
@@ -173,8 +179,9 @@
 		{
 			target.tailType = GLOBAL.TYPE_BOVINE;
 			target.tailCount = newTailCount;
-			target.tailFlags = [];
+			target.clearTailFlags();
 			target.addTailFlag(GLOBAL.FLAG_LONG);
+			target.addTailFlag(GLOBAL.FLAG_FURRED);
 			target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 		}
 		private function hornTF(target:Creature, newHorns:Number = 2, newHornLength:Number = 1):void
@@ -320,9 +327,12 @@
 			if(select == 9) {
 				if(target.earTypeUnlocked(GLOBAL.TYPE_BOVINE))
 				{
-					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, moulding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
+					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, molding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
 					
 					target.earType = GLOBAL.TYPE_BOVINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;
@@ -452,7 +462,8 @@
 					if(!target.hasCock() && target.balls > 0)
 					{
 						output(" Including the disappearance of your [pc.sack]...");
-						target.balls = 0;
+						target.removeBalls();
+						target.resetCumProduction();
 					}
 					
 					// New pussy:
@@ -554,13 +565,14 @@
 			// Increase tone towards 100:
 			if(select == 24) {
 				var newTone:Number = target.tone + (2 + rand(4));
+				if(newTone > 100) newTone = 100;
+				if(newTone < 0) newTone = 0;
 				if(target.toneUnlocked(newTone))
 				{
 					output("\n\n");
 					if(newTone < 50) output("A bit of your softness seems to melt under the heat, letting the muscles underneath show through more clearly.");
 					else output("Heat pools in your muscles, making them surge and sharpen with new definition. You’re looking more ripped by the second.");
 					
-					if(newTone > 100) newTone = 100;
 					target.tone = newTone;
 				}
 				else output("\n\n" + target.toneLockedMessage());
@@ -569,11 +581,12 @@
 			// Increase thickness towards 100:
 			if(select == 25) {
 				var newThickness:Number = target.thickness + (2 + rand(4));
+				if(newThickness > 100) newThickness = 100;
+				if(newThickness < 0) newThickness = 0;
 				if(target.thicknessUnlocked(newThickness))
 				{
 					output("\n\nYou feel the need to roll your shoulders as they broaden together with your midsection, making you wider and more heavyset.");
 					
-					if(newThickness > 100) newThickness = 100;
 					target.thickness = newThickness;
 				}
 				else output("\n\n" + target.thicknessLockedMessage());
@@ -623,6 +636,27 @@
 				// Bubble Butt
 				// Causes the PC’s ass to be considered soft even when they have high muscle tone.
 				target.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of tone.");
+				return;
+			}
+			// Lose Buns of Steel perk:
+			if(select == 29) {
+				output("\n\nA shiver runs across your [pc.butts] and suddenly they don’t feel as extra tight and firm as they did before... You suppose this is one of the side effects of the Holstaria drink....");
+				output("\n\n(<b>Perk Lost: Buns of Steel</b>)");
+				
+				target.removePerk("Buns of Steel");
+				return;
+			}
+			// Gain cow tongue
+			if(select == 30) {
+				if(target.tongueTypeUnlocked(GLOBAL.TYPE_BOVINE))
+				{
+					output("\n\nA strange feeling in your mouth hits your tongue and you feel it change shape, becoming smoother and broader. After the sensation subsides, you stick out the morphed muscle and find that <b>your tongue is now a bovine one</b>.");
+					
+					target.tongueType = GLOBAL.TYPE_BOVINE;
+					target.clearTongueFlags();
+					target.addTongueFlag(GLOBAL.FLAG_SMOOTH);
+				}
+				else output("\n\n" + target.tongueTypeLockedMessage());
 				return;
 			}
 			

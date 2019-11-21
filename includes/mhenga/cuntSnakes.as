@@ -742,17 +742,21 @@ public function giveBirthThroughCuntTail():void {
 	//If in ship
 	if(InShipInterior()) {
 		output("\n\nDo you leave it outside the ship to fend for itself (and likely acquire a host) or send it off to the on-station daycare that Dad left you?");
+		//[Leave it] [Send it off]
+		clearMenu();
+		addButton(0,"Outside",hideYoEggYo);
+		addButton(1,"Daycare",takeYoEggYo);
 	}
 	//Else
 	else {
 		output("\n\nDo you conceal it so that it can hatch and potentially force itself on a host of its own, or do you take it back and send to the station your father got you, where it will be cared for but probably remain unattached?");
+		//[Hide it] [Take it]
+		clearMenu();
+		addButton(0,"Hide It",hideYoEggYo);
+		addButton(1,"Take It",takeYoEggYo);
 	}
 	processTime(10+rand(5));
 	pc.orgasm();
-	//[Hide it] [Take it]
-	clearMenu();
-	addButton(0,"Hide It",hideYoEggYo);
-	addButton(1,"Take It",takeYoEggYo);
 }
 
 //*Hide It
@@ -863,8 +867,14 @@ public function feedCuntSnake(cumFrom:Creature = null):void
 	IncrementFlag("TIMES_FED_CUNT_SNAKE");
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
+	if(cumFrom == null) return;
+	
 	var preg:Boolean = true;
+	// Non-parasitic snek cannot preg if host cannot
+	if(!pc.hasParasiteTail() && pc.fertility() <= 0) preg = false;
+	// Only virile sources work
 	if(cumFrom is Flahne) preg = false;
+	if(cumFrom.virility() <= 0) preg = false;
 	
 	if(preg && rand(5) == 0) fertilizeCuntSnake();
 }

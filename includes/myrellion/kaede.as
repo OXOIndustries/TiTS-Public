@@ -339,7 +339,7 @@ public function kaedeMyrellionShadeAddition():void
 		
 		output("\n\n<i>“Entara,”</i> you correct. <i>“What’s this all about, Shade?”</i>");
 		
-		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Nevermind, kid.”</i>");
+		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Never mind, kid.”</i>");
 		
 		output("\n\nYou cross your arms. No way she’s just blowing you off after that... whatever that was. Shade sighs and leans back in her chair, arms crossing right back at you and hefting up the smooth swells of her ample bust. <i>“She reminded me of somebody. Somebody I care about a great deal.”</i>");
 		
@@ -401,7 +401,7 @@ public function kaedeMyrellionBarFlirt():void
 		
 		clearMenu();
 		addButton(0, "It’s Fine", kaedeMyrellionBarTheDIsFine, undefined, "It’s Fine", "Tell Kaede you’re fine with her and her dick.");
-		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You’re not really into the D.")
+		addButton(1, "Never Mind", kaedeMyrellionBarNoDPls, undefined, "Never Mind Then", "Thanks for the heads up. You’re not really into the D.")
 	}
 }
 
@@ -534,7 +534,7 @@ public function kaedeMyrellionFuckAss():void
 	
 	output("\n\n<i>“Is it... is it okay if I start moving?”</i> Kaede asks after a moment, cupping one of her perky tits. As she speaks, the white bubble at the tip of her shaft pops, drooling down over your fingers in a sticky wet mess.");
 	
-	output("\n\nChuckling, you say that it’s normally you who’d be asking that. Kaede giggles, shifting her legs to get a better hold on the couch before she starts to move her hips. You find yourself sucking in a sharp breath as Kaede’s hips lift out of your lap, carrying her a few inches along the length of your shaft, and oh so slowly back down again. With every inch of motion, her cock twitches cutely in your hand, dragging through your fingers as her hips move, then thrust back in again. Flashing Kaede a little grin, you grab the bottle of lube off of her and squirt a little into your own hand, giving her cute canid prick a nice and slick tunnel to fuck just like she’s giving you.");
+	output("\n\nChuckling, you say that it’s normally you who’d be asking that. Kaede giggles, shifting her legs to get a better hold on the couch before she starts to move her hips. You find yourself sucking in a sharp breath as Kaede’s hips lift out of your lap, carrying her a few inches along the length of your shaft, and oh-so-slowly back down again. With every inch of motion, her cock twitches cutely in your hand, dragging through your fingers as her hips move, then thrust back in again. Flashing Kaede a little grin, you grab the bottle of lube off of her and squirt a little into your own hand, giving her cute canid prick a nice and slick tunnel to fuck just like she’s giving you.");
 	
 	output("\n\nWith that little encouragement to urge her on, Kaede starts to move faster. She wraps her arms around your neck, pulling herself into your lips for a long, drawn-out kiss. You accept it eagerly, relaxing into the halfbreed’s embrace and letting her ride you. Soon, her occasional little moans turn into a symphony of passionate cries and lusty groans as your cock spears her over and over again, and your hand jerks her shaft until she’s babbling <i>“C-cumming cumming cumming!”</i>");
 	
@@ -665,8 +665,8 @@ public function kaedeMyrellionSucknRide():void
 	output("\n\nKaede’s got a wonderfully salty, earthy taste. Muskier than a human cock would be, and stronger smelling. Your heart flutters as the paradoxically masculine smells waft up to you, setting your lusts aflame. It’s impossible to resist the urge to slide your lips down that shaft, sucking up every inch of puppyslut flesh on offer. One by one, your fingers peel away from her rod, making way for your slow descent. It isn’t long before you can feel a pointed tip pressing into the back of your throat, bending ever so slightly as you plant a kiss on Kaede’s bare crotch.");
 	
 	output("\n\nYou look up at her, in time to see the cute halfbreed chewing on her lip and blushing like a rose. She reaches an unsure hand down to stroke your [pc.hair]. You answer the sweet gesture with a swirl of your tongue around the still-flaccid ball of her knot, sending a throbbing shudder through her prick. Something delightfully warm and sticky smears onto the back of your throat from where her crown is nestled, and the salty scent of pre-cum roils through your senses.");
-	// {if bimbo/Treated/cum-dependant:
-	if (pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
+	// {if bimbo/Treated/cum-dependent:
+	if (pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
 	
 	output("\n\nThe thought of Kaede’s knotty cock going somewhere other than your mouth spurs you on, urging you to slather her shaft with a nice, thick coating of spittle. You work your tongue from base to crown and down again, lavishing every inch of red puppy prick with wet affection. She answers your motions with cute little moans and twitches of her hips, bucking against your lips. You let her have her fun, thrusting her hips into you until she sounds like she’s barely holding on. Kaede cups her breasts, squeezing her nipples and moaning like a lusty whore. You enjoy every second of her sensual show until you’re more than satisfied with the glaze of spit-lube coating her cock.");
 	
@@ -1262,7 +1262,7 @@ public function vaginalCassKaedeThreesome():void
 	output("\n\n<i>“Thanks Cass anyway enjoy yourself bye,”</i> Kaede babbles, looking positively flushed as she scampers off back upstairs. Sporting, you notice, a not-unnoticable bulge in her jeans.");
 	output("\n\nCass snickers and lets her hands fall to rest on her breasts, tugging at her oversized nipples. <i>“Poor thing. I... mmm, little deeper, honey... I shouldn’t have ridden her so hard this morning. She... ooh, getting close...”</i>");
 	output("\n\nCass’s almost-coherent thought trails back off into lusty moos of pleasure as you tongue-fuck her. The way her chest is heavy, leaking trickles of milk into her fingers, while her cunt clenches is ever more desperate ways to try and milk your phantom cock... you know she’s just about ready to hit her breaking point.");
-	output("\n\nAll that’s left for you to do is keep your [pc.tongue] wriggling between her juicy walls, letting the cow-girl ride her way through the coming climax. And ride she does, bucking her hips and grinding her cooch against your face, reaching down to rub her clit and bellow her pleasure to the heavens. You’re treated to to a miniature waterfall of fem-cum that splatters across your cheeks, bathing you in Cass’s alluring scent even as your tongue drinks in the sweetly bitter taste of her twat all through her orgasm, right until she’s collapsing on the couch and gasping for breath.");
+	output("\n\nAll that’s left for you to do is keep your [pc.tongue] wriggling between her juicy walls, letting the cow-girl ride her way through the coming climax. And ride she does, bucking her hips and grinding her cooch against your face, reaching down to rub her clit and bellow her pleasure to the heavens. You’re treated to a miniature waterfall of fem-cum that splatters across your cheeks, bathing you in Cass’s alluring scent even as your tongue drinks in the sweetly bitter taste of her twat all through her orgasm, right until she’s collapsing on the couch and gasping for breath.");
 	output("\n\nOf course that doesn’t stop you or anything. You reckon Kaede’s gonna need plenty of time to recover...");
 	processTime(19);
 	pc.lust(50);

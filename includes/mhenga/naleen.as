@@ -165,7 +165,7 @@ public function naleenFucksBoysScene():void {
 	
 	output("\n\n<i>“You belong to me, little pet. You and your cock and all the beautiful cum inside you... all mine.”</i>");
 	
-	output("\n\nInevitably, you cum. Your [pc.cock " + x + "] spasms inside the writhing wet velvet of the naleen’s cunt, utterly unable to hold back against her alien ministrations. You grunt and moan, and your captor coos with glee as you pump a thick load in her, filling her with your seed. Pleasure blooms in your mind, stars of ecstacy blossoming in the corner of your eyes as you cum and cum, shooting deep in her womb. The naleen draws a sharp breath and sighs, holding you close as the orgasm rocks your body. Some small part of your brain echoes her, relieved and exalted as you discharge your seed into the alien, reveling in the strong hands and warm embrace surrounding you, easing you through the bliss of climax.");
+	output("\n\nInevitably, you cum. Your [pc.cock " + x + "] spasms inside the writhing wet velvet of the naleen’s cunt, utterly unable to hold back against her alien ministrations. You grunt and moan, and your captor coos with glee as you pump a thick load in her, filling her with your seed. Pleasure blooms in your mind, stars of ecstasy blossoming in the corner of your eyes as you cum and cum, shooting deep in her womb. The naleen draws a sharp breath and sighs, holding you close as the orgasm rocks your body. Some small part of your brain echoes her, relieved and exalted as you discharge your seed into the alien, reveling in the strong hands and warm embrace surrounding you, easing you through the bliss of climax.");
 	
 	output("\n\nBut it doesn’t seem she’s done with you yet.");
 	
@@ -332,7 +332,7 @@ public function naleenTitFuck():void {
 	
 	output("\n\n<i>“It’s so nice to be able to do this once in a while,”</i> she says, gently squeezing the two mounds together. You stifle a shudder as the downy fur envelopes your [pc.cockBiggest], sheathing your prick in her warm, soft embrace. <i>“Naleen males and Zil boys are always so fuck-crazy, always wanting to shove it in this hole or that. Breed, breed, breed. Never any time for the simpler pleasures.”</i>");
 	
-	output("\n\nSimpler pleasures, indeed. As she speaks, the naleen’s slender fingers wrap around her tits, gently moving them up along the length of your dick; the feeling of her soft fur stroking your [pc.cockBiggest] is heavenly: completely enveloped in a cocoon of soft, warm, squishy cat-tits that oh so gently caresses your tender cockflesh with short strokes that soon have you as hard as diamonds. She grins up at you as she moves her breasts, her slitted eyes gleaming with lust. Looks like she’s enjoying herself too...");
+	output("\n\nSimpler pleasures, indeed. As she speaks, the naleen’s slender fingers wrap around her tits, gently moving them up along the length of your dick; the feeling of her soft fur stroking your [pc.cockBiggest] is heavenly: completely enveloped in a cocoon of soft, warm, squishy cat-tits that oh-so-gently caresses your tender cockflesh with short strokes that soon have you as hard as diamonds. She grins up at you as she moves her breasts, her slitted eyes gleaming with lust. Looks like she’s enjoying herself too...");
 	
 	output("\n\nYou lean back, letting the kitty’s big breasts caress your tender cockflesh. She squeezes them together as tightly as she can, steadily starting to stroking you faster, though never too fast. With her velveteen fur, it’s all about the gentle, constant envelopment of your [pc.cockBiggest], brushing from your base to the [pc.cockHeadBiggest], never letting your tip escape her grasp for a moment. The pleasure is almost mind-numbing, her eager breast-strokes encouraging you to lay back and forget your troubles, to just let the alien cat-naga tit-fuck you to orgasm again and again. Idly, your hands drift onto hers, fingers clasping around her slender digits. The naleen looks at you with surprise, but in the blink of an eye has her lusty countenance back again, and slips her hands out, letting you squeeze her tits for yourself, giving you control.");
 	
@@ -485,13 +485,14 @@ public function bendNaleenOver():void {
 	if(y >= 0) output("s");
 	output(" up with the kitty-naga’s slavering cunt");
 	if(y >= 0) output(" and winking asshole, so relaxed and ready you’re sure you could slip in as easily as a well-fucked pussy");
-	output(". Her back arches in a rush of pleasure as the tip of your [pc.cock " + x + "] brushes her slick folds, making her gasp as your [pc.cockHead " + x + "] ever so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, parting her slick folds");
+	output(". Her back arches in a rush of pleasure as the tip of your [pc.cock " + x + "] brushes her moist gash, making her gasp as your [pc.cockHead " + x + "] ever so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, further parting her slick folds");
 	if(y >= 0) output(" as your [pc.cock " + y + "] presses up against her tight rump, straining for a brief moment before the naleen screams as you’re in, pushing through her tight rectal channel");
 	output(". Her walls squirm and squeeze around your cock");
 	if(y >= 0) output("s");
 	output(", pushing back hard against you to make you work for every inch. But she’s so wet, it barely slows your onslaught. ");
 	if(y >= 0) output("Her ass gives a bit more of a fight, but the steady push of your hips keeps it going - and your lover’s not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind. ");
 	output("She’s loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core.");
+	
 	pc.cockChange();
 	
 	output("\n\nYou wrap your hand through her fiery hair, pulling the slut’s head back to stop her before you cum too soon. She gives a sharp cry, but returns your harsh rebuke by grinding her hips back against you, nearly swallowing your cock");
@@ -539,7 +540,7 @@ public function bendNaleenOver():void {
 		output(" distending her until her stomach bulges larger than even her tremendous bust");
 	}
 	output(". Her ecstatic voice warps into a scream of feral pleasure as you fuck her, higher and higher as she loses herself to orgasm. Her cunt’s soaked channel squeezes and slides along your rock-hard length, spasming wildly as her fem-cum splatters across her coiled tail, a steady stream of alien spunk leaking from her well-fucked womanhood as you slow your furious pace, letting her ride her orgasm out. ");
-	if(y >= 0) output("Her ass is no slouch, either: as her cunt milks your [pc.cock " + y + "], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass. ");
+	if(y >= 0) output("Her ass is no slouch either: as her cunt milks your [pc.cock " + x + "], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass. ");
 	output("No reason to hold back anymore: you grab her hips and slam in one last time, making her scream as her muscles do the rest: squeezing down so tight around your ");
 	if(y >= 0) output("dual cocks");
 	else output("cock");
@@ -573,7 +574,7 @@ public function obligatorySavinTailPegging():void {
 	if(pc.hasCock()) output("[pc.cocks]");
 	output(" sinfully close to her sodden slit, so close that you can feel the wet heat welling up from the depths of her silken pussy.");
 	
-	output("\n\nIt’s oh so hard to draw your attention from the naleen’s inviting little cunt, letting your hands come to rest on her gropable hips, fingers ever so slightly caressing the swell of her big bubble butt. Your touch sends shivers through the horny huntress, nearly toppling you off her as her tremendous tail swishes beneath you, its man-sized girth powerful enough to send some of your discarded gear flying. Niiiice. You reach back, grabbing the very tip of her writhing tail; she freezes like a deer in the headlights, breath catching as your fingers brush the slender end of her lengthy body. <i>“W-what are you going to do with that, hmm?”</i> she finally manages to stammer out as you gently caress the smooth, warm scales of her hind end. With a sly grin, you guide the tip of her tail back, coiling it around itself, bringing it ever closer home. With every tug and slip of your hand, the naleen gasps and coos, biting her lip and blushing a bright crimson by the tip her wriggling point slips along the sheer curve of your [pc.butt].");
+	output("\n\nIt’s oh so hard to draw your attention from the naleen’s inviting little cunt, letting your hands come to rest on her gropable hips, fingers ever so slightly caressing the swell of her big bubble butt. Your touch sends shivers through the horny huntress, nearly toppling you off her as her tremendous tail swishes beneath you, its man-sized girth powerful enough to send some of your discarded gear flying. Niiiice. You reach back, grabbing the very tip of her writhing tail; she freezes like a deer in the headlights, breath catching as your fingers brush the slender end of her lengthy body. <i>“W-what are you going to do with that, hmm?”</i> she finally manages to stammer out as you gently caress the smooth, warm scales of her hind end. With a sly grin, you guide the tip of her tail back, coiling it around itself, bringing it ever closer home. With every tug and slip of your hand, the naleen gasps and coos, biting her lip and blushing a bright crimson by the time her wriggling point slips along the sheer curve of your [pc.butt].");
 	
 	output("\n\n<i>“Gentle, pet,”</i> the naleen hisses as you squeeze her tail, grinding your [pc.butt] against its leathery underside. You give her a playful pinch on one of her wide pink teats, jiggling the massive tit until she whines with pleasure, tail thrashing powerfully in your grasp. Oh, this is going to be good. You release her reddened nipple, and with a few final shakes, the tip of her tail calms down, though still shivering in anticipation in your hand.");
 	
@@ -749,7 +750,7 @@ public function yesSnuggleWifZatNaleen():void {
 		output("\n\n<i>“Better?”</i> she teases, clenching her muscles around your prick");
 		output(", massaging ");
 		output("it");
-		output(" oh so sweetly inside herself.");
+		output(" oh-so-sweetly inside herself.");
 		
 		output("\n\n<i>“Much,”</i> you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You’ve never felt warmer.");
 		pc.cockChange();

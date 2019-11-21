@@ -79,6 +79,7 @@ package classes.UIComponents.ContentModules
 			addMultiToggleControl("Toggle save notes and file overwrite prompt.", "Save Notes", "saveNotesToggle", "Overwrite Prompt", "overwriteToggle");
 			addMultiToggleControl("Toggle author visibility and vendor handling.", "Scene By", "authorToggle", "Buy/Sell Prompt", "vendorToggle");
 			addMultiToggleControl("Toggle names displayed over character portraits.", "Display", "showRoomAndSceneNames", null, null);
+			addMultiToggleControl("Toggle whether log events get their own page.", "Same Page", "samePageLog", null, null);
 			
 			addMultiToggleControl("Basic character image settings.", "Busts", "bustsEnabled", "Fallback", "bustFallbacks");
 			

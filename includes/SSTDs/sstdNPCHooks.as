@@ -20,7 +20,11 @@ public function sstdList(filter:String = "all"):Array
 		nameList.push("Undetected Sneezing Tits");
 		nameList.push("Sneezing Tits");
 	}
-	
+	if(filter == "Cooties" || filter == "all")
+	{
+		nameList.push("Undetected Cooties");
+		nameList.push("Cooties");
+	}	
 	return nameList;
 };
 // Max duration in case they need to be referenced anywhere.
@@ -41,6 +45,8 @@ public function sstdMaxTime(sstdName:String):Number
 		case "Undetected Sneezing Tits":
 		case "Sneezing Tits":
 			maxTime = 10080;
+		case "Cooties":
+			maxTime = 4320;
 			break;
 	}
 	
@@ -52,6 +58,7 @@ public function mhengaSSTDChance(arg:Creature):void
 	var sstdList:Array = [];
 	if(rand(50) == 0) sstdList.push("Undetected Furpies");
 	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -61,6 +68,7 @@ public function tarkusSSTDChance(arg:Creature):void
 	if(rand(40) == 0) sstdList.push("Undetected Furpies");
 	if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
 	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -69,6 +77,7 @@ public function uvetoSSTDChance(arg:Creature):void
 	var sstdList:Array = [];
 	if(rand(50) == 0) sstdList.push("Undetected Furpies");
 	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -77,6 +86,7 @@ public function myrellionSSTDChance(arg:Creature):void
 	var sstdList:Array = [];
 	if(rand(70) == 0) sstdList.push("Undetected Furpies");
 	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -86,6 +96,7 @@ public function zhengShiSSTDChance(arg:Creature):void
 	if(rand(40) == 0) sstdList.push("Undetected Furpies");
 	//if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
 	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(rand(20) == 0 && arg.hasVagina() && isAprilFools()) sstdList.push("Undetected Cooties");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -105,6 +116,7 @@ public function induceSSTD():void
 	addButton(btnSlot++, "Furpies", induceSSTDGo, "Undetected Furpies");
 	addButton(btnSlot++, "Locofever", induceSSTDGo, "Undetected Locofever");
 	addButton(btnSlot++, "Sneezing Tits", induceSSTDGo, "Undetected Sneezing Tits");
+	addButton(btnSlot++, "Cooties", induceSSTDGo, "Undetected Cooties");
 	addButton(14, "Back", mainGameMenu);
 }
 public function induceSSTDGo(arg:String = "none"):void

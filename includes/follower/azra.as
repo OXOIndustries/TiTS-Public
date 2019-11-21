@@ -283,28 +283,28 @@ public function azraInShipGreeting():void
 
 //Azra as a Follower
 //Random crew blurbs
-public function azraCrewBlurbs(button:Number):String
+public function azraCrewBlurbs(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
 	var buffer:String = "";
 	
 	if(pc.hasStatusEffect("Azra Plant CD")) 
 	{
 		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
-		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
+		addDisabledButton(btnSlot,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
-	else if(pc.hasStatusEffect("Azra CD"))
+	if(pc.hasStatusEffect("Azra CD"))
 	{
 		buffer += "\n\nAzra isn’t available at the moment. You’ll have to come back later.";
-		addDisabledButton(button,"Azra","Azra","Azra isn’t available. Come back later.");
+		addDisabledButton(btnSlot,"Azra","Azra","Azra isn’t available. Come back later.");
 		return buffer;
 	}
 	//Post Coital Relationship Talk
 	//Approach text:
-	else if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
+	if(flags["AZRA_SEXED"] != undefined && flags["AZRA_BOYFRIEND"] == undefined)
 	{
 		buffer += "\n\nAzra is fidgeting in her lab. The plants are secure, but something else must have her bothered. Perhaps if you talked to her, she might explain.";
-		addButton(button,"Azra",azraPostCoitalTalk);
+		addButton(btnSlot,"Azra",azraPostCoitalTalk);
 		return buffer;
 	}
 	switch(rand(10))
@@ -320,8 +320,8 @@ public function azraCrewBlurbs(button:Number):String
 		case 1:
 		case 0: buffer += "\n\nAzra is packing away a tube filled with exotic plant samples. Her portable workstation still displays a visualization of its genetic structure."; break;
 	}
-	addButton(button,"Azra",approachCrewAzra);
-	return buffer;
+	addButton(btnSlot,"Azra",approachCrewAzra);
+	return (showBlurb ? buffer : "");
 }
 
 //Azra Crew Approach
@@ -765,7 +765,7 @@ public function talkToAzraAboutHerDaughters():void
 	else if(pc.isMischievous()) output("I can see where they got their good looks from their mother.");
 	else output("Nice.");
 	output("”</i>");
-	output("\n\n<i>“They may not look it, but they’re twins. The greatest gift their stud ever gave me, One rest his soul, not that I buy that religion anymore.”</i> Azra clears her throat. <i>“He was a good suula. One of the best. If only he could see them now... Jell grow into amazing vocalist, Kryz... sweet Kryz. She’s still finding herself, but I’m sure that wit of hers will take her far, if she can tame it. I love them so much.”</i> Blinking rapidly to hide the formation of tears, the angel-winged xenobiologist shakes her head. <i>“Sorry, I think I may have gotten a little more emotional than this conversation calls for.”</i>");
+	output("\n\n<i>“They may not look it, but they’re twins. The greatest gift their stud ever gave me, One rest his soul, not that I buy that religion anymore.”</i> Azra clears her throat. <i>“He was a good suula. One of the best. If only he could see them now... Jell growing into an amazing vocalist, Kryz... sweet Kryz. She’s still finding herself, but I’m sure that wit of hers will take her far, if she can tame it. I love them so much.”</i> Blinking rapidly to hide the formation of tears, the angel-winged xenobiologist shakes her head. <i>“Sorry, I think I may have gotten a little more emotional than this conversation calls for.”</i>");
 	//Nice
 	if(pc.isNice()) output("\n\nYou do your best to put her at ease. Family is an emotional topic for almost anyone.");
 	//Misch
@@ -807,7 +807,7 @@ public function talkToAzraAboutStud(fromDaughters:Boolean = false):void
 	output("\n\n");
 	if(isHuman) output("You decide to let that one slide. ");
 	output("<i>“What happened to him?”</i>");
-	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
+	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the Peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nYou sweep her up in a big, silent hug, instinctively comforting her with your body. No words could ever suffice, even if you were any good at putting them together.");
 	//Bro
@@ -1039,7 +1039,7 @@ public function talkToAzraAboutAge():void
 	else if(pc.isBro()) output("How old are you?");
 	else if(pc.isNice() || pc.isMischievous()) output("How old are you? Not that old, I wager. You don’t look a day over twenty.");
 	else output("Just how old are you?");
-	output("”</i> You peer closer at your suula crewmember, daring her face to give you a clue.");
+	output("”</i> You peer closer at your suula crew member, daring her face to give you a clue.");
 
 	output("\n\nAzra leans close to you, close enough for to get a good look at the texture of her inky lips as she replies, <i>“Old enough to be your mother and a little more. Old enough one of my daughters could have babysat you.”</i> She ");
 	if(pc.hasHair()) output("ruffles your [pc.hair] affectionately");
@@ -1135,7 +1135,7 @@ public function talkToAzraAboutLeavingTheCrew():void
 	else output("Thanks for dropping me on Mhen’ga.");
 	output(" Finding lodging there should be cheap enough, and the biological diversity will keep me busy for a few months, at least.”</i> She begins packing up her workstation. <i>“If you’re in the neighborhood and need a girl who knows her way around plants, you’ll be able to find me.”</i>");
 	output("\n\nShe pats you on the shoulder on her way out the door.");
-	output("\n\n(<b>Azra is no longer on your crew. You can find her again in Mhen’ga.</b>)");
+	output("\n\n(<b>Azra is no longer on your crew. You can find her again on Mhen’ga.</b>)");
 	processTime(3);
 	flags["AZRA_ONBOARD"] = undefined;
 	clearMenu();
@@ -1381,7 +1381,7 @@ public function azraHyperDocking(x:int):void
 		output("\n\nYou whimper in quiet ecstasy. She’s almost to the tendrils.");
 		output("\n\n<i>“I can’t help but wonder how it would feel to be in-mmf! ...your situation.”</i> The angelic dick-girl runs her fingers up and down your dick. <i>“Would I insist my ");
 		if(flags["AZRA_BOYFRIEND"] == 1) output("girlfriend");
-		else output("sexy suula crewmember");
+		else output("sexy suula crew member");
 		output(" push herself inside and try to knock up my balls.”</i> Your veins bulge powerfully from a sudden increase in blood flow. <i>“I bet I would, judging from the sounds you’re making,”</i> Azra muses, watching you carefully. Four of her fingers come together to caress the sensitive, inflating bulge below. <i>“I’d be begging her to fuck it.”</i>");
 		output("\n\nYou whine, high-pitched and needy. <i>“Fuck me already!”</i>");
 		output("\n\nStraightening, the winged shark-girl smiles. <i>“Of course, dear.”</i> She grabs hold of the head in preparation. <i>“I’ll fuck your dick every time we make love, if that’s what you want. Because you would do it for me, if I needed it like you needed it. I know you would, sweet lover. You’d fuck me so good.”</i> She pauses, breathing deep. <i>“Now let me.”</i>");

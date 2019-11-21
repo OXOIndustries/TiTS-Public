@@ -211,7 +211,7 @@ package classes.GameData.Pregnancy.Handlers
 				var nTime:Number = Math.floor(7200/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
 				var m:String = "";
 				m += "You really can’t be far off giving birth now - " + shortMinutes(nTime, true, true) + ", at most. Your [pc.vagina " + pregSlot + "] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the day.";
-				if(!InPublicSpace()) m += " The instinct to find a dark, safe den to have your children in is growing very difficult to ignore.";
+				if(!InPublicSpace() && !kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.INDOOR)) m += " The instinct to find a dark, safe den to have your children in is growing very difficult to ignore.";
 				
 				AddLogEvent(m, "passive");
 				

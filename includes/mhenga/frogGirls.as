@@ -59,11 +59,11 @@ public function frogGirlsEncounter():void
 		output("\n\nThe over-sweet scent of decaying vegetation mixed with the sour scent of stagnant water reaches your nose as you push your way through the dense foliage and come upon a small bog lake covered in algae and violet hued lilypads as big around as a hoverskiff’s braceplate.");
 		output("\n\nYou can hear the buzzing of insects and the occasional cry of birds high above you, however it is a deep and resonant <i>“Croooooooak!”</i> that draws your attention. You spin towards the sound to find a lithe " + tEnemy.skinTone + "-skinned creature rising up from the murky bog water.");
 		output("\n\nIt is impossible to tell the creature’s gender at first, with a complete lack of secondary sexual characteristics, it just looks boyish and sleek, an effect that is amplified by the light refracting off the beads of water running along its skin. It isn’t until it is fully out of the water and standing that you can see that it is female. A kerokoras, according to your codex's yammering.");
-		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail(tEnemy) + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell man...”</i>");
+		output("\n\nHer amphibious body has more in common with frogs than anything else, despite her humanoid figure. Her skin is a " + keroSkinDetail(tEnemy) + ", and is completely devoid of hair or fur. She looks at you with her large golden eyes and sniffs at the air curiously through her broad spaced nostrils, which draws attention to the lack of a nose on her rather smooth face. Her wide mouth turns into a grin and she croaks out, <i>“I smell ‘man...”</i>");
 		// Seems predicated on smell/scent, hence cockcheck rather than mf()
-		//hasCock: 
+		// hasCock: 
 		if(pc.hasCock()) output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands draw up over her smooth belly and across her flat and featureless chest before sliding behind her neck as she gives you a lust filled look. Clearly she is trying to seduce you with her androgynous body.");
-		//!hasCock:
+		// !hasCock:
 		else output("\n\nShe starts to walk towards you, her narrow hips swaying sensuously with her every step. Her webbed hands cross defiantly across her flat and featureless chest before she levels her gaze at you. The posture of her androgynous body is one of frustrated hostility. It looks like you have a fight on your hands.");
 
 		output("\n\n");
@@ -207,7 +207,7 @@ public function hasCockLossForForgGirls():void
 	author("Gardeford");
 	showFrogGirl();
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
-	if(x < 0) x = pc.biggestCockIndex();
+	if(x < 0) x = pc.smallestCockIndex();
 	output("The lithe frog-girl walks around your helpless body, appraising her prize carefully. She makes a few short hops over to you and presses your ");
 	if(inCombat()) output("weakened");
 	else output("submissively kneeling");
@@ -302,7 +302,8 @@ public function hasCockLossForForgGirls():void
 		output(" jungle floor and slips into the water, kicking away on her back while you recover yourself.");
 	}
 	output("\n\nYou awaken a bit later, feeling a little sore, but otherwise somewhat rested. You get up and gather your [pc.gear] and return to your prior affairs.");
-	processTime(60+rand(30));
+	processTime(60 + rand(30));
+	frogGirlsSimplePreg();
 	pc.orgasm();
 	output("\n\n");
 	if (!inCombat())
@@ -313,7 +314,7 @@ public function hasCockLossForForgGirls():void
 	}
 	else CombatManager.genericLoss();
 }
-//!hasCock Loss
+// !hasCock Loss
 // No dicks
 public function youDontHaveADickLossToFrogGirls():void
 {
@@ -684,7 +685,7 @@ output("\n\n<i>“Yes! Tease my butt till I cum!”</i> she shouts before coveri
 
 output("\n\nHer long tongue hangs out of her mouth as her hands clench and unclench at invisible holds. The lean muscles in her arms flex with each repetition, and you squeeze them softly to make sure she doesn’t pull one of them in her tensed pleasure. You look over to the other two {silly: members of Team Forest Debauchery/writhing bodies}, finding them in a similar state to the one you left them in: the huntress’s tail is wrapped around her newfound friends lower body, pulling the frog-girl onto her dick. A near constant string of orgasms has left the tails and pair of legs completely covered with creamy white jizz. The tiger striped kerokoras is so full of cum you can’t imagine a scenario where she doesn’t wind up pregnant.");
 
-output("\n\nThe orange and black frog girl’s tongue is wrapped around the pairs heads before it weaves back and into the naleen woman’s mouth, where it is dutifully suckled as the two rub their sweat slicked noses together. The kitty-naga’s ears stick out from the swaddle of tongue, soaked in lust venom and twitching cutely. The two are facing eachother, but you doubt their gazes actually meet beyond the thick haze of lust that hangs in the short space between them.");
+output("\n\nThe orange and black frog girl’s tongue is wrapped around the pairs heads before it weaves back and into the naleen woman’s mouth, where it is dutifully suckled as the two rub their sweat slicked noses together. The kitty-naga’s ears stick out from the swaddle of tongue, soaked in lust venom and twitching cutely. The two are facing each other, but you doubt their gazes actually meet beyond the thick haze of lust that hangs in the short space between them.");
 
 output("\n\nWhen you turn back to your own amphibious fuckbuddy you find her attempting to grasp {!pc.isNaga: one of your [pc.feet]/the tip of your tail}. You begin to pull away but she clenches harder around them, almost hard enough for them to slip out of her grip.");
 
@@ -795,4 +796,40 @@ public function femaleVictoryFacesitting():void
 	processTime(100+rand(30));
 	pc.orgasm();
 	CombatManager.genericVictory();
+}
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function frogGirlsKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -.693; //base 50%
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function frogGirlsSimplePreg():void
+{
+	var chance:Number;
+		
+	if (pc.virility() == 0) chance = 0;
+	else chance = frogGirlsKnockupChance();
+	
+	//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+	if(rand(10000) < chance)
+	{
+		//succesful impregnation
+		IncrementFlag("KEROKORAS_PREG");
+		pc.clearRut();
+	}
 }

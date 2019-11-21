@@ -1,19 +1,10 @@
-﻿import classes.Items.Stories.BXBIOne;
-import classes.Items.Stories.BXBITwo;
-import classes.Items.Stories.EightClicks;
-import classes.Items.Stories.BecomingOneOfTheGirls;
-import classes.Items.Stories.FuckTheSystem;
-import classes.Items.Stories.SatyrSlave;
-import classes.Items.Stories.CapturedByTheDemons;
-import classes.Items.Stories.TentaclesAndTanukis;
-import classes.Items.Stories.StolenGoods;
-import classes.Items.Piercings.GeddaniumRingPiercing;
-import classes.Items.Treasures.Savicite;
+﻿import classes.Items.Stories.*;
 
 
 public function genericRareDrops(loot:Array):Array
 {
 	var threshold:Number = 1;
+	if(pc.hasStatusEffect("Cupid’s Kiss")) threshold *= 3;
 	var planet:String = getPlanetName().toLowerCase();
 	var tempLoot:Array = [];
 	if(rand(100) <= threshold)
@@ -27,13 +18,28 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
 				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
 				if(!CodexManager.entryUnlocked("Tentacles & Tanukis") && metKiro() && flags["MET_SYRI"] != undefined) tempLoot.push(new TentaclesAndTanukis());
+				//If all stories collected, drop rings!
+				if(tempLoot.length == 0)
+				{
+					tempLoot.push(new SilverRingPiercing);
+					tempLoot.push(new SilverRingPiercings);
+					tempLoot.push(new SilverStudPiercing);
+					tempLoot.push(new SilverStudPiercings);
+				}
 				break;
 			case "tarkus":
 				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
 				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
-				
+				//If all stories collected, drop rings!
+				if(tempLoot.length == 0)
+				{
+					tempLoot.push(new GoldRingPiercing);
+					tempLoot.push(new GoldRingPiercings);
+					tempLoot.push(new GoldStudPiercing);
+					tempLoot.push(new GoldStudPiercings);
+				}
 				break;
 			case "myrellion":
 				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
@@ -43,9 +49,13 @@ public function genericRareDrops(loot:Array):Array
 				break;
 			case "uveto vii":
 				tempLoot.push(new Savicite());
+				tempLoot.push(new UrtaniumRingPiercing());
 				break;
 			case "zheng shi station":
 				tempLoot.push(new GeddaniumRingPiercing());
+				if(!CodexManager.entryUnlocked("Cow Stuff")) tempLoot.push(new CowStuff());
+				if(!CodexManager.entryUnlocked("Tower of Trials")) tempLoot.push(new TowerOfTrials());
+				if(!pc.hasKeyItem("Video - Zil Nigh the Science Bi")) tempLoot.push(new ZilNighTheScienceBi());
 			default:
 				break;
 		}
@@ -77,11 +87,13 @@ public function gimmeBooks():void
 	tempLoot.push(new BXBIOne());
 	tempLoot.push(new BXBITwo());
 	tempLoot.push(new CapturedByTheDemons());
+	tempLoot.push(new CowStuff());
 	tempLoot.push(new EightClicks());
 	tempLoot.push(new FuckTheSystem());
 	tempLoot.push(new SatyrSlave());
 	tempLoot.push(new StolenGoods());
 	tempLoot.push(new TentaclesAndTanukis());
+	tempLoot.push(new TowerOfTrials());
 	
 	clearOutput();
 	output("Beep boop. All the codes are ready!");
@@ -107,3 +119,4 @@ public function eggSelect():ItemSlotClass
 	}
 	return null;
 }
+

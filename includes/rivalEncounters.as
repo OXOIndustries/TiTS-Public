@@ -44,6 +44,14 @@ public function daneBustDisplay(nude:Boolean = false):String
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
+public function daneSexedTotal():int
+{
+	var nTimes:int = 0;
+	if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) nTimes++;
+	if(flags["TAURFUCKED_DANE"] != undefined) nTimes += flags["TAURFUCKED_DANE"];
+	if(flags["DANE_SEXED"] != undefined) nTimes += flags["DANE_SEXED"];
+	return nTimes;
+}
 
 //Approach
 public function approachRivalOnMhenga():Boolean 
@@ -328,7 +336,7 @@ public function millyBonusSex():void
 		output("\n\n<i>“Wow, that might be the hottest thing anyone’s ever said to me,”</i> Milly says, eyebrows raised. <i>“Something to be said for pure, stark sexuality...”</i>");
 		output("\n\nShe slowly walks behind you, arm out and stroking your flank until she reaches your back half.");
 		output("\n\n<i>“I kinda wish I could kiss you when we do this,”</i> she admits, ");
-		if(pc.tailCount > 1 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("lightly tugging your [pc.tail] out of the way and ");
+		if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("lightly tugging your [pc.tails] out of the way, ");
 		output("placing both her hands on your [pc.ass] and sinking to her knees.");
 		output("\n\n<i>“I’ve got another set of lips you can kiss, cutie,”</i> you murmur, giving Milly a ‘wink’ that elicits a small gasp.");
 		output("\n\n<i>“Oh, wow...”</i> she says, sliding her hand down closer. <i>“Is that your clit?”</i>");

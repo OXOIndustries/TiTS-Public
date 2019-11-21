@@ -148,7 +148,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 	output("\n\nDespite the fact that you were looking her way the whole way up, she still acts like it’s a total surprise you’re talking to her. <i>“Uh, s-sure,”</i> she mumbles, scooting over along the stone seat at the edge of the pool to make room for you. Giving her an appreciative nod, you toss your towel aside - and give the svelte red ant a front-row view of your buck naked body before you slide yourself down into the pool beside her.");
 	output("\n\nThe water’s hot enough that you end up sucking in a sharp breath as you try and enter. It’s hotter than you expected, burning at your [pc.skinFurScales]. Clearly this fiery ant-babe picked the hottest part of the bath to recline in. You put on a brave face, at least until the water gets near your crotch; after that, all you can do is sink down until ");
 	if(pc.isTaur()) output("your bestial body is resting on the floor of the pool");
-	else output("you’re sat on the stone shelf beside her");
+	else output("you’re sitting on the stone shelf beside her");
 	output(". The red woman regards you with cold, black, insectile eyes, apparently not quite sure what to make of you");
 	if(pc.hasCock()) output("... though you’re keenly aware of her furtive glances towards your [pc.cock], which you make little effort to hide from view");
 	output(".");
@@ -160,7 +160,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		output("\n\nYou imagine most myr must not get to see a lot of dick in their lives - you’ve barely seen any men at all on the planet, after all.");
 		output("\n\nActivating the old Steele charm, such as it is when you’re already this close, you give the red myr a nod and slightly shift your [pc.legs] to emphasize your package. Her eyes rapturously follow your movements, a pair of black orbs stark against her rosy skin that betray nothing. The rest of her body, though, is not quite so subtle: you appreciatively note that the arm that was covering up her breasts droops down into the water, revealing a pair of succulent D-cups, each peaked by a stiff red nipple just poking out over the lip of the water. She chews on her lips, clearly trying to hold back... and rapidly faltering.");
 		output("\n\n<i>“I’ve never been this close to a male myr before,”</i> she confesses, sliding ever so much closer to you along the marble bench. Blushing even darker, she mumbles out a nervous <i>“C-can I, uh... oh, what am I doing! Never mind, I’m sorry, I-”</i>");
-		output("\n\nYou smile at the flustered red and urge her to speak her mind. After all, there’s not a lot of point in holding back in room full of naked women. She flicks her eyes between your face and your cock, her mouth moving silently as if she’s churning through words to find just the right ones.");
+		output("\n\nYou smile at the flustered red and urge her to speak her mind. After all, there’s not a lot of point in holding back in a room full of naked women. She flicks her eyes between your face and your cock, her mouth moving silently as if she’s churning through words to find just the right ones.");
 		output("\n\nThe anticipation she manages to build up climaxes in an almost hilariously simple statement: <i>“Can I... touch it?”</i>");
 		output("\n\nLeave it to a red myr to be direct. Still, that’s the response you were hoping for - if a little sooner than you were expecting. Poor thing’s never had the chance to get her hands on another dick before, you imagine. Smiling at the cock-hungry ant-girl, you lean back against the stone side of the bath and pat your thigh invitingly. Your bathing partner’s eyes go a bit wider, as if she expected you to refuse her lewd request.");
 		output("\n\nWith the steam boiling off the bath water acting as a shroud, and being as isolated from the cavorting golds as you are, there’s not <i>too</i> much risk of detection - but just enough to give your heart a little flutter as the red beauty starts to snake one of her hands up your [pc.leg]. She’s feeling much the same way, you reckon, if the furtive glances she’s constantly shooting through the steam are any indication. For what comfort it’s worth, you slip an arm around your partner’s shoulders, pulling her nice and close.");
@@ -627,7 +627,7 @@ public function backFromPrivateBath():void
 {
 	clearOutput();
 	showOserre();
-	output("<i>“Uh... nevermind. I’ve changed my mind.”</i>\n\nThe matron shrugs and refunds your credits.");
+	output("<i>“Uh... never mind. I’ve changed my mind.”</i>\n\nThe matron shrugs and refunds your credits.");
 	processTime(1);
 	pc.credits += 50;
 	clearMenu();
@@ -1087,7 +1087,7 @@ public function doubleEndedOserre():void
 		output(" Even your [pc.cocks] ");
 		if(pc.cockTotal() == 1) output("get");
 		else output("gets");
-		output(" a bit stiff at the sight of a big dick to compete with, nevermind that it’s fake.");
+		output(" a bit stiff at the sight of a big dick to compete with, never mind that it’s fake.");
 	}
 
 	output("\n\nShe lowers herself into the spring and into your lap, but contrary to your hopes, doesn’t offer you the other end of the cock right away. Instead, she begins to work hot water into your [pc.skinFurScales] with strong, sure strokes of her hands.");

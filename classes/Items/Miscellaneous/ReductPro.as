@@ -227,14 +227,14 @@ package classes.Items.Miscellaneous
 			if (pc.hasHorns())
 			{
 				if (pc.horns == 1)
-					addButton(9, StringUtil.capitalize(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.capitalize(pc.hornsNoun()), "Apply the paste to your [pc.horn].");
+					addButton(9, StringUtil.toDisplayCase(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.toDisplayCase(pc.hornsNoun()), "Apply the paste to your [pc.horn].");
 				else
-					addButton(9, StringUtil.capitalize(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.capitalize(pc.hornsNoun()), "Apply the paste to [pc.eachHorn].");
+					addButton(9, StringUtil.toDisplayCase(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.toDisplayCase(pc.hornsNoun()), "Apply the paste to [pc.eachHorn].");
 			}
 			else
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
 			// 14 - Back
-			addButton(14, "Back", menuReductProQuit, undefined, "Nevermind", "Put the container back in your inventory.");
+			addButton(14, "Back", menuReductProQuit, undefined, "Never Mind", "Put the container back in your inventory.");
 			
 			return;
 		}
@@ -261,7 +261,7 @@ package classes.Items.Miscellaneous
 				{
 					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> ");
 					output(pc.breastRows[x].breasts + " ");
-					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup());
+					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup(x));
 					else output("flat pectoral");
 					if (pc.breastRows[x].breasts > 1) output("s");
 
@@ -269,7 +269,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		
@@ -470,7 +470,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkNipples, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			
 			return;
 		}*/
@@ -604,7 +604,7 @@ package classes.Items.Miscellaneous
 						pc.deflateVagina(y);
 						if(!pumpReported)
 						{
-							if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
+							if(pc.hasPlumpPussy(y)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
 							else output(" <b>Your [pc.vaginaNoun " + y + "] is no longer so quite so plump</b>.");
 							pumpReported = true;
 						}
@@ -729,7 +729,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Cock " + (x + 1)), useReductProShrinkCock, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		//fen redux continue here
@@ -1232,9 +1232,8 @@ package classes.Items.Miscellaneous
 						if (pc.horns != 1)
 							output("es");
 						output(", leaving your head bare of bony protrusions!");
-						pc.hornLength = 0;
-						pc.horns = 0;
-						pc.hornType = 0;
+						
+						pc.removeHorns();
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEMONIC)
 					{
@@ -1251,10 +1250,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_BOVINE)
@@ -1273,10 +1270,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" Even with how tiny they are, the paste manages to make them shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_LIZAN)
@@ -1296,10 +1291,8 @@ package classes.Items.Miscellaneous
 						else
 						{
 							output(" horns soften and vibrate quietly as the drug kicks in. The pair shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
-							pc.hornLength = 0;
-							pc.horns = 0;
-							pc.hornType = 0;
-							pc.createStatusEffect("Horn Bumps");
+							
+							pc.removeHorns();
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEER)
@@ -1336,37 +1329,31 @@ package classes.Items.Miscellaneous
 					else
 					{
 						output("As the drug activates, you run your fingers over your very small and rapidly shrinking [pc.hornsNoun]. [EachHorn] diminishes in size until there is nothing left. <b>You have lost your [pc.hornsNoun]!</b>");
-						pc.hornLength = 0;
-						pc.horns = 0;
-						pc.hornType = 0;
+						pc.removeHorns();
 					}
 				}
 				else
 				{
 					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completely. <b>Your head is now bare of any horns!</b>");
-					pc.hornLength = 0;
-					pc.horns = 0;
-					pc.hornType = 0;
-					pc.removeStatusEffect("Horn Bumps");
+					
+					pc.removeHorns();
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
+				
+				kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
+				
+				// Done!
+				useReductProDone();
+				return;
 			}
 			else
 			{
 				output("\n\n" + pc.hornLengthLockedMessage());
 				output("\n\nRubbing your [pc.hornsNoun], you sigh in disappointment and throw out the empty container, washing your hands afterward.");
+				
+				useReductProDone(true);
+				return;
 			}
-			
-			kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
-			if (kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] == undefined)
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] = 1;
-			else
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"]++;
-			
-			clearMenu();
-			addButton(0, "Next", kGAMECLASS.mainGameMenu);
-			
-			return;
 		}
 		
 		private function useReductProDone(failed:Boolean = false):void

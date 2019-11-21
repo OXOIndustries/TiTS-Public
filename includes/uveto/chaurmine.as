@@ -380,14 +380,14 @@ public function pcLosesToChaurmine():void
 //Unlocks after Uveto Event is completed
 //Add to Uveto Hangar
 //Room description
-public function chaurmineUvetoStationBonus():void
+public function chaurmineUvetoStationBonus(btnSlot:int = 0):void
 {
-	showChaurmine();
-	author("Aullama");
+	//showChaurmine();
+	//author("Aullama");
 	output("\n\nIn the distance, you see the familiar sight of metallic silver scales covering a tall and bulky frame. Chaurmine lounges around the entrance to the umbilical connected to his large ship.");
 
 	//[Chaurmine] // Go to Visiting Chaurmine
-	addButton(0,"Chaurmine",approachCharmine);
+	addButton(btnSlot,"Chaurmine",approachCharmine);
 }
 
 // Visiting Chaurmine
@@ -543,7 +543,7 @@ public function chaurmineUvetoUsTalk():void
 		//[Love?] Do you confess your mutual love to Chaurmine? // Go to Love
 		addButton(0,"Love?",tellChaurmineYouLoveHim,undefined,"Love?","Do you confess your mutual love to Chaurmine?");
 		//[Nevermind] Haha, nah. Just like always. Friends forever. // Go to Friends
-		addButton(1,"Nevermind",nevermindSlootyButtslut,undefined,"Nevermind","Haha, nah. Just like always. Friends forever.");
+		addButton(1,"Never Mind",nevermindSlootyButtslut,undefined,"Never Mind","Haha, nah. Just like always. Friends forever.");
 	}
 	//Love
 	else
@@ -782,7 +782,7 @@ public function myrVenomChaurmineFun():void
 	output("\n\nWhether from his rut or his temper - or both - the space underneath the lizard is becoming incredibly uncomfortable, forcing you to abandon that juicy sack and shaft before you suffocate. Standing with a hand supporting you on sweltering scales, you gasp as your lungs are filled with warm, but comparatively frigid air. Free from your grasp, Chaurmine lets out a huff of scorching breath in relief.");
 
 	output("\n\nSeeing the titan’s distended xeno-saur cock twitch and throb above the swollen, cum-engorged balls, sloshing with their gooey weight, only fans the flames to your own ardor - loins aching with intense desire ever since your venom seeped into the lizard. Slyly sliding onto the odd bed, you lean in close to Chaurmine, letting all of his senses take in your sweat slicked body as each hand grips one of his upper horns - and tenderly caressing and cupping the scaled titan’s fat, ribbed phallus and churning sack with your [pc.feet]");
-	if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" , and the tip of [pc.eachTail] tickles and teases his cumslit");
+	if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", and the tip of [pc.eachTail] tickles and teases his cumslit");
 	output(".");
 	output("\n\n<i>“You’ve disobeyed me multiple times now,”</i> you whisper into his scales, <i>“That’s not how a virile breeder should act, is it?”</i> You wait for him to answer, grinning when he curls his armored lips into a growl - at least, you think that’s a response to your question - and give his onyx penis an encouraging squeeze. <i>“No, it isn’t. Now, are you going to show me what a great breeder you are? Show me that you even </i>can<i> breed?”</i> you taunt, every breathy syllable you whisper a challenge to the rutting lizard.");
 	output("\n\nYou slip further back onto the alien bed, pulling Chaurmine with you by his horns, until you come to rest against the headboard. Chest heaving as the titan’s heat envelops you again - leaving you panting just as much as him - you tug his horns back once he’s on top of you, forcing him to expose his throat to you in a very submissive gesture. He growls in displeasure, neck scales vibrating with every rumble. With a hum, you glide your [pc.tongue] over his scales; over the collar bone, up his neck, and finally polishing the long scales along his jaw, producing the delightful sound of wet flesh caressing hard, smooth metal. Chaurmine shivers and gasps as yet more venom seeps into his blood. Through your own haze of pent up need and smothering heat, you momentarily worry if you’ve gotten carried away with your venom...");
@@ -818,7 +818,7 @@ public function myrVenomChaurmineFun():void
 
 	output("\n\nThe first powerful blast virtually floods your uterus, basting your fallopian tubes, and continues to spout the titan’s virile seed. Gurgling and gagging, your hands scrape and claw at Chaurmine’s teeth as you cum <i>hard</i>, your writhing and contorting causing your expanding middle to jiggle and wobble. With every voluminous blast, your belly expands further and further until, with a whimper, you can’t take any more; the excess reptile goo dripping and leaking around his outrageously wide cock, more seems to enter you than exit - eventually bursting and streaming out with every additional drop of cum. Your sight starts to waver, seeing vague spots while the edges of your vision darken.");
 
-	output("\n\nSuddenly, the pressure on your throat is removed, and the cock spearing you pulled out with the most scandalous and obscene slurp. You cough and sputter as you struggle to breath, spittle coating your [pc.lipsChaste] and chin, and bring a hand to your neck - wincing as you feel what are clearly punctures from the fucker’s teeth. Speaking of, where is that-");
+	output("\n\nSuddenly, the pressure on your throat is removed, and the cock spearing you pulled out with the most scandalous and obscene slurp. You cough and sputter as you struggle to breathe, spittle coating your [pc.lipsChaste] and chin, and bring a hand to your neck - wincing as you feel what are clearly punctures from the fucker’s teeth. Speaking of, where is that-");
 
 	output("\n\n<i>“Get up,”</i> Chaurmine rumbles from above. Oh, your [pc.eyes] were shut. <i>“I said </i>Get. Up.<i> Steele.”</i>");
 

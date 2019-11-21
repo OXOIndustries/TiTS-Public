@@ -90,7 +90,6 @@ public function updateSaendraXPackTimer(deltaT:Number = 0):void
 public function saendraX1LiftGo():void
 {
 	clearOutput();
-	clearBust();
 	showName("\nDECK 92");
 	author("Savin");
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");
@@ -98,6 +97,8 @@ public function saendraX1LiftGo():void
 	// 2late
 	if (flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
+		clearBust();
+		
 		output("The elevator door opens onto an open, dark area. Looks to be under construction, with half-finished walls arranged along an avenue, and heavy equipment lying all over. Tarps and semi-transparent sheets are tacked up on the skeletal outlines of walls, making it almost impossible to see more than a few yards ahead of you. There are no lights on, except dim glow coming from a flashlight lying on the ground. When you take a few steps closer, you see that its sitting in a pool of blood. Not that fresh, either.");
 		
 		output("\n\nYou spend a few minutes poking around, but nothing comes of it. Looks like whatever action was going on here came and went. Shit.");
@@ -113,6 +114,8 @@ public function saendraX1LiftGo():void
 	}
 	else
 	{
+		showBust(saendraBustDisplay());
+		
 		output("The elevator door opens onto an open, dark area. Looks to be under construction, with half-finished walls arranged along an avenue, and heavy equipment lying all over. Tarps and semi-transparent sheets are tacked up on the skeletal outlines of walls, making it almost impossible to see more than a few yards ahead of you. As the elevator door locks open and beeps, a flashlight suddenly clicks on just ahead, blinding you for a moment.");
 		
 		output("\n\n<i>“Oh, there you are!”</i> Saendra’s familiar voice says as the light swings out of your eyes. You can just make her out, sitting on the edge of a half-finished fountain. Her robotic hand’s clutching a light, you can see, and her other is wrapped around her Hammer pistol.");
@@ -352,7 +355,7 @@ public function sx1TalkFriendII():void
 	output("\n\nSaen gives you a look and falls behind you,");
 	if (pc.tallness < 60) output(" awkwardly hiding her face behind your tiny form");
 	else output(" trying to hide behind you");
-	output(". That should give you a momentary advantage - just enough to get you close to the guard. You pick up the pace, trying to seem as nonchalant as you can until you’re within striking range.");
+	output(". That should give you a momentary advantage -- just enough to get you close to the guard. You pick up the pace, trying to seem as nonchalant as you can until you’re within striking range.");
 	
 	output("\n\nThe man looks up, chomping his cigar and sneering at you. <i>“");
 	if (pc.isMasculine()) output("Move along, bro.");
@@ -565,7 +568,7 @@ public function sx1CallgirlMenu():void
 	if (pc.credits >= 500) addButton(1, "Job", sx1CallgirlOfferJob, undefined, "Offer Job", "Offer the Callgirl 500 credits to distract the guards.");
 	else addDisabledButton(1, "Job", "Offer Job", "You don’t have enough credits to offer the Callgirl!");
 
-	addButton(2, "Nevermind", sx1CallgirlNevermind);
+	addButton(2, "Never Mind", sx1CallgirlNevermind);
 }
 
 public function sx1CallgirlNevermind():void
@@ -1195,7 +1198,7 @@ public function sx1TalkPirates():void
 	
 	output("\n\n<i>“Bad enough to want to kill you.”</i>");
 	
-	output("\n\n<i>“Probably worse than that,”</i> Saendra says with a shake of her head. <i>“Listen, I know you have questions... and if you never want to talk to a filthy pirate again, well... I’d understand. I’d feel like shit for a while, but I’d understand. Pirates have a bad rep for a reason, and I deserve that. I’ve done some shitty things that I wish I hadn’t. But my friend, Pete - the guy we rescued? He’s fine, by the way - he gave me the codes to pull the </i>Phoenix<i> out of Tavros without the chief mechanic’s permission. What I stole from Miri... that’s my chance to start fresh. It’s intelligence, data the Void’s been gathering and studying for years now. Some kind of treasure map, basically. And I’m going to steal it right out from under the bastards.”</i>");
+	output("\n\n<i>“Probably worse than that,”</i> Saendra says with a shake of her head. <i>“Listen, I know you have questions... and if you never want to talk to a filthy pirate again, well... I’d understand. I’d feel like shit for a while, but I’d understand. Pirates have a bad rep for a reason, and I deserve that. I’ve done some shitty things that I wish I hadn’t. But my friend, Pete -- the guy we rescued? He’s fine, by the way -- he gave me the codes to pull the </i>Phoenix<i> out of Tavros without the chief mechanic’s permission. What I stole from Miri... that’s my chance to start fresh. It’s intelligence, data the Void’s been gathering and studying for years now. Some kind of treasure map, basically. And I’m going to steal it right out from under the bastards.”</i>");
 	
 	output("\n\nFirst Saendra turns out to be an ex-pirate, and now she wants to go on a treasure hunt? What storybook did she fall out of?");
 	
@@ -1667,7 +1670,7 @@ public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 		addButton(2, "Get Honey", zilCallGirlSuckleHoney, undefined, "Suckle Honey", "Your hands on the waspy girl’s breast gives you an idea...");
 	}
 
-	addButton(14, "Nevermind", zilCallGirlCall, [false, isFreebie], "Nevermind", "Maybe this was a bad idea.");
+	addButton(14, "Never Mind", zilCallGirlCall, [false, isFreebie], "Never Mind", "Maybe this was a bad idea.");
 }
 
 public function zilCallgirlStopWhoringTooltip():String
@@ -2054,7 +2057,7 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 	if (pc.cocks[x].cLength() > 6) output("<i>“Oh, so big!”</i> she groans, putting a hand on her belly and arching her back with every inch of cockmeat you pump into her. <i>“Nothing... nothing quite like this back home! Ah-ah yes!”</i>");
 	// else:
 	else output("<i>“Mmm, nice and snug!”</i> she purrs, clamping her muscles down around your tiny prick. She releases you a moment later, only to clench and ease again and again, squeeze-milking you like a wet, gloved hand around your pecker. You can only thrust ever so slightly with a grip like hers wringing you; damn, but she’s got amazing control down there! <i>“Ah, just like that. Wiggle those hips for me, love... and I’ll milk out every drop you have!”</i>");
-	output(" A throaty moan of pleasure tears free from her black lips, and your paid lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
+	output(" A throaty moan of pleasure tears free from her black lips, and your " + ((flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined && !inAppt) ? "paid" : "lusty") + " lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
 	if (zilCallGirlPregTime(true) < 5) output(" flat, strong stomach");
 	else if (zilCallGirlPregTime(true) < 25) output(" slightly plush, curvaceous belly");
 	else if (zilCallGirlPregTime(true) < 50) output(" obviously swollen belly");
@@ -2268,9 +2271,10 @@ public function resDeck16Func():Boolean
 	{
 		output("\n\nOne of the apartments is certainly occupied, though: several Mhen’gan flowers are growing from pots in the window, and red silk curtains are flittering in the artificial breeze. A nameplate underneath that residence reads “Zheniya” - your lover has found quite a lovely place for herself with her new paycheck.");
 
-		if (hours >= 8 && hours <= 16)
+		if ((hours >= 8 && hours <= 16) || pc.hasStatusEffect("Zheniya Birth Recover"))
 		{
-			if (zilCallgirlAtNursery()) output(" You’ll have to pay her a visit when she isn’t busy working in the nursery.");
+			if (pc.hasStatusEffect("Zheniya Birth Recover")) output(" <b>You’ll have to wait for her to recover from delivering her offspring before visiting her.</b>");
+			else output(" <b>You’ll have to pay her a visit when she isn’t busy working in the nursery.</b>");
 			flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 		}
 	}
@@ -2349,7 +2353,30 @@ public function zheniyaInAppt():void
 	else if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
 	else addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
 	addButton(2, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
+	
+	// Preg disable flag hotfix
+	if(zilCallGirlPregTime(true) >= 100 && flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4 && (flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > GetGameTimestamp()) && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == undefined)
+	{
+		output("\n\nYOU DONE FUCKED UP.");
+		addButton(13, "Fix Preg", zheniyaFixPreg, undefined, "Fix Zheniya’s Pregnancy", "There was a mistake... use this to fix it.");
+	}
+	
 	addButton(14, "Back", zheniyaApptBack);
+}
+
+public function zheniyaFixPreg():void
+{
+	clearOutput();
+	showBust("");
+	showName("PREGNANCY\nFIXED!");
+	author("Jacques00");
+	
+	output("Zheniya’s pregnancy has been fixed. <b>You may need to wait for up to a day or so until a message appears.</b>");
+	
+	flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = GetGameTimestamp();
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function zheniyaApptSex():void
@@ -2449,7 +2476,7 @@ public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):
 			if (flags["ZIL_CALLGIRL_PREGNANT_TOLD"] != undefined) zilCallGirlPregnancyEnds(deltaT);
 		}
 
-		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < GetGameTimestamp() + deltaT)
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < (GetGameTimestamp() + deltaT))
 		{
 			flags["ZIL_CALLGIRL_DISABLED_TYPE"] = undefined;
 			flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = undefined;
@@ -2518,6 +2545,10 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 	flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] = 1;
 	if (flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] == undefined) flags["ZIL_CALLGIRL_TOTAL_BIRTHS"] = 1;
 	else flags["ZIL_CALLGIRL_TOTAL_BIRTHS"]++;
+	
+	// Add timer for waiting
+	pc.createStatusEffect("Zheniya Birth Recover");
+	pc.setStatusMinutes("Zheniya Birth Recover", 1440);
 }
 public function zilCallGirlPregnancyCleanup():void
 {

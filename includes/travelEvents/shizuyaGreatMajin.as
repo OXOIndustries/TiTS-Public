@@ -4,7 +4,7 @@ public function initGreatMajinRooms():void
 {
 	rooms["MAJIN HANGAR"] = new RoomClass(this);
 	rooms["MAJIN HANGAR"].roomName = "\nGREAT MAJIN";
-	rooms["MAJIN HANGAR"].description = "The hangar of the Great Majin is massive, large enough to house and service several dozen moderately sized ships, as well as many small, single or double person fighters. There are many large alcoves in the side walls where ships are pulled into for service. The ground floor is just as packed and busy. Crates and containers of various sizes are stacked in massive piles around the hangar, and, no matter the time, crewmembers are always busy moving them around.";
+	rooms["MAJIN HANGAR"].description = "The hangar of the Great Majin is massive, large enough to house and service several dozen moderately sized ships, as well as many small, single or double person fighters. There are many large alcoves in the side walls where ships are pulled into for service. The ground floor is just as packed and busy. Crates and containers of various sizes are stacked in massive piles around the hangar, and, no matter the time, crew members are always busy moving them around.";
 	rooms["MAJIN HANGAR"].moveMinutes = 1;
 	rooms["MAJIN HANGAR"].addFlag(GLOBAL.INDOOR);
 	rooms["MAJIN HANGAR"].addFlag(GLOBAL.PRIVATE);

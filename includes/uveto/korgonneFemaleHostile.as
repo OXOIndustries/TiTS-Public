@@ -25,6 +25,7 @@ public function encounterAKorgonneFemaleHostile():void
 
 		output("\n\nRoughly five feet tall, your attacker appears to be a tan, short-furred, canine barbarian. She’s covered in a coat of stitched hides that has been dyed to blend in with the frozen tundra she stalks. Her chest bulges within it, her curves evident even under the fibrous wrap. The coat hangs down to her thighs, but she doesn’t seem to be wearing anything underneath; dense fur seems more than enough to keep her warm. A curled tail wags in agitation behind her, while her partially braided hair hangs like a mane around a plump, muzzled face. Both her lips and nose are blue, but that seems to be their natural coloration, rather than the result of exposure. Her huge, wide eyes are trained wholly on you; the strange, rectangular pupils within her emerald irises remind you of a goat’s.");
 		output("\n\nYour Codex chirps, to get your attention. <i>“Korgonne, female. Native to Uveto VII. Honorable but exceedingly libidinous. Usage of a breathing apparatus is recommended due to potent pheromones...</i>”");
+		if(!CodexManager.entryUnlocked("Korgonne")) CodexManager.unlockEntry("Korgonne");
 		output("\n\n<i>“Alien!”</i> she barks in accusation, the sharpness of her tone carrying even through the muffling silence of the hill-cracked snowy plains.");
 	}
 	//Repeat Encounter
@@ -216,9 +217,10 @@ public function korgiLadyDickLossPart4(x:int):void
 	else output("your swallowed fist and sore [pc.base " + x + "]");
 	output(" and begin pumping. Jerking yourself off through the korgonne’s nerve-dense pelvis brings immediate relief. Like you’ve hit an off-switch, her body relaxes under you and the suffocating tightness finally gives out.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nWasting no time, your body bucks in the pressurized release of your [pc.cumVisc] geyser. Load upon load floods the savage’s trembling tunnel, your [pc.cockHead " + x + "] showering her depths with [pc.cumColor] streams. Her pudgy rump wobbles, wagging her tail in delight with each jet of spunk.");
-	if(pc.cumQ() < 750) output(" Your orgasm is short-lived-but-intense; the seconds stretch out with every racing heartbeat. The girl under you squirms from the sensation of your liquid heat seeping into the muscled folds of her body.");
-	else if(pc.cumQ() < 10000) output(" Time rolls by as your spine prickles with the rapture of your [pc.cumVisc] issue. The volume of your orgasm floods the barbarian’s body, leaving her tight muscles unable to hide the fluid bulk that renders her bloated and jiggling.");
+	if(cumQ < 750) output(" Your orgasm is short-lived-but-intense; the seconds stretch out with every racing heartbeat. The girl under you squirms from the sensation of your liquid heat seeping into the muscled folds of her body.");
+	else if(cumQ < 10000) output(" Time rolls by as your spine prickles with the rapture of your [pc.cumVisc] issue. The volume of your orgasm floods the barbarian’s body, leaving her tight muscles unable to hide the fluid bulk that renders her bloated and jiggling.");
 	else output(" Time loses all meaning as the endless gallons pour from your sorely-abused frame into the presumptuous savage. Her belly expands, ballooning with [pc.cumNoun]; unable to push even a trickle around your plug, it fills the girl to twice her original thickness. The brash raider, reduced to a fuzzy, overfilled spunk sleeve, sways under you with a gurgling whine - living testimony to the dangers of vaginal hubris.");
 
 	if(!pc.hasKnot(x)) output("\n\nYou draw your hand back from the girl’s slavering cum-tunnel. Thick webs of spoo drip from your sore fingers and leave gooey blobs across the korgonne’s fat rear. Pulling out of the subdued savage, you rise quickly to leave before she regains the use of her higher motor function. Unfortunately, you’re considerably more tired than you realized; your [pc.legs] give out and you land right on your [pc.ass]. A wave of dizziness overtakes you and, chest heaving from the exhausting ordeal, you lean against the tunnel’s wall to gather your strength.");
@@ -377,11 +379,17 @@ public function defeatDaKorgiShit():void
 	}
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
-	if(eligibleForKorgiHumiliation()) addButton(6,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
-	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
-	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this.");
+	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades"))
+	{
+		addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,false,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
+		if(pc.hasCock())
+		{
+			if(pc.biggestCockLength() < 24 && pc.biggestCockThickness() < 2.7) addButton(7,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,true,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
+			else addDisabledButton(7,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this. You are definitely too big.");
+		}
+	}
 	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this.");
-	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
+	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size</b>.");
 
 	addButton(14,"Leave",defeatDaKorgiLeave);
 }
@@ -412,7 +420,7 @@ public function sitOnKorgiForTaurs():void
 	if(!pc.isCrotchExposed()) output("strip off your [pc.lowerGarments] and, with a smile, you ");
 	output("lower yourself on top of her.");
 
-	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
+	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
 
 	output("\n\nEnough fun, you figure. Time to put her to work. You shift forward slightly, so that her head pokes out under your backside. The canid takes a deep breath, drinking in your scent as she does so. Glancing over your shoulder, you enjoy the sight of the Korgonne’s ears twitching frantically, her face filled by the eclipsing closeness of your [pc.ass]. Under you, the girl’s hefty melons squish and roll against the [pc.skinFurScales] of your underside, her nipples hard enough to be felt even through the taut straps of her bra. You wiggle slightly ");
 	if(pc.tailCount > 0) 
@@ -506,14 +514,15 @@ public function letDatKorgiLeadWinsex():void
 	output("\n\nThe girl’s unpredictable pace keeps your climax at bay, riding the exotic rhythm of the korgonne’s fat ass and toned thighs. Switching from fast to slow with capricious perversity, the girl has more energy than you’d have been prepared to expect. Her paws straddling her abdomen, she strokes inside her darkened, indigo labia. You reach up and pull the black strap of her bra, releasing the wobbling E-cup puppies to bounce with the rest of the dog. Each hefty breast is capped by a sapphire nipple, firm as an icicle. You seize the roly-poly cainid’s porcine endowments, fingers sinking into the yielding fur and flesh of her rotund globes. With thumbs circling her warm, blue peaks, the barbarian tosses back her head, catching the light in her long, golden mane. Her tongue lolling happily out of one side of her mouth, the savage leans forward to put the full weight of her ponderous tits fully at your mercy; Tweaking and rolling her nipples between your thumbs and forefingers, you clench her bovine tips in time with the squeezing pressure.");
 
 	output("\n\nUnable to hold back, the korgonne girl’s body tenses as her muscles tighten with the vigorous intensity of her climax. She collapses against your [pc.chest], rocking against your shaft so quickly that she’s nearly vibrating. The steady, swift motion, along with the firm shaft suckling of the savage’s thick booty sends you over the edge as well. Your pelvis bucks and spurts of torrid jizz flood the barbarian’s rear. Bloated ropes of [pc.cumVisc] [pc.cumNoun] gush up your throbbing length and into depths of her impassioned interior; pussy walls rippling with fresh contractions as each sticky torrent jets into her.");
-	if(pc.cumQ() >= 3000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 3000) 
 	{
 		output(" Her gut bloats at the volume of your seed, spurts of cum leaking from her ass to splatter your lower body with every fresh gushing stream.");
 
 		if(pc.hasKnot(x)) output("\n\nYour knotted bulb inflates hot on the heels of your orgasm, sealing off the leak and swelling her abdomen further as the trapped [pc.cumNoun] bubbles deeper into her belly. Her speech devolves into a panting string of meaningless syllables, possibly playfully cursing your [pc.knot] or perhaps thanking her primitive deity. The korgonne climaxes again from the fullness of your expanding meat plug, rocking against you to milk out every last [pc.cumGem]. The two of you spend the next half hour locked in this embrace; her eagerness brings you to release once more while her own orgasms are too numerous to count. Finally, your [pc.knot " + x + "] recedes and releases a small ocean of spunk gushing from the girl’s gaped posterior.");
 	}
 	output("\n\nPanting, the two of you hold each other close as the ardor of your union slowly cools. ");
-	if(pc.cumQ() >= 100) output("When you finally pull out, your cum dribbles between her legs in long, thick rivulets. ");
+	if(cumQ >= 100) output("When you finally pull out, your cum dribbles between her legs in long, thick rivulets. ");
 	if(!korgiSillyTranslate()) output("<i>“Fuck alien,”</i> she says, with a frisky, approving growl.");
 	else output("<i>“Alien come back in time of plenty,”</i> she suggests. <i>“Breed with korgonne for strong pups.”</i>");
 	output(" She squeezes her husky frame back into her gear and sets off into the snow with a single glance back that is as much encouragement to return as any heartfelt plea you’ve heard.");
@@ -685,10 +694,11 @@ public function korgiPussPump2(x:int):void
 	author("Adjatha");
 	output("The korgonne girl rocks back and forth, drawing you deeper into her slick depths. Pumping in time with her motions, you savor the fleshy ripples your thrusts make against her abdomen and thighs. She wags her small, curled tail as your pace quickens, turning shallow pokes to impassioned lunges. She humps her lower body into yours with a delight that transforms into bliss as her body tenses with a blossoming orgasm hot as a rain forest. Your swollen shaft fights against her greedy, clinging slit, bouncing the barbarian’s fat ass in your lap hard enough to leave your [pc.hips] aching. A faint hint of mint perfumes the air, electrifying and accelerating your movements.");
 	output("\n\nThe throbbing weight of your member presses down on your mind, blurring your sight as your climax builds. Releasing all restraint, your pace becomes bestial. You pound the girl’s pussy while ravenous lust boils in your veins. The heavy breasts heaving against your [pc.chest] are slowing your pace, so you tilt forward, driving yourself deeper and harder into the plump, boneless bliss of the savage’s orgasmic stupor. Your peak comes with dizzying suddenness as the girl clamps down with every inch of her well-muscled tunnel, milking your frenzy from you in hot, [pc.cumVisc] blasts that flood her tenderness with the feral abandon of a rutting beast. Locking her ankles around your [pc.ass], she pulls you in as deeply as she can, hips rolling in time with your swelling discharge.");
-	if(pc.cumQ() >= 2000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 2000) 
 	{
 		output("\n\nThe girl beneath you coos in delight, perhaps mistaking the meager overture of your orgasm for its entirety. Your [pc.ass] twitching, you grab the small of the girl’s back and grip her tightly as waves of seed gush into her. She shudders from the unexpected flood, wide-eyed and staring at the space between your bodies as the belly-bloating goo surges against her squeezing muscles.");
-		if(pc.cumQ() >= 25000) output(" The canid’s core fills with a fresh flood at each impassioned pump, her eyes rolling back as the [pc.cumFlavor] tide stuffs her spasming snatch beyond anything she’s ever experienced. Thick streams spurt from her gaped pussy, but the leaks cannot keep pace with your gut-stuffing flow. The barbarian’s abdomen swells against yours, the fluid girth expanding the girl’s tummy from adorably plump to outright gargantuan. With every womb-filling load, she balloons with liquid weight. When finally, achingly, your orgasm slows and stops, the husky savage has been reduced to a roly-poly blimp, so full she can only gurgle in overwhelmed bliss.");
+		if(cumQ >= 25000) output(" The canid’s core fills with a fresh flood at each impassioned pump, her eyes rolling back as the [pc.cumFlavor] tide stuffs her spasming snatch beyond anything she’s ever experienced. Thick streams spurt from her gaped pussy, but the leaks cannot keep pace with your gut-stuffing flow. The barbarian’s abdomen swells against yours, the fluid girth expanding the girl’s tummy from adorably plump to outright gargantuan. With every womb-filling load, she balloons with liquid weight. When finally, achingly, your orgasm slows and stops, the husky savage has been reduced to a roly-poly blimp, so full she can only gurgle in overwhelmed bliss.");
 	}
 	output("\n\nThe two of you cling to one another for a long time, shared body heat leaving you both panting while your [pc.cumVisc] [pc.cumNoun] sloshes inside her.");
 	if(pc.hasKnot(x)) output(" The inflated mass of your [pc.knot " + x + "] plugs your seed within, tight against her taut tunnel. The sheer size of your knot seems to leave the girl beneath you in a cascade of climaxes, her oversensitive inner passage overloaded by the breeder’s knob swollen within her. When it does recede, the girl is so far gone that a single kiss might set off another orgasm.");
@@ -762,47 +772,52 @@ public function winVsKorgonneAndMakeHerLoveTheBigDeeeeek():void
 	output("\n\nLetting her go, you sit yourself down in order to give her better access to your mammoth erection, dragging her tongue up the underside of your urethra in the process. Your [pc.legs] nearly give");
 	if(pc.legCount == 1) output("s");
 	output(" out in the process, trembling from the sudden rush of pleasure, but the fluffy warrior doesn’t lose her oral grip in the slightest. She may as well be glued to your cock for how little effect your shuddering has on her totem-worshipping. [pc.Butt] on the ground, you’re free to lean back and enjoy your victorious reward.");
+	
+	var cumQ:Number = pc.cumQ();
 	//Dick taller than the Korgonne
 	if(pc.cocks[x].cLength() > 66)
 	{
 		output("\n\nSadly the fluffy savage still can’t reach the tip of your [pc.cock " + x + "], even now that you’re seated. It looms above her");
-		if(pc.cumQ() < 30) output(", twitching and seemingly unattainable");
-		else if(pc.cumQ() < 1500) output(", dribbling the first dollops of pre");
+		if(cumQ < 30) output(", twitching and seemingly unattainable");
+		else if(cumQ < 1500) output(", dribbling the first dollops of pre");
 		else output(", dribbling a curtain of pre");
 		output(". But that doesn’t slow her down at all. She licks her way up as high as she can, and when she can lick no higher, she wraps her arms around your hyper-sized girth, pushing your moistened flesh against her pillowy breasts while simultaneously pulling you downward, letting your dick’s own tremendous weight assist her in reorienting your phallus to a slightly more horizontal angle.");
 		output("\n\nShe’s like an adorable, cold-weather gymnast, climbing hand-over-hand up your length. She slobbers and moans against it, and you can feel her nipples as they slide over your spit-lubed dick, gently digging into the sensitive skin like the corner of a half-melted ice cube. You " + pc.mf("groan","moan") + " encouragingly and try your best not to shake your hips. You can always grind her into a puddle of cum and melted snow later - if she fails to properly sate you.");
 	}
 	//Merge
 	output("\n\nThe noisily slurping native climbs your [pc.cock " + x + "] with the kind of eager affection you’d expect from a hungry galotian or ausar in heat, squeezing and stroking just slightly off-tempo from her slithering, salivating tongue. When she finally reaches the summit and seals her lips around your ");
-	if(pc.cumQ() >= 1500) output("drooling");
+	if(cumQ >= 1500) output("drooling");
 	else output("semi-rigid");
-	output(" urethral entrance, your eyes cross from the pleasure. Her tongue burrows right on on, scooping out thick dollops of pre-cum one after another, then thrusts inside and wiggles around, stimulating the inside of your dick just as effectively as her spit-lubed, stroking paws.");
+	output(" urethral entrance, your eyes cross from the pleasure. Her tongue burrows right on in, scooping out thick dollops of pre-cum one after another, then thrusts inside and wiggles around, stimulating the inside of your dick just as effectively as her spit-lubed, stroking paws.");
+	
+	pc.cockHoleChange(x);
+	
 	output("\n\nFuck, you can’t hold back anymore. You pump your [pc.hips], groaning with the titanic effort of lifting your cock and the korgonne both. She clings on like she’s hanging on for dear life, wrapping her legs around the girth, veiny shaft and her arms just below the [pc.cockHead " + x + "]. She never lets more than a few inches of tongue slip out of your urethra, continually stroking and pumping, fucking your cock with a tongue far too long for her otherwise diminutive size.");
 	output("\n\nNo matter how violent your bucks, the slutty savage hangs on, her whole body slipping and squeezing each time, her efforts succeeding only in further stimulating you, driving you hump the air (and her arms and legs) harder. Your [pc.cock " + x + "] bloats beyond its normal, erect size, overinflating, the excess blood trapped by the korgonne’s legs. She’s like a clingy organic cock-ring and fuzzy onahole all wrapped up in one jiggly little package, squirming happily.");
 	output("\n\nTickles and tingles radiate from where the korgonne’s wagging tail brushes against your swelling, expanding urethra, teasing muscles that are already beginning to clench in orgasmic ecstasy into seizing, violently jerking your prick straight up.");
 	if(pc.balls > 0) 
 	{
 		output(" Your [pc.balls] tighten and jump, pumping out little swimmers by the ");
-		if(pc.cumQ() < 100) output("ounce");
-		else if(pc.cumQ() < 3785) output("billion");
-		else if(pc.cumQ() < 14000) output("gallon");
+		if(cumQ < 100) output("ounce");
+		else if(cumQ < 3785) output("billion");
+		else if(cumQ < 14000) output("gallon");
 		else output("barrel");
 		output(" to be mixed into your bubbling lovejuice.");
 	}
 	output(" Climax explodes inside you with the force of a lightning strike. Your [pc.hips] jerk forward, fully extending, making your [pc.legs] tremble in the midst of your bliss.");
 	output("\n\nAnd at the top of it all sits your alien prize, her cerulean lips sealed to your distending urethra.");
-	if(pc.cumQ() < 20) output(" Her eyelids droop as you pump your meager orgasm onto her waiting tongue. She drinks it happily, humming in blissful satisfaction with every taste of heir protein-packed prize. By the time she finishes, she’s looking happy, content to slide down your mast to rest on the ground.")
-	else if(pc.cumQ() < 250) output(" Her eyelids droop as you pump thick wads onto her waiting tongue, using her curved muscle as a pipe for your [pc.cumVisc] load to travel through. Gulping noisily, the korgonne seems utterly content to be devouring her protein-packed prize. By the time she finishes, she look tired and happy, content to slide down your mast to rest on the ground.");
-	else if(pc.cumQ() < 1500) output(" Her eyelids droop, then shoot wide open as the first blast of seed floods along her tongue and into her maw. Cheeks bulging, she swallows in a panic at first, then with increasing confidence once she adjusts to the rhythm of your ejaculations. For some time, you stay like that, you straining and squirting, her drinking and gurgling, slowly relaxing her grip on your girth. By the time she finishes, her belly is pressing back against your dick, slowing her slide back to the ground.");
+	if(cumQ < 20) output(" Her eyelids droop as you pump your meager orgasm onto her waiting tongue. She drinks it happily, humming in blissful satisfaction with every taste of heir protein-packed prize. By the time she finishes, she’s looking happy, content to slide down your mast to rest on the ground.")
+	else if(cumQ < 250) output(" Her eyelids droop as you pump thick wads onto her waiting tongue, using her curved muscle as a pipe for your [pc.cumVisc] load to travel through. Gulping noisily, the korgonne seems utterly content to be devouring her protein-packed prize. By the time she finishes, she look tired and happy, content to slide down your mast to rest on the ground.");
+	else if(cumQ < 1500) output(" Her eyelids droop, then shoot wide open as the first blast of seed floods along her tongue and into her maw. Cheeks bulging, she swallows in a panic at first, then with increasing confidence once she adjusts to the rhythm of your ejaculations. For some time, you stay like that, you straining and squirting, her drinking and gurgling, slowly relaxing her grip on your girth. By the time she finishes, her belly is pressing back against your dick, slowing her slide back to the ground.");
 	else output(" Her eyelids droop contentedly, then blow wide open in shock and alarm as the first shotgun blast of seed unloads into her mouth, bulging her cheeks. Excess [pc.cumNoun] squirts from her strained lips as she gurgles messily, her throat bulging in a failed attempt to keep up with your obscene volume. The second ejaculation literally blows her face back from your dick, painting her muzzle in a sheer coat of glittering [pc.cumGem] while jism freely pours out of her overtaxed maw. The determined little slut doesn’t let go, though. She hangs on, edging part of her mouth over your dick in time for the next squirt. Her hair is instantly soaked, but the savage slut claims a more manageable sample of the protein she was looking for, gulping down a mouthful of every torrid spunk-eruption.");
 	//Excessive
-	if(pc.cumQ() >= 10000) output("\n\nFor the better part of a minute, she hangs on as best she can, but even her considerable fitness is put to the test after clinging onto a cum-greased pole for a full sixty seconds. Slowly, she slides down, her wobbling, sperm-filled belly the only part of her that seems to provide any friction for her descent. When she lands on her ass, she lands hard, belching lewdly enough to create a momentary [pc.cumNoun]-bubble, too stunned by this turn of events to get out of the way of your voluminous sex-shower.");
+	if(cumQ >= 10000) output("\n\nFor the better part of a minute, she hangs on as best she can, but even her considerable fitness is put to the test after clinging onto a cum-greased pole for a full sixty seconds. Slowly, she slides down, her wobbling, sperm-filled belly the only part of her that seems to provide any friction for her descent. When she lands on her ass, she lands hard, belching lewdly enough to create a momentary [pc.cumNoun]-bubble, too stunned by this turn of events to get out of the way of your voluminous sex-shower.");
 	//Less excessive
-	else if(pc.cumQ() >= 3000) output("\n\nBy the time you’ve both had your fill, her belly is wobbling and stuffed with [pc.cumNoun], and her face is covered in a sperm-frosted grin. She slowly slips down your length to the ground, landing on her cushy butt. Burping, the korgonne’s lips blow a jizz-bubble, then hang open in wonderment.");
+	else if(cumQ >= 3000) output("\n\nBy the time you’ve both had your fill, her belly is wobbling and stuffed with [pc.cumNoun], and her face is covered in a sperm-frosted grin. She slowly slips down your length to the ground, landing on her cushy butt. Burping, the korgonne’s lips blow a jizz-bubble, then hang open in wonderment.");
 	//Merge
 	output("\n\n<i>“S-s-such cock,”</i> the barbarian babbles. <i>“");
-	if(pc.cumQ() >= 10000) output("Cum forever.");
-	else if(pc.cumQ() >= 250) output("Many cum.");
+	if(cumQ >= 10000) output("Cum forever.");
+	else if(cumQ >= 250) output("Many cum.");
 	else output("Tasty cum.");
 	output("”</i> One of her paws is between her legs, pumping wildly, soaked with what must be the product of an easy orgasm. <i>“Find again. Alien sex.”</i>");
 	output("\n\nIf every meeting is going to be like this, you’ll look forward to it.\n\n");
@@ -946,11 +961,6 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish2():void
 	CombatManager.genericLoss();
 }
 
-public function eligibleForKorgiHumiliation():Boolean
-{
-	return (pc.hasCock() && pc.biggestCockThickness() < 2.7);
-}
-
 //hardlight overclock versus giant korgonne pussy [tbd title]
 //button name: "Cock Mockery" (maybe) or "Hardlight Punishment" (meh)
 //PC win scene for female korgonne boobarian
@@ -959,7 +969,7 @@ public function eligibleForKorgiHumiliation():Boolean
 //tooltip: See if your hardlight sextoy can satisfy this insatiable puppy slut.
 //disabled tooltip, no hardlight: You need hardlight-enabled underwear for this.
 //disabled tooltip, has a cock above minimum size: Your [pc.cockBiggest] is nothing to scoff at -- just use that instead.
-public function korgonneHardlightPussyStuffsStuffStuffings():void
+public function korgonneHardlightPussyStuffsStuffStuffings(korgiHumiliation:Boolean = false):void
 {
 	clearOutput();
 	author("Zeikfried");
@@ -969,7 +979,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	var buttfux:Boolean = (pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) 
 	//intro for small cocks
 	//coder to define 'small' based on korgonne capacity
-	if(eligibleForKorgiHumiliation())
+	if(korgiHumiliation)
 	{
 		output("You ");
 		if(!pc.isCrotchExposedByArmor()) output("begin to strip your [pc.armor]");
@@ -990,7 +1000,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 
 		output("\n\nYour blood burns and your cheek tingles in shame as the cold wind licks at your blushing face. A desperate urge to punish bubbles up in you");
 		if(pc.isNice()) output(", though you try to force it down");
-		output(". You’re tempted to fuck her anyway, even if she wouldn’t feel anything... and then you remember the special equipment you’re packing in your [pc.lowerUndergarment]. You could use your adjustable, high-tech hardlight underwear to give her a dicking fit to stretch a leithan, if you were of a mind....");
+		output(". You’re tempted to fuck her anyway, even if she wouldn’t feel anything... and then you remember the special equipment you’re packing " + (!pc.isCrotchExposed() ? "in your [pc.lowerGarment]" : "between your [pc.thighs]") + ". You could use your adjustable, high-tech hardlight underwear to give her a dicking fit to stretch a leithan, if you were of a mind....");
 		output("\n\n<i>“What about this, then?”</i> You reach for the controls and activate the hardlight projection. A long, glimmering white light-cock springs forth.");
 		output("\n\nThe korgonne is stunned - at least, for a moment. <i>“Pleasure shines,”</i> she oohs and ahhs. Her expression dulls. <i>“But still no knot. Useless.”</i>");
 
@@ -1084,15 +1094,16 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	else if(pc.isNice()) output("\n\n<i>“Hope it’s not pinching too much,”</i> you say solicitously - though you’re still half-annoyed at the ungrateful breeding bitch.");
 	else if(pc.isMischievous()) output("\n\n<i>“Why? Your municipal bonds finally mature?”</i> you grunt, pummeling the korgonne’s womb with your dildo.");
 	else output("\n\n<i>“Keep quiet,”</i> you grunt, <i>“or I’ll shrink it back down.”</i>");
-	output(" The korgonne doesn’t acknowledge you... unless you count lowering her chest and raising her ass another inch, trying to milk more nerve connections from the swollen cock. Her breasts are bulging against their feeble leather bindings, now, and squashed to the point that that they’re visible around the edges of her stocky chest.");
+	output(" The korgonne doesn’t acknowledge you... unless you count lowering her chest and raising her ass another inch, trying to milk more nerve connections from the swollen cock. Her breasts are bulging against their feeble leather bindings, now, and squashed to the point that they’re visible around the edges of her stocky chest.");
 
 	output("\n\n<i>“Joy... j... fuck...”</i> stammers the woman. Her voice breaks into a cute grunt whenever you piston her pelvis with your faux-cock, becoming more and more a stream of gibberish than coherent speech. The uniform thickness of the cock is playing hell with her pussy - the nerves built to be pressed by a korgonne knot are not only being pressed, but dragged, rubbed, and smeared every which way as the un-tapered prick slides through her. The dog-girl’s eyes roll, and her tongue lolls further from her mouth with every thrust, until it’s a foot-long ribbon of limp, blue putty sculpting meaninglessly-abstract shapes against the white snow background.");
 
+	var cumQ:Number = (buttfux ? pc.cumQ() : 0);
 	//if has cock (i.e. if entered via ‘cock too small’ criteria) and is not taur, stick a cock in her hairy asshole
 	if(buttfux) 
 	{
 		output("\n\nThe dumbstruck ecstasy of the busty bitch underneath you is a gratifying sight, especially after her mockery - but still, it’s a damn shame that <i>she’s</i> the one getting off most. Your [pc.cockSmallest] throbs in your underwear with every dose of nerve impulse the undies transmit, pinched against the back of the strap-on and ");
-		if(pc.cumQ() < 500) output("drooling");
+		if(cumQ < 500) output("drooling");
 		else output("gushing");
 		output(" with pre. The woman’s plump ass taunts you, swaying from side to side and jiggling in your hands; a small, dark blue pucker peeks from between her cheeks every time you slam into her, just below her jaunty spitz tail. The longer you stare at it, the more your desire crystallizes... finally, unable to endure any more, you pull out of the korgonne and come to a rest.");
 		output("\n\n<i>“Why stop?”</i> grunts the savage, mazy with endorphins. <i>“Want finish...”</i>");
@@ -1116,9 +1127,9 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	if(buttfux) 
 	{
 		output("\n\nHer asshole is spasming too, writhing and washing over your cock with folds of warm flesh like a storming ocean. All the cum her pussy isn’t getting spurts from you, ");
-		if(pc.cumQ() < 15) output("drooling into her pucker a few drops at a time, pinched off by her tense squeezing and barely able to escape.");
+		if(cumQ < 15) output("drooling into her pucker a few drops at a time, pinched off by her tense squeezing and barely able to escape.");
 		else output("backing up against her tight-squeezed pucker, pinched off inside your urethra until the pressure of your load is too much to contain. An extra-large, stored-up load of [pc.cum] forces its way down your cock, squeezing through the korgonne’s gate to burst inside her.");
-		if(pc.cumQ() >= 15000) output(" The puppy-slut’s back arches as you dump spurt after spurt, distending her fuzzy belly until it pushes against the bottoms of her heavy breasts and pops them right out of the top of their flimsy restraints.");
+		if(cumQ >= 15000) output(" The puppy-slut’s back arches as you dump spurt after spurt, distending her fuzzy belly until it pushes against the bottoms of her heavy breasts and pops them right out of the top of their flimsy restraints.");
 		//end ‘has cock’ insert
 	}
 	else

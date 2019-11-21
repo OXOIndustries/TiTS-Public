@@ -99,7 +99,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_SIREN))
 					{
-						output("\n\nYou immediately notice that your face seems to be losing feeling by the minute. It’s almost like the muscles have fallen asleep on you. Concerned by this turn of events, you rub and pinch your face only for it to tighten. You flinch as your the bones in your face suddenly begin cracking and shifting, becoming increasingly angular. Your clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. Unsure of what just happened, you pull up the reflective screen of your Codex to discover that <b>your face has changed to match the muzzled, shark-like appearance of a suula!</b>");
+						output("\n\nYou immediately notice that your face seems to be losing feeling by the minute. It’s almost like the muscles have fallen asleep on you. Concerned by this turn of events, you rub and pinch your face only for it to tighten. You flinch as your the bones in your face suddenly begin cracking and shifting, becoming increasingly angular. You clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. Unsure of what just happened, you pull up the reflective screen of your Codex to discover that <b>your face has changed to match the muzzled, shark-like appearance of a suula!</b>");
 						
 						pc.faceType = GLOBAL.TYPE_SIREN;
 						pc.clearFaceFlags();
@@ -107,6 +107,29 @@ package classes.Items.Transformatives
 						//pc.addFaceFlag(GLOBAL.FLAG_LONG);
 					}
 					else output("\n\n" + pc.faceTypeLockedMessage());
+					changes++;
+				}
+				else if(changes < changeLimit && pc.faceType == GLOBAL.TYPE_SIREN && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && rand(4) == 0)
+				{
+					if(pc.faceFlagsUnlocked(GLOBAL.FLAG_MUZZLED))
+					{
+						output("\n\nA sharp sensation spears through your skull as the bones in your half-suula face suddenly begin cracking and shifting, becoming increasingly angular. You clamp your eyes shut as the pain reaches a crescendo before finally dissipating into nothing. You quickly flip out your Codex to see that <b>you now have a muzzled, shark-like suula face!</b>");
+						
+						pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+					}
+					else output("\n\n" + pc.faceFlagsLockedMessage());
+					changes++;
+				}
+				// Extend tongue
+				if(changes < changeLimit && InCollection(pc.faceType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_SHARK]) && !pc.hasTongueFlag(GLOBAL.FLAG_LONG) && rand(4) == 0)
+				{
+					if(pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
+					{
+						output("\n\nYou feel your tongue push against your teeth on its own. Surprised, you open your mouth and and find your [pc.tongue] dangling out, much longer than usual. <b>Your tongue has extended in length!</b>");
+						
+						pc.addTongueFlag(GLOBAL.FLAG_LONG);
+					}
+					else output("\n\n" + pc.tongueFlagsLockedMessage());
 					changes++;
 				}
 				// Grow Gills
@@ -146,6 +169,8 @@ package classes.Items.Transformatives
 						output("\n\nYou feel the tips of your ears tingle with sensitivity before they begin to pull into some kind of point. Your face wrinkles as they seem to grow longer and longer before subsiding. You pull out your codex and take note of your <b>sail-like suula ears</b>!");
 						
 						pc.earType = GLOBAL.TYPE_SIREN;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
@@ -205,10 +230,10 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				// Change skin color
-				// [pc.skinFurScaleColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
+				// [pc.skinFurScalesColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
 				var suulaScaleColors:Array = ["blue", "red", "green", "purple", "gold", "silver"];
 				// Options: blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped
-				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
+				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (!InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
 				{
 					var newScaleColor:String = RandomInCollection(suulaScaleColors);
 					var design:int = (rand(2) == 0 ? 1 : 3); // stripes or blotch
@@ -229,7 +254,7 @@ package classes.Items.Transformatives
 					else if(design == 3) output(" blotch pattern across your belly and chest");
 					output("!</b> You’re definitely getting closer to become an alluring, sharky suula.");
 					
-					// Note: change is applied[pc.skinFurScaleColor]
+					// Note: change is applied[pc.skinFurScalesColor]
 					pc.skinTone = newScaleColor;
 					pc.scaleColor = newScaleColor;
 					pc.createStatusEffect("Body Markings", design, 0, 0, 0);
@@ -509,10 +534,10 @@ package classes.Items.Transformatives
 						
 						pc.femininity += 10;
 						
-						if(pc.femininity >= 100)
+						if(pc.femininity >= pc.femininityMax())
 						{
 							output("\n\nA tingle comes to your face, but it disappears as quickly as it came. You guess you can’t get any more feminine than you already are.");
-							pc.femininity = 100;
+							pc.femininity = pc.femininityMax();
 						}
 					}
 					else output("\n\n" + pc.femininityLockedMessage());
@@ -550,7 +575,7 @@ package classes.Items.Transformatives
 					
 					if(pc.cockTypeUnlocked(cIdx, GLOBAL.TYPE_SIREN))
 					{
-						output("\n\nYour [pc.cockBiggest] grows painfully hard before a pleasant warmth flows through it, base to tip. That feels awfully good...You");
+						output("\n\nYour [pc.cockBiggest] grows painfully hard before a pleasant warmth flows through it, base to tip. That feels awfully good... You");
 						if(!pc.isCrotchExposedByArmor()) output(" pull the lower part of your [pc.armor] forward and");
 						output(" look down");
 						if(!pc.isCrotchExposedByLowerUndergarment()) output(" into your [pc.lowerUndergarment]");
@@ -561,6 +586,34 @@ package classes.Items.Transformatives
 					}
 					else output("\n\n" + pc.cockTypeLockedMessage());
 					changes++;
+				}
+				// PC has no balls: Grow grapefruit sized balls
+				// [pc.ballSize] not 8: increase ball size to 8
+				if(changes < changeLimit && ((pc.balls <= 0 && newBallSize > 0) || pc.ballSizeRaw < newBallSize) && rand(4) == 0)
+				{
+					if(pc.balls <= 0)
+					{
+						if(pc.ballsUnlocked(2))
+						{
+							output("\n\nYour gut churns and heaves similarly to when you’ve gotten sick in the past. This time, rather than resulting in a need to go to the bathroom, the discomfort merely migrates south, growing in intensity as it does. When you can take it no more, you groan as something slips within you, bringing with it immeasurable relief. The pain is reduced by perhaps half. The odd slipping sensation repeats. This time, you’re left sighing in contentment. Whatever just happened, it’s over now.");
+							output("\n\nYou check up on your groin once you’ve caught your breath, and to your shock, you discover a pair of nicely-rounded testicles contained in a ballsack. <b>You grew balls!</b>");
+							
+							pc.balls = 2;
+							pc.ballSizeRaw = newBallSize;
+						}
+						else output("\n\n" + pc.ballsLockedMessage());
+						changes++;
+					}
+					else
+					{
+						if(pc.ballSizeUnlocked(newBallSize))
+						{
+							output("\n\nYour [pc.balls] begin" + (pc.balls == 1 ? "s" : "") + " to feel a little warm. Reaching down to give " + (pc.balls == 1 ? "it" : "them") + " a quick rub to comfort the odd sensation you find <b>" + (pc.balls == 1 ? "it has" : "they’ve") + " grown a bit larger</b>.");
+							pc.ballSizeRaw = newBallSize;
+						}
+						else output("\n\n" + pc.ballSizeLockedMessage());
+						changes++;
+					}
 				}
 				// Change Vagina to Suula
 				// [pc.vaginaType] not suula: Change Vagina type to suula
@@ -582,12 +635,14 @@ package classes.Items.Transformatives
 							output(" puffy");
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
 						}
 						output(" lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a suula vagina!</b>");
 						
 						pc.shiftVagina(vIdx, GLOBAL.TYPE_SIREN);
 						if(puffFlag == 1) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 						if(puffFlag == 2) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_PUMPED);
+						if(puffFlag == 3) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 						pc.lust(5);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());

@@ -21,11 +21,15 @@ NENNE_TAKES_CREDS	- If you've talked to Nenne about taking credits
 
 public function showNenne(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showBust("NENNE" + nudeS);
+	showBust(nenneBustString(nude));
 	author("B");
 	showName("\nNENNE");
+}
+public function nenneBustString(nude:Boolean = false):String
+{
+	var nudeS:String = "";
+	if(nude) nudeS = "_NUDE";
+	return ("NENNE" + nudeS);
 }
 
 public function nenneItemCost():Number
@@ -39,6 +43,11 @@ public function nenneItemCost():Number
 // (scene: Herbs And Happy)
 public function herbsAndHappyBonus():Boolean
 {
+	if(pc.hasGenitals() && flags["WARGII_NENNE_TUUVA_REWARD"] == undefined && flags["MET_TUUVA"] != undefined && flags["MET_NENNE"] != undefined && flags["WARGII_PROGRESS"] == 3 && flags["WARGII_NENNE_SAVED"] != undefined && flags["WARGII_TUUVA_SAVED"] != undefined)
+	{
+		wargiiRewardTTSqzrs();
+		return true;
+	}
 	if(flags["MET_NENNE"] == undefined)
 	{
 		showNenne();
@@ -374,7 +383,7 @@ public function nenneBellyRub():void
 	if(!korgiTranslate()) output("You too good!");
 	else output("You’re good too!");
 	output("”</i> she says happily, drawing her tongue back into her mouth. It takes her another moment to roll onto her shaky limbs, and then another to pull herself back up. <i>“");
-	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
+	if(!korgiTranslate()) output("Knowing didn’t Korgonne could doing that! Liked! Afraiding not to doing again!");
 	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
 	output("”</i>");
 	flags["NENNE_BELLY_RUBS"] = 1;
@@ -542,6 +551,8 @@ public function flirtWithNenne():void
 		addButton(0,"Follow",nenneFollowPresex,undefined,"Follow","You’re ready to plow that MILF Korgonne ass like a field; to knead it like bread dough; to pound it like cake; to verb it like a noun!");
 		addButton(1,"Stay",shouldIStayOrShouldIGoNowIfIStayThereWithBeTroubleIfIGoThereWillBeNenne,undefined,"Stay","...but, abstinence can be a good choice as well.");
 	}
+	if(pc.hasGenitals() && flags["WARGII_NENNE_TUUVA_REWARD"] != undefined) addButton(2,"InviteTuuva",inviteTuuvaTitfuck,undefined,"Invite Tuuva","Actually, you have a better idea: why not invite Tuuva back up to the shop and start another round of ‘feeling young?’");
+	else addDisabledButton(2,"Locked","Locked","Something has to happen before this can...");
 }
 
 
@@ -606,7 +617,7 @@ public function nenneFollowPresex():void
 		else output("On that note, you should probably take your clothes off now. It’ll be a little tough to do it later if you don’t.");
 		output("”</i> You do as she recommends and strip naked; Nenne’s eyes are on you the entire time, her eyes quenched for a show as her mouth grows parched despite the tea. When you’re good and naked, you resume your tea time with her.");
 	}
-	output("\n\nYou two continue your tea time and make short talk while you wait for the effects of the tea to kick in. You don’t talk about anything really substantial, and it doesn’t take long for the tea to work its magic: before long, your senses begin to change:");
+	output("\n\nYou two continue your tea time and make short talk while you wait for the effects of the tea to kick in. You don’t talk about anything really substantial, and it doesn’t take long for the tea to work its magic. Before long, your senses begin to change:");
 	output("\n\nYour peripheral vision gets blurry and unfocused, though your primary vision grows sharper and more precise. Your hearing gets a little blurred, and you have a harder time making out some of the nuances in Nenne’s speech, making it sound to you like she’s slurring her words. You feel the warmth of the apartment’s air against your skin and the heat from your bowl emanate toward you. The taste of the tea explodes against your tongue, lighting up every bud along its length. And, most importantly, the musk from earlier... it overshadows the tea easily and pervades your nostrils, controlling where your face looks, where your eyes focus, and which sounds you hear.");
 	output("\n\nNenne recognizes all the symptoms, and, with a warm smile, gently takes your hand in hers. <i>“");
 	if(!korgiTranslate()) output("Timing be for lessons to you,");
@@ -719,8 +730,8 @@ public function nenneGets69():void
 	else if(pc.hasVagina()) output("your [pc.vagina] clamps down on the invasive tongue inside it, and you feel every pulse of your veins stimulating your every vaginal muscle to rhythmically milk Nenne’s tongue for every drop of cum it wishes it could spurt. You feel your body tighten, and you feel yourself produce more [pc.girlCum] in a hurry, soaking Nenne’s snout down to her neck. The muscles in your [pc.legs] spasm involuntarily, shaking with pleasure; if you had the strength to lift them, you’d have wrapped them around her shoulders so you could use your [pc.feet] to push her deeper into your body. Waves of pleasure emanate from your [pc.crotch], rolling up your [pc.belly] and into your heart");
 	output(".");
 
-	output("\n\nLost as you are in your pleasure, your mouth still runs on its scripted, automatic motions, bringing Nenne to her own orgasm, and you don’t realize that she’s cumming until you nearly sputter own her own girl cum. Once you’re aware of it, you’re aware of how her fluids flush against the bumpy tastebuds of your [pc.tongue] and how it fills the miniscule gaps between your teeth. The taste is more of the same, but far more potent and concentrated; it’s like you had bottled Nenne’s flavor and distilled it into cum. Her breathing is ragged and tough, and her thick thighs shake in restrained pleasure on either side of her head as her pussy spasms on your mouth.");
-	output("\n\nYou pay no heed to any of that. As sharp as your senses are, your lazy mind registers only three things: that you’re cumming; that she’s cumming; and that if you keep doing what you’re doing to her snatch, she’s likely going to cum more, and if she cums more, you’re probably going to cum more.");
+	output("\n\nLost as you are in your pleasure, your mouth still runs on its scripted, automatic motions, bringing Nenne to her own orgasm, and you don’t realize that she’s cumming until you nearly sputter on her girl cum. Once you’re aware of it, you’re aware of how her fluids flush against the bumpy tastebuds of your [pc.tongue] and how it fills the miniscule gaps between your teeth. The taste is more of the same, but far more potent and concentrated; it’s like you had bottled Nenne’s flavor and distilled it into cum. Her breathing is ragged and tough, and her thick thighs shake in restrained pleasure on either side of her head as her pussy spasms on your mouth.");
+	output("\n\nYou pay no heed to any of that. As sharp as your senses are, your lazy mind registers only three things: that you’re cumming, that she’s cumming, and that if you keep doing what you’re doing to her snatch, she’s likely going to cum more -- and if she cums more, you’re probably going to cum more.");
 	output("\n\nMay as well get your money’s worth out of her.");
 	pc.girlCumInMouth(chars["NENNE"]);
 	processTime(30);
@@ -988,3 +999,211 @@ public function peanutButterNenne():void
 	addButton(0,"Next",mainGameMenu);
 	IncrementFlag("NENNE_COOKIES");
 }
+
+/*Overview:
+This is a quick commission Fenoxo asked me to do of Nenne-plus-one-other giving Steele a team-titfuck after rescuing the Korg’ii hold from the Milodaan invasion. It was pitched because Adjatha wanted to colour in the Mr. Pink photo of Nenne and Urta, but Urta doesn’t exist in TiTS, so it needs to be someone else.
+He told me to choose whoever out of everyone in the Hold, so I chose that busty bitch Lund Tuuva, the spunky blacksmith that joins you in some of the combat encounters during the invasion. She goes to Nenne’s store for some tea just to wind down (honest, the tea is a relaxant as much as it is an aphrodisiac) but then you show up, and the ladies decide to make it a party.
+I have a 5k word cap, so if I can fit it in, I’ll write a scene for girl-PCs, too.
+
+// Continue here when the PC enters Nenne’s shop after the War’gii event
+// (scene: Threesome intro)
+*/
+public function wargiiRewardTTSqzrs():void
+{
+	clearOutput();
+	showBust(nenneBustString(true),tuuvaBustString(true));
+	author("B");
+	showName("NENNE\n& TUUVA");
+	output("You enter Nenne’s shop. But, to your mild surprise, she isn’t tending the front, like she normally does during the open hours. You presume she must be having a rest in the back, where her living space is.");
+	output("\n\nYou hear voices coming from deeper into the little nook that is her home. You have the decency to make yourself known before you barge in – she doesn’t have a door to knock, so you open-hand slap the hard, stony wall a few times, and you call Nenne’s name. The voices stop, and you hear the patter of paws against the rock floor, and soon, Nenne joins you in the shop.");
+	output("\n\n<i>“[pc.name]!”</i> she chitters, lunging at you and wrapping her arms around your ");
+	if(pc.tallness >= 6*12) output("waist");
+	else if(pc.tallness >= 5*12+6) output("[pc.chest]");
+	else output("shoulders");
+	output(". She squeezes you tightly and rubs her cheek against you affectionately, excited and happy to see the Hold’s champion back in her store. Her tail is wagging a mile a minute behind herself, whipping her thick rear from side to side with it.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Nenne and friend talking of you now-and-then!":"We were just talking about you!") + " Please, come inside!”</i> She takes you by the hand and gives you a yank, leading you into her living space. Looks like she’s not interested in work for now; if you wanted to buy something from her, you’ll have to play along until later.");
+	output("\n\nJust around the little bend in the home is her living space: a single, wide, plush bed against the right wall, and a hearth with a gentle fire going in the back, underneath a row of assorted plants and herbs she uses for her apothecary duties. There’s a simple wooden stool against an outcropping of tone, used for a table, with a mortar and pestle on it. And, sitting on the bed, is Tuuva.");
+	output("\n\nTuuva is wearing her usual blacksmith’s apron, although she looks a bit different in it – either she made it a bit smaller, or she’s bigger somehow. In her hand is one of Nenne’s bowls, filled with steaming hot water and, you can barely tell, some crushed plants and herbs. She’s having some tea, clearly. You wonder if she’s having some of Nenne’s <i>special</i> brew....");
+	output("\n\n<i>“Tuuva! " + (!korgiTranslate() ? "Speaking of [pc.name] and [pc.name] appearing of the sudden! Muching surprise to you?":"It’s like [pc.heShe] knew we were talking about [pc.himHer]! Did you know [pc.heShe] was coming?") + "”</i> Nenne is holding you not just by your hand, but by your whole arm, keeping it close to her body. Your whole bicep has disappeared into her cleavage.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Ideaing of not":"I had no idea") + ",”</i> Tuuva replies calmly, taking another drink of her tea. She reclines back into the bed slightly. <i>“" + (!korgiTranslate() ? "Seeing good to be of you, [pc.name]":"It’s good to see you, [pc.name].") + "”</i> Her words are coming out heavily and slowly – if it’s the special tea Nenne likes to give you, you wouldn’t be surprised.");
+	output("\n\nYou take a seat next to Tuuva, the bed sinking under your combined weight. Nenne scampers to her stool and grabs it, putting it right between you two and putting it knee-to-knee against her guests.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Tuuva of telling rescuing how the Hold you and she from the Milodan. Heroes being of all Korg’ii Hold!":"Tuuva was telling me the story of how you two rescued the Hold from the Milodan. You two are everyone’s heroes!") + "”</i> Her hands are bunched up on her knees, and her eyes are wide and alight, eager to hear more of the story. <i>“" + (!korgiTranslate() ? "Nenne hide whole time after rescuing. Too fighting for much old Korgonne like Nenne. Story like living young through [pc.name] and Tuuva!":"I hid in my bed the whole time after I was rescued. I’m too old to be putting up much of a fight for any Milodan. Your story makes me feel like I’m young again and I’m and living the fight through you!") + "”</i>");
+	output("\n\nTuuva ‘mmm’s’ through another mouthful of the tea, then looks at you with half-lidded eyes. It’s subtle, and you try not to look directly at it, but her legs have shifted apart slightly, and the crinkle of her apron has taken an upward turn at her crotch. <i>“" + (!korgiTranslate() ? "[pc.name] work of most doing. Tuuva fight, but not like [pc.name] fight. [pc.name] heroing of the Hold.":"[pc.name] did most of the work. I fought, but I didn’t fight like [pc.heShe] fought. [pc.name] is the real hero of the Hold.") + "”</i> She snickers, then puts her head on your shoulder. <i>“" + (!korgiTranslate() ? "Tuuva kicking sides.":"I’m just [pc.hisHer] sidekick.") + "”</i>");
+	output("\n\nYou ask Tuuva what she’s doing here with Nenne. You’d have thought she’d want to head to her own place and maybe try and sleep the whole thing off. <i>“Almost,”</i> she answers cryptically. <i>“" + (!korgiTranslate() ? "Nenne plant-drinks gooding to relax. Thinking having some to sleeping better first.":"Nenne’s drinks are good to relax with. I thought I’d have some to help me sleep better.") + "”</i> She shuffles closer to you, snuggling her face up against the hook of your neck. <i>“" + (!korgiTranslate() ? "Not needing, but... wanting.":"I didn’t need it, but... I wanted it.") + "”</i>");
+	output("\n\nYou can read her body language plainly enough. You tell Nenne that you’d have thought that drinking that special ‘tea’ of hers would make people horny and lustful, not sleepy. <i>“" + (!korgiTranslate() ? "Tea helping to relax":"The tea is a relaxant") + ",”</i> she answers. <i>“" + (!korgiTranslate() ? "Making for ‘fun’ times funner, but making for sleeping times sleepinger. Drinking of drink, then wrapping in blanket, meaning sleeping times of amazing!":"It can be used to make ‘fun’ times more involved, but it can also help a person sleep better. Have a drink, then wrap yourself in a blanket, and it’ll give you the best sleep you’ve ever had, I guarantee.") + "”</i>");
+	output("\n\nTuuva hums and smiles to herself. She swirls her tea in her hand, and with her other, she gently palms at her own lap, her fingers inching themselves toward her crotch. <i>“" + (!korgiTranslate() ? "Tuuva thinking sleeping of less wanting, now [pc.name] here being":"Now that you mention it, I’m thinking less about sleep, now that [pc.name] is here") + ",”</i> she says. Her long, fat tongue slips from her chops and languidly licks at her lips. <i>“" + (!korgiTranslate() ? "[pc.name] heroing of the Hold, Nenne. Giving [pc.name] reward hero-fitting?":"[pc.name] is the hero of the Hold, Nenne. What do you say to giving [pc.himHer] a reward fit for one?") + "”</i>");
+	output("\n\nNenne sits upright, and she smiles a sheepish smile – but, you can tell from that giddy smirk, and from the way her eyes keep flitting between you and Tuuva, that she was hoping the discussion might go in this direction. <i>“" + (!korgiTranslate() ? "Nenne":"I") + " shouldn’t,”</i> she stutters playfully, motioning towards the door to her living space. <i>“" + (!korgiTranslate() ? "Shop of herbs for Nenne to getting to":"I should really be getting back to my shop") + "–”</i>");
+	output("\n\nBut Tuuva isn’t having any of it. With her free hand, she grabs Nenne by the wrist and yanks her toward herself. She yips in surprise by the force, but doesn’t resist; she’s nose-to-nose and chest-to-chest against Tuuva, and rather than try and keep up the game, she instead straddles Tuuva’s lap, placing her slickening mound right on top of the growing bulge between Tuuva’s legs.");
+	output("\n\nTuuva turns her head to the side and chugs the remainder of her tea, all at once – there’s a lot left in there, and the drink makes her cheeks bulge, but she doesn’t swallow. Once the bowl is empty, she tosses it aside, and as it hits the ground, she leans into Nenne and kisses her, full on the lips. You can see her cheeks narrow out and Nenne’s own start to balloon, followed by both of their throats working to swallow what’s between them.");
+	output("\n\nThey don’t stop once it’s clear to you that there’s no more tea in their mouths. Nenne’s eyes flutter shut; she’s is naked as could be, and Tuuva takes full advantage of that by running her hands through her soft fur, clawing lines down her back until they come to a rest on her wide, motherly ass, where she unabashedly grabs two thick handfuls and gives them a big heft.");
+	output("\n\nNenne, far from motionless, snakes her right hand underneath Tuuva’s apron and palms at her thick, black, pebbly nipple; she uses her left to grasp the back of Tuuva’s head and keep her in place; and, fuelled by the tea, she starts humping and rutting herself against the fabric of Tuuva’s apron, leaving wet stains along its base. And, to top it all off, they’re both using a borderline-excessive amount of tongue.");
+	processTime(15);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",wargiiRewardTTSqzrs2);
+}
+
+public function wargiiRewardTTSqzrs2():void
+{
+	clearOutput();
+	showBust(nenneBustString(true),tuuvaBustString(true));
+	author("B");
+	showName("NENNE\n& TUUVA");
+	output("The stench of horny Korgonne pheromones starts to permeate the room, and you’re already pretty aroused by the sight of a busty MILF ravenously rut and make out with a younger, bustier blacksmith. ");
+	if(!pc.isCrotchExposed()) output("You reach to undo your [pc.crotchCover] and expose yourself to the room");
+	else output("You reach between your [pc.thighs], your intent obvious");
+	output(" – not that you’re sure they’d mind – and ");
+	if(pc.hasCock()) output("start giving your rising [pc.cockBiggest] some attention, keeping all three eyes trained on the show in front of you");
+	else if(pc.hasVagina()) output("start thrusting your fingers into your [pc.vagina], the wet sound of your fingers squelching into your honeypot going with the wet kisses shared between the two ladies in front of you");
+	output(".");
+	output("\n\nNenne’s eyes slip open slightly at the sound of you touching yourself to the entertainment she’s putting on for you. Her eyes widen, almost as if she forgot that you were there, and that she was making out with Tuuva just for the hell of it. At the sight of you and your self-attention, she gives the inside of Tuuva’s cheek one more lick before pulling back.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Saving the action for heroing of Hold, Tuuva":"We should be saving the sugar for the hero of the Hold, Tuuva") + ",”</i> Nenne says, although neither of them are too eager to stop their frantic humping and bumping. She has to convince Tuuva a second time before she stops trying to fuck her straight through her own apron.");
+	output("\n\nTuuva glances towards you, and her eyes are naturally drawn to your hand busy at work between your [pc.thighs]. You almost want to tell them to never mind you and just keep doing what they’re doing, but you know better than to say something stupid when you have two horny women both vying for a piece of you.");
+	output("\n\nNenne slinks herself off Tuuva’s lap, leaving a wet trail down the bottom half of her blacksmith’s apron, and she sits herself on her knees in front of you, her hands travelling up your [pc.thighs]. She leans in and takes a big, thick huff of your musk, but she doesn’t get started on you yet – not until Tuuva is with her.");
+	output("\n\nLuckily for you both, neither of you have to wait long: Tuuva just had to remove her apron, before she takes her place right next to Nenne, looking up at you cross-eyed with lust. As soon as your musk hits her nose, she doesn’t bother putting up any resistance.");
+	processTime(7);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Next",wargiiRewardTTSqzrs3);
+}
+
+public function wargiiRewardTTSqzrs3():void
+{
+	clearOutput();
+	showBust(nenneBustString(true),tuuvaBustString(true));
+	author("B");
+	showName("NENNE\n& TUUVA");
+	// continue here if the PC has a dick or is herm
+	if(pc.hasCock())
+	{
+		var x:int = pc.biggestCockIndex();
+		output("Tuuva’s nose buries into the cleft of your [pc.base " + x + "], shucking in a deep lungful of your musk. She stays there, nuzzling herself against your [pc.skinFurScales], enjoying the intimacy of submerging herself in your scent, especially in her lazy, heightened state. Her tongue flops about occasionally, aimless, but once it finds the shaft of your cock, she plants her tongue-tip right up against your [pc.sack], where it meets your cock, and gives you a long, fat lick along your underside.");
+		output("\n\nNenne is less influenced by the tea as Tuuva is, but nonetheless does the same as her partner, focusing on giving you longer, more extravagant licks than taking your tip into her mouth and sucking you dry. Her lips wrap around the circumference of your shaft, and she glides her whole face along your length, dragging her tongue along with her. When she gets to your [pc.cockHead " + x + "], she lets it slip inside and poke at her cheek, before turning the other way and starting again.");
+		output("\n\nYou can’t help but thrust your [pc.hips] forward, against the two ladies, every time one of them hits a particularly sensitive spot on you. You place your hands on their heads and massage at their scalps; you even call them ‘good girls,’ through panting breaths, and they both respond positively: Nenne’s tail wags behind herself, dragging her whole butt along behind her, and Tuuva just moans and takes another deep breath.");
+		output("\n\nThey both readjust themselves: Tuuva repositions her neck, craning it downwards slightly, and lavishes your [pc.balls] with gentle but fervent licks, ");
+		if(pc.balls > 1)
+		{
+			if(pc.ballDiameter() < 3) output("draping her fat Korgonne tongue across " + (pc.balls == 2 ? "both":"two of your") + " nuts at once");
+			else if(pc.ballDiameter() < 6) output("sucking one of your hefty nuts into her mouth and giving it a suck before starting on the next");
+			else output("covering as much surface area on your single massive nut in one pass before languidly working towards the " + (pc.balls == 2 ? "other":"next"));
+		}
+		output(". And Nenne, apparently deciding that this is a party and not a performance, bends forward at the waist, gripping at Tuuva’s right breast, and returning the favor Tuuva is doing to you to her big, black nipple.");
+		output("\n\nAnd that’s how you three are, for the next few minutes: Tuuva lavishing your [pc.cock " + x + "] and [pc.balls] with some love, one slow, long lick at a time, while Nenne dives face-first into Tuuva’s cleavage, showing her breasts as much attention as Tuuva is to you. Nenne’s pretty loud and messy about it, too: you can hear every lick and smack of her tongue, and every smooch of her lips, against Tuuva’s chest, really making it known to you both just how much she’s enjoying where she is. You’d think Nenne had just discovered how amazing it is to motorboat a set of great tits, with the way she’s making herself at home in there.");
+		output("\n\nYou can’t help but sigh through your nose at the carnal sensations, and your hips lurch forward involuntarily again. It pushes Tuuva’s nose upward, and she just goes with the momentum: her nose drags along the underside of your shaft, her tongue hanging out and licking at nothing as she traces the length of your shaft, from sack to tip, with the point of her snout. When she finds your tip, there’s a bead of your pre there waiting for her, and it draws a thin, sticky line across both her nostrils.");
+		output("\n\nShe stays there, totally content to just nuzzle against the tip of your cock for a bit. You can only imagine what effects the tea is having on her sense of smell.");
+		output("\n\nNenne, either done with making out with Tuuva’s breasts, or curious to know why she’s stopped, comes up to investigate, kissing her way up Tuuva’s neckline the whole way. When her own nose bumps into your cock and she gets a slathering of pre across her nose, she gets a more proactive idea than to just sit there: she shuffles in closer, pressing her body up against Tuuva’s, crotch-to-crotch and breast-to-breast, and uses her fingers to gently angle your cock downward, across both of your lady’s lips.");
+		output("\n\nNenne wraps her legs around Tuuva’s waist, hooking herself onto Tuuva’s body, and you can see what she wants, plain as day: unsatisfied with just giving you a blowjob and sucking on some titties, she wants some of that fat " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "Korg":"horse") + "cock for herself, stuffed up her snatch. Tuuva, acting somewhat mechanically, like her body is doing it all for herself, obliges: both her hands cup Nenne’s fat ass, lifting and shifting her closer, and she humps upward, " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "seeking out Nenne’s hot pocket and giving the MILF a thick, heaping helping of cock":"pounding into Nenne’s cunt, and filling out the MILF as tightly as she’s ever experienced") + ".");
+		output("\n\nThey mutually gasp in pleasure, both of their mouths agape, and you take the opportunity to thrust forward, gliding your [pc.cock " + x + "] between them, your tip poking at the inside of Tuuva’s cheek. With your hands on their heads, you push them together, and they meet with a messy tongue kiss, heavily making out with your cock in between their thirsty, dancing tongues. They fight over your every drop of pre: when one squeezes out and lands on someone’s tongue, the other lunges forward, coiling their own around the other, eager to swipe it back.");
+		output("\n\nYou three are a tangled mess of [pc.skinFurScales] and Korgonne fur; of mouths kissing and tongues swirling; of one cock thrusting between a pair of hot, warm mouths each looking for another hit of your delicious [pc.cumFlavor]; another cock ");
+		if(!tuuva.hasCock(GLOBAL.TYPE_EQUINE)) output("making itself nice and cozy inside an older, more experienced pussy");
+		else output("stretching an older pussy to its limit, testing its experience in handling something so massive");
+		output(". You wish you had some of that tea yourself: even the sensation of your fingers wringing through their hair would be an amazing experience to tie in with all the sights, sounds, and sensations.");
+		output("\n\nNot that you need it: having two women at once would put anyone on a hair trigger in a hurry, especially if they’re as lascivious as Nenne and Tuuva. You aren’t positive where it is you want to cum – in Nenne’s mouth? She must be thirsty, since she had less to drink than Tuuva. Maybe you should cum between each of their tits, and let them fight each other for your load? The idea of them motorboating each other to lap your [pc.cum] out of their fur would probably be enough to get you hard again....");
+		output("\n\nNenne, the clearer-headed of the two, apparently senses your indecision. Either that, or she’s judging that, from the way you’re thrusting between the two and your [pc.cock " + x + "] is bloating with your incoming load, you must be getting close. She’s happy to keep doing what she’s doing – bouncing happily on Tuuva’s cock while your own slides between her lips – but she pulls away. Tuuva, not <i>quite</i> as level-headed, leans in, her hands gripping tighter onto Nenne’s butt, trying to get her to stay put.");
+		output("\n\n<i>“Stay,”</i> she commands, booping Tuuva’s nose, and, vulnerable to suggestion, she does. Nenne replaces her mouth with her paw, and her fingers close around your shaft, giving you a harsh tug – harder than is pleasurable, but not hard enough to be painful. Her eyes are on yours, with a mischievous glint in them, and you follow her unspoken command, shuffling your hips forward until they’re damn-near hanging off the side of the bed.");
+		output("\n\n");
+		showImage("9999Busteridoodah");
+		output("With some more repositioning, Nenne hefts her right tit up and around the thick shaft of your [pc.cock "
+			 + x + "], then reaches over and grabs onto Tuuva’s left, doing the same, sandwiching your dick into their combined cleavage. Their nipples press together, and their tit flesh presses and squishes against one another, with your cock taking up space between them. ");
+		if(pc.cocks[x].cLength() <= 10) output("You can feel every bristle of their boob fur against your sensitive skin, and you’re close enough to their hearts to feel every off-sync beat on either side of you, but you’ve vanished completely into the abyss that is their titties pressed together");
+		else 
+		{
+			output("Your [pc.cockHead " + x + "] pokes out from their titties" + (pc.cocks[x].cLength() >= 13 ? " with some shaft to spare":"") + ", giving you some context as to how deep the valley of their boobs together goes. You can feel their off-sync heartbeat on either side of your sensitive skin" + (pc.balls > 1 ? ", and your [pc.balls] press into the side of their breasts with every bottomed-out thrust you make":"") + ". And your length gives their mouths more cock to play with");
+		}
+		output(".");
+		output("\n\nYou resume: Tuuva pistons her cock into Nenne once again" + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? ", surely-by-now battering the poor MILF’s vulva with her knot, demanding entry and a tie that’ll lock them even tighter together than they are now":", sunk probably as deep as that fat horse cock is probably going to get into that poor MILF’s box, her flared head knocking on the door to Nenne’s cervix") + ". Her thrusting causes the both of them to jiggle their boobs against each other, massaging your cock between them; and, lost in the throes of the moment, Nenne leans into Tuuva and starts making out with her noisily again" + (pc.cocks[x].cLength() >= 10 ? ", slipping your [pc.cockHead " + x + "] between them and lavishing it with their attention":"") + ".");
+		output("\n\nYou grunt a little loudly with one particular thrust, your " + (pc.balls > 0 ? "[pc.balls]":"pelvis") + " slapping into their boobs hard enough to offset their balance and make their tits jiggle together. It dislodges them from their kiss, but they hardly seem to mind: Tuuva looks up at you with a mixed look of adoration and lust, like she had met her favorite pornstar from her adolescence, while Nenne can’t help but keep her eyes glued to the dark pit that is their breasts together: she watches every shake of their obese tits and counts to herself every throb of your cock buried deep inside them, probably wondering to herself when you’re going to grace their fur with your seed.");
+		output("\n\nThe answer, it turns out, is not much longer: with another few hearty, reverberating claps of your body into their tits, you erupt, ");
+		if(pc.cocks[x].cLength() <= 10)
+		{
+			output("your seed soaking into the valley of their mounds" + (pc.cumQ() >= 1000 ? " momentarily, caught and diluted by their fur, but your output won’t be denied, and soon, your seed bubbles, then spurts, into the air between the ladies, followed by another":"") + ". Your [pc.cum] drips down the underside of their tits, soaking down their bellies, before splattering onto their own union, lubing Tuuva’s exposed cock and dripping onto the floor from there");
+		}
+		else output("your [pc.cum] jetting from your exposed cock head and launching into the air some distance" + (pc.cumQ() >= 1000 ? ", hard enough to reach even the far wall and leave a trail of gooey jizz to mark exactly where you are in the room – you wonder if it’ll stain":"") + ". Your [pc.cock "
+			 + x + "] throbs with every juicy gout, your length fighting to break free from the confines of the women’s fuzzy prison; Nenne’s eyes widen in delight at the sight of it, and she dips her head down to suck your cockhead into her mouth and slurp and swallow the next few shots, whereas Tuuva is more focused on you and your expression");
+		output(".");
+		output("\n\nWith one final thrust, Tuuva " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "locks herself":"bottoms out") + " inside Nenne, and she bites her lower lip as a shaking orgasm rocks her body from crotch to scalp. Her fingers clench and dig into the soft rump of Nenne’s ass, her cum pumping load after load into the MILF’s tunnel, and from the look on Nenne’s face, she’s all too happy to have such a thick load in her box again. The girls are both focused on nothing in particular, too blissed out on the tea and too concerned with their own orgasms to put cognizance to their actions, other than to simply keep doing what they’re doing.");
+	}
+	// Continue here if the PC is pure female
+	else
+	{
+		output("\n\nTuuva leans into you, letting her nose lead the way into the valley of your crotch, sniffing out the source of your feminine musk for herself. There isn’t any foreplay or preamble when her nose comes seeking out your muff; you jump in surprise at the suddenness of having a nose pressed tightly up against you [pc.vagina], especially one as cold, wet, and eager as this one. Every sharp, elongated inhale Tuuva makes rushes the air against your vulva, making it even chillier.");
+		output("\n\nShe doesn’t just stop at having <i>found</i> it, though: once she’s zeroed in, she doesn’t stop pushing forward, until her little button snout of hers digs into your crotch, wriggling its way back and forth into your pussy. Once she’s good and lodged inside you, she <i>keeps</i> going, seeking out some impossible fragrance in your cooter, forced to breathe through her mouth once she discovers how little oxygen there is inside your box.");
+		output("\n\nNenne is hardly motionless, although she’s taken aback by Tuuva’s insistence herself; if she could blush through her fur, you’re sure she’d be red as a beet, and from the way her thighs keep grinding against each other, you hazard a guess that she wishes it was her cunt Tuuva was digging for treasure in.");
+		output("\n\nStill, she has her own focus: while Tuuva is keeping herself preoccupied with you, Nenne hooks herself between you and her, facing into Tuuva, and, in what you’re sure is a total coincidence, her face buried in Tuuva’s cleavage and her hips perfectly aligned with the blacksmith’s. You can see her crunch her belly to keep herself contorted between you two, and you watch her legs wrap around Tuuva’s waist, keeping her steady. Once she’s good and secure, cozied up against the warmth of Tuuva’s coarse fur, she submerges herself into those huge, pillowy breasts, sinking her face as deeply into Tuuva’s chest as Tuuva’s face is in your cunt.");
+		output("\n\nThe shock of having someone motorboat her wakes her out of her pussy-drunk revere, and she snaps back, momentarily confused as to where she is and what she was doing. When her eyes focus, the first thing she sees is your [pc.vagina], gaping slightly from having her face halfway buried into it; she knows that leaving you cold, empty, and unsatisfied simply wouldn’t do, even in her state, and she sticks out her long, fat Korgonne tongue to rectify the problem.");
+		output("\n\nYou moan and run your fingers through Tuuva’s hair, your [pc.legs] shaking and lifting of their own accord to rest on her strong shoulders and give her a more ‘direct’ line straight to your body (not that she needs it). Tuuva is slow, but you’d hardly call her technique ‘methodical:’ she takes one big, deep, long lick into your tunnel, touching and tasting every muscle in there, before pulling back, resting her tongue, and diving in again, repeating the process.");
+		output("\n\nYour own pleasure is an afterthought to her and her mindless cunnilingus: in her tea-influenced state, she’s more after your taste than she’s after the reward that comes with pleasuring your partner. It’s possible that she’s also associating her eating your box with whatever Nenne is doing to her: the more she eats you, the more Nenne returns the favor.");
+		output("\n\nSpeaking of – you lean to one side and look down, to try and get a sense of what Nenne is doing to the girl. It’s difficult to make out: you see a ball of grey fur, with all four limbs wrapped tightly around Tuuva’s body, and her face still just as caught up in Tuuva’s cleavage. You see the occasional flash of pink tongue as she licks between the fat boobs, bathing every inch of fur and skin in there; Tuuva’s breasts are so large that they nearly overflow over Nenne’s shoulders. She’s got a lot of ground to cover.");
+		output("\n\nWith every simultaneous pass Tuuva makes inside you and Nenne makes on Tuuva, you see Nenne hump her hips forward a bit, accompanied by a wet squish – in your lust-driven state, you nearly forgot that Tuuva’s packing, and from the short humps her hips are making, " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "Tuuva must have nearly bottomed out inside Nenne. You wonder if they’re already knotted together – you don’t think you’d be surprised, given how sexually driven a MILF like Nenne can be – but you can’t help but doubt it. Nenne would be making more noise if she did":"Nenne must be struggling, but determined, to fit more of that beast of a cock inside her hungry, experienced gash. Nenne is a sexually-driven MILF, and, knowing her type, she’d probably latch onto a thick, meaty cock like Tuuva’s until it’s been wrung of every last drop it had to give – but, you doubt she’s gotten even halfway down that shaft of hers, given how little noise she’s been making") + ".");
+		output("\n\nYou put both your hands on Tuuva’s head, your thumbs above her eyes, and you push her gaze up, to meet yours. Her jaw hangs open as she cranes her head backward, and her tongue stays firmly locked inside you, thrashing occasionally to collect some other drop of your nectar somewhere. Her moist, glassy eyes tell you everything you need to know about how she’s feeling and what she’s thinking: she’s simultaneously lost in her own body, helpless to do anything but go with the flow and the motions around her, and oh-so-completely okay with what you and Nenne are doing to her that she wouldn’t ask either of you to stop if she weren’t.");
+		output("\n\nYou tell Tuuva that she’s a good girl.");
+		output("\n\nThe words have an unexpected effect on the pup: her eyes close; her cheeks raise; and her body slows, including her lost tongue whipping around inside your body. She takes a deep breath through her nose, and she relaxes. She may be face-deep in your [pc.vagina], and Nenne may be fucking her like she’s an oasis in a desert, but sometimes, all it takes is an encouraging word to make everything worth it.");
+		output("\n\nYou can feel Nenne shift from between you two; she’s worming her way upward, stretching her back to reach for Tuuva’s exposed neck, giving it as loving a treatment as she gave the valley of Tuuva’s cleavage for the past few minutes. She kisses at her jaw, before, suddenly, you feel her hands wrap tightly around each of your [pc.thighs]; apparently deciding you need some extra attention (or maybe looking for a bit of praise herself), you feel Nenne’s own cold, wet nose dip dangerous close to the cleft of your [pc.ass], followed by her lower jaw parting and her tongue surging, joining Tuuva’s inside you.");
+		output("\n\nThe strength leaves your body, and you tumble backward, helpless before the two women with their tongues meeting, twisting, colliding, searching, and tasting in your wet, hot depths. When Tuuva leans in to reach deeper, her nose brushes against your [pc.clit], setting your body on fire; when Nenne does the same, her whole face crawls along the swell of your ass, tickling at erogenous zones you didn’t realize you had.");
+		output("\n\nYou’re not under the influence of the tea, but you might as well be, with how cross-eyed these two ladies have made you. Even just the <i>thought</i> of what they’re doing – a lewd, extended, open-mouth kiss that centrally takes place in your cunt – is enough to push you closer to that edge that ‘ve been steadily making your way towards this whole time. Whenever one tongue inside you misses a sensitive spot inside you by a hair’s breadth, the other attacks it like it <i>knew.</i> You’re nothing but a third mouth for these two tongues to make themselves at home in.");
+		output("\n\nYour [pc.thighs] clench on Tuuva’s head, squeezing down on her cheeks; she hardly seems to notice and just keeps doing what she’s doing. When Nenne’s hands reposition themselves to reach up and grasp onto your [pc.ass], you remember to call her a good girl, too, and her tongue bloats and thrashes, eager to <i>earn</i> the praise some more.");
+		output("\n\nWith just a little bit more, you’re on the cusp on your orgasm, building like a hurricane inside you, and stirred by the tongues constantly grinding and swirling inside your honeypot. Nenne and Tuuva happen to thrust their tongues into you at the same time, and it’s more than enough: your body involuntarily clenches, squeezing on them, milking their combined girths like a single, spongy cock, and soaking them down with your [pc.girlCum]; your [pc.vagina] ripples with pleasure, and with it, your body is shocked, from head to toe, with orgasm after rocking orgasm. And the girls beneath you just keep doing what they’re doing throughout it all, perhaps oblivious to your body-shaking, groan-inducing orgasm; all they know is pleasure, so if they keep doing what they’re doing, they will be given more pleasure.");
+		output("\n\nNenne, the more cognizant of the two Korgonne underneath you, muffles a moan through your quivering mons, and her own body goes stiff; inadvertently, Tuuva " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "knotted herself to the MILF, locking her nice and tight, wrapping her experienced body around her stiff cock so she can plant her own jizz as deeply as she can into that hot pocket of hers. Nenne shuffles and rocks beneath them, trying her best to eke out as much pleasure as possible, although, pinned beneath [pc.aRace] and a horny, lust-drunk Korgonne, she doesn’t have the strength to move about much":"bottomed out inside the MILF, thrusting as deeply as she’s going to get into the motherly box. You can only imagine what that flare of hers is doing to Nenne, or how much cum she’s pumping into her; you imagine Nenne’s belly positively gravid with seed, just as you’re sure the depraved girl wants. You can feel Nenne try to move about, to try and get as much pleasure from that massive horse cock as she can, but between [pc.aRace] and a lust-drunk Korgonne, and impaled as she is on a cock as thick as Tuuva’s, she’s not going anywhere") + ".");
+		output("\n\nWhen you think you’re all cummed out, you realize that Nenne and Tuuva haven’t stopped. They’re just going to keep right on going, until the effects of the tea leave their system, or they fuck themselves unconscious. And you’re going to be right in the middle until they stop....");
+	}
+	// end scene (scene: Team Battle Titfuck); increase Lust to 100; go to (scene: Conclusion)
+	processTime(35);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",tuuvaTeamTitfuckcumclusion);
+}
+
+public function tuuvaTeamTitfuckcumclusion():void
+{
+	clearOutput();
+	showBust(nenneBustString(true),tuuvaBustString(true));
+	showName("NENNE\n& TUUVA");
+	output("It took you some doing, some time later, but you managed to wriggle yourself free from between the two ladies before you get oversensitive to the point of discomfort. ");
+	if(pc.hasCock()) output("Just as you had fantasized, once you peel yourself away from the thirsty girls, they turned their focus toward each other, intent on ‘cleaning’ the cum out of their fur as <i>diligently</i> as possible: they’re locked in a shallow 69, each of them buried in the cleavage of the other, their tongues working overtime in their thick, heavy clefts to clean up <i>all</i> the cum you had left <i>deep</i> between them. And, from the light, airy moans they’re both making, they’re both loving every last taste");
+	else output("But neither of them were satisfied, once they had no pussy to munch, so they turned to each other, locking their mouths together and continuing their lazy make-out session without you, eager to collect every drop of [pc.girlCum] from the inside of each other’s mouths. It’s a hot sight, seeing them fight each other for just another taste of you; it’s almost enough to step back in and give them what they want, consequences be damned");
+	output(".");
+	output("\n\nYou’re fairly certain that the effects of the tea have left their bodies by now, or, at <i>least</i> Nenne’s, and they’re just doing it for the thrill of it. Not that you mind – you’re the Hero of the Hold, after all, and you don’t mind telling yourself that you deserve a show like this.");
+	output("\n\nEventually, they pull apart, smiling to each other, then to you, basking in the afterglow of the sex. They both crawl their way up to the bed, their hips wiggling with exaggeration behind themselves as they go, drawing your eyes to their asses, enticing you for a... third round? You’ve forgotten.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "More often danger-stopping of Hold, maybe":"Maybe you should be the Hero of the Hold more often") + ",”</i> Tuuva whispers, her breath smelling like you and Nenne. She wraps her left arm around your [pc.chest] and snuggles herself up against you, laying her " + (!tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "spent, limp, and receding dog cock":"spent, but still overbearing, horse cock") + " across your [pc.thigh] and burying her nose into the cleft of your neck. Nenne, naturally, does the same, and you’re covered from the waist-up in fluffy, sleepy Korgonne.");
+	output("\n\nTime to sleep this one off.");
+	output("\n\n...");
+	output("\n\nWhen you awake, Nenne is already up and about in the comfort of her own home, and Tuuva is nowhere to be seen. You sit up, scratching your head; your lower body has been exposed to the air this whole time, and you can’t help but feel a bit <i>drafty</i>.");
+	output("\n\nYou hardly move more than an inch on the bed before Nenne flops herself onto your lap, her nose up against yours, and a big, goofy, satisfied grin on her face. <i>“" + (!korgiTranslate() ? "Nenne of saying, tea good sleeping make":"Like I said, my tea is a good sleeping aid") + ",”</i> she laughs, nuzzling her nose against yours. You reply that you didn’t doubt her for a second, and return the gesture, nuzzling against the cute MILF.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "[pc.name] and Tuuva making Nenne feeling of young. Feeling of running from Hold to coast!":"You and Tuuva know just how to make an old Korgonne feel young again. I feel like I could run from the Hold to the coast!") + "”</i> She leans in and plants a kiss against your [pc.lipsChaste], then continues, lowering her voice. <i>“" + (!korgiTranslate() ? "Saying wouldn’t of no to again goings. Ask, and fetching Tuuva Nenne for more... young feelings":"I wouldn’t say no to a repeat performance. Say the word, and I’ll go fetch Tuuva for another... shall we say, another round of ‘feeling young’ again") + ".”</i>");
+	output("\n\nShe finally lets you up, and you tell her that you’ll certainly keep it in mind. Once you’re recollected yourself and gathered your belongings, you’re out of Nenne’s shop and into the Hold once again.");
+	processTime(65);
+	pc.orgasm();
+	pc.orgasm();
+	IncrementFlag("WARGII_NENNE_TUUVA_REWARD");
+	clearMenu();
+	//[=Next=]
+	// end scene (scene: Conclusion); place PC one square outside of Nenne’s shop; reduce Lust to 0; advance clock 3 hours
+	addButton(0,"Next",move,"KORGII H14");
+}
+
+//[=InviteTuuva=]
+// add this button to Nenne’s Flirt menu, alongside the [=Follow=] and [=Stay=] buttons
+// Tooltip: Actually, you have a better idea: why not invite Tuuva back up to the shop and start another round of ‘feeling young?’
+// (scene: Repeat Titfuck)
+public function inviteTuuvaTitfuck():void
+{
+	clearOutput();
+	showNenne();
+	author("B");
+	output("You raise your hand. Actually, you tell her, you have a better idea: why not go into the Hold and invite Tuuva up here? After all, you both seemed to enjoy last time so much–");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Insisting of [pc.name]":"Oh, if you insist") + ",”</i> Nenne says with some delight, clearly disinterested in putting up much of an argument. <i>“" + (!korgiTranslate() ? "Starting first of tea brew, then fetching Tuuva. Waiting will not long":"I’ll start the tea first, then I’ll go get Tuuva. It shouldn’t be too long") + ".”</i>");
+	output("\n\nFollowing her own instructions, Nenne shows you into her living space, puts on a bowl of her special tea on an open hearth, and then leaves, the shop – giving you one glance over her shoulder, with a sly little smile on her lips, before disappearing. You’re left along in her living space for now" + (!pc.isCrotchExposed() ? " – you figure, you might as well get ready, and you remove your [pc.lowerGarments], exposing yourself to the air of her home":"") + ".");
+	output("\n\nMoments later, Nenne returns back, and, in tow, just as she promised, is Tuuva, still wearing her blacksmith’s apron. Nenne is leading Tuuva by the hand, and, given the obvious tent in the apron down by her legs, they probably talked a bit about what it is they had in mind with you today. You hope it’s more of the same.");
+	output("\n\nNenne gives you a quick, chaste kiss, but she can barely contain her excitement at getting some real action, and is quick to tend to her hearth, busy mashing the plant to make her tea into a fine dust using her mortar and pestle. Her tail swishes behind herself excitedly all the while, with enough force to drag her whole ass with every pass. You could get hypnotized with an ass like hers moving the way it is.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Tuuva thinking on breaking anyway soon":"I figured it was about time for a break anyway") + ",”</i> Tuuva says to you, taking a seat beside you, as if she needed to justify wanting to have a threesome with you and Nenne.");
+	output("\n\nThe tea is completed perhaps a bit quicker than usual: Nenne seems satisfied with the result of the brew, but the water isn’t hot enough to steam. You wonder what it is she has in mind–");
+	output("\n\nWhen, with a surprising display of initiative, she sits on Tuuva’s lap, just as she had before, and then leans back before tipping the edge of the bowl towards her cleavage. The hot, but apparently not boiling, searing hot, tea trickles down, washing between Nenne’s breasts, then waterfalls down her belly, towards Tuuva. <i>“" + (!korgiTranslate() ? "Opening":"Open up") + ",”</i> she says huskily.");
+	output("\n\nTuuva, after recovering from the sight, is quick to lean in and close the circuit, from the bowl in Nenne’s hand to her navel, where the tea collects momentarily. It’s not a lot of tea, but it’s enough: Tuuva arduously licks her way up Nenne’s belly, collecting every precious drop of tea on the way up, and getting positively lost in Nenne’s cleavage as she seeks out the brew last in the crevice of her chest.");
+	output("\n\nThe tea is quick-acting, and Tuuva’s hands, originally rather feely and groping at the thick of Nenne’s thighs, slow their pinching and feeling, settling for simply holding Nenne in place. While Tuuva busies herself in Nenne’s boobs, Nenne tips the bowl to her mouth and drinks the remainder of the tea, working what little buzz is left in there for herself.");
+	output("\n\nOnce Nenne is confident that both she and Tuuva are in the right state of mind, she slinks herself off Tuuva’s lap, leaving a wet trail down the bottom half of her blacksmith’s apron, and she sits herself on her knees in front of you, her hands travelling up your [pc.thighs]. She leans in and takes a big, thick huff of your musk, but she doesn’t get started on you yet – not until Tuuva is with her.");
+	output("\n\nLuckily for you both, neither of you have to wait long: Tuuva just had to remove her apron, before she takes her place right next to Nenne, looking up at you cross-eyed with lust. As soon as your musk hits her nose, she doesn’t bother putting up any resistance.");
+	processTime(33);
+	clearMenu();
+	addButton(0,"Next",wargiiRewardTTSqzrs3);
+}
+// end scene (scene: Repeat Titfuck); go to (scene: Team Battle Titfuck)

@@ -580,7 +580,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
+	if(pc.hasMeleeWeapon()) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -608,7 +608,7 @@ public function helpKaraOutLastChance():void
 	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
-	if(!pc.meleeWeapon is Rock) output("draw your weapon");
+	if(pc.hasMeleeWeapon()) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside Kara. The bounty hunter curses, waving her weapon between the two of you as she realizes things just took a turn for the worse.");
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";
@@ -741,7 +741,9 @@ public function cuntTailShadeFux():void
 
 	output("\n\nShade’s hips shift back ever so slightly, letting her wiggle out of her panties and toss them aside, keeping her tailcunt planted firmly around your [pc.cockHead " + x + "] until she’s done. As her black undergarments fall to the floor, Shade leans back and down, bringing her tight asscheeks to rest against the stiffening span of your [pc.cock " + x + "], trapping you between two eager cunts.");
 	output("\n\n<i>“Which of this pussy’s pussies do you want first?”</i> the cat-girl teases, grinding her hips and tail up and down your shaft, slathering you in warm wetness. One of her hands slips down between her spread legs, rubbing at the prominent mound of her clit. She doesn’t give you the chance to formulate a response to her question, moving faster until your mouth twists open in a groan of pleasure. Grinning at her obvious effect on you, Shade leans down, pressing her big, soft tits into your [pc.chest] and wrapping her lips around yours, letting her tongue slip into you, playing across your own [pc.tongue].");
-	output("\n\nHer tail coils up behind her, angling it’s cunt-like slit with your [pc.cockHead " + x + "] and delving down. You moan around Shade’s mouth as her tail swallows up your [pc.cock " + x + "], ");
+	output("\n\n");
+	showImage("ShadeTailfuck");
+	output("Her tail coils up behind her, angling it’s cunt-like slit with your [pc.cockHead " + x + "] and delving down. You moan around Shade’s mouth as her tail swallows up your [pc.cock " + x + "], ");
 	if(pc.cocks[x].thickness() >= 3) output("stretching its bulbous head to take your girth, straining to wrap around your massive shaft");
 	else output("wrapping your prick in tight, wriggling cuntflesh as tight as any normal pussy could ever be");
 	output(". Arching her back, Shade breaks the kiss and lets out a soft, surprisingly feminine moan, closing her eyes and enjoying the sensation of your cock filling her tail’s welcoming hole.");
@@ -754,7 +756,7 @@ public function cuntTailShadeFux():void
 		output(", cupping one of your breasts and giving it a rough squeeze");
 		if(pc.isLactating()) output(", just hard enough to draw a bead of milk from your bountiful bosom");
 	}
-	output(". Her tail moves on its own behind her, completely independant of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredible muscle control to wring and caress your manhood than outright fucking you.");
+	output(". Her tail moves on its own behind her, completely independent of the cat-girl’s own actions: it starts to pump your prick, shifting its full weight up and down your shaft with slow, steady strokes, more using its incredible muscle control to wring and caress your manhood than outright fucking you.");
 	output("\n\nYou lie back on the bed, content to enjoy the alien ministrations of Shade’s tail. Her hips move slowly with the shifting mass of her tail, gently guiding the movements of her alien genitalia towards a quickening pace, steadily pumping your shaft. Between that and her hand roaming across your chest, squeezing your [pc.nipples] and caressing your ");
 	if(pc.biggestTitSize() < 1) output("flat, tight chest");
 	else if(pc.biggestTitSize() < 4) output("burgeoning bosom");
@@ -1097,16 +1099,16 @@ public function shadePostCoitusHangouts():void
 		output("\n\nYou nod, and watch Shade");
 		if(flags["SHADE_ON_UVETO"] != undefined && shadeIsHome()) output(" leave the bedroom");
 		else output(" on her way out");
-		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your");
+		output(". After a few minutes to catch your breath, you hop out of your lover’s bed and collect your [pc.gear] from the corridor. You get your gear in order and let yourself out");
 		if(flags["SHADE_ON_UVETO"] == undefined)
 		{
-			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
+			output(". Shade’s ships seals tight behind you.");
 			//PC is left in the far north of the airfield.
 			moveTo("602");
 		}
 		else
 		{
-			output(" kit in order and let yourself out shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
+			output(" shortly after. Shade’s house seals tight behind you, leaving you to quickly make your way back to the bar to get out of the searing cold.");
 			currentLocation = "UVI P32";
 		}
 		
@@ -1260,11 +1262,29 @@ public function shadeApproach():void
 	clearOutput();
 	
 	// Shade left for Uveto Hotfix!
-	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined && flags["TOLD_SHADE_SHES_YER_SIS"] != undefined)
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined && (flags["TOLD_SHADE_SHES_YER_SIS"] != undefined || flags["SHADE_PAID_YOU"] != undefined || flags["SEXED_SHADE"] != undefined))
 	{
-		output("Before you get the chance to approach her, Shade stands up and leaves in a hurry, not once looking up or making eye-contact with you. She is obviously in a hurry... off to Uveto like she said she would, you guess.");
+		if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined)
+		{
+			output("Before you get the chance to approach her, Shade stands up and leaves in a hurry, not once looking up or making eye-contact with you. She is obviously in a hurry... off to Uveto like she said she would, you guess.");
+			
+			processTime(2);
+		}
+		else
+		{
+			output("Before you get the chance to approach her, Shade stands up, throws on her duster and adjusts her utility belt. She is obviously in quite a hurry to leave...");
+			output("\n\n<i>“Hey, Steele,”</i> Shade greets you soon as she makes eye contact with you. <i>“Sorry I can’t stay and chat. I’ve been on this dust ball for a long enough");
+			if(flags["SHADE_PAID_YOU"] != undefined) output(" -- my job here is done, my bounty’s been collected,");
+			output(" and I’m having that maternal urge to meet my family back home.”</i>");
+			output("\n\nYou ask her where exactly she is off to.");
+			output("\n\n<i>“On the frozen ice ball known as Uveto VII,”</i> she says as she walks by.");
+			if(!uvetoUnlocked()) output(" <b>Your codex beeps when you receive the coordinates to location of the moon and its station.</b>");
+			output(" <i>“Feel free to come by and pay me a visit. " + (flags["SEXED_SHADE"] != undefined ? ("We can have a lot of fun together, " + pc.mf("handsome", "cutie", true) + ".") : "Would be nice to have company over.") + "”</i> With that, she leaves the bar and out of your view.");
+			
+			processTime(4);
+		}
+		output("\n\n");
 		
-		processTime(2);
 		if(flags["UVETO_UNLOCKED"] == undefined) flags["UVETO_UNLOCKED"] = 1;
 		if(flags["SHADE_ON_UVETO"] == undefined) flags["SHADE_ON_UVETO"] = 1;
 		
@@ -1557,6 +1577,8 @@ public function talkToShadeAboutHerFamily():void
 	}
 	else
 	{
+		var metSaendra:Boolean = flags["SAEN MET AT THE BAR"] != undefined;
+		
 		output("<i>“So, you have any family, Shade?”</i>");
 		output("\n\n<i>“Everybody’s got family,”</i> she chuckles. <i>“I didn’t just grow out of a pod, you know.”</i>");
 		output("\n\nYou ");
@@ -1572,19 +1594,19 @@ public function talkToShadeAboutHerFamily():void
 		output("\n\nYou cock an eyebrow, and Shade chuckles. <i>“I was getting to that, but yeah, I’ve got a girl of my own. She’s about your age, I’d guess, maybe a little younger. Had her real early, barely past eighteen - probably the only time </i>my<i> mom threatened to kill me. And I got plenty shit bringing her up, too, since she was half-ausar to boot.”</i>");
 
 		output("\n\n<i>“Her father was an ausar?”</i> you ask");
-		if(flags["MET_SAENDRA"] != undefined) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
+		if(metSaendra) output(", thinking back to Saendra and suddenly hoping you haven’t accidentally fucked both Shade and her daughter");
 		output(".");
 
 		output("\n\nShade flashes you a grin. <i>“Her </i>other mother<i> was, yeah. Met her when I was just starting out in the hunter business; she was leading a crew of construction drones on a kaithrit colony, and they’d turned up my next lead while excavating: a body, buried in the jungle. Nasty business. She was older than me, and bigger, but just enough to take the lead and buy me a drink the next time I talked to her. One thing led to another, as they say, and by the time I’d brought in my quarry I was starting to show. One night, one time, without protection and look what happens. Still, I wouldn’t change a thing... I love my little girl and, I’ll be honest, I see her sire from time to time. We stay close, though she was too much of a play-girl to commit more than that. Has a trail of bastards behind her other than mine, I hear.”</i>");
 
 		output("\n\n<i>“This daughter of yours have a name, by the way?”</i>");
-		if(flags["MET_SAENDRA"] != undefined) output(" you press, crossing your fingers under the table.");
+		if(metSaendra) output(" you press, crossing your fingers under the table.");
 
 		output("\n\n<i>“Astra. Astra Irons. I’d say I hope you get to meet her sometime, ");
 		if(flags["SEXED_SHADE"] != undefined) output("but knowing you, I’d have to kill you afterwards");
 		else output("but I’d rather not have to kill you down the line");
 		output(",”</i> Shade laughs, though there’s a noticeable edge in her voice.");
-		if(flags["MET_SAENDRA"] != undefined) output(" Well, at least it’s not Saendra....");
+		if(metSaendra) output(" Well, at least it’s not Saendra....");
 	}
 	
 	processTime(6);
@@ -1626,11 +1648,10 @@ public function runesYouTurdShade():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output(" a god-forsaken ice ball of a moon called Uveto VII, owned by those little bastards.”</i> She points to ");
-		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig");
-		else output("a tiny, stuffed-animal-like creature sitting in the bar");
+		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig.");
+		else output("a tiny, stuffed-animal-like creature sitting in the bar.");
 	}
-	else output(" this frozen iceball here");
-	output(".”</i>");
+	else output(" this frozen iceball here.”</i>");
 	output("\n\n<i>“I woke up in a church, laid up beside a fire and covered in blankets. Apparently I lost consciousness in the cold, sitting in a warehouse out in the open for half a day. Nearly died before somebody heard me shivering in a crate and crowbarred it. I was lucky I didn’t lose my baby, not to mention a few extremities.");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" A human religious sect on-world took me in after the docs were finished with me. Uveto was");
 	else output(" The temple took me in after the docs were finished with me. Uveto is");

@@ -53,6 +53,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="style_uiscroll.swc" />
+    <element path="G:\Dropbox\TITS\FlashDev\flash.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

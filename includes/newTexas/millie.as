@@ -43,6 +43,7 @@ public function approachMillie():void
 	if(flags["MET_MILLIE"] == undefined)
 	{
 		flags["MET_MILLIE"] = 1;
+		showImage("MillieGreeting");
 		output("You step a little closer to the cow-girl, looking her over as you do so. She’s unusually tall for a New Texan female, probably a little over six feet with her horns pointing still higher. When combined with her half-shaved head, it gives quite the imposing visage. Her black lips menace you with a knowing smile. No matter how plush and inviting, their glossy finish seems to carry an air of impulsive superiority.");
 		output("\n\nYou’d be a bit more awestruck if she weren’t wearing a pair of overalls that could double as a one-piece swimsuit, or if those same overalls weren’t straining to contain an out-of-this-world rack. She could probably pin a normal terran in her canyon-like cleavage");
 
@@ -86,6 +87,7 @@ public function approachMillie():void
 	//Meeting Repeat
 	else
 	{
+		showImage("MillieGreeting");
 		output("Millie looks up at your approach, a mischievous twinkle in her eye as she sets her tablet aside. <i>“");
 		//Base dialogue off last action
 		//Nothing yet
@@ -154,7 +156,7 @@ public function millieAppearance():void
 	showName("\nMILLIE");
 	showBust("MILLIE");
 	output("Millie is an oddity for a New Texan, both taller and thicker than most cows. She even has horns big enough enough for a bull, and her punky, half-shaved hairdo further serves to distinguish her from some of the more vapid members of her race. The unshorn portion hangs an inch past her shoulders, a sable cascade in stark contrast to her fair skin. Her eyes are an uncommonly dark, grayish-blue color and framed by expertly applied purple eyeshadow and what you assume to be mascara.");
-	output("\n\nLike the rest of her Treated kin, Millie has a pair of plump, angel-bow lips, though she doesn’t leave them vacantly pursed as often as her sisters. More often, they’re kept in a knowing, almost cocky grin - the kind of expression that, when combined with her smokey glare, communicates a confident, self-assured sexuality. She winks when she catches you looking and licks her lips as if hungry for more.");
+	output("\n\nLike the rest of her Treated kin, Millie has a pair of plump, angel-bow lips, though she doesn’t leave them vacantly pursed as often as her sisters. More often, they’re kept in a knowing, almost cocky grin - the kind of expression that, when combined with her smoky glare, communicates a confident, self-assured sexuality. She winks when she catches you looking and licks her lips as if hungry for more.");
 	output("\n\nHer neck is well-formed if slightly longer than average. Where it joins with her shoulders, dark spots start, dappling her shoulders like the spots of a actual bovine. They don’t continue an inch past her collarbone");
 	if(flags["FUCKED_MILLIE"] == undefined) output(", at least not that you can see");
 	output(", but their irregular pattern only seems to accent her exotic appeal.");
@@ -629,7 +631,9 @@ public function yeahMillieLetsFuck():void
 	if(pc.tallness >= 84) output(", except for your dangling [pc.feet]. Height does have its disadvantages");
 	output(". You blink your eyes closed rather than endure the harsh light for a second longer. Besides, if there’s one thing you can trust a cow-girl with, it’s properly worshipping a cock. Even a cow with a decided abnormal forcefulness to her.");
 
-	output("\n\nMillie picks up her stroking where she left off, though you can hear her other hand fiddling with the last clasp on her denim outfit. You can see it now with your minds eye, those nimble fingers struggling with a too-tight fastener, sending those gigantic boobs swaying and jostling against one another, giving her cleavage a sensuous wiggle. Springing open with an audible rustle of fabric, Millie’s outfit gives out. She doesn’t even have to stop jacking you off to get out of it. She goes right on stroking, treating your rod like a favored pet while wiggling the tight fabric down.");
+	output("\n\n");
+	showImage("MillieGreetingNude");
+	output("Millie picks up her stroking where she left off, though you can hear her other hand fiddling with the last clasp on her denim outfit. You can see it now with your minds eye, those nimble fingers struggling with a too-tight fastener, sending those gigantic boobs swaying and jostling against one another, giving her cleavage a sensuous wiggle. Springing open with an audible rustle of fabric, Millie’s outfit gives out. She doesn’t even have to stop jacking you off to get out of it. She goes right on stroking, treating your rod like a favored pet while wiggling the tight fabric down.");
 
 	output("\n\nA bright, cherry-scented musk fills the air - Millie’s scent, you realize a moment before the pheromones hit you. And they do hit you hard, speeding your heartbeat, spurring fresh blood to pump into your [pc.cocks], making you harder and firmer than normal. Pre-cum is already beading at your tip");
 	if(pc.cockTotal() > 1) output("s");
@@ -1058,7 +1062,6 @@ public function millieSucksTitsVol2():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-
 
 //CUSTOM OFFBEATR: 1 Female Lactation, Milking Mishap IE: Milking Machine won't shut off and leads to Orgasm
 //Enubata

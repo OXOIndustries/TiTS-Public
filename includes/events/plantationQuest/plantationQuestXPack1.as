@@ -159,6 +159,10 @@ public function thareManorPQBuy():void
 
 // Part 2: Dog in a Box
 // Available to vagina-havers only for now
+public function rkLahImprisoned():Boolean
+{
+	return (flags["PQ_SECURED_LAH"] == 2 && flags["LAH_TO_GASTIGOTH"] != undefined && (GetGameTimestamp() - flags["LAH_TO_GASTIGOTH"]) > 4320);
+}
 public function lahPrisonRoom():void
 {
 	clearOutput();
@@ -198,7 +202,7 @@ public function lahPrisonRoom():void
 		addDisabledButton(2, "PowerBottom", "Power Bottom", "You need a vagina for this!");
 	}
 	
-	addButton(14, "Nevermind", backOuttaPrisonVisit);
+	addButton(14, "Never Mind", backOuttaPrisonVisit);
 }
 public function lahPrisonRoomAsk():void
 {
@@ -251,10 +255,10 @@ public function lahPrisonSex(response:String):void
 			output(" into the insensate ex-terrorist. For you, that instant orgasm of his is a boon - a generous load of lubricant which allows you to easily impale yourself right down on his girth, so that his bulging knot is bumping against your entrance and [pc.eachClit]. For Lah, though, it must be fairly agonizing. His dick must ache like a sore thumb, at the same time as pleasure and arousal inundate his senses, every time you bend it in your soaking depths.");
 			output("\n\n<i>“How can you even think of cumming without getting your knot inside me?”</i> you husk, seizing his hair, intense arousal pulsing through you as you clutch the back of the chair hard and really ride him, [pc.ass] bouncing up and down in his tawny lap. <i>“What kind of stud are you?”</i>");
 			output("\n\n<i>“One... damn...”</i> he groans, head thrown back, skin glowing with sweat underneath the harsh strip lighting. That hard, tough ball of heat sits stuck to the entrance of your sopping, leaking cunt, stretching it wide... and then in a small explosion sensation it’s inside, stopping it like a cork, and immediately Lah cums again, his hips jackhammering into you reactively, spilling another hot load of cum out into your [pc.vagina " + vIdx + "]. The giddy dual feeling sends you over the edge, ecstatic contractions practically ordering you to ride that dick for all you’re worth, clenching up around it so you can knead every last fertile drop out of your conquest.");
-			if(pc.isTreated() || InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA]))
+			if(pc.vaginaCanSuck(vIdx) || pc.vaginaHasFeelers(vIdx))
 			{
 				output(" The");
-				if(InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN]))
+				if(pc.vaginaHasFeelers(vIdx))
 				{
 					output(" wonderful cilia");
 				}
@@ -296,13 +300,13 @@ public function lahPrisonSex(response:String):void
 				output("\n\n<i>“If you’re trying to - to trick me into attacking you, it’s not going to work,”</i> he says. Even putting aside his helplessly erect cock, the chemically-induced arousal radiates off of the lanky ausar: his skin is reddened, and barely-contained animal aggression shakes the bars of his tendons and hard, slim muscles. You get a little thrill in your gut as the naked ausar stands suddenly, shoving the chair to one side. <i>“We screw, and then you leave me alone. That’s the deal.”</i>");
 				output("\n\n<i>“Ooh, really?”</i> you smirk. You lean back on the table");
 				if(pc.hasArmor() && !pc.isCrotchExposedByArmor() && pc.hasLowerGarment()) output(", undoing just a little of your [pc.lowerGarmentOuter]... just enough to give a peak of your [pc.lowerGarment]");
-				output(". <i>“The way I heard it, I get to do whatever I want with you.”</i> You bite your lip, letting your hand trail up to your [pc.chest], fingers trailing over a [pc.nipple], arousal beginning to bloom within you. You could be the clumsiest tease in the world and it would be having an effect on Lah right now. His clawed hands clench instinctively, fiery eyes fixed on the movement of your hand. You think he just needs a little bit of a push... <i>“To be honest, it’s the reason I decided to turn you in. So I’ve got a nice, energetic bitch boy in a box, there whenever I want to play.”</i>");
+				output(". <i>“The way I heard it, I get to do whatever I want with you.”</i> You bite your lip, letting your hand trail up to your [pc.chest], fingers trailing over " + indefiniteArticle(pc.nippleDescript()) + ", arousal beginning to bloom within you. You could be the clumsiest tease in the world and it would be having an effect on Lah right now. His clawed hands clench instinctively, fiery eyes fixed on the movement of your hand. You think he just needs a little bit of a push... <i>“To be honest, it’s the reason I decided to turn you in. So I’ve got a nice, energetic bitch boy in a box, there whenever I want to play.”</i>");
 				output("\n\n<i>“Yeah, it was fucking nothing to you,”</i> he snarls. <i>“I know who you are, you didn’t - can’t even say you needed the money. It was just another adventure, another SAFARI - it was my fucking life, you over-privileged, store-bought, arrogant little - AARGH!”</i>");
 			}
 			else
 			{
 				output("\n\n<i>“You’re doing the thing again, aren’t you,”</i> he growls. Even putting aside his helplessly erect cock, the chemically-induced arousal radiates off of the lanky ausar: his skin is reddened, and barely-contained animal aggression shakes the bars of his tendons and hard, slim muscles. You get a little thrill in your gut as the naked ausar stands suddenly, shoving the chair to one side. <i>“This is how you get your kicks? Put activists in jail so you can antagonize them into hate-fucking you?”</i>");
-				output("\n\n<i>“Absolutely!”</i> you beam. You letting your hand trail up to your [pc.chest], fingers trailing over a [pc.nipple], arousal beginning to bloom within you. You could be the clumsiest tease in the world and it would be having an effect on Lah right now. His clawed hands clench instinctively, fiery eyes fixed on the movement of your hand. He just needs a little push, as always. <i>“Doesn’t it make you mad? How rich and privileged I am, the way I treat the whole galaxy as a safari? And you’re stuck in here for years because of me--”</i>");
+				output("\n\n<i>“Absolutely!”</i> you beam. You letting your hand trail up to your [pc.chest], fingers trailing over " + indefiniteArticle(pc.nippleDescript()) + ", arousal beginning to bloom within you. You could be the clumsiest tease in the world and it would be having an effect on Lah right now. His clawed hands clench instinctively, fiery eyes fixed on the movement of your hand. He just needs a little push, as always. <i>“Doesn’t it make you mad? How rich and privileged I am, the way I treat the whole galaxy as a safari? And you’re stuck in here for years because of me--”</i>");
 			}
 			output("\n\nIn a wordless rage he lunges at you,");
 			if(pc.isCrotchExposed()) output(" catching both of your wrists in his hot hands and slamming them down on the table, the weight of his wiry frame thrusting you down onto its surface, the red baton of his cock batting against [pc.eachVagina].");
@@ -358,27 +362,38 @@ public function lahPregnancyEnds(babyList:Array):void
 	
 	var se:StorageClass = pc.getStatusEffect("Lah Pregnancy Ends");
 	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Lah Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(pc.hasLowerGarment()) output(" into your [pc.lowerUndergarment]");
-	if(InShipInterior()) output(" onto the deck");
+	if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
-	if(InShipInterior())
+	if(inShip)
 	{
 		output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed");
 		if(!pc.isNude()) output(", rip off your [pc.gear]");
 		output(" and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	}
-	else if(InPublicSpace()) output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if(inPublic) output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	else if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD)) output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.");
 	output("\n\n");
-	if(InShipInterior() || InPublicSpace()) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	if(inShip || inPublic) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
 	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of two.");
-	if(InShipInterior() || InPublicSpace()) output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	if(inShip || inPublic) output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
 	else output(" You grit your teeth and bear down again.");
 	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your two, tiny children, curled up in your arms " + (!pc.isLactating() ? "and blinking suspiciously at the world they’ve found themselves in" : "nursing hungrily on your [pc.boobs]") + ". If you didn’t already know from the fact they’re twins, what they are is obvious from their floppy, isosceles ears and short, fluffy tails, twitching spasmodically as they " + (!pc.isLactating() ? "gaze around" : "feed on their mother’s milk") + ". Half-ausar puppies!");
 	if(babyList[0].NumMale + babyList[1].NumMale >= 2) output(" They’re both boys, their facial features a mirror image of each other.");
@@ -412,12 +427,13 @@ public function lahPregnancyEnds(babyList:Array):void
 // PC has done the ‘Every Hole’ scene with her in the last 24 hours, and chooses Sex again
 public function showQuinnMaidens():void
 {
-	showBust("FETCH", "CARRY");
+	//showBust("FETCH", "CARRY");
+	showBust("FETCH_AND_CARRY");
 	showName("FETCH &\nCARRY");
 }
-public function quinnHandmaidenThreesomeAvailable():Boolean
+public function quinnHandmaidenThreesomeAvailable(mommy:Boolean = false):Boolean
 {
-	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && (flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) );
+	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && ((flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) || (mommy && flags["QUINN_MAIDENS_SEXED"] != undefined)) );
 }
 public function quinnHandmaidenThreesome(args:Array):void
 {
@@ -436,7 +452,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 	switch(response)
 	{
 		case "intro":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“Again?”</i> Quinn arches an eyebrow at you, something between exasperation and amusement pulling at the corner of her mouth. <i>“How are you not spent after how it went last time? No, it will not do,”</i> she goes on, chin up, lips thinned. <i>“A Quinn cannot be spending all her time seeing to your unnatural, star-born lusts. It’s unseemly, not to mention exhausting.”</i>");
@@ -454,7 +470,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
 			break;
 		case "mommy":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
@@ -468,7 +484,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", sexWithQuinnOmnigenderWHYYYY);
 			break;
 		case "maiden":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“No,”</i> Quinn replies, regarding you with tired golden eyes, <i>“I need - I need to rest. My handmaidens will attend you.”</i>");
@@ -715,7 +731,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 				output(" She shifts her grip up and down your cock, leer widening as heat and lust readily expands inside it, becoming hard and ready underneath her coiling, teasing fingers.");
 				output("\n\n<i>“Would you like to see me and Carry have fun together?”</i> she whispers in your ear. She lets go of your [pc.cock " + cIdx + "] to");
 				if(pc.biggestTitSize() < 3) output(" trace the muscles in your arms");
-				else output(" cusp one of your boobs, thin fingertips caressing a [pc.nipple]");
+				else output(" cusp one of your boobs, thin fingertips caressing " + indefiniteArticle(pc.nippleDescript()));
 				output("; short, buxom Carry immediately takes over where her friend left off, squashing a yellow boob into your smoldering length, grinning toothily at you as she swaddles it in soft flesh and kneads it briskly. Concentrated pleasure veins its way into your core as you listen to the taller one’s teasing whisper... <i>“Most of the boys do. We don’t do it for them very often, though. We’d only do it for someone very special... a brave... virile... champion.”</i>");
 				output("\n\n<i>“Fetch, if you wanted to make out with me, you just had to say,”</i> sighs her partner.");
 				output("\n\nThe bed is big enough for Fetch and Carry to clamber up together, kneeling at your [pc.feet]. You clutch your [pc.cock " + cIdx + "] and watch as the pair of them slowly prize each other’s groin plates open, long, thin fingers stealing into yellow crevices as they press their curves into each other, harsh black plate trading with soft, supple, yellow flesh. To begin with the female zil are giggly and self-aware, slyly eyeing you as they fondle each other, particularly Fetch, who in a different aeon you’re sure would have been an impresario. As they go on though they get more and more into it, forgetting about their breathless audience to coil their fingers into each other’s pussies with increasing gusto, deeper color appearing in their faces as they wrap their long, flexible tongues around each other for long, impassioned frenching. Carry quivers and moans as she goes nerveless in Fetch’s arms, her thick hips trembling to the movements of the latter’s fingers, deep in her snatch; the latter buzzes softly with laughter, holding her by the waist, the tendons in her other arm standing out as she flicks and she flicks and she flicks, little drops of golden sugar landing on the furs.");
@@ -896,7 +912,7 @@ public function quinnHardlightFun(args:Array):void
 					if(vIdx >= 0) output(" [pc.eachVagina] dripping with frustrated lust");
 				}
 				output(". The zil responds by drawing back, her hands sliding down your flanks until they clasp themselves around your [pc.hips], the hard-light sliding down your walls until the bulbous head is tugging at your sphincter... and then she shoves the whole of it in with one single athletic thrust, her slim thighs thumping against your [pc.ass]. You wail to the luscious intensity of it, probably loud enough for anyone outside the hut to hear. What do you care? Let the whole tribe know how much you enjoy being fucked in the ass by the lady.");
-				output("\n\n<i>“You better come back for more of this,”</i> she growls, pumping into you hard, the obdurate dildo digging into you deep with each returning thrust. <i>“You with your star magic, and your honor and bravery... and yet you let me do whatever I want with you in bed. Yes!”</i> She gropes your [pc.chest] greedily with one hand, " + (pc.biggestTitSize() >= 3 ? "hand sinking deep into your soft breast" : "fingers finding a [pc.nipple] and squeezing hard") + ". <i>“You’re everything I want in a " + pc.mf("husband", "wife") + ".”</i>");
+				output("\n\n<i>“You better come back for more of this,”</i> she growls, pumping into you hard, the obdurate dildo digging into you deep with each returning thrust. <i>“You with your star magic, and your honor and bravery... and yet you let me do whatever I want with you in bed. Yes!”</i> She gropes your [pc.chest] greedily with one hand, " + (pc.biggestTitSize() >= 3 ? "hand sinking deep into your soft breast" : "fingers finding " + indefiniteArticle(pc.nippleDescript()) + " and squeezing hard") + ". <i>“You’re everything I want in a " + pc.mf("husband", "wife") + ".”</i>");
 				output("\n\nThe sensation of getting drilled like this by a lusty, energetic bee queen is so acute, so filthy, every returning clap of her armored thighs against your inflamed [pc.skinFurScales] driving all other thoughts from your head except how <i>good</i> it is to have your ass in the air and your insides filled with holographic dildo... you wish you could be in this moment forever... but being trapped in a still environment with an aroused zil, and the incessant grind and pressure of her pseudo-cock on your " + (vIdx >= 0 ? "tender walls" : "inner walls"));
 				if(cIdx >= 0) output(" and bulging prostate");
 				output(" is inescapably ratcheting your lust tighter, and tighter, and tighter, until you explode.");
@@ -940,7 +956,7 @@ public function quinnHardlightFun(args:Array):void
 					if(vIdx >= 0) output(" [pc.eachVagina] dripping with frustrated lust");
 				}
 				output(". The zil responds by drawing back, her hands sliding down your flanks until they clasp themselves around your [pc.hips], the hard-light sliding down your walls until the bulbous head is tugging at your sphincter... and then she shoves the whole of it in with one single athletic thrust, her slim thighs thumping against your [pc.ass]. You wail to the luscious intensity of it, probably loud enough for anyone outside the hut to hear. What do you care? Let the whole tribe know how much you enjoy being fucked in the ass by the lady.");
-				output("\n\n<i>“You better come back for more of this,”</i> she growls, pumping into you hard, the obdurate dildo digging into you deep with each returning thrust. <i>“You with your star magic, and your honor and bravery... and yet you let me do whatever I want with you in bed. Yes!”</i> She gropes your [pc.chest] greedily with one hand, " + (pc.biggestTitSize() >= 3 ? "hand sinking deep into your soft breast" : "fingers finding a [pc.nipple] and squeezing hard") + ". <i>“You’re everything I want in a " + pc.mf("husband", "wife") + ".”</i>");
+				output("\n\n<i>“You better come back for more of this,”</i> she growls, pumping into you hard, the obdurate dildo digging into you deep with each returning thrust. <i>“You with your star magic, and your honor and bravery... and yet you let me do whatever I want with you in bed. Yes!”</i> She gropes your [pc.chest] greedily with one hand, " + (pc.biggestTitSize() >= 3 ? "hand sinking deep into your soft breast" : "fingers finding " + indefiniteArticle(pc.nippleDescript()) + " and squeezing hard") + ". <i>“You’re everything I want in a " + pc.mf("husband", "wife") + ".”</i>");
 				output("\n\nThe sensation of getting drilled like this by a lusty, energetic bee queen is so acute, so filthy, every returning clap of her armored thighs against your inflamed [pc.skinFurScales] driving all other thoughts from your head except how <i>good</i> it is to have your ass in the air and your insides filled with holographic dildo... you wish you could be in this moment forever... but being trapped in a still environment with an aroused zil, and the incessant grind and pressure of her pseudo-cock on your " + (vIdx >= 0 ? "tender walls" : "inner walls"));
 				if(cIdx >= 0) output(" and bulging prostate");
 				output(" is inescapably ratcheting your lust tighter, and tighter, and tighter, until you explode.");
@@ -1642,7 +1658,7 @@ public function quinnFestivalPart2(arg:Array):void
 			// Remove all gear, add Champion Assegai/Champion Short Bow, as in the Lah fight
 			var bow:Boolean = (response == "fight bow");
 			
-			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMPS");
 			showName("VIRILE\nCOMBAT!");
 			
 			output("<i>“The starwalker champion has staked his claim.”</i> Quinn’s cool tones ring out over the assembly as you pick your chosen weapon, test it a few times. <i>“[pc.He] would be the father of my child, forge the future of our tribe, solely by way of [pc.his] own flesh.”</i> ");
@@ -1661,7 +1677,7 @@ public function quinnFestivalPart2(arg:Array):void
 			quinnFestivalPrepFight(bow);
 			break;
 		case "ball next":
-			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMPS");
 			showName("VIRILE\nCOMBAT");
 			
 			// ++Lust
@@ -1871,7 +1887,7 @@ public function quinnFestivalFightLose(response:String = "intro"):void
 			userInterface.leftBarDefaults();
 			generateMap();
 			
-			showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust("ZIL_CHAMPS");
 			showName("DEFEAT:\nZIL TRIO");
 			
 			var zilDrones:Array = CombatManager.getHostileActors();
@@ -1935,7 +1951,7 @@ public function quinnFestivalFightWin():void
 	generateMap();
 	
 	clearOutput();
-	showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+	showBust("ZIL_CHAMPS");
 	showName("VICTORY:\nZIL TRIO");
 	author("Nonesuch");
 	
@@ -2016,7 +2032,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(zilDrones[1].analCapacity());
@@ -2058,7 +2074,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(quinnAnalCapacity());
@@ -2092,7 +2108,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, that you get your chance. You are Quinn’s most treasured champion, after all, and the first shall come last.");
@@ -2120,7 +2136,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [3, cIdx, vIdx, zilDrones]);
 			break;
 		case 3:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. You may have only been part of the tag team but good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
@@ -2170,7 +2186,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			if(pc.hasCock())
@@ -2192,7 +2208,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			}
 			else output(" sashay over to the bed, letting your bare rump bounce ever-so-gently");
 			output(".");
-			output("\n\nYou join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.");
+			output("\n\nYou join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh-so-slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.");
 			output("\n\n<i>“Yes, my good, loyal, warriors,”</i> she sighs, <i>“all of this is yours... for the entire night. Your Quinn is bountiful. Your Quinn is generous.”</i> She points languidly at the smallest. <i>“Come here, my little one. You two... there is the starwalker champion.”</i> Her hand dips between your [pc.thighs], warm finger sliding between the lips of your [pc.vagina " + vIdx + "], holding them up to the flickering light. <i>“See how ready [pc.he] is? Waste no more time.”</i>");
 			output("\n\nThe shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face (you’re put in mind of Able), stumbles onto the bed in a kind of a trance. His groin-plate comes loose with a click and a gasp, his stubby, foreskinned erection no longer willing to be caged, as he watches his ruler prowl forwards, tenderly caressing his arms and chin... and then your view is blocked out by slim, athletic, jet-black hips, and strong, insectile hands grasp you by the waist.");
 			output("\n\nThe two bigger males pull you onto your hands and [pc.knees], made feverish by their arousal, their curious hands questing over your alien flesh, stroking your [pc.skinFurScales] and gripping your [pc.thighs] and " + (pc.hasTail() ? "[pc.tail]" : "[pc.butt]") + ", searching for anchorage and your most erogenous of zones. The groin-plate of the one in front flicks away like a beetle’s carapace, and instantly the air is fogged with sexual sugar, the smell of the thick, glossy, six-inch zil cock that flops out arrowing into your body like a hyperderm of Dumbfuck. [pc.EachVagina] " + (!pc.isSquirter() ? "drips" : "drools") + " [pc.femcum] in response, wet with anticipation, and your whole body feels incredibly sensitized, desperate to be touched, stroked, grasped.");
@@ -2207,7 +2223,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			output("The boys are too excited to pace themselves. The one at your back judders into you, hard, athletic hips slapping a frenetic rhythm against your [pc.ass] as the other takes a firm grip of your head and thrusts his hard sweet meat past your [pc.lips], slathering a steady drip of honey-pre across your tongue and inner cheeks, filling your head with oozing, summery delight. Your [pc.vagina " + vIdx + "] is being filled and rubbed at a startling rhythm, digging in to that particular spot again and again, and you’re quickly forced to orgasm, your over-stimulated body clenching itself up and letting go brilliantly repeatedly, fingers digging into the soft furs beneath you and emitting muffled squeals of delight as your [pc.vagina " + vIdx + "] " + (!pc.isSquirter() ? "dribbles" : "spurts") + " [pc.femcum] in a wet, glorious rush.");
@@ -2237,10 +2253,10 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
-			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sat on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].");
+			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sitting on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].");
 			
 			pc.buttChange(zilDrones[1].cockVolume(0));
 			pc.cuntChange(vIdx, zilDrones[0].cockVolume(0));
@@ -2260,7 +2276,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [3, cIdx, vIdx, zilDrones]);
 			break;
 		case 3:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night; " + (pc.libido() > 66 ? "even as fuck-hungry a being as you" : "you") + " feel like you were caught up and washed out in her wake. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
@@ -2305,7 +2321,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			var cocksList:Array = [];
@@ -2334,7 +2350,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			output(" You lower your hand from the crown, sweep it down the arc of her back, taking her into your arms so you can explore every black, gleaming curve of her body, rock hard but offering the tiniest, tantalizing give when you squeeze.");
 			output("\n\nShe pulls away, sitting herself down on her bed, spreading her legs as she scooches further and further back on the furs. Of course with that thing on her head it’s impossible to catch her expression, but you think you see the gold of both understanding and excitement gleaming deep in the gloom of those eye sockets.");
 			output("\n\n<i>“You proclaimed yourself the only champion worthy of claiming me,”</i> she says, in those same cool, certain intonations with which she presided over the duel. As she speaks her groin and breastplate slowly peel back, beetle wings splaying to reveal sweet yellow fields of plenty. Your heart begins to thump, intense arousal pulsing into your [pc.groin], as you gaze at the rise of her petite, pretty breasts and the long, plump lips of her pussy. They are gently parted, strings of honey hanging between them. She’s aroused. <i>“What’s more, you proved that you are. So now, my champion, my only champion...”</i> She trails off in a luxurious, husky drone, her long fingers dipping between her legs, sampling herself. <i>“You will have to do the work of three drones.”</i> Her tone thickens into one of urgent, lusty demand. <i>“Make me carry your child.”</i>");
-			output("\n\nYou tear off your [pc.gear] in an impetuous hurry and clamber onto the bed. [pc.EachCock] is semi-erect already, and all it takes for " + (pc.cocks.length == 1 ? "it" : "them") + " to become taut with burning heat is to breath Quinn in - that sweet, intoxicating smell pouring off her oozing pussy, wiring from your nostrils to seize at your maleness, her body reaching out with the same needy directive her voice did.");
+			output("\n\nYou tear off your [pc.gear] in an impetuous hurry and clamber onto the bed. [pc.EachCock] is semi-erect already, and all it takes for " + (pc.cocks.length == 1 ? "it" : "them") + " to become taut with burning heat is to breathe Quinn in - that sweet, intoxicating smell pouring off her oozing pussy, wiring from your nostrils to seize at your maleness, her body reaching out with the same needy directive her voice did.");
 			output("\n\nShe gasps as you clasp her, pushing your [pc.chest] against the lovely suppleness of her breasts, and then coos as you grip one bare yellow buttock and give it a rough squeeze, reacting readily to your savageness, twining her long legs around your [pc.legs] with barely concealed need. It’s the work of a moment to line yourself up and penetrate her, spreading her slickened labia around yourself and then in to the silky, sweltering dream that is her cunt.");
 			
 			pc.cockChange();
@@ -2344,7 +2360,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			else output("Your massive cock is too big really for a petite insect girl like her, but she’s utterly determined; emitting little grunts, buzzes and moans as she pushes her long, svelte hips into you, stretching herself out so she can sample more and more of your [pc.cock " + cIdx + "]. You’re ruining her for any of her own race, and in your current, bestial mindset, that’s perfect. And you share that determination - this is your conquest, after all. You let her do the work, opening your [pc.thighs] slowly but surely to sink more and more of your thick girth into tight honey until you feel your [pc.cockHead " + cIdx + "] bump gently against her cervix.");
 			output(" You’re far too turned on to give her respite once you’ve found your limit - you draw yourself back out, feeling the honey dripping down your naked shaft, only to piston yourself back in with a stern push of your [pc.hips], inundating her bare breasts and slim neck with wolfish licks, nibbles and kisses as you fuck her ardently.");
 			output("\n\nThe sight of the horned skull in front of you is alarming, strange, disguising her whole face aside from her mouth - but that hangs open, emitting little huffs, buzzes and moans as you saw into her that are music to your ears. It’s enticing, like a mask, turning the person you’re fucking into the ground into a strange creature from the underworld. You think you feel her cum - sleek tightness rippling around you, honey coruscating off your [pc.cock " + cIdx + "], hips and taut stomach urgently flapping back into you - and you just keep on going, intent on turning that sopping little fuck-pocket of hers into a mold of your cock for all time.");
-			output("\n\nWhen your own orgasm beats down the door, you seize her beneath the knees and lift her legs up, her heels tapping against your back as you screw her into the bed, livid with pheremonally-charged lust. When your [pc.cockHead " + cIdx + "] engorges and [pc.cum] surges up your shaft, it comes out in champagne-like flurries, giddy surges that you pump into her until it’s " + (!pc.cumQ() < 500 ? "dribbling" : "squirting") + " out around your girth. Quinn’s mouth is drawn up in a delighted, tautened sneer as you do it - a terrifying, exhilarating accompaniment to the skull - and husky, wordless sounds of delight are pushed out of her with every juicy pump, until she finally relaxes into a meandering, satisfied moan when you slow, release her legs, and gather her lithe frame into your arms again.");
+			output("\n\nWhen your own orgasm beats down the door, you seize her beneath the knees and lift her legs up, her heels tapping against your back as you screw her into the bed, livid with pheromonally-charged lust. When your [pc.cockHead " + cIdx + "] engorges and [pc.cum] surges up your shaft, it comes out in champagne-like flurries, giddy surges that you pump into her until it’s " + (!pc.cumQ() < 500 ? "dribbling" : "squirting") + " out around your girth. Quinn’s mouth is drawn up in a delighted, tautened sneer as you do it - a terrifying, exhilarating accompaniment to the skull - and husky, wordless sounds of delight are pushed out of her with every juicy pump, until she finally relaxes into a meandering, satisfied moan when you slow, release her legs, and gather her lithe frame into your arms again.");
 			output("\n\n");
 			
 			processTime(11);
@@ -2353,7 +2369,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [1, cIdx, cIdx2]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("<i>“But you aren’t done yet, are you?”</i> she murmurs in your ear, long, clever fingers trailing down your ear, scratching lightly at your [pc.chest]. <i>“My chosen. My champion. Remember - you undertook the duties of three.”</i> Those smooth digits wrap themselves around your " + (cIdx2 < 0 ? "[pc.cock " + cIdx + "]" : "[pc.cock " + cIdx2 + "]") + ", gently tugging, coaxing sensual intent");
@@ -2369,9 +2385,9 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			output("\n\n<i>“Fuck me, make me feel it deep!”</i> the goddess snarls over her shoulder, sunken golden eyes flashing at you. <i>“I demand it!”</i> Those horns rearing up over her head catch your attention, and it is with deep satisfaction that you seize them and do as she orders, pressing yourself home into deep honey with a wondering groan, sheerest pleasure pulsing up your [pc.cockNoun " + cIdx + "].");
 			output("\n\nVoid, maybe you are addicted to this, the Queen’s sweet pheromones overriding every impulse you have, a drone hand-picked to be her captive breeding slave until she has a hive packed with her children. If so, it’s the best fate of all, to buck your [pc.hips] into her soft backside, slap your " + (pc.balls > 0 ? "[pc.balls]" : "groin") + " into the small waterfall of honey and your own spent seed running down her thighs, to grip her sacred horns and lose yourself in the give and heft of the plush wetness running up and down your cock, rippling and clenching you intermittently, willing you on, bringing your arousal to another brilliant point.");
 			output("\n\nYou’d pull out and shower her with [pc.cum] this time, demonstrate the virility of the Chosen Drone in the crudest, most glorious way possible... but no, you have a duty here, and it won’t be fulfilled until her womb is utterly packed with your thick, teeming cum. You groan mightily as orgasm overcomes you again, your muscles locking and forcing out great gobbets of [pc.cum], and you make sure every last drop of it is buried deep in Quinn’s pussy.");
-			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount your ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
+			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount you are ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
 			output(" The woozy, gratified ‘mmm’ you draw from her by the end, as you finally withdraw your dripping cock from her cum-choked hole, is pure poetry.");
-			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. You I will require more of you - in the morning.”</i>");
+			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. I will require more of you - in the morning.”</i>");
 			output("\n\n");
 			
 			processTime(14);
@@ -2381,7 +2397,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [2, cIdx, cIdx2]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("Your last waking thoughts before you descend into a deep, deep sleep is that maybe she’s exaggerating. But, no, she wants that baby, and you are very much expected to do the work of three. You are awoken at dawn by alluring whispers in your ears, guileful touches and squeezes, a hand on [pc.eachCock] stroking you to hardness, leading you lovingly but firmly back into deepest, lustiest heat.");
@@ -2657,7 +2673,7 @@ public function pregQuinnSexNo():void
 	showQuinn();
 	author("Nonesuch");
 	
-	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
+	var canHandMaiden:Boolean = quinnHandmaidenThreesomeAvailable();
 	
 	if(flags["QUINN_SIRED_KID"] == undefined)
 	{
@@ -2706,7 +2722,7 @@ public function whereIsPregQuinn(pregDays:int = 0):void
 	
 	clearOutput();
 	if(lahIsHere) showBust("LAH");
-	else showBust("FETCH", "CARRY");
+	else showBust("FETCH_AND_CARRY");
 	author("Nonesuch");
 	clearMenu();
 	
@@ -3051,23 +3067,23 @@ public function quinnMomSexButton(btnSlot:int = 2):void
 		// Non-handmaiden [Sex] chosen whilst kid present
 		if(quinnBabyActive())
 		{
-			if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+			if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
 			else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-			else addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+			else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 		}
 		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
 		else
 		{
 			if(!pc.hasGenitals()) addDisabledButton(btnSlot, "Sex", "Sex", "You need genitals to do that!");
-			else if(quinnHandmaidenThreesomeAvailable()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
+			else if(quinnHandmaidenThreesomeAvailable(true)) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
 			else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
 		}
 	}
 	else
 	{
-		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
 		else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
+		else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 	}
 }
 

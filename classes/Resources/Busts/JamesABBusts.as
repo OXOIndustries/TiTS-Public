@@ -13,7 +13,7 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/jamesab/hr/yancy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/jamesab/HR/yancy.png", mimeType = "image/png")]
 			public var Full_YANCY:Class;
 		}
 	}

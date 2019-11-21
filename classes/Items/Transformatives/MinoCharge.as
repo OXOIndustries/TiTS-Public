@@ -262,11 +262,11 @@ package classes.Items.Transformatives
 							target.vaginas[i].wetness--;
 							if (target.vaginas[i].wetness < 0) target.vaginas[i].wetness == 0;
 						}
-						if (target.elasticity > 1)
-						{
-							target.elasticity--;
-							if (target.elasticity < 1) target.elasticity == 1;
-						}
+					}
+					if (target.elasticity > 1)
+					{
+						target.elasticity--;
+						if (target.elasticity < 1) target.elasticity == 1;
 					}
 					changes++;
 				}
@@ -546,7 +546,10 @@ package classes.Items.Transformatives
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
+					target.clearTailFlags();
+					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
+					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
 				else output("\n\n" + target.tailTypeLockedMessage());
@@ -567,7 +570,10 @@ package classes.Items.Transformatives
 					}
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
+					target.clearTailFlags();
+					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
+					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
 				else output("\n\n" + target.tailTypeLockedMessage());
@@ -579,6 +585,9 @@ package classes.Items.Transformatives
 				output("\n\nYou let out a startled yelp as your ears start to squirm and wiggle, making horrid jelly-like motions as the nanomachines in the Mino Charge rearrange your body shape. Your ears grow out from the side of your head, turning soft and velvety while the outward-facing sides are covered in a thin layer of fur. You pull your Codex out and flip it around, using it like a mirror to examine your newly-molded ears. <b>You now have distinctly bovine ears!</b>");
 
 				target.earType = GLOBAL.TYPE_BOVINE;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				changes++;
 			}
 			
@@ -628,7 +637,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
-					if (!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>.");
+					if (!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>");
 				}
 				
 				target.genitalSpot = 0;
@@ -746,7 +755,7 @@ package classes.Items.Transformatives
 				
 				if (target.hasCock()) 
 				{
-					output("You look down after a few moments, drawn from your thoughts by the");
+					output(" You look down after a few moments, drawn from your thoughts by the");
 					// cock 12 inches or more:
 					if (target.biggestCockLength() >= 12) output(" massive");
 					output(" bulge ");

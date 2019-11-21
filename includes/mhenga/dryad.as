@@ -8,12 +8,18 @@ Maybe more action in repeat encounters. Can't get carried away though...
 public function dryadHeader():void
 {
 	showName("\nDRYAD");
-	showBust("DRYAD");
+	showBust(dryadBustDisplay());
 	author("Wsan");
+}
+public function dryadBustDisplay():String
+{
+	if(amberDumbfuckDoses() >= 3) return "DRYAD_DUMBFUCK";
+	else return "DRYAD";
 }
 
 public function dryadIsActive():Boolean
 {
+	if(amberRecruited()) return false;
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
 	if(pc.lust() < 33 && rand(3) == 0) return false;
 	if(pc.statusEffectv1("Dryad Encounters") < 8)
@@ -35,7 +41,14 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
+	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if(!pp.hasVagina()) pp.createVagina();
+	pp.shiftVagina(0, GLOBAL.TYPE_EQUINE);
+	pp.vaginas[0].bonusCapacity = 200;
+	if (flags["AMBER_DUMBFUCK"] >= 3 ) pp.createPerk("Fixed GirlCumQ", 3000, 0, 0, 0);
+	else if (flags["AMBER_DUMBFUCK"] >= 1 ) pp.createPerk("Fixed GirlCumQ", 2000, 0, 0, 0);
+	else pp.createPerk("Fixed GirlCumQ", 1000, 0, 0, 0);
 	
 	return pp;
 }
@@ -47,7 +60,9 @@ public function dryadMeeting():void
 	if (flags["DRYAD_MET"] == undefined)
 	{
 		flags["DRYAD_MET"] = 1;
-		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
+		output("\n\n");
+		showImage("AmberNakkers");
+		output("You can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
 		output("\n\n<i>“Um, hi! Listen, maybe you’ve heard this before but I really, <i>really</i> need to fuck someone before I go mad! These gene mods are great, but the ones I’ve used kinda clashed and now I go into heat multiple times a day and - look, can we just fuck?”</i>");
 	}
 	else if (flags["DRYAD_DRAINED"] != undefined)
@@ -63,14 +78,29 @@ public function dryadMeeting():void
 	
 	output("\n\nShe makes puppy eyes at you, although the effect is somewhat diminished by the gigantic equine cock pointing in your direction. Still, though, it’s pretty clear she is at least telling the truth about the heat thing. She’s obviously desperate to fuck. Given her state, it looks like whatever sex you have is gonna be rough and animalistic regardless of whether you’re on the receiving end.");
 	output("\n\nAre you going to have sex with the taur-girl, and if so what are you going to use?");
+	
+	//add text about getting taur equipment for ship to be able to recruit her
+	amberEncounterAppend();
+	
 	processTime(3);
 	pc.lust(5);
 	
-	if(!pc.hasStatusEffect("Dryad Encounters")) pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
+	pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
-	
-	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
+	dryadMeetingMenu();
+}
+public function dryadMeetingMenu():void
+{
+	clearMenu();
+	addButton(0,"Sex!", dryadMeetingSexMenu,undefined,"Sex!","Give her what she is asking for.");
+	if (pc.hasKeyItem("Taur-centric Ship Equipment") && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5) addButton(2, "Come With", amberComeWith, undefined, "Come With", "Ask the dryad to come with you aboard your ship.");
+	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
+}
+public function dryadMeetingSexMenu():void
+{
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	
 	clearMenu();
 	addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 	if(pc.lust() >= 33)
@@ -120,7 +150,7 @@ public function dryadMeeting():void
 		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t aroused enough for this.");
 		addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you at least once to do this.");
 	}
-	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
+	addButton(14, "Back", dryadMeetingMenu);
 }
 
 public function dryadBlowjob():void
@@ -158,6 +188,7 @@ public function dryadBlowjob():void
 	output("\n\n<i>“Oh! <i>Oh, fuck!</i>”</i>");
 	output("\n\nHer orgasm arrives on the heels of her wild screams, the first real stream of seemingly never-ending spunk swelling your belly directly when she hilts herself balls-deep in your throat. The moment the stream begins to slow she pulls back out, only to ram it back home with a low, wordless groan of pleasure as she drains her plump balls into you, each thrust bringing with it a renewed spray of jism straight down your willing throat, your neck bulging while you submissively suck load after hot load down its length. By the time she’s done you’re a mess, although to your credit the vast majority of her cum is settling safely in your stomach instead of splattered across your visage. She slowly withdraws her length from your well-used fuckhole with a light moan, her flare pulling past your [pc.lips] with a wet pop as she sighs in satisfaction.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_BLEWHER");	
 	pc.loadInMouth(pp);
 	pc.lust(30);
 	processTime(10);
@@ -201,6 +232,7 @@ public function dryadPussy():void
 	if (pc.isTaur()) output ("hind ");
 	output("legs and onto the ground beneath you.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_YOURCUNT");
 	pc.loadInCunt(pp,x);
 	processTime(10);
 	pc.orgasm();
@@ -240,11 +272,12 @@ public function dryadAss():void
 	if (pc.isTaur()) output ("back ");
 	output("legs and onto the ground beneath you.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_ANALEDYOU");
 	pc.loadInAss(pp);
 	pc.lust(30);
 	if(pc.lustQ() >= 100)
 	{
-		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complimentary orgasm. That was quite the experience!");
+		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complementary orgasm. That was quite the experience!");
 		pc.orgasm();
 	}
 	processTime(10);
@@ -318,6 +351,7 @@ public function dryadDick():void
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You shrug. Weird as ever, but you’re not complaining.");
 	}
 	IncrementFlag("DRYAD_FUCKED");
+	IncrementFlag("DRYAD_HERCUNT");
 	processTime(10);
 	pp.loadInCunt(pc, 0);
 	pc.orgasm();
@@ -453,12 +487,13 @@ public function tailCuntDryadFun():void
 	output("\n\nYou tremble against her, your body feeling weak. The cum keeps coming, filling your tail cunt until it stretches out along its whole length. To your symbiont’s credit, it stays mostly sealed around her shaft, save for a small spurt of white, milky cum running down her equine balls.");
 	output("\n\nYou’re not sure how much more of this your tail-or you-can take. When she finally finishes, she lets out a satisfied sigh, her hips giving a final buck. You pull back away from her chest with a gasp, definitely feeling worse for the wear. Your tail aches, stuffed to the brim, barely able to wriggle weakly against her shaft, looking like an overfilled condom, full to sloshing with the dryad’s near-endless load.");
 	output("\n\nThe dryad sighs deeply in satisfaction and looks down at you.");
-	output("\n\n<i>“You have no idea how much I needed that. Thanks, babe, And come back any time! It’s always rough when I’m in heat, I can really use the help.”</i>");
+	output("\n\n<i>“You have no idea how much I needed that. Thanks, babe. And come back any time! It’s always rough when I’m in heat, I can really use the help.”</i>");
 	output("\n\nBefore you can burble a response, she lets go of you and you stumble back, your tail cunt coming loose from her dick, and falling limply to the forest floor. Full and heavy, it sloshes with impact, a spatter of dryad cum spurting out from it.");
 	output("\n\nShe bends down and gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage.");
 	output("\n\nYou take a single, dizzy step forward, your swollen tail dragging on the ground behind you, then decide that you need to rest a bit before continuing. You rest on a fallen trunk, gathering your thoughts as the world spins around you. You feel bloated, stuffed, and sleepy, and think that a nap might not be so bad.");
 	processTime(25);
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_YOURCUNT");
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
 	var pp:PregnancyPlaceholder = getDryadPregContainer();
@@ -830,6 +865,8 @@ public function dryadDrain():void
 	output("\n\n<i>“Oohhh, wow,”</i> she giggles nervously, pawing at the ground and eyeing your fucked-full stomach needily while her sperm splatters down your [pc.chest]. <i>“It looks like I made you pregnant! You, um, you can go again right? Please, I don’t think I can hold myself back!”</i>");
 	output("\n\nWhere should you tell her to drain herself?");
 	
+	IncrementFlag("DRYAD_FUCKED");
+	IncrementFlag("DRYAD_BLEWHER");
 	processTime(10);
 	pc.loadInMouth(pp);
 	pc.lust(100);
@@ -888,6 +925,10 @@ public function dryadDrainThroat():void
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
 	clearMenu();
 	addButton(0,"Next",dryadDrainThroatEpilogue);
 }
@@ -975,6 +1016,11 @@ public function dryadDrainAss():void
 	pc.loadInAss(pp);
 	pc.loadInMouth(pp);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_BLEWHER");
 	clearMenu();
 	addButton(0,"Next",dryadDrainAssEpilogue);
 }
@@ -1049,7 +1095,7 @@ public function dryadDrainPussy():void
 		output("\n\nA shuddering moan in your ear is all the warning you get before a veritable river of warm spunk begins to pump into you, bathing your womb in equine seed. You bite your lower lip as you try to retain control of your limbs, but it’s no use. Your sopping wet cunt spasms and spurts all over the dryad’s monstrous cock, and your legs buckle once more. This time, she follows you down, lying on top of you like so much insensate deadweight while her balls work overtime to glaze your insides.");
 		output("\n\n<i>“Oohhh, you’re fucking amazing,”</i> the dryad pants when she finally gets her words back, hindlegs still squeezing your flanks while she works every heavy rope of jizz out of her cock. <i>“You’re such a sexy bitch I’m still hard - feel it?”</i>");
 		output("\n\nShe wiggles her hips, and you do. She must be <i>really</i> turned on to cum once and still be rock hard - you wonder if you’re really draining her at all, but that thought flies away when the dryad presses her dick against your womb and licks your ear. Distracting you with little kisses and nibbles down your neck, she slowly begins fucking your pussy all over again.");
-		output("\n\n<i>“Nnnh, ohhh fuck,”</i> she breathes in your ear, hindlegs scrabbling to squeeze your flanks and keep you sat in place. <i>“Your pheromones are- nngh - it’s like you have </i>these<i>,”</i> she says, sliding a sweaty finger across your [pc.lips], <i>“wrapped around my balls, enticing me to keep going!”</i>");
+		output("\n\n<i>“Nnnh, ohhh fuck,”</i> she breathes in your ear, hindlegs scrabbling to squeeze your flanks and keep you seated in place. <i>“Your pheromones are- nngh - it’s like you have </i>these<i>,”</i> she says, sliding a sweaty finger across your [pc.lips], <i>“wrapped around my balls, enticing me to keep going!”</i>");
 		output("\n\nYou purse your lips and gently suckle her finger, eliciting a moan from your lover. It tastes of salt, but more importantly it tastes of her. Like passion and need. Reaching back, you caress her soft, flushed cheek even as she caves your pussy inwards with long, deep strokes. Pushed over the edge, she responds by shifting her grip upwards and turning you towards her, kissing you with the savage desire you’ve come to know from her.");
 		output("\n\nShe cums like that, moaning into your mouth even as her tongue desperately entwines with your own, eyes squeezed tightly shut while her hot spunk surges into you load by load. She grabs at your [pc.breasts], squeezing your [pc.nipples] as if she just can’t get enough of your body. When she finally finishes emptying herself into you what feels like a century later, she parts her lips from yours with a gasp and a thread of drool, chest heaving hard.");
 		output("\n\nShe stares into your eyes until her breathing is under control, then slowly, haltingly brings her hands up to your face. Eyeing your lips, she brings herself closer and seals them with a soft, deep kiss, the kind you think would leave her freckled face blushing were her cock not buried a foot deep inside your pussy.");
@@ -1081,6 +1127,14 @@ public function dryadDrainPussy():void
 	pc.loadInCunt(pp,x);
 	pc.loadInCunt(pp,x);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
 	clearMenu();
 	addButton(0,"Next",dryadDrainPussyEpilogue);
 }

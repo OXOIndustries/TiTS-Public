@@ -7,10 +7,10 @@ package classes.Resources.Busts
 	public class CyanCapsuleBusts
 	{
 		public function get PREVIEW():Class { return Bust_MILLIE; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/cyancapsule/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/cyancapsule.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cyancapsule/millie.png", mimeType = "image/png")]
 		public var Bust_MILLIE:Class;
@@ -19,9 +19,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/cyancapsule/hr/millie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cyancapsule/HR/millie.png", mimeType = "image/png")]
 			public var Full_MILLIE:Class;
-			[Embed(source = "../../../assets/images/npcs/cyancapsule/hr/millie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cyancapsule/HR/millie_nude.png", mimeType = "image/png")]
 			public var Full_MILLIE_NUDE:Class;
 		}
 	}

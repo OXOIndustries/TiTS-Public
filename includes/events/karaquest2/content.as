@@ -129,7 +129,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	output("\n\nYou take a steadying breath and ease your ship into the crack in the rock. You’re quickly bathed in darkness, no light from the sun or moon to guide you past the craggy cave mouth. A moment of doubt passes, before being blasted away by blinding light shining from inside the cavern. Your ship’s shielding keeps the worst of it at bay, just making you squint as the view outside consolidates into several large floodlights mounted on the walls, hanging over some kind of catwalk.");
 
 	output("\n\nAnother ship is parked ahead, a sleek, blue-and-white freighter");
-	if (PCShipModel() != "Z14") output(" not much bigger than your old Z14");
+	if (!PCShipIsCasstech()) output(" not much bigger than your old Z14");
 	else output(" not much bigger than your own ship");
 	output(". Your comms bleep with an incoming message.");
 
@@ -188,7 +188,8 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	else output("<i>“Sure, come on in,”</i> you say, waving her aboard.");
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
-	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard " + indefiniteArticle(PCShipModel()) + " in a while.”</i>");
+	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around.");
+	if(PCShipIsCasstech()) output(" <i>“Haven’t been aboard a Z14 in a while.”</i>");
 
 	//if PC has Anno aboard:
 	if (annoIsCrew())
@@ -1666,7 +1667,7 @@ public function kq2KhanPCDefeat():void
 	else output("Shocked too badly to keep fighting, you collapse at the kui-tan’s feet... or you would, if his feet could touch the ground around his enormous nads.");
 
 	output("\n\n<i>“Girls, help our friends here into their collars,”</i> Khan says, setting his lightning gun aside and reclining back on his huge testicles. He picks up a pair of metal collars from the table beside him and hands them off to two of the gold myr girls, each wearing an identical collar of their own. You try to block them, but in your state, it doesn’t take much for even a pair of naked lab-rats to pin you down, pulling away your [pc.gear]");
-	if (!(pc.rangedWeapon is EmptySlot) || !(pc.meleeWeapon is EmptySlot)) output(" and weapons");
+	if (pc.hasEquippedWeapon()) output(" and weapons");
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
@@ -3055,7 +3056,7 @@ public function kq2ShadeFollowUpResponse(response:String = "none"):void
 	}
 	else if(response == "kara")
 	{
-		output("You tell Shade the truth: the Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
+		output("You tell Shade the truth: that Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
 		
 		if(flags["SEXED_SHADE"] <= 1)
 		{

@@ -37,7 +37,7 @@ package classes.Items.Miscellaneous
 			this.description = "a medipen with Immuno-Booster";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Initially introduced as complimentary for the Foxfire transformative, it quickly become popular among rushers for its low cost and brutal efficiency against a wide range of alien parasites.";
+			this.tooltip = "Initially introduced as complementary for the Foxfire transformative, it quickly become popular among rushers for its low cost and brutal efficiency against a wide range of alien parasites.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -53,10 +53,12 @@ package classes.Items.Miscellaneous
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
+
+			this.addFlag(GLOBAL.ITEM_FLAG_MEDICINE);
 			
 			this.version = _latestVersion;
 		}
-		
+
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
@@ -128,6 +130,12 @@ package classes.Items.Miscellaneous
 					else
 						output("\n\nYour mimbrane parasites turn a sickly pale as they suddenly let go of your [pc.skin], slumping to the ground lifelessly. You almost feel sorry for the poor creatures as they shrivel up and crumble to dust before your eyes. <b>Your mimbranes are gone!</b>");
 					kGAMECLASS.removeMimbranes();
+					effectUsed = true;
+				}
+				
+				if (target.hasStatusEffect("Butt Bug (Female)")) // Butt Bug removal
+				{
+					kGAMECLASS.removeButtBugImmunoBooster();
 					effectUsed = true;
 				}
 				

@@ -10,21 +10,24 @@ public function adultCockvineHeader():void
 	author("Nonesuch");
 }
 
-public function adultCockvineEncounter():void
+public function adultCockvineEncounter(forceCombat:Boolean = false):void
 {
 	adultCockvineHeader();
 
-	CodexManager.unlockEntry("Cockvines");
-	IncrementFlag("MET_ADULT_COCKVINE");
-
-	output("\n\n");
+	if(!forceCombat)
+	{
+		CodexManager.unlockEntry("Cockvines");
+		IncrementFlag("MET_ADULT_COCKVINE");
+		
+		output("\n\n");
+	}
 	
 	// Basically, reflex check + randomisation!
-	if (rand(pc.RQ()/2) + (pc.RQ() / 2) > 60)
+	if (!forceCombat && (rand(pc.RQ()/2) + (pc.RQ() / 2) > 60))
 	{
 		clearMenu();
 		
-		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM) || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
+		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isCumSlut() || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
 		
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
@@ -48,7 +51,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone:
-				if (pc.WQ() < 15 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 15 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -58,14 +61,16 @@ public function adultCockvineEncounter():void
 				}
 				
 				addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-				addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
+				addButton(1, "Go On...", adultCockvineEncounterGoOn, undefined, "Go On", "Surrender yourself to the cockvines.");
 			}
 			// Not megaslut
 			else
 			{
 				output("\n\nThe thought makes you shudder. Feeling deeply grateful for and not a little smug about your quick eyes and wits, you carefully skirt the writhing mass of tentacles and continue on your way.");
+				output("\n\nBesides, you don’t want to be as careless as to turn back and face a potentially dangerous situation, would you?");
 				
 				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Go Back...", adultCockvineEncounter, true, "Go Back", "Use poor judgement and turn around to invite the danger towards you!");
 			}
 		}
 		else
@@ -78,7 +83,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone
-				if (pc.WQ() < 5 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 15 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -88,22 +93,32 @@ public function adultCockvineEncounter():void
 				}
 				
 				addButton(0, "Stop", adultCockvineEncounterStop, undefined, "Stop Moving", "Stop moving towards the cockvines.");
-				addButton(1, "Go on...", adultCockvineEncounterGoOn, undefined, "Go on", "Surrender yourself to the cockvines.");
+				addButton(1, "Go On...", adultCockvineEncounterGoOn, undefined, "Go On", "Surrender yourself to the cockvines.");
 			}
 			// Not megaslut
 			else
 			{
 				output("\n\nThe sight never fails to make you shudder. Feeling deeply grateful for and not a little smug about your quick eyes and wits, you carefully skirt the writhing mass of tentacles and continue on your way.");
+				output("\n\nBesides, you don’t want to be as careless as to turn back and face a potentially dangerous situation, would you?");
 				
 				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Go Back...", adultCockvineEncounter, true, "Go Back", "Use poor judgement and turn around to invite the danger towards you!");
 			}
 		}
 	}
 	else
 	{
+		if(forceCombat)
+		{
+			clearOutput();
+			output("You have second thoughts and throw caution to the wind. Betraying your instincts, you direct yourself towards the opposite direction and suddenly face a thick, tubular, organic, and deceptively still shape lying across your path...");
+			output("\n\n");
+		}
+		
 		if (flags["FUCKED_ADULT_COCKVINE"] == undefined)
 		{
-			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover, your assailant has established a firm grip around your");
+			if(!forceCombat) output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. ")
+			output("You gasp as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover, your assailant has established a firm grip around your");
 			if (pc.isNaga()) output(" tail");
 			else output(" [pc.foot]");
 			output(" and sent you sprawling.");
@@ -112,26 +127,32 @@ public function adultCockvineEncounter():void
 		}
 		else
 		{
-			output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. You gasp and then groan with understanding horror as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover the cockvine has established a firm grip around your");
+			if(!forceCombat) output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on – you don’t see the thick, tubular, organic, deceptively still shape lying across your path until it is far too late. ");
+			output("You gasp and then groan with understanding horror as something warm, wet and ropy wraps itself around your [pc.legOrLegs], wrenching you off balance; before you can recover the cockvine has established a firm grip around your");
 			if (pc.isNaga()) output(" tail");
-			else output(" [pc.foot]")
+			else output(" [pc.foot]");
 			output(" and begins to tug you away.");
 			output("\n\nDizzily you hear the busy, ropy sound of its many other appendages writhing out of a nearby crevice, stirred into action. You claw desperately at the ground but the vine attached to you draws you remorselessly towards the hole, more tentacles curling their strong, warm grip around you as you are dragged closer. You manage to claw your weapon free as the dark swallows you entirely; in here, there is only the heavy herbal heat and smell of the plant monster and its many oozing, sinewy appendages, patiently winding themselves around your frame.");
 			output("\n\nYou’ve got to fight free!");
 		}
-
-		(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You’re in the grip of a Cockvine!", true, 0);
-		clearMenu();
 		
-		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyActors(pc);
-		CombatManager.setHostileActors(new Cockvine());
-		CombatManager.victoryScene(adultCockvinePCVictory);
-		CombatManager.lossScene(cockvineLossRouter);
-		CombatManager.displayLocation("COCKVINE");
-	
-		addButton(0, "Fight!", CombatManager.beginCombat);
+		cockvineFightStart();
 	}
+}
+
+public function cockvineFightStart():void
+{
+	(pc as PlayerCharacter).createStatusEffect("Cockvine Grip", 1, 0, 0, 0, false, "Constrict", "You’re in the grip of a Cockvine!", true, 0);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Cockvine());
+	CombatManager.victoryScene(adultCockvinePCVictory);
+	CombatManager.lossScene(cockvineLossRouter);
+	CombatManager.displayLocation("COCKVINE");
+	
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
 public function cockvineLossRouter():void
@@ -190,20 +211,17 @@ public function adultCockvineSenseOverride():void
 	output("You doubt you could show off your moves very well down here, even if this creature <i>had</i> eyes.");
 }
 
-public function adultCockvineStruggleOverride():void
+public function adultCockvineStruggleOverride(target:Creature):void
 {
 	//PC struggle 
 	//Replaces run if at stage 1 or higher
 	clearOutput();
 	output("Instead of attacking the cockvine directly you work at grimly extricating yourself from its grasping tentacles, peeling the coiling, writhing appendages off you and clambering out of this hellish pit.");
 
-	var chance:Number;
-
-	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
-	else chance = pc.RQ();
+	var chance:Number = ((target.PQ() > target.RQ()) ? target.PQ() : target.RQ());
 	
 	//Limber confers a 20% escape chance.
-	if(pc.hasPerk("Limber")) chance += 20;
+	if(target.hasPerk("Limber")) chance += 20;
 
 	if (rand(100) > chance)
 	{
@@ -212,11 +230,11 @@ public function adultCockvineStruggleOverride():void
 	else
 	{
 		output(" You pull, push and wriggle the best you can, and after a lengthy tussle manage to force the monster to part some of its grip on you. Muscles and lungs straining, you manage to climb some of the way to safety.");
-		pc.addStatusValue("Cockvine Grip", 1, -1);
-		if (pc.hasStatusEffect("Grappled")) pc.removeStatusEffect("Grappled");
+		target.addStatusValue("Cockvine Grip", 1, -1);
+		target.removeStatusEffect("Grappled");
 	}
 	
-	pc.setStatusValue("Cockvine Grip", 2, 1);
+	target.setStatusValue("Cockvine Grip", 2, 1);
 	
 	CombatManager.processCombat();
 }
@@ -265,7 +283,7 @@ public function adultCockvineConsentacles():void
 
 	output("\n\nThe cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state.");
 	// Oral Fixation
-	if (pc.isDependant(Creature.DEPENDANT_CUM))
+	if (pc.isCumSlut())
 	{
 		output("\n\nYour tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm,");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and wetting itself across the tentacle sliding across it");

@@ -1,5 +1,3 @@
-import classes.Items.Upgrades.ExpandedBackpackII;
-
 public function uvetoApproachNerrasaFirstTime():void
 {
 	clearOutput();
@@ -70,6 +68,12 @@ public function uvetoNerrasaBuy():void
 		if(!chars["NERRASA"].hasItemByClass(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
 	}
 	else chars["NERRASA"].destroyItemByClass(Frostfire, -1);
+	
+	if(pc.level >= 5)
+	{
+		if(!chars["NERRASA"].hasItemByClass(ShelterDrone)) chars["NERRASA"].inventory.push(new ShelterDrone());
+	}
+	else chars["NERRASA"].destroyItemByClass(ShelterDrone, -1);
 	
 	if(pc.level >= 7)
 	{

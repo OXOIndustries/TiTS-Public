@@ -115,7 +115,7 @@ public function whiteWomanTessa():void
 		else output("<i>“Who exactly are you calling a kid?”</i>");
 
 		//Merge
-		output("\n\nThe woman turns her head slightly, regarding you again for the first time since her initial look. Dark black slits in her red orbs shift around slowly taking you in. <i>“Ah. My mistake. I thought you were... Nevermind... Just keep walking please " + pc.mf("Mr.", "Ms.") + " Steele, I’m not interested.”</i>");
+		output("\n\nThe woman turns her head slightly, regarding you again for the first time since her initial look. Dark black slits in her red orbs shift around slowly taking you in. <i>“Ah. My mistake. I thought you were... Never mind... Just keep walking please " + pc.mf("Mr.", "Ms.") + " Steele, I’m not interested.”</i>");
 		output("\n\nSensing a marginally lighter tone after her mistake, you turn back on the Steele charm for another quick pass. Maybe she’ll be more receptive now that the ice is broken? "); 
 
 		//Nice
@@ -289,6 +289,35 @@ public function whiteWomanTessa():void
 		//Buttons
 		addButton(0,"Next",mainGameMenu);	
 	}
+	else if (flags["TESSA_WED_REVIEW"] == 0 && GetGameTimestamp() > flags["TESSA_WED_TIMESTAMP"] + 5*24*60)
+	{
+		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
+		output("\n\nAfter the normal moment of silence, she looks up and you and sighs. <i>“So, I heard from Karen today.”</i>");
+		output("\n\n<i>“Oh...”</i> You think back on the night of the wedding. Things didn’t exactly work out that well...");
+		output("\n\n<i>“Yeah...”</i> Tessa takes a swig from her drink and rubs her temple. <i>“Well. You certainly made an impression. Not a perfect impression mind you, but...”</i> She takes a deep breath and braces herself, struggling to say the next words. <i>“Good job.”</i>");
+		output("\n\n<i>“What?”</i> You sit a moment in silence, letting her words skin in. <i>“But the night kinda went-”</i>");
+		output("\n\n<i>“Like shit, yeah.”</i> She rubs her brow and sighs, staring into her drink and fighting off the urge to chug it. <i>“But they think that... well, they all think what I wanted them to think. That I’m dating the rich kid on the block and doing well for myself so... Yeah, mission accomplished I guess.”</i> ");
+		output("\n\n<i>“Huh.”</i> You think about it a moment, and do remember that was the point of the whole charade. ");
+		output("\n\n<i>“Look, Steele.”</i> Tessa pushes her drink to the side and leans in, looking you straight in the eye. <i>“You did me a huge favor. Sure things went... Well, you know how they fucking went, but what I mean to say is.... Thanks.”</i> She leans back in her chair and sighs, rubbing her face again. ");
+		output("\n\nAfter a moment, Tessa speaks again, her hand still over her face. <i>“Ah, fuck it.”</i> She drops her hand and stares at you hard, her red eyes fixed on you like a predator. <i>“Next time we’re on my ship, you, me, my room. Got it?”</i> Before you can speak, she cuts you off. <i>“Good.”</i> She reaches down and grabs her drink, taking a long hard pull from it before slamming it down on the table. <i>“Now, what do you want to talk about?”</i>");
+
+		processTime(9);
+		flags["TESSA_WED_REVIEW"] = 1;
+		
+		//Buttons
+		addButton(0,"Appearance",lookAtDatSexyTessa,undefined,"Appearance","Get a good look at her.");
+		addButton(1,"Talk",talkWifDatLizTessa,undefined,"Talk","Engage with her.");
+		if (tessaTrust() >= 70 && flags["TESSA_JOB"]!= undefined && pc.lust() >=33)
+		{
+			addButton(2,"Flirt",flirtWithTessa,undefined,"Flirt","See where this goes.");
+		}
+		else
+		{
+			addDisabledButton(2,"Flirt","Flirt","Probably not a good idea.");
+		}
+		
+		addButton(14,"Leave",lonelyLizardTessa);
+	}
 	else
 	{
 		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
@@ -365,6 +394,11 @@ public function talkWifDatLizTessa():void
 	if (flags["TESSA_SPECIES"]!= undefined)	addButton(2,"Alone?",whySoLonelyTessa,undefined,"Alone?","Ask why she always drinks alone.");
 	if (flags["TESSA_SENSEPLAY"]!= undefined && flags["TESSA_ALONE"]!= undefined) addButton(3,"Her Sex",didYouJustAssumeTessaGender,undefined,"Her Sex","Ask her what her “deal”</i> is.");
 	if (tessaTrust() >= 60) addButton(4, "Profession", whatSexyTessaDo, undefined, "Profession", "Wait, what did you do again?");
+	if (MailManager.isEntryViewed("tessa_wedding"))
+	{
+		if (flags["TESSA_TALKED_MAIL"] == undefined) addButton(5, "Email", heyLittleTessaWhatIsItYouWant);
+		else if (flags["TESSA_TALKED_MAIL"] == 1) addButton(5, "Agree To Help", whenYoureRightThereWithHerMailDontCallTessaToTellHerShesAlone);
+	}
 	addButton(14,"Back",whiteWomanTessa);
 }
 
@@ -409,7 +443,7 @@ public function askAboutDatSexyTessa():void
 	processTime(3);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_HERSELF"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_HERSELF"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -451,7 +485,7 @@ public function tessaSpecies():void
 	output("\n\nThe death glare Tessa shoots you ends the conversation quickly.");
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_SPECIES"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_SPECIES"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -484,7 +518,7 @@ public function whySoLonelyTessa():void
 	processTime(5);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_ALONE"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_ALONE"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -544,7 +578,7 @@ public function didYouJustAssumeTessaGender():void
 		output("\n\nYou can’t help but ask how being an ovir raised by humans went.");
  		output("\n\n<i>“I was... Different. It was a human colony. Tiny really, everybody knew everybody sort of tiny. Sure, we had an ausar here and there, but I was the only ovir. My mother made all my clothes because of that.”</i> She gives her tail a bit wiggle, then chuckles. <i>“I was treated like a human most of the time, but not always. Some kids were... Not kind to me. But you know kids, right? They’re little assholes. Didn’t stop little ol’ me from crying myself to sleep some nights.”</i>");
 		output("\n\n<i>“That must have been hard for you.”</i> You watch the ovir’s eyes stare off into nothing, knowing she’s thinking back to those days.");
-		output("\n\n<i>“It was fine. It was childhood. Kids are jerks, but they grow out of it. One of the boys who was mean to me...”</i> She pauses a moment and smirks; her tail starting to start to wag a bit. After a quick second she catches herself and her tail stops. <i>“Nevermind....”</i> In a quick motion she downs her drink and taps on the glass. <i>“Get me another, will ya? I’m way too sober to talk about this crap.”</i>");
+		output("\n\n<i>“It was fine. It was childhood. Kids are jerks, but they grow out of it. One of the boys who was mean to me...”</i> She pauses a moment and smirks; her tail starting to start to wag a bit. After a quick second she catches herself and her tail stops. <i>“Never mind....”</i> In a quick motion she downs her drink and taps on the glass. <i>“Get me another, will ya? I’m way too sober to talk about this crap.”</i>");
 		output("\n\nYou shake your head and ");
 		//PC isn't a bum
 		if(pc.credits >= 10)
@@ -637,7 +671,7 @@ public function whatSexyTessaDo():void
 		addButton(0,"Next",talkWifDatLizTessa);
 	}
 	
-	if (tessaTrust() <70 && flags["TESSA_JOB"]!= 1)
+	if (tessaTrust() < 70 && flags["TESSA_JOB"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -750,7 +784,8 @@ public function flirtWithTessa():void
 			addButton(7,"Take a Shower",showerTimeIntroTessa,undefined,"Take a Shower","Get clean and dirty together.");
 			flags["TESSA_SHOWER_BREAST"] = 1;
 		}
-		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Breast Play","Breast Play","You need genitalia and must be a biped.");
+		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Take a Shower","Take a Shower","You need genitalia and must be a biped.");
+		if (flags["TESSA_WED_REVIEW"] == 1) addButton(8, "Bedroom", tessaBedroomIntro);
 		
 		addButton(14,"Leave",tessaLeaveShip,undefined,"Leave","You’ve changed your mind.");
 		currentLocation = shipLocation;
@@ -911,13 +946,22 @@ public function tessaNewIdea():void
 	else if (flags["TESSA_ORAL"] == undefined) addDisabledButton(1,"Oral","Oral");
 	if (tessaTrust()>=90 &&pc.hasGenitals() && flags["TESSA_ORAL"] != undefined && flags["TESSA_PCNEEDS"] == undefined) addButton(2,"My Turn",tessaPCNeeds,undefined,"My Turn","Promises should be kept.");
 	else if (flags["TESSA_PCNEEDS"] == undefined) addDisabledButton(2,"My Turn","My Turn");
-	if (flags["TESSA_H2H1"]!= undefined && pc.biggestTitSize() > 4 && CodexManager.entryViewed("Ovir") && chars["JADE"].hasTentacleNipples() && flags["TESSA_BREAST"] == undefined) addButton(3,"Her Breasts",tessaBreasts,undefined,"Her Breasts","Who doesn’t love boobs?");
-	else if (flags["TESSA_BREAST"] == undefined) addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need to know somebody who has gotten new nipples for their breasts as well as have read the Ovir Codex entry for this. Pretty complicated, but Tessa is a complicated girl!");
-	if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") >0 && flags["TESSA_DRINK"] == undefined) addButton(4,"Drink",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
-	else if (flags["TESSA_DRINK"] == undefined) addDisabledButton(4,"Drink","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
+	if (flags["TESSA_BREAST"] == undefined)
+	{
+		if (flags["TESSA_H2H1"]!= undefined && CodexManager.entryViewed("Ovir") && chars["JADE"].hasTentacleNipples())
+		{
+			if(pc.biggestTitSize() <= 4) addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need sizeable breasts in order to try this!");
+			else addButton(3,"Her Breasts",tessaBreasts,undefined,"Her Breasts","Who doesn’t love boobs?");
+		}
+		else addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need to know somebody who has gotten new nipples for their breasts as well as have read the Ovir Codex entry for this. Pretty complicated, but Tessa is a complicated girl!");
+	}
+	if(flags["TESSA_DRINK"] == undefined)
+	{
+		if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") > 0) addButton(4,"Drink",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
+		else addDisabledButton(4,"Drink","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
+	}
 	addButton(14,"Back",flirtWithTessa,undefined,"Back","Maybe not.");
-}	
-		
+}
 public function tessaHandsy():void
 {	
 	clearOutput();
@@ -971,7 +1015,7 @@ public function tessaPCNeeds():void
 	output("\n\nYou shake your head, you’re not letting the ovir get off that easy. <i>“Deal’s a deal and you promised.”</i> She lets out a groan and rolls her eyes at that. You ask if that’s going to be a problem for her, she seems oddly tense even for her.");
 	output("\n\n<i>“What? Fuck no. I’m fine.”</i> Tessa straightens herself out and composes herself. <i>“I’m just getting some déjà-fucking-vu.”</i>");
 	output("\n\nYou ask her what she means by that and the white ovir seems to go a shade more pale. You both know she slipped up.");
-	output("\n\n<i>“Nevermind.”</i> She takes a deep breath then gives you a lusty smile. <i>“I’m just a little flustered is all. Thinking about how good you’re going to taste.”</i> She takes a step closer to you, her puffy lips glistening. <i>“So don’t worry yourself. Let me show you what I can do.”</i>");
+	output("\n\n<i>“Never mind.”</i> She takes a deep breath then gives you a lusty smile. <i>“I’m just a little flustered is all. Thinking about how good you’re going to taste.”</i> She takes a step closer to you, her puffy lips glistening. <i>“So don’t worry yourself. Let me show you what I can do.”</i>");
 	output("\n\nYou decide to remember this slip up for later, but you’re not about to look a gift horse in the mouth. Not when that mouth can do other things.");
 
 	//Unlocks Blowjob and Get Eaten Options
@@ -1073,7 +1117,7 @@ public function tessaFootjobMale():void
 	output("Doing as she tells you, you position yourself at the foot of her chair, your [pc.cock] exposed to her. Unsurprisingly, you’re already rock hard. She looks down at you a moment, then smirks. <i>“Alright there big guy, let’s have some fun.”</i>");
 	output("\n\nTessa reaches out with her right foot and gently presses her toes against your [pc.cockNounComplex]. Her scaly toes are warm against your cock flesh, her touch making it twitch on it’s own. Slowly, Tessa glides her foot up and down your length, gently dragging her smooth scales against your sensitive skin.");
 	output("\n\nUp and down her foot slides, her pearl white scales against your [pc.cockColor] shaft. After a few slides up and down your length, she moves up to the tip, giving your [pc.cockHead] a pinch between her toes, making you quiver."); 
-	if (pc.cLength() > 5)output("<i>“ Very nice. Very impressive. A piece of meat like this really shouldn’t be going to waste.”</i>");
+	if (pc.cLength() > 5)output(" <i>“Very nice. Very impressive. A piece of meat like this really shouldn’t be going to waste.”</i>");
 	output("\n\nA sudden sharp poke at the base of your [pc.cockShape] shaft alerts you to the presence of Tessa’s other foot. <i>“Oops. Hope that didn’t hurt.”</i> Tessa’s chuckles softly, quite insincere. She glides her new foot slowly upward, the edge of her sharp nails dragging against your meaty flesh. You gasp and twitch at the sharp touch, but surprisingly the ovir woman doesn’t nick you in the slightest. She’s good.");
 	output("\n\nHer other foot stays on your cock head, shifting a bit. With the ball of her foot she starts rubbing your [pc.cockHead] gently. The two sensations work in tandem, the sharp gazing of her nails and the gentle force of her other foot start to make your [pc.cockNounComplex] throb. Tessa sets into a steady pace, your breathing slowly growing ragged due to her efforts.");
 	output("\n\n<i>“Getting excited I see? Well don’t blow your load just yet, I’ve still got another trick or two.”</i> No sooner had the words left her mouth she shifts her feet. Her right foot presses against your [pc.cockNounSimple] lengthwise, and her left hooks around and pulls back on you, pressing your meat and her right foot together. <i>“Hmmm. A nice [pc.cockShape] sandwich. With white scale bread.”</i> Tessa licks her lips. Whether she is teasing you or genuinely aroused you can’t tell.");
@@ -1145,7 +1189,7 @@ public function tessaOralLuv ():void
 	output("\n\n<i>“Pro tip, Steele.”</i> You hear Tessa say, her tone soft but still somehow condescending. <i>“We ovir get as wet as a New Texan on prom night.”</i> You hear her chuckle, then sigh contently. <i>“It’s going to get messy.”</i> She wasn’t kidding.");
 	output("\n\nA few short minutes pass and you feel her wetness all over your face and running down your chin. You push in a bit, and bury your face deeper into her folds. Up above you hear the ovir gasp softly. Whatever you’re doing, it’s working. However, you’re not completely clear on exactly what that was. While exploring her with your tongue, you confirm she indeed doesn’t have a clit of any kind. Attempting to get her to cum without one seems like a daunting task, with the added threat of drowning adding to the challenge.");
 	output("\n\nEven so, Tessa moans softly. <i>“That’s it... Lick it. Hmmmmm, eat my cunt out.”</i> You keep licking away at Tessa’s so called cunt, clearly having some success. Her sweet fluids start to ooze out into your mouth, and you can’t help but drink in more and more of it. Around your face and cheeks you feel Tessa open up and expand, allowing you to push your face in more and more. You push in so far your cheeks press up tight against her crotch.");
-	output("\n\n<i>“Noooo. More. That’s not enough.”</i> Tessa voice is thick and dripping with lust. Her hands reach down and grab your [pc.hairColor] head and pull you in tight against her. <i>“Deeper... That’s it....”</i> Struggling to breath now, you bury your tongue deep, trying your best to invade her as much as you can. Her slick girlcum flows over you, running freely down your face and neck. You inch your tongue in deeper, deeper and then....");
+	output("\n\n<i>“Noooo. More. That’s not enough.”</i> Tessa voice is thick and dripping with lust. Her hands reach down and grab your [pc.hairColor] head and pull you in tight against her. <i>“Deeper... That’s it....”</i> Struggling to breathe now, you bury your tongue deep, trying your best to invade her as much as you can. Her slick girlcum flows over you, running freely down your face and neck. You inch your tongue in deeper, deeper and then....");
 	output("\n\nTessa’s legs lift up and wrap around your shoulders, pinning you in place against her crotch. Her sharp claw like fingernails threaten to scalp you as she grips your head tightly. <i>“That’s it. Oh God. Oh <b>God</b>. Oh...”</i> You hear your lover gasp deeply, then her voice breaks into a sharp moan. Her cunt becomes a river, as more warm sweetness endlessly flows from her. You choke as it fills your mouth and struggle against her grip.");
 	output("\n\nSensing your distress, Tessa releases her grip on you, causing you to fall backward. You cough up a bit of her girlcum and wipe your chin with your forearm. Glancing up at the white woman, you doubt the moniker is apt anymore as she is beet red. Heaving, her red eyes are closed tight and her cheeks flushed. Her chest rising and falling so fast her robe loosens more than a bit, showing off more of her impressive cleavage.");
 	output("\n\n<i>“[pc.Name]...”</i> She pauses after just your name, gasping for more breath. <i>“That was exactly what I....”</i> She sighs deeply and opens her eyes, seemingly collecting herself. <i>“You have no idea how hard it is to find somebody who can do that.”</i>");
@@ -1174,7 +1218,8 @@ public function tessaPcOralIntroCunny ():void
 	output("\n\nYou notice the ovir tense up. <i>“Ah. Okay... Sure.”</i> She shifts her weight from one foot to the other. <i>“The couch should be fine, right?”</i> She gives you a look up and down. ");
 	if(pc.isNude())output("<i>“Come on then.”</i>");
 	else output("<i>“Well, take your clothes off first.”</i> You strip off your [pc.gear] and toss it off to the side. Tessa looks you over again. <i>“Alright, come on then.”</i>");
-	output("\n\nYou follow her over to her couch and take a seat, only pausing briefly thinking about the love stains from last time. Tessa moves past the couch to the mini-fridge beside it, opening it up and extracting a beer. She pops it open and takes a swig, then sets it off to the side. <i>“I’m going to need a chaser. Like I said, I smell and taste with this thing.”</i> The ovir sticks out her notably long tongue, giving it a little wag as she does. You can’t help but notice a silver stud in her tongue you’ve never seen before.");
+	output("\n\nYou follow her over to her couch and take a seat, only pausing briefly thinking about the love stains from last time. Tessa moves past the couch to the mini-fridge beside it, opening it up and extracting a beer. She pops it open and takes a swig, then sets it off to the side. <i>“I’m going to need a chaser. Like I said, I smell and taste with this thing.”</i> The ovir sticks out her notably long tongue, giving it a little wag as she does.");
+	if(flags["TESSA_ORAL_SCENE"] == undefined) output(" You can’t help but notice a silver stud in her tongue you’ve never seen before.");
 
 	flags["TESSA_ORAL_SCENE"] = 1;
 	addButton(0,"Next",tessaPcOral,undefined,"Next","Continue the fun.");
@@ -1189,7 +1234,8 @@ public function tessaPcOralIntroBJ ():void
 	output("\n\nYou notice the ovir tense up. <i>“Ah. Okay... Sure.”</i> She shifts her weight from one foot to the other. <i>“The couch should be fine, right?”</i> She gives you a look up and down. ");
 	if(pc.isNude())output("<i>“Come on then.”</i>");
 	else output("<i>“Well, take your clothes off first.”</i> You strip off your [pc.gear] and toss it off to the side. Tessa looks you over again. <i>“Alright, come on then.”</i>");
-	output("\n\nYou follow her over to her couch and take a seat, only pausing briefly thinking about the love stains from last time. Tessa moves past the couch to the mini-fridge beside it, opening it up and extracting a beer. She pops it open and takes a swig, then sets it off to the side. <i>“I’m going to need a chaser. Like I said, I smell and taste with this thing.”</i> The ovir sticks out her notably long tongue, giving it a little wag as she does. You can’t help but notice a silver stud in her tongue you’ve never seen before.");
+	output("\n\nYou follow her over to her couch and take a seat, only pausing briefly thinking about the love stains from last time. Tessa moves past the couch to the mini-fridge beside it, opening it up and extracting a beer. She pops it open and takes a swig, then sets it off to the side. <i>“I’m going to need a chaser. Like I said, I smell and taste with this thing.”</i> The ovir sticks out her notably long tongue, giving it a little wag as she does.");
+	if(flags["TESSA_ORAL_SCENE"] == undefined) output(" You can’t help but notice a silver stud in her tongue you’ve never seen before.");
 
 	flags["TESSA_ORAL_SCENE"] = 0;
 	addButton(0,"Next",tessaPcOral,undefined,"Next","Continue the fun.");
@@ -1205,7 +1251,7 @@ public function tessaPcOral ():void
 	{
 		var x:int = largestCockIndexThatFitsTessaMouth();
 	
-		output("She lowers herself to her knees in front of you, taking a good look at your " + pc.cockDescript(x) + ". You notice her face slightly turn red. <i>“" + pc.cockShape(x) + ", hm? Well I can work with this no problem.”</i> She smiles, to herself you believe. ");
+		output("She lowers herself to her knees in front of you, taking a good look at your " + pc.cockDescript(x) + ". You notice her face slightly turn red. <i>“" + StringUtil.capitalize(pc.cockShape(x)) + ", hm? Well I can work with this no problem.”</i> She smiles, to herself you believe. ");
 		if(pc.balls>0)output("<i>“Equipment seems familiar enough.”</i>");
 		else output("<i>“Hmm. Well, this is a first for me, but shouldn’t be a problem.”</i>");
 		output("\n\nTessa reaches out and gently runs a sharp nail along your already hard shaft, making you quiver. <i>“Already hard hm? Well that’s good. Makes my job much more straightforward.”</i> She shifts her hand and takes your " + pc.cockShape(x) + " cock in her fingers. <i>“Sorry, [pc.Name]. I’m going to try and make this fast.”</i> The ovir leans close, her face an inch away from your hard pole. Without a word, she sucks back in her throat, then spits out a large wad of saliva down into your waiting " + pc.cockHead(x) + ".");
@@ -1225,7 +1271,7 @@ public function tessaPcOral ():void
 		output("\n\nYou speak up after a long pause. <i>“We can do it again.”</i> You reach down and stroke yourself. <i>“It won’t take me long to get ready.”</i> You give the ovir a smile of your own.");
 		output("\n\nTessa stays silent a moment. <i>“No. That’s enough for me.”</i> Tessa sighs and pulls herself to her feet, taking another swig of her drink. <i>“I need to brush my teeth or something.”</i> Tessa stares off into the distance, her still red face giving you the impression that the <i>or something</i> she mentioned was likely going to be messy.");
 		output("\n\nYou rise to your feet and sigh. You know the drill and gather your stuff. While getting ready to leave, you can’t help but notice Tessa watching you, sipping away at her drink. You move to the ships exit and hear Tessa call to you. Turning you see the ovir woman holding her beer in both hands, tail swishing behind her.");
-		output("\n\n“If it’s alright with you. I think we should do that again....” She blushes. It was a funny way to say she liked it, but it was welcome.");
+		output("\n\n<i>“If it’s alright with you. I think we should do that again....”</i> She blushes. It was a funny way to say she liked it, but it was welcome.");
 		output("\n\nYou smile and nod. <i>“Sure, I think that would be great. Wouldn’t want you skip any more meals now would we?”</i>");
 		output("\n\nTessa’s expression changes and she scowls. You yelp and run out of the ship as Tessa hurls her still half full bottle at you, smashing it against the wall. You hear here call after you. <i>“Asshole! I’ll see you at the bar!”</i>");
 	
@@ -1321,7 +1367,7 @@ public function tessaBreastPlayAndShowerSex ():void
 	
 	if (flags["TESSA_SHOWER_BREAST"] == 0)
 	{
-		output("<i>“Chest only, Lover. Nothing else.”</i> You swallow audibly, then nod your head. Tessa smirks and turns, heading over to the couch, her very round backside wiggling sinfully as she walks. She doesn’t even need to ask you to follow you.");
+		output("<i>“Chest only, Lover. Nothing else.”</i> You swallow audibly, then nod your head. Tessa smirks and turns, heading over to the couch, her very round backside wiggling sinfully as she walks. She doesn’t even need to ask you to follow her.");
 		output("\n\nThe two of you reach the couch, with Tessa sitting on the far side away from you. You give the woman a naughty smile, then ask her. <i>“So, ready to pla-HEY!”</i>");
 		output("\n\nTessa jumps on you like a predator, her hands immediately going straight for your chest. ");
 		if(pc.breastRows.length > 1)output("The ovir seems to target your [pc.biggestBreastDescript].");
@@ -1335,7 +1381,7 @@ public function tessaBreastPlayAndShowerSex ():void
 		if(pc.isLactating())output("You feel her draining your [pc.milkyNipples], seemingly enjoying you for all you’re worth. ");
 		output("Suddenly, she starts to move, the ovir gyrating her body against you, pressing herself against your [pc.crotch].");
 		output("\n\nYou moan aloud, feeling her attack pushing you to the edge. The ovir is trying to make you cum, and she’s succeeding. You feel your sex burn as your climax draws near, the white woman sucking at your chest ravenously, and her clawed fingertips working at your soft breast flesh. Before you pop, Tessa releases you, scooting herself up and pressing her large white chest against your sweaty well worn tits. She bares her weight down, pressing her tits against your own, the four melons squishing together in a cluster of sensitive flesh.");
-		output("\n\nTessa’s cunt is directly on top of your own sex, and you feel her warm juices ooze onto your crotch. You let out a loud gasping moan as your climax hits, your [pc.cum] blasting all over Tessa’s body. [pc.CumVisc] fluid erupts from your [pc.groin], and you feel Tessa press her sex against you. Her soft warm chest is tight to your body, and you struggle to breath under her, gasping and moaning in your sticky pleasure.");
+		output("\n\nTessa’s cunt is directly on top of your own sex, and you feel her warm juices ooze onto your crotch. You let out a loud gasping moan as your climax hits, your [pc.cum] blasting all over Tessa’s body. [pc.CumVisc] fluid erupts from your [pc.groin], and you feel Tessa press her sex against you. Her soft warm chest is tight to your body, and you struggle to breathe under her, gasping and moaning in your sticky pleasure.");
 		output("\n\nTessa rolls off of you a moment later, allowing for a rush of air to fill your lungs. Staggering off to where she discarded her suit, you hear her sigh in pleasure. <i>“God damn, [pc.name]. That was something else.”</i> She scoops up her suit and turns to you, her lap covered in your [pc.cum.] <i>“Was that good for you?”</i>");
 		output("\n\nYou look down at yourself. Tessa covered you in her wetness, so much of it you suspect the ovir might have had an orgasm herself. You stand up, wiping off as much of the fluid as you can. You hear the white woman chuckle, causing you to turn back to her. <i>“That was great Steele, seriously... Thank you... It means alot to me that you wanted to...”</i> Tessa blushes, her tail wagging behind her slightly. <i>“It just means a lot.”</i>");
 		output("\n\nTessa turns and leaves, heading into her bathroom. You stand there a minute, dripping wet still, waiting for a better goodbye. You sigh, collect your things and head out. At the very least you got a thank you. Coming from Tessa, that meant a lot.");
@@ -1344,7 +1390,7 @@ public function tessaBreastPlayAndShowerSex ():void
 	}
 	else
 	{
-		output("<i>“Remember Steele, the plan is to get <b>clean</b>.”</i> You swallow audibly, then nod your head. Tessa smirks and turns, heading into the bathroom, her very round backside wiggling sinfully as she walks. She doesn’t even need to ask you to follow you. You enter the bathroom and take a look around. Her shower is a bathtub, with a hot pink shower curtain and a rack full of lotions and oils stuck to the wall. She really does take her scale care seriously. You double take back to the shower curtain and stare at it.");
+		output("<i>“Remember Steele, the plan is to get <b>clean</b>.”</i> You swallow audibly, then nod your head. Tessa smirks and turns, heading into the bathroom, her very round backside wiggling sinfully as she walks. She doesn’t even need to ask you to follow her. You enter the bathroom and take a look around. Her shower is a bathtub, with a hot pink shower curtain and a rack full of lotions and oils stuck to the wall. She really does take her scale care seriously. You double take back to the shower curtain and stare at it.");
 		output("\n\nYou mutter under your breath. <i>“Pink?”</i> Looking around more, you also notice pink towels... and a pink bath mat... and a pink toothbrush. <i>“What the fuck...”</i>");
 		output("\n\n<i>“Did you say something?”</i> Tessa turns to you. Based on her expression, she didn’t hear what you said. You wave her off and the ovir woman shrugs, not letting it bother her. She pads over to the tub and bends over to turn the water on, giving you a view of her pucker that makes your crotch pulse with excitement. <i>“Hope you like it hot.”</i> Tessa turns her head and looks at you over her shoulder, her lips curled in a devious smile. <i>“And I’m not just talking about the water.”</i>");
 		output("\n\nA few moments pass and the water starts to steam, the whole bathroom becoming humid. Tessa feels the hot spray with her hand and nods in approval. Wasting no more time, the white ovir steps into the tub, pulling the curtain closed behind her. You stand there and watch a moment, seeing a near perfect silhouette of Tessa through the pink curtain, her picture perfect curves on full display. Tessa stands directly under the water, running her fingers through her hair for a few moments until it goes flat against her scalp. She then starts moving her hands along her body, spreading the hot water around in a very thorough but showy manner.");
@@ -1352,7 +1398,7 @@ public function tessaBreastPlayAndShowerSex ():void
 		output("\n\nAs you step into the tub Tessa moves in on you, wrapping you up in her arms and pressing her hot wet body against your [pc.skinFurScalesNoun]. Her clawed hands move to your backside, scratching against you lightly, while her soft chest presses against your own. Slowly she spins, guiding you with her, positioning you directly under the shower head. The water burns at you, with its heat a bit more than what your used to. You gasp in discomfort, causing Tessa to giggle in your ear. <i>“Don’t pussy out on me now...”</i> The ovir woman releases you from her grasp, taking a step back. <i>“We haven’t even washed each other yet.”</i>");
 		output("\n\nTessa turns to her rack of bottles, pulling two off and handing you one. You glance down at the label, noting it to be some high-end scale care product. Your eyes shift to the bottle in her hand, recognizing it as a much more general multi purpose body wash. <i>“You do me and I do you?”</i> Tessa pops open the bottle and pours a very generous amount of the thick goo in her hand. You smile, and squirt an equally generous amount from the bottle she gave you into your own palm.");
 		output("\n\nThe ovir must have been serious about washing, as her hands travel everywhere along your exposed body. Her smooth scaly fingers, suds up the body wash, explore your form, spreading the foam and rubbing it in well, her touch making you tingle. You return the favor in kind, spreading Tessa’s expensive wash all over her pure white scales. Running your hands along the female ovir’s perfect hourglass figure makes your [pc.crotch] pulse with excitement, your pleasure rising. Despite yourself, you find your hands travelling to areas where there are breaks in her smooth scales, first and foremost her impressive chest.");
-		output("\n\nTessa lets out a lewd moan as your fingers grasp her soft tits, working to wash with enthusiasm. The white ovir returns the favor, her fingers moving along you [pc.chest] and giving your [pc.nipples] a hard pinch. You wince and gasp at her rough touch, giving her chest a tight squeeze in relatilation. Tessa’s nearly jumps at that, the white woman letting out another lusty moan at your grip. The ovir’s hands start to slide downward, her fingers gliding along your body towards your sex, teasing you as it trails down.");
+		output("\n\nTessa lets out a lewd moan as your fingers grasp her soft tits, working to wash with enthusiasm. The white ovir returns the favor, her fingers moving along your [pc.chest] and giving your [pc.nipples] a hard pinch. You wince and gasp at her rough touch, giving her chest a tight squeeze in relatilation. Tessa’s nearly jumps at that, the white woman letting out another lusty moan at your grip. The ovir’s hands start to slide downward, her fingers gliding along your body towards your sex, teasing you as it trails down.");
 		if(pc.cockTotal() == 1) output("\n\nTessa’s hand grips your hot [pc.cockColor] piece of meat, her fingers still covered in suds.");
 		else if(pc.cockTotal() == 2) output("\n\nTessa’s hand brushes along [pc.eachCock] but her settles on and grips [pc.oneCock], her fingers still covered in suds.");
 		else ("\n\nTessa’s hand clamps down on your [pc.vagina], her fingers still covered in suds.");

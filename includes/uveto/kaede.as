@@ -200,7 +200,7 @@ public function uvetoKaedeAnno():void
 		
 		if (pc.isAss())
 		{
-			output("\n\nIf she’s just taking corporate hand-outs, that doesn’t sound very independant to you.");
+			output("\n\nIf she’s just taking corporate hand-outs, that doesn’t sound very independent to you.");
 		
 			output("\n\n<i>“Have I told you to fuck off lately?”</i> Kaede huffs, sticking her tongue out at you. ");
 		}
@@ -345,7 +345,7 @@ public function uvetoKaedeUveto():void
 	
 	if (pc.isMisch())
 	{
-		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance , you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
+		output("\n\nConsidering how she’s all modded up and wearing makeup, and her girlfriend prides herself so much on keeping up her appearance, you’re kind of surprised Kaede’s such a stickler for “natural beauty.”");
 	
 		output("\n\nShe scoffs, <i>“Don’t change the subject. People and planets are totally different things. Besides, even all-natural me was pretty damn handsome!”</i>");
 	}
@@ -465,12 +465,12 @@ public function uvetoKaedeSEXYTIMESENSUE():void
 
 	output("<i>“I think I can spare a few minutes,”</i> you grin, standing up and dumping the food tray off in its bin.");
 
-	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined) flags["ANNOxKAEDE_INTRODUCED"] = 0;
-	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
+	var metAnnoKaede:int = ((flags["MET_ANNO"] == undefined || flags["ANNOxKAEDE_INTRODUCED"] == undefined) ? 0 : flags["ANNOxKAEDE_INTRODUCED"]);
+	var sexedKaede:int = (flags["KAEDE_FUCKED"] == undefined ? 0 : flags["KAEDE_FUCKED"]);
 
 	//if hasn't fucked outside of Kaede/Anno Threesome:
 	// If the players fucked kaede more times than the number of times than instances of the annoxkaede threesome could possibly have happened
-	if (flags["ANNOxKAEDE_INTRODUCED"] < flags["KAEDE_FUCKED"])
+	if (metAnnoKaede < sexedKaede)
 	{
 		output("\n\n<i>“Great!”</i> she smiles, hopping up and offering you her hand. <i>“I’m glad I can tempt you away even without Anno with us.”</i>");
 	}
@@ -481,7 +481,7 @@ public function uvetoKaedeSEXYTIMESENSUE():void
 
 	output("\n\nYou grab a handful of half-ausar ass as Kaede hops out of her chair, making her auburn tail jump and wiggle over your arm. She blushes, and the two of you quickly make your way out of the cafe and out towards the lengthy docking arm once again. As you’re walking, Kaede’s hand slips down to yours, lacing her fingers through yours. She nestles into your shoulder and follows your lead back to where you met, where your ship and hers are parked just a stone’s throw apart.");
 	
-	output("\n\nGlancing out the docking viewport, you’re treated to a view of Kaede’s vessel in all its beat-up glory. She’s an old Casstech Lancer, covered in a racer-like paintjob of red and white. A meaty looking laser turret sits under the cabin, considerably bigger than your average stock freighter ought to be packing. The words <i>“<i>Talon Rogue</i>”</i> are written in bold white letters on the long neck between the cabin and the main hold. Kaede flips a keychain out of her pocket and swipes it over a keypad next to the airlock. The ship beeps at you, and the station’s security doors slide open.");
+	output("\n\nGlancing out the docking viewport, you’re treated to a view of Kaede’s vessel in all its beat-up glory. She’s an old Casstech Lancer, covered in a racer-like paintjob of red and white. A meaty looking laser turret sits under the cabin, considerably bigger than your average stock freighter ought to be packing. The words “<i>Talon Rogue</i>” are written in bold white letters on the long neck between the cabin and the main hold. Kaede flips a keychain out of her pocket and swipes it over a keypad next to the airlock. The ship beeps at you, and the station’s security doors slide open.");
 	
 	output("\n\n<i>“After you, Captain,”</i> your companion smiles, sweeping one of her arms ahead like an old-Earth valet. You");
 	if (pc.isMisch()) output(" give her a mock "+ pc.mf("bow", "curtsey") +" and");

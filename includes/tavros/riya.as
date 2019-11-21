@@ -41,6 +41,12 @@ public function getRiyaPregContainer():PregnancyPlaceholder
 	return pp;
 }
 
+//Yeah, I added this here in case the worst needs to happen. -Fen
+public function riyaEnabled():Boolean
+{
+	return true;
+}
+
 public function riyaAppearance():void
 {
 	clearOutput();
@@ -64,6 +70,9 @@ public function riyaOnCanada():Boolean
 
 public function riyaBonus():Boolean
 {
+	//Yep, see earlier note above the function def -Fen
+	if(!riyaEnabled()) return false;
+
 	if((riyaOnCanada() && getPlanetName().toLowerCase() == "canadia station") || (!riyaOnCanada() && getPlanetName().toLowerCase() == "tavros station"))
 	{
 		if(flags["MET_RIYA"] != undefined && pc.hasStatusEffect("RIYA_CANADIA_CD"))
@@ -180,7 +189,7 @@ public function riyaMenu():void
 		if(flags["RIYA_SUSPICION"] != undefined) addButton(2,"Racism",riyaRacismTalk);
 	}
 	//[Sex]
-	if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
+	if(pc.hasVagina() && pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
 	else if((!pc.hasVagina() || pc.isTaur() || pc.femininity <= 40 || pc.hasCock()) && flags["RIYA_BLOCKED"] != undefined) addDisabledButton(3,"Sex","Sex","You need to a normal female to pique her interest - with less than four legs.");
 	else addButton(3,"Sex",sexRiyaCauseYerDumbAndDeserveToBePunished);
 	addButton(14,"Leave",mainGameMenu);
@@ -255,7 +264,7 @@ public function talkToRiya(inhuman:Boolean):void
 			else output("Tavros");
 			output("?”</i> you ask. She scoffs.");
 			output("\n\n<i>“Of course not. We help the station’s private security do patrols, send officers into nearby systems as needed, chase warrants, and formally arrest anyone station security apprehends.”</i>");
-			output("\n\nCuriosity getting the better of you, you ask exactly how many peacekeepers are on the station, earning another squint from Riya.");
+			output("\n\nCuriosity getting the better of you, you ask exactly how many Peacekeepers are on the station, earning another squint from Riya.");
 			output("\n\n<i>“And why do you need to know that?”</i> she says, continuing before you can reply. <i>“Ah, that’s right. You don’t.”</i>");
 			output("\n\nQuickly changing the subject, you continue chatting with the officer for another ten-odd minutes before going your separate ways. She waves cheerfully as you go, clearly not holding your questions against you.");
 		}
@@ -396,6 +405,7 @@ public function reportRiyaIfYouWant():void
 	output("\n\n<i>“I really am sorry, Steele. I wish there was more I could do. I can promise you that everything you’ve just told me stays between us, though,”</i> she says, taking a deep breath and removing her nails from her desk, giving you a perfect view of the deep furrows her claws have left in the wood. She sighs, poking at them with her index finger. <i>“Now, if you have any </i>other<i> comments, questions or concerns, I’ll do everything I can to help you.”</i> Her ears are still pinned back against her skull as she says this, you note.");
 	processTime(15);
 	flags["RIYA_REPORTED"] = 1;
+	flags["MET_GRENCE"] = 1;
 	clearMenu();
 	//[Snap](+5 points towards ‘Hard’ personality)((Tooltip: Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.))
 	addButton(0,"Snap",snapAtRiyasComm,undefined,"Snap","Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.");
@@ -753,7 +763,7 @@ public function riyaVagigooVagitiems():void
 
 		output("\n\n And so, just as the head of her magnificent brown beast of a cock is starting to leave your body, ");
 		//PC is ausar/huskar/dogmorph:
-		if(isDogMorph) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. </b>Bark.<b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg,”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
+		if(isDogMorph) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. <b>Bark.</b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg,”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
 		else if(isCatMorph) output("you meow. At first it’s a quiet, pitiful sound, but when Riya stops pulling out and leers at you, an expectant look in her eyes, you do it again, louder and clearer. She pushes in a bit more, then stops again and looks at you. <i>“Well?”</i> she asks, that infuriatingly smug grin of hers crawling across her features. But still, you purr as ordered, telling Riya what a good kitty you are and how badly you want - how badly you <i>need</i> her to take you, to make you hers, among other things.");
 		// PC is human:
 		else if(isHuman) output("you beg. At first you’re quiet and hesitant, almost whispering as you ask her to take you, but when she shifts her hips forward a few centimeters and grins expectantly at you, pinching your left nipple between her thumb and index finger. Her ministrations draw a squeal from your [pc.lips] and you increase the volume, face flushing, telling her in no uncertain terms that you <i>need</i> her inside you, filling you with hot, hard cock and thick, creamy white seed...");
@@ -876,7 +886,7 @@ public function riyaFellatioScene():void
 	output("”</i>");
 
 	output("\n\nShe sends her cock swinging into your face again - and again, and again, the rod of mocha flesh getting harder and harder with every impact until it actually starts to hurt a bit, rather than sting. Once she’s at half-mast, Riya pumps her hand up and down her shaft a few times until the veiny thing is almost fully erect, pulsing visibly in front of your face. She wastes no time inching her hips forward and bumping her pre-leaking tip into your [pc.lips], the powerful, salty taste assaulting your mouth. <i>“Well, Steele? It ain’t gonna blow itself,”</i> she says as she pushes forward another inch, your nostrils the next to come under attack. Her smell permeates your olfactory senses, strong and intoxicating, your mouth seeming to open of it’s own accord to welcome this exemplary specimen in.");
-	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the SteeleTech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
+	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the Steele Tech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
 	if(pc.horns > 1) output("[pc.horns]");
 	else if(!pc.hasHair()) output("scalp");
 	else output("[pc.hair]");
@@ -1018,6 +1028,7 @@ public function riyaQuestProc():void
 	//PC has reported Riya: 
 	if(flags["RIYA_REPORTED"] != undefined) output("with Commander Grence at her side");
 	else output("with an ausar woman wearing the rank of a U.G.C. Commander, her golden fur practically shining in the station’s overhead lights. Her name-badge says ‘Grence’.");
+	flags["MET_GRENCE"] = 1;
 	output(" They’re both sporting deadly serious faces, Riya leaning down to exchange mostly inaudible whispers with the blonde ausar as they pass you. You manage to overhear something about an asteroid field and pirates, but nothing else. Is something happening? Whatever it is, it sounds dangerous.");
 
 	clearMenu();
@@ -1077,7 +1088,7 @@ public function goHomeFromRiyaQuest():void
 //If PC selects ‘Stay’
 public function stayForQuest():void
 {
-	moveTo("GAME OVER");
+	moveTo("RIYAQUEST");
 	
 	clearOutput();
 	showName("PIRATE\nBASE");
@@ -1260,7 +1271,7 @@ public function riyaQuestCombat3VictoryMenu():void
 	showName("RIYA\n& CO.");
 	showName("\nGRENCE");
 	showBust("GRENCE");
-	output("<i>“Gotta get your ass in shape, Rover!”</i> she quips as plasma bolts begin to splatter off the decks and ships around you, the pirates making a last-ditch effort to save their intel. You make your way onto your own ship with time to spare, the Ebon Wing dropship firing up and lifting off alongside you. The naval battle you were watching earlier is drawing to a close, with several reinforcement ships from the U.G.C. Navy having entered the fight. In fact, just as you leave the system the last of the pirate ships explodes down its port side, the warship listing off to the side with crewmembers being sucked into the hard vacuum of space by the dozens. It’s over. And now you notice that the dropship carrying Riya and Grence is gone too, presumably having started the jump back to Tavros. You key in the coordinates too, not wanting to be mistaken for a hostile by the small U.G.C. fleet that is currently searching the asteroid field for any surviving pirates.");
+	output("<i>“Gotta get your ass in shape, Rover!”</i> she quips as plasma bolts begin to splatter off the decks and ships around you, the pirates making a last-ditch effort to save their intel. You make your way onto your own ship with time to spare, the Ebon Wing dropship firing up and lifting off alongside you. The naval battle you were watching earlier is drawing to a close, with several reinforcement ships from the U.G.C. Navy having entered the fight. In fact, just as you leave the system the last of the pirate ships explodes down its port side, the warship listing off to the side with crew members being sucked into the hard vacuum of space by the dozens. It’s over. And now you notice that the dropship carrying Riya and Grence is gone too, presumably having started the jump back to Tavros. You key in the coordinates too, not wanting to be mistaken for a hostile by the small U.G.C. fleet that is currently searching the asteroid field for any surviving pirates.");
 	output("\n\nArriving back at Tavros, you’re immediately hailed by the station’s chief customs officer and instructed to dock and submit to inspection. The wrinkled, tired-looking old human man looks incredibly bored as he sips his coffee and waits for you to comply. Not very much time later you’re stepping off your ship to the sight of Riya, Grence and a few of the troopers from the raid on the pirates. Grence steps forward and hands you a small stack of papers and pen, blinking as you take it, then speaking.");
 	output("\n\n<i>“Here, Steele. These are non-disclosure agreements and... other things you need to sign. You can read it if you want, but you’re going to want to sign it- trust me.”</i>");
 	output("\n\nWhat? And what if you don’t want to? There’s a <b>lot</b> of fine print on these, after all. Riya shrugs and cuts in just as Grence opens her mouth to speak.");
@@ -1386,31 +1397,43 @@ public function riyaSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Riya Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Riya Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
 	var babym:Boolean = (se.value4 == 1);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain explodes in your guts and fluid leaks");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
-	else if(InShipInterior()) output(" onto the deck");
+	else if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, it’s time...");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if(inShip && 9999 == 0)
 	{
 		output("\n\nStaggering towards the automatic medbay with one hand on your stomach, you order your ship’s computer into action. Your contractions are coming so fast now that by the time you’re");
 		if(!pc.isNude()) output(" naked and");
 		output(" ready to begin, you’re no longer able to speak, instead huffing and whimpering as your body works.");
 	}
 	//on ship without automatic medbay
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		output("\n\nScooping up the nearest medkit, you stagger towards your bed, determined to safely deliver your offspring. Setting your gear down, you lay yourself out and force yourself to breathe as your labor begins.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nFlagging down a peace officer, you hurriedly explain your situation and the deputy nods, training kicking in. They call an emergency medical team in, and within minutes you’re safely inside an ambulance, the officer waving with a happy grin on their face, shouting congratulations to you as the doors close.");
 	}
@@ -1606,6 +1629,13 @@ public function riyaAtNursery():Boolean
 // Common room blurb
 public function riyaNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
+	if(!riyaHasKidInNursery())
+	{
+		pc.removeStatusEffect("Riya at Nursery");
+		addDisabledButton(btnSlot, "Riya");
+		return;
+	}
+	
 	output("\n\nRiya is sitting at one of the tables, most of the way through a full-sized plate of " + RandomInCollection("lamb, curry and salad", "eggs, bacon and toast", "cereal and orange juice") + ". She looks up as you come in, chewing away happily.");
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined) output(" It’s a bit strange to see her wearing something other than her instantly recognizable uniform, but here she is in a pair of baggy, comfy looking tan cargo pants, black boots and a white tee that shows a healthy amount of cleavage.");
 	else output(" You’ve more or less gotten used to the sight of Riya in street clothes, but it’s never going to not be strange seeing her without a watchful glare on her face and a mean glint in her eyes.");
@@ -1632,12 +1662,26 @@ public function riyaNurseryCafeteriaApproach():void
 	var babyName:String = "???";
 	var i:int = 0;
 	
+	// Count children...
+	var numBabs:int = 0;
+	var numKids:int = 0;
+	for(i = 0; i < riyaBabies.length; i++)
+	{
+		// Show this if there is a Riyaspawn that is under 365 days old
+		if(riyaBabies[i].Years <= 1) numBabs++;
+		// Show if there is a Riyakid over one year old.
+		else if(riyaBabies[i].Years <= 5) numKids++;
+	}
+	
 	// First
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined)
 	{
-		babyIdx = 0;
-		babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
-		babyName = riyaNoNameBabies[babyIdx].Name;
+		if(riyaNoNameBabies.length > 0)
+		{
+			babyIdx = 0;
+			babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
+			babyName = riyaNoNameBabies[babyIdx].Name;
+		}
 		
 		output("<i>“So, you’re pretty decked out up here, huh?”</i> she says immediately, shoveling another bite of food into her mouth. <i>“I kinda figured I’d be supporting you and the brat, to be honest.”</i> Sitting down across from her, you ask if she had any trouble getting in.");
 		output("\n\n<i>“Nah. The robot you have is nice, she got me up here with no issues after she confirmed I’m the father,”</i> she says, licking food off her lips. <i>“So strange, that word. You know this is my first kid?”</i>");
@@ -1650,14 +1694,27 @@ public function riyaNurseryCafeteriaApproach():void
 			else output(" xeno");
 			output(" the chance to improve their bloodline? Besides,”</i> she continues, eyes twinkling as a grin creases her face, <i>“the little tyke came out human. I guess I’ve got some really strong sperm, huh?”</i> she says, leaning over until your noses are brushing each other before continuing in a loud whisper. <i>“That or you’re just such a little bitch that even your eggs are submissive.”</i>");
 		}
-		output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
 		
 		processTime(2);
 		
 		flags["MET_RIYA_IN_NURSERY"] = 1;
 		
-		// [Enter Name]
-		addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		if(riyaNoNameBabies.length > 0)
+		{
+			output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
+			
+			// [Enter Name]
+			addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		}
+		else
+		{
+			output("<i>“Anyway, you here for the little one" + ((numBabs + numKids) == 1 ? "" : "s") + ", too?”</i> Riya asks, setting down the tablet she’d been reading from down and standing up, leaving her food for a robotic attendant to clean up.");
+			
+			// [Visit / Play] [Leave]
+			if(numBabs > 0) addButton(0, "Visit", riyaNurseryActions, ["visit"], "Visit", "Visit your child" + ((numBabs + numKids) == 1 ? "" : "ren") + " with Riya.");
+			if(numKids > 0) addButton(1, "Play", riyaNurseryActions, ["play"], "Play", "Play with your progeny with Riya.");
+			addButton(14, "Leave", mainGameMenu);
+		}
 	}
 	// Repeat naming if PC has other kids by Riya, because one wasn’t fucking enough
 	else if(flags["RIYA_NAMED_KID"] != undefined && riyaNoNameBabies.length > 0)
@@ -1685,17 +1742,6 @@ public function riyaNurseryCafeteriaApproach():void
 	// Repeat
 	else
 	{
-		// Count children...
-		var numBabs:int = 0;
-		var numKids:int = 0;
-		for(i = 0; i < riyaBabies.length; i++)
-		{
-			// Show this if there is a Riyaspawn that is under 365 days old
-			if(riyaBabies[i].Years <= 1) numBabs++;
-			// Show if there is a Riyakid over one year old.
-			else if(riyaBabies[i].Years <= 5) numKids++;
-		}
-		
 		if(pc.isPregnant() && pc.bellyRating() >= 10)
 		{
 			output("<i>“Is that one mine, ");

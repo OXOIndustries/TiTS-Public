@@ -351,7 +351,7 @@
 					damage = new TypeCollection( { kinetic: (physique()+5) });
 					damageRand(damage, 15);
 					applyDamage(damage, this, target, "minimal");
-					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
+					if((target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2) && !target.isPlanted())
 					{
 						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);

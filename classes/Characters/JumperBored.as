@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	//import classes.Items.Guns.*
 	import classes.Items.Miscellaneous.Throbb;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Transformatives.LaquineEars;
 	import classes.Items.Protection.JumperShield;
 	import classes.Items.Armor.JumperJumpsuit;
@@ -54,7 +55,7 @@
 			this.armor.hasRandomProperties = true;
 
 			baseHPResistances.burning.damageValue = 40.0;
-			baseHPResistances.freezing.damageValue = 40.0;
+			baseHPResistances.electric.damageValue = 40.0;
 			
 			this.shield = new JumperShield();
 			this.shield.shields = 150;
@@ -88,6 +89,7 @@
 			this.scaleColor = "blue";
 			this.furColor = "PLACEHOLDER";
 			this.hairLength = 6;
+			this.lipColor = "pink";
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
@@ -153,9 +155,11 @@
 			this.buttRatingRaw = 9;
 			//No dicks here!
 			this.cocks = new Array();
+			this.cockVirgin = false;
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].bonusCapacity = 130;
@@ -167,7 +171,7 @@
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 13;
+			this.ballSizeRaw = 10;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 18;
@@ -180,6 +184,8 @@
 			this.fertilityRaw = 1.05;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
+			
+			this.impregnationType = "BoredJumperPregnancy";
 
 			this.breastRows[0].breastRatingRaw = 7;
 			this.nippleColor = "pink";
@@ -187,6 +193,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			
@@ -195,6 +202,7 @@
 			//this.impregnationType = "LapinaraPregnancy";
 			kGAMECLASS.zhengShiSSTDChance(this);
 			randomise();
+			this.createPerk("Appearance Enabled");
 			
 			this._isLoading = false;
 		}
@@ -212,36 +220,81 @@
 			vaginas[0].wetnessRaw = 2+rand(4);
 
 			this.createCock();
-			//Hoss!
-			if(rand(4) == 0)
+			//determine which jumpers types are available based on if pc has jumper preggers or jumpers are preggers
+			var selCType:Array = [];
+			var i:int;
+			var rn:int;
+			var sceneNum:int = kGAMECLASS.boredJumperPregScene(-1);
+			if (sceneNum > 0 && sceneNum <= 5)
 			{
-				this.cocks[0].cLengthRaw = 14;
-				this.shiftCock(0,GLOBAL.TYPE_EQUINE);
-				this.cocks[0].cockColor = "chocolate";
-
-				this.furColor = "gray";
-				this.hairColor = "pink";
-				this.eyeColor = "purple";
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_EQUINE) == 0) selCType.push(GLOBAL.TYPE_EQUINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_CANINE) == 0) selCType.push(GLOBAL.TYPE_CANINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_FELINE) == 0) selCType.push(GLOBAL.TYPE_FELINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_HUMAN) == 0) selCType.push(GLOBAL.TYPE_HUMAN);
 			}
-			else if(rand(3) == 0)
+			else
 			{
-				this.cocks[0].cLengthRaw = 12;
-				this.shiftCock(0,GLOBAL.TYPE_CANINE);
-				this.cocks[0].cockColor = "red";
-
-				this.furColor = "white";
-				this.hairColor = "purple";
-				this.eyeColor = "amber";
+				selCType.push(GLOBAL.TYPE_EQUINE);
+				selCType.push(GLOBAL.TYPE_CANINE);
+				selCType.push(GLOBAL.TYPE_FELINE);
+				selCType.push(GLOBAL.TYPE_HUMAN);
 			}
-			else if(rand(2) == 0)
-			{
-				this.cocks[0].cLengthRaw = 13;
-				this.shiftCock(0,GLOBAL.TYPE_FELINE);
-				this.cocks[0].cockColor = "pink";
+			
+			i = selCType.length;
+			
+			if (i > 0)
+			{			  
+				rn = rand(i);
+			
+				//Hoss!
+				if(selCType [rn] == GLOBAL.TYPE_EQUINE)
+				{
+					this.cocks[0].cLengthRaw = 14;
+					this.shiftCock(0,GLOBAL.TYPE_EQUINE);
+					this.cocks[0].cockColor = "chocolate";
 
-				this.furColor = "tawny";
-				this.hairColor = "orange";
-				this.eyeColor = "amber";
+					this.furColor = "gray";
+					this.hairColor = "pink";
+					this.eyeColor = "purple";
+					this.nippleColor = "black";
+					this.lipColor = "black";
+				}
+				else if(selCType [rn] == GLOBAL.TYPE_CANINE)
+				{
+					this.cocks[0].cLengthRaw = 12;
+					this.shiftCock(0,GLOBAL.TYPE_CANINE);
+					this.cocks[0].cockColor = "red";
+
+					this.furColor = "white";
+					this.hairColor = "purple";
+					this.eyeColor = "amber";
+					this.nippleColor = "bright pink";
+					this.lipColor = "pink";
+				}
+				else if(selCType [rn] == GLOBAL.TYPE_FELINE)
+				{
+					this.cocks[0].cLengthRaw = 13;
+					this.shiftCock(0,GLOBAL.TYPE_FELINE);
+					this.cocks[0].cockColor = "pink";
+
+					this.furColor = "creamy";
+					this.hairColor = "orange";
+					this.eyeColor = "amber";
+					this.nippleColor = "pink";
+					this.lipColor = "pink";
+				}
+				else
+				{
+					this.cocks[0].cLengthRaw = 12;
+					this.shiftCock(0,GLOBAL.TYPE_HUMAN);
+					this.cocks[0].cockColor = "pink";
+
+					this.furColor = "brown";
+					this.hairColor = "green";
+					this.eyeColor = "green";
+					this.nippleColor = "peach";
+					this.lipColor = "peach";
+				}
 			}
 			else
 			{
@@ -249,9 +302,11 @@
 				this.shiftCock(0,GLOBAL.TYPE_HUMAN);
 				this.cocks[0].cockColor = "pink";
 
-				this.furColor = "smoky";
-				this.hairColor = "pink";
-				this.eyeColor = "purple";
+				this.furColor = "brown";
+				this.hairColor = "green";
+				this.eyeColor = "green";
+				this.nippleColor = "peach";
+				this.lipColor = "peach";
 			}
 			this.long = "This bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell “Jumper” down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable ";
 			if(this.cocks[0].cType == GLOBAL.TYPE_EQUINE) this.long += "equine";
@@ -261,6 +316,7 @@
 			this.long += " bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and luscious, E-cup tits lingers behind.\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!";
 			credits = 350+rand(150);
 			if(rand(4) == 0) this.inventory.push(new LaquineEars());
+			else if(rand(4) == 0) this.inventory.push(new Soak());
 			else if(rand(4) == 0) this.inventory.push(new Throbb());
 			else if(rand(13) == 0) this.inventory.push(new JumperJumpsuitSlutty());
 			else if(rand(12) == 0) this.inventory.push(new JumperJumpsuit());
@@ -398,6 +454,36 @@
 			output("\n\nHer excitement dulls when she notices the cum covering you. (-5 lust)");
 			//(-5 lust damage)
 			this.lust(-5);
+		}
+		
+		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
+		{
+			var heatSex:Boolean = false;
+			if (flags["BJUMPER_HEAT_SEX"] == 1)
+			{
+				heatSex = true;
+				flags["BJUMPER_HEAT_SEX"] = undefined;
+			}
+			this.vaginalVirgin = false;
+			if (cumFrom is PlayerCharacter)
+			{
+				sstdChecks(cumFrom,"vagina");
+				return kGAMECLASS.tryKnockUpBoredJumper(heatSex);
+			}
+			return false;
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			if (kGAMECLASS.flags["BJUMPER_PREG_TIMER"] != undefined)
+			{
+				if(this.hasCock(GLOBAL.TYPE_EQUINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_EQUINE);
+				else if(this.hasCock(GLOBAL.TYPE_FELINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_FELINE);
+				else if(this.hasCock(GLOBAL.TYPE_CANINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_CANINE);
+				else return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_HUMAN);
+			}
+			
+			return false;
 		}
 	}
 }

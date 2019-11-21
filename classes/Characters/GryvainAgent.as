@@ -70,7 +70,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 5;
+			this.femininity = 80;
 			this.eyeType = GLOBAL.TYPE_GRYVAIN;
 			this.eyeColor = "yellow";
 			this.tallness = 74;
@@ -190,7 +190,7 @@
 			this.vaginas[0].vaginaColor = "blue";
 			
 			//this.createStatusEffect("Disarm Immune");
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force Herm Gender");
 
 			this.inventory.push(new HeavyLaser());
 			

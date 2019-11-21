@@ -45,10 +45,16 @@ public function majinUpdate(force:Boolean, forceship:Boolean = false):void
 	var room:String;
 	var newplanet:String;
 	var newsystem:String;
+	var movementChance:int;
+	var publicHangars:Array = publicHangars();
+
 	//Ship flies
 	if (forceship || ((flags["MAJIN_LAST_FLIGHT"] == undefined || flags["MAJIN_LAST_FLIGHT"] < days) && !majinPlayerOnBoard()))
 	{
-		if ((rand(9) == 0) || forceship) majinLocation(shipLocation);
+		movementChance = rand(5);
+		// 40% chance to move to PC, 40% to move to a random planet, 20% to fuck off into space
+		if (movementChance == 0 || movementChance == 1 || forceship) majinLocation(shipLocation);
+		else if (movementChance == 2 || movementChance == 3) majinLocation(RandomInCollection(publicHangars));
 		else majinLocation(null);
 		flags["MAJIN_LAST_FLIGHT"] = days;
 	}
@@ -106,7 +112,7 @@ public function shizzyGreatMajinIntro():void
 	clearOutput();
 	author("QuestyRobo");
 	
-	output("You move around the imposing vessel, passing by a bevy of crewmembers, most of whom greet you with a small degree of familiarity. One of them points you in the direction of the loading dock and says that’s where Shizuya is right now. You walk over, spying Shizuya and Winston carrying a large crate up a ramp, into their ship. As you move closer, the massive feline spots you and waves at you happily... dropping her half of the crate in the process. Winston tries his best to hold the heavy box back, but there was obviously a reason that both of them were carrying it, and Winston is forced back down the ramp.");
+	output("You move around the imposing vessel, passing by a bevy of crew members, most of whom greet you with a small degree of familiarity. One of them points you in the direction of the loading dock and says that’s where Shizuya is right now. You walk over, spying Shizuya and Winston carrying a large crate up a ramp, into their ship. As you move closer, the massive feline spots you and waves at you happily... dropping her half of the crate in the process. Winston tries his best to hold the heavy box back, but there was obviously a reason that both of them were carrying it, and Winston is forced back down the ramp.");
 	output("\n\n<i>“OH MY GOD!”</i> He screams as he’s pushed back into the loading dock.");
 	output("\n\nShizuya screams in shock before dashing down the ramp to aid her husky friend. They come out a minute later, Winston seemingly no worse for wear. They shoot you a thumbs up and wave you over. You head up and help them move the crate in, putting yourself on Winston’s side, since Shizuya doesn’t seem to need any help.");
 	output("\n\n<i>“Sorry ‘bout that, Winston.”</i> Shizuya worriedly says.");

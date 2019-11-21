@@ -5,6 +5,7 @@
 	import classes.kGAMECLASS;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	
+	
 	public class Siegwulfe extends Creature
 	{
 		public function Siegwulfe()
@@ -106,8 +107,13 @@
 			buttRatingRaw = 9;
 			breastRows[0].breastRatingRaw = 3;
 			
+			if(hasCock()) removeCocks();
+			configEggs(false);
+			
 			removePerk("Ditz Speech");
 			removePerk("Mega Milk");
+			
+			lustRaw = 15;
 		}
 		
 		public function configBimbo():void
@@ -121,8 +127,35 @@
 			buttRatingRaw = 18;
 			breastRows[0].breastRatingRaw = 30;
 			
+			if(hasCock()) removeCocks();
+			configEggs(false);
+			
 			createPerk("Ditz Speech", 0, 0, 0 ,0 , "");
 			createPerk("Mega Milk", 0, 0, 0 ,0 , "");
+			
+			lustRaw = 15;
+		}
+		
+		public function configDom():void
+		{
+			if(!isBimbo()) configBimbo();
+			if(!hasCock())
+			{
+				createCock(25);
+				shiftCock(0, GLOBAL.TYPE_CANINE);
+			}
+			createPerk("Fixed CumQ", 25000); //Ball stats? No, fuck da police.
+		}
+		
+		//Removes 10 ovilium from eggDonorInv, set it to null if no ovilium should be removed
+		public function configEggs(bEnable:Boolean = true):void
+		{
+			impregnationType = (bEnable ? "SiegwulfeEggnancy" : "");
+		}
+		
+		public function isEggWulfe():Boolean
+		{
+			return impregnationType == "SiegwulfeEggnancy";
 		}
 		
 		override public function get bustDisplay():String
@@ -132,6 +165,27 @@
 			if(isBimbo()) bustName += "_BIMBO";
 			
 			return bustName;
+		}
+		
+		override public function getDescription(arg:String, arg2:*):String
+		{
+			if(arg != "pcname") return super.getDescription(arg, arg2);
+			else if(kGAMECLASS.flags["WULFE_PCNAME"] == undefined) return kGAMECLASS.pc.nameDisplay();
+			else return kGAMECLASS.flags["WULFE_PCNAME"];
+		}
+		
+		override public function lust(amount:Number = 0, apply:Boolean = false):Number
+		{
+			// do what regular lust does
+			var oldLust:Number = super.lust();
+			var newLust:Number = super.lust(amount, apply);
+			
+			// Lust caps at 100 but siegwulfeLustScene should acknowledge attempted lust increases
+			if(!apply) newLust = oldLust + amount;
+
+			kGAMECLASS.siegwulfeLustScene(newLust, newLust-oldLust);
+
+			return newLust;
 		}
 	}
 }

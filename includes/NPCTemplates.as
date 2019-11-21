@@ -6,6 +6,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars = new Object();
 		charDict = new Dictionary();
+		shits = new Object();
+		shitDict = new Dictionary();
 		
 		var nPC:PlayerCharacter = new PlayerCharacter();
 		chars["PC"] = nPC;
@@ -28,6 +30,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "ELDERVENUSPITCHER", ElderVenusPitcher);
 	prepChar(justUpdate, "SYRI", Syri);
 	prepChar(justUpdate, "NALEEN_MALE", NaleenMale);
+	prepChar(justUpdate, "CARL", Carl);
 	prepChar(justUpdate, "MACHINA", CarlsRobot);
 	prepChar(justUpdate, "JADE", Jade);
 	prepChar(justUpdate, "REAHA", Reaha);
@@ -168,7 +171,38 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "KANE", Kane);
 	prepChar(justUpdate, "SHIZUYA", Shizuya);
 	prepChar(justUpdate, "ARDIA", Ardia);
-	
+	prepChar(justUpdate, "MRFOX", EMMrFox);
+	prepChar(justUpdate, "REDD", EMRedd);
+	prepChar(justUpdate, "PONYLUVER", EMPonyLuver);
+	prepChar(justUpdate, "SEXYYDADDYY", EMSexyyDaddyy);
+	prepChar(justUpdate, "BOUNTIFULBOTANY", EMBountifulBotany);
+	prepChar(justUpdate, "SNEAKYSNEK", EMSneakySnek);
+	prepChar(justUpdate, "RIPPED4YOURPLEASURE", EMRipped4YourPleasure);
+	prepChar(justUpdate, "STORMDRAGON", EMStormDragon);
+	prepChar(justUpdate, "MAIKE", Maike);
+	prepChar(justUpdate, "AINA", Aina);
+	prepChar(justUpdate, "DRYAD", Dryad);
+	prepChar(justUpdate, "VARMINTPET", VarmintPet);
+	prepChar(justUpdate, "QUAELLE", Quaelle);
+	prepChar(justUpdate, "ZEA", Zea);
+	prepChar(justUpdate, "LOLA", Lola);
+	prepChar(justUpdate, "SIMONE", Simone);
+	prepChar(justUpdate, "BETSY", Betsy);
+	prepChar(justUpdate, "VICTORIA", Victoria);
+	prepChar(justUpdate, "MARION", Marion);
+	prepChar(justUpdate, "LURELING", Lureling);
+	prepChar(justUpdate, "ROXY", Roxy);
+	prepChar(justUpdate, "LORELEI", Lorelei);
+	prepChar(justUpdate, "VELTA", Velta);
+	prepChar(justUpdate, "BIANCA", Bianca);
+	prepShip(justUpdate, "SHIP", Casstech);
+	prepChar(justUpdate, "KIONA", Kiona);
+	prepChar(justUpdate, "NYKKE", Nykke);
+	prepChar(justUpdate, "VAHN", Vahn);
+	prepChar(justUpdate, "DOCKMASTER", Dockmaster);
+	prepChar(justUpdate, "SYNPHIA", Synphia);
+	prepChar(justUpdate, "FOCALOR", Focalor);
+	prepChar(justUpdate, "OLYMPIA", Olympia);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
@@ -191,5 +225,14 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 		var objInst:Object = new classT();
 		chars[index] = objInst;
 		charDict[objInst] = index;
+	}
+}
+public function prepShip(justUpdate:Boolean, index:String, classT:Class):void
+{
+	if (!justUpdate || (justUpdate && shits[index] == undefined))
+	{
+		var objInst:Object = new classT();
+		shits[index] = objInst;
+		shitDict[objInst] = index;
 	}
 }

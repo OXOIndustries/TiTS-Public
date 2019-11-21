@@ -58,7 +58,7 @@
 		else output("Your codex beeps, indicating that the individual under the bundle is a kui-tan.");
  	}
  	else output("You’d bet a thousand credits that you know who it is, though.");
- 	output("You could probably reach the branch easily, climbing up a few of the lower ones to get to her. " + (pc.isTaur() ? "A careful look at the branches confirms that they’re low and thick enough that you could easily pick your way up them. " : "") + "On the other hand, you have no idea who might be under all that rope--they might be tied there for a reason. Or, if you were feeling a bit wicked, you could untie her partially and have some fun with her.");
+ 	output("\n\nYou could probably reach the branch easily, climbing up a few of the lower ones to get to her. " + (pc.isTaur() ? "A careful look at the branches confirms that they’re low and thick enough that you could easily pick your way up them. " : "") + "On the other hand, you have no idea who might be under all that rope--they might be tied there for a reason. Or, if you were feeling a bit wicked, you could untie her partially and have some fun with her.");
  	
  	processTime(3+rand(3));
  	flags["PRAI_MET"] = 1;
@@ -348,7 +348,7 @@
  		output("\n\n<i>“Sneezes and snakes! Did you say ‘Steele?’ As in Steele Tech? That’s who made my Codex!”</i> she explains, excitedly tapping one of the panels on her sash, lighting up an oddly familiar, but wrong-looking display.");
  		output("\n\nShe catches your odd look, then taps it off, looking embarrassed. <i>“Well, not technically. I couldn’t afford one--real Codices are prohibitively expensive. This one’s actually a knock-off that the Camarilla makes. It’s called a Grim-R. They’re a lot cheaper, but maybe not as reliable. And you can’t really upgrade them; you have to just buy a whole new one when it gets too out of date.”</i>");
  		output("\n\n<i>“Sorry, but this is what I was looking for!”</i> She withdraws her other hand from her satchel and pulls out something pink and rubbery. Without further explanation, she slaps it against her stained " + (variation != 1 ? "blouse" : "dress") + ". The blob sticks, then slowly begins to move across the smudges of sap, leaving the cloth dry and clean in its wake.");
- 		output("\n\n<i>“I’m a biologist,”</i> she says hurriedly, as you open your mouth to ask about the blob. <i>“I catalog and sometimes collect samples of life from across the universe. Currently, I’m on contract for Xenogen Biotech. I was supposed to be doing field research here on Mhenga before I got myself tied up.”</i>");
+ 		output("\n\n<i>“I’m a biologist,”</i> she says hurriedly, as you open your mouth to ask about the blob. <i>“I catalog and sometimes collect samples of life from across the universe. Currently, I’m on contract for Xenogen Biotech. I was supposed to be doing field research here on Mhen’ga before I got myself tied up.”</i>");
  		output("\n\n<i>“This little one is a Gemu,”</i> she says, plucking the pink blob from her now-pristine dress. She smoothes down her dress over her hips, a small bulge at her crotch briefly visible. <i>“Xenogen was going to mass produce them, but scrapped the project. I saved this little one from the incinerator.”</i>");
  		output("\n\nYou take a closer look and see that the three-inch creature has the lower body of a slug and the top half of an armed humanoid. It waves once before she tucks it away in her satchel.");
  		output("\n\nYour eyes flicker over the slight bulge in her skirt and she catches you. <i>“Oh, if you were wondering about it, yes--there’s a dick under there,”</i> she says with a wave of her hand. <i>“Nothing super special--");
@@ -379,7 +379,7 @@
  	showPrai();
  	
  	output("You ask the kui-tan exactly how she ended up tied to the tree branch.");
- 	output("\n\n<i>“Errrr...”</i> she says, blushing a bit. <i>“That’s a little embarrassing. " + (flags["PRAI_FIRST"] != undefined ? "As you know, " : "") + "Xenogen Biotech hired me to do some fieldwork here on Mhenga.”</i>");
+ 	output("\n\n<i>“Errrr...”</i> she says, blushing a bit. <i>“That’s a little embarrassing. " + (flags["PRAI_FIRST"] != undefined ? "As you know, " : "") + "Xenogen Biotech hired me to do some fieldwork here on Mhen’ga.”</i>");
  	if (flags["PRAI_FIRST"] == undefined) output("\n\n<i>“I ran into some Zil females and my Grim-R,”</i> she gestures to one of the glowing panels on her sash, <i>“told me that they communicate through dance.”</i> She pauses, her face turning an even brighter shade of pink. <i>“Well, long story short, they laughed--for WAY too long--and I said some things that I probably shouldn’t have.”</i> She frowns, staring at the ground, <i>“Though in my defense, they absolutely WERE trashy, waxy vermin.”</i>");
  	else output("\n\n<i>“My luck is awful. I ran into those same Zil females from before--or maybe they were looking for me,”</i> she says, making a face. <i>“Either way, they nabbed me before I could do anything, and tied me up to another branch,”</i> she says. <i>“At least I got to insult their mothers this time.”</i>");
  	output("\n\n<i>“Anyway, one wanted to drug me, and the other wanted to... erm, ahem, ‘mate’ with me,”</i> she says, looking away at the last line. <i>“In the end they decided to tie me to a tree and find a tiebreaker vote.”</i>");
@@ -489,7 +489,7 @@
  	output("\n\nShe slurps and moans, her body shaking as you face-fuck her. She’s clearly enjoying it as much as you are. When the first few droplets of precum ooze from your dick down her hot, wet throat, she redoubles her efforts, pumping her mouth faster than before. You feel the softness of her lips paradoxically tight around you, and the flicker of her tongue along the underside of your cock.");
  	output("\n\nYou move your hands to her dark hair, your fingers tousling and scratching her as she moans in pleasure, doubling her pace. You pant with her, bucking your hips to her frantic pace, feeling pressure building in your dick. She feels it too as you tense against her.");
  	output("\n\nYou grab her hair and yank her down against your dick. She squeals in delight as you cum hard, " + (pc.cumQ() <= 100 ? "spurting a single jet against the back of her throat. She sucks noisily at your cock, her tongue swirling around your tip, gathering up as much as possible as you bury yourself against her." : "firing jet after jet against the back of her throat. She slurps greedily, noisily taking in every drop of your seed as you bury yourself in her mouth, spurting more and more cum down her hot throat."));
- 	output("\n\nBreathless, you slow your bucking hips, your breath slowing until the only sound in the clearing is the faint rustle of leaves overhead and the wet sounds of Prai sucking your cock clean");
+ 	output("\n\nBreathless, you slow your bucking hips, your breath slowing until the only sound in the clearing is the faint rustle of leaves overhead and the wet sounds of Prai sucking your cock clean.");
  	output("\n\nShe leans back, drawing her lips from your dick with a noisy POP, and then grinning up at you. She seems to be waiting for something, but you’re not exactly sure what.");
  	output("\n\nAt a loss, you simply pat her head. Prai immediately lets out a happy chirruping noise, rubbing her head against your hand. Apparently, that was just what she wanted.");
  	output("\n\nYou lean back, letting out a sated sigh as she stands up, wiping the back of her mouth with a black-furred paw. She grins wryly, <i>“Was it good for you, too?”</i>");
@@ -550,7 +550,7 @@
  	output("\n\nIt takes some maneuvering, but you manage to loose her legs and waist enough for her to bend her free half into touching down on the thick branch next to you. " + (flags["PRAI_FIRST"] == undefined ? "The girl is surprisingly flexible and perches lightly on the broad branch. " : "") + "She sways for a moment or two, her black and gray striped tail swishing behind her for balance.");
  	output("\n\n<i>“Oof! Flying flapjacks, that was definitely a thing! Thank you so much, " + (flags["PRAI_FIRST"] == undefined ? "friend" : "[pc.name]") + ",”</i> she says, steadying herself against you, holding one hand against her head as she blinks and focuses on you. ");
  	output("\n\nShe actually pauses for a moment, her eyes flicking down over your body. Her slight frame even leans forward briefly, brushing her body against yours. ");
- 	if (flags["PRAI_MOOD"] == 1) output("She actually rubs a little against you, her perky nipples touching lightly upon your " + (pc.hasBreasts() ? "breasts" : "chest") + "before she seems to realize what she’s doing. She blushes, rocking back away from you, biting her lip. A small step brings her dangerously close to the edge of the branch. You grab her arm, and her blush deepens, her chocolate-colored eyes meeting yours with a smouldering warmth. The kui-tan glances back at the edge of the branch and shifts back and forth uncertainly.");
+ 	if (flags["PRAI_MOOD"] == 1) output("She actually rubs a little against you, her perky nipples touching lightly upon your " + (pc.hasBreasts() ? "breasts" : "chest") + " before she seems to realize what she’s doing. She blushes, rocking back away from you, biting her lip. A small step brings her dangerously close to the edge of the branch. You grab her arm, and her blush deepens, her chocolate-colored eyes meeting yours with a smouldering warmth. The kui-tan glances back at the edge of the branch and shifts back and forth uncertainly.");
  	else if (flags["PRAI_MOOD"] == 2) output("She immediately shoves back against you, wobbling at bit at the edge of the branch, just managing to maintain her balance.");
  	output("\n\nYou cough a bit and suggest that you make your way down to the ground.");
  	output("\n\n<i>“Oh my goodness grapejuice, you’re right! We could break our necks staying up here in this tree!”</i>");
@@ -572,7 +572,7 @@
  	showPrai(1);
  	clearMenu();
  	
- 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cocksnake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
+ 	output("You push your way through the denser foliage of Mhen’ga, waxy green leaves the size of your head alternating with prickly blue vines. Underfoot, a juvenile cunt snake slithers through the underbrush, and overhead, an unknown avian lets out a cry like a violin breaking. You glance upwards, noting through the small gap in the canopy that the sky has been overcast for quite a while now.");
  	output("\n\nFinally, the brush gives way to a curious scene. Suspended inches off the ground is the grayscale kui-tan from before--Prai Ellit. She’s wearing her usual bandolier over a white blouse and a yellow skirt as she struggles weakly. Her wrists and ankles are secured tightly by multicolored vines that suspend her, spreadeagled in the air. The vines don’t seem to be moving, and a chlorophyllic woman behind her is slumped over the curve of a massive tree leaf. A pith helmet sits askew on Prai’s head, while a cream-colored scarf is draped loosely about her neck.");
  	output("\n\nThe kui-tan twists this way and that, trying to get a look at you.");
  	if (flags["PRAI_MOOD"] == 1) output("\n\n<i>“Oh crackers! Well, this is embarrassing,”</i> she says her cheeks pinkening.");
@@ -801,6 +801,9 @@
  	else if (pc.cocks[0].cLength < 14) output("fat");
  	else output("massive");
  	output(" dick into her ass, watching it disappear inch by inch. She groans, a long and quavering sound as the ring of her asshole stretches to accommodate your girth.");
+	
+	pc.cockChange();
+	
  	output("\n\nHalf-babbled gratitude spills from her lips as you fill her, and her cock gives a twitch, and you hear the patter of liquid against fabric. She pants, whimpering softly--it looks like she came from your insertion. Too bad you’re not finished yet.");
  	output("\n\nYou push further and further in, already slick with her pre. Prai gasps, rocking against the vines and mewling piteously as her little cock oozes out cum. You pull her tail tight up against you, feeling the gentle bucks of her hips against yours.");
  	output("\n\n<i>“Good girl,”</i> you chuckle, and you see a wiggle of pleasure from her rump, shifting your cock around against her tight hole.");
@@ -1035,6 +1038,9 @@
  	else if (pc.cocks[0].cLength < 14) output("fat");
  	else output("massive");
  	output(" length into her ass. Thanks to the trap’s copious pre, you manage to slide all the way into her ridiculously tight hole. Prai doesn’t seem to be in pain, but the kui-tan’s gone completely rigid.");
+	
+	pc.cockChange();
+	
  	output("\n\nPrai lets out the tiniest of strangled squeaks, her whole body tensed, barely moving as she gulps in a sharp breath. The suddenness of being impaled likely shocked her, but you’re not in the mood to let her recover. Just as she draws in another shuddering breath, you pull your hips back from her, sliding your cock out of her tight hole.");
  	output("\n\n<i>“Auuuh!”</i> she moans, desperately shoving her hips back against you, trying to keep you inside her. It looks like the little thing doesn’t want to stop being filled by you. It’s a good thing you’re happy to oblige.");
  	output("\n\nYou thrust back hard against her, shoving deep into her round ass. Caught off guard, Prai’s hands slip, and she falls face-first into the dirt. You’d be concerned for her if she didn’t immediately turn her head to the side and hiss a hungry, <i>“Oh, yesssss!”</i>");

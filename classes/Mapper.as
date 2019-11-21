@@ -38,6 +38,7 @@
 		public static const room_tundra_mask:int		= 1 << 25;
 		public static const room_frozen_mask:int		= 1 << 26;
 		public static const room_spider_web_mask:int	= 1 << 27;
+		public static const room_first_aid_mask:int		= 1 << 28;
 
 		private var roomsObj:Object;
 
@@ -192,6 +193,14 @@
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.MEDICAL))
 			{
 				map[x][y][z] |= room_medical_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.FIRST_AID))
+			{
+				map[x][y][z] |= room_first_aid_mask;
+			}
+			else if(kGAMECLASS.flags["BIANCA_LOCATION"] == targetRoom)
+			{
+				map[x][y][z] |= room_first_aid_mask;
 			}
 			if (roomsObj[targetRoom].hasFlag(GLOBAL.LIFTUP))
 			{

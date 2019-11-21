@@ -1,4 +1,17 @@
 //Corona Lord Forgehound, by Wsan
+
+/* FLAGS:
+FORGEHOUND_ENCOUNTERED 	- times encountered (largely depreciated)
+FORGEHOUND_WREKT		- did you defeat the forgehound?
+FORGEHOUND_APOLIFUCKED 	- pretty self-explanatory.
+FORGEHOUND_INSULTED		- were you an ass to him?
+FORGEHOUND_PEGGED		- did you peg the boi?
+FORGEHOUND_FISTED
+FORGEHOUND_FACEFUCKED
+FORGEHOUND_BUKKAKED
+FORGEHOUND_KERATIN_TALK
+*/
+
 public function showForgehound(nude:Boolean = false):void
 {
 	showName("\nFORGEHOUND");
@@ -91,12 +104,19 @@ public function addictionTurnWaster():void
 {
 	clearOutput();
 	author("Wsan");
+	
+	var damageValue:int = 2;
+	if(pc.isSubby()) damageValue += 5;
+	if(pc.isBimbo()) damageValue += 5;
+	if(pc.isCumSlut()) damageValue += 10;
+	
 	output("You watch him, waiting for an opening so you can throw yourself at the muscular bulwark of his chest and just beg him to take you. To fuck you like he did before. To <i>use</i> you until he’s satisfied. When he notices you standing still and staring at him raptly, he stops and turns around, letting you admire his gigantic balls.");
 	output("\n\n<i>“Just give up and you can suck all the spunk you like outta these,”</i> he says, taunting you.");
 	output("\n\nThe cruel jibe brings you back to your sensibilities - mostly, at least.");
 	output("\n\n<i>“Stop doing that,”</i> you moan, raising your weapons again.");
 	output("\n\n<i>“You’re the one doing it,”</i> he says, smirking and turning back around.");
-	applyDamage(new TypeCollection( { drug: 2 } ), enemy, pc, "minimal");
+	
+	applyDamage(new TypeCollection( { drug: damageValue } ), enemy, pc, "minimal");
 	CombatManager.processCombat();
 }
 
@@ -383,7 +403,7 @@ public function okayApologySexItIs():void
 		else pc.loadInAss(tempE);
 	}
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",move,rooms[currentLocation].northExit);
 }
 
 //[No]
@@ -417,7 +437,9 @@ public function submitToForgehound():void
 
 		output("\n\n<i>“I see. You just had to come see what the big deal was, huh?”</i> he says, approaching you. <i>“Then you ran into me. Lucky you. I’ve been looking for a fucktoy to have to myself lately.”</i>");
 
-		output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks{clothed: as you shed your last piece of gear}. Your [pc.nipples] stand out on your chest, erect as they can be");
+		output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks");
+		if(!pc.isNude()) output(" as you shed your last piece of gear");
+		output(". Your [pc.nipples] stand out on your chest, erect as they can be");
 		if(pc.canMilkSquirt()) output(" and leaking milk");
 		output(". <i>“Wear me as a fucking sheath, you sexy fucking beast!”</i>");
 
@@ -488,6 +510,7 @@ public function submitToForgehound():void
 //PC wins
 public function defeatForgy():void
 {
+	flags["FORGEHOUND_WREKT"] = 1;
 	author("Wsan");
 	//Win by lust
 	if(enemy.lust() >= enemy.lustMax()) 
@@ -739,7 +762,7 @@ public function assfuckDatHo(x:int):void
 	showForgehound();
 	author("Wsan");
 	output("<i>“Yeah, well, I know what I’m not gonna resist,”</i> you say, smirking. <i>“See, I’ve got a bit of a kink for fucking big, strong, dominant men until they break down and learn their place. And you seem to fit the bill.”</i>");
-	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. You’ll- you’ll get addicted!”</i>");
+	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. <i>“You’ll- you’ll get addicted!”</i>");
 	output("\n\n<i>“Yeeeah, that’s not how that works,”</i> you say, already");
 	if(!pc.isCrotchExposed()) output(" removing your [pc.crotchCovers] and");
 	output(" lifting his tail. Sweaty and glistening, his asshole reminds you of a delicious donut, protruding just enough to look like you’re being invited. <i>“Oh, looks like someone left the backdoor open.”</i>");
@@ -1060,7 +1083,7 @@ public function loseToForgehound():void
 		output("\n\n<i>“Haha, still so unwilling and resistant,”</i> he chuckles indulgently. <i>“Wonder how long that’ll last before my cum kicks in.”</i>");
 		output("\n\nBefore you can even ask him what he means, he’s thrusting his massive cock between your [pc.lips]. The tip of the canine endowment slips in without resistance, the length of it rapidly spreading your jaw wide as his dick thickens to an absurd degree a few inches down. Your eyes bulge as your neck swells outwards, suddenly full of hulking dogcock. He grunts and sinks himself even deeper, his gigantic balls coming ever closer to your face.");
 	}
-	output("\n\nYou get an eyeful of his big, strong underside working as he slams his muscular hindquarters downwards, facefucking you with no regard for your condition whatsoever. " + (flags["FORGEHOUND_APOLIFUCKED"] != undefined ? "You love it":"Frustratingly, the way his slick precum makes your head spin when it spurts inside you makes it almost feel good, like you want more") + ". He’s all too keen to indulge himself completely, making use of you as if you were nothing but a sex doll. With your mouth stretched in such a wide O shape and given how he’s fucking it, it’s not that far from the truth.");
+	output("\n\nYou get an eyeful of his big, strong underside working as he slams his muscular hindquarters downwards, facefucking you with no regard for your condition whatsoever. " + (flags["FORGEHOUND_APOLIFUCKED"] != undefined ? "You love it":"Frustratingly, the way his slick precum makes your head spin when it spurts inside you makes it almost feel good, like you want more") + ". He’s all too keen to indulge himself completely, making use of you as if you were nothing but a sex doll. With your mouth stretched in such a wide ‘O’ shape and given how he’s fucking it, it’s not that far from the truth.");
 	output("\n\nEverything - <i>everything</i> - changes when he cums, his cock explosively jetting sperm down your throat somewhere below your tonsils. Your head spins as the thick, creamy spunk slops into your stomach" + (flags["FORGEHOUND_APOLIFUCKED"] != undefined ? " and you start to cum your brains out all over again":", the sudden realization that there’s some kind of mind-altering substance in his cum arriving far too late for you to prevent your fate") + ". You orgasm so hard you let out a strained, muffled scream of exertion into the throbbing cock in your mouth, resting between your lips.");
 
 	output("\n\nBy the time he removes his cock from your mouth still spurting addictive seed all over your face and [pc.chest] while you lie prone, you’re mentally shattered, never to recover. Your hollow gaze follows his big, swinging dick as it sways from side to side, and you suddenly find yourself back up on your hands and knees sucking it with a desperation reminiscent of a desert wanderer finding an oasis. You’re already coming to depend on his thick, delicious cum for survival.");

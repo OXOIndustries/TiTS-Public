@@ -4,8 +4,11 @@ import classes.Items.Miscellaneous.Kalocrunch;
 
 public function showTlako(nude:Boolean = false):void
 {
+	/*
 	if(nude) showBust("TLAKO_NUDE");
 	else showBust("TLAKO");
+	*/
+	showBust("TLAKO");
 	showName("\nTLAKO");
 	author("Frogapus");
 }
@@ -19,6 +22,12 @@ public function showXotchi(nude:Boolean = false):void
 //Office of the Camarilla 
 public function officeOfTheCamarillaButtsBonus():Boolean
 {
+	if (flags["XOTCHI_ROOM_MODE"] == 1)
+	{
+		xotchiOfficeSpecialTime();
+		return true;
+	}
+
 	showBust("TLAKO");
 	author("Frogapus");
 	
@@ -136,8 +145,8 @@ public function xotchiTzallMeeting():void
 {
 	clearOutput();
 	showXotchi();
-	output("You ask to meet with Sub-Madam Xotchi Tzall, and Tlako’s face goes blank for a moment. ");
-	//[If player has not yet met Xotchi Tzall:
+	output("You ask to meet with Sub-Madam Xotchi Tzall, and Tlako’s face goes blank for a moment.");
+
 	if(flags["MET_XOTCHI"] == undefined)
 	{
 		output("<i>“Y-yes, of course,”</i> she says, sounding nervous. She reaches into the top of her white bustier and pulls out a small, white disk. Holding it in one hand, her three other hands dance across its surface, scrolling in three different directions at once.");
@@ -149,18 +158,31 @@ public function xotchiTzallMeeting():void
 		output("\n\n<i>“Please know that while the Camarilla maintains the workings of Uveto station, Anyxine Rhenesunne, the Vice President of RhenWorld Stellar Excavations, is the standing station manager.”</i> Her smile is sweeter than aspartame, but there’s an edge to her tone. <i>“As a Sub-Madam, I manage my people aboard this ship, but do not actually captain any of the residents.”</i> If there was an edge to her voice before, it’s a razor now.");
 		output("\n\n<i>“Regardless,”</i> she says with another smile, <i>“I hope your trip here is a profitable one! I encourage you make generous use of the various stores aboard Uveto Station.”</i>");
 		output("\n\nShe bids you farewell, and leaves, shooting a poisonous glance at Tlako on her way out.");
-		output("\n\n<i>“The... the Sub-Madam w-will see you now...”</i> says Tlako weakly.");
+
+		// This doesn't make sense as-is with the expansion content, so I'm just gonna comment this out and dump you back to the interaction menu
+		//output("\n\n<i>“The... the Sub-Madam w-will see you now...”</i> says Tlako weakly.");
+		
 		processTime(5);
 		
 		flags["MET_XOTCHI"] = 1;
+		tlakoMenu(xotchiTzallMeeting);
 	}
 	else
 	{
-		output("Tlako pulls a out her small digital compact and look at it, scrolling through it.");
-		output("\n\n<i>“I’m so sorry,”</i> she says with visible relief. <i>“Sub-Madam Xotchi Tzall is unavailable for the rest of the day. She won’t be able to meet with you.”</i>");
-		processTime(1);
+		output("\n\n<i>“You want to speak to the Sub-madam?”</i> gulps Tlako. <i>“I d-don’t think she’s available, but l-let me see if she’s in ...”</i> The little, pink tove taps her clipboard, and a familiar voice squawks something unintelligible through a speaker.");
+		
+		output("\n\n<i>“Oh no-I mean-oh good, she’s available!”</i> says Tlako, glancing nervously around the room. <i>“She’s on her way. I’ll just go ... retriculate some agendocuments ...”</i> she says. In a flurry of scattered papers, she gathers up her stack of forms and dashes out through one of the floor-level shutters.");
+		
+		output("\n\nBarely a minute or two has passed when another door whooshes open and [xotchiName] stalks into the room. The two-foot-tall tove is dressed in her usual black corset, and holding her folding-tablet fan. Her blood-orange feathers bristle, and she glares at the scattered papers on the floor, snatching one up in a scaled talon.");
+		
+		output("\n\n<i>“And </i>there’s<i> the " + RandomInCollection(["shipping manifest for the freon shipment,", "order form to Innsmouth Hydraulics,", "receipt for the 4,000 defective emitters-naturally, a day after warranty,", "the government requisition for a new assistant,"]) +"”</i> she snarls. She glances around at the other papers littering the room. <i>“I swear by my profit margin I’m going to staple that dryborn to the wall and make her vend her hole for all the money she’s lost me.”</i>");
+		
+		output("\n\nYou clear your throat, and she looks up at you.");
+
+		xotchiApproachMerge();
+
+		return;
 	}
-	tlakoMenu(xotchiTzallMeeting);
 }
 
 //Buy a Welcome Basket
@@ -356,8 +378,9 @@ public function florkDatFuckinMuppet():void
 	output("\n\n<i>“I’m gonna... gonna...”</i> you gasp.");
 	output("\n\n<i>“Oooh! Y-youou’re g-onna c-um, ri-ight?”</i> she pants, her words broken by her bouncing ride. <i>“Cu-um inside me! I wanna see-ee what tha-at feels luh-like! Please cum insi-ide me! Ple-ee-ease!”</i>");
 	output("\n\nHer pleading and her tightness are enough to send you over the edge. You slam her down as far she’ll go and fire ");
-	if(pc.cumQ() >= 1000) output("a torrent of jizz into her. Her fuckhole isn’t meant to store such a massive quantity of [pc.cum], it seems, and most of it spurts out around your cock, spattering against your thighs and across her pink, feathered rump.");
-	else if(pc.cumQ() >= 50) output("jet after jet of [pc.cum] inside her, a dribble of it oozing out around your dick. It looks like her fuckhole wasn’t built for storage.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) output("a torrent of jizz into her. Her fuckhole isn’t meant to store such a massive quantity of [pc.cum], it seems, and most of it spurts out around your cock, spattering against your thighs and across her pink, feathered rump.");
+	else if(cumQ >= 50) output("jet after jet of [pc.cum] inside her, a dribble of it oozing out around your dick. It looks like her fuckhole wasn’t built for storage.");
 	else output("a spurt of [pc.cum] into her fuckhole. It seems that even her graft can handle such a small amount, and you barely feel it surge around your own dick.");
 	output("\n\n<i>“Ohhhhhh...”</i> she says, looking shocked as you unload your seed deep inside her fuckhole.");
 	output("\n\n<i>“That’s... really warm...”</i> she says, still looking surprised. You gasp, your dick still buried inside the Tlako.");

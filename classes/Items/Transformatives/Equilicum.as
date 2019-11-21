@@ -198,8 +198,8 @@ package classes.Items.Transformatives
 			if (target.hasPerk("Bulgy") && ballDiameterModifier > 0) ballDiameterModifier *= 1.5;
 			
 			//if a value is reduced, half the loose when target has bulgy/potent perk
-			if (target.hasPerk("Potent") && maxCumModifierInLiters > 0) maxCumModifierInLiters *= 0.5;
-			if (target.hasPerk("Bulgy") && ballDiameterModifier > 0) ballDiameterModifier *= 0.5;
+			if (target.hasPerk("Potent") && maxCumModifierInLiters < 0) maxCumModifierInLiters *= 0.5;
+			if (target.hasPerk("Bulgy") && ballDiameterModifier < 0) ballDiameterModifier *= 0.5;
 			
 			//calculate new ball size raw from diameter
 			var currentBallDiamter:Number = target.ballDiameter();

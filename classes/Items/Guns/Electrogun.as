@@ -46,6 +46,7 @@
 			baseDamage.electric.damageValue = 13;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

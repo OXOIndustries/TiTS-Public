@@ -156,7 +156,7 @@
 					}
 
 					//Minor Sex stuff:
-					//Penis-dependant
+					//Penis-dependent
 					if(target.hasCock())
 					{
 						//Find smallest dick for expansion
@@ -260,7 +260,7 @@
 							kGAMECLASS.output(target.ballSizeLockedMessage());
 						}
 					}
-					//Minor Vagina-dependant
+					//Minor Vagina-dependent
 					if(target.hasVagina())
 					{
 						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
@@ -563,6 +563,8 @@
 						//TF
 						kGAMECLASS.output("\n\nBetween the dull ache in your head and the tickling in your scalp, you’re pretty sure something is changing up top. You go deaf in an instant, feeling your ears smooth away, and before you have the chance to react, new ones bulge out of your [pc.hair]. <b>You’ve grown round panda ears on top of your head.</b>");
 						target.earType = GLOBAL.TYPE_PANDA;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					//Tails merge into single tail

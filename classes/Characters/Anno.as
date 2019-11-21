@@ -5,6 +5,7 @@
 	import classes.Items.Apparel.AnnosBlouse;
 	import classes.Items.Apparel.AnnosCatsuit;
 	import classes.Items.Apparel.TSTArmor;
+	import classes.Items.Armor.ArmorSteeleSuit;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Guns.LaserCarbine;
 	import classes.Items.Guns.Goovolver;
@@ -30,19 +31,12 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 12;
+			this._latestVersion = 14;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
-			inventory.push(new AusarTreats());
-			inventory.push(new HammerCarbine());
-			inventory.push(new LaserCarbine());
-			inventory.push(new EMPGrenade());
-			inventory.push(new TSTArmor());
-			inventory.push(new Goovolver());
-			inventory.push(new ACock());
-			inventory.push(new AHCock());
-			inventory.push(new ADCock());
+			// set up with annoShopSetup() in tarkus/anno.as
+			inventory = new Array();
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ARMOR;
 			this.typesBought[this.typesBought.length] = GLOBAL.RANGED_WEAPON;
@@ -161,7 +155,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 3;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -279,7 +273,18 @@
 		{
 			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		}
-		
+		public function UpgradeVersion12(dataObject:Object):void
+		{
+			dataObject.balls = 0;
+		}
+		public function UpgradeVersion13(dataObject:Object):void
+		{
+			dataObject.inventory.push(new ArmorSteeleSuit().getSaveObject());
+		}
+		public function UpgradeVersion14(dataObject:Object):void
+		{
+			dataObject.inventory = new Array();
+		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature;
@@ -329,9 +334,9 @@
 			else annoNoAction();
 		}
 		
-		public function grappleStruggle():void
+		public function grappleStruggle(sEnemy:String):Boolean
 		{
-			if (CombatManager.hasEnemyOfClass(GrayPrime))
+			if (sEnemy == "gray prime" && CombatManager.hasEnemyOfClass(GrayPrime))
 			{
 				var chance:int = statusEffectv1("Grappled");
 				
@@ -351,8 +356,10 @@
 				{
 					addStatusValue("Grappled", 1, 1);
 				}
-				output("\n");
+				//output("\n");
+				return true;
 			}
+			return false;
 		}
 		
 		private function sensorLinkBuff(target:Creature, pc:Creature):void

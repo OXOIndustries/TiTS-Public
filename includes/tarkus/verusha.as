@@ -74,6 +74,7 @@ public function verushaAppearance():void
 
 public function verushaBonusFunc(butt:Number):Boolean
 {
+	if (flags["VERUSHA_APPEAR_DISABLE_TILL"] != undefined && flags["VERUSHA_APPEAR_DISABLE_TILL"] > GetGameTimestamp()) return false;
 	//[Hyena] (Scene description before talking to her)
 	if(flags["MET_VERUSHA"] == undefined)
 	{
@@ -117,7 +118,7 @@ public function approachVerusha(back:Boolean = true):void
 		output("Verusha taps a finger impatiently as you change your mind.");
 		verushaMenu();
 	}
-	else if(pc.tallness > 8*12)
+	else if(pc.tallness > 9*12)
 	{
 		output("Verusha manages to catch your attention, so you walk up to her.");
 		output("\n\nWhen you reach her she slightly nods with disinterest.");
@@ -414,7 +415,7 @@ public function sexWithVerusha():void
 	clearOutput();
 	showVerusha();
 	//[Too tall] (PC height more than eight feet)
-	if(pc.tallness > 8*12)
+	if(pc.tallness > 9*12)
 	{
 		output("She takes one look at you before shooting you down. <i>“Sorry, but I prefer my partners to be shorter than you are. I’ve had tall fucks before and it’s a bother.”</i>");
 		output("\n\n<i>“Go eat some Strawberry Shortcakes or something if you want to fuck. Maybe go take notes from the raskvel; best fuck I’ve ever had.”</i>");
@@ -703,7 +704,9 @@ public function verushaHeatSex():void
 	output("\n\n<i>“Yes, yes, YES!”</i> you scream out loud, unable to contain yourself any longer. Every second she’s rubbing her tip against your pussy lips is agony. With every breath you take you can smell her pre; it’s like ambrosia to your fuzzy mind.");
 	output("\n\nWith a cocky grin she sinks her weighty cock inside you with a slow thrust, spreading your pussy around her girth. <i>“Damn, I love bitches in heat.”</i>");
 	pc.cuntChange(x,verushaCockVolume());
-	output("\n\nYou moan deeply in the pure bliss of having her inside you. It feels so good having her tapered length inside your cunt, but it is a mere distraction to what you truly desire: her hot cum filling up your womb.");
+	output("\n\n");
+	showImage("VerushaFuck");
+	output("You moan deeply in the pure bliss of having her inside you. It feels so good having her tapered length inside your cunt, but it is a mere distraction to what you truly desire: her hot cum filling up your womb.");
 	output("\n\nBut working for it makes it all the better. Well, she’s the one really working for it, a point she all too happy to punctuate by burying herself balls-deep again before withdrawing and repeating it all over again.");
 	output("\n\nShe brings one hand to your mouth, pulling it open. She bends down and starts to sloppily make out with you while ");
 	if(pc.biggestTitSize() > 1) output("groping your [pc.breasts]");
@@ -777,7 +780,9 @@ public function verushaOralScene():void
 	output("\n\n<i>“I think you should put those pretty lips of yours to good use. As in wrapping them around my cock.”</i> She sits back, spreading her legs to give you full view and access to her crotch.");
 	output("\n\nThe narrow tip of her canine dick is slightly poking from her sheath, beckoning you towards it. Seems that she lost her erection in the time that it took her to decide what to do. You crawl towards her on your hands and knees, plopping your ass between her legs.");
 	output("\n\nYou give her tip a kiss before licking the sensitive flesh inside her sheath, earning a shudder from Verusha and inches of dick flesh pouring into your mouth for your effort. You rub her sheath, encouraging more of her member out from her sheath, working over her balls with your other hand.");
-	output("\n\nWhen she’s fully out of her sheath and throbbing impatiently, she pushes some breathing room between you and her dick.");
+	output("\n\n");
+	showImage("VerushaBJ");
+	output("When she’s fully out of her sheath and throbbing impatiently, she pushes some breathing room between you and her dick.");
 	output("\n\n<i>“Just saying to wrap your lips around my cock is just enough, is it? Yeah, you seem like the kind of [pc.boyGirl] that sucks cock for fun.”</i> She slaps you in the face a couple of times with her erect length.");
 	output("\n\nYou catch her tapered head into your mouth on a down swing, quickly enveloping multiple inches of her dick with your [pc.lips].");
 	output("\n\nBefore you can swallow more of her prick she yanks it away, out of your reach.");
@@ -1000,13 +1005,14 @@ public function verushaRutScene():void
 	if(pc.cocks[x].cLength() > 6) output(", stretching her just a little bit more");
 	output(".");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\n");
 	//pc normal amount of cum: 
-	if(pc.cumQ() < 250) output("You give it your all, pumping all of your [pc.cum] that your [pc.balls] can give into the depths of her pussy.");
-	else if(pc.cumQ() < 3000) output("\n\nYou grasp her hips tighter, managing in just a bit more of your dick into her pussy before you begin unloading your [pc.cum] into her pussy, her belly swelling a bit from the productivity of your [pc.balls].");
+	if(cumQ < 250) output("You give it your all, pumping all of your [pc.cum] that your [pc.balls] can give into the depths of her pussy.");
+	else if(cumQ < 3000) output("You grasp her hips tighter, managing in just a bit more of your dick into her pussy before you begin unloading your [pc.cum] into her pussy, her belly swelling a bit from the productivity of your [pc.balls].");
 	else output("You moan through your teeth, and your mind goes blank as your fall over the edge. [pc.cumVisc] pumps into her pussy, and she moans as her belly swells. It stops once she actually looks three months pregnant.");
 	output("\n\nYou pull out from her pussy, earning a displeased grunt from Verusha and ");
-	if(pc.cumQ() < 3000) output("some of your [pc.cum] leaking onto your bed");
+	if(cumQ < 3000) output("some of your [pc.cum] leaking onto your bed");
 	else output("a flood of your [pc.cum] from her pussy");
 	output(".");
 
@@ -1151,11 +1157,12 @@ public function verushaSPH():void
 	output("\n\nAs if her sucking your dick, jerking it and rubbing her own erection against it wasn’t enough, she starts to pull and twist your [pc.nipples]. She keeps tormenting your sensitive buds, a streak of pain running through the pleasure. She lets go of your other nipple and instead brings it to her mouth, circling it with her tongue and nibbling on it.");
 	output("\n\nSuddenly, she lifts your legs above her shoulders, making your [pc.ass] a prime target for her. She gathers some of her pre from her tapered tip, slathering her fingers with it. It doesn’t take a genius to know what’s she’s planning to do, you think to yourself, before she pierces your ass with her fingers. She grabs onto your [pc.cock] and jerks it rather roughly. Shortly after this, she plugs your [pc.asshole] with her fingers, pressing them deep inside you, searching for your prostate. Once she locates it, she presses down on it mercilessly, squeezing out a drop of pre from your [pc.cockHead].");
 	output("\n\nYou can’t withstand the assault on both your [pc.cockNounSimple] and your prostate. With a final hard press on your prostate, you cum with a whimpering moan, your [pc.cum] shooting forth from your [pc.cockHead], landing on your [pc.chest]. ");
-	if(pc.cumQ() < 100) output("You give yourself a nice, [pc.cumColor] coating before your output starts to die down.");
-	else if(pc.cumQ() < 2000) output("You manage to coat most of yourself in [pc.cumVisc] cum, and then some.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 100) output("You give yourself a nice, [pc.cumColor] coating before your output starts to die down.");
+	else if(cumQ < 2000) output("You manage to coat most of yourself in [pc.cumVisc] cum, and then some.");
 	else output("Once the tide breaks, there is no stopping it; your [pc.cum] just keeps coming, coating you from waist up in your own jizz. There is so much that it overflows onto your bed, creating a pool of your own cum to lie in.");
 	output(" She directs the last rope of your cum straight into your own mouth, and before you can even think she presses her hand over your mouth, non-subtly urging you to swallow. Once you do, she removes her hand from your maw.");
-	if(pc.cumQ() < 100) output(" <i>“Tch, I was kind of hoping for more.”</i>");
+	if(cumQ < 100) output(" <i>“Tch, I was kind of hoping for more.”</i>");
 	else output(" <i>“What a mess you made! I have to hand it to you, pretty impressive show for someone with a puny member like yours.”</i>");
 
 	if(pc.biggestTitSize() >= 5) output("\n\nShe grabs onto your [pc.breasts], mauling your tits. <i>“Now, I could find a use for these.”</i> Licking her lips, she spreads your [pc.breasts] and places her manhood between them. She presses your tits together, sandwiching her cock between your boobs. She begins to thrust into your breasts, jerking off with your tits. Your cleavage turns wet and slippery as she keeps thrusting her spit- and pre-covered cock into your lush chest. You start licking her tip everytime it gets close enough, occasionally kissing it. You occupy your hand on her balls and knot, massaging two of the orbs below her cock and the one on it.");
@@ -1164,7 +1171,7 @@ public function verushaSPH():void
 	output("\n\nDespite what she said, she seemingly did like seeing you cum, since she isn’t that far off from orgasm. Her knot pulses in your hand and pre-cum leaks faster than before. Swallowing her tip deeper into your greedy mouth is all it takes to set her off. You feel each surge of her cum surging through her dick on your lower lip.");
 
 	output("\n\nAfter swallowing a couple mouth fulls of her cum, she pulls out, covering your already messy face in more cum. When she’s done painting you in cum your face is behind a mask of white");
-	if(pc.cumQ() > 1000) output(", not that it wasn’t already, but now just more so");
+	if(cumQ > 1000) output(", not that it wasn’t already, but now just more so");
 	output(". When you wipe the cum from your eyes you’re faced with a broad, wet tongue. You barely manage to close your eyes before she licks some cum off your face.");
 
 	output("\n\nShe keeps lapping up the mixture of cum, and once your face is clean she urges you to open your mouth. When you do, she invades your mouth with her tongue, snowballing the mixture of her cum and yours into your mouth. You end up swallowing a lot more cum by the end since she’s intent on leaving you spotless. Once she’s done, you aren’t clean, per say, as you’re covered in her spit.");

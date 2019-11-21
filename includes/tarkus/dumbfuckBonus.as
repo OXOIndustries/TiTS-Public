@@ -181,7 +181,7 @@ public function procDumbfuckStuff():void
 	//The fifth one
 	else if(flags["DUMBFUCK_SNEEZES"] <= 5)
 	{
-		output("\n\nA pink haze settles down in place of whatever you were thinking. You chase it away with a shake of your head as you clean yourself and wonder just how bad off you are. You’ve let yourself cum five times, and it’s definitely starting to effect you. You feel warm all over, your get horny at the drop of a hat, and focusing on complicated problems is getting increasingly difficult.");
+		output("\n\nA pink haze settles down in place of whatever you were thinking. You chase it away with a shake of your head as you clean yourself and wonder just how bad off you are. You’ve let yourself cum five times, and it’s definitely starting to effect you. You feel warm all over, you get horny at the drop of a hat, and focusing on complicated problems is getting increasingly difficult.");
 	}
 	//Sixth!
 	else if(flags["DUMBFUCK_SNEEZES"] <= 6)
@@ -300,7 +300,7 @@ public function procDumbfuckStuff():void
 	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Mind"))
 	{
 		output("\n\nBut why stop yourself? You could just let go and do what feels good, and it all feels good. Particularly touching. You love touching, being touched, whatever. You’d let someone do all kinds of stuff to you if they touched you!");
-		output("\n\n(<b>Gained Perk: Weak Mind</b> - You lose willpower twice as fast.)");
+		output("\n\n(<b>Perk Gained: Weak Mind</b> - You lose willpower twice as fast.)");
 		//Reduce willpower by 6 immediately. (only need to mod by 3 if perk active)
 		pc.willpower(-6);
 		pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
@@ -311,14 +311,14 @@ public function procDumbfuckStuff():void
 		if(pc.mf("dude","chick") == "chick")
 		{
 			output("\n\nBest of all, you’re like, sprinkling cool words like ‘like’ and ‘totally’ into your sentences all the time, and you trail off in the cutest way when you try to think hard about something hard, like cocks!");
-			output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+			output("\n\n(<b>Perk Gained: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 		//Gain Brute Speech
 		else
 		{
 			output("\n\nBest of all, you’re getting pretty comfortable communicating with things like grunts or really short sentences. Words suck anyway. Better to put your energies into fucking as well as you can.");
-			output("\n\n(<b>Gained Perk: Brute Speech</b> - You will now speak like a fuck-hungry brute in scenes that support it.");
+			output("\n\n(<b>Perk Gained: Brute Speech</b> - You will now speak like a fuck-hungry brute in scenes that support it.");
 			pc.createPerk("Brute Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 	}

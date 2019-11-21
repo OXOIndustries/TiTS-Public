@@ -77,6 +77,8 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		author("Adjatha");
 		
 		output("A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.\n\nAlthough... there’s a pink flashing selection marked “CoC” that always seems to be there. You could give that a go.");
+
+		if(isHalloweenish()) output("\n\nA glowing, orange box pops up, interrupting your experience before it even starts. It reads <i>“Click here if you dare!”</i> and has a small, photo-negative picture of a screaming face next to it. Is this some kind of advertising? A virus? Or maybe somebody’s just been screwing with the machine?");
 		
 		processTime(1);
 		clearMenu();
@@ -87,6 +89,7 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		addButton(2,"Female",startMindwashSceneLucas, "female");
 		addButton(3,"Futa",startMindwashSceneLucas, "futa");
 		addButton(4,"Game: CoC",startMindwashSceneLucas,"CoC");
+		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -224,17 +227,25 @@ public function installTheMindwashVisor():void
 }
 
 // [Mindwash]
-public function mindwashMeShipVers():void
+public function installedMindwashBonus(btnSlot:int = 0):void
+{
+	output("\n\nThe Mindwash Visor you purchased from Doctor Badger is placed close by, currently on idle mode.");
+	
+	addButton(btnSlot, "Mindwash", mindwashMeShipVers, false, "Mindwash Visor", "Doctor Badger’s hypnosis-inducing holovisor that has been dialed down to be used safely.");
+}
+public function mindwashMeShipVers(fromMasturbate:Boolean = true):void
 {
 	clearOutput();
 	showName("\nMINDWASH!");
 	author("Adjatha");
-	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
+	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, it induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
 	
 	processTime(3);
 	clearMenu();
 	
 	output("\n\nWill you plug in");
+	
+	var backFunc:Function = (fromMasturbate ? masturbateMenu : shipStorageMenuRoot);
 	
 	//Add Yammi and Pexiga scenes if there is demand for it
 	//Maybe get other folks to write a scene or two for Anno & Reaha trying out the Visor?
@@ -258,7 +269,7 @@ public function mindwashMeShipVers():void
 		{
 			if((btnSlot + 1) % 15 == 0)
 			{
-				addButton(btnSlot,"Back",masturbateMenu);
+				addButton(btnSlot, "Back", backFunc);
 				btnSlot++;
 			}
 			switch(eligibleCrew[i])
@@ -274,14 +285,14 @@ public function mindwashMeShipVers():void
 		if(btnSlot > 14)
 		{
 			while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
-			addButton(btnSlot, "Back", masturbateMenu);
+			addButton(btnSlot, "Back", backFunc);
 		}
 	}
-	else addButton(0,"Use",useShipMindwashMeee);
+	else addButton(0, "Use", useShipMindwashMeee);
 	
 	output("?");
 	
-	addButton(14,"Back",masturbateMenu);
+	addButton(14, "Back", backFunc);
 }
 
 // [Me]
@@ -324,7 +335,7 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		author("Adjatha");
 		
 		output("A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.\n\nAlthough... there’s a pink flashing selection marked “CoC” that always seems to be there. You could give that a go.");
-		
+		if(isHalloweenish()) output("\n\nA glowing, orange box pops up, interrupting your experience before it even starts. It reads <i>“Click here if you dare!”</i> and has a small, photo-negative picture of a screaming face next to it. Is this some kind of advertising? A virus? Or maybe somebody’s just been screwing with the machine?");
 		processTime(1);
 		clearMenu();
 		// [Random] [Male] [Female] [Futa]
@@ -334,6 +345,7 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		addButton(2,"Female",mindwashVisorScenes, "female");
 		addButton(3,"Futa",mindwashVisorScenes, "futa");
 		addButton(4,"Game: CoC",mindwashVisorScenes,"CoC");
+		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it’s worth checking out? From what you can see, you’ll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn’t give you some kind of brain virus.");
 		return;
 	}
 	
@@ -726,7 +738,7 @@ public function invasionOfTheDickSuckersIV():void
 	author("Adjatha");
 	output("<i>“Are- are you feeling okay, Blu? Feeling yourself?”</i>");
 	output("\n\n<i>“Of course,”</i> she replies, her eyelids drooping as she fingers the exterior of her gently inflating, polished obsidian lips. <i>“Don’t make me beg,”</i> she sighs as she steps toward you and gently forces you to the ground. The O-ring of her puckered mouth seems to pulse as she moves closer and closer.");
-	output("\n\nYour shaft springs upright as she unzips you, the bright metal tab held between her teeth. Wrapping her palms across your hips, Blu leans down to press her lips against the crest of your member, sucking it into her mouth in one fluid motion. Your fingers twitch as she swallows inch upon inch as easily as breathing, your swollen mast slipping between those black, pillowy cushions. Your cock tingles all along its length at the sucking pressure of her mouth. A wild urge to grab her head and pull it down into your lap seizes you, but all force has left your arms. Shuddering, you gasp and moan while Blu finishes her descent with a vibrating purr, pressing her thick, ebony O against the very root of your manhood.");
+	output("\n\nYour shaft springs upright as she unzips you, the bright metal tab held between her teeth. Wrapping her palms across your hips, Blu leans down to press her lips against the crest of your member, sucking it into her mouth in one fluid motion. Your fingers twitch as she swallows inch upon inch as easily as breathing, your swollen mast slipping between those black, pillowy cushions. Your cock tingles all along its length at the sucking pressure of her mouth. A wild urge to grab her head and pull it down into your lap seizes you, but all force has left your arms. Shuddering, you gasp and moan while Blu finishes her descent with a vibrating purr, pressing her thick, ebony ‘O’ against the very root of your manhood.");
 	output("\n\nShe doesn’t look up or even seem troubled by the thickness throbbing inside of her throat. Instead, she pulls back, twisting her head slightly to one side, then the other, savoring every square inch of your texture. Her tongue coils and teases, flicking and stroking while her lips pulse upon you. Bobbing up and down now, she begins her feast in earnest, suckling with increasing urgency while her fingers tighten their curled grip on your waist.");
 	output("\n\n<i>“A-ah!”</i> you moan as the first tickling warmth of your orgasm blossoms within you. As if she can feel the nearness of her prize, Blu closes her eyes in complete concentration. The long, gurgling strokes give way to rapid, shallow gulps as she slams herself up and down the bottom inches of your length so fast her lips slap against your skin like a round of lively applause.");
 	output("\n\nThe liquid weight of your climax surges within you, unable to withstand the heated embrace of your girl’s moist, wanton maw. You struggle to move through your strange paralysis, but Blu thrusts her own head down onto your lap as if trying to get even just a fraction of an inch closer to your nearing bliss. Her throat and tongue stroke eagerly and, never one to disappoint, the groaning release follows a moment later.");
@@ -1352,7 +1364,7 @@ public function mindwashCelise():void
 		if(flags["GIGACELISE"] == 1) output("The mass of her writhing tentacles slips back into her body, sucked up to allow her breasts to swell once more to the porn-star levels she is no doubt experiencing. ");
 		output("Your emerald friend’s long, slimy tresses sink into her back and shoulders, leaving a short, sensible bun perched atop her head. Her body changes bit by bit, until she’s nearly unrecognizable from the girl she was at the start of all of this.");
 
-		output("\n\nThe reshaped goo twitches, her mouth curled in an O of pleasure and you notice dimples form on the outside of one of her breasts. They run across the globular surface, sliding in shrinking circles until they reach her big, puffy jade nipple. As her fat areola squeezes outward, you realize what those dimples must’ve been: fingers. Her body is acting out what her mind is experiencing.");
+		output("\n\nThe reshaped goo twitches, her mouth curled in an ‘O’ of pleasure and you notice dimples form on the outside of one of her breasts. They run across the globular surface, sliding in shrinking circles until they reach her big, puffy jade nipple. As her fat areola squeezes outward, you realize what those dimples must’ve been: fingers. Her body is acting out what her mind is experiencing.");
 
 		processTime(4);
 		clearMenu();
@@ -1435,7 +1447,7 @@ public function mindwashCeliseFirstimeII():void
 	showCelise();
 	author("Adjatha");
 	output("The rounded peak of her nipple is pressed inward by an invisible force, squishing her bloated teat inward, further and further. As if opening with a heated sigh, the tip of her peak dilates, widening enough to allow what could only be a phallus into her massive, jiggling breast. You round the goo and stare down the two-inch tunnel being pressed into her and even reach a finger out to wiggle the digit in the deepening hole. If you didn’t know better, you’d think Celise were getting nipple-fucked by an invisible cock. Not a big deal for a galotian, but one has to wonder who the porn star was for whatever she’s watching.");
-	output("\n\nThe other breast experiences a similar procedure: unseen hands roughly grabbing the weighty mass before a fat phallus pushes past her impossibly pliant peak. More hands form around her knees and pull her plump thighs apart. A pair of indentations on her abdomen seem to suggest a double-dicked participant has entered the orgy and in short order he goes to work as well. Both her pussy and her asshole widen with intangible girth, all four shafts in her pushing deeper and deeper. Once every tunnel infiltrating the girl’s body seems to have reached its limit, she turns her head over one shoulder and the the ‘o’ of her moaning delight is pulled to the very limits of her cheeks, the largest cock of all jamming itself past her tongue and down her widening throat.");
+	output("\n\nThe other breast experiences a similar procedure: unseen hands roughly grabbing the weighty mass before a fat phallus pushes past her impossibly pliant peak. More hands form around her knees and pull her plump thighs apart. A pair of indentations on her abdomen seem to suggest a double-dicked participant has entered the orgy and in short order he goes to work as well. Both her pussy and her asshole widen with intangible girth, all four shafts in her pushing deeper and deeper. Once every tunnel infiltrating the girl’s body seems to have reached its limit, she turns her head over one shoulder and the ‘o’ of her moaning delight is pulled to the very limits of her cheeks, the largest cock of all jamming itself past her tongue and down her widening throat.");
 	output("\n\nShe jiggles with the weight of her unseen partners’ lust, her molded form possessed by thirty minutes of frenzied thrusts. She seems perpetually on the threshold of a full-body orgasm as her frame is plied to exhaustion by by unquenchable lusts. Cylindrical tunnels visibly bisect her body again and again, thrust after thrust. There is a sense of tension, every point of penetration widening more and more until, at last, the invisible masses are pushed to their limits and fat bulbs pop into place. Celise - or more accurately, whoever she is watching - has just been quintuple knotted. The experience is too much for her, and the girl starts helplessly squirting in the intensity of her climax. Because her simulated partners have nothing real filling her tunnels, the galotian’s gooey juices start spraying out of her pussy, drenching her inner thighs and dripping into a pool on the chair seat.");
 	output("\n\nThe outlines of knotted phalluses pump with the disjointed, shallow strokes you’d expect of four people reaming a single girl, all while the galotian squirms and creams herself with gushing, sloppy gurgles. The shaft in her throat bloats and you can practically see the path of its invisible spunk as the peak sprouts a thin offshoot which rolls down her chest and pools in her middle in an expanding, empty stomach. One after another, the knotted tunnels reach their own climax in the girl, pouring the bloating contents of their bliss into her overfilled form.");
 	output("\n\nThe imaginary dog dicks try to pull out, but the knots are too large and her body too tight, so they content themselves with a slow, lazy series of half-hearted thrusts, enjoying the spunk-filled cock holsters.");
@@ -1583,7 +1595,7 @@ public function kitsuneSex():void
 	output("\n\nGrinning up at you, she dips underneath your shaft, lifting it up with her nose, flattening out her tongue around the underside of your base and running it slowly upward. Having her wrists restrained doesn’t seem to be hampering her ability to pleasure you much at all - it even seems to be turning her on. She pushes your writhing tentacle-pecker up against your stomach using her nose, kissing along the underside longingly and making wet smacking sounds.");
 	output("\n\n<i>“Mmn... it’th tho delithiouth... can’th waith thil ‘oo fee’ me lotth of tasthty cu’n,”</i> she slurs around your hardening member, always staring up at you demurely with those big green eyes.");
 	output("\n\nInch by inch she trails her tongue up the shaft, lavishing your cock with affection as she loudly and shamelessly licks and laps her way up and down. With one final exaggerated slurp, she runs her wet tongue from base to wide plant-like crown, narrowing her eyes mischievously. Warm wetness encases the end of your member, a gentle breeze cascading over it as she exhales slowly from her nose. The contrast of her cool, minty breath and the warmth of her mouth sends sparks of flaming pleasure zig-zagging down your shaft, making you shiver.");
-	output("\n\nYou have to admit, the gluttonous slut certainly has skills! You have to suppress a moan when she parts her plump lips into a large O and engulfs your member, her cheek bulging out as she tilts her head to one side, trapping you there. Righting herself, she begins to bob her head, pushing you to the back of her throat repeatedly. The pillowy caress of her plush pink lips sliding around your member ripples through your loins, making you groan deeply in pleasure. Before you can get too ahead of yourself, though, she pulls back, lips squeezing tightly every inch of the way until your throbbing cock breaks free of her lips with a resounding ‘plop’! She skillfully catches the tip on her lower lip, her tongue snaking out to gently cup the underside.");
+	output("\n\nYou have to admit, the gluttonous slut certainly has skills! You have to suppress a moan when she parts her plump lips into a large ‘O’ and engulfs your member, her cheek bulging out as she tilts her head to one side, trapping you there. Righting herself, she begins to bob her head, pushing you to the back of her throat repeatedly. The pillowy caress of her plush pink lips sliding around your member ripples through your loins, making you groan deeply in pleasure. Before you can get too ahead of yourself, though, she pulls back, lips squeezing tightly every inch of the way until your throbbing cock breaks free of her lips with a resounding ‘plop’! She skillfully catches the tip on her lower lip, her tongue snaking out to gently cup the underside.");
 	output("\n\n<i>“Mmn... I’n tho lucky...”</i> she croons, the corners of her mouth curling up as she kisses it gently, blowing cool azure flames across the tip. <i>“Doeth it theel good?”</i>");
 	output("\n\nYour shaft is swallowed up once more, forced to the back of her throat as she gulps down inch after inch of your throbbing meat. She pulls back, sucking as though her life depended on it, then dips down again, slurping up your salty precum desperately. The mushroom-like tip of your cock hits the back of her throat again and again, each bob of her head inching her lips closer and closer to your base. She hungrily swallows along your length, moaning into your engorged prick as she finally presses her lips to your base and rolls her eyes back in pleasure, her neck bulging slightly from the presence of your shaft.");
 	output("\n\nHer throat muscles ripple and pulse around you, making loud slurping and gulping noises that only fuel your lust. She pulls back, her lips pursed around just the very tip as she stares up at you needfully for a moment before closing her eyes and downing your entire length once more. With her face impaled on your member, you can feel her tongue slithering out of her mouth, looking down to see the obscenely long appendage coiling around your member and squeezing gently. Your cock bulges out around it, swelling up incredibly, and the kitsune looks up at you, playing innocent.");
@@ -2365,9 +2377,9 @@ public function roxanneDrinkingScene():void
 		output(" Roxanne cries out ecstatically and shoots large globules of fluid into your rectum. Muffled, wet squishes and audible liquid churning can be heard from your guts, but you’re pretty certain it’s still only pre-cum.");
 		output("\n\nYou’re openly moaning and gasping, your face pressed into the mattress by the hard-fucking lizan. She pounds you faster and faster, breathily exulting in the pleasure each time she bottoms out against your gigantic backside. You can’t help but clench and squeeze either - your body is being battered relentlessly. Your sphincter convulses around the thick cock, and when you can’t take any more, you cum, babbling drunkenly and submissively.");
 		output("\n\nRoxanne moans, <i>“Here... it... coooomes!”</i> and thrusts herself into you hilt-deep and hard enough for her balls to leave a mark on your cushiony butt. Eruptions of gooey spunk go off inside you, slowly enlarging the visible bulge in your belly from tip to base, culminating in a spray of spooge from around the edges of Roxanne’s still-squirting cock. Jizz drips down your mounds of goo, pooling on the ground. At the same time, your bloated belly is starting to look fairly pregnant. It slowly balloons out, leaving your poor tummy totally, utterly filled. You get so used to the sensation that when Roxanne finally slows, you’re roused from your post-orgasmic haze");
-		if(hasCock) output(" , dimly aware of the mess you’ve made of Roxanne’s bedsheets");
+		if(hasCock) output(", dimly aware of the mess you’ve made of Roxanne’s bedsheets");
 		output(". Roxanne pulls out unceremoniously, releasing a torrent of white from your abused back-door.");
-		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess , falling asleep in your own spooge.");
+		output("\n\nYour strength is gone, either from booze, or the incredible reaming and creaming you just took. In any case, you slump over into the mess, falling asleep in your own spooge.");
 		processTime(30);
 		var cumNum2:Number = pc.cumQ();
 		pc.orgasm();
@@ -2962,13 +2974,13 @@ public function useMindwashOnShekka():void
 		if(pc.IQ() <= 65 && pc.characterClass != GLOBAL.CLASS_ENGINEER) 
 		{
 			output("\n\nYou stutter. Uh, yes! You tell her that it’s exactly what she’s thinking, and that that would have been your first guess, as well. Great minds think alike!");
-			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone</i> else’s <i>dream, and you’re living it out.”</i>");
+			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone </i>else’s<i> dream, and you’re living it out.”</i>");
 			output("\n\nYou collect yourself and answer more appropriately.");
 		}
 		else 
 		{
 			output("\n\nYou reply that that’s exactly correct: this device, you’re told, can rewrite memories, and place new ones in the wearer’s mind.");
-			output("\n\n<i>“Well, not</i> exactly,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone</i> else’s <i>dream.");
+			output("\n\n<i>“Well, not </i>exactly<i>,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone </i>else’s<i> dream.”</i>");
 			output("\n\nYou hum to yourself as you consider your answer and her own.");
 		}
 		output(" Yes, as a matter of fact, that’s what this device does. You wanted to call Shekka here because you thought she would appreciate a piece of modern engineering like this one.");
@@ -3107,7 +3119,7 @@ public function shekkaMindwashFirstTime3(touch:Boolean):void
 	}
 	else 
 	{
-		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complimented by another thick gout of her cum decorating the floor some distance from her chair.");
+		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complemented by another thick gout of her cum decorating the floor some distance from her chair.");
 		if(touch) output(" You stroke her through it all: your hand rubs along her thick, steely length again and again, coaxing more of her cum from her body.");
 		output(" Her meat is beet-red and her every vein pulses with blood");
 	}
@@ -3264,7 +3276,7 @@ public function shekkaRepeatMindwashVarI(touch:Boolean):void
 	}
 	else
 	{
-		output("\n\nYou have to admit, it’s kind of hot to see Shekka take on such a different, domineering role. You love Shekka, of course, but hearing her take such an authorizing tone and feeling her be so insistent in pressing you against her genitals is a different trip all together. You can help but submerse yourself in the role of her rookie and eagerly ");
+		output("\n\nYou have to admit, it’s kind of hot to see Shekka take on such a different, domineering role. You love Shekka, of course, but hearing her take such an authorizing tone and feeling her be so insistent in pressing you against her genitals is a different trip all together. You can’t help but submerse yourself in the role of her rookie and eagerly ");
 		if(!shekka.hasCock()) output("service her dripping gash, driving your [pc.tongue] into her body to lap at all the delicious juices she’s dripping in her arousal");
 		else output("extend your [pc.tongue] to draw long, wanton licks at her heavy, heaving testicles; you bury your nose into her wrinkly sack as you worship her nuts, feeling their heat against your mouth and her cock rise to full erect stiffness above you");
 		output(".");
@@ -3273,9 +3285,9 @@ public function shekkaRepeatMindwashVarI(touch:Boolean):void
 	if(!shekka.hasCock()) output("eat me out");
 	else output("kiss my dick");
 	output("?”</i> she asks. Her breasts heave in excitement as ");
-	if(!touch) output("her rookie");
-	else output("you");
-	output(" goes to work on her, her wide grin remaining the whole time as she revels in the power-play between her and ");
+	if(!touch) output("her rookie goes");
+	else output("you go");
+	output(" to work on her, her wide grin remaining the whole time as she revels in the power-play between her and ");
 	if(!touch) output("whoever’s going down on her");
 	else output("you, playing as the role of her subordinate");
 	output(". <i>“Would you rather scrub the halls with a toothbrush, or would you rather be on your knees, between my legs, ");

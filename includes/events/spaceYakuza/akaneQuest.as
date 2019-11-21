@@ -166,7 +166,7 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nA different hand on your right pulls you forward gently, bringing you under another hot overhead light.");
 	output("\n\n<i>“I trust that this is a suitable product, Madam Petra,”</i> comes that familiar voice of his, the charm now much thicker than what you’ve had from him before. You wince internally as you hear ‘product’.");
 	output("\n\nHeavy boot prints approach you along with a cracking knuckle.");
-	output("\n\n<i>“Seems aight, so far. What even are ya, hm? [pc.race]? And how much cash didja dump to look like that? Don’t matter, really. Defaulted on ya debts, get caught, ended up where you belong. Circle o’ life,”</i> comes the snarling voice, rugged yet still clearly feminine.");
+	output("\n\n<i>“Seems aight, so far. What even are ya, hm? [pc.Race]? And how much cash didja dump to look like that? Don’t matter, really. Defaulted on ya debts, get caught, ended up where you belong. Circle o’ life,”</i> comes the snarling voice, rugged yet still clearly feminine.");
 	output("\n\nAn incredibly strong hand grips you by the throat!");
 	output("\n\n<i>“And I bet [pc.heShe] is really regrettin’ it all. Age?”</i> continues the increasingly excited Petra.");
 	output("\n\n<i>“20ish, a young one. We believe [pc.heShe] has no immediate family or friendly connections. Another number, although please ah...”</i> explains Shan. You can feel him standing in between the two of you and the hand roughly held around your throat withdraws. <i>“No touching until final purchase, yes? We would not want to sell you ‘damaged goods’.”</i>");
@@ -179,7 +179,7 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nPetra is a mountain of a woman. Six and a half feet by your guess, wide and maybe just a little too muscular for her bodysuit. Heavy plates cover the vital areas including a rather telling pelvic plate that juts out between her legs. She be <i>packing</i>.");
 	output("\n\nIn terms of weapons, you can see a large looking hilt hanging loosely off her hip and a complex looking gauntlet on her left arm. Wonder what they could be...");
 	output("\n\nCheo is... suited up? Oh and without his mask...");
-	output("\n\nCompletely unrecognisable save for his tri-colored tail, a somewhat boyish faced Cheo stands next to you with folded arms. You notice his 5’’ hair is a somewhat bushy bundle of brown, white and black. Black markings adorn his eyelids like some kind of warpaint, maybe a tattoo...? Snapping back to reality a second, you can’t spot any weapons on him. How does he plan to handle this if it goes");
+	output("\n\nCompletely unrecognisable save for his tri-colored tail, a somewhat boyish faced Cheo stands next to you with folded arms. You notice his 5\" hair is a somewhat bushy bundle of brown, white and black. Black markings adorn his eyelids like some kind of warpaint, maybe a tattoo...? Snapping back to reality a second, you can’t spot any weapons on him. How does he plan to handle this if it goes");
 	if (silly) output(" Trials in Tainted Space up?");
 	else output(" tits up?");
 	output("\n\n<i>“What do I do now?”</i> you whisper to him.");
@@ -230,7 +230,7 @@ public function akanequestImARebelMofo():void
 	output("\n\n<i>“Whassat? Thought this one was better trained, Shan,”</i> mocks Petra. <i>“If I’m gettin’ [pc.himHer], then I’m showin’ the way forward. Salvation if ya will. McGuinnugh, lovetap.”</i>");
 	output("\n\n<i>“Madam, if I-”</i>");
 	output("\n\n<i>“Nah, nah, you’ll get ya money Shan but I’m allowed my trial period. Forget property damage, I’ll just tip ya for insurance. McGuinnugh, gut ‘em,”</i> commands the kaithrit. Heavy steps come from your left like the pounding drums of war. What did you just star-<i><b>HRRRK</b></i>");
-	applyDamage(new TypeCollection({unresistablehp: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), undefined, pc, "minimal");
+	applyDamage(new TypeCollection({unresistablehp: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), null, pc, "minimal");
 	pc.createStatusEffect("Internal Bleeding", 15, 0, 0, 0, false, "Icon_Water_Drop", "This is going to need treatment...\n-15HP every turn.", true, 0, UIStyleSettings.gStatusBadColour);
 	output("\n\nThe body of a very heavy shotgun slams into your guts, first crushing the wind from your body and then forcing your body to buckle over. The pain is unreal: just short of broken bones but there’s gonna be internal bleeding. This thought merely distracts you however.");
 	output("\n\n<i>“No you DON’T,”</i> comes an aggressive, rough voice from somewhere.");
@@ -240,7 +240,8 @@ public function akanequestImARebelMofo():void
 	output("\n\nYou can only murmur a few words, too winded to string a thought out. You’ve still got your limbs: with a desperate shake, you try to free your hands.");
 	output("\n\n<i>“Hang on, hang on. I guess if you’re still moving, you’re still shooting, as much as it pains me,”</i> growls Akane as she undoes your bonds. You’re barely on your feet when Cheo shoves your [pc.weapon] into your hands.");
 	output("\n\n<i>“Here, just try to take her down! We’ll thin the numbers,”</i> he growls. You nod and ready yourself to face the smoke-covered tower that is Petra.");
-	processTime(0);
+	
+	processTime(3);
 	
 	akanequestConfigureFight(true);
 }
@@ -450,7 +451,7 @@ public function akanequestLossIntro():void
 	else output("You crumple against a wall as your own body works against you, far too plagued by its own arousal to even hold your [pc.weapon]. It gets knocked away from you, the sounds of Shukuchi agents getting picked off becoming a frightening awakening to your situation...");
 	output("\n\nYou scramble for your strewn about gear, hoping for some spark of will or divine surge of something to get them to suddenly win. Akane is nowhere to be seen, neither is Cheo. That’s not your problem though...");
 	output("\n\nBound in rope, prone and weaponless, you can only back against the wall as the towering kaithrit slaver rushes towards you. With her whip powered down and her hand free, she grabs you by the jaw with a vice-grip and hauls you up against the wall. It’s all done with surprising ease and you try desperately to knock her arm away... only for your fists to meet armor plating and ache from the struggle.");
-	output("\n\n<i>“Eyy, don’t fret love. You’re gonna bloody love the next five weeks of ya life while we cut ya up, put ya back together again an’ set you on the straight’n’narrow, eh? Wouldn’t it be " + (silly ? "<b>laaaaaaaaaaavely</b>" : "lovely") + ",”</i> she growls in her brutish voice before chucking you into the awaiting arms of two suited slavers. A paralysing panic sets in as you realise that this is... it might just be...");
+	output("\n\n<i>“Eyy, don’t fret love. You’re gonna bloody love the next five weeks of ya life while we cut ya up, put ya back together again an’ set you on the straight’n’narrow, eh? Wouldn’t it be " + (silly ? "<b>laaaaaaaaaaavely</b>" : "lovely") + ",”</i> she growls in her brutish voice before chucking you into the awaiting arms of two suited slavers. A paralysing panic sets in as you realize that this is... it might just be...");
 	output("\n\nQuick as anything, the two have you in cuffs and locks in seconds.");
 	output("\n\n<i>“Roight. Who else we get? Who even were these fucks anyway?”</i> she barks, looking all around.");
 	output("\n\n<i>“No idea, loadsa fancy tech though. Stealth fields innit. Musta wanted the warehouse like us,”</i> says one of the subordinates, his shotgun pointed at your sternum. <i>“Don’t matter in the end, this one’s prime real estate, eh Petra?”</i>");

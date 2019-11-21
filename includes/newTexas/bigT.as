@@ -78,7 +78,7 @@ public function introToBigTSeeMeAfterClass():void
 	output("\n\nPacing in front of the desk is a huge, barrel-chested bull man. He’s better dressed than you might have expected, clad in slacks and a white button-up shirt, just low enough to show a forest of dark, curly chest hair over taut muscles. The only Texan thing about him is the wide-brimmed white Stetson hat he’s wearing, pierced by a pair of huge steer horns growing from his brow, and the over-sized six-gun slung low on his hip. For a man of his size, though, it looks like a popgun: New Texas’s governor stands a formidable ten feet in height, at the least, and taller with his horns and cowboy hat added in. He’s a wrecking ball of a man, massive and muscular, all crammed into business casual wear that looks ready to burst if he takes a deep breath.");
 	output("\n\nSeeing you walk in, the governor points to a headset buried in one of his bovine ears and says, <i>“Sorry, hoss, visitors a‘comin’. We’ll settle up later. Yeah. Ya’ll take care, now.”</i>");
 	//if PC = male:
-	output(pc.mf("He clicks off the headset and thrusts his hand out beneath a big, toothy grin. <i>“Well howdy! Welcome to New Texas, partner!”</i>","Over your shoulder and through the door, the governor shouts, <i>“Zephyr! You didn’t say our guest was a beautiful woman!”</i>\n\n<i>“You say that like anything </i>else<i> walks through your damn door!”</i> comes the answer from the lobby. Tee guffaws, waving her off and extends a hand to you."));
+	output(" " + pc.mf("He clicks off the headset and thrusts his hand out beneath a big, toothy grin. <i>“Well howdy! Welcome to New Texas, partner!”</i>","Over your shoulder and through the door, the governor shouts, <i>“Zephyr! You didn’t say our guest was a beautiful woman!”</i>\n\n<i>“You say that like anything </i>else<i> walks through your damn door!”</i> comes the answer from the lobby. Tee guffaws, waving her off and extends a hand to you."));
 	output("\n\nYou shake Big T.’s hand and introduce yourself. His grip’s vice-like, crushing down on you as he pumps your arm eagerly. <i>“Outstanding! Welcome to New Texas, " + pc.mf("Mr.","Ms.") + " Steele. I’m Governor Benjamin Tiberious Tee. Though most folks ‘round here just call me Big T.”</i>");
 	output("\n\nHe ushers you into a big, plush seat and plops down behind his desk, kicking his feet up and pulling a huge, blue cigar from a drawer. <i>“Enjoyin’ your stay on New Texas so far, " + pc.mf("Mr.","Ms.") + " Steele? Lemme know if there’s anything you need -- or if you’ve got questions! Most governor’s have secretaries for that sorta thing, but mine’s a little ornery for it, dontcha think?”</i>");
 	output("\n\n<i>“I can hear you!”</i> Zephyr snorts from outside.");
@@ -317,7 +317,7 @@ public function bigTHasABigDDeskBlowjob():void
 
 	if(pc.isChestGarbed()) output("\n\nReturning the favor, you slowly strip off your [pc.upperGarments]. ");
 	else output("\n\n"); 
-	if(pc.lowerUndergarment.shortName != "") output("Clad in just your [pc.lowerUndergarment], you ");
+	if(pc.lowerUndergarment.shortName != "") output("Clad in just your [pc.lowerUndergarment], you");
 	else output("You");
 	output(" stroke your [pc.chest] and look up at Tee. His blue eyes are filled with unashamed lust as he ogles your naked form, enjoying the show you’re giving him.");
 
@@ -653,13 +653,13 @@ public function getRiddenByBigWheee(target:int = -1):void
 	if(pc.hasKnees()) output("on your knees ");
 	output("until your [pc.lips are] inches away from his loins.");
 
-	output("\n\n<i>“Lick it,”</i> Tee commands you, his voice rumbling like thunder.The order makes your heart flutter a little, and you find yourself obediently inching forward. You reach out and run your [pc.tongue] along his fleshy sheath. Each and every tastebud meekly brushes along the alpha male’s manhood. You worship it with your mouth, lapping up and down, slathering it with your sticky saliva in the process.");
+	output("\n\n<i>“Lick it,”</i> Tee commands you, his voice rumbling like thunder. The order makes your heart flutter a little, and you find yourself obediently inching forward. You reach out and run your [pc.tongue] along his fleshy sheath. Each and every tastebud meekly brushes along the alpha male’s manhood. You worship it with your mouth, lapping up and down, slathering it with your sticky saliva in the process.");
 	output("\n\nHis prodigious prick begins to thicken and inch upwards. A rush of pride rises within your chest as you realize you’re doing a good job. Spurred on by his arousal - and turned on yourself - you suckle gently on his low-hanging spheres. There, his bullish scent is dizzyingly rich. Without thinking, you find yourself burying your face in his balls - drinking in his musky masculine smell - and letting out a muffled moan of delight.");
 	output("\n\n<i>“Mmm, like the smell of a home-grown bull, darlin’?”</i> His powerful digits ");
 	if(pc.hasHair()) output("run through your [pc.hair]");
 	else output("stroke the top of your head");
 	output(". You respond with an animalistic moan and nod against his crotch. There’s a fiery furnace between your [pc.thighs] and you physically ache with desire. You want this alpha bull sliding inside and filling you up, the sooner the better!");
-	output("\n\nYou don’t have to wait long before Tee is grabbing your waist with his huge hands and turning you around to face his desk. You’re pushed forward until your [pc.chest] is pressed flush with the flat surface. Those powerful hands of his");
+	output("\n\nYou don’t have to wait long before Tee is grabbing your waist with his huge hands and turning you around to face his desk. You’re pushed forward until your [pc.chest] " + (pc.biggestTitSize() > 1 ? "are":"is") + " pressed flush with the flat surface. Those powerful hands of his");
 	if(pc.armor.shortName != "") 
 	{
 		output(" frantically strip off your [pc.armor].");

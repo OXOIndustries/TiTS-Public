@@ -183,6 +183,7 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "M.Rbt";
@@ -194,6 +195,23 @@
 		{
 			return "MINING_ROBOT";
 		}
+		public function pennyQuestPrep():void
+		{
+			level = 7;
+			this.HPMod = 135;
+			this.HPRaw = this.HPMax();
+			this.armor.defense = 7;
+			this.physiqueRaw = 35;
+			this.reflexesRaw = 1;
+			this.aimRaw = 1;
+			this.intelligenceRaw = 1;
+			this.willpowerRaw = 1;
+			this.libidoRaw = 0;
+			this.shieldsRaw = 0;
+			this.energyRaw = 100;
+			this.inventory = [];
+			this.isUniqueInFight = false;
+		}
 
 		public function randomise():void
 		{
@@ -203,7 +221,6 @@
 			if(rand(2) == 0) this.inventory.push(new Satyrite());
 			if(this.inventory.length == 0) this.inventory.push(new Satyrite());
 		}
-	
 				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
@@ -211,7 +228,7 @@
 			if (target == null) return;
 			
 			if(rand(4) == 0) hulkSmashAttack(target);
-			else if(rand(2) == 0) laserBarrage(target);
+			else if(rand(2) == 0 && this.level > 7) laserBarrage(target);
 			else drillThrust(target);
 		}
 
@@ -230,12 +247,17 @@
 		//One big, fat Kinetic hit. Sunders armor on hit.
 		public function drillThrust(target:Creature):void
 		{
-			output("With a digitized roar, the robot barrels forward and drives its drill straight towards your chest.");
+			if(target == kGAMECLASS.penny) output("Roaring, the robot barrels forward and drives its drill straight at Penny!");
+			else output("With a digitized roar, the robot barrels forward and drives its drill straight towards your chest.");
 			//Hit: 
 			if(!combatMiss(this, target)) 
 			{
-				output(" You roll with the blow, staggering back as the grinding metal tears into you!");
-				if(!target.hasStatusEffect("Sundered") && target.defense() >= 2) output(" Thankfully, your armor absorbs most of the blow... but <b>the drill leaves your armor sundered!</b>");
+				if(target == kGAMECLASS.penny) output(" She rolls with the blow, staggering back as the grinding metal tears into her!");
+				else output(" You roll with the blow, staggering back as the grinding metal tears into you!");
+				if(!target.hasStatusEffect("Sundered") && target.defense() >= 2) 
+				{
+					if(target != kGAMECLASS.penny) output(" Thankfully, your armor absorbs most of the blow... but <b>the drill leaves your armor sundered!</b>");
+				}
 				applyDamage(meleeDamage(), this, target, "minimal");
 				if(!target.hasStatusEffect("Sundered") && target.defense() >= 2)
 				{
@@ -243,22 +265,33 @@
 					CombatAttacks.applySunder(target, 4 + rand(2));
 				}
 			}
-			else output(" You dodge backwards and twist aside, avoiding the massive drill!");
+			else 
+			{
+				if(target == kGAMECLASS.penny) output(" She dodges backward at the last second!");
+				else output(" You dodge backwards and twist aside, avoiding the massive drill!");
+			}
 		}
 		//Hulk Smash
 		//One big, fat Kinetic hit that knocks the target down 100% of the time.
 		public function hulkSmashAttack(target:Creature):void
 		{
-			output("The mining drone rears back and comes at you swinging with its non-drill hand, trying to deck you with all the subtle force of a ballistic missile.");
-			if(combatMiss(this, target)) output(" You manage to duck the swing. The robot's fist impacts the cave wall, sending debris showering everywhere!");
+			if(target == kGAMECLASS.penny) output("The mining drone rears back and comes at Penny, swinging with its non-drill hand.");
+			else output("The mining drone rears back and comes at you swinging with its non-drill hand, trying to deck you with all the subtle force of a ballistic missile.");
+			if(combatMiss(this, target) || target.isPlanted()) 
+			{
+				if(target == kGAMECLASS.penny) output(" She manages to duck the swing!");
+				else output(" You manage to duck the swing. The robot's fist impacts the cave wall, sending debris showering everywhere!");
+			}
 			else
 			{
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(2);
-				output("The drone catches you on the side");
+				if(target == kGAMECLASS.penny) output(" The drone catch her on the side");
+				else output(" The drone catches you on the side");
 				if(!target.hasStatusEffect("Tripped"))
 				{
-					output(", sending you sprawling backwards! You land on your [pc.butt], <b>knocked prone</b>");
+					if(target == kGAMECLASS.penny) output(", sending her sprawling backwards! She lands on her fluffy butt, prone");
+					else output(", sending you sprawling backwards! You land on your [pc.butt], <b>knocked prone</b>");
 					CombatAttacks.applyTrip(target);
 				}
 				output("!");

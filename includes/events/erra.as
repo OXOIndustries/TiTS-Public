@@ -96,7 +96,7 @@ public function approachErra(back:Boolean = false):void
 		else output("<i>“I’ll say.”</i>");
 
 		output("\n\nThe ausar laughs while you finish ordering your drink, extending a hand and smiling. <i>“Erra.”</i>");
-		output("\n\nGuessing that must be her name, you reach a [pc.hand] out to meet hers and tell her: <i>“[pc.name].”</i> She takes hold of your hand and gives it a surprisingly firm shake; the bitch has got one hell of a grip, that’s for sure.");
+		output("\n\nGuessing that must be her name, you reach " + indefiniteArticle(pc.hand()) + " out to meet hers and tell her: <i>“[pc.name].”</i> She takes hold of your hand and gives it a surprisingly firm shake; the bitch has got one hell of a grip, that’s for sure.");
 		output("\n\nYour hand comes free of her grasp, giving you a moment to stretch your strangled digits as your drink finally arrives. Erra takes a big swig of whatever she’s drinking and turns to you with a smirk. <i>“All right, [pc.name], do you always walk up to pretty ausar girls flashing you dirty looks or just me?”</i>");
 		output("\n\nFinishing a gulp of your own drink, you give her a grin, returning her smugness in kind, ");
 		if(pc.isMischievous() || pc.isAss()) output("<i>“Only ones that look like a good lay.”</i>");
@@ -156,7 +156,7 @@ public function erraAppearance():void
 	clearOutput();
 	showErra();
 	author("Hugs Alright");
-	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance. Her skin is a wonderfully-dark shade of of chocolate, but seems to lighten a bit when compared to her coal-black fur.");
+	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance. Her skin is a wonderfully-dark shade of chocolate, but seems to lighten a bit when compared to her coal-black fur.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
 	if(erraCollared()) output(" The collar around her neck reads, “<b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>”");
 	if(flags["ERRA_SEXED"] != undefined) output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
@@ -363,9 +363,9 @@ public function goodGirlSexForErra():void
 	//hasCock:
 	if(x >= 0)
 	{
-		output("\n\nGrinning, ");
-		if(!pc.isTaur()) output("bend yourself over Erra, [pc.chest] pressing into her back");
-		else output("mount Erra with your frontmost pair of legs straddling her shoulders");
+		output("\n\nGrinning, you");
+		if(!pc.isTaur()) output(" bend yourself over Erra, [pc.chest] pressing into her back");
+		else output(" mount Erra with your frontmost pair of legs straddling her shoulders");
 		output(", making the puppy squirm while the [pc.cockHead " + x + "] of your stiffening shaft brushes against the folds of her sex. She shudders, body quivering, as you bring yourself closer to one of her raised wolf-ears and ask, <i>“Does puppy want a bone?”</i> She most certainly does, nodding hurriedly as you lift a hand to scratch between her ears. Not wanting to keep such a good girl waiting, you start to push into her, spreading her nether lips with ease, already loosened from your oral pleasures. Her love tunnel hugs at your [pc.cock " + x + "] as you slide it into her, keeping your tool nice and warm until ");
 		if(pc.hasKnot(x)) output("your penetration is halted by your [pc.knot " + x + "].");
 		else output("you finally bottom out inside her.");
@@ -449,7 +449,7 @@ public function erraGoodGirl2():void
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy, Captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to [pc.walk] out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
-	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
+	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks’.”</i>");
 	IncrementFlag("ERRA_SEXED");
 	processTime(35);
 	restHeal();
@@ -833,7 +833,8 @@ public function walkiesWithErra():void
 	clearOutput();
 	showErra(true);
 	author("Hugs Alright");
-	output("<i>“Who’s my good girl?”</i> you say, leaning forward and bringing Erra’s collar to her neck. She smiles wide as the piece of leather is closed around her neck, tail swaying gaily behind her. You pull yourself back and take in the sight of your freshly-collared puppy for a moment before placing a hand between her black-furred ears. Erra coos as you scritch between her ears, moving her head around to make sure your digits hit all the right places. <i>“That’s right,”</i> you whisper, <i>“Who’s my big, strong puppy?”</i> Your pet’s tail wags even faster at your words, moaning gently as your hand runs through her ebony hair. You smirk at the sight of Erra going into puppy-mode, and tell her to roll over for you; she does as you say and rolls over onto her back, arms curled up like a puppy’s, smiling up at you with growing eagerness. Returning her grin, you reach down to her dusky, muscular tummy, and start to stroke it with your palm. Your fingers lift and descend as they run along firm cords of muscle, making Erra’s breath shudder. Your belly-rubbing quickly picks up in speed, your digits caressing Erra’s dark skin and athletic frame until she’s panting like a dog, tongue lolling from her mouth.");
+	output("<i>“Who’s my good girl?”</i> you say, leaning forward and bringing Erra’s collar to her neck. She smiles wide as the piece of leather is closed around her neck, tail swaying gaily behind her. You pull yourself back and take in the sight of your freshly-collared puppy for a moment before placing a hand between her black-furred ears. Erra coos as you scritch between her ears, moving her head around to make sure your digits hit all the right places. <i>“That’s right,”</i> you whisper, <i>“Who’s my big, strong puppy?”</i> Your pet’s tail wags even faster at your words, moaning gently as your hand runs through her ebony hair.");
+	output("\n\nYou smirk at the sight of Erra going into puppy-mode, and tell her to roll over for you; she does as you say and rolls over onto her back, arms curled up like a puppy’s, smiling up at you with growing eagerness. Returning her grin, you reach down to her dusky, muscular tummy, and start to stroke it with your palm. Your fingers lift and descend as they run along firm cords of muscle, making Erra’s breath shudder. Your belly-rubbing quickly picks up in speed, your digits caressing Erra’s dark skin and athletic frame until she’s panting like a dog, tongue lolling from her mouth.");
 	output("\n\nBefore the puppy can get too ahead of herself, you pull your hand back, resulting in a little whine from the ausar before you shush her and stand up ");
 	if(!pc.isTaur()) output("off the bed.");
 	else output("straight.");
@@ -845,7 +846,7 @@ public function walkiesWithErra():void
 	output(" Turning around, you face your pet and give her a grin, <i>“Time for walkies, girl!”</i> The ausar’s green eyes go wide at your suggestion, more with worry than anything else, her tail halting in its place. <i>“What’s wrong?”</i> you question, trying to give Erra’s leash a pull, <i>“My girl isn’t afraid of going for a little walk, is she?”</i> Your words seem to upset Erra in some way, or encourage her, because her eyes narrow in determination, her jet-black, fluffy tail quickly returning to its regular swishing and swaying.");
 	output("\n\nYour pet steps off the bed with a confident stride, bringing herself to the ground on all fours; looks like tapping into Erra’s pridefulness was enough to get the ausar over her fears. Glad that your puppy’s found bravery in the face of walkies, you give her tether a tug and make your way out of the bedroom. [pc.Walking] into the atrium of Erra’s ship, you’re greeted by a robotic chuckle from Dee, <i>“Going out, Captain? Do try to enjoy yourself.”</i>");
 	output("\n\nThe AI’s captain groans as you near the airlock, and you tell Dee you’ll make sure to take care of Erra while she’s out. Your puppy seems a bit nervous when you actually open the porthole and reveal where she’ll soon be crawling, though she still follows you out of the ship all the same with another good pull of her leash.");
-	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of of her mouth as she pants. ");
+	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of her mouth as she pants.");
 	output("\n\nWith your puppy getting her fill of public interaction, you decide to prop yourself against a more comfortable-looking wall and beckon your pet over.");
 	var cock:Boolean = (!pc.hasVagina() || (pc.isHerm() && rand(2) == 0));
 	//hasCock:
@@ -959,7 +960,7 @@ public function walkiesWithErra2(cock:Boolean):void
 		output("\n\nYou sit there for a moment and take in what Dee has said, nodding and contemplating what this means for you and that slutty puppy in the other room.");
 		output("\n\nErra’s co-pilot gives you a robotic sigh and speaks up once more, <i>“It may seem like I don’t care for the Captain, but I do. She’s been a good friend since I’ve met her, and I’d enjoy something going right for her for a change.”</i>");
 		output("\n\nYou shoot Dee, well, the ship’s bulkhead, a suspicious look.");
-		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her well being.”</i> Dee sighs again, <i>“Listen, if you could... let the Captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
+		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her wellbeing.”</i> Dee sighs again, <i>“Listen, if you could... let the Captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
 		output("\n\nYou give Dee a solemn nod and shift your body around, your once comfy seat steadily becoming more disagreeable with your back.");
 		output("\n\n<i>“And if you don’t feel the same way: please, let her down easy.”</i>");
 		output("\n\n<b>You could probably confront Erra with this newfound information, or just let it sit.</b>");
@@ -1011,6 +1012,7 @@ public function erraCuddleScenes2():void
 	//firstTime:
 	if(flags["ERRA_CUDDLED"] == undefined)
 	{
+		showImage("ErraAfterCuddlePanties");
 		output("\n\nAs you’re making yourself ready for your journeys and Erra’s making herself decent, the former-puppy calls out, <i>“Hey, [pc.name], I think you forgot your panties.”</i>");
 		output("\n\nBefore you have a chance to reply, or consider if you are missing any panties, a wadded up ball of purple fabric hits you.");
 		if(pc.reflexes() >= 10) output(" Managing to catch the soft, violet sphere, you cock an eyebrow and unravel the matrix of lacy fabrics.");
@@ -1022,12 +1024,14 @@ public function erraCuddleScenes2():void
 		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
 		output("\n\n(<b>Gained Key Item: Panties - Erra’s</b>.)");
 	}
+	else showImage("ErraAfterCuddle");
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
 	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");
 	output("\n\nYour ausar companion breathes a sigh of relief, inviting you out the airlock. You say your goodbyes to the two and make your way back onto the tarmac, your former pet yelling <i>“See you around, [pc.name]!”</i> as you gain distance.");
 	processTime(75);
-	pc.energy(100);
+	//pc.energy(100);
+	sleepHeal();
 	IncrementFlag("ERRA_CUDDLED");
 	currentLocation = shipLocation;
 	refreshRoamingBarEncounter();

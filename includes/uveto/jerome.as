@@ -124,7 +124,7 @@ public function approachJerome():void
 		output(" you tell him through a cocky grin, a reflection of your teeth clearly visible in his eyes as you lick teasingly at your canines.");
 	}
 
-	output("\n\nOne of Jerome’s massive hands clamps around the comparatively tiny drink sat on the bar in front of him, bringing it to his mouth in an attempt to disguise a nervous gulp.");
+	output("\n\nOne of Jerome’s massive hands clamps around the comparatively tiny drink seated on the bar in front of him, bringing it to his mouth in an attempt to disguise a nervous gulp.");
 	
 	flags["JEROME_APPROACHED"] = days;
 
@@ -165,7 +165,7 @@ public function jeromePeggingII():void
 		output(" as you");
 		if (pc.isTaur()) output(" struggle to reach back");
 		else output(" reach down");
-		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh so graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
+		output(" to your [pc.cock "+cIdx+"] with the home-made lube Jerome has oh-so-graciously provided, smearing it along your length with abandon as you work yourself to full hardness.");
 	}
 	else
 	{
@@ -398,7 +398,7 @@ public function jeromePeggingIIIBiped():void
 	}
 	else
 	{
-		output("\n\nYou work up a good pace , thrusting into his ass with solid temp and force, working him into a fervor slowly but surely. You change angle slightly and nudge his prostate with your");
+		output("\n\nYou work up a good pace, thrusting into his ass with solid temp and force, working him into a fervor slowly but surely. You change angle slightly and nudge his prostate with your");
 		if (cIdx >= 0) output(" [pc.cockHead "+cIdx+"]");
 		else output(" glowing cocktip");
 		output(". His ass rewards you with an involuntary squeeze, the tight tunnel closing in around your sensitive flesh from all sides, doubling your pleasure in turn.");
@@ -715,13 +715,14 @@ public function jeromeHipbusterIII(s:Object):void
 	output(" claim over the thick invader stretching your");
 	if (s.vIdx >= 0)
 	{
-		if (pc.vaginas[s.vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[s.vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) output(" pumped-up");
+		if (pc.hasPlumpPussy(s.vIdx)) output(" pumped-up");
 		output(" pussylips");
 	}
 	else
 	{
-		if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || (s.vGape >= 3 && s.vGape <= 4)) output(" puffy asshole");
-		else if (pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || s.vGape >= 5) output(" plump donut");
+		if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || (s.vGape >= 3 && s.vGape < 5)) output(" puffy asshole");
+		else if (pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || (s.vGape >= 5 && s.vGape < 7)) output(" plump donut");
+		else if (pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) || s.vGape >= 7) output(" extremely fat donut");
 		else output(" asshole");
 	}
 	output(" wide. The delectable strumming of the ridges calls to you before too long, your hips moving instinctively to drag the bear’s cock back out of you. You don’t wait around when you reach the peak this time, though, your ass sliding back down to swallow the throbbing cock much faster than your first descent. His hips meet your [pc.ass] with a thump as you reach the base of his towering pillar of fuckflesh again, another slightly-winded groan from the bear as you come to rest.");

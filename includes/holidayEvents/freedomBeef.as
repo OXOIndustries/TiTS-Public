@@ -115,7 +115,7 @@ public function freedomBeefGoSelection(beefType:uint):void
 		case FREEDOM_BEEF_RIPPED: output(" absolutely ripped"); break;
 		default: output(" ERROR"); break;
 	}
-	output(", that’s for sure. You find yourself staring for a long moment, eying the buxom bison from behind until something causes her to stir, glancing over her shoulder in your direction. A big smile spreads on on the tauric woman’s lips, and when she turns, you can see the hand not busy on the cook-top is holding a half-drained beer bottle - the latest of several scattered around the camp.");
+	output(", that’s for sure. You find yourself staring for a long moment, eying the buxom bison from behind until something causes her to stir, glancing over her shoulder in your direction. A big smile spreads out on the tauric woman’s lips, and when she turns, you can see the hand not busy on the cook-top is holding a half-drained beer bottle - the latest of several scattered around the camp.");
 	
 	output("\n\nShe gives you a jubilant wave, which has the captivating side-effect of making her barely-restrained cleavage quake under her bikini top.");
 	
@@ -196,7 +196,7 @@ public function freedomBeefJoinHer(beefType:uint):void
 	output("”</i>");
 
 	output("\n\nSo she’s a fellow rusher? Neat. Don’t actually");
-	if (silly) output(" meat");
+	if (silly) output(" ‘meat’");
 	else output(" meet");
 	output(" many other actual adventure-seekers like yourself out in the wilds, come to think of it. You suppose there’s few enough of you over so much terrain that it’s not likely you’d ever run into each other face to face, but still, it’s cool to meet the competition.");
 
@@ -247,7 +247,7 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	
 	output("\n\n<i>“Hey, that tickles,”</i> she laughs when you fiddle with one of the straps. All the ones around her flanks seem to be fine, at your casual inspection. The only one that’s too tight doesn’t seem to have a buckle you can find, though it is being yanked on by the whirring gear on her backpack. You ask if she can just turn the launcher off and pull it free, to which she shakes her head. <i>“Nuh-uh, looks totally jammed up. Gotta cut the cord before I can fix this. Darn Tarkus tech, always breakin’ on me! Could you, uh...”</i>");
 	
-	output("\n\nRiley grunts and staggers to her hooves, swaying slightly with the sudden change of position pointing straight along her back. Her long blonde tail swishes at you, drawing your attention to her meaty haunches. The tight cord is running all the way back around her rump, looks like. The bison babe gives you a pleading look, and eventually you make your way around to her far end.");
+	output("\n\nRiley grunts and staggers to her hooves, swaying slightly with the sudden change of position, before pointing straight along her back. Her long blonde tail swishes at you, drawing your attention to her meaty haunches. The tight cord is running all the way back around her rump, looks like. The bison babe gives you a pleading look, and eventually you make your way around to her far end.");
 	
 	output("\n\nHer tail flicks up as you approach, and you’re suddenly hit with a sweet, rich smell wafting off the buffalo-girl’s hindquarters, sending a slow burn spreading from your cheeks on down. One glance tells you all you need to know: she’s as naked back here as everywhere else on her lower body, save for where three leather straps converged in a bundle that’s digging deep into the thick black lips of her bovine twat.");
 	
@@ -256,6 +256,8 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	output("\n\nAs if to punctuate her request, the bison-girl’s black twat winks hungrily at you, smearing the leather straps with thick, viscous trails of musky feminine juice.");
 
 	processTime(15+rand(10));
+	pc.lust(5);
+	pc.instaBuzzed();
 
 	//[Chaste Help] [Flirty Help] [Nope Out]
 
@@ -282,11 +284,9 @@ public function freedomBeefNopeOut(beefType:uint):void
 	output(" and turn to depart.");
 
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
 }
 
 public function freedomBeefFlirtyHelp(beefType:uint):void
@@ -316,8 +316,6 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 
 	pc.lust(33);
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	freedomBeefSexMenu(beefType);
 }
@@ -336,7 +334,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 	if (pc.hasCock())
 	{
 		var willChance:Number = (pc.willpower() / pc.willpowerMax()) * 100;
-		failedCheck = pc.willpower() >= rand(willChance);
+		failedCheck = (pc.inRut() ? true : (pc.willpower() >= rand(willChance)));
 
 		if (!failedCheck) output("\n\nYou shake off the mounting chemical lust and stagger back, gasping for breath. Oh damn, is Riley in some kind of heat? It takes a moment to clear your head, but you manage to take and hold a deep breath of fresh air before diving back in to do your work.");
 		else output("\n\nYour heart hammers in your chest, and your [pc.cock] throbs with agonizing need. The bestial part of your mind takes charge, erasing your chaste intentions with a simple, overwhelming command: <b>fuck</b>.");
@@ -344,7 +342,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 
 	if ((pc.hasCock() && !failedCheck) || !pc.hasCock())
 	{
-		output("\n\nWith as clear a head as you can manage in the face of Riley’s potent arousal, you trace a pair of fingers across one of the slimy leather straps and wrap them around the knot digging into her twat. This necessitates your digits plunges a little way past the very edges of her black pussy-lips, feeling the humid warmth radiating from her bovine sex. You’re practically fisting her by the time you’ve got your hands around the straps.");
+		output("\n\nWith as clear a head as you can manage in the face of Riley’s potent arousal, you trace a pair of fingers across one of the slimy leather straps and wrap them around the knot digging into her twat. This necessitates your digits plunging a little way past the very edges of her black pussy-lips, feeling the humid warmth radiating from her bovine sex. You’re practically fisting her by the time you’ve got your hands around the straps.");
 		
 		output("\n\nSeparated from you by a few feet of heavy-breathing buffalo body, Riley makes a little squeal and stamps her hooves, clutching her hands to her chest. She’s trying not to show how good what you’re doing feels, but the contractions of her lips around your fingers and the flowing wetness can’t hide her arousal. You try and ignore it as best you can, pulling the knot out of where it’s lodged itself and quickly unravelling it.");
 		
@@ -360,6 +358,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 		
 		output("\n\nAfter a few moments, Riley cracks another beer and sits back, happily watching her fireworks shoot off. She offers you another beer as thanks, and given the haze still lingering in your mind from the buffalo’s needy quim, you’re quick to accept. It isn’t long before lingering sex-haze is replaced by a nice, tingly buzz, and find yourself relaxing against the bison’s cobalt flank, watching the display in the sky.");
 
+		pc.lust(33);
 		processTime(50+rand(20));
 		clearMenu();
 		addButton(0, "Next", freedomBeefChasteHelpII, beefType);
@@ -384,8 +383,6 @@ public function freedomBeefChasteHelp(beefType:uint):void
 
 		pc.lust(33);
 		processTime(5+rand(2));
-		//Apply Home Cooking buff.
-		eatHomeCooking(100);
 
 		freedomBeefSexMenu(beefType);
 	}
@@ -428,11 +425,9 @@ public function freedomBeefNoneForMe(beefType:uint):void
 	output("\n\nYou give her a wave and turn back to your path.");
 
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
 }
 
 public function freedomBeefLikedIt(beefType:uint):void
@@ -459,9 +454,6 @@ public function freedomBeefLikedIt(beefType:uint):void
 	
 	output("\n\nRiley gives you a wink and cups her hands under her titanic rack, already starting to work the holopin clasp holding it back.");
 	
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
-	
 	freedomBeefSexMenu(beefType);
 }
 
@@ -483,7 +475,7 @@ public function freedomBeefSexMenu(beefType:uint):void
 
 	if (pc.hasCock())
 	{
-		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers too pound you into the ground.");
+		addButton(1, "Snu Snu", freedomBeefSnuSnu, beefType, "Hip-Crushing Snu Snu", "Have Riley use that big bison ass of hers to pound you into the ground.");
 	}
 	else
 	{
@@ -764,5 +756,12 @@ public function freedomBeefSexOutro(params:Array):void
 	output(" - as she turns to go. <i>“Till next time, [pc.name]!”</i>");
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
+}
+
+public function freedomBeefLeave():void
+{
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
+	mainGameMenu();
 }

@@ -57,10 +57,11 @@ public function myrellionBiotechInteriorAddition():Boolean
 	output("\n\n");
 	if (flags["MET_NEVRIE"] == undefined) output("A bronze-skinned woman with a pair of small horns poking out through her blue hair");
 	else output("Nevrie");
-	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
+	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a bag of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 	if(!CodexManager.entryUnlocked("Dzaan"))
 	{
-		output("\n\nYour codex suddenly beeps, telling you the woman is of the “Dzaan” species. <b>(‘Dzaan’ Codex entry unlocked!)</b>");
+		output("\n\nYour codex suddenly beeps, telling you the woman is of the “Dzaan” species.");
+		output("\n\n<b>(‘Dzaan’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Dzaan");
 	}
 
@@ -300,7 +301,7 @@ public function myrellionNevrieDiscount():void
 		// [Blow Her] [Nevermind]
 		clearMenu();
 		addButton(0, "Blow Her", myrellionNevrieBlowjerb);
-		addButton(1, "Nevermind", myrellionNevrieMenu, myrellionNevrieDiscount);
+		addButton(1, "Never Mind", myrellionNevrieMenu, myrellionNevrieDiscount);
 	}
 	else
 	{
@@ -312,7 +313,7 @@ public function myrellionNevrieDiscount():void
 
 		clearMenu();
 		addButton(0, "Blow Her", myrellionNevrieBlowjerb);
-		addButton(1, "Nevermind", myrellionNevrieMenu, myrellionNevrieDiscount);
+		addButton(1, "Never Mind", myrellionNevrieMenu, myrellionNevrieDiscount);
 	}
 }
 
@@ -814,7 +815,7 @@ public function mcallisterMeetThemIII():void
 
 	output("<i>“Hey there,”</i> you say, smiling at the pair of colorful ant-girls. Their attention immediately fixes on you, and they both return your smile.");
 	
-	output("\n\n<i>“Hi!”</i> the red myr says, still fondling herself. Your eyes are immediately drawn to to pink peak of her teat, beading with golden moisture. She grins up at you. <i>“Haven’t seen you before. Are you one of Doctor McAllister’s assistants?”</i>");
+	output("\n\n<i>“Hi!”</i> the red myr says, still fondling herself. Your eyes are immediately drawn to pink peak of her teat, beading with golden moisture. She grins up at you. <i>“Haven’t seen you before. Are you one of Doctor McAllister’s assistants?”</i>");
 	
 	if (pc.isMasculine()) output("\n\n<i>“Can’t be,”</i> the gold giggles. <i>“He’s a dude! And... pretty handsome, too!”</i>");
 	else output("\n\nThe gold myr giggles in a way that makes her huge, fleshy bust quiver in her arms. <i>“No way, she’s too cute to be another scientist!”</i>");
@@ -911,7 +912,7 @@ public function mcallisterMyrGirlsCocky():void
 	
 	output("\n\nThe red grunts and reaches back to plunge a couple of plated fingers into her tragically vacant gash. <i>“Speak for yourself. This is </i>amazing<i>! Sex has never felt like this before!”</i>");
 	
-	if (pc.isBro() || pc.isTreatedMale()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
+	if (pc.isBro() || pc.isTreatedBull()) output("\n\nThat’s cuz she’s never had sex with <i>you</i> before!");
 	
 	output("\n\nSounds like an invitation to switch back to railing her, but before you can transition from gold to red, you hear McAllister grunt and buck his hips against the red’s lips. She grunts and gasps, and you see her throat bulging with a sudden influx of the doctor’s spunk; the red ends up gagging and coughing some of it up, and earns herself the last couple of squirts right on her cheeks when McAllister staggers back, pulling out of her spasming maw.");
 	
@@ -1122,7 +1123,7 @@ public function mcallisterMyrHybrids():void
 	output("\n\n<i>“More importantly, though, you’d have problems of distribution and education.”</i> McAllister says, an almost venomous hiss on the last word. He glances in the direction of the Federation embassy, and adds, <i>“Most myr wouldn’t take it just </i>because<i>, you know. They’ve had seven years to entrench themselves in racial jingoism, especially the reds. Even if you convinced enough myr to take the therapy, you’d actually have to distribute it, and neither of us have the resources to mass produce and distribute expensive gene mods on our own dime.”</i>");
 	
 	output("\n\nNot on your dime, no... <i>“I introduced myself as Steele, right?”</i> you say");
-	if (pc.isTreatedFemale() || pc.isBimbo()) output(" with a playful giggle");
+	if (pc.isTreatedCow() || pc.isBimbo()) output(" with a playful giggle");
 	else output(" with a grin");
 	output(". <i>“I might be able to handle that.”</i>");
 	

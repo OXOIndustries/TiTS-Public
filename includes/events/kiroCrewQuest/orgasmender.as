@@ -25,7 +25,7 @@ public function healingConsentacleTankBonus():Boolean
 {
 	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, <i>“Orgasmender.”</i> You suppose it must be some kind of healing tank.");
 	else output("\n\nYou spot the Orgasmender’s sterile-looking, white-rimmed tank in a back corner of the room. You know from an experience that it’s far more full of life than its charming exterior indicates, but it certainly does its job well enough.");
-	output(" <b>It seems out of place, like it doesn’t truly belong in this place. Perhaps this is a <i>placeholder</i> location for it?</b>")
+	if(currentLocation != "KQ L28") output(" <b>It seems out of place, like it doesn’t truly belong in this place. Perhaps this is a <i>placeholder</i> location for it?</b>")
 	//[Look Closer] [Climb In]
 	addButton(0,"Look Closer",lookCloserAtOrgasmender,undefined,"Look Closer","Take a better look at the device before doing anything rash.");
 	addButton(1, "Climb In", climbIntoTheDamnedTank, undefined, "Climb In", "Climb inside and activate the device. What could go wrong?");
@@ -257,7 +257,7 @@ public function orgasmenderScene2():void
 	var i:int = 0;
 	
 	output("Suspended by your own buoyancy and the tentacles alike, your vision blocked by the purple mask, you find yourself nearly bereft of every sensation but touch and taste. The touch of the tank’s squirming tendrils is agony, only deigning to restrain you, not to quench the aching, bubbling need that courses through your body. Meanwhile, the taste on your tongue is even more intense than before, the bubblegum sweetness saturating your taste-buds in absolute saccharine satisfaction.");
-	output("\n\nIt barely registers to you that more comes out when your tongue moves, or when you give the oozing tube a little suck. Some part of you must be paying attention, because your tongue can’t seem to stop caressing the slickened underside of your oral intruder. Every swallow is punctuated by a hungry little suck that releases more gummy goodness onto your tongue until you can’t even smell the medicinal chemicals lacing your air supply over the aroma of candied sugar. Nevermind your swimming, dizzied head; your mouth is on autopilot. It can suck and swallow and breathe while the tentacles dispense their healing pleasure.");
+	output("\n\nIt barely registers to you that more comes out when your tongue moves, or when you give the oozing tube a little suck. Some part of you must be paying attention, because your tongue can’t seem to stop caressing the slickened underside of your oral intruder. Every swallow is punctuated by a hungry little suck that releases more gummy goodness onto your tongue until you can’t even smell the medicinal chemicals lacing your air supply over the aroma of candied sugar. Never mind your swimming, dizzied head; your mouth is on autopilot. It can suck and swallow and breathe while the tentacles dispense their healing pleasure.");
 	output("\n\nAnd oh, what magnificent pleasure!");
 	//Dick
 	if(pc.hasCock())
@@ -494,6 +494,7 @@ public function orgasmenderScene4():void
 	}
 	pc.HP(pc.HPMax());
 	pc.energy(40);
+	pc.taint(3);
 	IncrementFlag("ORGASMENDER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

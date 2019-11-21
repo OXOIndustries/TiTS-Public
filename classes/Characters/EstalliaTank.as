@@ -71,6 +71,7 @@ package classes.Characters
 			this.femininity = 85;
 			this.eyeType = 0;
 			this.eyeColor = "black";
+			this.tallness = 144;
 			this.thickness = 40;
 			this.tone = 29;
 			this.hairColor = "black";
@@ -185,6 +186,7 @@ package classes.Characters
 			this.createStatusEffect("Stun Immune");
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			createStatusEffect("Planted", 0, 0, 0, 0, false, "Icon_Constricted", "Heavy treads on the ground prevent being tripped or staggered.", true, 0);
 			
 			this._isLoading = false;
 		}
@@ -262,7 +264,7 @@ package classes.Characters
 					//Figure out how much is left
 					applyDamage(damage, this, target, "minimal");
 					
-					if(target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13)
+					if((target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) && !target.isPlanted())
 					{
 						output("\n<b>You end up knocked on your ass, covered in debris from the collapsing factory!</b>");
 						CombatAttacks.applyTrip(target);
@@ -316,7 +318,7 @@ package classes.Characters
 			else
 			{
 				output("try to roll out of the way, but there’s just no time! You avoid getting crushed to death by the treads, but still take a nasty blow from the front of the tank anyway.");
-				target.createStatusEffect("Crunched", 0, 0, 0, 0, false, "DefenseDown", "Getting hit in the head by a tank has lowered your physique!", true, 0);
+				target.createStatusEffect("Crunched", 1, 0, 0, 0, false, "DefenseDown", "Getting hit in the head by a tank has lowered your physique!", true, 0);
 				
 				var damage:TypeCollection = new TypeCollection( { kinetic: 70 }, DamageFlag.CRUSHING );
 				damageRand(damage, 15);

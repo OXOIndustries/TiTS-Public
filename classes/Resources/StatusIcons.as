@@ -109,6 +109,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/mindcontrolled_mindbroke.svg", mimeType = "image/svg")]
 		public static var Icon_MindcontrolledMindbroke:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/money.svg", mimeType = "image/svg")]
+		public static var Icon_MoneyBag:Class;
+		
 		[Embed(source = "../../assets/icons/statuseffects/off-down.svg", mimeType = "image/svg")]
 		public static var Icon_OffDown:Class;
 		
@@ -126,6 +129,9 @@ package classes.Resources
 
 		[Embed(source = "../../assets/icons/statuseffects/poison.svg", mimeType = "image/svg")]
 		public static var Icon_Poison:Class;
+
+		[Embed(source = "../../assets/icons/statuseffects/rain-drops.svg", mimeType = "image/svg")]
+		public static var Icon_Rain_Drops:Class;
 
 		[Embed(source = "../../assets/icons/statuseffects/rotate.svg", mimeType = "image/svg")]
 		public static var Icon_Rotate:Class;
@@ -157,6 +163,8 @@ package classes.Resources
 
 		[Embed(source = "../../assets/icons/statuseffects/vagina.svg", mimeType = "image/svg")]
 		public static var Icon_Vagina:Class;
+		[Embed(source = "../../assets/icons/statuseffects/vagina_2.svg", mimeType = "image/svg")]
+		public static var Icon_Vagina_2:Class;
 
 		[Embed(source = "../../assets/icons/statuseffects/water_drop.svg", mimeType = "image/svg")]
 		public static var Icon_Water_Drop:Class;

@@ -245,7 +245,7 @@
 					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_GRYVAIN))
 					{
 						output("\n\nSuddenly, your vision goes blurry, and your eyes start watering. You blink quickly, trying to clear them, but the irritation persists for what seems like an eternity! Your vision keeps getting worse, almost shriveling to blackness before erupting again into a cascade of brilliant colors!");
-						output("\n\nYou blink, suddenly feeling perfectly fine -- better than ever, really! You take a look at yourself on the shiny back of your Codex, and can’t help but grint as you see <b>your eyes have changed! They’re dark yellow and slitted now</b>, with tendrils of black snaking in every direction from your draconic irises. Your peepers look just like a gryvain’s now!");
+						output("\n\nYou blink, suddenly feeling perfectly fine -- better than ever, really! You take a look at yourself on the shiny back of your Codex, and can’t help but grin as you see <b>your eyes have changed! They’re dark yellow and slitted now</b>, with tendrils of black snaking in every direction from your draconic irises. Your peepers look just like a gryvain’s now!");
 						
 						pc.eyeType = GLOBAL.TYPE_GRYVAIN;
 						pc.eyeColor = "dark yellow";
@@ -305,6 +305,7 @@
 						output("\n\nYou feel something like a pinch on the tip of your [pc.ear], pulling at it. You swipe a hand back that way, thinking something’s caught you, yet find nothing but [pc.skin] -- but not where it ought to be. Letting your fingers wander, you feel that your ear itself has sunk into the side of your head and is now shielded by a sweeping, bony fin -- a pair of them on either side! <b>You’ve got frilled reptilian ears now!</b>");
 						
 						pc.earType = GLOBAL.TYPE_GRYVAIN;
+						target.clearEarFlags();
 						pc.earLength = 3;
 						changes++;
 					}
@@ -508,7 +509,7 @@
 				{
 					if(pc.createCockUnlocked(1))
 					{
-						output("\n\nYou feel a pressure in your loins, a growing and stretching sensation. You tremble, feeling something well up inside you... what’s going on? Reaching down, you run a hand along your groin, only to find an unfamiliar lump" + (pc.hasVagina() ? "just above your [pc.cunt]" : " growing from your featureless groin") + "! You give it a gentle squeeze, trying to find out what it is, and receive a shuddering tingle of pleasure in response. At first, you think it’s some sort of new clit growing in, but it just keeps growing! Before long, it’s as long as you thumb, throbbing against your hand.");
+						output("\n\nYou feel a pressure in your loins, a growing and stretching sensation. You tremble, feeling something well up inside you... what’s going on? Reaching down, you run a hand along your groin, only to find an unfamiliar lump " + (pc.hasVagina() ? "just above your [pc.cunt]" : "growing from your featureless groin") + "! You give it a gentle squeeze, trying to find out what it is, and receive a shuddering tingle of pleasure in response. At first, you think it’s some sort of new clit growing in, but it just keeps growing! Before long, it’s as long as you thumb, throbbing against your hand.");
 						output("\n\nThere’s no doubt about what this growing shaft is before long: <b>you’re growing a cock!</b> You watch in shivering awe as a turgid, tapered shaft grows in on your crotch. When the growth seems over, you measure at least eight inches of fresh new cockmeat, knotty and bulbous at the base and tapered to a fine, leaking point at the crown. Just like a gryvain’s!");
 						
 						pc.createCock();
@@ -691,7 +692,7 @@
 							if(cCockList.length > 0 && cCuntList.length > 0) output(" and");
 							if(cCuntList.length > 0) output(" [pc.vaginas]");
 						}
-						output("!.");
+						output("!");
 						if(pc.hairColor != newColor) output(" As you explore your newly colored body, you quickly realize that your [pc.hair] has changed, too, matching the color of your scales!");
 						output(" You look that much more gryvain, now!");
 						
@@ -744,7 +745,7 @@
 					
 					output("\n\nYour tits continue to get fuller and fuller and you get a feeling that they won’t stop for anything! When it finally settles, the pressure is almost overwhelming--you’ve got to milk yourself right away! Due to the vast amount of gryvain genes you have in your system, you suspect this permanent change is a result of the drug’s reaction to your preganancy and [pc.milkNoun] production...");
 					
-					output("\n\n<b>Gained perk: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
+					output("\n\n<b>Perk Gained: Hypermilky!</b> (Lactation will not decrease from disuse or overfilling.)");
 					pc.createPerk("Hypermilky", 0, 0, 0, 0, "Lactation will not decrease from disuse or overfilling.");
 					changes++;
 				}

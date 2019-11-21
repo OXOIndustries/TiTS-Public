@@ -241,7 +241,7 @@ public function undertaleFootjob():void
 	output("\n\nConsidering how devoted she is to yours, that’s a damn shame. Her wet, rapid ministrations have already brought you near to your peak - you can feel pressure welling in the base of your cock");
 	if(pc.hasKnot(0)) output(", which she’s keen to exploit by rubbing your swelling bitch-breaker.");
 	// keratin:
-	else if(9999) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
+	else if(pc.cocks[0].cType == GLOBAL.TYPE_DZAAN) output(", especially around the keratin nubs along your shaft, which Ren lavishes with her lubricated affection.");
 	else output(" and deep inside your [pc.balls].");
 	output("\n\nShe must be able to feel your prick throbbing with need, as Ren’s green lips curl into a lustrous smile. <i>“Don’t worry about making a mess. Just go ahead and cover my feet in cum....”</i>");
 	output("\n\nHer urging is like a magic word in your ear. The pressure in your [pc.balls] is suddenly overwhelming, and watery pre spurts all over Ren’s latex-wrapped toes. Your pre-orgasmic juices just add to the glaze of lube already on her, letting her move those dexterous digits just that much faster. Her toes circle and squeeze your crown, milking out every juicy drop until with a grunt of pleasure, you buck your hips and feel a rush of heat barreling through your throbbing manhood. A thick gout of [pc.cumNoun] splatters the bottom of her toes, earning a delighted gasp from your partner as her foot is slathered in a thick load of cum. Her other foot presses against your tender underside, massaging out more and more of your orgasm’s fruit to smear against her soles and toes.");
@@ -563,7 +563,9 @@ public function pitchAnalRensa():void
 	output("\n\nRen giggles, squeezing back down around your probing digit until you’re buried to the hilt, pumping her ass with as much lube as she’ll take. Once you’re satisfied, you start using your other fingers to massage the rest of the slick lube around her crack and cheeks, giving Ren’s behind a glistening sheen before you’re done.");
 	output("\n\n<i>“Mmm, talented fingers,”</i> she purrs, brushing her tail across your cheek. <i>“Keep teasing me and I’m gonna cum before you even get the crown in!”</i>");
 	output("\n\nYou’d like to see that, and tell her as much with your hands, kneading her plump rump and brushing your fingertips across her pussy and ass. A few moments of that, and Ren’s tail curls around your shoulders, pulling you close. She moans and thrusts her hips back against you, pressing her broad behind against your [pc.cockOrStrapon " + x + "] and trapping it between her cheeks. Thanks to all the lube you slathered her ass with, she’s able to effortlessly grind up and down on your rigid shaft, giving almost as good as she’s getting - but with your prick gliding between her pussylips, hands still working her over... she still hits her peak first.");
-	output("\n\nWith a gasp, Ren slams her hips back against you, almost enough to knock you back, and pulls you so tight against her with her tail that you can barely breathe. But that only lasts a moment, and she comes down off her climax with a heavy sigh and a fat bubble of seed bloating the crown of her wrapped cock. By the time she relaxes her grip on you, the head of her cock looks like it’s grown an apple on its tip, swaying heavily with every breath.");
+	output("\n\n");
+	showImage("TerenshaCumBubble");
+	output("With a gasp, Ren slams her hips back against you, almost enough to knock you back, and pulls you so tight against her with her tail that you can barely breathe. But that only lasts a moment, and she comes down off her climax with a heavy sigh and a fat bubble of seed bloating the crown of her wrapped cock. By the time she relaxes her grip on you, the head of her cock looks like it’s grown an apple on its tip, swaying heavily with every breath.");
 	output("\n\nRen groans a breathy <i>“Fuck!”</i> and plants her brow in her hands, breathing hard. <i>“I can’t even go soft with this suit on. Urgh, it feels like I’m ready to cum again already!”</i>");
 	output("\n\nYou just grin, using two fingers to push down the crown of your [pc.cockOrStrapon " + x + "] until its pressing into the tight ring of her ass. Ren’s cock jumps at the slightest bit of pressure, but her asshole is so stuffed with lube that it opens like a lover’s mouth, eagerly inviting your cockhead in and gripping it with all the sultry firmness her latex-clad body can muster.");
 	output("\n\nA full body shudder rocks through you as your [pc.cockOrStrapon " + x + "] is wrapped inside Ren’s tight hole, gripped by slicked-up latex and pushing hard against the stretchy tip. Her suit is elastic, but not so much so that it doesn’t resist you stretching it deep into its wearer’s ass. So for now, you’re forced to take it slow, easing yourself inside inch by vice-tight inch. Terensha’s breath comes husky and ragged as you progress, her back and tail both arching for you.");
@@ -1078,7 +1080,7 @@ public function askAboutRensSuit():void
 	clearMenu();
 	if(pc.credits >= 10) addButton(0, "Okay", tellMeYourStoryRen,undefined, "Okay", "That’s a cheap price for what promises to be an interesting story. Why not?\n\nCosts 10 Credits.");
 	else addDisabledButton(0, "Okay", "Okay", "That’s a cheap price... but it’s not one you can afford.\n\nCosts 10 Credits.");
-	addButton(1,"Nevermind", jkNevermindRen);
+	addButton(1,"Never Mind", jkNevermindRen);
 }
 
 public function jkNevermindRen():void

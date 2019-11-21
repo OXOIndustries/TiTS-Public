@@ -31,7 +31,7 @@
 			this.originalRace = "robot";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You’re fighting some kind of monstrous crab-spider made of black metal and grinding gears, equipped with several gnashing claws and drills for extraterrestrial excavation. A pair of glowing red <i>“eyes”</i> - really sensors, and clearly quite powerful - stare down at you, one over the other. The steel beast has no mouth, its lunges and strikes are all accompanied by howls of crackling static across all channels, giving it an almost bestial roar!";
+			this.long = "You’re fighting some kind of monstrous crab-spider made of black metal and grinding gears, equipped with several gnashing claws and drills for extraterrestrial excavation. A pair of glowing red “eyes” - really sensors, and clearly quite powerful - stare down at you, one over the other. The steel beast has no mouth, its lunges and strikes are all accompanied by howls of crackling static across all channels, giving it an almost bestial roar!";
 			this.customDodge = "It’s bouncing, insectoid movements carry it out of the way!";
 			this.customBlock = "The machine’s thick plates cause the attack to glance off!";
 			this.isPlural = false;
@@ -187,6 +187,7 @@
 			
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Stun Immune");
+			this.createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "E.Rbt";
@@ -207,7 +208,7 @@
 			if(rand(2) == 0) this.inventory.push(new Satyrite());
 			if(this.inventory.length == 0) this.inventory.push(new Satyrite());*/
 		}
-					
+		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
@@ -261,7 +262,7 @@
 				meleeWeapon.baseDamage.removeFlag(DamageFlag.CRUSHING);
 				applyDamage(meleeDamage(), this, target, "minimal");
 
-				if(!target.hasStatusEffect("Tripped")) 
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted()) 
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>You’re prone (tripped)!</b>");

@@ -119,7 +119,7 @@
 					}
 				}
 				//Increase height to 6' then rarely to 6'5"
-				if (changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 72 && rand(10) == 0))) {
+				if (changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 77 && rand(10) == 0))) {
 					if (target.tallnessUnlocked(77))
 					{
 						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn’t quite right. You... are you taller? You check the codex’s scanners and confirm that you’ve grown ");
@@ -184,6 +184,9 @@
 					{
 						kGAMECLASS.output("\n\nAll sound vanishes in an instant. You clap your hands to your [pc.ears], wondering if you’ve gone deaf, but they come up against nothing! Your ears have vanished! Just as you start considering learning a form of sign language or finding a back alley geneticist, the sounds you were hearing before come back with an oddly directional twist. You feel around the sides and top of your head to quickly find your new ears. They’re triangular and perched atop your head, swiveling this way and that to help you easily identify the source of any noise. <b>You’ve grown cat-like naleen ears!</b>");
 						target.earType = GLOBAL.TYPE_FELINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else
@@ -261,7 +264,7 @@
 				if(target.vaginaTotal() > 1) kGAMECLASS.output("Each");
 				else kGAMECLASS.output("It");
 				kGAMECLASS.output(" is near-instantly engorged and wanting");
-				if(target.vaginas[x].clits > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
+				if(target.totalClits() > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
 				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It’s getting longer vertically while the vulva, even aroused, become less noticeable.");
 				if(target.vaginas[x].clits <= 0) kGAMECLASS.output(" A sensitive nub grows from the top, forming a pulsing, needy clit.");
 				else if(target.vaginas[x].clits > 1) {
@@ -281,8 +284,7 @@
 				//Loop through and set 'em all, baby!
 				for(x = 0; x < target.totalVaginas(); x++)
 				{
-					target.vaginas[x].clits = 1;
-					target.vaginas[x].type = GLOBAL.TYPE_NAGA;
+					target.shiftVagina(x, GLOBAL.TYPE_NAGA);
 				}
 				changes++;
 			}

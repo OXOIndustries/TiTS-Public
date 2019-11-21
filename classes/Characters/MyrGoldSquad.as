@@ -259,15 +259,15 @@ package classes.Characters
 		
 		private function myrSquadCharge(target:Creature):void
 		{
-			output("<i>“Charge!”</i> one of the myr screams, before hurling herself at you brandishing a quartet of axes. Several of the others follow suit, lunges with long knives, hatchets, and any other sharp implement at hand. ");
+			output("<i>“Charge!”</i> one of the myr screams, before hurling herself at you brandishing a quartet of axes. Several of the others follow suit, lunges with long knives, hatchets, and any other sharp implement at hand.");
 			
 			if (combatMiss(this, target))
 			{
-				output("You dodge past the first myr’s bull-rush, grab another and shove her back into her fellows, barreling the lof of them over and ending their charge.");
+				output(" You dodge past the first myr’s bull-rush, grab another and shove her back into her fellows, barreling the lot of them over and ending their charge.");
 			}
 			else
 			{
-				output("The sheer press of golden-plated bodies overwhelms your defenses, and you’re battered down by dozens of strikes and slashes!");
+				output(" The sheer press of golden-plated bodies overwhelms your defenses, and you’re battered down by dozens of strikes and slashes!");
 				
 				var damage:TypeCollection = meleeDamage().multiply(1.2);
 				if(target.hasStatusEffect("Tripped")) damage.multiply(2.5);
@@ -309,7 +309,7 @@ package classes.Characters
 		{
 			output("Shrieking with rage, several of the myr lunge at you in a surge of hardened bodies. ");
 			
-			if(target.reflexes()/2 + rand(20) + 1 < this.reflexes()/2 + 13)
+			if((target.reflexes()/2 + rand(20) + 1 < this.reflexes()/2 + 13) && !target.isPlanted())
 			{
 				output("They leap on you, grabbing your arms and [pc.legs] and barreling you to the ground. You’re trapped beneath a writhing pile of bodies, all struggling to keep you from getting up while their sisters ready for another attack! <b>You’re prone!</b>");
 				

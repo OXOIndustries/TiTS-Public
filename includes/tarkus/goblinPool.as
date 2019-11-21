@@ -361,7 +361,7 @@ public function arbetzMainOptions(response:int = 0):void
 			// [Insist] [Go Back]
 			clearMenu();
 			addButton(0, "Insist", arbetzTalkOptions, 7, "Insist", "Insist on sex.");
-			addButton(1, "Go Back", arbetzMainMenu, false, "Nevermind", "Choose to do something else.");
+			addButton(1, "Go Back", arbetzMainMenu, false, "Never Mind", "Choose to do something else.");
 		}
 		// Repeat
 		else
@@ -883,7 +883,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (!isTightFit)
 		{
 			output("\n\n<i>“Oh, stop making a meal out of it,”</i> you " + pc.mf("chuckle", "giggle") + ", closing your eyes to the pleasure of easily sliding in inch after inch of your");
-			if ((pc.cockVolume(y) * 1.5) <= pp.analCapacity()) output(" cute");
+			if (pc.cLength(y) < 6) output(" cute");
 			else output(" decently-sized");
 			output(", sensitive cock past his clenching ring. <i>“Imagine if your mistress had made you go with a REAL monster.”</i>");
 		}
@@ -1065,7 +1065,7 @@ public function arbetzSexScenes(response:String = ""):void
 		if (inButt) output(" [pc.anus]");
 		else output(" twat");
 		output(" that he drives to his own high. He holds your head firmly and uses the succulent friction of your [pc.tongue] and [pc.lips] frenetically, saliva running down your chin and liberally coating the steady beat of his balls, until with a hoarse bark he reaches it, his cock swelling up and then surging thick, coating cum into your mouth and down your gullet. Simmering in well-fucked pleasure you curl your hands around his tight bum and drink it down, not letting him escape your suck until the poor, blowjob-starved boy has given you every last musky drop. You give his turgid dick a teasing lick when he finally releases you and draws himself out.");
-		output("\n\n<i>“ ...awesome,”</i> he sighs, leaning back against the headboard. A grinning Godi sinuously slides up on the other side and once again you find yourself sandwiched between lean, hot boy beef, lightly oiled with sweat. You lean into one and enjoy the feeling of cum leaking steadily out of your gently gaped");
+		output("\n\n<i>“...awesome,”</i> he sighs, leaning back against the headboard. A grinning Godi sinuously slides up on the other side and once again you find yourself sandwiched between lean, hot boy beef, lightly oiled with sweat. You lean into one and enjoy the feeling of cum leaking steadily out of your gently gaped");
 		if (inButt) output(" asshole");
 		else output(" pussy");
 		output(". <i>“You’ll keep coming around, right [pc.name]? I could definitely get used to this kind of spreadsheet break.”</i> Godi murmurs his agreement, hand brushing down your [pc.lowerBody]. <i>“You wanna go again in five?”</i> asks Petr, enthusiasm husking his voice. <i>“It’s not been an hour yet.”</i>");
@@ -1277,7 +1277,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 1);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 1);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// PC is female, D cup or above, is not pregnant, is wearing something
@@ -1289,7 +1289,7 @@ public function arbetzPoolOptions(response:int = 0):void
 			processTime(2);
 			
 			// [Do it] [No]
-			addButton(0, "Do it", arbetzPoolJUSTDOIT, 0);
+			addButton(0, "Do It", arbetzPoolJUSTDOIT, 0);
 			addButton(1, "No", arbetzPoolOptions, 3);
 		}
 		// Otherwise
@@ -1329,10 +1329,19 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	showUna();
 	clearMenu();
 	
+	var clothingCount:int = 0;
+	if(pc.hasArmor()) clothingCount++;
+	if(pc.hasUpperGarment()) clothingCount++;
+	if(pc.hasLowerGarment()) clothingCount++;
+	var inOnepiece:Boolean = (pc.hasArmor() && !pc.isChestExposedByArmor() && !pc.isCrotchExposedByArmor() && !pc.hasUpperGarment() && !pc.hasLowerGarment());
+	var inTwopiece:Boolean = ((pc.hasArmor() || pc.hasUpperGarment()) && !pc.isChestExposed() && pc.hasLowerGarment());
+	
 	output("This is near enough a free lunch, really.");
 	if (pc.exhibitionism() < 66) output(" Slightly self-consciously");
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
-	output(", you begin to take off your [pc.gear], piece by piece.");
+	output(", you begin to take off your [pc.gear]");
+	if(clothingCount > 1) output(", piece by piece");
+	output(".");
 	
 	// PC has any non-exposed, non-swimwear lower undergarment:
 	if (pc.hasLowerGarment() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
@@ -1369,7 +1378,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Male
 	if (sex == 1)
 	{
-		output(" <i>“Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce");
+		if(inOnepiece) output(" whilst displacing the top half of your [pc.armor] with a little flourish and keeping your bottom half dressed");
+		else if(inTwopiece) output(" whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment]");
+		output(".");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.cock] is hotly erect from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested,");
@@ -1383,7 +1395,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Female
 	if (sex == 0)
 	{
-		output(" <i>“Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce");
+		if(inOnepiece) output(" whilst displacing the top half of your [pc.armor] with a little flourish and keeping your bottom half dressed");
+		else if(inTwopiece) output(" whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment]");
+		output(".");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.vagina] is flush with [pc.girlCum] from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested");
@@ -1593,15 +1608,17 @@ public function arbetzBuyGoblinola(vendedItem:ItemSlotClass):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
-public function arbetzVendItem(vendedItem:ItemSlotClass, price:Number = 0):void
+public function arbetzVendItem(vendedItem:ItemSlotClass, price:Number = 0, quantity:int = 1):void
 {
 	var vendedItemList:Array = [];
-	
-	vendedItemList.push(vendedItem);
 	
 	if (price > 0) pc.credits -= price;
 	else pc.credits -= vendedItem.basePrice;
 	
+	for (var i:int = quantity; i > 0; i--)
+	{
+		vendedItemList.push(vendedItem);
+	}
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
@@ -1639,7 +1656,7 @@ public function arbetzPetrBuy():void
 	showBust("PETR");
 	showName("BUY\nSWIMWEAR");
 }
-public function arbetzPetrBuyGo(item:ItemSlotClass):void
+public function arbetzPetrBuyGo(item:ItemSlotClass, quantity:int):void
 {
 	author("Nonesuch");
 	showBust("PETR");
@@ -1648,11 +1665,11 @@ public function arbetzPetrBuyGo(item:ItemSlotClass):void
 	output("You give Petr the money. He leans behind the desk and retrieves your swimsuit, which is thankfully well laundered and ironed.");
 	output("\n\n<i>“Thanks, and take it easy,”</i> he grins.");
 	
-	var price:Number = getBuyPrice(chars["PETR"],item.basePrice);
-	output("\n\nYou purchase " + item.description + " for " + num2Text(price) + " credits.");
+	var price:Number = getBuyPrice(chars["PETR"],item.basePrice) * quantity;
+	output("\n\nYou purchase " + item.description + "(x" + quantity + ") for " + num2Text(price) + " credits.");
 	output("\n\n");
 	
 	processTime(2);
 	
-	arbetzVendItem(item, price);
+	arbetzVendItem(item, price, quantity);
 }

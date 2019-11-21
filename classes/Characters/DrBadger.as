@@ -6,6 +6,7 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Miscellaneous.Dumbfuck;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Transformatives.Soak;
 	import classes.Items.Accessories.BimboleumDefenseSystem;
 	import classes.Items.Guns.SlutRay;
 	public class DrBadger extends Creature
@@ -17,11 +18,15 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
+			// Note: Shop inventory handeled by drBadgerBuyMenu(), in tarkus/drBadger.as
+			/*
 			this.inventory.push(new Dumbfuck());
 			this.inventory.push(new Gush());
+			this.inventory.push(new Soak());
 			this.inventory.push(new Throbb());
 			this.inventory.push(new SlutRay());
 			this.inventory.push(new BimboleumDefenseSystem());
+			*/
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -30,7 +35,6 @@
 			keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
 			keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
 			keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
-
 
 			this.short = "Dr. Badger";
 			this.originalRace = "anthromorph";
@@ -82,20 +86,22 @@
 			this.skinTone = "black";
 			this.skinFlags = [GLOBAL.FLAG_THICK, GLOBAL.FLAG_FLUFFY];
 			this.faceType = GLOBAL.TYPE_BADGER;
-			this.faceFlags = [GLOBAL.FLAG_MUZZLED]
+			this.faceFlags = [GLOBAL.FLAG_MUZZLED];
 			this.tongueType = GLOBAL.TYPE_BADGER;
 			this.lipMod = 1;
 			this.earType = GLOBAL.TYPE_BADGER;
+			this.earFlags = [GLOBAL.FLAG_FURRED];
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
 			this.armType = GLOBAL.TYPE_BADGER;
+			this.armFlags = [GLOBAL.FLAG_FURRED];
 			this.gills = false;
 			this.wingType = 0;
 			this.legType = GLOBAL.TYPE_BADGER;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -103,7 +109,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_BADGER;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -182,6 +188,22 @@
 			this._isLoading = false;
 			this.createStatusEffect("Undetected Furpies");
 		}
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			// Readjust types and flags
+			dataObject.tailType = GLOBAL.TYPE_BADGER;
+			dataObject.tailFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
+			dataObject.skinType = GLOBAL.SKIN_TYPE_FUR;
+			dataObject.skinFlags = [GLOBAL.FLAG_THICK, GLOBAL.FLAG_FLUFFY];
+			dataObject.legType = GLOBAL.TYPE_BADGER;
+			dataObject.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
+			dataObject.armType = GLOBAL.TYPE_BADGER;
+			dataObject.armFlags = [GLOBAL.FLAG_FURRED];
+			dataObject.faceType = GLOBAL.TYPE_BADGER;
+			dataObject.faceFlags = [GLOBAL.FLAG_MUZZLED];
+			dataObject.earType = GLOBAL.TYPE_BADGER;
+			dataObject.earFlags = [GLOBAL.FLAG_FURRED];
+		}
 		public function UpgradeVersion4(dataObject:Object):void
 		{
 			dataObject.inventory.push(new BimboleumDefenseSystem().getSaveObject());
@@ -200,7 +222,6 @@
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
 		}
-		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new Gush().getSaveObject());
@@ -209,6 +230,14 @@
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();
+		}
+		override public function get bustDisplay():String
+		{
+			return "DRBADGER";
+		}
+		override public function isBimbo():Boolean
+		{
+			return (kGAMECLASS.flags["BADGER_QUEST"] <= -3);
 		}
 	}
 }

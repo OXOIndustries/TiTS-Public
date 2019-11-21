@@ -186,7 +186,7 @@ package classes.Items.Transformatives
 			if(phase >= 1 && target.statusEffectv3("Thicc&Shake") == 0)
 			{
 				// Queue overdose scene!
-				var chance:int = Math.max((5 - doses), 5);
+				var chance:int = Math.min(Math.max((5 - doses), 1), 5);
 				if(phase >= 3 && (doses >= 5 || rand(chance) == 0 || (target.hipRatingRaw >= 20 && target.buttRatingRaw >= 20)) && !kGAMECLASS.disableExploreEvents())
 				{
 					msg += "\n\nYour Codex beeps, <i>“<b>Warning:</b> The stimulation of the Thicc&Shake nanomachines <b>will</b> cause unknown side effects!”</i>";
@@ -499,11 +499,14 @@ package classes.Items.Transformatives
 			if(!target.hasPerk("Fecund Figure") && (target.isPregnant() || target.fertility() > 0))
 				perkList.push("Fecund Figure");
 			// Gained the “Bubble Butt” Perk
-			if(!target.hasPerk("Bubble Butt") && target.buttRatingRaw >= 10)
+			if(!target.hasPerk("Bubble Butt") && target.buttRatingRaw >= 10 && !target.hasPerk("Buns of Steel"))
 				perkList.push("Bubble Butt");
 			// Gained the “Hips Don’t Lie” Perk
 			if(!target.hasPerk("Hips Don't Lie") && target.hipRatingRaw >= 10)
 				perkList.push("Hips Don't Lie");
+			// Lose the “Buns of Steel” Perk
+			if(target.hasPerk("Buns of Steel"))
+				perkList.push("Buns of Steel");
 			
 			if(perkList.length > 0 && (doses >= 5 || rand(3) == 0))
 			{
@@ -552,6 +555,12 @@ package classes.Items.Transformatives
 						target.createPerk("Hips Don't Lie", 0, 0, 0, 0, "Your hips will always remain wide and girthy to give you the appearance of a fertility goddess.");
 						
 						target.lust(35);
+						break;
+					case "Buns of Steel":
+						output("\n\nA shiver runs across your [pc.butts] and suddenly they don’t feel as extra tight and firm as they did before... You suppose this is one of the side effects of the Thicc&Shake cream....");
+						output("\n\n(<b>Perk Lost: Buns of Steel</b>)");
+						
+						target.removePerk("Buns of Steel");
 						break;
 				}
 			}

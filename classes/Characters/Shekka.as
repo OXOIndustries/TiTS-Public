@@ -12,21 +12,26 @@
 	import classes.Items.Apparel.Smartclothes;
 	import classes.Items.Upgrades.ExpandedBackpackI;
 	import classes.Items.Armor.Unique.StrangeCollar;
+	import classes.Items.Protection.ScrapShield;
+	import classes.Items.Apparel.RogueRags;
 	
 	public class Shekka extends Creature
 	{
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
+			// Note: Shop inventory now handeled in shekkaShop();
+			/*
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
 			this.inventory.push(new Smartclothes());
 			this.inventory.push(new StrangeCollar());
 			this.inventory.push(new ExpandedBackpackI());
+			*/
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.GADGET;
 			this.typesBought[this.typesBought.length] = GLOBAL.ACCESSORY;
@@ -217,6 +222,23 @@
 		{
 			dataObject.vaginas[0].hymen = false;
 			dataObject.analVirgin = false;
+		}
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			dataObject.inventory.push(new RogueRags().getSaveObject());
+			dataObject.inventory.push(new ScrapShield().getSaveObject());			
+		}
+		override public function cumQ():Number
+		{
+			if(this.hasStatusEffect("Fixed CumQ"))
+			{
+				return statusEffectv1("Fixed CumQ");
+			}
+			return 950;
+		}
+		override public function get bustDisplay():String
+		{
+			return "SHEKKA";
 		}
 		override public function onLeaveBuyMenu():void
 		{

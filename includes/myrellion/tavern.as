@@ -5,6 +5,13 @@
 
 public function goldenPeakBonusFunction():Boolean
 {
+	//Embry xmas stuff GOOOO!
+	if(MailManager.isEntryUnlocked("emrby_xxxmas_invite") && pc.hasGenitals() && isChristmas() && flags["EMBRY_XMAS_2018_VISIT_PROC"] == undefined)
+	{
+		embryBarRedirect2018Xmas();
+		return true;
+	}
+
 	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" Throw in a few more shady characters and a fist fight, and it’d feel like home!");
 	output(" A holoscreen is set up just over the bar, showing reruns of Steph Irson: Galactic Huntress.");
 
@@ -43,6 +50,7 @@ public function goldenPeakBonusFunction():Boolean
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits(2);
 	roamingBarEncounter(3);
+	if (biancaAtBar("myrellion") && biancaBarBonus(4)) return true;
 	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won’t watch itself!");
 	vendingMachineButton(7, "J'ejune");
 	

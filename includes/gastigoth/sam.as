@@ -90,7 +90,7 @@ public function samsPrisonRoom(impregnate:Boolean = false):void
 	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,[false, false],"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
 	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
-	addButton(14,"Nevermind",backOuttaPrisonVisit);
+	addButton(14,"Never Mind",backOuttaPrisonVisit);
 }
 
 public function samPrisonStuff(args:Array):void
@@ -112,10 +112,11 @@ public function samPrisonStuff(args:Array):void
 
 	output("\n\nWhen the flow begins to abate, you grab her ass to lap hungrily at her still-spasming labia, and Sam whines pathetically in overstimulation. ");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You thrust your inhuman tongue into the dark ausar, spearing her sex with as much of your oral appendage as possible. Sam spasms fitfully in her bonds, alternatively trying to pull away and thrust back onto your tongue. She’s still coming down from her orgasm, but her hungry cunt has finally been penetrated properly, and her overly sensitive nerves war with her instincts for control of her reflexes, ultimately leaving the girl helpless against your oral onslaught. You ravage her juicy box, tormenting her dripping tunnel with your tongue while sucking at her swollen clitoris with your [pc.lips] until Sam is forced to cum once more, howling her overwhelming pleasure as she gushes more girly fluids all over your thirsty tongue. Her folds clench and spasm at your muscle so tightly that you are forced to extend more of the alien appendage. You wince as her vaginal muscles furiously milk your tongue for seed that just won’t come.");
-	else output("Your tongue gathers as much of her moisture as possible, thirstily sampling her taste and lavishing as much pleasure as you can on her swollen mound. Sam trembles and nervelessly kicks her shackled legs when your [pc.lips] seal around her swollen clitoris. You polish her pearl with your tongue, running the appendage under her hood until she yelps from the painful pleasure. You take pity on the pretty jailbird and move upwards, thrusting your tongue into her drenched channel. She howls in delight and frustration, her body given just a cruel hint of the penetration it so badly craves even as her nerves are still sensitized by her last climax.");
-
-	output("\n\nSam’s pussy weeps more bittersweet fluid in anguish, and you lick every drop of the delicious nectar you can off of her spasming folds. In just a short time, your rug-munching forces the ausar to another howling, gushing orgasm, all too soon after her previous one. It’s all you can do to withdraw your tongue from her clenching folds, her vaginal muscles desperately milking your appendage for seed that just won’t come.");
-
+	else
+	{
+		output("Your tongue gathers as much of her moisture as possible, thirstily sampling her taste and lavishing as much pleasure as you can on her swollen mound. Sam trembles and nervelessly kicks her shackled legs when your [pc.lips] seal around her swollen clitoris. You polish her pearl with your tongue, running the appendage under her hood until she yelps from the painful pleasure. You take pity on the pretty jailbird and move upwards, thrusting your tongue into her drenched channel. She howls in delight and frustration, her body given just a cruel hint of the penetration it so badly craves even as her nerves are still sensitized by her last climax.");
+		output("\n\nSam’s pussy weeps more bittersweet fluid in anguish, and you lick every drop of the delicious nectar you can off of her spasming folds. In just a short time, your rug-munching forces the ausar to another howling, gushing orgasm, all too soon after her previous one. It’s all you can do to withdraw your tongue from her clenching folds, her vaginal muscles desperately milking your appendage for seed that just won’t come.");
+	}
 	output("\n\nBetween deep, gasping breaths, Sam manages to blabber out, ");
 	if(silly) output("<i>“Insert pen0r into vag00! J-j-j-jam it in!”</i>");
 	else output("<i>“Please! CUM IN ME!”</i>");
@@ -174,12 +175,13 @@ public function samPrisonStuff(args:Array):void
 		else output("Unfortunately for Sam, you don’t have the knot she’s begging you to plug her with, but you’ve still got the virile seed she desperately wants to quench the raging fires of her lust. As your [pc.cock " + x + "] twitches and throbs powerfully in orgasm, you stuff her box in time with your ejaculations, almost blacking out at the feeling of her swampy cunny feverishly pulling your member back in each time.");
 		output(" You groan loudly and double over her sweat-slicked back as your breed her orgasmically-contracting pussy.");
 
+		var cumQ:Number = pc.cumQ();
 		//Pregnant:
 		if(sam.isPregnant())
 		{
 			output("\n\nWith a litter of pups already occupying her womb, Sam’s cervix remains steadfastly closed. You’re too overwhelmed with your orgasm to care, and your biological imperative keeps you stubbornly cumming in the ausar’s already-pregnant pussy, as if she could carry more of your children if you just tried hard enough.");
 			//anything more than big cummies:
-			if(pc.cumQ() >= 500) 
+			if(cumQ >= 500) 
 			{
 				output(" Your inhuman load quickly fills up Sam’s pussy, bathing every millimeter of her folds in your hot, [pc.cumFlavor] [pc.cumNoun], the rest backwashing out in high-pressure gouts of wasted [pc.cum] ");
 				if(pc.hasKnot(x)) output("even in spite of your knot");
@@ -188,14 +190,14 @@ public function samPrisonStuff(args:Array):void
 			else output(" Your [pc.cock " + x + "] spurts lances of hot, [pc.cumFlavor] [pc.cumNoun], basting Sam’s folds in the proof of your virility.");
 		}
 		//Regular cummies:
-		else if(pc.cumQ() <= 1000)
+		else if(cumQ <= 1000)
 		{
 			output("\n\nYour [pc.cock " + x + "] spurts lances of hot, [pc.cumFlavor] [pc.cum], basting Sam’s folds in the proof of your virility. ");
 			if(pc.hasKnot(x)) output("Your knot ensures every drop stays right where it belongs. ");
 			output("The blonde girl howls in delight as you fill her box, and squeezes down on you so hard it hurts, even after you’ve stopped cumming.");
 			output("\n\n<i>“More! More! Give! Me! Pups!”</i> she manages a few more pleas, but you’ve given her all you have.");
 		}
-		else if(pc.cumQ() <= 10000)
+		else if(cumQ <= 10000)
 		{
 			output("\n\nYour [pc.cock " + x + "] gouts great flumes of hot, [pc.cumFlavor] [pc.cumNoun], filling Sam’s tunnel with just a few spurts and stuffing her fertile womb with the remainder. ");
 			if(pc.hasKnot(x)) output("With your knot sealing her entrance, her cervix has no choice but to accept the entirety of your massive load.");
@@ -225,8 +227,8 @@ public function samPrisonStuff(args:Array):void
 		}
 		else output("\n\nOnce you’ve finished breeding Sam, you pull out of her and step back, the sated girl whining as you leave her feeling very empty. You stroke her canine ears with a sarcastic <i>“Good girl.”</i>");
 		output(" The instant her pussy is unplugged, a torrent of ");
-		if(pc.cumQ() < 200) output("clear, earthy girlcum tinged off-[pc.cumColor]");
-		else if(pc.cumQ() <= 1000) output("clear, earthy girlcum mixed with your [pc.cumNoun]");
+		if(cumQ < 200) output("clear, earthy girlcum tinged off-[pc.cumColor]");
+		else if(cumQ <= 1000) output("clear, earthy girlcum mixed with your [pc.cumNoun]");
 		else output("your [pc.cumNoun], discolored by her clear, earthy girlcum,");
 		output(" gushes out of her to splatter wetly into her ruined pants before she reflexively squeezes her internal muscles to hold in your cum. You admire your handiwork: Sam’s pretty, pink ausar pussy is clenched tight to hold in your cum after being thoroughly creampied, and you, she, and everything around you are splattered in your mixed sexual fluids. The jailbird herself is barely conscious, but her tail is swishing gaily, and her face looks totally content, as if this is the first time in a while she has been able to truly relax.");
 
@@ -247,7 +249,7 @@ public function samPrisonStuff(args:Array):void
 	else if(pc.hasHardLightEquipped())
 	{
 		output("\n\nUnfortunately for the bound beauty, you have no such plans for her. After your vigorous bout of pussy eating, you’re so horny it hurts, so you ");
-		if(!pc.isNude()) output("strip off everything but you [pc.lowerUndergarment] as quickly as possible and ");
+		if(!pc.isNude()) output("strip off everything but your [pc.lowerUndergarment] as quickly as possible and ");
 		output("flick on your hardlight projector and begin slathering some of the cunny honey from your face onto your artificial wang for lubrication. Not that you really need it with Sam’s faucet of a cunt. So close to her goal of being filled with dickmeat, her slippery pink tunnel clenches excitedly, still wracked with orgasmic aftershocks and drizzling femlube into Sam’s hiked-down pants. You slide your strapon up and down through the sopping wet channel of her vulva to tease her a bit, savoring the incredible wet heat her uterus is exuding and the sticky sound of her juices sliding across the hardlight.");
 		output("\n\nAs the head of your dildo drags through her gates, the blonde-furred girl lets out the most pitiful whine you’ve ever heard. She looks back at you with a lust-dazed expression before furrowing her brow in confusion. <i>“What is that? That’s not a cock! What are you doing?!? I need you to fuck me and cum in me! I don’t want some stupid dildo right now! I NEED CUM!!!”</i> Feeling ");
 		if(pc.isNice()) output("a bit guilty for getting her hopes up");

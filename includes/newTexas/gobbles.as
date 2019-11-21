@@ -132,7 +132,7 @@ public function orderUpOneTurkeySlut():void
 	if (pc.isBiped()) output(" pull up a chair");
 	else output(" seat yourself on your animalistic lower body");
 	output(", patting your thigh for the cow to sit on your lap. She crawls on happily, blushing furiously as you play a hand across one of her heavy-laden breasts. You cup the huge teat, watching your fingers sink into her soft flesh, utterly disappearing into a sea of welcoming boobflesh. The tiniest little squeeze causes a bead of moisture to form on the tip of her nipple, a dark splotch of viscous amber. The smell hits you instantly, the sweet scent of sugar-saturated maple that floods your mind with memories of childhood, pancakes, and the rich taste of syrup. If you hadn’t been sure about suckling from the cow before, you are now - you couldn’t help yourself if you tried.");
-	if (pc.isTreatedMale()) output(" Not that you would. A pair of tits like that is too good to pass up.");
+	if (pc.isTreatedBull()) output(" Not that you would. A pair of tits like that is too good to pass up.");
 	
 	output("\n\nYou heft her tit up to your mouth and latch on, using your [pc.tongue] to lap up the dollop of syrup cresting her stiff point. The sheer sweetness almost makes you wince, and you suck in a sharp breath as the sugary droplet bursts over the tip of your tongue. So sugary that it’s sweet as candy, and hotter than you would have expected - perfect to be spread over a plate of pancakes. If only... Still, you lean back");
 	if (pc.isBiped()) output(" in your chair");
@@ -258,7 +258,7 @@ public function orderUpOneCumshakeForTurkeySlut():void
 	output("\n\nShe gobbles your member down with gusto, taking you to the hilt in one swift motion");
 	if (pc.balls > 0) output(" that leaves her chin pressed into the swell of your [pc.balls]");
 	output(". Her big blue eyes glance up at you, clouding with pride as you give her an approving smile and moan. Her big, bovine tongue wraps around your shaft and her mouth pulls back to your [pc.cockHead], slathering you with drool. Her mouth works hard to get you ready, pumping up and down your shaft with ready abandon until you’re on the brink of orgasm. If there’s one thing Treated girls know how to do, it’s handle a cock with all the love in the world. She gently sucks and licks, covering your rod in gentle kisses");
-	if (pc.balls > 0) output(" and cupping your balls oh so sweetly, rolling the heavy nads in her hand until you can feel the cum churning in them, ready to burst");
+	if (pc.balls > 0) output(" and cupping your balls oh-so-sweetly, rolling the heavy nads in her hand until you can feel the cum churning in them, ready to burst");
 	output(".");
 	
 	output("\n\nJust before it’s too late, though, the cow releases your rod, letting it bob in the warm air. You groan, shifting your [pc.legOrLegs] against the hay-covered ground. Instinctively you reach for your rod, trying to bring yourself to orgasm where she would not, but the cow bats your hands away. Instead, after you’ve had a moment to calm down, the cow-girl cups her syrup-laden tits and hefts them up into your lap. <i>“They’re so much softer than any other cow’s,”</i> she boasts, wrapping her tits around your stiff prick with practiced ease. <i>“I’m full of nice, thick syrup instead of watery old milk, you know... can you feel the difference?”</i>");
@@ -438,13 +438,13 @@ public function milkGobblesRepeat():void
 	else output("on your haunches");
 	output(", and the cow-girl shudders in response as your [pc.leg] grinds against her sex. She only barely suppresses a moan, turning it into a cute little whimper as she pushes back ever so slightly against you. Her pussy rubs wetly over your [pc.leg], and you can feel her tits tremble and squirt in turn, pumping out a thicker and faster trail of syrup that plops onto the surface of the bucket. Another desperate moan escapes Canada’s lips as her movements become more and more erratic, more desperate");
 	//elseif PC has a dick OR hardlight strapon: 
-	if(pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) output(" until she finally looks over her shoulder at you and murmurs: <i>“I-if you want to fuck me, you can.... Treated girls give the best milk - or, um, syrup I guess - when we’re happy. That’s what they say, anyway.”</i>");
+	if(pc.hasCock() || pc.hasHardLightEquipped()) output(" until she finally looks over her shoulder at you and murmurs: <i>“I-if you want to fuck me, you can.... Treated girls give the best milk - or, um, syrup I guess - when we’re happy. That’s what they say, anyway.”</i>");
 	else output(".");
 
 	pc.lust(20);
 	processTime(10);
 	//if PC has a dick/strapon, option to [Fuck Her] or [No]. Else, continue with <i>“no”</i> for non-cockbags
-	if(pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckAmeriturkeyGobbleButt,undefined,"Fuck Her","I think we all know where this is going....");
+	if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckAmeriturkeyGobbleButt,undefined,"Fuck Her","I think we all know where this is going....");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","This scene requires a penis or hardlight strap-on.");
 	addButton(1,"Cuddle",noCockTurkeyBastingRoundIIYEehawAMURRICA,undefined,"Cuddle","Cuddle up with the turkey - no sex needed.");
 }

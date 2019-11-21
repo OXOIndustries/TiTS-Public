@@ -12,9 +12,12 @@
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Guns.LaserPistol;
+	import classes.Items.Protection.BasicShield;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
+	import classes.StringUtil;
 	
 	public class MilodanMale extends Creature
 	{
@@ -204,16 +207,48 @@
 		override public function get bustDisplay():String
 		{
 			var str:String = "MILODANMALE";
-			
-			switch(this.meleeWeapon.longName)
+			if(short != "milodan brute")
 			{
-				case "heavy club": str += "_CLUB"; break;
-				case "axe": str += "_AXE"; break;
+				switch(this.meleeWeapon.longName)
+				{
+					case "heavy club": str += "_CLUB"; break;
+					case "axe": str += "_AXE"; break;
+				}
 			}
+			else str = "MILODANMALE";
 			return str;
 		}
 		override public function physiqueMax(raw:Boolean = false): Number {
 			return 75;
+		}
+
+		public function wargiiQuestConfigure():void
+		{
+			short = "milodan brute";
+			baseHPResistances.tease.damageValue = 25.0;
+			baseHPResistances.pheromone.damageValue = -50.0;
+			this.HPMod = 150;
+			this.armor.defense = 10;
+			this.armor.longName = "combat armor";
+			this.armor.description = "a suit of combat armor";
+			this.shield = new BasicShield();
+			this.shield.shields = 100;
+			this.shield.hasRandomProperties = true;
+			this.hairColor = "white";
+			this.inventory = new Array();
+			this.meleeWeapon.attack = 9;
+			this.meleeWeapon.baseDamage.electric.damageValue = 6;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 6;
+			this.meleeWeapon.longName = "shock baton";
+			this.meleeWeapon.description = "a shock baton";
+			this.meleeWeapon.attackVerb = "swing";
+			this.meleeWeapon.attackNoun = "sizzling smack";
+			this.rangedWeapon = new LaserPistol();
+			this.rangedWeapon.longName = "Pyrite Industries laser pistol";
+			this.rangedWeapon.description = "a Pyrite Industries laser pistol";
+			this.rangedWeapon.hasRandomProperties = true;
+			this.shieldsRaw = this.shieldsMax();
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 		}
 		private function randomise():void 
 		{
@@ -269,30 +304,72 @@
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-			
-			if(this.hasStatusEffect("Disarmed") && this.meleeWeapon.longName != "claw") this.changeWeapon("claw");
-			
 			var attackChoices:Array = new Array();
-			if(this.hasStatusEffect("Blind") || this.hasStatusEffect("Blindness") || this.hasStatusEffect("Blinded")) 
+			//Normal boi
+			if(this.short != "milodan brute")
 			{
-				scentOfThePrey(target);
-				return;
-			}
-			if((this.hasStatusEffect("Stunned") || this.hasStatusEffect("Staggered")) && !this.hasStatusEffect("Berserk"))
-			{
-				berserk(target);
-				return;
-			}
-			attackChoices.push(milodanAttack);
-			attackChoices.push(milodanAttack);
-			attackChoices.push(milodanAttack);
-			if(target.shields() <= 0 && !target.hasStatusEffect("Stunned")) attackChoices.push(spinningBackfistAttack);
+				if(this.hasStatusEffect("Disarmed") && this.meleeWeapon.longName != "claw") this.changeWeapon("claw");
+				
+				
+				if(this.hasStatusEffect("Blind") || this.hasStatusEffect("Blindness") || this.hasStatusEffect("Blinded")) 
+				{
+					scentOfThePrey(target);
+					return;
+				}
+				if((this.hasStatusEffect("Stunned") || this.hasStatusEffect("Staggered")) && !this.hasStatusEffect("Berserk"))
+				{
+					berserk(target);
+					return;
+				}
+				attackChoices.push(milodanAttack);
+				attackChoices.push(milodanAttack);
+				attackChoices.push(milodanAttack);
+				if(target.shields() <= 0 && !target.hasStatusEffect("Stunned")) attackChoices.push(spinningBackfistAttack);
 
-			var selected:* = attackChoices[rand(attackChoices.length)];
-			selected(target);
+				var selected:* = attackChoices[rand(attackChoices.length)];
+				selected(target);
+			}
+			//Wargii hold stuff
+			else
+			{
+				//Blind counter
+				if(this.hasStatusEffect("Blind") || this.hasStatusEffect("Blindness") || this.hasStatusEffect("Blinded")) 
+				{
+					scentOfThePrey(target);
+					return;
+				}
+				//Stun counter
+				if((this.hasStatusEffect("Stunned") || this.hasStatusEffect("Staggered")) && !this.hasStatusEffect("Berserk"))
+				{
+					berserk(target);
+					return;
+				}
+				//SpinnyBackfisto
+				if(target.shields() <= 0 && !target.hasStatusEffect("Stunned")) attackChoices.push(spinningBackfistAttack);
+				//Pewpew
+				attackChoices.push(pewpew);
+				attackChoices.push(pewpew);
+				//Attacku
+				attackChoices.push(milodanAttack);
+				attackChoices.push(milodanAttack);
+
+				//Picku attacku
+				var selected2:* = attackChoices[rand(attackChoices.length)];
+				selected2(target);
+			}
+		}
+		//Attacks
+		//For the wargii variant only
+		public function pewpew(target:Creature):void
+		{
+			output(StringUtil.toTitleCase(getCombatName()) + " raises his pistol, firing off a pair of shots!\n")
+			for (var i:int = 0; i < 2; i++)
+			{
+				if(i > 0) output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+			}
 		}
 		
-		//Attacks
 		public function milodanAttack(target:Creature):void
 		{
 			var d:TypeCollection = this.meleeDamage();
@@ -302,8 +379,28 @@
 				d.multiply(statusEffectv2("Empowering Word"));
 			}
 			
+			//Stun baton - wargii only
+			if(this.short == "milodan brute")
+			{
+				//possessive(StringUtil.toTitleCase(getCombatName())) 
+				output(StringUtil.toTitleCase(getCombatName()) + " lashes out at your chest with his crackling baton, ");
+				//Missed
+				if(combatMiss(this, target)) output("but goes wide as you dodge out of the way!");
+				//Hit
+				else 
+				{
+					output("the impact and sizzling electricity draining clenching every muscle from crotch to collarbone. You stumble backwards, off-balance for a second.");
+					damageRand(d, 15);
+					applyDamage(d, this, target, "melee");
+					if (!target.hasStatusEffect("Staggered") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+					{
+						output("<b> You’ve been staggered!</b>");
+						CombatAttacks.applyStagger(target, 5);
+					}
+				}
+			}
 			//Club swing
-			if(this.meleeWeapon.longName == "heavy club")
+			else if(this.meleeWeapon.longName == "heavy club")
 			{
 				output("He takes a brutal swing at your chest, ");
 				//Missed
@@ -314,13 +411,12 @@
 					output("the impact knocking the air out of your lungs with a ghastly thud. You stumble backwards, off-balance for a second.");
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
-					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+					if (!target.hasStatusEffect("Staggered") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 					{
 						output("<b> You’ve been staggered!</b>");
 						CombatAttacks.applyStagger(target, 5);
 					}
 				}
-				
 			}
 			//Axe swing
 			else if(this.meleeWeapon.longName == "axe")
@@ -373,8 +469,9 @@
 		//Spinning backfist
 		public function spinningBackfistAttack(target:Creature):void
 		{
+			if(this.short == "milodan brute") output(StringUtil.toTitleCase(getCombatName()) + " swings a shock baton but fakes you out by swapping hands halfway into the swing and lunging forward!");
 			//milodan_weapon = club: 
-			if(this.meleeWeapon.longName == "heavy club") output("He swings with his club, but fakes you out by dropping it halfway into the swing and lunging forward!");
+			else if(this.meleeWeapon.longName == "heavy club") output("He swings with his club, but fakes you out by dropping it halfway into the swing and lunging forward!");
 			//milodan_weapon = axe:
 			else if(this.meleeWeapon.longName == "axe") output("He swings with his axe, but fakes you out by dropping it halfway into the swing and lunging forward!");
 			//milodan_weapon = claws:
@@ -385,7 +482,7 @@
 			//Hit
 			else
 			{
-				output(" Not expecting the angle of attack and having already taken a step back, you’re caught off guard and his fist slams against the side of your face!");
+				output(" Not expecting the angle of attack and having already taken a step back, you’re caught off guard, and his fist slams against the side of your face!");
 				//Just fist, no extra.
 				var oldVal:Number = this.meleeWeapon.baseDamage.kinetic.damageValue;
 				this.meleeWeapon.baseDamage.kinetic.damageValue = 0;
@@ -410,7 +507,7 @@
 		//Procs if Stunned/Staggered. Once only.
 		public function berserk(target:Creature):void
 		{
-			output("<b>The milodan male is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
+			output("<b>" + StringUtil.toTitleCase(getCombatName()) + " is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
 			this.removeStatusEffect("Stunned");
 			this.removeStatusEffect("Staggered");
 			if(this.HP() < this.HPMax())
@@ -426,7 +523,7 @@
 		}
 		public function scentOfThePrey(target:Creature):void
 		{
-			output("Flaring his nostrils, the milodan male drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
+			output("Flaring his nostrils, " + getCombatName() + " drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
 			this.removeStatusEffect("Blind");
 			this.removeStatusEffect("Blindness");
 			this.removeStatusEffect("Blinded");

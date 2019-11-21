@@ -15,6 +15,7 @@
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
+	import classes.StringUtil;
 	
 	public class MilodanMaleGroup extends Creature
 	{
@@ -314,7 +315,7 @@
 					output("the impact knocking the air out of your lungs with a ghastly thud. You stumble backwards, off-balance for a second.");
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
-					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+					if (!target.hasStatusEffect("Staggered") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 					{
 						output("<b> You’ve been staggered!</b>");
 						CombatAttacks.applyStagger(target, 5);
@@ -410,7 +411,7 @@
 		//Procs if Stunned/Staggered. Once only.
 		public function berserk(target:Creature):void
 		{
-			output("<b>The milodan male is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
+			output("<b>" + StringUtil.toTitleCase(getCombatName()) + " is a juggernaut!</b> He shakes off your attempts to stop him and releases a feral roar.");
 			this.removeStatusEffect("Stunned");
 			this.removeStatusEffect("Staggered");
 			if(this.HP() < this.HPMax())
@@ -424,7 +425,7 @@
 		}
 		public function scentOfThePrey(target:Creature):void
 		{
-			output("Flaring his nostrils, the milodan male drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
+			output("Flaring his nostrils, " + getCombatName() + " drinks deeply of your scent, his head tracking your every move. <b>Blindness has no effect!</b>\n\n");
 			this.removeStatusEffect("Blind");
 			this.removeStatusEffect("Blindness");
 			this.removeStatusEffect("Blinded");

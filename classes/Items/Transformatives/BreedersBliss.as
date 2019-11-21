@@ -69,8 +69,19 @@ package classes.Items.Transformatives
 				//Consume
 				//For herms, 50% chance to proc heat or rut per consumption of Breeder's Bliss
 				//If possible, I'd like to make it so that taking a dose of Sterilex will end the effects of this drug early. I'd also like to make it so that you can be Sterilex'd/Infertile and still take this drug and gain the effects without becoming fertile. This way NPCs can be given Breeder's Bliss for the purposes of a scene and neither have to worry about pregnancy, nor being in heat/rut for a week.
-
-				if(pc.hasVagina() && !pc.isFullyWombPregnant() && (!pc.hasCock() || rand(2) == 0))
+				
+				var canHeat:Boolean = (pc.hasVagina() && pc.fertility() > 0);
+				var canRut:Boolean = (pc.hasCock() && pc.virility() > 0);
+				
+				//if pc can go into heat and rut, and one condition alreeady exist but the other doesn't, this code will force the other to be applied instaead of it being random
+				//if neither or both conditions exists, it stays random
+				if (canHeat && canRut)
+				{
+					if (pc.inHeat() && !pc.inRut()) canHeat = false;
+					else if (pc.inRut() && !pc.inHeat()) canRut = false;
+				}
+				
+				if(canHeat && !pc.isFullyWombPregnant() && (canRut == false || rand(2) == 0))
 				{
 					var totalWombs:int = pc.totalVaginas() - pc.totalWombPregnancies();
 					
@@ -169,7 +180,7 @@ package classes.Items.Transformatives
 					}
 				}
 				//Rut Proc
-				else if(pc.hasCock())
+				else if(canRut)
 				{
 					if(!pc.inRut())
 					{
@@ -207,13 +218,16 @@ package classes.Items.Transformatives
 					}
 				}			
 				//If proc vagina when pregnant in all vaginas
-				else if(pc.hasVagina() && pc.isFullyWombPregnant())
+				else if(canHeat && pc.isFullyWombPregnant())
 				{
 					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you when you’re already as pregnant as possible.");
 				}
-				else if(!pc.hasGenitals())
+				else
 				{
-					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you when you lack any genitals.");
+					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you");
+					if(!pc.hasGenitals()) output(" when you lack any genitals");
+					else output(" due to your " + ((pc.hasVagina() && !pc.isFullyWombPregnant()) ? "infertility" : "non-virility"));
+					output(".");
 				}
 				return false;
 			}

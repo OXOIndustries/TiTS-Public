@@ -70,7 +70,7 @@ public function finsApartmentBonus():Boolean
 	return false;
 }
 
-public function playFynsDoorScene():Boolean
+public function playFynsDoorScene(btnSlot:int = 0):void
 {
 	//only render knock button if player didn't yet enter Fyn's apartment yet
 	if(flags["FYN_APARTMENT_ENTERED"] != true)
@@ -79,9 +79,15 @@ public function playFynsDoorScene():Boolean
 	
 		processTime(1);
 		
-		addButton(0, "Knock", knockOnFynsDoor, undefined, "Knock", "Why not? You’re kind of curious to see who lives inside... you only live once, right?");
+		addButton(btnSlot, "N. Knock", knockOnFynsDoor, undefined, "North Door Knock", "Why not? You’re kind of curious to see who lives inside... you only live once, right?");
 	}
-	return false;
+
+	if (MailManager.isEntryUnlocked("mirrin_tavros"))
+	{
+		output("\n\nAt the very end of the hall is a set of automatic sliding doors with a simple neon-white sign overhead: <i>SterkurHús</i>.");
+		if (MailManager.isEntryViewed("mirrin_tavros")) output("\n\nMirrin’s new place of course!");
+		if (!MailManager.isEntryViewed("mirrin_tavros") || pc.hasStatusEffect("MIRRIN_DISABLED") || mirrinWiffKiddos()) setNavDisabled(NAV_EAST_DISABLE);
+	}
 }
 
 /*Cut do to reworking intro bits
@@ -746,7 +752,7 @@ public function fynTeachesStripping():void
 			break;
 		case 2 :
 			output("\n\n<i>“Always remember, when it comes to stripping, there are no strict rules. Don’t just memorize a dance routine, or think there’s an ‘order’ of undressing. What a turn off, for you </i>and<i> the audience! Just play it by ear, </i>watch<i> their faces, do what you like, and above all, enjoy the process!”</i>");
-			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flare - to your performance. Own it, it’s yours!”</i>");
+			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flair - to your performance. Own it, it’s yours!”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. After dancing a few routines, you’re asked to free-style the strip tease. It takes a little getting used to making things up on the fly, but once you start to feel the music in the background, it becomes much easier.");
 			break;
 		case 3 :
@@ -1418,7 +1424,7 @@ public function fynTransformSex():void
 	}
 	else 
 	{
-		addDisabledButton(2,"Get Reamed","Get Reamed","This act requires you to have both sexes' genitals.");
+		addDisabledButton(2,"Get Reamed","Get Reamed","This act requires you to have both sexes’ genitals.");
 		addDisabledButton(3,"SuckMyCane","Suck My Cane","Fyn would prefer you to have a vagina and penis to play with for this.");
 	}
 	addButton(14,"Leave",leaveChristmasBehind);
@@ -1751,4 +1757,4 @@ public function leaveChristmasBehind():void
 	output("\n\nYou feel his eyes rove appreciatively over your backside.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-}
+}

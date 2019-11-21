@@ -1,6 +1,5 @@
 ﻿package classes.Characters 
 {
-	import classes.CockClass;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Transformatives.ClearYu;
@@ -8,15 +7,7 @@
 	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
-	
-	import classes.Items.Guns.HammerPistol;
-	import classes.Items.Guns.EagleHandgun;
-	import classes.Items.Guns.LaserPistol;
-	import classes.Items.Miscellaneous.Picardine;
-	import classes.Items.Miscellaneous.Kirkite;
-	import classes.Items.Miscellaneous.Satyrite;
-	import classes.Items.Drinks.RedMyrVenom;
-	import classes.Items.Transformatives.NyreanCandy;
+	import classes.StorageClass;
 	
 	import classes.GLOBAL;
 	import classes.GameData.CombatAttacks;
@@ -27,7 +18,7 @@
 	
 	/**
 	 * ...
-	 * @author Fenoxo - most non-combat stats are leftovers from @Gedan's Nyrea Alpha coding.
+	 * @author Fenoxo
 	 */
 	
 	public class NymFoe extends Creature
@@ -37,13 +28,12 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
+			this._neverSerialize = true;
 			
 			this.short = "Nym-Foe";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "";
 			this.capitalA = "";
-			this.scaleColor = "";
 			
 			this.long = "A reprogrammed and repurposed nursedroid blocks your path! As with all things Badger, she has been inflated to bimbo proportions and seems intent on doing the same to you. A long, sinuous steel tail flicks back and forth behind her while her exposed nipples leak with steady streams of thin, clear fluid, utterly unlike milk.";
 			
@@ -76,23 +66,24 @@
 			
 			this.femininity = 100;
 			this.eyeType = 0;
-			this.eyeColor = "red";
+			this.eyeColor = "pink";
 			this.thickness = 40;
 			this.tone = 29;
-			this.hairColor = "red";
-			this.furColor = "tawny";
+			this.hairColor = "platinum blonde";
 			this.hairLength = 0;
-			this.hairType = 0;
+			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
-			this.skinTone = "pink";
+			this.skinType = GLOBAL.SKIN_TYPE_LATEX;
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_NYREA;
+			this.skinTone = "white";
+			this.furColor = "silver";
+			this.scaleColor = "silver";
+			this.faceType = GLOBAL.TYPE_SYNTHETIC;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_NYREA;
+			this.tongueType = GLOBAL.TYPE_SYNTHETIC;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_NYREA;
+			this.earType = GLOBAL.TYPE_SYNTHETIC;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -100,77 +91,47 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_NYREA;
+			this.legType = GLOBAL.TYPE_SYNTHETIC;
 			this.legCount = 2;
-			this.legFlags = [];
-			//0 - Waist
-			//1 - Middle of a long tail. Defaults to waist on bipeds.
-			//2 - Between last legs or at end of long tail.
-			//3 - On underside of a tail, used for driders and the like, maybe?
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			this.genitalSpot = 0;
-			this.tailType = 0;
-			this.tailCount = 0;
+			this.tailType = GLOBAL.TYPE_SYNTHETIC;
+			this.tailCount = 1;
 			this.tailFlags = [];
 			
-			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
-			//tailGenital:
-			//0 - none.
-			//1 - cock
-			//2 - vagina
 			this.tailGenital = 0;
-			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 			this.tailVenom = 0;
-			//Tail recharge determines how fast venom/webs comes back per hour.
 			this.tailRecharge = 5;
-			//hipRating
-			//0 - boyish
-			//2 - slender
-			//4 - average
-			//6 - noticable/ample
-			//10 - curvy//flaring
-			//15 - child-bearing/fertile
-			//20 - inhumanly wide
+			
 			this.hipRatingRaw = 10;
-			//buttRating
-			//0 - buttless
-			//2 - tight
-			//4 - average
-			//6 - noticable
-			//8 - large
-			//10 - jiggly
-			//13 - expansive
-			//16 - huge
-			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 10;
-			//No dicks here!
+			
 			this.cocks = new Array();
-			//balls
 			this.balls = 0;
+			
 			this.cumMultiplierRaw = 1.5;
-			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.FLUID_TYPE_NYREA_CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
-			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
-			//Scales from 0 (never produce more) to infinity.
 			this.refractoryRate = 999;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
+			
 			this.cockVirgin = true;
 			this.vaginalVirgin = false;
 			this.analVirgin = true;
-			//Goo is hyper friendly!
+			
 			this.elasticity = 3;
-			//Fertility is a % out of 100. 
+			
 			this.fertilityRaw = 1;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 30;
-			this.nippleColor = "green";
+			this.nippleColor = "pink";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			this.milkRate = 1;
@@ -179,30 +140,12 @@
 			
 			this.hairLength = 10;
 			
-			this.cocks = [];
-			/*this.cocks.push(new CockClass());
-			(this.cocks[0] as CockClass).cType = GLOBAL.TYPE_NYREA;
-			(this.cocks[0] as CockClass).cLengthRaw = 13;
-			(this.cocks[0] as CockClass).cThicknessRatioRaw = 1.66;
-			(this.cocks[0] as CockClass).addFlag(GLOBAL.FLAG_KNOTTED);
-			(this.cocks[0] as CockClass).virgin = false;
-			this.cockVirgin = false;*/
+			//this.createVagina();
 			
 			createStatusEffect("Force Fem Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Nym-Foe";
-			
-			//rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
-			
-			/*
-			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_NEUTER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE,		GLOBAL.KINDA_LIKES_SEXPREF);(/)
-			*/
 
 			//Drops
 			//================
@@ -213,17 +156,8 @@
 			var lollipops:ItemSlotClass = new ClearYu();
 			lollipops.quantity = 5;
 			inventory.push(lollipops);
-
-			/*
-			if (rand(40) == 0) inventory.push(new Kirkite());
-			else if (rand(50) == 0) inventory.push(new Satyrite());
-			else if (rand(20) == 0) inventory.push(new Picardine());
-			else if (rand(20) == 0)	inventory.push(rangedWeapon.makeCopy());
-			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
-			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
-			else if (rand(3) == 0) inventory.push(new NyreanCandy());
-			*/
-			//Enemy Status: Bouncy x5 ("”</i>)
+			
+			//Enemy Status: Bouncy x5
 			createStatusEffect("Bouncy!",5,0,0,0,false,"Icon_DefUp","Nym-Foe’s massive mammaries deflect basic attacks!\n\n100% chance to block basic attacks!",true,0);
 			this.createStatusEffect("Disarm Immune");
 			this._isLoading = false;
@@ -244,7 +178,7 @@
 			//GUSHing Teats
 			// ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of “Bouncy”
 			//v2 of Bouncy! disables if 1 (for sealed suits)
-			if(statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
+			if(target.statusEffectv1("Bouncy! Mod") >= 0 && statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
 			if(!hasStatusEffect("Sampled")) attacks.push(sampleTailAttack);
 			else attacks.push(injectionTail);
 			if(statusEffectv1("Gloved") == 0) attacks.push(anaestheticGloveAttack);
@@ -305,33 +239,41 @@
 				var damage:TypeCollection = new TypeCollection( { drug: 15+rand(11) } );
 				applyDamage(damageRand(damage, 15), this, target);
 
-				// randomly choose one of the following:}
-				//lips
-				if(rand(4) == 0 && target.lipMod < 5)
+				// randomly choose one of the following:
+				var siliconeSite:StorageClass = target.getStatusEffect("Silicone Please");
+				var injectionSites:Array = [];
+				if(siliconeSite == null || siliconeSite.value1 >= 1) injectionSites.push(1);
+				if(siliconeSite == null || siliconeSite.value2 >= 1) injectionSites.push(2);
+				if(siliconeSite == null || siliconeSite.value3 >= 1) injectionSites.push(3);
+				if((siliconeSite == null && target.lipMod < 5) || (siliconeSite != null && siliconeSite.value4 >= 1)) injectionSites.push(4);
+				
+				var injectionSite:int = injectionSites[rand(injectionSites.length)];
+				
+				switch(injectionSite)
 				{
-					output("\n\nYou face flushes as heat momentarily blinds you. You rub the back of your hand across your eyes to help clear your vision and when you draw it away, your fingers brush against your lips. Normally, you’d expect to feel [pc.lips], but now your pucker seems to have been inflated by the silicone! You’ve got a mouth that porn stars would kill for, but there’s no time to think about that now!");
-					kGAMECLASS.nymFoeInjection(4,1);
-				}
-				//ass
-				else if(rand(3) == 0)
-				{
-					output("\n\nYour posterior thickens, the cheeks of your [pc.ass] growing broader and fatter as the bio-silicone deposits itself in your rump. You wiggle your backside uncomfortably, trying to get used to the extra mass before the nursedroid has another chance to pump more into you!");
-					// pc’s ass increases by 1 step.
-					kGAMECLASS.nymFoeInjection(2,3);
-				}
-				//breasts
-				else if(rand(2) == 0)
-				{
-					output("\n\nYou gasp as the fluid filling settles into your [pc.chest], turning into a semi-firm gel that expands your [pc.chest] considerably. You press an arm against the inflated mounds, but the enlarged breasts are just as responsive as if you’d grown them yourself - albeit far more gravity-defying than natural!");
-					// pc’s breasts increase by 1 cup size
-					kGAMECLASS.nymFoeInjection(3,3);
-				}
-				//hips
-				else
-				{
-					output("\n\nA groaning pressure floods across your [pc.legOrLegs], and you squirm in your place. Before your eyes, your [pc.hips] grow and swell as the silicone settles into your flanks like a feast of cheesecakes. Frankly, it’s a little embarrassing, but you resolve not to be distracted by this added weight.");
-					// pc’s hips increase by 1 step
-					kGAMECLASS.nymFoeInjection(1,3);
+					// hips
+					case 1:
+						output("\n\nA groaning pressure floods across your [pc.legOrLegs], and you squirm in your place. Before your eyes, your [pc.hips] grow and swell as the silicone settles into your flanks like a feast of cheesecakes. Frankly, it’s a little embarrassing, but you resolve not to be distracted by this added weight.");
+						// pc’s hips increase by 1 step
+						kGAMECLASS.nymFoeInjection(target,1,(siliconeSite == null ? 3 : siliconeSite.value1));
+						break;
+					// ass
+					case 2:
+						output("\n\nYour posterior thickens, the cheeks of your [pc.ass] growing broader and fatter as the bio-silicone deposits itself in your rump. You wiggle your backside uncomfortably, trying to get used to the extra mass before the nursedroid has another chance to pump more into you!");
+						// pc’s ass increases by 1 step.
+						kGAMECLASS.nymFoeInjection(target,2,(siliconeSite == null ? 3 : siliconeSite.value2));
+						break;
+					// breasts
+					case 3:
+						output("\n\nYou gasp as the fluid filling settles into your [pc.chest], turning into a semi-firm gel that expands your [pc.chest] considerably. You press an arm against the inflated mounds, but the enlarged breasts are just as responsive as if you’d grown them yourself - albeit far more gravity-defying than natural!");
+						// pc’s breasts increase by 1 cup size
+						kGAMECLASS.nymFoeInjection(target,3,(siliconeSite == null ? 3 : siliconeSite.value3));
+						break;
+					// lips
+					case 4:
+						output("\n\nYou face flushes as heat momentarily blinds you. You rub the back of your hand across your eyes to help clear your vision and when you draw it away, your fingers brush against your lips. Normally, you’d expect to feel [pc.lips], but now your pucker seems to have been inflated by the silicone! You’ve got a mouth that porn stars would kill for, but there’s no time to think about that now!");
+						kGAMECLASS.nymFoeInjection(target,4,(siliconeSite == null ? 1 : siliconeSite.value4));
+						break;
 				}
 			}
 		}
@@ -414,7 +356,7 @@
 			//First Time:
 			if(statusEffectv1("Bouncy!") >= 5)
 			{
-				output("The nursedroid’s face lights up. <i>“Your bio-signs identify you as-”</i> her speech cuts out into garbled static, her head twitching to one one side while sparks shoot out of her neck joint. <i>“Identify- identify- identify you as: In need of a drink! Please remain stationary.”</i> She hoists both hands to the dripping nozzles of her synthetic nipples and squeezes. Pressurized fluid gushes out in twin streams!");
+				output("The nursedroid’s face lights up. <i>“Your bio-signs identify you as-”</i> her speech cuts out into garbled static, her head twitching to one side while sparks shoot out of her neck joint. <i>“Identify- identify- identify you as: In need of a drink! Please remain stationary.”</i> She hoists both hands to the dripping nozzles of her synthetic nipples and squeezes. Pressurized fluid gushes out in twin streams!");
 			}
 			//Repeat:
 			else
@@ -424,8 +366,8 @@
 				output("\n\n<i>“Analyzing...”</i>");
 				output("\n\n<i>“Error. Tissue insufficiently deep. Deploying medical assistance.”</i> She grips her nipples and sprays another pair of showering blasts at you!");
 			}
-			// Removes 1 stack of <i>“Bouncy”</i> from Nym-Foe
-			this.addStatusValue("Bouncy!",1,-1);
+			// Removes 1 stack of “Bouncy” from Nym-Foe
+			if(!target.hasStatusEffect("Bouncy! Mod")) this.addStatusValue("Bouncy!",1,-1);
 			var stacks:int = statusEffectv1("Bouncy!");
 			if(stacks <= 0) removeStatusEffect("Bouncy!");
 			else
@@ -437,7 +379,7 @@
 			{
 				output("\n\nThe chemical lactation splashes against your [pc.armor]. Thin streams trickle down harmlessly, repelled by your sealed suit. Nym-Foe blinks, looking down at her dripping chest. <i>“Error, subdual mechanism insufficient.”</i> Sadly, she tweaks her nipples, stopping their gushing streams. <i>“Modifying treatment subroutine.”</i>");
 				// She no longer uses this attack
-				addStatusValue("Bouncy",2,1);
+				addStatusValue("Bouncy!",2,1);
 			}
 			//Miss
 			else if (rangedCombatMiss(this, target)) 

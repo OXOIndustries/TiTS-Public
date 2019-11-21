@@ -4,19 +4,27 @@
 import classes.Items.Transformatives.DongDesigner;
 
 //Discovery
-public function cockBoxDiscoveryBlurb():Boolean
+public function cockBoxDiscoveryBlurb(btnSlot:int = 0):Boolean
 {
 	if(flags["LOOTED_COCKBOX"] == undefined)
 	{
 		output("\n\nA gleam of shining metal catches your eye from amongst the mounds of detritus. Looking closer, you pick out the shape of an oblong console of alloy and composite, scratched in a half-dozen places but otherwise intact. Do you investigate it?");
-		addButton(0,"Investigate",investigateTheCockBox);
+		addButton(btnSlot,"Investigate",investigateTheCockBox);
+		return true;
 	}
 	else if(flags["LOOTED_COCKBOX"] == 0)
 	{
 		output("\n\nA gleam of light indicates that the TamaniCorp Dong Designer is still sitting where you last found it. You can pick it up if you have the room for it.");
-		addButton(0,"Take It",takeDatCockBawks);
+		addButton(btnSlot,"Take It",takeDatCockBawks);
+		return true;
 	}
-	return (rustRidgesEncounters());
+	return false;
+}
+
+public function cockboxUpgraded(inShip:Boolean):Boolean
+{
+	if(!inShip) return true;
+	else return (flags["COCKBOX_UPGRADE"] != undefined);
 }
 //Investigate the Cock Box
 public function investigateTheCockBox():void
@@ -121,18 +129,35 @@ public function cockBoxUninstallation():void
 
 public function cockCanFitCockBox(cIdx:int = 0):Boolean
 {
-	if(flags["COCKBOX_UPGRADE"] != undefined) return true;
+	if(cockboxUpgraded(InShipInterior())) return true;
 	return (pc.cocks[cIdx].thickness() <= 4 && pc.cocks[cIdx].cLength() <= 20);
 }
 
 //Use the Cock Box!
+public function installedDickBoxBonus(btnSlot:int = 0):void
+{
+	output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
+	
+	addButton(btnSlot,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
+}
 public function useInstalledDickBox():void
 {
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	showBust("DONG_DESIGNER");
-	output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs. The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
+	
+	var inShip:Boolean = InShipInterior();
+	
+	if(inShip)
+	{
+		output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs.");
+	}
+	else
+	{
+		output("The Dong Designer’s holographic display lights up when you get closer, displaying an obscene menagerie of various alien organs.");
+	}
+	output(" The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
 
 	//1 dick
 	if(pc.totalCocks() == 1)
@@ -184,10 +209,73 @@ public function useInstalledDickBox():void
 		else addButton(0,"Yes",cockBoxUse,0,"Use Dong Designer","Yes, you will stick your dick in that box.");
 	}
 	
-	addButton(13, "Uninstall", cockBoxUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
+	if(inShip)
+	{
+		if(flags["DONG_DESIGNER_INSTALLED"] != undefined) addButton(13, "Uninstall", cockBoxUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
+		addButton(14,"Back",shipStorageMenuRoot);
+	}
+	else
+	{
+		// Gunna need to update the dong designer
+		if(flags["LOOTED_COCKBOX"] == 1)
+		{
+			if(flags["COCKBOX_UPGRADE"] == undefined) addDisabledButton(13, "Firmware", "Download Firmware Update", "<i>This feature has not been implemented yet...</i>");
+			// 9999 if(flags["COCKBOX_UPGRADE"] == undefined) addButton(13, "Firmware", downloadDickBoxFirmware, undefined, "Download Firmware Update", ("Attempt to download the firmware update " + (flags["DONG_DESIGNER_INSTALLED"] != undefined ? "for the Dong Designer you have installed on your ship" : "in the case you ever find a Dong Desinger to install on your ship") + "."));
+			else addDisabledButton(13, "Firmware", "Download Firmware Update", "You have already downloaded the firmware update so it would be redundant to try it again.");
+		}
+		addButton(14,"Leave",mainGameMenu);
+	}
+}
+public function downloadDickBoxFirmware():void
+{
+	clearOutput();
+	showName("FIRMWARE\nDOWNLOAD...");
+	showBust("DONG_DESIGNER");
+	author("");
+	clearMenu();
 	
-	if(InShipInterior()) addButton(14,"Back",shipStorageMenuRoot);
-	else addButton(14,"Leave",mainGameMenu);
+	var success:Boolean = false;
+	
+	// 9999
+	output("");
+	
+	if(!success)
+	{
+		output("\n\n");
+		output("\n\n");
+		
+		processTime(15);
+		
+		addButton(0, "Next", useInstalledDickBox);
+	}
+	else
+	{
+		output("\n\n");
+		output("\n\n");
+		
+		processTime(20);
+		
+		addButton(0, "Next", upgradeDickBoxFirmware);
+	}
+}
+public function upgradeDickBoxFirmware():void
+{
+	clearOutput();
+	showName("FIRMWARE\nOBTAINED!");
+	showBust("DONG_DESIGNER");
+	author("");
+	
+	// 9999
+	output("");
+	output("\n\n");
+	output("\n\n<b>You now own a copy of the firmware package that updates any Dong Designer you have installed on your ship!</b>");
+	output("\n\n");
+	
+	processTime(1);
+	flags["COCKBOX_UPGRADE"] = 1;
+	
+	clearMenu();
+	addButton(0, "Next", useInstalledDickBox);
 }
 
 //Insert Dick
@@ -236,7 +324,7 @@ public function cockBoxMenu(x:int):void
 	cockList.push([GLOBAL.TYPE_GRYVAIN, "Gryvain", "Gryvain", "Get a scaly knotted, ribbed penis, like that of a gryvain."]);
 	cockList.push([GLOBAL.TYPE_EQUINE, "Equine", "Equine", "Get a penis like that of a terran horse."]);
 	// Unlockables
-	if(flags["COCKBOX_UPGRADE"] != undefined)
+	if(cockboxUpgraded(InShipInterior()))
 	{
 		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
 		cockList.push([GLOBAL.TYPE_SWINE, "Swine", "Swine", "Get a corkscrew-shaped pig dick."]);
@@ -273,7 +361,7 @@ public function dickBoxTFColorSelect(args:Array):void
 	var cIdx:int = args[0];
 	var cType:int = args[1];
 	
-	if(flags["COCKBOX_UPGRADE"] == undefined)
+	if(!cockboxUpgraded(InShipInterior()))
 	{
 		dickBoxTF([cIdx, cType]);
 		return;
@@ -348,8 +436,18 @@ public function dickBoxTF(args:Array):void
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
+	
+	var cIdx:int = args[0];
+	var cType:int = args[1];
+	var inShip:Boolean = InShipInterior();
+	var cumQ:Number = pc.cumQ();
+	
+	// Important carry-overs!
+	var cLengthMod:Number = pc.cocks[cIdx].cLengthMod;
+	var cThicknessRatioMod:Number = pc.cocks[cIdx].cThicknessRatioMod;
+	
 	pc.taint(2);
-	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
+	if((flags["USED_DONG_DESIGNER"] != undefined && rand(10) == 0) || (debug && rand(2) == 0))
 	{
 		if(pc.cockTotal() < 10)
 		{
@@ -358,22 +456,22 @@ public function dickBoxTF(args:Array):void
 		}
 	}
 	output("As soon as you");
-	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a color");
+	if(cockboxUpgraded(inShip)) output(" select a color");
 	else output(" finalize your selection");
-	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
+	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + cIdx + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
 	else output("It’s just as intense as you remembered.");
 	output(" You’d have to hold a dozen high-strength vibrators against yourself to approach such an effect. The stampede of sensation makes it difficult to focus on much else, driving you to a lusty plateau by massaging your individual neurons until they spark with wild delight. You let your head loll and your jaw hang open, prevented from thrusting by the machine’s grip and already closing in on the brink.");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("\n\nStrangely, the vibrations don’t manage to escape the confines of your mechanical lover. You’d expect to feel them shuddering through the flesh at your root, but all you’re getting are the rhythmic spasms your body’s ejaculatory preparations.");
 	else output("\n\nYou know those vibrations can’t be real. It has to be caused by the microsurgeon cocktail you’re currently swimming in. Those microscopic wonders must be designed to interact with your nervous system as they go to work on your transforming tool.");
 
-	if(flags["USED_DONG_DESIGNER"] == undefined) output("\n\nWhat’s happening to your [pc.cock " + args[0] + "] inside that box? It’s getting warmer inside there. At least, that’s what it feels like to you - like hundreds of miniaturized vibrators directly applied to your sense of pleasure and left to buzz their lurid heat into your reproductive core.");
+	if(flags["USED_DONG_DESIGNER"] == undefined) output("\n\nWhat’s happening to your [pc.cock " + cIdx + "] inside that box? It’s getting warmer inside there. At least, that’s what it feels like to you - like hundreds of miniaturized vibrators directly applied to your sense of pleasure and left to buzz their lurid heat into your reproductive core.");
 	else output("\n\nYou almost wish you had access to the machine’s programming. You’d love to know how it’s making you feel so warm and wet, like thousands of gel-coated vibrators warming your flesh by pleasant undulations alone.");
 	//NO new PG:
 	output(" It’s so hot, and so sinfully wet and gooey. You’re practically melting from the pleasure.");
 	output(" Surely you’re ");
-	if(pc.cumQ() < 100) output("dribbling");
-	else if(pc.cumQ() < 1000) output("squirting");
+	if(cumQ < 100) output("dribbling");
+	else if(cumQ < 1000) output("squirting");
 	else output("gushing");
 	output(" pre with how wildly your technology-tamed prick is spasming, but you’ve no way of knowing. It can’t possibly get any more slick.");
 
@@ -386,9 +484,9 @@ public function dickBoxTF(args:Array):void
 		else output("threatens to drip down your thighs");
 		output(".");
 	}
-	output(" The box is squelching wetly even through the seal. Every lewd squish is matched by a consummate increase in the bubbling bliss around your [pc.cock " + args[0] + "], wreathing it so deeply in pernicious warmth that it may as well be a part of you.");
+	output(" The box is squelching wetly even through the seal. Every lewd squish is matched by a consummate increase in the bubbling bliss around your [pc.cock " + cIdx + "], wreathing it so deeply in pernicious warmth that it may as well be a part of you.");
 
-	output("\n\nYou can’t tell where the electric ecstasy originates on your [pc.cock " + args[0] + "] anymore. Everything is like a formless blob of pleasure. It could be coming from your underside or your [pc.cockHead " + args[0] + "], and you’d be helpless to identify the source. The only thing left to do is grip the machine and try to keep your weakening [pc.legOrLegs] from dropping you to the floor. A" + pc.mf("n aggressive growl"," whorish moan") + " winds its way out of your throat as your climax mounts.");
+	output("\n\nYou can’t tell where the electric ecstasy originates on your [pc.cock " + cIdx + "] anymore. Everything is like a formless blob of pleasure. It could be coming from your underside or your [pc.cockHead " + cIdx + "], and you’d be helpless to identify the source. The only thing left to do is grip the machine and try to keep your weakening [pc.legOrLegs] from dropping you to the floor. A" + pc.mf("n aggressive growl"," whorish moan") + " winds its way out of your throat as your climax mounts.");
 	output("\n\nYou feel like a star about to go nova, shooting incandescent flares of ");
 	if(pc.balls > 0) output("ball-draining");
 	else output("[pc.cumVisc]");
@@ -396,48 +494,51 @@ public function dickBoxTF(args:Array):void
 	if(flags["USED_DONG_DESIGNER"] != undefined) output(" No matter how often you do this, nothing prepares you for how completely the sensation of pent-up desire overwhelms you. Holding on as best you can, you promise yourself it’ll all be worth it when you’re finally allowed to cum with a new, custom-designed phallus.");
 	var testChar:Creature = new Creature();
 	testChar.createCock();
-	testChar.shiftCock(0,args[1]);
-	//Cause ausar and kaithrit are too cool for sheaths.
-	if(InCollection(args[1], GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE)) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
-	if(args[1] == GLOBAL.TYPE_FELINE) testChar.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
-	if(testChar.hasKnot(0) && !pc.hasKnot(args[0]))
+	testChar.shiftCock(0,cType);
+	// Modded values (just in case)
+	testChar.cocks[0].cLengthMod = cLengthMod;
+	testChar.cocks[0].cThicknessRatioMod = cThicknessRatioMod;
+	// Cause ausar and kaithrit are too cool for sheaths.
+	if(InCollection(cType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE)) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+	if(cType == GLOBAL.TYPE_FELINE) testChar.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
+	if(testChar.hasKnot(0) && !pc.hasKnot(cIdx))
 	{
-		output(" Your [pc.cock " + args[0] + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");
+		output(" Your [pc.cock " + cIdx + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");
 	}
-	else if(!testChar.hasKnot(0) && pc.hasKnot(args[0])) output(" Your [pc.cock " + args[0] + "] feels like it’s smoothing out, gaining definition at the expense of a knot.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_FLARED,0) && !pc.hasCockFlag(GLOBAL.FLAG_FLARED,args[0])) output(" The edges of the gelatinous enclosure firmly grip your swelling head, forced to distend with your newly growing flare.");
-	else if(!testChar.hasCockFlag(GLOBAL.FLAG_FLARED,0) && pc.hasCockFlag(GLOBAL.FLAG_FLARED,args[0])) output(" The tightly-clenched enclosure loosens around your flare, reluctantly closing around it as you lose the horse-like feature.");
+	else if(!testChar.hasKnot(0) && pc.hasKnot(cIdx)) output(" Your [pc.cock " + cIdx + "] feels like it’s smoothing out, gaining definition at the expense of a knot.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_FLARED,0) && !pc.hasCockFlag(GLOBAL.FLAG_FLARED,cIdx)) output(" The edges of the gelatinous enclosure firmly grip your swelling head, forced to distend with your newly growing flare.");
+	else if(!testChar.hasCockFlag(GLOBAL.FLAG_FLARED,0) && pc.hasCockFlag(GLOBAL.FLAG_FLARED,cIdx)) output(" The tightly-clenched enclosure loosens around your flare, reluctantly closing around it as you lose the horse-like feature.");
 	output(" Transformative shivers slip along your length, allowing you to enjoy the white-hot lust of the change in greater fidelity.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_BLUNT,0) && !pc.hasCockFlag(GLOBAL.FLAG_BLUNT,args[0])) 
+	if(testChar.hasCockFlag(GLOBAL.FLAG_BLUNT,0) && !pc.hasCockFlag(GLOBAL.FLAG_BLUNT,cIdx)) 
 	{
 		output(" Your tip is flattening and fattening, becoming blunted and bloated");
 		if(testChar.hasCockFlag(GLOBAL.FLAG_FLARED,0)) output(" - more suited to the way it flares at the edges");
 		output(". It might be a bit harder to get inside a potential mate, but bludgeoning your way past her lips is going to be magnificent.");
 	}
-	else if(testChar.hasCockFlag(GLOBAL.FLAG_TAPERED,0) && !pc.hasCockFlag(GLOBAL.FLAG_TAPERED,args[0]))
+	else if(testChar.hasCockFlag(GLOBAL.FLAG_TAPERED,0) && !pc.hasCockFlag(GLOBAL.FLAG_TAPERED,cIdx))
 	{
 		output(" Your tip is narrowing by the second, becoming almost pointed, perfect for easing ");
-		if(pc.cockVolume(args[0]) >= 400) output("your massive erection ");
+		if(pc.cockVolume(cIdx) >= 400) output("your massive erection ");
 		output("inside a partner.");
 	}
-	if(testChar.hasCockFlag(GLOBAL.FLAG_FORESKINNED,0) && !pc.hasCockFlag(GLOBAL.FLAG_FORESKINNED,args[0])) output(" Folds of expanding foreskin slip and slide around you, so sensitive and yet perfect for easing your back-and-forth passage through a set of honeyed folds.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_SHEATHED,0) && !pc.hasCockFlag(GLOBAL.FLAG_SHEATHED,args[0])) output(" Skin bunches up around your base into a loose, musky sheath, the perfect place for your orgasm-locked dick to retreat to once you finally manage to cum.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_NUBBY,0) && !pc.hasCockFlag(GLOBAL.FLAG_NUBBY,args[0])) output(" Maddeningly, tiny, exquisitely sensitive nubs grow in along the whole of your trembling meat, each demanding in no uncertain terms that you cum and cum hard. How do kaithrit and those like them keep from cumming as soon as they slide inside?");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_SMOOTH,0) && !pc.hasCockFlag(GLOBAL.FLAG_SMOOTH,args[0])) output(" The shaft’s surface smooths out, much more so than is normal, potentially making penetration a lot less painful for both you and your partner.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_LUBRICATED,0) && !pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED,args[0])) output(" Your pleasure-pole sweats profusely while inside the grips of the glory box and it doesn’t take you too long to realize that your cock has developed some over-active, self-lubricating glands!");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_STICKY,0) && !pc.hasCockFlag(GLOBAL.FLAG_STICKY,args[0])) output(" You are encountering a lot of friction between your shaft and the walls of the box’s orifice... Your cock has developed a stickier reaction to penetration now.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_PREHENSILE,0) && !pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE,args[0])) output(" Your cock thrashes about within the glory hole and with a little concentration, you can feel yourself bending and moving your now-prehensile cock at will!");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,0) && !pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,args[0])) output(" A musky scent strikes your nostrils as you can smell the cloud of aphrodisiacs wafting from your man meat.");
-	if(testChar.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,0) && !pc.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,args[0])) output(" You feel internal muscular contractions pushing along the length of your shaft as if to allow the passage of some item through and out your phallus--and not just cum either...");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_FORESKINNED,0) && !pc.hasCockFlag(GLOBAL.FLAG_FORESKINNED,cIdx)) output(" Folds of expanding foreskin slip and slide around you, so sensitive and yet perfect for easing your back-and-forth passage through a set of honeyed folds.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_SHEATHED,0) && !pc.hasCockFlag(GLOBAL.FLAG_SHEATHED,cIdx)) output(" Skin bunches up around your base into a loose, musky sheath, the perfect place for your orgasm-locked dick to retreat to once you finally manage to cum.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_NUBBY,0) && !pc.hasCockFlag(GLOBAL.FLAG_NUBBY,cIdx)) output(" Maddeningly, tiny, exquisitely sensitive nubs grow in along the whole of your trembling meat, each demanding in no uncertain terms that you cum and cum hard. How do kaithrit and those like them keep from cumming as soon as they slide inside?");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_SMOOTH,0) && !pc.hasCockFlag(GLOBAL.FLAG_SMOOTH,cIdx)) output(" The shaft’s surface smooths out, much more so than is normal, potentially making penetration a lot less painful for both you and your partner.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_LUBRICATED,0) && !pc.hasCockFlag(GLOBAL.FLAG_LUBRICATED,cIdx)) output(" Your pleasure-pole sweats profusely while inside the grips of the glory box and it doesn’t take you too long to realize that your cock has developed some over-active, self-lubricating glands!");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_STICKY,0) && !pc.hasCockFlag(GLOBAL.FLAG_STICKY,cIdx)) output(" You are encountering a lot of friction between your shaft and the walls of the box’s orifice... Your cock has developed a stickier reaction to penetration now.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_PREHENSILE,0) && !pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE,cIdx)) output(" Your cock thrashes about within the glory hole and with a little concentration, you can feel yourself bending and moving your now-prehensile cock at will!");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,0) && !pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED,cIdx)) output(" A musky scent strikes your nostrils as you can smell the cloud of aphrodisiacs wafting from your man meat.");
+	if(testChar.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,0) && !pc.hasCockFlag(GLOBAL.FLAG_OVIPOSITOR,cIdx)) output(" You feel internal muscular contractions pushing along the length of your shaft as if to allow the passage of some item through and out your phallus--and not just cum either...");
 
 	output("\n\nFeeling so overwhelmingly hard that you fear you’ll burst, you notice the almost ethereal bath of molten pleasure recede, leaving you nothing but the company of your redoubling climactic spasms. [pc.Cum] hoses out of your transformed tip in long ropes, finally registering to your senses. Relief at last! Uncontrollable trembles run through your body as you gain your long-denied release");
-	if(pc.cumQ() <= 100) output(", pumping your meager orgasm into the machine’s moist interior.");
+	if(cumQ <= 100) output(", pumping your meager orgasm into the machine’s moist interior.");
 	else output(", pumping what feels like gallons into the machine’s greedy interior.");
 
 	//Not backwashing out: 
-	if(pc.cumQ() < 1500)
+	if(cumQ < 1500)
 	{
-		output("\n\nNo amount of your [pc.cum] seems to faze the device; it squeezes and tugs your newly-designed dick until you go dry. When it finally flashes “complete” along with the winking visage of a huge-breasted ausar hyper-porn star, you’re able to slip out with ease, revealing your new [pc.cockNoun " + args[0] + "] to the world. It shines with rapidly evaporating moisture but seems as clean and fresh as if you had just stepped out of the shower.");
+		output("\n\nNo amount of your [pc.cum] seems to faze the device; it squeezes and tugs your newly-designed dick until you go dry. When it finally flashes “complete” along with the winking visage of a huge-breasted ausar hyper-porn star, you’re able to slip out with ease, revealing your new [pc.cockNoun " + cIdx + "] to the world. It shines with rapidly evaporating moisture but seems as clean and fresh as if you had just stepped out of the shower.");
 		if(pc.cockTotal() > 1)
 		{
 			output(" Of course, you’ll need to mop up the mess your spare cock");
@@ -448,9 +549,9 @@ public function dickBoxTF(args:Array):void
 		if(flags["DONG_DESIGNER_BACKWASHED"] != undefined || flags["DONG_DESIGNER_FLOODED"] != undefined) output(" You’re more than a little disappointed in yourself. You couldn’t even make it leak this time. At least it’ll save on cleaning.");
 	}
 	//Some backwash
-	else if(pc.cumQ() < 5000)
+	else if(cumQ < 5000)
 	{
-		output("\n\nAt first, it seems that no amount of [pc.cum] will faze the device, but the interior gets more and more soupy with your [pc.cumNoun] after every pulse. The seal at your [pc.sheath " + args[0] + "] struggles vainly, but streamers of [pc.cum] pour out like water from a failing hydro facility.");
+		output("\n\nAt first, it seems that no amount of [pc.cum] will faze the device, but the interior gets more and more soupy with your [pc.cumNoun] after every pulse. The seal at your [pc.sheath " + cIdx + "] struggles vainly, but streamers of [pc.cum] pour out like water from a failing hydro facility.");
 		if(pc.cockTotal() > 1)
 		{
 			output(" All the extra jism your other cock");
@@ -461,10 +562,15 @@ public function dickBoxTF(args:Array):void
 		output(" Turning red, the holographic panel displays a pouting, big-breasted kui-tan and a warning not to use the machine until a custodian has come by to clean up your mess.");
 		if(celiseIsCrew()) output(" Celise is in for a treat.");
 		output("\n\nOnce your body finishes attempting to impregnate the device, you slip your [pc.cumNoun]-soaked prick free. It looks exactly as promised minus the licentious paint job you’ve accidentally given it. Nothing a quick shower and a little time with a mop and bucket won’t fix...");
-		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
+		if(flags["DONG_DESIGNER_FLOODED"] != undefined) 
+		{
+			output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time");
+			if(inShip) output(" - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility");
+			output(".");
+		}
 		//Shower!
 		pc.applyCumSoaked();
-		pc.shower();
+		if(inShip) pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
 	//Backblasted out
@@ -473,25 +579,31 @@ public function dickBoxTF(args:Array):void
 		output("\n\nIt never stood a chance. Your first few pulses rapidly overwhelmed the device’s capacity to handle cum, and each subsequent eruption further increases the internal pressure. Streamers of [pc.cumNoun] pour from the straining artificial lips. Part of you is worried that you’ll break the poor thing, but you’re cumming too hard to care. The drizzling spray of [pc.cumColor] fuckjuice intensifies until it’s taking everything you have just to hold yourself inside the velvety interior.");
 		output("\n\nThe console rips itself from your hands; holding out against such incredible overpressure was just too much. Your back slams hard into a bulkhead, thankfully numbed by the swarms of endorphins flooding your bloodstream as you continue to cum, painting your way from the machine to the ceiling to your own face. You grab hold of your newborn dick, slick with its pleasure-fluids of its birth, and stroke it wildly, pumping huge blasts of [pc.cum] into your mouth and anything else that looks like it could use a coat of [pc.cumColor].");
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
-		if(celiseIsCrew()) output(" Celise can handle this mess.");
+		if(inShip)
+		{
+			if(celiseIsCrew()) output(" Celise can handle this mess.");
+		}
 		else output(" You can take care of this mess after.");
 		pc.applyCumSoaked();
 		pc.applyCumSoaked();
 		pc.loadInMouth(pc);
-		pc.shower();
+		if(inShip) pc.shower();
 		IncrementFlag("DONG_DESIGNER_FLOODED");
 	}
 	IncrementFlag("USED_DONG_DESIGNER");
 	processTime(5);
-	pc.shiftCock(args[0],args[1]);
-	//Coloration
+	pc.shiftCock(cIdx,cType);
+	// Transfer modded values (in case of status effects)
+	pc.cocks[cIdx].cLengthMod = cLengthMod;
+	pc.cocks[cIdx].cThicknessRatioMod = cThicknessRatioMod;
+	// Coloration
 	if(args.length > 2)
 	{
 		var cColor:String = args[2];
-		if(cColor.length > 0 && cColor != "null") pc.cocks[args[0]].cockColor = cColor;
+		if(cColor.length > 0 && cColor != "null") pc.cocks[cIdx].cockColor = cColor;
 	}
-	//Cause ausar are too cool for sheaths.
-	if(args[1] == GLOBAL.TYPE_CANINE) pc.cocks[args[0]].delFlag(GLOBAL.FLAG_SHEATHED);
+	// Cause ausar are too cool for sheaths.
+	if(cType == GLOBAL.TYPE_CANINE) pc.cocks[cIdx].delFlag(GLOBAL.FLAG_SHEATHED);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",useInstalledDickBox);
@@ -504,24 +616,26 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	author("Fenoxo");
 	showName("\nUH OH!");
 	showBust("TAMANI");
+	
+	var cIdx:int = args[0];
 	pc.taint(4);
+	
 	output("The moment you");
-	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a chosen color");
+	if(cockboxUpgraded(InShipInterior())) output(" select a chosen color");
 	else output(" finalize your selection");
 	output(", something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
-	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
-	else output("Fuck, not again.");
+	output("\n\n" + (flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined ? "Uh oh" : "Fuck, not again") + ".");
 	output("\n\nThe inside of the Dong Designer is already vibrating and hot, like before, but this time it’s almost too hot, uncomfortably so. Sweat breaks out on your forehead");
 	if(pc.hasScales()) output(", slipping out from between your scales");
 	else if(pc.hasFur()) output(" and drips from your fur");
 	else output(" dripping down your face");
 	output(". A part of you is dreadfully afraid you’ve accidentally thrust yourself into a malfunctioning cock-smelter, but the rest of you is paradoxically excited by the too-warm massage coming from the box’s interior.");
 	output("\n\nA winking woman with pointed ears and a glowing shock of purple hair appears overtop of the fading warnings accompanied by a pre-recorded voice clip, <i>“Please try to remain still while we take care of this little hiccup. Remember, here at TamaniCorp, your junk is our treasure! Our Hora Series devices are built with multiple redundancies to ensure complete customer satisfaction.”</i>");
-	output("\n\nThe recording ends about the same time the heat changes texture, suffusing your [pc.cock " + args[0] + "] so completely that it’s difficult to determine if the box is still warming you up or if you penis has transformed into a miniature fusion reactor. It’s like your length is being force-fed distilled ambrosia until you can scarcely determine where your cock ends and the rhythmically squeezing box begins.");
+	output("\n\nThe recording ends about the same time the heat changes texture, suffusing your [pc.cock " + cIdx + "] so completely that it’s difficult to determine if the box is still warming you up or if you penis has transformed into a miniature fusion reactor. It’s like your length is being force-fed distilled ambrosia until you can scarcely determine where your cock ends and the rhythmically squeezing box begins.");
 	output("\n\nThe punky elf-girl returns. This time she’s far enough away from the holocam for you make out two corset-straining breasts. She knows it too, judging by the way she’s leaning forward to give you a look straight into the beckoning canyon of cleavage. <i>“We apologize for this small error, and I assure you that technicians will be dispatched to ensure this unit functions as exactly as well as your own...”</i> Sparkling violet eyes glance downward toward your crotch. While a glowing message declares, <i>“UNIT OUT OF WARRANTY. PLEASE REPLACE.”</i>");
 	output("\n\nYou grunt and try not to cum to the sight of the jiggling sexpot they’ve programmed into the machine. You’d love to have eye-candy like this when your salvaged cock box is actually working properly...");
 	output("\n\nThe slut’s image flickers, and her syrupy voice coos, <i>“We’ll have both of those dicks modded back to normal in no time, unless you’re two brave boys who decided to go into the machine together.”</i> She giggles. <i>“If that’s the case, you guys might wind up with identical cocks, but that’s nothing a solo trip to one of our Hora Series Dong Designers won’t fix!”</i> Tugging at the top left of her latex corset, the tart pops a glossy, purple nipple into view. It engorges before your eyes. <i>“Thank you for your patience, " + pc.mf("stud","hot stuff") + ". As the chief customer relations officer, advertising model, test subject, CEO, and owner of TamaniCorp, I assure you that I want nothing more than for you to have a happy, safe, and fuck-filled day.”</i> She flicks her nipple and squeaks.");
-	output("\n\nBoth dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + args[0] + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals....");
+	output("\n\nBoth dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + cIdx + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals....");
 	
 	processTime(5);
 	clearMenu();
@@ -540,10 +654,11 @@ public function cockBoxDickDoublingHijinxII(args:Array):void
 	else if(pc.cockTotal() > 2) output(" Your other dicks - the ones not in the machine - unashamedly weep strands of pre-cum down the side of the box.");
 	output("\n\nThe sensuous CEO visibly shudders and cums when she tugs on her violaceous nipples, her piercing flashing bright to announce her orgasm’s arrival. And you climax right on with her, suddenly screaming and thrashing as you unload [pc.cum] through one more dick than you expected to have to today, so drenched in orgiastic ecstasy that your body can’t even keep your ejaculation from being trembling, misfiring things.");
 	output("\n\nYou flop your torso through the busty hologram and over the top of the machine, bonelessly ejaculating for what feels like hours but must only be a minute at the most.");
-	if(pc.cumQ() >= 1000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) 
 	{
 		output(" When you come to, you discover thick streams of [pc.cum] have broken through the seal around your newly doubled dicks and puddled on the floor.");
-		if(pc.cumQ() >= 5000)
+		if(cumQ >= 5000)
 		{
 			output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
 			pc.applyCumSoaked();
@@ -552,26 +667,31 @@ public function cockBoxDickDoublingHijinxII(args:Array):void
 		pc.applyCumSoaked();
 	}
 	output("\n\n<i>“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!”</i> The purple-haired harlot winks and blows a kiss down at you from above. <i>“Cum back soon!”</i> She flickers out of existence with a saucy, satisfied smile.");
-	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.");
+	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b>");
+	if(flags["MET_DR_LASH"] != undefined) output(" You could probably find someone on Novahome to help you get rid of the extra if you wanted.");
 
+	var cIdx:int = args[0];
 	var cloneDick:CockClass = new CockClass;
+	var newLength:Number = Math.round(Math.pow(((pc.cocks[cIdx].cLengthRaw * pc.cocks[cIdx].cLengthRaw * pc.cocks[cIdx].cLengthRaw) / 2), 1/3)*10)/10;
 
-	var newLength:Number = Math.round(Math.pow((pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw * pc.cocks[args[0]].cLengthRaw / 2), 1/3)*10)/10;
-
-	pc.cocks[args[0]].cLengthRaw = newLength;
-
-	cloneDick.cLengthRaw = pc.cocks[args[0]].cLengthRaw;
-	cloneDick.cThicknessRatioRaw = pc.cocks[args[0]].cThicknessRatioRaw;
-	cloneDick.cType = pc.cocks[args[0]].cType;
-	cloneDick.cockColor = pc.cocks[args[0]].cockColor;
-	cloneDick.knotMultiplier = pc.cocks[args[0]].knotMultiplier;
-	cloneDick.flaccidMultiplier = pc.cocks[args[0]].flaccidMultiplier;
-	for(var x:int = 0; x < pc.cocks[args[0]].cockFlags.length; x++)
+	// Match cock lengths
+	pc.cocks[cIdx].cLengthRaw = newLength;
+	cloneDick.cLengthRaw = newLength;
+	// Twin the properties
+	cloneDick.cThicknessRatioRaw = pc.cocks[cIdx].cThicknessRatioRaw;
+	cloneDick.cType = pc.cocks[cIdx].cType;
+	cloneDick.cockColor = pc.cocks[cIdx].cockColor;
+	cloneDick.knotMultiplier = pc.cocks[cIdx].knotMultiplier;
+	cloneDick.flaccidMultiplier = pc.cocks[cIdx].flaccidMultiplier;
+	cloneDick.clearFlags();
+	for(var x:int = 0; x < pc.cocks[cIdx].cockFlags.length; x++)
 	{
-		cloneDick.cockFlags.push(pc.cocks[args[0]].cockFlags[x]);
+		cloneDick.addFlag(pc.cocks[cIdx].cockFlags[x]);
 	}
 	
-	pc.cocks.splice(args[0],0,cloneDick);
+	// Add cloned penis after the original penis to prevent issues (especially Mimbrane cLengthMod if cIdx is 0)
+	pc.cocks.splice((cIdx + 1), 0, cloneDick);
+	
 	processTime(2);
 	pc.orgasm();
 	pc.orgasm();

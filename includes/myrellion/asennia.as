@@ -240,7 +240,7 @@ public function herBusinessAsennia():void
 	clearOutput();
 	showAsennia();
 	author("Savin");
-	output("<i>“Mind talking for a minute?”</i> you ask the honeypot, trying to ignore the burn of arousal watching her nurse her customers gives you - nevermind the other half-dozen moaning, squirting ants around her.");
+	output("<i>“Mind talking for a minute?”</i> you ask the honeypot, trying to ignore the burn of arousal watching her nurse her customers gives you - never mind the other half-dozen moaning, squirting ants around her.");
 	output("\n\n<i>“I’d be delighted,”</i> Asennia answers, steepling her upper set of fingers. <i>“Anything specific on your mind, [pc.name]?”</i>");
 	output("\n\nHelping yourself to a seat ");
 	if(pc.isTaur()) output("next to the counter");

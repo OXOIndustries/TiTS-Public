@@ -133,6 +133,9 @@ package classes.Items.Transformatives
 			//#18 Flower tailcunt: Has tail-cunt, overdose.
 			if (target.hasTailCunt() && target.tailGenitalArg != GLOBAL.TYPE_FLOWER && effect.value3 >= 1)
 				TFList[TFList.length] = 18;
+			//#19 Change Regal Mane type, overdose.
+			if (target.hasPerk("Regal Mane") && !InCollection(target.perkv1("Regal Mane"), [GLOBAL.FLAG_TENDRIL, GLOBAL.FLAG_FLOWER_SHAPED]) && effect.value3 >= 1)
+				TFList[TFList.length] = 19;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
@@ -178,7 +181,8 @@ package classes.Items.Transformatives
 						
 						target.hairType = GLOBAL.HAIR_TYPE_PLANT;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
-						target.hairColor = RandomInCollection(plantHairColor);
+						//target.hairColor = RandomInCollection(plantHairColor);
+						target.hairColor = ((target.hasBeard() && InCollection(target.beardColor, plantHairColor)) ? target.beardColor : RandomInCollection(plantHairColor));
 						
 						msg += ParseText("\n\nThe cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s a relief when dozens of new growths sprout into being, thin stems burgeoning satisfyingly outwards, then unfurling spearhead-shaped pads as they come. The [pc.hairColor] leaves you grow out over the course of the next half hour are thin, healthy, and - ouch. Yes, definitely connected to you. You run your hands through your bonnet of plant growth, sighing at the pleasure of being able to feel each individual leaf.");
 					}
@@ -196,7 +200,8 @@ package classes.Items.Transformatives
 						
 						target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
-						target.hairColor = RandomInCollection(plantHairColor);
+						//target.hairColor = RandomInCollection(plantHairColor);
+						target.hairColor = ((target.hasBeard() && InCollection(target.beardColor, plantHairColor)) ? target.beardColor : RandomInCollection(plantHairColor));
 						
 						msg += ParseText("\n\nThe cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s initially a relief when the infuriation is broken by dozens of new growths sprouting into being; that turns to mild alarm when the growths unravel downwards at a furious rate, heavy, vaguely rubbery appendages that dangle loosely downwards from your head. Within half an hour you have a full head of [pc.hairColor] tentacle hair, thick plant vines that bounce and sway as you move.");
 						msg += "\n\nYou find, once you work out the scalp-flexing tweaks you use to fire your strange new nerve groups, you can actually move them around a bit, and - ooh. Yes, they are quite sensitive. You return to business, unsure whether to be delighted or askance at this new reality flopping around your ears and neck.";
@@ -570,6 +575,17 @@ package classes.Items.Transformatives
 						msg += "\n\n" + target.tailGenitalArgLockedMessage();
 					}
 				}
+				//#19 Change mane
+				else if(select == 19)
+				{
+					var newManeType:int = (target.isFeminine() ? GLOBAL.FLAG_FLOWER_SHAPED : GLOBAL.FLAG_TENDRIL);
+					
+					msg += "\n\nSuddenly, a tingling sensation runs through your mane and you find it drooping and disintegrating off of your shoulders. That is not the end however as";
+					if(newManeType == GLOBAL.FLAG_TENDRIL) msg += " plant-like creepers begin sprouting up from below your neck and stretching out to touch the air. <b>You now have a collar of vines around your neck!</b>";
+					if(newManeType == GLOBAL.FLAG_FLOWER_SHAPED) msg += " fresh flower petals blossom from your neck, splashing your nostrils with a scent of light morning dew. <b>You now have a collar of flower petals decorating your neck!</b>";
+					
+					target.setPerkValue("Regal Mane", 1, newManeType);
+				}
 				totalTFs--;
 			}
 			
@@ -634,7 +650,7 @@ package classes.Items.Transformatives
 					// v1: Timestamp!
 					// v2: Number of transformations per tick
 					// v3: Overdose levels
-					target.createStatusEffect("Cerespirin", timerStamp, 1, 0, 0, false, "Icon_DrugVial", "Your have injected yourself with an experimental drug...", false, timerStamp, 0xB793C4);
+					target.createStatusEffect("Cerespirin", timerStamp, 1, 0, 0, false, "Icon_DrugVial", "You have injected yourself with an experimental drug...", false, timerStamp, 0xB793C4);
 				}
 			}
 			//Not the player!

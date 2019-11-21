@@ -268,8 +268,8 @@ public function weakAssSlutGooFeeding(totalCum:Number):void
 	output("\n\n<i>“Good,”</i> left announces, ");
 	if(pc.hasHair()) output("running fingers of goo through your hair, subdividing herself until it feels like she’s stroking the spaces between the individual strands.");
 	else output("running her fingers across your scalp, subdividing each until it feels like she’s got a thousands fingertips giving you a massage.");
-	output(" <i>“Can give me all the cum.”</i>");
-	output("\n\nRight looks over, suddenly jealous. <i>“He barely has any! I need my nummy cummies!”</i>");
+	output(" <i>“[pc.HeShe] can give me all the cum.”</i>");
+	output("\n\nRight looks over, suddenly jealous. <i>“[pc.HeShe] barely has any! I need my nummy cummies!”</i>");
 	output("\n\n<i>“No! It’s mine!”</i>");
 	output("\n\n<i>“Mine!”</i> The fair features twist into a snarl, and with them, her puss");
 	if(pc.totalVaginas() > 1) output("ies");
@@ -281,7 +281,7 @@ public function weakAssSlutGooFeeding(totalCum:Number):void
 	else output("us");
 	output(" with virginal tightness mated with whorish desire. The disagreement doesn’t stop her from fucking you. No matter how her heads bicker, the wobbling woman’s too-thick thighs continue to bounce atop you in almost-perfect rhythm. The left will spout some pithy remark, and her cunt will viciously tug. The right will retort, and a callous ripple will slide along your length, milking you callously.");
 
-	output("\n\nSilver droplets splatter off your [pc.belly], slick and oily, sliding down your side to journey back into the goo-girls’ legs. She’s less solid than before, and hotter too, like the act of churning your loins for seed is slowly causing her to overhead. More viscous dollops drip off when she jerks too hard or fucks too fast, but she doesn’t seem to care. They wiggle through the dirt and back into her without a care in the world. The mercury madam may as well be a machine for how relentlessly she pumps your [pc.cocks]. Up, down, squeeze, up, down, twist... She doesn’t stop, not even when your whole body is shuddering and your [pc.balls] ");
+	output("\n\nSilver droplets splatter off your [pc.belly], slick and oily, sliding down your side to journey back into the goo-girls’ legs. She’s less solid than before, and hotter too, like the act of churning your loins for seed is slowly causing her to overheat. More viscous dollops drip off when she jerks too hard or fucks too fast, but she doesn’t seem to care. They wiggle through the dirt and back into her without a care in the world. The mercury madam may as well be a machine for how relentlessly she pumps your [pc.cocks]. Up, down, squeeze, up, down, twist... She doesn’t stop, not even when your whole body is shuddering and your [pc.balls] ");
 	if(pc.balls <= 1) output("is");
 	else output("are");
 	output(" cramping with the effort of giving her exactly what she wants...");
@@ -1237,7 +1237,7 @@ public function hyperRaskFun():void
 	if(pc.cumQ() >= 50) output(" She licks stray pre from her lips, though the effect is more to smear it across the bottom one like lip gloss.");
 	else output(" She licks her lips");
 	output(" <i>“And I want to have your babies. After these.”</i> She lifts your dick with both hands, grunting with the effort, then feathers kisses along the underside of your shaft");
-	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline \"barbs” one at a time");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline “barbs” one at a time");
 	output(". <i>“You’re the best daddy I’m ever going to meet.”</i>");
 
 	output("\n\nYou doubt you could stop her from gathering some if you wanted to.");
@@ -1305,7 +1305,7 @@ public function hyperRaskFun():void
 			output(".");
 		}
 		else output(" Almost as good as popping out your eggs is going to be.");
-		output("”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, " + pc.mf("stud","slut") + "?”</i>");
+		output("”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, " + pc.mf("stud","slut", true) + "?”</i>");
 
 		if(pc.isBro()) output("\n\nYou nod vigorously, wishing you could watch her do it.");
 		else if(pc.isBimbo()) output("\n\nYou giggle and shrug. Like, cum is great no matter how it slides into you!");
@@ -1323,7 +1323,7 @@ public function hyperRaskFun():void
 	{
 		output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. The gravid-girl’s mouth can’t even contain it all. She’s forced off your dick by the heated flow and takes the rest square in the face. Ribbons of [pc.cumNoun] cascade down her cheeks. [pc.CumGem] droplets dribble from her chin, but the raskvel still manages to remember her bucket and lift it into place, even while she’s trying to swallow her leftover mouthful. You can’t see her face with the spooge-vessel thrust in front of it, but you can hear her moans imploring you to give her more.");
 		output("\n\nStrangely, she seems to be getting off on it. Every time your [pc.cockNoun " + x + "] shoots a flood of [pc.cumNoun] through its urethra, you can feel her strained belly pressing back harder against you, as if the mere presence of sperm nearby is enough to make her reproductive system accelerate. Squirts of girlcum hit your [pc.feet] as she quivers, making her tiny soles pump your [pc.knot " + x + "] harder, squeezing even more of your potent fluids into the bucket.");
-		output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, " + pc.mf("stud","slut") + "!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
+		output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, " + pc.mf("stud","slut", true) + "!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
 		//[Next] -> same text as previous
 		processTime(20);
 		pc.orgasm();
@@ -1564,7 +1564,7 @@ public function faceRideTheRaskPreg():void
 	{
 		output(" Now put that tongue to work, and we’ll see if you’re really keyed up enough to get off from the taste of another");
 		if(pc.isPregnant()) output(" pregnant");
-		output(pc.mf(" person"," woman") + "’s pussy.");
+		output(pc.mf(" person"," woman", true) + "’s pussy.");
 	}
 	output("”</i>");
 	output("\n\n<i>“Mmmm... been a while since I sucked pussy,”</i> the pregnant raskvel admits. Her eyes are wide and lustily locked on your slit");
@@ -1641,7 +1641,7 @@ public function postPregRaskLicky():void
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nSomebody’s got a boner~!");
 	else output("\n\nYou get the impression she did more than just sample the mushrooms, but don’t see much point in bringing it up, not when you’re this well-fucked.");
-	output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re Miss Superpuss if you come back, and I’ll let you right back in.");
+	output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re [pc.Miss] Superpuss if you come back, and I’ll let you right back in.");
 	if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKTURRETS_BROKE"] != undefined)
 	{
 		output(".. once I fix the ");
@@ -1791,7 +1791,7 @@ public function letAzraTrapQueenTalk():void
 	output("\n\nThe Queen slaps the back of his head, silencing him. <i>“What Azaphel means is that a weapon would be sufficient. My army is ever in need of fresh weapons.”</i>");
 	output("\n\nAzra holds up her empty hands and looks to you. <i>“[pc.name], could you part with a weapon?”</i>");
 	output("\n\nOnce more, it falls to you to defuse the situation.");
-	if(!(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) || hasAWeapon())
+	if(pc.hasEquippedWeapon() || hasAWeapon())
 	{
 		output(" What will you give Azra?");
 		processTime(5);
@@ -1801,14 +1801,14 @@ public function letAzraTrapQueenTalk():void
 			if(!pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
 			else addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
 		}
-		else if(pc.meleeWeapon is Rock) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
+		else if(!pc.hasMeleeWeapon()) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"Melee Wpn","Melee Weapon","You do not have a melee weapon on hand.");
 		button++;
 		if(pc.hasRangedWeapon()) {
 			if(!pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Ranged Wpn","Ranged Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
 			else addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
 		}
-		else if(pc.rangedWeapon is Rock) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
+		else if(!pc.hasRangedWeapon()) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"RangedWpn","Ranged Weapon","You do not have a ranged weapon on hand.");
 		button++;
 		for(var i:int = 0; i < pc.inventory.length; i++)
@@ -2183,7 +2183,7 @@ public function raskyRooOrgipoo():void
 	clearOutput();
 	author("Nonesuch");
 	showName("\nLEWD!");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(pc.isBimbo() && flags["AZRA_RASK_PC_SUCKED"] != undefined) output("One blowie is absolutely not enough. You nod and grin your eager assent - triggering sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging, feathery tail as she turns and sashays away into her territory.");
 	else output("You are pleased she made the overture - this was turning out to be a very dry encounter. Can you claim to have had successful negotiations if you didn’t all fuck at the end? You nod and grin your eager assent - trigger sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging tail as she turns and sashays away into her territory.");
 	output("\n\n<i>“Are you wondering how I became a Queen, stranger?”</i> the tan creature asks. Even heavily clad in her armor it’s obvious she has a nice figure, slim and muscular but with hourglass swells that make the mouth water. She’s taken you to a steep hollow created by the bulwark of a half-buried spaceship, the heavily plated metal craning over a depression furnished with a large number of pillows and a spiky, welded together chair that obviously fancies itself as a throne. The sydian shoos her small charges down into it as she continues to speak.");
@@ -2207,7 +2207,7 @@ public function spitRoastRaskvelTimes():void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("RASK_TRAP","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("You signal your intentions by sidling into the nearest pink-skinned big-balled reptile [pc.butt] first, stroking his sensitive ears. He coos with delight and looks ");
 	if(pc.tallness >= 60) output("up ");
 	output("at you with barely contained lust, hands instinctively wrapping around your [pc.thigh].");
@@ -2308,7 +2308,7 @@ public function raskOrgyPart2(route:String):void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("The sensation of getting thoroughly gangbanged like this is overwhelming, and you are quickly forced to an orgasm which grips your entire body, ");
 	if(pc.hasVagina()) output("[pc.eachVagina] seizing up repeatedly and coating the raskvel’s groin in [pc.girlCum]");
 	if(pc.isHerm()) output(" and ");
@@ -2383,7 +2383,7 @@ public function raskOrgyPart2(route:String):void
 public function raskOrgyPart3(route:String):void
 {
 	clearOutput();
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	showName("AFTER\nORGY");
 	author("Nonesuch");
 	output("You’re not sure how much time passes, down there in the still, glittering air, before ");
@@ -2487,7 +2487,7 @@ public function fuckTheSydianQueen(x:int):void
 	clearOutput();
 	showName("LAY\nHER");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 
 	output("The tall, armored demagogue can hardly have shaken that tail in front of you, flashed that orange bejazzle, and expected you to settle for anything less than first prize here. You return her gaze with all the unabashed smolder you can muster, ");
 	if(!pc.isCrotchExposed())
@@ -2527,7 +2527,7 @@ public function fuckTheSydianQueen(x:int):void
 	}
 	else output("despite your prestigious size.");
 
-	output("\n\n<i>“Yeeeesss,”</i> hisses Queen Sydian, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A shemale taskmaster") + " to keep my servants in check and give them regular milkings!”</i>");
+	output("\n\n<i>“Yeeeesss,”</i> hisses Queen Sydian, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A " + (pc.isHerm() ? "hermaphrodite" : "shemale") + " taskmaster", true) + " to keep my servants in check and give them regular milkings!”</i>");
 	output("\n\n<i>“No, my queen! I can be that for you, see!”</i> The third raskvel has got the fourth pinned beneath him; he’s giddily flapping his curvy thighs into his fellow’s behind, whose eyes are crossed. A gurgling, helpless moan and a gushing sound draws your attention back to your own bottom. A thick cum is oozing from Azaphel’s bright purple cock, forced out from his sheath by the unstoppable bludgeoning of your own fuck-pole on what is evidently an outsized and very sensitive prostate.");
 	output("\n\n<i>“That’s sweet of you, Meffilin,”</i> coos the sydian to the upstart raskvel, crossing her long legs around her designated muff-servicer, muscles shifting and tightening in her thighs. <i>“But you’ve never made one of my other guards cum like a girl in seconds, have you?”</i>");
 
@@ -2549,9 +2549,9 @@ public function fuckTheSydianQueen(x:int):void
 public function fuckTheSydianQueen2(x:int):void
 {
 	clearOutput();
-	showName("SYDIAN\n\"QUEEN\"");
+	showName("SYDIAN\n“QUEEN”");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN");
+	showBust("SYDIAN_QUEEN_NUDE");
 	output("Pulse thudding in your temple, you [pc.move] across and mount her on her reconstructed throne, the smooth, unyielding back-plates against your arms contrasting to the suppleness of her breasts pooling into your [pc.chest]. It takes barely a second to line your [pc.cockHead " + x + "] up with her puffy, split tangerine of a cunt. Sliding into her is like slipping into a silky, sultry dream.");
 	output("\n\n<i>“Yeeeessss,”</i> she hisses in delight, tightening her thin, armored fingers around your shoulders as you dip your [pc.cock " + x + "] into her spongy, sopping tunnel. You find her limit and slowly withdraw, and she tightens her athletic thighs around your waist, reaching down to snatch at your [pc.ass], impatient for the returning thrust. <i>“You! Servants! Rut each other for my pleasure! You have permission to cum as much as you waaaafnnnn.”</i> She trails off in an euphoric croon as you give it her, groaning yourself as you immerse your dick from ");
 	if(pc.cocks[x].cLength() <= 11) output("[pc.cockHead " + x + "] to [pc.sheath " + x + "]");
@@ -3231,7 +3231,7 @@ public function azraTribbyTribbyBangBang2():void
 	output(" hotter too.");
 	if(pc.isSquirter() && pc.girlCumQ() >= 6000) output(" You’re gushing more [pc.girlCum] than Azra.");
 	output(" Slowing your twitching hips doesn’t help. Once her tendrils touch a place, they leave behind a red-hot furnace of lust.");
-	output("\n\n<i>“Sorry!”</i> Azra whines, pumping her lap lust-mad cunt against you. <i>“I couldn’t hold it them in!”</i> She whimpers, and an eruption of pure alabaster sprays onto her tits. <i>“They were stinging me soooo muuuuuch!”</i> The siren’s cock goes off like a geyser, spraying lances of jizz every which way. <i>“Ohhhh-god-I-can’t-stop-cumming!”</i> Jizz splatters Azra’s hair. It rains over her shoulders and drenches her prodigious bosom faster than the water can wash it away. Rivers of pearl slough off her side to flow toward the drain, but the flow thickens with every passing second.");
+	output("\n\n<i>“Sorry!”</i> Azra whines, pumping her lap lust-mad cunt against you. <i>“I couldn’t hold it in!”</i> She whimpers, and an eruption of pure alabaster sprays onto her tits. <i>“They were stinging me soooo muuuuuch!”</i> The siren’s cock goes off like a geyser, spraying lances of jizz every which way. <i>“Ohhhh-god-I-can’t-stop-cumming!”</i> Jizz splatters Azra’s hair. It rains over her shoulders and drenches her prodigious bosom faster than the water can wash it away. Rivers of pearl slough off her side to flow toward the drain, but the flow thickens with every passing second.");
 	output("\n\nMaybe you should mind that her gushing cunny is dosing you with enough aphrodisiacs to make an elephant spontaneously orgasm, but it’s hard to be mad when she’s got it so much worse than you. Watching her dick unload rapid-fire squirts is enough to make you whimper in anticipation. You’re so close yourself.");
 	output("\n\nAzra loses her mind to pleasure. She screams herself hoarse while her hands roughly maul her tits. One finds her nipple and mercilessly tugs it. On the other side, her fingers clench into a boob-filled claw, spasmodically twitching.");
 	output("\n\nYou grab her dick in one hand, miraculously keeping your balance. You intended to jerk it off, but the feeling of it rhythmically pulsing, expanding, and unloading stops you in your tracks. It’s like holding onto a perverted firehose. You do your best to aim it at Azra’s chest, sliming her hands as they work over her big, motherly shark-tits. Then you find yourself stroking it, pumping it along to the rhythm of your hips. You hear your voice cooing encouragingly, telling Azra to squirt out every drop, your thumb sliding back and forth across her spunk-inflated urethra.");

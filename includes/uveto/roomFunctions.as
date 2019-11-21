@@ -3,9 +3,8 @@ import classes.Creature;
 import classes.Engine.Combat.DamageTypes.DamageResult;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.Engine.Combat.DamageTypes.DamageFlag;
-import classes.Items.Accessories.LeithaCharm;
-import classes.Items.Treasures.Savicite;
 import classes.RoomClass;
+import classes.Items.Treasures.Lucinite;
 
 public function TundraEncounterBonus():Boolean
 {
@@ -25,12 +24,18 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
 		if(stormguardMaleEncounterAvailabale()) 
 		{
 			choices[choices.length] = stormguardIntro;
-			choices[choices.length] = stormguardIntro;
 		}
-		
+		//breedwell premium booty call
+		if (breedwellPremiumBootyCallCheck("uveto"))
+		{
+			choices[choices.length] = breedwellPremiumBootyCallPing;
+			choices[choices.length] = breedwellPremiumBootyCallPing;
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -63,12 +68,16 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
-		//POSSIBLE ENCOUNTERS! KORGI!
-		choices[choices.length] = encounterAKorgonneFemaleHostile;
-		choices[choices.length] = korgMaleEncounter;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
+		//very low encounter rate korgs
+		if(rand(2) == 0)
+		{
+			choices[choices.length] = encounterAKorgonneFemaleHostile;
+			choices[choices.length] = korgMaleEncounter;
+		}
 		if(stormguardMaleEncounterAvailabale())
 		{
-			choices[choices.length] = stormguardIntro;
 			choices[choices.length] = stormguardIntro;
 		}
 
@@ -84,6 +93,8 @@ public function GlacialRiftEncounterBonus():Boolean
 		}		
 		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
+			choices.push(soloFertilityPriestessFight);
+			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 		}
 		//Run the event
@@ -102,6 +113,7 @@ public function GlacialRiftEncounterBonus():Boolean
 	if (tuuvaExpeditionRescueChance()) return true;
 	if (tryUvetoWeatherEvent(flags["TUNDRA_STEP"])) return true;
 	if (tryEncounterSavicite(flags["TUNDRA_STEP"])) return true;
+	if (tryEncounterLucinite(flags["TUNDRA_STEP"],false)) return true;
 	return false;
 }
 
@@ -128,11 +140,14 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
+	var btnSlot:int = 0;
+	
+	synphiaBonus(btnSlot++);
+
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
-		chaurmineUvetoStationBonus();
+		chaurmineUvetoStationBonus(btnSlot++);
 	}
-
 	return false;
 }
 public function uvetoDockingBonus():Boolean
@@ -245,6 +260,8 @@ public function rideSpaceElevatorUp():void
 	clearOutput();
 	author("Savin");
 	
+	//If Korgii Hold is primed to fall, fall.
+	if(flags["WARGII_DOOM_TIMER"] == 1) flags["WARGII_DOOM_TIMER"] = 2;
 	rooms["UVS LIFT"].outExit = null;
 	currentLocation = "UVS LIFT";
 	generateMap();
@@ -320,7 +337,7 @@ public function rideSpaceElevatorDown():void
 
 public function uvetoUnlocked():Boolean
 {
-	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+	return (flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
 }
 
 public function flyToUveto():void
@@ -495,7 +512,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			//output("\n\n");
 			
-			generateMapForLocation("GAME OVER");
+			generateMapForLocation("UVETO WILDERNESS");
 			
 			clearMenu();
 			addButton(0, "Next", uvetoFallToColdDamage);
@@ -589,7 +606,8 @@ public function uvetoSearchAbandonedCamp():void
 	
 	lootScreen = uvetoAbandonedCampLootCheck;
 	flags["UVIP_J46_SEARCHED"] = 1;
-	flags["SUPPRESS_COMBAT"] = 1;
+	//Effectively suppress combat for a bit :3
+	flags["TUNDRA_STEP"] = 0;
 	itemCollect([new LeithaCharm()]);
 }
 
@@ -648,7 +666,9 @@ public function uvetoFallToColdDamage():void
 		
 		output("\n\nGroggily, you open your eyes, long enough to see that you’re in the back of a vehicle, bumping along the snowy outskirts of the plains. Ice has formed on the windows, but you can just make out Irestead in the distance, growing closer by the moment. Glancing at the front of the vehicle, you see metal bars separating you from the driver’s cabin, and an old slug shotgun bolted to the cage. A pair of cute little chibi ausar tokens hang from the rear view mirror, both dressed in too-tight Peacekeeper blouses and pointing finger guns at you.");
 		
-		output("\n\n<i>“You’re awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
+		if(silly) output("\n\n<i>“Hey, you. You’re finally ");
+		else output("\n\n<i>“You’re ");
+		output("awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
 		if (flags["UVETO_LUNA_RESCUES"] == undefined)
 		{
 			output(" <i>“What were you thinking, wandering around outside town without a heat belt. Lucky you I was around, or you’d have been dead for sure!”</i>");
@@ -822,6 +842,9 @@ public function uvetoBarBonus():Boolean
 	if(isChristmas()) candyRahnBonus(5);
 	else roamingBarEncounter(5);
 	
+	//Devil Waitress
+	//DISABLED FOR NOW. willowBonus(6);
+	
 	// More random Freezer encounters
 	NPCs.length = 0;
 	//Chrissy
@@ -839,7 +862,15 @@ public function uvetoBarBonus():Boolean
 
 public function uvetoBarFirePitBonus():Boolean
 {
-	if (syriAtFreeezer()) syriAtFreezerFirePitBonus(0);
+	if (syriAtFreeezer())
+	{
+		if(pc.hasStatusEffect("Fuck Fever") && syriIsAFuckbuddy()) 
+		{
+			syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
+			return true;
+		}
+		syriAtFreezerFirePitBonus(0);
+	}
 
 	setNavDisabled(NAV_SOUTH_DISABLE);
 	return false;
@@ -1051,6 +1082,16 @@ public function uvetoStationLoungeFunc():Boolean
 public function uvetoExecLobbyBonus():Boolean
 {
 	vendingMachineButton(1, "J'ejune");
+
+	// Determine what mode we need to be in for Tlako & Xotchi here...
+	if (timeForXotchiOverride())
+	{
+		flags["XOTCHI_ROOM_MODE"] = 1;
+	}
+	else
+	{
+		flags["XOTCHI_ROOM_MODE"] = 0;
+	}
 	
 	//setNavDisabled(NAV_EAST_DISABLE);
 	
@@ -1074,7 +1115,11 @@ public function uvetoMaglevStation():Boolean
 		syriQuestInitialEncounter();
 		return true;
 	}
-	else addButton(0, "Transit", useUvetoTransportMenu);
+	else 
+	{
+		showBust("UVETO_TAXI_VENDOR");
+		addButton(0, "Transit", useUvetoTransportMenu);
+	}
 	return false;
 }
 		
@@ -1133,7 +1178,8 @@ public function GlacialRiftS40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		addButton(0, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
 	}
@@ -1143,7 +1189,7 @@ public function GlacialRiftS40():Boolean
 public function GlacialRiftS40FlyDown():void
 {
 	clearOutput();
-	output("You take flight, smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to soar down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
+	output("You " + (pc.hasJetpack() ? "blast off" : "take flight") + ", smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to " + (pc.hasJetpack() ? "hover" : "soar") + " down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
 	currentLocation = "UVGR O42";
 	
 	clearMenu();
@@ -1160,7 +1206,8 @@ public function GlacialRiftQ40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		
 		addButton(1, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
@@ -1554,9 +1601,83 @@ public function encounterSavicite(choice:String = "encounter"):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
+// Lucinite Chunk
+public function tryEncounterLucinite(nStep:int = 0,frostwyrm:Boolean=false):Boolean
+{
+	var getChance:int = 225;
+	if (pc.accessory is NogwichLeash && frostwyrm) getChance = 65;
+	else if (pc.accessory is NogwichLeash || frostwyrm) getChance = 120;
 
+	if (nStep != 0 && rand(getChance) <= 1)
+	{
+		encounterLucinite();
+		return true;
+	}
+	return false;
+}
+public function encounterLucinite(choice:String = "encounter"):void
+{
+	if(choice == "encounter")
+	{
+		clearOutput();
+		showName("A CHUNK OF\nLUCINITE!");
+		
+		if(pc.accessory is NogwichLeash) output("Your nog’wich suddenly rears back and mewls softly, ruffling its round ears. It looks like it found a small, oddly-colored protrusion sticking out from the ground.");
+		else output("You notice a small, oddly-colored protrusion sticking out from the ground out of the corner of your eye.");
+		output(" Curiosity getting the better of you, you stop in your tracks and");
+		if (pc.isRidingMount()) output(" hop off from your mount");
+		else output(" carefully walk over to it");
+		output(" to investigate.");
+		if (flags["FOUND_LUCINITE"] == 1)
+		{
+			output("\n\nAnother piece of teal rock lays in the snow by your footprints. Your codex chirps, confirming what you already know: the rock is a piece of lucinite, a psionically charged material capable of heat absorption. Keeping it in your inventory would leave you to be more vulnerable to the harsh environs of the Uvetian moon, though this will still fetch a pretty credit because of how rare it is.");
+		}
+		else
+		{
+			output("\n\nA teal-colored rock the size of your hand sticks up slightly just about the start of the skidmark. When you bend down to pick it up, a dreadful chill surges through your fingers. It is somehow much colder to the touch than the already frigid surroundings. Before your fingers wind up frostbitten, you hurriedly drop the metallic rock back onto the snow.");
+			output("\n\nYour codex chirps immediately afterwards, identifying the strange ore as lucinite, one of several known psionically-charged materials. It also warns that it has heat siphoning powers, and that without proper handling and protection, prolonged exposure with this ore will run the risk of hypothermia. Great. As if the already freezing conditions weren't enough to worry about! On the plus side, this is also a very valuable material considering how rare it is.");
+		}
+
+		output("\n\nDo you want to risk taking it with you?");
+		
+		processTime(1);
+		flags["FOUND_LUCINITE"] = 1;
+		
+		clearMenu();
+		addButton(0, "Take It", encounterLucinite, "take it");
+		addButton(1, "Nope", encounterLucinite, "leave it");
+	}
+	else if(choice == "take it")
+	{
+		clearOutput();
+		output("Gingerly, you pick the lucinite ore up and throw it hurriedly into your inventory before it can affect you too much. You can still feel its heat-siphoning effects through your bag...");
+		output("\n\n");
+		
+		quickLoot(new Lucinite());
+	}
+	else if(choice == "leave it")
+	{
+		clearOutput();
+		output("You decide to leave the ore where it is. After few more moments, the Uvetian winds completely cover it in a thin layer of snow.");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+}
 public function korgiiHoldExteriorBonus():Boolean
 {
+	//If been to irestead since turning down, RIP Korgii
+	if(flags["WARGII_PROGRESS"] == -1 && flags["WARGII_DOOM_TIMER"] == 2)
+	{
+		flags["WARGII_DOOM_TIMER"] = undefined;
+		flags["WARGII_PROGRESS"] = -2;
+	}
+	if(flags["WARGII_PROGRESS"] == -2)
+	{
+		output("The entrance to Korg’ii Hold, with all its many secret, whistling holes, is gone. A sturdy metal edifice has been plunked down in its place. Geddanium-reinforced armor renders it impervious to small-arms fire, and the muzzles of a dozen remote-control anti-tank weapons dismantle any ideas you have about breaking in as soundly as the hull of a T-3400 battle tank. The korgonne clearly aren’t in charge any longer. Some other force or entity has claimed the hold. <b>Perhaps you should’ve helped out Ula.</b>\n\nNow there’s nothing you can do but stare angrily at the Pyrite Industries logo stamped on a gun barrel.");
+		return false;
+	}
+	output("Hundreds of holes mar the glossy surface of a sparkling wall of savicite and aluminum ore to the west.");
 	output("\n\nThe holes appear to have been drilled through the valuable ore ");
 	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg’ii Hold.");
 	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it’d be more profitable to just mine out the thing to the bottom.");
@@ -1591,8 +1712,15 @@ public function korgiiHoldInteriorExitBonus():void
 
 public function enterKorgHold():void
 {
+	//WARGII QUEST INTERRUPT!
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["WARGII_PROGRESS"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	{
+		currentLocation = "KORGII B12";
+		generateMap();
+		wargiiHoldProcOhShiiiiit();
+		return;
+	}
 	clearOutput();
-
 	showName("OPEN\nDOGGIE-DOOR");
 	output("<i>“Welcoming, friend!”</i> comes an answering voice.");
 	output("\n\nA sharp-sounding crack echoes through the snow-covered countryside as the glittering rock shifts inward. Rotating slowly, it rolls behind the wall, revealing the ");
@@ -1683,18 +1811,43 @@ public function korgiH14Bonus():void
 
 public function korgiF14Bonus():void
 {
-	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
-	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
+	if(korgiTranslate()) output(" Alien script scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
+	else output(" Alien script scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
 }
 
 public function chiefBedroomBonus():Boolean
 {
 	//Temporary? Maybe someday in the future actually allow into chief's bedroom.
-	clearOutput();
-	output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
-	currentLocation = rooms[currentLocation].westExit;
-	generateMap();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-	return true;
+	if(!ulaChief())
+	{
+		clearOutput();
+		output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
+		currentLocation = rooms[currentLocation].westExit;
+		generateMap();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	else
+	{
+		//OLD: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the Steele Tech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
+		output("The Chieftain’s bedroom may have once been a spartan, traditional affair, but since Ula’s sudden promotion to unquestioned leader of her tribe, much has changed. The comfortable but primitive bed has gained a set of flannel sheets decorated with snowflakes and cartoonish seals, obviously purchased from somewhere in Irestead. The furniture from Ula’s old room joins it in sprucing up the place and lending it an air befitting of a more civilized people.");
+	}
+	return false;
+}
+public function korgiiThroneRoomBonus():Boolean
+{
+	if(!ulaChief()) output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.");
+	else 
+	{
+		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula’s rise to power, and she’s even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there’s paperwork to be done.");
+		return ulaRoomBonusFunc();
+	}
+	return false;
+}
+
+public function korgiiMineGuardsBonus():Boolean
+{
+	prisonerEitanBonus();
+	return false;
 }

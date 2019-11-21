@@ -44,7 +44,7 @@ public function encounterRegularTentaclePitcherYouGay():void {
 		flags["TIMES_MET_VENUS_PITCHER"]++;
 		if(rand(2) == 0) output("\n\nA lovely green woman is here, clad in a simple vine and leaf bikini, her lower half concealed behind a bush. She notices you and calls out to you, begging for you to come to her with exaggerated shakes of her upper body that make her bosom quake in a most delightful manner. You sneeze as you watch the light glitter off her soft, pouty lower lip, nearly stumbling forward of your own volition before you realize that this must be another venus pitcher!");
 		else {
-			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh so pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
+			output("\n\nSneezing, you wipe your nose and shake your head, feeling a little dizzy in the moist jungle heat. You stumble a little bit and catch yourself on what you think is a tree. When the “tree’s” breast compresses oh-so-pleasantly under your hand, accompanied by a pleasured moan, you realize that you’ve woefully underestimated your surroundings.");
 			output("\n\n<i>“Hey there, good lookin’. You say hi to all the girls that way?”</i> a musically sweet voice playfully teases. The boob you’re currently palming presses harder into your digits, allowing them to sink deeply into the sizeable mammary. <i>“Enjoy it, sugar. Just come around front here so I can properly show my appreciation.”</i>");
 			output("\n\nYou recoil with surprising dexterity, gaping almost slack-jawed at the lewd, pale green beauty eyeing you. Her gaze is extraordinarily predatory, though you are unsure if it’s the lewd and salacious kind or something far more dangerous. She’s clearly a venus pitcher. Getting closer to her would undoubtedly be a goo--no... bad idea.");
 			output("\n\nYou sneeze again and weigh your options.");
@@ -753,7 +753,7 @@ public function watchElderVenusPitcher():void {
 	
 	output("\n\nIn a voice so throaty and lustful that it makes your [pc.legOrLegs] shudder, the venus pitcher woman answers, <i>“You can make an exception for me and my sisters. We don’t want to do anything bad to you</i>");
 	if(rand(3) == 0) output("<i>; we just want to make you feel good for as long as possible and help you cum out all that pent-up, nasty tension whenever it rises up inside you</i>");
-	else output("<i>; we just want to to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
+	else output("<i>; we just want to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
 	output("<i>. What’s not to love? Honestly, I’d be surprised if you weren’t already rationalizing a reason to crawl into my arms and let me and my perfect tits take you to a paradise beyond imagining, </i>");
 	if(pc.hasCock()) output("<i>one that will make your [pc.cocks] melt</i>");
 	else output("<i>one that will make your [pc.vaginas] melt</i>");
@@ -990,7 +990,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	
 	output("\n\n<i>“Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,”</i> the seductive plant-girl wonders aloud. <i>“You just relax and hang out while I milk these puppies-”</i> she tugs on your [pc.dickNipples] eagerly, <i>“-so well that they pop out whenever you think about me.”</i>");
 	
-	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nipples] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
+	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of your [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nipples] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
 	
 	output("\n\nThat sensation becomes far more palpable a moment later, only it’s happening on every single surface of your dicknipples, surrounding them in a warm, wet surface that tugs and squeezes them relentlessly. Those warm sheaths engulf the entirety of your pricks, and blinded by breasts as you are, your sense of touch is magnified, making the pleasure so exquisite that you begin to leak pre already. Hundreds of cilia stroke and caress you like a swarm of tiny tongues. The nubs at the ends press against your [pc.chest] and close up, sealing up just in time for them to begin sucking slightly, pulsing slow vacuum-powered tugs on your shafts. Circles of pressure constrict around your lengths at various points and begin to drag inward, new ones forming at the bottom of your [pc.dickNipples] whenever they slide past the tips, milking you unendingly.");
 	
@@ -1750,7 +1750,7 @@ public function venusPitcherBadEnd6():void
 	//Cunt
 	if(pc.hasVagina())
 	{
-		output("\n\nTwo tentacles slam into your [pc.vagina] in unison, the narrow lengths curling around one another to give your insatiable box the fucking it oh so clearly needs. You can hardly contain the joy they stir up in your loins. Were it not for the nipple in your mouth, you’d be screaming in heedless joy, ripping your voicebox ragged in an attempt to let the universe know just how completely you’re controlled by the pleasure ");
+		output("\n\nTwo tentacles slam into your [pc.vagina] in unison, the narrow lengths curling around one another to give your insatiable box the fucking it oh-so-clearly needs. You can hardly contain the joy they stir up in your loins. Were it not for the nipple in your mouth, you’d be screaming in heedless joy, ripping your voicebox ragged in an attempt to let the universe know just how completely you’re controlled by the pleasure ");
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("driving deep beneath your [pc.leg]");
 		output(".");
@@ -1792,3 +1792,39 @@ public function venusPitcherBadEnd7():void
 	
 	badEnd();
 }
+
+public function venusFlowerDrops():Boolean
+{
+	var bonus:int = 0;
+	
+	if(flags["EMMY_QUEST"] == 0) bonus += 100;
+	if(flags["ENABLE_LYS_FLOWER"] != undefined) bonus += (flags["GAVE_LYS_FLOWER"] == undefined ? 100 : 30);
+	
+	// default 20% chance + bonus
+	return ((rand(100) + bonus) >= 80);
+}
+
+//Venus Pitcher Post Sex or Avoidance
+public function venusPitcherBonusFlower():void
+{
+	clearOutput();
+	showName("AN EXOTIC\nFLOWER!");
+	showBust("");
+	if(flags["EMMY_QUEST"] == 0)
+	{
+		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure to dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
+		if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
+	}
+	else
+	{
+		output("Oh hey, there’s a particularly pretty bloom left on the ground, dazzlingly purple and pink. Better yet, it smells delightful.");
+		if(flags["ENABLE_LYS_FLOWER"] != undefined && (flags["GAVE_LYS_FLOWER"] == undefined || rand(4) == 0)) output(" Maybe Lys will" + (pc.isBimbo() ? ", like," : "") + " appreciate it.");
+		else output(" Should you" + (pc.isBimbo() ? ", like," : "") + " take it with you?");
+	}
+	//Acquire bloom
+	output("\n\n");
+	clearMenu();
+	addButton(0, "Take It", quickLoot, new VenusBloom());
+	addButton(1, "Leave It", mainGameMenu);
+}
+

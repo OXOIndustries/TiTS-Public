@@ -4,6 +4,7 @@ package classes.Engine.Combat
 	import classes.Characters.Dollmaker;
 	import classes.Characters.JumperBored;
 	import classes.Engine.Utility.rand;
+	import classes.Items.Accessories.AimEyepieceMkII;
 	import classes.GLOBAL;
 	/**
 	 * ...
@@ -23,7 +24,14 @@ package classes.Engine.Combat
 			if(target is Dollmaker) overrideAttack -= 50;
 			else if(target is JumperBored) overrideAttack -= 30;
 
-			var evasion:Number = target.evasion();
+			var evasion:Number = target.evasion() + target.statusEffectv1("Optic Blur");
+			//Negate target's evasion~
+			if(attacker.accessory is AimEyepieceMkII) 
+			{
+				evasion -= 5;
+				if(evasion < 0) evasion = 0;
+			}
+
 			//Negative evasion also helps you be hit by attacks.
 			var evasionPenalty:Number = Math.max(0, evasion * -3);
 			//Standard miss chance

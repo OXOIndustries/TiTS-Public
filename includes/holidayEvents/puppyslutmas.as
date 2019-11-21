@@ -126,22 +126,16 @@ public function syriPuppyslutmasEntry():Boolean
 		showSyri();
 		author("Savin");
 		flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] = 1;
-
+		
 		output("<i>“Hey, Steele!”</i> Syri says, winking at you as you come over. She leans back in her seat and pats the chair next to her, inviting you over. As you take your accustomed seat, you see your ausar friend’s raven tail swishing faster than usual - and something <i>else</i> seems pretty happy to see you, too. You flop down beside Syri and grab a drink she slides over to you.");
 		if (hours <= 12) output(" It’s five o’clock somewhere, right?");
-		
 		output("\n\n<i>“So. I was hoping you’d stop by,”</i> Syri says, planting an affectionate arm around your shoulders. <i>“It’s the season to be jolly, right? Gettin’ on towards Christmas. Not that you could tell in this awful jungle or anything. Winter? Nah, hot and sweaty all day every day. Welcome to Mhen’ga!”</i>");
-		
 		output("\n\nSyri kicks back a long drink, sucks in a sharp breath, and says, <i>“Anyway! Not what I wanted to talk about. Don’t mind me, I’m a little drunk already becaaaaause... I got a message from my parents yesterday. I guess they finally realized I changed email addresses after school. So they invited me to this big shindig they throw every almost-Christmas back home. Big charity party for all their rich friends, I guess.”</i>");
-		
 		output("\n\n<i>“You don’t sound too excited about it,”</i> you venture, glancing between Syri’s flushed cheeks and the almost empty bottle of beer beside it.");
-		
 		output("\n\nShe huffs. <i>“I’m not! I haven’t seen my parents since, uh, whaddaya humans call it... high school! Told ‘em to get fucked and enlisted right out of school.");
 		if (flags["ANNOxSYRI_EVENT"] == undefined) output(" Haven’t seen my sister in ages, either, and she’ll probably be there.");
 		output(" Not really on good terms with my family, so... hell, I don’t even know why they invited me. Figured they wouldn’t want anything to do with me anymore.”</i>");
-		
 		output("\n\nSyri sighs and rubs the back of her neck. After a moment’s thought, she adds, <i>“But fuck it. Maybe I should go. Worse that can happen is I get smashed and tell ‘em to fuck off again, right? Oh, yeah, and I’ve got an invitation plus one. And I’m sure as hell not going alone...”</i>");
-		
 		output("\n\nIt doesn’t take a genius to pick up on Syri’s akwardly-voiced request: she wants you to come as her date.");
 
 		clearMenu();
@@ -154,7 +148,6 @@ public function syriPuppyslutmasEntry():Boolean
 	}
 	return false;
 }
-
 public function syriPuppyslutmasNope():void
 {
 	clearOutput();
@@ -162,17 +155,11 @@ public function syriPuppyslutmasNope():void
 	author("Savin");
 
 	output("<i>“I don’t think that’s a good idea anyway,”</i> you say flatly. <i>“If you don’t wanna go, don’t.”</i>");
-	
 	output("\n\n<i>“Heh. Yeah,”</i> Syri says, finishing her drink. <i>“Fuck, I wish they’d just leave me alone. Guh. Well, thanks for helping me make up my mind, Steele. I hate waffling like that.”</i>");
-	
 	output("\n\nYou nod and finish your own drink. <i>“So, what’s the problem with your parents, anyway?”</i>");
-	
 	output("\n\nSyri scowls and leans back against the bar, shaking her head. <i>“It’s stupid, really. I actually did pretty good in school, you know. Not as good as my rocket scientist of a sister, but still. Could have gone to some good universities, followed the family tradition and gone into science, or business, or whatever. But fuck it, that’s not what I want to do with my life. I wanted to get out there and </i>do<i> things - fight and explore, maybe even captain a ship out in the Black and make my own damn fortune. Sure, I fucked all that up, but I’d rather have tried than not, you know? My folks didn’t understand that - they’d had everything handed to ‘em on a silver platter, grew up idle and rich. They pitched a fit when I said I wanted a ship instead of a full ride to Ausaril Tech.");
-	
 	output("\n\n<i>“That’s why I respect you, Steele, you know. Sure, you’ve got Daddy Steele back there dangling riches in front of you, but you’re </i>out here<i>, going on adventures and living your life anyway. Heh, I wish I could be where you are.... Instead of stuck here doing construction work to keep from starving.”</i>");
-	
 	output("\n\nYou put a comforting hand on Syri’s shoulder, and she gives you a weak smile. <i>“I’m rambling. Pretend you didn’t hear any of that... it could be a lot worse. Like having a desk job.”</i>");
-	
 	output("\n\nShe laughs and slaps you on the back. <i>“Anyway. C’mon, let’s talk about something else...");
 	if (pc.lust() >= 33) output(" Or at least let me drown my sorrows in that sweet ass of yours, Steele!");
 	output("”</i>");
@@ -182,7 +169,6 @@ public function syriPuppyslutmasNope():void
 	// [Syri's Morning Menu here]
 	syriMorningMenu();
 }
-
 public function syriPuppyslutmasYe():void
 {
 	flags["PUPPYSLUTMAS_2014"] = "Syri";
@@ -192,17 +178,85 @@ public function syriPuppyslutmasYe():void
 	author("Savin");
 
 	output("<i>“I guess I could tag along,”</i> you say, putting your arm around Syri’s shoulders. Her ears perk up at the affirmation, and she flashes you a wolfish grin.");
-	
 	output("\n\n<i>“Seriously? I honestly didn’t think you’d say yes... but I appreciate it, Steele,”</i> she says, scooting over to put her head on your shoulder. <i>“So the party starts in less than a day, and I don’t have a ship. Or, uh, any cash for a space taxi. Think I could hitch a ride with you?”</i>");
-	
 	output("\n\nYou nod and, after finishing your drinks, you pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legOrLegs] and [pc.butt] as you walk. It isn’t far to the spaceport, and then a quick elevator jaunt up to your ship.");
-	
 	output("\n\n");
 	if (flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) output("<i>“Nice digs,”</i> Syri says, following you aboard and");
 	else output("<i>“Home away from home,”</i> Syri says with a smile,");
 	output(" tossing her long coat over the back of your couch. <i>“I’ll go plug the address into the navicomputer, I guess. Get this trainwreck moving.”</i>");
-	
 	output("\n\nYou follow Syri up to the bridge and watch her tap some coordinates into the nav console. Once she does, you engage the autopilot and let your ship guide you up off the surface of Mhen’ga and towards the local Warp Gate.");
+
+	processTime(10);
+	
+	clearMenu();
+	addButton(0, "Next", syriPuppyslutmasUnderway);
+}
+
+// Proc with Syri at the Freezer. Must have completed Syri’s quest.
+public function syriPuppyslutmasEntryUveto():Boolean
+{
+	if (flags["PUPPYSLUTMAS_2014"] == undefined && flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] == undefined && isChristmas())
+	{
+		clearOutput();
+		showSyri();
+		author("Savin");
+		flags["PUPPYSLUTMAS_2014_SYRI_OFFER"] = 1;
+		
+		output("<i>“Hey, Steele!”</i> Syri says, winking at you as you come over. She leans back in her seat and pats the chair next to her, inviting you over. As you take your accustomed seat, you see your ausar friend’s raven tail swishing faster than usual - and something <i>else</i> seems pretty happy to see you, too. You flop down beside Syri and grab a drink she slides over to you.");
+		if (hours <= 12) output(" It’s five o’clock somewhere, right?");
+		output("\n\n<i>“So. I was hoping you’d stop by,”</i> Syri says, planting an affectionate arm around your shoulders. <i>“It’s the season to be jolly, right? Gettin’ on towards Christmas. I mean, it’s Christmas every day here on Uveto what with the constant numbing snow and endless blizzards, but hey.”</i>");
+		output("\n\nSyri kicks back a long drink, sucks in a sharp breath, and says, <i>“Anyway! Didn’t mean to get off on a tangent about the weather. I’m just a little drunk already becaaaaause... I got a message from my parents yesterday. I guess they finally realized I changed email addresses after school. So they invited me to this big shindig they throw every almost-Christmas back home. Big charity party for all their rich friends, I guess.”</i>");
+		output("\n\n<i>“You don’t sound too excited about it,”</i> you venture, glancing between Syri’s flushed cheeks and the almost empty bottle of beer beside it.");
+		output("\n\nShe huffs. <i>“I’m not! I haven’t seen my parents since, uh, whaddaya humans call it... high school! Told ‘em to get fucked and enlisted right out of school. Not really on good terms with my family except Anno, so... hell, I don’t even know why they invited me. Figured they wouldn’t want anything to do with me anymore.”</i>");
+		output("\n\nSyri sighs and rubs the back of her neck. After a moment’s thought, she adds, <i>“But fuck it. Maybe I should go. Worse that can happen is I get smashed and tell ‘em to fuck off again, right? But the reason I’m bringing it up is... I’ve got an invitation plus one, and I couldn’t think of anybody I’d rather go with, y’know.”</i>");
+		output("\n\n");
+
+		processTime(10);
+
+		clearMenu();
+		addButton(0, "Sure", syriPuppyslutmasYeUveto, undefined, "Sure", "Accompany Syri to her parent’s Christmas gala. You might even be able to heal old wounds. Or at least keep Syri from getting too drunk.");
+		addButton(1, "Nope", syriPuppyslutmasNopeUveto, undefined, "Nope", "Syri should stay away. No need to re-open old wounds.");
+		
+		return true;
+	}
+	return false;
+}
+public function syriPuppyslutmasNopeUveto():void
+{
+	clearOutput();
+	showSyri();
+	author("Savin");
+
+	output("<i>“I don’t think that’s a good idea anyway,”</i> you say flatly. <i>“If you don’t wanna go, don’t.”</i>");
+	output("\n\n<i>“Heh. Yeah,”</i> Syri says, finishing her drink. <i>“Fuck, I wish they’d just leave me alone. Guh. Well, thanks for helping me make up my mind, Steele. I hate waffling like that.”</i>");
+	output("\n\nYou nod and finish your own drink. <i>“So, what’s the problem with your parents, anyway?”</i>");
+	output("\n\nSyri scowls and leans back against the bar, shaking her head. <i>“It’s stupid, really. I actually did pretty good in school, you know. Not as good as my rocket scientist of a sister, but still. Could have gone to some good universities, followed the family tradition and gone into science, or business, or whatever. But fuck it, that’s not what I want to do with my life. I wanted to get out there and </i>do<i> things -- fight and explore, maybe even captain a ship out in the Black and make my own damn fortune. Sure, I fucked all that up, but I’d rather have tried than not, you know? My folks didn’t understand that -- they’d had everything handed to ‘em on a silver platter, grew up idle and rich. They pitched a fit when I said I wanted a ship instead of a full ride to Ausaril Tech.”</i>");
+	output("\n\n<i>“That’s why I respect you, Steele, you know. Sure, you’ve got Daddy Steele back there dangling riches in front of you, but you’re </i>out here<i>, going on adventures and living your life anyway. Heh, maybe someday I’ll be out there with you. Who knows?”</i>");
+	output("\n\nYou put a comforting hand on Syri’s shoulder, and she gives you a weak smile. <i>“I’m rambling. Pretend you didn’t hear any of that... it could be a lot worse. Like having a desk job.”</i>");
+	output("\n\nShe laughs and slaps you on the back. <i>“Anyway. C’mon, let’s talk about something else...");
+	if (pc.lust() >= 33) output(" Or at least let me drown my sorrows in that sweet ass of yours, Steele!");
+	output("”</i>");
+	
+	processTime(10);
+
+	syriFreezerMenu(false);
+}
+public function syriPuppyslutmasYeUveto():void
+{
+	flags["PUPPYSLUTMAS_2014"] = "Syri";
+
+	clearOutput();
+	showSyri();
+	author("Savin");
+
+	output("<i>“I guess I could tag along,”</i> you say, putting your arm around Syri’s shoulders. Her ears perk up at the affirmation, and she flashes you a wolfish grin.");
+	output("\n\n<i>“Seriously? I honestly didn’t think you’d say yes... but I appreciate it, Steele,”</i> she says, scooting over to put her head on your shoulder. <i>“So the party starts in less than a day, and I don’t have a ship. Or, uh, any cash for a space taxi. Think I could hitch a ride with you?”</i>");
+	output("\n\nYou nod and, after finished your drinks, pull Syri to her feet. She excuses herself to her apartment, and returns a few minutes later with a small suitcase. <i>“Just a change of clothes,”</i> she says. " + pc.mf("You take her suitcase", "You nod") + " and head for the spaceport. On the way, you find your companion’s fingers lacing through yours, holding your hand tight. When you look her way, Syri gives you a little wink and walks a little closer, just enough to let the tip of her tail brush your [pc.legOrLegs] and [pc.butt] as you walk. It isn’t far to the government building, and then a quick elevator jaunt up to your ship.");
+	output("\n\n");
+	if (flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) output("<i>“Nice digs,”</i> Syri says, following you aboard and");
+	else output("<i>“Home away from home,”</i> Syri says with a smile,");
+	output(" tossing her long coat over the back of your couch. <i>“I’ll go plug the address into the navicomputer, I guess. Get this trainwreck moving.”</i>");
+	output("\n\nYou follow Syri up to the bridge and watch her tap some coordinates into the nav console. Once she does, you engage the autopilot and let your ship guide you up off the dock of Uveto Station and towards the local Warp Gate.");
 
 	processTime(10);
 	
@@ -473,10 +527,8 @@ public function puppyslutmasMeetAnno():void
 	
 	if (annoIsCrew())
 	{
-		output("\n\n<i>“So,”</i> Anno says, turning to you with a less than amused look. <i>“That’s what we went to Mhen’ga for.”</i>");
-	
-		output("\n\n<i>“Oh. Yeah. I was wondering where you’d gone off to,”</i> you chuckle, realizing that you haven’t seen Anno since you left the jungle world.");
-	
+		output("\n\n<i>“So,”</i> Anno says, turning to you with a less than amused look. <i>“That’s what we went to Uveto for.”</i>");
+		output("\n\n<i>“Oh. Yeah. I was wondering where you’d gone off to,”</i> you chuckle, realizing that you haven’t seen Anno since you left the frozen moon.");
 		output("\n\nShe huffs. <i>“Lucky for me, my </i>other<i> " + (haveFuckedAnno() ? "lover" : "girlfriend") + " was in the neighborhood, and offered me a ride to the family reunion. You know, the one you decided not to take me to.”</i>");
 	}
 	else
@@ -484,9 +536,7 @@ public function puppyslutmasMeetAnno():void
 		if (haveFuckedAnno())
 		{
 			output("\n\nSuddenly, Anno seems to notice your presence, and her eyes light up. <i>“Hey, babe! What’re you... wait, you’re with Syri!? That’s unexpected.”</i>");
-		
 			output("\n\nSyri blinks. <i>“You two, uh... you two know each other, huh? That’s cool,”</i> she says, sounding more intrigued than enthused.");
-		
 			output("\n\n<i>“Yeah!”</i> Anno says, hooking her arm through yours, pinning you between two fluffy ausar girls.");
 		}
 		else
@@ -495,13 +545,11 @@ public function puppyslutmasMeetAnno():void
 			if (flags["MET_ANNO"] == undefined)
 			{
 				output(" <i>“Anyway, this is my date for the night: [pc.name] Steele,”</i> she says, urging you forward to meet her sister. <i>“Don’t you work for " + pc.mf("his", "her") + " company?”</i>");
-			
 				output("\n\n<i>“Yeah, that’s right,”</i> Anno says with a smile. <i>“Good to meet you, [pc.name].”</i>");
 			}
 			else
 			{
 				output("\n\n<i>“Hey again, boss,”</i> Anno says, turning to you. <i>“So... I see you’ve met my sister here. That’s... that’s a coincidence, right there.”</i>");
-			
 				output("\n\n<i>“Yeah, so, you two know each other,”</i> Syri says awkwardly. <i>“That’s cool. Saves time on introductions, I guess.”</i>");
 			}
 		}
@@ -509,7 +557,7 @@ public function puppyslutmasMeetAnno():void
 	
 	output("\n\nAfter a moment, Anno steps back and grabs her red-headed date, pulling the other girl over to you and Syri. <i>“Sis, you remember Kaede, right? You met her-”</i>");
 	
-	output("\n\n<i>“I remember,”</i> Syri says, stepping up to the half-auser girl and giving her a friendly hug. Kaede smiles and hugs the bigger ausar back, her auburn tail flicking happily.");
+	output("\n\n<i>“Oh, I remember,”</i> Syri says wolfishly, stepping up to the half-ausar girl and giving her a fierce hug -- and grabbing Kaede’s ass in both hands. Kaede squirms and hugs the bigger ausar back, her auburn tail flicking happily.");
 	
 	output("\n\nWhen she’s released from the hug, Kaede turns to you and offers her hand. <i>“");
 	if (flags["ANNOxKAEDE_INTRODUCED"] != undefined) output("Hey again, [pc.name]. Good to see you.”</i>");
@@ -751,7 +799,7 @@ public function puppyslutmasDoDonate():void
 
 	pc.credits -= dVal;
 
-	var pKind:Number = dVal / 1000;
+	var pKind:Number = Math.floor(dVal / 1000);
 
 	pc.addNice(pKind);
 
@@ -1265,18 +1313,15 @@ public function puppyslutmasDornasArrive():void
 	output("\n\n");
 	if (pPartner() == "Syri")
 	{
-		output("<i>“My, what a catch, Syri”</i> Mrs. Dorna laughs, giving her daughter a look. <i>“Who ever would have thought you would have landed yourself a billionaire?”</i>");
-	
-		output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
-	
+		output("<i>“My, what a catch, Syri,”</i> Mrs. Dorna laughs, giving her daughter a look. <i>“Who ever would have thought you would have landed yourself a billionaire?”</i>");
+		if(syriRecruited()) output("\n\n<i>“We’re not... I mean we are, but... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not a super big deal, we just-”</i>");
+		else output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
 		output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
 	}
 	else
 	{
 		output("<i>“Is that so?”</i> Mrs. Dorna says, looking between you and Anno with concern. <i>“Anno, darling, weren’t you only recently...”</i>");
-	
 		output("\n\n<i>“Uh. Yeah. But, uh, look, it’s... I mean, listen, it’s not like that,”</i> she stumbles, cheeks reddening. <i>“Look, I moved on, and [pc.name] isn’t-”</i>");
-	
 		output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Anno’s ears. <i>“We know, sweetheart.”</i>");
 	}
 	
@@ -1418,27 +1463,31 @@ public function puppyslutmasMeetTheDornasHueSyri():void
 {
 	moveTo("SHIP INTERIOR");
 	showLocationName();
-
+	
 	clearOutput();
-
 	showBust(syriBustDisplay());
 	author("Savin");
 	
+	var syriOnUveto:Boolean = syriAtFreeezer();
+	
 	output("<b>Hours pass...</b>");
-	
-	output("\n\nYour auto-pilot beeps that you’ve landed " + (getPlanetName() == "Mhen'ga" ? "at Esbeth" : "on " + getPlanetName()) + ". Syri sits up and yawns, rubbing the sleep from her eyes. You roll over in your bed, nestling your head in your lover’s lap.");
-	
+	output("\n\nYour auto-pilot beeps that you’ve");
+	if(getPlanetName() == "Uveto Station") output(" docked with the station over Uveto");
+	else if(getPlanetName() == "Mhen'ga") output(" landed at Esbeth");
+	else output(" landed on " + getPlanetName());
+	output(". Syri sits up and yawns, rubbing the sleep from her eyes. You roll over in your bed, nestling your head in your lover’s lap.");
 	output("\n\n<i>“That wasn’t so bad,”</i> you say as she slips out of bed, hiking her jeans up. Syri flashes you a little smile over her shoulder, flicking her tail your way before stuffing it through the loop in her pants.");
-	
 	output("\n\n<i>“Could have gone worse,”</i> she agrees, pulling her shirt on. <i>“I was expecting to get yelled at all night. Not...”</i>");
-	
 	output("\n\nYou laugh, and grab her ass. <i>“Have fun?”</i>");
-	
-	output("\n\n<i>“Yeah,”</i> she smiles, leaning down onto the bed and planted a kiss on your cheek. <i>“I blame the company. Anyway, I should get going. My shift’s gonna start... eh, soonish. I’ll see you around, Steele.”</i>");
-	
+	output("\n\n<i>“Yeah,”</i> she smiles, leaning down onto the bed and planted a kiss on your cheek. <i>“I blame the company. Anyway, I should get going.");
+	if(!syriOnUveto) output(" My shift’s gonna start... eh, soonish. I’ll see you around, Steele.");
+	else output(" Gotta keep practicing if I wanna be the best gamer in the galaxy.");
+	output("”</i>");
 	output("\n\nBefore she can stand, you grab the back of Syri’s head and pull her back in for a proper kiss, full on the lips. Her tail and ears leap up in alarm, but she melts in your hands, eyes fluttering closed as you show her how to properly end a date.");
-	
-	output("\n\nWhen you’re done, you send Syri off to her job, and roll out of bed. Time to decide what’s next on your adventure!");
+	output("\n\nWhen you’re done, you send Syri off to her");
+	if(!syriOnUveto) output(" job");
+	else output(" practice session");
+	output(" and roll out of bed. Time to decide what’s next on your adventure!");
 
 	processTime(360);
 

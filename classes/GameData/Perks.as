@@ -95,7 +95,7 @@ package classes.GameData
 			riposte.classLimit = GLOBAL.CLASS_MERCENARY;
 			riposte.levelLimit = 4;
 			riposte.perkName = "Riposte";
-			riposte.perkDescription = "Grants increased evasion after any melee attack made for the remainder of the combat round.";
+			riposte.perkDescription = "Grants +15% evasion after any melee attack made for the remainder of the combat round.";
 			insertPerkData(riposte);
 			
 			var takeCover:PerkData = new PerkData();
@@ -327,7 +327,7 @@ package classes.GameData
 			sfGen.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sfGen.levelLimit = 4;
 			sfGen.perkName = "Stealth Field Generator";
-			sfGen.perkDescription = "Grants the ability to massively increase evasion chance for two combat rounds.";
+			sfGen.perkDescription = "Grants the ability to massively increase evasion chance by 80% for two combat rounds.";
 			insertPerkData(sfGen);
 			
 			var disarmS:PerkData = new PerkData();
@@ -488,7 +488,7 @@ package classes.GameData
 			cloakAndDagger.levelLimit = 10;
 			cloakAndDagger.autoGained = true;
 			cloakAndDagger.perkName = "Cloak and Dagger";
-			cloakAndDagger.perkDescription = "Gain a small bonus to evasion for one turn after landing a basic attack hit (melee or ranged).";
+			cloakAndDagger.perkDescription = "Grants +5% evasion for one turn after landing a basic attack hit (melee or ranged).";
 			insertPerkData(cloakAndDagger);
 
 			//1. Can Opener: When you score a critical hit with a melee weapon, or strike a blinded or stunned target with one, you have a chance of Sundering the target's armor, which reduces its Defense for several rounds. //(physique vs reflexes. Standard “+10” type difficulty check)
@@ -525,7 +525,7 @@ package classes.GameData
 			attackDrone.classLimit = GLOBAL.CLASS_ENGINEER;
 			attackDrone.levelLimit = 2;
 			attackDrone.perkName = "Attack Drone";
-			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by one point per level.";
+			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by [altTooltip AttackDrone] per level. Grants acquired drones more damage.";
 			insertPerkData(attackDrone);
 			
 			var shieldBooster:PerkData = new PerkData();
@@ -548,7 +548,7 @@ package classes.GameData
 			overcharge.classLimit = GLOBAL.CLASS_ENGINEER;
 			overcharge.levelLimit = 3;
 			overcharge.perkName = "Overcharge";
-			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for [altTooltip Overcharge]% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
+			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for [altTooltip Overcharge]% normal damage. Higher intelligence will increase the chances to stun the target with the shot. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
 			/*
@@ -735,13 +735,13 @@ package classes.GameData
 			rapidRecharge.perkDescription = "Grants passive shield regeneration on any turn where no damage is taken.";
 			insertPerkData(rapidRecharge);
 
-			/*1A. Dampening Field: Your Gravidic Charge deals more damage (vs. primary target), and the  gravidic field lingers for 3 rounds after detonation, dramatically lessening the damage dealt by kinetic weapons -- both yours and enemies'! (Fen: 50%? Might be OP. Fuck it. Let’s try it)
+			/*1A. Dampening Field: Your Gravidic Charge deals more damage (vs. primary target), and the gravidic field lingers for 3 rounds after detonation, dramatically lessening the damage dealt by kinetic weapons -- both yours and enemies'! (Fen: 50%? Might be OP. Fuck it. Let’s try it)
 			1B. Lingering Burns: Your Thermal Charge deals bonus damage (vs. primary target), and has a chance to keep your enemies burning for 2 turns if they didn't have shields up.*/
 			var boostedCharges:PerkData = new PerkData();
 			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;
 			boostedCharges.levelLimit = 10;
 			boostedCharges.perkName = "Boosted Charges";
-			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges’ damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
+			boostedCharges.perkDescription = "Enhances your gravidic and thermal disruptors’ damage, and also provides secondary effects. Gravidic Disruptor leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal Disruptor has a chance of lighting your foes on fire.";
 			insertPerkData(boostedCharges);
 
 			//2. Linked Emitters: While your shields are up, you gain a bonus 5% Critical chance with all energy weapons.*/

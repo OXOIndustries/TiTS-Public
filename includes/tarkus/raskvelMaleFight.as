@@ -129,7 +129,7 @@ public function raskvelGangEncounter():void
 	IncrementFlag("MET_MALE_RASKVEL_GANG");
 	output("\n\nThere’s a lot of banging and cheerful shouting emanating from the big, rambling pile of junk directly in front of you. A red-scaled, massive-eared head pops out of the cockpit of a rusted hovercraft, swiftly followed by the rest of a squat form, hauling an over-sized screwdriver with it. He pauses when he sees you.");
 	output("\n\n<i>“Oh! Hello,”</i> it says. The echoing chatter quiets and two other similar figures clamber into view to have a good stare. You recognize them as male raskvel: the hyperactive, dwarfish natives of this planet that you met plenty of back at Novahome. These three are looking down at you from their pile of trash with a mixture of mischievousness and bonhomie, smirks playing on their ruddy lips like they are all about to burst into laughter. Whether it’s with you or at you is difficult to tell.");
-	if(CodexManager.entryUnlocked("Raskvel"))
+	if(!CodexManager.entryUnlocked("Raskvel"))
 	{
 		output("\n\nBeeping, your codex alerts you that this is a male of the raskvel race, just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i>");
 		CodexManager.unlockEntry("Raskvel");
@@ -818,7 +818,7 @@ public function consensualGangBang():void
 	}
 	output(" The raskvel pinned down beneath you groans as you tense your butt-cheeks up around him and squeezes your flanks; you feel warm slime spurt up your back and crack. You frown back at him in disbelief. Has he really cum already? The youthful reptile blissfully opens his eyes and gazes back at you languidly.");
 
-	output("\n\n<i>“Yeah, the lapinara get surprised by that too,”</i> he says lowly. <i>“Do ");
+	output("\n\n<i>“Yeah, the" + (flags["LAPLOVE"] == undefined ? "y all":" lapinara") + " get surprised by that too,”</i> he says lowly. <i>“Do ");
 	if(pc.mf("male","female") != "male") output("your males ");
 	else output("offworlders ");
 	output("only cum the once too, then? Sucks to be you.”</i> He shunts his still-very-much-erect-dick between your cheeks teasingly.");
@@ -922,7 +922,7 @@ public function consensualGangBang():void
 	}
 	pc.orgasm();
 	pc.orgasm();
-	if(pc.hasCuntTail()) feedCuntSnake();
+	if(pc.hasCuntTail()) feedCuntSnake(enemy);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 	
@@ -1196,10 +1196,10 @@ public function redRidingRaskvel():void
 	var args:Array = [x,y];
 	//[Hard light peg] [Feed milk] [Pussy tail] [Cock tail]}
 	clearMenu();
-	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.lowerUndergarment.hardLightEquipped) addButton(0,"Next",feedRaskGangMalk,args);
+	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.hasHardLightEquipped()) addButton(0,"Next",feedRaskGangMalk,args);
 	else
 	{
-		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
+		if(pc.hasHardLightEquipped()) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
 		else addDisabledButton(0,"HardlightPeg","Hardlight Peg","You need a hardlight strap-on for this scene.");
 		addButton(1,"Tittysuckle",feedRaskGangMalk,args,"Tittysuckle","Invite him to suck on your [pc.nipple], whether or not you have any milk to give.");
 		if(pc.hasCuntTail()) addButton(2,"Tail Milk",cuntTailRaskPlay,args,"Tail Milk","Use your symbiotic tail to wring pleasure from the pint-sized alien.");
@@ -1346,16 +1346,16 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	output("\n\n<i>“Oh very well,”</i> you sigh. <i>“Just give me a moment...”</i>");
 	if(originalScene == feedRaskGangMalk) 
 	{
-		output("\n\nYou release the other raskvel from the ");
-		if(pc.biggestTitSize() >= 10) output("suffocating ");
-		else if(pc.isLactating()) output("wet ");
-		output(" kiss of your ");
-		if(pc.biggestTitSize() >= 1) output("breast");
-		else output("chest");
-		output("; he looks completely zoned out as he falls back from your ");
-		if(!pc.hasFlatNipples() && !pc.hasFuckableNipples()) output("erect ");
-		else if(pc.isLactating()) output("drooling ");
-		output("nipple");
+		output("\n\nYou release the other raskvel from the");
+		if(pc.biggestTitSize() >= 10) output(" suffocating");
+		else if(pc.isLactating()) output(" wet");
+		output(" kiss of your");
+		if(pc.biggestTitSize() >= 1) output(" breast");
+		else output(" chest");
+		output("; he looks completely zoned out as he falls back from your");
+		if(!pc.hasFlatNipples() && !pc.hasFuckableNipples()) output(" erect");
+		else if(pc.isLactating()) output(" drooling");
+		output(" nipple");
 		if(pc.isLactating()) output(", eyes dilated and [pc.milk] on his lips.");
 	}
 	else if(originalScene == raskvelHardlightPegEdition) output("\n\nThe third raskvel wails as you mercilessly up the tempo of your manual pegging, the muscles in your arm beginning to ache as you holster a large proportion of the dildo in his tight little butt again and again; he is forced to orgasm, spurting a surprising amount of cum from his shaking cock to your stringent prostate milking.");
@@ -1369,7 +1369,7 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	}
 	
 	output("\n\nYou then release the raskvel’s dick – still pointing needily at the sky, thickly pasted in cum, when you allow it to schlorp out of your steaming [pc.vagina " + x + "] – and, with a few taps of your hand and whispered instructions, reposition them. You leer down at the second raskvel as you slide your cum-slicked pussy down his eager, purple length, tightening up as much as you can as you do so, enjoying every inch that fills your depths. On his back, snared and overwhelmed by the taste on his lips and texture on his dick, he simply cannot take it. He clenches up and grunts in helpless orgasm when your [pc.hips] touch his, a single spurt of fresh warmth deep within you.");
-	output("\n\nIt makes no difference to you. Like his friend, now ");
+	output("\n\nIt makes no difference to you. Like his friend, now");
 	if(pc.vaginaTotal() == 1)
 	{
 		output(" crouched in front of you");
@@ -1890,8 +1890,8 @@ public function seduceCuntTailMilk(raskWinner:String = "big"):void
 	if (pc.isLactating()) output("\n\nBeads of [pc.milk] slip down your [pc.fullChest], the intensity of your orgasm coaxing out a bit of your motherly bounty. As you throw your head back and submit fully to pleasure, your release kicks up, and thick streams of [pc.milk] coat the raskvel’s stomach and your own [pc.skinFurScales].");
 	
 	output("\n\nThe climax lasts for a few wondrous moments, but you eventually descend. You let out an exhausted sigh, then slide off the panting raskvel and give him a pat on the chest. Your limp and satisfied tail follows suit, gradually releasing his member with a wet slurp. Freed from the weight of your body, the raskvel groans and rolls onto his side, while you refocus your thoughts and gather your things.");
-	if (pc.hasArmor()) output("You sort your appearance, smooth your clothing, and do a quick pat-down to make sure nothing is forgotten.");
-	output("As you get ready to leave you notice the raskvel, curled into a ball and tenderly massaging his deflated cock.");
+	if (pc.hasArmor()) output(" You sort your appearance, smooth your clothing, and do a quick pat-down to make sure nothing is forgotten.");
+	output(" As you get ready to leave you notice the raskvel, curled into a ball and tenderly massaging his deflated cock.");
 	
 	if (pc.isNice()) output("\n\nA sheepish grin spreads across your face. You might have been a little too rough with the poor thing. As you turn around to leave, you see the unconscious forms of the other two raskvel, and your embarrassed grin turns into an awkward wince. You feel rather guilty about the chaos you’ve wrought, but what’s done is done. You give an apologetic bow to nothing in particular and scurry off.");
 	if (pc.isMischievous()) output("\n\n<i>“Aww, is somebody sore?”</i> you tease. He grunts incoherently and rolls over, keeping his back to you. You laugh and step over the other two raskvel, idly wondering which side wound up with the better deal. It doesn’t really matter in the end, because none of them got off as well as you did. You smile and set out across Tarkus once more, tail curling happily around your leg.");

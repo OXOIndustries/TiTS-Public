@@ -281,6 +281,10 @@ this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
 */
 
+public function embryName():String
+{
+	return embry.short;
+}
 public function showEmbry(nude:Boolean = false):void
 {
 	showName("\n" + embry.short.toUpperCase());
@@ -774,7 +778,7 @@ public function talkToEmbryAbootHerSpecies():void
 	output("\n\n<i>“The simii? We mostly live on frontier worlds. Um... we’ve got big ears, and flexible tails, but so do a lot of species.”</i> she curls her pink tail about, showing it off to you.");
 	output("\n\nYou mention the similarities between the simii and terran primates, and [embry.name] nods.");
 	output("\n\n<i>“Oh, yeah--! We’re originally descended from them. Well, kind of. Humans took a bunch of human-like animals - primates - and experimented on them to make my ancestors. Then they, my ancestors, were launched into space to colonize new worlds.”</i> [embry.name] sounds a little uncertain. <i>“...I mean, that’s what I was taught in school, anyway.”</i>");
-	output("\n\n<i>“We’re independent now, of course, and humans rarely set foot on on simii worlds. There were some wars for independence way before I was born. We have big parades every so often to celebrate them, and sometimes war reenactments.”</i>");
+	output("\n\n<i>“We’re independent now, of course, and humans rarely set foot on simii worlds. There were some wars for independence way before I was born. We have big parades every so often to celebrate them, and sometimes war reenactments.”</i>");
 	output("\n\nYou ask if [embry.name] participated in any, and she flushed. <i>“...Uh, no. I think... they’re kind of dorky. I mean, my dad liked them, but it just wasn’t my thing.”</i>");
 	processTime(4);
 	clearMenu();
@@ -1670,9 +1674,9 @@ public function spendTimeWithEmbry():void
 		output("\n\nAfter she knocks off work, she ducks into the back to get changed, and then emerges in a white blouse and blue jeans. It seems like it took her a while to pick out what to wear, and there’s a definite flush to her cheeks.");
 		output("\n\n<i>“Um... hopefully this is okay?”</i> she seems very self conscious. The two of you go for a walk around the airfield, since everywhere else is cordoned off by fences and concertina wire.");
 		output("\n\n[embry.name] doesn’t complain once about the lack of sights or things to do. Instead she hovers close as you walk through the partially assembled planes and space freighters. A few spacers cat call at her, and she moves even closer to you.");
-		output("\n\n<i>“So, which one’s yours...?”</i> she asks, and you point out your ship. Rather than make fun of the clunker, her eyes go wide, and the monkey girl seems amazed by it.");
+		output("\n\n<i>“So, which one’s yours...?”</i> she asks, and you point out your ship. " + (PCShipIsCasstech() ? "Rather than make fun of the clunker, her" : "Her") + " eyes go wide, and the monkey girl seems amazed by it.");
 		output("\n\n<i>“It must be wonderful to be a space captain. I mean, you get to fly anywhere you want, right, free as a bird? But... you know... a space bird,”</i> she facepalms. The analogy ran off on her. <i>“...How’d you get a ship, anyway?”</i>");
-		output("\n\nYou mention it was your father’s, and she sounds amazed. <i>“Maybe you can show me through it sometime? I-I mean, if you’re not busy, or even here tomorrow. You’re a planet rusher, after all. You might rush off!”</i>");
+		output("\n\nYou " + (PCShipIsCasstech() ? "mention it was your father’s, and she sounds" : "tell her that you actually got started with your father’s clunker before obtaining the one she sees now. She is") + " amazed. <i>“Maybe you can show me through it sometime? I-I mean, if you’re not busy, or even here tomorrow. You’re a planet rusher, after all. You might rush off!”</i>");
 		output("\n\nClearly she doesn’t want to think about that, and instead boldly clings to your arm. Eventually you both tire of walking about, and she leads you to a partially dismantled transport, the Cappella, on the landing strip.");
 		output("\n\n<i>“This is where I’m living, at least for now,”</i> she explains, and buzzes in on the ship’s intercom. You are briefly introduced to her landlord - the Cappella’s owner - and she leads you to her cabin room. [embry.name] tells you the captain is renting out rooms, and even certain hallways, until the repairs are done.");
 		output("\n\nThere’s not a whole lot in her room, but what is there is very [embry.name]. Frilly outfits hang up everywhere, and there’s an assorted collection of shiny rocks on a bench. There’s a bunch of worn notepads and scrunched up paper about. There’s a bed, though it’s very modest.");
@@ -2661,6 +2665,7 @@ public function embryAnalSex():void
 	if(!pc.hasCock()) output("purple ");
 	output("prick slides into her [embry.asshole].");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	// if PC.hasCock:
 	if(pc.hasCock())
 	{
@@ -2677,15 +2682,15 @@ public function embryAnalSex():void
 		else output("[embry.ass]");
 		output(". Your senses are burned white as you unleash your pulsing life inside of her. Your [pc.cock] convulses, and you gloriously spill your seed deep inside of her rump.");
 		output("\n\n[embry.name] cries out with delight as you ");
-		if(pc.cumQ() <= 3) output("shoot blanks into her butt - maybe rest a while and refill.");
+		if(cumQ <= 3) output("shoot blanks into her butt - maybe rest a while and refill.");
 		else output("liberally fill her with your [pc.cum]");
 		output(". She shudders uncontrollably, her [embry.asshole] clenching your [pc.cockNounSimple], and she trembles in ecstasy.");
 		//PCLIKESPEEN & embry.hasCock:
 		if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined && embry.hasCock()) output(" Her [embry.cock] shoots another, lazier load all over the floor, forming a naughty puddle of her [embry.cum].");
 		else if(embry.hasVagina()) output(" Her [embry.pussy] liberally dribbles down her [embry.thighs] and coats them in her [embry.girlcum].");
 		output("\n\nWhen you pull your [pc.cock] out from her ass, there is a plopping noise from her [embry.asshole], and ");
-		if(pc.cumQ() <= 10) output("tiny drips");
-		else if(pc.cumQ() < 35)
+		if(cumQ <= 10) output("tiny drips");
+		else if(cumQ < 35)
 		{
 			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO) output("gooey ");
 			else output("blob-like ");
@@ -2766,7 +2771,7 @@ public function embryAnalSex():void
 
 	output("\n\n<i>“T-that was amazing.”</i> [embry.name] dreamily sighs, then adds, <i>“Um, I’m not sure if I can walk---? My legs feel a bit shaky.”</i>");
 	output("\n\nYou guide [embry.name] to the bed, helping her with her shaky legs, and then slide in with her. She wraps her arms around your waist, and nuzzles into you.");
-	if(pc.hasCock() && pc.cumQ() >= 5) output(" Your [pc.cum] drools out from her [embry.butt], coating her rump with your seed.");
+	if(pc.hasCock() && cumQ >= 5) output(" Your [pc.cum] drools out from her [embry.butt], coating her rump with your seed.");
 
 	// if first time
 	if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] == undefined)

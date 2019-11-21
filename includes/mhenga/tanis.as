@@ -67,9 +67,9 @@ public function tanisBowTrainingFirstTime():void
 	else output(" man");
 	output(",”</i> you say, stepping over to Tanis’s desk. As you walk, you pull the bow off from over your shoulder and plant the butt of it on the ground beside you. His eyes instantly light up at the sight of it, and his ashen lips twist into a hint of a smile.");
 	
-	output("\n\n<i>“’Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a little less conspicuous of a weapon.”</i>");
+	output("\n\n<i>“‘Sup,”</i> he answers, eyes wandering over your bow. <i>“Gotta say, if you’re trying to hold up the place, you could have picked a weapon that is a little less conspicuous.”</i>");
 	
-	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering if you’ve got some pointers for me. Haven't exactly had a lot of training using something like this before.”</i>");
+	output("\n\nYou chuckle and counter, <i>“Actually, I was wondering if you’ve got some pointers for me. Haven’t exactly had a lot of training using something like this before.”</i>");
 	
 	output("\n\nHe smiles and rises to his feet, six bestial legs stretching out from under his centaur-like body. <i>“Sure, I guess I could show you the basics. Not much else to do");
 	if (flags["SALVAGED VANAE CAMP"] != 2) output(" with the nav beacons down anyway");
@@ -98,7 +98,7 @@ public function tanisBowTrainingFirstTime():void
 	else output(" But we’ll work on that. No worries.");
 	output("”</i>");
 
-	output("\n\nYou dutifully follow Tanis's direction, following the shirtless centaur with your eyes as he sidles up beside you and draws back another arrow. He guides you through it, correcting slight imperfections in your draw and the way you hold your arrows. All the while, he's nothing but positive, all smiles and bright eyes even as he's correcting the same silly mistake for the third time.");
+	output("\n\nYou dutifully follow Tanis’s direction, following the shirtless centaur with your eyes as he sidles up beside you and draws back another arrow. He guides you through it, correcting slight imperfections in your draw and the way you hold your arrows. All the while, he’s nothing but positive, all smiles and bright eyes even as he’s correcting the same silly mistake for the third time.");
 
 	output("\n\nFinally, you’re ready to take your first actual shot of the session. Tanis plants a guiding hand on your shoulder, pressing in close enough that he’s practically looking down the shaft of your arrow with you. He points out a low-hanging purple fruit on a nearby tree and gives the word to bring it down.");
 
@@ -175,6 +175,8 @@ public function tanisBowTrainingRepeat():void
 	output("\n\nYou give him a grin and sling your bow over your back, following the towering ‘taur back into the scout office.");
 	if (pc.isTreated()) output(" You can’t help but look at that big, muscular ass all the way in.");
 
+	processTime(25+rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -246,9 +248,9 @@ public function tanisBowTrainingFinaleRepeats():void
 		
 		output("\n\nHe grins. <i>“Any time, man. Let me know how they work out for you!”</i>");
 		
-		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds. Requires a bow-type weapon.)</b>");
+		output("\n\n<b>(Perk Gained: Concussive Shot - Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 1 to 2 combat rounds. Requires a bow-type weapon.)</b>");
 		
-		pc.createPerk("Concussive Shot", 0, 0, 0, 0, "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 2 to 4 combat rounds.");
+		pc.createPerk("Concussive Shot", 0, 0, 0, 0, "[altTooltip ConcussiveShot]");
 	}
 	
 	if (flags["TANIS_BOW_TRAINING"] >= 8 && !MailManager.isEntryUnlocked("tanisarrows"))

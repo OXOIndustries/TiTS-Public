@@ -11,7 +11,7 @@ package classes.Characters
 		//constructor
 		public function Pippa()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -74,7 +74,7 @@ package classes.Characters
 			this.wingType = 0;
 			this.legType = GLOBAL.TYPE_SWINE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE];
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_HOOVES];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -166,6 +166,10 @@ package classes.Characters
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL; // See nipple type note in constructor
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_HOOVES];
 		}
 	}
 }

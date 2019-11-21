@@ -20,7 +20,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Kazra";
-			this.originalRace = "essrya";
+			this.originalRace = "essyra";
 
 			inventory.push(new HeatBelt(), new ThermalPack(), new PlasmaHawk(), new HideVestAndBreeches(), new EssyraGreatspear(), new RoastedZhorBeast());
 			
@@ -29,7 +29,10 @@
 
 			this.femininity = 85;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "KAZRA";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

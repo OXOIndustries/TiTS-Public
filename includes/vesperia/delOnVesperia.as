@@ -487,7 +487,7 @@ public function fuckDelsAss():void
 	output("\n\nFinally, the cock-craving whore makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood and ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("spreading her knees to giver her hands access to her throbbing equine hardon. She’s well and truly used to everyone in the bar oggling her horsecock, just like they do to her mistress, so she shows no shame in wrapping both hands around her member and stroking it from flare to medial ring.");
 	else output("blatantly spreading her legs, one hand fully disappearing under her skirt and up her wanton hole in preparation, teasing her tiny masculinity from behind and making it jump in response. The surge of her erection wholly throws back the hem of her skirt, leaving her cock for all to see");
-	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh so wonderfully. Gods, she was born for this! You stifle a little moan as she ");
+	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh-so-wonderfully. Gods, she was born for this! You stifle a little moan as she ");
 	if(pc.cocks[x].cLength() < 12) output("takes you to the hilt, your [pc.cock " + x + "] vanishing down her throat");
 	else output("sucks up every inch she can manage, choking down more than a foot of cockmeat before finally giving in, her throat utterly bulging with your massive girth stretching her pussy-like gullet wide.");
 
@@ -1050,14 +1050,15 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 
 		output("\n\n<i>“Why don’t you join us?”</i> you purr.");
 
-		//Kaede has VERY high Exhibitionism:
+		// Kaede has VERY high Exhibitionism:
 		if(flags["KAEDE_EXHIBITIONISM"] != undefined && flags["KAEDE_EXHIBITIONISM"] >= 66)
 		{
 			output("\n\nYou pat the space on the bench between yourself and Del, and the two of you scoot apart to give Kaede a space to present herself to the audience. She blinks at you, but you can see her knees knocking, tail twitching under all the gazes wandering over her suddenly naked frame. After a moment, Kaede drops her arms and lets her tail wag off on its own, chewing her lip and nervously glancing about. Folks in the crowd wolf-whistle and catcall, and some even rub their lovely hardons in her direction, ready to get a taste of that sweet halfbreed booty.");
 			output("\n\n<i>“You’re a terrible influence!”</i> Kaede whispers, crawling up between you and Del, grabbing your [pc.breast] and giving you a wink. <i>“God, what’s Anno gonna think if she finds out...”</i>");
 			output("\n\n<i>“It’ll be our little secret,”</i> you promise her, leaning over and trading a long, tongue-filled kiss with your friend. While you’re busy, somebody runs a hand through the crack of your ass, scooping up some of the still-steaming spunk deposited by your last anal lover and splats it into Kaede’s bare rump, smearing it into her asshole with his fingers before dropping trou and plowing in. Kaede yelps, grabbing your hand as her first dick of the night sinks into her tight little tail-hole.");
 		}
-		//elseKaede has moderate or less Exhib:
+		// Kaede has moderate or less Exhib:
+		else
 		{
 			output("\n\nYou wiggle your ass at Kaede, spreading your cum-drenched cheeks wide to give her a look at your gaping cocksleeve. Embarrassed as she might be, the bashful pup can’t pass up a chance at your ass, and you know it. Indeed, she’s only able to feign resistance for a few moments before her tail wags itself out of the way and she scoots behind you, looking bashfully at the other johns lined up for a taste of you or Del. Someone gives her a slap on the ass, making her stumble into your [pc.butt]. She ends up grabbing your flanks for support, and soon after, the last of her hesitation melts away; you feel her dick flop into the crack of your ass, slowly aligning with your hole.");
 			output("\n\nKaede’s tapered crown rubs around the rim of your [pc.asshole], collecting a little bit of the excess leaking out of you before she pushes in. There’s no contest in terms of size: the dicks that came before her have all but ruined you, leaving you utterly agape and ready for anything - you could easily let Kaede’s knot snuggle right in, but for now, you find yourself contented by the familiar feeling of her length growing inside you, thickening towards its bitch-breaking base.");

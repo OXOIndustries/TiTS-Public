@@ -28,8 +28,20 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/fubMistress/busky_aroused_nude.png", mimeType = "image/png")]
 		public var Bust_BUSKY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian.png", mimeType = "image/png")]
+		public var Bust_FEIAN:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_male_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_MALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_female_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_FEMALE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/fubMistress/gene.png", mimeType = "image/png")]
 		public var Bust_GENE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/fubMistress/quaddomme.png", mimeType = "image/png")]
+		public var Bust_BOTHRIOC_QUADOMME:Class;
 
 		[Embed(source = "../../../assets/images/npcs/fubMistress/quaelle.png", mimeType = "image/png")]
 		public var Bust_QUAELLE:Class;
@@ -43,7 +55,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/ara_kei.png", mimeType = "image/png")]
 			public var Full_ARAKEI:Class;
 
-			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/briget.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/briget.png", mimeType = "image/png")]
 			public var Full_BRIGET:Class;
 			public function get Full_BRIGET_NUDE():Class { return Full_BRIGET; }
 			public function get Full_BRIGET_TITS():Class { return Full_BRIGET; }
@@ -54,15 +66,27 @@ package classes.Resources.Busts
 			public function get Full_BRIGET_TITS_PREG():Class { return Full_BRIGET; }
 			public function get Full_BRIGET_TITS_PREG_NUDE():Class { return Full_BRIGET; }
 
-			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/busky.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/busky.png", mimeType = "image/png")]
 			public var Full_BUSKY:Class;
-			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/busky_aroused_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/busky_aroused_nude.png", mimeType = "image/png")]
 			public var Full_BUSKY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/gene.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/feian.png", mimeType = "image/png")]
+			public var Full_FEIAN:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/feian_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/feian_male_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_MALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/feian_female_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_FEMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/gene.png", mimeType = "image/png")]
 			public var Full_GENE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/quaelle.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/quaddomme.png", mimeType = "image/png")]
+			public var Full_BOTHRIOC_QUADOMME:Class;
+
+			[Embed(source = "../../../assets/images/npcs/fubMistress/HR/quaelle.png", mimeType = "image/png")]
 			public var Full_QUAELLE:Class;
 		}
 	}

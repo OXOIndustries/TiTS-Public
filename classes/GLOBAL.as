@@ -80,6 +80,14 @@
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
+		public static const FLAG_SCALED_PRETTY:int                          = 48;
+		public static const FLAG_SHORT:int									= 49;
+		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
+		public static const FLAG_HYPER_PUMPED:int 							= 51;
+		public static const FLAG_HEART_SHAPED:int							= 52;
+		public static const FLAG_STAR_SHAPED:int							= 53;
+		public static const FLAG_FLOWER_SHAPED:int							= 54;
+
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -130,6 +138,13 @@
 			"Tongued",
 			"Freckled",
 			"Plugged",
+			"Partially Scaled",
+			"Short",
+			"Floppy",
+			"Hyper Pumped",
+			"Heart-Shaped",
+			"Star-Shaped",
+			"Flower-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -140,6 +155,7 @@
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
 			FLAG_ABSORBENT,
+			FLAG_SCALED_PRETTY,
 		];
 		
 		//TYPES
@@ -230,6 +246,14 @@
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
 		public static const TYPE_FROSTWYRM:int 								= 82;
+		public static const TYPE_SANDWORM:int 								= 83;
+		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
+		public static const TYPE_JANERIA:int								= 85;
+		public static const TYPE_ROEHM:int									= 86;
+		public static const TYPE_XHELARFOG:int								= 87;
+		public static const TYPE_SAURMORIAN:int								= 88;
+		public static const TYPE_HYENA:int									= 89;
+		public static const TYPE_DZAAN:int									= 90;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -315,6 +339,14 @@
 			"Adremmalex",
 			"Mothrine",
 			"Frostwyrm",
+			"Sand Worm",
+			"Butt Bug",
+			"Janeria",
+			"Roehm",
+			"Xhelarfog",
+			"Saurmorian",
+			"Hyena",
+			"Dzaan",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -345,6 +377,11 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
+			TYPE_HYENA,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -372,6 +409,11 @@
 			TYPE_GRYVAIN,
 			TYPE_SHEEP,
 			TYPE_COCKVINE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -391,6 +433,7 @@
 			TYPE_BEE,
 			TYPE_FROG,
 			TYPE_TENTACLE,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -437,6 +480,9 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -461,6 +507,9 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -511,6 +560,11 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_MOUSE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -552,6 +606,9 @@
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
 			TYPE_SHEEP,
+			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -572,6 +629,8 @@
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
 			TYPE_TENTACLE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -615,6 +674,10 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
+			TYPE_HYENA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -640,6 +703,7 @@
 			FLAG_STICKY,
 			FLAG_TAPERED,
 			FLAG_CORKSCREWED,
+			FLAG_SHORT,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -682,6 +746,7 @@
 		public static const SKIN_TYPE_LATEX:int                                  = 6;
 		public static const SKIN_TYPE_PLANT:int                                  = 7;
 		public static const SKIN_TYPE_BARK:int                                   = 8;
+		public static const SKIN_TYPE_GEL:int                                    = 9;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -693,6 +758,7 @@
 			"Latex",
 			"Plant",
 			"Bark",
+			"Gel",
 		];
 		
 		//NIPPLETYPES
@@ -730,7 +796,13 @@
 			NIPPLE_TYPE_INVERTED,
 			NIPPLE_TYPE_TENTACLED,
 		];
-				
+		
+		public static const VALID_AREOLA_FLAGS:Array = [
+			FLAG_PUMPED,
+			FLAG_HEART_SHAPED,
+			FLAG_STAR_SHAPED,
+		];
+		
 		//CUM & MILK TYPES
 		public static const FLUID_TYPE_MILK:int                                 = 0;
 		public static const FLUID_TYPE_HONEY:int                                = 1;
@@ -952,6 +1024,9 @@
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
 			TYPE_FROSTWYRM,
+			TYPE_JANERIA,
+			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -982,6 +1057,8 @@
 			TYPE_EQUINE,
 			TYPE_LEITHAN,
 			TYPE_BEE,
+			TYPE_DEER,
+			TYPE_VULPINE,
 			TYPE_SYNTHETIC,
 			TYPE_LAPINARA,
 			TYPE_VANAE,
@@ -997,6 +1074,7 @@
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1004,7 +1082,8 @@
 		public static const VALID_VAGINA_FLAGS:Array = [
 			FLAG_LUBRICATED,
 			FLAG_APHRODISIAC_LACED,
-			FLAG_TENDRIL,
+			FLAG_STINGER_BASED,
+			FLAG_STINGER_TIPPED,
 			FLAG_NUBBY,
 			FLAG_OVIPOSITOR,
 			FLAG_GOOEY,
@@ -1012,7 +1091,8 @@
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
-			FLAG_PLUGGED
+			FLAG_PLUGGED,
+			FLAG_RIBBED,
 		];
 		
 		//ROOM FLAGS
@@ -1048,6 +1128,9 @@
 		public static const WATERFALL:int								= 29;
 		public static const SPIDER_WEB:int								= 30;
 		public static const LOW_GRAVITY:int								= 31;
+		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
+		public static const LOW_TECH:int								= 33; //used to mark rooms where the inhabitants wouldn't own regular space tech (see InRoomWithPhones)
+		public static const FIRST_AID:int								= 34;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1077,7 +1160,7 @@
 		public static const GEM:int 									= 16; // Used for very valuable items.
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
-		public static const COCKSOCK:int 								= 19; // Used for cockwear
+		public static const COCKWEAR:int 								= 19; // Used for cockwear
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1157,7 +1240,26 @@
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
-
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cockwear can only be equipped by smol
+		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
+		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
+		public static const ITEM_FLAG_RIFLE_WEAPON:int					= 36; //For outputing that a gun is a rifle
+		public static const ITEM_FLAG_PISTOL_WEAPON:int					= 37; //For outputing that a gun is a pistol
+		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
+		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
+		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
+		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
+		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
+		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
+		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
+		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships
+		public static const ITEM_FLAG_PIERCING_BAR:int 					= 47; //Piercings of the "bar" type.
+		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
+		public static const ITEM_FLAG_COCKSOCK:int 						= 49; //For cocksock-type cockwear.
+		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
+		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
+		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1193,6 +1295,24 @@
 			"Ring",
 			"Chained",
 			"Permanent",
+			"Requires Small Cock",
+			"Shelter",
+			"Stretchable",
+			"Rifle",
+			"Pistol",
+			"Shotgun",
+			"Thrower",
+			"Launcher",
+			"Disabled",
+			"Double Shot",
+			"Burst Fire",
+			"Full-Auto Fire",
+			"Ship Equipment",
+			"Crewed Turret",
+			"Bar",
+			"Hoop",
+			"Cocksock",
+			"Cockring",
 		];
 		
 		/**
@@ -1330,6 +1450,7 @@
 			"CROSSMAN",
 			"CYANCAPSULE",
 			"DAMNIT",
+			"DCLZEXON",
 			"DOCBADGER",
 			"DOXY",
 			"FRIENDLYALIENFRIEND",
@@ -1337,13 +1458,19 @@
 			"GATSOLD",
 			"JACQUES",
 			"JAMESAB",
+			"JASSBEFROLD",
 			"JAYECHO",
+			"JLIKESTODRAW",
 			"LAPINBEAU",
 			"LILIRURU",
 			"MANIACPAINT",
+			"MISSBEHAVIOR",
+			"MOIRA",
+			"NOLIMIT",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
+			"SHEEPPUN",
 			"SHOU",
 			"TSUDA",
 			"UTHSTAR",
@@ -1366,6 +1493,7 @@
 			"Crossman",
 			"CyanCapsule",
 			"Damnit",
+			"DCLZexon",
 			"DatBadger",
 			"Doxy",
 			"FriendlyAlienFriend",
@@ -1373,13 +1501,19 @@
 			"Old Gats",
 			"Jacques00",
 			"James AB",
+			"Jass Befrold",
 			"Jay Echo",
+			"J-Likes-To-Draw",
 			"Lapinbeau",
 			"LiliRuru",
 			"ManiacPaint",
+			"MissBehavior",
+			"Moira",
+			"No Limit",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
+			"SheepPun",
 			"Shou",
 			"Tsuda",
 			"Uthstar",

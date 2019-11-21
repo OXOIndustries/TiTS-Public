@@ -237,6 +237,20 @@ public function sellSomethingToXanthe():void
 }
 public function xantheShopInitialization():void
 {
+	if(pc.level >= 7)
+	{
+		if(!chars["XANTHE"].hasItemByClass(DaedalusThreads)) chars["XANTHE"].inventory.push(new DaedalusThreads());
+		if(!chars["XANTHE"].hasItemByClass(EmpusaThreads)) chars["XANTHE"].inventory.push(new EmpusaThreads());
+		if(!chars["XANTHE"].hasItemByClass(NemeanThreads)) chars["XANTHE"].inventory.push(new NemeanThreads());
+		if(!chars["XANTHE"].hasItemByClass(StrixThreads)) chars["XANTHE"].inventory.push(new StrixThreads());
+	}
+	else
+	{
+		chars["XANTHE"].destroyItemByClass(DaedalusThreads, -1);
+		chars["XANTHE"].destroyItemByClass(EmpusaThreads, -1);
+		chars["XANTHE"].destroyItemByClass(NemeanThreads, -1);
+		chars["XANTHE"].destroyItemByClass(StrixThreads, -1);
+	}
 	shopkeep = chars["XANTHE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -1685,7 +1699,7 @@ public function shePaysAttentionToYouSlut():void
 			output(" especially pretty.”</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockColor] genitals.");
 			output("\n\nYou’re both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk ‘pretty’. When she loops it around your ");
 			if(pc.cocks[0].thickness() < .75) output("tiny");
-			else if(pc.cocks[x].thickness() < 1.5) output("modest");
+			else if(pc.cocks[0].thickness() < 1.5) output("modest");
 			else output("girthy");
 			output(" base and pulls it tight, you let out a sharp gasp.");
 			output("\n\n<i>“Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you’ll become incredibly erect and sensitive.”</i> Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.");
@@ -1720,7 +1734,7 @@ public function shePaysAttentionToYouSlut():void
 		//if (pc.sex = female && pc.hasBreasts = false && pc.hasLegs !>= 1)
 		if(pc.hasVagina() && pc.biggestTitSize() < 1 && pc.legCount > 1)
 		{
-			output("\n\n<i>“It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
+			output("\n\n<i>“It’s for weaving between your legs and against your cute [pc.pussyColor] pussy. Let me show you.”</i> Your Mistress informs you. She then drapes the silky cord down your belly and between your [pc.thighs].");
 			output("\n\nIf you weren’t already swooning from her kiss, you’d be doing so at her complimenting your [pc.pussy]. When she threads it around and gives it a tight tug, the soft cord slides between your pussy lips and you let out a sharp gasp.");
 			output("\n\nOnce she’s finished doing you up, the silk rope is tied to your neck, running between your thighs and attached to a hook behind you on the floor.");
 			if(pc.hasClit()) output(" Even the slightest head movement causes it to gloriously rub against your [pc.clits] and makes you swoon with pleasure.");
@@ -2446,7 +2460,7 @@ this.type = GLOBAL.UPPER_UNDERGARMENT;
 this.shortName = "Furry Bra";
 this.longName = "furry bra";
 this.description = "furry bra";
-this.tooltip = " A furry bra made of of fake animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.";
+this.tooltip = " A furry bra made of fake animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;
@@ -2880,7 +2894,7 @@ this.type = GLOBAL.LOWER_UNDERGARMENT;
 this.shortName = "Furry Panties";
 this.longName = "furry panties";
 this.description = "A pair of furry panties";
-this.tooltip = "A pair of panties made of of fake animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.";
+this.tooltip = "A pair of panties made of fake animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;

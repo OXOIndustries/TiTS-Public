@@ -580,31 +580,43 @@ public function seraSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Sera Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Sera Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
 	var babym:Boolean = (se.value4 == 1);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
-	else if(InShipInterior()) output(" onto the deck");
+	else if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if(inShip && 9999 == 0)
 	{
 		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
 		if(!pc.isNude()) output(" disrobed but");
 		output(" no longer able to speak between breaths.");
 	}
 	//on ship without automatic medbay
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labor.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nA passer-by comes over to check on you, and begins to panic when you explain the situation. You default to giving short, simple orders, and your new deputy calms down. Together, you make it to a place where you can get medical aid.");
 	}
@@ -828,6 +840,13 @@ public function seraAtNursery():Boolean
 // Common room blurb
 public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
+	if(!seraHasKidInNursery())
+	{
+		pc.removeStatusEffect("Sera at Nursery");
+		addDisabledButton(btnSlot, "Sera");
+		return;
+	}
+	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");
 	else output(" It never stops being a bit weird to see the demon-morph in a fully lit environment with her business not all the way out there.");
@@ -850,25 +869,57 @@ public function seraNurseryCafeteriaApproach():void
 	var babyName:String = "???";
 	var i:int = 0;
 	
+	// Count children...
+	var numBabs:int = 0;
+	var numKids:int = 0;
+	for(i = 0; i < seraBabies.length; i++)
+	{
+		// Show this if there is a Seraspawn that is under 365 days old
+		if(seraBabies[i].Years <= 1) numBabs++;
+		// Show this if there is a Seraspawn that is over a year old. No they are never going to be over the age of five shut up
+		else if(seraBabies[i].Years <= 5) numKids++;
+	}
+	
 	// First
 	if(flags["MET_SERA_IN_NURSERY"] == undefined)
 	{
 		babyIdx = 0;
-		babym = (seraNoNameBabies[babyIdx].NumMale > 0);
-		babyName = seraNoNameBabies[babyIdx].Name;
+		if(seraNoNameBabies.length > 0)
+		{
+			babym = (seraNoNameBabies[babyIdx].NumMale > 0);
+			babyName = seraNoNameBabies[babyIdx].Name;
+		}
+		else if(seraBabies.length > 0)
+		{
+			babym = (seraBabies[babyIdx].NumMale > 0);
+			babyName = seraBabies[babyIdx].Name;
+		}
 		
 		output("<i>“So this place is real then,”</i> Sera says without preamble, when you sit down opposite her. She jams another load of pasta into her cheek. <i>“S’good. I’d be killing you right about now ‘f it weren’t.”</i>");
 		output("\n\n<i>“No problems getting in?”</i> The fork clatters on the plate; Sera glowers reptilian hate in the direction of the front desk.");
 		output("\n\n<i>“That cyber-cow you have running this shit refused to let me in until I went back and changed!”</i> she snarls. <i>“Of fucking course some high and mighty bolt-bag from the 29th Century would get themselves put in charge here. If you ask me, kids should get used to seeing twelve-inch dick at face height attached to someone who doesn’t like them. Best education they’ll ever get.”</i>");
 		output("\n\n<i>“Have you been to see " + (babym ? "him" : "her") + "?”</i> you ask gently.");
-		output("\n\n<i>“Yeah,”</i> she says, not looking at you. <i>“I mean, " + (babym ? "he" : "she") + " was sleeping, so... I mean, I’m TOLD that " + (babym ? "he" : "she") + "’s mine. Could be anyone’s, knowing you.”</i> She fidgets with her cutlery. <i>“The staff say they’re still waiting for you to name it. What am I supposed to call it?”</i>");
+		output("\n\n<i>“Yeah,”</i> she says, not looking at you.");
 		
 		processTime(2);
 		
 		flags["MET_SERA_IN_NURSERY"] = 1;
 		
-		// [Enter Name]
-		addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
+		if(seraNoNameBabies.length > 0)
+		{
+			output(" <i>“I mean, " + (babym ? "he" : "she") + " was sleeping, so... I mean, I’m TOLD that " + (babym ? "he" : "she") + "’s mine. Could be anyone’s, knowing you.”</i> She fidgets with her cutlery. <i>“The staff say they’re still waiting for you to name it. What am I supposed to call it?”</i>");
+			// [Enter Name]
+			addButton(0, "Next", nameSeraSpawn, [babyIdx, babym, babyName, 0]);
+		}
+		else
+		{
+			output(" <i>“You here to check in on the brat" + ((numBabs + numKids) == 1 ? "" : "s") + ", too?”</i> Sera gives you a glance in-between shoveling food into her mouth. <i>“Don’t let me stand in your way.”</i>");
+			
+			// [Visit / Play] [Leave]
+			if(numBabs > 0) addButton(0, "Visit", seraNurseryActions, ["visit"], "Visit", "Chivvy Sera into paying your child a visit together.");
+			if(numKids > 0) addButton(1, "Play", seraNurseryActions, ["play"], "Play", "Chivvy Sera into playing with your child together.");
+			addButton(14, "Leave", mainGameMenu);
+		}
 	}
 	// Repeat naming if PC has other kids by Sera, because one wasn’t fucking enough
 	else if(seraNoNameBabies.length > 0)
@@ -899,17 +950,6 @@ public function seraNurseryCafeteriaApproach():void
 	// Repeat
 	else
 	{
-		// Count children...
-		var numBabs:int = 0;
-		var numKids:int = 0;
-		for(i = 0; i < seraBabies.length; i++)
-		{
-			// Show this if there is a Seraspawn that is under 365 days old
-			if(seraBabies[i].Years <= 1) numBabs++;
-			// Show this if there is a Seraspawn that is over a year old. No they are never going to be over the age of five shut up
-			else if(seraBabies[i].Years <= 5) numKids++;
-		}
-		
 		if(pc.isPregnant() && pc.bellyRating() >= 10) output("<i>“Here to order some chocolate-coated celery or something?”</i> Sera sniggers as she glances at your [pc.belly]. <i>“Is that one mine? I kinda lose track.”</i>");
 		else output("<i>“You here to check in on the brat" + ((numBabs + numKids) == 1 ? "" : "s") + "?”</i> Sera gives you a glance in-between shoveling food into her mouth. <i>“Don’t let me stand in your way.”</i>");
 		
@@ -1015,7 +1055,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	// Otherwise
 	else
 	{
-		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worst things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
+		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worse things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
 	}
 	// merge
 	if(!fromSera)

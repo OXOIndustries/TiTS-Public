@@ -14,9 +14,12 @@
 			
 			short = "Kally";
 			originalRace = "kui-tan";
+			a = "";
+			capitalA = "";
 			
 			femininity = 85;
 			tallness = 67; //Kiro: 66
+			ballSizeRaw = 9;
 			createCock();
 			cocks[0].cType = GLOBAL.TYPE_INHUMAN;
 			cocks[0].cLengthRaw = 13;
@@ -25,9 +28,15 @@
 			cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
 			cocks[0].flaccidMultiplier = (12/13);
 			
+			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
+			createPerk("'Nuki Nuts", 0, 0, 0, 0, "");
 			createPerk("Fixed CumQ",4000,0,0,0);
 		}
 		//Gotta reset 'dem balls!'
+		override public function orgasm(): void {
+			super.orgasm();
+			ballSizeRaw = 9;
+		}
 		override public function cumQ(): Number {
 			//Natural amount: 3L
 			//1T, 1.5T, 2T, 3T, 4T, 5T

@@ -24,7 +24,7 @@ public function kaedeBlurb4KuiCountryBarAndGrilllll(button:int):Boolean
 	{
 		if(flags["KAEDE_CANADA_MET"] == undefined)
 		{
-			output("\n\nA familiar ginger half-ausar is sitting at the bar, enjoying a scotch on the rocks and scoping out the guns displayed on the walls.");
+			output("\n\nA familiar ginger half-ausar is sitting at the bar, enjoying a scotch on the rocks and scoping out the guns displayed on the walls. It’s Kaede!");
 			//[Kaede]
 			addButton(button,"Kaede",approachKaedeInNewCanadia,undefined,"Kaede","Go say hi to Kaede.");
 		}
@@ -367,6 +367,7 @@ public function maximumTeaseTheSloot():void
 		addButton(1, "Let Her Go", justMaximumTeaseTheSloot);
 	} else {
 		output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+		IncrementFlag("KAEDE_FUCKED");
 		addButton(0, "Next", mainGameMenu);
 	}
 }
@@ -378,6 +379,7 @@ public function justMaximumTeaseTheSloot():void
 	showKaede();
 	author("Savin");
 	output("She gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -419,7 +421,8 @@ public function ultraMaximumDeluxeTeaseTheSloot():void
 	output("\n\nAs if she's not already. You give Kaede a swat on the ass, pushing her up and out of your lap. “Better go get cleaned up,” you tell her. “And Kaede?”");
 	output("\n\n“Yeah,” she says, already halfway out the door.");
 	output("\n\n“Your fly's undone.”");
-
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -441,15 +444,15 @@ public function getARoomWithKaede():void
 	clearMenu();
 	if((pc.hasCock() && pc.cockThatFits(370) >= 0) || pc.hasHardLightEquipped()) addButton(0,"Fuck Her Ass",fuckHerAssYouSlootAndByHerIMeanKaede,undefined,"Fuck Her Ass","Time to take this pretty puppy to pound-town.");
 	else addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You need a penis that fits in her butt to do this - or panties with a hardlight phallus.");
-	addButton(1,"(A)Ride Rocket",rocketRideKaedesWangerDoodle,-1,"(A)Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, anally.");
-	if(pc.hasVagina()) addButton(2,"(V)Ride Rocket",rocketRideKaedesWangerDoodle,0,"(V)Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, vaginally.");
-	else addDisabledButton(2,"(V)Ride Rocket","(V)Ride Rocket","You need a vagina to do this.");
+	addButton(1,"(A)Ride Rocket",rocketRideKaedesWangerDoodle,-1,"Anal: Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, anally.");
+	if(pc.hasVagina()) addButton(2,"(V)Ride Rocket",rocketRideKaedesWangerDoodle,0,"Vaginal: Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, vaginally.");
+	else addDisabledButton(2,"(V)Ride Rocket","Vaginal: Ride Rocket","You need a vagina to do this.");
 
 	//Invite a Friend
 	//See if there’s someone you and Kaede could invite over for some group fun...
-	addButton(3,"InviteAFriend",inviteAFriend,undefined,"InviteAFriend","See if there’s someone you and Kaede could invite over for some group fun...");
+	addButton(3,"InviteAFriend",inviteAFriendForKaedePlays,undefined,"Invite A Friend","See if there’s someone you and Kaede could invite over for some group fun...");
 
-	if (pc.isLactating() && pc.biggestTitSize() >= 3) addButton(4, "Breastfeed Kaede", breastfeedKaede, undefined);
+	if (pc.isLactating() && pc.biggestTitSize() >= 3) addButton(4, "Breastf. Kaede", breastfeedKaede, undefined, "Breastfeed Kaede", "Feed Kaede with your milky breasts.");
 	else addDisabledButton(4, "Breastf. Kaede", "Breastfeed Kaede", "You need to have at least C-cup breasts and be lactating for this.");
 }
 
@@ -467,7 +470,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 		x = pc.cockThatFits(370);
 		if(x == -1) x = -2;
 	}
-	else if(pc.hasHardLightEquipped() && x < 0) x = -1;
+	if(x < 0 && pc.hasHardLightEquipped()) x = -1;
 	if(x == -2) { output("ERROR. INVALID WANGER. DEFAULTING TO HARDLIGHT VARIANT. PLZ NOTIFY FEN.\n\n"); x = -1; }
 
 	output("You lean down over the ginger pup, running your hands up her shirt until your palms are on her breasts, feeling her nipples pressing through the thin layer of cloth between your flesh and hers. Her breath catches as your thumbs brush across her stiff little peaks, spending a moment to rub and pinch them before reaching up and cupping her cheeks. She smiles up at you, inviting a kiss onto those rosy lips; her legs curl up around your [pc.hips], locking over your ass and pulling you in.");
@@ -511,7 +514,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	if(x >= 0) pc.cockChange();
 	
 	output("\n\n<i>“Okay. Okay...”</i> Kaede breathes between soft little moans. <i>“Startin’ to feel good back there. I think... I think it’s okay to move now.”</i>");
-	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh so sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
+	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh-so-sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
 	output("\n\nThe heavy, wet sounds of flesh slapping against flesh echo through the room, accompanied by Kaede’s whimpering grunts of pleasure and the creaking of the bedframe under you. Your hands plant themselves on Kaede’s shoulderblades, pushing the cock-hungry halfbreed into the sheets, letting your hammering crotch do the same to her ass. Kaede sinks into the bed, tail flicking against your [pc.face], her body completely at your mercy.");
 	output("\n\nAnd she’s loving every second of it.");
 	output("\n\nKaede’s tailhole squeezes hard around your thrusting dick, and you can feel something thick and meaty throbbing against your thigh, leaking to the beat of Kaede’s racing heart. A few moments later, she gives voice to it: <i>“O-oh fuck! Too much, too much, too-”</i>");
@@ -571,6 +574,7 @@ public function cumInsideKaedesBootyButt(x:int):void
 
 	processTime(15);
 	pc.orgasm();
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -589,6 +593,7 @@ public function facializeKaedeAfterBootyButting(x:int):void
 
 	processTime(15);
 	pc.orgasm();
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -670,7 +675,7 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	if(pc.isHerm()) output(" and ");
 	if(pc.hasVagina()) output("drooling femcum down her crimson shaft");
 	if(!pc.hasGenitals()) output("squeezing your ass for her as your sexless body climaxes");
-	output(". When you finish moaning through your orgasm, it all at once feels as thought all the breath has gone out of you - along with all the tension and stress of your long journey , all the worry of the day...");
+	output(". When you finish moaning through your orgasm, it all at once feels as though all the breath has gone out of you - along with all the tension and stress of your long journey, all the worry of the day...");
 	output("\n\nYou slump down overtop Kaede, resting your cheek against one of her sinfully soft little breasts. There’s a thin, glistening sheen of sweat built up from her vigorous fucking, but her cleavage is still nice and cool for you. Kaede giggles when you nuzzle up, wrapping her big ginger tail around your [pc.butt] and pulling the sheets up over you both.");
 	output("\n\n<i>“Hope you’re comfortable,”</i> she murmurs, yawning and reaching up for the lights. <i>“Gonna be stuck there awhile.”</i>");
 	output("\n\nYou smile up at her and slip your arms around her. <i>“Nowhere I’d rather be...”</i>");
@@ -680,13 +685,14 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(ppKaede, x);
 	else pc.loadInAss(ppKaede);
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Invite a Friend
 //See if there’s someone you and Kaede could invite over for some group fun...
-public function inviteAFriend():void
+public function inviteAFriendForKaedePlays():void
 {
 	clearOutput();
 	showKaede();
@@ -827,7 +833,8 @@ public function breastfeedKaede():void
 
 	pc.milked();
 	processTime(30+rand(10));
-
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -856,7 +863,7 @@ public function timeRunsOutForKaede():void
 	{
 		output("\n\nHer explanation triggers a memory, and you spend a moment staring at her, brow furrowed, trying to think of exactly what. Then it comes to you: that A.I. you encountered in the base on Myrellion!");
 		output("\n\n<i>“I don’t suppose this has anything to do with the Black Void?”</i> you whisper, careful to keep anyone nearby from hearing.");
-		output("\n\nKaede’s eyes go wide, and her tail stiffens behind her. <i>“H-how did you know? Nevermind, yeah, you’re right: they were one of the pirate groups. I think they might have made Athena, or somebody stole her from them anyway. That’s one of the reasons I’ve been keeping my head down on the frontier lately, trying to be real hard to find. I’m just surprised they haven’t come after me yet. Maybe I got away in the clear, who knows.”</i>");
+		output("\n\nKaede’s eyes go wide, and her tail stiffens behind her. <i>“H-how did you know? Never mind, yeah, you’re right: they were one of the pirate groups. I think they might have made Athena, or somebody stole her from them anyway. That’s one of the reasons I’ve been keeping my head down on the frontier lately, trying to be real hard to find. I’m just surprised they haven’t come after me yet. Maybe I got away in the clear, who knows.”</i>");
 		output("\n\nShe chuckles nervously again, wiping her brow with the sleeve of her leather jacket. <i>“A-anyway, I should, uh, I should go. See you around, [pc.name].”</i>");
 		output("\n\nShe hops up and plants a kiss on your cheek, slipping around you and out the door before you can say another word.");
 		output("\n\nGuess she doesn’t wanna talk about it...");
@@ -908,6 +915,8 @@ public function kaedePopsIntoZeGloryHole():void
 	IncrementFlag("GLORYHOLE_SERVER");
 	flags["GLORYHOLED_KAEDE"] = 1;
 	pc.lust(10);
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

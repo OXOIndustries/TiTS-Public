@@ -18,7 +18,7 @@
 			this.originalRace = "half-ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "You're standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn't about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn't going to be an easy one. She wants to prove herself <i>to</i> herself, and she'll fight like a beast to do it.";
+			this.long = "You’re standing in her yoga class. Your Ausar opponent stands across from you, her fists raised and close to her face. Her stance is wide and steady, but unaggressive; she isn’t about to make the first move. Despite her battle-unprepared clothing and her disability, you know that this fight isn’t going to be an easy one. She wants to prove herself <i>to</i> herself, and she’ll fight like a beast to do it.";
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
 			this.isPlural = false;

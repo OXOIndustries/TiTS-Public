@@ -57,6 +57,7 @@ public function barBonusFunction():Boolean
 	tessaBonus(5);
 	if((flags["CHAURMINE_GUARDED"] != undefined || flags["CHAURMINE_HELPED"] != undefined) && flags["ABANDONED_CHAURMINE"] != 3) chaurmineBonus(4);
 	if(flags["MET_CARVER"] != undefined) addButton(5,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
+	if (biancaAtBar("tarkus") && biancaBarBonus(7)) return true;
 	
 	return false;
 }
@@ -91,17 +92,16 @@ public function stretchDelilahsButt(fromPC:Boolean = false):void
 public function approachDCLTrap():void
 {
 	clearOutput();
+	showDel();
 	author("Savin");
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
 	
 	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined && chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
 	
 	if(flags["MET_DEL"] == undefined)
 	{
 		flags["MET_DEL"] = 1;
-		userInterface.showBust("BETH","DELILAH");
-		userInterface.showName("BETH AND\nDELILAH");
+		showBust("BETH", showDelString());
+		showName("BETH AND\nDELILAH");
 		output("You approach the slender bartender and ask what’s on tap.");
 		output("\n\n<i>“Quivering Quasars for 10 credits, Sex on a Meteor for 20. Of course, we’ve got good ol’ beer and liquor, too,”</i> she says matter-of-factly. Just as she’s reaching for a glass for you, though, a tall, buxom woman steps out from the kitchen behind the bar, dressed in nothing but a pair of pasties barely doing anything to cover her large, pink areola, and a tight thong that leaves nothing to the imagination.");
 		output("\n\n<i>“Did you forget to mention today’s special?”</i> the nearly-nude woman asks sternly, looking down on the comparatively tiny bartender. Tsking her tongue, the woman turns to you and says, <i>“I apologize for my slave. I am Bethany. Bethany Carver. This is my establishment, and soon to be brothel. One of many in my possession. The little one here seems to have forgotten her place, hasn’t she?”</i>");
@@ -186,9 +186,8 @@ public function approachDCLMenu():void
 public function approachDCLBooty():void
 {
 	clearOutput();
+	showDel();
 	author("Savin");
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
 	output("<i>“You’re free?”</i> Not much of a brothel if the mistress is giving it away for nothing!");
 	output("\n\nShe hesitates, then seems to take a mental second wind, stomping her foot down. <i>“I’m not a girly girl! I’m a man, damn it! I didn’t sign up for this!”</i>");
 	output("\n\n<i>“A... man?”</i> She looks about as far from it as you can get.");
@@ -201,9 +200,8 @@ public function approachDCLBooty():void
 //[Drink]
 public function getADrinkFromDCLsButt():void {
 	clearOutput();
+	showDel();
 	author("Savin");
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
 	processTime(1);
 	output("<i>“Oh, thank God,”</i> the bartender says, her relief palpable. <i>“So, what can I get you?”</i>\n\n<b><u>Menu:</u></b>\nBeer - 1 cred.\nQuivering Quasar - 10 creds.\nSex on a Meteor - 20 creds.");
 	clearMenu();
@@ -224,10 +222,9 @@ public function quiveringQuasar():void
 {
 	//Temporarily Increases Physique value, small random chance to blind yourself on any given turn
 	clearOutput();
-	processTime(3);
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
+	showDel();
 	author("Savin");
+	processTime(3);
 	output("<i>“Let’s try one of those Quasars.”</i>");
 	output("\n\n<i>“Careful, it kicks like a mule,”</i> the bartender warns you as she mixes you a brightly-colored, almost glowing, drink which bubbles in its glass as she slides it on over. You pick the glass up, and recoil a bit at the ozone smell emanating off of it; giggling, the bartender adds, <i>“It’s electrifying, huh?”</i>");
 	output("\n\nUh-huh. Well, bottoms up. You knock back your Quasar, shivering as it rushes down your throat");
@@ -257,10 +254,9 @@ public function quiveringQuasar():void
 public function sexOnAMeteor():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
-	processTime(3);
+	showDel();
 	author("Savin");
+	processTime(3);
 	//Raise lust, temp. +Libido, -Lust Resistance, +Tease Damage
 	output("<i>“Sex on a Meteor?”</i> you ask, cocking an eyebrow at the name.");
 	output("\n\n<i>“Owner’s choice,”</i> the bartender chuckles, <i>“It’ll make you all but irresistible... even to yourself!”</i>");
@@ -290,11 +286,10 @@ public function sexOnAMeteor():void
 public function haveABeer():void
 {
 	clearOutput();
-	processTime(5);
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
-	pc.credits--;
+	showDel();
 	author("Savin");
+	processTime(5);
+	pc.credits--;
 	output("<i>“Just a beer,”</i> you say. She nods, and produces a cold one from under the counter, popping the cap for you before serving it. You spend a few minutes chatting with her, ");
 	//if 5+ times sex'd:
 	if(delilahSubmissiveness() >= 5) output("trying to ignore the fact that she’s quickly called on to “service” a pair of raskvel guys mid-conversation, "); 
@@ -309,8 +304,7 @@ public function haveABeer():void
 public function buttStretchDelsAnus():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH_NUDE");
+	showDel(true);
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	author("Savin");
@@ -354,7 +348,7 @@ public function buttStretchDelsAnus():void
 	output("\n\nFinally, the slutty trap makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood, ");
 	if(delilahSubmissiveness() < 5) output("desperately pressing her legs together to hide her tiny, trappy shame tenting under her skirt");
 	else output("blatantly spreading her legs, one hand fully disappearing under her skirt and up her wanton hole in preparation, teasing her tiny masculinity from behind, making it jump in response, wholly throwing back the hem of her skirt and leaving her cock for all to see");
-	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh so wonderfully. Gods, she was born for this! You stifle a little moan as she ");
+	output(". You guide her forward, easing her lips around the swell of your schlong, shuddering as you feel her wet, warm embrace wrapping around you, sucking and squeezing oh-so-wonderfully. Gods, she was born for this! You stifle a little moan as she ");
 	if(pc.cocks[x].cLength() <= 12) output("takes you to the hilt, your [pc.cock " + x + "] vanishing down her throat");
 	else output("sucks up every inch she can manage, choking down more than a foot of cockmeat before finally giving in, her throat utterly bulging with your massive girth stretching her pussy-like gullet wide");
 	output(".");
@@ -417,8 +411,7 @@ public function buttStretchDelsAnus():void
 public function sitOnDelilahsFace():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH_NUDE");
+	showDel(true);
 	var x:int = rand(pc.totalVaginas());
 	author("Savin");
 	output("<i>“I think I’ll take your mistress up on that offer,”</i> you say, grinning lustfully at the pretty girly-boy body on display for you. <i>“Why don’t you get up on the bar for me, cutey?”</i>");
@@ -588,7 +581,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	{
 		output("\n\nWell, who’re you to say no? You let down your guard, releasing your body to fulfill its most primal wishes with the help of the trappy bartender. ");
 		//Dicksex:
-		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her tailhole.");
+		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her asshole.");
 		else output("<i>“C-cumming,”</i> the trap moans, burying her face in your [pc.chest] as her hip-thrusts reach a new height of speed, slamming into your [pc.vagina " + x + "] with wild abandon. Grinning, you tell her to let it go, wrapping your [pc.legOrLegs] around her hips to draw her deep inside as she cums, flooding your sex with hot, creamy seed.");
 		pc.orgasm();
 		timesDelilahSexed(1);
@@ -609,8 +602,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 public function delilahSlutTraining():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH_NUDE");
+	showDel(true);
 	author("Savin");
 	output("<i>“Not me, no,”</i> you say, taunting the cute trap. You curl your finger in a come-hither, drawing her out from behind the bar, and take a look at your trappy protege. She’s lithe and feminine, whether by gene-mod or naturally, you don’t know; either way, she’s certainly more girly than man, especially in the cross between maid uniform and outright lingerie she’s dressed up in, complete with thigh-high stockings and garter hidden under a sinfully short skirt that can’t quite reach to her knees. The perfect combination of cute and slutty, just right for someone like the two of you.");
 	output("\n\n<i>“Watch and learn,”</i> you breathe into her ear, close enough that your [pc.lips] brush against her ear as you slip over to the bar, bending over it and wiggling your [pc.hips] toward the patrons of the bar. A few boys look your way as you shimmy up onto the bar, ass in the air, giving everyone who even glances your way a full-force show as you start to peel off your [pc.gear], revealing the full cheeks of your [pc.butt]. That gets their attention: a few wolf-whistles and cat-calls come your way as you let your hind end slip free, making sure to spread ‘em wide as your welcoming little hole comes into view while simultaneously keeping your [pc.cock] well out of view");
@@ -699,8 +691,7 @@ public function delilahSlutTraining():void
 public function delSlutTraining2():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH_NUDE");
+	showDel(true);
 	author("Savin");
 	output("<b>Time passes...</b>");
 	output("\n\nYou lost count of how many men (and women!) have used your body. At least thirty; probably more. Someone got on their holoband and called their friends over after the line got thinned out, and pretty soon you and Del were swimming in an ocean of spooge coating yourselves and the bar. You can’t feel your [pc.legOrLegs] anymore... but in a good, contented, tired-from-getting-your-brains-fucked-out sort of way. You lie with your back atop the bar");
@@ -745,8 +736,7 @@ public function delSlutTraining2():void
 public function disarmDelsTrap():void
 {
 	clearOutput();
-	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH_NUDE");
+	showDel(true);
 	var delSexed:Number = timesDelilahSexed();
 	author("Zeikfried");
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());

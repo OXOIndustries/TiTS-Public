@@ -44,6 +44,8 @@ package classes.Items.Accessories
 			evasion = 0;
 			fortification = 0;
 			
+			addFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER);
+			
 			droneAttack = CombatAttacks.TamedVarmintAttack;
 			
 			version = _latestVersion;

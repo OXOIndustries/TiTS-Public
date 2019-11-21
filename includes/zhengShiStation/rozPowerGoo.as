@@ -29,6 +29,7 @@ public function encounterRoz():Boolean
 {
 	clearOutput();
 	showRoz();
+	showBust("ROZ_ARMOR");
 	author("Savin");
 	//First Encounter:
 	if(flags["MET_ROZ"] == undefined)
@@ -170,7 +171,7 @@ public function rozCombatVictoryMenu():void
 	//Disabled for nau.
 	if(pc.IQ() >= 50 || pc.isGoo()) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
 	else addDisabledButton(5,"Locked","Locked","You aren’t smart enough for this.");
-	if(pc.legCount == 2 || pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz’s ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
+	if(!pc.isTaur()) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz’s ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
 	else addDisabledButton(6,"Hijack Armor","Hijack Armor","You need to be a biped or otherwise have an amorphous lower body to operate this!");
 
 	addButton(14,"Leave",leaveRozAfterWinning);
@@ -204,7 +205,7 @@ public function hijackRozArmor():void
 	output("\n\nShe seems sincere...");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Take It",takeRozArmor,undefined,"Take It","Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.");;
+	addButton(0,"Take It",takeRozArmor,undefined,"Take It","Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.");
 	addButton(1,"Leave It",leaveRozsArmor,undefined,"Leave It","Oh okay... Roz can keep her power armor.");
 }
 
@@ -226,7 +227,7 @@ public function takeRozArmor():void
 {
 	clearOutput();
 	showRoz(true);
-	output("You shove Roz off you and, while she’s busy peeling herself off the stone, you clamber up into the armor’s hatch and lock yourself in. There’s a pneumatic hiss as the armor seals up around you, and the padding inside tightens around your arms and legs. A holographic HUD lights up, displaying ammunition and shielding status, atmospheric data, and a thousand other datapoints that swirl around your eyes.");
+	output("You shove Roz off you and, while she’s busy peeling herself off the stone, you clamber up into the armor’s hatch and lock yourself in. There’s a pneumatic hiss as the armor seals up around you, and the padding inside tightens around your arms and [pc.legOrLegs]. A holographic HUD lights up, displaying ammunition and shielding status, atmospheric data, and a thousand other datapoints that swirl around your eyes.");
 	output("\n\n<i>“Heeeyyy!”</i> Roz shouts, splatting a fist on the chest plate. <i>“Gimme that back ya jerk! Get out and... I dunno just get out!”</i>");
 	output("\n\nThere’s a lot of incoherent angry shrieking after that, but it’s easy to ignore while you do a systems check and get accustomed to the controls. After a couple minutes, you’re pretty sure you’re ready to go - and to get this angry goo out of your way.");
 	output("\n\n<i>“You ain’t gettin’ past me!”</i> Roz shrieks, moments before getting stepped on by her own power armor as you blithely trudge through her. An exceptionally irate smear on the ground shouts after you, <i>“Ow! Hey! You can’t just ignore me!!! I’ll find you someday, I swear it!”</i>");
@@ -479,7 +480,7 @@ public function hyperBodyCondomRozAnne():void
 	if(cum < 10000)
 	{
 		output(" [pc.Cum] spurts into the swirling cyan pocket at the tip of your dick, shrouding her gemstone core as you pump spurt after spurt into the goo.");
-		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Nevermind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Nevermind the way ");
+		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Never mind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Never mind the way ");
 		if(cum < 25) output("she devours your meager offering with ease");
 		else if(cum < 500) output("she devours your seed with happy-sounding gurgles");
 		else output("she captures your seed with happy-sounding gurgles, creating an expanding pocket of [pc.cumColor]-tinged goo to hang from your kingly crown");
@@ -681,7 +682,7 @@ public function giveUpToRozBallFilling2():void
 		output("\n\nRoz steps backwards and settles in, the suit thudding closed. The only thing you’re really conscious of is that the direction she’s walking is definitely not the way back to your ship.");
 		processTime(60);
 		clearMenu();
-		addButton(0,"next",giveUpToRozBallFilling3);
+		addButton(0,"Next",giveUpToRozBallFilling3);
 	}
 }
 
@@ -815,7 +816,7 @@ public function rozGetsGoofukked():void
 		clearMenu();
 		addButton(0,"Lips",inflateRozesLips,undefined,"Lips","Inflate Roz’s lips with your helpfully provided biomass.");
 		addButton(1,"Boobs",inflateRozesBoobalages,undefined,"Boobs","Thrust into Roz’s chest and blow her tits up like balloons.");
-		addButton(1,"Butt",inflateRozesBootayhole,undefined,"Butt","Give Roz that retro-celeb look by blowing your load in her ass.");
+		addButton(2,"Butt",inflateRozesBootayhole,undefined,"Butt","Give Roz that retro-celeb look by blowing your load in her ass.");
 	}
 	else
 	{
@@ -1041,7 +1042,7 @@ public function wsanLossScene():void
 	output("\n\nShe’s no regular galotian, that’s for sure - she’s far smarter than the others you’ve encountered. That doesn’t mean her core instinct isn’t the same, though; you’re all too aware she’s going to milk you for everything you’ve got, just like the ones in the wild. You grunt as her licking continues up your shaft then back down,her tongue " + (pc.balls > 0 ? "slickening your [pc.balls]":"encircling your base") + ". She moans excitedly when she earns another dollop of pre, swishing it away with her hand again.");
 	output("\n\nYou can tell this tenuous situation isn’t going to last, though. With every bit of juice she squeezes from you she gets just a little wilder, a little rougher, both her eyes and her smile widening. If she ever starts actually sucking you off, you have a feeling she’s going to be down there for a long time. Sure enough, she begins her ascent to the crown of your cock and gives you a grin before diving onto your cock and " + (cLength < 7 ? " swallowing it whole":" taking several inches between her lips") + ".");
 	output("\n\nThe suction is incredible, her entire mouth and throat wrapping around you as she expertly massages your cock from all directions. Unbound by the limitations of other races, an intelligent galotian like Roz can manipulate her body however she wants with staggering effect. You groan loudly as you feel the insides of her throat squeeze you and gently rub you up and down, almost as if she were jacking you off with her mouth.");
-	output("\n\n<i>“Impressive, right?”</i> you hear in your head, glancing down to see Roz looking up at you wearing what would like be a devious grin were her cock-sucking lips not distorted into an O around your dick. <i>“Stars, this is gooood. My mouth is every bit as sensitive as my pussy, y’know. So when you let out this big, fat load I’m gonna milk outta ya, you get to make me cum too!”</i>");
+	output("\n\n<i>“Impressive, right?”</i> you hear in your head, glancing down to see Roz looking up at you wearing what would like be a devious grin were her cock-sucking lips not distorted into an ‘O’ around your dick. <i>“Stars, this is gooood. My mouth is every bit as sensitive as my pussy, y’know. So when you let out this big, fat load I’m gonna milk outta ya, you get to make me cum too!”</i>");
 	if(cLength <= 7) output("\n\nShe begins bobbing up and down on your cock, sloppy wet noises emanating from her throat as she spears herself on your length over and over, doing her best to drive you towards orgasm. You’re barely holding on, grunting and moaning while you weather the erotic assault, your cock throbbing in need" + (pc.hasKnot(x) ? " as your knot begins to hint at inflating":""));
 	else if(cLength <= 15) output("\n\nRoz presses herself against your groin with every bob of her head, planting a sloppy kiss around the base of your impressive length before sucking you as hard as she can on the way back up. She even rubs your dick with her fingers on the outstroke, eliciting groans of pleasure from your lips as you draw ever closer to cumming");
 	else if(cLength <= 24) output("\n\nRoz seems to be taking your length as a challenge, hollowing her cheeks as she forces herself all the way down to the base as you groan deeply. If you chance a look down you can see the faint outline of your impressive length penetrating her body, being massaged and sucked from all directions at once. The sensation is heavenly and you can already feel yourself getting closer and closer to cumming");

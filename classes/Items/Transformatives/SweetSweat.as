@@ -52,7 +52,7 @@ package classes.Items.Transformatives {
 				}
 				output(" body, getting it in every nook and cranny, fantasizing about the musk you’ll be emitting.");
 				//Anal sloots only
-				if(target.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || target.ass.hasFlag(GLOBAL.FLAG_PUMPED) || target.ass.looseness() >= 3 || target.ass.wetness() >= 1)
+				if(target.hasPlumpAsshole() || target.ass.looseness() >= 3 || target.ass.wetness() >= 1)
 				{
 					output(" Your hands slide into your [pc.ass], spreading your cheeks apart as you slather some of the ointment onto your [pc.asshole] and slipping a finger inside, just to make sure you apply it where it’s needed.");
 				}

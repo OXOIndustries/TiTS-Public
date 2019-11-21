@@ -125,7 +125,8 @@ public function genesModsInterior():void
 		
 		if (geneSubmissionLevel() >= 0 && geneSubmissionLevel() <= 2)
 		{
-			output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			if(flags["GENE_TALKED_TO"] != undefined) output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			else output("\n\n<i>“Welcome back!”</i> the fanfir man grins hugely when you step back into his airy shop. <i>“What can I do for you?”</i>");
 		}
 		else if (geneSubmissionLevel() >= 3 && geneSubmissionLevel() <= 6)
 		{
@@ -183,7 +184,7 @@ public function genesModsInterior():void
 			if (pc.lust() == pc.lustMax()) output(" You smirk lazily back at the fanfir and think about what it is you want.");
 		}
 
-		if (pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
+		if (!isGeneSubmissionDisabled() && pc.lust() == pc.lustMax() && !pc.hasStatusEffect("Just Sexed Gene"))
 		{
 			output("\n\n<i>“But trifling talk and business can wait, can’t they.”</i> The massive creature strides out from behind his counter, and you do not resist him as, smile widening, he envelopes you in his cool, granite smell and powerful, looming frame.");
 			// Goto sex
@@ -895,7 +896,7 @@ public function genesModsBlowjob():void
 		
 		output("\n\n<i>“Go on... ”</i> he sighs, poking his burningly erect tower of a cock at your lips. You look up at him coyly, poke your [pc.tongue] out and then lick the end, tantalizing his most sensitive spot with swirls of your tongue, pausing when slightly sweet spice tingles across your taste-buds. Wow, is that natural? You don’t get a chance to savour it though, because next moment Gene, agitated by your teasing, shoves forward and opens your mouth with his girthy, pre-slicked cock-head.");
 		output("\n\nAfter a moment of getting used to it you swiftly find a rhythm, moving your [pc.lips] and tongue over the hot, spicy meat, pumping the base with one hand, the other reaching further back to give his heavy quad a good fondle - and the occasional gentle squeeze, just to see him tense up again. After a few fervent, shallow thrusts he calms himself down and lets your head do the moving.");
-		if (pc.isTreatedFemale())
+		if (pc.isTreatedCow())
 		{
 			output(" All of your instincts tell you that this is where you most belong -");
 			if (pc.isBiped()) output(" on your knees");
@@ -1225,7 +1226,7 @@ public function genesModsBellyrubFirstNotTheSpot():void
 
 	output("\n\n<i>“Alright, that’s enough,”</i> he chuckles. <i>“You’re tickling me! I appreciate your attempt to introduce me to something new, dear Steele, but I’m afraid this does nothing for me.");
 	processTime(1);
-	if (pc.tallness < 112 || !pc.hasVagina())
+	if (pc.tallness >= 112 || !pc.hasVagina())
 	{
 		output(" Desist, and we’ll do something we both know will be mutually satisfying instead.”</i> Disappointed, you step away, knowing you have no choice but to proffer a different form of fucking now.");
 

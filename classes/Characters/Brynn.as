@@ -161,7 +161,10 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "BRYNN";
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			// Clear out this shit and let the default constructor handle it.

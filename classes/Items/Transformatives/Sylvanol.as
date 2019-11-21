@@ -91,6 +91,8 @@
 			else output("remaining at");
 			output(" the sides of your head and changing shape to a form very much like a human’s save for the pointed tips. <b>You have elven ears!</b>");
 			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			
 			if(pc.earLength != 0)
 			{
@@ -156,7 +158,12 @@
 
 			var nipColor:String = "pink";
 			var cuntColor:String = "pink";
-			if(pc.skinTone == "white") color = "silver";
+			
+			if(pc.skinTone == "white")
+			{
+				nipColor = "silver";
+				cuntColor = "silver";
+			}
 			else if(pc.skinTone == "fair" || pc.skinTone == "tanned" || pc.skinTone == "pale") 
 			{
 				nipColor = "pink";
@@ -246,7 +253,9 @@
 			var pc:Creature = args[0];
 			var tarColor:String = args[1];
 			output("\n\nYou feel a tingle like the medipen is going to change your skin, but suddenly it concentrates into just a few places. You watch in amazement as " + tarColor + " markings begin to flow across your [pc.skinFurScalesNoun] like a liquid paint, covering every inch of your body in the intricate tattoos. The lines stand out clear as day thanks to their glow, forming a beautiful contrast with your [pc.skinFurScales]. <b>You now have " + tarColor + " body markings!</b>");
-			pc.createStatusEffect("Vanae Markings");
+			//pc.createStatusEffect("Vanae Markings");
+			var patternType:int = 0;
+			pc.createStatusEffect("Body Markings", patternType, 0, 0, 0);
 			pc.skinAccent = tarColor;
 		}
 		public function fuckinShadowHairTF(pc:Creature):void
@@ -318,8 +327,8 @@
 			//Transparo hair
 			if(pc.hairType != GLOBAL.HAIR_TYPE_TRANSPARENT && pc.hairLength > 0)
 			{
-				highEventsArgs.push(fuckinShadowHairTF);
-				highEventsArgs.push(undefined);
+				highEvents.push(fuckinShadowHairTF);
+				highEventsArgs.push(pc);
 			}
 			//Mid:
 			//Change hair color to black, violet, or glowing violet.

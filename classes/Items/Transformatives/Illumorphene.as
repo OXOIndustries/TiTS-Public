@@ -67,6 +67,7 @@ package classes.Items.Transformatives
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.showName("\nILLUMORPHEME");
+				CodexManager.unlockEntry("Mothrine");
 				
 				// Consumption
 				// Illumorpheme requires you to be on the ship to take as it is, for lore reasons, a slow-acting whole body transformative. 
@@ -100,7 +101,7 @@ package classes.Items.Transformatives
 					addButton(2, "Voltaic", illumorpheneUse, [target, "voltaic"], "Voltaic", "A red and orange color scheme!");
 					addButton(3, "Vatic", illumorpheneUse, [target, "vatic"], "Vatic", "A white and gold color scheme!");
 					
-					addButton(14, "Actually...", illumorpheneCancel, target, "Nevermind", "Not quite ready to do this yet.");
+					addButton(14, "Actually...", illumorpheneCancel, target, "Never Mind", "Not quite ready to do this yet.");
 					
 					return true;
 				}
@@ -290,6 +291,7 @@ package classes.Items.Transformatives
 			
 			target.earLength = 0;
 			target.earType = GLOBAL.TYPE_MOTHRINE;
+			target.clearEarFlags();
 			
 			target.tongueType = GLOBAL.TYPE_MOTHRINE;
 			target.clearTongueFlags();

@@ -5,8 +5,10 @@ package classes.Characters
 	import classes.Engine.Interfaces.GetGameTimestamp;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
+	import classes.Items.Armor.GooArmor;
 	import classes.Items.Transformatives.OmegaOil;
 	import classes.Items.Transformatives.SheepTF;
+	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
@@ -16,7 +18,7 @@ package classes.Characters
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Interfaces.*
+	import classes.Engine.Interfaces.*;
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -27,7 +29,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -68,16 +70,22 @@ package classes.Characters
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -103,18 +111,23 @@ package classes.Characters
 		}
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			kGAMECLASS.mimbraneFeed("ass");
+			// Butt bug load
+			kGAMECLASS.loadInButtBug(this, cumFrom);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			// Buttslut heal
 			if(hasPerk("Buttslut"))
 			{
 				HP(level);
-				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
+				if(cumFrom != null) HP(Math.round(cumQ/1000));
 			}
 			// Anal Heat dampen
 			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
@@ -123,7 +136,11 @@ package classes.Characters
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -144,12 +161,14 @@ package classes.Characters
 		
 		override public function milkInMouth(milkFrom:Creature = null):Boolean
 		{
-			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, milkFrom.lactationQ(), "milk");
+			var lactationQ:Number = (milkFrom != null ? milkFrom.lactationQ() : 0);
+			
+			if(milkFrom != null) fluidInMouthEffects(milkFrom, milkFrom.milkType, lactationQ, "milk");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(milkFrom != null) addBiomass(milkFrom.lactationQ());
+				if(milkFrom != null) addBiomass(lactationQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -157,9 +176,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(milkFrom != null)
 				{
-					if(milkFrom.lactationQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(lactationQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(milkFrom != null) sstdChecks(milkFrom,"mouth");
@@ -168,12 +187,14 @@ package classes.Characters
 		
 		override public function girlCumInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, cumFrom.girlCumQ(), "girl-cum");
+			var girlCumQ:Number = (cumFrom != null ? cumFrom.girlCumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.girlCumType, girlCumQ, "girl-cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.girlCumQ());
+				if(cumFrom != null) addBiomass(girlCumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -181,9 +202,9 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.girlCumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(girlCumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
@@ -192,13 +213,15 @@ package classes.Characters
 		
 		override public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
-			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumFrom.cumQ(), "cum");
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
+			if(cumFrom != null) fluidInMouthEffects(cumFrom, cumFrom.cumType, cumQ, "cum");
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Honeypot"))
@@ -206,14 +229,18 @@ package classes.Characters
 				kGAMECLASS.honeyPotBump(true);
 				if(cumFrom != null)
 				{
-					if(cumFrom.cumQ() >= 500) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
-					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 500) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 1000) kGAMECLASS.honeyPotBump(true);
+					if(cumQ >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -226,15 +253,21 @@ package classes.Characters
 		// *shrug*
 		override public function loadInNipples(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO)
 			{
-				if(cumFrom != null) addBiomass(cumFrom.cumQ());
+				if(cumFrom != null) addBiomass(cumQ);
 				else addBiomass(10);
 			}
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
@@ -243,10 +276,16 @@ package classes.Characters
 		
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
+			var cumQ:Number = (cumFrom != null ? cumFrom.cumQ() : 0);
+			
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
 			if(hasPerk("Cum Highs"))
 			{
-				kGAMECLASS.cumHighUpdate();
+				kGAMECLASS.cumHighUpdate(this, cumQ);
+			}
+			if(hasPerk("Lusty Afterglow"))
+			{
+				kGAMECLASS.lustyAfterglowUpdate(this, cumQ);
 			}
 			if (cumFrom != null)
 			{
@@ -325,6 +364,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		public var LocationStorageInventory:Array = [];
 		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
@@ -383,25 +423,25 @@ package classes.Characters
 		{
 			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (ShipStorageInventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < ShipStorageInventory.length)
+				while (i >= 0)
 				{
 					if (ShipStorageInventory[i] is ref)
 					{
 						ShipStorageInventory[i].quantity = 0;
 						ShipStorageInventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < ShipStorageInventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (ShipStorageInventory[i] is ref)
@@ -413,13 +453,256 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
+		}
+		
+		// Hidden storage
+		public var hiddenMeleeWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenRangedWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenArmor:ItemSlotClass = new EmptySlot();
+		public var hiddenUpperUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenLowerUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenAccessory:ItemSlotClass = new EmptySlot();
+		public var hiddenShield:ItemSlotClass = new EmptySlot();
+		public var hiddenInventory:Array = [];
+		
+		// Take item, Put in storage
+		public function takeMeleeWeapon():void
+		{
+			if((meleeWeapon is EmptySlot) || (meleeWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = meleeWeapon;
+			
+			if(!(hiddenMeleeWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenMeleeWeapon; hiddenInventory.push(prev); }
+			
+			hiddenMeleeWeapon = item;
+			meleeWeapon.onRemove(this);
+			meleeWeapon = new Rock();
+		}
+		public function takeRangedWeapon():void
+		{
+			if((rangedWeapon is EmptySlot) || (rangedWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = rangedWeapon;
+			
+			if(!(hiddenRangedWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenRangedWeapon; hiddenInventory.push(prev); }
+			
+			hiddenRangedWeapon = item;
+			rangedWeapon.onRemove(this);
+			rangedWeapon = new Rock();
+		}
+		public function takeArmor():void
+		{
+			if(armor is EmptySlot) return;
+			
+			var item:ItemSlotClass = armor;
+			
+			if(!(hiddenArmor is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenArmor; hiddenInventory.push(prev); }
+			
+			hiddenArmor = item;
+			armor.onRemove(this);
+			armor = new EmptySlot();
+		}
+		public function takeUpperUndergarment():void
+		{
+			if(upperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = upperUndergarment;
+			
+			if(!(hiddenUpperUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenUpperUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenUpperUndergarment = item;
+			upperUndergarment.onRemove(this);
+			upperUndergarment = new EmptySlot();
+		}
+		public function takeLowerUndergarment():void
+		{
+			if(lowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = lowerUndergarment;
+			
+			if(!(hiddenLowerUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenLowerUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenLowerUndergarment = item;
+			lowerUndergarment.onRemove(this);
+			lowerUndergarment = new EmptySlot();
+		}
+		public function takeAccessory():void
+		{
+			if(accessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = accessory;
+			
+			if(!(hiddenAccessory is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenAccessory; hiddenInventory.push(prev); }
+			
+			hiddenAccessory = item;
+			accessory.onRemove(this);
+			accessory = new EmptySlot();
+		}
+		public function takeShield():void
+		{
+			if(shield is EmptySlot) return;
+			
+			var item:ItemSlotClass = shield;
+			
+			if(!(hiddenShield is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenShield; hiddenInventory.push(prev); }
+			
+			hiddenShield = item;
+			shield.onRemove(this);
+			shield = new EmptySlot();
+		}
+		// Take all inventory items
+		public function takeInventory():void
+		{
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				var item:ItemSlotClass = inventory[i];
+				hiddenInventory.push(item);
+			}
+			inventory.length = 0;
+		}
+		
+		// Return item, Reset storage
+		// If slot already filled, place in hidden inventory for collecting.
+		public function giveMeleeWeapon():void
+		{
+			if(hiddenMeleeWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenMeleeWeapon;
+			
+			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			meleeWeapon = item;
+			meleeWeapon.onEquip(this);
+			hiddenMeleeWeapon = new EmptySlot();
+		}
+		public function giveRangedWeapon():void
+		{
+			if(hiddenRangedWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenRangedWeapon;
+			
+			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			rangedWeapon = item;
+			rangedWeapon.onEquip(this);
+			hiddenRangedWeapon = new EmptySlot();
+		}
+		public function giveArmor():void
+		{
+			if(hiddenArmor is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenArmor;
+			
+			if(!(armor is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			armor = item;
+			armor.onEquip(this);
+			hiddenArmor = new EmptySlot();
+		}
+		public function giveUpperUndergarment():void
+		{
+			if(hiddenUpperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenUpperUndergarment;
+			
+			if(!(upperUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			upperUndergarment = item;
+			upperUndergarment.onEquip(this);
+			hiddenUpperUndergarment = new EmptySlot();
+		}
+		public function giveLowerUndergarment():void
+		{
+			if(hiddenLowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenLowerUndergarment;
+			
+			if(!(lowerUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			lowerUndergarment = item;
+			lowerUndergarment.onEquip(this);
+			hiddenLowerUndergarment = new EmptySlot();
+		}
+		public function giveAccessory():void
+		{
+			if(hiddenAccessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenAccessory;
+			
+			if(!(accessory is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			accessory = item;
+			accessory.onEquip(this);
+			hiddenAccessory = new EmptySlot();
+		}
+		public function giveShield():void
+		{
+			if(hiddenShield is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenShield;
+			
+			if(!(shield is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			shield = item;
+			shield.onEquip(this);
+			hiddenShield = new EmptySlot();
+		}
+		// Return all inventory items
+		public function giveInventory():void
+		{
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				inventory.push(item);
+			}
+			hiddenInventory.length = 0;
+		}
+		
+		// Dump all hidden slots to inventory, if any
+		public function moveSlotsToInventory():void
+		{
+			var item:ItemSlotClass
+			if(!(hiddenMeleeWeapon is EmptySlot)) { item = hiddenMeleeWeapon; hiddenInventory.push(item); hiddenMeleeWeapon = new EmptySlot(); }
+			if(!(hiddenRangedWeapon is EmptySlot)) { item = hiddenRangedWeapon; hiddenInventory.push(item); hiddenRangedWeapon = new EmptySlot(); }
+			if(!(hiddenArmor is EmptySlot)) { item = hiddenArmor; hiddenInventory.push(item); hiddenArmor = new EmptySlot(); }
+			if(!(hiddenUpperUndergarment is EmptySlot)) { item = hiddenUpperUndergarment; hiddenInventory.push(item); hiddenUpperUndergarment = new EmptySlot(); }
+			if(!(hiddenLowerUndergarment is EmptySlot)) { item = hiddenLowerUndergarment; hiddenInventory.push(item); hiddenLowerUndergarment = new EmptySlot(); }
+			if(!(hiddenAccessory is EmptySlot)) { item = hiddenAccessory; hiddenInventory.push(item); hiddenAccessory = new EmptySlot(); }
+			if(!(hiddenShield is EmptySlot)) { item = hiddenShield; hiddenInventory.push(item); hiddenShield = new EmptySlot(); }
+		}
+		// Returns array of all stored inventory items, if any.
+		// Resets storage.
+		public function returnInventoryItems():Array
+		{
+			var itemList:Array = [];
+			
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				itemList.push(item);
+			}
+			hiddenInventory.length = 0;
+			
+			return itemList;
 		}
 		
 		override public function HPMax():Number
@@ -548,6 +831,23 @@ package classes.Characters
 				}
 			}
 		}
+		public function UpgradeVersion4(d:Object):void
+		{
+			var i:uint = 0;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Concussive Shot": d.perks[i].tooltip = "[altTooltip ConcussiveShot]"; break;
+						}
+					}
+				}
+			}
+		}
 		
 		override public function get bustDisplay():String
 		{
@@ -562,15 +862,23 @@ package classes.Characters
 		{
 			return "you";
 		}
-		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
-			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
+			// Genital checks
+			if(!hasCock())
 			{
+				removePerk("Firing Blanks");
 				removeStatusEffect("Blue Balls");
+				removeStatusEffect("Priapism");
+			}
+			if(!hasVagina())
+			{
+				removePerk("Sterile");
+				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Pussy Pumped");
 			}
 			
 			// Daily changes
@@ -620,6 +928,15 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
+				if(hasPerk("Implant-tastic"))
+				{
+					implantasticSiliconeConversion(totalDays);
+				}
+				if(hasPerk("True Doll"))
+				{
+					trueDollPerkElasticityUpdate(totalDays);
+				}
+				
 				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
@@ -640,6 +957,7 @@ package classes.Characters
 			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
+			novaCumSlurpUpdates(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -689,6 +1007,76 @@ package classes.Characters
 			else if(flags["VENOM_ADDICTION"] == undefined && !hasStatusEffect("Red Myr Venom"))
 			{
 				kGAMECLASS.venomProgress(-2 * totalDays);
+			}
+		}
+		
+		public function novaCumSlurpUpdates(deltaT:uint, doOut:Boolean):void
+		{
+			if(!(armor is GooArmor)) return;
+			
+			var fluidLevels:Number = 0;
+			var fluidType:int = -1;
+			var amountVented:Number = 0;
+			
+			if(flags["GOO_ARMOR_AUTOSUCK"] == 1)
+			{	
+				// Can't get through blocked holes
+				var cuntStatus:StorageClass = ((hasVagina() && blockedVaginas() < vaginaTotal()) ? getStatusEffect("Vaginally-Filled") : null);
+				var buttStatus:StorageClass = (!isBlocked(-1) ? getStatusEffect("Anally-Filled") : null);
+				var suckHole:String = "none";
+				
+				if(cuntStatus != null || buttStatus != null)
+				{
+					amountVented = 0;
+					fluidType = -1;
+					
+					if(cuntStatus != null) {
+						if(buttStatus == null) { fluidType = cuntStatus.value3; suckHole = "cunt"; }
+						else suckHole = "both";
+						amountVented += cuntStatus.value1;
+					}
+					if(buttStatus != null) {
+						if(cuntStatus == null) { fluidType = buttStatus.value3; suckHole = "butt"; }
+						else suckHole = "both";
+						amountVented += buttStatus.value1;
+					}
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoSuckBlurb(suckHole, amountVented, fluidType), "passive", deltaT);
+					removeStatusEffect("Vaginally-Filled");
+					removeStatusEffect("Anally-Filled");
+				}
+			}
+			if(flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+			{
+				var cumStatus:StorageClass = getStatusEffect("Cum Soaked");
+				var girlcumStatus:StorageClass = getStatusEffect("Pussy Drenched");
+				var milkStatus:StorageClass = getStatusEffect("Milk Bathed");
+				
+				if(cumStatus != null || girlcumStatus != null || milkStatus != null)
+				{
+					fluidLevels = 0;
+					fluidType = -1;
+					
+					if(cumStatus != null) {
+						if(girlcumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_CUM;
+						fluidLevels += cumStatus.value1;
+					}
+					if(girlcumStatus != null) {
+						if(cumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_GIRLCUM;
+						fluidLevels += girlcumStatus.value1;
+					}
+					if(milkStatus != null) {
+						if(cumStatus == null && girlcumStatus == null) fluidType = GLOBAL.FLUID_TYPE_MILK;
+						fluidLevels += milkStatus.value1;
+					}
+					
+					amountVented = (500 * fluidLevels);
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoCleanBlurb("skin", amountVented, fluidType), "passive", deltaT);
+					removeStatusEffect("Cum Soaked");
+					removeStatusEffect("Pussy Drenched");
+					removeStatusEffect("Milk Bathed");
+				}
 			}
 		}
 		
@@ -753,8 +1141,8 @@ package classes.Characters
 					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.</b>";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.</b>";
 					
 					AddLogEvent(m, "passive", deltaT);
 				}
@@ -903,6 +1291,18 @@ package classes.Characters
 			}
 		}
 		
+		private function implantasticSiliconeConversion(totalDays:int):void
+		{
+			var msg:String = kGAMECLASS.implantasticSiliconeConversion(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
+		private function trueDollPerkElasticityUpdate(totalDays:int):void
+		{
+			var msg:String = kGAMECLASS.trueDollPerkElasticityUpdate(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
 		private function maneHairGrow(totalDays:uint):void
 		{
 			var lengthMin:Number = 3;
@@ -912,7 +1312,7 @@ package classes.Characters
 			var deltaShift:uint = 1440 - (GetGameTimestamp() % 1440);
 	
 			for (var i:int = 0; i < totalDays; i++)
-			{ 
+			{
 				var m:String = "Your scalp tingles and you";
 				if (hairLength <= 0)
 				{
@@ -965,6 +1365,13 @@ package classes.Characters
 			}
 		}
 		
+		public function createHeatPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Heat Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Heat Cycle", 2, dayCycle);
+			setPerkTooltip("Heat Cycle", "Your body will periodically cycle through the stages of heat every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
+		}
 		private function updateHeatPerk(totalDays:uint):void
 		{
 			// Ignore if already pregnant or infertile
@@ -1027,6 +1434,14 @@ package classes.Characters
 			
 			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
+		
+		public function createRutPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Rut Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Rut Cycle", 2, dayCycle);
+			setPerkTooltip("Rut Cycle", "Your body will periodically cycle through the stages of rut every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
+		}
 		private function updateRutPerk(totalDays:uint):void
 		{
 			// Ignore if can't fertilize or sterile
@@ -1081,6 +1496,10 @@ package classes.Characters
 
 		private function racialPerkUpdateCheck(deltaT:uint, doOut:Boolean):void
 		{
+			if(!hasPerk("True Doll") && hasPerk("Black Latex") && hasPerk("Implant-tastic"))
+			{
+				if(skinType == GLOBAL.SKIN_TYPE_LATEX && siliconeRating() >= 10) kGAMECLASS.gainTrueDollPerk(this, deltaT);
+			}
 			if(hasPerk("'Nuki Nuts"))
 			{
 				if(balls <= 0 && perkv1("'Nuki Nuts") != 0)
@@ -1117,11 +1536,16 @@ package classes.Characters
 						removePerk("'Nuki Nuts");
 					}
 				}
-				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				else if(/*perkv2("'Nuki Nuts") == 1 && */balls <= 0)
 				{
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");
 				}
+			}
+			if(hasPerk("Cum Cascade") && !hasPerk("'Nuki Nuts"))
+			{
+				AddLogEvent("(<b>Perk Lost: Cum Cascade</b> - You have lost the extra semen producing side effect of ‘Nuki Nuts.)");
+				removePerk("Cum Cascade");
 			}
 			if(hasPerk("Fecund Figure"))
 			{
@@ -1152,7 +1576,7 @@ package classes.Characters
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
 				if(!hasPerk("Nyrea Eggs") && statusEffectv4("Nyrea Eggs") != 0) setStatusValue("Nyrea Eggs", 4, 0);
-				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
+				if((statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3) || !hasOvipositor())
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
 					if(statusEffectv1("Nyrea Eggs") > 0)
@@ -1167,7 +1591,7 @@ package classes.Characters
 					ExtendLogEvent(" Double-checking your codex, you find that");
 					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absorbed into your body"));
 					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
-					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
+					ExtendLogEvent(". It must be due to " + (hasOvipositor() ? "the lack of nyrean genes in your system" : "your lack of an ovipositor") + "....");
 					removeStatusEffect("Nyrea Eggs");
 				}
 			}
@@ -1322,12 +1746,13 @@ package classes.Characters
 					addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				}
 			}
+			if(hasStatusEffect("Hyena Fur") && (skinType != GLOBAL.SKIN_TYPE_FUR || furColor != "black")) removeStatusEffect("Hyena Fur");
 		}
 		
 		// Mimbrane jazz.
 		public function mimbranePartDescript(mimType: String = ""): String
 		{
-			var mimbrane:StorageClass = getPerkEffect(mimType);
+			var mimbrane:StorageClass = getStatusEffect(mimType);
 			
 			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
 			
@@ -1370,6 +1795,36 @@ package classes.Characters
 			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
 			
 			return desc;
+		}
+		public function mimbranePuffiness(mimType: String = ""):Number
+		{
+			var mimbrane:StorageClass = getStatusEffect(mimType);
+			
+			if(mimbrane == null) return 0;
+			
+			var toggle:String = "";
+			switch(mimType)
+			{
+				case "Mimbrane Cock": toggle = "COCK"; break;
+				case "Mimbrane Pussy": toggle = "CUNT"; break;
+				case "Mimbrane Ass": toggle = "BUTT"; break;
+				case "Mimbrane Balls": toggle = "SACK"; break;
+				case "Mimbrane Boobs": toggle = "TITS"; break;
+				case "Mimbrane Hand Left":
+				case "Mimbrane Hand Right": toggle = "HAND"; break;
+				case "Mimbrane Foot Left":
+				case "Mimbrane Foot Right": toggle = "FOOT"; break;
+				case "Mimbrane Face": toggle = "FACE"; break;
+			}
+			if(toggle != "" && flags["MIMBRANE_NOSWELL_" + toggle]) return 0;
+			
+			var puffScore:Number = 0;
+			
+			if(mimbrane.value3 >= 3) puffScore += 1;
+			if(mimbrane.value3 >= 8) puffScore += 1;
+			if(mimbrane.value3 >= 13) puffScore += 1;
+			
+			return puffScore;
 		}
 	}
 }

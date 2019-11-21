@@ -1126,7 +1126,7 @@ public function mutualMasturbkorg():void
 		output("\n\nHis fingers go back to work, finding their old places along the nerves of your pussy entrance. As he circles it once more and begins to slip in and out, his furry knuckles run across your [pc.clits], sending a shock that jellies your back and forces you to slump into his hand, hoping for another touch. Even through the haze of his own approaching climax, the korgonne notices - he brushes the nub");
 		if(pc.totalClits() > 1) output("s");
 		output(" again, smiling smugly at finally finding a weakpoint in the ");
-		if(!pc.hasCock()) output("woman");
+		if(!pc.hasCock()) output(pc.isWoman() ? "woman" : "cunt-boy");
 		else output("herm");
 		output(" who defeated him. He continues to tease and finger-fuck your hole with his soft pads until you can’t take any more... what he lacks in familiarity with your anatomy, he makes up for in cleverness and quick observation. You groan and cum, ");
 		if(!pc.isSquirter()) 
@@ -1917,6 +1917,8 @@ public function korgonneBabyBirthing(pregSlot:int,c:Child):void
 	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
 	var x:int = pregSlot;
 	if(pregSlot == 3) x == -1;
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Your gut aches suddenly, and a sudden spot of damp grows on your ");
 	//(nude)
@@ -1925,7 +1927,7 @@ public function korgonneBabyBirthing(pregSlot:int,c:Child):void
 	output("... your water just broke!");
 
 	//on PC’s ship without automatic medbay
-	if (InShipInterior())
+	if (inShip)
 	{
 		output("\n\nYou grab some medical supplies and head for your berth, hoping the alienness of the baby doesn’t cause any complications. Stripping your gear as quickly as your [pc.belly] allows, you recline and begin to breathe in preparation for the labor.");
 	}
@@ -1935,7 +1937,7 @@ public function korgonneBabyBirthing(pregSlot:int,c:Child):void
 		
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nYour gut cramps in a second contraction, and your pained face attracts the attention of some passers-by. After some confusion and dithering, they help you to a medical aid station and leave you in the capable hands of the staff... and luckily, their painkillers.");
 	}

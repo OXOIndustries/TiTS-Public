@@ -12,10 +12,20 @@ public function incomingMessage(travelEvent:Function, originalDestination:String
 }
 
 // Wrap the normal flyTo function so we can avoid triggering another travel event this time round.
-public function flyToWrapper(destination:String):void
+public function flyToWrapper(destination:String = "TAVROS HANGAR"):void
 {
 	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (flags["STORED SHIP DESTINATION"] != undefined) flags["STORED SHIP DESTINATION"] = undefined;
+	switch(destination)
+	{
+		// Myrellion destination swaps
+		case "600":
+		case "2I7":
+			if (flags["KQ2_MYRELLION_STATE"] == undefined) destination = "600";
+			else if (flags["KQ2_MYRELLION_STATE"] != 1) destination = "2I7";
+			else destination = "TAVROS HANGAR";
+			break;
+	}
 	flyTo(destination);
 }
 
@@ -34,6 +44,11 @@ public function tryProcTravelEvent(destination:String):Function
 		if (!MailManager.isEntryUnlocked("KashimaMail") && pc.level >= 7 && (shipLocation == "600" || shipLocation == "2I7" || destination == "Myrellion" || destination == "MyrellionDeepCaves"))
 		{
 			possibleMessages.push(sendKashimaMessage);
+		}
+		
+		if (flags["EVENT_WHORIZON_STATE"] == undefined && (pc.hasVagina() || pc.hasCock()) && pc.level >= 7)
+		{
+			possibleMessages.push(sendEventWhorizonMessage);
 		}
 	}
 	
@@ -161,7 +176,7 @@ public function iceQueenMessage(destination:String):void
 	
 	output("\n\n<i>“Ah! About time!”</i> the man says, stifling a cough. <i>“Listen, this is Captain Kandar of the </i>Ice Queen<i>. We’ve got a serious situation aboard. Our LightDrive went critical, and it’s venting smoke and gas into the crew deck. We’re pretty much dead in the water out here. Any assistance would be much appreciated.”</i>");
 	
-	output("\n\nHeck of a gamble, saying that sight unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
+	output("\n\nHeck of a gamble, saying that while you remain unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
 	
 	output("\n\nThe man on the screen grunts and runs a hand through his hair. <i>“Uh, at this point, we’re probably going to have to bail out. Unless you’ve got an industrial atmo-scrubber in your hold, anyway. You don’t happen to, eh?”</i>");
 	

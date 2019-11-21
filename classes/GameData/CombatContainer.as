@@ -128,6 +128,10 @@ package classes.GameData
 		{
 			throw new Error("addFriendlyActor has not been overriden.");
 		}
+		public function removeFriendlyActor(actorReference:*):void
+		{
+			throw new Error("removeFriendlyActor has not been overriden.");
+		}
 		
 		public function setEnemyGroup(... args):void
 		{

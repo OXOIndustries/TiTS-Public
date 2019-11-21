@@ -465,7 +465,7 @@ public function wetraxxelBrawlerPCVictory():void
 	else addDisabledButton(2, "Vag Ride", "Ride Him - Vagina", "Ride the Wetraxxel’s massive cock with your cunt. (Requires a Vagina)");
 
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
-	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
+	else addDisabledButton(3, "Wank Him", "Wank Him", "You are not submissive enough towards the brawler to consider doing this to him...");
 
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
@@ -480,7 +480,7 @@ public function wetraxxelBrawlerPCVictoryFuckHisButt():void
 
 	output("With a big, bare, burly body on display like that, you feel your lust steadily rising - and your [pc.cock] stiffening");
 	if (pc.isCrotchGarbed()) output(" beneath your [pc.lowerGarment]");
-	output(". You step slowly over to the defeated bug man, step by step discarding your [pc.gear] to leave yourself bare. The bug man’s eyes go a big wider when he sees what you’re packing, and he starts to try and scramble back. He comes upon a cavern wall quite quickly, though, leaving him nowhere to go. With a grunt, the brawler seems to submit himself over again, and doesn’t try to escape any further.");
+	output(". You step slowly over to the defeated bug man, step by step discarding your [pc.gear] to leave yourself bare. The bug man’s eyes go a bit wider when he sees what you’re packing, and he starts to try and scramble back. He comes upon a cavern wall quite quickly, though, leaving him nowhere to go. With a grunt, the brawler seems to submit himself over again, and doesn’t try to escape any further.");
 	
 	output("\n\nYou grin down lecherously at him, wrapping your finger around your own sex and starting to slowly stroke yourself. <i>“On your hands and knees,”</i> you command, motioning towards the cavern floor. Eyeing you warily, the wetraxxel does as you command, rolling onto all fours digging his plated digits into the dusty ground. Much better!");
 	

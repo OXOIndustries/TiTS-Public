@@ -47,11 +47,16 @@ public function phoenixLocationSetter():Boolean
 	return false;
 }
 
+public function thePhoenixShipIsOpen():Boolean
+{
+	if(flags["SAENDRA GONNA GO GET A COCK"] == 2) return true;
+	return (flags["SAENDRA PHOENIX AVAILABLE"] != undefined);
+}
 public function thePhoenixShipBonus(btnSlot:int):void
 {
 	output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 	
-	if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined) addButton(btnSlot, "The Phoenix", move, "PHOENIX RECROOM");
+	if (thePhoenixShipIsOpen()) addButton(btnSlot, "The Phoenix", move, "PHOENIX RECROOM");
 	else addDisabledButton(btnSlot, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
 }
 
@@ -189,8 +194,8 @@ public function saenAtTheBarFirstTimeEvent():void
 
 	clearMenu();
 	//[Let’s do it!] [Not right now]
-	addButton(0, "Let’s do it!", takeTheRewardYouSlut, undefined, "Take the reward", "Accept Saen’s reward.");
-	addButton(1, "Not right now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not right now", "Turn the reward down.")
+	addButton(0, "Let’s do it!", takeTheRewardYouSlut, undefined, "Take the Reward", "Accept Saen’s reward.");
+	addButton(1, "Not Now", dontTakeTheRewardWhaddaYouGayOrSomething, undefined, "Not Right Now", "Turn the reward down.")
 }
 
 public function dontTakeTheRewardWhaddaYouGayOrSomething():void
@@ -554,7 +559,7 @@ public function saendraParents():void
 
 	output("<i>“Tell me a little bit more about your folks.”</i>");
 	
-	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’ still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
+	output("\n\nSaen sighs. <i>“There was a hint back there, you know. Ugh, fine. My mom’s still around, yeah. Not a pirate anymore, but still an asskicker of the highest order. She does private security work now, I think, out on the rim. We actually bumped into each other a few months ago, working. That was pretty neat.”</i>");
 	
 	output("\n\n<i>“But, uh, dad passed a couple of years back. Got in a fight he couldn’t win, I guess.”</i>");
 	
@@ -1589,7 +1594,7 @@ public function saendraTakesItUpDaButte():void
 	if (pc.balls > 0) output(", the very tip coming to rest pressed against your [pc.balls], gently flicking across your " + pc.sackDescript(true));
 	output(".");
 
-	output("\n\nThe way she moves her tail, rhythmically squeezing one loop after the other, is near enough to drive you mad. Saen chuckles as you groan, body convulsing at her tender tail-wank, nearly losing control so early. You have to grit your teeth and bear it, shivering as your [pc.cock "+ selCock +"] is oh so tenderly milked by the lusty captain’s supple, fluffy grasp. Your hand wanders up, fingers trailing along the pale flesh of her thighs, making her gasp and groan as you grab one of her big, pillowy tits, squeezing the bra-bursting globe hard enough to make her squeal. You shift down, lips trailing across her skin to one of her stiff nipples, gently grazing it with your teeth, just hard enough to make her breath catch before you kiss it, taking the small point into your mouth like a suckling babe. Her back arches at your touch, yielding to your oral advance as your [pc.tongue] laps across her puffy teat, giving it a little twist with your teeth that has her moaning aloud, silvery fingers running");
+	output("\n\nThe way she moves her tail, rhythmically squeezing one loop after the other, is near enough to drive you mad. Saen chuckles as you groan, body convulsing at her tender tail-wank, nearly losing control so early. You have to grit your teeth and bear it, shivering as your [pc.cock "+ selCock +"] is oh-so-tenderly milked by the lusty captain’s supple, fluffy grasp. Your hand wanders up, fingers trailing along the pale flesh of her thighs, making her gasp and groan as you grab one of her big, pillowy tits, squeezing the bra-bursting globe hard enough to make her squeal. You shift down, lips trailing across her skin to one of her stiff nipples, gently grazing it with your teeth, just hard enough to make her breath catch before you kiss it, taking the small point into your mouth like a suckling babe. Her back arches at your touch, yielding to your oral advance as your [pc.tongue] laps across her puffy teat, giving it a little twist with your teeth that has her moaning aloud, silvery fingers running");
 	if (!pc.isBald()) output(" through");
 	else output(" across");
 	output(" your [pc.hair], urging you on. Her tail mercifully loosens its grasp on your prick, her mind so distracted by the pleasure in her breasts that she’s forgotten about you, giving you a moment to catch your breath.");
@@ -1905,7 +1910,7 @@ public function newFutaSaendraScenes():void
 	output("\n\nSaen slides in to the hilt, grunting in your [pc.ear] as she pounds your ");
 	if(pc.hasVagina()) output("cunt");
 	else output("ass");
-	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstacy - God <i>damn</i> you love her cock!");
+	output(" in. You squeal in pleasure, rocking back against her to get as much of her turgid lady-cock into your hole as possible. Your lover rocks her hips against your backside, giving you short, quick strokes as she trails kisses along your neck. Every time she bottoms out in you, you grunt and moan, giving voice to your growing ecstasy - God <i>damn</i> you love her cock!");
 	if(pc.IQ() > 75) output(" Definitely one of your best investments yet.");
 	else if(pc.isBimbo()) output(" Everything’s better with dicks - especially your girlfriends!");
 

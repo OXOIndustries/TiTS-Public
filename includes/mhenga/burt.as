@@ -29,12 +29,16 @@ public function burtsBarFunc():Boolean {
 		return true;
 	}
 	roamingBarEncounter(3);
-	if(debug) addButton(4,"Oil Cheat",oilyButt);
-	else vendingMachineButton(4, "XXX");
+	
+	// yoma can appear either by chance (if the PC fullfills the conditions) or will allways appear if told to wait
+	if (pc.hasGenitals() && (yomaWaitingAtBurts() || (hours >= 12 && hours < 17  && yomaCanAppearAtBurts()))) yomaAtBurtsAddendum(4);
 
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+	else if (biancaAtBar("mhen'ga") && biancaBarBonus(7)) return true; // short-circuiting, boye
+
+	
 
 	return false;
 }
@@ -440,7 +444,7 @@ public function buyMeadFromBurt():void {
 	pc.imbibeAlcohol(10);
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
-	pc.credits-= 10;
+	pc.credits -= 10;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);
@@ -475,7 +479,7 @@ public function burtXilErAte():void {
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.imbibeAlcohol(15);
-	pc.credits-= 50;
+	pc.credits -= 50;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);
@@ -1415,3 +1419,4 @@ public function stephIrsonEpisodeOnePartTwo():void
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+

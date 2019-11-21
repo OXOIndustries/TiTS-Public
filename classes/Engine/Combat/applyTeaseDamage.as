@@ -3,16 +3,17 @@ package classes.Engine.Combat
 	import classes.kGAMECLASS;
 	import classes.Creature;
 	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.possessive;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.teaseReactions;
-	import classes.Engine.Utility.possessive;
 	import classes.Util.InCollection;
 	/**
 	 * ...
@@ -38,6 +39,7 @@ package classes.Engine.Combat
 		}
 		//Free "really likes" for geddanium rang~
 		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
+		if (attacker.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
 		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
@@ -64,6 +66,7 @@ package classes.Engine.Combat
 			if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
 		}*/
 		
+		// Failed/Miss
 		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
 		{
 			if(target is HandSoBot)
@@ -127,17 +130,22 @@ package classes.Engine.Combat
 				teaseSkillUp(teaseType);
 			}
 		}
+		// Success
 		else
 		{
-			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
+			var damage:Number = (10 * ((teaseCount / 100) + 1)) + (attacker.sexiness() / 2);
+			damage += attacker.statusEffectv4("Heat");
+			damage += attacker.statusEffectv2("Painted Penis");
+			damage += attacker.statusEffectv2("Painted Tits");
 			if (teaseType == "SQUIRT") damage += 5;
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
 			
 			var bonusCap:Number = 0;
 			bonusCap += attacker.statusEffectv3("Painted Penis");
+			bonusCap += attacker.statusEffectv3("Painted Tits");
 			
-			var cap:Number = 15 + attacker.level * 2 + bonusCap;
+			var cap:Number = 15 + (attacker.level * 2) + bonusCap;
 			damage = (Math.min(damage, cap) * factor);
 			
 			//Tease % resistance.
@@ -219,12 +227,30 @@ package classes.Engine.Combat
 			
 			teaseSkillUp(teaseType);
 			
+			// Followups
 			if(target is MyrInfectedFemale && damage >= 10)
 			{
 				//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 				var stunDur:int = 1 + rand(2);
 				CombatAttacks.applyStun(target, stunDur);
 				CombatAttacks.applyLustStun(target, stunDur);
+			}
+			// if you successfully tease an enemy, they suffer a -10% hit-chance penalty for the rest of the battle.
+			if (attacker.hasPerk("Innocent Allure") && !target.isStaggered() && !target.isPlanted() && !target.isBlind())
+			{
+				if(attacker is PlayerCharacter)
+				{
+					if(rand(2) == 0) output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become a bit distracted after your display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
+					else output("\n\nYour display appears to have shaken the " + possessive(target.getCombatName()) + " resolve and impaired " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " aim; you can sense some hesitation in " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " very stance.");
+				}
+				else {
+					output("\n\n" + StringUtil.capitalize(target.getCombatName(), false) + "  seem" + (target.isPlural ? "" : "s") + " to have become distracted after " + possessive(attacker.getCombatName()) + " display, " + (target.isPlural ? "their" : target.mfn("his","her","its")) + " movements faltering and less precise.");
+				}
+				
+				CombatAttacks.applyLustStagger(target, 3);
+				
+				if(target is PlayerCharacter) output(" <b>You are staggered by the tease!</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " staggered by the tease!</b>");
 			}
 		}
 		
@@ -235,9 +261,20 @@ package classes.Engine.Combat
 
 function teaseSkillUp(teaseType:String):void
 {
-	import classes.kGAMECLASS;
+	if(teaseType == null) return;
 	
-	if (teaseType == "SQUIRT") teaseType = "CHEST";
-	else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-	kGAMECLASS.flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.IncrementFlag;
+	import classes.Util.InCollection;
+	
+	switch(teaseType)
+	{
+		case "SQUIRT": teaseType = "CHEST"; break;
+		case "DICK SLAP": teaseType = "CROTCH"; break;
+		case "MYR VENOM": teaseType = "ORAL"; break;
+	}
+	
+	if(InCollection(teaseType, ["BUTT", "CHEST", "CROTCH", "HIPS", "ORAL"]))
+		IncrementFlag("TIMES_" + teaseType + "_TEASED"); // the menu display handles wrapping this so w/e
 }
+

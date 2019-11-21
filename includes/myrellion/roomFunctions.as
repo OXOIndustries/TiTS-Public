@@ -1,4 +1,8 @@
-﻿//Landing on Myrellion, First Time
+﻿public function myrellionCoordinatesUnlocked():Boolean
+{
+	return (flags["PLANET_3_UNLOCKED"] != undefined);
+}
+//Landing on Myrellion, First Time
 public function flyToMyrellion():void
 {
 	showBust("MYRELLION");
@@ -111,7 +115,13 @@ public function airFieldNorthBonus():Boolean
 public function airFieldCentralBonus():Boolean
 {
 	if(dmzFanDickSigningBonus()) return true;
-	if(sluttyMcSlutOralBonus()) return true;
+	if (sluttyMcSlutOralBonus()) return true;
+	if (breedwellPremiumBootyCallCheck("myrellion") && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing();
+		return true;
+	}
+	focalorBonus();
 	return false;
 }
 
@@ -420,6 +430,7 @@ public function kressiaAirfieldBonus():Boolean
 public function myrellionSecurityCheckpointEvents():Boolean
 {
 	if (findKaedeOnMyrellion()) return true;
+	biancaBoothBonus(0, "myrellion");
 	return false;
 }
 
@@ -490,6 +501,7 @@ public function kressiaGateBonus():Boolean
 public function kressiaBasicBonusBitches():Boolean
 {
 	if(sluttyMcSlutOralBonus()) return true;
+	else if (verushaMyrBonus()) return true;
 	return false;
 }
 
@@ -611,6 +623,7 @@ public function noManzLandBonus():Boolean
 		choices[choices.length] = approachMyrDeserters;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		if(flags["ZODEE_GALOQUEST"] == 1) choices.push(secondZodeeEncouonterForGaloMax);
+		if(biancaInTheWilderness("myrellion")) choices.push(biancaRandomEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -751,7 +764,7 @@ public function caveBottomEntranceBonus():Boolean
 {
 	if (flags["KQ2_MYRELLION_STATE"] == 2)
 	{
-		output(" There’s a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it’d probably be prudent <i>not</i> to ascend to the upper levels of the cave system.");
+		output(" There’s a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it’d probably be prudent <i>not</i> to ascend to the upper levels of the cave system.\n\n<b>The surface got nuked. There’s nothing for you there any longer.</b>");
 		addDisabledButton(5,"Ascend");
 		return false;
 	}
@@ -767,7 +780,11 @@ public function deepCavesDescend():void
 	if(pc.canFly())
 	{
 		showName("GLIDING\nDOWN");
-		output("Rather than climbing down the rappelling lines, you stretch your wings and start to fly down, zipping down like a diving bird of prey into the fathomless depths of the bug world. The cavern is much, much deeper than you had expected, you quickly realize: minutes pass in controlled descent, to the point that you start to wonder if there even <i>is</i> a bottom... until you suddenly see several large, stone spikes rushing up to meet you.\n\nYou pull up at the last minute, landing between several of the largest outcroppings.");
+		output("Rather than climbing down the rappelling lines, you");
+		if(pc.hasJetpack()) output(" activate your jetpack");
+		else if(pc.hasWings()) output(" stretch your [pc.wings]");
+		else output(" prepare yourself");
+		output(" and start to fly down, zipping down like a diving bird of prey into the fathomless depths of the bug world. The cavern is much, much deeper than you had expected, you quickly realize: minutes pass in controlled descent, to the point that you start to wonder if there even <i>is</i> a bottom... until you suddenly see several large, stone spikes rushing up to meet you.\n\nYou pull up at the last minute, landing between several of the largest outcroppings.");
 		pc.energy(-5);
 		processTime(4);
 		StatTracking.track("movement/time travelled", 4);
@@ -829,7 +846,13 @@ public function ascendFromDeepCaves():void
 	else
 	{
 		showName("FLYING\nUP");
-		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you spread your [pc.wings] and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land, stopping to catch your breath for a few long minutes. Whew, going up’s certainly a lot more work than going down...");
+		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you");
+		if(pc.hasJetpack()) output(" prime your jetpack");
+		else if(pc.hasWings()) output(" spread your [pc.wings]");
+		else output(" leap upwards");
+		output(" and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land");
+		if(!pc.hasJetpack()) output(", stopping to catch your breath for a few long minutes");
+		output(". Whew, going up’s certainly a lot more work than going down...");
 		pc.energy(-25);
 		processTime(20);
 		StatTracking.track("movement/time travelled", 20);
@@ -1106,7 +1129,7 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 		flags["LAST_ANT_ORGY"] = 1;
 		output("Putting up your hands, you agree to go with them. ");
 		if(flags["ANT_ORGY_COUNT"] != undefined) output("After your last visit, another trip to the land of honey and pussy sounds more than welcome.");
-		else output("Surely whatever sort of entertainment they have planned for your [pc.cocks] must be enjoyable. It sounds like you’ll have a whole barracks full of honey-squirting all to yourself.");
+		else output("Surely whatever sort of entertainment they have planned for your [pc.cocks] must be enjoyable. It sounds like you’ll have a whole barracks full of honey-squirting myr all to yourself.");
 		output(" What more could you ask for?");
 		output("\n\n<i>“That’s more like it.”</i> The commander smacks you on the ass with a short, metal rod and bellows, <i>“March!”</i>");
 		output("\n\nJumping from the painful swat, you start marching with them, never straying far from the authoritative alien, lest she decide to lay into you once more. Fortunately, their troop’s barracks isn’t far. A few minutes at a quick pace has you closing in on their barracks - a solid concrete structure designed more for defensibility than aesthetics. The squat doorway is hauled open, and you are lead inside by the golden officer, backed up by the column of grinning soldiers.");

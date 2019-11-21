@@ -7,9 +7,21 @@ public function altTooltip(itemName:String = "none"):String
 	switch(itemName)
 	{
 		// Perks
+		case "AttackDrone":
+			//tooltip += "one point";
+			tooltip += "three points";
+			break;
+		case "ConcussiveShot":
+			tooltip += "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 1 to 2 combat rounds.";
+			break;
 		case "Overcharge":
 			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
 			else tooltip += "150";
+			break;
+		case "RahnSuperIncubator":
+			tooltip += "The modification you received from Breedwell decreases the length of time rahn eggs need to incubate within you.";
+			//tooltip += " Cuts rahn pregnancy from 14 days to 10.";
+			tooltip += " Increases rahn pregnancy incubation speed modifier by 40%.";
 			break;
 		
 		// Weapons
@@ -46,6 +58,9 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		case "Futazona":
 			tooltip += "A 20 oz solid steel thermos labeled: “Futazona.” The thermos is decorated with a stylized mural depicting several muscular hermaphrodites caught up in an orgy. The cap has a dial on it labeled: “Classic,” “Lite,” and “Plus.” Small text reveals that this is Hazelnut and Honey flavored.";
+			break;
+		case "AssSlapPatch":
+			tooltip += "A recent addition to the Xenogen line, The Ass Slap Patch actually started as a running joke between two Xenogen executives. One day a" + (silly ? " brown nosing" : "n enterprising") + " member of the R&D team misheard them and decided to develop such a product. Similiar to their boobswell line of products, as long as the patch is worn it will slowly massage the glutes while feeding nanomachines and synthetic tissue into the buttocks, causing them to increase in size over time. The nanomachines go so far as to even reshape the ass once plenty of the synthetic material is available for reconstruction. A single patch lasts three full days. May also cause hole tightening, increased elasticity and even self lubing of the anal cavity as a side effect to the chemical composition of the synthetic material.";
 			break;
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
@@ -91,10 +106,24 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Accessories
+		case "ShelterDrone":
+			tooltip += "A Pyrite-designed drone, created to protect users from extreme weather. When activated, it will project an atmospheric bubble around the user, providing significant protection against environmental hazards. It is not self-powered, however, and will require a portion of your shield’s energy to function.";
+			tooltip += "\n\nSadly, there is no practical area to install weapon systems on this drone. You should probably use it alongside another, more combat-oriented drone.";
+			tooltip += "\n\n" + (inCombat() ? "<b>This item is not useful in combat!</b>" : "<i>This item’s effects are only applied when outside of combat.</i>") + "";
+			break;
 		case "Siegwulfe":
 			if(chars["WULFE"].isBimbo()) tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a curvaceous, sexy gynoid with a coating of sun-kissed synth-skin starting at her inhumanly-wide hips, up past a pair of gigantic breasts, and to a whorish face half-hidden under a polysteel visor.";
 			else tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a slender, sexy gynoid with a coating of milk-pale synth-skin starting at her broad hips, up past a pair of palmable breasts, and to a chiseled face half-hidden under a polysteel visor.";
 			tooltip += " The Siegwulfe is a high-class personal security and assistant drone meant to accompany affluent individuals like you absolutely everywhere -- from the boardroom to the bedroom.";
+			if(pc.hasPerk("Attack Drone")) tooltip += "\n\n<b>The droid replaces your original attack drone, giving you a battle companion at the expense of losing your drone’s bonus to shields.</b>";
+			break;
+		case "TamWolfDamaged":
+		case "TamWolf":
+		case "TamWolfII":
+			if(itemName == "TamWolfDamaged") tooltip += "Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he’ll leap into battle with you. Or fall flat on his face and explode trying to, anyway.";
+			if(itemName == "TamWolf" || itemName == "TamWolfII") tooltip += "Tam-wolf is a state of the art Fenris attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal, intelligent, and alert, you new robotic friend is the closest thing you can get to a real attack dog these days.";
+			if(pc.hasPerk("Attack Drone")) tooltip += " <b>He replaces your original attack drone, giving you a powerful, bitey friend in battle at the expense of losing your drone’s bonus to shields.</b>";
+			if(itemName == "TamWolfII") tooltip += "\n\nTam-wolf’s been upgraded with some military-spec hardware, a definite dark hue to his exterior plating!";
 			break;
 		case "VarmintLeash":
 			tooltip += "This bright pink leash connects you to " + (varmintIsTame() ? "your varmint buddy" : "a tamed varmint") + " through a wireless signal and some high-tech motors in the collar, allowing you to control how far " + (varmintIsTame() ? "your friend" : "it") + " wanders from you, and hold it back if need be, without getting a pesky REAL leash in the way like some kind of neanderthal.";

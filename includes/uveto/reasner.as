@@ -1,6 +1,3 @@
-import classes.Items.Treasures.Savicite;
-import classes.Items.Accessories.BeatricesScarf;
-
 /**** Flags ****
 MET_BEA_HUBBY		1 when ya meet 'im
 BEA_GIFT			bea_gift
@@ -158,7 +155,7 @@ public function approachBeatrice():void
 		//set BEA_RELATIONSHIP to 1
 		flags["BEA_RELATIONSHIP"] = 1;
 		output("She seems friendly enough, and you could use some company, so you make your way over to her table. As you draw closer, you can see she’s human - seemingly unmodded, you note - with a captivating set of curves, from wide hips and a narrow waist, to a hefty bust; unfortunately her jacket tries to conceal a lot of it. What might have been some epic cleavage is covered by a well-fitted dress shirt buttoned all the way up with a necktie hanging from the top. She’s dressed quite professionally - the only skin showing are her face and hands.");
-		output("\n\nHer face is what many would call beautiful; with full, red lips and high cheekbones complimenting a pair of russet eyes with thick lashes, all framed by a head of voluminous chestnut hair tied into a loose braid. A few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother.");
+		output("\n\nHer face is what many would call beautiful; with full, red lips and high cheekbones complementing a pair of russet eyes with thick lashes, all framed by a head of voluminous chestnut hair tied into a loose braid. A few lines by her eyes and mouth hint that she’s well older than you, at least old enough to be your mother.");
 		output("\n\nShe motions to the chair across from her, <i>“Please, sit with me.”</i> Her voice is smooth as silk and warm as the nearby fire.");
 		output("\n\nYou oblige by ");
 		if(pc.isTaur()) output("moving the chair and sitting down in its place");
@@ -371,7 +368,7 @@ public function beatriceShipAndCrewTalk():void
 	output("\n\nHow many people, you ask, does she have on her ship right now.");
 	output("\n\n<i>“Over three thousand two hundred officers and crew,”</i> she says with obvious pride.");
 	output("\n\nYou blink. <i>“Why so many?”</i>");
-	output("\n\nShe chuckles at your reaction. <i>“Because I choose to employ minimal automation on </i>Inexorable<i>. I want those onboard to truly feel responsible for the ship’s well being, and it allows more people to join in on our adventure. All are welcome aboard my ship as long as they’re willing to learn.”</i>");
+	output("\n\nShe chuckles at your reaction. <i>“Because I choose to employ minimal automation on </i>Inexorable<i>. I want those onboard to truly feel responsible for the ship’s wellbeing, and it allows more people to join in on our adventure. All are welcome aboard my ship as long as they’re willing to learn.”</i>");
 	output("\n\nWhen she says minimal automation, you ask, does that mean she has them do everything by hand?");
 	output("\n\n<i>“Yes, it does. Almost everything from mopping the deck, food preparation, shoe repair and tailoring to carrying laundry from their berths to the laundromat. I think highly of my crew so I know they can handle it.”</i> She smiles dotingly. <i>“Like most children, they tend to complain about the chores. But when VIPs come aboard, and they put on their dress uniforms and stand at attention to welcome them, knowing that the ship is in pristine condition due to their own hard work, the pride they feel is indescribable.”</i>");
 	flags["BEATRICE_SHIP_TALKED"] = 1;
@@ -442,7 +439,7 @@ public function sellSaviciteToBeatrice():void
 	else addDisabledButton(1,"5","5","You don’t have that much savicite.");
 	if(pc.hasItemByClass(Savicite,10)) addButton(2,"10",actuallySellSaviciteToBeatrice,10);
 	else addDisabledButton(2,"10","10","You don’t have that much savicite.");
-	addButton(14,"Nevermind",nevermindSaviciteBeatrice);
+	addButton(14,"Never Mind",nevermindSaviciteBeatrice);
 }
 
 //Any Amount
@@ -763,7 +760,7 @@ public function makeLoveToBeatrice():void
 		else addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
 	}
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
-	addButton(14,"Nevermind",nevermindLetsNotFuckBecauseImTerrible);
+	addButton(14,"Never Mind",nevermindLetsNotFuckBecauseImTerrible);
 }
 
 //Cowgirl

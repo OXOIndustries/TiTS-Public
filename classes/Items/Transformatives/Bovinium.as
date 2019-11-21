@@ -259,17 +259,15 @@ package classes.Items.Transformatives
 				else output(" vanishing");
 				output(", you’re treated to another round of discomfort -- this time from your [pc.balls]! You shiver as your nuts recede into your taint, continuing to shrink until the flesh of your sack merges completely with your body. <b>Your balls are gone!</b>");
 				
-				target.balls = 0;
-				target.ballSizeRaw = 0;
-				target.ballSizeMod = 0;
-				if (target.hasStatusEffect("Uniball")) target.removeStatusEffect("Uniball");
+				target.removeBalls();
+				target.resetCumProduction();
 				changes++;
 			}
 			
 			// Genderless autoacquires vagina
 			if (!target.hasCock() && !target.hasVagina() || (!target.hasVagina() && rand(4) > 0))
 			{
-				output("\n\nYou feel a lance of point, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
+				output("\n\nYou feel a lance of pain, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
 
 				output("\n\nYou reach a hand down, brushing it along your ");
 				if(!target.isCrotchGarbed()) output("bare ");
@@ -412,8 +410,9 @@ package classes.Items.Transformatives
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [];
+					target.clearTailFlags();
 					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
@@ -435,8 +434,9 @@ package classes.Items.Transformatives
 					}
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [];
+					target.clearTailFlags();
 					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
@@ -448,6 +448,9 @@ package classes.Items.Transformatives
 				output("\n\nYou let out a startled yelp as your ears start to squirm and wiggle, making horrid jelly-like motions as the nanomachines in the Bovinium rearrange your body shape. Your ears grow out from the side of your head, and start to grow a thick layer of curly, soft hair. You pull your Codex out and flip it around, using it like a mirror to examine your newly-molded ears. <b>You now have distinctly bovine ears!</b>");
 
 				target.earType = GLOBAL.TYPE_BOVINE;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				changes++;
 			}
 
@@ -458,7 +461,7 @@ package classes.Items.Transformatives
 				target.thickness += 2;
 				if (target.thickness < 30) target.thickness += 2;
 				
-				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and libs seem to soften, fat distributing to them.");
+				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and limbs seem to soften, fat distributing to them.");
 				if (target.thickness < 40) output(" <b>You now look a little thicker!</b>");
 				else if (target.thickness < 60) output(" <b>You’re now fairly thick!</b> If you ever get tired of adventuring or C.E.O.ing, you think you’d make a pretty solid plus-size model! Especially with your otherwise very curvy figure!");
 				else output(" <b>You now look quite thick!</b> You’ve got a distinctly chubby, soft appearance now. You’re developing a bit of a belly, just enough to make you look delightfully thick and curvy.");
@@ -489,7 +492,7 @@ package classes.Items.Transformatives
 
 			//Low chance for cow-leg TF
 			//PC leg type becomes bipedal, fur-covered, with hooves for feet. 
-			if (rand(20) == 0 && changes < tChanges && (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_HOOVES) || target.legCount != 2))
+			if (rand(10) == 0 && changes < tChanges && (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_HOOVES) || target.legCount != 2))
 			{
 				changes++;
 				
@@ -512,7 +515,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
-					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>.");
+					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>");
 				}
 				
 				target.legCount = 2;
@@ -561,7 +564,7 @@ package classes.Items.Transformatives
 				output("\n\nYou shiver as a lurid wetness seeps out of your [pc.cunts]. You");
 				if(target.isBiped()) output(" cross your [pc.legs], groaning and");
 				else output(" moan,");
-				output(" rubbing a finger through the valley of ");
+				output(" rubbing a finger through the valley of");
 				if (target.vaginas.length > 1) output(" one of");
 				output(" your slit");
 				if (target.vaginas.length > 1) output("s");

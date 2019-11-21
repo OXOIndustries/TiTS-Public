@@ -65,6 +65,9 @@ public function confirmLeaveKirosShip(destination:String):void
 
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
 }
@@ -240,6 +243,11 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 		return false;
 	}
 	
+	// Fill up dem 'nuki balls
+	kiro.applyBlueBalls();
+	//kiro.cumProduced(9001);
+	kiro.ballSizeRaw += 300;
+	
 	showKiroBust(true);
 
 	if (doOutput)
@@ -294,7 +302,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	{
 		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
 		{
-			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
+			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bear on the troubled machine.")
 		}
 		else
 		{
@@ -317,7 +325,8 @@ public function kirosShipChubnookiUpDaButt():void
 
 	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
 	
-	var selCock:int = pc.biggestCockIndex();
+	var selCock:int = pc.cockThatFits(kiro.analCapacity() + 200);
+	if(selCock < 0) selCock = pc.smallestCockIndex();
 
 	output("Holy shit, what the fuck? You’ve seen some shit, but this is taking your sexual escapades to a whole new level of what-the-fuckery. The massively endowed tanuki-like girl pleads with her eyes, voice too broken to form coherent words as her gigantic balls shift and swell beneath her, so full of cum she could probably fill a fucking pool. Her mahogany eyes, stained with tears of uncontrolled agony and ecstasy, lock with yours for the slightest moment, and you know what you have to do. ");
 
@@ -429,8 +438,29 @@ public function kirosShipChubnookiUpDaCooter():void
 	
 	flags["KIRO_FUCKED_DURING_RESCUE"] = 1;
 
-	var selCock:int = pc.biggestCockIndex();
-	var selCock2:int = pc.biggestCockIndex2();
+	var selCock:int = pc.cockThatFits(kiro.vaginalCapacity(0) + 200);
+	var selCock2:int = -1;
+	
+	if(selCock < 0) selCock = pc.smallestCockIndex();
+	else if(pc.cockTotal() > 1)
+	{
+		var c:int = 0;
+		var bootyCocks:Array = [];
+		for(c = 0; c < pc.cocks.length; c++)
+		{
+			if(c != selCock && pc.cockVolume(c) <= (kiro.analCapacity() + 200)) bootyCocks.push(c);
+		}
+		if(bootyCocks.length > 0)
+		{
+			var counter:int = bootyCocks.length;
+			var index:int = 0;
+			while (counter > 0) {
+				counter--;
+				if (pc.cockVolume(bootyCocks[index]) < pc.cockVolume(bootyCocks[counter])) index = counter;
+			}
+			selCock2 = bootyCocks[index];
+		}
+	}
 
 	output("Smiling at the curvy, animalistic woman riding high on those titanic balls, you can see a perfect, glittering target up there, between her swollen sack and the curve of her cushy-looking derriere. A pair of glossy, half-hidden netherlips peek out at you, puffy with lust and parted ever-so-slightly. [pc.EachCock] practically explode");
 	if (pc.cockTotal() == 1) output("s");
@@ -489,7 +519,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	output("\n\nYou pull back slowly, watching the strange woman’s knees quake as you stroke her sensitive inner walls with your departing [pc.cockHead " + selCock + "]. It slides nearly the whole way out, exposing your lube-dripping pole to the air for what feels like forever. You hold it there, enjoying watching your hyper-endowed lover squirm, and then you thrust with a firm, assertive stroke, burying yourself wholly inside her. This time, the going is far, far easier. She loosened up a little while you talked, the shape of her tight cunt molding around the girth of your [pc.cock " + selCock + "], yielding to its iron-hard shape with every passing moment. Now, as you pull back for a second stroke, she’s simply sinfully tight, sensuously caressing every inch of turgid cockmeat that finds its way inside her.");
 
 	//Optional DP fork goooo!
-	if (pc.cockTotal() > 1)
+	if (selCock2 >= 0)
 	{
 		output("\n\nInspired by the quantity of love-juices dripping from her nethers, you grab hold of");
 		if (pc.cockTotal() == 2) output(" your other cock");
@@ -505,27 +535,27 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	//Merge
 	output("\n\nThe tanuki-woman’s tail, which until now had kept out of the way, swats affectionately against your [pc.leg] as you drill her. Trapped as she is, between");
-	if (pc.cockTotal() == 1) output(" a cock");
+	if (selCock2 < 0) output(" a cock");
 	else output(" two cocks");
 	output(" and a hard place, she can do naught but mewl in pleasure, twist her body in contortions of pleasure, and call out her bliss. <i>“Oh by the stars, right there! Right");
-	if (pc.cockTotal() == 1) output(" inside me");
+	if (selCock2 < 0) output(" inside me");
 	else output(" on my prostate");
 	output("!”</i> She closes her eyes and moans, <i>“Yesssss! Fuck! Harder!”</i> Below you, her balls shrink, their mass even now pumping out of her cock in huge spurts, each so voluminous that it rocks the machine on its moorings, flooding the transparent tubes with white and causing inactive motors to faintly grind.");
 
 	output("\n\nNeeding little encouragement by this point, you hammer away at your over productive partner’s hips, punching");
-	if (pc.cockTotal() == 1) output(" into her with such force");
+	if (selCock2 < 0) output(" into her with such force");
 	else output(" your [pc.cock " + selCock2 + "] into her bloated prostate so hard");
 	output(" that you can feel the liquid weight shift through her body on its way into the machine. Every piston-hard pump on her backside causes her trembling");
-	if (pc.cockTotal() == 1) output(" balls");
+	if (selCock2 < 0) output(" balls");
 	else output(" anal pleasure-button");
 	output(" to shrink a hair smaller");
-	if (pc.cockTotal() > 1) output(", and soon your member is sliding up and across its surface, trying to slip a little deeper into her softly squeezing butthole.");
+	if (selCock2 >= 0) output(", and soon your member is sliding up and across its surface, trying to slip a little deeper into her softly squeezing butthole.");
 	else output(", and soon you’re frantically humping away, pounding her pussy with raw, animalistic breeding desire.");
 
 	output("\n\nGroaning and whimpering in equal measures, the striped beauty sinks lower, her legs splaying across her shrinking spheres in such a way that her heels will soon connect with the slippery deck-plates. It is with some difficulty that you maintain your position behind her; you have to clutch tight to her hips, but you remain upright, solidly fucking her until she gives up every drop.");
-	if (pc.cockTotal() > 1) output(" When you actually manage to slip the whole way past her prostate, flattening it down with the rest of her anal walls, you gasp in surprise.");
+	if (selCock2 >= 0) output(" When you actually manage to slip the whole way past her prostate, flattening it down with the rest of her anal walls, you gasp in surprise.");
 	output(" The sensation");
-	if (pc.cockTotal() > 1) output(" of double-hilting yourself is");
+	if (selCock2 >= 0) output(" of double-hilting yourself is");
 	else output("s are");
 	output(" so powerful that you nearly cum yourself on the spot.");
 
@@ -536,9 +566,9 @@ public function kirosShipChubnookiUpDaCooter():void
 	if (pc.cockTotal() == 1) output(" hole");
 	else output(" holes");
 	output(". Her body cradles");
-	if (pc.cockTotal() > 1) output(" both");
+	if (selCock2 >= 0) output(" both");
 	output(" your pulsating boner");
-	if (pc.cockTotal() > 1) output("s");
+	if (selCock2 >= 0) output("s");
 	output(", not too shy about squeezing and clenching around");
 	if (pc.cockTotal() == 1) output(" it");
 	else output(" them");
@@ -548,40 +578,40 @@ public function kirosShipChubnookiUpDaCooter():void
 	else if (pc.tallness < kiro.tallness - 6) output(" First her feet, then yours touch down");
 	else output(" Both her feet and your own touch down at roughly the same time");
 	output(", suddenly on solid ground once more. Having a sure, stable footing makes it all the easier for you to resume your pace, and you slap yourself in and out of her hot little hole");
-	if (pc.cockTotal() > 1) output("s");
+	if (selCock2 >= 0) output("s");
 	output(" with rampant, lusty strokes.");
 
 	output("\n\n[pc.EachCock] is pulsating, trembling and twitching with need.");
-	if (pc.cockTotal() == 3) output(" Even the extra one is bobbing and bouncing, dripping all over itself and unable to contain its sympathetic lust.");
-	else if (pc.cockTotal() > 3) output(" Even the extra ones are bobbing and bouncing, dripping all over themselves and unable to contain their sympathetic lusts.");
+	if (pc.cockTotal() == (selCock2 >= 0 ? 3 : 2)) output(" Even the extra one is bobbing and bouncing, dripping all over itself and unable to contain its sympathetic lust.");
+	else if (pc.cockTotal() > (selCock2 >= 0 ? 3 : 2)) output(" Even the extra ones are bobbing and bouncing, dripping all over themselves and unable to contain their sympathetic lusts.");
 	output(" It doesn’t help that the orgasm-addled woman in front of you is reaching back to squeeze your [pc.butt], watching you over her shoulder in between eyeroll-inducing spasms of pleasure, her tongue sliding back and forth across her lips with sensual hunger.");
 
 	output("\n\nThe lusty maid bubbles, <i>“Mmm, you’re doing so good, hero. Ooohh... OH! Right there! Keep it up! Fuck me harder, baby!”</i> Her hands squeeze you once more, and then, she pushes hard, forcing you as deeply into her as possible. She grinds and wiggles back against you, the warmth of her alien body squishing down against your groin as she twists so that her insides are rolling your");
-	if (pc.cockTotal() > 1) output(" doubled dicks");
+	if (selCock2 >= 0) output(" doubled dicks");
 	else output(" dick");
 	output(" around inside of her. The");
-	if (pc.cockTotal() > 1) output(" two tumescent shafts");
+	if (selCock2 >= 0) output(" two tumescent shafts");
 	else output(" tumescent shaft");
 	output(" can barely contain");
-	if (pc.cockTotal() == 1) output(" its");
+	if (selCock2 < 0) output(" its");
 	else output(" their");
 	output(" joy at the pleasure");
-	if (pc.cockTotal() == 1) output(" it’s");
+	if (selCock2 < 0) output(" it’s");
 	else output(" they’re");
 	output(" experiencing, and you feel a subtle heat building in your crotch, the only warning you’re given about the orgasm you’re about to have.");
 
 	output("\n\nGroaning in sync, neither one of you notices the dripping spunk pools below, and when you become so enamored by your sexual friction that you both slip, the fall is as unavoidable as it is unexpected. The big-balled alien’s cock slides out of its encapsulating sleeve as you hit the ground, slowing her fall just enough that you slip halfway out before she drops the rest of the way, hilting herself with the ass-jarring impact of her body bouncing into yours. Her balls have dropped down to the size of beach balls, but she’s still cumming, still spurting. Now her member is left free and unrestrained to tower above you both, spraying its waves of alabaster up into a cloud of jism. The droplets sparkle in the artificial light, seeming to hang there an eternity. Then, they drop down over the both of you in a rain, spattering off the tanuki’s tits, soaking her squishy thighs and soft fur, even dripping off her hair in long curtains.");
 
 	output("\n\nGrabbing her tits and moaning, the hermaphrodite plants her feet on either side of you and starts lifting herself up and down, dragging herself along your dick");
-	if (pc.cockTotal() > 1) output("s"); 
+	if (selCock2 >= 0) output("s"); 
 	output(", her cunt");
-	if (pc.cockTotal() > 1) output(" and ass");
+	if (selCock2 >= 0) output(" and ass");
 	output(" squeezing down so tight that your almost-orgasm rears its head, thrumming through your cock");
-	if (pc.cockTotal() > 1) output("s");
+	if (selCock2 >= 0) output("s");
 	output(" in scintillating vibrations of ecstasy. Eruptions of [pc.cum] pour out of [pc.eachCock], spraying and spurting into the raccoon-girl’s ready passage");
-	if (pc.cockTotal() > 1) output("s");
+	if (selCock2 >= 0) output("s");
 	output(", bathing");
-	if (pc.cockTotal() == 1) output(" it");
+	if (selCock2 < 0) output(" it");
 	else output(" them");
 	output(" with your liquid warmth while she wastes hers in a floor-flooding downpour.");
 	
@@ -612,7 +642,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	processTime(60+rand(15));
 	
-	IncrementFlag("KIRO_VAG_FUCKED");
+	takeKiroginity();
 
 	clearMenu();
 	addButton(0, "Next", kirosShipPostFirstFuck);
@@ -913,7 +943,10 @@ public function kirosShipNopeFuckThisShit():void
 	//Resume previous travels.
 	moveTo("SHIP INTERIOR");
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
-
+	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }

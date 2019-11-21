@@ -219,7 +219,7 @@
 			if (!combatMiss(this, target))
 			{
 				output(" Pow, right in the kisser! You stagger back under the massive weight of the blow");
-				if (rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes())
+				if ((rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes()) && !target.isPlanted())
 				{
 					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You’re knocked prone</b>");
 					CombatAttacks.applyTrip(target);

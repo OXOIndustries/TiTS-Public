@@ -9,6 +9,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Util.InCollection;
 	
 	public class NukiNutbutter extends ItemSlotClass
 	{
@@ -79,14 +80,25 @@
 						
 						output("\n\nEventually, you find what you’re looking for: a slight rise in your asshole");
 						if(target.race().indexOf("gryvain") != -1) output(", pressed between the full sacks of your internal nads");
-						output(": your prostate. You start massaging the sensitive lump, sending shudders of pleasure through you -- your [pc.cock] jumps, starting to drool [pc.cum] between your [pc.legs]. Slowly but surely, you coat the ass-flesh around your [pc.balls] with the tanuki-flavored paste, letting the nanomachines seep into your body directly.");
+						output(": your prostate. You start massaging the sensitive lump, sending shudders of pleasure through you");
+						if(target.hasCock()) output(" -- your [pc.cock] jumps, starting to drool [pc.cum] between your [pc.legs]");
+						output(". Slowly but surely, you coat the ass-flesh around your [pc.balls] with the tanuki-flavored paste, letting the nanomachines seep into your body directly.");
 						
-						output("\n\nBy the time you’re finished, your [pc.asshole] is clenching on its own, muscles spasming rhythmically around your fingers. Your insides feel oddly full all of a sudden, like you’ve just had a full meal... that’s settled entirely behind your [pc.cock], pressing urgently against the base of your tumescent prick. A moan escapes your lips... and a thick, creamy rope of [pc.cum] escapes from your [pc.cockHead]. You feel like one good stroke, and you could bust a nut that would make a flood look like a drizzle.");
+						output("\n\nBy the time you’re finished, your [pc.asshole] is clenching on its own, muscles spasming rhythmically around your fingers. Your insides feel oddly full all of a sudden, like you’ve just had a full meal...");
+						if(target.hasCock()) output(" that’s settled entirely behind your [pc.cock], pressing urgently against the base of your tumescent prick.");
+						output(" A moan escapes your lips...");
+						if(target.hasCock()) output(" and a thick, creamy rope of [pc.cum] escapes from your [pc.cockHead]. You feel like");
+						else output(" and you imagine blasting a thick, creamy rope of [pc.cum]. If only you had a cock, you can give it");
+						output(" one good stroke, and you could bust a nut that would make a flood look like a drizzle.");
 						
 						// Increased CumVol:
 						if(target.cumMultiplierRaw < 9000 || target.cumMultiplierRaw / 8 >= target.ballEfficiency)
 						{
-							output("\n\nThe way your [pc.balls] feels now, there’s no doubt about it... <b>you can cum more per orgasm, and store more seed inside you between orgasms</b>.");
+							output("\n\nThe way your [pc.balls] feels now, there’s no doubt about it... <b>you can");
+							if(target.hasCock()) output(" cum more per orgasm, and");
+							output(" store more seed inside you");
+							if(target.hasCock()) output(" between orgasms");
+							output("</b>.");
 							
 							if(target.cumMultiplierRaw < 9000)
 							{
@@ -100,7 +112,9 @@
 						// Else, refill cum: 
 						else
 						{
-							output("\n\nYour [pc.balls] feels thick and heavy, swollen with cum. Oh, yeah... you ought to rub one out to celebrate. And relieve a little of this pressure building up!");
+							output("\n\nYour [pc.balls] feels thick and heavy, swollen with cum.");
+							if(target.hasCock()) output(" Oh, yeah... you ought to rub one out to celebrate. And relieve a little of this pressure building up!");
+							else output(" Uh, you should definitely get a penis so you can rub one out to celebrate and to relieve yourself of all the pressure building up!");
 						}
 						
 						target.ballFullness += 100;
@@ -114,9 +128,19 @@
 					
 					output("\n\nYou grin");
 					if(!target.isAssExposed()) output(", slip down your [pc.lowerGarment],");
-					output(" and squirt the contents of the bottle into your hand. Your [pc.cocks] throb" + (target.cocks.length == 1 ? "s" : "") + " in anticipation, but you lift " + (target.cocks.length == 1 ? "it" : "them") + " out of the way and cup your [pc.balls] instead. The sudden sensation of cold cream smearing across your sack sends a shiver up your spine, but makes you hard nonetheless. You give yourself a squeeze, massaging the thick brown paste over every inch of your " + (target.balls == 1 ? "nutsack" : "gonads") + ". A tingling sensation spreads, mixing with pleasure and the building anticipation: your heart is all aflutter thinking about letting your [pc.balls] swell up, growing so heavy and full that you can’t possibly hide " + (target.balls == 1 ? "it" : "them") + " -- everyone who comes near you will be able to see how absolutely, explosively pent up you are, ready to unleash the flood at a touch...");
+					output(" and squirt the contents of the bottle into your hand.");
+					if(target.hasCock()) output(" Your [pc.cocks] throb" + (target.cocks.length == 1 ? "s" : "") + " in anticipation, but you lift " + (target.cocks.length == 1 ? "it" : "them") + " out of the way and cup your [pc.balls] instead.");
+					output(" The sudden sensation of cold cream smearing across your sack sends a shiver up your spine, but makes you hard nonetheless. You give yourself a squeeze, massaging the thick brown paste over every inch of your " + (target.balls == 1 ? "nutsack" : "gonads") + ". A tingling sensation spreads, mixing with pleasure and the building anticipation: your heart is all aflutter thinking about letting your [pc.balls] swell up, growing so heavy and full that you can’t possibly hide " + (target.balls == 1 ? "it" : "them") + " -- everyone who comes near you will be able to see how absolutely, explosively pent up you are, ready to unleash the flood at a touch");
+					if(!target.hasCock()) output("--that is, if you could.");
+					output("...");
 					
-					output("\n\nFor the moment, though, your " + (target.balls == 1 ? "testicle just feels" : "balls just feel") + " weighty. Your [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke. Just that little motion almost makes you lurch -- what feels like a gallon of spooge churns just below the surface of your " + (target.balls == 1 ? "ballsack" : "balls") + ", fighting to escape. You clench, resisting the urge: if you just let yourself cum whenever you want, how will you get the swelling you so desperately crave?");
+					target.ballFullness += 100;
+					target.lust(50);
+					
+					output("\n\nFor the moment, though, your " + (target.balls == 1 ? "testicle just feels" : "balls just feel") + " weighty.");
+					if(target.hasCock()) output(" Your [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke.");
+					else output(" You gently rub along the surface of your [pc.ballsack], its internal mass urgently pulses, desperately begging for release.");
+					output(" Just that little motion almost makes you lurch -- what feels like a gallon of spooge churns just below the surface of your " + (target.balls == 1 ? "ballsack" : "balls") + ", fighting to escape. You clench, resisting the urge: if you just let yourself cum whenever you want, how will you get the swelling you so desperately crave?");
 					
 					output("\n\nAlready, your sack feels taut. Bigger than before. Fuller. <b>You now have the fabled Nuki Nuts, no doubt!</b>");
 					
@@ -124,8 +148,6 @@
 					// v1: mLs of excess seed
 					// v2: 0 is natural (race-specific), 1 is not natural (permanent)
 					target.createPerk("'Nuki Nuts", 0, 1, 0, 0, "Permanent ability allowing your gonads to swell with excess seed.");
-					target.ballFullness += 100;
-					target.lust(50);
 					
 					output("\n\nYou keep squeezing and kneading your sack well after the nanomachine paste has run its course, just enjoying the sensation of it. Your [pc.balls] feel" + (target.balls == 1 ? "s" : "") + " so much more malleable, like working your fingers through putty, or the outside of a beanbag. Ooohh, that’s nice...");
 					
@@ -138,14 +160,40 @@
 					
 					output("\n\nYou grin");
 					if(!target.isAssExposed()) output(", slip down your [pc.lowerGarment],");
-					output(" and squirt the contents of the bottle into your hand. Your [pc.cocks] throb" + (target.cocks.length == 1 ? "s" : "") + " in anticipation, but you lift " + (target.cocks.length == 1 ? "it" : "them") + " out of the way and cup your [pc.balls] instead. The sudden sensation of cold cream smearing across your sack sends a shiver up your spine, but makes you hard nonetheless. You give yourself a squeeze, massaging the thick brown paste over every inch of your gonads. Though you’ve already got the goods, so to speak, the paste still seems to do something as you spread it around: your balls feel weighty and full, more so than before, and fill out and stretch against the flesh of your sack.");
-					
-					output("\n\nYour [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke. Just that little motion almost makes you lurch -- what feels like a gallon of spooge churns just below the surface of your balls, fighting to escape. You keep squeezing and kneading your sack well after the nanomachine paste has run its course, just enjoying the sensation of it. Ooohh, that’s nice...");
-					
-					output("\n\n<b>Your sack is definitely fuller now.</b>");
+					output(" and squirt the contents of the bottle into your hand.");
+					if(target.hasCock()) output(" Your [pc.cocks] throb" + (target.cocks.length == 1 ? "s" : "") + " in anticipation, but you lift " + (target.cocks.length == 1 ? "it" : "them") + " out of the way and cup your [pc.balls] instead.");
+					output(" The sudden sensation of cold cream smearing across your sack sends a shiver up your spine, but makes you hard nonetheless. You give yourself a squeeze, massaging the thick brown paste over every inch of your gonads. Though you’ve already got the goods, so to speak, the paste still seems to do something as you spread it around: your balls feel weighty and full, more so than before, and fill out and stretch against the flesh of your sack.");
 					
 					target.ballFullness += 100;
 					target.lust(50);
+					
+					output("\n\n");
+					if(target.hasCock()) output("Your [pc.cock] throbs urgently, beading with pre-cum until you take it in hand and give it a stroke.");
+					else output("You gently rub along the surface of your [pc.ballsack], its internal mass urgently pulses, desperately begging for release.");
+					output(" Just that little motion almost makes you lurch -- what feels like a gallon of spooge churns just below the surface of your balls, fighting to escape. You keep squeezing and kneading your sack well after the nanomachine paste has run its course, just enjoying the sensation of it. Ooohh, that’s nice...");
+					
+					output("\n\n<b>Your sack is definitely fuller now.</b>");
+					
+					// Cum Cascade Extra!
+					if(!target.hasPerk("Cum Cascade") && target.statusEffectv1("Orally-Filled") >= 500 && InCollection(target.statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES))
+					{
+						var isKuiTan:Boolean = (target.originalRace.indexOf("kui-tan") != -1 || target.nukiScore() >= 3);
+						
+						output("\n\nSuddenly, a warm tingle hits your gut. There is a strange reaction with your nanomachines as you feel something within your [pc.balls] being rewired... It must be all the cum you’ve previously ingested combined with your " + (isKuiTan ? "natural" : "enhanced") + " kui-tan trait.");
+						if(!isKuiTan) output(" Perhaps your body is adapting to a kui-tan’s natural ability to produce more [pc.cumNoun]?");
+						output("\n\nYour codex beeps and you flip it into view to verify. It looks like the more intense side effects of having ‘Nuki Nuts are just setting in");
+						if(isKuiTan) output(" -- or at least being more obvious than you can remember");
+						output(". You should be careful of where you are when you decide to swallow semen from now on... unless you want to find yourself in a compromising position with overly bloated balls!");
+						if(isKuiTan) output(" Although, being a kui-tan you already know this... right?");
+						
+						output("\n\n(<b>Perk Gained: Cum Cascade</b> - Orally ingesting semen will now put your ‘Nuki Nuts into overdrive, causing you to produce extra seed relative to how much semen you have in your belly. Beware of immobilization!)");
+						// Perk: Cum Cascade
+						// v1: 
+						// v2: 
+						// v3: 
+						// v4: 
+						target.createPerk("Cum Cascade", 0, 0, 0, 0, "Your ‘Nuki Nuts will jump into overdrive while you have semen orally ingested.");
+					}
 				}
 				
 				return false;

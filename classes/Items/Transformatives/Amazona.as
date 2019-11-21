@@ -161,7 +161,7 @@
 			addButton(0, "Classic", futazonaUse, [target, "classic"]);
 			addButton(1, "Lite", futazonaUse, [target, "lite"]);
 			addButton(2, "Plus", futazonaUse, [target, "plus"]);
-			addButton(14, "Nevermind", futazonaCancel, target);
+			addButton(14, "Never Mind", futazonaCancel, target);
 			return;
 		}
 		public static function futazonaUse(arg:Array):void
@@ -640,7 +640,7 @@
 				{
 					var thinUp:int = 1 + rand(3);
 					if(canType == "lite") thinUp += 2;
-					thicknessNew = target.thickness + thinUp;
+					thicknessNew = target.thickness - thinUp;
 					if(thicknessMin != 0 && thicknessNew < thicknessMin) thicknessNew = thicknessMin;
 					if(thicknessNew < 0) thicknessNew = 0;
 					if(target.thicknessUnlocked(thicknessNew))
@@ -988,7 +988,7 @@
 					if(!target.isCrotchExposed()) output(" You strip off your [pc.lowerGarments] to get at them.");
 					output(" You start to massage your sack, trying to relieve the soreness. Void, they feel so dense! Has it really been that long since you came?");
 					output("\n\nYou manage to massage out the soreness, but the dense feeling remains, in fact it seems to be getting worse. Unthinkingly, you give your balls a mild squeeze, which seems to set off something. The denseness turns to extreme heaviness, like your [pc.balls] are suddenly made of lead! You panic, thinking something must have gone horribly wrong, when suddenly a wave of pleasure knocks you off your feet.");
-					output("\n\nYou land [pc.ass] first, the pressure in your crotch too much for you to get up. Your [pc.cockBiggest] points at you accusingly. it’s rock hard, and leaking a thick drop of pre. You grab and start stroking for dear life, desperate to relieve to pounding fullness in your sack. You go off very quickly, hosing yourself [pc.cumColor]. But neither the heaviness or your orgasm fade. Your dick is a firehose, spraying you down with the endless liquid from your hydrant-like balls. You manage to fumble your tool to aim away from you. You wipe the [pc.cum] from your face, finally able to see what’s happening, only to jump in shock as you see your [pc.balls] swelling.");
+					output("\n\nYou land [pc.ass] first, the pressure in your crotch too much for you to get up. Your [pc.cockBiggest] points at you accusingly. It’s rock hard, and leaking a thick drop of pre. You grab and start stroking for dear life, desperate to relieve to pounding fullness in your sack. You go off very quickly, hosing yourself [pc.cumColor]. But neither the heaviness or your orgasm fade. Your dick is a firehose, spraying you down with the endless liquid from your hydrant-like balls. You manage to fumble your tool to aim away from you. You wipe the [pc.cum] from your face, finally able to see what’s happening, only to jump in shock as you see your [pc.balls] swelling.");
 					output("\n\nThey’re packing on size in tune with your orgasm; if you didn’t know any better, you’d say they were making [pc.cumNoun] faster than their expanding mass could contain it! You have no choice but to ride out the rest of your orgasm, steeping yourself in a small lake of your own ejaculate. When you finally come down, it’s a struggle to even get back up. Even after you do manage to get to your feet, your newly enhanced package makes it difficult to walk. You’d better get out of here before someone makes you clean this up, you’re going to have enough trouble just washing yourself down.");
 					
 					target.ballSizeRaw += 8 + rand(5);
@@ -1017,7 +1017,7 @@
 				
 				// 1/4 chance to gain 1-3 energy per sexual encounter. Guaranteed at >95 libido
 				// Lost if libido goes below 40
-				output("\n\n(<b>Gained Perk: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
+				output("\n\n(<b>Perk Gained: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
 				target.createPerk((kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido"), 0, 0, 0, 0, "Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.");
 			}
 			

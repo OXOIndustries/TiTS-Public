@@ -7,10 +7,10 @@ package classes.Resources.Busts
 	public class DocBadgerBusts 
 	{
 		public function get PREVIEW():Class { return Bust_DRBADGER; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/docbadger/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/datbadger.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		// More assumptions
 		
@@ -21,9 +21,9 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/docbadger/hr/drBadger.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/docbadger/HR/drBadger.png", mimeType = "image/png")]
 			public var Full_DRBADGER:Class;
-			[Embed(source = "../../../assets/images/npcs/docbadger/hr/dr_badger_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/docbadger/HR/dr_badger_bimbo.png", mimeType = "image/png")]
 			public var Full_DR_BADGER_BIMBO:Class;
 		}
 	}

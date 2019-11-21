@@ -124,7 +124,7 @@ public function dontBeADumbshitLashGreeting(pulledGuns:Boolean = false):void
 {
 	clearOutput();
 	showDrLash();
-	//dont be a dumbshit.
+	//don't be a dumbshit.
 	output("<i>“No.”</i>");
 	output("\n\nThe scientist cocks his head");
 	if(pulledGuns) output(", and distributes his weapons amongst his dozens of pockets");
@@ -183,7 +183,7 @@ public function dontBeADumbShitAtGreetingPartDues():void
 		output("I can free you from your meddlesome genitalia ");
 		if(pc.biggestTitSize() >= 1) output("and distracting breasts ");
 		output("for a price.");
-		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll wave many of my standard fees.");
+		if((pc.hasCock() && pc.hasVagina()) || pc.totalCocks() > 1 || pc.totalVaginas() > 1) output(" If you’ll consent to a total removal, I’ll waive many of my standard fees.");
 	}
 	else output("I can free you from any meddlesome genitalia you manage to acquire in your travels.");
 	output(" What do you say?”</i>");
@@ -258,6 +258,7 @@ public function genitalRemovalShit():void
 		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don’t want to get rid of your pussy!");
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You’re not losing your junk.");
 		else if(pc.hasWombPregnancy()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
+		else if(pc.hasSilicone("tits")) addDisabledButton(0,"Pure Purge","Pure Purge","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don’t have any genitals!");
 		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
@@ -269,11 +270,11 @@ public function genitalRemovalShit():void
 	else if(pc.credits >= 5000) addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
 	else addDisabledButton(1,"Priaprism P.","Priaprism Purge","You do not have the credits for this treatment.");
 
-	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Purge","You probably shouldn’t do this while under the effects of GaloMax.");
-	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You’re not losing your junk.");
-	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don’t have a penis to lose.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Pruning","You probably shouldn’t do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Pruning","No way! You’re not losing your junk.");
+	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Pruning","You don’t have a penis to lose.");
 	else if(pc.credits >= 10000) addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
-	else addDisabledButton(2,"Phallus P.","Phallus Purge","You cannot afford this treatment.");
+	else addDisabledButton(2,"Phallus P.","Phallus Pruning","You cannot afford this treatment.");
 
 	if(pc.balls > 0 && pc.hasStatusEffect("GaloMax")) addDisabledButton(3,"Neutering","Neutering","You probably shouldn’t do this while under the effects of GaloMax.");
 	else if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You’re not getting rid of your junk!");
@@ -308,12 +309,15 @@ public function genitalRemovalShit():void
 		if(pc.credits >= 10000) addButton(5,"Vagina R.",lashTreatment,"vagina replacement","Vaginal Replacement","10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
 		else addDisabledButton(5,"Vagina R.","Vagina Replacement","You cannot afford this treatment.");
 	}
+	
 	if((pc.biggestTitSize() >= 1 || pc.bRows()))
 	{
-		if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+		if(pc.hasSilicone("tits")) addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
+		else if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
 		else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You cannot afford this treatment.");
 	}
 	else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You need a rack to remove in order to get this operation.");
+	
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -360,11 +364,19 @@ public function lashTreatment(treatment:String):void
 
 public function hasParasites(pType:String = "all"):Boolean
 {
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail()) return true;
+		if (pc.hasStatusEffect("Butt Bug (Female)")) return true;
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "cockvine" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail() && pc.hasTailCock()) return true;
+	}
+	if(pType == "cuntsnake" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail() && pc.hasTailCunt()) return true;
+	}
+	if(pType == "mimbrane" || pType == "all")
 	{
 		if (attachedMimbranes() > 0) return true;
 	}
@@ -374,17 +386,29 @@ public function purgeParasites(pType:String = "all"):Boolean
 {
 	var parasites:Boolean = false;
 	
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail())
+		if(pc.hasStatusEffect("Butt Bug (Female)"))
+		{
+			removeButtBug();
+			parasites = true;
+		}
+	}
+	if(	(pType == "all")
+	||	(pType == "cockvine" && pc.hasTailCock())
+	||	(pType == "cuntsnake" && pc.hasTailCunt())
+	||	(pType == "tail")
+	)
+	{
+		if(pc.hasParasiteTail())
 		{
 			pc.removeTails();
 			parasites = true;
 		}
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "mimbrane" || pType == "all")
 	{
-		if (attachedMimbranes() > 0)
+		if(attachedMimbranes() > 0)
 		{
 			removeMimbranes();
 			parasites = true;
@@ -417,7 +441,7 @@ public function lashTreatment2(treatment:String):void
 		pc.breastRows[0].breastRatingLactationMod = 0;
 		pc.milkFullness = 0;
 		pc.milkMultiplier = 0;
-		//Clear out honeypot bonuses	
+		//Clear out honeypot bonuses
 		pc.breastRows[0].breastRatingHoneypotMod = 0;
 		
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
@@ -432,13 +456,17 @@ public function lashTreatment2(treatment:String):void
 		}
 		if(pc.hasPerk("Mega Milk"))
 		{
-			output("\n\n</b>(<b>Perk Lost: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)<b>");
+			output("\n\n</b>(<b>Perk Lost: Mega Milk</b>)<b>");
 			pc.removePerk("Mega Milk");
 		}
 	}
 	else if(treatment == "vagina replacement")
 	{
-		if(pc.totalVaginas() == 1) output("Your vagina is gone!");
+		if(pc.totalVaginas() == 1)
+		{
+			output("Your vagina is gone!");
+			pc.resetGirlCumProduction();
+		}
 		else output("A vagina is gone!");
 		pc.removeVagina(rand(pc.totalVaginas()),1);
 	}
@@ -449,10 +477,12 @@ public function lashTreatment2(treatment:String):void
 		else output(" is");
 		output(" gone!");
 		pc.removeVaginas();
+		pc.resetGirlCumProduction();
 	}	
 	else if(treatment == "neutering")
 	{
-		pc.balls = 0;
+		pc.removeBalls();
+		pc.resetCumProduction();
 	}
 	else if(treatment == "phallus pruning")
 	{
@@ -460,7 +490,8 @@ public function lashTreatment2(treatment:String):void
 		if(pc.totalCocks() == 1 && pc.balls > 0)
 		{
 			output("and your [pc.balls] are");
-			pc.balls = 0;
+			pc.removeBalls();
+			pc.resetCumProduction();
 		}
 		else output("is");
 		output(" gone!");
@@ -469,13 +500,11 @@ public function lashTreatment2(treatment:String):void
 	else if(treatment == "priaprism purge")
 	{
 		output("[pc.EachCock] has vanished");
-		if(pc.balls > 0) 
-		{
-			output(" along with your sack");
-			pc.balls = 0;
-		}
+		if(pc.balls > 0) output(" along with your sack");
 		output("!");
 		pc.removeCocks();
+		pc.removeBalls();
+		pc.resetCumProduction();
 	}
 	else if(treatment == "pure purge")
 	{
@@ -484,7 +513,9 @@ public function lashTreatment2(treatment:String):void
 		output(" are totally gone!");
 		pc.removeCocks();
 		pc.removeVaginas();
-		pc.balls = 0;
+		pc.removeBalls();
+		pc.resetCumProduction();
+		pc.resetGirlCumProduction();
 		//Trim down to 1 row.
 		while(pc.bRows() > 1)
 		{
@@ -496,7 +527,7 @@ public function lashTreatment2(treatment:String):void
 		pc.breastRows[0].breastRatingLactationMod = 0;
 		pc.milkFullness = 0;
 		pc.milkMultiplier = 0;
-		//Clear out honeypot bonuses	
+		//Clear out honeypot bonuses
 		pc.breastRows[0].breastRatingHoneypotMod = 0;
 		
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
@@ -619,7 +650,7 @@ public function askDocLashAboutTheUGC():void
 	output("\n\nYou quirk an eyebrow at him.");
 	output("\n\nDoctor Lash waves dismissively. <i>“You release one genitalia-eradicating virus into a planet’s stratosphere, and somehow you become a wanted criminal. It’s not my fault they didn’t have microsurgeon-boosted immune systems, or that they weren’t up to date enough to handle my specially-engineered bypasses. Honestly, I merely provided them with the motivation to pursue a more erudite method of procreation. How was I to know that the cessation of sex tourism would put their economy into the tank?”</i>");
 	output("\n\n<i>“You...”</i> You gulp audibly. <i>“...sterilized an entire planet?”</i>");
-	output("\n\n<i>“Don’t be silly, [pc.name]. That would terribly evil. I only sterilized the planet’s dominant sapient life form. Everything else could be handled after their culture caught up to their bodies, assuming the UGC hadn’t sent their peacekeeper dogs after me.”</i> Doctor Lash’s body quivers like a guitar string pulled too tight. <i>“The ausar bitches couldn’t see the beauty in what I was doing, so I had to run here, away from galactic law enforcement. It’ll take me the better part of a terran century to replicate the research I lost, but it’ll be worth it. You’ll see. You’ll all see!”</i>");
+	output("\n\n<i>“Don’t be silly, [pc.name]. That would terribly evil. I only sterilized the planet’s dominant sapient life form. Everything else could be handled after their culture caught up to their bodies, assuming the UGC hadn’t sent their Peacekeeper dogs after me.”</i> Doctor Lash’s body quivers like a guitar string pulled too tight. <i>“The ausar bitches couldn’t see the beauty in what I was doing, so I had to run here, away from galactic law enforcement. It’ll take me the better part of a terran century to replicate the research I lost, but it’ll be worth it. You’ll see. You’ll all see!”</i>");
 	output("\n\nIf he has eyes under those goggles, they must be shining with a fanatical gleam. Maybe it’d be better to talk about something else.");
 	processTime(6);
 	clearMenu();
@@ -656,7 +687,7 @@ public function flirtWithDrLash():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Keep Flirtin’",keepFlirtingWithLash);
-	addButton(1,"Nevermind",walkUpToDocLashAgain);
+	addButton(1,"Never Mind",walkUpToDocLashAgain);
 }
 
 //Keep Flirting

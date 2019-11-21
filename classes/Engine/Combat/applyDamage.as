@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.ShittyShip;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageType;
@@ -55,12 +56,12 @@ package classes.Engine.Combat
 		//FEN NOTE: New hotness
 		var displayDamage:Boolean = true;
 		var displayBonusTexts:Boolean = true;
-		if (special == "suppress" || (attacker == null && special != "minimal"))
+		if (special == "suppress" || special == "explosion" || (attacker == null && special != "minimal"))
 		{
 			displayBonusTexts = false;
 			displayDamage = false;
 		}
-		else if (special == "minimal" || attacker == null)
+		else if (special == "minimal" || special == "cluster" || attacker == null)
 		{
 			displayBonusTexts = false;
 			displayDamage = true;
@@ -156,6 +157,7 @@ package classes.Engine.Combat
 			}
 		}
 		//Set up a shield proc!
+		var chargedShieldMeleeCounter:Boolean = false;
 		if (target.statusEffectv1("Charged Shield") > 0 && rand(2) == 0 && damageResult.shieldDamage > 0)
 		{
 			if(displayBonusTexts)
@@ -172,7 +174,6 @@ package classes.Engine.Combat
 				}
 				output(".");
 			}
-			
 			//Blind chance!
 			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.bimboIntelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
 			{
@@ -181,14 +182,13 @@ package classes.Engine.Combat
 					if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
 					else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");
 				}
-				CombatAttacks.applyBlind(attacker, 2);
+				if(attacker is PlayerCharacter) CombatAttacks.applyBlind(attacker, 3);
+				else CombatAttacks.applyBlind(attacker, 2);
 			}
 			//Melee damage
 			if(special == "melee") 
 			{
-				if(displayBonusTexts) output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " got a nasty shock!</b>");
-				applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
-				if(displayBonusTexts) output("\nBut you still took damage too...");
+				chargedShieldMeleeCounter = true;
 			}
 			//Remove status if time for it.
 			if(target.statusEffectv1("Charged Shield") <= 0) target.removeStatusEffect("Charged Shield");
@@ -220,11 +220,21 @@ package classes.Engine.Combat
 		if (damageResult.hpDamage > 0 && damageResult.shieldDamage > 0)
 		{
 			if(displayBonusTexts) output(" The attack continues on to connect with " + target.getCombatName() + "!");
+			//Special snowflake ship stuff.
+			if(damageResult.typedHPDamage.electric.damageValue > 0 && target is ShittyShip)
+			{
+				if(target.hasStatusEffect("Charging Light Drive"))
+				{
+					if(target.hasPerk("PCs")) output(" The surge of electricity disrupts your electronics, <b>preventing your light drive from charging</b>! You'll have to try again.");
+					else output(" The surge of errant electricity plays havoc with its attempts to charge its light drive. <b>It can't escape like this!</b>");
+					target.removeStatusEffect("Charging Light Drive");
+				}
+			}
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			if(displayBonusTexts) output(" The attack connects with " + target.getCombatName() + "!");
+			if(displayBonusTexts) output(" The attack directly impacts " + target.getCombatName() + "!");
 		}
 		
 		//Magic HP Drain shit
@@ -255,7 +265,7 @@ package classes.Engine.Combat
 			attacker.HP(Math.round(damageResult.hpDamage * .9));
 		}
 		// Stun Special
-		if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
+		if ((damageResult.hpDamage + damageResult.lustDamage) > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
 		{
 			if(displayBonusTexts) 
 			{
@@ -356,6 +366,16 @@ package classes.Engine.Combat
 		}
 		
 		if(displayDamage) outputDamage(damageResult);
+		
+		// Counter effects
+		if(chargedShieldMeleeCounter)
+		{
+			if(displayBonusTexts)
+			{
+				output("\nBut " + StringUtil.capitalize(attacker.getCombatName(), false) + " still took damage too... <b>" + StringUtil.capitalize(attacker.getCombatPronoun("heshe")) + " got a nasty shock from the charged shield!</b>");
+			}
+			applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
+		}
 		
 		return damageResult;
 	}

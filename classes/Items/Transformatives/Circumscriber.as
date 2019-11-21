@@ -135,7 +135,7 @@ package classes.Items.Transformatives
 			output("\n\n");
 			if(target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED) && rand(2) == 0) foreskinTF([target, i]);
 			else if(target.cocks[i].hasFlag(GLOBAL.FLAG_SHEATHED)) sheathTF([target, i]);
-			else if(target.cocks[i].cLengthRaw > 5 && rand(2) == 0) cockLenghtTF([target, i]);
+			else if(target.cocks[i].cLengthRaw > 5 && rand(2) == 0) cockLengthTF([target, i]);
 			else if(target.cocks[i].cThicknessRatioRaw > 0.8) cockThickTF([target, i]);
 			else dudTF([target, i]);
 		}
@@ -211,7 +211,7 @@ package classes.Items.Transformatives
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		
-		private function cockLenghtTF(arg:Array):void
+		private function cockLengthTF(arg:Array):void
 		{
 			var target:Creature = arg[0];
 			var i:int = arg[1];

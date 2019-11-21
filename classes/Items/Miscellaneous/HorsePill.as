@@ -154,13 +154,13 @@
 			if(target.biggestTitSize() >= 7)
 				TFList[TFList.length] = 6;
 			//#7 Make a skoch dumber to a minimum of 25% of max
-			if(target.intelligence() / target.intelligenceMax() > 0.25)
+			if(target.IQ() > 25)
 				TFList[TFList.length] = 7;
 			//#8 Increase physique by .25 to max
 			if(target.physique() < target.physiqueMax())
 				TFList[TFList.length] = 8;
 			//#9 Reduce willpower to 33% of max.
-			if(target.willpower() / target.willpowerMax() > 0.33)
+			if(target.WQ() > 33)
 				TFList[TFList.length] = 9;
 			//#10 Remove horns
 			if(target.hasHorns())
@@ -180,6 +180,9 @@
 			//#15 +1-4" height to a max of 6'11" for dicked and 6' for undicked.
 			if((target.hasCock() && target.tallness < 83) || target.tallness < 72)
 				TFList[TFList.length] = 15;
+			//#16 Increase reflexes to 75% of max.
+			if(target.RQ() < 75)
+				TFList[TFList.length] = 16;
 			//#0 DEFAULT CATCH ALL!
 			if(TFList.length == 0) TFList[TFList.length] = 0;
 
@@ -240,7 +243,7 @@
 				//#2 Make balls one to two tenths of an inch bigger.
 				else if(select == 2)
 				{
-					var ballGrowth:Number = 0.1 + rand(2) / 10;
+					var ballGrowth:Number = 0.1 + (rand(2) / 10);
 					if(target.hasPerk("Bulgy")) ballGrowth *= 2;
 					var newBallSize:Number = target.ballSizeRaw + ballGrowth;
 					if (target.ballSizeUnlocked(newBallSize))
@@ -269,7 +272,7 @@
 						target.ballSizeRaw = newBallSize;
 
 						// 10% Super secret nutsplosion!
-						if(rand(10) == 0 && target.ballSizeRaw < 8 && target.hasPerk("Bulgy"))
+						if(rand(10) == 0 && newBallSize < 8 && target.hasPerk("Bulgy"))
 						{
 							msg += ParseText("\n\nWith a slight tingling sensation building in your [pc.sack], you let out a shudder. Curious, you try to look and before you realize it, you are suddenly taken aback. The tingling increases tenfold as your [pc.balls] enlarge");
 							if(target.balls == 1) msg += "s";
@@ -280,7 +283,7 @@
 							if(target.balls == 1) msg += " a larger testicle";
 							else msg += " larger testicles";
 							msg += "!</b>";
-							newBallSize *= 2;
+							target.ballSizeRaw *= 2;
 						}
 					}
 					else
@@ -405,12 +408,12 @@
 				else if(select == 7)
 				{
 					//Above 75%
-					if(target.intelligence()/target.intelligenceMax() >= 0.75)
+					if(target.IQ() >= 75)
 					{
 						msg += "Your normally acute reason feels a little cloudy today. Concepts and abstract principles just don’t want to come together into complete thoughts.";
 					}
 					//Above 50%
-					else if(target.intelligence()/target.intelligenceMax() >= 0.5)
+					else if(target.IQ() >= 50)
 					{
 						msg += "Ugh, you keep tripping over your thoughts. Just when one is about finished, you wind up distracting yourself with something else, like a pang of hunger from your gut or fantasies of hot, feral sex. How are you supposed to focus when.... You shake your head, uttering a quiet neigh. Where did that come from?";
 					}
@@ -425,13 +428,13 @@
 				else if(select == 8)
 				{
 					//Low physique! - big gains!
-					if(target.physique()/target.physiqueMax() <= .33)
+					if(target.PQ() <= 33)
 					{
 						msg += "You feel a little sore all over, like you just competed in a triathlon, but on the other hand, you feel stronger. You flex, feeling the untapped strength in your limbs. While you’re far from strong, you’re definitely feeling as hale as a horse.";
 						target.slowStatGain("physique",3);
 					}
 					//Medium physique! - small gain
-					else if(target.physique()/target.physiqueMax() <= 66)
+					else if(target.PQ() <= 66)
 					{
 						msg += "A wonderful, accomplished soreness makes itself known to you. It’s the kind of feeling you get after a solid work out, the kind that lets you know you’re getting fitter and stronger.";
 						target.slowStatGain("physique",1.5);
@@ -447,7 +450,7 @@
 				else if(select == 9)
 				{
 					//Highish
-					if(target.willpower()/target.willpowerMax() >= .75)
+					if(target.WQ() >= 75)
 					{
 						msg += "You briefly entertain the idea of giving up on this mad quest to settle down on a fertile planet";
 						if(target.hasCock()) msg += " with a fertile wife or two and plant some seeds";
@@ -460,26 +463,6 @@
 						msg += "You pull out a bit of food and grab a snack. You barely even hungry, but saying no to your body wasn’t something you were up to at the moment. Your self control is really slipping.";
 					}
 					target.willpower(-1);
-				}
-				//Increase reflexes to 75% of max.
-				else if(select == 10)
-				{
-					//Sub 25%
-					if(target.reflexes()/target.reflexesMax() <= 0.25)
-					{
-						msg += "For once, you deftly avoid a hole in the ground. Your normally sluggish reflexes appear to be improving for some reason or another, perhaps the horse pill.";
-					}
-					//Sub 50%
-					else if(target.reflexes()/target.reflexesMax() <= 0.5)
-					{
-						msg += "You catch yourself midway through a stumble and maintain your position without much effort. Coordination is coming more easily to you now.";
-					}
-					//Sub 75%
-					else
-					{
-						msg += ParseText("A noise behind you startles you, and you have to stop yourself from lashing out with a [pc.foot]. Damn, that was close. At least you’re packing tightly-honed reflexes.");
-					}
-					target.slowStatGain("reflexes",1);
 				}
 				//#10 Remove horns
 				else if(select == 10)
@@ -590,6 +573,26 @@
 						msg += target.tallnessLockedMessage();
 					}
 				}
+				//Increase reflexes to 75% of max.
+				else if(select == 16)
+				{
+					//Sub 25%
+					if(target.RQ() <= 25)
+					{
+						msg += "For once, you deftly avoid a hole in the ground. Your normally sluggish reflexes appear to be improving for some reason or another, perhaps the horse pill.";
+					}
+					//Sub 50%
+					else if(target.RQ() <= 50)
+					{
+						msg += "You catch yourself midway through a stumble and maintain your position without much effort. Coordination is coming more easily to you now.";
+					}
+					//Sub 75%
+					else
+					{
+						msg += ParseText("A noise behind you startles you, and you have to stop yourself from lashing out with a [pc.foot]. Damn, that was close. At least you’re packing tightly-honed reflexes.");
+					}
+					target.slowStatGain("reflexes",1);
+				}
 				//New lines!
 				totalTFs--;
 			}
@@ -654,6 +657,7 @@
 			//#15 SNOUTS! THE SAVIN SPECIAL! - req's fur
 			if(target.faceType != GLOBAL.TYPE_EQUINE && target.skinType == GLOBAL.SKIN_TYPE_FUR && target.faceTypeUnlocked(GLOBAL.TYPE_EQUINE))
 				TFList[TFList.length] = 15;
+			//#16 Remove genital slit
 			if(target.hasStatusEffect("Genital Slit"))
 				TFList[TFList.length] = 16;
 			//#0 DEFAULT CATCH ALL!
@@ -681,7 +685,7 @@
 					{
 						if (target.breastRatingUnlocked(x, 0))
 						{
-							target.breastRows[x].breastRatingRaw -= (-3-rand(3));
+							target.breastRows[x].breastRatingRaw += (-3 - rand(3));
 							bRatingChange = true;
 						}
 						
@@ -863,6 +867,9 @@
 						else msg += "Your ears change shape, morphing into teardrop-shaped horse ears!";
 						msg += "<b> You now have horse ears.</b>";
 						target.earType = GLOBAL.TYPE_EQUINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else
 					{
@@ -904,9 +911,10 @@
 							else msg += "they split";
 							msg += " into hundreds of tiny filaments, transforming into a horsetail.";
 						}
-						msg += " <b>You now have a horse-tail.</b>", false;
+						msg += " <b>You now have a horse-tail.</b>";
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_LONG);
+						target.addTailFlag(GLOBAL.FLAG_FLOPPY);
 						target.tailCount = 1;
 						target.tailType = GLOBAL.TYPE_EQUINE;
 					}

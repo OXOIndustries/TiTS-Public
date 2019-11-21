@@ -224,6 +224,8 @@
 					{
 						kGAMECLASS.output("\n\nAn itch radiates out from the top of your head, migrating down the sides to your ears. Nerves fizzle and misfire as your flesh remoulds. Your eardrums pop a half-dozen times in a row. You wince a time or two, then reach to try and feel the changes. Silky fur brushes against your fingertips, revealing a rounded pair of ears - just like a tanuki or kui-tan!");
 						pc.earType = GLOBAL.TYPE_KUITAN;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + pc.earTypeLockedMessage());
@@ -548,7 +550,7 @@
 					pc.orgasm();
 					while(choices.length > 0)
 					{
-						if(pc.vaginas[choices[0]].vaginaColor == "black") pc.vaginas[choices[0]].type = GLOBAL.TYPE_KUITAN;
+						if(pc.vaginas[choices[0]].vaginaColor == "black") pc.shiftVagina(choices[0], GLOBAL.TYPE_KUITAN);
 						choices.splice(0,1);
 					}
 					changes++;

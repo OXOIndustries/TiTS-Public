@@ -11,6 +11,17 @@
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Upgrades.HardLightUpgrade;
 	import classes.Items.Transformatives.KorgonneSnacks;
+	import classes.Items.Piercings.CrudeSaviciteBarPiercing;
+	import classes.Items.Piercings.CrudeSaviciteBarPiercings;
+	import classes.Items.Piercings.CrudeSaviciteHoopPiercing;
+	import classes.Items.Piercings.CrudeSaviciteHoopPiercings;
+	import classes.Items.Piercings.CrudeSaviciteRingPiercing;
+	import classes.Items.Piercings.CrudeSaviciteRingPiercings;
+	import classes.Items.Piercings.CrudeSaviciteStudPiercing;
+	import classes.Items.Piercings.CrudeSaviciteStudPiercings;
+	import classes.Items.Treasures.CrudeSaviciteBand;
+	import classes.Items.Treasures.CrudeSaviciteBracelet;
+	import classes.Items.Treasures.CrudeSaviciteNecklace;
 
 
 	import classes.kGAMECLASS;
@@ -85,7 +96,7 @@
 			this.thickness = 65;
 			this.tone = 32;
 			this.hairColor = "dirty blonde";
-			this.hairType = GLOBAL.TYPE_RASKVEL;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.scaleColor = "blue";;
 			this.furColor = "tan";
 			this.hairLength = 14;
@@ -95,28 +106,28 @@
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "white";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_CANINE;
-			this.faceFlags = [GLOBAL.FLAG_MUZZLED];
+			this.faceType = GLOBAL.TYPE_KORGONNE;
+			this.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_FURRED];
 			this.tongueType = GLOBAL.TYPE_CANINE;
 			this.lipMod = 0;
-			this.earType = GLOBAL.TYPE_CANINE;
+			this.earType = GLOBAL.TYPE_KORGONNE;
 			this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_CANINE;
-			this.armFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
+			this.armType = GLOBAL.TYPE_KORGONNE;
+			this.armFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS, GLOBAL.FLAG_FURRED];
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_CANINE;
+			this.legType = GLOBAL.TYPE_KORGONNE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PAWS];
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PAWS, GLOBAL.FLAG_FURRED];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_CANINE;
+			this.tailType = GLOBAL.TYPE_KORGONNE;
 			this.tailCount = 1;
 			this.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
@@ -207,7 +218,7 @@
 			//"Hard" level preferences.
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
 			//Bigdick replaces normal dick love
-			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] != undefined)
+			if(kGAMECLASS.flags["KORGI_BIG_DICKED"] == undefined)
 			{
 				sexualPreferences.removePref(GLOBAL.SEXPREF_COCKS);
 				sexualPreferences.removePref(GLOBAL.SEXPREF_HYPER);
@@ -241,7 +252,30 @@
 			//5% chance of InsulatedCoat
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//Temporarily put on these snowbitches till I find a real home for it.
-			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			if (!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			//5% chance of crude savicite jewelry
+			var rn:int;
+			if (rand(20) == 0)
+			{
+				rn = rand(8);
+				if (rn == 0) inventory.push(new CrudeSaviciteBarPiercing);
+				else if (rn == 1) inventory.push(new CrudeSaviciteBarPiercings);
+				else if (rn == 2) inventory.push(new CrudeSaviciteHoopPiercing);
+				else if (rn == 3) inventory.push(new CrudeSaviciteHoopPiercings);
+				else if (rn == 4) inventory.push(new CrudeSaviciteRingPiercing);
+				else if (rn == 5) inventory.push(new CrudeSaviciteRingPiercings);
+				else if (rn == 6) inventory.push(new CrudeSaviciteStudPiercing);
+				else if (rn == 7) inventory.push(new CrudeSaviciteStudPiercings);
+
+			}
+			//20% chance of having one of these treasures
+			if (rand(5) == 0)
+			{
+				rn = rand(3);
+				if (rn == 0) inventory.push(new CrudeSaviciteBand);
+				else if (rn == 1) inventory.push(new CrudeSaviciteBracelet);
+				else if (rn == 2) inventory.push(new CrudeSaviciteNecklace);
+			}
 			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			/*
 			if (rand(10) == 0)
@@ -338,7 +372,7 @@
 				var damage:TypeCollection = new TypeCollection( { kinetic: (physique()-5), freezing: 10 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
-				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.reflexes() + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyTrip(target);
 					output("\nWorst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
@@ -411,7 +445,7 @@
 					damage = new TypeCollection( { kinetic: (physique()+5) });
 					damageRand(damage, 15);
 					applyDamage(damage, this, target);
-					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
+					if((target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2) && !target.isPlanted())
 					{
 						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);

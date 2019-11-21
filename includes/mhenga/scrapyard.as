@@ -23,16 +23,19 @@ public function scrapyardMaintenance():void {
 		//Sell/Buy/Leave
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}
-	shopkeep = geoff;
-	this.addButton(0,"Buy",buyFromGeoff);
-	this.addButton(1,"Sell",sellToArtie);
+	addButton(0,"Buy",buyFromGeoff);
+	addButton(1,"Sell",sellToArtie);
 }
 
 public function sellToArtie():void {
 	author("Nonesuch");
-	userInterface.showBust("ARTIE");
-	userInterface.showName("\nARTIE");
+	shopkeep = geoff;
 	sellItem();
+}
+public function buyItemFromGeoff():void {
+	author("Nonesuch");
+	shopkeep = geoff;
+	buyItem();
 }
 public function buyFromGeoff():void {
 	clearOutput();
@@ -45,15 +48,15 @@ public function buyFromGeoff():void {
 	geoff.keeperBuy = "What would you like to buy?\n";
 	flags["MET_GEOFF"] = 1;
 	this.clearMenu();
-	this.addButton(0,"Buy",buyItem);
+	this.addButton(0,"Buy",buyItemFromGeoff);
 	this.addButton(1,"Talk",talkToGeoff);
 
 	if(flags["SEXED_GEOFF"] == 1) 
 	{
 		if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined || pc.isTaur() || pc.isNaga())
 		{
-			addDisabledButton(3,"Sex","Sex","You aren't feminine enough for sex with Geoff.");
-			output("\n\nGeoff doesn't seem interested in sex with the way you look right now...");
+			addDisabledButton(3,"Sex","Sex","You aren’t feminine enough for sex with Geoff.");
+			output("\n\nGeoff doesn’t seem interested in sex with the way you look right now...");
 		}
 
 		if (pc.lust() >= 33)
@@ -66,8 +69,8 @@ public function buyFromGeoff():void {
 		}
 		else
 		{
-			addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
-			output("\n\nYou aren't aroused enough for sex.");
+			addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for sex.");
+			output("\n\nYou aren’t aroused enough for sex.");
 		}
 	}
 
@@ -102,7 +105,7 @@ public function talkToGeoff():void {
 	else {
 		//Talk:
 		output("You say you’d just like to shoot the breeze with him. Shrugging amiably, the young mechanic points you to a shipping crate similar to the one his uncle is currently perched upon.");
-		output("\n\nYou spend a pleasant half an hour sat in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
+		output("\n\nYou spend a pleasant half an hour seated in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
 		processTime(30+rand(4));
 		this.clearMenu();
 		this.addButton(0,"Next",mainGameMenu);
@@ -133,7 +136,7 @@ public function flirtWithGeoff():void {
 		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
 
 		addButton(0, "Flirt More", flirtMoreWithGeoff);
-		addButton(1, "Nevermind", buyFromGeoff);
+		addButton(1, "Never Mind", buyFromGeoff);
 		return;
 	}
 	
@@ -420,7 +423,7 @@ public function flirtMoreWithGeoff():void
 	flags["SEXED_GEOFF_MASC"] = 1;
 
 	clearMenu();
-	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff's virgin ass.");
+	if (pc.hasCock()) addButton(0, "Top", dudesTopGeoff, undefined, "Top", "Capitalize on this opportunity and get a taste of Geoff’s virgin ass.");
 	else addDisabledButton(0, "Top", "Top", "If you had a cock you could probably take the initiative and fuck Geoff in the ass.")
 	if (flags["SEXED_GEOFF"] == undefined) addButton(1, "Bottom", flirtWithGeoff, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
 	else addButton(1, "Bottom", GeoffRepeatFuck, undefined, "Bottom", "Let Geoff take the reins and do what comes naturally.");
@@ -604,8 +607,6 @@ public function dudesTopGeoffRepeat():void
 			
 			output("\n\n<i>“Oh... yeah... right.”</i> He says as he rushes towards the back door.");
 		}
-
-		output("\n\n");
 	}
 	
 	output("\n\nGeoff leads you out of the shop and to the usual spot where the garage is shielded from the worst of the hot sun by an old metal roof. Once the two of you are there Geoff takes the initiative and wraps his long arms around your waist, pulling you into a kiss. As your [pc.lips] move against his his hands begin to explore your body, growing more bold as the two of you continue to make out. He makes sure to rub your [pc.ass], silently expressing his preference for the position you’ll be taking this bout.");

@@ -93,8 +93,8 @@ package classes.Items.Transformatives
 			output("\n<b>*</b> Works with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galotians, or if skin is heavily altered by another transformative.");
 			output("\n<b>*</b> Applying another dose while already under this product’s effect will produce no additional results.");
 			output("\n<b>*</b> This product’s effects are permanent, but can be easily canceled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
-			output("\n<b>* Warning:</b> while safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
-			output("\n<b>*</b> Documented side effect: Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
+			output("\n<b>* Warning:</b> While safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
+			output("\n<b>* Documented Side Effect:</b> Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
 			output("</i>");
 			
 			if (target.hasStatusEffect("Foxfire"))
@@ -258,7 +258,7 @@ package classes.Items.Transformatives
 						(!target.hasCockFlag(GLOBAL.FLAG_KNOTTED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED)
 						|| !target.hasCockFlag(GLOBAL.FLAG_TAPERED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_TAPERED)
 						|| !target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_SHEATHED)
-						|| target.cocks[i].knotMultiplier <= 1 && target.knotMultiplierUnlocked(i, 1.25)))
+						|| target.cocks[i].knotMultiplier <= 1.25 && target.knotMultiplierUnlocked(i, 1.25)))
 					{
 						options.push(function():*{
 							// Here are fixing of somehow missing flags on already doggie one. Like ones on that ausars.
@@ -267,7 +267,7 @@ package classes.Items.Transformatives
 								AddLogEvent("You feel a light tug at the base of your " + target.cockDescript(i) + ", followed by something sliding up and over your shaft. A quick look tells you that an animalistic sheath has formed, bringing your cock to a standard canine form. <b>Your cock now has a canine-sheath!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_SHEATHED);
 							}
-							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED) || target.cocks[i].knotMultiplier <= 1 && target.knotMultiplierUnlocked(i, 1.25))
+							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED))
 							{
 								AddLogEvent("You feel a bulging pressure near the base of your " + target.cockDescript(i) + ", as a vulpine knot begins to form. <b>Your cock is now knotted!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
@@ -294,13 +294,13 @@ package classes.Items.Transformatives
 						options.push(function():*{
 							var newColor:String = colorsMatching(target) ? target.lipColor : "red";
 							
-							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly ", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							
-							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent("in it’s sheath");
-							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent("in it’s slit");
-							else if (!target.isCrotchExposed()) ExtendLogEvent("beneath your " + target.lowerGarmentDescript());
-							else if(target.legCount == 1) ExtendLogEvent("on your " + target.legs());
-							else ExtendLogEvent("between your " + target.legs());
+							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent(" in it’s sheath");
+							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent(" in it’s slit");
+							else if (!target.isCrotchExposed()) ExtendLogEvent(" beneath your " + target.lowerGarmentDescript());
+							else if(target.legCount == 1) ExtendLogEvent(" on your " + target.legs());
+							else ExtendLogEvent(" between your " + target.legs());
 							
 							ExtendLogEvent(" and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure");
 							
@@ -346,9 +346,10 @@ package classes.Items.Transformatives
 					if (target.vaginas[v].type != GLOBAL.TYPE_VULPINE && target.hasFur() && target.vaginaTypeUnlocked(v, GLOBAL.TYPE_VULPINE))
 					{
 						options.push(function():*{
+							var newVagColor:String = !colorsMatching(target) ? "black" : target.lipColor;
 							AddLogEvent("You start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like a vixen’s. <b>You now have a fox-cunt!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							target.shiftVagina(v, GLOBAL.TYPE_VULPINE);
-							target.vaginas[v].vaginaColor = !colorsMatching(target) ? "black" : target.lipColor;
+							target.vaginas[v].vaginaColor = newVagColor;
 						});
 						break;
 					}
@@ -389,7 +390,7 @@ package classes.Items.Transformatives
 					{ // normal case - flats
 						AddLogEvent("A sudden sensation erupts on your chest, as if your nipples had just been flicked during an intense bout of lovemaking. As you reflexively raise your hands to them, you notice that the feeling in fact came from below your nipples. Taking a quick peek", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						if (target.hasArmor() && !(target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) ExtendLogEvent(" under your clothes");
-						ExtendLogEvent("to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
+						ExtendLogEvent(" to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
 					}
 					else
 					{ // lactating - A-cups to avoid parser weirdshit
@@ -398,10 +399,10 @@ package classes.Items.Transformatives
 					
 					if (target.bRows() == 1) ExtendLogEvent(" With a second row of breasts, you now sport a more animalistic look.");
 					else if (target.bRows() == 2) ExtendLogEvent(" With a third row of breasts, your front is now starting to feel somewhat tightly-packed.");
-					else ExtendLogEvent(" With a forth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
+					else ExtendLogEvent(" With a fourth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
 					
-					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have extra set of nipples!</b>");
-					else ExtendLogEvent(" <b>You now have extra set of breasts!</b>");
+					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have an extra set of nipples!</b>");
+					else ExtendLogEvent(" <b>You now have an extra set of breasts!</b>");
 					
 					var newBreastRow:BreastRowClass = new BreastRowClass();
 					newBreastRow.nippleType = target.breastRows[target.breastRows.length - 1].nippleType; // same type as previous row
@@ -579,7 +580,7 @@ package classes.Items.Transformatives
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_FEATHERS)
 				{
-					AddLogEvent("A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+					AddLogEvent("A sudden itchiness spurts out from the bast of your feather quills. As you brush the area, most of your feathers fall away, as though you are entering a severe molting cycle. Rather than new feathers growing in their place, the skin underneath softens, and the holes that your feathers grew from shrink out of sight. Soon, your coat of feathers falls away, leaving <b>you with a set of healthy human-like skin!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				else if (target.skinType == GLOBAL.SKIN_TYPE_LATEX)
 				{
@@ -687,7 +688,9 @@ package classes.Items.Transformatives
 				AddLogEvent("Your " + target.earsDescript() + " shift to become large and pointy like that of a fox’s, allowing you to pick up even the faintest of sound as they twitch atop your head. <b>You now have pointy fox ears!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				target.earType = GLOBAL.TYPE_VULPINE;
-				
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_TAPERED);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				return false;
 			}
 			
@@ -1067,7 +1070,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{
-						AddLogEvent("Your facebones shifts as your muzzle take on an lean vulpine shape with a wet nose, much like that of a fox’s. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+						AddLogEvent("Your facebones shift as your muzzle take on a lean vulpine shape with a wet nose, much like that of a fox’s. <b>Your muzzle is now vulpine!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 					}
 				}
 				

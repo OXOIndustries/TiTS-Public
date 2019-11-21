@@ -342,7 +342,7 @@
 		{
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
-			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
+			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don’t\nplay this if exotic and strange fetishes disgust you. <b>You’ve been warned!</b>";
 			
 			(buttons[0] as MainMenuButton).buttonName = "New Game";
 			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
@@ -545,7 +545,7 @@
 			}
 			else
 			{
-				throw new Error("Couldn't find module \"" + module + "\"");
+				throw new Error("Couldn’t find module \"" + module + "\"");
 			}
 			
 			// Update some button states
@@ -770,7 +770,7 @@
 			}
 			else
 			{
-				throw new Error("Presently active display module doesn't support text input fields.");
+				throw new Error("Presently active display module doesn’t support text input fields.");
 			}
 			
 			return null;
@@ -854,7 +854,7 @@
 			var btnArray:Array = _buttonTray.buttons;
 			
 			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") kGAMECLASS.pressButton(0);
-			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") kGAMECLASS.pressButton(14);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back" || btnArray[14].buttonName == "Bail") kGAMECLASS.pressButton(14);
 			else if (btnArray[4].buttonName == "Back") kGAMECLASS.pressButton(4);
 		}
 		
@@ -1091,11 +1091,11 @@
 			}
 		}
 		
-		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, stackSize:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
 		{
 			try
 			{
-				_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+				_buttonTray.addItemButton(slot, cap, quantity, stackSize, func, arg, ttHeader, ttBody, ttCompare);
 			}
 			catch (e:*)
 			{

@@ -179,28 +179,36 @@ public function salireApproach():void
 }
 
 //Yammi Crew Blurbs
-public function yammiShipBonusText():String 
+public function yammiShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String 
 {
 	var buffer:String = "";
-	//Until first interacted, her descript on ship is: 
-	if (flags["YAMMI_KITCHENED"] == undefined) buffer = "Yammi is hanging around in the galley, getting set up. Maybe you should check in with her?";
-	else
+	
+	if (showBlurb)
 	{
-		//Choose one at random:
-		//When chosen, keep as blurb for 1-2 hours. - 9999
-		if(rand(4) == 0) buffer = "Yammi is bouncing around the kitchen, tending to a half-dozen different bubbling pots and aromatic dishes at once. Despite what must be a hectic job of keeping all that food going smoothly, she’s humming happily to herself and maintaining an almost dance-like rhythm between them. She seems perfectly at home.";
-		else if(rand(3) == 0) buffer = "Your sparadat chef is reclining in her submersed hammock, naked except for a string bikini and her long gloves. She’s still got some food cooking, as always, but she seems to have spaced things out enough to let herself doze off for an hour or two.";
-		
-		else if(rand(2) == 0)
+		buffer += "\n\n";
+		//Until first interacted, her descript on ship is: 
+		if (flags["YAMMI_KITCHENED"] == undefined) buffer += "Yammi is hanging around in the galley, getting set up. Maybe you should check in with her?";
+		else
 		{
-			buffer = "For once, Yammi isn’t in the kitchen. Instead, she’s parked herself in your common room and is sprawled out in front of the holoscreen, watching what you surmise to be a ";
-			if(rand(4) == 0) buffer += "very old sparadat romance flick";
-			else if(rand(3) == 0) buffer += "hot and heavy ausar chick flick. Either that or a fairly tame porno, judging by the amount of bouncy cleavage and red rocket on display.";
-			else if(rand(2) == 0) buffer += "thraggen mystery movie. Considering they’re a race of giant green brutes, the fact that there’s a slow-paced, thoughtful crime drama from their homeworld is a little shocking. At least, until the detective pulls out a plasma caster and melts a human gangster’s face off.";
-			else buffer += "melodrama set during the brief but tense Human-Ausar cold war of ‘68. You can’t remember much of the history around it, but the way that the ausar Star-Queen and the human Supreme Commander are eyeing each other in the negotiation chambers, you think this might just be a space-age <i>Romeo and Juliet</i> knockoff. Especially when they start speaking in iambic pentameter for some reason.";
+			//Choose one at random:
+			//When chosen, keep as blurb for 1-2 hours. - 9999
+			if(rand(4) == 0) buffer += "Yammi is bouncing around the kitchen, tending to a half-dozen different bubbling pots and aromatic dishes at once. Despite what must be a hectic job of keeping all that food going smoothly, she’s humming happily to herself and maintaining an almost dance-like rhythm between them. She seems perfectly at home.";
+			else if(rand(3) == 0) buffer += "Your sparadat chef is reclining in her submersed hammock, naked except for a string bikini and her long gloves. She’s still got some food cooking, as always, but she seems to have spaced things out enough to let herself doze off for an hour or two.";
+			
+			else if(rand(2) == 0)
+			{
+				buffer += "For once, Yammi isn’t in the kitchen. Instead, she’s parked herself in your common room and is sprawled out in front of the holoscreen, watching what you surmise to be a ";
+				if(rand(4) == 0) buffer += "very old sparadat romance flick";
+				else if(rand(3) == 0) buffer += "hot and heavy ausar chick flick. Either that or a fairly tame porno, judging by the amount of bouncy cleavage and red rocket on display.";
+				else if(rand(2) == 0) buffer += "thraggen mystery movie. Considering they’re a race of giant green brutes, the fact that there’s a slow-paced, thoughtful crime drama from their homeworld is a little shocking. At least, until the detective pulls out a plasma caster and melts a human gangster’s face off.";
+				else buffer += "melodrama set during the brief but tense Human-Ausar cold war of ‘68. You can’t remember much of the history around it, but the way that the ausar Star-Queen and the human Supreme Commander are eyeing each other in the negotiation chambers, you think this might just be a space-age <i>Romeo and Juliet</i> knockoff. Especially when they start speaking in iambic pentameter for some reason.";
+			}
+			else buffer += "Yammi is hanging out in the kitchen as usual, only minding a handful of dishes now. Snacks and desserts, mostly. No ice-cream that you can see, though. Maybe there’s some bad memories there? Either way, she seems more than happy to indulge your sweet tooth while she’s aboard.";
 		}
-		else buffer = "Yammi is hanging out in the kitchen as usual, only minding a handful of dishes now. Snacks and desserts, mostly. No ice-cream that you can see, though. Maybe there’s some bad memories there? Either way, she seems more than happy to indulge your sweet tooth while she’s aboard.";
 	}
+	
+	if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Yammi", pippaYammiThreesomeIntro);
+	else addButton(btnSlot, "Yammi", yammiInTheKitchen);
 	
 	return buffer;
 }
@@ -507,7 +515,7 @@ public function pexigaVisit():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 
 	output("You tell Yammi to keep on cooking; you’re just going to wander around the kitchen. She flashes you a bright smile and goes back to the dish she’s working on at the moment, and once she’s nice and distracted, you make your way into the pantry she keeps the pexiga in.");
@@ -530,7 +538,7 @@ public function milkSalivaFromPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	IncrementFlag("PEX_MILKED");
@@ -555,7 +563,7 @@ public function petPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	output("Feeling sorry for the lethargic reptilian beauty, you draw close and run your fingers through her spiny hair. The pexiga murmurs around her ring-gag, swishing her tail across the deck as you massage her scaly scalp. The big piercing on her tongue swishes ever so slightly, and her somewhat vacant expression shifts to something like a smile, and her eyes follow you as you move. With no food on offer, and without your hand working to milk her for her sweet saliva, she seems somewhat more attentive than usual. If only just.");

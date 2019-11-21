@@ -59,7 +59,7 @@ public function theEntiteBonus():Boolean
 		output("What greets you when you enter the curious little shop is a heavy glow of amaranth light. It emanates in slightly different shades of flame from several black candles dotted about the place.");
 		output("\n\nThere’s a counter at the far back of the room with a mechanical cash register on the right. Surrounding it is a patchwork arrangement of small plants, abstract gemstones, statues, and other curios that all have colored reflections from the purpled light sources.");
 		output("\n\nA very fine mist wafts around the lower end" + (pc.legCount > 1 ? "s" : "") + " of your [pc.legs], one that’s vaguely warm and smelling of obscure incense.");
-		output("\n\nThere are some more familiar looking items lining the back shelf of the counter: Bottles, pill packets and unusual containers of mods. They’re locked behind a large, horizontal glass case.");
+		output("\n\nThere are some more familiar looking items lining the back shelf of the counter: bottles, pill packets and unusual containers of mods. They’re locked behind a large, horizontal glass case.");
 		output("\n\nTo your right, the furthest corner of the room is sectioned off by a wall of red velvet drapes. You can make out some wooden legs and cushions, suggesting a lounging area. It has a mild, sickly pink glow that bleeds through small gaps in the curtains.");
 		output("\n\nBehind the counter sits a cowled, robed figure, a long stick or staff of sorts by their side. It appears to just be a black rod save for a smooth ball of crystal at the end. It reminds you of something you would’ve heard of in ancient Earth tales of yore. The figure appears to be reading a particularly antique book, one with real leather binding and faded yellow-brown pages that they are turning in a very delicate manner.");
 		output("\n\nThe figure looks up as you amble towards the counter.");
@@ -149,7 +149,7 @@ public function appearanceSeer():void
 	showSeer();
 	
 	output("You have a look over the shopkeeper - this ‘Seer’ as she calls herself - while she is reading more of that antique book. She mouths something every few seconds, to which you can only guess the words.");
-	output("\n\nThe Seer is a human female, judging purely by appearance. She stands at 5’10’’ in height or thereabouts, a little taller than the Terran average. Her hair is shoulder length and jet black, slightly wavy but mostly a bit of a mess. Her face, something that’s often obscured by her hair and hood, could be described as cute or even <i>pretty</i> were it not at odds with her style and attire.");
+	output("\n\nThe Seer is a human female, judging purely by appearance. She stands at 5\' 10\" in height or thereabouts, a little taller than the Terran average. Her hair is shoulder length and jet black, slightly wavy but mostly a bit of a mess. Her face, something that’s often obscured by her hair and hood, could be described as cute or even <i>pretty</i> were it not at odds with her style and attire.");
 	output("\n\nShe has a button nose, long eye lashes and a Cupid’s bow lip shape. The Seer uses extensive makeup, at least as far as detail goes: thick, asymmetrical and angular eyeliner designs, black lipstick, eyeshadow that matches her purple robe and a faux-beauty spot on her right cheek.");
 	output("\n\nThe hood hides her amber eyes, pupils apparently permanently constricted. The sclera are marked with notable blood vessels, suggesting a habitual lack of sleep. She rarely seems to blink...");
 	output("\n\nHer skin is smooth and human but grey-white in color, almost sickly. It reminds you of the look of an insomniac or someone under extreme duress. She doesn’t seem to be physically ill, although that’s not accounting for her mannerisms, expressions, personality... pretty much everything else about her.");
@@ -159,7 +159,7 @@ public function appearanceSeer():void
 	{
 		output("\n\nIf you focus on her as a memory, you recall your experiences with the shopkeeper and what her true nature is.");
 		output("\n\nAh, of course! You remember why she has her right arm covered... and the reason is still stomach-turning. Underneath, instead of the expected human arm, there are three greyish-purple tentacle-like appendages that tightly wrap together. Near the ends, the writhing flesh stalks taper off to a soft, membranous point like octopus legs without the suckers. There’s a smaller appendage also near the middle of each main tentacle, essentially giving her ‘arm’ six ‘fingers.’ She has an extreme measure of control over them, as you’ve borne witness to before and they can extend to her entire body length if she chooses.The tenta-tips tend to ooze a strange fluid from unseen pores.");
-		if (flags["SEER_LEZ"] != undefined) output("\n\nAnd yes! Her chest is covered in a way that raises concern. " + (pc.hasNormalNipples() ? "For some unholy reason," : "Much like you and your " + (pc.hasDickNipples() ? "[pc.dickNipples]" : "[pc.nipples]") + ",") + " her milkmakers hide surprises! When she wills it, both her areola extend into three tentacular forms with a 2’’-wide hole in the middle. The appendages extend to almost a foot in length themselves, a similar shape and color to her right ‘arm’s’ manipulators. When extended, they grasp needily for something to latch on to, clamp down on or otherwise ensnare with slippery, slimy sensations. Inside her mouth hides one more foot-long tentacle, dripping in unpleasant saliva when let loose.");
+		if (flags["SEER_LEZ"] != undefined) output("\n\nAnd yes! Her chest is covered in a way that raises concern. " + (pc.hasNormalNipples() ? "For some unholy reason," : "Much like you and your " + (pc.hasDickNipples() ? "[pc.dickNipples]" : "[pc.nipples]") + ",") + " her milkmakers hide surprises! When she wills it, both her areola extend into three tentacular forms with a 2\"-wide hole in the middle. The appendages extend to almost a foot in length themselves, a similar shape and color to her right ‘arm’s’ manipulators. When extended, they grasp needily for something to latch on to, clamp down on or otherwise ensnare with slippery, slimy sensations. Inside her mouth hides one more foot-long tentacle, dripping in unpleasant saliva when let loose.");
 		output("\n\nHer skin hides something else in the form of geometric, linguistic markings and spirals that tend to glow a mild pink. Some designs seem recognisable while others are so alien that they would give you a physical headache if you stared too long.");
 		output("\n\nThe rest of her naked body is relatively normal: A groomed, tight Terran pussy hides between her thighs and her perky butt is rather cute, all things considered...");
 	}
@@ -203,7 +203,7 @@ public function topicHerSeer():void
 	output("\n\n<i>“I’m the Seer. Not </i>this<i> seer or </i>that<i> seer but <b>the</b> Seer! Seer of what? I’ve seen so much. More than I remember, more than I’m prepared for, more, more, more of you! You’ve seen things! But not the same things,”</i> she rambles, her eyes darting around from under the hood. She seems to peer behind you, as if watching for a queue of customers.");
 	output("\n\n<i>“You agree, of course.”</i>");
 	output("\n\nDo you? What?");
-	output("\n\n<i>“Ah, oh, nevermind,”</i> she says, distracted by something else. <i>“If I may say, I do hope that you don’t.”</i>");
+	output("\n\n<i>“Ah, oh, never mind,”</i> she says, distracted by something else. <i>“If I may say, I do hope that you don’t.”</i>");
 	output("\n\nDon’t? Don’t what? You ask her what she means.");
 	output("\n\n<i>“You must know, if I know then you must know, surely! You see?”</i> She gestures erratically with her left hand to the shop’s entrance.");
 	output("\n\nThere’s nothing there.");
@@ -277,6 +277,7 @@ public function topicModsSeer():void
 	output("\n\nWhat?");
 	
 	processTime(3);
+	CodexManager.unlockEntry("Mothrine");
 	
 	talkSeerMenu();
 	addDisabledButton(2, "Odd Mods");
@@ -363,7 +364,7 @@ public function loungeWakeAgainSeer():void
 	clearMenu();
 	
 	output("Your eyes flutter open.");
-	output("\n\nYou’re standing on a path. Where is this, Gildenmere? Right, right. You were here for... something. Something that made you apprehensive. Finding dad’s probes! Or was it... ah, nevermind.");
+	output("\n\nYou’re standing on a path. Where is this, Gildenmere? Right, right. You were here for... something. Something that made you apprehensive. Finding dad’s probes! Or was it... ah, never mind.");
 	output("\n\nYou take a look at your surroundings. Oh there’s a shop here!");
 	output("\n\n<i>“The En-tite...?”</i> You say out loud. <i>“Wait...”</i>");
 	output("\n\nCurious, your memory wants to tell you that you’ve been inside before. Well, it’s not like you had anything better to do! Or did you...");
@@ -487,7 +488,7 @@ public function yesSexSeer():void
 	pc.maxOutLust();
 	
 	output("You say yes: Although your memory is hazy of the experience, something is compelling you to give in to your and her desires.");
-	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of you [pc.gear] and stash it all under the geometrically patterned table.") + "");
+	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of your [pc.gear] and stash it all under the geometrically patterned table.") + "");
 	output("\n\nThere’s a tap on your shoulder.");
 	output("\n\nAs you turn, you see that same sight that took the breath out of you before...");
 	output("\n\nThe nude, tattooed shopkeeper has her tentacles outstretched, their slick surfaces sliding and twisting together and apart in a frenzy. Her mouth hangs open and her ‘tongue’ undulates and writhes outwards like a semi-sentient entity" + (silly ? " HE SAID IT, HE SAID IT" : "") + ". You can see her E-cup chest heave and bounce as they too unleash their payload of nipple tentacles.");
@@ -526,7 +527,9 @@ public function tentaSeer():void
 	else output("\n\nThe slimy, slippery sensations shift from random points all over your flesh and begin to center on your [pc.vagina]. Smooth, writhing appendages tease, tickle and pull at your [pc.cunt], the [pc.vaginaColor] labia getting tickled, tugged and probed! You feel something prodding your [pc.asshole] and you reflexively tense up all over");
 	output("\n\nAll at once, you feel the weight of her penetration: Two tongue-wranglers filling your mouth up to its limits with their goal being your throat" + (pc.hasVagina() ? ", another thick, slick appendage diving straight into your [pc.pussy] without restraint" : "") + " and one other tentacle pressing, pushing and penetrating painfully into your [pc.asshole]!");
 	output("\n\nThe worst feeling is that they hold in place: As soon as they’ve entered you in sync, the Seer has them coiled and twisted inside you! They could become active again at any second...");
-	output("\n\nThe Seer’s face is something of a manic smile, those amber eyes seemingly blaze with lustful, baleful intent. Aside the twitchy movement of her monstrous limbs, she makes no movement at all.");
+	output("\n\n");
+	showImage("seerTentadom");
+	output("The Seer’s face is something of a manic smile, those amber eyes seemingly blaze with lustful, baleful intent. Aside the twitchy movement of her monstrous limbs, she makes no movement at all.");
 	output("\n\nWithout any warning, the tentacles in and around you begin to twist, slide and <i>squirm</i> like ravenous worms. " + (pc.hasCock() ? "The one squeezing and pumping your [pc.cock] keeps it ensnared to a painfully erect angle, the [pc.cockHead] being teased and probed by the tentacle’s tip. " : "") + "You can’t even scream or call out, your mouth and throat are so stuffed with writhing purple flesh that it’s physically painful to even try! Breathing is an intense game of cat and mouse. Your insides feel like they’re being bent and filled in at alarming speeds. You catch a glimpse of your [pc.belly]... did it just bulge?! Did it just feel <i>really good</i> when it did?!");
 	output("\n\nAs if sensing this, the Seer leans in closer and closer until all you can see is the glow of her eyes. She says nothing, yet you can <i>feel</i> her thoughts and words echoing through your mind.");
 	output("\n\n<i>Love it</i>");
@@ -542,6 +545,31 @@ public function tentaSeer():void
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
 	output("\n\nThe Seer takes a wobbly step back, her foot leaving your chest and her squirming tendrils sliding ever so slowly out of the various holes in your body. As soon as her alien tentacles leave you, watery fluids leak and burble from your [pc.lips]" + (pc.hasVagina() ? ", [pc.pussy]" : "") + " and [pc.asshole]. You can’t even think to clear it away, so absolutely burned out is your body.");
+	
+	var ppEntite:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppEntite.hasCock()) ppEntite.createCock();
+	ppEntite.shiftCock(0, GLOBAL.TYPE_TENTACLE);
+	ppEntite.cocks[0].cockColor = "purple";
+	ppEntite.cocks[0].cLengthRaw = 18;
+	ppEntite.cumType = GLOBAL.FLUID_TYPE_CUM;
+	ppEntite.createPerk("Fixed CumQ", 1000, 0, 0, 0);
+	
+	if(pc.hasCock())
+	{
+		pc.cockChange();
+	}
+	if(pc.hasVagina())
+	{
+		for(var v:int = 0; v < pc.vaginas.length; v++)
+		{
+			pc.cuntChange(v, ppEntite.cockVolume(0));
+			pc.loadInCunt(ppEntite, v);
+		}
+	}
+	pc.buttChange(ppEntite.cockVolume(0));
+	pc.loadInAss(ppEntite);
+	pc.loadInMouth(ppEntite);
+	
 	output("\n\n<i>More</i>");
 	output("\n\nMm... more?");
 	
@@ -621,12 +649,14 @@ public function lezSeer2():void
 	showSeer(true);
 	clearMenu();
 	
-	output("\n\nThrough the peripheral view below you, you see the Seer’s tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
+	output("Through the peripheral view below you, you see the Seer’s tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
 	if (pc.hasTailGenital()) output("\n\nYour " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is ensnared in sync: a fleshy, slimy appendage squeezes and teases against its sensitive surface.");
 	output("\n\nHer tenta-nips completely engorge themselves on your " + (pc.hasDickNipples() ? "[pc.nipples]" : "[pc.milkyNipples]") + ". It appears there’s a hidden orifice nestled in between her nipple-feelers and they’re warm, comforting confines pleasure your nerves and [pc.nipples] to no end.");
 	output("\n\nIn one final demonstration of her complete physical control over your body, a thick squirming tentacle pushes itself without hesitation into your [pc.pussy]! It slithers and grinds against the soft, sensitive flesh inside you like some primordial monster!");
 	output("\n\n<i>“Mmmffuhhuf!”</i> You try to scream, yet your mouth is so full of tongue that nothing comes out. The Seer slows her oral onslaught as you do...");
-	output("\n\n<i>Watch</i>. A thought that’s not yours echoes from all angles in your mind. Looking down, you just about see through the double cleavage of tentacle ensnared breasts that the Seer is <i>also</i> penetrating her tight, puffy pussy with her own appendage! This must be her idea of ‘mutual’...");
+	output("\n\n");
+	showImage("seerLezDom");
+	output("<i>Watch</i>. A thought that’s not yours echoes from all angles in your mind. Looking down, you just about see through the double cleavage of tentacle ensnared breasts that the Seer is <i>also</i> penetrating her tight, puffy pussy with her own appendage! This must be her idea of ‘mutual’...");
 	output("\n\n<i>I feel</i>. Another thought, one that vibrates through your skull. The mouth-lock becomes increasingly loose as the Seer grinds and humps against your [pc.belly]. The writhing meat that fills your already-brutalized throat and [pc.cunt] becomes even more slippery and frenzied as if searching for every possible pleasure zone that exists within your body. ");
 	output("\n\nFuck, that feels amazing...! Even through this tentacled subjugation, your body is in love with being completely taken over by a mass of tentacles. Your [pc.chest] tingles with heat and sensation as it is unrelentingly squeezed, squished, and sucked on by the Seer’s tenta-nipples; your [pc.pussy] invaded and fucked like a well-used toy. " + (pc.hasTailGenital() ? ("Your " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is left unused, constantly teased by random fleshy feelers.") : "") + " Finally, with your mouth and [pc.tongue] having been the first barrier to fall, your resistance is crushed...");
 	output("\n\n<i>Together</i>. One more resounding thought reverberates through your mind, its decaying echoes flow through your bones all the way to your [pc.legs].");

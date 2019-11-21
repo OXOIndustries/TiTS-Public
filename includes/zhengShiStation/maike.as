@@ -1,5 +1,3 @@
-import classes.Items.Treasures.SpacesuitHelmet;
-import classes.Items.Apparel.Slavesuit;
 //Running into Maike in the mines
 //By SoAndSo
 //Mostly coded by Fenoxo Fenbutte
@@ -12,7 +10,7 @@ public function pcHasSlaveOutfit():Boolean
 public function showMaike(nude:Boolean = false):void
 {
 	showName(flags["TIVF_MAIKE_TALK"] == 1 ? "OVERSEER\nMAIKE":"\nOVERSEER");
-	showBust("MAIKE" + nude ? "_NUDE":"");
+	showBust("MAIKE" + (nude ? "_NUDE":""));
 }
 
 public function maikeEncountered():Boolean
@@ -51,6 +49,11 @@ public function maikeEncounterFun():Boolean
 			addButton(0,"Next",ohShitEncounterMaike);
 			return true;
 		}
+		if(flags["MAIKE_SLAVES_RELEASED"] == -1)
+		{
+			output("\n\n<b>Maike’s remote is on the ground where you left it. You could still free the slaves, if you wished.</b>");
+			addButton(0,"Release Slaves",lateSlaveRelease,undefined,"Release Slaves","You can unlock the slaves’ obedience collars. They’d certainly like it, but it might piss off some of the pirates. Then again, the extra trouble might keep them out of your hair.");
+		}
 	}
 	else
 	{
@@ -62,6 +65,18 @@ public function maikeEncounterFun():Boolean
 		output("\n\nYour eyes are drawn to the lighting fixtures and you’re a little taken aback by just how high up they are. Must be at least as high as the pit is wide!");
 	}
 	return false;
+}
+
+public function lateSlaveRelease():void
+{
+	clearOutput();
+	author("SoAndSo");
+	flags["MAIKE_SLAVES_RELEASED"] = 1;
+	output("Well, the lives of many before the few. Without a second thought, you press the big red button that looks like it shouldn’t be pressed.");
+	output("\n\nAlthough subtle, there’s a chorus of disbelief echoing from the mine shafts and the sounds of metal clinking against rock. The slaves of the pit quickly scamper to some unknown, unseen exit below and all that clinking metal from before falls silent.");
+	output("\n\n<b>The mines are about to get a lot more interesting...</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Oh Shi-
@@ -171,7 +186,7 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“Oh, is that hard enough for you, mmm? I can tell you’re <b>new</b> if you’re giving in that easily,”</i> she mocks with a sardonic grin. She even pulls a faux-pout and shakes her head at you. <i>“Mwaaah, the big bad Overseer is putting me in my place, waaah.”</i>");
 	output("\n\nYou try to kick and flail at her other leg but hit only the bony plates covering the sides. Your efforts are met with the most indulgent and devilish of giggles.");
 	output("\n\n<i>“Yesss, there’s fire in you! And here I was thinking to throw you off of the walkway here and now,”</i> she laughs and you’re promptly thrown back to the ground.");
-	output("\n\nYou’re barely given time to breath as you’re hoisted up to a wobbly standing stance by the scruff of your neck.");
+	output("\n\nYou’re barely given time to breathe as you’re hoisted up to a wobbly standing stance by the scruff of your neck.");
 	output("\n\n<i>“You’re going to go <b>back</b> to where you came and then up to the main elevator. I’ll <b>know</b> if you deviate. There will be nowhere that I can’t find you, nowhere for you to hide and shirk your reason for living,”</i> she growls from behind with her grasp pulling you down by the back of your head. <i>“You will learn that Overseer Maike <b>owns you</b>.”</i>");
 	output("\n\nWith that, her hand swiftly darts to your neck with some sort of semi-circle in its grip. Maike slams it against your throat and at once, a tight metallic ring snaps around your neck! The laughing slaver pushes you away from her and you stagger forwards on your shaky [pc.footOrFeet].");
 	output("\n\n<i>“Hurry hurry! If you stay on course, the mining bots won’t find you, ahahaha!”</i>");
@@ -187,13 +202,13 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“Up!”</i>");
 	output("\n\nYou’re harshly yanked back to your [pc.feet] with the shakiest footing in recent memory. There’s barely enough endorphin relief to keep you stable but pure inner fire keeps you standing.");
 	output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 	output("\n\n<i>“<b>What</b> are you standing around for? Go, go!”</i>");
 	output("\n\nA violently swift whip-crack snaps against your shoulder!");
 	//(pc takes 20 lust damage)
-	applyDamage(new TypeCollection( { tease: 20 } ), new Maike(), pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 20 } ), chars["MAIKE"], pc, "minimal");
 
-	output(" Taking the hint, you rush back to the mouth of the walkway, watching the moth-like slaver take flight with unnatural, graceful ease into the dark reaches above. You’re not sure you want to hang around...");
+	output("\n\nTaking the hint, you rush back to the mouth of the walkway, watching the moth-like slaver take flight with unnatural, graceful ease into the dark reaches above. You’re not sure you want to hang around...");
 	output("\n\n<b>Better get to that elevator!</b>");
 
 	//[Leave]
@@ -313,7 +328,7 @@ public function fuckUpWithMaikeAnGetForceyed():void
 		output("\n\nHer tail tip swings around to within inches of your [pc.face]. With a visceral snap, its pale-green plates spread apart to reveal what’s within: a pointed, pre-dripping tailcock. Your eyes widen at the orchid-like display and it very quickly dawns on you where this might be going...");
 		output("\n\n<i>“Pent up.”</i>");
 		output("\n\nA spontaneous spurt of silver-white breeder’s syrup splatters against the ground before you. Hot flecks of the stuff scour your [pc.face] with their potent contents and you shy away from the sordid display." + (silly ? " NotLikeThis!":""));
-		output("\n\n<i>“Eugh, <b>now</b> you show some spirit. Spirit does little, I’m afraid,”</i> gloats the alien moth as she pins your left arm under her other foot. You wince as the pressure feels like it doubles against your frame but it’s not quite enough to prevent you from breathing. The claw tightens and grips into to your [pc.skinFurScales] with raptor-grade strength. If those talons were any sharper, your arm could be torn off...");
+		output("\n\n<i>“Eugh, <b>now</b> you show some spirit. Spirit does little, I’m afraid,”</i> gloats the alien moth as she pins your left arm under her other foot. You wince as the pressure feels like it doubles against your frame but it’s not quite enough to prevent you from breathing. The claw tightens and grips into your [pc.skinFurScales] with raptor-grade strength. If those talons were any sharper, your arm could be torn off...");
 		output("\n\n<i>“Open wiiide.”</i>");
 		output("\n\nThe pointed head of her tail-cock lances for your [pc.lips] and pushes insistently against them. You twist and turn your head in all directions but the snaking organ is one step ahead! In an instant, the head dives through your oral resistance and blitzes down your throat. The petal-plates of the slavers tail clamp harshly around your mouth and [pc.face], securing the seal. Your instinctual scream is muffled out completely by a twisting, writhing snake of a tail-cock that fills out your gullet in seconds. All you can think of is to breathe but this impossibly hot weight in your body is trying its hardest to fill you up!");
 		output("\n\n<i>“Nnngggthat’s the <b>good</b> shit! I’ll use your body for all its worth, mark you as mine to all the other slavers!”</i> growls Maike from on high.");
@@ -382,7 +397,7 @@ public function maikeFucksYaUpPart2():void
 	if(flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined)
 	{
 		output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 		output("\n\n<i>“Now off you go or else I’ll to throw you into the pen with nothing but that collar on. All those broken spirits, so aggressive and horny all in one place... I can only imagine what ravenous minds would do to <b>this</b> body,”</i> she hisses into your ear before pushing you towards the walkways exit.");
 
 		//pcHasVagina, NoCock:
@@ -398,7 +413,7 @@ public function maikeFucksYaUpPart2():void
 
 		output("\n\nShe gives you one last whipcrack to see you off.");
 		//whip dammu.
-		applyDamage(new TypeCollection( { tease: 20 } ), new Maike(), pc, "minimal");
+		applyDamage(new TypeCollection( { tease: 20 } ), chars["MAIKE"], pc, "minimal");
 		processTime(13);
 	}
 	//pcDid[Pen]:
@@ -450,22 +465,30 @@ public function bonusCollarAndHelmetHandouts():void
 	clearOutput();
 	showName("\nSUCCESS!");
 	output("The collar placed around your neck tingles dangerously. <b>You’ll be unable to recover HP or energy from resting so long as it is equipped, owing to the <i>motivating</i> shocks.</b>");
-	if(!(pc.accessory is EmptySlot)) output(" Your old accessory is unequipped.");
-	output("\n\n");
-	if(!(pc.accessory is EmptySlot)) 
+	
+	var newAccessory:ItemSlotClass = new MaikesCollar();
+	var itemList:Array = [];
+	if(pc.hasAccessory())
 	{
-		quickLoot(new SpacesuitHelmet(), pc.accessory);
+		output(" Your old accessory is unequipped.");
+		var oldAccessory:ItemSlotClass = pc.accessory;
+		oldAccessory.onRemove(pc);
+		itemList.push(oldAccessory);
 		pc.accessory = new EmptySlot();
 	}
-	else 
+	if(flags["MAIKE_HELMET_TAKEN"] == undefined)
 	{
-		if(flags["MAIKE_BLUFF_PEN"] == undefined) 
-		{
-			quickLoot(new SpacesuitHelmet());
-			flags["MAIKE_HELMET_TAKEN"] = 1;
-		}
+		flags["MAIKE_HELMET_TAKEN"] = 1;
+		itemList.push(new SpacesuitHelmet());
 	}
-	pc.accessory = new MaikesCollar();
+	if(itemList.length > 0)
+	{
+		output("\n\n");
+		itemCollect(itemList);
+	}
+	
+	pc.accessory = newAccessory;
+	newAccessory.onEquip(pc);
 	
 }
 
@@ -500,7 +523,7 @@ public function fuckYouMaike():void
 	//pcTech:
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
-		output("\n\nHitting a panic button on your codex, your shield crackles with a kinetic pulse and the unawares slaver is knocked several feet into the air! She very quickly manages to gain stability mid-flight and hovers high above you.");
+		output("\n\nHitting a panic button on your codex, your shield crackles with a kinetic pulse and the unaware slaver is knocked several feet into the air! She very quickly manages to gain stability mid-flight and hovers high above you.");
 		output("\n\nYou quickly get to your feet and draw your");
 		if(pcHasSlaveOutfit()) output(" cleverly stowed");
 		output(" [pc.weapon].");
@@ -594,7 +617,7 @@ public function continueMaikeVictoryChoices():void
 }
 
 //Quick Anal
-//Requires strapon or a cock less than 22’’ long and less than 4’’ wide, greyed out otherwise. Orgasm event.
+//Requires strapon or a cock less than 22" long and less than 4" wide, greyed out otherwise. Orgasm event.
 //tooltip: Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your {/pcOnlyStrapon: fake-}junk. {/pcTooBig: Actually, it looks like what you got couldn’t fit in that ass. Shit.}
 //USE COCK ROUTAH
 public function quickMaikeAnal(x:int):void
@@ -620,7 +643,7 @@ public function quickMaikeAnal(x:int):void
 	var cLength:Number = 9;
 	if(x >= 0) cLength = pc.cocks[x].cLength();
 	if(x == -1) output("<i>“Hardlight...? Needs must, I guess,”</i>");
-	//pcCock<7’’:
+	//pcCock<7":
 	else if(cLength < 7) output("<i>“Mm, thank the sun that you’re not using a can opener for a cock, even if you could do with a bit... more,”</i>");
 	else if(cLength < 13) output("<i>“Ooo, packing back there. I hope you know how to go <b>deep</b> and not just hard,”</i>");
 	else output("<i>“Oh fucking... why is every spacer packing so much meat these days? You better be... nice...”</i>");
@@ -647,7 +670,7 @@ public function quickMaikeAnal(x:int):void
 
 	output("\n\nYour [pc.belly] tingles as her tail unfurls and wraps around your middle with a gentle, smooth motion. The flowering tip of her tailcock dribbles with yet more seed and you become strangely hooked with the bulging, visceral squirt of the stuff with every pump and hump you make. You’re compelled to rub the comfortably warm snake of her tail while keeping your other hand on her cheek. On top of deep-fucking her hole so that your [pc.hips] always <i>smack</i> against her juicy tush, you massage the cheeks one at a time to temper the sensitive flesh with a gentle set of fingers.");
 
-	output("\n\nA dirty, <i>filthy</i> thought comes up: just how much can you squeeze out of her at once? You pause mid-thrust and then lean your weight on the bent over moth, sinking your [pc.cockOrStrapon " + x + "] as deep as it can go. Naturally, she pushes back against it, some hint of resistance still flaring in her head. However, you’re up here and she’s down there... inevitably, her back curves in as your insistent pressure squeezes against her sensitive body. In a chorus of algedonic wails, the slavers tail shoots a thick, bulging streak of her hot seed across the ground, far thicker and juicier than the gooey steam it’s been spewing before. You can help but laugh to yourself as you realise just how much control you have with your hips.");
+	output("\n\nA dirty, <i>filthy</i> thought comes up: just how much can you squeeze out of her at once? You pause mid-thrust and then lean your weight on the bent over moth, sinking your [pc.cockOrStrapon " + x + "] as deep as it can go. Naturally, she pushes back against it, some hint of resistance still flaring in her head. However, you’re up here and she’s down there... inevitably, her back curves in as your insistent pressure squeezes against her sensitive body. In a chorus of algedonic wails, the slavers tail shoots a thick, bulging streak of her hot seed across the ground, far thicker and juicier than the gooey steam it’s been spewing before. You can’t help but laugh to yourself as you realize just how much control you have with your hips.");
 
 	output("\n\nNow cock-deep inside, another filthy thought crosses your mind: why not keep her hilted and just <i>squeeze</i> as much as you possibly can? " + (pc.isTaur() ? "Should be easy with this body, after all. ":"") + "Now she’ll be the one to get her face buried into the dirt.");
 
@@ -676,7 +699,7 @@ public function quickMaikeAnal(x:int):void
 
 	output("\n\nYou keep her held to until your [pc.cockOrStrapon " + x + "] wilts on its own accord. With a groggy step, you pull your shaft out of Maike’s well used tailhole and sit down for a breather. You take in the messy picture of [pc.cum] and a gaping moth-hole, satisfied with your efforts in plowing ass- uhh, doing the right thing in the face of inequality, yeah that. The spread-flat, panting form of the moth-domme barely moves save for a few limp flicks of her wings and tail. By her side is the syrupy thick pool of her pure-white seed: must be a good two or three gallons going on there...! She really <i>was</i> pent up, to the point where you wonder how she was able to sit down, walk, rest easily or-");
 	output("\n\n<i>“Mmmheeeey Tivfff, where’s Tivf, Tiffy,”</i> moans the Overseer as she tries to get to her feet. <i>“Make sure he’s... okay... gotta get out of here...”</i>");
-	output("\n\nAs she lays there in a gooey mess, you consider whether you should help. Quickly though, you realise that a slaver’s still a slaver: you’re not gonna help her more than you already have. She just can just sort herself out. You re-equip your gear, then ready up.");
+	output("\n\nAs she lays there in a gooey mess, you consider whether you should help. Quickly though, you realize that a slaver’s still a slaver: you’re not gonna help her more than you already have. She just can just sort herself out. You re-equip your gear, then ready up.");
 	output("\n\n");
 	processTime(30);
 	pc.orgasm();
@@ -774,7 +797,7 @@ public function tailFeedMaike():void
 
 	output("\n\n<i>“Bottoms up,”</i> you chirp after a quick minute, carefully swinging your cum-bloated tail around to the Overseer’s gasping mouth. She can barely get a sound out before you smash that cum-slick entrance of a [pc.tailCunt] against her purple lips! Maike whines and kicks her legs against the ground as you tip her horns back, allowing a smooth, slick flow of her own seed to gush across her face and lips. Her tongue lashes against your still-sensitive folds in some instinctual effort to drink the free-flowing fluid and you swear she’s just protesting with moans to hide her dirty, debased passion.");
 
-	output("\n\nHowever, half a minute in and you realise there’s an awful lot more stuffed inside your tail than you first considered. Out of frustration, you let go of one of her horns and instead squeeze down on the gooey, internal lumps that bulge through your tails length. Each squeeze feels like some mini-orgasm that you bite down with disdain: you beat her, gotta look strong, gotta not give in. Maike’s recycled seed pools under her white-bleached chin and and one last idea pops into your head.");
+	output("\n\nHowever, half a minute in and you realize there’s an awful lot more stuffed inside your tail than you first considered. Out of frustration, you let go of one of her horns and instead squeeze down on the gooey, internal lumps that bulge through your tails length. Each squeeze feels like some mini-orgasm that you bite down with disdain: you beat her, gotta look strong, gotta not give in. Maike’s recycled seed pools under her white-bleached chin and one last idea pops into your head.");
 
 	output("\n\n<i>“Didn’t <b>finish</b>, bitch,”</i> you grunt as your force her face into the puddle with a push on her horns. <i>“Eat it!”</i>");
 
@@ -857,7 +880,7 @@ public function maikeNextThing():void
 	}
 
 	//[Exit]*
-	//*PC gains x1 Space Helmet (if not recieved before), x1 Hand Repulsor and x1 Illumorpheme.
+	//*PC gains x1 Space Helmet (if not received before), x1 Hand Repulsor and x1 Illumorpheme.
 	currentLocation = rooms[currentLocation].southExit;
 	CombatManager.genericVictory();
 }
@@ -908,7 +931,7 @@ public function losingToMaikeHereWeGo2():void
 	output("\n\n<i>“Slave, wake up. Do. You. Have. A. Naaaaame?”</i> asks the feminine voice. You can’t see much other than a... hehe, a great big pair of tits. Big and blue. With twinkly bits.");
 	output("\n\nYou simply laugh in spite of the sting that’s left across your [pc.face].");
 	output("\n\n<i>“I think [pc.heShe]’s out for the count, Mistress. Shall I continue?”</i>");
-	output("\n\n<i>“Oh yes, definitely. I’ll shuffle [pc.himHer] under ‘unclaimed’, not really interested in keeping this one after all. Cuz I’ve got yooooooou, bee boy,”</i> giggles the feminine voice followed by the sounds of a rather aggressive sounding kiss. Your eyes just about make out two fuzzy figures embraced and a very hands-on fondle: one short and yellow, one much taller and bluish purple. Both have wings... if you ever knew who they were, you mind isn’t willing to play along. Maybe you knew there names, maybe you knew... your name...");
+	output("\n\n<i>“Oh yes, definitely. I’ll shuffle [pc.himHer] under ‘unclaimed’, not really interested in keeping this one after all. Cuz I’ve got yooooooou, bee boy,”</i> giggles the feminine voice followed by the sounds of a rather aggressive sounding kiss. Your eyes just about make out two fuzzy figures embraced and a very hands-on fondle: one short and yellow, one much taller and bluish purple. Both have wings... if you ever knew who they were, you mind isn’t willing to play along. Maybe you knew their names, maybe you knew... your name...");
 	output("\n\n<i>“Mmm, hands here Tiffy, gentle...”</i>");
 	output("\n\n<i>“YesmmmMistressmmm...!”</i>");
 	output("\n\nFrom nowhere, you take another slap to the cheek. It stings much more than before or maybe the cloudy euphoria is weaker. The hands and movements of the two figures appear clearer and more defined, elegant and distracting.");
@@ -930,7 +953,7 @@ public function losingToMaikeHereWeGo2():void
 	output("\n\n<i>“Ohoooo, yes, the mouth! [pc.heShe] is very good, verrrry good,”</i> chimes the bee boy as he openly gropes his bulge.");
 	output("\n\nYour vision clears up enough to take in the full view of what you’re seeing. The gold-and-black bee holds his fingers to his lips as he yanks and fiddles with a burgeoning stiffy, the skin-tight bottoms covering his cutesy bulge being all too easy for him to just slip out from.");
 	output("\n\n<i>“There’s my big boy, ready for a royal suck,”</i> giggles the much larger moth-queen as she reaches around his girly, curvy hips and takes over fondling duty. ");
-	output("\n\n<i>“Mmmmuhmistressmmm,”</i> is all the willowy bee murmurs as she steals his painted lips with hers. In her expert hands, his golden boy-cock throbs into its full stride to a tasty 5’’ and gets its full fill of her skill with each pump. Satisfied with how ready her sub is, the blue moth guides him forward and lines him up with your [pc.lips]. On his own accord, he sinks his girlish hips forwards and spreads your mouth apart with his pulsing rod. You’re in much to addled a state to say anything but even so, the gentle push and alien flavor is more like an invitation to suck than anything. His hands come to rest on your cheek and [pc.hair] which helps him balance as he slides his his boyshaft all the way to the hilt with a little ‘Iiihh!’ sound. You keep your eyes focused on his blushing face all the while, innately wishing to please this cute little intruder.");
+	output("\n\n<i>“Mmmmuhmistressmmm,”</i> is all the willowy bee murmurs as she steals his painted lips with hers. In her expert hands, his golden boy-cock throbs into its full stride to a tasty 5\" and gets its full fill of her skill with each pump. Satisfied with how ready her sub is, the blue moth guides him forward and lines him up with your [pc.lips]. On his own accord, he sinks his girlish hips forwards and spreads your mouth apart with his pulsing rod. You’re in much to addled a state to say anything but even so, the gentle push and alien flavor is more like an invitation to suck than anything. His hands come to rest on your cheek and [pc.hair] which helps him balance as he slides his his boyshaft all the way to the hilt with a little ‘Iiihh!’ sound. You keep your eyes focused on his blushing face all the while, innately wishing to please this cute little intruder.");
 	output("\n\n<i>“Good <b>boy</b>,”</i> grunts the moth as she penetrates his tight trap-hole with her thumb. He squeals aloud as his plump butt is explored by his moth-mistress and a dribbly spurt of pre-cum hits the back of your mouth. You find that the moth-femme is now at eye level and she grins at you with her devilish visage. She licks the side of her bee’s hip with an uncomfortably long, thin tongue and you spy the claws of her penetrating hand cupping and fondling his tight trap-sack from underneath.");
 	output("\n\nNow in several different clutches, the bee-trap has no choice but to hump your [pc.face]. With his hands gripping your head, he pushes and pulls you backwards and forwards with immediacy. His soft head constantly hits the back of your [pc.tongue] as he works your mouth like a pro, almost as if he had owned you for years and knew how your body works. His little gasps and moans dot with squeaks as his leering mistress hits a sensitive spot deep in his boyhole, treating you to a tiny spurt of his salty-sweet honey cream each time. You do your best, of course: [pc.lips] squeeze against his veiny shaft and you can’t help but murmur in delight as his head slides so cleanly and smoothly against your [pc.tongue]. Mmmm, cooooooock...!");
 	output("\n\nThe bee’s shaft massages your tongue with such a regular rhythm that deep down inside, you just wish it was another breeding hole. <i>Feeling</i> such a nice, tasty tool fill your mouth-cunt is a fantasy so wild you become lost to it while he and his mistress thrust into you.");

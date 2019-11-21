@@ -76,7 +76,7 @@ public function slavePenTivfTalk():void
 	output("\n\n<i>“Any way to get them out?”</i>");
 	output("\n\nTivf shakes his head. <i>“No, no... Mistress Maike would punish you horribly if you did! And me too, just for knowing you! Besides, you can’t possibly open the pen without her. She carries the only key with her at all times, even when she bathes or uses my talents. All the slaves within the mine level are her responsibility, and I think her war-chief would punish </i>her<i> very badly if there were any problems with the mine. The slaves, I don’t think they care so much about, but whatever it is within this place that Mistress Maike is having the labor slaves dig up seems to be exceptionally valuable to her masters.”</i>");
 	output("\n\nOut of... idle curiosity... you ask what would happen if the slaves all got loose.");
-	output("\n\nThe zil boy stares up at you with big, black eyes. <i>“Oh, they could never! The Mistress keeps the door locked unless she has her metal men with her. And even if they did get out, the prisoners have no weapons to match the metal men, to say nothing of the pirates! If someone were to free them, it would a great fight, like in the epics my mother used to sing! But I fear it would be a short, one-sided battle without starfarer weapons.”</i>");
+	output("\n\nThe zil boy stares up at you with big, black eyes. <i>“Oh, they could never! The Mistress keeps the door locked unless she has her metal men with her. And even if they did get out, the prisoners have no weapons to match the metal men, to say nothing of the pirates! If someone were to free them, it would be a great fight, like in the epics my mother used to sing! But I fear it would be a short, one-sided battle without starfarer weapons.”</i>");
 	output("\n\nMaybe if you got Maike’s card key somehow... and just so happened to find a cache of weapons somewhere...");
 	output("\n\nFood for thought, you guess.");
 	processTime(8);
@@ -126,9 +126,11 @@ public function maikeRestOverride():void
 	clearOutput();
 	output("Since the overseer isn’t around, her quarters seem like a perfectly safe place to catch your breath. You saunter over to her huge bed and help yourself to its many pillows and silken sheets.");
 	//if slaves freed:
-	if(flags["MAIKE_SLAVES_RELEASED"] == 1)
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined || flags["MET_TIVF"] == undefined)
 	{
-		output("\n\nYou quickly fall asleep, confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy...");
+		output("\n\nYou quickly fall asleep");
+		if(flags["MAIKE_SLAVES_RELEASED"] == 1) output(", confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy");
+		output("...");
 		
 		clearMenu();
 		addButton(0,"Next",tivfSleepTime,7*60);

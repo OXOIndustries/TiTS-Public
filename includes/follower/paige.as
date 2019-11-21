@@ -35,6 +35,9 @@ public function yogaToning(arg:Number):void
 	pc.modTone(arg);
 	if(flags["PAIGE_YOGA_DAY"] == undefined || flags["PAIGE_YOGA_DAY"] != days) flags["PAIGE_YOGA_DAY"] = days;
 	soreDebuff(4);
+	//This should do nothing if Paige isn't crew
+	if (!pc.hasStatusEffect("Paige Showering")) pc.createStatusEffect("Paige Showering");
+	pc.setStatusMinutes("Paige Showering", 12 * 60);
 }
 
 public function paigeBlind():Boolean
@@ -129,7 +132,7 @@ public function yogaIntro():Boolean
 	}
 	if(paigeIsCrew())
 	{
-		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you recall that Paige is unable to hold her seminars while she is employed as a crewmember of your ship!");
+		output("You approach Paige’s Yoga Class & Seminar, but with the door locked and the closed sign, you recall that Paige is unable to hold her seminars while she is employed as a crew member of your ship!");
 		if(hours >= 17 || (hours < 17 && flags["SEXED_PAIGE"] != undefined && hours < 9)) output(" You may be able to find her taking a break at her house, however.");
 		return false;
 	}
@@ -199,7 +202,7 @@ public function yogaIntro():Boolean
 				output("\n\nYou hear some voices coming from inside, along with the general noise of movement. You gingerly twist the knob and open the door, showing yourself uninvited into the classroom.");
 				output("\n\n<i>“Now, point your toes,”</i> you hear a woman say, <i>“as straight as you can, and keep your back straight at a perpendicular angle. Now, grip onto your knees without bending any part of your body. We call this pose the ‘Boat.’”</i>");
 				output("\n\nThe class consists of about twelve other patrons of all different shapes, species, body-types, and genders. Some of them are veteran yoga practitioners, flexing into the pose easily, while others are having some difficulty, struggling to maintain their position.");
-				output("\n\nA tall Ausar woman walks between her students silently. When she passes one of them that’s having difficulty, she kneels beside them, feeling her hand across the student’s legs, pausing where their knees bend. <i>“It’s alright,”</i> she says reassuringly, placing a hand beneath the bend leg and straightening it. <i>“It’s not the easiest pose. You’ll get it if you keep at it.”</i>");
+				output("\n\nA tall Ausar woman walks between her students silently. When she passes one of them that’s having difficulty, she kneels beside them, feeling her hand across the student’s legs, pausing where their knees bend. <i>“It’s alright,”</i> she says reassuringly, placing a hand beneath the bent leg and straightening it. <i>“It’s not the easiest pose. You’ll get it if you keep at it.”</i>");
 				output("\n\nYou clear your throat, still standing in the doorframe. The Ausar woman stands up and faces you. She has dirty brown hair with streaks of black through her mane, and she has perky, triangular, wolfish ears pointing straight up a whole twelve centimeters from her scalp. Attached to her right ear is an earpiece with a small antenna extending to her eyes – likely a microphone of some kind. She’s wearing a sleeveless, flexible jumper vest on her torso and a pair of yoga shorts covering her waist, then nothing down to her toes. Her fur is coloured brown, like her hair, and she has black and white splotches all throughout her body. Unlike a typical Ausar, her entire body is covered head-to-toe in fur, like some modded humans, and she has the appropriately elongated face to match. She has a long, bushy-but-not-fluffy tail, all black fur on top and all beige-brown on the bottom, reaching to just above her tendons. Even though she’s across the room, you can tell just how stunningly blue her eyes are when they meet yours.");
 				output("\n\nFloating around the room is a monitor, displaced in the air by a glowing, thrumming device. On the monitor is a disarming, cutesy picture of a face, drawn with cartoonish eyes and a tiny mouth. It’s silent as it goes between practitioners; it stops at one and whispers to them to straighten their knees and elbows, then displays an image of the position’s proper form. Maybe it’s some kind of assistant for the teacher? A literal, mechanical teacher’s pet?");
 				output("\n\nYou introduce yourself and say that you’re interested in giving the class a try. <i>“Of course!”</i> she says. <i>“");
@@ -222,6 +225,7 @@ public function yogaIntro():Boolean
 			// if the PC attempts to enter the yoga class after having done one class earlier that day (scene: invalid attendance)
 			if(flags["PAIGE_YOGA_DAY"] != undefined && flags["PAIGE_YOGA_DAY"] == days)
 			{
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 
 				output("\n\nYou respond your greeting. At that, Paige gets up, spinning towards you. <i>“[pc.name]?”</i> she asks. <i>“No no, I’m afraid you’ve already had your session today, sweet thing. You mustn’t do another!”</i>");
@@ -238,6 +242,7 @@ public function yogaIntro():Boolean
 			}
 			else if(paigeRecruited())
 			{
+				showImage("PaigeYoga");
 				output("You show yourself into Paige’s yoga classroom and are greeted by the all-too-familiar sight of Paige personally instructing a student on how to hold their form properly. It’s a little nostalgic for you – it seemed like just yesterday when you first walked into her class and introduced yourself. You two have come an awfully long way.");
 				output("\n\nPaige looks up from her student, her eyes locking onto yours, and she smiles brightly. <i>“Hey there, [pc.name],”</i> she calls, snickering a little bit at the fact that she doesn’t have to call you ‘captain’ while she’s on shore-leave. <i>“It’s good to see you here! Are you interested in joining my class today? You know what to do if you are.”</i>");
 				output("\n\nYou consider it.");
@@ -266,6 +271,7 @@ public function yogaIntro():Boolean
 			// any valid lesson; PC has 19 credits or less (scene: invalid credits)
 			else if(pc.credits < 20)
 			{
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 				output("\n\nYou respond with your greeting. <i>“Oh, hello [pc.name]!”</i> she says, standing to greet you properly. <i>“You’re right on time for our next lesson! Just take an open mat anywhere.”</i>");
 				output("\n\nThe monitor floats silently at the front of the room, quietly watching some of the practitioners. When your eyes meet its wide, colourful, cartoony eyes, you hear the faintest of beeps from its speakers.");
@@ -281,6 +287,7 @@ public function yogaIntro():Boolean
 			else if(flags["PAIGE_YOGA"] == undefined)
 			{
 				pc.credits -= 20;
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 				output("\n\nYou respond with your greeting. <i>“Oh, hello [pc.name]!”</i> she says, standing to greet you properly. <i>“You’re right on time for our next lesson! Just take an open mat anywhere.”</i>");
 				output("\n\nYou strip off your effects and do as instructed, taking an open mat nearer to the front of the class. You notice that the monitor from the other day is now at the front of the classroom, its disarming eyes quietly watching the room. <i>“The position we’re doing now is called the ‘staff.’ Sit on your bum and stretch your legs directly in front of you, toes up. Be sure to keep your back straight, and place your palms flat on the floor by your sides.”</i>");
@@ -298,6 +305,7 @@ public function yogaIntro():Boolean
 			{
 				pc.credits -= 20;
 				flags["PAIGE_YOGA"] = 3;
+				showImage("PaigeYoga");
 				output("You enter Paige’s yoga classroom once more. The familiar scene of the mats of the room occupied by other practitioners taking a difficult-looking pose greets you once again. You can see Paige closer to the front, helping out another student in keeping their elbows straight, and off in the distance is the monitor, gently reminding another student to keep their toes pointed straight.");
 				output("\n\nYou’ve been here enough times to not need the instruction to remove your effects. Paige and the monitor both glance in your direction for a moment. <i>“[pc.name], good to see you!”</i> says Paige. <i>“Not that I was to presume anything, but I’m sure you’re here for another lesson?”</i> When you confirm, you hear a beep from your codex, and you know you’ve been deducted the regular twenty credits.");
 				output("\n\nYou take a position at an open mat, and you begin trying to mimic what everyone else is doing. <i>“Today we’re doing a pose called the back-bend. It’s not an advanced position, but it’ll challenge your sense of balance.”</i>");
@@ -322,6 +330,7 @@ public function yogaIntro():Boolean
 			// The PC goes to Paige’s Yoga Class any valid time it’s open, with enough credits, and after scene: intro 3 is completed (scene: Difficulty Select 1)
 			else
 			{
+				showImage("PaigeYoga");
 				output("You show yourself into Paige’s Yoga class. She’s busy helping one of her other students work their way into a different position, making sure their knees are bent where they’re supposed to and that their backs are completely straight. ");
 				//if PC has completed scene: Paige 1
 				if(flags["MET_IDDI"] != undefined) output("Paige’s robotic helper Iddi");
@@ -413,7 +422,7 @@ public function yogaLesson3Cont():void
 	output("\n\nYou approach the modded Ausar non-threateningly. She doesn’t get a read on your body language at all. <i>“Good work again today, [pc.name],”</i> she tells you, smiling warmly. <i>“You’re making great progress, sweet thing. I’m looking forward to your next visit!”</i>");
 	output("\n\n<i>“Yeah, about that,”</i> you interrupt. Paige’s expression softens and her ears perk.");
 	output("\n\nYou ask her about the way she’s been conducting herself in her own classroom. Twice now, she’s shoved herself into your personal space and started touching you and pressing at you. The first time wasn’t quite so bad, and you chalked it up to her just trying to confirm good posture, but today, she was a little more... invasive than you appreciated");
-	if(pc.tone >= 50 && pc.tone <= 89) output("even if you kinda liked it");
+	if(pc.tone >= 50 && pc.tone <= 89) output(" even if you kinda liked it");
 	output(". Frankly, it wasn’t behavior you had come to expect from a professional.");
 
 	output("\n\n<i>“I’m just trying to make sure your form is correct, that’s all,”</i> she assures you, taking a submissive tone in her voice. <i>“Yoga is a very physical practice, and sometimes I need to take a more hands-on form of teaching to make sure my students don’t hurt themselves.”</i>");
@@ -857,7 +866,7 @@ public function paigeCrewToggle(recruit:Boolean = true):void
 		
 		flags["PAIGE_CREW"] = 0;
 		
-		output("\n\n(<b>Paige is no longer on your crew. You can find her again on Tavros Station.</b>)");
+		output("\n\n(<b>Paige is no longer on your crew. You can find her again in Tavros Station.</b>)");
 	}
 	
 	processTime(2);
@@ -1147,7 +1156,7 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 		addButton(1,"Family",askPaigeAbootHerself2,1,"Family","Ask Paige about her father, her mother, and her younger brother.");
 		addButton(2,"Blindness",askPaigeAbootHerself2,2,"Blindness","Ask Paige about the challenges her blindness have had on her life, and how her helper robot Iddi has alleviated them.");
 		addButton(3,"Piracy",askPaigeAbootHerself2,3,"Piracy","Ask Paige about her piratical life with her brother and Kiro, as well as how she received her injury.");
-		addButton(4,"Nevermind",backToPaigeMenu,undefined,"Nevermind","Then again, maybe not?");
+		addButton(4,"Never Mind",backToPaigeMenu,undefined,"Never Mind","Then again, maybe not?");
 	}
 }
 
@@ -1670,6 +1679,7 @@ public function mediumModeEndingInApartment():void
 	output("\n\nYour muscles are still quaking from the exercise, and it takes a bit more effort to put your things back on. You’re in no rush anyway. Paige fills the air with talking about how well you’ve been doing and how excited she is for some future poses she could try with you, if you’re willing to push yourself a bit harder. <i>“We still have some time to kill, sweet thing,”</i> she says lovingly, wrapping her arms around your left one and hugging it tight. <i>“Anything else you want to do today?”</i>");
 	// end scene (scene: Medium Mode Ending 2); advance time by one hour; increase Physique by 2; increase Tone by 7; deduct 40 energy
 	processTime(50);
+	IncrementFlag("YOGA_MEDIUM");
 	yogaToning(7);
 	pc.energy(-40);
 	paigeMenu();
@@ -1809,7 +1819,7 @@ public function leavePaige():void
 {
 	clearOutput();
 	showPaige();
-	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how a [pc.race] does it!”</i>");
+	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how [pc.aRace] does it!”</i>");
 	output("\n\nPaige follows you to the door of her unit.");
 	if(flags["SEXED_PAIGE"] != undefined) output(" Before you leave, she spins you around and gives you a quick kiss on your lips.");
 	output(" <i>“See you around,”</i> she giggles, then pushes you out.");
@@ -2375,7 +2385,9 @@ public function firstTimePaigeCrewHiHi():void
 		}
 		// Merge here
 		output("\n\nShe claps her hands together, straightening her stance and taking a more professional demeanor. <i>“Now then, Captain Steele,”</i> she says, standing straight, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Where are my quarters? I have some things I need to be setting up.”</i>");
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
+		
 	}
 	// Continue here if the PC has no other crew
 	else
@@ -2390,8 +2402,8 @@ public function firstTimePaigeCrewHiHi():void
 		output("\n\n<i>“Well... I’ve been on worse ships,”</i> she giggles. <i>“It’s certainly spacious enough; I have a few ideas on how to manage my own quarters to keep up my yoga with Iddi. And we don’t seem to be using the cargo hold for a lot. Maybe I can turn it into a gym or something.”</i> She turns to you, smiling giddily. <i>“With your permission, of course, Captain Steele.”</i>");
 		output("\n\nCaptain Steele. You kind of like the sound of that. <i>“I already know where I’m setting up,”</i> she continues, standing at attention, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Permission to start making myself at home. " + pc.mf("Sir","Ma’am") + "?”</i>");
 		output("\n\nYou ask Paige if this is going to be a regular thing between you two. <i>“Nah,”</i> she laughs, relaxing and stepping away from you, towards the quarters she’d already picked out for herself.");
-
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
 	}
 	//[=Next=]
 	// end scene (scene: Welcoming)
@@ -2402,6 +2414,16 @@ public function firstTimePaigeCrewHiHi():void
 }
 
 
+public function paigeShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):String
+{
+	var desc:String = "";
+	
+	desc += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
+	
+	addButton(btnSlot,"Paige",paigeCrewApproach);
+	
+	return (showBlurb ? desc : "");
+}
 // The PC talks to Paige on their ship between the hours of 09:00 and 17:00
 // (scene: Crewmate Paige: Class Hours)
 public function paigeCrewApproach():void

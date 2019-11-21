@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.CockClass;
 	
 	public class Syri extends Creature
 	{
@@ -10,7 +11,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -124,6 +125,9 @@
 			this.cocks[0].cLengthRaw = 8;
 			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			this.cocks[0].cockColor = "red";
+			this.cocks[0].knotMultiplier = 1.5;
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 3;
@@ -159,7 +163,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "SYRI";
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.physiqueRaw = 13;
@@ -185,6 +192,16 @@
 		public function UpgradeVersion4(dataObject:Object):void
 		{
 			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		}
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			if(dataObject.cocks.length <= 0) dataObject.cocks.push(new CockClass());
+			dataObject.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			dataObject.cocks[0].cockColor = "red";
+			dataObject.cocks[0].cThicknessRatioRaw = 1.5;
+			dataObject.cocks[0].knotMultiplier = 1.5;
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_TAPERED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_TAPERED);
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_KNOTTED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_KNOTTED);
 		}
 	}
 }

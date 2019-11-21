@@ -82,6 +82,38 @@ public function useMiscreantManor():void
 	addButton(0,"Next",useMiscreantManor2);
 }
 
+public function getNTStocksPregContainer(arg:String = ""):PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	if(!pp.hasCock()) pp.createCock();
+	switch(arg)
+	{
+		case "hellhound":
+			pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+			pp.impregnationType = "AusarPregnancy";
+			break;
+		case "kaithrit":
+			pp.shiftCock(0, GLOBAL.TYPE_FELINE);
+			// 9999 pp.impregnationType = "KaithritPregnancy";
+			break;
+		case "farmer":
+			pp.shiftCock(0, GLOBAL.TYPE_HUMAN);
+			// 9999 pp.impregnationType = "HumanPregnancy";
+			break;
+		case "leithan":
+			pp.shiftCock(0, GLOBAL.TYPE_SNAKE);
+			// 9999 pp.impregnationType = "LeithanPregnancy";
+			break;
+		case "laquine":
+			pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+			pp.impregnationType = "LaquinePregnancy";
+			break;
+	}
+	pp.ballFullness = 100;
+	
+	return pp;
+}
 //Randomly assign boners to mouth, each pussy, and asshole.
 //Random dudes that can show: Zephyr, Unnamed Hellhound (Ausar Bull), Vacationing Kaithrit Heiress, Kiro, Leithan Male, Treated Male Laquine, New Texan farmer (Always at least one of these). Each gets 2-3 paragraphs per hole.
 public function useMiscreantManor2():void
@@ -232,7 +264,7 @@ public function useMiscreantManor2():void
 		output("rubs your [pc.vagina " + x + "] experimentally. <i>“Oh, nice and wet!”</i>");
 		output("\n\nYou twist against the rubber, but you can’t escape her fingers no matter how you writhe, nor the excitement she teases from your netherlips. In no time at all, she has your [pc.hips] twitching back against her, aching for her to slip another finger inside. She pushes her cock in instead, giving you a nice warm, cat-dick to tease your cunny. It’s still twitching, smacking into your g-spot, abusing your passage. Despite its small size, it soon has you mewling every bit as eagerly as its owner.");
 		pc.cuntChange(x,5);
-		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ’smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
+		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ‘smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
 		if(pc.inHeat() || pc.isBimbo() || pc.catDog("nyan", "bork", false) == "bork") output("bitch in heat");
 		else output("woman in need");
 		output(". Whatever the case, they jog faster once you start openly moaning from the sudden appearance of the cat-girl’s fingers on [pc.oneClit].");
@@ -360,7 +392,7 @@ public function stocksOralIntros(args:Array):void
 		if(pc.totalVaginas() == 1) output("is");
 		else output("are");
 		output(" going from whorishly sopping to wantonly drooling just from breathing it in. You twitch your nose, subconsciously sniffing for greater concentrations of his pheromones, letting your tongue wiggle and lick your [pc.lips] until they shine. Then, you open wide, entirely of your own volition. He doesn’t have to pry your salivating mouth open. He doesn’t even have to talk, he just has to flop that bitch-breaking staff onto your [pc.tongue], and you’ll suck right on in.");
-		output("\n\nHow fortunate that he does! You suck the built ausar’s prong into your slavering maw like your life depends on it, hollowing your cheeks and drawing him in until the swelling knot at his base is kissing your straining lips, forcing you to breath through your nose. Cloying musk flows into you, worming from your lungs into your blood. There, it can pump all around your body - some to your head, making it so much easier to see the appeal and eroticism of this incredible specimen, but much, much to the delta");
+		output("\n\nHow fortunate that he does! You suck the built ausar’s prong into your slavering maw like your life depends on it, hollowing your cheeks and drawing him in until the swelling knot at his base is kissing your straining lips, forcing you to breathe through your nose. Cloying musk flows into you, worming from your lungs into your blood. There, it can pump all around your body - some to your head, making it so much easier to see the appeal and eroticism of this incredible specimen, but much, much to the delta");
 		if(pc.totalVaginas() > 1) output("s");
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 		else output(" below");
@@ -498,8 +530,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output(", muttering tender nothings so deep that you feel the vibrations more than hear the words. When you gurgle around the dick in your mouth, he caresses your back comfortingly, and you swear his turgid doggie-dick pulses reassuringly.");
 		output("\n\nAn eternity passes like that, but it must be closer to an hour. Eventually, his dick does soften, allowing him to pop free and stagger off, whistling happy. The studly ausar doesn’t bother to look back over his shoulder, but you do catch sight of him out of the corner of your eye. He gathers the mixed sex-juice from his prick with a finger and lifts it to his lips, then resumes his jaunty tune. Evidently he liked what he tasted.");
 		output("\n\nYour thoroughly gaped, cum-drooling vagina did too. It wants more. You could always come back later and hope he remembers you. You won’t forget him.");
-		//9999 lazyfen is too lazy to bother wiring up an ausar cumdump atm.
-		var ppHellhound:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up an ausar cumdump atm.
+		var ppHellhound:PregnancyPlaceholder = getNTStocksPregContainer("hellhound");
 		pc.loadInCunt(ppHellhound, x);
 	}
 	//Kaithrit
@@ -509,8 +541,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\nCat-cum pools along the bottom of your [pc.vagina " + x + "] by the time the sex-kitten finishes releasing her load. When she pulls out, some of it slops out with her, smacking wetly to the boards below, but you’re fairly certain that some got into your womb as well, if the pleasant glow emanating from your belly is any indication.");
 		output("\n\n<i>“Thanks for that. If I see your boss, I’ll be sure to recommend you for a promotion,”</i> the panting kaithrit purrs, <i>“I swear it felt like your pussy was actually begging for me to cum inside it.”</i> She staggers away, shaking her head, mumbling, <i>“What a pro...”</i>");
 		output("\n\nYour [pc.vagina " + x + "] may have acquired a healthy glaze, but without the warm, pulsing rod inside, it just feels empty.");
-		//9999 lazyfen is too lazy to bother wiring up a kaithrit cumdump atm.
-		var ppKaithrit:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a kaithrit cumdump atm.
+		var ppKaithrit:PregnancyPlaceholder = getNTStocksPregContainer("kaithrit");
 		pc.loadInCunt(ppKaithrit, x);
 	}
 	//New Texan Farmer
@@ -526,8 +558,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("your [pc.vagina " + x + "]");
 		output(", misses his powerful, confident strokes. At least you can squeeze your muscles and feel his creamy deposit rolling around inside of you.");
-		//9999 lazyfen is too lazy to bother wiring up a texan farmer cumdump atm.
-		var ppFarmer:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a texan farmer cumdump atm.
+		var ppFarmer:PregnancyPlaceholder = getNTStocksPregContainer("farmer");
 		pc.loadInCunt(ppFarmer, x);
 	}
 	//Leithan
@@ -542,8 +574,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\n<i>“Sweet fuck, that was awesome.”</i> The leithan slaps your ass, then nervously giggles. <i>“Uh, thanks again for that! I better get back before they find out I was here!”</i> He trots away, waving giddily on his way by. <i>“Thanks again!”</i>");
 		output("\n\nPart of you is glad the bulky brute is no longer weighing down on you. The rest of you, mostly between your [pc.thighs], is wondering if anyone is going to come get sloppy seconds.");
 		IncrementFlag("LEITHAN_STOCKED");
-		//9999 lazyfen is too lazy to bother wiring up a leithan cumdump atm.
-		var ppLeithan:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a leithan cumdump atm.
+		var ppLeithan:PregnancyPlaceholder = getNTStocksPregContainer("leithan");
 		pc.loadInCunt(ppLeithan, x);
 	}
 	processTime(10);
@@ -621,7 +653,7 @@ public function stocksMouthgasms(args:Array):void
 		else output("Fucking greedy cows");
 		output(".”</i>");
 		output("\n\nYou’re still dizzy on his aroma when another body steps in front of you. He doesn’t smell as nice as your dog-dicked boyfriend, but you open nice and wide, rolling out your [pc.tongue] like a red carpet. The newcomer smirks, mutters something about how <i>“hellhounds always get them in the right mood.”</i> He thrusts in, and you resume sucking and slurping, careful not to bite when you cum real hard.");
-		var ppHellhound:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppHellhound:PregnancyPlaceholder = getNTStocksPregContainer("hellhound");
 		pc.loadInMouth(ppHellhound);
 	}
 	//Kaithrit Futa
@@ -633,7 +665,7 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nLooking about to collapse, the pretty kitty staggers back, gaping at the web of sperm that hangs between your spunk-glossed lips and her still-turgid member. <i>“That was... that was pretty good.”</i> She staggers around, gathering the discarded pieces of her dress. <i>“I’ll be sure to uhm... put in the good word for you with uh, your supervisor.”</i> Glancing back over her shoulder, she flashes a tired-looking grin. <i>“Maybe I’ll even be a repeat customer!”</i>");
 		output("\n\nYou don’t bother to inform the clueless cat-girl. Part of the reason might be that you just want to swallow the last of her cum and have a few seconds to breathe, but the real reason is that a much bigger stud is sauntering up to you, drawing all of your attention to the tree trunk between his legs.");
 		output("\n\nAny attempt at modesty would be wasted by now, so you do the only thing a girl stuck in stocks on New Texas can do: open your mouth and try to enjoy the taste of the cock sliding into you. If the dripping from below is any indication, your pussy does.");
-		var ppKaithrit:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppKaithrit:PregnancyPlaceholder = getNTStocksPregContainer("kaithrit");
 		pc.loadInMouth(ppKaithrit);
 	}
 	//New Texan farmer
@@ -653,7 +685,7 @@ public function stocksMouthgasms(args:Array):void
 		else output("You did pretty good. Your must practice on your boyfriend all the time, huh?");
 		output("”</i> He slips his cock out from your lips without another word. You try to fight it, but no matter how you suck, he’s just so strong and manly! The crown escapes with an audible ‘pop,’ and you’re left pouting until another dick appears in front of your face, this one veiny and rock-hard.");
 		output("\n\nIt definitely <i>needs</i> sucked. You can smell it as easily as the big-dicked farmer’s orgasm. You decide to do the responsible thing and meet the newcomer’s gaze through your mask of spent seed, rolling out your tongue in greeting. If the mess bothers him, it doesn’t show in the slightest. He pushes right in, giving you something besides the pure pleasure from your pussy to enjoy.");
-		var ppTexan:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppTexan:PregnancyPlaceholder = getNTStocksPregContainer("farmer");
 		pc.loadInMouth(ppTexan);
 	}
 	processTime(10);
@@ -671,6 +703,7 @@ public function stocksEpilogue(args:Array):void
 	var x:int = args[2];
 	var inCunt:int = args[0];
 	var inMouth:int = args[1];
+	var rn:int;
 
 	output("Life in Miscreant Manor is a parade of cocks. Cocks that thrust into every hole. Cocks that jet cum into you. Cocks that throb and pleasure and cum without end. You can’t count how many times you orgasm or how many loads are swimming around in your abused womb");
 	if(pc.totalVaginas() > 1) output("s");
@@ -685,12 +718,15 @@ public function stocksEpilogue(args:Array):void
 		//Pick random pussy
 		x = rand(pc.totalVaginas());
 		//Pick a cumshot - mostly placeholder
+		rn = rand(10);
 		//Hellhound
-		if(rand(9) == 0) ppRando = getZephyrPregContainer();
+		if(rn == 0) ppRando = getNTStocksPregContainer("hellhound");
 		//Kaithrit
-		else if(rand(7) == 0) ppRando = getZephyrPregContainer();
+		else if (rn <= 2) ppRando = getNTStocksPregContainer("kaithrit");
+		//laquine
+		else if (rn <= 4) ppRando = getNTStocksPregContainer("laquine");		
 		//New Texan/Terran Tourist
-		else ppRando = getZephyrPregContainer();
+		else ppRando = getNTStocksPregContainer("farmer");
 		pc.loadInCunt(ppRando,x);
 		pc.loadInMouth(ppRando);
 		pc.orgasm();

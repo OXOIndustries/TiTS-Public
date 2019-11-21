@@ -38,6 +38,10 @@ public function buildRooms():void
 	fqInitRooms();
 	syriQuestInitRooms();
 	initGreatMajinRooms();
+	eventWhorizonInitRooms();
+	initWargiiRooms();
+	initKimberRooms();
+	initKQRooms();
 	
 	mapper = new Mapper(rooms);
 }
@@ -55,7 +59,7 @@ public function initializeRooms():void
 	//99. Ship Interior
 	rooms["SHIP INTERIOR"] = new RoomClass(this);
 	rooms["SHIP INTERIOR"].roomName = "SHIP\nINTERIOR";
-	rooms["SHIP INTERIOR"].description = "The inside of your father’s old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely adequate room for you and your crew.";
+	rooms["SHIP INTERIOR"].description = "";
 	rooms["SHIP INTERIOR"].planet = "PLANET: NONE";
 	rooms["SHIP INTERIOR"].system = "SYSTEM: UNKNOWN";
 	rooms["SHIP INTERIOR"].outExit = shipLocation;

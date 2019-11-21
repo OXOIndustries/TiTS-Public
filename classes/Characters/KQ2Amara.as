@@ -342,7 +342,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 15 } ), 15), this, target, "minimal");
 				
-				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.reflexes() + rand(20) + 1 < 25)
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>" + (target is PlayerCharacter ? "You smash" : "Kara smashes") + " back-first into the floor, HARD.</b>");
@@ -367,9 +367,10 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 10 } ), 15), this, target, "minimal");
 				
-				if (target.physique() / 2 + rand(20) + 1 < 35)
+				if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && target.physique() / 2 + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyStun(target, 3);
+					output(" <b>" + (target is PlayerCharacter ? "You are" : "Kara is") +" stunned!</b>");
 				}
 			}
 		}

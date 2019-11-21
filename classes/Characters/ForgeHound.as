@@ -6,6 +6,7 @@
 	//import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Accessories.AimEyepieceMkII;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -183,11 +184,12 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 
-			//this.inventory.push(new ShockBlade());
+			this.inventory.push(new AimEyepieceMkII());
 			//this.createPerk("Multiple Attacks",1,0,0,0,"");
 			//this.createPerk("Multiple Shots",1,0,0,0,"");
 			//this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Juggernaut",0,0,0,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
 			btnTargetText = "Forgehound";
@@ -279,7 +281,7 @@
 			else 
 			{
 				output("\nHe slams into you so hard it knocks the breath from you, sending you ");
-				if(target.physique()/2 + rand(20) + 1 >= this.physique()/2+10) output("sliding several feet back! Your incredible strength is the only reason you’re still standing.");
+				if((target.physique()/2 + rand(20) + 1 >= this.physique()/2+10) || target.isPlanted()) output("sliding several feet back! Your incredible strength is the only reason you’re still standing.");
 				else 
 				{
 					output("tumbling backwards, head over heels! <b>You’ve been tripped!</b>");

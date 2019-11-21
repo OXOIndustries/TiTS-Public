@@ -675,7 +675,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output("\n\nBut the closer the dildo gets, the more you realize she’s not going to give you what you’ve suddenly come to want. As realization dawns on you, the priestess’s grin only grows wider - and soon, you feel a pressure against your [pc.asshole]. <i>“The ritual demands your womb be open and receptive, but the Spiritstone must be near. Relax yourself. I don’t want to hurt you by accident.”</i>");
 
 		output("\n\nReflexes force you to clench");
-		if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.looseness() >= 4) output(" but your [pc.asshole] is more than up to swallowing her stony shaft no matter how much your might want to resist.");
+		if (pc.hasPlumpAsshole() || pc.ass.looseness() >= 4) output(" but your [pc.asshole] is more than up to swallowing her stony shaft no matter how much your might want to resist.");
 		else output(" The tip of the rock-hard rod presses against your [pc.asshole], and though your body resists as fiercely as it can, you inevitably feel the tip of the prick sliding into your ass.");
 		output(" Your fingers claw at the ice underneath you, trying to find some semblance of purchase as the cat-woman violates you. The electric heat from the alien stone makes your muscles relax, acting like some sort of contact anesthetic that melts away your resistance. Your ass swallows up the first inches of turgid Uvetan stone, giving you a sense of incredible fullness and stretching out your anal passage. A scream of mind-shattering pleasure echoes through the cavern, sounding like it’s from some feral fuck-beast - your mind barely recognizes it as your own voice.");
 		
@@ -890,6 +890,9 @@ public function pcRepeatFertilityPriestessVictory():void
 	author("Savin");
 	showBust("MILODAN_PRIESTESS");
 
+	//Reset loss tracking for bad end:
+	flags["MILODAN_FERTILITY_REPEAT_LOSSES"] = undefined;
+
 	output("<i>“Gah!”</i> the priestess grunts, falling to a knee and clutching at her staff. <i>“Alright, I yield! I yield!”</i>");
 
 	output("\n\nShe whines and");
@@ -897,10 +900,17 @@ public function pcRepeatFertilityPriestessVictory():void
 	else output(" clenches her legs together, trying to hide just how wet and ready you’ve left her. <i>“Just... just fuck me already. Please! Sun and spirits, I need it!”</i>");
 
 	pcDefeatsFertilityPriestess(true);
+
 }
 
 public function pcRepeatFertilityPriestessLoss():void
 {
+	IncrementFlag("MILODAN_FERTILITY_REPEAT_LOSSES");
+	if(flags["MILODAN_FERTILITY_REPEAT_LOSSES"] >= 4)
+	{
+		milodanPriestessBadend();
+		return;
+	}
 	clearOutput();
 	author("Savin");
 	showBust("MILODAN_PRIESTESS");
@@ -985,4 +995,202 @@ public function pcRepeatFertilityPriestessLoss():void
 	{
 		pcDunkedByFertilityPriestess(true);
 	}
+}
+
+//Milodan Priestess bad end
+//Lose 5 times without winning
+public function milodanPriestessBadend():void
+{
+	showBust("MILODAN_PRIESTESS");
+	author("Wsan");
+	var x:int = 0;
+	if(pc.hasCock()) x = pc.biggestCockIndex();
+	output("<i>“Well, well, you just can’t win at all, can you?”</i> the priestess crows, looking down at your " + (pc.HP() > 1 ? "lust-addled":"battered") + " form with a triumphant smirk. <i>“I’ve heard about you from my sisters; you’ve become somewhat of a campfire story. The stalker alien that can’t fight to save [pc.hisHer] life.”</i>");
+	output("\n\n<i>“I’m not </i>stalking<i> you,”</i> you protest, cheeks flushing. <i>“You just keep showing up when I’m exploring!”</i>");
+	output("\n\n<i>“Hmm,”</i> she replies, looking unimpressed. <i>“But it’s true that you can’t fight. Not like we do. Really, you’re hopeless.”</i>");
+	output("\n\nYou look down bitterly as the curvy woman clicks her tongue, shaking her head before continuing. <i>“I think there’s only one way left to prove yourself, alien. As a breeder for the tribe.”</i>");
+	if(pc.lust() >= 75) 
+	{
+		output("\n\nConsequences be damned, you’re so full of lust right now in front of this sexy woman that you can’t even bring yourself to object as her expression shifts to a snarling grin. <i>“Now strip, brat.”</i>");
+		output("\n\nYou sullenly strip your equipment off, acknowledging your defeat. Besides, you’ve been in this situation before - you know getting naked in front of this proud priestess is just a prelude to the main event.");
+	}
+	else
+	{
+		output("\n\nAs battered as you are, you can’t hope to put up a fight against the priestess, but you’ll try it anyway. A foot planted on your chest brings you roughly to the ground the moment you try to move, stymying any chance you might have had.");
+		output("\n\n<i>“Too bad,”</i> the milodan woman sighs, pressing down. <i>“I’ll strip you off myself.”</i>");
+		output("\n\nShe unceremoniously rips your equipment off, leaving you stark naked while she stands above you with a salacious smirk curling her lips.");
+	}
+	output(" She kneels before you and runs her delicate fingers down your [pc.chest], stopping to lightly squeeze a [pc.nipple] before she");
+	if(pc.biggestTitSize() >= 1 && pc.hasVagina())
+	{
+		if(pc.biggestTitSize() <= 2) 
+		{
+			output(" cups your modest breasts and hums good-naturedly like she’s considering clothing at a store.");
+			output("\n\n<i>“These ought to swell up after you’ve been bred with a few litters,”</i> she surmises. <i>“You might not ever match mine, but you’re so young... you’ve got real potential.”</i>");
+		}
+		else if(pc.biggestTitSize() <= 7)
+		{
+			output(" cups one of your considerable breasts and jiggles it, humming in approval.");
+			output("\n\n<i>“These aren’t bad,”</i> she coos. <i>“They might even swell up as big as mine after you’ve been knocked up with a few litters.”</i>");
+		}
+		else if(pc.biggestTitSize() <= 17)
+		{
+			output(" bounces one of your big, soft breasts up and down making noises of approval.");
+			output("\n\n<i>“Oh, you’re going to make a </i>fantastic<i> breeder,”</i> she purrs. <i>“Look at these. Just perfect.”</i>");
+		}
+		else
+		{
+			output(" sinks a hand into one of your soft, massive breasts with a growl of approval.");
+			output("\n\n<i>“You need to be bred immediately to put these to good work,”</i> she croons, squeezing you. <i>“There’ll be enough milk in here to nurse an entire tribe of kits.”</i>");
+		}
+		if(pc.hasCock())
+		{
+			output("\n\n<i>“You’ve even got a cock of your own to help out,”</i> she continues with a grin. <i>“Perfect.”</i>");
+			output("\n\nYou grunt at the sudden touch.");
+		}
+		if(pc.isLactating()) output("\n\n<i>“Oh,”</i> she murmurs in surprise as [pc.milk] begins to leak from the nipple she tweaked, <i>“looks like you’ve gotten a head start for us, even. Good for you.”</i>");
+	}
+	//else:
+	else
+	{
+		if(pc.hasCock()) 
+		{
+			output(" grabs your [pc.cockBiggest].");
+			if(pc.cocks[x].cLength() < 5) output("\n\n<i>“Hmm,”</i> she mutters, holding it between her forefinger and thumb. <i>“Not winning any honor with this, that’s for sure. But you can still breed.”</i>");
+			else if(pc.cocks[x].cLength() <= 8) output("\n\n<i>“This is big enough to breed with,”</i> she says, rubbing you. <i>“You’re going to be </i>very<i> busy.”</i>");
+			else if(pc.cocks[x].cLength() <= 14) output("\n\n<i>“Oh, this is perfect breeding size,”</i> she purrs, admiring your length in her hands. <i>“You’re going to make my sisters and I <i>so</i> happy, I can tell.”</i>");
+			else if(pc.cocks[x].cLength() <= 20) output("\n\n<i>“Now this is more like it,”</i> she says, grinning. <i>“You might not be able to fight, but you can definitely </i>fuck<i>.”</i>");
+			else if(pc.cocks[x].cLength() <= 27) output("\n\n<i>“Big [pc.boyGirl], aren’t you?”</i> she mutters, holding your slab of meat in her hand and rubbing you. <i>“The more experienced sisters are going to </i>love<i> this...”</i>");
+			else output("\n\n<i>“Oh- wow, I always thought the stories about aliens having massive cocks were...”</i> she trails off, staring at the gigantic prick in her hand. <i>“The younger sisters are going to have to do some serious stretching.”</i>");
+			if(pc.cockTotal() > 1) output("\n\n<i>“Oh?”</i> she says, raising her eyebrows. <i>“You even have a second one. Now I’m interested in seeing if they both work... you could be our best breeder yet.”</i>");
+		}
+		else if(pc.hasVagina())
+		{
+			output(" runs her hand down your groin to find [pc.oneClit] and tweak it with a grin.");
+			output("\n\n<i>“You’ll be using this aaaall the time soon enough.”</i>");
+		}
+		else
+		{
+			output(" rubs her fingers across your curiously smooth groin and grunts in irritation.");
+			output("\n\n<i>“Damn aliens...”</i> she growls. <i>“Don’t think I won’t find a use for you, brat. Either as a cocksheath for the men or as my servant.”</i>");
+		}
+	}
+	output("\n\nShe steps over you, idly rubbing her clitoral hood before sinking to her knees above your face, leaving aside her staff and planting her hands on your chest to present you with her slick, glistening slit. Droplets of arousal gleam in her dusky folds, all but inviting you to drink your fill of her. Then she drops her wide, curvy ass on your face and presses her sweet snatch against your mouth, grinding into you.");
+	output("\n\n<i>“Hold my waist,”</i> she commands you, grabbing your hands and planting on her wide pup-bearing hips. <i>“You’re going to have to learn how to </i>truly<i> please a woman from beneath her when you return with me, but don’t worry. You’ll have ample opportunity to learn.”</i>");
+	output("\n\nDespite her harsh words, you can feel - taste - how aroused she is on your [pc.tongue]. Her haughty demeanor melts away as you ply her fertile pussy with your mouth, sucking on her labia and dipping your tongue into her tight slit while your nose grinds against her little clitty. You already know that you’re going to have to get her off before even thinking about what comes next, let alone resistance. Gripping her by the hips, you start to tongue-fuck the slutty priestess while she moans and yowls in approval.");
+	output("\n\n<i>“Oh, that’s </i>so<i> much better,”</i> she moans, rolling her slit across your face. <i>“You were never cut out for this fighting nonsense in the first place. Mmmf! Ooh, you’re so much better at this!”</i>");
+	output("\n\nAs shameful as it is, you have to admit she might be right. You haven’t had any luck trying to fight her but now that you’ve got her thick, curvy ass seated on your face, she’s rocking and moaning like a whore, revelling in the pleasure. Rubbing her glistening onyx sheath against your [pc.lipsChaste], she starts to let out the sweetest pleasure-tinged moans, her wide, strong thighs drawing inwards until she lets out a girly scream of delight.");
+	output("\n\n<i>“Yes! Yeessss,”</i> she groans, squeezing your head between her sweaty thighs as she cums all over your face. <i>“Uuugggh, fuck...”</i>");
+	output("\n\nHer juices squirt across your lips and tongue, running down your chin and leaving you with a taste reminiscent of berries in your mouth. She lets out a gigantic satiated sigh when she stops shivering, relaxing her grip and deliberately pushing off your chest to stand back up, lifting her hands above her head and bending her wide hips to the side to stretch.");
+	output("\n\n<i>“Nnnn... good enough,”</i> she says, beckoning you with a finger. <i>“Come on, [pc.boyGirl]. Walk close to me or you’ll die in this cold. Up!”</i>");
+	output("\n\nShe forces you back onto your [pc.feet], surprising you with both the willingness with which she pulls you closer and the warmth of her massive fluffy tail wrapping around your body. She’s like a furnace! You find yourself leaning closer for comfort and she chuckles indulgently, putting an arm around your [pc.hips].");
+	output("\n\n<i>“At least you’ve got </i>some<i> smarts for an alien,”</i> she says, reaching down to");
+	if(pc.hasCock()) output(" squeeze your [pc.cockHead " + x + "]. <i>“You’ll be doing a lot of making up for lost time, [pc.boyGirl]. Don’t expect many breaks.”</i>");
+	else if(pc.hasVagina()) output(" smoothly slide one finger right up into your [pc.pussy]. <i>“Don’t worry. The men of our tribe are </i>extremely<i> passionate lovers... you’ll be well taken care of.”</i>");
+	else output(" squeeze your [pc.ass]. <i>“You’re going to make for some </i>wonderful<i> stress relief for the men and women of our tribe.”</i>");
+	processTime(30);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Next",milodanPriestessBadend2);
+}
+
+public function milodanPriestessBadend2():void
+{
+	clearOutput();
+	showBust("MILODAN_PRIESTESS");
+	author("Wsan");
+	output("The journey back to the priestess’ village is brief, though she makes sure to keep you pent-up and lusty on the way. By the time you arrive ");
+	if(pc.isHerm()) output("sticky, translucent precum is running all down your shaft" + (pc.cockTotal() > 1 ? "s":"") + " with more beading at the head" + (pc.cockTotal() > 1 ? "s":"") + ", and your [pc.thighs] are a damp, drippy mess.");
+	else if(pc.hasCock()) output("sticky, translucent precum is running all down your shaft" + (pc.cockTotal() > 1 ? "s":"") + " with more beading at the head" + (pc.cockTotal() > 1 ? "s":"") + ", her thumb pressed tightly against your length.");
+	else if(pc.hasVagina()) output("your [pc.thighs] are a damp, drippy mess, glistening strands of arousal snapping as she brusquely withdraws her finger and pops it in your mouth.");
+	else output("you’re burning with the desire to be fucked, anything to be rid of this seemingly endless arousal.");
+
+	output("\n\nThe introductions are very short. Before you’re a breeder you’re still a new, novel alien to taste and experience, and that’s exactly how you’re used.");
+
+	if(pc.isHerm()) 
+	{
+		output("\n\nYou have a strong, virile milodan male hurriedly pounding his studly cock into your wet cunt within seconds of meeting him, so eager to fuck you that he doesn’t even bother to push you to the ground, instead");
+		if(pc.isTaur()) output(" hopping across your back and thrusting into you standing.");
+		else if(pc.isNaga()) output(" lifting your coils with absurd, lust-driven strength and thrusting into you.");
+		else output(" just lifting your leg over his shoulder and thrusting into you standing.");
+		output(" You cum <i>well</i> before he does, groaning and panting as your half-hard cock throbs and spurts ropes of wasted seed onto the ground. The milodan doesn’t even notice, too enchanted by the prospect of fucking the hell out of your sexy alien pussy.");
+		pc.cuntChange(0,250);
+		output("\n\nSome time after your third rough, forced orgasm, a priestess enters the tent and immediately admonishes the male taking you, whacking him on the head with her staff. You get a fleeting break, collapsing to the ground and moaning in the wake of it all while she browbeats your very willing partner. Soon enough, though, you find him");
+		if(pc.isTaur()) output(" pushing you onto your side, showing off your underslung cock to the woman accompanying him.");
+		else if(pc.isNaga()) output(" pushing you onto your back, allowing the priestess access to your stiffening cock.");
+		else output(" pushing you down and rolling you on top of him, his swollen, dripping cock resting against your inflamed pussylips. Your stiffening cock is presented to the priestess, utterly defenseless.");
+		output("\n\nShe licks her lips.");
+
+		output("\n\nHer moan of delighted bliss drowns out your groan of despair as the dual action of her rapidly bouncing atop you and the male beneath you pounding you breathless forces another orgasm from your aching body. Your back arches so hard your [pc.ass] momentarily comes off the male’s groin before he’s deep inside you once more, your [pc.cum] shooting deep into the priestess’ womb as she croons in pleasure.");
+		pc.cockChange();
+		output("\n\n<i>“Perfect,”</i> she sighs over the dull, frenzied slaps of fur on [pc.skinFurScales] and your animalistic grunts. <i>“Don’t get too worn out, now. The news of your arrival’s spread through the entire tribe by now, and </i>everyone<i> wants a turn.”</i>");
+		output("\n\nYou don’t even have time to comprehend what she’s saying before another woman has entered the tent, looking down at you with bright, lusty eyes and tight, dripping pussy. You groan in despair.");
+	}
+	else if(pc.hasCock())
+	{
+		output("\n\nThere’s a beautiful milodan woman fucking the hell out of you seconds after she enters the tent, bouncing on your groin and yowling like a wildcat while she holds you down with surprising strength. She’s very easy to please, cumming multiple times before she finally wrings an orgasm out of you with her rippling cunt and a happy moan, licking your face before stepping away. Then there’s another... and another, and more in their wake. Soon you’re literally surrounded by pent-up, breed-hungry milodan women, the largest of which holds your head between her thick thighs, grinding her dripping cunt all over your lips while another pounds her butt into your groin in search of your next orgasm.");
+		pc.cockChange();
+		output("\n\nIt’s not long in coming. You empty your" + (pc.balls > 0 ? " [pc.balls]":" self") + " up into her greedy womb, your cock flagging before you find a potion pressed to your lips and poured down your throat. It burns bitterly on the way down, the warmth spreading from your tummy and coalescing in your groin. Suddenly you find yourself hornier than ever before, the women stuffing leafen herbs in your mouth as your cock grows and throbs, hardening until it feels like you have a steel rod protruding from your body.");
+		output("\n\nThey’re quick to capitalize. You’re ravaged by an ever-growing crowd of horny milodan, grabbing your hands and thrusting your fingers up their cunts while they wait their turn to bounce on your cock and milk you for your [pc.cum]. The priestess that brought you in merely watches with a smug, triumphant grin and fingerfucks her pussy, all but gloating over your defeat. When at last the crowd begins to disperse and you’re left groaning and aching, she bends over and smiles fiercely.");
+		output("\n\n<i>“And now you’ll keep me company all night, wanderer.”</i>");
+	}
+	else if(pc.hasVagina())
+	{
+		output("\n\nThere’s a massive, throbbing kittycock occupying your");
+		var tightyWhitey:Number = pc.vaginas[0].looseness();
+		if(tightyWhitey < 3) output(" tight little slit");
+		else if(tightyWhitey < 4) output(" your whorishly loose slit");
+		else output(" your gaping cunt");
+		output(" within seconds of a milodan man’s entry into the tent, holding you tight while he spreads you wide around his prickly cock. The spines might be annoying were he taking it slow but when he’s pounding you so fucking hard like this - you grit your teeth, feeling an uncomfortably strong orgasm rising within you.");
+		output("\n\n<i>“Fffuck!”</i> you gasp, panting as your core tenses up, slapping ineffectually at his muscular furred arms. <i>“Fuck! Fuh- fuuuck, FUCK!”</i>");
+		output("\n\n<i>“Such a limited vocabulary,”</i> the priestess coos, watching you while she masturbates to the sight of your violent orgasm. Your back would be arched like a horseshoe if not for the incredible strength with which the milodan holds you in place. <i>“Fret not, wanderer. Soon you’ll be calling out ‘yes, master, please’... but maybe not tonight.”</i> She grins savagely. <i>“You’ll be too tired to talk, after all.”</i>");
+		output("\n\nYou contort in the impossibly strong grip of the milodan, gasping like a fish out of water as wave after wave of pleasure rocks you until you can contain the scream of pleasure no longer. What comes from your mouth is nothing less than the sound of utter defeat, a complete admission of the sheer pleasure you’re being forced to experience. Your lover responds by grasping you tightly, squeezing you so fiercely the air rushes from your lungs and you’re left panting and dizzy while he fucks your spasming slit so hard you can feel the thudding impact of his hefty balls against your [pc.skinFurScales].");
+		pc.cuntChange(0,250);
+		output("\n\n<i>“Perfect!”</i> the priestess cries, her knees knocking together in delight, thighs quivering as femcum steadily drips from between her legs. <i>“Yes, yes, yes! Breed [pc.himHer]! Make [pc.himHer] cum all over your cock!”</i>");
+		output("\n\nThe barbarian is way ahead of her. You couldn’t stop if you fucking tried, his body wrapped around yours so thoroughly you stand no chance of extricating yourself or trying to resist the pleasure. There’s no escape, and already your deep, groaning screams of hopeless agonized bliss are drawing more men into the tent...");
+	}
+	else
+	{
+		output("\n\nThere’s a massive, throbbing kittycock occupying your");
+		if(pc.ass.looseness() < 3) output(" tight little asshole");
+		else if(pc.ass.looseness() < 4) output(" your whorishly loose asshole");
+		else output(" your gaping asshole");
+		output(" within seconds of a milodan man’s entry into the tent, holding you tight while he spreads you wide around his prickly cock. The spines might be annoying were he taking it slow but when he’s pounding you so fucking hard like this - you grit your teeth, feeling an uncomfortably strong orgasm rising within you.");
+		pc.buttChange(250);
+		output("\n\n<i>“Fffuck!”</i> you gasp, panting as your core tenses up, slapping ineffectually at his muscular furred arms. <i>“Fuck! Fuh- fuuuck, FUCK!”</i>");
+		output("\n\n<i>“Such a limited vocabulary,”</i> the priestess coos, watching you while she masturbates to the sight of your violent orgasm. Your back would be arched like a horseshoe if not for the incredible strength with which the milodan holds you in place. <i>“Fret not, wanderer. Soon you’ll be calling out ‘yes, master, please’... but maybe not tonight.”</i> She grins savagely. <i>“You’ll be too tired to talk, after all.”</i>");
+		output("\n\nYou contort in the impossibly strong grip of the milodan, gasping like a fish out of water as wave after wave of pleasure rocks you until you can contain the scream of pleasure no longer. What comes from your mouth is nothing less than the sound of utter defeat, a complete admission of the sheer pleasure you’re being forced to experience. Your lover responds by grasping you tightly, squeezing you so fiercely the air rushes from your lungs and you’re left panting and dizzy while he fucks your spasming body so hard you can feel the thudding impact of his hefty balls against your [pc.skinFurScales].");
+		output("\n\n<i>“Perfect!”</i> the priestess cries, her knees knocking together in delight, thighs quivering as femcum steadily drips from between her legs. <i>“Yes, yes, yes! Fuck [pc.himHer]! Make [pc.himHer] cum all over your cock!”</i>");
+		output("\n\nThe barbarian is way ahead of her. You couldn’t stop if you fucking tried, his body wrapped around yours so thoroughly you stand no chance of extricating yourself or trying to resist the pleasure. There’s no escape, and already your deep, groaning screams of hopeless agonized bliss are drawing more men into the tent...");
+	}
+	output("\n\n-");
+	output("\n\nA life of rough passion spent in the arms of others is all that awaits you in this village. Unable to flee with your lack of appropriate clothing and now missing any kind of map, there’s no need for the tribe to keep you bound or restrained. Instead you’re confined to a warm tent, not because you’re being guarded but because you never have to leave - the tribe comes to you, not the other way around.");
+	if(pc.hasVagina()) 
+	{
+		output("\n\nIn time your belly grows heavy with child, the women of the tribe clustering around you in congratulations" + (pc.hasCock() ? " and to remind you of your duties to them at night so that they might do the same":"") + ". You’re taken on all fours gasping and panting at the fall of every night, the men of the tribe lusting after you after they learn of your fertility." + (pc.hasCock() ? " After they tire of you, you serve the women well into the early hours of the morning until they, too, are sated and you finally earn your rest.":""));
+		output("\n\nIt’s not the ending you imagined when you first set out but as you sit wrapped in the furred warmth of your many lovers and absentmindedly rub your swelling tummy, you find that you don’t mind at all. Your children - quintuplets, if the priestesses are to be believed - are due in scarcely a month, and your breasts are swollen almost painfully with milk. The men are more than happy to relieve you of the burden themselves and though you shyly admonish them for doing so, you’re secretly overjoyed to have them suckle from your oversized teats.");
+		output("\n\nYou fall asleep bathed in the heat of the fire, a strong male’s arm your pillow for the night, secure in the knowledge that your life here is truly meaningful to your tribe.");
+	}
+	else
+	{
+		if(!pc.hasCock()) 
+		{
+			output("\n\nThough you offer no intrinsic value to the tribe owing to your lack of genitals, that doesn’t stop them from using you - roughly and thoroughly. From being enthusiastically fingerfucked while you tongue a nubile young priestess’ slit to being roughly plowed and left with your ass dripping with spunk by the men, you’re a popular item. Make no mistake, though - you are an <i>item</i>, to be used and fucked and filled with spunk and thrown in a corner when you’re no longer desired.");
+			output("\n\nMost days, you find yourself occupied with ‘tending’ to the priestesses’ needs between their legs until the men return from a hunt, sweaty and breathing hard and you’re pulled away, slammed onto a hard cock and pounded for hours until they tire of the entertainment. You have to admit, it’s not the life you envisioned when you first set out... but there’s a certain pleasure in finding yourself so profoundly desired.");
+		}
+		else
+		{
+			output("\n\nYou quickly become a valued member of the village, siring an inordinate amount of strong, healthy children with women of the tribe and priestesses both. The couplings are common and intensely aggressive, your partners often visiting you twice or more a night for extra rounds. The meat-rich hunting diet is the only thing that keeps you going, leaving you rugged and capable in the harshness of permanent winter.");
+			if(pc.mf("","f") == "f" && pc.biggestTitSize() >= 1)
+			{
+				output("\n\nEven particularly adventurous men take you as their partner occasionally, sharing the newfound love of alien sex and your unfamiliar techniques. Sometimes you find yourself in a spontaneous threesome, your feminine partner crying out as the prostate stimulation from the male pounding your backside sends spurts of seed into her cunt unbidden. ");
+			}
+			else output("\n\n");
+			output("Though you wouldn’t call it a harem owing to your lack of belonging and the dirty way some of the males look at you, you’ve even started to learn some of the language - albeit mostly through passionate whispers, pants, and moans. It shouldn’t be too hard to pick up on it given that you’ll be spending the rest of your foreseeable future here, siring kits and hunting all for the good of the tribe...");
+		}
+	}
+	pc.orgasm();
+	pc.libido(30);
+	pc.taint(25);
+	badEnd();
 }

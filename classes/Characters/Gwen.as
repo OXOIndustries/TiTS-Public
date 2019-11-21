@@ -9,6 +9,7 @@
 	import classes.Items.Apparel.SlepraDownBra;
 	import classes.Items.Armor.GemstoneLinks;
 	import classes.Items.Armor.SleekParka;
+	import classes.Items.Apparel.HardlightAGShirt;
 	import classes.kGAMECLASS;
 	
 	public class Gwen extends Creature
@@ -30,13 +31,17 @@
 			inventory.push(new HardlightAGJock());
 			inventory.push(new HardlightAGThong());
 			inventory.push(new SlepraDownBra());
+			inventory.push(new HardlightAGShirt());
 			
 			this.sellMarkup = 1.2;
 			this.buyMarkdown = .75;
 
 			this.femininity = 85;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "GWEN";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

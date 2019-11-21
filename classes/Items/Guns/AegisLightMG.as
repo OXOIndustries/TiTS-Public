@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "an aegis light machinegun";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "A military-grade squad automatic weapon, the Aegis is a high-tech solution to front line offense and defense. Equipped with a huge box of ammunition, the user can send a withering hail of bullets down range and generate a hardlight shield around the weapon’s muzzle, creating moving point of cover in whatever direction he or she is firing.";
+			tooltip = "A military-grade squad automatic weapon, the Aegis is a high-tech solution to front line offense and defense. Equipped with a huge box of ammunition, the user can send a withering hail of bullets down range and generate a hardlight shield around the weapon’s muzzle, creating a moving point of cover in whatever direction he or she is firing.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot"
 			
@@ -48,6 +48,7 @@ package classes.Items.Guns
 			baseDamage.addFlag(DamageFlag.BULLET);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			this.addFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON);
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			
 			this.defense = 0;

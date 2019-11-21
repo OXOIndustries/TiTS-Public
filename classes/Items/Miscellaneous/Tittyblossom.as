@@ -514,23 +514,23 @@
 						target.createVagina();
 						kGAMECLASS.output("\n\nYou are overcome with the sensation of blissful warmth, particularly at your crotch, yet when you reach down you don’t feel anything strange at all. In fact, the only outward signs of anything is a flush that spreads across your groin. Your crotch feels... empty, yearning to be filled...");
 						//→ balls
-						if(target.balls > 0 && target.ballSize() >= 2)
+						if(target.balls > 0 && target.ballSizeRaw >= 2)
 						{
 							kGAMECLASS.output("\n\nThen suddenly, an abrupt sucking sensation can be felt on your [pc.balls] - from the inside! You reach down once more only to find, with a start, ");
 							//→ small balls and no trap pouch
 							if(target.ballSizeRaw < 3 && !target.hasStatusEffect("Uniball"))
 							{
 								kGAMECLASS.output("that they are shrinking into you at an alarming rate!");
-								target.ballSizeRaw = 0;
+								target.ballSizeRaw = 0.5;
 							}
 							//→ huge balls and no trap pouch
 							else if(!target.hasStatusEffect("Uniball"))
 							{
 								kGAMECLASS.output("that vast amounts are sinking into you at an alarming rate!");
-								target.ballSizeRaw *= .5;
+								target.ballSizeRaw *= 0.5;
 							}
 							//→ trap pouch
-							else if(target.ballSizeRaw > 1)
+							else
 							{
 								kGAMECLASS.output("that your trappy pouch puckers, and tightens against your holstered nuts.");
 								target.ballSizeRaw = 1;
@@ -539,10 +539,11 @@
 						kGAMECLASS.output("\n\nYou can’t help but shiver at the changes surging through you. Suddenly, you feel... juices... running down and slickening your leg. Wait, what? You give a gasp of pleasure as you feel your groin splitting open - not painfully, but rather with an eruption of ecstasy. Your [pc.knees] buckle");
 						if(target.legCount == 1) kGAMECLASS.output("s");
 						kGAMECLASS.output(" as your groin opens up, gushing a nearly-orgasmic flood of new feminine fluids as your new hole takes shape. You have a [pc.pussy] now");
-						if(target.ballSizeRaw < .75)
+						if(target.balls > 0 && target.ballSizeRaw < 0.75)
 						{
-							target.balls = 0;
-							kGAMECLASS.output(" where your balls once were");
+							kGAMECLASS.output(" where your " + (target.balls == 1 ? "ballsack once was" : "balls once were"));
+							target.removeBalls();
+							target.resetCumProduction();
 						}
 						kGAMECLASS.output("!");
 						kGAMECLASS.output("\n\nIntrigued, you can’t help but explore this new asset. Reaching down, you spread your quivering quim - soaking your fingers in juices - and as you slip a digit in you almost instantaneously clench up in orgasm, racking your body with a sensation so great you barely avoid crumpling to the floor. It seems your new vagina is especially sensitive... and probably will be for a while until you get used to having it. As your hands slip out of your new, beautiful pussy, you think... perhaps you should enjoy the added sensitivity while it lasts.");

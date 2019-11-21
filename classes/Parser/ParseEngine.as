@@ -580,31 +580,41 @@
 			//APRIL FOOLS!
 			if(kGAMECLASS.isAprilFools())
 			{
+				//Making some adjustments for 2019 to cringe less.
 				ret = ret.replace(/credits/g,"dogecoins");
 				ret = ret.replace(/Credits/g,"Dogecoins");
 				ret = ret.replace(/CREDITS/g,"DOGECOINS");
-				ret = ret.replace(/ausar/g,"dogesar");
-				ret = ret.replace(/Ausar/g,"Dogesar");
-				ret = ret.replace(/Anno/g,"Oh-No");
-				ret = ret.replace(/ANNO/g,"OH-NO");
-				ret = ret.replace(/Syri/g,"ChoderDog");
-				ret = ret.replace(/SYRI/g,"CHODERDOG");
-				ret = ret.replace(/Kiro/g,"Phallesia");
-				ret = ret.replace(/KIRO/g,"PHALLESIA");
+				//ret = ret.replace(/ausar/g,"dogesar");
+				//ret = ret.replace(/Ausar/g,"Dogesar");
+				//ret = ret.replace(/Anno/g,"Oh-No");
+				//ret = ret.replace(/ANNO/g,"OH-NO");
+				//ret = ret.replace(/Syri/g,"ChoderDog");
+				//ret = ret.replace(/SYRI/g,"CHODERDOG");
+				//ret = ret.replace(/Kiro/g,"Phallesia");
+				//ret = ret.replace(/KIRO/g,"PHALLESIA");
 				ret = ret.replace(/Penny/g,"Space Urta");
 				ret = ret.replace(/PENNY/g,"SPACE URTA");
-				ret = ret.replace(/Gianna/g,"Sexbox");
-				ret = ret.replace(/GIANNA/g,"SEXBOX");
-				ret = ret.replace(/Celise/g,"Slimyface");
-				ret = ret.replace(/CELISE/g,"SLIMYFACE");
-				ret = ret.replace(/Steele/g,"Steelestein");
-				ret = ret.replace(/STEELE/g,"STEELESTEIN");
-				ret = ret.replace(/Dane/g,"Cockthulu");
-				ret = ret.replace(/DANE/g,"COCKTHULU");
-				ret = ret.replace(/Doctor Badger/g,"Doctor Horrible");
-				ret = ret.replace(/Dr. Badger/g,"Dr. Horrible");
-				ret = ret.replace(/Dr.Badger/g,"Dr.Horrible");
-				ret = ret.replace(/BADGER/g,"HORRIBLE");
+				ret = ret.replace(/Korgonne/g,"Memehound");
+				ret = ret.replace(/korgonne/g,"memehound");
+				ret = ret.replace(/KORGONNE/g,"MEMEHOUND");
+				//ret = ret.replace(/Gianna/g,"Sexbox");
+				//ret = ret.replace(/GIANNA/g,"SEXBOX");
+				//ret = ret.replace(/Celise/g,"Slimyface");
+				//ret = ret.replace(/CELISE/g,"SLIMYFACE");
+				//ret = ret.replace(/Steele/g,"Steelestein");
+				//ret = ret.replace(/STEELE/g,"STEELESTEIN");
+				//ret = ret.replace(/Dane/g,"Cockthulu");
+				//ret = ret.replace(/DANE/g,"COCKTHULU");
+				//ret = ret.replace(/Doctor Badger/g,"Doctor Horrible");
+				//ret = ret.replace(/Dr. Badger/g,"Dr. Horrible");
+				//ret = ret.replace(/Dr.Badger/g,"Dr.Horrible");
+				//ret = ret.replace(/BADGER/g,"HORRIBLE");
+			}
+			if(kGAMECLASS.flags["SJW"] == 1)
+			{
+				ret = ret.replace(/shemale/g,"dick-girl");
+				ret = ret.replace(/Shemale/g,"Dick-girl");
+				ret = ret.replace(/SHEMALE/g,"DICK-GIRL");
 			}
 
 			//trace(ret);

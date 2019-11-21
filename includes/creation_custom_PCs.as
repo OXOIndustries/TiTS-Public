@@ -4,6 +4,7 @@ import classes.GameData.CombatManager;
 import flash.events.Event;
 import classes.GameData.MailManager;
 import classes.Cheats;
+import classes.Items.Transformatives.GaloMax;
 
 public function nameOfDestinyChoice():void
 {
@@ -28,6 +29,73 @@ public function customPCCheck(TF:Boolean = false):Boolean
 	var i:int = 0;
 	switch (short)
 	{
+		case "pwink":
+			if(!TF) break;
+			pc.upperUndergarment = new PlainUndershirt();
+			pc.lowerUndergarment = new PlainBriefs();
+			pc.legCount = 2;
+			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+			pc.earLength = 2;
+			pc.tallness = 60;
+			pc.femininity = 40;
+			pc.faceType = GLOBAL.TYPE_HUMAN;
+			pc.clearFaceFlags();
+			pc.armType = GLOBAL.TYPE_HUMAN;
+			pc.skinTone = "neon pink";
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 12;
+			pc.cocks[0].cockColor = "bright pink";
+			pc.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			pc.cocks[0].clearFlags();
+			pc.cocks[0].addFlag(GLOBAL.FLAG_FORESKINNED);
+			//Moderate cum boost
+			pc.boostCum(10);
+			pc.balls = 2;
+			pc.ballSizeRaw = 10;
+			//Flat chest
+			pc.breastRows[0].breastRatingRaw = 0;
+			pc.nippleColor = "bright pink";
+			pc.eyeColor = "yellow";
+			pc.eyeType = GLOBAL.TYPE_FELINE; //slit pupils yooo
+			pc.hairColor = "light pink";
+			pc.lipColor = "red";
+			pc.hairLength = 4;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_LIZAN;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.legType = GLOBAL.TYPE_DEER;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.tongueType = GLOBAL.TYPE_DEMONIC;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			//pc.tongueColor = "pink";
+			pc.hipRatingRaw = 12;
+			pc.buttRatingRaw = 12;
+			pc.wingType = 0;
+			pc.wingCount = 0;
+			pc.horns = 2;
+			pc.hornType = GLOBAL.TYPE_DEMONIC;
+			pc.hornLength = 3;
+			pc.ass.vaginaColor = "cyan";
+			pc.inventory.push(new GaloMax());
+			pc.inventory[0].quantity = 5;
+			pc.aim(1);
+			pc.willpower(1);
+			pc.reflexes(1);
+			pc.intelligence(1);
+			pc.credits = 6900;
+			pc.tone = 25;
+			pc.thickness = 66;
+			pc.removeVaginas();
+			break;
 		case "archie":
 			if(!TF) break;
 			pc.breastRows[0].breastRatingRaw = 4;
@@ -76,6 +144,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.eyeColor = "black";
 			pc.eyeType = GLOBAL.TYPE_BEE;
 			pc.earType = GLOBAL.TYPE_DRIDER;
+			pc.clearEarFlags();
 			pc.credits += 2000;
 			bonusTexts = "You were born a bit different than expected, but from differences come strength... and a very productive set of genitals.";
 			break;
@@ -90,6 +159,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairLength = pc.tallness/2;
 			pc.hairColor = "blue";
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.wingType = GLOBAL.TYPE_SHARK;
 			pc.wingCount = 1;
 			pc.hipRatingRaw = 7;
@@ -115,13 +187,13 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.cocks[0].cLengthRaw = 19.5;
 			pc.cocks[0].cThicknessRatioRaw = 1.230769230769231;
 			pc.cocks[1].knotMultiplier = 1.333333;
-			pc.cocks[0].cLengthRaw = 20;
-			pc.cocks[0].cThicknessRatioRaw = 1.5;
+			pc.cocks[1].cLengthRaw = 20;
+			pc.cocks[1].cThicknessRatioRaw = 1.5;
 
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.clitLength = 0.3;
-			bonusTexts = "Despite a curious blend of canine and shark genes finding their way into your genome, you are still Victor Steele's heir - but one with two big-ass dog-dicks and a desire to use them.";
+			bonusTexts = "Despite a curious blend of canine and shark genes finding their way into your genome, you are still Victor Steele’s heir - but one with two big-ass dog-dicks and a desire to use them.";
 			break;
 		//Fetysh - Female, max fertility, the perks that increase pregnancy speed (I believe Marae's, Fera's and the brood mother one). Other perks I'll enjoy getting during leveling. As for character specifics, short, about 4'11", 95lbs, tentacle hair, blue-black skin, spaded tail, normal hands/feet. Virginal cunt/ass to start with and C-cup breasts. (Can those resist most normal forms of shrinking? Not all if you could, sort of like the bimbo body that keeps them at a minimum size)
 		case "fetysh":
@@ -198,9 +270,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_ANEMONE);
 			pc.cocks[0].cLengthRaw = 12;
-			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
-			pc.cocks[0].addFlag(GLOBAL.FLAG_STINGER_BASED);
 			pc.balls = 0;
 			pc.clitLength = 0.7;
 			bonusTexts = "You’ve always been a big-dicked, dragon-like hermaphrodite.";
@@ -285,7 +354,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		The things that count (;-p) :
 		he has a rather well-endowed human-like cock (10 inches in lengh, 2 inches wild) and larger than average balls
 		He has two flat breasts with one nipple each */
-		//9999 needs monkey parts!
 		case "kaeln":
 			if(!TF) break;
 			//Would set legs/tail/feet, but Simii parts are not presently set up for PC.
@@ -308,6 +376,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_SIMII;
 			pc.clearFaceFlags();
 			pc.earType = GLOBAL.TYPE_SIMII;
+			pc.clearEarFlags();
 			pc.armType = GLOBAL.TYPE_SIMII;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
@@ -326,7 +395,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_SIMII);
 			
 			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that.";
-			bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
+			//bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
 			break;
 		/*Anon All available shark transformations.
 		Hermaphrodite with normal vagina, normal 8" penis, 2 E cup breasts.
@@ -433,6 +502,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_DRACONIC;
 			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
 			pc.tailType = GLOBAL.TYPE_DRACONIC;
 			pc.tailCount = 1;
@@ -601,6 +671,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.faceType = GLOBAL.TYPE_DRACONIC;
 			pc.femininity = 100;
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
 			pc.clearTongueFlags();
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
@@ -673,6 +744,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!TF) break;
 			pc.femininity = 50;
 			pc.removeCocks();
+			pc.removeBalls();
 			pc.removeVaginas();
 			bonusTexts = "You’ve always been a neuter. Life’s easier that way.";
 			break;
@@ -700,11 +772,14 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.furColor = "black";
 			pc.skinTone = "light";
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.armType = GLOBAL.TYPE_CANINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addArmFlag(GLOBAL.FLAG_PAWS);
-			pc.tailType = GLOBAL.TYPE_DRACONIC;
+			pc.tailType = GLOBAL.TYPE_CANINE;
 			pc.tailCount = 1;
 			pc.clearTailFlags();
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
@@ -769,7 +844,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Enjoys - Being Pregnant
 		Loathes - Domineering Men
 		If I have left anything you needed for the custom character out, please let me know (assuming I even made the cut to get one)!*/
-		//9999 needs pig parts!
 		case "brenda":
 			if(!TF) break;
 			pc.tallness = 77;
@@ -786,6 +860,24 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.clitLength = 2;
 			if(pc.femininity < 70) pc.femininity = 70;
+			
+			pc.faceType = GLOBAL.TYPE_SWINE;
+			pc.clearFaceFlags();
+			pc.earType = GLOBAL.TYPE_SWINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
+			pc.legCount = 2;
+			pc.legType = GLOBAL.TYPE_SWINE;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SWINE;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_CORKSCREWED);
+			pc.shiftVagina(0,GLOBAL.TYPE_SWINE);
+			pc.inflateVagina(0);
 			break;
 		/*Warkonst Height: 1,75m
 		Hair: Short, Black
@@ -865,9 +957,14 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.reflexes(5);
 			pc.aim(5);
 			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.earLength = 4+rand(5);
 			pc.tone = 30;
 			pc.skinTone = "fair";
+			
+			// Cycle every 7 days
+			pc.createHeatPerk(7);
 			break;
 		/*Thanyl Feline, snow-leopard with lynx colouration including ear-tufts if possible, 189 cm tall, lithe and feminine build, ass-length silky blonde hair, red eyes and silver-rimmed rectangular glasses.
 		16 cm long penis, 5 cm thick, humanoid, pink and uncut.
@@ -877,6 +974,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		case "thanyl":
 			if(!TF) break;
 			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.faceType = GLOBAL.TYPE_FELINE;
 			pc.armType = GLOBAL.TYPE_FELINE;
 			pc.clearArmFlags();
@@ -931,9 +1031,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createBreastRow();
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 5;
-			pc.breastRows[0].breastRatingRaw = 3;
-			pc.breastRows[0].breastRatingRaw = 2;
-			pc.breastRows[0].breastRatingRaw = 1;
+			pc.breastRows[1].breastRatingRaw = 3;
+			pc.breastRows[2].breastRatingRaw = 2;
+			pc.breastRows[3].breastRatingRaw = 1;
 			pc.milkFullness = 100;
 			pc.milkStorageMultiplier = 2;
 			pc.milkMultiplier = 100;
@@ -952,6 +1052,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairLength = 10;
 			pc.hairColor = "silver";
 			pc.earType = GLOBAL.TYPE_DRACONIC;
+			pc.clearEarFlags();
 			pc.wingType = GLOBAL.TYPE_DRACONIC;
 			pc.wingCount = 2;
 			pc.hipRatingRaw = 9;
@@ -961,7 +1062,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clitLength = 2.5;
 			pc.vaginas[0].wetnessRaw = 4;
 			break;
-		/*Ayreo Greywolf 5ft6 silver blue (yeah it is a real fur color) longfurred fox/wolf (kinda scruffy looking) His posture is pretty relaxed but also with the kinda that he has no time for nonsense. All and All he is pretty average, although a bit of a heavy frame, he appears to be in decent shape but not body builder status. Clothed he wears his naval uniform proudly as a commander should, setting the example for his crew to follow. Nude, you can defiantly note his longer fur, it almost hides his sheath completely. again pretty average, if not slightly thicker hung for a fox, his sheath is a bit thicker than what would be comfortable on a fox, must be his wolf heritage. His balls are pretty average for a wolf, neatly hidden mostly by his long fur. his tail is almost fitting for a germansheppard, if not slightly more bushy, making a nice little cross between fox and wolf and at almost 3 ft long behind him. He carries it proudly behind him, it swishes to and fro depending on his mood and there are those stressful times that his fur may bristle out and it looks like a bottle brush. Like a fox he does have that white tip at the end highlighted with a black ring. His paws , hands and feet have those nice dark furred boots that you would find on a fox.*/
+		/*Ayreo Greywolf 5ft6 silver blue (yeah it is a real fur color) longfurred fox/wolf (kinda scruffy looking) His posture is pretty relaxed but also with the kinda that he has no time for nonsense. All and All he is pretty average, although a bit of a heavy frame, he appears to be in decent shape but not body builder status. Clothed he wears his naval uniform proudly as a commander should, setting the example for his crew to follow. Nude, you can defiantly note his longer fur, it almost hides his sheath completely. again pretty average, if not slightly thicker hung for a fox, his sheath is a bit thicker than what would be comfortable on a fox, must be his wolf heritage. His balls are pretty average for a wolf, neatly hidden mostly by his long fur. his tail is almost fitting for a germansheppard, if not slightly more bushy, making a nice little cross between fox and wolf and at almost 3 ft long behind him. He carries it proudly behind him, it swishes to and fro depending on his mood and there are those stressful times that his fur may bristle out and it looks like a bottle brush. Like a fox he does have that white tip at the end highlighted with a black ring. His paws, hands and feet have those nice dark furred boots that you would find on a fox.*/
 		case "ayreo":
 			if(!TF) break;
 			pc.tallness = 66;
@@ -1035,6 +1136,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_DRACONIC);
 			pc.cocks[0].cLengthRaw = 12;
 			pc.earType = GLOBAL.TYPE_VULPINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_VULPINE;
 			pc.tailCount = 9;
 			pc.cocks[0].cLengthRaw = 8;
@@ -1109,6 +1213,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.faceType = GLOBAL.TYPE_CANINE;
 			pc.hairLength = 6;
 			pc.hairColor = "blonde";
@@ -1159,6 +1266,93 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[0].cLengthRaw = 9;
 			pc.ballSizeRaw = 6;
+			break;
+		//Zjeranos/Deagroth's self made special character.
+		case "saerina":
+			if(!TF) break;
+			pc.armor = new MilitaryUniform();
+			pc.meleeWeapon = new CavalrySaber();
+			pc.hairColor = "red";
+			pc.hairLength = 30;
+			pc.tallness = 73;
+			pc.tone = 80;
+			pc.thickness = 25;
+			pc.femininity = 100;
+			pc.buttRatingRaw = 3;
+			pc.hipRatingRaw = 3;	
+			pc.createBreastRow();
+			pc.breastRows[0].breastRatingRaw = 4;
+			if(!pc.hasCock()) pc.createCock();
+			if(pc.cockTotal() < 2) pc.createCock();
+			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
+			pc.cocks[0].cLengthRaw = 13.5;
+			pc.cocks[0].cThicknessRatioRaw = 1.3;
+			pc.cocks[0].knotMultiplier = 1.5;
+			pc.cocks[0].cockColor = "crimson";
+			pc.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			pc.shiftCock(1, GLOBAL.TYPE_DEMONIC);
+			pc.cocks[1].cLengthRaw = 13.5;
+			pc.cocks[1].cThicknessRatioRaw = 1.3;
+			pc.cocks[1].cockColor = "crimson";
+			pc.cocks[1].knotMultiplier = 1.5;
+			pc.cocks[1].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);		
+			pc.balls = 0;
+			pc.ballSizeRaw = 20;
+			pc.cumMultiplierRaw = 150;
+			pc.ballEfficiency = 400;
+			pc.refractoryRate = 100;if(!pc.hasVagina()) pc.createVagina();
+			pc.shiftVagina(0, GLOBAL.TYPE_SUULA);
+			pc.vaginas[0].wetnessRaw = 2;
+			pc.scaleColor = "black";
+			pc.eyeColor = "glowing red";
+			pc.eyeType = GLOBAL.TYPE_DEMONIC;
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+			pc.skinTone = "fair";
+			pc.faceType = GLOBAL.TYPE_HUMAN;
+			pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);
+			pc.earType = GLOBAL.TYPE_DEMONIC;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+			pc.earLength = 6;
+			pc.tongueType = GLOBAL.TYPE_DEMONIC;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.removeHorns();
+			pc.horns = 2;
+			pc.hornLength = 12;
+			pc.hornType = GLOBAL.TYPE_GRYVAIN;
+			pc.eyeColor = "red";
+			pc.armType = GLOBAL.TYPE_HUMAN;
+			pc.clearArmFlags();
+			pc.addArmFlag(GLOBAL.FLAG_SMOOTH);
+			pc.wingType = GLOBAL.TYPE_DRACONIC;
+			pc.wingCount = 2;
+			pc.tailType = GLOBAL.TYPE_DEMONIC;
+			pc.clearTailFlags();
+			pc.tailCount = 1;
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTailFlag(GLOBAL.FLAG_SMOOTH);
+			pc.legCount = 2;
+			pc.legType = GLOBAL.TYPE_DEMONIC;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SMOOTH);
+			pc.createStatusEffect("Genital Slit",0,0,0,0);
+			pc.createStatusEffect("Vanae Markings");
+			pc.skinAccent = "glowing red";
+		//The 'true' at the end of the Perfect Simulant status effect is where I think the flag goes to have it hidden, if not then please set it where it needs to go or let me know.
+			pc.createStatusEffect("Perfect Simulant",0,0,0,0,true,"Icon_Gears_Three","You were created by the scientists at Steele Tech to be the perfect heir, and as such, your maximum capabilities exceed even those of the luckiest terrans. You walk, talk, breathe, and eat, just like any living creature, even simulating DNA to allow you to emulate the effects of transformative items on true organics.",false,0);
+			bonusTexts = "None of the doctors or scientists could ever figure out what went ‘wrong’ with you, it was as if some supernatural force meddled with you. Nor could they ever explain the your ‘past life’ memories, but you’re certain you’ve always been this way.";
 			break;
 		case "":
 			if(!TF) break;

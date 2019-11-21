@@ -37,12 +37,13 @@
 		if(InCollection(sRace, ["amazoness", "amazonian", "amazon"])) sRace = "human";
 		if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
-		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
+		if(InCollection(sRace, ["hucow", "cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
 		if(InCollection(sRace, ["horse", "alicorn", "unicorn", "pegasus"])) sRace = "equine";
 		if(InCollection(sRace, ["dog", "doge", "doggo", "puppy", "pupper", "bitch", "hellhound", "husky"])) sRace = "canine";
 		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";
 		if(InCollection(sRace, ["wolf", "worg"])) sRace = "lupine";
 		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";
+		if(InCollection(sRace, ["drider", "spider", "arachnid"])) sRace = "spider";
 		if(InCollection(sRace, ["satyr"])) sRace = "goat";
 		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
 		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
@@ -52,6 +53,7 @@
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
 		if(sRace.indexOf("goblin") != -1) sRace = "gabilani";
 		if(InCollection(sRace, ["raskvel", "rask"])) sRace = "raskvel";
+		if(InCollection(sRace, ["korgonne", "korg"])) sRace = "korgonne";
 		if(sRace.indexOf("pony") != -1) sRace = "pony";
 		
 		if(sRace.indexOf("NOT SET") != -1 || sRace.indexOf("?") != -1) sRace = "";

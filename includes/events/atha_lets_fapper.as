@@ -2,10 +2,13 @@
 public function hasSmutOptions():Boolean
 {
 	//Mails that require ship presence for some reason:
-	if(MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) return true;
-	if(MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) return true;
-	if(MailManager.isEntryViewed("syri_video") && InShipInterior()) return true;
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) return true;
+	if(MailManager.isEntryViewed("extrameet_invite_email")) return true;
+	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
+	if(MailManager.isEntryViewed("steph_on_demand")) return true;
+	if(MailManager.isEntryViewed("syri_video")) return true;
+	if(flags["PENNY_SYRIVAG_WATCHED"] != undefined) return true;
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) return true;
+	if(pc.hasKeyItem("Video - Zil Nigh the Science Bi")) return true;
 	//Ones that don't:
 	if(MailManager.isEntryViewed("kiroandkallyholomail")) return true;
 	return false;
@@ -14,8 +17,13 @@ public function hasSmutOptions():Boolean
 //Enter Ship > Masturbate > Smut
 public function smutFapMenu(fromPrevious:Boolean = false):void
 {
-	if(seranigansTrigger("computer")) return;
-	if(seraBitcheningDebtCheck()) return;
+	var inShip:Boolean = InShipInterior();
+	
+	if(inShip)
+	{
+		if(seranigansTrigger("computer")) return;
+		if(seraBitcheningDebtCheck()) return;
+	}
 	
 	clearOutput();
 	clearBust();
@@ -23,14 +31,15 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	
 	if(!fromPrevious)
 	{
-		output("Firing up your console with a few keystrokes, you settle back and ");
+		if(inShip) output("Firing up your console with a few keystrokes, you settle back and ");
+		else output("Activating your codex browser with a few taps, you settle back and ");
 		if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
 		else output("free your crotch");
 		output(" for ease of access while tuning in. What will you watch?");
 	}
 	else
 	{
-		output("Your console is still active. Do you want to watch anything in particular?");
+		output("Your " + (inShip ? "console" : "browser") + " is still active. Do you want to watch anything in particular?");
 	}
 	
 	// First time: Cock Review
@@ -41,21 +50,42 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	// New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week
 	// Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
-	if (MailManager.isEntryViewed("syri_video") && InShipInterior()) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
-	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
+	var shipAvailableBlurb:String = "This option is only available from the ship’s console!";
+	
+	if(MailManager.isEntryViewed("extrameet_invite_email")) possibleFuncs.push({ t: "ExtraMeet", th: "ExtraMeet", tb: (inShip ? "Login to ExtraMeet." : shipAvailableBlurb), f: (inShip ? extrameetStartPage : null), ar: undefined } );
+	if(MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: (inShip ? "Watch Atha’s Let’s Fap episodes." : shipAvailableBlurb), f: (inShip ? letsFapSelectionMain : null), ar: undefined } );
+	if(MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: (inShip ? "Watch on-demand episodes of Steph Irson: Galactic Huntress." : shipAvailableBlurb), f: (inShip ? stephOnDemandVODs : null), ar: undefined } );
+	if(MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri Video", tb: (inShip ? "Take a good look at that very private video Syri sent you." : shipAvailableBlurb), f: (inShip ? syriJackVid : null), ar: undefined } );
+	if(flags["PENNY_SYRIVAG_WATCHED"] != undefined) possibleFuncs.push( { t: "Penny & Syri", th: "Penny’s Syri Vid", tb: (inShip ? "Check out this video -- you want another look at what’s happening between these two." : shipAvailableBlurb), f: (inShip ? pennySyriOnaholeVid : null), ar: undefined } );
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) possibleFuncs.push({ t: "Khorgan", th: "Khorgan Video", tb: (inShip ? "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you." : shipAvailableBlurb), f: (inShip ? khorganPregsturbate : null), ar: undefined } );
+	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally Video", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
+	if(pc.hasKeyItem("Video - Zil Nigh the Science Bi")) possibleFuncs.push({ t: "Zil Nigh", th: "Zil Nigh the Science Bi", tb: (inShip ? "Brought to you by Girderbeam technologies Ltd." : shipAvailableBlurb), f: (inShip ? zilNightScienceBiPlay : null), ar: undefined } );
+	
 	clearMenu();
 	
+	var btnSlot:int = 0;
+	var backFunc:Function = ((pc.lust() < 33 || availableFaps(false, true).length <= 0) ? arousalMenu : masturbateMenu);
 	for (var i:int = 0; i < possibleFuncs.length; i++)
 	{
+		if(i >= 14 && (i + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", backFunc);
+			btnSlot++;
+		}
+		
 		var o:Object = possibleFuncs[i];
-		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
+		if(o.f == null) addDisabledButton(btnSlot, o.t, o.th, o.tb);
+		else addButton(btnSlot, o.t, o.f, o.ar, o.th, o.tb);
+		btnSlot++;
+		
+		if(possibleFuncs.length > 14 && (i + 1) == possibleFuncs.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", backFunc);
+		}
 	}
 	
-	if(pc.lust() < 33 || availableFaps(false, true).length <= 0) addButton(14, "Back", arousalMenu);
-	else addButton(14, "Back", masturbateMenu);
+	addButton(14, "Back", backFunc);
 }
 public function backToSmutMenu(toMainMenu:Boolean = false):void
 {
@@ -435,7 +465,7 @@ public function kuiTanLetsFap2():void
 	showAtha("KUITAN");
 	author("Adjatha");
 	output("<i>“I’ve got to be careful on this next part,”</i> she mutters to herself as she looks down at the swaying mass in her lap. Clearing her throat, the camgirl raises her voice, gaining an octave. <i>“The balls themselves are crazy sensitive. Like, you would not believe,”</i> she asserts as her fingertips start pressing into the pliant immensity of her sack. <i>“But they’re not over-sensitive, like most balls,”</i> she goes on, her stroking growing more fierce. <i>“Normally, if somebody flicks your balls, you’ll probably double over, right? Not so with kui-tan balls. Pretty much everything transmits as pleasure, no matter how aggressive!”</i> As a demonstration, she raises one hand up and delivers an open-palmed slap, the sharp note of her impact on the cum-filled scrotum sending ripples through her bulk.");
-	output("\n\nThe girl’s mouth opens as her eyes squeeze shut, soundless moans sending shudders down her spine. The donut of her sheath dilates, a hefty shaft nearly the color of her burgundy vest lurches upward, thick blobs of pre-cum sputtering from its tip in a gooey shower that leaves slimy pools of thin liquid speckled across her massive sack. Her shoulders shiver as she slowly begins to breath again. <i>“Wow,”</i> she sighs, panting and struggling to loosen her bowtie. <i>“Yeah, that’s pretty amazing. And oh hey,”</i> she continues, glancing down, <i>“Looks like the star of the show has made her appearance. This lil’ gal is a kui-tan cock. It gets overlooked a lot because of the balls, but don’t think for a minute that it’s not just as cool!”</i>");
+	output("\n\nThe girl’s mouth opens as her eyes squeeze shut, soundless moans sending shudders down her spine. The donut of her sheath dilates, a hefty shaft nearly the color of her burgundy vest lurches upward, thick blobs of pre-cum sputtering from its tip in a gooey shower that leaves slimy pools of thin liquid speckled across her massive sack. Her shoulders shiver as she slowly begins to breathe again. <i>“Wow,”</i> she sighs, panting and struggling to loosen her bowtie. <i>“Yeah, that’s pretty amazing. And oh hey,”</i> she continues, glancing down, <i>“Looks like the star of the show has made her appearance. This lil’ gal is a kui-tan cock. It gets overlooked a lot because of the balls, but don’t think for a minute that it’s not just as cool!”</i>");
 	output("\n\nMastering herself, the flow of precum slows and stops, Atha’s hands using the tiny leak to polish her stiffening pole, greasing it up to a glistening sheen as she rolls all ten inches between her fingers with a showroom flourish. <i>“Not one, not two, but THREE knots on this sucker! They’re pretty similar to the ausar knot, but tend to be smaller and more manageable. You might get some leakage, especially with the volume of cum we’re dealing with, but since nearly the whole shaft expands, you’re pretty much guaranteed to nail the g-spot or prostate with a meaty care package that lasts for upwards of an hour!”</i>");
 	output("\n\nResting her fingers atop the very peak of her shaft, Atha pokes the firm tip of her coral spire. <i>“So you guys got back to me and sure enough, the ausar tip, like my kui-tan tip here, is to stimulate a partner’s cervix. Awesome guess on my part, huh? Totally nailed it!”</i> Her fingers trace down the swell of her cockhead with tender caresses. <i>“The tip kinda looks like an upside-down heart, doesn’t it? So cute, oh my geeze.”</i> She rolls her fingers over one knotted swell, to the next and onto the third, her descent slowing as she reaches the widest point of each hefty protrusion. <i>“This is actually really cool- unlike the ausar knot, these aren’t numb at all. They’ve got separate muscles in each knot, too, so I can flex and milk myself with my own cock!”</i> She demonstrates, each knot tightening slightly, one after another, ending with a thick pearl of alabaster appearing at the very crest of her alien organ.");
 	output("\n\nFinally, her fingers reach the stretched ring of her fuzzy sheath. Rolling it between her knuckles playfully, the camgirl looks back up at the camera. <i>“So, last week was super fun, but I’m pretty sure if I just let this load go free, I’ll end up needing all new recording equipment! But no fear, I picked up some Panzer condoms just for this occasion.”</i> She reaches offscreen and produces a long chain of shiny chrome foil packages, each about 4 inches long. Pulling one off of the bundle and tearing it open, she shows off the latex ring inside, its rolled length glistening with lubrication.");
@@ -1267,7 +1297,7 @@ public function letsFapTerran3():void
 	showAtha("TERRAN");
 	author("Adjatha");
 	output("Slowly rising to her feet, Atha rubs the reddish mark left on her forehead by the traitorous organ. <i>“Gettin’ a little light headed,”</i> she mutters, struggling over to her chair and dropping into it heavily. <i>“It’s really hard to think with this big, throbbing cock in my lap,”</i> she whines, hands struggling to hold the now nearly thirty inch behemoth to one side. With a member that towers over her head, the camgirl offers a weak smile and a helpless shrug. <i>“I guess we’d better take care of this girl before she gets any more out of hand!”</i>");
-	output("\n\nLacing her fingers together around the swollen cumvein of her jawbreaking behemoth, the camgirl slowly strokes up and down the tense flesh. She presses tightly against the yielding mass, whining with unfamiliar delight. <i>“Hnnn... oh, yes, this is the fucking best,”</i> she purrs. Her hips shift uncontrollably with every pump, mouth opening in an O of shock every time she reaches the nerve-dense peak. Bubbles of pre-cum spurt from the tip of her monster but she hardly notices, the oozing goo quickly worked into her strokes.");
+	output("\n\nLacing her fingers together around the swollen cumvein of her jawbreaking behemoth, the camgirl slowly strokes up and down the tense flesh. She presses tightly against the yielding mass, whining with unfamiliar delight. <i>“Hnnn... oh, yes, this is the fucking best,”</i> she purrs. Her hips shift uncontrollably with every pump, mouth opening in an ‘O’ of shock every time she reaches the nerve-dense peak. Bubbles of pre-cum spurt from the tip of her monster but she hardly notices, the oozing goo quickly worked into her strokes.");
 	output("\n\nThe seeping spoo leaves her terran monster glistening and adds lubrication that speeds her strokes beyond the girl’s capacity to bear. <i>“W-what? It’s - hng! - really tight! Feels - oh! - like a hot pressure...”</i> she moans. Her pumps quick and tight, Atha leans in and begins licking the crested tip of her titanic dick. Veins bulging all over the ponderous mass, she wraps both arms around her cock, squeezing it tightly against her buxom chest and nibbles lightly at the tender tip.");
 	output("\n\n<i>“I just... wanna... put this whole thing in-”</i> her thought is interrupted when a burst of cum shoots out of the overwrought meat and catches her directly in the face. She freezes in shock and alarm, her cock throbbing before its next blast fires into the open air. Atha gasps raggedly, her shoulders shivering and her body twitching as the shaft has its way with her. She releases her grip to fondle her breasts, allowing the incredible heft of her fuckstick to drop heavily onto her desk. With the camera at eye-level with the giant phallus, you have a perfect view as the head tenses, its slit widening reflexively. An ivory stream of spunk bursts from the fleshy cannon, the wild spray just barely missing the camera but giving a beautiful view of its splattering passage.");
 	output("\n\n<i>“The camera!”</i> Atha yelps, gathering her colossal cock back into her arms protectively even as another burst nearly robs her of her strength again. <i>“Oooh... ohhh... feels so good,”</i> she mutters, chewing slightly on her lower lip as she strokes, squeezes, and milks the pliant cumvein of her terran titan. Her orgasm goes on and on, thick ropes of rich, virginal cum spurting from the camgirl’s new organ, pooling on her desk as often as it rains down on her quivering form. With a manic voice she tries to explain the sensations of her relentless orgasm, but keeps descending into a babble of cooing glee and sharp exclamations of bliss.");
