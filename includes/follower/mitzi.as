@@ -3060,14 +3060,14 @@ public function mitziTakesItUpTheAssFINALLY(x:int):void
 	output("\n\nMitzi nods and does as you say, staring straight ahead and remaining perfectly still, trying not to move. That leaves you with full access to her bountiful booty. You roughly grab onto her ass, feeling your hands sink into the warm, yielding masses of flesh. Mitzi yelps at your sudden motion, but doesn’t break your command. You keep manhandling her generous globes; pressing into them, bouncing them up and down and side to side, and even giving her a playful bite, just to see if you can get her to choke up.");
 	output("\n\nLike the good slut she is she doesn’t move an inch, but your ministrations have obviously had an effect on her. She’s shaking and twitching and babbling under her breath. <i>“M-[pc.Master] loves Mitzi’s booty! Are you g-g-gonna fuck it?”</i> She presses her rear against your hands, trying to force as much of herself into your hands as possible. You give her booty a hearty slap, pushing her back into a neutral posture.");
 	output("\n\n<i>“Of course, but on <b>my</b> time!”</i>");
-	output("\n\nMitzie nods and holds straight as you ");
+	output("\n\nMitzi nods and holds straight as you ");
 	if(!pc.isCrotchExposed()) output("strip off your [pc.crotchCover] and ");
 	output("grab hold of your [pc.cock " + x + "]. The green slut gets antsy when she realizes that you’re finally going to bang her brains out. You have to steady her yourself just to be able to line up with her cheeks. Prying open her buttocks, you place your member between them, releasing her ass flesh and letting it cascade over your " + pc.mf("","wo") + "manhood.");
 	if(pc.cocks[x].cLength() <= 12) output(" Her massive mounds consume your [pc.cockNounSimple " + x + "], leaving nothing to sight.");
 	else if(pc.cocks[x].cLength() <= 20)output(" Your cock is long enough for the tip to peer out the other end of her cheeks.");
 	else output("Not even Mitzi’s massive rear mounds are enough to encase your mighty cock, leaving a huge amount of dickmeat hanging out in the open.");
 
-	output("\n\nYou rock your [pc.hips] back and forth, sawing through her rear with ever-increasing force. For her part, Mitzie never even turns her head; she keeps looking dead on forward, just like you told her. You raise a hand up and bring it back down on her booty for a casual slap, drawing a yelp from the purple-haired slut and sending pleasurable vibrations through your member. The sensation is more than you were expecting, momentarily hampering your movements. With a huff you focus in and redouble your thrusts, going in so hard that you lift Mitzi off her feet.");
+	output("\n\nYou rock your [pc.hips] back and forth, sawing through her rear with ever-increasing force. For her part, Mitzi never even turns her head; she keeps looking dead on forward, just like you told her. You raise a hand up and bring it back down on her booty for a casual slap, drawing a yelp from the purple-haired slut and sending pleasurable vibrations through your member. The sensation is more than you were expecting, momentarily hampering your movements. With a huff you focus in and redouble your thrusts, going in so hard that you lift Mitzi off her feet.");
 
 	output("\n\nShe groans in impotent pleasure as you use her like your personal fuck cushion. <i>“Mitzi loves when [pc.Master] uses her butt! D-do it as hard as you want, Mitzi wants it haaaaaaaarrd!”</i> The braindead gob starts cumming her brains out, soaking her thighs in womanly juices as her legs twitch and her pussy spasms. The wet noises remind you that you’re going to need a good amount of lube for what’s coming up. Luckily your partner just provided you with a fresh source.");
 	pc.lust(50);
@@ -3081,7 +3081,7 @@ public function mitziTakesItUpTheAssFINALLY(x:int):void
 	if(pc.cockVolume(x) < mitzi.analCapacity() / 2) output("You press into her anus and find that your [pc.cock " + x + "] is almost immediately devoured by her rear. It’s actually hard to pull out with how hard her bootyhole is gripping you. Several irritated slaps to her ass sends the message loud and clear, and she tries her best to loosen up and let you get into a rhythm.");
 	else if(pc.cockVolume(x) <= mitzi.analCapacity()) 
 	{
-		output("Her anus gives you some resistance, but both of you are determined to get you in there, so it stands no chance. You batter it down and gain entrance to her rear. It takes a bit of working, but Mitzie is eventually able to take all of your sizable member.");
+		output("Her anus gives you some resistance, but both of you are determined to get you in there, so it stands no chance. You batter it down and gain entrance to her rear. It takes a bit of working, but Mitzi is eventually able to take all of your sizable member.");
 		output("\n\n<i>“S-so much in Mitzi’s butt...”</i> The slut is almost completely out of it by this point, but that doesn’t matter much to you as you start to fuck her right.");
 	}
 	else 
@@ -3095,17 +3095,19 @@ public function mitziTakesItUpTheAssFINALLY(x:int):void
 	output("\n\n<i>“[pc.Master] is smart. Buttfucking is going to be much easier like thiiiiiiiiiiiiiiiiiiiiiiiiis!”</i> You don’t even wait for her to finish before you start up. Despite her best efforts to be accommodating for you, her ass still offers a lot of resistance. Even with as much lube as you got from her, it seems like you’re going to need a bit more. Lucky for you, her slutty slit is within easy reach. You dive four fingers deep into her, pulling out a hearty helping of gobbo cunny juice and slathering it on your member in between thrusts. You repeat this until Mitzi is a drooling heap on the ground, and you’re gliding through her rear end like butter through a waterslide.");
 	output("\n\nWith your newfound freedom you up your tempo, really starting to stuff the stocky slut. Her bountiful ass jiggles like two bowls of particularly gelatinous gelatin, making them irresistible targets for your hands to work on while you fuck her. You knead, grab, and slap to your heart’s content, treating her like your personal sex-doll, which she pretty much is. It doesn’t take her long to start cumming again from the treatment. Mitzi’s whole body starts to spasm and shiver as her tailhole crushes in around you. You try and pull out, only to find that her spaded tail has wrapped itself around you, and is keeping you from fully extracting yourself.");
 	output("\n\nThe tightness becomes too much for you to handle, and you explode inside Mitzi. ");
-	if(pc.cumQ() < 1000) output("You empty your [pc.balls] inside her, feeling every drop being sucked out until you’re completely dry.");
-	else if(pc.cumQ() < 10000) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 1000) output("You empty your [pc.balls] inside her, feeling every drop being sucked out until you’re completely dry.");
+	else if(cumQ < 10000) 
 	{
 		output("You stuff her backside with a deluge of [pc.cum], watching her belly round out as your [pc.balls] drain");
-		if(pc.balls <= 1) output(" completely under the vice-grip of her ass.");
+		if(pc.balls <= 1) output(" completely under the vice-grip of her ass");
+		output(".");
 	}
-	else output("Mitzie screams out as you absolutely stuff her with [pc.cum]. Her belly rounds out in seconds as you can’t help put cram every drop you have into her. It cascades out in waves as even her bimbo gut is unable to hold all of your load.");
+	else output("Mitzi screams out as you absolutely stuff her with [pc.cum]. Her belly rounds out in seconds as you can’t help put cram every drop you have into her. It cascades out in waves as even her bimbo gut is unable to hold all of your load.");
 
 	output("\n\nYou curse under your breath at Mitzi getting you off too soon, as you pull out. You’re about to scold her, but she quickly gets up from her fucked-out funk and apologizes.");
 
-	output("\n\n<i>“Mitzie sorry [pc.Master]! Mitzi couldn’t help it, it felt so good!”</i> You cross your arms and stamp your foot, expecting her to do something about your ");
+	output("\n\n<i>“Mitzi sorry [pc.Master]! Mitzi couldn’t help it, it felt so good!”</i> You cross your arms and stamp your foot, expecting her to do something about your ");
 	processTime(20);
 	pc.orgasm();
 
@@ -3136,8 +3138,9 @@ public function mitziTakesItUpTheAssFINALLY(x:int):void
 
 	output(" for another round. You put your hands on the back of her head and put her to work, making her deepthroat your [pc.cock " + x + "] to the point where you nearly forget that you were supposed to be fucking her ass. The pleasure climbs as more of her insidious lipstick soaks into your dickskin. Even that small amount was enough to get your motor working overtime, your shaft rigid and tingling with drug-enhanced, erotic delight.");
 	output("\n\nBefore you know it, you’re cumming straight down her throat, filling your emerald slut with ");
-	if(pc.cumQ()< 100) output("ribbons");
-	else if(pc.cumQ() < 4000) output("gobs");
+	cumQ = pc.cumQ();
+	if(cumQ < 100) output("ribbons");
+	else if(cumQ < 4000) output("gobs");
 	else output("gallons");
 	output(" of [pc.cum], again. It doesn’t stop your lusts though, if anything it serves as a delicious warm-up! Invigorated, you hoist Mitzi up and press her against your [pc.chest]. She says nothing, only signaling her approval with a coo and a deep moan as you plant the diminutive slut on your [pc.cock " + x + "], impaling her already well used ass again. Thankfully all your work from earlier paid off, and she’s still more than ready for you.");
 	processTime(20);

@@ -6078,15 +6078,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Yoma:</b> Met him");
 					if(flags["YOMA_DATE_PROGRESS"] != undefined)
 					{
-						output2(", Times Dated: ");
-						if(flags["YOMA_RELATIONSHIP"] >= 6 ) output2("3");
-						else if(flags["YOMA_RELATIONSHIP"] == 4 ) output2("2");
-						else output2("2");
+						output2("\n<b>* Yoma, Times Dated:</b> ");
+						if(flags["YOMA_RELATIONSHIP"] >= 6) output2("3");
+						else if(flags["YOMA_RELATIONSHIP"] == 4) output2("2");
+						else output2("1");
 					}
-					output2(", Relationship: ");
-					if(flags["YOMA_RELATIONSHIP"] == undefined ) output2("Acquaintances");
-					else if(flags["YOMA_RELATIONSHIP"] == 0 ) output2("Fuckbuddies");
-					else if(flags["YOMA_RELATIONSHIP"] == 1 ) output2("Lovers");
+					output2("\n<b>* Yoma, Relationship:</b> ");
+					if(flags["YOMA_RELATIONSHIP"] == undefined) output2("Acquaintances");
+					else if(flags["YOMA_RELATIONSHIP"] == 0) output2("Fuckbuddies");
+					else if(flags["YOMA_RELATIONSHIP"] == 1) output2("Lovers");
 					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times You Played His RPG Game:</b> " + flags["YOMA_GAMES_PLAYED"]);
 					if(flags["YOMA_TIMES_HUGGED"] != undefined) output2("\n<b>* Yoma, Times Hugged:</b> " + flags["YOMA_TIMES_HUGGED"]);
 					if(flags["YOMA_TIMES_ORALED"] != undefined) output2("\n<b>* Yoma, Times He Oral Sexed You:</b> " + flags["YOMA_TIMES_ORALED"]);
@@ -9533,6 +9533,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["EGG_TRAINING_TIMES"] > 1) output2(" " + flags["EGG_TRAINING_TIMES"] + " times");
 				}
 				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level:</b> " + flags["EGG_TRAINING"]);
+				if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Ovalasting Level:</b> " + flags["EGG_TRAINING_OVALASTING_LEVEL"]);
 				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training:</b> " + flags["CARRY_TRAINING_TIMES"]);
 				if(flags["EGG_TRAINING_OVALASTING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Used Ovalasting:</b> " + flags["EGG_TRAINING_OVALASTING"]);
 			}

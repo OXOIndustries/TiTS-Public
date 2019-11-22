@@ -17,7 +17,7 @@ Breasts: B-cup
 /*
 
 New Flags:
-	THYVARA_MET  1 = met her
+	THYVARA_MET 1 = met her
 	THYVARA_STORY number of stories told
 	THYVARA_DRINK_TALK 1 = had drink talk
 	THYVARA_FAMILY_TALK 1 = had family talk
@@ -239,7 +239,7 @@ public function thyvaraReasonAfter():void
 	output("\n\n<i>“Hey, Cap. Steele, mind if a little bug-brain like me asks another question?”</i> You shrug and nod, not seeing the harm in it.");
 	output("\n\n<i>“I... may have been kicked out of my old hunting party, and Matisar aren’t great at dealing with this whole ‘loneliness’ thing.”</i> She makes dramatic air quotes, <i>“So, if you’ll come see me every now and again, maybe swap a story or two, I’d really appreciate it.”</i>");
 	output("\n\nSomeone calls from another part of the bar.");
-	output("\n\n“<i>What, aren’t we good enough company?”</i> Thyvara chuckles and turns.");
+	output("\n\n<i>“What, aren’t we good enough company?”</i> Thyvara chuckles and turns.");
 	output("\n\n<i>“You’re great company, but you can’t hunt for shit! Only other decent hunter I’ve seen around here is Tanis.”</i> She turns back to you, smile back on her face. <i>“So, Steele, got anything good to share?”</i>");
 	
 	processTime(5);
@@ -269,7 +269,7 @@ public function thyvaraAppearance():void
 	clearOutput();
 	showThyvara(false, true);
 	
-	output("Tyvara is roughly 165 cm, or 5’4” in old imperial, tall, with a solid, stocky build. Her apparent durability is enhanced by the smooth, dark green chitin plates covering most of her body, only parting around her groin, chest and face. Her skin is an ebony colour, and what little there is seems to be quite muscular. Her face holds a pair of eyes with dark brown sclera, bright blue iris’ and four-pointed star shaped pupils. Her hair is cut into a short mullet that doesn’t quite reach her shoulders.");
+	output("Thyvara is roughly 165 cm, or 5\' 4\" in old imperial, tall, with a solid, stocky build. Her apparent durability is enhanced by the smooth, dark green chitin plates covering most of her body, only parting around her groin, chest and face. Her skin is an ebony colour, and what little there is seems to be quite muscular. Her face holds a pair of eyes with dark brown sclera, bright blue iris’ and four-pointed star shaped pupils. Her purple-streaked green hair is cut into a short mullet that doesn’t quite reach her shoulders.");
 	output("\n\nThe chitin covering her forearms and lower legs is covered in small spikes. The back of her hands is covered in chitin, the palm and fingers are free of it, showing dark skin, while her fingers end in a set of sharp looking claws. Her feet have one backwards facing and three forward facing toes, which she usually walks on using the padded tips.");
 	output("\n\nHer abdomen reaches twelve inches long, resting between a pair of ridges on her back." + (flags["THYVARA_SEEN_FINS"] == 1 ? " These fold out into large fan-like structures made of a white membrane. The left one has small tears in it." : "") + (flags["THYVARA_SEX"] != undefined ? " The entrance to her vagina is located at the end of her abdomen. The interior houses three wombs, two of which are located along the bottom of her channel." : ""));
 	output("\n\nShe’s wearing a mix of leather straps and patches, which serve to cover most of her skin, but leave her chitin as open as possible. She has an old-looking bolt-action rifle leaning against the wall, and a small axe slotted into a strap around her waist.");
@@ -283,7 +283,7 @@ public function thyvaraTalk():void
 	showThyvara(false, true);
 	
 	output("<i>“I just want to chat,”</i> You tell her. She takes a sip from her flask, nodding.");
-	output("\n\n<i>“<i>Well got anything particular you want to chat about?”</i>");
+	output("\n\n<i>“Well got anything particular you want to chat about?”</i>");
 	
 	processTime(1);
 	thyvaraTalkMenu();
@@ -318,7 +318,7 @@ public function thyvaraTalkHer():void
 	output("\n\n<i>“Sounds helpful.”</i>");
 	output("\n\n<i>“It is, like my matriarch always said, ‘nothing better than a local to tell you what’s safe.’”</i> She looks into her flask for a moment, before sighing.");
 	output("\n\n<i>“Other than that, I just like stories. Telling them, hearing them, anything. I prefer the ones that involve fighting, especially when there’s a twist in the works. Nothing quite like waiting for the finish and then BAM!”</i> she punches one hand into the other <i>“Everything I was waiting for gets thrown out the window.”</i> She sighs happily, taking a long draught of her flask wiping some of the creamy drink from her lips. She looks back at you with a smile.");
-	output("\n\n<i>“<i>So, got any good tales for me?</i>”</i>");
+	output("\n\n<i>“So, got any good tales for me?”</i>");
 	
 	processTime(4 + rand(2));
 }
@@ -458,7 +458,7 @@ public function thyvaraTalkDrinkYes(fromMain:Boolean=false):void
 		if (pc.canCumCascade())
 		{
 			output("\n\nThat’s when your [pc.balls] begin to react and churn out large amounts of your own semen in response. When Thyvara notices her smile is replaced by a look of shock.");
-			output("\n\n<i>“Oh, crap! " + (pc.race() == "kui-tan" ||  pc.race() == "half kui-tan" ? "I forgot about how your kind reacts to semen." : "You’re a kui-tan?!") + " I’m so sorry.”</i> You brush it off. You knew what you were getting into when you accepted the drink. Giving her a smile calms her down. Your balls eventually stop swelling.");
+			output("\n\n<i>“Oh, crap! " + (pc.race() == "kui-tan" || pc.race() == "half kui-tan" ? "I forgot about how your kind reacts to semen." : "You’re a kui-tan?!") + " I’m so sorry.”</i> You brush it off. You knew what you were getting into when you accepted the drink. Giving her a smile calms her down. Your balls eventually stop swelling.");
 			output("\n\n<i>“Pretty potent, huh?”</i> You ask with a smile.");
 		}
 		output("\n\n<i>“Yeah, my party has a recipe that makes it a lot sweeter while not adding too much sugar to it. We even had a garden for the additives on our ship.”</i> She downs a swig herself.");
@@ -553,7 +553,7 @@ public function thyvaraProgressStayNo():void
 	
 	if (pc.isNice())
 	{
-		output("With a soft smile you rest a hand on her shoulder. <i>“<i>I’d love to stay and keep you company, but I have to be somewhere. Maybe next time?</i>”</i> She tries to return your smile, and nods slowly.");
+		output("With a soft smile you rest a hand on her shoulder. <i>“I’d love to stay and keep you company, but I have to be somewhere. Maybe next time?”</i> She tries to return your smile, and nods slowly.");
 		output("\n\n<i>“Alright. Yeah, sure, next time...”</i> She leans over and gives you a peck on the cheek <i>“I think I’ll just sleep here for tonight. This thing’s surprisingly comfy.”</i> She curls up on the couch, leaving you to show yourself out.");
 		output("\n\n<i>“Could you get the light for me?”</i> With a soft chuckle you agree, turning off the lights before pecking her on the forehead.");
 		output("\n\n<i>“Sweet dreams,”</i> you mutter as you depart, being careful to close the door gently.");
@@ -763,14 +763,14 @@ public function thyvaraSexPenetrate(kok:int=0):void
 
 	if (pc.cumQ() >= 1000)
 	{
-		if (pc.balls > 1) output("\n\nWhen you tip over the edge, your [pc.balls] make sure they let Tyvara know.");
-		else if (pc.balls > 0) output("\n\nWhen you tip over the edge, your [pc.balls] makes sure it lets Tyvara know.");
-		else output("\n\nWhen you tip over the edge, your body makes sure it lets Tyvara know.");
+		if (pc.balls > 1) output("\n\nWhen you tip over the edge, your [pc.balls] make sure they let Thyvara know.");
+		else if (pc.balls > 0) output("\n\nWhen you tip over the edge, your [pc.balls] makes sure it lets Thyvara know.");
+		else output("\n\nWhen you tip over the edge, your body makes sure it lets Thyvara know.");
 		
 		output(" Your first wave of [pc.cum] is enough to fill her channel, the next floods her womb." + (pc.hasKnot(kok) ? " Between your knot and her grip, the next few shots pressurize her abdomen, the once forgiving flesh tightening over you both. Even the firm seal around your [pc.base " + kok + "] isn’t enough to hold the flood back, and the results are explosive, [pc.cum] and Thyvara’s own juices squirting out around you." : " The firm grip of Thyvara’s muscular pussy tries to hold your juices in, but your output won’t be held back. A few more squirts and the both of you are being covered in [pc.cum], but Thyvara’s abdomen continues to swell as what’s forced out is replaced twice as fast."));
 		
 		output("\n\nBy the time you’re squirting watery aftershocks Thyvara’s abdomen is swollen to twice its original size, with [pc.cum] leaking out around your union. She sighs heavily as the two of you come down from your high’s.");
-		output("\n\n<i>“Holy shit,”</i> she sighs. <i>“" + (pc.race() == "kui-tan" ||  pc.race() == "half kui-tan" ? "I never realised how messy a kui could actually be. That was insane." : "I didn’t think anything short of another matisar or a kui-tan could flood my wombs like that. You really are something else, [pc.name].") + "”</i> She leans down and kisses the top of your head.");
+		output("\n\n<i>“Holy shit,”</i> she sighs. <i>“" + (pc.race() == "kui-tan" || pc.race() == "half kui-tan" ? "I never realised how messy a kui could actually be. That was insane." : "I didn’t think anything short of another matisar or a kui-tan could flood my wombs like that. You really are something else, [pc.name].") + "”</i> She leans down and kisses the top of your head.");
 	}
 	else if (pc.cumQ() >= 500)
 	{
@@ -845,7 +845,7 @@ public function thyvaraSex69():void
 	output("You give her a good look at your [pc.crotch].");
 	if (pc.hasCock() && pc.hasVagina())
 	{
-		output(" Tyvara blushes as she takes in the variety of your equipment.");
+		output(" Thyvara blushes as she takes in the variety of your equipment.");
 		output("\n\n<i>“Well, I guess variety </i>is<i> the spice of life and all that.”</i>");
 	}
 	else if (pc.hasCock())
@@ -1058,7 +1058,7 @@ public function thyvaraShareStoriesMyrellion():void
 	output("You bring up your time on the war-torn world of Myrellion, and your adventures among the many races living there. After recounting one of the more exciting events you were a part of there, you ask the matisar huntress if she has any comparable experiences.");
 	output("\n\nAfter a few moments thought she nods.");
 	output("\n\n<i>“Alright. This one’s got some more adult themes to it, but the story’s still a good one.”</i> She chuckles as she starts going through her datapad, eventually coming to a picture of her family standing amongst what looks like a group of bird-like aliens.");
-	output("\n\n<i>“These are the Tiras tribe from a rush world. Can’t remember the name, but they’re damned good hunters for their tech level, and we had some fun hunting with them for a month or two.</i>”</i> She points to one of the smaller matisar. <i>“This is Jaroth. He got especially friendly with one of the tribe, and ended up giving her an egg. We were all supposed to be on regular sterilex treatments, but apparently he forgot his at one point.”</i>");
+	output("\n\n<i>“These are the Tiras tribe from a rush world. Can’t remember the name, but they’re damned good hunters for their tech level, and we had some fun hunting with them for a month or two.”</i> She points to one of the smaller matisar. <i>“This is Jaroth. He got especially friendly with one of the tribe, and ended up giving her an egg. We were all supposed to be on regular sterilex treatments, but apparently he forgot his at one point.”</i>");
 	output("\n\n<i>“Now, the tribe was happy to have a half-matisar kid running around, as long as Jaroth agreed to help take care of it. Now, these guys have a fairly quick cycle, two weeks to egg, three months to hatching. That’s all they wanted, for him to stay until the egg hatched.”</i>");
 	output("\n\n<i>“Now, we all agreed to it, since the planet was actually pretty hospitable for us, and there was a nice diversity of wildlife there. So we hunt, sometimes with the tribe, but usually on our own, until the tribe tells us that someone’s kidnapped our brother.”</i> She gives you a tired smile.");
 	output("\n\n<i>“Turns out a rival tribe had heard about Jaroth’s little breeding event, and decided they wanted some of that star-seed for themselves. We found the rival village easy enough, and boy had they been busy. There was already a full nursery set up and ready, and a lot of folk walking around with fat bellies. We waited for night before moving in on them. We’d spotted where they were keeping him, just had to look for the building they went in thin and came out bloated. I don’t think they quite knew what they were getting themselves into volume-wise.”</i>");
@@ -1097,11 +1097,11 @@ public function thyvaraShareStoriesUveto():void
 	
 	output("You take a few minutes to think on your time on the frigid world of Uveto, recalling journey’s through the snow and ice. After picking one tale and recounting it to Thyvara, you ask her for a cold climate story in return.");
 	output("\n\nAfter a few moments thought she nods, coming up with a tale for you.");
-	output("\n\n<i>“<i>Okay, I don’t know if I’ve said this before, but we matisar like two things in our environment, heat and moisture. We try to avoid the colder, drier worlds, but every now and again we find ourselves camped out on some frigid snowball.”</i>");
+	output("\n\n<i>“Okay, I don’t know if I’ve said this before, but we matisar like two things in our environment, heat and moisture. We try to avoid the colder, drier worlds, but every now and again we find ourselves camped out on some frigid snowball.”</i>");
 	output("\n\n<i>“So, we were more coreward on this one, one of those special hunting reserves. The planet itself was pretty cold, not iceball cold, but chilly enough that the ice caps covered a third of the planet.”</i>");
 	output("\n\n<i>“Now, right up on the northern cap, there were some things we called snowcrackers. They were the size of my fist and moved in swarms. We weren’t after them, but we sure as hell found some.”</i> She shudders at the memory.");
-	output("\n\n<i>“<i>Now, here’s why they were called snowcrackers, they lived on the ice sheets, which usually were covered in snow. When they felt something crawling across the snow, they’d start making holes. Once they’d made enough holes, boom, ice sheet cracked, and whatever was there, dropped into the freezing water and made a nice meal.”</i> You can see where this story’s going, and it doesn’t look fun.");
-	output("\n\n<i>“<i>So, there we were, stalking a pack of critters with nice, fluffy hides, when we start hearing the ice crack under us. We all sprinted for our jet bikes, but... well, one of us tripped.”</i> The wince she gives at the memory makes it clear just which one of the family tripped.");
+	output("\n\n<i>“Now, here’s why they were called snowcrackers, they lived on the ice sheets, which usually were covered in snow. When they felt something crawling across the snow, they’d start making holes. Once they’d made enough holes, boom, ice sheet cracked, and whatever was there, dropped into the freezing water and made a nice meal.”</i> You can see where this story’s going, and it doesn’t look fun.");
+	output("\n\n<i>“So, there we were, stalking a pack of critters with nice, fluffy hides, when we start hearing the ice crack under us. We all sprinted for our jet bikes, but... well, one of us tripped.”</i> The wince she gives at the memory makes it clear just which one of the family tripped.");
 	output("\n\n<i>“Taror came in after me. She was the biggest of us, so she had the best chance of getting out of there.”</i> Her voice and look grow distant, staring at her flask <i>“I’ve never been more scared in my life. Only three seconds and I was starting to go numb. I’ve still got scars from those things trying to bore into me.”</i> She holds up her arm, tracing a number of divets in her chitin <i>“Taror saved me, without question, that day. And I’ve never been able to make it up to her.”</i> A question comes to mind about Thyvara’s big sister.");
 	output("\n\n<i>“Is she still around?”</i> Thyvara nods, a shadow of her smile coming back.");
 	output("\n\n<i>“I doubt there’s a creature out there that could bring her down. Not even... not even </i>those<i> could get her....”</i> Her voice trails off, leaving the two of you sitting silently at the bar. You put a comforting hand on her shoulder, and she sighs, leaning into it.");

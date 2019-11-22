@@ -508,10 +508,10 @@ public function approachOlympia(back:Boolean = false):void
 	clearOutput();
 	showOlympia();
 	author("Savin");
-	if(flags["RECRUITED_OLYMPIA"] < 2)
+	if(flags["OLYMPIA_RECRUITED"] < 2)
 	{
 		firstTimeOlympiaDebrief();
-		flags["RECRUITED_OLYMPIA"] = 2;
+		flags["OLYMPIA_RECRUITED"] = 2;
 		return;
 	}
 	else if(back)
