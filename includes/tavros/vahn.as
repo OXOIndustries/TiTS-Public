@@ -520,6 +520,24 @@ public function storeYourShip():void
 	output("\n\nYour old vessel, " + tempShip.a + tempShip.short + ", is placed into storage.");
 	if(shipID != "") shits[shipID] = tempShip;
 }
+//this simply adds a ship into storage
+public function vahnAddAShip(newShip:ShittyShip = null):void
+{
+	if (newShip == null) return;
+	if (shipStorageRoom() <= 0)
+	{
+		output("\n\nThere is no room in storage for " + newShip.a + newShip.short + ".");
+		return;
+	}
+	var shipID:String = "";
+	for(var i:int = 0; i < shipStorageLimit(); i++)
+	{
+		shipID = String("SHIP_" + (i+2));
+		if(shits[shipID] == undefined) break;
+	}
+	output("\n\nThe vessel, " + newShip.a + newShip.short + ", is placed into storage.");
+	if(shipID != "") shits[shipID] = newShip;
+}
 
 // Compares ship and newShip, ttBody text optional for custom tooltip.
 public function addShipCompareButton(slot:int, ship:ShittyShip = null, newShip:ShittyShip = null, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void

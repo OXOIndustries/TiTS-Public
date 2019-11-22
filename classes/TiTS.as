@@ -233,6 +233,7 @@
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/kiroCrewQuest/rooms.as";
 		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
+		include "../includes/events/kiroCrewQuest/taursuit.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -695,7 +696,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.035";
+			version = "0.8.037";
 
 			//temporary nonsense variables.
 			temp = 0;

@@ -141,11 +141,11 @@ public function defeatTheGenericSexydoll():void
 	IncrementFlag("KQ_SEXDOLLS_DEFEATED");
 	if(!enemy.hasStatusEffect("VR"))
 	{
-		if(flags["KQ_SEXDOLLS_DEFEATED"] == 4) enemy.inventory.push(new DildoCanine());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 8) enemy.inventory.push(new TamaniBionaHole());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 12) enemy.inventory.push(new DildoEquine());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 16) enemy.inventory.push(new GravCuffs());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 20) enemy.inventory.push(new SexdollVRProgram());
+		if(flags["KQ_SEXDOLLS_DEFEATED"] == 2) enemy.inventory.push(new DildoCanine());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 4) enemy.inventory.push(new TamaniBionaHole());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 6) enemy.inventory.push(new DildoEquine());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 8) enemy.inventory.push(new GravCuffs());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 10) enemy.inventory.push(new SexdollVRProgram());
 		else if(rand(3) == 0) enemy.inventory.push(new IllegalStim());
 	}
 	//HP

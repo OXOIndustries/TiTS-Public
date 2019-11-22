@@ -1427,7 +1427,7 @@ public function KQKiroFollowBonusTexts():void
 	//Bimbokiro
 	if(kiro.isBimbo())
 	{
-		output("\n\n" + RandomInCollection(["[kiro.name] bumps her expanded bust into the wall and bounces off with a giggle and a tweak of her nipple.","[kiro.name] follows demurely behind you, checking you out every time she thinks you’re not looking. Her cock stays hard the entire time.","[kiro.name] follows obediently.","[kiro.name] plays with her cock, not for pleasure but to show it off to you, presenting it new ways every time you look back her.","[kiro.name] rubs her boobs in wonder, clearly taken when their size and feel.","[kiro.name] hefts her tits in hand and pulls them apart, letting them clap together with an audible ‘smack’ and endless waves of roiling jiggles.","[kiro.name] bounces on the balls of her padded feet when you look back, jiggling her breasts for your amusement. It’s quite a sight.","[kiro.name] watches you with obvious infatuation.","[kiro.name] can be heard quietly muttering through a list of obscene euphemisms for breasts.","[kiro.name] hugs her tail and blushes when you glance her way.","//bought only: 	[kiro.name] stops to hug a passing fuckdoll. The two herms grind against one another in obvious pleasure for longer than you would have expected before parting with shuddering smiles. Your tanuki returns to your side, and the fuckdoll moves on by as if you were nothing more than a piece of furniture.","[kiro.name] leans against the wall with her tail upraised, displaying her soaking wet twat and drenched ballfur."]));
+		output("\n\n" + RandomInCollection(["[kiro.name] bumps her expanded bust into the wall and bounces off with a giggle and a tweak of her nipple.","[kiro.name] follows demurely behind you, checking you out every time she thinks you’re not looking. Her cock stays hard the entire time.","[kiro.name] follows obediently.","[kiro.name] plays with her cock, not for pleasure but to show it off to you, presenting it new ways every time you look back her.","[kiro.name] rubs her boobs in wonder, clearly taken when their size and feel.","[kiro.name] hefts her tits in hand and pulls them apart, letting them clap together with an audible ‘smack’ and endless waves of roiling jiggles.","[kiro.name] bounces on the balls of her padded feet when you look back, jiggling her breasts for your amusement. It’s quite a sight.","[kiro.name] watches you with obvious infatuation.","[kiro.name] can be heard quietly muttering through a list of obscene euphemisms for breasts.","[kiro.name] hugs her tail and blushes when you glance her way.","[kiro.name] stops to hug a passing fuckdoll. The two herms grind against one another in obvious pleasure for longer than you would have expected before parting with shuddering smiles. Your tanuki returns to your side, and the fuckdoll moves on by as if you were nothing more than a piece of furniture.","[kiro.name] leans against the wall with her tail upraised, displaying her soaking wet twat and drenched ballfur."]));
 	}
 	//Nonbimbo - bought
 	else if(flags["KQ_BUY_OFFER"] != undefined)
@@ -1509,13 +1509,29 @@ public function getBackToShipsWivKiroFollows():void
 		output("\n\n(<b>[kiro.name] has joined your crew!</b>)");
 		flags["KIRO_RECRUITED"] = 1;
 		flags["KIRO_ONBOARD"] = 1;
-		//[Yours] [Kiro's]
-		addButton(0,"Yours",returnHomeFromKiroQuest,undefined,"Yours","Doing this means leaving Kiro's leaf-shaped vessel behind, but it means you get to keep your own.");
-		if(olympiaIsCrew() && shits["SHIP"] is Sidewinder) addButton(1,"Kiro's",takeKirosShip,undefined,"Kiro's","Doing this will leave your ship and its weapon/upgrade loadout behind. It will be lost to you, but you'll claim the tanuki's craft for your own.");
-		else addDisabledButton(1,"Kiro's","Kiro's","Olympia won't let you dare leave the Sidewinder behind.");
+		//[Store] [Yours] [Kiro's]
+		if (shipStorageRoom() > 0) addButton(0, "Store Kiro's", illustrialPoStoreKirosShip, undefined, "Store Kiro's", "Doing this means sending Kiro's leaf-shaped vessel to your hanger and keeping your own.");
+		else addDisabledButton(0, "Store Kiro's", "Store Kiro's", "You have no room in your hanger.");
+		addButton(1,"Yours",returnHomeFromKiroQuest,undefined,"Yours","Doing this means leaving Kiro's leaf-shaped vessel behind, but it means you get to keep your own.");
+		if (olympiaIsCrew() && shits["SHIP"] is Sidewinder) addDisabledButton(2, "Kiro's", "Kiro's", "Olympia won't let you dare leave the Sidewinder behind.");
+		else addButton(2, "Kiro's", takeKirosShip, undefined, "Kiro's", "Doing this will leave your ship and its weapon/upgrade loadout behind. It will be lost to you, but you'll claim the tanuki's craft for your own.");
 	}
 }
-
+public function illustrialPoStoreKirosShip():void
+{
+	clearOutput();
+	output("Before boarding your ship, you set the auto-pilot on Kiro's ship to fly to Tavros Station and let them know to expect it.");
+	output("\n\nYou spend most of the trip back to Tavros Station sleeping. You had a hell of a day.");
+	
+	var tempShip:ShittyShip = new Blade();
+	vahnAddAShip(tempShip);
+	
+	processTime(8*60);
+	shipLocation = "TAVROS HANGAR";
+	moveTo("SHIP INTERIOR");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 public function takeKirosShip():void
 {
 	clearOutput();
