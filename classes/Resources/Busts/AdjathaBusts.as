@@ -515,6 +515,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kimber_underwear.png", mimeType = "image/png")]
 		public var Bust_KIMBER_UNDERWEAR:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/kiona.png", mimeType = "image/png")]
+		public var Bust_KIONA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kiona_nude.png", mimeType = "image/png")]
+		public var Bust_KIONA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_nude.png", mimeType = "image/png")]
@@ -566,6 +571,10 @@ package classes.Resources.Busts
 		public var Bust_KQ_MINIBOSS_SEXDOLL:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/sexdoll_boss_cum.png", mimeType = "image/png")]
 		public var Bust_KQ_MINIBOSS_SEXDOLL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_llaerwyn.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_LLAERWYN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_salamander.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_HYLIE:Class;
 		
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
@@ -1766,6 +1775,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kimber_underwear.png", mimeType = "image/png")]
 			public var Full_KIMBER_UNDERWEAR:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiona.png", mimeType = "image/png")]
+			public var Full_KIONA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiona_nude.png", mimeType = "image/png")]
+			public var Full_KIONA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_nude.png", mimeType = "image/png")]
@@ -1817,6 +1831,10 @@ package classes.Resources.Busts
 			public var Full_KQ_MINIBOSS_SEXDOLL:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sexdoll_boss_cum.png", mimeType = "image/png")]
 			public var Full_KQ_MINIBOSS_SEXDOLL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_llaerwyn.png", mimeType = "image/png")]
+			public var Full_KQ_VR_LLAERWYN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_salamander.png", mimeType = "image/png")]
+			public var Full_KQ_VR_HYLIE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;

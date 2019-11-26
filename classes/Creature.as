@@ -2493,6 +2493,10 @@
 				case "multiCocks":
 					buffer = multiCockDescript();
 					break;
+				case "cockLength":
+				case "cocklength":
+					buffer = num2Text(Math.floor(cLength(arg2)));
+					break;
 				case "cockCount":
 					buffer = num2Text(cocks.length);
 					break;
@@ -19585,7 +19589,10 @@
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
-			else if(bRowRating < 1) descript += "pecs";
+			else if(bRowRating < 1) {
+				if(descript != "") descript += " ";
+				descript += "pecs";
+			}
 			else if(bRowRating > 1) {
 				var adjectives:Array = [];
 				// Silicone

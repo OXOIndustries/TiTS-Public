@@ -683,7 +683,7 @@ public function kaseSexThreesomeAnno():void
 	output("\n\nAt last, you both seem to come down from your peaks, tired but satisfied. Kase looks up at you with an almost amazed smile, and your smile right back down at him. You pick yourself up and off the femboy’s softening dick, letting it flop down onto his stomach where it wets his midsection with alabaster spunk and girlcum alike. Rolling off the poor, abused kitty, you turn to Anno, who’s still panting from her ride" + (flags["KASE_3SUM_ANNO"] != undefined ? " and pulling her lube-slick fingers from her pussy" : "") + ".");
 	if(pc.hasVagina())
 	{
-		output("\n\nShe gazes down at you cum-filled cunt and smirks, <i>“You’re not gonna keep that all for yourself, are you, boss?”</i>");
+		output("\n\nShe gazes down at your cum-filled cunt and smirks, <i>“You’re not gonna keep that all for yourself, are you, boss?”</i>");
 		output("\n\nBefore you can figure out what she’s talking about, she darts down between your [pc.legs] with surprising speed for her tired state. The ausar flicks her tongue across your [pc.vagina], gathering some of Kase’s salty spooge and making you gasp as it travels. Then her oral organ all but delves between your puffy, oversensitive nether lips, leaving you whimper quietly as she takes in all the kaithrit essence she herself didn’t get to enjoy.");
 		output("\n\nSoon, Anno’s had her fill and rises to her knees again, licking her lips and wiping her mouth.");
 	}

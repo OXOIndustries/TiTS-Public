@@ -141,11 +141,11 @@ public function defeatTheGenericSexydoll():void
 	IncrementFlag("KQ_SEXDOLLS_DEFEATED");
 	if(!enemy.hasStatusEffect("VR"))
 	{
-		if(flags["KQ_SEXDOLLS_DEFEATED"] == 4) enemy.inventory.push(new DildoCanine());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 8) enemy.inventory.push(new TamaniBionaHole());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 12) enemy.inventory.push(new DildoEquine());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 16) enemy.inventory.push(new GravCuffs());
-		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 20) enemy.inventory.push(new SexdollVRProgram());
+		if(flags["KQ_SEXDOLLS_DEFEATED"] == 2) enemy.inventory.push(new DildoCanine());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 4) enemy.inventory.push(new TamaniBionaHole());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 6) enemy.inventory.push(new DildoEquine());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 8) enemy.inventory.push(new GravCuffs());
+		else if(flags["KQ_SEXDOLLS_DEFEATED"] == 10) enemy.inventory.push(new SexdollVRProgram());
 		else if(rand(3) == 0) enemy.inventory.push(new IllegalStim());
 	}
 	//HP
@@ -1754,7 +1754,7 @@ public function badEndToGenericDollsPart3():void
 	output("\n\nNumber 65 fiercely pumps your body in a bestial manner that’d split anyone else, unwilling to fuck around with things like foreplay. Mistress Po made you ready for vigorous copulation. You feel her quake, stretching your enhanced hips into a mold suitable enough to fuck. Clenches of pleasure reverberate through Kiro; your head ends up level with her boobs, right up next to the head of your cock, twitching in the valley of her boobs.");
 	output("\n\nAll you’re hearing are her wails of pleasure scraping at Po’s mannered instructions, and the squelching. Oh, how you revel in that the most, of having this incredible mass of breeding material entering and exiting at a kinetic pace. The succulent friction renders you a limp wreck only capable of enjoyment. And that’s what Miss Po wanted from you, and from Kiro. Pendulous kui-tan prick bulges inside your sopping-wet cunt, hosing your transfigured innards between timely intervals of cervix-battering lunges.");
 	output("\n\nYour womb gurgles with the ascent of 65’s titanic load, inflating to handle a fuckdoll’s reservoir. Meanwhile, you’re busting a fat wad yourself between her tits, caking the plush canyon (and your own face) in the first taste of DNA you’ve been able to get since becoming a slave. It’s the only one you needed to know how good of a thing that is. There’s no resting, however, before your ovaries have yet to be completely submerged in a herm’s drenching output, Kiro falls to the ground on top of you, quickly assuming a reverse cowgirl position.");
-	output("\n\nExhaustion is a thing of the past. Aiming your fat dick at her plump, onyx entrance, Kiro  glides down your sloppy pole. Her eager hole clamps down and cums right away, but she’s not going to be denied. The gigantic ass of your bestest friend ever is thumping up and down on your long-ignored dick, clapping from the momentous urgency of it all.");
+	output("\n\nExhaustion is a thing of the past. Aiming your fat dick at her plump, onyx entrance, Kiro glides down your sloppy pole. Her eager hole clamps down and cums right away, but she’s not going to be denied. The gigantic ass of your bestest friend ever is thumping up and down on your long-ignored dick, clapping from the momentous urgency of it all.");
 	//kiroVirgin: 
 	if(kiro.vaginalVirgin) output(" trickles of hymen blood mixing with coital glaze. So she’s a virgin! You were her first time! Oh, Miss Po must have planned this, she’s the best!");
 	output(" You don’t have to do anything, of course, just lie back and be used.");
@@ -1788,7 +1788,7 @@ public function badEndToGenericDollsPart4():void
 	output("\n\nIn a moment of blindness, the ausar dropped her weapon. She was immediately set upon by the erotic sentries. Stripped, they fucked her in every hole, stretched her until she became addicted to their pheromones. And only after they’d subdued her through mind-boggling cummies, taught her to orgasm on command, did they then make her a part of the tales she had spread not too long ago.");
 	if(enemy.hasStatusEffect("VR"))
 	{
-		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you've suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
+		output("\n\n<b>The simulation ends with a disorienting blast of static! Shaking off the lingering desire to obey the digital version of Doctor Po takes a few moments longer. Surely you’ve suffered no ill consequences as a result of dallying in this VR world...</b>\n\n");
 		CombatManager.genericLoss();
 	}
 	else badEnd();
