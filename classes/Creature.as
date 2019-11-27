@@ -11922,7 +11922,7 @@
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "bluish-pink";
 					break;
-				case GLOBAL.TYPE_FROSTWYRM:
+				case GLOBAL.TYPE_DRACONIC:
 					vaginas[slot].vaginaColor = "blue";
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
