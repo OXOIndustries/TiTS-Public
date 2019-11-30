@@ -749,7 +749,7 @@ package classes.Items.Transformatives
 					if(pc.fertilityRaw > 5) pc.fertilityRaw = 5;
 					output("\n\nYou’re about to resume your business, when suddenly your Codex beeps a medical notification: <i>Warning, new ovulation detected. Ovule development speed above previous baseline.</i> After skimming through the detailed information, you surmise your" + (pc.hasCock() ? " feminine" : "") + " reproductive system is working more effectively than before to ensure a successful insemination. <b>You have become more fertile!</b>");
 				}
-				else if(pc.pregnancyIncubationBonusMother() < 10)
+				else if(pc.pregnancyIncubationBonusMotherRaw < 10)
 				{
 					soakChanges += 1;
 					pc.pregnancyIncubationBonusMotherRaw += 0.5;
