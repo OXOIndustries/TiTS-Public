@@ -222,6 +222,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + GLOBAL.FLAG_NAMES[pc.skinFlags[i]] + ",");
 			}
 		}
+		if(pc.hasStatusEffect("Rubber Wrapped")) output2(" Latex-encased,");
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
 		output2("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(pc.skinTone));
 		if(pc.hasAccentMarkings()) output2("\n<b>* Accent Color:</b> " + StringUtil.toDisplayCase(pc.skinAccent) + " " + StringUtil.toDisplayCase(pc.getAccentMarking(pc.accentMarkings())));
@@ -1126,6 +1127,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["ARDIA"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].cockVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
@@ -1147,6 +1149,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
+		if(flags["BULLZIL_BUTTGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{

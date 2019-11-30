@@ -4,19 +4,13 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
-	import classes.Items.Melee.Fists;
-	import classes.Items.Miscellaneous.*
-	import classes.Items.Guns.PrimitiveBow;
-	import classes.Items.Guns.LaserCarbine;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.num2Text;
-	import classes.Engine.Interfaces.author;
-	import classes.Engine.Interfaces.output;
-	import classes.Engine.Interfaces.clearOutput;
+	import classes.Engine.Interfaces.*;
 	import classes.Engine.Combat.*;
 	import classes.UIComponents.UIStyleSettings;
 	import classes.Util.RandomInCollection;
@@ -80,10 +74,31 @@ package classes.Characters
 			this._isLoading = false;
 
 			this.removeStatusEffect("Flying");
+			
+			updateAssStats();
 
 			sexualPreferences.setRandomPrefs(5+rand(3));
 
 			kGAMECLASS.mhengaSSTDChance(this);
+		}
+		
+		public function updateAssStats():void
+		{
+			if(flags["BULLZIL_EZFIT"] != undefined)
+			{
+				var easyFitUses:int = Math.min(flags["BULLZIL_EZFIT"], 20);
+				for(var i:int = 0; i < easyFitUses; i++)
+				{
+					if (ass.wetnessRaw < 2) ass.wetnessRaw += 1;
+					else if (ass.wetnessRaw < 4) ass.wetnessRaw += 0.25;
+					
+					if (ass.loosenessRaw < 2) ass.loosenessRaw += 1;
+					else if (ass.loosenessRaw < 3) ass.loosenessRaw += 0.2;
+					
+					if (ass.bonusCapacity < 500) ass.bonusCapacity += 40;
+				}
+			}
+			if(flags["BULLZIL_BUTTGINITY_TAKEN"] != undefined) analVirgin = false;
 		}
 		
 		override public function get bustDisplay():String
@@ -203,9 +218,13 @@ package classes.Characters
 			target.setStatusValue("Bee Musk", 1, 0);
 
 			var availableFantasies:Array = [];
+			// zilBullGonnaDoYourButt
 			if ((target.statusEffectv2("Bee Musk") & 1) == 0) availableFantasies.push(0);
+			// getSomeLittleBeeBullsInsideYa
 			if ((target.statusEffectv2("Bee Musk") & 2) == 0 && target.hasVagina()) availableFantasies.push(1);
+			// nomNomNomOnHoneyHorseDong
 			if ((target.statusEffectv2("Bee Musk") & 4) == 0 && target.hasCock()) availableFantasies.push(2);
+			// timeForTheBirdsAndTheBeesByWhichIMeanZilAndSomeGreatTits
 			if ((target.statusEffectv2("Bee Musk") & 8) == 0 && target.hasBreasts()) availableFantasies.push(3);
 
 			if (availableFantasies.length <= 0) return false;

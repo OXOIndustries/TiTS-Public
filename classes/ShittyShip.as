@@ -387,7 +387,7 @@ package classes {
 		override public function getCombatName():String
 		{
 			if (isUniqueInFight) return (a + "<i>" + uniqueName + "</i>");
-			else return ("<i>" + uniqueName + "</i>");
+			return ("<i>" + uniqueName + "</i>");
 		}
 		public function resetEquipment(gunsOnly:Boolean = false):void
 		{
@@ -402,6 +402,8 @@ package classes {
 		}
 		public function offensiveGadgetAI(alliedCreatures:Array, target:Creature):Boolean
 		{
+			if(target == null) return false;
+			
 			var gadgets:Array = listShipGadgets();
 			var HPPercent:Number = target.HP()/target.HPMax();
 			var shieldPercent:Number = target.shields()/target.shieldsMax();
@@ -424,6 +426,8 @@ package classes {
 		}
 		public function shipHealGadgetAI(alliedCreatures:Array, target:Creature):Boolean
 		{
+			if(target == null) return false;
+			
 			var gadgets:Array = listShipGadgets();
 			var HPPercent:Number = this.HP()/this.HPMax();
 			var shieldPercent:Number = this.shields() / this.shieldsMax();

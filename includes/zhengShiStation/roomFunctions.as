@@ -921,10 +921,10 @@ public function zhengSpaceBatturu():void
 
 	var tEnemy:ShittyShip = new Pyrotech();
 	tEnemy.captainDisplay = "GASMASK";
-	tEnemy.isUniqueInFight = false;
+	//tEnemy.isUniqueInFight = false;
 	var tEnemy2:ShittyShip = new Pyrotech();
 	tEnemy2.captainDisplay = "BURNIE";
-	tEnemy2.isUniqueInFight = false;
+	//tEnemy2.isUniqueInFight = false;
 	var tEnemy3:ShittyShip = new MoondastGruss();
 	tEnemy3.removePerk("PCs");
 	tEnemy3.captainDisplay = "FERRUS";

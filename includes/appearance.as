@@ -1470,19 +1470,19 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(". ");
 			if(target.hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)) outputRouter((target==pc?"You have":"[target.HeShe] has") + " rough [target.scaleColor] scales across " + (target==pc?"your":"[target.hisHer]") + " abdomen in a corset-like pattern");
 			break;
-		default:
-			if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
-			{
-				outputRouter(", sensually wrapped in a layer of");
-				if(target.statusEffectv1("Latex Skin") > 0)
-				{
-					if(target.statusEffectv1("Latex Skin") < 2) outputRouter(" semi-glossy");
-					else if(target.statusEffectv1("Latex Skin") < 3) outputRouter(" glossy");
-					else outputRouter(" extra-glossy");
-				}
-				outputRouter(" " + (target.skinType == GLOBAL.SKIN_TYPE_LATEX ? target.skinTone : target.skinFurScalesColor()) + " latex");
-			}
-			break;
+	}
+	if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
+	{
+		outputRouter(",");
+		if(target.skinType != GLOBAL.SKIN_TYPE_LATEX && target.hasStatusEffect("Rubber Wrapped")) outputRouter(" all");
+		outputRouter(" sensually wrapped in a layer of");
+		if(target.statusEffectv1("Latex Skin") > 0)
+		{
+			if(target.statusEffectv1("Latex Skin") < 2) outputRouter(" semi-glossy");
+			else if(target.statusEffectv1("Latex Skin") < 3) outputRouter(" glossy");
+			else outputRouter(" extra-glossy");
+		}
+		outputRouter(" " + (target.skinType == GLOBAL.SKIN_TYPE_LATEX ? target.skinTone : target.skinFurScalesColor()) + " latex");
 	}
 	
 	//WINGS!
