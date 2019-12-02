@@ -100,13 +100,16 @@ public function sellAShipToVahn():void
 	clearOutput();
 	showBust(shopkeep.bustDisplay);
 	showName("\n"+shopkeep.short.toUpperCase());
-	output("What ship would you like to sell?\n\n");
-	output("\n\\\[Cannot Sell\\\] " + shits["SHIP"].short);
+	output("What ship would you like to sell?");
 	
 	clearMenu();
 	var btnSlot:int = 0;
 	var storageLimit:int = shipStorageLimit();
+	
+	output("\n\n<b><u>Owned Vessels</u>:</b>");
+	output("\n\\\[Cannot Sell\\\] " + shits["SHIP"].short);
 	addDisabledButton(btnSlot++,shits["SHIP"].short,shits["SHIP"].short,"You can’t sell your ship without first lining up a replacement.");
+	
 	for(var i:int = 0; i < storageLimit; i++)
 	{
 		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)

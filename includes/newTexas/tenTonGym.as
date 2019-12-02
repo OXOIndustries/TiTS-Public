@@ -475,7 +475,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 		if(pc.cocks[selCock].cLength() >= 16) output(" With every thrust, your dick is immersed not only in wet snatch, but also in her amazing tits.");
 		output(" Your fingers dig into her thick, squeezable body. She’s softer and squishier than any sextoy known to man. As tightly as her thighs are squeezing you, they mould into the perfect shape to massage your [pc.cock " + selCock + "]. You can feel a building pressure");
 		if(pc.balls > 1) output("in your spunk-makers");
-		output(". You’re going to cum; the only question is when. Anno’s moans are beginning to crescendo just as you feel like you can’t take it anymore, and you slap your hips into Anno’s, making her bounce on your lap. With a cry of pure ecstacy, ");
+		output(". You’re going to cum; the only question is when. Anno’s moans are beginning to crescendo just as you feel like you can’t take it anymore, and you slap your hips into Anno’s, making her bounce on your lap. With a cry of pure ecstasy, ");
 		if(silly) output("you unleash a fountain of excessive virility, dousing both of your bodies with billions of potential future heirs to the Steele line.");
 		else output(" your [pc.cock " + selCock + "] empties your load into Anno’s spacious cleavage, marking your huskar lover’s [anno.chest] with hot [pc.cum].");
 		if(pc.hasCuntSnake())

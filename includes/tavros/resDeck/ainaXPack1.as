@@ -188,6 +188,8 @@ public function processAinaPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint
 		}
 
 	}
+	//this is just to get the email #6 sent if the player misses the 24 hour window in her apartment
+	ainaBirthScene();
 }
 //emails
 public function ainaPregEmail1():String

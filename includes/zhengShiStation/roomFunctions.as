@@ -690,7 +690,6 @@ public function landingAtZhengShi():void
 		output("\n\nThe probes you’ve seen so far are rated to survive just about anything, hardened against impact and electronic tampering alike. No matter what happened to the planet, you’re pretty sure your objective remains the same - unless it drifted off into the binary stars flickering in the distance, anyway. Time to run some scans; try and find what happened to it...");
 		//[Next]
 		//Recharge PC HP to max; reduce lust to minimum.
-		processTime(5*60);
 		sleepHeal();
 		pc.lust(-100);
 		clearMenu();
@@ -713,7 +712,7 @@ public function landingAtZhengShi():void
 	//Repeat Approach, Post Correct Answer
 	else
 	{
-		if(pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
+		if((shits["SHIP"] is Sidewinder) && pirateResearchVesselStolen() && flags["TEYAAL_SHIPFITES"] != 3)
 		{
 			currentLocation = "SHIP INTERIOR";
 			generateMap();
@@ -731,6 +730,7 @@ public function firstTimeZhengApproach():void
 	clearOutput();
 	showName("ZHENG\nSHI");
 	author("Savin");
+	processTime(5*60);
 	output("<b>Several hours later...</b>");
 	output("\n\nYou’re snapped to wakefulness by a rhythmic beeping from your ship’s sensor suite. You don’t remember having fallen asleep, only the passage of hours waiting for your sensors to fully scan an entire solar system.");
 	output("\n\nThey haven’t found the probe, but as you wipe the sleep from your eyes, you see that your sensors have locked onto a ship puttering through the debris field on impulse power. She’s a big girl, too, practically bursting at the seams with hemispherical laser batteries and grappling cannons. She’s not flying any colors and her ID’s not pinging any databases you can access, so if you had to take a wild guess, you’d say she’s a pirate ship.");

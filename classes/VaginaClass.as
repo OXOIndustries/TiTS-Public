@@ -4,6 +4,7 @@
 	import classes.kGAMECLASS;
 	import classes.ItemSlotClass;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Piercings.*;
 	public class VaginaClass extends UnversionedSaveable
 	{
 		//constructor
@@ -44,12 +45,9 @@
 			
 			var currWet:Number = wetnessRaw + wetnessMod;
 			
-			if(kGAMECLASS.pc && kGAMECLASS.pc.hasStatusEffect("Anal Lubricant") && kGAMECLASS.pc.ass == this)
-			{
-				currWet += 2;
-				//if(currWet > 5) currWet = 5;
-			}
 			if(hasFlag(GLOBAL.FLAG_LUBRICATED)) currWet += 2;
+			if(piercing is OpalRingPiercing) currWet += 1;
+			if(clitPiercing is OpalRingPiercing) currWet += 1;
 			
 			if (currWet < 0)
 			{

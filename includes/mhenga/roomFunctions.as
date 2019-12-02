@@ -137,6 +137,7 @@ public function barBackRoomBonus():Boolean
 		else output("\n\nA bunny-girl is back here with another patron, too busy to pay any attention to you.")
 	}
 	if (zilTwinsAtBar()) zilTwinsBarBonus();
+	if (thyvaraInBurts()) thyvaraBarBonus(2);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");
 	return false;

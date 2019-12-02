@@ -13,7 +13,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Focalor";
-			this.originalRace = "Tove";
+			this.originalRace = "tove";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";

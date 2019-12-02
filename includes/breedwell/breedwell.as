@@ -2097,7 +2097,7 @@ public function rahnBreedwellBirthing(pregSlot:int = 0, numEggs:int = 2):void
 	else
 	{
 		output(" armfuls, lapfuls and a " + (InShipInterior() ? "bed" : "floor") + " full of rahn babies. You hope Breedwell knew what they were doing when they hired you - there’s enough here to form a small colony on their own! The wailing has mostly stopped, and the tiny gel girls are waving their plump little limbs and cooing in bafflement at the big wide world they are now in, the ones you can’t fit onto your arms and lap pawing at you for attention. They are the cutest goddamn things.");
-		if(numEggs > 10) (" You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle " + num2Text(numEggs) + " of them at a time, hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.");
+		if(numEggs > 10) output(" You are a broodmother par excellence, and you are soon fully and happily involved in what you should be doing. You suckle " + (numEggs > pc.totalNipples() ? (num2Text(pc.totalNipples()) + " of them at a time") : "all of them at once") + ", hungry mouths attached to your [pc.nipples] whilst you simultaneously clean and play with others, making them giggle by tickling their bare soles, skillfully switching between them so that each gets at least a little of mom’s time.");
 	}
 	
 	processTime(45 + rand(11));

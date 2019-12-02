@@ -3,6 +3,7 @@
 	import classes.DataManager.Serialization.UnversionedSaveable;
 	import classes.ItemSlotClass;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Piercings.*;
 	public class BreastRowClass extends UnversionedSaveable
 	{
 		//constructor

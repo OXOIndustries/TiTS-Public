@@ -44,6 +44,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 
 		flags["BIANCA_EXPLAINED_AKANA"] = 1;
 
+		processTime(5+rand(5));
 		addButton(0, "Yes", biancaHealingAkanafflictions, inBooth, "Yes", "Whether or not Akane would be disappointed, you have your reasons for this.");
 		addButton(1, "No", tellBiancaYouWannaKeepTheLashes, inBooth, "No", "Akane would approve of your loyalty, at any rate!");
 		return;
@@ -51,6 +52,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 	// PC under 100% HP And/Or Sore && PC has 'Gel Body'
 	else if (pc.statusEffectv1("Gel Body") > 0)
 	{
+		processTime(2+rand(2));
 		output("\n\n" + (inBooth ? "Sure enough, you do need a little pick-me-up. You explain that you are feeling worse for the wear, though the doctor’s keen" : "You remark that you’re feeling a bit weak and need a little attention, if she can offer it. Bianca’s lavender") + " eyes hint at a hidden sadness " + (inBooth ? "when she analyzes" : "as she looks over") + " your gelatinous form. <i>“I’m afraid I can’t be too personal in your treatment, but I have a" + (inBooth ? " special" : "") + " medicine that can reconstitute your body and " + (inBooth ? "do" : "heal") + " away any" + (inBooth ? " ‘soreness’ or" : "") + " ailment you may be experiencing.”</i>");
 		if (inBooth) output("\n\nThat’ll have to do. Within four steps she’s at her counter and back again with");
 		else
@@ -65,6 +67,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 	// PC HP is under 100% and Sore | Non-Gel
 	else if (pc.HPQ() < 100 && pc.statusEffectv1("Sore Counter") > 0)
 	{
+		processTime(5+rand(5));
 		if (inBooth)
 		{
 			output("\n\nEnervated as you are, you groan with weary lassitude and mention how hard you’ve pushed yourself recently, in addition to being scratched up. Your caring physician pays rapt attention to your explanation, her unblinking gaze easing the flow of your brief descriptions.");
@@ -112,6 +115,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 	// PC under 100% HP | Non Gel
 	else if (pc.HPQ() < 100)
 	{
+		processTime(5+rand(5));
 		if (inBooth) output("\n\nYou explain that you’ve been in a few scrapes that need some devoted care, and your devoted doctor asks you to " + (pc.hasArmor() ? "remove your [pc.armor]." : "sit still."));
 		else
 		{
@@ -138,6 +142,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 	// PC is Sore | Non-Gel
 	else if (pc.statusEffectv1("Sore Counter") > 0)
 	{
+		processTime(5+rand(5));
 		if (inBooth)
 		{
 			output("\n\nYou <i>are</i> feeling a bit stiff, and not in the good way. If there’s anyone who could help with that, it’s her. Bianca listens patiently, nodding and humming as you tell her where you feel cramped, where it hurts the most");
@@ -192,7 +197,7 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 		}
 		else output("\n\n");
 		output("Your physician’s tranquilizing ministrations are so calming that you nearly fall asleep, having forgotten you were ever in pain. But just before you hit the threshold of indulgent, inviting rest, she peels the patches away with a sharp, stinging tug and sprinkles them");
-		if (inBooth) output(" to a bin. After your pampering concludes and Bianca’s finished, you feel ready to win every test of strength!");
+		if (inBooth) output(" to a bin.");
 		else output(" into the air for her drone to collect. <i>“I hope you’ll take better care of yourself after this.”</i>");
 		output((inBooth ? " " : "\n\n") + "After your pampering concludes and Bianca’s finished, you feel ready to win every test of strength!");
 	}
@@ -411,7 +416,7 @@ public function biancaGetsYouFuckreadyButNotLikeThat(inBooth:Boolean):void
 	clearOutput();
 	showBianca((inBooth ? "COAT" : "WORK"));
 	author("William");
-	processTime(1);
+	processTime(2+rand(2));
 
 	if (inBooth)
 	{
@@ -451,7 +456,7 @@ public function tellBiancaYouLikeYourSSTDs(inBooth:Boolean):void
 	clearOutput();
 	showBianca((inBooth ? "COAT" : "WORK"));
 	author("William");
-	processTime(1);
+	processTime(2+rand(2));
 
 	if (inBooth)
 	{

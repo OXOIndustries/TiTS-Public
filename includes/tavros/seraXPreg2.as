@@ -836,7 +836,7 @@ public function seraPregMoveToTavros(response:String = "intro"):void
 		case "intro":
 			showSera();
 			
-			output("<i>“Hey.”</i> Sera is in your room, sat on the bed. Her usual vampy smile is nowhere to be seen; she looks rather sullen and vulnerable as she flicks her eyes up at you and then to the corners of the room, cradling her great, round baby bump. <i>“I want to go to " + (shipLocation != "TAVROS HANGAR" ? "Tavros" : "the Nursery") + ", ok? Like, now.”</i>");
+			output("<i>“Hey.”</i> Sera is in your room, sitting on the bed. Her usual vampy smile is nowhere to be seen; she looks rather sullen and vulnerable as she flicks her eyes up at you and then to the corners of the room, cradling her great, round baby bump. <i>“I want to go to " + (shipLocation != "TAVROS HANGAR" ? "Tavros" : "the Nursery") + ", ok? Like, now.”</i>");
 			output("\n\nYou");
 			if(shipLocation != "TAVROS HANGAR") output(" head to the nearest warpgate and are soon joining the crowded ship lanes that surround the vast space station");
 			else output(" nod and arrange a few things while she vanishes from your view");

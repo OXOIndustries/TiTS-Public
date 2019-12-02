@@ -24,7 +24,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "gabilani vacationers";
-			this.originalRace = "gabilani vacationers";
+			this.originalRace = "gabilani";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The vacationers are happily busy with the control panel, a small bank of monitors, and glasses of alcohol. They laugh and wave when they notice you staring at them, for all the world like they’re enjoying themselves on a cruise liner rather than working out which lethal weapon to use on you next.\n\nThe blue-skinned pair are ensconced in miniature luxury: plush pillows, a bar and what looks like a tiny sauna all seem to be in evidence up there. Some form of gyroscopic stabilizer is keeping their glass bubble still and level, even as the LG-BT shakes the ground with its every heavy, groaning step, stalking around you, forcing you to keep moving to avoid being crushed.";

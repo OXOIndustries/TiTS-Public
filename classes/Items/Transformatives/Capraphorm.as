@@ -552,7 +552,7 @@ package classes.Items.Transformatives
 				{
 					if(target.furColorUnlocked("jade green"))
 					{
-						msg += ParseText("Your [pc.skinFurScales] extends out from your body as the pigment across each strand begin to shift and change. After your fur settles, you have a good look and feel, finding that you now have <b>jade green goat fur!</b>. Warm and thick, just like a goat but the unusual shade is <i>un</i>like anything you could’ve guessed...");
+						msg += ParseText("Your [pc.skinFurScales] extends out from your body as the pigment across each strand begin to shift and change. After your fur settles, you have a good look and feel, finding that you now have <b>jade green goat fur!</b> Warm and thick, just like a goat but the unusual shade is <i>un</i>like anything you could’ve guessed...");
 						
 						target.furColor = "jade green";
 					}

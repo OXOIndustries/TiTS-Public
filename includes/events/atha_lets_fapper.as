@@ -8,6 +8,7 @@ public function hasSmutOptions():Boolean
 	if(MailManager.isEntryViewed("syri_video")) return true;
 	if(flags["PENNY_SYRIVAG_WATCHED"] != undefined) return true;
 	if(flags["KHORGAN_PREGSTURBATE"] != undefined) return true;
+	if(pc.hasKeyItem("Video - Zil Nigh the Science Bi")) return true;
 	//Ones that don't:
 	if(MailManager.isEntryViewed("kiroandkallyholomail")) return true;
 	return false;
@@ -58,6 +59,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	if(flags["PENNY_SYRIVAG_WATCHED"] != undefined) possibleFuncs.push( { t: "Penny & Syri", th: "Penny’s Syri Vid", tb: (inShip ? "Check out this video -- you want another look at what’s happening between these two." : shipAvailableBlurb), f: (inShip ? pennySyriOnaholeVid : null), ar: undefined } );
 	if(flags["KHORGAN_PREGSTURBATE"] != undefined) possibleFuncs.push({ t: "Khorgan", th: "Khorgan Video", tb: (inShip ? "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you." : shipAvailableBlurb), f: (inShip ? khorganPregsturbate : null), ar: undefined } );
 	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally Video", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
+	if(pc.hasKeyItem("Video - Zil Nigh the Science Bi")) possibleFuncs.push({ t: "Zil Nigh", th: "Zil Nigh the Science Bi", tb: (inShip ? "Brought to you by Girderbeam technologies Ltd." : shipAvailableBlurb), f: (inShip ? zilNightScienceBiPlay : null), ar: undefined } );
 	
 	clearMenu();
 	

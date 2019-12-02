@@ -56,6 +56,20 @@ public function anonsBarWaitressAddendum(slot:int = 0):void {
 }
 
 
+public function getSellesyPregContainer():PregnancyPlaceholder
+{
+	var ppSellesy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppSellesy.breastRows[0].breastRatingRaw = 10;
+	ppSellesy.breastRows[0].breasts = 3;
+	ppSellesy.milkType = GLOBAL.FLUID_TYPE_LEITHAN_MILK;
+	ppSellesy.milkMultiplier = 100;
+	ppSellesy.milkFullness = 100;
+	
+	if(!ppSellesy.hasVagina()) ppSellesy.createVagina();
+	
+	return ppSellesy;
+}
+
 public function showSellesy(nude:Boolean = false):void
 {
 	showBust(sellesyBustDisplay(nude));
@@ -133,12 +147,7 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl’s body, much to the girl’s obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy’s breast looms in and blocks your view.");
 	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. <i>“How’s that sweetie? Taste good?”</i> she asks rather girlishly, apparently already certain of the answer, <i>“I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...”</i> she utters softly, shuddering slightly from your unbidden gentle nibbling on her nipple.");
 	
-	var ppSellesy:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppSellesy.breastRows[0].breastRatingRaw = 10;
-	ppSellesy.breastRows[0].breasts = 3;
-	ppSellesy.milkType = GLOBAL.FLUID_TYPE_LEITHAN_MILK;
-	ppSellesy.milkMultiplier = 100;
-	ppSellesy.milkFullness = 100;
+	var ppSellesy:PregnancyPlaceholder = getSellesyPregContainer();
 	pc.milkInMouth(ppSellesy);
 	pc.imbibeAlcohol(50);
 	processTime(5+rand(5));
@@ -824,6 +833,9 @@ public function sellesyHardlightScene():void
 	clearOutput();
 	showSellesy(true);
 	author("Zeikfried");
+	
+	var ppSellesy:PregnancyPlaceholder = getSellesyPregContainer();
+	
 	output("Sellesy’s imperturbability is almost damaged when you tell her what you want to do. <i>“You brought me back here to play with toys");
 	if(flags["SELLESY_HL"] != undefined) output(" again");
 	output("?”</i> she asks, incredulous. <i>“");
@@ -875,10 +887,13 @@ public function sellesyHardlightScene():void
 	//if pc has cock
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
+		var sellesyCuntVol:Number = ppSellesy.vaginalCapacity(0);
+		
 		output("\n\nSellesy shifts her weight and leans back, bending your hardlight away; a clitoris unwinds from the dildo and creeps free, squirming between your sticky pelvises and her sweat-sheened thighs, oily and willful. The red tongue walks along your body like an octopus, wrinkling your [pc.lowerUndergarment], and then curls over your [pc.cock], stroking it through the fabric. You look up at Sellesy, who’s still throwing her head back as she rises and falls - her eye catches yours, and twinkles mischievously.");
 		output("\n\nThe flexible organ finds your [pc.cockHead] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“...how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
 		output("\n\n");
-		if(pc.smallestCockVolume() <= 9999) 
+		if(pc.smallestCockVolume() <= sellesyCuntVol) 
 		{
 			output("No sooner do you take your eye off her crotch than Sellesy’s hips pivot and her remaining clits lurch out for you. One tugs the band of your [pc.lowerUndergarment] away from your waist, and the others dive in, fastening around your [pc.cocks]. Retracting, they drag your [pc.cockNounSimple " + pc.smallestCockIndex() + "] free.");
 		}
@@ -900,25 +915,25 @@ public function sellesyHardlightScene():void
 		if(pc.cockTotal() > 1) output("s");
 		output(" like velvety vises. Push as your body might, only a whisper escapes; you look wide-eyed at the alien for an explanation.");
 
-		if(pc.smallestCockVolume() <= 9999) 
+		if(pc.smallestCockVolume() <= sellesyCuntVol) 
 		{
 			output("\n\nInstead, she slowly rises up. At the summit, as high as her knees can push her, the third clit wrapped around your dildo flicks it free of her pussy, dragging the crown over her labia and pulling it out of position with a trailer of glistening moisture. Sellesy inches forward, pulling your straining cock");
 			if(pc.cockTotal() > 1) output("s");
 			output(" into position in its place, then she sinks down again, capturing your [pc.cockNounSimple " + pc.smallestCockIndex() + "]");
 			if(pc.cockTotal() > 1) output(" while the second is trapped between her thighs");
 			output(". Finally, ready to indulge her hunger, she releases her grip. [pc.Cum] spurts from your too-long-repressed ejaculation, ");
-			if(pc.cumQ() < 10) output("sprinkling [pc.cumGem]s on Sellesy’s pink insides.");
-			else if(pc.cumQ() < 1000) output("draping Sellesy’s thirsty cunt with strings of [pc.cumColor].");
+			if(cumQ < 10) output("sprinkling [pc.cumGem]s on Sellesy’s pink insides.");
+			else if(cumQ < 1000) output("draping Sellesy’s thirsty cunt with strings of [pc.cumColor].");
 			else {
 				output("flooding Sellesy’s quim with a torrent of seed that bulges her toned stomach until it washes back out and ");
 				if(pc.cockTotal() == 1) output("soaks the sheets and pools in the depression caused by your weight");
 				else output("joins the puddle your other prick is making as it paints her belly");
 				output(", until you’re nothing but a raft keeping Sellesy afloat on a lake of [pc.cumNoun].");
 			}
-			if(pc.cockTotal() > 1 && pc.cumQ() < 1000) 
+			if(pc.cockTotal() > 1 && cumQ < 1000) 
 			{
 				output(" Your other prick ");
-				if(pc.cumQ() < 10) output("sprinkles");
+				if(cumQ < 10) output("sprinkles");
 				else output("squirts");
 				output(" its offering onto her smooth, sweat-soaked stomach, pinned outside by her clit.");
 			}
@@ -927,7 +942,8 @@ public function sellesyHardlightScene():void
 			output(". ");
 			if(pc.PQ() < 40) output("For ten minutes");
 			else output("Until your strength recovers enough to move her");
-			output(", she drinks from you{, dipping into the puddle on the bed with her clits when you go dry");
+			output(", she drinks from you");
+			if(cumQ >= 1000) output(", dipping into the puddle on the bed with her clits when you go dry");
 			output(".");
 		}
 		//if cockSmallest is too big for sellesy
@@ -936,15 +952,15 @@ public function sellesyHardlightScene():void
 			output("\n\nInstead, she hooks her shirt and slowly pulls over her head, finally revealing her gorgeous breasts. With a jaunty fingertip, she pulls your [pc.cockNounSimple] toward her while she leans forward, tucking it into her cleavage.");
 			output("\n\n<i>“Much cleaner this way,”</i> she says idly. Before you can parse, she rises up, dragging your dick through her tits, and captures the [pc.cockHead] with her mouth; her clit unwinds, and your load boils forth. ");
 			//(small/med cum)
-			if(pc.cumQ() < 1000)
+			if(cumQ < 1000)
 			{
-				if(pc.cumQ() < 10) output("Sprinkles");
+				if(cumQ < 10) output("Sprinkles");
 				else output("Strings");
 				output(" of [pc.cumNoun] wet Sellesy’s tongue, and she smiles around your shaft.");
 			}
 			else output(" So much escapes that Sellesy’s cheeks bulge; unable to swallow fast enough and unable to maintain her seal, she spills [pc.cumNoun] down her chin and onto her breasts.");
 			output(" The alien releases you when your cock begins to soften, and the last dribble escapes down her chin; she wipes the cum off her face");
-			if(pc.cumQ() >= 1000) output(" and chest");
+			if(cumQ >= 1000) output(" and chest");
 			output(" and licks her fingers, then resumes her usual grin.");
 		}
 		//merge and end cock branches

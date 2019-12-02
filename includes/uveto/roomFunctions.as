@@ -1845,3 +1845,9 @@ public function korgiiThroneRoomBonus():Boolean
 	}
 	return false;
 }
+
+public function korgiiMineGuardsBonus():Boolean
+{
+	prisonerEitanBonus();
+	return false;
+}

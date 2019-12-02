@@ -4,8 +4,11 @@ import classes.Items.Miscellaneous.Kalocrunch;
 
 public function showTlako(nude:Boolean = false):void
 {
+	/*
 	if(nude) showBust("TLAKO_NUDE");
 	else showBust("TLAKO");
+	*/
+	showBust("TLAKO");
 	showName("\nTLAKO");
 	author("Frogapus");
 }

@@ -507,18 +507,20 @@ package classes.Items.Transformatives
 		}
 		public function applySoak(pc:Creature, duration:Number = 480):void
 		{
-			if(!pc.hasStatusEffect("Soak")) pc.createStatusEffect("Soak",0,0,0,0,false,"Icon_Vagina_2","You are currently high on Soak, leaving you a horny, sopping-wet mess with a serious drooling problem.",false,0,0xB793C4);
-			for(var i:int = 0; i < pc.totalVaginas(); i++)
+			if(!pc.hasStatusEffect("Soak"))
 			{
-				pc.vaginas[i].wetnessMod += 5;
+				pc.createStatusEffect("Soak",0,0,0,0,false,"Icon_Vagina_2","You are currently high on Soak, leaving you a horny, sopping-wet mess with a serious drooling problem.",false,0,0xB793C4);
+				for(var i:int = 0; i < pc.totalVaginas(); i++)
+				{
+					pc.vaginas[i].wetnessMod += 5;
+				}
+				pc.clitLength += 0.5;
 			}
-			pc.clitLength += 0.5;
 			pc.setStatusMinutes("Soak",duration);
 		}
 		public function applySoakOverdose(pc:Creature,duration:Number = 480):void
 		{
-			if(!pc.hasStatusEffect("Soak")) applySoak(pc,duration);
-			else pc.setStatusMinutes("Soak",duration);
+			applySoak(pc,duration);
 			if(!pc.hasStatusEffect("Soak Overdose")) pc.createStatusEffect("Soak Overdose",0,0,0,0,false,"Icon_Vagina_2","Your risky behavior has left you a sodden mess of slickened holes and pure libido.",false,0,0xB793C4);
 			pc.setStatusMinutes("Soak Overdose",duration);
 			//Yay, heat!

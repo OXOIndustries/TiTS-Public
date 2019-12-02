@@ -749,7 +749,7 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 		output("!”</i> the [enemy.furColor]-furred Jumper calls out to you, prompting you to turn - which takes some effort with the weight in your gut.");
 		if (multiJumper) output(" <i>“Gosh, you trying to get knocked up by the whole gang? I can tell I’m not the only one whose been down there, ‘ya cute, heavy slut!”</i>");
 		
-		output("\n\nBefore you make it all the way around, you’re hugged tight by a busty, athletic bunny, both of her rubber-encased hands pawing posessively at your tummy.");
+		output("\n\nBefore you make it all the way around, you’re hugged tight by a busty, athletic bunny, both of her rubber-encased hands pawing possessively at your tummy.");
 		if (newPreg) output(" <i>“Looks like you’re a proud mom again!");
 		else output(" <i>“Lookin a little bigger than before.");
 		if (samePreg) output(" I see you’re sharin’ the burden now!");

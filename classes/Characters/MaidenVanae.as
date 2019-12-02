@@ -119,6 +119,8 @@ package classes.Characters
 			
 			this.hipRatingRaw = 5;
 			this.buttRatingRaw = 5;
+			this.fertilityRaw = 1.00;
+			this.pregnancyMultiplierRaw = 1;
 			
 			isUniqueInFight = true;
 			btnTargetText = "Maiden";

@@ -52,7 +52,7 @@
 			this.shield.hasRandomProperties = true;
 
 			this.meleeWeapon = new SlutRay();
-			this.meleeWeapon.baseDamage.psionic.damageValue = 1;
+			this.meleeWeapon.baseDamage.psionic.damageValue = -3;
 			this.meleeWeapon.attackVerb = "whip";
 			this.meleeWeapon.attackNoun = "psi-whip";
 			this.meleeWeapon.longName = "psi-whip";

@@ -253,6 +253,7 @@
 		public static const TYPE_XHELARFOG:int								= 87;
 		public static const TYPE_SAURMORIAN:int								= 88;
 		public static const TYPE_HYENA:int									= 89;
+		public static const TYPE_DZAAN:int									= 90;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -345,6 +346,7 @@
 			"Xhelarfog",
 			"Saurmorian",
 			"Hyena",
+			"Dzaan",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -379,6 +381,7 @@
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
 			TYPE_HYENA,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -410,6 +413,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -1022,6 +1026,7 @@
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
 			TYPE_SAURMORIAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -1253,6 +1258,8 @@
 		public static const ITEM_FLAG_PIERCING_HOOP:int 				= 48; //Piercings of the "hoop" type.
 		public static const ITEM_FLAG_COCKSOCK:int 						= 49; //For cocksock-type cockwear.
 		public static const ITEM_FLAG_COCKRING:int 						= 50; //For cockring-type cockwear.
+		public static const ITEM_FLAG_ALCOHOLIC:int						= 51; //For hooch
+		public static const ITEM_FLAG_MEDICINE:int						= 52; //For things that can cure disease, NOT WOUNDS
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1458,6 +1465,8 @@
 			"LILIRURU",
 			"MANIACPAINT",
 			"MISSBEHAVIOR",
+			"MOIRA",
+			"NOLIMIT",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
@@ -1499,6 +1508,8 @@
 			"LiliRuru",
 			"ManiacPaint",
 			"MissBehavior",
+			"Moira",
+			"No Limit",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",

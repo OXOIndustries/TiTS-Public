@@ -54,9 +54,12 @@ public function clearOutput():void
 	//If clearOutput is called in a way that would prevent the player seeing their event notices, append those notices to the new page.
 	if (flags["EVENT_BUFFER_OVERRIDE"])
 	{
-		var eventBuffer:String = processEventBuffer();
-		if (eventBuffer != "")  output(eventBuffer + "<b><u>End log.</u></b>\n\n");
-		clearEventBuffer();
+		if(samePageLog)
+		{
+			var eventBuffer:String = processEventBuffer();
+			if (eventBuffer != "") output(eventBuffer + "<b><u>End log.</u></b>\n\n");
+			clearEventBuffer();
+		}
 		flags["EVENT_BUFFER_OVERRIDE"] = undefined;
 	}
 }

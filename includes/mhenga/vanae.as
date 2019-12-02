@@ -844,6 +844,7 @@ public function vanaeMaidenTakeVirginity():void
 	output(" of hot, [pc.cumVisc] jism deep inside of her, sullying her untouched womb with your [pc.cumNoun]. All the while she trembles in your lap and receives your spunk inside of her, feeling it spatter blissfully inside her inner walls.");
 	
 	enemy.loadInCunt(pc, 0);
+	vanaeSimplePreg();
 	pc.orgasm();
 	enemy.orgasm();
 
@@ -1058,6 +1059,7 @@ public function vanaeHuntressVaginalSex():void
 	output(" at the glorious sight. She follows up by lapping and cleaning your [pc.cumVisc] [pc.cockNounSimple], making sure it is completely spotless.");
 
 	enemy.loadInCunt(pc, 0);
+	vanaeSimplePreg();
 	pc.orgasm();
 	enemy.orgasm();
 
@@ -1703,6 +1705,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	// Must have Cock
 	// Max girth 4 inches
 	// Max Length 12 inches.
+	var numCum:int = 5 + rand(5);
 
 	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. <i>“...Today is a very good day for you,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
@@ -1798,10 +1801,14 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	else output(" gushing");
 	output(" from her fuck hole. [pc.EachCock] begins to stiffen and jerk at the glorious sight.");
 
-	enemy.loadInCunt(pc, 0);
-	enemy.loadInCunt(pc, 0);
-	pc.orgasm();
-	enemy.orgasm();
+	vanaeSimplePreg(numCum);
+	for(var y:int = 0; y < numCum; y++)
+	{
+		processTime(10+rand(5));
+		enemy.loadInCunt(pc, 0);
+		pc.orgasm();
+		enemy.orgasm();
+	}
 
 	// if First Time
 	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
@@ -1826,7 +1833,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output(" [pc.cock " + selCock + "]");
 	output(" before retreating back into the Mhen’gan jungle, her tail and hips swaying all the while. It seems you’re going to be the father of quite a few vanae daughters.\n\n");
 
-	processTime(75+rand(25));
+	processTime(10);
 	IncrementFlag("VANAE_HUNTRESS_BRED");
 
 	CombatManager.genericLoss();
@@ -2725,3 +2732,68 @@ output("\n\nYour opponent - a young vanae maiden - almost appears as if she’s 
 output("\n\n//huntress descrip");
 output("\n\nYour opponent - a busty vanae huntress - almost appears as if she’s dancing as she fights you. Her [enemy.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon’s tentacles and body markings are [enemy.hairColor] colored and bioluminescent{, apart from a single dull-green, phallic one in back that seems to have a mind of its own}.\n\nAs she swings her pointed spear around in her webbed hands, you can’t help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [enemy.milkColor] goo. Meanwhile her [enemy.tail] whips around as she ‘dances’, another weapon in the alien girl’s natural arsenal.\n\nHer eyes are closed. It’s always a little weird fighting someone who doesn’t even look at you.");
 */
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function vanaeKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -1.389; //base 75% for vanae huntress, maidens are 100 percent and skip the check
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function vanaeSimplePreg(tries:int=1):void
+{
+	var chance:Number;
+	if (pc.virility() == 0) chance = 0;
+	else if (enemy is MaidenVanae) chance = 10000;
+	else chance = vanaeKnockupChance();
+	//fix for old saves
+	if (flags["VANEA_MAIDEN_PREG"] == undefined && pc.virility() != 0)
+	{
+		flags["VANEA_MAIDEN_PREG"] = 0;
+		if (StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) flags["VANEA_MAIDEN_PREG"] = StatTracking.getStat("characters/maiden vanae/cherrys popped");
+	}
+	if (flags["VANEA_HUNTRESS_PREG"] == undefined && pc.virility() != 0)
+	{
+		flags["VANEA_HUNTRESS_PREG"] = 0;
+		if (flags["VANAE_HUNTRESS_BRED"] != undefined && flags["VANAE_HUNTRESS_BRED"] > 0)
+		{
+			for(var y:int = 0; y < flags["VANAE_HUNTRESS_BRED"]; y++)
+			{
+				for(var z:int = 0; z < 8; z++)
+				{
+					if (rand(10000) < chance)
+					{
+						IncrementFlag("VANEA_HUNTRESS_PREG");
+						break;
+					}
+				}
+			}
+		}
+	}	
+	//current preg try
+	for(var x:int = 0; x < tries; x++)
+	{
+		//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+		if(rand(10000) < chance)
+		{
+			//succesful impregnation
+			if (enemy is MaidenVanae) IncrementFlag("VANEA_MAIDEN_PREG");
+			else IncrementFlag("VANEA_HUNTRESS_PREG");
+			pc.clearRut();
+			break;
+		}
+	}
+}
