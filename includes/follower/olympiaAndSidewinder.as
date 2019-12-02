@@ -1343,7 +1343,7 @@ public function olympiaMissionaryFuck(x:int):void
 	output("\n\nA hand strokes your cheek as the last of your orgasm passes. Olympia’s fiery gold eyes wander over your [pc.face], before she finally manages a fatigued smile. <i>“Captain...”</i>");
 	output("\n\nYou gasp as her muscles ripple, hilt to crown" + (x >= 0 ? ", bathed in your own spunk":"") + ". She grins a little wider, prompting you to lean down and give the dragon-slut a kiss. The [olympia.cum] glaze clinging to her dusky synth-skin glistens as your bodies part, shimmering as it slowly drools down her ribs.");
 	output("\n\n<i>“I’m more used to being covered in engine grease, but... this is nicer,”</i> she laughs. <i>“Perhaps I should bathe before returning to duty.”</i>");
-	output("\n\nOlympia slowly disentangles herself and turns towards you bathroom, giving you a wink over her shoulder as she moves off. You just lean back in bed and watch those red mountains of scaled ass-cheeks swaying off until the door slides closed.");
+	output("\n\nOlympia slowly disentangles herself and turns towards your bathroom, giving you a wink over her shoulder as she moves off. You just lean back in bed and watch those red mountains of scaled ass-cheeks swaying off until the door slides closed.");
 	output("\n\nHate to see her leave, but love to watch her go...");
 	processTime(30);
 	if(x >= 0) olympia.loadInCunt(pc,0);

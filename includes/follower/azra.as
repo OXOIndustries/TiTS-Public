@@ -765,7 +765,7 @@ public function talkToAzraAboutHerDaughters():void
 	else if(pc.isMischievous()) output("I can see where they got their good looks from their mother.");
 	else output("Nice.");
 	output("”</i>");
-	output("\n\n<i>“They may not look it, but they’re twins. The greatest gift their stud ever gave me, One rest his soul, not that I buy that religion anymore.”</i> Azra clears her throat. <i>“He was a good suula. One of the best. If only he could see them now... Jell grow into amazing vocalist, Kryz... sweet Kryz. She’s still finding herself, but I’m sure that wit of hers will take her far, if she can tame it. I love them so much.”</i> Blinking rapidly to hide the formation of tears, the angel-winged xenobiologist shakes her head. <i>“Sorry, I think I may have gotten a little more emotional than this conversation calls for.”</i>");
+	output("\n\n<i>“They may not look it, but they’re twins. The greatest gift their stud ever gave me, One rest his soul, not that I buy that religion anymore.”</i> Azra clears her throat. <i>“He was a good suula. One of the best. If only he could see them now... Jell growing into an amazing vocalist, Kryz... sweet Kryz. She’s still finding herself, but I’m sure that wit of hers will take her far, if she can tame it. I love them so much.”</i> Blinking rapidly to hide the formation of tears, the angel-winged xenobiologist shakes her head. <i>“Sorry, I think I may have gotten a little more emotional than this conversation calls for.”</i>");
 	//Nice
 	if(pc.isNice()) output("\n\nYou do your best to put her at ease. Family is an emotional topic for almost anyone.");
 	//Misch

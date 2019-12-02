@@ -2567,7 +2567,7 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		cTypes.push(GLOBAL.TYPE_SAURIAN);
 	if(flags["KNOW_JADES_NAME"] != undefined)
 		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
-	if(flags["SEER_MET"] == undefined)
+	if(flags["SEER_MET"] != undefined)
 		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
 	
 	var newType:Number = 0;
@@ -2884,7 +2884,8 @@ public function shortenSelectedCock(arg:int = 0):void
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
-		addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
+		if(!pc.removeCockUnlocked(arg, 1)) addDisabledGhostButton(0,"Remove It","Remove It","Something is preventing your [pc.cock " + arg + "] from being removed.");
+		else addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
 		addGhostButton(1,"Nah",gooCockRootMenu);
 		return;
 	}

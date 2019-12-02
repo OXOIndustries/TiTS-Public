@@ -257,9 +257,9 @@ public function bizzyGoLeave():void
 			throw new Error("This shouldn’t ever be called!");
 			break;
 		case 1: bizzyStage1Leave(); break;
-		case 2: bizzyStage2Leave(); break;
-		case 3: bizzyStage3Leave(); break;
-		case 4: bizzyStage4Leave(); break;
+		case 2: bizzyStage1Leave(); break;
+		case 3: bizzyStage2Leave(); break;
+		case 4: bizzyStage3Leave(); break;
 		case 5: bizzyStage4Leave(); break;
 	}
 }
@@ -731,7 +731,8 @@ public function bizzySexVaginal(fromItem:Boolean = false):void
 		else output(" [pc.cock]");
 		output(" seizing up and then pulsing thick surges of cum into her, delivering by one ardent thrust of your [pc.hips] after another. Bizzy coos with joy, mouth open and savoring it, as you");
 		if (cumQ <= 1500) output(" fill her with [pc.cum]");
-		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch.");
+		else output(" plump out her belly with another hefty delivery of [pc.cum], soon spurting and spewing out from her thoroughly packed cunt all over the couch");
+		output(".");
 
 		output("\n\nYou relax against her when you’re done, feeling gently steamed, stroking her silky hair and fondling her");
 		if (flags["BIZZY_PORN_STUDIO"] == 1) output(" flat chest");
@@ -1339,7 +1340,7 @@ public function bizzyStage3Breasts():void
 	clearOutput();
 	showBizzyBust();
 
-	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - I need three doses, this time. I’ve gotta do something </i>spectacular<i>.”</i>");
+	output("<i>“Do you bring some Tittyblossom?”</i> she asks immediately, straightening up like a cat that’s just seen the kibble bowl hover into view, when you bring the subject up. <i>“Remember - <b>I need three doses, this time.</b> I’ve gotta do something </i>spectacular<i>.”</i>");
 
 	//[Fondle] [Give] [Back]
 	clearMenu();
@@ -1664,7 +1665,7 @@ public function bizzyBreastsGiveItemStage2II():void
 	
 	output("\n\nShe leans back on her knees, so you can admire her bazonkas, big, natural tits that bestride her lithe form. She flushes with pleasure when you tell her she looks great.");
 	
-	output("\n\n<i>“Thank you,”</i> she coos, deeper arousal colors her expression. <i>“Those viewer figures... we HAVE to do it again. How about next time, you get me three doses, and I take them all at the same time?”</i> She bites her lip, transported by the idea. She rocks her booty backwards and forwards on you, soft, warm pressure on your [pc.groin].");
+	output("\n\n<i>“Thank you,”</i> she coos, deeper arousal colors her expression. <i>“Those viewer figures... we HAVE to do it again. How about next time, <b>you get me three doses</b>, and I take them all at the same time?”</i> She bites her lip, transported by the idea. She rocks her booty backwards and forwards on you, soft, warm pressure on your [pc.groin].");
 	
 	output("\n\n<i>“You’ll let your pet titty kitty see to you now, won’t you? She did so good for you today, and... she wants to thank you, for everything you’ve done for her...”</i>");
 
@@ -1684,7 +1685,7 @@ public function bizzyStage4Leave():void
 
 	output("\n\nWith some reluctance, you tear yourself away from Bizzy and head for the door.");
 
-	output("\n\n<i>“Aww. But you’ll come back soon, won’t you?”</i> She twists her high-heeled toe in the carpet as she sees you out. <i>“There’s always some more business for you to be taking care of here... <i>“");
+	output("\n\n<i>“Aww. But you’ll come back soon, won’t you?”</i> She twists her high-heeled toe in the carpet as she sees you out. <i>“There’s always some more business for you to be taking care of here...”</i>");
 
 	processTime(3+rand(3));
 
@@ -1703,7 +1704,7 @@ public function bizzyStage2Leave():void
 	
 	output("\n\nWith some regret you plop Bizzy down on the couch next to you, and tell her you can’t hang around. But she’s to keep working that business of hers, and you’ll be back soon enough to see how she’s doing.");
 	
-	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“<b>Three doses, this time</b>. I - I can’t wait to take some more.”</i>");
+	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“<b>Three doses, this time.</b> I - I can’t wait to take some more.”</i>");
 
 	processTime(3+rand(3));
 

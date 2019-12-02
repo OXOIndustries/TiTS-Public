@@ -846,15 +846,15 @@ public function agreeToElectroStim():void
 	//if vagina:
 	if(pc.hasVagina())
 	{
-		output("\n\nNext she procures a ");
-		if(pc.vaginaTotal() == 2) output("pair of ");
-		else if(pc.vaginaTotal() > 2) output("some ");
-		output("terran-looking rubber dildo");
+		output("\n\nNext she procures a");
+		if(pc.vaginaTotal() == 2) output(" pair of");
+		else if(pc.vaginaTotal() > 2) output(" few");
+		output(" terran-looking rubber dildo");
 		if(pc.vaginaTotal() > 1) output("es");
-		output(". And after a quick check to make sure you’re moist enough, she inserts ");
-		if(pc.vaginaTotal() == 1) output("it ");
-		else output("each of them ");
-		output("into your [pc.vaginas].");
+		output(". And after a quick check to make sure you’re moist enough, she inserts");
+		if(pc.vaginaTotal() == 1) output(" it");
+		else output(" each of them");
+		output(" into your [pc.vaginas].");
 	}
 	//if balls:
 	if(pc.balls > 1)

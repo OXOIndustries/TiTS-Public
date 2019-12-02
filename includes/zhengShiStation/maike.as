@@ -202,7 +202,7 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“Up!”</i>");
 	output("\n\nYou’re harshly yanked back to your [pc.feet] with the shakiest footing in recent memory. There’s barely enough endorphin relief to keep you stable but pure inner fire keeps you standing.");
 	output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+	output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 	output("\n\n<i>“<b>What</b> are you standing around for? Go, go!”</i>");
 	output("\n\nA violently swift whip-crack snaps against your shoulder!");
 	//(pc takes 20 lust damage)
@@ -397,7 +397,7 @@ public function maikeFucksYaUpPart2():void
 	if(flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined)
 	{
 		output("\n\n<i>“Ah, ah, I’ve remembered: deliver this for me, slave. Another incentive to not wander. If I find you wearing it, I’ll do far worse than crush your back beneath my feet,”</i> she threatens and shoves an old-fashion space-suit helmet into your hands from out of the blue. Closer to a ball of high-grade glass than a proper protective piece, ‘panoramic’ is one word you would use generously to describe it. <i>“Take it to the nearest member of staff when you’ve made the descent or I don’t know, put it on your head and wait for them to beat it off of you, then they’ll know what to do with it.”</i>");
-		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>.");
+		output("\n\nWell, this could be very useful if you ever wanted to go into the vacuum of space... and if no one specific is missing a helmet, what’s one missing helmet? <b>You’ve acquired the space suit helmet!</b>");
 		output("\n\n<i>“Now off you go or else I’ll to throw you into the pen with nothing but that collar on. All those broken spirits, so aggressive and horny all in one place... I can only imagine what ravenous minds would do to <b>this</b> body,”</i> she hisses into your ear before pushing you towards the walkways exit.");
 
 		//pcHasVagina, NoCock:

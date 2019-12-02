@@ -653,13 +653,13 @@ public function getRiddenByBigWheee(target:int = -1):void
 	if(pc.hasKnees()) output("on your knees ");
 	output("until your [pc.lips are] inches away from his loins.");
 
-	output("\n\n<i>“Lick it,”</i> Tee commands you, his voice rumbling like thunder.The order makes your heart flutter a little, and you find yourself obediently inching forward. You reach out and run your [pc.tongue] along his fleshy sheath. Each and every tastebud meekly brushes along the alpha male’s manhood. You worship it with your mouth, lapping up and down, slathering it with your sticky saliva in the process.");
+	output("\n\n<i>“Lick it,”</i> Tee commands you, his voice rumbling like thunder. The order makes your heart flutter a little, and you find yourself obediently inching forward. You reach out and run your [pc.tongue] along his fleshy sheath. Each and every tastebud meekly brushes along the alpha male’s manhood. You worship it with your mouth, lapping up and down, slathering it with your sticky saliva in the process.");
 	output("\n\nHis prodigious prick begins to thicken and inch upwards. A rush of pride rises within your chest as you realize you’re doing a good job. Spurred on by his arousal - and turned on yourself - you suckle gently on his low-hanging spheres. There, his bullish scent is dizzyingly rich. Without thinking, you find yourself burying your face in his balls - drinking in his musky masculine smell - and letting out a muffled moan of delight.");
 	output("\n\n<i>“Mmm, like the smell of a home-grown bull, darlin’?”</i> His powerful digits ");
 	if(pc.hasHair()) output("run through your [pc.hair]");
 	else output("stroke the top of your head");
 	output(". You respond with an animalistic moan and nod against his crotch. There’s a fiery furnace between your [pc.thighs] and you physically ache with desire. You want this alpha bull sliding inside and filling you up, the sooner the better!");
-	output("\n\nYou don’t have to wait long before Tee is grabbing your waist with his huge hands and turning you around to face his desk. You’re pushed forward until your [pc.chest] is pressed flush with the flat surface. Those powerful hands of his");
+	output("\n\nYou don’t have to wait long before Tee is grabbing your waist with his huge hands and turning you around to face his desk. You’re pushed forward until your [pc.chest] " + (pc.biggestTitSize() > 1 ? "are":"is") + " pressed flush with the flat surface. Those powerful hands of his");
 	if(pc.armor.shortName != "") 
 	{
 		output(" frantically strip off your [pc.armor].");

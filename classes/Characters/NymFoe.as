@@ -7,6 +7,7 @@
 	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
+	import classes.StorageClass;
 	
 	import classes.GLOBAL;
 	import classes.GameData.CombatAttacks;
@@ -177,7 +178,7 @@
 			//GUSHing Teats
 			// ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of “Bouncy”
 			//v2 of Bouncy! disables if 1 (for sealed suits)
-			if(statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
+			if(target.statusEffectv1("Bouncy! Mod") >= 0 && statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
 			if(!hasStatusEffect("Sampled")) attacks.push(sampleTailAttack);
 			else attacks.push(injectionTail);
 			if(statusEffectv1("Gloved") == 0) attacks.push(anaestheticGloveAttack);
@@ -239,14 +240,14 @@
 				applyDamage(damageRand(damage, 15), this, target);
 
 				// randomly choose one of the following:
+				var siliconeSite:StorageClass = target.getStatusEffect("Silicone Please");
 				var injectionSites:Array = [];
-				injectionSites.push(1);
-				injectionSites.push(2);
-				injectionSites.push(3);
-				if(target.lipMod < 5) injectionSites.push(4);
+				if(siliconeSite == null || siliconeSite.value1 >= 1) injectionSites.push(1);
+				if(siliconeSite == null || siliconeSite.value2 >= 1) injectionSites.push(2);
+				if(siliconeSite == null || siliconeSite.value3 >= 1) injectionSites.push(3);
+				if((siliconeSite == null && target.lipMod < 5) || (siliconeSite != null && siliconeSite.value4 >= 1)) injectionSites.push(4);
 				
 				var injectionSite:int = injectionSites[rand(injectionSites.length)];
-				if(target.hasStatusEffect("Boob Silicone Please")) injectionSite = 3;
 				
 				switch(injectionSite)
 				{
@@ -254,24 +255,24 @@
 					case 1:
 						output("\n\nA groaning pressure floods across your [pc.legOrLegs], and you squirm in your place. Before your eyes, your [pc.hips] grow and swell as the silicone settles into your flanks like a feast of cheesecakes. Frankly, it’s a little embarrassing, but you resolve not to be distracted by this added weight.");
 						// pc’s hips increase by 1 step
-						kGAMECLASS.nymFoeInjection(target,1,3);
+						kGAMECLASS.nymFoeInjection(target,1,(siliconeSite == null ? 3 : siliconeSite.value1));
 						break;
 					// ass
 					case 2:
 						output("\n\nYour posterior thickens, the cheeks of your [pc.ass] growing broader and fatter as the bio-silicone deposits itself in your rump. You wiggle your backside uncomfortably, trying to get used to the extra mass before the nursedroid has another chance to pump more into you!");
 						// pc’s ass increases by 1 step.
-						kGAMECLASS.nymFoeInjection(target,2,3);
+						kGAMECLASS.nymFoeInjection(target,2,(siliconeSite == null ? 3 : siliconeSite.value2));
 						break;
 					// breasts
 					case 3:
 						output("\n\nYou gasp as the fluid filling settles into your [pc.chest], turning into a semi-firm gel that expands your [pc.chest] considerably. You press an arm against the inflated mounds, but the enlarged breasts are just as responsive as if you’d grown them yourself - albeit far more gravity-defying than natural!");
 						// pc’s breasts increase by 1 cup size
-						kGAMECLASS.nymFoeInjection(target,3,3);
+						kGAMECLASS.nymFoeInjection(target,3,(siliconeSite == null ? 3 : siliconeSite.value3));
 						break;
 					// lips
 					case 4:
 						output("\n\nYou face flushes as heat momentarily blinds you. You rub the back of your hand across your eyes to help clear your vision and when you draw it away, your fingers brush against your lips. Normally, you’d expect to feel [pc.lips], but now your pucker seems to have been inflated by the silicone! You’ve got a mouth that porn stars would kill for, but there’s no time to think about that now!");
-						kGAMECLASS.nymFoeInjection(target,4,1);
+						kGAMECLASS.nymFoeInjection(target,4,(siliconeSite == null ? 1 : siliconeSite.value4));
 						break;
 				}
 			}
@@ -355,7 +356,7 @@
 			//First Time:
 			if(statusEffectv1("Bouncy!") >= 5)
 			{
-				output("The nursedroid’s face lights up. <i>“Your bio-signs identify you as-”</i> her speech cuts out into garbled static, her head twitching to one one side while sparks shoot out of her neck joint. <i>“Identify- identify- identify you as: In need of a drink! Please remain stationary.”</i> She hoists both hands to the dripping nozzles of her synthetic nipples and squeezes. Pressurized fluid gushes out in twin streams!");
+				output("The nursedroid’s face lights up. <i>“Your bio-signs identify you as-”</i> her speech cuts out into garbled static, her head twitching to one side while sparks shoot out of her neck joint. <i>“Identify- identify- identify you as: In need of a drink! Please remain stationary.”</i> She hoists both hands to the dripping nozzles of her synthetic nipples and squeezes. Pressurized fluid gushes out in twin streams!");
 			}
 			//Repeat:
 			else
@@ -365,8 +366,8 @@
 				output("\n\n<i>“Analyzing...”</i>");
 				output("\n\n<i>“Error. Tissue insufficiently deep. Deploying medical assistance.”</i> She grips her nipples and sprays another pair of showering blasts at you!");
 			}
-			// Removes 1 stack of <i>“Bouncy”</i> from Nym-Foe
-			this.addStatusValue("Bouncy!",1,-1);
+			// Removes 1 stack of “Bouncy” from Nym-Foe
+			if(!target.hasStatusEffect("Bouncy! Mod")) this.addStatusValue("Bouncy!",1,-1);
 			var stacks:int = statusEffectv1("Bouncy!");
 			if(stacks <= 0) removeStatusEffect("Bouncy!");
 			else
@@ -378,7 +379,7 @@
 			{
 				output("\n\nThe chemical lactation splashes against your [pc.armor]. Thin streams trickle down harmlessly, repelled by your sealed suit. Nym-Foe blinks, looking down at her dripping chest. <i>“Error, subdual mechanism insufficient.”</i> Sadly, she tweaks her nipples, stopping their gushing streams. <i>“Modifying treatment subroutine.”</i>");
 				// She no longer uses this attack
-				addStatusValue("Bouncy",2,1);
+				addStatusValue("Bouncy!",2,1);
 			}
 			//Miss
 			else if (rangedCombatMiss(this, target)) 

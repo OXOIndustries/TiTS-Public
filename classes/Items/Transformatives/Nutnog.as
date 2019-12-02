@@ -35,6 +35,8 @@ package classes.Items.Transformatives {
 			
 			basePrice = 3500;
 			
+			this.addFlag(GLOBAL.ITEM_FLAG_ALCOHOLIC);
+			
 			version = _latestVersion;
 		}
 		//METHOD ACTING!

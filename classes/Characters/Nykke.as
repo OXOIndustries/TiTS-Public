@@ -17,7 +17,7 @@ package classes.Characters
 			this._neverSerialize = true;
 			
 			this.short = "Nykke";
-			this.originalRace = "Frostwyrm";
+			this.originalRace = "frostwyrm";
 			this.a = "";
 			this.capitalA = "";
 			this.isPlural = false;
@@ -87,7 +87,7 @@ package classes.Characters
 			this.createCock();
 			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 			this.cocks[0].cLengthRaw = 12;
-			this.cocks[0].cThicknessRatioRaw = 2.5;
+			this.cocks[0].cThicknessRatioRaw = 1.5;
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			
 			this.balls = 2;

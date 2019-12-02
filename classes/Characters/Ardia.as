@@ -8,9 +8,10 @@
 		//constructor
 		public function Ardia()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
+			fluidSimulate = true;
 			
 			this.short = "Ardia";
 			this.originalRace = "dzaan";
@@ -50,31 +51,32 @@
 			this.thickness = 90;
 			this.tone = 0;
 			this.hairColor = "blue";
-			this.hairType = GLOBAL.TYPE_HUMAN;
+			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.scaleColor = "chocolate";
 			this.furColor = "brown";
 			this.hairLength = 11;
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.TYPE_HUMAN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "brown";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceType = GLOBAL.TYPE_DZAAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 0;
 			this.lipColor = "blue";
-			this.earType = GLOBAL.TYPE_SYLVAN;
+			this.earType = GLOBAL.TYPE_DZAAN;
 			this.earLength = 4;
 			this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
-			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_HUMAN;
+			this.hornType = GLOBAL.TYPE_DZAAN;
+			this.hornLength = 0;
+			this.armType = GLOBAL.TYPE_DZAAN;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_DZAAN;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			
@@ -160,10 +162,30 @@
 		{
 			return "ARDIA";
 		}
-		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.cockVirgin = false;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+			dataObject.eyeType = GLOBAL.TYPE_HUMAN;
+			dataObject.tongueType = GLOBAL.TYPE_HUMAN;
+			dataObject.antennaeType = GLOBAL.TYPE_HUMAN;
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			
+			dataObject.faceType = GLOBAL.TYPE_DZAAN;
+			dataObject.earType = GLOBAL.TYPE_DZAAN;
+			dataObject.earLength = 4;
+			dataObject.horns = 0;
+			dataObject.hornType = GLOBAL.TYPE_DZAAN;
+			dataObject.hornLength = 0;
+			dataObject.armType = GLOBAL.TYPE_DZAAN;
+			dataObject.legType = GLOBAL.TYPE_DZAAN;
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.fluidSimulate = true;
 		}
 	}
 }

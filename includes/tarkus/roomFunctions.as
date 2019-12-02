@@ -288,7 +288,7 @@ public function rustCoastEncounters():Boolean {
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 
-		if(pc.level >= 5) e.push ( { v: encounterLGBT, w: 2 } );
+		if(pc.level >= 5) e.push ( { v: encounterLGBT, w: 3 } );
 
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );

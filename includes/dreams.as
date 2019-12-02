@@ -6,6 +6,8 @@
 
 public function dreamChances(inShip:Boolean = false):Boolean
 {
+	if (disableExploreEvents()) return false;
+	
 	if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) return false;
 	if (flags["BESS_SLEEPWITH_DOMORNING"] == 1) return false;
 	if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) return false;

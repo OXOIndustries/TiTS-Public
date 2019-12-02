@@ -1648,11 +1648,10 @@ public function runesYouTurdShade():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output(" a god-forsaken ice ball of a moon called Uveto VII, owned by those little bastards.”</i> She points to ");
-		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig");
-		else output("a tiny, stuffed-animal-like creature sitting in the bar");
+		if(flags["MET_BRILLIG"] != undefined) output("Madame Brillig.");
+		else output("a tiny, stuffed-animal-like creature sitting in the bar.");
 	}
-	else output(" this frozen iceball here");
-	output(".”</i>");
+	else output(" this frozen iceball here.”</i>");
 	output("\n\n<i>“I woke up in a church, laid up beside a fire and covered in blankets. Apparently I lost consciousness in the cold, sitting in a warehouse out in the open for half a day. Nearly died before somebody heard me shivering in a crate and crowbarred it. I was lucky I didn’t lose my baby, not to mention a few extremities.");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" A human religious sect on-world took me in after the docs were finished with me. Uveto was");
 	else output(" The temple took me in after the docs were finished with me. Uveto is");

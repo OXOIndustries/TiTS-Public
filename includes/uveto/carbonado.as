@@ -708,7 +708,7 @@ public function cfsGoHangoutTimeII():void
 
 	output("\n\n<i>“This is not an effective strategy!”</i> shouts the centaur, a nameplate labeling her ‘Taurina, master tactician.’ She blasts away some approaching droids, but doesn’t notice a larger one approaching behind her. Before it can attack, it is smashed to pieces by the hammer from before.");
 
-	output("\n\n<i>“How many times have I told you to watch your back. Master technician, bah!”</i> the heavyset titan shouts, hefting his weapon. Ironclad bars label him as ‘Ivan Orgoth, The Shaft of Strength.’");
+	output("\n\n<i>“How many times have I told you to watch your back. Master tactician, bah!”</i> the heavyset titan shouts, hefting his weapon. Ironclad bars label him as ‘Ivan Orgoth, The Shaft of Strength.’");
 
 	output("\n\nRobots with wicked looking sharp bits approach from every side, and the three heroes group in a tight cluster. A loud noise alerts them to the hole their ship punched in the larger spacecraft. A vacuum begins that pulls many of the robots into the vastness of space. Taurina grabs her compatriots, her hooves magnetically anchoring her to the floor. She trudges toward an open hallway, managing to get through just before it closes off, and dropping her cargo to the ground. The two men cough and sputter for a few seconds, steadily recovering their bearings.");
 

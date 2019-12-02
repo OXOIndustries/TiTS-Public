@@ -8,9 +8,9 @@ public function pattonIsNotSupposedToBeHere():Boolean
 	||	rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)
 	||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
 	||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
-	||  InCollection(shipLocation, ["500", "ZS L50", "EW-M23"])
-	||  InCollection(getPlanetName().toLowerCase(), ["new texas", "zheng shi station", "spatial anomaly"])
-		||	disableExploreEvents()
+	||	InCollection(shipLocation, ["500", "ZS L50", "EW-M23", "KQ N32"])
+	||	InCollection(getPlanetName().toLowerCase(), ["n/a", "unknown", "new texas", "zheng shi station", "spatial anomaly"])
+	||	disableExploreEvents()
 	)
 	{
 		flags["KATTOM_LOCATION"] = undefined;
@@ -194,7 +194,7 @@ public function approachKattom(back:Boolean = false):void
 	{
 		//Repeat approach
 		if(rand(5) == 0) output("Kattom smiles when you step his way. <i>“Welcome back, [pc.name]. How fortuitous that our paths would cross once more. I trust you’ve replenished your supply of credits for further dealings?”</i>");
-		else if(rand(4) == 0) output("Kattom nods politely at your approach. <i>“Doing well for yourself, Steele? I certainly am. After all, guns are a girl’s best friend... pretty much anyone's best friend, really.”</i>");
+		else if(rand(4) == 0) output("Kattom nods politely at your approach. <i>“Doing well for yourself, Steele? I certainly am. After all, guns are a girl’s best friend... pretty much anyone’s best friend, really.”</i>");
 		else if(rand(3) == 0) output("Smiling broadly, Kattom snaps a clip onto his collar, and the familiar holographic tie springs into place. <i>“I trust your travels are treating you well, [pc.name]. If it isn’t, I’m sure that something in my stock will persuade them to behave.”</i>");
 		else if(rand(2) == 0) output("Kattom’s eye glitters briefly as you approach, scanning you for who-knows-what. <i>“I see you’ve been busy, [pc.name]. How about a purchase from Kattom Osgood’s Discount Derringers and Magnificent Missiles to fatten your personal armory?”</i>");
 		else output("Kattom hastily straightens his hair only to have one ear flick a lock out of place at the last second. <i>“Welcome back, [pc.name]! I’m pleased to let you know that Kattom Osgood’s Glorious Guns and Fusillade Farm is open for business! Stars, I love that name!”</i>");

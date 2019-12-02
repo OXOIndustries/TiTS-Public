@@ -308,6 +308,7 @@ public function buyFromLuca():void
 	chars["LUCA"].inventory.push(new FocusPill());
 	chars["LUCA"].inventory.push(new FizzyFix());
 	chars["LUCA"].inventory.push(new SaltyJawBreaker());
+	chars["LUCA"].inventory.push(new TauricoVenidaeLight());
 	
 	if(flags["SLEEP_FAPNEA_INSTALLED"] == undefined) chars["LUCA"].inventory.push(new SleepFapnea());
 	
@@ -715,7 +716,7 @@ public function simmCaged3A(exhibition:Boolean):void
 	output("\n\n<i>“I think I’ll choose the trial by combat.”</i> You say confidently. You know something weird is happening to you, and that you need to escape as soon as possible.");
 	output("\n\n<i>“As you wish. I will return to tell you who your opponent will be. It may take some time, as many in the tribe will wish to face you. After your opponent has been decided, you will be given one opportunity to withdraw your request for combat.”</i>");
 	output("\n\nSeylia leaves with an abrupt twirl. As you watch her asscheeks bounce, you realize just how hungry you are. Looking around your cage, you see a basket filled with fruit has been provided for you to eat. You lunge upon them like a predator, each bite into the alien fruit is unique and reminds you of the great things you can find as an explorer. After you satiate your hunger you lie down on some makeshift bedding for nice nap.");
-	output("\n\nHours later you awaken under a clear night sky, giving you a breathtaking view of three faintly blue moons. You marvel at the sight for a few minutes before looking around for more food. Your fevered masterbation session must have taken more out of you than you thought.");
+	output("\n\nHours later you awaken under a clear night sky, giving you a breathtaking view of three faintly blue moons. You marvel at the sight for a few minutes before looking around for more food. Your fevered masturbation session must have taken more out of you than you thought.");
 	output("\n\nThere’s no food though. You see a guard nearly a full foot taller than you nearby. <i>“Psst. Psst. Hey.”</i> You call out in a whisper. <i>“Hey guard.”</i>");
 	if(exhibition) output("\n\nA series of numbers and letters are displayed above the guard: Views - " + (43 + rand(4)));
 	output("\n\nShe turns to you, giving you a nice view of her tattooed muscular body. Her ribbed cock hangs freely for you to see. She’s at least ten inches <i>and you wonder if she’s a grower or a shower.</i> <i>“Speak up prisoner.”</i>");

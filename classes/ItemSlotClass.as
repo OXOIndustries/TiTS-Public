@@ -262,12 +262,14 @@
 				
 				var price:Number = this.basePrice;
 				var discount:Boolean = false;
+				var multipack:Boolean = false;
 				
 				if (seller != null && buyer != null)
 				{
 					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
 					if(seller.hasPerk("Supply And Demand")) discount = true;
 					if(buyer.hasPerk("Supply And Demand")) discount = true;
+					if(quantity != 1) multipack = true;
 				}
 				
 				var valueString:String = "";
@@ -283,11 +285,17 @@
 					valueString += "Basic Price: " + Math.round(price) + " " + ParseText("Credits");
 					if(seller.hasPerk("Supply And Demand")) price *= 1.1;
 					if(buyer.hasPerk("Supply And Demand")) price *= 0.95;
-					valueString += "\nFinal Price: " + Math.round(price) + " " + ParseText("Credits");
+					valueString += "\nFinal Price: " + Math.round(price);
+					if(multipack) valueString += " (x" + quantity + ")";
+					valueString += " " + ParseText("Credits");
+					if(multipack) valueString += "\nTotal Price: " + Math.round(price * quantity) + " " + ParseText("Credits");
 				}
 				else
 				{
-					valueString += "Price: " + Math.round(price) + " " + ParseText("Credits");
+					valueString += "Price: " + Math.round(price);
+					if(multipack) valueString += " (x" + quantity + ")";
+					valueString += " " + ParseText("Credits");
+					if(multipack) valueString += "\nTotal Price: " + Math.round(price * quantity) + " " + ParseText("Credits");
 				}
 				
 				compareString = mergeString(compareString, valueString);

@@ -120,6 +120,7 @@
 		include "../includes/LocationStorage.as";
 		include "../includes/MailEntries.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/Pornos.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
@@ -150,11 +151,13 @@
 		//Followers
 		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
+		include "../includes/follower/ardia.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
 		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
@@ -223,8 +226,12 @@
 		include "../includes/events/kimberQuest/roomFunctions.as";
 		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
+		include "../includes/events/kiroCrewQuest/fuckdollGeneric.as";
+		include "../includes/events/kiroCrewQuest/holoTrap.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiroCrewQuest/rooms.as";
+		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -335,6 +342,7 @@
 		include "../includes/mhenga/syri.as";
 		include "../includes/mhenga/tanis.as";
 		include "../includes/mhenga/tharePlantation.as";
+		include "../includes/mhenga/thyvara.as";
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
@@ -492,6 +500,7 @@
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/vulriks.as";
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
@@ -526,6 +535,7 @@
 		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
+		include "../includes/uveto/eitan.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/heidrun.as";
@@ -684,7 +694,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.018";
+			version = "0.8.029";
 
 			//temporary nonsense variables.
 			temp = 0;

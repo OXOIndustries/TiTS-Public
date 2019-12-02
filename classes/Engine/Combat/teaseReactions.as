@@ -16,6 +16,9 @@ package classes.Engine.Combat
 		
 		var buffer:String = "";
 		var textRands:Array = [];
+
+		if(target is KQSexdollGeneric && damage > 0) { if(!target.hasStatusEffect("Cheerleader")) target.createStatusEffect("Cheerleader"); }
+		
 		if (target is PlayerCharacter)
 		{
 			if (damage == 0) buffer = "You seem unimpressed.";

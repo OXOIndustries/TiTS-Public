@@ -124,7 +124,7 @@ public function approachJerome():void
 		output(" you tell him through a cocky grin, a reflection of your teeth clearly visible in his eyes as you lick teasingly at your canines.");
 	}
 
-	output("\n\nOne of Jerome’s massive hands clamps around the comparatively tiny drink sat on the bar in front of him, bringing it to his mouth in an attempt to disguise a nervous gulp.");
+	output("\n\nOne of Jerome’s massive hands clamps around the comparatively tiny drink seated on the bar in front of him, bringing it to his mouth in an attempt to disguise a nervous gulp.");
 	
 	flags["JEROME_APPROACHED"] = days;
 

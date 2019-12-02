@@ -67,7 +67,7 @@
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 85;
-			this.eyeType = 0;
+			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "red";
 			this.tallness = 88;
 			this.thickness = 40;
@@ -76,26 +76,27 @@
 			this.scaleColor = "bronze";
 			this.furColor = "brown";
 			this.hairLength = 7;
-			this.hairType = 0;
+			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "bronze";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceType = GLOBAL.TYPE_DZAAN;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_HUMAN;
+			this.earType = GLOBAL.TYPE_DZAAN;
+			this.earLength = 4;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 2;
-			this.hornType = GLOBAL.TYPE_HUMAN;
+			this.hornType = GLOBAL.TYPE_DZAAN;
 			this.hornLength = 4;
-			this.armType = GLOBAL.TYPE_HUMAN;
+			this.armType = GLOBAL.TYPE_DZAAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_DZAAN;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE];
 			//0 - Waist
@@ -139,7 +140,7 @@
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cLengthRaw = 5.125;
-			this.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			this.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 			this.cocks[0].cockColor = "red";
 			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);

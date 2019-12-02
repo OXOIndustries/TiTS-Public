@@ -192,7 +192,10 @@ public function iceQueenQuestionIceQueen():void
 	clearOutput();
 	showZaalt();
 
-	output("<i>“The </i>Ice Queen<i>?”</i> Zaalt says, leaning against a bulkhead. <i>“She’s the biggest gal on the Siretta-"+getSystemName()+" run. Might not be the fastest out here, but the </i>Queen<i>’s got a mighty cargo bay and great big engines,”</i> he adds, making a motion around his chest as if to mimic a set of big, weighty breasts. Way bigger than average.");
+	var pcLocation:String = getSystemName();
+	if(InCollection(pcLocation, ["Unknown", "Deep Space", "Siretta"])) pcLocation = "Kalas";
+	
+	output("<i>“The </i>Ice Queen<i>?”</i> Zaalt says, leaning against a bulkhead. <i>“She’s the biggest gal on the Siretta-"+pcLocation+" run. Might not be the fastest out here, but the </i>Queen<i>’s got a mighty cargo bay and great big engines,”</i> he adds, making a motion around his chest as if to mimic a set of big, weighty breasts. Way bigger than average.");
 	
 	output("\n\nHe laughs and cracks his knuckles. <i>“She’s a Pyrite-corp ship. Which I <b>thought</b> meant reliable as hell, until her LightDrive decided to throw us a curveball. First time she’s given us trouble, but considering she just got her side tore out by a meteor, I’ll give her a pass.”</i>");
 	

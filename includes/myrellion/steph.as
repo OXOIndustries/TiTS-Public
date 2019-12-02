@@ -231,7 +231,7 @@ public function stephWorkStay():void
 	
 	output("\n\n<i>“Right.”</i>");
 	
-	output("\n\nYou see a big <i>“DELETE”</i> flash on the projector, and Steph sighs. <i>“Yeah, who am I kidding. I’m just lucky to be where I am. Shouldn’t complain so much.”</i>");
+	output("\n\nYou see a big “DELETE” flash on the projector, and Steph sighs. <i>“Yeah, who am I kidding. I’m just lucky to be where I am. Shouldn’t complain so much.”</i>");
 	
 	output("\n\nLooks like <b>the Galactic Huntress is sticking with her current network</b>.");
 
