@@ -84,15 +84,33 @@ public function tellKiroYaLoveHerYouDolt():void
 	showKiro();
 	author("Fenoxo");
 	output("<i>“I love you too.”</i> You answer plainly, but it’s enough to make tears well at the corner of Kiro’s eyes.");
-	output("\n\n<i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i> the kui-tan nervously ventures.");
-	output("\n\nYou answer, <i>“I guess so.”</i>");
-	output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
-	output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
-	processTime(3);
 	flags["KIRO_LOVED"] = 1;
-	clearMenu();
-	addButton(0,"Yes",yesPolyAmoryIsOkayKiro,true,"Yes","Take Kiro as your girlfriend.");
-	addButton(1,"No",noPolyForMeThanks,true,"No","Polyamory is a problem for you.");
+	if(flags["KIRO_GF"] == undefined)
+	{
+		output("\n\n<i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i> the kui-tan nervously ventures.");
+		output("\n\nYou answer, <i>“I guess so.”</i>");
+		output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
+		output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
+		processTime(3);
+		
+		clearMenu();
+		addButton(0,"Yes",yesPolyAmoryIsOkayKiro,true,"Yes","Take Kiro as your girlfriend.");
+		addButton(1,"No",noPolyForMeThanks,true,"No","Polyamory is a problem for you.");
+	}
+	else
+	{
+		output("\n\n<i>“I couldn’t have asked for a better [pc.boyGirl]friend,”</i> the kui-tan proudly sighs.");
+		output("\n\nYou agree with her.");
+		output("\n\nKiro socks you in the shoulder hard. <i>“Don't let your head get too big about it.”</i> She flashes her fangs in a broad grin. <i>“");
+		if(pc.hasCock())
+		{
+			output("Unless it's the one below the belt. " + (!pc.hasCocks() ? "That one can get as big as it wants.":"Those ones can get as big as they want."));
+			output(" Not even her chocolate fur can hide the crimson blush glowing beneath.");
+			output(" <i>“Now back to the matter at hand...”</i>");
+		}
+		processTime(5);
+		kqVictoryMenu1();
+	}
 	//Use reactions from below <i>“Late Love”</i> heading.
 }
 
@@ -449,13 +467,25 @@ public function lateLoveDeclaration():void
 	showKiro();
 	author("Fenoxo");
 	flags["KIRO_LOVED"] = 1;
-	output("You reach out and shush the tanuki. <i>“I love you too, you big horndog.”</i> With that out of the way, you take your finger away from the joyfully squealing pirate and add, <i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i>");
-	output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
-	output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
-	processTime(5);
-	clearMenu();
-	addButton(0,"Yes",yesPolyAmoryIsOkayKiro,false,"Yes","Take Kiro as your girlfriend.");
-	addButton(1,"No",noPolyForMeThanks,false,"No","Polyamory is a problem for you.");
+	output("You reach out and shush the tanuki. <i>“I love you too, you big horndog.”</i> With that out of the way, you take your finger away from the joyfully squealing pirate and add, ");
+
+	if(flags["KIRO_GF"] == undefined)
+	{
+		output("<i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i>");
+		output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
+		output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
+		processTime(5);
+		clearMenu();
+		addButton(0,"Yes",yesPolyAmoryIsOkayKiro,false,"Yes","Take Kiro as your girlfriend.");
+		addButton(1,"No",noPolyForMeThanks,false,"No","Polyamory is a problem for you.");
+	}
+	else
+	{
+		output("\n\n<i>“I couldn’t ask for a better girlfriend.”</i>");
+		output("\n\nKiro socks you in the shoulder hard. <i>“Flattery doesn’t work on me.”</i> She flashes her fangs in a broad grin. <i>“Except when it does, like right fucking now, but back to the matter at hand...”</i> Not even her chocolate fur can hide the crimson blush glowing beneath.");
+		processTime(5);
+		kqVictoryMenu2();
+	}
 }
 
 public function yesPolyAmoryIsOkayKiro(early:Boolean = false):void
