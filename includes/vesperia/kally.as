@@ -121,7 +121,7 @@ public function kallyBonusRoomTexts():Boolean
 	//Check for kallySchlick!
 	sisterSchlickProcChance();
 
-	if((flags["KIRO_MET_KALLY"] == 3) && MailManager.isEntryViewed("kirodatemeet")) 
+	if((flags["KIRO_MET_KALLY"] == 3) && MailManager.isEntryViewed("kirodatemeet") && roamingKiroAvailable()) 
 	{
 		kiroKallyBarMeetOverride();
 		return true;
@@ -1136,6 +1136,7 @@ public function askKallyAboutAusar():void
 //1- landing pad
 public function kiroKallyCanadiaLPBonus():void
 {
+	if(!roamingKiroAvailable()) return false;
 	kiro.ballSizeRaw = 10;
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
 	{
@@ -1155,6 +1156,7 @@ public function kiroKallyCanadiaLPBonus():void
 //2 - airlock
 public function kiroKallyCanadiaAirlockBonus():void
 {
+	if(!roamingKiroAvailable()) return false;
 	if((flags["KIRO_MET_KALLY"] == 0 || flags["KIRO_MET_KALLY"] == 1) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1166,6 +1168,7 @@ public function kiroKallyCanadiaAirlockBonus():void
 //3 - Hallway
 public function kiroKallyCanadiaHallwayBonus():void
 {
+	if(!roamingKiroAvailable()) return false;
 	if((flags["KIRO_MET_KALLY"] == 1 || flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
@@ -1178,6 +1181,7 @@ public function kiroKallyCanadiaHallwayBonus():void
 //4 - Outside the bar
 public function kiroKallyCanadiaBarBonus():void
 {
+	if(!roamingKiroAvailable()) return false;
 	if((flags["KIRO_MET_KALLY"] == 2) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
