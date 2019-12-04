@@ -463,6 +463,7 @@ public function shipHangarShips(dock:String = ""):Array
 	}
 	if(InCollection(dock, publicHangars))
 	{
+		if(!kiro.isBimbo() && flags["KQ_RESCUED"] != undefined && flags["KQ_REWARDED"] == undefined) ships.push(["Kiro Ship",kqVictoryRewardBonus]);
 		if(flags["SHIZZY_MET"] != undefined && majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
 	}
 	
@@ -988,6 +989,7 @@ public function getCrewOnShip():Array
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
 	if (olympiaIsCrew()) c.push(olympia);
+	if (kiroIsCrew()) c.push(kiro);
 	return c;
 }
 
@@ -1017,6 +1019,7 @@ public function getGunnersOnShipNames():Array
 	//if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
+	if (kiroIsCrew()) crewMembers.push("Kiro");
 	return crewMembers;
 }
 
@@ -1256,6 +1259,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter) 
 		{
 			crewMessages += kaseCrewBlurbs(btnSlot, InCollection(CREW_KASE, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (kiroIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += kiroCrewBonus(btnSlot, InCollection(CREW_KIRO, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}

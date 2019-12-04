@@ -9,14 +9,6 @@ public function daneIsCrew():Boolean
 {
 	return false;
 }
-public function kiroRecruited():Boolean
-{
-	return false;
-}
-public function kiroIsCrew():Boolean
-{
-	return false;
-}
 
 public function PCShipIsCasstech():Boolean
 {

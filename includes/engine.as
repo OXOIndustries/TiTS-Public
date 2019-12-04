@@ -351,7 +351,7 @@ public function vaginaRouterDesc(vIdx:int = -1, fullDesc:Boolean = false):String
 }
 
 //Args[0] = target scene.
-//Args[1] = max size.
+//Args[1] = max size. (80085 for infinite!)
 //Args[2] = boolean for if strapon allowed
 //Args[3] = min size
 //Args[4] = unselectable indexes
@@ -375,6 +375,8 @@ public function penisRouter(args:Array):void
 	for(var x:int = 0; x < pc.cockTotal(); x++)
 	{
 		if(pc.cockVolume(x, true) <= maxFit && pc.cockVolume(x, false) >= minFit && noSelect.indexOf(x) < 0) choices.push(x);
+		//maxfit of 80085 = infinite dongers!
+		else if(pc.cockVolume(x, false && noSelect.indexOf(x) < 0) >= minFit) choices.push(x);
 		else ineligibles.push(x);
 	}
 	//Only 1 choice? Go right ahead with no menu.

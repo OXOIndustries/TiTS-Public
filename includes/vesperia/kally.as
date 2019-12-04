@@ -2028,11 +2028,14 @@ public function yesKiroLetsShower():void
 	if(kiroRoughButtfucks() == 0) output("that you don’t have to let her abuse you like that if you don’t want to");
 	else output("that you’re an incredible submissive when you want to be");
 	output(". But do you really?");
-	output("\n\nYou return to the bar smelling fresh and clean, even if the inside of your [pc.belly] knows the true, sordid tale.");
+	output("\n\n" + (kiroIsCrew() ? "You return":"You return to the bar") + " smelling fresh and clean, even if the inside of your [pc.belly] knows the true, sordid tale.");
 	processTime(14);
 	IncrementFlag("KIRO_ROUGH_BUTTFUCK");
-	currentLocation = flags["BF_STORAGE"];
-	flags["BF_STORAGE"] = undefined;
+	if(!kiroIsCrew())
+	{
+		currentLocation = flags["BF_STORAGE"];
+		flags["BF_STORAGE"] = undefined;
+	}
 	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2044,14 +2047,21 @@ public function noKiroLetsNotShower():void
 	moveTo(shipLocation);
 	clearOutput();
 	showKiro(true);
-	output("You slink out of the ship and back to your own, trailing Kiro’s cum behind you as you go. Everyone you pass can see and smell what she did to you. The ");
-	if(rooms[currentLocation].planet.indexOf("PLANET: ") != -1) output("planet");
-	else output("station");
-	output(" is sure to be abuzz with tales of just how cum-drenched you were - and who did it to you.");
-	if(pc.exhibitionism() >= 33) output(" Why does that make your stomach all fluttery?");
+	output("You slink out of the " + (kiroIsCrew() ? "shower":"ship and back to your own") + ", trailing Kiro’s cum behind you as you go.");
+	if(!kiroIsCrew())
+	{
+		output(" Everyone you pass can see and smell what she did to you. The ");
+		if(rooms[currentLocation].planet.indexOf("PLANET: ") != -1) output("planet");
+		else output("station");
+		output(" is sure to be abuzz with tales of just how cum-drenched you were - and who did it to you.");
+		if(pc.exhibitionism() >= 33) output(" Why does that make your stomach all fluttery?");
+	}
 	IncrementFlag("KIRO_ROUGH_BUTTFUCK");
-	currentLocation = "SHIP INTERIOR";
-	flags["BF_STORAGE"] = undefined;
+	if(!kiroIsCrew()) 
+	{
+		currentLocation = "SHIP INTERIOR";
+		flags["BF_STORAGE"] = undefined;
+	}
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
