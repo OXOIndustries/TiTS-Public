@@ -84,7 +84,7 @@ public function tellKiroYaLoveHerYouDolt():void
 	showKiro();
 	author("Fenoxo");
 	output("<i>“I love you too.”</i> You answer plainly, but it’s enough to make tears well at the corner of Kiro’s eyes.");
-	output("\n\n<i>“I guess that makes you my girlfriend, huh?”</i> the kui-tan nervously ventures.");
+	output("\n\n<i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i> the kui-tan nervously ventures.");
 	output("\n\nYou answer, <i>“I guess so.”</i>");
 	output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
 	output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
@@ -449,7 +449,7 @@ public function lateLoveDeclaration():void
 	showKiro();
 	author("Fenoxo");
 	flags["KIRO_LOVED"] = 1;
-	output("You reach out and shush the tanuki. <i>“I love you too, you big horndog.”</i> With that out of the way, you take your finger away from the joyfully squealing pirate and add, <i>“I guess that makes you my girlfriend, huh?”</i>");
+	output("You reach out and shush the tanuki. <i>“I love you too, you big horndog.”</i> With that out of the way, you take your finger away from the joyfully squealing pirate and add, <i>“I guess that makes you my [pc.boyGirl]friend, huh?”</i>");
 	output("\n\nKiro balls up her fists in front of her chest and nods vigorously. <i>“Yes." + (kiroKallyThreesomes() > 0 ? " I hope you don’t mind sharing me with Kally. Fuck, polyamory is rad!":" I hope you don’t mind if I keep fucking around though. Monogamy never really worked for me, and it would be so selfish to expect you to keep up with all this.") + "”</i>");
 	output("\n\nEven as your girlfriend, Kiro will still be a slut. Is that okay?");
 	processTime(5);
