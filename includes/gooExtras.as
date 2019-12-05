@@ -2543,8 +2543,35 @@ public function reshapeAGooCawkMenu(arg:Array):void
 	
 	clearGhostMenu();
 	
+	var cTypes:Array = [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_VULPINE];
+	// Unlockables
+	if(flags["MET_SERA"] != undefined)
+		cTypes.push(GLOBAL.TYPE_DEMONIC);
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
+		cTypes.push(GLOBAL.TYPE_TENTACLE);
+	if(CodexManager.entryViewed("Zil"))
+		cTypes.push(GLOBAL.TYPE_BEE);
+	if(CodexManager.entryViewed("Fanfir") || CodexManager.entryViewed("The Dragon's Hoard"))
+		cTypes.push(GLOBAL.TYPE_DRACONIC);
+	if(CodexManager.entryViewed("Gabilani"))
+		cTypes.push(GLOBAL.TYPE_GABILANI);
+	if(CodexManager.entryViewed("Nyrea"))
+		cTypes.push(GLOBAL.TYPE_NYREA);
+	if(flags["LIRIEL_MET"] != undefined)
+		cTypes.push(GLOBAL.TYPE_HRAD);
+	if(flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_COCK) == AmberSeed.FLAG_GOO_COCK)
+		cTypes.push(GLOBAL.TYPE_AVIAN);
+	if(CodexManager.entryViewed("Suulas"))
+		cTypes.push(GLOBAL.TYPE_SIREN);
+	if(CodexManager.entryViewed("Saurmorians"))
+		cTypes.push(GLOBAL.TYPE_SAURIAN);
+	if(flags["KNOW_JADES_NAME"] != undefined)
+		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
+	if(flags["SEER_MET"] != undefined)
+		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
+
 	var cTypes:Array = new Array();
-	cTypes = pc.getValidShiftTypes("cock");
+
 	
 	var newType:Number = 0;
 	var btnName:String = "";
