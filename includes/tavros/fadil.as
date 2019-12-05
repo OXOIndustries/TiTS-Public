@@ -1,6 +1,7 @@
 public function showFadil(nude:Boolean = false):void
 {
-	showName("\nFADIL" + (nude ? "_NUDE":""));
+	showBust("FADIL" + (nude ? "_NUDE":""));
+	showName("\nFADIL");
 }
 
 public function matchesFadilsPreference():Boolean

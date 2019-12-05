@@ -57,8 +57,3 @@ public function PCShipHasHolodeck():Boolean
 {
 	return false;
 }
-
-public function ardiaDomLevel(arg:int = 0, apply:Boolean = false):int
-{
-	return 0;
-}

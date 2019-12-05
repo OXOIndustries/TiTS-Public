@@ -2433,7 +2433,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			if(pc.lust() >= 33)
 			{
 				output("\n\nYou could probably do something about that lust buildup too...");
-				masturbateButton(1);
+				masturbateButton(1, false, true);
 			}
 			break;
 	}
@@ -3878,7 +3878,7 @@ public function beatUpByAFuckinDishcloth():void
 	output("\n\n[pc.LegOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
-	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caress you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and oppressive environment.");
+	output(" getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caressing you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and the oppressive environment.");
 	pc.lust(100);
 	if(pc.hasTailCock() && rand(2) == 0)
 	{
@@ -4160,15 +4160,15 @@ public function attachFaceMimbrane():void
 {
 	//Requires all attached Mimbranes be minimum level 2 trust
 	// Shit should already have been checked in the attachment scene router.
-	output("It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; it’s easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.");
+	output("It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat that is contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; it’s easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.");
 	output("\n\nNature seems especially interesting again today. The pink haze isn’t as thick as usual, giving you a clearer sight at the Mimbrane hovering over your face.");
 	output("\n\nWait. What?");
 	output("\n\nYour mind is dragged back to reality. You’re fully aware again, right in the moment. The odd sensation of being watched by a multitude of eyes is upon you. But nothing is more apparent than the Mimbrane staring you right in the eyes. The parasite’s front two corners are perched on the sides of your face, letting the creature suspend the best representation it has of a face a good distance above yours. Your labored breathing pushes the parasite a little with each exhale and sucks in a little of its haze with each inhale.");
 	output("\n\nWhat does it intend to do? Have the number of Mimbranes gotten high enough for them to claim dominance over your body? You start to worry, but the look in the Mimbrane’s face is inquisitive. It’s as if it’s waiting for a response. The parasite taps on your [pc.face] again, tracing your [pc.lips] with one of its corners while chirping lightly at you. There’s no way in hell your microsurgeons can translate that for you...");
-	output("\n\nThat’s when you recall the codex! Mimbrane naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing?");
+	output("\n\nThat’s when you recall the codex! Mimbranes naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing?");
 	output("\n\nYou think for a moment, eyes darting around your close-up champion, its face tilted to one side to only further appear as if awaiting a response. The rest of the Mimbranes on your body seem to think you’re alright... Perhaps they goaded this one into testing its luck? That would explain the tense feeling you’re getting about being watched. But rather than just go whole hog on your head, it would seem this parasite at least wants to try and get approval from you before working against its instincts.");
 	output("\n\nIt makes sense to you anyway.");
-	output("\n\nIt’s been awhile since you haven’t abandoned your body when it’s in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.");
+	output("\n\nIt’s been awhile since you haven’t abandoned your body when it’s in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants to attach itself on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.");
 	output("\n\nLooks like the decision is up to you.");
 
 	//[Go ahead][No!]

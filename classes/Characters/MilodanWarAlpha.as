@@ -33,15 +33,15 @@
 			this.originalRace = "milodan";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Your foe prowls around the royal chambers like the hunting cat he so resembles. The form-fitting Pyrite Heavy Industries jumpsuit he wears shows every bit of his athletic, seven foot frame - including a highly visible bulge half hidden beneath his bulky, gadget-bedecked shield belt. He holds a plasma pistol in one hand, but the backs of his fingers are reinforced with spindly metallic veins that reach all the way up to his claws, glowing with sickly green light. You don’t want to take a hit from either.";
+			this.long = "Your foe prowls around the royal chambers like the hunting cat he so resembles. The form-fitting Pyrite Heavy Industries jumpsuit he wears shows every bit of his incredibly muscled, seven foot frame - including a highly visible bulge half hidden beneath his bulky, gadget-bedecked shield belt. He holds a plasma pistol in one hand, but the glint of his razor-sharp claws reminds you that staying close won't make much of a difference. You don’t want to take a hit from either.";
 			this.isPlural = false;
 
 			this.meleeWeapon.attack = 3;
-			this.meleeWeapon.baseDamage.poison.damageValue = 10;
-			this.meleeWeapon.longName = "poisonous claw";
-			this.meleeWeapon.description = "a poison-tipped claw";
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
+			this.meleeWeapon.longName = "claw";
+			this.meleeWeapon.description = "a sharp claw";
 			this.meleeWeapon.attackVerb = "swipe";
-			this.meleeWeapon.attackNoun = "poison injection";
+			this.meleeWeapon.attackNoun = "swipe";
 			this.meleeWeapon.hasRandomProperties = true;
 
 			rangedWeapon = new PlasmaPistol(); 
@@ -85,7 +85,7 @@
 			this.femininity = 10;
 			this.eyeType = GLOBAL.TYPE_FELINE;
 			this.eyeColor = "violet";
-			this.tallness = 7*12+2;
+			this.tallness = 8*12+2;
 			this.thickness = 65;
 			this.tone = 85;
 			this.hairColor = "blue";
@@ -160,7 +160,7 @@
 			this.cockVirgin = false;
 			this.cocks[0].cLengthRaw = 12.5;
 			this.cocks[0].cType = GLOBAL.TYPE_FELINE;
-			this.cocks[0].cockColor = "blue";
+			this.cocks[0].cockColor = "black";
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 			//balls
@@ -228,11 +228,10 @@
 			if (HP() <= 0) return true;
 			return false;
 		}
-		
 
 		public function phase2Configure():void
 		{
-			this.long = "Your foe’s idle prowling has morphed into strutting, confident strides. The milodan war-alpha lets his dick lead the way when he moves, and what a dick it is! A hint over a foot long and bright blue, his length throbs at full attention, covered in pulsating nubs. The rounded hint of a bulb at its base hints a bit of canine heritage or ausar mods, and while you watch, a dollop of crystalline pre emerges from the tip, heavy with the arousal you have stoked within him. His pistol is forgotten. The glowing enhancements to his claws have shifted to a pinkish hue.\n\nThe milodan war-alpha is no longer interested in fighting - only fucking you.";
+			this.long = "Your foe’s idle prowling has morphed into strutting, confident strides. The milodan war-alpha lets his dick lead the way when he moves, and what a dick it is! A hint over a foot long and glossy black, his length throbs at full attention, covered in pulsating nubs. The rounded hint of a bulb at its base suggests a bit of canine heritage or ausar mods, and while you watch, a dollop of crystalline pre emerges from the tip, heavy with the arousal you have stoked within him. His pistol is forgotten.\n\nThe milodan war-alpha is no longer interested in fighting - only fucking you.";
 			
 			//Transition to phase 2
 			output("The war-alpha shudders, then rears back and pistons his hips forward. A faint buzzing sound blossoms into the tearing of violently splitting fabric. A very bare, glossy cock appears. The war alpha-stares at you like a tiger eyeing a juicy morsel while his member bounces in excitement. His lip peels back into a slight snarl. <i>“New plan. I fuck you and make the princess watch.”</i>");
@@ -243,12 +242,15 @@
 			this.baseHPResistances.tease.damageValue = -33.0;
 			this.baseHPResistances.pheromone.damageValue = -33.0;
 			this.baseHPResistances.drug.damageValue = -33.0;
-			this.meleeWeapon.baseDamage.poison.damageValue = 0;
+			
+			//Fen note: RIP interesting encounter with multiple unusual damage types :[    ]:
+
+			/*this.meleeWeapon.baseDamage.poison.damageValue = 0;
 			this.meleeWeapon.baseDamage.drug.damageValue = 5;
 			this.meleeWeapon.longName = "lust-venomed claw";
 			this.meleeWeapon.description = "an aphrodisiac-tipped claw";
 			this.meleeWeapon.attackVerb = "swipe";
-			this.meleeWeapon.attackNoun = "drug injection";
+			this.meleeWeapon.attackNoun = "drug injection";*/
 			/*
 			short = "milodan brute";
 			baseHPResistances.tease.damageValue = 25.0;
@@ -320,7 +322,11 @@
 			//PHASE 2
 			else
 			{
+				/* Press 'F' to pay respects.
 				attackChoices.push(lustPricklyDoodles);
+
+				FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
+				
 				attackChoices.push(mountingBitches);
 				attackChoices.push(promisesPromises);
 				attackChoices[rand(attackChoices.length)](target);
@@ -335,7 +341,7 @@
 		//Phase 1 ability: disarmed - draws a weaker laser pistol, ending disarm
 		public function antidisarmShit():void
 		{
-			if(this.rangedWeapon.longName == "9999")
+			if(this.rangedWeapon is PlasmaPistol)
 			{
 				output("The war-alpha scowls at his empty hand and loboriously reaches behind his back to procure a new weapon: a dated-looking laser pistol. It won’t pack as much bite, that’s for sure.");
 				this.aimRaw /= 2;
@@ -345,7 +351,7 @@
 				this.rangedWeapon.hasRandomProperties = true;
 			}
 			//Phase 1 ability: disarmed again - stops using ranged weapons. Round of irritation.
-			else if(9999)
+			else
 			{
 				output("With a snarl of irritation, the war-alpha shakes away the pain in his hand. <i>“Fine. I don’t need a gun to take you.”</i>");
 				this.createStatusEffect("Disarm Immune");
@@ -432,6 +438,11 @@
 			}
 		}
 		//Phase 2 ability: lust prickles - grabs you and injects with aprhodisiacs through claws (drug)
+		/* Press 'F' to pay respects.
+
+		FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+		*/
 		public function lustPricklyDoodles(target:Creature):void
 		{
 			output("The war lion lunges forward");

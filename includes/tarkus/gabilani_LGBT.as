@@ -34,7 +34,7 @@ Drops: Goblinola, credit chit.
 public function showLGBT(sexy:Boolean = false):void
 {
 	showName("GABILANI\nLG-BT");
-	showBust((sexy ? "LGBT_PILOTS":"LGBT"));
+	showBust((sexy ? "LGBT_NUDE":"LGBT"));
 }
 public function standInGabiCockVolume():Number
 {
@@ -90,7 +90,7 @@ public function encounterLGBT():Boolean
 	}
 	else
 	{
-		output("\n\nThump. Clank. Groan. Thump. Clank. Groan. You always hear the monstrous gabilani-crewed walker well before it hoves into view, not that that is much comfort. The LG-BT has telescopic cameras which can see for miles, and its owners have clearly developed a taste for you.");
+		output("\n\nThump. Clank. Groan. Thump. Clank. Groan. You always hear the monstrous gabilani-crewed walker well before it moves into view, not that that is much comfort. The LG-BT has telescopic cameras which can see for miles, and its owners have clearly developed a taste for you.");
 		output("\n\n<i>“An alien!”</i> cheers the female, when their bubble comes into eyeshot. <i>“And here I thought this trip was going to be a damp squib!”</i>");
 		output("\n\n<i>“Ooh, I do love a bit of exoticism to tell the folks about back in orbit!”</i> says the male, rubbing his hands together over the control panel. <i>“En garde, " + pc.mf("Master","Miss") + " Alien!”</i>");
 		output("\n\nThey laugh and throw back their drinks as the walker advances upon you, shaking the ground with every step, its arsenal humming with terrible portent.");
@@ -113,6 +113,11 @@ public function encounterLGBT():Boolean
 //PC Wins
 public function defeatLGBT():void
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is LGBT) CombatManager.removeHostileActor(enemies[i]);
+	}
 	output("Smoking and sparking from a dozen craggy wounds, the LG-BT comes to a shuddering, moaning halt. Its arsenal sags downwards, and with a drawn-out, mournful beep, the war machine shuts itself down.");
 	if(!enemy.hasStatusEffect("Gabilani_Fucking")) 
 	{
@@ -136,6 +141,11 @@ public function defeatLGBT():void
 //PC loses
 public function pcDefeatedByLGBT():void
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is LGBT) CombatManager.removeHostileActor(enemies[i]);
+	}
 	//By HP
 	if(pc.HP() <= 1)
 	{
@@ -300,7 +310,7 @@ public function getDatGobboDick(x:int):void
 	if(vtype == GLOBAL.TYPE_GABILANI || vtype == GLOBAL.TYPE_GRYVAIN || vtype == GLOBAL.TYPE_SUULA || vtype == GLOBAL.TYPE_VANAE)
 	{
 		output("\n\n<i>“You think so, do you?”</i> you coo at the female, closing your eyes as another wave of inhuman pleasure washes over you, emanating from the tactile fever swamp of your [pc.vagina " + x + "]. You never knew how amazing sex could be until you mutated your pussy, grew those wonderful features that make it so <i>good</i> at clasping cocks, feeling every inch of them within you, and <i>wringing</i> your partners until they can only gasp and sweat at the feeling of you clamped around them, helpless against your desire.");
-		output("\n\nThat’s what the male gabilani is doing right now, pinned down underneath your" + (pc.tallness > 5*12 ? " far larger":"") + " frame, flexing fruitlessly against the weight of your [pc.hips] and [pc.ass] as your alien pussy gloves and works his over-sized dick. You gaze down at him sensuously, envisaging how he must see you; the bizarre, indomitable, ravishing alien, who overcame his war machine and invaded his comfortable little paradise, now sat on top and using him how [pc.he] may; an unstoppable, sensual force.");
+		output("\n\nThat’s what the male gabilani is doing right now, pinned down underneath your" + (pc.tallness > 5*12 ? " far larger":"") + " frame, flexing fruitlessly against the weight of your [pc.hips] and [pc.ass] as your alien pussy gloves and works his over-sized dick. You gaze down at him sensuously, envisaging how he must see you; the bizarre, indomitable, ravishing alien, who overcame his war machine and invaded his comfortable little paradise, now seated on top and using him how [pc.he] may; an unstoppable, sensual force.");
 		output("\n\n<i>“She says you aren’t going to cum for me,”</i> you whisper, slowly jerking your [pc.thighs] on top of the gabilani, milking him, kneading him, the sensual delight of it growing. <i>“That’s not true, is it? You’re a good boy. You’re going to give me all the cum I want. You’re going to fill my womb with your lovely seed, because that’s what you were put in this galaxy to do...”</i>");
 		output("\n\n<i>“You better not,”</i> snarls the female gabilani. <i>“You’re mine!”</i>");
 		output("\n\nYou giggle at the worry edging her tone. The male is incapable of making any sound but a kind of mesmerised, wounded moan; his eyes are fixed upon your [pc.chest], " + (pc.biggestTitSize() < 1 ? "immaculate and flat":"bouncing slowly to the rhythm you’re working on top of him") + ".");
@@ -556,7 +566,7 @@ public function revengeForTheRevengeGod():void
 	output("\n\n<i>“Aw, don’t be like that darling,”</i> " + (maleBitch ? "he":"she") + " calls. <i>“It’ll be fun! You said it yourself.”</i>");
 	output("\n\nIt’s an effort to carry a struggling, swearing shortstack down a set of rungs, but you know the end result is going to be worth it. You plonk them down below the LG-BT’s looming bulk, call down the winch, hook the " + (maleBitch ? "female":"male") + " up, and then watch them being hauled upwards. Their bare, exposed bum is too much of a temptation to bear, and their stream of obscenities is momentarily halted by a squeal as you give a " + (!maleBitch ? "brawny":"soft") + " buttock a big, satisfying slap when it levitates past you.");
 
-	output("\n\nNow that " + (maleBitch ? "he":"she") + "’s committed " + (maleBitch ? "himself":"herself") + " to this act of base treachery, the " + (maleBitch ? "male":"female") + " gabilani seems positively eager to help; perhaps even turned on by the edginess this safari of theirs has taken on. Back in the cockpit, " + (maleBitch ? "he":"she") + " helps you with the control panel, swinging a camera drone around so that you can watch the gabilani bound to the craft’s chin, so that when you begin to play with the array of buttons and switches in front of you, you can see every action in hi-def.");
+	output("\n\nNow that " + (maleBitch ? "he":"she") + "’s committed " + (maleBitch ? "himself":"herself") + " to this act of base treachery, the " + (maleBitch ? "male":"female") + " gabilani seems positively eager to help; perhaps even turned on by the edginess this safari of theirs has taken on. Back in the cockpit, " + (maleBitch ? "he":"she") + " helps you with the control panel, swinging a camera drone around so that you can watch the gabilani bound to the craft’s chin. Now, when you begin to play with the array of buttons and switches in front of you, all the action is viewed in hi-def.");
 	output("\n\nThe naked, dangling " + (!maleBitch ? "male":"female") + " continues to swear and issue dire threats against both of you, but these get increasingly ragged after you spear a chunky epipen of liquid aphrodisiac into their butt-cheek, and then work a gigantic, oily, knobbly dildo past their pert little asshole. All words are finally pushed out of them by the thing - only room for dildo or words in one squat little body - and are replaced by ragged gasps and moans once you " + (maleBitch ? "manipulate another dildo into her plump cunt, stretching her body out with synthetic cock.":"order the deft cock-milker arm to take a firm grasp of his prick, jerking the bulbous thing ruthlessly hard") + ". Their caught feet and hands stretch and flail as they are stimulated remorselessly, dangling far above the ground.");
 	output("\n\nIt’s a wonderful sight to behold, particularly given that it was you that rendered the evil little so-and-so a slave to their own machine and lusts, and your hand wanders down to your [pc.groin] as you slump back in the chair, enjoying the show. You toggle a switch experimentally. Ooh, electrical stimulation! The " + (!maleBitch ? "male":"female") + "’s cries turn high-pitched.");
 	output("\n\n<i>“Great, isn’t it?”</i> sighs the " + (!maleBitch ? "female":"male") + ", leaning into you to watch their flailing, juddering partner on the screen. <i>“Once you see the stuff in action, it becomes a shame NOT to use it, don’t you think?”</i>");
@@ -619,8 +629,8 @@ public function gabilaniHoodOrnamentLossOhNo():void
 	output("\n\nShe strips you of your equipment, baring your [pc.skinFurScales] to the dust of Tarkus and spends a while pinching, stroking and cooing over your naked flesh, pushing your head into her boob and grinning up at her chunky handheld device, taking selfies with you. You’re too " + (pc.HP() <= 1 ? "broken":"delirious with arousal") + " to fight against this treatment; you just hope that eventually she’ll " + (pc.HP() <= 1 ? "get bored of you and go on her merry way":"do something to alleviate the overpowering need in your [pc.groin]") + ".");
 	output("\n\n<i>“What do you think, dear?”</i> calls the male from the cockpit. <i>“Decent trophy?”</i>");
 	output("\n\n<i>“Oh absolutely!”</i> replies the female merrily. <i>“We aren’t going to find anything near as presentable out here. Send down the winch!”</i>");
-	output("\n\nWinch... ? You gasp as warm hands clasp your wrists and jerk them firmly behind your back, hard metal encircling them and clasps them together. ");
-	if(pc.legCount == 2) output("Similar is done with your ankles, wrenched back towards your [pc.ass] before being cuffed together with hard-light cable to the bonds holding your hands, hogtying you.");
+	output("\n\nWinch...? You gasp as warm hands clasp your wrists and jerk them firmly behind your back, hard metal encircling and clasping them together.");
+	if(pc.legCount == 2) output(" The same is done with your ankles, wrenched back towards your [pc.ass] before being cuffed together with hard-light cable to the bonds holding your hands, hogtying you.");
 	else output(" She clicks adjustable wide bracelets attached to hard-light cable around your lower body, winching it all together into the same bundle holding your hands, hogtying you.");
 	output(" A terrible presentiment shivers through you as you hear something descending from the LG-BT’s underside with a whirr... and then you feel the hard-light cables being hooked behind you and, with a gasp, you find your helpless, bound, naked form being lifted slowly into the air like a piece of cargo.");
 	output("\n\n<i>“Don’t panic, ok darling?”</i> the female gabilani suggests brightly. <i>“Just concentrate on looking weird and cool and being a lovely, luscious slut for us.”</i> Her upturned face slowly moves away from you as you are raised up, up, up, dangling from the LG-BT’s winch until it clicks back into its housing on the walker’s chin, the ground a frightening, dizzying distance beneath your poor, naked flesh, your [pc.chest] arched outwards by the firm, unfeeling grip the machine has on your wrists and [pc.legOrLegs].");
@@ -638,7 +648,7 @@ public function gabilaniHoodOrnamentLossOhNo2():void
 	output("\n\nThere’s an ominous series of clicks and whirrs above your head, and you groan when you see what he means. A series of spindly mechanical arms are flexed around you, each one tipped with some garishly colored sex toy: dildos, cock-rings, vibrating studs, a drooling injector filled with pink fluid. This latter is unceremoniously jabbed into your [pc.ass]; the sharp pain is superseded by aphrodisiac lust flooding through your system" + (pc.lust() >= pc.lustMax() ? ", your already overwhelming arousal now blotting out every other instinct, whatever panic you feel about your situation replaced by the need to FUCK and NOW":"") + ".");
 	if(!pc.isErect() && pc.hasCock()) output(" Heat and hardness veins into [pc.eachCock], becoming restless and turgid without even a hint of manual stimulation.");
 	else if(pc.hasVagina() && pc.lust() < pc.lustMax()) output(" [pc.EachVagina] spreads and moistens, " + (!pc.isSquirter() ? "beading":"drooling") + " [pc.femcum], practically begging to be filled.");
-	output("\n\nYour lusty moan turns into a squawk when a hooked, pronged, metal hand like a craning, two-fingered hoe reaches over your hand and skilfully hooks itself into your nostrils. It adjusts itself with a tiny whirr and then gently but firmly tilts your head backward, blunt upward pressure flaring your poor nose. You open your mouth to protest that this is too much, way too much - and another mechanical arm rams a black ball-gag into your mouth, turning your words into a wet, outraged muffle.");
+	output("\n\nYour lusty moan turns into a squawk when a hooked, pronged, metal hand like a craning, two-fingered hoe reaches over your head and skilfully hooks itself into your nostrils. It adjusts itself with a tiny whirr and then gently but firmly tilts your head backward, blunt upward pressure flaring your poor nose. You open your mouth to protest that this is too much, way too much - and another mechanical arm rams a black ball-gag into your mouth, turning your words into a wet, outraged muffle.");
 	output("\n\n<i>“Winch secure? Check. Devices operational? Check. Muffler and display hasp locked in? Check!”</i> booms the gabilani male’s voice merrily. <i>“Let’s have a look...”</i> a free-flying camera drone hovers about your face. <i>“...oh my. You were right, darling! What a splendid hood ornament! Oh, we’ll be the talk of Arbetz for weeks.”</i>");
 	output("\n\n<i>“We haven’t even gotten started yet...”</i> the female is back in the cockpit, and sounds positively gleeful. <i>“Let’s try... this!”</i>");
 	output("\n\nTransfixed on the LG-BT’s bondage gear 18 feet in the air, you can only moan and flex helplessly against your intractable fetters as you feel a thick, smooth bluntness press against your [pc.vagOrAss], boring its way into your sensitive inner passage. Once the dildo has spread your " + (!pc.hasVagina() ? "[pc.anus]":"[pc.vaginaNoun]") + " dramatically wide and begun filling you deep, it begins to vibrate hard, maddening, juddering shivers which cannot fail to stimulate your aphrodisiac-ridden body. You huff and whine helplessly around your ball-gag, not even able to see what’s being done to your rear end with your nose hooked like it is.");
@@ -649,7 +659,7 @@ public function gabilaniHoodOrnamentLossOhNo2():void
 	output("\n\n<i>“Loooovely,”</i> croons the female. <i>“Yeah, keep the camera focused on [pc.himHer]. I’m enjoying that.”</i>");
 	output("\n\n<i>“Yeah?”</i> schmoozes the male. <i>“What if I did... this?”</i>");
 	if(pc.hasCock()) output("\n\nThere’s another whirr, and you feel something heated and padded grip your fervently erect [pc.cock]. You ball your fists as the ingenious, hateful, wonderful little device flicks up and down your dick, coiling your sensitive, chemically aroused flesh into a flaming hard-on, all the while the dildo in your [pc.vagOrAss] remorselessly judders into your prostate.");
-	if(pc.hasVagina()) output("\n\nYou know what’s probably coming next, but it doesn’t stop the fresh pressure applied to your [pc.anus], patiently opening you and spearing its way in, any more intense. This dildo is smaller, squirts oil to ease its passage, but is also covered in small bumps. So that when it begins to thrust in and out of you hard with mechanical remorselessness, the bumpy sensation is impossible not to be devoured by, particularly as it rubs against the vibrating one in your [pc.vagina].");
+	if(pc.hasVagina()) output("\n\nYou know what’s probably coming next, but it doesn’t stop the fresh pressure applied to your [pc.anus], patiently opening you and spearing its way in as it slowly grows more intense. This dildo is smaller, squirts oil to ease its passage, but is also covered in small bumps. So that when it begins to thrust in and out of you hard with mechanical remorselessness, it is impossible not to be devoured by the bumpy sensation, particularly as the dildo rubs against the vibrating one in your [pc.vagina].");
 	
 	if(pc.hasVagina()) pc.buttChange(20);
 	

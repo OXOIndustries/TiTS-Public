@@ -1517,7 +1517,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			}
 			output("... Sera looks down at you with a knowing smile.");
 			output("\n\n<i>“Take another drag,”</i> she says lowly. <i>“This time hold it.”</i> You do so quite happily, drawing in the perfumed smoke, feeling intensely relaxed and happy to be here, near the warmth and power of your mistress. <i>“Now,”</i> she whispers. <i>“Go across and give it to her.”</i> ");
-			output("\n\nHolding your breath, you turn to where she’s gesturing, vaguely surprised to find Jardi is still here, sat on the edge of the bed and watching this display nervously. Why is she tense? There is nothing to be tense about here. Feeling an instinctive urge to touch her, you crawl across the duvet, your payload hot in your lungs, spread your hands around her gooey head and push your lips against hers tenderly. You wait until she reciprocates, opening her mouth to kiss you back before releasing, channelling the perfumed smoke into her. You slide your lips over hers for a while longer, enjoying the beautiful warm give of this creature, before gently parting.");
+			output("\n\nHolding your breath, you turn to where she’s gesturing, vaguely surprised to find Jardi is still here, sitting on the edge of the bed and watching this display nervously. Why is she tense? There is nothing to be tense about here. Feeling an instinctive urge to touch her, you crawl across the duvet, your payload hot in your lungs, spread your hands around her gooey head and push your lips against hers tenderly. You wait until she reciprocates, opening her mouth to kiss you back before releasing, channelling the perfumed smoke into her. You slide your lips over hers for a while longer, enjoying the beautiful warm give of this creature, before gently parting.");
 			output("\n\n<i>“Ooh,”</i> sighs Jardi, blinking a couple of times. Her pupils dilate and she smiles at you amorously. You do the same back, practically giggling together at how wonderful everything is.");
 			
 			processTime(25);
@@ -2507,7 +2507,7 @@ public function seraGiftCollar(page:int = 0):void
 			output("Sera sits cross-legged on her stool, lips pursed and face stony, as you deliver your report.");
 			output("\n\n<i>“Mm. Nice, watching your mouth move,”</i> she says at last. <i>“You aren’t getting your salary this week. I got you something instead. Take off your shit and come into the back.”</i>");
 			output("\n\nYou follow the pale blue hair, jouncing bum and coiling, beckoning spade a few moments after they’ve disappeared beyond the door, your [pc.skinFurScales] shiveringly bared for whatever it is the sadistic slave driver has got prepared.");
-			output("\n\nShe’s sat on her bed, swinging the end of her tail, leering with that trademark blend of menace and lust of hers, by the time you enter her room. There’s a small, red box on the floor on front of her, done up in black ribbon.");
+			output("\n\nShe’s seated on her bed, swinging the end of her tail, leering with that trademark blend of menace and lust of hers, by the time you enter her room. There’s a small, red box on the floor on front of her, done up in black ribbon.");
 			output("\n\n<i>“It’s great, you know, ordering someone to do whatever I want and them just doing it,”</i> she husks, reptilian eyes crawling over your naked body. <i>“Kneel.”</i> You comply,");
 			if(pc.isNaga()) output(" coils settling into the carpet");
 			else if(pc.isGoo()) output(" goo settling into the carpet");
@@ -3401,7 +3401,10 @@ public function seraPunishingFix(arg:Array):void
 			{
 				output("You’re expecting her to lead you into her bedroom, but she strides right past, to the door at the far end. ");
 				output("\n\nThis is a spacious storage space, of the sort you’d find in the rear of any space station commercial lot. Or, at least, it was; the grey, synthetic floors and walls are slowly being devoured by matte black panelings, and bits and pieces of equipment that look distinctly like they’re geared more towards Sera’s pleasures than her work have been set up, or standing waiting forbiddingly for assemblage.");
-				output("\n\n<i>“This is going to be my dungeon,”</i> she explains, gazing around her with a happy smile. <i>“I always intended to build one, once I had my own place. It’s coming along.{If party event succeeded: Mostly thanks to you.”</i> She turns and grazes her claws along the line of your jaw lovingly. / If else: ”</i>} She raps a knuckle against one of the black panels. <i>“Soundproof. Once I’m done, nobody’ll be able to hear you scream. I’ll be able to make it pitch black in here too, so the only thing you’ll be able to see is...”</i> Sera points at her eyes. She’s beaming, already picturing it. <i>“It’s gonna be so good. For now, though...”</i>");
+				output("\n\n<i>“This is going to be my dungeon,”</i> she explains, gazing around her with a happy smile. <i>“I always intended to build one, once I had my own place. It’s coming along.");
+				if(seraPartySuccess()) output(" Mostly thanks to you.”</i> She turns and grazes her claws along the line of your jaw lovingly.");
+				else output("”</i>");
+				output(" She raps a knuckle against one of the black panels. <i>“Soundproof. Once I’m done, nobody’ll be able to hear you scream. I’ll be able to make it pitch black in here too, so the only thing you’ll be able to see is...”</i> Sera points at her eyes. She’s beaming, already picturing it. <i>“It’s gonna be so good. For now, though...”</i>");
 			}
 			else
 			{

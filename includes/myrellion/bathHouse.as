@@ -148,7 +148,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 	output("\n\nDespite the fact that you were looking her way the whole way up, she still acts like it’s a total surprise you’re talking to her. <i>“Uh, s-sure,”</i> she mumbles, scooting over along the stone seat at the edge of the pool to make room for you. Giving her an appreciative nod, you toss your towel aside - and give the svelte red ant a front-row view of your buck naked body before you slide yourself down into the pool beside her.");
 	output("\n\nThe water’s hot enough that you end up sucking in a sharp breath as you try and enter. It’s hotter than you expected, burning at your [pc.skinFurScales]. Clearly this fiery ant-babe picked the hottest part of the bath to recline in. You put on a brave face, at least until the water gets near your crotch; after that, all you can do is sink down until ");
 	if(pc.isTaur()) output("your bestial body is resting on the floor of the pool");
-	else output("you’re sat on the stone shelf beside her");
+	else output("you’re sitting on the stone shelf beside her");
 	output(". The red woman regards you with cold, black, insectile eyes, apparently not quite sure what to make of you");
 	if(pc.hasCock()) output("... though you’re keenly aware of her furtive glances towards your [pc.cock], which you make little effort to hide from view");
 	output(".");

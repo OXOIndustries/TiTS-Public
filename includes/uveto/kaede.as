@@ -465,12 +465,12 @@ public function uvetoKaedeSEXYTIMESENSUE():void
 
 	output("<i>“I think I can spare a few minutes,”</i> you grin, standing up and dumping the food tray off in its bin.");
 
-	if (flags["ANNOxKAEDE_INTRODUCED"] == undefined) flags["ANNOxKAEDE_INTRODUCED"] = 0;
-	if (flags["KAEDE_FUCKED"] == undefined) flags["KAEDE_FUCKED"] = 0;
+	var metAnnoKaede:int = ((flags["MET_ANNO"] == undefined || flags["ANNOxKAEDE_INTRODUCED"] == undefined) ? 0 : flags["ANNOxKAEDE_INTRODUCED"]);
+	var sexedKaede:int = (flags["KAEDE_FUCKED"] == undefined ? 0 : flags["KAEDE_FUCKED"]);
 
 	//if hasn't fucked outside of Kaede/Anno Threesome:
 	// If the players fucked kaede more times than the number of times than instances of the annoxkaede threesome could possibly have happened
-	if (flags["ANNOxKAEDE_INTRODUCED"] < flags["KAEDE_FUCKED"])
+	if (metAnnoKaede < sexedKaede)
 	{
 		output("\n\n<i>“Great!”</i> she smiles, hopping up and offering you her hand. <i>“I’m glad I can tempt you away even without Anno with us.”</i>");
 	}

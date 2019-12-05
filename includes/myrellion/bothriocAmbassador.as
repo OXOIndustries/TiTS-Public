@@ -801,11 +801,11 @@ public function araKeiFlirt():void
 		
 		if (flags["ARAKEI_FLIRTED_99_ADDICTION"] <= 1)
 		{
-			output("\n\nFirst: <i>“Very well,”</i> Ara Kei whispers. <i>“Let’s see how much you truly want this, little one. My second left leg has not been polished in at least four hours. You may begin.”</i>");
+			output("\n\n<i>“Very well,”</i> Ara Kei whispers. <i>“Let’s see how much you truly want this, little one. My second left leg has not been polished in at least four hours. You may begin.”</i>");
 		}
 		else
 		{
-			output("\n\nRepeat: <i>“I shouldn’t need to tell you, little one,”</i> Ara Kei whispers. <i>“Just looking should tell you which of my legs is in need of polishing. And then... maybe then.”</i>");
+			output("\n\n<i>“I shouldn’t need to tell you, little one,”</i> Ara Kei whispers. <i>“Just looking should tell you which of my legs is in need of polishing. And then... maybe then.”</i>");
 		}
 
 		processTime(3+rand(3));
@@ -1214,7 +1214,7 @@ public function araKeiTheReameningIV():void
 	}
 	else if (pc.hasCock())
 	{
-		output("\n\nIf not but dick: There’s a murmur of cultured amusement below you, and Ara Kei first tears a hole in the bindings where you are most incongruously bulging, allowing your [pc.cock] to dangle downwards. Hoarse gasps are forced past your [pc.lips] as [ara.he] play"+ ara.mfn("s", "s", "") +" with it for a time, stroking the underside with a single finger, circling the [pc.cockHead]");
+		output("\n\nThere’s a murmur of cultured amusement below you, and Ara Kei first tears a hole in the bindings where you are most incongruously bulging, allowing your [pc.cock] to dangle downwards. Hoarse gasps are forced past your [pc.lips] as [ara.he] play"+ ara.mfn("s", "s", "") +" with it for a time, stroking the underside with a single finger, circling the [pc.cockHead]");
 		if (pc.balls > 0) output(", teasing your [pc.balls] with gentle squeezes");
 		output(", allowing you to get so close to release you’re bulging up, before withdrawing agonisingly. You’re left on the edge as [ara.he] reach"+ ara.mfn("es", "es", "") +" up and undoes you from the ceiling, carefully drawing you down and peeling off [ara.his] silk, so that when you are finally left naked and kneeling before [ara.him], your [pc.cock] is as stiffly erect as your back. The face-splitting grin on the white face above you tells you how pleasing this sight is to [ara.him].");
 	}

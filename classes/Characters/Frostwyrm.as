@@ -25,13 +25,13 @@ package classes.Characters
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
 			//Bunch of cosmetic items are placeholders
 			this.short = "Frostwyrm";
-			this.originalRace = "Frostwyrm";
+			this.originalRace = "frostwyrm";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "The creature before you is a reptilian behemoth of monumental size, nearly the size of your Dad’s old Casstech at the shoulders. It is covered in interlocking white scales, each as large and hard as a shield. Spear-like talons grow from the ends of its six legs, digging gashes into the snow as it circles you. Your eyes are constantly drawn to its bestial maw, a lizard-like muzzle loaded with three rows of teeth, each as long as a sword. Four small red eyes regard you with malevolence, two on either side of its face. Behind it stretches a pair of leathery wings, somehow powerful enough to give the monster enough lift to fly, and a tail covered with brutal spikes. This is a creature made for violence, honed over millions of years into the perfect killing machine. \n\n\If you lose here, you don’t think you’re going to walk away alive. ";
@@ -154,7 +154,7 @@ package classes.Characters
 			this.createCock();
 			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 			this.cocks[0].cLengthRaw = 36;
-			this.cocks[0].cThicknessRatioRaw = 5.5;
+			this.cocks[0].cThicknessRatioRaw = 1.75;
 			
 			this.balls = 2;
 			this.cumMultiplierRaw = 3500;
@@ -201,6 +201,11 @@ package classes.Characters
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			//dataObject._neverSerialize = false;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.cocks[0].cLengthRaw = 36;
+			dataObject.cocks[0].cThicknessRatioRaw = 1.75;
 		}
 		
 		override public function get bustDisplay():String

@@ -254,7 +254,7 @@ package classes.Items.Transformatives
 								output(" undressing and");
 								isTopClothed = false;
 							}
-							output(" taking them into your hands, you notice your nubs rapidly shrinking - smaller and smaller... When the feeling subsides, you are left with a flat pebbly surface on each areola in the place where a nipple would be. <b>Your nipples are now flat!</b>.");
+							output(" taking them into your hands, you notice your nubs rapidly shrinking - smaller and smaller... When the feeling subsides, you are left with a flat pebbly surface on each areola in the place where a nipple would be. <b>Your nipples are now flat!</b>");
 							
 							for (i = 0; i < target.breastRows.length; i++)
 							{

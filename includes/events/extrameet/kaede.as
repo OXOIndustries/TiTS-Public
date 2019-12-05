@@ -316,6 +316,7 @@ public function extrameetKaedeFuckHerAss():void
 
 public function extrameetKaedeFirstTime():void
 {
+	clearOutput();
 	showKaede();
 	moveTo("BUNBAKERY");
 
@@ -852,7 +853,7 @@ public function extrameetKaedeBlowNBounce():void
 	else output(" gut");
 	output(".");
 	if (pc.hasCock()) output(" Your [pc.cock] gives her a shower in return, squirting all over her tits and face as you grind on her knot. She giggles as ropes of [pc.cumColor] slap her cheeks, licking it off her lips as it rains down on her.");
-	else output(" Your [pc.vagOrAss] hugs her throbbing erection tighter with ever spurt, letting the lightning-bolts of ecstacy plow through your body to the beat of her ejaculation.");
+	else output(" Your [pc.vagOrAss] hugs her throbbing erection tighter with ever spurt, letting the lightning-bolts of ecstasy plow through your body to the beat of her ejaculation.");
 	
 	output("\n\n<i>“O-oh fuck,”</i> Kaede groans,");
 	if (pc.biggestTitSize() >= 2) output(" hiding her face in your cleavage");
@@ -903,11 +904,11 @@ public function extrameetKaedePoundHer():void
 	
 	output("\n\n<i>“You make me feel amazing,”</i> Kaede admits, grinning at you between kisses. <i>“Soooo good.”</i>");
 	
-	output("\n\nSame to her. While she’s all smiles and ecstacy, you take the opportunity to hook your arms around Kaede and flip her over, letting her finally plant her face in her pillows and wag her ass in the air for you. Her tail bats your cheeks until you pin it down over her back, giving you a peerless view of her cheeks spread around your [pc.cock]. Kaede grips her pillow in both hands, burying her face in its fluffy embrace while you resume pounding her ass.");
+	output("\n\nSame to her. While she’s all smiles and ecstasy, you take the opportunity to hook your arms around Kaede and flip her over, letting her finally plant her face in her pillows and wag her ass in the air for you. Her tail bats your cheeks until you pin it down over her back, giving you a peerless view of her cheeks spread around your [pc.cock]. Kaede grips her pillow in both hands, burying her face in its fluffy embrace while you resume pounding her ass.");
 	
 	output("\n\nHer hole accepts every thrust of your [pc.cock] with wet slurps and tight squeezes. Her dick bobs fore and back every time your [pc.hips] slap against her butt, dripping lube and pre down to the beat of your sodomy. Before long, you end up wrapping your arms around Kaede’s waist and lifting her up on her knees so you can kiss those sweet lips of hers again. She keeps hugging her pillow and moans whorishly until you get one hand around her dick and your [pc.lips] on hers.");
 	
-	output("\n\nHer body’s lean and light, and Kaede’s putty in your hands at the worst of times; while she’s in the throes of ecstacy you can man-handle her any which way you want. Whether it’s pile-driving her into the sheets, rolling her on her back and teething on those tits, or making her bounce in your lap, Kaede follows your lead without question. Her vigorous grip on your [pc.cock] ensures that by the time Kaede’s pressing herself against you and screaming that she’s cumming again, you’re finally ready to join her. You buck your [pc.hips] up into her taut rear, relishing in her screams of pleasure one last time");
+	output("\n\nHer body’s lean and light, and Kaede’s putty in your hands at the worst of times; while she’s in the throes of ecstasy you can man-handle her any which way you want. Whether it’s pile-driving her into the sheets, rolling her on her back and teething on those tits, or making her bounce in your lap, Kaede follows your lead without question. Her vigorous grip on your [pc.cock] ensures that by the time Kaede’s pressing herself against you and screaming that she’s cumming again, you’re finally ready to join her. You buck your [pc.hips] up into her taut rear, relishing in her screams of pleasure one last time");
 	if (pc.hasKnot()) output(" as your [pc.knot] breaches her");
 	output(".");
 	

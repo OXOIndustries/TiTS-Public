@@ -1,5 +1,6 @@
 ﻿import classes.Items.Toys.GravCuffs;
 import classes.Items.HalloweenItems.WitchsOutfit;
+import classes.Items.Toys.*;
 
 /*Inessa and the Happy Tails
 By JimThermic
@@ -77,23 +78,24 @@ public function inessaMenu():void
 	clearMenu();
 	addButton(0,"Appearance",inessaAppearance,undefined,"Appearance","Get a better look at the shopkeep.");
 	addButton(1,"Buy",inessaBuyGo);
-	addButton(2,"Talk",talkToInessaSlut);
+	addButton(2,"BuyDildo",buyDildosFromInessa);
+	addButton(3,"Talk",talkToInessaSlut);
 	if(flags["INESSA_BEING_DOMMED"] == 1)
 	{
-		if(pc.lust() >= 33) addButton(3,"Order",inessaSexApproach);
-		else addDisabledButton(3,"Order","Order","You aren’t turned on enough to pursue some sex.");
+		if(pc.lust() >= 33) addButton(4,"Order",inessaSexApproach);
+		else addDisabledButton(4,"Order","Order","You aren’t turned on enough to pursue some sex.");
 	}
 	else if(flags["INESSA_INESSAED"] != undefined)
 	{
-		if(pc.lust() >= 33) addButton(3,"Sex",inessaSexApproach);
-		else addDisabledButton(3,"Sex","Sex","You aren’t turned on enough to pursue some sex.");
+		if(pc.lust() >= 33) addButton(4,"Sex",inessaSexApproach);
+		else addDisabledButton(4,"Sex","Sex","You aren’t turned on enough to pursue some sex.");
 	}
-	else addDisabledButton(3,"Sex","Sex","You don’t know her well enough for that.");
+	else addDisabledButton(4,"Sex","Sex","You don’t know her well enough for that.");
 	//INESSA EXPANSION - Must have silk and Xanthe must be alive
 	if((flags["INESSA_EXP"] != 1 && flags["INESSA_EXP"] >= 2) || flags["KQ2_MYRELLION_STATE"] > 0) { /* Nada */ }
-	else if(flags["INESSA_EXP"] == 1) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
-	else addDisabledButton(4,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
-	if(erraLover() && !erraCollared() && !pc.hasKeyItem("Ausar Collar - A custom collar for Erra.")) addButton(5,"Collars",errasCollarPurchaseScene,undefined,"Collars","Inspect the display of collars lining the wall.");
+	else if(flags["INESSA_EXP"] == 1) addButton(5,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
+	else addDisabledButton(5,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
+	if(erraLover() && !erraCollared() && !pc.hasKeyItem("Ausar Collar - A custom collar for Erra.")) addButton(6,"Collars",errasCollarPurchaseScene,undefined,"Collars","Inspect the display of collars lining the wall.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -573,15 +575,17 @@ public function inessaFamily():void
 	inessaTalkMenu(inessaFamily);
 }
 
-//Buy
-public function inessaBuyGo():void
+public function inessaInventory():void
 {
-	clearOutput();
-	showInessa();
-	author("JimThermic");
-	shopkeep = chars["INESSA"];
-	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>\n";
-	
+	chars["INESSA"].inventory = [];
+	chars["INESSA"].inventory.push(new SukMastr());
+	chars["INESSA"].inventory.push(new HoverHole());
+	chars["INESSA"].inventory.push(new GravCuffs());
+	//chars["INESSA"].inventory.push(new NivasBionaHole());
+	//chars["INESSA"].inventory.push(new TamaniBionaHole());
+	//chars["INESSA"].inventory.push(new EggTrainer());
+
+	chars["INESSA"].inventory.push(new Whip());
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -589,7 +593,16 @@ public function inessaBuyGo():void
 	}
 	//Else no whip
 	else chars["INESSA"].destroyItemByClass(BioWhip, -1);
-	
+
+	chars["INESSA"].inventory.push(new Allure());
+
+	chars["INESSA"].inventory.push(new MaidOutfit());
+	chars["INESSA"].inventory.push(new LeatherStrapHarness());
+	chars["INESSA"].inventory.push(new LatexBodysuit());
+	chars["INESSA"].inventory.push(new SpacePirateOutfit());
+	chars["INESSA"].inventory.push(new CheerleaderUniform());
+	chars["INESSA"].inventory.push(new BunnyOutfit());
+	chars["INESSA"].inventory.push(new SchoolgirlOutfit());
 	if(flags["MET_SERA"] != undefined)
 	{
 		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
@@ -601,10 +614,32 @@ public function inessaBuyGo():void
 		if(!chars["INESSA"].hasItemByClass(WitchsOutfit)) chars["INESSA"].inventory.push(new WitchsOutfit());
 	}
 	else chars["INESSA"].destroyItemByClass(WitchsOutfit, -1);
-
+}
+//Buy
+public function inessaBuyGo():void
+{
+	clearOutput();
+	showInessa();
+	author("JimThermic");
+	shopkeep = chars["INESSA"];
+	inessaInventory();
+	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>\n";
+	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
+	buyItem();
+}
+
+public function buyDildosFromInessa():void
+{
+	clearOutput();
+	showInessa();
+	author("Fenoxo&JimT");
+	shopkeep = chars["INESSA"];
+	chars["INESSA"].inventory = [new DildoCanine(), new DildoEquine(), new DildoFeline(), new DildoTerran()];
+
+	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! Which one would you..?”</i>\n";
 	buyItem();
 }
 

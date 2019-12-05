@@ -30,29 +30,8 @@
 			
 			this.short = "Inessa";
 			originalRace = "saeri";
-			
-			this.inventory.push(new SukMastr());
-			this.inventory.push(new HoverHole());
-			this.inventory.push(new GravCuffs());
-			//this.inventory.push(new NivasBionaHole());
-			//this.inventory.push(new TamaniBionaHole());
-			//this.inventory.push(new EggTrainer());
-
-			this.inventory.push(new Whip());
-			//Unlocks at Myrellion unlock~
-			this.inventory.push(new BioWhip());
-
-			this.inventory.push(new Allure());
-
-			this.inventory.push(new MaidOutfit());
-			this.inventory.push(new LeatherStrapHarness());
-			this.inventory.push(new LatexBodysuit());
-			this.inventory.push(new SpacePirateOutfit());
-			this.inventory.push(new CheerleaderUniform());
-			this.inventory.push(new BunnyOutfit());
-			this.inventory.push(new SchoolgirlOutfit());
-
-
+				
+			//Inventory spooled up in game.
 
 			this.sellMarkup = 1.0;
 			this.buyMarkdown = .5;

@@ -14,7 +14,7 @@ package classes.Characters
 		//constructor
 		public function Ilaria()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			fluidSimulate = true;
@@ -48,7 +48,7 @@ package classes.Characters
 			this.cumMultiplierRaw = 15;
 			
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 0;
+			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 10;
 			this.ballFullness = 100;
@@ -66,8 +66,13 @@ package classes.Characters
 			this.fertilityRaw = 8;
 			createPerk("Fixed CumQ",50000,0,0,0);
 			//createPerk("No Cum Leakage",0,0,0,0);
+			this.impregnationType = "IlariaPregnancy";
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.cumQualityRaw = 1;
+			dataObject.impregnationType = "IlariaPregnancy";
+		}
 		override public function get bustDisplay():String
 		{
 			if(bellyRating() >= 25) return "ILARIA_PREG";
@@ -77,6 +82,14 @@ package classes.Characters
 		override public function isPregnant(vIdx:int = 0):Boolean
 		{
 			return (kGAMECLASS.flags["ILARIA_PREG_TIMER"] != undefined);
+		}
+		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
+		{
+			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"vagina");
+			
+			kGAMECLASS.tryKnockUpIlaria();
+			
+			return false;
 		}
 	}
 }

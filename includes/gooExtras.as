@@ -2884,7 +2884,8 @@ public function shortenSelectedCock(arg:int = 0):void
 		output2("\n\nDo you want to remove it?");
 		
 		clearGhostMenu();
-		addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
+		if(!pc.removeCockUnlocked(arg, 1)) addDisabledGhostButton(0,"Remove It","Remove It","Something is preventing your [pc.cock " + arg + "] from being removed.");
+		else addGhostButton(0,"Remove It",removeDaChosenGooCock,arg,"Remove It","Remove your [pc.cock " + arg + "].");
 		addGhostButton(1,"Nah",gooCockRootMenu);
 		return;
 	}

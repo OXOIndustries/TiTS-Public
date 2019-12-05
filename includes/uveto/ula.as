@@ -215,6 +215,12 @@ public function ulaRoomBonusFunc():Boolean
 		neverRanBonusUlaGift();
 		return true;
 	}
+	// Proc this scene as soon as the Warg’ii event is over for one week and the PC goes to Ula, but only if the PC suggested she be “Middle” with her punishment
+	if(flags["ULA_HELP_MILO_NOT_NOW"] == undefined && !pc.hasKeyItem("Token of Ula's Favor") && flags["WARGII_MILO_SOLUTION"] == 2 && (flags["WARGII_OVER_TIMESTAMP"] == undefined || GetGameTimestamp() - flags["WARGII_OVER_TIMESTAMP"] > 7*24*60))
+	{
+		ulaEitanBonus();
+		return true;
+	}
 	//20% chance and Ula has kids older than 7 days
 	if(rand(5) == 0 && (flags["ULA_BIRTH_TIMER"] > 7 || flags["ULA_TOTAL_KIDS"] > 4))
 	{

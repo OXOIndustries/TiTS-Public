@@ -176,7 +176,7 @@ public function iceQueenMessage(destination:String):void
 	
 	output("\n\n<i>“Ah! About time!”</i> the man says, stifling a cough. <i>“Listen, this is Captain Kandar of the </i>Ice Queen<i>. We’ve got a serious situation aboard. Our LightDrive went critical, and it’s venting smoke and gas into the crew deck. We’re pretty much dead in the water out here. Any assistance would be much appreciated.”</i>");
 	
-	output("\n\nHeck of a gamble, saying that sight unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
+	output("\n\nHeck of a gamble, saying that while you remain unseen. You could just have easily been a pirate, after all. You key the comms and ask what you can do to help.");
 	
 	output("\n\nThe man on the screen grunts and runs a hand through his hair. <i>“Uh, at this point, we’re probably going to have to bail out. Unless you’ve got an industrial atmo-scrubber in your hold, anyway. You don’t happen to, eh?”</i>");
 	
