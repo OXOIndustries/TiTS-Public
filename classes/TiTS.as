@@ -159,6 +159,7 @@
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/kiro.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/olympiaAndSidewinder.as";
@@ -234,6 +235,7 @@
 		include "../includes/events/kiroCrewQuest/rooms.as";
 		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
@@ -696,7 +698,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.037";
+			version = "0.8.039";
 
 			//temporary nonsense variables.
 			temp = 0;

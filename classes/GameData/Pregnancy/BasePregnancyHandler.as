@@ -115,6 +115,9 @@ package classes.GameData.Pregnancy
 				return false;
 			}
 			
+			// Invalid if negative index!
+			if (pregSlot < 0) return false;
+			
 			if (pregSlot <= 2 && !this.canImpregnateVagina) return false;
 			if (pregSlot == 3 && !this.canImpregnateButt) return false;
 			
@@ -383,6 +386,11 @@ package classes.GameData.Pregnancy
 			
 			// Setup the pregnancy data for the Mother
 			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			if (thisPtr.handlesType == null)
+			{
+				throw new Error("BasePregnancyHandler for type " + thisPtr.handlesType + " does not exist!");
+			}
 			
 			pData.pregnancyType = thisPtr.handlesType;
 			if (thisPtr.debugTrace) trace("Knocking up " + mother.short + " with pregnancy type " + pData.pregnancyType);

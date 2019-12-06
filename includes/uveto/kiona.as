@@ -1,5 +1,6 @@
 import classes.Items.Piercings.*;
 import classes.Items.Armor.JeweledOutfit;
+import classes.Items.Toys.DildoSavicite;
 import classes.StringUtil;
 /* Kiona by Lkynmbr24*/
 
@@ -1263,6 +1264,7 @@ public function kionaShopSexToysSavicite():void
 	
 	chars["KIONA"].inventory = new Array();
 	chars["KIONA"].inventory.push(new SaviciteCockring());
+	chars["KIONA"].inventory.push(new DildoSavicite());
 	
 	clearMenu();
 	kionaShopSellForSaviciteBuildMenu();
@@ -1360,6 +1362,7 @@ public function kionaShopSexToysCredits():void
 	
 	chars["KIONA"].inventory = new Array();
 	chars["KIONA"].inventory.push(new SaviciteCockring());
+	chars["KIONA"].inventory.push(new DildoSavicite());
 	
 	shopkeep = chars["KIONA"];
 	buyItem();

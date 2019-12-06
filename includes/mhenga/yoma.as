@@ -798,10 +798,10 @@ public function yomaSexTribbing(onADate:Boolean=false):void
 		output("\n\n");
 	}
 	output("One of Yoma’s hands ");
-	if (pc.hasCock()) output("ignores your "+ (pc.hasCocks() ? "[pc.multiCocks]" : "[pc.cockNounComplex]") +"entirely and ");
+	if (pc.hasCock()) output("ignores your "+ (pc.hasCocks() ? "[pc.multiCocks]" : "[pc.cockNounComplex]") +" entirely and ");
 	output("pushes against your [pc.vagina " + vIdx +"], a long finger pushing its way gently into your already wet entrance as the others tease your [pc.clits] out of "+ (pc.totalClits() > 1 ? "their hoods." : "its hood."));
 	output("\n\nOh - that gives you an <i>idea</i>.");
-	output("\n\nYou pull away from his hands, laughing breathily as his ears twitch in slight confusion, before sitting back and threading your legs with his so as to press your wet [pc.vaginaNoun " + vIdx +"] against his. Getting the hint, the android pushes himself up until he’s sitting propped up with his hands just behind you. Your [pc.oneClit] pushes against his own, and he lets out a quiet, pleasured moan.");
+	output("\n\nYou pull away from his hands, laughing breathily as his ears twitch in slight confusion, before sitting back and threading your legs with his so as to press your wet [pc.vaginaNoun " + vIdx +"] against his. Getting the hint, the android pushes himself up until he’s sitting propped up with his hands just behind you. [pc.OneClit] pushes against his own, and he lets out a quiet, pleasured moan.");
 	output("\n\nTaking the lead, you begin to shift, sliding your cunt over his in a gentle, humping motion. He’s a little clumsy at first, clearly not used to an action such as this - but his designation as a companion droid seems to aid him along and he soons takes to it.");
 	output("\n\nDespite his mechanical composition, Yoma’s flesh is delightfully soft against your own, your passage over each other smooth, soon lubricated by both your mixed juices and the sweat trickling down your inner thighs. The two of you lose yourselves easily to the rhythm, thrusting to the frantic pace of your thundering heartbeat.");
 	output("\n\nYou feel yourself peaking towards a climax soon, all too soon, ");
@@ -1220,7 +1220,7 @@ public function yomaFirstDateProceedII():void
 	output("\n\n<i>“No! No, of course not. Are you ready?”</i> he asks. You nod, extending a hand out to him. The android stares at you blankly for a moment, but soon takes it. His hand is surprisingly warm - not the usual cool of a synthetic.");
 	output("\n\n<i>“Miniature thermal generators under the synthetic flesh of my palms.”</i> Yoma explains, seeming to have noticed your surprise. <i>“My master’s idea - it feels more natural, does it not? Come on though, we did not come all the way out here to stand around.”</i> He takes off, gently tugging you behind him. More natural, huh? Next he’ll be telling you he’s going to be getting a heartbeat.");
 	output("\n\n<i>“Oh, we experimented with that.”</i> He says, and you snort - you were only joking! ");
-	output("\n\n<i>“No, really, we did. It was... Too far into what you would call the uncanny valley though. Master removed the feature after about a week. I was quite relieved - it used a lot of processing power trying to analyse whether to pick up or slow down the pace in response to every single stimulus...”</i> He seems to have calmed down a bit, happily chattering away to you.");
+	output("\n\n<i>“No, really, we did. It was... Too far into what you would call the uncanny valley though. Master removed the feature after about a week. I was quite relieved - it used a lot of processing power trying to analyze whether to pick up or slow down the pace in response to every single stimulus...”</i> He seems to have calmed down a bit, happily chattering away to you.");
 	output("\n\nIt’s not long before the two of you are in the elevator and he’s punching in for the residential deck. The elevator’s music is as aggravating as usual - greeting the two of you with odd, tinny versions of Ausar pop and some Terran ballad that sounds old enough to have been popular when your father was a child - not that it stops Yoma prodding you into at least humming along to the ones the both of you recognise.");
 
 

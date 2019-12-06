@@ -30,7 +30,7 @@
 			this.description = "a frostscale breastplate";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A icy blue breastplate made from one of [frostwyrm.name]'s scales. It might not offer much protection for your limbs, but leaves your vitals well guarded.";
+			this.tooltip = "A icy blue breastplate made from one of [frostwyrm.name]’s scales. It might not offer much protection for your limbs, but leaves your vitals well guarded.";
 
 			//A variant of the frostbane plate armor with reduced defense and freezing resistance.
 		

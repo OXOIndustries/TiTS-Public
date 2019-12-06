@@ -11931,10 +11931,6 @@
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "bluish-pink";
 					break;
-				case GLOBAL.TYPE_FROSTWYRM:
-					vaginas[slot].vaginaColor = "blue";
-					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
-					break;
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
