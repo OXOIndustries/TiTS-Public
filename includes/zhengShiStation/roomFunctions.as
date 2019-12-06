@@ -829,26 +829,50 @@ public function callAKiroFriend():void
 	clearOutput();
 	showKiro();
 	output("You stretch out and slap the main breaker, listening to the headset and nearly everything else go dead as you feign a power failure. Hopefully that’ll buy you a few seconds to phone a friend...");
-	output("\n\nThe Codex’s warm light bathes the inside of your now-dark cockpit in its familiar glow as you tap into the system’s surviving comm buoy and make a high-priority holocall to your big-balled ");
-	if(flags["KIRO_BF_TALK"] == 1) output("girlfriend");
-	else output("tanuki-buddy");
-	output(".");
-	output("\n\n<i>“Heya, Angel,”</i> Kiro drunkenly slurs. Her holographic image wobbles unsteadily. Judging by the background noise, she’s deep into her drinks in some scummy space bar. <i>“Usually I’m one the one in charge of makin’ booty calls! You wanna hook up?”</i> She props her head up on her arm and licks her lips.");
-	//Bimbo
-	if(pc.isBimbo()) output("\n\nOoooh, you so like, totally do, but maybe after you land your ship. <i>“Ummm, actually Kiro I’m at some pirate base, and they want a password or something. I think they might like, blow me up if I don’t give the right one! Ugh. Anyways, it’s called Zheng Shi. You ever been there?”</i>");
-	//Bro
-	else if(pc.isBro()) output("\n\n<i>“Bitch, please!”</i> You sigh. <i>“You know Zheng Shi? They want a password that I don’t have.”</i>");
-	//Nice
-	else if(pc.isNice()) output("\n\n<i>“Maybe later,”</i> you answer with a shake of your head, <i>“I’m at a pirate base that goes by the name of Zheng Shi. Ever been there? I could really use the password.”</i>");
-	//Misch
-	else if(pc.isMischievous()) output("\n\n<i>“Assuming the pirates at Zheng Shi don’t paste me in space-dust, I might look into it.”</i> You say, <i>“I’m in a tight spot here, and if I don’t get them the right password in a minute or two, this is going to be a real short Rush for me.”</i>");
-	//Hard
-	else output("\n\n<i>“Focus up, Kiro.”</i> You slam your fist into the console. <i>“These pirate assholes at Zheng Shi want a password, and if I don’t guess the right one, I’m going to have to fight my way in. I’d rather not kill any of your friends.”</i>");
-	//Merge
-	output("\n\nKiro facepalms and airily giggles, <i>“Fuck you!”</i>");
-	output("\n\nWha-?");
-	output("\n\n<i>“No, no, no! The password. Just tell ‘em to go fuck themselves.”</i> She takes a swig of a mystery drink that doesn’t quite render in. <i>“That’s the thing about us pirates - the only thing we hate more than being ordered around is dealing with red tape and regulation. Fuck, you’re so naive sometimes, Angel.”</i>");
-	output("\n\nYou thank her for the help and end the call, watching Kiro’s smirking lips fade away into nothing.");
+	if(!kiroIsCrew())
+	{
+		output("\n\nThe Codex’s warm light bathes the inside of your now-dark cockpit in its familiar glow as you tap into the system’s surviving comm buoy and make a high-priority holocall to your big-balled ");
+		if(flags["KIRO_BF_TALK"] == 1) output("girlfriend");
+		else output("tanuki-buddy");
+		output(".");
+		output("\n\n<i>“Heya, Angel,”</i> Kiro drunkenly slurs. Her holographic image wobbles unsteadily. Judging by the background noise, she’s deep into her drinks in some scummy space bar. <i>“Usually I’m one the one in charge of makin’ booty calls! You wanna hook up?”</i> She props her head up on her arm and licks her lips.");
+		//Bimbo
+		if(pc.isBimbo()) output("\n\nOoooh, you so like, totally do, but maybe after you land your ship. <i>“Ummm, actually Kiro I’m at some pirate base, and they want a password or something. I think they might like, blow me up if I don’t give the right one! Ugh. Anyways, it’s called Zheng Shi. You ever been there?”</i>");
+		//Bro
+		else if(pc.isBro()) output("\n\n<i>“Bitch, please!”</i> You sigh. <i>“You know Zheng Shi? They want a password that I don’t have.”</i>");
+		//Nice
+		else if(pc.isNice()) output("\n\n<i>“Maybe later,”</i> you answer with a shake of your head, <i>“I’m at a pirate base that goes by the name of Zheng Shi. Ever been there? I could really use the password.”</i>");
+		//Misch
+		else if(pc.isMischievous()) output("\n\n<i>“Assuming the pirates at Zheng Shi don’t paste me in space-dust, I might look into it.”</i> You say, <i>“I’m in a tight spot here, and if I don’t get them the right password in a minute or two, this is going to be a real short Rush for me.”</i>");
+		//Hard
+		else output("\n\n<i>“Focus up, Kiro.”</i> You slam your fist into the console. <i>“These pirate assholes at Zheng Shi want a password, and if I don’t guess the right one, I’m going to have to fight my way in. I’d rather not kill any of your friends.”</i>");
+		//Merge
+		output("\n\nKiro facepalms and airily giggles, <i>“Fuck you!”</i>");
+		output("\n\nWha-?");
+		output("\n\n<i>“No, no, no! The password. Just tell ‘em to go fuck themselves.”</i> She takes a swig of a mystery drink that doesn’t quite render in. <i>“That’s the thing about us pirates - the only thing we hate more than being ordered around is dealing with red tape and regulation. Fuck, you’re so naive sometimes, Angel.”</i>");
+		output("\n\nYou thank her for the help and end the call, watching Kiro’s smirking lips fade away into nothing.");
+	}
+	else
+	{
+		output("\n\nA few presses on your Codex are all it takes to summon Kiro to the cockpit.");
+		output("\n\n<i>“Heya, Angel,”</i> Kiro says, yawning. She rubs a bit of sleep out of her eyes. <i>“Usually I’m one the one in charge of makin’ booty calls! Why're the lights off? You wanted hook up or something? Fuck, you're dirty.”</i> She leans against a bulkhead licks her lips.");
+
+		//Bimbo
+		if(pc.isBimbo()) output("\n\nOoooh, you so like, totally do, but maybe after you land your ship. <i>“Ummm, actually Kiro I’m at some pirate base, and they want a password or something. I think they might like, blow us up if I don’t give the right one! Ugh. Anyways, it’s called Zheng Shi. You ever been here?”</i>");
+		//Bro
+		else if(pc.isBro()) output("\n\n<i>“Bitch, please!”</i> You sigh. <i>“You know Zheng Shi? They want a password that I don’t have.”</i>");
+		//Nice
+		else if(pc.isNice()) output("\n\n<i>“Maybe later,”</i> you answer with a shake of your head, <i>“We're at a pirate base - Zheng Shi. Ever been there? I could really use the password.”</i>");
+		//Misch
+		else if(pc.isMischievous()) output("\n\n<i>“Assuming the pirates here don’t paste us in space-dust, I might look into it.”</i> You say, <i>“We're in a tight spot here, and if I don’t get Zheng Shi the right password in a minute or two, this is going to be a real short Rush for us.”</i>");
+		//Hard
+		else output("\n\n<i>“Focus up, Kiro.”</i> You slam your fist into the console. <i>“These pirate assholes at Zheng Shi want a password, and if I don’t guess the right one, we're going to have to fight our way in. I’d rather not kill any of your friends.”</i>");
+		//Merge
+		output("\n\nKiro facepalms. <i>“Fuck you!”</i>");
+		output("\n\nWha-?");
+		output("\n\n<i>“No, no, no! The password. Just tell ‘em to go fuck themselves.”</i> She casually belches. <i>“That’s the thing about us pirates - the only thing we hate more than being ordered around is dealing with red tape and regulation. Fuck, you’re so naive sometimes, Angel.”</i>");
+		output("\n\nYou thank her for the help and dismiss her with a promise that you can play later.");
+	}
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",kiroHelpCallEpilogue);

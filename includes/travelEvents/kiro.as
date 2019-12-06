@@ -79,6 +79,8 @@ public function kiroSexed():Boolean
 }
 public function kiroTrust(arg:Number = 0):Number
 {
+	//Saved Kiro trusts you implicitly, no matter how you fuck around.
+	if(flags["KQ_RESCUED"] != undefined) return 100
 	//Initialize. Should only be called AFTER her rescue, to prevent any weirdness with the stolen weapon shit
 	if(flags["KIRO_TRUST"] == undefined)
 	{
@@ -2758,7 +2760,7 @@ public function balljobFromKiro():void
 	//Repeats!
 	else
 	{
-		output("\n\n<i>“Another one?”</i> she asks, cocking her head to the side. Her curly beige hair dangles around her face as her mouth gradually widens into a knowing smile. <i>“You like my balls that much, Angel? You like them so much that you’re already begging me to spill your spunk on them again?”</i> Kiro idly licks her upper lip as she waits for a response, her equine pillar of fuck already pulsing needfully, expressing a huge dollop of precum that she immediately gathers into her palm. <i>“Not that I mind,”</i> she muses, rubbing her moisture into the crevice between her titanic nuts. <i>“I love getting my balls bathed.”</i>");
+		output("\n\n<i>“Another one?”</i> she asks, cocking her head to the side. Her curly beige hair dangles around her face as her mouth gradually widens into a knowing smile. <i>“You like my balls that much, Angel? You like them so much that you’re already begging me to spill your spunk on them again?”</i> Kiro idly licks her upper lip as she waits for a response, her equine pillar of fuck already pulsing needfully, expressing a huge dollop of pre-cum that she immediately gathers into her palm. <i>“Not that I mind,”</i> she muses, rubbing her moisture into the crevice between her titanic nuts. <i>“I love getting my balls bathed.”</i>");
 		output("\n\nKiro points back to the bed. <i>“Get in it while I’m feeling magnanimous,”</i> She leers down at you, <i>“Before I change my mind and turn you into a cream-filled fucktoy.”</i> Judging by the look in her eye, you know she would too.");
 	}
 	//MERGE
@@ -2852,8 +2854,8 @@ public function balljobFromKiro():void
 	clearMenu();
 	
 	IncrementFlag("KIRO_BALLJOBBED_YOU");
-	
-	addButton(0,"Next", move, shipLocation);
+	if(kiroIsCrew()) addButton(0,"Next",mainGameMenu);
+	else addButton(0,"Next", move, shipLocation);
 }
 
 //Body-Bloating, Butt-Obliterating Bowel Basting
@@ -3006,6 +3008,10 @@ public function inviteSaenForKiroFilling():void
 	showName("SAENDRA\n& KIRO");
 	author("Adjatha");
 
+	if(kiroIsCrew())
+	{
+		output("Finding your chosen partner doesn't take very long. ");
+	}
 	output("You step back into the pirate’s chambers, Saendra close at your heels, eager to check out the surprise you promised her. When the halfbreed’s eyes glance on Kiro’s nubile backside, her eyes go wide as she scans further down, glued to the tanuki’s signature assets. Yours go a little wide too, for that matter - though you were only gone for a short while, the anticipation must’ve done a number on the kui-tan’s libido. Though you left her with " + kiro.ballsDescript(false, true) + ", they’ve inflated well over the size of a pair of beachballs, hanging past her knees, her legs partly swallowed by the soft, supple surface. As she turns around to face you, her expression is one of impatience and annoyance.");
 	//First Time Intro Variant
 	if(flags["KIRO_X_SAEN_HAPPENED"] == undefined)
