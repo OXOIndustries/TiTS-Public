@@ -27,7 +27,7 @@ package classes.Items.HalloweenItems
 			
 			shortName = "Witch.O";
 			
-			longName = "packaged witch's outfit";
+			longName = "packaged witch’s outfit";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

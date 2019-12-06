@@ -803,7 +803,7 @@ public function extrameetMissyMayDate():void
 	//showName("0MissyMay0");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table");
+	output("You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn’t seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table.");
 	output("\n\n<i>“Hey. [pc.name] Steele? I’m May.”</i> She smiles at you while you size her up. Based on her chest and lips, she must be the woman in the picture. While her figure is a bit less voluptuous than most women on the planet, her bust is still remarkable, sticking out a foot off her chest. Her hair is mud brown, but you notice she isn’t sporting typical New Texan horns. Or any horns for that matter. You introduce yourself and she takes a seat across from you, smiling politely. <i>“So, been on the planet long?”</i>");
 	output("\n\nYou tell her you’re just passing through, searching for any typical New Texan markers while you speak. As far as you can tell she’s pure human, with a little added on the chest.");
 	output("\n\nShe notices your stare and rolls her eyes. <i>“Don’t tell me you were hoping for a Treated bimbo cow.”</i> When you don’t answer right away she giggles. <i>“Yeah, I figured that would be the case. I’m on planet for a work contract, and let me tell you the locals are exhausting. In more ways than one.”</i>");
@@ -872,7 +872,6 @@ public function extrameetVKODate():void
 	showName("\nV-KO#1221341");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
-	
 	output("You enter The Bucking Bronco and spot your date sticking out like a sore thumb. She’s seated near the back of the bar, sitting very still and with perfect posture. You make your way over, noting she doesn’t even turn to regard you as you make your approach. When you finally reach the nursedroid she just stares off into space. After a moment, you clear your throat and speak to her. <i>“Hello?”</i>");
 	output("\n\nIn a quick jerking motion her head turns to you, taking you by surprise and making you jump. <i>“Hello! I am V-KO#1221341. You may call me V-KO. Please take a seat.”</i> She lifts an arm and motions towards a chair across from her");
 	output("\n\nSlowly you take your seat, keeping a close eye on the nursedroid. You can tell she is properly looking at you now, and seems to be sizing you up. In an attempt to break up the awkward silence, you introduce yourself.");
@@ -926,8 +925,8 @@ public function extrameetVKOSex():void
 	if (pc.balls > 0) 	output(" You throw your head back and groan as your [pc.balls] start to churn.");
 	
 	output(" Sensing your orgasm, you feel your date’s cunt clamp down tight on you, squeezing your dick so hard she almost crushes it. You try to cry out, but only groan louder as your cock pulses in the iron tight snatch, your thick load exploding from your [pc.cockHead " + kok + "]. Deep inside the synthetic cunt you feel an odd sucking, seemingly pulling the cum right out of you. The sucking only makes your orgasm more intense, and you feel your body shake uncontrollably. A minute later you feel the pressure on your dick release, and you stagger backwards, pulling yourself free.");
-	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“You vitality is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
-	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyse your spunk?");
+	output("\n\n<i>“That was most impressive.”</i> You hear the droid shift in the darkness. <i>“Your virility is 10% higher than I anticipated. However, I detect lower than normal protein in your ejaculate. Might I suggest a supplement?”</i>");
+	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyze your spunk?");
 	output("\n\n<i>“Very well. You should leave first as to not arouse suspicion. I will remain here for a few moments. It was a splendid date, and above average sex. Thank you, and please cum again!”</i> You hear the nurse give out an odd electronic chuckle, and it takes you a moment to get what she’s laughing about.");
 	output("\n\n<i>“Right...”</i> You turn around and fumble around for the door knob. Light assaults your eyes as you open the door and step out into the bar. You glance back at your date, who smiles at you and waves. <i>“Bye...”</i> You exit the closet and close the door, leaving the weird droid in the closet.");
 	
