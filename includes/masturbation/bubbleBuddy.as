@@ -388,7 +388,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 		else output("definitely use filling up");
 		output(". You squeeze the surface again, watching the bubble stretch beneath your [pc.fingers].");
 
-		output("\n\nThe challenge is drinking from a bubble without making a mess. Not that it’s necessarily a <i>bad</i> thing to make a big [pc.cumNoun]-y mess, but it’s not going to do anything for your ‘nuki nuts if it’s slathered over your [pc.chest] instead of in your stomach. The warmth of the bubble is rather enticing once you’ve placed your lips up against it, teasing the idea of that [pc.cumtype] being a hair’s breadth away.");
+		output("\n\nThe challenge is drinking from a bubble without making a mess. Not that it’s necessarily a <i>bad</i> thing to make a big [pc.cumNoun]-y mess, but it’s not going to do anything for your ‘nuki nuts if it’s slathered over your [pc.chest] instead of in your stomach. The warmth of the bubble is rather enticing once you’ve placed your lips up against it, teasing the idea of that [pc.cumType] being a hair’s breadth away.");
 
 		output("\n\nYou hum against it, feeling the vibrations tremble through. through the bubble’s membrane. After that it’s just a gentle nibble. Even with that, the pressure of the bubble has your [pc.cumNoun] spurting past your mouth! Yo hurriedly suck and swallow, pressing as much of the bubble up against your lips as you can get away with. The heady scent of [pc.cumNoun] fills your nose, and your prostate already feels like it’s seething with more, getting ready to dump its contents into your balls.");
 		output("\n\nYou sigh and pat your [pc.belly], feeling smug as your body begins its work.");

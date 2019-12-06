@@ -231,7 +231,7 @@ public function veltaSexMenu(apt:Boolean = false):void
 		output("\n\nShe takes a good look at you before shaking her head slowly. <i>“Sorry, [pc.name]. You’re just not my type. Tall, strong, and handsome is more my speed. We can still be friends, though - if you want, I mean.”</i>");
 		
 		// Specs
-		output("\n\n<i>It seems she’s looking for a");
+		output("\n\n<b>It seems she’s looking for a");
 		if(pc.tallness < 72) output(" taller");
 		output(" ma" + (pc.hasVagina() ? "le" : "n"));
 		if(pc.tone < 60) output(" with high muscle tone");
@@ -255,7 +255,7 @@ public function veltaSexMenu(apt:Boolean = false):void
 				if(!hasCockThatFits) output(" that fits her");
 			}
 		}
-		output(".</i>");
+		output(".</b>");
 		
 		if (apt) addButton(14, "Back", veltaApartmentFunc);
 		else addButton(14, "Back", veltaMainMenu);

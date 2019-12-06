@@ -826,8 +826,14 @@ public function getAPetVarmintResponse(response:String = "none"):void
 		pc.createStatusEffect("Varmint Leashed");
 		pc.credits -= 50;
 		quickLoot(new VarmintLeash());
+		
+		varmintDisappearsCancel();
+		
 		return;
 	}
+	
+	varmintDisappearsCancel();
+	
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -1011,6 +1017,8 @@ public function doVarmintPlayTime(response:String = "none"):void
 	{
 		output("You give " + varmintPetName("the") + " a pat on the head and leave it to its own devices for a bit.");
 		processTime(1);
+		
+		varmintDisappearsCancel();
 	}
 	addButton(0, "Next", crew);
 }
@@ -1035,6 +1043,11 @@ public function varmintDisappearChance(deltaT:uint, doOut:Boolean):void
 	{
 		eventQueue.push(varmintDisappears);
 	}
+}
+public function varmintDisappearsCancel():void
+{
+	var idx:int = eventQueue.indexOf(varmintDisappears);
+	if(idx != -1) eventQueue.splice(idx, 1);
 }
 public function varmintDisappears():void
 {

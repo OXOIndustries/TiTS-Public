@@ -287,7 +287,7 @@ public function annoFollowerMenu():void
 	addButton(1, "Sell", annoFollowerSellMenu, undefined, "Sell", "See if you can sell any of your carried items to Anno.");
 	addButton(2, "Talk", annoFollowerTalkMenu, undefined, "Talk", "Talk to Anno about a variety of topics.");
 	addButton(3, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	
+	addAnnosArdiaAddictionButton(4);
 	addButton(5, "Appearance", annoFollowerAppearance, undefined, "Appearance", "Review what Anno’s entire body looks like.");
 	if (pcHasJunkPrize() && flags["ANNO_SCRAP_DISABLED"] == undefined) addButton(6, "Sell Prize", tryToSellAnnoSomeRaskScrapGuv, undefined, "Sell Prize", "Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(6, "Sell Prize", "Sell Prize", "This merchant isn’t interested in whatever you’re considering to be a prize.");
@@ -688,14 +688,14 @@ public function annoFollowerSellMenu():void
 // Updates and configures Annos inventory depending on how she ended up on the players ship
 public function annoFollowerInventoryCheck():void
 {
+	anno.inventory = new Array();
+	
 	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		// Check for the presence of a unique item, if not there, add all
 		if (!anno.hasItemByClass(SteeleTechSuit))
 		{
-			anno.inventory = new Array();
-			
 			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new LaserCarbine());
@@ -723,8 +723,6 @@ public function annoFollowerInventoryCheck():void
 	{
 		if (!anno.hasItemByClass(JoyCoPremiumShield))
 		{
-			anno.inventory = new Array();
-			
 			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new AusarTreats());
 			anno.inventory.push(new HammerCarbine());
@@ -4165,7 +4163,7 @@ public function annoXGedanThreesomeEpilogue():void
 	showLocationName();
 	output("When you come to, the green gryvain babe is nowhere to be seen. Anno’s lying face-down against you, covered in cool cum and snoring into your armpit. Graceful. You yawn, roll your lover off, and hit the shower.");
 	output("\n\nBy the time you’re out, Anno’s woken up enough to stagger up and ");
-	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sat on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
+	if(celiseIsCrew()) output("drag Celise into your quarters. She’s dumped the giggly goo onto the bed and is sitting on the side of it, letting your resident cum-vacuum clean the spoogy mess up.");
 	else output("strip the spunk-soaked bed for cleaning.");
 	output("\n\n<i>“What do you say, Boss?”</i> she grins when you get out, looking back to eye your naked body. <i>“Think I should give her a ‘would date again’ on ExtraMeet?”</i>");
 	output("\n\n");

@@ -246,7 +246,7 @@ public function gewinFruit(servingType:String = "cone"):void
 		//Repeat Bowl/Feast
 		else
 		{
-			output("You return to the Gewinfruit flavor-girl, and she looks pleased to see you again. Obviously a woman that enjoys her work! As usual, she’s pretty tapped out, and it takes you almost half a minute to fill your bowl. Her deepening blush and look of ecstacy make it worthwhile. You then wink to her and head off to enjoy your filling, savory meal.");
+			output("You return to the Gewinfruit flavor-girl, and she looks pleased to see you again. Obviously a woman that enjoys her work! As usual, she’s pretty tapped out, and it takes you almost half a minute to fill your bowl. Her deepening blush and look of ecstasy make it worthwhile. You then wink to her and head off to enjoy your filling, savory meal.");
 		}
 	}
 	flags["HAD_GEWINFRUIT"] = 1;

@@ -1426,9 +1426,13 @@ public function fightTheNymfoe():void
 	showNymFoe();
 	author("Adjatha");
 	output("You pull out your weapons and get ready for a fight!");
+	
+	var nymfoe:NymFoe = new NymFoe();
+	if(flags["NYM-FOE_LUST"] != undefined) nymfoe.lustRaw = flags["NYM-FOE_LUST"];
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(new NymFoe());
+	CombatManager.setHostileActors(nymfoe);
 	CombatManager.victoryScene(pcVictoryVsNymFoe);
 	CombatManager.lossScene(flags["PEXIGA_TREATMENT"] == 0 ? loseToNymfoeLossRouter : loseToPostQuestNymfoe);
 	CombatManager.displayLocation("NYM-FOE");
@@ -2382,7 +2386,17 @@ public function fightTheDollmaker():void
 	CombatManager.displayLocation("DOLL MAKER");
 	
 	clearMenu();
-	addButton(0,"Next", CombatManager.beginCombat);
+	addButton(0,"Next", fightTheDollmakerBegin, dollMaker);
+}
+public function fightTheDollmakerBegin(dollMaker:Dollmaker):void
+{
+	CombatManager.beginCombat();
+	
+	if(flags["DOLLMAKER_FORCE_CUFFS"] != undefined && !pc.isDefeated())
+	{
+		output("\n\n");
+		dollMaker.restrainingCuffs(pc);
+	}
 }
 
 // Doll Maker is active after running away

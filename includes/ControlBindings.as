@@ -369,10 +369,24 @@
 		},
 		true);
 	inputManager.AddBindableControl(
+		"Sexdoll Encounter",
+		"Trigger an encounter with a WIP enemy from Kiro's Recruitment quest.",
+		function():void {
+			Cheats.SexdollEncounter();
+		},
+		true);
+	inputManager.AddBindableControl(
 		"Politically Correct Mode",
 		"Toggle whether certain offensive words are used.",
 		function():void {
 			Cheats.SJWMode();
+		},
+		true);
+	inputManager.AddBindableControl(
+		"Ardia DM7+ Sex Choice",
+		"Toggle whether Ardia chooses sex scenes at high dominance. May result in unintended behaviour.",
+		function():void {
+			Cheats.ArdiaLetsYouChoose();
 		},
 		true);
 		
@@ -400,6 +414,8 @@
 	inputManager.BindCheatSequence("Bianca Spawn", "healthdelivery");
 	inputManager.BindCheatSequence("Nym-Foe Targets TiTS", "beshineforever");
 	inputManager.BindCheatSequence("Classic Lapinara", "laplove");
+	inputManager.BindCheatSequence("Sexdoll Encounter", "doll");
+	inputManager.BindCheatSequence("Ardia DM7+ Sex Choice", "ardiaschoice");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

@@ -1708,7 +1708,7 @@ public function akaneBabySrslyTho(firstTime:Boolean):void
 	output("\n\n<i>“Guh... gonna...! Ahhh...!”</i> are all she can say before her body locks up. You see her face contort in frozen bliss as a silent orgasm rocks her world, your mouth filling with the gentle flash of feminine juices. Her abs tense and contract through her skin, fighting against her lungs need to scream.");
 	output("\n\nA vibrant heat gets blurred into the frozen moment, one shattered by Akane thrusting you away and collapsing against the bed. You’re able to stay on your knees and your woozy view is now that of the orgasming domme jerking and quivering against the plush bedding. You slobber and gulp down as much of Akane’s ‘gift’ as you can so the flavour stays fresh in your mouth.");
 	output("\n\n<i>“Cheh... Cheo, put ‘em... up here,”</i> she forces in between breaths, her voice strained and high in pitch. You try to take stock of what she’s ordered, only to have a pair of fluffy arms hoist you from your armpits and guides onto the bed.");
-	if (pc.isTaur()) output(" It’s a little bit of a struggle but with some effort, you’re comfortably sat on top.");
+	if (pc.isTaur()) output(" It’s a little bit of a struggle but with some effort, you’re comfortably seated on top.");
 	output(" You shuffle across your side to the gasping Akane and, with a fiddle, your wrist bonds come undone with help from her ausar attendant.");
 	output("\n\nYou place a hand on top of Akane’s heaving abs, massaging her pale skin with your palm. She turns her head to the side, her glassy, weary gaze meeting yours. You can make out her whispering something to you.");
 	output("\n\n<i>“Oh... h-hey... stay with me, would you...?”</i>");

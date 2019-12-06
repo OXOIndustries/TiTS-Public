@@ -960,18 +960,26 @@ public function ramisCockFuck(arg:Array):void
 			
 			output("You come to in the early hours of the morning. The hotel room has no windows - and if they did they’d look out onto the artificial lights of Tavros’s commercial district - but one side of the room mimics the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
 			output("\n\nYour sheet-covered [pc.chest] has a thick weight thrown over it, and it takes you a moment to work out what it is. Ramis the kaithrit has her arm slung over you, holding you close to her bare breasts and warm smell of musk, aerosol and whiskey. She’s fast asleep, the sound emerging from her open mouth somewhere between a throaty snore and a contented purr.");
-			if(pc.cLength(x) > 36) output("\n\nCarefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. You suspect trying to accomplish something with your over-sized dick might not go down quite as well when she’s hung over.");
-			else output("\n\nYou would guess from the way she’s clasping you that she went to sleep with the firm intention that you weren’t going anywhere in the morning - however she’s still deep enough in an alcohol-induced coma that you could probably sneak out now, if you wished...");
-			// [Sneak Out] [Wake Her Up]
-			if(response == "trap morning afters")
+			if(x == -1)
 			{
-				addButton(0, "Sneak Out", ramisCockFuck, [x, purrfectFit, "trap sneak out"]);
-				addButton(1, "Wake Her Up", ramisCockFuck, [x, purrfectFit, "trap wake her up"]);
+				output("\n\nCarefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your clothes and slip out. She shifts slightly but doesn’t wake up. You suspect trying to accomplish something with your over-sized dick might not go down quite as well when she’s hung over.");
+				
+				addButton(0, "Next", mainGameMenu);
 			}
-			if(response == "man morning afters")
+			else
 			{
-				addButton(0, "Sneak Out", ramisCockFuck, [x, purrfectFit, "man sneak out"]);
-				addButton(1, "Wake Her Up", ramisCockFuck, [x, purrfectFit, "man wake her up"]);
+				output("\n\nYou would guess from the way she’s clasping you that she went to sleep with the firm intention that you weren’t going anywhere in the morning - however she’s still deep enough in an alcohol-induced coma that you could probably sneak out now, if you wished...");
+				// [Sneak Out] [Wake Her Up]
+				if(response == "trap morning afters")
+				{
+					addButton(0, "Sneak Out", ramisCockFuck, [x, purrfectFit, "trap sneak out"]);
+					addButton(1, "Wake Her Up", ramisCockFuck, [x, purrfectFit, "trap wake her up"]);
+				}
+				if(response == "man morning afters")
+				{
+					addButton(0, "Sneak Out", ramisCockFuck, [x, purrfectFit, "man sneak out"]);
+					addButton(1, "Wake Her Up", ramisCockFuck, [x, purrfectFit, "man wake her up"]);
+				}
 			}
 			break;
 		// Sneak Out (Trap)
@@ -1035,6 +1043,9 @@ public function ramisCockFuck(arg:Array):void
 			output("\n\n<i>“Morning room service,”</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
 			output("\n\n<i>“How nice. If only I could get boy toys on tap in every place I stayed... there. Right there...”</i> She closes her eyes and cranes her neck as you curl your fingers into her sticky twat, her juices running more and more freely to the movements of their probing tips.");
 			output("\n\nA few seconds later you’re on your back, hands clutched around two full, tawny buttocks, watching 120 kilograms of blonde bombshell ride your [pc.cock " + x + "] with stern, athletic shoves of her hips. The fact you are mired in the produce of last night doesn’t matter even slightly when the fucking is this supple, this tight, this spry... your throaty groan twines with her exhilarated gasps as she clamps her thighs around your waist even more intently, clutching your straining cock up in sleek pressure and begins to pump you hard, her large breasts jouncing in front of your eyes.");
+			
+			pc.cockChange();
+			
 			output("\n\nHer claws biting into your shoulders, you grasp her brawny shoulders and cum, ecstasy grabbing at your muscles and nerves and yanking at them again and again as the [pc.cumColor] seed is practically vacuumed out of you by the formidable clamp of bulging kaithrit muscle locked around your [pc.hips]. Ramis moans and meows wordless elation at the ceiling, her pussy rippling around you as she continues to ride you as if you were a frothing stallion.");
 			output("\n\nYou lie and enjoy the afterburn together again for a little while, you giving her the old manly cuddle that you’ve learnt makes her purr. Stepping back into the room after taking a long shower, you notice that the bed has a large depression in the middle. Sinking to the floor confirms that you have, in fact, broken three or four of the reinforced splints. Ramis guffaws when she comes in from her own shower and takes in your shared handiwork.");
 			output("\n\n<i>“Better bounce before they decide to charge us,”</i> she says. She gives you a fond, lusty squeeze on the [pc.butt]. <i>“Be around, alright mate? I can use a fuck like you on this y’ear station. Nothin’ but girlies and girly boys for decks ‘n decks...”</i> You watch her two, dappled tails snake out of the door.");

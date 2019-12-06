@@ -59,7 +59,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			else textBuff += "like you’ve been letting a dominatrix tease you for hours";
 			textBuff += ". The fattened sausage";
 			if(pc.cockTotal() > 1) textBuff += "s";
-			textBuff += " definitely feel more sensitive. A gentle breeze would make your heart flutter and your dick";
+			textBuff += " definitely feel";
+			if(pc.cockTotal() == 1) textBuff += "s";
+			textBuff += " more sensitive. A gentle breeze would make your heart flutter and your dick";
 			if(pc.cockTotal() > 1) textBuff += "s";
 			textBuff += " surge. Maybe you were exposed to something out on the frontier?";
 			pc.lust(5);

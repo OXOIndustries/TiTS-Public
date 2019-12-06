@@ -66,6 +66,7 @@ public function approachBeachSurfNSurf():Boolean
 	else addButton(0,"Buy Pass",buyAPass);
 	if(flags["MET_ALEX_SURF"] != undefined) addButton(1,"You",tryToSeduceAlexSlooot);
 	addButton(2,"Swimwear",buySwimwear);
+	if (!ardiaInZhengShi() && !ardiaIsCrew()) addButton(4,"Ardia",getArdiaBackOnYourShip,undefined,"Ardia","Ardia's on the beach somewhere. Have the clerk put out a PA call for her.");
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
 	else addDisabledButton(11,"To The Beach!","To The Beach","You’ll need a pass to do this.");
 	

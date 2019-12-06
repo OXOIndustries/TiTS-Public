@@ -2937,7 +2937,7 @@ public function roxySexIdea():void
 		output("\n\n<i>“The doors need keycard locks to keep out the worst fans.”</i> You point to the other label making it clear that this is not her team’s sport, and Roxy only laughs. <i>“Yeah, it’s a locker room belonging to a team that plays a sport that, well,”</i>");
 		output("\n\n<i>Hiss</i>- and the door opens. <i>“...is outta season.”</i> You are, naturally, dragged inside.");
 		output("\n\nThis locker room, unused as it is, is unmarked, standard, and temperate. No steamy air to wring the sweat right out of your [pc.skinFurScales]. Rows of lockers divide up space with benches between them. The only sign of a mess is the one Roxy makes when she oh-so-gracefully discards her backpack onto the floor. The impact was enough to make you jump.");
-		output("\n\n<i>“Don’t worry about interruptions, [pc.name], ‘cause this entire wing is devoted to something nobody’s playing and the rest are watching reruns of on holo-TV,”</i> she explains, throwing off her hoodie and beckoning you with a finger. When you get close, she pushes you down on the bench, seating herself in your lap, wrapping her paw-feet around your waist. She seats her pheromonally-drenched twat right on your [pc.cockBiggest], wettening her denim with a little bump and grind. <i>“And, if you get me, I’m never outta season...”</i>");
+		output("\n\n<i>“Don’t worry about interruptions, [pc.name], ‘cause this entire wing is devoted to something nobody’s playing and they’re all watching reruns of it on holo-TV,”</i> she explains, throwing off her hoodie and beckoning you with a finger. When you get close, she pushes you down on the bench, seating herself in your lap, wrapping her paw-feet around your waist. She seats her pheromonally-drenched twat right on your [pc.cockBiggest], wettening her denim with a little bump and grind. <i>“And, if you get me, I’m never outta season...”</i>");
 		output("\n\nKnowing where to go from here, you tear off the bikini top she wears, flinging the article into another aisle. You had to be quick to meet her ferocious kiss. While her hands dip towards your [pc.ass], yours do the same, already working that high-string thong out of the way, wanting another touch of that black-lipped pussy aching for a plowing. You could sink into it effortlessly, all the heat and moisture flushing your [pc.skinFurScalesNoun] with the beginnings of arousal.");
 		output("\n\nDark brown nipples grow beautifully erect against your [pc.chestNoun]");
 		if (!pc.isNude()) output("; Roxy works you out of your [pc.armor], pulling it away one piece at a time");
@@ -2964,18 +2964,19 @@ public function roxySexIdea():void
 			output(" Roxy palms your [pc.breasts].");
 			if (pc.biggestTitSize() >= 10)
 			{
-				output(" <i>“How do you even get around with these things?”</i> Roxy lifts your [pc.breasts] and lets them sag, laughing at the effect. <i>“I can’t imagine being much bigger! Hope I don’t swell up like this");
-				if (noPreg) output(" if I ever get pregnant.”</i>");
+				output(" <i>“How do you even get around with these things?”</i> Roxy lifts your [pc.breasts] and lets them sag, laughing at the effect. <i>“I can’t imagine them being much bigger! Hope I don’t swell up like this");
+				if (noPreg) output(" if I ever get pregnant.");
 				else
 				{
-					if (pregTri > 0) output(" later in the pregnancy.”</i>");
+					if (pregTri > 0) output(" later in the pregnancy.");
 					else
 					{
 						output(" when you knock me up");
 						if (flags["ROXY_TOTAL_KIDS"] > 0) output(" again");
-						output(".”</i>");
+						output(".");
 					}
 				}
+				output("”</i>");
 			}
 			else output(" <i>“Especially for you, [pc.name].”</i>");
 		}	
@@ -3203,8 +3204,8 @@ public function roxySexMissionary():void
 	if (pc.balls > 0) output(" and the [pc.cumVisc] contents of your cum-stocked [pc.ballsNounSimple] roil");
 	output(".");
 	
-	output("\n\n<i>Just remember whose dicks are aimed at whose crotch</i> you mentally utter.");
-	output("\n\nYour face contorts with ecstasy the longer you look, and it takes the masterful laquine’s tug on your leash to change your course. Roxy pushes up off you when you reach out for a touch of athlete’s quim, dragging on the lead hard enough that you tumble to your knees in front of that molten-hot honeypot, salivating close to her gently sloping vulva. Her black pearl pulses its way out of the peak of her shimmery slit, bared to you like the prize in an opened oyster.");
+	output("\n\n<i>‘Just remember whose dicks are aimed at whose crotch,’</i> you mentally utter.");
+	output("\n\nYour face contorts with ecstasy the longer you look, and it takes the masterful laquine’s tug on your leash to change your course. Roxy pushes up off you when you reach out for a touch of athlete’s quim, dragging on the lead hard enough that you tumble to your knees in front of that molten-hot honeypot, salivating close to her gently sopping vulva. Her black pearl pulses its way out of the peak of her shimmery slit, bared to you like the prize in an opened oyster.");
 	output("\n\n<i>“Not gonna waste this opportunity. Hope you don’t mind I want your tongue in there for a bit. Gotta get me nice and ready to handle all of this,”</i> she says, touching her foot to your [pc.cockBiggest]");
 	if (pc.cockTotal() > 2) output(", and then the others next to it");
 	else if (pc.cockTotal() > 1) output(", and then the other next to it");
@@ -3315,7 +3316,7 @@ public function roxySexMissionaryNext(kok:int=0):void
 	if (pc.hasHair()) output(" and hair tips");
 	output(".");
 	
-	output("\n\nHer smooth fuckball throbs and thrums against your [pc.belly] on the deepest insertions. Femcum splatters above it on the hits. Roxy shakes from multiple, sequential climaxes, and you soon realize that’s the only time you feel any sort of relief. Accepting that her pleasure matters in this livid moment is crucial. The more you properly please her cloying pussy, the closer you get to the greatest reward: release.");
+	output("\n\nHer smooth fuckball of a clit throbs and thrums against your [pc.belly] on the deepest insertions. Femcum splatters above it on the hits. Roxy shakes from multiple, sequential climaxes, and you soon realize that’s the only time you feel any sort of relief. Accepting that her pleasure matters in this livid moment is crucial. The more you properly please her cloying pussy, the closer you get to the greatest reward: release.");
 	output("\n\nThe slut-rabbit knows how to push your buttons too.");
 	if (pc.hasVagina())
 	{
@@ -5018,7 +5019,7 @@ public function roxyInCafeteriaBonus(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nRoxy is sat in the nicest place of the cafeteria, right next to a large playground for kids to work off their calories. One nurse and several robots are seeing to her needs. The medic checking her pulse, among other things, and the ‘bots providing all the healthy food she’ll need to make it through her infant tribulation. From here, you can see how confused she is by all the attention, clearly not used to this kind of VIP treatment. Ironic.");
+		output("\n\nRoxy is seated in the nicest place of the cafeteria, right next to a large playground for kids to work off their calories. One nurse and several robots are seeing to her needs. The medic checking her pulse, among other things, and the ‘bots providing all the healthy food she’ll need to make it through her infant tribulation. From here, you can see how confused she is by all the attention, clearly not used to this kind of VIP treatment. Ironic.");
 		if (!roxyCuddleRefused()) output(" She waves at you when she sees you, because her mouth is full of oats.");
 	}
 	

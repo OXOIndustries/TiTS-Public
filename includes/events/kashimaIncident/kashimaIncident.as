@@ -75,6 +75,8 @@ public function startKashimaJobbo(destination:String):void
 	if (annoIsCrew() && flags["ANNO_MISSION_OFFER"] == 3) output(" and maybe grill your favorite puppy-slut on why the company’s been tracking you");
 	output(".");
 
+	flags["KASHIMA_STATE"] = 0;
+	
 	sleep(false);
 	pc.lustRaw = pc.lustMin();
 	flags["STORED SHIP DESTINATION"] = destination;
@@ -578,7 +580,7 @@ public function lustyBugponyCocked():void
 	else
 	{
 		if (pc.originalRace.indexOf("leithan") != -1) output("You were born for this, formed from birth to mount luscious beauties like the Chief here and drive your [pc.cock "+cIdx+"] deep into their slavering, hungry wombs.");
-		else output("You’ve long since changed yourself into the perform form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb, flood it with your potent seed.");
+		else output("You’ve long since changed yourself into the perfect form for just this occasion, ready and eager to thrust yourself deep inside this leithan beauty to spear her womb, flood it with your potent seed.");
 		output(" You canter around the Chief’s tauric body, finding the clasps of her armor and tearing them open as you go. By the time you’re behind her, the Nova Securities plates clatter to the deck, leaving her black and yellow leithan chitin exposed.");
 
 		output("\n\nThat, and the lush black lips of her sex, and the dark donut above it. The Chief’s pussy is nice and wide, perfectly tear-drop shaped and smeared with slimy, sweet-smelling leithan arousal. You drink the smell in, letting it burn into your mind and set your heart ablaze. Blushing over her shoulder, the Chief curls her tail up and over her back, completely exposing herself to you, making way for your manhood. Before the fun starts, though, you can’t help but reach down and give her rump an appreciative grope, brushing your fingers along the thick black lips of her sex.");

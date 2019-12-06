@@ -431,7 +431,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		{
 			output("A feeling of pressure in your bowels has been gathering for some time now, and you gasp as your back passage spasms and a gush of oil warms your");
 			if (pc.hasLowerGarment()) output(" [pc.lowerUndergarment].");
-			else output(" your inner thighs.");
+			else output(" inner thighs.");
 			if (inShip || inPublic || InRoomWithFlag(GLOBAL.PRIVATE))
 			{
 				output(" You waddle as fast as you possibly can to the nearest restroom. You get a few stares, but this is the frontier");
@@ -456,7 +456,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 		{
 			output("A feeling of something dragging downwards in your womb has been gathering for some time now, and you gasp as your pussy suddenly spasms and a gush of oil warms your");
 			if (pc.hasLowerGarment()) output(" [pc.lowerUndergarment].");
-			else output(" your inner thighs.");
+			else output(" inner thighs.");
 			if (inShip || inPublic || InRoomWithFlag(GLOBAL.PRIVATE))
 			{
 				output(" You waddle as fast as you possibly can to the nearest restroom. You get a few looks, but this is the frontier;");

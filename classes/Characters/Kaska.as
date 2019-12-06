@@ -19,7 +19,7 @@
 		//constructor
 		public function Kaska()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -71,31 +71,33 @@
 			this.thickness = 40;
 			this.tone = 40;
 			this.hairColor = "reddish purple";
-			this.hairType = GLOBAL.TYPE_HUMAN;
+			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.scaleColor = "unknown";;
 			this.furColor = "unknown";
 			this.hairLength = 9;
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.TYPE_HUMAN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "caramel";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceType = GLOBAL.TYPE_DZAAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 1;
 			//Should be set to Dzaan once that type is coded
-			this.earType = 0;
+			this.earType = GLOBAL.TYPE_DZAAN;
+			this.earLength = 4;
 			this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
-			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_HUMAN;
+			this.hornType = GLOBAL.TYPE_DZAAN;
+			this.hornLength = 0;
+			this.armType = GLOBAL.TYPE_DZAAN;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
 			//Should be Dzaan
-			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_DZAAN;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
@@ -138,6 +140,7 @@
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 5;
 			this.createCock();
+			this.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 			this.cocks[0].cLengthRaw = 11;
 			this.cocks[0].cThicknessRatioRaw = 1.2;
 			this.cocks[0].flaccidMultiplier = .75;
@@ -207,6 +210,25 @@
 		override public function get bustDisplay():String
 		{
 			return "KASKA";
+		}
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+			dataObject.eyeType = GLOBAL.TYPE_HUMAN;
+			dataObject.tongueType = GLOBAL.TYPE_HUMAN;
+			dataObject.antennaeType = GLOBAL.TYPE_HUMAN;
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			
+			dataObject.faceType = GLOBAL.TYPE_DZAAN;
+			dataObject.earType = GLOBAL.TYPE_DZAAN;
+			dataObject.earLength = 4;
+			dataObject.horns = 0;
+			dataObject.hornType = GLOBAL.TYPE_DZAAN;
+			dataObject.hornLength = 0;
+			dataObject.armType = GLOBAL.TYPE_DZAAN;
+			dataObject.legType = GLOBAL.TYPE_DZAAN;
+			
+			dataObject.cocks[0].cType = GLOBAL.TYPE_DZAAN;
 		}
 			
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

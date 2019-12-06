@@ -28,6 +28,7 @@ public function multiButtonPageNote():String
 }
 public function isEquippableItem(item:ItemSlotClass):Boolean
 {
+	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) return false;
 	return	InCollection(item.type, 
 		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
 		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
@@ -73,6 +74,12 @@ public function useItem(item:ItemSlotClass):Boolean
 		//trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
 		output("Unable to use " + item.description + " at present.");
+		return false;
+	}
+	if (item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT))
+	{
+		clearOutput();
+		output("Unable to use " + item.description + " because it is categorized as ship equipment.");
 		return false;
 	}
 	if (item.type == GLOBAL.PIERCING)
@@ -639,7 +646,10 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 						}
 					}
 					
-					addButton(14, "Back", combatInventoryMenu);
+					// Alt character rerouting
+					if(usingCreature.hasPerk("PCs")) addButton(14, "Back", CombatManager.showCombatMenu);
+					// Normal player character
+					else addButton(14, "Back", combatInventoryMenu);
 					return;
 				}
 			}
@@ -662,11 +672,18 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 
 public function backToCombatInventory(item:ItemSlotClass):void
 {
-	if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
+	// Ship gadget rerouting
+	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT))
+	{
+		CombatManager.processCombat();
+	}
+	// Quick draw never loses a turn for weapon items
+	else if(pc.hasPerk("Quickdraw") && InCollection(item.type, [GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON]))
 	{
 		clearMenu();
-		addButton(0,"Next",combatInventoryMenu);
+		addButton(0, "Next", combatInventoryMenu);
 	}
+	// Normal return
 	else
 	{
 		CombatManager.processCombat();
@@ -1079,7 +1096,7 @@ public function buyItemOK(arg:Array):void
 		price = price * arg[1];
 	}
 	
-	output("Are you sure you want to buy " + arg[0].description + "(x" + arg[1] +") for");
+	output("Are you sure you want to buy " + arg[0].description + " (x" + arg[1] +") for");
 	if (hasCoupon)	output(" a discounted price of");
 	output(" " + price + " credits?");
 	
@@ -1158,7 +1175,7 @@ public function buyItemGo(arg:Array):void {
 	
 	else
 	{
-	  output("You purchase " + arg[0].description + "(x" + arg[1] + ") for " + num2Text(price) + " credits.");
+	  output("You purchase " + arg[0].description + " (x" + arg[1] + ") for " + num2Text(price) + " credits.");
 	  pc.credits -= price;
 	}
 
@@ -1508,6 +1525,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
 	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
+	if(shopkeep is Vulriks) flags["VULRIKS_SOLD"] = (flags["VULRIKS_SOLD"] != undefined ? flags["VULRIKS_SOLD"] + price : price);
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -2795,6 +2813,14 @@ public function isSameItem(itemA:ItemSlotClass, itemB:ItemSlotClass):Boolean
 	return false;
 }
 
+public function itemCollectMainMenu(newLootList:Array, clearScreen:Boolean = false):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(newLootList, clearScreen);
+}
 public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void 
 {
 	if(clearScreen) clearOutput();
@@ -2859,8 +2885,8 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
-		if ((newLootList.length >= 2)) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT)) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
+		if (newLootList.length >= 2) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
+		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection((newLootList[0] as ItemSlotClass).type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
 		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
 		else addButton(2,"Use", useLoot, newLootList);
 	}
