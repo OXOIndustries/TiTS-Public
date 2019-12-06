@@ -4685,6 +4685,11 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			if(!eachOne) outputRouter(" The exterior folds glisten in the light, while the inner tunnel is lined with writhing, tentacle-like feelers.");
 			else outputRouter("\nEach vagina’s exterior folds glisten in the light, while the inner tunnels are lined with writhing, tentacle-like feelers.");
 			break;
+			//Bothrioc flavor
+		case GLOBAL.TYPE_BOTHRIOC:
+			if (!eachOne) outputRouter(" The exterior of " + (target == pc ? "your":"[target.hisHer]") + " bothioc pussy protrudes slightly, forming a series of four bulbs that decrease in size. The last one is capped in a curious looking tri-fold entrance with puffy and nubby labia. It's clear by the muscles inside that this pussy is meant to take as much as it can deliver.");
+			else outputRouter("\n The exterior of " + (target == pc ? "your":"[target.hisHer]") + " bothioc pussies protrude slightly, forming a series of four bulbs that decrease in size. The last ones are capped in a curious looking tri-fold entrance with puffy and nubby labia. It's clear by the muscles inside that each pussy are meant to take as much as they can deliver.");
+			break;
 		//Kui-tan flavor
 		case GLOBAL.TYPE_KUITAN:
 			if(target.vaginas[x].vaginaColor == "black") {
@@ -4724,8 +4729,8 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		//Siren flavor
 		case GLOBAL.TYPE_ANEMONE:
 		case GLOBAL.TYPE_SIREN:
-			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
-			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) ? "aphrodisiac-laced" : "pleasure-inducing") + " cilia.");
+			if(!eachOne) outputRouter(" The exterior opening is framed in writhing tentacles and the interior is lined with pleasure-inducing cilia.");
+			else outputRouter("\nEach vagina’s exterior openings are framed in writhing tentacles and the interiors are lined with pleasure-inducing cilia.");
 			break;
 		//Goblin flavor
 		case GLOBAL.TYPE_GABILANI:

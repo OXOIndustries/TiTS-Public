@@ -6263,6 +6263,31 @@
 				tailFlags.splice(tailFlags.indexOf(arg), 1);
 			}
 		}
+		public function clearTailGenitalFlags():void {
+			switch (true)
+			{
+				case hasTailFlag(GLOBAL.FLAG_TAILCOCK):
+					removeTailFlag(GLOBAL.FLAG_TAILCOCK);
+				case hasTailFlag(GLOBAL.FLAG_TAILCUNT):
+					removeTailFlag(GLOBAL.FLAG_TAILCUNT);
+				case hasTailFlag(GLOBAL.FLAG_OVIPOSITOR):
+					removeTailFlag(GLOBAL.FLAG_OVIPOSITOR);
+				case hasTailFlag(GLOBAL.FLAG_FLARED):
+					removeTailFlag(GLOBAL.FLAG_FLARED);
+				case hasTailFlag(GLOBAL.FLAG_SHEATHED):
+					removeTailFlag(GLOBAL.FLAG_SHEATHED);
+				case hasTailFlag(GLOBAL.FLAG_KNOTTED):
+					removeTailFlag(GLOBAL.FLAG_KNOTTED);
+				case hasTailFlag(GLOBAL.FLAG_RIBBED):
+					removeTailFlag(GLOBAL.FLAG_RIBBED);
+				case hasTailFlag(GLOBAL.FLAG_NUBBY):
+					removeTailFlag(GLOBAL.FLAG_NUBBY);
+				case hasTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED):
+					removeTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+				case hasTailFlag(GLOBAL.FLAG_STINGER_BASED):
+					removeTailFlag(GLOBAL.FLAG_STINGER_BASED);
+			}
+		}
 		public function clearTailFlags(): void {
 			tailFlags = new Array();
 		}
@@ -11819,6 +11844,300 @@
 		public function isFlexible(): Boolean {
 			return (hasPerk("Flexibility") || hasStatusEffect("Gel Body"));
 		}
+		
+		//Checks to see if the player has unlocked the type
+		public function hasTypeUnlocked(type:int, bodypart:String =  "all"):Boolean
+		{
+			switch (type)
+			{
+				//Default unlocks (starter races)
+				case GLOBAL.TYPE_HUMAN:
+				case GLOBAL.TYPE_CANINE:
+				case GLOBAL.TYPE_FELINE:
+				case GLOBAL.TYPE_KUITAN:
+				case GLOBAL.TYPE_HUMANMASKED:
+				case GLOBAL.TYPE_LEITHAN:
+				case GLOBAL.TYPE_NAGA:
+				case GLOBAL.TYPE_GRYVAIN:
+				case GLOBAL.TYPE_SIREN:
+					return true;
+					break;
+					
+				//Codex unlocks
+				case GLOBAL.TYPE_BEE:
+				case GLOBAL.TYPE_SMALLBEE:
+					if (CodexManager.entryUnlocked("Zil")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_BOTHRIOC:
+					if (CodexManager.entryUnlocked("Bothrioc")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_DAYNAR:
+					if (CodexManager.entryUnlocked("Daynar")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_DRACONIC:
+				case GLOBAL.TYPE_SMALLDRACONIC:
+					if (CodexManager.entryUnlocked("Fanfir") || CodexManager.entryUnlocked("The Dragon's Hoard")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FLOWER:
+					if (CodexManager.entryUnlocked("Venus Pitchers") || CodexManager.entryUnlocked("Cockvines")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FROG:
+					if (CodexManager.entryUnlocked("Kerokoras")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					if (CodexManager.entryUnlocked("Frostwyrm")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_GABILANI:
+					if (CodexManager.entryUnlocked("Gabilani")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_KORGONNE:
+					if (CodexManager.entryUnlocked("Korgonne")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_LAPINARA:
+					if (CodexManager.entryUnlocked("Lapinara")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MILODAN:
+					if (CodexManager.entryUnlocked("Milodan")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOTHRINE:
+					if (CodexManager.entryUnlocked("Mothrine")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOUSE:
+				case GLOBAL.TYPE_MOUSEMAN:
+					if (CodexManager.entryUnlocked("Rodenians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MOUTHGINA:
+					if (CodexManager.entryUnlocked("Muffstick")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MYR:
+					if (CodexManager.entryUnlocked("Gold Myr") || CodexManager.entryUnlocked("Red Myr")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_NALEEN_FACE:
+					if (CodexManager.entryUnlocked("Naleen")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_NYREA:
+					if (CodexManager.entryUnlocked("Nyrea")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_OVIR:
+					if (CodexManager.entryUnlocked("Ovir")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_RAHN:
+					if (CodexManager.entryUnlocked("Rahn")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_RASKVEL:
+					if (CodexManager.entryUnlocked("Raskvel")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_ROEHM:
+					if (CodexManager.entryUnlocked("Roehm")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					if (CodexManager.entryUnlocked("Saurmorians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SIMII:
+					if (CodexManager.entryUnlocked("Simii")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SYDIAN:
+					if (CodexManager.entryUnlocked("Sydians")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_TENTACLE:
+					if (CodexManager.entryUnlocked("Tentatool")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_THRAGGEN:
+					if (CodexManager.entryUnlocked("Thraggen")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_VANAE:
+				case GLOBAL.TYPE_VANAE_MAIDEN:
+				case GLOBAL.TYPE_VANAE_HUNTRESS:
+					if (CodexManager.entryUnlocked("Vanae")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_VENUSPITCHER:
+					if (CodexManager.entryUnlocked("Venus Pitchers")) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_XHELARFOG:
+					if (CodexManager.entryUnlocked("Xhelarfog")) return true; 
+					else return false;
+					break;
+					
+				//Other unlocks
+				case GLOBAL.TYPE_DEMONIC:
+				case GLOBAL.TYPE_SMALLDEMONIC:
+				case GLOBAL.TYPE_SUCCUBUS:
+					if (flags["MET_SERA"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_HRAD:
+					if (flags["LIRIEL_MET"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_MLP:
+					if (kGAMECLASS.silly) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_SYLVAN:
+				case GLOBAL.TYPE_DARK_SYLVAN:
+					if(flags["MET_CERIA"] != undefined) return true;
+					else return false;
+					break;
+				case GLOBAL.TYPE_WATERQUEEN:
+					if (flags["QUEEN_OF_THE_DEEP_ENCOUNTERED"] != undefined) return true;
+					else return false;
+					break;
+					
+				//Terrestial animals. I guess unlock by default?
+				case GLOBAL.TYPE_AVIAN:
+				case GLOBAL.TYPE_BADGER:
+				case GLOBAL.TYPE_BOVINE:
+				case GLOBAL.TYPE_DEER:
+				case GLOBAL.TYPE_DOGGIE:
+				case GLOBAL.TYPE_DOVE:
+				case GLOBAL.TYPE_EQUINE:
+				case GLOBAL.TYPE_GOAT:
+				case GLOBAL.TYPE_HYENA:
+				case GLOBAL.TYPE_KANGAROO:
+				case GLOBAL.TYPE_LAPINE:
+				case GLOBAL.TYPE_QUAD_LAPINE:
+				case GLOBAL.TYPE_LUPINE:
+				case GLOBAL.TYPE_PANDA:
+				case GLOBAL.TYPE_REDPANDA:
+				case GLOBAL.TYPE_RHINO:
+				case GLOBAL.TYPE_SAURIAN:
+				case GLOBAL.TYPE_SHARK:
+				case GLOBAL.TYPE_SHEEP:
+				case GLOBAL.TYPE_SWINE:
+				case GLOBAL.TYPE_VULPINE:
+					return true;
+					break;
+					
+				//No unlock ever. For things that use their own subsystems
+				case GLOBAL.TYPE_COCKVINE:
+				case GLOBAL.TYPE_CUNTSNAKE:
+				case GLOBAL.TYPE_GOOEY:
+				case GLOBAL.TYPE_MIMBRANE:
+				case GLOBAL.TYPE_SYNTHETIC:	
+				case GLOBAL.TYPE_SANDWORM:
+				case GLOBAL.TYPE_SANDWORM_PARASITE:
+					return false;
+					break;
+				
+				//No unlock yet.. Putting bugs and undersea animals (save sharks, because shark bites) here because they're a bit out there.
+				case GLOBAL.TYPE_ADREMMALEX:
+				case GLOBAL.TYPE_ANEMONE:
+				case GLOBAL.TYPE_ARACHNID:
+				case GLOBAL.TYPE_DRAGONFLY:
+				case GLOBAL.TYPE_DRIDER:
+				case GLOBAL.TYPE_DRYAD:
+				case GLOBAL.TYPE_INHUMAN:
+				case GLOBAL.TYPE_JANERIA:
+				case GLOBAL.TYPE_LIZAN:
+				case GLOBAL.TYPE_NARWHAL:
+				case GLOBAL.TYPE_WORG:
+					return false;
+					break;
+					
+				default:
+					return false;
+					break;
+			}
+			return false;
+		}
+		
+		//Builds an array with valid shift options for the body part. Array[x][0] is type, Array[x][1] is name
+		public function getValidShiftTypes(bodyPart:String):Array
+		{
+			var validShiftTypes:Array = new Array(); 
+			var i:int = 0;
+			switch (bodyPart)
+			{
+				case "cock":
+					//Run through all the types, checking each
+					for (i; i < GLOBAL.VALID_COCK_TYPES.length; i++)
+					{
+						if (hasTypeUnlocked(GLOBAL.VALID_COCK_TYPES[i]))
+						{
+							//Name overrides for when the default would be inappropriate
+							switch (GLOBAL.VALID_COCK_TYPES[i])
+							{
+								case GLOBAL.TYPE_HUMAN:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Terran"]);
+									break;
+								case GLOBAL.TYPE_CANINE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Ausar"]);
+									break;
+								case GLOBAL.TYPE_FELINE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Kaithrit"]);
+									break;
+								case GLOBAL.TYPE_NAGA:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Leithan"]);
+									break;
+								case GLOBAL.TYPE_BEE:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], "Zil"]);
+									break;
+								default:
+									validShiftTypes.push([GLOBAL.VALID_COCK_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_COCK_TYPES[i]]]);
+									break;
+							}
+						}
+					}
+					break;
+
+				case "vagina":
+					for (i; i < GLOBAL.VALID_VAGINA_TYPES.length; i++)
+					{
+						//
+						if (hasTypeUnlocked(GLOBAL.VALID_VAGINA_TYPES[i]))
+						{
+							switch (GLOBAL.VALID_VAGINA_TYPES[i])
+							{
+								case GLOBAL.TYPE_HUMAN:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Terran"]);
+									break;
+								case GLOBAL.TYPE_SNAKE:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Snake-like"]);
+									break;
+								case GLOBAL.TYPE_BEE:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], "Zil"]);
+									break;
+								default:
+									validShiftTypes.push([GLOBAL.VALID_VAGINA_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_VAGINA_TYPES[i]]]);
+									break;
+							}
+						}
+					}
+					break;
+				default:
+					break;
+			}
+			return validShiftTypes;
+		}
+		
 		//Change cunt type!
 		public function shiftVagina(slot:int = 0, type:int = 0): void {
 			if (slot + 1 > vaginas.length) return;
@@ -11961,6 +12280,9 @@
 					vaginas[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
 					break;
 				case GLOBAL.TYPE_BOTHRIOC:
+					vaginas[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					vaginas[slot].vaginaColor = "light purple";
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
 					break;
@@ -12219,6 +12541,56 @@
 					break;
 			}
 		}
+		
+		//Shift tail genitals
+		public function shiftTailgina(newType:int):void
+		{
+			clearTailGenitalFlags();
+			addTailFlag(GLOBAL.FLAG_TAILCUNT);
+			
+			switch(newType)
+			{
+				case GLOBAL.TYPE_HUMAN:
+					tailGenitalArg = GLOBAL.TYPE_HUMAN;
+					break;
+				case GLOBAL.TYPE_EQUINE:
+					tailGenitalArg = GLOBAL.TYPE_EQUINE;
+					break;
+				case GLOBAL.TYPE_CANINE:
+					tailGenitalArg = GLOBAL.TYPE_CANINE;
+					break;
+				case GLOBAL.TYPE_SIREN:
+					tailGenitalArg = GLOBAL.TYPE_SIREN;
+					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					addTailFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					addTailFlag(GLOBAL.FLAG_STINGER_BASED);
+					break;
+				case GLOBAL.TYPE_GRYVAIN:
+					tailGenitalArg = GLOBAL.TYPE_GRYVAIN;
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_FELINE:
+					tailGenitalArg = GLOBAL.TYPE_FELINE;
+					addTailFlag(GLOBAL.FLAG_NUBBY);
+					break;
+				case GLOBAL.TYPE_VULPINE:
+					tailGenitalArg = GLOBAL.TYPE_VULPINE;
+					addTailFlag(GLOBAL.FLAG_SHEATHED);
+					break;
+				case GLOBAL.TYPE_FLOWER:
+					tailGenitalArg = GLOBAL.TYPE_FLOWER;
+					addTailFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+					break;
+				case GLOBAL.TYPE_TENTACLE:
+					tailGenitalArg = GLOBAL.TYPE_TENTACLE;
+					break;
+				default:
+					tailGenitalArg = newType;
+					break;
+			}
+		}
+		
 		//PC can fly?
 		public function canFly(): Boolean {
 			//web also makes false!
@@ -16081,30 +16453,32 @@
 			{
 				if (special != "appearance tail") desc += vag.vaginaColor + ", ";
 				if (type == GLOBAL.TYPE_EQUINE) desc += "equine ";
-				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
-				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
-				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
-				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
 				else if (type == GLOBAL.TYPE_ANEMONE) desc += "sea anemone-";
-				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
-				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
+				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
-				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
-				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
+				else if (type == GLOBAL.TYPE_BOTHRIOC) desc += "bothrioc ";
+				else if (type == GLOBAL.TYPE_CANINE) desc += "canine ";
+				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
+				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
+				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
+				else if (type == GLOBAL.TYPE_GABILANI) desc += "gabilani ";
+				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
+				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
+				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
+				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
+				else if (type == GLOBAL.TYPE_LAPINARA) desc += "lapinara ";
 				else if (type == GLOBAL.TYPE_LEITHAN) desc += "leithan mare-";
 				else if (type == GLOBAL.TYPE_LIZAN) desc += "reptilian ";
-				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
-				else if (type == GLOBAL.TYPE_GABILANI) desc += "gabilani ";
-				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
-				else if (type == GLOBAL.TYPE_HUMAN) desc += "human ";
-				else if (type == GLOBAL.TYPE_KUITAN) desc += "kui-tan ";
-				else if (type == GLOBAL.TYPE_FLOWER) desc += "orchid ";
-				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
-				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
-				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
 				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
-				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
+				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
+				else if (type == GLOBAL.TYPE_NYREA) desc += "nyrean ";
 				else if (type == GLOBAL.TYPE_SAURMORIAN) desc += "saurmorian ";
+				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
+				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
+				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
+				else if (type == GLOBAL.TYPE_SYNTHETIC) desc += "synthetic ";
+				else if (type == GLOBAL.TYPE_VANAE) desc += "vanae ";
+				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -16177,16 +16551,16 @@
 				else if (type == GLOBAL.TYPE_ANEMONE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "anemone-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "cilia-filled cunny", "anemone-like honeypot","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim"]);
 					else
-						desc += RandomInCollection(["anemone-pussy", "venom-pussy", "anemone-pussy", "anemone-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
+						desc += RandomInCollection(["anemone-pussy", "anemone-pussy", "anemone-slit", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_SIREN)
 				{
 					if (!simple)
-						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+						desc += RandomInCollection(["wriggling gash", "cilia-filled cunny", "suula-like honeypot","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim"]);
 					else
-						desc += RandomInCollection(["suula-pussy", "venom-pussy", "suula-pussy", "suula-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
+						desc += RandomInCollection(["suula-pussy", "suula-pussy", "suula-slit", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","suula-twat","suula-snatch","cunt"]);
 				}
 				else if (type == GLOBAL.TYPE_GRYVAIN)
 				{
@@ -16301,6 +16675,16 @@
 				{
 					if (!simple) desc += RandomInCollection("glossy ", "bestial ", "savage ", "saurmorian ");
 					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
+				}
+				else if (type == GLOBAL.TYPE_LAPINARA)
+				{
+					if (!simple) desc += RandomInCollection("chubby pussy ", "puffy pussy ", "egg-receptive cunt ", "egg-accommodating muff ", "breed-hungry snatch ");
+					desc += RandomInCollection(["lapinara pussy", "lapinara twat", "cunt", "pussy", "twat", "egg-loving muff", "xeno- pussy"]);
+				}
+				else if (type == GLOBAL.TYPE_BOTHRIOC)
+				{
+					if (!simple) desc += RandomInCollection("insectile pussy ", "oily slit ", "insectile muff ", "bulbous box ");
+					desc += RandomInCollection(["bothrioc box", "bothrioc pussy", "insectile xeno-slit", "cloaca-like cunt", "insectile vagina"]);
 				}
 				else
 				{
@@ -16566,10 +16950,14 @@
 			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && rand(100) <= bonus)
 			{
 				var collection:Array = [];
-				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged");
-				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
-				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
-				if(vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged", "crested", "ridge-filled", "ridge-laden", "ridge-lined");
+				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby", "nub-filled", "bumpy", "nub-laden", "bump-filled", "bump-laden", "protrusion-filled", "nub-lined");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("tendril-riddled", "stinger-filled", "stinger-lined", "stinger-laden", "stinger-riddled");
+				if (vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-equipped", "stinger-ringed", "stinger-framed");
+				if (vag.hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) collection.push("aphrodisiac-laced");
+				if (vag.hasFlag(GLOBAL.FLAG_OVIPOSITOR)) collection.push("ovipositing", "ovipositor", "egg-injecting", "egg-laying");
+				if (vag.hasFlag(GLOBAL.FLAG_TONGUE)) collection.push("tongue-bearing", "tongue-equipped", "tongue-armed", "tongue-occupied");
+				
 				if(collection.length > 0)
 				{
 					if(adjectiveCount > 0) desc += ", ";

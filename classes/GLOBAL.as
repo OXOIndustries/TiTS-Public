@@ -704,6 +704,9 @@
 			FLAG_TAPERED,
 			FLAG_CORKSCREWED,
 			FLAG_SHORT,
+			FLAG_APHRODISIAC_LACED,
+			FLAG_TENDRIL,
+			FLAG_STINGER_BASED,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -1075,6 +1078,12 @@
 			TYPE_MOUTHGINA,
 			TYPE_FROSTWYRM,
 			TYPE_SAURMORIAN,
+			TYPE_ANEMONE,
+			TYPE_SHARK,
+			TYPE_FELINE,
+			TYPE_AVIAN,
+			TYPE_KORGONNE,
+			TYPE_BOTHRIOC,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1089,6 +1098,7 @@
 			FLAG_GOOEY,
 			FLAG_SLIGHTLY_PUMPED,
 			FLAG_PUMPED,
+			FLAG_HYPER_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
 			FLAG_PLUGGED,
