@@ -47,7 +47,7 @@ package classes.Characters
 			
 			this.meleeWeapon = new Fists();
 			this.armor.longName = "white nanofiber catsuit";
-			this.armor.defense = 2;
+			this.armor.defense = 5;
 			
 			rangedWeapon.baseDamage.drug.damageValue = 15;
 			
@@ -61,9 +61,9 @@ package classes.Characters
 			this.reflexesRaw = 20;
 			this.aimRaw = 25;
 			this.intelligenceRaw = 30;
-			this.willpowerRaw = 25;
+			this.willpowerRaw = 20;
 			this.libidoRaw = 100;
-			this.HPMod = 0;
+			this.HPMod = 20;
 			this.shield = new HammerShield;
 			this.shield.shields = 150;
 			this.shieldsRaw = this.shieldsMax();
@@ -299,17 +299,19 @@ package classes.Characters
 				this.createStatusEffect("Medipen");			
 				output("<i>“Fuck, it’s getting hot in here!”</i> Lumi says as she shuffles around and rubs her thighs together. By this point, you can easily picture the wet mess her pussy is making inside the white catsuit. In the blink of an eye, she takes a medipen from one of her tool belts and pricks her leg. A relieved smile spreads across the goblin’s lips, and her restless shuffling ceases altogether. <i>“So, where were we again?”</i> She asks excitedly, now that her concentration has been restored.");
 			}
-			else if (this.shields() < 60 && this.energy() >= 33 && !this.hasStatusEffect("Deflector Regeneration"))
+			else if (this.shields() < 60 && this.energy() >= 33 && !this.hasStatusEffect("Deflector Regeneration") && !this.hasStatusEffect("DefRegenUsed"))
 			{
-				//use perk to regen shields
+				//use perk to regen shields once per battle
 				CombatAttacks.DeflectorRegenerationImpl(alliedCreatures, hostileCreatures, this, target);
 				this.energy(-33);
+				this.createStatusEffect("DefRegenUsed");			
 			}
-			else if (this.energy() >= 15 && !this.hasStatusEffect("Charged Shield"))
+			else if (this.energy() >= 15 && !this.hasStatusEffect("Charged Shield")&& !this.hasStatusEffect("ChargeShieldUsed"))
 			{
-				//use perk to make shield blind attackers and damage melee attackers
+				//use perk to make shield blind attackers and damage melee attackers (once per battle besides starting use)
 				CombatAttacks.ChargeShieldImpl(alliedCreatures, hostileCreatures, this, target);
 				this.energy(-15);
+				this.createStatusEffect("ChargeShieldUsed");	
 			}
 			else if (target.hasStatusEffect("Stealth Field Generator") || target.hasStatusEffect("Taking Cover") || target.hasStatusEffect("Spear Wall"))
 			{
@@ -338,8 +340,8 @@ package classes.Characters
 			else
 			{
 				output("\nThe 'projectile' finds a breach in your defense, seeping through a patch of unprotected [pc.skinFurScalesNoun]. Sensual pleasure spreads from the affected area, and your head gets hazy for a hot second before you manage to refocus on the battle.");
-				applyDamage(new TypeCollection( { drug: 10 + rand(10) } ), this, target, "minimal");
-				applyDamage(new TypeCollection( { poison: 1 + rand(3) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { drug: 15 + rand(10) } ), this, target, "ranged");
+				applyDamage(new TypeCollection( { poison: 1 + rand(3) } ), this, target, "ranged");
 			}
 		}
 	
@@ -349,17 +351,17 @@ package classes.Characters
 			if (rn == 0)
 			{
 				output("Lumi cups her breasts and gives them a little squeeze, to show just how firm and perky they are, not the least bit of sag. The motion causes her obscenely large nipples to press further against the fabric of the nanosuit, which molds to their shape, leaving almost nothing to the imagination. <i>“If you behave, I might even let you suck on them, you know. I bet they'd feel wonderful on your [pc.lipsChaste],”</i> she smiles and winks coyly.");
-				applyDamage(new TypeCollection( { tease: 5 + rand(5) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { tease: 15 } ), this, target, "minimal");
 			}
 			else if (rn == 1)
 			{
 				output("The Gabilani turns at an angle that gives you a profile view of her plump body in all its luscious glory, then she shifts one of her thick legs to the side, emphasising her beautiful asscheeks, their curves perfectly delineated by the catsuit. Without warning, she raises an open palm and brings it down on her own assflesh with a loud slap, letting out a moan of pained pleasure as her butt jiggles from the force. <i>“To be honest, I love when someone spanks my ass while we fuck,”</i> she admits with a hint of embarrassment.");
-				applyDamage(new TypeCollection( { tease: 7 + rand(8) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { tease: 15 + rand(5) } ), this, target, "minimal");
 			}
 			else
 			{
 				output("The tech plucks a particularly large purple dildo from her ‘tool belt’ and gives it a lick, then proceeds to rub it over her cheeks, lips, breasts and navel, until finally reaching the honeypot. She fixes you with a sultry gaze and starts rubbing the toy between the big lips of her pumped-up snatch. Soon enough, a damp patch appears on the catsuit, her fem-lube leaking faster than even the high-tech garment can absorb. Lumi bites her lower lip and gives you a look of pure need before resuming her battle stance.");
-				applyDamage(new TypeCollection( { tease: 10 + rand(10) } ), this, target, "minimal");
+				applyDamage(new TypeCollection( { tease: 15 + rand(10) } ), this, target, "minimal");
 			}
 		}
 	}

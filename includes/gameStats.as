@@ -6566,7 +6566,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["LUMI_PC_WINS"] != undefined) output2("\n<b>* Lumi, Times You Defeated Her:</b> " + flags["LUMI_PC_WINS"]);
 					if(flags["LUMI_PC_SEX"] != undefined) output2("\n<b>* Lumi, Times You Had Sex:</b> " + flags["LUMI_PC_SEX"]);
 					if(flags["LUMI_PC_MILKED"] != undefined) output2("\n<b>* Lumi, Times She Milked You:</b> " + flags["LUMI_PC_MILKED"]);
-					if(flags["LUMI_ADDICTION"] != undefined) output2("\n<b>* Lumi, Your Addiction Level:</b> " + flags["LUMI_ADDICTION"]);
+					if(flags["LUMI_ADDICTION"] != undefined) output2("\n<b>* Lumi, Your Addiction Level:</b> " + lumiAddictionLevel());
 				}
 				if(flags["MET_LGBT"] != undefined) output2("\n<b>* Luxury Gabilani Bipedal Transport, Times Encountered:</b> " + flags["MET_LGBT"]);
 				if(flags["MET_FEMALE_RASKVEL"] != undefined)

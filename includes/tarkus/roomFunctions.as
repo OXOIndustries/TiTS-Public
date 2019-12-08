@@ -260,7 +260,7 @@ public function rustPlainsEncounters():Boolean {
 
 		if (biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
-		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: 1} );
+		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: pc.hasPerk("Breed Hungry") ? 6 : 2} );
 
 		//Run the event
 		weightedRand(e)();
@@ -301,7 +301,7 @@ public function rustCoastEncounters():Boolean {
 
 		if (biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
-		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: 1} );
+		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: pc.hasPerk("Breed Hungry") ? 6 : 2} );
 		
 		//Run the event
 		weightedRand(e)();
@@ -347,7 +347,7 @@ public function rustRidgesEncounters():Boolean {
 
 		if (biancaInTheWilderness("tarkus")) e.push( { v: biancaRandomEncounter, w: 1} );
 		
-		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: 1} );
+		if (lumiEncounterActive()) e.push( { v: encounterLumi, w: pc.hasPerk("Breed Hungry") ? 6 : 2} );
 		
 		//Run the event
 		weightedRand(e)();

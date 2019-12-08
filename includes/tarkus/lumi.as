@@ -42,6 +42,31 @@ public function tryKnockUpLumi():Boolean
 	//empty placeholder function
 	return false;
 }
+public function lumiAddictionLevel(amt:int = 0, supercede:Boolean = false):int
+{
+	if (flags["LUMI_ADDICTION"] == null) flags["LUMI_ADDICTION"] = 0;
+	
+	var lvl:int = flags["LUMI_ADDICTION"];
+	
+	if (supercede) lvl = amt;
+	else lvl += amt;
+	
+	if (lvl > 50) lvl = 50;
+	if (lvl < 0) lvl = 0;
+	
+	flags["LUMI_ADDICTION"] = lvl;
+	
+	return lvl;
+}
+public function lumiDisable(numHours:int=1):void
+{
+	if (numHours < 1) numHours = 1;
+	var setTime:int = numHours * 60;
+	
+	if (pc.hasPerk("Breed Hungry")) setTime *= .5;
+	
+	flags["LUMI_DISABLE"] = GetGameTimestamp() + setTime;
+}
 public function lumiEncounterActive():Boolean
 {
 	if (pc.level < 6) return false;
@@ -64,16 +89,18 @@ public function encounterLumi():void
 		output("Your wonderings are suddenly interrupted by a familiar voice coming from behind: <i>“Oh, hi there [pc.name], fancy meeting you again!”</i> You spin around and identify the source - it’s Lumi, the Gabilani tech, who beams a friendly smile at you, though her hand is worryingly close to the strange gun on her belt. You ask her what she’s doing here, and she answers it’s pretty much the same: looking for exotic samples of genetic material.");
 		output("\n\nSpeaking of which... <i>“Say, feel like having a harvesting session? I plug some toys on you, and we have a sexy time while the machines do the work.”</i>");
 		if (flags["LUMI_PC_MILKED"] >= 1 && flags["LUMI_PC_WINS"] >= 5) output(" She hesitates for a moment before adding: <i>“Or maybe we could try something else?”</i>");
-		
-		if (flags["LUMI_ADDICTION"] >= 9 && pc.libido() >= 70 && rand(100) >= pc.WQ())
+		if (lumiAddictionLevel() >= 9 && pc.libido() >= 70 && (rand(100) <= (50 + lumiAddictionLevel() - (Math.round(pc.willpower()/3)))))
 		{
+			
 			output("\n\nIt felt sooo good the last time you and Lumi had sex, your body is already getting all hot and bothered. In fact, how come you’ve managed to go so long without getting a taste of Lumi’s delicious pussy juices?! Trying (and probably failing) to keep yourself from sounding too needy, you shrug and tell her that sure, you wouldn’t mind helping her out.");
 			output("\n\nA corner of your brain knows that you just can’t wait to get intoxicated by her drugs, then fitted with a dozen or so toys and milked like the slut you are.");
 			processTime(2);
 			clearMenu();
+			//subtract 3 from addiction to balance out the 3 added in the submission scene so the player doesn't spiral downward without a chance to recover
+			lumiAddictionLevel(-3);
 			addButton(0,"Next",lumiSubmit, tEnemy);	
 		}
-		else if (flags["LUMI_ADDICTION"] >= 6 && pc.libido() >= 50)
+		else if (lumiAddictionLevel() >= 6 && pc.libido() >= 50)
 		{
 			output("\n\nYou start to nod affirmatively but catch yourself and manage to turn the gesture into an awkward cough. What the heck: you were about to say yes without even thinking about it! Though, to be fair, just remembering the things she made you feel with her drugs and toys is enough to get a reaction from your groin. Maybe it wouldn’t be so bad to have some fun with Lumi every once in a while...");
 			
@@ -201,9 +228,7 @@ public function lumiDefeat():void
 		output("<i>“I’m so glad you’ve decided to make it easy for the both of us!”</i> Unceremoniously, the goblin tech pulls a purple-colored inhaler out of her backpack and takes a quick whiff, which causes her expression to shift into a dopey smile as she approaches you. <i>“Want some too?”</i> She offers. You’ve already decided to have fun, so might as well go all the way. Besides, whatever it is, your nanomachines will probably prevent it from causing any real harm.");
 		output("\n\nShortly after you take your first whiff, strength quickly leaves your body, and your lust-addled brain finds it increasingly hard to think clearly. Whatever she gave you, it’s potent stuff! And the sensation only gets better as you and Lumi share a few more breaths. In fact, you can’t recall when was the last time you’ve felt so... relaxed... like your worries are all melting away, and the only thing you need to focus on is feeling good.");
 		
-		IncrementFlag("LUMI_ADDICTION");
-		IncrementFlag("LUMI_ADDICTION");
-		IncrementFlag("LUMI_ADDICTION");
+		lumiAddictionLevel(3);
 		pc.libido(2);
 		pc.taint(1);
 		pc.maxOutLust();
@@ -211,15 +236,14 @@ public function lumiDefeat():void
 	else if (pc.HP() <= 0)
 	{
 		output("Lumi’s final attack breaks your balance, causing your [pc.legOrLegsNoun] to give under your own weight. Damn, you didn’t expect the chubby shortstack to be actually good in a fight! Or perhaps it’s just the drugs you were exposed to, which sap your strength and muddle your mind with lust. It gets increasingly hard to think clearly, but the sensation is actually pretty good. You can’t recall when was the last time you felt so... relaxed... like your worries are all melting away...");
-		IncrementFlag("LUMI_ADDICTION");
+		lumiAddictionLevel(1);
 		pc.maxOutLust();
 	}
 	else
 	{
 		output("Releasing a loud, whorish moan, you finally give up the will to resist - your [pc.skin] has become so sensitive that even the friction of your [pc.gear] feels like a sensual caress. No doubt it’s the effect of Lumi’s drugs settling in, but you find that your lust-addled brain couldn’t care less. It’s as if a weight has been suddenly lifted off your shoulder, and your worries are all melting away, allowing you to truly relax for the first time in ages. And to focus on what really matters: feeling good.");
 		
-		IncrementFlag("LUMI_ADDICTION");
-		IncrementFlag("LUMI_ADDICTION");
+		lumiAddictionLevel(2);
 		pc.libido(1);
 		pc.maxOutLust();
 	}
@@ -256,21 +280,25 @@ public function lumiHarvesting():void
 	if (pc.hasCock())
 	{
 		output("\n\n[pc.EachCock] is equipped with a smooth, flexible tube that slides comfortably inside the urethra, and then a rubbery vibrator ring is wrapped just below the crown, holding the tube in place. The tube itself connects to a cum reservoir nearby, with a glassy surface and quantity markers.");
-		if (pc.hasTailCock()) output(" The same treatment is given to your [pc.tailCocks].");
+		if (pc.hasTailCock()) output(" The same treatment is given to your tail-mounted [pc.tailCocks].");
 		if (pc.balls > 0) output(" Your [pc.sack], in turn, receives a stretchy ball harness, which Lumi masterfully adjusts to a snug fit, compressing your gonads as much as possible without it getting painful.");
 	}
 	else if (pc.hasTailCock())
 	{
-		output("\n\n[pc.EachTailCock] is equipped with a smooth, flexible tube that slides comfortably inside the urethra, and then a rubbery vibrator ring is wrapped just below the crown, holding the tube in place. The tube itself connects to a cum reservoir nearby, with a glassy surface and quantity markers.");
+		if (pc.tailCount > 1) output("\n\nEach of your tail-mounted [pc.tailCocks]");
+		else output("\n\nYour tail-mounted [pc.tailCock]");
+		output(" is equipped with a smooth, flexible tube that slides comfortably inside the urethra, and then a rubbery vibrator ring is wrapped just below the crown, holding the tube in place. The tube itself connects to a cum reservoir nearby, with a glassy surface and quantity markers.");
 	}
-	else if (pc.hasVagina())
+	if (pc.hasVagina())
 	{
 		output("\n\nInto [pc.eachVagina] goes a black nubby dildo, complete with a bullet-vibe protrusion at the lower end. Lumi makes sure that the vibe is perfectly positioned to stimulate the [pc.clitNoun] before pressing a button that causes the dildo’s base to inflate like a knot, keeping it locked in place.");
-		if (pc.hasTailCunt()) output(" The same treatment is given to your [pc.tailCunts].");
+		if (pc.hasTailCunt()) output(" The same treatment is given to your tail-mounted [pc.tailCunts].");
 	}
 	else if (pc.hasTailCunt())
 	{
-		output("\n\nInto [pc.EachTailCunt] goes a black nubby dildo, complete with a bullet-vibe protrusion at the lower end. Lumi makes sure that the vibe is perfectly positioned to stimulate the clit before pressing a button that causes the dildo’s base to inflate like a knot, keeping it locked in place.");
+		if (pc.tailCount > 1) output("\n\nInto each of your tail-mounted [pc.tailCunts]");
+		else output("\n\nInto your tail-mounted [pc.tailCunt]");
+		output(" goes a black nubby dildo, complete with a bullet-vibe protrusion at the lower end. Lumi makes sure that the vibe is perfectly positioned to stimulate the clit before pressing a button that causes the dildo’s base to inflate like a knot, keeping it locked in place.");
 	}
 	
 	output("\n\nYou watch in powerless apprehension as she takes out a metallic plug, lubes it up and starts pressing it against your [pc.butthole]. The bulb-like object is slender at the tip, easily parting your entrance before the midsection stretches you up, but the pain is less than expected and lasts only a few seconds once the plug is fully lodged, your ass quickly conforming to its shape.");
@@ -288,7 +316,7 @@ public function lumiHarvesting():void
 		output("\n\nThe effect is almost instantaneous: your already-hard " + (pc.cockTotal() > 1 ? "boners start" : "boner starts") + " swelling up even more, growing in both size and girth before your awed eyes, which causes the rubbery vibrator");
 		if (pc.cockTotal() > 1) output(" rings to tighten around the cockheads, though the self-adjusting toys yield a bit to compensate.");
 		else output(" ring to tighten around the cockhead, though the self-adjusting toy yields a bit to compensate.");
-		output(" Thankfully, it doesn’t feel <i>too</i> constricting, and the growth stops after about five inches, leaving you both relieved and wanting more. <i>“Don’t worry, it’s temporary,”</i> Lumi ensures, giggling at your disconcert.");
+		output(" Thankfully, it doesn’t feel <i>too</i> constricting, and the growth stops after about ");
 		
 		for (x = 0; x < pc.cockTotal(); x++)
 		{
@@ -307,7 +335,11 @@ public function lumiHarvesting():void
 				pc.cocks[x].cLengthRaw += 6;
 				pc.cocks[x].cThicknessRatioRaw += .4;
 			}			 
-		}		
+		}	
+		if (pc.hasPerk("Mini")) output("three");
+		else if (pc.hasPerk("Hung")) output("nine");
+		else output("six");
+		output(" inches, leaving you both relieved and wanting more. <i>“Don’t worry, it’s temporary,”</i> Lumi ensures, giggling at your disconcert.");
 	}
 	
 	output("\n\nThen, tapping some quick commands on her wristpad, she turns on the toys.");
@@ -318,21 +350,23 @@ public function lumiHarvesting():void
 		output("\n\nNext, the ring under your [pc.biggestCockHead] springs to life, vibrating in a low, comfortable frequency that has you purring like a cat.");
 		if (pc.cockTotal() > 1) output(" And the ring on your other " + (pc.cockTotal() > 2 ? "shafts follow" : "shaft follows") + " suit.");
 		output(" [pc.EachCock] twitches needily");
-		if (pc.hasTailCock()) output(", while your [pc.tailCocks] " + (pc.tailCount > 1 ? "thresh" : "threshes") + " restlessly in the air");
+		if (pc.hasTailCock()) output(", while your tail-mounted [pc.tailCocks] " + (pc.tailCount > 1 ? "thresh" : "threshes") + " restlessly in the air");
 		output(" as your mind takes in the localized stimulation.");
 	}
 	else if (pc.hasTailCock())
 	{
-		output("\n\nNext, the ring on [pc.eachTailCock] springs to life, vibrating in a low, comfortable frequency that has you purring like a cat. Your tail" + (pc.tailCount > 1 ? "s thresh" : " threshes") + " restlessly in the air as your mind takes in the localized stimulation.");
+		if (pc.tailCount > 1) output("\n\nNext, the ring on each of your tail-mounted [pc.tailCocks]");
+		else output("\n\nNext, the ring on your tail-mounted [pc.tailCock]");
+		output(" springs to life, vibrating in a low, comfortable frequency that has you purring like a cat. Your tail" + (pc.tailCount > 1 ? "s thresh" : " threshes") + " restlessly in the air as your mind takes in the localized stimulation.");
 	}
-	else if (pc.hasVagina())
+	if (pc.hasVagina())
 	{
 		output("\n\nNext up is the vibe stationed on your thoroughly stuffed [pc.vaginas]. The protrusion starts trembling very, very softly and stays like this for a while before jolting up the intensity for a hot second, causing you to release a loud, sultry moan - and then it falls back to the previous rhythm. The event repeats every few seconds, alternating with the nipple clamps and driving you even crazier with anticipation.");
-		if (pc.hasTailCunt()) output(" And this extends to your [pc.tailCunts] as well, which " + (pc.tailCount > 1 ? "thresh" : "threshes") + " about restlessly in the air.");
+		if (pc.hasTailCunt()) output(" And this extends to your tail-mounted [pc.tailCunts] as well, which " + (pc.tailCount > 1 ? "thresh" : "threshes") + " about restlessly in the air.");
 	}
 	else if (pc.hasTailCunt())
 	{
-		output("\n\nNext up is the vibe stationed on your thoroughly stuffed [pc.tailCunts]. The protrusion starts trembling very, very softly and stays like this for a while before jolting up the intensity for a hot second, causing you to release a loud, sultry moan - and then it falls back to the previous rhythm. The event repeats every few seconds, alternating with the nipple clamps and driving you even crazier with anticipation.");
+		output("\n\nNext up is the vibe stationed on your thoroughly stuffed tail-mounted [pc.tailCunts]. The protrusion starts trembling very, very softly and stays like this for a while before jolting up the intensity for a hot second, causing you to release a loud, sultry moan - and then it falls back to the previous rhythm. The event repeats every few seconds, alternating with the nipple clamps and driving you even crazier with anticipation.");
 	}
 	
 	output("\n\nLast but not least is the plug in your [pc.ass], which comes alive with a faint electric charge that starts at the very base, teasing your [pc.butthole] and then picking up intensity as it travels deeper, causing your internal muscles");
@@ -356,17 +390,22 @@ public function lumiHarvesting():void
 	
 	if (pc.hasVagina() || pc.hasTailCunt())
 	{
-		if (pc.hasVagina() && pc.hasTailCunt()) output("\n\nYour [pc.vaginas] and [pc.tailCunts]");
+		if (pc.hasVagina() && pc.hasTailCunt()) output("\n\nYour [pc.vaginas] and tail-mounted [pc.tailCunts]");
 		else if (pc.hasTailCunt()) output("\n\nYour [pc.tailCunts]");
 		else output("\n\nYour [pc.vaginas]");
 		output(" shudder uncontrollably as you climax like a porn star,");
 		if (pc.wettestVaginalWetness() >= 4 || pc.girlCumMultiplier() >= 5) output(" gushing out jets of [pc.girlCum] all over the place, each squirt accompanied by a muffled ecstatic cry.");
 		else output(" releasing a long, steady stream of [pc.girlCum] as you let out muffled cries of ecstasy.");
-		if (!pc.hasCock()) output(" Your mind barely registers when the dildo stuffed into your [pc.biggestVaginaNoun] beeps a notification: <i>“Genetic reading complete.”</i>");		
+		if (pc.hasVagina()) output(" Lumi's drooling cunt is still pressed against your [pc.lips], and your mind barely registers when the dildo stuffed into your [pc.biggestVaginaNoun] beeps a notification: <i>“Genetic reading complete.”</i>");		
+		else output(" Lumi's drooling cunt is still pressed against your [pc.lips], and your mind barely registers when the dildo stuffed into your [pc.oneTailCunt] beeps a notification: <i>“Genetic reading complete.”</i>");	
+		output(" The toy continues to vibrate at a low frequency for a full minute, coaxing every last drop of [pc.girlCumNoun] while you whimper in helpless bliss.");
 	}
 	
 	if (pc.hasCock() || pc.hasTailCock())
 	{
+		var cumAmt:int = pc.cumQ() * 2.5;
+		if (pc.hasTailCock()) cumAmt += 2500 * pc.tailCount;
+		
 		if (pc.hasVagina()) output("\n\nBefore your pussy orgasm even ends");
 		else output("\n\nBefore you have time to process what’s going on");
 		output(", you can already feel the river of [pc.cumFlavor] seed being pumped by your");
@@ -374,28 +413,40 @@ public function lumiHarvesting():void
 		output(" electro-milked prostate, then travelling through your twitching");
 		if (pc.hasCock() && pc.hasTailCock()) output(" [pc.cocks] and [pc.tailCocks]");
 		else if (pc.hasCock()) output(" [pc.cocks]");
-		else output(" [pc.tailCocks]");
+		else output(" tail-mounted [pc.tailCocks]");
 		output(", until it bursts out in time with a loud, uncontainable moan.");
 		
-		output("\n\nMassive ropes of [pc.cum] fire out of your system and into the waiting tube, flowing into the reservoir. You can’t help but watch in awe from the corner of your [pc.eye] as it fills up with your seed. Markers on the glass surface inform your progress:");
-		if (pc.cumQ() >= 100) output("100 MLs...");
-		if (pc.cumQ() >= 200) output("200 MLs...");
-		if (pc.cumQ() >= 500) output("500 MLs...");
-		if (pc.cumQ() >= 1000) output("1000 MLs...");
-		if (pc.cumQ() >= 2000) output("2000 MLs...");
-		if (pc.cumQ() >= 3000) output("3000 MLs...");
-		if (pc.cumQ() >= 5000)
+		output("\n\nMassive ropes of [pc.cum] fire out of your system and into the waiting tube, flowing into the reservoir. You can’t help but watch in awe from the corner of your [pc.eye] as it fills up with your seed. Markers on the glass surface inform your progress: ");
+		if (cumAmt >= 100) output("100 MLs...");
+		if (cumAmt >= 200) output("200 MLs...");
+		if (cumAmt >= 500) output("500 MLs...");
+		if (cumAmt >= 1000) output("1000 MLs...");
+		if (cumAmt >= 2000) output("2000 MLs...");
+		if (cumAmt >= 3000) output("3000 MLs...");
+		if (cumAmt >= 5000)
 		{
 			output("\n\nBefore your orgasm even finishes, the reservoir has already reached the full 5000 MLs of capacity. A growing backpressure slows down the flow of cum, which in turn causes you to groan in tortured pleasure. Eventually, though, the sheer force of your virility wins out, forcing the tube off");
-			if (pc.hasCock() && pc.hasTailCock()) output(" [pc.eachCock] and [pc.eachTailCock]");
+			if (pc.hasCock() && pc.hasTailCock())
+			{
+				output(" [pc.eachCock] and");
+				if (pc.tailCount > 1) output(" each of your tail-mounted [pc.tailCocks]");
+				else output(" your tail-mounted [pc.tailCock]");
+			}
 			else if (pc.hasCock()) output(" [pc.eachCock]");
-			else output(" [pc.eachTailCock]");
+			else
+			{
+				if (pc.tailCount > 1) output(" each of your tail-mounted [pc.tailCocks]");
+				else output(" your tail-mounted [pc.tailCock]");
+			}
 			output(", allowing the rest of your [pc.cumNoun] to burst out in a torrent that lands all over your [pc.legOrLegsNoun], [pc.belly] and [pc.breastsNoun], as well as Lumi’s hair, back and ass.");
 		}
 		else 
 		{
-			output(pc.cumQ() + " MLs is how much you’ve managed to pump out by the time your orgasm finally winds down.");
-		}		
+			output(cumAmt + " MLs is how much your body has been made to pump out by the time your orgasm finally winds down.");
+		}	
+		
+		if (!pc.hasCock()) output("\n\n<i>Damn, you didn't know your " + (pc.tailCount > 1 ? "tailcocks" : "tailcock") + " could be <i>this</i> potent!");
+
 	}
 	
 	output("\n\nSeveral minutes pass before you start to recover from your pleasure haze, and by that time Lumi is already dressed and ready to leave. All the toys have been removed from your body as if by magic. <i>“That was awesome, thanks! Maybe we can do this again sometime, if you’re in these parts,”</i> she blows you a kiss.");
@@ -429,13 +480,15 @@ public function lumiHarvesting():void
 		{
 			pc.cocks[x].cLengthRaw -= 9;
 			pc.cocks[x].cThicknessRatioRaw -= .6;
-			if (rand(4) == 0) pc.cocks[x].cLengthRaw += (1 + rand(5)) / 5;
+			//removed by author request
+			//if (rand(4) == 0) pc.cocks[x].cLengthRaw += (1 + rand(5)) / 5;
 		}
 		else
 		{
 			pc.cocks[x].cLengthRaw -= 6;
 			pc.cocks[x].cThicknessRatioRaw -= .4;
-			if (rand(4) == 0) pc.cocks[x].cLengthRaw += (1 + rand(5)) / 10;
+			//removed by author request
+			//if (rand(4) == 0) pc.cocks[x].cLengthRaw += (1 + rand(5)) / 10;
 		}			 
 	}
 	for (x = 0; x < pc.vaginaTotal(); x++)
@@ -464,7 +517,7 @@ public function lumiHarvesting():void
 	}
 	
 	processTime(60);
-	flags["LUMI_DISABLE"] = GetGameTimestamp() + (4 * 60);	
+	lumiDisable(4);	
 	if (!inCombat())
 	{
 		setEnemy(null);
@@ -508,7 +561,7 @@ public function lumiVictory():void
 	output("\n\nStill, you make an unconvinced look, which prompts her to pull her legs free and spread them far apart in a show of incredible flexibility. This gives you a mouthwatering view of her swollen pussy, its fem-juices drooling liberally down her plump thighs and asscheeks. <i>“Better now?!”</i> She asks, adorably vexed.");
 	output("\n\nWell, well, well... what do we do next?");
 	
-	if (flags["LUMI_ADDICTION"] > 1) flags["LUMI_ADDICTION"] = 1;
+	if (lumiAddictionLevel() > 1) lumiAddictionLevel(1,true);
 	IncrementFlag("LUMI_PC_WINS");
 	pc.lust(30);
 	
@@ -552,7 +605,7 @@ public function lumiLeave():void
 	
 	output("<i>“Wait, you get me all worked up and then just leave me like this?!”</i> The Gabilani tech asks in disbelief, but you’ve already started walking away. <i>“Heeeey! I’ll remember this!”</i> She yells at your retreating back. You wave a hand in goodbye, safe in the knowledge that it won’t take long until Lumi finds some needy locals to sate her, and then this whole incident will be wiped from her drug-addled brain.");
 	
-	flags["LUMI_DISABLE"] = GetGameTimestamp() + (2 * 60);	
+	lumiDisable(2);		
 	CombatManager.genericVictory();
 }
 //[Satiate]
@@ -589,7 +642,7 @@ public function lumiSatiate():void
 	
 	if (pc.hasTailCock() || pc.hasTailCunt())
 	{
-		output("\n\nSince the high-pitched noises start to annoy you a little bit, you decide to");
+		output("\n\nSince the high-pitched noises start to annoy you a little bit, you decide to bring your [pc.tailNoun] into the game and");
 		if (pc.hasTailCock()) output(" ram [pc.oneTailCock] into her open mouth");
 		else output(" shove [pc.oneTailCunt] onto her plump lips");
 		output(", which prompts the Gabilani to tone it down a bit. Her sex-crazed brain understands the command at once, and she immediately starts to " + (pc.hasTailCock() ? "suck you" : "lick you") + " with gusto! The extra dose of pleasure travels through your tail and gathers up at the base of your spine, causing you to let out an ecstatic groan.");
@@ -600,15 +653,18 @@ public function lumiSatiate():void
 	if (pc.cockTotal() > 1)
 	{
 		output(" Meanwhile, your [pc.biggestCock] slides on her big clit " + (pc.biggestCockLength() >= 10 ? "and between her waiting breasts." : "and soft midsection."));
-		if (pc.hasTailCock() || pc.hasTailCunt()) output(" And despite everything, the Gabilani’s fat lips and tongue never stopped working on your " + (pc.hasTailCock() ? "[pc.tailCock]!" : "[pc.tailCunt]!"));
+		if (pc.hasTailCock() || pc.hasTailCunt()) output(" And despite everything, the Gabilani’s fat lips and tongue never stopped working on your tail-mounted " + (pc.hasTailCock() ? "[pc.tailCock]!" : "[pc.tailCunt]!"));
 	}
 
-	output("\n\nYou know you won’t last long at this rate, but you don’t care. Lumi is way past caring too, lost as she is in her one continuous orgasm while being stimulated by you and the toys. Closing your [pc.eyes], you release a loud moan and surrender yourself to sensation, feeling your [pc.cocks] " + (pc.hasTailCock() ? "and [pc.tailCocks] " : "") + "pulsate powerfully as a deluge of [pc.cum] flows through " + (pc.cockTotal() > 1 ? "their" : "its") + " entire length and bursts out, filling the goblin's shuddering cunt " + (pc.hasTailCock() ? "and mouth " : "") + "with your virility" + (pc.cockTotal() > 1 ? ", as well as thoroughly painting her belly, breasts and face" : "") + (pc.hasTailCunt() ? ", while your [pc.tailCunt] squirts [pc.girlCum] all over her hungry mouth and wiggling tongue" : "") + ".");
+	output("\n\nYou know you won’t last long at this rate, but you don’t care. Lumi is way past caring too, lost as she is in her one continuous orgasm while being stimulated by you and the toys. Closing your [pc.eyes], you release a loud moan and surrender yourself to sensation, feeling your [pc.cocks] " + (pc.hasTailCock() ? "and tail-mounted [pc.tailCocks] " : "") + "pulsate powerfully as a deluge of [pc.cum] flows through " + (pc.cockTotal() > 1 ? "their" : "its") + " entire length and bursts out, filling the goblin's shuddering cunt " + (pc.hasTailCock() ? "and mouth " : "") + "with your virility" + (pc.cockTotal() > 1 ? ", as well as thoroughly painting her belly, breasts and face" : "") + (pc.hasTailCunt() ? ", while your tail-mounted [pc.tailCunt] squirts [pc.girlCum] all over her hungry mouth and wiggling tongue" : "") + ".");
 	
-	if (pc.cumQ() >= 200) output("\n\nYour orgasm lasts a good minute before it finally starts to wind down.");
-	if (pc.cumQ() >= 2000) output(" There is just no way the Gabilani’s small body could contain the sheer amount of spunk you’re pumping in, most of which ends up gushing out of her overfilled cunt " + (pc.hasTailCock() ? "and mouth " : "") + "with squelching sounds. By the end of it, she looks pregnant with quintuplets!");
-	else if (pc.cumQ() >= 1000) output(" Inevitably, some of your voluminous spunk ends up spilling out of her overfilled cunt " + (pc.hasTailCock() ? "and mouth " : "") + "- by the time you’re finished, the Gabilani looks downright pregnant.");
-	else if (pc.cumQ() >= 500) output(" And by the time you’re finished, Lumi looks even chubbier and more adorable than before!");
+	var cumAmt:int = pc.cumQ();
+	if (pc.hasTailCock()) cumAmt += 1000;
+	
+	if (cumAmt >= 200) output("\n\nYour orgasm lasts a good minute before it finally starts to wind down...");
+	if (cumAmt >= 2000) output(" There is just no way the Gabilani’s small body could contain the sheer amount of spunk you’re pumping in, most of which ends up gushing out of her overfilled cunt " + (pc.hasTailCock() ? "and mouth " : "") + "with squelching sounds. By the end of it, she looks pregnant with quintuplets!");
+	else if (cumAmt >= 1000) output(" Inevitably, some of your voluminous spunk ends up spilling out of her overfilled cunt " + (pc.hasTailCock() ? "and mouth " : "") + "- by the time you’re finished, the Gabilani looks downright pregnant.");
+	else if (cumAmt >= 500) output(" And by the time you’re finished, Lumi looks even chubbier and more adorable than before!");
 	
 	output("\n\nOnce you recover from the wave of bliss, you gather your things and make ready to leave. Lumi’s orgasm, by the looks of it, has only just run out of juice.");
 	if (pc.isNice()) output(" You turn off the toys, uncuff her and gently lay Lumi on a towel before wiping her up somewhat. As you’re about to leave, you plant a kiss on the tech’s forehead, which has her smiling at you even in her sleep.");
@@ -616,10 +672,10 @@ public function lumiSatiate():void
 	else output(" You briefly consider turning off the toys and uncuffing her, but nah, better for her to learn a lesson about never pissing you off.");
 	output("\n\n");
 	pc.applyPussyDrenched();
-	if (pc.cumQ() >= 1000) pc.applyCumSoaked();
+	if (cumAmt >= 1000) pc.applyCumSoaked();
 	processTime(60);
 	pc.orgasm();		
-	flags["LUMI_DISABLE"] = GetGameTimestamp() + (2 * 60);	
+	lumiDisable(2);		
 	IncrementFlag("LUMI_PC_SEX");
 	if (!inCombat())
 	{
@@ -692,7 +748,7 @@ public function lumiScissor2():void
 		pc.orgasm();
 	}
 			
-	flags["LUMI_DISABLE"] = GetGameTimestamp() + 60;
+	lumiDisable(1);	
 	pc.applyPussyDrenched();
 	IncrementFlag("LUMI_PC_SEX");
 	if (!inCombat())
@@ -790,7 +846,7 @@ public function lumiImpale(kok:int = 0):void
 	if (pc.cumQ() >= 1000) pc.applyCumSoaked();
 	pc.orgasm();
 	processTime(40);		
-	flags["LUMI_DISABLE"] = GetGameTimestamp() + (2 * 60);	
+	lumiDisable(2);		
 	IncrementFlag("LUMI_PC_SEX");
 	if (!inCombat())
 	{

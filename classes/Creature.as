@@ -2949,6 +2949,12 @@
 				case "biggestCunt":
 					buffer = vaginaDescript(biggestVaginaIndex());
 					break;
+				case "biggestVaginaNoun":
+				case "vaginaBiggestNoun":
+				case "cuntBiggestNoun":
+				case "biggestCuntNoun":
+					buffer = vaginaNounDescript(biggestVaginaIndex());
+					break;
 				case "vaginasIsAre":
 				case "cuntsIsAre":
 				case "pussiesIsAre":
