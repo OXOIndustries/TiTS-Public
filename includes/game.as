@@ -4450,6 +4450,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//nykke 2.0 
 		if (nykke2SendEmail() && !MailManager.isEntryUnlocked("nykke2_sighting")) goMailGet("nykke2_sighting");
 		
+		//milodan futazons
+		if (pc.level >= 8 && (flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined) && !MailManager.isEntryUnlocked("joyco_uveto_hazmat_advisory") && shipLocation == "UVS F15") 
+		{
+			goMailGet("joyco_uveto_hazmat_advisory");
+			
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}

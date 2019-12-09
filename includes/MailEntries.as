@@ -338,6 +338,8 @@ public function configureMails():void
 	, "Favor to ask.", "Tessa", "Tessa_da_besta@cmail.com", quickPCTo, quickPCToAddress);
 	//nykke 2
 	MailManager.addMailEntry("nykke2_sighting", nykke2SightingEmail, "Wildlife Advisory for Eastern Irestead", "Uveto Wildlife/Weather Advisory", "NoReply@Uveto.gov", quickPCTo, quickPCToAddress);
+	//milodan futazons
+	MailManager.addMailEntry("joyco_uveto_hazmat_advisory", joycoUvetoHazmatAdvisoryEmail, "Urgent: Hazmat Advisory", "JoyCo HR", "HumanResources@JoyCo.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

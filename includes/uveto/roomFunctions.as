@@ -97,6 +97,10 @@ public function GlacialRiftEncounterBonus():Boolean
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 		}
+		if (MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
+		{
+			choices.push(encounterMilodanFutazon);
+		}
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
