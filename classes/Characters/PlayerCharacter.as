@@ -867,9 +867,18 @@ package classes.Characters
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
-			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
+			// Genital checks
+			if(!hasCock())
 			{
+				removePerk("Firing Blanks");
 				removeStatusEffect("Blue Balls");
+				removeStatusEffect("Priapism");
+			}
+			if(!hasVagina())
+			{
+				removePerk("Sterile");
+				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Pussy Pumped");
 			}
 			
 			// Daily changes
@@ -1567,7 +1576,7 @@ package classes.Characters
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
 				if(!hasPerk("Nyrea Eggs") && statusEffectv4("Nyrea Eggs") != 0) setStatusValue("Nyrea Eggs", 4, 0);
-				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
+				if((statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3) || !hasOvipositor())
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
 					if(statusEffectv1("Nyrea Eggs") > 0)
@@ -1582,7 +1591,7 @@ package classes.Characters
 					ExtendLogEvent(" Double-checking your codex, you find that");
 					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absorbed into your body"));
 					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
-					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
+					ExtendLogEvent(". It must be due to " + (hasOvipositor() ? "the lack of nyrean genes in your system" : "your lack of an ovipositor") + "....");
 					removeStatusEffect("Nyrea Eggs");
 				}
 			}

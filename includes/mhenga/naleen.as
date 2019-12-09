@@ -165,7 +165,7 @@ public function naleenFucksBoysScene():void {
 	
 	output("\n\n<i>“You belong to me, little pet. You and your cock and all the beautiful cum inside you... all mine.”</i>");
 	
-	output("\n\nInevitably, you cum. Your [pc.cock " + x + "] spasms inside the writhing wet velvet of the naleen’s cunt, utterly unable to hold back against her alien ministrations. You grunt and moan, and your captor coos with glee as you pump a thick load in her, filling her with your seed. Pleasure blooms in your mind, stars of ecstacy blossoming in the corner of your eyes as you cum and cum, shooting deep in her womb. The naleen draws a sharp breath and sighs, holding you close as the orgasm rocks your body. Some small part of your brain echoes her, relieved and exalted as you discharge your seed into the alien, reveling in the strong hands and warm embrace surrounding you, easing you through the bliss of climax.");
+	output("\n\nInevitably, you cum. Your [pc.cock " + x + "] spasms inside the writhing wet velvet of the naleen’s cunt, utterly unable to hold back against her alien ministrations. You grunt and moan, and your captor coos with glee as you pump a thick load in her, filling her with your seed. Pleasure blooms in your mind, stars of ecstasy blossoming in the corner of your eyes as you cum and cum, shooting deep in her womb. The naleen draws a sharp breath and sighs, holding you close as the orgasm rocks your body. Some small part of your brain echoes her, relieved and exalted as you discharge your seed into the alien, reveling in the strong hands and warm embrace surrounding you, easing you through the bliss of climax.");
 	
 	output("\n\nBut it doesn’t seem she’s done with you yet.");
 	

@@ -34,6 +34,17 @@ Cherry_Internal_Cum				Tracks the size of the biggest cumload Cherry has had in 
 									NOTE: You cannot cumflate by repeated small blasts. Need 1 big
 									huge one due to the way she's set up.
 *========================================================*/
+/*================rodenian pair FLAGS===============================
+WALLSLUTS_NOISY_RODENTS_NUTTED			times fucked their earginas
+WALLSLUTS_NOISY_RODENTS_NUTTED_TS		timestamp when fucked their ears
+WALLSLUTS_NOISY_RODENTS_NUTTED_TS2		timestamp last cum update
+WALLSLUTS_NOISY_RODENTS_NUT_CHOICE		where did you nut last time 0/never/1 Walnut, 2 Chestnut, 3 Both
+WALLSLUTS_NOISY_RODENTS_WALNUTTED		times came in Walnut
+WALLSLUTS_NOISY_RODENTS_CHESTNUTTED		times came in Chestnut
+WALLSLUTS_NOISY_RODENTS_WALNUT_CUM		volume of cum in Walnut
+WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM	volume of cum in Chestnut
+
+*========================================================*/
 
 
 public function feedCherry(arg:Number = -1):void
@@ -493,41 +504,55 @@ public function pickWallSlutMenu():void
 {
 	//add a text display with brief descs for each NPC and if they are disabled
 	clearMenu();
-	addButton(0,"Cherry",goForCherryStuff,undefined,"Cherry","Talk to the owner instead of jumping straight to the wall-bound sluts.");
+	addButton(0, "Cherry", goForCherryStuff, undefined, "Cherry", "Talk to the owner instead of jumping straight to the wall-bound sluts.");
+	var btn:int = 1;
 	
 	if(pc.hasStatusEffect("BlackDragDisable"))
 	{
 		output("\n\nWhile the black dragoness is still resting in her spot in the wall, she has been shut down until Cherry has a moment to get her cleaned up for the next customer. Maybe if you come back in an hour or two, you can hit her up.");
-		addDisabledButton(1,"Black Dragon","Black Dragon","The black dragon is closed for cleaning.");
+		addDisabledButton(btn,"Black Dragon","Black Dragon","The black dragon is closed for cleaning.");
 	}
-	else addButton(1,"Black Dragon",blackDragonessUse,undefined,"Black Dragon","Investigate the big, dark dragon booty.");
+	else addButton(btn, "Black Dragon", blackDragonessUse, undefined, "Black Dragon", "Investigate the big, dark dragon booty.");
 	
+	btn ++;
 	if(pc.hasStatusEffect("RaskvelDisable"))
 	{
 		output("\n\nThe raskvel are still there, but shut down for cleaning at the moment.");
-		addDisabledButton(2,"DoubleRask","Double Raskvel","The raskvel are closed for cleaning.");
+		addDisabledButton(btn,"DoubleRask","Double Raskvel","The raskvel are closed for cleaning.");
 	}
-	else addButton(2,"DoubleRask",doubleBooty,undefined,"Double Raskvel","Investigate two sandwiched raskvel.");
-
+	else addButton(btn, "DoubleRask", doubleBooty, undefined, "Double Raskvel", "Investigate two sandwiched raskvel.");
+	
+	btn ++;
 	if(pc.hasStatusEffect("ThiccGobDisable"))
 	{
 		output("\n\nThe gabilani is closed for cleaning. Maybe next time!");
-		addDisabledButton(3,"Thick Goblin","Thick Goblin","The goblin is closed for cleaning.");
+		addDisabledButton(btn,"Thick Goblin","Thick Goblin","The goblin is closed for cleaning.");
 	}
-	else addButton(3,"Thick Goblin",thickGoblinSmex,undefined,"Thick Goblin","Investigate a gabilani.");
+	else addButton(btn,"Thick Goblin",thickGoblinSmex,undefined,"Thick Goblin","Investigate a gabilani.");
 
+	btn ++;
 	if(pc.hasStatusEffect("FoxyDisable"))
 	{
 		output("\n\nTura is closed for cleaning. Maybe next time!");
-		addDisabledButton(4,"Fox Herm","Fox Herm","The fox herm is closed for cleaning.");
+		addDisabledButton(btn,"Fox Herm","Fox Herm","The fox herm is closed for cleaning.");
 	}
-	else addButton(4,"Fox Herm",approachDatUrtaKnockoff,undefined,"Fox Herm","One eye-catching stall houses what is clearly a fox-girl with more than a little extra: a 20-inch horse-cock and orange-sized spunk-bunkers hanging just below.");
+	else addButton(btn,"Fox Herm",approachDatUrtaKnockoff,undefined,"Fox Herm","One eye-catching stall houses what is clearly a fox-girl with more than a little extra: a 20-inch horse-cock and orange-sized spunk-bunkers hanging just below.");
+	
+	btn ++;
 	if(pc.hasStatusEffect("TaurDisable"))
 	{
 		output("\n\nThe leithan is closed for cleaning. Maybe next time!");
-		addDisabledButton(5,"Demure Taur","Demure Taur","The fox herm is closed for cleaning.");
+		addDisabledButton(btn,"Demure Taur","Demure Taur","The fox herm is closed for cleaning.");
 	}
-	else addButton(5,"Demure Taur",demureTaurWallIntro,undefined,"Demure Taur","A white Leithan’s haunches are jutting out of the wall. Check them out!");
+	else addButton(btn, "Demure Taur", demureTaurWallIntro, undefined, "Demure Taur", "A white Leithan’s haunches are jutting out of the wall. Check them out!");
+	
+	btn ++;
+	if(pc.hasStatusEffect("NoisyRodentsDisable"))
+	{
+		output("\n\nThe rodenians are closed for cleaning. Maybe next time!");
+		addDisabledButton(btn,"Noisy Rodents","Noisy Rodents","The rodenians are closed for cleaning.");
+	}
+	else addButton(btn,"Noisy Rodents",wallSlutsNoisyRodentsWallIntro,undefined,"Noisy Rodents","A bickering duo of rodenian girls.");
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -543,7 +568,9 @@ public function blackDragonessUse():void
 
 	author("Adjatha");
 	output("You select a particularly prodigious posterior and take a moment to take it all in. By far the largest occupant of the Tap-Hall, this girl’s upper half is hidden on the other side of the wall, but the holo-pic next on the wall shows a mature, fanfir woman with narrowed eyes and a defiant glower, with a price at the bottom. Her lower half is at least 6’ tall, from her fat-tailed booty, down her thick, digitigrade legs to her taloned feet. An adjustable elevating platform has been installed for customers of every size.");
-	output("\n\nThe draconic matron’s scales seemed black from further back, but up close you can tell that they’re actually a deep purple-blue, like a midnight-blooming lotus. Each cheek of her girthy rump is nearly as large across as your shoulders and her plump ass seems so wedged into the oval-shaped window that you don’t think she’s getting out without some serious construction work. A band of vibrating metal runs the circumference of her hefty tail, keeping the appendage limp and twitching instead of batting potential clients brainless.");
+	output("\n\n");
+	showImage("WallFanfir");
+	output("The draconic matron’s scales seemed black from further back, but up close you can tell that they’re actually a deep purple-blue, like a midnight-blooming lotus. Each cheek of her girthy rump is nearly as large across as your shoulders and her plump ass seems so wedged into the oval-shaped window that you don’t think she’s getting out without some serious construction work. A band of vibrating metal runs the circumference of her hefty tail, keeping the appendage limp and twitching instead of batting potential clients brainless.");
 	output("\n\nThere is an orange bio-plug in her ass, but her pussy is open for business. It will cost " + 2000 + " credits to fuck the fanfir." + (pc.hasKeyItem("Puss Pass") ? " <b>Of course, for you, it’s free.</b>":""));
 
 	processTime(3);
@@ -604,7 +631,7 @@ public function pussyDatGryvain(x:int):void
 	pc.cockChange();
 	output(" You drive into her, groaning with satisfaction as the giantess’ core strokes and slurps at your [pc.cock " + x + "] with each luscious pump. The oval aperture sealing her upper half in the wall creaks with the tension your hips apply to her tremendous stern.");
 
-	output("\n\nHer posterior takes the slapping impact of your [pc.hips] indulgently, cheeks clapping their approval while matron-fattened thighs squeeze together.gushing nectar spills from her hefty snatch, soaking you from groin on down and even pooling at the base of the elevating platform. Enjoying yourself so much, you almost don’t noticed when the fanfir woman’s broad tail rises, casting an ominous shadow over you. You tense, but instead of striking, thankfully, it simply droops down over your shoulder. Its length wraps around your shoulders and down to the small of your back, before coiling around your [pc.footOrFeet], hugging you closely.");
+	output("\n\nHer posterior takes the slapping impact of your [pc.hips] indulgently, cheeks clapping their approval while matron-fattened thighs squeeze together. A tide of gushing nectar spills from her hefty snatch, soaking you from groin on down and even pooling at the base of the elevating platform. Enjoying yourself so much, you almost don’t noticed when the fanfir woman’s broad tail rises, casting an ominous shadow over you. You tense, but instead of striking, thankfully, it simply droops down over your shoulder. Its length wraps around your shoulders and down to the small of your back, before coiling around your [pc.footOrFeet], hugging you closely.");
 
 	processTime(25);
 	clearMenu();
@@ -655,7 +682,9 @@ public function doubleBooty():void
 	author("Adjatha");
 
 	output("Why settle for one when you can enjoy two at the same time? You step over to an alcove shared by two raskvel women who have been installed atop one another, their tails buckled against the wall to keep the dextrous hind-limbs from getting up to any mischief. The one on bottom has a rich, crimson hue while the one above has fair, light blue scales. A pair of flickering, digital portraits on either side of the sandwiched booties depict the girls from the waist up, before they were installed here. The ruby girl has a regal air to her, clad in a tall-necked dress with coifed hair, her head turned in profile, like she’s too good to look directly at the camera. The turquoise girl, on the other hand, has no such restraint, as her picture shows a pierced, punky brat bending her head to lick her own nipple, without breaking eye-contact.");
-	output("\n\nThough the oval gap conceals most of the girls’ bodies, there’s plenty on display in the form of breeding-widened hips, fat upper thighs, and even fatter asses. The red one on the bottom has a thicker ass than her companion, plump enough to muffin-top around the constraints of her hole. The blue girl’s most visible asset comes in the form of extra-puffy vulva lips, her outer labia at least half again the size of her cellmate’s. Both of the raskvel’s peach-shaped pussies are flushed from constant, rubbing contact. Their shared, dripping excitement has left the fissure between their womanhoods glistening. Slick with sweat and lubricant, their color-contrasting rumps shift slightly, as if the two are struggling against one another out of your sight.");
+	output("\n\n");
+	showImage("WallRaskvel");
+	output("Though the oval gap conceals most of the girls’ bodies, there’s plenty on display in the form of breeding-widened hips, fat upper thighs, and even fatter asses. The red one on the bottom has a thicker ass than her companion, plump enough to muffin-top around the constraints of her hole. The blue girl’s most visible asset comes in the form of extra-puffy vulva lips, her outer labia at least half again the size of her cellmate’s. Both of the raskvel’s peach-shaped pussies are flushed from constant, rubbing contact. Their shared, dripping excitement has left the fissure between their womanhoods glistening. Slick with sweat and lubricant, their color-contrasting rumps shift slightly, as if the two are struggling against one another out of your sight.");
 	output("\n\nThere’s a green bio-plug in the red one’s ass and a yellow one in the blue one’s, but both pussies are open for business. It will cost " + 1000 + " credits to ravish the raskvel.");
 	if(pc.hasKeyItem("Puss Pass")) output(" Of course, <b>with your PussPass, it’ll be free</b>.");
 	processTime(5);
@@ -729,6 +758,7 @@ public function thickGoblinSmex():void
 	author("Adjatha");
 	showName("THICK\nGOBLIN");
 	showBust("WALL_GABILANI");
+	showImage("WallGabilani");
 	output("One of the booths catches your eye with an unusual difference. Rather than blank wall and holo pic, this compartment has its wall made from a thick, translucent plastic, almost like a fish tank. Its occupant is a short, green skinned girl with long, fey ears and heaving, J-cup breasts that entirely cover her torso and smother the lower half of her face. The gabilani’s plump legs and high-heel clad feet have been pulled back by ankle cuffs so that they form a V around her head. The only thing sticking out of the wall is her fat, emerald rump. ");
 	//player hasn’t fucked her yet:
 	if(flags["THICK_GAB_USED"] == undefined) output("Her expression flickers from outrage to disgust every moment you spend near her, but any attempts at speech she might be making are swallowed by the compartment. A far cry from the slack, wanton lust of the others in the Tap-Hall, you’d guess she’s a recent installation.");
@@ -805,6 +835,7 @@ public function goblinAnalStuff(x:int):void
 	pc.orgasm();
 	while(pc.lust() < 33) { pc.lust(2); }
 	pc.energy(-5);
+	processTime(10 + rand(10));
 	IncrementFlag("THICK_GAB_USED");
 	pc.createStatusEffect("ThiccGobDisable");
 	pc.setStatusMinutes("ThiccGobDisable",90);
@@ -821,6 +852,7 @@ public function approachDatUrtaKnockoff():void
 {
 	clearOutput();
 	showUrta();
+	showBust("WALL_TURA_PORTRAIT");
 	author("Fenoxo");
 	output("Making your selection, you stride up for a better look at this potential partner. Embedded in the wall at her waist, this hermaphroditic fox-girl’s lower body is entirely on display. With her legs thrown up in a wide ‘V’ and held securely by rubberized straps while restraints bind her fluffy gray tail below, her genitals are perfectly arranged for your use - assuming you don’t mind lifting her heavy nuts out of the way for a better look at her pussy.");
 	output("\n\nJust above those wobbling cumtanks is the fox’s baseball bat of a cock. Fully 20 inches long and equine in shape, it would look more at home on a leithan’s undercarriage than the petite fox from which it sprouts. No doubt it’d be aggressively slapping the wall if it wasn’t imprisoned in a snug, self-lubricating ring. Whenever sags the slightest amount, the faint buzz of vibrational motors whirs, and the head surges powerfully, bulging out in a thick, flaring lip around its crown. The toy winds down before the poor prick-vixen can release the monster load she’s been brewing, leaving her flare to pulse with her heart.");
@@ -841,8 +873,8 @@ public function approachDatUrtaKnockoff():void
 
 public function showUrta():void
 {
-	showBust("TURA");
-	showName("WALL-FOX\nTURA");
+	showBust("WALL_TURA");
+	showName("WALL-FOX:\nTURA");
 }
 public function showTaoth():void
 {
@@ -898,9 +930,17 @@ public function yesLetUrtaCum(x:int):void
 	output("\n\nA hoarse cry of delight reaches your ears through the wall’s otherwise capable insulation, and the fox-slut’s pneumatic press of a cunt scissors down around your. Her balls quiver, and as she blasts a titanic gout of pearlescent seed into the air, her flaring crowd balloons out nearly twice the width of her shaft. Tura’s slickened cunt’s grip falters, but her cock somehow stiffens further. It sprays cascading waves of goo up the wall. Her rich musk saturates the air. Alabaster webs cling between that mammoth equine tool and the soiled wall while spare shot glass sized droplets rain down across your [pc.chest] and crotch");
 	if(pc.isCumSlut() || pc.isBimbo()) output(". You don’t let her waste too much, of course, affixing your mouth to the vixen’s sloppy cum cannon before she waste <i>too</i> much seed; swallowing her load is almost as good as fucking her twat");
 	output(".");
-	output("\n\nYou turn your attention back to her sopping wet cunt while it flutters in artless ecstasy. You pound your [pc.cockNoun " + x + "] into it like a carpenter driving nails. Her ass and thighs jiggle and ripple with the force of the impacts. You barely notice the rivers of spunk sliding down her balls to bathe your dick, or that you’re fucking it right back into her. What you do notice is that Tura’s cunt feels almost molten around you, making exquisitely loud suckling sounds on your backstrokes. A healthy froth of off-white builds around her clinging lips as they strain to hold onto you, to pull you back in, and to smother you in Tura’s wanton heat.");
+	output("\n\n");
+	showImage("WallTura");
+	output("You turn your attention back to her sopping wet cunt while it flutters in artless ecstasy. You pound your [pc.cockNoun " + x + "] into it like a carpenter driving nails. Her ass and thighs jiggle and ripple with the force of the impacts. You barely notice the rivers of spunk sliding down her balls to bathe your dick, or that you’re fucking it right back into her. What you do notice is that Tura’s cunt feels almost molten around you, making exquisitely loud suckling sounds on your backstrokes. A healthy froth of off-white builds around her clinging lips as they strain to hold onto you, to pull you back in, and to smother you in Tura’s wanton heat.");
 	//Balls deep
-	if(pc.cocks[x].cLength() <= 20) output("\n\nGoing balls deep, you spend a second to enjoy the way the fox’s cunt cradles your [pc.cock " + x + "], clutching it almost worshipfully, and in that moment, you realize that with your [pc.balls] dangling below and hers above, you’ve basically surrounded yourself in nut. Hers slip and slide all over you, courtesy of her copious (and still going) orgasm, so when you adjust your angle and resume herm-stuffing, you actually get a greater appreciate for the understated friction of her ballsack’s nether-side. It feels nice to fuck a herm-girl through her own jizz, to reach up and give her dick a few idle pumps while slapping yourself home.");
+	if(pc.cocks[x].cLength() <= 20)
+	{
+		output("\n\nGoing balls deep, you spend a second to enjoy the way the fox’s cunt cradles your [pc.cock " + x + "], clutching it almost worshipfully");
+		if(pc.balls > 0) output(", and in that moment, you realize that with your [pc.balls] dangling below and hers above, you’ve basically surrounded yourself in nut. Hers");
+		else output(". Her balls");
+		output(" slip and slide all over you, courtesy of her copious (and still going) orgasm, so when you adjust your angle and resume herm-stuffing, you actually get a greater appreciate for the understated friction of her ballsack’s nether-side. It feels nice to fuck a herm-girl through her own jizz, to reach up and give her dick a few idle pumps while slapping yourself home.");
+	}
 	//Toobigforballs deep
 	else output("\n\nGoing as deep as her anatomy will allow, you find yourself wishing the excess alabaster lube could somehow take you deeper, but the snug ring of her cervix can only be battered back so far. You knew you’d probably be big for her to take entirely, but some small-minded, animal part of your brain still wanted to take her all the way. No matter. Hot cum drizzles over your [pc.cock " + x + "] while you knock on her uterus’s front door, and the soft underside of her ballsack proves an extra few inches of stimulation for the bits of you left to hang outside. It’s sopping wet and oh-so-slick against your tender organ, and wetter with every second that passes thanks to the prick-vixen’s ongoing orgasm" + (pc.isCumSlut() ? " and your own desire to gargle the mouthful you’ve already collected while letting the excess rain down on your face":"") + ".");
 	//Merge
@@ -1070,8 +1110,11 @@ public function demureTaurWallIntro():void
 	showName("\nLEITHAN");
 	author("Adjatha");
 	showBust("WALL_LEITHAN");
+
 	output("One of the larger girls locked in the wall alcoves catches your eye. She’s a leithan, that much is obvious, though her coloration is singular: an albino! And no doubt a prize captive for whichever pirate grabbed her. The tauric woman’s upper body and front legs are hidden within the wall, but her rear four legs are enough to stick out past the shallow cell dividers and any hope of discrete modesty. The holo-pic on the wall displays a full-cheeked, heart-shaped face, her heavily lidded red eyes averted from the viewer in embarrassment. She has a considerable mane of elaborate, braided tresses, which suggests she may have come from money. A far cry from her current state.");
-	output("\n\nMoving closer, you have a chance to admire the taur’s physique. Her wide, mare-like hips extend some distance from the oval hole her waist is stuck in. Her pale white scales are so fine they’re indistinguishable from oiled skin and the plates mounted along her back shimmer like polished alabaster. A short, un-armored tail ineffectually hugs her considerable rump tightly, too stubby to provide any modesty. Between her sculpted, champagne-hued ass lies a blushing, lilac anal ring as plump as a labia and glistening with the humiliated arousal of her indentured exposure. Just below her plugged, petal-perfect pussy hangs huge, dark purple balls squished between her back legs and a crude, animalistic sheath stuffed fat with her shameful girth.");
+	output("\n\n");
+	showImage("WallLeithan");
+	output("Moving closer, you have a chance to admire the taur’s physique. Her wide, mare-like hips extend some distance from the oval hole her waist is stuck in. Her pale white scales are so fine they’re indistinguishable from oiled skin and the plates mounted along her back shimmer like polished alabaster. A short, un-armored tail ineffectually hugs her considerable rump tightly, too stubby to provide any modesty. Between her sculpted, champagne-hued ass lies a blushing, lilac anal ring as plump as a labia and glistening with the humiliated arousal of her indentured exposure. Just below her plugged, petal-perfect pussy hangs huge, dark purple balls squished between her back legs and a crude, animalistic sheath stuffed fat with her shameful girth.");
 	output("\n\nThere is a pale white bio-plug in her pussy, but her ass and cock are open for business. It will cost " + demureTaurCost() + " credits to lay the leithan.");
 	//PussPass
 	if(pc.hasKeyItem("Puss Pass")) output(" Good thing <b>you won’t have to pay a dime</b> if you want to make use of her.");
@@ -1741,4 +1784,484 @@ public function leaveCherrysPlace():void
 	moveTo("WALL SLUTS");
 	sendCherryToHerRoom();
 	mainGameMenu();
+}
+//show noisy rodents
+public function wallSlutsShowNoisyRodents():void
+{
+	//in case there end up being different bust for tits sizes
+	//var tits:int = wallSlutsNoisyRodentsTitsSize();
+	showName("NOISY\nRODENTS");
+	showBust("WALL_NOISYRODENTS");
+	author("William");
+}
+//get current rodents tits size 0 = both, 1 = walnut, 2 = chestnut
+public function wallSlutsNoisyRodentsTitsSize(slut:int=0):int
+{
+	var tits:int = 0;
+	wallSlutsNoisyRodentsReduceCum();
+	if (slut <= 1 && flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] != undefined)
+	{
+		if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] >= 3000) tits = 3;
+		else if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] >= 1000) tits = 2;
+		else if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] >= 300) tits = 1;
+	}
+	if ((slut == 0 || slut == 2) && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] != undefined)
+	{
+		if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] >= 3000 && tits < 3) tits = 3;
+		else if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] >= 1000 && tits < 2) tits = 2;
+		else if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] >= 300 && tits < 1) tits = 1;
+	}
+	
+	return tits;	
+}
+//total creampies 0 = both, 1 = walnut, 2 = chestnut
+public function wallSlutsNoisyRodentsCreampies(slut:int=0):int
+{
+	var creampies:int = 0;
+	
+	if (slut <= 1 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] != undefined) creampies += flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"];
+	if ((slut == 0 || slut == 2) && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] != undefined) creampies += flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"];
+	
+	return creampies;	
+}
+//returns last creampie choice 0 = none, 1 = walnut, 2 = chestnut, 3 both
+public function wallSlutsNoisyRodentsLastCreampie():int
+{
+	var creampies:int = 0;
+	
+	if (flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] != undefined) creampies = flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"];
+	
+	return creampies;	
+}
+//reduce the cum in them based on time passed since last visit (5% per hour, set to 0 if 20 hours with no repeat visit)
+//this isn't worth putting into the time update logic in game.as, so this is a simple way to track time and reduce the cum whenever the stats screen or they are visited
+public function wallSlutsNoisyRodentsReduceCum():void
+{
+	var timeInc:Number = 60 * 20;
+	var timePass:Number = 0;
+	var newCum:Number = 0;
+	if (flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] != undefined && GetGameTimestamp() != flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS2"])
+	{
+		timePass = GetGameTimestamp() - flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"];
+		if (timePass >= timeInc)
+		{
+			flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = 0;
+			flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = 0;
+			flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] = undefined;
+			flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] = 0;
+		}
+		else if (timePass > 0)
+		{
+			flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS2"] = GetGameTimestamp();
+			newCum = timePass / timeInc;
+			if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] != undefined)
+			{
+				newCum = Math.round(flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] * (1 - (timePass / timeInc)));
+				flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = newCum;
+			}
+			if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] != undefined)
+			{
+				newCum = Math.round(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] * (1 - (timePass / timeInc)));
+				flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = newCum;
+			}
+		}		
+	}
+}
+//ear pussy volume (fits 18" or so)
+public function wallSlutsNoisyRodentsEarPussyVolume():int
+{
+	var vol:int = 135;	
+	return vol;	
+}
+//max cum volume (per Will, 50,000!!! Where does it all fit???)
+public function wallSlutsNoisyRodentsEarMaxCumVolume():int
+{
+	var vol:int = 50000;	
+	return vol;	
+}
+public function wallSlutsNoisyRodentsWallIntro():void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var walnutCreampies:int = wallSlutsNoisyRodentsCreampies(1);
+	var chestnutCreampies:int = wallSlutsNoisyRodentsCreampies(2);
+	var totalCreampies:int = walnutCreampies + chestnutCreampies;
+	var titsSize:int = wallSlutsNoisyRodentsTitsSize();
+	
+	if (totalCreampies >= 1) output("Unlike the first time you’ve been here, Walnut and Chestnut aren’t their usual bratty selves, rendered (mostly) docile by a recent visitor.");
+	else output("Before you’ve even entered this noisy alcove, your eardrums are battered by the kind of bickering one would overhear between two catty siblings. And a lot of angry squeaking.");
+	
+	output("\n\nSure enough, mounted in this section of wall are two " + (CodexManager.entryUnlocked("Rodenians") ? "rodenians" : "mouse-like girls that your handy-dandy codex identifies as Rodenians") + ", both having nearly identical brown coats of half-matted fur. Their petite bodies jut out from slut storage just above the waist. One rat-girl is stacked on top of the other, their ");
+	if (titsSize >= 3) output("massively cumflated");
+	else if (titsSize >= 2) output("heavily engorged");
+	else if (titsSize >= 1) output("slightly inflated");
+	else output("B-cup");
+	output(" bosoms docked by rubbing nipples. Clinging to their nearly-identical oaken pelts are the sticky leavings of clients come and gone.");
+	
+	if (wallSlutsNoisyRodentsLastCreampie() == 1) output("\n\n<i>“Stop moving your stupid fat tits on my face!”</i> Chestnut crows, words falling into cum-clogged ears. Walnut, looking like she’s in a bit of a trance, automatically ignores the request, making life harder for her irate wall-mate.");
+	else if (wallSlutsNoisyRodentsLastCreampie() == 2) output("\n\n<i>“Fuck off! Stop shaking around, it’s annoying! You’re getting cum everywhere, twat-for-brains!”</i> Walnut half-screams, words constantly interrupted by the sloshing slap of cumflated tit against her muzzle. Her plaintive expletives quickly fade into the background hum.");
+	else if (wallSlutsNoisyRodentsLastCreampie() == 3) output("\n\nBoth Walnut and Chestnut are dazedly languishing in their oval compartment. It’s as pleasing to the ears as it is to the eyes: no heated tirades, no indignant quarrels, just the bliss of having cum leaking out of their ears and nipples in a hypnotic ecstasy exclusive to their race. Thick lines of jism trickle down the swollen swells of their spunk-fattened boobs, occasionally rippling, sloshing, or spurting stored sperm. Outwardly, they look rather presentable, but their rapture is thanks to having plenty of cum on the mind.");
+	else output("\n\n<i>“" + RandomInCollection(["Shut up! I totally had that one and you fucking stole it!","I’ll always get more than you! Look, my tits are twice your size right now!","Agghhh, you fucking bitch, if you hadn’t shoved your nose in his balls then I would have won!","Damnit, stop squirming around! You’re pressing into me too much!","Laugh it up, skank, next one’s mine. Just watch. You suck at giving head anyway! You always move in right before they cum! It won’t work again!","Mikky’s gonna be happier with me! I made the most this time!","I’m totally gonna get bigger tits than you, whore! Mine swell up so much faster and easier!"]) + "”</i>");
+	
+	output("\n\nThe pair’ve yet to notice you, offering you a moment to look over a brightly-lit screen diagonal their bisecting bondage: <b>Walnut and Chestnut! Fuck our ears and give us big, boob-enhancing cumshots for 1500 credits!</b> Just above is the slot for " + (pc.hasKeyItem("Puss Pass") ? "your Puss Pass" : "a credit stick") + ".");
+	output("\n\nThere’s a cutesy picture of the pair, showing the spunky rascals vying for the camera in poses that seasoned porn-stars would describe as ‘trying too hard’. Like their digital depiction, Walnut’s brunette hair extends to her shoulders while Chestnut’s caramel-toast strands are tied into a short, sporty ponytail; Walnut’s nipples are pierced while Chestnut’s tongue is long, prehensile, and studded. What catches your eye is the black wristband one of them is wearing" + (flags["RATCOUNTERS"] != undefined ? ", girded in glowing text clearly indicating her affiliation with <i>Rat’s Raiders</i>" : " with a glowing word visible on the hoop: <i>Raiders</i>") + ". Unlike most of the disposable cock-warmers in this wall, these protein pirates are here volitionally.");
+	
+	if (ratsPCIsGood() && totalCreampies == 0)
+	{
+		output("\n\n<i>“Wow! It’s you!”</i> Walnut coos. <i>“[pc.Mister] CEO! Those look-alike scamps were talking about you upstairs!”</i>");
+		output("\n\n<i>“Ooh, ooh, gimme some cum, [pc.mister] CEO! Ffion said you were cute, and she wasn’t kidding! You wanna fuck my ears? Fill my tits so Walnut will shut up!”</i> Chestnut says in what sounds like an order and a whine.");
+		output("\n\n<i>“No, fuck her!”</i> Walnut shouts. <i>“F.... Literally, <b>don’t</b> fuck her! You’re gonna fuck me - my ears even have lube! Perfect for rich [pc.guyGirl]s like you who jus’ need a quickie!”</i>");
+		output("\n\n<i>“Wait! Look at my tongue, I’ll be your best brand of cock polish, then you’ll screw my head until my tits blow!”</i> Chestnut puts on a cum-gutter of a face and throws out her tongue, a full nine inches of pierced muscle. It dangles and sways there tantalizingly, doing its best to draw you into a wet, willing hole.");
+		output("\n\n<i>“You can totes afford us, right!? Look, two rats all for the big shot!”</i>");
+		output("\n\n<i>“Yah! Fuck me, nawt her!”</i>");
+	}
+	else if (wallSlutsNoisyRodentsLastCreampie() == 1) output("\n\n<i>“Yeessss gibbbvvme cum! I’m a rat slut who cums for big dicksh" + (ratsPCIsGood() ? " [pc.mister] CEO!" : "!") + "”</i> Walnut groans. Greedy slut’s eyes stare at you; she licks her lips in an exaggerated tease, shifting around so that her sperm-flated boobies roll over Chestnut’s glowering face.");
+	else if (wallSlutsNoisyRodentsLastCreampie() == 2) output("\n\n<i>“Ohyesh, it’s you! Come here " + (ratsPCIsGood() ? "[pc.mister] CEO" : "") + ", Chesty-nut wants more... uhhh... nut!”</i> The bottom rat’s head lamely wobbles like a third tit, swinging a long, cum-flecked tongue around. Walnut isn’t too pleased about the extra stimulation, but without someone to argue with, she remains quiet, visibly desperate for the same treatment.");
+	else if (wallSlutsNoisyRodentsLastCreampie() == 3)
+	{
+		output("\n\nLife returns to the twin’s eyes; they stir, sensing the presence of a new customer.");
+		output("\n\n<i>“Ooh, heya" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "!”</i> Walnut blubbers, green eyes glazed by layers of nut-lust. <i>“Wanna make our tits even bigger, until we can’t even find our heads?”</i>");
+		output("\n\n<i>“Me too, me too!”</i> Chestnut stares up with sparkling blue eyes. <i>“I want your dick! Pleeeaaase? Can I have all your cum too? You don’t wanna mess with us! We’re the best thieves ever!”</i>");
+		output("\n\n<i>“Yeah! Mikky won’t say it but we get all the money, we’re the best!”</i>");
+	}
+	else 
+	{
+		output("\n\n<i>“Oooh!”</i> green-eyed Walnut spots you. <i>“Heyyyy" + (ratsPCIsGood() ? ", [pc.mister] CEO!" : "!") + " Are you here to fuck me?" + (ratsPCIsGood() ? " I’m your number one fan, totally! Gimme all your cum!" : "") + "”</i>");
+		output("\n\n<i>“No, you’re here to fuck me, right!?”</i> blue-eyed Chestnut interjects." + (ratsPCIsGood() ? " <i>“[pc.Mister] CEO! You have to let me suck your dick so you can fuck my ears really good!”</i>" : ""));
+		output("\n\nThey both turn to each other, forcing you to endure another ten-second feud.");
+		output("\n\n<i>“C’mon, big [pc.guyGirl]! Fuck my ears! I want Chestnut to have my tits all over her face again, she likes it!”</i>");
+		output("\n\n<i>“No I don’t! Fuck my ears! Walnut’s all fake and modded, my ears are authentic!”</i>");
+		output("\n\n<i>“Lemme suck your dick so you’ll give me a messy reward!”</i> Walnut retorts, opening wide and rolling out her tongue.");
+		output("\n\n<i>“W-Wha-Wait! No! I can suck better, look!”</i> Chestnut deploys <i>her</i> tongue, long and coordinated. Nine inches of slavering maw-meat undulate tantalizingly, inviting you to the wet pocket between her suckling cheeks. <i>“Jush gib ush yer money!”</i>");
+	}
+	
+	output("\n\nWalnut and Chestnut’s dish-shaped ears flare open, exposing the flush pink interiors of their honeyed holes to you. Both rats’ tongues draw enticingly lewd shapes in the air.");
+	if (pc.hasCock() && CodexManager.entryViewed("Rodenians"))
+	{
+		if (pc.hasKeyItem("Puss Pass")) output(" If you want to take advantage of their services, your Puss Pass is within reach.");
+		else output(" You’ll have to pay their price of 1500 credits to fuck them.");
+	}
+	else if (pc.hasCock()) output(" Before considering their offer, you bring up your codex and skim through the Rodenian entry. These alien mice breed in a rather non - traditional manner: through their ears. Vaginas are located deeper inside the frictionless canals. If you wanted to experience the joys of cranial coitus, now’s your chance - " + (pc.hasKeyItem("Puss Pass") ? "with your Puss Pass, you can get right down to business. Or into it, rather." : "the raucous rats will cost you 1500 credits to use."));
+	else output(" Lacking any phallic implements, and without a way to emit cum, there’s nothing you can do here. You’re not keen on finding out what happens to someone who flaunts the rules at Cherry’s, particularly those set by voluntary onaholes.");
+	
+	processTime(3);
+	
+	if(!CodexManager.entryUnlocked("Rodenians")) 
+	{
+		output("\n\nYour codex beeps to inform you it’s identified the Rodenian race.");
+		CodexManager.unlockEntry("Rodenians");
+	}
+	clearMenu();
+	if (!pc.hasCock()) addDisabledButton(0,"Get Started","Get Started","Lacking any phallic implements, and without a way to emit cum, there’s nothing you can do here.");
+	else if (pc.isTaur()) addDisabledButton(0,"Get Started","Get Started","Your <b>‘tauric shape does not lend itself to sex with a rodenian.</b>");
+	if(pc.hasKeyItem("Puss Pass"))
+	{
+		if(pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume()) >= 0) addButton(0,"Get Started",cockSelect,[wallSlutsNoisyRodentsGetStarted,wallSlutsNoisyRodentsEarPussyVolume(),false,0],"Get Started","Fuck the rats. <b>For free!</b>");
+		else addDisabledButton(0,"Get Started","Get Started","Your dick is too big to fit in their earginas. <b>You’ll need to reduce your girth!</b>");
+	}
+	else if(pc.credits >= 1500)
+	{
+		if(pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume()) >= 0) addButton(0,"Get Started",cockSelect,[wallSlutsNoisyRodentsGetStarted,wallSlutsNoisyRodentsEarPussyVolume(),false,0],"Get Started","Fuck the rats; <b>1500 credits</b> is a small price to pay for eager cumsluts.");
+		else addDisabledButton(0,"Get Started","Get Started","Your dick is too big to fit in their earginas. <b>You’ll need to reduce your girth!</b>");
+	}
+	else addDisabledButton(0,"Get Started","Get Started","You’re too poor!");
+	addButton(4,"Back",pickWallSlut);
+}
+
+//[Get Started]
+public function wallSlutsNoisyRodentsGetStarted(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var kok2:int = -1;
+	//second cock that will fit?
+	if (pc.cockTotal() > 1) kok2 = pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume(), "volume", [kok]);
+	var vag:int = -1;
+	if (pc.vaginaTotal() > 0) vag = rand(pc.vaginaTotal());
+	//no puss pass:
+	if(!pc.hasKeyItem("Puss Pass")) 
+	{
+		output("Upon insertion of a credit chit, the slot cinches down and gives you an auditory thumbs-up.");
+		pc.credits -= 1500;
+	}
+	//has puss pass:
+	else output("The slot above their advertisement throws out an ego-boosting jingle when you insert your PussPass.");
+
+	output("\n\nStepping up to the happily squeaking duo" + (pc.isCrotchExposed() ? ", stroking your [pc.cocksLight] into rigid readiness" : ", you loosen your gear to produce the [pc.cockType " + kok + "] object of their desires, pumping your [pc.cocksLight] from glans-to-[pc.knotOrSheath " + kok + "]") + "." + (pc.balls > 0 ? " Just out of their reach, you draw the cum-obsessive mischief’s attention to your [pc.sack], fondling the spunk-factory until a dollop of pre is layering over outsized veins." : "") + " Muffled, staccato thumps of tails against the cabinet’s interior declare their barely contained jubilation. The girls are ocularly masturbating at the sight of your [pc.cockType " + kok + "] equipment, mouths filling with saliva at the thought of getting a taste. They’re mesmerized by the");
+	if (pc.cumQ() >= 1000) output(" dick-webbing cascade of [pc.cumColor] lubricant glazing your sizzling-hot length.");
+	else if (pc.cumQ() >= 300) output(" steady flow of [pc.cumColor] lubricant glazing your sizzling - hot length.");
+	else output(" thin stream of [pc.cumColor] lubricant glazing your sizzling - hot length.");
+	
+	if (kok2 >= 0)
+	{
+		output("\n\n<i>“Heeeeyy, that’s cheating! <b>[pc.cockCount] dicks!?</b> I hope you’re not thinking of giving Chestnut any cum, except on her face to shut her up" + (ratsPCIsGood() ? " [pc.mister] CEO!" : "!") + "”</i> Walnut wails, biting her lip and staring <b><i>hungrily</i></b> at your [pc.multiCocks]. <i>“I want <b>all</b> of that and I’m gonna show you how badly I want it. By the end of my super-practiced foreplay, you’re gonna be dribbling my head against your crotch like a gravball!”</i>");
+		output("\n\n<i>“My head-cunts are better, I bet you could even fit " + (pc.cockTotal() > 2 ? "two" : "both") + " of those in mine! Walnut’s ears are all fat and plump from all the mods she takes, mine are the true rodenian experience! Once you cream my brain you’ll know that I’m right! Gimme your penises" + (ratsPCIsGood() ? ", [pc.mister] CEO!" : "!") + "”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“C’mere, c’mere" + (ratsPCIsGood() ? " [pc.mister] CEO!" : "!") + "”</i> Walnut begs, thrashing against her confinement. <i>“One minute with my mouth and you’ll want to use my head like a gravball! Chestnut modded her tongue because she’s so bad at this part, trust me!”</i> The top-rat thrusts out her tongue. Her licks at the air throw crystal beads of saliva all over, particularly into her partner’s face. Chestnut thrusts upwards, slapping her own long tongue into Walnut’s muzzle.");
+		output("\n\n<i>“No! You’ll be thinking of my head-cunts for hours after you use me! Once I get that dick of yours nice ‘n wet and you cream my brain you’ll be thinking of how good it felt for hours! Walnut can’t do that! Think of how good all my piercings will feel on your huge, tasty penis" + (ratsPCIsGood() ? " [pc.mister] CEO!" : "!") + "”</i>");
+	}
+	
+	output("\n\nDeciding you’ve had enough of their sales pitch, you put the needy rats through their paces by pushing your [pc.cocksLight] into the space between their heads" + (pc.balls > 0 ? ", nestling Chestnut’s moist nose into your sweaty nutsack." : ".") + " Right away they get to work, sliding their tongues across your ");
+	if (pc.cockTotal() >= 3) output("many members");
+	else if (pc.cockTotal() >= 2) output("multiple girths");
+	else output("girth");	
+	output(" with incredible eagerness, slathering all " + num2Text(pc.cocks[kok].cLength()) + " inches of thickened [pc.cockNoun " + kok + "] in saliva and ecstasy. Hot hyperventilations puff across the top and bottom of your member, the presence and flavor of dick reducing Walnut and Chestnut to their natural states as cock-gobbling runts.");
+
+	output("\n\nCalming your breathing, you take hold of the girls, guiding their drooling maws to where your " + (pc.cockTotal() > 1 ? "phalli most need" : "phallus most needs") + " pleasure, learning them the places you love to be touched. Walnut plants a series of squishy, relishing kisses across your upper mast " + (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE ? "all the way to your medial ring" : "down to your [pc.base " + kok + "]") + ". From below, Chestnut " + (pc.balls > 0 ? "is slobbering over your [pc.ballsNoun]" : "slobbering at your pubic mound") + ", wrapping her silky-soft tongue around the [pc.knotOrSheath " + kok + "] of your slick stick and jacking it full of submission and ardor. Her aimed efforts fatten your meat and massage your cum-vein to its full diameter whilst Walnut enjoys the resulting inundation, slurping all the [pc.cumFlavor], gushing tension into her gut.");
+	output("\n\nSo horny is the top-mounted mousegirl that her eyes are rolling back. Libidinous Walnut swoons, begging with useless cock-drunk eyes, wanting you to act on her slackened tongue, start pounding her face. Tangy nectar drips from her unnaturally swollen ears, plush and plump like gum-colored marshmallows. You move a hand to the pink opening, shocked by the raw heat billowing from her excited vagina. The air and lighting of Cherry’s establishment is muggy and hazy enough, but if you strain your eyes, you swear it visibly steams.");
+	output("\n\nYour urgent ear-fingering revives Walnut; like she hadn’t just lost herself, she’s sucking your dick, realizing that you’re not ready to test the waters, as it were. Although her wish is yet to be granted, the tawny trollop flies up and down your [pc.cockType] mass, voice vibrating your throbbing-hot boner into a quivering state. <i>“Shooo good, [pc.master],”</i> she giggles, closing her mouth around your buffed bulk affectionately. The immodest rodent pulls away, chittering and beaming.");
+	
+	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“I looove horse dicks! All those dopey bunnies have these, and they smell soooo good! The best part is when the tip flares, too!”</i> Walnut coos, staring at you bleary and cock-drunk, her senses gradually being overwritten by your phallic scent. Both she and Chestnut are, for once, in agreement, uniting their suckling efforts from north and south, flattening their taste buds to your breed-steed, insatiable, never satisfied. <i>“Those Jumpers all have super awesome cumshots! You’re gonna pump Walnut full of yummy jizz, right? S’long as my boobs are nice and big we won’t have to listen to Chestnut anymore!”</i>");
+	else if (pc.cocks[kok].cType == GLOBAL.TYPE_CANINE) output("\n\nWalnut flattens her tongue to your cumslit, moaning into the hot little hole of your turgid bitch-breaker. <i>“Mmmm puppy-[pc.guyGirl]s always have reaaaallly tasty dicks! Look at your knot, too, it’s all veiny! Wanna press that to my ear-cunt?”</i> Before you have time to process that provocative utterance, Chestnut is buffeting your gorging bulb like it’s her favorite flavor of you, striking and lashing it with organic purpose that slowly fades into disorganized stupor. They combine their suckling efforts at that place the most, spit and pre seeping from their restless lips.");
+	else if (pc.cocks[kok].cType == GLOBAL.TYPE_FELINE) output("\n\n<i>“These little nubs feel sooo good against my tongue, I can’t wait to feel them inside! Most of the kaithrits on the station mod their cocks for some reason, I don’t get it!”</i> Walnut strokes your adoration-coated rod in breathless, suckling motions, making an absolute mess of your penis and loving every second of it. Every little nodule extending from your [pc.cockColor] pulsing gloriously after their cycling kisses. <i>“These are gonna feel great when you fuck me!”</i>");
+	else if (pc.cockCanSting(kok)) output("\n\nBefore Walnut or Chestnut can wonder as to the meaning of your staff’s tendrils, they get a first-hand lesson in suula venom. Their tongues are pricked and lashed by drug-bearing cilia, driving their competitive fellatio into all-out chaos. Waterfalls of spit submerge your heavy fuckstick in enough saliva to fill a bucket, keeping it feeling like you’re waist-deep in water for the rest of your session. It’s always such a joy to see how the denizens of the galaxy take to a mouthful of chemical bliss...");
+	else if (pc.hasSheath(kok)) output("\n\nFirst a nose and then a tongue-tip drives into your sheath. An exasperating mix of pain and pleasure whirls about your spine as one of the caged critters (Chestnut, probably) savors your penis’ secret area. The smooth studs of her pierced tongue slide it back just a little like foreskin before pressing in like beads meant for any other orifice. You scream, nearly cumming, totally unprepared for the sudden, intense - maddeningly fucking intense - pressure that hurriedly pulls away by the grace of some dead God. Now when she teases that spot, it’s nowhere near that extent, but that tenderness is forever emblazoned on a part of your <i>soul.</i>");
+	else if (pc.hasKnot(kok)) output("\n\nA flutter in your belly spreads to your heart when the bottom-bitch of a rat orally implores your [pc.knots] to inflate. The temperature at your crotch rises, accompanied by a coiling tightness. Your propagative bulb hardens, grows outwards, juicy and gratified for the compliance of a worshipful slut in her rightful place. Shifting down, you strain Chestnut’s lips around the sperm-plugging mass, muttering a few coarse words under your breath. She likes it, and she’s grateful for the opportunity to cover your extra-special bit in more of her sticky love.");
+	else output("\n\n<i>“I loooove this taste! You’ve got such a yummy cock" + (ratsPCIsGood() ? ", [pc.mister] CEO!" : "!") + "”</i> Walnut praises, devoting even her hair to reverence of your flexing dong. Chestnut’s drooling murmurs from below aren’t intelligible, what with all the desirous sucking and slurping going on, but you get the idea. <i>“You’re gonna make sure to fuck me right?”</i> At those words, Chestnut plasters your undergirth in a needy, lonely kiss. <i>“Make sure you cum lots, that’s why we’re doing this! ‘Ya gotta pick the winner!”</i>");
+	
+	if (pc.balls > 0)
+	{
+		output("\n\nChestnut’s gluttonous nut-lust leads to difficulties in maintaining balance. Drowned in and dominated by sweat-infused ball-musk, the snake-tongued rodenian wraps her fleshy length around one side of your [pc.ballsNoun] and then the other, affectionately squeezing and swabbing your weighty seed-stash in a skillfully taut grasp. Loud whiffs serve notice of her intent to remember your scent for a long time, if not for the rest of her life. Obedient service sends quivers through your legs, moving you forward until she’s all but framed in the cushiony, virile dimensions that span the dips and falls of her snout. This sends the mousey prostitute into a manic frenzy. Starting from the underpouch, she kisses all up and down, nuzzling your wild oat" + (pc.balls > 1 ? "s and jerkily polishing them" : " and jerkily polishing it") + " to a mirror-shine that reflects the working girls’ every action.");
+		if (pc.ballSize() >= 20)
+		{
+			output("\n\nAbout the only thing saving poor Chestnut from asphyxiation via elephantine scrotum is the long, studded tongue hastily washing the sperm-glutted sack encompassing her entire head. The nutty rat’s serpentine tongue drags across angry veins and fervid ball ");
+			if (pc.hasFur()) output("fuzz");
+			else if (pc.hasScales()) output("scales");
+			else output("skin");
+			output(", twisting and turning through slopes of squishy acres. Her mouth opens to a wide ‘O’, squeezing against the girth of your jizz - generators in deific reverence, leaving marks of lipstick behind, covering every inch from top to bottom, front to back, with her paralyzingly - pleasant organ.");
+		}
+		else if (pc.ballSize() >= 7) output("\n\nTry as the cum-hungry rodent might, she can’t close her thirsty mouth around " + (pc.balls > 1 ? "even one of your girthy nuts" : "your girthy nut") + ", only managing to plant hickeys and lipstick marks randomly on your sperm-packed circumference. Her serpentine tongue mops your succulent orb" + (pc.balls > 1 ? "s" : "") + " left to right to left, then reaches to the oft-ignored backside, poking little love taps into your vigor-sagged squish. This prompts you to drag your freshly-cleaned scrotum over and back her short muzzle, delighting in the frictious slipperiness.");
+		else
+		{
+			output("\n\nThe rat-slut’s long tongue spins spirals of serpentine beatitude across your testicle" + (pc.balls > 1 ? "s" : "") + ", drawing the swelling source of orgasm into her mouth. Indulgent cheeks seal around your ‘nad" + (pc.balls > 1 ? "s" : "") + ", sucking softly at first, then pulling so hard that you realize just how much of a vacuum her lipsticked mouth is. Your [pc.fingers] stretch");
+			if (pc.hasTail()) output(" and your [pc.tails] out - thrust" + (pc.tailCount > 1 ? "s" : ""));
+			output(" to the ravenous hunger swallowing your ballsack, trapping it in an inescapable tunnel of thirsty pleasure.");
+		}
+		if (pc.hasVagina()) output("\n\nThudding in your loins is the untapped, impatient nerves of your [pc.pussies]. Chestnut slips behind your herm-hood, feasting on your [pc.clits], parting your feminine lips and sinking her pierced protrusion into your [pc.girlCumNoun]-dappled cunt. Your [pc.vaginaColor " + vag + "] pussy attempts a robbery of your muscle control; it takes all your taxed willpower not to fall on the rat-girl’s face. The profoundly delightful sensations of having a nub-studded tongue exploring your moist hole adds a pleasant contrast to all the ball worship from before!");
+	}
+	else if (pc.hasVagina()) output("\n\nTaking you by surprise, Chestnut deploys her nub-studded tongue to your female side, parting your lips with <i>her</i> lips and swimming the broad edge of her organ through the lust-pumped slit. Cursing and growling is all you manage, doing your damndest not to fall on the rat-slut and hurt her. Before you know it, the adventurous mousegirl’s sawing back and forth through your [pc.pussy " + vag + "]" + (pc.vaginaTotal() > 1 ? " and the other" : "") + "" + (pc.vaginaTotal() > 2 ? "s" : "") + ", swirling that amazingly soft organ around your [pc.clits], then surprising you with another penile polishing.");
+	
+	if (kok2 >= 0)
+	{
+		output("\n\nPulling back isn’t easy. The captives’ [pc.cumGem]-flecked cock-pillows struggle to keep your members where they are, lingering open with glossy, angling tongues fishing for another taste. It takes but a moment to line " + (pc.cockTotal() > 2 ? "two of your masts" : "your twin masts") + " up with their lips and thrust into the tight, wet entrances they’ve made for you, screwing the bottom rat’s fleshy tendril back into its lair. Sinking your [pc.fingers] into their heads of hair, you steamroll over Chestnut’s uvula and drive through Walnut’s tonsils in a singular motion, encountering no gag reflexes on your lubricious thrust. Inhaling deeply, you hilt yourself in the wall-slut’s maws, noting the upquirked smile on the top-rat’s face.");
+		output("\n\nThe sensation of a double blowjob, of being tucked away in two knob-polishing throats demands no less than a maniacal face-fucking. The entire wall creaks and groans from the pressure you put on the two, stuffing their snouts with dick that must seem all the bigger to ones so small. The all-consuming desire to unload pounds against your gut while your [pc.cockHeads] pound their bellies; crackling urgency spider-webs across your tensing prostate. <b>Shlucks</b> of copious saliva fill your ears; your hips wiggle and haul; your [pc.tongue] falls from your mouth. Audible, spunk-hungry swallows assail your lunging [pc.cockHeads] with a violent physical experience.");
+		output("\n\nOnly one thought crosses your mind as you plunge your pillars past buttressed jaws: <b>More.</b> The need to bury yourself [pc.knotBallsHilt " + kok + "]-deep in them erodes the last of your self-control. You buck and bounce, slapping your full weight into their gurgling muzzles " + (pc.cockTotal() > 2 ? "while your unslotted member" + (pc.cockTotal() > 3 ? "s flail and thrash" : "flails and thrashes") + " uselessly, spurting off ribbony arcs of slick spoo" : "") + ", enjoying the view of their caramel throats straining over the shape of your [pc.multiCocks]. As the flow of pre begins to saturate their windpipes, reflexive swallows occur more frequently, intensifying the [pc.cumColor] flow into their rippling voids.");
+		output("\n\nWalnut and Chestnut simultaneously orgasm from the rough dicking you give them. You pull all the way out then shove back in, grunting and growling like an animal, savoring the tender, near-orgasmic clench of the twin’s tensile throats. Translucent juice launches from the upper rat’s ears just as her eyes roll back, and the horizontal whore gurgles from below, unable to breathe in anything but the heavy sexual stench roiling near the floor. A squelching ‘pop’ follows your double shafts out from the clinging hug of their lips - the two are a mess, yet without a slimy payoff, the scene looks tragic.");
+		output("\n\nBut that’s not what you’re here for. You didn’t pay for a blowjob.");
+		output("\n\nYou paid for those ears.");
+	}
+	else
+	{
+		output("\n\nWithdrawing from the valley of genital genuflection, you command Walnut to ‘open up’ before sheathing yourself rather forcibly in her smiling suckhole. You think you even hear a little ‘yay’ just before your [pc.cockHead " + kok + "] rolls over her uvula and wears her adams’ apple like a hat. Grinning, content to sit there, you allow the rodenian a moment to luxuriate in the feel of taking <i>your</i> dick. You let Chestnut get her last stimulations in before you start pumping.");
+		output("\n\nIt’s as much an intense experience for Walnut as it is for you: her green eyes roll all the way back as your penis rides into her gloriously accepting throat, wearing it like a tailor-made condom. No gag reflex in sight");
+		if (pc.libido() >= 66) output(" enables you to thrust all " + num2Text(pc.cocks[kok].cLength()) + " inches into this dispensable prick - holster without any care in the world, satisfying your savage impulses.");
+		else if (pc.libido() >= 33) output(" fills you with the kind of glee one invariably gets when they realize that their unleashed sexual desires can be carried out.");
+		else output(" triggers your oft - repressed libido to surge forward, claiming her as powerfully as your hips will allow.");
+		if (pc.cocks[kok].cLength() >= 12) output(" You pound your dick all the way to her belly in one magnificent thrust, wearing her like a leithan would their favorite bitch.");
+		else if (pc.cocks[kok].cLength() >= 6) output(" Your dick pins her tongue and bulges the entirety of her throat until you’re wearing her like a furry sock.");
+		else output(" Your prick’s a perfect fit for her, vanishing between powerfully - gulping cheeks and overlaying her adam’s apple.");
+		output(" Your ballooning tip stretches her lubricious passage on repeat strokes, making way for the broadness you drive into her erotically - charged wetness.");
+		if (pc.balls > 0) output(" From below, your ballsack swings back and forth, slapping indulgently into Chestnut’s brow.");
+
+		output("\n\nWalnut’s glossy" + (pc.cocks[kok].cLength() >= 12 ? ", straining" : "") + " lips quiver and shudder, hugging your invading [pc.cockNoun " + kok + "]. How openly pleased she is to have your crotch mashing into her face would be enough to arouse a room full of people into nutting in their pants. The rodenian blinks, not bothering to do anything but stare into your loins, sucking just in time for your impassioned twitches and pushes. Her eyes roll back for the next " + (pc.cocks[kok].cLength() >= 12 ? "belly-deep" : "neck-deep") + " thrust. A squirt of ear-cum launches from her head once your [pc.knotOrSheath " + kok + "] slams home. She orgasmed from being facefucked.");
+		output("\n\nNow to see if Chestnut follows suit.");
+		output("\n\nGrabbing both of her cheeks and bending tugging her head down, you exposed her neck and create an arrow-straight path to her tiny stomach. Your motions are all the warning the bottom bitch-rat needs: her nipples harden and her mouth opens wide. The rat’s tongue twirls around your [pc.cockNoun " + kok + "] only to be fucked back inside its lair. Like her wall-mate, she also lacks a gag reflex. That sublime, wonderful absence of biology lets you drill her face until your thighs are squeezing around her pierced, jingling ears. Looking over Walnut’s fucked face, you consider the qualities of her mouth versus Chestnut’s.");
+		output("\n\nThe sinuous tongue seizing your [pc.cockColor " + kok + "] boner refuses to unravel, and its owner’s head bobs to your blood-boiling pace. Crushing softness lavishes your erection while your coiled inches are sucked further into her petite, greedily suckling maw. The round, bulbous outline of your [pc.cockHead " + kok + "] can be seen bulging against the exterior of her cum-drinking neck like a burrowed mole, sliding to and fro. The pressure is incredible, and if she were wearing a collar of any kind, your ferocious plowing would have snapped it clean off. Chestnut certainly proves herself an equally sodden slut, pleasing you to her own sympathetic orgasm.");
+		output("\n\nBut you’re far from satisfied. You pull away, watching her pleasure-seize.");
+		output("\n\nIt’s time to see to their ears.");
+	}
+	
+	processTime(5 + rand(5));
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsEarFucking,kok);
+}
+public function wallSlutsNoisyRodentsEarFucking(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var kok2:int = -1;
+	//second cock that will fit?
+	if (pc.cockTotal() > 1) kok2 = pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume(), "volume", [kok]);
+	
+	output("The formidable slap of your [pc.cock " + kok + "] to Walnut’s fuzzy cheek jerks her out of post-orgasmic beatitude. Her snout widens blithely when she realizes that she’s to be first. <i>“Yes! Yesyesyesyes!”</i> she squeals. <i>“You’re gonna love this! My ears are softer than any pussy in this wall, you’ve got such good taste!”</i> The fuckable shape of her circular ear descends to your girth’s level, the outer rims flapping against the shaft. It ebbs and flows before flaring open, gushing out high temperatures and fragrant juices from its chubbily-aroused interior.");
+	output("\n\nYou get a better look at the cranial cunt on offer, finding it to be rather unusual for an aural orifice. A surface that should be flat and smooth is <i>puffy</i> and swollen, deliciously thick and velvety. Her ears aren’t as large as the other pair, but that’s likely due to all the shifted skin. The dewy, unsubtle smell of estrus need all but confirms this perverse and obscenely lewd cunt is ready to be used. Just seeing it there, glistening and refulgent, little begging squeaks coming from around it, is proof positive. Taking Walnut’s horny head in your [pc.hands], you daintily stroke her hair in a reassuring gesture, prepping the mirthful mouse for her reward.");
+	output("\n\nChestnut’s plaintive whines do nothing to pause your insertion. Before you’ve even found the pussy inside Walnut’s head, the moist slopes of her fat ear enfold your [pc.cockColor " + kok + "] pole in an exotically lewd sleeve. Your [pc.cockHead " + kok + "] slides past her hearing tunnel into a channel of rippling vulnerability, spurting boiling pre-jizz to your thumping heartbeat. Even though you’re keeping her steady, you can’t say the same for yourself.");
+	output("\n\nBut then, you get there.");
+	output("\n\nInner muff muscles clench down on your crown, inhaling your breeding organ like oxygen. You struggle not to give her every inch there, but any involuntary movement brings the bloated walls down on your dick in ways that cannot be resisted. Every motion brings with it newer pleasures that defy description, all while you’re sinking into the rodenian’s skull, swaddled in the embrace of a pussy that buzzes and vibrates <i>just right.</i> The carnality of your position overwhelms you, and the pliant creature whose head you’re slotted in screams in bliss, driving you wild.");
+	output("\n\nNobody in their right mind (least of all you) would dare attempt to halt or slow your deafening thrusts. Luscious pumps carry your lust-sore [pc.cockNoun " + kok + "] into the depths of indescribable depravity. You swear you can empathize with just how empty Walnut feels on the backstrokes, having something to fill her void suddenly disappearing, leaving her colder than ever. Any agony she might have felt vanishes when you thrust back in, smashing on her hedonary gland" + (pc.cocks[kok].cLength() >= 12 ? " and wondering for a moment if your beefy prong might emerge from the other end" : "") + ". Stuffed so full of dick, all the rat can do is helplessly cum and beg for the next one to be sooner and harder.");
+	output("\n\n<i>“Yeeessss, I wannna get your cummmm...”</i> she drones in delirious passion. The artless way you burrow into her head-pussy like crazy, you can’t take full advantage of her susceptibility beyond encouraging her to debase herself. <i>“I’m a big slutty rat who likes getting her ear cunts fucked! I like making Chestnut jealoouuussss- EEK!”</i> Walnut squeaks, head craning to the left.");
+	output("\n\nIt happens with one of your full-body throbs. The sudden twist of pleasure and lethal press of changing trajectory undermines your plans. <i>“Give cum! Give cum! Make me your favorite! You’ve gooootta gimmmeee the cuuuuuum!”</i> With a howl of inarticulate bliss you right the skank’s neck and screw her harder, skullfucking her on wanton instinct that engraves your initials on her impressionable mind. When her eyes have the wherewithal to glance in your direction, she laps at her lips, blinking slowly. <i>“I wanna be covered in cum tooo... but fill my boobs! Pleeease! Don’t give Chestnut annnyy I deserrrve it! I’m your favorite girl riight? Ri- aack-! Right!? Pleh.... I want it!”</i>");
+	output("\n\nFaint trickles of cream reach the floor, most of it splattering off your crotch. You’re railing her plumpness so powerfully it’s like you want this incredibly soft cunt to be yours. You want everyone who uses it from now on to know how well you’ve fucked it. A surge of lust later and your groin-to-rodenian jackhammering is echoing off the fuck-shelf in which she’s bound and carrying into the other booths, putting shame to the sex in your immediate vicinity.");
+	if (pc.hasKnot(kok)) output(" You grind your [pc.knots] into the sticky walls of her ear-dome, only slightly miffed that you’ll never knot this bitch’s hole.");
+	if (pc.balls > 0) output(" You’re certain by the end of this, your churning, heavy, cheek-clapping ball" + (pc.balls > 1 ? "s" : "") + " will have left a small mark in her fur.");
+	output(" Sex-heat shudders through your body until your breathing is short and ragged. This rodent’s cunt is little more than a juicy mold of your [pc.cock " + kok + "].");
+	
+	if (kok2 >= 0) output("\n\nEntranced as you are by Walnut’s noggin, Chestnut takes every opportunity she can to please your spare equipment, and with a tongue like hers the job is a rather simple one. Writhing mawflesh pleasures your unused dick" + (pc.cockTotal() > 2 ? "s" : "") + ", ensuring that she’ll be richly rewarded once you pump your chosen slut with cream. The wet pinkness of her organ keeps you guessing as to where it’ll apply its alien softness next, and it soon becomes a game she plays: what buttons will she push next in her task of serving you?");
+	if (pc.tentacleCockCount(true) > 0) output("\n\nOne vice is not enough, and you have the means to breed Walnut for all she’s worth. Willing " + (pc.tentacleCockCount(true) > 1 ? "a" : "your") + " prehensile breeding stalk over and thrusting it into heaven is effortless. " + (pc.tentacleCockCount(true) > 1 ? "Shoving even more in? Even easier." : "") + " Rhythm comes easy: you’re giving this rodenian a taste of what it’s like to be in a mating pair, threading locks of her hair, screaming her praises, telling her how badly you want to cum inside. The pleasure she’s experiencing now is not something you’ll ever fully appreciate, but the face she’s making, lacking in any propriety or civility, is one you’ll never forget.");
+	
+	output("\n\nBut it’s time to see to Chestnut. You can’t, in good conscience, leave any partner undicked. Yanking yourself out stokes spectacular climax in Walnut, so powerful that she doesn’t even care you’re leaving her behind. Besides, she can’t, because you tell her not to. Hedonary glands make things so much easier!");
+	output("\n\n<i>“A-Am I-”</i>");
+	output("\n\nChestnut doesn’t get more than a word in before you grip her jewelry-encrusted ear with a breeder’s fury, yanking her head up and diving into the frictionless ditch. Her boobies wobble under your spurting assault, hard nipples carving the fuck-fog. Premature loads of [pc.cumNoun] glaze her not-so-sacred surfaces, imbuing them with a rut-enhancing quality they lacked just a second ago. [pc.Fingers] curling into her brain-box, you thrust your spear in all the way, every inch of [pc.dickSkin " + kok + "] vanishing into a strange and elastic place."); 
+	if (pc.balls > 0) output(" The bloated weight of your supple sack slams into her hard enough for your lips to feel it.");
+	output("\n\n<i>“Hey! W-Wha-”</i> Walnut whines. <i>“Why aren’t you fucki-NG meeee? That’s supposed to be miiiine!”</i> You’re not entirely sure how they both feel about their bondage, but you can see how suddenly she’s disagreeing with her place in the wall. Chestnut’s just like her now, whimpering and groaning for your pleasure, shuddering on the solid end of your rat-charming phallus." + (pc.tentacleCockCount(true) > 0 ? " She’s also not spared the penetration of your tentacular attachments." : "") + " The lower rodent clenches in gooey climax, hidden folds of authentic rodenian cunt squeezing down on your lofty rod in rippling ecstasy.");
+	output("\n\n<i>“Yaaaaayyyy!”</i> Chestnut’s muzzle, laden with tremors, spreads as her oiled junction retightens around your outlined lump, all but asking for you to give it to her deeper and rougher. It’s a request you very quickly grant, conjuring up every force of nature imaginable to accelerate your thought-destroying velocity. <i>“You’re- sooo- so-! Soooo goood at this! Seeee? My ears are so... so- so... Aaaa... Eek! - ssssssooooooo mush better than Walnut’s!”</i> You impale yourself up to the [pc.knotOrSheath " + kok + "], tearing a heart-stroking squeak from her lungs" + (pc.hasKnot(kok) ? ", threatening to shove a bulb twice the size of her head-pussy inside" : "") + "" + (pc.hasSheath(kok) ? ", delighting in the crinkle of your sheath on her throbbing barriers" : "") + ". <i>“Chestnut waaants your chunky nuuuut! You’ve gotta cum inside meeeeee! Turn my head into a waterpark!”</i>");
+	output("\n\nYou pull out, slamming back into Walnut’s slippery hole, barreling through nut-starved conduits. Frenzied thrusts deflect your fist of a [pc.cockHead " + kok + "] off her hedonary gland no less than ten times, demolishing her cognition and reducing her utterly into a crazed mess craving the burningly-hot rush of duct-swelling jism. Sweat stings your eyes when you swap back to Chestnut’s recesses, establishing yourself as her sugar-" + pc.mf("daddy","mommy") + ". Ear cunts set permanently to <i>“milk my [pc.master]!”</i> darken your surroundings with peaking lust. She’s draped over your crotch like a habit on a spunked nun’s head and shoulders, looking more and more like a filling bubble-buddy.");
+	output("\n\n<i>“Cum in meee, meeeee!”</i> Walnut begs, only to be silenced by your rampant impulses.");
+	output("\n\n<i>“No, I need it! I need it! Me, me!”</i> Chestnut shouts - <i>plap, plap, PLAP!</i>");
+	output("\n\n<i>“Fffffffmeeeeeee MEEEEEEEEEEEEEEE!”</i>");
+	output("\n\n<i>“NOOOOOOOO!”</i>");
+	output("\n\n<i>“I’ll come and suck your dick after this, you can make me your new belt!”</i>");
+	output("\n\n<i>“EYE’LL be your new cock sock, I’ll lick you every day and night!”</i>");
+	output("\n\n<i>“AYE WILL DO anyythiiiiing for your cum! I HAVE to have the bigger tits! I was such a proud girl until I found out how great dick was, you have to believe me!”</i>");
+	output("\n\n<i>“NO! It’d be wasted on her! Break my fucking head in half, split me like a big stupid vegetable!”</i>");
+	output("\n\n<b>Fuck!</b> Fuck, fuck! Quavering and clamoring and madness-inducing voices demand too much of you - you can’t fuck rat pussy forever, and you can’t hold back any longer! The only thing that will bring order to chaos is to cum... but where!?");
+	
+	processTime(5 + rand(5));
+	clearMenu();
+	addButton(0,"Walnut",wallSlutsNoisyRodentsEarFuckingFillWalnut,kok,"Walnut","Walnut, for all her sass, deserves your cum!");
+	addButton(1,"Chestnut",wallSlutsNoisyRodentsEarFuckingFillChestnut,kok,"Chestnut","Chestnut’s a persuasive little thing!");
+	if (kok2 >= 0 || pc.cumQ() >= 1000) addButton(2, "Both", wallSlutsNoisyRodentsEarFuckingFillBoth, kok, "Both", "Compete though they might, you’re the paying customer, and both those ears are deserving of a thick creampie!");
+	else addDisabledButton(2,"Both","Both","<b>You’ll need two cocks " + (pc.cockTotal() > 1 && kok2 < 0 ? "that fit" : "") + "</b> to cream both bratty ratties at once, <b>or a high enough cum output.</b>");
+}
+public function wallSlutsNoisyRodentsEarFuckingFillWalnut(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var cumVolume:Number = pc.cumQ();
+	
+	output("You become too aware of the aches in your haunches - tightness builds at your [pc.base " + kok + "]. No chains can hold you in this rutting state. Velveteen folds, overstuffed with [pc.cockNoun " + kok + "], cling to your mast, so slippery that no material or force of strength could ever grip them. Walnut’s brilliant cries, rich with lust, reach you through it all. Adorable squeaks are the cherry on top. Her lungs push out broken airs and ignominious wails matched to the onslaught you carry out on her chubby head-cunt. It’s an overflowing pot, spilling an endless reserve of her wants, her needs, her desires. Individuality doesn’t matter to a rodenian, least of all one presented for public use.");
+	output("\n\nChurning maelstroms of breeding urge swirl below your [pc.skinFurScalesNoun]. Eyes glinting, you drive your arousal into the rodenian’s interior, holding back the spermy tide for a few seconds longer. Long enough to emblazon the unearthly qualities of her pinkness in your memories, for your [pc.cock " + kok + "] to archive each alluring detail" + (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE ? ", and for your equine flare to fully expand into a proper seal" : "") + ". Coalescing euphoria manifests in your pleasure centers, counteracting your demands for prolonged stimulation and beginning the overdue process of unspooling your impulses shot by [pc.cumVisc] shot.");
+	
+	if (pc.cumQ() >= 1000)
+	{
+		output("\n\nWalnut’s wish is about to come true. One wet ‘plap’ later and your furious reaming comes to its end, and [pc.cum] erupts into her alien depths. [pc.CumGem] goo floods the taut interior of sperm-milking muscles, pink nerves tensing against you, smashing on your girth like an angry mob looking for justice. Fresh profusions of [pc.cumFlavor] creaminess flood into fervid vaginal canals, quickly inflating her boobs through multiple cup sizes. It happens so abruptly that the rushing [pc.cumColor] jizz leaks from the relentlessly swelling tanks. Your prostate itself seems to lurch being this deep in Walnut’s head and neck; every single blood duct throbs to a level of stiffness comparable to common metals.");
+		output("\n\nYour lay’s bosom grows to such an extent that it obscures Chestnut’s face in its sperm-sloshing shadow. The rodenian’s cum-ballooned boobs are a sight to behold, no matter how transient the transformation may be. " + (pc.cockTotal() > 1 ? " They’re looking even better with the extra loads your unsheathed [pc.cocksLightIsAre] pumping out, matting the bloating curtains of her fur in frosting stripes of [pc.cumColor] slickness." : ""));
+		if (pc.cumQ() >= 3000)
+		{
+			output("\n\nClimax continues despite your thoughts of it having begun to end a minute ago. [pc.CumVisc], urethral-straining loads of seed churn viscerally through your burdened member. It’s shunting so slowly that it burns inside the bulk of your cock. It’s unbearable, and the only way to twitch it out is by unsleeving yourself from the rat-girl and plowing back in. The resulting fountain of cum splashes into a hidden reservoir and causes an instant backblast of spooge that hits your groin and geysers out of her other ear, launching into the wall of your booth with a lewd splat. Damn!");
+			cumVolume *= .75;
+		}
+	}
+	else output("\n\nOne final <i>plap-plap</i> ends your furious reaming and opens the gates to orgasm. [pc.Cum] spurts in ropes and the occasional gout, weaving through Walnut’s violated muff. Another cry and one turn of the rat’s head divides your world in two, multiplying the [pc.cumVisc] warmth surging from your loins into an inexpressible wonderland of alien biology. She shivers in your grasp, squeaking softly through the process" + (pc.balls > 0 ? ", intimately aware of the clench and churn of your [pc.ballsNoun] on her muzzle" : "") + ". Spasmodic muscles milk your lusts into taut channels of careless craving. " + (pc.cockTotal() > 1 ? "It’s unfortunate that your loads are being divided, but Chestnut’ll take whatever she can get. Her hungry tongue lashes at the aching peak of your unslotted boner" + (pc.cockTotal() > 2 ? "s" : "") + ", seeking any and all errant flow with admirable accuracy." : ""));
+	
+	if (pc.cumQ() >= 1000) output("\n\nSpent and satiated, catching your breath, you inspect Walnut’s temporary growth, feeling rather proud of yourself for giving her the kind of boobage needed to silence her noisy partner. She definitely earned it. Hmmm... since you made it possible... oh hell <i>yes,</i> they feel amazing in your palms! Stuffed so full of [pc.cumVisc] [pc.cumGem], dribbling lamely... these plush cushions are a wonderful leave-behind. Man, rodenians are a hell of a treat!");
+	else output("\n\nBefore it’s too late, you look down to get a look at Walnut’s boobs, identifying a few inches of growth. That’ll have to do.");
+	
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_NUTTED");
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+	flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] = 1;
+	if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] == undefined) flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = cumVolume;
+	else flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] += cumVolume;
+	if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
+	processTime(3);
+	pc.orgasm();
+	while(pc.lust() < 33) { pc.lust(2); }
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
+}
+public function wallSlutsNoisyRodentsEarFuckingFillChestnut(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var cumVolume:Number = pc.cumQ();
+	
+	output("Left to your own devices you might stay here fucking yourself with Chestnut’s head until the end of time. There’s just something about the texture of rodenian ear that you always want more of. Maybe the chemical effects of her hedonary gland have washed through your [pc.cock " + kok + "], silently brainwashed you into being her mate for life. Wouldn’t be a bad ending, but that’s not your fate. You can’t concern yourself with settling down, not even with this easy addition to any harem.");
+	output("\n\nSpearing her sweeping, slimy folds with reckless abandon, going deep into her fuck-socket of an ear, you pump Chestnut with the utmost passion, ready to claw your way over the last obstacle and fall into a pit of release. You huff, plowing the rat with your slimy rod, strings of your own cock-drool swinging like [pc.cumGem] crystals on a chandelier, buffeting her libidinously-red ear-dome in clingy preseed. A faint smile appears on your [pc.face] just moments before you end your pistoning pace and bury yourself to the [pc.knotOrSheath " + kok + "]" + (pc.balls > 0 ? ", impacting your [pc.sack] to her jaw" : "") + ". The only natural response gushes upwards" + (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE ? " towards your expanding flare" : "") + ": your spunk.");
+	output("\n\nYou’re cumming.");
+	
+	if (pc.cumQ() >= 1000)
+	{
+		output("\n\nGasping, sweaty, in a monstrous haze, you ram hard into Chestnut’s torso, slamming a raging pillar of [pc.cum] into her alien wombs and bouncing off her head. Walls of bestial hunger clamp down on your girth, devouring gushing waves of [pc.cumVisc] sperm. Brain-draining volumes of [pc.cumFlavor] goop pack her reproductive tubes to the brim, stretching them to a comforting fullness that expands her tawny titties. Right before your eyes the runty rodent’s rack expands with each visceral eruption of cranial creampie. It’s a reinvigorating sight, something that strengthens your next surging loads. Frothy wads of bag-swelling baby-batter leak from her nipples like perverse lactation, and soon enough, Walnut’s shelf disappears in the churning slosh of a rat properly fucked." + (pc.cockTotal() > 1 ? " Completing her temporary transfiguration is the frosting your extra equipment lends her. Gouts of boob-striping [pc.cumNoun] tattoo her fibrous pelt in layers of satisfied slickness." : ""));
+		if (pc.cumQ() >= 3000)
+		{
+			output("\n\nUnbelievably, your climax continues, yet it slows to shallow passings. It’s a weird, unbearable sort of ache building in your [pc.cocks]. No matter how hard her infinitely-parched walls pull stimulate, your phallus-burdening loads seep out slowly. It’s hot, it’s painful - you rear back and cram it all in, ensuring Chestnut lives up to her punny alias. Your next eruption strikes the reservoir sitting somewhere inside her, causing a geyser of thick, splattering spooge to launch from her opposing ear, spraying up and down the wall of your sex-booth while also plastering your own crotch in sex-juice. Nice.");
+			cumVolume *= .75;					
+		}
+	}
+	else output("\n\nThe fucking comes to a grinding and screeching halt. Ropes of [pc.cum] blast into Chestnut’s containers, her bosom blushing under the fur as their curves are enhanced by thick wads of [pc.cumVisc] spooge. Sperm-packed ribbons are guided by rhythmically drinking walls into her twin uteruses, maybe fertilizing an egg or two. The brim of her ear vibrates around your spurting loins" + (pc.balls > 0 ? ", massaging your wobbling balls" : ", listing downwards") + ". They pulse and throb in tune with your pumping lusts, sucking your [pc.cumFlavor] weight into well-fucked depths. " + (pc.cockTotal() > 1 ? "The rest of your modest loads end up smattering Walnut’s face and tits in a steaming-hot reminder of your passing." : ""));
+	
+	if (pc.cumQ() >= 1000) output("\n\nYou can’t help but reach a [pc.hand] down and play with Chestnut’s... nut-stuffed... chest. A chuckle transfers a too-pleased vibration into her spunk-glutted cleavage, filled with ample [pc.cumGem] volume. Fuck, rodenians are a hell of an experience. Better not touch too long... wouldn’t want her to lose more than you’ve already squeezed out!");
+	else output("\n\nIt’s hard to see past all the fuck-fug, but you detect a change in Chestnut’s bosom. Yes, she’s gained a few inches, maybe a full cup-size, but it’s not much. It’ll have to do!");
+	
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_NUTTED");
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+	flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] = 2;
+	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] == undefined) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = cumVolume;
+	else flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] += cumVolume;
+	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
+	processTime(3);
+	pc.orgasm();
+	while(pc.lust() < 33) { pc.lust(2); }
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
+}
+public function wallSlutsNoisyRodentsEarFuckingFillBoth(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var kok2:int = -1;
+	//second cock that will fit?
+	if (pc.cockTotal() > 1) kok2 = pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume(), "volume", [kok]);
+	var cumVolume:Number = pc.cumQ();
+	
+	if (kok2 >= 0) 
+	{
+		output("There’s no way you’re going to leave both out, their silly competition be fucking damned. Neither of these ear-cunts deserves to go without a proper filling. Grabbing Walnut and Chestnut by their dizzy domes, you cram their faces into kissing distance and hurriedly align your [pc.multiCocks] with their exposed breaches. Before they can put one and three together, they’re both enjoying the mind-melting bliss of being stuffed all over again, this time together. You spare a curious thought, wondering if this is the first time they’ve ever tolerated each other.");
+		output("\n\nThat’s the last spare thought you get. You pump and you thrust, thwacking your multiple organs through ripe head-pussies, your girths bowing to account for awkward and unbelievably potent direction. Burning-hot need ravages you from within and without like supercharged plasma, the dual sensations of double-cunt-penetration, the very fact you’re about to seed <i>four</i> wombs at once, enlarge both sets of hardened nipples with " + (pc.balls > 0 ? "the contents of your fluid-packed [pc.ballsNoun]..." : "your output."));
+		output("\n\nIt’s heaven.");
+	}
+	else output("You breathe in mid-stride, whole body pulsating at that moment. Pure, animalistic intent roils inside, ready to seize upon its opportunity. You produce enough cum to share it between the installed rodenians. They’ll both get bigger tits. Even if you have to work a little harder and divide the [pc.cumNoun], it’ll all be worth it to see them both a pair of leaking sluts. It’s already oozing out. To Walnut, then Chestnut, to Walnut and back - your increments are contracting a single point. The storm raging inside explodes outwards in thunderously thick expression, Walnut being the first to receive" + (pc.balls > 0 ? " from your heavy [pc.ballsNoun]" : "") + ".");
+
+	if (pc.cumQ() >= 1000)
+	{
+		output("\n\nJetting spunk lists into Walnut’s lush acres, rocketing deep into her chest and beginning the process of blessing her boobs with fresh wads. It won’t be an opulent rack, but it’ll be a hydrated one. Chestnut, too, gets her due - [pc.cum] unloads to the urgings of your shallow thrusting. Fountaining blasts of [pc.cumVisc] jism saturate the duo’s pillowy ears, feeding fluid tension into increasingly thirsty walls. " + (pc.cockTotal() > 1 ? "The feel of your multiple cocks fattening with seed forces you to lurch forward, burrowing another inch or two deeper in your chosen bitches." : "You swap, making great time and wasting nothing, giving Walnut a hefty burst and then Chestnut.") + " [pc.CumGem] seed, densely packed into immense, uterus-battering emissions of nut, overflows into the pair.");
+		output("\n\nTits grow in real time like on a pervy film, swelling out, even lactating the overflow. [pc.CumColor] lines of curving trickle run down the shaking rodentses bodies, certainly felt and relished on a level deeper than base comprehension. Unloading your colossal tides into the pair is an absolute joy, as is the quadruple clenching of ear and dick at once." + (pc.cockTotal() > 2 ? " To commemorate their temporary endowments, you wiggle your hips to paint their sloshing swells in seed, making sure that your unused [pc.cocksLightIsAre] gratified in equal measure." : ""));
+		if (pc.cumQ() >= 3000)
+		{
+			output("\n\nIt’s not over yet. Prolonged climax may not be healthy, especially on a pirate base, but it’s just another opportunity to show these dim-as-fuck rats who their preferred client will be from now on. Bucking muscles drown their already clogged tubes in knee-buckling weight. By the time you’re done, they’ll need a back-support just to not go sore from having been infused with gallons of [pc.raceShort] loin-fruit. Jug-filling eruptions take place over the next minute, careening into pools of ovarian delicacy. With nowhere else to go, the law of physics inserts itself on your illicit coitus. Splashes of [pc.cumFlavor] spooge smash into your pelvis while torrential bolts launch from Walnut and Chestnut’s other ears, spraying up and down the wall of your booth, sending micro-droplets your way.");
+			output("\n\nFuck yeah.");
+			cumVolume *= .75;
+		}
+	}
+	else
+	{
+		output("\n\nSpurt after spurt after [pc.cumVisc], [pc.cumFlavor] spurt pours into Walnut’s whorifice. Gushing warmth inflates her taut, cushiony tunnel and your urethra on its path to her egg-makers. " + (kok2 >= 0 ? "Your several endowments suit you and this task fine. Chestnut enjoys an equal treat, reaching the same vocal octaves as her sister." : "You hastily withdraw, serving Chestnut her very own reward in spate.") + " Pump- Walnut’s boobs get a little bigger. Pump- Chestnut’s too. Clenching walls suck down all that your overproductive biology has to offer. Your output seems insufficient for the two of them. It cultivates a desperate, shuddering need inside their vaginas, which pull even harder than before. Maybe if they suck hard enough, they’ll drain a few extra seconds from your refractory period." + (pc.cockTotal() > 2 ? " Whatever’s left is a woefully diluted and paltry amount spilling from your unholstered [pc.cocksLight] onto their interwoven breasts." : ""));
+	}
+	
+	if (pc.cumQ() >= 1000) output("\n\nWalnut and Chestnut both got what they wanted, and then some. You fill your [pc.hands] with their sumptuous titties, milking their jizz-filled cleavages of [pc.cumGem] semen. They’re like little water balloons, easily handled... but you don’t touch them much further. They wouldn’t be happy if they didn’t get to keep it in for as long as possible. Damn, though, rodenians are a rather interesting race! Maybe you’ll be by later to offload your lusts into these lovely little storage compartments?");
+	else output("\n\nNeedless to say, they got what they wanted. Even a couple inches to their chest-mounted advertisements should keep them docile for an hour or two, long enough for another freebooter to empty his or her balls in ‘em.");
+	
+	
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_NUTTED");
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+	flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] = 3;
+	if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] == undefined) flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = cumVolume/2;
+	else flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] += cumVolume/2;
+	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] == undefined) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = cumVolume/2;
+	else flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] += cumVolume/2;
+	if (flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
+	if (flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] > wallSlutsNoisyRodentsEarMaxCumVolume()) flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = wallSlutsNoisyRodentsEarMaxCumVolume();
+	processTime(3);
+	pc.orgasm();
+	while(pc.lust() < 33) { pc.lust(2); }
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsEarFuckingFinish);
+}
+public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
+{
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+		
+	output("Emptied, but still aroused thanks to pirate machinistry, you step away from Walnut and Chestnut, wiping your windshield with a leaden arm. The impetuous imps are shuddering, caked in your liquid signature, savoring the vicious fervor you fucked into them. The rodenians flop into a twilight consciousness, softly panting, squeaking in their dreams a positive testimonial for your patronage. Surplus spills from them into the lake of effluvium where you once stood. Cherry’s goo-janitor will have a buffet waiting for her when she gets around to these silly pi-rats.");
+	output("\n\nUnfortunately, your [pc.cocksIsAre] still rock-hard. Maybe it’s time to check out the other stock in this tempting inventory?");
+	
+	pc.createStatusEffect("NoisyRodentsDisable");
+	pc.setStatusMinutes("NoisyRodentsDisable", 90);
+	flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] = GetGameTimestamp();
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

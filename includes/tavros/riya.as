@@ -189,7 +189,7 @@ public function riyaMenu():void
 		if(flags["RIYA_SUSPICION"] != undefined) addButton(2,"Racism",riyaRacismTalk);
 	}
 	//[Sex]
-	if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
+	if(pc.hasVagina() && pc.isFullyWombPregnant() && pc.hasStatusEffect("Riya Breed No Sex")) addDisabledButton(3,"Sex","Sex","You are too pregnant with Riya’s child to do this!");
 	else if((!pc.hasVagina() || pc.isTaur() || pc.femininity <= 40 || pc.hasCock()) && flags["RIYA_BLOCKED"] != undefined) addDisabledButton(3,"Sex","Sex","You need to a normal female to pique her interest - with less than four legs.");
 	else addButton(3,"Sex",sexRiyaCauseYerDumbAndDeserveToBePunished);
 	addButton(14,"Leave",mainGameMenu);

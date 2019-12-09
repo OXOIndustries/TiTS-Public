@@ -267,7 +267,7 @@ package classes.Items.Transformatives
 			// Genderless autoacquires vagina
 			if (!target.hasCock() && !target.hasVagina() || (!target.hasVagina() && rand(4) > 0))
 			{
-				output("\n\nYou feel a lance of point, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
+				output("\n\nYou feel a lance of pain, absolutely agonizing, shoot through your body from the crotch. You double over, barely able to keep standing. Fuck that hurts!");
 
 				output("\n\nYou reach a hand down, brushing it along your ");
 				if(!target.isCrotchGarbed()) output("bare ");
@@ -515,7 +515,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou feel your [pc.legOrLegs] shifting, the [pc.skinFurScales] on them squirming and moving. After a few tense moments, <b>a thick coating of curly fur sprouts from your [pc.legOrLegs], covering them to the upper thigh</b>.");
 					//if not already hooves: 
-					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>.");
+					if(!target.hasLegFlag(GLOBAL.FLAG_HOOVES)) output(" Your feet curl in, starting to become covered by a thick, black covering. You grunt and moan, rubbing your transforming body as your feet change. When they’re done, <b>you have a pair of cow-like hooves!</b>");
 				}
 				
 				target.legCount = 2;

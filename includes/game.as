@@ -42,7 +42,6 @@ public function infiniteItems():Boolean
 public function processEventBuffer():String
 {
 	var output:String = "";
-	//if (samePageLog) output = ("<u>" + possessive(pc.short) + " log:</u>\n");
 	if (timestampedEventBuffer.length > 0)
 	{
 		output += ("<b><u>" + possessive(pc.short) + " log:</u></b>\n");
@@ -117,7 +116,7 @@ public function disableExploreEvents():Boolean
 	// Pirate Base (Bomb Timer)
 	if (flags["KQ2_NUKE_STARTED"] >= 0 && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
-	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
+	if (flags["KASHIMA_STATE"] >= 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
@@ -803,6 +802,8 @@ public const CREW_MITZI:int = 20;
 public const CREW_DANE:int = 21;
 public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
+public const CREW_EITAN: int = 24;
+public const CREW_ARDIA: int = 25;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -811,10 +812,12 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberRecruited()) crewMembers.push(CREW_AMBER);
 	if (annoRecruited()) crewMembers.push(CREW_ANNO);
+	if (ardiaRecruited()) crewMembers.push(CREW_ARDIA);
 	if (azraRecruited()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (celiseIsFollower()) crewMembers.push(CREW_CELISE);
 	if (daneRecruited()) crewMembers.push(CREW_DANE);
+	if (eitanRecruited()) crewMembers.push(CREW_EITAN);
 	if (kaseIsRecruited()) crewMembers.push(CREW_KASE);
 	if (kiroRecruited()) crewMembers.push(CREW_KIRO);
 	if (mitziRecruited()) crewMembers.push(CREW_MITZI);
@@ -848,10 +851,12 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	// Actual crew members
 	if (amberIsCrew()) crewMembers.push(CREW_AMBER);
 	if (annoIsCrew()) crewMembers.push(CREW_ANNO);
+	if (ardiaIsCrew()) crewMembers.push(CREW_ARDIA);
 	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsCrew()) crewMembers.push(CREW_BESS);
 	if (celiseIsCrew()) crewMembers.push(CREW_CELISE);
 	if (daneIsCrew()) crewMembers.push(CREW_DANE);
+	if (eitanIsCrew()) crewMembers.push(CREW_EITAN);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (kiroIsCrew()) crewMembers.push(CREW_KIRO);
 	if (mitziIsCrew()) crewMembers.push(CREW_MITZI);
@@ -967,6 +972,7 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (annoIsCrew()) c.push(anno);
+	if (ardiaIsCrew()) c.push(ardia);
 	if (syriIsCrew()) c.push(syri);
 	if (azraIsCrew()) c.push(azra);
 	if (bessIsCrew()) c.push(bess);
@@ -993,6 +999,7 @@ public function getGunnersOnShipNames():Array
 	//if (bessIsCrew()) crewMembers.push(chars["BESS"].short);
 	//if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
+	//if (eitanIsCrew()) crewMembers.push("Eitan");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
@@ -1017,10 +1024,12 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	
 	if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
+	if (ardiaIsCrew()) crewMembers.push("Ardia");
 	if (azraIsCrew()) crewMembers.push("Azra");
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
 	if (celiseIsCrew()) crewMembers.push("Celise");
 	if (daneIsCrew()) crewMembers.push("Dane");
+	if (eitanIsCrew()) crewMembers.push("Eitan");
 	if (kaseIsCrew()) crewMembers.push("Kase");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (mitziIsCrew()) crewMembers.push("Mitzi");
@@ -1067,11 +1076,13 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 	{
 		case "Amber": return dryadBustDisplay(); break;
 		case "Anno": return annoBustDisplay(); break;
+		case "Ardia": return ardiaBustDisplay(); break;
 		case "Azra": return azraBustString(); break;
 		case "Ben-14":
 		case "Bess-13": return bessBustDisplay(); break;
 		case "Celise": return celiseBustDisplay(); break;
 		case "Dane": return daneBustDisplay(); break;
+		case "Eitan": return eitanBustDisplay(); break;
 		case "Kase": return kaseBustDisplay(); break;
 		case "Kiro": return kiroBustDisplay(); break;
 		case "Mitzi": return mitziBustString(); break;
@@ -1098,6 +1109,7 @@ public function isFollowerMale(followerName:String = ""):Boolean
 	{
 		case "Bess-13":
 		case "Dane":
+		case "Eitan":
 		case "Kase": return true; break;
 	}
 	return false;
@@ -1117,6 +1129,7 @@ public function getSleepingPartnerBustDisplay():String
 	{
 		case "AMBER": return dryadBustDisplay(); break;
 		case "ANNO": return annoBustDisplay(); break;
+		case "ARDIA": return ardiaBustDisplay(); break;
 		case "AZRA": return azraBustString(); break;
 		case "BESS": return bessBustDisplay(); break;
 		case "CELISE": return celiseBustDisplay(); break;
@@ -1190,6 +1203,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+	if (ardiaIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += ardiaCrewBlurbs(btnSlot, InCollection(CREW_ARDIA, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (azraIsCrew())
 	{
 		count++;
@@ -1214,6 +1236,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		//count++;
 		if(!counter) {
 			crewMessages += celiseShipBonusText(btnSlot, InCollection(CREW_CELISE, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (eitanIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += eitanCrewBlurbs(btnSlot, InCollection(CREW_EITAN, crewMembers));
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1756,6 +1787,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = ramisSleep();
 					}
 					break;
+				case "ARDIA":
+					if (ardiaIsCrew())
+					{
+						ardiaSleep();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1815,6 +1853,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
 		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (flags["ARDIA_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ardiaWantsToDoMorningThings];
 		if (pc.hasStatusEffect("PENNY_WAKEUP_CUED"))
 		{
 			pc.removeStatusEffect("PENNY_WAKEUP_CUED");
@@ -2089,6 +2128,11 @@ public function insideShipEvents():Boolean
 		amberAndMitziFun();
 		return true;
 	}
+	if (flags["DZAAN_CURE_ARRIVAL"] < GetGameTimestamp() && ardiaIsCrew() && annoIsCrew())
+	{
+		annoHasYourDzaanDrugs();
+		return true;
+	}
 
 	return false;
 }
@@ -2189,7 +2233,7 @@ public function shipMenu():Boolean
 			addDisabledButton(5,"Fly","Fly","Maybe you should stay close while Paige is in surgery.");
 		}
 	}
-	
+
 	return false;
 }
 
@@ -2577,6 +2621,8 @@ public function prepShipfite():void
 {
 	//setNavDisabled(NAV_OUT_DISABLE);
 	shipLocation = "SPACE";
+	generateMap();
+	showLocationName();
 }
 
 public function leaveShipOK():Boolean
@@ -3538,7 +3584,7 @@ public function variableRoomUpdateCheck():void
 	}
 	//Filling Burt's back end
 	//Kally not at work or incesty zil
-	if ((hours < 6 || hours >= 17) || zilTwinsAtBar())
+	if ((hours < 6 || hours >= 17) || zilTwinsAtBar() || thyvaraInBurts())
 		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
@@ -3978,6 +4024,10 @@ public function variableRoomUpdateCheck():void
 	if(flags["TEYAAL_DEFEATED"] == 2) rooms["ZSF AD20"].removeFlag(GLOBAL.NPC);
 	else rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
 
+	// Ardia Leaving
+	if (ardiaInZhengShi()) rooms["ZSF I22"].addFlag(GLOBAL.NPC);
+	else rooms["ZSF I22"].removeFlag(GLOBAL.NPC);
+
 	/* UVETO */
 	
 	// Huskar Bimbos
@@ -4065,6 +4115,9 @@ public function variableRoomUpdateCheck():void
 	else rooms["UVIP T44"].southExit = undefined;
 	//Ula and main hold daddy swapping.
 	ulaRoomUpdater();
+	//War Alpha tribe freed
+	if (wargiiMilodanTribeFreed()) rooms["UVGR O34"].northExit = "MILODAN TRIBE";
+	else rooms["UVGR O34"].northExit = "";
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -4082,7 +4135,8 @@ public function variableRoomUpdateCheck():void
 	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
 
 	/* MISC */
-	
+	// Kiroquest:
+	kiroQuestRoomUpdate();
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
 	// Phoenix Location

@@ -474,7 +474,7 @@ public function walkiesPart2():void
 	var lover:Boolean = false;
 	var choices:Array = [];
 	if(annoIsCrew()) choices.push(0);
-	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) choices.push(1);
+	if(syriIsCrew() || (/*syriRecruited() &&*/ syriAtFreeezer())) choices.push(1);
 	if(roamingKiroAvailable()) choices.push(2);
 	var select:int = -1;
 	if(choices.length > 0) select = choices[rand(choices.length)];
@@ -1476,7 +1476,7 @@ public function subTunerExhibRouter():void
 {
 	var options:Array = [subTunerRivalBullshit];
 	if(annoIsCrew()) options.push(subTunerAnnoExhib);
-	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) options.push(syriExhibStuff);
+	if(syriIsCrew() || (/*syriRecruited() &&*/ syriAtFreeezer())) options.push(syriExhibStuff);
 	if(roamingKiroAvailable()) options.push(subTunerKiroExhib);
 	moveTo("UVS B9");
 	options[rand(options.length)]();

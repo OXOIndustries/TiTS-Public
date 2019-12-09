@@ -1030,7 +1030,8 @@ public function erraCuddleScenes2():void
 	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");
 	output("\n\nYour ausar companion breathes a sigh of relief, inviting you out the airlock. You say your goodbyes to the two and make your way back onto the tarmac, your former pet yelling <i>“See you around, [pc.name]!”</i> as you gain distance.");
 	processTime(75);
-	pc.energy(100);
+	//pc.energy(100);
+	sleepHeal();
 	IncrementFlag("ERRA_CUDDLED");
 	currentLocation = shipLocation;
 	refreshRoamingBarEncounter();

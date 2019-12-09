@@ -344,6 +344,7 @@ public function sydianFemalePCLossHasCock():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 		enemy.orgasm();
 	}
@@ -598,6 +599,7 @@ public function femSydianGentleFuck():void
 
 			processTime(30+rand(15));
 			enemy.loadInCunt(pc, 0);
+			sydianFemaleSimplePreg();
 			pc.orgasm();
 			enemy.orgasm();
 		}
@@ -853,6 +855,7 @@ public function femSydianCallOthers():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 	}
 	else
@@ -1215,6 +1218,7 @@ public function femSydianGiveThrob():void
 
 		processTime(30+rand(15));
 		enemy.loadInCunt(pc, 0);
+		sydianFemaleSimplePreg();
 		pc.orgasm();
 		enemy.orgasm();
 		//pc.loadInMouth(enemy);
@@ -1522,6 +1526,7 @@ public function femSydianFuck():void
 	//end; reduce lust, pass time
 	processTime(30+rand(15))
 	enemy.loadInCunt(pc, 0);
+	sydianFemaleSimplePreg();
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -1614,4 +1619,39 @@ public function sydianPregnancyEnds():void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+//This returns your preg score on a scale of 0-99999, or 0%-99.999%
+public function sydianFemaleKnockupChance():int
+{
+	var vir:Number;
+	var chance:Number = -.356; //base 30%
+	var cumQ:Number = pc.cumQ();
+	
+	if(pc.virility() == 0 || enemy.fertility() == 0 || chance == 0) return 0;
+	
+	vir = (pc.virility() + enemy.fertility());
+	
+	//increase base virility by cum volume up to a max of +2 (at a certain point the rest is just excess and will never get near the egg and is irrelevant for preg chance)
+	//plus this keeps player virility more important than volume for large preg change increases
+	if (cumQ >= 2000) vir += 2;
+	else if (cumQ > 0) vir += cumQ / 1000;
+	
+	vir = vir / 2;
+	
+	return (1 - Math.exp(chance * vir)) * 10000;
+}
+//simple preg function, steele will not ever know how many kids or met them, but they are out there...
+public function sydianFemaleSimplePreg():void
+{
+	var chance:Number;
+		
+	if (pc.virility() == 0) chance = 0;
+	else chance = sydianFemaleKnockupChance();
+	//rand returns 0 to 9999, chance returns 0 to 9999, 0 chance will never result in pregnancy obviously
+	if(rand(10000) < chance)
+	{
+		//succesful impregnation
+		IncrementFlag("SYDIAN_FEMALE_PREG");
+		pc.clearRut();
+	}
 }

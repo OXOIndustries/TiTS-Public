@@ -367,9 +367,10 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 10 } ), 15), this, target, "minimal");
 				
-				if (target.physique() / 2 + rand(20) + 1 < 35)
+				if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && target.physique() / 2 + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyStun(target, 3);
+					output(" <b>" + (target is PlayerCharacter ? "You are" : "Kara is") +" stunned!</b>");
 				}
 			}
 		}

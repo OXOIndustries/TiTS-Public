@@ -11,7 +11,7 @@ public function storiesOfFloofAndStoriesOfDocs(inRandomEncounter:Boolean = false
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	// First time
 	if (flags["BIANCA_STORIES_TOLD"] == undefined) output("Based on what Bianca’s hinted at in past conversations, she’s had more than a few dangerous encounters in her life. You look across the table, putting together as polite a query as you can: can she tell you such a story?\n\nA brief shuffle and contemplative stirring and Bianca’s gotten her mind and body in order. Her mouth opens but no words come. The doctor visibly ponders answering, but ultimately decides to regale you.");
@@ -84,6 +84,10 @@ public function storiesOfFloofAndStoriesOfDocs(inRandomEncounter:Boolean = false
 			output("\n\nGeez, that’s not something you expected her to tell you.");
 		}
 		else output("\n\nThe grisly tale doesn’t get any easier to listen to.");
+		
+		output("\n\n<i>“While we wrapped up inside, I heard over comms that the two away men had been taken down when they attempted another abduction. We prepared to move out and call in the </i>First Dusk<i> but the pilot of the ship broke into the room, screaming for all his lung’s worth. He must have been told to take off, that their crime had been exposed. Instead,”</i> she sighed heavily, <i>“he fell to a murderous desire... and I was his nearest target.”</i> A little color has drained from Bianca’s face, and she holds her trembling right hand still by the wrist.");
+		output("\n\n<i>“I was a bit surprised by what I did as it all went down.”</i> She mutters, voice beginning to quiver. <i>“I heard the yell, saw the glinting edge of a vibro-knife... my movements were instinctual. Before my team could react, I had pulled my gun from my belt,”</i> she performs the act with lightning speed, <i>“and shot him twice in the chest. He fell to his knees and then to his back. As soon as I saw his movements pause, I shot the weapon from his hand. Afterward, he was taken away to be treated for trial. It was a standard operation all told, but the story means something to me because I noticed what I felt: that if I pulled the trigger a few more times nobody would have thought twice.”</i>");
+		
 		if (pc.isNice()) output("\n\nYou tell her what matters is that she held her ground just fine. She stayed true to herself.");
 		else if (pc.isMisch()) output("\n\nWhile that may be true, it’s a good thing she didn’t give into animal instinct. The man may have deserved a fate worse than meeting her, but it wasn’t her call to make.");
 		else output("\n\nHe deserved everything he got. You tell Bianca that she did exactly what was required of her, no more, no less. Society certainly judged them harshly for their murders.");
@@ -127,7 +131,7 @@ public function biancaAndPiros(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	output("<i>“We received an urgent instruction to intervene at a suspicious incident on a civilian starport that was established for research over a planet set to be terraformed and colonized. I was on the bridge at the time the orders came and we had very little information going in, but the station had gone silent after half a distress call was received.”</i> Not one to theorycraft or bandy words pointlessly, Bianca continues, <i>“We arrived at Piros Starport a few hours later. The docking berths were fit to bursting, but nobody was coming or going, and it was... ominously quiet for such an installation. No vessels were moving in the vicinity, there was no inbound or outbound communication...”</i>");
 	output("\n\nAn ironic smirk crests the fox’s face, her next words spoken in a flippant, dull voice. <i>“I thought to myself at the time, ‘it’s like the first horror movie I ever saw’, where the down-on-their-luck scavenging team encounters a cosmic monstrosity aboard an abandoned station.”</i> Her ears flatten in fear, though you can’t tell if it’s feigned. When she straightens to look directly into your [pc.eye], you lean on it being sincere. <i>“It gives me chills still thinking about either of those today.”</i>");
@@ -153,9 +157,9 @@ public function biancaAndPirosTwo(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
-	output("\n\nOne of Bianca’s tails dips into her lap and she starts brushing it quietly, cradling the fluff like a stress relief pillow. <i>“I can still hear everything Officer Franks had said,”</i> her voice mimes something masculine, <i>“Captain, a directed explosion has torn through the station’s support channels! It’s falling, fast. Run! Get back to the transport on the double!”</i> She hugs her tail tighter, muscles relaxing. <i>“I’m sorry to digress.”</i>");
+	output("One of Bianca’s tails dips into her lap and she starts brushing it quietly, cradling the fluff like a stress relief pillow. <i>“I can still hear everything Officer Franks had said,”</i> her voice mimes something masculine, <i>“Captain, a directed explosion has torn through the station’s support channels! It’s falling, fast. Run! Get back to the transport on the double!”</i> She hugs her tail tighter, muscles relaxing. <i>“I’m sorry to digress.”</i>");
 	output("\n\n<i>“...the station, tilting and plummeting faster, could have been my grave. I could have burned up in the atmosphere, no trace left. I was... I was terrified.”</i> Bianca continues in a steady tone, though there’s still a trickle of sweat on her cheek. For how horrible it was, you wouldn’t be surprised if she had PTSD, but by her coalescing mannerisms you can tell she’s made peace with her past. <i>“My superiors kept me together. I’ve come to terms with it all, but it was so gut wrenching to see that many bodies flung about like discarded trash.”</i> ");
 	output("\n\nShe brushes a lock of hair, meeting your gaze again. <i>“Two minutes before the station would hit the atmosphere, the corridor in front of me collapsed, separating me from the team. A steel beam nearly landed on me, too.”</i> For a second, the thought of Bianca being crushed and bloodied forms an image in your mind you never want to recall. <i>“I would be lying if I said I wasn’t panicking, but the Captain barked an instant order telling me to go through the adjacent room.”</i>");
 	output("\n\nCuriously, Bianca’s comforted words tell you she was <i>glad</i> that this happened.");
@@ -183,7 +187,7 @@ public function biancaAndTheHound(inRandomEncounter:Boolean = false):void
 	clearOutput();
 	showBianca((inRandomEncounter ? "WORK" : "CASUAL"));
 	author("William");
-	processTime(1);
+	processTime(18+rand(10));
 
 	output("Bianca pulls up her black and silver codex. A few quick taps later, she shows you the profile for a predatory creature called a Kanaxxus. Four legs, half as big as a spaceship, huge scaled bodies. The page is a handwritten journal, a lot of the doctor’s old handwriting describing them in detail. When she scrolls down you see a picture of her with a towering, uniformed ausar with dark red fur standing over the body of one fallen predator.");
 	output("\n\n<i>“Dian?”</i> you ask.");
@@ -336,7 +340,7 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 	clearOutput();
 	showBianca("CASUAL");
 	author("William");
-	processTime(1);
+	processTime(5+rand(3));
 
 	switch (story)
 	{
@@ -487,13 +491,13 @@ public function tellBiancaAboutHowAwesomeYouAre(story:int):void
 			output("\n\nNot hard to see why, but you did meet that ambassador. <i>“Ara Kei Enya asked for my help. [ara.He] wanted to unite the bothrioc. One hell of an obstacle, as the wisest and most powerful among them cannot, on a biological level, stand to be around each other due to some kind of pheromone they produce. I was also asked to procure a counteragent for this so they could meet in peace.”</i>");
 			output("\n\nDr. Ketria looks calmly at you, with a face that suggests nothing. Her concern is palpable. <i>“How did it go?”</i>");
 			// Gave Ara Kei Counteragent
-			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] > 1)
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] > 0)
 			{
 				output("\n\nYou explain that you produced the counteragent, and gave them a chance at unity. It worked, and from what you heard, they’ve begun to unify as a species. Ara Kei’s vision of seeing them granted citizenship is well on its way. The more you talk though, the more you and Bianca wonder if it was worth it, but who’s to say?");
 				output("\n\n<i>“Should they integrate into galactic culture then changes can be made,”</i> Bianca says evenly, her hesitation giving way to open-mindedness. <i>“...Perhaps I’m being unfair, too biased. The Dzaan can suppress their biology. If the bothrioc assimilate, then concessions can be made there, too. And,”</i> she says with a hopeful smile, <i>“they don’t deserve to be held back or endangered by the myr and their war.”</i>");
 			}
 			// Gave Ara Kei Fake Counteragent
-			else
+			if (flags["BOTHRIOC_QUEST_COUNTERAGENT"] < 0)
 			{
 				output("\n\nYou explain that you handed Ara Kei the fake counteragent, deciding that it would have been too dangerous to let the bothrioc expand beyond Myrellion. Perhaps ending her dream of unity for her race wasn’t a choice you should have ever made, but it was one you ended up <i>having</i> to make.");
 				output("\n\n<i>“I see,”</i> Bianca says, sipping her water. <i>“What you did was...”</i>");

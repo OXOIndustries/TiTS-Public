@@ -93,9 +93,10 @@ public function lerrisMenu():void
 {
 	clearMenu();
 	addButton(0, "Buy", lerrisProducts);
-	addButton(1, "Talk", lerrisTalkMenu);
-	if (flags["LERRIS_TALKED_LACTAID"] != undefined && flags["LERRIS_TALKED_LACTAID"] >= 2) addButton(2, "Back Room", lerrisBackRoom, undefined, "Back Room", "See if Lerris is up for another trip to the back room for a little private fun.");
-	else addDisabledButton(2, "Back Room");
+	addButton(1, "Buy Dildo", lerrisDildos);
+	addButton(2, "Talk", lerrisTalkMenu);
+	if (flags["LERRIS_TALKED_LACTAID"] != undefined && flags["LERRIS_TALKED_LACTAID"] >= 2) addButton(3, "Back Room", lerrisBackRoom, undefined, "Back Room", "See if Lerris is up for another trip to the back room for a little private fun.");
+	else addDisabledButton(3, "Back Room");
 
 	if (flags["LERRIS_TALKED_LACTAID"] != undefined && flags["LERRIS_TALKED_LACTAID"] >= 2) addButton(10, "Appearance", lerrisAppearance);
 	else addDisabledButton(10, "Appearance");
@@ -136,6 +137,13 @@ public function lerrisProducts():void
 	//chars["LERRIS"].inventory.push(new Sterilex());
 	
 	CodexManager.unlockEntry("Bubble Buddy");
+	shopkeep = lerris;
+	buyItem();
+}
+
+public function lerrisDildos():void
+{
+	chars["LERRIS"].inventory = [new DildoCanine(), new DildoEquine(), new DildoFeline(), new DildoTerran(), new DildoTerranCumlux()];
 	shopkeep = lerris;
 	buyItem();
 }

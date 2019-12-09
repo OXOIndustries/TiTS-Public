@@ -42,16 +42,16 @@ private var percentButts:Array = [25, 50, 75, 100];
 
 /* General framework stuff */
 
-private function lvlBodyParts(lvl:int = 0):Array
+private function lvlBodyParts(lvl:int, strictList:Array = null):Array
 {
 	var bodyPart:Array = [];
 	
-	if(pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[lvl] && pc.heightRatio("testicle") >= lvlRatioBalls[lvl]) bodyPart.push("balls");
-	if(pc.hasCock() && pc.weightQ("penis") >= percentPenis[lvl] && pc.heightRatio("penis") >= lvlRatioPenis[lvl]) bodyPart.push("cock");
-	if(pc.hasVagina() && pc.weightQ("clitoris") >= percentClits[lvl] && pc.heightRatio("clitoris") >= lvlRatioClits[lvl]) bodyPart.push("clit");
-	if(pc.hasBreasts() && pc.weightQ("breast") >= percentBoobs[lvl] && pc.heightRatio("breast") >= lvlRatioBoobs[lvl]) bodyPart.push("boobs");
-	if(pc.weightQ("belly") >= percentBelly[lvl] && pc.heightRatio("belly") >= lvlRatioBelly[lvl]) bodyPart.push("belly");
-	if(pc.weightQ("butt") >= percentButts[lvl] && pc.heightRatio("butt") >= lvlRatioButts[lvl]) bodyPart.push("butt");
+	if((strictList == null || strictList.indexOf("testicle") != -1) && pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[lvl] && pc.heightRatio("testicle") >= lvlRatioBalls[lvl]) bodyPart.push("balls");
+	if((strictList == null || strictList.indexOf("penis") != -1) && pc.hasCock() && pc.weightQ("penis") >= percentPenis[lvl] && pc.heightRatio("penis") >= lvlRatioPenis[lvl]) bodyPart.push("cock");
+	if((strictList == null || strictList.indexOf("clitoris") != -1) && pc.hasVagina() && pc.weightQ("clitoris") >= percentClits[lvl] && pc.heightRatio("clitoris") >= lvlRatioClits[lvl]) bodyPart.push("clit");
+	if((strictList == null || strictList.indexOf("breast") != -1) && pc.hasBreasts() && pc.weightQ("breast") >= percentBoobs[lvl] && pc.heightRatio("breast") >= lvlRatioBoobs[lvl]) bodyPart.push("boobs");
+	if((strictList == null || strictList.indexOf("belly") != -1) && pc.weightQ("belly") >= percentBelly[lvl] && pc.heightRatio("belly") >= lvlRatioBelly[lvl]) bodyPart.push("belly");
+	if((strictList == null || strictList.indexOf("butt") != -1) && pc.weightQ("butt") >= percentButts[lvl] && pc.heightRatio("butt") >= lvlRatioButts[lvl]) bodyPart.push("butt");
 	
 	return bodyPart;
 }
@@ -381,32 +381,32 @@ private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	// Endowments
 	if(InCollection(partName, ["testicle", "penis", "clitoris", "breast"]))
 	{
-		if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+		if((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
 		{
 			if(lvlBodyParts(3).length <= 0) removeImmobilized(deltaT);
 		}
-		if ((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
+		if((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
 		{
-			if(lvlBodyParts(2).length <= 0) pc.removeStatusEffect("Overwhelmingly Endowed");
+			if(lvlBodyParts(2, ["testicle", "penis", "clitoris", "breast"]).length <= 0) pc.removeStatusEffect("Overwhelmingly Endowed");
 		}
-		if ((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1]) && pc.hasStatusEffect("Ludicrously Endowed"))
+		if((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1]) && pc.hasStatusEffect("Ludicrously Endowed"))
 		{
-			if(lvlBodyParts(1).length <= 0) pc.removeStatusEffect("Ludicrously Endowed");
+			if(lvlBodyParts(1, ["testicle", "penis", "clitoris", "breast"]).length <= 0) pc.removeStatusEffect("Ludicrously Endowed");
 		}
-		if ((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Egregiously Endowed"))
+		if((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Egregiously Endowed"))
 		{
-			if(lvlBodyParts(0).length <= 0) pc.removeStatusEffect("Egregiously Endowed");
+			if(lvlBodyParts(0, ["testicle", "penis", "clitoris", "breast"]).length <= 0) pc.removeStatusEffect("Egregiously Endowed");
 		}
 	}
 	// Belly Size
-	if (partName == "belly")
+	if(partName == "belly")
 	{
 		if((altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
 		{
 			AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
 			pc.removeStatusEffect("Bulky Belly");
 		}
-		if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+		if((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
 		{
 			if(lvlBodyParts(3).length <= 0) removeImmobilized(deltaT);
 		}

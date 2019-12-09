@@ -1056,3 +1056,466 @@ public function badgerTailRemovalGo():void
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }
+
+public function drBadgerCheatMenu(response:String = "menu"):void
+{
+	clearOutput();
+	showBust("");
+	showName("DR. BADGER\nCHEAT MENU");
+	author("");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "menu":
+			// Remove old cheat.
+			pc.removeStatusEffect("Boob Silicone Please");
+			
+			output("You may set various Doctor Badger-related options here.");
+			output("\n\n<i><b>Note:</b> Editing the following options may change the outcome of any quest lines associated with Doctor Badger.</i>");
+			output("\n\n");
+			
+			addButton(0, "Dr.Badger", drBadgerCheatMenu, "menu badger", "Doctor Badger", "Adjust preferences for Doctor Badger.");
+			addButton(1, "Nym-Foe", drBadgerCheatMenu, "menu nymfoe", "Nym-Foe", "Adjust preferences for Nym-Foe.");
+			addButton(2, "DollMaker", drBadgerCheatMenu, "menu dollmaker", "Doll Maker", "Adjust preferences for the Doll Maker.");
+			addButton(14, "Back", mainGameMenu);
+			break;
+		case "menu badger":
+			output("Adjust options related to Doctor Badger.");
+			output("\n\n");
+			
+			addButton(0, ("Status:" + (drBadgerImprisioned() ? "Jailed" : "Active")), drBadgerCheatMenu, "badger jail", "Doctor Badger Status", "Toggle if Doctor Badger has been arrested.");
+			addButton(1, ("INT:" + (chars["DRBADGER"].isBimbo() ? " Bimbo" : " Normal")), drBadgerCheatMenu, "badger bimbo", "Doctor Badger’s Intelligence", "Toggle if Doctor Badger has been zapped with the bimbo ray.");
+			addButton(2, ("S.Tank:" + (flags["BADGER_SILICONE_TANK_INSTALLED"] != undefined ? "Owned" : " None")), drBadgerCheatMenu, "badger tank", "Doctor Badger’s Silicone Tank", "Toggle if Doctor Badger’s silicone tank has been installed.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu");
+			break;
+		case "badger jail":
+			if(!drBadgerImprisioned())
+			{
+				flags["DR_BADGER_TURNED_IN"] = (!pennyRecruited() ? 1 : 2);
+				output("Penny has arrested Doctor Badger. <b>Doctor Badger is now in jail.</b>");
+			}
+			else
+			{
+				flags["DR_BADGER_TURNED_IN"] = undefined;
+				output("The Bimbotorium has been reopened. <b>Doctor Badger is now active.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu badger");
+			break;
+		case "badger bimbo":
+			if(flags["BADGER_QUEST"] <= -3)
+			{
+				flags["BADGER_QUEST"] = undefined;
+				output("Doctor Badger is no longer bimbofied. <b>Doctor Badger’s Bimbo Quest has now been reset as a result.</b>");
+			}
+			else
+			{
+				flags["BADGER_QUEST"] = -3;
+				output("Doctor Badger is now a bimbo. <b>Doctor Badger’s Bimbo Quest has been completed as a result.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu badger");
+			break;
+		case "badger tank":
+			if(flags["BADGER_SILICONE_TANK_INSTALLED"] != undefined)
+			{
+				flags["BADGER_SILICONE_TANK_INSTALLED"] = undefined;
+				pc.removeStatusEffect("Badger Silicone Carry Timer");
+				output("<b>Doctor Badger’s silicone tank has been returned to Doctor Badger.</b>");
+			}
+			else
+			{
+				flags["BADGER_SILICONE_TANK_INSTALLED"] = 1;
+				output("<b>Doctor Badger’s silicone tank has been installed on your ship.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu badger");
+			break;
+		case "menu nymfoe":
+			output("Adjust options related to Nym-Foe.");
+			output("\n\n");
+			
+			var nymFoeStatus:String = "None";
+			if(flags["NYM-FOE"] != undefined)
+			{
+				nymFoeStatus = "Met";
+				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) nymFoeStatus = "Broken";
+				if(flags["NYM-FOE_FIXED"] != undefined) nymFoeStatus = "Fixed";
+				if(flags["NYM-FOE_ACTIVATED"] != undefined) nymFoeStatus = "Patrol";
+			}
+			var nymFoeBouncy:String = "On";
+			if(pc.statusEffectv1("Bouncy! Mod") > 0) nymFoeBouncy = "100%";
+			if(pc.statusEffectv1("Bouncy! Mod") < 0) nymFoeBouncy = "Off";
+			
+			addButton(0, ("Status:" + nymFoeStatus), drBadgerCheatMenu, "nymfoe status", "Nym-Foe Status", "Toggle between Nym-Foe’s different availability states.");
+			if(flags["NYM-FOE"] == undefined || flags["NYM-FOE_ACTIVATED"] != undefined)
+			{
+				addButton(1, "S.Injection", drBadgerCheatMenu, "nymfoe inject menu", "Nym-Foe Silicone Injections", "Adjust the values for Nym-Foe’s silicone injection attack.");
+				addButton(2, ("Bouncy:" + nymFoeBouncy), drBadgerCheatMenu, "nymfoe bouncy", "Nym-Foe Bouncy", "Toggle Nym-Foe’s GUSHing Teats status for combat.");
+				addButton(3, "Lust", drBadgerCheatMenu, "nymfoe lust menu", "Nym-Foe Lust", "Adjust Nym-Foe’s lust value for combat.");
+			}
+			else
+			{
+				addDisabledButton(1, "S.Injection", "Nym-Foe Silicone Injections", "Option available if Nym-Foe is a hostile.");
+				addDisabledButton(2, ("Bouncy:" + nymFoeBouncy), "Nym-Foe Bouncy", "Option available if Nym-Foe is a hostile.");
+				addDisabledButton(3, "Lust", "Nym-Foe Lust", "Option available if Nym-Foe is a hostile.");
+			}
+			addButton(5, "Dakimakura", drBadgerCheatMenu, "nymfoe daki", "Nym-Foe Body Pillow", "Add a Nym-Foe designed body pillow to your inventory.");
+			addButton(6, ("Perk: " + (pc.hasPerk("Implant-tastic") ? "On" : "Off")), drBadgerCheatMenu, "nymfoe perk", "Implant-tastic Perk", "Toggle whether or not you have the “Implant-tastic” perk.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu");
+			break;
+		case "nymfoe status":
+			if(flags["NYM-FOE"] == undefined)
+			{
+				flags["NYM-FOE"] = 3;
+				flags["NYM-FOE_DISASSEMBLED"] = 1;
+				flags["NYM-FOE_FIXED"] = undefined;
+				flags["NYM-FOE_ACTIVATED"] = undefined;
+				output("<b>Nym-Foe has been disassembled.</b>");
+			}
+			else if(flags["NYM-FOE_DISASSEMBLED"] != undefined)
+			{
+				flags["NYM-FOE"] = 3;
+				flags["NYM-FOE_DISASSEMBLED"] = undefined;
+				flags["NYM-FOE_FIXED"] = 1;
+				flags["NYM-FOE_ACTIVATED"] = undefined;
+				output("<b>Nym-Foe has been fixed but not yet activated.</b>");
+			}
+			else if(flags["NYM-FOE_FIXED"] != undefined && flags["NYM-FOE_ACTIVATED"] == undefined)
+			{
+				flags["NYM-FOE"] = 3;
+				flags["NYM-FOE_DISASSEMBLED"] = undefined;
+				flags["NYM-FOE_FIXED"] = 1;
+				flags["NYM-FOE_ACTIVATED"] = 1;
+				output("<b>Nym-Foe has been fixed, activated and is on patrol.</b>");
+			}
+			else
+			{
+				flags["NYM-FOE"] = undefined;
+				flags["NYM-FOE_DISASSEMBLED"] = undefined;
+				flags["NYM-FOE_FIXED"] = undefined;
+				flags["NYM-FOE_ACTIVATED"] = undefined;
+				output("<b>Nym-Foe has yet to be encountered.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "nymfoe inject menu":
+			output("When Nym-Foe uses the injection attack, the units of silicone injected per successful attack will be as follows:");
+			var siliconeSite:StorageClass = pc.getStatusEffect("Silicone Please");
+			output("\n\n<b><u>Silicone Units</u>:</b>");
+			output("\n<b>Breasts:</b> " + (siliconeSite == null ? 3 : siliconeSite.value3) + " units");
+			output("\n<b>Butt:</b> " + (siliconeSite == null ? 3 : siliconeSite.value2) + " units");
+			output("\n<b>Hips:</b> " + (siliconeSite == null ? 3 : siliconeSite.value1) + " units");
+			output("\n<b>Lips:</b> " + (siliconeSite == null ? 1 : siliconeSite.value4) + " units");
+			output("\n\n<i><b>Note:</b> A unit value of 0 will omit the respective injection site from being chosen during the attack. If all injection sites have no units, the injection site will default to the breasts with at least 1 unit.</i>");
+			output("\n\n");
+			
+			if(siliconeSite != null && siliconeSite.value3 + 1 > 50) addDisabledButton(0, "Breasts +", "Add Breast Silicone", "Maximum limit reached!");
+			else addButton(0, "Breasts +", drBadgerCheatMenuInjectBits, [3, 1], "Add Breast Silicone", "Gain 1 unit.");
+			if(siliconeSite != null && siliconeSite.value3 - 1 < 0) addDisabledButton(5, "Breasts -", "Subtract Breast Silicone", "Minimum limit reached!");
+			else addButton(5, "Breasts -", drBadgerCheatMenuInjectBits, [3, -1], "Subtract Breast Silicone", "Lose 1 unit.");
+			
+			if(siliconeSite != null && siliconeSite.value2 + 1 > 50) addDisabledButton(1, "Butt +", "Add Butt Silicone", "Maximum limit reached!");
+			else addButton(1, "Butt +", drBadgerCheatMenuInjectBits, [2, 1], "Add Butt Silicone", "Gain 1 unit.");
+			if(siliconeSite != null && siliconeSite.value2 - 1 < 0) addDisabledButton(6, "Butt -", "Subtract Butt Silicone", "Minimum limit reached!");
+			else addButton(6, "Butt -", drBadgerCheatMenuInjectBits, [2, -1], "Subtract Butt Silicone", "Lose 1 unit.");
+			
+			if(siliconeSite != null && siliconeSite.value1 + 1 > 50) addDisabledButton(2, "Hips +", "Add Hips Silicone", "Maximum limit reached!");
+			else addButton(2, "Hips +", drBadgerCheatMenuInjectBits, [1, 1], "Add Hips Silicone", "Gain 1 unit.");
+			if(siliconeSite != null && siliconeSite.value1 - 1 < 0) addDisabledButton(7, "Hips -", "Subtract Hips Silicone", "Minimum limit reached!");
+			else addButton(7, "Hips -", drBadgerCheatMenuInjectBits, [1, -1], "Subtract Hips Silicone", "Lose 1 unit.");
+			
+			if(siliconeSite != null && siliconeSite.value4 + 1 > 10) addDisabledButton(3, "Lips +", "Add Lips Silicone", "Maximum limit reached!");
+			else addButton(3, "Lips +", drBadgerCheatMenuInjectBits, [4, 1], "Add Lips Silicone", "Gain 1 unit.");
+			if(siliconeSite != null && siliconeSite.value4 - 1 < 0) addDisabledButton(8, "Lips -", "Subtract Lips Silicone", "Minimum limit reached!");
+			else addButton(8, "Lips -", drBadgerCheatMenuInjectBits, [4, -1], "Subtract Lips Silicone", "Lose 1 unit.");
+			
+			addButton(13, "Default", drBadgerCheatMenuInjectBits, [0, 0], "Default", "Revert to default values.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "nymfoe bouncy":
+			if(!pc.hasStatusEffect("Bouncy! Mod"))
+			{
+				pc.createStatusEffect("Bouncy! Mod");
+				pc.setStatusValue("Bouncy! Mod", 1, 1);
+				output("When Nym-Foe uses GUSHing Teats, <b>“Bouncy!” will always have a 100% chance to block your basic attack.</b>");
+			}
+			else if(pc.statusEffectv1("Bouncy! Mod") > 0)
+			{
+				pc.setStatusValue("Bouncy! Mod", 1, -1);
+				output("<b>Nym-Foe will now avoid using the GUSHing Teats attack completely.</b>");
+			}
+			else
+			{
+				pc.removeStatusEffect("Bouncy! Mod");
+				output("When Nym-Foe uses GUSHing Teats, <b>“Bouncy!” will perform normally.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "nymfoe lust menu":
+			output("Set the starting lust value for Nym-Foe when in combat.");
+			output("\n\n<b>Nym-Foe, Lust:</b> " + (flags["NYM-FOE_LUST"] == undefined ? ("<i>" + 50 + " (Default)</i>") : flags["NYM-FOE_LUST"]));
+			output("\n\n");
+			
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] + 1 > 100) addDisabledButton(0, "+1 Lust");
+			else addButton(0, "+1 Lust", drBadgerCheatMenuNymFoeLust, 1);
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] - 1 < 0) addDisabledButton(5, "-1 Lust");
+			else addButton(5, "-1 Lust", drBadgerCheatMenuNymFoeLust, -1);
+			
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] + 5 > 100) addDisabledButton(1, "+5 Lust");
+			else addButton(1, "+5 Lust", drBadgerCheatMenuNymFoeLust, 5);
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] - 5 < 0) addDisabledButton(6, "-5 Lust");
+			else addButton(6, "-5 Lust", drBadgerCheatMenuNymFoeLust, -5);
+			
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] + 10 > 100) addDisabledButton(2, "+10 Lust");
+			else addButton(2, "+10 Lust", drBadgerCheatMenuNymFoeLust, 10);
+			if(flags["NYM-FOE_LUST"] != undefined && flags["NYM-FOE_LUST"] - 10 < 0) addDisabledButton(7, "-10 Lust");
+			else addButton(7, "-10 Lust", drBadgerCheatMenuNymFoeLust, -10);
+			
+			addButton(13, "Reset", drBadgerCheatMenuNymFoeLust, "reset", "Reset", "Revert to default values.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "nymfoe daki":
+			eventQueue.push(function():void { itemCollectMainMenu([new NymFoeDakimakura()], true); });
+			
+			output("<b>You have obtained a Nym-Foe designed dakimakura.</b> (Item available after exiting to main menu.)");
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "nymfoe perk":
+			output("Somehow your body tingles...");
+			if(!pc.hasPerk("Implant-tastic"))
+			{
+				output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, hips, and lips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
+				pc.createPerk("Implant-tastic", 0, 0, 0, 0, "Your body will convert most of the mass in your breasts, butt cheeks, hips and lips into silicone.");
+				
+				nymFoeMaxInjection(pc, siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+				implantasticSiliconeConversion(pc);
+			}
+			else
+			{
+				output("\n\n(<b>Perk Lost: Implant-tastic</b>)");
+				pc.removePerk("Implant-tastic");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu nymfoe");
+			break;
+		case "menu dollmaker":
+			output("Adjust options related to the Doll Maker.");
+			output("\n\n");
+			
+			var dollmakerStatus:String = "None";
+			if(flags["DOLLMAKER_STATUS"] != undefined)
+			{
+				dollmakerStatus = "Met";
+				if(flags["DOLLMAKER_DISASSEMBLED"] != undefined) dollmakerStatus = "Broken";
+				if(flags["DOLLMAKER_ACTIVATED"] != undefined) dollmakerStatus = "Hostile";
+			}
+			var dollmakerAttack:String = "Default";
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == 1) dollmakerAttack = "Tools";
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == 2) dollmakerAttack = "Vibes";
+			
+			addButton(0, ("Status:" + dollmakerStatus), drBadgerCheatMenu, "dollmaker status", "Doll Maker Status", "Toggle between Doll Maker’s different availability states.");
+			if(flags["DOLLMAKER_STATUS"] == undefined || flags["DOLLMAKER_ACTIVATED"] != undefined)
+			{
+				addButton(1, ("Atk:" + dollmakerAttack), drBadgerCheatMenu, "dollmaker attack", "Doll Maker Attack Pattern", "Toggle the Doll Maker’s attack pattern.");
+				if(flags["DOLLMAKER_ATTACK_PATTERN"] == 2) addDisabledButton(2, "Tool Stats", "Doll Maker Stat Debuff Values", "These attacks have been disabled");
+				else addButton(2, "Tool Stats", drBadgerCheatMenu, "dollmaker tools menu", "Doll Maker Stat Debuff Values", "Adjust the debuff values for the Doll Maker’s tools used during combat.");
+				addButton(3, ("StartCuff:" + (flags["DOLLMAKER_FORCE_CUFFS"] == undefined ? "Off" : "On")), drBadgerCheatMenu, "dollmaker cuffs", "Doll Maker Cuffs", "Toggle whether or not to start the Doll Maker combat already cuffed.");
+			}
+			else
+			{
+				addDisabledButton(1, ("Atk:" + dollmakerAttack), "Doll Maker Attack Pattern", "Option available if the Doll Maker is a hostile.");
+				addDisabledButton(2, "Tool Stats", "Doll Maker Stat Debuff Values", "Option available if the Doll Maker is a hostile.");
+				addDisabledButton(3, ("StartCuff:" + (flags["DOLLMAKER_FORCE_CUFFS"] == undefined ? "Off" : "On")), "Doll Maker Cuffs", "Option available if the Doll Maker is a hostile.");
+			}
+			addButton(6, ("Perk: " + (pc.hasPerk("True Doll") ? "On" : "Off")), drBadgerCheatMenu, "dollmaker perk", "True Doll Perk", "Toggle whether or not you have the “True Doll” perk.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu");
+			break;
+		case "dollmaker status":
+			if(flags["DOLLMAKER_STATUS"] == undefined)
+			{
+				flags["DOLLMAKER_STATUS"] = -1;
+				flags["DOLLMAKER_DISASSEMBLED"] = 1;
+				flags["DOLLMAKER_ACTIVATED"] = undefined;
+				flags["DOLLMAKER_PROTECC_NYM-FOE"] = undefined;
+				output("<b>Doll Maker has been disassembled.</b>");
+			}
+			else if(flags["DOLLMAKER_DISASSEMBLED"] != undefined)
+			{
+				flags["DOLLMAKER_STATUS"] = 2;
+				flags["DOLLMAKER_DISASSEMBLED"] = undefined;
+				flags["DOLLMAKER_ACTIVATED"] = undefined;
+				flags["DOLLMAKER_PROTECC_NYM-FOE"] = undefined;
+				output("<b>Doll Maker has been met and is non-hostile.</b>");
+			}
+			else if(flags["DOLLMAKER_STATUS"] != undefined && flags["DOLLMAKER_ACTIVATED"] == undefined)
+			{
+				flags["DOLLMAKER_STATUS"] = -1;
+				flags["DOLLMAKER_DISASSEMBLED"] = undefined;
+				flags["DOLLMAKER_ACTIVATED"] = 1;
+				if(flags["NYM-FOE_ACTIVATED"] == undefined) flags["DOLLMAKER_PROTECC_NYM-FOE"] = 1;
+				else flags["DOLLMAKER_PROTECC_NYM-FOE"] = undefined;
+				output("<b>Doll Maker has been activated and is hostile.</b>");
+			}
+			else
+			{
+				flags["DOLLMAKER_STATUS"] = undefined;
+				flags["DOLLMAKER_DISASSEMBLED"] = undefined;
+				flags["DOLLMAKER_ACTIVATED"] = undefined;
+				flags["DOLLMAKER_PROTECC_NYM-FOE"] = undefined;
+				output("<b>Doll Maker has yet to be encountered.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu dollmaker");
+			break;
+		case "dollmaker attack":
+			if(flags["DOLLMAKER_ATTACK_PATTERN"] == undefined)
+			{
+				flags["DOLLMAKER_ATTACK_PATTERN"] = 1;
+				output("<b>Doll Maker will only attack with its stat-effecting tools.</b> (If not applicable, it will choose Bio-Magnetic Vibes instead.)");
+			}
+			else if(flags["DOLLMAKER_ATTACK_PATTERN"] == 1)
+			{
+				flags["DOLLMAKER_ATTACK_PATTERN"] = 2;
+				output("<b>Doll Maker will only attack with its Bio-Magnetic Vibes.</b>");
+			}
+			else
+			{
+				flags["DOLLMAKER_ATTACK_PATTERN"] = undefined;
+				output("<b>Doll Maker will attack with its full moveset, as normal.</b>");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu dollmaker");
+			break;
+		case "dollmaker cuffs":
+			if(flags["DOLLMAKER_FORCE_CUFFS"] == undefined)
+			{
+				flags["DOLLMAKER_FORCE_CUFFS"] = 1;
+				output("Combat with the Doll Maker <b>will start with cuffs being attached</b>.");
+			}
+			else
+			{
+				flags["DOLLMAKER_FORCE_CUFFS"] = undefined;
+				output("Combat with the Doll Maker <b>will start normally</b>.");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu dollmaker");
+			break;
+		case "dollmaker tools menu":
+			output("Set the reduction values for the Doll Maker’s tools used when in combat.");
+			output("\n\n<b><u>Tool Debuff Values</u>:</b>");
+			output("\n<b>Bimboleum Emitter:</b> " + (flags["DOLLMAKER_TOOL_PHY"] == undefined ? 5 : flags["DOLLMAKER_TOOL_PHY"]) + " physique");
+			output("\n<b>Latex Sprayer:</b> " + (flags["DOLLMAKER_TOOL_REF"] == undefined ? 5 : flags["DOLLMAKER_TOOL_REF"]) + " reflexes");
+			output("\n<b>Mindwash Visor:</b> " + (flags["DOLLMAKER_TOOL_AIM"] == undefined ? 5 : flags["DOLLMAKER_TOOL_AIM"]) + " aim");
+			output("\n<b>IQ B-Gone:</b> " + (flags["DOLLMAKER_TOOL_INT"] == undefined ? 5 : flags["DOLLMAKER_TOOL_INT"]) + " intelligence");
+			output("\n<b>Brainmelt Lamp:</b> " + (flags["DOLLMAKER_TOOL_WIL"] == undefined ? 5 : flags["DOLLMAKER_TOOL_WIL"]) + " willpower");
+			output("\n\n");
+			
+			if(flags["DOLLMAKER_TOOL_PHY"] != undefined && flags["DOLLMAKER_TOOL_PHY"] + 1 > 50) addDisabledButton(0, "B.Emitter+", "Bimboleum Emitter +", "Maximum limit reached!");
+			else addButton(0, "B.Emitter+", drBadgerCheatMenuDollmakerDebuff, ["PHY", 1], "Bimboleum Emitter +", "Add value.");
+			if(flags["DOLLMAKER_TOOL_PHY"] != undefined && flags["DOLLMAKER_TOOL_PHY"] - 1 < 1) addDisabledButton(5, "B.Emitter-", "Bimboleum Emitter -", "Minimum limit reached!");
+			else addButton(5, "B.Emitter-", drBadgerCheatMenuDollmakerDebuff, ["PHY", -1], "Bimboleum Emitter -", "Subtract value.");
+			
+			if(flags["DOLLMAKER_TOOL_REF"] != undefined && flags["DOLLMAKER_TOOL_REF"] + 1 > 50) addDisabledButton(1, "Ltx.Spray+", "Latex Sprayer +", "Maximum limit reached!");
+			else addButton(1, "Ltx.Spray+", drBadgerCheatMenuDollmakerDebuff, ["REF", 1], "Latex Sprayer +", "Add value.");
+			if(flags["DOLLMAKER_TOOL_REF"] != undefined && flags["DOLLMAKER_TOOL_REF"] - 1 < 1) addDisabledButton(6, "Ltx.Spray-", "Latex Sprayer -", "Minimum limit reached!");
+			else addButton(6, "Ltx.Spray-", drBadgerCheatMenuDollmakerDebuff, ["REF", -1], "Latex Sprayer -", "Subtract value.");
+			
+			if(flags["DOLLMAKER_TOOL_AIM"] != undefined && flags["DOLLMAKER_TOOL_AIM"] + 1 > 50) addDisabledButton(2, "MW Visor+", "Mindwash Visor +", "Maximum limit reached!");
+			else addButton(2, "MW Visor+", drBadgerCheatMenuDollmakerDebuff, ["AIM", 1], "Mindwash Visor +", "Add value.");
+			if(flags["DOLLMAKER_TOOL_AIM"] != undefined && flags["DOLLMAKER_TOOL_AIM"] - 1 < 1) addDisabledButton(7, "MW Visor-", "Mindwash Visor -", "Minimum limit reached!");
+			else addButton(7, "MW Visor-", drBadgerCheatMenuDollmakerDebuff, ["AIM", -1], "Mindwash Visor -", "Subtract value.");
+			
+			if(flags["DOLLMAKER_TOOL_INT"] != undefined && flags["DOLLMAKER_TOOL_INT"] + 1 > 50) addDisabledButton(3, "IQBGone+", "IQ B-Gone +", "Maximum limit reached!");
+			else addButton(3, "IQBGone+", drBadgerCheatMenuDollmakerDebuff, ["INT", 1], "IQ B-Gone +", "Add value.");
+			if(flags["DOLLMAKER_TOOL_INT"] != undefined && flags["DOLLMAKER_TOOL_INT"] - 1 < 1) addDisabledButton(8, "IQBGone-", "IQ B-Gone -", "Minimum limit reached!");
+			else addButton(8, "IQBGone-", drBadgerCheatMenuDollmakerDebuff, ["INT", -1], "IQ B-Gone -", "Subtract value.");
+			
+			if(flags["DOLLMAKER_TOOL_WIL"] != undefined && flags["DOLLMAKER_TOOL_WIL"] + 1 > 50) addDisabledButton(4, "B.B.Melt+", "Brainmelt Lamp +", "Maximum limit reached!");
+			else addButton(4, "B.B.Melt+", drBadgerCheatMenuDollmakerDebuff, ["WIL", 1], "Brainmelt Lamp +", "Add value.");
+			if(flags["DOLLMAKER_TOOL_WIL"] != undefined && flags["DOLLMAKER_TOOL_WIL"] - 1 < 1) addDisabledButton(9, "B.B.Melt-", "Brainmelt Lamp -", "Minimum limit reached!");
+			else addButton(9, "B.B.Melt-", drBadgerCheatMenuDollmakerDebuff, ["WIL", -1], "Brainmelt Lamp -", "Subtract value.");
+			
+			addButton(13, "Reset", drBadgerCheatMenuDollmakerDebuff, ["reset", 0], "Reset", "Revert to default values.");
+			addButton(14, "Back", drBadgerCheatMenu, "menu dollmaker");
+			break;
+		case "dollmaker perk":
+			output("Somehow your body tingles...");
+			if(!pc.hasPerk("True Doll"))
+			{
+				output("\n\n(<b>Perk Gained: True Doll</b> - Pretty much the entirety of your body is comprised of some sort of silicone or plastic and will stay that way forever, not to mention your incredibly elastic holes. Some foes may find you more attractive.)");
+				pc.createPerk("True Doll", 5, 5, 0, 1, "Your body is composed of silicone, rubber and plastic, boosting your sexiness and upgrading your elasticity.");
+				//if(pc.elasticity < 5) pc.elasticity += 0.25;
+			}
+			else
+			{
+				output("\n\n(<b>Perk Lost: True Doll</b>)");
+				pc.removePerk("True Doll");
+			}
+			output("\n\n");
+			addButton(0, "Next", drBadgerCheatMenu, "menu dollmaker");
+			break;
+		default:
+			output("ERROR: No valid option found!");
+			output("\n\n");
+			
+			addButton(0, "Back", mainGameMenu);
+			break;
+	}
+}
+public function drBadgerCheatMenuInjectBits(args:Array):void
+{
+	var loc:int = args[0];
+	var val:Number = args[1];
+	if(loc >= 1 && loc <= 4)
+	{
+		if(!pc.hasStatusEffect("Silicone Please")) pc.createStatusEffect("Silicone Please", 3, 3, 3, 1);
+		
+		pc.addStatusValue("Silicone Please", loc, val);
+		
+		// Cannot have a total of 0 units...
+		if(pc.statusEffectv1("Silicone Please") <= 0 && pc.statusEffectv2("Silicone Please") <= 0 && pc.statusEffectv3("Silicone Please") <= 0 && pc.statusEffectv4("Silicone Please") <= 0) pc.setStatusValue("Silicone Please", 3, 1);
+	}
+	else
+	{
+		pc.removeStatusEffect("Silicone Please");
+	}
+	drBadgerCheatMenu("nymfoe inject menu");
+}
+public function drBadgerCheatMenuNymFoeLust(arg:*):void
+{
+	if(arg != "reset")
+	{
+		if(flags["NYM-FOE_LUST"] == undefined) flags["NYM-FOE_LUST"] = 50;
+		flags["NYM-FOE_LUST"] += arg;
+		if(flags["NYM-FOE_LUST"] < 0) flags["NYM-FOE_LUST"] = 0;
+		if(flags["NYM-FOE_LUST"] > 100) flags["NYM-FOE_LUST"] = 100;
+	}
+	else flags["NYM-FOE_LUST"] = undefined;
+	drBadgerCheatMenu("nymfoe lust menu");
+}
+public function drBadgerCheatMenuDollmakerDebuff(args:Array):void
+{
+	var loc:String = args[0];
+	var val:Number = args[1];
+	if(loc != "reset")
+	{
+		if(flags["DOLLMAKER_TOOL_" + loc] == undefined) flags["DOLLMAKER_TOOL_" + loc] = 5;
+		flags["DOLLMAKER_TOOL_" + loc] += val;
+		if(flags["DOLLMAKER_TOOL_" + loc] < 1) flags["DOLLMAKER_TOOL_" + loc] = 1;
+		if(flags["DOLLMAKER_TOOL_" + loc] > 50) flags["DOLLMAKER_TOOL_" + loc] = 50;
+	}
+	else
+	{
+		flags["DOLLMAKER_TOOL_PHY"] = undefined;
+		flags["DOLLMAKER_TOOL_REF"] = undefined;
+		flags["DOLLMAKER_TOOL_AIM"] = undefined;
+		flags["DOLLMAKER_TOOL_INT"] = undefined;
+		flags["DOLLMAKER_TOOL_WIL"] = undefined;
+	}
+	drBadgerCheatMenu("dollmaker tools menu");
+}

@@ -931,23 +931,27 @@ public function tittyFuckingYancyUntreatedEpilogue():void
 	{
 		pc.loadInCunt(ppYancy, 0);
 		pc.loadInCunt(ppYancy, 0);
-		pc.loadInCunt(ppYancy, 0);
-		pc.loadInCunt(ppYancy, 0);
-		pc.loadInCunt(ppYancy, 0);
+		//pc.loadInCunt(ppYancy, 0);
+		//pc.loadInCunt(ppYancy, 0);
+		//pc.loadInCunt(ppYancy, 0);
 	}
 	else
 	{
 		pc.loadInAss(ppYancy);
 		pc.loadInAss(ppYancy);
-		pc.loadInAss(ppYancy);
-		pc.loadInAss(ppYancy);
-		pc.loadInAss(ppYancy);
+		//pc.loadInAss(ppYancy);
+		//pc.loadInAss(ppYancy);
+		//pc.loadInAss(ppYancy);
 	}
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	milkResultDisplay();
 	

@@ -764,7 +764,7 @@ public function bigTiddyGFUnderTableMouth():void
 		
 		output("\n\nYou begin moaning and panting like a bitch in heat, squirming in the chair from the lascivious assault. The Servant is expertly tongue-punching your fuck-hole and it’s driving you mad. Your whole body begins to shake, and that seems to alert The Servant that you’re so, so close. Sliding her tongue out of your dripping cunt, she presses the ball of her tongue piercing to your clit and begins to fervently attack it, drawing a high, keening moan from you as your pleasure mounts.");
 		
-		output("\n\nYour body begins to quake uncontrollably as The Servant’s skillful and voracious mouth pushes you closer and closer to climax. A final, tortured wail escapes you as ecstacy crashes through your body, drowning you in bliss, and you release your thighs from around the servant’s head, panting with exhaustion.");
+		output("\n\nYour body begins to quake uncontrollably as The Servant’s skillful and voracious mouth pushes you closer and closer to climax. A final, tortured wail escapes you as ecstasy crashes through your body, drowning you in bliss, and you release your thighs from around the servant’s head, panting with exhaustion.");
 		
 		output("\n\nAfter a long moment, you feel her tongue leave your spent snatch. Slowly, you see the small woman crawl out from under the table, a wide and knowing grin on her face. Saliva and cunt juices are dripping from her chin and cheeks, her lipstick smeared to ruin. Pulling a small compact from seemingly out of nowhere, she starts to clean up her ruined makeup. <i>“Oh, [pc.name]. That was delectable. Did I perform to your satisfaction?”</i>");
 		

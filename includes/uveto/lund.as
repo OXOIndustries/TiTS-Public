@@ -1161,6 +1161,12 @@ public function lundDoggyStyleSubmitEnd():void
 	if(flags["LUND_PIERCED"] == undefined) 
 	{
 		output("and the shiny new nipple piercings. Hanging from each [pc.nipple] is a small golden ring, not unlike the type you might go see through the ear of a cowgirl. Lund said he liked them and, well, you weren’t going to say no to that. Besides... looking down at them now, hanging from your [pc.breasts]");
+		if(!(pc.breastRows[0].piercing is EmptySlot))
+		{
+			pc.breastRows[0].piercing.onRemove(pc);
+			var oldPiercing:ItemSlotClass = pc.breastRows[0].piercing;
+			eventQueue.push(function():void { kGAMECLASS.quickLoot(oldPiercing); });
+		}
 		pc.breastRows[0].piercing = new LundsRings();
 		pc.breastRows[0].piercing.onEquip(pc);
 		flags["LUND_PIERCED"] = 1;

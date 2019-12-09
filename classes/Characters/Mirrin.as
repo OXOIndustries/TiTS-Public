@@ -14,7 +14,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Mirrin";
-			this.originalRace = "Qilin";
+			this.originalRace = "qilin";
 			
 			//I dont recall her exact measurements, so these are guestimated.
 			this.cocks = new Array();

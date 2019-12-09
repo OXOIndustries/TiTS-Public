@@ -1597,8 +1597,9 @@ public function letsFuckKiro():void
 			else output("awesome");
 			output(" handjob");
 		}
-		else if(pc.hasVagina()) output("touch [pc.oneVagina], dipping a finger right into your lusty delta in front of everyone, her digits stroking, entering, and spreading you, encouraging you to give in to her confident touches.");
-		else output("stroke the bare [pc.skinFurScales], comfortingly caressing your featureless but nonetheless sensitive groin in a way that makes your [pc.asshole] clench in anticipation.");
+		else if(pc.hasVagina()) output("touch [pc.oneVagina], dipping a finger right into your lusty delta in front of everyone, her digits stroking, entering, and spreading you, encouraging you to give in to her confident touches");
+		else output("stroke the bare [pc.skinFurScales], comfortingly caressing your featureless but nonetheless sensitive groin in a way that makes your [pc.asshole] clench in anticipation");
+		output(".");
 		output("\n\n<i>“Mmmm, I was hoping to bump into you. I was saving up a hot, steaming load of cum to plug you with,”</i> Kiro purrs. Her immensely fluffy tail brushes your [pc.leg] as she pulls you away from the bar, hand still in your crotch, still touching and stroking and trying to turn your brain into a soup of lusty mush. <i>“My milker is good, but I want you, [pc.name]. I want to make you pregnant with cum until it backwashes out over my balls and makes me cum again. Then I want to pull out and bathe you in it.”</i> Kiro whimpers a little, and you feel her shaft jump inside its confinement.");
 		output("\n\nShe wrangles you the whole way back to her ship");
 		if(pc.tallness + 5 < kiro.tallness) output(" with ease, your smaller form eventually hefted entirely into her arms so that she can molest you more freely as she moves through the station. Curious looks are the only interference she receives along the way.");

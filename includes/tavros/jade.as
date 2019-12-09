@@ -134,9 +134,10 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new AusarTreats());
 	chars["JADE"].inventory.push(new Cackler());
 	chars["JADE"].inventory.push(new CaninePoppers());
+	chars["JADE"].inventory.push(new TauricoVenidaeLight());
 	chars["JADE"].inventory.push(new DracoGuard());
-	chars["JADE"].inventory.push(new SheepTF());
 	chars["JADE"].inventory.push(new MousearellaCheese());
+	chars["JADE"].inventory.push(new SheepTF());
 	chars["JADE"].inventory.push(new OvirAce());
 	chars["JADE"].inventory.push(new OvirPositive());
 	chars["JADE"].inventory.push(new PupperPoppers());

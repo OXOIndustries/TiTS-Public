@@ -3336,7 +3336,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	if (flags["RATS_SEXED_EAR"] != undefined) output(" again");
 	output("... and it feels fucking incredible. Warm, smooth tightness swaddles you in the embrace of this lovely creature, almost making you forget what else you can do from here.");
 	output("\n\nThe carnal volumes at which you voice your blissful gratification are drowned out by her’s; you clash with your desire to rut her head, to skullfuck her into a sexual stupor that she’ll never wake up from. This position gives you such absolute power over your partner, and recalling what you’ve read about these mice, it gives you so much more than that.");
-	output("\n\nIrregardless, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you’re doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
+	output("\n\nRegardless of that, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you’re doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
 	output("\n\nBut with this rat... She places all her trust in you, and you, in turn, have the power to vindicate that. The ideas surrounding this act are just as powerful as the vice you’ve entered.");
 	
 	output("\n\nYou bottom out, though you’re not sure if you can go further or you’ve hit the depraved limit.");
@@ -3876,7 +3876,7 @@ public function ratsThievesDeserveSpanking(thiefRat:Creature):void
 		if (remainingRat.isFemale() || pc.hasVagina()) output(" and");
 	}
 	if (remainingRat.isFemale() || pc.hasVagina()) output(" femininities");
-	output(" stretch and strain, desperate to release their pent up loads irregardless of how this situation unfolded.");
+	output(" stretch and strain, desperate to release their pent up loads regardless of how this situation unfolded.");
 	
 	output("\n\nDominant thrill blossoms through your brain, soothing the soreness in your wrist and the needling in your beet-red palm. Every impact forces out a hot dribbly mess of aural pussyjuice and " + remainingRat.mf("cock slime", "regular pussyjuice") + ", the respective owners on the edge of collapse. High-pitched whines form in the backs of their throats, guilty eagerness spilling out in greater quantities the more they learn to let go of their pride.");
 	if (pc.isHerm()) output("\n\nYour [pc.cocks] and [pc.pussies] are no different, each ready to mark these rats in a liquid reminder of you. ");

@@ -239,7 +239,7 @@ public function syriPuppyslutmasNopeUveto():void
 	
 	processTime(10);
 
-	syriFreezerMenu();
+	syriFreezerMenu(false);
 }
 public function syriPuppyslutmasYeUveto():void
 {

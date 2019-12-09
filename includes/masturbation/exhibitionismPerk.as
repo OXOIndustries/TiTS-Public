@@ -86,6 +86,8 @@ public function exhibitionismLocationToggle():void
 		var pcLocation:String = getPlanetName();
 		var msg:String = "";
 		
+		if(pcLocation == "Unknown") pcLocation = "public space";
+		
 		switch(ultraExhib.value1)
 		{
 			// Entering:
@@ -106,6 +108,7 @@ public function exhibitionismLocationToggle():void
 				{
 					msg += "You step";
 					if(currentLocation == "SHIP INTERIOR") msg += " into your ship";
+					else if(pcLocation == "public space") msg += " away from society";
 					else msg += " outside " + pcLocation;
 					msg += " and the thrill that had clutched you in its claws throughout your trip fades away. A confusing mixture of relief at your toned down lust and disappointment comes over you instead. You already miss being in the public eye.";
 				}

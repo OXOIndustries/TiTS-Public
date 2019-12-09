@@ -198,7 +198,7 @@ public function shekkaRejoinCrew():void
 
 	output("\n\n<i>“You sure you have room?”</i> Shekka teases. <i>“You know us raskvel, taking up all kinds of room in those tight quarters, requesting 20 foot ceilings, and eating six times our weight in a day. I’d be a tremendous burden.”</i>");
 	output("\n\nYou answer by raising an eyebrow.");
-	output("\n\n<i>“Okay, okay, if you insist, but don’t come running to me when the ship’s protein stores run low.”</i> {Shekka glances down and flushes./Shekka winks.} <i>“I patch holes in the hull and make your engines run like new, but I can’t be held responsible if you knowingly overencumber your ship again!”</i>");
+	output("\n\n<i>“Okay, okay, if you insist, but don’t come running to me when the ship’s protein stores run low.”</i> Shekka " + (shekka.hasCock() ? "glances down and flushes" : "winks") + ". <i>“I patch holes in the hull and make your engines run like new, but I can’t be held responsible if you knowingly overencumber your ship again!”</i>");
 	output("\n\nWhile you’re reassuring the wide-hipped mechanic that you do in fact, have room, she’s tossing tools and equipment together for the walk back to the hangar. In fact, she doesn’t even pay attention to you until she’s gathered her things together by the door.");
 	output("\n\n<i>“Hey, [pc.name].”</i> Shekka crooks a finger.");
 	output("\n\nYou lean closer. <i>“What?”</i>");
@@ -1179,10 +1179,10 @@ public function shekkaSleepWithMornings():void
 		else
 		{
 			output("Your dreams are interrupted by an all-encompasing sensation of warmth at your core, of dainty little fingers squeezing at your thighs. Opening your eyes to a brand new day feels a little bit too challenging, but you do so anyway at the rather insistent need to cum. Unknown waves of orgasm are apparently cresting the shores of your resolve, and a peek beneath the bedsheets reveals the culprit; Shekka.");
-			output("\n\nHer ears are laid out across your legs, ass up in the air as the nude creature lovingly licks and kisses at ");
-			if(pc.hasVagina()) output("your thoroughly-soaked slit");
+			output("\n\nHer ears are laid out across your legs, ass up in the air as the nude creature lovingly licks and kisses at your ");
+			if(pc.hasVagina()) output("thoroughly-soaked slit");
 			else if(pc.hasCock()) output(pc.hasAKnot() ? "engorging knot" : "turgid shaft");
-			else output("your [pc.groin]");
+			else output("[pc.groin]");
 			output(". The very first question on your lips is how long she’s been at it, but the breath is practically stolen from you after one exceptionally adoring kiss. Apparently it must have been a while since you’re immediately sent crashing into orgasm");
 			if(pc.hasCock()) output(", painting your own chest in [pc.cum]");
 			else if(pc.hasVagina()) output(", coating her face in [pc.girlcum]");
@@ -2145,7 +2145,7 @@ public function shekkaAnnoFightFollowup():void
 	showName("GETTING\nALONG?");
 	showBust(annoBustDisplay(),shekkaBustDisplay());
 	author("SomeKindofWizard");
-	output("When you hunt both of the girls out again, they’re both sat on your bed, scrolling through a datapad. <i>“A step up from arguing, what are you both looking at?”</i> you begin, rubbing your chin.");
+	output("When you hunt both of the girls out again, they’re both sitting on your bed, scrolling through a datapad. <i>“A step up from arguing, what are you both looking at?”</i> you begin, rubbing your chin.");
 	output("\n\nAnno looks up, tail wagging idly as she gives you a bright smile. <i>“Porn!”</i>");
 	output("\n\n<i>“...Of course.”</i>");
 	output("\n\n<i>“No, but really,”</i> Shekka adds <i>“It’s one of Anno’s old colleagues doing something fucking wild with sex-toy construction. We... may or may not have restarted the pulse-versus-vibes argument. But we’ve stopped snapping at each other.”</i>");
