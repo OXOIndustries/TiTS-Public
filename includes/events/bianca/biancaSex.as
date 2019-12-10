@@ -178,7 +178,7 @@ public function biancaSexings():void
 				if (flags["BIANCA_KNOWS_PC_DICK"] == 0 && pc.hasCock()) output("<i>“Ooh! You grew something wonderful, [pc.name]? I can’t wait to try it out! I wonder if I get to be the first to play with it?”</i>");
 				if (pc.hasCock())
 				{
-					if (pc.isCrotchExposed()) output(" Your [pc.cocksLight] " + (pc.hasCocks() ? "rise" : "rises") + " eagerly for her, happy as can be when her " + (pc.hasCocks() ? "hands fly" : " flies") + " up and down the meaty, veiny " + (pc.hasCocks() ? "shafts." : "shaft."));
+					if (pc.isCrotchExposed()) output(" Your [pc.cocksLight] " + (pc.hasCocks() ? "rise" : "rises") + " eagerly for her, happy as can be when her " + (pc.hasCocks() ? "hands fly" : "hand flies") + " up and down the meaty, veiny " + (pc.hasCocks() ? "shafts." : "shaft."));
 					else output(" Your [pc.cocksLight] strain against the confines of your clothing, every begging throb a cry for help.");
 				}
 				else
