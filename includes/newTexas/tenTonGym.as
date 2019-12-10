@@ -870,7 +870,7 @@ public function takeAShowerSloot():void
 	processTime(10);
 	flags["TTGYM_SHOWERED"] = 1;
 	
-	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined && flags["TTGYM_BETSY_VICTORIA_NEVER"] != 1 && rand(2) == 0)
+	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined && flags["TTGYM_BETSY_VICTORIA_NEVER"] != 1 && rand(2) == 0 && pc.hasCock())
 	{
 		tentongymShowBetsyVictoria(true);
 		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
