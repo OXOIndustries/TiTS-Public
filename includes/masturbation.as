@@ -522,7 +522,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	}
 	if(pc.hasDildo())
 	{
-		fap new FapCommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Dildo";
 		fap.ttHeader = "Dildo";
 		fap.ttBody = "Make use of a dildo to please yourself.";
