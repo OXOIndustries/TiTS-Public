@@ -661,8 +661,8 @@ public function ardiaCrewMenu(cleer:Boolean = false):void
 	addButton(4, "Appearance", ardiaAppearanceScreen);
 	if (addictedToArdia()) addButton(5, "Get Cum", youGotAnyMoreOfThemCummiesArdia, undefined, "Get Cum", "Ask Ardia for a little pick-me-up to go. Can’t go having withdrawals while you’re adventuring, can you?");
 	if ((flags["ARDIA_TALKS"] & 3) == 3) addButton(9, "Her Folks", seeIfArdiaWillLendYouHerMommy, undefined, "Her Folks", "Ask Ardia to take you to her parents’ resort world.");
-	addButton(10, "Fill Nuts", function():void{if(ardia.ballFullness < 100)ardia.ballFullness = 100;ardiaCrewApproach();});
 	//GOODBYE, SLUTS
+	//addButton(10, "Fill Nuts", function():void{if(ardia.ballFullness < 100)ardia.ballFullness = 100;ardiaCrewApproach();});
 	//addButton(12, "+ Dom", function():void{ardiaDomLevel(1);ardiaCrewApproach();});
 	//addButton(13, "- Dom", function():void{ardiaDomLevel(-1);ardiaCrewApproach();});
 	addButton(14, "Back", crew);
