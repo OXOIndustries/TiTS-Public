@@ -575,6 +575,16 @@ package classes.Resources.Busts
 		public var Bust_KQ_VR_LLAERWYN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vr_salamander.png", mimeType = "image/png")]
 		public var Bust_KQ_VR_HYLIE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_goblin.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_GOBLIN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_demon.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_DEMON:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_demon_futa.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_DEMON_FUTA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_queen.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_QUEEN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vr_queen_futa.png", mimeType = "image/png")]
+		public var Bust_KQ_VR_QUEEN_FUTA:Class;
 		
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/krissy.png", mimeType = "image/png")]
@@ -1835,6 +1845,16 @@ package classes.Resources.Busts
 			public var Full_KQ_VR_LLAERWYN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_salamander.png", mimeType = "image/png")]
 			public var Full_KQ_VR_HYLIE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_goblin.png", mimeType = "image/png")]
+			public var Full_KQ_VR_GOBLIN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_demon.png", mimeType = "image/png")]
+			public var Full_KQ_VR_DEMON:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_demon_futa.png", mimeType = "image/png")]
+			public var Full_KQ_VR_DEMON_FUTA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_queen.png", mimeType = "image/png")]
+			public var Full_KQ_VR_QUEEN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vr_queen_futa.png", mimeType = "image/png")]
+			public var Full_KQ_VR_QUEEN_FUTA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
