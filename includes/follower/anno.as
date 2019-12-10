@@ -2927,7 +2927,7 @@ public function annosTriberatorGatorMatorHater():void
 	output(" and on all fours, just like a dog. She excitedly does as she’s told, ");
 	if(annoIsCrew()) output("climbing onto the springy satin fabric and crawling across it on her hands and knees.");
 	else output("dropping to her hands and knees and turning around.");
-	output(" She cheekily pokes out her round rump at you. Her flushing pussy lips, are brazenly exposed, her snowy landing strip practically guiding the way.");
+	output(" She cheekily pokes out her round rump at you. Her flushing pussy lips are brazenly exposed, her snowy landing strip practically guiding the way.");
 
 	output("\n\nWhen you approach her glistening canine snatch, Anno teasingly drapes her big bushy tail over it. <i>“...Mmm, what makes you think I’m that easy?”</i> She giggles, peering over her shoulder. You click your tongue, turning the doggie vibrator ‘on’, and press it pointedly against one of her bouncy buttocks. Her big, bushy tail twitches at first, then spasmically swishes about! <i>“S-s-stooooop, I’m ticklish there - no fair!!”</i>");
 

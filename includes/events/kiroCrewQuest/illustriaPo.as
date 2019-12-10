@@ -44,7 +44,7 @@ public function encounterDatPoBitchBaybeee():Boolean
 	{
 		output("You step into the lab to find Kiro restrained, and Doctor Illustria Po slowly rising out of her chair. The fluffy pirate in the background immediately struggles against her bindings and shouts, <i>“Hell yeah! Kill this crazy bitch, Angel! Fucking ruin-”</i>");
 		output("\n\nA mouthguard slams across the infuriated kui-tan’s muzzle, silencing her diatribe.");
-		output("\n\n<i>“Hello, [pc.name].”</i> Illustria offers a formal wave. <i>“I must admit, I did you expect you to ever get this far. That was my mistake, but do not make one of your own. Battling me in my own lab would go badly for you, I assure you, and the services I provide are entirely legal and aboveboard.”</i> Her smile is so self-assured that it’s almost painful to look upon. <i>“I am licensed to capture and socially recondition pirates, debtors with suitably delinquent loans, and home invaders thanks to the classification of my vessel as New Texan territory. It would serve us well to resolve the matter financially rather than violently.”</i>");
+		output("\n\n<i>“Hello, [pc.name].”</i> Illustria offers a formal wave. <i>“I must admit, I did not expect you to ever get this far. That was my mistake, but do not make one of your own. Battling me in my own lab would go badly for you, I assure you, and the services I provide are entirely legal and aboveboard.”</i> Her smile is so self-assured that it’s almost painful to look upon. <i>“I am licensed to capture and socially recondition pirates, debtors with suitably delinquent loans, and home invaders thanks to the classification of my vessel as New Texan territory. It would serve us well to resolve the matter financially rather than violently.”</i>");
 		//Bimbo
 		if(pc.isBimbo()) output("\n\nYou giggle, <i>“So you’re gonna pay me?”</i>");
 		//Else
@@ -972,7 +972,7 @@ public function faceFuckOlIllustriusPozilla(x:int):void
 	output(" teasing and caressing it with wiggling mechanical precision.");
 	output("\n\n<i>“Fuuuuck,”</i> you let out involuntarily. This treatment continues for another minute, and by that point it’s impossible not to moan out loud. You’re worried you might cum too soon, but the sensation starts to wane for some reason, until it’s been toned down to more manageable levels. Apparently, her body’s automatic functions have added a desensitizing agent to her throat’s lubrication, so as to prolong the fuck. She must be really enjoying this.");
 	output("\n\nYour hypothesis is confirmed when Illustria suddenly stops, trembling and letting out muffled whimpers. There’s no need to even glance down to understand what’s happening: the doctor’s snatch is shuddering from her first orgasm and squirting copious amounts of pinkish artificial pussylube. After she regains her composure, you decide to tease her a little, pulling out your [pc.cockNoun " + x + "] and letting it rest on her face for a moment. She gazes at you with a vacant but defiant expression. <i>“Having fun, are you?”</i> she asks.");
-	output("\n\n<i>“Not as much as you, by the looks,”</i> you retort, pointing to the pool of pink fem-lube at her feet. <i>“I your throat seems to be even more sensitive than a pussy, you must have really wanted someone to fuck your face, huh?”</i> No reply seems to be forthcoming, and, for once, the scientist looks truly embarrassed - which is even cuter with your cock resting on her face.");
+	output("\n\n<i>“Not as much as you, by the looks,”</i> you retort, pointing to the pool of pink fem-lube at her feet. <i>“Your throat seems to be even more sensitive than a pussy, you must have really wanted someone to fuck your face, huh?”</i> No reply seems to be forthcoming, and, for once, the scientist looks truly embarrassed - which is even cuter with your cock resting on her face.");
 	output("\n\nWell, she might be satisfied, but you haven’t had your fill yet. <i>“Move back a little,”</i> you tell the cyborg, and she does as commanded, until her back presses against the wall. To make it more comfortable, she grabs a pillow from the chair nearby and puts it behind her head. <i>Perfect</i>, it’s almost as if she knows what’s coming next, except that she doesn’t - someone who’s always been so dominant has no way of knowing.");
 	output("\n\nOnce again, you line your [pc.cock " + x + "] with her mouth and push inside without preamble, her lips automatically parting to take you. The cyborg is about to resume her ministrations, but you block her by forcing your shaft all the way in and pinning her head against the wall with your [pc.thighs].");
 
@@ -1423,7 +1423,7 @@ public function victoryEndWrap():void
 //following bonustexts
 public function KQKiroFollowBonusTexts():void
 {
-	showBust(kiroBustDisplay());
+	showBust(kiroBustDisplay(true));
 	//Bimbokiro
 	if(kiro.isBimbo())
 	{
@@ -1440,7 +1440,7 @@ public function KQKiroFollowBonusTexts():void
 	//Rescued Kiro
 	else
 	{
-		output("\n\n" + RandomInCollection([,"Kiro follows after you, alert for any remaining danger.","Kiro smiles when you look back her.","Kiro gestures in the direction of the hangar.","Kiro follows with a stylish looking combat roll.","Kiro crouches, keeping low and out of the way.","Kiro silently points out a security camera, then gives it two big middle fingers.","Kiro bounces from side to side, alert for more danger.","Kiro places her hand on your shoulder reassuringly.","Kiro shakes her head. <i>“I can’t believe I almost got turned into one of those... things.”</i>","Kiro bumps into your back. <i>“Watch where you’re going, will ya?”</i> She grins. <i>“Unless you want me to keep bumping into you naked, perv.”</i> She winks."]));
+		output("\n\n" + RandomInCollection(["Kiro follows after you, alert for any remaining danger.","Kiro smiles when you look back her.","Kiro gestures in the direction of the hangar.","Kiro follows with a stylish looking combat roll.","Kiro crouches, keeping low and out of the way.","Kiro silently points out a security camera, then gives it two big middle fingers.","Kiro bounces from side to side, alert for more danger.","Kiro places her hand on your shoulder reassuringly.","Kiro shakes her head. <i>“I can’t believe I almost got turned into one of those... things.”</i>","Kiro bumps into your back. <i>“Watch where you’re going, will ya?”</i> She grins. <i>“Unless you want me to keep bumping into you naked, perv.”</i> She winks."]));
 	}
 }
 
