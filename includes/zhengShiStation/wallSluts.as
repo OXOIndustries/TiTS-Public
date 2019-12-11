@@ -554,6 +554,13 @@ public function pickWallSlutMenu():void
 	}
 	else addButton(btn,"Noisy Rodents",wallSlutsNoisyRodentsWallIntro,undefined,"Noisy Rodents","A bickering duo of rodenian girls.");
 
+	btn ++;
+	if(pc.hasStatusEffect("RodenianBoyDisable"))
+	{
+		output("\n\nThe male rodenian's bottom half is closed for cleaning. Maybe next time!");
+		addDisabledButton(btn,"Male Rodent","Male Rodent","The male rodent is closed for cleaning.");
+	}
+	else addButton(btn,"Male Rodent",williamsRatBoiComm,undefined,"Male Rodent","The bottom half of a male rodenian juts through the war, presenting a fat and shapely cock.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -2262,6 +2269,418 @@ public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
 	pc.setStatusMinutes("NoisyRodentsDisable", 90);
 	flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] = GetGameTimestamp();
 	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function showRatBoy(nude:Boolean = false):void
+{
+	showName("RODENIAN\nMALE");
+	showBust("RODENIAN_WALLSLUT" + (nude ? "_NUDE":""));
+}
+//Cherry's Hall - Rodenian Boy
+// Commission. A Rodenian boy of unknown origin will be added to the Slut Wall, with two scenes: [Anal] and [Cock]. His capacity isn't that great, but cumsluts will enjoy having a tasty rat dong to play with.
+// Overall gentle toned. Picture suggests overwhelming sheepishness on his part. PC alignment will sway the attitude a little but overall he's a boi you claim methodically through deliberate deep dickings. Or sucking him off. It'd surely make him happy.
+public function williamsRatBoiComm():void
+{
+	//[Rat Boy]
+	// Tooltip: A shy rodenian boy.
+	clearOutput();
+	showRatBoy();
+	author("William");
+	output("Tucked away to an almost elusive degree is a pint-sized addition to Cherry’s line-up. He’s as small as a rodenian - because he is one ");
+	if(!CodexManager.entryUnlocked("Rodenians"))
+	{
+		output(", as your Codex so helpfully informs (<i>Codex entry unlocked!</i>)");
+		CodexManager.unlockEntry("Rodenians");
+	}
+	output(". Sticking out from the slut-shelter is a cobalt-blue butt and a long tail banded at the base by some arresting loop of machinery, likely to keep the shyly swinging appendage limp and docile. Nearby is a holo-screen displaying the apprehensive profile of an upper body tucked away. His meek muzzle and sheepish eyes are averted from the viewpoint. A lock of unstyled hair covers one side of his deeply embarrassed face, giving him a cool, debonair appearance.");
+	output("\n\nInspecting the rodent proper, you combine the digital photo of a boy with slender shoulders and the real view of a considerable ass. His flared hips are wider than those found on approximately-aged girls, and his fur is clean... actually, it’s quite fragrant. If he’s not here by his own will, then his owner obviously cares about his well-being. Between his round, femmy mounds is a dark winking ring, unplumped, but blushing a pinkish hue that sparkles under the mood lighting. Below his rump is a foreskinned cock seven inches long and a squishy pair of tightly-packed black-furred balls brimming with an unspent load. It’s by now you notice how cleverly he’s positioned, bound waist deep in servitude with his feet a few centimeters from touching the ground.");
+	output("\n\nThere’s no plug or any means of prevention found on him, indicating that his hole is open for business. His cock, too, should you like. " + (pc.hasKeyItem("Puss Pass") ? "With your Puss Pass in arm’s reach, you could have this cutie to yourself any time.":"His price is found on his photo. For 1500 credits, this shy rat will be yours for the next orgasm."));
+	processTime(6);
+	pc.lust(3);
+	clearMenu();
+	if(pc.hasKeyItem("Puss Pass"))
+	{
+		if(pc.isTaur()) addDisabledButton(0,"Pitch Anal","Pitch Anal","Your <b>tauric form prevents you from mounting him. He’s way too small!</b>");
+		else if(pc.hasHardLightEquipped() || pc.cockThatFits(120) >= 0) addButton(0,"Pitch Anal",penisRouter,[pitchAnalToRatboi,120,true,0],"Pitch Anal","It’s called a Puss Pass, not an Anal Pass, but such lines often become terribly blurred. Either way, you can have the boy’s bubble butt <b>for free!</b>");
+		else if(pc.hasCock()) addDisabledButton(0,"Pitch Anal","Pitch Anal","You won’t fit your magnum dong in this boy. <b>Reduce your size! - or get a hardlight dildo that'll fit!</b>");
+		else addDisabledButton(0,"Pitch Anal","Pitch Anal","You must <b>have a dick or a hardlight strapon for this scene.</b>");
+		addButton(1,"SuckHisCock",cockMilkDatWilliamsRatBoooooooi,undefined,"Suck His Cock","The wall-sluts are here for the pleasure of Cherry’s patrons. How you achieve that pleasure is for you to decide. If you wanted to get a mouthful of rat-boner, now’s as good a time as any.");
+		
+	}
+	else if(pc.credits >= 1500)
+	{
+		if(pc.isTaur()) addDisabledButton(0,"Pitch Anal","Pitch Anal","Your <b>tauric form prevents you from mounting him. He’s way too small!</b>");
+		else if(pc.hasHardLightEquipped() || pc.cockThatFits(120) >= 0) addButton(0,"Pitch Anal",penisRouter,[pitchAnalToRatboi,120,true,0],"Pitch Anal","<b>For 1500 credits</b> this boy’s ass will be yours for a spell.");
+		else if(pc.hasCock()) addDisabledButton(0,"Pitch Anal","Pitch Anal","You won’t fit your magnum dong in this boy. <b>Reduce your size! - or get a hardlight dildo that'll fit!</b>");
+		else addDisabledButton(0,"Pitch Anal","Pitch Anal","You must <b>have a dick or a hardlight strapon for this scene.</b>");
+		addButton(1,"SuckHisCock",cockMilkDatWilliamsRatBoooooooi,undefined,"Suck His Cock","The wall-sluts are here for the pleasure of Cherry’s patrons. How you achieve that pleasure is for you to decide. If you wanted to get a mouthful of rat-boner, now’s as good a time as any.");
+	}
+	else 
+	{
+		addDisabledButton(0,"Pitch Anal","Pitch Anal","You can't afford this!");
+		addDisabledButton(1,"SuckHisCock","Suck His Cock","You can't afford this!");
+	}
+	addButton(4,"Back",pickWallSlut);
+}
+
+public function pitchAnalToRatboi(x:int):void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	if(pc.hasKeyItem("Puss Pass")) output("The chit-reader plays a fancy jingle at the insertion of your Puss Pass. Time to debauch.");
+	else 
+	{
+		output("After loading the boy’s price on your chit, you thrust it in the slot and get a single chime’s blessing to begin.");
+		pc.credits -= 1500;
+	}
+	output("\n\nThis close to the small and defenseless rodenian, you’re rather awestruck by the cleanliness of the booth itself. It’s bordering on untouched, any faint smells of sex easily attributed to what’s going on nearby. Even the cell dividers have a very thin layer of fine gloss, spotless and aromatic. Looking down to the public use boy-toy, you wonder if it’s because of his size that nobody stops in. He does kind of blend in with his striking coat of black-and-blue fur, and he keeps himself very still.");
+	output("\n\nTime to change that.");
+	if(pc.tallness < 60)
+	{
+		output(" Sensing your approach, there’s a slight, ineffective squirm from the trapped rodent.");
+	}
+	else output(" When you kneel behind the trapped rodent, he automatically squirms at the shifting of air.");
+	output(" Every fiber on his broad behind is straight, and as you find out, exquisitely soft to the touch. Squeezing one of those wobbly cheeks in your [pc.hand] is a natural first step for you, and the next step for him is to wiggle his ass back into your hand without a second thought. Whatever you’ve done must have been rather reassuring: his tail shows no signs of anxiety, immediately curling around your shoulders and under one arm, hugging close and simultaneously encouraging further enjoyment.");
+	output("\n\nYou don’t notice the slender length of his body-length tail massaging you in kind, too busy running your [pc.fingers] down ample, fuzzy squish. Immodest hips sway to your exploratory pawing, undulating in an excited mobius loop. You take a breath, heart thumping, sliding a thumb towards the loop of soft muscle encompassing his backdoor, sliding right in - this mouse is undoubtedly anal-trained, and there’s not a wrinkle to be found! The redolent heat pouring off his blue-black dappled genitalia rises into your nose, inundating your senses with the shameful scent of ready musk. A shuddering quiver runs through his aft-quarters when you tug your thumb free of his asshole: ");
+	if(flags["WALLSLUT_RODENT_ANALED"] == undefined) output("it comes away with a crystal-clear strand... of sticky lube.");
+	else output("a thick string of anal-lube follows it out like the hidden treasure of an ancient temple.");
+	if(flags["WALLSLUT_RODENT_ANALED"] == undefined)
+	{
+		output("\n\nSo he’s got a self-lubricating asshole, huh? No wonder it sparkles!");
+	}
+	output("\n\nHe relaxes under your pressure, fresh cum splatting against the wall after another heavy dopamine hit. The little rascal’s cum <i>twice</i> from a bit of touching and groping! A writhing tempo vibrates you from his tail. His back is arching to the draconian limits of his full-body restraint, and out spurts another rope of slurry-thick spooge, pearlescent and packed full of " + (CodexManager.entryUnlocked("Slyverens") ? "a slyveren’s recommended nutrition":"sperm") + ". ");
+	if(pc.isBimbo() || pc.isNice() || pc.isMischievous()) output("Blossoming ardor fills your loins. While you’d love to spend a couple hours playing with this rat, your burgeoning desires are reminding you of your need to cum.");
+	else output("Seeing him get off so easily soon reminds you of your own deep, burning-red desires.");
+	if(!pc.isCrotchExposed()) output(" You fidget with your clothes, releasing your own lust and heat into his lower atmosphere.");
+	output("\n\nShimmying forward, " + (x >= 0 ? "you lay your [pc.cock " + x + "]":"you power on your hardlight fuck-tool and nestle the buzzing stick") + " in the wide valley of your toy’s rear cleavage, smushing as much of his bum around your bare bulk as possible. You give a husk of approval, hauling backwards through femboy thickness, pulling at his pliant curves as you move. [pc.CumGem] droplets of dominant affection bead at your [pc.cockHead " + x + "], soon flowing down to the subby petite’s demure derriere. In a matter of seconds you’re reveling in the see-saws through his wetly-smothered taint. Sudden jerks against your mass aren’t done out of displeasure, but out of a desire to reciprocate all you’ve done so far.");
+	output("\n\nCraving more of his silky smoothness, you rub adoration and compassion into his cheeks, letting him know through several inches of wall that you’re enjoying what he’s doing. It occurs to you that you never put any consideration to how he might feel being at someone else’s mercy. If you’d started any differently, would he have been a lot more nervous? Is he quick to trust? No matter, you think. You prefer to think he’s smiling as he shamelessly pleasures your girth in accelerating wiggles. Good rats get headpats, but as his head is currently obscured, you give him a hearty spank on the ass.");
+	output("\n\nThat triggers yet another orgasm.");
+	output("\n\nYour wall-mounted rat’s legs close and spread in a V-shape, the constant caress of cold container to his vulnerable prick orgasmically unbearable. Lines of unnatural lube spill from his frail pucker, all the muscles inside contracting and abating in real time. The clean floor is all the more reflective with his salty liquid spreading across it. No sense in letting any of it go to waste - you rub your " + (x >= 0 ? "[pc.cockHead " + x + "]":"glowing glans") + " to his entrance, careful not to slip in too early, slathering yourself in the intimacy of his warm, mounting excitement.");
+	output("\n\nThe tip of his bald tail traces the length of your collarbone and all limbs within reach. He’s trying to get a picture of you, to understand more about you. While you gaze hazy-eyed at his photo on the wall, that prehensile tendril tentatively curls around your [pc.cockOrStrapon " + x + "], testing its hardness. It coils with a serpent’s taut grip, vibrating you from tip to brain before unraveling and weaving around your waist like a belt. Whatever he’s gleaned about your " + (x < 0 ? "artificial ":"") + "pole, he approves of it");
+	if(x >= 0)
+	{
+		if(pc.hasKnot(x)) output(", especially the [pc.knot " + x + "] he gave a loving prod");
+	}
+	output(".");
+	output("\n\nMouthwatering ripples fan through his backside on another needful wiggle, each bob of the hip instinctually drawing you closer, simultaneously grinding his dirty rod into the wall. Restless twitches lead to a full and clenchingly-helpless climax. For the spunking he’s giving to the wall, his ballsack is rather undiminished. Rat-seed pools in a small pie-shaped mound under the blunt claws of his curled toes, never quite reaching the tip of a blissed-out foot.");
+	output("\n\nYou’ve put this off long enough.");
+	output("\n\nLurching up, you can’t help but smile as you pet around the base of his tail, enjoying the tactility of his girly hips, or the sheer gravity well that is his flush star urging your pulsing-hot tool inside. You savor one last time the narrow closeness of his crack, idly wondering if he has a pillow to bite, ponderously swirling all your slime at his cavern of drooling desire. The knob of your length pushes in with determined insistence");
+	if(x >= 0)
+	{
+		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("; the flare of your endowment folds back before popping inside");
+		else output(", easily spreading his amethyst-hued sphincter");
+	}
+	else output(", easily spreading his amethyst-hued sphincter");
+	output(", sliding through it, all while you notice yourself whispering sweet affections to a pair of ears unable to hear them.");
+	if(x >= 0) pc.cockChange();
+	processTime(12);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",willsRatBoiGetsADickyNumbahTwo,x);
+}
+
+public function willsRatBoiGetsADickyNumbahTwo(x:int):void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	output("You groan at the intensity of it all, having only a minimum of understanding when it comes to prying open a diminutive rat-boy. You wonder if he’s the kind that needs a little time before real pleasure flows up his back, or if he’s already enjoying the slow ebb and flow that comes with being taken and filled by a patient patron. For the time being, you don’t shove it all the way in. Instead, you stuff him an inch at a time, delighting in the squirm of his graspable flanks, only stretching him with more " + (x >= 0 ? "[pc.dickSkin " + x + "]":"glow-boner") + " when you feel his walls come into contact.");
+
+	// pc Hardlight
+	if(x < 0) output("\n\nIt worries you for a second that the boy’s ass-lube won’t be enough for this. The ease at which you thrust inside, however, rapidly alters your concern into open-mouthed euphoria. You encounter an elastic quality to his velvet softness. It polishes your glow-in-the-dark strapon on its exquisitely pleasurable journey. The more you strain his ass to the shape of your faux-cock, the lewder the ‘splotches’ of accruing juice sound. You take a desperate grip of his hips, letting out a breath when swampy walls crush down on your irrepressible techno-dick, only abating by the willpower of their owner. He’s trying to help you get all the way in. <i>This boy is incredible,</i> you think, gasping, touching your groin to his hind.");
+	// pc Cock Size <8
+	else if(pc.cocks[x].cLength() < 8) output("\n\nDelicate buttflesh spreads around your precum-shined erection, throbbing and proud as it enters into a sensitive place on par with the hottest ausar cunts. You sigh, halting halfway, finding yourself grasping at his thighs, loving the way his chute clamps down and immediately pulls away. It’s not the physical sensation which is so exciting, it’s how much he’s trying to help. Belly fluttering, you swear the wall itself creaks when you push the rest of your [pc.cock " + x + "] through, mixing your juices together until his stretched hole glimmers a [pc.cumGem]-[pc.cumColor] shine. Even if he wasn’t modded to be accessible for dicks small and large, the velveteen softness of his hole is elastic without feeling like rubber, welcoming you to the [pc.knotBallsHilt " + x + "].");
+	// pc Cock Size <16
+	else 
+	{
+		output("\n\nYour lust continues to swell only a quarter of the way into the rat’s wall-bound butt, straining velvet-soft skin to handle a cock as hard as a boulder. Some sort of elastic quality exists at the ruthlessly contracting entrance of his sensitive cavern, making way for the rut-thickened pillar. Even without all the lube mixed into a [pc.cumGem]-[pc.cumColor] shine around his drooling pucker, you think that an unlubed penis could glide in just as easily. Lovely hips tighten around your [pc.cock " + x + "] followed by a reactive withdrawal. He’s doing his best to let you get all the way in before the action, and that sort of eagerness is what makes it so fucking hard to hold back from pounding this cock-banding boy-hole. The two of you savor the slow push, its completion signaled by the slap of your [pc.knotBallsHilt " + x + "] to his overstuffed derriere and the appearance of a visible bulge on his body. In fact, just before your hips collided, you swear the bisecting gap parted to let you through.");
+	}
+	// merge
+	output("\n\nHis innards clench and quiver delightfully, adding pleasant vibrations to the [pc.cockOrStrapon " + x + "] hilted within. Now together as one, you can feel his virility bubble over, the only reaction his body manages after having no choice in being skewered. Urgent heat spills through his urethra, something the " + (x < 0 ? "fake ":"") + "nerves in your dick sense and transmit, uploading an extremely positive report about his pleasure. Reproductive tubing dilates inside him, the only proof of his masculinity now firmly in control of what you feel. [pc.ChestNoun] heaving, you struggle to unburden yourself of the immense pressure.");
+	output("\n\nAs he squirts, you pull back and thrust back inside, not noticing how easy it was. Your brain decides not to concern itself with that, instead locking your attention to the oozing waviness of rodenian ass-pussy that refuses to gape. Whoever makes decisions for this delicious ass decreed that its only purpose was to please others, to be molded into the shape of his every lover. Tensing walls curve around your leisurely-sawing pole, tightening down on your rigidity; great and messy emissions fog your brain with the stench of a climax in lasting bloom.");
+	output("\n\nIt takes time to discover his prostate, but when you do, you’re ebbing and flowing all around it, surprising his cum-button with new angles. An endless drawl of floor-buffing fucksludge drains from his cock like a sink with a knob left turned. You swim through placid walls, moaning louder and louder, pumping deep enough that your [pc.thighs] clap to his sweaty legs" + (pc.balls > 0 ? " and your [pc.sack] brutalizes his own":"") + ". As you do so, your seeking hands roam his squat exterior, the perfect pillow for your disintegrating inhibitions.");
+	// pc Equine Cock
+	if(x >= 0 && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) output("\n\nSagged around your stallion-girth are the dual pleasures of a plump tush and firming backside. Your veiny steed gallops through his hole all the way to the medial ring, itself being accepted, making his anus look like a plump little donut on its groaning squelch inside. The first penetration is difficult, but his body adapts, accommodating you with alien fervor. The passage of your rubbery, [pc.cockColor " + x + "] loop through the breach is followed up by a colon-bashing pace, every lunge juicy and wonderful. Your libido is on overload, filling the voracious groove with more and more dick until your pelvis goes numb around the slavering spigot.");
+	// merge
+	// pc Has Knot
+	if(x >= 0 && pc.hasKnot(x))
+	{
+		output("\n\nThe pressure-lengthened gape of his asshole reacts with painful tightness when you grind your [pc.knot " + x + "] to it. You’re not sure if knotting someone is unwise in Cherry’s - there’s no hard rule, after all, but you’d rather err on the side of caution. While it would be so wonderful to give into emotion and breed the femmy runt proper, show him just how much you care... something like that can always come later.");
+		output("\n\nIn the meantime, you’re keen on seeing just how well he can stretch. His pelvis strains but if he could handle all your previous insistence, then this is just another part of it he needs to accept. One forceful smash later and the following fullness of knot-fucking the boy-slut warns you not to stay too long lest your boiling load roil too strongly to be contained. Thoughts of renting him out later and really making him yours seem dull in comparison to this: gaping him to the obstinate swell of your butt-plugging dick-fist.");
+	}
+	// pc Feline or Barbed Cock
+	if(x >= 0 && pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) output("\n\nFierce thrusts brush the nubby profusions of your [pc.cockNoun " + x + "] into areas your prodigious girth can’t quite reach. Untold amounts of pleasure is visited upon the rat boy’s wondrous rear with every hipstroke. All your ‘barbs’ fold back and forth, swabbing grateful patches of saturated boiflesh with firm, pulsing extensions of inflamed libido. You want to drive more of that into him. You know he likes it. He tightens up more frequently, every part of his exposed form quavering drunkenly.");
+	// pc Suula or Stinger-flagged Cock
+	if(x >= 0 && (pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED))) output("\n\nSensing opportunity, the tendrils lining your [pc.cockColor " + x + "] rod go nuts, stinging the rodenian’s deluxe interior with indolent flashes of seething lust-drug. Chemical torrents seep into receptive nerves, delivering myriad sensations that see him close down in a show of terrible, climactic might, bursting like a floodgate below and squeezing your [pc.cockNoun " + x + "] of all the thirst-inducing liquids. You’ll never run out, and he’ll probably never relent from this point on. You can’t wait to see his true orgasm.");
+	// merge
+	output("\n\nYou need more. He’s orgasming as hard as he’s meant to, throwing out one webbing, puddling cascade after the other. Either he’s been modded to have no refractory period or he’s got a capacity as depthless as the cocksleeve you fervently thrash against - then again, maybe rodenians are like that. One male often mates with two females, right? His hellish loop of climax, right now, is just consistent feedback of how well you’re doing!");
+	// pc Cunt Tail
+	if(pc.hasCuntTail() && pc.hasParasiteTail()) output("\n\nBut it is a waste, and your [pc.cuntTail] agrees. The cum-thirsty alien appendage slithers between his legs and quickly skewers itself on his prick, aiming true without a miss. The lumps of pumping gallons pour into your backside to places unknowable, feeding the unending desires of your prehensile friend. It sucks and slurps, drinking from the endless fountain and siphoning it all away for its selfish nourishment.");
+	// merge
+	output("\n\nYou started off nicely, but the gloves have come off. You’re slapping that ass for all its worth, tattooing the rat’s dermis in rippling strikes. You’re using him the way he was <b>made</b> to be used, treating him as little more than a buttslut without a name.");
+	output("\n\nSurfing on mindless releases, you cram your scamp-wrecker into the anal-slave with reckless abandon");
+	if(pc.hasCocks()) output(", your extra dick" + (pc.cockTotal() > 2 ? "s":"") + " flopping dumbly around his clenching butt cheeks");
+	output(". He matches you again. Only the muscles of a born bitch could shudder to this effect. He’s practically vibrating all along your length, wiggling only so that you bounce off unfucked clusters. You squash them all, rocketing through soupy moistness until the booth quakes, marveling at an ass custom made for discerning clientele such as yourself. It’s fucking dirty. Buffeting his diminutive frame is a filthy act that neither of you can get enough of.");
+	// pc Has Balls
+	if(pc.balls > 0 && pc.ballDiameter() >= 1.5) 
+	{
+		output("\n\nThe weighty slap of your [pc.balls] to his hyper-productive bollocks is addicting. It’s obscene and lewd in all the ways one would expect. Once or twice it’s felt like he’s taking over your body’s duties, cumming out your seed. Swirling, churning spooge ripples and splashes behind the tension-taut exterior of your ");
+		if(pc.hasFur()) output("fuzzy");
+		else if(pc.hasScales()) output("scaly");
+		else output("doughy");
+		output(" ballsack to the equatorial upset of a truly depraved coupling. Ball bounces against ball in a sexual symphony of colliding bulges.");
+	}
+	// merge
+	output("\n\nArousal peaks. Colors shift and contrast bleeds at the edges. Blue and black fur shimmers slightly to the ruthless reaming, never loosening enough for you to retrieve the lion’s share of your " + (x < 0 ? "holo-":"") + "penis. You crack his backside with one more slap and mount him, shifting up and barreling inside. His body flushes sweat and color in equal measure while your [pc.skinFurScales] plows into infecund folds. Orgasm arrives on a ");
+	if(x >= 0) output("[pc.knotBallsHilt " + x + "]");
+	else output("crotch");
+	output("-deep thrust, swinging like a titan’s blade over your mind, chopping away unnecessary function to allow you to fade into a familiar state of primal accomplishment.");
+	// pc Hardlight
+	if(x < 0)
+	{
+		output("\n\nYour hardlight erection produces the strangest of sensations. It simulates male orgasm to a T, inundating your joyful nerves with the full-body throb of buzzing climax. Your entire body trembles as the rat boy empties his balls into a drain below. The cum-expectant caresses of his walls stroke lustfully at your exploding strapon. Starbursts of overwhelmingly erotic pleasure assail you from head to [pc.butts], every limb and digit curling in breeder’s bliss. Intense arousal courses up and down all electrical pathways, leaving behind crackling reminders of urgency.");
+		if(pc.hasVagina())
+		{
+			output("\n\nDespite going untouched for the entirety of this, it’s those incredible pseudo-cock sensations that deliver your [pc.pussies] an orgasm to remember.");
+			if(pc.isSquirter()) output(" Seething bolts of liquid gratification squirt from your cunt. [pc.GirlCum] splatters into a rain of appreciation, of feminine need turned into a highly-expressive bolt of beatitude. It’s as close to having a dick and shooting your goo as you’ll get.");
+			else output(" Black holes and blue stars reminiscent of the rat boy’s heiny fly past meteors; [pc.girlCum] trickles, it seeps, it travels slowly and hotly down your inner thighs, making a mess of your numbed groin. It’s wonderful. This is what it’s like to claim a boy.");
+		}
+		else output("\n\nSpasmodic release takes you, jolting through parts of your body looking for an exit, calming down overtime. You have no way of demonstrating the pleasure you feel in an open manner, but deep-down, you can’t believe your luck at getting to experience this.");
+	}
+	// pc Low Cum
+	else if(pc.cumQ() < 500)
+	{
+		output("\n\n[pc.CumGem] jets of spunk shine in the darkness, squirting and spurting into the girly-boy’s intestines. Angry ropes and gurgling wads of [pc.cumVisc], belly-bound seed. The ratty rat’s hips seize down on your flexing phallus, [pc.cockHead " + x + "] erupting with the unabashed culmination of your specific desires. Lush anal walls milk you of [pc.cumFlavor] tension, shepherding load after load of goo to places unknowable, yet undoubtedly fertilized. [pc.CumColor]-hot sperm brings him to his most explosive climax, droplets of the puddle below splattering up and into your " + (pc.balls > 0 ? "scrotum":"crotch") + ".");
+		if(pc.hasCocks()) output(" Although you’re in no position to fine-tune the deed, your extra cock" + (pc.cockTotal() > 2 ? "s are":" is") + " spelling out a rough amalgamation of your initials with thin lines of divided cum. Neat!");
+	}
+	// pc High Cum
+	else if(pc.cumQ() < 10000)
+	{
+		output("\n\nYour [pc.cocks] bulge with the onrush of stomach-fattening output. [pc.Cum] surges savagely through your urethra, spilling into the rat boy’s guts like a divine disaster. His entire body shakes wildly to the sizzling-hot fountaining of [pc.cumVisc] sperm plastering his innards every which way, puddling then exploding at the bursting of another [pc.cumFlavor] lance. Thickly rising slickness floods into his belly, straining the wall which holds him into forced adaptation. The rubberized loops keeping him in place swell out with the newfound pooch of stomach being filled from the other end.");
+		output("\n\nAnother thrust renews your copious release, spunking the rodenian with torrential gusto. There’s only so much his colon and stomach can take before the excess is streaming out from the hair-thin gaps between your pulsing, throbbing boner and his supple sphincter. Rich hips squeeze down, milking your prostate like a dairy cow. The overflow adds a layering frisson of wonderful heat to it all, ensuring your magnificent load is fully spent in his jizz-filled chute. ");
+		if(pc.hasCocks()) output(" His ass is now a complete mess thanks to the frenzied spraying of your unsheathed fuckstick" + (pc.cockTotal() > 2 ? "s":"") + ", original colors made unrecognizable by the new [pc.cumGem] highlights overlaying them. You can’t tell where his minutes-old seed begins and yours ends. Molli’s gonna <i>love</i> that DNA potpourri!");
+	}
+	// pc Hyper Cum
+	else
+	{
+		output("\n\nBrain-melting geysers of [pc.cum] launch through your spunk-cannon at a seizure-inducing rate. You, the rat, and the whole wall itself quakes for the weight of your groundbreaking climax. Splurging [pc.cumVisc] spooge weaves and puddles through the wall-slave’s intestines, traversing his small form from the wrong direction. The oval compartment groans outwards to handle the rapid swelling of his jizz-glutting gut, not losing grip on its thrashing occupant. The tail around your shoulders falls limp into the veritable lake of wasted jizz all around your [pc.footOrFeet]. Milking anal walls throw themselves at your [pc.cock " + x + "] for dear life, forcing you to pound the rest of your hyper-deforming nut straight into his belly, and certainly, out the other end.");
+		output("\n\nThe bulk of your speed splashes out on every vein-throbbing pulse of phallic meat. Your urethra aches and strains to give passage to blazing-hot [pc.raceShort] cumshots, leaving your mark, scent, and sperm on every available inch of [pc.cumColor]-plastered innards. Oozing streams of [pc.cumGem] gallons saturate your crotch in return, having absolutely nowhere else to go but in the direction of the ass-bloating source what spawned them. You pull out and thrust back in, cum getting fucking everywhere. A minute has passed, and your orgasm refuses to abate for another.");
+		output("\n\nNow you pull out, grasping at your [pc.cocks], slumping into shallow buffet surrounding you, thrusting your hips forwards and backwards to wring out the reservoir of your lust-sore fountains. At the end of it all, the entire booth is a mess. You can’t even find the poor boy underneath the mask of porn-worthy climax. Every crevice, in and out, has been flooded. It’s a miracle of nature that you’re not being swept away with it into the small drain underfoot.");
+		if(!pc.hasStatusEffect("hypercame4Ratboi")) pc.createStatusEffect("hypercame4Ratboi");
+	}
+	processTime(30);
+	pc.orgasm();
+	var ratboy:Creature = new Creature();
+	ratboy.createPerk("Fixed CumQ",50);
+	ratboy.loadInAss(pc);
+	if(pc.hasCuntTail()) feedCuntSnake(ratboy);
+	IncrementFlag("WALLSLUT_RODENT_ANALED");
+	clearMenu();
+	addButton(0,"Next",willsRatBoiGetsADickyNumbahThree,x);
+}
+
+public function willsRatBoiGetsADickyNumbahThree(x:int):void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	output("It takes longer than you’d like to pull free of the ass that never loosens");
+	if(pc.hasStatusEffect("hypercame4Ratboi")) output(". You couldn’t help it: you wanted to fuck it just a little bit longer, really make sure you gave all you could");
+	output(". The captive rodent oozes from colon and urethra both, fatigued and appreciably diminished. The Tap-Hall is designed to keep its customers primed for action, but even without those, the sight of a ruined femboy’s ass " + (x >= 0 ? "dripping with <b>your [pc.cumNoun]</b>":"clenching messily after your go at it") + " is enough to get turned on all over again.");
+	output("\n\nBut you’ve gotta get up for now. Maybe another of Cherry’s inventory will catch your rapidly rising fancy?");
+	pc.removeStatusEffect("hypercame4Ratboi");
+	pc.createStatusEffect("RodenianBoyDisable");
+	pc.setStatusMinutes("RodenianBoyDisable", 180);
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Cock]
+// Tooltip1: The wall-sluts are here for the pleasure of Cherry’s patrons. How you achieve that pleasure is for you to decide. If you wanted to get a mouthful of rat-boner, now’s as good a time as any.
+// No restrictions. Anyone can milk him.
+public function cockMilkDatWilliamsRatBoooooooi():void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	if(pc.hasKeyItem("Puss Pass")) output("The chit-reader plays a fancy jingle at the insertion of your Puss Pass. Time to debauch.");
+	else 
+	{
+		output("After loading the boy’s price on your chit, you thrust it in the slot and get single chime’s blessing to begin.");
+		pc.credits -= 1500;
+	}
+	output("\n\nYou stare overlong at the blue-black rodenian’s photo, then look to his clean bottom, occasionally wiggling for comfort. You look back again, thinking about who he is, why he’s here, how he got here in the first place. Anyone can be a slave, you understand. Nobody here is safe from such a fate. All it takes is one bad day or one fuckup and timelines can irrevocably diverge. Whatever put this shy boy here isn’t for you to know, but you can do something that will help make his position seem a little less futile.");
+	output("\n\nEyes on two fuzzy prizes, you squat down and lean towards his exposed, flexing manhood: seven inches of masculine girth and two spunk-fattened testicles. Your captive tenses, shimmying nervously - you calm him, squeezing one of his bubble butt-cheeks. His ass is yours for the taking, but that’s not what you’re doing down here. Anyone coming through Zheng Shi has no care in the galaxy for whoever’s set up for public use.");
+	output("\n\nYou do. That’s why your nose is inches away from his backsack, catching faint pheromone signals. That’s why your tongue is drawing over your moistening lips, filling your mouth with saliva. With the subliminally arousing machines feeding their pink notes into your cortex, there’s only a sense of rightness as you set about your business.");
+	output("\n\nHis anxiety is quelled in your soft grasp. Broad, plush hips devoid of muscle go idle, happy to be touched warmly. You move your [pc.hands] to his fat balls, twin onyx orbs, chunky and laden with goods, pulsing hotly with churning desire. Kneading them comes next. They’re so <i>fluffy!</i> His nuts aren’t large by the standards on this station, maybe five or six inches around, but their humble measurements are having no negative effect on their hypnotically smooth features. Filling your palms with them becomes a physiological need - it fills places inside that you hadn’t realized were empty.");
+	output("\n\nWhat were once soft and petite are thickening into proper womb-seeders. The rat’s squishy scrotum bulges into its true form, swelling with freshly-brewed cum, taking up more of your vision like a cloudless midnight sky. Escalation is gentle and gradual - bending a wrist and firming your grip gets a passionate twitch, while exploratory gropes and fondles weigh them down with a heavier burden requiring a little more strength to handle. Massaging them is definitely the best part. The stroke of your fingers to his sensitive pouch builds a delightful friction enhanced by the odd drop of sweat accruing on his fragrant ‘nads.");
+	output("\n\nHis uncircumcised penis hardens before your eyes, swelling out of its protective hood, dribbling the first real scent of an aroused male - you stop thinking.");
+	// pc Libido Low <33 (append to previous pg)
+	if(pc.libido() < 33)
+	{
+		output("\n\nLetting go of your inhibition just ‘happens’. It feels so good to move all the way in and press your nostrils to his pheromonal source, debase yourself at the mind-melting nexus of his genitalia. All you have to do is close your eyes, let the scales fall away, and <i>breathe.</i> A heated, dirty scent reaches high inside; dirty, but so <i>right.</i> You inhale again, and again, whole body quivering. This rodenian’s musk is overwhelming, and yet there’s just <i>something</i> there, a little spicy, a hint of salt... it’s natural... and intoxicating. He looks like a girl, but the aroma of a capable sire argues that he’s as man as any other.");
+		output("\n\nAh, if only you could be high on this while he presses you into the sheets on a mattress, pounding his body to yours...");
+		output("\n\nThe whorishness of what you’re doing is undeniable, and you gradually sink into it... and further into him. Your [pc.tongue] emerges, pressing into the juicy crease of his packed sack, short-circuiting your brain at the fine, rich taste of what’s controlling you. You feel your little rat’s balls throbbing against your [pc.lips]. You plant a kiss on the faint blue spots back there, organic landmarks that indicate to your sluttily suckling mouth where to go, losing yourself from there.");
+	}
+	// pc Libido Med <66 (append to previous pg)
+	else if(pc.libido() < 66)
+	{
+		output("\n\nA small part of you wonders how you ended up here, nose-deep in a wall-slut’s nutsack and breathing in the rawest, freshest musk. In complete contrast to his feminine profile, his manhood is every bit the meaty, delicious meal it looks like. Natural earthy pheromones rise into your brain and flip your submissive switches, trending you towards total worship of what is undeniably a man’s aura. You’re already kissing over the blue dapples of his pouch, connecting the dots one drooly kiss at a time. Percolating spittle coats his ‘nads in slavish submission - they become tastier with every ardent lick.");
+		output("\n\nYour [pc.tongue] mops his weighty jewels, crossing outsized veins on the exterior like an efficient cock-milker. You curl around both testicles encouragingly, squeezing, bobbing needfully without detaching your face from his blissfully hot and intoxicating source of aerosolized ambrosia. If your eyes were open, they’d be trying to roll back. If... no, <b>when</b> they do, you’ll be at his mercy, and he’ll never know the truth of it.");
+	}
+	// pc Libido High >67 (append to previous pg)
+	else
+	{
+		output("\n\nYou eagerly submit to the delectable odor of raw masculinity reaching into your mind, overtaking your thoughts. You smash your nose into the rodenian’s nutsack and inhale, straining your lungs on" + (pc.hasVagina() ? " ovulation-inducing":"") + " nut-musk. A wonderful, epicurean ecstasy permeates your relaxing body - it’s a powerful emotion that only emerges when you’re in your rightful place. Of course you’re licking and sucking at his ballsack, too, planting kisses on all the blue dots dappling his spermy cradle, drawing a web of pinpoint pleasure across the girly rat-boy’s scrotum.");
+		output("\n\nIt becomes your duty and honor to coat his sperm-tanks in saliva, smear them, polish them until you can see your reflection in the soft, stirring void. The intoxicating, earthy scent you taste is <b>male,</b> despite his appearance, despite his position. He’s a real man. In the deepest, most primitive recesses of your mind is one simple truth: he’s virile. Confined to a wall though he may be, the submissive haze on your brain constitutes proof that <b>you</b> are the bitch broken by servility.");
+	}
+	// pc Bimbo (override Libido) (append to previous pg)
+	if(pc.isBimbo()) 
+	{
+		output("\n\nVoid! Stars! Just being this close to his dick and especially his balls is... it’s so hot! No more delaying. You thrust your [pc.face] into his fat fucking nuts, done with staring and ready to perform your slick, drooly worship, kissing every super-cute blue spot on his ballsack like a game of connect the dots! Your [pc.tongue] isn’t far behind, polishing his ripe maleness to reflective sheens, matting down all the short fur on his vulnerable cream-factory, sincerely interested in his pleasure and enjoyment.");
+		output("\n\nYou curl around each testicle, moaning so that your voice can help them produce a thicker load of delicious reward. The excitingly heavy stench of his sex achieves unity with your nervous system, repurposing your brain for maximum reverence. He deserves it! You bet he’s squeaking in there right now, unable to believe that someone like you showed up to suck his cock as soon as [pc.heShe]’s finished tonguing his yummy balls!");
+	}
+	// merge
+	output("\n\nIf anyone were to see you now, they’d think you were the one meant to be in this wall. Someone’s probably staring at you right now, drunk on some fuck-slave’s ball-musk, zealously lapping at his inky sack, sucking all the sweat and tang from his bouncing, jiggling oats, delighting in the vibrations of his maons and whimpers. If they are watching, <i>");
+	if(pc.isBimbo()) output("you hope they like what they see");
+	else output("you don’t care");
+	output(".</i> You need these. You need these tremulous nuts on your mouth. You’re amazed by how warm and slippery his balls have gotten, how <i>ripe</i> they are. The sack is so enriched with sperm it’s wobbling, firming, growing taut in the slurping embrace of your hollowing cheeks. Reaching up, you dare to drag your tongue over his asshole, but just once! It lets you keep him guessing!");
+	// pc Aphrodisiac Saliva / Myr Venom
+	if(pc.hasPerk("Red Myr Venom") || pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+	{
+		output("\n\nThe chubby sperm-factories visibly quiver, ripples fanning through the evening curtain. All that druggy spit you’ve imbued his obsidian marbles with is finally having an effect, lending them a girth beyond what he would normally possess. His rebellious mass is able to smother your face and drown you in that sensual swirl. Nothing would make you happier than to hear the sounds he’s making, see the expression on his muzzle. It would be so lewd, so depraved. He may never get to see the mess he makes of you, but you know he’ll <i>feel</i> it.");
+	}
+	// pc Long Tongue
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
+	{
+		output("\n\nBundling his weighty nuts is a simple matter - why else would you have so long a tongue? The ribbon of mawflesh winds around his gorged and overheated stash, lovingly licking at all its places without the need for hands and fingers. Stroking and clenching and wrapping, you shamelessly juggle his shuddering package, framing your [pc.face] in sloshing plumpness until you lack any dignity.");
+	}
+	processTime(25);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",suckWillsMauseBoi2);
+}
+
+public function suckWillsMauseBoi2():void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	output("You’ve been putting off the main course for long enough. His balls were just the appetizers. Laying one sanguine kiss on each, you turn your attention to his foreskinned cock, pressed to the wall, throbbing out small strings of pearlescent clinginess. You grab his legs and hike them over your shoulders to facilitate this part, and to keep him from suffering any undue stimulation. When you lovingly smooch his bare undergirth, the emotional and mental contentment you feel is indescribable.");
+	output("\n\nHis turgid boner stands at full salute, throbbing indulgently to the affections of your [pc.lips]. You wrap a caressing [pc.hand] around it; incidentally, still kneading his butt, you gently slide your [pc.tongue] to the peak until the salty taste of rat-cock is clinging to your palate, amplified by the taste of his balls. He’s been cumming before this, too, helplessly squirting the floor with striping lines of spunk. The greater his mass swells in your grip, the further his font of sperm dilates. You can hear and <i>feel</i> his heartbeat in your cheek, right on cue for another orgasm.");
+	output("\n\nYour tongue is there to catch the latest load. Exceedingly thick spooge pools on your extended flesh, lighting up all the nerves in your lips when you pull it back, glossing your [pc.lipsChaste] with it, swishing it about your mouth, and then swallowing. Suddenly you crave more. The rat boy’s porno-prick gushes honey in an endless show of appreciation for a cock-slut he doesn’t even know he has. Any wasted cum is a failure on your part. Look, it’s leaking onto the floor - you better scoop it up. There’s probably a senior whore watching. Judging you.");
+	output("\n\nPlanting a shoulder to the wall, you position yourself for proper fellatio, swirling your [pc.tongue] near his glans, curling around the neck. The foreskin peels back easily enough, exposing the glistening dome of tender, forgiving flesh begging for service. So you suck on it. You kiss it. You slurp right from the tap, enthusiasm glowing in your eyes as a finely-brewed treat oozes into your gut. You don’t behave manically: you’re methodical, careful, consistent; it feels so <b>full</b> and <b>hard</b> in your grip. When did your [pc.hand] become an onahole? If only he wasn’t trapped, you could feel his erection in your [pc.vagOrAss], " + (pc.hasVagina() ? "breeding":"fucking") + " you...");
+	output("\n\nLust-engorged veins harden on his shaft, acting as waypoints for your ministrations. You don’t even have to lead - your hands know where to go, they know how to handle this cock. They know what pleases it. Hell, your whole body knows what it wants. It knows exactly what you should be doing.");
+	output("\n\nYou’re so soaked in his pheromones that they’re now your sweat signature. The temperature rises and rises, bubbling up like molten rock. You’ve already forgotten everything that led you here. Your history doesn’t matter. The inheritance. The company. All that matters is this delicious, drooly dick, pulsing in your safekeeping. You burn from the submissive pleasure you derive here, coaxing that swollen peachiness to a fully erect state while slipping wholly into dizzy euphoria.");
+	output("\n\nDelirious, you forget that this mouse is someone’s girly bitch. The sheer testosterone pounding on your senses convinces you of this rodenian’s alpha nature. Alpha... it seems a paradoxical concept when applied to that species, but it’s the truth. It just makes sense to get him off, to <i>want</i> to get him off. Frenetic energy powers your phallus-smothering jerking. You fit around him so well that you start to believe you were born specifically for the task of working his shaft.");
+	output("\n\nYou don’t know what’s real anymore. You don’t know how long it’s been. For all you know, what you’re doing is a dream.");
+
+	// pc Not Bimbo, no SnakeByte
+	if(!pc.isBimbo() && flags["USED_SNAKEBYTE"] == undefined && !pc.isDependant(Creature.DEPENDANT_CUM))
+	{
+		output("\n\nHe’s close. Everything up to this point has been a prelude to the finale. You never even noticed how he got cum all over your [pc.chest], your [pc.thighs], your [pc.legOrLegs] - you’re a messy [pc.raceShort] making it worse, rubbing it all in while you suck... and suck... and suck. Radiating quivers spark through your limbs, weave like electric wires around your spine. Cum flows unchecked into the guzzling reservoir that is your heavy belly." + (pc.hasGenitals() ? " You don’t care about the welling dampness in your loins, thoroughly saturated by overindulgence.":""));
+		output("\n\nHe’s put out so much that he could fill a bucket, maybe even a bath-tub, and yet there’s no considerable reduction to the size of his nutsack. It still smells so <i>fresh,</i> <i>feels</i> so stuffed. You don’t know why, but you can’t wait to see it all pump out. You want to drain all that swirling heat and leave no doubt in his mind that not everyone he’ll be used by is ignorant to his feelings.");
+		if(pc.isNice()) output(" He deserves it, you think. There’s a lot of good a person can do in their life, and if what you’re doing now will improve his lot just a little bit, you don’t care what you look like or what you’ve become. Here and now, this rat boy means the universe to you.");
+		else if(pc.isMischievous()) output(" Not once throughout this could you bring yourself to tease him, to be mischievous or playful. It’s odd for you to be so relaxed. Perhaps the shuddering need to give him a happy ending has overpowered your personality. Yeah, that’s probably it. The universe can wait while you help this cute rat get off.");
+		else output(" Those who know you in depth would find this act out of character. Maybe it is. Maybe you’re more susceptible to dick-scent than you know. But what you <i>are</i> sure of is that there is a little sympathy in your heart for him. The rodenian you fellate has a face that couldn’t even melt butter. You can enjoy yourself and get him off - your reasons are your own.");
+		output("\n\nBubbly bursts of gurgling jizz spurt into your hands - you rub it into your [pc.skinFurScales]. It unloads into your mouth - your tongue swims in it, luxuriating in savory creaminess. It leaves you so delightfully pleased. Were you any more depraved you’d find horror in the fact that you can’t have this rodent cum-pet sticking around to give you another hit of divine jizz. Your tongue grazes his hypersensitive urethra, and for the first time since this started, you note a real strain. He tightens with all that pent-up bliss, vibrating in wanton passion. He’s incapable of doing anything but popping off, obeying the very natural urge to expel his sated desires.");
+		output("\n\nYou’re right there with him, holding tight to his hips as surging heat gushes out. You aim the gouts of irrepressible orgasm to your center mass, reveling in the splattery impact of liquid warmth. You clench shut your eyes, pumping with his throbs, squeezing his balls, feeling it everywhere. Rodenian spunk is " + (pc.hasHair() ? "in your [pc.hairColor] hair":"on your head") + ", coating your [pc.ears], painting your neck, lacquering your face. He becomes spasmodic, seizing and bucking in rhythm. Waves of nut drench your face, dribble down your buffeted jawline. His magnificent, mightily throbbing cock discharges the entirety of his vein-fattening release in an amazing show of sloppy orgasm.");
+		output("\n\nIt lasts at least a whole minute. ");
+		if(pc.libido() < 33) output("At some point you crept closer");
+		else output("You eagerly take his penis into your mouth");
+		output(", wrapping your [pc.lips] around the head, letting him enjoy the feeling of filling you proper. You thumb those slowly-depleting balls, rubbing circles into the endless expanses, expediting the swell of your gut. His relentless lusts paste you to the core" + ((pc.hasVagina() && !pc.isPregnant()) ? ", flexing so hard that you feel an egg release in the lonely depths of your womb":"") + ". The fecund taste of his virility is all you could ever ask for in life. You focus on keeping it down with eager gulps, feeling comfortably full, like you’re just finishing a three-course meal. When his climax runs dry, reducing to benignness, you suck the last droplets straight from his balls, lavishing his cum-smeared cock in thoughtless glee.");
+		output("\n\nYou stay there, worshiping that tasty penis, cleaning it perhaps too obediently. You have no doubt you’ll be masturbating to this memory later. It’s simply unavoidable. The itchy desire to lavish his hard cock is unbearable. The way it twitches, quivers, <b>tenses</b> just before busting another wad into your soaked throat...");
+		output("\n\n...You’re going to stay here for a long time.");
+		processTime(35);
+		var ratButt:Creature = new Creature();
+		ratButt.createPerk("Fixed CumQ",3000);
+		pc.loadInMouth(ratButt);
+		pc.loadInMouth(ratButt);
+		pc.lust(5);
+	}
+	// pc Bimbo, Cum Addict, and-or SnakeByte
+	else
+	{
+		output("\n\nBut it’s a dream come true.");
+		output("\n\nYou wear the stains of a slut well. His cum’s everywhere on you: your [pc.hairNoun], your [pc.face], your [pc.ears], your [pc.chestNoun], and you can’t wait to get some more. His never-ending spring of spunk requires a serious partner to handle it. Ejaculate flows down the wall, down your chin, and you’re not being proactive enough.");
+		output("\n\nTaking a breath midway through another ratgasm, you place yourself in the correct position: underneath him. You hoist his legs from the wall and slide under, guiding his hips down, and by proxy, his fat fucking cock. You purse your [pc.lips] into a pout, head glowing with satisfaction, and let the crown of his prick press into them. It simulates the feel of a condom being put on, emulates the sensation of insistently parting a hungry pussy’s folds. He slides into you on the whims of Zheng Shi’s artificial gravity, hilting easily in your whorish mouth. Your tonsils and uvula flatten for his firmness until it’s settled there, right in the back, ready for its first dive.");
+		output("\n\nSlotted into your very own cum-tap, steady streams of rodenian jism pour into your stomach, the visceral roll of chunky spooge sparking all the nerves in your erogenous maw. Gripping his knees, you leverage him back then forwards, driving his pole into you and into him the realization that he’s actually getting to fuck someone! Fluid pressure inflates his ultra-sensitive urethra; infinite torrents of semen launch into you, painting your walls, making subsequent pushes easier than before. His prick glides on shaft-shining lacquer, enjoying the tight squeeze of a mouth <b>made</b> to gobble up cock.");
+		if(pc.lipRating() < 3) output("\n\nEven for lips as small as yours, his girth doesn’t strain you overmuch. They hug tight, as all pole-polishers should, tasting every inch of smooth, fleshy dong.");
+		else if(pc.lipRating() < 6) output("\n\nHis penis experiences the almost virginal joy of putting a pair of time-tested fuck-pillows to the test. Red-hot girth massages your sex-tasters on the inward and outward strokes, each one softer and more exciting than the last!");
+		else output("\n\nYour [pc.lipColor] fuck-cushions are tailor-made DSLs, the most perfect expression of a [pc.manWoman]’s desire to suck dick and make it as pleasurable as possible. His pole is expertly polished between your plush pillows, hugging as tight and as gloriously as a tight, wet cunt.");
+		output(" To your unfiltered joy, you stop having to guide him. On a deep, instinctual level he realizes that he’s accomplishing his most basic function as a man: fucking a warm hole.");
+		output("\n\nNow he’s jouncing around, wiggling his hips as his maker intended. He’s thrusting forward and awkwardly receding. He’s burrowed too deeply into his hole to do more than withdraw a single inch each time. That’s fine. He belongs fucking you. He <i>deserves</i> to know what a train throat-slut feels like. He deserves to pump [pc.himHer] full of cum. He deserves to have someone so pliant to his whims that all [pc.heShe] can do is groan in sensory overload.");
+		output("\n\nBalls clap to your shuddering chin: the sublime ecstasy of oral submission. Rich, throbbing cock, cumming on loop, flattens your tongue beneath its titanium girth. An unwitting incubus slides into all those syrupy spots. You take him to the root. You feel his every desire, feed off it. It’s all sooooo <b>smoooooth!</b> His prick, his crotch, his abdomen! You’re swaddled in it all, having your maw stimulated in ways that bring pleasure to the rest of your body. ");
+		if(pc.isBimbo()) output("It feels great to be fucked, to be <i>useful</i> to someone! You’re so near yourself, right there with him! So near to an empathic orgasm that good girls like you deserve!");
+		else if(pc.isDependant(Creature.DEPENDANT_CUM)) output("He’ll unload soon, dump all his creamy sperm into your gut, give you that hit you so desperately need. You would stay under here forever if you could. Hell, if you could own him, you’d buy his contract and make him your personal meal-boy!");
+		else output("What you’re doing is the most depraved thing anyone could be doing here. Giving yourself over to a slut in a wall, all because it makes your throat bloom with significant pleasure. It feels so full, so warm! Any second now you could cum just from sucking cock like any of the pirates’ well-trained slaves.");
+		// pc SnakeByte
+		if(flags["USED_SNAKEBYTE"] != undefined)
+		{
+			output("\n\nYou meet him thrust for thrust, pushing your head and neck forward to socket him in the center of your exotically ribbed throat. SnakeByte’s given your suckhole all the traits it needs to be the galaxy’s preeminent pole-polisher. It lets you feel " + (pc.isBimbo() ? "extra ":"") + "pleasure from the act of bobbing on candied cocks. The concentric muscles deep inside, alien in design, clutch and grip a dick in ways that no organic reproductive component can match. You’re the most expensive sex toy ever invented, and you’re all for him to slap against. Keeping that thought deep in your heart, you thrust forward again, eyes rolling back, sucking and pleasuring to the pace your lovely boy sets.");
+		}
+		// merge
+		// pc Has Genitals
+		if(pc.hasGenitals())
+		{
+			output("\n\nIt’s there. In your groin, you can feel it. Time’s lost all meaning here, but the pulse of musky cock between your cheeks and in your cum-stained belly-hole reminds you of one simple truth: you’re going to cum. You can’t see out into the Tap-Hall right now, but you’re going to cum. None of the ne’er-do-wells here could miss the ");
+			if(!pc.isCrotchExposed() && pc.hasCock()) output("untended bulge " + (pc.legCount > 1 ? "between your spread legs":"at the front of your crotch") + ", inflating, shrinking, inflating, fighting for air");
+			//notExposed,Pussy:
+			else if(!pc.isCrotchExposed() && pc.hasVagina()) output("the massive, dark splotch between your quivering thighs. All this moaning and sliding has made you into a wet, sodden slut");
+			else if(pc.hasCock()) output("[pc.cocks] jutting upwards at your crotch, spurting [pc.cumColor] seed into the air with every boi-to-[pc.face] impact" + (pc.hasVagina() ? ", or the [pc.pussiesLight] below, oozing a puddle of slave’s submission":""));
+			else if(pc.hasVagina()) output("parted lips of your [pc.pussies], winking with [pc.girlCumNoun]-scented arousal. Globules of juice spill from your [pc.vaginaColor], wanton hole" + (pc.hasVaginas() ? "s":"") + ". [pc.GirlCumFlavor] beads of [pc.girlCumVisc] anticipation roll down your [pc.skinFurScalesNoun] and collect on the floor.");
+		}
+		// pc Neuter
+		else
+		{
+			output("\n\nIt doesn’t matter that you can’t cum like the rest of the galaxy. You feel good doing this. You’re going to experience an orgasm that is vividly personal and intensely erotic. It doesn’t need to be expressed through a penis or a pussy. You’ll feel that tension relieve as soon as you’re thoroughly claimed and used like the TamaniCorp-patented Bubble-Buddy you are.");
+		}
+		// merge
+		output("\n\nYou so badly wish he could climb out, take hold of your head, and fuck you with even more ferocity than he somehow manages. All you can do is sit back and surrender to emotion, let it take over. You imagine him doing it. You envision him there behind the blackness of your eyelids, dominating you with your [pc.hairNoun] in hand, feverishly pumping his bliss-tender flesh into coils of inner muscle one rapid heartbeat at a time. So caught up in your trance, you barely catch his orgasm. One more second and you wouldn’t have felt him tense and slam forward, summoning all his nut and slamming it straight into your already pooched gut.");
+		output("\n\nRodenian fur brushes against you as the cobalt boy squirms with breeder’s exuberance. You feel it all. The heat of his balls rushes through his [pc.raceShort]-breaking penis, tendrils of inordinately thick goop blasting into your gullet. His spunk-vein fattens with the tension it unleashes into a relishing mouth. Fresh, creamy sperm conquers your throat, and your obedient body takes it all, clenches down around him, milks it dry." + ((pc.hasVagina() && pc.fertility() > 0) ? " You’re so overwhelmed by it that you feel a detachment in your abdomen, like that of an egg releasing in your womb.":"") + " Sack-draining gulps siphon the alien rat’s loads into your insatiable depths, splashing pearly gunk into a growing treasure trove of bliss. By the third cumshot you’re insensate, leaned into the wall, head tilted up, his cum-plug of a dick keeping everything inside where it belongs.");
+		output("\n\nLoad follows honey-thick load into your abundantly-packed innards, the visceral ache of an expanding belly intensifying with additional profusion. Surrendering to this gushing climax leaves you wider than ever, plumping up to carrying the sloshing liters of his kegs-of-holding. Euphoria washes over you, followed by the oxygen-deprived sharpening of your spunk-soaked senses. Your whole body runs without air, complacent, happy to sit there and be little more than Zheng Shi’s latest attraction: a [pc.boyGirl]-shaped condom.");
+		if(pc.isHerm()) output(" From both ends downstairs, you make a mess of the booth for him. [pc.Cum] spurts and [pc.girlCum] " + (pc.isSquirter() ? "squirts":"oozes") + ", all from the exquisite delight of tending someone’s inexhaustive needs!");
+		else if(pc.hasVagina()) output(" The front of your crotch explodes. Your [pc.pussiesIsAre] " + (pc.isSquirter() ? "squirting":"oozing") + ", thrusting out cloying torrents of [pc.girlCum]. It feels heavenly. You honestly hope someone is seeing it happen, seeing you spasm in terrific divinity.");
+		else if(pc.hasCock()) output(" You can’t stop your [pc.cocks] from detonating, throwing out the weight of your burdensome [pc.cumNoun]. You’re cumming up a storm, at least you think you are. It feels incredible to not have to do anything but remember to pleasure a dick, all to get your own off. Anyone who says they wouldn’t like to be in your position is a liar.");
+		else output(" There it is. That familiar, inner coolness spreading placidity over strained muscles, soothing you into post-coital afterglow. It’s a facsimile of real orgasm, but nonetheless pleasant. All that matters is that you’ve provided excellent service.");
+		output("\n\nAlthough his climax has reduced to a benign dribble, you make no attempt to move. You’re happy where you are. Surely you’ll be allowed just a couple minutes longer. A few’s all you need to suck out the last drops of his tasty cum...");
+		processTime(35);
+		var ratButt:Creature = new Creature();
+		ratButt.createPerk("Fixed CumQ",5000);
+		pc.loadInMouth(ratButt);
+		pc.loadInMouth(ratButt);
+		pc.orgasm();
+	}
+	pc.applyCumSoaked();
+	clearMenu();
+	addButton(0,"Next",finishSuckingTheRatboycock);
+}
+
+// sceneTag: PC cums if Bimbo, Cum Addict, or SnakeByte
+// sceneTag: PC always gets ‘Cum Soaked’ and ‘Orally Filled’
+public function finishSuckingTheRatboycock():void
+{
+	clearOutput();
+	showRatBoy(true);
+	author("William");
+	output("Nobody knows exactly how long you spent sucking the azure rat’s dick, but by this point it has been completely and utterly drained. Not one drop of cum emerges from it." + (CodexManager.entryUnlocked("Slyverens") ? " Yep, he definitely belongs to a slyveren. So this is what it’s like for them when they have a real provider...":""));
+	output("\n\nWhen you crawl out, utterly drenched in seed, you barely catch a few laquines hopping away from the booth, rubbery uniforms creaking in their wake. They must have been watching, probably thinking of doing to you what you had done to yourself with that sweet little thing. Ah, speaking of...");
+	output("\n\nYou give his tired butt a pat and his considerably shrunken nutsack an appreciative squeeze. Maybe you’ll be back later. For now, you should definitely see about a shower before your dirty, sticky countenance has you mistaken for someone’s misplaced pleasure-puppet...");
+	processTime(90+rand(120));
+	var ratButt:Creature = new Creature();
+	ratButt.createPerk("Fixed CumQ",2500);
+	ratButt.createPerk("Fixed CumQ",2500);
+	ratButt.createPerk("Fixed CumQ",2500);
+	ratButt.createPerk("Fixed CumQ",2500);
+	ratButt.createPerk("Fixed CumQ",2500);
+	pc.createStatusEffect("RodenianBoyDisable");
+	pc.setStatusMinutes("RodenianBoyDisable", 180);
+	pc.loadInMouth(ratButt);
+	IncrementFlag("WALLSLUT_RODENT_SUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
