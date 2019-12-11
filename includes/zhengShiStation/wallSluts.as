@@ -2649,10 +2649,10 @@ public function suckWillsMauseBoi2():void
 		else output(" There it is. That familiar, inner coolness spreading placidity over strained muscles, soothing you into post-coital afterglow. It’s a facsimile of real orgasm, but nonetheless pleasant. All that matters is that you’ve provided excellent service.");
 		output("\n\nAlthough his climax has reduced to a benign dribble, you make no attempt to move. You’re happy where you are. Surely you’ll be allowed just a couple minutes longer. A few’s all you need to suck out the last drops of his tasty cum...");
 		processTime(35);
-		var ratButt:Creature = new Creature();
-		ratButt.createPerk("Fixed CumQ",5000);
-		pc.loadInMouth(ratButt);
-		pc.loadInMouth(ratButt);
+		var ratButt2:Creature = new Creature();
+		ratButt2.createPerk("Fixed CumQ",5000);
+		pc.loadInMouth(ratButt2);
+		pc.loadInMouth(ratButt2);
 		pc.orgasm();
 	}
 	pc.applyCumSoaked();
@@ -2683,4 +2683,4 @@ public function finishSuckingTheRatboycock():void
 	IncrementFlag("WALLSLUT_RODENT_SUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-}
+}
