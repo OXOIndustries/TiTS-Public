@@ -6554,11 +6554,20 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Wastes
-			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined || flags["MET SYDIAN FEMALE"] != undefined || flags["SYDIAN_QUEEN_STAGE"] != undefined || flags["MET_LGBT"] != undefined || flags["ENCOUNTERED_SANDWORM"] != undefined)
+			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined || flags["MET SYDIAN FEMALE"] != undefined || flags["SYDIAN_QUEEN_STAGE"] != undefined || flags["MET_LGBT"] != undefined || flags["ENCOUNTERED_SANDWORM"] != undefined || flags["LUMI_HAS_MET"] != undefined)
 			{
 				output2("\n<b><u>The Wastes</u></b>");
 				if(flags["MET_GRAY_GOO"] != undefined) output2("\n<b>* Gray Goo, Times Encountered:</b> " + flags["MET_GRAY_GOO"]);
-				if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output2("\n<b>* Female Parasitic Lapinara, Times Encountered:</b> " + flags["ENCOUNTERED_PARASITIC_LAPINARA"]);
+				if (flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output2("\n<b>* Female Parasitic Lapinara, Times Encountered:</b> " + flags["ENCOUNTERED_PARASITIC_LAPINARA"]);
+				// Lumi
+				if(flags["LUMI_HAS_MET"] != undefined)
+				{
+					output2("\n<b>* Lumi:</b> Met her");
+					if(flags["LUMI_PC_WINS"] != undefined) output2("\n<b>* Lumi, Times You Defeated Her:</b> " + flags["LUMI_PC_WINS"]);
+					if(flags["LUMI_PC_SEX"] != undefined) output2("\n<b>* Lumi, Times You Had Sex:</b> " + flags["LUMI_PC_SEX"]);
+					if(flags["LUMI_PC_MILKED"] != undefined) output2("\n<b>* Lumi, Times She Milked You:</b> " + flags["LUMI_PC_MILKED"]);
+					if(flags["LUMI_ADDICTION"] != undefined) output2("\n<b>* Lumi, Your Addiction Level:</b> " + lumiAddictionLevel());
+				}
 				if(flags["MET_LGBT"] != undefined) output2("\n<b>* Luxury Gabilani Bipedal Transport, Times Encountered:</b> " + flags["MET_LGBT"]);
 				if(flags["MET_FEMALE_RASKVEL"] != undefined)
 				{

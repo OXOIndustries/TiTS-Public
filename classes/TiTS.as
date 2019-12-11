@@ -376,6 +376,7 @@
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/lumi.as";
 		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
