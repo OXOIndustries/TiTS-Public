@@ -121,7 +121,7 @@ public function kallyBonusRoomTexts():Boolean
 	//Check for kallySchlick!
 	sisterSchlickProcChance();
 
-	if((flags["KIRO_MET_KALLY"] == 3) && MailManager.isEntryViewed("kirodatemeet") && roamingKiroAvailable()) 
+	if((flags["KIRO_MET_KALLY"] == 3) && MailManager.isEntryViewed("kirodatemeet") && (roamingKiroAvailable() || crewKiroAvailable())) 
 	{
 		kiroKallyBarMeetOverride();
 		return true;
@@ -146,12 +146,13 @@ public function kallyBonusRoomTexts():Boolean
 		if(!pc.hasKeyItem("Kally's Bedroom Key") && flags["TRIED_KALLY_DOOR"] != undefined) addButton(0,"Search Bar",searchKallysBar);
 	}
 	//Picardine reveal scene!
-	else if(pc.hasStatusEffect("KallyKiro") && !pc.hasStatusEffect("Wait For Kally Break") && roamingKiroAvailable())
+	else if(pc.hasStatusEffect("KallyKiro") && !pc.hasStatusEffect("Wait For Kally Break") && (roamingKiroAvailable() || crewKiroAvailable()))
 	{
 		if(pc.statusEffectv1("KallyKiro") == 0) kallyHonestKiroEruption();
 		else kallyKiroKissEruption();
 		addButton(0,"Kally",approachKally);
-		addButton(1,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
+		if(kiroIsCrew()) addDisabledButton(1,"Kiro","Kiro","Maybe approach Kally right now...");
+		else addButton(1,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
 		return false;
 	}
 	else
@@ -175,7 +176,7 @@ public function kallyBonusRoomTexts():Boolean
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
 	else if(MailManager.isEntryUnlocked("del_moved_light")) shittyDelBonus(1);
 	//Special Kiro bar event!
-	if(flags["KALLY_FAP_2_KIRO"] != undefined && flags["KIRO_PHONE_EVENT"] == undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
+	if(flags["KALLY_FAP_2_KIRO"] != undefined && flags["KIRO_PHONE_EVENT"] == undefined && (roamingKiroAvailable() || crewKiroAvailable()) && kiroKallyThreesomes() == 0 && rand(5) == 0)
 	{
 		output("\n\nKiro was here... She left to use the bathroom,");
 		if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" probably to dump a discrete load in the gloryholes,");
@@ -262,7 +263,7 @@ public function approachKally():void
 		}
 		output("”</i>");
 		output("\n\nYour heart flutters at the knowledge that she cares about your wellbeing, and you barely manage to fight off the urge to give her a hug and apologize for loving the drinks (and the person that serves them) so much. <i>“You’re the bartender. The awesome bartender. It’s your call.”</i>");
-		output("\n\nTwitching her ears and tail, the kui-tan smiles back at you, proving that for all professional poise, she’s about as resistant to your drunken flattery as an ausar in heat. Her nipples are practically jutting at you, so prominent...");
+		output("\n\nTwitching her ears and tail, the kui-tan smiles back at you, proving that for all her professional poise, she’s about as resistant to your drunken flattery as an ausar in heat. Her nipples are practically jutting at you, so prominent...");
 		output("\n\nLaughing, Kally twists back and forth, letting her big ol’ boobs bounce back and forth, slapping into each other wildly enough that you nearly go dizzy trying to follow their dark chocolate tips. You put a hand to your head and straighten to meet her eyes once more, noting how they seem almost luminous in the bar’s dimmed lighting.");
 		output("\n\n<i>“I hope you enjoyed the show.”</i> Kally giggles. <i>“");
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("You’ve been such a wonderful patron that I couldn’t help but give you a little treat, but this might have to be your last one, okay?");
@@ -286,7 +287,7 @@ public function approachKally():void
 	//Post threesome talk
 	else if(kiroKallyThreesomes() > 0 && flags["KALLY_3SOME_TALK"] == undefined)
 	{
-		output("Kally walks up to you, shaking her head. <i>“You really are a massive slut, eh?”</i> She shakes her head. <i>“I guess you would have to be, to catch my sister’s eye.”</i>");
+		output("Kally walks up to you, shaking her head. <i>“You really are a massive slut, eh?”</i> She shakes her head. <i>“I guess you would have to be to catch my sister’s eye.”</i>");
 		output("\n\nYou ");
 		if(pc.isBimbo()) output("gleefully nod, licking your lips. <i>“Yeaaaah... isn’t it the best?”</i>");
 		else if(pc.isNice()) output("look shamefully down at the countertop. <i>“I was trying to help, if you can believe that.”</i>");
@@ -413,7 +414,7 @@ public function approachKally():void
 			output("Kally looks particularly frazzled at the moment, but she still manages to greet you the moment you get to the bar. You respond in kind, then ask her what’s bothering her.");
 			output("\n\n<i>“The worst part about working around Vesperia is the goddamned taurs");
 			if(pc.isTaur()) output(" - no offense");
-			output(". If you think males and herms have filthy bathrooms, you should try dealing with the fucking taurs. Half a goddamn hour just to clean up after one drunk bastard who wouldn’t be bothered to aim his goddamn horse-cock. If I can get it in a bowl, so can he damnit.”</i>");
+			output(". If you think males and herms have filthy bathrooms, you should try dealing with the fucking taurs. Half a goddamn hour just to clean up after one drunk bastard who wouldn’t be bothered to aim his goddamn horse-cock. If I can get it in a bowl, so can he, damnit.”</i>");
 			output("\n\nWhile you’re chuckling at her poor fortune, she just shakes her head. <i>“Anyway, can I get you a drink?”</i>");
 		}
 		//9
@@ -1141,14 +1142,28 @@ public function kiroKallyCanadiaLPBonus():void
 	if((flags["KIRO_MET_KALLY"] == undefined || flags["KIRO_MET_KALLY"] == 0) && MailManager.isEntryViewed("kirodatemeet"))
 	{
 		showKiro();
-		output("\n\nKiro stops flirting with a svelte, four-legged mechanic the moment you step off your ship, tapping something into a wrist-mounted display that leaves the deer-like woman grinning at her own Codex-style tablet. The kui-tan sashays over in her trademark red dress, doing her best to smooth out the skirt’s edge. Her balls are as small as you’ve ever seen them. You’d barely notice them beneath the sheer fabric if you weren’t looking for them.");
-		output("\n\nYou flash a friendly smile. <i>“");
-		if(pc.isBimbo()) output("Omigosh, did you dress up all pretty for me?");
-		else if(pc.isNice()) output("Looking pretty great there, Kiro.");
-		else if(pc.isMischievous()) output("You got a hot date you’re planning to introduce me to, or are you just trying to seduce me? Because it might be working.");
-		else output("Finally got tired of tripping over your balls, huh?");
-		output("”</i>");
-		output("\n\nKiro fidgets slightly, her typical confidence nowhere to be found, but she manages to smile back all the same. <i>“It’s my sister. I’ll explain on the way.”</i>");
+		if(kiroIsCrew())
+		{
+			output("\n\nKiro follows you down the ramp in her trademark red dress, doing her best to smooth out the skirt’s edge. Her balls are as small as you’ve ever seen them. You’d barely notice them beneath the sheer fabric if you weren’t looking for them.");
+			output("\n\nYou flash a friendly smile. <i>“");
+			if(pc.isBimbo()) output("Omigosh, did you dress up all pretty for me?");
+			else if(pc.isNice()) output("Looking pretty great there, Kiro.");
+			else if(pc.isMischievous()) output("You got a hot date you’re planning to introduce me to, or are you just trying to seduce me? Because it might be working.");
+			else output("Finally got tired of tripping over your balls, huh?");
+			output("”</i>");
+			output("\n\nKiro fidgets slightly, her typical confidence nowhere to be found, but she manages to smile back all the same. <i>“It’s my sister. I’ll explain on the way.”</i>");
+		}
+		else
+		{
+			output("\n\nKiro stops flirting with a svelte, four-legged mechanic the moment you step off your ship, tapping something into a wrist-mounted display that leaves the deer-like woman grinning at her own Codex-style tablet. The kui-tan sashays over in her trademark red dress, doing her best to smooth out the skirt’s edge. Her balls are as small as you’ve ever seen them. You’d barely notice them beneath the sheer fabric if you weren’t looking for them.");
+			output("\n\nYou flash a friendly smile. <i>“");
+			if(pc.isBimbo()) output("Omigosh, did you dress up all pretty for me?");
+			else if(pc.isNice()) output("Looking pretty great there, Kiro.");
+			else if(pc.isMischievous()) output("You got a hot date you’re planning to introduce me to, or are you just trying to seduce me? Because it might be working.");
+			else output("Finally got tired of tripping over your balls, huh?");
+			output("”</i>");
+			output("\n\nKiro fidgets slightly, her typical confidence nowhere to be found, but she manages to smile back all the same. <i>“It’s my sister. I’ll explain on the way.”</i>");
+		}
 		flags["KIRO_MET_KALLY"] = 0;
 	}
 }
@@ -1204,7 +1219,14 @@ public function kiroKallyBarMeetOverride():void
 	output("By the time you step into the Kui Country Bar and Lodge, Kiro and another kui-tan - obviously the aforementioned Kally - have seen each other. The former relaxes almost instantly, while the latter drops a mug of foamy beer from nerveless fingers. They almost look like biological sisters! Both share the features you would expect from kui-tan, but there’s more to it than that. They have the same wide hips and large busts, and their faces are similar enough that one could probably pass for the other with a bit of colorizing makeup. The only real difference is Kally’s plusher, slightly chubbier build and mildly darker fur. Likely she’s been sampling her own drinks and kitchen wares alike.");
 	output("\n\n<i>“Kally!”</i> the slutty pirate calls, years of distance and worry forgotten.");
 	output("\n\nThe other kui-tan smiles and walks out from behind the bar in a daze, clearly surprised to see her sister after all these years. <i>“Kiro...”</i> Kally looks her sister up and down, equal parts shocked and pleased to see her sibling. <i>“I sent the invitation so long ago. I had almost given up all hope that you would come.”</i> She glances your way, then back to her sister. <i>“Or that you’d bring such a " + pc.mf("handsome","lovely") + " [pc.boyGirl]friend with you.”</i>");
-	output("\n\n[pc.BoyGirl]friend? That’s new. Your eyes dart toward Kiro’s, meeting her halfway. She seems as surprised as you, and... nervous? She must be blushing under all that fur. The fuzzy pirate hastily turns back to her sibling, clearing her throat. <i>“Uh, yeah. Sorry about that. Things have been hectic.”</i> She rubs the back of her neck, clearly uncomfortable.");
+	if(flags["KIRO_GF"] == undefined)
+	{
+		output("\n\n[pc.BoyGirl]friend? That’s new. Your eyes dart toward Kiro’s, meeting her halfway. She seems as surprised as you, and... nervous? She must be blushing under all that fur. The fuzzy pirate hastily turns back to her sibling, clearing her throat. <i>“Uh, yeah. Sorry about that. Things have been hectic.”</i> She rubs the back of her neck, clearly uncomfortable.");
+	}
+	else
+	{
+		output("\n\n[pc.BoyGirl]friend? She’s a perceptive lass. Your eyes dart toward Kiro’s, meeting her halfway. She seems as surprised by Kally's keen eye as you, and... nervous? She must be blushing under all that fur. The fuzzy pirate hastily turns back to her sibling, clearing her throat. <i>“Uh, yeah. Sorry about that. Things have been hectic.”</i> She rubs the back of her neck, clearly uncomfortable.");
+	}
 	output("\n\n<i>“Oh, where are my manners!”</i> The bartending raccoon-girl circles behind the two of you, wrapping an arm around you and her sister both. <i>“Have a seat over in the corner. I’m sure you’re both tired from the road. I’ll get you some drinks, and we can catch up. You must have some fantastic stories to share, Sis.”</i> She stares meaningfully at Kiro even as she pushes the both of you toward a secluded booth.");
 	output("\n\nKiro gulps.");
 	processTime(3);
@@ -1324,7 +1346,7 @@ public function helpKiroWithABoast():void
 	kallyKiroIntroMergeAfterBoastOrNot();
 }
 
-//Helpfully
+//helpfully
 public function helpAKiroOut():void
 {
 	clearOutput();
@@ -1462,7 +1484,7 @@ public function postKallyMeetingTalksMenu(showText:Boolean = true):void
 	{
 		if(showText) output("\n\nShe drums her fingers on the table. <i>“Anything else before I go see my sis?”</i>");
 		clearMenu();
-		if(flags["KIRO_BF_TALK"] == 1) 
+		if(flags["KIRO_BF_TALK"] == 1 || flags["KIRO_GF"] != undefined) 
 		{
 			if(pc.mf("m","f") == "m") addDisabledButton(0,"Boyfriend?","Boyfriend?","You already had this discussion.");
 			else addDisabledButton(0,"Girlfriend?","Girlfriend?","You already had this discussion.");
@@ -1557,7 +1579,7 @@ public function letsGoButtfuckMeKiro():void
 {
 	clearOutput();
 	showKiro();
-	output("<i>“I thought you’d never ask!”</i> you cheer, prancing toward the door and your parked ships beyond. <i>“Your bedroom in five minutes?”</i>");
+	output("<i>“I thought you’d never ask!”</i> you cheer, prancing toward the door and your parked ships beyond. <i>“" + (kiroIsCrew() ? "The":"Your") + " bedroom in five minutes?”</i>");
 	output("\n\nKiro’s eyes fix on your wiggling ass, staring hard enough for you to feel her lusty gaze from across the room. <i>“Sooner than that.”</i> She slams down her drink and stands up, every step falling faster than the last until she’s chasing you through the station tunnels.");
 	processTime(3);
 	flags["BF_STORAGE"] = currentLocation;
@@ -1671,7 +1693,8 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	//flags["BF_STORAGE"] = currentLocation;
 	if(threesomeTalkIntro)
 	{
-		moveTo("KIROS SHIP QUARTERS");
+		if(!kiroIsCrew()) moveTo("KIROS SHIP QUARTERS");
+		else moveTo("SHIP INTERIOR");
 		if(flags["KIRO_MET_KALLY"] == 3) flags["KIRO_MET_KALLY"] = 4;
 		if(flags["MET_KALLY"] == undefined) flags["MET_KALLY"] = 1;
 	}
@@ -2220,6 +2243,7 @@ public function tapKallysKegAsBimboII():void
 			output("”</i>");
 			output("\n\nKally’s retort is so quiet you almost miss it. <i>“I-I’m not into incest!");
 			if(flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined) output(" You just want me to be, you... you slattern!");
+			output(" Besides! We're not <b>really</b> related, <b>step</b>-sis!");
 			output("”</i>");
 			output("\n\nYou slowly slide off the cock, lapping the spunky residue from your lips and floating on a little post-blowjob euphoria.");
 			output("\n\n<i>“From over here, it looked like you were pretty into the idea. Either way, no skin off my back. Just make sure [pc.name] can walk when you’re done. I want a shot at [pc.hisHer] ass later.”</i> Kiro pads away, leaving you all alone with Kally... and her slick dick.");
@@ -2688,7 +2712,7 @@ public function kallyKiroKissEruption():void
 	output("\n\n<i>“Then you’re lucky I’m in an obliging mood,”</i> Kiro replies, a little more self-assuredly. <i>“What’s up?”</i> Her tail wags slowly behind her.");
 	output("\n\nKally smiles warmly. <i>“[pc.name] told me, about the Picardine.”</i> She grabs Kiro before she can pull away. <i>“And [pc.heShe] also told me to do this.”</i> Darting forward, she plants a kiss, square on her sister’s lips. Kiro’s tail stiffens. Every hair is on end; it looks near twice its normal size. Kally tilts her head. Was that a flash of tongue from the corner of her mouth? Kiro tenses, further, then relaxes, kissing back. They stay like that for what must be the better part of a half minute until a cat-call startles them apart.");
 	output("\n\nBoth are blushing up to the tips of their ears.");
-	output("\n\n<i>“Wh-what was that about?”</i> Kiro asks, confused and visibly half-hard. Luckily, the edge of the bar is hiding her shameful erection from her sibling.");
+	output("\n\n<i>“Wh-what was that about?”</i> Kiro asks, confused and visibly half-hard. Luckily, the edge of the bar is hiding her shameful erection from her step-sibling.");
 	output("\n\nKally seems pleased that Kiro hasn’t run off yet, though there is no concealing her own hardening teats through the fabric of her top. <i>“It was a thank you, Kiro.”</i> She pauses, then grins. <i>“And I guess one final declaration that the prudish, nagging big sister you grew up with, put that behind her, and accomplished her dreams... with your help.”</i> She squeezes Kiro’s hands one last time. <i>“Thank you. And I think you’ve earned whatever free drinks you want... for life.”</i>");
 	output("\n\nKiro shakes her head. <i>“You don’t owe me anyth-”</i>");
 	output("\n\n<i>“No.”</i> Kally shakes her head. <i>“It isn’t for the Picardine. That was a gift. It’s for coming back into my life, and for being a good sister.”</i>");
@@ -2721,7 +2745,7 @@ public function kallyHonestKiroEruption():void
 	output("\n\n<i>“Seriously, Kiro. Deep down, I think I always knew.”</i> Kally lets her sister’s hands go, and smiles. <i>“Sometimes you get one of those hunches in your gut, and you can’t believe it. Not without evidence, but you know. You know even when your sister’s so damn good at holding things back that you start doubting yourself.”</i> Kally smirks. <i>“You sneaky scamp.”</i>");
 	output("\n\nKiro shakes her head, chocolate curls bouncing. Her eyes are closed. <i>“No way.”</i> They open, fixing on Kally. <i>“There wasn’t anything short of a psychic that could tie me to that rock.”</i> She pulls away. <i>“You didn’t develop psychic powers, did you? Fuck, you aren’t reading my thoughts right now are you?”</i>");
 	output("\n\nThe curvaceous bartender slugs her little sister’s arm. <i>“Knock it off, will ya? I’m still your big sister. No mind powers necessary to figure out that pirates mail back a cut off their booty to help out their families. You’re a long way from the first.”</i>");
-	output("\n\nKiro rubs her arm, the pain distracting her from her nerves. <i>“Okay, okay. Just don’t start trying to give me a cut of your earnings. It was a gift, not a loan.”</i>");
+	output("\n\nKiro rubs her arm, the pain distracting her from her nerves. <i>“Okay, okay. Just don’t start trying to pay me back with a cut of your earnings. It was a gift, not a loan.”</i>");
 	output("\n\nKally sticks out her tongue. <i>“Sorry, but as you’re elder I’m going to have to demand that you get free drinks for life...”</i> For a second, she seems about to change her mind, then adds, <i>“...or until the tab gets close to that rock.”</i> The bar-owner smiles at that. <i>“You’d probably kill yourself before you managed that one.”</i>");
 	output("\n\nShaking her head, the lawless kui-tan casts a look your way. She’s trying to look angry, but you can see the corner of her mouth lifting as she answers, <i>“I can live with that.”</i>");
 	output("\n\nKally leans over, scooping Kiro up into a deliciously squishy-looking hug. <i>“I love you, Kiro.”</i>");
@@ -3105,7 +3129,7 @@ public function kiroAndKallyGloryholeSupremo4():void
 	output("\n\nYou flash a grin, though with a mountain of Kiro and Kally cum painting your face, you may as well be a ghost.");
 	output("\n\n<i>“Yeah, [pc.heShe] did.”</i> Shaking her head, lawless raccoon-woman shrugs. <i>“So what does this mean for us?”</i>");
 	output("\n\nThe bartender, still in her work clothes, clutches tight to the hem of the skirt. <i>“I guess it means we’re super good at making each other cum.”</i>");
-	output("\n\nKiro laughs. <i>“I guess it does.”</i> She glances sideways at her blushing sibling. <i>“You really did like that, didn’t you?”</i>");
+	output("\n\nKiro laughs. <i>“I guess it does.”</i> She glances sideways at her blushing step-sibling. <i>“You really did like that, didn’t you?”</i>");
 	output("\n\nShyly, Kally nods.");
 	output("\n\nSnorting, the brazen tanuki declares, <i>“Then I guess between you and [pc.name], I won’t be needing to use the gloryhole anymore.”</i>");
 	output("\n\nYou quirk an eyebrow, and Kally giggles, <i>“Unless we want to give [pc.himHer] another bath.”</i>");

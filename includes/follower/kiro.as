@@ -15,6 +15,10 @@ public function crewKiroBusy():Boolean
 {
 	return (flags["KIRO_DISABLED_MINUTES"] != undefined);
 }
+public function crewKiroAvailable():Boolean
+{
+	return (kiroIsCrew() && !crewKiroBusy() && !kiro.isBimbo());
+}
 //Mitzi crew bonus and approach screen is clothing dependent:
 public function kiroCrewBonus(btnSlot:int = 0, showBlurb:Boolean = true):String
 {
