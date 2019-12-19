@@ -1,3 +1,8 @@
+/*TODO:
+*Roleplaying Menu:
+	Redux "post-quest" victories
+	Redux of first-time vag-bang.*/
+
 public function kiroRecruited():Boolean
 {
 	return (flags["KIRO_RECRUITED"] == 1);
@@ -630,4 +635,128 @@ public function kiroAppearanceScreen():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",approachCrewKiro,true);
+}
+
+//Requires Kiro onboard, kiro/kally threesomes are over 2, and Kiro to have a horsecock.
+public function kiroAndKallyBreedingDreamForCrewKiro():void
+{
+	clearOutput();
+	//showKallyAndKiro(true);
+	showKiro();
+	author("Fenoxo");
+
+	output("<i>“...you still with me, Angel?”</i>");
+	output("\n\nHuh?");
+	output("\n\nA gentle nudge presses against your shoulder. <i>“Hey, I need you alert!”</i>");
+	output("\n\nYou blink your bleary eyes open and look to Kiro, standing next to you with a hand on the powder-banger at her hip. She’s scowling. <i>“Wake up and be my backup, twatwaffle. Kally said she needed me here, that it was urgent, and that she couldn’t say any more. We’re not taking any chances. If the Black Void’s gone after her little bar, I’ll... I’ll...”</i> The hand on your shoulder squeezes tight enough for her blunted clawtips to dig into your [pc.skinFurScales].");
+	output("\n\nYou gently lay your hand upon hers and inform her that you’re more than awake now, fingering your own weapon.");
+	output("\n\n<i>“Good.”</i> Kiro strides through the crowded interior of her sister’s bar, ignoring the bevy of sidelong glances her tense posture and quickmarch attract. You follow behind her, eyes darting from table to table in search of hostiles, weapons" + ((pc.isBimbo() || pc.isBro()) ? ", boobytraps... fat tits, big dicks - whatever!":", or boobytraps.") + " Nothing.");
+	output("\n\nYou breeze through the south door, into a less crowded but still skittish sauna, and beyond into the wood-tiled hallway outside Kally’s room.");
+	output("\n\nSilence greets you. Kiro’s tension builds, and will it the diameter of her tail. Soon, it’s like she’s waving another person around behind her, eliminating any hope of covering fire. The tanuki presses one big round ear to the door and reports, <i>“Heavy breathing. For one.”</i> She scowls. <i>“If this is her idea of a prank... no! If she said she needs me, she needs me. Brace yourself, [pc.name].”</i> The lawless tanuki lifts the heavy handgun and aligns it with the door’s bolt. Her finger wiggles into the trigger guard and-");
+	output("\n\nBLAM!");
+	output("\n\nSmoke billows into the tunnel. The locking mechanism is a smoking crater, one that vanishes when your growling companion lifts one powerful thigh and boots the damaged portal wide-open. <i>“Hands and asses where I can see them!”</i> Kiro screams.");
+	clearMenu();
+	addButton(0,"Next",kiroAndKallyBreedingDreamForCrewKiro2);
+}
+
+public function kiroAndKallyBreedingDreamForCrewKiro2():void
+{
+	clearOutput();
+	showKallyAndKiro();
+	author("Fenoxo");
+	output("Kiro rushes through the acrid vapor cloud, and you follow straight after, unsurprisingly too blinded to spot the room’s occupants. Still, they have to be at least as impaired as the two of you. You post up in the closest empty corner. A sharp edge on the bartender’s computer desk digs painfully into your [pc.thigh]. You ignore it for now, gripping your weapon tighter as you wait.");
+	output("\n\nA too-fast pulse hammers in your ear.");
+	output("\n\nWith all the smoke and noise, you’ve lost track of Kiro. Your hands tremble. Any silhouette could be an enemy - or an innocent tanuki. This breach and clear just got a whole lot more dangerous...");
+	output("\n\n<i>“Kiro?”</i> a coughing, familiar voice whines before the ventilation systems kick into high gear, filling your vision with whirling eddies of gray gunsmoke for a few seconds before dissipating the worst of it. <i>“My door!”</i> Kally screams, now visible on her bed, dressed in a slinky garment that shimmers like it was sewn from 3D-printed emeralds. <i>“You broke my void-blasted door!”</i>");
+	output("\n\nYour pirate pal stands in gape-mouthed surprise, giving you a moment to better appraise at the reason for all this uproar: Kally. She sits primly upon the edge of her bed, but she doesn’t look sleepy. She looks dressed for a ball. A shimmering purple dress with a plunging neckline wreathes most of her form, or it would if a slit didn’t race so high up the side of her hip that she could swish the whole skirt out of the way at a moment’s notice. Kally’s hair is as perfectly positioned as if she just walked home from the hairdresser. Clutched in her hands is the one remaining enigma: a six-inch wide box, squeezed as tightly as if it was the most important object in all the galaxy.");
+	output("\n\nKiro lamely holsters her weapon and scratches the back of her head. <i>“...Sorry?”</i>");
+	output("\n\nYou get the impression she’s not used to feeling like she has to apologize.");
+	output("\n\nThe chubby tanuki sets the box down next to her on the bed, then turns back to her sister with a look of consternation. <i>“When I said I needed you here as soon as possible, I didn’t mean... this!”</i> Wildly gesticulating at her half-destroyed quarters creates pinwheels of slowly-fading smoke. <i>“You were supposed to do what you always do and assume... you know... sexy stuff.”</i> She seems to partially deflate into herself with a faintly whispered sigh. <i>“I wanted to surprise you, but not like this.”</i>");
+	output("\n\nKiro, at first, displays a suitable look of chastisement, but it lasts about as long as a condom during one of her infamous orgasms. She puffs out her chest, folds her arms across the ");
+	if(kiro.canLactate()) output("milk-seeping mass of her");
+	else output("well-rounded mass of her");
+	output(" bosom, and flops down next to chubby bartender with a pout. <i>“I thought you were in trouble, Kally. Yes, I fragged your fucking door, but it did it because I thought I was going to be saving your life.”</i> She grabs her sister by the cheeks and none-too-gently presses their foreheads together. <i>“I was worried about my Ice Queen.”</i>");
+	output("\n\n<i>“Fuck,”</i> Kally grouses, wriggling out of Kiro’s grip and pushing her away with a mumbled, <i>“I can’t even stay mad at you...”</i> After a moment of squirming - and the appearance of a sudden tent in the front of her dress - Kally adds, <i>“Especially right now! Fuck!”</i> Her nipples rise like bread in an oven, puffing the front of her dress further and further forward until the peaks finally outpace the bulging, motherly saucers behind. <i>“I wanted to have this big special moment where I surprised you, Kiro.”</i> She gropes for the box with shaky fingers. <i>“So I took a bunch of B-breeder’s Bl-bliss before you came in.”</i> She fumbles around while her cock resolutely works at lifting the bottom half of her dress out of the way. <i>“Now I can barely think about anything but f-f-fucking you" + (pc.hasCock() ? " both":"") + ". Oh stars, I can <b>smell</b> your dick.”</i>");
+	output("\n\nCocking an eyebrow in surprise, Kiro ventures, <i>“Really?”</i> as the corners of her inky lips broaden into a knowing smile. <i>“The Ice Queen’s gone into heat for me? Her step-sister?”</i> The pirate edges closer, stroking her fingers up and down the expanse of Kally’s silky-furred thigh. <i>“Then what’s in the box? A condom?”</i> She breathes heavily into the quivering bartender’s ear. <i>“Some lube? A new toy we can play with?”</i> Two fingers walk up Kally’s body to dance around her barely-covered nipple-tip. <i>“Show me.”</i>");
+	output("\n\nNew Texan cows show greater restraint and poise than the pudgy kui-tan. Arching her back to better present her swollen teats, Kally lets the shoulder straps slide down into the crooks of her arms - and the thin layer of purple girding her substantive tits to peel back. Kiro’s fingers dance on raw, exposed breast until the thicker sister is trembling and shaking. She barely manages to grab hold of the box.");
+	output("\n\n<i>“K-kiro...”</i> Kally drops the box and throws back her head in pleasure, pumping her hips into nothing. The sheets bunch up around her ass from the motion while a damp, dewy patch grows out from between her shuddering thighs. <i>“W-will...”</i> She grabs her sister’s shoulders for support, tongue lolling. <i>“...will you... m-m-marry me?”</i> With one last burst of effort, she stretches down and knocks the top of the box open. A platinum ring, studded with thousands of lab-grown diamonds, glimmers within.");
+	clearMenu();
+	addButton(0,"Next",kiroAndKallyBreedingDreamForCrewKiro3);
+}
+public function kiroAndKallyBreedingDreamForCrewKiro3():void
+{
+	clearOutput();
+	showKallyAndKiro(true);
+	author("Fenoxo");
+
+	output("This time, Kiro is completely speechless. No... not just speechless: paralized. She’s frozen stock still with two fingers resting on her sister’s nipple and her tail poofed out thick enough to match Kally’s for sheer volume. Three long seconds pass before the pirate’s brain catches back up with the rest of her body, and a freighter-wide grin touches down on her face. <i>“Of course I’ll marry you, Kally,”</i> Kiro answers somewhat tenderly, pausing her groping to reach for Kally’s neck and pull her close. <i>“But only if you show me how to put on that wedding ring.”</i> She gestures down at the ring, far too girthy to fit on a finger, then settles for a long, drool-swapping kiss. <i>“I love you.”</i>");
+	output("\n\nKally proposed with a cockring.");
+	output("\n\n<i>“I love you too,”</i> the plump bartender coos in the small gaps between lip-smacking make-outs. <i>“I love you so much.”</i> Somehow, she finds the coordination to make a grab at the ring while continuing a passionate lip-lock.");
+	output("\n\nYou get a brief glance at some of the larger stones before it’s lost between two writhing bodies once more. Gasps and giggles from within force you to imagine the two of them fumbling around Kiro’s fat flare, but a gasp of pain proves to be your voyeuristic side’s savior.");
+	output("\n\n<i>“Oh-ouch!”</i> Kiro gasps, pushing Kally back. <i>“That pinched!”</i> She spreads her legs and properly hikes her own red garment out of the way to brazenly display all twenty-one inches of equine beauty. <i>“Here. Just get it on. Then we can kiss.”</i>");
+	output("\n\n<i>“Or just get it on,”</i> Kally giggles, dropping to her knees on the floor as if it were the most natural thing in the world. Her tail stretches almost perfectly upright as she leans in, nice and close to Kiro’s cock, nuzzling it with her cheek while she turns the cockring over in her fingers. <i>“Mmm, you’re gonna look so good in this.”</i> Kally licks at a stray droplet of dangling pre, slurping the sticky strand up like a lone spaghetti noodle. When it finally snaps, the panting tanuki at last brings the bejeweled band up to Kiro’s prickhead.");
+	output("\n\nIt seems almost comically small now that you can directly contrast and compare.");
+	output("\n\n<i>“That’ll never fit!”</i> Kiro complains, gape mouthed but unmoving.");
+	output("\n\nKally strokes Kiro soothingly, smearing juicy arousal up and down her lofty girth. <i>“Sure it will,”</i> the bartender promises. <i>“I took some measurements the last time you came by, and this is exactly the right size.”</i> Pressing it against her against her sister’s surging flare seems to do nothing but puddle pre inside the loop. Kally gently works the marriage token around until it’s sopping wet with Kiro’s lubricant. <i>“It has to stay on when you’re soft,”</i> she explains, sliding it down over the southern edge of a stallion-like crown, <i>“and stretched out when you’re hard.”</i>");
+	output("\n\n<i>“Stretch?”</i> Kiro gasps, unleashing a small river of buttery spooge while Kally works the engagement band back and forth, tugging it two handedly.");
+	output("\n\nKally answers with a wink and a yank, barely cresting the opposite side of her sister-fiancee’s swollen peak. <i>“See? It stretches.”</i> She gently extricates her fingers and allows the ring to contract against Kiro’s thumping, glossy veins. It actually slides a full inch down her shaft on its own, owing to the narrower girth just behind the tip. Frothy pre-cum gathers in a wave on its leading edge.");
+	output("\n\nBarely containing herself, Kiro just manages to restrain her hard-fucking instincts into a violent twitch. <i>“Ah!”</i> she gasps, <i>“It does! And it’s tight!”</i>");
+	output("\n\nThis, at least, penetrates Kally’s lusty daze. <i>“Not too tight, is it?”</i> She leans closer, eyes still halfway unfocused, not quite willing to leave Kiro’s now jewel-encrusted cock yet. <i>“Looks... snug.”</i> She licks her lips.");
+	output("\n\nThis time, it’s the space-faring pirate who struggles to compose herself. She wipes the back of her forearm against her disheveled brow and admits, <i>“No... not </i>too<i> tight.”</i> Her hips suffer another involuntarily quiver, making her sparkle-dong bounce and shimmer. <i>“Tight like... tight pussy-tight, you know?”</i> Kiro leans back into Kally’s sheets, giving total control over her diamond-wrapped dick to her pudgy sister. <i>“Good-tight.”</i>");
+	output("\n\nMidway through tonguing Kiro’s medial ring, Kally breaks into a huge grin. <i>“I knew it would be.”</i> She kisses the heaving mast, leaving lip-shaped imprints in its sexjuice coating. <i>“I love you, Kiro.”</i> She grips the gem-impregnated cock-widget and firmly guides it along her lawless sibling’s throbbing meat, pausing briefly at the middle to work it over the medial bulge she was just licking. Heedless of Kiro’s squirming, the increasingly lust-drunk kui-tan works the symbol of her ardent desires further down her sister’s shaft, refusing to stop until it’s seated snugly against Kiro’s bunched-up sheath.");
+	output("\n\nKiro whimpers softly. <i>“Oh that feels... good. And... final?”</i> After a moment’s pause, she reaches down to adjust it, feeling how the smooth band nestles perfectly into her sheath. <i>“I guess I’m a claimed herm.”</i> She winks down at Kally. <i>“Now what?”</i>");
+	output("\n\nKally is too busy looking down at Kiro’s dick, kissing and slurping at every pocket of pre can she can find, whimpering with uncontrolled need. <i>“Knock me up.”</i>");
+	output("\n\nYou notice a trail of double-gendered sex-slime on the ground behind her. It’s almost all pussy juice.");
+	output("\n\n<i>“I’m so fucking fertile I’m probably pregnant just from tasting your pre... but let’s make sure,”</i> Kally sensuously instructs before pursing her lips on Kiro’s swelling flare to nurse out a cheek-swelling load of the stuff. She swishes it around before noisily gulping it down, her own sack ripening in response to the cummy treats. <i>“Fuck me bareback till I have twins!”</i>");
+	output("\n\nKiro looks like a deer caught in the headlights. In between sighs of pleasure at her sister’s handling of her thoroughly captivated wang, she wrestles with her thoughts, wearing a new expression after every gasp. First a little confusion arrives, then concern. Lust peers through during a fervent, cock-searing kiss from Kally, and the concern never quite manages to return. Growing enthusiasm spreads through Kiro’s features as thickly as her cock-juice is spreading over Kally’s. <i>“Yeah,”</i> the pirate sighs in torrid bliss, <i>“I’ll knock you up.”</i>");
+	clearMenu();
+	addButton(0,"Next",kiroAndKallyBreedingDreamForCrewKiro4);
+}
+public function kiroAndKallyBreedingDreamForCrewKiro4():void
+{
+	clearOutput();
+	showKallyAndKiro(true);
+	author("Fenoxo");
+	output("It’s only when the insatiable bartender pushes her step-sister back onto the bed that she gets enough of a breather to remember that you’re still there. Her hormone-addled brain leaves her jaw working soundlessly until an appropriate idea occurs to her: <i>“Get out that Codex and record every second, [pc.name].”</i> She climbs up onto Kiro’s thigh, dragging a sack that looks stuffed with a pair of basketballs behind her. <i>“I wanna be able to see the second I get knocked up... the moment I finally get to be pregnant with Kiro’s babies.”</i>");
+	output("\n\nThe word ‘babies’ seems to trigger something inside her, because her hand presses against her navel, fingers splayed wide. She caresses her belly with fond, absent strokes and climbs up higher, her smaller shaft coming to rest against Kiro’s twitching monster. It flings clinging webs of virile goo onto the lesser pole, triggering errant dribbles of off-white excitement of its own.");
+	output("\n\nNeither sister appears especially cogent, but they don’t need to be to be rut or fuck, or grind dicks together with happy, adoring looks writ large on their faces. Kally’s dark fur is soon matted and musky with Kiro’s drippings. The slender sister’s tits become handholds for the buxom bartender as she gradually works her way to Kiro’s apex, flashing you a glimpse of her steaming delta a moment before slamming it down.");
+	output("\n\nKally isn’t just wet: she’s drenched - more pussyjuice (and Kirojuice!) than woman from the thighs down. Her fur is darkened all the way to her knees and a little beyond. From your glimpse of the dusky lips of her womanhood, you can safely say they’re swollen to the extreme, rendering her pussy a chubby, bulgy sextoy that looks like it’s begging for a fuck. No wonder she locked herself in her room and stayed in bed. Just walking would grind those sinful cunt-curtains together around her over-swollen clit. She’d probably cum from it.");
+	output("\n\nShe certainly cums from taking Kiro’s cock.");
+	output("\n\nGallons of wasted tanuki-seed spew onto the pirate’s tits and face, but does Kiro mind in the slightest? No! She screams with joy as she claims her sister’s snatch, turning to offer fresh patches of fur for painting even as that phallic wedding ring makes contact with Kally’s plush thighs. That seems to set Kally off even harder. Her pussy squirts with raw rapturous joy, bathing Kiro’s plump ballsack with a wave of fragrant, girlish juices. If it wasn’t for cow-girl being a gravity-assisted sex position, Kally’d likely be sliding down to the floor instead of into a crotch-kissing breeding session.");
+	output("\n\n<i>“You’re so wet,”</i> Kiro observes from under her pearlescent mask. <i>“It feels too fucking good... like you were made for my dick.”</i> She grabs hold of the spasming bartender’s hips and stabilizes her a second before thrusting upward, bouncing her sister on her cock. It’s a smooth glide with a wet-sounding squelch to accompany each downstroke. <i>“You really want fucked pregnant?”</i> She sounds like she’s not entirely convinced, like some place in the back of her mind remembers that she doesn’t want to have any kids yet... but her sister’s musky, fur-soaking juices pry her nose’s pheromone receptors wide-open and lay instinctive siege to her desires, supported up by a chorus of demands from one very insistent horse-cock stuffed deep in Kally’s pussy.");
+	output("\n\nKally slumps forward, her plush tits cushioning her against Kiro’s own. After a moment of bleary-eyed, coital bliss, she blinks back a bit of awareness and and nods. <i>“Yesh! F-fuck me all preggy and shit!”</i> She grabs two fistfulls of blanket to either side of Kiro’s head and uses the leverage to slam her sizeable ass down at full force, trapping the virile tanuki hilt-deep. <i>“Nnngg! It’s not enough! Even all the way in, I’m not full enough.”</i> She winces, cradling her belly and grinding herself in small circles against her step-sister. <i>“I need your cum, Kiro,”</i> Kally gasps, leaning down close enough to share her breaths. <i>“Fill me.”</i> Her eyes roll halfway back before refocusing again, full of frenzied need. <i>“Pleaaaaase!”</i>");
+	output("\n\n<i>“I’m trying!”</i> Kiro grunts, slamming back. The muscles in her legs strain with the effort of banging back against Kally’s lust-drunk motions. Not only does she have to propel her heavy horsecock and fat, cum-stained balls up, but she also has to bounce off the plump-bodied babe as well. So forceful is the mating that violently ejected girl-lube spatters the side of your face while you dutifully record");
+	if(pc.hasCock()) output(", wanking one-handed");
+	else if(pc.hasVagina()) output(", schlicking one-handed");
+	output(".");
+	output("\n\nAnd Kiro humps harder by the second!");
+	output("\n\nMaybe it’s her sister’s scent driving her on. Maybe it’s the well-documented affection the two share, or the culmination of a lifetime sexual tension distilled into this one moment of tender passion. Or maybe Kiro’s just <i>really fucking good at <b>fucking</b></i>. Looking at her burgundy mast flashing in the light, soaked with lube and pulsing so hard that you can see it distending from across the room, it’s obvious Kiro is far from an amateur at this. She drills Kally, even from below, even ridden cow-girl.");
+	output("\n\nKally may be on top, but more and more, Kiro is taking control.");
+	output("\n\nThe love-drunk fluffball hangs on for dear life as her cunt gets the workout of a lifetime. With hands on her sister’s hips, Kiro plows her with increasing authority. That twat-straining cunt-breaker does what it has no doubt done to hundreds of women of the galaxy over: tame them with soul-stainingly good fucking. You can see it in Kally’s face. It’s obvious with every downstroke how much she loves the feeling of that medial ring massaging her core or taking that leaky blunted cocktip all the way to the gates of her womb. She’s a ragdoll for Kiro to control, and Kiro is increasingly confident in the way she goes about impregnating her wife-to-be.");
+	output("\n\n<i>“You... ready... fluffbutt?!”</i> Kiro growls, slapping the plusher tanuki’s heiny hard. <i>“There’s no going back. All that breeder’s bliss...”</i> She loses track of her words at that thought and settles for simply grunting like a beast with each pound. Kiro ruts against Kally with unthinking fervor, letting her dick lead the way and gladly following along behind. <i>“...gonna be all... pregnant.”</i> She whimpers, biting her lip hard enough that one of her small fangs leaves a red mark on the ebony surface. <i>“My baby-making slut!”</i>");
+	output("\n\nKally stutters back, <i>“Y-y-yesss! Oh stars! Are you... is that your flare?”</i>");
+	output("\n\n<i>“Yes,”</i> Kiro hisses back through gritted teeth. <i>“C-cumming!”</i>");
+	output("\n\nA clear horizontal ridge distends through Kally’s bellyfur - Kiro’s cockhead, billowing in bestial climax. In addition to being able to watch Kiro’s nuts contracting and pumping, you’re able to witness the heavy liquid bulges working their way toward Kally’s womb. They’re so thick and voluminous that they also stand out through the dripping fur, temporarily concealing the flare before they burst into the kui-tan’s unprotected womb. The moment it happens, you Kally’s eyes cross. Something about taking a load of spooge directly into her uterus triggers her to climax immediately and powerfully, but in a different way than her last one.");
+	output("\n\nKally goes limp. She’s like a ragdoll in Kiro’s arms, pumped up and down, her belly distended with load after load of womb-flooding spunk. She does manage to dribble and leak a stream of her own creamy white, but it’s a less forceful ejaculation than you might expect, almost an afterthought, like her dick is only cumming because the rest of her is, and the rest of her is where the real pleasure is. As her midsection inflates, rounding into a wobbling, cum-infused parody of real pregnancy, you realize exactly what just happened.");
+	output("\n\nKally had an impregnation-gasm.");
+	output("\n\nBreeder’s Bliss is a fairly strong drug, and if she took enough, well... Kally must be in a particularly strong heat. Bonelessly squirting and bouncing in her sister’s lap, the bartender’s belly inflates, blowing through the first and second trimesters several months early! It puffs up well past a seven or eight month incubation and into the realms of the obscenely cum-inflated. Kiro actually struggles to pull her back down her dick on the downstrokes, so pressurized is Kally, but if it hurts she shows no sign of it.");
+	output("\n\nHer eyes aren’t open, and her mouth remains locked in a silly smile with her tongue flapping. Kally doesn’t even react when she finally slips off Kiro’s rod and tumbles face-down into her own cummy sheets. She lays there, seemingly unconscious with her ass propped up in the air and a river a creamy goo sliding out from between her overfull thighs.");
+	//genitals
+	if(pc.hasGenitals())
+	{
+		output("\n\nYour own orgasm arrives without nearly as much fanfare, ");
+		if(pc.hasCock()) output("blasting onto the floor to the erotic sight you just witnessed.");
+		else if(pc.hasVagina()) 
+		{
+			if(!pc.isSquirter()) output("sliding down your thighs to the erotic sight you just witnessed.");
+			else output("squirting onto the floor to the erotic sight you just witnessed.");
+		}
+		if(!pc.isCrotchExposed()) output(" ...Where did your bottoms go?");
+	}
+	//murgywurgie
+	output("\n\n<i>“Fuuuuck,”</i> Kiro gasps, slumping down alongside her, too tuckered out to even admire her own handiwork. The cock-ring keeps her nice and hard, even after her climax.");
+	output("\n\nSoon, they’re both asleep, just like you were at the start of all this.");
+	output("\n\nWhat’s that beeping...?");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
