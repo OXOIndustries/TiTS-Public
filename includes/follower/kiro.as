@@ -260,6 +260,7 @@ public function inviteAFriendForCrewKiroPlays():void
 		else addDisabledButton(nFriends,"Saendra","Locked","You don’t know Saendra well enough to invite her.");
 		nFriends++;
 	}
+	// Paige
 	if(flags["PAIGE_TALK_SELF"] >= 4 && flags["SEXED_PAIGE"] != undefined && (paigeIsCrew() || (getPlanetName().toLowerCase() == "tavros station" && (hours >= 17 || hours < 9))))
 	{
 		if(flags["PAIGE_KIRO_THREESOMES"] == undefined) addButton(nFriends,"Paige",paigeThreesomeIntro,undefined,"Paige","The Ausar yoga instructor, Paige, once told you that she considers Kiro to be her closest friend. Maybe you should ask Kiro if the name sounds familiar to her?");
@@ -270,11 +271,80 @@ public function inviteAFriendForCrewKiroPlays():void
 	else addDisabledButton(nFriends,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
 	nFriends++;
 
+	//Kally
+	if(kiroKallyThreesomes() > 0)
+	{
+		if(shipLocation == "CANADA1") addButton(nFriends,"Kally",kiroKallyThreesomesApproach,undefined,"Kally","Now that Kiro and Kally are fucking, why not have fun with both?");
+		else addDisabledButton(nFriends,"Kally","Kally","You need to be docked at Canadia Station over Vesperia for this.");
+		nFriends++;
+	}
+
 	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her that you might need a minute to summon a friend for you both to play with.\n\nShe barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“They’d better be worth it, you cock-tease. We could be fucking right now...”</i> she complains, her half-hard shaft throbbing between her legs. <i>“You just get me so horny!”</i>\n\nYou tweak one of her round, fluffy ears and give her a wink. Just a minute, you promise.");
 	else output("Unfortunately, you don’t know of any available friends to invite...");
 	
 	addButton(14,"Back",kiroCrewSexMenu);
 }
+
+public function crewKiroBarSetup(button:int = 0):void
+{
+	output("\n\nThe tanuki-girl pirate you saved is here, keeping an eye on her sister’s patrons, ready to crack some heads at a moment’s notice.");
+	addButton(button,"Kiro",crewKiroAtKallysBar,undefined,"Kiro","Kiro is taking a break here, if you wanted to talk.");
+}
+//if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined)
+public function crewKiroAtKallysBar(back:Boolean = false):void
+{
+	//Post threesome chatties~!
+	if(flags["KIRO_3SOME_REACTION"] == undefined && kiroKallyThreesomes() > 0) 
+	{
+		kiroPostIncestChat();
+		return;
+	}
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	//Back approach
+	if(back)
+	{
+		output("Kiro’s eyes twinkle. <i>“What now?”</i>");
+	}
+	//Kally's Bar is speciul
+	//Kiro is always presentable for her sis!
+	kiro.ballSizeRaw = 10;
+	if(flags["KIRO_GF"] != undefined)
+	{
+		output("Kiro’s face lights up at your approach. <i>“There you are, [pc.boyGirl]friend. What took you so long? Lost in some ");
+		if(rand(5) == 0) output("galotian’s cunt");
+		else if(rand(4) == 0) output("myr’s plus-sized pussy");
+		else if(rand(3) == 0) output("daynar’s eyes");
+		else if(rand(2) == 0) output("leithan’s legs");
+		else output("more family drama");
+		output("?”</i> Pulling you into a hug, she gives you a peck on the cheek. <i>“Just make sure you toss me an invite when you get the chance, hero.”</i> Her grin is as contagious as it is mischievous.");
+	}
+	//Non-BF
+	else
+	{
+		output("<i>“Hey there, [pc.name],”</i> Kiro calls, lifting a drink in your direction. <i>“Always nice to see we have similar taste in shore leave.”</i> She sighs heavily. <i>“Now if I could just get the scum-sucking locals to stop looking at Kally like she’s a piece of meat.”</i> Possessive determination washes over her face. <i>“Nobody’s fucking the best goddamn sister in the galaxy without my okay.”</i>");
+		if(kiroKallyThreesomes() > 0 || flags["KIRO_INTERRUPT_KALLYBEEJ"] != undefined)
+		{
+			output("\n\nYou scratch the back of your neck nervously.");
+			output("\n\n<i>“");
+			if(flags["KIRO_GF"] != undefined) output("Or my [pc.boyGirl]friend’s okay.");
+			else output("[pc.name], if half her suitors were as great as you, I’d be able to relax.");
+			output("”</i> Kiro flashes her sharp fangs in your direction. <i>“If seeing my sister bouncing around has you all worked up, I know a big, comfy ship with an even better captain we could blow off some steam in...”</i>");
+		}
+	}
+	
+	//MENU!
+	clearMenu();
+	addButton(0,"Talk",kiroTalkInKallysBar,undefined,"Talk","You may as well Talk since Kiro’s trying to keep things low-key.");
+	addDisabledButton(1,"Wingman","Wingman","For whatever reason, Kiro doesn’t seem interested in picking up a girl at her sister’s bar.");
+	addDisabledButton(2,"DrinkOff","Drinking Contest","For whatever reason, Kiro doesn’t seem to want to get blitzed out of her mind at her sister’s bar.");
+
+	addDisabledButton(3,"Sex","Sex","Kiro is on your crew - you can sleep with her at any time via your ship's crew menu.");
+	addDisabledButton(4,"Kally3Some","Kally3Some","You can access this from Kiro's onboard sex menu, under the threesomes heading.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
 
 public function leaveCrewKiroSexMenu():void
 {

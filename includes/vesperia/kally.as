@@ -151,7 +151,7 @@ public function kallyBonusRoomTexts():Boolean
 		if(pc.statusEffectv1("KallyKiro") == 0) kallyHonestKiroEruption();
 		else kallyKiroKissEruption();
 		addButton(0,"Kally",approachKally);
-		if(kiroIsCrew()) addDisabledButton(1,"Kiro","Kiro","Maybe approach Kally right now...");
+		if(kiroIsCrew()) addButton(1,"Kiro",crewKiroAtKallysBar,undefined,"Kiro","Kiro is here, if you wanted to talk.");
 		else addButton(1,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
 		return false;
 	}
@@ -3331,12 +3331,13 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	clearOutput();
 	showName("WALK\nOF SHAME");
 	showBust("");
-	output("You wobble back to the bar a brief while later, pregnant with cum, but no longer immobilized.");
+	output("You wobble back to " + (!kiroIsCrew() ? "the bar":"your ship") + " a brief while later, pregnant with cum, but no longer immobilized.");
 	kiroKallyThreesomes(1);
 	if(flags["KIRO_KALLY_EMAIL"] == undefined && flags["KIRO_3SOME_REACTION"] != -1) flags["KIRO_KALLY_EMAIL"] = GetGameTimestamp();
 	//[Next] - end :3
 	clearMenu();
-	addButton(0,"Next",move,"CANADA5");
+	if(!kiroIsCrew()) addButton(0,"Next",move,"CANADA5");
+	else addButton(0,"Next",move,"SHIP INTERIOR");
 }
 
 public function examineKirosCodex():void
@@ -3434,9 +3435,19 @@ public function kiroAndKallyGoToGetMilkedThreesome():void
 	moveTo(shipLocation);
 	author("Sir Fensalot");
 	//Milking Parlor Fun~
-	output("When you look between Kally and Kiro with a flirtatious look in your eyes, the curvy bartender smiles warmly. Her eyes dart between her sister and you, languidly following the exquisitely curved arc of your [pc.sack] before focusing in on Kiro’s well-emptied pouch. <i>“You really ought to take better care of your ");
-	if(flags["KIRO_GF"] == 1) output("[pc.boyGirl]");
-	output("friend, sis.”</i> Kally produces two plastic to-go cups from beneath the polished counter and starts to fill one from the tap. <i>“If [pc.heShe] swells up any bigger, [pc.heShe]’s liable to pop.”</i>");
+	if(!kiroIsCrew())
+	{
+		output("When you look between Kally and Kiro with a flirtatious look in your eyes, the curvy bartender smiles warmly. Her eyes dart between her sister and you, languidly following the exquisitely curved arc of your [pc.sack] before focusing in on Kiro’s well-emptied pouch. <i>“You really ought to take better care of your ");
+		if(flags["KIRO_GF"] == 1) output("[pc.boyGirl]");
+		output("friend, sis.”</i> Kally produces two plastic to-go cups from beneath the polished counter and starts to fill one from the tap. <i>“If [pc.heShe] swells up any bigger, [pc.heShe]’s liable to pop.”</i>");
+	}
+	else
+	{
+		moveTo("CANADA5");
+		output("Just as you start to make the suggestion, Kiro grabs you by the arm and tugs you toward the exit. <i>“Come on, Angel. I can tell what you’re wanting, and I have a hunch there’ll be some on-station fun.”</i>");
+		output("\n\nAt least the trip is quick.");
+		output("\n\nYou breeze into Kally’s bar arm and arm. Kiro quickly flags down her step-sister, who arrives with a knowing smile and two plastic to-go cups. She quickly starts to fill one from the tap below the polished counter. <i>“You really ought to take better care of your " + (flags["KIRO_GF"] == 1 ? "[pc.boyGirl]":"") + "friend, sis. If [pc.heShe] swells up any bigger, [pc.heShe]’s liable to pop.”</i>");
+	}
 	output("\n\n<i>“That’s what we came to you for,”</i> Kiro says. <i>“I figured you might have a good use for all this stored-up Steele-cream.”</i> She pats your sack as if it was a cherished puppy, finishing with a soft rub.");
 	output("\n\nKally smirks while she fills up the second cup. You note the fragrant aroma of Nutty Nookie. <i>“Nah, not personally... but I know a joint a floor down that caters almost exclusively to hyper-swollen kui-tan");
 	if(!pc.hasPerk("'Nuki Nuts")) output("... and I guess anybody with more nut than they know what to do with.");
@@ -3504,7 +3515,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 		{
 			output("\n\n<i>“Whoah.”</i> You put up your hand warningly. You don’t recall agreeing to go guzzle jizz with a bunch of galotians.");
 			output("\n\nKiro smirks and takes your hand, guiding it to her heaving chest. She’s breathing fast, her heart thudding heavily behind her lovely tits. <i>“We aren’t going there to eat, angel.”</i> You slip a finger into her dress and pinch the wriggling raccoon’s nipple until she’s whining in eager delight. Her hips shiver with barely repressed passion. <i>“We’re going there to... to...”</i> She can’t finish her sentence any more than you can stop yourself from hungrily groping her.");
-			output("\n\n<i>“We’re going to get milked, and the Bunker is going to sell every drop it can wring out of the three of us... and they’re even better at it than you... or Kiro’s milker.”</i> Kally presses into her sister hard enough to make the younger sister’s bloating balls bounce against your own expansive cum-reserves. <i>“That sound more your speed?”</i>");
+			output("\n\n<i>“We’re going to get milked, and the Bunker is going to sell every drop it can wring out of the three of us... and they’re even better at it than you... or Kiro’s milker.”</i> Kally presses into her step-sibling hard enough to make the younger sister’s bloating balls bounce against your own expansive cum-reserves. <i>“That sound more your speed?”</i>");
 			output("\n\nTheir words sound fantastic, and the pheromones they’re putting out smell even better - like a kennel full of kui-tan breeders in heat. <i>“Yes.”</i> You breathe deep. Every breath is more laden with chemical signals of desire than the one before, more decadent and sensuous. Part of you wants to keep them in the elevator to play with, just to see how strong their musk will get.");
 			output("\n\nThe elevator dings.");
 		}

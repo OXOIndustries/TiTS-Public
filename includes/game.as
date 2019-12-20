@@ -2249,6 +2249,7 @@ public function shipMenu():Boolean
 	if(insideShipEvents()) return true;
 	
 	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
+	if(!kiro.isBimbo() && flags["KQ_RESCUED"] != undefined && flags["KQ_REWARDED"] == undefined) output("\n\n<b>Kiro's vessel is parked nearby</b>. (You can visit Kiro and her ship via the “Hangar” submenu on the landing area.)");
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -4457,7 +4458,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//KIRO FUCKMEET
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
-		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && roamingKiroAvailable()) { goMailGet("kirodatemeet"); }
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && (roamingKiroAvailable() || crewKiroAvailable())) { goMailGet("kirodatemeet"); }
 		//KIRO SMUT!
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
