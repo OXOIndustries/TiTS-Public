@@ -188,7 +188,16 @@ public function kiroCrewSexMenu():void
 	if(kiro.ballDiameter() > 7) addButton(6,"Relief BJ",giveKiroSomeRelief,undefined,"Relief BJ","Slink under the concealing surface above and give Kiro’s poor balls the release they so desperately need. Besides, you were a little hungry, weren’t you?");
 	else addDisabledButton(6,"Relief BJ","Relief BJ","Kiro’s balls don’t look swollen enough to need the relief right now, though they are quite large.");
 
+	if(kiro.canLactate()) 
+	{
+		if(pc.hasCock()) addButton(7,"MilkyTitFuck",penisRouter,[kiroMilkyTiddyFukk,80085,false,0],"Milky Titty Fuck","Fuck Kiro's recently milkied titties with a penis.");
+		else addDisabledButton(7,"MilkyTitFuck","MilkyTitFuck","You need a penis to do this.");
+	}
+	else addDisabledButton(7,"MilkyTitFuck","MilkyTitFuck","Kiro needs to be lactating for this.");
+
 	addButton(10,"Threesome",inviteAFriendForCrewKiroPlays,undefined,"Threesome Invite","Invite a friend to play with you and Kiro...");
+
+	addButton(12,"Roleplay",roleplayWithKiro,undefined,"Roleplay","Roleplay a sex event from the past, like when Kiro rewarded you for rescuing her from Doctor Po...");
 
 	if(flags["KIRO_ORGY_DATE"] != undefined && flags["KIRO_ORGY_DATE"] + 2 < days && pc.hasCock()) addButton(13,"Fuckmeet",galLinkFuckMeetInvite,true,"GalLink Fuckmeet","Go to a GalLink Fuckmeet with Kiro - it'll be an orgy full of herms.")
 	addButton(14,"Back",leaveCrewKiroSexMenu);
@@ -204,6 +213,17 @@ public function kiroCrewSexMenu():void
 	addButton(6,"Invite",inviteAFriendForCrewKiroPlays,undefined,"Invite","Invite a friend to play with you and Kiro...");
 	addButton(14,"Back",kiroMenu);
 	*/
+}
+
+public function roleplayWithKiro():void
+{
+	clearOutput();
+	showKiro(true);
+	author("Fenoxo");
+	output("You suggest roleplaying to Kiro. She doesn’t seem surprised in the slightest. In fact, the lawbreaking pirate is smiling in obvious anticipation. <i>“As long as I’m fucking you, you can pretend to be whoever you want...”</i>");
+	clearMenu();
+	addButton(14,"Back",kiroCrewSexMenu,true);
+	addButton(0,"Celebration",kqVictorySurprise,undefined,"Celebration","Replay celebrating your victory over Doctor Po with tanuki.");
 }
 
 public function kiroCrewSexMenuBigBalls():void
@@ -358,7 +378,7 @@ public function leaveCrewKiroSexMenu():void
 	addButton(0,"Next",approachCrewKiro,true);
 }
 
-public function kiroCrewSexApproach():void
+public function kiroCrewSexApproach(back:Boolean = false):void
 {
 	// Pending panty event
 	if(!pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless."))
@@ -372,14 +392,21 @@ public function kiroCrewSexApproach():void
 	clearOutput();
 	showKiro();
 	author("Fenoxo");
-	
-	output("As soon as you make the suggestion, Kiro leads you by the hand back to her quarters. At the door, she pulls you close, holding you so close that her [kiro.chest] press hard against your " + (pc.biggestTitSize() >= 1 ? "own":"your chest") + ", the growing bulge beneath her dress grinding itself against you. <i>“I thought you’d never ask, Angel,”</i> she says with a wink. <i>“C’mon in!”</i>");
-	output("\n\nThe tanuki is naked by the time she’s three steps past the threshhold.");
-	if(!pc.isCrotchExposed() && !pc.isChestExposed() && !pc.isAssExposed()) output(" You shed your garments in similar fashion, excitement mounting by the second.");
-	else output(" You smirk knowingly at your own, pre-naked state. Today, it saves you time and affords you the chance to watch Kiro stripping down.");
-	output("\n\n");
-	showImage("SukebeKiroPoV");
-	output("She winks back at you, mantling up onto a large, miraculously unstained cushion. Her horse-cock hangs out, proudly erect and well past the point of beginning to leak. <i>“Let’s have some fun,”</i> Kiro moans, giving herself a small stroke.");
+	if(back)
+	{
+		showImage("SukebeKiroPoV");
+		output("Kiro remains in all her naked glory. What would you like to do with her?");
+	}
+	else
+	{
+		output("As soon as you make the suggestion, Kiro leads you by the hand back to her quarters. At the door, she pulls you close, holding you so close that her [kiro.chest] press hard against your " + (pc.biggestTitSize() >= 1 ? "own":"your chest") + ", the growing bulge beneath her dress grinding itself against you. <i>“I thought you’d never ask, Angel,”</i> she says with a wink. <i>“C’mon in!”</i>");
+		output("\n\nThe tanuki is naked by the time she’s three steps past the threshhold.");
+		if(!pc.isCrotchExposed() && !pc.isChestExposed() && !pc.isAssExposed()) output(" You shed your garments in similar fashion, excitement mounting by the second.");
+		else output(" You smirk knowingly at your own, pre-naked state. Today, it saves you time and affords you the chance to watch Kiro stripping down.");
+		output("\n\n");
+		showImage("SukebeKiroPoV");
+		output("She winks back at you, mantling up onto a large, miraculously unstained cushion. Her horse-cock hangs out, proudly erect and well past the point of beginning to leak. <i>“Let’s have some fun,”</i> Kiro moans, giving herself a small stroke.");
+	}
 
 	//[OPTIONS BITCH]
 	kiroCrewSexMenu();
@@ -831,6 +858,111 @@ public function kiroAndKallyBreedingDreamForCrewKiro4():void
 	output("\n\n<i>“Fuuuuck,”</i> Kiro gasps, slumping down alongside her, too tuckered out to even admire her own handiwork. The cock-ring keeps her nice and hard, even after her climax.");
 	output("\n\nSoon, they’re both asleep, just like you were at the start of all this.");
 	output("\n\nWhat’s that beeping...?");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Requires Kiro have milky tiddies. Can be any of the 3 sizes, I'm pretty sure.
+//Requires PC to have a dongus.
+public function kiroMilkyTiddyFukk(x:int):void
+{
+	clearOutput();
+	showKiro(true);
+	author("Fenoxo");
+	
+	output("Unashamedly, you reach out for Kiro’s [pc.chest] and wrap your fingers around her inky nipples, giving them the tiny tug that it takes to make her milk start flowing.");
+
+	//First time
+	if(flags["KIRO_MILKTITTYFUCK"] == undefined)
+	{
+		output("\n\n<i>“[pc.name]!”</i> Kiro slaps your hands away. <i>“If you were thirsty, all you had to do was ask!”</i>");
+		output("\n\nYou counter by asking her if she’s ever had a milky titty fuck.");
+		output("\n\n<i>“I have. A few dozen times,”</i> the tanuki admits, hefting her drizzling mounds a little higher" + (kiro.breastRows[0].breastRating() < 32 ? " with great effort":"") + ". <i>“Is that why you got me started?”</i> She glances to your " + (pc.isErect() ? "oh-so-turgid":"rapidly engorging") + " loins with a sultry smile.");
+		output("\n\nNodding, you hold up your hands, caught in the act.");
+		output("\n\n<i>“Surely you know the old adage about chugging faster than you can swallow?”</i> Kiro muses while placing her fingers on the dripping teats and squeezing. Ever-widening flows of alabaster course through her chocolate chestfur.");
+		output("\n\nYou ask her if she meant, <i>“Biting off more than you can chew.”</i>");
+		output("\n\n<i>“Same difference,”</i> the flushing fuzzball says, <i>“but you’ll need to be okay with my little friend joining the party.”</i>");
+		output("\n\nRight on cue, Kiro’s dick makes its appearance by rising up into the dripping undervalley of tanuki-bust, throbbing its way through the curtains of creamy milk to jut into the vulnerable cleavage. Fresh fluids course down its exposed length. Where her medial ring bulges out, the liquid shimmers hypnotically before racing back down to puddle in her sheath. Kiro moans from the accumulated sensation and throws her hips forward, thrusting so forcefully into her own chest ");
+		if(kiro.breastRows[0].breastRating() <= 11) output("that her tits briefly bounce apart before messily clapping together again.");
+		else if(kiro.breastRows[0].breastRows() < 32) output("that her science-swollen tits heave upwards, lancing arcs of opal in every direction.");
+		else output("that her ultraporn-worthy giga-tits ripple as if struck by a shockwave, throwing bits of milk every which way.");
+		output("\n\nStray droplets spatter your exposed [pc.cockNounSimple " + x + "] with warm, wet promise.");
+		output("\n\nKiro, having accidentally warmed herself up, says, <i>“Fuck it!”</i> and grabs you by the dick, forcibly dragging you into the bed. <i>“Fuck my tits then, Angel.”</i> She lays back with her hands cupping " + (kiro.breastRows[0].breastRating() > 11 ? "as much of ":"") + "her tits" + (kiro.breastRows[0].breastRating() > 11 ? " as possible":"") + ", presenting them to you for the taking. <i>“You know you want to.”</i>");
+		output("\n\nYou do.");
+	}
+	//Repeats
+	else
+	{
+		output("\n\n<i>“[pc.name]! Again?”</i> Kiro playfully slaps your hands away, but there’s no force to it. <i>“You’re almost as handsy as me, cheeky devil! Another titfuck?”</i> Creamy dribbles roll down her dusky nipples. <i>“I’ve been hoping you’d ask. Watch this!”</i> She wraps her entire hands around her areolae and firmly works her way down her elongating teats, squeezing out a torrential outpouring of lactic delight. Her underbust is instantly soaked by the deluge, and a few stray drops strike your [pc.cockNoun " + x + "].");
+		output("\n\nAt the same time, the pillar-like mass of her surging equine fuckmeat thrusts up from below, slamming into the recently soaked cleavage and diving deep into the creamy canyon. Kiro gasps in pleasure as ");
+		if(kiro.breastRows[0].breastRating() <= 11) output("her tits briefly bounce apart before messily clapping together again.");
+		else if(kiro.breastRows[0].breastRating() < 32) output("her science-swollen tits heave upwards, lancing arcs of opal in every direction.");
+		else output("her ultraporn-worthy giga-tits ripple as if struck by a shockwave, throwing bits of milk every which way.");
+		output(" <i>“Hot, right?”</i> she moans, reaching out to grab you by the dick, but her soaked paws slip right off. Kiro tumbles backwards, a mess of genitalia and breast just waiting to be claimed. <i>“Fuck my tits, Angel!" + (silly ? " Do it now!":" Fuck my milky tits!") + "”</i>");
+		output("\n\nYou really, really want to.");
+	}
+	//merge
+	//NormieTid: climb in, slide dick into her cleavage, lean over for kiss
+	if(kiro.breastRows[0].breastRating() <= 11)
+	{
+		output("\n\nGetting into bed is the easy part. Climbing onto the wet, squirming kui-tan without falling face-first onto her slick cock or even slicker breasts proves tougher, but you’re up to the task. Wrapping your fingers around her arousal-puffed nipple, you mantle your way onto the leaky tanuki and slap your [pc.cockNounSimple " + x + "] home against her moistened cleavage. It sinks into the soft mammaries almost immediately, parting Kiro’s pliant flesh with insistent ardor. You brace against the bed frame to thrust the rest of the way in. Pressure squeezes excess milk out of the compressed fur as you bury yourself to the [pc.knotBallsHilt " + x + "]");
+		var threshhold:Number = kiro.breastRows[0].breastRating();
+		if(pc.cocks[x].cLength() >= threshhold) 
+		{
+			output(", your upper expanse proudly jutting out");
+			if(pc.cocks[x].cLength() < threshhold * 1.4) output(", begging to be licked");
+			else if(pc.cocks[x].cLength() < threshhold * 1.8) output(", rubbing against Kiro’s cheek");
+			else output(", taller than Kiro’s head");
+		}
+		output(".");
+	}
+	//BigTid: climb in, cram dick into cleavage, play with volume, fingies sinking in, etc
+	else if(kiro.breastRows[0].breastRating() < 32)
+	{
+		output("\n\nGetting into bed is the easy part. Actually climbing onto the squirming kui-tan without slipping face-first into her smothering cleavage is another. You grab onto one of the kui-tan’s milk-spewing nipples for support, barely keeping your grip on the slick flesh, and ram your [pc.cockHead " + x + "] in with one ardent stroke. Kiro’s breasts part for you with ease, even if your fingers slip from her milk-spout and all but vanish into the cushy mound below. It feels almost unnaturally soft, like a part of a person shouldn’t be capable of being so pillowy, but your other hand confirms that Kiro’s practically a milky squeeze-toy these days.");
+	}
+	//HuegTid: climb in, cram dick in, boobs are fullbody cushions :3
+	else
+	{
+		output("\n\nGetting into bed is the easy part. Maneuvering around the person-sized pillows on Kiro’s chest is another matter. Hopping forward bounces them up the tanuki’s body - and back down into you just as hard, nearly tossing you to the ground. You grab onto her spurting nipples in a panic, riding the gelatinous masses like bucking broncos. They swiftly carry you back up onto the pirate’s belly, the motion driving your [pc.cockHead " + x + "] into the shadowed valley between. Pillowy softness gives way to rigid tumescence, and ribbons of white cream spill out around your girth, squeezed from saturated fur like water from a sponge.");
+		output("\n\nNow suitably mounted, Kiro’s boobs calm slightly, rebounding against your " + (pc.biggestTitSize() < 1 ? "chest":"own tits") + " with ever more gentle claps. Soon, the tender flesh is putty in your grip. It devours your hand up to the wrist when you squeeze and bounces hypnotically when you twitch your hips. Hanging on feels a bit like hugging two well-fed galotians: difficult but oh so rewarding. You can’t even see Kiro’s face over her capital-class titties, but you’re fairly certain she’s loving every second of this judging by the firmness of her milk-swollen teats and the whispery pants of joy she makes in response to your every ardent grope.");
+	}
+	//Merge
+	output("\n\n<i>“Just like that,”</i> Kiro urges, lifting her hips off the mattress to make you slide down her belly, deeper into her cleavage. You contact another source of firm heat within: her cock, just as hard as your own.");
+	if(pc.cocks[x].cLength() > 12) output(" She slurps on the exposed " + (pc.cocks[x].cLength() > 24 ? "shaft":"crown") + " once for good measure before continuing,");
+	output(" <i>“Milk me while you do it, Angel.”</i> Using her arms, she compresses her [kiro.chest] more firmly together around your [pc.cockNoun " + x + "], fountaining higher arcs of genetically-engineered fluids into the air. Most of it swirls its way back into her cleavage, warm and wet as it lubricates her jiggling titflesh around your sopping dong. <i>“Come on, let’s make a mess!”</i>");
+	output("\n\nYou hardly need any more encouragement. From your seated position, grabbing hold of the twin tanuki teats is easy. Now you can give them a proper milking! They immediately spurt and dribble, erupting into a dozen forking streams while lesser flows race down the dick-smothering curves, many of them pooling around your [pc.cock " + x + "] in an exceedingly pleasant way. Those fluid pockets, rather than spurting out when squeezed, shift delightfully across your sensitive veins, still trapped inside the once-fluffy cleavage with Kiro’s similarly embedded phallus.");
+	output("\n\nBlissful pressure that most cunts could only dream of assaults you as the tanuki squeezes in on her sopping melons with her arms. A moment later, she has them wobbling up and down once more" + (kiro.breastRows[0].breastRating() >= 32 ? ", nearly tossing you to the ground on each voluminous downstroke":"") + ". It feels every bit like Kiro’s tits are fucking you while you’re milking them, like they’re bucking down of their own volition to grant you the torrid ecstasy of a ");
+	if(pc.balls < 2) output("hilt");
+	else output("balls");
+	output("-deep fuck. Her cleavage milks you right back.");
+	output("\n\nSoon, your coordination falters. The scientifically-perfected swells are too good and too wet to endure. You’re panting and moaning with each spurt of Kiro’s milk that you wring out. Webs of cream dangle from your trembling digits while the drenched udders work your deeply-embedded [pc.cockNounSimple " + x + "] over. With each downstroke, you find yourself clenching and twitching, dragging your length through more of the simmering goop trapped alongside it.");
+	output("\n\nKiro giggles in response to one such spasm. <i>“What’s the matter, [pc.name]? Gonna cum for my big, fat milk-tits?”</i> She gasps when you respond with a more forceful milking but soon returns to taunting, <i>“Can’t hold your [pc.cumNoun] around big boobs?”</i> She whimpers this time, just as on edge as you are. You can feel her dick, buried just beneath your own, throbbing powerfully, expelling <i>something</i>.");
+	output("\n\nSo it’s not just milk slickening your [pc.cock " + x + "] now, but it feels too good to care. Kiro could be titfucking you through a gallon of her own pre, and you wouldn’t mind one iota so long as you got to keep milking her. Bending her nipples inward, you pour gallons of breastmilk into the kui-tan’s cock-stuffed chest-canyon. She whimpers with you, and when you begin to tug her tired, drippy teats around in sync with the motions of her breasts, you both cry out in rapturous joy.");
+	output("\n\nKiro climaxes first. You can feel the cum rocketing through her cock, bulging out against your own, all but massaging your urethral vent as it goes. Swampy warmth envelops you from [pc.cockHead " + x + "] all the way down to your ");
+	if(pc.balls > 0) output("[pc.sack]");
+	else if(pc.hasVagina()) output("[pc.vagina]");
+	else output("[pc.asshole]");
+	output(" once she finally ejaculates. Her breasts, jostling hypnotically, suddenly feel too tight around you. The tanuki-tits are too overloaded with cocks and milk and cum, and the pressure rises until streams of mixed sex-juices spray out in gooey fan.");
+
+	//Balls
+	if(pc.balls > 1) output("\n\nContact between Kiro’s silky toefur and your [pc.balls] comes as a complete surprise, one that grows into pure heaven as her soft pads curl up to cup your roiling orbs, squeezing them fondly.");
+	else output("\n\nKnowing you’re on the edge of joining her, you savagely slam home one last time, feeling the swirling fluids coaxing you toward heaven. <i>“More!”</i>");
+	//Merge no new pg.
+	output(" You cum violently hard. It feels like every part of you is trembling at once, your fingertips wrenching hard on tanuki’s nipples one last time. Geysers of her milk spray up while you unload");
+	if(pc.cocks[x].cLength() > 26) output(" onto the wall behind her head");
+	else if(pc.cocks[x].cLength() > 11) output(" onto her face");
+	else output(" onto her tit-bound horsecock");
+	output(", pumping out shots of relief alongside the firehose-like flow of sinfully sweet lactation. Kiro’s dick, spurting out its own load, thwacks your underside with each cleavage-flooding eruption, almost taunting you, coaxing you to keep going with each cock-to-cock slap.");
+	output("\n\nMeanwhile, rivers of three-way-mixed fluids vent into Kiro’s face - and the sheets. You ruin the bed with her, neither of you willing to uncouple while her breasts feel this good, and you’re certainly unwilling to let go of her nipples, not when pinching them makes her squeak and bounce so sweetly. You wring the tanuki dry, and her bosom does the same to your [pc.cock " + x + "]. You’re soon twitching your way through the downswell of your climax" + (kiro.breastRows[0].breastRating() > 11 ? ", leaning into Kiro’s super-sized mounds for support":"") + ".");
+	output("\n\nEverything is so warm, and wet... and sticky.");
+	output("\n\nYou slump down atop Kiro, and she wraps an arm around you, pulling you tightly against the [kiro.chest] you just finished milking. <i>“We’ll have to do this again.”</i>");
+	output("\n\nYou may be drenched in sprays of her milk, but that doesn’t stop you from nodding in agreement. <i>“Let’s.”</i>");
+	processTime(32);
+	IncrementFlag("KIRO_MILKTITTYFUCK");
+	pc.applyMilkBathed();
+	pc.orgasm();
+	kiro.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

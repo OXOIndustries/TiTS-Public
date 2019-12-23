@@ -66,15 +66,18 @@ public function kqVictoryMenu1():void
 	if(pc.hasCock()) addButton(0,"Fuck Pussy",penisRouter,[fuckKirosPussyAwwwYeeeeeeea,80085,false,0],"Fuck Pussy",(kiro.vaginalVirgin ? "Take Kiro's virginity.":"Further cement your claim to the tanuki’s glimmering twat."));
 	else addDisabledButton(0, "Fuck Pussy", "Fuck Pussy", "You lack the penis this requires.");
 	addButton(1,"RideHerCock",vaginaRouter,[rideKirosVictoryCocku,kiro.cockVolume(0),1,0,true],"Ride Her Cock","Let that velvet-wrapped beast-pole fill you warmth and love.");
-	if(flags["KIRO_GF"] == undefined) 
+	if(!kiroIsCrew())
 	{
-		addButton(2,"No Sex",dontWantSexFromYou,undefined,"No Sex","");
+		if(flags["KIRO_GF"] == undefined) 
+		{
+			addButton(2,"No Sex",dontWantSexFromYou,undefined,"No Sex","");
+		}
+		else 
+		{
+			addDisabledButton(2,"No Sex","No Sex","She's already your girlfriend. Now isn't exactly the time to be breaking up with her...");	
+		}
+		if(flags["KIRO_LOVED"] == undefined) addButton(3,"I Love You",tellKiroYaLoveHerYouDolt,undefined,"I Love You","Confess your own feelings right here, right now, damnit!");
 	}
-	else 
-	{
-		addDisabledButton(2,"No Sex","No Sex","She's already your girlfriend. Now isn't exactly the time to be breaking up with her...");	
-	}
-	if(flags["KIRO_LOVED"] == undefined) addButton(3,"I Love You",tellKiroYaLoveHerYouDolt,undefined,"I Love You","Confess your own feelings right here, right now, damnit!");
 }
 
 //I Love You
@@ -259,7 +262,8 @@ public function rideKirosVictoryCocku3(x:int):void
 	pc.orgasm();
 	kiro.removePerk("Fixed CumQ");
 	clearMenu();
-	addButton(0,"Next",rideKirosVictoryCocku4,x);
+	if(!kiroIsCrew()) addButton(0,"Next",rideKirosVictoryCocku4,x);
+	else addButton(0,"Next",mainGameMenu);
 }
 
 public function rideKirosVictoryCocku4(x:int):void
@@ -414,7 +418,8 @@ public function fuckKirosPussyAwwwYeeeeeeea3(x:int):void
 	kiro.loadInCunt(pc,0);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",fuckKirosPussyAwwwYeeeeeeea4,x);
+	if(!kiroIsCrew()) addButton(0,"Next",fuckKirosPussyAwwwYeeeeeeea4,x);
+	else addButton(0,"Next",mainGameMenu);
 }
 public function fuckKirosPussyAwwwYeeeeeeea4(x:int):void
 {
