@@ -86,9 +86,9 @@ public function pennyIsCrew():Boolean
 public function pennyBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "PENNY";
-	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut() || nude)
+	if(penny.isBimbo() || pennyIsCumSlut() || nude)
 	{
-		if(flags["PENNY_BADGER_BIMBO"] != undefined) sBust += "_BIMBO";
+		if(penny.isBimbo()) sBust += "_BIMBO";
 		else sBust += "_NUDE";
 		if(penny.hasCock(GLOBAL.TYPE_VULPINE))
 		{
@@ -110,7 +110,7 @@ public function pennyBustDisplay(nude:Boolean = false):String
 }
 public function showPennyBust(nude:Boolean = false):void
 {
-	if(flags["PENNY_BADGER_BIMBO"] != undefined || pennyIsCumSlut())
+	if(penny.isBimbo() || pennyIsCumSlut())
 	{
 		if(pennyIsCrew()) showBust(pennyBustDisplay(true));
 		else if(hungryFlahneWithBimboPenny()) showBust(flahneBustDisplay(true),pennyBustDisplay(true));
@@ -188,7 +188,7 @@ public function pennyRoomDesc():Boolean {
 			addButton(0,"Penny",turnTheTablesOnBadger);
 		}
 		//Shortcut friend penny if bimboed.
-		else if(flags["PENNY_BADGER_BIMBO"] != undefined)
+		else if(penny.isBimbo())
 		{
 			if(flags["SEEN_BIMBO_PENNY"] == undefined) output("\n\nPenny is sitting up straight in her chair, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.");
 			else if(hours >= 8 && hours < 17) output("\n\nPenny is at her desk looking a little pent-up - and drinking something suspiciously white from her coffee cup.");
@@ -203,7 +203,7 @@ public function pennyRoomDesc():Boolean {
 			this.addButton(0,"Approach",approachFriendPenny);
 		}
 		//Cumslut penny
-		else if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
+		else if(pennyIsCumSlut())
 		{
 			if(flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)
 			{
@@ -1516,7 +1516,7 @@ public function talkToGirfriendPenny():void {
 	else addDisabledButton(4,"Futanari");
 	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) this.addButton(5,"Buy Throbb",buySomeThrobbFrompenny);
 	else addDisabledButton(5,"Buy Throbb","Buy Throbb","You need to talk to Penny about futanarification before you can buy this from her.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
+	if(pennyIsCumSlut()) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
 
 	if(flags["PENNY_CREW_ASKED"] != undefined && flags["PENNY_CREW_ASKED"] > 1) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve already had this talk. Having it again won’t do anything.")
@@ -1754,7 +1754,7 @@ public function pennyFutanariTalk():void {
 				this.addButton(14,"Back",approachGirlfriendPenny);
 			}
 			//Hyper Pre-cumslut Penny
-			else if (flags["PENNY_IS_A_CUMSLUT"] == undefined) {
+			else if (!pennyIsCumSlut()) {
 				author("Abe E. Seedy");
 				output("<i>“MMmoooore?”</i> Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
 				if(penny.balls > 0) output("cradles her balls");
@@ -3847,7 +3847,7 @@ public function whineToPennyCauseYerABitch():void
 		{
 			author("Savin & Fenoxo");
 			//Throbb penny (non cumslut)
-			if(flags["PENNY_IS_A_CUMSLUT"] == undefined)
+			if(!pennyIsCumSlut())
 			{
 				//Big penny
 				if(penny.longestCockLength() >= 10)
@@ -3863,7 +3863,7 @@ public function whineToPennyCauseYerABitch():void
 				output("\n\n<i>“Come on, Penny! This is serious!”</i> you chide through your embiggened lips. Maybe you can help her take care of that after the report.");
 				output("\n\n<i>“Fine,”</i> the shameless prick-vixen says with a sigh, pulling her hand out from under her desk to lick clean. Her entire palm is glistening with pre-cum, you note. The flavor appears quite enjoyable.");
 			}
-			//Throbb Penny (Cumslut
+			//Throbb Penny (Cumslut)
 			else
 			{
 				output("\n\nThe more you talk, the harder Penny’s cock becomes, rising in fits and starts, eventually lurching so powerfully that it slaps in between the cop-herm’s mammaries hard enough to make them bounce. The over-sexed cumslut has no hope of resisting such a delicious-looking spunk-spout and leans down to lick mid story, shamelessly tonguing dollops of pre from her distended slit to every sordid detail.");
@@ -3881,7 +3881,7 @@ public function whineToPennyCauseYerABitch():void
 		}
 		//Merge
 		output("\n\nAs you recount your misadventure, Penny’s ");
-		if(penny.hasCock() && flags["PENNY_IS_A_CUMSLUT"] == undefined) output("still-moist ");
+		if(penny.hasCock() && !pennyIsCumSlut()) output("still-moist ");
 		output("fingers fly across her keyboard, filling out the police report for you. She grunts and shakes her head from time to time, especially when you mention the badgerfication ray, and she asks you a few questions about the doctor’s weapons and the way she grabbed you. When you’ve answered her questions to her satisfaction, Penny hits a submit button on her screen and puts a reassuring hand on yours.");
 		output("\n\n<i>“Alright, I’ve forwarded your report to the Tarkus Peacekeeper. They’ll make sure this ‘doctor’ is taken care of,”</i> ");
 		if(flags["SEXED_PENNY"] != undefined) output("your lover growls. If you didn’t know better, you’d say it might have been protectively");
@@ -3894,7 +3894,7 @@ public function whineToPennyCauseYerABitch():void
 		output(", though I gotta admit, I would’ve killed for one of those rays a few years ago.”</i> Penny muses. <i>“Is there anything else you’d like to take care of while you’re here?");
 		if(flags["SEXED_PENNY"] != undefined)
 		{
-			if(flags["PENNY_IS_A_CUMSLUT"] != undefined) output(" Maybe help a horny vixen blow off some steam?");
+			if(pennyIsCumSlut()) output(" Maybe help a horny vixen blow off some steam?");
 			else output(" Maybe I can make you feel safer in my arms...");
 		}
 		output("”</i>");
@@ -3944,7 +3944,7 @@ public function whineToPennyCauseYerABitch():void
 public function needPennyPanties():Boolean
 {
 	if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) return false;
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) return true;
+	if(pennyIsCumSlut()) return true;
 	return false;
 }
 
