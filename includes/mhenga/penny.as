@@ -1308,7 +1308,7 @@ public function talkToPennyAboutYourself():void {
 public function approachGirlfriendPenny():void {
 	clearOutput();
 	showPenny();
-	if(flags["PENNY_BIMBO"] != undefined)
+	if(penny.isBimbo())
 	{
 		approachBimboPenny();
 		return;
