@@ -1314,7 +1314,7 @@ public function approachGirlfriendPenny():void {
 		return;
 	}
 	//Cumslut approaches
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) 
+	if(pennyIsCumSlut()) 
 	{
 		//REPEAT GREETINGS:
 		//IF TOLD TO KEEP IT SECRET:
@@ -2102,11 +2102,11 @@ public function pennySexMenu(outputT:Boolean = true):void {
 	if(penny.hasCock()) this.addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(8,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	if(pennyIsCumSlut()) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
 	else addDisabledButton(9,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	if(pennyIsCumSlut() && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
 	else addDisabledButton(10,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
-	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut()) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
