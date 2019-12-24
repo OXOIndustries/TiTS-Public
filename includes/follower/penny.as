@@ -267,7 +267,7 @@ public function pennyCrewTalkMenu():void
 	if(penny.isSquirter()) addButton(5,"Squirting",pennySquirtingTalk,undefined,"Squirting","Ever since being encapsulated by the ziltrap, Penny has been a squirter. Ask how she feels about it.");
 	else addDisabledButton(5,"Disabled","Disabled","This option is only available as a result of certain events while recruiting Penny to your crew.");
 
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
+	if(pennyIsCumSlut()) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
 
 	if (flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") addButton(7, "No Sleep W.", pennySleepwithInvite, undefined, "Ask Penny to give you some space for the night.");
@@ -429,7 +429,7 @@ public function futanariTalkWithPenpen():void
 				this.addButton(14,"Back",approachCrewPenny,true);
 			}
 			//Hyper Pre-cumslut Penny
-			else if (flags["PENNY_IS_A_CUMSLUT"] == undefined) {
+			else if (!pennyIsCumSlut()) {
 				author("Abe E. Seedy");
 				output("<i>“MMmoooore?”</i> Penny moans as she starts to masturbate in front of you. Her hand can’t even close around her girth at this point, and the tip is so tall that it smacks her in the chin whenever she gets careless. She grabs hold of it with both hands, one sliding over the half facing you while the other ");
 				if(penny.balls > 0) output("cradles her balls");
