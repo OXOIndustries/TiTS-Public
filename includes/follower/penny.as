@@ -15,7 +15,7 @@ public function pennyCrewDesc(btnSlot:int = 0, showBlurb:Boolean = true):String
 	}
 	//Girlfriend penny
 	else {
-		if(flags["PENNY_IS_A_CUMSLUT"] != undefined || penny.isBimbo())
+		if(pennyIsCumSlut() || penny.isBimbo())
 		{
 			buffer += "\n\nPenny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
 		}
@@ -46,7 +46,7 @@ public function approachCrewPenny(back:Boolean = false):void
 			greetings.push("Penny smirks, <i>“We could always fuck...”</i>");
 		}
 		//Penny is bimbo
-		if(penny.isBimbo() || flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny guides her dick into her mouth, idly sucking. She raises one eyebrow as if to suggest that you should take advantage of the situation.");
+		if(penny.isBimbo() || pennyIsCumSlut()) greetings.push("Penny guides her dick into her mouth, idly sucking. She raises one eyebrow as if to suggest that you should take advantage of the situation.");
 		if(flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny smiles, languidly fondling her [penny.cockNoun]. <i>“Stars, I love this dick. Thank you so much, [pc.name].”</i> She favors her erection with a long, passionate kiss. <i>“Almost as much as I love you, mate.”</i>");
 		output(RandomInCollection(greetings));
 	}
@@ -1481,7 +1481,7 @@ public function watchPennyHaveFun():void
 	clearOutput();
 	showPenny(true);
 	author("Wsan");
-	if(flags["PENNY_BIMBO"] != undefined) 
+	if(penny.isBimbo()) 
 	{
 		output("Penny’s cute moans reach a fever pitch as you watch her, one delicate hand masturbating her maleness while her eyes roll in her silly head. As airheaded as she is, she’s certainly an expert at pleasing cocks - especially her own. What you’re seeing, though, isn’t a display of sensual technique lovingly applied to drive a partner wild. It’s desperation, it’s frustration, it’s pent-up sexual aggression manifested before your very eyes.");
 		output("\n\n<i>“Oh, gosh!”</i> Penny cries in bliss, her feminine hips rolling up and down in need. <i>“Hh-huuunnnh!”</i>");
@@ -1525,7 +1525,7 @@ public function interruptPennyfaps():void
 	author("Wsan");
 	output("<i>“Adorable,”</i> you say.");
 	output("\n\nPenny yelps and grabs her blankets in reflexive panic, looking up at you wide-eyed and panting, gigantic ears laid back against her head. Her expression relaxes when she sees you grinning at her,");
-	if(flags["PENNY_BIMBO"] != undefined) 
+	if(penny.isBimbo()) 
 	{
 		output(" giving you a dopey smile.");
 		output("\n\n<i>“Hiya, [pc.name]!”</i> she says, wagging her tail. <i>“Didja come here to watch me cum all over myself?”</i>");
@@ -1576,14 +1576,7 @@ public function reachAroundThePennyslut(x:int):void
 	output("\n\nWell, that’s what you came here for in the first place. Gripping her cock tight, you begin fucking her dripping slit hard enough for her ass to clap and roughly jacking her off. You get the desired result pretty much immediately. She screams in bliss and tenses up, pressing herself back into you and almost doubling over in pleasure. The precum dripping over your fingers doubles as the foxgirl writhes in your hands, her head pressing back into your chest as she tries to arch her back.");
 	output("\n\n<i>“Fuuuck,”</i> she moans on a shuddering inhale, letting it all out in a wordless scream the next moment. <i>“Uuuuuuunnnnnhhh!”</i>");
 	output("\n\nPenny cums so hard the first shot spatters against the opposite wall, milked from her pulsing cock by your squeezing fingers. She bucks and jerks in automatic reflex, gasping breathlessly while you force rope after rope of hot spunk from her " + (penny.hasCock(GLOBAL.TYPE_EQUINE) ? "flaring cockhead.":" canine tip.") + " Her pussy clamps down on you" + (x < 0 ? "r dildo":"") + " so fiercely you cum on the spot," + (x < 0 ? " the hardlight almost immobilizing you with the strength of its feedback.":" [pc.cum] pumping up into her spasming cunt.") + " The movement of your arm becomes almost mechanical, jerking and jumping while both of you arrhythmically tense and relax against each other.");
-	if(pennyIsCumSlut())
-	{
-		output("\n\n<i>“Oh, shit, there’s so much </i>cum<i>,”</i> Penny whimpers, gingerly touching your hand and wiping it clean with her fingers before popping them into her mouth. <i>“Mmphm...”</i>");
-		output("\n\nYou wordlessly lift your hand to her lips and she begins cleaning it off with her tongue, angling her head as she licks and sucks at you. Following that you turn her around, pulling out and letting her clean off your " + (x < 0 ? "hardlight":"cock") + " while her pussy drips on the bed.");
-		output("\n\n<i>“Okay, I’m gonna get back to it,”</i> you say to Penny, noting she’s still got the panties clasped in her hand, arm dangling off the bed. <i>“You can keep those... I’ll send Mitzi around to get them later.”</i>");
-		output("\n\nShe gives you a tired wave as the door closes behind you.");
-	}
-	else if(flags["PENNY_BIMBO"] != undefined)
+	if(penny.isBimbo())
 	{
 		output("\n\n<i>“Oh, </i>wow<i>,”</i> Penny sighs dreamily, falling back against your [pc.chest]. <i>“That was amazing, [pc.name]...”</i>");
 		output("\n\nShe leans upwards to give you a kiss with your " + (x < 0 ? "hardlight":"half-hard cock") + " still deep inside her, gyrating her hips and squeezing until you pull back with a pleased grin.");
@@ -1591,6 +1584,13 @@ public function reachAroundThePennyslut(x:int):void
 		output("\n\n<i>“Uh huh,”</i> she nods happily, looking around her room. <i>“I’m good at cleaning!”</i>");
 		output("\n\n<i>“That’s good,”</i> you say, " + (x >= 0 && !pc.isCrotchExposed() ? "re-dressing ":"") + "and turning around at the door. <i>“I’ll swing by later and see you, okay?”</i>");
 		output("\n\n<i>“Yeah! See you soon, [pc.name]!”</i> Penny says, smiling wide.");
+	}
+	else if(pennyIsCumSlut())
+	{
+		output("\n\n<i>“Oh, shit, there’s so much </i>cum<i>,”</i> Penny whimpers, gingerly touching your hand and wiping it clean with her fingers before popping them into her mouth. <i>“Mmphm...”</i>");
+		output("\n\nYou wordlessly lift your hand to her lips and she begins cleaning it off with her tongue, angling her head as she licks and sucks at you. Following that you turn her around, pulling out and letting her clean off your " + (x < 0 ? "hardlight":"cock") + " while her pussy drips on the bed.");
+		output("\n\n<i>“Okay, I’m gonna get back to it,”</i> you say to Penny, noting she’s still got the panties clasped in her hand, arm dangling off the bed. <i>“You can keep those... I’ll send Mitzi around to get them later.”</i>");
+		output("\n\nShe gives you a tired wave as the door closes behind you.");
 	}
 	else
 	{
