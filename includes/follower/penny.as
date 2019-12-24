@@ -47,7 +47,7 @@ public function approachCrewPenny(back:Boolean = false):void
 		}
 		//Penny is bimbo
 		if(penny.isBimbo() || pennyIsCumSlut()) greetings.push("Penny guides her dick into her mouth, idly sucking. She raises one eyebrow as if to suggest that you should take advantage of the situation.");
-		if(flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny smiles, languidly fondling her [penny.cockNoun]. <i>“Stars, I love this dick. Thank you so much, [pc.name].”</i> She favors her erection with a long, passionate kiss. <i>“Almost as much as I love you, mate.”</i>");
+		if(pennyIsCumSlut()) greetings.push("Penny smiles, languidly fondling her [penny.cockNoun]. <i>“Stars, I love this dick. Thank you so much, [pc.name].”</i> She favors her erection with a long, passionate kiss. <i>“Almost as much as I love you, mate.”</i>");
 		output(RandomInCollection(greetings));
 	}
 	//Badgurquest raygun handoff 
