@@ -259,7 +259,7 @@ public function kiroMenu():void
 	else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don’t know the right person well enough for this.");
 	else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(5,"Paige","Paige","You need a deeper relationship with Paige for this.");
 	else addDisabledButton(5,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
-	
+	if(kiroRecruited() && !kiroIsCrew()) addButton(13,"Join Crew",rerecruitKiro,undefined,"Join Crew","Get Kiro back on your ship.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1709,7 +1709,7 @@ public function takeKirosVirginity():void
 	showKiro(true);
 	output("Looking up at her from the bed, you catch a glimpse of her shiny black pussy lips. They practically wink at you. Why haven’t you fucked those yet? You stretch out an arm, cradling her balls gently before slipping past to rub at the alluring entrance. <i>“How about a little cow-girl?”</i> you suggest with your fingers already beginning to explore her innermost places.");
 	//Low trust
-	if(kiroTrust() < 75 && kiro.vaginalVirgin) 
+	if(kiroTrust() < 75 && kiro.vaginalVirgin && !pc.hasStatusEffect("RoleplayingWithKiro")) 
 	{
 		output("\n\nWide-eyed, Kiro bats your hand away with enough force to make your wrist ache. <i>“No!”</i> Her jaw works, and she repeats the word more softly, a little nervously even. <i>“Angel, no. I’m saving that for when I meet the right person. The last thing I need is to be saddled down with a kid I’m not ready for. All I have to do is keep my legs closed and use this big ol’ bitch-breaker whenever I get a little lusty.”</i>");
 		output("\n\n<i>“Come on,”</i> you cajole. <i>“It’ll feel way better. I promise.”</i>");
@@ -1927,7 +1927,20 @@ public function tookKiroginityPartIII(x:int):void
 	IncrementFlag("KIRO_VAG_FUCKED");
 	
 	clearMenu();
-	addButton(0,"Next",kiroginityEpilogue);
+	if(pc.hasStatusEffect("RoleplayingWithKiro")) addButton(0,"Next",roleplayKiroOutro);
+	else addButton(0,"Next",kiroginityEpilogue);
+}
+
+public function roleplayKiroOutro():void
+{
+	clearOutput();
+	showKiro(true);
+	author("Fenoxo");
+	output("A quick shower helps put an end to the impassioned roleplay session.");
+	pc.shower();
+	pc.removeStatusEffect("RoleplayingWithKiro");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 // To queue her panties scene

@@ -1,8 +1,3 @@
-/*TODO:
-*Roleplaying Menu:
-	Redux "post-quest" victories
-	Redux of first-time vag-bang.*/
-
 public function kiroRecruited():Boolean
 {
 	return (flags["KIRO_RECRUITED"] == 1);
@@ -140,7 +135,7 @@ public function kiroCrewMenu():void
 	addButton(1,"Talk",talkToKiro,undefined,"Talk","Sit down with Kiro for a talk.");
 	if(pc.lust() >= 33) addButton(2,"Sex",kiroCrewSexApproach,undefined,"Sex","Kiro has always been a creature of obscene sexual appetite. Just ask, and she'll be down for almost anything.");
 	else addDisabledButton(2,"Sex","Sex","Kiro might be, but you aren't aroused enough for sex right now.");
-
+	addButton(13,"Leave Crew",leaveTheCrewKiro,undefined,"Leave Crew","Ask Kiro to leave the crew temporarily.");
 	addButton(14,"Back",crew);
 }
 public function kiroCrewSexMenu():void
@@ -224,6 +219,16 @@ public function roleplayWithKiro():void
 	clearMenu();
 	addButton(14,"Back",kiroCrewSexMenu,true);
 	addButton(0,"Celebration",kqVictorySurprise,undefined,"Celebration","Replay celebrating your victory over Doctor Po with tanuki.");
+	if(kiro.vaginas[0].hymen) addDisabledButton(1,"Take Virginity","Take Virginity","You need to do this for real before roleplaying it.");
+	else if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0) addButton(1,"Take Virginity",queueTakeKirosVirginity,undefined,"Take Virginity","Experience what it's like to deflower Kiro.");
+	else if(pc.hasCock()) addDisabledButton(1,"Take Virginity","Take Virginity","You're too hung for this. Kiro simply can't handle that amount of girth.");
+	else addDisabledButton(1,"Take Virginity","Take Virginity","You need a penis to do this.");
+}
+
+public function queueTakeKirosVirginity():void
+{
+	pc.createStatusEffect("RoleplayingWithKiro");
+	takeKirosVirginity();
 }
 
 public function kiroCrewSexMenuBigBalls():void
@@ -429,6 +434,10 @@ public function kiroCrewTalkMenu():void
 	addButton(3,"FavBootyCall",kiroFavoriteBootyCall,undefined,"Favorite Booty Call","You know Kiro gets around. Sit down with a drink and ask her if she has any she'd like to tell you about.");
 	if(flags["MET_URBOLG"] != undefined) addButton(4,"Zheng Shi",kiroZhengShiTalk,undefined,"Zheng Shi","Ask Kiro about Zheng Shi, now that you've been there.");
 	else addDisabledButton(4,"Locked","Locked","This conversation requires you to visit the location of the fourth SteeleTech probe.");
+	addButton(5,"Ball Size",kiroBallsizeTalk,undefined,"Ball Size","Talk to Kiro about her ball size. Maybe you can get her to make some changes...");
+	if(!(pc.lowerUndergarment is EmptySlot) && flags["KIRO_GIVEN_PANTIES"] == undefined) addButton(13,"Give Undies",giveKiroPanties,undefined,"Give Undies","Give Kiro the underwear you're wearing.");
+	else if(flags["KIRO_GIVEN_PANTIES"] != undefined) addDisabledButton(13,"Give Undies","Give Undies","You already gave her a pair.");
+	else addDisabledButton(13,"Give Undies","Give Undies","You need to be wearing underwear for this.");
 	addButton(14,"Back",approachCrewKiro,true);
 }
 
@@ -884,7 +893,7 @@ public function kiroMilkyTiddyFukk(x:int):void
 		output("\n\n<i>“Same difference,”</i> the flushing fuzzball says, <i>“but you’ll need to be okay with my little friend joining the party.”</i>");
 		output("\n\nRight on cue, Kiro’s dick makes its appearance by rising up into the dripping undervalley of tanuki-bust, throbbing its way through the curtains of creamy milk to jut into the vulnerable cleavage. Fresh fluids course down its exposed length. Where her medial ring bulges out, the liquid shimmers hypnotically before racing back down to puddle in her sheath. Kiro moans from the accumulated sensation and throws her hips forward, thrusting so forcefully into her own chest ");
 		if(kiro.breastRows[0].breastRating() <= 11) output("that her tits briefly bounce apart before messily clapping together again.");
-		else if(kiro.breastRows[0].breastRows() < 32) output("that her science-swollen tits heave upwards, lancing arcs of opal in every direction.");
+		else if(kiro.breastRows[0].breastRating() < 32) output("that her science-swollen tits heave upwards, lancing arcs of opal in every direction.");
 		else output("that her ultraporn-worthy giga-tits ripple as if struck by a shockwave, throwing bits of milk every which way.");
 		output("\n\nStray droplets spatter your exposed [pc.cockNounSimple " + x + "] with warm, wet promise.");
 		output("\n\nKiro, having accidentally warmed herself up, says, <i>“Fuck it!”</i> and grabs you by the dick, forcibly dragging you into the bed. <i>“Fuck my tits then, Angel.”</i> She lays back with her hands cupping " + (kiro.breastRows[0].breastRating() > 11 ? "as much of ":"") + "her tits" + (kiro.breastRows[0].breastRating() > 11 ? " as possible":"") + ", presenting them to you for the taking. <i>“You know you want to.”</i>");
@@ -965,4 +974,278 @@ public function kiroMilkyTiddyFukk(x:int):void
 	kiro.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//Leave Crew
+public function leaveTheCrewKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You let Kiro know that you need more space on the ship and that she won’t be able to accompany you for the next portion of your journey.");
+	//On the blade
+	if(shits["SHIP"] is Blade)
+	{
+		output("\n\n<i>“Is that so?”</i> Kiro folds her arms across her chest. A dangerous glimmer flashes through her crimson eyes. <i>“I suppose you won’t have much storage space without the Blade, will you? I personally recommend cardboard boxes - not environmentally friendly, but a pawful of credits should score you enough for your junk.”</i>");
+		output("\n\nYou raise a finger, on the cusp of attempting a retort, before realizing you have no leg to stand on. It’s her ship; you can’t expect her to be okay with being evicted from her own property. You’ll have to find a different vessel if you want to part ways with Kiro - or make room some other way.");
+		processTime(3);
+		clearMenu();
+		addButton(0,"Next",approachCrewKiro,true);
+	}
+	//Not on the blade
+	else
+	{
+		output("\n\nLaughing to herself, Kiro nods agreeably. <i>“I got you, Angel. There’s a whole galaxy of fresh, wet sluts waiting for you, and you don’t want to be dragging your biggest, hardest competitor around with you.”</i> She winks and whips about, boofing you backwards with her tail. <i>“I’ll get my things from my quarters and load up the Blade. See you at a bar?”</i>");
+		output("\n\nYeah, you’ll see her at a bar. All of them, knowing Kiro.");
+		output("\n\n(<b>Kiro has left your crew. You can invite her back from almost any bar.</b>)");
+		processTime(3);
+		clearMenu();
+		addButton(0,"Next",crew);
+		flags["KIRO_ONBOARD"] = undefined;
+	}
+}
+
+//Re-Recruit Crew
+public function rerecruitKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You ask Kiro if she’s free to join your crew for some Rush adventures.");
+	output("\n\n<i>“Do I look like a corpslut slaving away at her 9-to-5? Here on her UGC-mandated 10 minute lunch break? No.”</i> Kiro smirks. <i>“Pirates set their own schedules, and my schedule opened up wider than a dzaan beta’s legs.”</i> She leans close, eyes wide with excitement. <i>“");
+	if(shits["SHIP"].shipCost() <= new Blade().shipCost() || shits["SHIP"] is Blade) output("We should load up on my ship, though. The Blade’s hard to beat.");
+	else output("We don’t even have to use my ship. I hear you’re puttering around with some real classy digs these days.");
+	output("”</i>");
+
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Who cares about a dumb ol’ ship when I can have the best kui-tan in the whole gosh-dang galaxy by my side?”</i> You kiss her nose.");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou shrug. <i>“Ship doesn’t matter.”</i> You jab your finger against her ribcage. <i>“You do.”</i>");
+	//Nice
+	else if(pc.isNice()) output("\n\nYou gently sock her on the shoulder and explain, <i>“I’m more worried about my crew than our backdrop.”</i>");
+	else if(pc.isMischievous())
+	{
+		//Mischievous
+		output("\n\nYou shrug. <i>“");
+		if(shits["SHIP"].shipCost() <= new Blade().shipCost() || shits["SHIP"] is Blade) output("Look, sometimes you need to cart around a pair of giant nuts to fly the cool leaf-ship. It’s a price worth paying.");
+		else output("The only downside of having such a bitching ride is you can never tell if the hot space sluts want in your pants or your ship. It’s a real first world problem.");
+		output("”</i>");
+		output("\n\nA flash of hurt crosses Kiro’s face until she sees your shit-eating-grin, at which point she knocks back a swig of her drink and warmly curses, <i>“Cunt.”</i>");
+		output("\n\n<i>“Bitch,”</i> you retort.");
+		output("\n\n<i>“Twat-waffle.”</i> Kiro’s eyes sparkle.");
+		output("\n\nYou raise a glass to her. <i>“To the biggest, baddest dick in the sector.”</i> Knocking back a shot never felt so smooth.");
+	}
+	//Hard
+	else output("\n\nYou raise your hands and point at yourself. <i>“I’m the captain" + (silly ? " now":"") + ". You come along, and you’ll ride on whatever ship I want to fly.”</i> The heaviness of that statement hangs in the air until even you feel a little bad for speaking so bluntly. <i>“But I assure you, I want you on my crew. You’re the best damn pirate I’ve met.”</i>");
+	//merge
+	output("\n\n<i>“Flattery doesn’t work on me,”</i> Kiro states, polishing off the last of her drink. She slowly rises, automatically doing a visual sweep of the bar for trouble." + (silly ? " Her ocular pat-down comes up empty.":"") + " <i>“But it doesn’t hurt either. You keep that up, and morale ought to be through the roof.”</i> Kiro winks and turns away, sashaying toward the door. <i>“I’ll have my shit loaded up by the time you finish here.”</i>");
+	output("\n\n(<b>Kiro has joined your crew!</b>)");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	flags["KIRO_ONBOARD"] = 1;
+	refreshRoamingBarEncounter();
+}
+
+//Kiro Automatically Joins Crew If You’re On The Blade
+public function kiroAutojoin():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("Kiro saunters up the Blade’s boarding ramp with a hovercart-load of possessions, including the infamous milker whose mechanical deficiencies can be thanked for introducing you. <i>“Hey there, [pc.name]. Since you’re taking my ship, it’s only fair that you take me too.”</i> Her tail swishes happily behind her. <i>“It’s only fair.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Sure",sureComeOnCrewKiro);
+	addButton(1,"No",noForcyCrewShitKiro);
+}
+
+//No
+public function noForcyCrewShitKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You shake your head. <i>“Not this time.”</i>");
+	output("\n\nKiro shakes her head right back. <i>“It’s still my ship. Don’t be a fucking leithan turd, Angel. You want to fly her? Fine. But I’m coming along for the ride.”</i>");
+	output("\n\n(<b>Kiro has joined your crew.</b> You’ll need to fly another ship if you want to get rid of her.)");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	flags["KIRO_ONBOARD"] = 1;
+	refreshRoamingBarEncounter();
+}
+
+//Sure
+public function sureComeOnCrewKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("<i>“Sure,”</i> you state in your most agreeable voice. <i>“It’ll be a party.”</i>");
+	output("\n\nKiro flashes a winsome smile. <i>“Fuck yeah it will be. The galaxy’s brightest stars all together on one vessel. What could wrong?”</i> She grunts and climbs the rest of the way up the ramp.");
+	output("\n\n(<b>Kiro has joined your crew!</b> If you want rid of her, you’ll need to fly a different ship.)");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	flags["KIRO_ONBOARD"] = 1;
+	refreshRoamingBarEncounter();
+}
+
+//Talk To Kiro About Ballsize
+//Used for getting her to stay backed up longer or never get backed up.
+public function kiroBallsizeTalk():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("<i>“Kiro, can we talk about your balls for a second?”</i> you ask.");
+	output("\n\nThe kui-tan says, <i>“Oh, Angel, I’ve been waiting for you to ask.”</i> She reaches down to ");
+	if(kiro.ballDiameter() > 24) output("caress one of her obscenely swollen orbs");
+	else if(kiro.ballDiameter() > 7) output("pat the heavy, swollen orb");
+	else output("cup a virile but recently-emptied testicle");
+	output(". <i>“Go on. Tell me what you like most about them. The weight? My silky ballfur? That subtle, pervasive musk that you just wanna bury your face in? Maybe you’re more visual. I bet you like watching them bulge out under the hem of my dress.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Oh I could never pick just one part about them. They’re perfect, Kiro, but I like, wanted to ask you something different.”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\n<i>“Decent musk,”</i> you grunt, <i>“but not what I meant.”</i>");
+	//Else
+	else output("\n\n<i>“That would be like picking a favorite child. I’d never hear the end of it. No that’s not what I meant.”</i>");
+	//merge no new pg:
+	output(" You sneak a peek at them anyway, lingering a second longer than necessary. <i>“I wanted to talk about the size you keep them at.”</i>");
+	output("\n\nContemplation cools the kui-tan’s enthusiasm. <i>“Oh? I suppose you’ve saved my nuts enough to have a stake in how I keep them.”</i>");
+	output("\n\nHow do you want her to keep her balls?");
+	processTime(3);
+	clearMenu();
+	if(flags["KIRO_BALLS"] != undefined) addButton(0,"Normal",stayNormalKiro);
+	else 
+	{
+		output(" She's keeping them <b>normal</b>, letting them swell and empty as they will.");
+		addDisabledButton(0,"Stay Normal","Stay Normal","She's already keeping them at this level.");
+	}
+	if(flags["KIRO_BALLS"] != 1) addButton(1,"Small",smallBallsKiro);
+	else 
+	{
+		output(" She's keeping them <b>small</b> right now.");
+		addDisabledButton(1,"Stay Small","Stay Small","She's already keeping them at this level.");
+	}
+	if(flags["KIRO_BALLS"] != 2) addButton(2,"Medium",tellKiroToGetMediumBalls);
+	else 
+	{
+		output(" She's keeping them <b>medium</b> right now.");
+		addDisabledButton(2,"Stay Med","Stay Med","She's already keeping them at this level.");
+	}
+	if(flags["KIRO_BALLS"] != 3) addButton(3,"Stay Huge",stayHugeKiro);
+	else 
+	{
+		output(" She's keeping them <b>huge</b> right now.");
+		addDisabledButton(3,"Stay Huge","Stay Huge","She's already keeping them at this level.");
+	}
+
+	addButton(14,"Back",talkToKiro);
+}
+
+//Normal
+public function stayNormalKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You tell her to go back to tending to her balls as normal.");
+	output("\n\nTension visibly eases from Kiro’s shoulder at the statement. <i>“Thanks, [pc.name]. It was fun sizing them to order and all, but sometimes it’s just nice to let your body do as it wants, you know?”</i>");
+	output("\n\nYou do indeed.");
+	flags["KIRO_BALLS"] = undefined;
+	processTime(2);
+	processKiroBarEvents(61,false);
+	clearMenu();
+	addButton(0,"Next",talkToKiro);
+}
+
+//StayHuge
+public function stayHugeKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You tell her that you love when she lets her nuts get stupid big, and you’d like her to stay that way as much as possible.");
+	output("\n\n<i>“Really?”</i> Kiro gasps in surprise. <i>“You mean it? You actually want me to get all stupid swollen... so horny I can barely think?”</i> Biting her lip, she favors you with a sensuous stare. <i>“I’ve never really let myself indulge like that before. The orgasms are... good. They’re the whole reason I let myself go that long in the first place. If you want me to stay that way all the time... I sample a little cum afterward - bloat myself right back up for you.”</i> She giggles as if she can’t quite believe her good fortune. <i>“I won’t be much good in a scrap like that, but I suppose you have other plans for me, huh?”</i> Kiro smiles bashfully at you.");
+	output("\n\nYou nod" + (kiro.ballDiameter() >= 24 ? ", staring lustily at her swollen nutsack":", already imagining how sexy she’ll look all swollen up and ready to go") + ".");
+	output("\n\n<i>“Alright then,”</i> Kiro coos" + (kiro.ballDiameter() < 24 ? ", producing a refrigerated galotian beverage. <i>“Bottoms up.”</i> She pounds the can, belching in a rather unladylike manner before crushing the can against her knee. Not ten seconds later, her nuts swell out under the bottom hem of her dress, gurgling and roiling with a fresh-brewed cum-cascade.":",") + " <i>“I guess it’s a good thing I came prepared. I’m going to enjoy this Rush, Angel.”</i> She squeezes meaningfully at her sack, openly-eyefucking you on the spot. <i>“I’m going to spend the whole time drooling over you, jacking off, and repeating the cycle. Again, and again, and again.”</i> She groans in excitement. <i>“Fuck, you’re a dirty slut. What’s next? Fucking?”</i>");
+	flags["KIRO_BALLS"] = 3;
+	processTime(6);
+	processKiroBarEvents(61,false);
+	pc.lust(4);
+	kiroCrewSexMenu();
+	addButton(14,"Back",approachCrewKiro,true);
+}
+
+//Small
+public function smallBallsKiro():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You tell her that you’d like her to keep them thoroughly milked while they’re on your ship. The last thing you need is an access corridor plugged by an avalanche of ‘nuki-nut.");
+	output("\n\nRaising an eyebrow, Kiro asks, <i>“Did I hear that right? Did my captain just order me to get off more often?”</i>");
+	output("\n\nYou nod.");
+	output("\n\nThe kui-tan snaps a crisp, military-grade salute your way. <i>“Sir yes sir! I’ll redouble my masturbatory efforts!”</i> Exploding into a fit of giggles ruins any illusion of discipline. <i>“You give the nicest orders, Angel." + (kiro.ballDiameter() > 7 ? " Be right back.":"") + "”</i>");
+	//Bigger than small.
+	if(kiro.ballDiameter() > 7) output("\n\nShe leaves the room for a couple minutes, returning with a significantly lightened nutsack and a goofy smile. <i>“You run a real... tight ship.”</i>");
+	//Already fit no new pg.
+	else output("\n\nShe hefts her crotch for a second, then looks up with a smile. <i>“I guess I’m already at regulation size.”</i>");
+	flags["KIRO_BALLS"] = 1;
+	processTime(3);
+	processKiroBarEvents(61,false);
+	clearMenu();
+	addButton(0,"Next",talkToKiro);
+}
+
+//Medium
+public function tellKiroToGetMediumBalls():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("You tell her that you’d like her to stop her balls from getting big enough to impair her.");
+	output("\n\n<i>“Awwww,”</i> Kiro whines. <i>“Really? I mean, it’s not a big deal to get off more often, but I </i>like<i> getting so horny I can barely think.”</i> She makes a throaty sound of pleasure at the thought, expounding, <i>“I’ll do almost anything in the sack like that, and the climaxes... oh stars, I they’re so good and so long.”</i> Right on cue, her dick stiffly presents itself. <i>“Annnd... I guess I can see how that would be a problem in dangerous Rush space. Right.”</i> She chews her lip. <i>“I guess that explains why you kept having to rescue me, huh?”</i>");
+	output("\n\nThat’s one reason.");
+	//2big
+	if(kiro.ballDiameter() > kiro.ballDiameter() > 24)
+	{
+		output("\n\n<i>“Let me take care of these real quick.”</i> Kiro jogs out of the room, stumbling over her nuts on the way out the door. A full ten minutes pass before she returns, panting for breath like she just finished a marathon. <i>“I-uh... I’m fit for duty now, Angel, err captain. Captain Angel.”</i>");
+	}
+	flags["KIRO_BALLS"] = 2;
+	processTime(5);
+	processKiroBarEvents(61,false);
+	clearMenu();
+	addButton(0,"Next",talkToKiro);
+}
+
+//Give Panties
+public function giveKiroPanties():void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("Are you sure you want to give Kiro the panties you're currently wearing?");
+	clearMenu();
+	addButton(1,"No",talkToKiro);
+	addItemButton(0, pc.lowerUndergarment, actuallyGiveKiroPanties, pc.lowerUndergarment.longName);
+}
+public function actuallyGiveKiroPanties(arg:String):void
+{
+	clearOutput();
+	showKiro();
+	author("Fenoxo");
+	output("<i>“Kiro,”</i> you call, twirling the " + arg + " around on your finger, <i>“catch!”</i> You fling the undies to the gape-mouthed tanuki.");
+	output("\n\nCatching the proffered undergarment, the lusty hermaphrodite breaks into a grin simultaneously with her equine appendage’s sudden expansion. She unashamedly lifts her prize to her nose and takes a long inhalation of your scent, wobbling unsteadily as her dick rockets to full, pulsating engorgement. <i>“Th-thank you, [pc.name].”</i> She balls them up in her hand and holds it to her chest" + (kiro.biggestTitSize() >= 32 ? ", an act made difficult by the size of her bust":"") + ". <i>“I’m going to frame these.”</i> She sneaks another sniff before putting them away, only softening once the temptation has been fully removed from view.");
+	//+10 nice
+	pc.addNice(10);
+	//+10 misch
+	pc.addMischievous(10);
+	pc.lowerUndergarment = new EmptySlot();
+	//1x only.
+	flags["KIRO_GIVEN_PANTIES"] = 1;
+	clearMenu();
+	addButton(0,"Next",talkToKiro);
 }
