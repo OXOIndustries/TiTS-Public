@@ -58,6 +58,11 @@ package classes.Resources.Busts
 		public var Bust_AGROSH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/argosh_nude.png", mimeType = "image/png")]
 		public var Bust_AGROSH_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/arine.png", mimeType = "image/png")]
+		public var Bust_ARINE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/arine_nude.png", mimeType = "image/png")]
+		public var Bust_ARINE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -1138,7 +1143,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tank_kannon.png", mimeType = "image/png")]
 		public var Bust_TANK_KANNON:Class;
-		
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/taursuit.png", mimeType = "image/png")]
+		public var Bust_TAURSUIT:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie.png", mimeType = "image/png")]
 		public var Bust_TECHGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/techie_nude.png", mimeType = "image/png")]
@@ -1352,6 +1360,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/argosh_nude.png", mimeType = "image/png")]
 			public var Full_AGROSH_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/arine.png", mimeType = "image/png")]
+			public var Full_ARINE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/arine_nude.png", mimeType = "image/png")]
+			public var Full_ARINE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_ausar.png", mimeType = "image/png")]
@@ -2341,6 +2354,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tank_kannon.png", mimeType = "image/png")]
 			public var Full_TANK_KANNON:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/taursuit.png", mimeType = "image/png")]
+			public var Full_TAURSUIT:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie.png", mimeType = "image/png")]
 			public var Full_TECHGUARD:Class;

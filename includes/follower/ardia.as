@@ -29,7 +29,7 @@ public function showArine(nude:Boolean = false):void
 
 public function arineBustDisplay(nude:Boolean):String
 {
-	return "";
+	return ("ARINE" + (nude ? "_NUDE":""));
 }
 
 public function showArdiaAndMom(nude:Boolean = false):void // nude will probably never be used but best make sure
