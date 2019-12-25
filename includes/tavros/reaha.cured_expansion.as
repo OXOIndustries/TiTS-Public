@@ -207,7 +207,9 @@ public function reahaAppearanceCured():void
 	output("\n\nNo longer bound and chained in Beth’s dungeon, Reaha’s able to keep herself milked down enough to stay nice and mobile, though she’s still extraordinarily busty by any human standard. Her breasts are nice and full of [reaha.milk], and Reaha’s more than happy to show her bountiful rack off to you at the slightest provocation, milking herself in the ship’s common areas or pressing them up against you");
 	if(!reaha.isNude()) output(" through her clothes");
 	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty " + chars["REAHA"].breastCup(0) + "s, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
-	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
+	output("\n\nShe has a loose, wet pussy tucked between her legs and ");
+	output(indefiniteArticle(ParseText("[reaha.asshole]")));
+	output(" between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 }
