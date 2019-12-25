@@ -955,7 +955,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 			output(" you have for " + (cocktackles > 1 ? "dicks" : "a dick"));
 			if (!pc.isCrotchExposed()) output(" slithers out of your [pc.crotchCoverUnder] and");
 		}
-		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless {ebony/pink} depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
+		output(" weaves through the air to knock at the egg-laying serpent’s cunt. Your prehensile infiltration was well lubed by sluttery in advance, and you’re pushing through fathomless " + (snake.lipColor == "black" ? "ebony":"pink") + " depths to the alien’s reproductive systems, rhythmically pumping her cunt. <i>“Nnngwhaaat!?”</i>");
 		output("\n\nVoice crescendoing, you pump into her without a second thought, just glad to turn this into a real orgy. When you cum at the end of this, you’re going to hold on to the fantasy of fertilizing some slave catcher’s egg. Or eggs. Whatever’s in there, she’s going to remember how well other races breed for sure!");
 	}
 	output("\n\n<i>“I-I can’t hold it anymore!”</i> The mouse’s feet plant under your bodies and he lifts up, his two cum-dumps ready to receive his burgeoning desire. <i>“I’m going to- hiek!”</i>");

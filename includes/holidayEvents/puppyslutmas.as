@@ -360,7 +360,7 @@ public function syriWearTheTux():void
 	
 	output("\n\nShe grins and starts to get dressed. <i>“Glad we’re on the same page, Steele. Feel better about this whole thing already with you around.”</i>");
 	
-	output("\n\nYou watch appreciatively as Syri gets dressed, buttoning her shirt up over bare breasts before tucking it in, making her chest strain the front of her shirt and letting her stiff nipples poke visibly through. The tux’s jacket hides them, but you’re left with the tantalizing memory of the view. Syri fidgets a bit as she threads her tail through the small tear in her slack’s back. When she’s finished, you manage to convince your well-dressed friend to pivot for you, showing off her outfit front and back. You have to admit: it looks </i>good<i> on her.");
+	output("\n\nYou watch appreciatively as Syri gets dressed, buttoning her shirt up over bare breasts before tucking it in, making her chest strain the front of her shirt and letting her stiff nipples poke visibly through. The tux’s jacket hides them, but you’re left with the tantalizing memory of the view. Syri fidgets a bit as she threads her tail through the small tear in her slack’s back. When she’s finished, you manage to convince your well-dressed friend to pivot for you, showing off her outfit front and back. You have to admit: it looks <i>good</i> on her.");
 	
 	output("\n\n<i>“Looks good,”</i> you say after a while, hopping out of bed and slipping up next to Syri.");
 	
@@ -370,7 +370,7 @@ public function syriWearTheTux():void
 	else output(" in");
 	output(", planting a quick kiss on your cheek. <i>“You’re sweet. Now, c’mon, we’re almost there.”</i>");
 	
-	output("\n\nShe gives you a wink and, turning, lets your raven tail brush across your crotch as she heads up to the cockpit.");
+	output(" She gives you a wink and, turning, lets her raven tail brush across your crotch as she heads up to the cockpit.");
 
 	clearMenu();
 	addButton(0, "Next", puppyslutmasArrive);
@@ -1401,8 +1401,9 @@ public function puppyslutmasMeetTheDornasHue():void
 	if (pPartner() == "Syri")
 	{
 		output("\n\n<i>“Thanks for bringing me out here, [pc.name],”</i> Syri whispers.");
-		if (pSyriClothes() == "Dress") output(" Even if you did make me wear a stupid dress.");
-		output(" I appreciate the... the support.”</i>");
+		if (pSyriClothes() == "Dress") output(" <i>“Even if you did make me wear a stupid dress. ");
+		else output(" <i>“");
+		output("I appreciate the... the support.”</i>");
 
 		output("\n\n<i>“Anytime,”</i> you answer, putting your arm around her strong shoulder. She relaxes utterly in your grasp, snuggling tight against you.");
 	}

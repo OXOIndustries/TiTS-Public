@@ -3018,7 +3018,7 @@ public function frostwyrmXMas():void
 		output("and your daughter");
 		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s, all huddled around you two");
 	}
-	output(" if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would like to try being a part of [pc.aRace] tradition. This sort of event only comes across once every Sky Cycle for your kind, and it’s a very significant part of your culture – it would mean a lot to you if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" said yes.");
+	output(" if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would like to try being a part of terran tradition. This sort of event only comes across once every Sky Cycle for your kind, and it’s a very significant part of your culture – it would mean a lot to you if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" said yes.");
 	output("\n\nYou hoped that "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would say yes, of course, but the response your "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +" gave you was a little more enthusiastic than you had expected. <i>You have been a wonderful Qal and an ideal mate to me, [pc.name],</i> [frostwyrm.name] says warmly as her long neck cranes towards you, her huge face nuzzling lovingly against your body. <i>It would be my privilege to participate in your culture.</i> ");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined)
 	{
@@ -3087,7 +3087,7 @@ public function frostwyrmXMasSnowmen():void
 	}
 	output(", until you");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
-		output("and your daughter");
+		output(" and your daughter");
 		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
 	}
 	output(" pack a snowball tight enough for her to get started.");
@@ -3207,7 +3207,7 @@ public function frostwyrmXMasGiftGiving():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
 		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output(", your daughter flying alongside you both");
 		else {
-			output("your daughters taking their place on either side of their Qim in the air");
+			output(", your daughters taking their place on either side of their Qim in the air");
 			if (flags["FROSTWYRM_KIP_COUNT"] > 5) output(", flying in a tight V behind her");
 		}
 	}
@@ -3320,7 +3320,7 @@ public function frostwyrmXMasDecorate():void
 
 	output("The holidays wouldn’t be complete without one last thing. They’re always accompanied by a ton of decorating, whether it’s the house or some symbol. But you’re at a bit of a loss – you look around the island for a moment and notice how it’s completely, absolutely bare. Aside from the snow, there isn’t so much as an icicle for you to decorate, and even if there was, what would you decorate it with?");
 	output("\n\nYou tap your chin in thought as you wonder. Thinking about it logically, you don’t have a lot of tools on hand, and the only things on the island to decorate are–");
-	output("\n\nStruck with inspiration, you ask [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +"to join you back inside the lair. <i>Are there no more activities in your traditions, [pc.name]?</i> asks [frostwyrm.name]. You tell her that there is exactly one left, and you say that she’s probably going to enjoy it quite a bit, but you’d prefer to be inside to do it. [frostwyrm.name] acquiesces, and you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"make your way back into the lair.");
+	output("\n\nStruck with inspiration, you ask [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +" to join you back inside the lair. <i>Are there no more activities in your traditions, [pc.name]?</i> asks [frostwyrm.name]. You tell her that there is exactly one left, and you say that she’s probably going to enjoy it quite a bit, but you’d prefer to be inside to do it. [frostwyrm.name] acquiesces, and you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"make your way back into the lair.");
 	output("\n\nYou, of course, strip naked as soon as you’re inside, but you keep your things closer by than usual. Your mate makes her way to the raised platform that is her bedding, and you approach, eying her sultrily. You tell her that there are actually two more activities, but one of them isn’t exactly ‘official.’ It’s to... commiserate your affection with your loved ones. Usually, that only means ‘platonically,’ but definitions can often be a fickle thing.");
 	output("\n\n[frostwyrm.name] understands your meaning and lays on her side, her rear two legs spread, giving you unrestricted access to her genitalia. Her heavy testicles rest against the inside of her scaly thigh, one heavy nut spilling over the other. She isn’t currently aroused, but judging from the way her lust is feeding into you, that’s going to change in a hurry.");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
