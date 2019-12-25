@@ -496,7 +496,7 @@ public function nameTheSidewinder():void
 		output("<i>“Very good, captain,”</i> Olympia says, taking the datapad back.");
 	}
 	output(" <i>“I’ll have hull painted next time we dock. Perhaps even add your company colors? Hmm! Either way, thank you for taking me aboard, captain. Even now, I have the feeling that I’ll be much happier here on your crew than I ever was on Zheng Shi... or before. If there’s anything I can do to help you on your mission, you have only to ask.”</i>");
-	output("\n\nAs she says it, Olympia’s already turning back to her work, but not with a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
+	output("\n\nAs she says it, Olympia’s already turning back to her work, but not without a sultry wink and a brush of her tail against your [pc.leg]. She is still a sexbot, after all...");
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

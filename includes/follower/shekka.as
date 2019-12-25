@@ -1167,7 +1167,7 @@ public function shekkaSleepWithMornings():void
 			if(pc.biggestTitSize() >= 2) output("from between your massive breasts");
 			else output("with her chin perched on your pecs");
 			output(". Her lids slowly open and close, and her hips raise up, wiggling like a predator about to pounce.");
-			output("\n\nYou get perhaps halfway into a ‘Good Morning’ before she pounces, diving in for a hungry kiss. She has the dilated pupils of an addict, and the moment her tongue meets your it hits her like a shock of electricity. Shekka trembles atop you, whimpering into your mouth as she gets her fix, practically gushing from her now-flushed quim. Your hands instinctively grasp at her cushiony rear, giving her a slow squeeze until she stops moaning through your lips and comes up for air.");
+			output("\n\nYou get perhaps halfway into a ‘Good Morning’ before she pounces, diving in for a hungry kiss. She has the dilated pupils of an addict, and the moment her tongue meets yours, it hits her like a shock of electricity. Shekka trembles atop you, whimpering into your mouth as she gets her fix, practically gushing from her now-flushed quim. Your hands instinctively grasp at her cushiony rear, giving her a slow squeeze until she stops moaning through your lips and comes up for air.");
 			output("\n\n<i>“Ffffuck... [pc.name], I held out for as long as I could, I seriously needed my fix....”</i>");
 			output("\n\nShe rolls off of you, idly stroking herself. <i>“Better than morning coffee...”</i>");
 			pc.lust(10);
@@ -4458,8 +4458,9 @@ public function shekkaRideHerCrewSceneByWilliam(x:int):void
 		}
 		else
 		{
-			output(" The more girth you stroke, the more your legs squirm, and the{ herm: juicier your groin becomes");
-			if(pc.hasVagina()) output(" wetter your pussy gets");
+			output(" The more girth you stroke, the more your legs squirm, and the");
+			if(pc.isHerm()) output(" juicier your groin becomes");
+			else if(pc.hasVagina()) output(" wetter your pussy gets");
 			else if(pc.hasCock()) output(" harder your cock gets");
 			else output(" emptier and needier you feel");
 			output(". By the time her burgeoning dick reaches her cleavage, you bite your lip: you want to ride it. All that rask and horse-meat to yourself...!");
@@ -4704,7 +4705,7 @@ public function shekkaRideHerCrewSceneByWilliam2(x:int):void
 	// pc Using Anus
 	else
 	{
-		output("\n\n<i>“Holds tighter than an iron band... nnnff!!”</i> Shekka groans at the ceiling, thrusting her body upwards into the anal compress. <i>“Not gonna... last much longer...!”</i> That’s fine - she can lie there and take it. Great shivers run through your [pc.tone] frame, murmuring enjoyment as you take the equine club deep into the glazed embrace of your intestines. Fulfilling sensation, that, throbbing hardness packing your guts full of virile herm, having a close friend - no, a <b>lover</b> so far inside. Genuine pleasure flutters through you, so you clap your [pc.ass] a little harder, jounce much faster, eager to be the receptacle for a climax you’ve both been building.");
+		output("\n\n<i>“Holds tighter than an iron band... nnnff!!”</i> Shekka groans at the ceiling, thrusting her body upwards into the anal compress. <i>“Not gonna... last much longer...!”</i> That’s fine - she can lie there and take it. Great shivers run through your frame, murmuring enjoyment as you take the equine club deep into the glazed embrace of your intestines. Fulfilling sensation, that, throbbing hardness packing your guts full of virile herm, having a close friend - no, a <b>lover</b> so far inside. Genuine pleasure flutters through you, so you clap your [pc.ass] a little harder, jounce much faster, eager to be the receptacle for a climax you’ve both been building.");
 		output("\n\nYour lungs squeak a complaint when Shekka pokes your [pc.ass], nails gently scraping down the [pc.skinFurScales]. She’s thrusting again, well, trying to anyway, trembles of sexual effort worming through your backbone, penis quivering mightily in crushing confines. Reality as you know it compresses down to that overworked " + (pc.isFemboy() ? "ass-pussy":"asshole") + " of yours, random and wild tensings sparking orgasmic feedback that surges through your frame, bouncing across dormant nerves slackened by brutal coitus.");
 	}
 	// merge
