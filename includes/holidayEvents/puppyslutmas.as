@@ -601,7 +601,10 @@ public function puppyslutmasMeetSyri():void
 	
 	if (flags["MET_SYRI"] != undefined && flags["FUCKED_SYRI_COUNT"] == undefined)
 	{
-		output("\n\n<i>“Steele,”</i> Syri finishes, extending a hand to you. <i>“Yeah, I remember you. Played some games with me on Mhen’ga, didn’t you?”</i>");
+		output("\n\n<i>“Steele,”</i> Syri finishes, extending a hand to you. <i>“Yeah, I remember you.");
+		if(flags["BET_AGAINST_SYRI"] != undefined) output(" Played some games with me on ");
+		else output(" Met me on ");
+		output("Mhen’ga, didn’t you?”</i>");
 	
 		output("\n\n<i>“That’s right,”</i> you answer, shaking the offered hand. <i>“Pleasure to meet you again.”</i>");
 	}
@@ -1620,8 +1623,8 @@ public function annoChristmasSpecial():void
 		}
 		output("\n\nYou’re already hard as diamonds, Anno’s little Christmas surprise clearly doing what she intended it to do. Grinning, you pull yourself back, tauric figure towering over Anno's as she lies prone on the couch.");
 		output("\n\nThe ausar takes a single look at the [pc.cockBiggest] hanging under you and licks her lips, going to prop herself up against the couch. She grabs hold of her plush thighs and spreads her legs wide and high, inviting you onward with unrestricted access to her dripping pink pussy. Anno smiles deviously, <i>“C'mon boss, I'm ready for my presents...”</i>");
-		output("\n\nHer sultry tone hangs in your ears for a moment as you plan to give the puppy-slut what she wants. You return the snowy slut's smile and give her a wink as you [pc.walk] closer to the couch, raising your front legs onto the sofa's back, practically mounting the piece of furniture to line up your hot tauric rod with your giddy gift's slit. The pretty little package assists you buy taking hold of your [pc.cockBiggest] and angling it towards her nether lips until your tip is practically soaking in her natural lubricants. She whimpers slightly as your [pc.cockHeadBiggest] rubs up against her pussy.");
-		output("\n\nYou can feel the ausar shift under you as she prepares herself for your big, long present, and you decide to help Anno along her way by giving your [pc.hips] a little thrust forward. That's enough to spread Anno's sopping labia and draw a little gasp from her lips. You smirk at that quiet, pleasured noise and continue to push your hips forward, shoving more of your thick shaft into your lover, leading her to cry out with bliss. She moans louder and louder with each inch you work into her, stretching her as wide as she'll go, to the point where there's a visual bulge in her tummy and her feminine fluids are pouring out around your cock like an Ausaril river delta. ");
+		output("\n\nHer sultry tone hangs in your ears for a moment as you plan to give the puppy-slut what she wants. You return the snowy slut's smile and give her a wink as you [pc.walk] closer to the couch, raising your front legs onto the sofa's back, practically mounting the piece of furniture to line up your hot tauric rod with your giddy gift's slit. The pretty little package assists you by taking hold of your [pc.cockBiggest] and angling it towards her nether lips until your tip is practically soaking in her natural lubricants. She whimpers slightly as your [pc.cockHeadBiggest] rubs up against her pussy.");
+		output("\n\nYou can feel the ausar shift under you as she prepares herself for your big, long present, and you decide to help Anno along her way by giving your [pc.hips] a little thrust forward. That's enough to spread Anno's sopping labia and draw a little gasp from her lips. You smirk at that quiet, pleasured noise and continue to push your hips forward, shoving more of your thick shaft into your lover, leading her to cry out with bliss. She moans louder and louder with each inch you work into her, stretching her as wide as she'll go, to the point where there's a visible bulge in her tummy and her feminine fluids are pouring out around your cock like an Ausaril river delta. ");
 		output("\n\nEven though you can't see her beneath your tauric half, you can feel Anno's body squirm and her pussy convulse around your tool as she adjusts to your length. The poor puppy whimpers and moans quietly as she does, finding a comfortable position on your haunches to rest her fluffy legs.");
 		output("\n\nEventually, the ausar speaks up again with a quivering, needy voice. <i>“Wh-why'd you stop m-moving, [pc.name]?”</i> she asks, whimpering and stuttering, <i>“C'mon... I want </i>all<i> of my p-present!”</i>");
 		output("\n\nWell, if she insists.");
@@ -1677,7 +1680,7 @@ public function annoChristmasSpecial():void
 		output("\n\nAnd, with that, Anno promptly collapses back onto the couch and takes you with her, holding you close so she has something to cuddle while she sleeps off her afterglow...");
 		pc.lust(50);
 	}
-	output("\n\nMerry Christmas indeed");
+	output("\n\nMerry Christmas indeed.");
 	
 	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }
