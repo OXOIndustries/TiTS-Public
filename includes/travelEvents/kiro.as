@@ -10,6 +10,7 @@ public function roamingBarEncounter(button:int = 0):void
 		var NPCs:Array = new Array();
 		//66% chance Kiro could be there if available.
 		if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
+		else if(currentLocation == "CANADA5" && crewKiroAvailable() && flags["KIRO_MET_KALLY"] != undefined) NPCs.push(crewKiroBarSetup);
 		//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
 		if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
 		// Repeat goo armor meet
@@ -258,7 +259,7 @@ public function kiroMenu():void
 	else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don’t know the right person well enough for this.");
 	else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(5,"Paige","Paige","You need a deeper relationship with Paige for this.");
 	else addDisabledButton(5,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
-	
+	if(kiroRecruited() && !kiroIsCrew()) addButton(13,"Join Crew",rerecruitKiro,undefined,"Join Crew","Get Kiro back on your ship.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -315,7 +316,8 @@ public function kiroTalkMenuInCanadia(arg:Function):void
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == 3) addDisabledButton(4,"Picardine","Picardine","Kiro has already come clean about the Picardine to her sister. There is nothing more to talk about.");
 	else addButton(4,"Picardine",kiroPicardineTalk,undefined,"Picardine","Find out if Kiro is behind her sister’s mysterious gift.");
 	
-	addButton(14,"Back",approachKiroAtTheBar,true);
+	if(kiroIsCrew()) addButton(14,"Back",crewKiroAtKallysBar,true);
+	else addButton(14,"Back",approachKiroAtTheBar,true);
 }
 
 //Boyfriend
@@ -475,12 +477,12 @@ public function youCanButtfuckMeYouSkank():void
 	//Small PC if(pc.tallness < kiro.tallness - 10)
 	if(pc.tallness < kiro.tallness - 10)
 	{
-		output("\n\nKiro tosses you under an arm and takes off toward her ship at a brisk jog, toting you like little more than a bit of luggage. <i>“Why’d I have to park so far away?”</i>");
+		output("\n\nKiro tosses you under an arm and takes off toward " + (!kiroIsCrew() ? "her":"your") + " ship at a brisk jog, toting you like little more than a bit of luggage. <i>“Why’d I have to park so far away?”</i>");
 	}
 	//Bigger PC
 	else
 	{
-		output("\n\nKiro grabs you by the hand and drags you toward her ship at a brisk jog. <i>“Come on!”</i> The longer the trip takes, the less in control of herself Kiro seems to be. <i>“Why’d I have to park so far away?”</i>");
+		output("\n\nKiro grabs you by the hand and drags you toward " + (!kiroIsCrew() ? "her":"your") + " ship at a brisk jog. <i>“Come on!”</i> The longer the trip takes, the less in control of herself Kiro seems to be. <i>“Why’d " + (!kiroIsCrew() ? "I":"You") + " have to park so far away?”</i>");
 	}
 	//[Next]
 	processTime(2);
@@ -511,7 +513,7 @@ public function talkAbootKallysDrinks():void
 	if(flags["KALLYS_SECRET_INGREDIENT"] != undefined)
 	{
 		output("\n\n<i>“It is.”</i>");
-		output("\n\nKiro barks out a laugh. <i>“I fucking knew it! That skeevy skank found a way to profit off getting her dick milked.”</i> She strokes runs her fingers through her rich, chocolate hair. <i>“I might have to reconsider calling her the Ice Queen. I mean, she’s somehow found a way to make her jizz taste so good that people all but line up to drink it. Maybe the Iced Cum Queen instead. Wow.”</i> Kiro exhales and slowly shakes her head. <i>“If I ever get tired of the pirate life, I’m hitting her up for a dose of those mods and starting my own brewery.”</i>");
+		output("\n\nKiro barks out a laugh. <i>“I fucking knew it! That skeevy skank found a way to profit off getting her dick milked.”</i> She strokes runs her fingers through her rich, chocolate hair. <i>“I might have to reconsider calling her the Ice Queen. I mean, she’s somehow found a way to make her jizz taste so good that people all but line up to drink it. Maybe the Iced Cum Queen instead. Wow.”</i> Kiro exhales and slowly shakes her head. <i>“If I ever get tired of the " + (kiroIsCrew() ? "Rusher":"pirate") + " life, I’m hitting her up for a dose of those mods and starting my own brewery.”</i>");
 		output("\n\nA dry chuckle bursts out of you at that. It’s hard to imagine Kiro settling down.");
 		output("\n\n<i>“What? You don’t think I could do it? Think about it.”</i> Kiro sips at her beer. <i>“Plenty of orgasms and probably plenty of help. If I did the whole bar thing, I could probably sell drinks straight from the tap. I hear there’s implants you can get that’ll let you nut on command. Imagine running a bar like that. Slutty gals would line up and hold out their cups, transferring me fistfuls of credits just for a glass of Kui-Tan white.”</i>");
 		if(pc.isBimbo()) output("\n\nThe kui-tan giggles when she sees you licking your lips. <i>“You’d probably be my best customer.”</i>\n\nProbably.");
@@ -595,7 +597,8 @@ public function tellKiroToTellTruthAboutPicardine():void
 	processTime(3);
 	flags["KIRO_KALLY_PICARDINE_QUEST"] = 1;
 	clearMenu();
-	addButton(0,"Next",approachKiroAtTheBar,true);
+	if(kiroIsCrew()) addButton(0,"Next",crewKiroAtKallysBar,true);
+	else addButton(0,"Next",approachKiroAtTheBar,true);
 }
 
 //Loved
@@ -610,7 +613,7 @@ public function tellKiroToTellKallyAboutLovyPicardine():void
 	//Bimbo
 	else if(pc.isBimbo()) output("\n\nYou lean into her and kiss her on the cheek. <i>“‘Cause yer a sweetie!”</i>");
 	//Nice/Misc
-	else if(!pc.isAss()) output("\n\n<i>“How couldn’t she?”</i> you slide your arm around her waist and pull her close. <i>“For a gruff pirate, you’re practically overflowing with it.”</i>");
+	else if(!pc.isAss()) output("\n\n<i>“How couldn’t she?”</i> you slide your arm around her waist and pull her close. <i>“For a " + (!kiroIsCrew() ? "gruff":"former") + " pirate, you’re practically overflowing with it.”</i>");
 	//Hard
 	else output("\n\n<i>“If she doesn’t, she’s not worth your time.”</i> You give her a firm swat on the behind. <i>“It’d take a blind moron not to see it.”</i>");
 	//Merge
@@ -622,7 +625,8 @@ public function tellKiroToTellKallyAboutLovyPicardine():void
 	processTime(3);
 	flags["KIRO_KALLY_PICARDINE_QUEST"] = 2;
 	clearMenu();
-	addButton(0,"Next",approachKiroAtTheBar,true);
+	if(kiroIsCrew()) addButton(0,"Next",crewKiroAtKallysBar,true);
+	else addButton(0,"Next",approachKiroAtTheBar,true);
 }
 
 //Shitty
@@ -635,7 +639,8 @@ public function tellKiroTellingKallyAboutPicardineIsShitty():void
 	processTime(2);
 	flags["KIRO_KALLY_PICARDINE_QUEST"] = -1;
 	clearMenu();
-	addButton(0,"Next",approachKiroAtTheBar,true);
+	if(kiroIsCrew()) addButton(0,"Next",crewKiroAtKallysBar,true);
+	else addButton(0,"Next",approachKiroAtTheBar,true);
 }
 
 //Kiro Buys You a Drink & Exposits a Bit About Herself.
@@ -1704,7 +1709,7 @@ public function takeKirosVirginity():void
 	showKiro(true);
 	output("Looking up at her from the bed, you catch a glimpse of her shiny black pussy lips. They practically wink at you. Why haven’t you fucked those yet? You stretch out an arm, cradling her balls gently before slipping past to rub at the alluring entrance. <i>“How about a little cow-girl?”</i> you suggest with your fingers already beginning to explore her innermost places.");
 	//Low trust
-	if(kiroTrust() < 75 && kiro.vaginalVirgin) 
+	if(kiroTrust() < 75 && kiro.vaginalVirgin && !pc.hasStatusEffect("RoleplayingWithKiro")) 
 	{
 		output("\n\nWide-eyed, Kiro bats your hand away with enough force to make your wrist ache. <i>“No!”</i> Her jaw works, and she repeats the word more softly, a little nervously even. <i>“Angel, no. I’m saving that for when I meet the right person. The last thing I need is to be saddled down with a kid I’m not ready for. All I have to do is keep my legs closed and use this big ol’ bitch-breaker whenever I get a little lusty.”</i>");
 		output("\n\n<i>“Come on,”</i> you cajole. <i>“It’ll feel way better. I promise.”</i>");
@@ -1922,7 +1927,20 @@ public function tookKiroginityPartIII(x:int):void
 	IncrementFlag("KIRO_VAG_FUCKED");
 	
 	clearMenu();
-	addButton(0,"Next",kiroginityEpilogue);
+	if(pc.hasStatusEffect("RoleplayingWithKiro")) addButton(0,"Next",roleplayKiroOutro);
+	else addButton(0,"Next",kiroginityEpilogue);
+}
+
+public function roleplayKiroOutro():void
+{
+	clearOutput();
+	showKiro(true);
+	author("Fenoxo");
+	output("A quick shower helps put an end to the impassioned roleplay session.");
+	pc.shower();
+	pc.removeStatusEffect("RoleplayingWithKiro");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 // To queue her panties scene
@@ -3905,7 +3923,7 @@ public function kiroIncestReactionGood():void
 
 public function kiroKallyThreesomesApproach():void
 {
-	moveTo("KIROS SHIP QUARTERS");
+	if(!kiroIsCrew()) moveTo("KIROS SHIP QUARTERS");
 	
 	clearOutput();
 	showKallyAndKiro();
@@ -3928,18 +3946,23 @@ public function kiroKallyThreesomesApproach():void
 	//Bro/Hard
 	else if(pc.isAss() || pc.isBro()) output("<i>“Let’s get your sister,”</i> you grunt.");
 	//Nice
-	else if(pc.isNice()) output("<i>“What’s say we have some fun... just the three of us.”</i> You tip your head toward Kally.");
+	else if(pc.isNice()) output("<i>“What’s say we have some fun... just " + (kiroIsCrew() ? "you, me, and your sister":"the three of us") + ".”</i>" + (!kiroIsCrew() ? " You tip your head toward Kally.":""));
 	//Mischievous
 	else output("<i>“Why don’t we grab your sister and see which one of you can win second place in a ‘best fuck’ contest,”</i> you suggest, winking.");
 	//Merge
-	output("\n\n<i>“I thought you’d never ask, angel.”</i> Kiro looks down the bar to the aforementioned kui-tan. <i>“Kally! There’s a family matter I need your help attending to.”</i> She jerks her head your way. <i>“It’s urgent.”</i>");
-	output("\n\nThe curvaceous bartender smiles devilishly. <i>“That so? Then I guess I’d better take a break. Can’t let the klutzy, space-faring family muck it up. You’ll need a skilled touch.”</i> Her eyes flick between you and Kiro. <i>“Touches. Skilled touches. Definitely.”</i> Kally lifts her hand and yells, <i>“Gotta take a break! Last call for a bit, my beauties!”</i>");
-	output("\n\nLooping her arm through your own, Kiro drags you away from the bar toward the door. <i>“She’ll catch up in a minute.”</i> She twists her tail up around your waist, clutching you close as you pass through the station’s tunnels, her gropable ass flexing delightfully against your ");
-	if(pc.tallness > kiro.tallness+12) output("[pc.thigh]");
-	else if(pc.tallness > kiro.tallness-12) output("[pc.hip]");
-	else output("[pc.chest]");
-	output(". You head through the primary airlock and into Canadia Station’s enclosed hangar. Kiro’s familiar, leaf-shaped craft is parked next to your own, almost as close to it as the grinning raccoon-woman is to you.");
-	output("\n\nNo sooner do you step into the oddly-shaped craft than Kally barrels in after, tugging at the laces of her top. She pants for breath, as she frees her tits, eyes darting between the two of you. <i>“Ahhh... you didn’t start without me... good.”</i> She sucks in a huge lungful of air. <i>“It’s goddamn hard to breathe in that fucker of an outfit. I almost passed out trying to catch up with you.”</i>");
+	output("\n\n<i>“I thought you’d never ask, angel.”</i> Kiro looks down " + (kiroIsCrew() ? "for a moment and holocalls the aforementioned kui-tan.":"the bar to the aforementioned kui-tan.") + " <i>“Kally! There’s a family matter I need your help attending to.”</i> She jerks her head your way. <i>“It’s urgent.”</i>");
+	output("\n\nThe curvaceous bartender smiles devilishly. <i>“That so? Then I guess I’d better take a break. Can’t let the klutzy, space-faring family muck it up. You’ll need a skilled touch.”</i> Her eyes flick between you and Kiro. <i>“Touches. Skilled touches. Definitely.”</i> Kally lifts her hand and yells, <i>“Gotta take a break! Last call for a bit, my beauties!”</i>" + (kiroIsCrew() ? " The call ends.":""));
+	if(!kiroIsCrew()) 
+	{
+		output("\n\nLooping her arm through your own, Kiro drags you away from the bar toward the door. <i>“She’ll catch up in a minute.”</i> She twists her tail up around your waist, clutching you close as you pass through the station’s tunnels, her gropable ass flexing delightfully against your ");
+		if(pc.tallness > kiro.tallness+12) output("[pc.thigh]");
+		else if(pc.tallness > kiro.tallness-12) output("[pc.hip]");
+		else output("[pc.chest]");
+		output(". You head through the primary airlock and into Canadia Station’s enclosed hangar. Kiro’s familiar, leaf-shaped craft is parked next to your own, almost as close to it as the grinning raccoon-woman is to you.");
+		output("\n\nNo sooner do you step into the oddly-shaped craft than Kally barrels in after");
+	}
+	else output("\n\nNo more than five minutes later, Kally barrels into your quarters");
+	output(", tugging at the laces of her top. She pants for breath, as she frees her tits, eyes darting between the two of you. <i>“Ahhh... you didn’t start without me... good.”</i> She sucks in a huge lungful of air. <i>“It’s goddamn hard to breathe in that fucker of an outfit. I almost passed out trying to " + (kiroIsCrew() ? "get over here":"catch up with you") + ".”</i>");
 	output("\n\n");
 	showImage("kiroAndKallyTogether");
 	output("Kiro is under Kally’s arm in a second, tugging the plusher sister’s corset off before it can do any more damage. The leathery garment is thrown against a wall hard, then forgotten entirely as the two lock lips, smashing their barely-clothed forms into a sea of silk-furred tits, wiggling hips, and passionately moaning mouths. They wrap their tails around each other in fluffy double helix as the kiss intensifies, then finally break away with their tongues lolling in their pupils dilated by excitement. The twin sisters turn to face you, their dicks hard and jutting accusingly.");
@@ -3956,9 +3979,17 @@ public function kiroKallyThreesomesApproach():void
 	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that’s less than four inches thick to plug both of them into Kiro’s milker and buttfuck the seed out of them.");
 	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get Double Penetrated","Take one sister in the vagina and the other in your butt. It’s a Steele sandwich!");
 	else addDisabledButton(1,"Get DPed","Get Double Penetrated","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
-	addButton(14,"Back",backFromSisterThreesomeMenu);
+	if(kiroIsCrew()) addButton(14,"Back",backFromSisterThreesomeMenuForCrewKiro);
+	else addButton(14,"Back",backFromSisterThreesomeMenu);
 }
 
+public function backFromSisterThreesomeMenuForCrewKiro():void
+{
+	clearOutput();
+	showKiro();
+	output("Kally slugs you on the arm for wasting her time and heads back to the bar while Kiro quirks an expecting eyebrow at you.");
+	kiroCrewSexMenu();
+}
 public function backFromSisterThreesomeMenu():void
 {
 	moveTo("CANADA5");
@@ -4398,12 +4429,22 @@ public function kiroKallyDoubleMilkingThreesome7(x:int):void
 	//Merge
 	if(pc.RQ() < 75) output("\n\nYou elbow in for a quick drink but swiftly get yanked into a double-tanuki hug.");
 	else output("\n\nYou sweep in between them to join in on the conversation, but before you can say a word, they yank you into a double-tanuki hug.");
-	output("\n\n<i>“Back to the bar! There’s plenty to drink there!”</i>");
-	output("\n\nThe three of you may your way back to the bar, laughing and euphoric, enjoying the others’ company for the short journey back to the Kui Country Bar and Lodge.");
+	if(!kiroIsCrew())
+	{
+		output("\n\n<i>“Back to the bar! There’s plenty to drink there!”</i>");
+		output("\n\nThe three of you may your way back to the bar, laughing and euphoric, enjoying the others’ company for the short journey back to the Kui Country Bar and Lodge.");
+	}
+	else
+	{
+		output("\n\n<i>“We better get back to work!”</i>");
+		output("\n\nThe three of you enjoy a last moment together before Kally heads back to the bar, and the rest of you return to your ship.");
+
+	}
 	processTime(45);
 	pc.energy(25);
 	IncrementFlag("SISTER_MILK_ACT");
 	kiroKallyThreesomes(1);
 	clearMenu();
-	addButton(0,"Next",move,"CANADA5");
+	if(!kiroIsCrew()) addButton(0,"Next",move,"CANADA5");
+	else addButton(0,"Next",move,"SHIP INTERIOR");
 }

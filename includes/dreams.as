@@ -149,6 +149,10 @@ public function dreamChances(inShip:Boolean = false):Boolean
 		if(seraIsMistress()) dreams.push(demonDream);
 		if(isHalloweenish()) dreams.push(superGhostioDream);
 		if(pc.hasPerk("Primorditatts")) dreams.push(capraphormDreamSequence);
+		//Kiro & Kally fun!
+		if(kiroIsCrew() && kiroKallyThreesomes() > 1 && kiro.hasCock() && !kiro.isBimbo() && kiro.hasCock(GLOBAL.TYPE_EQUINE))
+			dreams.push(kiroAndKallyBreedingDreamForCrewKiro);
+
 	}
 	if(dreams.length > 0) 
 	{

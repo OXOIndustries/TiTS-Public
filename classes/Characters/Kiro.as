@@ -237,7 +237,8 @@
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {
 			super.orgasm();
-			ballSizeRaw = 10;
+			if(kGAMECLASS.flags["KIRO_BALLS"] == 3) ballSizeRaw = 78;
+			else ballSizeRaw = 10;
 		}
 		//Kiro milkies :3
 		override public function canLactate():Boolean { return hasPerk("Evermilk"); }

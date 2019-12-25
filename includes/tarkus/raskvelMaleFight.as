@@ -1457,9 +1457,12 @@ public function loseToRaskvelAndGetGangBangued():void
 		output("\n\n<i>“You’re probably wondering why we haven’t mistaken you for a raskvel, am I right offworlder?”</i> the biggest one laughs");
 		if(pc.isCrotchGarbed()) output(" as he busily rips off your [pc.lowerGarments]");
 		output(". <i>“It’s just, oh, everything about you. The way you walk, how you hold yourself, the manner with which you speak to us. You’re a tourist, aren’t you? Thought the way we look was so cute you had to be it, right? But being raskvel means coping with a lot of urges. Constant urges. I don’t think I have to give you the aphro, you know exactly what I’m talking about.”</i> It’s true; the jostling of brawny, familiar flesh on yours is filling you with inadvertent, irrepressible desire, your ");
-		if(pc.totalVaginas() == 1) output("pussy");
-		else output("pussies");
-		output(" oozing excitement, and your");
+		if(pc.hasVagina())
+		{
+			if(pc.totalVaginas() == 1) output("pussy");
+			else output("pussies");
+			output(" oozing excitement, and your");
+		}
 		if(pc.cockTotal() > 0) 
 		{
 			output(" cock");

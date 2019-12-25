@@ -2249,6 +2249,7 @@ public function shipMenu():Boolean
 	if(insideShipEvents()) return true;
 	
 	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
+	if(!kiro.isBimbo() && flags["KQ_RESCUED"] != undefined && flags["KQ_REWARDED"] == undefined) output("\n\n<b>Kiro's vessel is parked nearby</b>. (You can visit Kiro and her ship via the “Hangar” submenu on the landing area.)");
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -2346,6 +2347,11 @@ public function shipStatistics(backFunc:Function):void
 
 public function flyMenu():void
 {
+	if(shits["SHIP"] is Blade && kiroRecruited() && roamingKiroAvailable() && !kiroIsCrew())
+	{
+		kiroAutojoin();
+		return;
+	}
 	clearOutput();
 	showName("CHOOSE\nDESTINATION");
 	
@@ -4457,7 +4463,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//KIRO FUCKMEET
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
-		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && roamingKiroAvailable()) { goMailGet("kirodatemeet"); }
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 85 && kiroSexed() && rand(10) == 0 && (roamingKiroAvailable() || crewKiroAvailable())) { goMailGet("kirodatemeet"); }
 		//KIRO SMUT!
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
@@ -4871,6 +4877,11 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 
 public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 {
+	/*flags["KIRO_BALLS"]
+		undefined = normie routine
+		1 = keep small
+		2 = dont go over med
+		3 = keep huge 	*/
 	//Kiro stuff
 	if(flags["KIRO_BAR_MET"] != undefined)
 	{
@@ -4882,6 +4893,21 @@ public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 			//Add half again after Kiro quest refractory treatment~!
 			if(kiro.refractoryRate >= 9992) kiro.ballSizeRaw += Math.ceil(totalHours/2);
 			
+			if(flags["KIRO_BALLS"] == 1)
+			{
+				if(kiro.ballDiameter() > 7) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 2)
+			{
+				if(kiro.ballDiameter() > 24) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 3)
+			{
+				while(kiro.ballDiameter() < 24)
+				{
+					kiro.ballSizeRaw += 20;
+				}
+			}
 			if (kiro.ballDiameter() > 20)
 			{
 				// original was rand(200) < ballSize per hour, ergo 10% per hour

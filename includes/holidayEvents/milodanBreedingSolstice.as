@@ -344,7 +344,7 @@ public function guysBreedingSolstice():void
 	//multi-puss:
 	if(numVag > 1)
 	{
-		output("\n\n<i>“Hey, [pc.heShe]’s got " + (numVag == 2 ? "two" : "more") + " of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out " + (numVag == 2 ? "your empty slot" : "one of your empty slots") + ". His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting breed.");
+		output("\n\n<i>“Hey, [pc.heShe]’s got " + (numVag == 2 ? "two" : "more") + " of these you know.”</i> The venerated man in [pc.oneVagina] points out, pointing out " + (numVag == 2 ? "your empty slot" : "one of your empty slots") + ". His tail wags in glee as he jams himself alongside the other milodan, shoving himself into your vacant cunt, making sure each of your holes is getting bred.");
 		if(numVag == 3) 
 		{
 			output(" That leaves one still empty though, and not much room for anyone else to squeeze in. Thankfully they seem to realize that too.");

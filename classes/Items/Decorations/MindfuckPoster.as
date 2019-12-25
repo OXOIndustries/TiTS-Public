@@ -41,7 +41,7 @@
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
-				kGAMECLASS.output("The poster will now appear onboard your ship. It can be taken down with by accessing the Items->Unequip->Decorations menu.");
+				kGAMECLASS.output("The poster will now appear onboard your ship. It can be taken down by accessing the Items->Unequip->Decorations menu.");
 				kGAMECLASS.flags["KQ_POSTER_2_HUNG"] = 1;
 			}
 			else

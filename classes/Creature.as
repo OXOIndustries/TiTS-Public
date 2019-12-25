@@ -5380,7 +5380,7 @@
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
 			// Status effect reduction
-			if(hasStatusEffect("Ditzi Strobed")) currInt = Math.ceil(currInt * 0.5);		
+			if(hasStatusEffect("Ditzy Strobed")) currInt = Math.ceil(currInt * 0.5);		
 
 			if (currInt > intelligenceMax())
 			{
@@ -6467,13 +6467,13 @@
 				if(lust() >= 80 && libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
 				if(lust() >= 80 && libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
 				if(lust() >= 80 && libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
-				if(lust() >= 80 && libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
+				//if(lust() >= 80 && libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
 				if(lust() >= 80 && libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
 			}
 			else
 			{
 				if(lips >= 4) nouns[nouns.length] = "pillow";
-				if(lips >= 4) nouns[nouns.length] = "pucker";
+				if(lips >= 4 && adjectives.indexOf("permanently puckered") == -1) nouns[nouns.length] = "pucker";
 			}
 			//Tack the selected choice onto result
 			if(result != "") result += " ";

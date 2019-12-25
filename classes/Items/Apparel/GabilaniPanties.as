@@ -16,7 +16,7 @@ package classes.Items.Apparel
 			stackSize = 1;
 			type = GLOBAL.LOWER_UNDERGARMENT;
 			
-			shortName = "G.Panties";
+			shortName = "Gab.Panty";
 			longName = "gabilani panties";
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

@@ -3213,7 +3213,7 @@ public function seraMilkings(arg:Array):void
 					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
 					chars["SERA"].orgasm();
 					
-					output("\n\nJust because you’re no longer being actively milked doesn’t slow down your bountiful tits: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow down your bountiful tits: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
 					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
 					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
 					output("\n\n<i>“Alright. Wow. Fuck,”</i> she says at last, boobs rested on your back, staring over your shoulder at your own set of crowd-pleasers. They continue to drip and ooze freely, adding to the heavy [pc.milkColor] mess you’ve left all over the floor. Her hands shift around, stroking your [pc.boobs] wonderingly.");
@@ -3236,7 +3236,7 @@ public function seraMilkings(arg:Array):void
 				{
 					output("\n\nEven industrial equipment is no match for your herculean tits. Once again, the fluid backs up, the tank completely full, and [pc.milk] is still gushing out of your [pc.nipples]. The pods come loose in warm spurts of [pc.milkColor].");
 					output("\n\n<i>“Holy... holy shit,”</i> the succubus groans, staring at your wildly shaking tits spattering milk all over the floor. But she’s too into it to stop, too into emphatically pumping her cock into your " + (vIdx >= 0 ? "oozing, simmering cunt" : "abused asshole") + ", and so you continue with your [pc.boobs] hanging down and drooling like partially opened taps.");
-					output("\n\nJust because you’re no longer being actively milked doesn’t slow your boobs down: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow your boobs down: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
 					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
 					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
 					

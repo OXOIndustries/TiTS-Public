@@ -44,7 +44,7 @@ public function encounterDatPoBitchBaybeee():Boolean
 	{
 		output("You step into the lab to find Kiro restrained, and Doctor Illustria Po slowly rising out of her chair. The fluffy pirate in the background immediately struggles against her bindings and shouts, <i>“Hell yeah! Kill this crazy bitch, Angel! Fucking ruin-”</i>");
 		output("\n\nA mouthguard slams across the infuriated kui-tan’s muzzle, silencing her diatribe.");
-		output("\n\n<i>“Hello, [pc.name].”</i> Illustria offers a formal wave. <i>“I must admit, I did you expect you to ever get this far. That was my mistake, but do not make one of your own. Battling me in my own lab would go badly for you, I assure you, and the services I provide are entirely legal and aboveboard.”</i> Her smile is so self-assured that it’s almost painful to look upon. <i>“I am licensed to capture and socially recondition pirates, debtors with suitably delinquent loans, and home invaders thanks to the classification of my vessel as New Texan territory. It would serve us well to resolve the matter financially rather than violently.”</i>");
+		output("\n\n<i>“Hello, [pc.name].”</i> Illustria offers a formal wave. <i>“I must admit, I did not expect you to ever get this far. That was my mistake, but do not make one of your own. Battling me in my own lab would go badly for you, I assure you, and the services I provide are entirely legal and aboveboard.”</i> Her smile is so self-assured that it’s almost painful to look upon. <i>“I am licensed to capture and socially recondition pirates, debtors with suitably delinquent loans, and home invaders thanks to the classification of my vessel as New Texan territory. It would serve us well to resolve the matter financially rather than violently.”</i>");
 		//Bimbo
 		if(pc.isBimbo()) output("\n\nYou giggle, <i>“So you’re gonna pay me?”</i>");
 		//Else
@@ -883,19 +883,19 @@ public function fuckPosCunt(x:int):void
 	{
 		output("\n\n<i>“Ohhhhhhhhh, yessssssssss,”</i> Illustria moans as you finish, your knot trapping the bulk of your climax inside. <i>“You fucked me so fucking cum-pregnant, [pc.name]! And that knot... it’s got you trapped, doesn’t it?”</i> She makes a half-hearted attempt to crawl away before the bulbous, imprisoned flesh yanks her back. <i>“And now that I’m all stretched out, you have so much more room to grow. Which do you think will happen first? Will you pull manage to pull out, or will your knot get so nasty thick that it pushes me right off?”</i>");
 		//Str check
-		if(pc.physique()/2 + rand(20) + 1 >= 40) output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, barely yanking your " + (pc.hasStatusEffect("Priapism") ? "wilting":"still-hard") + " cock out. Bared to the open air, you can see it soaking up the mad doctor’s pink residue, twitching and growing a little bit more before the last of the mutagen is spent.");
+		if(pc.physique()/2 + rand(20) + 1 >= 40 || pc.cocks[x].cLengthRaw < 24) output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, barely yanking your " + (pc.hasStatusEffect("Priapism") ? "wilting":"still-hard") + " cock out. Bared to the open air, you can see it soaking up the mad doctor’s pink residue, twitching and growing a little bit more before the last of the mutagen is spent.");
 		//No strongo
 		else output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, but it’s not enough. Your [pc.knot " + x + "] holds firm and grows firmer by the second, thickening as it soaks up more drugged cuntjuice like a sponge. While it may feel pleasant at first, soon the pressure becomes stifling, painful even. If you hadn’t blown up her stomach with cum, you’re sure you’d be watching your [pc.cockHead " + x + "] climbing up higher this very moment. Instead, you suffer within her constrictive, torrid cunt until, as promised, your knot balloons with enough girth to pry the whole woman off of your massively-expanded cock, <b>now ");
-		if(pc.cocks[x].cLength() < 7) output("pornstar-grade");
-		else if(pc.cocks[x].cLength() < 11) output("bigger than most terrans could take");
-		else if(pc.cocks[x].cLength() < 14) output("the size of a forearm");
-		else if(pc.cocks[x].cLength() < 24) output("closing in on the size of a baseball bat");
-		else if(pc.cocks[x].cLength() < 34) output("now baseball bat-sized");
+		if(pc.cocks[x].cLengthRaw < 8) output("pornstar-grade");
+		else if(pc.cocks[x].cLengthRaw < 11) output("bigger than most terrans could take");
+		else if(pc.cocks[x].cLengthRaw < 14) output("the size of a forearm");
+		else if(pc.cocks[x].cLengthRaw < 24) output("closing in on the size of a baseball bat");
+		else if(pc.cocks[x].cLengthRaw < 34) output("now baseball bat-sized");
 		else output("large enough to satisfy the greediest leithan");
 		output("</b>.");
 	}
 	var grows:Number = 0;
-	if(pc.cocks[x].cLengthRaw < 7) grows = 7 - pc.cocks[x].cLengthRaw;
+	if(pc.cocks[x].cLengthRaw < 8) grows = 8 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 11) grows = 11 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 14) grows = 14 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 24) grows = 24 - pc.cocks[x].cLengthRaw;
@@ -903,6 +903,8 @@ public function fuckPosCunt(x:int):void
 	else grows = 4+rand(4);
 	if(pc.hasPerk("Mini")) grows--;
 	else if(pc.hasPerk("Hung")) grows++;
+	if(grows < 2) grows = 2;
+	grows = Math.ceil(grows);
 	//Merge STrcheck
 	//Merge all
 	output("\n\n");
@@ -972,7 +974,7 @@ public function faceFuckOlIllustriusPozilla(x:int):void
 	output(" teasing and caressing it with wiggling mechanical precision.");
 	output("\n\n<i>“Fuuuuck,”</i> you let out involuntarily. This treatment continues for another minute, and by that point it’s impossible not to moan out loud. You’re worried you might cum too soon, but the sensation starts to wane for some reason, until it’s been toned down to more manageable levels. Apparently, her body’s automatic functions have added a desensitizing agent to her throat’s lubrication, so as to prolong the fuck. She must be really enjoying this.");
 	output("\n\nYour hypothesis is confirmed when Illustria suddenly stops, trembling and letting out muffled whimpers. There’s no need to even glance down to understand what’s happening: the doctor’s snatch is shuddering from her first orgasm and squirting copious amounts of pinkish artificial pussylube. After she regains her composure, you decide to tease her a little, pulling out your [pc.cockNoun " + x + "] and letting it rest on her face for a moment. She gazes at you with a vacant but defiant expression. <i>“Having fun, are you?”</i> she asks.");
-	output("\n\n<i>“Not as much as you, by the looks,”</i> you retort, pointing to the pool of pink fem-lube at her feet. <i>“I your throat seems to be even more sensitive than a pussy, you must have really wanted someone to fuck your face, huh?”</i> No reply seems to be forthcoming, and, for once, the scientist looks truly embarrassed - which is even cuter with your cock resting on her face.");
+	output("\n\n<i>“Not as much as you, by the looks,”</i> you retort, pointing to the pool of pink fem-lube at her feet. <i>“Your throat seems to be even more sensitive than a pussy, you must have really wanted someone to fuck your face, huh?”</i> No reply seems to be forthcoming, and, for once, the scientist looks truly embarrassed - which is even cuter with your cock resting on her face.");
 	output("\n\nWell, she might be satisfied, but you haven’t had your fill yet. <i>“Move back a little,”</i> you tell the cyborg, and she does as commanded, until her back presses against the wall. To make it more comfortable, she grabs a pillow from the chair nearby and puts it behind her head. <i>Perfect</i>, it’s almost as if she knows what’s coming next, except that she doesn’t - someone who’s always been so dominant has no way of knowing.");
 	output("\n\nOnce again, you line your [pc.cock " + x + "] with her mouth and push inside without preamble, her lips automatically parting to take you. The cyborg is about to resume her ministrations, but you block her by forcing your shaft all the way in and pinning her head against the wall with your [pc.thighs].");
 
@@ -1311,17 +1313,21 @@ public function postPoOptionsWinRouting():void
 	if(!kiro.isBimbo())
 	{
 		output("You smash Kiro out of her remaining restraints");
-		if(flags["KQ_PO_DEAD"] == undefined && pc.RQ() < 33)
+		if(flags["KQ_PO_DEAD"] == undefined)
 		{
-			output(", and she wastes no time in grabbing your [pc.rangedWeapon] and using it to put an end to the defeated Doctor Po");
-			flags["KQ_PO_DEAD"] = 2;
-			//kiro killed po :3
+			if(flags["KQ_PO_DEAD"] == undefined && pc.RQ() < 33)
+			{
+				output(", and she wastes no time in grabbing your [pc.rangedWeapon] and using it to put an end to the defeated Doctor Po.");
+				flags["KQ_PO_DEAD"] = 2;
+				//kiro killed po :3
+			}
+			else
+			{
+				output(", and she wastes no time in going for your [pc.rangedWeapon]. You catch her wrist and stop her. If you wanted Po dead, you would have done it yourself.");
+			}
 		}
-		else
-		{
-			output(", and she wastes no time in going for your [pc.rangedWeapon]. You catch her wrist and stop her. If you wanted Po dead, you would have done it yourself.");
-		}
-		output(". <i>“Let’s get out of here.”</i>");
+		else output(", and she wasts no time in saying,");
+		output(" <i>“Let’s get out of here.”</i>");
 		output("\n\nYou couldn’t have said it better.");
 		//route out of there
 		clearMenu();
@@ -1423,7 +1429,7 @@ public function victoryEndWrap():void
 //following bonustexts
 public function KQKiroFollowBonusTexts():void
 {
-	showBust(kiroBustDisplay());
+	showBust(kiroBustDisplay(true));
 	//Bimbokiro
 	if(kiro.isBimbo())
 	{
@@ -1440,7 +1446,7 @@ public function KQKiroFollowBonusTexts():void
 	//Rescued Kiro
 	else
 	{
-		output("\n\n" + RandomInCollection([,"Kiro follows after you, alert for any remaining danger.","Kiro smiles when you look back her.","Kiro gestures in the direction of the hangar.","Kiro follows with a stylish looking combat roll.","Kiro crouches, keeping low and out of the way.","Kiro silently points out a security camera, then gives it two big middle fingers.","Kiro bounces from side to side, alert for more danger.","Kiro places her hand on your shoulder reassuringly.","Kiro shakes her head. <i>“I can’t believe I almost got turned into one of those... things.”</i>","Kiro bumps into your back. <i>“Watch where you’re going, will ya?”</i> She grins. <i>“Unless you want me to keep bumping into you naked, perv.”</i> She winks."]));
+		output("\n\n" + RandomInCollection(["Kiro follows after you, alert for any remaining danger.","Kiro smiles when you look back her.","Kiro gestures in the direction of the hangar.","Kiro follows with a stylish looking combat roll.","Kiro crouches, keeping low and out of the way.","Kiro silently points out a security camera, then gives it two big middle fingers.","Kiro bounces from side to side, alert for more danger.","Kiro places her hand on your shoulder reassuringly.","Kiro shakes her head. <i>“I can’t believe I almost got turned into one of those... things.”</i>","Kiro bumps into your back. <i>“Watch where you’re going, will ya?”</i> She grins. <i>“Unless you want me to keep bumping into you naked, perv.”</i> She winks."]));
 	}
 }
 

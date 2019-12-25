@@ -230,18 +230,19 @@ public function millyBonusSex():void
 		output("\n\n<i>“Can I see- uh, what you’re... packing?”</i> Milly asks hesitantly. <i>“Sorry, I’ve never been very good with dirty talk.”</i>");
 		output("\n\n<i>“Sure,”</i> you say generously, lifting your hands off her perfect breasts. <i>“Get a good look.”</i>");
 		output("\n\nShedding your [pc.crotchCovers], Milly ");
-		if(!pc.isTaur()) 
-		{
-			output("puts her hands between your [pc.legs] and gets a nice handful of ");
-			if(cIdx >= 0 && pc.balls > 0) output("your [pc.balls]");
-			else if(cIdx >= 0) output("your [pc.cock " + cIdx + "]");
-			else output("your [pc.pussy]");
-			output(", her eyebrows raising before a grin crosses her face.");
-		}
 	}
-	if(pc.isTaur()) 
+	else output("\n\nShuffling between your legs, Milly ");
+
+	if(!pc.isTaur()) 
 	{
-		output("\n\nShuffling between your legs, Milly ");
+		output("puts her hands between your [pc.legs] and gets a nice handful of ");
+		if(cIdx >= 0 && pc.balls > 0) output("your [pc.balls]");
+		else if(cIdx >= 0) output("your [pc.cock " + cIdx + "]");
+		else output("your [pc.pussy]");
+		output(", her eyebrows raising before a grin crosses her face.");
+	}
+	else
+	{
 		if(cIdx >= 0) output("gets an immediate eyeful of your [pc.cock " + cIdx + "], a low whistle then a giggle issuing from underneath you");
 		else output("stretches her hand up your hindquarters and gets a couple of fingers inside your [pc.pussy]");
 		output(". You can hear the grin in her voice when she speaks.");

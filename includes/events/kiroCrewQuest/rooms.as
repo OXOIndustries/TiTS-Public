@@ -465,7 +465,7 @@ public function initKQRooms():void
 
 	rooms["KQ R10"] = new RoomClass(this);
 	rooms["KQ R10"].roomName = "\nKITCHEN";
-	rooms["KQ R10"].description = "While this area is clearly a kitchen, it has little to do with the common cooking spaces one would find on a less developed world. The dish combination dish dispenser and cleaning system stands proudly next to the food synthesizer and waste disposal systems. Rather than a table and chairs, there is a single, hovering seat, plush with padding and treated with a thick layer of glossy waterproofing. Pressing the button on the armrest causes the floor panel in front of it to levitate into place as an eating surface - and it exposes a recessed, spongy fuckpit underneath.\n\nFlickering holographic light provides a privacy screen for the bedroom to the east. An unlabeled hatch on the western wall beckons as well.";
+	rooms["KQ R10"].description = "While this area is clearly a kitchen, it has little to do with the common cooking spaces one would find on a less developed world. The combination dish dispenser and cleaning system stands proudly next to the food synthesizer and waste disposal systems. Rather than a table and chairs, there is a single, hovering seat, plush with padding and treated with a thick layer of glossy waterproofing. Pressing the button on the armrest causes the floor panel in front of it to levitate into place as an eating surface - and it exposes a recessed, spongy fuckpit underneath.\n\nFlickering holographic light provides a privacy screen for the bedroom to the east. An unlabeled hatch on the western wall beckons as well.";
 	rooms["KQ R10"].planet = "N/A";
 	rooms["KQ R10"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ R10"].northExit = "";
@@ -1243,7 +1243,7 @@ public function weenUpADingleDanglehole(x:int):void
 	//Never opened a door
 	else
 	{
-		output("With a great deal of trepidation, you align your [pc.cock " + x + "] with the rubbery " + (black ? "black":"red") + " opening and gently nudge your [pc.cockHeadNoun " + x + "] inside. Infinitely smooth artificial material meets your tender organic flesh with surprising comfort, allowing you to slide in as smoothly as a lover’s vagina. It’s comfortable - almost too comfortable. The temperature is well above ambient. The material is snug without being restrictive. It caresses you, beckoning you with ardoer sufficient to shame a thirsty succubus.");
+		output("With a great deal of trepidation, you align your [pc.cock " + x + "] with the rubbery " + (black ? "black":"red") + " opening and gently nudge your [pc.cockHeadNoun " + x + "] inside. Infinitely smooth artificial material meets your tender organic flesh with surprising comfort, allowing you to slide in as smoothly as a lover’s vagina. It’s comfortable - almost too comfortable. The temperature is well above ambient. The material is snug without being restrictive. It caresses you, beckoning you with ardor sufficient to shame a thirsty succubus.");
 		output("\n\nYou enter the ‘keyhole’ fully" + (pc.hasKnot(x) ? ", firmly seating your [pc.knot " + x + "] in the process":"") + ".");
 	}
 

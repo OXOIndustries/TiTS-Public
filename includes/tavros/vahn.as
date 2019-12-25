@@ -87,7 +87,8 @@ public function VahnTheMechanic():void
 	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
-	addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
+	if(!shits["SHIP"].hasPerk("No Rename")) addButton(8,"Name Ship",vahnNamesShips,undefined,"Name Ship","Rename your ship.");
+	else addDisabledButton(8,"Name Ship","Name Ship","You lack the legal authority to name this vessel.");
 	addButton(10,"Buy Ship",vahnSellsShips,undefined,"Buy Ship","Buy a ship the local selection.");
 	if(shipStorageRoom() < shipStorageLimit()) addButton(11,"Stored Ships",storageShipsMenu,undefined,"Stored Ships","Examine your stored ships. You may swap out your current ship for one in storage at your leisure.");
 	else addDisabledButton(11,"Stored Ships","Stored Ships","You have no ships in storage right now.");

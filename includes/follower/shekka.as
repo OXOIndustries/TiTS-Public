@@ -934,6 +934,7 @@ public function synthsheathShekka():void
 	shekka.createCock();
 	shekka.shiftCock(0,GLOBAL.TYPE_EQUINE);
 	shekka.cocks[0].cLengthRaw = 14;
+	if(!pc.hasStatusEffect("Shekka Just Grew HC")) pc.createStatusEffect("Shekka Just Grew HC",0,0,0,0,true,"","",false,2);
 	shekkaCrewSexMenu();
 	shekkaBlowButton(9,true);
 	//Next: Sex scene
@@ -1166,7 +1167,7 @@ public function shekkaSleepWithMornings():void
 			if(pc.biggestTitSize() >= 2) output("from between your massive breasts");
 			else output("with her chin perched on your pecs");
 			output(". Her lids slowly open and close, and her hips raise up, wiggling like a predator about to pounce.");
-			output("\n\nYou get perhaps halfway into a ‘Good Morning’ before she pounces, diving in for a hungry kiss. She has the dilated pupils of an addict, and the moment her tongue meets your it hits her like a shock of electricity. Shekka trembles atop you, whimpering into your mouth as she gets her fix, practically gushing from her now-flushed quim. Your hands instinctively grasp at her cushiony rear, giving her a slow squeeze until she stops moaning through your lips and comes up for air.");
+			output("\n\nYou get perhaps halfway into a ‘Good Morning’ before she pounces, diving in for a hungry kiss. She has the dilated pupils of an addict, and the moment her tongue meets yours, it hits her like a shock of electricity. Shekka trembles atop you, whimpering into your mouth as she gets her fix, practically gushing from her now-flushed quim. Your hands instinctively grasp at her cushiony rear, giving her a slow squeeze until she stops moaning through your lips and comes up for air.");
 			output("\n\n<i>“Ffffuck... [pc.name], I held out for as long as I could, I seriously needed my fix....”</i>");
 			output("\n\nShe rolls off of you, idly stroking herself. <i>“Better than morning coffee...”</i>");
 			pc.lust(10);
@@ -1263,6 +1264,13 @@ public function shekkaCrewSexMenu(inBed:Boolean = false):void
 	else addDisabledButton(8,"Catch Anal","Catch Anal","Shekka has nothing to pitch with.");
 
 	shekkaBlowButton(9);
+
+	//[Ride Her]
+	// Tooltip1: Sit on Shekka's stallion dick and go for a ride, reverse cowgirl style.
+	// Shekka must have been given a synth-sheath. Taurs allowed - it's all about the booty clap, after all.
+	// PC has to choose anal or vaginal if herm. Automatically choose the hole available otherwise. Shekka's gonna stretch you out.
+	if(shekka.hasCock(GLOBAL.TYPE_EQUINE)) addButton(10,"Ride Her",vaginaRouter, [shekkaRideHerCrewSceneByWilliam, shekka.cockVolume(0),1,0,true],"Ride Her","Sit on Shekka's stallion dick and go for a ride, reverse cowgirl style.");
+	else addDisabledButton(10,"Ride Her","Ride Her","Shekka needs to have a horse-dick for this.");
 
 	addButton(14,"Back",approachCrewShekka,true);
 }
@@ -4395,6 +4403,390 @@ public function shekkaHalloweenLateness():void
 	pc.lust(10);
 	shekkaSpitAddiction(8);
 	flags["SHEKKA_HALLOWEEN_LATENESS"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Shekka is a sweetie, and when you bring her on your ship she's the best live-in space kobold you could ask for. You can also ask her to get a penis. If this is chosen, I will add a scene to the equine-endowed raskvel where you can ride her Reverse Cowgirl style. I've been in a mood recently, and quite like the idea of the PC bouncing a big butt up and down on their smol crewmember. 
+
+//[Ride Her]
+// Tooltip1: Sit on Shekka's stallion dick and go for a ride, reverse cowgirl style.
+// Shekka must have been given a synth-sheath. Taurs allowed - it's all about the booty clap, after all.
+// PC has to choose anal or vaginal if herm. Automatically choose the hole available otherwise. Shekka's gonna stretch you out.
+
+public function shekkaRideHerCrewSceneByWilliam(x:int):void
+{
+	clearOutput();
+	showShekka(true);
+	author("William");
+	// first time - From The Sex Menu Immediately After Shekka Gets A Dick
+	if(flags["SHEKKA_RIDDEN"] == undefined && pc.hasStatusEffect("Shekka Just Grew HC"))
+	{
+		if(pc.isBimbo()) output("Doesn’t take a moment’s consideration to figure out how to help! Hot ‘n sexy girl, a big, hard boner, and you, dripping-wet and ready for action! It’s time to break that bad boy in, and taking it for a ride is just what the scaly shortstack would love for you to do most, even if she doesn’t know yet!");
+		else if(pc.isBro()) 
+		{
+			output("Shekka <i>does</i> need help. You look at the towering fatness between her legs, then to her face, then to your crotch - your ");
+			if(pc.isHerm()) output("groin moistens");
+			else if(pc.hasCock()) output("cock’s leaking");
+			else if(pc.hasVagina()) output("cunt’s dripping");
+			else output("body shudders");
+			output(". Yep, a test drive is just what the raskvel’s newest toy needs.");
+		}
+		else 
+		{
+			output("Shekka’s unrestrained lusts gather into a foot and a half of towering dickmeat. Thick, weaponized musk fills the air. The raskvel’s cockscent reaches high in your veins, ");
+			if(pc.isHerm()) output("triggering your herm-hood to dribble pleasure");
+			else if(pc.hasVagina()) output("creasing your pussy into the blissful veneration of an overwet sponge, fat beads dripping from the slit");
+			else if(pc.hasCock()) output("stirring energetically at the knowledge of approaching sex");
+			else output("making you shudder and moan in delight");
+			output(". She needs help, and you want to take it for a ride. Win-win!");
+		}
+	}
+	// first time - At Any Other Point
+	else if(flags["SHEKKA_RIDDEN"] == undefined)
+	{
+		output("Shekka’s cock is big enough that it’s hard to think about much else than touching it" + (pc.libido() >= 33 ? ", maybe even sucking it":"") + ". Your [pc.hands] tend the appealingly large bulge in her suit long enough to decide how best to tame that juicy equine pole she’s packing.");
+		if(pc.isBimbo()) output(" MmmMMMm, and while getting a taste of raskvel isn’t at all a bad idea, the fine detail of pussy-dew trickling down your inner thighs is starting your motor. Gosh, she’s so small too... easy to... push over!");
+		else if(pc.isBro()) 
+		{
+			output(" You plug the curvy lizard-girl’s mouth with a fierce kiss, stroking her growing girth to suit-ripping hardness. When her tiny hands lock around your lower body, your");
+			if(pc.isHerm()) output(" body clenches up, releasing the first dollops of herm-lube");
+			else if(pc.hasVagina()) output(" pussy clenches up, the first wave of lubricant flowing");
+			else if(pc.hasCock()) output(" dick pulses with strengthening pressure");
+			else output(" hips shudder");
+			output(", bringing a moment of hyper-sexual-awareness. Yeah. Gotta take that horse for a ride. Only way.");
+		}
+		else
+		{
+			output(" The more girth you stroke, the more your legs squirm, and the");
+			if(pc.isHerm()) output(" juicier your groin becomes");
+			else if(pc.hasVagina()) output(" wetter your pussy gets");
+			else if(pc.hasCock()) output(" harder your cock gets");
+			else output(" emptier and needier you feel");
+			output(". By the time her burgeoning dick reaches her cleavage, you bite your lip: you want to ride it. All that rask and horse-meat to yourself...!");
+		}
+	}
+	// repeat time
+	else
+	{
+		output("Shekka’s asked how you want her, but you’ll give her an answer in a second - she’s a real good kisser");
+		if(pc.tallness > 60) output(" especially when you pick her up by the legs and hold her tight");
+		output(". The raskvel’s heavy tail whaps against the floor, scraping the rivets maintaining your ship’s integrity. <i>Your</i> integrity is tested by the burgeoning growth of equine meat squeezing up her torso, sexual pre spotting her white-hex uniform.");
+		if(pc.libido() < 33) 
+		{
+			output(" Void, that dick. It has a way of worming into your mind and spanking you on the ass... ah, yes - ");
+			if(pc.hasVagina()) output("[pc.girlCumNoun] dribbles down your [pc.thighs]");
+			else if(pc.hasCock()) output("a wad of precum is soaking your [pc.leg]");
+			else output("that’s what she needs: a good piece of tail");
+			output(" - there’s your answer. That’s how you need this cock-packing runt again.");
+		}
+		else if(pc.libido() < 66)
+		{
+			output(" Shekka gropes" + (pc.isTaur() ? " your human half’s hips":" your butt") + "; you rub her ass back, shifting more weight on her;");
+			if(pc.hasVagina()) output(" your quim quivers out another [pc.girlCumVisc] torrent");
+			else if(pc.hasCock()) output(" your [pc.cocksLight] quake, spurting fresh tension");
+			else output(" your bottom shivers");
+			output(". <b>That’s it,</b> you’ve got to straddle her! Take that huge dick again, grind her so bad that you forget you’re even on a quest!");
+		}
+		else
+		{
+			output(" It’s a One-damned mystery how you haven’t pushed the horny rask down and mounted her yet. Stroking her cock is too addicting, even though it’s bound up. Her breed-steed reaches higher, and higher, <i>and higher,</i> swelling into a prodigious saddle. The moment she slaps your [pc.thigh], you can’t take it anymore - ");
+			if(pc.hasVagina()) output("your slippery muff’s dripping-wet, a liquid-drenched flower in full bloom");
+			else if(pc.hasCock()) output("your [pc.cocksLightIsAre] struggling desperately for stimulation, letting down a slick mess of [pc.cumColor]");
+			else output("you’re wiggling on instinct now, previous experience taking Shekka’s stallion for a spin replaying in your nerves");
+			output(".");
+		}
+	}
+	// merge
+	output("\n\nBecause she’s all over you, it’s a simple matter of dragging the ruby-hued runt to her sleeping spot and going down, an act as physical as it is arousing. Straddling Sheka, you run a hand through her coral-colored hair quills, breaking the kiss with a fling of stringy slaver, " + (pc.isTaur() ? "your underbelly’s weight limpeting her cock to her torso":"all the weight in your groin pinning her cock to her front") + ". <i>“Fuck yes,”</i> she purrs, eyes full of erotic glimmer, <i>“love that, love that so much.”</i> Your tiny crewmember’s heaving for breath, and - her hips arch up - lovely aches drum through her firmness. <i>“Love all of what you do, [pc.name]!!”</i> Her sheathed beast throbs so powerfully it moves you up just an inch, freely oozing through the neck seam - damn, that <b>moan</b> she gave was something else! <i>“Man, having a dick... don’t even have to bang, just have to get swept up and all I wanna do is cum... and thinking about cumming just... works! It’s crazy!”</i>");
+	output("\n\n<i>“Soo uhhh...”</i> She beams, blinking twice. <i>“Is my captain gonna sit on [pc.hisHer] favorite raskvel all day or what?”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("<i>Wow.</i> That sounds like fun, and a good warmup! <i>“Great idea, Shekksie!”</i> you squeal - it’s so cute how her name rhymes with sexy!");
+	else if(pc.isBro()) output("<i>“Huh.”</i> You grin, grunting, <i>“sounds good to me.”</i>");
+	else output("<i>Shekka’s full of such great ideas,</i> you realize. <i>“Maybe a little longer,”</i> you smirkingly reply.");
+	output("\n\nMouth ajar, Shekka watches you lift and turn" + (!pc.isCrotchExposed() ? ", tearing your gear off and throwing it across the room, all to bare your [pc.ass] to her":", baring your [pc.ass] to her with a provocative smack") + ". <i>“Oh woah,”</i> she murmurs, smiling longingly. You peek down over your shoulder, rocking your [pc.hips] to the left and right, captivating the alien grease-lizard with a picturesque view of [pc.raceShort] nethers, bemused at how diligently she tracks your behind.");
+
+	// pc Butt Rating 0-3 (flat and unwobbly; HOWEVER, do not use if PC has Bubble-butt)
+	if(pc.buttRating() <= 3 && !pc.hasPerk("Bubble Butt"))
+	{
+		output("\n\n<i>“Heh, I can see everything.”</i> Her eyes gloss over your petite tush, small, firm, dense, nary an ounce of fat content shaping your rump. <i>“Don’t take this the wrong way [pc.name], but a [pc.guyGirl] like you would look great with a bigger ass. Not dissing or anything, but tough captains need some oomph, y’know? When you walk in a room all the eyes need to be on you, and there’s no better way to generate a magnetic field than with some junk in the trunk. Know what I’m saying?" + (pc.tone > 45 ? " ‘Course muscle’s great, love me a solid foundation! Haha, I’m gonna feel it when I wake up, aren’t I?":" But hey, least it’s nice ‘n soft looking... just begging ‘ya to build some mass!") + "”</i>");
+		output("\n\nRolling your eyes, you tilt your head and settle down; a follow-up is squelched on her mouth as you firm your [pc.vagOrAss] to her sassy lips" + (pc.balls > 0 ? " and rest your sack on her chin":"") + ".");
+	}
+	// pc Butt Rating 4-8 (girly and bubble-like)
+	else if(pc.buttRating() <= 8)
+	{
+		output("\n\n<i>“Is this the kind of ass that makes terrans say things like ‘love to watch you go’? Because man, I’d uhhh... do some questionable things to watch this going anywhere.”</i> There’s a blatant visual satisfaction showing on Shekka’s expression, and it unsubtly intensifies the longer she stares at your nicely-shaped posterior, gasping in awe when deliciously-round aft-orbs wobble from your teasing wiggles. <i>“Fuck, [pc.name]. This bad [pc.boyGirl] deserves to be on the front cover of a zine - headline: Captain Steele, [pc.heShe] with the most spankable ass on the frontier- urrk!”</i> Her cock spits out a chin-plastering glob of alabaster ooze. The wet impact dizzies her. <i>“Just sayin’, we could make some killer cash off this. Just take pics of it at different angles and we’ll be rolling in thirst and dosh!”</i>");
+		output("\n\n");
+		if(pc.isBimbo()) output("Oooh! Sounds hot! And if there’s anyone who knows how thirsty people are for whores, it’s you! But for now, time to get started - you seat yourself on your chair of ego-stroking, pressing your [pc.vagOrAss] to her lips" + (pc.balls > 0 ? " and your nutsack to her chin":""));
+		else output("If you’re ever that desperate for cash, you’ll consider it. Right now, you’re desperate for a little TLC, which you’re in the process of getting by busying her mouth with your [pc.vagOrAss]");
+		output(".");
+	}
+	// pc Butt Rating 9-12 (big, addictingly round hill-bottoms)
+	else if(pc.buttRating() <= 12)
+	{
+		output("\n\n<i>“Oh shit, umm... damn, everywhere I look is just more ass!”</i> Shekka’s eyes harden to diamonds of pinpoint callipygean concentration. Hair-thin irises roam the mesmerizing expanse of roundness and fullness hovering above to the point of ocular fatigue - you slap one of the hemispheres for good measure, a sort of sensory coup-de-grace. It takes the raskvel a while to realize that she’s drooling open-mouthed. <i>“So much... always knew you had some real weight in that waist of yours, but it has a way of making me feel super small getting this close to it! Uh, small-<b>er</b>, heh heh - fuck, I could watch you shake this all day. You auditioning for a pole dancing gig or something? I’m not saying I’d be Captain <i>“Big Butt”</i> [pc.name]’s number one fan or anything.”</i>");
+		output("\n\n");
+		if(pc.isBimbo()) output("You bat your eyelashes and giggle, <i>“Weeeell I’m about to perform on yours, aren’t I?”</i> Before she can muster a response that isn’t squirting pre on her cherry-flushed face, you seat your [pc.vagOrAss] on her mouth and work your jiggle around her cheeks.");
+		else output("You titter, seating yourself on the floppy-eared lizard’s face with a loud, contented sigh, wiggling her deep into the valley of your big fat butt, both globes engulfing her comparably tiny features.");
+	}
+	// pc Butt Rating 13-16 (quaking mountains of assflesh)
+	else if(pc.buttRating() <= 16)
+	{
+		output("\n\n<i>“Holy fuck...”</i> Shekka whispers, her sputtered breathings washing across your [pc.butts], celestially-sized cheeks of marvelous proportion. Audibly gulping, she reaches up to steal a touch, and your squeezable" + (!pc.hasFur() ? " flesh":" fur") + " runs through the questing raskvel’s teeny-tiny fingers, gradually squishing into your great sprawling behind until she’s missing her forearms. You keep shaking and working, bending your waist in an S-shaped sashay of sublime sexuality. The erotic reverie always makes her tense up when you come very close to sitting the full weight of your monumental ass on her face. <i>“Is this the uh...”</i> Lost for words, she shakes her head, and of course, there’s just more butt. <i>“I was uhhh...”</i> she rambles, swallowing again, <i>“...gonna ask if you should really have an ass this big but, y’know, of course you should, because it’s fucking hot! The jiggle, the ripples, oh man, you’ve gotta let me record this so I can fap to it later!”</i>");
+		output("\n\n");
+		if(pc.isBimbo()) output("<i>“Why fap?”</i> You laugh girlishly. <i>“Just gimme a call, ‘n you can take it for a ride,”</i> you swing to the left, <i>“any...”</i> the right, <i>“time!”</i> You finish by planting your [pc.vagOrAss] to her mouth, pulling apart the massive orbs to get your loyal mechanic burrowed in there.");
+		else output("Why record it when she can just ask? Not like she’s going anywhere, nestled in the fathomless cleft of your pillowy posterior, your [pc.vagOrAss] fit to her lips!");
+	}
+	// pc Butt Rating 17-20 (Bianca-tier moons)
+	else if(pc.buttRating() <= 20)
+	{
+		output("\n\n<i>“Aaah...”</i> Shekka bites her lip, head whipping around to try and comprehend the sheer amount of ass that’s about to sit on her. There’s only a second between the enthusias" + (silly ? "s":"") + "tic whirl of your mind-boggling moneymaker that you can see her wide-eyed face, and it’s twisted into the most innocuous-yet-nervous smile. She must certainly realize that when these wobbling moons come crashing down, not a trace of her’ll be left. <i>“Haha, I’m in danger, aren’t I?”</i>");
+		output("\n\nWhatever could she mean? It’s not like there’s a <b>gigantic ass</b> situated above her, a real monument to unprecedented callipygean rotundity wearing on its owner’s joints, flooding [pc.himHer] muscles with lactic acid and eroding the last of [pc.hisHer] endurance. Shekka <i>couldn’t possibly think</i> that her captain would put her in danger, not when your sheer mass of doughy ass bounces its way into every facet of her consciousness <i>“Oh.”</i> A very small hand just slapped your [pc.butts] ineffectual, only managing to sink into the ripely-plump flesh. Tinier fingers tense up inside the pits, pawing at the glorious backside available to them, even as it swings and gyrates with enough force to trick the laws of physics into thinking it’s an orbiting body shaken loose from its designated stellar alignment, both sides of the equator clapping loudly together with almost no external input.");
+		output("\n\n<i>“Fuck, [pc.name]!”</i> Shekka squeals, totally overwhelmed by the whorish tempo of bubble-shaped heiny. <i>“How the hell do you carry this thing around? This big fat curvy ass, umf, look at it! Fuuuuck, this is the kind of ass made to be fucked! Makes me wanna squeeze and nuzzle it all day! Bigger than any porn star’s, that’s-for-damn-sure!”</i> To her, your rear end is a mind-melting fever dream, and it’s a level of praise that makes having miles of wobbly ass worth the ass-centric burden. <i>“Look, I’m gonna be real, I think your ass is controlling me, like... like... hell, like you’re attached to <b>it</b> and not the other way ‘round! I close my eyes and I still <b>see</b> it! Subliminally, I mean! Mmm... and speaking of round...”</i>");
+		output("\n\nYou’d bid bon voyage to the poor rask, but where she’s going, she won’t be able to hear you, let alone make sense of anything. It happens rather unceremoniously, your enormous backside reducing her words to muffled hums and groans of purest delight, <b>plopping down</b> and squashing her head, neck, shoulders... arms... torso.... It’s much larger than she is, an order of magnitude well in excess of red-scaled shortstack. The only thing you were worried about was getting her to your [pc.vagOrAss], but, luckily, you don’t take <b>too</b> long grinding your impossibly-huge tush over the runt.");
+	}
+	// pc Butt Rating 21+ (add-on to 17-20; absurd giant slut-ass}
+	else
+	{
+		output("\n\nScratch that: you do, and while sliding across Shekka’s recumbent form, you sigh so powerfully and happily that you have to remind yourself this isn’t a dream. An ass like yours? The biggest out there, larger than any cowgirl’s? Legendary jiggle that makes entire generations salivate at first glance and ruins them for more modest and, psh, <i>normal</i> pursuits? You can’t waste the opportunity to really rub it in, make sure your partners recognize the soft supremacy of your [pc.ass], its rolling hills, broad summits, and steep tracts coaxing everyone’s latent spiritual desire to worship something greater than themselves.");
+	}
+	// merge
+	// pc Using Vagina
+	if(x >= 0)
+	{
+		output("\n\nShekka’s tongue drags across your [pc.pussy], shattering your thoughts to pieces. Your [pc.clit] reveals itself to her, burgeoning into a more suckable shape. Moist lips suckle fervently at your sopping [pc.vaginaColor] delta, her long, juicy length stoking an inner flare of passion. A little bit of licking and you’re already hot enough to sweat, woozily humping your talented cunt-kisser. Nectar trickles out. The volume builds into steady rivulets of melting wetness, ");
+		if(pc.wetness(x) < 2) output("masking the shortstack’s visage in a fine sheen of you");
+		else if(pc.wetness(x) < 4) output("cheek-drenching dribbles of girlmusk slathering her features in spreading arousal");
+		else output("drowning the quick-witted rascal in [pc.girlCumFlavor] ambrosia, satisfaction puddling around her sunken head");
+		output(". Thick oral muscle struggles to give you more tonguing than you’ve ever had before, gliding back and forth across the" + (pc.vaginalPuffiness(x) > 0 ? " fat, luscious slopes of your engorged femininity":" tactile resolution of your delighted quim") + ", drinking in the pheromonal signature of a [pc.raceShort]" + (pc.inHeat() ? " in heat":"") + ".");
+		output("\n\nBeing pinned under a deluge of rich pheromones makes her work harder, so you smash your" + (pc.vaginalPuffiness(x) > 0 ? " puffy":"") + " hole into the girl’s face a little harder, bucking up and down to leave a concave imprint of your [pc.butts] behind. ");
+		if(pc.isTaur())
+		{
+			output("Her uniform’s material stretches in distress, no longer able to contain the mighty boner you’ve endowed her with. In an explosion of fiber and precum, it tears out of her suit and bats your undercarriage.");
+		}
+		else output("You clutch Shekka’s suit-bound thighs, the white hex fibers of her uniform stretching and stretching, dark splotches distorting the material endurance. You know what’s coming. It’s the most exhilarating of realizations: splitting apart in a snapping explosion, her skin-tight attire is destroyed by the throb of her uncontainable erection, inexorably throbbing up" + (pc.biggestTitSize() >= 1 ? " through your [pc.breasts]":"") + " to clobber you on the chin.");
+		output(" Your [pc.thighs] squirm and shiver.");
+
+		output("\n\nIn an instant you’re grabbing hold of the raskvel’s big, hard boner, slurping around the goo-glazed head");
+		if(pc.biggestTitSize() > 1) output(" and jacking it in the valley between your" + (pc.canLactate() ? " [pc.milkNoun]-leaking":"") + " [pc.breastsNoun]");
+		output(". Suddenly, your [pc.pussyNoun] is widened by a lunging tongue riding on the waves of your inevitable cascade. A gush of tension surges" + (pc.balls > 0 ? ", your [pc.ballsNoun] contract":"") + ", and you smear your pussy-heart’s senses in overflowing orgasm. Her grasping digits smack against your [pc.skinFurScales] before sinking into the supple curves, squeezing honey from your lust-plump pot like the mischievous opportunist she is. With organic relish, the loudest fucking suction of all time reaches your [pc.ears] and makes you cum again, harder than before, and you melt into her dripping rod, wearing her overpoweriing testosterone as a mask.");
+		output("\n\nCock. <b>You need this cock</b> more than ever. Sitting on a tongue is nothing compared to what’s before you. Shekka’s cleaning your nethers, digging into the crevices surrounding your mons, at the mercy of [pc.hips] that rub your [pc.girlCum] into her scales. <i>“Bbllahahh...”</i> Shekka blurts, sputtering for air while you scoot up. <i>“Didn’t know you were a secret brand of lotion too, [pc.name]!”</i>");
+		output("\n\nShe lays back, panting and moaning, [pc.girlCumGem] lakes of nectar drizzling from her minor elevations. <i>“Oooohhh...”</i> she purrs, watching you sit yourself over her nuts. <i>“Knew you needed more than a licking, haha!”</i> Thanks to her lack of height, those tiny hands can reach over and knead approval into your blushing booty. <i>“");
+		if(pc.buttRating() <= 3) output("Can’t wait to see the bulge, babe!");
+		else if(pc.buttRating() <= 8) output("Hell yeah... this is a real pornographic view right here! Can’t wait to see you bouncing on me! Fuck, this is gonna be so hot.");
+		else if(pc.buttRating() <= 12) output("Ohfuckyes, that ass is gonna clap, and I won’t even need to spank it. A dick this size? You’ve got the ass it deserves.");
+		else if(pc.buttRating() <= 16) output("Daaaaaamn... try not to crush little ‘ol me, would you? That ass is more than a match for my dick, but, heh heh heh... I think I’d like to keep my ability to walk!");
+		else output("Oh boy, [pc.name], this is the hottest fucking view I’ve ever had a front row seat to. Please don’t pulverize me. I mean, I want you bouncing on my dick all " + (hours >= 6 && hours <= 19 ? "day":"night") + " but uhhh... hah hah, try to remember that there’s so much ass and not a lot of rask, yeah?");
+		output("”</i>");
+
+		if(pc.buttRating() >= 9) output("\n\nHah. Whatever she says.");
+	}
+	// pc Using Anus
+	else
+	{
+		output("\n\nShekka’s tongue doesn’t get much time to scope out the rim of your [pc.asshole] before you wiggle down a little too hard on the tip and push her past the" + (pc.analPuffiness() > 0 ? " fat and sensitive":"") + " ring.");
+		if(pc.hasVagina()) output(" She doesn’t have time to wonder why she’s eating ass and not pussy.");
+		output(" Tendrils of hot arousal rip through your body where her spit-slick tongue travels, luscious thickness kneading your posterior cavern. Tightening up, you let out an emphasized hiss of pleasure. There can be no question that your raskvel knows her way around a butt");
+		if(pc.isFemboy()) output("-pussy");
+		if(pc.hasPerk("Buttslut")) output(", and you can’t wait to feel something harder and firmer than an oily tongue spreading your vulnerable sphincter. A buttslut like you deserves nothing less than the hardest dicks pounding you into submission");
+		output(".");
+		output("\n\nRunning the flats of her palms across your [pc.ass], Shekka spanks you hard, slapping a military-style cadence into your [pc.hips]. The lizard’s greasy tongue presses ever deeper" + (pc.hasCock() ? ", tonguing your prostate, drumming the cum-button into impetuous, heated gush":"") + ".");
+		if(pc.balls > 0) output(" All this jerking bounces your [pc.sack] into her jaw. How long have you been so full and heavy with spunk?");
+		if(pc.hasVagina()) output(" Your wet [pc.pussiesLight] soak the red rascal’s scales, making her shine with a lovely burgundy blush.");
+		output(" That lush, unrelenting muscle buries itself between your buttocks, twisting against supple, throbbing flesh, shifting wickedly for wall-to-wall coverage. Another slap to your ass and a secondary twist, and you squish her further into your taint, rewarding that oral flourish with yet more opportunity.");
+		output("\n\nSmashing your [pc.butts] up and down into her cheeks solicits her equine meat, throbbing more angrily.");
+		if(pc.isTaur()) output(" Your ears pick up what your eyes can’t see: the distressed creak of a uniform snapping at the front. Fibers split open and out flops the hardest cock in the universe, bashing into your undercarriage and throwing precum every which way.");
+		else output(" You clutch Shekka’s clothed thighs for support, realizing what’s about to happen. The kind soul in you would undo the mechanic’s uniform, but the horny beast can’t wait to see what happens. White-hexed patterns turn dark and wet, distorting as a furious boner splits the fabric apart and swings accusingly upwards" + (pc.biggestTitSize() >= 1 ? " through your [pc.breasts]":"") + " and uppercuts you square in the lower jaw.");
+		output(" The blow leaves you" + (pc.isTaur() ? " slightly":"") + " dazed, and all that unleashed genital odor obliterates your personality, leaving behind a cock-craving [pc.raceShort].");
+
+		output("\n\nFuck. <b>You need her cock.</b> <i>Badly.</i> Her tongue is amazing, but this veiny monster you’re pumping is unbelievable. You get a sense for the phallic weight pulsing hotly between your [pc.fingers]. It’s irrepressibly hard, every single vein bloated with liquid iron. Raw testosterone billows from the shaft. The taste is utterly indescribable. After marinating in her suit for so long, it’s pure druggy bliss. Slurping at her wide, gooey flare while she beats against your anal boundaries is too much. You gasp, reflexively clenching" + (pc.hasGenitals() ? ", leaking and shuddering":" and shuddering in joy") + ".");
+		output("\n\nEmerging from your backside, Shekka sputters for air, fatigued tongue hanging down the side of her face, lazily smearing the [pc.butts] that grind across her. <i>“Fuggg [pc.name],”</i> she slurs, cracking you with another heavy slap, pulling her tongue in. <i>“Insatiable slut! C’mon, look how hard I am! [pc.GuyGirl] like you wouldn’t be satisfied otherwise!”</i> She rubs your cheeks, right over her the pleasurably painful handprints seared into them. <i>“");
+		if(pc.buttRating() <= 3) output("But - heh, pun intended - gonna be a real bulge in there. Hope your ass is good for it!");
+		else if(pc.buttRating() <= 8) output("I can’t wait any longer, too. Getting squeezed between these beautiful bubbles? I know you can’t wait, either!");
+		else if(pc.buttRating() <= 12) output("Unnff... this ass is gonna clap all around my dick, makes me wanna nut just thinking about it. How about we stop thinking about it and just do it, babe?");
+		else if(pc.buttRating() <= 16) output("Just one thing when you’re squeezing and bouncing on my dick: try not to crush lil ‘ol me, yeah? I like having a pelvis. And working legs. And intact bones. Those are important!");
+		else output("Lotta ass down here, and not a lot of rask! Hey, [pc.name], this is gonna be the ride of my life, I just know it. Literally. My life depends on you not beating me into fine paste with this huge-as-hell butt of yours. I may be your lil scaly fuckbunny, but I ain’t a laquine! Now c’mon, let’s see that booty clap!");
+		output("”</i>");
+
+		//rating17+:
+		if(pc.buttRating() >= 17) output("\n\nLet’s.");
+		// merge
+	}
+	processTime(20);
+	pc.lust(150);
+	//[Next]
+	// sceneTag: PC Lust Maximizes
+	// sceneTag: processTime
+
+	clearMenu();
+	addButton(0,"Next",shekkaRideHerCrewSceneByWilliam2,x);
+}
+
+public function shekkaRideHerCrewSceneByWilliam2(x:int):void
+{
+	clearOutput();
+	showShekka(true);
+	author("William");
+	var capacity:Number = -1;
+	var looseness:Number = -1;
+	if(x >= 0)
+	{
+		capacity = pc.vaginalCapacity(x);
+		looseness = pc.vaginas[x].looseness();
+	}
+	else 
+	{
+		capacity = pc.analCapacity();
+		looseness = pc.ass.looseness();
+	}
+	output("Your vision swims as you maneuver into position. The tickles of Shekka’s flare always come as a surprise to your [pc.thighs]. Those sensations in particular make it impossible to focus your eyes, much less think about the size of this tool versus the orifice it’s heading to. Grinding the billowing umbrella into your [pc.vagOrAss], there’s an exquisite and languid moment where you’re trembling, pre-cum spurting into the emptiness. You give your [pc.hips] another wiggle, another rock, give more weight; the brim of her spunk-sealing saucer folds back, opening your body to itself; the room breaks apart into daggers of formless light, mind-splitting pleasure borne from being molded by the rask’s aching girth.");
+	output("\n\nThe invading thickness <i>pops</i> in, and higher mental functions cease to be.");
+
+	// pc Using Vagina
+	if(x >= 0)
+	{
+		output("\n\nHorse-cock pushes into your [pc.pussyNoun], the flat breeding head wedging itself in bit-by-bit, gaping the juiced-up slopes and climbing to your womb.");
+		//loosenessLow:
+		if(looseness < 2) output(" You cry out in pain as you sink further down the equine colossus; you can’t be blamed for being unable to put out the sharp aches what come with being molded into a cock-cozy. <i>“H-Hell, [pc.name]... you’re really tight... but they, that’s why you’ve got me around, right? Fix that pussy of yours... riiiight - nnngg - up!”</i>");
+		else if(looseness < 5) output(" You let out a tiny whimper, followed by a moan: there’s a little pain in the act, but there’s a perverse bit of pleasure too. So many thoughts rush through your head, led by the most arousing of all: this cock is simply completing your cunt’s transformation into hole meant to please it and others of its grand stature. <i>“Mmmfuck, [pc.name]... fits like a glove, but has that little bit of tightness to it that I’m moving! Ffffyes, that’s the stuff...!”</i>");
+		//loosenessHigh:
+		else output(" You bite your lip and groan, head bobbing as you sink down the many inches of that equine goliath, ecstatic to have a body trained for taking such massive measurements. <i>“Ahhh, damn, [pc.name]... don’t think it’ll get more snug than that. Look at you, taking my dick like a pro. Don’t have enough words to tell you how hot that is!”</i>");
+		output(" Her girth flattens interior nerves as it goes, slithering deeper, savagely reshaping your muff to its needs, every throb accompanied by splurts of spooge, heightening your bodily euphoria.");
+		//capacityLow:
+		if(capacity < shekka.cockVolume(0) * 0.5) output(" Unfortunately, the limits of your biological capacity mean that you don’t even make it to her medial ring. It sits uselessly on the outskirts of your sodden tunnel, a promise of so much more if only you could meet the demand.");
+		else if(capacity < shekka.cockVolume(0) * 1.1) output(" In a gloriously lewd squelch, the medial ring slips into your sodden gates, digging into your [pc.vaginaColor] furrow on a fresh wave of excitement. You’re riding higher and higher, determined to get her in all the way... but you can’t. You make it down to the prepuce, inches from her sheath, feeling the tap of her cum-hole to your cervix, indicating to your sex-addled mind that the boundaries of your physiology have been met.");
+		//capacityHigh:
+		else output(" You moan openly on the spot when you feel the medial ring slip effortlessly past your sopping-wet petals, squelching inside on a lurid wave of female ejaculate. Inspiringly, it keeps going, you’re taking more and more and more of her cock. It plows inside your quim so firmly that you smile, giggling impetuously, slapping your slit to Shekka’s crotch and tasting the heat of her sticky balls. Beneath the ecstasy of <b>owning</b> her dick is the knowledge that you’re pleasing her in ways very few others could.");
+		pc.cuntChange(x,shekka.cockVolume(0));
+	}
+	// pc Using Anus
+	else
+	{
+		output("\n\nThe flat top of that equine tower squirms past your relaxing sphincter muscles, gaping your [pc.asshole] around itself and making the exquisite, bulging climb through your lower colon.");
+		if(pc.hasPerk("Buttslut")) output(" You stroke your hips in a soft circle, luxuriating in the pleasure flowing up your spine and climbing deeper. You’re a buttslut. It’s an undeniable truth. Your body was built to get dicked in that barren cavern, and love every second of it. The bigger the better! <i>“Wow... most people whimper a bit, but you’re taking that cock like a champ, huh? Full of surprises aren’t you, [pc.name]! Mmmff... gonna fit this in to the hilt, easy!”</i>");
+		else if(looseness < 2) output(" A vice to surpass a tight, virginal pussy meets the raskvel’s hardness head-on. You cry out, cursing and swearing from the intensity of it, knuckles turning white from the unbelievable strain. <i>“W-Woah, [pc.name], easy! Sex is supposed to make you moan, not swear like an overworked dockmaster!”</i>");
+		else if(looseness < 5) output(" There’s some pain in this, and you growl as she sinks further and further into you. She’s claiming your ass, making it her own, flexing out lingering muscular tightness. Shekka’s dick makes you realize what you’re capable of, how much your body can do. <i>“Mmm, look at that, slipping away in that beautiful butt! Well, I get to see it, and you get to feel a bulge in your tummy, right? There’s totally one there!”</i>");
+		else output(" An anus as stretched as yours may accommodate big herms like Shekka, but it’s not a pussy - there’s still that tiny, prickling pain, but it’s so overshadowed by the raw pleasure of being worn by a dick that fits right in, like it was always meant to be there. <i>“What kinda dildos you been taking up there, [pc.name]? Plenty of room for me! So much room you’d never lose anything in there, hah hah!”</i>");
+		
+		output(" Clenching interior walls have their wrinkles smoothed out by inexorable girth, gently fucking you through this entire process. You smile, not taking that last inch until your breath is short.");
+		//capacityLow: 
+		if(capacity < shekka.cockVolume(0) * 0.5 && !pc.hasPerk("Buttslut")) output(" Before you’ve hit the medial ring, Shekka bottoms out, conquering the final tract of space in your anus. She groans with deepest delight, pulling on one of your [pc.butts], enjoying the sensation regardless of your body’s inability.");
+		//capacityMed: 
+		else if(capacity < shekka.cockVolume(0) * 1.1 && !pc.hasPerk("Buttslut")) output(" Being filled with an inch is glorious, but your [pc.tongue] hangs limp from your mouth as the medial ring squelches past your entrance and you settle comfortably on her organ’s musky prepuce. She gives your [pc.butts] a fond grope, and you reciprocate a throaty groan.");
+		//capacityHighOrButtslut:
+		else output(" Not only does Shekka’s medial ring glide through your backdoor, but her vein-laced prepuce, and finally... nothing. Your rim slaps wetly to the ruby rask’s crotch, infinite tightening depths proving more than adequate for housing that beautiful pillar of thickness. Pleasure pulses through you, and a shaky hand squeezes your [pc.butts] appreciatively. Man, you’ve got one hell of an ass!");
+		pc.buttChange(shekka.cockVolume(0));
+	}
+	// merge
+	if(pc.isTaur()) output("\n\nYour nails dig into your palms as you slide up");
+	else output("\n\nYour nails dig into Shekka’s flesh as you slide up");
+	output(" slowly, languidly, basking in that firm slickness pumping into your [pc.vagOrAss]. Slimy dickskin flexes and throbs in your furthest places, and you can feel its texture pushing out on your gut, contrasting with the kneading clusters of nerves enveloping her irrepressible boner. When you reach the top, whimpering from more sensory input than you know what to do with, you fall again, eyes rolling back, feeling more and more horse-cock on your descent.");
+	output("\n\n<i>“Looking good, [pc.name]!”</i> Shekka laughs. The whole room starts to swim as your body and brain suffer a desynchronization event. Your [pc.hips] bend and squat, sensations equivalent to a morning constitutional. All you can be sure of is that you’re bouncing up and slamming down, subsumed by a cock that doesn’t need to move to feel pleasure. It only needs to sit there, a perfect animal length that remains parallel with its den, too many inches of hot hardness rubbing so aggressively that it’s the only thing worth feeling. Did you know you have <i>arms?</i>");
+	output("\n\nVoice pitching higher, torso pitching lower, Shekka’s bloated bulk bows, adjusting for this gradual change in trajectory. From where the lizard lies, all she can see is the full roundness of your [pc.ass], bouncing and clapping up and down, patterns of posterior pleasure fanning through your rear. Your [pc.thighs] squish against her vigorously-churning nutstack, triggering more instinctive convulsions in the roiling sperm-stash. You can’t help but");
+	if(pc.isTaur()) output(" work your pelvis in a way as to hit them a few times");
+	else output(" reach over and cup them");
+	output(", eager to coax the largest loads from this small and virile creature.");
+
+	output("\n\n<i>“Oh yeah, [pc.name]! Work that ass!”</i> the horny slut cries, slapping one of your cheeks with a thunderous crack. The half-expected blow felt good, and the subsequent stings feel even better. She tattoos your [pc.ass] hard enough for you to feel it in your chest; your swiveling gyrations pull on her yielding rod as though it were the lever to a device that provides nourishment and sustenance. In this case, it makes her squirt more prejizz into your tender pocket; copious spooge spills forth, robbing you of rhythm and turning this into a wanton screw, ");
+	//capacityLow:
+	if(capacity < shekka.cockVolume(0) * 0.5 && !pc.hasPerk("Buttslut")) output("seven inches");
+	else if(capacity < shekka.cockVolume(0) * 1.1 && !pc.hasPerk("Buttslut")) output("twelve inches");
+	else output("sixteen inches");
+	output(" of breeding mass lost in your " + (x >= 0 ? "helplessly-cumming cunt":"cum-bucket of an asshole") + ".");
+
+	// pc Using Vagina
+	if(x >= 0) 
+	{
+		output("\n\n<i>“Like soaked velvet... mmmmFff! Getting so hard to hold back!”</i> Shekka seizes and jerks forward, her wide ‘n tiny hips doing their damndest to pump your moist quim. The effort manifests as a series of soothingly warm trembles that vibrate through your churning cock-clamp. The ship itself seems to groan in protest, and her toes curl up in breeder’s bliss; she can’t fuck, so she occupies herself with worshiping your bottom, attention utterly dominated by the pillowy imagery and all the pleasure it squeezes her stallion full of.");
+		output("\n\nSwaddled in [pc.vaginaColor], writhing lushness, Shekka stands in vain against riptides of out-of-control muscle, buffeting her meaty fuckstick with the same force she spanks into your aft-quarters. Lifting back up, you arch your back and put your all into the heave and ho");
+		if(pc.biggestTitSize() >= 1) output(", [pc.breasts] " + (pc.biggestTitSize() < 5 ? "wobbling":"swinging like crazy") + ". The downpour of [pc.raceShort] nectar polishes her black-leather ballsack to a moist, latex gleam. Each pelvis-to-pelvis impact renews the constricting onslaught - she cries louder and louder, and you tighten up more, to the point that you’ll know exactly when she cums.");
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.vaginas[x].type == GLOBAL.TYPE_SUULA || pc.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) output("\n\nDeaf to your mental commands, your pussy-stingers let loose the torrid onslaught of chemical bliss, spiking Shekka’s masculine libido with liquid horniness. It burns into her brain, makes her cry out in detailed euphoria. Her mind short-circuits on the prickling injections, melting away into that dangerously sexy honeypot of yours.");
+	}
+	// pc Using Anus
+	else
+	{
+		output("\n\n<i>“Holds tighter than an iron band... nnnff!!”</i> Shekka groans at the ceiling, thrusting her body upwards into the anal compress. <i>“Not gonna... last much longer...!”</i> That’s fine - she can lie there and take it. Great shivers run through your frame, murmuring enjoyment as you take the equine club deep into the glazed embrace of your intestines. Fulfilling sensation, that, throbbing hardness packing your guts full of virile herm, having a close friend - no, a <b>lover</b> so far inside. Genuine pleasure flutters through you, so you clap your [pc.ass] a little harder, jounce much faster, eager to be the receptacle for a climax you’ve both been building.");
+		output("\n\nYour lungs squeak a complaint when Shekka pokes your [pc.ass], nails gently scraping down the [pc.skinFurScales]. She’s thrusting again, well, trying to anyway, trembles of sexual effort worming through your backbone, penis quivering mightily in crushing confines. Reality as you know it compresses down to that overworked " + (pc.isFemboy() ? "ass-pussy":"asshole") + " of yours, random and wild tensings sparking orgasmic feedback that surges through your frame, bouncing across dormant nerves slackened by brutal coitus.");
+	}
+	// merge
+	output("\n\nShekka holds your wobbling haunches as you vacillate from a standard pace to something slower and amorous, then right back up to incredibly fast, breathless, panting. Hyperventilating. The peak of her onyx member flares outward in feral anticipation. Bestial urge drives into your " + (x >= 0 ? "spongy wetness":"thirsty rectum") + " deep thrust after deep thrust. There’s an electrical fry in her broken voice, breathing between soft slaps of your [pc.ass]. <i>“[pc.name]... gonnnaa cummmmm!”</i> the mechanic bays, screaming loud enough the whole ship can hear.");
+	output("\n\nThrowing your head back, you");
+	if(pc.isTaur()) output(" clutch your jaw in the middle of emergent ahegao");
+	else output(" clutch her love handles as pure, unfiltered ahegao appears on your [pc.face]");
+	output(". The room shakes and rattles with the force of your cowgirl rodeo. Nuts, bolts, and other tools fall from the top of a footlocker situated a few feet from your lubricious affair, bouncing across the floor in a chain similar to a sequence of connected orgasms, all the while your ass-cheeks clap together, your eyes constrict to thin lines of climactic acuteness, and your tummy bloats with the " + (x >= 0 ? "womb":"intestine") + "-squashing force of a rut-thickened horse-cock.");
+	output("\n\nCumming almost comes as a complete surprise, but really, there’s only so much a mammalian body can take before it has to explode.");
+	output("\n\nThe gushing slam of Shekka’s orgasm crashes into your innermost places, searing stickiness rocketing up, the heaves of her ejaculations trembling into your tenderness. You can feel the taut clenchings of her balls swelling her urethra with so much seed that when she’s not busting a fat, gurgling wad into your [pc.vagOrAss], torrid lances of sperm settling in unknowable readches. Enough sensitivity has been fucked into your body that each jet of hot, vigor-imbued goo detonates hidden caches of mini-orgasms throughout the rest of your body, setting off fireworks of all-consuming bliss, glossy alabaster bursting out from your nethers and through your ass-crack when you’re stuffed so full that it can’t possibly go anywhere else.");
+	// pc Hermgasm
+	if(pc.isHerm())
+	{
+		output("\n\nYou barely even notice yourself pleasure-seizing, cumming from both your [pc.cocksLight] and [pc.pussies]. [pc.GirlCum] " + (!pc.isSquirter() ? "streams":"squirts") + " from your slits, forming [pc.girlCumGem] lakes of orgasmic relish that surround her monument to needy breeding. Strain drains in the form of [pc.cum], blobby ropes of slick, sympathetic release splurting from your lust-sore [pc.cockHeads].");
+	}
+	// pc Pussygasm
+	else if(x >= 0)
+	{
+		output("\n\nAll your convulsions compress down to your crotch; your [pc.pussiesIsAre] squelches as it creases up in bliss, fragrant bubbles of [pc.girlCum] drizzling down Shekka’s shaft and pooling into [pc.girlCumGem] puddles on her plush loins. " + (!pc.isSquirter() ? "Your body lets down, erotic torrents flowing freely, not hard enough to squirt, no, but hard enough that this entire scenario will have a place in your memories until the end of time.":"Ribbons of girly ejaculate squirt, your body contorting into a series of kegel twitches mimicking the raw power of male orgasm. One, two, three, fountains of [pc.girlCumFlavor] goodness are wrung from your evermoist cunny, the sheer force of pressure orgasm producing an otherworldly satisfaction."));
+	}
+	// pc Cockgasm
+	else if(pc.hasCock())
+	{
+		output("\n\n[pc.Cum] spatters the walls of the room, raining down the hull into [pc.cumVisc] puddles of smut. You blink as you sputter in time with Shekka’s eruptions, as though you were discharging the exact same sticky emissions she was pumping into your [pc.anus]. Wonderfully sore, you absentmindedly stroke the length of your [pc.cockBiggest], flinging out thick ropes of slick stuff.");
+	}
+	// pc Neutergasm
+	else output("\n\nYou don’t think about your own relief. Shekka’s pumps pneumatically into your [pc.asshole], flooding your curves with hot gouts of steaming-hot jism, filling your crevice rapidly, blobs spurting from the vein-stretched rim. It shouldn’t be possible to feel this good from having having your means of reproduction seized" + (silly ? " (ceased, according to google spellcheck, which is kind of funny)":"") + ", but it does. Every gushing pint of rask-sperm reduces your inner heat, dissolving it into a soft blend of anodyne warmth.");
+	// merge
+	output("\n\nYour crotches are utterly soaked in cum and the pressure hasn’t ceased.");
+	if(pc.biggestTitSize() >= 1 && pc.canLactate()) output(" Streamers of [pc.milk] burst from your [pc.nipples], squirting in arcing ropes sway to the wobble of heaving titflesh.");
+	output(" You grind your hips left and right across her pelvis, mesmerized by the slutty tinker-bun’s limitless virility. Amazingly, it does start to come down, and you start to rise on her still-hard cock, pulling up another two inches so that the excess in your [pc.vagOrAss] oozes out onto her cockhead.");
+	output("\n\n<i>“Hoooo fuck, [pc.name]...”</i> Shekka’s squirming and panting, rod vibrating in the asphyxiating vicinity of your entrances, unsatisfied. Desirous. It’s incomprehensibly <b>hard.</b> <i>“I think... I think I need a break...”</i>");
+	// pc Bimbo, Bro, Amazon
+	if(pc.isBimbo() || pc.isBro() || pc.isAmazon())
+	{
+		output("\n\n<i>“Huh?”</i> you peer over your shoulder, not at all exhausted. <i>“But that was just one orgasm!”</i> you protest, pressing on her exhilarated nerves. Any response that might have been on her tongue is smashed into heavy air when your [pc.hips] slither down for round two. No matter how many times she cums, as it turns out, it’s never enough to meet your demands of more, more, and more. You trail your [pc.fingers]" + (pc.tailCount > 1 ? " and [pc.tails]":"") + " across her body, bidding her to gift you with another sticky load of sperm, reward your endurance with fresh spunk, grinding her crotch into a fine paste and tenderising her prick between flickers of consciousness.");
+		output("\n\nWell, hopefully her pelvis survives.");
+	}
+	// else
+	else
+	{
+		output("\n\nYeah... that does sound good. Of course, cuddling shouldn’t be cold. <i>“Fffffffffffffff,”</i> Shekka hisses, effluence-coated cock sliding back into your hole. Terse grunts fade into sighs of contentment when you flop backwards and wrap an arm around her head. <i>“Nnf... hey, I won’t say no to a little cock warming. Gimme a minute and I’ll go another round. Probably, anyway. If I don’t fall asleep under you first.”</i>");
+		output("\n\nTurns out she goes two more.");
+	}
+	// merge
+	// sceneTag: PC Cums
+	// sceneTag: PC loadInCunt
+	// sceneTag: Possible Vaginal Stretching
+	// sceneTag: Possible Pregnancy? (Shekka generic rask)
+	// sceneTag: processTime
+	processTime(65);
+	clearMenu();
+	if(x >= 0)
+	{
+		pc.loadInCunt(shekka,x);
+		pc.loadInCunt(shekka,x);
+		pc.loadInCunt(shekka,x);
+	}
+	else
+	{
+		pc.loadInAss(shekka);
+		pc.loadInAss(shekka);
+		pc.loadInAss(shekka);
+	}
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",shekkaRideHerCrewSceneByWilliam3,x);
+}
+
+public function shekkaRideHerCrewSceneByWilliam3(x:int):void
+{
+	clearOutput();
+	showShekka(true);
+	author("William");
+	output("During post-coital convalescence, Shekka requested a change of position you were all too happy to assume, burying her face in your [pc.chest] while you threw a leg over hers. She’s got the right idea. Spooning is exactly the proper method to come down from a get-together. She couldn’t keep her hands off your [pc.ass] and [pc.hips] at all, but you didn’t mind. It’s just a promise of what she can do next time, or even better, letting her bend you over.");
+	output("\n\n<i>“Well, uhhh...”</i> she smiles shyly, <i>“...guess we need to get back to work, right? I’d love to stay like this forever, but, y’know, can’t counter metal fatigue and universal entropy with idle hands, right?”</i>");
+	output("\n\n" + (pc.isBimbo() ? "Whatever that means, it sounds important, but not as important as this. Still, she’s insistent, so you’ve gotta part for now.":"She’s right. Shame about that."));
+	output("\n\nSomehow the mess gets worse when she pulls out, and, damn, too bad you didn’t record that sound she made. <i>“Good thing I’ve got a ton of these suits lying around. Something to be said about getting a boner so fuckin’ rigid that I tear my clothes in half!”</i> You laugh with her. <i>“And, hey,”</i> she hugs you hard, <i>“even more to be said about the hot [pc.guyGirl] who gets me so horny I just pop out of it!”</i>");
+	output("\n\nShe kisses you, slaps you on the ass" + (pc.buttRating() >= 8 ? ", gives your prodigious rump a hug too, and gets back to work. <i>“Gonna be thinking about that ass all week. Make sure you give me another show, <b>cow[pc.boyGirl]!</b>”</i>":" and gets back to work. <i>“See ‘ya around, <b>cow[pc.boyGirl].</b>”</i>"));
+	processTime(10);
+	IncrementFlag("SHEKKA_RIDDEN");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

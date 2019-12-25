@@ -601,7 +601,7 @@ public function FTKG1(args:Array):void
 public function FTR1(args:Array):void
 {
 	clearOutput();
-	showPaige();
+	showPaige(true);
 	args.push("FTR1");
 	output("You place your hands on Paige’s hips, obstructing her descent, her pussy juice dripping the few inches difference between your face and her. <i>“That hardly seems fair,”</i> you tell her. You use one finger to tweak her clitoris, causing her to sharply inhale in pleasure. <i>“You have some responsibility as the top too, Paige.”</i>");
 	output("\n\nPaige hums in consideration as she gyrates her hips in time with your playing with her clit. <i>“Fair enough, [pc.name].”</i> She lifts her body away from you and your face, then swings one leg over your head to turn herself around. <i>“I wouldn’t be much of a teacher if I didn’t teach by good examples.”</i>");
@@ -2051,7 +2051,7 @@ public function SSAP2(args:Array):void
 {
 	args.push("SSAP2");
 	clearOutput();
-	showPaige();
+	showPaige(true);
 	if(flags["PAIGE_RIMMING"] == 1) flags["PAIGE_RIMMING"] = 2;
 	output("You’re rather content where you are, you decide. Paige’s ass is one of her finer features, and she knows it, constantly showing it off and deliberately taking some lewder yoga poses that really highlights it. The idea of motorboating those tight cheeks and getting a good taste has crossed your mind once or twice.");
 	output("\n\n<i>“Damn,”</i> Paige moans as she feels you press your face deeper into her cleft. <i>“Eager [pc.boyGirl]!”</i> She wiggles her butt, massaging your face with her tight ass as your tongue swipes across her hole and pierces into its clenching center now and again. <i>“You getting comfortable back there, [pc.name]? Don’t forget, that’s only the entrée before the main course.”</i>");

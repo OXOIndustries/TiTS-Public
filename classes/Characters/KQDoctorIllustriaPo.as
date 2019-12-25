@@ -227,7 +227,7 @@
 			//Aphrospray (Uses 33% energy. Unavoidable low lust damage)
 			if(this.energy() >= 33) choices.push(aphrospray);
 			//Recharge (Refills her inner goo. refills energy. Only happens if PC stunned and below 100%)
-			if(target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned")) choices.push(rechargeDatBot);
+			if((target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned")) && this.energy() < 100) choices.push(rechargeDatBot);
 
 			//Illustria acts
 			choices[rand(choices.length)](target);
@@ -335,10 +335,20 @@
 			if(this.energy() >= 100) output("\n\nOne third of her internal fluids drain away.");
 			else if(this.energy() >= 67) output("\n\nThe second third of her internal fluids drains into the wall.");
 			else output("\n\nThe final dregs of her internal fluids drain away.");
-			if(this.energy() >= 100) output("\n\n<i>“I hope you’re thirsty.”</i> Fire extinguishing devices emerge from the ceiling and spray the room down with her pink, drugged fluids. There’s no hiding from it. It drenches you, soaking into your skin. It’s not just muggy in here, but warm too. Humid. You wonder how your own sweaty form would feel against Illustria’s sculpted perfection...");
-			else output("\n\n<i>“Bathe in perfection.”</i> Like you have any other choice but to let it splatter across your skin and make you feel horny, and silly, and sooo fuckable.");
+			if(this.energy() >= 100) 
+			{
+				output("\n\n<i>“I hope you’re thirsty.”</i> Fire extinguishing devices emerge from the ceiling and spray the room down with her pink, drugged fluids. There’s no hiding from it");
+				if(target.hasAirtightSuit()) output(", but at least you have an airtight suit to protect you from it.");
+				else output(". It drenches you, soaking into your skin. It’s not just muggy in here, but warm too. Humid. You wonder how your own sweaty form would feel against Illustria’s sculpted perfection...");
+			}
+			else 
+			{
+				output("\n\n<i>“Bathe in perfection.”</i> ");
+				if(!target.hasAirtightSuit()) output("Like you have any other choice but to let it splatter across your skin and make you feel horny, and silly, and sooo fuckable.");
+				else output("Like it even matters. Safe in your airtight armor, you don't have to worry about her exotic contact poisons.");
+			}
 			this.energy(-33);
-			applyDamage(new TypeCollection( { drug: 15+rand(3) } ), this, target, "minimal");
+			if(!target.hasAirtightSuit()) applyDamage(new TypeCollection( { drug: 15+rand(3) } ), this, target, "minimal");
 		}
 		//Recharge (Refills her inner goo. refills energy. Only happens if PC stunned and below 100%)
 		public function rechargeDatBot(target:Creature):void
