@@ -883,19 +883,19 @@ public function fuckPosCunt(x:int):void
 	{
 		output("\n\n<i>“Ohhhhhhhhh, yessssssssss,”</i> Illustria moans as you finish, your knot trapping the bulk of your climax inside. <i>“You fucked me so fucking cum-pregnant, [pc.name]! And that knot... it’s got you trapped, doesn’t it?”</i> She makes a half-hearted attempt to crawl away before the bulbous, imprisoned flesh yanks her back. <i>“And now that I’m all stretched out, you have so much more room to grow. Which do you think will happen first? Will you pull manage to pull out, or will your knot get so nasty thick that it pushes me right off?”</i>");
 		//Str check
-		if(pc.physique()/2 + rand(20) + 1 >= 40) output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, barely yanking your " + (pc.hasStatusEffect("Priapism") ? "wilting":"still-hard") + " cock out. Bared to the open air, you can see it soaking up the mad doctor’s pink residue, twitching and growing a little bit more before the last of the mutagen is spent.");
+		if(pc.physique()/2 + rand(20) + 1 >= 40 || pc.cocks[x].cLengthRaw < 24) output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, barely yanking your " + (pc.hasStatusEffect("Priapism") ? "wilting":"still-hard") + " cock out. Bared to the open air, you can see it soaking up the mad doctor’s pink residue, twitching and growing a little bit more before the last of the mutagen is spent.");
 		//No strongo
 		else output("\n\nLooking down in alarm, you brace against Illustria and push with all your might, but it’s not enough. Your [pc.knot " + x + "] holds firm and grows firmer by the second, thickening as it soaks up more drugged cuntjuice like a sponge. While it may feel pleasant at first, soon the pressure becomes stifling, painful even. If you hadn’t blown up her stomach with cum, you’re sure you’d be watching your [pc.cockHead " + x + "] climbing up higher this very moment. Instead, you suffer within her constrictive, torrid cunt until, as promised, your knot balloons with enough girth to pry the whole woman off of your massively-expanded cock, <b>now ");
-		if(pc.cocks[x].cLength() < 7) output("pornstar-grade");
-		else if(pc.cocks[x].cLength() < 11) output("bigger than most terrans could take");
-		else if(pc.cocks[x].cLength() < 14) output("the size of a forearm");
-		else if(pc.cocks[x].cLength() < 24) output("closing in on the size of a baseball bat");
-		else if(pc.cocks[x].cLength() < 34) output("now baseball bat-sized");
+		if(pc.cocks[x].cLengthRaw < 8) output("pornstar-grade");
+		else if(pc.cocks[x].cLengthRaw < 11) output("bigger than most terrans could take");
+		else if(pc.cocks[x].cLengthRaw < 14) output("the size of a forearm");
+		else if(pc.cocks[x].cLengthRaw < 24) output("closing in on the size of a baseball bat");
+		else if(pc.cocks[x].cLengthRaw < 34) output("now baseball bat-sized");
 		else output("large enough to satisfy the greediest leithan");
 		output("</b>.");
 	}
 	var grows:Number = 0;
-	if(pc.cocks[x].cLengthRaw < 7) grows = 7 - pc.cocks[x].cLengthRaw;
+	if(pc.cocks[x].cLengthRaw < 8) grows = 8 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 11) grows = 11 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 14) grows = 14 - pc.cocks[x].cLengthRaw;
 	else if(pc.cocks[x].cLengthRaw < 24) grows = 24 - pc.cocks[x].cLengthRaw;
@@ -903,6 +903,7 @@ public function fuckPosCunt(x:int):void
 	else grows = 4+rand(4);
 	if(pc.hasPerk("Mini")) grows--;
 	else if(pc.hasPerk("Hung")) grows++;
+	if(grows < 2) grows = 2;
 	//Merge STrcheck
 	//Merge all
 	output("\n\n");
