@@ -904,6 +904,7 @@ public function fuckPosCunt(x:int):void
 	if(pc.hasPerk("Mini")) grows--;
 	else if(pc.hasPerk("Hung")) grows++;
 	if(grows < 2) grows = 2;
+	grows = Math.ceil(grows);
 	//Merge STrcheck
 	//Merge all
 	output("\n\n");
