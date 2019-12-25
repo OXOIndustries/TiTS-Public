@@ -1313,17 +1313,21 @@ public function postPoOptionsWinRouting():void
 	if(!kiro.isBimbo())
 	{
 		output("You smash Kiro out of her remaining restraints");
-		if(flags["KQ_PO_DEAD"] == undefined && pc.RQ() < 33)
+		if(flags["KQ_PO_DEAD"] == undefined)
 		{
-			output(", and she wastes no time in grabbing your [pc.rangedWeapon] and using it to put an end to the defeated Doctor Po");
-			flags["KQ_PO_DEAD"] = 2;
-			//kiro killed po :3
+			if(flags["KQ_PO_DEAD"] == undefined && pc.RQ() < 33)
+			{
+				output(", and she wastes no time in grabbing your [pc.rangedWeapon] and using it to put an end to the defeated Doctor Po.");
+				flags["KQ_PO_DEAD"] = 2;
+				//kiro killed po :3
+			}
+			else
+			{
+				output(", and she wastes no time in going for your [pc.rangedWeapon]. You catch her wrist and stop her. If you wanted Po dead, you would have done it yourself.");
+			}
 		}
-		else
-		{
-			output(", and she wastes no time in going for your [pc.rangedWeapon]. You catch her wrist and stop her. If you wanted Po dead, you would have done it yourself.");
-		}
-		output(". <i>“Let’s get out of here.”</i>");
+		else output(", and she wasts no time in saying,");
+		output(" <i>“Let’s get out of here.”</i>");
 		output("\n\nYou couldn’t have said it better.");
 		//route out of there
 		clearMenu();
