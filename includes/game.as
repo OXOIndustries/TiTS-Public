@@ -2347,6 +2347,11 @@ public function shipStatistics(backFunc:Function):void
 
 public function flyMenu():void
 {
+	if(shits["SHIP"] is Blade && kiroRecruited() && roamingKiroAvailable() && !kiroIsCrew())
+	{
+		kiroAutojoin();
+		return;
+	}
 	clearOutput();
 	showName("CHOOSE\nDESTINATION");
 	
@@ -4872,6 +4877,11 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 
 public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 {
+	/*flags["KIRO_BALLS"]
+		undefined = normie routine
+		1 = keep small
+		2 = dont go over med
+		3 = keep huge 	*/
 	//Kiro stuff
 	if(flags["KIRO_BAR_MET"] != undefined)
 	{
@@ -4883,6 +4893,21 @@ public function processKiroBarEvents(deltaT:uint, doOut:Boolean):void
 			//Add half again after Kiro quest refractory treatment~!
 			if(kiro.refractoryRate >= 9992) kiro.ballSizeRaw += Math.ceil(totalHours/2);
 			
+			if(flags["KIRO_BALLS"] == 1)
+			{
+				if(kiro.ballDiameter() > 7) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 2)
+			{
+				if(kiro.ballDiameter() > 24) kiro.orgasm();
+			}
+			else if(flags["KIRO_BALLS"] == 3)
+			{
+				while(kiro.ballDiameter() < 24)
+				{
+					kiro.ballSizeRaw += 20;
+				}
+			}
 			if (kiro.ballDiameter() > 20)
 			{
 				// original was rand(200) < ballSize per hour, ergo 10% per hour
