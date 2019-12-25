@@ -5380,7 +5380,7 @@
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
 			// Status effect reduction
-			if(hasStatusEffect("Ditzi Strobed")) currInt = Math.ceil(currInt * 0.5);		
+			if(hasStatusEffect("Ditzy Strobed")) currInt = Math.ceil(currInt * 0.5);		
 
 			if (currInt > intelligenceMax())
 			{
