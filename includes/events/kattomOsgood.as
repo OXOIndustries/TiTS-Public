@@ -52,7 +52,16 @@ public function pattonIsHere():Boolean
 		return true;
 	}
 	return false;
-}	
+}
+public function setKattomHere(arg:String = ""):void
+{
+	if(arg == "") flags["KATTOM_LOCATION"] = currentLocation;
+	else flags["KATTOM_LOCATION"] = arg;
+	generateMap();
+	flags["KATTOM_MOVE_CD"] = GetGameTimestamp();
+	setKattomsInventory();
+	return;
+}
 
 public function setKattomsInventory():void
 {

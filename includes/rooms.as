@@ -42,6 +42,7 @@ public function buildRooms():void
 	initWargiiRooms();
 	initKimberRooms();
 	initKQRooms();
+	initDhaalRooms();
 	
 	mapper = new Mapper(rooms);
 }

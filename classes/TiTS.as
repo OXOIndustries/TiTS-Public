@@ -509,6 +509,10 @@
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
+
+		// Dhaal
+		include "../includes/dhaal/capsuleHotel.as";
+		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
