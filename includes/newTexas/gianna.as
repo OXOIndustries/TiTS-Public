@@ -3631,7 +3631,8 @@ public function coochFuckThreeMaybeFourInOne():void
 			if(gianna.hasCock())
 			{
 				output("\n\n<i>“But first, let’s get you good and lubed up,”</i> Gianna suggestions, bending overtop of you. Her [gianna.cock], already hard, presses down against your own. The biggest difference");
-				if(flags["GIANNA_TEMP"] == -1) output(", aside from the chilliness of her boner,/, aside from how incredibly heated her boner is,");
+				if(flags["GIANNA_TEMP"] == -1) output(", aside from the chilliness of her boner,");
+				else if(flags["GIANNA_TEMP"] == 1) output(", aside from how incredibly heated her boner is,");
 				output(" is that hers is already oozing clear, slippery fluid, thoroughly juicing your cock in oily lubrication. You shudder through her frotting while ");
 				if(flags["GIANNA_TEMP"] == 1) output("hot");
 				else if(flags["GIANNA_TEMP"] == 0) output("warm");

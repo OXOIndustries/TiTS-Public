@@ -11934,6 +11934,7 @@
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
 				case GLOBAL.TYPE_FROSTWYRM:
+				case GLOBAL.TYPE_DRACONIC:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "bluish-pink";
 					break;
@@ -12101,13 +12102,15 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
 					cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
+				/* Spiderman.gif.
+				According to B, the first is more accurate.
 				case GLOBAL.TYPE_FROSTWYRM:
 					cocks[slot].cockColor = "blue";
 					cocks[slot].knotMultiplier = 1.4;
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
-					break;
+					break;*/
 				case GLOBAL.TYPE_SIMII:
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = "pink";
