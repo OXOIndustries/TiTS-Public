@@ -179,7 +179,7 @@ public function barterMenu():void
 	if(pc.credits >= 1000) addButton(6,"Everything",buyKiroWithEverything,undefined,"Everything","Give her every credit you have.");
 	else addDisabledButton(6,"Everything","Everything","There's no way she'd accept such a paltry sum.");
 	addButton(7,"Fuck This",fuckHaggling,undefined,"Fuck Haggling","Screw this. Fight the bitch!");
-	if(flags["KQ_PLAT_OFFERED"] != undefined && pc.IQ() >= 80) addButton(9,"[INT] Plat190",highIQPlat190Addon,undefined,"[INT] Plat190","She's smart, but she must not realize the magnitude of this offer. She'll respect intelligence, right?");
+	if(flags["KQ_PLAT_OFFERED"] != undefined && pc.IQ() >= 80) addButton(9,"(INT) Plat190",highIQPlat190Addon,undefined,"[INT] Plat190","She's smart, but she must not realize the magnitude of this offer. She'll respect intelligence, right?");
 }
 
 public function barterWithPo():void
