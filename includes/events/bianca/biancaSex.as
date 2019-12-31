@@ -2523,8 +2523,8 @@ public function downTheFoxGoesOntoPCTongue():void
 	// processTime 8-16\rand minutes
 	processTime(8+rand(9));
 
-	// imagePack: embed future Bianca facesitting pic here9999
-
+	// imagePack: embed future Bianca facesitting pic here
+	showImage("BiancaFaceSits");
 	output("Unlacing your hands you grip Bianca’s waist, lift your nose from the furrow, breathe, and yank back. In a gradual motion you rainbow through the air, falling from your knees to your back in a painless shift.");
 	output("\n\n<i>“Ah!”</i> she yelps cutely, scrabbling at the " + (getPlanetName().toLowerCase() == "mhen'ga" ? "tree" : "wall") + " before stumbling back with you - in the seconds before impact, there’s a <b>very</b> deep sense of satisfaction that her ass has nowhere to go but on and around your face" + (pc.hasWings() ? "; you spread your [pc.wings] before they bend inappropriately":"") + ". The shock of stopping a moon from colliding with its planet is totally absorbed by your head in an act of celestial chivalry. Both of Bianca’s aft quarters have firmly slammed your skull into the ground, cratering your cheeks under their superlative and intensely arousing burden.");
 	output("\n\nNow you know what being a pancake is like!");
