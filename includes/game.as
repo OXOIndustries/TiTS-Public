@@ -3451,7 +3451,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(ratsRaidingXXXmas2018ByWill);
 		}
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0 && !rooms[arg].planet == "ZHENG SHI STATION")
 		{
 			eventQueue.push(encounterKrissy);
 		}
