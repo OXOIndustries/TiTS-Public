@@ -104,7 +104,7 @@ public function initUvetoRooms():void
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
 	rooms["UVS B11"].roomName = "THE LAST\nCHANCE";
-	rooms["UVS B11"].description = "You’re inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Ausar heavy metal is playing over the speakers, tuned down to be barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and jetpacks hang on the walls. Several vials are arranged on the counter, advertising various ausar-related gene mods on their labels.";
+	rooms["UVS B11"].description = "You’re inside a small, brightly lit merchant stall. The walls are a warm, inviting off-pink and plastered with posters advertising various survival gear companies. Ausar heavy metal is playing from within the stall, tuned down to be barely audible over the rumble of a heater bolted to the wall. Racks of equipment, ranging from shield belts and personal heaters to ropes and pitons and jetpacks hang on the walls. Several vials are arranged on the counter, advertising various ausar-related gene mods on their labels.";
 	rooms["UVS B11"].planet = "UVETO STATION";
 	rooms["UVS B11"].system = "SYSTEM: SIRETTA";
 	rooms["UVS B11"].northExit = "UVS B9";
