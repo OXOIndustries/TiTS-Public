@@ -81,7 +81,7 @@
 		{
 			if (data.version != 1)
 			{
-				throw new VersionUpgraderError("Upgrader Version 1 recieved data version " + data.version + " during an upgrade call. Bad luck bro.");
+				throw new VersionUpgraderError("Upgrader Version 1 received data version " + data.version + " during an upgrade call. Bad luck bro.");
 			}
 			else
 			{
@@ -107,7 +107,7 @@
 		{
 			if (data.version != this._newVersionValue)
 			{
-				throw new VersionUpgraderError("Upgrader Version 1 recieved data version " + data.version + " during a verification call. Wakka wakka.");
+				throw new VersionUpgraderError("Upgrader Version 1 received data version " + data.version + " during a verification call. Wakka wakka.");
 				return false;
 			}
 			

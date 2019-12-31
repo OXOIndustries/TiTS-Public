@@ -79,7 +79,7 @@ package classes.DataManager
 		{
 			if (data.version != this._newVersionValue)
 			{
-				throw new VersionUpgraderError("Upgrader Version 28 recieved data version " + data.version + " during a verification call. Wakka wakka.");
+				throw new VersionUpgraderError("Upgrader Version 28 received data version " + data.version + " during a verification call. Wakka wakka.");
 				return false;
 			}
 			

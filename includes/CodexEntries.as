@@ -4,13 +4,13 @@
 
 public function configureCodex():void
 {
-	// Complex path tree entries DO work, but until we actually NEED to organise the data
+	// Complex path tree entries DO work, but until we actually NEED to organize the data
 	// (and I implement some kind of path folding), I don't think we should actually USE them more than say 1 deep (because the way addEntry works
 	// requires at least a "root" path of some sort
 	// At the very least, the "tree" view down the side of the UI supports scrolling, so its not a HUGE issue and it
 	// can wait until we're at a point it needs to be fixed.
 	
-	// Other types of entries -- these are categorised under separate headings
+	// Other types of entries -- these are categorized under separate headings
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentatool", testLocationEntryA);
@@ -1749,7 +1749,7 @@ public function xhelarfogCodexEntry():void
 	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Body Composition (Scales)"));
-	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organise it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
+	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organize it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
 	outputCodex("\n\nThis is thought to be an unusual defense mechanism, as this process never really stops - the eldest observed Xhelarfog have been known to be almost completely covered in these ‘scales’, saving only the palms of their hands and feet, the underside of their tails and the horn-like protrusions on their head.");
 	outputCodex("\n\nIt is theorised that should a metal other than gold occur in greater proportions than it in an individual’s diet from infancy, they would instead develop scales of this metal - but no testing has been done due to the more recent discovery of the race.");
 	outputCodex("\n\n");
@@ -1909,7 +1909,7 @@ public function mimbraneCodexEntry():void
 	outputCodex("A Mimbrane can survive on sources of moisture such as plants, fruits or water, but it cannot reproduce until it has found and attached itself to a host. If it has clung to an organ that features some sort of orifice, it will dissolve its mouth in favor of substituting it with its newfound outlet. If there is no orifice, the Mimbrane will maintain its small mouth, trying its best to disguise it as an innocuous bump on its host.");
 	outputCodex("\n\nThe mouth is where a Mimbrane continues to feed and breathe. The parasite is unable to continue breathing through its epidermis when coupled as its skin is currently occupied mimicking the host. As a result, the creature will wait for moments of inactivity to open and shut its mouth, stirring fresh air around and allowing it to easily absorb and process oxygen. The sensation – whether with a claimed hole or the creature’s mouth – can very easily be felt by the host and is the most glaring reminder of the parasite’s presence.");
 	outputCodex("\n\nMimbranes ingest host secretions that pass through their borrowed mouths by absorbing them into the skin surround the opening in a manner similar to breathing. This action does not require the same amount of movement, however, and usually goes undetected by hosts. The exception goes for parasites lacking a borrowed spout, who use their natural mouths in a manner similar to all other living creatures in order to collect what they crave. When located on extremities such as the hands, Mimbranes will attempt to push themselves to a visible source when hungry.");
-	outputCodex("\n\nDue to their slow and miniscule metabolism, the parasites only require a small fraction of the various discharges they can come into contact with. Most Mimbranes are unable to gorge themselves rapidly; a trait that prevents the creatures from growing too large to quickly, which would increase the odds of irritating their hosts and thus hasten the parasites’ demise.");
+	outputCodex("\n\nDue to their slow and minuscule metabolism, the parasites only require a small fraction of the various discharges they can come into contact with. Most Mimbranes are unable to gorge themselves rapidly; a trait that prevents the creatures from growing too large to quickly, which would increase the odds of irritating their hosts and thus hasten the parasites’ demise.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Mimbranes store and process any and all nutrients they come into contact with once they are attached to a host. As a result, the body part they’ve encapsulated can appear to swell over time. The parasite can easily grow anywhere between twenty five and fifty percent of the size of the organ it currently resides over. People with swollen penises, vaginas, asses, or anything else never feel as if their organs have been smothered with the extra weight due to the creature’s continued mimicry and faked signals it sends to the nervous system.");
@@ -4045,7 +4045,7 @@ public function envyoidicsCodex():void
 	outputCodex("<b>Company Name:</b> Envyoidics LTD");
 	outputCodex("\n<b>Industry:</b> Modification, historical preservation");
 	outputCodex("\n\n");
-	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independant businesses operating on the frontier.");
+	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independent businesses operating on the frontier.");
 	outputCodex("\n\nTheir reputation is such that prominent scientists and historians, who do know about them, hold great respect for their work; and yet there is a sharp ethical divide about their business patterns: Uncovering histories of long dead civilizations and then marketing them as play toys for the rich. So far, their slow but provable growth shows that the researchers and scientists at Envyoidics know their niche: Illumorpheme in particular has taken some sectors by storm with it’s body-friendly transformations, exclusivity and pleasing end results.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Envyoidics");

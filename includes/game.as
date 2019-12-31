@@ -5398,7 +5398,7 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	gameOverEvent = true;
 	backToPrimaryOutput();
 	
-	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
+	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorization system.
 	
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
