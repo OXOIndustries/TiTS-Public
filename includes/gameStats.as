@@ -3400,7 +3400,9 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KIMBER_QUEST"] == 1) output2(", Accepted, Found and defeated daer worm, <i>Return to Kimber!</i>");
 				if(flags["KIMBER_QUEST"] >= 2) output2(", Accepted, Found and defeated daer worm, Reported to Kimber");
 				if(flags["KIMBER_QUEST"] >= 3) output2(", Completed");
-				if(flags["KIMBER_QUEST"] >= 4) output2("\n<b>* Gabilani Panties:</b> Taken");
+				//OLD: if(flags["KIMBER_QUEST"] >= 4) output2("\n<b>* Gabilani Panties:</b> Taken");
+				//New hotness:
+				if(flags["KIMBER_QUEST_GOT_PANTIES"] != undefined) output2("\n<b>* Gabilani Panties:</b> Taken");
 				sideCount++;
 			}
 			// Lane's Illegal Activity
