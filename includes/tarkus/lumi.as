@@ -403,8 +403,9 @@ public function lumiHarvesting():void
 	
 	if (pc.hasCock() || pc.hasTailCock())
 	{
-		var cumAmt:int = pc.cumQ() * 2.5;
+		var cumAmt:Number = pc.cumQ() * 2.5;
 		if (pc.hasTailCock()) cumAmt += 2500 * pc.tailCount;
+		cumAmt = Math.ceil(cumAmt);
 		
 		if (pc.hasVagina()) output("\n\nBefore your pussy orgasm even ends");
 		else output("\n\nBefore you have time to process what’s going on");
