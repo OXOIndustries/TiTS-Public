@@ -403,7 +403,7 @@ private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	{
 		if((altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
 		{
-			AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
+			AddLogEvent("Shifting your weight around seems a lot easier now.  <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
 			pc.removeStatusEffect("Bulky Belly");
 		}
 		if((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
@@ -1081,7 +1081,7 @@ public function lactationUpdateHourTick(totalHours:int):void
 		msg = ParseText("Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
 		if(pc.milkFullness >= 75) 
 		{
-			msg += ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.");
+			msg += ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well" + (pc.hasBreasts() ? ", leaving you with [pc.breastCupSize]s" : "") + ".");
 			pc.milkFullness = 75;
 		}
 		AddLogEvent(msg, "passive", 60 * numChanges);

@@ -561,8 +561,8 @@ public function yogaMediumMode():void
 	}
 	else
 	{
-		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.");
-		output("\n\nFirst, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
+		output("You’re not one to turn down the opportunity for some self-improvement. It’s one of the main reasons you keep coming back to Paige’s class in the first place. <i>“That’s the spirit,”</i> she says encouragingly. <i>“Alright then, I think I have just the pose for you to try.”</i>");
+		output("\n\n<i>“First, lay flat on your back.”</i> You shuffle forward so that your whole body remains on the mat, and gently set yourself onto your back, as per her instruction. <i>“Bend your left knee and put it over your right leg as far as you can, without moving your right leg and without lifting either of your shoulders from the mat.”</i>");
 		output("\n\nIt’s a surprisingly difficult instruction to follow! Your upper body wants to follow your lower body and tries to twist with it, but you maintain both your shoulders onto the mat. The stretch pulls hard on your left thigh and lower back, so much that you find it uncomfortable for a moment, but as with all yoga poses, you know it’ll pass.");
 		output("\n\n<i>“This pose is called the ‘supine twist,’”</i> she says as she runs both her hands over your body, particularly along your left, stretched leg, making sure it’s in the correct position. <i>“It’s one of yoga’s stricter poses; if you lift your knee too close to your chest, you risk pulling a gluteal muscle. Nobody likes damaged glutes!”</i> You laugh politely. <i>“Okay, now breathe in...”</i>");
 	}
@@ -2020,7 +2020,7 @@ public function herEyes4():void
 
 	output("\n\nYou hum as you consider it.");
 	
-	var time2Go:Number = 0;
+	var time2Go:int = 0;
 	if(hours < 8) time2Go = (8 - hours) * 60;
 	else if(hours > 8) time2Go = 8*60 + (24-hours)*60;
 	else time2Go = 50;
@@ -2031,7 +2031,7 @@ public function herEyes4():void
 	pc.createStatusEffect("PAIGE_COMA_CD");
 	pc.setStatusMinutes("PAIGE_COMA_CD",60*30);
 	clearMenu();
-	addButton(0,"Stay",paigeEyeholeEmailEvent);
+	addButton(0,"Stay",stayForPaigesEyeholes);
 	addButton(1,"Leave",leavePaigesEyeholes);
 }
 
@@ -2058,6 +2058,8 @@ public function paigeEyeholeEmailEvent():void
 {
 	clearOutput();
 	showName("SURGERY\nALERT!");
+	author("B");
+	
 	output("The familiar tone of receiving a new message rings through the air. You bring your codex off your hip, checking who it’s from – it’s from Tavros’ Infirmary!");
 	output("\n\n<i>“" + pc.mf("Mister","Miss") + " [pc.name],”</i> it reads, <i>“you’re receiving this message as Miss Paige’s partner and sponsor. We’re happy to report that her surgery to replace her damaged eyes with a synthetic, biologically identical set has been a success.”</i> That’s a relief. And that’s exciting! Paige will be able to see again! <i>“Miss Paige is currently in an induced coma; we request your presence within the next twelve hours to proceed.”</i>");
 	//if {PC is on Tavros}

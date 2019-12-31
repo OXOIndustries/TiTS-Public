@@ -122,18 +122,21 @@ public function eggTrainerMenu():void
 	addButton(0,"Raw Tentacle",rawTentacleGogogo,undefined,"Raw Tentacle","No eggs this time. You just want to feel that slippery tentacle slithering inside you...");
 	if(pc.findEmptyPregnancySlot(0) != -1)
 	{
+		var isExperienced:Boolean = false;
+		if(flags["EGG_TRAINING"] >= 4) isExperienced = true;
+		
 		addButton(1,"Egg Trainer",eggTrainingMachineTime,undefined,"Egg Training","Have the machine fill you with eggs and lube, then lay them right back into the cleaning pool. Something tells you between a tentacle fucking and a two-way oviposition, you’d be in for a wild ride.");
 		
 		if(flags["EGG_TRAINING"] == undefined) addDisabledButton(2,"Carry Train","Carry Train","You aren’t experienced enough with this machine to try this.");
 		else addButton(2,"Carry Train",carryTrainingWithEggMachine,undefined,"Carry Train","Have the tentacle-device fill you with eggs. This option advertises TamaniCorp brand Lock-Lube, made to ensure that your eggs are lodged inside you for a good long while... You’ll be carrying so many eggs that you’ll look positively pregnant for about a week, it tells you.");
 		
-		if(flags["EGG_TRAINING"] >= 4) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special “service” causes the tentacle to fuck a single, unique egg into you - what the screen labels a “faux-preg egg.” This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
+		if(isExperienced) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special “service” causes the tentacle to fuck a single, unique egg into you - what the screen labels a “faux-preg egg.” This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
 		else addDisabledButton(3,"Faux Preg","Faux Preg","You are not yet experienced enough for this. You’ll have to work up to it.");
 		
 		var ovaTooltip:String = "Get yourself sorted with a single, spooge-sponging, self-replicating egg.";
 		if(flags["EGG_TRAINING_OVALASTING"] == undefined) ovaTooltip = "This button is dull. It looks like you need to try some of the other options first before the machine will activate something that’s obviously for experienced users only.";
 		else if(flags["EGG_TRAINING_OVALASTING"] == 0) ovaTooltip = "Some sort of permanent egging procedure?";
-		if(flags["EGG_TRAINING"] >= 4) addButton(4, "Ovalasting", eggTrainerOvalastingMenu, undefined, "Ovalasting", ovaTooltip);
+		if(isExperienced) addButton(4, "Ovalasting", eggTrainerOvalastingMenu, undefined, "Ovalasting", ovaTooltip);
 		else addDisabledButton(4, "Ovalasting", "Ovalasting", "You are not yet experienced enough for this. You’ll have to work up to it.");
 	}
 	else
@@ -254,6 +257,16 @@ public function rawTentacleGogogo():void
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+// Increment Egg Training level
+public function eggTrainerTrained(x:int):void
+{
+	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
+	if(pc.hasStatusEffect("Ovalasting"))
+	{
+		if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != 10) IncrementFlag("EGG_TRAINING_OVALASTING_LEVEL");
+	}
 }
 
 //Egg Training
@@ -448,9 +461,8 @@ public function layingTrainingTwo():void
 	else if(flags["EGG_TRAINING"] == 4) processTime(55);
 	else processTime(80);
 
-	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
+	eggTrainerTrained(x);
 	IncrementFlag("EGG_TRAINING_TIMES");
-
 	pc.orgasm();
 	pc.shower();
 	processTime(5);
@@ -558,7 +570,7 @@ public function carryTrainingWithEggMachine():void
 		output("\n\nThe familiar, wonderful pleasure of the tentacle hammers through you, burrowing deep inside to discharge its belly-filling load. Eggs come flooding easily out of its engorged cockhead, blasting into your ");
 		if(x >= 0) output("womb");
 		else output("bowels");
-		output(" in a flood of hot lube and smooth plastic. Dozens and dozens of eggs pump into your well-trained body, swelling you up just like you like it. You cum again - if you really stopped at all in the first place - and let yourself go completely with screams of pleasure that echo across the cargo hold. Your hands clench around your belly, feeling your skin stretch around around the growing load of eggs: you look ");
+		output(" in a flood of hot lube and smooth plastic. Dozens and dozens of eggs pump into your well-trained body, swelling you up just like you like it. You cum again - if you really stopped at all in the first place - and let yourself go completely with screams of pleasure that echo across the cargo hold. Your hands clench around your belly, feeling your skin stretch around the growing load of eggs: you look ");
 		if(pc.isPregnant() && pc.bellyRating() >= 50) output("an extra ");
 		output("nine months pregnant by the time the machine’s decided you’ve had enough, filled with almost a hundred eggs that churn wetly ");
 		if(x < 0) output("up your ass");
@@ -595,7 +607,7 @@ public function carryTrainingWithEggMachine():void
 	if(x >= 0) pc.loadInCunt(ppCarryTraining, x);
 	else pc.loadInAss(ppCarryTraining);
 
-	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
+	eggTrainerTrained(x);
 	IncrementFlag("CARRY_TRAINING_TIMES");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -818,7 +830,7 @@ public function fauxPregImplantation():void
 	if(x >= 0) pc.loadInCunt(ppCarryTraining, x);
 	else pc.loadInAss(ppCarryTraining);
 
-	if(flags["EGG_TRAINING"] != 5) IncrementFlag("EGG_TRAINING");
+	eggTrainerTrained(x);
 	IncrementFlag("FAUXPREG_TIMES");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1133,16 +1145,20 @@ Egg Training Level	No. of Eggs Developed
 If the PC takes a second ejaculation in an already active OL hole AND is at level 3 or above, eggs become large.
 */
 
-public function ovalastingEggCount():Number
+public function ovalastingEggCount(mother:Creature, pregSlot:int = -1):Number
 {
-	if(flags["EGG_TRAINING"] == undefined) return 4;
-	if(flags["EGG_TRAINING"] == 0) return (4 + rand(7));
-	if(flags["EGG_TRAINING"] <= 1) return (8 + rand(7));
-	if(flags["EGG_TRAINING"] <= 2) return (14 + rand(7));
-	if(flags["EGG_TRAINING"] <= 3) return (20 + rand(7));
-	if(flags["EGG_TRAINING"] <= 4) return (28 + rand(7));
-	if(flags["EGG_TRAINING"] <= 5) return (38 + rand(9));
-	return 60;
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] == undefined) return 4;
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 0) return (4 + rand(7));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 1) return (8 + rand(7));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 2) return (14 + rand(7));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 3) return (20 + rand(7));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 4) return (28 + rand(7));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 5) return (38 + rand(9));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 6) return (48 + rand(9));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 7) return (60 + rand(9));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 8) return (72 + rand(9));
+	if(flags["EGG_TRAINING_OVALASTING_LEVEL"] <= 9) return (86 + rand(11));
+	return 120;
 }
 
 // Check for Ovalasting eggs in respective preg slot
@@ -1180,7 +1196,7 @@ public function ovalastingPregnancySwap(cumFrom:Creature, mother:Creature, pregS
 	{
 		// PC takes second load in already fertilized OLhole
 		mother.createStatusEffect("Ovalasting Message", (pregSlot == 3 ? -1 : pregSlot), 0, 0, 0, true, "", "", false, 10);
-		if(flags["EGG_TRAINING"] >= 3) mother.createStatusEffect("Ovalasting Big Egg " + pregSlot);
+		if(flags["EGG_TRAINING_OVALASTING_LEVEL"] >= 3) mother.createStatusEffect("Ovalasting Big Egg " + pregSlot);
 	}
 	// Change pregnancy type if occupied by Ovalasting egg.
 	else
@@ -1500,7 +1516,11 @@ public function eggTrainerOvalastingCleanup(ovaEffect:StorageClass, pregSlot:int
 	}
 	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
 	
-	if(ovaEffect.value1 == 0 && ovaEffect.value2 == 0 && ovaEffect.value3 == 0 && ovaEffect.value4 == 0) pc.removeStatusEffect("Ovalasting");
+	if(ovaEffect.value1 == 0 && ovaEffect.value2 == 0 && ovaEffect.value3 == 0 && ovaEffect.value4 == 0)
+	{
+		flags["EGG_TRAINING_OVALASTING_LEVEL"] = undefined;
+		pc.removeStatusEffect("Ovalasting");
+	}
 }
 
 /*

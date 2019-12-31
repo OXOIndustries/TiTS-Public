@@ -22,7 +22,7 @@ package classes.Items.HalloweenItems
 			
 			shortName = "W.Panty";
 			
-			longName = "witch's panties";
+			longName = "witch’s panties";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

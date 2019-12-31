@@ -79,15 +79,16 @@ public function cockBoxInstallation():void
 	//In ship
 	else
 	{
-		//No room - pending ship upgrade system
-		if(9999 == 0)
+		/*No room - pending ship upgrade system
+		FEN UPDATE: CUT DIS.
+		if(8888 == 0)
 		{
 			showName("DONG\nDESIGNER");
 			output("There’s not any room to install this in your ship. You’ll have to clear out some space if you want to try and put this baby to use.");
 		}
 		//Else
 		else
-		{
+		{*/
 			showName("\nUNINSTALLING...");
 			output("Now that you’ve got it on your ship, it’s time to plug in this Dong Designer thing and make sure it’s still in working order. Finding a clear spot with good access to a suitable power port takes a few minutes. You can’t just have it propped up anywhere, particularly if ");
 			if(pc.hasCock()) output("you’re gonna be sticking your dick in it.");
@@ -106,7 +107,7 @@ public function cockBoxInstallation():void
 			flags["DONG_DESIGNER_INSTALLED"] = 1;
 			
 			pc.destroyItemByClass(DongDesigner);
-		}
+		//}
 	}
 }
 public function cockBoxUninstallation():void
@@ -219,8 +220,8 @@ public function useInstalledDickBox():void
 		// Gunna need to update the dong designer
 		if(flags["LOOTED_COCKBOX"] == 1)
 		{
-			if(flags["COCKBOX_UPGRADE"] == undefined) addDisabledButton(13, "Firmware", "Download Firmware Update", "<i>This feature has not been implemented yet...</i>");
-			// 9999 if(flags["COCKBOX_UPGRADE"] == undefined) addButton(13, "Firmware", downloadDickBoxFirmware, undefined, "Download Firmware Update", ("Attempt to download the firmware update " + (flags["DONG_DESIGNER_INSTALLED"] != undefined ? "for the Dong Designer you have installed on your ship" : "in the case you ever find a Dong Desinger to install on your ship") + "."));
+			//if(flags["COCKBOX_UPGRADE"] == undefined) addDisabledButton(13, "Firmware", "Download Firmware Update", "<i>This feature has not been implemented yet...</i>");
+			if(flags["COCKBOX_UPGRADE"] == undefined) addButton(13, "Firmware", downloadDickBoxFirmware, undefined, "Download Firmware Update", ("Attempt to download the firmware update " + (flags["DONG_DESIGNER_INSTALLED"] != undefined ? "for the Dong Designer you have installed on your ship" : "in the case you ever find a Dong Desinger to install on your ship") + "."));
 			else addDisabledButton(13, "Firmware", "Download Firmware Update", "You have already downloaded the firmware update so it would be redundant to try it again.");
 		}
 		addButton(14,"Leave",mainGameMenu);
@@ -231,33 +232,66 @@ public function downloadDickBoxFirmware():void
 	clearOutput();
 	showName("FIRMWARE\nDOWNLOAD...");
 	showBust("DONG_DESIGNER");
-	author("");
+	author("Fenoxo");
 	clearMenu();
 	
 	var success:Boolean = false;
 	
-	// 9999
-	output("");
-	
-	if(!success)
-	{
-		output("\n\n");
-		output("\n\n");
-		
-		processTime(15);
-		
-		addButton(0, "Next", useInstalledDickBox);
-	}
-	else
-	{
-		output("\n\n");
-		output("\n\n");
-		
-		processTime(20);
-		
-		addButton(0, "Next", upgradeDickBoxFirmware);
-	}
+	output("You connect your Codex to the machine's diagnostic port, but it would seem somebody augmented the device's security - probably somebody not to keen on having a pirate prank swinging between their thighs. You'll have to hack it.");
+	clearMenu();
+	addButton(0,"Hack",startDickboxUpgradeHack);
+	addButton(1,"Nevermind",useInstalledDickBox);
 }
+
+public function startDickboxUpgradeHack():void
+{
+	userInterface.showMinigame();
+	var gm:RotateMinigameModule = userInterface.getMinigameModule();
+	
+	var g:uint = RGMK.NODE_GOAL;
+	var i:uint = RGMK.NODE_INTERACT;
+	var l:uint = RGMK.NODE_LOCKED;
+	
+	var n:uint = RGMK.CON_NORTH;
+	var e:uint = RGMK.CON_EAST;
+	var s:uint = RGMK.CON_SOUTH;
+	var w:uint = RGMK.CON_WEST;
+	
+	//Baby difficulty
+	/*
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 3, 3,
+		[
+			g | s    ,	i | w | n,	i | n | w,
+			i | e | w,	i | w | e,	g | n    ,
+			i | s | w,	i | s | e,	i | s | n
+		]);
+	}*/
+	/*Commented out for Gedan to look at it.
+	else if(pc.isBimbo() || pc.IQ() <= 30)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 6, 6,
+		[
+			l        ,	i | n | e,	i | e | w,	i | s | w,	i | n | w,	l        ,
+			i | n | w,	i | w | n,	i | n | s,	i | n | w,	i | e | s,	i | e | w,
+			i | s | n,	i | e | w,	i | n | s,	i | n | s,	l | n | s,	i | w | s,
+			i | e | n,	l | n | w,	i | w | s,	i | e | w,	i | n | e,	i | w | n,
+			i | w | e,	l        ,	i | e | w,	i | s | w,	i | s | e,	i | w | s,
+			g | n | e,	i | n | s,	i | n | s,	i | e | s,	i | w | n,	g | s    ,
+		]);
+	}*/
+	gm.setPuzzleState(upgradeDickBoxFirmware, 5, 5,
+	[
+		g | e | s,	i | n | e,	g | s | e,	i | n | s,	i | n    ,
+		i | e | w,	i | s | w,	i | s | e,	i | w | e,	i | n | e,
+		i | w | s,	l | w | e,	l | w | e,	l | e | w,	i | n | e,
+		i | e | s,	i | n | s,	i | n | s,	i | s | n,	i | s | e,
+		i | n | e,	i | n | s,	g | e | w,	i | w | e,	i | n | e,
+	]);
+}
+
+
 public function upgradeDickBoxFirmware():void
 {
 	clearOutput();
@@ -265,11 +299,7 @@ public function upgradeDickBoxFirmware():void
 	showBust("DONG_DESIGNER");
 	author("");
 	
-	// 9999
-	output("");
-	output("\n\n");
-	output("\n\n<b>You now own a copy of the firmware package that updates any Dong Designer you have installed on your ship!</b>");
-	output("\n\n");
+	output("<b>You now own a copy of the firmware package that updates any Dong Designer you have installed on your ship!</b>");
 	
 	processTime(1);
 	flags["COCKBOX_UPGRADE"] = 1;

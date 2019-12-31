@@ -32,7 +32,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	var targetType:Number = 0;
 	if(effect.storageName == "Furpies Simplex H") targetType = GLOBAL.TYPE_EQUINE;
 	else if(effect.storageName == "Furpies Simplex C") targetType = GLOBAL.TYPE_FELINE;
-	else targetType = GLOBAL.TYPE_CANINE;
+	else if(effect.storageName == "Furpies Simplex D") targetType = GLOBAL.TYPE_CANINE;
 
 	//Day 2 - Temporary Genital Swelling
 	if(effect.value4 < 2 && effect.minutesLeft < (17280 - 2*24*60))
@@ -198,7 +198,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if(effect.value4 < 6 && effect.minutesLeft < (17280 - 6*24*60))
 	{
 		effect.value4 = 6;
-		if(pc.earTypeUnlocked(targetType))
+		if(pc.earType != targetType && pc.earTypeUnlocked(targetType))
 		{
 			pc.libido(2);
 			//Furpies H
@@ -223,7 +223,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			}
 			//Furpies D
-			else
+			else if(targetType == GLOBAL.TYPE_CANINE)
 			{
 				textBuff += ParseText("Your [pc.ears] begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have canine-style ears, like some kind of dog or wolf!</b>");
 				pc.earType = GLOBAL.TYPE_CANINE;
@@ -381,9 +381,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		effect.value4 = 8;
 		var legged:Boolean = false;
 		//Legs (requires non-furred legs):
-		if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED) && pc.legType != targetType && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
+		if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED) && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
 		{
-			if(pc.legTypeUnlocked(targetType) && pc.legCountUnlocked(2))
+			if(pc.legType != targetType && pc.legTypeUnlocked(targetType) && pc.legCountUnlocked(2))
 			{
 				legged = true;
 				textBuff += "You feel feverish. The flush of heat is so dizzying that you collapse. Or maybe your " + pc.leg() + " ";
@@ -402,7 +402,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.legCount = 2;
 				}
 				//Horse legs
-				if(targetType == GLOBAL.TYPE_EQUINE && pc.legType != targetType)
+				if(targetType == GLOBAL.TYPE_EQUINE)
 				{
 					textBuff += ParseText("\n\nInstead of feet or even paws, your develop shining black hooves. Your ankle is placed partway up your leg, the knee a little further above. You can hear bones cracking as the horse-like structure solidifies, and you’re silently thankful that you can’t feel a thing. Finally, a layer of horse-like hair erupts from your [pc.thighs] down, completing <b>your new equine legs.</b>");
 					if(pc.isTaur()) textBuff += " The rest of your lower body matches them, leaving you looking like a centaur.";
@@ -413,7 +413,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Doggo legs
-				else if(targetType == GLOBAL.TYPE_CANINE && pc.legType != targetType)
+				else if(targetType == GLOBAL.TYPE_CANINE)
 				{
 					textBuff += "\n\nStrangely shaped digits sit at the end of your morphing limbs, stubby and fat. Your ankles climb higher up your leg as the shape of your feet resolves into something that’s clearly meant to be a paw - only it looks completely alien without fur. Little pads dot the underside as short black claws appear from the tips. A thick coat of fur sprouts from the solidifying skin as the transformation completes, <b>leaving you with dog-like paws instead of feet.</b>";
 					if(pc.isTaur()) textBuff += " The rest of your tauric lower half changes to match: <b>you’re a dog-taur!</b>";
@@ -424,7 +424,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Kitty legs
-				else if(targetType == GLOBAL.TYPE_FELINE && pc.legType != targetType)
+				else if(targetType == GLOBAL.TYPE_FELINE)
 				{
 					textBuff += "\n\nStrangely shaped digits sit at the end of your morphing limbs, stubby and fat. Your ankles climb higher up your leg as the shape of your feet resolves into something that’s clearly meant to be a paw - only it looks completely alien without fur. Cute little pads push their way out of the underside as sharp claws emerge from your toes. A thick coat of fur sprouts from the solidifying skin as the transformation completes, <b>leaving you with cat-like paws instead of feet.</b>";
 					if(pc.isTaur()) textBuff += " The rest of your tauric lower half changes to match: <b>you’re a cat-taur now!</b>";
@@ -437,9 +437,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			}
 		}
 		//Arms not-furred
-		if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED) && pc.armType != targetType && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
+		if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED) && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
 		{
-			if(pc.armTypeUnlocked(targetType))
+			if(pc.armType != targetType && pc.armTypeUnlocked(targetType))
 			{
 				if(legged)
 				{
@@ -449,7 +449,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				textBuff += ParseText(" Prickles race up and down them, making your heart race. Just as you begin to panic, fur erupts from your [pc.skin]. Lovely, oh so pretty fur! It cascades from your shoulders down your elbows all the way to your fingertips, so fluffy eye-catching.");
 
 				//horse arms
-				if(pc.armType != targetType && targetType == GLOBAL.TYPE_EQUINE)
+				if(targetType == GLOBAL.TYPE_EQUINE)
 				{
 					textBuff += "\n\nAs feeling returns, you reach over to pet yourself, only to discover that your nails have spread over most of your fingertip, turning a rich, shiny black. They’re like little hooves for your hands! <b>You guess you have the horse version of arms now...</b>";
 					pc.armType = GLOBAL.TYPE_EQUINE;
@@ -457,7 +457,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addArmFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Doggo arms
-				else if(pc.armType != targetType && targetType == GLOBAL.TYPE_CANINE)
+				else if(targetType == GLOBAL.TYPE_CANINE)
 				{
 					textBuff += "\n\nAs feeling returns, you reach over to pet yourself, only to discover that your hands have tiny dog-claws now, and you even have some pads on the underside of your fingers. You spend the next few minutes poking yourself just to try them out. <b>You have anthropomorphic dog arms now!</b>";
 					pc.armType = targetType;
@@ -465,7 +465,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addArmFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Kitty arms
-				else if(pc.armType != targetType && targetType == GLOBAL.TYPE_FELINE)
+				else if(targetType == GLOBAL.TYPE_FELINE)
 				{
 					textBuff += "\n\nAs feeling returns, you reach over to pet yourself, only to discover that your hands have sharp claws now, perfect for helping you get into cans of tuna! There’s even have some pads on the underside of your fingers, in case you have to land on all fours, like a proper kitty. You spend the next few minutes playing with <b>your anthropomorphic, feline arms.</b>";
 					pc.armType = targetType;
@@ -479,11 +479,11 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if(effect.value4 < 9 && effect.minutesLeft < (17280 - 9*24*60))
 	{
 		effect.value4 = 9;
-		if (pc.tailTypeUnlocked(targetType) && pc.tailCountUnlocked(1))
+		if (pc.tailType != targetType && pc.tailTypeUnlocked(targetType) && pc.tailCountUnlocked(1))
 		{
 			//Horse
 			if(targetType == GLOBAL.TYPE_EQUINE)
-			{			
+			{
 				if(pc.tailType == 0) textBuff += "There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + pc.hairColor + " color as your hair.";
 				//if bee/spider-butt.
 				else if (InCollection(pc.tailType, [GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_BEE, GLOBAL.TYPE_MYR]))
@@ -578,7 +578,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if(effect.value4 < 10 && effect.minutesLeft < (17280 - 10*24*60))
 	{
 		effect.value4 = 10;
-		if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
+		if(pc.skinType != GLOBAL.SKIN_TYPE_FUR && pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 		{
 			//Scales drop off
 			if(pc.hasScales()) textBuff += ParseText("‘Tink’. One of your scales drops to the ground. It isn’t alone. Others are coming loose. Just touching them causes a handful to break free. Soon they’re dropping off you in a rain of expired armor, baring your [pc.skinNoun] to the whole world.\n\n");
@@ -602,21 +602,24 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if(effect.value4 < 12 && effect.minutesLeft < (17280 - 11*24*60))
 	{
 		effect.value4 = 12;
-		textBuff += ParseText("It’s finally happening! Your snout is coming in! It starts with a sneeze and a sense of building tension. You can feel your bones flexing beneath your skin, your sinuses squeezing and reshaping to make room for a muzzle-toting mouth. You lick your [pc.lipsChaste] as they crack from being stretched across a growing orifice, feeling your tongue lengthening to keep up. You pull up your Codex at the last moment, snapping a half-dozen shots of your changing face in progress.");
-		textBuff += "\n\nIt’s beautiful. You’re beautiful, with <b>your shining facial fur and ";
-		if(targetType == GLOBAL.TYPE_EQUINE) textBuff += "lengthy equine muzzle";
-		else if(targetType == GLOBAL.TYPE_CANINE) textBuff += "pleasantly shaped canine muzzle";
-		else textBuff += "short, feline muzzle";
-		textBuff += "</b>. Maybe it’s the furpies talking, but you wish you could fuck yourself. Animalistic instincts surge through you, demanding you obey your biological compulsion to mate, to breed to and spread. Maybe you can find a sexy mate out there";
-		if(flags["SEXED_PENNY"] != undefined) textBuff += ", like Penny. Stars, Penny is such a perfect mate, with her fluffy tail and slutty vixen-mouth..";
-		textBuff += ".";
-		textBuff += "\n\n<b>Furpies is pretty much done with you, but until you get the viruses removed from your system, you’re going to remain easy for furry foes to victimize you...</b>";
-		pc.libido(3);
-		pc.faceType = targetType;
-		pc.clearFaceFlags();
-		if(targetType == GLOBAL.TYPE_EQUINE) pc.addFaceFlag(GLOBAL.FLAG_LONG);
-		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
-		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
+		if(pc.faceType != targetType && pc.faceTypeUnlocked(targetType))
+		{
+			textBuff += ParseText("It’s finally happening! Your snout is coming in! It starts with a sneeze and a sense of building tension. You can feel your bones flexing beneath your skin, your sinuses squeezing and reshaping to make room for a muzzle-toting mouth. You lick your [pc.lipsChaste] as they crack from being stretched across a growing orifice, feeling your tongue lengthening to keep up. You pull up your Codex at the last moment, snapping a half-dozen shots of your changing face in progress.");
+			textBuff += "\n\nIt’s beautiful. You’re beautiful, with <b>your shining facial fur and ";
+			if(targetType == GLOBAL.TYPE_EQUINE) textBuff += "lengthy equine muzzle";
+			else if(targetType == GLOBAL.TYPE_CANINE) textBuff += "pleasantly shaped canine muzzle";
+			else if(targetType == GLOBAL.TYPE_FELINE) textBuff += "short, feline muzzle";
+			textBuff += "</b>. Maybe it’s the furpies talking, but you wish you could fuck yourself. Animalistic instincts surge through you, demanding you obey your biological compulsion to mate, to breed to and spread. Maybe you can find a sexy mate out there";
+			if(flags["SEXED_PENNY"] != undefined) textBuff += ", like Penny. Stars, Penny is such a perfect mate, with her fluffy tail and slutty vixen-mouth..";
+			textBuff += ".";
+			textBuff += "\n\n<b>Furpies is pretty much done with you, but until you get the viruses removed from your system, you’re going to remain easy for furry foes to victimize you...</b>";
+			pc.libido(3);
+			pc.faceType = targetType;
+			pc.clearFaceFlags();
+			if(targetType == GLOBAL.TYPE_EQUINE) pc.addFaceFlag(GLOBAL.FLAG_LONG);
+			pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+			pc.addFaceFlag(GLOBAL.FLAG_FURRED);
+		}
 	}
 	if (textBuff.length > 0)
 	{

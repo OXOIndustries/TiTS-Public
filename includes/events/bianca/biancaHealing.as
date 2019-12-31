@@ -125,11 +125,8 @@ public function getSomeFoxMilfHealing(inBooth:Boolean):void
 		output("\n\nHer dainty hands and twinkling eyes are soon tracing across your [pc.skinFurScales] from top to bottom again, checking for bruises, lacerations, and damages of any kind. When her exploratory prods press on hidden soreness her ears twitch and she smiles apologetically, waiting a few seconds before drawing another pattern down your [pc.hips] and your [pc.legs].");
 		output("\n\nWith a mental note of all your problem areas, Bianca " + (inBooth ? "paces to the counter and collects a jar thick with labels" : "unzips a bag and reveals a thick jar"));
 		if (pc.HPQ() < 60) output(" and " + (inBooth ? "some bandages for the worse injuries" : "a roll of bandages"));
-		output(". She dons a pair of disposable gloves and rubs dollops of the warm paste to your bruises and cuts");
-		if (pc.HPQ() < 60) output(" then applies a clean bandage to the more grievous wounds");
-		output(".");
-		output("\n\nYou brace yourself for cold medicine as she dons a pair of disposable gloves and rubs the (thankfully) warm paste to your throbbing bruises and cuts");
-		if (pc.HPQ() < 60) output(" then wraps a clean cloth slathered in a pleasantly-cool fast-acting gel to more grievous and unclosed wounds");
+		output(". You brace yourself for cold medicine as she dons a pair of disposable gloves and rubs dollops of the (thankfully) warm paste to your throbbing bruises and cuts");
+		if (pc.HPQ() < 60) output(" then wraps a clean cloth slathered in the fast-acting gel to the more grievous and unclosed wounds");
 		output(".");
 		// PC under 50% HP
 		if (!inBooth && pc.HPQ() < 50)

@@ -214,7 +214,12 @@ public function ohnoGhostSexOverload():void
 
 	pc.orgasm();
 
-	output("\n\nShe leans forward and rests a hand on your ghostly dick, making you twitch. The glowing organ fades into mist, which flows back into her, leaving only your [pc.crotch] behind. She glances down to her own crotch, and looks like she’s considering something, then shrugs and leans down toward you.");
+	output("\n\nShe leans forward and rests a hand on your ghostly dick, making you twitch. The glowing organ fades into mist, which flows back into her");
+
+	//Remove dat fake cock
+	pc.removeCock(0,1);
+	
+	output(", leaving only your [pc.crotch] behind. She glances down to her own crotch, and looks like she’s considering something, then shrugs and leans down toward you.");
 
 	output("\n\nThe ghost woman gives you a gentle kiss on the cheek, right where she first touched you, then whispers in your ear, a sound you feel as much as hear.");
 
@@ -234,8 +239,9 @@ public function ohnoGhostSexOverload():void
 	{
 		output("\n\nNot only are you sweaty and in need of a shower, that dream made you cum all over yourself. You’ve splattered all over your [pc.thighs], and ");
 		//depending on amount of cum Steele makes:
-		if(pc.cumQ() < 50) output("halfway across your [pc.belly]");
-		else if(pc.cumQ() < 150) output("covered yourself from your [pc.belly] to your [pc.chest]");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 50) output("halfway across your [pc.belly]");
+		else if(cumQ < 150) output("covered yourself from your [pc.belly] to your [pc.chest]");
 		else output("sprayed across your [pc.belly], [pc.chest], and [pc.face]");
 		output(" as well. What a strange thing to dream of, and it felt so real....");
 		pc.applyCumSoaked();
@@ -250,10 +256,7 @@ public function ohnoGhostSexOverload():void
 	}
 	else output("\n\nThat dream left you all sweaty and in need of a shower. What a strange thing to dream of, and it felt so real....");
 
-	//Remove dat fake cock
-	pc.removeCock(0,1);
-
-	//[Done] [-50 Energy] [Add <i>“Covered in Cum”</i> tags as appropriate]
+	//[Done] [-50 Energy] [Add “Covered in Cum” tags as appropriate]
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

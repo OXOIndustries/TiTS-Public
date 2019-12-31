@@ -3010,7 +3010,7 @@ public function welcomeShekkaToTheTeam2():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	author("SomeKindofWizard");
-	output("<i>“Your ship is so, so neat. Look at the style of it! Your father had great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
+	output("<i>“Your ship is so, so neat. Look at the style of it! You" + (PCShipIsCasstech() ? "r father had" : " have") + " great taste.”</i> Shekka says, looking around with no small amount of awe. She rests her hands on her exceptional hips, gears turning behind her eyes.<i>“What happens next? I realize now I don’t really get the whole... entirety of your mission then. Or is it really just one great big sexy party? I’m cool with either.”</i>");
 	//You have Anno:
 	if(annoIsCrew())
 	{

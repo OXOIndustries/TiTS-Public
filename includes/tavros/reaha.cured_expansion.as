@@ -2336,7 +2336,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		//Butt Up
 		else if(reaha.buttRatingRaw < 18)
 		{
-			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around around grabbing her own ass. Her eyes go wide and she teeters forward and back, rocking on her heels. You try and ask what’s wrong, but the cow-girl just start giggling and thrusts her hindquarters out at you. A glance immediately shows what’s up: her already-ample ass is ");
+			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around grabbing her own ass. Her eyes go wide and she teeters forward and back, rocking on her heels. You try and ask what’s wrong, but the cow-girl just start giggling and thrusts her hindquarters out at you. A glance immediately shows what’s up: her already-ample ass is ");
 			if(!reaha.isCrotchGarbed()) output("jiggling with newfound weight");
 			else output("straining her [reaha.lowerGarment] even more than usual");
 			output(". She’s definitely packing a little more junk in her trunk!");
@@ -2380,7 +2380,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		{
 			output("\n\n<i>“Oh, want a little more cushion for the pushin’, babe?”</i> Reaha giggles, taking the pill and rolling it between her fingers. <i>“Well, if that’s what you’re into... I wouldn’t mind making sure you’ve got the softest cow money can buy to snuggle up with. Bottoms up!”</i>");
 			output("\n\nShe swallows the pill with a swig of her own titty-milk to wash it down. It only takes a moment for the microsurgeons to go to work:");
-			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around around grabbing her own ass. She moans, groping her hefty rear as it fills out moment after moment, eventually thrusting her flanks out at you for inspection: a glance immediately shows what’s up: her already-ample ass is ");
+			output("\n\n<i>“O-ooh!”</i> Reaha gasps, reaching back around grabbing her own ass. She moans, groping her hefty rear as it fills out moment after moment, eventually thrusting her flanks out at you for inspection: a glance immediately shows what’s up: her already-ample ass is ");
 			if(!reaha.isCrotchGarbed()) output("jiggling with newfound weight");
 			else output("straining her [reaha.lowerGarment] even more than usual");
 			output(". She’s definitely packing a little more junk in her trunk!");

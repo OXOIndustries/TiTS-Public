@@ -1095,9 +1095,13 @@ public function boredJumperPregEncounterGoWith(arg:Array):void
 		else if (sceneNum == 2) output(", eyes on your bunny-bulged womb.");
 		else output(", bumping her bunny-bulged womb into yours.");
 		
-		output("\n\n<i>“Hey, I may not be able to stop in, but that’s not like I can never do it someday! Here,”</i> she hands you a hastily scrawled note, containing an email address. <i>“Send me some pics when they’re born, ‘kay?”</i> You pocket it, telling her that’ll be the first thing you do, and then she looks far more horny than before.");
-		if (sceneNum >= 2) output(" <i>“Maybe some pics of that momma belly you’ve got too... Naked, preferably!”</i>");
-		else output(" <i>“Maybe some pics of you yourself... Naked, preferably!”</i>");
+		output("\n\n<i>“Hey, I may not be able to stop in, but that’s not like I can never do it someday! Here,”</i> she hands you a hastily scrawled note, containing an email address. <i>“Send me");
+		if (sceneNum == 1) output(" a message sometime so I can reply with some baby");
+		else output(" some");
+		output(" pics when they’re born, ‘kay?”</i> You pocket it, telling her that’ll be the first thing you do, and then she looks far more horny than before. <i>“Maybe some pics of");
+		if (sceneNum >= 2) output(" that momma belly you’ve got too");
+		else output(" you yourself");
+		output("... Naked, preferably!”</i>");
 		
 		output("\n\nYou playfully pinch her arm in response.");
 	}
@@ -1753,12 +1757,12 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	var kok2:int = pc.biggestCockIndex2();
 	if (kok2 < 0) kok2 = 0;
 	
-	output("Falling to your side, you grip the laquine’s latex-girded thigh and lift it into the air, making it clear how you’ll have her.<i>“");
-	if (pc.isBimbo()) output(" Can’t hurt the kids now! How ‘bout you turn over and lean into me, hunny bunny?");
-	else if (pc.isBro()) output(" This will be easier for the both of us. Turn over, babe, and let me give you the filling you need.");
-	else if (pc.isNice()) output(" This will be safer... and I’ll be able to give you the filling you deserve.");
-	else if (pc.isMischievous()) output(" Can’t go hurtin’ our kids. Go on, turn over a bit, and you’ll get just what you need sweetheart.");
-	else output(" I’m not going to put the kids in danger. Turn over, and let me take care of the rest.");
+	output("Falling to your side, you grip the laquine’s latex-girded thigh and lift it into the air, making it clear how you’ll have her. <i>“");
+	if (pc.isBimbo()) output("Can’t hurt the kids now! How ‘bout you turn over and lean into me, hunny bunny?");
+	else if (pc.isBro()) output("This will be easier for the both of us. Turn over, babe, and let me give you the filling you need.");
+	else if (pc.isNice()) output("This will be safer... and I’ll be able to give you the filling you deserve.");
+	else if (pc.isMischievous()) output("Can’t go hurtin’ our kids. Go on, turn over a bit, and you’ll get just what you need sweetheart.");
+	else output("I’m not going to put the kids in danger. Turn over, and let me take care of the rest.");
 	output("”</i>");
 	
 	output("\n\n<i>“No problem!”</i> she cheers, turning to her right and pressing her spine into you. Your [pc.cocksLight] nestle into the underside of her half-emptied sack, slip-and-sliding between her powerfully muscled and rubber-clad legs, just inches away from her sopping wet scent box. Warm, wet rabbit ears drape over your");
@@ -1804,9 +1808,9 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	}
 	else if (pc.cockCanSting(kok)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper’s pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	
-	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
-	if (boredJumperKnowsSteelesName(jumperType)) output(" [pc.name],");
-	output(" I... I can’t describe what I’m feeling!”</i> She looks to you, drooling and heaving with a glimmer in her eyes. <i>“Can you go slow at first? Let’s just...”</i>");
+	output("\n\n<i>“Yesss... Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido. <i>“");
+	if (boredJumperKnowsSteelesName(jumperType)) output("[pc.name], ");
+	output("I... I can’t describe what I’m feeling!”</i> She looks to you, drooling and heaving with a glimmer in her eyes. <i>“Can you go slow at first? Let’s just...”</i>");
 	
 	output("\n\nYou silence her, knowing exactly what to do.");
 	output("\n\nA crisp gasp floats from the laquine’s lips when you pull back for the first time. The raw heat and vivid texture of her moist nethers almost compels you to cum. Vision realigning, you pull back from her pheromone-box until only");
@@ -4239,7 +4243,7 @@ public function boredJumperPregPregnancyEnds():void
 				if (dblBirth) output("\n\n<i>“Do I really have to feed all of them? Eesh...”</i> she grumbles, but you can tell she doesn’t mind. The bunny-mom brings your combined litters to her [enemy.nippleColor] nipples, letting them suckle until they tire. Once the snoozing children are put down, she brings up the next one in line to her bosom.");
 				else output("\n\n<i>“Can’t believe you’ve got no milk for your kids!”</i> the Jumper grouses, sitting noisily near you. <i>“Don’t worry, was prepared just in case you gave birth to a bunch!”</i> She produces a few plastic bottles filled with creamy white milk. You can venture a few guesses as to where they came from, but you’d also rather not. All that matters is the kids are getting their first meal.");
 			}
-			output("\n\nOnce your babies have fed, they fall fast asleep. You and your lawless lover can finally relax, finally breathe. The hardest part of all of this is over, and now you you can spend the time together petting, stroking, caressing, and chatting about the lovely miracles you’ve made possible. Rich feelings of happiness and ecstatic fantasies fill your mind, thinking about what they’ll be like grown up, who they might become, what they might do...");
+			output("\n\nOnce your babies have fed, they fall fast asleep. You and your lawless lover can finally relax, finally breathe. The hardest part of all of this is over, and now you can spend the time together petting, stroking, caressing, and chatting about the lovely miracles you’ve made possible. Rich feelings of happiness and ecstatic fantasies fill your mind, thinking about what they’ll be like grown up, who they might become, what they might do...");
 		}
 		else if (numChildren >= 9 && numChildren <= 16)
 		{

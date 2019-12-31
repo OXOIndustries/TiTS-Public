@@ -21,6 +21,13 @@ public function showOrgasmender():void
 	showName("\nORGASMENDER");
 	showBust("ORGASMENDER");
 }
+
+public function shipOrgasmenderBonus(btnSlot:Number = 0):void
+{
+	output("\n\nThe sterile-looking, white-rimmed tank of your <i>“Orgasmender”</i> rests in a back corner, ready to heal and violate simultaneously.");
+	addButton(btnSlot, "Orgasmender", climbIntoTheDamnedTank, undefined, "Orgasmender", "Climb inside and get some tainted healing.");
+}
+
 public function healingConsentacleTankBonus():Boolean
 {
 	if(flags["ORGASMENDER"] == undefined) output("\n\nA sterile-looking, white-rimmed tank sits in the back corner of the room, its transparent aluminum surface stamped with two bright red hearts. In between the cartoonish organs is an airtight door stenciled with a stylized logo reading, <i>“Orgasmender.”</i> You suppose it must be some kind of healing tank.");

@@ -334,8 +334,9 @@
 				//Else if failed the check: 
 				else {
 					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
-					//PC must pass an willpower check, else:
 					target.lust(5);
+					/* FEN NOTE: Cut as per Savin's request.
+					//PC must pass an willpower check, else:
 					if(!target.hasStatusEffect("Blinded"))
 					{
 						if(target.accessory is FlashGoggles) output("\n\nFortunately, your goggles shield your eyes from the pink cloud and you avoid being blinded!");
@@ -344,7 +345,7 @@
 							output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
 							CombatAttacks.applyBlind(target,rand(3) + 1 );
 						}
-					}
+					}*/
 				}
 			}
 		}

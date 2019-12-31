@@ -2471,6 +2471,7 @@
 					buffer = sheathDescript(biggestCockIndex());
 					break;
 				case "knot":
+				case "knotOrBase":
 					buffer = knotDescript(arg2);
 					break;
 				case "knots":
@@ -2491,6 +2492,10 @@
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
+					break;
+				case "cockLength":
+				case "cocklength":
+					buffer = num2Text(Math.floor(cLength(arg2)));
 					break;
 				case "cockCount":
 					buffer = num2Text(cocks.length);
@@ -5245,6 +5250,7 @@
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currReflexes *= 0.9;
 			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
+			if (hasStatusEffect("Stumble Strobed")) currReflexes = Math.ceil(currReflexes * 0.5);
 
 			if (currReflexes > reflexesMax())
 			{
@@ -5367,6 +5373,8 @@
 			}
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currInt = Math.floor(currInt * statusEffectv1("Psi Slave Collar"));
+			// Status effect reduction
+			if(hasStatusEffect("Ditzi Strobed")) currInt = Math.ceil(currInt * 0.5);		
 
 			if (currInt > intelligenceMax())
 			{
@@ -6501,7 +6509,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA) || (InCollection(earType, [GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_GABILANI]) && earLength > 1)) return true;
+			if(InCollection(earType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_HYENA]) || (InCollection(earType, [GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DZAAN, GLOBAL.TYPE_GABILANI]) && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -11242,6 +11250,7 @@
 			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
+			if(quantity < perkv1("MinCumQ")) quantity = perkv1("MinCumQ");
 			trace("Total produced: " + quantity);
 			return quantity;
 		}
@@ -11921,10 +11930,6 @@
 				case GLOBAL.TYPE_FROSTWYRM:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "bluish-pink";
-					break;
-				case GLOBAL.TYPE_FROSTWYRM:
-					vaginas[slot].vaginaColor = "blue";
-					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
@@ -19382,8 +19387,65 @@
 		public function breastSize(val: Number): String {
 			var descript: String = "";
 			//Catch all for dudes.
-			if (val < 1) {
-				return RandomInCollection(["tight", "hard", "fine", "manly"]);
+			if (val < 1) 
+			{
+				if (rand(2) == 0)
+				{
+					var adjective:String = "";
+					if (tone >= 100)
+					{
+						if (rand(4) == 0) return mf("extremely pronounced","very pronounced", true);
+						else if (thickness > 70) return "immense";
+						else if (thickness >= 30) return "robust";
+						else return "chiseled";
+					}
+					else if (tone > 70)
+					{
+						if (rand(4) == 0) return mf("well-defined","well-toned", true);
+						else if (thickness > 70) return "broad";
+						else if (thickness >= 30) return "healthy";
+						else return "fit";
+					}
+					else if (tone >= 30)
+					{
+						if (rand(4) == 0) return mf("toned","lightly-toned", true);
+						else if (thickness > 70) return "thick";
+						else if (thickness >= 30) return "average";
+						else return "soft";
+					}
+					else
+					{
+						if (rand(4) == 0) return "unremarkable";
+						else if (thickness > 70) return "wide";
+						else if (thickness >= 30) return "passable";
+						else return "flat";
+					}
+				}
+				else
+				{
+					// Feminine/Andro, Low/Medium Tone
+					if((mfn("m","f","n", true) != "m") && tone < 60) {
+						return RandomInCollection(["soft, flat", "flat, girly", "smooth, featureless"]);
+					}
+					// Masculine, High Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone >= 60 && thickness >= 60) {
+						return RandomInCollection(["manly, rippling", "big, muscular", "beefcake"]);
+					}
+					// Masculine, Low Tone, High Thickness
+					else if((mf("m","f", true) == "m") && tone <= 30 && thickness >= 60) {
+						return RandomInCollection(["broad, cuddly", "bear-like", "fleshy, manly"]);
+					}
+					// Masculine/Feminine/Andro, High Tone, Low Thickness
+					else if(tone >= 60 && thickness <= 30) {
+						return RandomInCollection([mf("tight, firm","firm, flat", true), mf("hard, sleek","athletic", true), mf("fine, flat","sleek, firm", true)]);
+					}
+					// Default
+					else {
+						return RandomInCollection(["plain", "flat"]);
+					}
+				}
+				//OLD.
+				//return RandomInCollection(["tight", "hard", "fine", "manly"]);
 			}
 			//A-cup
 			else if (val == 1) {
@@ -19428,6 +19490,7 @@
 			var descript: String = "";
 			var milkied:Boolean = false;
 			var bRowRating:Number = breastRows[rowNum].breastRating();
+			/*
 			if (bRowRating < 1) {
 				if(rand(2) == 0)
 				{
@@ -19435,7 +19498,7 @@
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";
-			}
+			}*/
 			//33% of the time size-descript them
 			if (rand(3) == 0) descript += breastSize(bRowRating);
 			//Lactation notices are rare unless near-empty or full!
@@ -19522,7 +19585,11 @@
 				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
-			else {
+			else if(bRowRating < 1) {
+				if(descript != "") descript += " ";
+				descript += "pecs";
+			}
+			else if(bRowRating > 1) {
 				var adjectives:Array = [];
 				// Silicone
 				var silicone:Number = siliconeRating("tits");
@@ -19589,7 +19656,7 @@
 		public function chestNoun(rowNum:int = 99, milkied:Boolean = false):String
 		{
 			if (rowNum < 0 || rowNum == 99) rowNum = 0;
-			if (breastRows[rowNum].breastRating() <= 0) return "chest";
+			if (breastRows[rowNum].breastRating() < 1) return "chest";
 			return plural(breastNoun(rowNum, milkied));
 		}
 		public function biggestBreastDescript(): String {
@@ -22347,6 +22414,7 @@
 				if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
 				if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
 				if (hasItemByClass(Savicite)) prodFactor *= (1.2 * numberOfItemByClass(Savicite));
+				if (hasPiercing()) prodFactor *= 1 + piercingLustGainTotal();
 				if (hasPerk("Ice Cold")) prodFactor /= 2;
 				if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 				if (hasStatusEffect("Dzaan Withdrawal")) prodFactor *= 1.5;
@@ -23043,7 +23111,7 @@
 							}
 						}
 						break;
-					case "Butt Bug Message":
+					case "Butt Bug Message Cooldown":
 						if(requiresRemoval)
 						{
 							if(this is PlayerCharacter) kGAMECLASS.messageButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);

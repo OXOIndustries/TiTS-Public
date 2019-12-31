@@ -4,6 +4,9 @@ package classes.Items.Armor.Unique
 	import classes.GLOBAL;
 	import classes.StringUtil;
 	import classes.GameData.TooltipManager;
+	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
+	import classes.Items.Armor.Unique.Omnisuit;
 	
 	public class OmnisuitCollar extends ItemSlotClass
 	{
@@ -50,6 +53,21 @@ package classes.Items.Armor.Unique
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
 			
 			version = _latestVersion;
+		}
+		
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			if(targetCreature is PlayerCharacter && outputText)
+			{
+				/* Handled in omnisuitExtras.as under omnisuitInventoryBlurb()! */
+				return;
+			}
+			targetCreature.createStatusEffect("Rubber Wrapped");
+		}
+		
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
+		{
+			targetCreature.removeStatusEffect("Rubber Wrapped");
 		}
 	}
 }

@@ -423,7 +423,7 @@ public function marionsDenSexMenu():void
 	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis that fits or a vagina and a hardlight dildo for this.");
 	// if PC has either a pussy & no cock or a cock thats to large
 	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == -1)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
-	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
+	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need to be a female OR have an overly large dick for this.");
 	// if essray has at least 1 cock, else hide the button
 	if (marion.hasCock()) addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "Let the "+ marionName() +" use her [marion.multiCocks] on your [pc.vagOrAss].");
 }
