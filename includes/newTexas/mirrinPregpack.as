@@ -2781,7 +2781,8 @@ public function doanMirranUpTheBum(cockIdx:int):void
 	output(" A bigger, rougher hand lightly squeezes your joined together fingers and massages them with calloused motions. In turn, you rub the belly of the great beast and murmur your content for your lover.");
 
 	processTime(40+rand(26));
-	pc.applyCumSoaked();
+	//reported as bug here: https://forum.fenoxo.com/threads/0-8-044-cum-covered-tag-for-mirrin-scenes.19329/
+	//pc.applyCumSoaked();
 	soreDebuff(4);
 	pc.orgasm();
 	clearMenu();
