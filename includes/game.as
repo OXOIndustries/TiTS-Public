@@ -2521,9 +2521,11 @@ public function flyTo(arg:String):void
 	generateMapForLocation("SHIP INTERIOR");
 	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
 	resetStepCounters();
-	
+	//Bumped these up here to tack onto the no repair status so it expires after a while.
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	// Pause any docked ship repairs--because the ship is not docked! (Should be removed after flyTo completes);
-	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, timeFlown);
 
 	//No travel events on first zheng visit.
 	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
@@ -2697,8 +2699,7 @@ public function flyTo(arg:String):void
 			interruptMenu = flyToBreedwell();
 			break;
 	}
-	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
+	
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
@@ -4629,7 +4630,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 
-	if (!pc.hasStatusEffect("Ship Repair Paused")) processShipHealing(deltaT,doOut,totalDays);
+	//Shekka ignores dis since she comes wiv shippy!
+	if (!pc.hasStatusEffect("Ship Repair Paused") && !shekkaIsCrew()) processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
