@@ -187,7 +187,10 @@ public function rideKirosVictoryCocku2(x:int):void
 	output("Kiro’s eyes stop rolling back as her orgasm tapers down, and she finally starts to kiss you properly, tonguefucking you as what feel like gallons of excess, " + (x < 0 ? "ass-impregnating":"cunt-drenching") + " seed backwash down her pole, making that bulging middle ring so slick that you ca-");
 	output("\n\n<i>’POP’</i>");
 	output("\n\nYour well-filled [pc.vagOrAssNoun " + x + "] swallows the obstruction with ease, snapping tightly back against Kiro’s veiny second half as you glide down. Now it’s your turn to struggle to stay coordinated. Kiro’s tongue is everywhere. It roams over your [pc.lipsChaste]. It gently prods your own, sliding alongside it affectionately as she fills two holes with quiet intensity. You tremble in her paws, letting her. Your [pc.thighs] quiver, and you struggle to breath, too blissed out to worry as you begin to cum.");
-	output("\n\nYou’re a white-hot nova of lust and desire, wrapped tight around the biggest, most bestial fuckpole in the galaxy. Kiro keeps you moving, even when your spasming body bottoms out on her sheath, bunching it up against your {cum-drenched cuntlips/cum-drenched star}. She’s gentle, post-orgasm. Her fingers squeeze and tease as they guide you through your climax with perfect attentiveness. Somehow, through all the ecstatic euphoria, you feel safe above all else.");
+	output("\n\nYou’re a white-hot nova of lust and desire, wrapped tight around the biggest, most bestial fuckpole in the galaxy. Kiro keeps you moving, even when your spasming body bottoms out on her sheath, bunching it up against your");
+	if(x >= 0) output("cum-drenched cuntlips");
+	else output("cum-drenched star");
+	output(". She’s gentle, post-orgasm. Her fingers squeeze and tease as they guide you through your climax with perfect attentiveness. Somehow, through all the ecstatic euphoria, you feel safe above all else.");
 	output("\n\nShe cares for you.");
 	output("\n\nShe cradles you.");
 	output("\n\nShe fills you.");
