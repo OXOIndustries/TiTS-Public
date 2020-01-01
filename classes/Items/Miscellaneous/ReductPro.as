@@ -64,7 +64,7 @@ package classes.Items.Miscellaneous
 				output("\n\n");
 			kGAMECLASS.showName("\nREDUCTPRO");
 			output("You ponder over how to use ReductPro. Which body part will you shrink?");
-			
+			output("\n\n(This is a multipage menu - the buttons in the lower right can be used to page through it.)");
 			// Build menu:
 			clearMenu();
 			
@@ -235,6 +235,55 @@ package classes.Items.Miscellaneous
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
 			// 14 - Back
 			addButton(14, "Back", menuReductProQuit, undefined, "Never Mind", "Put the container back in your inventory.");
+			
+			// 15 - Tail
+			// 20 - Tails
+			if (pc.hasTail())
+			{
+				//Remove a tail if lots of tails
+				if (pc.hasTails()) addButton(15, "Tail", useReductProShrinkTail, true, "Tail", "Apply the paste to remove one of your tails.");
+				else
+				{
+					//Shrink long tails
+					if (pc.hasTailFlag(GLOBAL.FLAG_LONG)) addButton(15, "Tail", useReductProShrinkTail, false, "Tail", "Apply the paste to shorten your tail.");
+					//Otherwise, remove it
+					else addButton(15, "Tail", useReductProShrinkTail, true, "Tail", "Apply the paste to remove your tail.");
+				}
+			}
+			//No Tails at all
+			else addDisabledButton(15, "Tail", "Tail", "You don't have a tail!");
+			
+			//Multiple Tails button: shrinks if long flag, removes otherwise.
+			if (pc.hasTails())
+			{
+				if (pc.hasTailFlag(GLOBAL.FLAG_LONG)) addButton(20, "All Tails", useReductProShrinkTails, undefined, "All Tails", "Use the paste to shrink your long tails.");
+				else addButton(20, "All Tails", useReductProShrinkTails, undefined, "All Tails", "Use the paste to remove your tails.");
+			}
+			//One or no tails
+			else addDisabledButton(20, "All Tails", "All Tails", "You don't have multiple tails!");
+			
+			// 16 - Antennae
+			if (pc.hasAntennae()) addButton(16, "Antennae", useReductProShrinkAntennae, undefined, "Antennae", "Apply the paste to your antennae.");
+			else addDisabledButton(16, "Antennae", "Antennae", "You don't have any antennae to remove!");
+			
+			// 17 - Ears
+			if (pc.earLength > 1) addButton(17, "Ears", useReductProShrinkEars, undefined, "Ears", "Apply the paste to your ears.");
+			else addDisabledButton(17, "Ears", "Ears", "Your ears are as small as they can be!");
+			
+			// 18 - Areolae
+			if (pc.nippleWidthRatio > 0.1) addButton(18, "Areolae", useReductProShrinkAreolae, undefined, "Areolae", "Apply the paste to your areolae.");
+			else addDisabledButton(18, "Areolae", "Areolae", "Your areolae are as small as they can get!");
+			
+			//19 - Tongue
+			if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) addButton(19, "Tongue", useReductProShrinkTongue, undefined, "Tongue", "Apply the paste to your lengthy tongue.");
+			else addDisabledButton(19, "Tongue", "Tongue", "Your tongue is already as short as it can be!");
+			
+			//21 - Gills
+			if (pc.gills) addButton(21, "Gills", useReductProShrinkGills, undefined, "Gills", "Apply the paste to your gills.");
+			else addDisabledButton(21, "Gills", "Gills", "You don't have gills!");
+			
+			// 29 - Back 2: Electric Boogaloo
+			addButton(29, "Back", menuReductProQuit, undefined, "Never Mind", "Put the container back in your inventory.");
 			
 			return;
 		}
@@ -1354,6 +1403,221 @@ package classes.Items.Miscellaneous
 				useReductProDone(true);
 				return;
 			}
+		}
+		
+		//Antennae
+		private function useReductProShrinkAntennae():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("Unscrewing the cap, you begin gingerly applying the paste to your sensitive antennae. ");
+			
+			if (pc.antennaeUnlocked(0))
+			{
+				output("They get even thinner, eventually fading away to nothing. <b>You no longer have antennae!</b>");
+				pc.removeAntennae();
+				useReductProDone();
+			}
+			else
+			{
+				output("\n\n" + pc.antennaeLockedMessage());
+				useReductProDone(true);
+			}
+			return;
+		}
+		
+		//Tail
+		private function useReductProShrinkTail(remove:Boolean):void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("You apply liberal amounts of the smelly cream to " + (pc.hasTails() ? "one of your tails. ":"your tail. "));
+			
+			//Remove a tail
+			if (remove)
+			{
+				if (pc.hasTails())
+				{
+					if (pc.tailCountUnlocked(0))
+					{
+						output("A curious suction sensation fills it as it slowly disappears into your body. <b>You have one fewer tail!</b>");
+						pc.tailCount--;
+						useReductProDone();
+					}
+					else
+					{
+						output("\n\n" + pc.tailCountLockedMessage());
+						useReductProDone(true);
+					}
+				}
+				else
+				{
+					if (pc.tailCountUnlocked(0))
+					{
+						output("A curious suction sensation fills it as it slowly disappears into your body. <b>You no longer have a tail!</b>");
+						pc.removeTails();
+						useReductProDone();
+					}
+					else
+					{
+						output("\n\n" + pc.tailCountLockedMessage());
+						useReductProDone(true);
+					}
+				}
+			}
+			
+			//Shrink tail
+			else
+			{
+				if (pc.tailFlagsUnlocked(null))
+				{
+					output("It thrashes about involuntarily as the ReductPro takes effect, diminishing all the while. <b>Your tail is no longer long!</b>");
+					pc.removeTailFlag(GLOBAL.FLAG_LONG);
+					useReductProDone();
+				}
+				else
+				{
+					output("\n\n" + pc.tailFlagsLockedMessage());
+					useReductProDone(true);
+				}
+			}
+			return;
+		}
+		
+		//Tails
+		private function useReductProShrinkTails():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("You apply liberal amounts of the smelly cream to your tails. ");
+			
+			//Shrinky dinks
+			if (pc.hasTailFlag(GLOBAL.FLAG_LONG))
+			{
+				if (pc.tailFlagsUnlocked(null))
+				{
+					output("They thrash about involuntarily as the ReductPro takes effect, diminishing all the while. <b>Your tails are no longer long!</b>");
+					pc.removeTailFlag(GLOBAL.FLAG_LONG);
+					useReductProDone();
+				}
+				else
+				{
+					output("\n\n" + pc.tailFlagsLockedMessage());
+					useReductProDone(true);
+				}
+			}
+			
+			//Bye bye birdie
+			else 
+			{
+				if (pc.tailCountUnlocked(0))
+				{
+					output("A curious suction sensation fills them as they slowly disappear into your body. <b>You no longer have any tails!</b>");
+					pc.removeTails();
+					useReductProDone();
+				}
+				else
+				{
+					output("\n\n" + pc.tailCountLockedMessage());
+					useReductProDone(true);
+				}
+			}
+			return;
+		}	
+		
+		//Ears
+		private function useReductProShrinkEars():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("Squirting a gob of paste into both hands, you carefully massage it into your ears with your fingertips. ");
+			
+			//Set up in case of future something that locks ear length
+			if (9999 == 9999)
+			{
+				output("Abruptly, you're hit with a moment of intense vertigo. When it passes, you realize that <b>your ears have shrunk!</b>");
+				pc.earLength -= (1 + rand(3));
+				if (pc.earLength < 1) pc.earLength = 1;
+				useReductProDone();
+			}
+			else
+			{
+				output("\n\nSucks to be you!");
+				useReductProDone(true);
+			}
+			return;
+		}
+		
+		//Areolae
+		private function useReductProShrinkAreolae():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Cooing slightly, you swirl the cream into your tender areolae. ");
+						
+			if (pc.nippleWidthRatioUnlocked(0.1))
+			{
+				output("You lose yourself in the sensation for a minute. When you come back, you notice that <b>your areolae have shrunk!</b>");
+				pc.nippleWidthRatio -= 1;
+				if (pc.nippleWidthRatio < 0.1)  pc.nippleWidthRatio = 0.1;
+				useReductProDone();
+			}
+			else
+			{
+				output("\n\n" + pc.nippleWidthRatioLockedMessage());
+				useReductProDone(true);
+			}
+			return;
+		}
+		
+		//Tongue
+		private function useReductProShrinkTongue():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("With a grimace, you extend your lengthy tongue and begin quickly applying the ReductPro with both hands, gagging at the repulsive flavor. ");
+						
+			if (pc.tongueFlagsUnlocked(null))
+			{
+				output("Unbidden, your tongue begins retracting back into your mouth. After a few moments, you try extending it back to its former length, only to find that <b>your tongue is much shorter now!</b>");
+				pc.removeTongueFlag(GLOBAL.FLAG_LONG);
+				useReductProDone();
+			}
+			else
+			{
+				output("\n\n" + pc.tongueFlagsLockedMessage());
+				useReductProDone(true);
+			}
+			return;
+		}
+		
+		//Gills
+		private function useReductProShrinkGills():void
+		{
+			var pc:PlayerCharacter = kGAMECLASS.pc;
+			clearOutput();
+			kGAMECLASS.userInterface.author("Somebody Else");
+			output("You rub the cream into your gills, occasionally releasing an involuntary gasp. ");
+			
+			if (pc.gillsUnlocked(false))
+			{
+				output("As you finish applying the Reductpro, an intense sensation of heat permeates your gills. Gently probing with your fingers, you realize <b>you no longer have gills!</b>");
+				pc.gills = false;
+				useReductProDone();
+			}
+			else
+			{
+				output("\n\n" + pc.gillsLockedMessage());
+				useReductProDone(true);
+			}
+			return;
 		}
 		
 		private function useReductProDone(failed:Boolean = false):void

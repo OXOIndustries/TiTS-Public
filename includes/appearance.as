@@ -2191,7 +2191,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	switch(target.tailType)
 	{
 		case GLOBAL.TYPE_EQUINE:
-			outputRouter(" A long " + target.hairColor + " horsetail hangs from " + (target == pc ? "your":"[target.hisHer]") + " " + target.buttDescript() + ", smooth and shiny.");
+			outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long ":"") + target.hairColor + " horsetail hangs from " + (target == pc ? "your":"[target.hisHer]") + " " + target.buttDescript() + ", smooth and shiny.");
 			break;
 		case GLOBAL.TYPE_CANINE:
 		case GLOBAL.TYPE_DOGGIE:
@@ -2251,14 +2251,14 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_BOVINE:
 			if(target.tailCount == 1)
 			{
-				outputRouter(" A long cow tail with a");
+				outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long ":"") + "cow tail with a");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) outputRouter(" voluminous");
 				else outputRouter(" puffy");
 				outputRouter(" tip swishes back and forth as if swatting at flies.");
 			}
 			else
 			{
-				outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long cow tails with");
+				outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " long ": " ") + "cow tails with");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) outputRouter(" voluminous");
 				else outputRouter(" puffy");
 				outputRouter(" tips swish back and forth as if swatting at flies.");
@@ -2299,7 +2299,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_SHARK:
 		case GLOBAL.TYPE_SIREN:
-			outputRouter(" A long, shark-tail trails down from " + (target == pc ? "your":"[target.hisHer]") + " backside, swaying to and fro while ");
+			outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "shark-tail trails down from " + (target == pc ? "your":"[target.hisHer]") + " backside, swaying to and fro while ");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) outputRouter("dripping goo everywhere.");
 			else outputRouter("giving " + (target == pc ? "you":"[target.himHer]") + " a dangerous air.");
 			outputRouter(" Halfway across it grows a smaller dorsal fin.");
@@ -2368,10 +2368,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" A thin,");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) outputRouter(" gooey");
 			else outputRouter(" scaly");
-			outputRouter(", prehensile reptilian tail, almost as long as " + (target == pc ? "you are":"[target.heShe] is") + " tall, swings behind " + (target == pc ? "you":"[target.himHer]") + " like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");
+			outputRouter(", prehensile reptilian tail" + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? ", almost as long as " + (target == pc ? "you are":"[target.heShe] is") + " tall, ":" ") + "swings behind " + (target == pc ? "you":"[target.himHer]") + " like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");
 			break;
 		case GLOBAL.TYPE_GRYVAIN:
-			outputRouter(" A tapered, prehensile tail, almost as long as " + (target == pc ? "you are":"[target.heShe] is") + " tall, swings behind " + (target == pc ? "you":"[target.himHer]") + " like a living bullwhip. Softly rounded at its tip, it quickly increases in girth closer to " + (target == pc ? "your":"[target.hisHer]") + " body - almost as thick as " + (target == pc ? "your":"[target.hisHer]") + " waist at its widest. The " + target.scaleColor + " scales sheathing " + (target == pc ? "your":"[target.hisHer]") + " hefty tail’s length merge seamlessly with those of " + (target == pc ? "your":"[target.hisHer]") + " lower back.");
+			outputRouter(" A tapered, prehensile tail" + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? ", almost as long as " + (target == pc ? "you are":"[target.heShe] is") + " tall, ":" ") + "swings behind " + (target == pc ? "you":"[target.himHer]") + " like a living bullwhip. Softly rounded at its tip, it quickly increases in girth closer to " + (target == pc ? "your":"[target.hisHer]") + " body - almost as thick as " + (target == pc ? "your":"[target.hisHer]") + " waist at its widest. The " + target.scaleColor + " scales sheathing " + (target == pc ? "your":"[target.hisHer]") + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " hefty":"") + " tail’s length merge seamlessly with those of " + (target == pc ? "your":"[target.hisHer]") + " lower back.");
 			break;
 		case GLOBAL.TYPE_KUITAN:
 			if(target.furColor == "black") outputRouter(" A solid-black kui-tan tail waves behind " + (target == pc ? "you":"[target.himHer]") + ".");
@@ -2416,13 +2416,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_REDPANDA:
 			if(target.tailCount <= 1)
 			{
-				if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY)) outputRouter(" A long, bushy " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda tail sprouts from " + (target == pc ? "your":"[target.hisHer]") + " backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
-				else if(rand(2) == 0) outputRouter(" A long furry tail hangs from " + (target == pc ? "your":"[target.hisHer]") + " backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
-				else outputRouter(" A long, " + target.furColor + " ringed tail waves behind " + (target == pc ? "you":"[target.himHer]") + ".");
+				if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY)) outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "bushy " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda tail sprouts from " + (target == pc ? "your":"[target.hisHer]") + " backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
+				else if(rand(2) == 0) outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long ":"") + "furry tail hangs from " + (target == pc ? "your":"[target.hisHer]") + " backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
+				else outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + target.furColor + " ringed tail waves behind " + (target == pc ? "you":"[target.himHer]") + ".");
 			}
 			else
 			{
-				outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long");
+				outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " long":" "));
 				if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY)) outputRouter(", bushy " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda tails sprout from " + (target == pc ? "your":"[target.hisHer]") + " backside. Their " + target.furColor + " ringed patterns are a hypnotizing sight to behold.");
 				else if(rand(2) == 0) outputRouter(" furry tails hangs from " + (target == pc ? "your":"[target.hisHer]") + " backside. Their " + target.furColor + " ringed patterns are a hypnotizing sight to behold.");
 				else outputRouter(", " + target.furColor + " ringed tails wave behind " + (target == pc ? "you":"[target.himHer]") + ".");
@@ -2457,8 +2457,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			}
 			break;
 		case GLOBAL.TYPE_VANAE:
-			if(target.tailCount == 1) outputRouter(" Protruding from above " + (target == pc ? "your":"[target.hisHer]") + " butt, a long, slippery tail wiggles behind " + (target == pc ? "you":"[target.himHer]") + ". It is lined with octopus-like suckers on the bottom, very much like a tentacle of some underwater... or perhaps tree-dwelling, creature.");
-			else outputRouter(" Protruding from above " + (target == pc ? "your":"[target.hisHer]") + " butt, " + num2Text(target.tailCount) + " long, slippery tails wiggle behind " + (target == pc ? "you":"[target.himHer]") + ". They are lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
+			if(target.tailCount == 1) outputRouter(" Protruding from above " + (target == pc ? "your":"[target.hisHer]") + " butt, a " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "slippery tail wiggles behind " + (target == pc ? "you":"[target.himHer]") + ". It is lined with octopus-like suckers on the bottom, very much like a tentacle of some underwater... or perhaps tree-dwelling, creature.");
+			else outputRouter(" Protruding from above " + (target == pc ? "your":"[target.hisHer]") + " butt, " + num2Text(target.tailCount) + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " long, ":" ") + "slippery tails wiggle behind " + (target == pc ? "you":"[target.himHer]") + ". They are lined with octopus-like suckers on the bottom, very much like the tentacles of some underwater... or perhaps tree-dwelling, creature.");
 			break;
 		case GLOBAL.TYPE_OVIR:
 			if(target.tailCount == 1) outputRouter(" A thick, reptilian tail dangles behind " + (target == pc ? "you":"[target.himHer]") + ", swaying as a living counterbalance.");
@@ -2548,16 +2548,16 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_SIMII:
 			outputRouter(" Peeking out from behind, " + (target == pc ? "you have":"[target.heShe] has"));
-			if(target.tailCount == 1) outputRouter(" a long, prehensile monkey tail that sways");
-			else outputRouter(" " + num2Text(target.tailCount) + " long, prehensile monkey tails that sway");
+			if(target.tailCount == 1) outputRouter(" a " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "prehensile monkey tail that sways");
+			else outputRouter(" " + num2Text(target.tailCount) + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " long, ":" ") + "prehensile monkey tails that sway");
 			outputRouter(" to and fro with curiosity.");
 			break;
 		case GLOBAL.TYPE_TENTACLE:
-			if(target.tailCount == 1) outputRouter(" A long, writhing, tentacle-like tail flows after " + (target == pc ? "you":"[target.himHer]") + ", bobbing and undulating with the slightest movement of " + (target == pc ? "your":"[target.hisHer]") + " hips.");
-			else outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writhing, tentacle tails flow after " + (target == pc ? "you":"[target.himHer]") + ", all similar in appearance. Studying one of them, you find that " + (target == pc ? "you have":"[target.heShe] has") + " excellent control over their movements."); 
+			if(target.tailCount == 1) outputRouter(" A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "writhing, tentacle-like tail flows after " + (target == pc ? "you":"[target.himHer]") + ", bobbing and undulating with the slightest movement of " + (target == pc ? "your":"[target.hisHer]") + " hips.");
+			else outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? " long, ":" ") + "writhing, tentacle tails flow after " + (target == pc ? "you":"[target.himHer]") + ", all similar in appearance. Studying one of them, you find that " + (target == pc ? "you have":"[target.heShe] has") + " excellent control over their movements."); 
 			break;
 		case GLOBAL.TYPE_FROSTWYRM:
-			outputRouter(" " + (target.tailCount == 1 ? "A long, flexible reptilian tail extends":"Long, flexible reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
+			outputRouter(" " + (target.tailCount == 1 ? "A " + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "long, ":"") + "flexible reptilian tail extends":"" + (target.hasTailFlag(GLOBAL.FLAG_LONG) ? "Long, flexible ":"Flexible ") + "reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter(" " + (target==pc?"Your":"[target.HisHer]") + (target.tailCount==1?" tail is":" tails are") + " fairly short and stubby, thicker at the base.");
