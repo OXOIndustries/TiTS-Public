@@ -126,7 +126,7 @@ public function kiroCost():Number
 	var kiroTimeClass:Number = 0;
 	//figure out amount TFed
 	if(flags["KQ_LAST_HOUR_TF"] == undefined || flags["KQ_LAST_HOUR_TF"] < 18) kiroTimeClass = 0;
-	else if(flags["KQ_LAST_HOUR_TF"] < 30) kiroTimeClass = 0;
+	else if(flags["KQ_LAST_HOUR_TF"] < 30) kiroTimeClass = 1;
 	else if(flags["KQ_LAST_HOUR_TF"] < 36) kiroTimeClass = 2;
 	else if(flags["KQ_LAST_HOUR_TF"] <= 42) kiroTimeClass = 3;
 	else kiroTimeClass = 4;
