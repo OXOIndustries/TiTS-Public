@@ -264,21 +264,28 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.tailCount > 0)
 		{
 			if(pc.tailCount == 1) output2("\n<b>* Tail:</b>");
-			else output2("\n<b>* Tails:</b>");
-			output2(" " + pc.tailCount + ",");
+			else output2("\n<b>* Tails:</b> ");
+			output2(pc.tailCount + ", ");
 			if(pc.tailFlags.length > 0)
 			{
+				var nonGenitalFlags:Array = [FLAG_PREHENSILE, FLAG_LONG, FLAG_FLUFFY, FLAG_SMOOTH, FLAG_TAILCOCK, FLAG_TAILCUNT, FLAG_FURRED, FLAG_SCALED, FLAG_THICK, FLAG_STINGER_TIPPED, FLAG_CHITINOUS, FLAG_FEATHERED, FLAG_STICKY, FLAG_TAPERED, FLAG_CORKSCREWED];
+				
 				for(i = 0; i < pc.tailFlags.length; i++)
 				{
-					output2(" " + GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ",");
+					if(InCollection(pc.tailFlags[i], nonGenitalFlags)) output2(GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ", ");
 				}
 			}
-			if(pc.hasParasiteTail()) output2(" Parasitic");
-			output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
+			if(pc.hasParasiteTail()) output2("Parasitic ");
+			output2(GLOBAL.TYPE_NAMES[pc.tailType]);
 		}
 		if(pc.hasTailCock() || pc.hasTailCunt())
 		{
 			output2("\n<b>* Tail, Genital Type:</b> ");
+			for(i = 0; i < pc.tailFlags.length; i++)
+			{
+				if(InCollection(pc.tailFlags[i], nonGenitalFlags)) continue;
+				output2(GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ", ");
+			}
 			if(pc.tailGenitalColor != "") output2(StringUtil.toDisplayCase(pc.tailGenitalColor) + ", ");
 			output2(GLOBAL.TYPE_NAMES[pc.tailGenitalArg]);
 			if(pc.hasTailCock()) output2(", " + GLOBAL.TAIL_GENTIAL_TYPE_NAMES[1]);
