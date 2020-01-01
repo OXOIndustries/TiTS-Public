@@ -1258,7 +1258,7 @@ public function priapismBlurbs():void
 				else msgList.push("Flahne whistles at you and waves on her way by. <i>“Looking good, sugar!”</i>");
 			}
 			// Mhenga Penny Cumslut Public
-			if(flags["PENNY_IS_A_CUMSLUT"] != undefined && flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) msgList.push("Less people spend time checking out your ever-present than you would expect. Then again, ever since you taught Penny how to be a cum-slut, the settlement has gotten used to seeing a lot more dick.");
+			if(pennyIsCumSlut() && flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) msgList.push("Less people spend time checking out your ever-present than you would expect. Then again, ever since you taught Penny how to be a cum-slut, the settlement has gotten used to seeing a lot more dick.");
 		}
 		// Tarkus
 		if(pcLocation == "Tarkus")
