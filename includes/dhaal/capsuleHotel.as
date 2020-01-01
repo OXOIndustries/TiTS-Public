@@ -418,15 +418,13 @@ public function tailMilkingWithMyssah(x:int):void
 	output("\n\nNot for the last time tonight.");
 	output("\n\nShe just smiles and continues moving, using that wonderful fuckhole to keep you from ever going soft, even as fatigue takes hold, and you slowly drift off into a sleep punctuated by non-stop wet dreams...");
 
-	processTime(8*60);
-	sleepHeal();
+	processTime(30);
 	pc.orgasm();
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.createVagina();
 	pp.loadInCunt(pc,x);
-	IncrementFlag("CAPSULE_FULLSERVE");
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",tailFuckWithMyssah2);
 }
 
 //Tail Fuck
@@ -439,7 +437,8 @@ public function tailFuckWithMyssah(x:int):void
 	output("Or at least, you can get behind the beautiful alien who’s tending to you. She flashes a little smile over a shoulder and shifts herself forward so that the bulk of her tail can wriggle and squirm its way down between your " + (pc.legCount > 1 ? "[pc.legs]":"[pc.thighs]") + ". The thick bulb of her tail’s tip stays firmly closed, despite the beading moisture starting to appear from its four slender lips, and it starts to trace its way down your thigh towards your [pc.vagOrAss " + x + "].");
 	output("\n\n<i>“Just take a deep breath,”</i> Myssah urges you, as her tail-tip comes flush against your fuckhole. <i>“You’re going to be very full for a very long time.”</i>");
 	output("\n\nOh boy. You do as she advises, relaxing your body with long, deep breathes. You settle into the bed, gently raising your ass so that her tail will have a straight shot inside you, and she’s quick to take advantage of what you’re offering. You feel her silky-smooth skin pressing against you, firm and unyielding, slowly but surely stretching you open. All you can do is moan as she penetrates you, wedging that fat crown in inch by inch. Your [pc.vagOrAss " + x + "] buzzes with pleasure while she grinds herself against your inner walls. It’s agonizingly <b>slow</b> going, so much that you end up shaking your hips and thrusting back against the massive intruder, trying desperately to get more of her inside yourself, but Myssah quickly plants her hands on your hips and pushes you down against the bed.");
-	pc.buttChange(500);
+	if(x < 0) pc.buttChange(500);
+	else if(x >= 0) pc.cuntChange(x,500);
 	output("\n\n<i>“Relax. Enjoy yourself,”</i> she insists. I’ll take care of you all night, after all. We have to go slow.”</i>");
 	output("\n\nYou just whimper and dig your hands into the bedsheets, surrendering to the sensation of overwhelming fullness. Her tail’s so thick, so <b>solid</b> inside you, as good as any dick and twice as flexible. When the mace-like head’s wiggled its way as deep as it can go into your [pc.vagOrAss " + x + "], the long, narrow stem starts to slowly undulate, grinding itself against your " + (x < 0 ? "rim":"lips") + " and inner walls. Her tail’s so big that it can’t help but find all your most sensitive places, and it takes barely any time at all before you feel that intense well of pressure, that tell-tale building orgasm, rising from your loins.");
 	output("\n\nHearing your breath quicken, Myssah smiles softly over her shoulder and gently rubs your thighs. <i>“Don’t hold back. You’ll cum many times tonight, after all.”</i>");
