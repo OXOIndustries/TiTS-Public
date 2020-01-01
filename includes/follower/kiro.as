@@ -217,7 +217,7 @@ public function roleplayWithKiro():void
 	author("Fenoxo");
 	output("You suggest roleplaying to Kiro. She doesn’t seem surprised in the slightest. In fact, the lawbreaking pirate is smiling in obvious anticipation. <i>“As long as I’m fucking you, you can pretend to be whoever you want...”</i>");
 	clearMenu();
-	addButton(14,"Back",kiroCrewSexMenu,true);
+	addButton(14,"Back",kiroCrewSexApproach,true);
 	addButton(0,"Celebration",kqVictorySurprise,undefined,"Celebration","Replay celebrating your victory over Doctor Po with tanuki.");
 	if(kiro.vaginas[0].hymen) addDisabledButton(1,"Take Virginity","Take Virginity","You need to do this for real before roleplaying it.");
 	else if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0) addButton(1,"Take Virginity",queueTakeKirosVirginity,undefined,"Take Virginity","Experience what it's like to deflower Kiro.");
