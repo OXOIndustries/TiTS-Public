@@ -1212,7 +1212,7 @@ public function doggyStyleWithGil():void
 	{
 		output(" You feel your own vaginal orgasm ");
 		if(hardlighted) output("drench your [pc.lowerUndergarment] with [pc.girlCum]");
-		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s tail in [pc.girlCum]");
+		else if(pc.isSquirter()) output("burst forth from your cunt and drench Gil’s thighs in [pc.girlCum]");
 		else 
 		{
 			output("drip down your ");
