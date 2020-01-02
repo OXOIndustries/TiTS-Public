@@ -114,6 +114,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "Blade";
 			this.createPerk("No Rename");
+			this.createPerk("No Sell");
 
 			//kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
