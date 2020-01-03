@@ -2514,8 +2514,8 @@ public function liftVoyeurism():void
 	output("\n\nHer patience finally snaps and she grabs him by the horns and pulls him down to his knees, pressing his nose into her dripping cunt. <i>“Jeez, just eat me out already!”</i>");
 
 	if(watchedNico) output("\n\nNico");
-	else output("\n\nThe bull tries");
-	output(" and fails to stifle a laugh. <i>“Hah, finally you get to the fun part. Two words would have done it for me. ‘Eat me’”</i> And while he would have most likely gone on teasing her, his words were quickly muffled by her sopping wet cunny as she finally forces herself onto him.");
+	else output("\n\nThe bull");
+	output(" tries and fails to stifle a laugh. <i>“Hah, finally you get to the fun part. Two words would have done it for me. ‘Eat me’”</i> And while he would have most likely gone on teasing her, his words were quickly muffled by her sopping wet cunny as she finally forces herself onto him.");
 
 	output("\n\nAs if by instinct, his tongue immediately starts assaulting her vagina, his intensity quickly going from gently teasing her clit to flat out tongue fucking her. Her mouth silently hangs open, screaming out moans of pleasure that no one will hear. Her grip around the his horns tightens as she gets more and more into it, her eyes shut tight from the sheer pleasure of his tongue. He pays no attention to her cunt liquor drooling down his mouth, chin, and chest -- instead, he is tonguefucking her pussy like it’s the last thing he’ll ever eat. Whatever he doesn’t lap up takes the form of a <i>“milk mustache”</i> which he’ll wear with pride for the few moments before inevitably he goes to wipe or lick it off. But for now, none of that matters, his entire world has condensed into the sight and taste of the woman before him, accompanied by the audio of her now audible moans.");
 	if(pc.isTreated()) 
