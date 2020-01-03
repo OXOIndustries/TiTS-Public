@@ -3312,7 +3312,7 @@ public function bonusShekkaWorkout(light:Boolean):void
 	if(shekka.hasCock()) output(", her dick jerking and spurting onto your chest. Fortunately, some nice cow-girls are more than happy to lick it up");
 	output(". Your spotter catches Shekka before her shuddering pleasure sends her falling to the side, again giving you a thumbs up.");
 	output("\n\nThe people on New Texas sure are helpful!");
-	output("\n\nAs things die down, the audience disperses, leaving you hold onto Shekka until she recovers");
+	output("\n\nAs things die down, the audience disperses, leaving you to hold onto Shekka until she recovers");
 	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(", not that she will after that massive-venom load. She’s rubbing her pussy the whole way to the door and giggling something about how her pants are going to seal it for days.");
 	else output(". She’s grateful, and gives you a wink and smile before leaving, slapping a couple bulls on the ass on the way out.");
 	processTime(45);
