@@ -4105,7 +4105,11 @@ public function beLundsCookslutEpilogue():void
 	IncrementFlag("LUND_ADVANCED_SUBMISSION");
 	pc.loadInMouth(lundipoo);
 	restHeal();
-	while(pc.lust() > 40 && pc.lustMin() <= 40) { pc.lust(-15); }
+	while(pc.lust() > 40) 
+	{
+		//Modified this. Used to check against minLust to stop, but minLust wasn't factoring in lustMod the same way that lust() does, resulting in an effective minimum of 90.
+		if(pc.lust(-10) == pc.lust(-10)) break;
+	}
 	//End Lund Submission Part 3 by Wsan
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
