@@ -202,6 +202,18 @@ package classes.Lang {
                             }
                         }
                         else if (typeof identity === 'boolean') {
+                            if (results.length == 0) {
+                                this.errors.push({
+                                    msg: this.getName(node.data.children[0]) + ' needs at least one result',
+                                    range: node.data.range
+                                });
+                            }
+                            else if (results.length > 2) {
+                                this.errors.push({
+                                    msg: this.getName(node.data.children[0]) + ' can select up to 2 results',
+                                    range: node.data.range
+                                });
+                            }
                             // condition ? [result1] : result2
                             if (identity && results.length > 0 && results[0]) {
                                 valueStack.push(results[0]);

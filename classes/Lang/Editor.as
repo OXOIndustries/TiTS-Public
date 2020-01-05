@@ -39,7 +39,7 @@ package classes.Lang {
             this.tits.shipDb.NewGame();
 
             this.titsDescriptor = new TiTSDescriptor(this.tits);
-            trace(JSON.stringify(this.titsDescriptor));
+            // trace(JSON.stringify(this.titsDescriptor));
             
             const stageWidth: int = stage.stageWidth;
             const stageHeight: int = stage.stageHeight;
