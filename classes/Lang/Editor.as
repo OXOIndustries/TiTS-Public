@@ -120,7 +120,7 @@ package classes.Lang {
             var errorText: String;
             if (typeof interpretResult === 'string') {
                 outputBox.htmlText = '';
-                codeBox.htmlText = '';
+                // codeBox.htmlText = '';
                 errorText = '';
                 for each (var error: Object in parserResult.errors)
                     errorText += errorToText(error) + '\n';
@@ -129,7 +129,7 @@ package classes.Lang {
             }
             else {
                 outputBox.htmlText = interpretResult.result;
-                codeBox.htmlText = interpretResult.code;
+                // codeBox.htmlText = interpretResult.code;
                 errorText = '';
                 for each (error in parserResult.errors)
                     errorText += errorToText(error) + '\n';

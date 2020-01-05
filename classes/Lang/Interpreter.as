@@ -49,7 +49,7 @@ package classes.Lang {
             const jumpStack: Vector.<uint> = new Vector.<uint>();
             const valueStack: Vector.<*> = new Vector.<*>();
             const rangeStack: Vector.<*> = new Vector.<*>();
-            const codeStack: Vector.<String> = new Vector.<String>();
+            // const codeStack: Vector.<String> = new Vector.<String>();
             // For debugging
             // const stackCopy: Array = [];
 
@@ -136,13 +136,13 @@ package classes.Lang {
                         rangeStack.push(node.data.range);
                         valueStack.push(node.data.value);
                         // Always escape strings
-                        codeStack.push('"' + escape(node.data.value) + '"');
+                        // codeStack.push('"' + escape(node.data.value) + '"');
                         break;
 
                     case NodeType.Number:
                     case NodeType.Identity:
                         valueStack.push(node.data.value);
-                        codeStack.push(node.data.value + '');
+                        // codeStack.push(node.data.value + '');
                         break;
 
                     case NodeType.Args:
@@ -168,8 +168,8 @@ package classes.Lang {
 
                         rangeStack.push(nodes);
 
-                        const codeArr: Vector.<String> = codeStack.splice(jumpPos, codeStack.length);
-                        codeStack.push(codeArr.join(' + '));
+                        // const codeArr: Vector.<String> = codeStack.splice(jumpPos, codeStack.length);
+                        // codeStack.push(codeArr.join(' + '));
 
                         break;
                     }
@@ -236,42 +236,42 @@ package classes.Lang {
                             rangeStack.push(node.data.range);
                         }
 
-                        const resultsCode: Vector.<String> = codeStack.splice(jumpPosResults, codeStack.length);
-                        const argsCode: Vector.<String> = codeStack.splice(jumpPosArgs, codeStack.length);
-                        const identityCode: String = codeStack.pop();
-                        if (!identityCode) return 'Identity not found on codeStack';
+                        // const resultsCode: Vector.<String> = codeStack.splice(jumpPosResults, codeStack.length);
+                        // const argsCode: Vector.<String> = codeStack.splice(jumpPosArgs, codeStack.length);
+                        // const identityCode: String = codeStack.pop();
+                        // if (!identityCode) return this.getName(node.data.children[0]) + ' not found on codeStack';
 
-                        // Get toCode function
-                        const toCodeFunc: * = this.getToCode(identityCode.split('.'));
+                        // // Get toCode function
+                        // const toCodeFunc: * = this.getToCode(identityCode.split('.'));
 
-                        if (toCodeFunc) {
-                            codeStack.push(toCodeFunc(argsCode, resultsCode));
-                        }
-                        else {
-                            // Defaults
-                            // type function        -> identity()
-                            // type other           -> identity
-                            // args + results       -> identity([arg0, arg1, ...], [result0, result1, ...])
-                            // args                 -> identity(arg0, arg1, ...)
-                            // type bool + results  -> identity ? result0 : (result1 or "")
-                            // results              -> identity(result0, result1, ...)
-                            if (argsCode.length === 0 && resultsCode.length === 0) {
-                                if (typeof identity === 'function')
-                                    codeStack.push(identityCode + '()');
-                                else
-                                    codeStack.push(identityCode);
-                            }
-                            else if (argsCode.length > 0 && resultsCode.length > 0)
-                                codeStack.push(identityCode + '([' + argsCode.join(', ') + '], [' + resultsCode.join(', ') + '])');
-                            else if (argsCode.length > 0)
-                                codeStack.push(identityCode + '(' + argsCode.join(', ') + ')');
-                            else {
-                                if (typeof identity === 'boolean' && (resultsCode.length === 1 || resultsCode.length === 2))
-                                    codeStack.push('(' + identityCode + ' ? ' + resultsCode[0] + ' : ' + (resultsCode[1] || '""') + ')');
-                                else
-                                    codeStack.push(identityCode + '(' + resultsCode.join(', ') + ')');
-                            }
-                        }
+                        // if (toCodeFunc) {
+                        //     codeStack.push(toCodeFunc(argsCode, resultsCode));
+                        // }
+                        // else {
+                        //     // Defaults
+                        //     // type function        -> identity()
+                        //     // type other           -> identity
+                        //     // args + results       -> identity([arg0, arg1, ...], [result0, result1, ...])
+                        //     // args                 -> identity(arg0, arg1, ...)
+                        //     // type bool + results  -> identity ? result0 : (result1 or "")
+                        //     // results              -> identity(result0, result1, ...)
+                        //     if (argsCode.length === 0 && resultsCode.length === 0) {
+                        //         if (typeof identity === 'function')
+                        //             codeStack.push(identityCode + '()');
+                        //         else
+                        //             codeStack.push(identityCode);
+                        //     }
+                        //     else if (argsCode.length > 0 && resultsCode.length > 0)
+                        //         codeStack.push(identityCode + '([' + argsCode.join(', ') + '], [' + resultsCode.join(', ') + '])');
+                        //     else if (argsCode.length > 0)
+                        //         codeStack.push(identityCode + '(' + argsCode.join(', ') + ')');
+                        //     else {
+                        //         if (typeof identity === 'boolean' && (resultsCode.length === 1 || resultsCode.length === 2))
+                        //             codeStack.push('(' + identityCode + ' ? ' + resultsCode[0] + ' : ' + (resultsCode[1] || '""') + ')');
+                        //         else
+                        //             codeStack.push(identityCode + '(' + resultsCode.join(', ') + ')');
+                        //     }
+                        // }
 
                         break;
                     }
@@ -286,7 +286,7 @@ package classes.Lang {
 
                         valueStack.push(this.globals[node.data.value]);
 
-                        codeStack.push(node.data.value);
+                        // codeStack.push(node.data.value);
                         break;
                     }
 
@@ -313,10 +313,10 @@ package classes.Lang {
 
                         valueStack.push(left[right]);
 
-                        const rightCode: String = codeStack.pop();
-                        const leftCode: String = codeStack.pop();
+                        // const rightCode: String = codeStack.pop();
+                        // const leftCode: String = codeStack.pop();
 
-                        codeStack.push(leftCode + '.' + rightCode);
+                        // codeStack.push(leftCode + '.' + rightCode);
 
                         break;
                     }
@@ -328,7 +328,7 @@ package classes.Lang {
             return {
                 result: String(valueStack[0]),
                 ranges: ((rangeStack[0] is Array) ? rangeStack[0] : [rangeStack[0]]),
-                code: codeStack[0],
+                // code: codeStack[0],
                 // For debugging
                 // stack: stackCopy,
                 errors: this.errors
