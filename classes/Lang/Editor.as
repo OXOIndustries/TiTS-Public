@@ -1,11 +1,14 @@
 package classes.Lang {
+    import classes.Descriptors.TiTSDescriptor;
+    import classes.ShittyShips.Casstech;
     import flash.display.MovieClip;
     import flash.text.TextField;
     import flash.text.TextFormat;
     import flash.display.Sprite;
     import flash.events.*;
     import flash.text.TextFieldType;
-    //import classes.TiTS;
+    import classes.TiTS;
+    import classes.GameData.*;
     
     public class Editor extends Sprite {
         private const lexer: Lexer = new Lexer();
@@ -16,9 +19,28 @@ package classes.Lang {
         private var codeBox:TextField = new TextField();
         private var errorBox:TextField = new TextField();
         private var infoBox:TextField = new TextField();
-        //private var tits: TiTS = new TiTS();
+        private var tits: TiTS;
+        private var titsDescriptor: TiTSDescriptor;
 
         public function Editor() {
+            this.tits = new TiTS();
+            this.addChild(this.tits); // Game doesn't load until added to stage
+
+            // Things not initialized by default
+            this.tits.initializeNPCs();
+	        this.tits.shits["SHIP"] = new Casstech();
+            MailManager.resetMails();
+            ChildManager.resetChildren();
+            this.tits.userInterface.mailsDisplayButton.Deactivate();
+            CombatManager.TerminateCombat();
+            this.tits.userInterface.hideNPCStats();
+            this.tits.userInterface.leftBarDefaults();
+            this.tits.userInterface.resetPCStats();
+            this.tits.shipDb.NewGame();
+
+            this.titsDescriptor = new TiTSDescriptor(this.tits);
+            trace(JSON.stringify(this.titsDescriptor));
+            
             const stageWidth: int = stage.stageWidth;
             const stageHeight: int = stage.stageHeight;
             
@@ -35,17 +57,17 @@ package classes.Lang {
             inputBox.width = leftSideWidth;
             inputBox.height = stageHeight - 50 - borderSize;
             inputBox.multiline = true;
-            addChild(inputBox);
+            this.addChild(inputBox);
             inputBox.addEventListener(Event.CHANGE, textInputCapture);
-            inputBox.addEventListener(KeyboardEvent.KEY_DOWN, updateInfo);
-            inputBox.addEventListener(MouseEvent.CLICK, updateInfo);
+            inputBox.addEventListener(KeyboardEvent.KEY_DOWN, updateInfoEvent);
+            inputBox.addEventListener(MouseEvent.CLICK, updateInfoEvent);
             
             infoBox.background = true;
             infoBox.x = borderSize;
             infoBox.y = stageHeight - 50 + borderSize;
             infoBox.width = leftSideWidth;
             infoBox.height = stageHeight + 50 - borderSize;
-            addChild(infoBox);
+            this.addChild(infoBox);
             
             // Right
             outputBox.background = true;
@@ -54,7 +76,7 @@ package classes.Lang {
             outputBox.width = rightSideWidth;
             outputBox.height = stageHeight / 3 - borderSize;
             outputBox.multiline = true;
-            addChild(outputBox);
+            this.addChild(outputBox);
 
             codeBox.background = true;
             codeBox.x = rightSideOffset;
@@ -62,7 +84,7 @@ package classes.Lang {
             codeBox.width = rightSideWidth;
             codeBox.height = stageHeight / 3 - borderSize;
             codeBox.multiline = true;
-            addChild(codeBox);
+            this.addChild(codeBox);
 
             errorBox.background = true;
             errorBox.x = rightSideOffset;
@@ -70,8 +92,10 @@ package classes.Lang {
             errorBox.width = rightSideWidth;
             errorBox.height = stageHeight / 3 - borderSize;
             errorBox.multiline = true;
-            addChild(errorBox);
-
+            this.addChild(errorBox);
+        }
+        
+        public function updateInfoEvent(event: Event): void {
             updateInfo();
         }
         
@@ -96,27 +120,12 @@ package classes.Lang {
         public function textInputCapture(event:Event): void {
             updateInfo();
 
-            // var started:Number = getTimer();
-
             const text: String = inputBox.text;
-            const globals: Object = { penny: { name: 'Penny', isBimbo: true }, time: 10 };
-            //const globals: Object = this.tits;
-
+            const globals: Object = this.titsDescriptor;
             const tokens: Vector.<Token> = lexer.lex(text);
-
-            // trace(getTimer() - started);
-            // started = getTimer();
-
             const parserResult: ParserResult = parser.parse(tokens, text);
-
-            // trace(getTimer() - started);
-            // started = getTimer();
-
             const interpretResult: * = interpreter.interpret(parserResult.root, globals);
 
-            // trace(getTimer() - started);
-            // started = getTimer();
-            
             var errorText: String;
             if (typeof interpretResult === 'string') {
                 outputBox.htmlText = '';
