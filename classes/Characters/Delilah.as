@@ -161,9 +161,15 @@
 		override public function mfn(m:String, f:String, n:String, ignorePref:Boolean = false):String
 		{
 			// Trap
-			if(MailManager.isEntryUnlocked("del_moved_light")) return m;
+            try {
+			    if(MailManager.isEntryUnlocked("del_moved_light")) return m;
+            }
+            catch(err:Error) {}
 			// Shemale
-			if(MailManager.isEntryUnlocked("del_moved")) return f;
+            try {
+                if(MailManager.isEntryUnlocked("del_moved")) return f;
+            }
+            catch(err:Error) {}
 			// Default
 			return m;
 		}
