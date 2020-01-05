@@ -2,7 +2,7 @@ package classes.Lang {
     public class Lexer {
         private static const TokenSymbol: Object = new Object();
         {
-            TokenSymbol.Newline = '\n';
+            TokenSymbol.Newline = '\r';
             TokenSymbol.Escape = '\\';
             TokenSymbol.BracketOpen = '[';
             TokenSymbol.BracketClose = ']';
