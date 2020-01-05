@@ -21,7 +21,7 @@ package classes.Lang {
             var obj: * = this.globals;
             for (var idx: uint = 0; idx < arr.length; idx++) {
                 if (!(arr[idx] in obj)) return null;
-                if (idx === arr.length - 1)
+                if (idx === arr.length - 1 && (arr[idx] + '__toCode') in obj)
                     obj = obj[arr[idx] + '__toCode'];
                 else
                     obj = obj[arr[idx]];
@@ -203,12 +203,12 @@ package classes.Lang {
                         }
                         else if (typeof identity === 'boolean') {
                             // condition ? [result1] : result2
-                            if (identity && results[0]) {
+                            if (identity && results.length > 0 && results[0]) {
                                 valueStack.push(results[0]);
                                 rangeStack.push(resultsPos[0]);
                             }
                             // condition ? result1 : [result2]
-                            else if (!identity && results[1]) {
+                            else if (!identity && results.length > 1 && results[1]) {
                                 valueStack.push(results[1]);
                                 rangeStack.push(resultsPos[1]);
                             }
@@ -282,9 +282,11 @@ package classes.Lang {
                                 msg: node.data.value + ' does not exist',
                                 range: node.data.range
                             });
+                            
+                            valueStack.push(null);
                         }
-
-                        valueStack.push(this.globals[node.data.value]);
+                        else
+                            valueStack.push(this.globals[node.data.value]);
 
                         // codeStack.push(node.data.value);
                         break;
@@ -298,6 +300,14 @@ package classes.Lang {
                         if (typeof left !== 'object') {
                             this.errors.push({
                                 msg: this.getName(node.data) + ' is a value',
+                                range: node.data.range
+                            });
+                            break;
+                        }
+
+                        if (left === null) {
+                            this.errors.push({
+                                msg: this.getName(node.data) + ' does not exist',
                                 range: node.data.range
                             });
                             break;

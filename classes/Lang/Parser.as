@@ -13,7 +13,7 @@ package classes.Lang {
     import classes.Lang.Nodes.RetrieveNode;
     import classes.Lang.Nodes.StringNode;
     import classes.Lang.TokenStream;
-	import classes.Parser.Nodes.*;
+	import classes.Lang.Nodes.*;
     import classes.Lang.ParserError;
     import classes.Lang.ParserResult;
     import classes.Lang.TextRange;
