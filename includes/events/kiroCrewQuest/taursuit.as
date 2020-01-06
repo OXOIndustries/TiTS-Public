@@ -34,6 +34,7 @@ public function taursuitsBonusFunz():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+	IncrementFlag("KQ_MET_TAURSUIT");
 }
 public function startTaursuitFite():void
 {
@@ -70,7 +71,7 @@ public function resistTheTaursuit():void
 	clearOutput();
 	showTaursuit();
 	author("Wsan");
-	output("You pull your arm back from the taursuit’s grasp, drawing its apparent ire! It seems like it <i>really</i> wanted you to join it, and now it’s angry!\n\n<b>It's a fight!</b>");
+	output("You pull your arm back from the taursuit’s grasp, drawing its apparent ire! It seems like it <i>really</i> wanted you to join it, and now it’s angry!\n\n<b>It’s a fight!</b>");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Fight",startTaursuitFite,undefined,"Fight","There’s no way this thing isn’t out to harm you somehow!");
@@ -86,8 +87,8 @@ public function submitToTheTaursuit():void
 	if(pc.isTaur()) output("Well, you’re already tauric as it is... it’s not going to be hard or uncomfortable to fit. In fact, it already seems to be exactly your size.");
 	else output("It doesn’t seem like it’ll be too uncomfortable to fit inside. In fact, as you gingerly step into the slots for its hindlegs, you note it seems to fit you quite well already.");
 	output(" The suit draws a little more taut as you sink deeper, its insides sticking to yours by way of suction.");
-	if(!pc.isTaur()) output(" Already your [pc.legOrLegs] " + (pc.legCount > 1 ? "have":"has") + " been wrapped in the shimmering metallic <i>“skin”</i> of the suit, leaving you to contemplate leaning forward and plunging your hands into the foreleg slots.");
-	else output(" Already your [pc.legOrLegs] " + (pc.legCount > 1 ? "have":"has") + " been wrapped in the shimmering metallic <i>“skin”</i> of the suit and you’re left contemplating fully committing to the experience.");
+	if(!pc.isTaur()) output(" Already your [pc.legOrLegs] " + (pc.legCount > 1 ? "have":"has") + " been wrapped in the shimmering metallic “skin” of the suit, leaving you to contemplate leaning forward and plunging your hands into the foreleg slots.");
+	else output(" Already your [pc.legOrLegs] " + (pc.legCount > 1 ? "have":"has") + " been wrapped in the shimmering metallic “skin” of the suit and you’re left contemplating fully committing to the experience.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",getTFedByTheTaursuit);
@@ -241,7 +242,7 @@ public function getTFedByTheTaursuit():void
 	if(pc.balls > 0) output(" ball" + (pc.balls > 1 ? "s":"") + " again");
 	else output(" new balls");
 	output(" but once you are, it’s almost all you can think about - how <i>full</i> and <i>swollen</i> they are with thick seed. Stars, you can’t even move; the suit is holding you rigid and upright, as if it <b>wants</b> you to be pent-up and increasingly edgy about the way it’s stroking your impressive set of genitalia to non-completion.");
-	output("\n\nIt presses into your skin, holding taut until it almost begins to hurt - and suddenly, you realize it’s hurting on the <i>outside</i>. The suit’s skin is becoming yours, and changing while it does so! The metallic exterior shifts and shimmers, crinkling and creasing and reshaping itself over and over until it becomes brown-furred skin, overlaying itself over your previous skin and drawing tighter until it’s been completely replaced! You barely have time to look back at yourself before the suit suddenly encroaches further, reaching up for your chin and covering your face in an instant.");
+	output("\n\nIt presses into your skin, holding taut until it almost begins to hurt - and suddenly, you realize it’s hurting on the <i>outside</i>. The suit’s skin is becoming yours, and changing while it does so! The metallic exterior shifts and shimmers, crinkling and creasing and reshaping itself over and over until it becomes [pc.furColor]-furred skin, overlaying itself over your previous skin and drawing tighter until it’s been completely replaced! You barely have time to look back at yourself before the suit suddenly encroaches further, reaching up for your chin and covering your face in an instant.");
 	output("\n\nYou panic as the suit slips into your mouth, your breathing halting, but less than a second passes before the skin tears and wraps around your top and bottom lips. By the time your breathing returns to normal you notice your lips themselves have been changed - they’re noticeably softer");
 	if(pc.femininity < 80) output(" and plumper, more feminine and appealing.");
 	else output(" and pleasant to the touch of your [pc.tongue].");
@@ -259,7 +260,7 @@ public function taursuitBaseTFs():void
 {
 	//removes mimbranes
 	removeMimbranes();
-	//Remove <i>“Genital Slit”</i> and <i>“Uniball”</i>
+	//Remove “Genital Slit” and “Uniball”
 	pc.removeStatusEffect("Genital Slit");
 	pc.removeStatusEffect("Uniball");
 	//Remove any testicles
@@ -285,14 +286,15 @@ public function taursuitBaseTFs():void
 	//Libido greater than 80 - Libido increases by 10
 	else pc.libido(10);
 	
+	var i:int = 0;
 	//Trim excess cocks.
 	if(pc.hasCocks())
 	{
-		for(var i:int = 0; i < pc.cockTotal(); i++)
+		for(i = (pc.cockTotal() - 1); i > 0; i--)
 		{
-			if(i > 0) 
+			if(i > 0)
 			{
-				pc.removeCock(i);
+				pc.removeCock(i, 1);
 				pc.cocks[0].cLengthRaw += 2;
 			}
 		}
@@ -304,7 +306,7 @@ public function taursuitBaseTFs():void
 	//Grow one 28-inch equine penis
 	if(pc.cocks[0].cLengthRaw < 28) pc.cocks[0].cLengthRaw = 28;
 	//Penis becomes flared, blunt and sheathed
-	pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
+	pc.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	//Penis color changes to pink
 	pc.cocks[0].cockColor = "pink";
 	//Grow two 16-inch balls
@@ -313,42 +315,38 @@ public function taursuitBaseTFs():void
 	//Grow one equine vagina
 	if(pc.hasVaginas())
 	{
-		for(var j:int = 0; j < pc.totalVaginas(); j++)
+		for(i = (pc.totalVaginas() - 1); i > 0; i--)
 		{
-			if(j > 0) pc.removeVagina(j,1);
+			if(i > 0)
+			{
+				pc.removeVagina(i, 1);
+			}
 		}
 	}
 	if(!pc.hasVagina()) pc.createVagina();
-	if(pc.vaginas[0].wetnessRaw < 4) pc.vaginas[0].wetnessRaw = 4;
-	//Vagina wetness becomes 4
-	if(pc.vaginas[0].loosenessRaw > 1) pc.vaginas[0].loosenessRaw = 1;
-	//Vagina looseness becomes 1
-	pc.vaginas[0].vaginaColor = "black";
-	if(pc.vaginas[0].bonusCapacity < 50) pc.vaginas[0].bonusCapacity = 50;
-	else pc.vaginas[0].bonusCapacity += 25;
-	pc.vaginas[0].type = GLOBAL.TYPE_EQUINE;
+	//pc.vaginas[0].type = GLOBAL.TYPE_EQUINE;
+	pc.shiftVagina(0, GLOBAL.TYPE_EQUINE);
 	//Vagina color changes to black
-	//Vagina bonus capacity becomes 50
+	pc.vaginas[0].vaginaColor = "black";
 	//Vagina will have one 1-inch clit
 	pc.clitLength = 1;
+	//Vagina wetness becomes 4
+	if(pc.vaginas[0].wetnessRaw < 4) pc.vaginas[0].wetnessRaw = 4;
+	//Vagina looseness becomes 1
+	if(pc.vaginas[0].loosenessRaw > 1) pc.vaginas[0].loosenessRaw = 1;
+	//Vagina bonus capacity becomes 50
+	if(pc.vaginas[0].bonusCapacity < 50) pc.vaginas[0].bonusCapacity = 50;
+	else pc.vaginas[0].bonusCapacity += 25;
 	//Gives squirter perk ???
 	//Applies one Anusoft to asshole
-	if(!pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) pc.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
-	else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) 
-	{
-		pc.ass.addFlag(GLOBAL.FLAG_PUMPED);
-		pc.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
-	}
-	else if(!pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && !pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
-	{
-		pc.ass.delFlag(GLOBAL.FLAG_PUMPED);
-		pc.ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
-	}
+	pc.inflateAsshole();
 	
 	//Increases hair length by 6 inches.
 	pc.hairLength += 6;
 	//Increases Taint by 5-10?
 	pc.taint(10);
+	
+	IncrementFlag("KQ_TAURSUIT_TF");
 }
 
 public function moreTaursuitTFFun():void
@@ -359,18 +357,22 @@ public function moreTaursuitTFFun():void
 	//tooltip:Strain against your restraints!
 	output("<i>“Oh, god, fuck!”</i> you moan out loud, feeling your [pc.hips] start to smoothen out the motion of thrusting. <i>“Nnnnf!”</i>");
 	output("\n\nIt feels like you’re thrusting into a tight orifice <i>perfectly</i> suited to your enormous studcock, wrapping around you and stroking you with every in and outstroke. Pushed so close to the edge by the suit’s intimate ministrations, you cum immediately and explosively. Your powerful tauric hips bucking hard, you violently orgasm into the suit while it sucks and strokes you. Lifting your head and exulting, you cry out while your flare blossoms and sends gushes of thick equine seed through the skin of the suit.");
-	output("\n\nMoments later your cum with your [pc.pussy] too, your hindquarters shaking violently as femcum spurts from between your thick, winking lips and drips down your quivering hindlegs, pooling between your hooves. The sensation sets you back on edge and suddenly you’re cumming with your [pc.cock] again, doubling over and groaning. The thrusting motion makes your pussylips rub together and brush your [pc.clit] and you find yourself in the enviable position of being unable to stop cumming with either set of genitalia, leaning against a wall and moaning like a whore.");
+	output("\n\nMoments later you cum with your [pc.pussy] too, your hindquarters shaking violently as femcum spurts from between your thick, winking lips and drips down your quivering hindlegs, pooling between your hooves. The sensation sets you back on edge and suddenly you’re cumming with your [pc.cock] again, doubling over and groaning. The thrusting motion makes your pussylips rub together and brush your [pc.clit] and you find yourself in the enviable position of being unable to stop cumming with either set of genitalia, leaning against a wall and moaning like a whore.");
 	output("\n\nWith each orgasm you feel the suit draw tighter but you can’t stop, stuck cumming into your entwined lover with choking cries of ecstasy. You get the distinct feeling that the suit is still changing you somehow, each orgasm somehow providing it with <i>fuel</i> to further alter you, though you don’t understand what it is until you finally glance downwards, panting.");
-	if(pc.biggestTitSize() >= 1) output(" Your breasts are growing larger by the moment, swelling outwards with added mass until they’re so heavy it feels like they’ve increased by at least a couple of cup sizes.");
+	
+	var i:int = 0;
+	var hasTits:Boolean = (pc.biggestTitSize() >= 1);
+	
+	if(hasTits) output(" Your breasts are growing larger by the moment, swelling outwards with added mass until they’re so heavy it feels like they’ve increased by at least a couple of cup sizes.");
 	else output(" You’re growing breasts! They swell and swell with every passing second, the added flesh pushing your nipples forward until they’re jutting right out and your breasts are shaking with the force of your thrusts.");
 
 	//No breasts - Give DD cup tits
-	if(pc.biggestTitSize() < 1) pc.breastRows[0].breastRatingRaw = 5;
 	//Had breasts - Give 2 cup sizes
-	else pc.breastRows[0].breastRatingRaw += 2;
-	for(var i:int = 0; i < pc.bRows(); i++)
+	for(i = 0; i < pc.bRows(); i++)
 	{
-		if(i > 0) pc.breastRows[0].breastRatingRaw += 2;
+		if(pc.breastRows[i].breastRatingRaw < 0) pc.breastRows[i].breastRatingRaw = 0;
+		if(!hasTits) pc.breastRows[i].breastRatingRaw += 5;
+		else pc.breastRows[i].breastRatingRaw += 2;
 	}
 	output("\n\nThe longer it goes on the more you get used to it until you’re humping the suit like a rabid beast, panting and moaning as the skin stretches around your fat, throbbing prick and cum spurts from both your cock and your cunt. It all comes to a head when, with a strained, desperate gasp, you shove your hips forward and realize your fat dick is no longer contained. The suit is gone, leaving you with nothing but your new form. A flood of thick spunk gushes across the floor of the freighter as you wilfully empty your [pc.balls], groaning in joy.");
 	output("\n\nWhen at last you sigh in contentment and look down to inspect yourself, you’re stopped by the odd sensation of your hair brushing against your bare back - was it always this long? Reaching back, you realize you now have long hair, tied into a ponytail somehow. The suit seems to have done its final job up here; you can feel that your face’s structure has changed");
@@ -428,7 +430,7 @@ public function lostCombatTFStuff():void
 		output("\n\nSlowly, gradually, you relax your grip on your head and run through your fractured memories. You are... you are... [pc.name]. That’s right. Your name is [pc.name] Steele, and you were meant to find the probes. Your father’s probes. You came here because... because of a pirate. Someone you once knew. Ki... ki-something. Kiro. Her name was Kiro... and you came here to rescue her. Then you ran into some monster or something, and-");
 		output("\n\nYou grab your head again and groan, a thud of pain echoing outwards from your skull. That’s right. It grabbed you, and now...");
 		output("\n\nSlowly rising to your feet, you look down, then around at the walls. There’s a panel that’s just reflective enough for you to see yourself in. Standing in front of it, you close your eyes and reopen them, gazing at the person looking back at you.");
-		output("\n\nYou’re a voluptuous femme centaur, with the sleek, brown-furred body of a horse and your humanoid half protruding from where the animal’s head would be. Your [pc.breasts] are beautifully shaped, your waist narrow, and your [pc.hips] wide. Touching a hand lightly to your face, you brush your fingertips against a high-boned cheek and stare at yourself in the mirrored metal. Did you... always look like this? Of all the memories rushing unbidden into your mind, the ones about your appearance are the hardest to summon.");
+		output("\n\nYou’re a voluptuous femme centaur, with the sleek, [pc.furColor]-furred body of a horse and your humanoid half protruding from where the animal’s head would be. Your [pc.breasts] are beautifully shaped, your waist narrow, and your [pc.hips] wide. Touching a hand lightly to your face, you brush your fingertips against a high-boned cheek and stare at yourself in the mirrored metal. Did you... always look like this? Of all the memories rushing unbidden into your mind, the ones about your appearance are the hardest to summon.");
 		output("\n\nEven your lips are lush and pouty. You press your finger into the bottom lip experimentally and surprise yourself with how <i>soft</i> it is, like sinking into a wonderful pillow. Pulling back, you eye yourself from a new angle: what is this body <i>for</i>? Because it <i>looks</i> like... like it’s built for sex.");
 		output("\n\nYou hold your gaze for a second longer before you let out a soft moan, looking down at a - familiar? Unfamiliar? - sensation at your rear. Something is <i>growing</i>-");
 		output("\n\n<i>“Ooohhhh, gooddd,”</i> you groan, putting your hands out against the wall and panting. Glancing lower, you spot what’s happening. <i>“Oh, fuck...”</i>");

@@ -4226,7 +4226,7 @@ public function roxyPregMoveEmail():String
 	}
 	else
 	{
-		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
+		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I’m gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
 		eText += "\n\nI’ll be in the temp housing according to Briget. She’s nice.";
 		eText += "\n\nHope you visit me.";
 	}

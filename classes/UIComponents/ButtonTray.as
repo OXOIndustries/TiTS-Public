@@ -458,6 +458,7 @@
 			_buttonData[slot].itemQuantity = quantity;
 			_buttonData[slot].stackSize = stackSize;
 			_buttonData[slot].tooltipComparison = ttComparison;
+			CheckPages();
 		}
 		
 		/**

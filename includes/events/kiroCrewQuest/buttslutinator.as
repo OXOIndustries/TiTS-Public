@@ -17,11 +17,11 @@ public function buttslutinatorBonus(btnSlot:int = 0):Boolean
 		output("A pearly white, ‘A’-shaped device stands square in the middle of the room. Two control sticks flank the far side, clearly for the user’s hands, but how to use such a device? A strange gap is placed at the peak of the unusual ‘A,’ though the edges are both round and padded. The nearer side of the device is padded as well, made from some kind of spongy-looking material. When you take a step closer to it, the padding instantly adopts the shape of your [pc.legOrLegs], in perfect inverse.");
 		output("\n\nYou suppose that you would have to bend over the top to use it. Strange.");
 	}
-	else output("\n\nThe <i>“Buttslutinator”</i> is installed and ready for use. It’s pearly white, ‘A’-shaped frame rests invitingly in a private corner of your vessel.");
-	if(currentLocation == "SHIP INTERIOR") addButton(btnSlot,"Buttslutinator",useTheButtslutinator,undefined,"Buttslutinator","Put the \"Buttslutinator\" to work doing what it does best...");
+	else output("\n\nThe “Buttslutinator” is installed and ready for use. It’s pearly white, ‘A’-shaped frame rests invitingly in a private corner of your vessel.");
+	if(currentLocation == "SHIP INTERIOR") addButton(btnSlot,"Buttslutinator",useTheButtslutinator,undefined,"Buttslutinator","Put the “Buttslutinator” to work doing what it does best...");
 	else addButton(btnSlot,"Use Device...",useTheButtslutinator,undefined,"Use Device...","Bend yourself over the bizarre device and see what it does. It’s obviously going to be sexual. Of that you can be sure.");
 	if(currentLocation == "KQ N20") return kiroQuestHallwaysEncounters();
-	else return false;
+	return false;
 }
 
 public function slutPCButt():void

@@ -21,7 +21,7 @@
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 6;
+			this._latestVersion = 7;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -233,6 +233,14 @@
 			d.perks.push(se.getSaveObject());
 			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
+		public function UpgradeVersion6(d:Object):void
+		{
+			for(var i:int = 0; i < d.perks.length; i++)
+			{
+				if(d.perks[i].storageName == "Evermilk") d.perks[i].storageName = "Ever-Milk";
+			}
+			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
 		
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {
@@ -241,9 +249,9 @@
 			else ballSizeRaw = 10;
 		}
 		//Kiro milkies :3
-		override public function canLactate():Boolean { return hasPerk("Evermilk"); }
+		override public function canLactate():Boolean { return hasPerk("Ever-Milk"); }
 		override public function isLactating():Boolean { return canLactate(); }
-		override public function milkQ(arg:int = -1):Number { return perkv1("Evermilk"); }
+		override public function milkQ(arg:int = -1):Number { return perkv1("Ever-Milk"); }
 		
 		override public function get bustDisplay():String
 		{

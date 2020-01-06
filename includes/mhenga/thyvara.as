@@ -132,7 +132,7 @@ public function thyvaraGreet():void
 		processTime(5);
 		clearMenu();
 		addButton(0, "Fortune", thyvaraReasonFortune, undefined, "Fortune", "Tell her about your father’s fortune, and the stipulations tied to it.");
-		addButton(1, "Adventure", thyvaraReasonAdventure, undefined, "Adventure", "You're out to have some fun and live a little.");
+		addButton(1, "Adventure", thyvaraReasonAdventure, undefined, "Adventure", "You’re out to have some fun and live a little.");
 		addButton(2, "Sex", thyvaraReasonSex, undefined, "Sex", "You’re after some exotic tails to chase before it all gets commonplace.");
 	}
 	else if (flags["THYVARA_PROGRESS"] == 2 || (flags["THYVARA_PROGRESS"] == 3 && rand(5) == 0))
@@ -159,7 +159,7 @@ public function thyvaraGreet():void
 		processTime(15);
 		clearMenu();
 		addButton(0, "Yes", thyvaraProgressWalkHomeYes, undefined, "Yes", "Walk her home.");
-		addButton(1, "No", thyvaraProgressWalkHomeNo, undefined, "No", "Tell her you can't.");
+		addButton(1, "No", thyvaraProgressWalkHomeNo, undefined, "No", "Tell her you can’t.");
 	}
 	else
 	{
@@ -261,7 +261,7 @@ public function thyvaraMainMenu(quip:Boolean=false):void
 	if (flags["THYVARA_DRINK_TALK"] == 1) addButton(3, "Drink", thyvaraTalkDrinkYes, true, "Drink", "Have a sip of her cummy drink.");
 	else addDisabledButton(3, "Drink", "Drink", "Maybe ask her about what’s in it before having a go yourself.");
 	if (flags["THYVARA_PROGRESS"] >= 4) addButton(4, "Sex", thyvaraSex, undefined, "Sex", "Get intimate with Thyvara’s feminine parts.");
-	else addDisabledButton(4, "Sex", "Sex", "You don't know her well enough.");
+	else addDisabledButton(4, "Sex", "Sex", "You don’t know her well enough.");
 	addButton(14, "Leave", mainGameMenu);
 }
 public function thyvaraAppearance():void
@@ -437,7 +437,7 @@ public function thyvaraTalkDrink():void
 	processTime(4 + rand(2));
 	clearMenu();
 	addButton(0, "Drink", thyvaraTalkDrinkYes, undefined, "Drink", "It’s probably not <i>that</i> bad, right? WARNING: Will activate kui-tan biology.");
-	addButton(1, "Don't", thyvaraTalkDrinkNo, undefined, "Don't", "You’re not about to drink cum out of a bottle.");
+	addButton(1, "Don’t", thyvaraTalkDrinkNo, undefined, "Don’t", "You’re not about to drink cum out of a bottle.");
 }
 public function thyvaraTalkDrinkYes(fromMain:Boolean=false):void
 {
@@ -1021,7 +1021,7 @@ public function thyvaraShareStories():void
 	processTime(15 + rand(10));
 	clearMenu();
 	if (thyvaraAreMhengaStoriesOK()) addButton(0, "Mhen’ga", thyvaraShareStoriesMhenga, undefined, "Mhen’ga", "Why not share some surprises you’ve found on Thyvara’s home turf?");
-	else addDisabledButton(0, "Mhen’ga","Mhen’ga","You have no stories of Mhen'ga to share.");
+	else addDisabledButton(0, "Mhen’ga","Mhen’ga","You have no stories of Mhen’ga to share.");
 	if (thyvaraAreMyrellionStoriesOK()) addButton(1, "Myrellion", thyvaraShareStoriesMyrellion, undefined, "Myrellion", "What adventures could you share about the caverns of Myrellion?");
 	else addDisabledButton(1, "Myrellion","Myrellion","You have no stories of Myrellion to share.");
 	if (thyvaraAreTarkusStoriesOK()) addButton(2, "Tarkus", thyvaraShareStoriesTarkus, undefined, "Tarkus", "Share a tale of the split junk world.");

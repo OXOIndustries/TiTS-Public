@@ -952,7 +952,7 @@ public function throbbUpShekka():void
 	output("\n\nThe words seem to drift away from her in time with the chemical load that pounds its way furiously into her system, rewriting and reforming flesh.");
 	output("\n\nYou can see in real-time how her red skin grows more flushed, and her body starts to glisten with sweat as it tries to compensate for the abrupt shift in her hormones.");
 	//Started female, have a dick:
-	if(9999 == 0) output(" You recognize it well; when your own abrupt growth occurred it felt like every inch of your brain was torn between cumming on the spot, and finding somewhere to hide yourself.");
+	if(9999 == 0 && flags["TIMES_THROBB_USED"] != undefined) output(" You recognize it well; when your own abrupt growth occurred it felt like every inch of your brain was torn between cumming on the spot, and finding somewhere to hide yourself.");
 	output(" The raskvel woman squirms on the spot, trying to figure out what to do with herself. Her tail begins buzzing away in response to the way her body slips into lusty-fucking overdrive.");
 	output("\n\n<i>“Ah fuck, it’s happening. I can feel it!”</i> No kidding; you can see how her hips roll on the spot as though she were treating you to a pole dance... except that she was about to bring the pole herself. Her clit begins to swell; that’s the first evidence at least. A new one seems intent on growing beneath, but her body takes its own shortcuts. Part of the show isn’t particularly attractive. For instance watching a cumslit grow in real-time is more than a little discomforting.");
 	output("\n\nThe way pre builds at the head of a freshly growing cock, or the sight of twinned thick balls dropping into place however? That’s a particularly fine point of the show, especially when the slickness of her own cunt polishes the brand-new balls to an alluring shininess. The subtle scent of her feminine nectar becomes the mixed-musk of a futa-girl. Each of the shortstack’s heartbeats bring additional length to her cock, until it stands almost painfully hard and pointed directly at you.");
@@ -3611,6 +3611,9 @@ public function futaShekkaLezOut():void
 	else if(pc.inHeat()) output("cum-thirsty");
 	else output("completely unprepared");
 	output(" lips and flips a few dozen switches in your brain that make it hard to do anything but moan.");
+	
+	shekka.cockChange();
+	
 	output("\n\nA tiny, scaled hand gently rubs your spine as Shekka slowly works her cock around your slot, twisting this way and that so the edges of her crown are gently pushing in and prying at your entrance.");
 	//Loose enough - no new pg
 	if(pc.vaginalCapacity(x) > shekka.cockVolume(0)*1.3)
@@ -4023,6 +4026,9 @@ public function shekkaButtfucksYou():void
 	else if(pc.ass.looseness() <= 2) output("tight little ring with a smug giggle, no doubt imagining just how wrecked you’re going to be after the fact.");
 	else if(pc.ass.looseness() < 5) output("suitably tight hole with a moan of approval, slipping the first inches of her length in without issue.");
 	else output("gaped hole, squeezing your ass with both hands, clearly relishing just how ready for her you are.");
+	
+	shekka.cockChange();
+	
 	//Tightness 1-2:
 	if(pc.ass.looseness() <= 2) output(" There’s a few seconds of your body vigorously struggling to resist her but the combined force of your and Shekka’s desires overcome, her prominent cockhead slowly, gradually spreading you wide until it happens. You both let out groans of varying volume as she slips inside, your mind struggling to deal with the sensation of something as hard as a titanium bar penetrating your rear.");
 	else if(pc.ass.looseness() <= 4) output(" You’re perfectly matched to each other, her cockhead sinking inside your quivering passage" + (pc.hasCock() ? " and rolling over your prostate":"") + " while the two of you moan in mutual appreciation. Now that she’s inside, you’re coming to terms with what that enormous prick of hers feels like shoved in your asshole.");
@@ -4657,6 +4663,7 @@ public function shekkaRideHerCrewSceneByWilliam2(x:int):void
 		else if(capacity < shekka.cockVolume(0) * 1.1) output(" In a gloriously lewd squelch, the medial ring slips into your sodden gates, digging into your [pc.vaginaColor] furrow on a fresh wave of excitement. You’re riding higher and higher, determined to get her in all the way... but you can’t. You make it down to the prepuce, inches from her sheath, feeling the tap of her cum-hole to your cervix, indicating to your sex-addled mind that the boundaries of your physiology have been met.");
 		//capacityHigh:
 		else output(" You moan openly on the spot when you feel the medial ring slip effortlessly past your sopping-wet petals, squelching inside on a lurid wave of female ejaculate. Inspiringly, it keeps going, you’re taking more and more and more of her cock. It plows inside your quim so firmly that you smile, giggling impetuously, slapping your slit to Shekka’s crotch and tasting the heat of her sticky balls. Beneath the ecstasy of <b>owning</b> her dick is the knowledge that you’re pleasing her in ways very few others could.");
+		shekka.cockChange();
 		pc.cuntChange(x,shekka.cockVolume(0));
 	}
 	// pc Using Anus
@@ -4675,6 +4682,7 @@ public function shekkaRideHerCrewSceneByWilliam2(x:int):void
 		else if(capacity < shekka.cockVolume(0) * 1.1 && !pc.hasPerk("Buttslut")) output(" Being filled with an inch is glorious, but your [pc.tongue] hangs limp from your mouth as the medial ring squelches past your entrance and you settle comfortably on her organ’s musky prepuce. She gives your [pc.butts] a fond grope, and you reciprocate a throaty groan.");
 		//capacityHighOrButtslut:
 		else output(" Not only does Shekka’s medial ring glide through your backdoor, but her vein-laced prepuce, and finally... nothing. Your rim slaps wetly to the ruby rask’s crotch, infinite tightening depths proving more than adequate for housing that beautiful pillar of thickness. Pleasure pulses through you, and a shaky hand squeezes your [pc.butts] appreciatively. Man, you’ve got one hell of an ass!");
+		shekka.cockChange();
 		pc.buttChange(shekka.cockVolume(0));
 	}
 	// merge

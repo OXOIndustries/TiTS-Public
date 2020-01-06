@@ -71,7 +71,11 @@ public function bountyBoardExtra():Boolean
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
 	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
 	if(biancaBoothBonus(btnSlot, "mhen'ga")) btnSlot++;
-	if(pennyRecruited() && !pennyIsCrew()) pennyOffCrewKickedOff(btnSlot++);
+	if(pennyRecruited() && !pennyIsCrew())
+	{
+		if((flags["PUMPKING_COMPLETION"] == undefined || (flags["PUMPKING_COMPLETION"] != -1 && flags["PUMPKING_COMPLETION"] < 3)) && MailManager.isEntryViewed("pumpking_alert")) { /* Penny is gone! */ }
+		else pennyOffCrewKickedOff(btnSlot++);
+	}
 	
 	return false;
 }
