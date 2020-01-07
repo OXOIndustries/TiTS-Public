@@ -66,17 +66,41 @@
 			return false;
 		}
 		
+		private static var _cache:Object = {};
 		public function getSaveObject():Object
 		{
 			var dataObject:Object = new Object();
 			var i:int;
-			
+			/*
 			var _d:XML = describeType(this);
 			var _dl:XMLList = _d..variable;
 			var _da:XMLList = _d..accessor;
-			
+			*/
 			if (this.hasRandomProperties == true)
 			{
+				var _d:XML, _dl:XMLList, _da:XMLList;
+				var name:String = getQualifiedClassName(this);
+				var data:Object = _cache[ name ];
+				if (data)
+				{
+					//_d = data._d;
+					_dl = data._dl;
+					_da = data._da;
+				}
+				else
+				{
+					_d = describeType(this);
+					_dl = _d..variable;
+					_da = _d..accessor;
+					if (_d.@isDynamic == "false")
+					{
+						_cache[ name ] = {
+							//_d: _d,
+							_dl: _dl,
+							_da: _da
+						};
+					}
+				}
 				for each (var prop:XML in _dl)
 				{
 					var propName:String = prop.@name.toString();

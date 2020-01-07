@@ -223,6 +223,7 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 	if (!justUpdate || (justUpdate && chars[index] == undefined))
 	{
 		var objInst:Object = new classT();
+		if (!objInst.neverSerialize) objInst.preCache();
 		chars[index] = objInst;
 		charDict[objInst] = index;
 	}
@@ -232,6 +233,7 @@ public function prepShip(justUpdate:Boolean, index:String, classT:Class):void
 	if (!justUpdate || (justUpdate && shits[index] == undefined))
 	{
 		var objInst:Object = new classT();
+		if (!objInst.neverSerialize) objInst.preCache();
 		shits[index] = objInst;
 		shitDict[objInst] = index;
 	}
