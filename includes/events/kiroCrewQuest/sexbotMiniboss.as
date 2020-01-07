@@ -82,6 +82,10 @@ public function awwwHellllNoSexbot():void
 //Player defeat
 public function loseToKQMiniboss():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	showKQMiniboss(true);
 	author("Wsan");
 	var x:int = -1;

@@ -210,6 +210,7 @@ public function majinLeave(doOutput:Boolean = true):void
 		if (silly) output(" waifus to fuck,");
 		output(" can’t stay around for too long. <i>“Okaaaaaaaaay, just come visit sometime, I love having friends around, especially ones with... benefits. Next time, maybe?”</i> You’ll see. With that she smiles widely and sees you out. You barely get ten feet from the door before you hear the distinct sound of sex coming from inside. Looks like they’ll be making good use of that shower.");
 	}
+	pc.removeStatusEffect("Ship Repair Paused");
 	moveTo(majinLocation());
 	majinUpdate(true);
 	if (doOutput) addButton(0, "Next", mainGameMenu);

@@ -1461,11 +1461,13 @@ public function isNight():Boolean
 public function canRest():Boolean
 {
 	if(flags["WARGII_PROGRESS"] == 2) return false;
+	if(currentLocation == "DHAAL L25") return false;
 	return true;
 }
 public function canSleep():Boolean
 {
 	if(InShipInterior(pc) && pc.hasStatusEffect("Disable Ship Bed")) return false;
+	if(currentLocation == "DHAAL L25") return false;
 	return true;
 }
 
@@ -2441,67 +2443,74 @@ public function flyMenu():void
 		else addDisabledButton(4, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
 	}
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+	//DHAAL
+	if(dhaalCoordinatesUnlocked())
+	{
+		if (shipLocation != "DHAAL J3") addButton(5, "Dhaal", flyTo, "Dhaal");
+		else addDisabledButton(5, "Dhaal", "Dhaal", "You’re already here.");
+	}
+	else addDisabledButton(5, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
 	//NEW TEXAS
 	if(newTexasCoordinatesUnlocked())
 	{
-		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
-		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
+		if(shipLocation != "500") addButton(6, "New Texas", flyTo, "New Texas");
+		else addDisabledButton(6, "New Texas", "New Texas", "You’re already here.");
 	}
-	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
 	if(poeACoordinatesUnlocked())
 	{
-		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
-		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
+		if(shipLocation != "POESPACE") addButton(7, "Poe A", flyToPoeAConfirm);
+		else addDisabledButton(7, "Poe A", "Poe A", "You’re already here.");
 	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//UVETO
 	if (uvetoUnlocked())
 	{
-		if (shipLocation != "UVS F15") addButton(7, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(7, "Uveto", "Uveto Station", "You’re already here.");
+		if (shipLocation != "UVS F15") addButton(8, "Uveto", flyTo, "Uveto");
+		else addDisabledButton(8, "Uveto", "Uveto Station", "You’re already here.");
 	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Canadia Station
 	if(canadiaUnlocked())
 	{
-		if (shipLocation != "CANADA1") addButton(8, "Canadia", flyTo, "Canadia");
-		else addDisabledButton(8, "Canadia", "Canadia Station", "You’re already here.");
+		if (shipLocation != "CANADA1") addButton(9, "Canadia", flyTo, "Canadia");
+		else addDisabledButton(9, "Canadia", "Canadia Station", "You’re already here.");
 	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+	else addDisabledButton(9, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Gastigoth
 	if(gastigothCoordinatesUnlocked())
 	{
-		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
-		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
+		if(shipLocation != "K16_DOCK") addButton(10, "Gastigoth", flyTo, "Gastigoth");
+		else addDisabledButton(10, "Gastigoth", "Gastigoth Station", "You’re already here!");
 	}
-	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//Breedwell
 	if(breedwellCoordinatesUnlocked())
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
-		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
-		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
-		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
-		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
-		else if(pc.isTaur()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
-		else addButton(10, "Breedwell", flyTo, "Breedwell");
+		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(11, "Breedwell", "Breedwell Centre", "You’re already here.");
+		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(11, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
+		else if(!pc.hasGenitals()) addDisabledButton(11, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
+		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(11, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
+		else if(pc.isTaur()) addDisabledButton(11, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
+		else addButton(11, "Breedwell", flyTo, "Breedwell");
 	}
-	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+	else addDisabledButton(11, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//KQ2
 	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
 	{
-		addButton(11, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+		addButton(12, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
 	}
 	//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
 	if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
 	{
-		addButton(11, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
+		addButton(13, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
 	}
 	if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
 	{
-		addButton(12,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
+		addButton(13,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
 	}
 	
 	addButton(14, "Back", mainGameMenu);
@@ -2512,9 +2521,11 @@ public function flyTo(arg:String):void
 	generateMapForLocation("SHIP INTERIOR");
 	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
 	resetStepCounters();
-	
+	//Bumped these up here to tack onto the no repair status so it expires after a while.
+	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
+	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
 	// Pause any docked ship repairs--because the ship is not docked! (Should be removed after flyTo completes);
-	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.createStatusEffect("Ship Repair Paused", 0, 0, 0, 0, true, "", "", false, timeFlown);
 
 	//No travel events on first zheng visit.
 	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
@@ -2641,6 +2652,13 @@ public function flyTo(arg:String):void
 			landingAtZhengShi();
 			interruptMenu = true;
 			break;
+		case "Dhaal":
+			shipLocation = "DHAAL J3";
+			currentLocation = "DHAAL L21";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			flyToDhaalypoo();
+			interruptMenu = true;
+			break;
 		case "Poe A":
 			shipLocation = "POESPACE";
 			currentLocation = "POESPACE";
@@ -2681,8 +2699,7 @@ public function flyTo(arg:String):void
 			interruptMenu = flyToBreedwell();
 			break;
 	}
-	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
-	if(paigeIsCrew()) timeFlown = Math.floor(timeFlown * 0.75);
+	
 	StatTracking.track("movement/time flown", timeFlown);
 	processTime(timeFlown);
 	
@@ -3435,7 +3452,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			eventQueue.push(ratsRaidingXXXmas2018ByWill);
 		}
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && leavePlanetOK() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0 && !rooms[arg].planet == "ZHENG SHI STATION")
 		{
 			eventQueue.push(encounterKrissy);
 		}
@@ -4409,20 +4426,19 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		// Bizzy mails
 		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
 		{
 			goMailGet("bizzy_camgirl_initiate");
 		}
-
 		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
 		{
 			goMailGet("bizzy_camgirl_profits");
 		}
-
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{
-			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
+			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyRecruited() && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
 		}
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && myrellionCoordinatesUnlocked() && flags["TIMES_SEXED_SHEKKA"] != undefined)
@@ -4613,7 +4629,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 
-	if (!pc.hasStatusEffect("Ship Repair Paused")) processShipHealing(deltaT,doOut,totalDays);
+	//Shekka ignores dis since she comes wiv shippy!
+	if (!pc.hasStatusEffect("Ship Repair Paused") && !shekkaIsCrew()) processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
@@ -5382,7 +5399,7 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	gameOverEvent = true;
 	backToPrimaryOutput();
 	
-	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorisation system.
+	// Todo -- Hook alternate game ends in here, and also maybe look into some kind of categorization system.
 	
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");

@@ -1994,7 +1994,9 @@ public function bizzyStage1Leave():void
 
 	output("With some regret you plop Bizzy down on the couch next to you, and tell her you can’t hang around. But she’s to keep working that business of hers, and you’ll be back soon enough to see how she’s doing.");
 
-	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering, other hand once again marvelling at the heft and weight of her new boobs. <i>“I - I can’t wait to take some more.”</i>");
+	output("\n\n<i>“Aww. But - yes! Ok!”</i> Bizzy says, setting her jaw. <i>“I’ll have plenty to show you, by the time you get back. And - you’ll bring more Tittyblossom, won’t you?”</i> She twists her hair, blushing and tittering");
+	if(flags["BIZZY_PORN_STUDIO"] == 2) output(", other hand once again marvelling at the heft and weight of her new boobs. <i>“I - I can’t wait to take some more.”</i>");
+	else output(".");
 
 	processTime(3+rand(3));
 

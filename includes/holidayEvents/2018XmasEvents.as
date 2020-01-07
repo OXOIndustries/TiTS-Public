@@ -500,6 +500,7 @@ public function candyCaneOral():void
 	processTime(90);
 	if(pc.hasCock()) embry.loadInMouth(pc);
 	else embry.girlCumInMouth(pc);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",move,"SHIP INTERIOR");
 }

@@ -509,6 +509,10 @@
 		include "../includes/zhengShiStation/wallSluts.as";
 
 		include "../includes/zhengShiStation/shipTesting.as";
+
+		// Dhaal
+		include "../includes/dhaal/capsuleHotel.as";
+		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -699,7 +703,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.044";
+			version = "0.8.046";
 
 			//temporary nonsense variables.
 			temp = 0;

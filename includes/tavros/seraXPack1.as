@@ -596,6 +596,11 @@ public function seraInchStealingIntro(response:String = ""):void
 		addButton(0, "Next", seraInchStealing, "standard");
 	}
 }
+
+public function crashDaddy():void
+{
+	output(pc.cocks[98].cLength());
+}
 public function seraInchStealing(response:String = ""):void
 {
 	clearOutput();
@@ -603,7 +608,8 @@ public function seraInchStealing(response:String = ""):void
 	showSera();
 	
 	var cockIndex:int = pc.biggestCockIndex();
-	var biggestLength:Number = pc.cocks[cockIndex].cLength();
+	var biggestLength:Number = 0;
+	if(cockIndex >= 0) biggestLength = pc.cocks[cockIndex].cLength();
 	
 	if(response == "back away")
 	{

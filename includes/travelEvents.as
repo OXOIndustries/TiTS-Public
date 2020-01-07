@@ -14,6 +14,7 @@ public function incomingMessage(travelEvent:Function, originalDestination:String
 // Wrap the normal flyTo function so we can avoid triggering another travel event this time round.
 public function flyToWrapper(destination:String = "TAVROS HANGAR"):void
 {
+	pc.removeStatusEffect("Ship Repair Paused");
 	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (flags["STORED SHIP DESTINATION"] != undefined) flags["STORED SHIP DESTINATION"] = undefined;
 	switch(destination)

@@ -151,7 +151,7 @@ public function flahneApproach():void
 		output("Flahne unbuttons part of her top as you approach, licking her lips lewdly. <i>“I’m not sure I could thank you enough for your work with Penny, but I’m willing to try if you are.”</i> Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 		output("\n\nWhat did you want with Flahne?");
 	}
-	else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined)
+	else if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] == undefined && pennyIsCumSlut())
 	{
 		flahneTalksAboutCumslutPenny();
 		return;

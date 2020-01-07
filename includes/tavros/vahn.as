@@ -149,6 +149,11 @@ public function buildVahnsSellButtonsAndText(button:int,arg:String):void
 		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
 		addDisabledButton(button,shits[arg].short,shits[arg].short,"You can’t sell Dad’s old Casstech!");
 	}
+	else if(shits[arg].hasPerk("No Sell"))
+	{
+		output("\n\\\[Cannot Sell\\\] " + shits[arg].short);
+		addDisabledButton(button,shits[arg].short,shits[arg].short,"You cannot sell that vessel!");
+	}
 	else
 	{
 		var price:Number = vahnShipSellPrice(shits[arg]);
@@ -357,6 +362,7 @@ public function shipBuyScreen(arg:ShittyShip):void
 	var tradeInPrice:Number = shipTradeInPrice(shits["SHIP"]);
 	var totalCost:Number = (arg.shipCost()-tradeInPrice);
 	if(shits["SHIP"] is Casstech && shopkeep is Vahn) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade in your Casstech. Vahn won’t take it.");
+	else if(ship.hasPerk("No Sell")) addDisabledButton(1,"Buy+Trade","Buy and Trade","You cannot trade this ship.");
 	else if(pc.credits >= totalCost) addButton(1,"Buy+Trade",buyAShipAndTradeIn,arg,"Buy and Trade","Trade in your current ship to help you pay for the new one.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 	else addDisabledButton(1,"Buy+Trade","Buy and Trade","You still can’t afford the ship this way.\n\n<b><u>Trade-In Price</u>:</b> " + totalCost + " credits");
 

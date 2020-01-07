@@ -4226,7 +4226,7 @@ public function roxyPregMoveEmail():String
 	}
 	else
 	{
-		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
+		eText += "Yo [pc.name]. I’ve entered the second trimester of my pregnancy, so I’m gonna move into the nursery on Tavros. So don’t freak out if you can’t find me on Uveto.";
 		eText += "\n\nI’ll be in the temp housing according to Briget. She’s nice.";
 		eText += "\n\nHope you visit me.";
 	}
@@ -5119,7 +5119,7 @@ public function roxyBedSex():void
 	output("\n\nSmooth oral flesh drags over tensing and relaxing nerves of pussy-flesh, being rinsed and eventually caked in the hot flavor of a hypersexual bunny-girl. She rocks backwards and then forwards on restless inertia to give you more room, only pinging her black pearl off the tip of your nose. Into the chair her marvelous moistness collects, leaks, and spills from when it can longer settle into the material.");
 	if (pc.hasLongTongue())
 	{
-		output("\n\nThere’s no reason to hold back, and with as much gentleness as you can manage (to avoid plunging her into an instant, pleasure-seizing wreck), you unfurl your endowed tongue until you’re packing her pussy to the cervix. Although you can’t exercise the most muscle control like this, you are pushing against her deepest nerves. <i>“I’ll... I’ll never get tired of that!”</i> she squeaks, <i>“oh, this is everything I needed!”</i>");
+		output("\n\nThere’s no reason to hold back, and with as much gentleness as you can manage (to avoid plunging her into an instant, pleasure-seizing wreck), you unfurl your endowed tongue until you’re packing her pussy to the cervix. Although you can’t exercise the most muscle control like this, you are pushing against her deepest nerves. <i>“I’ll... I’ll never get tired of that!”</i> she squeaks, <i>“Oh, this is everything I needed!”</i>");
 		output("\n\nThat makes you happy.");
 	}
 	output("\n\nClosing in around your spear, her cushioning cunt presses down on your [pc.tongue] with great pressure; a scaldingly hot discharge seeps around the usable space in her tunnel. From plump, quivering muff to throat, a neck-distending orgasm rains into your wide open mouth. Even as she’s cumming, clinging to you with foot and finger, you suckle her through this electrifying orgasm, gulping calmly from her pliant pussy.");

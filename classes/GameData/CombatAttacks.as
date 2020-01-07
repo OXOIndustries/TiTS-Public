@@ -1535,9 +1535,12 @@ package classes.GameData
 		}
 		public static function applyGassed(target:Creature, tooltip:String = ""):void
 		{
-			target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
-			target.aimMod -= 5;
-			target.reflexesMod -= 5;
+			if(!target.hasStatusEffect("Gassed"))
+			{
+				target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
+				target.aimMod -= 5;
+				target.reflexesMod -= 5;
+			}
 			if(tooltip != "") target.setStatusTooltip("Gassed", tooltip);
 		}
 		public static function applyGrapple(target:Creature, chance:int = 30, apply:Boolean = false, tooltip:String = ""):void

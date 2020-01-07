@@ -89,7 +89,7 @@ package classes.GameData.Pregnancy.Handlers
 				var m:String = "";
 				m = "Giving birth must be right around the corner - if you get any bigger, you’re going to pop! Getting around is proving to be somewhat difficult, your mobility hindered by ";
 				if(kGAMECLASS.pc.isTaur()) m += "your stomach almost touching the ground";
-				else m += "Your tummy protruding forward";
+				else m += "your tummy protruding forward";
 				m += ". On the bright side, your babies have been a little less active than usual. No doubt they’re getting ready for their grand debut. You have to wonder if babies of other races are this physical, or if it’s just the Milodan...";
 				
 				AddLogEvent(m, "passive");
