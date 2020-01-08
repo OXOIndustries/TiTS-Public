@@ -6,7 +6,6 @@ package classes.Lang {
         public static var Concat: * = 'concat';
         public static var Eval: * = 'eval';
         public static var Retrieve: * = 'retrieve';
-        public static var Access: * = 'access';
         public static var Args: * = 'args';
         public static var Results: * = 'results';
         public static var Error: * = 'error';

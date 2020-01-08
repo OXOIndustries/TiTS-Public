@@ -2,16 +2,6 @@ package classes.Lang {
     /**
      * @author end5
      */ 
-    import classes.Lang.Nodes.AccessNode;
-    import classes.Lang.Nodes.ArgsNode;
-    import classes.Lang.Nodes.ConcatNode;
-    import classes.Lang.Nodes.ErrorNode;
-    import classes.Lang.Nodes.EvalNode;
-    import classes.Lang.Nodes.IdentityNode;
-    import classes.Lang.Nodes.NumberNode;
-    import classes.Lang.Nodes.ResultsNode;
-    import classes.Lang.Nodes.RetrieveNode;
-    import classes.Lang.Nodes.StringNode;
     import classes.Lang.TokenStream;
 	import classes.Lang.Nodes.*;
     import classes.Lang.ParserError;
@@ -142,7 +132,7 @@ package classes.Lang {
 
         private function eval(): Node {
 
-            var identityNode: Node = this.access();
+            var identityNode: Node = this.retrieve();
             if (Node.isErrorNode(identityNode)) return identityNode;
 
             var argNodes: Node = this.args();
@@ -163,7 +153,7 @@ package classes.Lang {
 
         }
 
-        private function access(): Node {
+        private function retrieve(): Node {
             this.stream.whitespace();
 
             var token: Token = this.stream.consume(TokenType.Identity);
@@ -174,11 +164,9 @@ package classes.Lang {
                 );
 
             // Retrieve node to get value from global
-            var rootNode: Node;
-
-            rootNode = new RetrieveNode(
+            var rootNode: Node = new RetrieveNode(
                 new TextRange(token.range.start, token.range.end),
-                this.getText(token)
+                [new IdentityNode(token.range, this.getText(token))]
             );
 
             while (this.stream.match(TokenType.Dot)) {
@@ -191,16 +179,14 @@ package classes.Lang {
                         'Identity'
                     );
 
-                rootNode = new AccessNode(
-                    new TextRange(rootNode.range.start, token.range.end),
-                    [
-                        rootNode,
-                        new IdentityNode(
-                            new TextRange(token.range.start, token.range.end),
-                            this.getText(token)
-                        )
-                    ]
+                rootNode.children.push(
+                    new IdentityNode(
+                        new TextRange(token.range.start, token.range.end),
+                        this.getText(token)
+                    )
                 );
+
+                rootNode.range.end = token.range.end;
             }
 
             return rootNode;
