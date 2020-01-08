@@ -52,17 +52,20 @@ package classes.Lang {
             // Left
             inputBox.type = TextFieldType.INPUT;
             inputBox.background = true;
+            inputBox.multiline = true;
+            inputBox.wordWrap = true;
             inputBox.x = borderSize;
             inputBox.y = borderSize;
             inputBox.width = leftSideWidth;
             inputBox.height = stageHeight - 50 - borderSize;
-            inputBox.multiline = true;
             this.addChild(inputBox);
             inputBox.addEventListener(Event.CHANGE, textInputCapture);
             inputBox.addEventListener(KeyboardEvent.KEY_DOWN, updateInfoEvent);
             inputBox.addEventListener(MouseEvent.CLICK, updateInfoEvent);
             
             infoBox.background = true;
+            infoBox.multiline = true;
+            infoBox.wordWrap = true;
             infoBox.x = borderSize;
             infoBox.y = stageHeight - 50 + borderSize;
             infoBox.width = leftSideWidth;
@@ -71,27 +74,30 @@ package classes.Lang {
             
             // Right
             outputBox.background = true;
+            outputBox.multiline = true;
+            outputBox.wordWrap = true;
             outputBox.x = rightSideOffset;
             outputBox.y = borderSize;
             outputBox.width = rightSideWidth;
             outputBox.height = stageHeight / 3 - borderSize;
-            outputBox.multiline = true;
             this.addChild(outputBox);
 
             codeBox.background = true;
+            codeBox.multiline = true;
+            codeBox.wordWrap = true;
             codeBox.x = rightSideOffset;
             codeBox.y = stageHeight / 3 + borderSize;
             codeBox.width = rightSideWidth;
             codeBox.height = stageHeight / 3 - borderSize;
-            codeBox.multiline = true;
             this.addChild(codeBox);
 
             errorBox.background = true;
+            errorBox.multiline = true;
+            errorBox.wordWrap = true;
             errorBox.x = rightSideOffset;
             errorBox.y = stageHeight * (2 / 3) + borderSize;
             errorBox.width = rightSideWidth;
             errorBox.height = stageHeight / 3 - borderSize;
-            errorBox.multiline = true;
             this.addChild(errorBox);
         }
         
@@ -129,7 +135,7 @@ package classes.Lang {
             var errorText: String;
             if (typeof interpretResult === 'string') {
                 outputBox.htmlText = '';
-                // codeBox.htmlText = '';
+                codeBox.text = '';
                 errorText = '';
                 for each (var error: Object in parserResult.errors)
                     errorText += errorToText(error) + '\n';
@@ -138,7 +144,7 @@ package classes.Lang {
             }
             else {
                 outputBox.htmlText = interpretResult.result;
-                // codeBox.htmlText = interpretResult.code;
+                codeBox.text = interpretResult.code;
                 errorText = '';
                 for each (error in parserResult.errors)
                     errorText += errorToText(error) + '\n';
@@ -148,7 +154,7 @@ package classes.Lang {
             }
         }
         
-        public function errorToText(error: * ): String {
+        public function errorToText(error: *): String {
             return 'Error @ line: ' + error.range.start.line + ' col: ' + error.range.start.col + ' - ' + error.msg;
         }
     }
