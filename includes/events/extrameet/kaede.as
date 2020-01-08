@@ -1,6 +1,6 @@
 public function extrameetKaedeDate():void
 {
-	if (flags["EM_KAEDE_DATE"] == undefined)
+	if (flags["EXTRAMEET_KAEDE"] == undefined || flags["EXTRAMEET_KAEDE"] == 0)
 	{
 		extrameetKaedeFirstTime();
 	}
