@@ -756,6 +756,9 @@
 			inputManager = new InputManager(stage, false);
 			setupInputControls();
 			
+			// Pre-load character/ship data
+			initializeNPCs();
+			
 			initStephEps();
 			
 			// set up the user interface: ------------------------------------------------------------

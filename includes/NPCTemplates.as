@@ -195,7 +195,6 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "LORELEI", Lorelei);
 	prepChar(justUpdate, "VELTA", Velta);
 	prepChar(justUpdate, "BIANCA", Bianca);
-	prepShip(justUpdate, "SHIP", Casstech);
 	prepChar(justUpdate, "KIONA", Kiona);
 	prepChar(justUpdate, "NYKKE", Nykke);
 	prepChar(justUpdate, "VAHN", Vahn);
@@ -203,6 +202,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "SYNPHIA", Synphia);
 	prepChar(justUpdate, "FOCALOR", Focalor);
 	prepChar(justUpdate, "OLYMPIA", Olympia);
+	
+	prepShip(justUpdate, "SHIP", Casstech);
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
