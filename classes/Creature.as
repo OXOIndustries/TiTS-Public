@@ -5617,6 +5617,9 @@
 			var bonuses:int = 0;
 			bonuses += statusEffectv2("Peprika");
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(hasStatusEffect("Vipris")) bonuses += 10;
+			if(hasStatusEffect("Sinthine")) bonuses += 5;
+			if(hasStatusEffect("Cromesc")) bonuses += 5;
 			
 			var scalar:Number = 1;
 			if(hasPerk("Resin")) scalar *= perkv1("Resin");
@@ -5630,6 +5633,7 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			if (accessory is SignetOfBravery) bonuses += 5;
+			if(hasStatusEffect("Cromesc")) bonuses += 5;
 			if(!raw) {
 				// Nothing yet!
 			}
@@ -5640,6 +5644,7 @@
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			if(hasPerk("Cybernetic Synchronization")) bonuses += (perkv1("Cybernetic Synchronization") * cyborgScore());
 			if(hasPerk("Dumb4Cum")) bonuses += level*2;
+			if(hasStatusEffect("Sinthine")) bonuses += 5;
 			if(!raw) {
 				// Nothing yet!
 			}
@@ -5651,6 +5656,7 @@
 		public function willpowerMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if(hasStatusEffect("Xanose")) bonuses += 5;
 			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(!raw) {
 				// Nothing yet!
@@ -5664,6 +5670,7 @@
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 50;
 			if(hasPerk("Barcoded")) bonuses += 10;
 			bonuses += perkv3("Slut Stamp");
+			if(hasStatusEffect("Xanose")) bonuses += 15;
 			if(!raw) {
 				// Nothing yet!
 			}
@@ -22573,6 +22580,37 @@
 				
 				switch (thisStatus.storageName)
 				{
+					//+5 willpower, +15 libido
+					case "Xanose":
+						if(requiresRemoval)
+						{
+							this.willpowerMod -= 5;
+							this.libidoMod -= 15;
+						}
+						break;
+					//+10 reflexes
+					case "Vipris":
+						if(requiresRemoval)
+						{
+							this.reflexesMod -= 10;
+						}
+						break;
+					//+5 reflexes, +5 intelligence
+					case "Sinthine":
+						if(requiresRemoval)
+						{
+							this.reflexesMod -= 5;
+							this.intelligenceMod -= 5;
+						}
+						break;
+					//+5 aim, +5 reflexes
+					case "Cromesc":
+						if(requiresRemoval)
+						{
+							this.aimMod -= 5;
+							this.reflexesMod -= 5;
+						}
+						break;
 					case "Anal Lubricant":
 						if(requiresRemoval) ass.wetnessMod -= thisStatus.value1;
 						break;

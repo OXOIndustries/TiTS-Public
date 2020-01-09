@@ -176,12 +176,12 @@ public function initDhaalRooms():void
 	rooms["DHAAL J15"].description = "DESC ME";
 	rooms["DHAAL J15"].planet = "PLANET: DHAAL";
 	rooms["DHAAL J15"].system = "SYSTEM: UOND EPHINE";
-	rooms["DHAAL J15"].northExit = "";
+	rooms["DHAAL J15"].northExit = "DHAAL MILKBAR";
 	rooms["DHAAL J15"].eastExit = "";
 	rooms["DHAAL J15"].southExit = "DHAAL J17";
 	rooms["DHAAL J15"].westExit = "DHAAL H15";
 	rooms["DHAAL J15"].moveMinutes = 5;
-	rooms["DHAAL J15"].runOnEnter = dhaalGyreEncounters;
+	rooms["DHAAL J15"].runOnEnter = outsideMilkBarBonusText;
 	rooms["DHAAL J15"].addFlag(GLOBAL.OUTDOOR);
 	rooms["DHAAL J15"].addFlag(GLOBAL.HAZARD);
 
@@ -368,6 +368,21 @@ public function initDhaalRooms():void
 	//rooms["DHAAL L25"].addFlag(GLOBAL.BED);
 	rooms["DHAAL L25"].addFlag(GLOBAL.INDOOR);
 	rooms["DHAAL L25"].addFlag(GLOBAL.COMMERCE);
+
+	rooms["DHAAL MILKBAR"] = new RoomClass(this);
+	rooms["DHAAL MILKBAR"].roomName = "MILK\nBAR";
+	rooms["DHAAL MILKBAR"].description = "The comforting ambience of Arovok, the famed milk bar surrounds you.  Incredibly busty cowgirls strut from table to table offering milk from their glasses or their barely-concealed tits, administering a half-drugged crowd of colorful natives and spacers alike. Presently, you sit at the bar, considering your next move.";
+	rooms["DHAAL MILKBAR"].planet = "PLANET: DHAAL";
+	rooms["DHAAL MILKBAR"].system = "SYSTEM: UOND EPHINE";
+	rooms["DHAAL MILKBAR"].northExit = "";
+	rooms["DHAAL MILKBAR"].eastExit = "";
+	rooms["DHAAL MILKBAR"].southExit = "DHAAL J15";
+	rooms["DHAAL MILKBAR"].westExit = "";
+	rooms["DHAAL MILKBAR"].moveMinutes = 5;
+	rooms["DHAAL MILKBAR"].runOnEnter = enterTheMilkbar;
+	//rooms["DHAAL MILKBAR"].addFlag(GLOBAL.BED);
+	rooms["DHAAL MILKBAR"].addFlag(GLOBAL.INDOOR);
+	rooms["DHAAL MILKBAR"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["DHAAL TEMP"] = new RoomClass(this);
 	rooms["DHAAL TEMP"].roomName = "NAME\nME";
