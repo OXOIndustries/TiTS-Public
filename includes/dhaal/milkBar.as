@@ -92,8 +92,10 @@ public function milkBarMenu():void
 		addDisabledButton(2,"Sinthine","Sinthine","You can't afford that!");
 		addDisabledButton(3,"Cromesc","Cromesc","You can't afford that!");
 	}
+	addButton(4,"Chat",talkToIyla,undefined,"Chat","Talk to Iyla.");
 	addButton(14,"Back",mainGameMenu);
 }
+
 public function applyMilkBarDrugs(drink:int, duration:Number):void
 {
 	var drinkName:String = "";
@@ -359,7 +361,7 @@ public function moreCreamPleaseBartender():void
 	output("\n\n<i>“Take your time,”</i> you say, sitting back in your chair.");
 	output("\n\n<i>“T-thank you,”</i> she groans. <i>“Oooohhhh, here it comes... mmmnnnh!”</i>");
 	output("\n\nShe swipes the glass and puts it right under her throbbing cockhead as she squeezes herself one-handedly, wringing the thick, heavy cream from the end of her swollen penis. Her hand is so shaky you reach out and grab the glass yourself right before she drops it, holding it in place while she blows her load into the bottom.");
-	output("\n\n<i>“Th-tha-nnnghk! <i>“You!”</i> she grunts through grit teeth. <i>“Rrrrgh! Nnnhh! It- it’s just that! I-I’m cumming so hard I, I- nnngggh!”</i>");
+	output("\n\n<i>“Th-tha-nnnghk! You!”</i> she grunts through grit teeth. <i>“Rrrrgh! Nnnhh! It- it’s just that! I-I’m cumming so hard I, I- nnngggh!”</i>");
 	output("\n\n<i>“Good girl,”</i> you murmur comfortingly. <i>“Get it all out into my glass.”</i>");
 	output("\n\n<i>“Hhaaahh! Hhaah!”</i> she pants, gripping the table with her free hand and furiously pumping her prick, wads of cream gradually dripping from her slit. <i>“Uuuhhh! Hhuuhh!”</i>");
 	output("\n\nTo her credit, the last half of the cup fills up very fast. With a little scream of delight she almost doubles over while her thighs shake, feet turning inward and knees pulling together as she explosively ejaculates all over your cup and fingers until the rim is overflowing. It takes her a few seconds to register that her job is done but her cock is still pumping, dripping to the floor.");
