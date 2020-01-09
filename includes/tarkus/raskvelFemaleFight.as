@@ -936,6 +936,7 @@ public function catchPostBirthRaskvel():void
 {
 	showName("PREGNANT\nRASKVEL");
 	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("\n\nQuiet moans catch your ear, emanating from somewhere close by. Your attention piqued, you quietly look around for the source of the sounds. The source of the mewling sounds of pleasure obviously wants to remain hidden, but you find her all the same. There’s no hiding your surprise as you see a familiar-looking raskvel there, her legs spread akimbo, mouth open and panting. Her tail is twitching feebly next to her, and her eyes are half-closed. She’s not even cognizant of your arrival.");
 	output("\n\nThe feminine alien is clearly riding some kind of orgasmic high, but incredibly, neither of her hands are at the sodden junction of her thighs. Instead, they’re both perched upon the gravid dome of her belly, rubbing at it with slavish devotion, worshipfully stroking her own smooth-scaled skin on automatic impulse. Her greedy, purple slit isn’t like you remember it either. It’s bigger, puffier, so swollen and engorged that you can’t help but wonder if it would feel any different than the last time you were inside it.");
 	output("\n\n<i>“Ohhh, yes! Gonna have such big, strong eggs!\”</i> Her outburst catches you off guard, and you nearly stumble onto her, but catch yourself at the last minute. <i>“Mmmm... big... swollen... offworlder eggs!\”</i> The raskvel’s hips shudder violently, twisting back and forth.");
@@ -955,7 +956,7 @@ public function giveRaskvelSomeDongToSuckle():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("You make sure to make plenty of noise as you walk up to her");
 	if(pc.isCrotchGarbed()) 
 	{
@@ -1015,7 +1016,7 @@ public function giveHerSumthinToLickSloot():void
 	clearOutput();
 	var x:int = rand(pc.totalVaginas());
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("Making sure to make plenty of noise as you approach, ");
 	if(!pc.isCrotchGarbed()) 
 	{
@@ -1084,7 +1085,7 @@ public function takeOneEggSloot():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("Nodding, you put a call in for a drone to come pick up the egg. That nursery your father set up must have a transport ship set to follow you around, because a speedy little robot shows up in minutes. After a quick scan, it confirms that it’s your offspring. You place the egg in its padded chamber and send it off, back to Tavros station.");
 	output("\n\nThe mother is already passed out, and you note with a grin that her legs are still spread wide-open. At least her elastic cunt seems no worse for the wear - it’s closed as if she’d never been pregnant.");
 	processTime(2);
@@ -1120,7 +1121,7 @@ public function dontTakeARaskEgg():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("You shake your head and turn to go on your way. The mother doesn’t protest any further, in fact, she’s already snoring as you leave - and still spread-eagled in the sands.");
 	processTime(1);
 	clearMenu();
@@ -1136,7 +1137,7 @@ public function watchDatRaskvelEggLayyyy():void
 {
 	clearOutput();
 	showName("PREGNANT\nRASKVEL");
-	showBust(raskvelFemaleBustDisplay(true));
+	showBust("RASKVEL_FEMALE_PREGNANT_NUDE");
 	output("The evolutionary reason for the raskvels’ exceedingly large hips makes itself known when an immense, one foot wide egg is halfway out. No normal woman could pass such a mass so easily or enjoyably, but the diminutive tart is doing so with gusto. She’s screaming out her moans now, her eyes rolled back until only the whites are visible, a long tongue drooling down the side of her face. She’s rutting out the egg an inch at a time, squirting juices every which way. Then, the ovoid mass falls out, still connected to its mother by strings of thick lubricant.");
 	output("\n\n<i>“Fffffffuck yesssss!\”</i> the raskvel hisses before losing her voice to less cogent utterances of bliss. She cradles her ");
 	if(flags["RASKVEL_EGG_COUNT"] >= 8) output("slightly ");
