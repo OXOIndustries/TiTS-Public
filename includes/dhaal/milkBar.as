@@ -9,6 +9,11 @@ public function showDrinkCow(nude:Boolean = false):void
 	showName("DRINK\nCOW");
 	showBust("DRINK_COW" + (nude ? "_NUDE":""));
 }
+public function showCreamCow(nude:Boolean = false):void
+{
+	showName("CREAM\nCOW");
+	showBust("CREAM_COW" + (nude ? "_NUDE":""));
+}
 
 //Outside tile descriptor
 public function outsideMilkBarBonusText():void
@@ -290,7 +295,7 @@ public function getCreamButton(button:int):void
 public function getSomeCream():void
 {
 	clearOutput();
-	showIyla();
+	showCreamCow();
 	pc.createStatusEffect("GotCreamFromMilkBar");
 	author("Wsan");
 	output("You catch the attention of a scantily-clad serving girl and ask for some cream, and she nods.");
@@ -309,151 +314,165 @@ public function getSomeCream():void
 	pc.lust(3);
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed CumQ",50);
-	pc.loadInMouth(tempCow)
+	pc.loadInMouth(tempCow);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	addDisabledButton(1,"More Cream","More Cream","Not yet coded!");
+	addButton(1,"More Cream",getMoreCreamFromYaBooooi,undefined,"More Cream","See about getting some more cream.");
 }
 
-/*
-output("\n\n[More Cream]");
-output("\n\n//tt:See about getting some more cream.");
-
-output("\n\nYou wave the cream serving girl over and ask for a refill, glancing at her furiously erect cock.");
-
-output("\n\n<i>“O-oh, you want more?”</i> she says, breathing a little erratically. <i>“S-sure, just a moment...”</i>");
-
-output("\n\nYou place your glass on the table and watch as she begins to stroke herself two-handedly, working her pulsing shaft until her cumvein starts to swell. You’re half-amazed and half-turned on that you can see the bulge of her creamy payload working its way down her shaft, ready to be poured.");
-
-output("\n\n<i>“Oh, <b>god</b>,”</i> she moans, tilting her hips downward to angle herself into your glass. Thick, heavy cream begins to slowly pump from her flexing cock. <i>“Nnngh! Hnnnngh! Mmmm! Hhhaaahh!”</i>");
-
-output("\n\nYou’re treated to the sight of her emptying herself down the side of your glass, spunk pooling at the bottom until it looks half-full.");
-
-output("\n\n<i>“Thank you,”</i> you murmur as she pulls back, wiping her forehead.");
-
-output("\n\n<i>“Oh, y-you’re welcome,”</i> she pants, smiling wide. <i>“Juh, just ask if you need more.”</i>");
-
-output("\n\nThe cream-dispensing girl walks back to the bar gripping her dick,  casting furtive glances behind her while you grip your glass. You can just hear a faint moan of horniness as you take a drink and swallow, savoring the taste. Damn, she’s good.");
-
-output("\n\n[More Cream!]");
-output("\n\n//tt:This isn’t nearly enough cream. You want to watch this girl fill your cup with it.");
-
-output("\n\nYou wave the sweaty serving girl over and make your request, her veiny cock throbbing with powerful need as she listens eagerly.");
-
-output("\n\n<i>“You- you want me to fill the entire cup?”</i> she whispers, her eyes wide as she glances down at your mug. <i>“I, I’d love to... give me a moment, please.”</i>");
-
-output("\n\nShe places your glass on the edge of the table and begins to slowly stroke herself, caressing her bulging cumvein with careful but passionate strokes.");
-
-output("\n\n<i>“This- this is going to take a while,”</i> she huffs, looking down at her engorged cock. <i>“Nnnngghhh...”</i>");
-
-output("\n\n<i>“Take your time,”</i> you say, sitting back in your chair.");
-
-output("\n\n<i>“T-thank you,”</i> she groans. <i>“Oooohhhh, here it comes... mmmnnnh!”</i>");
-
-output("\n\nShe swipes the glass and puts it right under her throbbing cockhead as she squeezes herself one-handedly, wringing the thick, heavy cream from the end of her swollen penis. Her hand is so shaky you reach out and grab the glass yourself right before she drops it, holding it in place while she blows her load into the bottom.");
-
-output("\n\n<i>“Th-tha-nnnghk! <i>“You!”</i> she grunts through grit teeth. <i>“Rrrrgh! Nnnhh! It- it’s just that! I-I’m cumming so hard I, I- nnngggh!”</i>");
-
-output("\n\n<i>“Good girl,”</i> you murmur comfortingly. <i>“Get it all out into my glass.”</i>");
-
-output("\n\n<i>“Hhaaahh! Hhaah!”</i> she pants, gripping the table with her free hand and furiously pumping her prick, wads of cream gradually dripping from her slit. <i>“Uuuhhh! Hhuuhh!”</i>");
-
-output("\n\nTo her credit, the last half of the cup fills up very fast. With a little scream of delight she almost doubles over while her thighs shake, feet turning inward and knees pulling together as she explosively ejaculates all over your cup and fingers until the rim is overflowing. It takes her a few seconds to register that her job is done but her cock is still pumping, dripping to the floor.");
-
-output("\n\nShe looks to you with some hope in her eyes, opening her mouth to speak, but Iyla happens to appear right at that very moment.");
-
-output("\n\n<i>“Well done,”</i> the barkeep purrs in her ear, running a hand over the cream girl’s stomach. <i>“You remember the rule, don’t you?”</i>");
-
-output("\n\n<i>“Yeees,”</i> the girl says dejectedly. <i>“No blowjobs. Sorry, Iyla...”</i>");
-
-output("\n\n<i>“It’s okay,”</i> Iyla says, patting the girl on the butt. <i>“Go get yourself cleaned up and prep for the next customer, okay?”</i> She gives you a wink as the dickgirl departs, heading towards the bar. <i>“Enjoy your drink, darling. She certainly did.”</i>");
-
-output("\n\nYou drain your glass over the next few minutes, marvelling at how good that girl’s cream tastes.{know truth from calling a creamgirl into vip room: Amazing what’s possible with a little bit of ingenuity./else: How <i>does</i> she do it?}");
-output("\n\n//resets back to [Get Cream]");
-
-
-/*
-output("\n\n[Chat]");
-output("\n\n//tt:Talk to Iyla.");
-
-output("\n\n{had a drink this visit:You get up and head to the bar, catching Iyla’s attention. }"Want to chat for a bit?”</i> you say, nodding at her. <i>“Pretty new to Dhaal, trying to get my bearings a bit.”</i>");
-
-output("\n\n<i>“It’s a heck of a place, isn’t it?”</i> Iyla says, grinning. <i>“Hated it when I was growing up, too busy and bustling. But I learned to love the place and the people. Whatcha wanna know?”</i>");
-
-output("\n\n[ServingStaff] [Herself] [Clientele] [Dhaal]");
-output("\n\n[ServingStaff]");
-output("\n\n//tt:You’ve noticed something about all the serving staff.");
-
-output("\n\n<i>“You don’t actually employ any natives here, do you?”</i> you say, glancing around. Beautiful, busty cowgirls, as far as the eye can see. <i>“Everyone here’s all an offworlder, from what I can tell.”</i>");
-
-output("\n\n<i>“Keen eye,”</i> Iyla says, giving you a nod of approval. <i>“Yup, you’re spot on. Every one of our girls is from New Texas ‘cept me. Wouldn’t be very authentic otherwise, right?”</i>");
-
-output("\n\nIt’s true that when you think milk from cowgirls, you think NT. Their export industry is pretty well-known the galaxy over. You don’t know how they’re sourcing the women, but{high int pc: given the pleasure patches on every one of their arms - including Iyla’s - it’s not hard to guess it’s not above-ground./else:...");
-
-output("\n\nYou glance at Iyla, the smiling, guileless barkeep.");
-
-output("\n\nWell, she probably doesn’t have the answers - or if she did, wouldn’t be inclined to share them.}");
-
-output("\n\n[Herself]");
-output("\n\n//tt:Ask Iyla about herself.");
-output("\n\n//note: everything she tells you about herself and the bar is untrue. In actuality, the entire thing was seed-funded and is run by Bright Water, of which Iyla herself is a low-level employee.");
-
-output("\n\n<i>“How about you?”</i> you ask, nodding at Iyla. <i>“Any special story?”</i>");
-
-output("\n\n<i>“Ha! Not really,”</i> she says, grinning at you. <i>“I was born here, never really knew my parents. I was a serving girl in a few of the many bars we’ve got around and kind of enjoyed the industry. Ended up deciding to run my own bar and, well, here we are.”</i> She spreads her arms. <i>“I got a loan from a local service to start it up, but that’s been paid off for a while now.”</i>");
-
-output("\n\n<i>“Really?”</i> you ask, raising an eyebrow. <i>“Maybe I’ve been unfairly prejudiced. I would’ve thought any loan you get here would be a trap.”</i>");
-
-output("\n\n<i>“Haha!”</i> Iyla laughs, shifting her feet. <i>“No, you’re actually totally right to fear the loan companies. They’re all shell corporations representing the big guns, and they disappear or change names every week.”</i> Her smile fades a little - just for a second, but enough for you to catch it. <i>“The zaibatsu have their fingers in every pie.”</i>{high int PC:");
-
-output("\n\nYou’re not too certain she’s telling the truth about the origin of her bar - it seems very convenient for a place as hostile and mercenary as Dhaal, as far as you know it. Plus, if the megacorps really do have their fingers in every pie, it seems more likely this place was built out of an interest. Still, though, it’s not like you’re here as a detective. There’s nothing to really be gained by harassing the owner of a bar and demanding what might be the truth.}");
-
-output("\n\nBesides that, you’re more concerned about something plainly obvious; Iyla is a cowgirl but you’d thought the only natives on Dhaal were the zaika. The planet was only rediscovered three months ago... how did she get here, then? She clearly didn’t drop in and set up shop recently.");
-
-output("\n\n<i>“All the cowgirls here are from New Texas, right?”</i> you ask.");
-
-output("\n\n<i>“Yup. ‘Cept me,”</i> Iyla affirms. <i>“I grew up here.”</i>");
-
-output("\n\nHmm.");
-
-output("\n\n[Clientele]");
-output("\n\n//tt:The crowd here is pretty varied.");
-
-output("\n\n<i>“There’s a lot of different faces here,”</i> you note, looking out at the crowd being tended to. <i>“Both natives and not.”</i>");
-
-output("\n\n<i>“Oh, yeah,”</i> Iyla says, nodding vigorously. <i>“Whole reason I picked this place for the bar. Right near the port, see? I mean, we’re a bit of a novelty. People hear about us offworld sometimes and want to come - and, well, Dhaal tends to swallow unprepared spacers whole. So... best to be near an entrance, outside the slums.”</i>");
-
-output("\n\n<i>“So your best clients are from offworld?”</i> you ask.");
-
-output("\n\n<i>“Oh, no,”</i> she says with a smile. <i>“Our <b>best</b> clients are the ones using the VIP rooms upstairs. Those tend to be natives, or at least people who live here. They keep us afloat.”</i>");
-
-output("\n\n<i>“VIP rooms, huh?”</i> you muse.");
-
-output("\n\n<i>“Yup. Interested?”</i> Iyla says, grinning. <i>“I can get you into the program. I’ll warn you now, though. It’s very expensive, though you look like you’re good for it.”</i>");
-
-output("\n\n<i>“You’ve got my attention,”</i> you murmur. <i>“What goes on in the VIP rooms?”</i>");
-
-output("\n\nIyla leans in, her eyes flashing as she smiles wide and whispers in your [pc.ear]. <i>“Anything you want.”</i>");
-
-output("\n\nShe straightens up and leans on the bar, gazing down the length of it at a cowgirl getting her teat sucked before turning her attention back to you with a casual smirk.");
-
-output("\n\nWell, that’s intriguing.");
-output("\n\n//unlocks [VIP] option");
-
-output("\n\n[Dhaal]");
-output("\n\n//tt:Ask about the planet itself.");
-
-output("\n\n<i>“Tell me about Dhaal,”</i> you say. <i>“I really only just got here, so it’d be nice to hear about it from someone who was born here.”</i>");
-
-output("\n\n<i>“Fresh off the boat, huh?”</i> Iyla quips. <i>“It’s certainly unique. The sun and the planet orbit at exactly the same rate, so half of it is constantly lit up - and I do mean <b>lit up</b>, it’s uninhabitable - and the other half is a cold, frozen hellhole. We’re parked right in the middle, down The Strip.”</i> She grins. <i>“Lucky us.”</i>");
-
-output("\n\n<i>“So the entire planet lives on the inhabitable band? The Strip, you called it?”</i> you ask.");
-
-output("\n\n<i>“Yup. Not even the zaibatsu are crazy enough to make a go of it out in either of the extreme biomes,”</i> she confirms. <i>“There’s one gigantic megacity that spans the entire planet, built right over the oceans and everything. Pretty cool, right? Well, so I’m told.”</i> She shrugs. <i>“I grew up here, so it’s all I really know.”</i>");
-
-output("\n\n<i>“And the city itself has no central governance, right?”</i> you continue.");
-
-output("\n\n<i>“Ha! The zaibatsu would never allow for that,”</i> Iyla laughs, a harsh bark. <i>“Towering corporations with an iron grip. They run Dhaal from top all the way to the very bottom, and don’t trust anyone who tells you otherwise. There’s plenty of them, and they’ve all got an angle. Of course, they all <b>want</b> to be ‘the one’, but, well,”</i> she says, cracking a grin. <i>“It’s never that easy, is it?”</i>");
-
-output("\n\nThat sure hits a little close to home.");
-*/
+//[More Cream]
+//tt:See about getting some more cream.
+public function getMoreCreamFromYaBooooi():void
+{
+	clearOutput();
+	showCreamCow();
+	author("Wsan");
+	output("You wave the cream serving girl over and ask for a refill, glancing at her furiously erect cock.");
+	output("\n\n<i>“O-oh, you want more?”</i> she says, breathing a little erratically. <i>“S-sure, just a moment...”</i>");
+	output("\n\nYou place your glass on the table and watch as she begins to stroke herself two-handedly, working her pulsing shaft until her cumvein starts to swell. You’re half-amazed and half-turned on that you can see the bulge of her creamy payload working its way down her shaft, ready to be poured.");
+	output("\n\n<i>“Oh, <b>god</b>,”</i> she moans, tilting her hips downward to angle herself into your glass. Thick, heavy cream begins to slowly pump from her flexing cock. <i>“Nnngh! Hnnnngh! Mmmm! Hhhaaahh!”</i>");
+	output("\n\nYou’re treated to the sight of her emptying herself down the side of your glass, spunk pooling at the bottom until it looks half-full.");
+	output("\n\n<i>“Thank you,”</i> you murmur as she pulls back, wiping her forehead.");
+	output("\n\n<i>“Oh, y-you’re welcome,”</i> she pants, smiling wide. <i>“Juh, just ask if you need more.”</i>");
+	output("\n\nThe cream-dispensing girl walks back to the bar gripping her dick,  casting furtive glances behind her while you grip your glass. You can just hear a faint moan of horniness as you take a drink and swallow, savoring the taste. Damn, she’s good.");
+	processTime(5);
+	var tempCow:Creature = new Creature();
+	tempCow.createPerk("Fixed CumQ",300);
+	pc.loadInMouth(tempCow);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	addButton(1,"More Cream",moreCreamPleaseBartender,undefined,"More Cream","This isn’t nearly enough cream. You want to watch this girl fill your cup with it.");
+}
+
+//[More Cream!]
+//tt:This isn’t nearly enough cream. You want to watch this girl fill your cup with it.
+public function moreCreamPleaseBartender():void
+{
+	clearOutput();
+	showCreamCow();
+	author("Wsan");
+	output("You wave the sweaty serving girl over and make your request, her veiny cock throbbing with powerful need as she listens eagerly.");
+	output("\n\n<i>“You- you want me to fill the entire cup?”</i> she whispers, her eyes wide as she glances down at your mug. <i>“I, I’d love to... give me a moment, please.”</i>");
+	output("\n\nShe places your glass on the edge of the table and begins to slowly stroke herself, caressing her bulging cumvein with careful but passionate strokes.");
+	output("\n\n<i>“This- this is going to take a while,”</i> she huffs, looking down at her engorged cock. <i>“Nnnngghhh...”</i>");
+	output("\n\n<i>“Take your time,”</i> you say, sitting back in your chair.");
+	output("\n\n<i>“T-thank you,”</i> she groans. <i>“Oooohhhh, here it comes... mmmnnnh!”</i>");
+	output("\n\nShe swipes the glass and puts it right under her throbbing cockhead as she squeezes herself one-handedly, wringing the thick, heavy cream from the end of her swollen penis. Her hand is so shaky you reach out and grab the glass yourself right before she drops it, holding it in place while she blows her load into the bottom.");
+	output("\n\n<i>“Th-tha-nnnghk! <i>“You!”</i> she grunts through grit teeth. <i>“Rrrrgh! Nnnhh! It- it’s just that! I-I’m cumming so hard I, I- nnngggh!”</i>");
+	output("\n\n<i>“Good girl,”</i> you murmur comfortingly. <i>“Get it all out into my glass.”</i>");
+	output("\n\n<i>“Hhaaahh! Hhaah!”</i> she pants, gripping the table with her free hand and furiously pumping her prick, wads of cream gradually dripping from her slit. <i>“Uuuhhh! Hhuuhh!”</i>");
+	output("\n\nTo her credit, the last half of the cup fills up very fast. With a little scream of delight she almost doubles over while her thighs shake, feet turning inward and knees pulling together as she explosively ejaculates all over your cup and fingers until the rim is overflowing. It takes her a few seconds to register that her job is done but her cock is still pumping, dripping to the floor.");
+	output("\n\nShe looks to you with some hope in her eyes, opening her mouth to speak, but Iyla happens to appear right at that very moment.");
+	output("\n\n<i>“Well done,”</i> the barkeep purrs in her ear, running a hand over the cream girl’s stomach. <i>“You remember the rule, don’t you?”</i>");
+	output("\n\n<i>“Yeees,”</i> the girl says dejectedly. <i>“No blowjobs. Sorry, Iyla...”</i>");
+	output("\n\n<i>“It’s okay,”</i> Iyla says, patting the girl on the butt. <i>“Go get yourself cleaned up and prep for the next customer, okay?”</i> She gives you a wink as the dickgirl departs, heading towards the bar. <i>“Enjoy your drink, darling. She certainly did.”</i>");
+	output("\n\nYou drain your glass over the next few minutes, marvelling at how good that girl’s cream tastes.");
+	//know truth from calling a creamgirl into vip room:
+	if(9999) output(" Amazing what’s possible with a little bit of ingenuity.");
+	else output(" How <i>does</i> she do it?");
+	processTime(10);
+	var tempCow:Creature = new Creature();
+	tempCow.createPerk("Fixed CumQ",500);
+	pc.loadInMouth(tempCow);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Chat]
+//tt:Talk to Iyla.
+public function talkToIyla():void
+{
+	clearOutput();
+	showIyla();
+	author("Wsan");
+	output("<i>“Want to chat for a bit?”</i> you say, nodding at her. <i>“Pretty new to Dhaal, trying to get my bearings a bit.”</i>");
+	output("\n\n<i>“It’s a heck of a place, isn’t it?”</i> Iyla says, grinning. <i>“Hated it when I was growing up, too busy and bustling. But I learned to love the place and the people. Whatcha wanna know?”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"ServingStaff",servingStaffTalkWithIyla,undefined,"Serving Staff","You’ve noticed something about all the serving staff.");
+	addButton(1,"Herself",askIylaAboutHerself,undefined,"Herself","Ask Iyla about herself.");
+	addButton(2,"Clientele",askAboutTheMilkyClientele,undefined,"Clientele","The crowd here is pretty varied.");
+	addButton(3,"Dhaal",dhaalAskiesWootliedootlie,undefined,"Dhaal","Ask about the planet itself.");
+	addButton(14,"Back",summonIyla);
+}
+
+//[ServingStaff]
+//tt:You’ve noticed something about all the serving staff.
+public function servingStaffTalkWithIyla():void
+{
+	clearOutput();
+	showIyla();
+	author("Wsan");
+	output("<i>“You don’t actually employ any natives here, do you?”</i> you say, glancing around. Beautiful, busty cowgirls, as far as the eye can see. <i>“Everyone here’s all an offworlder, from what I can tell.”</i>");
+	output("\n\n<i>“Keen eye,”</i> Iyla says, giving you a nod of approval. <i>“Yup, you’re spot on. Every one of our girls is from New Texas ‘cept me. Wouldn’t be very authentic otherwise, right?”</i>");
+	output("\n\nIt’s true that when you think milk from cowgirls, you think NT. Their export industry is pretty well-known the galaxy over. You don’t know how they’re sourcing the women, but" + (pc.IQ() >= 75 ? " given the pleasure patches on every one of their arms - including Iyla’s - it’s not hard to guess it’s not above-ground.":"...\n\nYou glance at Iyla, the smiling, guileless barkeep.\n\nWell, she probably doesn’t have the answers - or if she did, wouldn’t be inclined to share them."));
+	processTime(5);
+	setButtonDisabled(0);
+}
+
+//[Herself]
+//tt:Ask Iyla about herself.
+//note: everything she tells you about herself and the bar is untrue. In actuality, the entire thing was seed-funded and is run by Bright Water, of which Iyla herself is a low-level employee.
+public function askIylaAboutHerself():void
+{
+	clearOutput();
+	showIyla();
+	author("Wsan");
+	output("<i>“How about you?”</i> you ask, nodding at Iyla. <i>“Any special story?”</i>");
+	output("\n\n<i>“Ha! Not really,”</i> she says, grinning at you. <i>“I was born here, never really knew my parents. I was a serving girl in a few of the many bars we’ve got around and kind of enjoyed the industry. Ended up deciding to run my own bar and, well, here we are.”</i> She spreads her arms. <i>“I got a loan from a local service to start it up, but that’s been paid off for a while now.”</i>");
+	output("\n\n<i>“Really?”</i> you ask, raising an eyebrow. <i>“Maybe I’ve been unfairly prejudiced. I would’ve thought any loan you get here would be a trap.”</i>");
+	output("\n\n<i>“Haha!”</i> Iyla laughs, shifting her feet. <i>“No, you’re actually totally right to fear the loan companies. They’re all shell corporations representing the big guns, and they disappear or change names every week.”</i> Her smile fades a little - just for a second, but enough for you to catch it. <i>“The zaibatsu have their fingers in every pie.”</i>");
+	if(pc.IQ() >= 75)
+	{
+		output("\n\nYou’re not too certain she’s telling the truth about the origin of her bar - it seems very convenient for a place as hostile and mercenary as Dhaal, as far as you know it. Plus, if the megacorps really do have their fingers in every pie, it seems more likely this place was built out of an interest. Still, though, it’s not like you’re here as a detective. There’s nothing to really be gained by harassing the owner of a bar and demanding what might be the truth.");
+	}
+	output("\n\nBesides that, you’re more concerned about something plainly obvious; Iyla is a cowgirl but you’d thought the only natives on Dhaal were the zaika. The planet was only rediscovered three months ago... how did she get here, then? She clearly didn’t drop in and set up shop recently.");
+	output("\n\n<i>“All the cowgirls here are from New Texas, right?”</i> you ask.");
+	output("\n\n<i>“Yup. ‘Cept me,”</i> Iyla affirms. <i>“I grew up here.”</i>");
+	output("\n\nHmm.");
+	processTime(10);
+	setButtonDisabled(1);
+}
+
+//[Clientele]
+//tt:The crowd here is pretty varied.
+public function askAboutTheMilkyClientele():void
+{
+	clearOutput();
+	showIyla();
+	author("Wsan");
+	output("<i>“There’s a lot of different faces here,”</i> you note, looking out at the crowd being tended to. <i>“Both natives and not.”</i>");
+	output("\n\n<i>“Oh, yeah,”</i> Iyla says, nodding vigorously. <i>“Whole reason I picked this place for the bar. Right near the port, see? I mean, we’re a bit of a novelty. People hear about us offworld sometimes and want to come - and, well, Dhaal tends to swallow unprepared spacers whole. So... best to be near an entrance, outside the slums.”</i>");
+	output("\n\n<i>“So your best clients are from offworld?”</i> you ask.");
+	output("\n\n<i>“Oh, no,”</i> she says with a smile. <i>“Our <b>best</b> clients are the ones using the VIP rooms upstairs. Those tend to be natives, or at least people who live here. They keep us afloat.”</i>");
+	output("\n\n<i>“VIP rooms, huh?”</i> you muse.");
+	output("\n\n<i>“Yup. Interested?”</i> Iyla says, grinning. <i>“I can get you into the program. I’ll warn you now, though. It’s very expensive, though you look like you’re good for it.”</i>");
+	output("\n\n<i>“You’ve got my attention,”</i> you murmur. <i>“What goes on in the VIP rooms?”</i>");
+	output("\n\nIyla leans in, her eyes flashing as she smiles wide and whispers in your [pc.ear]. <i>“Anything you want.”</i>");
+	output("\n\nShe straightens up and leans on the bar, gazing down the length of it at a cowgirl getting her teat sucked before turning her attention back to you with a casual smirk.");
+	output("\n\nWell, that’s intriguing.");
+	flags["MILKBAR_VIP_UNLOCK"] = 1;
+	//unlocks [VIP] option
+	processTime(6);
+	setButtonDisabled(2);
+}
+
+//[Dhaal]
+//tt:Ask about the planet itself.
+public function dhaalAskiesWootliedootlie():void
+{
+	clearOutput();
+	showIyla();
+	author("Wsan");
+	output("<i>“Tell me about Dhaal,”</i> you say. <i>“I really only just got here, so it’d be nice to hear about it from someone who was born here.”</i>");
+	output("\n\n<i>“Fresh off the boat, huh?”</i> Iyla quips. <i>“It’s certainly unique. The sun and the planet orbit at exactly the same rate, so half of it is constantly lit up - and I do mean <b>lit up</b>, it’s uninhabitable - and the other half is a cold, frozen hellhole. We’re parked right in the middle, down The Strip.”</i> She grins. <i>“Lucky us.”</i>");
+	output("\n\n<i>“So the entire planet lives on the inhabitable band? The Strip, you called it?”</i> you ask.");
+	output("\n\n<i>“Yup. Not even the zaibatsu are crazy enough to make a go of it out in either of the extreme biomes,”</i> she confirms. <i>“There’s one gigantic megacity that spans the entire planet, built right over the oceans and everything. Pretty cool, right? Well, so I’m told.”</i> She shrugs. <i>“I grew up here, so it’s all I really know.”</i>");
+	output("\n\n<i>“And the city itself has no central governance, right?”</i> you continue.");
+	output("\n\n<i>“Ha! The zaibatsu would never allow for that,”</i> Iyla laughs, a harsh bark. <i>“Towering corporations with an iron grip. They run Dhaal from top all the way to the very bottom, and don’t trust anyone who tells you otherwise. There’s plenty of them, and they’ve all got an angle. Of course, they all <b>want</b> to be ‘the one’, but, well,”</i> she says, cracking a grin. <i>“It’s never that easy, is it?”</i>");
+	output("\n\nThat sure hits a little close to home.");
+	processTime(4);
+	setButtonDisabled(3);
+}

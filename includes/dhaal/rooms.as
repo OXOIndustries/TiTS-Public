@@ -371,7 +371,7 @@ public function initDhaalRooms():void
 
 	rooms["DHAAL MILKBAR"] = new RoomClass(this);
 	rooms["DHAAL MILKBAR"].roomName = "MILK\nBAR";
-	rooms["DHAAL MILKBAR"].description = "The comforting ambience of Arovok, the famed milk bar surrounds you.  Incredibly busty cowgirls strut from table to table offering milk from their glasses or their barely-concealed tits, administering a half-drugged crowd of colorful natives and spacers alike. Presently, you sit at the bar, considering your next move.";
+	rooms["DHAAL MILKBAR"].description = "The comforting ambience of Arovok, the famed milk bar surrounds you.  Incredibly busty cowgirls strut from table to table offering milk from their glasses or their barely-concealed tits, administering a half-drugged crowd of colorful natives and spacers alike. Presently, you sit near the bar, considering your next move.";
 	rooms["DHAAL MILKBAR"].planet = "PLANET: DHAAL";
 	rooms["DHAAL MILKBAR"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL MILKBAR"].northExit = "";
