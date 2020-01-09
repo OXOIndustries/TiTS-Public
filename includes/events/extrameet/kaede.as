@@ -8,6 +8,7 @@ public function extrameetKaedeDate():void
 	{
 		extrameetKaedeRepeat();
 	}
+	IncrementFlag("EM_KAEDE_DATE");
 }
 
 public function extrameetKaedeRepeat():void

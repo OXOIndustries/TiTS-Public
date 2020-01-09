@@ -24,13 +24,14 @@ public function biancaSexings():void
 
 	if (pc.hasSSTD())
 	{
+		var sstdTotal:int = pc.sstdTotal();
 		// pc Has SSTD (never sexed Bianca - you don't get sex!)
 		if (flags["BIANCA_SEXED"] == undefined)
 		{
 			output("The longer you stare at Bianca the blurrier your crossing sight gets. It becomes more obvious how horny you are, how horny she makes you. It comes as a sudden shock when she turns to face you. Her glowing visage startles you into a slow gasp, and then she’s leaning in on you, pressing a hand to your head. <i>“[pc.name]?”</i>");
 			output("\n\nA pounding headache at your temple recedes like a wave at her coming, moving to places yet unreached. <i>“Something’s wrong...”</i> she whispers, straddling you. A light slap to the cheek shakes you from an overwhelming lassitude, lifting a thousand-pound press off your lungs and your brain. When your brain clicks back on there’s a glowing hoop around your wrist that vies for your attention the way her large boobs do.");
 			output("\n\n<i>“Ah, that explains it. No wonder you looked so bothered. I thought you were aroused, but I was only half-right,”</i> Bianca smiles. <i>“You’ve contracted a sexually transmitted disease, [pc.name]... and were I in your place, I’d seek treatment right away. Fortunately, I have the medicine on me right now!”</i>");
-			output("\n\nBianca pulls out a few colored pills and a flask of water. <i>“However, I’m afraid this comes at a cost. It is the only thing I cannot offer for free on the regular. I insist you take it. The <b>" + (pc.sstdTotal() > 1 ? "250" : "350") + " credit cost</b> is nothing compared to your health.”</i>");
+			output("\n\nBianca pulls out a few colored pills and a flask of water. <i>“However, I’m afraid this comes at a cost. It is the only thing I cannot offer for free on the regular. I insist you take it. The <b>" + (sstdTotal > 1 ? "250" : "350") + " credit cost</b> is nothing compared to your health.”</i>");
 			output("\n\nWell this has certainly killed the mood...");
 		}
 		// pc Has SSTD (after sexing Bianca once)
@@ -41,10 +42,10 @@ public function biancaSexings():void
 			output("\n\nW-What? Why would she even say such a thing..?");
 			output("\n\n<i>“There’s nothing to be ashamed of, [pc.name].”</i>");
 			output("\n\n<i>“Who said anything about-”</i>");
-			output("\n\nAll you get is a wide, gleaming grin. She knows what you want. And she’s making it clear the only way you’re going to get it is if you accept the three pills in her hand. <i>“" + (pc.sstdTotal() > 1 ? "250 credits, as your condition is poor" : "350 credits") + ",”</i> she says. <i>“Please take them. Money is no object for your health, least of all mine.”</i>");
+			output("\n\nAll you get is a wide, gleaming grin. She knows what you want. And she’s making it clear the only way you’re going to get it is if you accept the three pills in her hand. <i>“" + (sstdTotal > 1 ? "250 credits, as your condition is poor" : "350 credits") + ",”</i> she says. <i>“Please take them. Money is no object for your health, least of all mine.”</i>");
 		}
 
-		if (pc.credits < (pc.sstdTotal() > 1 ? 250 : 350)) addDisabledButton(0, "Get Cured", "Get Cured", "You cannot afford the medication.");
+		if (pc.credits < (sstdTotal > 1 ? 250 : 350)) addDisabledButton(0, "Get Cured", "Get Cured", "You cannot afford the medication.");
 		else addButton(0, "Get Cured", getBiancasSexualHealing, undefined, "Get Cured", "Alright. It’s worth it.");
 		addButton(1, "No Thanks", tellBiancaYouLikeBeingADiseaseBag, undefined, "No Thanks", "No.");
 	}
@@ -220,6 +221,7 @@ public function getBiancasSexualHealing():void
 	author("William");
 	processTime(5+rand(3));
 
+	var sstdTotal:int = pc.sstdTotal();
 	output("You don’t even get a chance to reach for your money before Bianca thrusts the medicine past your lips and offers the flask of water. Once the pills are sliding down to your gut you get a moment to wonder just why she’s being so forceful. The great results of biomedical advances surprises you the next second, purging your system of harmful elements. Your SSTD is cured, and Bianca is pleased.");
 	// never Sexed Bianca
 	if (flags["BIANCA_SEXED"] == undefined)
@@ -234,6 +236,7 @@ public function getBiancasSexualHealing():void
 		output("\n\n<i>“Now... how about we pick up where we left off?”</i> she purrs, scooting back. <i>“I haven’t forgotten how well you tease, [pc.name]...”</i>");
 		output("\n\nOh boy.");
 	}
+	getSSTDPurgeFromBianca(sstdTotal);
 
 	biancaSexMenu();
 }

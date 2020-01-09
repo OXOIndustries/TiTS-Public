@@ -4135,8 +4135,8 @@
 					addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 					if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
 				}
-				// Priapism timer down
-				if(hasStatusEffect("Priapism"))
+				// Priapism timer down if no special toggle
+				if(hasStatusEffect("Priapism") && statusEffectv1("Priapism") == 0)
 				{
 					addStatusMinutes("Priapism", (-15 * 60));
 					if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
@@ -10350,6 +10350,7 @@
 		public function inflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) return;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
@@ -10580,6 +10581,7 @@
 		}
 		public function inflateAsshole(): void
 		{
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) return;
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_PUMPED);
@@ -10790,7 +10792,7 @@
 		{
 			if(!hasNipples()) return false;
 			//PC has reached lactation threshold!
-			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk") || hasPerk("Milk Fountain")) return true;
+			if(milkMultiplier > 50 || milkFullness >= 50 || hasPerk("Mega Milk") || hasPerk("Milk Fountain") || hasPerk("Ever-Milk")) return true;
 			return false;
 		}
 		public function isLactating(): Boolean {
@@ -10798,7 +10800,7 @@
 			if(canLactate())
 			{
 				//Is there enough milk in yer tits for lactation?
-				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk") || hasPerk("Milk Fountain"))
+				if(milkFullness >= 10 || milkQ() >= 1000 || hasPerk("Mega Milk") || hasPerk("Milk Fountain") || hasPerk("Ever-Milk"))
 				{
 					//yes? true!
 					return true;
@@ -10936,9 +10938,9 @@
 			if (hasPerk("Fixed MilkQ")) return perkv1("Fixed MilkQ");
 			var total:Number = 0;
 			//So much easier now - just a quick lookup.
-			//Arg -1 = amount from biggest tits.
 			var fullness:Number = milkFullness;
-			if(arg == -1) return fullness/100 * milkCapacity();
+			//Arg -1 = amount from biggest tits.
+			if(arg == -1) total += fullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
 			{
@@ -10949,16 +10951,15 @@
 					total += fullness/100 * milkCapacity(x);
 				}
 				//trace("MilkQ total: " + total);
-				return total;
 			}
 			//Specific row
-			else
+			else if(arg >= 0 && arg < breastRows.length)
 			{
-				if(arg < 0 || arg >= breastRows.length) return 0;
-				return fullness/100 * milkCapacity(arg);
+				total += fullness/100 * milkCapacity(arg);
 			}
+			if (hasPerk("Ever-Milk") && total < perkv1("Ever-Milk")) total = perkv1("Ever-Milk");
 			//Failsafe:
-			return 0;
+			return total;
 		}
 		public function boostCum(amount:Number = 1):void
 		{
@@ -20627,7 +20628,8 @@
 				trace("Attempted to add bellyRating contribution to a null pregnancy.");
 			}
 		}
-		public function cuntsChange(volume:Number, display:Boolean = true):void		{
+		public function cuntsChange(volume:Number, display:Boolean = true):void
+		{
 			for(var b:int = 0; b < vaginas.length; b++) {
 				cuntChange(b,volume,display);
 			}
@@ -23551,6 +23553,7 @@
 			// Priapism
 			// Minimum lust raised to 33 if below :3
 			// Lasts 7 days, but every orgasm reduces it by 15 hours.
+			// v1: 0 for orgasm timer reducer, 1 for ignore orgasms
 			createStatusEffect("Priapism", 0, 0, 0, 0, false, "OffenseUp", desc, false, 0, 0xB793C4);
 			setStatusMinutes("Priapism", (7*24*60));
 		}

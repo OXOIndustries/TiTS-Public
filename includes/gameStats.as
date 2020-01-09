@@ -4479,6 +4479,113 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["RESCUE KIRO TOOK CUTLASS"] == undefined && flags["RESCUE KIRO TOOK PISTOL"] == undefined) output2(", Rewarded");
 			distressCount++;
 		}
+		// Kiro Quest
+		if(flags["KQ_RESCUED"] != undefined || flags["KQ_START"] != undefined)
+		{
+			output2("\n<b><u>A Leaf on the Wind</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(flags["KQ_RESCUED"] == undefined) output2(" Distress received " + prettifyMinutes(GetGameTimestamp() - flags["KQ_START"]) + " ago");
+			else output2(" Found Kiro, Confronted Po");
+			if(flags["KQ_BUY_OFFER"] == -1) output2(", Purchased Kiro with Platinum 190");
+			else if(flags["KQ_BUY_OFFER"] != undefined) output2(", Purchased Kiro for " + flags["KQ_BUY_OFFER"] + " credits");
+			else
+			{
+				if(flags["KQ_OFFER_FAIL"] != undefined)
+				{
+					output2(", Failed to make a good offer");
+					if(flags["KQ_OFFER_FAIL"] > 1) output2(" " + flags["KQ_OFFER_FAIL"] + " times");
+				}
+				if(flags["KQ_PLAT_OFFERED"] != undefined) output2(", Offered to buy Kiro with Platinum 190");
+			}
+			if(flags["KQ_RESCUED"] != undefined && kiroRecruited()) output2(", Kiro Rescued, Completed");
+			else output2(", <i>Rescue Kiro from " + (knowsPosName() ? "Po" : "her captor") + "!</i>");
+			// Kiro tracking
+			if(flags["KQ_LAST_HOUR_TF"] != undefined)
+			{
+				output2("\n<b>* Kiro, Status:</b>");
+				switch(flags["KQ_LAST_HOUR_TF"])
+				{
+					case 12: output2(" <i>Experiment begins...</i>"); break;
+					case 18: output2(" Cum production enhanced, <i>Ready to fuck...</i>"); break;
+					case 24: output2(" Cum boosted, Lactation induced, <i>Ready for growth treatments...</i>"); break;
+					case 30: output2(" Cum boosted, Lactating, Augmented breasts, <i>Ready for subliminal treatment...</i>"); break;
+					case 36: output2(" Cum boosted, Lactating, Augmented breasts, Improved genitals, <i>Continue treatments...</i>"); break;
+					case 42: output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals, Augmented lips, <i>Continue treatments...</i>"); break;
+					case 48: output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals+, Augmented lips+, Mind ovewritten, Complete bimbo-slut"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+			}
+			// Door stuff
+			if(KQDoorsUnlocked() > 0)
+			{
+				output2("\n<b>* Doors Unlocked:</b> " + KQDoorsUnlocked());
+				if(flags["KQ_PINK_UNLOCKED"] != undefined) output2(", Pink");
+				if(flags["KQ_RED_UNLOCKED"] != undefined) output2(", Red");
+				if(flags["KQ_BLACK_UNLOCKED"] != undefined) output2(", Black");
+			}
+			if(flags["KQ_PINK_ZAP"] != undefined) output2("\n<b>* Doors, Pink, Times Zapped By:</b> " + flags["KQ_PINK_ZAP"]);
+			// Dildo keys
+			var dildoKeys:Array = [];
+			if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined) dildoKeys.push("Knotty terran");
+			if(flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined) dildoKeys.push("Tainted kui-tan");
+			if(flags["KQ_MINO_KING_TAKEN"] != undefined) dildoKeys.push("Minotaur king");
+			if(dildoKeys.length > 0) output2("\n<b>* Dildo Bucket, Looted:</b> " + CompressToList(dildoKeys, false));
+			// VR trap
+			if(flags["KQ_VR_COMPLETE"] != undefined || flags["KQ_VR_CHEST"] != undefined)
+			{
+				output2("\n<b>* Holodeck & Surgery Suite:</b> Activated VR");
+				if(flags["KQ_VR_CHEST"] != undefined) output2(", Opened chest");
+				if(flags["KQ_GOBLIN_DED"] != undefined) output2(", " + (flags["KQ_GOBLIN_DED"] == 1 ? "Fought" : "Sexed") + " goblin");
+				if(flags["KQ_VR_LLAERWYN"] != undefined)
+				{
+					if(flags["KQ_VR_LLAERWYN"] == 1) output2(", Gave Llaerwyn oral");
+					else if(flags["KQ_VR_LLAERWYN"] == 2) output2(", Fucked Llaerwyn");
+					else output2(", Met Llaerwyn");
+				}
+				if(flags["KQ_VR_LUVIA"] != undefined)
+				{
+					if(flags["KQ_VR_LUVIA"] == 2) output2(", Suckled the princess’s breasts");
+					else if(flags["KQ_VR_LUVIA"] == 1) output2(", Sexed " + (flags["KQ_VR_LUVIA_PUSS"] == undefined ? "the princess" : "Queen Luvia"));
+					else if(flags["KQ_VR_LUVIA"] == 0) output2(", Sucked Queen Luvia’s cock");
+					else output2(", Avoided woman");
+				}
+				if(flags["KQ_VR_HYLIE"] != undefined)
+				{
+					if(flags["KQ_VR_HYLIE"] == 1) output2(", Bested the salamander");
+					if(flags["KQ_VR_HYLIE"] == 2) output2(", Submitted to Hylie");
+				}
+				if(flags["KQ_VR_DEMONNAME"] != undefined)
+				{
+					output2(", Met Ithzan");
+					if(flags["KQ_VR_DEMONFUKK"] > 0)
+					{
+						output2(" and sexed her");
+						if(flags["KQ_VR_DEMONFUKK"] > 1) output2(" " + flags["KQ_VR_DEMONFUKK"] + " times");
+					}
+				}
+				if(flags["KQ_VR_DEMONFIGHT"] != undefined) output2(", " + (flags["KQ_VR_DEMONFIGHT"] == 1 ? "Booted from" : "Peacefully left") + " Aulandia");
+				if(flags["KQ_VR_COMPLETE"] != undefined) output2(", Completed");
+			}
+			// Po tracking
+			if(knowsPosName())
+			{
+				output2("\n<b>* Doctor Illustria Po:</b> " + (flags["KQ_RESCUED"] == undefined ? "Seen" : "Met") + " her");
+				if(flags["KQ_FUCKED_PO"] != undefined) output2(", Sexed her");
+				if(flags["KQ_PO_DEAD"] == 1) output2(", Killed her");
+				else if(flags["KQ_PO_DEAD"] == 2) output2(", Kiro killed her");
+			}
+			// Miniboss
+			if(flags["KQ_MINIBOSS_DOWNED"] != undefined) output2("\n<b>* Advanced Sexbot:</b> Defeated her");
+			// Sexdolls
+			if(flags["KQ_MET_SEXDOLL_HUM"] != undefined) output2("\n<b>* Sexdoll, Human, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_HUM"]);
+			if(flags["KQ_MET_SEXDOLL_DEM"] != undefined) output2("\n<b>* Sexdoll, Demonic, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_DEM"]);
+			if(flags["KQ_MET_SEXDOLL_LAQ"] != undefined) output2("\n<b>* Sexdoll, Laquine, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_LAQ"]);
+			if(flags["KQ_MET_SEXDOLL_VUL"] != undefined) output2("\n<b>* Sexdoll, Vulpatra, Times Encountered:</b> " + flags["KQ_MET_SEXDOLL_VUL"]);
+			if(flags["KQ_VULPATRA_TAINTS"] != undefined) output2("\n<b>* Sexdoll, Vulpatra, Times Ear Fucked:</b> " + flags["KQ_VULPATRA_TAINTS"]);
+			if(flags["KQ_SEXDOLLS_DEFEATED"] != undefined) output2("\n<b>* Sexdolls, Total Defeated:</b> " + flags["KQ_SEXDOLLS_DEFEATED"]);
+			if(flags["KQ_MET_TAURSUIT"] != undefined) output2("\n<b>* Taursuit, Times Encountered:</b> " + flags["KQ_MET_TAURSUIT"]);
+			distressCount++;
+		}
 		// Operation: Snowballs the Cat
 		if(flags["ICEQUEEN COMPLETE"] != undefined || flags["DO UVETO ICEQUEEN ENTRY"] != undefined)
 		{
@@ -6419,11 +6526,20 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				if(flags["SHEKKA_SPIT_ADDICTION"] > 0) output2("\n<b>* Shekka, Aphrodisiac Saliva Addiction Level:</b> " + flags["SHEKKA_SPIT_ADDICTION"] + " %");
-				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Sex Organs:</b> " + listCharGenitals("SHEKKA"));
-				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed:</b> " + flags["TIMES_SEXED_SHEKKA"]);
+				if(timesSexedShekka() > 0)
+				{
+					output2("\n<b>* Shekka, Sex Organs:</b> " + listCharGenitals("SHEKKA"));
+					output2("\n<b>* Shekka, Times Sexed:</b> " + timesSexedShekka());
+				}
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator:</b> " + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
 				if(flags["TIMES_SHEKKA_KIRBUED"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Inside a Hazmat Suit:</b> " + flags["TIMES_SHEKKA_KIRBUED"]);
+				if(flags["SHEKKA_ONAHOLED"] != undefined) output2("\n<b>* Shekka, Times Had Onahole Sex:</b> " + flags["SHEKKA_ONAHOLED"]);
+				if(flags["SHEKKA_GYMMED"] != undefined) output2("\n<b>* Shekka, Times Gym Sexed:</b> " + flags["SHEKKA_GYMMED"]);
 				if(flags["SHEKKA_OVIED"] != undefined) output2("\n<b>* Shekka, Times Oviposited Eggs Into Her:</b> " + flags["SHEKKA_OVIED"]);
+				if(flags["SHEKKA_BLOWN"] != undefined) output2("\n<b>* Shekka, Times Given Her Blowjobs:</b> " + flags["SHEKKA_BLOWN"]);
+				if(flags["SHEKKA_RIDDEN"] != undefined) output2("\n<b>* Shekka, Times You Rode Her Cock:</b> " + flags["SHEKKA_RIDDEN"]);
+				if(flags["SHEKKA_TRIED_2_BREED_U"] != undefined) output2("\n<b>* Shekka, Times She Fucked Your Vagina:</b> " + flags["SHEKKA_TRIED_2_BREED_U"]);
+				if(flags["SHEKKA_BUTTFUCKED_U"] != undefined) output2("\n<b>* Shekka, Times She Fucked Your Ass:</b> " + flags["SHEKKA_BUTTFUCKED_U"]);
 				variousCount++;
 			}
 			// Horace Decker
@@ -6567,7 +6683,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>The Wastes</u></b>");
 				if(flags["MET_GRAY_GOO"] != undefined) output2("\n<b>* Gray Goo, Times Encountered:</b> " + flags["MET_GRAY_GOO"]);
-				if (flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output2("\n<b>* Female Parasitic Lapinara, Times Encountered:</b> " + flags["ENCOUNTERED_PARASITIC_LAPINARA"]);
+				if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output2("\n<b>* Female Parasitic Lapinara, Times Encountered:</b> " + flags["ENCOUNTERED_PARASITIC_LAPINARA"]);
 				// Lumi
 				if(flags["LUMI_HAS_MET"] != undefined)
 				{

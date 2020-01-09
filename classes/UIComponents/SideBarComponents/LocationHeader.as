@@ -549,7 +549,6 @@ package classes.UIComponents.SideBarComponents
 		private function set lastSetBust(v:String):void
 		{
 			_lastSetBust = v;
-			if (v == "none") NPCBustImages.LastArtistUsed = "";
 			
 			if (NPCBustImages.hasBustsForCharacter(v))
 			{

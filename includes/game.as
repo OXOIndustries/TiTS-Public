@@ -4426,20 +4426,19 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		// Bizzy mails
 		if (!MailManager.isEntryUnlocked("bizzy_camgirl_initiate") && pc.credits >= 50000 && zhengCoordinatesUnlocked())
 		{
 			goMailGet("bizzy_camgirl_initiate");
 		}
-
 		if (((flags["BIZZY_PORN_STUDIO"] == 3 && flags["BIZZY_PORN_STUDIO_TIMER"] <= GetGameTimestamp()) || flags["BIZZY_PORN_STUDIO"] >= 4) && !MailManager.isEntryUnlocked("bizzy_camgirl_profits"))
 		{
 			goMailGet("bizzy_camgirl_profits");
 		}
-
 		//Halloween pumpking event!
 		if(pc.level >= 7 && isHalloweenish())
 		{
-			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
+			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyRecruited() && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
 		}
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && myrellionCoordinatesUnlocked() && flags["TIMES_SEXED_SHEKKA"] != undefined)

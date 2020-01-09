@@ -1378,6 +1378,10 @@ public function wills69Part3(args:Array):void
 
 public function loseToTheSexdoll():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	showSexDoll(true);
 	author("William");
 	
@@ -1666,7 +1670,7 @@ public function loseToTheSexdoll():void
 		else if(pc.hasVagina()) output(", spilling [pc.girlCum] on the deck");
 		else if(pc.hasCock()) output(", busting fat wads of gurgling [pc.cumNoun] between the glossy cheeks of her ass");
 		else output(", overwhelmed by an inexpressible sense of ecstasy, shocked by how synergized this rendezvous has been");
-		output(". Jism detonates in volumes unimaginable, an ocean tide ath begins to swallow you into a puddle of steaming-hot virility.");
+		output(". Jism detonates in volumes unimaginable, an ocean tide bath begins to swallow you into a puddle of steaming-hot virility.");
 		output("\n\nExcess dribbles from your body. She starts again, teasing you again, use you again, ferally and roughly. An uncertain passage of time occurs. Ensorceled as you are, you never actually register that you fall unconscious at some point.");
 		processTime(45);
 		pc.orgasm();
@@ -1680,11 +1684,13 @@ public function loseToTheSexdoll():void
 
 public function badEndToGenericDollsPart2():void
 {
+	moveTo("KQ T14");
+	
 	clearOutput();
 	//show po!
 	author("William");
 	showBust("ILLUSTRIA_PO");
-	showName("DR.\nPO");
+	showName("DOCTOR\nPO");
 	// Doctor Po sequence
 	// Vulpatra = 2, Laquine = 13, Human = 20, Demon = 34
 	var petNumber:Number = 0;
@@ -1708,7 +1714,7 @@ public function badEndToGenericDollsPart2():void
 	output(". <i>“You can tell me anything.”</i>");
 	output("\n\n<i>“I love...”</i> you ramble, losing your train of thought at the exact moment her boobs start to leak. Mysticism. Your jaw slackens and your breaths emerge in random, lustful exhortations. Mistress scoots closer, draping a leg over your lap, soaked in ambrosia. You think it can’t get any better, but then her lips press to the side of your head, kissing you long, softly, imploringly. That tousled braid of hair, like an electric lash, slides over your flawless " + (pc.hasFur() ? "fur":"skin") + ".");
 	output("\n\nYou can’t take it anymore. <i>“I love you!”</i> [pc.Cum] jets from your manhood, potent pillars of sperm blasting across the room and contaminating the once sanitary room. <i>“Your pussy smells so good!”</i> The declaration causes <b>your pussy</b> to cum, squirting torrents of [pc.girlCum] to complement male orgasm." + (!pc.hasVagina() ? " Of course you have a pussy. You always had one, and it was always this powerful.":"") + " <i>“You’re so so so so beautiful, I can’t just-”</i> <i>Spurt.</i> <i>“-Choose-”</i> <i>Spurt.</i> <i>“-One!”</i>");
-	output("\n\nTension departs in splurting surges, aided by Mistress Illustria’s touch. Muscles rhythmically clench, forcing out waves of twin-sexed satisfaction. Your balls never diminish and your glands never go sore. There’s no pain, only a glorious loop of constant climax. Your cheeks scream delight, only muffling when you’re properly kissed. Her tongue dives inside, swabbing over your cheeks before tangling with your taste buds. Doctor Po’s isn’t as endowed, yet it snares yours in a sensual twirl that speaks to authority and experience, both forces intermingling in the knot of spit-slick flesh.");
+	output("\n\nTension departs in splurting surges, aided by Mistress Illustria’s touch. Muscles rhythmically clench, forcing out waves of twin-sexed satisfaction. Your balls never diminish and your glands never go sore. There’s no pain, only a glorious loop of constant climax. Your cheeks scream in delight, only muffling when you’re properly kissed. Her tongue dives inside, swabbing over your cheeks before tangling with your taste buds. Doctor Po’s isn’t as endowed, yet it snares yours in a sensual twirl that speaks to authority and experience, both forces intermingling in the knot of spit-slick flesh.");
 	output("\n\nIllustria has melted into your body, shuddering lip-to-squishing-lip. Her thumbs play around the saucers of your plumped nipples, squeezing out violet lactic arcs from your tremendous jugs. Ripples pass through the creamy");
 	if(pc.hasFur()) output(" curtains of your boobfur");
 	else output(" swells of your boobflesh");

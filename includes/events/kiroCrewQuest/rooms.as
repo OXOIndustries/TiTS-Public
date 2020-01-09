@@ -309,7 +309,7 @@ public function initKQRooms():void
 
 	rooms["KQ P14"] = new RoomClass(this);
 	rooms["KQ P14"].roomName = "CARGO\nCIRCUIT";
-	rooms["KQ P14"].description = "<i>“Captain’s Quarters.”</i> That’s what the sign above the doorway to the north says, and unlike all its fellows, this portal yawns wide-open, all but beckoning you to venture inside. The space beyond looks like some kind of waiting room, but you’ll have to step inside for a better look. Lots of scuffs from heeled boots mar the floor around the door as if large numbers of heeled women go in and out with regularity.\n\nYou can continue looping idly around to the south and west, or gather your courage to venture forth."
+	rooms["KQ P14"].description = "“Captain’s Quarters.” That’s what the sign above the doorway to the north says, and unlike all its fellows, this portal yawns wide-open, all but beckoning you to venture inside. The space beyond looks like some kind of waiting room, but you’ll have to step inside for a better look. Lots of scuffs from heeled boots mar the floor around the door as if large numbers of heeled women go in and out with regularity.\n\nYou can continue looping idly around to the south and west, or gather your courage to venture forth."
 	rooms["KQ P14"].planet = "N/A";
 	rooms["KQ P14"].system = "SYSTEM: DEEP SPACE";
 	rooms["KQ P14"].northExit = "KQ P12";
@@ -628,7 +628,7 @@ public function initKQRooms():void
 	rooms["KQVR W1"].roomName = "THE\nROAD";
 	rooms["KQVR W1"].description = "Walking along the road, the landscape abruptly shifts from gravel and dirt to rocky outcroppings and hard, cracked mud beneath your feet. The further west you head, the more the world changes until the sky takes on the faint red glow of sunset, an imposing mountain looming in the distance. The road continues stretching west, leading deeper into mountainous terrain.\n\nThere is no Safe Zone here.";
 	rooms["KQVR W1"].planet = "N/A";
-	rooms["KQVR W1"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W1"].system = "SYSTEM: N/A";
 	rooms["KQVR W1"].northExit = "";
 	rooms["KQVR W1"].eastExit = "KQVR M0";
 	rooms["KQVR W1"].southExit = "";
@@ -642,7 +642,7 @@ public function initKQRooms():void
 	rooms["KQVR W2"].roomName = "BROKEN\nROAD";
 	rooms["KQVR W2"].description = "";
 	rooms["KQVR W2"].planet = "N/A";
-	rooms["KQVR W2"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W2"].system = "SYSTEM: N/A";
 	rooms["KQVR W2"].northExit = "";
 	rooms["KQVR W2"].eastExit = "KQVR W1";
 	rooms["KQVR W2"].southExit = "";
@@ -656,7 +656,7 @@ public function initKQRooms():void
 	rooms["KQVR W3"].roomName = "\nMOUNTAINSIDE";
 	rooms["KQVR W3"].description = "";
 	rooms["KQVR W3"].planet = "N/A";
-	rooms["KQVR W3"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W3"].system = "SYSTEM: N/A";
 	rooms["KQVR W3"].northExit = "";
 	rooms["KQVR W3"].eastExit = "KQVR W2";
 	rooms["KQVR W3"].southExit = "";
@@ -670,7 +670,7 @@ public function initKQRooms():void
 	rooms["KQVR W4"].roomName = "\nMOUNTAINS";
 	rooms["KQVR W4"].description = "Stumbling along the winding, rising path along the mountain, the air actually gets cleaner as you walk. Aside from the dizzying height and the soreness of your legs, this isn’t too bad. You glance out at the landscape below and see the divisions of land - the forest you initially emerged from, a desert, a ruined city, and the road leading to where you are now. You have to admit, it’s been <i>somewhat</i> of an adventure.\n\nThere is no Safe Zone here.";
 	rooms["KQVR W4"].planet = "N/A";
-	rooms["KQVR W4"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W4"].system = "SYSTEM: N/A";
 	rooms["KQVR W4"].northExit = "";
 	rooms["KQVR W4"].eastExit = "KQVR W3";
 	rooms["KQVR W4"].southExit = "";
@@ -684,7 +684,7 @@ public function initKQRooms():void
 	rooms["KQVR W5"].roomName = "\nMOUNTAINS";
 	rooms["KQVR W5"].description = "";
 	rooms["KQVR W5"].planet = "N/A";
-	rooms["KQVR W5"].system = "SYSTEM: DEEP SPACE";
+	rooms["KQVR W5"].system = "SYSTEM: N/A";
 	rooms["KQVR W5"].northExit = "";
 	rooms["KQVR W5"].eastExit = "KQVR W4";
 	rooms["KQVR W5"].southExit = "";
@@ -758,7 +758,7 @@ public function landOnKiroQuest():void
 public function dontLandThereImOut():void
 {
 	clearOutput();
-	showName("I'M\nOUT");
+	showName("I’M\nOUT");
 	author("Fenoxo");
 	output("You reverse course and book it out of there before you can get blown out of the sky. Getting yourself killed or enslaved won’t save Kiro.");
 	processTime(4*61);
@@ -801,7 +801,7 @@ public function hangarBonusText():Boolean
 
 public function kqt12Bonus():Boolean
 {
-	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, <i>“Lab.”</i> That must be where she" + (flags["KQ_RESCUED"] == undefined ? "’s":" was") + " keeping Kiro!");
+	output("You definitely stand in a mad scientist’s workstation. It’s as clear to you as the walls of the giant vat of shimmering silver microsurgeons, as obvious as the flickering blue glow from a projected render of drug-augmented breast growth. A hardlight keyboard and multipanel display station sits at the center with an ominous black chair and an even more ominous, blacker dildo bolted into the center of the cushion. A sealed door with a blinking ‘occupied’ light above it to the south is labelled, “Lab.” That must be where she" + (flags["KQ_RESCUED"] == undefined ? "’s":" was") + " keeping Kiro!");
 	if(flags["KQ_RESCUED"] != undefined) setNavDisabled(NAV_SOUTH_DISABLE);
 	return kiroQuestHallwaysEncounters();
 }
@@ -858,7 +858,7 @@ public function kqp28Bonus():Boolean
 {
 	//22 broken cleaning robots, funky smelling old failsafe mops, and a dildo bucket. All use a new scene I havent written yet.
 	//If Kiro is fully converted, add a Kiro bionacock!
-	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled <i>“FOR EMERGENCY USE ONLY.”</i> They’ve all been used, multiple times.");
+	output("The doorway swishes open, and you step into... a storage closet. Unlike the hallway that lead you here, this dingy chamber looks like it hasn’t a single iota of effort put into its appearance. There are cheap, functional racks along the walls, absolutely filled with dozens of cleaning robots, each obviously broken in new and exciting ways. Some are caked with musky-smelling mystery fluids that leave little doubt as to what caused their demise. Others are missing limbs or bear attachments worn all the way down to the nub. Mops lie piled in a bucket labelled “FOR EMERGENCY USE ONLY.” They’ve all been used, multiple times.");
 	output("\n\nA bucket near the door, labelled similarly, ");
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
@@ -887,12 +887,12 @@ public function inspectDildoBin():void
 	//Empty:
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] != undefined && flags["KQ_TAINTED_KUITAN_TAKEN"] != undefined && flags["KQ_MINO_KING_TAKEN"] != undefined)
 	{
-		output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket had an emergency of its own: you taking everything inside it.");
+		output("The “EMERGENCY USE ONLY” dildo bucket had an emergency of its own: you taking everything inside it.");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	output("The <i>“EMERGENCY USE ONLY”</i> dildo bucket holds the following:");
+	output("The “EMERGENCY USE ONLY” dildo bucket holds the following:");
 	clearMenu();
 	if(flags["KQ_KNOTTY_TERRAN_TAKEN"] == undefined)
 	{
@@ -997,7 +997,7 @@ public function examinePink():void
 	addButton(0,"Unlock",vaginaRouter,[attemptPinkUnlock,15,1,0,false],"Unlock","Attempting to unlock the door means putting the pink phallus in one of your holes, to be clear.");
 	if(pc.hasItemByClass(MitziBionaHole) || pc.hasItemByClass(NivasBionaHole) || pc.hasItemByClass(TamaniBionaHole)) addButton(1,"Bionahole",useBionaholeSuccess,undefined,"Bionahole","Use a bionahole instead of subjecting one of your holes to this place’s madness.");
 	else addDisabledButton(1,"Bionahole","Bionahole","If you had a bionahole with you, you could try using that instead of one of your holes...");
-	addButton(4,"Back",mainGameMenu);
+	addButton(14,"Back",mainGameMenu);
 }
 
 //[Vagchoices]
@@ -1024,7 +1024,7 @@ public function attemptPinkUnlock(x:int):void
 			output("\n\nRed lights flash above while a warning buzz blares from the wall behind. Uh oh.");
 			output("\n\nAn electric shock strikes your prostate with all the force of a conjured lightning bolt, clenching every single muscle in your body at once hard enough to squeeze a weak rope of [pc.cum] onto the floor. You have no chance to react nor the capability to. One moment, you’re savoring a little pleasure, the next you’re twitching and spurting - violently out of control. You cum so hard it hurts. Every drop of spooge in your body sprays out, your [pc.cocks] jerking and whirling, launching spunk messily enough to glaze most of your front.");
 			output("\n\nYou whimper kittenishly in between dick-wringing shocks, somehow equal parts ecstatic and tortured, haplessly shuddering as you’re forced to unload. In the back of your misfiring mind, you feel like livestock, like a higher power has taken control of your bodily functions to use for its own ends. It would be more alarming if it wasn’t so hot - if it didn’t make you squeal and splurt harder than ever before.");
-			output("\n\nThe rectal thunderstorm ends as soon as it begins. Something warm and wet oozes deep into you, and slide forward, the devious dick holding your ass up in the air until it escapes with an audible ‘pop’. Glowing purple cream rings your " + (pc.ass.looseness() < 4 ? "temporarily ":"") + "gaped backdoor, soaking into your skin before you can recover to wipe it off.");
+			output("\n\nThe rectal thunderstorm ends as soon as it begins. Something warm and wet oozes deep into you, and you slide forward, the devious dick holding your ass up in the air until it escapes with an audible ‘pop’. Glowing purple cream rings your " + (pc.ass.looseness() < 4 ? "temporarily ":"") + "gaped backdoor, soaking into your skin before you can recover to wipe it off.");
 			output("\n\nWhatever was in the tainted juices, it doesn’t seem to bother you. If anything, it soothes the pain away in your ass. You’re almost tempted to jump back onto the wall and ride the lightning for a second time, but common sense prevails.");
 			output("\n\nYour ass won’t be the key (or is that keyhole?) to this door.");
 			processTime(10);
@@ -1273,13 +1273,16 @@ public function weenUpADingleDanglehole(x:int):void
 		var select:int = TFs[rand(TFs.length)];
 		
 		//TF texts here :3
-		//"Priapism”</i> rolled:
+		//"Priapism" rolled:
 		if(select == 1)
 		{
 			output("\n\nYou wipe a bead of sweat from your forehead and withdraw all " + num2Text(Math.floor(pc.cocks[x].cLength())) + " inches of tumescent " + (!pc.hasVagina() ? "maleness":"herminess") + " shocked at how hard - how perfectly firm you remain. Sure, sliding yourself into a hole felt good, but not so good that you’d keep raging a full minute after yanking it out. Did it do something to you? Did that high powered squeeze conceal something more insidious? You wait for two more minutes, not touching yourself, not thinking of anything erotic. No matter how much " + (!pc.isBimbo() ? "mental math":"time you spend mentally sing-songing your ABC’s") + ", your cock" + (pc.hasCocks() ? "s remain":" remains") + " fully erect, almost painfully so.");
 			if(!pc.isCrotchExposed()) output(" Wearing your [pc.crotchCovers] with " + (!pc.hasCocks() ? "a rager":"ragers") + " like this is going to be a problem...");
 			output("\n\n<b>You’ve been cursed with priapism!</b> A scan with your Codex determines that it should fade in eight hours or so, so you’ve got that going for you.");
+			// TIme-based priapism, ignore timer reduction from orgasms
 			pc.applyPriapism();
+			pc.setStatusValue("Priapism", 1, 1);
+			pc.setStatusMinutes("Priapism", (8*60));
 			pc.taint(2);
 			//Queue event to remove bits
 			if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
@@ -1291,7 +1294,7 @@ public function weenUpADingleDanglehole(x:int):void
 			return;
 		}
 		//Biggus Boyo!
-		//Enlargement if under 16”</i> (mini), 20”</i> (normie), or 30”</i> (hung)
+		//Enlargement if under 16" (mini), 20" (normie), or 30" (hung)
 		else if(select == 2)
 		{
 			var gains:int = 1 + rand(2);

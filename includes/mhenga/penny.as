@@ -133,11 +133,13 @@ public function moveOutsidePennysOffice():void
 //First Encounter
 //Appended to room description!
 public function pennyRoomDesc():Boolean {
+	// Penny in office
 	if(!pennyRecruited())
 	{
 		showPennyBust();
 		
-		if((flags["PUMPKING_COMPLETION"] != undefined || isHalloweenish()) && MailManager.isEntryViewed("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] != 3)
+		// Pump King Special
+		if((flags["PUMPKING_COMPLETION"] == undefined || flags["PUMPKING_COMPLETION"] < 3) && MailManager.isEntryViewed("pumpking_alert"))
 		{
 			showName("PEACEKEEPER\nOFFICE");
 			showBust("");
@@ -146,9 +148,10 @@ public function pennyRoomDesc():Boolean {
 				pumpkinStartingQuest();
 				return true;
 			}
-			else addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""));
+			addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""));
+			return false;
 		}
-		else if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
+		if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
 			if(flags["MET_PENNY"] == undefined) {
 				flags["MET_PENNY"] = 1;
 				output("\n\nBehind the desk, sits a female... fox-girl? She’s definitely a girl, or at least very feminine, judging by the DD-cup bosom, barely constrained by her white wrap and loose, open black vest. An armband stamped with the words “U.G.C. Peacekeeper” adorns her right arm, marking her as a source of law on this backwater planet. The frown she’s giving you is spread across a vulpine muzzle, her blue eyes narrowed as she sizes you up. Two pointed ears swivel like radar dishes, each almost as large as her head. A quarter of the way up those ears, a close-cropped, auburn mohawk sweeps back towards the nape of her neck. With ears like that, her species seems closer to the fennec foxes of earth, almost perfectly so.");
@@ -239,8 +242,20 @@ public function pennyRoomDesc():Boolean {
 			this.addButton(0,"Approach",approachGirlfriendPenny);
 		}
 	}
+	// Replaced officer
 	else
 	{
+		// Pump King Special Hotfix
+		if(!pennyIsCrew() && (flags["PUMPKING_COMPLETION"] == undefined || (flags["PUMPKING_COMPLETION"] != -1 && flags["PUMPKING_COMPLETION"] < 3)) && MailManager.isEntryViewed("pumpking_alert"))
+		{
+			if(flags["PUMPKING_COMPLETION"] == undefined) 
+			{
+				pumpkinStartingQuest();
+				return true;
+			}
+			addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over.");
+			return false;
+		}
 		output("\n\nA new officer has taken over for Penny, but they regard you with an air of business-like disinterest.");
 		if(!drBadgerImprisioned())
 		{

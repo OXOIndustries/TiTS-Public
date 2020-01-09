@@ -607,7 +607,7 @@ public function extrameetLethalLadyProfile():void
 {
 	output("The profile picture on your screen is a headshot of a very beautiful Gryvain. While she doesnt look old by any means, you can tell she is far from young just by the way she carries herself.");
 	output("\n\nUsername: LethalLady");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 150 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tavros");
@@ -665,7 +665,7 @@ public function extrameetFrankMollyProfile():void
 {
 	output("The profile picture on your screen is of a pair of New Texans, a man and a woman. Both of them seem to be of standard New Texan stock, with horns, muscles, and curves.");
 	output("\n\nUsername: Frank&Molly");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 38 Years");
 	output("\nRace: Human+");
 	output("\nPlanet: New Texas");
@@ -1125,7 +1125,7 @@ public function extrameetLaughingDragonProfile():void
 {
 	output("The profile picture on your screen is of a very drunk Gryvain. You can tell she’s plastered out of her mind not only by her expression, but by the pile of empty bottles next to her in the picture.");
 	output("\n\nUsername: LaughingDragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 67 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: New Texas");
@@ -1608,7 +1608,7 @@ public function extrameetNympho69Profile():void
 {
 	output("The profile picture on your screen is of a semi erect cock being held and shown off. Even half hard it seems fairly large.");
 	output("\n\nUsername: Nympho69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 65 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Mhen’ga");
@@ -1692,7 +1692,7 @@ public function extrameetLooking4a3rdProfile():void
 {
 	output("The profile picture on your screen is of an ausar couple. They are holding each other close, while staring at the camera. He looks serious, while she looks playful.");
 	output("\n\nUsername: Looking4a3rd");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 27 Years");
 	output("\nRace: Ausar");
 	output("\nPlanet: Mhen’ga");
@@ -2063,7 +2063,7 @@ public function extrameetTruePower69Profile():void
 {
 	output("The profile picture on your screen is of a very large cock. Although you can’t get a good sense of scale, you can tell it’s at least a foot long. The only other information you can tell is whomever it is connected to seems quite muscular and large.");
 	output("\n\nUsername: True_Power69");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 40 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Tarkus");
@@ -2316,7 +2316,7 @@ public function extrameetPowerLovers2Profile():void
 {
 	output("The profile picture on your screen is of two gabilani, one male and one female. By the looks of them, they are an item, the male having his arm draped over the female.");
 	output("\n\nUsername: PowerLovers2");
-	output("\nSex: Other");
+	output("\nSex: Male and Female");
 	output("\nAge: 32 Years");
 	output("\nRace: Gabilani");
 	output("\nPlanet: Tarkus");
@@ -2344,7 +2344,7 @@ public function extrameetAvarice56Profile():void
 {
 	output("The profile picture on your screen is of a naked Gryvain woman with a massive cock in her mouth. She is fairly attractive, and it staring right at the camera while deepthroating the huge dong.");
 	output("\n\nUsername: Avarice56");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 80 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2386,7 +2386,7 @@ public function extrameetHawtShotProfile():void
 {
 	output("The profile picture on your screen is of a massive dick. Seriously. It’s just a huge dick.");
 	output("\n\nUsername: HawtShot");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 54 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Tarkus");
@@ -2846,7 +2846,7 @@ public function extrameetSirenSongProfile():void
 {
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Siren_Song");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Myrellion");
@@ -2888,7 +2888,7 @@ public function extrameetPurpleBowtieProfile():void
 {
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 32 Years");
 	output("\nRace: Kui-tan");
 	output("\nPlanet: Myrellion");
@@ -3200,7 +3200,7 @@ public function extrameetStormDragonProfile():void
 {
 	output("The profile picture on your screen is a headshot of a rather striking Gryvain woman. The give away as to her species is the pair of dark horns sprouting out from her head. Her hair is bright blue, and along her hairline you notice curious runic tattoos.");
 	output("\n\nUsername: Storm_Dragon");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 102 Years");
 	output("\nRace: Gryvain");
 	output("\nPlanet: Uveto");
@@ -3474,7 +3474,7 @@ public function extrameetDomme90Profile():void
 {
 	output("The profile picture on your screen is of a very angry looking Dzaan. She’s beautiful, but her expression reads more as hostile rather than sexy. Like, really hostile.");
 	output("\n\nUsername: Domme_90");
-	output("\nSex: Other");
+	output("\nSex: Hermaphrodite");
 	output("\nAge: 82 Years");
 	output("\nRace: Dzaan");
 	output("\nPlanet: Uveto");
