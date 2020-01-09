@@ -1283,6 +1283,7 @@ public function weenUpADingleDanglehole(x:int):void
 			pc.applyPriapism();
 			pc.setStatusValue("Priapism", 1, 1);
 			pc.setStatusMinutes("Priapism", (8*60));
+			pc.setStatusTooltip("Priapism", (pc.getStatusTooltip("Priapism") + " <b>The condition is also unaffected by orgasms.</b>"));
 			pc.taint(2);
 			//Queue event to remove bits
 			if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
