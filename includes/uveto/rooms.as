@@ -4080,7 +4080,7 @@ public function initUvetoRoomsII():void
 	rooms["WILLOWS ROOM"].addFlag(GLOBAL.PRIVATE);
 
 	rooms["MILODAN TRIBE"] = new RoomClass(this);
-	rooms["MILODAN TRIBE"].roomName = "\nEITAN'S TRIBE";
+	rooms["MILODAN TRIBE"].roomName = "\nEITAN’S TRIBE";
 	rooms["MILODAN TRIBE"].description = "If you are reading this, something has gone terribly wrong.";
 	rooms["MILODAN TRIBE"].planet = "PLANET: UVETO VII";
 	rooms["MILODAN TRIBE"].system = "SYSTEM: SIRETTA";

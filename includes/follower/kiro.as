@@ -273,16 +273,17 @@ public function inviteAFriendForCrewKiroPlays():void
 		else addButton(nFriends,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
 		nFriends++;
 	}
-	// Saendra
-	if(flags["FALL OF THE PHOENIX STATUS"] >= 1)
+	//Kally
+	if(kiroKallyThreesomes() > 0)
 	{
-		if(flags["SAEN MET AT THE BAR"] != undefined)
-		{
-			if(rooms[shipLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
-			else if(pc.hasCock()) addButton(nFriends,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
-			else addDisabledButton(nFriends,"Saendra","Saendra","This scene requires a penis to participate in.");
-		}
-		else addDisabledButton(nFriends,"Saendra","Locked","You don’t know Saendra well enough to invite her.");
+		if(shipLocation == "CANADA1") addButton(nFriends,"Kally",kiroKallyThreesomesApproach,undefined,"Kally","Now that Kiro and Kally are fucking, why not have fun with both?");
+		else addDisabledButton(nFriends,"Kally","Kally","You need to be docked at Canadia Station over Vesperia for this.");
+		nFriends++;
+	}
+	if(mitziIsCrew()) 
+	{
+		if(mitziAvailable()) addButton(nFriends,"Mitzi",kiroSexMenuInvitesMitzi,undefined,"Mitzi","Kiro would adore a cock-hungry slut like Mitzi...");
+		else addDisabledButton(nFriends,"Mitzi","Mitzi","Mitzi is too busy at the moment.");
 		nFriends++;
 	}
 	// Paige
@@ -295,15 +296,18 @@ public function inviteAFriendForCrewKiroPlays():void
 	else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(nFriends,"Paige","Paige","You need a deeper relationship with Paige for this.");
 	else addDisabledButton(nFriends,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
 	nFriends++;
-
-	//Kally
-	if(kiroKallyThreesomes() > 0)
+	// Saendra
+	if(flags["FALL OF THE PHOENIX STATUS"] >= 1)
 	{
-		if(shipLocation == "CANADA1") addButton(nFriends,"Kally",kiroKallyThreesomesApproach,undefined,"Kally","Now that Kiro and Kally are fucking, why not have fun with both?");
-		else addDisabledButton(nFriends,"Kally","Kally","You need to be docked at Canadia Station over Vesperia for this.");
+		if(flags["SAEN MET AT THE BAR"] != undefined)
+		{
+			if(rooms[shipLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			else if(pc.hasCock()) addButton(nFriends,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
+			else addDisabledButton(nFriends,"Saendra","Saendra","This scene requires a penis to participate in.");
+		}
+		else addDisabledButton(nFriends,"Saendra","Locked","You don’t know Saendra well enough to invite her.");
 		nFriends++;
 	}
-
 	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her that you might need a minute to summon a friend for you both to play with.\n\nShe barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“They’d better be worth it, you cock-tease. We could be fucking right now...”</i> she complains, her half-hard shaft throbbing between her legs. <i>“You just get me so horny!”</i>\n\nYou tweak one of her round, fluffy ears and give her a wink. Just a minute, you promise.");
 	else output("Unfortunately, you don’t know of any available friends to invite...");
 	

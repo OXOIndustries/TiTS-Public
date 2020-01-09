@@ -1045,7 +1045,7 @@ public function mitziAppearance():void
 	else
 	{
 		output(" While you can’t see past her [mitzi.assCover] to view her pucker directly, ");
-		if(flags["9999"] != "anal") output("you can only assume it is as engineered for sex as the rest of its owner.");
+		if(flags["MITZI_ANALED"] == undefined) output("you can only assume it is as engineered for sex as the rest of its owner.");
 		else output("you know all too well that’s flawless and unblemished, almost brighter green than the rest of its owner.");
 	}
 	output(" A hind-end of such monumental magnitude would look absurd on anyone with normal bone-structure, but Mitzi’s hips are built like a freighter’s back-end, lending her more than ample room to sprout galaxy-class ass.");
@@ -1123,7 +1123,7 @@ public function mitziSexMenu():void
 		else addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
 	}
 	else addDisabledButton(7,"TentacleFun","Tentacle Fun","You need tentacle wings for this.");
-
+	addButton(13,"Threesome",mitziThreesomesMenu,undefined,"Threesome","See if there's anyone else on your crew who can play with the goblin.");
 	addButton(14,"Back",approachCrewMitzi,true);
 }
 
@@ -4220,6 +4220,207 @@ public function eatOutSoakMitziEpilogue():void
 	//Calm down while sleeping... if not in rut.
 	if(!pc.inRut()) pc.lust(-33);
 	restHeal();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Invite Mitzi from Kiro menu
+public function kiroSexMenuInvitesMitzi():void
+{
+	clearOutput();
+	showBust(kiroBustDisplay(true),mitziBustString(true));
+	showName("KIRO\n& MITZI");
+	author("Fenoxo");
+	output("<i>“Oh, you’re going to love her,”</i> you suggest before tapping the ship’s intercom. <i>“Mitzi, report to the Captain.”</i> A second later, you push the button again, adding, <i>“I hope you’re ready to pull double duty tonight.”</i>");
+	output("\n\nNot one minute later, the sluttified goblin prances into the room with hard nipples and the careless air of a freewheeling slut. At the sight of Kiro, her jaw drops and her nostrils flare. <i>“[pc.Master]... ");
+	if(flags["KIRO_MET_MITZI"] == undefined) output("that’s a big dicked slut you’ve got there.");
+	else output("Kiro’s dick looks even bigger today.");
+	output("”</i> She licks her polished purple lips with obvious desire, the heart-shaped pupils of her eyes rapidly dilating. <i>“Mitzi really hopes ");
+	if(flags["KIRO_MET_MITZI"] == undefined) output("you’re planning to share");
+	else output("she can start sucking right now");
+	output(". Really really-really-really hopes!”</i>");
+
+	output("\n\n<i>“");
+	if(flags["KIRO_MET_MITZI"] == undefined) output("Oh, aren’t you the most adorable little cock-socket,");
+	else output("Oh, I’m no tease, Mitzi,");
+	output("”</i> Kiro coos with a confident swagger forward. <i>“");
+	if(flags["KIRO_MET_MITZI"] == undefined) output("Go ahead and say hi if you want. After all, we just met - I’m Kiro by the way. [pc.Name] won’t mind if you can’t keep that tongue of yours to yourself.");
+	else output("Why don’t you start sucking while [pc.name] and I discuss how to share you?");
+	output("”</i> With a one-handed grip just above her sheath, the space-faring tanuki wobbles her twenty-plus-inch pole meaningfully in the sultry greenskin’s direction.");
+	output("\n\nAfter a deferential glance your way for permission, Mitzi squats in front of Kiro, all but smashing her face into the horny kui-tan’s churning nutsack. Muffled moans of delight echo out of the fluffy " + (kiro.ballDiameter() >= 16 ? "prison":"pillow") + " while the goblin’s thighs drift wide open, displaying the wantonly drooling inner lips of her clitty’s nearby cavern. Her wetness problem only grows worse as she begins to worship Kiro in earnest, spooling out over nine inches of tongue to run laps around the circumference of the tanuki’s tender sheath.");
+	output("\n\n<i>“Ohhhh,”</i> Kiro gasps in delight. <i>“No wonder [pc.name] keeps you on the crew, you tiny little treasure!”</i> She grunts in sudden ecstasy as the bright pink tongue slithers around the circumference of her medial ring. <i>“Keep that up, and we are going to ruin you for the rest of the galaxy, aren’t we, Angel?”</i> Kiro gently rubs the back of Mitzi’s head, encouraging the dick-addicted fuck-toy to continue while she glances up at you for comment. <i>“If you don’t speak up, I’m going to have to give her throat a solo run.”</i>");
+	output("\n\nAn excited squeak escapes the spit-slick prison of Kiro’s crotch.");
+	output("\n\nWhat do you want to do?");
+	if(flags["KIRO_MET_MITZI"] == undefined) flags["KIRO_MET_MITZI"] = 1;
+	processTime(4);
+	clearMenu();
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(mitzi.vaginalCapacity(0)) >= 0) addButton(0,"Double Team",penisRouter,[doubleTeamMitziWithKiro,mitzi.vaginalCapacity(0),false,0],"Double Team","Pound the goblin from both ends, thanks to Kiro's help.");
+		else addDisabledButton(0,"Double Team","Double Team","You need a penis that would fit inside Mitzi for this option.");
+	}
+	else addDisabledButton(0,"Double Team","Double Team","You need a penis for this.");
+	addButton(1,"Nevermind",nevermindKiroAndMitzi,undefined,"Nevermind","");
+}
+
+//Mitzi threesome menu
+public function mitziThreesomesMenu():void
+{
+	clearOutput();
+	showMitzi(true);
+	showName("\nTHREESOMES");
+	author("Fenoxo");
+	output("Who did you want to invite for a threesome with Mitzi?");
+	clearMenu();
+	addButton(14,"Back",mitziCrewSexApproach);
+	if(kiroIsCrew()) 
+	{
+		if(crewKiroAvailable()) addButton(0,"Kiro",mitziSexMenuInvitesKiro,undefined,"Kiro","Invite the swaggering pirate slut for some fun with Mitzi.");
+		else addDisabledButton(0,"Kiro","Kiro","Kiro is busy right now.");
+	}
+	else addDisabledButton(0,"???","???","You would need a certain hermaphrodite pirate on your crew for this option.");
+}
+
+//Actual select Kiro
+public function mitziSexMenuInvitesKiro():void
+{
+	clearOutput();
+	showBust(kiroBustDisplay(true),mitziBustString(true));
+	showName("KIRO\n& MITZI");
+	author("Fenoxo");
+	if(pc.isBro()) output("You lift one finger, gesturing for silence. <i>“Threesome.”</i>");
+	else output("<i>“First I have a friend I want to invite. You’ll love her.”</i>");
+	output("\n\nThe unflappable green slut bounces on the balls of her feet and claps in complete joy. <i>“Awesome! [pc.Master] has all the best surprises. Who’s it going to be?”</i> She leans " + (pc.tallness > 48 ? "up":"over") + " at you, batting her eyelashes a thousand miles a minute.");
+	output("\n\nYou reach out and tap the ship’s intercom. <i>“Kiro, I need some assistance with a small matter in Mitzi’s room.”</i>");
+	output("\n\n<i>“Ooooh,”</i> Mitzi drawls. <i>“Sounds serious, but like, I thought we were doing a threesome, not boring ship repairs or whatever.”</i>");
+	//First time
+	if(flags["KIRO_MET_MITZI"] == undefined) 
+	{
+		output("\n\nKiro hesitantly leans her head through the doorframe and, upon seeing you with the fuck-hungry microslut, strides the rest of the way in an increasingly confident swagger. <i>“So this is the small matter you needed my help with?”</i> The tanuki’s dick makes itself known, thrusting out from under the hem of her dress to jab powerfully in goblin’s direction. <i>“Did you say her name was Mitzi?”</i>");
+		output("\n\n<i>“Yuh huh.”</i> Teetering closer to the exposed horse-cock, the purple-ponytailed shortstack licks her lips with obvious hunger. Somehow, her nipples get even harder. Her nostrils flare, and the pink tip of Mitzi’s tongue varnishes her plump lips in a layer of clear anticipation. <i>“Soz I guess now that we know each other, it’s okay for me to suck your cock, right?”</i> Mitzi glances your way for approval, then practically tumbles between Kiro’s thighs, landing in a deep squat that lines her face up perfectly with the fluffy softness of your pet pirate’s free-swinging ballsack.");
+	}
+	//Repeat
+	else
+	{
+		output("\n\nKiro jogs through the door with a smile and a fully-engorged erection. Upon seeing the fuck-hungry microslut, she actually starts to dribble on the spot. <i>“Hiya Mitzi. You’re looking fuckable as ever.”</i> The ‘nuki’s gaze winds its way back to you after the sound of pre splattering on the floor rouses the flushed shortstack. <i>“I’m so glad you call me over for these ‘small matters.’ Nothing satisfies quite like stuffing one of these gabilani bitches to the brim. Isn’t that right, Mitzi?”</i>");
+		output("\n\n<i>“Yuh huh.”</i> The purple-ponytailed shortstack stumbles closer, zombie-like. She moves as sleepwalking, every synapse of her mind so laser-focused on Kiro’s dick that there’s barely room for simple locomotion. The moment she’s close enough, she drops into a deep, spread-legged squat, proudly displaying her leaky cunt’s puffy inner lips while she smashes her face into the fluffy softness of Kiro’s increasingly taut ballsack.");
+	}
+	//Merge
+	output("\n\nFor a few seconds, nobody tries to talk. Kiro moans in obvious enjoyment, shifting her hips to ");
+	if(kiro.ballDiameter() < 16) output("smear her nuts over every inch of the aggressively-licking goblin’s face");
+	else output("almost completely bury the aggressively-licking goblin in nut");
+	output(". Mitzi counters by unleashing the full length of her tongue, curling it along the sensitive folds of Kiro’s sheath until she’s looped the whole way over the top and slithered back down the other side. She savors the combined flavors of cock, sweat, and pre all at once, slavering over the tanuki like her life depends on it.");
+	output("\n\n<i>“Ohhhh,”</i> Kiro blissfully moans. <i>“You angelic little demon! No wonder [pc.name] keeps you around!”</i> She marvels at the things the goblin’s tongue can do while reaching down to caress one of the bobbing ponytails in clear adoration. <i>“If you keep that up, we’re going to ruin you for the rest of the galaxy. Aren’t we, Angel?”</i> Kiro’s face radiates nothing but pleasure and relaxation as she gazes longingly in your direction. <i>“What’s the command Cap’n? Go on. Tell us how you wanna fuck.”</i>");
+	output("\n\nWhat do you want to do?");
+
+	if(flags["KIRO_MET_MITZI"] == undefined) flags["KIRO_MET_MITZI"] = 1;
+	processTime(4);
+	clearMenu();
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(mitzi.vaginalCapacity(0)) >= 0) addButton(0,"Double Team",penisRouter,[doubleTeamMitziWithKiro,mitzi.vaginalCapacity(0),false,0],"Double Team","Pound the goblin from both ends, thanks to Kiro's help.");
+		else addDisabledButton(0,"Double Team","Double Team","You need a penis that would fit inside Mitzi for this option.");
+	}
+	else addDisabledButton(0,"Double Team","Double Team","You need a penis for this.");
+	addButton(1,"Nevermind",nevermindKiroAndMitzi,undefined,"Nevermind","");
+}
+
+//[Nevermind]
+public function nevermindKiroAndMitzi():void
+{
+	clearOutput();
+	showBust(kiroBustDisplay(true),mitziBustString(true));
+	showName("KIRO\n& MITZI");
+	author("Fenoxo");
+	output("<i>“Actually,”</i> you say, glancing from the ball-polishing goblin to the cheshire-grinning kui-tan, <i>“I think I might be needed elsewhere. You guys can take care of yourselves, right?”</i>");
+	output("\n\nKiro is quick to present you with two thumbs up.");
+	output("\n\n<i>“Mmmhmm,”</i> the goblin gurgles around a mouthful of balls.");
+	output("\n\nPerfect. You stride back into the common area of your ship to plan your next move.");
+	//disable Mitzi & Kiro for one hour. Make sure both 'gasm.
+	if(!pc.hasStatusEffect("Mitzi Disabled")) pc.createStatusEffect("Mitzi Disabled");
+	pc.setStatusMinutes("Mitzi Disabled",60);
+	flags["KIRO_DISABLED_MINUTES"] = 60;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Mitzi Lewds Commence
+//Mitzi sucks Kiro’s balls while you and Kiro haggle over who gets her pussy. Mitzi volunteers her pussy for her master, and you proceed to take her from both ends.
+public function doubleTeamMitziWithKiro(x:int):void
+{
+	clearOutput();
+	showBust(kiroBustDisplay(true),mitziBustString(true));
+	showName("KIRO\n& MITZI");
+	author("Fenoxo");
+	//Bro
+	if(pc.isBro()) output("Rather than trying to explain what you want to do, you walk up to the goblin and grab her by her squishy haunches, bodily hauling her up until the gleaming delta of her sex is well-aligned with your [pc.cock " + x + "]. You thrust in without a single word, forcing Kiro to stand there and witness the claiming of your emerald toy. Burying yourself in to the hilt earns an approving squeak from the juicy slut, but you’re not done yet. Holding Mitzi at a ninety degree angle, you march forward with steady steps until the goblin’s face is a few inches away from Kiro’s proudly drooling flare.");
+	//Not Bro
+	else 
+	{
+		output("<i>“Ever heard of an Eiffel Tower?”</i> you ask while closing in on the entangled pair and helping yourself to two hands of plush, emerald heiny.");
+		output("\n\nKiro nods knowingly. Mitzi, predictably, is too busy sucking sack to do anything but wiggle her ass into your palms.");
+		output("\n\n<i>“Good,”</i> you declare. Dragging the goblin away from the pirate’s well-polished sheath, you answer her cries of disappointment by dragging her ass up to your [pc.cockHead " + x + "] and spearing your whole length straight into her dribbling quim. She squeaks in rapturous joy, yet you’re far from done. You guide the leaky shortstack forward on the palms of her hands, wheelbarrow-walk-fucking her right up to Kiro’s proudly-drooling flare.");
+	}
+	//mergies
+	pc.cockChange();
+	output("\n\nMitzi’s mouth falls open automatically, saliva already dribbling from the corners. Her tongue slithers out like a pink carpet, waiting to guide the phallus home. Perfect.");
+	output("\n\nThere is one thing you can always count on Kiro to do: claim a wet and willing hole. The former lawbreaker considers Mitzi’s parted, spit-slopped lips for all of a quarter-second before grabbing the goblin by the pigtails and inexorably shifting forward. You feel Mitzi’s cunt tighten the moment Kiro’s dribbling prick-head pops inside, and as the tanuki plumbs the reaches of your fuck-toy’s unresisting throat, that tightness transforms into a dick-wringing clench.");
+	output("\n\n<i>“Ooooh, no gag reflex?”</i> Kiro marvels, <i>“I think I’m in love.”</i> She advances until the goblin’s button nose all but vanishes into the folds of tanuki-sheath.");
+	output("\n\nMitzi’s eyes roll back, but she does not struggle. Her hips twitch once, feebly attempting to grind her pearlescent clitty against something, then she settles for wrapping her tail around her own waist like a belt, curling the spaded tip between her thighs for a gentle rub against her neglected nub. That contact is all it takes to put Mitzi on fuck-autopilot. Her hips gyrate and swivel against you. The near-rigid clench to which you had become accustomed shifts into complimentary undulations, rocking your [pc.cock " + x + "] to the same tempo of your emerald slut’s egg-bearing hips.");
+	output("\n\nKiro must feel left out. After watching Mitzi milk you for the better part of a minute in stationary silence, she tightens her hair-tugging grip and growls, <i>“I’ll set the rhythm, sluts!”</i> Rocking back slightly, the chocolate-hued herm exposes a few inches of glossy horse-cock before slamming it back into the salivating joy-tube that is Mitzi’s throat. That impact rockets through the shortstack’s body all the way to your crotch, pushing you back a half step before the motion is reversed - exposing some of your own length to air that seems frigid in comparison to the drooling slut’s torrid cunt.");
+	output("\n\nInstinct takes over. You slamfuck back in, hilting into Mitzi so forcefully that a fan of feminine lubrication squirts out in almost every direction. In the process, you dislodge Kiro’s sheath-deep slut-fuck and force her to thrust <i>again</i>. Grinning joyfully, Kiro somehow takes control of threesome entirely by how she pounds the greenskin’s mouth. Years upon years of sexual prowess are brazenly displayed in the way she fucks your [pc.cockNoun " + x + "] with the goblin’s gushing pussy. Kiro is a sex maestro of the highest order, and today, Mitzi is her prized instrument.");
+	output("\n\nYou’re no slouch yourself - even if you’re too stunned by the slip-sliding, simmering depths to rock the boat just yet. You relish the tight grip of Mitzi’s cunt. She’s the fuck every virgin dreams of, knowing how to squirm and please. Even impaled between rutting");
+	if(pc.biggestCockLength() >= 12) output(", big-dicked");
+	output(" god" + pc.mf("s","desses") + ", you can tell that she’s working to please you both. No mere human vagina could contort and caress the way hers is, and though you can’t see it, you’re pretty sure her tongue is dancing across every inch of Kiro’s modded genitalia it can reach. She’s half the reason you let Kiro set the pace for so long, but she’s yours to command - not Kiro’s.");
+	output("\n\nA firmer grip on the goblin and a quicker, more assertive hump is all it takes to take the lead. Kiro fakes a shocked look for good measure, but it is soon replaced with a wink and a sultry smile. She joins right into your crotch-slapping melody, though none too gently. She ruts against Mitzi’s face with competitive zest. Sloppy gurgles prove it. Excess spit sloughs down her swelling, swaying balls in a seemingly endless tide. It seems Mitzi likes the taste of her pre, or her sweat, or her dick, or even her musky sack. Whatever it is, the goblin has transitioned into a fountain of saliva.");
+	output("\n\nYou’d be worried about her if you didn’t hear the occasional violent inhale coming from her nose.");
+	output("\n\nKnowing that your living sextoy is alive, well, and having the time of her life makes it easier to stop thinking and just enjoy yourself. You’re free to get rougher, free to jackhammer her plush ass until it’s rippling with the force of your impacts. You can savor the fragrant feminine scent that’s drenching your crotch or admire the constantly erupting flecks of pussy-joy as they sparkle with a thousand reflections of the chamber’s lights. Most importantly, you can revel in the ecstatic delight of your own mounting climax.");
+	output("\n\nExcept Kiro cums first.");
+	output("\n\nNo longer restrained by a lifetime of desensitization, the kui-tan is free to climax whenever her lusts request her to, and it would seem Mitzi’s pillowy, airtight lips were all the convincing Kiro’s nuts needed to unload. Every gurgling ejaculation has the bimbofied gabilani squeezing tighter and tighter. In a way, it feels almost like Kiro is pressurizing Mitzi, inflating her with so much jism that the cum-drunk toy may as well be an organic vise - only this vise continues to drip and leak and coax your [pc.cockHead " + x + "]" + (pc.cocks[x].cLength() >= 9 ? " against a very open, very excited cervix.":" to nestle as deeply inside as it can."));
+	output("\n\nYou orgasm next, right on cue. Kiro may still be squirting, but getting to simultaneously pump in your own [pc.cum] at the same time is a whole other kind of experience. Your jaw drops from pleasure as you baste Mitzi’s wide-open womb ");
+	var cummies:Number = pc.cumQ();
+	if(cummies < 50) output("in spurt after spurt");
+	else if(cummies < 350) output("in gushing spurt after spurt");
+	else if(cummies < 2000) output("with individual spurts the size of shot glasses");
+	else if(cummies < 10000) output("with goblin-flooding gushes");
+	else if(cummies < 50000) output("with enough reproductive juices to drown her");
+	else if(cummies < 100000) output("with geyser-like eruptions of reproductive might");
+	else 
+	{
+		output("with eruptions so virile they seem to distort reality itself");
+		if(silly) mitzi.createStatusEffect("RealityCummiesNotice");
+	}
+	output(". No matter how great any given pulse might feel, the next is better. You hang on in spite of your shaky [pc.legOrLegs] and bite your [pc.lip], mustering enough will to look up at Kiro one last time before your eyes roll back.");
+	output("\n\nShe’s holding up her hand with a dazed, blissful grin, waiting for you to complete the Eiffel Tower.");
+	output("\n\nYou barely manage to slap your hand against hers before doubling over the inflated goblin, " + pc.mf("grunting","squeaking") + " in " + (pc.balls > 0 ? "ball":"dick") + "-draining joy");
+	if(pc.tallness < 60) output(", your cheek warm on her sweat-slick skin");
+	else output(", Kiro’s " + (kiro.breastRows[0].breastRating() >= 32 ? "breast":"belly") + "fur silky and warm against your cheek");
+	output(". Touch dominates your senses as you give in fully to the orgiastic ecstasy, aware of little more than how good it feels to finish climaxing inside Mitzi.");
+	pc.applyPussyDrenched();
+	processTime(25);
+	mitzi.loadInMouth(pc);
+	mitzi.loadInCunt(kiro,0);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",finishTheMitziBulgingWivKiro,x);
+}
+
+public function finishTheMitziBulgingWivKiro(x:int):void
+{
+	clearOutput();
+	showBust(kiroBustDisplay(true),mitziBustString(true));
+	showName("KIRO\n& MITZI");
+	author("Fenoxo");
+	output("You recover your wits in a bed-bound pile of bodies. Mitzi is, predictably nestled between you and Kiro, yet not as you remember her. She’s obscenely rounded, pumped up like a gorgeous green beach ball. Despite no longer holding your [pc.cock " + x + "], the goblin slut wears a blissful, contented smile as she reaches over to rub your shoulder. Cumstreaks cover her face from brow to chin, where a viscous blob hangs on for dear life. Kiro lies behind her, propped up on one arm and grinning broadly.");
+	output("\n\n<i>“Quite the cock-sucker you’ve got there, Angel. I’ll have to borrow her sometime. Or maybe you want go for a second round?”</i>");
+	output("\n\n...Maybe after you grab a shower. The lower half of your body is drenched with Mitzi’s orgasmic fluids.	");
+	if(mitzi.hasStatusEffect("RealityCummiesNotice"))
+	{
+		output("\n\n(<b>Achievement Unlocked - Reality Distorting Cumshot!</b>)");
+		mitzi.removeStatusEffect("RealityCummiesNotice");
+	}
+	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -764,6 +764,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/myrra_nude.png", mimeType = "image/png")]
 		public var Bust_MYRRA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/myssah.png", mimeType = "image/png")]
+		public var Bust_MYSSAH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/myssah_nude.png", mimeType = "image/png")]
+		public var Bust_MYSSAH_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_bros.png", mimeType = "image/png")]
 		public var Bust_NALEEN_BROS:Class;
 		public function get Bust_NALEEN_BROTHER_A():Class { return Bust_NALEEN_BROS; }
@@ -2028,6 +2033,11 @@ package classes.Resources.Busts
 			public var Full_MYRRA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrra_nude.png", mimeType = "image/png")]
 			public var Full_MYRRA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myssa.png", mimeType = "image/png")]
+			public var Full_MYSSAH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myssa_nude.png", mimeType = "image/png")]
+			public var Full_MYSSAH_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/naleen_futa.png", mimeType = "image/png")]
 			public var Full_NALEEN_FUTA:Class;

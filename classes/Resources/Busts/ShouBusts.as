@@ -603,6 +603,13 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard_nude.png", mimeType = "image/png")]
 		public var Bust_QUEENSGUARD_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_FEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel_nude.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_FEMALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel_pregnant_nude.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_FEMALE_PREGNANT_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/renvra.png", mimeType = "image/png")]
 		public var Bust_RENVRA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/renvra_nude.png", mimeType = "image/png")]
@@ -1343,6 +1350,13 @@
 			public var Full_QUEENSGUARD:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/queensguard_nude.png", mimeType = "image/png")]
 			public var Full_QUEENSGUARD_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel.png", mimeType = "image/png")]
+			public var Full_RASKVEL_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel_nude.png", mimeType = "image/png")]
+			public var Full_RASKVEL_FEMALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/raskvel_pregnant_nude.png", mimeType = "image/png")]
+			public var Full_RASKVEL_FEMALE_PREGNANT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/renvra.png", mimeType = "image/png")]
 			public var Full_RENVRA:Class;
