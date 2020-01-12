@@ -1,4 +1,5 @@
 package classes.Lang {
+    import classes.Descriptors.FunctionInfo;
     import classes.Lang.Nodes.*;
     
     public class Interpreter {
@@ -135,8 +136,9 @@ package classes.Lang {
             var obj: * = this.globals;
             var name: String = '';
 
-            var infoObj: * = {};
+            var infoObj: * = null;
             var identity: *;
+            var selfObj: * = null;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
                 if (typeof obj !== 'object' || !(identity in obj)) {
@@ -155,6 +157,7 @@ package classes.Lang {
                     infoObj = obj[identity + '__info'];
                 }
 
+                selfObj = obj;
                 obj = obj[identity];
                 name += (name ? '.' : '') + identity;
             }
@@ -163,6 +166,7 @@ package classes.Lang {
                 node.range,
                 {
                     value: obj,
+                    self: selfObj,
                     info: infoObj
                 },
                 name
@@ -198,23 +202,24 @@ package classes.Lang {
                 );
             }
 
-            var retrieveProduct: * = this.evalRetrieveNode(node.children[0]);
-            var argsProduct: * = this.evalArgsNode(node.children[1]);
-            var resultsProduct: * = this.evalResultsNode(node.children[2]);
+            var retrieveProduct: Product = this.evalRetrieveNode(node.children[0]);
+            var argsProduct: Product = this.evalArgsNode(node.children[1]);
+            var resultsProduct: Product = this.evalResultsNode(node.children[2]);
 
             var retrieveValue: * = retrieveProduct.value.value;
-            var retrieveInfo: * = retrieveProduct.value.info;
-            var retrieveCode: * = retrieveProduct.code;
+            var retrieveSelf: * = retrieveProduct.value.self;
+            var retrieveInfo: FunctionInfo = retrieveProduct.value.info;
+            var retrieveCode: String = retrieveProduct.code;
 
-            var argsValueArr: Vector.<*> = new Vector.<*>();
-            var argsCodeArr: Vector.<*> = new Vector.<*>();
+            var argsValueArr: Array = new Array();
+            var argsCodeArr: Array = new Array();
             for each (var child: * in argsProduct.value) {
                 argsValueArr.push(child.value);
                 argsCodeArr.push(child.code);
             }
 
-            var resultsValueArr: Vector.<*> = new Vector.<*>();
-            var resultsCodeArr: Vector.<*> = new Vector.<*>();
+            var resultsValueArr: Array = new Array();
+            var resultsCodeArr: Array = new Array();
             for each (child in resultsProduct.value) {
                 resultsValueArr.push(child.value);
                 resultsCodeArr.push(child.code);
@@ -224,29 +229,14 @@ package classes.Lang {
 
             // Error checking
             if (typeof retrieveValue === 'function' && retrieveInfo) {
-                if (retrieveInfo.argsCount) {
-                    if (argsValueArr.length < retrieveInfo.argsCount)
+                if (retrieveInfo.argResultValidator !== null) {
+                    var validResult: * = retrieveInfo.argResultValidator(argsValueArr, resultsValueArr);
+                    if (validResult !== null) {
                         this.errors.push({
-                            msg: this.getName(node.children[0]) + ' needs ' + (retrieveInfo.argsCount - argsValueArr.length) + ' more args',
+                            msg: '"' + this.getName(node.children[0]) + '" ' + validResult,
                             range: node.range
                         });
-                    if (argsValueArr.length > retrieveInfo.argsCount)
-                        this.errors.push({
-                            msg: this.getName(node.children[0]) + ' has ' + (argsValueArr.length - retrieveInfo.argsCount) + ' too many args',
-                            range: node.range
-                        });
-                }
-                if (retrieveInfo.resultsCount) {
-                    if (resultsValueArr.length < retrieveInfo.resultsCount)
-                        this.errors.push({
-                            msg: this.getName(node.children[0]) + ' needs ' + (retrieveInfo.resultsCount - resultsValueArr.length) + ' more results',
-                            range: node.range
-                        });
-                    if (resultsValueArr.length > retrieveInfo.resultsCount)
-                        this.errors.push({
-                            msg: this.getName(node.children[0]) + ' has ' + (resultsValueArr.length - retrieveInfo.resultsCount) + ' many results',
-                            range: node.range
-                        });
+                    }
                 }
             }
             else if (typeof retrieveValue === 'boolean') {
@@ -275,7 +265,7 @@ package classes.Lang {
             var returnCode: String = '';
             if (errorCount === this.errors.length) {
                 if (typeof retrieveValue === 'function') {
-                    var funcResult: * = retrieveValue(argsValueArr, resultsValueArr);
+                    var funcResult: * = retrieveValue.apply(retrieveSelf, argsValueArr.concat(resultsValueArr));
                     // Handle selecting from results here
                     if (typeof funcResult === 'object' && 'selector' in funcResult && resultsProduct.value[funcResult.selector]) {
                         returnValue = resultsProduct.value[funcResult.selector].value;
@@ -329,7 +319,7 @@ package classes.Lang {
                     returnCode = retrieveCode;
                 }
 
-                if (retrieveInfo && retrieveInfo.toCode) {
+                if (retrieveInfo && retrieveInfo.toCode !== null) {
                     returnCode = retrieveInfo.toCode(argsCodeArr, resultsCodeArr);
                 }
             }

@@ -13,6 +13,13 @@ package classes.Descriptors {
         }
         
         protected function get owner(): Creature { return this.ownerObj.value; }
+
+        private static const hasOneOptionalNumberArgNoResults: Function = function(args: Array, results: Array): String {
+            if (args.length > 1) return "has too many arguments";
+            if (args.length === 1 && typeof args[0] !== 'number') return "first argument is need to be a number";
+            if (results.length > 0) return "has too many results";
+            return null;
+        };
         
         public function get height(): String {
             return this.owner.height();
@@ -445,43 +452,56 @@ package classes.Descriptors {
         public function get genitals(): String {
             return this.owner.crotchDescript();
         }
-        public function base(args: Array, results: Array): String { return this.sheathOrBase(args, results); }
-        public function cockBase(args: Array, results: Array): String { return this.sheathOrBase(args, results); }
-        public function sheath(args: Array, results: Array): String { return this.sheathOrBase(args, results); }
-        public function sheathDescript(args: Array, results: Array): String { return this.sheathOrBase(args, results); }
-        public function sheathOrBase(args: Array, results: Array): String {
-            return this.owner.sheathDescript(args[0]);
+        public const base__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function base(arg1: * = 0): String { return this.sheathOrBase(arg1); }
+        public const cockBase__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockBase(arg1: * = 0): String { return this.sheathOrBase(arg1); }
+        public const sheath__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function sheath(arg1: * = 0): String { return this.sheathOrBase(arg1); }
+        public const sheathDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function sheathDescript(arg1: * = 0): String { return this.sheathOrBase(arg1); }
+        public const sheathOrBase__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function sheathOrBase(arg1: * = 0): String {
+            return this.owner.sheathDescript(arg1);
         }
         public function get biggestSheath(): String { return this.sheathBiggest; }
         public function get sheathBiggest(): String {
             return this.owner.sheathDescript(this.owner.biggestCockIndex());
         }
-        public function knot(args: Array, results: Array): String { return this.knotOrBase(args, results); }
-        public function knotOrBase(args: Array, results: Array): String {
-            return this.owner.knotDescript(args[0]);
+        public const knot__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function knot(arg1: * = 0): String { return this.knotOrBase(arg1); }
+        public const knotOrBase__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function knotOrBase(arg1: * = 0): String {
+            return this.owner.knotDescript(arg1);
         }
-        public function knots(args: Array, results: Array): String {
-            return (this.owner.hasCocks() ? plural(this.owner.knotDescript(args[0])) : this.owner.knotDescript(args[0]));
+        public const knots__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function knots(arg1: * = 0): String {
+            return (this.owner.hasCocks() ? plural(this.owner.knotDescript(arg1)) : this.owner.knotDescript(arg1));
         }
         public function get knotBiggest(): String {
             return this.owner.knotDescript(this.owner.biggestCockIndex());
         }
-        public function sheathOrKnot(args: Array, results: Array): String {
-            return this.owner.sheathOrKnot(args[0]);
+        public const sheathOrKnot__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function sheathOrKnot(arg1: * = 0): String {
+            return this.owner.sheathOrKnot(arg1);
         }
-        public function knotOrSheath(args: Array, results: Array): String {
-            return this.owner.knotOrSheath(args[0]);
+        public const knotOrSheath__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function knotOrSheath(arg1: * = 0): String {
+            return this.owner.knotOrSheath(arg1);
         }
-        public function knotBallsHilt(args: Array, results: Array): String {
-            return this.owner.knotBallsHilt(args[0]);
+        public const knotBallsHilt__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function knotBallsHilt(arg1: * = 0): String {
+            return this.owner.knotBallsHilt(arg1);
         }
         public function get multiCockDescript(): String { return this.multiCocks; }
         public function get multiCocks(): String {
             return this.owner.multiCockDescript();
         }
-        public function cockLength(args: Array, results: Array): String { return this.cocklength(args, results); }
-        public function cocklength(args: Array, results: Array): String {
-            return num2Text(Math.floor(this.owner.cLength(args[0])));
+        public const cockLength__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockLength(arg1: * = 0): String { return this.cocklength(arg1); }
+        public const cocklength__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cocklength(arg1: * = 0): String {
+            return num2Text(Math.floor(this.owner.cLength(arg1)));
         }
         public function get cockCount(): String {
             return num2Text(this.owner.cocks.length);
@@ -496,13 +516,17 @@ package classes.Descriptors {
         public function get dicksLight(): String {
             return this.owner.cocksDescriptLight();
         }
-        public function cocksIsAre(args: Array, results: Array): String { return this.dicksIsAre(args, results); }
-        public function dicksIsAre(args: Array, results: Array): String {
-            return (this.owner.hasCocks() ? this.owner.cocksDescript() + " are" : this.owner.cockDescript(args[0]) + " is");
+        public const cocksIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cocksIsAre(arg1: * = 0): String { return this.dicksIsAre(arg1); }
+        public const dicksIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function dicksIsAre(arg1: * = 0): String {
+            return (this.owner.hasCocks() ? this.owner.cocksDescript() + " are" : this.owner.cockDescript(arg1) + " is");
         }
-        public function cocksLightIsAre(args: Array, results: Array): String { return this.dicksLightIsAre(args, results); }
-        public function dicksLightIsAre(args: Array, results: Array): String {
-            return (this.owner.hasCocks() ? this.owner.cocksDescriptLight() + " are" : this.owner.simpleCockNoun(args[0]) + " is");
+        public const cocksLightIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cocksLightIsAre(arg1: * = 0): String { return this.dicksLightIsAre(arg1); }
+        public const dicksLightIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function dicksLightIsAre(arg1: * = 0): String {
+            return (this.owner.hasCocks() ? this.owner.cocksDescriptLight() + " are" : this.owner.simpleCockNoun(arg1) + " is");
         }
         public function get cocksSimple(): String { return this.cocksNounSimple; }
         public function get cocksShort(): String { return this.cocksNounSimple; }
@@ -510,54 +534,77 @@ package classes.Descriptors {
         public function get cocksNounSimple(): String {
             return this.owner.simpleCocksNoun();
         }
-        public function cockComplex(args: Array, results: Array): String { return this.cockNounComplex(args, results); }
-        public function cockNounComplex(args: Array, results: Array): String {
-            return this.owner.cockNounComplex(args[0]);
+        public const cockComplex__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockComplex(arg1: * = 0): String { return this.cockNounComplex(arg1); }
+        public const cockNounComplex__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockNounComplex(arg1: * = 0): String {
+            return this.owner.cockNounComplex(arg1);
         }
-        public function cockLight(args: Array, results: Array): String { return this.cockNoun(args, results); }
-        public function cockSimple(args: Array, results: Array): String { return this.cockNoun(args, results); }
-        public function cockNounSimple(args: Array, results: Array): String { return this.cockNoun(args, results); }
-        public function cockShort(args: Array, results: Array): String { return this.cockNoun(args, results); }
-        public function cockNoun(args: Array, results: Array): String {
-            return this.owner.simpleCockNoun(args[0]);
+        public const cockLight__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockLight(arg1: * = 0): String { return this.cockNoun(arg1); }
+        public const cockSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockSimple(arg1: * = 0): String { return this.cockNoun(arg1); }
+        public const cockNounSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockNounSimple(arg1: * = 0): String { return this.cockNoun(arg1); }
+        public const cockShort__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockShort(arg1: * = 0): String { return this.cockNoun(arg1); }
+        public const cockNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockNoun(arg1: * = 0): String {
+            return this.owner.simpleCockNoun(arg1);
         }
-        public function dicksNounIsAre(args: Array, results: Array): String { return this.cocksNounIsAre(args, results); }
-        public function cocksNounIsAre(args: Array, results: Array): String {
-            return (this.owner.hasCocks() ? this.owner.simpleCocksNoun() + " are" : this.owner.simpleCockNoun(args[0]) + " is");
+        public const dicksNounIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function dicksNounIsAre(arg1: * = 0): String { return this.cocksNounIsAre(arg1); }
+        public const cocksNounIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cocksNounIsAre(arg1: * = 0): String {
+            return (this.owner.hasCocks() ? this.owner.simpleCocksNoun() + " are" : this.owner.simpleCockNoun(arg1) + " is");
         }
         public function get cockNounBiggest(): String {
             return this.owner.simpleCockNoun(this.owner.biggestCockIndex());
         }
-        public function cockSkin(args: Array, results: Array): String { return this.dickSkin(args, results); }
-        public function dickSkin(args: Array, results: Array): String {
-            return this.owner.cockSkin(args[0]);
+        public const cockSkin__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockSkin(arg1: * = 0): String { return this.dickSkin(arg1); }
+        public const dickSkin__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function dickSkin(arg1: * = 0): String {
+            return this.owner.cockSkin(arg1);
         }
-        public function cockColor(args: Array, results: Array): String { return this.dickColor(args, results); }
-        public function dickColor(args: Array, results: Array): String {
-            return this.owner.cockColor(args[0]);
+        public const cockColor__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockColor(arg1: * = 0): String { return this.dickColor(arg1); }
+        public const dickColor__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function dickColor(arg1: * = 0): String {
+            return this.owner.cockColor(arg1);
         }
-        public function vaginaColor(args: Array, results: Array): String { return this.pussyColor(args, results); }
-        public function cuntColor(args: Array, results: Array): String { return this.pussyColor(args, results); }
-        public function pussyColor(args: Array, results: Array): String {
-            return this.owner.vaginaColor(args[0]);
+        public const vaginaColor__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaColor(arg1: * = 0): String { return this.pussyColor(arg1); }
+        public const cuntColor__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cuntColor(arg1: * = 0): String { return this.pussyColor(arg1); }
+        public const pussyColor__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussyColor(arg1: * = 0): String {
+            return this.owner.vaginaColor(arg1);
         }
-        public function cockHead(args: Array, results: Array): String { return this.cockhead(args, results); }
-        public function cockhead(args: Array, results: Array): String {
-            return this.owner.cockHead(args[0]);
+        public const cockHead__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockHead(arg1: * = 0): String { return this.cockhead(arg1); }
+        public const cockhead__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockhead(arg1: * = 0): String {
+            return this.owner.cockHead(arg1);
         }
-        public function cockHeadNoun(args: Array, results: Array): String {
-            return this.owner.cockHeadNoun(args[0]);
+        public const cockHeadNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockHeadNoun(arg1: * = 0): String {
+            return this.owner.cockHeadNoun(arg1);
         }
-        public function cockHeads(args: Array, results: Array): String { return this.cockheads(args, results); }
-        public function cockheads(args: Array, results: Array): String {
-            return this.owner.cockHeads(args[0]);
+        public const cockHeads__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockHeads(arg1: * = 0): String { return this.cockheads(arg1); }
+        public const cockheads__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockheads(arg1: * = 0): String {
+            return this.owner.cockHeads(arg1);
         }
         public function get cockHeadsNoun(): String {
             return this.owner.cockHeadsNoun();
         }
-        public function cockDescript(args: Array, results: Array): String { return this.cock(args, results); }
-        public function cock(args: Array, results: Array): String {
-            return this.owner.cockDescript(args[0]);
+        public const cockDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockDescript(arg1: * = 0): String { return this.cock(arg1); }
+        public const cock__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cock(arg1: * = 0): String {
+            return this.owner.cockDescript(arg1);
         }
         public function get biggestCockDescript(): String { return this.cockBiggest; }
         public function get biggestCock(): String { return this.cockBiggest; }
@@ -615,17 +662,23 @@ package classes.Descriptors {
         public function get cockTails(): String {
             return this.owner.tailCocksDescript();
         }
-        public function cockOrStrapon(args: Array, results: Array): String { return this.cockOrHardlight(args, results); }
-        public function cockOrHardlight(args: Array, results: Array): String {
-            return this.owner.cockOrStrapon(args[0],0);
+        public const cockOrStrapon__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrStrapon(arg1: * = -3): String { return this.cockOrHardlight(arg1); }
+        public const cockOrHardlight__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrHardlight(arg1: * = -3): String {
+            return this.owner.cockOrStrapon(arg1,0);
         }
-        public function cockOrStraponNoun(args: Array, results: Array): String { return this.cockOrHardlightNoun(args, results); }
-        public function cockOrHardlightNoun(args: Array, results: Array): String {
-            return this.owner.cockOrStrapon(args[0],-1);
+        public const cockOrStraponNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrStraponNoun(arg1: * = -3): String { return this.cockOrHardlightNoun(arg1); }
+        public const cockOrHardlightNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrHardlightNoun(arg1: * = -3): String {
+            return this.owner.cockOrStrapon(arg1,-1);
         }
-        public function cockOrStraponFull(args: Array, results: Array): String { return this.cockOrHardlightFull(args, results); }
-        public function cockOrHardlightFull(args: Array, results: Array): String {
-            return this.owner.cockOrStrapon(args[0],1);
+        public const cockOrStraponFull__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrStraponFull(arg1: * = -3): String { return this.cockOrHardlightFull(arg1); }
+        public const cockOrHardlightFull__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrHardlightFull(arg1: * = -3): String {
+            return this.owner.cockOrStrapon(arg1,1);
         }
         public function get hardlightCock(): String {
             return this.owner.cockOrStrapon(-1,0);
@@ -636,39 +689,52 @@ package classes.Descriptors {
         public function get hardlightCockFull(): String {
             return this.owner.cockOrStrapon(-1,1);
         }
-        public function cockOrStraponHead(args: Array, results: Array): String {
-            return this.owner.cockOrStraponHead(args[0]);
+        public const cockOrStraponHead__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockOrStraponHead(arg1: * = -3): String {
+            return this.owner.cockOrStraponHead(arg1);
         }
         public function get cockOrVag(): String {
             return this.owner.cockOrVag();
         }
-        public function nippleNoun(args: Array, results: Array): String {
-            return this.owner.nippleNoun(args[0]);
+        public const nippleNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nippleNoun(arg1: * = 0): String {
+            return this.owner.nippleNoun(arg1);
         }
-        public function nipplesNoun(args: Array, results: Array): String {
-            return this.owner.nipplesNoun(args[0]);
+        public const nipplesNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipplesNoun(arg1: * = 0): String {
+            return this.owner.nipplesNoun(arg1);
         }
-        public function nippleNounSimple(args: Array, results: Array): String {
-            return this.owner.nippleNoun(args[0], true);
+        public const nippleNounSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nippleNounSimple(arg1: * = 0): String {
+            return this.owner.nippleNoun(arg1, true);
         }
-        public function nipplesNounSimple(args: Array, results: Array): String {
-            return this.owner.nipplesNoun(args[0], true);
+        public const nipplesNounSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipplesNounSimple(arg1: * = 0): String {
+            return this.owner.nipplesNoun(arg1, true);
         }
-        public function nipple(args: Array, results: Array): String { return this.lipple(args, results); }
-        public function nippleDescript(args: Array, results: Array): String { return this.lipple(args, results); }
-        public function lipple(args: Array, results: Array): String {
-            return this.owner.nippleDescript(args[0]);
+        public const nipple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipple(arg1: * = 0): String { return this.lipple(arg1); }
+        public const nippleDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nippleDescript(arg1: * = 0): String { return this.lipple(arg1); }
+        public const lipple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function lipple(arg1: * = 0): String {
+            return this.owner.nippleDescript(arg1);
         }
-        public function nipples(args: Array, results: Array): String { return this.lipples(args, results); }
-        public function nipplesDescript(args: Array, results: Array): String { return this.lipples(args, results); }
-        public function lipples(args: Array, results: Array): String {
-            return this.owner.nipplesDescript(args[0]);
+        public const nipples__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipples(arg1: * = 0): String { return this.lipples(arg1); }
+        public const nipplesDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipplesDescript(arg1: * = 0): String { return this.lipples(arg1); }
+        public const lipples__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function lipples(arg1: * = 0): String {
+            return this.owner.nipplesDescript(arg1);
         }
-        public function milkyNipple(args: Array, results: Array): String {
-            return this.owner.nippleDescript(args[0], false, true);
+        public const milkyNipple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function milkyNipple(arg1: * = 0): String {
+            return this.owner.nippleDescript(arg1, false, true);
         }
-        public function milkyNipples(args: Array, results: Array): String {
-            return this.owner.nipplesDescript(args[0], true);
+        public const milkyNipples__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function milkyNipples(arg1: * = 0): String {
+            return this.owner.nipplesDescript(arg1, true);
         }
         public function get nippleCuntDescript(): String { return this.cuntNipple; }
         public function get nippleCunt(): String { return this.cuntNipple; }
@@ -696,21 +762,29 @@ package classes.Descriptors {
         public function get nipplePiercings(): String {
             return "nipple piercings"; // 9999
         }
-        public function nippleHarden(args: Array, results: Array): String { return this.nipplesHarden(args, results); }
-        public function nipplesHarden(args: Array, results: Array): String {
-            return this.owner.nipplesErect(args[0]);
+        public const nippleHarden__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nippleHarden(arg1: * = 0): String { return this.nipplesHarden(arg1); }
+        public const nipplesHarden__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipplesHarden(arg1: * = 0): String {
+            return this.owner.nipplesErect(arg1);
         }
-        public function nippleHardening(args: Array, results: Array): String { return this.nipplesHardening(args, results); }
-        public function nipplesHardening(args: Array, results: Array): String {
-            return this.owner.nipplesErect(args[0], true);
+        public const nippleHardening__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nippleHardening(arg1: * = 0): String { return this.nipplesHardening(arg1); }
+        public const nipplesHardening__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function nipplesHardening(arg1: * = 0): String {
+            return this.owner.nipplesErect(arg1, true);
         }
-        public function areola(args: Array, results: Array): String { return this.areolaDescript(args, results); }
-        public function areolaDescript(args: Array, results: Array): String {
-            return this.owner.areolaDescript(args[0]);
+        public const areola__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function areola(arg1: * = 0): String { return this.areolaDescript(arg1); }
+        public const areolaDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function areolaDescript(arg1: * = 0): String {
+            return this.owner.areolaDescript(arg1);
         }
-        public function areolae(args: Array, results: Array): String { return this.areolaeDescript(args, results); }
-        public function areolaeDescript(args: Array, results: Array): String {
-            return this.owner.areolaeDescript(args[0]);
+        public const areolae__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function areolae(arg1: * = 0): String { return this.areolaeDescript(arg1); }
+        public const areolaeDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function areolaeDescript(arg1: * = 0): String {
+            return this.owner.areolaeDescript(arg1);
         }
         public function get eachCock(): String {
             return this.owner.eachCock();
@@ -724,9 +798,11 @@ package classes.Descriptors {
         public function get oneCockHead(): String {
             return this.owner.oneCockHead();
         }
-        public function erectCock(args: Array, results: Array): String { return this.flaccidCock(args, results); }
-        public function flaccidCock(args: Array, results: Array): String {
-            return this.owner.cockDescript(args[0], true);
+        public const erectCock__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function erectCock(arg1: * = 0): String { return this.flaccidCock(arg1); }
+        public const flaccidCock__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function flaccidCock(arg1: * = 0): String {
+            return this.owner.cockDescript(arg1, true);
         }
         public function get erectCocks(): String { return this.flaccidCocks; }
         public function get flaccidCocks(): String {
@@ -786,25 +862,37 @@ package classes.Descriptors {
         public function get chest(): String {
             return this.owner.chestDesc();
         }
-        public function chestSimple(args: Array, results: Array): String { return this.breastsNoun(args, results); }
-        public function chestNoun(args: Array, results: Array): String { return this.breastsNoun(args, results); }
-        public function breastsNoun(args: Array, results: Array): String {
-            return this.owner.chestNoun(args[0]);
+        public const chestSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function chestSimple(arg1: * = 0): String { return this.breastsNoun(arg1); }
+        public const chestNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function chestNoun(arg1: * = 0): String { return this.breastsNoun(arg1); }
+        public const breastsNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastsNoun(arg1: * = 0): String {
+            return this.owner.chestNoun(arg1);
         }
-        public function breastNoun(args: Array, results: Array): String { return this.breast(args, results); }
-        public function breast(args: Array, results: Array): String {
-            return this.owner.breastNoun(args[0]);
+        public const breastNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastNoun(arg1: * = 0): String { return this.breast(arg1); }
+        public const breast__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breast(arg1: * = 0): String {
+            return this.owner.breastNoun(arg1);
         }
-        public function breastNounChaste(args: Array, results: Array): String { return this.breastDry(args, results); }
-        public function breastChaste(args: Array, results: Array): String { return this.breastDry(args, results); }
-        public function breastNounDry(args: Array, results: Array): String { return this.breastDry(args, results); }
-        public function breastDry(args: Array, results: Array): String {
-            return this.owner.breastNoun(args[0], true);
+        public const breastNounChaste__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastNounChaste(arg1: * = 0): String { return this.breastDry(arg1); }
+        public const breastChaste__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastChaste(arg1: * = 0): String { return this.breastDry(arg1); }
+        public const breastNounDry__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastNounDry(arg1: * = 0): String { return this.breastDry(arg1); }
+        public const breastDry__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastDry(arg1: * = 0): String {
+            return this.owner.breastNoun(arg1, true);
         }
-        public function cupSize(args: Array, results: Array): String { return this.breastCupSize(args, results); }
-        public function breastCup(args: Array, results: Array): String { return this.breastCupSize(args, results); }
-        public function breastCupSize(args: Array, results: Array): String {
-            return this.owner.breastCup(args[0]);
+        public const cupSize__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cupSize(arg1: * = 0): String { return this.breastCupSize(arg1); }
+        public const breastCup__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastCup(arg1: * = 0): String { return this.breastCupSize(arg1); }
+        public const breastCupSize__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastCupSize(arg1: * = 0): String {
+            return this.owner.breastCup(arg1);
         }
         public function get allChestDescript(): String { return this.chestFull; }
         public function get fullChest(): String { return this.chestFull; }
@@ -814,17 +902,22 @@ package classes.Descriptors {
         public function get biggestBreastDescript(): String {
             return this.owner.biggestBreastDescript();
         }
-        public function breastDescript(args: Array, results: Array): String { return this.tits(args, results); }
-        public function breasts(args: Array, results: Array): String { return this.tits(args, results); }
-        public function boobs(args: Array, results: Array): String { return this.tits(args, results); }
-        public function tits(args: Array, results: Array): String {
-            return this.owner.breastDescript(args[0]);
+        public const breastDescript__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breastDescript(arg1: * = 0): String { return this.tits(arg1); }
+        public const breasts__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function breasts(arg1: * = 0): String { return this.tits(arg1); }
+        public const boobs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function boobs(arg1: * = 0): String { return this.tits(arg1); }
+        public const tits__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function tits(arg1: * = 0): String {
+            return this.owner.breastDescript(arg1);
         }
         public function get lowestBreasts(): String {
             return this.owner.breastDescript(this.owner.bRows()-1);
         }
-        public function cockClit(args: Array, results: Array): String {
-            return this.owner.cockClit(args[0]);
+        public const cockClit__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockClit(arg1: * = 0): String {
+            return this.owner.cockClit(arg1);
         }
         public function get anus(): String { return this.butthole; }
         public function get assholeDescript(): String { return this.butthole; }
@@ -871,28 +964,40 @@ package classes.Descriptors {
         public function get thighs(): String {
             return this.owner.thighsDescript();
         }
-        public function vagina(args: Array, results: Array): String { return this.cunt(args, results); }
-        public function pussy(args: Array, results: Array): String { return this.cunt(args, results); }
-        public function cunt(args: Array, results: Array): String {
-            return this.owner.vaginaDescript(args[0]);
+        public const vagina__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vagina(arg1: * = 0): String { return this.cunt(arg1); }
+        public const pussy__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussy(arg1: * = 0): String { return this.cunt(arg1); }
+        public const cunt__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cunt(arg1: * = 0): String {
+            return this.owner.vaginaDescript(arg1);
         }
         //Complex Noun
-        public function vaginaNounComplex(args: Array, results: Array): String { return this.pussyNounComplex(args, results); }
-        public function pussyNounComplex(args: Array, results: Array): String {
-            return this.owner.vaginaNounComplex(args[0]);
+        public const vaginaNounComplex__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaNounComplex(arg1: * = 0): String { return this.pussyNounComplex(arg1); }
+        public const pussyNounComplex__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussyNounComplex(arg1: * = 0): String {
+            return this.owner.vaginaNounComplex(arg1);
         }
         //Simple Noun
-        public function vaginaSimple(args: Array, results: Array): String { return this.vaginaNounSimple(args, results); }
-        public function pussySimple(args: Array, results: Array): String { return this.vaginaNounSimple(args, results); }
-        public function cuntSimple(args: Array, results: Array): String { return this.vaginaNounSimple(args, results); }
-        public function vaginaNounSimple(args: Array, results: Array): String {
-            return this.owner.vaginaNounSimple(args[0]);
+        public const vaginaSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaSimple(arg1: * = 0): String { return this.vaginaNounSimple(arg1); }
+        public const pussySimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussySimple(arg1: * = 0): String { return this.vaginaNounSimple(arg1); }
+        public const cuntSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cuntSimple(arg1: * = 0): String { return this.vaginaNounSimple(arg1); }
+        public const vaginaNounSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaNounSimple(arg1: * = 0): String {
+            return this.owner.vaginaNounSimple(arg1);
         }
         //Generic cuntnoun
-        public function vaginaNoun(args: Array, results: Array): String { return this.cuntNoun(args, results); }
-        public function pussyNoun(args: Array, results: Array): String { return this.cuntNoun(args, results); }
-        public function cuntNoun(args: Array, results: Array): String {
-            return this.owner.vaginaNounDescript(args[0]);
+        public const vaginaNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaNoun(arg1: * = 0): String { return this.cuntNoun(arg1); }
+        public const pussyNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussyNoun(arg1: * = 0): String { return this.cuntNoun(arg1); }
+        public const cuntNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cuntNoun(arg1: * = 0): String {
+            return this.owner.vaginaNounDescript(arg1);
         }
         public function get multiCunt(): String { return this.multiVagina; }
         public function get multiCunts(): String { return this.multiVagina; }
@@ -945,34 +1050,48 @@ package classes.Descriptors {
         public function get pussiesLightIsAre(): String {
             return this.owner.simpleVaginasNoun() + (this.owner.hasVaginas() ?" are" : " is");
         }    
-        public function vagOrAss(args: Array, results: Array): String { return this.pussyOrAsshole(args, results); }
-        public function vagOrAsshole(args: Array, results: Array): String { return this.pussyOrAsshole(args, results); }
-        public function vaginaOrAss(args: Array, results: Array): String { return this.pussyOrAsshole(args, results); }
-        public function vaginaOrAsshole(args: Array, results: Array): String { return this.pussyOrAsshole(args, results); }
-        public function pussyOrAss(args: Array, results: Array): String { return this.pussyOrAsshole(args, results); }
-        public function pussyOrAsshole(args: Array, results: Array): String {
-            return this.owner.vagOrAss(args[0]);
+        public const vagOrAss__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vagOrAss(arg1: * = 0): String { return this.pussyOrAsshole(arg1); }
+        public const vagOrAsshole__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vagOrAsshole(arg1: * = 0): String { return this.pussyOrAsshole(arg1); }
+        public const vaginaOrAss__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaOrAss(arg1: * = 0): String { return this.pussyOrAsshole(arg1); }
+        public const vaginaOrAsshole__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vaginaOrAsshole(arg1: * = 0): String { return this.pussyOrAsshole(arg1); }
+        public const pussyOrAss__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussyOrAss(arg1: * = 0): String { return this.pussyOrAsshole(arg1); }
+        public const pussyOrAsshole__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function pussyOrAsshole(arg1: * = 0): String {
+            return this.owner.vagOrAss(arg1);
         }
-        public function vagOrAssNoun(args: Array, results: Array): String { return this.vagOrAssSimple(args, results); }
-        public function vagOrAssSimple(args: Array, results: Array): String {
-            return this.owner.vagOrAssNoun(args[0]);
+        public const vagOrAssNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vagOrAssNoun(arg1: * = 0): String { return this.vagOrAssSimple(arg1); }
+        public const vagOrAssSimple__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function vagOrAssSimple(arg1: * = 0): String {
+            return this.owner.vagOrAssNoun(arg1);
         }
-        public function womb(args: Array, results: Array): String { return this.uterus(args, results); }
-        public function uterus(args: Array, results: Array): String {
-            return this.owner.wombDescript(args[0]);
+        public const womb__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function womb(arg1: * = 0): String { return this.uterus(arg1); }
+        public const uterus__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function uterus(arg1: * = 0): String {
+            return this.owner.wombDescript(arg1);
         }
         public function get wombs(): String { return this.uteri; }
         public function get uteruses(): String { return this.uteri; }
         public function get uteri(): String {
             return this.owner.wombsDescript();
         }
-        public function clit(args: Array, results: Array): String { return this.clitoris(args, results); }
-        public function clitoris(args: Array, results: Array): String {
-            return this.owner.clitDescript(args[0]);
+        public const clit__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clit(arg1: * = 0): String { return this.clitoris(arg1); }
+        public const clitoris__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clitoris(arg1: * = 0): String {
+            return this.owner.clitDescript(arg1);
         }
-        public function clitNoun(args: Array, results: Array): String { return this.clitorisNoun(args, results); }
-        public function clitorisNoun(args: Array, results: Array): String {
-            return this.owner.clitDescript(args[0], true);
+        public const clitNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clitNoun(arg1: * = 0): String { return this.clitorisNoun(arg1); }
+        public const clitorisNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clitorisNoun(arg1: * = 0): String {
+            return this.owner.clitDescript(arg1, true);
         }
         public function get biggestCuntClit(): String {
             return this.owner.clitDescript(this.owner.biggestVaginaIndex());
@@ -985,17 +1104,21 @@ package classes.Descriptors {
         public function get oneClitoris(): String {
             return this.owner.oneClit();
         }
-        public function oneClitPerVagina(args: Array, results: Array): String {
-            return this.owner.oneClitPerVagina(args[0]);
+        public const oneClitPerVagina__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function oneClitPerVagina(arg1: * = 0): String {
+            return this.owner.oneClitPerVagina(arg1);
         }
-        public function clits(args: Array, results: Array): String {
-            return this.owner.clitsDescript(args[0]);
+        public const clits__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clits(arg1: * = -1): String {
+            return this.owner.clitsDescript(arg1);
         }
-        public function clitsNoun(args: Array, results: Array): String {
-            return this.owner.clitsDescript(args[0], true);
+        public const clitsNoun__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clitsNoun(arg1: * = -1): String {
+            return this.owner.clitsDescript(arg1, true);
         }
-        public function clitsIsAre(args: Array, results: Array): String {
-            return (this.owner.totalClits() != 1 ? this.owner.clitsDescript(args[0]) + " are" : this.owner.clitDescript(args[0]) + " is");
+        public const clitsIsAre__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function clitsIsAre(arg1: * = 0): String {
+            return (this.owner.totalClits() != 1 ? this.owner.clitsDescript(arg1) + " are" : this.owner.clitDescript(arg1) + " is");
         }
         public function get tailVagina(): String { return this.tailgina; }
         public function get tailCunt(): String { return this.tailgina; }
@@ -1292,14 +1415,19 @@ package classes.Descriptors {
         public function get handsomeCute(): String {
             return this.owner.mf("handsome", "cute");
         }
-        public function cockShape(args: Array, results: Array): String { return this.cocktype(args, results); }
-        public function cockshape(args: Array, results: Array): String { return this.cocktype(args, results); }
-        public function cockType(args: Array, results: Array): String { return this.cocktype(args, results); }
-        public function cocktype(args: Array, results: Array): String {
-            return this.owner.cockShape(args[0]);
+        public const cockShape__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockShape(arg1: * = 0): String { return this.cocktype(arg1); }
+        public const cockshape__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockshape(arg1: * = 0): String { return this.cocktype(arg1); }
+        public const cockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cockType(arg1: * = 0): String { return this.cocktype(arg1); }
+        public const cocktype__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function cocktype(arg1: * = 0): String {
+            return this.owner.cockShape(arg1);
         }
-        public function accurateCockName(args: Array, results: Array): String {
-            return this.owner.accurateCockName(args[0]);
+        public const accurateCockName__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgNoResults);
+        public function accurateCockName(arg1: * = 0): String {
+            return this.owner.accurateCockName(arg1);
         }
         public function get tailGenital(): String { return this.genitail; }
         public function get genitalTail(): String { return this.genitail; }
