@@ -25,6 +25,8 @@ package classes.Lang {
         public function Editor() {
             this.tits = new TiTS();
             this.addChild(this.tits); // Game doesn't load until added to stage
+            this.tits.visible = false;
+            this.visible = true;
 
             // Things not initialized by default
             this.tits.initializeNPCs();
