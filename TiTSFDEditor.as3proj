@@ -55,7 +55,6 @@
     <element path="style_uiscroll.swc" />
     <element path="lib\AndroidFullScreen.ane" />
     <element path="lib\adt\AndroidFullScreen.ane" />
-    <element path="libraries\flash.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -75,7 +74,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="classes\Lang\Editor.as" />
+    <compile path="editor\Editor.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
