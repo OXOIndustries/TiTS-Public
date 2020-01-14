@@ -3,6 +3,7 @@ package editor {
     import classes.GameData.*;
     import classes.ShittyShips.Casstech;
     import editor.Descriptors.TiTSDescriptor;
+    import editor.Lang.Errors.LangError;
     import editor.Lang.Interpret.InterpretResult;
     import editor.Lang.Interpret.Interpreter;
     import editor.Lang.Lex.Lexer;
@@ -140,30 +141,14 @@ package editor {
             const parserResult: ParseResult = parser.parse(tokens, text);
             const interpretResult: InterpretResult = interpreter.interpret(parserResult.root, globals);
 
-            var errorText: String;
-            if (typeof interpretResult === 'string') {
-                outputBox.htmlText = '';
-                codeBox.text = '';
-                errorText = '';
-                for each (var error: Object in parserResult.errors)
-                    errorText += errorToText(error) + '\n';
-                errorText += interpretResult;
-                errorBox.htmlText = errorText;
-            }
-            else {
-                outputBox.htmlText = interpretResult.result;
-                codeBox.text = interpretResult.code;
-                errorText = '';
-                for each (error in parserResult.errors)
-                    errorText += errorToText(error) + '\n';
-                for each (error in interpretResult.errors)
-                    errorText += errorToText(error) + '\n';
-                errorBox.htmlText = errorText;
-            }
-        }
-        
-        public function errorToText(error: *): String {
-            return 'Error @ line: ' + error.range.start.line + ' col: ' + error.range.start.col + ' - ' + error.msg;
+            outputBox.htmlText = interpretResult.result;
+            codeBox.text = interpretResult.code;
+            var errorText: String = '';
+            for each (var error: LangError in parserResult.errors)
+                errorText += error + '\n';
+            for each (error in interpretResult.errors)
+                errorText += error + '\n';
+            errorBox.htmlText = errorText;
         }
     }
 }
