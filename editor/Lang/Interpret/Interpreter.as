@@ -138,10 +138,15 @@ package editor.Lang.Interpret {
             var name: String = '';
 
             var infoObj: * = null;
-            var identity: *;
+            var identity: String;
             var selfObj: * = null;
+            var caps: Boolean = false;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
+                if (identity.charAt(0).toLocaleUpperCase() === identity.charAt(0)) {
+                    caps = true;
+                    identity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
+                }
                 if (typeof obj !== 'object' || !(identity in obj)) {
                     this.errors.push(new LangError(
                         '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : ''),
@@ -168,6 +173,7 @@ package editor.Lang.Interpret {
                 {
                     value: obj,
                     self: selfObj,
+                    caps: caps,
                     info: infoObj
                 },
                 name
@@ -210,6 +216,7 @@ package editor.Lang.Interpret {
             var retrieveValue: * = retrieveProduct.value.value;
             var retrieveSelf: * = retrieveProduct.value.self;
             var retrieveInfo: FunctionInfo = retrieveProduct.value.info;
+            var retrieveCaps: Boolean = retrieveProduct.value.caps;
             var retrieveCode: String = retrieveProduct.code;
 
             var argsValueArr: Array = new Array();
@@ -323,6 +330,10 @@ package editor.Lang.Interpret {
                 if (retrieveInfo && retrieveInfo.toCode !== null) {
                     returnCode = retrieveInfo.toCode(argsCodeArr, resultsCodeArr);
                 }
+            }
+
+            if (retrieveCaps && returnValue.length > 0) {
+                returnValue = returnValue.charAt(0).toLocaleUpperCase() + returnValue.slice(1);
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
