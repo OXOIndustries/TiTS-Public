@@ -126,7 +126,7 @@ public function thyvaraGreet():void
 		output("\n\nThe dark green, spiky armor you can see covering most of her body is actually insectile chitin, and seems to frame her breasts and ass quite flatteringly, though both are covered by leather cups and straps that seem to make up her actual clothing. Her dark skin shows around the straps. She spots you approaching as the crowd disperses, her bright, blue eyes having an odd four-pointed star shaped pupil and dark brown sclera. Her cheeks are also covered in the same chitin as the rest of her body. She smiles at your approach, raising the metal flask in her hand as a greeting.");
 		output("\n\n<i>“Just missed story time, I’m afraid. But I could still go for a bit of a chat. I guess introductions are needed, first.”</i> She reaches out with her empty hand, which you take in a firm handshake. Her chitin is surprisingly smooth.");
 		output("\n\n<i>“Thyvara Rosanvond. Soon to be local hunting expert.”</i> You offer your name.");
-		output("\n\n<i>“[pc.name], [pc.class]. Nice to meet you.”</i> She nods and takes a swig from her flask, the light catching her short, green hair and highlighting the odd streak of purple.");
+		output("\n\n<i>“[pc.name], [pc.occupation]. Nice to meet you.”</i> She nods and takes a swig from her flask, the light catching her short, green hair and highlighting the odd streak of purple.");
 		output("\n\n<i>“So, what brings you out on the rush Steele?”</i>");
 		
 		processTime(5);

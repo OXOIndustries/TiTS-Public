@@ -1288,7 +1288,7 @@ public function yomaFirstDateProceedIV(wantCream:Boolean = true):void
 		output("talking about your earlier life");
 		break;
 	}
-	output(", as well the brief period of time you spent working as a [pc.class] before Victor’s passing. Yoma listens intently, interrupting you now and then to remind you to actually drink your hot chocolate before it goes cold, or to ask you to elaborate on something you’ve said.");
+	output(", as well the brief period of time you spent working as a [pc.occupation] before Victor’s passing. Yoma listens intently, interrupting you now and then to remind you to actually drink your hot chocolate before it goes cold, or to ask you to elaborate on something you’ve said.");
 	output("\n\nHe’s pleasantly warm, pushed up against you as he is, and even after you’ve finished your drink, you stay there, chattering away. ");
 	output("\n\nEventually though, after polishing up a "+ (pc.isMischievous() ? "highly exaggerated " : "") +"story about something embarrassing that your cousin did on one of [rival.hisHer] rare visits, you realize that you’ve been here easily an hour and it’s probably time you head out. Yoma doesn’t remove his arm from you "+(pc.tallness < 53 ? "though he does move it up to be around your shoulders now " : "")+"as you stroll through Tavros Station, still talking idly.");
 	output("\n\nAfter you’re quite certain you’ve walked off that hot chocolate, you start moving towards your ship again, not ignoring the little circles that Yoma’s been rubbing into your flesh and the grin that hints he’d like a little more than a quiet ride home.");
