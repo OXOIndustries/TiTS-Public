@@ -9,5 +9,9 @@ package editor.Lang.Errors {
             this.msg = msg;
             this.range = range;
         }
+
+        public function toString(): String {
+            return 'Error @ line: ' + this.range.start.line + ' col: ' + this.range.start.col + ' - ' + this.msg;
+        }
     }
 }
