@@ -1,6 +1,10 @@
 package editor.Descriptors {
     import classes.Creature;
     
+    /**
+     * This is used to limit the interpreter's access
+     * AraKei creature has a getDesc override
+     */
     public class AraKeiDescriptor extends CreatureDescriptor {
         public function AraKeiDescriptor(ownerObj: ObjectAccessor) {
             super(ownerObj);

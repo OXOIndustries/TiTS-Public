@@ -8,14 +8,24 @@ package editor.Lang.Interpret {
         private var errors: Vector.<LangError>;
         private var globals: Object;
 
+        /**
+         * Joins the values of a node's children with a "."
+         * @param node RetrieveNode
+         * @return
+         */
         private function getName(node: Node): String {
-            var values: * = [];
             for each (var child: * in node.children)
+            var values: Array = [];
                 values.push(child.value);
 
             return values.join('.');
         }
 
+        /**
+         * Escapes newline and quotes
+         * @param text
+         * @return
+         */
         private function escape(text: String): String {
             var escapedText: String = text;
             for each (var pair: Array in escapePairs) {
@@ -24,13 +34,25 @@ package editor.Lang.Interpret {
             return escapedText;
         }
 
+        /**
+         * Processes a node's children and returns the results in an array
+         * @param node
+         * @return
+         */
         private function processChildren(node: Node): Array {
-            var values: * = [];
+            var values: Array = [];
             for each (var child: * in node.children)
                 values.push(this.processNode(child));
             return values;
         }
 
+        /**
+         * Interprets a tree of Nodes
+         * All errors will be caught and placed into the result
+         * @param node The root node
+         * @param globals The memory/object to access
+         * @return
+         */
         public function interpret(node: Node, globals: Object): InterpretResult {
             this.errors = new Vector.<LangError>();
             this.globals = globals;
@@ -58,6 +80,11 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * Processes a node by its type
+         * @param node Node
+         * @return
+         */
         private function processNode(node: *): Product {
             switch (node.type) {
                 case NodeType.Identity: return this.evalIdentityNode(node);
@@ -108,7 +135,8 @@ package editor.Lang.Interpret {
         private function evalConcatNode(node: ConcatNode): Product {
             var values: * = this.processChildren(node);
 
-            var ranges: * = [];
+            // Squashes ranges
+            var ranges: Array = [];
             for each (var child: * in values)
                 if (child.range is Array)
                     for each (var subchild: * in child)
@@ -120,9 +148,9 @@ package editor.Lang.Interpret {
             var codeStr: String = '';
             for (var idx: int = 0; idx < values.length; idx++) {
                 valueStr += values[idx].value;
-                codeStr += values[idx].code;
-                if (idx < values.length - 1)
+                if (codeStr.length > 0)
                     codeStr += ' + ';
+                codeStr += values[idx].code;
             }
 
             return new Product(
@@ -143,10 +171,12 @@ package editor.Lang.Interpret {
             var caps: Boolean = false;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
+                // Determine if capitalization is needed
                 if (identity.charAt(0).toLocaleUpperCase() === identity.charAt(0)) {
                     caps = true;
                     identity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
                 }
+                // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
                     this.errors.push(new LangError(
                         '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : ''),
@@ -158,14 +188,16 @@ package editor.Lang.Interpret {
                         ''
                     );
                 }
-
+                // Check for <name>__info
                 if (idx === values.length - 1 && (identity + '__info') in obj) {
                     infoObj = obj[identity + '__info'];
                 }
 
                 selfObj = obj;
                 obj = obj[identity];
-                name += (name ? '.' : '') + identity;
+                if (name.length > 0)
+                    name += '.';
+                name += identity;
             }
 
             return new Product(
@@ -197,16 +229,24 @@ package editor.Lang.Interpret {
         }
 
         private function evalEvalNode(node: EvalNode): Product {
+            var errorMsg: String;
             if (node.children.length !== 3) {
-                this.errors.push(new LangError(
-                    'stack error',
-                    node.range
-                ));
-                return new Product(
-                    node.range,
-                    '',
-                    ''
-                );
+                errorMsg = 'incorrect amount of children for EvalNode';
+            }
+            else if (node.children[0].type !== NodeType.Retrieve) {
+                errorMsg = 'EvalNode children[0] was not a RetrieveNode';
+            }
+            else if (node.children[1].type !== NodeType.Args) {
+                errorMsg = 'EvalNode children[1] was not a ArgsNode';
+            }
+            else if (node.children[2].type !== NodeType.Results) {
+                errorMsg = 'EvalNode children[1] was not a ResultsNode';
+            }
+            
+            // Error checking
+            if (errorMsg !== null) {
+                this.errors.push(new LangError(errorMsg, node.range));
+                return new Product(node.range, '', '');
             }
 
             var retrieveProduct: Product = this.evalRetrieveNode(node.children[0]);
@@ -233,45 +273,34 @@ package editor.Lang.Interpret {
                 resultsCodeArr.push(child.code);
             }
 
-            var errorCount: int = this.errors.length;
-
             // Error checking
             if (typeof retrieveValue === 'function' && retrieveInfo) {
                 if (retrieveInfo.argResultValidator !== null) {
                     var validResult: * = retrieveInfo.argResultValidator(argsValueArr, resultsValueArr);
                     if (validResult !== null) {
-                        this.errors.push(new LangError(
-                            '"' + this.getName(node.children[0]) + '" ' + validResult,
-                            node.range
-                        ));
+                        errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
                     }
                 }
             }
             else if (typeof retrieveValue === 'boolean') {
                 if (resultsValueArr.length == 0) {
-                    this.errors.push(new LangError(
-                        this.getName(node.children[0]) + ' needs at least 1 result',
-                        node.range
-                    ));
+                    errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
                 }
                 else if (resultsValueArr.length > 2) {
-                    this.errors.push(new LangError(
-                        this.getName(node.children[0]) + ' can have up to 2 results',
-                        node.range
-                    ));
+                    errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
                 }
             }
             else if (typeof retrieveValue === 'object' || retrieveValue === null || retrieveValue === undefined) {
-                this.errors.push(new LangError(
-                    this.getName(node.children[0]) + ' cannot be displayed',
-                    node.range
-                ));
+                errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+            }
+            if (errorMsg !== null) {
+                this.errors.push(new LangError(errorMsg, node.range));
             }
 
             var returnValue: * = '';
             var returnRange: * = node.range;
             var returnCode: String = '';
-            if (errorCount === this.errors.length) {
+            if (errorMsg === null) {
                 if (typeof retrieveValue === 'function') {
                     var funcResult: * = retrieveValue.apply(retrieveSelf, argsValueArr.concat(resultsValueArr));
                     // Handle selecting from results here

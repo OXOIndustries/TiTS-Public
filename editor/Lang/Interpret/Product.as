@@ -1,5 +1,8 @@
 package editor.Lang.Interpret {
     internal class Product {
+        /**
+         * TextRange or Array of TextRange
+         */
         public var range: *;
         public var value: *;
         public var code: String;
