@@ -4,10 +4,10 @@ package editor.Lang.Nodes {
     public class Node {
         public var type: String;
         public var range: TextRange;
-        public var children: *;
+        public var children: Array;
         public var value: *;
             
-        public function Node(type: String, range: TextRange, children: *, value: *) { 
+        public function Node(type: String, range: TextRange, children: Array, value: *) { 
             this.type = type;
             this.range = range;
             this.children = children;

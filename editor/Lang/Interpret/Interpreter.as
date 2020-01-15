@@ -9,8 +9,8 @@ package editor.Lang.Interpret {
         private var globals: Object;
 
         private function getName(node: Node): String {
-            var values: * = [];
             for each (var child: * in node.children)
+            var values: Array = [];
                 values.push(child.value);
 
             return values.join('.');
@@ -25,7 +25,7 @@ package editor.Lang.Interpret {
         }
 
         private function processChildren(node: Node): Array {
-            var values: * = [];
+            var values: Array = [];
             for each (var child: * in node.children)
                 values.push(this.processNode(child));
             return values;
@@ -108,7 +108,8 @@ package editor.Lang.Interpret {
         private function evalConcatNode(node: ConcatNode): Product {
             var values: * = this.processChildren(node);
 
-            var ranges: * = [];
+            // Squashes ranges
+            var ranges: Array = [];
             for each (var child: * in values)
                 if (child.range is Array)
                     for each (var subchild: * in child)
@@ -120,9 +121,9 @@ package editor.Lang.Interpret {
             var codeStr: String = '';
             for (var idx: int = 0; idx < values.length; idx++) {
                 valueStr += values[idx].value;
-                codeStr += values[idx].code;
-                if (idx < values.length - 1)
+                if (codeStr.length > 0)
                     codeStr += ' + ';
+                codeStr += values[idx].code;
             }
 
             return new Product(
@@ -165,7 +166,9 @@ package editor.Lang.Interpret {
 
                 selfObj = obj;
                 obj = obj[identity];
-                name += (name ? '.' : '') + identity;
+                if (name.length > 0)
+                    name += '.';
+                name += identity;
             }
 
             return new Product(
@@ -197,16 +200,24 @@ package editor.Lang.Interpret {
         }
 
         private function evalEvalNode(node: EvalNode): Product {
+            var errorMsg: String;
             if (node.children.length !== 3) {
-                this.errors.push(new LangError(
-                    'stack error',
-                    node.range
-                ));
-                return new Product(
-                    node.range,
-                    '',
-                    ''
-                );
+                errorMsg = 'incorrect amount of children for EvalNode';
+            }
+            else if (node.children[0].type !== NodeType.Retrieve) {
+                errorMsg = 'EvalNode children[0] was not a RetrieveNode';
+            }
+            else if (node.children[1].type !== NodeType.Args) {
+                errorMsg = 'EvalNode children[1] was not a ArgsNode';
+            }
+            else if (node.children[2].type !== NodeType.Results) {
+                errorMsg = 'EvalNode children[1] was not a ResultsNode';
+            }
+            
+            // Error checking
+            if (errorMsg !== null) {
+                this.errors.push(new LangError(errorMsg, node.range));
+                return new Product(node.range, '', '');
             }
 
             var retrieveProduct: Product = this.evalRetrieveNode(node.children[0]);
@@ -233,45 +244,34 @@ package editor.Lang.Interpret {
                 resultsCodeArr.push(child.code);
             }
 
-            var errorCount: int = this.errors.length;
-
             // Error checking
             if (typeof retrieveValue === 'function' && retrieveInfo) {
                 if (retrieveInfo.argResultValidator !== null) {
                     var validResult: * = retrieveInfo.argResultValidator(argsValueArr, resultsValueArr);
                     if (validResult !== null) {
-                        this.errors.push(new LangError(
-                            '"' + this.getName(node.children[0]) + '" ' + validResult,
-                            node.range
-                        ));
+                        errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
                     }
                 }
             }
             else if (typeof retrieveValue === 'boolean') {
                 if (resultsValueArr.length == 0) {
-                    this.errors.push(new LangError(
-                        this.getName(node.children[0]) + ' needs at least 1 result',
-                        node.range
-                    ));
+                    errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
                 }
                 else if (resultsValueArr.length > 2) {
-                    this.errors.push(new LangError(
-                        this.getName(node.children[0]) + ' can have up to 2 results',
-                        node.range
-                    ));
+                    errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
                 }
             }
             else if (typeof retrieveValue === 'object' || retrieveValue === null || retrieveValue === undefined) {
-                this.errors.push(new LangError(
-                    this.getName(node.children[0]) + ' cannot be displayed',
-                    node.range
-                ));
+                errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+            }
+            if (errorMsg !== null) {
+                this.errors.push(new LangError(errorMsg, node.range));
             }
 
             var returnValue: * = '';
             var returnRange: * = node.range;
             var returnCode: String = '';
-            if (errorCount === this.errors.length) {
+            if (errorMsg === null) {
                 if (typeof retrieveValue === 'function') {
                     var funcResult: * = retrieveValue.apply(retrieveSelf, argsValueArr.concat(resultsValueArr));
                     // Handle selecting from results here
