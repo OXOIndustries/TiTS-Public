@@ -1268,7 +1268,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				else if(target.hornLength < 4) outputRouter(" A pair of bovine horns jut a full three inches from " + (target == pc ? "your":"[target.hisHer]") + " forehead.");
 				else if(target.hornLength < 5) outputRouter(" Two horns protrude through the [target.skin] of " + (target == pc ? "your":"[target.hisHer]") + " forehead. Each is about four inches in length and impossible to ignore.");
 				else if(target.hornLength < 6) outputRouter(" Two big, strong bovine horns jut from " + (target == pc ? "your":"[target.hisHer]") + " forehead. Their weight is a constant reminder just how much you look like a " + target.mf("bull","cow") + ".");
-				else if(target.hornLength < 8) outputRouter(" Roughly half a foot of powerful, bovine horn protrudes from " + (target == pc ? "your":"[target.hisHer]") + " skull. All " + (target == pc ? "you have":"[target.heShe] has") + " to do is lower " + (target == pc ? "your":"[target.hisHer]") + " head, and suddenly, " + (target == pc ? "you look":"[target.heShe] looks") + " quite dangerous.");
+				else if(target.hornLength < 8) outputRouter(" A pair of roughly half a foot of powerful, bovine horns protrude from " + (target == pc ? "your":"[target.hisHer]") + " skull. All " + (target == pc ? "you have":"[target.heShe] has") + " to do is lower " + (target == pc ? "your":"[target.hisHer]") + " head, and suddenly, " + (target == pc ? "you look":"[target.heShe] looks") + " quite dangerous.");
 				else if(target.hornLength < 12) outputRouter(" Two large horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving forwards like those of a bull.");
 				else if(target.hornLength < 20) outputRouter(" Two very large and dangerous looking horns sprout from " + (target == pc ? "your":"[target.hisHer]") + " head, curving forward and over a foot long. They have dangerous looking points.");
 				else outputRouter(" Two huge horns erupt from " + (target == pc ? "your":"[target.hisHer]") + " forehead, curving outward at first, then forwards. The weight of them is heavy, and they end in dangerous looking points.");
@@ -1470,19 +1470,19 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(". ");
 			if(target.hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)) outputRouter((target==pc?"You have":"[target.HeShe] has") + " rough [target.scaleColor] scales across " + (target==pc?"your":"[target.hisHer]") + " abdomen in a corset-like pattern");
 			break;
-		default:
-			if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
-			{
-				outputRouter(", sensually wrapped in a layer of");
-				if(target.statusEffectv1("Latex Skin") > 0)
-				{
-					if(target.statusEffectv1("Latex Skin") < 2) outputRouter(" semi-glossy");
-					else if(target.statusEffectv1("Latex Skin") < 3) outputRouter(" glossy");
-					else outputRouter(" extra-glossy");
-				}
-				outputRouter(" " + (target.skinType == GLOBAL.SKIN_TYPE_LATEX ? target.skinTone : target.skinFurScalesColor()) + " latex");
-			}
-			break;
+	}
+	if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
+	{
+		outputRouter(",");
+		if(target.skinType != GLOBAL.SKIN_TYPE_LATEX && target.hasStatusEffect("Rubber Wrapped")) outputRouter(" all");
+		outputRouter(" sensually wrapped in a layer of");
+		if(target.statusEffectv1("Latex Skin") > 0)
+		{
+			if(target.statusEffectv1("Latex Skin") < 2) outputRouter(" semi-glossy");
+			else if(target.statusEffectv1("Latex Skin") < 3) outputRouter(" glossy");
+			else outputRouter(" extra-glossy");
+		}
+		outputRouter(" " + (target.skinType == GLOBAL.SKIN_TYPE_LATEX ? target.skinTone : target.skinFurScalesColor()) + " latex");
 	}
 	
 	//WINGS!

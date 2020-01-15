@@ -455,7 +455,7 @@ public function yarastaIntroduction(nextScenes:*):void
 	output(" <i>“Very pleased to meet you. I’m Yarasta, a prefect at the thollum.”</i>");
 
 	output("\n\n<i>“[pc.name],”</i> you respond, taking the proffered hand.");
-	if(pc.isBimbo()) output(" <i>“Um, did you you say ‘perfect’?”</i>");
+	if(pc.isBimbo()) output(" <i>“Um, did you say ‘perfect’?”</i>");
 	else output("<i>“Did you say ‘prefect’?”</i>");
 
 	if(pc.myrScore() >= 4) output("\n\nYarasta looks quite confused as you shake hands. The police at your side elucidates. <i>“[pc.HeShe]’s an offworlder.”</i>");

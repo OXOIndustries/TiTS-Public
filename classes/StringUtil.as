@@ -104,15 +104,27 @@ package  classes
 			var nStr:String = "";
 			var q:String = "";
 			var r:String = "";
-			q = nStr.charAt(0);
-			if(q == "‘" || q == "“")
+			var i:int = 0;
+			q = value.charAt(i);
+			if(q == "<")
 			{
-				r = q;
-				nStr = nStr.substr(1);
+				var n:int = i;
+				for(n; n < (i + 3); n++)
+				{
+					if(value.charAt(n) == null) break;
+					r += value.charAt(n);
+				}
+				i = n;
+				q = value.charAt(i);
 			}
-			nStr += value.charAt(0).toUpperCase();
-			if (forceLower) nStr += value.substr(1).toLowerCase();
-			else nStr += value.substr(1);
+			if(q == "'" || q == "‘" || q == "“")
+			{
+				r += q;
+				i += 1;
+			}
+			nStr = value.charAt(i).toUpperCase();
+			if (forceLower) nStr += value.substr(i + 1).toLowerCase();
+			else nStr += value.substr(i + 1);
 			if(r.length > 0) nStr = r + nStr;
 			return nStr;
 		}

@@ -11,6 +11,7 @@ public function kqMinibossEncounter():Boolean
 {
 	if(flags["KQ_MINIBOSS_DOWNED"] == undefined)
 	{
+		flags["KQ_STEP"] = undefined;
 		author("Wsan");
 		showKQMiniboss();
 		output("\n\nYou stop suddenly, becoming aware of movement in the freighter up ahead. The figure doesn’t appear to possess any of your misgivings, approaching you with a mischievous if not outright smug smile across her smooth metallic face. Unarmed - and it is a <i>she</i> despite the hardening futanari cock throbbing between her curvy thighs, from the looks of it - she has feminine features and the commanding presence of a woman in charge, from the way she moves her faux-heeled feet to emphasize her assets to the confidence in her expression. You’re not her first fight.");

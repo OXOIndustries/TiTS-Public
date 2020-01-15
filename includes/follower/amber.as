@@ -3349,7 +3349,7 @@ public function amberAnnoSuckNGetFuck(vagIdx:int):void
 	amberAnnoHeader();
 
 	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
-
+	showImage("Moira_Anno_Amber");
 	output("You take Amber by the chin and kiss her deeply, locking lips with the surprised deertaur as her eyes widen. Anno continues past you unnoticed, kneeling beneath Amber while you keep her distracted. She’s so fun to kiss, " + (amberDumbfuckDoses() > 0 ? "eager and libidinous until all-out sexual aggression almost forces you a step back." : "both eager and a little shy until her libido tips the scales in favor of all-out sexual aggression.") + " Right on cue, she suddenly moans in your mouth and you see her eyes momentarily roll upwards before flicking back as she tries to turn her head.");
 	output("\n\n<i>“Uh-unh,”</i> you murmur, keeping her fixed in place while she moans again. <i>“You stay here and focus on me for now.”</i>");
 	output("\n\n<i>“Nnnnh,”</i> Amber groans lustily.");

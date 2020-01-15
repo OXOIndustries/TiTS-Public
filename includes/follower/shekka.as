@@ -85,6 +85,13 @@ public function shekkaShipBonusText(btnSlot:int = 0, showBlurb:Boolean = true):S
 //Clicking on Shekka’s name when you’re selecting Ship Followers gives you the current description.
 public function approachCrewShekka(back:Boolean = false):void
 {
+	//Halloween thing!
+	if(shekkaIsCrew() && flags["SHEKKA_HALLOWEEN_LATENESS"] == undefined && isLateHalloween())
+	{
+		shekkaHalloweenLateness();
+		return;
+	}
+
 	clearOutput();
 	showShekka();
 	
@@ -95,6 +102,7 @@ public function approachCrewShekka(back:Boolean = false):void
 		shekkaAnnoFightFollowup();
 		return;
 	}
+
 	if(back)
 	{
 		output("Shekka’s still there, cute as ever. Did you need anything else from her?");
@@ -4282,7 +4290,7 @@ public function blowingShekkaPt2():void
 	// Merge
 	output("\n\nTaking your reins and rolling her hips, Shekka exerts an uncanny strength in locking your head into place while she barrels in. Lust-gorged balls brutalize your face in her galloping stride. The subsequent slaps are heard ‘round the room, and would be through the adjoining corridors if the door wasn’t closed. <i>“Oh, do you feel that, [pc.name]? I’m all the way in there! I can feel your stomach, too! This dick is the best!”</i> The raskvel buries her bloated length into the base, smashing your nose into her moist belly, filling your senses with the odor of a tireless grease-lizard.");
 	output("\n\n<i>“Mmmmffffuccckk yesssss, it’s tight like a pussy! Acts like one too!”</i> Oily slicks of precum make her pistoning pumps easier and easier while your stomach swells with the increasing loads of pre. Bubbly thickness trickles out of your nose and the corners of your gaped mouth, working up an outward lather that’ll soon see you painted with ecstasy. <i>“Ohfff... mmmm... [pc.name], you okay? Because I’m gonna... I’ve got so much cum in here... I’m gonna make you look like a village broodmother...!”</i> The faintest of all smiles is found at the quirked corners of your lips. It’s the smile one wears when they realize all they have to do is swallow and remember to breathe.");
-	output("\n\nYou maintain eye contact with your facefucking lover. She’s biting down on her lower lip, grunting cutely, looking absolutely sexy while she slams her sheath to your O-shaped gate. The only downside to this position is that neither of you can see the underside of her dick bulging your neck, but you can both feel it. It erases your adams’ apple from existence, determined to leave a better mark in its frictious stead. In only a minute she’s trained your walls to milk her trachea-fattening trunk for dear life.");
+	output("\n\nYou maintain eye contact with your facefucking lover. She’s biting down on her lower lip, grunting cutely, looking absolutely sexy while she slams her sheath to your O-shaped gate. The only downside to this position is that neither of you can see the underside of her dick bulging your neck, but you can both feel it. It erases your Adam’s apple from existence, determined to leave a better mark in its frictious stead. In only a minute she’s trained your walls to milk her trachea-fattening trunk for dear life.");
 	output("\n\nIt’s only now that you realize the level of control Shekka has. You don’t need to keep your [pc.hands] planted on the floor anymore. The rigor of her turgid beast-cock alone is enough to support your weight regardless of her hold. The discovery of your pseudo-bondage drives you over the edge - you can reach over and brace yourself to her rapid-thrusting thighs, maybe brush against her gemini clits, even touch yourself. Or you can just let your [pc.legOrLegs] handle the burden. Either way, being suspended in a hellish loop of adrenal reaction is worth the strain.");
 	// pc Myr Venom
 	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
@@ -4349,6 +4357,44 @@ public function blowingShekkaPt3():void
 	output("\n\nCount on it.");
 	processTime(15+rand(10));
 	IncrementFlag("SHEKKA_BLOWN");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function shekkaHalloweenLateness():void
+{
+	//(play when visiting shekka at night up to 1 month after halloween)
+	clearOutput();
+	showShekka(true);
+	author("Gardeford");
+	output("Shekka doesn’t seem to notice your approach, her whole body slouched in a look of utter exhaustion. Her ears droop to the floor, and her tail gives a few absent twitches as she tries to continue work on something you can’t quite see yet. She’s also wearing a black satin dress that obscures her tail and shows off a startling amount of back. A wide brimmed and droopily pointed hat joins the outfit, giving her the impression of... a witch? But Halloween is over...");
+	output("\n\nYou get close enough to look over her shoulder, seeing her almost fall forward as she tries to work on some sort of hover broom. It’s floating above the table, but exposed wiring mars the majority of its surface. Your scarlet sweetheart is trying to fix it up, but as you watch she moves the same cable back and forth three times in a row. You give her a slow hug around the belly, and she falls back against your neck with a dramatic groan.");
+	output("\n\n<i>“Nnooo, it’s supposed to be a surprise. I know I’m late, but I couldn’t help it! I had to do some work on the engine, and then there was a cool tech convention presentation on the extranet, and I had to buy all this stuff in secret,”</i> she slurs, gesturing at the floating broom.");
+	output("\n\n<i>“I was gonna float in on halloween night after you went to bed and it was gonna be all romantic and everything, but the hat didn’t come with the dress and it showed up late,”</i> she continues, doing her best to slump even further into your arms.");
+	output("\n\n<i>“");
+	if(pc.isAss()) output("It’s cute,");
+	else if(pc.isMischievous()) output("It really brings out the color of your scales,");
+	else output("You look cute,");
+	output("”</i> you murmur, brushing a cheek against the base of her pointy hat. She doesn’t resist as you hoist her up under the arms and then knees, plodding back toward your quarters at a relaxed pace. Her tail curls around your forearm, and the jingle jangle of her piercings sounds like soft music. You settle into bed with your silk-wrapped sweet-thing, depositing her hat on the floor to get a better opening for nuzzling her feathery hair with your lips. She shifts to give you better access, settling in comfortably.");
+	output("\n\n<i>“[pc.name], I’m too horny to sleep after all that work. Can you do the magic fingers,”</i> she pleads, tail curling around your wrist till its tip settles between your ring and middle fingers. You let out an amused snort, mapping the length of her thigh with your palm before beginning to slowly draw the hem of her dress up and up. Outwardly she shows no response other than to shift and accommodate your movement, but cuddled so close, you can feel the thudding of her heart as your fingertips brush the naked inside of her scaly thigh. You pause high, gently pressing your thumb down just above where her womb should be, and slide down till the digit slips smoothly over her front clit.");
+	output("\n\nShe gasps in a breath, one leg stretching out further down your [pc.leg] as you swirl a soft tune of touches around her lavender love buzzer. Long, purposeful draws of flesh on slit leave her hips jutting forward, gyrating and needful, waiting for something to slip inside her wanting passage. Wetter and wetter she grows, till feminine excitement drips down your wrist and cools in the open air. Your other hand cups one of her B-cup breasts, rolling the erect nipple in circles that match the tantric chorus below.");
+	output("\n\n<i>“O-oh, stars, [pc.name],”</i> she moans, whispering your name as your digits seek out her rear clit. As they creep back through her dripping snatch, the tail twined between them slips out and into her twitching fuckhole. Your thumb continues to rub in front as your fingers dance around the rear, picking up speed ever so slightly as her tail reaches even deeper spots inside. Her legs spread wide enough to push her dress completely out of the way, with the top one hooking up over your thigh and the bottom one stretching into the open air, toes splayed over the edge of the bed.");
+	output("\n\n<i>“");
+	//shekka addicted:
+	if(shekkaSpitAddicted()) output("Kiss me, [pc.name]. Please, I <b>need<b> it. Need you,");
+	else output("Mmm, that’s it. Just a little more. [pc.name],");
+	output(" just... Justmmmf!”</i> she moans, briefly silenced when you cap her lips with a kiss. She melts into ");
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("spit-drugged bliss");
+	else output("it");
+	output(" immediately, setting off the buzzer in her tail and releasing a continuous purr of orgasm induced joy-noise. Her pelvis juts ahead, falling back with a hip quaking slap before thrusting out again. Her feet struggle to find purchase through the haywire impulses of electrical bliss.");
+	output("\n\nHot breaths from her nose roll off your face as your tongue tangles with hers in an attempt to explore each other’s mouths. Shekka’s efforts are mostly academic, as she seems dangerously close to fainting outright from the combination of pleasure and exhaustion. Her eyes roll back into her head as you take charge, gently nibbling her plump lips and pulling back with her long tongue between yours. She giggles with ");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("obvious intoxication");
+	else output("drained happiness");
+	output(" when you let it drop, mouth hanging open and eyes heavy lidded.");
+	output("\n\n<i>“Still got your candy, at least,”</i> she murmurs, turning over to nuzzle your [pc.chest] as she fades off to sleep in your arms. You rub her downy pink hair, breathing in the scent of her till your heart stops racing, staying there till you join her in the nebulous expanse of dreams.");
+	pc.lust(10);
+	shekkaSpitAddiction(8);
+	flags["SHEKKA_HALLOWEEN_LATENESS"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

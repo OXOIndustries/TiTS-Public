@@ -8,6 +8,8 @@ package classes.Resources
 			//AMBER
 			[Embed(source = "../../assets/images/imagepack/amber/jojocite_amber_nude.png", mimeType = "image/png")]
 			public static const AmberNakkers:Class;
+			[Embed(source = "../../assets/images/imagepack/amber/moira_anno_and_amber.png", mimeType = "image/png")]
+			public static const Moira_Anno_Amber:Class;
 
 			//ANNO
 			[Embed(source = "../../assets/images/imagepack/anno/CheshireCatSmile37_Anno_Maid.png", mimeType = "image/png")]
@@ -127,9 +129,14 @@ package classes.Resources
 			
 			//KIROQUEST
 			[Embed(source = "../../assets/images/imagepack/kiroquest/dcl_kiroquest_kiro_quest_pos_dolls_motivational_poster_obedience.png", mimeType = "image/png")]
-			public static const MindfuckPoster:Class;
-			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
 			public static const ObediencePoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/mrPink_Adjatha_colors_mindfuck_poster.png", mimeType = "image/png")]
+			public static const MindfuckPoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/twinklesez_kiro_waifu_herm_kuitan_tanuki.jpg", mimeType = "image/jpg")]
+			public static const KiroInWhite:Class;
+			[Embed(source = "../../assets/images/imagepack/kiroquest/mrpink_kiro_mindfuck.png", mimeType = "image/png")]
+			public static const KiroReprogramming1:Class;
+			
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]
@@ -140,6 +147,14 @@ package classes.Resources
 			//Lieve
 			[Embed(source = "../../assets/images/imagepack/lieve/maniacpaint_lieve.png", mimeType = "image/png")]
 			public static const LieveAgainstWall:Class;
+
+			//Lorelei
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei.png", mimeType = "image/png")]
+			public static const LoreleiSitting:Class;
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei_canine.png", mimeType = "image/png")]
+			public static const LoreleiSittingCanine:Class;
+			[Embed(source = "../../assets/images/imagepack/lorelei/bonnieBovine_lorelei_horse.png", mimeType = "image/png")]
+			public static const LoreleiSittingEquine:Class;
 			
 			//MILLIE
 			[Embed(source = "../../assets/images/imagepack/millie/CyanCapsule_Millie_Clothed_BG_MR.jpg", mimeType = "image/jpg")]

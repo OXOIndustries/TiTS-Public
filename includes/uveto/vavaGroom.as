@@ -281,7 +281,9 @@ public function vavaGroomRoleResponse(response:String = ""):void
 			
 			// [Anno] [Erra] [Sera] [Reaha] [Multiple] [In Waiting]
 			clearMenu();
-			if(pets.length > 0)
+			var havePetBlurbs:Boolean = (pets.length > 0);
+			if(pets.length == 1 && pets[0] == "Bimbo Pexiga") havePetBlurbs = false;
+			if(havePetBlurbs)
 			{
 				for(i = 0; i < pets.length; i++)
 				{

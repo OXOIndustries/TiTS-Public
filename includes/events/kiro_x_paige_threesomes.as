@@ -24,8 +24,38 @@ public function paigeThreesomeIntro():void
 	clearOutput();
 	showKiro();
 	author("B!");
+	//Try to reuse as much of the old as possible.
+	if(kiroIsCrew())
+	{
+		if(!paigeIsCrew())
+		{
+			if(flags["PAIGE_KIRO_THREESOMES"] == undefined)
+			{
+				output("Your mind remains focused on your Ausar yoga instructor, Paige, and what she told you about her past. She and Kiro were once close friends and ‘coworkers;’ you’re curious if Kiro’s been keeping up with Paige ever since their last job together. You lean over to Kiro and ask if the name ‘Paige’ sounds familiar to her.");
+				output("\n\nFor Kiro’s part, her face keeps slate still and she doesn’t outwardly react to your question. She masks her face with her hair, looking studiously away to shield her eyes. <i>“The Ausar that runs the yoga studio, right?”</i> she asks. Her body language is watery and smooth, making sure you can’t get a read on her. <i>“I’ve heard the name, but I’m not familiar with the woman, if that’s what you’re asking.”</i>");
+				output("\n\n<i>“That’s not what Paige told me,”</i> you answer.");
+				output("\n\nKiro smirks. <i>“Guess she trusts you too, then.”</i> She rises from where she’s sitting and hastily throws on some clothes. <i>“For this, I’ll gladly delay a bit of sex.”</i> She grabs your hand. <i>“Come on, Angel. Lead the way.”</i>");
+			}
+			else
+			{
+				output("<i>“You and I have a mutual friend that would like to see you again.”</i>");
+				output("\n\nKiro smiles warmly, then raises a finger at you, telling you to wait a moment. In another impressive display of being able to control her libido, she stuffs her entire erect equine rod into her dress in a hurry, the fabric bulging obscenely with boldly-displayed tumescence. When she’s done, she slams her fist against a bulkhead. <i>“Better not keep her waiting then, don’t you think, [pc.name]?”</i>");
+				output("\n\nWith some excitement, she grips onto your arm. She knows the drill by now – you’ll be having a visit with Paige in just a few minutes, now.");
+			}
+		}
+		else
+		{
+			output("<i>“You and I have a mutual friend that would like to see you again.”</i>");
+			output("\n\nKiro smiles warmly, then raises a finger at you, telling you to wait a moment. In another impressive display of being able to control her libido, she stuffs her entire erect equine rod into her dress in a hurry, the fabric bulging obscenely with boldly-displayed tumescence. When she’s done, she slams her fist against a bulkhead. <i>“Better not keep her waiting then, don’t you think, [pc.name]?”</i>");
+			output("\n\nWith some excitement, she grips onto your arm. " + (flags["PAIGE_KIRO_THREESOMES"] == undefined ? "Y":"She knows the drill by now – y") + "ou’ll be having a visit with Paige in just a few minutes, now.");
+			clearMenu();
+			if(flags["PAIGE_KIRO_THREESOMES"] == undefined) addButton(0,"Next",kiroPaige3sumIntroForDubbleCrew);
+			else addButton(0,"Next",paigeKiroMainMenu);
+			return;
+		}
+	}
 	// Continue from here if this is the first time the PC chooses this option.
-	if(flags["PAIGE_KIRO_THREESOMES"] == undefined)
+	else if(flags["PAIGE_KIRO_THREESOMES"] == undefined)
 	{
 		output("You take a seat next to Kiro. She’s already got a mug half-downed in her hand, and when you take your spot, she takes a hearty swig of it. <i>“Well come on,”</i> she says playfully, nudging you in the shoulder. <i>“You gonna have a drink or what?”</i>");
 		output("\n\nYou smile at her question and nudge her back. You don’t order a drink from the bar; your mind is instead focused on your Ausar yoga instructor, Paige, and what she told you about her past. She and Kiro were once close friends and ‘coworkers;’ you’re curious if Kiro’s been keeping up with Paige ever since their last job together. You lean over to Kiro and ask if the name ‘Paige’ sounds familiar to her.");
@@ -65,30 +95,43 @@ public function kiroPaigeIntro2():void
 	// continue here if it’s subsequent sexy times
 	if(flags["PAIGE_KIRO_THREESOMES"] != undefined)
 	{
-		output("You and Kiro are familiar with the routine at this point: you both head down to your ship");
-		if(paigeBlind()) output(", and you leave her there while you run back to Paige’s apartment unit and walk her back");
-		else output(", and you head straight to your personal quarters and call Paige to join you");
-		output(". At this point, it’s not really a surprise for any of the three of you, and it doesn’t take any convincing at all to get Paige into the mood when Kiro is around.");
-		output("\n\n<i>“It’s nice catching up, you know?”</i> Kiro asks, making small talk on the elevator as you ride it down. <i>“I mean, sure, the sex is great and all. But I adore Paige, and it’s a relief that she’s being looked after by someone like you. If I weren’t still in the game, I’d convince her to stay with me and Kally.”</i>");
-		output("\n\nYou tell her that you understand; it’s nice to get back together with old friends now and again, and although she and Paige have an... exploratory relationship, it’s always nice to just sit down and catch up sometimes.");
-		
-		// Continue here if Paige is blind
-		if(!paigeIsCrew())
+		if(kiroIsCrew() && !paigeIsCrew())
 		{
-			output("\n\nYou arrive at your ship, and you settle Kiro into your personal quarters. She begins to lounge, making herself at home, as you make your way back through Tavros and all the way back to Paige’s unit.");
+			output("You and Kiro are familiar with the routine at this point: you let her get ready");
+			output(", and you leave her there to get ready while you run back to Paige’s apartment unit and walk her back");
+			output(". At this point, it’s not really a surprise for any of the three of you, and it doesn’t take any convincing at all to get Paige into the mood when Kiro is around.");
 			output("\n\nIt’s a bit of a routine: you get to the door; Iddi lets you in and hollers for his momma; you tell Paige that you have a guest waiting for her in the hangar; and then that sly, sultry grin spreads across her mouth as she tells you to wait so she can get dressed. When you had first done this, Paige was apprehensive as could be and was trying to shy her face away from any onlookers that could be nearby; now, she’s... no less reserved, but she’s definitely got a bit more spring in her step, knowing exactly what’s in the books up ahead.");
-			output("\n\nThe trip back to your ship is uneventful, and when you show yourself into your quarters, there is Kiro, looking exactly as proper as you left her. She’s entertaining herself with her codex and with some errant notepads you had scattered around your quarters; as soon as her eyes fall on Paige, she drops everything.");
+			output("\n\nThe trip back to your ship is uneventful, and when you show yourself into your quarters, there is Kiro, looking exactly as proper as you left her. She’s entertaining herself with her on the ship computer and some dated pornography; as soon as her eyes fall on Paige, she drops everything.");
 			output("\n\n<i>“Heya, Bookworm,”</i> Kiro says delightedly, standing and gripping Paige by the wrist, dragging you both into the room. You make sure to lock the door behind you.");
 			showPaigeAndKiro();
 		}
-		// Continue here if Paige can see
 		else
 		{
-			output("\n\nYou arrive at your ship, and you settle Kiro into your personal quarters. Once you’re both comfortable, you reach for your ship’s intercom and dial up the speaker connected to Paige’s quarters. <i>“Navigator Paige,”</i> you say, lowering your voice to take on a commanding, not-a-suggestion tone, <i>“to your captain’s personal quarters, please.”</i>");
-			output("\n\nPaige dials you back immediately. <i>“On my way,”</i> she says, curtly and professionally. Then, she leans into her microphone, her own voice lowering to a more sultry, lustful tone, <i>“and ready as ever.”</i>");
-			output("\n\nSeconds later, there’s a hard knock on your door. You don’t tell Paige to enter; she shows herself in. When her eyes meet Kiro’s, both their mouths split into knowing, playful grins.");
-			output("\n\n<i>“Hey again, Bookworm,”</i> says Kiro playfully, her bushy tail swishing as Paige locks the door behind her.");
-			showPaigeAndKiro();
+			output("You and Kiro are familiar with the routine at this point: you both head down to your ship");
+			if(paigeBlind()) output(", and you leave her there while you run back to Paige’s apartment unit and walk her back");
+			else output(", and you head straight to your personal quarters and call Paige to join you");
+			output(". At this point, it’s not really a surprise for any of the three of you, and it doesn’t take any convincing at all to get Paige into the mood when Kiro is around.");
+			output("\n\n<i>“It’s nice catching up, you know?”</i> Kiro asks, before you leave. <i>“I mean, sure, the sex is great and all. But I adore Paige, and it’s a relief that she’s being looked after by someone like you. If I weren’t still in the game, I’d convince her to stay with me" + (flags["KIRO_MET_KALLY"] != undefined ? " and Kally":"") + ".”</i>");
+			output("\n\nYou tell her that you understand; it’s nice to get back together with old friends now and again, and although she and Paige have an... exploratory relationship, it’s always nice to just sit down and catch up sometimes.");
+			
+			// Continue here if Paige is blind
+			if(!paigeIsCrew())
+			{
+				output("\n\nYou arrive at your ship, and you settle Kiro into your personal quarters. She begins to lounge, making herself at home, as you make your way back through Tavros and all the way back to Paige’s unit.");
+				output("\n\nIt’s a bit of a routine: you get to the door; Iddi lets you in and hollers for his momma; you tell Paige that you have a guest waiting for her in the hangar; and then that sly, sultry grin spreads across her mouth as she tells you to wait so she can get dressed. When you had first done this, Paige was apprehensive as could be and was trying to shy her face away from any onlookers that could be nearby; now, she’s... no less reserved, but she’s definitely got a bit more spring in her step, knowing exactly what’s in the books up ahead.");
+				output("\n\nThe trip back to your ship is uneventful, and when you show yourself into your quarters, there is Kiro, looking exactly as proper as you left her. She’s entertaining herself with her codex and with some errant notepads you had scattered around your quarters; as soon as her eyes fall on Paige, she drops everything.");
+				output("\n\n<i>“Heya, Bookworm,”</i> Kiro says delightedly, standing and gripping Paige by the wrist, dragging you both into the room. You make sure to lock the door behind you.");
+				showPaigeAndKiro();
+			}
+			// Continue here if Paige can see
+			else
+			{
+				output("\n\nYou arrive at your ship, and you settle Kiro into your personal quarters. Once you’re both comfortable, you reach for your ship’s intercom and dial up the speaker connected to Paige’s quarters. <i>“Navigator Paige,”</i> you say, lowering your voice to take on a commanding, not-a-suggestion tone, <i>“to your captain’s personal quarters, please.”</i>");
+				output("\n\nPaige dials you back immediately. <i>“On my way,”</i> she says, curtly and professionally. Then, she leans into her microphone, her own voice lowering to a more sultry, lustful tone, <i>“and ready as ever.”</i>");
+				output("\n\nSeconds later, there’s a hard knock on your door. You don’t tell Paige to enter; she shows herself in. When her eyes meet Kiro’s, both their mouths split into knowing, playful grins.");
+				output("\n\n<i>“Hey again, Bookworm,”</i> says Kiro playfully, her bushy tail swishing as Paige locks the door behind her.");
+				showPaigeAndKiro();
+			}
 		}
 		//[=Next=]
 		// end scene (scene: Intro 2); go to (scene: Main Menu)
@@ -96,40 +139,60 @@ public function kiroPaigeIntro2():void
 	// Continue here if it’s the first time
 	else
 	{
-		output("You make it to the elevator, Kiro’s grip tight on your wrist, and she presses the button to bring you to the hangar. You’re alone in the metal tube as it whirrs and begins to descend.");
-		output("\n\n<i>“Paige got out of the game for a reason,”</i> Kiro explains, confident that her voice won’t travel beyond the elevator. <i>“Sorry for the games, but I can’t have anyone know that we’re associated, for her sake.”</i>");
-		output("\n\nYou tell her that it’s alright, and that you understand.");
-		output("\n\n<i>“How much has she told you?”</i> You relay an abridged version of what Paige told you: that she and Kiro were close friends growing up; that they were both partners in crime; and that Paige received her injury while ‘on the job.’ After that, she took a bunch of gene mods to disguise herself and opened a modest yoga studio to pay the bills.");
-		output("\n\n<i>“That’s about the short of it, yeah,”</i> Kiro says – she’s rocking on her heels and toes and her hands can’t seem to find a comfortable spot on her body. She can’t help but smile as she remembers her Ausar friend, and her eyes keep going from the steel doors of the elevator to you. She’s suddenly quite giddy. <i>“Wow, small universe, huh? I almost can’t believe it! My angel and my best friend growing up know each other!”</i> You smile at her, but say nothing – and she takes it as an admission. <i>“Lemme guess, Steele: you’re a</i> little <i>more familiar with each other than that, am I right?”</i>");
-		output("\n\nYou don’t deny it, and instead ask if Kiro could blame you. <i>“You?”</i> she asks, then leans back, scanning your form. <i>“If you were some slut that I picked up at a bar that happened to do yoga on the side, I’d be a little more concerned. Not just for Paige’s safety, but because she could do so much better than just some slut.”</i>");
-		output("\n\nShe wraps her arm around your shoulders, pulling you closer to her and pressing her cheek against yours. <i>“But you’re no slut. Well, I mean, you get around, but I’m okay with that, and knowing Paige, she’s okay with that too. You’re one of the good ones, Steele.”</i> Kiro turns her head, and her tongue slides out, drawing a fat lick across your neck. <i>“And, knowing Paige, she wouldn’t mind sharing.”</i>");
-
-		// Continue here if Paige is blind
-		if(!paigeIsCrew())
+		if(kiroIsCrew() && !paigeIsCrew())
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
-			// end scene (scene: Intro 2); go to (scene: Intro 3)
+			output("You make it to the door, Kiro’s grip tight on your wrist, and she stops you from pressing the button to open the door. You’re alone in the entrance to your ship.");
+			output("\n\n<i>“Paige got out of the game for a reason,”</i> Kiro explains, confident that her voice won’t travel beyond the elevator. <i>“Sorry for holding back, but I can’t have anyone know that we’re associated, for her sake.”</i>");
+			output("\n\nYou tell her that it’s alright, and that you understand.");
+			output("\n\n<i>“How much has she told you?”</i> You relay an abridged version of what Paige told you: that she and Kiro were close friends growing up; that they were both partners in crime; and that Paige received her injury while ‘on the job.’ After that, she took a bunch of gene mods to disguise herself and opened a modest yoga studio to pay the bills.");
+			output("\n\n<i>“That’s about the short of it, yeah,”</i> Kiro says – she’s rocking on her heels and toes and her hands can’t seem to find a comfortable spot on her body. She can’t help but smile as she remembers her Ausar friend, and her eyes keep going from the steel doors of the elevator to you. She’s suddenly quite giddy. <i>“Wow, small universe, huh? I almost can’t believe it! My angel and my best friend growing up know each other!”</i> You smile at her, but say nothing – and she takes it as an admission. <i>“Lemme guess, Steele: you’re a</i> little <i>more familiar with each other than that, am I right?”</i>");
+			output("\n\nYou don’t deny it, and instead ask if Kiro could blame you. <i>“You?”</i> she asks, then leans back, scanning your form. <i>“If you were some slut that I picked up at a bar that happened to do yoga on the side, I’d be a little more concerned. Not just for Paige’s safety, but because she could do so much better than just some slut.”</i>");
+			output("\n\nShe wraps her arm around your shoulders, pulling you closer to her and pressing her cheek against yours. <i>“But you’re no slut. Well, I mean, you get around, but I’m okay with that, and knowing Paige, she’s okay with that too. You’re one of the good ones, Steele.”</i> Kiro turns her head, and her tongue slides out, drawing a fat lick across your neck. <i>“And, knowing Paige, she wouldn’t mind sharing.”</i>");
+			// Continue here if Paige is blind
+			output("\n\nKiro smacks the door release and sends you on your way. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
+				// end scene (scene: Intro 2); go to (scene: Intro 3)
 			processTime(10);
 			clearMenu();
 			addButton(0,"Next",kiroPaigeIntro3);
 			return;
 		}
-		// Continue here if Paige can see
 		else
 		{
-			output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
-			output("\n\n<i>“How’d you do that?”</i> she asks incredulously. <i>“Last I heard, Paige was blind. How’s she gonna navigate with no eyesight?”</i>");
-			output("\n\nYou reply that you had paid for Paige’s surgery and that she joined your crew in part to pay you back, and in part because she wanted to be with you.");
-			output("\n\n<i>“What the hell?”</i> Kiro asks, her breath catching in her throat. <i>“Didn’t she say that surgery would cost her a million credits or something?”</i>");
-			output("\n\n<i>“Half a million,”</i> you correct her. You show Kiro into your personal quarters and wave your hand to the room, allowing her to sit whenever she likes. As you do, you reach for the ship’s intercom, and dial up Paige’s quarters. <i>“Navigator Paige, please come to my personal quarters,”</i> you say into the ship’s microphone.");
-			output("\n\n<i>“On my way, captain!”</i> Paige replies seconds later.");
-			output("\n\n<i>“Feel free to ask her yourself,”</i> you say as you take your own seat, at a small desk in the corner of the room, next to Kiro on your bed. The seconds pass by palpably – Kiro’s hands fidget on her lap, and her lips quiver with excitement. She’s very eager to meet Paige again.");
-			output("\n\nThen, there’s a knock on your door, the sound of knuckles against the metal reverberating through the cold hallway of the ship. It swings open without your invitation; on the other side is Paige, your Ausar navigator.");
-			output("\n\n<i>“Captain?”</i> asks Paige, her eyes scanning the room as she enters – until her eyes meet Kiro’s.");
-			output("\n\n<i>“Uh,”</i> Kiro stutters, at a loss for words – a rarity for her. <i>“Hey there, Bookworm.”</i>");
-			showPaigeAndKiro();
-			//[=Next=]
-			// end scene (scene: Intro 2); go to (scene: Main Menu)
+			output("You make it to the elevator, Kiro’s grip tight on your wrist, and she presses the button to bring you to the hangar. You’re alone in the metal tube as it whirrs and begins to descend.");
+			output("\n\n<i>“Paige got out of the game for a reason,”</i> Kiro explains, confident that her voice won’t travel beyond the elevator. <i>“Sorry for the games, but I can’t have anyone know that we’re associated, for her sake.”</i>");
+			output("\n\nYou tell her that it’s alright, and that you understand.");
+			output("\n\n<i>“How much has she told you?”</i> You relay an abridged version of what Paige told you: that she and Kiro were close friends growing up; that they were both partners in crime; and that Paige received her injury while ‘on the job.’ After that, she took a bunch of gene mods to disguise herself and opened a modest yoga studio to pay the bills.");
+			output("\n\n<i>“That’s about the short of it, yeah,”</i> Kiro says – she’s rocking on her heels and toes and her hands can’t seem to find a comfortable spot on her body. She can’t help but smile as she remembers her Ausar friend, and her eyes keep going from the steel doors of the elevator to you. She’s suddenly quite giddy. <i>“Wow, small universe, huh? I almost can’t believe it! My angel and my best friend growing up know each other!”</i> You smile at her, but say nothing – and she takes it as an admission. <i>“Lemme guess, Steele: you’re a</i> little <i>more familiar with each other than that, am I right?”</i>");
+			output("\n\nYou don’t deny it, and instead ask if Kiro could blame you. <i>“You?”</i> she asks, then leans back, scanning your form. <i>“If you were some slut that I picked up at a bar that happened to do yoga on the side, I’d be a little more concerned. Not just for Paige’s safety, but because she could do so much better than just some slut.”</i>");
+			output("\n\nShe wraps her arm around your shoulders, pulling you closer to her and pressing her cheek against yours. <i>“But you’re no slut. Well, I mean, you get around, but I’m okay with that, and knowing Paige, she’s okay with that too. You’re one of the good ones, Steele.”</i> Kiro turns her head, and her tongue slides out, drawing a fat lick across your neck. <i>“And, knowing Paige, she wouldn’t mind sharing.”</i>");
+
+			// Continue here if Paige is blind
+			if(!paigeIsCrew())
+			{
+				output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you show her to your personal quarters. You tell her to make herself at home; Paige isn’t here, and you have to go get her. <i>“I’ll be waiting, angel,”</i> she says, her eyes roving around the walls of your room. <i>“I’ll try to keep myself from getting</i> too <i>ready.”</i>");
+				// end scene (scene: Intro 2); go to (scene: Intro 3)
+				processTime(10);
+				clearMenu();
+				addButton(0,"Next",kiroPaigeIntro3);
+				return;
+			}
+			// Continue here if Paige can see
+			else
+			{
+				output("\n\nWhen you arrive at the hangar, you show Kiro into your [pc.ship], and you lead her by the hand towards your personal quarters. You explain that you and Paige are more ‘familiar with each other’ than Kiro had guessed: you had convinced her to join your crew as a navigator.");
+				output("\n\n<i>“How’d you do that?”</i> she asks incredulously. <i>“Last I heard, Paige was blind. How’s she gonna navigate with no eyesight?”</i>");
+				output("\n\nYou reply that you had paid for Paige’s surgery and that she joined your crew in part to pay you back, and in part because she wanted to be with you.");
+				output("\n\n<i>“What the hell?”</i> Kiro asks, her breath catching in her throat. <i>“Didn’t she say that surgery would cost her a million credits or something?”</i>");
+				output("\n\n<i>“Half a million,”</i> you correct her. You show Kiro into your personal quarters and wave your hand to the room, allowing her to sit whenever she likes. As you do, you reach for the ship’s intercom, and dial up Paige’s quarters. <i>“Navigator Paige, please come to my personal quarters,”</i> you say into the ship’s microphone.");
+				output("\n\n<i>“On my way, captain!”</i> Paige replies seconds later.");
+				output("\n\n<i>“Feel free to ask her yourself,”</i> you say as you take your own seat, at a small desk in the corner of the room, next to Kiro on your bed. The seconds pass by palpably – Kiro’s hands fidget on her lap, and her lips quiver with excitement. She’s very eager to meet Paige again.");
+				output("\n\nThen, there’s a knock on your door, the sound of knuckles against the metal reverberating through the cold hallway of the ship. It swings open without your invitation; on the other side is Paige, your Ausar navigator.");
+				output("\n\n<i>“Captain?”</i> asks Paige, her eyes scanning the room as she enters – until her eyes meet Kiro’s.");
+				output("\n\n<i>“Uh,”</i> Kiro stutters, at a loss for words – a rarity for her. <i>“Hey there, Bookworm.”</i>");
+				showPaigeAndKiro();
+				//[=Next=]
+				// end scene (scene: Intro 2); go to (scene: Main Menu)
+			}
 		}
 	}
 	processTime(15);
@@ -191,7 +254,7 @@ public function paigeKiroMainMenu():void
 	showPaigeAndKiro();
 	author("B!");
 	// Continue here if it’s the first time
-	if(flags["PAIGE_KIRO_THREESOMES"] == undefined)
+	if(flags["PAIGE_KIRO_THREESOMES"] == undefined && !paigeIsCrew())
 	{
 		output("Paige freezes in the doorway, her fur becoming bristly. Her breath catches in her lungs and her ");
 		if(paigeBlind()) output("blind eyes lock onto Kiro’s general direction");
@@ -1868,12 +1931,24 @@ public function PKTSA(args:Array):void
 		output("\n\nDespite the words, all three of you are smiling, wide as can be. It’s clear that it’ll take a lot more than some teasing to break your afterglow. That said, though, now that it’s been brought up, you can’t <i>not</i> know what her last name is.");
 		output("\n\n<i>“It’s Turner,”</i> Paige answers.");
 		output("\n\nYou giggle. Her full name is <i>Paige Turner?</i> <i>“My parents had a real sense of humor,”</i> she answers with a shrug. <i>“I always thought it was kind of embarrassing. But whatever. You’ve not only seen me naked; you’ve seen me fucked so hard that I turned into a puddle. What’s a last name compared to that?”</i>");
-		output("\n\nTaking that as her cue, Kiro reluctantly pulls herself away from your cuddle pile. <i>“Believe me when I say that if I could spend the week with you two, I would,”</i> she says as she straightens her fur and pats at her dick, wiping the dried juices from her equipment, <i>“but I have my own schedule to keep.”</i>");
-		output("\n\n<i>“We’re doing this again, right?”</i> Paige asks, her hand reaching to Kiro and giving her a hearty slap on her ass, watching the fat jiggle with the force.");
-		output("\n\n<i>“I guess that depends on when our schedules line up again,”</i> Kiro answers. <i>“If you want another ride of your life, [pc.name], you come find me, and we’ll get something going.”</i>");
-		output("\n\nDespite her insistence that she needs to leave, it takes all three of you twice as long as necessary to get yourselves dressed and presentable. When it’s all said and done");
-		if(paigeBlind()) output(", and you’ve gotten Paige safely back into her unit");
-		output(", you find yourself back in your quarters, alone, but satisfied.");
+		if(!kiroIsCrew())
+		{
+			output("\n\nTaking that as her cue, Kiro reluctantly pulls herself away from your cuddle pile. <i>“Believe me when I say that if I could spend the week with you two, I would,”</i> she says as she straightens her fur and pats at her dick, wiping the dried juices from her equipment, <i>“but I have my own schedule to keep.”</i>");
+			output("\n\n<i>“We’re doing this again, right?”</i> Paige asks, her hand reaching to Kiro and giving her a hearty slap on her ass, watching the fat jiggle with the force.");
+			output("\n\n<i>“I guess that depends on when our schedules line up again,”</i> Kiro answers. <i>“If you want another ride of your life, [pc.name], you come find me, and we’ll get something going.”</i>");
+			output("\n\nDespite her insistence that she needs to leave, it takes all three of you twice as long as necessary to get yourselves dressed and presentable. When it’s all said and done");
+			if(paigeBlind()) output(", and you’ve gotten Paige safely back into her unit");
+			output(", you find yourself back in your quarters, alone, but satisfied.");
+		}
+		else
+		{
+			output("\n\nTaking that as her cue, Kiro reluctantly pulls herself away from your cuddle pile. <i>“Believe me when I say that if I could spend the week with you two, I would,”</i> she says as she straightens her fur and pats at her dick, wiping the dried juices from her equipment, <i>“but my new boss has been a real slave-driver.”</i> She winks.");
+			output("\n\n<i>“We’re doing this again, right?”</i> Paige asks, her hand reaching to Kiro and giving her a hearty slap on her ass, watching the fat jiggle with the force.");
+			output("\n\n<i>“I guess that depends on when our schedules line up again,”</i> Kiro answers. <i>“If you want another ride of your life, [pc.name], say the word, and we can let things around here slide for a while...”</i>");
+			output("\n\nIt takes all three of you twice as long as necessary to get yourselves dressed and presentable. When it’s all said and done");
+			if(paigeBlind()) output(", and you’ve gotten Paige safely back into her unit");
+			output(", you find yourself back in your quarters, alone, but satisfied.");
+		}
 	}
 	// continue here if it’s not the first time
 	else
@@ -1881,13 +1956,26 @@ public function PKTSA(args:Array):void
 		output("\n\n<i>“Well, it’s about time you woke yourself up, [pc.name]!”</i> she announces to the room. <i>“You have any idea how long it’s been since we started?”</i>");
 		output("\n\nYou answer that you don’t, and you ask her if she does. <i>“Nope!”</i> she answers, eliciting a laugh between all three of you. <i>“It’s been long enough, though, I know that for a damn fact.”</i>");
 		output("\n\n<i>“You got somewhere you need to be, Kiro?”</i> Paige asks as she leans into the Kui-Tan, pressing her nose against hers.");
-		output("\n\n<i>“Yeah, unfortunately, everyone has</i> somewhere <i>they need to be, and I’m no exception.”</i> With some reluctance, Kiro slowly peels herself from your cuddle pile, then searches the floor for her discarded clothing. <i>“Believe me when I say that, if we could just do that for, like, a weekend straight or something, I’d love nothing more. But, fuckin’ doesn’t pay for my ship’s upkeep.”</i>");
-		output("\n\nPaige hums in thought at the statement. <i>“I mean, it probably</i> could,<i>”</i> she offers deviously. <i>“We could set up a couple cameras... maybe sell tickets?”</i>");
-		output("\n\nKiro laughs well-meaningly, but says nothing more. It takes the three of you longer than is necessary to pull yourselves together and get presentable for the outside world, but you get it done.");
-		output("\n\nBefore the two ladies leave your ship, Kiro stops at your hatch and pulls you in for a lingering, closed-mouth, sexy kiss. <i>“You know where to find me if you want to get together for another round or four, sexy,”</i> she says.");
-		output("\n\nAnd then, just like that");
-		if(paigeBlind()) output(", after you’ve ensured that Paige makes it safely back to her unit");
-		output(", you’re alone in your quarters once more.");
+		if(kiroIsCrew()) 
+		{
+			output("\n\n<i>“Yeah, unfortunately my new boss is a real slave-driver.”</i> With some reluctance, Kiro slowly peels herself from your cuddle pile, then searches the floor for her discarded clothing. <i>“Believe me when I say that, if we’re not rushing around to the next planet on [pc.hisHer] ass, then [pc.heShe] is all over my ass.”</i> Kiro winks.");
+			output("\n\nPaige hums in thought at the statement. <i>“I mean, I probably could sell tickets to that,”</i> she offers deviously. <i>“We could set up a couple cameras too...”</i>");
+
+			output("\n\nKiro laughs well-meaningly, but says nothing more. It takes the three of you longer than is necessary to pull yourselves together and get presentable for the outside world, but you get it done.");
+			output("\n\nAnd then, just like that");
+			if(paigeBlind()) output(", after you’ve ensured that Paige makes it safely back to her unit");
+			output(", you’re alone in your quarters once more.");
+		}
+		else
+		{
+			output("\n\n<i>“Yeah, unfortunately, everyone has</i> somewhere <i>they need to be, and I’m no exception.”</i> With some reluctance, Kiro slowly peels herself from your cuddle pile, then searches the floor for her discarded clothing. <i>“Believe me when I say that, if we could just do that for, like, a weekend straight or something, I’d love nothing more. But, fuckin’ doesn’t pay for my ship’s upkeep.”</i>");
+			output("\n\nPaige hums in thought at the statement. <i>“I mean, it probably</i> could,<i>”</i> she offers deviously. <i>“We could set up a couple cameras... maybe sell tickets?”</i>");
+			output("\n\nKiro laughs well-meaningly, but says nothing more. It takes the three of you longer than is necessary to pull yourselves together and get presentable for the outside world, but you get it done.");
+			output("\n\nBefore the two ladies leave your ship, Kiro stops at your hatch and pulls you in for a lingering, closed-mouth, sexy kiss. <i>“You know where to find me if you want to get together for another round or four, sexy,”</i> she says.");
+			output("\n\nAnd then, just like that");
+			if(paigeBlind()) output(", after you’ve ensured that Paige makes it safely back to her unit");
+			output(", you’re alone in your quarters once more.");
+		}
 	}
 	processTime(180);
 	pc.orgasm();
@@ -1900,4 +1988,62 @@ public function PKTSA(args:Array):void
 	// end scene (scene: PKTSA)
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+// Kiro and Paige are both crewmates but PC has not done the threesome with them, so they're both unaware that they're crewmates. The option for the threesome should only be available through Kiro, just like it was before the crewKiro expack
+public function kiroPaige3sumIntroForDubbleCrew():void
+{
+	clearOutput();
+	showPaigeAndKiro();
+	author("B");
+	output("<i>“So, like, is she your ship’s fitness instructor, or something? Last I heard, Paige wouldn’t leave her little apartment for anything other than her work,”</i> Kiro asks.");
+	output("\n\nYes, Paige <i>does</i> teach yoga on your ship, to keep yourself and your crew in shape, but that’s actually her night job. Her day job is that she’s your ship’s navigator.");
+	output("\n\n<i>“How’d you do that?”</i> she asks incredulously. <i>“Last I heard, Paige was blind. How’s she gonna navigate with no eyesight?”</i>");
+	output("\n\nYou reply that you had paid for Paige’s surgery and that she joined your crew in part to pay you back, and in part because she wanted to be with you.");
+	output("\n\n<i>“What the hell?”</i> Kiro asks, her breath catching in her throat. <i>“Didn’t she say that surgery would cost her a million credits or something?”</i>");
+	output("\n\n<i>“Half a million,”</i> you correct her. You lead Kiro to your own quarters and show her in before instructing her to wait while you get Paige.");
+	output("\n\n<i>“In your own quarters, huh?”</i> she snickers, pinching her thighs together to try and tame her flagging-but-still-powerful erection. <i>“I’m not sure what it is you’re implying, angel.”</i>");
+	output("\n\nYou tell her that the truth is that your quarters are larger and more comfortable than their own. Paige told you that she hadn’t seen Kiro in years, and you’re sure they’d appreciate a comfy atmosphere for such a reunion. If having a ‘happy ending’ was all that you had in mind, you could have invited either of them to their own quarters, for some cramped, stuffy, fluffy three-way action. Besides, Paige might suspect something if you told her to meet you at someone else’s quarters.");
+	output("\n\n<i>“Okay, okay, I get it,”</i> Kiro laughs again, setting herself onto your bed and " + (kiro.ballDiameter() > 14 ? "making herself comfortable":"crossing her legs") + ". <i>“You have zero ulterior motives, Angel, and you’re expecting absolutely nothing in return after getting me all hot and bothered in my own room. I understand.”</i>");
+	output("\n\nWell, as long as she understands. You step toward the ship’s intercom and you dial up Paige’s quarters. <i>“Navigator Paige, please come to my personal quarters,”</i> you say clearly.");
+	output("\n\n<i>“On my way, captain!”</i> Paige replies a moment later.");
+	output("\n\nKiro hums at the display. <i>“You use your ship’s intercom for booty calls?”</i> she asks, amused.");
+	output("\n\n<i>“Like you wouldn’t, if you had a crew,”</i> you say back.");
+	output("\n\n<i>“You got me!”</i> she says jovially, her breasts bouncing underneath her laughter.");
+	output("\n\nThen, there’s a knock on your door, the sound of your knuckles against the metal reverberating through the cold hallway of the ship. It swings open without your invitation; on the other side is Paige, your Ausar navigator.");
+	output("\n\n<i>“Captain?”</i> asks Paige, her eyes scanning the room as she enters – until her eyes meet Kiro’s.");
+	output("\n\n<i>“Uh,”</i> Kiro stutters, at a loss for words – a rarity for her. <i>“Hey there, Bookworm.”</i>");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",kiroAndPaigeCrewIntros2);
+}
+public function kiroAndPaigeCrewIntros2():void
+{
+	clearOutput();
+	showPaigeAndKiro();
+	author("B");
+	output("Paige freezes in the doorway, her fur becoming bristly. Her breath catches in her lungs and her eyes lock onto Kiro’s. <i>“Kiro?”</i> she asks, her voice quieter than she had meant.");
+	output("\n\n<i>“Yep, it’s me alright,”</i> she responds, pulling herself to her feet to meet her friend. <i>“It’s good to see you again!”</i>");
+	output("\n\nPaige extends her hand straight out, her palm facing inside, as if she were looking for a handshake. She gets one, but not the way you had expected: Kiro’s hand reaches out and interlocks her fingers with Paige’s, and then they begin an elaborate handshake, by clapping each other by the wrists; lifting their arms and bumping each other’s elbows; twisting their arms back down in front of their bodies, giving them room to lean forward and headbutt each other; and finishing with their free hand wrapping forward in what at first looks like a friendly embrace, until they twist and open-hand slap each other on the ass.");
+	output("\n\nAfter the mutual slap on the ass, neither of them pull away. They stay together (their hands respectfully moving upward, towards the upper side of their tails), enjoying each other’s warmth. After a moment, you see Paige’s chest heave with a start – she’s crying a bit.");
+	output("\n\n<i>“Is this real? Is this real life?”</i> asks Paige, her face lifting and resting her chin on Kiro’s shoulder. Her arms wrap around Kiro’s torso, holding her closer; her fingers grip onto Kiro’s vest hard enough that, if she pulled a bit, she might tear right through it. <i>“Is it real that my guardian angel just</i> happens <i>to be on a first-name basis with my best friend?”</i>");
+	output("\n\nRather than reply with any kind of tact, Kiro laughs openly. <i>“Gods, we’ve rubbed off on each other too well, Paige. I’ve been calling [pc.name] ‘angel’ for... I think forever, now.”</i>");
+	output("\n\nPaige laughs once, and then takes a deep, sniffling breath through her nose. <i>“[pc.name] paid for my surgery. What did [pc.heShe] do for you?”</i>");
+	output("\n\n<i>“Rescued me twice. First from myself,”</i> Kiro replies, her tone light and cheerful while her voice is soft.");
+	output("\n\n<i>“Your balls get too big?”</i> Paige interrupts, laughing again.");
+	output("\n\n<i>“Yep.”</i> Then, Kiro’s expression changes, and her tone lowers. <i>“Then, [pc.heShe] saved me from... someone else.”</i>");
+	output("\n\n<i>“‘Someone else?’”</i>");
+	output("\n\n<i>“I’ll tell you later, honey.”</i> Just as quickly, Kiro changes back to her happy self, overjoyed at being reunited with her childhood friend. She leans back, her hands travelling down Paige’s arms and holding both her hands, interlocking their fingers. <i>“Tonight’s a night for celebrations! The Tamahime Pirates, together again!”</i> She turns her head towards you. <i>“With a plus one! Lock the door and get over here, already!”</i>");
+	output("\n\nYou do as you’re commanded: you engage the electric lock on your door, and you approach the two girls. As soon as you’re in arm’s length, Kiro grips you by the shoulder and yanks you between her and Paige. She says nothing; her arms wrap tightly around you both, locking you close to her body. Paige does the same to you and Kiro, and, taking their lead, you do the same to them.");
+	output("\n\nConversation is a bit light – the three of you simply enjoy each other’s company for a while. Kiro and Paige take deep, excited breaths, in through their noses and out their mouths, as they try to contain themselves. Girlish giggles make for the ambience of the room as the three of you share an intimate group hug; in fact, Kiro is shaking in pure delight and excitement at finally having met Paige once again.");
+	output("\n\n<i>“We have</i> so much <i>shit to do,”</i> Kiro says happily, her head leaning against Paige’s. <i>“It’s been so long, Paige. I... I knew you were alive and safe, in Tavros, and I wanted to... I, I wanted to visit, I wanted to, like, send you a message, or maybe take a yoga class or something....”</i> She begins to stutter as the words fall apart in her mouth; apparently, it just took a moment for the emotions to catch up to her. <i>“I dunno, I dunno how I was gonna do it. I was gonna put on a disguise, or, or, I thought of maybe sending you snail-mail, or I was gonna ask Mason to help–”</i>");
+	output("\n\n<i>“Hey,”</i> Paige interrupts, leaning forward to boop her nose against Kiro’s. <i>“You’re not gonna cry in front of me and [pc.name], are you, Kiro Tamahime?”</i>");
+	output("\n\n<i>“Shut up!”</i> shouts Kiro defiantly through the building spittle in her grinning mouth. <i>“You’re one to talk!”</i>");
+	output("\n\nPaige can’t help but laugh well-meaningly. <i>“Kiro Tamahime,”</i> she repeats, her voice low and reverent, still reeling from meeting her again.");
+	output("\n\nPaige sniffles long and hard through her nose, trying to maintain her own composure. Neither of them say anything for another few moments, too caught up in the rush of finally having been reunited to say anything more. Delicately, so as to not ruin the moment, you suggest that the three of them take a seat. Like Kiro said, you three have a lot of catching up to do.");
+	output("\n\nKiro takes another deep breath through her nose. <i>“Yeah,”</i> she agrees, mustering the strength to finally pull away from the huddle. Gripping you both tight as a vice, she makes her way to your bed, plopping herself down on its edge; you both help Paige to it, and then, your hand still locked with Kiro’s, you pull out your desk chair and sit on it. While your bed is bigger than theirs, you wouldn’t want to get in between the girls.");
+	output("\n\nPaige and Kiro are too caught up in each other’s presence to break the ice any further than that; sitting side-by-side, they’re comfortable with simply holding hands and leaning against each other for some time more.");
+	output("\n\nLooks like it’s up to you to get the conversation going this time.");
+	processTime(10);
+	addButton(0,"Next",paigeKiroMainMenu);
 }

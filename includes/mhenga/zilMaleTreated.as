@@ -29,7 +29,7 @@ public function treatedZilBreedableVag(target:Creature = null):int
 {
 	if (!target) target = pc;
 	if (!target.hasVagina()) return -1;
-	if (target.isPregnant()) return -1;
+	if (target.isFullyWombPregnant()) return -1;
 	if (target.fertility() <= 0) return -1;
 	return target.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 }
@@ -60,7 +60,7 @@ public function treatedZilBullEncounter():void
 			else
 			{
 				output("\n\n<i>“I don’t like competition");
-				if (pc.isPregnant()) output(", and I especially don’t like fertile bitches coming through here already knocked up");
+				if (pc.isPregnant() && pc.bellyRating() >= 10) output(", and I especially don’t like fertile bitches coming through here already knocked up");
 				output(",”</i> the zil chides as he starts grinding his member against your [pc.legNoun]. <i>“But even if you can’t carry my bastards, you’ll be good enough for a bit of stress relief. Consider it a toll for trespassing on my breeding grounds.”</i>");
 			}
 		}
@@ -76,7 +76,7 @@ public function treatedZilBullEncounter():void
 			{
 				output("\n\nThe zil looks annoyed, as if he doesn’t have time for this.");
 				output("\n\n<i>“You’ve got some real balls passing through here");
-				if (pc.isPregnant()) output("especially with someone else’s young in your belly");
+				if (pc.isPregnant() && pc.bellyRating() >= 10) output(" especially with someone else’s young in your belly");
 				output(",”</i> the zil says as he cracks his knuckles. <i>“You’re not getting out of here without my cock up your ass.”</i>");
 			}
 		}
@@ -164,7 +164,7 @@ public function treatedZilBullFightGo(startGrappled:Boolean = false):void
 	CombatManager.victoryScene(swattingABumblingBeeBull);
 	CombatManager.lossScene(getYourAssKickedBySteroidBee);
 	CombatManager.displayLocation("TREATED ZIL");
-	var eText:String = "The bee-like man is by every means intimidating, from his seven and a half feet in height, his dominant muscular frame, and of course the frighteningly erect 16 inch horsecock, pitch black in color. His productivity is just as impressive as his phallus, his two soccer ball sized nuts stretching his leathery scrotum, and the unending drooling of honey from his phallus leaving a golden puddle on the jungle ground. Despite his lack of clothes, wrapped around his waist is a rope with a cloth pouch of moderate size tied to it.\n\nHis ebony carapace hasn’t grown along with him, leaving his ripped physique on display, as well as at your mercy were you to attack. On the top of his head is a pair of seven inch, shiny, ebony horns. Although his wings have grown in size alongside him, he seems unable to hover for more than a few seconds, let alone fly. Despite not wielding any weapon, his potent musk is quite enticing, even from a few feet away.\\n";
+	var eText:String = "The bee-like man is by every means intimidating, from his seven and a half feet in height, his dominant muscular frame, and of course the frighteningly erect 16 inch horsecock, pitch black in color. His productivity is just as impressive as his phallus, his two soccer ball sized nuts stretching his leathery scrotum, and the unending drooling of honey from his phallus leaving a golden puddle on the jungle ground. Despite his lack of clothes, wrapped around his waist is a rope with a cloth pouch of moderate size tied to it.\n\nHis ebony carapace hasn’t grown along with him, leaving his ripped physique on display, as well as at your mercy were you to attack. On the top of his head is a pair of seven inch, shiny, ebony horns. Although his wings have grown in size alongside him, he seems unable to hover for more than a few seconds, let alone fly. Despite not wielding any weapon, his potent musk is quite enticing, even from a few feet away.\n";
 	if (pc.hasPerk("Weak Mind")) eText += "Would it really be that bad if you just gave in though?\n\n";
 	CombatManager.encounterText(eText);
 	CombatManager.beginCombat();
@@ -411,6 +411,7 @@ public function gottaGrabTheZilBullByTheButt(cockIdx:int):void
 		output("\n\n<i>“I’m all yours.”</i>");
 		ezFitZil = true;
 	}
+	if(ezFitZil) (enemy as ZilMaleTreated).updateAssStats();
 
 	addButton(0, "Next", continueDoingAZilBullInTheButt, [cockIdx, ezFitZil]);
 }
@@ -430,7 +431,14 @@ public function continueDoingAZilBullInTheButt(args:Array):void
 	else output("You take your [pc.cock " + cockIdx + "] in hand, stroking its already semi-erect length until you’re rock hard.");
 	if (pc.isTaur()) output(" It’s not an easy matter to get your cock in place. You’re forced to blindly thrust a couple times until your [pc.cockHead " + cockIdx + "] finally finds purchase against the zil’s winking hole.");
 	output("\n\nPutting all of your weight into a single thrust, you draw out a long, quivering moan from the zil as you invade his hole. Eventually you bottom out, and the bovine bee " + (pc.isTaur() ? "looks up" : "turns around") + " to give you a weak smile as he wiggles his ass against your base. It looks like he’s fully accepted his loss.");
+	
 	pc.cockChange();
+	if(flags["BULLZIL_BUTTGINITY_TAKEN"] == undefined)
+	{
+		enemy.buttChange(pc.cockVolume(cockIdx));
+		flags["BULLZIL_BUTTGINITY_TAKEN"] = 1;
+	}
+	
 	if (pc.hasKnot(cockIdx))
 	{
 		if (ezFitZil)
@@ -613,15 +621,16 @@ public function zilBullLossRouter():void
 	else nomNomNomOnHoneyHorseDong();
 }
 
- public function getSomeLittleBeeBullsInsideYa():void
- {
+public function getSomeLittleBeeBullsInsideYa():void
+{
+	var cuntIdx:int = treatedZilBreedableVag();
+	if(cuntIdx < 0) cuntIdx = rand(pc.vaginas.length);
+	var zil:Creature = (CombatManager.inCombat ? CombatManager.getHostileActors()[0] : getZilBull());
+	
 	clearMenu();
 	clearOutput();
 	showTreatedZilBull();
 	processTime(20+rand(26));
-
-	var cuntIdx:int = treatedZilBreedableVag();
-	var zil:Creature = (CombatManager.inCombat ? CombatManager.getHostileActors()[0] : getZilBull());
 
 	output("Fishing around in the cloth pouch tied around his waist, the zil produces a small wooden case. He muses over his options, obstructed to your view his fingers dance across the contents of the case. Before plucking his final choice out, he takes one last look at you and winks.");
 	output("\n\nHeld between his fingers is a rather long, rather sharp, hollow needle. A drop of red liquid trickles from the tip. The zil notices the panic in your eyes and kneels down, caressing the back of your head.");
@@ -784,6 +793,8 @@ public function zilBullGonnaDoYourButt():void
 		else if (targetHole.loosenessRaw < 3) targetHole.loosenessRaw += 0.2;
 		
 		if (targetHole.bonusCapacity < 500) targetHole.bonusCapacity += 40;
+		
+		pc.destroyItemByClass(EasyFit);
 	}
 	else
 	{
@@ -799,7 +810,7 @@ public function zilBullGonnaDoYourButt():void
 	if (treatedZilBreedableVag() >= 0) output(" slides a meaty finger into your [pc.cunt]. Dealing with his girthy cock in your ass is one thing, but having to handle penetration from both ends isn’t an easy task. You wrap yourself around his arm for support, holding your face tight against his sizable bicep. <i>“Never met a bitch who likes it in the ass more than the cunt, but I figure sluts like you are bound to exist. Heh, not that I’m complaining”</i>");
 	else
 	{
-		if (pc.isPregnant()) output(" caresses your pregnant belly. It’s an abnormal mix of sensations: his protective, almost caring touch combines with the lewd sensation of his bestial shaft sodomizing you. They shouldn’t work well together, but for some reason they do. And all you want to do is melt into his arms and have him take you... <i>“If you weren’t already pregnant");
+		if (pc.isPregnant() && pc.bellyRating() >= 10) output(" caresses your pregnant belly. It’s an abnormal mix of sensations: his protective, almost caring touch combines with the lewd sensation of his bestial shaft sodomizing you. They shouldn’t work well together, but for some reason they do. And all you want to do is melt into his arms and have him take you... <i>“If you weren’t already pregnant");
 		else
 		{
 			if (pc.hasCock()) output(" rubs your [pc.cocks] with a single finger, as if he were playing with a clit.");
@@ -833,10 +844,11 @@ public function zilBullGonnaDoYourButt():void
 	}
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output("\n\nSimilarly, you’re");
-		if (pc.cumQ() < 250) output(" dripping what little cum you can onto");
-		else if (pc.cumQ() < 2500) output(" shooting strings onto");
-		else if (pc.cumQ() < 25000) output(" shooting ropes onto");
+		if (cumQ < 250) output(" dripping what little cum you can onto");
+		else if (cumQ < 2500) output(" shooting strings onto");
+		else if (cumQ < 25000) output(" shooting ropes onto");
 		else output(" hosing down");
 		output(" the jungle floor, your " + (pc.hasCocks() ? "cocks" : "cock") + " twitching and spurting until your balls are utterly drained.");
 	}
@@ -928,7 +940,7 @@ public function nomNomNomOnHoneyHorseDong():void
 	if (pc.hasHorns() || (pc.hasHair() && pc.hairLength >= 3)) output(" tugs at your " + (pc.hasHorns() ? "horns" : "hair"));
 	else output(" pushes your head away");
 	output(". You even go so far as to press your lips against his flare to suck the remaining the dribbles out of his urethra.");
-	output("\n\n<i>“Alright, bitch.”</i> He pulls you off, having to pry your hands off of his cock a finger at a time. <i>“That’s enough of that. " + (pc.isPregnant() ? "Breed" : "Fuck") + " you later, slut.”</i>");
+	output("\n\n<i>“Alright, bitch.”</i> He pulls you off, having to pry your hands off of his cock a finger at a time. <i>“That’s enough of that. " + ((pc.hasVagina() && pc.fertility() > 0) ? "Breed" : "Fuck") + " you later, slut.”</i>");
 	output("\n\nAnd with that, he jumps into the air, using his wings to hover for a few moments before climbing onto a tree branch and leaping further into the jungle. Alone with nothing but a full belly, you collect your belongings and take some time to digest your meal, lying on the jungle floor.");
 
 	if (flags["USED_SNAKEBYTE"] != undefined) pc.orgasm();

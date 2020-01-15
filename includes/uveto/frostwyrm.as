@@ -49,6 +49,9 @@ public function HereBeDragonBonus():Boolean
 	
 	if(flags["FROSTWYRM_NOT_HOSTILE"] != undefined)
 	{
+		// Genital Hotfix
+		if(!frostwyrm.hasGenitals()) frostwyrm.updateGenitals();
+		
 		output("\n\nThe shore here is where you can summon");
 		
 		if(flags["FROSTWYRM_NOT_HOSTILE"] < 2)
@@ -117,7 +120,7 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 	if (!ppFrostwyrmling.hasCock()) ppFrostwyrmling.createCock();
 	ppFrostwyrmling.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 	ppFrostwyrmling.cocks[0].cLengthRaw = 12;
-	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 2.5;
+	ppFrostwyrmling.cocks[0].cThicknessRatioRaw = 1.5;
 	ppFrostwyrmling.createPerk("Fixed CumQ", 450000, 0, 0, 0);
 	
 	//ppFrostwyrmling.impregnationType = "FrostwyrmPregnancy";
@@ -128,6 +131,8 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 //Encounter Text
 public function encounterFrostwyrm():void
 {
+	// Genital Hotfix
+	if(!frostwyrm.hasGenitals()) frostwyrm.updateGenitals();
 	// Gender-assignment hotfix
 	frostwyrm.createStatusEffect("Force It Gender");
 	frostwyrm.removeStatusEffect("Force Fem Gender");

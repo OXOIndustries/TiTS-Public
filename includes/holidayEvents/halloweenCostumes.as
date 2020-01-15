@@ -2762,7 +2762,7 @@ public function shortSwordTakingTimeNext():void
 
 	output("\n\n<i>“See, only a woman would feel that good from having their ass penetrated.”</i> She thrusts in and out your ass with her fingers, constantly hitting your prostate with each push in. Her other hand grabs your tiny balls and strokes you off at the same time. The amount of pleasure you are feeling forces you to thrust your womanly hips in the air and hold it, your back arched tightly and fingers gripping the sheets firmly. She taunts and teases you, bringing you to the edge and then stopping.");
 
-	output("\n\nIt’s not until you you can’t control your voice at all from the pleasure that she orders you to cum. She intensifies her stroking and directs your tool so you spurt a pathetic amount of fluid onto your face. You collapse on the bed, panting, and Asys stands at the foot of the bed. <i>“Don’t pass out now. We’ve only been focusing on you. It’s time for sissy’s mother to have a little fun with her girl.”</i>");
+	output("\n\nIt’s not until you can’t control your voice at all from the pleasure that she orders you to cum. She intensifies her stroking and directs your tool so you spurt a pathetic amount of fluid onto your face. You collapse on the bed, panting, and Asys stands at the foot of the bed. <i>“Don’t pass out now. We’ve only been focusing on you. It’s time for sissy’s mother to have a little fun with her girl.”</i>");
 
 	output("\n\nYou look up, tired and confused. She only responds by pulling her shorts down. Underneath you see compression underwear, helping keep a large bulge hidden. She tugs her panties down, and up pops up her own large dick. At your current size, her eight-inch long and two-inch thick monster put yours to shame. She moves it around hypnotically and it makes you drool, mesmerized.");
 
@@ -2913,7 +2913,7 @@ public function stealTheBlackCatCostume():void
 	author("Adjatha");
 	showHoliday();
 	output("A case full of Not For Sale? Why, it’s just what you wanted! These things tend to be priceless, which is just another way of saying ‘free.’ But first, to direct Ms. Holiday’s attention elsewhere...");
-	output("\n\nCraning your neck, you hold a palm to your ear. <i>“Is that a siren?”</i> you ask, idly. Holiday raises an eyebrow, you you catch a twitch of movement in her eyes as she glances back at the entrance.");
+	output("\n\nCraning your neck, you hold a palm to your ear. <i>“Is that a siren?”</i> you ask, idly. Holiday raises an eyebrow and you catch a twitch of movement in her eyes as she glances back at the entrance.");
 	output("\n\n<i>“How odd,”</i> you continue. <i>“What could they be looking for? Probably just rounding up some drunks,”</i> you conclude with a shrug.");
 	output("\n\n<i>“Yeah... probably,”</i> the pale-skinned nurse agrees, hand reaching down to her side as if checking for a firearm. Finding only her own hip, the devilishly-dressed vendor chews her lower lip.");
 	output("\n\n<i>“You know, I think I forgot something in the backroom,”</i> she announces, taking long strides across the storage floor. As she leaves, her tail whips back and forth in agitation, curling around the door frame as she moves out of sight.");

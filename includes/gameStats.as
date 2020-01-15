@@ -222,6 +222,7 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(" " + GLOBAL.FLAG_NAMES[pc.skinFlags[i]] + ",");
 			}
 		}
+		if(pc.hasStatusEffect("Rubber Wrapped")) output2(" Latex-encased,");
 		output2(" " + GLOBAL.SKIN_TYPE_NAMES[pc.skinType]);
 		output2("\n<b>* Skin Tone:</b> " + StringUtil.toDisplayCase(pc.skinTone));
 		if(pc.hasAccentMarkings()) output2("\n<b>* Accent Color:</b> " + StringUtil.toDisplayCase(pc.skinAccent) + " " + StringUtil.toDisplayCase(pc.getAccentMarking(pc.accentMarkings())));
@@ -1126,6 +1127,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
 		if(!chars["ANNO"].analVirgin) totalVirginitiesTaken++;
+		if(!chars["ARDIA"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].analVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].cockVirgin) totalVirginitiesTaken++;
 		if(!chars["EMBRY"].vaginalVirgin) totalVirginitiesTaken++;
@@ -1147,6 +1149,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
+		if(flags["BULLZIL_BUTTGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -1435,7 +1438,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Demon:</b> " + prettifyGeneticMarker(pc.demonScore(), 5, 8));
 		if(pc.dragonScore() > 0)
 			output2("\n<b>* Dragon:</b> " + prettifyGeneticMarker(pc.dragonScore(), 5, 10));
-		if(CodexManager.entryUnlocked("Dzaan") &&  pc.dzaanScore() > 0)
+		if(CodexManager.entryUnlocked("Dzaan") && pc.dzaanScore() > 0)
 			output2("\n<b>* Dzaan:</b> " + prettifyGeneticMarker(pc.dzaanScore(), 6, 8));
 		if(pc.felineScore() > 0)
 			output2("\n<b>* Feline:</b> " + prettifyGeneticMarker(pc.felineScore(), 5, 7));
@@ -5856,16 +5859,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TIMES_BUTTFUCKED_BY_SYRI"] != undefined) output2("\n<b>* Syri, Times She Fucked Your Ass:</b> " + flags["TIMES_BUTTFUCKED_BY_SYRI"]);
 					if(flags["SyriTailcocked"] != undefined) output2("\n<b>* Syri, Times You Used Your Tailcock on Her:</b> " + flags["SyriTailcocked"]);
 				}
-				if (flags["THYVARA_MET"] != undefined)
+				if(flags["THYVARA_MET"] != undefined)
 				{
 					output2("\n<b>* Thyvara Rosanvond:</b> Met her");
-					if (flags["THYVARA_PROGRESS"] != undefined)
+					if(flags["THYVARA_PROGRESS"] != undefined)
 					{
-						if (flags["THYVARA_PROGRESS"] == 5) output2(", Lovers");
-						else if (flags["THYVARA_PROGRESS"] == 4) output2(", Buddies");
+						if(flags["THYVARA_PROGRESS"] == 5) output2(", Lovers");
+						else if(flags["THYVARA_PROGRESS"] == 4) output2(", Buddies");
 					}
-					if (flags["THYVARA_SEX_FUCK"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times Fucked:</b> " + flags["THYVARA_SEX_FUCK"]);
-					if (flags["THYVARA_SEX_69"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times 69:</b> " + flags["THYVARA_SEX_69"]);
+					if(flags["THYVARA_SEX_FUCK"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times Fucked:</b> " + flags["THYVARA_SEX_FUCK"]);
+					if(flags["THYVARA_SEX_69"] != undefined) output2("\n<b>* Thyvara Rosanvond, Times 69:</b> " + flags["THYVARA_SEX_69"]);
 				}
 				// Erika
 				if(flags["ERIKA_MET"] != undefined)
@@ -6078,15 +6081,15 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Yoma:</b> Met him");
 					if(flags["YOMA_DATE_PROGRESS"] != undefined)
 					{
-						output2(", Times Dated: ");
-						if(flags["YOMA_RELATIONSHIP"] >= 6 ) output2("3");
-						else if(flags["YOMA_RELATIONSHIP"] == 4 ) output2("2");
-						else output2("2");
+						output2("\n<b>* Yoma, Times Dated:</b> ");
+						if(flags["YOMA_RELATIONSHIP"] >= 6) output2("3");
+						else if(flags["YOMA_RELATIONSHIP"] == 4) output2("2");
+						else output2("1");
 					}
-					output2(", Relationship: ");
-					if(flags["YOMA_RELATIONSHIP"] == undefined ) output2("Acquaintances");
-					else if(flags["YOMA_RELATIONSHIP"] == 0 ) output2("Fuckbuddies");
-					else if(flags["YOMA_RELATIONSHIP"] == 1 ) output2("Lovers");
+					output2("\n<b>* Yoma, Relationship:</b> ");
+					if(flags["YOMA_RELATIONSHIP"] == undefined) output2("Acquaintances");
+					else if(flags["YOMA_RELATIONSHIP"] == 0) output2("Fuckbuddies");
+					else if(flags["YOMA_RELATIONSHIP"] == 1) output2("Lovers");
 					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times You Played His RPG Game:</b> " + flags["YOMA_GAMES_PLAYED"]);
 					if(flags["YOMA_TIMES_HUGGED"] != undefined) output2("\n<b>* Yoma, Times Hugged:</b> " + flags["YOMA_TIMES_HUGGED"]);
 					if(flags["YOMA_TIMES_ORALED"] != undefined) output2("\n<b>* Yoma, Times He Oral Sexed You:</b> " + flags["YOMA_TIMES_ORALED"]);
@@ -7435,14 +7438,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["AGROSH_WHUPPED"] != undefined) output2(", Defeated him in combat");
 				if(flags["ARDIA_WHACKED_OFF_AGROSH"] != undefined) output2(", Sexed him with Ardia");
 				output2("\n<b>* Ardia:</b> Met her");
-				if (immuneToArdia()) output2(", Became immune to her cum");
+				if(immuneToArdia()) output2(", Became immune to her cum");
 				if(flags["SEXED_ARDIA"] != undefined)
 				{
 					output2("\n<b>* Ardia, Sex Organs:</b> " + listCharGenitals("ARDIA"));
 					output2("\n<b>* Ardia, Times Sexed:</b> " + flags["SEXED_ARDIA"]);
 				}
 				if(flags["ARDIA_BUTTLOVED"] != undefined) output2("\n<b>* Ardia, Times Fucked Her Ass:</b> " + flags["ARDIA_BUTTLOVED"]);
-				if (ardiaDomLevel() > 0) output2("\n<b>* Ardia, Dominance Towards You:</b> " + ardiaDomLevel())
+				if(ardiaDomLevel() > 0) output2("\n<b>* Ardia, Dominance Towards You:</b> " + ardiaDomLevel())
 				variousCount++;
 			}
 			if(flags["ZHENG_SHI_JUMPSUITED"] != undefined)
@@ -9533,6 +9536,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["EGG_TRAINING_TIMES"] > 1) output2(" " + flags["EGG_TRAINING_TIMES"] + " times");
 				}
 				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level:</b> " + flags["EGG_TRAINING"]);
+				if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Ovalasting Level:</b> " + flags["EGG_TRAINING_OVALASTING_LEVEL"]);
 				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training:</b> " + flags["CARRY_TRAINING_TIMES"]);
 				if(flags["EGG_TRAINING_OVALASTING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Used Ovalasting:</b> " + flags["EGG_TRAINING_OVALASTING"]);
 			}

@@ -1071,7 +1071,7 @@ public function forceyFaceSittingFromFemzil():void {
 	//Long tongue bonus!
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
 	{
-		output("\n\nThere’s so much to your oral organ that heartbeats tick by while you’re pushing it all into her, enjoying the sounds of her gasping enjoyment as you thrust inside. She’s surprisingly deep, but you you eventually find her cervix - a tight little hole fairly dripping with honey. You let your tip make slow circuits around it, feeling it flex and clench in response while the thick base of your organ rolls around this slippery channel’s entrance.");
+		output("\n\nThere’s so much to your oral organ that heartbeats tick by while you’re pushing it all into her, enjoying the sounds of her gasping enjoyment as you thrust inside. She’s surprisingly deep, but you eventually find her cervix - a tight little hole fairly dripping with honey. You let your tip make slow circuits around it, feeling it flex and clench in response while the thick base of your organ rolls around this slippery channel’s entrance.");
 		if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" Showing just how talented you are, you twist your muscle into a helix shape that presses on her walls from all sides, and with a deft flex expand it outward, stretching her open so that the honey can ooze out directly into your waiting [pc.lips].");
 	}
 	

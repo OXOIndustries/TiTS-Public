@@ -342,7 +342,7 @@
 			else 
 			{
 				output(" It happens so fast you barely even react in time, swinging to the side and <i>just</i> avoiding the flechette dart flying into your shoulder, launched from a hidden compartment in her body you were just studious enough to see.");
-				output("\n\n<i>“Darn,”</i> she murmurs, taking a neutral stance once more. <i>“They usually fall for that one.”</i>}");
+				output("\n\n<i>“Darn,”</i> she murmurs, taking a neutral stance once more. <i>“They usually fall for that one.”</i>");
 			}
 		}
 		//Other drug stuff
@@ -351,7 +351,7 @@
 		public function otherDrugStuffins(target:Creature):void
 		{
 			output("You scarcely even have time to react to the herm fuckbot reaching behind her back to grab something, immediately tossing it your way.");
-			if(!combatMiss(this,target) || target.intelligence()/2 + rand(20) + 1 >= 35)
+			if(!combatMiss(this,target) || target.intelligence()/2 + rand(20) + 1 < 35)
 			{
 				output(" It’s a gas grenade! Backpedalling, you choke and cough, trying to wave the billowing cloud of lust-inducing vapor away when you bump into a wall. Shit! You can’t even tell which way is which!");
 				output("\n\nAnything is better than staying here, though - eyes squeezed shut and a hand over your mouth, you blindly grope your way down the hallway away from the device only to find your hand wrapped around a soft protrusion. Raising your eyelids just a tad, you see the lusty ‘bot grinning down at you.");

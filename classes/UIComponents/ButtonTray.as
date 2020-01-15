@@ -93,6 +93,8 @@
 			this.addChild(_backgroundElem);
 		}
 		
+		private var maxButtonPage:int = 8;
+		
 		/**
 		 * Create all of the main interface buttons present in the Button Tray
 		 */
@@ -133,7 +135,9 @@
 				newBtn.addEventListener(MouseEvent.CLICK, _buttonHandlerFunc);
 			}
 			
-			for (var btnD:int = 0; btnD < 60; btnD++)
+			var btnD:int = 0;
+			var btnLim:int = (15 * maxButtonPage);
+			for (btnD = 0; btnD < btnLim; btnD++)
 			{
 				_buttonData.push(new ButtonData());
 			}
@@ -211,7 +215,7 @@
 					{
 						var newButtonPage:int = Math.ceil((lastButtonIndex + 1) / 15);
 						if (newButtonPage < 1) newButtonPage = 1;
-						if (newButtonPage > 4) newButtonPage = 4;
+						if (newButtonPage > maxButtonPage) newButtonPage = maxButtonPage;
 						if (_buttonPage > lastButtonPage && newButtonPage < lastButtonPage) _buttonPage = newButtonPage;
 					}
 					i = -1;
@@ -239,7 +243,7 @@
 		
 		public function execButtonPageNext():void
 		{
-			if (_buttonPageNext.isActive == false || buttonPage >= 4) return;
+			if (_buttonPageNext.isActive == false || buttonPage >= maxButtonPage) return;
 			
 			buttonPage++;
 			
@@ -311,6 +315,9 @@
 			resetButtonColours();
 			clearButtonData();
 			clearGhostButtons();
+			
+			buttonPage = 1;
+			
 			CheckPages();
 		}
 		
