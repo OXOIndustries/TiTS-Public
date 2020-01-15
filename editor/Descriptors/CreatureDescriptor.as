@@ -5,6 +5,10 @@ package editor.Descriptors {
     import classes.kGAMECLASS;
     import classes.Characters.PlayerCharacter;
 
+    /**
+     * This is used to limit the interpreter's access
+     * Mainly taken from getDesc in Creature
+     */
     public class CreatureDescriptor {
         private var ownerObj: ObjectAccessor;
         

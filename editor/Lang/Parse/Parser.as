@@ -10,6 +10,12 @@ package editor.Lang.Parse {
         private var errors: Vector.<LangError>;
         private var textStr: String;
 
+        /**
+         * Parses text generating a ParseResult
+         * @param tokens
+         * @param text
+         * @return
+         */
         public function parse(tokens: Vector.<Token>, text: String): ParseResult {
             this.stream = new TokenStream(tokens);
             this.errors = new Vector.<LangError>();
@@ -26,29 +32,44 @@ package editor.Lang.Parse {
         }
 
         /**
-         * A ConcatNode with one blank StringNode with specified range
+         * Empty StringNode
          * @param range
          */
         private function empty(range: TextRange = null): StringNode {
             return new StringNode(range || new TextRange(), '');
         }
 
+        /**
+         * Creates error using a node
+         * @param node
+         * @return
+         */
         private function createError(node: Node): LangError {
             return new LangError('Expected "' + node.value + '"', node.range);
         }
 
+        /**
+         * Get the text of the supplied token
+         * @param token
+         * @return
+         */
         private function getText(token: Token): String {
             return this.textStr.slice(token.range.start.col + token.offset, token.range.end.col + token.offset);
         }
 
+        /**
+         * Handles concatenation
+         * Reports errors
+         * @return StringNode or ConcatNode or EvalNode
+         */
         private function concat(): Node {
             var newNode: Node;
             var arr: Array = [];
 
             while (!this.stream.eos()) {
                 // Search until something is found
-                newNode = this.code();
-                if (!newNode) newNode = this.text();
+                newNode = this.code(); // StringNode or ConcatNode or EvalNode or ErrorNode or null
+                if (!newNode) newNode = this.text(); // StringNode or null
                 if (!newNode) break;
 
                 // Force the stream forward in case nothing was found
@@ -61,7 +82,7 @@ package editor.Lang.Parse {
                     this.errors.push(this.createError(newNode));
                 }
                 else {
-                    arr.push(newNode);
+                    arr.push(newNode); // StringNode or ConcatNode or EvalNode
                 }
             }
 
@@ -77,6 +98,10 @@ package editor.Lang.Parse {
                 );
         }
 
+        /**
+         * Parsing for text
+         * @return StringNode or null
+         */
         private function text(): Node {
             var startToken: Token = this.stream.current;
             var endToken: Token;
@@ -105,6 +130,10 @@ package editor.Lang.Parse {
             return null;
         }
 
+        /**
+         * Parsing for code brackets
+         * @return StringNode or ConcatNode or EvalNode or ErrorNode or null
+         */
         private function code(): Node {
             // Leave if no bracket
             var bracketOpenToken: Token = this.stream.consume(TokenType.BracketOpen);
@@ -125,6 +154,10 @@ package editor.Lang.Parse {
             return codeNode;
         }
 
+        /**
+         * Constructs EvalNode
+         * @return EvalNode or ErrorNode
+         */
         private function eval(): Node {
 
             var identityNode: Node = this.retrieve();
@@ -148,6 +181,10 @@ package editor.Lang.Parse {
 
         }
 
+        /**
+         * Parsing for Identity chain and constructs RetrieveNode
+         * @return RetrieveNode or ErrorNode
+         */
         private function retrieve(): Node {
             this.stream.whitespace();
 
@@ -187,6 +224,10 @@ package editor.Lang.Parse {
             return rootNode;
         }
 
+        /**
+         * Constructs ArgsNode
+         * @return ArgsNode
+         */
         private function args(): Node {
             var arr: Array = [];
 
@@ -208,6 +249,10 @@ package editor.Lang.Parse {
             );
         }
 
+        /**
+         * Constructs ResultsNode
+         * @return ResultsNode
+         */
         private function results(): Node {
             var arr: Array = [];
 
@@ -228,21 +273,25 @@ package editor.Lang.Parse {
             );
         }
 
+        /**
+         * Handles concatenation inside a Results
+         * @return StringNode or ConcatNode or EvalNode
+         */
         private function resultConcat(): Node {
             var arr: Array = [];
             var newNode: Node;
 
             while (!this.stream.eos()) {
                 // Search until something is found
-                newNode = this.code();
-                if (!newNode) newNode = this.text();
+                newNode = this.code(); // StringNode or ConcatNode or EvalNode or ErrorNode or null
+                if (!newNode) newNode = this.text();// StringNode or null
                 if (!newNode) break;
 
                 if (Node.isErrorNode(newNode)) {
                     this.errors.push(this.createError(newNode));
                 }
                 else {
-                    arr.push(newNode);
+                    arr.push(newNode); // StringNode or ConcatNode or EvalNode
                 }
             }
 
@@ -258,6 +307,10 @@ package editor.Lang.Parse {
                 );
         }
 
+        /**
+         * Parsing for String and Number in Args
+         * @return StringNode or NumberNode
+         */
         private function getValue(): Node {
             var subStr: String = "";
 

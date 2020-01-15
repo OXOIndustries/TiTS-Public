@@ -4,6 +4,9 @@ package editor.Lang.Lex {
     import editor.Lang.Tokens.*;
 
     public class Lexer {
+        /**
+         * A list of symbols that can be checked
+         */
         private static const TokenSymbol: Object = new Object();
         {
             TokenSymbol.Newline = '\r';
@@ -17,6 +20,9 @@ package editor.Lang.Lex {
             TokenSymbol.Tab = '\t';
         }
 
+        /**
+         * This is used as a stage to determine how the text processed
+         */
         private static const CodeState: Object = new Object();
         {
             CodeState.Text = 't';
@@ -30,6 +36,11 @@ package editor.Lang.Lex {
         private var stream: StringStream;
         private var state: Object;
 
+        /**
+         * Analyzes the text and creates a Vector of tokens.
+         * @param text
+         * @return Vector of tokens
+         */
         public function lex(text: String): Vector.<Token> {
             this.tokens = new Vector.<Token>();
             this.stream = new StringStream(text);
@@ -61,6 +72,10 @@ package editor.Lang.Lex {
             return this.tokens;
         }
 
+        /**
+         * Creates a new Token using the current state.
+         * @return Token
+         */
         private function createToken(): Token {
             const start: TextPosition = new TextPosition(this.state.lineNum, this.stream.pos - this.state.offset);
             const type: String = this.tokenize();
@@ -69,6 +84,11 @@ package editor.Lang.Lex {
             return new Token(type, offset, range);
         }
 
+        /**
+         * Determines the token type from the current position.
+         * Moves the position forward to create a range for the token.
+         * @return TokenType
+         */
         private function tokenize(): String {
             if (this.state.escaped) {
                 this.state.escaped = false;

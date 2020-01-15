@@ -1,4 +1,7 @@
 package editor.Descriptors {
+    /**
+     * Stores Object and key in case Object[key] gets changed
+     */
     public class ObjectAccessor {
         private var key: String;
         private var obj: Object;

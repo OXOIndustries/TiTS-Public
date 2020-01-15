@@ -8,6 +8,11 @@ package editor.Lang.Interpret {
         private var errors: Vector.<LangError>;
         private var globals: Object;
 
+        /**
+         * Joins the values of a node's children with a "."
+         * @param node RetrieveNode
+         * @return
+         */
         private function getName(node: Node): String {
             for each (var child: * in node.children)
             var values: Array = [];
@@ -16,6 +21,11 @@ package editor.Lang.Interpret {
             return values.join('.');
         }
 
+        /**
+         * Escapes newline and quotes
+         * @param text
+         * @return
+         */
         private function escape(text: String): String {
             var escapedText: String = text;
             for each (var pair: Array in escapePairs) {
@@ -24,6 +34,11 @@ package editor.Lang.Interpret {
             return escapedText;
         }
 
+        /**
+         * Processes a node's children and returns the results in an array
+         * @param node
+         * @return
+         */
         private function processChildren(node: Node): Array {
             var values: Array = [];
             for each (var child: * in node.children)
@@ -31,6 +46,13 @@ package editor.Lang.Interpret {
             return values;
         }
 
+        /**
+         * Interprets a tree of Nodes
+         * All errors will be caught and placed into the result
+         * @param node The root node
+         * @param globals The memory/object to access
+         * @return
+         */
         public function interpret(node: Node, globals: Object): InterpretResult {
             this.errors = new Vector.<LangError>();
             this.globals = globals;
@@ -58,6 +80,11 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * Processes a node by its type
+         * @param node Node
+         * @return
+         */
         private function processNode(node: *): Product {
             switch (node.type) {
                 case NodeType.Identity: return this.evalIdentityNode(node);
@@ -144,10 +171,12 @@ package editor.Lang.Interpret {
             var caps: Boolean = false;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
+                // Determine if capitalization is needed
                 if (identity.charAt(0).toLocaleUpperCase() === identity.charAt(0)) {
                     caps = true;
                     identity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
                 }
+                // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
                     this.errors.push(new LangError(
                         '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : ''),
@@ -159,7 +188,7 @@ package editor.Lang.Interpret {
                         ''
                     );
                 }
-
+                // Check for <name>__info
                 if (idx === values.length - 1 && (identity + '__info') in obj) {
                     infoObj = obj[identity + '__info'];
                 }

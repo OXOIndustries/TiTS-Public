@@ -1,7 +1,14 @@
 package editor.Lang.Nodes {
     import editor.Lang.TextRange;
 
+    /**
+     * Node used in parsing tree
+     * Subclass for specific node
+     */
     public class Node {
+        /**
+         * Use NodeType only
+         */
         public var type: String;
         public var range: TextRange;
         public var children: Array;

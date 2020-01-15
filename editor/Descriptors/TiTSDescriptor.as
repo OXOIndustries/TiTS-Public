@@ -3,6 +3,10 @@ package editor.Descriptors {
     import classes.Creature;
     import classes.TiTS;
 
+    /**
+     * This is used to limit the interpreter's access
+     * The main entry point for the interpreter
+     */
     public class TiTSDescriptor {
         private var game: TiTS;
         private var charDesc: Object;
@@ -35,6 +39,9 @@ package editor.Descriptors {
             }
         }
 
+        /**
+         * Checks for exactly one result
+         */
         private static const needsOneResult: Function = function(args: Array, results: Array): String {
             if (args.length > 0) return "has too many arguments";
             if (results.length === 0) return "needs a result";
@@ -42,10 +49,17 @@ package editor.Descriptors {
             return null;
         };
 
+        /**
+         * Wraps a HTML tag around text
+         * @param tag
+         * @param text
+         * @return
+         */
         private static function htmlTagText(tag: String, text: String): String {
             return "<" + tag + ">" + text + "</" + tag + ">";
         }
 
+        // Test things
         public const i__info: FunctionInfo = new FunctionInfo()
             .setArgResultValidatorFunc(needsOneResult)
             .setToCodeFunc(function(args: Array, results: Array): String {
@@ -76,6 +90,7 @@ package editor.Descriptors {
             return text.charAt(0).toLocaleUpperCase() + text.slice(1);
         }
 
+        // From TiTS
         public function get silly(): Boolean {
             if (this.game.gameOptions)
                 return !!this.game.gameOptions.sillyMode;
