@@ -1004,7 +1004,7 @@ public function buyItemMultiCustom():void
 public function buyItemMultiCustomOK():void
 {
 	if(isNaN(Number(userInterface.textInput.text))) {
-		buyItemMultiCustomOK();
+		buyItemMultiCustom();
 		output("Choose a quantity that is a positive integer, please.");
 		return;
 	}
