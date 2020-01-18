@@ -1250,7 +1250,7 @@
 		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		public static const ITEM_FLAG_TOGGLED_OFF:int 					= 41; //For spaceships weapons being toggled off to save power.
 		public static const ITEM_FLAG_TWINSHOT:int 						= 42; //For weapons that fire twice.
-		public static const ITEM_FLAG_BURSTSHOT:int 						= 43; //For weapons that fire thrice.
+		public static const ITEM_FLAG_BURSTSHOT:int 					= 43; //For weapons that fire thrice.
 		public static const ITEM_FLAG_QUADSHOT:int 						= 44; //For weapons that fire QUAD DAMAGE.
 		public static const ITEM_FLAG_SHIP_EQUIPMENT:int 				= 45; //For things equipped on ships
 		public static const ITEM_FLAG_TURRET:int 						= 46; //For things equipped on ships

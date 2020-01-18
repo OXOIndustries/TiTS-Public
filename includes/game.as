@@ -807,6 +807,7 @@ public const CREW_KIRO:int = 22;
 public const CREW_OLYMPIA:int = 23;
 public const CREW_EITAN: int = 24;
 public const CREW_ARDIA: int = 25;
+public const CREW_KIRO_BIMBO: int = 26;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -835,6 +836,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (yammiRecruited()) crewMembers.push(CREW_YAMMI);
 	if (olympiaRecruited()) crewMembers.push(CREW_OLYMPIA);
+	if (kiroBimboRecruited()) crewMembers.push(CREW_KIRO_BIMBO);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -874,6 +876,7 @@ public function crewOnboard(allcrew:Boolean = false):Array
 	if (syriIsCrew()) crewMembers.push(CREW_SYRI);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (olympiaIsCrew()) crewMembers.push(CREW_OLYMPIA);
+	if (kiroBimboIsCrew()) crewMembers.push(CREW_KIRO_BIMBO);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -990,6 +993,7 @@ public function getCrewOnShip():Array
 	if (siegwulfeIsCrew()) c.push(wulfe);
 	if (olympiaIsCrew()) c.push(olympia);
 	if (kiroIsCrew()) c.push(kiro);
+	if (kiroBimboIsCrew()) c.push(kiro);
 	return c;
 }
 
@@ -1020,6 +1024,7 @@ public function getGunnersOnShipNames():Array
 	if (siegwulfeIsCrew()) crewMembers.push(chars["WULFE"].short);
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
 	if (kiroIsCrew()) crewMembers.push("Kiro");
+	if (kiroBimboIsCrew()) crewMembers.push(kiro.short);
 	return crewMembers;
 }
 
@@ -1049,6 +1054,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (syriIsCrew()) crewMembers.push("Syri");
 	if (yammiIsCrew()) crewMembers.push("Yammi");
 	if (olympiaIsCrew()) crewMembers.push("Olympia");
+	if (kiroBimboIsCrew()) crewMembers.push(kiro.short);
 	
 	if (allcrew)
 	{
@@ -1268,6 +1274,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += kiroCrewBonus(btnSlot, InCollection(CREW_KIRO, crewMembers));
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (kiroBimboIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			//9999 tbd crewMessages += kiroCrewBonus(btnSlot, InCollection(CREW_KIRO, crewMembers));
+			addButton(btnSlot,"[kiro.name]",approachBimboKiroCrew);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}

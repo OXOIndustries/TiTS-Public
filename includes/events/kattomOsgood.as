@@ -1,3 +1,5 @@
+import classes.Items.Combat.EroGasGrenade;
+
 // Exclusions
 public function pattonIsNotSupposedToBeHere():Boolean
 {
@@ -130,6 +132,13 @@ public function setKattomsInventory():void
 			else patty.inventory.push(new Vanquisher());
 			//Stormbull
 			patty.inventory.push(new Stormbull());
+			break;
+		case "dhaal":
+			patty.inventory.push(new EroGasGrenade());
+			patty.inventory.push(new Rouser());
+			patty.inventory.push(new GlacialAuger());
+			patty.inventory.push(new IceCappers());
+			patty.inventory.push(new StreetSweeper());
 			break;
 		default:
 			patty.inventory.push(new Savicite());

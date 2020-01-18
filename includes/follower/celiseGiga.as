@@ -22,6 +22,7 @@ public function gigaCeliseTransform():void
 		output("\n\n<i>“So good,”</i> she sighs with a shudder as she completes the changes. The emerald goo-girl stands at twelve feet tall, looking down at you with a dazed smile, the tips of her smaller tendrils brushing eagerly against your body.");
 	}
 	flags["GIGACELISE"] = 1;
+	showCelise();
 	processTime(9);
 	gigaCeliseMenu();
 }
@@ -64,6 +65,7 @@ public function gigaCeliseMenu():void
 public function shrinkBackToNormalCelise():void
 {
 	clearOutput();
+	flags["GIGACELISE"] = undefined;
 	showCelise();
 	author("Gardeford");
 	output("You tell Celise you want her to return to her normal form. The beryl beauty looks saddened for a moment, but nods.");
@@ -73,7 +75,6 @@ public function shrinkBackToNormalCelise():void
 	output(", assuring her that you might be up for trying it again sometime, and even if you don’t you’ll be sure to feed her plenty in this form. The viridian venus grins at the prospect, giggling at your touch. Her FF-cups return with jiggly vigor, emerald nipples sinking back into the gooey expanses along with the last of the many tendrils.");
 
 	output("\n\n<i>“All done!”</i> she exclaims as her body finishes reverting.");
-	flags["GIGACELISE"] = undefined;
 	clearMenu();
 	addButton(0,"Next",celiseFollowerInteractions);
 }
