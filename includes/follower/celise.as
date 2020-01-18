@@ -19,7 +19,7 @@ public function showCelise():void
 }
 public function celiseBustDisplay():String
 {
-	if(flags["GIGACELISE"] != undefined) return "CELISE";
+	if(flags["GIGACELISE"] != undefined) return "CELISE_GIGA";
 	return "CELISE";
 }
 

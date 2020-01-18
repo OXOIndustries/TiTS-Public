@@ -2130,7 +2130,7 @@ public function pennySyriPornText():String
 	smut += "\n\n<i>“Oh my gosh,”</i> Penny squeals, all smiles and happiness. <i>“I gotta special treat for you guys! I’m gonna fuck this pussy while the owner watches!”</i>";
 	smut += "\n\n<i>“Are you talking to your stream?”</i> Syri asks, nodding at Penny’s little laptop.";
 	smut += "\n\n<i>“Uh huh,”</i> Penny says softly, rubbing the toy against her";
-	if (penny.cLength() < 12) smut += " iron-hard dick.";
+	if (penny.cLength(0) < 12) smut += " iron-hard dick.";
 	else smut += " towering cock.";
 	smut += " <i>“They loOoOoOve watching me fuck... don’t you, cuties? Hey,”</i> she says suddenly, realizing the situation. <i>“You’re like a real life stream-watcher right now! That’s so hot! Ohmygosh, it’s like I’m fucking in front of you guys for real!”</i>";
 	smut += "\n\n<i>“Well? I’m waiting,”</i> Syri mutters, rubbing the bridge of her nose.";
@@ -2141,7 +2141,7 @@ public function pennySyriPornText():String
 	smut += "\n\n<i>“Uuuuuhhhhnnnn,”</i> Penny groans, slipping the opening over her cockhead. <i>“Oh, fuck, I love how tight it is...”</i>";
 	smut += "\n\nSyri’s ears noticeably twitch and perk up at that, though she says nothing. Penny slowly lifts her hips, sliding deeper into the toy like she were entering a familiar lover, moaning softly all the while. When she pulls herself back out you can actually see how much the pussy physically clings to her -- the cute little lips <i>grip</i> her vein-covered cock as though they need her back inside, an impulse Penny is only too happy to oblige.";
 	smut += "\n\nA shuddering groan escapes her lips as she thrusts herself back inside, leaning back against her pile of pillows and starting to one-handedly fuck herself with Syri’s bionahole. Her earlier orgasms have lubricated it to the point where it flawlessly glides up and down her length though even if they hadn’t, it’s plain to see how much Syri’s pussy is juicing itself. Translucent fluid <i>coats</i>";
-	if (penny.cLength() < 12) smut += " the entirety of Penny’s prick, rolling down her own flared pussylips.";
+	if (penny.cLength(0) < 12) smut += " the entirety of Penny’s prick, rolling down her own flared pussylips.";
 	else smut += " the majority of Penny’s shaft, rolling down and dripping to the bed.";
 	smut += "\n\n<i>“O-okay,”</i> Syri stammers, holding an arm out. <i>“Wait! Y-you can hang onto it, it’s fine. I have to, to go. And uh, mail me the stream address later! So- so I can make sure you’re not misusing my- my pussy...”</i>";
 	smut += "\n\n<i>“Aw, okay! Bye, Syri!”</i> Penny says cheerfully, waving as the ausar girl leaves, almost doubled over and walking funny. Poor girl. You’re not sure what she expected out of Penny, but she probably wasn’t imagining it would be quite <i>that</i> lewd...";

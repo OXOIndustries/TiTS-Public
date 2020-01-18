@@ -160,6 +160,7 @@
 		include "../includes/follower/eitan.as";
 		include "../includes/follower/kase.as";
 		include "../includes/follower/kiro.as";
+		include "../includes/follower/kiroBimbo.as";
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/olympiaAndSidewinder.as";
@@ -704,7 +705,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.049";
+			version = "0.8.050";
 
 			//temporary nonsense variables.
 			temp = 0;

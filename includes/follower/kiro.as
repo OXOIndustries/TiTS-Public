@@ -1,10 +1,10 @@
 public function kiroRecruited():Boolean
 {
-	return (flags["KIRO_RECRUITED"] == 1);
+	return (flags["KIRO_RECRUITED"] == 1 && !kiro.isBimbo());
 }
 public function kiroIsCrew():Boolean
 {
-	return (flags["KIRO_ONBOARD"] == 1);
+	return (flags["KIRO_ONBOARD"] == 1 && !kiro.isBimbo())
 }
 public function crewKiroBusy():Boolean
 {
