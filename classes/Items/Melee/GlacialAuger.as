@@ -31,7 +31,7 @@ package classes.Items.Melee
 			
 			this.tooltip = "The exceedingly hostile environment on Dhaal’s exposed poles make mining a perpetually dangerous proposition for normal equipment. The Glacial Auger is a tool originally developed for mining out the sun-baked magma fields of the light-facing hemisphere. The corkscrewing drill is liquid cooled by proprietary Paragon Inc. chemicals guaranteed to flash-freeze and drill through even boiling iron. One can only imagine its effects on unprotected skin.";
 			this.attackVerb = "stab";
-			attackNoun = "stab";
+			attackNoun = "freezing drill";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

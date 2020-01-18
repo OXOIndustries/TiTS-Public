@@ -18,6 +18,7 @@
 	import classes.Engine.Combat.outputDamage;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Characters.PlayerCharacter;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * ...
@@ -134,7 +135,7 @@
 				{
 					if(attacker.intelligence()/2 + rand(20)+1 >= cTarget.physique()/2 + 10 && !cTarget.hasStatusEffect("AphroGas"))
 					{
-						CombatAttacks.applyAphroGas(target, 6, 3);
+						CombatAttacks.applyAphroGas(cTarget, 6, 3);
 						output(" <b>The gas clings to " + cTarget.capitalA + cTarget.uniqueName + "</b>.");
 					}
 				}

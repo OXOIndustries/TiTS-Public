@@ -31,7 +31,7 @@ package classes.Items.Melee
 			
 			this.tooltip = "Are you sick of having to repeat yourself? Wish there was some way to leave a lasting impression? With Paragon Incorporated’s Rouser-type fighting knife, now you can! Every dagger contains a reservoir of the very same acidic compounds used in Dhaal’s industrial manufacturing. If the knife wound doesn’t make your point, the resultant bubbling scar certainly will.";
 			this.attackVerb = "stab";
-			attackNoun = "stab";
+			attackNoun = "acid";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

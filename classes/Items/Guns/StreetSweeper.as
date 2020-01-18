@@ -33,7 +33,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Your average weapon enthusiast will certainly be aware of the short-range stopping power of a sawed-off shotgun. Paragon Inc. asks the important question: how do you keep that stopping power but minimize property damage? Simple! With the Street Sweeper’s custom exploding shells technology, you can replace all the oxygen in your targets’ lungs with deadly chlorine gas. Nothing says clean streets like a good Cl2 scrub!";
 			this.attackVerb = "shoot";
-			attackNoun = "acid capsule";
+			attackNoun = "chlorine";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -42,11 +42,11 @@
 			this.attack = 30;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.corrosive.damageValue = 30;
+			baseDamage.poison.damageValue = 30;
 			baseDamage.kinetic.damageValue = 5;
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
-			this.addFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

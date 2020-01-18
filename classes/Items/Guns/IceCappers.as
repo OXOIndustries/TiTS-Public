@@ -33,7 +33,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Inspired by the necessities of keeping the peace in their lavish hotels and clubs, the Utopian Skies zaibatsu developed a fairly unique take on the classic question of collateral damage. These paired pistols use internal super condensers to collect and freeze ambient moisture into icicle bullets. The guns’ internal propellant provides enough power to punch through flesh yet shatter harmlessly against valuable decor. Never worry about having to spackle up bullet holes again!";
 			this.attackVerb = "shoot";
-			attackNoun = "ice bullet";
+			attackNoun = "ice bullets";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -47,6 +47,8 @@
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
 			this.addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
+			
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
