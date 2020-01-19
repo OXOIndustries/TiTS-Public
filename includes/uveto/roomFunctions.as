@@ -91,15 +91,21 @@ public function GlacialRiftEncounterBonus():Boolean
 			}
 			choices.push(chaurmineChasmShit);
 		}		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		if(flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 		}
-		if (MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
+		if(MailManager.isEntryViewed("joyco_uveto_hazmat_advisory"))
 		{
 			choices.push(encounterMilodanFutazon);
+			choices.push(encounterMilodanFutazon);
+		}
+		if(pc.level >= 10 && flags["MET_MILODAN_FUTAZON"] != undefined)
+		{
+			choices.push(encounterMilodanBruiser);
+			choices.push(encounterMilodanBruiser);
 		}
 		//Run the event
 		choices[rand(choices.length)]();
