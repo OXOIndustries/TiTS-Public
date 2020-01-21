@@ -341,6 +341,8 @@ public function configureMails():void
 	//lumi
 	MailManager.addMailEntry("lumi_breed_hungry", lumiBreedHungryEmail, "A little gift to my favorite " + pc.mf("boy", "girl") + "toy!", "Lumi", "Lumi@GabilaniGalaxy.org.tk", quickPCTo, quickPCToAddress);
 	
+	//milodan futazons
+	MailManager.addMailEntry("joyco_uveto_hazmat_advisory", joycoUvetoHazmatAdvisoryEmail, "Urgent: Hazmat Advisory", "JoyCo HR", "HumanResources@JoyCo.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
