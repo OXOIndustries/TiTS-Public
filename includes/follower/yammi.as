@@ -136,7 +136,7 @@ public function acceptYammiBunsInShip():void
 	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //[Decline]

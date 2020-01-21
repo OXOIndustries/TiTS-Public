@@ -1304,13 +1304,13 @@ public function leaveDisShitOverwrite():void
 	addButton(11,"Exit Ship",move,"ZSF V22");
 }
 
-public function enterShip():void
+public function enterSidewinder():void
 {
 	clearOutput();
 	author("Fenoxo");
 	output("With your stolen credentials, unlocking the airlock is a breeze.");
 	clearMenu();
-	addButton(0,"Next",move,"ZSF V20")
+	addButton(0,"Next",move,"ZSF V20");
 }
 
 public function sidewinderCargohold():void

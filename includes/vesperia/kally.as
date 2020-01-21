@@ -3337,7 +3337,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	//[Next] - end :3
 	clearMenu();
 	if(!kiroIsCrew()) addButton(0,"Next",move,"CANADA5");
-	else addButton(0,"Next",move,"SHIP INTERIOR");
+	else addButton(0,"Next",enterShip);
 }
 
 public function examineKirosCodex():void

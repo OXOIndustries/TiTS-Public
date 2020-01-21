@@ -577,6 +577,11 @@ public function statisticsScreen(showID:String = "All"):void
 					}
 					if(pc.hasClitPiercing(x)) output2("\n<b>* Clit Piercing:</b> " + StringUtil.toDisplayCase(pc.vaginas[x].clitPiercing.longName));
 					if(pc.hasVaginaPiercing(x)) output2("\n<b>* Labia Piercing:</b> " + StringUtil.toDisplayCase(pc.vaginas[x].piercing.longName));
+					if((x == 0 && pc.statusEffectv1("Ovalasting") > 0) || (x == 1 && pc.statusEffectv2("Ovalasting") > 0) || (x == 2 && pc.statusEffectv3("Ovalasting") > 0))
+					{
+						output2("\n<b>* Implants, Ovalasting:</b> Active");
+						if(pc.hasStatusEffect("Ovalasting Big Egg " + x) > 0) output2(", Fertilized");
+					}
 				}
 			}
 		}
@@ -731,6 +736,11 @@ public function statisticsScreen(showID:String = "All"):void
 		}
 		output2("\n<b>* Anus, Looseness Level:</b> " + formatFloat(pc.ass.looseness(), 3));
 		output2("\n<b>* Anus, Wetness Level:</b> " + formatFloat(pc.ass.wetness(), 3));
+		if(pc.statusEffectv4("Ovalasting") > 0)
+		{
+			output2("\n<b>* Anus, Implants, Ovalasting:</b> Active");
+			if(pc.hasStatusEffect("Ovalasting Big Egg 3") > 0) output2(", Fertilized");
+		}
 		
 		// Sexuality
 		output2("\n<b><u>Sexuality</u></b>");
@@ -2328,96 +2338,170 @@ public function minutesToDurationList(nMinutes:Number, approximate:Boolean = fal
 }
 
 // Captain's log button menu - now modular!
-public function questLogMenu(currentFunc:Function):Boolean
+public function questLogTitle(showID:String):String
 {
+	var sTitle:String = "";
+	switch(showID)
+	{
+		case "Tavros": sTitle = "Tavros Station"; break;
+		case "Mhen'ga": sTitle = "Mhen’ga"; break;
+		case "Tarkus": sTitle = "Tarkus"; break;
+		case "Myrellion": sTitle = "Myrellion"; break;
+		case "Zheng Shi": sTitle = "Zhèng Shi Station"; break;
+		case "Dhaal": sTitle = "Dhaal"; break;
+		
+		case "New Texas": sTitle = "New Texas"; break;
+		case "Poe A": sTitle = "Poe A"; break;
+		case "Uveto": sTitle = "Uveto VII"; break;
+		case "Canadia": sTitle = "Canadia Station"; break;
+		case "Gastigoth": sTitle = "Gastigoth Station"; break;
+		case "Breedwell": sTitle = "Breedwell Centre"; break;
+	}
+	return sTitle;
+}
+public function questLogMenu(args:Array):Boolean
+{
+	clearGhostMenu();
+	
+	var currentFunc:Function = args[0];
+	var backFunc:Function = args[1];
 	var showID:String = flags["TOGGLE_MENU_LOG"];
 	
-	// Starter Locations
-	if(flags["RIVALCONFIGURED"] != undefined)
-	{
-		// Tavros
-		if(showID == "Tavros") { output2(header("<u>Tavros Station</u>", false)); addDisabledGhostButton(0, "Tavros"); }
-		else addGhostButton(0, "Tavros", currentFunc, "Tavros");
-		// Mhen'ga
-		if(showID == "Mhen'ga") { output2(header("<u>Mhen’ga</u>", false)); addDisabledGhostButton(1, "Mhen’ga"); }
-		else addGhostButton(1, "Mhen’ga", currentFunc, "Mhen'ga");
-	}
-	// Tarkus
-	if(tarkusCoordinatesUnlocked())
-	{
-		if(showID == "Tarkus") { output2(header("<u>Tarkus</u>", false)); addDisabledGhostButton(2, "Tarkus"); }
-		else addGhostButton(2, "Tarkus", currentFunc, "Tarkus");
-	}
-	// Myrellion
-	if(myrellionCoordinatesUnlocked())
-	{
-		if(showID == "Myrellion") { output2(header("<u>Myrellion</u>", false)); addDisabledGhostButton(3, "Myrellion"); }
-		else addGhostButton(3, "Myrellion", currentFunc, "Myrellion");
-	}
-	// Zheng Shi
-	if(zhengCoordinatesUnlocked())
-	{
-		if(showID == "Zheng Shi") { output2(header("<u>Zhèng Shi Station</u>", false)); addDisabledGhostButton(4, "ZhengShi"); }
-		else addGhostButton(4, "ZhengShi", currentFunc, "Zheng Shi");
-	}
-	// New Texas
-	if(newTexasCoordinatesUnlocked())
-	{
-		if(showID == "New Texas") { output2(header("<u>New Texas</u>", false)); addDisabledGhostButton(5, "New Texas"); }
-		else addGhostButton(5, "New Texas", currentFunc, "New Texas");
-	}
-	// Poe A
-	if(poeACoordinatesUnlocked())
-	{
-		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(6, "Poe A"); }
-		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
-	}
-	// Uveto
-	if(uvetoUnlocked())
-	{
-		if(showID == "Uveto") { output2(header("<u>Uveto VII</u>", false)); addDisabledGhostButton(7, "Uveto"); }
-		else addGhostButton(7, "Uveto", currentFunc, "Uveto");
-	}
-	// Canadia Station
-	if(canadiaUnlocked())
-	{
-		if(showID == "Canadia") { output2(header("<u>Canadia Station</u>", false)); addDisabledGhostButton(8, "Canadia"); }
-		else addGhostButton(8, "Canadia", currentFunc, "Canadia");
-	}
-	// Gastigoth
-	if(gastigothCoordinatesUnlocked())
-	{
-		if(showID == "Gastigoth") { output2(header("<u>Gastigoth Station</u>", false)); addDisabledGhostButton(9, "Gastigoth"); }
-		else addGhostButton(9, "Gastigoth", currentFunc, "Gastigoth");
-	}
-	// Breedwell
-	if(breedwellCoordinatesUnlocked())
-	{
-		if(showID == "Breedwell") { output2(header("<u>Breedwell Centre</u>", false)); addDisabledGhostButton(10, "Breedwell"); }
-		else addGhostButton(10, "Breedwell", currentFunc, "Breedwell");
-	}
+	// Tavros
+	if(showID == "Tavros") addDisabledGhostButton(0, "Tavros");
+	else addGhostButton(0, "Tavros", currentFunc, "Tavros");
+	
+	addGhostButton(1, "Probe Loc.", questLocMenu, [currentFunc, backFunc, 0], "Probe Locations", "Choose a location where you can find the coordinates.");
+	addGhostButton(2, "Misc. Loc.", questLocMenu, [currentFunc, backFunc, 1], "Miscellaneous Locations", "Choose a location.");
+	
 	// Other Info
-	if(showID == "Other") addDisabledGhostButton(12, "Other");
-	else addGhostButton(12, "Other", currentFunc, "Other", "Other Data", "Show the information not restricted to a location.");
+	if(showID == "Other") addDisabledGhostButton(10, "Other");
+	else addGhostButton(10, "Other", currentFunc, "Other", "Other Data", "Show the information not restricted to a location.");
 	// Everything
-	if(showID == "All") addDisabledGhostButton(13, "All");
-	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
+	if(showID == "All") addDisabledGhostButton(11, "All");
+	else addGhostButton(11, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
+	
+	if(backFunc == statisticsScreen) addGhostButton(14, "Back", statisticsScreen, flags["TOGGLE_MENU_STATS"]);
+	else addGhostButton(14, "Back", showCodex);
 	
 	return true;
+}
+public function questLocMenu(args:Array):void
+{
+	clearGhostMenu();
+	
+	var currentFunc:Function = args[0];
+	var backFunc:Function = args[1];
+	var section:int = args[2];
+	var showID:String = flags["TOGGLE_MENU_LOG"];
+	var btnSlot:int = 0;
+	
+	switch(section)
+	{
+		/* Major locations */
+		case 0:
+			// Starter Locations
+			if(flags["RIVALCONFIGURED"] != undefined)
+			{
+				// Mhen'ga
+				if(showID == "Mhen'ga") addDisabledGhostButton(btnSlot++, "Mhen’ga");
+				else addGhostButton(btnSlot++, "Mhen’ga", currentFunc, "Mhen'ga");
+			}
+			// Tarkus
+			if(tarkusCoordinatesUnlocked())
+			{
+				if(showID == "Tarkus") addDisabledGhostButton(btnSlot++, "Tarkus");
+				else addGhostButton(btnSlot++, "Tarkus", currentFunc, "Tarkus");
+			}
+			else btnSlot++;
+			// Myrellion
+			if(myrellionCoordinatesUnlocked())
+			{
+				if(showID == "Myrellion") addDisabledGhostButton(btnSlot++, "Myrellion");
+				else addGhostButton(btnSlot++, "Myrellion", currentFunc, "Myrellion");
+			}
+			else btnSlot++;
+			// Zheng Shi
+			if(zhengCoordinatesUnlocked())
+			{
+				if(showID == "Zheng Shi") addDisabledGhostButton(btnSlot++, "ZhengShi");
+				else addGhostButton(btnSlot++, "ZhengShi", currentFunc, "Zheng Shi");
+			}
+			else btnSlot++;
+			// Dhaal
+			if(dhaalCoordinatesUnlocked())
+			{
+				if(showID == "Dhaal") addDisabledGhostButton(btnSlot++, "Dhaal");
+				else addGhostButton(btnSlot++, "Dhaal", currentFunc, "Dhaal");
+			}
+			else btnSlot++;
+		break;
+		/* Minor Locations */
+		case 1:
+			// New Texas
+			if(newTexasCoordinatesUnlocked())
+			{
+				if(showID == "New Texas") addDisabledGhostButton(btnSlot++, "New Texas");
+				else addGhostButton(btnSlot++, "New Texas", currentFunc, "New Texas");
+			}
+			else btnSlot++;
+			// Poe A
+			if(poeACoordinatesUnlocked())
+			{
+				if(showID == "Poe A") addDisabledGhostButton(btnSlot++, "Poe A");
+				else addGhostButton(btnSlot++, "Poe A", currentFunc, "Poe A");
+			}
+			else btnSlot++;
+			// Uveto
+			if(uvetoUnlocked())
+			{
+				if(showID == "Uveto") addDisabledGhostButton(btnSlot++, "Uveto");
+				else addGhostButton(btnSlot++, "Uveto", currentFunc, "Uveto");
+			}
+			else btnSlot++;
+			// Canadia Station
+			if(canadiaUnlocked())
+			{
+				if(showID == "Canadia") addDisabledGhostButton(btnSlot++, "Canadia");
+				else addGhostButton(btnSlot++, "Canadia", currentFunc, "Canadia");
+			}
+			else btnSlot++;
+			// Gastigoth
+			if(gastigothCoordinatesUnlocked())
+			{
+				if(showID == "Gastigoth") addDisabledGhostButton(btnSlot++, "Gastigoth");
+				else addGhostButton(btnSlot++, "Gastigoth", currentFunc, "Gastigoth");
+			}
+			else btnSlot++;
+			// Breedwell
+			if(breedwellCoordinatesUnlocked())
+			{
+				if(showID == "Breedwell") addDisabledGhostButton(btnSlot++, "Breedwell");
+				else addGhostButton(btnSlot++, "Breedwell", currentFunc, "Breedwell");
+			}
+			else btnSlot++;
+		break;
+	}
+	addGhostButton(14, "Back", questLogMenu, [currentFunc, backFunc]);
 }
 
 // Displays the Captain's quest log.
 public function displayQuestLog(showID:String = "All"):void
 {
 	clearOutput2();
-	clearGhostMenu();
-	addGhostButton(14, "Back", showCodex);
+	//clearGhostMenu();
+	//addGhostButton(14, "Back", showCodex);
 	
 	// Generate buttons and headers (if necessary)
 	flags["TOGGLE_MENU_LOG"] = showID;
-	questLogMenu(displayQuestLog);
+	questLogMenu([displayQuestLog]);
 	
 	if(showID == "All" || showID == "Other") output2(header("<u>Captain’s Log:</u>", false));
+	else
+	{
+		var sTitle:String = questLogTitle(showID);
+		if(sTitle != "") output2(header("<u>" + sTitle + "</u>", false));
+	}
 	
 	// Locational Info
 	if(showID != "Other" || showID == "All")
@@ -4505,13 +4589,40 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Kiro, Status:</b>");
 				switch(flags["KQ_LAST_HOUR_TF"])
 				{
-					case 12: output2(" <i>Experiment begins...</i>"); break;
-					case 18: output2(" Cum production enhanced, <i>Ready to fuck...</i>"); break;
-					case 24: output2(" Cum boosted, Lactation induced, <i>Ready for growth treatments...</i>"); break;
-					case 30: output2(" Cum boosted, Lactating, Augmented breasts, <i>Ready for subliminal treatment...</i>"); break;
-					case 36: output2(" Cum boosted, Lactating, Augmented breasts, Improved genitals, <i>Continue treatments...</i>"); break;
-					case 42: output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals, Augmented lips, <i>Continue treatments...</i>"); break;
-					case 48: output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals+, Augmented lips+, Mind ovewritten, Complete bimbo-slut"); break;
+					case 12:
+						if(flags["KQ_RESCUED"] != undefined) output2(" Completely normal");
+						else output2(" <i>Experiment begins...</i>");
+						break;
+					case 18:
+						output2(" Cum production enhanced");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Fuck-ready");
+						else output2(", <i>Ready to fuck...</i>");
+						break;
+					case 24:
+						output2(" Cum boosted, Lactation induced");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Fuck-ready");
+						else output2(", <i>Ready for growth treatments...</i>");
+						break;
+					case 30:
+						output2(" Cum boosted, Lactating, Augmented breasts");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Fuck-ready");
+						else output2(", <i>Ready for subliminal treatment...</i>");
+						break;
+					case 36:
+						output2(" Cum boosted, Lactating, Augmented breasts, Improved genitals");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Fuck-ready");
+						else output2(", <i>Continue treatments...</i>");
+						break;
+					case 42:
+						output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals, Augmented lips");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Fuck-ready");
+						else output2(", <i>Continue treatments...</i>");
+						break;
+					case 48:
+						output2(" Cum boosted, Lactating, Augmented breasts+, Improved genitals+, Augmented lips+, Mind ovewritten");
+						if(flags["KQ_RESCUED"] != undefined) output2(", Complete bimbo-slut");
+						else output2(", <i>Bimbofying</i>");
+						break;
 					default: output2(" <i>Unknown</i>"); break;
 				}
 			}
@@ -4711,14 +4822,20 @@ public function displayQuestLog(showID:String = "All"):void
 public function displayEncounterLog(showID:String = "All"):void
 {
 	clearOutput2();
-	clearGhostMenu();
-	addGhostButton(14, "Back", statisticsScreen, flags["TOGGLE_MENU_STATS"]);
+	//clearGhostMenu();
+	//addGhostButton(14, "Back", statisticsScreen, flags["TOGGLE_MENU_STATS"]);
 	
 	// Generate buttons and headers (if necessary)
 	flags["TOGGLE_MENU_LOG"] = showID;
-	questLogMenu(displayEncounterLog);
+	questLogMenu([displayEncounterLog, statisticsScreen]);
 	
 	if(showID == "All" || showID == "Other") output2(header("<u>Encounter Log:</u>", false));
+	else
+	{
+		var sTitle:String = questLogTitle(showID);
+		if(sTitle != "") output2(header("<u>" + sTitle + "</u>", false));
+	}
+	
 	var i:int = 0;
 	
 	// Locational Info

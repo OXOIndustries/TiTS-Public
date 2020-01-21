@@ -27,7 +27,7 @@ public function initDhaalRooms():void
 	/* Ship Docking */
 	rooms["DHAAL J3"] = new RoomClass(this);
 	rooms["DHAAL J3"].roomName = "SPACEPORT\nTARMAC";
-	rooms["DHAAL J3"].description = "The crude asphalt of this tarmac is one sign of many that these landing pads were thrown together in a hurry. It's already been cracked and patched in dozens of places, though you have to look carefully under the ever-present neon glow to see it. Flickering holographic displays bid you journey south on an escalator-turned stairwell to venture into the city proper. Much small advisories in black print advise you of danger, but they hardly seem important next to retina-scorching adverts for safe, natural Brightwater.";
+	rooms["DHAAL J3"].description = "The crude asphalt of this tarmac is one sign of many that these landing pads were thrown together in a hurry. It’s already been cracked and patched in dozens of places, though you have to look carefully under the ever-present neon glow to see it. Flickering holographic displays bid you journey south on an escalator-turned stairwell to venture into the city proper. Much small advisories in black print advise you of danger, but they hardly seem important next to retina-scorching adverts for safe, natural Brightwater.";
 	rooms["DHAAL J3"].planet = "PLANET: DHAAL";
 	rooms["DHAAL J3"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL J3"].northExit = "";
@@ -41,7 +41,7 @@ public function initDhaalRooms():void
 
 	rooms["DHAAL J5"] = new RoomClass(this);
 	rooms["DHAAL J5"].roomName = "MEAN\nSTREETS";
-	rooms["DHAAL J5"].description = "With a twilight sky and stratospheric buildings on every side, you can see why Dhaal is considered every bit as much an urban jungle as Terra herself. Lit by a looping advertisement for the new line of \"Salivation\" branded nutrient broths, this shadowy road has enough dark alleys and nooks to hide two or three gangs worth of miscreants. Best get to your destination in a hurry.\n\nThe landing pads lie north, the rest of the city south.";
+	rooms["DHAAL J5"].description = "With a twilight sky and stratospheric buildings on every side, you can see why Dhaal is considered every bit as much an urban jungle as Terra herself. Lit by a looping advertisement for the new line of “Salivation” branded nutrient broths, this shadowy road has enough dark alleys and nooks to hide two or three gangs worth of miscreants. Best get to your destination in a hurry.\n\nThe landing pads lie north, the rest of the city south.";
 	rooms["DHAAL J5"].planet = "PLANET: DHAAL";
 	rooms["DHAAL J5"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL J5"].northExit = "DHAAL J3";
@@ -55,7 +55,7 @@ public function initDhaalRooms():void
 
 	rooms["DHAAL J7"] = new RoomClass(this);
 	rooms["DHAAL J7"].roomName = "MEAN\nSTREETS";
-	rooms["DHAAL J7"].description = "Suspended roughly twelve feet above a street intersection is a gigantic holographic advertisement for a \"Utopian Skies Virtual Vacation.\" It consists mostly of buxom alien babes wearing little more than patches on string and a mesh tail-covering. Positively scandalous, compared to local norms. When it flickers and loops back to the start, you catch a glimpse of the dingy, pollution-stained city beyond.\n\nStreets lead east, south, and west from here.";
+	rooms["DHAAL J7"].description = "Suspended roughly twelve feet above a street intersection is a gigantic holographic advertisement for a “Utopian Skies Virtual Vacation.” It consists mostly of buxom alien babes wearing little more than patches on string and a mesh tail-covering. Positively scandalous, compared to local norms. When it flickers and loops back to the start, you catch a glimpse of the dingy, pollution-stained city beyond.\n\nStreets lead east, south, and west from here.";
 	rooms["DHAAL J7"].planet = "PLANET: DHAAL";
 	rooms["DHAAL J7"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL J7"].northExit = "DHAAL J5";
@@ -69,7 +69,7 @@ public function initDhaalRooms():void
 
 	rooms["DHAAL J9"] = new RoomClass(this);
 	rooms["DHAAL J9"].roomName = "MEAN\nSTREETS";
-	rooms["DHAAL J9"].description = "Gouts of steam vent out of grates in the pavement with alarming regularity, forcing you to dodge around them or sputter through them. Locals, you notice, don't even bother to react when catching a face full of concentrated humidity, fully used to the idiosyncrasies of their city's heat exchange systems. The glossy look it leaves on their skin doesn't hurt.\n\nThis road bends north and east around a Paragon Inc-affiliated noodle stand. You keep walking when you realize the noodles are moving on their own.";
+	rooms["DHAAL J9"].description = "Gouts of steam vent out of grates in the pavement with alarming regularity, forcing you to dodge around them or sputter through them. Locals, you notice, don’t even bother to react when catching a face full of concentrated humidity, fully used to the idiosyncrasies of their city’s heat exchange systems. The glossy look it leaves on their skin doesn’t hurt.\n\nThis road bends north and east around a Paragon Inc-affiliated noodle stand. You keep walking when you realize the noodles are moving on their own.";
 	rooms["DHAAL J9"].planet = "PLANET: DHAAL";
 	rooms["DHAAL J9"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL J9"].northExit = "DHAAL J7";
@@ -371,7 +371,7 @@ public function initDhaalRooms():void
 
 	rooms["DHAAL MILKBAR"] = new RoomClass(this);
 	rooms["DHAAL MILKBAR"].roomName = "MILK\nBAR";
-	rooms["DHAAL MILKBAR"].description = "The comforting ambience of Arovok, the famed milk bar surrounds you.  Incredibly busty cowgirls strut from table to table offering milk from their glasses or their barely-concealed tits, administering a half-drugged crowd of colorful natives and spacers alike. Presently, you sit near the bar, considering your next move.";
+	rooms["DHAAL MILKBAR"].description = "The comforting ambience of Arovok, the famed milk bar surrounds you. Incredibly busty cowgirls strut from table to table offering milk from their glasses or their barely-concealed tits, administering a half-drugged crowd of colorful natives and spacers alike. Presently, you sit near the bar, considering your next move.";
 	rooms["DHAAL MILKBAR"].planet = "PLANET: DHAAL";
 	rooms["DHAAL MILKBAR"].system = "SYSTEM: UOND EPHINE";
 	rooms["DHAAL MILKBAR"].northExit = "";

@@ -131,7 +131,17 @@ public function hijackThisShippyShopPrompt():void
 		return;
 	}
 	
-	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, your current ship will be left abandoned.");
+	output("You should make certain you’ve gotten everything you need on the ship or station before attempting to do this. Also note that you can only command one ship at a time, so if you successfully take over this ship, <b>your current ship will be left abandoned</b>.");
+	
+	if(!canAbandonShip(shits["SHIP"]))
+	{
+		output("\n\nUnfortunately, you would be unable to part with your current ship. Maybe you should return with another ship--one that you are willing to sacrifice for the <i>Sidewinder</i>...");
+		output("\n\n");
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	output("\n\nAre you sure you want to hijack the <i>Sidewinder</i>?");
 	output("\n\n");
 	
