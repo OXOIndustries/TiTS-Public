@@ -7785,6 +7785,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SLYVEREN_SUCKLESUBMITTED"] != undefined) output2("\n<b>* Slavebreaker, Times Suckled You Into Submission:</b> " + flags["SLYVEREN_SUCKLESUBMITTED"]);
 					if(flags["SLYVEREN_THROBB_FUCKED"] != undefined) output2("\n<b>* Slavebreaker, Times Throbb-Fucked By:</b> " + flags["SLYVEREN_THROBB_FUCKED"]);
 					if(flags["SLYVEREN_WIN_FACEFUKT"] != undefined) output2("\n<b>* Slavebreaker, Times Face Fucked Her:</b> " + flags["SLYVEREN_WIN_FACEFUKT"]);
+					if(flags["SLYVEREN_WIN_RUTFUCK"] != undefined) output2("\n<b>* Slavebreaker, Times Rut Fucked Her:</b> " + flags["SLYVEREN_WIN_RUTFUCK"]);
 				}
 				variousCount++;
 			}
