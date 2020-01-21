@@ -1501,7 +1501,7 @@ public function loreleiShouldntTalkWithHerMouthFull(genIdx:int, vag:Boolean):voi
 	pc.lust(30+pc.libido()/20);
 	IncrementFlag("LORELEI_SEXED");
 	IncrementFlag("LORELEI_SEX_COUNTER");
-	if (!vag && cumQ >= 6000) pc.applyCumSoaked();
+	if (!vag && cumQ >= (pc.cLength(genIdx) < 15 ? 6000 : 3000)) pc.applyCumSoaked();
 
 	loreleiSexMenu();
 }
@@ -1747,7 +1747,7 @@ public function loreleiTheDancingQueen(genIdx:int, vag:Boolean):void
 	IncrementFlag("LORELEI_SEX_COUNTER");
 	pc.orgasm();
 	pc.lust(30+pc.libido()/20);
-	if (!vag && cumQ >= 3000) pc.applyCumSoaked();
+	if (!vag && pc.cLength(genIdx) >= 24 && cumQ >= 3000) pc.applyCumSoaked();
 
 	loreleiSexMenu();
 }
