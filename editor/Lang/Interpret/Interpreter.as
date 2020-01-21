@@ -2,6 +2,7 @@ package editor.Lang.Interpret {
     import editor.Descriptors.FunctionInfo;
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
+    import editor.Lang.TextRange;
     
     public class Interpreter {
         private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
@@ -14,11 +15,12 @@ package editor.Lang.Interpret {
          * @return
          */
         private function getName(node: Node): String {
-            for each (var child: * in node.children)
-            var values: Array = [];
-                values.push(child.value);
-
-            return values.join('.');
+            var name: String = '';
+            for (var idx: int = 0; idx < node.children.length; idx++) {
+                if (idx > 0) name += '.';
+                name += node.children[idx].value;
+            }
+            return name;
         }
 
         /**
@@ -47,6 +49,15 @@ package editor.Lang.Interpret {
         }
 
         /**
+         * Creates error for range with msg
+         * @param range
+         * @param msg
+         */
+        private function createError(range: TextRange, msg: String): void {
+            this.errors.push(new LangError(msg, range));
+        }
+
+        /**
          * Interprets a tree of Nodes
          * All errors will be caught and placed into the result
          * @param node The root node
@@ -61,10 +72,7 @@ package editor.Lang.Interpret {
                 output = this.processNode(node);
             }
             catch (err: Error) {
-                this.errors.push(new LangError(
-                    err + '\n' + err.getStackTrace(),
-                    node.range
-                ));
+                this.createError(node.range, err + '\n' + err.getStackTrace());
                 return new InterpretResult(
                     '',
                     [node.range],
@@ -95,7 +103,6 @@ package editor.Lang.Interpret {
                 case NodeType.Retrieve: return this.evalRetrieveNode(node);
                 case NodeType.Args: return this.evalArgsNode(node);
                 case NodeType.Results: return this.evalResultsNode(node);
-                case NodeType.Error: return this.evalErrorNode(node);
             }
             throw new Error();
         }
@@ -121,14 +128,6 @@ package editor.Lang.Interpret {
                 node.range,
                 node.value,
                 node.value + ''
-            );
-        }
-
-        private function evalErrorNode(node: ErrorNode): Product {
-            return new Product(
-                node.range,
-                node.value,
-                ''
             );
         }
 
@@ -178,10 +177,10 @@ package editor.Lang.Interpret {
                 }
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
-                    this.errors.push(new LangError(
-                        '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : ''),
-                        node.range
-                    ));
+                    this.createError(
+                        node.range,
+                        '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : '')
+                    );
                     return new Product(
                         node.range,
                         {},
@@ -245,7 +244,7 @@ package editor.Lang.Interpret {
             
             // Error checking
             if (errorMsg !== null) {
-                this.errors.push(new LangError(errorMsg, node.range));
+                this.createError(node.range, errorMsg);
                 return new Product(node.range, '', '');
             }
 
@@ -294,7 +293,7 @@ package editor.Lang.Interpret {
                 errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
             }
             if (errorMsg !== null) {
-                this.errors.push(new LangError(errorMsg, node.range));
+                this.createError(node.range, errorMsg);
             }
 
             var returnValue: * = '';

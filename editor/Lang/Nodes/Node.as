@@ -9,20 +9,16 @@ package editor.Lang.Nodes {
         /**
          * Use NodeType only
          */
-        public var type: String;
+        public var type: int;
         public var range: TextRange;
         public var children: Array;
         public var value: *;
             
-        public function Node(type: String, range: TextRange, children: Array, value: *) { 
+        public function Node(type: int, range: TextRange, children: Array, value: *) { 
             this.type = type;
             this.range = range;
             this.children = children;
             this.value = value;
-        }
-
-        public static function isErrorNode(node: Node): Boolean {
-            return node.type === NodeType.Error;
         }
 
         public function toString(): String {
