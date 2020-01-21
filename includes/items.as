@@ -1012,7 +1012,8 @@ public function buyItemMultiCustom():void
 public function buyItemMultiCustomOK():void
 {
 	if(isNaN(Number(userInterface.textInput.text))) {
-		buyItemMultiCustomOK();
+		//buyItemMultiCustomOK(); - As per https://github.com/OXOIndustries/TiTS-Public/pull/229/files by Somebody-Else-Entirely
+		buyItemMultiCustom();
 		output("Choose a quantity that is a positive integer, please.");
 		return;
 	}
