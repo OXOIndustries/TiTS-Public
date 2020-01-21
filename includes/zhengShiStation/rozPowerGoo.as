@@ -134,6 +134,10 @@ public function startPhase2():void
 	output("\n\nRoz runs her hands up and down her sheer latex catsuit, letting her gooey body ever-so-slightly deform under her touch. When she gets to where a simulated nipple peeks out, her whole body jiggles with a shock of self-stimulated pleasure. <i>“That’s the stuff. C’mon and take me already... or better yet, hold still while I take <b>you</b>!”</i>");
 	output("\n\nShe’s not gonna take no for an answer.");
 
+	//Disable Roz a few hours so she can fix her armor.
+	pc.createStatusEffect("DisabledRoz");
+	pc.setStatusMinutes("DisabledRoz",60*5);
+
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
