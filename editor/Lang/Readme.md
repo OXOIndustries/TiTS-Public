@@ -21,63 +21,77 @@ https://github.com/end5/SceneWriter/blob/master/Editor/Parser/LangDef.txt
 
 # How it works: Lex -> Parse -> Interpret
 ## Lexer
-The Lexer reads text and produces a list of Tokens.
-A Token is a labeled section of the text.
+The Lexer reads text and groups the characters together to create a Token.
 
-|Token Type     |Description    |
-|---------------|---------------|
-|Escape         | "\\"          |
-|BracketOpen    | "["           |
-|BracketClose   | "]"           |
-|Pipe           | "\|"          |
-|Dot            | "."           |
-|String         | any text      |
-|Space          | "  "          |
-|Identity       | variable name |
-|Newline        | "\n"          |
-|Error          | an error      |
+|Token Type     |Symbol
+|---------------|------
+|Text           | anything except symbols below
+|Space          | "  "
+|Tab            | "\t"
+|Newline        | "\n"
+|LeftBracket    | "["
+|RightBracket   | "]"
+|Dot            | "."
+|Pipe           | "\|"
+|GreaterThan    | ">"
+|Equal          | "="
 
 Examples:
 > `This is text.`
 ```
-String: "This is text."
+Text: "This"
+Space: " "
+Text: "is"
+Space: " "
+Text: "text"
+Dot: "."
 ```
 > `My name is [pc.name]`
 ```
-String: "My name is "
-BracketOpen: "["
-Identity: "pc"
+Text: "My"
+Space: " "
+Text: "name"
+Space: " "
+Text: "is"
+Space: " "
+LeftBracket: "["
+Text: "pc"
 Dot: "."
-Identity: "name"
-BracketClose: "]"
+Text: "name"
+RightBracket: "]"
 ```
 > `Silly mode is [silly|enabled|disabled].`
 ```
-String: "Silly mode is "
-BracketOpen: "["
-Identity: "silly"
+Text: "Silly"
+Space: " "
+Text: "mode"
+Space: " "
+Text: "is"
+Space: " "
+LeftBracket: "["
+Text: "silly"
 Pipe: "|"
-String: "enabled"
+Text: "enabled"
 Pipe: "|"
-String: "disabled"
-BracketClose: "]"
-String: "."
+Text: "disabled"
+RightBracket: "]"
+Dot: "."
 ```
 ## Parser
-The Parser reads a list of Tokens and formulates it into a tree structure using Nodes (AST aka Abstract Syntax Tree).
-Each Node has a type and either a value or children (list of Node).
+The Parser reads each Token from the Lexer looking for a pattern.
+If the Tokens match the pattern, the Parser creates a Node.Using the pattern, The Nodes are organized into a tree structure (AST aka Abstract Syntax Tree).
+Each Node has a type, a value and children (list of Nodes).
 
-|Node Type  |Value |Children                   |
-|-----------|----- |---------------------------|
-|Identity   |name  |                           |
-|String     |text  |                           |
-|Number     |number|                           |
-|Concat     |      |list of String/Eval        |
-|Eval       |      |Retrieve, Args, Results    |
-|Retrieve   |      |list of Identity           |
-|Args       |      |list of String/Number      |
-|Results    |      |list of Concat/String/Eval |
-|Error      |error |                           |
+|Node Type  |Value         |Children
+|-----------|--------------|--------
+|Identity   |string        |
+|String     |string        |
+|Number     |number        |
+|Concat     |              |list of Node Type String or Eval
+|Eval       |operator(int) |[Node Type Retrieve, Node Type Args, Node Type Results]
+|Retrieve   |              |list of Node Type Identity
+|Args       |              |list of Node Type String or Number
+|Results    |              |list of Node Type Concat or String or Eval
 
 Examples:
 > `This is text.`
@@ -118,7 +132,7 @@ Each Node has a specific operation determined by its type.
 |String     |string                |its value
 |Number     |number                |its value
 |Concat     |string                |combine/concat all children
-|Eval       |string                |evaluate/call the output of Retrieve using/passing the output of Args and Results
+|Eval       |string                |depending on its value, evaluate/call the output of Retrieve using/passing the output of Args and Results
 |Retrieve   |anything              |retrieve the value from memory using its children
 |Args       |list of string/number |a list of the output of its children
 |Results    |list of string        |a list of the output of its children
