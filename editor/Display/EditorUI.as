@@ -108,17 +108,17 @@ package editor.Display {
         public function textInputCapture(event: Event): void {
             updateInfo();
 
-            /*const evalResult: Object = this.state.eval(inputBox.text);
+            const evalResult: Object = this.state.eval(inputBox.text);
 
             outputBox.htmlText = evalResult.text;
             codeBox.text = evalResult.code;
             var errorText: String = '';
             for each (var error: LangError in evalResult.errors)
                 errorText += error + '\n';
-            errorBox.htmlText = errorText;*/
+            errorBox.htmlText = errorText;
             
             // Debug
-            outputBox.htmlText = this.state.debug(inputBox.text);
+            // outputBox.htmlText = this.state.debug(inputBox.text);
         }
     }
 }
