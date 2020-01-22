@@ -179,7 +179,7 @@ package editor.Lang.Interpret {
                 if (typeof obj !== 'object' || !(identity in obj)) {
                     this.createError(
                         node.range,
-                        '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : '')
+                        '"' + identity + '" does not exist' + (name ? ' in "' + name + '"' : '')
                     );
                     return new Product(
                         node.range,
