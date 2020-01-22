@@ -1,13 +1,23 @@
 package editor.Lang.Nodes {
     public class NodeType {
-        public static var Identity: * = 'identity';
-        public static var String: * = 'string';
-        public static var Number: * = 'number';
-        public static var Concat: * = 'concat';
-        public static var Eval: * = 'eval';
-        public static var Retrieve: * = 'retrieve';
-        public static var Args: * = 'args';
-        public static var Results: * = 'results';
-        public static var Error: * = 'error';
+        public static var Identity: int = 0;
+        public static var String: int = 1;
+        public static var Number: int = 2;
+        public static var Concat: int = 3;
+        public static var Eval: int = 4;
+        public static var Retrieve: int = 5;
+        public static var Args: int = 6;
+        public static var Results: int = 7;
+        
+        public static var Names: Array = [
+            'Identifier',
+            'String',
+            'Number',
+            'Concat',
+            'Eval',
+            'Retrieve',
+            'Args',
+            'Results'
+        ];
     }
 }

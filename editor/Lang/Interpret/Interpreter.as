@@ -2,6 +2,7 @@ package editor.Lang.Interpret {
     import editor.Descriptors.FunctionInfo;
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
+    import editor.Lang.TextRange;
     
     public class Interpreter {
         private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
@@ -14,11 +15,12 @@ package editor.Lang.Interpret {
          * @return
          */
         private function getName(node: Node): String {
-            for each (var child: * in node.children)
-            var values: Array = [];
-                values.push(child.value);
-
-            return values.join('.');
+            var name: String = '';
+            for (var idx: int = 0; idx < node.children.length; idx++) {
+                if (idx > 0) name += '.';
+                name += node.children[idx].value;
+            }
+            return name;
         }
 
         /**
@@ -47,6 +49,15 @@ package editor.Lang.Interpret {
         }
 
         /**
+         * Creates error for range with msg
+         * @param range
+         * @param msg
+         */
+        private function createError(range: TextRange, msg: String): void {
+            this.errors.push(new LangError(msg, range));
+        }
+
+        /**
          * Interprets a tree of Nodes
          * All errors will be caught and placed into the result
          * @param node The root node
@@ -61,10 +72,7 @@ package editor.Lang.Interpret {
                 output = this.processNode(node);
             }
             catch (err: Error) {
-                this.errors.push(new LangError(
-                    err + '\n' + err.getStackTrace(),
-                    node.range
-                ));
+                this.createError(node.range, err + '\n' + err.getStackTrace());
                 return new InterpretResult(
                     '',
                     [node.range],
@@ -95,11 +103,13 @@ package editor.Lang.Interpret {
                 case NodeType.Retrieve: return this.evalRetrieveNode(node);
                 case NodeType.Args: return this.evalArgsNode(node);
                 case NodeType.Results: return this.evalResultsNode(node);
-                case NodeType.Error: return this.evalErrorNode(node);
             }
             throw new Error();
         }
 
+        /**
+         * @return 'Product.value = String'
+         */
         private function evalStringNode(node: StringNode): Product {
             return new Product(
                 node.range,
@@ -108,6 +118,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = Number'
+         */
         private function evalNumberNode(node: NumberNode): Product {
             return new Product(
                 node.range,
@@ -116,6 +129,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = String'
+         */
         private function evalIdentityNode(node: IdentityNode): Product {
             return new Product(
                 node.range,
@@ -124,14 +140,9 @@ package editor.Lang.Interpret {
             );
         }
 
-        private function evalErrorNode(node: ErrorNode): Product {
-            return new Product(
-                node.range,
-                node.value,
-                ''
-            );
-        }
-
+        /**
+         * @return 'Product.value = String'
+         */
         private function evalConcatNode(node: ConcatNode): Product {
             var values: * = this.processChildren(node);
 
@@ -160,6 +171,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = {} or { value: *, self: Object, caps: Boolean, info: FunctionInfo }'
+         */
         private function evalRetrieveNode(node: RetrieveNode): Product {
             var values: * = this.processChildren(node);
             var obj: * = this.globals;
@@ -178,10 +192,10 @@ package editor.Lang.Interpret {
                 }
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
-                    this.errors.push(new LangError(
-                        '"' + node.value + '" does not exist' + (name ? ' in "' + name + '"' : ''),
-                        node.range
-                    ));
+                    this.createError(
+                        node.range,
+                        '"' + identity + '" does not exist' + (name ? ' in "' + name + '"' : '')
+                    );
                     return new Product(
                         node.range,
                         {},
@@ -212,6 +226,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = Array of (Product.value = String or Number)'
+         */
         private function evalArgsNode(node: ArgsNode): Product {
             return new Product(
                 node.range,
@@ -220,6 +237,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = Array of (Product.value = String)'
+         */
         private function evalResultsNode(node: ResultsNode): Product {
             return new Product(
                 node.range,
@@ -228,6 +248,9 @@ package editor.Lang.Interpret {
             );
         }
 
+        /**
+         * @return 'Product.value = String'
+         */
         private function evalEvalNode(node: EvalNode): Product {
             var errorMsg: String;
             if (node.children.length !== 3) {
@@ -245,44 +268,53 @@ package editor.Lang.Interpret {
             
             // Error checking
             if (errorMsg !== null) {
-                this.errors.push(new LangError(errorMsg, node.range));
+                this.createError(node.range, errorMsg);
                 return new Product(node.range, '', '');
             }
 
-            var retrieveProduct: Product = this.evalRetrieveNode(node.children[0]);
-            var argsProduct: Product = this.evalArgsNode(node.children[1]);
-            var resultsProduct: Product = this.evalResultsNode(node.children[2]);
+            switch (node.value) {
+                case EvalNode.OpRange:
+                    return this.evalOpRange(node);
+                case EvalNode.OpEqual:
+                    return this.evalOpEqual(node);
+                default:
+                    return this.evalOpDefault(node);
+            }
+        }
 
-            var retrieveValue: * = retrieveProduct.value.value;
-            var retrieveSelf: * = retrieveProduct.value.self;
-            var retrieveInfo: FunctionInfo = retrieveProduct.value.info;
-            var retrieveCaps: Boolean = retrieveProduct.value.caps;
-            var retrieveCode: String = retrieveProduct.code;
+        /**
+         * @return 'Product.value = String'
+         */
+        private function evalOpDefault(node: EvalNode): Product {
+            const retrieve: Product = this.evalRetrieveNode(node.children[0]);
+            const args: Product = this.evalArgsNode(node.children[1]);
+            const results: Product = this.evalResultsNode(node.children[2]);
 
-            var argsValueArr: Array = new Array();
-            var argsCodeArr: Array = new Array();
-            for each (var child: * in argsProduct.value) {
+            const argsValueArr: Array = new Array();
+            const argsCodeArr: Array = new Array();
+            for each (var child: * in args.value) {
                 argsValueArr.push(child.value);
                 argsCodeArr.push(child.code);
             }
 
-            var resultsValueArr: Array = new Array();
-            var resultsCodeArr: Array = new Array();
-            for each (child in resultsProduct.value) {
+            const resultsValueArr: Array = new Array();
+            const resultsCodeArr: Array = new Array();
+            for each (child in results.value) {
                 resultsValueArr.push(child.value);
                 resultsCodeArr.push(child.code);
             }
 
             // Error checking
-            if (typeof retrieveValue === 'function' && retrieveInfo) {
-                if (retrieveInfo.argResultValidator !== null) {
-                    var validResult: * = retrieveInfo.argResultValidator(argsValueArr, resultsValueArr);
+            var errorMsg: String; // or null
+            if (typeof retrieve.value.value === 'function' && retrieve.value.info) {
+                if (retrieve.value.info.argResultValidator !== null) {
+                    const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
                     if (validResult !== null) {
                         errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
                     }
                 }
             }
-            else if (typeof retrieveValue === 'boolean') {
+            else if (typeof retrieve.value.value === 'boolean') {
                 if (resultsValueArr.length == 0) {
                     errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
                 }
@@ -290,83 +322,262 @@ package editor.Lang.Interpret {
                     errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
                 }
             }
-            else if (typeof retrieveValue === 'object' || retrieveValue === null || retrieveValue === undefined) {
+            else if (typeof retrieve.value.value === 'object' || retrieve.value.value == null) {
                 errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
             }
             if (errorMsg !== null) {
-                this.errors.push(new LangError(errorMsg, node.range));
+                this.createError(node.range, errorMsg);
+                return new Product(node.range, '', '');
             }
 
             var returnValue: * = '';
-            var returnRange: * = node.range;
+            var returnRange: * /*TextRange or Array of TextRange*/ = node.range;
             var returnCode: String = '';
-            if (errorMsg === null) {
-                if (typeof retrieveValue === 'function') {
-                    var funcResult: * = retrieveValue.apply(retrieveSelf, argsValueArr.concat(resultsValueArr));
-                    // Handle selecting from results here
-                    if (typeof funcResult === 'object' && 'selector' in funcResult && resultsProduct.value[funcResult.selector]) {
-                        returnValue = resultsProduct.value[funcResult.selector].value;
-                        returnRange = resultsProduct.value[funcResult.selector].range;
-                    }
-                    else {
-                        returnValue = funcResult + '';
-                        returnRange = node.range;
-                    }
-
-                    // nothing              -> identity()
-                    // args + results       -> identity([arg0, arg1, ...], [result0, result1, ...])
-                    // args                 -> identity(arg0, arg1, ...)
-                    // results              -> identity(result0, result1, ...)
-                    if (argsCodeArr.length === 0 && resultsCodeArr.length === 0)
-                        returnCode = retrieveCode + '()';
-                    else if (argsCodeArr.length > 0 && resultsCodeArr.length > 0)
-                        returnCode = retrieveCode + '([' + argsCodeArr.join(', ') + '], [' + resultsCodeArr.join(', ') + '])';
-                    else if (argsCodeArr.length > 0)
-                        returnCode = retrieveCode + '(' + argsCodeArr.join(', ') + ')';
-                    else
-                        returnCode = retrieveCode + '(' + resultsCodeArr.join(', ') + ')';
+            if (typeof retrieve.value.value === 'function') {
+                var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr.concat(resultsValueArr));
+                // Handle selecting from results here
+                if (funcResult == null) {
+                    this.createError(node.range, this.getName(node.children[0]) + ' is ' + funcResult);
+                    return new Product(node.range, '', '');
                 }
-                else if (typeof retrieveValue === 'boolean') {
-                    // condition ? [result1] : result2
-                    if (retrieveValue && resultsProduct.value.length > 0 && resultsProduct.value[0]) {
-                        returnValue = resultsProduct.value[0].value;
-                        returnRange = resultsProduct.value[0].range;
-                    }
-                    // condition ? result1 : [result2]
-                    else if (!retrieveValue && resultsProduct.value.length > 1 && resultsProduct.value[1]) {
-                        returnValue = resultsProduct.value[1].value;
-                        returnRange = resultsProduct.value[1].range;
-                    }
-                    // condition ? result1 : []
-                    // condition ? [] : result2
-                    else {
-                        returnValue = '';
-                        returnRange = node.range;
-                    }
-
-                    // type bool + results  -> identity ? result0 : (result1 or "")
-                    if (resultsCodeArr.length === 1)
-                        returnCode = '(' + retrieveCode + ' ? ' + resultsCodeArr[0] + ' : "")';
-                    if (resultsCodeArr.length === 2)
-                        returnCode = '(' + retrieveCode + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+                else if (
+                    typeof funcResult === 'object' &&
+                    'selector' in funcResult &&
+                    results.value[funcResult.selector]
+                ) {
+                    returnValue = results.value[funcResult.selector].value;
+                    returnRange = results.value[funcResult.selector].range;
                 }
                 else {
-                    returnValue = retrieveValue + '';
+                    returnValue = funcResult + '';
                     returnRange = node.range;
-                    returnCode = retrieveCode;
                 }
 
-                if (retrieveInfo && retrieveInfo.toCode !== null) {
-                    returnCode = retrieveInfo.toCode(argsCodeArr, resultsCodeArr);
+                // nothing        -> identity()
+                // args + results -> identity([arg0, arg1, ...], [result0, result1, ...])
+                // args           -> identity(arg0, arg1, ...)
+                // results        -> identity(result0, result1, ...)
+                if (argsCodeArr.length === 0 && resultsCodeArr.length === 0)
+                    returnCode = retrieve.code + '()';
+                else if (argsCodeArr.length > 0 && resultsCodeArr.length > 0)
+                    returnCode = retrieve.code + '([' + argsCodeArr.join(', ') + '], [' + resultsCodeArr.join(', ') + '])';
+                else if (argsCodeArr.length > 0)
+                    returnCode = retrieve.code + '(' + argsCodeArr.join(', ') + ')';
+                else
+                    returnCode = retrieve.code + '(' + resultsCodeArr.join(', ') + ')';
+            }
+            else if (typeof retrieve.value.value === 'boolean') {
+                // condition ? [result1] : result2
+                if (retrieve.value.value && results.value.length > 0 && results.value[0]) {
+                    returnValue = results.value[0].value;
+                    returnRange = results.value[0].range;
                 }
+                // condition ? result1 : [result2]
+                else if (!retrieve.value.value && results.value.length > 1 && results.value[1]) {
+                    returnValue = results.value[1].value;
+                    returnRange = results.value[1].range;
+                }
+                // condition ? result1 : []
+                // condition ? [] : result2
+                else {
+                    returnValue = '';
+                    returnRange = node.range;
+                }
+
+                // type bool + results  -> identity ? result0 : (result1 or "")
+                if (resultsCodeArr.length === 1)
+                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : "")';
+                if (resultsCodeArr.length === 2)
+                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+            }
+            else {
+                returnValue = retrieve.value.value + '';
+                returnRange = node.range;
+                returnCode = retrieve.code;
             }
 
-            if (retrieveCaps && returnValue.length > 0) {
+            if (retrieve.value.info && retrieve.value.info.toCode !== null) {
+                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+
+            if (retrieve.value.caps && returnValue.length > 0) {
                 returnValue = returnValue.charAt(0).toLocaleUpperCase() + returnValue.slice(1);
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
         }
 
+        /**
+         * @return 'Product.value = String'
+         */
+        private function evalOpRange(node: EvalNode): Product {
+            const retrieve: Product = this.evalRetrieveNode(node.children[0]);
+            const args: Product = this.evalArgsNode(node.children[1]);
+            const results: Product = this.evalResultsNode(node.children[2]);
+
+            const argsValueArr: Array = new Array();
+            const argsCodeArr: Array = new Array();
+            for each (var child: * in args.value) {
+                argsValueArr.push(child.value);
+                argsCodeArr.push(child.code);
+            }
+
+            const resultsValueArr: Array = new Array();
+            const resultsCodeArr: Array = new Array();
+            for each (child in results.value) {
+                resultsValueArr.push(child.value);
+                resultsCodeArr.push(child.code);
+            }
+
+            // Error checking
+            var errorMsg: String; // or null
+            if (typeof retrieve.value.value === 'number') {
+                if (argsValueArr.length === 0) {
+                    errorMsg = this.getName(node.children[0]) + ' needs at least one argument';
+                }
+                else if (resultsValueArr.length === 0) {
+                    errorMsg = this.getName(node.children[0]) + ' needs at least one result';
+                }
+                else if (resultsValueArr.length > argsValueArr.length + 1) {
+                    errorMsg = this.getName(node.children[0]) + ' has ' + (resultsValueArr.length - argsValueArr.length + 1) + ' extraneous results';
+                }
+            }
+            else {
+                errorMsg = this.getName(node.children[0]) + ' does not support ">"';
+            }
+            if (errorMsg !== null) {
+                this.createError(node.range, errorMsg);
+                return new Product(node.range, '', '');
+            }
+
+            var returnValue: * = '';
+            var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
+            var returnCode: String = '';
+            if (typeof retrieve.value.value === 'number') {
+                for (var idx: int = 0; idx < argsValueArr.length && idx < resultsValueArr.length; idx++) {
+                    if (argsValueArr[idx] <= retrieve.value.value && (
+                        idx === argsValueArr.length - 1 ||
+                        retrieve.value.value < argsValueArr[idx + 1]
+                    )) {
+                        returnValue = results.value[idx].value;
+                        returnRange = results.value[idx].range;
+                        break;
+                    }
+                }
+                for (idx = 0; idx < argsValueArr.length; idx++) {
+                    returnCode += '(' + argsCodeArr[idx] + ' <= ' + retrieve.code;
+                    if (idx + 1 < argsValueArr.length) {
+                        returnCode += ' && ' + retrieve.code + ' < ' + argsCodeArr[idx + 1];
+                    }
+                    returnCode += ' ? ';
+                    if (idx < resultsCodeArr.length)
+                        returnCode += resultsCodeArr[idx];
+                    else
+                        returnCode += '""';
+                    returnCode += ' : ';
+                    if (idx + 1 === argsValueArr.length)
+                        returnCode += '""';
+                }
+                for (idx = 0; idx < argsValueArr.length; idx++)
+                    returnCode += ')';
+            }
+            else {
+                returnValue = retrieve.value.value + '';
+                returnRange = node.range;
+                returnCode = retrieve.code;
+            }
+
+            if (retrieve.value.info && retrieve.value.info.toCode) {
+                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+
+            return new Product(returnRange, returnValue + '', returnCode);
+        }
+
+        /**
+         * @return 'Product.value = String'
+         */
+        private function evalOpEqual(node: EvalNode): Product {
+            const retrieve: Product = this.evalRetrieveNode(node.children[0]);
+            const args: Product = this.evalArgsNode(node.children[1]);
+            const results: Product = this.evalResultsNode(node.children[2]);
+
+            const argsValueArr: Array = new Array();
+            const argsCodeArr: Array = new Array();
+            for each (var child: * in args.value) {
+                argsValueArr.push(child.value);
+                argsCodeArr.push(child.code);
+            }
+
+            const resultsValueArr: Array = new Array();
+            const resultsCodeArr: Array = new Array();
+            for each (child in results.value) {
+                resultsValueArr.push(child.value);
+                resultsCodeArr.push(child.code);
+            }
+
+            // Error checking
+            var errorMsg: String; // or null
+            if (args.value.length !== 1) {
+                errorMsg = this.getName(node.children[0]) + ' can only accept 1 argument';
+            }
+            else if (resultsValueArr.length == 0) {
+                errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+            }
+            else if (resultsValueArr.length > 2) {
+                errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+            }
+            else if (
+                typeof retrieve.value.value !== 'boolean' &&
+                typeof retrieve.value.value !== 'number' &&
+                typeof retrieve.value.value !== 'string'
+            ) {
+                errorMsg = this.getName(node.children[0]) + ' does not support "="';
+            }
+            if (errorMsg) {
+                this.createError(node.range, errorMsg);
+                return new Product(node.range, '', '');
+            }
+
+            var arg: * /*string or number or boolean*/ = args.value[0].value;
+            if (arg === 'true') arg = true;
+            if (arg === 'false') arg = false;
+
+            var returnValue: * = '';
+            var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
+            var returnCode: String = '';
+            // condition ? [result1] : result2
+            if (retrieve.value.value === arg && results.value.length > 0 && results.value[0]) {
+                returnValue = results.value[0].value;
+                returnRange = results.value[0].range;
+            }
+            // condition ? result1 : [result2]
+            else if (retrieve.value.value !== arg && results.value.length > 1 && results.value[1]) {
+                returnValue = results.value[1].value;
+                returnRange = results.value[1].range;
+            }
+            // condition ? result1 : []
+            // condition ? [] : result2
+            else {
+                returnValue = '';
+                returnRange = node.range;
+            }
+
+            // type bool + results  -> identity ? result0 : (result1 or "")
+            if (resultsCodeArr.length === 1)
+                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : "")';
+            if (resultsCodeArr.length === 2)
+                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+
+            if (retrieve.value.info && retrieve.value.info.toCode) {
+                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+
+            if (retrieve.value.caps && returnValue.length > 0) {
+                returnValue = returnValue.charAt(0).toLocaleUpperCase() + returnValue.slice(1);
+            }
+
+            return new Product(returnRange, returnValue + '', returnCode);
+        }
     }
 }

@@ -3,7 +3,7 @@ package editor.Lang.Nodes {
 
     public class NumberNode extends Node {
         public function NumberNode(range: TextRange, value: Number) {
-            super(NodeType.String, range, [], value);
+            super(NodeType.Number, range, [], value);
         }
     }
 }
