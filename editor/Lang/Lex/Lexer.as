@@ -4,20 +4,6 @@ package editor.Lang.Lex {
     import editor.Lang.Tokens.*;
 
     public class Lexer {
-        /**
-         * A list of symbols that can be checked
-         */
-        private static const TokenSymbol: Object = new Object();
-        {
-            TokenSymbol.Space = ' ';
-            TokenSymbol.Tab = '\t';
-            TokenSymbol.Newline = '\n';
-            TokenSymbol.LeftBracket = '[';
-            TokenSymbol.RightBracket = ']';
-            TokenSymbol.Dot = '.';
-            TokenSymbol.Pipe = '|';
-        }
-
         private var pos: int = 0;
         private var start: int = 0;
         private var lineNum: int = 0;
@@ -133,6 +119,14 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.Pipe;
                 }
+                case TokenSymbol.GreaterThan: {
+                    this.pos++;
+                    return TokenType.GreaterThan;
+                }
+                case TokenSymbol.Equal: {
+                    this.pos++;
+                    return TokenType.Equal;
+                }
                 default: {
                     this.eatWhileNot(
                         TokenSymbol.Tab,
@@ -141,7 +135,9 @@ package editor.Lang.Lex {
                         TokenSymbol.LeftBracket,
                         TokenSymbol.RightBracket,
                         TokenSymbol.Dot,
-                        TokenSymbol.Pipe
+                        TokenSymbol.Pipe,
+                        TokenSymbol.GreaterThan,
+                        TokenSymbol.Equal
                     );
                     return TokenType.Text;
                 }

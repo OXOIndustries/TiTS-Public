@@ -98,10 +98,10 @@ package editor.Lang.Parse {
             var subText: String = '';
             var type: int = this.lexer.peek();
             while (
-                type === TokenType.Space ||
-                type === TokenType.Newline ||
-                type === TokenType.Text ||
-                type === TokenType.Dot
+                type !== TokenType.EOS &&
+                type !== TokenType.LeftBracket &&
+                type !== TokenType.RightBracket &&
+                type !== TokenType.Pipe
             ) {
                 subText += this.lexer.getText();
                 type = this.lexer.advance();
@@ -147,6 +147,19 @@ package editor.Lang.Parse {
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
+            var evalOp: int = EvalNode.OpDefault;
+            if (this.lexer.peek() === TokenType.Space)
+                this.lexer.advance();
+             
+            if (this.lexer.peek() === TokenType.GreaterThan) {
+                evalOp = EvalNode.OpRange;
+                this.lexer.advance();
+            }
+            else if (this.lexer.peek() === TokenType.Equal) {
+                evalOp = EvalNode.OpEqual;
+                this.lexer.advance();
+            }
+            
             var argNodes: Node = this.args();
             var resultNodes: Node = this.results();
 
@@ -160,7 +173,8 @@ package editor.Lang.Parse {
 
             return new EvalNode(
                 new TextRange(identityNode.range.start, rangeEnd),
-                [identityNode, argNodes, resultNodes]
+                [identityNode, argNodes, resultNodes],
+                evalOp
             );
 
         }
@@ -214,7 +228,9 @@ package editor.Lang.Parse {
             const start: TextPosition = this.createStartPostion();
 
             // Add Value nodes to Args node
-            var valueNode: Node;
+            var valueNode: Node = this.getValue();
+            if (valueNode) arr.push(valueNode);
+            
             while (this.lexer.peek() === TokenType.Space) {
                 this.lexer.advance();
 
@@ -299,14 +315,19 @@ package editor.Lang.Parse {
 
         /**
          * Parsing for String and Number in Args
-         * @return StringNode or NumberNode
+         * @return StringNode or NumberNode or null
          */
         private function getValue(): Node {
             var subStr: String = "";
             const start: TextPosition = this.createStartPostion();
 
             var type: int = this.lexer.peek();
-            while (type === TokenType.Text || type === TokenType.Dot) {
+            while (
+                type === TokenType.Text ||
+                type === TokenType.Dot ||
+                type === TokenType.GreaterThan ||
+                type === TokenType.Equal
+            ) {
                 subStr += this.lexer.getText();
                 type = this.lexer.advance();
             }

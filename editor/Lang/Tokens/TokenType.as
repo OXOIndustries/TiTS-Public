@@ -1,15 +1,17 @@
 package editor.Lang.Tokens {
     public class TokenType {
-        public static var EOS: int = 0;
-        public static var Text: int = 1;
-        public static var Space: int = 2;
-        public static var Newline: int = 3;
-        public static var LeftBracket: int = 4;
-        public static var RightBracket: int = 5;
-        public static var Dot: int = 6;
-        public static var Pipe: int = 7;
+        public static const EOS: int = 0;
+        public static const Text: int = 1;
+        public static const Space: int = 2;
+        public static const Newline: int = 3;
+        public static const LeftBracket: int = 4;
+        public static const RightBracket: int = 5;
+        public static const Dot: int = 6;
+        public static const Pipe: int = 7;
+        public static const GreaterThan: int = 8;
+        public static const Equal: int = 9;
         
-        public static var Names: Array = [
+        public static const Names: Array = [
             'EOS',
             'Text',
             'Space',
@@ -17,7 +19,9 @@ package editor.Lang.Tokens {
             'LeftBracket',
             'RightBracket',
             'Dot',
-            'Pipe'
+            'Pipe',
+            'GreaterThan',
+            'Equal'
         ];
     }
 }
