@@ -99,7 +99,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "BI/G", bellIsleGrunmannCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Camarilla", camarillaCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "J’ejune", jejuneCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "JoyCo", joyCoCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "KihaCorp", kihaCorpCodex, true);
@@ -3445,16 +3445,16 @@ public function gravCuffsCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Grav Cuffs"));
-	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> TamaniCorp");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
-	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
+	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by the sex-loving TamaniCorp. The cuffs are packed full of features; nearly as many as some mainstream androids.");
 	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
 	outputCodex("\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.");
 	outputCodex("\n\nGrav-cuffs are notoriously hard to break out of.");
-	if(silly) outputCodex(" They are made out of top secret alloy that Bran Flazingan has patented as “Hardium”. The Humphard CEO claims the composition of the alloy was inspired by his erect penis, “the hardest thing in the known galaxy.”");
+	//Nope! if(silly) outputCodex(" They are made out of top secret alloy that Bran Flazingan has patented as “Hardium”. The Humphard CEO claims the composition of the alloy was inspired by his erect penis, “the hardest thing in the known galaxy.”");
 	outputCodex("\n\n");
-	CodexManager.unlockEntry("Humphard Inc.");
+	//CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Grav Cuffs");
 }
 public function holodomCodex():void
@@ -3462,16 +3462,16 @@ public function holodomCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Holodom"));
-	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> JoyCo");
 	outputCodex("\n<b>Description:</b> Hard light holographic condom, or “holodom.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
-	outputCodex("Holodoms were one of Humphard’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
+	outputCodex("Holodoms were one of JoyCo’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
 	outputCodex("\n\nBefore the holodom, galactic citizens had to rely on other less enjoyable methods of safe sex. Traditional condoms reduced sensation, body modification and implants were troublesome, and oral supplements were not always cross-species compatible. The holodom offered a quick, easy way to have sex with practically any species without worrying about impregnation or disease.");
 	outputCodex("\n\nOn the release of seed, a holodom captures it within the field and keeps it stored in a hard light bubble. For incredibly virile users, this often creates a spectacular ‘bubble’ of semen that can stress the holodom and potentially cause it to burst.");
 	outputCodex("\n\nSome seedy dealers sell fake holodoms that, while holographic, are not ‘hard light’. There are a number of customers who buy these products to dupe their sexual partners, often in a bid to get them pregnant.");
 	outputCodex("\n");
-	CodexManager.unlockEntry("Humphard Inc.");
+	//CodexManager.unlockEntry("Humphard Inc.");
 	CodexManager.viewedEntry("Holodom");
 }
 public function sumaCreamCodex():void
@@ -3727,7 +3727,8 @@ public function Bess13CodexEntry():void
 	outputCodex("\n\nBoth Bess-13 and Ben-14 units come with male and female genital attachments. They can have one, both, or neither attached at any given time.");
 	outputCodex("\n\nBoth units have the ability to equip a pussy and have it extend out from a prehensile tail growing from between their legs. This is particularly useful for users with unusual body types or for offering vaginal penetration while being pegged from behind. Some users find this ability unsettling and never make use of it.");
 	outputCodex("\n\nTheir FlexMetal bodies allows them to incorporate all but the largest of individuals in any orifice. Since Bess-13 and Ben-14 Units are marketed as breeding relief androids, they can easily take huge amounts of liquid inside of them and in a pinch swell their bodies to compensate.");
-	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy. Bran Flazingan, the galaxy’s eighth richest man and eccentric tycoon, called the Bess-13’s and Ben-14’s “the most enticing object you’ll ever feel the need to fuck.”");
+	outputCodex("\n\nNeedless to say, these units were extremely popular with inflation fans and pregophiles across the galaxy.");
+	//" Bran Flazingan, the galaxy’s eighth richest man and eccentric tycoon, called the Bess-13’s and Ben-14’s “the most enticing object you’ll ever feel the need to fuck.”");
 	outputCodex("\n\n");
 	// Totally changable of course. Sixth might be too big a spot for this NPC.
 	outputCodex(blockHeader("History:"));
@@ -3785,7 +3786,7 @@ public function panaraCodex():void
 
 
 /* People */
-
+/*
 public function branFlazinganCodex():void
 {
 	clearOutputCodex();
@@ -3818,7 +3819,7 @@ public function branFlazinganCodex():void
 	outputCodex("\n\n");
 	// Bran Flazingan: Imagine Donald Trump + Rance (AliceSoft Games) + Ron Jeremy. The name is a play on Zap Brannigan.
 	CodexManager.viewedEntry("Bran Flazingan");
-}
+}*/
 
 
 /* Companies */
@@ -3860,6 +3861,7 @@ public function camarillaCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Camarilla");
 }
+/*
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
@@ -3888,7 +3890,8 @@ public function humphardIncCodex():void
 	CodexManager.unlockEntry("Grav Cuffs");
 	CodexManager.unlockEntry("Holodom");
 	CodexManager.viewedEntry("Humphard Inc.");
-}
+}*/
+
 public function jejuneCodex():void
 {
 	clearOutputCodex();

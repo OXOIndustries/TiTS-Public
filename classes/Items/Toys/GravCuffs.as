@@ -32,7 +32,7 @@ package classes.Items.Toys
 			this.description = "a set of grav-cuffs";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These special, levitating cuffs are mass-adjustable. Once attached to an individual, one can make the cuffs -- and the cuffed individual -- weigh as little or as much as they want. They’re also uni-directional, so you can use them to attach someone to a roof, wall, or any other surface.\n\nThese are premium edition cuffs, complete with a magni-lock feature for fastening different cuffs together, voice activation, and a vocal locking system. They’re made out of a special space-age alloy that is notoriously hard to break. Made by Humphard Inc: “Your pleasure is our pleasure!”";
+			this.tooltip = "These special, levitating cuffs are mass-adjustable. Once attached to an individual, one can make the cuffs - and the cuffed individual - weigh as little or as much as they want. They’re also uni-directional, so you can use them to attach someone to a roof, wall, or any other surface.\n\nThese are premium edition cuffs, complete with a magni-lock feature for fastening different cuffs together, voice activation, and a vocal locking system. They’re made out of a special space-age alloy that is notoriously hard to break. Made by TamaniCorp: “Your pleasure is our pleasure!”";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
