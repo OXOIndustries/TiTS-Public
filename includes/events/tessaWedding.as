@@ -1038,7 +1038,7 @@ public function janGotALicenseForLoveAndIfItExpiresPrayHelpFromTessa():void
 	//+1 Tessa Approval. +1 Bride Side Approval. +1 Groom Side Approval. +1 Tessa Alcohol lvl. 
 	addButton(1, "A Fun Lady", nowTessaIsHidingInCratesThatAreFrightening, 1);
 	//+1 Bride Side Approval. +1 Groom Side Approval. +1 Tessa Alcohol lvl. 
-	addButton(2, "Seen Me?", nowTessaIsHidingInCratesThatAreFrightening, 2, "Seen Me?", "\"Have you seen me?\"");
+	addButton(2, "Seen Me?", nowTessaIsHidingInCratesThatAreFrightening, 2, "Seen Me?", "“Have you seen me?”");
 }
 
 // Part 2:
@@ -1085,22 +1085,23 @@ public function tonightALittleTessaCameDancingOnTheFloor(drinks:int):void
 	clearMenu();
 	clearOutput();
 	showWeddingTessa();
-	processTime(3);
+	processTime(6);
 
+	output("A short while later, you"); 
 	switch (drinks)
 	{
 		case 0:
-			output("You tell Tessa you two should head back to the party. The white woman regards the bottle another moment, then sets it back into the crate without opening it."); 
+			output(" tell Tessa you two should head back to the party. The white woman regards the bottle another moment, then sets it back into the crate without opening it."); 
 			tessaHandler.tessaApproves();
 			break;
 		case 1:
-			output("You move up beside Tessa and take the bottle from her. You crack it open and take a hearty swig of it, then offer it back to her. The white woman smiles and takes the bottle from you, knocking back a healthy amount herself.");
+			output(" move up beside Tessa and take the bottle from her. You crack it open and take a hearty swig of it, then offer it back to her. The white woman smiles and takes the bottle from you, knocking back a healthy amount herself.");
 			tessaHandler.tessaApproves(2);
 			tessaHandler.tessaDrinks(1, false);
 			tessaHandler.youDrink(1, false);
 			break;
 		case 2:
-			output("You stand there in silence. After a moment, Tessa opens the bottle and starts to down it, chugging away at the contents. She gasps in satisfaction when she finishes, then sighs to herself solemnly.");
+			output(" stand there in silence. After a moment, Tessa opens the bottle and starts to down it, chugging away at the contents. She gasps in satisfaction when she finishes, then sighs to herself solemnly.");
 			tessaHandler.tessaDrinks(2, false);
 			break;
 	}
@@ -1339,7 +1340,7 @@ public function tessaDontCallMeFromTheBathroomToTellMeImWithClark():void
 		//Plays Part 2
 		addButton(0, "Stay And Wait", nowAllICanHangOutWithIsTessasLoveThatWasOnce, true);
 		//Triggers Ending 3
-		addButton(1, "\"Help\" Clark", whenYouHearClarkOfferYouTakeADip, undefined, "\"Help\" Clark", "Help Clark with his ‘happy ending.’");
+		addButton(1, "“Help” Clark", whenYouHearClarkOfferYouTakeADip, undefined, "“Help” Clark", "Help Clark with his ‘happy ending.’");
 	}
 	else
 	{

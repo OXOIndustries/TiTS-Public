@@ -26,9 +26,17 @@ public function multiButtonPageNote():String
 {
 	return "(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)";
 }
-public function isEquippableItem(item:ItemSlotClass):Boolean
+public function isEquippableItem(item:ItemSlotClass, checkEquip:Boolean = false):Boolean
 {
 	if(item.hasFlag(GLOBAL.ITEM_FLAG_SHIP_EQUIPMENT)) return false;
+	
+	// Preventive measures
+	if(checkEquip)
+	{
+		if(!pc.itemSlotUnlocked(item.type)) return false;
+		if(pc.hasStatusEffect("Disarmed") && !pc.hasCombatStatusEffect("Disarmed") && InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON])) return false;
+	}
+	
 	return	InCollection(item.type, 
 		GLOBAL.ARMOR, GLOBAL.SHIELD, GLOBAL.ACCESSORY, 
 		GLOBAL.RANGED_WEAPON, GLOBAL.MELEE_WEAPON, 
@@ -1004,7 +1012,8 @@ public function buyItemMultiCustom():void
 public function buyItemMultiCustomOK():void
 {
 	if(isNaN(Number(userInterface.textInput.text))) {
-		buyItemMultiCustomOK();
+		//buyItemMultiCustomOK(); - As per https://github.com/OXOIndustries/TiTS-Public/pull/229/files by Somebody-Else-Entirely
+		buyItemMultiCustom();
 		output("Choose a quantity that is a positive integer, please.");
 		return;
 	}
@@ -2860,6 +2869,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		tItem = null;
 	}
 	
+	var loot:ItemSlotClass = (newLootList[0] as ItemSlotClass);
 	// Fallback; offer an options menu to handle things.
 	if (tItem)
 	{
@@ -2868,20 +2878,40 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 		addButton(0,"Replace", replaceItemPicker, newLootList); // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 		addButton(1,"Discard", discardItem, newLootList);
 		//Hacky fix. If you hit useLoot with stuff that has its own submenus, it'll overwrite the submenu with the loot info for the next item. For instance, if you loot a hand cannon and a spear, then equip the hand cannon, your old ZK rifle will vanish into the ether while the game jumps over it to the spear.
-		if (newLootList.length >= 2) addDisabledButton(2,"Use","Use","You cannot use an item while there are more items in the loot queue.");
-		else if ((newLootList[0] as ItemSlotClass).hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection((newLootList[0] as ItemSlotClass).type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
-		else if ((newLootList[0] as ItemSlotClass).isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
+		if (newLootList.length >= 2)
+		{
+			var canEquip:Boolean = false;
+			// Equippable items check
+			if(isEquippableItem(loot, true))
+			{
+				// Wearables only if empty slot--no swapping here!
+				if(	(InCollection(loot.type, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && !pc.hasArmor())
+				||	(loot.type == GLOBAL.MELEE_WEAPON && !pc.hasMeleeWeapon())
+				||	(loot.type == GLOBAL.RANGED_WEAPON && !pc.hasRangedWeapon())
+				||	(loot.type == GLOBAL.SHIELD && !pc.hasShieldGenerator())
+				||	(loot.type == GLOBAL.ACCESSORY && !pc.hasAccessory())
+				||	(loot.type == GLOBAL.LOWER_UNDERGARMENT && !pc.hasLowerGarment())
+				||	(loot.type == GLOBAL.UPPER_UNDERGARMENT && !pc.hasUpperGarment())
+				) canEquip = true;
+			}
+			if(canEquip) addButton(2,"Use", useLoot, newLootList);
+			else addDisabledButton(2,"Use","Use","You cannot use this item while there are more items in the loot queue.");
+			
+			addButton(7, "Skip", nextItem, newLootList, "Skip to Next Item", "Look at the next item instead.");
+		}
+		else if (loot.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT) || InCollection(loot.type, [GLOBAL.PIERCING, GLOBAL.COCKWEAR])) addDisabledButton(2,"Use","Use","You cannot use this item with a full inventory.");
+		else if (loot.isUsable != true) addDisabledButton(2,"Use","Use","This item is not usable.");
 		else addButton(2,"Use", useLoot, newLootList);
 	}
 	else
 	{			
 		output(". The new acquisition");
-		if(newLootList[0].quantity > 1) output("s stow");
+		if(loot.quantity > 1) output("s stow");
 		else output(" stows");
 		output(" away quite easily.");
 		
 		// Special Events
-		if(newLootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
+		if(loot is GooArmor) output("\n\n" + gooArmorInventoryBlurb(newLootList[0], "collect"));
 		
 		//Clear the item off the newLootList.
 		newLootList.splice(0,1);
@@ -2922,6 +2952,31 @@ public function discardItem(lootList:Array):void {
 	clearMenu();
 	if(lootList.length > 0) addButton(0,"Next",itemCollect, lootList);
 	else addButton(0,"Next",lootScreen);
+}
+
+public function nextItem(lootList:Array):void {
+	clearMenu();
+	
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to skip to!\n\n");
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
+	output("\n");
+	output("You take a look at the next item instead...");
+	
+	var loot:ItemSlotClass = lootList[0];
+	lootList.splice(0,1);
+	lootList.push(loot);
+	
+	output("\n\n");
+	
+	if(lootList.length > 0) itemCollect(lootList);
+	else lootScreen();
 }
 
 public function replaceItemPicker(lootList:Array):void {
@@ -2987,7 +3042,7 @@ public function useLoot(lootList:Array):void {
 	// useLoot returns true during an equip-call
 	if (useItem(loot))
 	{
-		if(isEquippableItem(loot)) lootList.splice(0, 1);
+		if(isEquippableItem(loot, true)) lootList.splice(0, 1);
 	}
 	if (loot.quantity <= 0)
 	{
@@ -2996,7 +3051,8 @@ public function useLoot(lootList:Array):void {
 	
 	if (lootList.length > 0)
 	{
-		output("Loot list looped!\n\n");
+		//output("Loot list looped!\n\n");
+		output("\nYou move to the next item...\n\n");
 		itemCollect(lootList);
 	}
 }

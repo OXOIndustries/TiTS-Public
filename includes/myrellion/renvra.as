@@ -995,7 +995,7 @@ public function renvraFullPregnancyPublicII(pData:PregnancyData):void
 	
 	//Put PC back at ship tile.
 	clearMenu();
-	addButton(0, "Next", move, "SHIP INTERIOR");
+	addButton(0, "Next", enterShip);
 }
 
 //Fuck her Urethra

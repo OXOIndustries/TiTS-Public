@@ -2933,7 +2933,8 @@ public function gooArmorEmblemMenu(arg:Array):void
 	
 	if(CodexManager.entryViewed("Aegis")) emblemList.push(["Aegis", "Aegis logo"]);
 	if(CodexManager.entryViewed("Camarilla")) emblemList.push(["Camarilla", "Camarilla patch"]);
-	if(CodexManager.entryViewed("Humphard Inc.")) emblemList.push(["Humphard", "Humphard Inc. logo"]);
+	//Humphard cut.
+	//if(CodexManager.entryViewed("Humphard Inc.")) emblemList.push(["Humphard", "Humphard Inc. logo"]);
 	if(CodexManager.entryViewed("J’ejune")) emblemList.push(["J’ejune", "J’ejune logo"]);
 	if(CodexManager.entryViewed("JoyCo")) emblemList.push(["JoyCo", "JoyCo logo"]);
 	if(CodexManager.entryViewed("KihaCorp")) emblemList.push(["KihaCorp", "KihaCorp logo"]);

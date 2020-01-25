@@ -428,7 +428,7 @@ public function snowballEmbryOutro():void
 	output("\n\nAfter a bit more time dozing in happy cuddles, you bid [embry.name] a fond farewell and head off to your ship.");
 	processTime(25);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //Candy Cane Oral
@@ -502,7 +502,7 @@ public function candyCaneOral():void
 	else embry.girlCumInMouth(pc);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 //Cocoa and cuddles
@@ -531,7 +531,7 @@ public function cocoaAndEmbryCuddles():void
 	restHeal();
 	pc.lust(15);
 	clearMenu();
-	addButton(0,"Next",move,"SHIP INTERIOR");
+	addButton(0,"Next",enterShip);
 }
 
 public function carolJChristmasElfDreamyWeamy():void

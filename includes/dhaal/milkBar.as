@@ -26,7 +26,7 @@ public function outsideMilkBarBonusText():void
 		pc.createStatusEffect("CUE_BAR_GREETS");
 		pc.setStatusMinutes("CUE_BAR_GREETS",6);
 	}
-	if(flags["MET_IYLA"] == undefined) output("\n\nThere’s a bright, flashing sign here - several, actually - advertising a <i>“milk bar”</i> named Arovok. Given how often the theme of enormous breasts and voluptuous women appears in the advertising, you’ve got a few good guesses about what transpires within.");
+	if(flags["MET_IYLA"] == undefined) output("\n\nThere’s a bright, flashing sign here - several, actually - advertising a “milk bar” named Arovok. Given how often the theme of enormous breasts and voluptuous women appears in the advertising, you’ve got a few good guesses about what transpires within.");
 	else output("\n\nThere’s a flourishing cornucopia of neon signage advertising the milk bar here, Arovok. Inside you can find beautiful, big-breasted women offering up their endless bounty: flowing milk laced with all manner of synthetic narcotics, and some extra cream from downstairs if you like.");
 }
 
@@ -87,10 +87,10 @@ public function milkBarMenu():void
 	}
 	else
 	{
-		addDisabledButton(0,"Xanose","Xanose","You can't afford that!");
-		addDisabledButton(1,"Vipris","Vipris","You can't afford that!");
-		addDisabledButton(2,"Sinthine","Sinthine","You can't afford that!");
-		addDisabledButton(3,"Cromesc","Cromesc","You can't afford that!");
+		addDisabledButton(0,"Xanose","Xanose","You can’t afford that!");
+		addDisabledButton(1,"Vipris","Vipris","You can’t afford that!");
+		addDisabledButton(2,"Sinthine","Sinthine","You can’t afford that!");
+		addDisabledButton(3,"Cromesc","Cromesc","You can’t afford that!");
 	}
 	addButton(4,"Chat",talkToIyla,undefined,"Chat","Talk to Iyla.");
 	addButton(14,"Back",mainGameMenu);
@@ -336,7 +336,7 @@ public function getMoreCreamFromYaBooooi():void
 	output("\n\nYou’re treated to the sight of her emptying herself down the side of your glass, spunk pooling at the bottom until it looks half-full.");
 	output("\n\n<i>“Thank you,”</i> you murmur as she pulls back, wiping her forehead.");
 	output("\n\n<i>“Oh, y-you’re welcome,”</i> she pants, smiling wide. <i>“Juh, just ask if you need more.”</i>");
-	output("\n\nThe cream-dispensing girl walks back to the bar gripping her dick,  casting furtive glances behind her while you grip your glass. You can just hear a faint moan of horniness as you take a drink and swallow, savoring the taste. Damn, she’s good.");
+	output("\n\nThe cream-dispensing girl walks back to the bar gripping her dick, casting furtive glances behind her while you grip your glass. You can just hear a faint moan of horniness as you take a drink and swallow, savoring the taste. Damn, she’s good.");
 	processTime(5);
 	var tempCow:Creature = new Creature();
 	tempCow.createPerk("Fixed CumQ",300);
