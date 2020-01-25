@@ -2429,9 +2429,11 @@ public function slyverenSlavebreakerRutSmut3():void
 	output("\n\nEverything is in order, except for the pirate. Your vicious rutting fatigue has faded, too. You’re a bit tired, but clear-headed. More than capable of dragging yourself back to the [pc.ship] and crumpling into a hot shower, and then dissolving into your bed.");
 	
 	setEnemy(null);
+	processTime(30 + rand(30));
 	pc.clearRut();
 	soreDebuff(2);
-	processTime(30 + rand(30));
+	//reduce energy to 25%
+	if (pc.energy() > pc.energyMax() * .25) pc.energy((pc.energyMax() * .25) - pc.energy());
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
