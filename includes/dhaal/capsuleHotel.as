@@ -22,7 +22,7 @@ public function flyToDhaalypoo():void
 	else
 	{
 		//repeat landing
-		output("The ever-expanding planetary landing site is still growing, plumes of industrial smoke swirling around the vibrant neon of the nearby Gyre. Garish colors punch through the perpetual dusk to advertise a dizzying multitude of commercial ventures. A shuttle zips up to your ship, ready to whisk you into the city proper. Good thing, too. You're happy to spend as little time as possible in the noxious open ground. The Paragon transport quickly pops the hatch, allowing you to climb in and ride down to the Gyre where it’s... well, a little less polluted anyway.");
+		output("The ever-expanding planetary landing site is still growing, plumes of industrial smoke swirling around the vibrant neon of the nearby Gyre. Garish colors punch through the perpetual dusk to advertise a dizzying multitude of commercial ventures. A shuttle zips up to your ship, ready to whisk you into the city proper. Good thing, too. You’re happy to spend as little time as possible in the noxious open ground. The Paragon transport quickly pops the hatch, allowing you to climb in and ride down to the Gyre where it’s... well, a little less polluted anyway.");
 		processTime(10);
 		IncrementFlag("DHAAL_LANDINGS");
 		clearMenu();
@@ -51,7 +51,7 @@ public function firstTimeOnDhaal():void
 	output("You cycle through the airlock and are immediately assaulted by the reek of industrial smog. it’s far worse than any of the mining or refinery worlds you’ve visited with your father; Steele Tech at the very least tries to keep the atmosphere from burning eyes and noses just stepping onto the tarmac. Seems there’s been no such consideration here. You hail one of the transport shuttles as quick as you can, hoping to spend as little time here in the open as you can.");
 	output("\n\nA mere moment after you start flagging, a gunmetal grey hovercraft zips over to you and pops its hatch, allowing you to climb into a bus-like back crammed with fellow Rushers. The woman in the driver’s seat, though, is of a race you’ve never seen before: she’s humanoid, a bit over five feet tall and slender, with dusk-hued purple skin and almond-shaped blue eyes. A messy mane of silver hair falls around her shoulders, breached on either side by a pair of elfin ears. Indeed, you’d easily mistake her for some kind of fantasy-game elf if it wasn’t for the long, serpentine tail running out of a hole in the back of her cargo shorts and flicking around on the floor. The tip’s covered in some kind of thick sock, shielding it from view, but it seems much more bulbous than the rest of the appendage.");
 	output("\n\n<i>“First time, huh?”</i> the woman quips, throwing an arm over the back of her seat. <i>“In that case, welcome to sunny, scenic Dhaal! I’m a zaika, and we’re the dominant species. Nearly as advanced as any of you alien types, don’t doubt it for a second. Be happy that Paragon Inc. has your best interest at heart; a lot of my sisters down at street level aren’t as happy as we are that there’s a whole galaxy coming down on our little slice of Dhaal all of a sudden.”</i>");
-	output("\n\nThat’s... encouraging. By now the other passengers - a motley mix of rugged Rushers from several species - are grumbling about the delay, so your native driver motions for you to sit and strap it. You barely have the time to comply before the shuttle shudders underfoot and starts careening through the air towards the sprawl of the city. Whatever that <i>“Gyre”</i> place is, it seems you’re enroute now!");
+	output("\n\nThat’s... encouraging. By now the other passengers - a motley mix of rugged Rushers from several species - are grumbling about the delay, so your native driver motions for you to sit and strap it. You barely have the time to comply before the shuttle shudders underfoot and starts careening through the air towards the sprawl of the city. Whatever that “Gyre” place is, it seems you’re enroute now!");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",firstTimeOnDhaal2);
@@ -65,9 +65,9 @@ public function firstTimeOnDhaal2():void
 	output("\n\nYou stand in the shadows of stratospheric buildings, lit by flickering neon advertisements and pale glows from the windows. The twilight sky is all but invisible unless you stare straight up in the mist of pollutants bearing down on you, drooling thick drops of rain down onto the narrow road you’ve been deposited on.");
 	output("\n\nA pretty large gang of other zaika are heading up the road towards you, maybe a dozen of them in various torn-up leather outfits and black coats. Either they’re an all-female race or the males are vanishingly rare, because this particular gang are all various shades of buxom purple alien babe.");
 	output("\n\n<i>“Ah, shit, gangers already?”</i> your driver complains, ratcheting a lever next to her seat. <i>“Better make yourselves scarce, aliens, unless you want trouble!”</i>");
-	output("\n\nArmor plates fall down over the viewports as the last of the Rushers disembarks, and your fellow passengers quickly scatter down alleys and back streets before the gang overtakes you.  You turn to leave as well, but just in time to hear a loud <b>ka-bang!</b> from the back of the hovercar. Black smoke billows out of the grav-plating under it and from the engines, followed by a string of cursing from the driver as the hatch closes back up.");
+	output("\n\nArmor plates fall down over the viewports as the last of the Rushers disembarks, and your fellow passengers quickly scatter down alleys and back streets before the gang overtakes you. You turn to leave as well, but just in time to hear a loud <b>ka-bang!</b> from the back of the hovercar. Black smoke billows out of the grav-plating under it and from the engines, followed by a string of cursing from the driver as the hatch closes back up.");
 	output("\n\nThe sound of the armor and hatch engaging seems to drive the group of zaika thugs into a frenzy, and in the blink of an eye almost every member of the gang has produced a pipe, chain, or club from somewhere on her person. They charge at the shuttle with screams of <i>“Traitor!”</i> <i>“Paragon of shit!”</i> <i>“" + (silly ? "Tunnel Snakes rule!”</i>":"<i>“Alien tail-sucker!”</i>") + " and worse, and you recoil back as several bludgeons slam into the engine block. Sparks fly while other members of the gang start climbing onto the helpless shuttle, pounding on the door or trying to break in the windows.");
-	output("\n\nAlmost as soon as they’ve started, you hear a siren wailing somewhere nearby. A few seconds later and a bulky armored truck colored the same silver-and-blue of the shuttle barrels down the road, skids to a stop a few yards off, and disgorges a group of armored zaika women wielding truncheons and shields. All of them have the word <i>“PARAGON”</i> emblazoned over their backs and shoulders. They form up into a shield wall and advance, as a voice booms from speakers on the carrier: <i>“YOU ARE IN VIOLATION OF ZAIBATSU ACCORDS. CEASE DAMAGING PARAGON PROPERTY. DISPERSE NOW.”</i>");
+	output("\n\nAlmost as soon as they’ve started, you hear a siren wailing somewhere nearby. A few seconds later and a bulky armored truck colored the same silver-and-blue of the shuttle barrels down the road, skids to a stop a few yards off, and disgorges a group of armored zaika women wielding truncheons and shields. All of them have the word “PARAGON” emblazoned over their backs and shoulders. They form up into a shield wall and advance, as a voice booms from speakers on the carrier: <i>“YOU ARE IN VIOLATION OF ZAIBATSU ACCORDS. CEASE DAMAGING PARAGON PROPERTY. DISPERSE NOW.”</i>");
 	output("\n\nIt’s a short, brutal melee as the police-looking aliens wade into the crowd, dragging them off the hover-car and batting them around with their clubs. The Paragon troops have so much armor that it’s no contest between them, shrugging off the worst the mob can throw at them until the last members and being dragged down and cuffed.");
 	output("\n\nWhile the rabble is being thrown into the back of the armored truck, you hear a bemused laugh beside you. ");
 	//Never met Kattom:
@@ -113,13 +113,13 @@ public function dhaalTaxiMenu():void
 {
 	
 	clearMenu();
-	if(currentLocation == "DHAAL J3") addDisabledButton(0,"Spaceport","Spaceport","You're here already.");
+	if(currentLocation == "DHAAL J3") addDisabledButton(0,"Spaceport","Spaceport","You’re here already.");
 	else 
 	{
 		if(pc.credits >= 50) addButton(0,"Spaceport",surfaceToShipTransitionForSumRaison,undefined,"Spaceport","Catch a ride to the spaceport.\n\n<b>50 credits</b>");
 		else addDisabledButton(0,"Spaceport","Spaceport","You lack the necessary fifty credits.");
 	}
-	if(currentLocation == "DHAAL L21") addDisabledButton(1,"The Gyre","The Gyre","You're here already.");
+	if(currentLocation == "DHAAL L21") addDisabledButton(1,"The Gyre","The Gyre","You’re here already.");
 	else 
 	{
 		if(currentLocation == "DHAAL J3") addButton(1,"The Gyre",spaceportToGyreTransport,true,"The Gyre","Catch a ride to the Gyre - <b>for free!</b>");
@@ -160,7 +160,7 @@ public function capsuleHotelExteriorBonus():void
 {
 	//Located at the far end of the first zone within the Gyre, near the transport depot and across the street from the milk bar.
 	//Add to Room Descript
-	output("A narrow building sits wedged between the ground floor of two massive skyscrapers, lit by a neon blue sign advertising <i>“PARAGON CAPSULE RESORT”</i> in flashing letters. Bulletproof glass covered in metal bars make up the actual storefront, but you can see a well-lit if well-worn lobby inside, and the movement of other people. A pair of automated gun turrets on either corner of the building track your movements as you approach, but don’t fire. Better keep your hands off your weapons just in case.");
+	output("A narrow building sits wedged between the ground floor of two massive skyscrapers, lit by a neon blue sign advertising “PARAGON CAPSULE RESORT” in flashing letters. Bulletproof glass covered in metal bars make up the actual storefront, but you can see a well-lit if well-worn lobby inside, and the movement of other people. A pair of automated gun turrets on either corner of the building track your movements as you approach, but don’t fire. Better keep your hands off your weapons just in case.");
 	output("\n\n<b>It looks safe inside</b>...");
 }
 
@@ -200,9 +200,9 @@ public function capsuleHotelConcierge():void
 		processTime(1);		
 	}
 	output("\n\n<u>Services:</u>");
-	output("\n\t100 creds: <i>“capsule - 1 night.”</i>");
-	output("\n\t500 creds: <i>“deluxe capsule - 1 night.”</i>");
-	output("\n\t5,000 creds: <i>“full service experience”</i>");
+	output("\n\t100 creds: “capsule - 1 night.”");
+	output("\n\t500 creds: “deluxe capsule - 1 night.”");
+	output("\n\t5,000 creds: “full service experience”");
 	capsuleHotelMenu();
 }
 public function capsuleHotelMenu():void
@@ -211,7 +211,7 @@ public function capsuleHotelMenu():void
 	//[Capsule] [Room Service] [Full Service] [Leave]
 	addButton(0,"Capsule",rentACapsule,undefined,"Capsule","You’d like to rent a capsule for the night.\n\nCosts 100 Credits.");
 	addButton(1,"Room Service",roomServiceCapsule,undefined,"Room Service","Rent a capsule for the night. This option also includes a hot meal before and after, and access to a private shower.\n\nCosts 500 credits.");
-	addButton(2,"Full Service",fullServiceCapsuleHotel,undefined,"Full Service","This option displays a caricature of two zaikas sharing a bath. Vaguely described as a <i>“full service experience”</i> including a night in the hotel’s largest pod, a private jacuzzi bath, and personally catered meals.\n\nCosts 5,000 credits.");
+	addButton(2,"Full Service",fullServiceCapsuleHotel,undefined,"Full Service","This option displays a caricature of two zaikas sharing a bath. Vaguely described as a “full service experience” including a night in the hotel’s largest pod, a private jacuzzi bath, and personally catered meals.\n\nCosts 5,000 credits.");
 	addButton(14,"Leave",leaveDatCapsuleHotel,undefined,"Leave","You’re not interested in staying at present.");
 }
 
@@ -238,7 +238,7 @@ public function rentACapsule():void
 	showMyssah();
 	author("Savin");
 	pc.credits -= 100;
-	output("You point to a slowly-scrolling option on the holo-menu labelled <i>“capsule - 1 night.”</i> That sounds about your speed.");
+	output("You point to a slowly-scrolling option on the holo-menu labelled “capsule - 1 night.” That sounds about your speed.");
 	output("\n\n<i>“Very well,”</i> Myssah answers, crisp and professional. She turns an old-fashioned touch-screen display around to face you, showing an agreement and cost that you quickly scan over before swiping your Codex over a recently-added scanner bolted onto the side. The transaction completes, and Myssah smiles and hands you a plastic keycard from under the desk.");
 	var capsule:Number = rand(200)+1;
 	output("\n\n<i>“You’ll be staying in capsule " + num2Text(capsule) + ",”</i> she says, pointing towards a door behind her and to the left. <i>“There’s a cubby for your belongings accessible by your key, as well as a public shower, in the room beyond.”</i>");
@@ -256,7 +256,7 @@ public function rentACapsule2():void
 	clearOutput();
 	showMyssah();
 	author("Savin");
-	output("You wake to faint but insistent beeping coming from inside your capsule. Slowly, you open your eyes, only to find that one of the walls is projecting holographic text over itself: <i>“YOUR ALLOTTED SLEEPING HOURS ARE NOW OVER. PLEASE COLLECT YOUR BELONGINGS.”</i>");
+	output("You wake to faint but insistent beeping coming from inside your capsule. Slowly, you open your eyes, only to find that one of the walls is projecting holographic text over itself: “YOUR ALLOTTED SLEEPING HOURS ARE NOW OVER. PLEASE COLLECT YOUR BELONGINGS.”");
 	output("\n\nLame. With a big yawn, you wiggle out of the capsule and slide down to the ground level. Your gear’s locked away right where you left it, and so you kit up, clean up, and get ready to head back out onto the mean streets once more...");
 	processTime(8*60);
 	sleepHeal();
@@ -274,11 +274,11 @@ public function roomServiceCapsule():void
 	author("Savin");
 	pc.credits -= 500;
 	var capsule:Number = rand(100)+201;
-	output("You point to a slowly-scrolling option on the holo-menu labelled <i>“deluxe capsule - 1 night.”</i> That sounds about your speed.");
+	output("You point to a slowly-scrolling option on the holo-menu labelled “deluxe capsule - 1 night.” That sounds about your speed.");
 	output("\n\n<i>“Very well,”</i> Myssah answers, crisp and professional. She turns an old-fashioned touch-screen display around to face you, showing an agreement and cost that you quickly scan over before swiping your Codex over a recently-added scanner bolted onto the side. The transaction completes, and Myssah smiles and hands you a plastic keycard from under the desk.");
 	output("\n\n<i>“You’ll be staying in capsule " + num2Text(capsule) + ",”</i> she says, pointing towards a door behind her and to the left. <i>“There’s a cubby for your belongings accessible by your key, as well as both the public and a private shower, in the room beyond.”</i>");
 	output("\n\nYou head on back, using your keycard to unlock the door and head through into a dark chamber. When your eyes adjust to it, you see a vast, sprawling narrow row of three-foot hatches in the wall stacked twenty feet high. You quickly walk through the stacks towards the clearly-marked shower room. There’s another door inside the showers marked private, which you’re able to access with your card. Inside is a row of a dozen individual shower stalls, each with opaque glass walls. You find one sitting open and slip inside.");
-	output("\n\nThe water is nice and hot, and just a little bit salty from some kind of purification system. You help yourself to some complimentary cleaning products and enjoy this fleeting bit of luxury on this otherwise hostile, grimy world. You come away feeling surprisingly clean, and when you head back out to the vast rows of capsule <i>“rooms,”</i> you find yours has a small drone hovering next to it with a steaming tray balanced on its head.");
+	output("\n\nThe water is nice and hot, and just a little bit salty from some kind of purification system. You help yourself to some complimentary cleaning products and enjoy this fleeting bit of luxury on this otherwise hostile, grimy world. You come away feeling surprisingly clean, and when you head back out to the vast rows of capsule “rooms,” you find yours has a small drone hovering next to it with a steaming tray balanced on its head.");
 	output("\n\nYou end up climbing up to one of the hatches, using the handles on other units to heft yourself up to your own. It opens with a swipe of your keycard, and with some effort, you’re able to swing yourself into the hatch and squeeze inside. The drone helpfully deposits your meal tray inside and scurries off to the next big-spender on the block.");
 	output("\n\nThe capsule is barely big enough for you to fit inside it, with just enough room to sit up and use the pillow as a back rest. You open up the plastic seal over your tray and dig into the... whatever it is: some sort of browned meat-thing and pale white vegetables that are still steaming, and covered in a thick red powder. A native chili maybe? The meal is fairly tasty, if not particularly extravagant, and you quickly finish up and snuffle into the sleeve-like bed for the night.");
 	output("\n\nIt’s hardly the most comfortable sleep you’ve ever had - there’s no room to stretch out, and barely enough clearance just to roll over, like the hotel picked a capsule the perfect size to sardine-ify you - but you are able to sleep eventually. It’s blessedly quiet and the air is cleaner than outside by far, plus with the cannons outside, you don’t need to worry about the street gangs barging in. It’s a momentary illusion of safety and security, if not necessarily comfort, here on Dhaal, and you’re happy to take what little is offered.");
@@ -299,7 +299,7 @@ public function roomServiceCapsule():void
 }
 
 //Full Service
-//This option displays a caricature of two zaikas sharing a bath. Vaguely described as a <i>“full service experience”</i> including a night in the hotel’s largest pod, a private jacuzzi bath, and personally catered meals.
+//This option displays a caricature of two zaikas sharing a bath. Vaguely described as a “full service experience” including a night in the hotel’s largest pod, a private jacuzzi bath, and personally catered meals.
 public function fullServiceCapsuleHotel():void
 {
 	clearOutput();

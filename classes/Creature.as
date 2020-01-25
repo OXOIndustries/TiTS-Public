@@ -12740,7 +12740,7 @@
 			}
 			else {
 				var idx:int = arraySpot;
-				var idxEnd:int = (arraySpot + totalRemoved);
+				var idxEnd:int = Math.min((arraySpot + totalRemoved), array.length);
 				var piercings:Array = [];
 				if(array == cocks)
 				{
@@ -12768,6 +12768,27 @@
 				}
 				if(array == vaginas)
 				{
+					for(var w:int = arraySpot; w < idxEnd; w++)
+					{
+						// Pregnancy check!
+						for(var wIdx:int = w; wIdx < vaginas.length; wIdx++)
+						{
+							if(wIdx >= 3) break; // non-vag
+							var pregSlot:int = (wIdx + 1); // next womb
+							if(pregSlot >= 3) break; // non-vag
+							var pData:PregnancyData = (pregnancyData[pregSlot] as PregnancyData);
+							if(pData.pregnancyType != "") {
+								// shift pregnancy down one
+								pregnancyData[wIdx] = pData.makeCopy();
+								pregnancyData[pregSlot].reset();
+							}
+							if(hasStatusEffect("Ovalasting Big Egg " + pregSlot))
+							{
+								createStatusEffect("Ovalasting Big Egg " + wIdx);
+								removeStatusEffect("Ovalasting Big Egg " + pregSlot);
+							}
+						}
+					}
 					for(idx = arraySpot; idx < idxEnd; idx++)
 					{
 						if(hasStatusEffect("Mimbrane Pussy") && idx == 0) removeStatusEffect("Mimbrane Pussy");
@@ -12904,7 +12925,7 @@
 		}
 
 		//Remove a breast row
-		public function removeBreastRow(arraySpot:int, totalRemoved:int): void {
+		public function removeBreastRow(arraySpot:int, totalRemoved:int = 1): void {
 			removeJunk(breastRows, arraySpot, totalRemoved);
 		}
 		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -23084,7 +23105,7 @@
 						{
 							var ovaBigEggMsg:String = "";
 							// Ten minutes later if Egg Trainer level < 3
-							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.lowerGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
+							if(flags["EGG_TRAINING_OVALASTING_LEVEL"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.lowerGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
 							else ovaBigEggMsg += "Warmth throbs within you, the Ovalasting eggs within your [pc.vagOrAss " + thisStatus.value1 + "] reacting eagerly to the second bath of healthy, filthy fluids you’ve soaked them in. You groan with sheer contentment as your [pc.belly] swells even further, your brood already pushing against your sensitive walls, eager to colonize every last inch of space you have to give. Hell in the Void, is this making you feel ponderous... and amazing. Perhaps you could call back your last lover, see if they aren’t willing to pump you even fuller?";
 							AddLogEvent(ovaBigEggMsg, "passive", maxEffectLength);
 						}

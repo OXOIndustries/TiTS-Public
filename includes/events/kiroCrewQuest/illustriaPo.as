@@ -1107,7 +1107,7 @@ public function sukkSumTidBooooooiFromDatMadDocOnKQ():void
 	author("Fenoxo");
 	output("You settle over the fallen scientist with an ear to ear grin. The entire time you’ve been in her lair, she’s been trying her damnedest to trick you into accepting more of her ‘gifts.’ No matter. You’ve resisted temptation well so far. Illustria’s science can’t corrupt your free will, even if it might be able to give you a rocking, ultra-fuckable body the likes of which high-class escorts would dream of. And now that you’ve emerged victorious, it’s entirely your choice to lean down over one of her transparent nipples, guide it into your mouth, and gently suckle at the perverse cocktail she keeps swimming within.");
 	output("\n\n<i>“Oh,”</i> Illustria mouths, relaxing almost immediately. <i>“So you did want my gifts.”</i> She giggles as a menagerie of fruity flavors burst across your tongue. <i>“You’d just rather <b>take</b> than merely <b>accept</b>? Is that it?”</i> She sighs with satisfying pleasure. <i>“I must admit, this is a first for me. The experience is almost worth the loss of my masterwork... assuming you still wish to claim her when you’ve drank your fill.”</i>");
-	output("\n\nKiro? Of course you’re still going to claim her. How could you forget the whole reason you’re here in the first place?! Still, there’s no point in replying, not when it would require you to let Illustria’s perfect titty slip out of your mouth. You settle for glaring daggers at her over the swell of her boob. That’ll show her. Well, that and suckly more firmly. Surely doing so will mix a bit of pain with her pleasure.");
+	output("\n\nKiro? Of course you’re still going to claim her. How could you forget the whole reason you’re here in the first place?! Still, there’s no point in replying, not when it would require you to let Illustria’s perfect titty slip out of your mouth. You settle for glaring daggers at her over the swell of her boob. That’ll show her. Well, that and suckling more firmly. Surely doing so will mix a bit of pain with her pleasure.");
 	output("\n\nIt does not.");
 	output("\n\n<i>“Ohhhh yes.... Drink up, [pc.name],”</i> Doctor Po coos, <i>“you’re a growing [pc.boyGirl].”</i>");
 	output("\n\nYou do your best to ignore her taunts and focus on what you crave: more of her succulent ambrosia. It doesn’t leave you feeling full or bloated. You could hollow your cheeks, suck even harder, and drink for the rest of the day if you wanted to - not that you do. You just... could. You doubt you’d tire of the flavor. It’s sweet but with a hint of chemical tang that you can’t quite describe, but now that you’re thinking about it, it tastes sort of like the feeling of becoming aroused.");
@@ -1153,7 +1153,7 @@ public function sukkSumTidBooooooiFromDatMadDocOnKQ():void
 	//Huegbois
 	else
 	{
-		output("\n\nJust like the feeling of your mountainous chest wobbling is probably fine. You don’t need to do anything but drink to set it off. Every swallow is mated to a jiggling retort from your heavy hanging ladies that leaves them feeling warm, and large, and perfect for smothering a partner with - just like you’re doing now. As you increase the tempo of your swallows, suckling even more emphatically upon the cyborg’s tainted teat, you realize that your tits aren’t just bouncing with kinetic pleasure - they’re being propelled by the sudden, violent growth of additional tissue. Illustria’s <i>“milk,”</i> if you can call it that, is making you softer by the second, yet you can’t find a reason to stop. You’re so <i>curvy</i>." + (pc.lipRating() < 5 ? " It brings a smile to your swelling lips.":""));
+		output("\n\nJust like the feeling of your mountainous chest wobbling is probably fine. You don’t need to do anything but drink to set it off. Every swallow is mated to a jiggling retort from your heavy hanging ladies that leaves them feeling warm, and large, and perfect for smothering a partner with - just like you’re doing now. As you increase the tempo of your swallows, suckling even more emphatically upon the cyborg’s tainted teat, you realize that your tits aren’t just bouncing with kinetic pleasure - they’re being propelled by the sudden, violent growth of additional tissue. Illustria’s “milk,” if you can call it that, is making you softer by the second, yet you can’t find a reason to stop. You’re so <i>curvy</i>." + (pc.lipRating() < 5 ? " It brings a smile to your swelling lips.":""));
 	}
 	//merge
 	output("\n\n<i>“Such a good, pretty girl,”</i> Illustria purrs to you, her voice so warm and firm. She’s easy to listen to; her voice strokes your consciousness the same way that your fingers caress your ballooning bosom. <i>“Drink it all up. Every drop. You’re going to be so pretty when you’re done, sweet thing. You’ll be so chesty, and horny, and beautiful.”</i>");
@@ -1235,7 +1235,7 @@ public function sitOnPosFaceYaSloot(x:int = 0):void
 	output(" the wanton sexbot of a woman and abruptly drop your [pc.vaginas] square onto her face. She and her gadgets are responsible for every bit of lust in your body. It’s only fitting that she feel the warm, oozing proof smearing across her cheeks and nose. You look down and smile. Illustria Po is there, between <i>your</i> thighs, pinned to the floor with your femininity, with nothing she can do but inhale your cunt and service your needs.");
 	output("\n\nNow who’s the fuckdoll?");
 	output("\n\nThe once self-possessed scientist’s cheeks color with arousal" + (enemy.HP() <= 1 ? " and shame":"") + ", but she does not resist for long. The closest she comes to fighting back is looking up at you in irritation, but then her tongue, all 12-plus inches of it, ventures out to taste your flavor directly, lashing up and down across your exterior netherlips with the kind of attentiveness you’d expect from a professional service girl. Her eyes drift closed around the same time as yours.");
-	output("\n\nFate may have made you enemies, but circumstances have presented you both with a chance to enjoy the other as a lover, and for the moment, neither of you regrets it.");
+	output("\n\nFate may have made you enemies, but circumstances have presented you both with a chance to enjoy the other as a lover, and for the moment, neither of you regret it.");
 	output("\n\nHow could you? That tongue isn’t just a foot or more long - it’s covered with slick nubs. They’re the perfect size to make your nerves flash with pleasure and the positioned perfectly to drum on either side of your [pc.clits] when they slide by. You whimper girlishly, unable to stop yourself from throwing your head back, bracing a hand on one of her soft, supple tits, and grinding your [pc.hips] around like an ausar whore in heat. Doctor Po remains unfazed. Her magical muscle stays directly on target, working your slit no matter how you gyrate. More accurate than the best of laser-guided munitions, it strums your buzzer with determined, relentless lust.");
 	output("\n\nIf all the cyberdoctor’s sexdolls lick pussy like she does, no wonder the galactic elite are buying them up in droves! You’re almost tempted to keep her, just so she can eat you out whenever you get this horny. Rocking back and forth");
 	if(pc.vaginas[x].wetness() < 3) output(", you can feel yourself getting wetter and wetter. Trickles of your moisture slide down her cheeks.");
@@ -1274,7 +1274,7 @@ public function sitOnPosFaceYaSloot(x:int = 0):void
 	{
 		if(pc.girlCumQ() < 1000) output(" It starts out with a feeling of rolling, undulating clenches, starting at your [pc.footOrFeet] and lurking in your [pc.thighs] until a single spasm unleashes a flood of [pc.girlCum] into Illustria’s face. The sexdoll doctor seizes up in the moment, climaxing herself as she bathes in your copious juices, and together, you arch your backs and unleash waves of roiling, torrid heat from your distant but equally oozy loins.");
 		//Gigasquirt :3
-		else output(" The burst of [pc.girlCum] that sprays out of your quaking thighs fires with enough intensity to fling Illustria’s tongue back into snide little mouth - and to soak her, the floor, and everything within a ten foot radius. Gyrating in mad pleasure, you geyser girlish joy all over her until she has no choice but to give into her own augmented urges and unleash a meager burst of her own fruity secretions. Climax wrings you out like a sponge, and as you cool down, you grind your twat into soaked scientist’s lips, forcing her to drink to the last dregs of your hyper-productive orgasm.");
+		else output(" The burst of [pc.girlCum] that sprays out of your quaking thighs fires with enough intensity to fling Illustria’s tongue back into her snide little mouth - and to soak her, the floor, and everything within a ten foot radius. Gyrating in mad pleasure, you geyser girlish joy all over her until she has no choice but to give into her own augmented urges and unleash a meager burst of her own fruity secretions. Climax wrings you out like a sponge, and as you cool down, you grind your twat into soaked scientist’s lips, forcing her to drink to the last dregs of your hyper-productive orgasm.");
 	}
 	//Merge
 	output("\n\nShe’ll be thinking about your taste for ");
@@ -1505,6 +1505,7 @@ public function victoryEndWrap():void
 	clearOutput();
 	output("Victory!\n\n");
 	CombatManager.genericVictory();
+	queueReturnAllItems(false, true);
 }
 
 //following bonustexts
@@ -1601,6 +1602,7 @@ public function getBackToShipsWivKiroFollows():void
 		else addDisabledButton(0, "Store Kiro’s", "Store Kiro’s", "You have no room in your hanger.");
 		addButton(1,"Yours",returnHomeFromKiroQuest,undefined,"Yours","Doing this means leaving Kiro’s leaf-shaped vessel behind, but it means you get to keep your own.");
 		if (olympiaIsCrew() && shits["SHIP"] is Sidewinder) addDisabledButton(2, "Kiro’s", "Kiro’s", "Olympia won’t let you dare leave the Sidewinder behind.");
+		else if (!canAbandonShip(shits["SHIP"])) addDisabledButton(2, "Kiro’s", "Kiro’s", "Unfortunately, you are unable to part with your current ship.");
 		else addButton(2, "Kiro’s", takeKirosShip, undefined, "Kiro’s", "Doing this will leave your ship and its weapon/upgrade loadout behind. It will be lost to you, but you’ll claim the tanuki’s craft for your own.");
 	}
 }

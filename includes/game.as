@@ -373,12 +373,12 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	if (currentLocation == "SHIP INTERIOR")
 	{
-		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", move, rooms[currentLocation].outExit);
+		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", exitShip);
 		else addDisabledButton(7, "Exit Ship", rooms[currentLocation].outText, "You can’t exit your ship here!");
 	}
 	if (currentLocation == shipLocation)
 	{
-		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		if(!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", enterShip);
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
 	if (rooms[currentLocation].hasFlag(GLOBAL.SHIPHANGAR))
@@ -404,6 +404,16 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Show the minimap too!
 	userInterface.showMinimap();
 	userInterface.perkDisplayButton.Activate();
+}
+public function enterShip():void
+{
+	pc.removeStatusEffect("Ship Repair Paused");
+	move("SHIP INTERIOR");
+}
+public function exitShip():void
+{
+	pc.removeStatusEffect("Ship Repair Paused");
+	move(rooms[currentLocation].outExit);
 }
 
 public function shipHangarButton(btnSlot:int = 7):void
@@ -2283,6 +2293,7 @@ public function shipMenu():Boolean
 	else if(HPPercent < 100) output("\n<b>Alert!</b> Ship is <b>damaged</b>. Travel with care.");
 	
 	output("\n<b>Ship Armor:</b> " + shipHP + " / " + shipHPMax);
+	if(pc.hasStatusEffect("Ship Repair Paused") && !shekkaIsCrew()) output(", Ship repairs currently unavailable");
 	if(HPPercent < 100)
 	{
 		if(shekkaIsCrew()) output(" (Shekka is hard at work patching it up.)");
@@ -2420,116 +2431,140 @@ public function flyMenu():void
 	}
 	else output("Where do you want to go?");
 	clearMenu();
+	
 	//TAVROS
 	if(shipLocation != "TAVROS HANGAR") addButton(0, "Tavros", flyTo, "Tavros");
 	else addDisabledButton(0, "Tavros", "Tavros Station", "You’re already here.");
-	//MHEN'GA
-	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen’ga", flyTo, "Mhen'ga");
-	else addDisabledButton(1, "Mhen’ga", "Mhen’ga", "You’re already here.");
-	//TARKUS
-	if(tarkusCoordinatesUnlocked())
-	{
-		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
-		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
-	}
-	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
-	//MYRELLION
-	if(myrellionCoordinatesUnlocked())
-	{
-		if (flags["KQ2_MYRELLION_STATE"] == undefined)
-		{
-			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
-			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
-		}
-		else if (flags["KQ2_MYRELLION_STATE"] != 1)
-		{
-			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
-			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
-		}
-		else
-		{
-			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
-		}
-	}
-	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
-	if(zhengCoordinatesUnlocked())
-	{
-		if (shipLocation != "ZS L50") addButton(4, "ZhengShi", flyTo, "ZhengShi");
-		else addDisabledButton(4, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
-	}
-	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
-	//DHAAL
-	if(dhaalCoordinatesUnlocked())
-	{
-		if (shipLocation != "DHAAL J3") addButton(5, "Dhaal", flyTo, "Dhaal");
-		else addDisabledButton(5, "Dhaal", "Dhaal", "You’re already here.");
-	}
-	else addDisabledButton(5, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
-
-	//NEW TEXAS
-	if(newTexasCoordinatesUnlocked())
-	{
-		if(shipLocation != "500") addButton(6, "New Texas", flyTo, "New Texas");
-		else addDisabledButton(6, "New Texas", "New Texas", "You’re already here.");
-	}
-	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//POE A
-	if(poeACoordinatesUnlocked())
-	{
-		if(shipLocation != "POESPACE") addButton(7, "Poe A", flyToPoeAConfirm);
-		else addDisabledButton(7, "Poe A", "Poe A", "You’re already here.");
-	}
-	else addDisabledButton(7, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//UVETO
-	if (uvetoUnlocked())
-	{
-		if (shipLocation != "UVS F15") addButton(8, "Uveto", flyTo, "Uveto");
-		else addDisabledButton(8, "Uveto", "Uveto Station", "You’re already here.");
-	}
-	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//Canadia Station
-	if(canadiaUnlocked())
-	{
-		if (shipLocation != "CANADA1") addButton(9, "Canadia", flyTo, "Canadia");
-		else addDisabledButton(9, "Canadia", "Canadia Station", "You’re already here.");
-	}
-	else addDisabledButton(9, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
-	//Gastigoth
-	if(gastigothCoordinatesUnlocked())
-	{
-		if(shipLocation != "K16_DOCK") addButton(10, "Gastigoth", flyTo, "Gastigoth");
-		else addDisabledButton(10, "Gastigoth", "Gastigoth Station", "You’re already here!");
-	}
-	else addDisabledButton(10, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
-	//Breedwell
-	if(breedwellCoordinatesUnlocked())
-	{
-		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
-		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(11, "Breedwell", "Breedwell Centre", "You’re already here.");
-		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(11, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
-		else if(!pc.hasGenitals()) addDisabledButton(11, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
-		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(11, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
-		else if(pc.isTaur()) addDisabledButton(11, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
-		else addButton(11, "Breedwell", flyTo, "Breedwell");
-	}
-	else addDisabledButton(11, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
-	//KQ2
-	if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
-	{
-		addButton(12, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
-	}
-	//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
-	if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
-	{
-		addButton(13, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
-	}
-	if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
-	{
-		addButton(13,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
-	}
+	addButton(1, "Probe Loc.", flyLocationMenu, 0, "Probe Locations", "Choose a location where you can find the coordinates.");
+	addButton(2, "Misc. Loc.", flyLocationMenu, 1, "Miscellaneous Locations", "Choose a location.");
+	addButton(3, "Extra Loc.", flyLocationMenu, 2, "Extra Locations", "Choose a location.");
 	
 	addButton(14, "Back", mainGameMenu);
+}
+public function flyLocationMenu(section:int):void
+{
+	clearMenu();
+	
+	var btnSlot:int = 0;
+	switch(section)
+	{
+		/* Major Locations */
+		case 0:
+			//MHEN'GA
+			if(shipLocation != "SHIP HANGAR") addButton(btnSlot++, "Mhen’ga", flyTo, "Mhen'ga");
+			else addDisabledButton(btnSlot++, "Mhen’ga", "Mhen’ga", "You’re already here.");
+			//TARKUS
+			if(tarkusCoordinatesUnlocked())
+			{
+				if(shipLocation != "201") addButton(btnSlot++, "Tarkus", flyTo, "Tarkus");
+				else addDisabledButton(btnSlot++, "Tarkus", "Tarkus", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			//MYRELLION
+			if(myrellionCoordinatesUnlocked())
+			{
+				if (flags["KQ2_MYRELLION_STATE"] == undefined)
+				{
+					if(shipLocation != "600") addButton(btnSlot++, "Myrellion", flyTo, "Myrellion");
+					else addDisabledButton(btnSlot++, "Myrellion", "Myrellion", "You’re already here.");
+				}
+				else if (flags["KQ2_MYRELLION_STATE"] != 1)
+				{
+					if (shipLocation != "2I7") addButton(btnSlot++, "Myrellion", flyTo, "MyrellionDeepCaves");
+					else addDisabledButton(btnSlot++, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
+				}
+				else
+				{
+					addDisabledButton(btnSlot++, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
+				}
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			// Zheng Shi
+			if(zhengCoordinatesUnlocked())
+			{
+				if (shipLocation != "ZS L50") addButton(btnSlot++, "ZhengShi", flyTo, "ZhengShi");
+				else addDisabledButton(btnSlot++, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+			//DHAAL
+			if(dhaalCoordinatesUnlocked())
+			{
+				if (shipLocation != "DHAAL J3") addButton(btnSlot++, "Dhaal", flyTo, "Dhaal");
+				else addDisabledButton(btnSlot++, "Dhaal", "Dhaal", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+		break;
+		/* Minor Locations */
+		case 1:
+			//NEW TEXAS
+			if(newTexasCoordinatesUnlocked())
+			{
+				if(shipLocation != "500") addButton(btnSlot++, "New Texas", flyTo, "New Texas");
+				else addDisabledButton(btnSlot++, "New Texas", "New Texas", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//POE A
+			if(poeACoordinatesUnlocked())
+			{
+				if(shipLocation != "POESPACE") addButton(btnSlot++, "Poe A", flyToPoeAConfirm);
+				else addDisabledButton(btnSlot++, "Poe A", "Poe A", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//UVETO
+			if (uvetoUnlocked())
+			{
+				if (shipLocation != "UVS F15") addButton(btnSlot++, "Uveto", flyTo, "Uveto");
+				else addDisabledButton(btnSlot++, "Uveto", "Uveto Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//Canadia Station
+			if(canadiaUnlocked())
+			{
+				if (shipLocation != "CANADA1") addButton(btnSlot++, "Canadia", flyTo, "Canadia");
+				else addDisabledButton(btnSlot++, "Canadia", "Canadia Station", "You’re already here.");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
+			//Gastigoth
+			if(gastigothCoordinatesUnlocked())
+			{
+				if(shipLocation != "K16_DOCK") addButton(btnSlot++, "Gastigoth", flyTo, "Gastigoth");
+				else addDisabledButton(btnSlot++, "Gastigoth", "Gastigoth Station", "You’re already here!");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+			//Breedwell
+			if(breedwellCoordinatesUnlocked())
+			{
+				// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
+				if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "You’re already here.");
+				else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
+				else if(!pc.hasGenitals()) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
+				else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
+				else if(pc.isTaur()) addDisabledButton(btnSlot++, "Breedwell", "Breedwell Centre", "One of the disclaimers from the ad did stick with you: <i>“Tauric beings not supported”</i>. Gobsmacking discrimination, really.");
+				else addButton(btnSlot++, "Breedwell", flyTo, "Breedwell");
+			}
+			else addDisabledButton(btnSlot++, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
+		break;
+		/* Misc */
+		case 2:
+			//KQ2
+			if (flags["KQ2_QUEST_OFFER"] != undefined && flags["KQ2_QUEST_DETAILED"] == undefined)
+			{
+				addButton(btnSlot++, "Kara", flyTo, "karaQuest2", "Kara", "Go see what Kara has up her sleeve.");
+			}
+			//Federation Quest - Taking myr to Mhega yourself - PC must have capital ship
+			if (flags["FEDERATION_QUEST"] == 8 && flags["FEDERATION_QUEST_EVAC_TIMER"] + 24*60 < GetGameTimestamp() && hasCapitalShip())
+			{
+				addButton(btnSlot++, "Remnants", fedQuestEvacuate, undefined, "Evacuate Gold Remnants", "You’re getting a beacon signal from the planet. Looks like the Gold Myr remnants, ready to be retrieved...");	
+			}
+			// KiroQuest
+			if (flags["KQ_START"] != undefined && flags["KQ_RESCUED"] == undefined)
+			{
+				addButton(btnSlot++,"Kiro", landOnKiroQuest, undefined, "Kiro", "Fly to the coordinates you got from Kiro and save her from her fate!");
+			}
+		break;
+	}
+	addButton(14, "Back", flyMenu);
 }
 
 public function flyTo(arg:String):void
@@ -4641,12 +4676,19 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//nykke 2.0 
 		if (nykke2SendEmail() && !MailManager.isEntryUnlocked("nykke2_sighting")) goMailGet("nykke2_sighting");
 		
+		//milodan futazons
+		if (pc.level >= 8 && (flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined) && !MailManager.isEntryUnlocked("joyco_uveto_hazmat_advisory") && shipLocation == "UVS F15") 
+		{
+			goMailGet("joyco_uveto_hazmat_advisory");
+			
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
 	}
 
 	//Shekka ignores dis since she comes wiv shippy!
-	if (!pc.hasStatusEffect("Ship Repair Paused") && !shekkaIsCrew()) processShipHealing(deltaT,doOut,totalDays);
+	if (!pc.hasStatusEffect("Ship Repair Paused") || shekkaIsCrew()) processShipHealing(deltaT,doOut,totalDays);
 	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();

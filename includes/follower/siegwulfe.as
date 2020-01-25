@@ -2706,9 +2706,13 @@ public function siegwulfeLaying():void
 	showSiegwulfe();
 	processTime(10+rand(11));
 	
+	var babies:int = pc.statusEffectv1("Siegwulfe Eggnancy Ends");
+	var belly:int = pc.statusEffectv2("Siegwulfe Eggnancy Ends");
 	var scene:int = pc.statusEffectv4("Siegwulfe Eggnancy Ends");
 	var pregSlot:int = pc.statusEffectv3("Siegwulfe Eggnancy Ends");
 	pc.removeStatusEffect("Siegwulfe Eggnancy Ends");
+	
+	var bigEgg:Boolean = true;
 
 	switch (scene)
 	{
@@ -2720,7 +2724,7 @@ public function siegwulfeLaying():void
 				output("\n\n<i>“Oh...”</i> she murmurs, a smile surreptitiously creeping across her face. <i>“About time.”</i>");
 				output("\n\nYou’re about to respond before you feel another lurch, this one even stronger. You cry out in an embarrassingly shrill voice, panting on your hands and [pc.knees].");
 				if (pc.hasLowerGarment() || pc.hasArmor()) output(" [wulfe.name] reaches back and pulls your " + (pc.hasArmor() ? "[pc.armor]" : "[pc.lowerGarments]") + " down and y");
-				else output(" Y")
+				else output(" Y");
 				output("ou suddenly realize how <i>wet</i> you are, lubricant dripping from your " + (pregSlot != 3 ? "[pc.pussy]." : "[pc.asshole]."));
 				output("\n\n<i>“Good [pc.boyGirl],”</i> [wulfe.name] breathes, face flushed in arousal. <i>“Let me help.”</i>");
 				output("\n\nShe plunges two fingers into your weakening orifice as you give up all pretense of containing the sensation, instead letting your head droop while you groan in a mixture of confused arousal and pleasure. Now that you’re over the initial surprise, this feels <i>incredibly</i> good... so much so that you can’t tell whether it’s one of [wulfe.name]’s eggs or your orgasm approaching.");
@@ -2857,5 +2861,13 @@ public function siegwulfeLaying():void
 	}
 
 	pc.orgasm();
-	addButton(0, "Next", mainGameMenu);
+	
+	output("\n\n<b>You have laid " + num2Text(babies) + " eggs");
+	if (scene < 3) output(" this clutch");
+	output("!</b>");
+	
+	output("\n\n");
+	oviliumEggReward(bigEgg);
+	
+	//addButton(0, "Next", mainGameMenu);
 }

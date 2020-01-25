@@ -4446,5 +4446,5 @@ public function kiroKallyDoubleMilkingThreesome7(x:int):void
 	kiroKallyThreesomes(1);
 	clearMenu();
 	if(!kiroIsCrew()) addButton(0,"Next",move,"CANADA5");
-	else addButton(0,"Next",move,"SHIP INTERIOR");
+	else addButton(0,"Next",enterShip);
 }

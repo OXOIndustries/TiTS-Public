@@ -2527,7 +2527,7 @@ public function redMyrSylvieFunz():void
 	output("\n\nShe sighs as the steamy bath washes off the excess venom, and you do your best to help scrub her down without making the problem worse. Barring a few irresistible nipple tweaks that prompt weak cries of bliss, you are mostly successful. Focus returns to the moose-taur’s eyes as she begins to come to her senses.");
 	output("\n\n<i>“Oh-oh god. A girl could get addicted to something like that. Every time I tried to form a thought it just changed into ‘get more kisses’,”</i> she explains, a hungry glow showing in her eyes. When she sees you staring she shakes her head. <i>“A-anyway, feel free to do that again any time. I think I’m gonna stay and soak a bit first though, my legs are still half numb.”</i>");
 	output("\n\nYou nod, pulling yourself out of the balmy pool and stretching. On your way out the door, you see the ");
-	if(cat) output("kaithrit");
+	if(!cat) output("kaithrit");
 	else output("gryvain");
 	output(" trying to rouse her partner. You toss a wink in her direction as you pass by, happy to see ");
 	if(cat) output("a flush travel from her chubby cheeks to the top of her chest");

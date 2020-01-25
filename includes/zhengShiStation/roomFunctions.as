@@ -345,6 +345,7 @@ public function zsmyy18AirlockBonus():Boolean
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
 			output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you’ll be helpless in the void.");
+			if(flags["MAIKE_HELMET_TAKEN"] != undefined && flags["ZHENG_SPACESUIT_TAKEN"] != undefined) output(" <b>If you misplaced parts of the space suit, they might have found their way into Urbolg’s hands... for a price</b>")
 			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
 		}
 		else if(pc.armor is SpacesuitComplete) 
@@ -353,7 +354,8 @@ public function zsmyy18AirlockBonus():Boolean
 			addButton(0,"Spacewalk",spacewalkGoooo,undefined,"Spacewalk","Take a walk on the surface of the asteroid.");
 		}
 		else
-		{	
+		{
+			if(flags["MAIKE_HELMET_TAKEN"] != undefined && flags["ZHENG_SPACESUIT_TAKEN"] != undefined) output("\n\n<b>If you misplaced parts of the space suit, they might have found their way into Urbolg’s hands... for a price</b>")	
 			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
@@ -1304,13 +1306,13 @@ public function leaveDisShitOverwrite():void
 	addButton(11,"Exit Ship",move,"ZSF V22");
 }
 
-public function enterShip():void
+public function enterSidewinder():void
 {
 	clearOutput();
 	author("Fenoxo");
 	output("With your stolen credentials, unlocking the airlock is a breeze.");
 	clearMenu();
-	addButton(0,"Next",move,"ZSF V20")
+	addButton(0,"Next",move,"ZSF V20");
 }
 
 public function sidewinderCargohold():void
