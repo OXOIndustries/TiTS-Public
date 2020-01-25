@@ -487,6 +487,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kase_nude.png", mimeType = "image/png")]
 		public var Bust_KASE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/kasmiran.png", mimeType = "image/png")]
+		public var Bust_KASMIRAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kasmiran_nude.png", mimeType = "image/png")]
+		public var Bust_KASMIRAN_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_big.png", mimeType = "image/png")]
@@ -1789,6 +1794,10 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_nude.png", mimeType = "image/png")]
 			public var Full_KASE_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kasmiran.png", mimeType = "image/png")]
+			public var Full_KASMIRAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kasmiran_nude.png", mimeType = "image/png")]
+			public var Full_KASMIRAN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT:Class;
