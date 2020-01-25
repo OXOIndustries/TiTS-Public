@@ -2299,7 +2299,7 @@ public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
 //check if pc has vip access
 public function wallSlutsNoisyRodentsVIPAccess():Boolean
 {
-	if ((flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 1 && ratsPCIsGood()) || (flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 4 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] >= 1 && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] >= 1)) return true;
+	if ((flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 1 && ratsPCIsGood()) || (flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 3 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] >= 1 && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] >= 1)) return true;
 	
 	return false;	
 }
