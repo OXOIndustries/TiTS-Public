@@ -84,7 +84,7 @@ public function quaellePregnancyStage(vIdx:int = -1):int
 }
 public function quaellePregShutdown():Boolean
 {	
-	var timeframe:int = 30 * 24 * 60;
+	var timeframe:int = 304 * 24 * 60;
 	
 	if (flags["QUAELLE_SHUTDOWN_OVERRIDE"] == 1) return false;		
 	
