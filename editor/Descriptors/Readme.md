@@ -135,6 +135,12 @@ If the value of the `identifer` is outside the range, an error will be displayed
 # Adding new parsers
 Anything `public` in TiTSDescriptor or subsequent classes will available to the interpreter.
 
+Example:
+1. Open TiTSDescriptor.as
+2. Add `public const boobs: String = "(.)(.)";` to the TiTSDescriptor class
+3. Compile and open the swf
+4. Type `[boobs]` and see `(.)(.)` in the output
+
 **Make sure what are adding does NOT change game values. Giving writers the power to change game values can and will cause problems.**
 
 ## FunctionInfo
