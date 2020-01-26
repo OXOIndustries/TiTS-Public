@@ -115,12 +115,18 @@ elseif (10 >= aNumber) then
 
 ---
 ### Equal `"="`
-This operator only works on numbers, `String` and `Boolean`.
-This works the same as how `Boolean` is evaluated above.
+This operator only works on numbers and `String`.
 
-> `[hours = 8|Wake Paige up|Paige is already awake]`
-
-> If `hours` is equal to `8` then `Wake Paige up` else `Paige is already awake`
+> `[hours = 7 8|You are still asleep|Wake Paige up|Paige is already awake]`
+```
+if (hours = 7) then
+    "You are still asleep"
+elseif (hours = 8) then
+    "Wake Paige up"
+else
+    "Paige is already awake"
+```
+> If `hours` is equal to `8` then the output is `Wake Paige up`
 
 If the value of the `identifer` is outside the range, an error will be displayed.
 

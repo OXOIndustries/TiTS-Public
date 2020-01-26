@@ -537,17 +537,16 @@ package editor.Lang.Interpret {
 
             // Error checking
             var errorMsg: String; // or null
-            if (args.value.length !== 1) {
-                errorMsg = this.getName(node.children[0]) + ' can only accept 1 argument';
+            if (argsValueArr.length === 0) {
+                errorMsg = this.getName(node.children[0]) + ' needs at least one argument';
             }
-            else if (resultsValueArr.length == 0) {
-                errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+            else if (resultsValueArr.length === 0) {
+                errorMsg = this.getName(node.children[0]) + ' needs at least one result';
             }
-            else if (resultsValueArr.length > 2) {
-                errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+            else if (resultsValueArr.length > argsValueArr.length + 1) {
+                errorMsg = this.getName(node.children[0]) + ' has ' + (resultsValueArr.length - argsValueArr.length + 1) + ' extraneous results';
             }
             else if (
-                typeof retrieve.value.value !== 'boolean' &&
                 typeof retrieve.value.value !== 'number' &&
                 typeof retrieve.value.value !== 'string'
             ) {
@@ -558,38 +557,54 @@ package editor.Lang.Interpret {
                 return new Product(node.range, '', '');
             }
 
-            var arg: * /*string or number or boolean*/ = args.value[0].value;
-            if (arg === 'true') arg = true;
-            if (arg === 'false') arg = false;
-
-            var returnValue: * = '';
+            var returnValue: String;
             var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
             var returnCode: String = '';
-            // condition ? [result1] : result2
-            if (retrieve.value.value === arg && results.value.length > 0 && results.value[0]) {
-                returnValue = results.value[0].value;
-                returnRange = results.value[0].range;
+            for (var idx: int = 0; idx < argsValueArr.length; idx++) {
+                if (argsValueArr[idx] == retrieve.value.value) {
+                    if (idx < resultsValueArr.length) {
+                        returnValue = results.value[idx].value;
+                        returnRange = results.value[idx].range;
+                        break;
             }
-            // condition ? result1 : [result2]
-            else if (retrieve.value.value !== arg && results.value.length > 1 && results.value[1]) {
-                returnValue = results.value[1].value;
-                returnRange = results.value[1].range;
+                    else {
+                        returnValue = '';
+                        returnRange = new TextRange(node.range.end, node.range.end);
+                        break;
+                    }
+                }
             }
-            // condition ? result1 : []
-            // condition ? [] : result2
+            if (returnValue == null) {
+                if (resultsValueArr.length > argsValueArr.length) {
+                    returnValue = results.value[argsValueArr.length].value;
+                    returnRange = results.value[argsValueArr.length].range;
+            }
             else {
                 returnValue = '';
-                returnRange = node.range;
+                    returnRange = new TextRange(node.range.end, node.range.end);
+                }
             }
-
-            // type bool + results  -> identity ? result0 : (result1 or "")
-            if (resultsCodeArr.length === 1)
-                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : "")';
-            if (resultsCodeArr.length === 2)
-                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
 
             if (retrieve.value.info && retrieve.value.info.toCode) {
                 returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+            else {
+                for (idx = 0; idx < argsValueArr.length; idx++) {
+                    returnCode += '(' + argsCodeArr[idx] + ' == ' + retrieve.code + ' ? ';
+                    if (idx < resultsCodeArr.length)
+                        returnCode += resultsCodeArr[idx];
+                    else
+                        returnCode += '""';
+                    returnCode += ' : ';
+                }
+
+                if (resultsCodeArr.length > argsValueArr.length)
+                    returnCode += resultsCodeArr[argsValueArr.length];
+                else
+                    returnCode += '""';
+
+                for (idx = 0; idx < argsValueArr.length; idx++)
+                    returnCode += ')';
             }
 
             if (retrieve.value.caps && returnValue.length > 0) {
