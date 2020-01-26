@@ -183,12 +183,16 @@ package editor.Lang.Interpret {
             var identity: String;
             var selfObj: * = null;
             var caps: Boolean = false;
+            var lowerCaseIdentity: String;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
                 // Determine if capitalization is needed
-                if (identity.charAt(0).toLocaleUpperCase() === identity.charAt(0)) {
-                    caps = true;
-                    identity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
+                if (idx === values.length - 1) {
+                    lowerCaseIdentity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
+                    if (!(identity in obj) && lowerCaseIdentity in obj) {
+                        caps = true;
+                        identity = lowerCaseIdentity;
+                    }
                 }
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
@@ -289,6 +293,9 @@ package editor.Lang.Interpret {
             const retrieve: Product = this.evalRetrieveNode(node.children[0]);
             const args: Product = this.evalArgsNode(node.children[1]);
             const results: Product = this.evalResultsNode(node.children[2]);
+
+            if (!('value' in retrieve.value))
+                return new Product(node.range, '', '');
 
             const argsValueArr: Array = new Array();
             const argsCodeArr: Array = new Array();
