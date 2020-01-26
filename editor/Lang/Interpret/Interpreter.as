@@ -313,24 +313,30 @@ package editor.Lang.Interpret {
 
             // Error checking
             var errorMsg: String; // or null
-            if (typeof retrieve.value.value === 'function' && retrieve.value.info) {
-                if (retrieve.value.info.argResultValidator !== null) {
+            switch (typeof retrieve.value.value) {
+                case 'function': {
+                    if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
                     const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
                     if (validResult !== null) {
                         errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
                     }
                 }
+                    break;
             }
-            else if (typeof retrieve.value.value === 'boolean') {
+                case 'boolean': {
                 if (resultsValueArr.length == 0) {
                     errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
                 }
                 else if (resultsValueArr.length > 2) {
                     errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
                 }
+                    break;
             }
-            else if (typeof retrieve.value.value === 'object' || retrieve.value.value == null) {
+                case 'xml':
+                case 'object': {
                 errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+                    break;
+                }
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
