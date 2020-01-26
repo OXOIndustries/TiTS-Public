@@ -463,20 +463,35 @@ package editor.Lang.Interpret {
                 return new Product(node.range, '', '');
             }
 
-            var returnValue: * = '';
+            var returnValue: String;
             var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
             var returnCode: String = '';
-            if (typeof retrieve.value.value === 'number') {
-                for (var idx: int = 0; idx < argsValueArr.length && idx < resultsValueArr.length; idx++) {
+            for (var idx: int = 0; idx < argsValueArr.length; idx++) {
                     if (argsValueArr[idx] <= retrieve.value.value && (
                         idx === argsValueArr.length - 1 ||
                         retrieve.value.value < argsValueArr[idx + 1]
                     )) {
+                    if (idx < resultsValueArr.length) {
                         returnValue = results.value[idx].value;
                         returnRange = results.value[idx].range;
                         break;
                     }
+                    else {
+                        returnValue = '';
+                        returnRange = new TextRange(node.range.end, node.range.end);
+                        break;
+                    }
                 }
+            }
+            if (returnValue == null) {
+                returnValue = '';
+                returnRange = new TextRange(results.value[0].range.start, results.value[0].range.start);
+            }
+
+            if (retrieve.value.info && retrieve.value.info.toCode) {
+                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+                }
+            else {
                 for (idx = 0; idx < argsValueArr.length; idx++) {
                     returnCode += '(' + argsCodeArr[idx] + ' <= ' + retrieve.code;
                     if (idx + 1 < argsValueArr.length) {
@@ -493,15 +508,6 @@ package editor.Lang.Interpret {
                 }
                 for (idx = 0; idx < argsValueArr.length; idx++)
                     returnCode += ')';
-            }
-            else {
-                returnValue = retrieve.value.value + '';
-                returnRange = node.range;
-                returnCode = retrieve.code;
-            }
-
-            if (retrieve.value.info && retrieve.value.info.toCode) {
-                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
             }
 
             return new Product(returnRange, returnValue + '', returnCode);

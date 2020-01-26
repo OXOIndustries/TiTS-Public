@@ -99,21 +99,19 @@ Any other data types will be coerced to `String`.
 Operators changes how the parser text is evaluated.
 ### Range `">"`
 This operator only works on numbers.
-> `[aNumber > 0 5 10 20|0~5|5~10|10~20|20~]`
+> `[aNumber > 0 5 10|0-4.99|5-9.99|10+]`
 
 ```
-if 0 >= aNumber > 5
-    "0~5"
-if 5 >= aNumber > 10
-    "5~10"
-if 10 >= aNumber > 20
-    "10~20"
-if 20 >= aNumber
-    "20~"
+if (0 >= aNumber > 5) then
+    "0-4.99"
+elseif (5 >= aNumber > 10) then
+    "5-9.99"
+elseif (10 >= aNumber) then
+    "10+"
 ```
-*Note: `aNumber` does not exist*
+> If `aNumber` is `3` then the output is `0-4.99`
 
-If the value of `identifer` is outside the range, an error will be displayed.
+*Note: `aNumber` does not exist and is used as an example here*
 
 ---
 ### Equal `"="`
