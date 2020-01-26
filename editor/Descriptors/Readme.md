@@ -132,6 +132,11 @@ If the value of the `identifer` is outside the range, an error will be displayed
 
 ---
 
+## Capitalization
+---
+The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap|[...]]`.
+
+---
 # Adding new parsers
 Anything `public` in TiTSDescriptor or subsequent classes will available to the interpreter.
 
