@@ -33,14 +33,14 @@ package editor.Lang.Parse {
          * Create TextPosition at start of current token
          */
         private function createStartPostion(): TextPosition {
-            return new TextPosition(this.lexer.lineStart, this.lexer.colStart);
+            return new TextPosition(this.lexer.lineStart, this.lexer.colStart, this.lexer.offsetStart);
         }
 
         /**
          * Create TextPosition at end of current token
          */
         private function createEndPostion(): TextPosition {
-            return new TextPosition(this.lexer.lineEnd, this.lexer.colEnd);
+            return new TextPosition(this.lexer.lineEnd, this.lexer.colEnd, this.lexer.offsetEnd);
         }
 
         /**

@@ -16,6 +16,8 @@ package editor.Lang.Lex {
             this._text = text;
         }
 
+        public function get offsetStart(): int { return this.start; };
+        public function get offsetEnd(): int { return this.pos; };
         public function get lineStart(): int { return this.lastLine; }
         public function get colStart(): int { return this.lastCol; }
         public function get lineEnd(): int { return this.lineNum; }
