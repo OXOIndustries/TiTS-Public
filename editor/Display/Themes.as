@@ -1,0 +1,141 @@
+package editor.Display {
+    import flash.text.StyleSheet;
+    public class Themes {
+        public static const base16_harmonic_dark: Base16Theme = new Base16Theme(
+            0x0b1c2c,
+            0x223b54,
+            0x405c79,
+            0x627e99,
+            0xaabcce,
+            0xcbd6e2,
+            0xe5ebf1,
+            0xf7f9fb,
+            0xbf8b56,
+            0xbfbf56,
+            0x8bbf56,
+            0x56bf8b,
+            0x568bbf,
+            0x8b56bf,
+            0xbf568b,
+            0xbf5656
+        );
+        public static const base16_helios: Base16Theme = new Base16Theme(
+            0x1d2021,
+            0x383c3e,
+            0x53585b,
+            0x6f7579,
+            0xcdcdcd,
+            0xd5d5d5,
+            0xdddddd,
+            0xe5e5e5,
+            0xd72638,
+            0xeb8413,
+            0xf19d1a,
+            0x88b92d,
+            0x1ba595,
+            0x1e8bac,
+            0xbe4264,
+            0xc85e0d
+        );
+        public static const base16_materia: Base16Theme = new Base16Theme(
+            0x263238,
+            0x2C393F,
+            0x37474F,
+            0x707880,
+            0xC9CCD3,
+            0xCDD3DE,
+            0xD5DBE5,
+            0xFFFFFF,
+            0xEC5F67,
+            0xEA9560,
+            0xFFCC00,
+            0x8BD649,
+            0x80CBC4,
+            0x89DDFF,
+            0x82AAFF,
+            0xEC5F67
+        );
+        public static const base16_material_dark: Base16Theme = new Base16Theme(
+            0x212121,
+            0x303030,
+            0x353535,
+            0x4A4A4A,
+            0xB2CCD6,
+            0xEEFFFF,
+            0xEEFFFF,
+            0xFFFFFF,
+            0xF07178,
+            0xF78C6C,
+            0xFFCB6B,
+            0xC3E88D,
+            0x89DDFF,
+            0x82AAFF,
+            0xC792EA,
+            0xFF5370
+        );
+        public static const base16_solarized_dark: Base16Theme = new Base16Theme(
+            0x002b36,
+            0x073642,
+            0x586e75,
+            0x657b83,
+            0x839496,
+            0x93a1a1,
+            0xeee8d5,
+            0xfdf6e3,
+            0xdc322f,
+            0xcb4b16,
+            0xb58900,
+            0x859900,
+            0x2aa198,
+            0x268bd2,
+            0x6c71c4,
+            0xd33682
+        );
+        public static const base16_tomorrow_night_eighties: Base16Theme = new Base16Theme(
+            0x2d2d2d,
+            0x393939,
+            0x515151,
+            0x999999,
+            0xb4b7b4,
+            0xcccccc,
+            0xe0e0e0,
+            0xffffff,
+            0xf2777a,
+            0xf99157,
+            0xffcc66,
+            0x99cc99,
+            0x66cccc,
+            0x6699cc,
+            0xcc99cc,
+            0xa3685a
+        );
+        public static const base16_tomorrow_night: Base16Theme = new Base16Theme(
+            0x1d1f21,
+            0x282a2e,
+            0x373b41,
+            0x969896,
+            0xb4b7b4,
+            0xc5c8c6,
+            0xe0e0e0,
+            0xffffff,
+            0xcc6666,
+            0xde935f,
+            0xf0c674,
+            0xb5bd68,
+            0x8abeb7,
+            0x81a2be,
+            0xb294bb,
+            0xa3685a
+        );
+        public static var active: Base16Theme = Themes.base16_harmonic_dark;
+        public static const list: Array = [
+            Themes.base16_harmonic_dark,
+            Themes.base16_helios,
+            Themes.base16_materia,
+            Themes.base16_material_dark,
+            Themes.base16_solarized_dark,
+            Themes.base16_tomorrow_night,
+            Themes.base16_tomorrow_night_eighties
+        ];
+    }
+}

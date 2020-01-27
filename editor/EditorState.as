@@ -25,6 +25,10 @@ package editor {
     public class EditorState {
         private const parser: Parser = new Parser();
         private const interpreter: Interpreter = new Interpreter();
+        private var parserResult: ParseResult;
+        private var interpretResult: InterpretResult;
+        private var errors: Vector.<LangError>;
+        private var result: Object;
 
         private var tits: TiTS;
         private var titsDescriptor: TiTSDescriptor;
@@ -32,51 +36,57 @@ package editor {
         public function EditorState(tits: TiTS) {
             this.tits = tits;
             this.titsDescriptor = new TiTSDescriptor(this.tits);
+            this.eval('');
         }
 
-        public function eval(text: String): Object {
-            const parserResult: ParseResult = parser.parse(text);
-            const interpretResult: InterpretResult = interpreter.interpret(parserResult.root, this.titsDescriptor);
-            const errors: Vector.<LangError> = parserResult.errors.concat(interpretResult.errors);
+        public function eval(text: String): void {
+            parserResult = parser.parse(text);
+            interpretResult = interpreter.interpret(parserResult.root, this.titsDescriptor);
+            errors = parserResult.errors.concat(interpretResult.errors);
+        }
 
-            return {
-                text: interpretResult.result,
-                code: interpretResult.code,
-                errors: errors
-            };
+        public function evalText(): String {
+            return interpretResult.result;
+        }
+
+        public function evalRanges(): Array/*TextRange*/ {
+            return interpretResult.ranges;
+        }
+
+        public function evalCode(): String {
+            return interpretResult.code;
         }
         
-        public function debug(text: String): String {
-            const lexer: Lexer = new Lexer(text);
-            const parserResult: ParseResult = parser.parse(text);
-            const interpretResult: InterpretResult = interpreter.interpret(parserResult.root, this.titsDescriptor);
+        public function evalErrors(): Vector.<LangError> {
+            return errors;
+        }
 
-            var log: String;
-            log += '\n| -- Lexer';
+        private function debugLexer(text: String): String {
+            const lexer: Lexer = new Lexer(text);
+
+            var log: String = '| -- Lexer';
             var token: int = lexer.peek();
             while (token !== TokenType.EOS) {
                 log += '\n| ' +
-                    new TextRange(new TextPosition(lexer.lineStart, lexer.colStart), new TextPosition(lexer.lineEnd, lexer.colEnd)) + ' ' +
+                    new TextRange(new TextPosition(lexer.lineStart, lexer.colStart, lexer.offsetStart), new TextPosition(lexer.lineEnd, lexer.colEnd, lexer.offsetEnd)) + ' ' +
                     TokenType.Names[token] + ' ' +
                     lexer.getText();
                 token = lexer.advance();
             }
 
-            log += '\n| -- Parser';
-            log += printNode(parserResult.root);
-            log += '\n| -- Result';
-            log += '\n| ' + interpretResult.result;
-            log += '\n| -- Ranges';
-            log += '\n| ' + interpretResult.ranges;
-            log += '\n| -- Code';
-            log += '\n| ' + interpretResult.code;
-            log += '\n| -- Errors';
-            for each (var error: LangError in parserResult.errors)
-                log += '\n| ' + error.range + ' ' + error.msg;
-            for each (error in interpretResult.errors)
-                log += '\n| ' + error.range + ' ' + error.msg;
-            
             return log;
+        }
+
+        private function debugParser(): String {
+            return '\n| -- Parser' + printNode(parserResult.root);
+        }
+
+        private function debugRanges(): String {
+            return '\n| -- Ranges' + '\n| ' + interpretResult.ranges;
+        }
+
+        public function debugText(text: String): String {
+            return debugLexer(text) + debugParser() + debugRanges();
         }
         
         private function printNode(node: Node, indent: int = 0): String {
