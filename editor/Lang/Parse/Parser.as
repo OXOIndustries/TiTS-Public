@@ -127,6 +127,8 @@ package editor.Lang.Parse {
 
             var codeNode: Node = this.eval();
 
+            this.whitespace();
+
             // don't advance token stream on error
             if (this.lexer.peek() !== TokenType.RightBracket) {
                 this.createError('Missing "]"', new TextRange(start, this.createStartPostion()));
@@ -144,12 +146,14 @@ package editor.Lang.Parse {
          * @return EvalNode or ErrorNode
          */
         private function eval(): Node {
+            this.whitespace();
+
+            var evalOp: int = EvalNode.OpDefault;
+
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
-            var evalOp: int = EvalNode.OpDefault;
-            if (this.lexer.peek() === TokenType.Space)
-                this.lexer.advance();
+            this.whitespace();
              
             if (this.lexer.peek() === TokenType.GreaterThan) {
                 evalOp = EvalNode.OpRange;
@@ -161,6 +165,9 @@ package editor.Lang.Parse {
             }
             
             var argNodes: Node = this.args();
+
+            this.whitespace();
+
             var resultNodes: Node = this.results();
 
             var rangeEnd: TextPosition;
@@ -234,9 +241,7 @@ package editor.Lang.Parse {
             var valueNode: Node = this.getValue();
             if (valueNode) arr.push(valueNode);
             
-            while (this.lexer.peek() === TokenType.Space) {
-                this.lexer.advance();
-
+            while (this.whitespace()) {
                 valueNode = this.getValue();
                 if (!valueNode)
                     break;
@@ -265,7 +270,11 @@ package editor.Lang.Parse {
                 this.lexer.advance();
 
                 node = this.resultConcat();
-                if (!node) break;
+                if (!node)
+                    if (this.lexer.peek() === TokenType.Pipe || this.lexer.peek() === TokenType.RightBracket)
+                        node = new StringNode(new TextRange(this.createStartPostion(), this.createStartPostion()), '');
+                    else
+                        break;
 
                 arr.push(node);
             }
@@ -309,11 +318,14 @@ package editor.Lang.Parse {
         /**
          * Removes whitespace
          */
-        private function whitespace(): void {
+        private function whitespace(): Boolean {
+            var counter: int = 0;
             var type: int = this.lexer.peek();
             while (type === TokenType.Space || type === TokenType.Newline) {
                 type = this.lexer.advance();
+                ++counter;
             }
+            return counter > 0;
         }
 
         /**
