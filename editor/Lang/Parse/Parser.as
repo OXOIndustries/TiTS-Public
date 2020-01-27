@@ -126,7 +126,6 @@ package editor.Lang.Parse {
             this.lexer.advance();
 
             var codeNode: Node = this.eval();
-            if (codeNode === null) return null;
 
             // don't advance token stream on error
             if (this.lexer.peek() !== TokenType.RightBracket) {
@@ -134,6 +133,7 @@ package editor.Lang.Parse {
                 return null;
             }
 
+            if (codeNode !== null)
             this.lexer.advance();
 
             return codeNode;
@@ -199,11 +199,12 @@ package editor.Lang.Parse {
 
             this.lexer.advance();
 
+            var dotRange: TextRange = this.createRange();
             while (this.lexer.peek() === TokenType.Dot) {
                 this.lexer.advance();
 
                 if (this.lexer.peek() !== TokenType.Text) {
-                    this.createError('Missing Identifier');
+                    this.createError('Missing Identifier', dotRange);
                     return null;
                 }
 
@@ -212,6 +213,8 @@ package editor.Lang.Parse {
                 );
 
                 this.lexer.advance();
+
+                dotRange = this.createRange();
 
                 rootNode.range.end = rootNode.children[rootNode.children.length - 1].range.end;
             }

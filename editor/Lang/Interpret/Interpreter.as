@@ -340,7 +340,7 @@ package editor.Lang.Interpret {
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(), '', '');
             }
 
             var returnValue: * = '';
@@ -403,6 +403,14 @@ package editor.Lang.Interpret {
                 if (resultsCodeArr.length === 2)
                     returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
             }
+            else if (argsValueArr.length > 0) {
+                this.createError(args.range, this.getName(node.children[0]) + ' does not use arguments');
+                return new Product(new TextRange(), '', '');
+            }
+            else if (resultsValueArr.length > 0) {
+                this.createError(results.range, this.getName(node.children[0]) + ' does not use results');
+                return new Product(new TextRange(), '', '');
+            }
             else {
                 returnValue = retrieve.value.value + '';
                 returnRange = node.range;
@@ -460,7 +468,7 @@ package editor.Lang.Interpret {
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(), '', '');
             }
 
             var returnValue: String;
@@ -537,6 +545,7 @@ package editor.Lang.Interpret {
 
             // Error checking
             var errorMsg: String; // or null
+            var errorRange: TextRange = node.range;
             if (argsValueArr.length === 0) {
                 errorMsg = this.getName(node.children[0]) + ' needs at least one argument';
             }
@@ -544,7 +553,9 @@ package editor.Lang.Interpret {
                 errorMsg = this.getName(node.children[0]) + ' needs at least one result';
             }
             else if (resultsValueArr.length > argsValueArr.length + 1) {
-                errorMsg = this.getName(node.children[0]) + ' has ' + (resultsValueArr.length - argsValueArr.length + 1) + ' extraneous results';
+                var extraneousCount: int = resultsValueArr.length - (argsValueArr.length + 1);
+                errorMsg = this.getName(node.children[0]) + ' has ' + extraneousCount + ' extraneous results';
+                errorRange = new TextRange(results.value[argsValueArr.length].range.end, results.value[resultsValueArr.length - 1].range.end);
             }
             else if (
                 typeof retrieve.value.value !== 'number' &&
@@ -553,8 +564,8 @@ package editor.Lang.Interpret {
                 errorMsg = this.getName(node.children[0]) + ' does not support "="';
             }
             if (errorMsg) {
-                this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                this.createError(errorRange, errorMsg);
+                return new Product(new TextRange(), '', '');
             }
 
             var returnValue: String;
