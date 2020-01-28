@@ -1,4 +1,4 @@
-package editor.Display {
+package editor.Display.Themes {
     public class Base16Theme {
         private const arr: Array = new Array(16);
         public function get base00(): uint { return this.arr[0x00]; }

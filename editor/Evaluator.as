@@ -1,9 +1,4 @@
 package editor {
-    import classes.Parser.ParseEngine;
-    import classes.TiTS;
-    import classes.GameData.*;
-    import classes.ShittyShips.Casstech;
-    import editor.Descriptors.TiTSDescriptor;
     import editor.Lang.Errors.LangError;
     import editor.Lang.Interpret.InterpretResult;
     import editor.Lang.Interpret.Interpreter;
@@ -15,34 +10,30 @@ package editor {
     import editor.Lang.TextPosition;
     import editor.Lang.TextRange;
     import editor.Lang.Tokens.TokenType;
-    import flash.display.MovieClip;
-    import flash.text.TextField;
-    import flash.text.TextFormat;
-    import flash.display.Sprite;
-    import flash.events.*;
-    import flash.text.TextFieldType;
     
-    public class EditorState {
+    public class Evaluator {
         private const parser: Parser = new Parser();
         private const interpreter: Interpreter = new Interpreter();
         private var parserResult: ParseResult;
         private var interpretResult: InterpretResult;
         private var errors: Vector.<LangError>;
+        private var debugStr: String;
         private var result: Object;
 
-        private var tits: TiTS;
-        private var titsDescriptor: TiTSDescriptor;
+        private var globalObj: Object;
 
-        public function EditorState(tits: TiTS) {
-            this.tits = tits;
-            this.titsDescriptor = new TiTSDescriptor(this.tits);
+        public function Evaluator(globalObj: Object) {
+            this.globalObj = globalObj;
             this.eval('');
         }
 
+        public function get global(): Object { return this.globalObj; }
+
         public function eval(text: String): void {
             parserResult = parser.parse(text);
-            interpretResult = interpreter.interpret(parserResult.root, this.titsDescriptor);
+            interpretResult = interpreter.interpret(parserResult.root, this.globalObj);
             errors = parserResult.errors.concat(interpretResult.errors);
+            debugStr = debugLexer(text) + debugParser() + debugRanges();
         }
 
         public function evalText(): String {
@@ -85,8 +76,8 @@ package editor {
             return '\n| -- Ranges' + '\n| ' + interpretResult.ranges;
         }
 
-        public function debugText(text: String): String {
-            return debugLexer(text) + debugParser() + debugRanges();
+        public function debugText(): String {
+            return debugStr;
         }
         
         private function printNode(node: Node, indent: int = 0): String {

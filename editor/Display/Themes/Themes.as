@@ -1,6 +1,5 @@
-package editor.Display {
-    import flash.text.StyleSheet;
-    public class Themes {
+package editor.Display.Themes {
+    internal class Themes {
         public static const base16_harmonic_dark: Base16Theme = new Base16Theme(
             0x0b1c2c,
             0x223b54,
@@ -127,15 +126,5 @@ package editor.Display {
             0xb294bb,
             0xa3685a
         );
-        public static var active: Base16Theme = Themes.base16_harmonic_dark;
-        public static const list: Array = [
-            Themes.base16_harmonic_dark,
-            Themes.base16_helios,
-            Themes.base16_materia,
-            Themes.base16_material_dark,
-            Themes.base16_solarized_dark,
-            Themes.base16_tomorrow_night,
-            Themes.base16_tomorrow_night_eighties
-        ];
     }
 }

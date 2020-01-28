@@ -1,9 +1,11 @@
-package editor.Display {
-    import flash.text.TextField;
+package editor.Display.Components {
+    import editor.Display.Events.*;
+    import editor.Display.Themes.ThemeManager;
+    import flash.events.Event;
     import flash.text.TextFormat;
     import flash.text.TextFieldType;
-    
-    public class InputField extends TextField implements IThemeUpdate {
+
+    public class InputField extends TextBox {
         public const textFormat: TextFormat = new TextFormat();
         private static const replaceWithNewline: RegExp = /\r/g;
 
@@ -18,16 +20,16 @@ package editor.Display {
             multiline = true;
             wordWrap = true;
 
-            themeUpdate();
-        }
-        
-        public function getText(): String {
-            return this.text.replace(replaceWithNewline, '\n');
+            EditorEventDispatcher.instance.addEventListener(EditorEvents.THEME_CHANGE, themeUpdate);
         }
 
-        public function themeUpdate(): void {
-            textFormat.color = Themes.active.base03;
-            backgroundColor = Themes.active.base00;
+        public function getText(): String {
+            return text.replace(replaceWithNewline, '\n');
+        }
+
+        public function themeUpdate(event: Event): void {
+            textFormat.color = ThemeManager.instance.currentTheme.base03;
+            backgroundColor = ThemeManager.instance.currentTheme.base00;
             setTextFormat(textFormat);
             defaultTextFormat = textFormat;
         }
