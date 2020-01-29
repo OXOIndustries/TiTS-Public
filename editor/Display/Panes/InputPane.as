@@ -34,17 +34,15 @@ package editor.Display.Panes {
         }
 
         private function init(event: Event): void {
-            trace('input ' + x + ' ' + y + ' ' + nsWidth + ' ' + nsHeight);
             inputField.x = UIInfo.BORDER_SIZE;
             inputField.y = UIInfo.BORDER_SIZE;
             inputField.nsWidth = nsWidth - UIInfo.BORDER_SIZE;
             inputField.nsHeight = nsHeight - 50 - UIInfo.BORDER_SIZE;
-            trace('inputField ' + inputField.x + ' ' + inputField.y + ' ' + inputField.nsWidth + ' ' + inputField.nsHeight);
+
             infoField.x = UIInfo.BORDER_SIZE;
             infoField.y = inputField.y + inputField.nsHeight + UIInfo.BORDER_SIZE;
             infoField.nsWidth = nsWidth - UIInfo.BORDER_SIZE;
             infoField.nsHeight = 50 - UIInfo.BORDER_SIZE;
-            trace('infoField ' + inputField.x + ' ' + inputField.y + ' ' + inputField.nsWidth + ' ' + inputField.nsHeight);
 
             displayInfo(0, 0, 0);
         }
@@ -81,29 +79,19 @@ package editor.Display.Panes {
             if (inputField.text.length > 0) {
                 inputField.setTextFormat(inputField.textFormat);
                 for each (var range: TextRange in evaluator.evalRanges()) {
-                    try {
-                        if (range.start.offset !== range.end.offset)
-                        if (range.end.offset > inputField.text.length)
-                            inputField.setTextFormat(outputMarkerFormat, range.start.offset, inputField.text.length);
-                        else
-                            inputField.setTextFormat(outputMarkerFormat, range.start.offset, range.end.offset);
-                    }
-                    catch (err: Error) {
-                        trace('range: ' + range + ' msg: ' + err.message);
-                    }
+                    if (range.start.offset !== range.end.offset)
+                    if (range.end.offset > inputField.text.length)
+                        inputField.setTextFormat(outputMarkerFormat, range.start.offset, inputField.text.length);
+                    else
+                        inputField.setTextFormat(outputMarkerFormat, range.start.offset, range.end.offset);
                 }
 
                 for each (var error: LangError in evaluator.evalErrors()) {
-                    try {
-                        if (error.range.start.offset !== error.range.end.offset)
-                        if (error.range.end.offset > inputField.text.length)
-                            inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, inputField.text.length);
-                        else
-                            inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, error.range.end.offset);
-                    }
-                    catch (err: Error) {
-                        trace('range: ' + range + ' msg: ' + error.msg+ ' msg: ' + err.message);
-                    }
+                    if (error.range.start.offset !== error.range.end.offset)
+                    if (error.range.end.offset > inputField.text.length)
+                        inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, inputField.text.length);
+                    else
+                        inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, error.range.end.offset);
                 }
             }
         }

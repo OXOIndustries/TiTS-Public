@@ -10,7 +10,7 @@ package editor.Display.Components {
         private static const replaceWithNewline: RegExp = /\r/g;
 
         public function InputField() {   
-            textFormat.size = 18;
+            textFormat.size = 14;
             textFormat.font = 'Consolas';
             textFormat.leading = 0;
             textFormat.kerning = true;

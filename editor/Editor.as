@@ -36,7 +36,6 @@ package editor {
 
             x = 0;
             y = 0;
-            trace('editor ' + x + ' ' + y + ' ' + stage.stageWidth + ' ' + stage.stageHeight);
 
             editorUI = new EditorUI(editorState);
             editorUI.x = 0;

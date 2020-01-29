@@ -37,7 +37,6 @@ package editor.Display.Panes {
                     typeKeysObj['Method'] = new Array();
                 typeKeysObj['Method'].push(item.@name.toString());
             }
-            //trace(JSON.stringify(groupObj));
             
             var text: String = '';
             for (var type: String in typeKeysObj) {
@@ -45,7 +44,6 @@ package editor.Display.Panes {
                     text += describeValue(typeKeysObj[type].sort().join(', '), obj[typeKeysObj[type][0]], indent);
                 }
                 else {
-                    trace('type: ' + type + ' ' + typeof obj[typeKeysObj[type][0]]);
                     for each (var key: String in typeKeysObj[type].sort())
                         text += describeValue(key, obj[typeKeysObj[type][0]], indent);
                 }
@@ -69,7 +67,6 @@ package editor.Display.Panes {
         }
 
         private function describeValue(name: String, value: * , indent: int): String {
-            //trace('name: ' + name + ' type: ' + typeof value);
             switch (typeof value) {
                 case 'string': return indentText(indent) + name + ': text\n';
                 case 'boolean': return indentText(indent) + name + ': yes or no\n';

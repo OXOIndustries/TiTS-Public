@@ -8,7 +8,7 @@ package editor.Display.Components {
         private const textFormat: TextFormat = new TextFormat();
 
         public function StaticField() {   
-            textFormat.size = 18;
+            textFormat.size = 14;
             textFormat.font = 'Consolas';
             textFormat.leading = 0;
             textFormat.kerning = true;

@@ -40,12 +40,10 @@ package editor.Display.Panes {
         }
 
         private function init(event: Event): void {
-            trace('output ' + x + ' ' + y + ' ' + nsWidth + ' ' + nsHeight);
             buttonContainer.x = 0;
             buttonContainer.y = 0;
             buttonContainer.nsWidth = nsWidth;
             buttonContainer.nsHeight = 50;
-            trace('buttonContainer ' + buttonContainer.x + ' ' + buttonContainer.y + ' ' + buttonContainer.nsWidth + ' ' + buttonContainer.nsHeight);
 
             const buttonWidth: Number = (buttonContainer.nsWidth - UIInfo.BORDER_SIZE) / buttons.length;
             for (var idx: int = 0; idx < buttons.length; idx++) {
@@ -53,21 +51,18 @@ package editor.Display.Panes {
                 buttons[idx].y = UIInfo.BORDER_SIZE;
                 buttons[idx].nsWidth = buttonWidth - UIInfo.BORDER_SIZE;
                 buttons[idx].nsHeight = buttonContainer.nsHeight - UIInfo.BORDER_SIZE;
-                trace('button' + idx + ' ' + buttons[idx].x + ' ' + buttons[idx].y + ' ' + buttons[idx].nsWidth + ' ' + buttons[idx].nsHeight);
             }
 
             paneContainer.x = 0;
             paneContainer.y = buttonContainer.y + buttonContainer.nsHeight;
             paneContainer.nsWidth = nsWidth;
             paneContainer.nsHeight = nsHeight - 50;
-            trace('paneContainer ' + paneContainer.x + ' ' + paneContainer.y + ' ' + paneContainer.nsWidth + ' ' + paneContainer.nsHeight);
 
             for (idx = 0; idx < panes.length; idx++) {
                 panes[idx].x = UIInfo.BORDER_SIZE;
                 panes[idx].y = UIInfo.BORDER_SIZE;
                 panes[idx].nsWidth = paneContainer.nsWidth - UIInfo.BORDER_SIZE * 2;
                 panes[idx].nsHeight = paneContainer.nsHeight - UIInfo.BORDER_SIZE * 2;
-                trace('pane' + idx + ' ' + panes[idx].x + ' ' + panes[idx].y + ' ' + panes[idx].nsWidth + ' ' + panes[idx].nsHeight);
             }
         }
 
@@ -77,7 +72,6 @@ package editor.Display.Panes {
             var idx: int = buttons.indexOf(event.target);
             if (idx >= 0)
                 panes[idx].visible = true;
-            trace('pane ' + idx + ' visible');
         }
     }
 }

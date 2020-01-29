@@ -20,7 +20,6 @@ package editor.Display {
         }
         
         private function init(event: Event): void {
-            trace('editor ui ' + x + ' ' + y + ' ' + nsWidth + ' ' + nsHeight);
             inputPane.x = 0;
             inputPane.y = 0;
             inputPane.nsWidth = (nsWidth / 2);
