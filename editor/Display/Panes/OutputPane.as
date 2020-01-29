@@ -14,7 +14,7 @@ package editor.Display.Panes {
 
         public function OutputPane(evaluator: Evaluator) {
             var newButton: Button;
-            for each (var name: String in ['Result', 'Code', 'Debug', 'Settings']) {
+            for each (var name: String in ['Result', 'Code', 'Info', 'Debug', 'Settings']) {
                 newButton = new Button(name);
                 newButton.addEventListener(MouseEvent.CLICK, switchPane);
                 buttons.push(newButton);
@@ -23,6 +23,7 @@ package editor.Display.Panes {
 
             panes.push(new ResultPane(evaluator));
             panes.push(new CodePane(evaluator));
+            panes.push(new InfoPane(evaluator));
             panes.push(new DebugPane(evaluator));
             panes.push(new SettingsPane());
 
