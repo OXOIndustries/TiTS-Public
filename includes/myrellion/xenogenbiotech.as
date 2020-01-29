@@ -1126,7 +1126,7 @@ public function mcallisterMyrHybrids():void
 	else output(" with a grin");
 	output(". <i>“I might be able to handle that.”</i>");
 	
-	output("\n\nThe doctor’s eyes widen, and he lets out a croaking laugh. <i>“Ha! I thought you were different than your run of the mill rusher... yeah, if you can get Steele Tech to sponsor the therapy, we’re golden. Assuming Xenogen doesn’t take offense to me doing a little work for the competition, anyway. Heck, it’s a mega corp., it barely remembers I exist unless it needs me. I think I can swing a few off days to work. Tell you what, have your chief of research get in touch me with me and-”</i>");
+	output("\n\nThe doctor’s eyes widen, and he lets out a croaking laugh. <i>“Ha! I thought you were different than your run-of-the-mill rusher... yeah, if you can get Steele Tech to sponsor the therapy, we’re golden. Assuming Xenogen doesn’t take offense to me doing a little work for the competition, anyway. Heck, it’s a mega corp., it barely remembers I exist unless it needs me. I think I can swing a few off days to work. Tell you what, have your chief of research get in touch me with me and-”</i>");
 	
 	output("\n\nWith a flush of embarrassment, you cut McAllister off and mention that you don’t exactly have <i>full</i> access to Steele Tech’s resources at the moment. You might be able to talk to some people");
 	if (annoIsCrew()) output(", including a head researcher conveniently parked outside on the tarmac");
