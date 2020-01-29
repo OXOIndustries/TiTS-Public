@@ -129,7 +129,7 @@ This info is accessed by the interpreter by taking the last part of the `identif
 
 ---
 ### argResultValidator
-> `argResultValidator(args: Array<String or Number>, results: Array<String>): String or null`
+> `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
 
 This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
 
@@ -137,12 +137,21 @@ An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` tak
 
 ---
 ### toCode
-> `toCode(args: Array<String or Number>, results: Array<String>): String`
+> `toCode(identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
 
-This changes how the code written.
+This changes how the code written. `identifier`, `arguments` and `results` match what is explained above.
 
 `[b|This is bold text]` normally turns into `b("This is bold text")`
 
-Since `toCode` was supplied, it becomes `"<b>" + "This is bold text" + "</b>"`
+Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
 
+> `My name is [pc.name]`
+
+```
+"My name is [pc.name]"
+```
+> `[pc.hasPerk HoneyPot]`
+```
+pc.hasPerk("HoneyPot")
+```
 ---

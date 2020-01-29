@@ -32,7 +32,7 @@ package editor.Descriptors {
         /**
          * Sets function for custom code output
          * Strings in results will be surrounded with '"'
-         * @param func function(args: Array of String or Number, results: Array of String): String
+         * @param func function(identity: String, args: Array of String or Number, results: Array of String): String
          * @return self
          */
         public function setToCodeFunc(func: Function): FunctionInfo {
@@ -41,7 +41,7 @@ package editor.Descriptors {
         }
         /**
          * Function for custom code output
-         * Type "function(args: Array of String or Number, results: Array of String): String"
+         * Type "function(identity: String, args: Array of String or Number, results: Array of String): String"
          * Strings in results will be surrounded with '"'
          */
         public function get toCode(): Function {

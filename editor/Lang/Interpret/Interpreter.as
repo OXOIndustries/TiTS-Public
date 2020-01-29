@@ -284,6 +284,8 @@ package editor.Lang.Interpret {
             if (!('value' in retrieve.value))
                 return new Product(new TextRange(node.range.start, node.range.start), '', '');
 
+            const identifer: String = this.getName(node.children[0]);
+
             const argsValueArr: Array = new Array();
             const argsCodeArr: Array = new Array();
             for each (var child: * in args.value) {
@@ -304,23 +306,23 @@ package editor.Lang.Interpret {
                     if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
                         const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
                         if (validResult !== null) {
-                            errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
+                            errorMsg = '"' + identifer + '" ' + validResult;
                         }
                     }
                     break;
                 }
                 case 'boolean': {
                     if (resultsValueArr.length == 0) {
-                        errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+                        errorMsg = identifer + ' needs at least 1 result';
                     }
                     else if (resultsValueArr.length > 2) {
-                        errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+                        errorMsg = identifer + ' can have up to 2 results';
                     }
                     break;
                 }
                 case 'xml':
                 case 'object': {
-                    errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+                    errorMsg = identifer + ' cannot be displayed';
                     break;
                 }
             }
@@ -336,7 +338,7 @@ package editor.Lang.Interpret {
                 var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr.concat(resultsValueArr));
                 // Handle selecting from results here
                 if (funcResult == null) {
-                    this.createError(node.range, this.getName(node.children[0]) + ' is ' + funcResult);
+                    this.createError(node.range, identifer + ' is ' + funcResult);
                     return new Product(new TextRange(node.range.start, node.range.start), '', '');
                 }
                 else if (
@@ -390,11 +392,11 @@ package editor.Lang.Interpret {
                     returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
             }
             else if (argsValueArr.length > 0) {
-                this.createError(args.range, this.getName(node.children[0]) + ' does not use arguments');
+                this.createError(args.range, identifer + ' does not use arguments');
                 return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
             else if (resultsValueArr.length > 0) {
-                this.createError(results.range, this.getName(node.children[0]) + ' does not use results');
+                this.createError(results.range, identifer + ' does not use results');
                 return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
             else {
@@ -404,7 +406,7 @@ package editor.Lang.Interpret {
             }
 
             if (retrieve.value.info && retrieve.value.info.toCode !== null) {
-                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+                returnCode = retrieve.value.info.toCode(identifer, argsCodeArr, resultsCodeArr);
             }
 
             if (retrieve.value.caps && returnValue.length > 0) {
