@@ -273,7 +273,7 @@ package editor.Lang.Interpret {
             // Error checking
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             switch (node.value) {
@@ -295,7 +295,7 @@ package editor.Lang.Interpret {
             const results: Product = this.evalResultsNode(node.children[2]);
 
             if (!('value' in retrieve.value))
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
 
             const argsValueArr: Array = new Array();
             const argsCodeArr: Array = new Array();
@@ -340,7 +340,7 @@ package editor.Lang.Interpret {
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(new TextRange(), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             var returnValue: * = '';
@@ -351,7 +351,7 @@ package editor.Lang.Interpret {
                 // Handle selecting from results here
                 if (funcResult == null) {
                     this.createError(node.range, this.getName(node.children[0]) + ' is ' + funcResult);
-                    return new Product(node.range, '', '');
+                    return new Product(new TextRange(node.range.start, node.range.start), '', '');
                 }
                 else if (
                     typeof funcResult === 'object' &&
@@ -405,11 +405,11 @@ package editor.Lang.Interpret {
             }
             else if (argsValueArr.length > 0) {
                 this.createError(args.range, this.getName(node.children[0]) + ' does not use arguments');
-                return new Product(new TextRange(), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
             else if (resultsValueArr.length > 0) {
                 this.createError(results.range, this.getName(node.children[0]) + ' does not use results');
-                return new Product(new TextRange(), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
             else {
                 returnValue = retrieve.value.value + '';
@@ -468,7 +468,7 @@ package editor.Lang.Interpret {
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(new TextRange(), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             var returnValue: String;
@@ -565,7 +565,7 @@ package editor.Lang.Interpret {
             }
             if (errorMsg) {
                 this.createError(errorRange, errorMsg);
-                return new Product(new TextRange(), '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             var returnValue: String;

@@ -22,14 +22,6 @@ package editor.Lang.Parse {
         }
 
         /**
-         * Empty StringNode
-         * @param range
-         */
-        private function empty(): StringNode {
-            return new StringNode(this.createRange(), '');
-        }
-
-        /**
          * Create TextPosition at start of current token
          */
         private function createStartPostion(): TextPosition {
@@ -67,19 +59,23 @@ package editor.Lang.Parse {
         private function concat(): Node {
             var newNode: Node;
             var arr: Array = [];
+            var start: int = this.lexer.offsetEnd;
 
             while (this.lexer.peek() !== TokenType.EOS) {
                 // Search until something is found
                 newNode = this.code(); // StringNode or ConcatNode or EvalNode or null
                 if (!newNode) newNode = this.text(); // StringNode or null
-                if (!newNode) break;
+                if (!newNode && start == this.lexer.offsetEnd)
+                    this.lexer.advance();
 
+                start = this.lexer.offsetEnd;
+                if (newNode)
                 arr.push(newNode); // StringNode or ConcatNode or EvalNode
             }
 
             // Nothing so force empty
             if (arr.length === 0)
-                return this.empty();
+                return new StringNode(new TextRange(), '');
             else if (arr.length === 1)
                 return arr[0];
             else
