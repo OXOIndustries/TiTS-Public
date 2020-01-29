@@ -42,12 +42,12 @@ package editor.Descriptors {
         /**
          * Checks for exactly one result
          */
-        private static const needsOneResult: Function = function(args: Array, results: Array): String {
+        private function needsOneResult(args: Array, results: Array): String {
             if (args.length > 0) return "has too many arguments";
             if (results.length === 0) return "needs a result";
             if (results.length > 1) return "has too many results";
             return null;
-        };
+        }
 
         /**
          * Wraps a HTML tag around text
@@ -55,31 +55,33 @@ package editor.Descriptors {
          * @param text
          * @return
          */
-        private static function htmlTagText(tag: String, text: String): String {
+        private function htmlTagText(tag: String, text: String): String {
             return "<" + tag + ">" + text + "</" + tag + ">";
         }
 
         // Test things
-        public const i__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(needsOneResult)
-            .setToCodeFunc(function(args: Array, results: Array): String {
+        private function iToCode(identifier: String, args: Array, results: Array): String {
                 if (results.length > 0)
                     return '"' + htmlTagText('i', results[0].substring(1, results[0].length - 1)) + '"';
                 else
                     return '"' + htmlTagText('i', "") + '"';
-            });
+        }
+        public const i__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(needsOneResult)
+            .setToCodeFunc(iToCode);
         public function i(text: String): String {
             return htmlTagText('i', text);
         }
 
-        public const b__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(needsOneResult)
-            .setToCodeFunc(function(args: Array, results: Array): String {
+        private function bToCode(identifier: String, args: Array, results: Array): String {
                 if (results.length > 0)
                     return '"' + htmlTagText('b', results[0].substring(1, results[0].length - 1)) + '"';
                 else
                     return '"' + htmlTagText('b', "") + '"';
-            });
+        }
+        public const b__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(needsOneResult)
+            .setToCodeFunc(bToCode);
         public function b(text: String): String {
             return htmlTagText('b', text);
         }
