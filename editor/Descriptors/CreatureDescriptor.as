@@ -2087,19 +2087,19 @@ package editor.Descriptors {
         private function hasOneArgUpToTwoResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";
             if (args.length === 0) return "needs one argument";
-            if (args.length === 0) return "needs one argument";
+            if (typeof args[0] !== 'string') return "needs one text argument";
             if (results.length > 2) return "has too many results";
             return null;
         }
 
         public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function hasPerk(arg: String, result1: String = "", results2: String = ""): Object {
-            return this.owner.hasPerk(arg) ? { selector: 0 } : { selector: 1 };
+        public function hasPerk(arg: String): Object {
+            return this.owner.hasPerk(arg) ? 0 : 1;
         }
 
         public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function hasStatusEffect(arg: String, result1: String = "", results2: String = ""): Object {
-            return this.owner.hasStatusEffect(arg) ? { selector: 0 } : { selector: 1 };
+        public function hasStatusEffect(arg: String): Object {
+            return this.owner.hasStatusEffect(arg) ? 0 : 1;
         }
     }
 }

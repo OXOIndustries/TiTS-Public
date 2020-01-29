@@ -40,12 +40,12 @@ package editor.Descriptors {
         }
 
         /**
-         * Checks for exactly one result
+         * Checks for exactly one argument
          */
-        private function needsOneResult(args: Array, results: Array): String {
-            if (args.length > 0) return "has too many arguments";
-            if (results.length === 0) return "needs a result";
-            if (results.length > 1) return "has too many results";
+        private function oneArg(args: Array, results: Array): String {
+            if (args.length > 1) return "has too many arguments";
+            if (args.length === 0) return "needs one argument";
+            if (results.length > 0) return "has too many results";
             return null;
         }
 
@@ -61,33 +61,33 @@ package editor.Descriptors {
 
         // Test things
         private function iToCode(identifier: String, args: Array, results: Array): String {
-                if (results.length > 0)
-                    return '"' + htmlTagText('i', results[0].substring(1, results[0].length - 1)) + '"';
-                else
-                    return '"' + htmlTagText('i', "") + '"';
+            if (args.length > 0)
+                return '"' + htmlTagText('i', args[0].substring(1, args[0].length - 1)) + '"';
+            else
+                return '"' + htmlTagText('i', "") + '"';
         }
         public const i__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(needsOneResult)
+            .setArgResultValidatorFunc(oneArg)
             .setToCodeFunc(iToCode);
         public function i(text: String): String {
             return htmlTagText('i', text);
         }
 
         private function bToCode(identifier: String, args: Array, results: Array): String {
-                if (results.length > 0)
-                    return '"' + htmlTagText('b', results[0].substring(1, results[0].length - 1)) + '"';
-                else
-                    return '"' + htmlTagText('b', "") + '"';
+            if (args.length > 0)
+                return '"' + htmlTagText('b', args[0].substring(1, args[0].length - 1)) + '"';
+            else
+                return '"' + htmlTagText('b', "") + '"';
         }
         public const b__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(needsOneResult)
+            .setArgResultValidatorFunc(oneArg)
             .setToCodeFunc(bToCode);
         public function b(text: String): String {
             return htmlTagText('b', text);
         }
 
         public const cap__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(needsOneResult);
+            .setArgResultValidatorFunc(oneArg);
         public function cap(text: String): String {
             return text.charAt(0).toLocaleUpperCase() + text.slice(1);
         }

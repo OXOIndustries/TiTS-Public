@@ -340,19 +340,22 @@ package editor.Lang.Interpret {
             var returnRange: * /*TextRange or Array of TextRange*/ = node.range;
             var returnCode: String = '';
             if (typeof retrieve.value.value === 'function') {
-                var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr.concat(resultsValueArr));
+                // var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr.concat(resultsValueArr));
+                var funcResult: * = retrieve.value.value.apply(retrieve.value.self, argsValueArr);
                 // Handle selecting from results here
                 if (funcResult == null) {
                     this.createError(node.range, identifer + ' is ' + funcResult);
                     return new Product(new TextRange(node.range.start, node.range.start), '', '');
                 }
-                else if (
-                    typeof funcResult === 'object' &&
-                    'selector' in funcResult &&
-                    results.value[funcResult.selector]
-                ) {
-                    returnValue = results.value[funcResult.selector].value;
-                    returnRange = results.value[funcResult.selector].range;
+                else if (typeof funcResult === 'number' && results.value.length > 0) {
+                    if (results.value[funcResult]) {
+                        returnValue = results.value[funcResult].value;
+                        returnRange = results.value[funcResult].range;
+                    }
+                    else {
+                        returnValue = "";
+                        returnRange = new TextRange(node.range.end, node.range.end);
+                    }
                 }
                 else {
                     returnValue = funcResult + '';
@@ -360,17 +363,40 @@ package editor.Lang.Interpret {
                 }
 
                 // nothing        -> identity()
-                // args + results -> identity([arg0, arg1, ...], [result0, result1, ...])
                 // args           -> identity(arg0, arg1, ...)
-                // results        -> identity(result0, result1, ...)
-                if (argsCodeArr.length === 0 && resultsCodeArr.length === 0)
-                    returnCode = retrieve.code + '()';
-                else if (argsCodeArr.length > 0 && resultsCodeArr.length > 0)
-                    returnCode = retrieve.code + '([' + argsCodeArr.join(', ') + '], [' + resultsCodeArr.join(', ') + '])';
-                else if (argsCodeArr.length > 0)
-                    returnCode = retrieve.code + '(' + argsCodeArr.join(', ') + ')';
+                var codeStr: String;
+                if (argsCodeArr.length === 0)
+                    codeStr = retrieve.code + '()';
                 else
-                    returnCode = retrieve.code + '(' + resultsCodeArr.join(', ') + ')';
+                    codeStr = retrieve.code + '(' + argsCodeArr.join(', ') + ')';
+
+                // nothing        -> codeStr
+                // number         -> codeStr == 0 ? results0 : (codeStr == 1 ? results1 : ...)
+                // boolean        -> codeStr ? result0 : (result1 or "")
+                if (resultsCodeArr.length == 0)
+                    returnCode = codeStr;
+                else if (typeof funcResult === 'number') {
+                    returnCode = '';
+                    for (var idx: int = 0; idx < resultsCodeArr.length; idx++) {
+                        returnCode += '(' + codeStr + ' == ' + idx + ' ? ';
+                        if (idx < resultsCodeArr.length)
+                            returnCode += resultsCodeArr[idx];
+                        else
+                            returnCode += '""';
+                        returnCode += ' : ';
+                        if (idx + 1 === resultsCodeArr.length)
+                            returnCode += '""';
+                    }
+                    for (idx = 0; idx < resultsCodeArr.length; idx++)
+                        returnCode += ')';
+                }
+                else {
+                    // type bool + results  -> identity ? result0 : (result1 or "")
+                    if (resultsCodeArr.length === 1)
+                        returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : "")';
+                    if (resultsCodeArr.length === 2)
+                        returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+                }
             }
             else if (typeof retrieve.value.value === 'boolean') {
                 // condition ? [result1] : result2
@@ -391,10 +417,7 @@ package editor.Lang.Interpret {
                 }
 
                 // type bool + results  -> identity ? result0 : (result1 or "")
-                if (resultsCodeArr.length === 1)
-                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : "")';
-                if (resultsCodeArr.length === 2)
-                    returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+                returnCode = booleanToCode(retrieve.code, resultsCodeArr);
             }
             else if (argsValueArr.length > 0) {
                 this.createError(args.range, identifer + ' does not use arguments');
@@ -419,6 +442,15 @@ package editor.Lang.Interpret {
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
+        }
+
+        private function booleanToCode(codeStr: String, results: Array): String {
+            // type bool + results  -> identity ? result0 : (result1 or "")
+            if (results.length === 1)
+                return '(' + codeStr + ' ? ' + results[0] + ' : "")';
+            if (results.length === 2)
+                return '(' + codeStr + ' ? ' + results[0] + ' : ' + results[1] + ')';
+            return null;
         }
     }
 }
