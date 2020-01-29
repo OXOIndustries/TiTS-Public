@@ -12,5 +12,6 @@ package editor.Lang.Lex {
         public static const Pipe: String = '|';
         public static const GreaterThan: String = '>';
         public static const Equal: String = '=';
+        public static const At: String = '@';
     }
 }

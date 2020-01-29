@@ -70,7 +70,7 @@ package editor.Lang.Parse {
 
                 start = this.lexer.offsetEnd;
                 if (newNode)
-                arr.push(newNode); // StringNode or ConcatNode or EvalNode
+                    arr.push(newNode); // StringNode or ConcatNode or EvalNode
             }
 
             // Nothing so force empty
@@ -132,7 +132,7 @@ package editor.Lang.Parse {
             }
 
             if (codeNode !== null)
-            this.lexer.advance();
+                this.lexer.advance();
 
             return codeNode;
         }
@@ -145,21 +145,31 @@ package editor.Lang.Parse {
             this.whitespace();
 
             var evalOp: int = EvalNode.OpDefault;
+            if (this.lexer.peek() === TokenType.At) {
+                evalOp = EvalNode.OpReveal;
+                this.lexer.advance();
+            }
 
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
             this.whitespace();
-             
+            
             if (this.lexer.peek() === TokenType.GreaterThan) {
-                evalOp = EvalNode.OpRange;
+                if (evalOp !== EvalNode.OpDefault)
+                    this.createError('Already has operator');
+                else
+                    evalOp = EvalNode.OpRange;
                 this.lexer.advance();
             }
             else if (this.lexer.peek() === TokenType.Equal) {
-                evalOp = EvalNode.OpEqual;
+                if (evalOp !== EvalNode.OpDefault)
+                    this.createError('Already has operator');
+                else
+                    evalOp = EvalNode.OpEqual;
                 this.lexer.advance();
             }
-            
+
             var argNodes: Node = this.args();
 
             this.whitespace();

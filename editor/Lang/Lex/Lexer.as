@@ -129,6 +129,10 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.Equal;
                 }
+                case TokenSymbol.At: {
+                    this.pos++;
+                    return TokenType.At;
+                }
                 default: {
                     this.eatWhileNot(
                         TokenSymbol.Tab,
@@ -139,7 +143,8 @@ package editor.Lang.Lex {
                         TokenSymbol.Dot,
                         TokenSymbol.Pipe,
                         TokenSymbol.GreaterThan,
-                        TokenSymbol.Equal
+                        TokenSymbol.Equal,
+                        TokenSymbol.At
                     );
                     return TokenType.Text;
                 }

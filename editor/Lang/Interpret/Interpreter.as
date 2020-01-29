@@ -3,6 +3,7 @@ package editor.Lang.Interpret {
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
     import editor.Lang.TextRange;
+    import flash.utils.describeType;
     
     public class Interpreter {
         private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
@@ -281,6 +282,8 @@ package editor.Lang.Interpret {
                     return this.evalOpRange(node);
                 case EvalNode.OpEqual:
                     return this.evalOpEqual(node);
+                case EvalNode.OpReveal:
+                    return this.evalOpReveal(node);
                 default:
                     return this.evalOpDefault(node);
             }
@@ -316,25 +319,25 @@ package editor.Lang.Interpret {
             switch (typeof retrieve.value.value) {
                 case 'function': {
                     if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
-                    const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
-                    if (validResult !== null) {
-                        errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
+                        const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
+                        if (validResult !== null) {
+                            errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
+                        }
                     }
-                }
                     break;
-            }
+                }
                 case 'boolean': {
-                if (resultsValueArr.length == 0) {
-                    errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
-                }
-                else if (resultsValueArr.length > 2) {
-                    errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
-                }
+                    if (resultsValueArr.length == 0) {
+                        errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+                    }
+                    else if (resultsValueArr.length > 2) {
+                        errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+                    }
                     break;
-            }
+                }
                 case 'xml':
                 case 'object': {
-                errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+                    errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
                     break;
                 }
             }
@@ -475,10 +478,10 @@ package editor.Lang.Interpret {
             var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
             var returnCode: String = '';
             for (var idx: int = 0; idx < argsValueArr.length; idx++) {
-                    if (argsValueArr[idx] <= retrieve.value.value && (
-                        idx === argsValueArr.length - 1 ||
-                        retrieve.value.value < argsValueArr[idx + 1]
-                    )) {
+                if (argsValueArr[idx] <= retrieve.value.value && (
+                    idx === argsValueArr.length - 1 ||
+                    retrieve.value.value < argsValueArr[idx + 1]
+                )) {
                     if (idx < resultsValueArr.length) {
                         returnValue = results.value[idx].value;
                         returnRange = results.value[idx].range;
@@ -498,7 +501,7 @@ package editor.Lang.Interpret {
 
             if (retrieve.value.info && retrieve.value.info.toCode) {
                 returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
-                }
+            }
             else {
                 for (idx = 0; idx < argsValueArr.length; idx++) {
                     returnCode += '(' + argsCodeArr[idx] + ' <= ' + retrieve.code;
@@ -577,7 +580,7 @@ package editor.Lang.Interpret {
                         returnValue = results.value[idx].value;
                         returnRange = results.value[idx].range;
                         break;
-            }
+                    }
                     else {
                         returnValue = '';
                         returnRange = new TextRange(node.range.end, node.range.end);
@@ -589,9 +592,9 @@ package editor.Lang.Interpret {
                 if (resultsValueArr.length > argsValueArr.length) {
                     returnValue = results.value[argsValueArr.length].value;
                     returnRange = results.value[argsValueArr.length].range;
-            }
-            else {
-                returnValue = '';
+                }
+                else {
+                    returnValue = '';
                     returnRange = new TextRange(node.range.end, node.range.end);
                 }
             }
@@ -623,6 +626,66 @@ package editor.Lang.Interpret {
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
+        }
+
+        /**
+         * @return 'Product.value = String'
+         */
+        private function evalOpReveal(node: EvalNode): Product {
+            const retrieve: Product = this.evalRetrieveNode(node.children[0]);
+            const args: Product = this.evalArgsNode(node.children[1]);
+            const results: Product = this.evalResultsNode(node.children[2]);
+
+            // Error checking
+            var errorMsg: String; // or null
+            if (args.value.length !== 0) {
+                errorMsg = this.getName(node.children[0]) + ' can not have any arguments';
+            }
+            else if (results.value.length !== 0) {
+                errorMsg = this.getName(node.children[0]) + ' can not have any results';
+            }
+            if (errorMsg) {
+                this.createError(node.range, errorMsg);
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+            }
+
+            var text: String = '[';
+            if (typeof retrieve.value.value !== 'object')
+                text += typeToString(typeof retrieve.value.value);
+            else {
+                var description: XML = describeType(retrieve.value.value);
+                text += '\n';
+                text += propertiesToString(retrieve.value.value, description..accessor);
+                text += propertiesToString(retrieve.value.value, description..constant);
+                text += propertiesToString(retrieve.value.value, description..method);
+                text += propertiesToString(retrieve.value.value, description..variable);
+            }
+            text += ']';
+
+            return new Product(node.range, text, '');
+        }
+
+        private function propertiesToString(obj: *, list: XMLList): String {
+            var text: String = '';
+            for each(var item: XML in list) {
+                if (item.@name.toString().indexOf('__info') === -1)
+                    text += item.@name + ': ' + typeToString(typeof obj[item.@name]) + '\n';
+            }
+            return text;
+        }
+
+        private function typeToString(type: String): String {
+            switch (type) {
+                case 'string': return 'text';
+                case 'boolean': return 'yes or no';
+                default: return type;
+            }
+            var text: String = '';
+            for each(var item: XML in list) {
+                if (item.@name.toString().indexOf('__info') === -1)
+                    text += item.@name + ': ' + typeof obj[item.@name] + '\n';
+            }
+            return text;
         }
     }
 }

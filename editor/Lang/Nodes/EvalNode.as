@@ -5,6 +5,7 @@ package editor.Lang.Nodes {
         public static const OpDefault: int = 0;
         public static const OpRange: int = 1;
         public static const OpEqual: int = 2;
+        public static const OpReveal: int = 3;
         
         /**
          * @param range
