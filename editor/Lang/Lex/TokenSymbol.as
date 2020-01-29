@@ -10,9 +10,6 @@ package editor.Lang.Lex {
         public static const RightBracket: String = ']';
         public static const Dot: String = '.';
         public static const Pipe: String = '|';
-        public static const GreaterThan: String = '>';
-        public static const Equal: String = '=';
-        public static const At: String = '@';
         public static const LeftParen: String = '(';
         public static const RightParen: String = ')';
     }

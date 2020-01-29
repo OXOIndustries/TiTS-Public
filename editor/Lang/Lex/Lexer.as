@@ -121,18 +121,6 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.Pipe;
                 }
-                case TokenSymbol.GreaterThan: {
-                    this.pos++;
-                    return TokenType.GreaterThan;
-                }
-                case TokenSymbol.Equal: {
-                    this.pos++;
-                    return TokenType.Equal;
-                }
-                case TokenSymbol.At: {
-                    this.pos++;
-                    return TokenType.At;
-                }
                 case TokenSymbol.LeftParen: {
                     this.pos++;
                     return TokenType.LeftParen;
@@ -150,9 +138,6 @@ package editor.Lang.Lex {
                         TokenSymbol.RightBracket,
                         TokenSymbol.Dot,
                         TokenSymbol.Pipe,
-                        TokenSymbol.GreaterThan,
-                        TokenSymbol.Equal,
-                        TokenSymbol.At,
                         TokenSymbol.LeftParen,
                         TokenSymbol.RightParen
                     );

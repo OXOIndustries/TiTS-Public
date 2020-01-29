@@ -144,31 +144,10 @@ package editor.Lang.Parse {
         private function eval(): Node {
             this.whitespace();
 
-            var evalOp: int = EvalNode.OpDefault;
-            if (this.lexer.peek() === TokenType.At) {
-                evalOp = EvalNode.OpReveal;
-                this.lexer.advance();
-            }
-
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
             this.whitespace();
-            
-            if (this.lexer.peek() === TokenType.GreaterThan) {
-                if (evalOp !== EvalNode.OpDefault)
-                    this.createError('Already has operator');
-                else
-                    evalOp = EvalNode.OpRange;
-                this.lexer.advance();
-            }
-            else if (this.lexer.peek() === TokenType.Equal) {
-                if (evalOp !== EvalNode.OpDefault)
-                    this.createError('Already has operator');
-                else
-                    evalOp = EvalNode.OpEqual;
-                this.lexer.advance();
-            }
 
             var argNodes: Node = this.args();
 
@@ -186,8 +165,7 @@ package editor.Lang.Parse {
 
             return new EvalNode(
                 new TextRange(identityNode.range.start, rangeEnd),
-                [identityNode, argNodes, resultNodes],
-                evalOp
+                [identityNode, argNodes, resultNodes]
             );
 
         }
@@ -352,8 +330,6 @@ package editor.Lang.Parse {
                             break infiniteLoop;
                     case TokenType.Text:
                     case TokenType.Dot:
-                    case TokenType.GreaterThan:
-                    case TokenType.Equal:
                         subStr += this.lexer.getText();
                         type = this.lexer.advance();
                         break;

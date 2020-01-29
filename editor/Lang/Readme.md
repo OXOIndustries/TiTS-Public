@@ -33,8 +33,6 @@ The Lexer reads text and groups the characters together to create a Token.
 |RightBracket   | "]"
 |Dot            | "."
 |Pipe           | "\|"
-|GreaterThan    | ">"
-|Equal          | "="
 
 Examples:
 > `This is text.`
@@ -88,7 +86,7 @@ Each Node has a type, a value and children (list of Nodes).
 |String     |string        |
 |Number     |number        |
 |Concat     |              |list of Node Type String or Eval
-|Eval       |operator(int) |[Node Type Retrieve, Node Type Args, Node Type Results]
+|Eval       |              |[Node Type Retrieve, Node Type Args, Node Type Results]
 |Retrieve   |              |list of Node Type Identity
 |Args       |              |list of Node Type String or Number
 |Results    |              |list of Node Type Concat or String or Eval
@@ -132,7 +130,7 @@ Each Node has a specific operation determined by its type.
 |String     |string                |its value
 |Number     |number                |its value
 |Concat     |string                |combine/concat all children
-|Eval       |string                |depending on its value, evaluate/call the output of Retrieve using/passing the output of Args and Results
+|Eval       |string                |evaluate/call the output of Retrieve using/passing the output of Args and Results
 |Retrieve   |anything              |retrieve the value from memory using its children
 |Args       |list of string/number |a list of the output of its children
 |Results    |list of string        |a list of the output of its children
