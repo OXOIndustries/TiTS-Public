@@ -343,17 +343,43 @@ package editor.Lang.Parse {
             const start: TextPosition = this.createStartPostion();
 
             var type: int = this.lexer.peek();
-            while (
-                type === TokenType.Text ||
-                type === TokenType.Dot ||
-                type === TokenType.GreaterThan ||
-                type === TokenType.Equal
-            ) {
-                subStr += this.lexer.getText();
-                type = this.lexer.advance();
+            var groupStart: TextPosition;
+            infiniteLoop: while (true) {
+                switch (type) {
+                    case TokenType.Space:
+                    case TokenType.Newline:
+                        if (groupStart == null)
+                            break infiniteLoop;
+                    case TokenType.Text:
+                    case TokenType.Dot:
+                    case TokenType.GreaterThan:
+                    case TokenType.Equal:
+                        subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    case TokenType.LeftParen:
+                        if (groupStart == null)
+                            groupStart = this.createStartPostion();
+                        else
+                            subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    case TokenType.RightParen:
+                        if (groupStart != null)
+                            groupStart = null;
+                        else
+                            subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    default:
+                        break infiniteLoop;
+                }
             }
 
             const end: TextPosition = this.createStartPostion();
+
+            if (groupStart != null)
+                this.createError('Missing ")"', new TextRange(groupStart, end));
 
             if (subStr.length > 0) {
                 if (isNaN(Number(subStr)))
