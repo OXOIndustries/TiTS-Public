@@ -132,6 +132,35 @@ If the value of the `identifer` is outside the range, an error will be displayed
 
 ---
 
+### Reveal `"@"`
+This operator goes before an `identifier` and shows either its `type` or what can be added.
+
+> `[@silly]`
+```
+[yes or no]
+```
+> `[@pc]`
+```
+[
+    fullname: text
+    race: text
+    occupation: text
+    hairColor: text
+    ...
+]
+```
+---
+## Argument Grouping
+`arguments` can be grouped together using parentheses `(` `)`.
+> `[pc.hasPerk (Fecund Figure)|exceptionally wide|] hips`
+```
+identifier: "pc.hasPerk"
+arguments: ["Fecund Figure"]
+results: ["exceptionally wide", ""]
+```
+
+---
+
 ## Capitalization
 ---
 The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap|[...]]`.
