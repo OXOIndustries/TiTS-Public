@@ -2662,7 +2662,7 @@ public function nurseryHilinaraTalkHybrid(arg:Array):void
 			output("<i>“Well as you can see I’m");
 			if(isWinged) output(" a rare winged");
 			else if(isTaur) output(" an uncommon multi-legged");
-			else output(" run of the mill bipedal");
+			else output(" a run-of-the-mill bipedal");
 			output(" variety of my species, or so I’ve been told. And I have you to thank for it,”</i> they say while extending a finger in your direction. <i>“I spend my days in this ‘dome’ as the nurses called it, though it looks like a desert to me. Whenever I get hungry, I go into the metal tunnels to grab some grub and then sit in the ‘class’, as they called it, for a few hours before coming back out again.”</i> A bit frustrated, they go on rambling about how it would be better if classes were held outside and other desert related issues. You guess their limited intelligence don’t really allow them to grasp the technology involved on the station.");
 			output("\n\n<i>“Don’t tell anyone, but I’ve been having all kinds of cravings for intimate contact. I’ve asked the lecturers about this, and they explained sex to me. I always blush whenever I think about it.”</i> Cravings? Sex? Blush? Direct as usual, but it always surprises you somewhat whenever they do this. A reminder that they should’ve concentrated in class causes them to quickly derail their dirty train of thought.");
 			output("\n\n");
