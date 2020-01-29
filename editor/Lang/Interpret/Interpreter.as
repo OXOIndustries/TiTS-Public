@@ -160,9 +160,14 @@ package editor.Lang.Interpret {
             var codeStr: String = '';
             for (var idx: int = 0; idx < values.length; idx++) {
                 valueStr += values[idx].value;
-                if (codeStr.length > 0)
-                    codeStr += ' + ';
-                codeStr += values[idx].code;
+                if (codeStr.charAt(codeStr.length - 1) == '"' && values[idx].code.charAt(0) == '"') {
+                    codeStr = codeStr.slice(0, codeStr.length - 1) + values[idx].code.slice(1);
+                }
+                else {
+                    if (codeStr.length > 0)
+                        codeStr += ' + ';
+                    codeStr += values[idx].code;
+                }
             }
 
             return new Product(
