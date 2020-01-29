@@ -1280,7 +1280,7 @@ public function backToBiancaBoothMenu(treatment:int):void
 		else if (pc.isMisch()) output("\n\nYou take your credit chit back and instead ask if there’s anything else she might be willing to accept, stating that you don’t think it’s right she receives nothing for this. The good doctor brushes your [pc.hip] with one of her wonderfully soft tails, tilts her head, and winks slyly. Guess there’s nothing for it!");
 		else output("\n\nYou shrug your shoulders and brusquely thank her for her time. You notice in the corner of your eye that the doctor’s normally warm appearance froze for a split second.");
 
-		output("\n\nBefore you leave, the bespectacled caregiver presents a tablet with an orange screen to you. <i>“Would you like to purchase any supplies before leaving? Most of my supply is run-of-them-mill medicine and low-grade painkillers, but for the rushers I have some bespoke aid kits that will make the difference if you find yourself in danger.”</i>");
+		output("\n\nBefore you leave, the bespectacled caregiver presents a tablet with an orange screen to you. <i>“Would you like to purchase any supplies before leaving? Most of my supply is run-of-the-mill medicine and low-grade painkillers, but for the rushers I have some bespoke aid kits that will make the difference if you find yourself in danger.”</i>");
 		output("\n\nThe screen shows a few mundane items for sale at a low enough cost, the kind of things you’d find in a household cabinet. What <i>you</i> might be interested is further down the list.");
 	}
 
