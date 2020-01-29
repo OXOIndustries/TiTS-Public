@@ -51,11 +51,11 @@ The `silly` is in TiTSDescriptor and is `public`, thus it can be used.
 ---
 ## How the interpreter handles data types
 
-`Boolean` will not display. They are automatically turned into 
+`Boolean` types will not display. They are automatically turned into 
 ```
-if identifier 
+if (identifier == true)
     results[0]
-else if results.length > 1
+else if (results.length > 1)
     results[1]
 else
     ""
@@ -69,7 +69,8 @@ Evaluation will fail if `arguments.length >= 0` or `results.length == 0` or `res
 `Object`, `null` will display an error.
 
 ---
-`Function` are called with the `arguments` then the `results`.
+`Function` are called with the `arguments` using `apply`. 
+> `aFunc.apply(self, arguments)`
 
 Examples:
 > `[pc.cockNoun 1]`
@@ -77,18 +78,11 @@ Examples:
 pc.cockNoun(1)
 ```
 
-> `[aFunction 1 2 3 4|a|b|c|d|e]`
-
-```
-aFunction(1, 2, 3, 4, "a", "b", "c", "d, "e")
-```
-*Note: `aFunction` does not exist*
-
 If the return value is `null`, it will error. 
 
-If the return value is `{ selector: (number) }` and the value of `selector` is in `results`, then `results[selector]` will be used. This gives more range information in the interpreter's output.
+If the return value has a `type` of `number` and `results[number]` exists, then `results[number]` will be used. This gives more range information in the interpreter's output.
 
-Anything else will coerced to `String`
+Anything else will coerced to `String`.
 
 ---
 Any other data types will be coerced to `String`.
@@ -102,12 +96,20 @@ identifier: "pc.hasPerk"
 arguments: ["Fecund Figure"]
 results: ["exceptionally wide", ""]
 ```
-
+---
+## Nesting in `arguments`
+When `:` is used, all `results` are changed to `arguments`.
+> `[b:|This is bold text]`
+```
+identifier: "b"
+arguments: ["This is bold text"]
+results: []
+```
 ---
 
 ## Capitalization
 ---
-The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap|[...]]`.
+The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap:|[...]]`.
 
 ---
 # Adding new parsers
@@ -131,7 +133,7 @@ This info is accessed by the interpreter by taking the last part of the `identif
 ### argResultValidator
 > `argResultValidator(arguments: Array<String or Number>, results: Array<String>): String or null`
 
-This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function. Return a `String` when there is a problem, `null` otherwise.
+This validates that `arguments` and `results` will not cause a problem when passed to the corresponding function and . Return a `String` when there is a problem, `null` otherwise.
 
 An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` take in one optional `argument` and no `results`.
 
@@ -139,9 +141,9 @@ An example of this would be `cockSimple` in CreatureDescriptor. `cockSimple` tak
 ### toCode
 > `toCode(identifier: String, arguments: Array<String or Number>, results: Array<String>): String`
 
-This changes how the code written. `identifier`, `arguments` and `results` match what is explained above.
+This changes how the code written.
 
-`[b|This is bold text]` normally turns into `b("This is bold text")`
+`[b:|This is bold text]` normally turns into `b("This is bold text")`
 
 Since `toCode` was supplied, it becomes `"<b>This is bold text</b>"`
 

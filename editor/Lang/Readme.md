@@ -8,14 +8,15 @@
 |string literal           |"..."|
 |group                    |(...)|
 
-|Name     | Value
-|---------|--------
-|text     | `anything - "["`
-|identity | `text - ("."|" ")`
-|action   | `identity , ~("." , identity )`
-|arg      | `" " , (number|text)`
-|result   | `"|" , code`
-|code     | `text , "[" , action , ~arg , ~result , "]" , text`
+|Name        | Value
+|------------|--------
+|text        | `anything - "["`
+|identity    | `text - ("."|" ")`
+|identifier  | `identity , ~("." , identity )`
+|arg         | `" " , (number|text)`
+|result      | `"|" , code`
+|code        | `"[" , identifier, ((":" , ~result)|(~arg , ~result)) , "]"`
+|body        | `text , code`
 > Some information on the language definition can be found here
 https://github.com/end5/SceneWriter/blob/master/Editor/Parser/LangDef.txt
 
@@ -33,6 +34,9 @@ The Lexer reads text and groups the characters together to create a Token.
 |RightBracket   | "]"
 |Dot            | "."
 |Pipe           | "\|"
+|LeftParen      | "("
+|RightParen     | ")"
+|Colon          | ":"
 
 Examples:
 > `This is text.`
@@ -118,6 +122,30 @@ Concat
 ┃   ┗━ Results
 ┃       ┣━ String: "enabled"
 ┃       ┗━ String: "disabled"
+┗━ String: ".""
+```
+Any `argument` surrounded in parentheses `(` `)` includes whitespace.
+> `[b (This is bold text)].`
+```
+Concat
+┣━ Eval
+┃   ┣━ Retrieve
+┃   ┃   ┗━ Identity: "b"
+┃   ┣━ Args
+┃   ┃   ┗━ String: "This is bold text"
+┃   ┗━ Results
+┗━ String: ".""
+```
+The `:` changes all the `results` to `arguments`.
+> `[b:|This is bold text].`
+```
+Concat
+┣━ Eval
+┃   ┣━ Retrieve
+┃   ┃   ┗━ Identity: "b"
+┃   ┣━ Args
+┃   ┃   ┗━ String: "This is bold text"
+┃   ┗━ Results
 ┗━ String: ".""
 ```
 ### Interpreter
