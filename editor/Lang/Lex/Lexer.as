@@ -16,6 +16,8 @@ package editor.Lang.Lex {
             this._text = text;
         }
 
+        public function get offsetStart(): int { return this.start; };
+        public function get offsetEnd(): int { return this.pos; };
         public function get lineStart(): int { return this.lastLine; }
         public function get colStart(): int { return this.lastCol; }
         public function get lineEnd(): int { return this.lineNum; }
@@ -127,6 +129,18 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.Equal;
                 }
+                case TokenSymbol.At: {
+                    this.pos++;
+                    return TokenType.At;
+                }
+                case TokenSymbol.LeftParen: {
+                    this.pos++;
+                    return TokenType.LeftParen;
+                }
+                case TokenSymbol.RightParen: {
+                    this.pos++;
+                    return TokenType.RightParen;
+                }
                 default: {
                     this.eatWhileNot(
                         TokenSymbol.Tab,
@@ -137,7 +151,10 @@ package editor.Lang.Lex {
                         TokenSymbol.Dot,
                         TokenSymbol.Pipe,
                         TokenSymbol.GreaterThan,
-                        TokenSymbol.Equal
+                        TokenSymbol.Equal,
+                        TokenSymbol.At,
+                        TokenSymbol.LeftParen,
+                        TokenSymbol.RightParen
                     );
                     return TokenType.Text;
                 }

@@ -10,6 +10,9 @@ package editor.Lang.Tokens {
         public static const Pipe: int = 7;
         public static const GreaterThan: int = 8;
         public static const Equal: int = 9;
+        public static const At: int = 10;
+        public static const LeftParen: int = 11;
+        public static const RightParen: int = 12;
         
         public static const Names: Array = [
             'EOS',
@@ -21,7 +24,10 @@ package editor.Lang.Tokens {
             'Dot',
             'Pipe',
             'GreaterThan',
-            'Equal'
+            'Equal',
+            'At',
+            'LeftParen',
+            'RightParen'
         ];
     }
 }

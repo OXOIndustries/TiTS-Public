@@ -4,14 +4,21 @@ package editor {
     import classes.ShittyShips.Casstech;
     import editor.Descriptors.TiTSDescriptor;
     import editor.Display.EditorUI;
+    import editor.Display.Events.*;
+    import editor.Display.Themes.ThemeManager;
     import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.geom.Rectangle;
     
     public class Editor extends Sprite {
+        private var editorUI: EditorUI;
+        private var boxSize: Rectangle;
+        
         public function Editor() {
             const tits: TiTS = new TiTS();
-            this.addChild(tits); // Game doesn't load until added to stage
+            addChild(tits); // Game doesn't load until added to stage
             tits.visible = false;
-            this.visible = true;
+            visible = true;
 
             // Things not initialized by default
             tits.initializeNPCs();
@@ -25,10 +32,24 @@ package editor {
             tits.userInterface.resetPCStats();
             tits.shipDb.NewGame();
 
-            const editorState: EditorState = new EditorState(tits);
+            const editorState: Evaluator = new Evaluator(new TiTSDescriptor(tits));
 
-            const editorUI: EditorUI = new EditorUI(editorState);
-            this.addChild(editorUI);
+            x = 0;
+            y = 0;
+
+            editorUI = new EditorUI(editorState);
+            editorUI.x = 0;
+            editorUI.y = 0;
+            editorUI.nsWidth = stage.stageWidth;
+            editorUI.nsHeight = stage.stageHeight;
+
+            addChild(editorUI);
+            EditorEventDispatcher.instance.addEventListener(EditorEvents.THEME_CHANGE, themeUpdate);
+            EditorEventDispatcher.instance.dispatchEvent(new Event(EditorEvents.THEME_CHANGE));
+        }
+
+        private function themeUpdate(event: Event): void {
+            stage.color = ThemeManager.instance.currentTheme.base01;
         }
     }
 }

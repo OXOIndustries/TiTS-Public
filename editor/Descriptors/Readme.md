@@ -99,37 +99,81 @@ Any other data types will be coerced to `String`.
 Operators changes how the parser text is evaluated.
 ### Range `">"`
 This operator only works on numbers.
-> `[aNumber > 0 5 10 20|0~5|5~10|10~20|20~]`
+> `[aNumber > 0 5 10|0-4.99|5-9.99|10+]`
 
 ```
-if 0 >= aNumber > 5
-    "0~5"
-if 5 >= aNumber > 10
-    "5~10"
-if 10 >= aNumber > 20
-    "10~20"
-if 20 >= aNumber
-    "20~"
+if (0 >= aNumber > 5) then
+    "0-4.99"
+elseif (5 >= aNumber > 10) then
+    "5-9.99"
+elseif (10 >= aNumber) then
+    "10+"
 ```
-*Note: `aNumber` does not exist*
+> If `aNumber` is `3` then the output is `0-4.99`
 
-If the value of `identifer` is outside the range, an error will be displayed.
+*Note: `aNumber` does not exist and is used as an example here*
 
 ---
 ### Equal `"="`
-This operator only works on numbers, `String` and `Boolean`.
-This works the same as how `Boolean` is evaluated above.
+This operator only works on numbers and `String`.
 
-> `[hours = 8|Wake Paige up|Paige is already awake]`
-
-> If `hours` is equal to `8` then `Wake Paige up` else `Paige is already awake`
+> `[hours = 7 8|You are still asleep|Wake Paige up|Paige is already awake]`
+```
+if (hours = 7) then
+    "You are still asleep"
+elseif (hours = 8) then
+    "Wake Paige up"
+else
+    "Paige is already awake"
+```
+> If `hours` is equal to `8` then the output is `Wake Paige up`
 
 If the value of the `identifer` is outside the range, an error will be displayed.
 
 ---
 
+### Reveal `"@"`
+This operator goes before an `identifier` and shows either its `type` or what can be added.
+
+> `[@silly]`
+```
+[yes or no]
+```
+> `[@pc]`
+```
+[
+    fullname: text
+    race: text
+    occupation: text
+    hairColor: text
+    ...
+]
+```
+---
+## Argument Grouping
+`arguments` can be grouped together using parentheses `(` `)`.
+> `[pc.hasPerk (Fecund Figure)|exceptionally wide|] hips`
+```
+identifier: "pc.hasPerk"
+arguments: ["Fecund Figure"]
+results: ["exceptionally wide", ""]
+```
+
+---
+
+## Capitalization
+---
+The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap|[...]]`.
+
+---
 # Adding new parsers
 Anything `public` in TiTSDescriptor or subsequent classes will available to the interpreter.
+
+Example:
+1. Open TiTSDescriptor.as
+2. Add `public const boobs: String = "(.)(.)";` to the TiTSDescriptor class
+3. Compile and open the swf
+4. Type `[boobs]` and see `(.)(.)` in the output
 
 **Make sure what are adding does NOT change game values. Giving writers the power to change game values can and will cause problems.**
 

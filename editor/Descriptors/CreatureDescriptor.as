@@ -25,6 +25,7 @@ package editor.Descriptors {
             return null;
         };
         
+        // These are from getDescription in Creature
         public function get height(): String {
             return this.owner.height();
         }
@@ -1540,6 +1541,25 @@ package editor.Descriptors {
         }
         public function get meowBark(): String {
             return this.owner.catDog("meow", "bark", false);
+        }
+
+        // New parsers
+        private static const hasOneArgUpToTwoResults: Function = function(args: Array, results: Array): String {
+            if (args.length > 1) return "has too many arguments";
+            if (args.length === 0) return "needs one argument";
+            if (args.length === 0) return "needs one argument";
+            if (results.length > 2) return "has too many results";
+            return null;
+        };
+
+        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public function hasPerk(arg: String, result1: String = "", results2: String = ""): Object {
+            return this.owner.hasPerk(arg) ? { selector: 0 } : { selector: 1 };
+        }
+
+        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public function hasStatusEffect(arg: String, result1: String = "", results2: String = ""): Object {
+            return this.owner.hasStatusEffect(arg) ? { selector: 0 } : { selector: 1 };
         }
     }
 }

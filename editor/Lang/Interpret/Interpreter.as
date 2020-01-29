@@ -3,6 +3,7 @@ package editor.Lang.Interpret {
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
     import editor.Lang.TextRange;
+    import flash.utils.describeType;
     
     public class Interpreter {
         private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
@@ -183,12 +184,16 @@ package editor.Lang.Interpret {
             var identity: String;
             var selfObj: * = null;
             var caps: Boolean = false;
+            var lowerCaseIdentity: String;
             for (var idx: int = 0; idx < values.length; idx++) {
                 identity = values[idx].value;
                 // Determine if capitalization is needed
-                if (identity.charAt(0).toLocaleUpperCase() === identity.charAt(0)) {
-                    caps = true;
-                    identity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
+                if (idx === values.length - 1) {
+                    lowerCaseIdentity = identity.charAt(0).toLocaleLowerCase() + identity.slice(1);
+                    if (!(identity in obj) && lowerCaseIdentity in obj) {
+                        caps = true;
+                        identity = lowerCaseIdentity;
+                    }
                 }
                 // Error check
                 if (typeof obj !== 'object' || !(identity in obj)) {
@@ -269,7 +274,7 @@ package editor.Lang.Interpret {
             // Error checking
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             switch (node.value) {
@@ -277,6 +282,8 @@ package editor.Lang.Interpret {
                     return this.evalOpRange(node);
                 case EvalNode.OpEqual:
                     return this.evalOpEqual(node);
+                case EvalNode.OpReveal:
+                    return this.evalOpReveal(node);
                 default:
                     return this.evalOpDefault(node);
             }
@@ -289,6 +296,9 @@ package editor.Lang.Interpret {
             const retrieve: Product = this.evalRetrieveNode(node.children[0]);
             const args: Product = this.evalArgsNode(node.children[1]);
             const results: Product = this.evalResultsNode(node.children[2]);
+
+            if (!('value' in retrieve.value))
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
 
             const argsValueArr: Array = new Array();
             const argsCodeArr: Array = new Array();
@@ -306,28 +316,34 @@ package editor.Lang.Interpret {
 
             // Error checking
             var errorMsg: String; // or null
-            if (typeof retrieve.value.value === 'function' && retrieve.value.info) {
-                if (retrieve.value.info.argResultValidator !== null) {
-                    const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
-                    if (validResult !== null) {
-                        errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
+            switch (typeof retrieve.value.value) {
+                case 'function': {
+                    if (retrieve.value.info && retrieve.value.info.argResultValidator !== null) {
+                        const validResult: * = retrieve.value.info.argResultValidator(argsValueArr, resultsValueArr);
+                        if (validResult !== null) {
+                            errorMsg = '"' + this.getName(node.children[0]) + '" ' + validResult;
+                        }
                     }
+                    break;
                 }
-            }
-            else if (typeof retrieve.value.value === 'boolean') {
-                if (resultsValueArr.length == 0) {
-                    errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+                case 'boolean': {
+                    if (resultsValueArr.length == 0) {
+                        errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+                    }
+                    else if (resultsValueArr.length > 2) {
+                        errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+                    }
+                    break;
                 }
-                else if (resultsValueArr.length > 2) {
-                    errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+                case 'xml':
+                case 'object': {
+                    errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
+                    break;
                 }
-            }
-            else if (typeof retrieve.value.value === 'object' || retrieve.value.value == null) {
-                errorMsg = this.getName(node.children[0]) + ' cannot be displayed';
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
             var returnValue: * = '';
@@ -338,7 +354,7 @@ package editor.Lang.Interpret {
                 // Handle selecting from results here
                 if (funcResult == null) {
                     this.createError(node.range, this.getName(node.children[0]) + ' is ' + funcResult);
-                    return new Product(node.range, '', '');
+                    return new Product(new TextRange(node.range.start, node.range.start), '', '');
                 }
                 else if (
                     typeof funcResult === 'object' &&
@@ -389,6 +405,14 @@ package editor.Lang.Interpret {
                     returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : "")';
                 if (resultsCodeArr.length === 2)
                     returnCode = '(' + retrieve.code + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
+            }
+            else if (argsValueArr.length > 0) {
+                this.createError(args.range, this.getName(node.children[0]) + ' does not use arguments');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+            }
+            else if (resultsValueArr.length > 0) {
+                this.createError(results.range, this.getName(node.children[0]) + ' does not use results');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
             else {
                 returnValue = retrieve.value.value + '';
@@ -447,23 +471,38 @@ package editor.Lang.Interpret {
             }
             if (errorMsg !== null) {
                 this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
-            var returnValue: * = '';
+            var returnValue: String;
             var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
             var returnCode: String = '';
-            if (typeof retrieve.value.value === 'number') {
-                for (var idx: int = 0; idx < argsValueArr.length && idx < resultsValueArr.length; idx++) {
-                    if (argsValueArr[idx] <= retrieve.value.value && (
-                        idx === argsValueArr.length - 1 ||
-                        retrieve.value.value < argsValueArr[idx + 1]
-                    )) {
+            for (var idx: int = 0; idx < argsValueArr.length; idx++) {
+                if (argsValueArr[idx] <= retrieve.value.value && (
+                    idx === argsValueArr.length - 1 ||
+                    retrieve.value.value < argsValueArr[idx + 1]
+                )) {
+                    if (idx < resultsValueArr.length) {
                         returnValue = results.value[idx].value;
                         returnRange = results.value[idx].range;
                         break;
                     }
+                    else {
+                        returnValue = '';
+                        returnRange = new TextRange(node.range.end, node.range.end);
+                        break;
+                    }
                 }
+            }
+            if (returnValue == null) {
+                returnValue = '';
+                returnRange = new TextRange(results.value[0].range.start, results.value[0].range.start);
+            }
+
+            if (retrieve.value.info && retrieve.value.info.toCode) {
+                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+            else {
                 for (idx = 0; idx < argsValueArr.length; idx++) {
                     returnCode += '(' + argsCodeArr[idx] + ' <= ' + retrieve.code;
                     if (idx + 1 < argsValueArr.length) {
@@ -480,15 +519,6 @@ package editor.Lang.Interpret {
                 }
                 for (idx = 0; idx < argsValueArr.length; idx++)
                     returnCode += ')';
-            }
-            else {
-                returnValue = retrieve.value.value + '';
-                returnRange = node.range;
-                returnCode = retrieve.code;
-            }
-
-            if (retrieve.value.info && retrieve.value.info.toCode) {
-                returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
@@ -518,59 +548,77 @@ package editor.Lang.Interpret {
 
             // Error checking
             var errorMsg: String; // or null
-            if (args.value.length !== 1) {
-                errorMsg = this.getName(node.children[0]) + ' can only accept 1 argument';
+            var errorRange: TextRange = node.range;
+            if (argsValueArr.length === 0) {
+                errorMsg = this.getName(node.children[0]) + ' needs at least one argument';
             }
-            else if (resultsValueArr.length == 0) {
-                errorMsg = this.getName(node.children[0]) + ' needs at least 1 result';
+            else if (resultsValueArr.length === 0) {
+                errorMsg = this.getName(node.children[0]) + ' needs at least one result';
             }
-            else if (resultsValueArr.length > 2) {
-                errorMsg = this.getName(node.children[0]) + ' can have up to 2 results';
+            else if (resultsValueArr.length > argsValueArr.length + 1) {
+                var extraneousCount: int = resultsValueArr.length - (argsValueArr.length + 1);
+                errorMsg = this.getName(node.children[0]) + ' has ' + extraneousCount + ' extraneous results';
+                errorRange = new TextRange(results.value[argsValueArr.length].range.end, results.value[resultsValueArr.length - 1].range.end);
             }
             else if (
-                typeof retrieve.value.value !== 'boolean' &&
                 typeof retrieve.value.value !== 'number' &&
                 typeof retrieve.value.value !== 'string'
             ) {
                 errorMsg = this.getName(node.children[0]) + ' does not support "="';
             }
             if (errorMsg) {
-                this.createError(node.range, errorMsg);
-                return new Product(node.range, '', '');
+                this.createError(errorRange, errorMsg);
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
             }
 
-            var arg: * /*string or number or boolean*/ = args.value[0].value;
-            if (arg === 'true') arg = true;
-            if (arg === 'false') arg = false;
-
-            var returnValue: * = '';
+            var returnValue: String;
             var returnRange: * /*TextRange or Array<TextRange>*/ = node.range;
             var returnCode: String = '';
-            // condition ? [result1] : result2
-            if (retrieve.value.value === arg && results.value.length > 0 && results.value[0]) {
-                returnValue = results.value[0].value;
-                returnRange = results.value[0].range;
+            for (var idx: int = 0; idx < argsValueArr.length; idx++) {
+                if (argsValueArr[idx] == retrieve.value.value) {
+                    if (idx < resultsValueArr.length) {
+                        returnValue = results.value[idx].value;
+                        returnRange = results.value[idx].range;
+                        break;
+                    }
+                    else {
+                        returnValue = '';
+                        returnRange = new TextRange(node.range.end, node.range.end);
+                        break;
+                    }
+                }
             }
-            // condition ? result1 : [result2]
-            else if (retrieve.value.value !== arg && results.value.length > 1 && results.value[1]) {
-                returnValue = results.value[1].value;
-                returnRange = results.value[1].range;
+            if (returnValue == null) {
+                if (resultsValueArr.length > argsValueArr.length) {
+                    returnValue = results.value[argsValueArr.length].value;
+                    returnRange = results.value[argsValueArr.length].range;
+                }
+                else {
+                    returnValue = '';
+                    returnRange = new TextRange(node.range.end, node.range.end);
+                }
             }
-            // condition ? result1 : []
-            // condition ? [] : result2
-            else {
-                returnValue = '';
-                returnRange = node.range;
-            }
-
-            // type bool + results  -> identity ? result0 : (result1 or "")
-            if (resultsCodeArr.length === 1)
-                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : "")';
-            if (resultsCodeArr.length === 2)
-                returnCode = '(' + retrieve.code + ' === ' + argsCodeArr[0] + ' ? ' + resultsCodeArr[0] + ' : ' + resultsCodeArr[1] + ')';
 
             if (retrieve.value.info && retrieve.value.info.toCode) {
                 returnCode = retrieve.value.info.toCode(argsCodeArr, resultsCodeArr);
+            }
+            else {
+                for (idx = 0; idx < argsValueArr.length; idx++) {
+                    returnCode += '(' + argsCodeArr[idx] + ' == ' + retrieve.code + ' ? ';
+                    if (idx < resultsCodeArr.length)
+                        returnCode += resultsCodeArr[idx];
+                    else
+                        returnCode += '""';
+                    returnCode += ' : ';
+                }
+
+                if (resultsCodeArr.length > argsValueArr.length)
+                    returnCode += resultsCodeArr[argsValueArr.length];
+                else
+                    returnCode += '""';
+
+                for (idx = 0; idx < argsValueArr.length; idx++)
+                    returnCode += ')';
             }
 
             if (retrieve.value.caps && returnValue.length > 0) {
@@ -578,6 +626,66 @@ package editor.Lang.Interpret {
             }
 
             return new Product(returnRange, returnValue + '', returnCode);
+        }
+
+        /**
+         * @return 'Product.value = String'
+         */
+        private function evalOpReveal(node: EvalNode): Product {
+            const retrieve: Product = this.evalRetrieveNode(node.children[0]);
+            const args: Product = this.evalArgsNode(node.children[1]);
+            const results: Product = this.evalResultsNode(node.children[2]);
+
+            // Error checking
+            var errorMsg: String; // or null
+            if (args.value.length !== 0) {
+                errorMsg = this.getName(node.children[0]) + ' can not have any arguments';
+            }
+            else if (results.value.length !== 0) {
+                errorMsg = this.getName(node.children[0]) + ' can not have any results';
+            }
+            if (errorMsg) {
+                this.createError(node.range, errorMsg);
+                return new Product(new TextRange(node.range.start, node.range.start), '', '');
+            }
+
+            var text: String = '[';
+            if (typeof retrieve.value.value !== 'object')
+                text += typeToString(typeof retrieve.value.value);
+            else {
+                var description: XML = describeType(retrieve.value.value);
+                text += '\n';
+                text += propertiesToString(retrieve.value.value, description..accessor);
+                text += propertiesToString(retrieve.value.value, description..constant);
+                text += propertiesToString(retrieve.value.value, description..method);
+                text += propertiesToString(retrieve.value.value, description..variable);
+            }
+            text += ']';
+
+            return new Product(node.range, text, '');
+        }
+
+        private function propertiesToString(obj: *, list: XMLList): String {
+            var text: String = '';
+            for each(var item: XML in list) {
+                if (item.@name.toString().indexOf('__info') === -1)
+                    text += item.@name + ': ' + typeToString(typeof obj[item.@name]) + '\n';
+            }
+            return text;
+        }
+
+        private function typeToString(type: String): String {
+            switch (type) {
+                case 'string': return 'text';
+                case 'boolean': return 'yes or no';
+                default: return type;
+            }
+            var text: String = '';
+            for each(var item: XML in list) {
+                if (item.@name.toString().indexOf('__info') === -1)
+                    text += item.@name + ': ' + typeof obj[item.@name] + '\n';
+            }
+            return text;
         }
     }
 }

@@ -11,7 +11,7 @@ package editor.Lang.Errors {
         }
 
         public function toString(): String {
-            return 'Error @ line: ' + this.range.start.line + ' col: ' + this.range.start.col + ' - ' + this.msg;
+            return this.range + ' Error: ' + this.msg;
         }
     }
 }

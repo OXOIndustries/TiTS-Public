@@ -22,25 +22,17 @@ package editor.Lang.Parse {
         }
 
         /**
-         * Empty StringNode
-         * @param range
-         */
-        private function empty(): StringNode {
-            return new StringNode(this.createRange(), '');
-        }
-
-        /**
          * Create TextPosition at start of current token
          */
         private function createStartPostion(): TextPosition {
-            return new TextPosition(this.lexer.lineStart, this.lexer.colStart);
+            return new TextPosition(this.lexer.lineStart, this.lexer.colStart, this.lexer.offsetStart);
         }
 
         /**
          * Create TextPosition at end of current token
          */
         private function createEndPostion(): TextPosition {
-            return new TextPosition(this.lexer.lineEnd, this.lexer.colEnd);
+            return new TextPosition(this.lexer.lineEnd, this.lexer.colEnd, this.lexer.offsetEnd);
         }
 
         /**
@@ -67,19 +59,23 @@ package editor.Lang.Parse {
         private function concat(): Node {
             var newNode: Node;
             var arr: Array = [];
+            var start: int = this.lexer.offsetEnd;
 
             while (this.lexer.peek() !== TokenType.EOS) {
                 // Search until something is found
                 newNode = this.code(); // StringNode or ConcatNode or EvalNode or null
                 if (!newNode) newNode = this.text(); // StringNode or null
-                if (!newNode) break;
+                if (!newNode && start == this.lexer.offsetEnd)
+                    this.lexer.advance();
 
-                arr.push(newNode); // StringNode or ConcatNode or EvalNode
+                start = this.lexer.offsetEnd;
+                if (newNode)
+                    arr.push(newNode); // StringNode or ConcatNode or EvalNode
             }
 
             // Nothing so force empty
             if (arr.length === 0)
-                return this.empty();
+                return new StringNode(new TextRange(), '');
             else if (arr.length === 1)
                 return arr[0];
             else
@@ -126,7 +122,8 @@ package editor.Lang.Parse {
             this.lexer.advance();
 
             var codeNode: Node = this.eval();
-            if (codeNode === null) return null;
+
+            this.whitespace();
 
             // don't advance token stream on error
             if (this.lexer.peek() !== TokenType.RightBracket) {
@@ -134,7 +131,8 @@ package editor.Lang.Parse {
                 return null;
             }
 
-            this.lexer.advance();
+            if (codeNode !== null)
+                this.lexer.advance();
 
             return codeNode;
         }
@@ -144,23 +142,38 @@ package editor.Lang.Parse {
          * @return EvalNode or ErrorNode
          */
         private function eval(): Node {
+            this.whitespace();
+
+            var evalOp: int = EvalNode.OpDefault;
+            if (this.lexer.peek() === TokenType.At) {
+                evalOp = EvalNode.OpReveal;
+                this.lexer.advance();
+            }
+
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
-            var evalOp: int = EvalNode.OpDefault;
-            if (this.lexer.peek() === TokenType.Space)
-                this.lexer.advance();
-             
+            this.whitespace();
+            
             if (this.lexer.peek() === TokenType.GreaterThan) {
-                evalOp = EvalNode.OpRange;
+                if (evalOp !== EvalNode.OpDefault)
+                    this.createError('Already has operator');
+                else
+                    evalOp = EvalNode.OpRange;
                 this.lexer.advance();
             }
             else if (this.lexer.peek() === TokenType.Equal) {
-                evalOp = EvalNode.OpEqual;
+                if (evalOp !== EvalNode.OpDefault)
+                    this.createError('Already has operator');
+                else
+                    evalOp = EvalNode.OpEqual;
                 this.lexer.advance();
             }
-            
+
             var argNodes: Node = this.args();
+
+            this.whitespace();
+
             var resultNodes: Node = this.results();
 
             var rangeEnd: TextPosition;
@@ -199,11 +212,12 @@ package editor.Lang.Parse {
 
             this.lexer.advance();
 
+            var dotRange: TextRange = this.createRange();
             while (this.lexer.peek() === TokenType.Dot) {
                 this.lexer.advance();
 
                 if (this.lexer.peek() !== TokenType.Text) {
-                    this.createError('Missing Identifier');
+                    this.createError('Missing Identifier', dotRange);
                     return null;
                 }
 
@@ -212,6 +226,8 @@ package editor.Lang.Parse {
                 );
 
                 this.lexer.advance();
+
+                dotRange = this.createRange();
 
                 rootNode.range.end = rootNode.children[rootNode.children.length - 1].range.end;
             }
@@ -231,9 +247,7 @@ package editor.Lang.Parse {
             var valueNode: Node = this.getValue();
             if (valueNode) arr.push(valueNode);
             
-            while (this.lexer.peek() === TokenType.Space) {
-                this.lexer.advance();
-
+            while (this.whitespace()) {
                 valueNode = this.getValue();
                 if (!valueNode)
                     break;
@@ -262,7 +276,11 @@ package editor.Lang.Parse {
                 this.lexer.advance();
 
                 node = this.resultConcat();
-                if (!node) break;
+                if (!node)
+                    if (this.lexer.peek() === TokenType.Pipe || this.lexer.peek() === TokenType.RightBracket)
+                        node = new StringNode(new TextRange(this.createStartPostion(), this.createStartPostion()), '');
+                    else
+                        break;
 
                 arr.push(node);
             }
@@ -306,11 +324,14 @@ package editor.Lang.Parse {
         /**
          * Removes whitespace
          */
-        private function whitespace(): void {
+        private function whitespace(): Boolean {
+            var counter: int = 0;
             var type: int = this.lexer.peek();
             while (type === TokenType.Space || type === TokenType.Newline) {
                 type = this.lexer.advance();
+                ++counter;
             }
+            return counter > 0;
         }
 
         /**
@@ -322,17 +343,43 @@ package editor.Lang.Parse {
             const start: TextPosition = this.createStartPostion();
 
             var type: int = this.lexer.peek();
-            while (
-                type === TokenType.Text ||
-                type === TokenType.Dot ||
-                type === TokenType.GreaterThan ||
-                type === TokenType.Equal
-            ) {
-                subStr += this.lexer.getText();
-                type = this.lexer.advance();
+            var groupStart: TextPosition;
+            infiniteLoop: while (true) {
+                switch (type) {
+                    case TokenType.Space:
+                    case TokenType.Newline:
+                        if (groupStart == null)
+                            break infiniteLoop;
+                    case TokenType.Text:
+                    case TokenType.Dot:
+                    case TokenType.GreaterThan:
+                    case TokenType.Equal:
+                        subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    case TokenType.LeftParen:
+                        if (groupStart == null)
+                            groupStart = this.createStartPostion();
+                        else
+                            subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    case TokenType.RightParen:
+                        if (groupStart != null)
+                            groupStart = null;
+                        else
+                            subStr += this.lexer.getText();
+                        type = this.lexer.advance();
+                        break;
+                    default:
+                        break infiniteLoop;
+                }
             }
 
             const end: TextPosition = this.createStartPostion();
+
+            if (groupStart != null)
+                this.createError('Missing ")"', new TextRange(groupStart, end));
 
             if (subStr.length > 0) {
                 if (isNaN(Number(subStr)))
