@@ -121,18 +121,6 @@ package editor.Lang.Lex {
                     this.pos++;
                     return TokenType.Pipe;
                 }
-                case TokenSymbol.GreaterThan: {
-                    this.pos++;
-                    return TokenType.GreaterThan;
-                }
-                case TokenSymbol.Equal: {
-                    this.pos++;
-                    return TokenType.Equal;
-                }
-                case TokenSymbol.At: {
-                    this.pos++;
-                    return TokenType.At;
-                }
                 case TokenSymbol.LeftParen: {
                     this.pos++;
                     return TokenType.LeftParen;
@@ -140,6 +128,10 @@ package editor.Lang.Lex {
                 case TokenSymbol.RightParen: {
                     this.pos++;
                     return TokenType.RightParen;
+                }
+                case TokenSymbol.Colon: {
+                    this.pos++;
+                    return TokenType.Colon;
                 }
                 default: {
                     this.eatWhileNot(
@@ -150,11 +142,9 @@ package editor.Lang.Lex {
                         TokenSymbol.RightBracket,
                         TokenSymbol.Dot,
                         TokenSymbol.Pipe,
-                        TokenSymbol.GreaterThan,
-                        TokenSymbol.Equal,
-                        TokenSymbol.At,
                         TokenSymbol.LeftParen,
-                        TokenSymbol.RightParen
+                        TokenSymbol.RightParen,
+                        TokenSymbol.Colon
                     );
                     return TokenType.Text;
                 }

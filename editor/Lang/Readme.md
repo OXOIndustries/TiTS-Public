@@ -8,14 +8,15 @@
 |string literal           |"..."|
 |group                    |(...)|
 
-|Name     | Value
-|---------|--------
-|text     | `anything - "["`
-|identity | `text - ("."|" ")`
-|action   | `identity , ~("." , identity )`
-|arg      | `" " , (number|text)`
-|result   | `"|" , code`
-|code     | `text , "[" , action , ~arg , ~result , "]" , text`
+|Name        | Value
+|------------|--------
+|text        | `anything - "["`
+|identity    | `text - ("."|" ")`
+|identifier  | `identity , ~("." , identity )`
+|arg         | `" " , (number|text)`
+|result      | `"|" , code`
+|code        | `"[" , identifier, ((":" , ~result)|(~arg , ~result)) , "]"`
+|body        | `text , code`
 > Some information on the language definition can be found here
 https://github.com/end5/SceneWriter/blob/master/Editor/Parser/LangDef.txt
 
@@ -33,8 +34,9 @@ The Lexer reads text and groups the characters together to create a Token.
 |RightBracket   | "]"
 |Dot            | "."
 |Pipe           | "\|"
-|GreaterThan    | ">"
-|Equal          | "="
+|LeftParen      | "("
+|RightParen     | ")"
+|Colon          | ":"
 
 Examples:
 > `This is text.`
@@ -88,7 +90,7 @@ Each Node has a type, a value and children (list of Nodes).
 |String     |string        |
 |Number     |number        |
 |Concat     |              |list of Node Type String or Eval
-|Eval       |operator(int) |[Node Type Retrieve, Node Type Args, Node Type Results]
+|Eval       |              |[Node Type Retrieve, Node Type Args, Node Type Results]
 |Retrieve   |              |list of Node Type Identity
 |Args       |              |list of Node Type String or Number
 |Results    |              |list of Node Type Concat or String or Eval
@@ -122,6 +124,30 @@ Concat
 ┃       ┗━ String: "disabled"
 ┗━ String: ".""
 ```
+Any `argument` surrounded in parentheses `(` `)` includes whitespace.
+> `[b (This is bold text)].`
+```
+Concat
+┣━ Eval
+┃   ┣━ Retrieve
+┃   ┃   ┗━ Identity: "b"
+┃   ┣━ Args
+┃   ┃   ┗━ String: "This is bold text"
+┃   ┗━ Results
+┗━ String: ".""
+```
+The `:` changes all the `results` to `arguments`.
+> `[b:|This is bold text].`
+```
+Concat
+┣━ Eval
+┃   ┣━ Retrieve
+┃   ┃   ┗━ Identity: "b"
+┃   ┣━ Args
+┃   ┃   ┗━ String: "This is bold text"
+┃   ┗━ Results
+┗━ String: ".""
+```
 ### Interpreter
 The Interpreter traverses a tree of Nodes (AST) and produces text.
 Each Node has a specific operation determined by its type.
@@ -132,7 +158,7 @@ Each Node has a specific operation determined by its type.
 |String     |string                |its value
 |Number     |number                |its value
 |Concat     |string                |combine/concat all children
-|Eval       |string                |depending on its value, evaluate/call the output of Retrieve using/passing the output of Args and Results
+|Eval       |string                |evaluate/call the output of Retrieve using/passing the output of Args and Results
 |Retrieve   |anything              |retrieve the value from memory using its children
 |Args       |list of string/number |a list of the output of its children
 |Results    |list of string        |a list of the output of its children

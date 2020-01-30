@@ -144,50 +144,42 @@ package editor.Lang.Parse {
         private function eval(): Node {
             this.whitespace();
 
-            var evalOp: int = EvalNode.OpDefault;
-            if (this.lexer.peek() === TokenType.At) {
-                evalOp = EvalNode.OpReveal;
-                this.lexer.advance();
-            }
-
             var identityNode: Node = this.retrieve();
             if (identityNode === null) return null;
 
             this.whitespace();
-            
-            if (this.lexer.peek() === TokenType.GreaterThan) {
-                if (evalOp !== EvalNode.OpDefault)
-                    this.createError('Already has operator');
-                else
-                    evalOp = EvalNode.OpRange;
+
+            var argNode: Node;
+            var resultNode: Node;
+            if (this.lexer.peek() === TokenType.Colon) {
                 this.lexer.advance();
+
+                argNode = this.results();
+                argNode = new ArgsNode(argNode.range, argNode.children);
+
+                this.whitespace();
+
+                resultNode = new ResultsNode(new TextRange(this.createStartPostion(), this.createStartPostion()), []);
             }
-            else if (this.lexer.peek() === TokenType.Equal) {
-                if (evalOp !== EvalNode.OpDefault)
-                    this.createError('Already has operator');
-                else
-                    evalOp = EvalNode.OpEqual;
-                this.lexer.advance();
+            else {
+                argNode = this.args();
+
+                this.whitespace();
+
+                resultNode = this.results();
             }
-
-            var argNodes: Node = this.args();
-
-            this.whitespace();
-
-            var resultNodes: Node = this.results();
 
             var rangeEnd: TextPosition;
-            if (resultNodes.children.length > 0)
-                rangeEnd = resultNodes.children[resultNodes.children.length - 1].range.end;
-            else if (argNodes.children.length > 0)
-                rangeEnd = argNodes.children[argNodes.children.length - 1].range.end;
+            if (resultNode.children.length > 0)
+                rangeEnd = resultNode.children[resultNode.children.length - 1].range.end;
+            else if (argNode.children.length > 0)
+                rangeEnd = argNode.children[argNode.children.length - 1].range.end;
             else
                 rangeEnd = identityNode.range.end;
 
             return new EvalNode(
                 new TextRange(identityNode.range.start, rangeEnd),
-                [identityNode, argNodes, resultNodes],
-                evalOp
+                [identityNode, argNode, resultNode]
             );
 
         }
@@ -352,8 +344,6 @@ package editor.Lang.Parse {
                             break infiniteLoop;
                     case TokenType.Text:
                     case TokenType.Dot:
-                    case TokenType.GreaterThan:
-                    case TokenType.Equal:
                         subStr += this.lexer.getText();
                         type = this.lexer.advance();
                         break;
