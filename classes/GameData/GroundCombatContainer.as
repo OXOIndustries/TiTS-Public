@@ -986,8 +986,11 @@ package classes.GameData
 					}
 					else
 					{
-						target.lust(5 + rand(10));
+						//Fen: target.lust(5 + rand(10));
 						output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+						var mimbCloudDamage:DamageResult = new DamageResult();
+						mimbCloudDamage.addResult(applyDamage(damageRand(new TypeCollection( { drug: 3+rand(4) } ), 15), null, target));
+						outputDamage(mimbCloudDamage);
 					}
 				}
 				else
@@ -2395,7 +2398,7 @@ package classes.GameData
 			var grappleLevel:int = 0;
 			var grappleEscapeLvl:int = 0;
 			var removeGrapple:Boolean = false;
-			if(target.hasStatusEffect("Naleen Coiled")) { grappleLevel = target.statusEffectv1("Naleen Coiled"); grappleEscapeLvl = 24; }
+			if(target.hasStatusEffect("Naleen Coiled")) { grappleLevel = target.statusEffectv1("Naleen Coiled"); grappleEscapeLvl = 20; }
 			if(target.hasStatusEffect("Mimbrane Smother")) { grappleLevel = target.statusEffectv1("Mimbrane Smother"); grappleEscapeLvl = 0; }
 			if(target.hasStatusEffect("Grappled")) { grappleLevel = target.statusEffectv1("Grappled"); grappleEscapeLvl = 24; }
 			
@@ -2496,13 +2499,17 @@ package classes.GameData
 					else if (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					else if (hasEnemyOfClass(Mimbrane))
 					{
-						target.lust(10 + target.libido()/10);
+						/*Converted to new system and nerfed slightly since it also attacks during the smother! -Fen, 2020/01
+							target.lust(10 + target.libido()/10); */
 						// fail to escape 1
 						if (grappleLevel == 0) output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
 						// fail to escape 2
 						else if (grappleLevel == 1) output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.");
 						// defeated
 						else if (grappleLevel == 2) output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+						var mimbDamage:DamageResult = new DamageResult();
+						mimbDamage.addResult(applyDamage(damageRand(new TypeCollection( { drug: 1+target.libido()/10 } ), 15), null, target));
+						outputDamage(mimbDamage);
 					}
 					else if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
 					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs();
