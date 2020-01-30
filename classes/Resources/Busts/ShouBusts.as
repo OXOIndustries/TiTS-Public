@@ -199,6 +199,19 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
 		public var Bust_CRYSTAL_GOO_T2_YELLOW_UNARMORED:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_1.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_1:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_1_nude.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_2.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_2:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_2_nude.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_3.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_3:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/drink_cow_3_nude.png", mimeType = "image/png")]
+		public var Bust_DRINK_COW_3_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/doctor_lash.png", mimeType = "image/png")]
 		public var Bust_DR_LASH:Class;
 
@@ -963,6 +976,19 @@
 			public var Full_CRYSTAL_GOO_T2_YELLOW:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/ganrael_2_yellow_unarmored.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_T2_YELLOW_UNARMORED:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_1.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_1:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_1_nude.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_1_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_2.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_2:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_2_nude.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_2_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_3.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_3:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/drink_cow_3_nude.png", mimeType = "image/png")]
+			public var Full_DRINK_COW_3_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/HR/doctor_lash.png", mimeType = "image/png")]
 			public var Full_DR_LASH:Class;

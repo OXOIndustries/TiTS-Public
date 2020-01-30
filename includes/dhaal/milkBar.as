@@ -7,12 +7,29 @@ public function showIyla(nude:Boolean = false):void
 public function showDrinkCow(nude:Boolean = false):void
 {
 	showName("DRINK\nCOW");
-	showBust("DRINK_COW" + (nude ? "_NUDE":""));
+	showBust("DRINK_COW_" + flags["DHAAL_MILKCOW"] + (nude ? "_NUDE":""));
 }
+
 public function showCreamCow(nude:Boolean = false):void
 {
 	showName("CREAM\nCOW");
 	showBust("CREAM_COW" + (nude ? "_NUDE":""));
+}
+public function generateDrinkCow():void
+{
+	flags["DHAAL_MILKCOW"] = rand(3)+1;
+}
+public function milkThief():void
+{
+	var tEnemy:ZaikaMilkThief = new ZaikaMilkThief();
+	setEnemy(tEnemy);
+	CombatManager.newGroundCombat();
+	CombatManager.setHostileActors(tEnemy);	
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.victoryScene(winVsBoredJumper);
+	CombatManager.lossScene(loseToBoredJumperRouting);
+	CombatManager.displayLocation("MILK THIEF");
+	CombatManager.beginCombat();
 }
 
 //Outside tile descriptor
@@ -135,6 +152,7 @@ public function applyMilkBarDrugs(drink:int, duration:Number):void
 public function drinkieDrinkieRouter(drink:int):void
 {
 	clearOutput();
+	generateDrinkCow();
 	showDrinkCow();
 	author("Wsan");
 	pc.credits -= 25;
