@@ -425,7 +425,7 @@ package classes.UIComponents
 			{
 				UIStyleSettings._gCodexTreeHeaderFormatter = new TextFormat();
 				UIStyleSettings._gCodexTreeHeaderFormatter.size = 28;
-				UIStyleSettings._gCodexTreeHeaderFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gCodexTreeHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gCodexTreeHeaderFormatter.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gCodexTreeHeaderFormatter.kerning = true;
 				UIStyleSettings._gCodexTreeHeaderFormatter.leading = 0;
