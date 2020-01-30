@@ -2084,7 +2084,23 @@ package editor.Descriptors {
         }
 
         // New parsers
-        private function hasOneArgUpToTwoResults(args: Array, results: Array): String {
+        // Validators
+        private function hasOneNumberArgUpToTwoResults(args: Array, results: Array): String {
+            if (args.length > 1) return "has too many arguments";
+            if (args.length === 0) return "needs one argument";
+            if (typeof args[0] !== 'number') return "needs one number argument";
+            if (results.length > 2) return "has too many results";
+            return null;
+        }
+
+        private function hasOneOptionalNumberArgUpToTwoResults(args: Array, results: Array): String {
+            if (args.length > 1) return "has too many arguments";
+            if (typeof args[0] !== 'number') return "needs one number argument";
+            if (results.length > 2) return "has too many results";
+            return null;
+        }
+
+        private function hasOneStringArgUpToTwoResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";
             if (args.length === 0) return "needs one argument";
             if (typeof args[0] !== 'string') return "needs one text argument";
@@ -2092,14 +2108,85 @@ package editor.Descriptors {
             return null;
         }
 
-        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        private function rangeValidator(args: Array, results: Array): String {
+            if (args.length === 0) return 'needs at least one argument';
+            if (results.length === 0) return 'needs at least one result';
+            if (results.length > args.length + 1) return 'has ' + (results.length - args.length + 1) + ' extraneous results';
+            return null;
+        }
+
+        // Functionality
+        private function rangeEval(value: Number, args: Array): Number {
+            for (var idx: int = 0; idx < args.length; idx++) {
+                if (args[idx] <= value && (
+                    idx === args.length - 1 ||
+                    value < args[idx + 1]
+                )) {
+                    return idx;
+                }
+            }
+            return idx;
+        }
+
+        // New
+        public function get hasAccentMarkings(): Boolean {
+            return this.owner.hasAccentMarkings();
+        }
+        public function get hasPiercing(): Boolean {
+            return this.owner.hasPiercing();
+        }
+        public function get hasEarPiercing(): Boolean {
+            return this.owner.hasEarPiercing();
+        }
+        public function get hasEyebrowPiercing(): Boolean {
+            return this.owner.hasEyebrowPiercing();
+        }
+        public function get hasNosePiercing(): Boolean {
+            return this.owner.hasNosePiercing();
+        }
+        public function get hasLipPiercing(): Boolean {
+            return this.owner.hasLipPiercing();
+        }
+        public function get hasTonguePiercing(): Boolean {
+            return this.owner.hasTonguePiercing();
+        }
+        public function get hasBellyPiercing(): Boolean {
+            return this.owner.hasBellyPiercing();
+        }
+        public const hasNipplePiercing__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgUpToTwoResults);
+        public function hasNipplePiercing(idx: int = -1): Boolean {
+            return this.owner.hasPiercedNipples(idx);
+        }
+        public const hasCockPiercing__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgUpToTwoResults);
+        public function hasCockPiercing(idx: int = -1): Boolean {
+            return this.owner.hasPiercedCocks(idx);
+        }
+        public const hasPiercedVaginas__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgUpToTwoResults);
+        public function hasPiercedVaginas(idx: int = -1): Boolean {
+            return this.owner.hasPiercedVaginas(idx);
+        }
+        public const hasClitPiercing__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgUpToTwoResults);
+        public function hasClitPiercing(idx: int = -1): Boolean {
+            return this.owner.hasPiercedClits(idx);
+        }
+        public const hasCocksock__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneOptionalNumberArgUpToTwoResults);
+        public function hasCocksock(idx: int = -1): Boolean {
+            return this.owner.hasSockedCocks(idx);
+        }
+
+        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
         public function hasPerk(arg: String): Object {
             return this.owner.hasPerk(arg) ? 0 : 1;
         }
 
-        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
         public function hasStatusEffect(arg: String): Object {
             return this.owner.hasStatusEffect(arg) ? 0 : 1;
+        }
+
+        public const hasCockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
+        public function hasCockType(... args): Object {
+            return this.owner.hasCockType(arg) ? 0 : 1;
         }
     }
 }
