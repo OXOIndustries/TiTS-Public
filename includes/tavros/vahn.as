@@ -84,6 +84,7 @@ public function VahnTheMechanic():void
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
+	addButton(4,"BuyUniforms",buyUniformsFromVahn,undefined,"Buy Uniforms","As a SteeleTech employee, Vahn can probably hook you up with one of the corporate jumpsuits, assuming you want one.");
 	addButton(5,"Ship Guns",vahnShipGunsShop,undefined,"Ship Guns","Purchase new weaponry to fit into your ship’s upgrade slots.");
 	addButton(6,"Ship Gadgets",vahnShipGadgetShop,undefined,"Ship Gadgets","Purchase new gadgets ");
 	addButton(7,"Uninstall",vahnShipUninstall,undefined,"Uninstall","Uninstall and sell one of your currently installed upgrades/weapons.");
@@ -95,6 +96,22 @@ public function VahnTheMechanic():void
 	addButton(12,"Sell A Ship",sellAShipToVahn,undefined,"Sell A Ship","Sell a ship to Vahn.");
 	addButton(14,"Leave",mainGameMenu);
 }
+
+public function buyUniformsFromVahn():void
+{
+	clearOutput();
+	showVahn();
+	author("Fenoxo");
+	shopkeep = chars["VAHN"];
+	var suity:ItemSlotClass = new SteeleTechSuit();
+	suity.basePrice = 4500;
+	shopkeep.inventory = [new SteeleTechSuit()];
+
+	shopkeep.keeperBuy = "You ask Vahn if she can sell you any SteeleTech uniforms.";
+	output("\n\n<i>“Of course! Be my guest.”</i>\n");
+	buyItem();
+}
+
 
 public function sellAShipToVahn():void
 {

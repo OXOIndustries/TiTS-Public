@@ -43,6 +43,8 @@ WALLSLUTS_NOISY_RODENTS_WALNUTTED		times came in Walnut
 WALLSLUTS_NOISY_RODENTS_CHESTNUTTED		times came in Chestnut
 WALLSLUTS_NOISY_RODENTS_WALNUT_CUM		volume of cum in Walnut
 WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM	volume of cum in Chestnut
+WALLSLUTS_NOISY_RODENTS_VIP_FUCK		count of vip sessions, undefined means never asked, 0 has asked but not done it yet
+WALLSLUTS_NOISY_RODENTS_VIP_DISCOUNT	1 = has used discount before
 
 *========================================================*/
 
@@ -547,7 +549,12 @@ public function pickWallSlutMenu():void
 	else addButton(btn, "Demure Taur", demureTaurWallIntro, undefined, "Demure Taur", "A white Leithan’s haunches are jutting out of the wall. Check them out!");
 	
 	btn ++;
-	if(pc.hasStatusEffect("NoisyRodentsDisable"))
+	if (pc.hasStatusEffect("NoisyRodentsDisableVIP"))
+	{
+		output("\n\nWalnut & Chestnut are currently not in their hole. It’ll be a few hours yet for them to rest and return to work.");
+		addDisabledButton(btn,"Noisy Rodents","Noisy Rodents","The rodenians are currently not in their hole.");
+	}
+	else if(pc.hasStatusEffect("NoisyRodentsDisable"))
 	{
 		output("\n\nThe rodenians are closed for cleaning. Maybe next time!");
 		addDisabledButton(btn,"Noisy Rodents","Noisy Rodents","The rodenians are closed for cleaning.");
@@ -1951,6 +1958,10 @@ public function wallSlutsNoisyRodentsWallIntro():void
 	else if (pc.hasCock()) output(" Before considering their offer, you bring up your codex and skim through the Rodenian entry. These alien mice breed in a rather non - traditional manner: through their ears. Vaginas are located deeper inside the frictionless canals. If you wanted to experience the joys of cranial coitus, now’s your chance - " + (pc.hasKeyItem("Puss Pass") ? "with your Puss Pass, you can get right down to business. Or into it, rather." : "the raucous rats will cost you 1500 credits to use."));
 	else output(" Lacking any phallic implements, and without a way to emit cum, there’s nothing you can do here. You’re not keen on finding out what happens to someone who flaunts the rules at Cherry’s, particularly those set by voluntary onaholes.");
 	
+	if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] > 0) output("\n\nLooking at Rat’s Raiders’ veritable semen demons, that time (and money) spent getting them two-on-one replays in your mind. A very fond memory. Why not make more, if your wallet will allow?");
+	else if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] == 0) output("\n\nVIP service could be in your future, but you’ll have to give both of the noisy runts a taste of [pc.cumFlavor] protein. <b>Cum in both their ears a few times and you should pass muster!</b>");
+	else output("\n\nMm. Seeing as how Walnut & Chestnut are both here of their own free will, they might be amenable to another request. For cum and credits, they could be willing to offer you a VIP service! No harm asking, right?");
+	
 	processTime(3);
 	
 	if(!CodexManager.entryUnlocked("Rodenians")) 
@@ -1959,22 +1970,35 @@ public function wallSlutsNoisyRodentsWallIntro():void
 		CodexManager.unlockEntry("Rodenians");
 	}
 	clearMenu();
+	wallSlutsNoisyRodentsMainMenu();
+}
+public function wallSlutsNoisyRodentsMainMenu():void
+{
 	if (!pc.hasCock()) addDisabledButton(0,"Get Started","Get Started","Lacking any phallic implements, and without a way to emit cum, there’s nothing you can do here.");
 	else if (pc.isTaur()) addDisabledButton(0,"Get Started","Get Started","Your <b>‘tauric shape does not lend itself to sex with a rodenian.</b>");
 	if(pc.hasKeyItem("Puss Pass"))
 	{
 		if(pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume()) >= 0) addButton(0,"Get Started",cockSelect,[wallSlutsNoisyRodentsGetStarted,wallSlutsNoisyRodentsEarPussyVolume(),false,0],"Get Started","Fuck the rats. <b>For free!</b>");
-		else addDisabledButton(0,"Get Started","Get Started","Your dick is too big to fit in their earginas. <b>You’ll need to reduce your girth!</b>");
+		else addDisabledButton(0, "Get Started", "Get Started", "Your dick is too big to fit in their earginas. <b>You’ll need to reduce your girth!</b>");
 	}
 	else if(pc.credits >= 1500)
 	{
 		if(pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume()) >= 0) addButton(0,"Get Started",cockSelect,[wallSlutsNoisyRodentsGetStarted,wallSlutsNoisyRodentsEarPussyVolume(),false,0],"Get Started","Fuck the rats; <b>1500 credits</b> is a small price to pay for eager cumsluts.");
 		else addDisabledButton(0,"Get Started","Get Started","Your dick is too big to fit in their earginas. <b>You’ll need to reduce your girth!</b>");
 	}
-	else addDisabledButton(0,"Get Started","Get Started","You’re too poor!");
+	else addDisabledButton(0, "Get Started", "Get Started", "You’re too poor!");
+	
+	//to get vip option you must either be good ceo and fucked them once, or fucked them 4 times and gave both of them cum at least once
+	if (wallSlutsNoisyRodentsVIPAccess() || flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] == undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(1,"VIP Service","VIP Service","Without a dick, the two rodenians will want nothing to do with you. <b>Get you one.</b>");
+		else if (pc.isTaur()) addDisabledButton(1,"VIP Service","VIP Service","As a taur, you will not be able to engage in this.");
+		else if (pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume()) >= 0) addButton(1,"VIP Service",wallSlutsNoisyRodentsVIPService,undefined,"VIP Service","Ask the skanky rodents about some more... <b>personal</b> time. They're not slaves. That much is obvious. But they do want money along with your seed.");
+		else addDisabledButton(1, "VIP Service", "VIP Service", "Your dick is too big to fit in their earginas.");
+	}
+	else addDisabledButton(1, "VIP Service", "VIP Service", "If you want to get Walnut & Chestnut alone and in private, you'll have to impress them. A good shot of cum in both their ears will do" + (ratsPCIsGood() ? "" : " but you can always make nice to their gang") + ".");
 	addButton(4,"Back",pickWallSlut);
 }
-
 //[Get Started]
 public function wallSlutsNoisyRodentsGetStarted(kok:int=0):void
 {
@@ -2272,7 +2296,435 @@ public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+//check if pc has vip access
+public function wallSlutsNoisyRodentsVIPAccess():Boolean
+{
+	if ((flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 1 && ratsPCIsGood()) || (flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 3 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] >= 1 && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] >= 1)) return true;
+	
+	return false;	
+}
+public function wallSlutsNoisyRodentsVIPService():void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var firstTime:Boolean = true;
+	if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] > 0) firstTime = false;
+	var newDiscount:Boolean = false;
+	if (ratsPCIsGood() && flags["WALLSLUTS_NOISY_RODENTS_VIP_DISCOUNT"] == undefined && !firstTime) newDiscount = true;
+	
+	if (wallSlutsNoisyRodentsVIPAccess())
+	{
+		if (firstTime)
+		{
+			flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] = 0;
+			if (ratsPCIsGood()) flags["WALLSLUTS_NOISY_RODENTS_VIP_DISCOUNT"] = 1;
+			
+			if (pc.isBimbo()) output("<i>“Heeyy cuties sooo umm, how about some VIP Service? I bet you really need a break from the whole bein’ in a wall thing!”</i>");
+			else if (pc.isBro()) output("<i>“I got a better idea today - you two out of this wall.”</i>");
+			else if (pc.isNice()) output("<i>“I’ll speak frankly - how much would you two charge for a personal VIP session out of your little hole?”</i>");
+			else if (pc.isMischievous()) output("<i>“I know two cute, sexy rodents who would love a chance to have my dick in their hands. Can’t help but wonder how much it costs to have those nutty rats all alone...”</i>");
+			else output("<i>“Hey, simple question - even you sluts should get me: how much for a night out?”</i>");
+			
+			output("\n\nWalnut and Chestnut, in unison, stop their squirming and gaze a very vacant, gazely stare at you. <i>“Ummm...”</i> the top rat hums, hyper-focusing on your crotch. <i>“That uhmm...”</i> Chestnut, the ever-eager rodenian ball-sucker, smiles earnestly. <i>“We’d love to! Riiight Walnut? Oh but wait, errr, not for free! No way" + (ratsPCIsGood() ? ", [pc.mister] CEO" : "") + "!”</i> Ah, of course. Mercantilism. Wouldn’t be a premium rendezvous sans bargaining. <i>“Yes, that’s right!”</i> Walnut chimes in. <i>“You gotta give us some big money to make up for all we’re gonna lose by not making bunny-rabbits all harebrained!”</i>");
+			output("\n\nDo you, now?");
+			output("\n\n<i>“Uh-huh, uh-huh!”</i> The rascally protein pirates nod with their whole upper torsos. Infectious energy. <i>“Cherry’s special passes don’t count for this, big [pc.guyGirl]! Y’gotta have some private cash just for us, okay?”</i> Mmhm, makes sense. <i>“Sooo uh, umm...”</i> Whatever number they give you is obviously going to be pulled right out of their hidden asses. <i>“" + (ratsPCIsGood() ? "Five-thousand credits! Cuz you really are cool! Besides, Ffion and Chiara talked all about how nice you were, so we have to be nice too!" : "Fifteen-thousand credits, ayup! We’re gonna miss a lotta customers all for <b>your</b> penis!") + "”</i>");
+			output("\n\n" + (ratsPCIsGood() ? "Only five-thousand? Hah! You’re getting a steal of a deal there! Speaking of stealing, you’re starting to wonder if you <i>did</i> steal the rat gang’s hearts. Being nice to them is already paying dividends!" : "Fifteen-thousand? Quite a tall order... but you get two eager rodenians all to yourself for a few hours. Fifteen-thousand is a price anyone would gladly pay to be waited on by an enthusiastic duo of willing, dirty cocksleeves."));
+		}
+		else
+		{
+			if (pc.isBimbo()) output("<i>“Let’s get together in the nice VIP room again!”</i>");
+			else if (pc.isBro()) output("<i>“C’mon out and gimme that brand of rat love I like.”</i>");
+			else if (pc.isNice()) output("<i>“I’d like you both to see to me - personally.”</i>");
+			else if (pc.isMischievous()) output("<i>“I don’t want people seeing you and me together. How about some out-of-bounds adventure?”</i>");
+			else output("<i>“I need more than just two talking heads.”</i>");
+			
+			output("\n\nWalnut and Chestnut croon, inclining and declining their heads place themselves closer to you. <i>“Ooohhh, that sounds fun! And we’re good to go, so sure! What do you say, Walnut?”</i> Chestnut’s tongue lunges out, nine inches of wet, jeweled muscle to kiss her top porn-mate and coax an answer. <i>“Huhhh oh yeah!”</i>");
+			
+			if (ratsPCIsGood())
+			{
+				if (newDiscount)
+				{
+					flags["WALLSLUTS_NOISY_RODENTS_VIP_DISCOUNT"] = 1;
+					output("\n\n<i>“Oh uhh... wait...”</i> Chestnut does something in the wall, and Walnut reacts with a yipping yap. <i>“Actually, we know who you are, [pc.mister] CEO - Ffion and Chiara were talking so much about you, and they said you were super cool! Uhhmmm, how about we just lower the price?”</i>");
+					output("\n\nWalnut sighs begrudgingly. <i>“Ahhh okay, Chestnut’ll whine my ear off if I don’t agree - five-thousand credits for both of us! Cuz you’ve been awesome! And that’s forever, so c’mon [pc.mister] CEO, buy us up and let’s have fun!”</i>");
+					output("\n\nYou just might! Hot damn, there’s a few perks to befriending pesky rodents around here! <b>Walnut and Chestnut’s VIP Service has been discounted to 5000 credits!</b>");
+				}
+				else
+				{
+					output("\n\n<i>“For you, [pc.mister] CEO, five-thousand credits and we can get together and have some fun!”</i> explains Chestnut in that disarming happy-go-lucky, fucky-my-ears-uppy voice. One of them flares in your direction. <i>“It can all be yours, big [pc.guyGirl]!”</i>");
+					output("\n\n<i>“Me too!”</i> Walnut makes a winky face with her tongue-tip sticking out. <i>“Hurry up and decide, slowpoke! Before our ears dry up and we lose money! If you hold up our line we’re gonna get super mad!”</i> She giggles, because it’s not much of a threat. More provocative than anything, to get your dick in her head-puss. <i>“Pleeeease, will you buy us?”</i>");
+					output("\n\nSmiling together, genuine bucktoothed expressions, even their discount feels like a pretty big ripoff. But what the hell. Why else are you here? Not to listen to them talk your [pc.ears] off, that’s for sure.");
+				}
+				output("\n\nPay 5000 credits to get Walnut & Chestnut’s brand of VIP service?");				
+			}
+			else
+			{
+				output("\n\n<i>“Fifteen-thousaaaand credits, big [pc.guyGirl], and we’ll make you feel super good and relaxed!”</i> beams Chestnut. <i>“Y’gotta make sure you pay us every last bit so we can make up for all the dicks we’re not taking in this wall! We’re a really expensive and skilled bunch, so it’s worth every digit!”</i>");
+				output("\n\n<i>“Yup yup!”</i> Walnut winks playfully, focused eyes affectionately aglow. <i>“No refunds, but we guarantee and promise you will be happy with it! And guess what? We don’t let anyone else do it, because you’re the best customer! Besides all those horny rabbits. Sooorrry, but horsecock tastes so good.”</i>");
+				output("\n\nRight, right.");				
+				output("\n\nPay 15000 credits to get Walnut & Chestnut’s brand of VIP service?");
+			}
+		}
+		clearMenu();
+		if ((ratsPCIsGood() && pc.credits >= 5000) || pc.credits >= 15000) addButton(0, "Yes", wallSlutsNoisyRodentsVIPServiceYes, undefined, "Yes", "Pay up! These rats are ready to serve!");
+		else addDisabledButton(0, "Yes", "Yes", "You don't have enough credits.");
+		addButton(1,"No",wallSlutsNoisyRodentsVIPServiceNo,undefined,"No","Ehh, maybe not this time.");
+		
+	}
+	else
+	{
+		flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] = 0;
+		if (pc.isBimbo()) output("<i>“Before I go givin’ you cuties the D, why don’t we get moooreeee umm personal? Like VIP service! You two can totes do that for me, right?”</i>");
+		else if (pc.isBro()) output("<i>“How about we get better acquainted with you outside this cubbyhole?”</i>");
+		else if (pc.isNice()) output("<i>“I can tell you two aren’t slaves... so how about I pay you for something a little more intimate?”</i>");
+		else if (pc.isMischievous()) output("<i>“If I know two slutty rodenians in a wall, they like making money for their boss. How much to get them outside that wall, I wonder...”</i>");
+		else output("<i>“What’s the cost of getting two fun-sized vermin out of this wall and onto my lap?”</i>");
+		
+		output("\n\n<i>“Whaaaat?”</i> Chestnut’s eyes are two twitchy pinpoints roving over you from her upside-down insertion. <i>“Mmmmmmaaaaaybe...”</i>");
+		output("\n\n<i>“Nooo" + (ratsPCIsGood() ? ", not even for you [pc.mister] CEO" : "") + "!”</i> Walnut’s thrashy wiggles convey her disapproval. <i>“We can’t jus’ go giving up our spot, we get tons’a customers all the time and we make lotsa money! If we pop outta our spot someone else’ll probably take it! C’moon, what’s wrong with having two super vulnerable rodenians cursing and swearing and needing their mouths plugged up by big fat cocks and pumped full with lots of tasty, delicious cummies?”</i>");
+		output("\n\nChestnut pulls her lips into her mouth and sticks out the tip of a wet, studded tongue. Her jizz-flecked brain cells are rubbing together pretty hard. <i>“Oh! I know!”</i> the tawny rodent chirps. <i>“Walnut’ll totally be into it if you show her what a real high roller you are - " + (ratsPCIsGood() ? "and cuz everyone says you’re so cool, give us some money and pound our heads! If you fuck as good as the twin scamps like to say, we’ll give you a biiiiig discount!" : "use us a bunch, really pound our heads into submission! Theeeeennnnmmmaaaaybeeee we’ll let you have us outside the wall, okay?") + "”</i>");
+		output("\n\nWalnut’s snout splits with a big smile. <i>“Oooh, that sounds fun! Be careful" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "! We’re gonna get all your money if you wanna really show us our place!”</i>");
+		output("\n\nSo be it - ask about some special service <i>after</i> you’ve pumped some cum into their ears.");
+		if(!ratsPCIsGood()) 
+		{
+			output("<b>You’ll have to give them both at least one focused creampie to drive the point home, and possibly a few more sessions after that to really soften them up to treating you like a " + (pc.mf("king","queen")) + ".</b>");
+		}		
+		clearMenu();
+		wallSlutsNoisyRodentsMainMenu();
+	}
+	processTime(5);	
+}
+public function wallSlutsNoisyRodentsVIPServiceNo():void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	
+	output("You just shake your head. VIP Service sounds rather decadent right now, but it’s not in your plans.");
+	output("\n\n<i>“Awwww, that’s no good!”</i> Chestnut mewls.");
+	output("\n\n<i>“What a dumb waste of time!”</i> Walnut scoffs.");
+	output("\n\n<i>“But hey, we’ve still got space in our tits for jizz!”</i>");
+	output("\n\n<i>“Yeah! Slide your pass or some cash and let us suck your dick so you can fuck us really really hard!”</i>");
+	output("\n\n<i>“Mmhmm! And don’t you forget that Walnut’s a big dumb bitch who can’t lick cock to save her life!”</i>");
+	output("\n\n<i>“Fuck off, Chestnut! She uses mods on her tongue because she’s insecure and stuff! My ears will always be the hottest fuck you can get out of a rodenian, guaranteed!”</i>");
+	output("\n\n<i>“Oh who’s insecure now, twat-face!?”</i>");
+	output("\n\nIrascible bickering. It’s because the two slatterns like each other. What now?");
+	
+	processTime(5);
+	clearMenu();
+	wallSlutsNoisyRodentsMainMenu();
+}
+public function wallSlutsNoisyRodentsVIPServiceYes():void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var firstTime:Boolean = true;
+	if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] > 0) firstTime = false;
+	
+	output("The moment you signal your willingness to pay, Chestnut makes a weird face that speaks to some unseen effort taking place. <i>“Mmmffgg... hhmmm where is it...!”</i>");
+	output("\n\nAll of a sudden the compartment holding the duo in comfortable, usable bondage springs open and the two petite rodents are spat out unceremoniously onto the floor, deposited buck-naked like rewards from a strange vending machine. <i>“Ouch! Fucking fat-ass slut!”</i> Walnut exclaims. Small, curvaceous hips, the color of malted milk-chocolate, wiggle and bend temptingly as the two cum-bandits scramble to their feet and shake off the stiffness, piercings jingling to energetic movements. They’re barren downstairs, as natural females of their pliable race should be.");
+	
+	output(RandomInCollection(["\n\n<i>“Yeah well if you'd stop hogging the top all the time maybe the cum'd go somewhere else!”</i>\n\n<i>“That's not how that works!”</i>\n\n<i>“Who says!?”</i>","<i>“You're one to talk! Why else are you wearing piercings other than to keep those tits all too big? You can't even make it across the bars anymore without knocking yourself out!”</i>\n\n<i>“Take that back, I'm way better than you in the foot-dash!”</i>\n\n<i>“You're nowhere near my time!!”</i>","<i>“Who are you calling fat!? Are you serious, when all you do is whine about how your hips are oh-so inconvenient and cry stupid cuz you get too much cum in your wobblies it leaks?”</i>\n\n<i>“So what!? I like keeping a slender figure, and my big tits make everyone wanna put eggs in me! That's why I'm better than you!”</i>\n\n<i>“You can't keep moving the target, Walnut!”</i>","<i>“Maybe if you could figure out how to stop crashing into me every time it wouldn't be so bad, dumbshit!”</i>\n\n<i>“Then stop getting your tail wound around mine!!”</i>\n\n<i>“It's too fucking small in there, you're the one rubbing up on me all the time!”</i>"]));
+	
+	output("\n\nYou place a [pc.hand] on either of the rat girls’ shoulders, looking" + (pc.tallness > 60 ? " down" : "") + " at them imperiously. <i>“");
+	if (pc.isBimbo()) output("You two gotta lighten up! Think about me, I wanna see some teamwork for once!");
+	else if (pc.isBro()) output("None of that. You two are about to get busy.");
+	else output("I don’t want to have to deal with your quarreling, understand?");
+	output("”</i> All of a sudden the porny rapscallions put on their most adorable faces and cling to your [pc.legOrLegs], wrapping themselves around your [pc.thighs] and twisting fingers into your [pc.skinFurScalesNoun], giggling and entreating with soft coos. That’s more like it.");
+	
+	if (firstTime)
+	{
+		output("\n\n<i>“Did you know Cherry set up a little area for the volunteers?”</i> Walnut says, her and her wall-sister guiding you down the red-lit thoroughfare, past the open mouths of vaguely-aware fuck-pets and juicy, fat-bottomed offerings that the Tap-Hall provides, long flexible tails looped possessively about you.");
+		output("\n\n<i>“Mmhmm! It’s really nice. It’ll be perfect for taking care of a [pc.raceCuteShort] stud like you!”</i> Chestnut follows up, groping your " + (pc.isCrotchExposed() ? "helplessly hard [pc.cocksLight]" : "bulging undies") + ". <i>“Cherry told us we can use it whenever we want cuz we come back a lot, and she wants us to feel nice and welcome, because we make loads’a cash! There aren’t many volunteers but everyone likes us more than the slaves becuz we’re so careesmatic!”</i> She sticks out her tongue, pearly piercings ‘popping’ out of her firmly sealed lips like a pair of sex-beads. Mmm.");
+		output("\n\n<i>“Speaking of cash,”</i> Walnut pats your [pc.butts], <i>“time to fork it over, or else -”</i>");
+		output("\n\nOf course - you show them a preloaded chit. Anonymous and untraceable. The money-minded rodents gleefully eye the thing when you pull it from your pack... and then put it back to their high-pitched chagrin. You’re good for it, and they can wait until they’re done. Not like they have anywhere to put just this second, yeah?");
+		output("\n\nRodenians make the cutest pouts.");
+	}
+	else
+	{
+		output("\n\nWalnut takes your [pc.hand] in hers, tiny delicate paws perfect for the working whore. Both their coiling tails find their way around your waist and [pc.legOrLegs]. <i>“There’s not so many volunteers so let’s go use the break room again! Nobody’ll come by. Maybe Cherry if she wants ‘ta watch, but she’s got eyes all over Zheng Shi - she told me herself! Bet she’s got all the viewpoints covered!”</i>");
+		output("\n\nChestnut has your other, but instead of holding hands like some degenerate plod she drapes your [pc.arm] around her shoulders and gets you to hug her tight while her questing fingers draw little shapes into your [pc.skinFurScales]. Slightly ticklish, incredibly arousing. Her blunted claws feel heavenly around the hip, center of the thigh. <i>“Y’know, maybe you could, liiiike, be our sugar" + pc.mf("daddy","mommy") + " cuz you wanna keep having us all to you! I bet you’ve got a ship" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "! Why not let us use your room? We’ll even give you a " + (ratsPCIsGood() ? "bigger " : "") + "discount and tons of nights to remember! We’ll be the favorites of your harem!”</i>");
+		output("\n\nWalnut pushes herself into your side, staring up, brow in a V-shaped pout. Absolutely adorable, if slightly intimidating. <i>“And you <b>can</b> pay, right? If we got out of that wall for no reason you’re gonna be in -”</i>");
+		output("\n\nFlashing them both the amount on your pre-loaded cred-chit, you silence her concerns and refocus them back to your pleasure and entertainment. Of course you’re good for it. What, do they think you <b>want</b> to " + (flags["CHERRY_HER_PLACE_INVITED_NORMAL"] == 1 ? "have Molli ‘Cherry Bomb’ you?" : "find out what happens to liars around here?"));
+		output("\n\nNevermind that. Having two rat girls in your arms is more important than dwelling on things that won’t happen.");
+	}
+	
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsVIPServiceSex);
+}
+public function wallSlutsNoisyRodentsVIPServiceSex():void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var kok:int = rand(pc.cockTotal());
+	var firstTime:Boolean = true;
+	if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] > 0) firstTime = false;
+	
+	output("Cherry is a gracious and affluent host" + (firstTime ? " you learn" : "") + ". A private room with an imperceptible door is opened by a stamp on Walnut’s bare ass, scanned by a fist-sized console to its side. The opening of the barrier hisses a breath of sweet, fruity tang into your nostrils, and the sultry, dark gloom awaits. When the way shuts, everything outside is muffled down to the barely noticeable, bringing your ears up to speed on the rapid pulsing of your heart. It’s much warmer in here, like the inside of a melting chocolate box. The Cyber Punks’ subliminal lust-machines are still beaming their pink-hued notes into this room albeit at undetectable frequencies.");
+	output("\n\nYour [pc.cocksIsAre] <b>stiff.</b> Painfully so. In fact, you feel a few inches bigger than normal, warm aural lust bubbling through your top and bottom and setting you to complete rigidity." + (firstTime ? " Whilst you adjust to the sensations, Walnut & Chestnut guide you to a large, black leather sedan, and you sink back into its divine embrace with a heavy, happy sigh." : " Better adjusted to the sensations, you return to the large, luxurious sedan set in the middle, sinking into heavenly cushions, leaking a happy sigh.") + " Seamlessly, the two rodenians perch themselves on the armrests, divest you of your [pc.gear] piece by piece, physically compliment you on your [pc.cocksLight], and snuggle up nice and close, heads planted to either shoulder, doing their best to lead the conversation while they feed you with picks from the nearby platter, finger-foods bursting with calories and nutrients. Red (of course it’s red) wine is provided, and it flows in amounts equal to mischief and whimsy.");
+	output("\n\nSeeing no reason to hold back, you pinch Walnut’s nipples, wonder aloud how good they’ll look at the end of the night, and squeeze Chestnut’s beautiful tush, rubbing her bare crotch in open enjoyment of her exotic alien anatomy. Their eyes are never far from yours, and they both smile like you’re the best thing to ever happen in their lives. Who would have thought that you could unwind so easily in the heart of a pirate base?");
+	
+	var sel:Array = [];
+	
+	sel.push(1);
+	sel.push(2);
+	if (ratsPCIsGood()) sel.push(3);
+	if (pc.isBimbo()) sel.push(4);
+	if (pc.isBro() || roxySteeleHasPheremones()) sel.push(5);
+	var i:int = sel.length;
+	var rn:int;
+	
+	if (i > 0)
+	{
+		rn = rand(i);
+		if (sel [rn] == 1) 
+		{
+			output("\n\n<i>“Walnut’s a reaaalllly bad drunk,”</i> Chestnut slurs in your [pc.ear], inching closer, ponytail swaying. <i>“Watch - after her third glass she’s gonna get all wibbly-wobbly and make a mess ‘n Cherry’s gonna make her clean it up! Y’know why? Cuz those ear mods Big Raddy got for her also made her a lot eezierrrr to mess with. But me? I can drink all night!”</i> Unlike the rest of the punky rat with the many piercings, her tail is steady, and it weaves around with bottle in ‘hand’ to pour fresh, lightly-scented fluid into your glass - which you drink, tongue chasing its relaxing heat around your gums.");
+			output("\n\n<i>“Nooooo, thas not truuu!”</i> Walnut eyes you wearily. Yep, she’s fucking drunk off her ass. <i>“Guess what - Chestnut needed to get her tongue pierced cuz she couldn’t stop sucking every dick in the gang! Kept pulling everyone’s pants down because Rad told her too! Then she got so used to it she did it when she wasn’t told - but she LIKED it! CUZ SHE’S A FUCKING SLUT!”</i> Both girls stick their tongues out at each other, but a flick to their twitching ears ends it quickly enough.");
+			output("\n\nYour criminal rodents nuzzle into your [pc.chestNoun]}, breathing in your sweat and other enticing pheromones, alcohol and lust and enervation amplifying the sensations they experience. <i>“Mmmm,”</i> Chestnut swoons, <i>“you smell super horny{ [pc.mister CEO/ cutie-pie}.”</i> Walnut licks right above your heart with the flat of her tongue, organic vibration feeding into her jaw. <i>“Ffmm...”</i> Her lips press to that spot, smooching loudly. <i>“Wanna get physical now?" + (silly ? " I wanna get physical; let’s get into physical!" : "") + " Let us hear your body talk!”</i>");
+		}
+		else if (sel [rn] == 2) 
+		{
+			output("\n\nChestnut and Walnut spend a lot of time massaging away anxieties and other unneeded stresses. A hand squeezes your [pc.thigh] gently, a pair of fingers curl around your [pc.nipple], lightly clasping and tweaking. The rodenian duo slide in a little closer, drape themselves over your body, trap your [pc.cocksLight] in the twinned compression of their matching thighs, and lay soft, scrumptious kisses on your [pc.chestNoun]. Lifting up, they bite their plush lips inches away from yours. They kiss your jaw and cheeks from alternating angles - of course you kiss them back, grasping at the back of their heads and letting your inhibitions be drawn from you lick after lick, smooch after smooch, coo after throaty purr.");
+			output("\n\n<i>“You’ve got " + (pc.cockTotal() > 1 ? "some really big <b>cocks</b>" : "a really big <b>cock</b>") + ", " + (ratsPCIsGood() ? "[pc.mister] CEO" : "cutie") + ".”</i> Chestnut says the last word with a grinning click of her pointy mouse teeth. <i>“I bet you can’t wait to cum in our ears. We’re both gonna get your cuuummm riiiight?”</i> she trails off, humming and cuddling the minutes and hours away.");
+			output("\n\nThe touching comes easier. Walnut grips your [pc.cock " + kok + "] by the [pc.cockHead " + kok + "], swirling her index and middle fingers against the underside of the tip, groaningly wonderful fondling. Chestnut’s tail weaves in, an opened bottle of wine wound in the coil, and pours you another glass to enjoy, locking lips before you can swallow. Lightly-scented liquor dribbles down your chins, and her fur dutifully sponges the trickle as you trade more than spit. Their hips lock around you, and you hurriedly set your cup to the table, the dirty wriggles of alcohol and libido conspiring to drain the last vestiges of your restraint. Rough, dominant impulses aren’t far behind.");
+		}
+		else if (sel [rn] == 3) 
+		{
+			output("\n\n<i>“How’d you get Ffion so fired up, [pc.mister] CEO?”</i> Walnut spaces her queries out, filling the gaps with nuzzles and coos. And copious headpat requests. <i>“Cuz all she ‘n Chiara do is yammer about givin’ back to the poor... and stuff. I mean that’s cool and I wouldn’t be Raddy’s fave if I didn’t care about getting money buutttt they’re pretty tough, you know? Not everyone can fight like those two and their friends!”</i> You sip the wine that Chestnut pours, bottle in her masterful tail. <i>“Annddd well... I mean they make you seem so cool and awesome...”</i> Her eyes sparkle affectionately, so you lean in and boop her snout with your [pc.face]. <i>“Yeah, you’re hot!”</i>");
+			output("\n\nYou only answer in the way of a smile - you won’t be drawn like this, and you wag your finger. Which she starts to suck on. How you got in good with the scamps is your business.");
+			output("\n\nChestnut takes over, keen on amusing you with tales of their own sordid exploits. <i>“Well just cuz we’re not really good at the whole fighting thing doesn’t mean we can’t do cool things too!”</i> She gestures a V-sign, then promptly strokes those fingers down your middle towards your [pc.cocksLight]. Mmm, right under the [pc.cockHeads]... perfect, the skill of a premium slut. <i>“We’re the super best becuz we make aaaaallll the money for Rad ‘n Mikky, and we get to have the most fun doing it! And nooo danger at all!”</i> Laying head against you, the ponytail-wearing rat regards your crotch with tangible adulation, wiggling her palm around your [pc.base " + kok + "]. <i>“And we’re gonna make you really, really happy, [pc.mister] CEO,”</i> she whispers, infatuated.");
+			output("\n\nA tight squeeze, a shift of the thigh; you set your wine aside and grope the two more eagerly, surrendering to an alcohol-imbued libido, gasping when you find their boobs, their enjoyably-large rumps, struggle not to blow early from the obscene delight in handling two horny rats.");
+		}
+		else if (sel [rn] == 4) 
+		{
+			output("\n\nHere, in this room, with kindred spirits, you can talk about every sexual thing that comes to mind. Walnut and Chestnut are prostitutes meant for the big screen, star-studded whores begging to be earmarked. Much like you, if you say so yourself! How best to make a horsecock cum, where to squeeze a suula’s penis, how to coax the knotty guys and girls out there into premature swelling... here, in this room, these two rats know just how to get you hard and wet. A quiet, isolated forum of ball-milking knowledge - techniques are exchanged, advice given, all while giving their asses an appreciative fondling and they your [pc.cocks] the tightest, most decadent squeeze.");
+			output("\n\n<i>“You gotta try ‘n get a Jumper one-on-one, if you haven’t!”</i> Chestnut swoons. <i>“Mmmmm... horsecocks. Saggy, musky sheaths, fat, fuzzy, hot-hot ballsacks... what’s not to love about bunny-herms?”</i> She lays the messiest kiss on your [pc.face]. <i>“They’re always so horny and hard and I dunno why, but they’re the big spenders. They scream and cry and give out the best headpats when you make ‘em pump you full!”</i>");
+			output("\n\nWalnut suckles on your [pc.nipples], polishing your boobies to a glistening shine. <i>“I reeeaally like the doggie guys. I looove knots, but the cat-people on the station have some neat dicks too. I’m not a fan of the augmented stuff, but there’s something that can’t be beat when you’ve got a kitty-dick in ‘yer ear and swabbing it soo good.”</i> The ear-modded skank, gives you a blatant handie, wicking away dollops of pre to gloss your shaft" + (pc.cockTotal() > 1 ? "s" : "") + ". <i>“But human dicks? My fave. Mmfff, I really like the way the head looks, and they’re sooo sensitive, and they throb and twitch really good!”</i>");
+			output("\n\nNot to be left out of this very important and highly-arousing discussion about cocks (and cunts, as it later turns to), you describe your rich experiences in impassioned detail. Exquisite recollections in this horny gloom on how best to curve one’s [pc.lips] for the most hypnotic, sweeping blowjobs imaginable. What muscles to clench in your pussies, how to bend the head and neck to beguile the shyest lovers, transform them into raging paramours. The two listen very closely, ears pressed to your breast, doors in their mind opening to new and exotic methods.");
+			output("\n\nMethods they’re already practicing on you.");
+		}
+		else if (sel [rn] == 5)
+		{
+			output("\n\n<i>“Ohh maaaaannn,”</i> Chestnut and Walnut both swoon, pressing their snouts right into your collarbone and huffing ‘til their lungs burn. Their upper bodies squirm and caress you with enthralled need, reacting strongly to the potent sexual odor billowing out of your pores. <i>“You smell soooo good");
+			if (ratsPCIsGood()) output(" [pc.mister] CEO");
+			else output(pc.mf(" you hunky stud"," you delicious she-stud"));
+			output("! Mmmmm... way better than the bunnies... so musky and thick...”</i> Uniting in oral delight, Chestnut’s modded tongue and Walnut’s natural muscle sweep across your [pc.chestNoun], scooping sweat and other intangible flavors into their greedy maws, gorging themselves on your chemicals.");
+			output("\n\n<i>“Unff!”</i> Walnut sniffs, turning to your [pc.cocks] and going straight to town, happy to hold and serve you. Tremors of pleasure shudder through your boner" + (pc.cockTotal() > 1 ? "s" : "") + ", hot, sweet, lurching arousal shimmering in your body. Void, fuck, knowing your pheromones can cause these kinds of reactions in others may be hotter than the consequences!");
+			output("\n\n<i>“You’re the tastiest [pc.raceCuteShort]-[pc.guyGirl] of all time, and we’re gonna make sure to get all that yummy nut out of you, okay?”</i> Chestnut smiles dreamily, priorities aligning to the fragrant source of her subby desires, expression shifting into pure lewdness. <i>“You just use us as much as you want, cuz we’re gonna be your best fucks ever, we promiiiissse!”</i>");
+			output("\n\nBefore you go spilling wine everywhere, you set your glass down and turn your mind to the business of pleasure, concentrating on making the most of your petite, fuzzy fuck-dolls.");
+		}
+	}
+	
+	output("\n\nSo obviously pleased to get to the <b>meat</b> of your get-together, Walnut and Chestnut call upon their boundless enthusiasm, groping and wriggling and fondling with ears, tails, fingers, kneading and rubbing and squeezing, eyes gazing up and down, racing to keep up with sexual demand. Walnut’s lube-weeping ears puff and swell into steamy-hot cock-pleasing nooks, thirsty plumpness blasting cloying pheromones into the air. Chestnut’s authentic aural love-holes flush a deep rose-pink hue, the color of a bitch who <i>needs</i> to be eaten up before you lose the chance forever.");
+	output("\n\nSex slaves get jaded, become mundane after a while. Not these two - not rodenians. You deliver hefty swats to their asses and delight in the jiggly tactility of their boobs, hips, and nipples - oh the sounds Walnut makes when you pluck on her pierced buds...! Chestnut artfully delivers long, nubby rasps to your [pc.cocksLight] with her enhanced tongue, the oral tendril wrapping around your [pc.dickSkin " + kok + "] and jerking the phallic implement into drooling pre. The girls play-fight amongst each other, jockeying for the first taste of your [pc.cumFlavor] juices.");
+	output("\n\n<i>“I’m always on top - me first!”</i>");
+	output("\n\nOverwhelmed by her partner’s fervor, Chestnut begrudgingly slides to the floor in front of the chair so that Walnut can position herself in a sort of sixty-nine, her writhing hips settling on your [pc.chestNoun] and her legs splayed up and around your head. With a grunt of effort you grab the rat’s furry haunches and bite into her thigh, but not painfully! Just enough to leave an indent in the tawny runt’s pelt" + (pc.hasPerk("Myr Venom") ? " and inject your venom so that her heart may pump it where it needs to go" : "") + ".");
+	
+	processTime(5 + rand(5));	
+	clearMenu();
+	addButton(0,"Next",penisRouter,[wallSlutsNoisyRodentsVIPServiceSex2,wallSlutsNoisyRodentsEarPussyVolume(),false,0]);
+}
+public function wallSlutsNoisyRodentsVIPServiceSex2(kok:int=0):void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	var kok2:int = -1;
+	if (pc.cockTotal() > 1) kok2 = pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume(), "volume", [kok]);	
+	var firstTime:Boolean = true;
+	if (flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] > 0) firstTime = false;	
+	var fuckBoth:Boolean = false;
+	
+	output("<i>“Mmmm, cock.”</i>");
+	output("\n\nA slurp, a gasp, and penetration - [pc.cock " + kok + "] enters the slimy magic of Walnut’s left ear, marshmallow silkiness enfolding your rock-hard pole in cunningly-shifting walls. <i>“Aaaaaahhhhaaaaa...EEK!”</i> your mouse-skank crescendos to a squeak; her spine feels the ascent of your rod as it excitedly bows and arches towards her hedonary gland. Were she not there on top of you, it’d be pressed firmly against your belly. Instead, it’s burrowed in the blanketing pocket of scandalous head-cunt.");
+	
+	pc.cockChange();
+	
+	output("\n\nBucking into the slippery recesses, keeping a firm grip on her pert rear, you drive into the semen-demon’s bobbing noggin, matching her persistent thrusts and twists, experiencing overwhelming ecstasy on every pressure-narrowed hump into the raunchiest hole. She’s so turned on that she’s getting ahead! <i>“Yeeeessss, I looveee thaaat...! Do you like my head-pussies" + (ratsPCIsGood() ? ", [pc.mister] CEO" : "") + "?”</i> she teases, muzzle hidden from sight. <i>“I’m your sluuut, look how easy I’m getting off because I have the bestest erectest diiick!”</i> Grinding left and right, you take hold of her round bubble-butt and spread the cheeks, revealing the asshole between");
+	if (pc.libido() >= 33) output(" and drag your tongue upwards and over the vulnerable sphincter");
+	else output(" and sink a finger into the winking slot");
+	output(", ratcheting up the intensity the harder she pounds her joyous cum - receptacle of a head into your crotch");
+	if (pc.cocks[kok].cType == GLOBAL.TYPE_FELINE) output("; bristling phallic barbs force breathy whines of sheerest pleasure out of her");
+	else if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output(", singing melodic praise for the feral pressure-pleasure of flare and medial ring squelching into her cranial puss");
+	else if (pc.cockCanSting(kok)) output(", howling in wide-eyed mania as your venomous tendrils lash her deepest places with spasm - inducing aphrodisiac");
+	else if (pc.hasKnot(kok)) output(", begging for the most savage knotting every time you grind that propagative bulb into her straining recesses");
+	
+	output(". <i>“Ohhh yessss, the big [pc.raceShort] is making me [pc.hisHer] whooore! And I can feel it everywhere!”</i>");
+	
+	var sel:Array = [];
+	
+	sel.push(4);
+	if (pc.balls > 0) sel.push(1);
+	if (pc.hasKnot(kok) || pc.hasSheath(kok)) sel.push(2);
+	if (kok2 >= 0)
+	{
+		sel.push(3);
+		sel.push(3);
+		sel.push(3);
+	}
+	var i:int = sel.length;
+	var rn:int;
+	
+	if (i > 0)
+	{
+		rn = rand(i);
+		if (sel [rn] == 1) 
+		{
+			output("\n\nChestnut wouldn’t dream of letting Walnut hog all the glory. The slick, studded flesh of the she-rat’s tongue mops your [pc.sack] deliberately and obediently, a sticky, sensual whirl of ball worship that puts you on the verge of groaning orgasm. <i>“Mmmmmyesss,”</i> she throws in, savoring each and every drop of cummy pre that makes its way down. <i>“Yummmmyyy, I looove this taste!”</i>");
+			output("\n\nImpaling yourself to the [pc.knotOrSheath " + kok + "] in the tawniness known as Walnut, your wetly-dripping [pc.ballsNoun] deliver a lewd-sounding whack to the pint-sized scrote-sucker, and she demonstrates just how pleased she is to have the seed-heavy orb" + (pc.balls > 1 ? "s" : "") + " slapping into her chin by burying her giggly lips into the fullness of your throbbing testicles, kissing the suppleness of your bouncy, gurgling nutsack and leaving behind faint marks of dusky lipstick, giving it the suckle it deserves" + (pc.cockTotal() > 1 ? " and making sure to jerk your spare cock" + (pc.cockTotal() > 2 ? "s" : "") + " in the meantime" : "") + ". <i>“I love ballsacks" + (pc.ballSize() >= 8 ? ", especially when they’re as big as yours" : "") + "! Pushing my silly snout aaalll the way into your bulg" + (silly ? "y wulgie" + (pc.balls > 1 ? "s" : "") : "e") + " makes me so happy, cuz of all that sweat and salt and precum that <b>steams</b> there! I can feel your heartbeat in in it, and you wanna cum super bad, so go for it!”</i>");
+			output("\n\nHuffing ripe ballstench, and lapping with a frantic blur, hypnotized Chestnut imparts the energy you need to screw Walnut’s whorishly-clenching ear-slot and make it to the hedonary gland, pumping inches of glistening length into that yielding passage of swampy bliss, fucking like a beast. [pc.Hips] clapping into her jaw with increasing intensity, sweating feverishly, you scratch at the rodent’s back and clutch her tighter than anyone’s ever held her before, spearing forward into that candied feminine trench again, and again, taking advantage of her suggestible state by <i>demanding</i> she tell you what exactly is on her mind. In that tender, pulsing place where your libidos blend, you utterly lose yourself.");
+		}
+		else if (sel [rn] == 2) 
+		{
+			output("\n\nChestnut isn’t about to let Walnut have it all. That’s why she’s down in front and savouring the raw, primal taste of your [knotOrSheath " + kok + "]");
+			if (pc.hasKnot(kok) && pc.hasSheath(kok)) output(", thick, pierced tongue drooling over the tumescent growth of your cunt - plugger and sliding over the slaver - glazed folds of your sheath");
+			else if (pc.hasKnot(kok)) output(" studded serpent of a tongue teasing, enticing, and inflaming your bulbous cunt - plug into fighting Walnut’s brain for space");
+			else if (pc.hasSheath(kok)) output(" lengthy, jeweled tongue smearing spit and lust into your musky sheathfolds, infringing on nerve-dense areas never meant to be explored");
+			output(". None of you hold yourselves back, and your oozing mast rewards the lusty runt below with rivers of cummy lubrication, a special blend of [pc.name] and Walnut that Chestnut is absolutely appreciative in receiving" + (pc.cockTotal() > 1 ? ", using it to flavor the extra meat you’re packing" : "") + ". <i>“Mmmffff, cocks with a little extra! Just as expected from our favorite [pc.raceShort]!”</i>");
+			
+			output("\n\nYou feel the depth of the libidinous pirates’ experience in the way pleasure cascades through your nervous system. Riding a wave of agitated vigor, you pump every gleaming inch into the impossibly tight knead and squeeze of unleashed cranial cunt, bucking hard and slamming the brain-drain button responsible for the true fever-joy in rodenian coitus. Holding tighter to Walnut than anyone else ever has or will, you grind yourself into the swaddling, bumpy silk, pussy-destroying throbs rolling through your erection into that incandescent place of shared ecstasy. Brainwash chemicals weave across her mind, enhancing the keening joy she feels being at your mercy, and you <i>demand</i> she tell you how good that feels.");
+		}
+		else if (sel [rn] == 3) 
+		{
+			fuckBoth = true;
+			output("\n\nUnsurprisingly, Chestnut isn’t about to be the one left out. Not when you’re packing enough for multiple sex-addled holes. If Walnut’s prodigiously enhanced earpussy is an ooey-gooey puffed-up honeypot of an adventure, Chestnut’s is the bendy, frictionless, <i>alien</i> deliciousness you had no idea you were direly missing. She handles insertion out of sight, intensifying the extreme mind-blasting wonder of barreling into strangely-slippery folds and gliding all the way through on a spurting tide of [pc.cumVisc] ardor into her hedonary gland and simultaneously into your first ahegao. Hot, thrumming, <i>thin</i> flesh encapsulates your penis, genuine velvet compared to the bumpy silk-softness of her partner’s aural cum-channels.");
+			output("\n\n<i>“Yaaaaaaayyy, there’s almost noooo-buddy with TWO dicks! Thanks so much for this treat!”</i>");
+			output("\n\nBoth trollops mindlessly bob their heads into your [pc.cocks] like they’re listening to a catchy song, rendered freshly-submissive by torrents of unleashed hedonary concoction. That you can’t see it, that you can’t see the clear saliva surely dangling from their moaning lips, the lolling tongues... <i>why does that feel so much better?</i> All you have in your face is sweaty rat-butt, and, fuck, all you feel is a hundred times more visceral and <b>raw</b> than that. So you plow their fucking cunts for all you’re worth, a, shuddering, whimpering [pc.raceShort] who can count [pc.himHer]self among the beatific few to penetrate more than one rodenian at a time.");
+			output("\n\nThat’s it! Of course, how could you forget, humping like a greedy animal!? Their hedonary glands, the suggestibility, <b>yes</b> - you <i>demand</i> they speak, tell you how <i>good</i> they get it from you, how <i>amazing</i> it feels to be taken care of!");
+		}
+		else if (sel [rn] == 4) 
+		{
+			output("\n\nYou groan as Chestnut’s hot slaver makes itself known on your girth joining the fanning fluids of ruthless rodenian rutting. Loins soaked in girlish honey, you slip and slide into clutching euphoria, short of breath and missing the heat every time you’re not plugged [pc.knotBallsHilt " + kok + "]-deep in the rat’s too-fuckable skull. Pounding her takes a lot of effort from this position, and you can’t even see what’s going on beyond the sweat-flecked mass of mouse ass swaying provocatively in your [pc.face], tail thrashing overhead.The obscene heaviness, the joy of being clutched by slick, tender reproductive walls, surrounding you with vibrating suction, is something you’ll miss.");
+			output("\n\n<i>“Gonna make you come back... and cum again... lots and lots...!”</i>");
+			output("\n\nViscous goo leaks from the over-modded slit, bubbling around your [pc.cockNoun " + kok + "]. It flexes - it thrusts, <b>hard,</b> motions never slow and never languid. The faster you get, the better it feels. You aren’t sure whether you’re feeling more and more earcunt at once or if you’re somehow getting more sensitive. Walnut is, though. Your insatiable bulk has been ramming into the doxy’s feel-good brain-switch, opening the flood-gates of total submissive bliss so that waves of obedience can tsunami into her fucked-addled lobes.");
+			output("\n\nYou <i>demand</i> she tell you how good it feels to be taken like this, to have someone as hard as you wrecking the supple texture of her well-used passages.");
+		}
+	}
+	
+	output("\n\n<i>“Iiiiiit’sssss the BEST!”</i> Walnut cries, concentrating on giving you the most effortless path into her. An insistent buzz of nearing orgasm trembles inside her. The very idea that your turgid dick is going to unload inside makes her quiver. <i>“Pleeeasseee gimme lots of cummm! I’ll be the best rat-slut of all time and wring out your - ah - mm - aaaaaaa!”</i> Silenced unintentionally by your most vicious thrust, an unnatural curtain of ear-jism swims down your phallus. <i>“Plsshsshsh I’m gonna cummmmm!”</i>");
+	if (fuckBoth) output("\n\n<i>“Ah - ah - ahhhhhhh I’m gonna go crazy! Don’t make us waiiiiit!”</i> Chestnut whimpers, too much sensory data for her malleable brain to sort through - she just needs your [pc.cumNoun], and lots of it!");
+	output("\n\n<i>“We can’t cum without you" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "! We need your cock" + (pc.cockTotal() > 1 ? "s" : "") + " soooo much!”</i> Chestnut exclaims, simmering deep in her fuck-doll trance.");
+	output("\n\n<i>“Yeeeeeaaah, stretch us so wide with your strong dick! Crack our stupid heads until all we wanna think about is giving you a blowie every single day, all the time! Plaster us with cum! We’re your sluts, only yourrrrs! You’re the alpha [pc.guyGirl] and you haaaave to get offff!”</i>");
+	output("\n\n<i>“After Walnut, fuck me harder! Really claim me, like I’m just a dirty slave whose only good for being someone’s easy bang! Cuz I totally am, I’m always happy to suck down loads and loads of jizz, especially yours" + (ratsPCIsGood() ? ", [pc.mister] CEO" : "") + "!”</i>");
+	output("\n\nSqueaks are the only noises your delirious cock-sluts can make now. Just as you begin to push into Walnut" + (fuckBoth ? " and Chestnut" : "") + " harder, seething gouts of seed make their way up " + (pc.balls > 0 ? "from your [pc.sack]" : "through your [pc.cocksLight]") + " in that soothing, calming way, wet explosions of [pc.cumGem] seed splurting into your exclusive rat onahole" + (fuckBoth ? "s" : "") + ". The sensations prove to be far more intense than a regular orgasm. Every recumbent inch of your body inevitably roars with the need to breed, crying out in burbling joy. Fire and brimstone flash at the edges of your peripheral.");
+	
+	if (pc.cumQ() >= 10000)
+	{
+		output("\n\nWhen [pc.cum] leaks and bursts from your [pc.cockHeads], Walnut’s" + (fuckBoth ? " and Chestnut's" : "") + " ears are there to swallow the jetting output. As if dominated by the unstoppable torrential <b>might</b> of your titanic orgasm, they throw themselves into ensuring as little is wasted of it as possible. " + (fuckBoth ? "They hilt themselves as close as they" : "She hilts herself as close as she") + " can to your loins, each shot of jizz jerking " + (fuckBoth ? "their necks and nearly throwing them" : "her neck and nearly throwing her") + " loose. In essence, you’re still fucking the rat" + (fuckBoth ? "s. Their ear-cunts are" : ". Her ear-cunt is") + " <i>still sucking</i> even as you cum your brains out alongside them, unable to catch your breath as you’re taken for a ride in gloriously-textured fuck-tunnel.");
+		output("\n\nYou bust so hard that your molten nectar launches out of " + (fuckBoth ? "their other ears" : "Walnut’s other ear") + ", hugely-thick ropes of gobby release. There is little you can do in the clutches of Walnut and Chestnut but have yourself ‘crack’ apart. Everything except your [pc.cocksLight] feel" + (pc.cockTotal() > 1 ? "" : "s") + " useless right now. Every other sense besides pumping the brown-furred spunk-dumps full of bust-inflating ecstasy is numbed or deadened to provide greater tactile sensitivity for your manhood" + (pc.cockTotal() > 1 ? "s" : "") + " to detonate with. Much more orgasmic power than your sapient consciousness is equipped to handle. In the heat of it all, you delight in the furry smoothness of their egg-ducts bloating from the fountaining flows of unimaginable release.");
+	}
+	else if (pc.cumQ() >= 2500)
+	{
+		output("\n\nLike " + (pc.cockTotal() > 1 ? "dormant volcanoes" : "a dormant volcano") + " erupting, fresh injections of sperm-packed " + (pc.isHerm() ? "herm-" : "") + "spooge stream into Walnut's" + (fuckBoth ? " and Chestnut's" : "") + " tit-wombs. The force of your [pc.cumVisc] ejaculations comes close to knocking " + (fuckBoth ? "their heads clean off your pillars" : "her head clean off your pillar") + ". Fat dollops of [pc.cumNoun] form then launch into tightly-shut walls oceans of writhing, sperm-shepherding muscle that ensure your ample virility is delivered to the places it belongs. It feels like the whole of Zheng Shi tightens against your [pc.cocksLight], cradling them in powerful, unrelenting softness that crushes the ecstasy out of your fountaining phall" + (pc.cockTotal() > 1 ? "us" : "i") + ".");
+	}
+	else
+	{
+		output("\n\n[pc.Cum] spills forth from your body in seamless, rhythmic discharges which feed Walnut's" + (fuckBoth ? " and Chestnut's" : "") + " thirsty guzzling expanses. Skillful touches and coiling tails, slick with torrid effort, rob you of muscular control, aggressive rushes of spunk loosing into the crushing, fathomless depths of interior texture. It’s milked straight out of your " + (pc.balls > 0 ? "churning ballsack" : "prostate") + ", and you can feel it too in your hyper-aware climactic state: the vacuuming pull of grasping constriction that exhausts your male half to satisfy a deep biological thirst that can never truly be quenched.");
+	}
+	
+	output("\n\nThe past few seconds slipped you by. You’re fading in and out, an inner spring coiling and snapping - you’re still squirting, still being teased and pleasured. Walnut and Chestnut have taken up position below the chair, worshiping your delicious [pc.cockColor " + kok + "] [pc.cockNoun " + kok + "]" + (pc.balls > 0 ? " and arguing over who gets to clean your [pc.balls]" : "") + ". You don’t get to go soft, and you don’t get to catch your breath. These verminous succubi are gonna have their way with you unless you act!");
+	output("\n\nGlancing to your right, you notice on the wine and foods platter there are a few medipens labeled Priapin. Libido boosters.");
+	if (!firstTime) output(" Who keeps putting these here? Oh well.");
+	if (pc.isAmazon()) output(" Not that you need a pick - me up, but if this is how it’s gonna be, you’re happy to embrace your role as a hyper - virile sex goddess.");
+	else output(" Exactly what you need to give it to them both so hard they won’t be going back to work for a while!");
+	output(" The drug enters your veins from the forearm; your [pc.cocksLight] spike" + (pc.cockTotal() > 1 ? " and swell" : "s and swells") + (pc.balls > 0 ? ", and your nutsack inflates" : "") + ". Revitalized, you stare down the duo and sit up, grab the back of their heads, and give them only five seconds prep time for the next round of intense sex.");
+	
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+	if (fuckBoth) IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+	processTime(10 + rand(5));	
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsVIPServiceSex3,[kok,fuckBoth]);
+}
+public function wallSlutsNoisyRodentsVIPServiceSex3(arg:Array):void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+	
+	var kok:int = arg[0];
+	var fuckBoth:Boolean = arg[1];
+	var kok2:int = -1;
+	if (pc.cockTotal() > 1) kok2 = pc.cockThatFits(wallSlutsNoisyRodentsEarPussyVolume(), "volume", [kok]);
+	
+	output("Soaked in compliance, Walnut and Chestnut learn exactly how well you can fuck when they’re not bound up in the wall, being spread around you in every way you can think of to use their ears. They fall in love with your [pc.cocks] thanks to a few daring words of encouragement. After the third go you got them trained to shiver whenever they dared look upon the full scope of your diamond-hard cock" + (pc.cockTotal() > 1 ? "s" : "") + ". It may not last forever, given their nature as natural-born wall sluts, but as you thump into their clogged, oscillating vaginas, you don’t worry about it, only about the gasping and quivering you do when meet their jawbones with ardent pumps of your [pc.hips] and forcing them to cum with your own seething bloom.");
+	output("\n\nPlowing into Walnut’s spooged innards, imprinting your [pc.cockType " + kok + "] shape in the ecstatic orifice, its pleasure hasn’t reduced one bit. Sinking into the smothering swamp of her aural tunnel, you bury another shot of chest-fattening volume into her now-leaking titties, sheerest bliss etched on your face. It’s not long before you find yourself back in Chestnut’s ears - in the other one, of course - swinging your drug-powered mass of dickmeat into her pink suppleness, building up to another brow-smacking high, the lewd and whorish sounds the only things in the galaxy.");
+	
+	if (kok2 >= 0)
+	{
+		output("\n\nWhen you have two rats and two cocks, the pieces go together like a jigsaw puzzle. This isn’t amateur hour, so you mount both of them" + (fuckBoth ? " again" : "") + " and go to town, crude and awkward as it is to be thrusting into a set of ears.");
+		if (pc.cockTotal() > 2) output("Your " + (pc.cockTotal() > 3 ? "extra members" : "third member") + " find a place betwixt their mouths, quickening in anticipation.");
+		output(" It’s easy to lunge into their pink plushnesses, disparate attributes coaxing a hefty gout of seed, and then another. Working together for your pleasure is to their benefit. If one makes you feel good, the other gets a nice, hot, [pc.cumVisc] infusion of" + (ratsPCIsGood() ? " CEO" : "") + " [pc.cumNoun].");
+	}
+	
+	output("\n\nNow on the second and last provided dose of Priapin, you’re thrusting between the knelt girls’ spunk-fattened breasts, making a game out of their dick-addicted worship. Whoever can tongue your [pc.cockHeads] the best will get it next. In reality that’s a lie: you’ll pick who you want just to bother the two of them to no end, make sure they never get complacent. As you’re drilling raw thick cock back into Chestnut’s head, up and down through the curving passage of the shortie’s feminine cradle" + (pc.isLactating() ? " lactic milkgasms riding atop oceans of squirting need" : "") + ", you go right into pounding the corrugated socket with wild abandon, grabbing her head with both hands and thrusting in, withdrawing, slamming in, withdrawing, stroking and <b>banging</b> to your heart’s content." + (pc.inRut() ? " Your state of rut demands nothing less than the absolute assurance of impregnation." : ""));
+	output("\n\nYou cum, and then while still spurting, yank her off and plumb what little of Walnut’s undulating recesses remain unexplored. They readily welcome your [pc.cum]. [pc.CumGem] creampies and facials transform the girth-girding protein pirates into [pc.cumNoun]-pasted messes, their anatomies completely shut down now that they’ve ‘robbed’ you for every last drop of jism, and you give it up freely with laughing enjoyment and ecstatic yowling.");
+	output("\n\nJust one more should do. Really - you’re not done yet, you think, pumping out a few more ropes onto their dazed muzzles. Using your own spooge as lube, you pick your favorite and enter, making her squeak a very, very cute and lewd squeak.");
+	
+	processTime(10 + rand(5));
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+	if (kok2 >= 0) IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+	pc.orgasm();
+	
+	//simulate a shit ton of sex
+	var rn:int = 6;
+	for(var x:int = 0; x < rn; x++)
+	{
+		if (x < 3)
+		{
+			IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+			if (kok2 >= 0 && rand(2) == 0) IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+		}
+		else
+		{
+			IncrementFlag("WALLSLUTS_NOISY_RODENTS_CHESTNUTTED");
+			if (kok2 >= 0 && rand(2) == 0) IncrementFlag("WALLSLUTS_NOISY_RODENTS_WALNUTTED");
+		}
+		
+		processTime(10 + rand(5));
+		pc.orgasm();
+	}	
 
+	clearMenu();
+	addButton(0,"Next",wallSlutsNoisyRodentsVIPServiceSex4);
+}
+public function wallSlutsNoisyRodentsVIPServiceSex4():void
+{	
+	clearOutput();
+	wallSlutsShowNoisyRodents();
+		
+	output("<i>“Mmmhhhhaaaaaaa I’m sooooo tiiirreeed!”</i>");
+	output("\n\n<i>“My ears are sooo fuuuuckiiingggg sooooore!”</i>");
+	output("\n\nChestnut and Walnut groan awake in your lap. When they passed out, you took the time to clean them up some. Soon as they discover their places, they swoon and kiss and make out. Their breaths still smell like your dick. <i>“Ooohhh, how are you" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "? Didja have fun fuckin us stupid?”</i>");
+	output("\n\n<i>“We’re professional cum guzzlers! Premium cock destroyers!”</i> Chestnut coos, laying long, fat, adoring licks on your collarbone. The coolness of piercings is a relieving contrast to the sweltering, pheromone-filled air. <i>“Did you enjoy? C’monn we’re the best right?”</i> she asks teasingly. <i>“Nobody takes a fucking like we do, that’s a Rat’s Raiders guarantee!”</i>");
+	output("\n\nIs that a sales pitch you’re sensing? No, no, time to get out of here. Throwing up your [pc.arms], you send the spurt-suckers sprawling across the floor, craning your neck and cracking your knuckles. Fuck yeah. Everything you brought in here is still where it should be, and now it’s back on you.");
+	output("\n\n<i>“Awww,”</i> the girls roll over on their chests, legs kicking up and down. They fondly regard you from down there, tails wiggling in the air. <i>“That was soooo worth it" + (ratsPCIsGood() ? ", [pc.mister] CEO" : "") + "!”</i> Walnut grins. <i>“But aren’t you forgetting something?”</i>");
+	output("\n\nNo you’re not. You fling their payment through the air, and it lands right between the two. <i>“Thank you! Please try the Walnut & Chestnut service again! Cuz guess what, it’s only for awesome [pc.guyGirl]s like you!”</i> She holds up two fingers to the side of her eye like a total nerd.");
+	output("\n\nAs soon as Chestnut says that, they both start fighting for the money, and the honor of carrying it back to their hoard. Hopefully they don’t get <i>too</i> worked up!");
+	output("\n\nStepping back into the public space, it feels like exiting critical proximity to a blazing sun into something faintly tropical. Geez, you built up quite a sweat in there, and you’re trembling below the belt. One step out and you’re hanging limply from an alcove wall, chest suddenly heaving. Fatigue caught up quick, didn’t it.");
+	output("\n\nBetter be prepared for a pelvis-liquefying escapade when you go at two insatiable rodenian whores in the future. Once the pins and needles effect wears off and blood starts flowing properly, you make your way back through the promenade.");
+	if (!pc.hasStatusEffect("Cherry_In_Room")) output("\n\nCherry is leant in her usual place, and gives you a knowing wave.");
+	
+	if (ratsPCIsGood()) pc.credits -= 5000;
+	else pc.credits -= 15000;
+	
+	processTime(30 + rand(15));
+	IncrementFlag("WALLSLUTS_NOISY_RODENTS_VIP_FUCK");
+	//reduce energy to 25%
+	if (pc.energy() > pc.energyMax() * .25) pc.energy((pc.energyMax() * .25) - pc.energy());
+	soreDebuff(2);
+	pc.clearRut();
+	pc.createStatusEffect("NoisyRodentsDisableVIP");
+	pc.setStatusMinutes("NoisyRodentsDisableVIP", 240 + rand(120));
+	
+	//reset their boob cum (they start fresh when they come back from vip service)
+	flags["WALLSLUTS_NOISY_RODENTS_WALNUT_CUM"] = 0;
+	flags["WALLSLUTS_NOISY_RODENTS_CHESTNUT_CUM"] = 0;
+	flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] = undefined;
+	flags["WALLSLUTS_NOISY_RODENTS_NUT_CHOICE"] = 0;
+	
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 public function showRatBoy(nude:Boolean = false):void
 {
 	showName("RODENIAN\nMALE");

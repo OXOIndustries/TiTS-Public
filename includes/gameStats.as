@@ -7787,6 +7787,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SLYVEREN_SUCKLESUBMITTED"] != undefined) output2("\n<b>* Slavebreaker, Times Suckled You Into Submission:</b> " + flags["SLYVEREN_SUCKLESUBMITTED"]);
 					if(flags["SLYVEREN_THROBB_FUCKED"] != undefined) output2("\n<b>* Slavebreaker, Times Throbb-Fucked By:</b> " + flags["SLYVEREN_THROBB_FUCKED"]);
 					if(flags["SLYVEREN_WIN_FACEFUKT"] != undefined) output2("\n<b>* Slavebreaker, Times Face Fucked Her:</b> " + flags["SLYVEREN_WIN_FACEFUKT"]);
+					if(flags["SLYVEREN_WIN_RUTFUCK"] != undefined) output2("\n<b>* Slavebreaker, Times Rut Fucked Her:</b> " + flags["SLYVEREN_WIN_RUTFUCK"]);
 				}
 				variousCount++;
 			}
@@ -8059,6 +8060,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Cherry’s Slut Wall</u></b>");
 				output2("\n<b>* Cherry:</b> Met her");
+				if(flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"] != undefined) output2("\n<b>* Walnut & Chestnut, VIP Service:</b> " + flags["WALLSLUTS_NOISY_RODENTS_VIP_FUCK"]);
 				if(flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] != undefined) output2("\n<b>* Walnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"]);
 				if(flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] != undefined) output2("\n<b>* Chestnut, Times Came in Eargina:</b> " + flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"]);
 				if(flags["WALLSLUTS_NOISY_RODENTS_NUTTED_TS"] != undefined) wallSlutsNoisyRodentsReduceCum();
