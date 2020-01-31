@@ -1,4 +1,5 @@
 package editor.Descriptors {
+    import classes.CockClass;
     import classes.Creature;
     import classes.Engine.Utility.*;
     import classes.GLOBAL;
@@ -2174,19 +2175,29 @@ package editor.Descriptors {
             return this.owner.hasSockedCocks(idx);
         }
 
-        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
-        public function hasPerk(arg: String): Object {
-            return this.owner.hasPerk(arg) ? 0 : 1;
+        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasPerk(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                if (this.owner.hasPerk(args[idx]))
+                    return idx;
+            return args.length;
         }
 
-        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
-        public function hasStatusEffect(arg: String): Object {
-            return this.owner.hasStatusEffect(arg) ? 0 : 1;
+        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasStatusEffect(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                if (this.owner.hasStatusEffect(args[idx]))
+                    return idx;
+            return args.length;
         }
 
-        public const hasCockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneNumberArgUpToTwoResults);
-        public function hasCockType(... args): Object {
-            return this.owner.hasCockType(arg) ? 0 : 1;
+        public const hasCockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasCockType(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                for each (var cock: CockClass in this.owner.cocks)
+                    if (args[idx] == GLOBAL.TYPE_NAMES[cock.cType])
+                        return idx;
+            return args.length;
         }
     }
 }
