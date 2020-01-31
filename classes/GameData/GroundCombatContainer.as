@@ -869,7 +869,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Paralyzed");
 					if (target is PlayerCharacter) output("\n\n<b>The paralytic venom wears off, and you are able to move once more.</b>");
-					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName(), false) + " seems to wear off, motion returning to " + target.getCombatPronoun("hisher") + " limbs!</b>");
+					else output("\n\n<b>The paralysis affecting " + target.getCombatName() + " seems to wear off, motion returning to " + target.getCombatPronoun("hisher") + " limbs!</b>");
 				}
 				else
 				{
@@ -1860,8 +1860,10 @@ package classes.GameData
 			if(enemiesAlive() > 1) output("ies are");
 			else output("y is");
 			output(" so alluring?");
-			pc.lust(20 + rand(20));
-			
+
+			var fantasizeDam:Number = 20+rand(20);
+			output(" (<b>L: +<span class='lust'>" + Math.floor(fantasizeDam) + "</span></b>)");
+						
 			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({ isFantasize: true }))
 			{
 				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
@@ -5290,7 +5292,7 @@ package classes.GameData
 					}
 				}
 				
-				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg) && !(target is ZaikaMilkThief))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
 				}
@@ -5305,7 +5307,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh) && !(target is ZaikaMilkThief))
 				{
 					output("\n\n");
 					doStunRecover(target);
