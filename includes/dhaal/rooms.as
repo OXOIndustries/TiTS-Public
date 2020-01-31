@@ -4,6 +4,19 @@ public function dhaalCoordinatesUnlocked():Boolean
 }
 public function dhaalGyreEncounters():Boolean
 {
+	IncrementFlag("DHAAL_GYRE_STEP");
+	var encounters:Array = [];
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["DHAAL_GYRE_STEP"] -4 > rand(20))
+	{
+		flags["DHAAL_GYRE_STEP"] = 0;
+			
+		encounters.push(encounterMilkThief);
+	}
+	if(encounters.length > 0) 
+	{
+		return encounters[rand(encounters.length)]();
+	}
 	return false;
 }
 public function initDhaalRooms():void

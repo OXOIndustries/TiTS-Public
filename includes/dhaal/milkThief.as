@@ -22,7 +22,7 @@ public function specialFenTreat():void
 }
 
 //Encounter Texts
-public function encounterMilkThief():void
+public function encounterMilkThief():Boolean
 {
 	author("Fenoxo");
 	var tEnemy:ZaikaMilkThief = new ZaikaMilkThief();
@@ -32,7 +32,7 @@ public function encounterMilkThief():void
 	if(flags["MET_MILK_THIEF"] == undefined)
 	{
 		flags["MET_MILK_THIEF"] = 1;
-		output("No amount of alertness could prepare you for the sudden appearance of gun-toting zaika from the twilight sky. One moment, you’re minding your own business, the next, this strange woman stands up smoothly from her crotch, like she hopped a curb instead of plummeting hundreds of feet from a rooftop.");
+		output("\n\nNo amount of alertness could prepare you for the sudden appearance of gun-toting zaika from the twilight sky. One moment, you’re minding your own business, the next, this strange woman stands up smoothly from her crotch, like she hopped a curb instead of plummeting hundreds of feet from a rooftop.");
 		output("\n\n<i>“");
 		if(enemy.biggestTitSize() <= 2) output("Hello there, Rusher. Don’t be alarmed, but I’m going to need you to give me all of your milk before I can let you go,”</i> says the flat-chested alien.");
 		else if(enemy.biggestTitSize() <= 8) output("Mmm, don’t you look like a particularly tasty Rusher? I bet you’ll give me the loveliest milk, and make no mistake - you will be giving me all of your milk,”</i> says the chesty alien.");
@@ -80,7 +80,7 @@ public function encounterMilkThief():void
 		output("\n\nOne of the zaika milk thieves that plague this area leaps down from on high, but the enormous weight of her swollen breasts leaves her stumbling on her cybernetic heels. She recovers before you can make your escape, stuttering, <i>“G-g-ive me all your milk!”</i> Her tail, tightly wrapped in a cream-covered cloth, rises up over her shoulder. <i>“Just give up already. We both know you’re a filthy, perverted cum-dump. Just do what comes naturally, Rusher-slut. Xenos like giving up their milk, because we let them cum all the time!”</i>");
 		output("\n\n<b>You’ll have to fight her off!</b>");
 	}
-	//9999 combat
+	//combat
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
@@ -89,6 +89,7 @@ public function encounterMilkThief():void
 	CombatManager.displayLocation("MILK THIEF");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
+	return true;
 }
 //[=Loss Scenes=]
 public function milkThiefLossRouter():void
