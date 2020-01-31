@@ -7754,6 +7754,9 @@
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Mimbrane Smother"));
 		}
+		public function isDisarmed(): Boolean {
+			return (hasStatusEffect("Disarmed"));
+		}
 		public function isBlind(): Boolean {
 			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));
 		}
@@ -22176,7 +22179,7 @@
 		}
 		public function hasAirtightSuit():Boolean
 		{
-			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
+			return (!hasStatusEffect("Corroded Seals") && hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
 		public function hasShields():Boolean
 		{

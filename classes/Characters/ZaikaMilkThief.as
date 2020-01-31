@@ -71,10 +71,10 @@
 			
 			this.shield.hasRandomProperties = true;
 
-			this.physiqueRaw = 45;
-			this.reflexesRaw = 45;
+			this.physiqueRaw = 52;
+			this.reflexesRaw = 52;
 			this.aimRaw = 30;
-			this.intelligenceRaw = 35;
+			this.intelligenceRaw = 40;
 			this.willpowerRaw = 38;
 			this.libidoRaw = 45;
 			this.shieldsRaw = 0;
@@ -214,6 +214,7 @@
 			//this.impregnationType = "LapinaraPregnancy";
 			kGAMECLASS.dhaalSSTDChance(this);
 			randomise();
+			this.createStatusEffect("Counters Melee");
 			//this.createPerk("Appearance Enabled");
 			
 			this._isLoading = false;
@@ -272,8 +273,6 @@
 			this.shieldsRaw = this.shieldsMax();
 			shieldDisplayName = "AUGS";
 
-
-
 			this.long += "\n\nA multipurpose storage tank hangs lightly on the milk thief's back, sloshing heavily in spite of her sprightly movements. The interior is divided into multiple compartments, many of which are empty. Those that aren't seem as likely to house bizarre glowing chemicals as the milk of her previous victims. A clear tube connects the pump at the base of it to her weapon: a gun-shaped device as capable of suckling the milk out of a breast as hosing you down with pure acid.";
 			
 			/*
@@ -286,166 +285,247 @@
 		}
 		override public function get bustDisplay():String
 		{
-			if(this.hasCock(GLOBAL.TYPE_HUMAN)) return "BORED_JUMPER_TERRAN";
-			else if(this.hasCock(GLOBAL.TYPE_CANINE)) return "BORED_JUMPER_CANINE";
-			else if(this.hasCock(GLOBAL.TYPE_FELINE)) return "BORED_JUMPER_FELINE";
-			else return "BORED_JUMPER_EQUINE";
+			if(this.hasCock(GLOBAL.TYPE_HUMAN)) return "MILK_THIEF_SMALL";
+			else if(this.hasCock(GLOBAL.TYPE_CANINE)) return "MILK_THIEF_MEDIUM";
+			else return "MILK_THIEF_LARGE";
 		}
-		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
-			if(this.HP()/this.HPMax() <= 0.6 && !this.hasStatusEffect("Used Second Wind")) bunnySecondWind(alliedCreatures,hostileCreatures,target);
-			else if(this.HP()/this.HPMax() <= 0.6 && !this.hasStatusEffect("Item Healed")) bunnyHealsAlot();
-			else if(hasStatusEffect("Queue Stealth Field") && this.energy() >= 20) bunnyStealthField(alliedCreatures,hostileCreatures,target);
-			else if(rand(3) == 0 && this.energy() >= 25) bunnyGasGrenado(alliedCreatures,hostileCreatures,target);
-			else bunnyDarts(target);
-			if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched")) cumCoveringSuperRes();
-		}
-		//Attacks go here
-		//Shieldbelt with jet boosters, dart gun, gas grenades, and a stealth field. Left her real firepower upstairs and only brought what she’d need to subdue a resisting slave...
-
-		//Gas Grenade: - 14 + level*2 damage. - 25 energy
-		//GasGrenadeImpl
-		public function bunnyGasGrenado(f:Array, h:Array, target:Creature):void
-		{
-			this.level = 1;
-			CombatAttacks.GasGrenade.execute(f, h, this, target);
-			this.level = 9;
-		}
-		public function bunnyDarts(target:Creature):void
-		{
-			//Dart Gun vs Shield - heavy shield damage!
-			if(target.shields() > 0)
+			//Counting leaps and landing it takes priority over everything else~
+			if(this.hasStatusEffect("LeapCD"))
 			{
-				output("<i>“Let’s get rid of that silly shield, shall we?”</i> The bouncy pirate levels a dartgun at you and fires.");
-				if(rangedCombatMiss(this, target)) output(" She misses!");
-				else 
-				{
-					output(" The projectile bursts apart in a flash of shield-draining static!");
-					applyDamage(new TypeCollection( { electric: 30+rand(4) } ), this, target, "minimal");
-				}
-			}
-			//Dart gun vs unshielded
-			else
-			{
-				output("Leveling her dartgun at you, the pirate squeezes off a pair of shots.");
-				if(rangedCombatMiss(this, target)) output(" The drug-laced payload shatters ineffectually on the wall.");
+				//Abort if de-flied somehow.
+				if(!this.hasFlightEffects()) this.removeStatusEffect("LeapCD");
+				//Otherwise, track for landing~
 				else
 				{
-					var both:Boolean = false;
-					if(rand(5) != 0)
+					this.addStatusValue("LeapCD",1,-1);
+					//Time to land~
+					if(this.statusEffectv1("LeapCD") <= 0) 
 					{
-						output(" One drug-laced dart strikes true!");
-						applyDamage(new TypeCollection( { drug: 10+rand(3) } ), this, target, "minimal");
-					}
-					else 
-					{
-						both = true;
-						output(" <b>Critical Success!</b> Both drug-laced darts strike true!");
-						applyDamage(new TypeCollection( { drug: 20+rand(6) } ), this, target, "minimal");
-					}
-					//< 30
-					if(target.lust() < 30) 
-					{
-						output("\n\nYou rip the venomous projectile");
-						if(both) output("s");
-						output(" away in irritation, a little flushed but more or less okay. It’ll take more than that to bring you to your knees!");
-					}
-					//< 50
-					else if(target.lust() < 50)
-					{
-						output("\n\nYou spend a moment watching the light play across the laquine’s curvaceous form before you remember the dart");
-						if(both) output("s");
-						output(". Whatever. You’ve got this!");
-					}
-					//< 70
-					else if(target.lust() < 70)
-					{
-						output("\n\nYou wobble slightly as you pry the emptied projectile");
-						if(both) output("s");
-						output(" out of your [pc.skinFurScales]. You’re turned on and breathing heavily, but that doesn’t mean you can’t resist the artifically stoked urges. No matter how sexy that bunny-slut may be.");
-					}
-					//< 90
-					else if(target.lust() < 90)
-					{
-						output("\n\nYou stare in rapt attention at the bunny-slut’s curves, the light playing hypnotically across her sable suit. You fingers twitch with the need to touch her and squeeze her, to caress her worship her, but you pull yourself back before you do something you’ll regret.");
-					}
-					//< 100
-					else if(target.lust() < target.lustMax())
-					{
-						output("\n\nLicking your [pc.lipsChaste], you discover your hand ");
-						if(target.legCount > 1) output("between your [pc.legs]");
-						else output("down below");
-						output(", gently stroking your crotch. It’s all but glued there, held in place by an all-powerful force. You nearly sink to the ground on the spot. You’re hot and eager, and that magnificently cute bunny-pirate would fuck you so well... No! Not yet. You hold out... for now.");
-					}
-					//RIP
-					else
-					{
-						output("\n\nStaring at the bunny-slut, you stupidly watch her prance around, light glistening on her suit, sweat dripping from her ears. She is the very picture of sexuality - a prize so arousing that you’d never be able to claim her. As you slump toward the ground, intent on masturbating, you realize that she’s won... and that’s so much hotter than anything your heat-addled mind could concoct.");
+						leapAttkGo(target);
+						return;
 					}
 				}
 			}
-		}
-		//Stealth Field - used immediately after second wind.
-		//StealthFieldGeneratorImpl - 20 energy
-		public function bunnyStealthField(f:Array, h:Array, target:Creature):void
-		{
-			this.removeStatusEffect("Queue Stealth Field");
-			CombatAttacks.StealthFieldGenerator.execute(f, h, this, target);
-		}
-		//Second wind if <60% HP (1x/combat): <i>“Used Second Wind”</i>
-		public function bunnySecondWind(f:Array, h:Array, target:Creature):void
-		{
-			//SecondWindImpl
-			CombatAttacks.SecondWind.execute(f, h, this, target);
-			this.createStatusEffect("Queue Stealth Field");
-		}
-		//healing item here:
-		public function bunnyHealsAlot():void
-		{
-			output("<i>“Damnit,”</i> the laquine curses, pulling a medipen from her pouch and jabbing it into her neck. She tosses the spent device away while her wounds knit into unblemished flesh. <i>“Would it kill you to have a little fun?”</i> (+Full HP)");
-			this.createStatusEffect("Item Healed");
-			this.HP(this.HPMax());
-		}
-		//Lust reduction
-		public function cumCoveringSuperRes():void
-		{
-			output("\n\nHer excitement dulls when she notices the cum covering you. (-5 lust)");
-			//(-5 lust damage)
-			this.lust(-5);
-		}
-		
-		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
-		{
-			var heatSex:Boolean = false;
-			if (flags["BJUMPER_HEAT_SEX"] == 1)
+			//Antistun (only on 2nd stun turn) (10 energy)
+			if(this.isImmobilized()) 
 			{
-				heatSex = true;
-				flags["BJUMPER_HEAT_SEX"] = undefined;
+				secondTurnStunCancel(target);
+				return;
 			}
-			this.vaginalVirgin = false;
-			if (cumFrom is PlayerCharacter)
-			{
-				sstdChecks(cumFrom,"vagina");
-				return kGAMECLASS.tryKnockUpBoredJumper(heatSex);
-			}
-			return false;
+			//Not stunned? Get rid of secret tracker.
+			else if(this.hasStatusEffect("StunClearBois")) removeStatusEffect("StunClearBois");
+
+			//Normal AI, goooo!
+			if(!this.hasFlightEffects() && this.energy() >= 10 && this.hasStatusEffect("MeleeHit")) leapAttkGo(target);
+			else if(this.HP()/this.HPMax() < 0.4 && !this.hasStatusEffect("Stimmypooed")) combatStimsAttk(target);
+			else if(target.hasAirtightSuit() && rand(2) == 0 && this.energy() >= 25) acidSprayAttk(target);
+			else if(!target.isBlind() && this.energy() >= 33 && rand(7) == 0) flashyBoiToy(target);
+			else if(!target.hasAirtightSuit() && this.statusEffectv1("EROGASCOUNT") < 6 && rand(3) <= 1 && !this.hasFlightEffects()) eroGasAttk(target);
+			//Fallback, weaker attacks. Target HP instead of lust, etc.
+			else if(rand(2) == 0 || this.hasFlightEffects()) hiddenShockGunAttk(target);
+			else fingerKnifeAttk(target);
 		}
-		
-		override public function isPregnant(vIdx:int = 0):Boolean
+		//Attacks go here
+
+		//Acid Spray - temporarily suppresses airtight if defense value is less than X - uses up 25 energy. (Only used vs airtight. Maybe make it last after fight and require a repair? Might be a PITA to make all suitable vendors on planet able to do it)
+		public function acidSprayAttk(target:Creature):void
 		{
-			if (kGAMECLASS.flags["BJUMPER_PREG_TIMER"] != undefined)
+			output("The milk thief twists a dial on the back of her “gun” and smiles cruelly. <i>“Don’t think that suit’s going to protect you from me.”</i> She pulls the trigger, and a spray of sizzling, corrosive fluid hoses down half the roadway.");
+			//{Damage Here}
+			applyDamage(new TypeCollection( { corrosive: 55 } ), this, target, "minimal");
+			this.energy(-25);
+			if(target.hasAirtightSuit() && target.defense() < 10)
 			{
-				if(this.hasCock(GLOBAL.TYPE_EQUINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_EQUINE);
-				else if(this.hasCock(GLOBAL.TYPE_FELINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_FELINE);
-				else if(this.hasCock(GLOBAL.TYPE_CANINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_CANINE);
-				else return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_HUMAN);
+				output(" <b>Your airtight equipment isn’t quite so airtight any longer!</b>");
+				createStatusEffect("Corroded Seals",0, 0, 0, 0, false, "DefenseDown", "<b>The acid has degraded your airtight seals</b>. You can swap them out after the fight, but you don't have time for that right now...", true, 0, 0xFFFFFF);
 			}
-			
-			return false;
+		}
+		//Ero Gas - make sure it functions similarly to the Ero Gas grenade
+		// Won't use if the PC hasn't lost their airtight defense
+		//10 energy
+		public function eroGasAttk(target:Creature):void
+		{
+			if(!this.hasStatusEffect("EROGASCOUNT")) this.createStatusEffect("EROGASCOUNT");
+			this.addStatusValue("EROGASCOUNT",1,1);
+			output("Your opponent shakes her gun in frustration. <i>“");
+			if(breastRows[0].breastRatingRaw == 2) 
+			{
+				//1st:
+				if(!this.hasStatusEffect("EroGassy")) output("Listen, I just want your milk. Maybe you’ll see things my way after this - don’t hold your breath, now.");
+				else output("Still trying to fight me? Not for much longer.");
+			}
+			//titsMed:
+			else if(breastRows[0].breastRatingRaw == 8)
+			{
+				//first:
+				if(!this.hasStatusEffect("EroGassy")) output("Ooh, you’re a feisty alien! You’re not alone in that - and you won’t be alone submitting to me!");
+				else output("C’moooonnnn, just let me milk you! Here, take a deep breath and let’s forget about this!");
+			}
+			//titsBig:
+			else
+			{
+				//first: 
+				if(!this.hasStatusEffect("EroGassy")) output("Fffuuck come ooonnn, Rushers like being milked! And we like milking you! Fine, fine, I guess you need some encouragement!");
+				else output("Can you even see how horny I am already? This could be you, if you’d let me milk you! C’monc’mon let’s just skip to that part!");
+			}
+			if(!this.hasStatusEffect("EroGassy")) this.createStatusEffect("EroGassy");
+			output("”</i> Agile fingers work the knob on the back while you consider the merits of responding to her call out. Before you can blink, the zaika hops forward and levies her chunky weapon at chest-height, tightening the trigger. A cloud of plum-pink mist channels down the barrel and hisses in your direction; the diffusive discharge swirls in your vicinity - there’s no dodging it!");
+
+			// Resist
+			if(rand(20) + target.willpower()/2 >= this.intelligence()/2 + 10)
+			{
+				//Fenoxo stuff.
+				output("\n\nNo matter how the chemical’s tendrils may speed your heartbeat, at the end of the day your mind is in charge of your body - not the other way around");
+				var damage:TypeCollection = new TypeCollection( { drug: 10 + rand(2) } );
+				var damageResult:DamageResult = calculateDamage(damage, this, target);
+				//Still in it to win it.
+				if (damageResult.lustDamage + target.lust() < target.lustMax())
+				{
+					
+					output(", and it’ll take more than some cheap drug to change that. You grit your teeth, a bit more excited, yes, but nowhere near as much as your foe would expect. When the fog clears, she’s stamping her foot in frustration. <i>“");
+					//Will speach:
+					//titsSmall:
+					if(breastRows[0].breastRatingRaw == 2) output("Jerk! That stuff's expensive! The least you could do is cum" + (!target.isCrotchExposed() ? " in your pants":" for me") + "!");
+					//titsMed: 
+					else if(breastRows[0].breastRatingRaw == 8) output("Playing hard to get? That's hot too! It'll feel even better when you're begging me for a milking soon!");
+					//titsBig:
+					else output("Oh-hohoho, you're just a bag of tricks aren't you? Don't worry, I've got plenty of that stuff in the tank! You won't hold out for long, and you'll be giving me all that delicious milk soon!");
+					output("”</i>");
+					outputDamage(damageResult);
+				}
+				//Lost even with taking 1/3 damage.
+				else
+				{
+					output("... yet there’s something intriguing about the surging warmth, ebbing away at your self-control. Your iron will is of so little avail when you’re this turned on!");
+					outputDamage(damageResult);
+				}
+			}
+			else
+			{
+				//100% william
+				output("\n\nBefore you can think to cover your mouth, the erotic concoction slithers into your nostrils and clings to the roof of your mouth. Radiant arousal blooms inside and your mind wanders. The miasma begins to disperse, but not before your drooly gasps have left you chemically impassioned.");
+				if(target.hasGenitals())
+				{
+					output(" Fresh lubricants spill" + (!target.isCrotchExposedByLowerUndergarment() ? " into your undies, a sticky marinade that signals to her your softening attitude and increasing desire to comply":" onto the jagged pavement, earning a few words of mocking contempt from boisterous onlookers. Even they want to see you submit") + ". <i>“");
+					//titsSmall:
+					if(breastRows[0].breastRatingRaw == 2) output("Come on, know your place, off-worlder! I need that milk!");
+					else if(breastRows[0].breastRatingRaw == 8) output("Ooooh, I like that look! C'mon cutie-pie, let's see you on " + (target.hasKnees() ? "your knees":"the ground") + " now! Or do you need more?");
+					else output("Mmmfhmhm... looks like you wanna be milked now. Right? Right? C'mon, just sit down, let me have all your milk, and I'll give you something nice and sticky in return!");
+					output("”</i>");
+				}
+				applyDamage(new TypeCollection( { drug: 30 } ), this, target, "minimal");
+			}
+		}
+
+		//Disarmed: hidden shock gun - actually good since it swaps the target health pool she's hitting from lust -> HP.
+		public function hiddenShockGunAttk(target:Creature):void
+		{
+			if(!hasStatusEffect("ShockyZappy"))
+			{
+				this.createStatusEffect("ShockyZappy");
+				output((this.isDisarmed() ? "Her milker-gun may be on the ground behind her, but t":"T") + "he rogue grins as cockily as ever. Her right wrist suddenly breaks apart into pieces - fingers and fold away as the mass of her hand splits apart to reveal the gleaming metal coils of a lightning gun!");
+				if(rangedCombatMiss(this, target)) output(" You dodge the crackling blast!");
+				else 
+				{
+					if(this.hasFlightEffects()) applyDamage(new TypeCollection( { electric: 60 } ), this, target, "minimal");
+					else applyDamage(new TypeCollection( { electric: 35 } ), this, target, "minimal");
+				}
+			}
+			else
+			{
+				output("The milk thief’s hidden lightning gun emerges from her wrist once more, blasting another arc of searing electricity in your direction!");
+				if(rangedCombatMiss(this, target)) output(" You dodge!");
+				else 
+				{
+					if(this.hasFlightEffects()) applyDamage(new TypeCollection( { electric: 60 } ), this, target, "minimal");
+					else applyDamage(new TypeCollection( { electric: 35 } ), this, target, "minimal");
+				}
+			}
+		}
+		//Disarmed: fingerknife - similar to shock gun. Doesn't need much writing. (Can't use if leaped)
+		public function fingerKnifeAttk(target:Creature):void
+		{
+			if(!hasStatusEffect("KnifySpoony"))
+			{
+				this.createStatusEffect("KnifySpoony");
+				output("<i>“I really didn’t want to hurt you,”</i> the zaika explains, advancing" + (this.isDisarmed() ? " without her weapon":"") + ". <i>“But if I have to, I’ll cut a bitch.”</i> A glimmering, 3-inch blade emerges from the tip of her finger, and she swipes it at you!");
+				if(combatMiss(this, target)) output(" You sidestep the short-ranged attack.");
+				else applyDamage(new TypeCollection( { kinetic: 35 } ), this, target, "minimal");
+			}
+			//Repeat
+			else
+			{
+				output("The milk-thief swipes at you with her razor-sharp finger-knife!");
+				if(combatMiss(this, target)) output(" You dodge!");
+				else applyDamage(new TypeCollection( { kinetic: 35 } ), this, target, "minimal");
+			}
+		}
+		//Leap - Gives her the "flying" effect for 3 turns, preventing melee abilities. (Used if she takes a melee hit)
+		public function leapAttkGo(target:Creature):void
+		{
+			if(!this.hasFlightEffects())
+			{
+				this.energy(-10);
+				//create status and timer status!
+				this.createStatusEffect("LeapCD",3,0,0,0);
+				output("<i>“Ugh. Bruisers are such a pain to fight.”</i> The milk thief stumbles back and crouches. A high-pitched, electro-static hum fills the air, and she launches into the sky with a pavement-shattering ‘whump’. <b>Landing melee strikes on such a target is virtually impossible!</b>");
+				createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
+			}
+			//Landing
+			else
+			{
+				//Clear it out to reset the proc.
+				this.removeStatusEffect("MeleeHit");
+				this.removeStatusEffect("LeapCD");
+				this.removeStatusEffect("Flying");
+				//remove status.
+				output("The zaika hits the ground almost exactly where she took off without any apparent ill effects, save for shattering a second set of spiderwebbed lines into the pavement. <i>“Still fighting? Fine. I can do this all day.”</i>");
+				//She's got america's ass!
+			}
+		}
+		//Flash (only if HP below 2/3s) - effectively a flash grenade, though it's her bodystrips doing the work. 33 energy.
+		public function flashyBoiToy(target:Creature):void
+		{
+			output("<i>“Can’t hit what you can’t see!”</i> The glowing strips on the milk thief’s body flicker, flashing into a supernova of searing light!");
+			if(target.reflexes()/2 + rand(20) + 1 >= this.intelligence()/2 + 10) output(" You barely shield your eyes in time!");
+			else
+			{
+				output(" <b>You are blind!</b>");
+				CombatAttacks.applyBlind(target, 3);
+			}
+			this.energy(-33);
+		}
+		//Combat Stims - Heals all HP, 1x/combat, +10 lust. (10 energy)
+		public function combatStimsAttk(target:Creature):void
+		{
+			this.createStatusEffect("Stimmypooed");
+			output("<i>“F-f-fucking... making me use my expensive stims,”</i> the milk thief grumbles as her eyes cycle through a half dozen colors. She blinks, and a second later her stance relaxes as her wounds knit closed like magic. Behind her, the rogue’s tail raises high, infused with energy and lust. It twitches hungrily, like a predator on the prowl. <i>“Goddamn waste,”</i> she mumbles, squirming slightly. <i>“I’ll just steal even more of your milk!”</i>");
+			applyDamage(new TypeCollection( { drug: 19 } ), this, target, "minimal");
+			var healing:Number = Math.ceil(this.HPMax() - this.HP());
+			output("(<b>+" + healing + " HP</b>)");
+		}
+		//Antistun (only on 2nd stun turn) (10 energy)
+		//if this.isStunned
+		//Clear StunClearBois if not stunned in AI.
+		public function secondTurnStunCancel(target:Creature):void
+		{
+			if(!this.hasStatusEffect("StunClearBois")) 
+			{
+				this.createStatusEffect("StunClearBois");
+				output("<b>The milk thief cannot act!</b>");
+			}
+			else
+			{
+				output("The milk-thief’s eyes cycle through a few different colors, and she suddenly <b>recovers from being stunned!</b> <i>“Dirty xeno tricks don’t work on me!”</i>");
+				this.removeStatusEffect("Stunned");
+				this.removeStatusEffect("Paralyzed");
+				this.removeStatusEffect("StunClearBois");
+			}
 		}
 	}
 }

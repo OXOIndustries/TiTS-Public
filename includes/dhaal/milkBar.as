@@ -19,18 +19,6 @@ public function generateDrinkCow():void
 {
 	flags["DHAAL_MILKCOW"] = rand(3)+1;
 }
-public function milkThief():void
-{
-	var tEnemy:ZaikaMilkThief = new ZaikaMilkThief();
-	setEnemy(tEnemy);
-	CombatManager.newGroundCombat();
-	CombatManager.setHostileActors(tEnemy);	
-	CombatManager.setFriendlyActors(pc);
-	CombatManager.victoryScene(winVsBoredJumper);
-	CombatManager.lossScene(loseToBoredJumperRouting);
-	CombatManager.displayLocation("MILK THIEF");
-	CombatManager.beginCombat();
-}
 
 //Outside tile descriptor
 public function outsideMilkBarBonusText():void
