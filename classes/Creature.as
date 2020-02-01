@@ -10421,7 +10421,7 @@
 			return puffScore;
 		}
 		public function puffiestVaginaIndex(flagOnly:Boolean = false): int {
-			if (vaginas.length <= 1) return -1;
+			if (vaginas.length < 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
@@ -10430,7 +10430,7 @@
 			return index;
 		}
 		public function flattestVaginaIndex(flagOnly:Boolean = false): int {
-			if (vaginas.length <= 1) return -1;
+			if (vaginas.length < 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
