@@ -1,5 +1,5 @@
 package editor.Lang.Interpret {
-    import editor.Descriptors.FunctionInfo;
+    import editor.Lang.FunctionInfo;
     import editor.Lang.Nodes.*;
     import editor.Lang.Errors.*;
     import editor.Lang.TextRange;

@@ -50,28 +50,28 @@ package editor.Display.Panes {
 
             // Traverse global object using keys
             var obj: * = evaluator.global;
-            for (var idx: int = 0; idx < keys.length - 1; idx++) {
-                if (!keys[idx] || !(keys[idx] in obj)) break;
-                obj = obj[keys[idx]];
+            for each(var keyword: String in keys) {
+                if (!keyword || !(keyword in obj) || typeof obj[keyword] !== 'object') break;
+                obj = obj[keyword];
             }
 
             if (typeof obj == 'object' || keys.length == 0)
-                listField.text = describeObj(keys.length > 0 ? keys[keys.length - 1] : '', obj);
+                listField.htmlText = describeObj(keys.length > 0 ? keys[keys.length - 1] : '', obj);
             else
-                listField.text = describeValue(keys[keys.length - 1], getTypeName(typeof obj));
+                listField.htmlText = describeValue(keys[keys.length - 1], obj);
         }
 
-        private function describeValue(name: String, type: String): String {
-            return name + ': ' + type + '\n';
-        }
-
-        private function getTypeName(type: String): String {
-            switch (type) {
-                case 'string': return 'text';
-                case 'boolean': return 'yes or no';
-                case 'object': return 'container';
-                default: return type;
+        private function describeValue(key: String, obj: Object): String {
+            var text: String = key + ': ';
+            switch (typeof obj[key]) {
+                case 'string': text += 'text'; break;
+                case 'boolean': text += 'yes or no'; break;
+                case 'object': text += 'container'; break;
+                default: text += typeof obj[key]; break;
             }
+            if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
+                    text += ' - ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
+            return text;
         }
 
         private function isFuncInfo(name: String): Boolean {
@@ -114,8 +114,9 @@ package editor.Display.Panes {
             arr = arr.sort();
 
             var text: String = '';
-            for each (key in arr)
-                text += describeValue(key, getTypeName(typeof obj[key]));
+            for each (key in arr) {
+                text += describeValue(key, obj) + '\n';
+            }
 
             return text;
         }
