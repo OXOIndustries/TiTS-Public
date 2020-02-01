@@ -1863,6 +1863,7 @@ package classes.GameData
 
 			var fantasizeDam:Number = 20+rand(20);
 			output(" (<b>L: +<span class='lust'>" + Math.floor(fantasizeDam) + "</span></b>)");
+			pc.lust(fantasizeDam);
 						
 			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({ isFantasize: true }))
 			{
