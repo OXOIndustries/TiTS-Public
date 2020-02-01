@@ -6,6 +6,7 @@ package editor.Lang.Interpret {
     import flash.utils.describeType;
     
     public class Interpreter {
+        public static const FUNC_INFO_STRING: String = '__info';
         private const escapePairs: Array = [[/\n/g, '\\n'], [/'/g, '\\\''], [/"/g, '\\"']];
         private var errors: Vector.<LangError>;
         private var globals: Object;
@@ -213,8 +214,8 @@ package editor.Lang.Interpret {
                     );
                 }
                 // Check for <name>__info
-                if (idx === values.length - 1 && (identity + '__info') in obj) {
-                    infoObj = obj[identity + '__info'];
+                if (idx === values.length - 1 && (identity + FUNC_INFO_STRING) in obj) {
+                    infoObj = obj[identity + FUNC_INFO_STRING];
                 }
 
                 selfObj = obj;
