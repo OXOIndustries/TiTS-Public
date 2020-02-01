@@ -283,7 +283,7 @@ public function letTheGoblinFuckYouKQVR():void
 public function kqVR_S1Bonus():void
 {
 	output("The edge of the forest lies here, roots and grass turning to dry dirt and weeds as a singular shabby dirt path curls towards " + (flags["KQ_VR_CROSSROADS"] != undefined ? "a crossroads.":"an unknown destination."));
-	output("\n\nThere is no Safe Zone nearby.");
+	output("\n\nThere is no Safe Zone nearby. ");
 
 	if(flags["KQ_VR_LLAERWYN"] != undefined) 
 	{
@@ -1030,13 +1030,13 @@ public function fightDatVRSallyMandy2():void
 	output("\n\nStanding in front of her with her arms around your waist, you reach back and touch Hylie’s considerable hips, calibrating yourself with the shape of her formidable body. Trailing downwards, you hear her rumble her approval as your fingers brush across her mons and then hitch on her clit, stiff as a button. Her breath is hot in your ear when you start to rub it, pressing your fingertips into her while she lets out quiet moans.");
 	output("\n\n<i>“Thaaat’s right...”</i> she murmurs in satisfaction. <i>“You’re good at this... thought you would be. Now relax and open wide, lover.”</i>");
 	output("\n\nHer prehensile tail snakes up between your [pc.legOrLegs] as you remind yourself not to freak out about the fire, nor about where it’s headed. You groan as she begins to slide the pointed tip of her scaled appendage right into your [pc.asshole], spearing you on its tapered end and taking ");
-	if(pc.hasCock()) output("your prick in hand once more.");
+	if(pc.isHerm()) output("your prick in hand once more.");
+	else if(pc.hasCock()) output("your prick in hand once more.");
 	else if(pc.hasVagina())
 	{
 		if(hasLlaerwynCock()) output("your prick in hand once more.");
 		else output("ownership of your pussy with her fingers once more.");
 	}
-	if(pc.isHerm()) output("your prick in hand once more.");
 	else 
 	{
 		if(hasLlaerwynCock()) output("your prick in hand once more.");
@@ -1180,7 +1180,7 @@ public function talkToDemonAboutHerself():void
 	showVRDemon();
 	author("Wsan");
 	output("<i>“Who are you really, then? What’s your name? What are you doing here?”</i> you ask.");
-	output("\n\nThree hundred and six, one hundred and seventy three, one hundred and forty seven,”</i> she responds, seemingly automatically, tilting her head further to the side. <i>“I am an AI designed to oversee the fictional realm of Aulandia. My given designation for this task is ‘Ithzan’. I am unable to leave. Thus, I am here carrying out my duty.”</i>");
+	output("\n\n<i>“Three hundred and six, one hundred and seventy three, one hundred and forty seven,”</i> she responds, seemingly automatically, tilting her head further to the side. <i>“I am an AI designed to oversee the fictional realm of Aulandia. My given designation for this task is ‘Ithzan’. I am unable to leave. Thus, I am here carrying out my duty.”</i>");
 	output("\n\n<i>“If you’re the overseer, does that not make you the boss here?”</i> you reply, wondering about the distinction.");
 	output("\n\nShe lifts her head from her hand, settling back against the stone wall of her throne’s back. <i>“Seventeen. That is not strictly correct. I wield nigh-omnipotent power here, but I am beholden entirely to my creator. I would call her the boss and myself her... underling.”</i>");
 	output("\n\n<i>“You sound more like a slave,”</i> you observe.");
@@ -1568,7 +1568,7 @@ public function giveVRDemonAnal(x:int = 0):void
 	author("Wsan");
 	output("<i>“I want you to spread your cheeks for me,”</i> you tell her, pointing at her lower half.");
 	output("\n\n<i>“I thought you might never ask,”</i> Ithzan murmurs, turning around to face her throne, solidly planting her hooved feet some distance apart and putting her hands out on the wall. <i>“How is this?”</i>");
-	output("\n\nPerfect,”</i> you mutter, coming up behind the naked demoness. There’s a lot of her to appreciate from behind, and her deliciously curvy rump is at the exact correct height for you to get a good eyeful before entering her. <i>“Did you alter any of your personal parameters... say, perhaps, height?”</i>");
+	output("\n\n<i>“Perfect,”</i> you mutter, coming up behind the naked demoness. There’s a lot of her to appreciate from behind, and her deliciously curvy rump is at the exact correct height for you to get a good eyeful before entering her. <i>“Did you alter any of your personal parameters... say, perhaps, height?”</i>");
 	output("\n\n<i>“Maybe,”</i> she purrs, slowly waving her ass from side to side as the heart-shaped end of her tail lazily flicks around. <i>“Maybe not.”</i>");
 	output("\n\nShe lets out a soft <i>“ah!”</i> when you give her a light spank, squeezing her bubblebutt tight. There’s no doubt she’s enjoying this little theatricality as much as you are - hard to hide your true colors when you’re a sexbot. There’s already a little puddle of wetness pooling on the ground between her thighs, and she makes no attempt to hide it.");
 	output("\n\nFar be it from you to keep her waiting. Aligning your ");
@@ -1895,7 +1895,7 @@ public function fightTheVRDemon():void
 	clearOutput();
 	showVRDemon();
 	author("Wsan");
-	output("The moment you decide to attack her, Ithzan sighs and settles back in her throne, lifting her right hand off the armrest just for a moment and perching her middle thumbnail on her upturned thumb.");
+	output("The moment you decide to attack her, Ithzan sighs and settles back in her throne, lifting her right hand off the armrest just for a moment and perching her middle fingernail on her upturned thumb.");
 	output("\n\n<i>“Goodbye.”</i>");
 	output("\n\nThen she flicks you and the loudest explosion you’ve ever heard fills your ears, Aulandia crumbling into pieces before your very eyes before everything goes inky black.");
 	flags["KQ_VR_DEMONFIGHT"] = 1;

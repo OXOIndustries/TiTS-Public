@@ -2879,11 +2879,11 @@
 					break;
 				case "thighDescript":
 				case "thigh":
-					buffer = thighDescript();
+					buffer = thighDescript(true);
 					break;
 				case "thighsDescript":
 				case "thighs":
-					buffer = thighsDescript();
+					buffer = thighsDescript(true);
 					break;
 				case "vagina":
 				case "pussy":
@@ -3178,6 +3178,10 @@
 				case "legOrLegs":
 				case "legsOrLeg":
 					buffer = legOrLegs();
+					break;
+				case "thighsOrLegs":
+				case "legsOrThighs":
+					buffer = thighsOrLegs();
 					break;
 				case "legOrLegsNoun":
 					buffer = (legCount == 1 ? legNoun() : legsNoun());
@@ -7771,6 +7775,10 @@
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
+			return legs(forceType, forceAdjective);
+		}
+		public function thighsOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+			if (legCount == 1) return thighsDescript(forceAdjective);
 			return legs(forceType, forceAdjective);
 		}
 		public function tailDescript(nounOnly:Boolean = false): String {
@@ -14839,7 +14847,7 @@
 			if (asPlural) desc = plural(desc);
 			return desc;
 		}
-		public function thighDescript():String {
+		public function thighDescript(forceAdjective:Boolean = false):String {
 			var hips: Number = hipRating();
 			var desc: String = "";
 			var adjectives: Array = [];
@@ -14857,12 +14865,12 @@
 				if(hips >= 20 && thickness >= 75) adjectives.push("massively-thick");
 			}
 			
-			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)] + " ";
+			if(adjectives.length > 0 && (forceAdjective || rand(3) == 0)) desc += adjectives[rand(adjectives.length)] + " ";
 			desc += "thigh";
 			return desc;
 		}
-		public function thighsDescript():String {
-			return plural(thighDescript());
+		public function thighsDescript(forceAdjective:Boolean = false):String {
+			return plural(thighDescript(forceAdjective));
 		}
 		public function hipsDescript(): String {
 			return hipDescript(true);

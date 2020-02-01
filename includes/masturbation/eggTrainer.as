@@ -1478,7 +1478,7 @@ public function eggTrainerOvalastingRemovalMenu():void
 		else if(pc.isPregnant(3)) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass is currently occupied!");
 		else addButton(btnSlot++, "Asshole", eggTrainerOvalastingRemoval, -1, "Ovalasting: Asshole", "Remove the Ovalasting egg from your [pc.asshole].");
 		
-		if(ovas >= 2) addButton(13, "Lastest", eggTrainerOvalastingRemoval, -2, "Ovalasting: Latest", "Remove the most recently implanted Ovalasting egg.");
+		if(ovas >= 2) addButton(13, "Latest", eggTrainerOvalastingRemoval, -2, "Ovalasting: Latest", "Remove the most recently implanted Ovalasting egg.");
 	}
 	else
 	{

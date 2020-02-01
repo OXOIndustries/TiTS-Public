@@ -1290,15 +1290,14 @@ package classes.GameData
 			
 			if (target.hasStatusEffect("Psychic Miasma"))
 			{
-				
 				if (target.willpower() + 10 > rand(100))
 				{
-					target.removeStatusEffect("Psychic Miasma");
 					if (target is PlayerCharacter) output("\n\nYou push aside the effects of the psionic drone.");
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " resists the psionic drone.</b>");
 					
-					target.aimMod += 5
-					target.reflexesMod += 5
+					target.aimMod += 5;
+					target.reflexesMod += 5;
+					target.removeStatusEffect("Psychic Miasma");
 				}
 			}
 			

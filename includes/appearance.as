@@ -154,7 +154,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	updatePCStats();
 	
 	//Overall
-	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + (target.originalRace.indexOf("???") != -1 ? "of an unknown race" : indefiniteArticle(target.originalRace)) + ".");
+	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + (target.originalRace.indexOf("?") != -1 ? "of an unknown race" : indefiniteArticle(target.originalRace)) + ".");
 	else
 	{
 		outputRouter((target == pc ? "You":"[target.HeShe]") + " started your journey as " + indefiniteArticle(target.originalRace) + ", but " + (target == pc ? "you’ve":"[target.heShe] has") + " become "+indefiniteArticle(target.race())+" over the course of " + (target == pc ? "your":"[target.hisHer]") + " adventures.");
@@ -232,7 +232,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
 		case GLOBAL.TYPE_SIMII:
-			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX])) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
+			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX, GLOBAL.SKIN_TYPE_PLANT, GLOBAL.SKIN_TYPE_GEL])) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter("Under " + (target == pc ? "your":"[target.name]’s") + " " + faceFurScales + " " + (target == pc ? "you have":"[target.heShe] has") + " a human-shaped head with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
@@ -2174,7 +2174,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	}
 	// Extra hip blurbs
 	if(hipRating >= 25 && target.hasLegs()) {
-		if(rand(2) == 0) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " broad hips are so distended that someone could slide their head between the gap in " + (target == pc ? "your":"[target.hisHer]") + " " + target.thighsDescript() + " where " + (target == pc ? "you stand":"[target.heShe] stands") + ". " + (target == pc ? "You":"[target.HeShe]") + " wouldn’t even have to move a muscle.");
+		if(rand(2) == 0) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " broad hips are so distended that someone could slide their head between the gap in " + (target == pc ? "your":"[target.hisHer]") + " " + target.thighsDescript(true) + " where " + (target == pc ? "you stand":"[target.heShe] stands") + ". " + (target == pc ? "You":"[target.HeShe]") + " wouldn’t even have to move a muscle.");
 		else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mammoth hips swing widely from side-to-side with every step " + (target == pc ? "you take":"[target.heShe] takes") + ". " + (target == pc ? "You have":"[target.HeShe] has") + " no hope of walking normally, the closest " + (target == pc ? "you":"[target.heShe]") + " could come would be a sashay.");
 	}
 	

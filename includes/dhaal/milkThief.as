@@ -232,7 +232,7 @@ public function tribbyTailGalz():void
 	pc.lust(45);
 	//[Cum There] [Her Mouth][YourTail]
 	clearMenu();
-	addButton(0,"Cum There",cumAsZaikaIs,undefined,"Cum There","Let her cum with her tail between you. You'll probably get messy.");
+	addButton(0,"Cum There",cumAsZaikaIs,undefined,"Cum There","Let her cum with her tail between you. You’ll probably get messy.");
 	addButton(1,"Her Mouth",zaikaTailInZaikaMouf,undefined,"Her Mouth","Let her deal with her own mess!");
 	if(pc.hasCuntTail()) addButton(2,"Your Tail",takeItInZeCuntTail,undefined,"Your Tail","Tails were meant to fuck tails!");
 	else addDisabledButton(2,"Locked","Locked","You require a parasitic vagina-tail for this.");
@@ -559,7 +559,7 @@ public function fuckZaikaTailOnWinPart2(x:int):void
 		pc.lust(20);
 		clearMenu();
 		addButton(0,"Breastfeed",giveZaikaMilkThiefAZaikaSnacc,x,"Breastfeed","Let her have the big suck.");
-		addButton(1,"Cum",noBoobySucksuck,x,"Cum","There's no time for breastfeeding when you need to cum this bad.");
+		addButton(1,"Cum",noBoobySucksuck,x,"Cum","There’s no time for breastfeeding when you need to cum this bad.");
 		return;
 	}
 	else 
@@ -580,7 +580,7 @@ public function giveZaikaMilkThiefAZaikaSnacc(x:int):void
 	if(!pc.isChestExposed()) output(" wrench out one of your [pc.breasts] and push her onto a [pc.nippleNoun]");
 	else output(" shove her ‘o’-mouth onto a [pc.nipple]");
 	output(", bending forward to press her puckered lips into your warm flesh, feeling her tongue lick all around the warm spot. The wonderful, maternal pleasure of having [pc.milk] suckled from your teat momentarily clears the fog of fervor from your mind. A couple of times she comes close to gagging on the treat she’s so badly wanted. Too much of the [pc.milkVisc] deluge spills before she figures it out, drinking herself into a fugue stupor right from your tap");
-	if(pc.isBimbo()) output("\n\n<i>“Theeere you go! Nn - tastes super nice doesn’t it?”</i> you ask, playfully pinching her ear. <i>“My [pc.milkNoun] is the best around! Get all you can sweetie, cuz I’m about... mm! To cum!");
+	if(pc.isBimbo()) output("\n\n<i>“Theeere you go! Nn - tastes super nice doesn’t it?”</i> you ask, playfully pinching her ear. <i>“My [pc.milkNoun] is the best around! Get all you can sweetie, cuz I’m about... mm! To cum!”</i>");
 	else if(pc.isNice()) output("\n\nAs you stroke the back of her head, you ask how she likes it, knowing you won’t get an answer but for more unstinting [pc.milkNoun] guzzling. <i>“Take what you can. Maybe if you ask nicely to someone in the future, you can get this...”</i>");
 	else output("\n\n<i>“Bet that’s what ‘ya like most,”</i> you laugh, tousling her hair into little tiny handholds. <i>“Make it count...”</i>");
 	output("\n\nHer teeth sink into the [pc.milkNoun]-bearing flesh, drawing a groan out of your throat and a small squirting boobgasm from your chest. Detonation isn’t far behind.");
@@ -659,7 +659,9 @@ public function ruttyBoiFun(args:Array):void
 	output("Mounting and bracing yourself against the zaika’s egg-chute, you wiggle yourself past the plump folds and into the dark satin of her birthing hole");
 	if(cummies >= 8000) output(", swimming upstream on the vast amounts of [pc.cum] you’d moments ago reamed into her");
 	output(". Muscles designed for a hyper-specific purpose react against your penetration in magical ways, spitting lukewarm lubricants on supersensitive [pc.dickSkin " + x + "]. Believing your presence to be that of a daughter to be hatched, the lathing nerves of her front-hole, at first, make every futile attempt to eject your [pc.cock " + x + "], yet each contraction brings your cunt-stuffing fatness deeper and deeper," + (pc.cocks[x].cLength() >= 31 ? " until your [pc.cockHead " + x + "] presses on secret uterine gates":" until you bottom out [pc.knotBallsHilt " + x + "]-deep in the treacherous cunny") + ".");
-	output("\n\nThe musical whines of a girl getting exactly what she needs resuscitate your mating imperatives like a defibrillator to the heart. After moulding the{ hyperCum: cumflated} zaika’s crotch-muff to your [pc.cockType " + x + "] shape you go at her, [pc.hips] slapping hard, frenetic rhythm into her pussy as deep and as lusciously as you can. It’s a gloopy, kinesthetic routine - you both groan and cry in harsh tones as you squirt into one another, She coaxes you onwards, legs wrapping" + (pc.isTaur() ? " around your flanks":" around your waist") + ", a broken in slut that’s had her satisfaction levels dialed into the red.");
+	output("\n\nThe musical whines of a girl getting exactly what she needs resuscitate your mating imperatives like a defibrillator to the heart. After moulding the");
+	if(cummies >= 8000) output(" cumflated");
+	output(" zaika’s crotch-muff to your [pc.cockType " + x + "] shape you go at her, [pc.hips] slapping hard, frenetic rhythm into her pussy as deep and as lusciously as you can. It’s a gloopy, kinesthetic routine - you both groan and cry in harsh tones as you squirt into one another, She coaxes you onwards, legs wrapping" + (pc.isTaur() ? " around your flanks":" around your waist") + ", a broken in slut that’s had her satisfaction levels dialed into the red.");
 	output("\n\nHer limp and spent tail, of course, remains on the ground in a sperm-fatigued coma. Doing it in this hole isn’t as pleasurable as it is for them as it would be for " + (pc.hasVagina() ? "you":"the girls you’re used to seeing") + ", but that’s why you’re" + (!pc.isTaur() ? " grabbing both of her tits, groping her to a full body orgasm":" pawing one foot across her breasts, working the most sensitive parts of her body into a full-frame orgasm") + "!");
 	// pc Lactating
 	if(pc.canMilkSquirt())
@@ -707,19 +709,19 @@ public function ruttyBoiFun2(args:Array):void
 	var x:int = args[0];
 	var breastfeeding:Boolean = args[1];
 	var cummies:Number = args[2];
-	output("Timed perfectly with you, the zaika unleashes a great big sigh. Your insatiable ardor is now finally satisfied - for now. It'd be hilarious to see her try and go jumping around the planet now, raining the dregs of your DNA on everyone.");
-	if(pc.inRut()) output(" Unfortunately, she curls up into a ball, breathing reduced to content quietness. Parts of her that once handled things like 'immediacy' or 'awareness' either shut down completely or restructure to cope with the most furious fuck of her life.");
-	else if(breastfeeding) output(" Hopped up on boob-juice though, she won't be doing any jumping, let alone walking! She's babbling delirious on the ground with a wide, empty smile on her face" + (cummies > 8000 ? ", rubbing her stomach happily":", twisting her fingers in the collected mess around the used condom once called her tail") + ". Now <i>that's</i> diplomacy.");
-	else output(" She just might. Despite the intensity of your sex, she's still quite aware of herself, turning her bliss-blasted eyes upwards. <i>“That was super fun.”</i> She gives a confident, if exhausted, grin. <i>“You're definitely a cut above all the other Rushers, no doubt! I bet you're gonna be leavin' other girls like me wherever you go from here.”</i>");
+	output("Timed perfectly with you, the zaika unleashes a great big sigh. Your insatiable ardor is now finally satisfied - for now. It’d be hilarious to see her try and go jumping around the planet now, raining the dregs of your DNA on everyone.");
+	if(pc.inRut()) output(" Unfortunately, she curls up into a ball, breathing reduced to content quietness. Parts of her that once handled things like ‘immediacy’ or ‘awareness’ either shut down completely or restructure to cope with the most furious fuck of her life.");
+	else if(breastfeeding) output(" Hopped up on boob-juice though, she won’t be doing any jumping, let alone walking! She’s babbling delirious on the ground with a wide, empty smile on her face" + (cummies > 8000 ? ", rubbing her stomach happily":", twisting her fingers in the collected mess around the used condom once called her tail") + ". Now <i>that’s</i> diplomacy.");
+	else output(" She just might. Despite the intensity of your sex, she’s still quite aware of herself, turning her bliss-blasted eyes upwards. <i>“That was super fun.”</i> She gives a confident, if exhausted, grin. <i>“You’re definitely a cut above all the other Rushers, no doubt! I bet you’re gonna be leavin’ other girls like me wherever you go from here.”</i>");
 	if(pc.isBimbo())
 	{
-		output("\n\nAs a thank you, you" + (pc.isLactating() ? " squeeze some [pc.milkNoun] into her lips for the good time!":" dribble the last of your [pc.cumNoun] past her lips.") + " Maybe she'll come begging for more later?");
+		output("\n\nAs a thank you, you" + (pc.isLactating() ? " squeeze some [pc.milkNoun] into her lips for the good time!":" dribble the last of your [pc.cumNoun] past her lips.") + " Maybe she’ll come begging for more later?");
 		if(pc.isLactating()) pc.milked(10);
 	}
 	else if(pc.isBro()) output("\n\nBefore leaving, you wipe your [pc.cocks] clean with her hair, using her cum-dump of a mouth to clean the [pc.cockHeads]. Good sluts deserve every drop.");
-	else if(pc.isNice()) output("\n\nBefore returning to the journey, you place her tail coverings within arm's reach and shift a few objects in the environment to better hide her. Dhaal won't be as kind to the vulnerable.");
+	else if(pc.isNice()) output("\n\nBefore returning to the journey, you place her tail coverings within arm’s reach and shift a few objects in the environment to better hide her. Dhaal won’t be as kind to the vulnerable.");
 	else if(pc.isMischievous()) output("\n\nNot quite ready to step out, you bring your [pc.cocksLight] over to her face and jerk the last of your [pc.cumFlavor] loads onto her cheeks, brow, and past her panting lips. Her tongue darts to whip at the [pc.cockHeads], dripping with the stuff. Yeah, she liked that.");
-	else output("\n\nOn your way out, after having wiped your [pc.cocksLight] off in her hair, you spot the ring and covering of her tail. Deciding she won't be needing either, you toss them into obscurity.");
+	else output("\n\nOn your way out, after having wiped your [pc.cocksLight] off in her hair, you spot the ring and covering of her tail. Deciding she won’t be needing either, you toss them into obscurity.");
 
 	// sceneTag: processTime
 	processTime(8);
@@ -1326,7 +1328,7 @@ public function milkThiefFuckAndMilk3(args:Array):void
 		if(puffable) 
 		{
 			pc.inflateVagina(y);
-			if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" It's hard enough to walk now that your [pc.vaginaNoun " + y + "] remains <b>permanently somewhat pumped</b>.");
+			if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" It’s hard enough to walk now that your [pc.vaginaNoun " + y + "] remains <b>permanently somewhat pumped</b>.");
 			else if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_PUMPED)) output(" Your <b>pumped and swollen</b> [pc.vaginaNoun " + y + "]-lips rubbing incessantly against one another will make your journey all the more arduous.");
 			else if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) output(" Closing your [pc.thighs] is hard enough when your <b>[pc.vaginaNoun " + y + "] remains pumped to an absurd degree</b>.");
 		}

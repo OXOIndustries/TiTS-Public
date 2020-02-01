@@ -211,7 +211,7 @@ public function rideKirosVictoryCocku3(x:int):void
 	clearOutput();
 	showKiro(true);
 	author("Fenoxo");
-	output("You aren’t sure at what point you start rolling your [pc.hips] in Kiro’s lap, but at some point, needs aside from companionship asserted themselves. Was it the tanuki’s fault? Her hands are on your [pc.butt], kneading the flesh, guiding you as you roll your creampied " + (x >= 0 ? "passage":"backdoor") + " around your throbbing horse-meat. Or did your own wanton desire for more coerce you into action?");
+	output("You aren’t sure at what point you start rolling your [pc.hips] in Kiro’s lap, but at some point, needs aside from companionship asserted themselves. Was it the tanuki’s fault? Her hands are on your [pc.butt], kneading the flesh, guiding you as you roll your creampied " + (x >= 0 ? "passage":"backdoor") + " around her throbbing horse-meat. Or did your own wanton desire for more coerce you into action?");
 	output("\n\nIt hardly seems to matter.");
 	output("\n\nStroking the lusty kui-tan’s cheek, you lift yourself up to feel even greater friction, arching your back so sharply that it nearly hurts, but the angle allows you to gyrate around steaming-hot cock in whole new ways. Kiro whimpers in the cutest way when a fist-sized globule of spent seed slips out of you and into her ballfur, matting around the overworked orbs. With a naughty giggle, you reach back to collect some in your palm, bringing it up to smear down your [pc.chest] as you drop back down, taking her to the hilt" + (pc.hasVagina() ? ", wet fur tickling your [pc.clits]":"") + ". An even naughtier idea occurs while you’re rubbing it into your [pc.nipples]: <i>what if you got Kiro to lick them clean?</i>");
 	output("\n\nYou don’t have to ask.");
