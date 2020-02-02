@@ -3,19 +3,21 @@ package editor {
     import classes.GameData.*;
     import classes.ShittyShips.Casstech;
     import editor.Descriptors.TiTSDescriptor;
+    import editor.Display.Components.Button;
     import editor.Display.EditorUI;
     import editor.Display.Events.*;
     import editor.Display.Themes.ThemeManager;
+    import editor.Display.UIInfo;
     import flash.display.Sprite;
-    import flash.events.Event;
-    import flash.geom.Rectangle;
+    import flash.events.*;
     
     public class Editor extends Sprite {
         private var editorUI: EditorUI;
-        private var boxSize: Rectangle;
+        private var tits: TiTS;
+        private var button: Button;
         
         public function Editor() {
-            const tits: TiTS = new TiTS();
+            tits = new TiTS();
             addChild(tits); // Game doesn't load until added to stage
             tits.visible = false;
             visible = true;
@@ -32,20 +34,40 @@ package editor {
             tits.userInterface.resetPCStats();
             tits.shipDb.NewGame();
 
-            const editorState: Evaluator = new Evaluator(new TiTSDescriptor(tits));
-
-            x = 0;
-            y = 0;
-
-            editorUI = new EditorUI(editorState);
+            editorUI = new EditorUI(new Evaluator(new TiTSDescriptor(tits)));
             editorUI.x = 0;
             editorUI.y = 0;
             editorUI.nsWidth = stage.stageWidth;
             editorUI.nsHeight = stage.stageHeight;
 
             addChild(editorUI);
+
+            button = new Button('Game');
+            button.x = stage.stageWidth - 50 - UIInfo.BORDER_SIZE;
+            button.y = UIInfo.BORDER_SIZE;
+            button.nsWidth = 50;
+            button.nsHeight = 30 - UIInfo.BORDER_SIZE;
+            button.addEventListener(MouseEvent.CLICK, switchVisibility);
+
+            addChild(button);
+
             EditorEventDispatcher.instance.addEventListener(EditorEvents.THEME_CHANGE, themeUpdate);
             EditorEventDispatcher.instance.dispatchEvent(new Event(EditorEvents.THEME_CHANGE));
+        }
+
+        private function switchVisibility(event: Event): void {
+            if (!tits.visible) {
+                stage.color = 0x3D5174;
+                button.text = 'Edit';
+                tits.visible = true;
+                editorUI.visible = false;
+            }
+            else {
+                themeUpdate(event);
+                button.text = 'Game';
+                tits.visible = false;
+                editorUI.visible = true;
+            }
         }
 
         private function themeUpdate(event: Event): void {

@@ -35,7 +35,7 @@ package editor.Display.Panes {
             listField.x = 0;
             listField.y = searchField.height + UIInfo.BORDER_SIZE;
             listField.nsWidth = nsWidth;
-            listField.nsHeight = nsHeight;
+            listField.nsHeight = nsHeight - listField.y;
 
             updateList(event);
         }

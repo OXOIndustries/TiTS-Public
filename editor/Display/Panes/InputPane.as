@@ -1,20 +1,21 @@
 package editor.Display.Panes {
     import editor.Display.Components.Box;
     import editor.Display.Components.InputField;
-    import editor.Display.Components.MarkerFormat;
     import editor.Display.Components.StaticField;
     import editor.Display.Events.*;
+    import editor.Display.Themes.*;
     import editor.Display.UIInfo;
     import editor.Evaluator;
     import editor.Lang.Errors.LangError;
     import editor.Lang.TextRange;
     import flash.events.*;
+    import flash.text.TextFormat;
 
     public class InputPane extends Box {
         private var inputField: InputField = new InputField();
         private var infoField: StaticField = new StaticField();
-        private var errorMarkerFormat: MarkerFormat = new MarkerFormat('base08');
-        private var outputMarkerFormat: MarkerFormat = new MarkerFormat('base0B');
+        private var errorFormat: TextFormat = new TextFormat();
+        private var outputFormat: TextFormat = new TextFormat();
         private var evaluator: Evaluator;
 
         public function InputPane(evaluator: Evaluator) {
@@ -37,12 +38,12 @@ package editor.Display.Panes {
             inputField.x = UIInfo.BORDER_SIZE;
             inputField.y = UIInfo.BORDER_SIZE;
             inputField.nsWidth = nsWidth - UIInfo.BORDER_SIZE;
-            inputField.nsHeight = nsHeight - 50 - UIInfo.BORDER_SIZE;
+            inputField.nsHeight = nsHeight - 30 - UIInfo.BORDER_SIZE;
 
             infoField.x = UIInfo.BORDER_SIZE;
             infoField.y = inputField.y + inputField.nsHeight + UIInfo.BORDER_SIZE;
             infoField.nsWidth = nsWidth - UIInfo.BORDER_SIZE;
-            infoField.nsHeight = 50 - UIInfo.BORDER_SIZE;
+            infoField.nsHeight = 30 - UIInfo.BORDER_SIZE;
 
             displayInfo(0, 0, 0);
         }
@@ -76,22 +77,24 @@ package editor.Display.Panes {
         }
 
         private function updateMarkers(event: Event): void {
+            errorFormat.color = ThemeManager.instance.currentTheme.base08;
+            outputFormat.color = ThemeManager.instance.currentTheme.base0B;
             if (inputField.text.length > 0) {
                 inputField.setTextFormat(inputField.textFormat);
                 for each (var range: TextRange in evaluator.evalRanges()) {
                     if (range.start.offset !== range.end.offset)
                     if (range.end.offset > inputField.text.length)
-                        inputField.setTextFormat(outputMarkerFormat, range.start.offset, inputField.text.length);
+                        inputField.setTextFormat(outputFormat, range.start.offset, inputField.text.length);
                     else
-                        inputField.setTextFormat(outputMarkerFormat, range.start.offset, range.end.offset);
+                        inputField.setTextFormat(outputFormat, range.start.offset, range.end.offset);
                 }
 
                 for each (var error: LangError in evaluator.evalErrors()) {
                     if (error.range.start.offset !== error.range.end.offset)
                     if (error.range.end.offset > inputField.text.length)
-                        inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, inputField.text.length);
+                        inputField.setTextFormat(errorFormat, error.range.start.offset, inputField.text.length);
                     else
-                        inputField.setTextFormat(errorMarkerFormat, error.range.start.offset, error.range.end.offset);
+                        inputField.setTextFormat(errorFormat, error.range.start.offset, error.range.end.offset);
                 }
             }
         }

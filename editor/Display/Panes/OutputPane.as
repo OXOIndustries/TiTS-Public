@@ -42,8 +42,8 @@ package editor.Display.Panes {
         private function init(event: Event): void {
             buttonContainer.x = 0;
             buttonContainer.y = 0;
-            buttonContainer.nsWidth = nsWidth;
-            buttonContainer.nsHeight = 50;
+            buttonContainer.nsWidth = nsWidth - 50 - UIInfo.BORDER_SIZE;
+            buttonContainer.nsHeight = 30;
 
             const buttonWidth: Number = (buttonContainer.nsWidth - UIInfo.BORDER_SIZE) / buttons.length;
             for (var idx: int = 0; idx < buttons.length; idx++) {
@@ -54,9 +54,9 @@ package editor.Display.Panes {
             }
 
             paneContainer.x = 0;
-            paneContainer.y = buttonContainer.y + buttonContainer.nsHeight;
+            paneContainer.y = buttonContainer.nsHeight;
             paneContainer.nsWidth = nsWidth;
-            paneContainer.nsHeight = nsHeight - 50;
+            paneContainer.nsHeight = nsHeight - 30;
 
             for (idx = 0; idx < panes.length; idx++) {
                 panes[idx].x = UIInfo.BORDER_SIZE;
