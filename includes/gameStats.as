@@ -9793,7 +9793,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["EGG_TRAINING_TIMES"] > 1) output2(" " + flags["EGG_TRAINING_TIMES"] + " times");
 				}
 				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level:</b> " + flags["EGG_TRAINING"]);
-				if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Ovalasting Level:</b> " + flags["EGG_TRAINING_OVALASTING_LEVEL"]);
+				if(flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined || pc.hasStatusEffect("Ovalasting")) output2("\n<b>* TamaniCorp, Egg Trainer, Ovalasting Level:</b> " + (flags["EGG_TRAINING_OVALASTING_LEVEL"] != undefined ? flags["EGG_TRAINING_OVALASTING_LEVEL"] : 0));
 				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training:</b> " + flags["CARRY_TRAINING_TIMES"]);
 				if(flags["EGG_TRAINING_OVALASTING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Used Ovalasting:</b> " + flags["EGG_TRAINING_OVALASTING"]);
 			}
