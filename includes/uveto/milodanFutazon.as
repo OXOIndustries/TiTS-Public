@@ -20,7 +20,7 @@ public function joycoUvetoHazmatAdvisoryEmail():String
 	// Subject: Urgent: Hazmat Advisory
 	var eText:String = "";
 	eText += "<i>As you open the message, an almost annoyingly cheery tune starts playing, and the holographic visage of a wide-smiling droid comes into view.</i>";
-	eText += "\n\nGreetings... " + pc.nameDisplay() + " Steele! This is an automated message from Joyco. Our systems have informed us that a recent incident may have released a potentially hazardous material within the proximity of your current location. Don't worry, our team of safety experts are already on the case, and should have the incident dealt with in a timely manner. In the meantime, please avoid any seemingly deformed or mutated flora or fauna.";
+	eText += "\n\nGreetings... " + pc.nameDisplay() + " Steele! This is an automated message from Joyco. Our systems have informed us that a recent incident may have released a potentially hazardous material within the proximity of your current location. Don’t worry, our team of safety experts are already on the case, and should have the incident dealt with in a timely manner. In the meantime, please avoid any seemingly deformed or mutated flora or fauna.";
 	eText += "\n\nPlease contact our support line with any further questions. Have a nice day!";
 	eText += "\n\n<i>Well, that was a whole lot of nothing. Before you can close the message a wall of legal text comes up, ending with </i>“By reading this message you acknowledge that Joyco is not liable for any harm done to you or your property, as you have been properly made aware of the potential dangers present.”";
 	eText += "\n\n<i>Typical.</i>";
@@ -124,7 +124,7 @@ public function milodanFutazonWin():void
 	if (pc.hasCock()) 
 	{
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0, "Fuck Her", penisRouter, [winAgainstMilodanFutazonFuckHerChoice, enemy.vaginalCapacity(0), false, 0],"Fuck Her", "Fuck the milodan with your penis.");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit inside her.");
+		else addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fit inside her.");
 	}
 	else addDisabledButton (0, "Fuck Her", "Fuck Her", "You need a phallus for this!");
 
@@ -133,7 +133,7 @@ public function milodanFutazonWin():void
 
 	addButton(2, "EatHerOut", winAgainstMilodanFutazonEatHerPussy);
 	if (enemy is MilodanFutazon) addButton(3, "SuckHerOff", winAgainstMilodanFutazonSuckHerOff);
-	else if (flags["USED_SNAKEBYTE"] != undefined) addButton(3, "HyperSuckHer", winAgainstMilodanFutazonHyperSuckHer, "Hyper Suck Off", "Use your extra-stretchy mouth to tame her titanic totem.");
+	else if (flags["USED_SNAKEBYTE"] != undefined) addButton(3, "HyperSuckHer", winAgainstMilodanFutazonHyperSuckHer, undefined, "Hyper Suck Off", "Use your extra-stretchy mouth to tame her titanic totem.");
 	else addDisabledButton (3, "HyperSuckHer", "Hyper Suck Off", "You’d need some heavy-duty jaw mods in order to pull that off.");
 
 	addButton(14, "Leave", leaveMiloFutaAfterWin);
@@ -690,7 +690,7 @@ public function winandGetFuckedByBruiser(vIdx:int):void
 	output("The huge hermaphrodite stands up and comes up behind you. She takes you by surprise when she hooks you under your legs and lifts you up against her chest, keeping your legs pinned under her strong arms. <i>“I hope you don’t mind if we do it this way. I found this position in an erotic painting I found on another outsider. I believe it’s called a ‘full nelson’.”</i>");
 	output("\n\nYou’re not happy that she took control like that, but the way her totem of a cock sits between your lifted legs and the way her huge breasts act like a pillow is too tempting to resist. You look up and nod, giving her the go-ahead to start. <i>“Gooood. Don’t worry, mommy will fuck you good and make your Lord Nelson proud!”</i>");
 	output("\n\nShe plants the tip of her member against your [pc.vagOrAss " + vIdx + "] and lets her productive pre do the work of lubing you up. It does the job and then some, plastering your crotch until it looks like you’ve already been through an hours-long orgy before this. You know you were lubed-up within the first few seconds");
-	if (pc.wettestVaginalWetness() >= 3 || pc.hasVaginaFlag["GLOBAL.FLAG_LUBRICATED"]) output (", hell, you were lubed-up before you even got here");
+	if (pc.wettestVaginalWetness() >= 3 || pc.hasVaginaFlag(GLOBAL.FLAG_LUBRICATED, vIdx)) output (", hell, you were lubed-up before you even got here");
 	output (", yet she continues to sit there and fill you.");
 	output("\n\nIt irritates you to the point of action. <i>You</i> won here, and you’re not going to sit around and let <i>her</i> set the pace! You summon up your strength and thrust your [pc.hips] down, taking several inches of thick meat in one stroke. ");
 	//First holechange for virginity purposes

@@ -263,7 +263,7 @@ package classes.Characters
 				applyDamage(new TypeCollection( { tease: 5 } ), this, this, "suppress");
 			}
 			if (this.lust() >= this.lustMax()) miloFutaReleaseLust(target);
-			else
+			else if (!target.hasStatusEffect("Grappled"))
 			{
 				var enemyAttacks:Array = [];
 				enemyAttacks.push({ v: bigMiloFutaPounce, w: 10 });

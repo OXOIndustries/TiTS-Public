@@ -174,7 +174,7 @@ package classes.Items.Transformatives
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
+					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800) choices.push(7);
 				}
 			}
 			/*
@@ -390,7 +390,7 @@ package classes.Items.Transformatives
 				choices = [];
 				for(i = 0; i < pc.totalVaginas(); i++)
 				{
-					if(!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800)
+					if(pc.vaginalPuffiness(i, true) < 3 || pc.vaginas[i].bonusCapacity < 800)
 					{
 						choices.push(i);
 					}
@@ -463,7 +463,7 @@ package classes.Items.Transformatives
 							pc.lust(5);
 						}
 						// middling variant
-						else if(600)
+						else if(pc.vaginas[x].bonusCapacity < 600)
 						{
 							textBuff += (puffed ? "\n\nThe changes don’t end with your expanded exterior. ":"") + "A twinge in your vaginal interior leads you to feel it’s become... stretchier. You feel <i>emptier.</i> <b>Why aren’t you mounted on a huge dick right now?</b> Laquines are known for a few things, and having big cocks and bigger cumshots are a few of those important facts. Why aren’t you bearing their kids, either? There’s <i>a lot</i> of room in there, more than silly things like <i>nature</i> would allow normally.";
 							textBuff += "\n\nYou shake your head, a blush spreading across your cheek. When you slide a [pc.finger] into your pussy, <b>you are much deeper than before. In fact, if you wanted to, your entire hand could slide in without an ounce of pain.</b>";

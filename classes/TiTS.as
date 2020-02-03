@@ -514,6 +514,7 @@
 		// Dhaal
 		include "../includes/dhaal/capsuleHotel.as";
 		include "../includes/dhaal/milkBar.as";
+		include "../includes/dhaal/milkThief.as";
 		include "../includes/dhaal/rooms.as";
 		
 		// Breedwell
@@ -706,7 +707,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.8.051";
+			version = "0.8.055";
 
 			//temporary nonsense variables.
 			temp = 0;

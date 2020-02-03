@@ -17,6 +17,7 @@ package classes.GameData
 	import classes.Characters.SandWorm;
 	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
+	import classes.Characters.ZaikaMilkThief;
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -1874,8 +1875,8 @@ package classes.GameData
 			if (attacker.aim() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Blinded") && attacker.hasRangedEnergyWeapon() && !target.hasBlindImmunity())
 			{
 				if (target is PlayerCharacter) output("\n<b>You are blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
-				else if (attacker is PlayerCharacter) output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
-				else output("<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
+				else if (attacker is PlayerCharacter) output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (target.isPlural ? "are" : "is") + " blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
 				applyBlind(target, 3);
 			}
@@ -2960,6 +2961,11 @@ package classes.GameData
 					}
 				}
 			}
+			if(target is ZaikaMilkThief)
+			{
+				if(!target.hasStatusEffect("MeleeHit")) target.createStatusEffect("MeleeHit");
+				return false;
+			}
 			return false;
 		}
 		//SHIP SPECIAL ATTACKS!
@@ -2985,3 +2991,4 @@ package classes.GameData
 	}
 
 }
+

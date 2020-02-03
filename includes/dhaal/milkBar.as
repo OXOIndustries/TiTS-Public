@@ -7,12 +7,17 @@ public function showIyla(nude:Boolean = false):void
 public function showDrinkCow(nude:Boolean = false):void
 {
 	showName("DRINK\nCOW");
-	showBust("DRINK_COW" + (nude ? "_NUDE":""));
+	showBust("DRINK_COW_" + flags["DHAAL_MILKCOW"] + (nude ? "_NUDE":""));
 }
+
 public function showCreamCow(nude:Boolean = false):void
 {
 	showName("CREAM\nCOW");
 	showBust("CREAM_COW" + (nude ? "_NUDE":""));
+}
+public function generateDrinkCow():void
+{
+	flags["DHAAL_MILKCOW"] = rand(3)+1;
 }
 
 //Outside tile descriptor
@@ -128,6 +133,29 @@ public function applyMilkBarDrugs(drink:int, duration:Number):void
 	if(!pc.hasStatusEffect(drinkName)) pc.createStatusEffect(drinkName,0,0,0,0,false,"Icon_DizzyDrunk","Tooltip",false,duration);
 	else if(pc.getStatusMinutes(drinkName) < duration) pc.setStatusMinutes(drinkName,duration);
 	else pc.addStatusMinutes(drinkName,20);
+	// add buffs
+	switch(drinkName)
+	{
+		//+5 willpower, +15 libido
+		case "Xanose":
+			pc.willpowerMod += 5;
+			pc.libidoMod += 15;
+			break;
+		//+10 reflexes
+		case "Vipris":
+			pc.reflexesMod += 10;
+			break;
+		//+5 reflexes, +5 intelligence
+		case "Sinthine":
+			pc.reflexesMod += 5;
+			pc.intelligenceMod += 5;
+			break;
+		//+5 aim, +5 reflexes
+		case "Cromesc":
+			pc.aimMod += 5;
+			pc.reflexesMod += 5;
+			break;
+	}
 }
 
 
@@ -135,6 +163,7 @@ public function applyMilkBarDrugs(drink:int, duration:Number):void
 public function drinkieDrinkieRouter(drink:int):void
 {
 	clearOutput();
+	generateDrinkCow();
 	showDrinkCow();
 	author("Wsan");
 	pc.credits -= 25;

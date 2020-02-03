@@ -2299,7 +2299,7 @@ public function wallSlutsNoisyRodentsEarFuckingFinish(kok:int=0):void
 //check if pc has vip access
 public function wallSlutsNoisyRodentsVIPAccess():Boolean
 {
-	if ((flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 1 && ratsPCIsGood()) || (flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 4 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] >= 1 && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] >= 1)) return true;
+	if ((flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 1 && ratsPCIsGood()) || (flags["WALLSLUTS_NOISY_RODENTS_NUTTED"] >= 3 && flags["WALLSLUTS_NOISY_RODENTS_WALNUTTED"] >= 1 && flags["WALLSLUTS_NOISY_RODENTS_CHESTNUTTED"] >= 1)) return true;
 	
 	return false;	
 }
@@ -2384,8 +2384,11 @@ public function wallSlutsNoisyRodentsVIPService():void
 		output("\n\n<i>“Nooo" + (ratsPCIsGood() ? ", not even for you [pc.mister] CEO" : "") + "!”</i> Walnut’s thrashy wiggles convey her disapproval. <i>“We can’t jus’ go giving up our spot, we get tons’a customers all the time and we make lotsa money! If we pop outta our spot someone else’ll probably take it! C’moon, what’s wrong with having two super vulnerable rodenians cursing and swearing and needing their mouths plugged up by big fat cocks and pumped full with lots of tasty, delicious cummies?”</i>");
 		output("\n\nChestnut pulls her lips into her mouth and sticks out the tip of a wet, studded tongue. Her jizz-flecked brain cells are rubbing together pretty hard. <i>“Oh! I know!”</i> the tawny rodent chirps. <i>“Walnut’ll totally be into it if you show her what a real high roller you are - " + (ratsPCIsGood() ? "and cuz everyone says you’re so cool, give us some money and pound our heads! If you fuck as good as the twin scamps like to say, we’ll give you a biiiiig discount!" : "use us a bunch, really pound our heads into submission! Theeeeennnnmmmaaaaybeeee we’ll let you have us outside the wall, okay?") + "”</i>");
 		output("\n\nWalnut’s snout splits with a big smile. <i>“Oooh, that sounds fun! Be careful" + (ratsPCIsGood() ? " [pc.mister] CEO" : "") + "! We’re gonna get all your money if you wanna really show us our place!”</i>");
-		output("\n\nSo be it - ask about some special service <i>after</i> you’ve pumped some cum into their ears." + (ratsPCIsGood() ? "" : " <b>You’ll have to give them both at least one focused creampie to drive the point home.</b>"));
-		
+		output("\n\nSo be it - ask about some special service <i>after</i> you’ve pumped some cum into their ears.");
+		if(!ratsPCIsGood()) 
+		{
+			output("<b>You’ll have to give them both at least one focused creampie to drive the point home, and possibly a few more sessions after that to really soften them up to treating you like a " + (pc.mf("king","queen")) + ".</b>");
+		}		
 		clearMenu();
 		wallSlutsNoisyRodentsMainMenu();
 	}

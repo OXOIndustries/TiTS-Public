@@ -160,6 +160,7 @@
 			var v:VaginaClass = vaginas[0];
 			v.wetnessRaw = 3;
 			v.loosenessRaw = 3;
+			v.bonusCapacity += 75;
 			
 			//balls
 			this.balls = 0;

@@ -3735,7 +3735,7 @@ public function defeatMimbrane():void
 
 	clearMenu();
 	addButton(0, "Kill It", killDatMimbrane);
-	addButton(1, "Let It Go", letMimbraneGo);
+	addButton(14, "Leave", letMimbraneGo);
 
 	if (pc.hasCock() && pc.lust() >= 33) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom,undefined,"Mimbrane Fap","Use the mimbrane like a living sextoy. It’s certainly slippery enough.");
 	else if(pc.lust() >= 33) addDisabledButton(2,"Mimbrane Fap","Mimbrane Fap","You need a penis to fap with a mimbrane.");

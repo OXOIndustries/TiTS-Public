@@ -869,7 +869,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Paralyzed");
 					if (target is PlayerCharacter) output("\n\n<b>The paralytic venom wears off, and you are able to move once more.</b>");
-					else output("\n\n<b>The paralysis affecting " + StringUtil.capitalize(target.getCombatName(), false) + " seems to wear off, motion returning to " + target.getCombatPronoun("hisher") + " limbs!</b>");
+					else output("\n\n<b>The paralysis affecting " + target.getCombatName() + " seems to wear off, motion returning to " + target.getCombatPronoun("hisher") + " limbs!</b>");
 				}
 				else
 				{
@@ -986,8 +986,11 @@ package classes.GameData
 					}
 					else
 					{
-						target.lust(5 + rand(10));
+						//Fen: target.lust(5 + rand(10));
 						output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+						var mimbCloudDamage:DamageResult = new DamageResult();
+						mimbCloudDamage.addResult(applyDamage(damageRand(new TypeCollection( { drug: 3+rand(4) } ), 15), null, target));
+						outputDamage(mimbCloudDamage);
 					}
 				}
 				else
@@ -1287,15 +1290,14 @@ package classes.GameData
 			
 			if (target.hasStatusEffect("Psychic Miasma"))
 			{
-				
 				if (target.willpower() + 10 > rand(100))
 				{
-					target.removeStatusEffect("Psychic Miasma");
 					if (target is PlayerCharacter) output("\n\nYou push aside the effects of the psionic drone.");
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " resists the psionic drone.</b>");
 					
-					target.aimMod += 5
-					target.reflexesMod += 5
+					target.aimMod += 5;
+					target.reflexesMod += 5;
+					target.removeStatusEffect("Psychic Miasma");
 				}
 			}
 			
@@ -1857,8 +1859,11 @@ package classes.GameData
 			if(enemiesAlive() > 1) output("ies are");
 			else output("y is");
 			output(" so alluring?");
-			pc.lust(20 + rand(20));
-			
+
+			var fantasizeDam:Number = 20+rand(20);
+			output(" (<b>L: +<span class='lust'>" + Math.floor(fantasizeDam) + "</span></b>)");
+			pc.lust(fantasizeDam);
+						
 			if (_hostiles.length == 1 && _hostiles[0] is CrystalGooT1 && (_hostiles[0] as CrystalGooT1).ShouldIntercept({ isFantasize: true }))
 			{
 				(_hostiles[0] as CrystalGooT1).SneakSqueezeAttackReaction( { isFantasize: true } );
@@ -2395,7 +2400,7 @@ package classes.GameData
 			var grappleLevel:int = 0;
 			var grappleEscapeLvl:int = 0;
 			var removeGrapple:Boolean = false;
-			if(target.hasStatusEffect("Naleen Coiled")) { grappleLevel = target.statusEffectv1("Naleen Coiled"); grappleEscapeLvl = 24; }
+			if(target.hasStatusEffect("Naleen Coiled")) { grappleLevel = target.statusEffectv1("Naleen Coiled"); grappleEscapeLvl = 20; }
 			if(target.hasStatusEffect("Mimbrane Smother")) { grappleLevel = target.statusEffectv1("Mimbrane Smother"); grappleEscapeLvl = 0; }
 			if(target.hasStatusEffect("Grappled")) { grappleLevel = target.statusEffectv1("Grappled"); grappleEscapeLvl = 24; }
 			
@@ -2496,13 +2501,17 @@ package classes.GameData
 					else if (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					else if (hasEnemyOfClass(Mimbrane))
 					{
-						target.lust(10 + target.libido()/10);
+						/*Converted to new system and nerfed slightly since it also attacks during the smother! -Fen, 2020/01
+							target.lust(10 + target.libido()/10); */
 						// fail to escape 1
 						if (grappleLevel == 0) output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
 						// fail to escape 2
 						else if (grappleLevel == 1) output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.");
 						// defeated
 						else if (grappleLevel == 2) output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+						var mimbDamage:DamageResult = new DamageResult();
+						mimbDamage.addResult(applyDamage(damageRand(new TypeCollection( { drug: 1+target.libido()/10 } ), 15), null, target));
+						outputDamage(mimbDamage);
 					}
 					else if(hasEnemyOfClass(SexBot)) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fiber is utterly unyielding.");
 					else if (hasEnemyOfClass(Kaska)) kGAMECLASS.failToStruggleKaskaBoobs();
@@ -5283,7 +5292,7 @@ package classes.GameData
 					}
 				}
 				
-				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg) && !(target is ZaikaMilkThief))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
 				}
@@ -5298,7 +5307,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh) && !(target is ZaikaMilkThief))
 				{
 					output("\n\n");
 					doStunRecover(target);

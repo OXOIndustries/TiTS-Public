@@ -614,6 +614,7 @@ public function kiroZhengShiTalk():void
 	showKiro();
 	author("Fenoxo");
 	output("You ask Kiro what she knows about Zheng Shi.");
+	output("\n\n");
 	//Stole sidewinder
 	if(pirateResearchVesselStolen())
 	{
@@ -653,12 +654,12 @@ public function kiroZhengTalk2():void
 	output("\n\n");
 	if(flags["SECOP_SLIT_SLUTTINGS"] != undefined || flags["SECOP_WALLSLUTTINGS"] != undefined || flags["SECOP_TAURSLUTTINGS"] != undefined) output("You have a pretty good idea. ");
 	output("<i>“What’s that?”</i>");
-	output("\n\n<i>“Brainwash them.”</i> Kiro shivers at the memory of being in Doctor Po’s clutches. <i>“Just like that illustria bitch tried to do to me, but the fast and dirty version. See, they’ve got these virtual reality visors they can snap onto your face that tap straight into your brain. They can make you see and feel </i>anything<i> with one of those on, and if they want to hit you with some really hardcore stuff, there’s nothing you can do about it once you’re in there.”</i> She pauses. <i>“If you’re lucky, they’ll just use them to pacify you long enough to drag you out of the way.”</i>");
+	output("\n\n<i>“Brainwash them.”</i> Kiro shivers at the memory of being in Doctor Po’s clutches. <i>“Just like that Illustria bitch tried to do to me, but the fast and dirty version. See, they’ve got these virtual reality visors they can snap onto your face that tap straight into your brain. They can make you see and feel </i>anything<i> with one of those on, and if they want to hit you with some really hardcore stuff, there’s nothing you can do about it once you’re in there.”</i> She pauses. <i>“If you’re lucky, they’ll just use them to pacify you long enough to drag you out of the way.”</i>");
 	output("\n\n<i>“Doesn’t sound very friendly,”</i> you observe.");
 	output("\n\n<i>“Not at all. You want friendly? Go find some of Rat’s Raiders. They’ll greet you like old friends while they empty your pockets and maybe try to sweet talk their way into your pants while they’re at it. Not that unusual for pirates, except you almost always find them in groups.”</i> Kiro crosses her arms in annoyance. <i>“If you can’t handle yourself in a solo scrap, you probably shouldn’t be a pirate.”</i>");
 	output("\n\nYou ask if she knows why they stay in groups.");
-	output("\n\n<i>“Yeah. They’re Rodenians... which means they have certain... vulnerabilities. Look it up on your Codex if you want to know more.");
-	if(silly) output("\n\nYour desire to know more intensifies.\n\n”</i>");
+	output("\n\n<i>“Yeah. They’re Rodenians... which means they have certain... vulnerabilities. Look it up on your Codex if you want to know more.”</i>");
+	if(silly) output("\n\nYour desire to know more intensifies.\n\n");
 	else output(" ");
 	output("Kiro sighs. <i>“They’re hard to stay mad at. Just make sure you have plenty of fodder in your pockets to pay them off with if you meet them. Fake gemstones, spoofed credsticks, that sort of thing. Give them something they want, and they’ll be your best friend. Your best fuckbuddies, if they fancy you.”</i>");
 	output("\n\nIntriguing.");

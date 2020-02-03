@@ -2879,11 +2879,11 @@
 					break;
 				case "thighDescript":
 				case "thigh":
-					buffer = thighDescript();
+					buffer = thighDescript(true);
 					break;
 				case "thighsDescript":
 				case "thighs":
-					buffer = thighsDescript();
+					buffer = thighsDescript(true);
 					break;
 				case "vagina":
 				case "pussy":
@@ -3178,6 +3178,10 @@
 				case "legOrLegs":
 				case "legsOrLeg":
 					buffer = legOrLegs();
+					break;
+				case "thighsOrLegs":
+				case "legsOrThighs":
+					buffer = thighsOrLegs();
 					break;
 				case "legOrLegsNoun":
 					buffer = (legCount == 1 ? legNoun() : legsNoun());
@@ -7754,6 +7758,9 @@
 		public function isGrappled(): Boolean {
 			return (hasStatusEffect("Grappled") || hasStatusEffect("Naleen Coiled") || hasStatusEffect("Mimbrane Smother"));
 		}
+		public function isDisarmed(): Boolean {
+			return (hasStatusEffect("Disarmed"));
+		}
 		public function isBlind(): Boolean {
 			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));
 		}
@@ -7768,6 +7775,10 @@
 		}
 		public function legOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			if (legCount == 1) return leg(forceType, forceAdjective);
+			return legs(forceType, forceAdjective);
+		}
+		public function thighsOrLegs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
+			if (legCount == 1) return thighsDescript(forceAdjective);
 			return legs(forceType, forceAdjective);
 		}
 		public function tailDescript(nounOnly:Boolean = false): String {
@@ -10418,7 +10429,7 @@
 			return puffScore;
 		}
 		public function puffiestVaginaIndex(flagOnly:Boolean = false): int {
-			if (vaginas.length <= 1) return -1;
+			if (vaginas.length < 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
@@ -10427,7 +10438,7 @@
 			return index;
 		}
 		public function flattestVaginaIndex(flagOnly:Boolean = false): int {
-			if (vaginas.length <= 1) return -1;
+			if (vaginas.length < 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
@@ -14836,7 +14847,7 @@
 			if (asPlural) desc = plural(desc);
 			return desc;
 		}
-		public function thighDescript():String {
+		public function thighDescript(forceAdjective:Boolean = false):String {
 			var hips: Number = hipRating();
 			var desc: String = "";
 			var adjectives: Array = [];
@@ -14854,12 +14865,12 @@
 				if(hips >= 20 && thickness >= 75) adjectives.push("massively-thick");
 			}
 			
-			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)] + " ";
+			if(adjectives.length > 0 && (forceAdjective || rand(3) == 0)) desc += adjectives[rand(adjectives.length)] + " ";
 			desc += "thigh";
 			return desc;
 		}
-		public function thighsDescript():String {
-			return plural(thighDescript());
+		public function thighsDescript(forceAdjective:Boolean = false):String {
+			return plural(thighDescript(forceAdjective));
 		}
 		public function hipsDescript(): String {
 			return hipDescript(true);
@@ -22176,7 +22187,7 @@
 		}
 		public function hasAirtightSuit():Boolean
 		{
-			return (hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
+			return (!hasStatusEffect("Corroded Seals") && hasArmor() && armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT));
 		}
 		public function hasShields():Boolean
 		{
