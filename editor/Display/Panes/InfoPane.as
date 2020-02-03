@@ -1,89 +1,123 @@
 package editor.Display.Panes {
     import editor.Display.Components.Box;
+    import editor.Display.Components.InputField;
     import editor.Display.Components.StaticField;
     import editor.Display.Events.*;
     import editor.Display.UIInfo;
     import editor.Evaluator;
+    import editor.Lang.Interpret.Interpreter;
     import flash.events.*;
     import flash.utils.describeType;
 
     public class InfoPane extends Box {
-        private var codeField: StaticField = new StaticField();
+        private var searchField: InputField = new InputField();
+        private var listField: StaticField = new StaticField();
         private var evaluator: Evaluator;
 
         public function InfoPane(evaluator: Evaluator) {
             this.evaluator = evaluator;
-            addChild(codeField);
+            addChild(searchField);
+            addChild(listField);
+
+            searchField.addEventListener(Event.CHANGE, updateList);
+            searchField.addEventListener(MouseEvent.CLICK, removeSearchText);
 
             addEventListener(Event.ADDED_TO_STAGE, init);
         }
 
         private function init(event: Event): void {
-            codeField.x = 0;
-            codeField.y = 0;
-            codeField.nsWidth = nsWidth;
-            codeField.nsHeight = nsHeight;
-            codeField.text = describeValue('Global', evaluator.global, 0);
+            searchField.x = 0;
+            searchField.y = 0;
+            searchField.nsWidth = nsWidth;
+            searchField.nsHeight = 30 - UIInfo.BORDER_SIZE;
+            searchField.text = 'Search...';
+
+            listField.x = 0;
+            listField.y = searchField.height + UIInfo.BORDER_SIZE;
+            listField.nsWidth = nsWidth;
+            listField.nsHeight = nsHeight - listField.y;
+
+            updateList(event);
         }
 
-        private function describeClass(name: String, obj: Object, indent: int): String {
-            var description: XML = describeType(obj);
-            const typeKeysObj: Object = new Object();
-            groupByTypes(typeKeysObj, description..accessor);
-            groupByTypes(typeKeysObj, description..constant);
-            groupByTypes(typeKeysObj, description..variable);
-            for each(var item: XML in description..method) {
-                if (typeKeysObj['Method'] == null)
-                    typeKeysObj['Method'] = new Array();
-                typeKeysObj['Method'].push(item.@name.toString());
-            }
-            
-            var text: String = '';
-            for (var type: String in typeKeysObj) {
-                if (typeof obj[typeKeysObj[type][0]] === 'object') {
-                    text += describeValue(typeKeysObj[type].sort().join(', '), obj[typeKeysObj[type][0]], indent);
-                }
-                else {
-                    for each (var key: String in typeKeysObj[type].sort())
-                        text += describeValue(key, obj[typeKeysObj[type][0]], indent);
-                }
+        private function removeSearchText(event: Event): void {
+            if (searchField.text === 'Search...')
+                searchField.text = '';
+        }
+
+        private function updateList(event: Event): void {
+            var keys: Array = searchField.text.split('.');
+
+            // Traverse global object using keys
+            var obj: * = evaluator.global;
+            for each(var keyword: String in keys) {
+                if (!keyword || !(keyword in obj) || typeof obj[keyword] !== 'object') break;
+                obj = obj[keyword];
             }
 
+            if (typeof obj == 'object' || keys.length == 0)
+                listField.htmlText = describeObj(keys.length > 0 ? keys[keys.length - 1] : '', obj);
+            else
+                listField.htmlText = describeValue(keys[keys.length - 1], obj);
+        }
+
+        private function describeValue(key: String, obj: Object): String {
+            var text: String = key + ': ';
+            switch (typeof obj[key]) {
+                case 'string': text += 'text'; break;
+                case 'boolean': text += 'yes or no'; break;
+                case 'object': text += 'container'; break;
+                default: text += typeof obj[key]; break;
+            }
+            if ((key + Interpreter.FUNC_INFO_STRING) in obj && obj[key + Interpreter.FUNC_INFO_STRING].getDesc())
+                    text += ' - ' + obj[key + Interpreter.FUNC_INFO_STRING].getDesc();
             return text;
         }
 
-        private function groupByTypes(groupObj: Object, list: XMLList): void {
-            var type: String;
-            var name: String;
-            for each(var item: XML in list) {
-                type = item.@type.toString();
-                name = item.@name.toString();
-                if (name.indexOf('__info') === -1) {
-                    if (groupObj[type] == null)
-                        groupObj[type] = new Array();
-                    groupObj[type].push(name);
-                }
-            }
+        private function isFuncInfo(name: String): Boolean {
+            return name.slice(name.length - Interpreter.FUNC_INFO_STRING.length) == Interpreter.FUNC_INFO_STRING;
         }
 
-        private function describeValue(name: String, value: * , indent: int): String {
-            switch (typeof value) {
-                case 'string': return indentText(indent) + name + ': text\n';
-                case 'boolean': return indentText(indent) + name + ': yes or no\n';
-                case 'object': {
-                    var text: String = indentText(indent) + name + '\n' + describeClass(name, value, indent + 1);
-                    for (var id: String in value)
-                        text += describeValue(id, value, indent + 1);
-                    return text;
-                }
-                default: return indentText(indent) + name + ': ' + (typeof value) + '\n';
-            }
+        private function startsWith(str: String, test: String): Boolean {
+            return test.length == 0 || str == test || str.substr(0, test.length) == test;
         }
-        
-        private function indentText(amt: int): String {
+
+        private function describeObj(key: String, obj: Object): String {
+            var arr: Array = new Array();
+
+            var description: XML = describeType(obj);
+            var name: String;
+            for each (var item: XML in description..accessor) {
+                name = item.@name.toString();
+                if (!isFuncInfo(name) && startsWith(name, key))
+                    arr.push(name);
+            }
+            for each (item in description..constant) {
+                name = item.@name.toString();
+                if (!isFuncInfo(name) && startsWith(name, key))
+                    arr.push(name);
+            }
+            for each (item in description..variable) {
+                name = item.@name.toString();
+                if (!isFuncInfo(name) && startsWith(name, key))
+                    arr.push(name);
+            }
+            for each (item in description..method) {
+                name = item.@name.toString();
+                if (!isFuncInfo(name) && startsWith(name, key))
+                    arr.push(name);
+            }
+
+            for (var key: String in obj)
+                arr.push(key);
+
+            arr = arr.sort();
+
             var text: String = '';
-            for (var idx: int = 0; idx < amt; idx++)
-                text += '--';
+            for each (key in arr) {
+                text += describeValue(key, obj) + '\n';
+            }
+
             return text;
         }
     }

@@ -29,9 +29,9 @@ package editor.Display.Panes {
             outputField.nsHeight = (nsHeight * 0.6) - UIInfo.BORDER_SIZE;
 
             errorField.x = 0;
-            errorField.y = outputField.y + outputField.nsHeight + UIInfo.BORDER_SIZE;
+            errorField.y = outputField.nsHeight + UIInfo.BORDER_SIZE;
             errorField.nsWidth = nsWidth;
-            errorField.nsHeight = errorField.y;
+            errorField.nsHeight = nsHeight - errorField.y;
         }
 
         public function updateResults(event: Event): void {

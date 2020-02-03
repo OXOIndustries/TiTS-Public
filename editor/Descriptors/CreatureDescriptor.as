@@ -5,6 +5,7 @@ package editor.Descriptors {
     import classes.GLOBAL;
     import classes.kGAMECLASS;
     import classes.Characters.PlayerCharacter;
+    import editor.Lang.FunctionInfo;
 
     /**
      * This is used to limit the interpreter's access
@@ -2116,6 +2117,13 @@ package editor.Descriptors {
             return null;
         }
 
+        private function hasAtLeastOneStringArgUpToTwoResults(args: Array, results: Array): String {
+            if (args.length === 0) return "needs one argument";
+            if (typeof args[0] !== 'string') return "needs one text argument";
+            if (results.length > 2) return "has too many results";
+            return null;
+        }
+
         // Functionality
         private function rangeEval(value: Number, args: Array): Number {
             for (var idx: int = 0; idx < args.length; idx++) {
@@ -2129,10 +2137,706 @@ package editor.Descriptors {
             return idx;
         }
 
+        private function equalsEval(value: *, args: Array): int {
+            for (var idx: int = 0; idx < args.length; idx++) {
+                if (args[idx] == value) {
+                    return idx;
+                }
+            }
+            return idx;
+        }
+
+        private function typeNameToIndex(name: String, idx: int, arr: Array): int {
+            return GLOBAL.TYPE_NAMES.indexOf(name.charAt(0).toLocaleUpperCase() + name.slice(1));
+        }
+
+        private function flagNameToIndex(name: String, idx: int, arr: Array): int {
+            return GLOBAL.FLAG_NAMES.indexOf(name.charAt(0).toLocaleUpperCase() + name.slice(1));
+        }
+
+        private function hasFlag(flags: Array, args: Array): int {
+            for (var idx: int = 0; idx < args.length; idx++) {
+                for each (var flag: int in flags)
+                    if (args[idx] == flag)
+                        return idx;
+            }
+            return idx;
+        }
+
+        private function hasFlags(flags: Array, args: Array): int {
+            return hasFlag(flags, args) != args.length ? 0 : 1;
+        }
+
         // New
+
+        // Physical Appearance
+        //Femininity
+        public const femIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Femininity is equal to 1 or 2 or 3...');
+        public function femIs(... args): int {
+            return equalsEval(this.owner.femininity, args);
+        }
+        public const femRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Femininity range');
+        public function femRange(... args): int {
+            return rangeEval(this.owner.femininity, args);
+        }
+
+        // Tallness
+        public const tallnessIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tallness is equal to 1 or 2 or 3...');
+        public function tallnessIs(... args): int {
+            return equalsEval(this.owner.tallness, args);
+        }
+        public const tallnessRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tallness range');
+        public function tallnessRange(... args): int {
+            return rangeEval(this.owner.tallness, args);
+        }
+
+        // Thickness
+        public const thicknessIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Thickness is equal to 1 or 2 or 3...');
+        public function thicknessIs(... args): int {
+            return equalsEval(this.owner.thickness, args);
+        }
+        public const thicknessRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Thickness range');
+        public function thicknessRange(... args): int {
+            return rangeEval(this.owner.thickness, args);
+        }
+
+        // Tone
+        public const toneIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tone is equal to 1 or 2 or 3...');
+        public function toneIs(... args): int {
+            return equalsEval(this.owner.tone, args);
+        }
+        public const toneRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tone range');
+        public function toneRange(... args): int {
+            return rangeEval(this.owner.tone, args);
+        }
+
+        // Hip rating
+        public const hipRatingIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Hip rating is equal to 1 or 2 or 3...');
+        public function hipRatingIs(... args): int {
+            return equalsEval(this.owner.hipRating(), args.map(typeNameToIndex));
+        }
+
+        // Butt rating
+        public const buttRatingIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Butt rating is equal to 1 or 2 or 3...');
+        public function buttRatingIs(... args): int {
+            return equalsEval(this.owner.buttRating(), args.map(typeNameToIndex));
+        }
+
+        // Body Parts
+        // Skin
+        public const skinTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Skin type is equal to 1 or 2 or 3...');
+        public function skinTypeIs(... args): int {
+            return equalsEval(this.owner.skinType, args.map(typeNameToIndex));
+        }
+
         public function get hasAccentMarkings(): Boolean {
             return this.owner.hasAccentMarkings();
         }
+
+        // Eyes
+        public const eyeTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Eye type is equal to 1 or 2 or 3...');
+        public function eyeTypeIs(... args): int {
+            return equalsEval(this.owner.eyeType, args.map(typeNameToIndex));
+        }
+
+        // Hair
+        public const hairTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Hair type is equal to 1 or 2 or 3...');
+        public function hairTypeIs(... args): Number {
+            return equalsEval(this.owner.hairType, args.map(typeNameToIndex));
+        }
+
+        // Beard
+        public const beardTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Beard type is equal to 1 or 2 or 3...');
+        public function beardTypeIs(... args): int {
+            return equalsEval(this.owner.beardType, args.map(typeNameToIndex));
+        }
+
+        // Face
+        public const faceTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Face type is equal to 1 or 2 or 3...');
+        public function faceTypeIs(... args): int {
+            return equalsEval(this.owner.faceType, args.map(typeNameToIndex));
+        }
+
+        public const hasFaceFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has face flag 1 or 2 or 3...');
+        public function hasFaceFlag(... args): int {
+            return hasFlag(this.owner.faceFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasFaceFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has face flag 1 and 2 and 3...');
+        public function hasFaceFlags(... args): int {
+            return hasFlags(this.owner.faceFlags, args.map(flagNameToIndex));
+        }
+
+        // Tongue
+        public const tongueTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tongue type is equal to 1 or 2 or 3...');
+        public function tongueTypeIs(... args): int {
+            return equalsEval(this.owner.tongueType, args.map(typeNameToIndex));
+        }
+
+        public const hasTongueFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has tongue flag 1 or 2 or 3...');
+        public function hasTongueFlag(... args): int {
+            return hasFlag(this.owner.tongueFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasTongueFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has tongue flag 1 and 2 and 3...');
+        public function hasTongueFlags(... args): int {
+            return hasFlags(this.owner.tongueFlags, args.map(flagNameToIndex));
+        }
+
+        // Ear
+        public const earTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Ear type is equal to 1 or 2 or 3...');
+        public function earTypeIs(... args): int {
+            return equalsEval(this.owner.earType, args.map(typeNameToIndex));
+        }
+
+        public const hasEarFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has ear flag 1 or 2 or 3...');
+        public function hasEarFlag(... args): int {
+            return hasFlag(this.owner.earFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasEarFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has ear flag 1 and 2 and 3...');
+        public function hasEarFlags(... args): int {
+            return hasFlags(this.owner.earFlags, args.map(flagNameToIndex));
+        }
+
+        // Antennae
+        public const antennaeTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Antennae type is equal to 1 or 2 or 3...');
+        public function antennaeTypeIs(... args): int {
+            return equalsEval(this.owner.antennaeType, args.map(typeNameToIndex));
+        }
+
+        // Horn
+        public const hornTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Horn type is equal to 1 or 2 or 3...');
+        public function hornTypeIs(... args): int {
+            return equalsEval(this.owner.hornType, args.map(typeNameToIndex));
+        }
+
+        // Arm
+        public const armTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Arm type is equal to 1 or 2 or 3...');
+        public function armTypeIs(... args): int {
+            return equalsEval(this.owner.armType, args.map(typeNameToIndex));
+        }
+
+        public const hasArmFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has arm flag 1 or 2 or 3...');
+        public function hasArmFlag(... args): int {
+            return hasFlag(this.owner.armFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasArmFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has arm flag 1 and 2 and 3...');
+        public function hasArmFlags(... args): int {
+            return hasFlags(this.owner.armFlags, args.map(flagNameToIndex));
+        }
+
+        // Wing
+        public const wingTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Wing type is equal to 1 or 2 or 3...');
+        public function wingTypeIs(... args): int {
+            return equalsEval(this.owner.wingType, args.map(typeNameToIndex));
+        }
+
+        // Leg
+        public const legTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Leg type is equal to 1 or 2 or 3...');
+        public function legTypeIs(... args): int {
+            return equalsEval(this.owner.legType, args.map(typeNameToIndex));
+        }
+
+        public const hasLegFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has leg flag 1 or 2 or 3...');
+        public function hasLegFlag(... args): int {
+            return hasFlag(this.owner.legFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasLegFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has leg flag 1 and 2 and 3...');
+        public function hasLegFlags(... args): int {
+            return hasFlags(this.owner.legFlags, args.map(flagNameToIndex));
+        }
+
+        // Lowerbody
+        public function get isBiped(): Boolean {
+            return this.owner.isBiped();
+        }
+
+        public function get isNaga(): Boolean {
+            return this.owner.isNaga();
+        }
+
+        public function get isTaur(): Boolean {
+            return this.owner.isTaur();
+        }
+
+        public function get isCentaur(): Boolean {
+            return this.owner.isCentaur();
+        }
+
+        public function get isDrider(): Boolean {
+            return this.owner.isDrider();
+        }
+
+        public function get isGoo(): Boolean {
+            return this.owner.isGoo();
+        }
+
+        // Tail
+        public const tailTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tail type is equal to 1 or 2 or 3...');
+        public function tailTypeIs(... args): int {
+            return equalsEval(this.owner.tailType, args.map(typeNameToIndex));
+        }
+
+        public const tailCountIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tail type is equal to 1 or 2 or 3...');
+        public function tailCountIs(... args): int {
+            return equalsEval(this.owner.tailCount, args.map(typeNameToIndex));
+        }
+
+        public const tailCountRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Tail type range');
+        public function tailCountRange(... args): int {
+            return equalsEval(this.owner.tailCount, args.map(typeNameToIndex));
+        }
+
+        public const hasTailFlag__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Has tail flag 1 or 2 or 3...');
+        public function hasTailFlag(... args): int {
+            return hasFlag(this.owner.tailFlags, args.map(flagNameToIndex));
+        }
+
+        public const hasTailFlags__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasAtLeastOneStringArgUpToTwoResults)
+            .setDesc('Has tail flag 1 and 2 and 3...');
+        public function hasTailFlags(... args): int {
+            return hasFlags(this.owner.tailFlags, args.map(flagNameToIndex));
+        }
+
+        // Cock
+        public const hasCockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasCockType(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                for each (var cock: CockClass in this.owner.cocks)
+                    if (args[idx] == GLOBAL.TYPE_NAMES[cock.cType])
+                        return idx;
+            return args.length;
+        }
+
+        // Balls
+        public const ballCount__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Balls is equal to 1 or 2 or 3...');
+        public function ballCount(... args): int {
+            return equalsEval(this.owner.balls, args.map(typeNameToIndex));
+        }
+
+        public const ballSizeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Balls is equal to 1 or 2 or 3...');
+        public function ballSizeIs(... args): int {
+            return equalsEval(this.owner.ballSize(), args.map(typeNameToIndex));
+        }
+
+        // Fluids
+        // Milk
+        public const milkTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Milk type is equal to 1 or 2 or 3...');
+        public function milkTypeIs(... args): int {
+            return equalsEval(this.owner.milkType, args.map(typeNameToIndex));
+        }
+        public const milkQRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Milk quantity range');
+        public function milkQRange(... args): int {
+            return rangeEval(this.owner.milkQ(), args.map(typeNameToIndex));
+        }
+
+        // Cum
+        public const cumTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Cum type is equal to 1 or 2 or 3...');
+        public function cumTypeIs(... args): int {
+            return equalsEval(this.owner.cumType, args.map(typeNameToIndex));
+        }
+
+        public const cumQIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Cum quantity is equal to 1 or 2 or 3...');
+        public function cumQIs(... args): int {
+            return equalsEval(this.owner.cumQ(), args.map(typeNameToIndex));
+        }
+
+        public const cumQRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Cum quantity range');
+        public function cumQRange(... args): int {
+            return rangeEval(this.owner.cumQ(), args.map(typeNameToIndex));
+        }
+
+        // Girl Cum
+        public const girlCumTypeIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Girl cum type is equal to 1 or 2 or 3...');
+        public function girlCumTypeIs(... args): int {
+            return equalsEval(this.owner.girlCumType, args.map(typeNameToIndex));
+        }
+
+        public const girlCumQIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Girl cum quantity is equal to 1 or 2 or 3...');
+        public function girlCumQIs(... args): int {
+            return equalsEval(this.owner.girlCumQ(), args.map(typeNameToIndex));
+        }
+
+        public const girlCumQRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Girl cum quantity range');
+        public function girlCumQRange(... args): int {
+            return rangeEval(this.owner.girlCumQ(), args.map(typeNameToIndex));
+        }
+
+        // Personality
+        public function get isNice(): Boolean {
+            return this.owner.isNice();
+        }
+
+        public function get isMisch(): Boolean {
+            return this.owner.isMisch();
+        }
+
+        public function get isAss(): Boolean {
+            return this.owner.isAss();
+        }
+
+        // Exposure
+        public function get isExposed(): Boolean {
+            return this.owner.isExposed();
+        }
+
+        public function get isChestExposed(): Boolean {
+            return this.owner.isChestExposed();
+        }
+
+        public function get isCrotchExposed(): Boolean {
+            return this.owner.isCrotchExposed();
+        }
+
+        public function get isAssExposed(): Boolean {
+            return this.owner.isAssExposed();
+        }
+
+        // Sex
+        public function get isSexless(): Boolean {
+            return this.owner.isSexless();
+        }
+
+        public function get isMale(): Boolean {
+            return this.owner.isMale();
+        }
+
+        public function get isFemale(): Boolean {
+            return this.owner.isFemale();
+        }
+
+        // Sex Appearance
+        public function get isMasculine(): Boolean {
+            return this.owner.isMasculine();
+        }
+
+        public function get isFeminine(): Boolean {
+            return this.owner.isFeminine();
+        }
+
+        public function get isMan(): Boolean {
+            return this.owner.isMan();
+        }
+
+        public function get isWoman(): Boolean {
+            return this.owner.isWoman();
+        }
+
+        public function get isFemboy(): Boolean {
+            return this.owner.isFemboy();
+        }
+
+        public function get isShemale(): Boolean {
+            return this.owner.isShemale();
+        }
+
+        public function get isCuntboy(): Boolean {
+            return this.owner.isCuntboy();
+        }
+
+        public function get isFemmyMale(): Boolean {
+            return this.owner.isFemmyMale();
+        }
+
+        public function get isManlyFemale(): Boolean {
+            return this.owner.isManlyFemale();
+        }
+
+        public function get isFemHerm(): Boolean {
+            return this.owner.isFemHerm();
+        }
+
+        public function get isManHerm(): Boolean {
+            return this.owner.isManHerm();
+        }
+
+        // Stats
+        public const lustIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Lust is equal to 1 or 2 or 3...');
+        public function lustIs(... args): int {
+            return equalsEval(this.owner.lust(), args);
+        }
+        public const lustRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Lust range');
+        public function lustRange(... args): int {
+            return rangeEval(this.owner.lust(), args);
+        }
+
+        public const physiqueIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Physique is equal to 1 or 2 or 3...');
+        public function physiqueIs(... args): int {
+            return equalsEval(this.owner.physique(), args);
+        }
+        public const physiqueRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Physique range');
+        public function physiqueRange(... args): int {
+            return rangeEval(this.owner.physique(), args);
+        }
+
+        public const reflexesIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Reflexes is equal to 1 or 2 or 3...');
+        public function reflexesIs(... args): int {
+            return equalsEval(this.owner.reflexes(), args);
+        }
+        public const reflexesRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Reflexes range');
+        public function reflexesRange(... args): int {
+            return rangeEval(this.owner.reflexes(), args);
+        }
+
+        public const aimIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Aim is equal to 1 or 2 or 3...');
+        public function aimIs(... args): int {
+            return equalsEval(this.owner.aim(), args);
+        }
+        public const aimRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Aim range');
+        public function aimRange(... args): int {
+            return rangeEval(this.owner.aim(), args);
+        }
+
+        public const intelligenceIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Intelligence is equal to 1 or 2 or 3...');
+        public function intelligenceIs(... args): int {
+            return equalsEval(this.owner.intelligence(), args);
+        }
+        public const intelligenceRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Intelligence range');
+        public function intelligenceRange(... args): int {
+            return rangeEval(this.owner.intelligence(), args);
+        }
+
+        public const willpowerIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Willpower is equal to 1 or 2 or 3...');
+        public function willpowerIs(... args): int {
+            return equalsEval(this.owner.willpower(), args);
+        }
+        public const willpowerRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Willpower range');
+        public function willpowerRange(... args): int {
+            return rangeEval(this.owner.willpower(), args);
+        }
+
+        public const libidoIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Libido is equal to 1 or 2 or 3...');
+        public function libidoIs(... args): int {
+            return equalsEval(this.owner.libido(), args);
+        }
+        public const libidoRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Libido range');
+        public function libidoRange(... args): int {
+            return rangeEval(this.owner.libido(), args);
+        }
+
+        public const taintIs__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Taint is equal to 1 or 2 or 3...');
+        public function taintIs(... args): int {
+            return equalsEval(this.owner.taint(), args);
+        }
+        public const taintRange__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(rangeValidator)
+            .setDesc('Taint range');
+        public function taintRange(... args): int {
+            return rangeEval(this.owner.taint(), args);
+        }
+
+        // Effects
+        // Heat
+        public function get inHeat(): Boolean {
+            return this.owner.inHeat();
+        }
+
+        public function get inDeepHeat(): Boolean {
+            return this.owner.inDeepHeat();
+        }
+
+        // Rut
+        public function get inRut(): Boolean {
+            return this.owner.inRut();
+        }
+
+        // Bimbo
+        public function get isBimbo(): Boolean {
+            return this.owner.isBimbo();
+        }
+
+        public function get isBro(): Boolean {
+            return this.owner.isBro();
+        }
+
+        // Treated
+        public function get isTreated(): Boolean {
+            return this.owner.isTreated();
+        }
+
+        public function get isTreatedFemale(): Boolean {
+            return this.owner.isTreatedFemale();
+        }
+
+        public function get isTreatedMale(): Boolean {
+            return this.owner.isTreatedMale();
+        }
+
+        public function get isTreatedCow(): Boolean {
+            return this.owner.isTreatedCow();
+        }
+
+        public function get isTreatedBull(): Boolean {
+            return this.owner.isTreatedBull();
+        }
+
+        public function get isAmazon(): Boolean {
+            return this.owner.isAmazon();
+        }
+
+        public function get isCumCow(): Boolean {
+            return this.owner.isCumCow();
+        }
+
+        public function get isCumSlut(): Boolean {
+            return this.owner.isCumSlut();
+        }
+
+        public function get isFauxCow(): Boolean {
+            return this.owner.isFauxCow();
+        }
+
+        // Pheromones
+        public function get hasPheromones(): Boolean {
+            return this.owner.hasPheromones();
+        }
+
+        // Perk
+        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasPerk(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                if (this.owner.hasPerk(args[idx]))
+                    return idx;
+            return args.length;
+        }
+
+        // StatusEffect
+        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasStatusEffect(... args): int {
+            for (var idx: int = 0; idx < args.length; idx++)
+                if (this.owner.hasStatusEffect(args[idx]))
+                    return idx;
+            return args.length;
+        }
+
+        // Items
+        // Piercing
         public function get hasPiercing(): Boolean {
             return this.owner.hasPiercing();
         }
@@ -2175,28 +2879,12 @@ package editor.Descriptors {
             return this.owner.hasSockedCocks(idx);
         }
 
-        public const hasPerk__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
-        public function hasPerk(... args): int {
+        // Keyitem
+        public const hasKeyItem__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
+        public function hasKeyItem(... args): int {
             for (var idx: int = 0; idx < args.length; idx++)
-                if (this.owner.hasPerk(args[idx]))
+                if (this.owner.hasKeyItem(args[idx]))
                     return idx;
-            return args.length;
-        }
-
-        public const hasStatusEffect__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
-        public function hasStatusEffect(... args): int {
-            for (var idx: int = 0; idx < args.length; idx++)
-                if (this.owner.hasStatusEffect(args[idx]))
-                    return idx;
-            return args.length;
-        }
-
-        public const hasCockType__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
-        public function hasCockType(... args): int {
-            for (var idx: int = 0; idx < args.length; idx++)
-                for each (var cock: CockClass in this.owner.cocks)
-                    if (args[idx] == GLOBAL.TYPE_NAMES[cock.cType])
-                        return idx;
             return args.length;
         }
     }

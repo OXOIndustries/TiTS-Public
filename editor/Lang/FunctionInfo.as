@@ -1,10 +1,11 @@
-package editor.Descriptors {
+package editor.Lang {
     /**
      * Information about the specified function
      */
     public class FunctionInfo {
         private var _argResultValidator: Function;
         private var _toCode: Function;
+        private var _desc: String;
         
         /**
          * Sets function used to determine if the Args and Results passed to the matching function are correct
@@ -46,6 +47,22 @@ package editor.Descriptors {
          */
         public function get toCode(): Function {
             return this._toCode;
+        }
+
+        /**
+         * Description of what the parser does
+         * @param desc String
+         * @return self
+         */
+        public function setDesc(desc: String): FunctionInfo {
+            this._desc = desc;
+            return this;
+        }
+        /**
+         * Description of what the parser does
+         */
+        public function getDesc(): String {
+            return this._desc || '';
         }
     }
 }

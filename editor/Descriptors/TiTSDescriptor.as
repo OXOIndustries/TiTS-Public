@@ -1,4 +1,5 @@
 package editor.Descriptors {
+    import editor.Lang.FunctionInfo;
     import flash.utils.Dictionary;
     import classes.Creature;
     import classes.TiTS;
@@ -93,6 +94,7 @@ package editor.Descriptors {
         }
 
         // From TiTS
+        public const silly__info: FunctionInfo = new FunctionInfo().setDesc('Is Silly Mode engaged');
         public function get silly(): Boolean {
             if (this.game.gameOptions)
                 return !!this.game.gameOptions.sillyMode;
