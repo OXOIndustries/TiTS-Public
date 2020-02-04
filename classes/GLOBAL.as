@@ -1162,6 +1162,7 @@
 		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
 		public static const PIERCING:int 								= 18; // Used for piercings
 		public static const COCKWEAR:int 								= 19; // Used for cockwear
+		public static const TENT:int 									= 20; // Used for tents
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",

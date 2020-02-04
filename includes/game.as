@@ -12,6 +12,7 @@ import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Armor.AugmentWeaveArmor;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
+import classes.Items.Tents.HLTent;
 import classes.Items.Transformatives.Cerespirin;
 import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
@@ -19,6 +20,7 @@ import classes.Items.Decorations.ObediencePoster;
 import classes.Items.Decorations.MindfuckPoster;
 import classes.RoomClass;
 import classes.StorageClass;
+import classes.Tent;
 import classes.UIComponents.ContentModules.MailModule;
 import classes.UIComponents.SquareButton;
 import flash.events.Event;
@@ -1512,6 +1514,33 @@ public function restMenu():void
 	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
 	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
 	
+	if(!(pc.tent is Tent)) addDisabledButton(8,"Tent Sleep","Tent Sleep","You have no tent equipped in your tent slot right now.");
+	else if((pc.tent as Tent).ready() && pc.tent.type == GLOBAL.TENT) addItemButton(8, pc.tent, (pc.tent as Tent).useTent, undefined);
+	else
+	{
+		//Too lazy to find the disabled item button vers...
+		var hours:Number = 0;
+		var minutes:Number = 0;
+		var days:Number = 0;
+		var timeLeft:Number = (pc.tent as Tent).timeLeft();
+
+		var TT:String = "Your " + pc.tent.longName + " will need <b>";
+		//Figure out number of days, them remove time from Timeleft
+		if(timeLeft >= 60*24) days = Math.floor(timeLeft / (60 * 24));
+		timeLeft -= days * 60 * 24;
+		//Display daycount, no punctuation needed.
+		if(days > 0) TT += days + " day" + (days > 1 ? "s":"");
+		//Figure out hours left, then remove time from TimeLeft
+		if(timeLeft >= 60) hours = Math.floor(timeLeft / 60);
+		timeLeft -= hours * 60;
+		//Display hourcount, punctuate if daycount
+		if(hours > 0) TT += (days > 0 ? ", ":"") + hours + " hour" + (hours > 1 ? "s":"");
+		//Add last minutes to display, add punctuation if anything preceded
+		TT += ((days > 0 || hours > 0) ? ", ":"") + timeLeft + " minute" + (timeLeft > 1 ? "s":"");
+		addDisabledButton(8,"Tent On CD","Tent on Cooldown",TT + "</b> to recharge before you can use it again.");
+	}
+
+	//else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	addButton(9, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
 	
 	addButton(14, "Back", mainGameMenu);
