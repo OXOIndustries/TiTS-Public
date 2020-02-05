@@ -18,6 +18,7 @@ import classes.Items.Transformatives.Clippex;
 import classes.Items.Transformatives.Goblinola;
 import classes.Items.Decorations.ObediencePoster;
 import classes.Items.Decorations.MindfuckPoster;
+import classes.Items.Decorations.KallyPoster;
 import classes.RoomClass;
 import classes.StorageClass;
 import classes.Tent;
@@ -2212,6 +2213,7 @@ public function hasDecorations():Boolean
 {
 	if(flags["KQ_POSTER_HUNG"] != undefined) return true;
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) return true;
+	if(flags["KALLY_POSTER_HUNG"] != undefined) return true;
 	return false;
 }
 public function displayAPoster():void
@@ -2219,6 +2221,7 @@ public function displayAPoster():void
 	var choices:Array = [];
 	if(flags["KQ_POSTER_HUNG"] != undefined) choices.push(0);
 	if(flags["KQ_POSTER_2_HUNG"] != undefined) choices.push(1);
+	if(flags["KALLY_POSTER_HUNG"] != undefined) choices.push(2);
 
 	if(choices.length == 0) return;
 	var select:int = choices[rand(choices.length)];
@@ -2235,13 +2238,19 @@ public function displayAPoster():void
 		showImage("MindfuckPoster");
 		output("A simple holoprojector is taped to the wall, blasting out an excessively pornographic image of slutty, naked " + (!CodexManager.entryUnlocked("Rodenians") ? "mouse-girl":"rodenian") + " taking a huge cock in each of her <b>ears</b>, of all places. Her mouth hangs open in obvious bliss while her eyelids droop with unthinking satisfaction. Jism hangs from her shoulders and neck like some kind of whorish wreathe. Text frames the image, reading, <i>“Having Troublesome Thoughts? Report For a Mindfuck Today!”</i>");
 	}
+	else if(select == 2)
+	{
+		output("\n\n");
+		showImage("KallyPoster");
+		output("The poster you swiped from the Kui Country Bar and Grill hangs in your ship, proudly displaying the image of the buxom bartender for you to admire at any time of day or night." + (kiroIsCrew() ? " [kiro.Name] can often be seen glancing in its direction.":""));
+	}
 }
 public function decorationsMenu():void
 {
 	clearOutput();
 	showName("\nDECORATIONS");
 	clearMenu();
-	if(flags["KQ_POSTER_HUNG"] == undefined && flags["KQ_POSTER_2_HUNG"] == undefined)
+	if(!hasDecorations())
 	{
 		output("You don’t have any decorations.");
 	}
@@ -2257,7 +2266,12 @@ public function decorationsMenu():void
 		if(flags["KQ_POSTER_2_HUNG"] != undefined)
 		{
 			output("\nA mindfuck holo-poster.");
-			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck","Take down the mindfuck holo-poster.");
+			addButton(button++,"Poster:MF",removeDecoration,"Mindfuck Poster","Take down the mindfuck holo-poster.");
+		}
+		if(flags["KALLY_POSTER_HUNG"] != undefined)
+		{
+			output("\nA poster of Kally.");
+			addButton(button++,"Postr:Kally",removeDecoration,"Kally Poster","Take down the kally poster.");
 		}
 	}
 	addButton(14,"Back",mainGameMenu);
@@ -2272,10 +2286,15 @@ public function removeDecoration(arg:String):void
 		quickLoot(new ObediencePoster());
 		flags["KQ_POSTER_HUNG"] = undefined;
 	}
-	else if(arg == "Mindfuck") 
+	else if(arg == "Mindfuck Poster") 
 	{
 		quickLoot(new MindfuckPoster());
 		flags["KQ_POSTER_2_HUNG"] = undefined;
+	}
+	else if(arg == "Kally Poster") 
+	{
+		quickLoot(new KallyPoster());
+		flags["KALLY_POSTER_HUNG"] = undefined;
 	}
 	else 
 	{

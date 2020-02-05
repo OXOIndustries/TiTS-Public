@@ -107,6 +107,12 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/jumpers/jumperHorseVaginalMoira.jpg", mimeType = "image/jpg")]
 			public static const jumperHorseVaginalMoira:Class;
 
+			//KALLY IS BEST GURL
+			[Embed(source = "../../assets/images/imagepack/kally/tsuda_inked_Tisinrei_color_kally_advert.png", mimeType = "image/png")]
+			public static const KallyPoster:Class;
+			[Embed(source = "../../assets/images/imagepack/kally/tsuda_inked_tisinrei_color_kally_bar_lewd.png", mimeType = "image/png")]
+			public static const KallyLewdBar:Class;
+
 			//KELLY
 			[Embed(source = "../../assets/images/imagepack/kelly/dsan_nenette_kelly_herm_horsecock_laquine.jpg", mimeType = "image/jpg")]
 			public static const KellyDP:Class;

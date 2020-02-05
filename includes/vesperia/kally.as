@@ -251,6 +251,7 @@ public function approachKally():void
 	//Met, drunk, have had special drinks
 	else if(pc.isDrunk() && pc.hasStatusEffect("Adorahol"))
 	{
+		showImage("KallyLewdBar");
 		output("Kally giggles when you come up to the bar, wobbling slightly. <i>“");
 		if(flags["KALLY_3SOME_TALK"] == undefined) output("You better be careful with your drinks, spacer. I might have to cut you off soon.");
 		else 
@@ -478,6 +479,7 @@ public function kallyAppearance():void
 {
 	clearOutput();
 	showKally();
+	showImage("KallyLewdBar");
 	output("Kally is very much a typical kui-tan, and bears the features typical of that race - fur, rounded ears, a face with a short muzzle, and an enormous, ringed tail. Unlike the rest of her race");
 	if(flags["KIRO_MET_KALLY"] != undefined) output(" and her step-sister");
 	output(", her facial fur is an eggshell white that continues all the way down into her top, highlighting traditionally attractive features marred only by the slightest bit of extra fat in her cheeks. She has bright red eyes, tinged by the slightest pinkish hue, enough to make her gaze more a curiosity than frightening.");
