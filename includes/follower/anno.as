@@ -1,3 +1,4 @@
+import classes.Items.Tents.HLSteeleTechTent;
 import classes.Creature;
 import classes.GameData.CombatManager;
 import classes.Items.Apparel.SteeleTechSuit;
@@ -693,6 +694,7 @@ public function annoFollowerInventoryCheck():void
 	// MISSION_OFFER tracks the quest, 3 is complete. The only way she can be a follower and have a mission offer status of 3 is if she's still employed by Steeletech.
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
+		chars["ANNO"].inventory.push(new HLSteeleTechTent());
 		anno.inventory.push(new GrayMicrobots());
 		anno.inventory.push(new AusarTreats());
 		anno.inventory.push(new LaserCarbine());
@@ -715,6 +717,7 @@ public function annoFollowerInventoryCheck():void
 	else
 	// Unemployed by Steeletech
 	{
+		chars["ANNO"].inventory.push(new HLSteeleTechTent());
 		anno.inventory.push(new GrayMicrobots());
 		anno.inventory.push(new AusarTreats());
 		anno.inventory.push(new HammerCarbine());

@@ -19,8 +19,8 @@
 	
 	public class Tent extends ItemSlotClass
 	{
-		public var lastUseAt:Number = -10000;
-		public var cooldown:Number = 24*60*3;
+		public var lastUseAt:Number;
+		public var cooldown:Number;
 
 		public function ready():Boolean
 		{
@@ -57,7 +57,17 @@
 		//constructor
 		public function Tent(dataObject:Object = null)
 		{
-			
+			this._latestVersion = 1;
+			lastUseAt = -10000;
+			cooldown = 3*24*60;
+			if (dataObject != null)
+			{
+				this.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = 1;
+			}
 		}
 	}
 }

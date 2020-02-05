@@ -34,7 +34,7 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
-			
+			tent = new HLTent();
 			isUniqueInFight = true;
 		}
 		
@@ -43,7 +43,7 @@ package classes.Characters
 		public var unclaimedClassPerks:int = 0;
 		public var unclaimedGenericPerks:int = 0;
 
-		public var tent:ItemSlotClass = new HLTent();
+		public var tent:ItemSlotClass = new EmptySlot();
 		
 		public function levelUpAvailable():Boolean
 		{
