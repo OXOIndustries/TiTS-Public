@@ -60,6 +60,7 @@
 			this._latestVersion = 1;
 			lastUseAt = -10000;
 			cooldown = 3*24*60;
+			hasRandomProperties = true;
 			if (dataObject != null)
 			{
 				this.loadSaveObject(dataObject);
