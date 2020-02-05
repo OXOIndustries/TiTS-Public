@@ -235,6 +235,7 @@
 		include "../includes/events/kiroCrewQuest/rooms.as";
 		include "../includes/events/kiroCrewQuest/sexbotMiniboss.as";
 		include "../includes/events/kiroCrewQuest/taursuit.as";
+		include "../includes/events/kiroCrewQuest/twinSlutBots.as";
 		include "../includes/events/kiroCrewQuest/victoryEvent.as";
 		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
