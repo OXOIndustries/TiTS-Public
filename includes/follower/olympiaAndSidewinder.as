@@ -204,7 +204,7 @@ public function disarmOlympia():void
 	{
 		output("The moment you see her finger sliding into the trigger guard, your instincts kick into overdrive. You reach for her gun, but just a second too late: Olympia pulls the trigger, sending a volley of buckshot slamming into your shields, hard enough to blow you backwards over the command chair.");
 		output("\n\n<i>“I don’t think so,”</i> she growls, advancing on you. <i>“Leave now.”</i>");
-		pc.shields(-50);
+		pc.changeShields(-50);
 		clearMenu();
 		//[Leave] [Diplomacy]
 		//As per above options

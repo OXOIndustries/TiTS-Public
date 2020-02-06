@@ -818,8 +818,8 @@ public function pippaStandardMassage():void
 	pippaStandardMassagesGiven();
 	pippaAffection(1);
 	pc.credits -= pippaStandardMassageCost();
-	pc.HP(pc.HPMax() / 4);
-	pc.energy(pc.energyMax() / 4);
+	pc.changeHP(pc.HPMax() / 4);
+	pc.changeEnergy(pc.energyMax() / 4);
 	
 	
 }
@@ -1149,8 +1149,8 @@ public function pippaSpecialMassageII():void
 	applyOilEffect(pc, OIL_SOURCE_SPECIAL_MASSAGE);
 	pippaSpecialMassagesGiven();
 	pippaAffection(3);
-	pc.HP(pc.HPMax() / 2);
-	pc.energy(pc.energyMax() / 2);
+	pc.changeHP(pc.HPMax() / 2);
+	pc.changeEnergy(pc.energyMax() / 2);
 	if (pc.hasGenitals()) pc.orgasm();
 	
 	addButton(0, "Next", mainGameMenu);

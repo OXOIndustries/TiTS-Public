@@ -129,8 +129,8 @@
 					output("\n\nImmediately you discover what exactly has happened down there. <b>It would seem that you’ve grown a pair of testitcles!</b> Without a penis, though, they’re kind of just <i>there</i>, for lack of a better word.");
 					
 					target.balls = 2;
-					target.energy(-5);
-					target.lust(1);
+					target.changeEnergy(-5);
+					target.changeLust(1);
 				}
 				// If PC has no penis and no balls, nothing happens:
 				else

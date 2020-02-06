@@ -69,20 +69,20 @@
 				kGAMECLASS.clearOutput();
 				//Consume:
 				kGAMECLASS.output("You crunch down on a mouthful of geometrically-shaped Kalocrunch, moderately surprised at the burst of flavor across your tongue. You wouldn’t say it’s delicious - it’s salty and sweet and crunchy at the same time. But despite that, you keep eating until you’ve finished the bag. You’re not particularly proud of yourself, and that probably wasn’t good for you, but you are immensely satisfied.");
-				if(healing > 0) kGAMECLASS.output("\n\nYou even feel like you could go longer before needing to sleep. Is there caffeine in this stuff? (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output("\n\nYou even feel like you could go longer before needing to sleep. Is there caffeine in this stuff?");
 				//[+2 thickness, -2 tone +30 Energy.]");
 				kGAMECLASS.output(target.modTone(-2, true));
 				kGAMECLASS.output(target.modThickness(2,true));
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			else
 			{
 				if(inCombat()) kGAMECLASS.output("\n\n");
 				else kGAMECLASS.clearOutput();
 				kGAMECLASS.output((inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " opens the Kalocrunch and downs it.");
-				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost. (<b>+" + healing + " Energy</b>)");
+				if(healing > 0) kGAMECLASS.output(", getting a quick energy boost.");
 				else kGAMECLASS.output(" to no effect.");
-				target.energy(healing);
+				target.changeEnergy(healing);
 			}
 			return false;
 		}

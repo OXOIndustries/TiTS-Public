@@ -1721,7 +1721,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 		output("\n\nBut then your vision... dims and... it’s dificult to...");
 		pc.loadInMouth(mirrin);
 		processTime(20);
-		pc.HP(-5);
+		pc.changeHP(-5);
 		clearMenu();
 		addButton(0,"Next",mirrinFirstTimev3Part2);
 	}

@@ -69,9 +69,9 @@
 				// Heal 20
 				// Restore 5 ENG
 				// +1 Libido
-				pc.HP(20);
-				pc.energy(5);
-				pc.lust(5);
+				pc.changeHP(20);
+				pc.changeEnergy(5);
+				pc.changeLust(5);
 				
 				var changes:int = 0;
 				var changeLimit:int = 1;

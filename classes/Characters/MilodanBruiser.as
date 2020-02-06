@@ -324,7 +324,7 @@ package classes.Characters
 			createStatusEffect("Evasion Boost",20,0,0,0,false,"Icon_DefUp","+20% Evasion!",true,3);
 			createStatusEffect("Used Rally");
 			this.meleeWeapon.attack += 1;
-			this.HP(heal);
+			this.changeHP(heal);
 		}
 		//Pounce
 		//Grapples the PC, deals lust damage to the PC and, to a lesser extent the milodan, until they break out.

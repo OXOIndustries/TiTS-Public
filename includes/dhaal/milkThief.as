@@ -773,8 +773,7 @@ public function loseAndGetHyperDooooocked():void
 		output("You curse the mistakes that lead you here even as the weight of their consequences bears you to the ground. The feeble extension of your arm won’t ward the milk thief away. It won’t even slow her down. She advances with a saucy smile, backhandedly batting the gun away as she " + (pc.hasAirtightSuit() ? "breaks the seal of your airtight enclosure and ":"") + "fires a generous spray one of this planet’s favorite concoctions: Ero Gas. You hold your breath and put on your best glower, intent on waiting for the chemical to disperse.");
 		output("\n\nYou can’t stifle your surprise when the alien spends her time examining your injuries, and instead of torturing them, she flips the dial on her gun to a strange glyph and pulls the trigger. Cold yet somehow warm gel slathers across injury after injury, making it impossible not to gasp as your wounds close one by one. The milk thief repairs your body even as her flagrantly dispersed gas ensures your arousal - a favor in exchange for artificially stoking your ardor.");
 		var healing:Number = Math.ceil(pc.HPMax()/2);
-		output(" (<b>+" + healing + " HP</b>)");
-		pc.HP(healing);
+		pc.changeHP(healing);
 		output("\n\nPretty soon, you’re panting and " + (!pc.isErect() ? "hard":"somehow harder than you already were") + ", inadvertently sucking down more intoxicating lungfuls of the lusty inebrient. Your [pc.cocks] ");
 		if(!pc.isCrotchExposed()) output("rip" + (!pc.hasCocks() ? "s":"") + " and tear" + (!pc.hasCocks() ? "s":"") + " straight out of confinement to heave up into the air and slap authoritatively against the pavement.");
 		else output("heave" + (!pc.hasCocks() ? "s":"") + " and wobble" + (!pc.hasCocks() ? "s":"") + " up into the air before slapping authoritatively against the pavement.");

@@ -368,9 +368,9 @@ public function honeyPotFunTimes():void
 	pp.milkMultiplier = 100;
 	pp.milkFullness = 100;
 	pc.milkInMouth(pp);
-	pc.energy(pc.energyMax());
-	pc.HP(pc.HPMax());
-	pc.lust(10+rand(10));
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(pc.energyMax());
+	pc.changeLust(10+rand(10));
 	pc.shower();
 	processTime(20);
 	clearMenu();

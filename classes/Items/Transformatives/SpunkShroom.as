@@ -53,7 +53,7 @@ package classes.Items.Transformatives {
 				{
 					output("\n\nIt takes less than a minute for you to double over from the stabbing pain in your gut. Your stomach ties itself in knots while you drop to the ground and double over. An involuntary spasm squeezes your middle like a toothpaste tube, and everything you’ve eaten in the past few hours comes up in a wave of burning pain - including the mushroom.");
 					output("\n\nThat <b>hurt</b>! (-" + (Math.round(pc.HPMax()* 0.5)+1) + ")");
-					pc.HP(-1*(Math.round(pc.HPMax()* 0.5)+1));
+					pc.changeHP(-1*(Math.round(pc.HPMax()* 0.5)+1));
 					return false;
 				}
 				pc.taint(5);

@@ -379,9 +379,9 @@
 		private function hpBooster(target:Creature):void
 		{
 			var hpGained:int = target.HPMax() * 0.1;
-			output("Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time! <b>Gained " + hpGained + " health!</b>");
+			output("Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!");
 
-			target.HP(hpGained);
+			target.changeHP(hpGained);
 
 			createStatusEffect("HP Boost Cooldown", 5, 0, 0, 0, true, "", "", true, 0);
 		}

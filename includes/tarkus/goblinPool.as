@@ -1214,8 +1214,8 @@ public function arbetzSexScenes(response:String = ""):void
 		
 		// - 100% Lust, - 5% HP, - 10% Energy
 		processTime(35);
-		pc.HP(-5);
-		pc.energy(-10);
+		pc.changeHP(-5);
+		pc.changeEnergy(-10);
 		pc.orgasm();
 		pc.orgasm();
 		IncrementFlag("ARBETZ_SEX_HATE_FUCK");

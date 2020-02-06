@@ -318,8 +318,8 @@
 				}
 				else 
 				{
-					output(" (<b>-34 Energy</b>)");
-					target.energy(-34);
+					//output(" (<b>-34 Energy</b>)");
+					target.changeEnergy(-34);
 				}
 			}
 		}

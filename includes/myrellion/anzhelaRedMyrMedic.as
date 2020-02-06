@@ -601,7 +601,7 @@ public function firstAidWithAnn():void
 	// Heal the PC fully!
 	// Increase lust by 10!
 	// Return to core Anzhela menu.
-	pc.HP(pc.HPMax());
+	pc.changeHP(pc.HPMax());
 	pc.lust(10);
 	anzhelaMenu();
 }

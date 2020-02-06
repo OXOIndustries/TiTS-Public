@@ -628,7 +628,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 	processTime(30+rand(5));
 	pc.orgasm();
 
-	pc.HP(-(pc.HPMax() * 0.8));
+	pc.changeHP(-(pc.HPMax() * 0.8));
 	if (pc.HP() < 1) pc.HP(1);
 	soreDebuff(3);
 	sweatyDebuff(1);

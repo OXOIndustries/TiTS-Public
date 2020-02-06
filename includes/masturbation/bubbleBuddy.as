@@ -1501,7 +1501,7 @@ public function bubbleBuddyVaandeEpilogue():void
 	processTime(660);
 	pc.energyRaw = 0;
 	pc.credits += 15 + rand(16);
-	pc.HP(-Math.round(pc.HPMax()/2));
+	pc.changeHP(-Math.round(pc.HPMax()/2));
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -501,7 +501,7 @@ package classes.GameData
 				{
 					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield powers back up at one quarter power!</b>");
 				}
-				target.shields(Math.round(target.shieldsMax()/4));
+				target.changeShields(Math.round(target.shieldsMax()/4));
 				target.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
 
@@ -737,7 +737,7 @@ package classes.GameData
 				poisonDamage.addResult(applyDamage(damageRand(new TypeCollection( { poison: target.statusEffectv1("Poison") * target.statusEffectv3("Poison") } ), 15), null, target));
 				outputDamage(poisonDamage);
 
-				target.energy(-5);
+				target.changeEnergy(-5);
 			}
 			if (target.hasStatusEffect("Bleeding"))
 			{
@@ -932,11 +932,11 @@ package classes.GameData
 				if(temp + target.shields() > target.shieldsMax()) temp = target.shieldsMax() - target.shields();
 				if(temp > 0) 
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You recover " + temp + " points of shielding.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recover" + (!target.isPlural ? "s" : "") + " " + temp + " points of shielding!</b>");
-					target.shields(temp);
+					if (target is PlayerCharacter) output("\n\n<b>Your shields continue to charge.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recover" + (!target.isPlural ? "s" : "") + " some shields!</b>");
+					target.changeShields(temp);
 				}
-				target.energy(10);
+				target.changeEnergy(10);
 				if(target.statusEffectv1("Deflector Regeneration") <= 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your shields are no longer regenerating!</b>");
@@ -948,9 +948,9 @@ package classes.GameData
 			if (target.statusEffectv1("Used Smuggled Stimulant") > 0)
 			{
 				target.addStatusValue("Used Smuggled Stimulant",1,-1);
-				target.energy(25);
 				if (target is PlayerCharacter) output("\n\n<b>A rush of energy fills you as the smuggled stimulant affects you.</b>");
 				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " filled with a sudden rush of energy!</b>");
+				target.changeEnergy(25);
 			}
 	
 			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone(true))
@@ -1397,7 +1397,11 @@ package classes.GameData
 				if (target.statusEffectv1("Healing Spray") > 0)
 				{
 					var sprayHealing:int = Math.min(target.HPMax() - target.HP(), 15);
-					if (sprayHealing > 0) output("\n\nThe healing spray continues to heal " + (target is PlayerCharacter ? "your" : target.getCombatName() + "’s") + " wounds! (<b>H: +<span class='hp'>" + sprayHealing + "</span></b>)");
+					if (sprayHealing > 0) 
+					{
+						output("\n\nThe healing spray continues to heal " + (target is PlayerCharacter ? "your" : target.getCombatName() + "’s") + " wounds!");
+						target.changeHP(sprayHealing);
+					}
 					else output("\n\nThe healing spray " + (target is PlayerCharacter ? "you have on" : "on " + target.getCombatName()) + " does nothing, having no wounds to heal.");
 				}
 				target.addStatusValue("Healing Spray",1,1);
@@ -5150,8 +5154,8 @@ package classes.GameData
 						target.removeStatusEffect("CHARGING_POWER");
 					}
 					if(energyGen + target.energy() > target.energyMax()) energyGen = target.energyMax() - target.energy();
-					target.energy(energyGen);
-					if(energyGen > 0) output("\n\nYour ship’s reactor generated more energy (<b>E:</b> +<b><span class='hp'>" + energyGen + "</span></b>).");
+					if(energyGen > 0) output("\n\nYour ship’s reactor generated more energy.");
+					target.changeEnergy(energyGen);
 					continue;
 				}
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.

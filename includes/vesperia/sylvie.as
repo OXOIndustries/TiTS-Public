@@ -1892,7 +1892,7 @@ public function crotchBustingSnuSnuPartTwo():void
 		else output(", but you’re just getting started. With your knot stuck inside her, you fill her with enough spermy ecstasy that her hooves barely scrape the floor - and your [pc.butt] is lifted clean off the ground, supported entirely by the friction of your passion-conjoined forms. No seal is perfect, however. A few squirts later, [pc.cumGem] streams are spraying out of Sylvie’s puss in every direction, flooding the pool with evidence of the tryst.");
 		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the side, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
 	}
-	pc.HP(-40);
+	pc.changeHP(-40);
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
@@ -1913,7 +1913,7 @@ public function hipBustingSnuSnu3(cumBathed:Boolean):void
 	output("\n\nYou promise that you will while Sylvie downs her little pill. Instantly, her posture stiffens, and her gait straightens. She looks back your way, clutching her forehead and giggling as she grabs her things.");
 	output("\n\n<i>“I can’t believe I did that... and it didn’t kill you.”</i>");
 	output("\n\nExamining your tenderized thighs, neither can you.");
-	pc.HP(-10);
+	pc.changeHP(-10);
 	soreDebuff(3);
 	sweatyDebuff(2);
 	processTime(10);

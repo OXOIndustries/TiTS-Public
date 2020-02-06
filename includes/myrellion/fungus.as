@@ -676,9 +676,9 @@ public function queenFungusBoobsuck():void
 	ppFungusQueen.milkMultiplier = 100;
 	ppFungusQueen.milkFullness = 100;
 	pc.milkInMouth(ppFungusQueen);
-	pc.HP(50);
+	pc.changeHP(50);
+	pc.changeEnergy(200);
 	pc.orgasm();
-	pc.energy(200);
 	flags["SUCKED_FUNGUS"] = 1;
 	clearMenu();
 	addButton(0,"Accept",fuckYesPlantLadyIllSaveYou,undefined,"Accept","Defend this lady.");
@@ -817,9 +817,9 @@ public function fuckOffQueenAndDie():void
 	if(pc.shields() > 0)
 	{
 		output("s, your shield fizzling out");
-		pc.shields(-200);
 	}
 	output(" as the shockwave and thunderous noise batter your body. When you recover enough to stand you turn to see that the entrance to the cavern has been caved in completely, with scorch marks radiating outward from the former tunnel.");
+	if(pc.shields() > 0) pc.changeShields(-pc.shieldsMax());
 	output("\n\nYou continue on your way, steeling yourself against what happened.");
 	pc.addHard(5);
 	//(pc can’t go there no more.)

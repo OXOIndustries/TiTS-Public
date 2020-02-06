@@ -1595,8 +1595,8 @@ public function wait(minPass:int = 0):void
 		waitMult *= 1.1 + 0.05*pc.statusEffectv1("Using Doctor's Bag");
 		pc.removeStatusEffect("Using Doctor's Bag");
 	}
-	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
-	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
+	if(pc.HPRaw < pc.HPMax()) pc.changeHP(Math.round(pc.HPMax() * waitMult));
+	if(pc.energyRaw < pc.energyMax()) pc.changeEnergy(Math.round(pc.energyMax() * waitMult));
 
 	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
@@ -1698,10 +1698,10 @@ public function restHeal():void
 	{
 		if(pc.HPRaw < pc.HPMax()) {
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
-			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+			else pc.changeHP(Math.round(pc.HPMax() * .33 * bonusMult));
 		}
 		if(pc.energyRaw < pc.energyMax()) {
-			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+			pc.changeEnergy(Math.round(pc.energyMax() * .33 * bonusMult));
 		}
 	}
 	

@@ -3837,8 +3837,8 @@ public function winVsNaleenBros():void
 		if(pc.lust() >= 50) output(" That smell... that smell will haunt your dreams. It punches you square in the nose and knocks you off your feet. You nearly sick up a time or two, but at least you aren’t so turned on any more.");
 		else output(" While the ointment does seem to mend your wounds, the greasy texture is something you could do without. The scent of half-rotten grass clippings is far from appealing.");
 		output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>\n\n");
-		pc.HP(pc.HPMax());
-		pc.lust(-55);
+		pc.changeHP(pc.HPMax());
+		pc.changeLust(-55);
 		processTime(5);
 	}
 	processTime(4);

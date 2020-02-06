@@ -1143,7 +1143,7 @@ public function gooArmorCrewOption(arg:Array):void
 				txt += "\n\n<i>“[pc.name]!”</i>";
 				
 				processTime(2);
-				pc.HP(-10);
+				pc.changeHP(-10);
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew, exitMain]);
 			}
@@ -1407,7 +1407,7 @@ public function gooArmorCrewOption(arg:Array):void
 			txt += "”</i>";
 			
 			processTime(3 + rand (2));
-			pc.HP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
+			pc.changeHP(50 * flags["GOO_ARMOR_HEAL_LEVEL"]);
 			pc.createStatusEffect("Goo Armor Healed", 0, 0, 0, 0, true, "", "", false, 60, 0xFFFFFF);
 			
 			// Defense Debuff
@@ -1862,7 +1862,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			flags["GOO_ARMOR_HEAL_LEVEL"] = 1;
 			
 			pc.destroyItemByClass(GrayMicrobots, 10);
-			pc.HP(10);
+			pc.changeHP(10);
 			
 			if(exitMain) gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["leave", fromCrew, exitMain]);
 			else gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);

@@ -1403,7 +1403,7 @@ public function tellEmTheAlphasGonnaFuckYouDown(vagIdx:int):void
 
 	// end scene (scene: Get Fucked); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();
@@ -1483,7 +1483,7 @@ public function lickingMiloPolesFromTheUvetanSnow():void
 
 	// end scene (scene: Suck Him); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0);
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	var eitan:Creature = getEitan();
 	pc.loadInMouth(eitan);
 	pc.loadInMouth(eitan);
@@ -1557,7 +1557,7 @@ public function getOnTopOfEitansCock(vagIdx:int):void
 
 	// end scene (scene: Ride Eitan); decrease Lust to 0; decrease HP by 5 (but do not let it fall to 0); go to (scene: Aftercare)
 	pc.orgasm();
-	pc.HP(Math.max(-5, 1 - pc.HP()));
+	pc.changeHP(Math.max(-5, 1 - pc.HP()));
 	if (vagIdx < 0) pc.loadInAss(eitan);
 	else pc.loadInCunt(eitan, vagIdx);
 	eitan.orgasm();

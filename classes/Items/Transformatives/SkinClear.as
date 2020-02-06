@@ -286,7 +286,7 @@ package classes.Items.Transformatives
 					// If pc skin does not have the lubricated flag, gain the lubricated flag. Increase Libido by 1 to 5. Decrease energy by 10.
 					target.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 					if(libidoGain) target.libido(1 + rand(5));
-					target.energy(-10);
+					target.changeEnergy(-10);
 					break;
 				// Tongue
 				case 1:
@@ -333,7 +333,7 @@ package classes.Items.Transformatives
 						output(", acutely aware that from now on your privates are going to be constantly dripping.");
 						
 						// Decrease energy by 10.
-						target.energy(-10);
+						target.changeEnergy(-10);
 					}
 					// if brute:
 					else
@@ -356,7 +356,7 @@ package classes.Items.Transformatives
 						output(" You’re still a mean fuck-machine, no doubt about that.");
 						
 						// Decrease energy by 20.
-						target.energy(-20);
+						target.changeEnergy(-20);
 					}
 					
 					// If pc cock{s} {doesn’t/don’t} have the lubricated flag, gain the lubricated flag. Increase Libido by 1 to 5. Reset Lust to 0.

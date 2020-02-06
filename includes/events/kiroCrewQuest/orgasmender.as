@@ -499,8 +499,8 @@ public function orgasmenderScene4():void
 	{
 		pc.loadInNipples(pp);
 	}
-	pc.HP(pc.HPMax());
-	pc.energy(40);
+	pc.changeHP(pc.HPMax());
+	pc.changeEnergy(40);
 	pc.taint(3);
 	IncrementFlag("ORGASMENDER");
 	clearMenu();

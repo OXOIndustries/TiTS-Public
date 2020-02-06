@@ -1694,8 +1694,8 @@ public function simoneWorkoutResults(response:String = ""):void
 			}
 			else
 			{
-				pc.lust(50 + rand(21));
-				pc.HP(-1);
+				pc.changeHP(-1);
+				pc.changeLust(50 + rand(21));
 			}
 			
 			StatTracking.track("contests/simone challenge wins");

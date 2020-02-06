@@ -277,8 +277,8 @@
 		public function zilSalveCheat(target:Creature):void
 		{
 			output("The snake-infested zil produces a salve from a pouch on his hip and smears it across his injured carapace. The greasy substance leaves smooth, unblemished chitin in its wake, but he’s apparently used it all. - and an empty pouch the zil discards. <b>He won’t be healing again.</b>");
-			this.energy(-100);
-			this.HP(1000);
+			this.changeEnergy(-100);
+			this.changeHP(1000);
 		}
 
 		/* OG Bullshiiiit

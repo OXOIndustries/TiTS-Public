@@ -79,8 +79,8 @@
 					//HP GAINZ
 					//40% chance of 10% HP gain, 80% chance of 10 energy gain if not raskvel morph
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
-					pc.HP(Math.round(pc.HPMax() * .4));
-					pc.energy(25);
+					pc.changeHP(Math.round(pc.HPMax() * .4));
+					pc.changeEnergy(25);
 				}
 				//Rask-morphed
 				else
@@ -89,8 +89,8 @@
 					//70% chance of 10% HP gain, 100% chance of 20 energy gain if raskvel morph
 					//HP GAINS
 					//No, that's dumb. We do it Fen's way. Out of combat healing item, soz always helps.
-					pc.HP(Math.round(pc.HPMax() * .8));
-					pc.energy(50);
+					pc.changeHP(Math.round(pc.HPMax() * .8));
+					pc.changeEnergy(50);
 				}
 				//Stats
 				//Increase intelligence if below 30%

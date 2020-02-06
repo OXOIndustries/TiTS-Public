@@ -838,8 +838,8 @@
 			// Not counted as a transformation
 			output("\n\nA surge of energy rushes through your body, revitalizing every strand of muscle. Damn, you feel like you could run a marathon, and still have the energy to drain some hung stud dry!");
 			
-			target.energy(50);
-			target.lust(5);
+			target.changeEnergy(50);
+			target.changeLust(5);
 		}
 		
 		// Overdosing
