@@ -5100,6 +5100,21 @@
 		{
 			return (HPMax() == 0 ? 0 : Math.round((HP() / HPMax()) * 100));
 		}
+		public function changeHP(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			var hpy:Number = HP();
+			var hpyMax:Number = HPMax();
+			if(arg > 0 && (arg + hpy > hpyMax)) arg = Math.ceil(hpyMax-hpy);
+
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "HP: " + (arg > 0 ? "+<span class='hpHeal'>" : "<span class='hp'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.HP(arg);
+		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
 			if(arg > 0)
@@ -5129,6 +5144,21 @@
 		public function energyQ():Number
 		{
 			return (energyMax() == 0 ? 0 : Math.round((energy() / energyMax()) * 100));
+		}
+		public function changeEnergy(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			var energyy:Number = energy();
+			var energyyMax:Number = energyMax();
+			if(arg > 0 && (arg + energyy > energyyMax)) arg = Math.ceil(energyyMax-energyy);
+
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "E: " + (arg > 0 ? "+<span class='energyHeal'>" : "<span class='energy'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.energy(arg);
 		}
 		//Lust
 		public function lust(arg:Number = 0, apply:Boolean = false): Number 
@@ -5176,7 +5206,18 @@
 		{
 			return (lustMax() == 0 ? 0 : Math.round((lust() / lustMax()) * 100));
 		}
-		
+		public function changeLust(arg:Number = 0,outputText:Boolean = true):void
+		{
+			//Cap healing display for actual accuracy?
+			if(arg > 0 && (arg + lust() > lustMax())) arg = Math.ceil(lustMax()-lust());
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "L: " + (arg > 0 ? "+<span class='lust'>" : "<span class='lustHeal'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			this.lust(arg);
+		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
 		{
@@ -6059,6 +6100,20 @@
 		public function shieldsQ():Number
 		{
 			return (shieldsMax() == 0 ? 0 : Math.round((shields() / shieldsMax()) * 100));
+		}
+		public function changeShields(arg:Number = 0,outputText:Boolean = true):void
+		{
+			var shieldy:Number = shields();
+			var shieldyMax:Number = shieldsMax();
+			//Cap healing display for actual accuracy?
+			if(arg > 0 && (arg + shieldy > shieldyMax)) arg = Math.ceil(shieldyMax-shieldy);
+			if(outputText)
+			{
+				var healTxt:String = " (<b>";
+				healTxt += "S: " + (arg > 0 ? "+<span class='shieldHeal'>" : "<span class='shield'>") + Math.round(arg) + "</span></b>)";
+				kGAMECLASS.output(healTxt);
+			}
+			shields(arg);
 		}
 		public function sexiness(): Number {
 			var temp: int = 0;
