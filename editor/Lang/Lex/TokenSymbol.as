@@ -12,6 +12,5 @@ package editor.Lang.Lex {
         public static const Pipe: String = '|';
         public static const LeftParen: String = '(';
         public static const RightParen: String = ')';
-        public static const Colon: String = ':';
     }
 }
