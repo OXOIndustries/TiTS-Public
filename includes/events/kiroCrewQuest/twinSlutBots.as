@@ -30,12 +30,12 @@ public function twinSexdollEncounter():Boolean
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.setHostileActors(new KQTwinA, new KQTwinB);
-		CombatManager.encounterTextGenerator(function():String 
+		CombatManager.encounterTextGenerator(function():String
 		{
 			var s:String = "The two augmented sluts loom before you with an almost oppressive hunger about them.";
 
 			var en:Array = CombatManager.getHostileActors();
-			
+
 			var bot17:KQTwinA;
 			var bot18:KQTwinB;
 
@@ -44,9 +44,9 @@ public function twinSexdollEncounter():Boolean
 				if (en[i] is KQTwinA) bot17 = en[i];
 				else bot18 = en[i];
 			}
-			
+
 			if (bot17.isDefeated) s += "\n\n‘17’ is down for the count, reduced to a writhing, panting mess on the floor.";
-			else 
+			else
 			{
 				s += "\n\nThe one labeled ‘17’ is the smaller of the two. Her face is covered in a military-grade gas mask and visor, completely obscuring her face, including her eyes. Two, black ausar ears poke out from the top of her head. While she is the smaller of the pair, her own wobbling, immense tits are still substantial. Two gargantuan tits hang heavily from her chest, sloshing around almost completely unimpeded by the near-non-existent material covering them. The patches of fully exposed flesh reveal tan skin.\n\nBetween her cow-like thighs are her mammoth cock and balls. ";
 				// Low Lust
@@ -271,7 +271,7 @@ public function runATrainOfHyperSluts():void
 	enemy.loadInCunt(pc,0);
 	if (y >= 0) enemy.loadinAss(pc);
 	//pc can use a dick bigger than enemy capacity in this scene, but should only get down to the knot if they fit
-	if (pc.hasKnot(x) && pc.cockVolume(x) <= enemy.vaginalCapacity()) 
+	if (pc.hasKnot(x) && pc.cockVolume(x) <= enemy.vaginalCapacity())
 	{
 		output("\n\nEven after you’ve finished unloading inside of her, your knot" + (pc.hasKnot(y) ? "s remain":" remains") + " firmly inflated and locked in her. She reacts like you’d expect any good dog-slut to react; drooling, yipping, and wagging her tail in pleasure at being so thoroughly tied and bred.");
 		output("\n\n<i>“Are you being knotted, sister? Oh, I’m so envious! I haven’t had a good knotting since Mother took ours. Oh, the days when you’d keep me tied down for hours on end...”</i>");
@@ -818,20 +818,3 @@ public function twinSlutBotsMaleBadEnd2():void
 	pc.lust(pc.lustMax());
 	badEnd();
 }
-/*
-if (inCombat())
-{
-	output("\n\n");
-	CombatManager.genericVictory();
-}
-else
-{
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-public function leaveMiloFutaAfterWin():void
-{
-  output("You leave the Milodan Amazon behind you and continue on your way.\n\n");
-  CombatManager.genericVictory();
-}
-*/
