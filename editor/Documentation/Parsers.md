@@ -1,55 +1,15 @@
-# Parsers
-## Understanding parser text
-This is how the parsers text is grouped.
-
-`[ (identifier) (optional operator) (arguments) | (results) ]`
-
-Examples:
-> `[pc.name]`
-```
-identifier: "pc.name"
-arguments: []
-results: []
-```
-> `[pc.cockNoun 1]`
-```
-identifier: "pc.cockNoun"
-arguments: [1]
-results: []
-```
-> `[silly|enabled|disabled]`
-```
-identifier: "silly"
-arguments: []
-results: ["enabled", "disabled"]
-```
-> `[pc.cumQRange 0 100 1000 5000|0~100|100~1000|1000~5000|5000+]`
-```
-identifier: "pc.cumQRange"
-arguments: [0, 100, 1000, 5000]
-results: ["0~100", "100~1000", "1000~5000", "5000+"]
-```
-
----
-## Argument Grouping
-`arguments` can be grouped together using parentheses `(` `)`.
-> `[pc.hasPerk (Fecund Figure)|exceptionally wide|] hips`
-```
-identifier: "pc.hasPerk"
-arguments: ["Fecund Figure"]
-results: ["exceptionally wide", ""]
-```
----
-## Nesting in `arguments`
-When `:` is used, all `results` are changed to `arguments`.
-> `[b:|This is bold text]`
-```
-identifier: "b"
-arguments: ["This is bold text"]
-results: []
-```
----
-
-## Capitalization
----
-The original `[pc.Name]` capitalization method works if the `identifier` starts lowercase in the code. If the `identifier` is uppercase in the code, then use `[cap:|[...]]`.
+Name | Args | Results | Description
+-|-|-|-|-
+i || 1 | Italicizes first `result`
+b || 1 | Bolds first `result`
+cap || 1 | Capitalizes first `result`
+rand | One optional number | Infinite | Selects a random `result`. Optional `arg` selects `result`.
+silly || Up to 2 | Silly mode enabled or disabled
+flags ||| Accessor. Look at Flags table.
+target, attacker, enemy, pc, baby, celise, rival, geoff, flahne, zilpack, zil, penny, renvra, embry, shekka, burt, zilFemale, cuntsnake, reaha, dane, mimbrane, anno, kiro, saendra, sera, syri, vanae, anaeMaiden, vanaeHuntress, gianna, brynn, lane, anarrie, goo, nevrie, queenOfTheDeep, shade, bess, ben, taivra, gene, petr, docLash, goocubator, kara, fyn, semith, emmy, liriel, lerris, nerrasa, jerome, inessa, edan, ilaria, wulfe, busky, kally, pexiga, ara, gwen, bea, kazra, pippa, jerynn, del, yammi, mirrin, fisianna, azra, zil9tails, krymhilde, paige, ciaran, ellie, sam, khorgan, tamtam, erika, lieve, tuuva, mitzi, frostwyrm, lah, ardia, emmrfox, emredd, emponyluver, emsexyydaddyy, embountifulbotany, emsneakysnek, emripped4yourpleasure, emstormdragon, aina, amber, zea, luca, marion, olympia, lureling, roxy, lorelei, varmint, vahn, bianca, synphia ||| Accessor. Look at [Characters table](Documentation/CharParsers.md).
+hourIs | Infinite | Up to `args` + 1 | `Is` operation on `hour`
+hourRange | Infinite | Up to `args` + 1 | `Range` operation on `hour`
+dayIs | Infinite | Up to `args` + 1 | `Is` operation on `day`
+dayRange | Infinite | Up to `args` + 1 | `Range` operation on `day`
+minuteIs | Infinite | Up to `args` + 1 | `Is` operation on `minute`
+minuteRange | Infinite | Up to `args` + 1 | `Range` operation on `minute`

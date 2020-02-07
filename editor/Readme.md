@@ -3,7 +3,7 @@ It is for testing "parsers" using the game.
 
 # Users
 
-[More info on parsers](Documentation/Parsers.md)
+[More info on parsers](Documentation/ForUsers.md)
 
 [List of body part flags](Documentation/FlagList.md)
 
@@ -14,6 +14,6 @@ It is for testing "parsers" using the game.
 The `Object` that the interpreter uses is TiTSDescriptor.
 Build using TiTSFDEditor.as3proj
 
-[More info on parsers](Descriptors/Readme.md)
+[More info on code](Descriptors/ForCoders.md)
 
 [More info on the language](Lang/Readme.md)

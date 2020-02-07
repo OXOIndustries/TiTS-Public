@@ -40,13 +40,18 @@ package editor.Descriptors {
             }
         }
 
-        /**
-         * Checks for exactly one argument
-         */
-        private function oneArg(args: Array, results: Array): String {
+        // Validators
+        private function oneResult(args: Array, results: Array): String {
+            if (results.length > 1) return "has too many results";
+            if (results.length === 0) return "needs one result";
+            if (args.length > 0) return "has too many arguments";
+            return null;
+        }
+
+        private function hasOneOptionalNumberArgManyResults(args: Array, results: Array): String {
             if (args.length > 1) return "has too many arguments";
-            if (args.length === 0) return "needs one argument";
-            if (results.length > 0) return "has too many results";
+            if (args.length == 1 && typeof args[0] !== 'number') return "needs one number argument";
+            if (results.length == 0) return "needs one result";
             return null;
         }
 
@@ -62,35 +67,52 @@ package editor.Descriptors {
 
         // Test things
         private function iToCode(identifier: String, args: Array, results: Array): String {
-            if (args.length > 0)
-                return '"' + htmlTagText('i', args[0].substring(1, args[0].length - 1)) + '"';
+            if (results.length > 0)
+                return '"' + htmlTagText('i', results[0].substring(1, results[0].length - 1)) + '"';
             else
                 return '"' + htmlTagText('i', "") + '"';
         }
         public const i__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg)
-            .setToCodeFunc(iToCode);
-        public function i(text: String): String {
-            return htmlTagText('i', text);
+            .setArgResultValidatorFunc(oneResult)
+            .setToCodeFunc(iToCode)
+            .setIncludeResults();
+        public function i(args: Array, results: Array): String {
+            return htmlTagText('i', results[0]);
         }
 
         private function bToCode(identifier: String, args: Array, results: Array): String {
-            if (args.length > 0)
-                return '"' + htmlTagText('b', args[0].substring(1, args[0].length - 1)) + '"';
+            if (results.length > 0)
+                return '"' + htmlTagText('b', results[0].substring(1, results[0].length - 1)) + '"';
             else
                 return '"' + htmlTagText('b', "") + '"';
         }
         public const b__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg)
-            .setToCodeFunc(bToCode);
-        public function b(text: String): String {
-            return htmlTagText('b', text);
+            .setArgResultValidatorFunc(oneResult)
+            .setToCodeFunc(bToCode)
+            .setIncludeResults();
+        public function b(args: Array, results: Array): String {
+            return htmlTagText('b', results[0]);
         }
 
         public const cap__info: FunctionInfo = new FunctionInfo()
-            .setArgResultValidatorFunc(oneArg);
-        public function cap(text: String): String {
-            return text.charAt(0).toLocaleUpperCase() + text.slice(1);
+            .setArgResultValidatorFunc(oneResult)
+            .setIncludeResults();
+        public function cap(args: Array, results: Array): String {
+            return results[0].charAt(0).toLocaleUpperCase() + results[0].slice(1);
+        }
+
+        private function randToCode(identifier: String, args: Array, results: Array): String {
+            return 'RandomInCollection(' + results.join(', ') + ')';
+        }
+        public const rand__info: FunctionInfo = new FunctionInfo()
+            .setArgResultValidatorFunc(hasOneOptionalNumberArgManyResults)
+            .setToCodeFunc(randToCode)
+            .setIncludeResults();
+        public function rand(args: Array, results: Array): int {
+            if (args.length === 1 && 0 < args[0] && args[0] <= results.length)
+                return args[0] - 1;
+            else
+                return Math.floor(Math.random() * results.length);
         }
 
         // From TiTS
@@ -257,24 +279,24 @@ package editor.Descriptors {
         }
 
         // New Parsers
-        public const isHour__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function isHour(arg: Number): Number {
+        public const hourIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public function hourIs(arg: Number): Number {
             return this.game.hours == arg ? 0 : 1;
         }
         public const hourRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
         public function hourRange(... args): Number {
             return rangeEval(this.game.hours, args);
         }
-        public const isDay__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function isDay(arg: Number): Number {
+        public const dayIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public function dayIs(arg: Number): Number {
             return this.game.days == arg ? 0 : 1;
         }
         public const dayRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);
         public function dayRange(... args): Number {
             return rangeEval(this.game.days, args);
         }
-        public const isMinute__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
-        public function isMinute(arg: Number): Number {
+        public const minuteIs__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(hasOneArgUpToTwoResults);
+        public function minuteIs(arg: Number): Number {
             return this.game.minutes == arg ? 0 : 1;
         }
         public const minuteRange__info: FunctionInfo = new FunctionInfo().setArgResultValidatorFunc(rangeValidator);

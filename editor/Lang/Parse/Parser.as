@@ -149,37 +149,23 @@ package editor.Lang.Parse {
 
             this.whitespace();
 
-            var argNode: Node;
-            var resultNode: Node;
-            if (this.lexer.peek() === TokenType.Colon) {
-                this.lexer.advance();
+            var argNodes: Node = this.args();
 
-                argNode = this.results();
-                argNode = new ArgsNode(argNode.range, argNode.children);
+            this.whitespace();
 
-                this.whitespace();
-
-                resultNode = new ResultsNode(new TextRange(this.createStartPostion(), this.createStartPostion()), []);
-            }
-            else {
-                argNode = this.args();
-
-                this.whitespace();
-
-                resultNode = this.results();
-            }
+            var resultNodes: Node = this.results();
 
             var rangeEnd: TextPosition;
-            if (resultNode.children.length > 0)
-                rangeEnd = resultNode.children[resultNode.children.length - 1].range.end;
-            else if (argNode.children.length > 0)
-                rangeEnd = argNode.children[argNode.children.length - 1].range.end;
+            if (resultNodes.children.length > 0)
+                rangeEnd = resultNodes.children[resultNodes.children.length - 1].range.end;
+            else if (argNodes.children.length > 0)
+                rangeEnd = argNodes.children[argNodes.children.length - 1].range.end;
             else
                 rangeEnd = identityNode.range.end;
 
             return new EvalNode(
                 new TextRange(identityNode.range.start, rangeEnd),
-                [identityNode, argNode, resultNode]
+                [identityNode, argNodes, resultNodes]
             );
 
         }
