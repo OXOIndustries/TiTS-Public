@@ -633,6 +633,33 @@ package classes.GameData
 					applyDamage(new TypeCollection( { drug: 2+rand(3) } ), null, target);
 				}
 			}
+			//Injected
+			if (target.hasStatusEffect("Injected"))
+			{
+				target.addStatusValue("Injected",2,-1);
+				if (target.statusEffectv2("Injected") <= 0)
+				{
+					//statusEffectv3 keeps track of which twin gave pc the status effect
+					if (target.statusEffectv3("Injected") == 0)
+					{
+						target.physiqueMod += 5;
+						target.reflexesMod += 5;
+						output("\n\n<b>The warm fuzziness in your body subsides. It seems the injected poison is no longer affecting you.</b>")
+					} 
+					else if (target.statusEffectv3("Injected") == 1)
+					{
+						target.intelligenceMod += 5;
+						target.willpowerMod += 5;
+						output("\n\n<b>The warm fuzziness in your brain subsides. It seems the injected poison is no longer affecting you.</b>")
+					}
+				target.removeStatusEffect("Injected");
+				}
+				else
+				{
+					output("\n\n<b>You’re still feeling warm and lethargic from her injected poison</b>");
+					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Injected") } ), null, target);
+				}
+			}
 			//"Gravitational Anomaly" reduces kinetic damage!
 			if(target.hasStatusEffect("Gravitational Anomaly"))
 			{

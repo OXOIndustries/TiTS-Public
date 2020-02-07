@@ -10,7 +10,22 @@ public function showKQTwins(nude:Boolean = false):void
 }
 public function twinSexdollEncounter():Boolean
 {
-	if (flags["KQ_TWINS_DOWNED"] == undefined)
+	if (flags["KQ_RESCUED"] != undefined)
+	{
+		if (flags["KQ_TWINS_DOWNED"] == undefined)
+		{
+			output("\n\nThe two ausar “twins” that you defeated earlier are no longer here.");
+		}
+		KQKiroFollowBonusTexts();
+		return false;
+	}
+	else if (flags["KQ_TWINS_DOWNED"] != undefined)
+	{
+		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
+		addButton(0,"Twins",twinsRepeatEncounter);
+		return false;
+	}
+	else 
 	{
 		flags["KQ_STEP"] = undefined;
 		author("QuestyRobo");
@@ -80,12 +95,6 @@ public function twinSexdollEncounter():Boolean
 		addButton(0,"Next",CombatManager.beginCombat);
 		return true;
 	}
-	else
-	{
-		output("\n\nThe two ausar “twins” that you defeated earlier are still here, still mindlessly rutting against each other. You could take them for a roll in the... floor if you wanted to.");
-		addButton(0,"Twins",twinsRepeatEncounter);
-	}
-	return false;
 }
 public function twinsRepeatEncounter():void
 {
@@ -459,7 +468,7 @@ public function twinsServiceYaDick():void
 	if (pc.cockTotal() == 1)
 	{
 		output("17 sits there, licking her perfect puckers to make sure she’s swallowed every bit of your essence, meanwhile 18 is giving you the sultriest look she can, all the while breathing heavily in an exaggerated manner. Your [pc.cock] stays absolutely rigid at the sight and you feel your [pc.balls] flooding with a renewed load.");
-		output("\n\nWithout hesitation, you jump 18 and ram yourself to the hilt in her magnificent mouth. How could you think of going soft when one of your gloriously lippy mistresses hasn’t pleasured herself on your cock yet? 17 isn’t done yet either; ");
+		output("\n\nWithout hesitation, you jump 18 and ram yourself " + (pc.biggestCockVolume > 9000000 ? "as far as you can go":"to the hilt") + " in her magnificent mouth. How could you think of going soft when one of your gloriously lippy mistresses hasn’t pleasured herself on your cock yet? 17 isn’t done yet either; ");
 		if (pc.balls >= 1) output("she cozzies up to your sack and starts planting kisses along the surface. ");
 		else output("she cozzies up to your [pc.ass] and starts kissing around your rear entrance. ");
 		output("Somehow her tongue feels just as good as when she was sucking your dick! How did you ever think of fucking anything else when these fucking lips are so good!?");
@@ -467,7 +476,7 @@ public function twinsServiceYaDick():void
 	}
 	else
 	{
-		output("The two lick their beautiful, perfect lips in order to get every last drop of your seed and musk down their throats. Despite the fact that you just finished filling them, you can tell that they already want <i>more</i>! Your [pc.cocks] remain painfully rigid and your [pc.balls] suddenly fill" + (pc.balls >= 2 ? "":"s") + " back up in record time. With the subtlety and self-control of a rutting animal, you grab the pair and ram yourself back in to the hilt.");
+		output("The two lick their beautiful, perfect lips in order to get every last drop of your seed and musk down their throats. Despite the fact that you just finished filling them, you can tell that they already want <i>more</i>! Your [pc.cocks] remain painfully rigid and your [pc.balls] suddenly fill" + (pc.balls >= 2 ? "":"s") + " back up in record time. With the subtlety and self-control of a rutting animal, you grab the pair and ram yourself back in" + (pc.biggestCockVolume > 9000000 ? "":" to the hilt") + ".");
 		output("\n\nYour mind swims as the rest of the blood from your brain travels southward. The last thoughts you have stamped onto your brain are all about their lips; how beautiful and big they are, how good they feel wrapped around your [pc.cocks], and how stupid you’ve been for thinking that you’ve ever truly experienced pleasure before this moment!");
 		output("\n\nYou thrust until you cum, and no matter how much you cum you don’t slow down, you can’t slow down. You’re a machine now, made and molded only to shove your multiple masts into your mistresses’ luscious lips, indulging both of your rampant lusts as you lose sight of what you even came here for.");
 	}
